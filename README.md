@@ -41,7 +41,8 @@ and call the `custom_updater.install` service with this service data:
 ```json
 { "element": "goldair_climate" }
 ```
-Alternatively you can copy the contents of this repository's `custom_components` directory to your config directory.
+Alternatively you can copy the contents of this repository's `custom_components` directory to your 
+`<config>/custom_components` directory, however you will not get automatic updates this way.
 
 Configuration
 -------------
@@ -67,10 +68,12 @@ goldair_climate:
 &nbsp;&nbsp;&nbsp;&nbsp;*(string) (Required)* IP or hostname of the device.
 
 #### device_id
-&nbsp;&nbsp;&nbsp;&nbsp;*(string) (Required)* Device ID retrieved from the Goldair app logs (see below).
+&nbsp;&nbsp;&nbsp;&nbsp;*(string) (Required)* Device ID retrieved 
+                                              [as per the instructions below](#finding-your-device-id-and-local-key).
 
 #### local_key
-&nbsp;&nbsp;&nbsp;&nbsp;*(string) (Required)* Local key retrieved from the Goldair app logs (see below).
+&nbsp;&nbsp;&nbsp;&nbsp;*(string) (Required)* Local key retrieved 
+                                              [as per the instructions below](#finding-your-device-id-and-local-key).
 
 #### type
 &nbsp;&nbsp;&nbsp;&nbsp;*(string) (Required)* The type of Goldair device. Currently `heater` is the only option; a 
@@ -124,7 +127,7 @@ than the Goldair app (the Goldair app is just a re-branded clone of Tuya Smart).
 * [Instructions for iOS](https://github.com/codetheweb/tuyapi/blob/master/docs/SETUP.md)
 * [Instructions for Android](https://github.com/codetheweb/tuyapi/blob/cdb4289/docs/SETUP_DEPRECATED.md#capture-https-traffic)
 
-You're looking for the `uuid` (this is the device ID) and the `localKey` values.
+You're looking for `uuid` (this is the device ID) and the `localKey` values.
 
 Next steps
 ----------
