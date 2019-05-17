@@ -36,7 +36,7 @@ Installation
 ------------
 The preferred installation method is via [Custom Updater](https://github.com/custom-components/custom_updater). Once 
 you have Custom Updater set up, simply go to the dev-service page 
-![The dev-services icon](https://www.home-assistant.io/images/screenshots/developer-tool-services-icon.png | width=50)
+<img src="https://www.home-assistant.io/images/screenshots/developer-tool-services-icon.png" alt="The dev-service icon" width="30">
 and call the `custom_updater.install` service with this service data:
 ```json
 { "element": "goldair_climate" }
