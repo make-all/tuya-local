@@ -3,11 +3,11 @@ Platform to sense the current temperature at a Goldair WiFi-connected heaters an
 """
 from homeassistant.helpers.entity import Entity
 from homeassistant.const import STATE_UNAVAILABLE
-import custom_components.goldair_heater as goldair_heater
+import custom_components.goldair_climate as goldair_climate
 
 
 def setup_platform(hass, config, add_devices, discovery_info=None):
-    device = hass.data[goldair_heater.DOMAIN][discovery_info['host']]
+    device = hass.data[goldair_climate.DOMAIN][discovery_info['host']]
     add_devices([
         GoldairTemperatureSensor(device)
     ])
@@ -17,7 +17,7 @@ class GoldairTemperatureSensor(Entity):
     """Representation of a Goldair WiFi-connected heater thermometer."""
 
     def __init__(self, device):
-        """Initialize the light.
+        """Initialize the lock.
         Args:
             device (GoldairHeaterDevice): The device API instance."""
         self._device = device
@@ -29,7 +29,7 @@ class GoldairTemperatureSensor(Entity):
 
     @property
     def name(self):
-        """Return the name of the light."""
+        """Return the name of the sensor."""
         return self._device.name
 
     @property

@@ -16,16 +16,19 @@ from homeassistant.const import (CONF_NAME, CONF_HOST, ATTR_TEMPERATURE, TEMP_CE
 from homeassistant.components.climate import ATTR_OPERATION_MODE
 from homeassistant.helpers.discovery import load_platform
 
+VERSION = '0.0.1'
 REQUIREMENTS = ['pytuya==7.0']
 
 _LOGGER = logging.getLogger(__name__)
 
-DOMAIN = 'goldair_heater'
-DATA_GOLDAIR_HEATER = 'data_goldair_heater'
+DOMAIN = 'goldair_climate'
+DATA_GOLDAIR_CLIMATE = 'data_goldair_climate'
 
 
 CONF_DEVICE_ID = 'device_id'
 CONF_LOCAL_KEY = 'local_key'
+CONF_TYPE = 'type'
+CONF_TYPE_HEATER = 'heater'
 CONF_CLIMATE = 'climate'
 CONF_SENSOR = 'sensor'
 CONF_CHILD_LOCK = 'child_lock'
@@ -82,6 +85,7 @@ PLATFORM_SCHEMA = vol.Schema({
     vol.Required(CONF_HOST): cv.string,
     vol.Required(CONF_DEVICE_ID): cv.string,
     vol.Required(CONF_LOCAL_KEY): cv.string,
+    vol.Required(CONF_TYPE): vol.In([CONF_TYPE_HEATER]),
     vol.Optional(CONF_CLIMATE, default=True): cv.boolean,
     vol.Optional(CONF_SENSOR, default=False): cv.boolean,
     vol.Optional(CONF_DISPLAY_LIGHT, default=False): cv.boolean,
@@ -106,14 +110,16 @@ def setup(hass, config):
         )
         hass.data[DOMAIN][host] = device
 
-        if device_config.get('climate'):
-            load_platform(hass, 'climate', DOMAIN, {'host': host})
-        if device_config.get('sensor'):
-            load_platform(hass, 'sensor', DOMAIN, {'host': host})
-        if device_config.get('display_light'):
-            load_platform(hass, 'light', DOMAIN, {'host': host})
-        if device_config.get('child_lock'):
-            load_platform(hass, 'lock', DOMAIN, {'host': host})
+        if device_config.get(CONF_TYPE) == CONF_TYPE_HEATER:
+            discovery_info = {'host': host, 'type': 'heater'}
+            if device_config.get(CONF_CLIMATE):
+                load_platform(hass, 'climate', DOMAIN, discovery_info, config)
+            if device_config.get(CONF_SENSOR):
+                load_platform(hass, 'sensor', DOMAIN, discovery_info, config)
+            if device_config.get(CONF_DISPLAY_LIGHT):
+                load_platform(hass, 'light', DOMAIN, discovery_info, config)
+            if device_config.get(CONF_CHILD_LOCK):
+                load_platform(hass, 'lock', DOMAIN, discovery_info, config)
 
     return True
 
