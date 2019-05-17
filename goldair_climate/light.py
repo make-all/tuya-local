@@ -3,11 +3,11 @@ Platform to control the LED display light on Goldair WiFi-connected heaters and 
 """
 from homeassistant.components.light import Light
 from homeassistant.const import STATE_UNAVAILABLE
-import custom_components.goldair_heater as goldair_heater
+import custom_components.goldair_climate as goldair_climate
 
 
 def setup_platform(hass, config, add_devices, discovery_info=None):
-    device = hass.data[goldair_heater.DOMAIN][discovery_info['host']]
+    device = hass.data[goldair_climate.DOMAIN][discovery_info['host']]
     add_devices([
         GoldairLedDisplayLight(device)
     ])

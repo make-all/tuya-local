@@ -1,7 +1,7 @@
-Home Assistant Goldair WiFi Heater component
-============================================
+Home Assistant Goldair WiFi Climate component
+=============================================
 
-The `goldair_heater` component integrates 
+The `goldair_climate` component integrates 
 [Goldair WiFi-enabled heaters](http://www.goldair.co.nz/product-catalogue/heating/wifi-heaters) into Home Assistant, 
 enabling control of setting the following parameters via the UI and the following services:
 
@@ -28,57 +28,79 @@ Current temperature is also displayed.
 Please note, this component has currently only been tested with the Goldair GPPH (inverter) range, however theoretically 
 it should also work with GEPH and GPCV devices and any other Goldair heaters based on the Tuya platform.
 
+Work is in progress to support Goldair WiFi dehumidifiers.
+
 ---
 
-To enable the component, copy the contents of this repository's `component` directory to your
-`<config_dir>/custom_components` directory, then add the following lines to your `configuration.yaml` file:
+Installation
+------------
+The preferred installation method is via [custom_updater](https://github.com/custom-components/custom_updater):
+```yaml
+custom_updater:
+  track:
+    - components
+  component_urls:
+    - https://raw.githubusercontent.com/nikrolls/homeassistant-goldair-climate/master/custom_components.json
+
+```
+Alternatively you can copy the contents of this repository's `goldair_climate` directory to your
+config directory. 
+
+Configuration
+-------------
+Add the following lines to your `configuration.yaml` file:
 
 ```yaml
 # Example configuration.yaml entry
-goldair_heater:
+goldair_climate:
   - name: My heater
     host: 1.2.3.4
     device_id: <your device id>
     local_key: <your local key>
+    type: 'heater'
 ```
 
-CONFIGURATION VARIABLES
------------------------
+### Configuration variables
 
-### name
+#### name
 &nbsp;&nbsp;&nbsp;&nbsp;*(string) (Required)* Any unique for the device; required because the Tuya API doesn't provide
                                               the one you set in the app.
 
-### host
+#### host
 &nbsp;&nbsp;&nbsp;&nbsp;*(string) (Required)* IP or hostname of the device.
 
-### device_id
+#### device_id
 &nbsp;&nbsp;&nbsp;&nbsp;*(string) (Required)* Device ID retrieved from the Goldair app logs (see below).
 
-### local_key
+#### local_key
 &nbsp;&nbsp;&nbsp;&nbsp;*(string) (Required)* Local key retrieved from the Goldair app logs (see below).
 
-### climate
+#### type
+&nbsp;&nbsp;&nbsp;&nbsp;*(string) (Required)* The type of Goldair device. Currently `heater` is the only option; a 
+future update will add support for dehumidifiers, so setting the type now will prevent the component breaking when this
+functionality is released.
+
+#### climate
 &nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this heater as a climate device.
 
 &nbsp;&nbsp;&nbsp;&nbsp;*Default value: true* 
 
-### sensor
+#### sensor
 &nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this heater's thermometer as a temperature sensor.
 
 &nbsp;&nbsp;&nbsp;&nbsp;*Default value: false* 
 
-### display_light
+#### display_light
 &nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this heater's LED display control as a light.
 
 &nbsp;&nbsp;&nbsp;&nbsp;*Default value: false* 
 
-### child_lock
+#### child_lock
 &nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this heater's child lock as a lock device.
 
 &nbsp;&nbsp;&nbsp;&nbsp;*Default value: false* 
 
-GOTCHAS
+Gotchas
 -------
 These heaters have individual target temperatures for their Comfort and Eco modes, whereas Home Assistant only supports
 a single target temperature. Therefore, when you're in Comfort mode you will set the Comfort temperature (`5`-`35`), and
@@ -97,42 +119,27 @@ something in HA. This can be confusing because it's the same behaviour as when y
 heater's own control panel and the change is rejected due to being locked, however rest assured that the changes *are* 
 taking effect.
 
-FINDING YOUR DEVICE ID AND LOCAL KEY
+Finding your device ID and local key 
 ------------------------------------
+You can find these keys the same way as you would for any Tuya local component. You'll need the Tuya Smart app rather 
+than the Goldair app (the Goldair app is just a re-branded clone of Tuya Smart).
 
-If you have an Android device that supports Mass Storage mode, you can easily find these properties using the below 
-instructions. If you don't, there are some alternate methods at 
-[codetheweb/tuyapi](https://github.com/codetheweb/tuyapi/blob/master/docs/SETUP.md) (you're looking for the `uuid` and
-`localKey` values).
+* [Instructions for iOS](https://github.com/codetheweb/tuyapi/blob/master/docs/SETUP.md)
+* [Instructions for Android](https://github.com/codetheweb/tuyapi/blob/cdb4289/docs/SETUP_DEPRECATED.md#capture-https-traffic)
 
-1. Download the [Goldair app from the Play Store](https://play.google.com/store/apps/details?id=com.goldair.smart).
-2. Follow the instructions in the app to set up the heater. Don't agonise over the name because you'll be giving it a 
-   new one in HA, but do remember it because you'll use this name to find the keys later.
-3. Once this is done and you've verified that you can control the heater from your phone, close the app and plug your 
-   phone into a computer in Mass Storage mode (choose the option to browse files). 
-    * ℹ Alternatively you can use an Android file browser, but bear in mind you will need to search through a large log
-        file
-4. Browse your phone's filesystem to find `/Android/data/com.goldair.smart/cache/1.abj` and open it in a text editor 
-   that can handle large files.
-5. Search for your device in this file by the name you gave it earlier. You're looking for a very long line that 
-   contains not only the device name, but also `uuid` and `localKey` properties. 
-    * ℹ If you've been using the app a while and have added this device more than once, you need to find the last 
-        occurrence of this kind of line for your device in the log file
-6. Copy the value of `uuid` (eg: 1234567890abcdef1234) to `device_id`, and the value of `localKey` 
-   (eg: 1234567890abcdef) to `local_key` in your `configuration.yaml` file.
+You're looking for the `uuid` (this is the device ID) and the `localKey` values.
 
-Repeat for as many heaters as you have to set up.
-
-NEXT STEPS
+Next steps
 ----------
 This component needs specs! Once they're written I'm considering submitting it to the HA team for inclusion in standard 
 installations. Please report any issues and feel free to raise pull requests.
 
-This was my first Python project, so feel free to correct any conventions or idioms I got wrong.
+I also have a working integration for Goldair WiFi dehumidifiers; it needs to be re-worked to prevent duplicate code
+before releasing it to the wild.
 
-ACKNOWLEDGEMENTS
+Acknowledgements
 ----------------
-All I did was write some code. None of this would have been possible without:
+None of this would have been possible without some foundational discovery work to get me started:
 
 * [TarxBoy](https://github.com/TarxBoy)'s [investigation using codetheweb/tuyapi](https://github.com/codetheweb/tuyapi/issues/31) to figure out the correlation of the cryptic DPS states 
 * [sean6541](https://github.com/sean6541)'s [tuya-homeassistant](https://github.com/sean6541/tuya-homeassistant) library giving an example of integrating Tuya devices with Home Assistant
