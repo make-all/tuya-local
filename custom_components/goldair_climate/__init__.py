@@ -16,7 +16,7 @@ from homeassistant.const import (CONF_NAME, CONF_HOST, ATTR_TEMPERATURE, TEMP_CE
 from homeassistant.components.climate import ATTR_OPERATION_MODE
 from homeassistant.helpers.discovery import load_platform
 
-VERSION = '0.0.2'
+VERSION = '0.0.3'
 REQUIREMENTS = ['pytuya==7.0']
 
 _LOGGER = logging.getLogger(__name__)
