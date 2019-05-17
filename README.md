@@ -34,17 +34,14 @@ Work is in progress to support Goldair WiFi dehumidifiers.
 
 Installation
 ------------
-The preferred installation method is via [custom_updater](https://github.com/custom-components/custom_updater):
-```yaml
-custom_updater:
-  track:
-    - components
-  component_urls:
-    - https://raw.githubusercontent.com/nikrolls/homeassistant-goldair-climate/master/custom_components.json
-
+The preferred installation method is via [Custom Updater](https://github.com/custom-components/custom_updater). Once 
+you have Custom Updater set up, simply go to the dev-service page 
+![The dev-services icon](https://www.home-assistant.io/images/screenshots/developer-tool-services-icon.png | width=50)
+and call the `custom_updater.install` service with this service data:
+```json
+{ "element": "goldair_climate" }
 ```
-Alternatively you can copy the contents of this repository's `goldair_climate` directory to your
-config directory. 
+Alternatively you can copy the contents of this repository's `custom_components` directory to your config directory.
 
 Configuration
 -------------
@@ -77,8 +74,8 @@ goldair_climate:
 
 #### type
 &nbsp;&nbsp;&nbsp;&nbsp;*(string) (Required)* The type of Goldair device. Currently `heater` is the only option; a 
-future update will add support for dehumidifiers, so setting the type now will prevent the component breaking when this
-functionality is released.
+                                              future update will add support for dehumidifiers, so setting the type now 
+                                              will prevent the component breaking when this functionality is released.
 
 #### climate
 &nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this heater as a climate device.
