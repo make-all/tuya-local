@@ -15,7 +15,7 @@ import homeassistant.helpers.config_validation as cv
 from homeassistant.const import (CONF_NAME, CONF_HOST, TEMP_CELSIUS)
 from homeassistant.helpers.discovery import load_platform
 
-VERSION = '0.0.3'
+VERSION = '0.0.5'
 
 _LOGGER = logging.getLogger(__name__)
 

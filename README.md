@@ -35,7 +35,8 @@ Work is in progress to support Goldair WiFi dehumidifiers.
 Installation
 ------------
 The preferred installation method is via [HACS](https://hacs.xyz/). Once you have HACS set up, simply follow the
-[instructions for adding a custom repository](https://hacs.xyz/docs/navigation/settings#custom-repositories).
+[instructions for adding a custom repository](https://hacs.xyz/docs/navigation/settings#custom-repositories) and then
+the integration will be available to install like any other.
 
 You can also use [Custom Updater](https://github.com/custom-components/custom_updater). Once you have Custom Updater set
 up, simply go to the dev-service page
@@ -81,7 +82,7 @@ goldair_climate:
 #### type
 &nbsp;&nbsp;&nbsp;&nbsp;*(string) (Required)* The type of Goldair device. Currently `heater` is the only option; a 
                                               future update will add support for dehumidifiers and other devices, so
-                                              setting the type now will prevent the component breaking when this
+                                              setting the type now will prevent the integration breaking when this
                                               functionality is released.
 
 #### climate
@@ -125,7 +126,7 @@ taking effect.
 
 Finding your device ID and local key 
 ------------------------------------
-You can find these keys the same way as you would for any Tuya local component. You'll need the Tuya Smart app rather 
+You can find these keys the same way as you would for any Tuya local integration. You'll need the Tuya Smart app rather
 than the Goldair app (the Goldair app is just a re-branded clone of Tuya Smart).
 
 * [Instructions for iOS](https://github.com/codetheweb/tuyapi/blob/master/docs/SETUP.md)
