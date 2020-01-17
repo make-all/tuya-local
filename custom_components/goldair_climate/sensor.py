@@ -1,45 +1,14 @@
 """
-Platform to sense the current temperature at a Goldair WiFi-connected heaters and panels.
+Setup for different kinds of Goldair climate devices
 """
-from homeassistant.helpers.entity import Entity
-from homeassistant.const import STATE_UNAVAILABLE
-import custom_components.goldair_climate as goldair_climate
-
+from homeassistant.const import CONF_HOST
+from custom_components.goldair_climate import (
+    DOMAIN, CONF_TYPE, CONF_TYPE_HEATER
+)
+from custom_components.goldair_climate.heater.sensor import GoldairHeaterTemperatureSensor
 
 def setup_platform(hass, config, add_devices, discovery_info=None):
-    device = hass.data[goldair_climate.DOMAIN][discovery_info['host']]
-    add_devices([
-        GoldairTemperatureSensor(device)
-    ])
-
-
-class GoldairTemperatureSensor(Entity):
-    """Representation of a Goldair WiFi-connected heater thermometer."""
-
-    def __init__(self, device):
-        """Initialize the lock.
-        Args:
-            device (GoldairHeaterDevice): The device API instance."""
-        self._device = device
-
-    @property
-    def should_poll(self):
-        """Return the polling state."""
-        return True
-
-    @property
-    def name(self):
-        """Return the name of the sensor."""
-        return self._device.name
-
-    @property
-    def state(self):
-        """Return the current state."""
-        if self._device.current_temperature is None:
-            return STATE_UNAVAILABLE
-        else:
-            return self._device.current_temperature
-
-    @property
-    def unit_of_measurement(self):
-        return self._device.temperature_unit
+    """Set up the Goldair climate device according to its type."""
+    device = hass.data[DOMAIN][discovery_info[CONF_HOST]]
+    if discovery_info[CONF_TYPE] == CONF_TYPE_HEATER:
+        add_devices([GoldairHeaterTemperatureSensor(device)])
