@@ -34,8 +34,8 @@ There was previously a sensor option, however this is easily achieved using a
 
 ### Warning
 Please note, this component has currently only been tested with the Goldair GPPH (inverter) and GPDH420 (dehumidifier)
-range, however theoretically it should also work with GEPH and GPCV heater devices, the GPDH440 dehumidifier, and any
-other Goldair heaters or dehumidifiers based on the Tuya platform.
+range, however theoretically it should also work with GEPH and GPCV heater devices, and may work with the GPDH440  
+dehumidifier, and any other Goldair heaters or dehumidifiers based on the Tuya platform.
 
 ---
 
