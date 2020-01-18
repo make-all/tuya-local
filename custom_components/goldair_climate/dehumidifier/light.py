@@ -1,10 +1,10 @@
 """
-Platform to control the LED display light on Goldair WiFi-connected heaters and panels.
+Platform to control the LED display light on Goldair WiFi-connected dehumidifiers.
 """
 from homeassistant.components.light import Light
 from homeassistant.const import STATE_UNAVAILABLE
 from custom_components.goldair_climate import GoldairTuyaDevice
-from custom_components.goldair_climate.heater.climate import (
+from custom_components.goldair_climate.dehumidifier.climate import (
     ATTR_DISPLAY_ON, PROPERTY_TO_DPS_ID, HVAC_MODE_TO_DPS_MODE
 )
 from homeassistant.components.climate import (
@@ -12,8 +12,8 @@ from homeassistant.components.climate import (
 )
 
 
-class GoldairHeaterLedDisplayLight(Light):
-    """Representation of a Goldair WiFi-connected heater LED display."""
+class GoldairDehumidifierLedDisplayLight(Light):
+    """Representation of a Goldair WiFi-connected dehumidifier LED display."""
 
     def __init__(self, device):
         """Initialize the light.

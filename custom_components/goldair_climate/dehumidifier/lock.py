@@ -1,16 +1,16 @@
 """
-Platform to control the child lock on Goldair WiFi-connected heaters and panels.
+Platform to control the child lock on Goldair WiFi-connected dehumidifiers.
 """
 from homeassistant.components.lock import (STATE_LOCKED, STATE_UNLOCKED, LockDevice)
 from homeassistant.const import STATE_UNAVAILABLE
 from custom_components.goldair_climate import GoldairTuyaDevice
-from custom_components.goldair_climate.heater.climate import (
+from custom_components.goldair_climate.dehumidifier.climate import (
     ATTR_CHILD_LOCK, PROPERTY_TO_DPS_ID
 )
 
 
-class GoldairHeaterChildLock(LockDevice):
-    """Representation of a Goldair WiFi-connected heater child lock."""
+class GoldairDehumidifierChildLock(LockDevice):
+    """Representation of a Goldair WiFi-connected dehumidifier child lock."""
 
     def __init__(self, device):
         """Initialize the lock.

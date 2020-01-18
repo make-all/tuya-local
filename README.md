@@ -2,10 +2,11 @@ Home Assistant Goldair WiFi Climate component
 =============================================
 
 The `goldair_climate` component integrates 
-[Goldair WiFi-enabled heaters](http://www.goldair.co.nz/product-catalogue/heating/wifi-heaters) into Home Assistant, 
+[Goldair WiFi-enabled heaters](http://www.goldair.co.nz/product-catalogue/heating/wifi-heaters) and
+WiFi-enabled [dehumidifiers](http://www.goldair.co.nz/product-catalogue/heating/dehumidifiers) into Home Assistant,
 enabling control of setting the following parameters via the UI and the following services:
 
-**Climate**
+**Heaters**
 * **power** (on/off)
 * **mode** (Comfort, Eco, Anti-freeze)
 * **target temperature** (`5`-`35` in Comfort mode, `5`-`21` in Eco mode, in °C)
@@ -13,8 +14,12 @@ enabling control of setting the following parameters via the UI and the followin
 
 Current temperature is also displayed.
 
-**Sensor**
-* **current temperature** (in °C)
+**Demudifiers**
+* **power** (on/off)
+* **mode** (Normal, Low, High, Dry clothes, Air clean)
+* **target humidity** (`30`-`80`%)
+
+Current temperature is displayed, and current humidity is available as a property.
 
 **Light**
 * **LED display** (on/off)
@@ -22,13 +27,15 @@ Current temperature is also displayed.
 **Lock**
 * **Child lock** (on/off)
 
+There was previously a sensor option, however this is easily achieved using a
+[template sensor](https://www.home-assistant.io/integrations/template/) and therefore is no longer supported.
+
 ---
 
 ### Warning
-Please note, this component has currently only been tested with the Goldair GPPH (inverter) range, however theoretically 
-it should also work with GEPH and GPCV devices and any other Goldair heaters based on the Tuya platform.
-
-Work is in progress to support Goldair WiFi dehumidifiers.
+Please note, this component has currently only been tested with the Goldair GPPH (inverter) and GPDH420 (dehumidifier)
+range, however theoretically it should also work with GEPH and GPCV heater devices, the GPDH440 dehumidifier, and any
+other Goldair heaters or dehumidifiers based on the Tuya platform.
 
 ---
 
@@ -38,10 +45,8 @@ The preferred installation method is via [HACS](https://hacs.xyz/). Once you hav
 [instructions for adding a custom repository](https://hacs.xyz/docs/navigation/settings#custom-repositories) and then
 the integration will be available to install like any other.
 
-You can also use [Custom Updater](https://github.com/custom-components/custom_updater). Once you have Custom Updater set
-up, simply go to the dev-service page
-<img src="https://www.home-assistant.io/images/screenshots/developer-tool-services-icon.png" alt="The dev-service icon" width="30">
-and call the `custom_updater.install` service with this service data:
+You can also use [Custom Updater](https://github.com/custom-components/custom_updater). Once Custom Updater is  set
+up, go to the Developer Tools > Service page and call the `custom_updater.install` service with this service data:
 ```json
 { "element": "goldair_climate" }
 ```
@@ -59,7 +64,7 @@ goldair_climate:
     host: 1.2.3.4
     device_id: <your device id>
     local_key: <your local key>
-    type: 'heater'
+    type: heater
 ```
 
 ### Configuration variables
@@ -80,20 +85,12 @@ goldair_climate:
                                               [as per the instructions below](#finding-your-device-id-and-local-key).
 
 #### type
-&nbsp;&nbsp;&nbsp;&nbsp;*(string) (Required)* The type of Goldair device. Currently `heater` is the only option; a 
-                                              future update will add support for dehumidifiers and other devices, so
-                                              setting the type now will prevent the integration breaking when this
-                                              functionality is released.
+&nbsp;&nbsp;&nbsp;&nbsp;*(string) (Required)* The type of Goldair device: currently `heater` or `dehumidifier`.
 
 #### climate
 &nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this heater as a climate device.
 
 &nbsp;&nbsp;&nbsp;&nbsp;*Default value: true* 
-
-#### sensor
-&nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this heater's thermometer as a temperature sensor.
-
-&nbsp;&nbsp;&nbsp;&nbsp;*Default value: false* 
 
 #### display_light
 &nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this heater's LED display control as a light.
@@ -105,9 +102,9 @@ goldair_climate:
 
 &nbsp;&nbsp;&nbsp;&nbsp;*Default value: false* 
 
-Gotchas
--------
-These heaters have individual target temperatures for their Comfort and Eco modes, whereas Home Assistant only supports
+Heater gotchas
+--------------
+Goldair heaters have individual target temperatures for their Comfort and Eco modes, whereas Home Assistant only supports
 a single target temperature. Therefore, when you're in Comfort mode you will set the Comfort temperature (`5`-`35`), and
 when you're in Eco mode you will set the Eco temperature (`5`-`21`), just like you were using the heater's own control 
 panel. Bear this in mind when writing automations that change the operation mode and set a temperature at the same time: 
@@ -138,9 +135,6 @@ Next steps
 ----------
 This component needs specs! Once they're written I'm considering submitting it to the HA team for inclusion in standard 
 installations. Please report any issues and feel free to raise pull requests.
-
-I also have a working integration for Goldair WiFi dehumidifiers; it needs to be re-worked to prevent duplicate code
-before releasing it to the wild.
 
 Acknowledgements
 ----------------

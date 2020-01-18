@@ -4,10 +4,10 @@ Goldair WiFi Heater device.
 from homeassistant.const import (
     ATTR_TEMPERATURE, TEMP_CELSIUS, STATE_UNAVAILABLE
 )
-from homeassistant.components.climate import (
-  ClimateDevice, ATTR_HVAC_MODE, ATTR_PRESET_MODE, ATTR_TEMPERATURE, HVAC_MODE_OFF, HVAC_MODE_HEAT
-)
+from homeassistant.components.climate import ClimateDevice
 from homeassistant.components.climate.const import (
+    ATTR_HVAC_MODE, ATTR_PRESET_MODE,
+    HVAC_MODE_OFF, HVAC_MODE_HEAT,
     SUPPORT_TARGET_TEMPERATURE, SUPPORT_PRESET_MODE, SUPPORT_SWING_MODE
 )
 from custom_components.goldair_climate import GoldairTuyaDevice
@@ -19,8 +19,6 @@ ATTR_FAULT = 'fault'
 ATTR_POWER_MODE_AUTO = 'auto'
 ATTR_POWER_MODE_USER = 'user'
 ATTR_POWER_LEVEL = 'power_level'
-ATTR_TIMER_MINUTES = 'timer_minutes'
-ATTR_TIMER_ON = 'timer_on'
 ATTR_DISPLAY_ON = 'display_on'
 ATTR_POWER_MODE = 'power_mode'
 ATTR_ECO_TARGET_TEMPERATURE = 'eco_' + ATTR_TARGET_TEMPERATURE
@@ -29,7 +27,7 @@ STATE_COMFORT = 'Comfort'
 STATE_ECO = 'Eco'
 STATE_ANTI_FREEZE = 'Anti-freeze'
 
-GOLDAIR_PROPERTY_TO_DPS_ID = {
+PROPERTY_TO_DPS_ID = {
     ATTR_HVAC_MODE: '1',
     ATTR_TARGET_TEMPERATURE: '2',
     ATTR_TEMPERATURE: '3',
@@ -37,23 +35,21 @@ GOLDAIR_PROPERTY_TO_DPS_ID = {
     ATTR_CHILD_LOCK: '6',
     ATTR_FAULT: '12',
     ATTR_POWER_LEVEL: '101',
-    ATTR_TIMER_MINUTES: '102',
-    ATTR_TIMER_ON: '103',
     ATTR_DISPLAY_ON: '104',
     ATTR_POWER_MODE: '105',
     ATTR_ECO_TARGET_TEMPERATURE: '106'
 }
 
-GOLDAIR_MODE_TO_HVAC_MODE = {
+HVAC_MODE_TO_DPS_MODE = {
     HVAC_MODE_OFF: False,
     HVAC_MODE_HEAT: True
 }
-GOLDAIR_MODE_TO_PRESET_MODE = {
+PRESET_MODE_TO_DPS_MODE = {
     STATE_COMFORT: 'C',
     STATE_ECO: 'ECO',
     STATE_ANTI_FREEZE: 'AF'
 }
-GOLDAIR_POWER_LEVEL_TO_DPS_LEVEL = {
+POWER_LEVEL_TO_DPS_LEVEL = {
     'Stop': 'stop',
     '1': '1',
     '2': '2',
@@ -62,9 +58,9 @@ GOLDAIR_POWER_LEVEL_TO_DPS_LEVEL = {
     '5': '5',
     'Auto': 'auto'
 }
-GOLDAIR_POWER_MODES = [ATTR_POWER_MODE_USER, ATTR_POWER_MODE_USER]
 
 SUPPORT_FLAGS = SUPPORT_TARGET_TEMPERATURE | SUPPORT_PRESET_MODE | SUPPORT_SWING_MODE
+
 
 class GoldairHeater(ClimateDevice):
     """Representation of a Goldair WiFi heater."""
@@ -106,11 +102,6 @@ class GoldairHeater(ClimateDevice):
         return self._device.name
 
     @property
-    def state(self):
-        """Return the state of the climate device."""
-        return self.hvac_mode
-
-    @property
     def temperature_unit(self):
         """Return the unit of measurement."""
         return self._device.temperature_unit
@@ -119,9 +110,9 @@ class GoldairHeater(ClimateDevice):
     def target_temperature(self):
         """Return the temperature we try to reach."""
         if self.preset_mode == STATE_COMFORT:
-            return self._device.get_property(GOLDAIR_PROPERTY_TO_DPS_ID[ATTR_TARGET_TEMPERATURE])
+            return self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_TARGET_TEMPERATURE])
         elif self.preset_mode == STATE_ECO:
-            return self._device.get_property(GOLDAIR_PROPERTY_TO_DPS_ID[ATTR_ECO_TARGET_TEMPERATURE])
+            return self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_ECO_TARGET_TEMPERATURE])
         else:
             return None
 
@@ -168,77 +159,77 @@ class GoldairHeater(ClimateDevice):
             )
 
         if preset_mode == STATE_COMFORT:
-            self._device.set_property(GOLDAIR_PROPERTY_TO_DPS_ID[ATTR_TARGET_TEMPERATURE], target_temperature)
+            self._device.set_property(PROPERTY_TO_DPS_ID[ATTR_TARGET_TEMPERATURE], target_temperature)
         elif preset_mode == STATE_ECO:
-            self._device.set_property(GOLDAIR_PROPERTY_TO_DPS_ID[ATTR_ECO_TARGET_TEMPERATURE], target_temperature)
+            self._device.set_property(PROPERTY_TO_DPS_ID[ATTR_ECO_TARGET_TEMPERATURE], target_temperature)
 
     @property
     def current_temperature(self):
         """Return the current temperature."""
-        return self._device.get_property(GOLDAIR_PROPERTY_TO_DPS_ID[ATTR_TEMPERATURE])
+        return self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_TEMPERATURE])
 
     @property
     def hvac_mode(self):
         """Return current HVAC mode, ie Heat or Off."""
-        dps_mode = self._device.get_property(GOLDAIR_PROPERTY_TO_DPS_ID[ATTR_HVAC_MODE])
+        dps_mode = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_HVAC_MODE])
 
         if dps_mode is not None:
-            return GoldairTuyaDevice.get_key_for_value(GOLDAIR_MODE_TO_HVAC_MODE, dps_mode)
+            return GoldairTuyaDevice.get_key_for_value(HVAC_MODE_TO_DPS_MODE, dps_mode)
         else:
             return STATE_UNAVAILABLE
 
     @property
     def hvac_modes(self):
         """Return the list of available HVAC modes."""
-        return list(GOLDAIR_MODE_TO_HVAC_MODE.keys())
+        return list(HVAC_MODE_TO_DPS_MODE.keys())
 
     def set_hvac_mode(self, hvac_mode):
         """Set new HVAC mode."""
-        dps_mode = GOLDAIR_MODE_TO_HVAC_MODE[hvac_mode]
-        self._device.set_property(GOLDAIR_PROPERTY_TO_DPS_ID[ATTR_HVAC_MODE], dps_mode)
+        dps_mode = HVAC_MODE_TO_DPS_MODE[hvac_mode]
+        self._device.set_property(PROPERTY_TO_DPS_ID[ATTR_HVAC_MODE], dps_mode)
 
     @property
     def preset_mode(self):
         """Return current preset mode, ie Comfort, Eco, Anti-freeze."""
-        dps_mode = self._device.get_property(GOLDAIR_PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE])
+        dps_mode = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE])
         if dps_mode is not None:
-            return GoldairTuyaDevice.get_key_for_value(GOLDAIR_MODE_TO_PRESET_MODE, dps_mode)
+            return GoldairTuyaDevice.get_key_for_value(PRESET_MODE_TO_DPS_MODE, dps_mode)
         else:
             return None
 
     @property
     def preset_modes(self):
         """Return the list of available preset modes."""
-        return list(GOLDAIR_MODE_TO_PRESET_MODE.keys())
+        return list(PRESET_MODE_TO_DPS_MODE.keys())
 
     def set_preset_mode(self, preset_mode):
         """Set new preset mode."""
-        dps_mode = GOLDAIR_MODE_TO_PRESET_MODE[preset_mode]
-        self._device.set_property(GOLDAIR_PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE], dps_mode)
+        dps_mode = PRESET_MODE_TO_DPS_MODE[preset_mode]
+        self._device.set_property(PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE], dps_mode)
 
     @property
     def swing_mode(self):
         """Return the power level."""
-        dps_mode = self._device.get_property(GOLDAIR_PROPERTY_TO_DPS_ID[ATTR_POWER_MODE])
+        dps_mode = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_POWER_MODE])
         if dps_mode == ATTR_POWER_MODE_USER:
-            return self._device.get_property(GOLDAIR_PROPERTY_TO_DPS_ID[ATTR_POWER_LEVEL])
+            return self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_POWER_LEVEL])
         elif dps_mode == ATTR_POWER_MODE_AUTO:
-            return GoldairTuyaDevice.get_key_for_value(GOLDAIR_POWER_LEVEL_TO_DPS_LEVEL, dps_mode)
+            return GoldairTuyaDevice.get_key_for_value(POWER_LEVEL_TO_DPS_LEVEL, dps_mode)
         else:
             return None
 
     @property
     def swing_modes(self):
         """List of power levels."""
-        return list(GOLDAIR_POWER_LEVEL_TO_DPS_LEVEL.keys())
+        return list(POWER_LEVEL_TO_DPS_LEVEL.keys())
 
     def set_swing_mode(self, swing_mode):
         """Set new power level."""
         new_level = swing_mode
-        if new_level not in GOLDAIR_POWER_LEVEL_TO_DPS_LEVEL.keys():
+        if new_level not in POWER_LEVEL_TO_DPS_LEVEL.keys():
             raise ValueError(f'Invalid power level: {new_level}')
-        dps_level = GOLDAIR_POWER_LEVEL_TO_DPS_LEVEL[new_level]
-        self._device.set_property(GOLDAIR_PROPERTY_TO_DPS_ID[ATTR_POWER_LEVEL], dps_level)
+        dps_level = POWER_LEVEL_TO_DPS_LEVEL[new_level]
+        self._device.set_property(PROPERTY_TO_DPS_ID[ATTR_POWER_LEVEL], dps_level)
 
     def update(self):
         self._device.refresh()
