@@ -15,7 +15,7 @@ import homeassistant.helpers.config_validation as cv
 from homeassistant.const import (CONF_NAME, CONF_HOST, TEMP_CELSIUS)
 from homeassistant.helpers.discovery import load_platform
 
-VERSION = '0.0.5'
+VERSION = '0.0.6'
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -26,8 +26,8 @@ CONF_DEVICE_ID = 'device_id'
 CONF_LOCAL_KEY = 'local_key'
 CONF_TYPE = 'type'
 CONF_TYPE_HEATER = 'heater'
+CONF_TYPE_DEHUMIDIFIER = 'dehumidifier'
 CONF_CLIMATE = 'climate'
-CONF_SENSOR = 'sensor'
 CONF_DISPLAY_LIGHT = 'display_light'
 CONF_CHILD_LOCK = 'child_lock'
 
@@ -36,9 +36,8 @@ PLATFORM_SCHEMA = vol.Schema({
     vol.Required(CONF_HOST): cv.string,
     vol.Required(CONF_DEVICE_ID): cv.string,
     vol.Required(CONF_LOCAL_KEY): cv.string,
-    vol.Required(CONF_TYPE): vol.In([CONF_TYPE_HEATER]),
+    vol.Required(CONF_TYPE): vol.In([CONF_TYPE_HEATER, CONF_TYPE_DEHUMIDIFIER]),
     vol.Optional(CONF_CLIMATE, default=True): cv.boolean,
-    vol.Optional(CONF_SENSOR, default=False): cv.boolean,
     vol.Optional(CONF_DISPLAY_LIGHT, default=False): cv.boolean,
     vol.Optional(CONF_CHILD_LOCK, default=False): cv.boolean,
 })
@@ -64,8 +63,6 @@ def setup(hass, config):
 
         if device_config.get(CONF_CLIMATE) == True:
             load_platform(hass, 'climate', DOMAIN, discovery_info, config)
-        if device_config.get(CONF_SENSOR) == True:
-            load_platform(hass, 'sensor', DOMAIN, discovery_info, config)
         if device_config.get(CONF_DISPLAY_LIGHT) == True:
             load_platform(hass, 'light', DOMAIN, discovery_info, config)
         if device_config.get(CONF_CHILD_LOCK) == True:
@@ -132,6 +129,15 @@ class GoldairTuyaDevice(object):
 
     def set_property(self, dps_id, value):
         self._set_properties({dps_id: value})
+
+    def anticipate_property_value(self, dps_id, value):
+        """
+        Update a value in the cached state only. This is good for when you know the device will reflect a new state in
+        the next update, but don't want to wait for that update for the device to represent this state.
+
+        The anticipated value will be cleared with the next update.
+        """
+        self._cached_state[dps_id] = value
 
     def _reset_cached_state(self):
         self._cached_state = {
