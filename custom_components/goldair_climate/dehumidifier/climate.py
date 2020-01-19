@@ -1,5 +1,5 @@
 """
-Goldair WiFi Heater device.
+Goldair WiFi Dehumidifier device.
 """
 from homeassistant.const import (
     ATTR_TEMPERATURE, TEMP_CELSIUS, STATE_UNAVAILABLE
@@ -13,7 +13,6 @@ from homeassistant.components.climate.const import (
 )
 from custom_components.goldair_climate import GoldairTuyaDevice
 
-ATTR_ON = 'on'
 ATTR_TARGET_HUMIDITY = 'target_humidity'
 ATTR_AIR_CLEAN_ON = 'air_clean_on'
 ATTR_CHILD_LOCK = 'child_lock'

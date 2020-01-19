@@ -2,9 +2,7 @@ Home Assistant Goldair WiFi Climate component
 =============================================
 
 The `goldair_climate` component integrates 
-[Goldair WiFi-enabled heaters](http://www.goldair.co.nz/product-catalogue/heating/wifi-heaters) and
-WiFi-enabled [dehumidifiers](http://www.goldair.co.nz/product-catalogue/heating/dehumidifiers) into Home Assistant,
-enabling control of setting the following parameters via the UI and the following services:
+[Goldair WiFi-enabled heaters](http://www.goldair.co.nz/product-catalogue/heating/wifi-heaters), WiFi-enabled [dehumidifiers](http://www.goldair.co.nz/product-catalogue/heating/dehumidifiers), and WiFi-enabled fans](http://www.goldair.co.nz/product-catalogue/cooling/pedestal-fans/40cm-dc-quiet-fan-with-wifi-and-remote-gcpf315) into Home Assistant, enabling control of setting the following parameters via the UI and the following services:
 
 **Heaters**
 * **power** (on/off)
@@ -21,37 +19,38 @@ Current temperature is also displayed.
 
 Current temperature is displayed, and current humidity is available as a property.
 
+**Fans**
+* **power** (on/off)
+* **mode** (Normal, Eco, Sleep)
+* **fan mode** (`1`-`12`)
+* **swing** (on/off)
+
 **Light**
 * **LED display** (on/off)
 
-**Lock**
+**Lock** (heaters and dehumidifiers)
 * **Child lock** (on/off)
 
-There was previously a sensor option, however this is easily achieved using a
-[template sensor](https://www.home-assistant.io/integrations/template/) and therefore is no longer supported.
+There was previously a sensor option, however this is easily achieved using a [template sensor](https://www.home-assistant.io/integrations/template/) and therefore is no longer supported.
 
 ---
 
 ### Warning
-Please note, this component has currently only been tested with the Goldair GPPH (inverter) and GPDH420 (dehumidifier)
-range, however theoretically it should also work with GEPH and GPCV heater devices, and may work with the GPDH440  
-dehumidifier, and any other Goldair heaters or dehumidifiers based on the Tuya platform.
+Please note, this component has currently only been tested with the Goldair GPPH (inverter), GPDH420 (dehumidifier), and GCPF315 fan, however theoretically it should also work with GEPH and GPCV heater devices, may work with the GPDH440 dehumidifier and any other Goldair heaters, dehumidifiers or fans based on the Tuya platform.
 
 ---
 
 Installation
 ------------
-The preferred installation method is via [HACS](https://hacs.xyz/). Once you have HACS set up, simply follow the
-[instructions for adding a custom repository](https://hacs.xyz/docs/navigation/settings#custom-repositories) and then
-the integration will be available to install like any other.
+The preferred installation method is via [HACS](https://hacs.xyz/). Once you have HACS set up, simply follow the [instructions for adding a custom repository](https://hacs.xyz/docs/navigation/settings#custom-repositories) and then the integration will be available to install like any other.
 
-You can also use [Custom Updater](https://github.com/custom-components/custom_updater). Once Custom Updater is  set
-up, go to the Developer Tools > Service page and call the `custom_updater.install` service with this service data:
+You can also use [Custom Updater](https://github.com/custom-components/custom_updater). Once Custom Updater is  set up, go to the Developer Tools > Service page and call the `custom_updater.install` service with this service data:
+
 ```json
 { "element": "goldair_climate" }
 ```
-Alternatively you can copy the contents of this repository's `custom_components` directory to your 
-`<config>/custom_components` directory, however you will not get automatic updates this way.
+
+Alternatively you can copy the contents of this repository's `custom_components` directory to your `<config>/custom_components` directory, however you will not get automatic updates this way.
 
 Configuration
 -------------
@@ -85,20 +84,20 @@ goldair_climate:
                                               [as per the instructions below](#finding-your-device-id-and-local-key).
 
 #### type
-&nbsp;&nbsp;&nbsp;&nbsp;*(string) (Required)* The type of Goldair device: currently `heater` or `dehumidifier`.
+&nbsp;&nbsp;&nbsp;&nbsp;*(string) (Required)* The type of Goldair device: currently `heater`, `dehumidifier` or `fan`.
 
 #### climate
-&nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this heater as a climate device.
+&nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this appliance as a climate device.
 
 &nbsp;&nbsp;&nbsp;&nbsp;*Default value: true* 
 
 #### display_light
-&nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this heater's LED display control as a light.
+&nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this appliance's LED display control as a light.
 
 &nbsp;&nbsp;&nbsp;&nbsp;*Default value: false* 
 
 #### child_lock
-&nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this heater's child lock as a lock device.
+&nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this appliances's child lock as a lock device (not supported for fans).
 
 &nbsp;&nbsp;&nbsp;&nbsp;*Default value: false* 
 
@@ -120,6 +119,10 @@ When child lock is enabled, the heater's display will flash with the child lock 
 something in HA. This can be confusing because it's the same behaviour as when you try to change something via the
 heater's own control panel and the change is rejected due to being locked, however rest assured that the changes *are* 
 taking effect.
+
+Fan gotchas
+-----------
+In my experience, fans don't like to receive a lot of commands in a short period of time. They will emit two fast beeps when accepting a command, and two slow beeps when rejecting one. If you are writing automations for your fan and need to set multiple properties, you may need to put a delay of around 5 seconds or more between each.
 
 Finding your device ID and local key 
 ------------------------------------

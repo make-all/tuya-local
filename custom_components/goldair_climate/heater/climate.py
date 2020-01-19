@@ -12,7 +12,6 @@ from homeassistant.components.climate.const import (
 )
 from custom_components.goldair_climate import GoldairTuyaDevice
 
-ATTR_ON = 'on'
 ATTR_TARGET_TEMPERATURE = 'target_temperature'
 ATTR_CHILD_LOCK = 'child_lock'
 ATTR_FAULT = 'fault'
