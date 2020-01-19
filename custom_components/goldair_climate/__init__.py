@@ -15,7 +15,7 @@ import homeassistant.helpers.config_validation as cv
 from homeassistant.const import (CONF_NAME, CONF_HOST, TEMP_CELSIUS)
 from homeassistant.helpers.discovery import load_platform
 
-VERSION = '0.0.7'
+VERSION = '0.0.8'
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -122,7 +122,7 @@ class GoldairTuyaDevice(object):
         cached_state = self._get_cached_state()
         if now - cached_state['updated_at'] >= self._CACHE_TIMEOUT:
             self._cached_state['updated_at'] = time()
-            self._retry_on_failed_connection(lambda: self._refresh_cached_state(), 'Failed to refresh device state for {self.name}.')
+            self._retry_on_failed_connection(lambda: self._refresh_cached_state(), f'Failed to refresh device state for {self.name}.')
 
     def get_property(self, dps_id):
         cached_state = self._get_cached_state()
@@ -239,7 +239,7 @@ class GoldairTuyaDevice(object):
             self._api_protocol_version_index = 0
 
         new_version = API_PROTOCOL_VERSIONS[self._api_protocol_version_index]
-        _LOGGER.info(f'Setting protocol version for {self.name} to {new_version}')
+        _LOGGER.info(f'Setting protocol version for {self.name} to {new_version}.')
         self._api.set_version(new_version)
 
     @staticmethod
