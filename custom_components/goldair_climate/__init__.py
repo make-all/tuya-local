@@ -15,12 +15,14 @@ import homeassistant.helpers.config_validation as cv
 from homeassistant.const import (CONF_NAME, CONF_HOST, TEMP_CELSIUS)
 from homeassistant.helpers.discovery import load_platform
 
-VERSION = '0.0.6'
+VERSION = '0.0.7'
 
 _LOGGER = logging.getLogger(__name__)
 
 DOMAIN = 'goldair_climate'
 DATA_GOLDAIR_CLIMATE = 'data_goldair_climate'
+
+API_PROTOCOL_VERSIONS = [3.3, 3.1]
 
 CONF_DEVICE_ID = 'device_id'
 CONF_LOCAL_KEY = 'local_key'
@@ -83,7 +85,9 @@ class GoldairTuyaDevice(object):
         """
         import pytuya
         self._name = name
+        self._api_protocol_version_index = None
         self._api = pytuya.Device(dev_id, address, local_key, 'device')
+        self._rotate_api_protocol_version()
 
         self._fixed_properties = {}
         self._reset_cached_state()
@@ -97,7 +101,7 @@ class GoldairTuyaDevice(object):
         # onto the state while we wait for the board to update its switches.
         self._FAKE_IT_TIL_YOU_MAKE_IT_TIMEOUT = 10
         self._CACHE_TIMEOUT = 20
-        self._CONNECTION_ATTEMPTS = 2
+        self._CONNECTION_ATTEMPTS = 4
         self._lock = Lock()
 
     @property
@@ -118,7 +122,7 @@ class GoldairTuyaDevice(object):
         cached_state = self._get_cached_state()
         if now - cached_state['updated_at'] >= self._CACHE_TIMEOUT:
             self._cached_state['updated_at'] = time()
-            self._retry_on_failed_connection(lambda: self._refresh_cached_state(), 'Failed to refresh device state.')
+            self._retry_on_failed_connection(lambda: self._refresh_cached_state(), 'Failed to refresh device state for {self.name}.')
 
     def get_property(self, dps_id):
         cached_state = self._get_cached_state()
@@ -208,6 +212,8 @@ class GoldairTuyaDevice(object):
                 if i + 1 == self._CONNECTION_ATTEMPTS:
                     self._reset_cached_state()
                     _LOGGER.error(error_message)
+                else:
+                    self._rotate_api_protocol_version()
 
     def _get_cached_state(self):
         cached_state = self._cached_state.copy()
@@ -222,6 +228,19 @@ class GoldairTuyaDevice(object):
         self._pending_updates = {key: value for key, value in self._pending_updates.items()
                                  if now - value['updated_at'] < self._FAKE_IT_TIL_YOU_MAKE_IT_TIMEOUT}
         return self._pending_updates
+
+    def _rotate_api_protocol_version(self):
+        if self._api_protocol_version_index is None:
+            self._api_protocol_version_index = 0
+        else:
+            self._api_protocol_version_index += 1
+
+        if self._api_protocol_version_index >= len(API_PROTOCOL_VERSIONS):
+            self._api_protocol_version_index = 0
+
+        new_version = API_PROTOCOL_VERSIONS[self._api_protocol_version_index]
+        _LOGGER.info(f'Setting protocol version for {self.name} to {new_version}')
+        self._api.set_version(new_version)
 
     @staticmethod
     def get_key_for_value(obj, value):
