@@ -3,10 +3,11 @@ Setup for different kinds of Goldair climate devices
 """
 from homeassistant.const import CONF_HOST
 from custom_components.goldair_climate import (
-    DOMAIN, CONF_TYPE, CONF_TYPE_HEATER, CONF_TYPE_DEHUMIDIFIER
+    DOMAIN, CONF_TYPE, CONF_TYPE_HEATER, CONF_TYPE_DEHUMIDIFIER, CONF_TYPE_FAN
 )
 from custom_components.goldair_climate.heater.climate import GoldairHeater
 from custom_components.goldair_climate.dehumidifier.climate import GoldairDehumidifier
+from custom_components.goldair_climate.fan.climate import GoldairFan
 
 
 def setup_platform(hass, config, add_devices, discovery_info=None):
@@ -16,3 +17,5 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
         add_devices([GoldairHeater(device)])
     elif discovery_info[CONF_TYPE] == CONF_TYPE_DEHUMIDIFIER:
         add_devices([GoldairDehumidifier(device)])
+    elif discovery_info[CONF_TYPE] == CONF_TYPE_FAN:
+        add_devices([GoldairFan(device)])
