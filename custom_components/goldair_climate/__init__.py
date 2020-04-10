@@ -33,6 +33,7 @@ CONF_TYPE_FAN = 'fan'
 CONF_CLIMATE = 'climate'
 CONF_DISPLAY_LIGHT = 'display_light'
 CONF_CHILD_LOCK = 'child_lock'
+CONF_TANK_FULL = 'tank_full'
 
 PLATFORM_SCHEMA = vol.Schema({
     vol.Required(CONF_NAME): cv.string,
@@ -43,6 +44,7 @@ PLATFORM_SCHEMA = vol.Schema({
     vol.Optional(CONF_CLIMATE, default=True): cv.boolean,
     vol.Optional(CONF_DISPLAY_LIGHT, default=False): cv.boolean,
     vol.Optional(CONF_CHILD_LOCK, default=False): cv.boolean,
+    vol.Optional(CONF_TANK_FULL, default=False): cv.boolean,
 })
 
 CONFIG_SCHEMA = vol.Schema({
@@ -70,6 +72,8 @@ def setup(hass, config):
             load_platform(hass, 'light', DOMAIN, discovery_info, config)
         if device_config.get(CONF_CHILD_LOCK) == True:
             load_platform(hass, 'lock', DOMAIN, discovery_info, config)
+        if device_config.get(CONF_TANK_FULL) == True:
+            load_platform(hass, 'binary_sensor', DOMAIN, discovery_info, config)
 
     return True
 

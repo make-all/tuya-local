@@ -31,6 +31,9 @@ Current temperature is displayed, and current humidity is available as a propert
 **Lock** (heaters and dehumidifiers)
 * **Child lock** (on/off)
 
+**Binary Sensor** (dehumidifiers)
+* **Tank full** (on/off)
+
 There was previously a sensor option, however this is easily achieved using a [template sensor](https://www.home-assistant.io/integrations/template/) and therefore is no longer supported.
 
 ---
@@ -100,6 +103,9 @@ goldair_climate:
 &nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this appliances's child lock as a lock device (not supported for fans).
 
 &nbsp;&nbsp;&nbsp;&nbsp;*Default value: false* 
+
+#### tank_full
+&nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this appliances's tank full sensor as a binary_sensor device (only supported for dehumidifiers).
 
 Heater gotchas
 --------------
