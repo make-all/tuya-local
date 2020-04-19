@@ -2,8 +2,8 @@
 Kogan WiFi Heater device.
 
 dps:
-  2 = current temperature (integer)
-  3 = target temperature (integer)
+  2 = target temperature (integer)
+  3 = current temperature (integer)
   4 = preset_mode (string Low/High)
   6 = timer state (boolean) [not supported - use HA based timers]
   7 = hvac_mode (boolean)
@@ -28,8 +28,8 @@ PRESET_HIGH = 'HIGH'
 
 PROPERTY_TO_DPS_ID = {
     ATTR_HVAC_MODE: '7',
-    ATTR_TARGET_TEMPERATURE: '3',
-    ATTR_TEMPERATURE: '2',
+    ATTR_TARGET_TEMPERATURE: '2',
+    ATTR_TEMPERATURE: '3',
     ATTR_PRESET_MODE: '4',
 }
 
