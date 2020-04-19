@@ -60,8 +60,8 @@ class KoganHeater(ClimateDevice):
 
         self._TEMPERATURE_STEP = 1
         self._TEMPERATURE_LIMITS = {
-            'min': 16,
-            'max': 30
+            'min': 15,
+            'max': 35
         }
 
     @property
