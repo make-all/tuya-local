@@ -153,9 +153,9 @@ You're looking for `uuid` (this is the device ID) and the `localKey` values.
 
 Next steps
 ----------
-# The devices need to be generalized so a new subdirectory with source code is not needed to add a new device.  Instead, device descriptors should be in a yaml file, which is referenced by the config.
-# Support for non-climate devices needs to be added.  For starters, I have some Kogan Power Monitoring Plugs that I haven't yet taken out of the box and converted to ESPHome, but this will probably need input from other users.
-# This component needs specs! Once they're written I'm considering submitting it to the HA team for inclusion in standard installations. Please report any issues and feel free to raise pull requests.
+1. The devices need to be generalized so a new subdirectory with source code is not needed to add a new device.  Instead, device descriptors should be in a yaml file, which is referenced by the config.
+2. Support for non-climate devices needs to be added.  For starters, I have some Kogan Power Monitoring Plugs that I haven't yet taken out of the box and converted to ESPHome, but this will probably need input from other users.
+3. This component needs specs! Once they're written I'm considering submitting it to the HA team for inclusion in standard installations. Please report any issues and feel free to raise pull requests.
 
 Acknowledgements
 ----------------
