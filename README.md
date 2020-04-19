@@ -143,13 +143,10 @@ In my experience, fans don't like to receive a lot of commands in a short period
 
 Finding your device ID and local key 
 ------------------------------------
-You can find these keys the same way as you would for any Tuya local integration. You'll need the Tuya Smart app rather
-than the Goldair app (the Goldair app is just a re-branded clone of Tuya Smart).
+You can find these keys the same way as you would for any Tuya local integration.
 
-* [Instructions for iOS](https://github.com/codetheweb/tuyapi/blob/master/docs/SETUP.md)
-* [Instructions for Android](https://github.com/codetheweb/tuyapi/blob/cdb4289/docs/SETUP_DEPRECATED.md#capture-https-traffic)
+* [Instructions from tuyapi](https://github.com/codetheweb/tuyapi/blob/master/docs/SETUP.md)
 
-You're looking for `uuid` (this is the device ID) and the `localKey` values.
 
 Next steps
 ----------
