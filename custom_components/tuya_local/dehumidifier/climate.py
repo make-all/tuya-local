@@ -11,7 +11,7 @@ from homeassistant.components.climate.const import (
     HVAC_MODE_OFF, HVAC_MODE_DRY,
     SUPPORT_TARGET_HUMIDITY, SUPPORT_PRESET_MODE, SUPPORT_FAN_MODE
 )
-from custom_components.goldair_climate import GoldairTuyaDevice
+from custom_components.tuya_local import TuyaLocalDevice
 
 ATTR_TARGET_HUMIDITY = 'target_humidity'
 ATTR_AIR_CLEAN_ON = 'air_clean_on'
@@ -70,7 +70,7 @@ class GoldairDehumidifier(ClimateDevice):
         """Initialize the dehumidifier.
         Args:
             name (str): The device's name.
-            device (GoldairTuyaDevice): The device API instance."""
+            device (TuyaLocalDevice): The device API instance."""
         self._device = device
 
         self._support_flags = SUPPORT_FLAGS
@@ -149,7 +149,7 @@ class GoldairDehumidifier(ClimateDevice):
         dps_mode = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_HVAC_MODE])
 
         if dps_mode is not None:
-            return GoldairTuyaDevice.get_key_for_value(HVAC_MODE_TO_DPS_MODE, dps_mode)
+            return TuyaLocalDevice.get_key_for_value(HVAC_MODE_TO_DPS_MODE, dps_mode)
         else:
             return STATE_UNAVAILABLE
 
@@ -172,7 +172,7 @@ class GoldairDehumidifier(ClimateDevice):
         if air_clean_on:
             return PRESET_AIR_CLEAN
         elif dps_mode is not None:
-            return GoldairTuyaDevice.get_key_for_value(PRESET_MODE_TO_DPS_MODE, dps_mode)
+            return TuyaLocalDevice.get_key_for_value(PRESET_MODE_TO_DPS_MODE, dps_mode)
         else:
             return None
 
@@ -207,7 +207,7 @@ class GoldairDehumidifier(ClimateDevice):
         else:
             dps_mode = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_FAN_MODE])
             if dps_mode is not None:
-                return GoldairTuyaDevice.get_key_for_value(FAN_MODE_TO_DPS_MODE, dps_mode)
+                return TuyaLocalDevice.get_key_for_value(FAN_MODE_TO_DPS_MODE, dps_mode)
             else:
                 return None
 
@@ -243,7 +243,7 @@ class GoldairDehumidifier(ClimateDevice):
         if fault is None or fault == FAULT_NONE:
             return None
         else:
-            return GoldairTuyaDevice.get_key_for_value(FAULT_CODE_TO_DPS_CODE, fault)
+            return TuyaLocalDevice.get_key_for_value(FAULT_CODE_TO_DPS_CODE, fault)
 
     def update(self):
         self._device.refresh()

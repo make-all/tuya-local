@@ -1,12 +1,12 @@
 """
-Setup for different kinds of Goldair climate devices
+Setup for different kinds of Tuya climate devices
 """
 from homeassistant.const import CONF_HOST
-from custom_components.goldair_climate import (
+from custom_components.tuya_local import (
     DOMAIN, CONF_TYPE, CONF_TYPE_HEATER, CONF_TYPE_DEHUMIDIFIER, CONF_TYPE_FAN, CONF_TYPE_KOGAN_HEATER
 )
-from custom_components.goldair_climate.heater.lock import GoldairHeaterChildLock
-from custom_components.goldair_climate.dehumidifier.lock import GoldairDehumidifierChildLock
+from custom_components.tuya_local.heater.lock import GoldairHeaterChildLock
+from custom_components.tuya_local.dehumidifier.lock import GoldairDehumidifierChildLock
 
 
 def setup_platform(hass, config, add_devices, discovery_info=None):

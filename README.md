@@ -1,10 +1,11 @@
-Home Assistant Goldair WiFi Climate component
-=============================================
+Home Assistant Tuya Local component
+===================================
 
-The `goldair_climate` component integrates 
-[Goldair WiFi-enabled heaters](http://www.goldair.co.nz/product-catalogue/heating/wifi-heaters), WiFi-enabled [dehumidifiers](http://www.goldair.co.nz/product-catalogue/heating/dehumidifiers), and WiFi-enabled fans](http://www.goldair.co.nz/product-catalogue/cooling/pedestal-fans/40cm-dc-quiet-fan-with-wifi-and-remote-gcpf315) into Home Assistant, enabling control of setting the following parameters via the UI and the following services:
+The `tuya_local` component integrates 
+[Goldair WiFi-enabled heaters](http://www.goldair.co.nz/product-catalogue/heating/wifi-heaters), WiFi-enabled [dehumidifiers](http://www.goldair.co.nz/product-catalogue/heating/dehumidifiers), [WiFi-enabled fans](http://www.goldair.co.nz/product-catalogue/cooling/pedestal-fans/40cm-dc-quiet-fan-with-wifi-and-remote-gcpf315) and [Kogan WiFi-enabled heaters](https://www.kogan.com/au/c/smarterhome-range/shop/heating-cooling/) into Home Assistant, enabling control of setting the following parameters via the UI and the following services:
 
-**Heaters**
+### Climate devices
+**Goldair Heaters**
 * **power** (on/off)
 * **mode** (Comfort, Eco, Anti-freeze)
 * **target temperature** (`5`-`35` in Comfort mode, `5`-`21` in Eco mode, in °C)
@@ -12,26 +13,34 @@ The `goldair_climate` component integrates
 
 Current temperature is also displayed.
 
-**Demudifiers**
+**Goldair Demudifiers**
 * **power** (on/off)
 * **mode** (Normal, Low, High, Dry clothes, Air clean)
 * **target humidity** (`30`-`80`%)
 
 Current temperature is displayed, and current humidity is available as a property.
 
-**Fans**
+**Goldair Fans**
 * **power** (on/off)
 * **mode** (Normal, Eco, Sleep)
 * **fan mode** (`1`-`12`)
 * **swing** (on/off)
 
-**Light**
+**Kogan Heaters**
+* **power** (on/off)
+* **mode** (LOW/HIGH)
+* **target temperature** (`16`-`30` in °C)
+
+Current temperature is also displayed.
+
+### Additional features
+**Light** (Goldair devices)
 * **LED display** (on/off)
 
-**Lock** (heaters and dehumidifiers)
+**Lock** (Goldair heaters and dehumidifiers)
 * **Child lock** (on/off)
 
-**Binary Sensor** (dehumidifiers)
+**Binary Sensor** (Goldair dehumidifiers)
 * **Tank full** (on/off)
 
 There was previously a sensor option, however this is easily achieved using a [template sensor](https://www.home-assistant.io/integrations/template/) and therefore is no longer supported.
@@ -41,19 +50,9 @@ There was previously a sensor option, however this is easily achieved using a [t
 ### Warning
 Please note, this component has currently only been tested with the Goldair GPPH (inverter), GPDH420 (dehumidifier), and GCPF315 fan, however theoretically it should also work with GEPH and GPCV heater devices, may work with the GPDH440 dehumidifier and any other Goldair heaters, dehumidifiers or fans based on the Tuya platform.
 
----
-
-## Kogan Heater support
-
-Although these are not Goldair devices, they are based on the same Tuya platform, and sold in the same Australia/New Zealand market.
-Kogan heaters support the following parameters and services:
-* **power** (on/off)
-* **mode** (low/high)
-* **target temperature** (`16`-`30` in °C)
-
-Current temperature is also displayed.
-
 Kogan heater support is tested with the Kogan SmarterHome 1500W Smart Panel Heater.  If you have another type of Kogan SmarterHome heater, it may or may not work with the same configuration.
+
+---
 
 Installation
 ------------
@@ -62,7 +61,7 @@ The preferred installation method is via [HACS](https://hacs.xyz/). Once you hav
 You can also use [Custom Updater](https://github.com/custom-components/custom_updater). Once Custom Updater is  set up, go to the Developer Tools > Service page and call the `custom_updater.install` service with this service data:
 
 ```json
-{ "element": "goldair_climate" }
+{ "element": "tuya_local" }
 ```
 
 Alternatively you can copy the contents of this repository's `custom_components` directory to your `<config>/custom_components` directory, however you will not get automatic updates this way.
@@ -73,7 +72,7 @@ Add the following lines to your `configuration.yaml` file:
 
 ```yaml
 # Example configuration.yaml entry
-goldair_climate:
+tuya_local:
   - name: My heater
     host: 1.2.3.4
     device_id: <your device id>
@@ -154,13 +153,15 @@ You're looking for `uuid` (this is the device ID) and the `localKey` values.
 
 Next steps
 ----------
-This component needs specs! Once they're written I'm considering submitting it to the HA team for inclusion in standard 
-installations. Please report any issues and feel free to raise pull requests.
+# The devices need to be generalized so a new subdirectory with source code is not needed to add a new device.  Instead, device descriptors should be in a yaml file, which is referenced by the config.
+# Support for non-climate devices needs to be added.  For starters, I have some Kogan Power Monitoring Plugs that I haven't yet taken out of the box and converted to ESPHome, but this will probably need input from other users.
+# This component needs specs! Once they're written I'm considering submitting it to the HA team for inclusion in standard installations. Please report any issues and feel free to raise pull requests.
 
 Acknowledgements
 ----------------
 None of this would have been possible without some foundational discovery work to get me started:
 
+* [nikrolls](https://github.com/nikrolls)'s [homeassistant-goldair-climate](https://github.com/nikrolls/homeassistant-goldair-climate) was the starting point for expanding to non-Goldair devices as well
 * [TarxBoy](https://github.com/TarxBoy)'s [investigation using codetheweb/tuyapi](https://github.com/codetheweb/tuyapi/issues/31) to figure out the correlation of the cryptic DPS states 
 * [sean6541](https://github.com/sean6541)'s [tuya-homeassistant](https://github.com/sean6541/tuya-homeassistant) library giving an example of integrating Tuya devices with Home Assistant
 * [clach04](https://github.com/clach04)'s [python-tuya](https://github.com/clach04/python-tuya) library

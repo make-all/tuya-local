@@ -3,8 +3,8 @@ Platform to control the child lock on Goldair WiFi-connected heaters and panels.
 """
 from homeassistant.components.lock import (STATE_LOCKED, STATE_UNLOCKED, LockDevice)
 from homeassistant.const import STATE_UNAVAILABLE
-from custom_components.goldair_climate import GoldairTuyaDevice
-from custom_components.goldair_climate.heater.climate import (
+from custom_components.tuya_local import TuyaLocalDevice
+from custom_components.tuya_local.heater.climate import (
     ATTR_CHILD_LOCK, PROPERTY_TO_DPS_ID
 )
 
@@ -15,7 +15,7 @@ class GoldairHeaterChildLock(LockDevice):
     def __init__(self, device):
         """Initialize the lock.
         Args:
-            device (GoldairTuyaDevice): The device API instance."""
+            device (TuyaLocalDevice): The device API instance."""
         self._device = device
 
     @property

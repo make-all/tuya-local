@@ -1,6 +1,7 @@
 """
-Platform for Goldair WiFi-connected heaters and panels.
+Platform for Tuya WiFi-connected devices.
 
+Based on nikrolls/homeassistant-goldair-climate for Goldair branded devices.
 Based on sean6541/tuya-homeassistant for service call logic, and TarxBoy's
 investigation into Goldair's tuyapi statuses
 https://github.com/codetheweb/tuyapi/issues/31.
@@ -19,8 +20,8 @@ VERSION = '0.0.8'
 
 _LOGGER = logging.getLogger(__name__)
 
-DOMAIN = 'goldair_climate'
-DATA_GOLDAIR_CLIMATE = 'data_goldair_climate'
+DOMAIN = 'tuya_local'
+DATA_TUYA_LOCAL = 'data_tuya_local'
 
 API_PROTOCOL_VERSIONS = [3.3, 3.1]
 
@@ -58,7 +59,7 @@ def setup(hass, config):
     for device_config in config.get(DOMAIN, []):
         host = device_config.get(CONF_HOST)
 
-        device = GoldairTuyaDevice(
+        device = TuyaLocalDevice(
             device_config.get(CONF_NAME),
             device_config.get(CONF_DEVICE_ID),
             device_config.get(CONF_HOST),
@@ -79,10 +80,10 @@ def setup(hass, config):
     return True
 
 
-class GoldairTuyaDevice(object):
+class TuyaLocalDevice(object):
     def __init__(self, name, dev_id, address, local_key):
         """
-        Represents a Goldair Tuya-based device.
+        Represents a Tuya-based device.
 
         Args:
             dev_id (str): The device id.
@@ -100,7 +101,7 @@ class GoldairTuyaDevice(object):
 
         self._TEMPERATURE_UNIT = TEMP_CELSIUS
 
-        # API calls to update Goldair heaters are asynchronous and non-blocking. This means
+        # API calls to update Tuya devices are asynchronous and non-blocking. This means
         # you can send a change and immediately request an updated state (like HA does),
         # but because it has not yet finished processing you will be returned the old state.
         # The solution is to keep a temporary list of changed properties that we can overlay

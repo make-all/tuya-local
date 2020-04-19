@@ -12,7 +12,7 @@ from homeassistant.components.climate.const import (
     SUPPORT_FAN_MODE, SUPPORT_PRESET_MODE, SUPPORT_SWING_MODE,
     SWING_OFF, SWING_HORIZONTAL
 )
-from custom_components.goldair_climate import GoldairTuyaDevice
+from custom_components.tuya_local import TuyaLocalDevice
 
 ATTR_TARGET_TEMPERATURE = 'target_temperature'
 ATTR_DISPLAY_ON = 'display_on'
@@ -57,7 +57,7 @@ class GoldairFan(ClimateDevice):
         """Initialize the fan.
         Args:
             name (str): The device's name.
-            device (GoldairTuyaDevice): The device API instance."""
+            device (TuyaLocalDevice): The device API instance."""
         self._device = device
 
         self._support_flags = SUPPORT_FLAGS
@@ -88,7 +88,7 @@ class GoldairFan(ClimateDevice):
         dps_mode = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_HVAC_MODE])
 
         if dps_mode is not None:
-            return GoldairTuyaDevice.get_key_for_value(HVAC_MODE_TO_DPS_MODE, dps_mode)
+            return TuyaLocalDevice.get_key_for_value(HVAC_MODE_TO_DPS_MODE, dps_mode)
         else:
             return STATE_UNAVAILABLE
 
@@ -107,7 +107,7 @@ class GoldairFan(ClimateDevice):
         """Return current preset mode, ie Comfort, Eco, Anti-freeze."""
         dps_mode = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE])
         if dps_mode is not None:
-            return GoldairTuyaDevice.get_key_for_value(PRESET_MODE_TO_DPS_MODE, dps_mode)
+            return TuyaLocalDevice.get_key_for_value(PRESET_MODE_TO_DPS_MODE, dps_mode)
         else:
             return None
 
@@ -126,7 +126,7 @@ class GoldairFan(ClimateDevice):
         """Return current swing mode: horizontal or off"""
         dps_mode = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_SWING_MODE])
         if dps_mode is not None:
-            return GoldairTuyaDevice.get_key_for_value(SWING_MODE_TO_DPS_MODE, dps_mode)
+            return TuyaLocalDevice.get_key_for_value(SWING_MODE_TO_DPS_MODE, dps_mode)
         else:
             return None
 
@@ -145,7 +145,7 @@ class GoldairFan(ClimateDevice):
         """Return current fan mode: 1-12"""
         dps_mode = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_FAN_MODE])
         if dps_mode is not None and self.preset_mode is not None:
-            return GoldairTuyaDevice.get_key_for_value(FAN_MODES[self.preset_mode], dps_mode)
+            return TuyaLocalDevice.get_key_for_value(FAN_MODES[self.preset_mode], dps_mode)
         else:
             return None
 

@@ -3,8 +3,8 @@ Platform to sense whether the dehumidifier tank is full.
 """
 
 from homeassistant.components.binary_sensor import (BinarySensorDevice, DEVICE_CLASS_PROBLEM)
-from custom_components.goldair_climate import GoldairTuyaDevice
-from custom_components.goldair_climate.dehumidifier.climate import (
+from custom_components.tuya_local import TuyaLocalDevice
+from custom_components.tuya_local.dehumidifier.climate import (
     ATTR_FAULT, FAULT_CODE_TO_DPS_CODE, PROPERTY_TO_DPS_ID
 )
 
@@ -18,7 +18,7 @@ class GoldairDehumidifierTankFullBinarySensor(BinarySensorDevice):
     def __init__(self, device):
         """Initialize the binary sensor.
         Args:
-            device (GoldairTuyaDevice): The device API instance."""
+            device (TuyaLocalDevice): The device API instance."""
         self._device = device
         self._fault = None
 
