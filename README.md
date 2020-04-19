@@ -43,6 +43,18 @@ Please note, this component has currently only been tested with the Goldair GPPH
 
 ---
 
+## Kogan Heater support
+
+Although these are not Goldair devices, they are based on the same Tuya platform, and sold in the same Australia/New Zealand market.
+Kogan heaters support the following parameters and services:
+* **power** (on/off)
+* **mode** (low/high)
+* **target temperature** (`16`-`30` in °C)
+
+Current temperature is also displayed.
+
+Kogan heater support is tested with the Kogan SmarterHome 1500W Smart Panel Heater.  If you have another type of Kogan SmarterHome heater, it may or may not work with the same configuration.
+
 Installation
 ------------
 The preferred installation method is via [HACS](https://hacs.xyz/). Once you have HACS set up, simply follow the [instructions for adding a custom repository](https://hacs.xyz/docs/navigation/settings#custom-repositories) and then the integration will be available to install like any other.
@@ -87,7 +99,7 @@ goldair_climate:
                                               [as per the instructions below](#finding-your-device-id-and-local-key).
 
 #### type
-&nbsp;&nbsp;&nbsp;&nbsp;*(string) (Required)* The type of Goldair device: currently `heater`, `dehumidifier` or `fan`.
+&nbsp;&nbsp;&nbsp;&nbsp;*(string) (Required)* The type of Goldair device: currently `heater`, `dehumidifier`, `fan` or `kogan_heater`.
 
 #### climate
 &nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this appliance as a climate device.
@@ -95,12 +107,12 @@ goldair_climate:
 &nbsp;&nbsp;&nbsp;&nbsp;*Default value: true* 
 
 #### display_light
-&nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this appliance's LED display control as a light.
+&nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this appliance's LED display control as a light (not supported for Kogan Heaters).
 
 &nbsp;&nbsp;&nbsp;&nbsp;*Default value: false* 
 
 #### child_lock
-&nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this appliances's child lock as a lock device (not supported for fans).
+&nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this appliances's child lock as a lock device (not supported for fans or Kogan Heaters).
 
 &nbsp;&nbsp;&nbsp;&nbsp;*Default value: false* 
 

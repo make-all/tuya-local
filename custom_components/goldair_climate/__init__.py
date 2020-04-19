@@ -30,6 +30,7 @@ CONF_TYPE = 'type'
 CONF_TYPE_HEATER = 'heater'
 CONF_TYPE_DEHUMIDIFIER = 'dehumidifier'
 CONF_TYPE_FAN = 'fan'
+CONF_TYPE_KOGAN_HEATER = 'kogan_heater'
 CONF_CLIMATE = 'climate'
 CONF_DISPLAY_LIGHT = 'display_light'
 CONF_CHILD_LOCK = 'child_lock'
@@ -40,7 +41,7 @@ PLATFORM_SCHEMA = vol.Schema({
     vol.Required(CONF_HOST): cv.string,
     vol.Required(CONF_DEVICE_ID): cv.string,
     vol.Required(CONF_LOCAL_KEY): cv.string,
-    vol.Required(CONF_TYPE): vol.In([CONF_TYPE_HEATER, CONF_TYPE_DEHUMIDIFIER, CONF_TYPE_FAN]),
+    vol.Required(CONF_TYPE): vol.In([CONF_TYPE_HEATER, CONF_TYPE_DEHUMIDIFIER, CONF_TYPE_FAN, CONF_TYPE_KOGAN_HEATER]),
     vol.Optional(CONF_CLIMATE, default=True): cv.boolean,
     vol.Optional(CONF_DISPLAY_LIGHT, default=False): cv.boolean,
     vol.Optional(CONF_CHILD_LOCK, default=False): cv.boolean,
