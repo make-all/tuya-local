@@ -7,56 +7,14 @@ from homeassistant.const import (
 from homeassistant.components.climate import ClimateDevice
 from homeassistant.components.climate.const import (
     ATTR_HVAC_MODE, ATTR_PRESET_MODE,
-    HVAC_MODE_OFF, HVAC_MODE_HEAT,
     SUPPORT_TARGET_TEMPERATURE, SUPPORT_PRESET_MODE, SUPPORT_SWING_MODE
 )
-from custom_components.goldair_climate import GoldairTuyaDevice
-
-ATTR_TARGET_TEMPERATURE = 'target_temperature'
-ATTR_CHILD_LOCK = 'child_lock'
-ATTR_FAULT = 'fault'
-ATTR_POWER_MODE_AUTO = 'auto'
-ATTR_POWER_MODE_USER = 'user'
-ATTR_POWER_LEVEL = 'power_level'
-ATTR_DISPLAY_ON = 'display_on'
-ATTR_POWER_MODE = 'power_mode'
-ATTR_ECO_TARGET_TEMPERATURE = 'eco_' + ATTR_TARGET_TEMPERATURE
-
-STATE_COMFORT = 'Comfort'
-STATE_ECO = 'Eco'
-STATE_ANTI_FREEZE = 'Anti-freeze'
-
-PROPERTY_TO_DPS_ID = {
-    ATTR_HVAC_MODE: '1',
-    ATTR_TARGET_TEMPERATURE: '2',
-    ATTR_TEMPERATURE: '3',
-    ATTR_PRESET_MODE: '4',
-    ATTR_CHILD_LOCK: '6',
-    ATTR_FAULT: '12',
-    ATTR_POWER_LEVEL: '101',
-    ATTR_DISPLAY_ON: '104',
-    ATTR_POWER_MODE: '105',
-    ATTR_ECO_TARGET_TEMPERATURE: '106'
-}
-
-HVAC_MODE_TO_DPS_MODE = {
-    HVAC_MODE_OFF: False,
-    HVAC_MODE_HEAT: True
-}
-PRESET_MODE_TO_DPS_MODE = {
-    STATE_COMFORT: 'C',
-    STATE_ECO: 'ECO',
-    STATE_ANTI_FREEZE: 'AF'
-}
-POWER_LEVEL_TO_DPS_LEVEL = {
-    'Stop': 'stop',
-    '1': '1',
-    '2': '2',
-    '3': '3',
-    '4': '4',
-    '5': '5',
-    'Auto': 'auto'
-}
+from ..device import GoldairTuyaDevice
+from .const import (
+    ATTR_TARGET_TEMPERATURE, ATTR_POWER_MODE_AUTO, ATTR_POWER_MODE_USER, ATTR_POWER_LEVEL, ATTR_POWER_MODE,
+    ATTR_ECO_TARGET_TEMPERATURE, STATE_COMFORT, STATE_ECO, STATE_ANTI_FREEZE, PROPERTY_TO_DPS_ID, HVAC_MODE_TO_DPS_MODE,
+    PRESET_MODE_TO_DPS_MODE, POWER_LEVEL_TO_DPS_LEVEL
+)
 
 SUPPORT_FLAGS = SUPPORT_TARGET_TEMPERATURE | SUPPORT_PRESET_MODE | SUPPORT_SWING_MODE
 
@@ -136,14 +94,14 @@ class GoldairHeater(ClimateDevice):
         else:
             return None
 
-    def set_temperature(self, **kwargs):
+    async def async_set_temperature(self, **kwargs):
         """Set new target temperatures."""
         if kwargs.get(ATTR_PRESET_MODE) is not None:
-            self.set_preset_mode(kwargs.get(ATTR_PRESET_MODE))
+            await self.async_set_preset_mode(kwargs.get(ATTR_PRESET_MODE))
         if kwargs.get(ATTR_TEMPERATURE) is not None:
-            self.set_target_temperature(kwargs.get(ATTR_TEMPERATURE))
+            await self.async_set_target_temperature(kwargs.get(ATTR_TEMPERATURE))
 
-    def set_target_temperature(self, target_temperature):
+    async def async_set_target_temperature(self, target_temperature):
         target_temperature = int(round(target_temperature))
         preset_mode = self.preset_mode
 
@@ -158,9 +116,9 @@ class GoldairHeater(ClimateDevice):
             )
 
         if preset_mode == STATE_COMFORT:
-            self._device.set_property(PROPERTY_TO_DPS_ID[ATTR_TARGET_TEMPERATURE], target_temperature)
+            await self._device.async_set_property(PROPERTY_TO_DPS_ID[ATTR_TARGET_TEMPERATURE], target_temperature)
         elif preset_mode == STATE_ECO:
-            self._device.set_property(PROPERTY_TO_DPS_ID[ATTR_ECO_TARGET_TEMPERATURE], target_temperature)
+            await self._device.async_set_property(PROPERTY_TO_DPS_ID[ATTR_ECO_TARGET_TEMPERATURE], target_temperature)
 
     @property
     def current_temperature(self):
@@ -182,10 +140,10 @@ class GoldairHeater(ClimateDevice):
         """Return the list of available HVAC modes."""
         return list(HVAC_MODE_TO_DPS_MODE.keys())
 
-    def set_hvac_mode(self, hvac_mode):
+    async def async_set_hvac_mode(self, hvac_mode):
         """Set new HVAC mode."""
         dps_mode = HVAC_MODE_TO_DPS_MODE[hvac_mode]
-        self._device.set_property(PROPERTY_TO_DPS_ID[ATTR_HVAC_MODE], dps_mode)
+        await self._device.async_set_property(PROPERTY_TO_DPS_ID[ATTR_HVAC_MODE], dps_mode)
 
     @property
     def preset_mode(self):
@@ -201,10 +159,10 @@ class GoldairHeater(ClimateDevice):
         """Return the list of available preset modes."""
         return list(PRESET_MODE_TO_DPS_MODE.keys())
 
-    def set_preset_mode(self, preset_mode):
+    async def async_set_preset_mode(self, preset_mode):
         """Set new preset mode."""
         dps_mode = PRESET_MODE_TO_DPS_MODE[preset_mode]
-        self._device.set_property(PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE], dps_mode)
+        await self._device.async_set_property(PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE], dps_mode)
 
     @property
     def swing_mode(self):
@@ -222,13 +180,13 @@ class GoldairHeater(ClimateDevice):
         """List of power levels."""
         return list(POWER_LEVEL_TO_DPS_LEVEL.keys())
 
-    def set_swing_mode(self, swing_mode):
+    async def async_set_swing_mode(self, swing_mode):
         """Set new power level."""
         new_level = swing_mode
         if new_level not in POWER_LEVEL_TO_DPS_LEVEL.keys():
             raise ValueError(f'Invalid power level: {new_level}')
         dps_level = POWER_LEVEL_TO_DPS_LEVEL[new_level]
-        self._device.set_property(PROPERTY_TO_DPS_ID[ATTR_POWER_LEVEL], dps_level)
+        await self._device.async_set_property(PROPERTY_TO_DPS_ID[ATTR_POWER_LEVEL], dps_level)
 
-    def update(self):
-        self._device.refresh()
+    async def async_update(self):
+        await self._device.async_refresh()

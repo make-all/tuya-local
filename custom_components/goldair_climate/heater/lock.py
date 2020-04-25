@@ -3,8 +3,8 @@ Platform to control the child lock on Goldair WiFi-connected heaters and panels.
 """
 from homeassistant.components.lock import (STATE_LOCKED, STATE_UNLOCKED, LockDevice)
 from homeassistant.const import STATE_UNAVAILABLE
-from custom_components.goldair_climate import GoldairTuyaDevice
-from custom_components.goldair_climate.heater.climate import (
+from ..device import GoldairTuyaDevice
+from .const import (
     ATTR_CHILD_LOCK, PROPERTY_TO_DPS_ID
 )
 
@@ -41,10 +41,13 @@ class GoldairHeaterChildLock(LockDevice):
         """Return the a boolean representing whether the child lock is on or not."""
         return self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_CHILD_LOCK])
 
-    def lock(self, **kwargs):
+    async def async_lock(self, **kwargs):
         """Turn on the child lock."""
-        self._device.set_property(PROPERTY_TO_DPS_ID[ATTR_CHILD_LOCK], True)
+        await self._device.async_set_property(PROPERTY_TO_DPS_ID[ATTR_CHILD_LOCK], True)
 
-    def unlock(self, **kwargs):
+    async def async_unlock(self, **kwargs):
         """Turn off the child lock."""
-        self._device.set_property(PROPERTY_TO_DPS_ID[ATTR_CHILD_LOCK], False)
+        await self._device.async_set_property(PROPERTY_TO_DPS_ID[ATTR_CHILD_LOCK], False)
+
+    async def async_update(self):
+        await self._device.async_refresh()
