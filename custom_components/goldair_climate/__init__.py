@@ -27,19 +27,19 @@ DOMAIN = 'goldair_climate'
 DATA_GOLDAIR_CLIMATE = 'data_goldair_climate'
 
 INDIVIDUAL_CONFIG_SCHEMA_TEMPLATE = [
-    {'key': CONF_NAME, 'type': cv.string, 'required': True},
-    {'key': CONF_HOST, 'type': cv.string, 'required': True},
-    {'key': CONF_DEVICE_ID, 'type': cv.string, 'required': True, 'fixed': True},
-    {'key': CONF_LOCAL_KEY, 'type': cv.string, 'required': True},
+    {'key': CONF_NAME, 'type': str, 'required': True},
+    {'key': CONF_HOST, 'type': str, 'required': True},
+    {'key': CONF_DEVICE_ID, 'type': str, 'required': True, 'fixed': True},
+    {'key': CONF_LOCAL_KEY, 'type': str, 'required': True},
     {
         'key': CONF_TYPE,
         'type': vol.In([CONF_TYPE_HEATER, CONF_TYPE_DEHUMIDIFIER, CONF_TYPE_FAN]),
         'required': True,
         'fixed': True
     },
-    {'key': CONF_CLIMATE, 'type': cv.boolean, 'required': False, 'default': True},
-    {'key': CONF_DISPLAY_LIGHT, 'type': cv.boolean, 'required': False, 'default': False},
-    {'key': CONF_CHILD_LOCK, 'type': cv.boolean, 'required': False, 'default': False}
+    {'key': CONF_CLIMATE, 'type': bool, 'required': False, 'default': True},
+    {'key': CONF_DISPLAY_LIGHT, 'type': bool, 'required': False, 'default': False},
+    {'key': CONF_CHILD_LOCK, 'type': bool, 'required': False, 'default': False}
 ]
 
 
@@ -50,14 +50,14 @@ def individual_config_schema(defaults={}, exclude_fixed=False):
         if exclude_fixed and prop.get('fixed'):
             continue
 
+        options = {}
+
         default = defaults.get(prop['key'], prop.get('default'))
         if default is not None:
-            key = vol.Required(prop['key'], default=default) if prop['required'] else vol.Optional(prop['key'],
-                                                                                                   default=default)
-            output[key] = prop['type']
-        else:
-            key = vol.Required(prop['key']) if prop['required'] else vol.Optional(prop['key'])
-            output[key] = prop['type']
+            options['default'] = default
+
+        key = vol.Required(prop['key'], **options) if prop['required'] else vol.Optional(prop['key'], **options)
+        output[key] = prop['type']
 
     return output
 

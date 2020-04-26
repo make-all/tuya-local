@@ -5,7 +5,7 @@ from homeassistant.components.climate.const import (
 
 ATTR_TARGET_TEMPERATURE = 'target_temperature'
 ATTR_CHILD_LOCK = 'child_lock'
-ATTR_FAULT = 'fault'
+ATTR_ERROR = 'error'
 ATTR_POWER_MODE_AUTO = 'auto'
 ATTR_POWER_MODE_USER = 'user'
 ATTR_POWER_LEVEL = 'power_level'
@@ -23,7 +23,7 @@ PROPERTY_TO_DPS_ID = {
     ATTR_TEMPERATURE: '3',
     ATTR_PRESET_MODE: '4',
     ATTR_CHILD_LOCK: '6',
-    ATTR_FAULT: '12',
+    ATTR_ERROR: '12',
     ATTR_POWER_LEVEL: '101',
     ATTR_DISPLAY_ON: '104',
     ATTR_POWER_MODE: '105',

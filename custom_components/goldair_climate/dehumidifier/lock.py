@@ -4,9 +4,7 @@ Platform to control the child lock on Goldair WiFi-connected dehumidifiers.
 from homeassistant.components.lock import (STATE_LOCKED, STATE_UNLOCKED, LockDevice)
 from homeassistant.const import STATE_UNAVAILABLE
 from ..device import GoldairTuyaDevice
-from .const import (
-    ATTR_CHILD_LOCK, PROPERTY_TO_DPS_ID
-)
+from .const import (ATTR_CHILD_LOCK, PROPERTY_TO_DPS_ID)
 
 
 class GoldairDehumidifierChildLock(LockDevice):

@@ -1,9 +1,7 @@
 """
 Goldair WiFi Heater device.
 """
-from homeassistant.const import (
-    ATTR_TEMPERATURE, TEMP_CELSIUS, STATE_UNAVAILABLE
-)
+from homeassistant.const import (ATTR_TEMPERATURE, STATE_UNAVAILABLE)
 from homeassistant.components.climate import ClimateDevice
 from homeassistant.components.climate.const import (
     ATTR_HVAC_MODE, ATTR_PRESET_MODE,
@@ -11,7 +9,7 @@ from homeassistant.components.climate.const import (
 )
 from ..device import GoldairTuyaDevice
 from .const import (
-    ATTR_TARGET_TEMPERATURE, ATTR_POWER_MODE_AUTO, ATTR_POWER_MODE_USER, ATTR_POWER_LEVEL, ATTR_POWER_MODE,
+    ATTR_TARGET_TEMPERATURE, ATTR_ERROR, ATTR_POWER_MODE_AUTO, ATTR_POWER_MODE_USER, ATTR_POWER_LEVEL, ATTR_POWER_MODE,
     ATTR_ECO_TARGET_TEMPERATURE, STATE_COMFORT, STATE_ECO, STATE_ANTI_FREEZE, PROPERTY_TO_DPS_ID, HVAC_MODE_TO_DPS_MODE,
     PRESET_MODE_TO_DPS_MODE, POWER_LEVEL_TO_DPS_LEVEL
 )
@@ -187,6 +185,13 @@ class GoldairHeater(ClimateDevice):
             raise ValueError(f'Invalid power level: {new_level}')
         dps_level = POWER_LEVEL_TO_DPS_LEVEL[new_level]
         await self._device.async_set_property(PROPERTY_TO_DPS_ID[ATTR_POWER_LEVEL], dps_level)
+
+    @property
+    def device_state_attributes(self):
+        """Get additional attributes that HA doesn't naturally support."""
+        error = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_ERROR])
+
+        return {ATTR_ERROR: error or None}
 
     async def async_update(self):
         await self._device.async_refresh()

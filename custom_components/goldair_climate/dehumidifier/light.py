@@ -53,7 +53,7 @@ class GoldairDehumidifierLedDisplayLight(Light):
         dps_display_on = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_DISPLAY_ON])
 
         if dps_hvac_mode != HVAC_MODE_TO_DPS_MODE[HVAC_MODE_OFF]:
-            await self.turn_on() if not dps_display_on else await self.turn_off()
+            await (self.turn_on() if not dps_display_on else self.turn_off())
 
     async def async_update(self):
         await self._device.async_refresh()

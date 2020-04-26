@@ -8,18 +8,6 @@ from . import (DOMAIN, individual_config_schema)
 from .const import (CONF_DEVICE_ID, CONF_TYPE)
 
 
-def cv_schema_to_config_schema(schema):
-    config_schema = {}
-    for key, value in schema.items():
-        if value == cv.string:
-            config_schema[key] = str
-        elif value == cv.boolean:
-            config_schema[key] = bool
-        else:
-            config_schema[key] = value
-    return vol.Schema(config_schema)
-
-
 class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION = 1
     CONNECTION_CLASS = config_entries.CONN_CLASS_LOCAL_POLL
@@ -34,7 +22,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
         return self.async_show_form(
             step_id='user',
-            data_schema=cv_schema_to_config_schema(individual_config_schema())
+            data_schema=vol.Schema(individual_config_schema())
         )
 
     @staticmethod
@@ -57,6 +45,6 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
 
         config = {**self.config_entry.data, **self.config_entry.options}
         return self.async_show_form(
-            step_id='init',
-            data_schema=cv_schema_to_config_schema(individual_config_schema(defaults=config, exclude_fixed=True))
+            step_id='user',
+            data_schema=vol.Schema(individual_config_schema(defaults=config, exclude_fixed=True))
         )

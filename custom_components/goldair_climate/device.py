@@ -193,7 +193,7 @@ class GoldairTuyaDevice(object):
         self._api.set_version(new_version)
 
     @staticmethod
-    def get_key_for_value(obj, value):
+    def get_key_for_value(obj, value, fallback=None):
         keys = list(obj.keys())
         values = list(obj.values())
-        return keys[values.index(value)]
+        return keys[values.index(value)] or fallback

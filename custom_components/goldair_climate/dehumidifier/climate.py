@@ -1,18 +1,16 @@
 """
 Goldair WiFi Dehumidifier device.
 """
-from homeassistant.const import (
-    ATTR_TEMPERATURE, TEMP_CELSIUS, STATE_UNAVAILABLE
-)
+from homeassistant.const import (ATTR_TEMPERATURE, STATE_UNAVAILABLE)
 from homeassistant.components.climate import ClimateDevice
 from homeassistant.components.climate.const import (
     ATTR_FAN_MODE, ATTR_HUMIDITY, ATTR_HVAC_MODE, ATTR_PRESET_MODE, FAN_LOW, FAN_HIGH, SUPPORT_TARGET_HUMIDITY,
     SUPPORT_PRESET_MODE, SUPPORT_FAN_MODE
 )
 from .const import (
-    ATTR_TARGET_HUMIDITY, ATTR_AIR_CLEAN_ON, ATTR_FAULT, PRESET_NORMAL, PRESET_LOW, PRESET_HIGH, PRESET_DRY_CLOTHES,
-    PRESET_AIR_CLEAN, FAULT_NONE, PROPERTY_TO_DPS_ID, HVAC_MODE_TO_DPS_MODE, PRESET_MODE_TO_DPS_MODE,
-    FAN_MODE_TO_DPS_MODE, FAULT_CODE_TO_DPS_CODE
+    ATTR_TARGET_HUMIDITY, ATTR_AIR_CLEAN_ON, ATTR_ERROR, PRESET_NORMAL, PRESET_LOW, PRESET_HIGH, PRESET_DRY_CLOTHES,
+    PRESET_AIR_CLEAN, PROPERTY_TO_DPS_ID, HVAC_MODE_TO_DPS_MODE, PRESET_MODE_TO_DPS_MODE, FAN_MODE_TO_DPS_MODE,
+    ERROR_CODE_TO_DPS_CODE
 )
 from ..device import GoldairTuyaDevice
 
@@ -193,13 +191,13 @@ class GoldairDehumidifier(ClimateDevice):
         await self._device.async_set_property(PROPERTY_TO_DPS_ID[ATTR_FAN_MODE], dps_mode)
 
     @property
-    def fault(self):
-        """Get the current fault status."""
-        fault = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_FAULT])
-        if fault is None or fault == FAULT_NONE:
-            return None
-        else:
-            return GoldairTuyaDevice.get_key_for_value(FAULT_CODE_TO_DPS_CODE, fault)
+    def device_state_attributes(self):
+        """Get additional attributes that HA doesn't naturally support."""
+        error = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_ERROR])
+        if error:
+            error = GoldairTuyaDevice.get_key_for_value(ERROR_CODE_TO_DPS_CODE, error, error)
+
+        return {ATTR_ERROR: error or None}
 
     async def async_update(self):
         await self._device.async_refresh()
