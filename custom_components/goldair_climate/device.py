@@ -2,12 +2,13 @@
 API for Goldair Tuya devices.
 """
 
-from time import time
-from threading import Timer, Lock
-import logging
 import json
+import logging
+from threading import Lock, Timer
+from time import time
 
 from homeassistant.const import TEMP_CELSIUS
+
 from .const import API_PROTOCOL_VERSIONS
 
 _LOGGER = logging.getLogger(__name__)
@@ -24,9 +25,10 @@ class GoldairTuyaDevice(object):
             local_key (str): The encryption key.
         """
         import pytuya
+
         self._name = name
         self._api_protocol_version_index = None
-        self._api = pytuya.Device(dev_id, address, local_key, 'device')
+        self._api = pytuya.Device(dev_id, address, local_key, "device")
         self._rotate_api_protocol_version()
 
         self._fixed_properties = {}
@@ -55,17 +57,19 @@ class GoldairTuyaDevice(object):
 
     def set_fixed_properties(self, fixed_properties):
         self._fixed_properties = fixed_properties
-        set_fixed_properties = Timer(10, lambda: self._set_properties(self._fixed_properties))
+        set_fixed_properties = Timer(
+            10, lambda: self._set_properties(self._fixed_properties)
+        )
         set_fixed_properties.start()
 
     def refresh(self):
         now = time()
         cached_state = self._get_cached_state()
-        if now - cached_state['updated_at'] >= self._CACHE_TIMEOUT:
-            self._cached_state['updated_at'] = time()
+        if now - cached_state["updated_at"] >= self._CACHE_TIMEOUT:
+            self._cached_state["updated_at"] = time()
             self._retry_on_failed_connection(
                 lambda: self._refresh_cached_state(),
-                f'Failed to refresh device state for {self.name}.'
+                f"Failed to refresh device state for {self.name}.",
             )
 
     async def async_refresh(self):
@@ -94,17 +98,17 @@ class GoldairTuyaDevice(object):
         self._cached_state[dps_id] = value
 
     def _reset_cached_state(self):
-        self._cached_state = {
-            'updated_at': 0
-        }
+        self._cached_state = {"updated_at": 0}
         self._pending_updates = {}
 
     def _refresh_cached_state(self):
         new_state = self._api.status()
-        self._cached_state = new_state['dps']
-        self._cached_state['updated_at'] = time()
-        _LOGGER.info(f'refreshed device state: {json.dumps(new_state)}')
-        _LOGGER.debug(f'new cache state (including pending properties): {json.dumps(self._get_cached_state())}')
+        self._cached_state = new_state["dps"]
+        self._cached_state["updated_at"] = time()
+        _LOGGER.info(f"refreshed device state: {json.dumps(new_state)}")
+        _LOGGER.debug(
+            f"new cache state (including pending properties): {json.dumps(self._get_cached_state())}"
+        )
 
     def _set_properties(self, properties):
         if len(properties) == 0:
@@ -119,12 +123,9 @@ class GoldairTuyaDevice(object):
 
         pending_updates = self._get_pending_updates()
         for key, value in properties.items():
-            pending_updates[key] = {
-                'value': value,
-                'updated_at': now
-            }
+            pending_updates[key] = {"value": value, "updated_at": now}
 
-        _LOGGER.debug(f'new pending updates: {json.dumps(self._pending_updates)}')
+        _LOGGER.debug(f"new pending updates: {json.dumps(self._pending_updates)}")
 
     def _debounce_sending_updates(self):
         try:
@@ -136,21 +137,23 @@ class GoldairTuyaDevice(object):
 
     def _send_pending_updates(self):
         pending_properties = self._get_pending_properties()
-        payload = self._api.generate_payload('set', pending_properties)
+        payload = self._api.generate_payload("set", pending_properties)
 
-        _LOGGER.info(f'sending dps update: {json.dumps(pending_properties)}')
+        _LOGGER.info(f"sending dps update: {json.dumps(pending_properties)}")
 
-        self._retry_on_failed_connection(lambda: self._send_payload(payload), 'Failed to update device state.')
+        self._retry_on_failed_connection(
+            lambda: self._send_payload(payload), "Failed to update device state."
+        )
 
     def _send_payload(self, payload):
         try:
             self._lock.acquire()
             self._api._send_receive(payload)
-            self._cached_state['updated_at'] = 0
+            self._cached_state["updated_at"] = 0
             now = time()
             pending_updates = self._get_pending_updates()
             for key, value in pending_updates.items():
-                pending_updates[key]['updated_at'] = now
+                pending_updates[key]["updated_at"] = now
         finally:
             self._lock.release()
 
@@ -167,16 +170,19 @@ class GoldairTuyaDevice(object):
 
     def _get_cached_state(self):
         cached_state = self._cached_state.copy()
-        _LOGGER.debug(f'pending updates: {json.dumps(self._get_pending_updates())}')
+        _LOGGER.debug(f"pending updates: {json.dumps(self._get_pending_updates())}")
         return {**cached_state, **self._get_pending_properties()}
 
     def _get_pending_properties(self):
-        return {key: info['value'] for key, info in self._get_pending_updates().items()}
+        return {key: info["value"] for key, info in self._get_pending_updates().items()}
 
     def _get_pending_updates(self):
         now = time()
-        self._pending_updates = {key: value for key, value in self._pending_updates.items()
-                                 if now - value['updated_at'] < self._FAKE_IT_TIL_YOU_MAKE_IT_TIMEOUT}
+        self._pending_updates = {
+            key: value
+            for key, value in self._pending_updates.items()
+            if now - value["updated_at"] < self._FAKE_IT_TIL_YOU_MAKE_IT_TIMEOUT
+        }
         return self._pending_updates
 
     def _rotate_api_protocol_version(self):
@@ -189,7 +195,7 @@ class GoldairTuyaDevice(object):
             self._api_protocol_version_index = 0
 
         new_version = API_PROTOCOL_VERSIONS[self._api_protocol_version_index]
-        _LOGGER.info(f'Setting protocol version for {self.name} to {new_version}.')
+        _LOGGER.info(f"Setting protocol version for {self.name} to {new_version}.")
         self._api.set_version(new_version)
 
     @staticmethod

@@ -1,18 +1,36 @@
 """
 Goldair WiFi Dehumidifier device.
 """
-from homeassistant.const import (ATTR_TEMPERATURE, STATE_UNAVAILABLE)
 from homeassistant.components.climate import ClimateDevice
 from homeassistant.components.climate.const import (
-    ATTR_FAN_MODE, ATTR_HUMIDITY, ATTR_HVAC_MODE, ATTR_PRESET_MODE, FAN_LOW, FAN_HIGH, SUPPORT_TARGET_HUMIDITY,
-    SUPPORT_PRESET_MODE, SUPPORT_FAN_MODE
+    ATTR_FAN_MODE,
+    ATTR_HUMIDITY,
+    ATTR_HVAC_MODE,
+    ATTR_PRESET_MODE,
+    FAN_HIGH,
+    FAN_LOW,
+    SUPPORT_FAN_MODE,
+    SUPPORT_PRESET_MODE,
+    SUPPORT_TARGET_HUMIDITY,
 )
-from .const import (
-    ATTR_TARGET_HUMIDITY, ATTR_AIR_CLEAN_ON, ATTR_ERROR, PRESET_NORMAL, PRESET_LOW, PRESET_HIGH, PRESET_DRY_CLOTHES,
-    PRESET_AIR_CLEAN, PROPERTY_TO_DPS_ID, HVAC_MODE_TO_DPS_MODE, PRESET_MODE_TO_DPS_MODE, FAN_MODE_TO_DPS_MODE,
-    ERROR_CODE_TO_DPS_CODE
-)
+from homeassistant.const import ATTR_TEMPERATURE, STATE_UNAVAILABLE
+
 from ..device import GoldairTuyaDevice
+from .const import (
+    ATTR_AIR_CLEAN_ON,
+    ATTR_ERROR,
+    ATTR_TARGET_HUMIDITY,
+    ERROR_CODE_TO_DPS_CODE,
+    FAN_MODE_TO_DPS_MODE,
+    HVAC_MODE_TO_DPS_MODE,
+    PRESET_AIR_CLEAN,
+    PRESET_DRY_CLOTHES,
+    PRESET_HIGH,
+    PRESET_LOW,
+    PRESET_MODE_TO_DPS_MODE,
+    PRESET_NORMAL,
+    PROPERTY_TO_DPS_ID,
+)
 
 SUPPORT_FLAGS = SUPPORT_TARGET_HUMIDITY | SUPPORT_PRESET_MODE | SUPPORT_FAN_MODE
 
@@ -30,10 +48,7 @@ class GoldairDehumidifier(ClimateDevice):
         self._support_flags = SUPPORT_FLAGS
 
         self._HUMIDITY_STEP = 5
-        self._HUMIDITY_LIMITS = {
-            'min': 30,
-            'max': 80
-        }
+        self._HUMIDITY_LIMITS = {"min": 30, "max": 80}
 
     @property
     def supported_features(self):
@@ -58,12 +73,12 @@ class GoldairDehumidifier(ClimateDevice):
     @property
     def min_humidity(self):
         """Return the minimum humidity setting."""
-        return self._HUMIDITY_LIMITS['min']
+        return self._HUMIDITY_LIMITS["min"]
 
     @property
     def max_humidity(self):
         """Return the maximum humidity setting."""
-        return self._HUMIDITY_LIMITS['max']
+        return self._HUMIDITY_LIMITS["max"]
 
     @property
     def target_humidity(self):
@@ -73,9 +88,15 @@ class GoldairDehumidifier(ClimateDevice):
     async def async_set_humidity(self, humidity):
         """Set the device's target humidity."""
         if self.preset_mode in [PRESET_AIR_CLEAN, PRESET_DRY_CLOTHES]:
-            raise ValueError('Humidity can only be changed while in Normal, Low or High preset modes.')
-        humidity = int(self._HUMIDITY_STEP * round(float(humidity) / self._HUMIDITY_STEP))
-        await self._device.async_set_property(PROPERTY_TO_DPS_ID[ATTR_TARGET_HUMIDITY], humidity)
+            raise ValueError(
+                "Humidity can only be changed while in Normal, Low or High preset modes."
+            )
+        humidity = int(
+            self._HUMIDITY_STEP * round(float(humidity) / self._HUMIDITY_STEP)
+        )
+        await self._device.async_set_property(
+            PROPERTY_TO_DPS_ID[ATTR_TARGET_HUMIDITY], humidity
+        )
 
     @property
     def temperature_unit(self):
@@ -115,7 +136,9 @@ class GoldairDehumidifier(ClimateDevice):
     async def async_set_hvac_mode(self, hvac_mode):
         """Set new HVAC mode."""
         dps_mode = HVAC_MODE_TO_DPS_MODE[hvac_mode]
-        await self._device.async_set_property(PROPERTY_TO_DPS_ID[ATTR_HVAC_MODE], dps_mode)
+        await self._device.async_set_property(
+            PROPERTY_TO_DPS_ID[ATTR_HVAC_MODE], dps_mode
+        )
 
     @property
     def preset_mode(self):
@@ -126,7 +149,9 @@ class GoldairDehumidifier(ClimateDevice):
         if air_clean_on:
             return PRESET_AIR_CLEAN
         elif dps_mode is not None:
-            return GoldairTuyaDevice.get_key_for_value(PRESET_MODE_TO_DPS_MODE, dps_mode)
+            return GoldairTuyaDevice.get_key_for_value(
+                PRESET_MODE_TO_DPS_MODE, dps_mode
+            )
         else:
             return None
 
@@ -138,16 +163,28 @@ class GoldairDehumidifier(ClimateDevice):
     async def async_set_preset_mode(self, preset_mode):
         """Set new preset mode."""
         if preset_mode == PRESET_AIR_CLEAN:
-            await self._device.async_set_property(PROPERTY_TO_DPS_ID[ATTR_AIR_CLEAN_ON], True)
-            self._device.anticipate_property_value(PROPERTY_TO_DPS_ID[ATTR_FAN_MODE], FAN_HIGH)
+            await self._device.async_set_property(
+                PROPERTY_TO_DPS_ID[ATTR_AIR_CLEAN_ON], True
+            )
+            self._device.anticipate_property_value(
+                PROPERTY_TO_DPS_ID[ATTR_FAN_MODE], FAN_HIGH
+            )
         else:
             dps_mode = PRESET_MODE_TO_DPS_MODE[preset_mode]
-            await self._device.async_set_property(PROPERTY_TO_DPS_ID[ATTR_AIR_CLEAN_ON], False)
-            await self._device.async_set_property(PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE], dps_mode)
+            await self._device.async_set_property(
+                PROPERTY_TO_DPS_ID[ATTR_AIR_CLEAN_ON], False
+            )
+            await self._device.async_set_property(
+                PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE], dps_mode
+            )
             if preset_mode == PRESET_LOW:
-                self._device.anticipate_property_value(PROPERTY_TO_DPS_ID[ATTR_FAN_MODE], FAN_LOW)
+                self._device.anticipate_property_value(
+                    PROPERTY_TO_DPS_ID[ATTR_FAN_MODE], FAN_LOW
+                )
             elif preset_mode in [PRESET_HIGH, PRESET_DRY_CLOTHES]:
-                self._device.anticipate_property_value(PROPERTY_TO_DPS_ID[ATTR_FAN_MODE], FAN_HIGH)
+                self._device.anticipate_property_value(
+                    PROPERTY_TO_DPS_ID[ATTR_FAN_MODE], FAN_HIGH
+                )
 
     @property
     def fan_mode(self):
@@ -161,7 +198,9 @@ class GoldairDehumidifier(ClimateDevice):
         else:
             dps_mode = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_FAN_MODE])
             if dps_mode is not None:
-                return GoldairTuyaDevice.get_key_for_value(FAN_MODE_TO_DPS_MODE, dps_mode)
+                return GoldairTuyaDevice.get_key_for_value(
+                    FAN_MODE_TO_DPS_MODE, dps_mode
+                )
             else:
                 return None
 
@@ -182,20 +221,26 @@ class GoldairDehumidifier(ClimateDevice):
     async def async_set_fan_mode(self, fan_mode):
         """Set new fan mode."""
         if self.preset_mode != PRESET_NORMAL:
-            raise ValueError('Fan mode can only be changed while in Normal preset mode.')
+            raise ValueError(
+                "Fan mode can only be changed while in Normal preset mode."
+            )
 
         if fan_mode not in FAN_MODE_TO_DPS_MODE.keys():
-            raise ValueError(f'Invalid fan mode: {fan_mode}')
+            raise ValueError(f"Invalid fan mode: {fan_mode}")
 
         dps_mode = FAN_MODE_TO_DPS_MODE[fan_mode]
-        await self._device.async_set_property(PROPERTY_TO_DPS_ID[ATTR_FAN_MODE], dps_mode)
+        await self._device.async_set_property(
+            PROPERTY_TO_DPS_ID[ATTR_FAN_MODE], dps_mode
+        )
 
     @property
     def device_state_attributes(self):
         """Get additional attributes that HA doesn't naturally support."""
         error = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_ERROR])
         if error:
-            error = GoldairTuyaDevice.get_key_for_value(ERROR_CODE_TO_DPS_CODE, error, error)
+            error = GoldairTuyaDevice.get_key_for_value(
+                ERROR_CODE_TO_DPS_CODE, error, error
+            )
 
         return {ATTR_ERROR: error or None}
 
