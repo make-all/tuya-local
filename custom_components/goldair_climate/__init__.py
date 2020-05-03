@@ -17,7 +17,7 @@ from homeassistant.helpers.discovery import async_load_platform
 from .configuration import individual_config_schema
 from .const import (DOMAIN, CONF_CHILD_LOCK, CONF_CLIMATE, CONF_DEVICE_ID,
                     CONF_DISPLAY_LIGHT, CONF_LOCAL_KEY, CONF_TYPE,
-                    CONF_TYPE_DEHUMIDIFIER, CONF_TYPE_FAN, CONF_TYPE_HEATER, SCAN_INTERVAL)
+                    CONF_TYPE_DEHUMIDIFIER, CONF_TYPE_FAN, CONF_TYPE_HEATER, SCAN_INTERVAL, CONF_TYPE_AUTO)
 from .device import GoldairTuyaDevice
 
 _LOGGER = logging.getLogger(__name__)
@@ -112,6 +112,8 @@ def setup_device(hass: HomeAssistant, config: dict):
     hass.data[DOMAIN][config[CONF_DEVICE_ID]] = {
         'device': device
     }
+
+    return device
 
 
 def delete_device(hass: HomeAssistant, config: dict):

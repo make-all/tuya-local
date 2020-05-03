@@ -18,6 +18,7 @@ from homeassistant.const import ATTR_TEMPERATURE, STATE_UNAVAILABLE
 from ..device import GoldairTuyaDevice
 from .const import (
     ATTR_AIR_CLEAN_ON,
+    ATTR_DEFROSTING,
     ATTR_ERROR,
     ATTR_TARGET_HUMIDITY,
     ERROR_CODE_TO_DPS_CODE,
@@ -252,7 +253,9 @@ class GoldairDehumidifier(ClimateDevice):
                 ERROR_CODE_TO_DPS_CODE, error, error
             )
 
-        return {ATTR_ERROR: error or None}
+        defrosting = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_DEFROSTING])
+
+        return {ATTR_ERROR: error or None, ATTR_DEFROSTING: defrosting}
 
     async def async_update(self):
         await self._device.async_refresh()

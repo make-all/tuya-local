@@ -9,7 +9,7 @@ from time import time
 
 from homeassistant.const import TEMP_CELSIUS
 
-from .const import DOMAIN, API_PROTOCOL_VERSIONS
+from .const import DOMAIN, API_PROTOCOL_VERSIONS, CONF_TYPE_DEHUMIDIFIER, CONF_TYPE_FAN, CONF_TYPE_HEATER
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -68,6 +68,23 @@ class GoldairTuyaDevice(object):
     @property
     def temperature_unit(self):
         return self._TEMPERATURE_UNIT
+
+    async def async_inferred_type(self):
+        cached_state = self._get_cached_state()
+
+        if not "1" in cached_state:
+            await self.async_refresh()
+            return await self.async_inferred_type()
+
+        _LOGGER.debug(f"Inferring device type from cached state: {cached_state}")
+        if "5" in cached_state:
+            return CONF_TYPE_DEHUMIDIFIER
+        if "8" in cached_state:
+            return CONF_TYPE_FAN
+        if "106" in cached_state:
+            return CONF_TYPE_HEATER
+
+        return None
 
     def set_fixed_properties(self, fixed_properties):
         self._fixed_properties = fixed_properties

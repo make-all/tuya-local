@@ -65,7 +65,6 @@ goldair_climate:
     host: 1.2.3.4
     device_id: <your device id>
     local_key: <your local key>
-    type: heater
 ```
 
 ### Configuration variables
@@ -86,7 +85,10 @@ goldair_climate:
                                               [as per the instructions below](#finding-your-device-id-and-local-key).
 
 #### type
-&nbsp;&nbsp;&nbsp;&nbsp;*(string) (Required)* The type of Goldair device: currently `heater`, `dehumidifier` or `fan`.
+&nbsp;&nbsp;&nbsp;&nbsp;*(string) (Optional)* The type of Goldair device. `auto` to automatically detect the device type, or if that doesn't work, select from the available options `heater`, `dehumidifier` or `fan`.
+
+&nbsp;&nbsp;&nbsp;&nbsp;*Default value: auto*
+
 
 #### climate
 &nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this appliance as a climate device.
