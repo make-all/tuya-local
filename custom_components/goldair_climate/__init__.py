@@ -9,60 +9,20 @@ import logging
 
 import homeassistant.helpers.config_validation as cv
 import voluptuous as vol
+from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_HOST, CONF_NAME
+from homeassistant.core import HomeAssistant
 from homeassistant.helpers.discovery import async_load_platform
 
-from .const import (CONF_CHILD_LOCK, CONF_CLIMATE, CONF_DEVICE_ID,
+from .configuration import individual_config_schema
+from .const import (DOMAIN, CONF_CHILD_LOCK, CONF_CLIMATE, CONF_DEVICE_ID,
                     CONF_DISPLAY_LIGHT, CONF_LOCAL_KEY, CONF_TYPE,
-                    CONF_TYPE_DEHUMIDIFIER, CONF_TYPE_FAN, CONF_TYPE_HEATER)
+                    CONF_TYPE_DEHUMIDIFIER, CONF_TYPE_FAN, CONF_TYPE_HEATER, SCAN_INTERVAL)
 from .device import GoldairTuyaDevice
 
 _LOGGER = logging.getLogger(__name__)
 
 VERSION = "0.0.8"
-
-DOMAIN = "goldair_climate"
-DATA_GOLDAIR_CLIMATE = "data_goldair_climate"
-
-INDIVIDUAL_CONFIG_SCHEMA_TEMPLATE = [
-    {"key": CONF_NAME, "type": str, "required": True},
-    {"key": CONF_HOST, "type": str, "required": True},
-    {"key": CONF_DEVICE_ID, "type": str, "required": True, "fixed": True},
-    {"key": CONF_LOCAL_KEY, "type": str, "required": True},
-    {
-        "key": CONF_TYPE,
-        "type": vol.In([CONF_TYPE_HEATER, CONF_TYPE_DEHUMIDIFIER, CONF_TYPE_FAN]),
-        "required": True,
-        "fixed": True,
-    },
-    {"key": CONF_CLIMATE, "type": bool, "required": False, "default": True},
-    {"key": CONF_DISPLAY_LIGHT, "type": bool, "required": False, "default": False},
-    {"key": CONF_CHILD_LOCK, "type": bool, "required": False, "default": False},
-]
-
-
-def individual_config_schema(defaults={}, exclude_fixed=False):
-    output = {}
-
-    for prop in INDIVIDUAL_CONFIG_SCHEMA_TEMPLATE:
-        if exclude_fixed and prop.get("fixed"):
-            continue
-
-        options = {}
-
-        default = defaults.get(prop["key"], prop.get("default"))
-        if default is not None:
-            options["default"] = default
-
-        key = (
-            vol.Required(prop["key"], **options)
-            if prop["required"]
-            else vol.Optional(prop["key"], **options)
-        )
-        output[key] = prop["type"]
-
-    return output
-
 
 CONFIG_SCHEMA = vol.Schema(
     {DOMAIN: vol.All(cv.ensure_list, [vol.Schema(individual_config_schema())])},
@@ -70,26 +30,26 @@ CONFIG_SCHEMA = vol.Schema(
 )
 
 
-async def async_setup(hass, config):
+async def async_setup(hass: HomeAssistant, config: dict):
     hass.data[DOMAIN] = {}
 
     for device_config in config.get(DOMAIN, []):
         setup_device(hass, device_config)
 
         discovery_info = {
-            CONF_DEVICE_ID: device_config.get(CONF_DEVICE_ID),
-            CONF_TYPE: device_config.get(CONF_TYPE),
+            CONF_DEVICE_ID: device_config[CONF_DEVICE_ID],
+            CONF_TYPE: device_config[CONF_TYPE],
         }
 
-        if device_config.get(CONF_CLIMATE) == True:
+        if device_config[CONF_CLIMATE] == True:
             hass.async_create_task(
                 async_load_platform(hass, "climate", DOMAIN, discovery_info, config)
             )
-        if device_config.get(CONF_DISPLAY_LIGHT) == True:
+        if device_config[CONF_DISPLAY_LIGHT] == True:
             hass.async_create_task(
                 async_load_platform(hass, "light", DOMAIN, discovery_info, config)
             )
-        if device_config.get(CONF_CHILD_LOCK) == True:
+        if device_config[CONF_CHILD_LOCK] == True:
             hass.async_create_task(
                 async_load_platform(hass, "lock", DOMAIN, discovery_info, config)
             )
@@ -97,8 +57,8 @@ async def async_setup(hass, config):
     return True
 
 
-async def async_setup_entry(hass, entry):
-    config = {**entry.data, **entry.options}
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
+    config = {**entry.data, **entry.options, 'name': entry.title}
     setup_device(hass, config)
 
     if config[CONF_CLIMATE] == True:
@@ -119,35 +79,40 @@ async def async_setup_entry(hass, entry):
     return True
 
 
-async def async_unload_entry(hass, entry):
+async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
     config = entry.data
-    delete_device(hass, config)
+    data = hass.data[DOMAIN][config[CONF_DEVICE_ID]]
 
-    if config[CONF_CLIMATE] == True:
+    if CONF_CLIMATE in data:
         await hass.config_entries.async_forward_entry_unload(entry, "climate")
-    if config[CONF_DISPLAY_LIGHT] == True:
+    if CONF_DISPLAY_LIGHT in data:
         await hass.config_entries.async_forward_entry_unload(entry, "light")
-    if config[CONF_CHILD_LOCK] == True:
+    if CONF_CHILD_LOCK in data:
         await hass.config_entries.async_forward_entry_unload(entry, "lock")
+
+    delete_device(hass, config)
+    del hass.data[DOMAIN][config[CONF_DEVICE_ID]]
 
     return True
 
 
-async def async_update_entry(hass, entry):
+async def async_update_entry(hass: HomeAssistant, entry: ConfigEntry):
     await async_unload_entry(hass, entry)
     await async_setup_entry(hass, entry)
 
 
-def setup_device(hass, config):
+def setup_device(hass: HomeAssistant, config: dict):
     device = GoldairTuyaDevice(
-        config.get(CONF_NAME),
-        config.get(CONF_DEVICE_ID),
-        config.get(CONF_HOST),
-        config.get(CONF_LOCAL_KEY),
+        config[CONF_NAME],
+        config[CONF_DEVICE_ID],
+        config[CONF_HOST],
+        config[CONF_LOCAL_KEY],
         hass,
     )
-    hass.data[DOMAIN][config.get(CONF_DEVICE_ID)] = device
+    hass.data[DOMAIN][config[CONF_DEVICE_ID]] = {
+        'device': device
+    }
 
 
-def delete_device(hass, config):
-    del hass.data[DOMAIN][config[CONF_DEVICE_ID]]
+def delete_device(hass: HomeAssistant, config: dict):
+    del hass.data[DOMAIN][config[CONF_DEVICE_ID]]['device']

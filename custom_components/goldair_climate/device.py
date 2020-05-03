@@ -9,7 +9,7 @@ from time import time
 
 from homeassistant.const import TEMP_CELSIUS
 
-from .const import API_PROTOCOL_VERSIONS
+from .const import DOMAIN, API_PROTOCOL_VERSIONS
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -50,6 +50,20 @@ class GoldairTuyaDevice(object):
     @property
     def name(self):
         return self._name
+
+    @property
+    def unique_id(self):
+        """Return the unique id for this device (the dev_id)."""
+        return self._api.id
+
+    @property
+    def device_info(self):
+        """Return the device information for this device."""
+        return {
+            "identifiers": {(DOMAIN, self.unique_id)},
+            "name": self.name,
+            "manufacturer": "Goldair"
+        }
 
     @property
     def temperature_unit(self):

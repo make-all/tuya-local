@@ -66,6 +66,16 @@ class GoldairDehumidifier(ClimateDevice):
         return self._device.name
 
     @property
+    def unique_id(self):
+        """Return the unique id for this dehumidifier."""
+        return self._device.unique_id
+
+    @property
+    def device_info(self):
+        """Return device information about this dehumidifier."""
+        return self._device.device_info
+
+    @property
     def current_humidity(self):
         """Return the current reading of the humidity sensor."""
         return self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_HUMIDITY])

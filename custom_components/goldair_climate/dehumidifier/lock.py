@@ -28,6 +28,16 @@ class GoldairDehumidifierChildLock(LockDevice):
         return self._device.name
 
     @property
+    def unique_id(self):
+        """Return the unique id for this dehumidifier child lock."""
+        return self._device.unique_id
+
+    @property
+    def device_info(self):
+        """Return device information about this dehumidifier child lock."""
+        return self._device.device_info
+
+    @property
     def state(self):
         """Return the current state."""
         if self.is_locked is None:

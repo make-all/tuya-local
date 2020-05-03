@@ -1,3 +1,7 @@
+from datetime import timedelta
+
+DOMAIN = "goldair_climate"
+
 CONF_DEVICE_ID = "device_id"
 CONF_LOCAL_KEY = "local_key"
 CONF_TYPE = "type"
@@ -9,3 +13,4 @@ CONF_DISPLAY_LIGHT = "display_light"
 CONF_CHILD_LOCK = "child_lock"
 
 API_PROTOCOL_VERSIONS = [3.3, 3.1]
+SCAN_INTERVAL = timedelta(seconds=30)

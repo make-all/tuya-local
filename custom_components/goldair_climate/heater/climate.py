@@ -66,6 +66,16 @@ class GoldairHeater(ClimateDevice):
         return self._device.name
 
     @property
+    def unique_id(self):
+        """Return the unique id for this heater."""
+        return self._device.unique_id
+
+    @property
+    def device_info(self):
+        """Return device information about this heater."""
+        return self._device.device_info
+
+    @property
     def temperature_unit(self):
         """Return the unit of measurement."""
         return self._device.temperature_unit

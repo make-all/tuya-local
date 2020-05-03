@@ -29,6 +29,16 @@ class GoldairDehumidifierLedDisplayLight(Light):
         return self._device.name
 
     @property
+    def unique_id(self):
+        """Return the unique id for this dehumidifier LED display."""
+        return self._device.unique_id
+
+    @property
+    def device_info(self):
+        """Return device information about this dehumidifier LED display."""
+        return self._device.device_info
+
+    @property
     def is_on(self):
         """Return the current state."""
         dps_hvac_mode = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_HVAC_MODE])

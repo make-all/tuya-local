@@ -53,6 +53,16 @@ class GoldairFan(ClimateDevice):
         return self._device.name
 
     @property
+    def unique_id(self):
+        """Return the unique id for this fan."""
+        return self._device.unique_id
+
+    @property
+    def device_info(self):
+        """Return device information about this fan."""
+        return self._device.device_info
+
+    @property
     def temperature_unit(self):
         """This is not used but required by Home Assistant."""
         return TEMP_CELSIUS
