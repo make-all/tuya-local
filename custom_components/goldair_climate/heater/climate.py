@@ -5,6 +5,7 @@ from homeassistant.components.climate import ClimateDevice
 from homeassistant.components.climate.const import (
     ATTR_HVAC_MODE,
     ATTR_PRESET_MODE,
+    HVAC_MODE_HEAT,
     SUPPORT_PRESET_MODE,
     SUPPORT_SWING_MODE,
     SUPPORT_TARGET_TEMPERATURE,
@@ -74,6 +75,16 @@ class GoldairHeater(ClimateDevice):
     def device_info(self):
         """Return device information about this heater."""
         return self._device.device_info
+
+    @property
+    def icon(self):
+        """Return the icon to use in the frontend for this device."""
+        hvac_mode = self.hvac_mode
+        power_level = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_POWER_LEVEL])
+        if hvac_mode == HVAC_MODE_HEAT and power_level != "stop":
+            return "mdi:radiator"
+        else:
+            return "mdi:radiator-disabled"
 
     @property
     def temperature_unit(self):
@@ -200,13 +211,8 @@ class GoldairHeater(ClimateDevice):
         """Return the power level."""
         dps_mode = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_POWER_MODE])
         if dps_mode == ATTR_POWER_MODE_USER:
-            return self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_POWER_LEVEL])
-        elif dps_mode == ATTR_POWER_MODE_AUTO:
-            return GoldairTuyaDevice.get_key_for_value(
-                POWER_LEVEL_TO_DPS_LEVEL, dps_mode
-            )
-        else:
-            return None
+            dps_mode = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_POWER_LEVEL])
+        return GoldairTuyaDevice.get_key_for_value(POWER_LEVEL_TO_DPS_LEVEL, dps_mode)
 
     @property
     def swing_modes(self):

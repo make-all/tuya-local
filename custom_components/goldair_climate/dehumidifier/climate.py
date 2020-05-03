@@ -22,6 +22,7 @@ from .const import (
     ATTR_ERROR,
     ATTR_TARGET_HUMIDITY,
     ERROR_CODE_TO_DPS_CODE,
+    ERROR_TANK,
     FAN_MODE_TO_DPS_MODE,
     HVAC_MODE_TO_DPS_MODE,
     PRESET_AIR_CLEAN,
@@ -75,6 +76,16 @@ class GoldairDehumidifier(ClimateDevice):
     def device_info(self):
         """Return device information about this dehumidifier."""
         return self._device.device_info
+
+    @property
+    def icon(self):
+        """Return the icon to use in the frontend based on the device state."""
+        if self.tank_full_or_missing:
+            return "mdi:cup-water"
+        elif self.defrosting:
+            return "mdi:snowflake-melt"
+        else:
+            return "mdi:air-humidifier"
 
     @property
     def current_humidity(self):
@@ -245,6 +256,15 @@ class GoldairDehumidifier(ClimateDevice):
         )
 
     @property
+    def tank_full_or_missing(self):
+        error = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_ERROR])
+        return error == ERROR_TANK
+
+    @property
+    def defrosting(self):
+        return self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_DEFROSTING])
+
+    @property
     def device_state_attributes(self):
         """Get additional attributes that HA doesn't naturally support."""
         error = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_ERROR])
@@ -253,9 +273,7 @@ class GoldairDehumidifier(ClimateDevice):
                 ERROR_CODE_TO_DPS_CODE, error, error
             )
 
-        defrosting = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_DEFROSTING])
-
-        return {ATTR_ERROR: error or None, ATTR_DEFROSTING: defrosting}
+        return {ATTR_ERROR: error or None, ATTR_DEFROSTING: self.defrosting}
 
     async def async_update(self):
         await self._device.async_refresh()

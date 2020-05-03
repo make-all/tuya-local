@@ -63,6 +63,11 @@ class GoldairFan(ClimateDevice):
         return self._device.device_info
 
     @property
+    def icon(self):
+        """Return the icon to use in the frontend for this device."""
+        return "mdi:fan"
+
+    @property
     def temperature_unit(self):
         """This is not used but required by Home Assistant."""
         return TEMP_CELSIUS

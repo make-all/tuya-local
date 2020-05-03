@@ -39,18 +39,17 @@ class GoldairDehumidifierLedDisplayLight(Light):
         return self._device.device_info
 
     @property
+    def icon(self):
+        """Return the icon to use in the frontend for this device."""
+        if self.is_on:
+            return "mdi:led-on"
+        else:
+            return "mdi:led-off"
+
+    @property
     def is_on(self):
         """Return the current state."""
-        dps_hvac_mode = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_HVAC_MODE])
-        dps_display_on = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_DISPLAY_ON])
-
-        if (
-            dps_hvac_mode is None
-            or dps_hvac_mode == HVAC_MODE_TO_DPS_MODE[HVAC_MODE_OFF]
-        ):
-            return STATE_UNAVAILABLE
-        else:
-            return dps_display_on
+        return self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_DISPLAY_ON])
 
     async def async_turn_on(self):
         await self._device.async_set_property(PROPERTY_TO_DPS_ID[ATTR_DISPLAY_ON], True)

@@ -39,12 +39,15 @@ PRESET_MODE_TO_DPS_MODE = {
     STATE_ECO: "ECO",
     STATE_ANTI_FREEZE: "AF",
 }
+
+POWER_LEVEL_STOP = "stop"
+POWER_LEVEL_AUTO = "auto"
 POWER_LEVEL_TO_DPS_LEVEL = {
-    "Stop": "stop",
+    "Stop": POWER_LEVEL_STOP,
     "1": "1",
     "2": "2",
     "3": "3",
     "4": "4",
     "5": "5",
-    "Auto": "auto",
+    "Auto": POWER_LEVEL_AUTO,
 }
