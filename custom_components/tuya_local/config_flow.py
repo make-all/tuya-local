@@ -68,4 +68,4 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
 async def async_test_connection(config: dict, hass: HomeAssistant):
     device = TuyaLocalDevice("Test", config[CONF_DEVICE_ID], config[CONF_HOST], config[CONF_LOCAL_KEY], hass)
     await device.async_refresh()
-    return device.get_property("1") is not None
+    return device.get_property("1") is not None || device.get_property("3") is not None
