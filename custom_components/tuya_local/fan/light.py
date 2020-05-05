@@ -1,15 +1,12 @@
 """
 Platform to control the LED display light on Goldair WiFi-connected fans and panels.
 """
+from homeassistant.components.climate import ATTR_HVAC_MODE, HVAC_MODE_OFF
 from homeassistant.components.light import Light
 from homeassistant.const import STATE_UNAVAILABLE
-from custom_components.tuya_local import TuyaLocalDevice
-from custom_components.tuya_local.fan.climate import (
-    ATTR_DISPLAY_ON, PROPERTY_TO_DPS_ID, HVAC_MODE_TO_DPS_MODE
-)
-from homeassistant.components.climate import (
-    ATTR_HVAC_MODE, HVAC_MODE_OFF
-)
+
+from ..device import TuyaLocalDevice
+from .const import ATTR_DISPLAY_ON, HVAC_MODE_TO_DPS_MODE, PROPERTY_TO_DPS_ID
 
 
 class GoldairFanLedDisplayLight(Light):
@@ -32,25 +29,44 @@ class GoldairFanLedDisplayLight(Light):
         return self._device.name
 
     @property
+    def unique_id(self):
+        """Return the unique id for this fan LED display."""
+        return self._device.unique_id
+
+    @property
+    def device_info(self):
+        """Return device information about this LED display."""
+        return self._device.device_info
+
+    @property
+    def icon(self):
+        """Return the icon to use in the frontend for this device."""
+        if self.is_on:
+            return "mdi:led-on"
+        else:
+            return "mdi:led-off"
+
+    @property
     def is_on(self):
         """Return the current state."""
-        dps_hvac_mode = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_HVAC_MODE])
-        dps_display_on = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_DISPLAY_ON])
+        return self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_DISPLAY_ON])
 
-        if dps_hvac_mode is None or dps_hvac_mode == HVAC_MODE_TO_DPS_MODE[HVAC_MODE_OFF]:
-            return STATE_UNAVAILABLE
-        else:
-            return dps_display_on
+    async def async_turn_on(self):
+        await self._device.async_set_property(PROPERTY_TO_DPS_ID[ATTR_DISPLAY_ON], True)
 
-    def turn_on(self):
-        self._device.set_property(PROPERTY_TO_DPS_ID[ATTR_DISPLAY_ON], True)
+    async def async_turn_off(self):
+        await self._device.async_set_property(
+            PROPERTY_TO_DPS_ID[ATTR_DISPLAY_ON], False
+        )
 
-    def turn_off(self):
-        self._device.set_property(PROPERTY_TO_DPS_ID[ATTR_DISPLAY_ON], False)
-
-    def toggle(self):
+    async def async_toggle(self):
         dps_hvac_mode = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_HVAC_MODE])
         dps_display_on = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_DISPLAY_ON])
 
         if dps_hvac_mode != HVAC_MODE_TO_DPS_MODE[HVAC_MODE_OFF]:
-            self.turn_on() if not dps_display_on else self.turn_off()
+            await (
+                self.async_turn_on() if not dps_display_on else self.async_turn_off()
+            )
+
+    async def async_update(self):
+        await self._device.async_refresh()

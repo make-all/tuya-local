@@ -10,39 +10,25 @@ dps:
   8 = timer (integer) [not supported - use HA based timers]
 """
 
-from homeassistant.const import (
-    ATTR_TEMPERATURE, TEMP_CELSIUS, STATE_UNAVAILABLE
-)
 from homeassistant.components.climate import ClimateDevice
 from homeassistant.components.climate.const import (
-    ATTR_HVAC_MODE, ATTR_PRESET_MODE,
-    HVAC_MODE_OFF, HVAC_MODE_HEAT,
-    SUPPORT_TARGET_TEMPERATURE, SUPPORT_PRESET_MODE
+    ATTR_HVAC_MODE,
+    ATTR_PRESET_MODE,
+    HVAC_MODE_HEAT,
+    SUPPORT_PRESET_MODE,
+    SUPPORT_TARGET_TEMPERATURE,
 )
-from custom_components.tuya_local import TuyaLocalDevice
+from homeassistant.const import ATTR_TEMPERATURE, STATE_UNAVAILABLE
 
-ATTR_TARGET_TEMPERATURE = 'target_temperature'
-
-PRESET_LOW = 'LOW'
-PRESET_HIGH = 'HIGH'
-
-PROPERTY_TO_DPS_ID = {
-    ATTR_HVAC_MODE: '7',
-    ATTR_TARGET_TEMPERATURE: '2',
-    ATTR_TEMPERATURE: '3',
-    ATTR_PRESET_MODE: '4',
-}
-
-HVAC_MODE_TO_DPS_MODE = {
-    HVAC_MODE_OFF: False,
-    HVAC_MODE_HEAT: True
-}
-
-PRESET_MODE_TO_DPS_MODE = {
-    PRESET_LOW: 'Low',
-    PRESET_HIGH: 'High'
-}
-
+from ..device import TuyaLocalDevice
+from .const import (
+    ATTR_TARGET_TEMPERATURE,
+    HVAC_MODE_TO_DPS_MODE,
+    PRESET_HIGH,
+    PRESET_LOW,
+    PRESET_MODE_TO_DPS_MODE,
+    PROPERTY_TO_DPS_ID,
+)
 SUPPORT_FLAGS = SUPPORT_TARGET_TEMPERATURE | SUPPORT_PRESET_MODE
 
 
@@ -80,6 +66,25 @@ class KoganHeater(ClimateDevice):
         return self._device.name
 
     @property
+    def unique_id(self):
+        """Return the unique id for this heater."""
+        return self._device.unique_id
+
+    @property
+    def device_info(self):
+        """Return device information about this heater."""
+        return self._device.device_info
+
+    @property
+    def icon(self):
+        """Return the icon to use in the frontend for this device."""
+        hvac_mode = self.hvac_mode
+        if hvac_mode == HVAC_MODE_HEAT:
+            return "mdi:radiator"
+        else:
+            return "mdi:radiator-disabled"
+
+    @property
     def temperature_unit(self):
         """Return the unit of measurement."""
         return self._device.temperature_unit
@@ -104,14 +109,14 @@ class KoganHeater(ClimateDevice):
         """Return the maximum temperature."""
         return self._TEMPERATURE_LIMITS['max']
 
-    def set_temperature(self, **kwargs):
+    async def async_set_temperature(self, **kwargs):
         """Set new target temperatures."""
         if kwargs.get(ATTR_PRESET_MODE) is not None:
-            self.set_preset_mode(kwargs.get(ATTR_PRESET_MODE))
+            await self.async_set_preset_mode(kwargs.get(ATTR_PRESET_MODE))
         if kwargs.get(ATTR_TEMPERATURE) is not None:
-            self.set_target_temperature(kwargs.get(ATTR_TEMPERATURE))
+            await self.async_set_target_temperature(kwargs.get(ATTR_TEMPERATURE))
 
-    def set_target_temperature(self, target_temperature):
+    async def async_set_target_temperature(self, target_temperature):
         target_temperature = int(round(target_temperature))
 
         limits = self._TEMPERATURE_LIMITS
@@ -121,7 +126,9 @@ class KoganHeater(ClimateDevice):
                 f'{limits["min"]} and {limits["max"]}'
             )
 
-        self._device.set_property(PROPERTY_TO_DPS_ID[ATTR_TARGET_TEMPERATURE], target_temperature)
+        await self._device.async_set_property(
+            PROPERTY_TO_DPS_ID[ATTR_TARGET_TEMPERATURE], target_temperature
+        )
 
     @property
     def current_temperature(self):
@@ -143,17 +150,21 @@ class KoganHeater(ClimateDevice):
         """Return the list of available HVAC modes."""
         return list(HVAC_MODE_TO_DPS_MODE.keys())
 
-    def set_hvac_mode(self, hvac_mode):
+    async def async_set_hvac_mode(self, hvac_mode):
         """Set new HVAC mode."""
         dps_mode = HVAC_MODE_TO_DPS_MODE[hvac_mode]
-        self._device.set_property(PROPERTY_TO_DPS_ID[ATTR_HVAC_MODE], dps_mode)
+        await self._device.async_set_property(
+            PROPERTY_TO_DPS_ID[ATTR_HVAC_MODE], dps_mode
+        )
 
     @property
     def preset_mode(self):
         """Return current preset mode, ie Low or High."""
         dps_mode = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE])
         if dps_mode is not None:
-            return TuyaLocalDevice.get_key_for_value(PRESET_MODE_TO_DPS_MODE, dps_mode)
+            return TuyaLocalDevice.get_key_for_value(
+                PRESET_MODE_TO_DPS_MODE, dps_mode
+            )
         else:
             return None
 
@@ -162,10 +173,12 @@ class KoganHeater(ClimateDevice):
         """Return the list of available preset modes."""
         return list(PRESET_MODE_TO_DPS_MODE.keys())
 
-    def set_preset_mode(self, preset_mode):
+    async def async_set_preset_mode(self, preset_mode):
         """Set new preset mode."""
         dps_mode = PRESET_MODE_TO_DPS_MODE[preset_mode]
-        self._device.set_property(PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE], dps_mode)
+        await self._device.async_set_property(
+            PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE], dps_mode
+        )
 
-    def update(self):
-        self._device.refresh()
+    async def async_update(self):
+        await self._device.async_refresh()

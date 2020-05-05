@@ -18,7 +18,7 @@ Current temperature is also displayed.
 * **mode** (Normal, Low, High, Dry clothes, Air clean)
 * **target humidity** (`30`-`80`%)
 
-Current temperature is displayed, and current humidity is available as a property.
+Current temperature is displayed, and current humidity is available as a property. The "tank full" state is available via the **error** attribute, and if you want to you can easily surface this to a top-level entity using a [template sensor](https://www.home-assistant.io/integrations/template/).
 
 **Goldair Fans**
 * **power** (on/off)
@@ -39,9 +39,6 @@ Current temperature is also displayed.
 
 **Lock** (Goldair heaters and dehumidifiers)
 * **Child lock** (on/off)
-
-**Binary Sensor** (Goldair dehumidifiers)
-* **Tank full** (on/off)
 
 There was previously a sensor option, however this is easily achieved using a [template sensor](https://www.home-assistant.io/integrations/template/) and therefore is no longer supported.
 
@@ -68,7 +65,9 @@ Alternatively you can copy the contents of this repository's `custom_components`
 
 Configuration
 -------------
-Add the following lines to your `configuration.yaml` file:
+You can easily configure your devices using the Integrations UI at `Home Assistant > Configuration > Integrations > +`. This is the preferred method as things will be unlikely to break as this integration is upgraded. You will need to provide your device's IP address, device ID and local key; the last two can be found using [the instructions below](#finding-your-device-id-and-local-key).
+
+If you would rather configure using yaml, add the following lines to your `configuration.yaml` file (but bear in mind that if the configuration options change your configuration may break until you update it to match the changes):
 
 ```yaml
 # Example configuration.yaml entry
@@ -77,7 +76,6 @@ tuya_local:
     host: 1.2.3.4
     device_id: <your device id>
     local_key: <your local key>
-    type: heater
 ```
 
 ### Configuration variables
@@ -98,7 +96,9 @@ tuya_local:
                                               [as per the instructions below](#finding-your-device-id-and-local-key).
 
 #### type
-&nbsp;&nbsp;&nbsp;&nbsp;*(string) (Required)* The type of Goldair device: currently `heater`, `dehumidifier`, `fan` or `kogan_heater`.
+&nbsp;&nbsp;&nbsp;&nbsp;*(string) (Optional)* The type of Tuya device. `auto` to automatically detect the device type, or if that doesn't work, select from the available options `heater`, `dehumidifier`, `fan` or `kogan_heater`.
+
+&nbsp;&nbsp;&nbsp;&nbsp;*Default value: auto*
 
 #### climate
 &nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this appliance as a climate device.
@@ -114,9 +114,6 @@ tuya_local:
 &nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this appliances's child lock as a lock device (not supported for fans or Kogan Heaters).
 
 &nbsp;&nbsp;&nbsp;&nbsp;*Default value: false* 
-
-#### tank_full
-&nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this appliances's tank full sensor as a binary_sensor device (only supported for dehumidifiers).
 
 Heater gotchas
 --------------
