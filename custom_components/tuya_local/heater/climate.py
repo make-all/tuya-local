@@ -241,7 +241,7 @@ class GoldairHeater(ClimateDevice):
             error = f"Error {error_code}"
         else:
             error = "OK"
-        return {ATTR_ERROR: error, ATTR_ERROR_CODE: error}
+        return {ATTR_ERROR: error, ATTR_ERROR_CODE: error_code}
 
     async def async_update(self):
         await self._device.async_refresh()
