@@ -59,7 +59,6 @@ class TuyaLocalDevice(object):
     @property
     def device_info(self):
         """Return the device information for this device."""
-        if (self.type
         return {
             "identifiers": {(DOMAIN, self.unique_id)},
             "name": self.name,
