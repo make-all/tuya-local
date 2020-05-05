@@ -277,8 +277,8 @@ class GoldairDehumidifier(ClimateDevice):
             error = TuyaLocalDevice.get_key_for_value(
                 ERROR_CODE_TO_DPS_CODE, error, f"Error {error}"
             )
-        else
-            error = None
+        else:
+            error = "Unavailable"
 
         return {ATTR_ERROR: error, ATTR_ERROR_CODE: error_code, ATTR_DEFROSTING: self.defrosting}
 
