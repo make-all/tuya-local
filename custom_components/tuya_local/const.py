@@ -1,6 +1,6 @@
 from datetime import timedelta
 
-DOMAIN = "goldair_climate"
+DOMAIN = "tuya_local"
 
 CONF_DEVICE_ID = "device_id"
 CONF_LOCAL_KEY = "local_key"
