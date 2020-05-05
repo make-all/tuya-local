@@ -210,6 +210,9 @@ class GoldairHeater(ClimateDevice):
     def swing_mode(self):
         """Return the power level."""
         dps_mode = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_POWER_MODE])
+        if dps_mode == None:
+            return None
+
         if dps_mode == ATTR_POWER_MODE_USER:
             dps_mode = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_POWER_LEVEL])
         return TuyaLocalDevice.get_key_for_value(POWER_LEVEL_TO_DPS_LEVEL, dps_mode)
