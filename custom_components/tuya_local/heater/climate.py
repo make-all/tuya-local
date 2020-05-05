@@ -16,6 +16,7 @@ from ..device import TuyaLocalDevice
 from .const import (
     ATTR_ECO_TARGET_TEMPERATURE,
     ATTR_ERROR,
+    ATTR_ERROR_CODE,
     ATTR_POWER_LEVEL,
     ATTR_POWER_MODE,
     ATTR_POWER_MODE_AUTO,
