@@ -260,8 +260,7 @@ class GoldairDehumidifier(ClimateDevice):
         error = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_ERROR])
         if error is not None:
             return (
-                TuyaLocalDevice.get_key_for_value(ERROR_CODE_TO_DPS_CODE, error)
-                == ERROR_TANK
+                TuyaLocalDevice.get_key_for_value(ERROR_CODE_TO_DPS_CODE, error) == ERROR_TANK
             )
         else:
             return None
@@ -274,7 +273,7 @@ class GoldairDehumidifier(ClimateDevice):
     def device_state_attributes(self):
         """Get additional attributes that HA doesn't naturally support."""
         error = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_ERROR])
-        if error:
+        if isinstance(error, int):
             error = TuyaLocalDevice.get_key_for_value(
                 ERROR_CODE_TO_DPS_CODE, error, error
             )

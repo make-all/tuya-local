@@ -23,7 +23,7 @@ PRESET_HIGH = "High"
 PRESET_DRY_CLOTHES = "Dry clothes"
 PRESET_AIR_CLEAN = "Air clean"
 
-ERROR_NONE = "No error"
+ERROR_NONE = "OK"
 ERROR_TANK = "Tank full or missing"
 
 PROPERTY_TO_DPS_ID = {
