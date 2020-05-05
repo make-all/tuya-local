@@ -276,7 +276,7 @@ class GoldairDehumidifier(ClimateDevice):
         error_code = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_ERROR])
         if isinstance(error_code, int):
             error = TuyaLocalDevice.get_key_for_value(
-                ERROR_CODE_TO_DPS_CODE, error, f"Error {error}"
+                ERROR_CODE_TO_DPS_CODE, error_code, f"Error {error_code}"
             )
         else:
             error = "Unavailable"
