@@ -9,6 +9,7 @@ from homeassistant.const import ATTR_TEMPERATURE
 ATTR_TARGET_TEMPERATURE = "target_temperature"
 ATTR_CHILD_LOCK = "child_lock"
 ATTR_ERROR = "error"
+ATTR_ERROR_CODE = "error_code"
 ATTR_POWER_MODE_AUTO = "auto"
 ATTR_POWER_MODE_USER = "user"
 ATTR_POWER_LEVEL = "power_level"

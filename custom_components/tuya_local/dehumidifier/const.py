@@ -14,6 +14,7 @@ ATTR_TARGET_HUMIDITY = "target_humidity"
 ATTR_AIR_CLEAN_ON = "air_clean_on"
 ATTR_CHILD_LOCK = "child_lock"
 ATTR_ERROR = "error"
+ATTR_ERROR_CODE = "error_code"
 ATTR_DISPLAY_ON = "display_on"
 ATTR_DEFROSTING = "defrosting"
 

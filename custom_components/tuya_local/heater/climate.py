@@ -235,9 +235,12 @@ class GoldairHeater(ClimateDevice):
     @property
     def device_state_attributes(self):
         """Get additional attributes that HA doesn't naturally support."""
-        error = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_ERROR])
-
-        return {ATTR_ERROR: error or None}
+        error_code = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_ERROR])
+        if error_code:
+            error = f"Error {error_code}"
+        else:
+            error = "OK"
+        return {ATTR_ERROR: error, ATTR_ERROR_CODE: error}
 
     async def async_update(self):
         await self._device.async_refresh()

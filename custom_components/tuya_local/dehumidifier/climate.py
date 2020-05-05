@@ -272,13 +272,15 @@ class GoldairDehumidifier(ClimateDevice):
     @property
     def device_state_attributes(self):
         """Get additional attributes that HA doesn't naturally support."""
-        error = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_ERROR])
-        if isinstance(error, int):
+        error_code = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_ERROR])
+        if isinstance(error_code, int):
             error = TuyaLocalDevice.get_key_for_value(
-                ERROR_CODE_TO_DPS_CODE, error, error
+                ERROR_CODE_TO_DPS_CODE, error, f"Error {error}"
             )
+        else
+            error = None
 
-        return {ATTR_ERROR: error or None, ATTR_DEFROSTING: self.defrosting}
+        return {ATTR_ERROR: error, ATTR_ERROR_CODE: error_code, ATTR_DEFROSTING: self.defrosting}
 
     async def async_update(self):
         await self._device.async_refresh()
