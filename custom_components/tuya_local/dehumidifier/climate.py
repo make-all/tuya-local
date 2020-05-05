@@ -258,10 +258,13 @@ class GoldairDehumidifier(ClimateDevice):
     @property
     def tank_full_or_missing(self):
         error = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_ERROR])
-        return (
-            TuyaLocalDevice.get_key_for_value(ERROR_CODE_TO_DPS_CODE, error)
-            == ERROR_TANK
-        )
+        if error is not None:
+            return (
+                TuyaLocalDevice.get_key_for_value(ERROR_CODE_TO_DPS_CODE, error)
+                == ERROR_TANK
+            )
+        else:
+            return None
 
     @property
     def defrosting(self):
