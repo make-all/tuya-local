@@ -70,7 +70,7 @@ class GoldairGPCVHeater(ClimateDevice):
         """Return the icon to use in the frontend for this device."""
         hvac_mode = self.hvac_mode
 
-        if hvac_mode == HVAC_MODE_HEAT
+        if hvac_mode == HVAC_MODE_HEAT:
             return "mdi:radiator"
         else:
             return "mdi:radiator-disabled"
