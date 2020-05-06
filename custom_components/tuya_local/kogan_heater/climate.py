@@ -23,6 +23,7 @@ from homeassistant.const import ATTR_TEMPERATURE, STATE_UNAVAILABLE
 from ..device import TuyaLocalDevice
 from .const import (
     ATTR_TARGET_TEMPERATURE,
+    ATTR_TIMER,
     HVAC_MODE_TO_DPS_MODE,
     PRESET_MODE_TO_DPS_MODE,
     PROPERTY_TO_DPS_ID,
