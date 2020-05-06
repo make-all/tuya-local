@@ -6,7 +6,7 @@ from .const import (CONF_DEVICE_ID, CONF_TYPE, CONF_TYPE_DEHUMIDIFIER,
                     CONF_TYPE_FAN, CONF_TYPE_HEATER, CONF_TYPE_KOGAN_HEATER, CONF_CHILD_LOCK, CONF_TYPE_AUTO)
 from .dehumidifier.lock import GoldairDehumidifierChildLock
 from .heater.lock import GoldairHeaterChildLock
-
+from .kogan_heater.lock import KoganHeaterChildLock
 
 async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
     """Set up the Goldair climate device according to its type."""
@@ -26,7 +26,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
     if discovery_info[CONF_TYPE] == CONF_TYPE_FAN:
         raise ValueError('Goldair fans do not support Child Lock.')
     if discovery_info[CONF_TYPE] == CONF_TYPE_KOGAN_HEATER:
-        raise ValueError('Kogan Heaters do not support Child Lock.')
+        data[CONF_CHILD_LOCK] = KoganHeaterChildLock(device)
 
     if CONF_CHILD_LOCK in data:
         async_add_entities([data[CONF_CHILD_LOCK]])

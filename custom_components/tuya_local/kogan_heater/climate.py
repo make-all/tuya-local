@@ -5,9 +5,9 @@ dps:
   2 = target temperature (integer)
   3 = current temperature (integer)
   4 = preset_mode (string Low/High)
-  6 = timer state (boolean) [not supported - use HA based timers]
+  6 = child_lock (boolean)
   7 = hvac_mode (boolean)
-  8 = timer (integer) [not supported - use HA based timers]
+  8 = timer (integer) [supported for read only - use HA based timers]
 """
 
 from homeassistant.components.climate import ClimateDevice
@@ -24,11 +24,10 @@ from ..device import TuyaLocalDevice
 from .const import (
     ATTR_TARGET_TEMPERATURE,
     HVAC_MODE_TO_DPS_MODE,
-    PRESET_HIGH,
-    PRESET_LOW,
     PRESET_MODE_TO_DPS_MODE,
     PROPERTY_TO_DPS_ID,
 )
+
 SUPPORT_FLAGS = SUPPORT_TARGET_TEMPERATURE | SUPPORT_PRESET_MODE
 
 
@@ -120,9 +119,9 @@ class KoganHeater(ClimateDevice):
         target_temperature = int(round(target_temperature))
 
         limits = self._TEMPERATURE_LIMITS
-        if not limits['min'] <= target_temperature <= limits['max']:
+        if not limits["min"] <= target_temperature <= limits["max"]:
             raise ValueError(
-                f'Target temperature ({target_temperature}) must be between '
+                f"Target temperature ({target_temperature}) must be between "
                 f'{limits["min"]} and {limits["max"]}'
             )
 
@@ -179,6 +178,12 @@ class KoganHeater(ClimateDevice):
         await self._device.async_set_property(
             PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE], dps_mode
         )
+
+    @property
+    def device_state_attributes(self):
+        """Get additional attributes that HA doesn't naturally support."""
+        timer = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_TIMER])
+        return {ATTR_TIMER: timer}
 
     async def async_update(self):
         await self._device.async_refresh()

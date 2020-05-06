@@ -111,7 +111,7 @@ tuya_local:
 &nbsp;&nbsp;&nbsp;&nbsp;*Default value: false* 
 
 #### child_lock
-&nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this appliances's child lock as a lock device (not supported for fans or Kogan Heaters).
+&nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this appliances's child lock as a lock device (not supported for fans).
 
 &nbsp;&nbsp;&nbsp;&nbsp;*Default value: false* 
 
