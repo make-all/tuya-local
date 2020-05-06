@@ -4,7 +4,7 @@ Home Assistant Goldair WiFi Climate component
 The `goldair_climate` component integrates 
 [Goldair WiFi-enabled heaters](http://www.goldair.co.nz/product-catalogue/heating/wifi-heaters), WiFi-enabled [dehumidifiers](http://www.goldair.co.nz/product-catalogue/heating/dehumidifiers), and WiFi-enabled fans](http://www.goldair.co.nz/product-catalogue/cooling/pedestal-fans/40cm-dc-quiet-fan-with-wifi-and-remote-gcpf315) into Home Assistant, enabling control of setting the following parameters via the UI and the following services:
 
-**Heaters**
+**GPPH Heaters**
 * **power** (on/off)
 * **mode** (Comfort, Eco, Anti-freeze)
 * **target temperature** (`5`-`35` in Comfort mode, `5`-`21` in Eco mode, in °C)
@@ -12,7 +12,14 @@ The `goldair_climate` component integrates
 
 Current temperature is also displayed.
 
-**Demudifiers**
+**GPCV Heaters**
+* **power** (on/off)
+* **mode** (High/Low)
+* **target temperature** (`15` - `35` in °C)
+
+Current temperature is also displayed.
+
+**Dehumidifiers**
 * **power** (on/off)
 * **mode** (Normal, Low, High, Dry clothes, Air clean)
 * **target humidity** (`30`-`80`%)
@@ -36,7 +43,7 @@ There was previously a sensor option, however this is easily achieved using a [t
 ---
 
 ### Warning
-Please note, this component has currently only been tested with the Goldair GPPH (inverter), GPDH420 (dehumidifier), and GCPF315 fan, however theoretically it should also work with GEPH and GPCV heater devices, may work with the GPDH440 dehumidifier and any other Goldair heaters, dehumidifiers or fans based on the Tuya platform.
+Please note, this component has currently only been tested with the Goldair GPPH (inverter heater), GPCV (convection heater), GPDH420 (dehumidifier), and GCPF315 fan, however theoretically it should also work with GEPH heater devices, may work with the GPDH440 dehumidifier and any other Goldair heaters, dehumidifiers or fans based on the Tuya platform.
 
 ---
 
@@ -84,7 +91,7 @@ goldair_climate:
                                               [as per the instructions below](#finding-your-device-id-and-local-key).
 
 #### type
-&nbsp;&nbsp;&nbsp;&nbsp;*(string) (Required)* The type of Goldair device: currently `heater`, `dehumidifier` or `fan`.
+&nbsp;&nbsp;&nbsp;&nbsp;*(string) (Required)* The type of Goldair device: currently `heater`, `gpcv_heater`, `dehumidifier` or `fan`.
 
 #### climate
 &nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this appliance as a climate device.
@@ -92,7 +99,7 @@ goldair_climate:
 &nbsp;&nbsp;&nbsp;&nbsp;*Default value: true* 
 
 #### display_light
-&nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this appliance's LED display control as a light.
+&nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this appliance's LED display control as a light (not supported for GPCV heaters).
 
 &nbsp;&nbsp;&nbsp;&nbsp;*Default value: false* 
 
@@ -103,7 +110,7 @@ goldair_climate:
 
 Heater gotchas
 --------------
-Goldair heaters have individual target temperatures for their Comfort and Eco modes, whereas Home Assistant only supports
+Goldair GPPH heaters have individual target temperatures for their Comfort and Eco modes, whereas Home Assistant only supports
 a single target temperature. Therefore, when you're in Comfort mode you will set the Comfort temperature (`5`-`35`), and
 when you're in Eco mode you will set the Eco temperature (`5`-`21`), just like you were using the heater's own control 
 panel. Bear this in mind when writing automations that change the operation mode and set a temperature at the same time: 

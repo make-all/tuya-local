@@ -15,7 +15,7 @@ import homeassistant.helpers.config_validation as cv
 from homeassistant.const import (CONF_NAME, CONF_HOST, TEMP_CELSIUS)
 from homeassistant.helpers.discovery import load_platform
 
-VERSION = '0.0.8'
+VERSION = '0.0.9'
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -28,6 +28,7 @@ CONF_DEVICE_ID = 'device_id'
 CONF_LOCAL_KEY = 'local_key'
 CONF_TYPE = 'type'
 CONF_TYPE_HEATER = 'heater'
+CONF_TYPE_GPCV_HEATER = 'gpcv_heater'
 CONF_TYPE_DEHUMIDIFIER = 'dehumidifier'
 CONF_TYPE_FAN = 'fan'
 CONF_CLIMATE = 'climate'
@@ -39,7 +40,7 @@ PLATFORM_SCHEMA = vol.Schema({
     vol.Required(CONF_HOST): cv.string,
     vol.Required(CONF_DEVICE_ID): cv.string,
     vol.Required(CONF_LOCAL_KEY): cv.string,
-    vol.Required(CONF_TYPE): vol.In([CONF_TYPE_HEATER, CONF_TYPE_DEHUMIDIFIER, CONF_TYPE_FAN]),
+    vol.Required(CONF_TYPE): vol.In([CONF_TYPE_HEATER, CONF_TYPE_DEHUMIDIFIER, CONF_TYPE_FAN, CONF_TYPE_GPCV_HEATER]),
     vol.Optional(CONF_CLIMATE, default=True): cv.boolean,
     vol.Optional(CONF_DISPLAY_LIGHT, default=False): cv.boolean,
     vol.Optional(CONF_CHILD_LOCK, default=False): cv.boolean,
