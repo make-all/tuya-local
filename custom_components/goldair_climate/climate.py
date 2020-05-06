@@ -7,12 +7,16 @@ from .const import (
     CONF_TYPE,
     CONF_TYPE_DEHUMIDIFIER,
     CONF_TYPE_FAN,
+    CONF_TYPE_GECO_HEATER,
+    CONF_TYPE_GPCV_HEATER,
     CONF_TYPE_HEATER,
     CONF_CLIMATE,
     CONF_TYPE_AUTO,
 )
 from .dehumidifier.climate import GoldairDehumidifier
 from .fan.climate import GoldairFan
+from .geco_heater.climate import GoldairGECOHeater
+from .gpcv_heater.climate import GoldairGPCVHeater
 from .heater.climate import GoldairHeater
 
 
@@ -33,6 +37,10 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         data[CONF_CLIMATE] = GoldairDehumidifier(device)
     elif discovery_info[CONF_TYPE] == CONF_TYPE_FAN:
         data[CONF_CLIMATE] = GoldairFan(device)
+    elif discovery_info[CONF_TYPE] == CONF_TYPE_GECO_HEATER:
+        data[CONF_CLIMATE] = GoldairGECOHeater(device)
+    elif discovery_info[CONF_TYPE] == CONF_TYPE_GPCV_HEATER:
+        data[CONF_CLIMATE] = GoldairGPCVHeater(device)
 
     if CONF_CLIMATE in data:
         async_add_entities([data[CONF_CLIMATE]])
