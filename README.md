@@ -5,7 +5,7 @@ The `tuya_local` component integrates
 [Goldair WiFi-enabled heaters](http://www.goldair.co.nz/product-catalogue/heating/wifi-heaters), WiFi-enabled [dehumidifiers](http://www.goldair.co.nz/product-catalogue/heating/dehumidifiers), [WiFi-enabled fans](http://www.goldair.co.nz/product-catalogue/cooling/pedestal-fans/40cm-dc-quiet-fan-with-wifi-and-remote-gcpf315) and [Kogan WiFi-enabled heaters](https://www.kogan.com/au/c/smarterhome-range/shop/heating-cooling/) into Home Assistant, enabling control of setting the following parameters via the UI and the following services:
 
 ### Climate devices
-**Goldair Heaters**
+**GPPH Heaters**
 * **power** (on/off)
 * **mode** (Comfort, Eco, Anti-freeze)
 * **target temperature** (`5`-`35` in Comfort mode, `5`-`21` in Eco mode, in °C)
@@ -13,7 +13,14 @@ The `tuya_local` component integrates
 
 Current temperature is also displayed.
 
-**Goldair Demudifiers**
+**Goldair GPCV Heaters**
+* **power** (on/off)
+* **mode** (Low, High)
+* **target temperature** (`15`-`35` in °C)
+
+Current temperature is also displayed.
+
+**Goldair Dehumidifiers**
 * **power** (on/off)
 * **mode** (Normal, Low, High, Dry clothes, Air clean)
 * **target humidity** (`30`-`80`%)
@@ -96,7 +103,7 @@ tuya_local:
                                               [as per the instructions below](#finding-your-device-id-and-local-key).
 
 #### type
-&nbsp;&nbsp;&nbsp;&nbsp;*(string) (Optional)* The type of Tuya device. `auto` to automatically detect the device type, or if that doesn't work, select from the available options `heater`, `dehumidifier`, `fan` or `kogan_heater`.
+&nbsp;&nbsp;&nbsp;&nbsp;*(string) (Optional)* The type of Tuya device. `auto` to automatically detect the device type, or if that doesn't work, select from the available options `heater`, `gpcv_heater`, `dehumidifier`, `fan` or `kogan_heater`.
 
 &nbsp;&nbsp;&nbsp;&nbsp;*Default value: auto*
 
@@ -106,7 +113,7 @@ tuya_local:
 &nbsp;&nbsp;&nbsp;&nbsp;*Default value: true* 
 
 #### display_light
-&nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this appliance's LED display control as a light (not supported for Kogan Heaters).
+&nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this appliance's LED display control as a light (not supported for Kogan and GPCV Heaters).
 
 &nbsp;&nbsp;&nbsp;&nbsp;*Default value: false* 
 
@@ -117,7 +124,7 @@ tuya_local:
 
 Heater gotchas
 --------------
-Goldair heaters have individual target temperatures for their Comfort and Eco modes, whereas Home Assistant only supports
+Goldair GPPH heaters have individual target temperatures for their Comfort and Eco modes, whereas Home Assistant only supports
 a single target temperature. Therefore, when you're in Comfort mode you will set the Comfort temperature (`5`-`35`), and
 when you're in Eco mode you will set the Eco temperature (`5`-`21`), just like you were using the heater's own control 
 panel. Bear this in mind when writing automations that change the operation mode and set a temperature at the same time: 

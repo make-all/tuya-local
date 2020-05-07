@@ -9,7 +9,9 @@ from time import time
 
 from homeassistant.const import TEMP_CELSIUS
 
-from .const import DOMAIN, API_PROTOCOL_VERSIONS, CONF_TYPE_DEHUMIDIFIER, CONF_TYPE_FAN, CONF_TYPE_HEATER, CONF_TYPE_KOGAN_HEATER
+from .const import (
+    DOMAIN, API_PROTOCOL_VERSIONS, CONF_TYPE_DEHUMIDIFIER,CONF_TYPE_FAN,
+    CONF_TYPE_GPCV_HEATER, CONF_TYPE_HEATER, CONF_TYPE_KOGAN_HEATER)
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -81,7 +83,10 @@ class TuyaLocalDevice(object):
 
         _LOGGER.debug(f"Inferring device type from cached state: {cached_state}")
         if "5" in cached_state:
-            return CONF_TYPE_DEHUMIDIFIER
+            if "3" in cached_state:
+                return CONF_TYPE_GPCV_HEATER
+            else:
+                return CONF_TYPE_DEHUMIDIFIER
         if "8" in cached_state:
             return CONF_TYPE_FAN
         if "106" in cached_state:
