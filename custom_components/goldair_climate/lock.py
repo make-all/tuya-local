@@ -27,7 +27,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         data[CONF_CHILD_LOCK] = GoldairDehumidifierChildLock(device)
     elif discovery_info[CONF_TYPE] == CONF_TYPE_FAN:
         raise ValueError("Goldair fans do not support child lock.")
-    elif discovery_info[CONF_TYPE] == CONF_GPCV_HEATER:
+    elif discovery_info[CONF_TYPE] == CONF_TYPE_GPCV_HEATER:
         data[CONF_CHILD_LOCK] = GoldairGPCVHeaterChildLock(device)
 
     if CONF_CHILD_LOCK in data:
