@@ -2,10 +2,18 @@
 Setup for different kinds of Tuya climate devices
 """
 from . import DOMAIN
-from .const import (CONF_DEVICE_ID, CONF_TYPE, CONF_TYPE_DEHUMIDIFIER,
-                    CONF_TYPE_FAN, CONF_TYPE_GECO_HEATER,
-                    CONF_TYPE_GPCV_HEATER, CONF_TYPE_HEATER,
-                    CONF_TYPE_KOGAN_HEATER, CONF_CLIMATE, CONF_TYPE_AUTO)
+from .const import (
+    CONF_DEVICE_ID,
+    CONF_TYPE,
+    CONF_TYPE_DEHUMIDIFIER,
+    CONF_TYPE_FAN,
+    CONF_TYPE_GECO_HEATER,
+    CONF_TYPE_GPCV_HEATER,
+    CONF_TYPE_HEATER,
+    CONF_TYPE_KOGAN_HEATER,
+    CONF_CLIMATE,
+    CONF_TYPE_AUTO
+)
 from .dehumidifier.climate import GoldairDehumidifier
 from .fan.climate import GoldairFan
 from .geco_heater.climate import GoldairGECOHeater

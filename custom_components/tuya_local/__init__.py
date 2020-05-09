@@ -10,16 +10,28 @@ import logging
 
 import homeassistant.helpers.config_validation as cv
 import voluptuous as vol
-from homeassistant.config_entries import ConfigEntry
+from homeassistant.config_entries import ConfigEntry, SOURCE_IMPORT
 from homeassistant.const import CONF_HOST, CONF_NAME
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.discovery import async_load_platform
 
 from .configuration import individual_config_schema
-from .const import (DOMAIN, CONF_CHILD_LOCK, CONF_CLIMATE, CONF_DEVICE_ID,
-                    CONF_DISPLAY_LIGHT, CONF_LOCAL_KEY, CONF_TYPE,
-                    CONF_TYPE_DEHUMIDIFIER, CONF_TYPE_FAN, CONF_TYPE_HEATER, SCAN_INTERVAL, CONF_TYPE_AUTO)
+from .const import (
+    DOMAIN,
+    CONF_CHILD_LOCK,
+    CONF_CLIMATE,
+    CONF_DEVICE_ID,
+    CONF_DISPLAY_LIGHT,
+    CONF_LOCAL_KEY,
+    CONF_TYPE,
+    CONF_TYPE_DEHUMIDIFIER,
+    CONF_TYPE_FAN,
+    CONF_TYPE_HEATER,
+    SCAN_INTERVAL,
+    CONF_TYPE_AUTO,
+)
 from .device import TuyaLocalDevice
+from .config_flow import ConfigFlowHandler
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -32,34 +44,19 @@ CONFIG_SCHEMA = vol.Schema(
 
 
 async def async_setup(hass: HomeAssistant, config: dict):
-    hass.data[DOMAIN] = {}
-
     for device_config in config.get(DOMAIN, []):
-        setup_device(hass, device_config)
-
-        discovery_info = {
-            CONF_DEVICE_ID: device_config[CONF_DEVICE_ID],
-            CONF_TYPE: device_config[CONF_TYPE],
-        }
-
-        if device_config[CONF_CLIMATE] == True:
-            hass.async_create_task(
-                async_load_platform(hass, "climate", DOMAIN, discovery_info, config)
+        hass.async_create_task(
+            hass.config_entries.flow.async_init(
+                DOMAIN, context={"source": SOURCE_IMPORT}, data=device_config
             )
-        if device_config[CONF_DISPLAY_LIGHT] == True:
-            hass.async_create_task(
-                async_load_platform(hass, "light", DOMAIN, discovery_info, config)
-            )
-        if device_config[CONF_CHILD_LOCK] == True:
-            hass.async_create_task(
-                async_load_platform(hass, "lock", DOMAIN, discovery_info, config)
-            )
+        )
 
     return True
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
-    config = {**entry.data, **entry.options, 'name': entry.title}
+    _LOGGER.debug(f"Setting up entry for device: {entry.data[CONF_DEVICE_ID]}")
+    config = {**entry.data, **entry.options, "name": entry.title}
     setup_device(hass, config)
 
     if config[CONF_CLIMATE] == True:
@@ -80,6 +77,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     return True
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
+    if entry.data.get(SOURCE_IMPORT):
+        raise ValueError("Devices configured via yaml cannot be deleted from the UI.")
+
+    _LOGGER.debug(f"Unloading entry for device: {entry.data[CONF_DEVICE_ID]}")
     config = entry.data
     data = hass.data[DOMAIN][config[CONF_DEVICE_ID]]
 
@@ -97,11 +98,17 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
 
 
 async def async_update_entry(hass: HomeAssistant, entry: ConfigEntry):
+    if entry.data.get(SOURCE_IMPORT):
+        raise ValueError("Devices configured via yaml cannot be updated from the UI.")
+
+    _LOGGER.debug(f"Updating entry for device: {entry.data[CONF_DEVICE_ID]}")
     await async_unload_entry(hass, entry)
     await async_setup_entry(hass, entry)
 
 
 def setup_device(hass: HomeAssistant, config: dict):
+    _LOGGER.debug(f"Creating device: {config[CONF_DEVICE_ID]}")
+    hass.data[DOMAIN] = hass.data.get(DOMAIN, {})
     device = TuyaLocalDevice(
         config[CONF_NAME],
         config[CONF_DEVICE_ID],
@@ -109,12 +116,11 @@ def setup_device(hass: HomeAssistant, config: dict):
         config[CONF_LOCAL_KEY],
         hass,
     )
-    hass.data[DOMAIN][config[CONF_DEVICE_ID]] = {
-        'device': device
-    }
+    hass.data[DOMAIN][config[CONF_DEVICE_ID]] = {"device": device}
 
     return device
 
 
 def delete_device(hass: HomeAssistant, config: dict):
-    del hass.data[DOMAIN][config[CONF_DEVICE_ID]]['device']
+    _LOGGER.debug(f"Deleting device: {config[CONF_DEVICE_ID]}")
+    del hass.data[DOMAIN][config[CONF_DEVICE_ID]]["device"]

@@ -1,0 +1,35 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Install requirements",
+      "type": "shell",
+      "command": "pip3 install pycrypto==2.6.1;pip3 install pytuya==7.0.5",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Home Assistant on port 8123",
+      "type": "shell",
+      "command": "container start",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Home Assistant configuration against /config",
+      "type": "shell",
+      "command": "container check",
+      "problemMatcher": []
+    },
+    {
+      "label": "Upgrade Home Assistant to latest dev",
+      "type": "shell",
+      "command": "container install",
+      "problemMatcher": []
+    },
+    {
+      "label": "Install a specific version of Home Assistant",
+      "type": "shell",
+      "command": "container set-version",
+      "problemMatcher": []
+    }
+  ]
+}

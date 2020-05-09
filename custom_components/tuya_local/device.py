@@ -5,19 +5,24 @@ API for Tuya Local devices.
 import json
 import logging
 from threading import Lock, Timer
-from time import time
+from time import time, sleep
 
 from homeassistant.const import TEMP_CELSIUS
+from homeassistant.core import HomeAssistant
 
 from .const import (
-    DOMAIN, API_PROTOCOL_VERSIONS, CONF_TYPE_DEHUMIDIFIER, CONF_TYPE_FAN,
-    CONF_TYPE_GECO_HEATER, CONF_TYPE_GPCV_HEATER, CONF_TYPE_HEATER,
-    CONF_TYPE_KOGAN_HEATER)
+    DOMAIN,
+    API_PROTOCOL_VERSIONS,
+    CONF_TYPE_DEHUMIDIFIER,
+    CONF_TYPE_FAN,
+    CONF_TYPE_HEATER,
+)
+
 _LOGGER = logging.getLogger(__name__)
 
 
 class TuyaLocalDevice(object):
-    def __init__(self, name, dev_id, address, local_key, hass):
+    def __init__(self, name, dev_id, address, local_key, hass: HomeAssistant):
         """
         Represents a Tuya-based device.
 
@@ -31,6 +36,7 @@ class TuyaLocalDevice(object):
         self._name = name
         self._api_protocol_version_index = None
         self._api = pytuya.Device(dev_id, address, local_key, "device")
+        self._refresh_task = None
         self._rotate_api_protocol_version()
 
         self._fixed_properties = {}
@@ -64,7 +70,7 @@ class TuyaLocalDevice(object):
         return {
             "identifiers": {(DOMAIN, self.unique_id)},
             "name": self.name,
-            "manufacturer": "Tuya"
+            "manufacturer": "Tuya",
         }
 
     @property
@@ -73,15 +79,13 @@ class TuyaLocalDevice(object):
 
     async def async_inferred_type(self):
         cached_state = self._get_cached_state()
-
-        if not "1" in cached_state:
-            if "3" in cached_state:
-                return CONF_TYPE_KOGAN_HEATER
-
+        if "1" not in cached_state and "3" not in cached_state:
             await self.async_refresh()
-            return await self.async_inferred_type()
+            cached_state = self._get_cached_state()
 
         _LOGGER.debug(f"Inferring device type from cached state: {cached_state}")
+        if "1" not in cached_state:
+            return CONF_TYPE_KOGAN_HEATER
         if "5" in cached_state:
             if "3" in cached_state:
                 if "7" in cached_state:
@@ -104,18 +108,20 @@ class TuyaLocalDevice(object):
         )
         set_fixed_properties.start()
 
-    def refresh(self):
-        now = time()
-        cached_state = self._get_cached_state()
-        if now - cached_state["updated_at"] >= self._CACHE_TIMEOUT:
-            self._cached_state["updated_at"] = time()
-            self._retry_on_failed_connection(
-                lambda: self._refresh_cached_state(),
-                f"Failed to refresh device state for {self.name}.",
-            )
-
     async def async_refresh(self):
-        await self._hass.async_add_executor_job(self.refresh)
+        last_updated = self._get_cached_state()["updated_at"]
+        if self._refresh_task is None or time() - last_updated >= self._CACHE_TIMEOUT:
+            self._cached_state["updated_at"] = time()
+            self._refresh_task = self._hass.async_add_executor_job(self.refresh)
+
+        await self._refresh_task
+
+    def refresh(self):
+        _LOGGER.debug(f"Refreshing device state for {self.name}.")
+        self._retry_on_failed_connection(
+            lambda: self._refresh_cached_state(),
+            f"Failed to refresh device state for {self.name}.",
+        )
 
     def get_property(self, dps_id):
         cached_state = self._get_cached_state()
@@ -203,7 +209,9 @@ class TuyaLocalDevice(object):
         for i in range(self._CONNECTION_ATTEMPTS):
             try:
                 func()
-            except:
+                break
+            except Exception as e:
+                _LOGGER.debug(f"Retrying after exception {e}")
                 if i + 1 == self._CONNECTION_ATTEMPTS:
                     self._reset_cached_state()
                     _LOGGER.error(error_message)
@@ -212,7 +220,6 @@ class TuyaLocalDevice(object):
 
     def _get_cached_state(self):
         cached_state = self._cached_state.copy()
-        _LOGGER.debug(f"pending updates: {json.dumps(self._get_pending_updates())}")
         return {**cached_state, **self._get_pending_properties()}
 
     def _get_pending_properties(self):
