@@ -1,0 +1,31 @@
+{
+  "name": "Goldair Climate dev",
+  "image": "ludeeus/container:integration",
+  "context": "..",
+  "appPort": ["8123:8123"],
+  "postCreateCommand": "dc install",
+  "runArgs": [
+    "-e",
+    "GIT_EDITOR=code --wait",
+    "-v",
+    "${env:HOME}${env:USERPROFILE}/.ssh:/tmp/.ssh"
+  ],
+  "extensions": [
+    "ms-python.python",
+    "visualstudioexptteam.vscodeintellicode",
+    "redhat.vscode-yaml",
+    "esbenp.prettier-vscode"
+  ],
+  "settings": {
+    "files.eol": "\n",
+    "python.pythonPath": "/usr/local/bin/python",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "python.formatting.provider": "black",
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "files.trimTrailingWhitespace": true,
+    "terminal.integrated.shell.linux": "/bin/bash"
+  }
+}

@@ -1,10 +1,13 @@
 import voluptuous as vol
-from homeassistant import config_entries
+from homeassistant import config_entries, data_entry_flow
 from homeassistant.const import CONF_NAME, CONF_HOST
 from homeassistant.core import callback, HomeAssistant
 
 from . import DOMAIN, individual_config_schema, GoldairTuyaDevice
 from .const import CONF_DEVICE_ID, CONF_LOCAL_KEY
+import logging
+
+_LOGGER = logging.getLogger(__name__)
 
 
 class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
@@ -27,8 +30,33 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                 errors["base"] = "connection"
 
         return self.async_show_form(
-            step_id="user", data_schema=vol.Schema(individual_config_schema(user_input or {})), errors=errors
+            step_id="user",
+            data_schema=vol.Schema(individual_config_schema(user_input or {})),
+            errors=errors,
         )
+
+    async def async_step_import(self, user_input):
+        title = user_input[CONF_NAME]
+        del user_input[CONF_NAME]
+        user_input[config_entries.SOURCE_IMPORT] = True
+
+        current_entries = self.hass.config_entries.async_entries(DOMAIN)
+        existing_entry = next(
+            (
+                entry
+                for entry in current_entries
+                if entry.data[CONF_DEVICE_ID] == user_input[CONF_DEVICE_ID]
+            ),
+            None,
+        )
+        if existing_entry is not None:
+            self.hass.config_entries.async_update_entry(
+                existing_entry, title=title, options=user_input
+            )
+            return self.async_abort(reason="imported")
+        else:
+            await self.async_set_unique_id(user_input[CONF_DEVICE_ID])
+            return self.async_create_entry(title=title, data=user_input)
 
     @staticmethod
     @callback
@@ -42,7 +70,10 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
         self.config_entry = config_entry
 
     async def async_step_init(self, user_input=None):
-        return await self.async_step_user(user_input)
+        if self.config_entry.data.get(config_entries.SOURCE_IMPORT, False):
+            return await self.async_step_imported(user_input)
+        else:
+            return await self.async_step_user(user_input)
 
     async def async_step_user(self, user_input=None):
         """Manage the options."""
@@ -62,10 +93,16 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
             data_schema=vol.Schema(
                 individual_config_schema(defaults=config, options_only=True)
             ),
-            errors=errors
+            errors=errors,
         )
 
+    async def async_step_imported(self, user_input=None):
+        return {**self.async_abort(reason="imported"), "data": {}}
+
+
 async def async_test_connection(config: dict, hass: HomeAssistant):
-    device = GoldairTuyaDevice("Test", config[CONF_DEVICE_ID], config[CONF_HOST], config[CONF_LOCAL_KEY], hass)
+    device = GoldairTuyaDevice(
+        "Test", config[CONF_DEVICE_ID], config[CONF_HOST], config[CONF_LOCAL_KEY], hass
+    )
     await device.async_refresh()
     return device.get_property("1") is not None

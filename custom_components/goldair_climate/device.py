@@ -5,17 +5,24 @@ API for Goldair Tuya devices.
 import json
 import logging
 from threading import Lock, Timer
-from time import time
+from time import time, sleep
 
 from homeassistant.const import TEMP_CELSIUS
+from homeassistant.core import HomeAssistant
 
-from .const import DOMAIN, API_PROTOCOL_VERSIONS, CONF_TYPE_DEHUMIDIFIER, CONF_TYPE_FAN, CONF_TYPE_HEATER
+from .const import (
+    DOMAIN,
+    API_PROTOCOL_VERSIONS,
+    CONF_TYPE_DEHUMIDIFIER,
+    CONF_TYPE_FAN,
+    CONF_TYPE_HEATER,
+)
 
 _LOGGER = logging.getLogger(__name__)
 
 
 class GoldairTuyaDevice(object):
-    def __init__(self, name, dev_id, address, local_key, hass):
+    def __init__(self, name, dev_id, address, local_key, hass: HomeAssistant):
         """
         Represents a Goldair Tuya-based device.
 
@@ -29,6 +36,7 @@ class GoldairTuyaDevice(object):
         self._name = name
         self._api_protocol_version_index = None
         self._api = pytuya.Device(dev_id, address, local_key, "device")
+        self._refresh_task = None
         self._rotate_api_protocol_version()
 
         self._fixed_properties = {}
@@ -62,7 +70,7 @@ class GoldairTuyaDevice(object):
         return {
             "identifiers": {(DOMAIN, self.unique_id)},
             "name": self.name,
-            "manufacturer": "Goldair"
+            "manufacturer": "Goldair",
         }
 
     @property
@@ -70,11 +78,10 @@ class GoldairTuyaDevice(object):
         return self._TEMPERATURE_UNIT
 
     async def async_inferred_type(self):
-        cached_state = self._get_cached_state()
-
-        if not "1" in cached_state:
+        if "1" not in self._get_cached_state():
             await self.async_refresh()
-            return await self.async_inferred_type()
+
+        cached_state = self._get_cached_state()
 
         _LOGGER.debug(f"Inferring device type from cached state: {cached_state}")
         if "5" in cached_state:
@@ -93,18 +100,20 @@ class GoldairTuyaDevice(object):
         )
         set_fixed_properties.start()
 
-    def refresh(self):
-        now = time()
-        cached_state = self._get_cached_state()
-        if now - cached_state["updated_at"] >= self._CACHE_TIMEOUT:
-            self._cached_state["updated_at"] = time()
-            self._retry_on_failed_connection(
-                lambda: self._refresh_cached_state(),
-                f"Failed to refresh device state for {self.name}.",
-            )
-
     async def async_refresh(self):
-        await self._hass.async_add_executor_job(self.refresh)
+        last_updated = self._get_cached_state()["updated_at"]
+        if self._refresh_task is None or time() - last_updated >= self._CACHE_TIMEOUT:
+            self._cached_state["updated_at"] = time()
+            self._refresh_task = self._hass.async_add_executor_job(self.refresh)
+
+        await self._refresh_task
+
+    def refresh(self):
+        _LOGGER.debug(f"Refreshing device state for {self.name}.")
+        self._retry_on_failed_connection(
+            lambda: self._refresh_cached_state(),
+            f"Failed to refresh device state for {self.name}.",
+        )
 
     def get_property(self, dps_id):
         cached_state = self._get_cached_state()
@@ -192,7 +201,9 @@ class GoldairTuyaDevice(object):
         for i in range(self._CONNECTION_ATTEMPTS):
             try:
                 func()
-            except:
+                break
+            except Exception as e:
+                _LOGGER.debug(f"Retrying after exception {e}")
                 if i + 1 == self._CONNECTION_ATTEMPTS:
                     self._reset_cached_state()
                     _LOGGER.error(error_message)
@@ -201,7 +212,6 @@ class GoldairTuyaDevice(object):
 
     def _get_cached_state(self):
         cached_state = self._cached_state.copy()
-        _LOGGER.debug(f"pending updates: {json.dumps(self._get_pending_updates())}")
         return {**cached_state, **self._get_pending_properties()}
 
     def _get_pending_properties(self):

@@ -44,12 +44,6 @@ Installation
 ------------
 The preferred installation method is via [HACS](https://hacs.xyz/). Once you have HACS set up, simply follow the [instructions for adding a custom repository](https://hacs.xyz/docs/navigation/settings#custom-repositories) and then the integration will be available to install like any other.
 
-You can also use [Custom Updater](https://github.com/custom-components/custom_updater). Once Custom Updater is  set up, go to the Developer Tools > Service page and call the `custom_updater.install` service with this service data:
-
-```json
-{ "element": "goldair_climate" }
-```
-
 Alternatively you can copy the contents of this repository's `custom_components` directory to your `<config>/custom_components` directory, however you will not get automatic updates this way.
 
 Configuration
