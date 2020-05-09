@@ -4,12 +4,7 @@
   "context": "..",
   "appPort": ["8123:8123"],
   "postCreateCommand": "dc install",
-  "runArgs": [
-    "-e",
-    "GIT_EDITOR=code --wait",
-    "-v",
-    "${env:HOME}${env:USERPROFILE}/.ssh:/tmp/.ssh"
-  ],
+  "runArgs": ["-e", "GIT_EDITOR=code --wait"],
   "extensions": [
     "ms-python.python",
     "visualstudioexptteam.vscodeintellicode",
@@ -27,5 +22,9 @@
     "editor.formatOnType": true,
     "files.trimTrailingWhitespace": true,
     "terminal.integrated.shell.linux": "/bin/bash"
-  }
+  },
+  "mounts": [
+    "source=${env:HOME}${env:USERPROFILE}/.ssh,target=/tmp/.ssh,type=bind,consistency=cached",
+    "source=${localWorkspaceFolder}/config,target=/config,type=bind,consistency=cached"
+  ]
 }
