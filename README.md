@@ -20,6 +20,12 @@ Current temperature is also displayed.
 
 Current temperature is also displayed.
 
+**GECO Heaters**
+* **power** (on/off)
+* **target temperature** (`15`-`35` in °C)
+
+Current temperature is also displayed.
+
 **Goldair Dehumidifiers**
 * **power** (on/off)
 * **mode** (Normal, Low, High, Dry clothes, Air clean)
@@ -52,7 +58,12 @@ There was previously a sensor option, however this is easily achieved using a [t
 ---
 
 ### Warning
-Please note, this component has currently only been tested with the Goldair GPPH (inverter), GPDH420 (dehumidifier), and GCPF315 fan, however theoretically it should also work with GEPH and GPCV heater devices, may work with the GPDH440 dehumidifier and any other Goldair heaters, dehumidifiers or fans based on the Tuya platform.
+Please note, this component has currently only been tested with the Goldair GPPH (inverter), GPDH420 (dehumidifier), and GCPF315 fan, however theoretically it should also work with GECO/GEPH and GPCV heater devices, may work with the GPDH440 dehumidifier and any other Goldair heaters, dehumidifiers or fans based on the Tuya platform.
+
+GPCV support is based on feedback from etamtlosz on Issue #27
+GECO support is based on work in KiLLeRRaT/homeassistant-goldair-climate and the feature set from the online manual for these heaters. GEPH heaters appear to be the same as the GECO270, so may also work with this setting.  This heater is almost compatible with the GPCV but without the Low/High mode. 
+
+The models above are autodetected, so if your model is identical to one of the supported devices, it should just work. However if your model has additional features, then it may be misdetected as a different device by the simplistic detection algorithm, even though it is similar to one of the other devices.  In this case, try the type you think it is similar to manually, and feedback if it works so the auto detection can be improved.
 
 Kogan heater support is tested with the Kogan SmarterHome 1500W Smart Panel Heater.  If you have another type of Kogan SmarterHome heater, it may or may not work with the same configuration.
 
@@ -103,7 +114,7 @@ tuya_local:
                                               [as per the instructions below](#finding-your-device-id-and-local-key).
 
 #### type
-&nbsp;&nbsp;&nbsp;&nbsp;*(string) (Optional)* The type of Tuya device. `auto` to automatically detect the device type, or if that doesn't work, select from the available options `heater`, `gpcv_heater`, `dehumidifier`, `fan` or `kogan_heater`.
+&nbsp;&nbsp;&nbsp;&nbsp;*(string) (Optional)* The type of Tuya device. `auto` to automatically detect the device type, or if that doesn't work, select from the available options `heater`, `geco_heater` `gpcv_heater`, `dehumidifier`, `fan` or `kogan_heater`.
 
 &nbsp;&nbsp;&nbsp;&nbsp;*Default value: auto*
 
@@ -113,7 +124,7 @@ tuya_local:
 &nbsp;&nbsp;&nbsp;&nbsp;*Default value: true* 
 
 #### display_light
-&nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this appliance's LED display control as a light (not supported for Kogan and GPCV Heaters).
+&nbsp;&nbsp;&nbsp;&nbsp;*(boolean) (Optional)* Whether to surface this appliance's LED display control as a light (not supported for Kogan, GECO or GPCV Heaters).
 
 &nbsp;&nbsp;&nbsp;&nbsp;*Default value: false* 
 
