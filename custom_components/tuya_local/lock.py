@@ -27,7 +27,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         data[CONF_CHILD_LOCK] = GoldairHeaterChildLock(device)
     elif discovery_info[CONF_TYPE] == CONF_TYPE_DEHUMIDIFIER:
         data[CONF_CHILD_LOCK] = GoldairDehumidifierChildLock(device)
-    elif discovery_info[CONF_TYPE] == CONF_TYPE_GECO_HEARER:
+    elif discovery_info[CONF_TYPE] == CONF_TYPE_GECO_HEATER:
         data[CONF_CHILD_LOCK] = GoldairGECOHeaterChildLock(device)
     elif discovery_info[CONF_TYPE] == CONF_TYPE_GPCV_HEATER:
         data[CONF_CHILD_LOCK] = GoldairGPCVHeaterChildLock(device)
