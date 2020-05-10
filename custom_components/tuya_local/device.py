@@ -15,7 +15,10 @@ from .const import (
     API_PROTOCOL_VERSIONS,
     CONF_TYPE_DEHUMIDIFIER,
     CONF_TYPE_FAN,
+    CONF_TYPE_GECO_HEATER,
+    CONF_TYPE_GPCV_HEATER,
     CONF_TYPE_HEATER,
+    CONF_TYPE_KOGAN_HEATER,
 )
 
 _LOGGER = logging.getLogger(__name__)
