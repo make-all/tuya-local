@@ -1,12 +1,21 @@
 import voluptuous as vol
 from homeassistant.const import CONF_NAME, CONF_HOST
 
-from .const import (CONF_DEVICE_ID, CONF_LOCAL_KEY, CONF_TYPE,
-                    CONF_TYPE_HEATER, CONF_TYPE_DEHUMIDIFIER,
-                    CONF_TYPE_FAN, CONF_TYPE_GECO_HEATER,
-                    CONF_TYPE_GPCV_HEATER, CONF_TYPE_KOGAN_HEATER,
-                    CONF_CLIMATE, CONF_DISPLAY_LIGHT, CONF_CHILD_LOCK,
-                    CONF_TYPE_AUTO)
+from .const import (
+    CONF_DEVICE_ID,
+    CONF_LOCAL_KEY,
+    CONF_TYPE,
+    CONF_TYPE_HEATER,
+    CONF_TYPE_DEHUMIDIFIER,
+    CONF_TYPE_FAN,
+    CONF_TYPE_GECO_HEATER,
+    CONF_TYPE_GPCV_HEATER,
+    CONF_TYPE_KOGAN_HEATER,
+    CONF_CLIMATE,
+    CONF_DISPLAY_LIGHT,
+    CONF_CHILD_LOCK,
+    CONF_TYPE_AUTO,
+)
 
 INDIVIDUAL_CONFIG_SCHEMA_TEMPLATE = [
     {"key": CONF_NAME, "type": str, "required": True, "option": False},
@@ -15,18 +24,42 @@ INDIVIDUAL_CONFIG_SCHEMA_TEMPLATE = [
     {"key": CONF_LOCAL_KEY, "type": str, "required": True, "option": True},
     {
         "key": CONF_TYPE,
-        "type": vol.In([
-            CONF_TYPE_AUTO, CONF_TYPE_HEATER, CONF_TYPE_DEHUMIDIFIER,
-            CONF_TYPE_FAN, CONF_TYPE_GECO_HEATER, CONF_TYPE_GPCV_HEATER,
-            CONF_TYPE_KOGAN_HEATER
-        ]),
+        "type": vol.In(
+            [
+                CONF_TYPE_AUTO,
+                CONF_TYPE_HEATER,
+                CONF_TYPE_DEHUMIDIFIER,
+                CONF_TYPE_FAN,
+                CONF_TYPE_GECO_HEATER,
+                CONF_TYPE_GPCV_HEATER,
+                CONF_TYPE_KOGAN_HEATER,
+            ]
+        ),
         "required": False,
         "default": CONF_TYPE_AUTO,
         "option": True,
     },
-    {"key": CONF_CLIMATE, "type": bool, "required": False, "default": True, "option": True},
-    {"key": CONF_DISPLAY_LIGHT, "type": bool, "required": False, "default": False, "option": True},
-    {"key": CONF_CHILD_LOCK, "type": bool, "required": False, "default": False, "option": True},
+    {
+        "key": CONF_CLIMATE,
+        "type": bool,
+        "required": False,
+        "default": True,
+        "option": True,
+    },
+    {
+        "key": CONF_DISPLAY_LIGHT,
+        "type": bool,
+        "required": False,
+        "default": False,
+        "option": True,
+    },
+    {
+        "key": CONF_CHILD_LOCK,
+        "type": bool,
+        "required": False,
+        "default": False,
+        "option": True,
+    },
 ]
 
 

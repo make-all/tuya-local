@@ -9,6 +9,7 @@ from homeassistant.components.climate.const import (
     ATTR_PRESET_MODE,
     FAN_HIGH,
     FAN_LOW,
+    HVAC_MODE_OFF,
     SUPPORT_FAN_MODE,
     SUPPORT_PRESET_MODE,
     SUPPORT_TARGET_HUMIDITY,
@@ -85,6 +86,15 @@ class GoldairDehumidifier(ClimateDevice):
             return "mdi:cup-water"
         elif self.defrosting:
             return "mdi:snowflake-melt"
+        elif (
+            self.hvac_mode is not HVAC_MODE_OFF
+            and self.preset_mode is PRESET_DRY_CLOTHES
+        ):
+            return "mdi:tshirt-crew-outline"
+        elif (
+            self.hvac_mode is not HVAC_MODE_OFF and self.preset_mode is PRESET_AIR_CLEAN
+        ):
+            return "mdi:air-purifier"
         else:
             return "mdi:air-humidifier"
 
@@ -106,13 +116,16 @@ class GoldairDehumidifier(ClimateDevice):
     @property
     def target_humidity(self):
         """Return the current target humidity."""
-        return self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_TARGET_HUMIDITY])
+        if self.preset_mode is PRESET_NORMAL:
+            return self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_TARGET_HUMIDITY])
+        else:
+            return None
 
     async def async_set_humidity(self, humidity):
         """Set the device's target humidity."""
-        if self.preset_mode in [PRESET_AIR_CLEAN, PRESET_DRY_CLOTHES]:
+        if self.preset_mode is not PRESET_NORMAL:
             raise ValueError(
-                "Humidity can only be changed while in Normal, Low or High preset modes."
+                "Target humidity can only be changed while in Normal mode."
             )
         humidity = int(
             self._HUMIDITY_STEP * round(float(humidity) / self._HUMIDITY_STEP)
