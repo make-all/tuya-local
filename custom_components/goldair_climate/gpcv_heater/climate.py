@@ -35,10 +35,7 @@ class GoldairGPCVHeater(ClimateDevice):
         self._support_flags = SUPPORT_FLAGS
 
         self._TEMPERATURE_STEP = 1
-        self._TEMPERATURE_LIMITS = {
-            "min": 15,
-            "max": 35
-        }
+        self._TEMPERATURE_LIMITS = {"min": 15, "max": 35}
 
     @property
     def supported_features(self):
@@ -83,9 +80,7 @@ class GoldairGPCVHeater(ClimateDevice):
     @property
     def target_temperature(self):
         """Return the temperature we try to reach."""
-        return self._device.get_property(
-            PROPERTY_TO_DPS_ID[ATTR_TARGET_TEMPERATURE]
-        )
+        return self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_TARGET_TEMPERATURE])
 
     @property
     def target_temperature_step(self):

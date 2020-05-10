@@ -24,7 +24,14 @@ INDIVIDUAL_CONFIG_SCHEMA_TEMPLATE = [
     {
         "key": CONF_TYPE,
         "type": vol.In(
-            [CONF_TYPE_AUTO, CONF_TYPE_HEATER, CONF_TYPE_DEHUMIDIFIER, CONF_TYPE_FAN, CONF_TYPE_GECO_HEATER, CONF_TYPE_GPCV_HEATER]
+            [
+                CONF_TYPE_AUTO,
+                CONF_TYPE_HEATER,
+                CONF_TYPE_DEHUMIDIFIER,
+                CONF_TYPE_FAN,
+                CONF_TYPE_GECO_HEATER,
+                CONF_TYPE_GPCV_HEATER,
+            ]
         ),
         "required": False,
         "default": CONF_TYPE_AUTO,
