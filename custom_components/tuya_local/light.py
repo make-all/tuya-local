@@ -41,7 +41,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
     elif discovery_info[CONF_TYPE] == CONF_TYPE_GECO_HEATER:
         raise ValueError("Goldair GECO Heaters do not support panel lighting control.")
     elif discovery_info[CONF_TYPE] == CONF_TYPE_KOGAN_HEATER:
-        raise ValueError('Kogan heaters do not support panel lighting control')
+        raise ValueError("Kogan heaters do not support panel lighting control")
 
     if CONF_DISPLAY_LIGHT in data:
         async_add_entities([data[CONF_DISPLAY_LIGHT]])

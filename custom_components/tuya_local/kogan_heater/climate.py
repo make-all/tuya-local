@@ -45,10 +45,7 @@ class KoganHeater(ClimateDevice):
         self._support_flags = SUPPORT_FLAGS
 
         self._TEMPERATURE_STEP = 1
-        self._TEMPERATURE_LIMITS = {
-            'min': 15,
-            'max': 35
-        }
+        self._TEMPERATURE_LIMITS = {"min": 15, "max": 35}
 
     @property
     def supported_features(self):
@@ -102,12 +99,12 @@ class KoganHeater(ClimateDevice):
     @property
     def min_temp(self):
         """Return the minimum temperature."""
-        return self._TEMPERATURE_LIMITS['min']
+        return self._TEMPERATURE_LIMITS["min"]
 
     @property
     def max_temp(self):
         """Return the maximum temperature."""
-        return self._TEMPERATURE_LIMITS['max']
+        return self._TEMPERATURE_LIMITS["max"]
 
     async def async_set_temperature(self, **kwargs):
         """Set new target temperatures."""
@@ -162,9 +159,7 @@ class KoganHeater(ClimateDevice):
         """Return current preset mode, ie Low or High."""
         dps_mode = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE])
         if dps_mode is not None:
-            return TuyaLocalDevice.get_key_for_value(
-                PRESET_MODE_TO_DPS_MODE, dps_mode
-            )
+            return TuyaLocalDevice.get_key_for_value(PRESET_MODE_TO_DPS_MODE, dps_mode)
         else:
             return None
 

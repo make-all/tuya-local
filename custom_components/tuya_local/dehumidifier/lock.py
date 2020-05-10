@@ -7,6 +7,7 @@ from homeassistant.const import STATE_UNAVAILABLE
 from ..device import TuyaLocalDevice
 from .const import ATTR_CHILD_LOCK, PROPERTY_TO_DPS_ID
 
+
 class GoldairDehumidifierChildLock(LockDevice):
     """Representation of a Goldair WiFi-connected dehumidifier child lock."""
 

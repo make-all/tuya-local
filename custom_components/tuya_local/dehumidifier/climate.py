@@ -185,9 +185,7 @@ class GoldairDehumidifier(ClimateDevice):
         if air_clean_on:
             return PRESET_AIR_CLEAN
         elif dps_mode is not None:
-            return TuyaLocalDevice.get_key_for_value(
-                PRESET_MODE_TO_DPS_MODE, dps_mode
-            )
+            return TuyaLocalDevice.get_key_for_value(PRESET_MODE_TO_DPS_MODE, dps_mode)
         else:
             return None
 
@@ -234,9 +232,7 @@ class GoldairDehumidifier(ClimateDevice):
         else:
             dps_mode = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_FAN_MODE])
             if dps_mode is not None:
-                return TuyaLocalDevice.get_key_for_value(
-                    FAN_MODE_TO_DPS_MODE, dps_mode
-                )
+                return TuyaLocalDevice.get_key_for_value(FAN_MODE_TO_DPS_MODE, dps_mode)
             else:
                 return None
 
@@ -274,7 +270,8 @@ class GoldairDehumidifier(ClimateDevice):
         error = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_ERROR])
         if error is not None:
             return (
-                TuyaLocalDevice.get_key_for_value(ERROR_CODE_TO_DPS_CODE, error) == ERROR_TANK
+                TuyaLocalDevice.get_key_for_value(ERROR_CODE_TO_DPS_CODE, error)
+                == ERROR_TANK
             )
         else:
             return None
@@ -294,7 +291,11 @@ class GoldairDehumidifier(ClimateDevice):
         else:
             error = "Unavailable"
 
-        return {ATTR_ERROR: error, ATTR_ERROR_CODE: error_code, ATTR_DEFROSTING: self.defrosting}
+        return {
+            ATTR_ERROR: error,
+            ATTR_ERROR_CODE: error_code,
+            ATTR_DEFROSTING: self.defrosting,
+        }
 
     async def async_update(self):
         await self._device.async_refresh()

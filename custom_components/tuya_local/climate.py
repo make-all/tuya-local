@@ -21,6 +21,7 @@ from .gpcv_heater.climate import GoldairGPCVHeater
 from .heater.climate import GoldairHeater
 from .kogan_heater.climate import KoganHeater
 
+
 async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
     """Set up the Goldair climate device according to its type."""
     data = hass.data[DOMAIN][discovery_info[CONF_DEVICE_ID]]

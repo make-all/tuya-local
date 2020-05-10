@@ -99,9 +99,7 @@ class GoldairFan(ClimateDevice):
         """Return current preset mode, ie Comfort, Eco, Anti-freeze."""
         dps_mode = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE])
         if dps_mode is not None:
-            return TuyaLocalDevice.get_key_for_value(
-                PRESET_MODE_TO_DPS_MODE, dps_mode
-            )
+            return TuyaLocalDevice.get_key_for_value(PRESET_MODE_TO_DPS_MODE, dps_mode)
         else:
             return None
 

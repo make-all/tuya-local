@@ -76,6 +76,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
 
     return True
 
+
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
     if entry.data.get(SOURCE_IMPORT):
         raise ValueError("Devices configured via yaml cannot be deleted from the UI.")
