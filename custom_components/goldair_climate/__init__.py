@@ -34,7 +34,7 @@ from .config_flow import ConfigFlowHandler
 
 _LOGGER = logging.getLogger(__name__)
 
-VERSION = "0.0.8"
+VERSION = "0.1.0"
 
 CONFIG_SCHEMA = vol.Schema(
     {DOMAIN: vol.All(cv.ensure_list, [vol.Schema(individual_config_schema())])},
