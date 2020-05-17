@@ -4,7 +4,7 @@
 
 The `goldair_climate` component integrates [Goldair WiFi-enabled heaters](http://www.goldair.co.nz/product-catalogue/heating/wifi-heaters), WiFi-enabled [dehumidifiers](http://www.goldair.co.nz/product-catalogue/heating/dehumidifiers), and [WiFi-enabled fans](http://www.goldair.co.nz/product-catalogue/cooling/pedestal-fans/40cm-dc-quiet-fan-with-wifi-and-remote-gcpf315) into Home Assistant, enabling control of setting the following parameters via the UI and the following services:
 
-**Heaters**
+**GPPH Heaters**
 
 - **power** (on/off)
 - **mode** (Comfort, Eco, Anti-freeze)
@@ -13,7 +13,20 @@ The `goldair_climate` component integrates [Goldair WiFi-enabled heaters](http:/
 
 Current temperature is also displayed.
 
-**Demudifiers**
+**GPCV Heaters**
+- **power** (on/off)
+- **mode** (Low, High)
+- **target temperature** (`15`-`35` in °C)
+
+Current temperature is also displayed.
+
+**GECO Heaters**
+- **power** (on/off)
+- **target temperature** (`15`-`35` in °C)
+
+Current temperature is also displayed.
+
+**Dehumudifiers**
 
 - **power** (on/off)
 - **mode** (Normal, Low, High, Dry clothes, Air clean)
@@ -42,7 +55,11 @@ There was previously a sensor option, however this is easily achieved using a [t
 
 ### Warning
 
-Please note, this component has currently only been tested with the Goldair GPPH (inverter), GPDH420 (dehumidifier), and GCPF315 fan, however theoretically it should also work with GEPH and GPCV heater devices, may work with the GPDH440 dehumidifier and any other Goldair heaters, dehumidifiers or fans based on the Tuya platform.
+Please note, this component has currently only been tested with the Goldair GPPH (inverter), GPDH420 (dehumidifier), and GCPF315 fan, however theoretically it should also work with GECO, GEPH and GPCV heater devices, may work with the GPDH440 dehumidifier and any other Goldair heaters, dehumidifiers or fans based on the Tuya platform.
+
+GPCV support is based on feedback from etamtlosz on Issue #27
+GECO support is based on work in KiLLeRRaT/homeassistant-goldair-climate and the feature set from the online manual for these heaters. GEPH heaters appear to be the same as the GECO270, so may also work with this setting.  This heater is almost compatible with the GPCV but without the Low/High mode. 
+
 
 ---
 
@@ -87,7 +104,7 @@ goldair_climate:
 
 #### type
 
-&nbsp;&nbsp;&nbsp;&nbsp;_(string) (Optional)_ The type of Goldair device. `auto` to automatically detect the device type, or if that doesn't work, select from the available options `heater`, `dehumidifier` or `fan`.
+&nbsp;&nbsp;&nbsp;&nbsp;_(string) (Optional)_ The type of Goldair device. `auto` to automatically detect the device type, or if that doesn't work, select from the available options `heater`, `gpcv_heater`, `geco_heater`, `dehumidifier` or `fan`.
 
 &nbsp;&nbsp;&nbsp;&nbsp;_Default value: auto_
 
@@ -99,7 +116,7 @@ goldair_climate:
 
 #### display_light
 
-&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this appliance's LED display control as a light.
+&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this appliance's LED display control as a light (not supported for GPCV or GECO heaters).
 
 &nbsp;&nbsp;&nbsp;&nbsp;_Default value: false_
 
@@ -111,7 +128,7 @@ goldair_climate:
 
 ## Heater gotchas
 
-Goldair heaters have individual target temperatures for their Comfort and Eco modes, whereas Home Assistant only supports a single target temperature. Therefore, when you're in Comfort mode you will set the Comfort temperature (`5`-`35`), and when you're in Eco mode you will set the Eco temperature (`5`-`21`), just like you were using the heater's own control panel. Bear this in mind when writing automations that change the operation mode and set a temperature at the same time: you must change the operation mode _before_ setting the new target temperature, otherwise you will set the current thermostat rather than the new one.
+Goldair GPPH heaters have individual target temperatures for their Comfort and Eco modes, whereas Home Assistant only supports a single target temperature. Therefore, when you're in Comfort mode you will set the Comfort temperature (`5`-`35`), and when you're in Eco mode you will set the Eco temperature (`5`-`21`), just like you were using the heater's own control panel. Bear this in mind when writing automations that change the operation mode and set a temperature at the same time: you must change the operation mode _before_ setting the new target temperature, otherwise you will set the current thermostat rather than the new one.
 
 When switching to Anti-freeze mode, the heater will set the current power level to `1` as if you had manually chosen it. When you switch back to other modes, you will no longer be in `Auto` and will have to set it again if this is what you wanted. This could be worked around in code however it would require storing state that may be cleared if HA is restarted and due to this unreliability it's probably best that you just factor it into your automations.
 
