@@ -17,7 +17,7 @@ from .const import (
     CONF_TYPE_FAN,
     CONF_TYPE_GECO_HEATER,
     CONF_TYPE_GPCV_HEATER,
-    CONF_TYPE_HEATER,
+    CONF_TYPE_GPPH_HEATER,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -91,7 +91,7 @@ class GoldairTuyaDevice(object):
         if "8" in cached_state:
             return CONF_TYPE_FAN
         if "106" in cached_state:
-            return CONF_TYPE_HEATER
+            return CONF_TYPE_GPPH_HEATER
         if "7" in cached_state:
             return CONF_TYPE_GPCV_HEATER
         if "3" in cached_state:

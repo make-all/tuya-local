@@ -9,7 +9,7 @@ from .const import (
     CONF_TYPE_FAN,
     CONF_TYPE_GECO_HEATER,
     CONF_TYPE_GPCV_HEATER,
-    CONF_TYPE_HEATER,
+    CONF_TYPE_GPPH_HEATER,
     CONF_CHILD_LOCK,
     CONF_TYPE_AUTO,
 )
@@ -34,7 +34,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         if discovery_info[CONF_TYPE] is None:
             raise ValueError(f"Unable to detect type for device {device.name}")
 
-    if discovery_info[CONF_TYPE] == CONF_TYPE_HEATER:
+    if discovery_info[CONF_TYPE] == CONF_TYPE_GPPH_HEATER:
         data[CONF_CHILD_LOCK] = GoldairHeaterChildLock(device)
     elif discovery_info[CONF_TYPE] == CONF_TYPE_DEHUMIDIFIER:
         data[CONF_CHILD_LOCK] = GoldairDehumidifierChildLock(device)

@@ -5,7 +5,7 @@ from .const import (
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
     CONF_TYPE,
-    CONF_TYPE_HEATER,
+    CONF_TYPE_GPPH_HEATER,
     CONF_TYPE_DEHUMIDIFIER,
     CONF_TYPE_FAN,
     CONF_TYPE_GECO_HEATER,
@@ -26,7 +26,7 @@ INDIVIDUAL_CONFIG_SCHEMA_TEMPLATE = [
         "type": vol.In(
             [
                 CONF_TYPE_AUTO,
-                CONF_TYPE_HEATER,
+                CONF_TYPE_GPPH_HEATER,
                 CONF_TYPE_DEHUMIDIFIER,
                 CONF_TYPE_FAN,
                 CONF_TYPE_GECO_HEATER,
