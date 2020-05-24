@@ -1,15 +1,19 @@
 """
 Platform to control the LED display light on Goldair WiFi-connected fans and panels.
 """
+try:
+    from homeassistant.components.light import LightEntity
+except ImportError:
+    from homeassistant.components.light import Light as LightEntity
+
 from homeassistant.components.climate import ATTR_HVAC_MODE, HVAC_MODE_OFF
-from homeassistant.components.light import Light
 from homeassistant.const import STATE_UNAVAILABLE
 
 from ..device import GoldairTuyaDevice
 from .const import ATTR_DISPLAY_ON, HVAC_MODE_TO_DPS_MODE, PROPERTY_TO_DPS_ID
 
 
-class GoldairFanLedDisplayLight(Light):
+class GoldairFanLedDisplayLight(LightEntity):
     """Representation of a Goldair WiFi-connected fan LED display."""
 
     def __init__(self, device):

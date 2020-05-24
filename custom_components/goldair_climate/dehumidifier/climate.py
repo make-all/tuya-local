@@ -1,7 +1,11 @@
 """
 Goldair WiFi Dehumidifier device.
 """
-from homeassistant.components.climate import ClimateDevice
+try:
+    from homeassistant.components.climate import ClimateEntity
+except ImportError:
+    from homeassistant.components.climate import ClimateDevice as ClimateEntity
+
 from homeassistant.components.climate.const import (
     ATTR_FAN_MODE,
     ATTR_HUMIDITY,
@@ -38,7 +42,7 @@ from .const import (
 SUPPORT_FLAGS = SUPPORT_TARGET_HUMIDITY | SUPPORT_PRESET_MODE | SUPPORT_FAN_MODE
 
 
-class GoldairDehumidifier(ClimateDevice):
+class GoldairDehumidifier(ClimateEntity):
     """Representation of a Goldair WiFi dehumidifier."""
 
     def __init__(self, device):

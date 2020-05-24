@@ -1,7 +1,11 @@
 """
 Goldair GECO WiFi Heater device.
 """
-from homeassistant.components.climate import ClimateDevice
+try:
+    from homeassistant.components.climate import ClimateEntity
+except ImportError:
+    from homeassistant.components.climate import ClimateDevice as ClimateEntity
+
 from homeassistant.components.climate.const import (
     ATTR_HVAC_MODE,
     HVAC_MODE_HEAT,
@@ -20,7 +24,7 @@ from .const import (
 SUPPORT_FLAGS = SUPPORT_TARGET_TEMPERATURE
 
 
-class GoldairGECOHeater(ClimateDevice):
+class GoldairGECOHeater(ClimateEntity):
     """Representation of a Goldair GECO WiFi heater."""
 
     def __init__(self, device):
