@@ -26,7 +26,7 @@ from .const import (
     CONF_TYPE,
     CONF_TYPE_DEHUMIDIFIER,
     CONF_TYPE_FAN,
-    CONF_TYPE_HEATER,
+    CONF_TYPE_GPPH_HEATER,
     SCAN_INTERVAL,
     CONF_TYPE_AUTO,
 )
@@ -35,7 +35,7 @@ from .config_flow import ConfigFlowHandler
 
 _LOGGER = logging.getLogger(__name__)
 
-VERSION = "0.1.1"
+VERSION = "0.1.2"
 
 CONFIG_SCHEMA = vol.Schema(
     {DOMAIN: vol.All(cv.ensure_list, [vol.Schema(individual_config_schema())])},

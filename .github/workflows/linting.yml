@@ -1,6 +1,6 @@
 name: Linting
 
-on: [push, pull_request]
+on: push
 
 jobs:
   lint:
@@ -14,7 +14,9 @@ jobs:
           python-version: 3.7
 
       - name: Install dependencies
-        run: pip install --pre -r requirements.txt
+        run: |
+          pip install -r requirements-first.txt
+          pip install --pre -r requirements-dev.txt
       - name: isort
         run: isort --recursive --diff
       - name: Black

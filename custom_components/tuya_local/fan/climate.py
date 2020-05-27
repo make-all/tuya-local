@@ -1,7 +1,11 @@
 """
 Goldair WiFi Fan device.
 """
-from homeassistant.components.climate import ClimateDevice
+try:
+    from homeassistant.components.climate import ClimateEntity
+except ImportError:
+    from homeassistant.components.climate import ClimateDevice as ClimateEntity
+
 from homeassistant.components.climate.const import (
     ATTR_FAN_MODE,
     ATTR_HVAC_MODE,
@@ -25,7 +29,7 @@ from .const import (
 SUPPORT_FLAGS = SUPPORT_FAN_MODE | SUPPORT_PRESET_MODE | SUPPORT_SWING_MODE
 
 
-class GoldairFan(ClimateDevice):
+class GoldairFan(ClimateEntity):
     """Representation of a Goldair WiFi fan."""
 
     def __init__(self, device):

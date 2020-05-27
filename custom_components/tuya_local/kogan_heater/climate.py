@@ -9,8 +9,11 @@ dps:
   7 = hvac_mode (boolean)
   8 = timer (integer) [supported for read only - use HA based timers]
 """
+try:
+    from homeassistant.components.climate import ClimateEntity
+except ImportError:
+    from homeassistant.components.climate import ClimateDevice as ClimateEntity
 
-from homeassistant.components.climate import ClimateDevice
 from homeassistant.components.climate.const import (
     ATTR_HVAC_MODE,
     ATTR_PRESET_MODE,
@@ -32,7 +35,7 @@ from .const import (
 SUPPORT_FLAGS = SUPPORT_TARGET_TEMPERATURE | SUPPORT_PRESET_MODE
 
 
-class KoganHeater(ClimateDevice):
+class KoganHeater(ClimateEntity):
     """Representation of a Kogan WiFi heater."""
 
     def __init__(self, device):
