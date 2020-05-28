@@ -9,7 +9,7 @@ from .const import (
     CONF_TYPE_AUTO,
     CONF_SWITCH,
 )
-from .kogan_switch.switch import KoganSocketSwitch
+from .kogan_socket.switch import KoganSocketSwitch
 
 
 async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):

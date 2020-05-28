@@ -35,6 +35,7 @@ INDIVIDUAL_CONFIG_SCHEMA_TEMPLATE = [
                 CONF_TYPE_GECO_HEATER,
                 CONF_TYPE_GPCV_HEATER,
                 CONF_TYPE_KOGAN_HEATER,
+                CONF_TYPE_KOGAN_SWITCH,
             ]
         ),
         "required": False,
@@ -68,6 +69,7 @@ INDIVIDUAL_CONFIG_SCHEMA_TEMPLATE = [
         "required": False,
         "default": False,
         "option": True,
+    },
 ]
 
 
