@@ -23,12 +23,7 @@ from .const import (
     CONF_DEVICE_ID,
     CONF_DISPLAY_LIGHT,
     CONF_LOCAL_KEY,
-    CONF_TYPE,
-    CONF_TYPE_DEHUMIDIFIER,
-    CONF_TYPE_FAN,
-    CONF_TYPE_GPPH_HEATER,
-    SCAN_INTERVAL,
-    CONF_TYPE_AUTO,
+    CONF_SWITCH,
 )
 from .device import TuyaLocalDevice
 from .config_flow import ConfigFlowHandler
@@ -59,19 +54,22 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     config = {**entry.data, **entry.options, "name": entry.title}
     setup_device(hass, config)
 
-    if config[CONF_CLIMATE] == True:
+    if config[CONF_CLIMATE] is True:
         hass.async_create_task(
             hass.config_entries.async_forward_entry_setup(entry, "climate")
         )
-    if config[CONF_DISPLAY_LIGHT] == True:
+    if config[CONF_DISPLAY_LIGHT] is True:
         hass.async_create_task(
             hass.config_entries.async_forward_entry_setup(entry, "light")
         )
-    if config[CONF_CHILD_LOCK] == True:
+    if config[CONF_CHILD_LOCK] is True:
         hass.async_create_task(
             hass.config_entries.async_forward_entry_setup(entry, "lock")
         )
-
+    if config[CONF_SWITCH] is True:
+        hass.async_create_task(
+            hass.config_entries.async_forward_entry_setup(entry, "switch")
+        )
     entry.add_update_listener(async_update_entry)
 
     return True
@@ -91,6 +89,8 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
         await hass.config_entries.async_forward_entry_unload(entry, "light")
     if CONF_CHILD_LOCK in data:
         await hass.config_entries.async_forward_entry_unload(entry, "lock")
+    if CONF_SWITCH in data:
+        await hass.config_entries.async_forward_entry_unload(entry, "switch")
 
     delete_device(hass, config)
     del hass.data[DOMAIN][config[CONF_DEVICE_ID]]

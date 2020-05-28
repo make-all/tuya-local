@@ -25,6 +25,8 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
 
     if discovery_info[CONF_TYPE] == CONF_TYPE_KOGAN_SWITCH:
         data[CONF_SWITCH] = KoganSocketSwitch(device)
+    else:
+        raise ValueError("This device does not support working as a switch")
 
     if CONF_SWITCH in data:
         async_add_entities([data[CONF_SWITCH]])

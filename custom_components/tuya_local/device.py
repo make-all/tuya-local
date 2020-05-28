@@ -5,7 +5,7 @@ API for Tuya Local devices.
 import json
 import logging
 from threading import Lock, Timer
-from time import time, sleep
+from time import time
 
 from homeassistant.const import TEMP_CELSIUS
 from homeassistant.core import HomeAssistant
@@ -89,19 +89,27 @@ class TuyaLocalDevice(object):
 
         _LOGGER.debug(f"Inferring device type from cached state: {cached_state}")
         if "1" not in cached_state:
+            _LOGGER.info(f"Detecting {self.name} as Kogan Heater")
             return CONF_TYPE_KOGAN_HEATER
         if "5" in cached_state and "3" not in cached_state and "103" in cached_state:
+            _LOGGER.info(f"Detecting {self.name} as Goldair Dehumidifier")
             return CONF_TYPE_DEHUMIDIFIER
         if "8" in cached_state:
+            _LOGGER.info(f"Detecting {self.name} as Goldair Fan")
             return CONF_TYPE_FAN
         if "5" in cached_state and "3" not in cached_state:
+            _LOGGER.info(f"Detecting {self.name} as Kogan Switch")
             return CONF_TYPE_KOGAN_SWITCH
         if "106" in cached_state:
+            _LOGGER.info(f"Detecting {self.name} as Goldair GPPH Heater")
             return CONF_TYPE_GPPH_HEATER
         if "7" in cached_state:
+            _LOGGER.info(f"Detecting {self.name} as Goldair GPCV Heater")
             return CONF_TYPE_GPCV_HEATER
         if "3" in cached_state:
+            _LOGGER.info(f"Detecting {self.name} as Goldair GECO Heater")
             return CONF_TYPE_GECO_HEATER
+        _LOGGER.warning(f"Detection for {self.name} failed")
         return None
 
     def set_fixed_properties(self, fixed_properties):

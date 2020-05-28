@@ -6,7 +6,6 @@ from .const import (
     CONF_DEVICE_ID,
     CONF_TYPE,
     CONF_TYPE_DEHUMIDIFIER,
-    CONF_TYPE_FAN,
     CONF_TYPE_GECO_HEATER,
     CONF_TYPE_GPCV_HEATER,
     CONF_TYPE_GPPH_HEATER,
@@ -46,8 +45,8 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         data[CONF_CHILD_LOCK] = GoldairGPCVHeaterChildLock(device)
     elif discovery_info[CONF_TYPE] == CONF_TYPE_KOGAN_HEATER:
         data[CONF_CHILD_LOCK] = KoganHeaterChildLock(device)
-    elif discovery_info[CONF_TYPE] == CONF_TYPE_FAN:
-        raise ValueError("Goldair fans do not support child lock.")
+    else:
+        raise ValueError("This device does not support child lock.")
 
     if CONF_CHILD_LOCK in data:
         async_add_entities([data[CONF_CHILD_LOCK]])

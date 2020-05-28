@@ -7,10 +7,7 @@ from .const import (
     CONF_TYPE,
     CONF_TYPE_DEHUMIDIFIER,
     CONF_TYPE_FAN,
-    CONF_TYPE_GECO_HEATER,
-    CONF_TYPE_GPCV_HEATER,
     CONF_TYPE_GPPH_HEATER,
-    CONF_TYPE_KOGAN_HEATER,
     CONF_DISPLAY_LIGHT,
     CONF_TYPE_AUTO,
 )
@@ -36,12 +33,8 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         data[CONF_DISPLAY_LIGHT] = GoldairDehumidifierLedDisplayLight(device)
     elif discovery_info[CONF_TYPE] == CONF_TYPE_FAN:
         data[CONF_DISPLAY_LIGHT] = GoldairFanLedDisplayLight(device)
-    elif discovery_info[CONF_TYPE] == CONF_TYPE_GPCV_HEATER:
-        raise ValueError("Goldair GPCV Heaters do not support panel lighting control.")
-    elif discovery_info[CONF_TYPE] == CONF_TYPE_GECO_HEATER:
-        raise ValueError("Goldair GECO Heaters do not support panel lighting control.")
-    elif discovery_info[CONF_TYPE] == CONF_TYPE_KOGAN_HEATER:
-        raise ValueError("Kogan heaters do not support panel lighting control")
+    else:
+        raise ValueError("This device does not support panel lighting control.")
 
     if CONF_DISPLAY_LIGHT in data:
         async_add_entities([data[CONF_DISPLAY_LIGHT]])
