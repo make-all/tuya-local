@@ -21,7 +21,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         discovery_info[CONF_TYPE] = await device.async_inferred_type()
 
         if discovery_info[CONF_TYPE] is None:
-            raise ValueError(f"Unable to detecttype for device {device.name}")
+            raise ValueError(f"Unable to detect type for device {device.name}")
 
     if discovery_info[CONF_TYPE] == CONF_TYPE_KOGAN_SWITCH:
         data[CONF_SWITCH] = KoganSocketSwitch(device)
