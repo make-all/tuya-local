@@ -15,7 +15,7 @@ ATTR_AIR_CLEAN_ON = "air_clean_on"
 ATTR_CHILD_LOCK = "child_lock"
 ATTR_ERROR = "error"
 ATTR_ERROR_CODE = "error_code"
-ATTR_DISPLAY_ON = "display_on"
+ATTR_DISPLAY_OFF = "display_off"
 ATTR_DEFROSTING = "defrosting"
 
 PRESET_NORMAL = "Normal"
@@ -35,7 +35,7 @@ PROPERTY_TO_DPS_ID = {
     ATTR_FAN_MODE: "6",
     ATTR_CHILD_LOCK: "7",
     ATTR_ERROR: "11",
-    ATTR_DISPLAY_ON: "102",
+    ATTR_DISPLAY_OFF: "102",
     ATTR_TEMPERATURE: "103",
     ATTR_HUMIDITY: "104",
     ATTR_DEFROSTING: "105",

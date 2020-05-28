@@ -10,7 +10,7 @@ from homeassistant.components.climate import ATTR_HVAC_MODE, HVAC_MODE_OFF
 from homeassistant.const import STATE_UNAVAILABLE
 
 from ..device import TuyaLocalDevice
-from .const import ATTR_DISPLAY_ON, HVAC_MODE_TO_DPS_MODE, PROPERTY_TO_DPS_ID
+from .const import ATTR_DISPLAY_OFF, HVAC_MODE_TO_DPS_MODE, PROPERTY_TO_DPS_ID
 
 
 class GoldairDehumidifierLedDisplayLight(LightEntity):
@@ -53,22 +53,22 @@ class GoldairDehumidifierLedDisplayLight(LightEntity):
     @property
     def is_on(self):
         """Return the current state."""
-        return self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_DISPLAY_ON])
+        return !self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_DISPLAY_OFF])
 
     async def async_turn_on(self):
-        await self._device.async_set_property(PROPERTY_TO_DPS_ID[ATTR_DISPLAY_ON], True)
+        await self._device.async_set_property(PROPERTY_TO_DPS_ID[ATTR_DISPLAY_OFF], False)
 
     async def async_turn_off(self):
         await self._device.async_set_property(
-            PROPERTY_TO_DPS_ID[ATTR_DISPLAY_ON], False
+            PROPERTY_TO_DPS_ID[ATTR_DISPLAY_OFF], True
         )
 
     async def async_toggle(self):
         dps_hvac_mode = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_HVAC_MODE])
-        dps_display_on = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_DISPLAY_ON])
+        dps_display_off = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_DISPLAY_OFF])
 
         if dps_hvac_mode != HVAC_MODE_TO_DPS_MODE[HVAC_MODE_OFF]:
-            await (self.turn_on() if not dps_display_on else self.turn_off())
+            await (self.turn_on() if dps_display_off else self.turn_off())
 
     async def async_update(self):
         await self._device.async_refresh()
