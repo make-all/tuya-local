@@ -59,10 +59,11 @@ class KoganSocketSwitch(SwitchEntity):
     @property
     def is_on(self):
         """Return the whether the switch is on."""
-        if self.is_switched_on is None:
+        is_switched_on = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_SWITCH])
+        if is_switched_on is None:
             return STATE_UNAVAILABLE
         else:
-            return self.is_switched_on
+            return is_switched_on
 
     @property
     def current_power_w(self):
