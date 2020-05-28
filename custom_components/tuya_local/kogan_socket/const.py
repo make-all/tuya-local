@@ -1,6 +1,5 @@
 from homeassistant.components.switch import (
     ATTR_CURRENT_POWER_W,
-    DEVICE_CLASS_OUTLET,
 )
 
 ATTR_SWITCH = "switch"
