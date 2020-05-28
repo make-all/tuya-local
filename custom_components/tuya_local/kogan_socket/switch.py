@@ -68,20 +68,24 @@ class KoganSocketSwitch(SwitchEntity):
     @property
     def current_power_w(self):
         """Return the current power consumption in Watts"""
-        return (
-            self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_CURRENT_POWER_W]) / 10.0
-        )
+        pwr = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_CURRENT_POWER_W])
+        if pwr is None:
+            return STATE_UNAVAILABLE
+        else:
+            return (
+                self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_CURRENT_POWER_W]) / 10.0
+            )
 
     @property
     def device_state_attributes(self):
         """Get additional attributes that HA doesn't naturally support."""
         timer = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_TIMER])
-        voltage = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_VOLTAGE_V]) / 10.0
-        current = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_CURRENT_A]) / 1000.0
+        voltage = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_VOLTAGE_V])
+        current = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_CURRENT_A])
         return {
             ATTR_CURRENT_POWER_W: self.current_power_w,
-            ATTR_CURRENT_A: current,
-            ATTR_VOLTAGE_V: voltage,
+            ATTR_CURRENT_A: None if current is None else current / 1000.0,
+            ATTR_VOLTAGE_V: None if current is None else voltage / 10.0,
             ATTR_TIMER: timer,
         }
 
