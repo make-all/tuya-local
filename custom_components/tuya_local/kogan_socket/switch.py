@@ -67,7 +67,9 @@ class KoganSocketSwitch(SwitchEntity):
     @property
     def current_power_w(self):
         """Return the current power consumption in Watts"""
-        return self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_CURRENT_POWER_W]) / 10.0
+        return (
+            self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_CURRENT_POWER_W]) / 10.0
+        )
 
     @property
     def device_state_attributes(self):

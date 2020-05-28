@@ -53,10 +53,12 @@ class GoldairDehumidifierLedDisplayLight(LightEntity):
     @property
     def is_on(self):
         """Return the current state."""
-        return not(self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_DISPLAY_OFF]))
+        return not (self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_DISPLAY_OFF]))
 
     async def async_turn_on(self):
-        await self._device.async_set_property(PROPERTY_TO_DPS_ID[ATTR_DISPLAY_OFF], False)
+        await self._device.async_set_property(
+            PROPERTY_TO_DPS_ID[ATTR_DISPLAY_OFF], False
+        )
 
     async def async_turn_off(self):
         await self._device.async_set_property(
@@ -65,7 +67,9 @@ class GoldairDehumidifierLedDisplayLight(LightEntity):
 
     async def async_toggle(self):
         dps_hvac_mode = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_HVAC_MODE])
-        dps_display_off = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_DISPLAY_OFF])
+        dps_display_off = self._device.get_property(
+            PROPERTY_TO_DPS_ID[ATTR_DISPLAY_OFF]
+        )
 
         if dps_hvac_mode != HVAC_MODE_TO_DPS_MODE[HVAC_MODE_OFF]:
             await (self.turn_on() if dps_display_off else self.turn_off())
