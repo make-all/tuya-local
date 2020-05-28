@@ -19,6 +19,7 @@ from .const import (
     CONF_TYPE_GPCV_HEATER,
     CONF_TYPE_GPPH_HEATER,
     CONF_TYPE_KOGAN_HEATER,
+    CONF_TYPE_KOGAN_SWITCH,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -89,17 +90,18 @@ class TuyaLocalDevice(object):
         _LOGGER.debug(f"Inferring device type from cached state: {cached_state}")
         if "1" not in cached_state:
             return CONF_TYPE_KOGAN_HEATER
-        if "5" in cached_state and "3" not in cached_state:
+        if "5" in cached_state and "3" not in cached_state and "103" in cached_state:
             return CONF_TYPE_DEHUMIDIFIER
         if "8" in cached_state:
             return CONF_TYPE_FAN
+        if "5" in cached_state and "3" not in cached_state:
+            return CONF_TYPE_KOGAN_SWITCH
         if "106" in cached_state:
             return CONF_TYPE_GPPH_HEATER
         if "7" in cached_state:
             return CONF_TYPE_GPCV_HEATER
         if "3" in cached_state:
             return CONF_TYPE_GECO_HEATER
-
         return None
 
     def set_fixed_properties(self, fixed_properties):

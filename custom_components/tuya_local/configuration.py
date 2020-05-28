@@ -11,9 +11,11 @@ from .const import (
     CONF_TYPE_GECO_HEATER,
     CONF_TYPE_GPCV_HEATER,
     CONF_TYPE_KOGAN_HEATER,
+    CONF_TYPE_KOGAN_SWITCH,
     CONF_CLIMATE,
     CONF_DISPLAY_LIGHT,
     CONF_CHILD_LOCK,
+    CONF_SWITCH,
     CONF_TYPE_AUTO,
 )
 
@@ -60,6 +62,12 @@ INDIVIDUAL_CONFIG_SCHEMA_TEMPLATE = [
         "default": False,
         "option": True,
     },
+    {
+        "key": CONF_SWITCH,
+        "type": bool,
+        "required": False,
+        "default": False,
+        "option": True,
 ]
 
 

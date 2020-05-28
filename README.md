@@ -59,6 +59,16 @@ Current temperature is also displayed.
 
 - **Child lock** (on/off)
 
+### Switch devices
+
+**Kogan Energy monitoring Smart Plug
+- **power** (on/off)
+- **current power consumption** (Watts)
+- **Additional non-standard attributes**
+  - **current current draw** (Amps)
+  - **current voltage** (Volts)
+  - **timer** (seconds) [provided as read only]
+
 ---
 
 ### Warning
@@ -114,27 +124,31 @@ tuya_local:
 
 #### type
 
-&nbsp;&nbsp;&nbsp;&nbsp;_(string) (Optional)_ The type of Tuya device. `auto` to automatically detect the device type, or if that doesn't work, select from the available options `heater`, `geco_heater` `gpcv_heater`, `dehumidifier`, `fan` or `kogan_heater`.
+&nbsp;&nbsp;&nbsp;&nbsp;_(string) (Optional)_ The type of Tuya device. `auto` to automatically detect the device type, or if that doesn't work, select from the available options `heater`, `geco_heater` `gpcv_heater`, `dehumidifier`, `fan`, `kogan_heater` or `kogan_switch`.
 
 &nbsp;&nbsp;&nbsp;&nbsp;_Default value: auto_
 
 #### climate
 
-&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this appliance as a climate device.
+&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this appliance as a climate device. (not supported for switches)
 
 &nbsp;&nbsp;&nbsp;&nbsp;_Default value: true_
 
 #### display_light
 
-&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this appliance's LED display control as a light (not supported for Kogan, GECO or GPCV Heaters).
+&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this appliance's LED display control as a light (not supported for Kogan, GECO or GPCV Heaters, or switches).
 
 &nbsp;&nbsp;&nbsp;&nbsp;_Default value: false_
 
 #### child_lock
 
-&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this appliances's child lock as a lock device (not supported for fans).
+&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this appliances's child lock as a lock device (not supported for fans or switches).
 
 &nbsp;&nbsp;&nbsp;&nbsp;_Default value: false_
+
+#### switch
+
+&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this device as a switch device (supported only for switches)
 
 ## Heater gotchas
 
