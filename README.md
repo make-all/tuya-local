@@ -162,6 +162,10 @@ When child lock is enabled, the heater's display will flash with the child lock 
 
 In my experience, fans can be a bit flaky. If they become unresponsive, give them about 60 seconds to wake up again.
 
+## Kogan Switch gotchas
+
+While setting this up, I observed after a while that the current and power readings from the switch were returning 0 when there was clearly a load on the switch.  After unplugging and replugging, the switch started returning only dps 1 and 2 (switch status and timer). If HomeAssistant is restarted in that state, the switch detection would fail, however as Home Assistant was left running, it continued to work with no readings for the current, power and voltage.  I unplugged the switch overnight, and in the morning it was working correctly.
+
 ## Finding your device ID and local key
 
 You can find these keys the same way as you would for any Tuya local integration. You'll need the Goldair app or the Tuya Tuya Smart app (the Goldair app is just a rebranded Tuya app), then follow these instructions.
@@ -171,9 +175,11 @@ You can find these keys the same way as you would for any Tuya local integration
 
 ## Next steps
 
-1. The devices need to be generalized so a new subdirectory with source code is not needed to add a new device.  Instead, device descriptors should be in a yaml file, which is referenced by the config.
-2. Support for non-climate devices needs to be added.  For starters, I have some Kogan Power Monitoring Plugs that I haven't yet taken out of the box and converted to ESPHome, but this will probably need input from other users.
-3. This component needs specs! Once they're written I'm considering submitting it to the HA team for inclusion in standard installations. Please report any issues and feel free to raise pull requests.
+1. Fallback support for a simple switch device using only a boolean dps 1.  As well as covering the failure mode of the Kogan Switch described in Kogan switch gotchas above, it can also cover basic operation of many other devices that use dps 1 for an on/off switch.
+2. Config flow improvement to offer only the options available to the detected device, and an indication of which device was detected.
+3. The devices need to be generalized so a new subdirectory with source code is not needed to add a new device.  Instead, device descriptors should be in a yaml file, which is referenced by the config.
+4. Further config flow improvements to filter the available types to possibilities based on the known dps.  When many device configurations are supported, this will be required, as not all devices will be distinguishable automatically.
+5. This component needs specs! Once they're written I'm considering submitting it to the HA team for inclusion in standard installations. Please report any issues and feel free to raise pull requests.
 
 ## Acknowledgements
 
