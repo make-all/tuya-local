@@ -34,7 +34,7 @@
     {
       "label": "Unit tests",
       "type": "shell",
-      "command": "pytest",
+      "command": "pytest --cov=. --cov-config=.coveragerc --cov-report xml:coverage.xml",
       "problemMatcher": []
     }
   ]

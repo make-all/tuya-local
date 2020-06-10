@@ -41,7 +41,6 @@ class GoldairTuyaDevice(object):
         self._refresh_task = None
         self._rotate_api_protocol_version()
 
-        self._fixed_properties = {}
         self._reset_cached_state()
 
         self._TEMPERATURE_UNIT = TEMP_CELSIUS
@@ -98,13 +97,6 @@ class GoldairTuyaDevice(object):
             return CONF_TYPE_GECO_HEATER
 
         return None
-
-    def set_fixed_properties(self, fixed_properties):
-        self._fixed_properties = fixed_properties
-        set_fixed_properties = Timer(
-            10, lambda: self._set_properties(self._fixed_properties)
-        )
-        set_fixed_properties.start()
 
     async def async_refresh(self):
         last_updated = self._get_cached_state()["updated_at"]
@@ -165,7 +157,6 @@ class GoldairTuyaDevice(object):
 
     def _add_properties_to_pending_updates(self, properties):
         now = time()
-        properties = {**properties, **self._fixed_properties}
 
         pending_updates = self._get_pending_updates()
         for key, value in properties.items():
@@ -249,4 +240,4 @@ class GoldairTuyaDevice(object):
     def get_key_for_value(obj, value, fallback=None):
         keys = list(obj.keys())
         values = list(obj.values())
-        return keys[values.index(value)] or fallback
+        return keys[values.index(value)] if value in values else fallback
