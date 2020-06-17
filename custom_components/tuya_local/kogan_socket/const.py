@@ -1,11 +1,9 @@
-from homeassistant.components.switch import (
-    ATTR_CURRENT_POWER_W,
-)
+from homeassistant.components.switch import ATTR_CURRENT_POWER_W
 
 ATTR_SWITCH = "switch"
 ATTR_TIMER = "timer"
-ATTR_CURRENT_A = "current"
-ATTR_VOLTAGE_V = "voltage"
+ATTR_CURRENT_A = "current_a"
+ATTR_VOLTAGE_V = "voltage_v"
 
 PROPERTY_TO_DPS_ID = {
     ATTR_SWITCH: "1",
