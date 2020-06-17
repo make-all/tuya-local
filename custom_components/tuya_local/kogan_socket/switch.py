@@ -72,9 +72,7 @@ class KoganSocketSwitch(SwitchEntity):
         if pwr is None:
             return STATE_UNAVAILABLE
         else:
-            return (
-                self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_CURRENT_POWER_W]) / 10.0
-            )
+            return (pwr / 10.0)
 
     @property
     def device_state_attributes(self):
@@ -85,7 +83,7 @@ class KoganSocketSwitch(SwitchEntity):
         return {
             ATTR_CURRENT_POWER_W: self.current_power_w,
             ATTR_CURRENT_A: None if current is None else current / 1000.0,
-            ATTR_VOLTAGE_V: None if current is None else voltage / 10.0,
+            ATTR_VOLTAGE_V: None if voltage is None else voltage / 10.0,
             ATTR_TIMER: timer,
         }
 
