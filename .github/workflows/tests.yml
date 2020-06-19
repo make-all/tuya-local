@@ -25,7 +25,7 @@ jobs:
       - name: Test with pytest
         run: pytest --cov=. --cov-config=.coveragerc --cov-report xml:coverage.xml
       - name: Track master branch
-        run: git fetch --no-tags https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY +refs/heads/master:refs/remotes/origin/main
+        run: git fetch --no-tags https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY +refs/heads/main:refs/remotes/origin/main
       - name: SonarCloud scan
         uses: sonarsource/sonarcloud-github-action@master
         env:
