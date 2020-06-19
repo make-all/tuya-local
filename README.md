@@ -1,6 +1,6 @@
 # Home Assistant Tuya Local component
 
-The `tuya_local` component integrates [Goldair WiFi-enabled heaters](http://www.goldair.co.nz/product-catalogue/heating/wifi-heaters), WiFi-enabled [dehumidifiers](http://www.goldair.co.nz/product-catalogue/heating/dehumidifiers), [WiFi-enabled fans](http://www.goldair.co.nz/product-catalogue/cooling/pedestal-fans/40cm-dc-quiet-fan-with-wifi-and-remote-gcpf315) and [Kogan WiFi-enabled heaters](https://www.kogan.com/au/c/smarterhome-range/shop/heating-cooling/) into Home Assistant, enabling control of setting the following parameters via the UI and the following services:
+The `tuya_local` component integrates Goldair WiFi-enabled [heaters](http://www.goldair.co.nz/product-catalogue/heating/wifi-heaters), [dehumidifiers](http://www.goldair.co.nz/product-catalogue/heating/dehumidifiers) and [fans](http://www.goldair.co.nz/product-catalogue/cooling/pedestal-fans/40cm-dc-quiet-fan-with-wifi-and-remote-gcpf315) and Kogan WiFi-enabled [heaters](https://www.kogan.com/au/c/smarterhome-range/shop/heating-cooling/) and [plugs](https://www.kogan.com/au/shop/connected-home/smart-plug/) into Home Assistant, enabling control of setting the following parameters via the UI and the following services:
 
 ### Climate devices
 
@@ -61,7 +61,7 @@ Current temperature is also displayed.
 
 ### Switch devices
 
-**Kogan Energy monitoring Smart Plug
+**Kogan Energy monitoring Smart Plug**
 - **power** (on/off)
 - **current power consumption** (Watts)
 - **Additional non-standard attributes**
