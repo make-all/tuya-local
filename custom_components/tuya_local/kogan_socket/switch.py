@@ -72,7 +72,7 @@ class KoganSocketSwitch(SwitchEntity):
         if pwr is None:
             return STATE_UNAVAILABLE
         else:
-            return (pwr / 10.0)
+            return pwr / 10.0
 
     @property
     def device_state_attributes(self):
