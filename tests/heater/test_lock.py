@@ -15,7 +15,7 @@ from ..helpers import assert_device_properties_set
 class TestLock(IsolatedAsyncioTestCase):
     def setUp(self):
         device_patcher = patch(
-            "custom_components.goldair_climate.heater.lock.GoldairTuyaDevice"
+            "custom_components.goldair_climate.device.GoldairTuyaDevice"
         )
         self.addCleanup(device_patcher.stop)
         self.mock_device = device_patcher.start()

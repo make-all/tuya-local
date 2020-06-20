@@ -144,7 +144,7 @@ class GoldairFan(ClimateEntity):
 
     @property
     def fan_mode(self):
-        """Return current fan mode: 1-12"""
+        """Return current fan mode: 1-12 or 1-3 depending on the preset"""
         dps_mode = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_FAN_MODE])
         if (
             dps_mode is not None
@@ -172,6 +172,8 @@ class GoldairFan(ClimateEntity):
             await self._device.async_set_property(
                 PROPERTY_TO_DPS_ID[ATTR_FAN_MODE], dps_mode
             )
+        else:
+            raise ValueError("Fan mode can only be set when a preset mode is set")
 
     async def async_update(self):
         await self._device.async_refresh()
