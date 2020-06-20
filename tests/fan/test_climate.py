@@ -96,7 +96,7 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_hvac_mode(HVAC_MODE_OFF)
 
-    async def test_preset_mode(self):
+    def test_preset_mode(self):
         self.dps[PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE]] = PRESET_MODE_TO_DPS_MODE[
             PRESET_NORMAL
         ]
@@ -115,7 +115,7 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         self.dps[PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE]] = None
         self.assertIs(self.subject.preset_mode, None)
 
-    async def test_preset_modes(self):
+    def test_preset_modes(self):
         self.assertEqual(
             self.subject.preset_modes, [PRESET_NORMAL, PRESET_ECO, PRESET_SLEEP]
         )
@@ -149,7 +149,7 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_preset_mode(PRESET_SLEEP)
 
-    async def test_swing_mode(self):
+    def test_swing_mode(self):
         self.dps[PROPERTY_TO_DPS_ID[ATTR_SWING_MODE]] = SWING_MODE_TO_DPS_MODE[
             SWING_OFF
         ]
@@ -163,7 +163,7 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         self.dps[PROPERTY_TO_DPS_ID[ATTR_SWING_MODE]] = None
         self.assertIs(self.subject.swing_mode, None)
 
-    async def test_swing_modes(self):
+    def test_swing_modes(self):
         self.assertEqual(self.subject.swing_modes, [SWING_OFF, SWING_HORIZONTAL])
 
     async def test_set_swing_mode_to_off(self):
@@ -184,7 +184,7 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_swing_mode(SWING_HORIZONTAL)
 
-    async def test_fan_modes(self):
+    def test_fan_modes(self):
         self.dps[PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE]] = PRESET_MODE_TO_DPS_MODE[
             PRESET_NORMAL
         ]
@@ -203,7 +203,7 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         self.dps[PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE]] = None
         self.assertEqual(self.subject.fan_modes, [])
 
-    async def test_fan_mode_for_normal_preset(self):
+    def test_fan_mode_for_normal_preset(self):
         self.dps[PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE]] = PRESET_MODE_TO_DPS_MODE[
             PRESET_NORMAL
         ]
@@ -230,7 +230,7 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_fan_mode(6)
 
-    async def test_fan_mode_for_eco_preset(self):
+    def test_fan_mode_for_eco_preset(self):
         self.dps[PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE]] = PRESET_MODE_TO_DPS_MODE[
             PRESET_ECO
         ]
@@ -257,7 +257,7 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_fan_mode(1)
 
-    async def test_fan_mode_for_sleep_preset(self):
+    def test_fan_mode_for_sleep_preset(self):
         self.dps[PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE]] = PRESET_MODE_TO_DPS_MODE[
             PRESET_SLEEP
         ]

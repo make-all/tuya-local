@@ -93,18 +93,24 @@ class TestGoldairGECOHeater(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_target_temperature(25)
 
+    async def test_set_target_temperature_rounds_value_to_closest_integer(self):
+        async with assert_device_properties_set(
+            self.subject._device, {PROPERTY_TO_DPS_ID[ATTR_TARGET_TEMPERATURE]: 25},
+        ):
+            await self.subject.async_set_target_temperature(24.6)
+
     async def test_set_target_temperature_fails_outside_valid_range(self):
-        with self.assertRaises(
-            ValueError, msg="Target temperature 14 must be between 15 and 35"
+        with self.assertRaisesRegex(
+            ValueError, "Target temperature \(14\) must be between 15 and 35"
         ):
             await self.subject.async_set_target_temperature(14)
 
-        with self.assertRaises(
-            ValueError, msg="Target temperature 36 must be between 15 and 35"
+        with self.assertRaisesRegex(
+            ValueError, "Target temperature \(36\) must be between 15 and 35"
         ):
             await self.subject.async_set_target_temperature(36)
 
-    async def test_current_temperature(self):
+    def test_current_temperature(self):
         self.dps[PROPERTY_TO_DPS_ID[ATTR_TEMPERATURE]] = 25
         self.assertEqual(self.subject.current_temperature, 25)
 
@@ -133,7 +139,7 @@ class TestGoldairGECOHeater(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_hvac_mode(HVAC_MODE_OFF)
 
-    async def test_error_state(self):
+    def test_error_state(self):
         # There are currently no known error states; update this as they're discovered
         self.dps[PROPERTY_TO_DPS_ID[ATTR_ERROR]] = "something"
         self.assertEqual(
