@@ -1,28 +1,28 @@
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import AsyncMock, patch
 
-from custom_components.goldair_climate.fan.const import (
+from custom_components.goldair_climate.heater.const import (
     ATTR_DISPLAY_ON,
     ATTR_HVAC_MODE,
     PROPERTY_TO_DPS_ID,
 )
-from custom_components.goldair_climate.fan.light import GoldairFanLedDisplayLight
+from custom_components.goldair_climate.heater.light import GoldairHeaterLedDisplayLight
 
-from ..const import FAN_PAYLOAD
+from ..const import GPPH_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
 
 
 class TestLight(IsolatedAsyncioTestCase):
     def setUp(self):
         device_patcher = patch(
-            "custom_components.goldair_climate.fan.light.GoldairTuyaDevice"
+            "custom_components.goldair_climate.heater.light.GoldairTuyaDevice"
         )
         self.addCleanup(device_patcher.stop)
         self.mock_device = device_patcher.start()
 
-        self.subject = GoldairFanLedDisplayLight(self.mock_device())
+        self.subject = GoldairHeaterLedDisplayLight(self.mock_device())
 
-        self.dps = FAN_PAYLOAD.copy()
+        self.dps = GPPH_HEATER_PAYLOAD.copy()
         self.subject._device.get_property.side_effect = lambda id: self.dps[id]
 
     def test_should_poll(self):
@@ -63,7 +63,7 @@ class TestLight(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_turn_off()
 
-    async def test_toggle_takes_no_action_when_fan_off(self):
+    async def test_toggle_takes_no_action_when_heater_off(self):
         self.dps[PROPERTY_TO_DPS_ID[ATTR_HVAC_MODE]] = False
         await self.subject.async_toggle()
         self.subject._device.async_set_property.assert_not_called

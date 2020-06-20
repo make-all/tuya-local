@@ -5,19 +5,19 @@ API for Goldair Tuya devices.
 import json
 import logging
 from threading import Lock, Timer
-from time import time, sleep
+from time import sleep, time
 
 from homeassistant.const import TEMP_CELSIUS
 from homeassistant.core import HomeAssistant
 
 from .const import (
-    DOMAIN,
     API_PROTOCOL_VERSIONS,
     CONF_TYPE_DEHUMIDIFIER,
     CONF_TYPE_FAN,
     CONF_TYPE_GECO_HEATER,
     CONF_TYPE_GPCV_HEATER,
     CONF_TYPE_GPPH_HEATER,
+    DOMAIN,
 )
 
 _LOGGER = logging.getLogger(__name__)

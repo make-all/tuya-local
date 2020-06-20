@@ -4,7 +4,7 @@
     {
       "label": "Install requirements",
       "type": "shell",
-      "command": "pip3 install pycrypto==2.6.1;pip3 install pytuya==7.0.5",
+      "command": "pip3 install -r requirements-first.txt;pip3 install -r requirements-dev.txt",
       "problemMatcher": []
     },
     {
@@ -35,6 +35,12 @@
       "label": "Unit tests",
       "type": "shell",
       "command": "pytest --cov=. --cov-config=.coveragerc --cov-report xml:coverage.xml",
+      "problemMatcher": []
+    },
+    {
+      "label": "Reformat code",
+      "type": "shell",
+      "command": "isort --recursive . &&  black .",
       "problemMatcher": []
     }
   ]

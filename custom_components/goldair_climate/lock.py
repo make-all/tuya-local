@@ -1,23 +1,24 @@
 """
 Setup for different kinds of Goldair climate devices
 """
+import logging
+
 from . import DOMAIN
 from .const import (
+    CONF_CHILD_LOCK,
     CONF_DEVICE_ID,
     CONF_TYPE,
+    CONF_TYPE_AUTO,
     CONF_TYPE_DEHUMIDIFIER,
     CONF_TYPE_FAN,
     CONF_TYPE_GECO_HEATER,
     CONF_TYPE_GPCV_HEATER,
     CONF_TYPE_GPPH_HEATER,
-    CONF_CHILD_LOCK,
-    CONF_TYPE_AUTO,
 )
 from .dehumidifier.lock import GoldairDehumidifierChildLock
-from .gpcv_heater.lock import GoldairGPCVHeaterChildLock
 from .geco_heater.lock import GoldairGECOHeaterChildLock
+from .gpcv_heater.lock import GoldairGPCVHeaterChildLock
 from .heater.lock import GoldairHeaterChildLock
-import logging
 
 _LOGGER = logging.getLogger(__name__)
 

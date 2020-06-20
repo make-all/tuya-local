@@ -9,28 +9,27 @@ import logging
 
 import homeassistant.helpers.config_validation as cv
 import voluptuous as vol
-from homeassistant.config_entries import ConfigEntry, SOURCE_IMPORT
+from homeassistant.config_entries import SOURCE_IMPORT, ConfigEntry
 from homeassistant.const import CONF_HOST, CONF_NAME
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.discovery import async_load_platform
 
 from .configuration import individual_config_schema
 from .const import (
-    DOMAIN,
     CONF_CHILD_LOCK,
     CONF_CLIMATE,
     CONF_DEVICE_ID,
     CONF_DISPLAY_LIGHT,
     CONF_LOCAL_KEY,
     CONF_TYPE,
+    CONF_TYPE_AUTO,
     CONF_TYPE_DEHUMIDIFIER,
     CONF_TYPE_FAN,
     CONF_TYPE_GPPH_HEATER,
+    DOMAIN,
     SCAN_INTERVAL,
-    CONF_TYPE_AUTO,
 )
 from .device import GoldairTuyaDevice
-from .config_flow import ConfigFlowHandler
 
 _LOGGER = logging.getLogger(__name__)
 
