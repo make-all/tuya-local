@@ -1,6 +1,11 @@
 # Home Assistant Goldair WiFi Climate component
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg?style=for-the-badge)](https://github.com/custom-components/hacs)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=nikrolls_homeassistant-goldair-climate&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=nikrolls_homeassistant-goldair-climate)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=nikrolls_homeassistant-goldair-climate&metric=security_rating)](https://sonarcloud.io/dashboard?id=nikrolls_homeassistant-goldair-climate)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=nikrolls_homeassistant-goldair-climate&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=nikrolls_homeassistant-goldair-climate)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=nikrolls_homeassistant-goldair-climate&metric=ncloc)](https://sonarcloud.io/dashboard?id=nikrolls_homeassistant-goldair-climate)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=nikrolls_homeassistant-goldair-climate&metric=coverage)](https://sonarcloud.io/dashboard?id=nikrolls_homeassistant-goldair-climate)
 
 The `goldair_climate` component integrates [Goldair WiFi-enabled heaters](http://www.goldair.co.nz/product-catalogue/heating/wifi-heaters), WiFi-enabled [dehumidifiers](http://www.goldair.co.nz/product-catalogue/heating/dehumidifiers), and [WiFi-enabled fans](http://www.goldair.co.nz/product-catalogue/cooling/pedestal-fans/40cm-dc-quiet-fan-with-wifi-and-remote-gcpf315) into Home Assistant, enabling control of setting the following parameters via the UI and the following services:
 
