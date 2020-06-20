@@ -6,23 +6,27 @@ from homeassistant.components.climate.const import (
     ATTR_PRESET_MODE,
     HVAC_MODE_HEAT,
     HVAC_MODE_OFF,
+    SUPPORT_PRESET_MODE,
     SUPPORT_TARGET_TEMPERATURE,
 )
 from homeassistant.const import ATTR_TEMPERATURE, STATE_UNAVAILABLE
 
-from custom_components.goldair_climate.geco_heater.climate import GoldairGECOHeater
-from custom_components.goldair_climate.geco_heater.const import (
+from custom_components.goldair_climate.gpcv_heater.climate import GoldairGPCVHeater
+from custom_components.goldair_climate.gpcv_heater.const import (
     ATTR_ERROR,
     ATTR_TARGET_TEMPERATURE,
     HVAC_MODE_TO_DPS_MODE,
+    PRESET_HIGH,
+    PRESET_LOW,
+    PRESET_MODE_TO_DPS_MODE,
     PROPERTY_TO_DPS_ID,
 )
 
-from ..const import GECO_HEATER_PAYLOAD
+from ..const import GPCV_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
 
 
-class TestGoldairGECOHeater(IsolatedAsyncioTestCase):
+class TestGoldairGPCVHeater(IsolatedAsyncioTestCase):
     def setUp(self):
         device_patcher = patch(
             "custom_components.goldair_climate.device.GoldairTuyaDevice"
@@ -30,14 +34,15 @@ class TestGoldairGECOHeater(IsolatedAsyncioTestCase):
         self.addCleanup(device_patcher.stop)
         self.mock_device = device_patcher.start()
 
-        self.subject = GoldairGECOHeater(self.mock_device())
+        self.subject = GoldairGPCVHeater(self.mock_device())
 
-        self.dps = GECO_HEATER_PAYLOAD.copy()
+        self.dps = GPCV_HEATER_PAYLOAD.copy()
         self.subject._device.get_property.side_effect = lambda id: self.dps[id]
 
     def test_supported_features(self):
         self.assertEqual(
-            self.subject.supported_features, SUPPORT_TARGET_TEMPERATURE,
+            self.subject.supported_features,
+            SUPPORT_TARGET_TEMPERATURE | SUPPORT_PRESET_MODE,
         )
 
     def test_should_poll(self):
@@ -77,15 +82,36 @@ class TestGoldairGECOHeater(IsolatedAsyncioTestCase):
     def test_maximum_target_temperature(self):
         self.assertEqual(self.subject.max_temp, 35)
 
-    async def test_legacy_set_temperature_method(self):
+    async def test_legacy_set_temperature_with_temperature(self):
         async with assert_device_properties_set(
             self.subject._device, {PROPERTY_TO_DPS_ID[ATTR_TARGET_TEMPERATURE]: 25}
         ):
             await self.subject.async_set_temperature(temperature=25)
 
-    async def test_legacy_set_temperature_does_nothing_without_temperature_value(self):
+    async def test_legacy_set_temperature_with_preset_mode(self):
+        async with assert_device_properties_set(
+            self.subject._device,
+            {PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE]: PRESET_MODE_TO_DPS_MODE[PRESET_LOW]},
+        ):
+            await self.subject.async_set_temperature(preset_mode=PRESET_LOW)
+
+    async def test_legacy_set_temperature_with_both_properties(self):
+        async with assert_device_properties_set(
+            self.subject._device,
+            {
+                PROPERTY_TO_DPS_ID[ATTR_TARGET_TEMPERATURE]: 25,
+                PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE]: PRESET_MODE_TO_DPS_MODE[
+                    PRESET_LOW
+                ],
+            },
+        ):
+            await self.subject.async_set_temperature(
+                temperature=25, preset_mode=PRESET_LOW
+            )
+
+    async def test_legacy_set_temperature_with_no_valid_properties(self):
         await self.subject.async_set_temperature(something="else")
-        self.subject._device.async_set_property.assert_not_called()
+        self.subject._device.async_set_property.assert_not_called
 
     async def test_set_target_temperature_succeeds_within_valid_range(self):
         async with assert_device_properties_set(
@@ -132,6 +158,41 @@ class TestGoldairGECOHeater(IsolatedAsyncioTestCase):
             self.subject._device, {PROPERTY_TO_DPS_ID[ATTR_HVAC_MODE]: False}
         ):
             await self.subject.async_set_hvac_mode(HVAC_MODE_OFF)
+
+    async def test_preset_mode(self):
+        self.dps[PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE]] = PRESET_MODE_TO_DPS_MODE[
+            PRESET_LOW
+        ]
+        self.assertEqual(self.subject.preset_mode, PRESET_LOW)
+
+        self.dps[PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE]] = PRESET_MODE_TO_DPS_MODE[
+            PRESET_HIGH
+        ]
+        self.assertEqual(self.subject.preset_mode, PRESET_HIGH)
+
+        self.dps[PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE]] = None
+        self.assertIs(self.subject.preset_mode, None)
+
+    async def test_preset_modes(self):
+        self.assertEqual(self.subject.preset_modes, [PRESET_LOW, PRESET_HIGH])
+
+    async def test_set_preset_mode_to_low(self):
+        async with assert_device_properties_set(
+            self.subject._device,
+            {PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE]: PRESET_MODE_TO_DPS_MODE[PRESET_LOW]},
+        ):
+            await self.subject.async_set_preset_mode(PRESET_LOW)
+
+    async def test_set_preset_mode_to_high(self):
+        async with assert_device_properties_set(
+            self.subject._device,
+            {
+                PROPERTY_TO_DPS_ID[ATTR_PRESET_MODE]: PRESET_MODE_TO_DPS_MODE[
+                    PRESET_HIGH
+                ]
+            },
+        ):
+            await self.subject.async_set_preset_mode(PRESET_HIGH)
 
     async def test_error_state(self):
         # There are currently no known error states; update this as they're discovered
