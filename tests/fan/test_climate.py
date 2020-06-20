@@ -16,7 +16,7 @@ from homeassistant.components.climate.const import (
     SWING_HORIZONTAL,
     SWING_OFF,
 )
-from homeassistant.const import ATTR_TEMPERATURE, STATE_UNAVAILABLE, TEMP_CELSIUS
+from homeassistant.const import ATTR_TEMPERATURE, STATE_UNAVAILABLE
 
 from custom_components.goldair_climate.fan.climate import GoldairFan
 from custom_components.goldair_climate.fan.const import (
@@ -32,7 +32,7 @@ from ..const import FAN_PAYLOAD
 from ..helpers import assert_device_properties_set
 
 
-class TestLight(IsolatedAsyncioTestCase):
+class TestGoldairFan(IsolatedAsyncioTestCase):
     def setUp(self):
         device_patcher = patch(
             "custom_components.goldair_climate.device.GoldairTuyaDevice"
@@ -66,8 +66,10 @@ class TestLight(IsolatedAsyncioTestCase):
     def test_icon_is_fan(self):
         self.assertEqual(self.subject.icon, "mdi:fan")
 
-    def test_temperature_unit_is_celsius(self):
-        self.assertEqual(self.subject.temperature_unit, TEMP_CELSIUS)
+    def test_temperature_unit_returns_device_temperature_unit(self):
+        self.assertEqual(
+            self.subject.temperature_unit, self.subject._device.temperature_unit
+        )
 
     def test_hvac_mode(self):
         self.dps[PROPERTY_TO_DPS_ID[ATTR_HVAC_MODE]] = True

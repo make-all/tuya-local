@@ -15,7 +15,7 @@ from homeassistant.components.climate.const import (
     SUPPORT_PRESET_MODE,
     SUPPORT_SWING_MODE,
 )
-from homeassistant.const import ATTR_TEMPERATURE, STATE_UNAVAILABLE, TEMP_CELSIUS
+from homeassistant.const import ATTR_TEMPERATURE, STATE_UNAVAILABLE
 
 from ..device import GoldairTuyaDevice
 from .const import (
@@ -74,7 +74,7 @@ class GoldairFan(ClimateEntity):
     @property
     def temperature_unit(self):
         """This is not used but required by Home Assistant."""
-        return TEMP_CELSIUS
+        return self._device.temperature_unit
 
     @property
     def hvac_mode(self):

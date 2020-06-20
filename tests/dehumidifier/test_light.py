@@ -14,7 +14,7 @@ from ..const import DEHUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
 
 
-class TestLight(IsolatedAsyncioTestCase):
+class TestGoldairDehumidifierLedDisplayLight(IsolatedAsyncioTestCase):
     def setUp(self):
         device_patcher = patch(
             "custom_components.goldair_climate.device.GoldairTuyaDevice"

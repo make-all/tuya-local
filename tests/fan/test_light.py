@@ -12,7 +12,7 @@ from ..const import FAN_PAYLOAD
 from ..helpers import assert_device_properties_set
 
 
-class TestLight(IsolatedAsyncioTestCase):
+class TestGoldairFanLedDisplayLight(IsolatedAsyncioTestCase):
     def setUp(self):
         device_patcher = patch(
             "custom_components.goldair_climate.device.GoldairTuyaDevice"

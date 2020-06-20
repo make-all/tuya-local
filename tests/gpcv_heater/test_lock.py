@@ -1,20 +1,20 @@
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import AsyncMock, patch
 
-from custom_components.goldair_climate.geco_heater.const import (
+from custom_components.goldair_climate.gpcv_heater.const import (
     ATTR_CHILD_LOCK,
     ATTR_HVAC_MODE,
     PROPERTY_TO_DPS_ID,
 )
-from custom_components.goldair_climate.geco_heater.lock import (
-    GoldairGECOHeaterChildLock,
+from custom_components.goldair_climate.gpcv_heater.lock import (
+    GoldairGPCVHeaterChildLock,
 )
 
-from ..const import GECO_HEATER_PAYLOAD
+from ..const import GPCV_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
 
 
-class TestLock(IsolatedAsyncioTestCase):
+class TestGoldairGPCVHeaterChildLock(IsolatedAsyncioTestCase):
     def setUp(self):
         device_patcher = patch(
             "custom_components.goldair_climate.device.GoldairTuyaDevice"
@@ -22,9 +22,9 @@ class TestLock(IsolatedAsyncioTestCase):
         self.addCleanup(device_patcher.stop)
         self.mock_device = device_patcher.start()
 
-        self.subject = GoldairGECOHeaterChildLock(self.mock_device())
+        self.subject = GoldairGPCVHeaterChildLock(self.mock_device())
 
-        self.dps = GECO_HEATER_PAYLOAD.copy()
+        self.dps = GPCV_HEATER_PAYLOAD.copy()
         self.subject._device.get_property.side_effect = lambda id: self.dps[id]
 
     def test_should_poll(self):
