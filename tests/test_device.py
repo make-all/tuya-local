@@ -4,7 +4,6 @@ from time import sleep, time
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import AsyncMock, call, patch
 
-import pytest
 from homeassistant.const import TEMP_CELSIUS
 
 from custom_components.goldair_climate.const import (

@@ -7,7 +7,7 @@
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=nikrolls_homeassistant-goldair-climate&metric=ncloc)](https://sonarcloud.io/dashboard?id=nikrolls_homeassistant-goldair-climate)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=nikrolls_homeassistant-goldair-climate&metric=coverage)](https://sonarcloud.io/dashboard?id=nikrolls_homeassistant-goldair-climate)
 
-The `goldair_climate` component integrates [Goldair WiFi-enabled heaters](http://www.goldair.co.nz/product-catalogue/heating/wifi-heaters), WiFi-enabled [dehumidifiers](http://www.goldair.co.nz/product-catalogue/heating/dehumidifiers), and [WiFi-enabled fans](http://www.goldair.co.nz/product-catalogue/cooling/pedestal-fans/40cm-dc-quiet-fan-with-wifi-and-remote-gcpf315) into Home Assistant, enabling control of setting the following parameters via the UI and the following services:
+The `goldair_climate` component integrates [Goldair WiFi-enabled heaters](http://www.goldair.co.nz/product-catalogue/heating/wifi-heaters), [WiFi-enabled dehumidifiers](http://www.goldair.co.nz/product-catalogue/heating/dehumidifiers), and [WiFi-enabled fans](http://www.goldair.co.nz/product-catalogue/cooling/pedestal-fans/40cm-dc-quiet-fan-with-wifi-and-remote-gcpf315) into Home Assistant, enabling control of setting the following parameters via the UI and the following services:
 
 **GPPH Heaters**
 
@@ -58,13 +58,11 @@ There was previously a sensor option, however this is easily achieved using a [t
 
 ---
 
-### Warning
+### Device support
 
-Please note, this component has currently only been tested with the Goldair GPPH (inverter), GPDH420 (dehumidifier), and GCPF315 fan, however theoretically it should also work with GECO, GEPH and GPCV heater devices, may work with the GPDH440 dehumidifier and any other Goldair heaters, dehumidifiers or fans based on the Tuya platform.
+Please note, this component is actively tested with the Goldair GPPH (inverter), GPDH420 (dehumidifier), and GCPF315 fan, and community-tested with GECO,and GPCV heater devices. It may work with the GPDH440 dehumidifier, GEPH heater, and other heaters, dehumidifiers or fans based on the Tuya platform.
 
-GPCV support is based on feedback from etamtlosz on Issue #27
-GECO support is based on work in KiLLeRRaT/homeassistant-goldair-climate and the feature set from the online manual for these heaters. GEPH heaters appear to be the same as the GECO270, so may also work with this setting.  This heater is almost compatible with the GPCV but without the Low/High mode. 
-
+GPCV support is based on feedback from etamtlosz on Issue #27. GECO support is based on work in KiLLeRRaT/homeassistant-goldair-climate and the feature set from the online manual for these heaters. GEPH heaters appear to be the same as the GECO270, so may also work with this setting. This heater is almost compatible with the GPCV but without the Low/High mode.
 
 ---
 
@@ -154,7 +152,11 @@ You're looking for `uuid` (this is the device ID) and the `localKey` values.
 
 ## Next steps
 
-This component needs specs! Once they're written I'm considering submitting it to the HA team for inclusion in standard installations. Please report any issues and feel free to raise pull requests.
+This component is mostly unit-tested, but there are a few more to complete. Feel free to use existing specs as inspiration and the Sonar Cloud analysis to see where the gaps are.
+
+Once unit tests are complete, the next task is to complete the Home Assistant quality checklist before considering submission to the HA team for inclusion in standard installations.
+
+Please report any issues and feel free to raise pull requests.
 
 ## Acknowledgements
 
@@ -163,3 +165,4 @@ None of this would have been possible without some foundational discovery work t
 - [TarxBoy](https://github.com/TarxBoy)'s [investigation using codetheweb/tuyapi](https://github.com/codetheweb/tuyapi/issues/31) to figure out the correlation of the cryptic DPS states
 - [sean6541](https://github.com/sean6541)'s [tuya-homeassistant](https://github.com/sean6541/tuya-homeassistant) library giving an example of integrating Tuya devices with Home Assistant
 - [clach04](https://github.com/clach04)'s [python-tuya](https://github.com/clach04/python-tuya) library
+- [make-all](https://github.com/etamtlosz), [etamtlosz](https://github.com/etamtlosz) and [KiLLeRRaT](https://github.com/KiLLeRRaT) for their support and dev work towards GECO and GPCV heaters
