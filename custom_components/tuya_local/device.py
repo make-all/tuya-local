@@ -39,6 +39,7 @@ class TuyaLocalDevice(object):
 
         self._name = name
         self._api_protocol_version_index = None
+        self._api_protocol_working = False
         self._api = pytuya.Device(dev_id, address, local_key, "device")
         self._refresh_task = None
         self._rotate_api_protocol_version()
@@ -220,11 +221,13 @@ class TuyaLocalDevice(object):
         for i in range(self._CONNECTION_ATTEMPTS):
             try:
                 func()
+                self._api_protocol_working = True
                 break
             except Exception as e:
                 _LOGGER.info(f"Retrying after exception {e}")
                 if i + 1 == self._CONNECTION_ATTEMPTS:
                     self._reset_cached_state()
+                    self._api_protocol_working = False
                     _LOGGER.error(error_message)
                 else:
                     self._rotate_api_protocol_version()
@@ -248,7 +251,7 @@ class TuyaLocalDevice(object):
     def _rotate_api_protocol_version(self):
         if self._api_protocol_version_index is None:
             self._api_protocol_version_index = 0
-        else:
+        elif self._api_protocol_working is False:
             self._api_protocol_version_index += 1
 
         if self._api_protocol_version_index >= len(API_PROTOCOL_VERSIONS):
