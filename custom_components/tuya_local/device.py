@@ -124,7 +124,10 @@ class TuyaLocalDevice(object):
         last_updated = self._get_cached_state()["updated_at"]
         try:
             self._lock.acquire()
-            if self._refresh_task is None or time() - last_updated >= self._CACHE_TIMEOUT:
+            if (
+                self._refresh_task is None
+                or time() - last_updated >= self._CACHE_TIMEOUT
+            ):
                 self._cached_state["updated_at"] = time()
                 self._refresh_task = self._hass.async_add_executor_job(self.refresh)
         finally:
