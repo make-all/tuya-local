@@ -162,12 +162,17 @@ class TuyaLocalDevice(object):
         self._pending_updates = {}
 
     def _refresh_cached_state(self):
-        new_state = self._api.status()
-        self._cached_state = new_state["dps"]
-        self._cached_state["updated_at"] = time()
-        _LOGGER.debug(f"refreshed device state: {json.dumps(new_state)}")
-        _LOGGER.debug(
-            f"new cache state (including pending properties): {json.dumps(self._get_cached_state())}"
+        try:
+            self._lock.acquire()
+            new_state = self._api.status()
+            self._cached_state = new_state["dps"]
+            self._cached_state["updated_at"] = time()
+            _LOGGER.debug(f"refreshed device state: {json.dumps(new_state)}")
+            _LOGGER.debug(
+                f"new cache state (including pending properties): {json.dumps(self._get_cached_state())}"
+            )
+        finally:
+            self._lock.release()
         )
 
     def _set_properties(self, properties):
