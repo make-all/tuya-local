@@ -122,9 +122,13 @@ class TuyaLocalDevice(object):
 
     async def async_refresh(self):
         last_updated = self._get_cached_state()["updated_at"]
-        if self._refresh_task is None or time() - last_updated >= self._CACHE_TIMEOUT:
-            self._cached_state["updated_at"] = time()
-            self._refresh_task = self._hass.async_add_executor_job(self.refresh)
+        try:
+            self._lock.aquire()
+            if self._refresh_task is None or time() - last_updated >= self._CACHE_TIMEOUT:
+                self._cached_state["updated_at"] = time()
+                self._refresh_task = self._hass.async_add_executor_job(self.refresh)
+        finally:
+            self._lock.release()
 
         await self._refresh_task
 
@@ -173,7 +177,6 @@ class TuyaLocalDevice(object):
             )
         finally:
             self._lock.release()
-        )
 
     def _set_properties(self, properties):
         if len(properties) == 0:
