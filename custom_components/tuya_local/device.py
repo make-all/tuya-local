@@ -122,16 +122,9 @@ class TuyaLocalDevice(object):
 
     async def async_refresh(self):
         last_updated = self._get_cached_state()["updated_at"]
-        try:
-            self._lock.acquire()
-            if (
-                self._refresh_task is None
-                or time() - last_updated >= self._CACHE_TIMEOUT
-            ):
-                self._cached_state["updated_at"] = time()
-                self._refresh_task = self._hass.async_add_executor_job(self.refresh)
-        finally:
-            self._lock.release()
+        if self._refresh_task is None or time() - last_updated >= self._CACHE_TIMEOUT:
+            self._cached_state["updated_at"] = time()
+            self._refresh_task = self._hass.async_add_executor_job(self.refresh)
 
         await self._refresh_task
 
@@ -169,17 +162,13 @@ class TuyaLocalDevice(object):
         self._pending_updates = {}
 
     def _refresh_cached_state(self):
-        try:
-            self._lock.acquire()
-            new_state = self._api.status()
-            self._cached_state = new_state["dps"]
-            self._cached_state["updated_at"] = time()
-            _LOGGER.debug(f"refreshed device state: {json.dumps(new_state)}")
-            _LOGGER.debug(
-                f"new cache state (including pending properties): {json.dumps(self._get_cached_state())}"
-            )
-        finally:
-            self._lock.release()
+        new_state = self._api.status()
+        self._cached_state = new_state["dps"]
+        self._cached_state["updated_at"] = time()
+        _LOGGER.debug(f"refreshed device state: {json.dumps(new_state)}")
+        _LOGGER.debug(
+            f"new cache state (including pending properties): {json.dumps(self._get_cached_state())}"
+        )
 
     def _set_properties(self, properties):
         if len(properties) == 0:
