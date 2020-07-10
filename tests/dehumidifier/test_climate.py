@@ -21,6 +21,7 @@ from custom_components.tuya_local.dehumidifier.const import (
     ATTR_AIR_CLEAN_ON,
     ATTR_DEFROSTING,
     ATTR_ERROR,
+    ATTR_ERROR_CODE,
     ATTR_TARGET_HUMIDITY,
     ERROR_CODE_TO_DPS_CODE,
     ERROR_TANK,
@@ -550,28 +551,44 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         self.dps[PROPERTY_TO_DPS_ID[ATTR_DEFROSTING]] = False
         self.assertEqual(
             self.subject.device_state_attributes,
-            {ATTR_ERROR: None, ATTR_DEFROSTING: False},
+            {
+                ATTR_ERROR_CODE: None,
+                ATTR_ERROR: STATE_UNAVAILABLE,
+                ATTR_DEFROSTING: False,
+            },
         )
 
         self.dps[PROPERTY_TO_DPS_ID[ATTR_ERROR]] = ERROR_CODE_TO_DPS_CODE[ERROR_TANK]
         self.dps[PROPERTY_TO_DPS_ID[ATTR_DEFROSTING]] = False
         self.assertEqual(
             self.subject.device_state_attributes,
-            {ATTR_ERROR: ERROR_TANK, ATTR_DEFROSTING: False},
+            {
+                ATTR_ERROR: ERROR_TANK,
+                ATTR_ERROR_CODE: ERROR_CODE_TO_DPS_CODE[ERROR_TANK],
+                ATTR_DEFROSTING: False,
+            },
         )
 
         self.dps[PROPERTY_TO_DPS_ID[ATTR_ERROR]] = None
         self.dps[PROPERTY_TO_DPS_ID[ATTR_DEFROSTING]] = True
         self.assertEqual(
             self.subject.device_state_attributes,
-            {ATTR_ERROR: None, ATTR_DEFROSTING: True},
+            {
+                ATTR_ERROR_CODE: None,
+                ATTR_ERROR: STATE_UNAVAILABLE,
+                ATTR_DEFROSTING: True,
+            },
         )
 
         self.dps[PROPERTY_TO_DPS_ID[ATTR_ERROR]] = ERROR_CODE_TO_DPS_CODE[ERROR_TANK]
         self.dps[PROPERTY_TO_DPS_ID[ATTR_DEFROSTING]] = True
         self.assertEqual(
             self.subject.device_state_attributes,
-            {ATTR_ERROR: ERROR_TANK, ATTR_DEFROSTING: True},
+            {
+                ATTR_ERROR: ERROR_TANK,
+                ATTR_ERROR_CODE: ERROR_CODE_TO_DPS_CODE[ERROR_TANK],
+                ATTR_DEFROSTING: True,
+            },
         )
 
     async def test_update(self):
