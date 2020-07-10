@@ -1,11 +1,7 @@
 """
 Platform to control the child lock on Kogan WiFi-connected heaters and panels.
 """
-try:
-    from homeassistant.components.lock import LockEntity
-except ImportError:
-    from homeassistant.components.lock import LockDevice as LockEntity
-
+from homeassistant.components.lock import LockEntity
 from homeassistant.components.lock import STATE_LOCKED, STATE_UNLOCKED
 from homeassistant.const import STATE_UNAVAILABLE
 
