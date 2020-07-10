@@ -10,8 +10,8 @@ from homeassistant.components.climate.const import (
 )
 from homeassistant.const import ATTR_TEMPERATURE, STATE_UNAVAILABLE
 
-from custom_components.goldair_climate.geco_heater.climate import GoldairGECOHeater
-from custom_components.goldair_climate.geco_heater.const import (
+from custom_components.tuya_local.geco_heater.climate import GoldairGECOHeater
+from custom_components.tuya_local.geco_heater.const import (
     ATTR_ERROR,
     ATTR_TARGET_TEMPERATURE,
     HVAC_MODE_TO_DPS_MODE,
@@ -25,7 +25,7 @@ from ..helpers import assert_device_properties_set
 class TestGoldairGECOHeater(IsolatedAsyncioTestCase):
     def setUp(self):
         device_patcher = patch(
-            "custom_components.goldair_climate.device.GoldairTuyaDevice"
+            "custom_components.tuya_local.device.GoldairTuyaDevice"
         )
         self.addCleanup(device_patcher.stop)
         self.mock_device = device_patcher.start()

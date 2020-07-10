@@ -1,12 +1,12 @@
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import AsyncMock, patch
 
-from custom_components.goldair_climate.fan.const import (
+from custom_components.tuya_local.fan.const import (
     ATTR_DISPLAY_ON,
     ATTR_HVAC_MODE,
     PROPERTY_TO_DPS_ID,
 )
-from custom_components.goldair_climate.fan.light import GoldairFanLedDisplayLight
+from custom_components.tuya_local.fan.light import GoldairFanLedDisplayLight
 
 from ..const import FAN_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -15,7 +15,7 @@ from ..helpers import assert_device_properties_set
 class TestGoldairFanLedDisplayLight(IsolatedAsyncioTestCase):
     def setUp(self):
         device_patcher = patch(
-            "custom_components.goldair_climate.device.GoldairTuyaDevice"
+            "custom_components.tuya_local.device.GoldairTuyaDevice"
         )
         self.addCleanup(device_patcher.stop)
         self.mock_device = device_patcher.start()

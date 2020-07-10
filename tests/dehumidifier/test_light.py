@@ -1,12 +1,12 @@
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import AsyncMock, patch
 
-from custom_components.goldair_climate.dehumidifier.const import (
+from custom_components.tuya_local.dehumidifier.const import (
     ATTR_DISPLAY_ON,
     ATTR_HVAC_MODE,
     PROPERTY_TO_DPS_ID,
 )
-from custom_components.goldair_climate.dehumidifier.light import (
+from custom_components.tuya_local.dehumidifier.light import (
     GoldairDehumidifierLedDisplayLight,
 )
 
@@ -17,7 +17,7 @@ from ..helpers import assert_device_properties_set
 class TestGoldairDehumidifierLedDisplayLight(IsolatedAsyncioTestCase):
     def setUp(self):
         device_patcher = patch(
-            "custom_components.goldair_climate.device.GoldairTuyaDevice"
+            "custom_components.tuya_local.device.GoldairTuyaDevice"
         )
         self.addCleanup(device_patcher.stop)
         self.mock_device = device_patcher.start()

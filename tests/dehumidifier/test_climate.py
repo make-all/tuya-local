@@ -16,8 +16,8 @@ from homeassistant.components.climate.const import (
 )
 from homeassistant.const import ATTR_TEMPERATURE, STATE_UNAVAILABLE
 
-from custom_components.goldair_climate.dehumidifier.climate import GoldairDehumidifier
-from custom_components.goldair_climate.dehumidifier.const import (
+from custom_components.tuya_local.dehumidifier.climate import GoldairDehumidifier
+from custom_components.tuya_local.dehumidifier.const import (
     ATTR_AIR_CLEAN_ON,
     ATTR_DEFROSTING,
     ATTR_ERROR,
@@ -42,7 +42,7 @@ from ..helpers import assert_device_properties_set
 class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
     def setUp(self):
         device_patcher = patch(
-            "custom_components.goldair_climate.device.GoldairTuyaDevice"
+            "custom_components.tuya_local.device.GoldairTuyaDevice"
         )
         self.addCleanup(device_patcher.stop)
         self.mock_device = device_patcher.start()

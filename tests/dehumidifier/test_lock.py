@@ -4,12 +4,12 @@ from unittest.mock import AsyncMock, patch
 from homeassistant.components.lock import STATE_LOCKED, STATE_UNLOCKED
 from homeassistant.const import STATE_UNAVAILABLE
 
-from custom_components.goldair_climate.dehumidifier.const import (
+from custom_components.tuya_local.dehumidifier.const import (
     ATTR_CHILD_LOCK,
     ATTR_HVAC_MODE,
     PROPERTY_TO_DPS_ID,
 )
-from custom_components.goldair_climate.dehumidifier.lock import (
+from custom_components.tuya_local.dehumidifier.lock import (
     GoldairDehumidifierChildLock,
 )
 
@@ -20,7 +20,7 @@ from ..helpers import assert_device_properties_set
 class TestGoldairDehumidifierChildLock(IsolatedAsyncioTestCase):
     def setUp(self):
         device_patcher = patch(
-            "custom_components.goldair_climate.device.GoldairTuyaDevice"
+            "custom_components.tuya_local.device.GoldairTuyaDevice"
         )
         self.addCleanup(device_patcher.stop)
         self.mock_device = device_patcher.start()

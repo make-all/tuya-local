@@ -18,8 +18,8 @@ from homeassistant.components.climate.const import (
 )
 from homeassistant.const import ATTR_TEMPERATURE, STATE_UNAVAILABLE
 
-from custom_components.goldair_climate.fan.climate import GoldairFan
-from custom_components.goldair_climate.fan.const import (
+from custom_components.tuya_local.fan.climate import GoldairFan
+from custom_components.tuya_local.fan.const import (
     FAN_MODES,
     HVAC_MODE_TO_DPS_MODE,
     PRESET_MODE_TO_DPS_MODE,
@@ -35,7 +35,7 @@ from ..helpers import assert_device_properties_set
 class TestGoldairFan(IsolatedAsyncioTestCase):
     def setUp(self):
         device_patcher = patch(
-            "custom_components.goldair_climate.device.GoldairTuyaDevice"
+            "custom_components.tuya_local.device.GoldairTuyaDevice"
         )
         self.addCleanup(device_patcher.stop)
         self.mock_device = device_patcher.start()
