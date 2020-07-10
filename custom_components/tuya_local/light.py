@@ -4,12 +4,12 @@ Setup for different kinds of Tuya climate devices
 from . import DOMAIN
 from .const import (
     CONF_DEVICE_ID,
+    CONF_DISPLAY_LIGHT,
     CONF_TYPE,
+    CONF_TYPE_AUTO,
     CONF_TYPE_DEHUMIDIFIER,
     CONF_TYPE_FAN,
     CONF_TYPE_GPPH_HEATER,
-    CONF_DISPLAY_LIGHT,
-    CONF_TYPE_AUTO,
 )
 from .dehumidifier.light import GoldairDehumidifierLedDisplayLight
 from .fan.light import GoldairFanLedDisplayLight

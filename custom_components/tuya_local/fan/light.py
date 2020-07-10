@@ -1,5 +1,5 @@
 """
-Platform to control the LED display light on Goldair WiFi-connected fans and panels.
+Platform to control the LED display light on Goldair WiFi-connected fans.
 """
 try:
     from homeassistant.components.light import LightEntity

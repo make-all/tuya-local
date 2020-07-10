@@ -1,5 +1,11 @@
 # Home Assistant Tuya Local component
 
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=make-all_tuya-local&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=make-all_tuya-local)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=make-all_tuya-local&metric=security_rating)](https://sonarcloud.io/dashboard?id=make-all_tuya-local)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=make-all_tuya-local&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=make-all_tuya-local)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=make-all_tuya-local&metric=ncloc)](https://sonarcloud.io/dashboard?id=make-all_tuya-local)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=make-all_tuya-local&metric=coverage)](https://sonarcloud.io/dashboard?id=make-all_tuya-local)
+
 The `tuya_local` component integrates Goldair WiFi-enabled [heaters](http://www.goldair.co.nz/product-catalogue/heating/wifi-heaters), [dehumidifiers](http://www.goldair.co.nz/product-catalogue/heating/dehumidifiers) and [fans](http://www.goldair.co.nz/product-catalogue/cooling/pedestal-fans/40cm-dc-quiet-fan-with-wifi-and-remote-gcpf315) and Kogan WiFi-enabled [heaters](https://www.kogan.com/au/c/smarterhome-range/shop/heating-cooling/) and [plugs](https://www.kogan.com/au/shop/connected-home/smart-plug/) into Home Assistant, enabling control of setting the following parameters via the UI and the following services:
 
 ### Climate devices
@@ -71,15 +77,11 @@ Current temperature is also displayed.
 
 ---
 
-### Warning
+### Device support
 
-Please note, this component has currently only been tested with the Goldair GPPH (inverter), GPDH420 (dehumidifier), and GCPF315 fan, however theoretically it should also work with GECO, GEPH and GPCV heater devices, may work with the GPDH440 dehumidifier and any other Goldair heaters, dehumidifiers or fans based on the Tuya platform.
+Please note, this component is actively tested with the Goldair GPPH (inverter), GPDH420 (dehumidifier), Kogan SmarterHome 1500W Smart Panel Heater and Kogan SmarterHome Energy Monitoring SmartPlug. Theoretically it should also work with GECO, GEPH and GPCV heater devices, and GCPF315 fan and may work with the GPDH440 dehumidifier and any other Goldair heaters, dehumidifiers or fans and Kogan heaters and smartplugs based on the Tuya platform.
 
-GPCV support is based on feedback from etamtlosz on Issue #27.
-
-GECO support is based on work in KiLLeRRaT/homeassistant-goldair-climate and the feature set from the online manual for these heaters. GEPH heaters appear to be the same as the GECO270, so may also work with this setting.  This heater is almost compatible with the GPCV but without the Low/High mode. 
-
-Kogan heater support is tested with the Kogan SmarterHome 1500W Smart Panel Heater.  If you have another type of Kogan SmarterHome heater, it may or may not work with the same configuration.
+GPCV support is based on feedback from etamtlosz on Issue #27. GECO support is based on work in KiLLeRRaT/homeassistant-goldair-climate and the feature set from the online manual for these heaters. GEPH heaters appear to be the same as the GECO270, so may also work with this setting.  This heater is almost compatible with the GPCV but without the Low/High mode. 
 
 ---
 
@@ -182,6 +184,10 @@ You can find these keys the same way as you would for any Tuya local integration
 3. The devices need to be generalized so a new subdirectory with source code is not needed to add a new device.  Instead, device descriptors should be in a yaml file, which is referenced by the config.
 4. Further config flow improvements to filter the available types to possibilities based on the known dps.  When many device configurations are supported, this will be required, as not all devices will be distinguishable automatically.
 5. This component needs specs! Once they're written I'm considering submitting it to the HA team for inclusion in standard installations. Please report any issues and feel free to raise pull requests.
+6. This component is partially unit-tested thanks to the upstream project, but there are a few more to complete. Feel free to use existing specs as inspiration and the Sonar Cloud analysis to see where the gaps are.
+7. Once unit tests are complete, the next task is to complete the Home Assistant quality checklist before considering submission to the HA team for inclusion in standard installations.
+
+Please report any issues and feel free to raise pull requests.
 
 ## Acknowledgements
 
@@ -191,3 +197,4 @@ None of this would have been possible without some foundational discovery work t
 - [TarxBoy](https://github.com/TarxBoy)'s [investigation using codetheweb/tuyapi](https://github.com/codetheweb/tuyapi/issues/31) to figure out the correlation of the cryptic DPS states 
 - [sean6541](https://github.com/sean6541)'s [tuya-homeassistant](https://github.com/sean6541/tuya-homeassistant) library giving an example of integrating Tuya devices with Home Assistant
 - [clach04](https://github.com/clach04)'s [python-tuya](https://github.com/clach04/python-tuya) library
+- [etamtlosz](https://github.com/etamtlosz) and [KiLLeRRaT](https://github.com/KiLLeRRaT) for their support and dev work towards GECO and GPCV heaters

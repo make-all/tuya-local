@@ -1,11 +1,12 @@
+import logging
+
 import voluptuous as vol
 from homeassistant import config_entries, data_entry_flow
-from homeassistant.const import CONF_NAME, CONF_HOST
-from homeassistant.core import callback, HomeAssistant
+from homeassistant.const import CONF_HOST, CONF_NAME
+from homeassistant.core import HomeAssistant, callback
 
 from . import DOMAIN, individual_config_schema, TuyaLocalDevice
 from .const import CONF_DEVICE_ID, CONF_LOCAL_KEY
-import logging
 
 _LOGGER = logging.getLogger(__name__)
 
