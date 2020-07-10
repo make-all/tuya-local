@@ -242,7 +242,7 @@ class TuyaLocalDevice(object):
     def _rotate_api_protocol_version(self):
         if self._api_protocol_version_index is None:
             self._api_protocol_version_index = 0
-        else
+        else:
             self._api_protocol_version_index += 1
 
         if self._api_protocol_version_index >= len(API_PROTOCOL_VERSIONS):
