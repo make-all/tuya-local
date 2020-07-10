@@ -1,11 +1,11 @@
 from contextlib import asynccontextmanager
 from unittest.mock import AsyncMock
 
-from custom_components.goldair_climate.device import GoldairTuyaDevice
+from custom_components.tuya_local.device import TuyaLocalDevice
 
 
 @asynccontextmanager
-async def assert_device_properties_set(device: GoldairTuyaDevice, properties: dict):
+async def assert_device_properties_set(device: TuyaLocalDevice, properties: dict):
     results = []
 
     def generate_result(*args):
