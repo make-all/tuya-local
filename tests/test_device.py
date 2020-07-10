@@ -289,11 +289,11 @@ class TestDevice(IsolatedAsyncioTestCase):
     def test_get_key_for_value_returns_key_from_object_matching_value(self):
         obj = {"key1": "value1", "key2": "value2"}
 
-        self.assertEqual(GoldairTuyaDevice.get_key_for_value(obj, "value1"), "key1")
-        self.assertEqual(GoldairTuyaDevice.get_key_for_value(obj, "value2"), "key2")
+        self.assertEqual(TuyaLocalDevice.get_key_for_value(obj, "value1"), "key1")
+        self.assertEqual(TuyaLocalDevice.get_key_for_value(obj, "value2"), "key2")
 
     def test_get_key_for_value_returns_fallback_when_value_not_found(self):
         obj = {"key1": "value1", "key2": "value2"}
         self.assertEqual(
-            GoldairTuyaDevice.get_key_for_value(obj, "value3", fallback="fb"), "fb"
+            TuyaLocalDevice.get_key_for_value(obj, "value3", fallback="fb"), "fb"
         )

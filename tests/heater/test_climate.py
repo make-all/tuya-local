@@ -38,7 +38,7 @@ from ..helpers import assert_device_properties_set
 
 class TestGoldairHeater(IsolatedAsyncioTestCase):
     def setUp(self):
-        device_patcher = patch("custom_components.tuya_local.device.GoldairTuyaDevice")
+        device_patcher = patch("custom_components.tuya_local.device.TuyaLocalDevice")
         self.addCleanup(device_patcher.stop)
         self.mock_device = device_patcher.start()
 
