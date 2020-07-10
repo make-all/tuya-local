@@ -9,9 +9,7 @@ from custom_components.tuya_local.geco_heater.const import (
     ATTR_HVAC_MODE,
     PROPERTY_TO_DPS_ID,
 )
-from custom_components.tuya_local.geco_heater.lock import (
-    GoldairGECOHeaterChildLock,
-)
+from custom_components.tuya_local.geco_heater.lock import GoldairGECOHeaterChildLock
 
 from ..const import GECO_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -19,9 +17,7 @@ from ..helpers import assert_device_properties_set
 
 class TestGoldairGECOHeaterChildLock(IsolatedAsyncioTestCase):
     def setUp(self):
-        device_patcher = patch(
-            "custom_components.tuya_local.device.GoldairTuyaDevice"
-        )
+        device_patcher = patch("custom_components.tuya_local.device.GoldairTuyaDevice")
         self.addCleanup(device_patcher.stop)
         self.mock_device = device_patcher.start()
 

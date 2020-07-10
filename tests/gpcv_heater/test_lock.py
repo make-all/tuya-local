@@ -9,9 +9,7 @@ from custom_components.tuya_local.gpcv_heater.const import (
     ATTR_HVAC_MODE,
     PROPERTY_TO_DPS_ID,
 )
-from custom_components.tuya_local.gpcv_heater.lock import (
-    GoldairGPCVHeaterChildLock,
-)
+from custom_components.tuya_local.gpcv_heater.lock import GoldairGPCVHeaterChildLock
 
 from ..const import GPCV_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -19,9 +17,7 @@ from ..helpers import assert_device_properties_set
 
 class TestGoldairGPCVHeaterChildLock(IsolatedAsyncioTestCase):
     def setUp(self):
-        device_patcher = patch(
-            "custom_components.tuya_local.device.GoldairTuyaDevice"
-        )
+        device_patcher = patch("custom_components.tuya_local.device.GoldairTuyaDevice")
         self.addCleanup(device_patcher.stop)
         self.mock_device = device_patcher.start()
 
