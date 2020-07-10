@@ -258,7 +258,7 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.assertEqual(self.subject.get_property("1"), False)
 
     def test_debounces_multiple_set_calls_into_one_api_call(self):
-        with patch("custom_components.goldair_climate.device.Timer") as mock:
+        with patch("custom_components.tuya_local.device.Timer") as mock:
             self.subject.set_property("1", True)
             mock.assert_called_once_with(1, self.subject._send_pending_updates)
 
@@ -277,7 +277,7 @@ class TestDevice(IsolatedAsyncioTestCase):
             self.subject._api._send_receive.assert_called_once_with("payload")
 
     def test_set_properties_takes_no_action_when_no_properties_are_provided(self):
-        with patch("custom_components.goldair_climate.device.Timer") as mock:
+        with patch("custom_components.tuya_local.device.Timer") as mock:
             self.subject._set_properties({})
             mock.assert_not_called()
 
