@@ -16,6 +16,7 @@ from custom_components.tuya_local.heater.climate import GoldairHeater
 from custom_components.tuya_local.heater.const import (
     ATTR_ECO_TARGET_TEMPERATURE,
     ATTR_ERROR,
+    ATTR_ERROR_CODE,
     ATTR_POWER_LEVEL,
     ATTR_POWER_MODE,
     ATTR_POWER_MODE_AUTO,
@@ -384,7 +385,8 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
         # There are currently no known error states; update this as they're discovered
         self.dps[PROPERTY_TO_DPS_ID[ATTR_ERROR]] = "something"
         self.assertEqual(
-            self.subject.device_state_attributes, {ATTR_ERROR: "something"}
+            self.subject.device_state_attributes,
+            {ATTR_ERROR_CODE: "something", ATTR_ERROR: "Error something"},
         )
 
     async def test_update(self):
