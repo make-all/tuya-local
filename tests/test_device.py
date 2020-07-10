@@ -202,6 +202,25 @@ class TestDevice(IsolatedAsyncioTestCase):
             [call(3.1), call(3.3), call(3.1)]
         )
 
+    def test_api_protocol_version_is_stable_once_successful(self):
+        self.subject._api.set_version.assert_called_once_with(3.3)
+        self.subject._api.set_version.reset_mock()
+
+        self.subject._api.status.side_effect = [
+            {"dps": {"1": False}},
+            Exception("Error"),
+            Exception("Error"),
+            Exception("Error"),
+            Exception("Error"),
+            Exception("Error"),
+            Exception("Error"),
+        ]
+        self.subject.refresh()
+        self.subject.refresh()
+        self.subject.refresh()
+
+        self.subject._api.set_version.assert_has_calls([call(3.1), call(3.3)])
+
     def test_reset_cached_state_clears_cached_state_and_pending_updates(self):
         self.subject._cached_state = {"1": True, "updated_at": time()}
         self.subject._pending_updates = {"1": False}

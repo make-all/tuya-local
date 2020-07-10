@@ -389,6 +389,14 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
             {ATTR_ERROR_CODE: "something", ATTR_ERROR: "Error something"},
         )
 
+    def test_no_error_state(self):
+        # Test that no error is OK
+        self.dps[PROPERTY_TO_DPS_ID[ATTR_ERROR]] = 0
+        self.assertEqual(
+            self.subject.device_state_attributes,
+            {ATTR_ERROR_CODE: 0, ATTR_ERROR: "OK"},
+        )
+
     async def test_update(self):
         result = AsyncMock()
         self.subject._device.async_refresh.return_value = result()

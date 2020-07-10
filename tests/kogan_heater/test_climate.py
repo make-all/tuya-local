@@ -14,6 +14,7 @@ from homeassistant.const import ATTR_TEMPERATURE, STATE_UNAVAILABLE
 from custom_components.tuya_local.kogan_heater.climate import KoganHeater
 from custom_components.tuya_local.kogan_heater.const import (
     ATTR_TARGET_TEMPERATURE,
+    ATTR_TIMER,
     HVAC_MODE_TO_DPS_MODE,
     PRESET_HIGH,
     PRESET_LOW,
@@ -196,6 +197,12 @@ class TestKoganHeater(IsolatedAsyncioTestCase):
             },
         ):
             await self.subject.async_set_preset_mode(PRESET_HIGH)
+
+    def test_device_state_attributes(self):
+        self.dps[PROPERTY_TO_DPS_ID[ATTR_TIMER]] = 1
+        self.assertEqual(
+            self.subject.device_state_attributes, {ATTR_TIMER: 1},
+        )
 
     async def test_update(self):
         result = AsyncMock()
