@@ -2,7 +2,7 @@ from unittest import IsolatedAsyncioTestCase
 from unittest.mock import AsyncMock, patch
 
 from custom_components.tuya_local.dehumidifier.const import (
-    ATTR_DISPLAY_ON,
+    ATTR_DISPLAY_OFF,
     ATTR_HVAC_MODE,
     PROPERTY_TO_DPS_ID,
 )
@@ -38,28 +38,28 @@ class TestGoldairDehumidifierLedDisplayLight(IsolatedAsyncioTestCase):
         self.assertEqual(self.subject.device_info, self.subject._device.device_info)
 
     def test_icon(self):
-        self.dps[PROPERTY_TO_DPS_ID[ATTR_DISPLAY_ON]] = True
-        self.assertEqual(self.subject.icon, "mdi:led-on")
-
-        self.dps[PROPERTY_TO_DPS_ID[ATTR_DISPLAY_ON]] = False
+        self.dps[PROPERTY_TO_DPS_ID[ATTR_DISPLAY_OFF]] = True
         self.assertEqual(self.subject.icon, "mdi:led-off")
 
-    def test_is_on(self):
-        self.dps[PROPERTY_TO_DPS_ID[ATTR_DISPLAY_ON]] = True
-        self.assertEqual(self.subject.is_on, True)
+        self.dps[PROPERTY_TO_DPS_ID[ATTR_DISPLAY_OFF]] = False
+        self.assertEqual(self.subject.icon, "mdi:led-on")
 
-        self.dps[PROPERTY_TO_DPS_ID[ATTR_DISPLAY_ON]] = False
+    def test_is_on(self):
+        self.dps[PROPERTY_TO_DPS_ID[ATTR_DISPLAY_OFF]] = True
         self.assertEqual(self.subject.is_on, False)
+
+        self.dps[PROPERTY_TO_DPS_ID[ATTR_DISPLAY_OFF]] = False
+        self.assertEqual(self.subject.is_on, True)
 
     async def test_turn_on(self):
         async with assert_device_properties_set(
-            self.subject._device, {PROPERTY_TO_DPS_ID[ATTR_DISPLAY_ON]: True}
+            self.subject._device, {PROPERTY_TO_DPS_ID[ATTR_DISPLAY_OFF]: False}
         ):
             await self.subject.async_turn_on()
 
     async def test_turn_off(self):
         async with assert_device_properties_set(
-            self.subject._device, {PROPERTY_TO_DPS_ID[ATTR_DISPLAY_ON]: False}
+            self.subject._device, {PROPERTY_TO_DPS_ID[ATTR_DISPLAY_OFF]: True}
         ):
             await self.subject.async_turn_off()
 
@@ -70,19 +70,19 @@ class TestGoldairDehumidifierLedDisplayLight(IsolatedAsyncioTestCase):
 
     async def test_toggle_turns_the_light_on_when_it_was_off(self):
         self.dps[PROPERTY_TO_DPS_ID[ATTR_HVAC_MODE]] = True
-        self.dps[PROPERTY_TO_DPS_ID[ATTR_DISPLAY_ON]] = False
+        self.dps[PROPERTY_TO_DPS_ID[ATTR_DISPLAY_OFF]] = True
 
         async with assert_device_properties_set(
-            self.subject._device, {PROPERTY_TO_DPS_ID[ATTR_DISPLAY_ON]: True}
+            self.subject._device, {PROPERTY_TO_DPS_ID[ATTR_DISPLAY_OFF]: False}
         ):
             await self.subject.async_toggle()
 
     async def test_toggle_turns_the_light_off_when_it_was_on(self):
         self.dps[PROPERTY_TO_DPS_ID[ATTR_HVAC_MODE]] = True
-        self.dps[PROPERTY_TO_DPS_ID[ATTR_DISPLAY_ON]] = True
+        self.dps[PROPERTY_TO_DPS_ID[ATTR_DISPLAY_OFF]] = False
 
         async with assert_device_properties_set(
-            self.subject._device, {PROPERTY_TO_DPS_ID[ATTR_DISPLAY_ON]: False}
+            self.subject._device, {PROPERTY_TO_DPS_ID[ATTR_DISPLAY_OFF]: True}
         ):
             await self.subject.async_toggle()
 
