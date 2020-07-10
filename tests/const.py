@@ -25,6 +25,8 @@ GPCV_HEATER_PAYLOAD = {
 
 GECO_HEATER_PAYLOAD = {"1": True, "2": True, "3": 30, "4": 25, "5": 0, "6": 0}
 
+KOGAN_HEATER_PAYLOAD = {"2": 30, "3": 25, "4": "Low", "6": True, "7": True, "8": 0}
+
 DEHUMIDIFIER_PAYLOAD = {
     "1": False,
     "2": "0",
@@ -42,3 +44,5 @@ DEHUMIDIFIER_PAYLOAD = {
 }
 
 FAN_PAYLOAD = {"1": False, "2": "12", "3": "normal", "8": True, "11": "0", "101": False}
+
+KOGAN_SOCKET_PAYLOAD = {"1": True, "2": 0, "4": 200, "5": 460, "6": 2300}
