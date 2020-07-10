@@ -229,7 +229,7 @@ class TuyaLocalDevice(object):
                     self._reset_cached_state()
                     self._api_protocol_working = False
                     _LOGGER.error(error_message)
-                else:
+                elif self._api_protocol_working is False:
                     self._rotate_api_protocol_version()
 
     def _get_cached_state(self):
@@ -251,7 +251,7 @@ class TuyaLocalDevice(object):
     def _rotate_api_protocol_version(self):
         if self._api_protocol_version_index is None:
             self._api_protocol_version_index = 0
-        elif self._api_protocol_working is False:
+        else
             self._api_protocol_version_index += 1
 
         if self._api_protocol_version_index >= len(API_PROTOCOL_VERSIONS):
