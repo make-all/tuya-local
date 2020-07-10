@@ -11,7 +11,6 @@ from homeassistant.const import TEMP_CELSIUS
 from homeassistant.core import HomeAssistant
 
 from .const import (
-    DOMAIN,
     API_PROTOCOL_VERSIONS,
     CONF_TYPE_DEHUMIDIFIER,
     CONF_TYPE_FAN,
@@ -20,6 +19,7 @@ from .const import (
     CONF_TYPE_GPPH_HEATER,
     CONF_TYPE_KOGAN_HEATER,
     CONF_TYPE_KOGAN_SWITCH,
+    DOMAIN,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -44,7 +44,6 @@ class TuyaLocalDevice(object):
         self._refresh_task = None
         self._rotate_api_protocol_version()
 
-        self._fixed_properties = {}
         self._reset_cached_state()
 
         self._TEMPERATURE_UNIT = TEMP_CELSIUS
@@ -113,13 +112,6 @@ class TuyaLocalDevice(object):
         _LOGGER.warning(f"Detection for {self.name} failed")
         return None
 
-    def set_fixed_properties(self, fixed_properties):
-        self._fixed_properties = fixed_properties
-        set_fixed_properties = Timer(
-            10, lambda: self._set_properties(self._fixed_properties)
-        )
-        set_fixed_properties.start()
-
     async def async_refresh(self):
         last_updated = self._get_cached_state()["updated_at"]
         if self._refresh_task is None or time() - last_updated >= self._CACHE_TIMEOUT:
@@ -179,7 +171,6 @@ class TuyaLocalDevice(object):
 
     def _add_properties_to_pending_updates(self, properties):
         now = time()
-        properties = {**properties, **self._fixed_properties}
 
         pending_updates = self._get_pending_updates()
         for key, value in properties.items():
@@ -265,4 +256,4 @@ class TuyaLocalDevice(object):
     def get_key_for_value(obj, value, fallback=None):
         keys = list(obj.keys())
         values = list(obj.values())
-        return keys[values.index(value)] or fallback
+        return keys[values.index(value)] if value in values else fallback

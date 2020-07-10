@@ -110,7 +110,7 @@ class GoldairGECOHeater(ClimateEntity):
         if not limits["min"] <= target_temperature <= limits["max"]:
             raise ValueError(
                 f"Target temperature ({target_temperature}) must be between "
-                f'{limits["min"]} and {limits["max"]}'
+                f'{limits["min"]} and {limits["max"]}.'
             )
 
         await self._device.async_set_property(

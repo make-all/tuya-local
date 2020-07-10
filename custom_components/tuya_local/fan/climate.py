@@ -15,7 +15,7 @@ from homeassistant.components.climate.const import (
     SUPPORT_PRESET_MODE,
     SUPPORT_SWING_MODE,
 )
-from homeassistant.const import ATTR_TEMPERATURE, STATE_UNAVAILABLE, TEMP_CELSIUS
+from homeassistant.const import ATTR_TEMPERATURE, STATE_UNAVAILABLE
 
 from ..device import TuyaLocalDevice
 from .const import (
@@ -74,7 +74,7 @@ class GoldairFan(ClimateEntity):
     @property
     def temperature_unit(self):
         """This is not used but required by Home Assistant."""
-        return TEMP_CELSIUS
+        return self._device.temperature_unit
 
     @property
     def hvac_mode(self):
@@ -142,7 +142,7 @@ class GoldairFan(ClimateEntity):
 
     @property
     def fan_mode(self):
-        """Return current fan mode: 1-12"""
+        """Return current fan mode: 1-12 or 1-3 depending on the preset"""
         dps_mode = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_FAN_MODE])
         if (
             dps_mode is not None
@@ -170,6 +170,8 @@ class GoldairFan(ClimateEntity):
             await self._device.async_set_property(
                 PROPERTY_TO_DPS_ID[ATTR_FAN_MODE], dps_mode
             )
+        else:
+            raise ValueError("Fan mode can only be set when a preset mode is set")
 
     async def async_update(self):
         await self._device.async_refresh()

@@ -27,6 +27,7 @@ from .const import (
     ATTR_POWER_MODE_USER,
     ATTR_TARGET_TEMPERATURE,
     HVAC_MODE_TO_DPS_MODE,
+    POWER_LEVEL_STOP,
     POWER_LEVEL_TO_DPS_LEVEL,
     PRESET_MODE_TO_DPS_MODE,
     PROPERTY_TO_DPS_ID,
@@ -86,7 +87,7 @@ class GoldairHeater(ClimateEntity):
         """Return the icon to use in the frontend for this device."""
         hvac_mode = self.hvac_mode
         power_level = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_POWER_LEVEL])
-        if hvac_mode == HVAC_MODE_HEAT and power_level != "stop":
+        if hvac_mode == HVAC_MODE_HEAT and power_level != POWER_LEVEL_STOP:
             return "mdi:radiator"
         else:
             return "mdi:radiator-disabled"
@@ -149,16 +150,16 @@ class GoldairHeater(ClimateEntity):
         if not limits["min"] <= target_temperature <= limits["max"]:
             raise ValueError(
                 f"Target temperature ({target_temperature}) must be between "
-                f'{limits["min"]} and {limits["max"]}'
+                f'{limits["min"]} and {limits["max"]}.'
             )
 
-        if preset_mode == STATE_COMFORT:
-            await self._device.async_set_property(
-                PROPERTY_TO_DPS_ID[ATTR_TARGET_TEMPERATURE], target_temperature
-            )
-        elif preset_mode == STATE_ECO:
+        if preset_mode == STATE_ECO:
             await self._device.async_set_property(
                 PROPERTY_TO_DPS_ID[ATTR_ECO_TARGET_TEMPERATURE], target_temperature
+            )
+        else:
+            await self._device.async_set_property(
+                PROPERTY_TO_DPS_ID[ATTR_TARGET_TEMPERATURE], target_temperature
             )
 
     @property
