@@ -88,7 +88,7 @@ class TuyaLocalDevice(object):
             cached_state = self._get_cached_state()
 
         _LOGGER.debug(f"Inferring device type from cached state: {cached_state}")
-        if "1" not in cached_state:
+        if "1" not in cached_state and "3" in cached_state:
             _LOGGER.info(f"Detecting {self.name} as Kogan Heater")
             return CONF_TYPE_KOGAN_HEATER
         if "5" in cached_state and "3" not in cached_state and "103" in cached_state:
