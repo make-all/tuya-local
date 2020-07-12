@@ -45,10 +45,14 @@ class TestKoganSocket(IsolatedAsyncioTestCase):
 
     def test_is_on(self):
         self.dps[PROPERTY_TO_DPS_ID[ATTR_SWITCH]] = True
-        self.assertTrue(self.subject.is_on)
+        self.assertEqual(self.subject.is_on, True)
 
         self.dps[PROPERTY_TO_DPS_ID[ATTR_SWITCH]] = False
-        self.assertFalse(self.subject.is_on)
+        self.assertEqual(self.subject.is_on, False)
+
+    def test_is_on_when_unavailable(self):
+        self.dps[PROPERTY_TO_DPS_ID[ATTR_SWITCH]] = None
+        self.assertEqual(self.subject.is_on, STATE_UNAVAILABLE)
 
     async def test_turn_on(self):
         async with assert_device_properties_set(
