@@ -14,6 +14,9 @@ from .const import (
     ATTR_SWITCH,
     ATTR_TIMER,
     ATTR_VOLTAGE_V,
+    ATTR_ALT_CURRENT_A,
+    ATTR_ALT_CURRENT_POWER_W,
+    ATTR_ALT_VOLTAGE_V,
     PROPERTY_TO_DPS_ID,
 )
 
@@ -66,9 +69,14 @@ class KoganSocketSwitch(SwitchEntity):
         """Return the current power consumption in Watts"""
         pwr = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_CURRENT_POWER_W])
         if pwr is None:
-            return STATE_UNAVAILABLE
-        else:
-            return pwr / 10.0
+            # Some newer plugs have the measurements on different DPS ids
+            pwr = self._device.get_property(
+                PROPERTY_TO_DPS_ID[ATTR_ALT_CURRENT_POWER_W]
+            )
+            if pwr is None:
+                return STATE_UNAVAILABLE
+
+        return pwr / 10.0
 
     @property
     def device_state_attributes(self):
@@ -76,6 +84,14 @@ class KoganSocketSwitch(SwitchEntity):
         timer = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_TIMER])
         voltage = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_VOLTAGE_V])
         current = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_CURRENT_A])
+
+        # Some newer plugs have the measurements on different DPS ids
+        if voltage is None:
+            voltage = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_ALT_VOLTAGE_V])
+
+        if current is None:
+            current = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_ALT_CURRENT_A])
+
         return {
             ATTR_CURRENT_POWER_W: self.current_power_w,
             ATTR_CURRENT_A: None if current is None else current / 1000.0,

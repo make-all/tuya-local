@@ -100,6 +100,9 @@ class TuyaLocalDevice(object):
         if "5" in cached_state and "3" not in cached_state:
             _LOGGER.info(f"Detecting {self.name} as Kogan Switch")
             return CONF_TYPE_KOGAN_SWITCH
+        if "18" in cached_state:
+            _LOGGER.info(f"Detecting {self.name} as newer type of Kogan Switch")
+            return CONF_TYPE_KOGAN_SWITCH
         if "106" in cached_state:
             _LOGGER.info(f"Detecting {self.name} as Goldair GPPH Heater")
             return CONF_TYPE_GPPH_HEATER
