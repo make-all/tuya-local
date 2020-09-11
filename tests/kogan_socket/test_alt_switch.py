@@ -7,6 +7,7 @@ from homeassistant.const import STATE_UNAVAILABLE
 from custom_components.tuya_local.kogan_socket.const import (
     ATTR_SWITCH,
     ATTR_TIMER,
+    ATTR_ALT_TIMER,
     ATTR_ALT_CURRENT_A,
     ATTR_ALT_CURRENT_POWER_W,
     ATTR_ALT_VOLTAGE_V,
@@ -92,7 +93,7 @@ class TestKoganSocket(IsolatedAsyncioTestCase):
         self.assertEqual(self.subject.current_power_w, STATE_UNAVAILABLE)
 
     def test_device_state_attributes_set(self):
-        self.dps[PROPERTY_TO_DPS_ID[ATTR_TIMER]] = 1
+        self.dps[PROPERTY_TO_DPS_ID[ATTR_ALT_TIMER]] = 1
         self.dps[PROPERTY_TO_DPS_ID[ATTR_ALT_VOLTAGE_V]] = 2350
         self.dps[PROPERTY_TO_DPS_ID[ATTR_ALT_CURRENT_A]] = 1234
         self.dps[PROPERTY_TO_DPS_ID[ATTR_ALT_CURRENT_POWER_W]] = 5678
@@ -106,7 +107,7 @@ class TestKoganSocket(IsolatedAsyncioTestCase):
             },
         )
 
-        self.dps[PROPERTY_TO_DPS_ID[ATTR_TIMER]] = 0
+        self.dps[PROPERTY_TO_DPS_ID[ATTR_ALT_TIMER]] = 0
         self.dps[PROPERTY_TO_DPS_ID[ATTR_ALT_VOLTAGE_V]] = None
         self.dps[PROPERTY_TO_DPS_ID[ATTR_ALT_CURRENT_A]] = None
         self.dps[PROPERTY_TO_DPS_ID[ATTR_ALT_CURRENT_POWER_W]] = None

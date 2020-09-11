@@ -14,6 +14,7 @@ from .const import (
     ATTR_SWITCH,
     ATTR_TIMER,
     ATTR_VOLTAGE_V,
+    ATTR_ALT_TIMER,
     ATTR_ALT_CURRENT_A,
     ATTR_ALT_CURRENT_POWER_W,
     ATTR_ALT_VOLTAGE_V,
@@ -86,6 +87,9 @@ class KoganSocketSwitch(SwitchEntity):
         current = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_CURRENT_A])
 
         # Some newer plugs have the measurements on different DPS ids
+        if timer is None:
+            timer = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_ALT_TIMER])
+
         if voltage is None:
             voltage = self._device.get_property(PROPERTY_TO_DPS_ID[ATTR_ALT_VOLTAGE_V])
 

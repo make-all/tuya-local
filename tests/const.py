@@ -51,6 +51,7 @@ KOGAN_SOCKET_PAYLOAD = {
     "4": 200,
     "5": 460,
     "6": 2300,
+    "9": None,
     "18": None,
     "19": None,
     "20": None,
@@ -58,10 +59,11 @@ KOGAN_SOCKET_PAYLOAD = {
 
 KOGAN_SOCKET_PAYLOAD2 = {
     "1": True,
-    "2": 0,
+    "2": None,
     "4": None,
     "5": None,
     "6": None,
+    "9": 0,
     "18": 200,
     "19": 460,
     "20": 2300,
