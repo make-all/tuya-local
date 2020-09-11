@@ -75,13 +75,20 @@ Current temperature is also displayed.
   - **current voltage** (Volts)
   - **timer** (seconds) [provided as read only]
 
+Newer models with a USB socket are also supported.
+
 ---
 
 ### Device support
 
 Please note, this component is actively tested with the Goldair GPPH (inverter), GPDH420 (dehumidifier), Kogan SmarterHome 1500W Smart Panel Heater and Kogan SmarterHome Energy Monitoring SmartPlug. Theoretically it should also work with GECO, GEPH and GPCV heater devices, and GCPF315 fan and may work with the GPDH440 dehumidifier and any other Goldair heaters, dehumidifiers or fans and Kogan heaters and smartplugs based on the Tuya platform.
 
-GPCV support is based on feedback from etamtlosz on Issue #27. GECO support is based on work in KiLLeRRaT/homeassistant-goldair-climate and the feature set from the online manual for these heaters. GEPH heaters appear to be the same as the GECO270, so may also work with this setting.  This heater is almost compatible with the GPCV but without the Low/High mode. 
+GPCV support is based on feedback from @etamtlosz on upstream Issue #27. GECO support is based on work in [KiLLeRRaT/homeassistant-goldair-climate](https://github.com/KiLLeRRaT/homeassistant-goldair-climate) and the feature set from the online manual for these heaters. GEPH heaters appear to be the same as the GECO270, so may also work with this setting.  This heater is almost compatible with the GPCV but without the Low/High mode. 
+
+Support for newer Kogan Smartplugs with USB sockets on them is based on feedback from @botts7 on Issue #2.
+
+A number of other brands of plug seem to match the DPS indexes of either the older or newer Kogan Smartplugs, so it is likely to work with other brands of single energy monitoring smartplug also.
+
 
 ---
 
@@ -198,3 +205,4 @@ None of this would have been possible without some foundational discovery work t
 - [sean6541](https://github.com/sean6541)'s [tuya-homeassistant](https://github.com/sean6541/tuya-homeassistant) library giving an example of integrating Tuya devices with Home Assistant
 - [clach04](https://github.com/clach04)'s [python-tuya](https://github.com/clach04/python-tuya) library
 - [etamtlosz](https://github.com/etamtlosz) and [KiLLeRRaT](https://github.com/KiLLeRRaT) for their support and dev work towards GECO and GPCV heaters
+- [botts7](https://github.com/botts7) for support towards widening Kogan SmartPlug support.
