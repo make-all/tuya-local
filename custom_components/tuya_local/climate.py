@@ -48,7 +48,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         data[CONF_CLIMATE] = GoldairGPCVHeater(device)
     elif discovery_info[CONF_TYPE] == CONF_TYPE_KOGAN_HEATER:
         data[CONF_CLIMATE] = KoganHeater(device)
-    elif discovery_info{CONF_TYPE] == CONF_TYPE_GSH_HEATER:
+    elif discovery_info[CONF_TYPE] == CONF_TYPE_GSH_HEATER:
         data[CONF_CLIMATE] = AnderssonGSHHeater(device)
     else:
         raise ValueError("This device does not support working as a climate device")
