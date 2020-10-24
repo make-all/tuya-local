@@ -12,6 +12,7 @@ from custom_components.tuya_local.const import (
     CONF_TYPE_GECO_HEATER,
     CONF_TYPE_GPCV_HEATER,
     CONF_TYPE_GPPH_HEATER,
+    CONF_TYPE_GSH_HEATER,
     CONF_TYPE_KOGAN_HEATER,
     CONF_TYPE_KOGAN_SWITCH,
 )
@@ -23,6 +24,7 @@ from .const import (
     GECO_HEATER_PAYLOAD,
     GPCV_HEATER_PAYLOAD,
     GPPH_HEATER_PAYLOAD,
+    GSH_HEATER_PAYLOAD,
     KOGAN_HEATER_PAYLOAD,
     KOGAN_SOCKET_PAYLOAD,
 )
@@ -117,6 +119,10 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.assertEqual(
             await self.subject.async_inferred_type(), CONF_TYPE_KOGAN_SWITCH
         )
+
+    async def test_detects_gsh_heater_payload(self):
+        self.subject._cached_state = GSH_HEATER_PAYLOAD
+        self.assertEqual(await self.subject.async_inferred_type(), CONF_TYPE_GSH_HEATER)
 
     async def test_detection_returns_none_when_device_type_could_not_be_detected(self):
         self.subject._cached_state = {"1": False}

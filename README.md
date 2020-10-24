@@ -55,6 +55,14 @@ Current temperature is displayed, and current humidity is available as a propert
 
 Current temperature is also displayed.
 
+**Andersson Heaters**
+
+- **power** (on/off)
+- **mode** (ANTI-FREEZE/LOW/HIGH)
+- **target temperature** (`5`-`35` in °C)
+
+Current temperature is also displayed.
+
 ### Additional features
 
 **Light** (Goldair devices)
@@ -89,6 +97,7 @@ Support for newer Kogan Smartplugs with USB sockets on them is based on feedback
 
 A number of other brands of plug seem to match the DPS indexes of either the older or newer Kogan Smartplugs, so it is likely to work with other brands of single energy monitoring smartplug also.
 
+Support for heaters visually matching Andersson GSH 3.2 was added based on information from @awaismun on Issue #5.
 
 ---
 

@@ -17,6 +17,7 @@ from .const import (
     CONF_TYPE_GECO_HEATER,
     CONF_TYPE_GPCV_HEATER,
     CONF_TYPE_GPPH_HEATER,
+    CONF_TYPE_GSH_HEATER,
     CONF_TYPE_KOGAN_HEATER,
     CONF_TYPE_KOGAN_SWITCH,
     DOMAIN,
@@ -109,6 +110,9 @@ class TuyaLocalDevice(object):
         if "7" in cached_state:
             _LOGGER.info(f"Detecting {self.name} as Goldair GPCV Heater")
             return CONF_TYPE_GPCV_HEATER
+        if "12" in cached_state:
+            _LOGGER.info(f"Detecting {self.name} as Andersson GSH Heter")
+            return CONF_TYPE_GSH_HEATER
         if "3" in cached_state:
             _LOGGER.info(f"Detecting {self.name} as Goldair GECO Heater")
             return CONF_TYPE_GECO_HEATER

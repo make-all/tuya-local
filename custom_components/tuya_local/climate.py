@@ -12,6 +12,7 @@ from .const import (
     CONF_TYPE_GECO_HEATER,
     CONF_TYPE_GPCV_HEATER,
     CONF_TYPE_GPPH_HEATER,
+    CONF_TYPE_GSH_HEATER,
     CONF_TYPE_KOGAN_HEATER,
     CONF_CLIMATE,
 )
@@ -21,10 +22,11 @@ from .geco_heater.climate import GoldairGECOHeater
 from .gpcv_heater.climate import GoldairGPCVHeater
 from .heater.climate import GoldairHeater
 from .kogan_heater.climate import KoganHeater
+from .gsh_heater.climate import AnderssonGSHHeater
 
 
 async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
-    """Set up the Goldair climate device according to its type."""
+    """Set up the Tuya device according to its type."""
     data = hass.data[DOMAIN][discovery_info[CONF_DEVICE_ID]]
     device = data["device"]
 
@@ -46,6 +48,8 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         data[CONF_CLIMATE] = GoldairGPCVHeater(device)
     elif discovery_info[CONF_TYPE] == CONF_TYPE_KOGAN_HEATER:
         data[CONF_CLIMATE] = KoganHeater(device)
+    elif discovery_info{CONF_TYPE] == CONF_TYPE_GSH_HEATER:
+        data[CONF_CLIMATE] = AnderssonGSHHeater(device)
     else:
         raise ValueError("This device does not support working as a climate device")
 

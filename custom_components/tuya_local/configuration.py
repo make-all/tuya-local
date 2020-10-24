@@ -15,6 +15,7 @@ from .const import (
     CONF_TYPE_GECO_HEATER,
     CONF_TYPE_GPCV_HEATER,
     CONF_TYPE_GPPH_HEATER,
+    CONF_TYPE_GSH_HEATER,
     CONF_TYPE_KOGAN_HEATER,
     CONF_TYPE_KOGAN_SWITCH,
 )
@@ -34,6 +35,7 @@ INDIVIDUAL_CONFIG_SCHEMA_TEMPLATE = [
                 CONF_TYPE_FAN,
                 CONF_TYPE_GECO_HEATER,
                 CONF_TYPE_GPCV_HEATER,
+                CONF_TYPE_GSH_HEATER,
                 CONF_TYPE_KOGAN_HEATER,
                 CONF_TYPE_KOGAN_SWITCH,
             ]

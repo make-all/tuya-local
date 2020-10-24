@@ -68,3 +68,11 @@ KOGAN_SOCKET_PAYLOAD2 = {
     "19": 460,
     "20": 2300,
 }
+
+GSH_HEATER_PAYLOAD = {
+    "1": True,
+    "2": 22,
+    "3": 24,
+    "4": "low",
+    "12": 0,
+}
