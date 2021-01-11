@@ -99,6 +99,9 @@ class TuyaLocalDevice(object):
         if "8" in cached_state:
             _LOGGER.info(f"Detecting {self.name} as Goldair Fan")
             return CONF_TYPE_FAN
+        if "5" in cached_state and "2" in cached_state:
+            _LOGGER.info(f"Detecting {self.name} as Eurom Mon Soleil 600 Heater")
+            return CONF_TYPE_EUROM_600_HEATER
         if "5" in cached_state and "3" not in cached_state:
             _LOGGER.info(f"Detecting {self.name} as Kogan Switch")
             return CONF_TYPE_KOGAN_SWITCH
@@ -117,9 +120,6 @@ class TuyaLocalDevice(object):
         if "3" in cached_state:
             _LOGGER.info(f"Detecting {self.name} as Goldair GECO Heater")
             return CONF_TYPE_GECO_HEATER
-        if "1" in cached_state and "2" in cached_state and "5" in cached_state:
-            _LOGGER.info(f"Detecting {self.name} as Eurom Mon Soleil 600 Heater")
-            return CONF_TYPE_EUROM_600_HEATER
         _LOGGER.warning(f"Detection for {self.name} failed")
         return None
 
