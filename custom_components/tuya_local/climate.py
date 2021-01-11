@@ -10,6 +10,7 @@ from .const import (
     CONF_TYPE_DEHUMIDIFIER,
     CONF_TYPE_FAN,
     CONF_TYPE_GECO_HEATER,
+    CONF_TYPE_EUROM_600_HEATER,
     CONF_TYPE_GPCV_HEATER,
     CONF_TYPE_GPPH_HEATER,
     CONF_TYPE_GSH_HEATER,
@@ -19,6 +20,7 @@ from .const import (
 from .dehumidifier.climate import GoldairDehumidifier
 from .fan.climate import GoldairFan
 from .geco_heater.climate import GoldairGECOHeater
+from .eurom_600_heater.climate import EuromMonSoleil600Heater
 from .gpcv_heater.climate import GoldairGPCVHeater
 from .heater.climate import GoldairHeater
 from .kogan_heater.climate import KoganHeater
@@ -44,6 +46,8 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         data[CONF_CLIMATE] = GoldairFan(device)
     elif discovery_info[CONF_TYPE] == CONF_TYPE_GECO_HEATER:
         data[CONF_CLIMATE] = GoldairGECOHeater(device)
+    elif discovery_info[CONF_TYPE] == CONF_TYPE_EUROM_600_HEATER:
+        data[CONF_CLIMATE] = EuromMonSoleil600Heater(device)
     elif discovery_info[CONF_TYPE] == CONF_TYPE_GPCV_HEATER:
         data[CONF_CLIMATE] = GoldairGPCVHeater(device)
     elif discovery_info[CONF_TYPE] == CONF_TYPE_KOGAN_HEATER:
