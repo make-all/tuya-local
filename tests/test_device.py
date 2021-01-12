@@ -10,6 +10,7 @@ from custom_components.tuya_local.const import (
     CONF_TYPE_DEHUMIDIFIER,
     CONF_TYPE_FAN,
     CONF_TYPE_GECO_HEATER,
+    CONF_TYPE_EUROM_600_HEATER,
     CONF_TYPE_GPCV_HEATER,
     CONF_TYPE_GPPH_HEATER,
     CONF_TYPE_GSH_HEATER,
@@ -22,6 +23,7 @@ from .const import (
     DEHUMIDIFIER_PAYLOAD,
     FAN_PAYLOAD,
     GECO_HEATER_PAYLOAD,
+    EUROM_600_HEATER_PAYLOAD,
     GPCV_HEATER_PAYLOAD,
     GPPH_HEATER_PAYLOAD,
     GSH_HEATER_PAYLOAD,
@@ -79,6 +81,12 @@ class TestDevice(IsolatedAsyncioTestCase):
         await self.subject.async_inferred_type()
 
         self.subject.async_refresh.assert_awaited()
+
+    async def test_detects_eurom_600_heater_payload(self):
+        self.subject._cached_state = EUROM_600_HEATER_PAYLOAD
+        self.assertEqual(
+            await self.subject.async_inferred_type(), CONF_TYPE_EUROM_600_HEATER
+        )
 
     async def test_detects_geco_heater_payload(self):
         self.subject._cached_state = GECO_HEATER_PAYLOAD
