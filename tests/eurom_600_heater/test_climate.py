@@ -10,27 +10,27 @@ from homeassistant.components.climate.const import (
 )
 from homeassistant.const import ATTR_TEMPERATURE, STATE_UNAVAILABLE
 
-from custom_components.tuya_local.geco_heater.climate import GoldairGECOHeater
-from custom_components.tuya_local.geco_heater.const import (
+from custom_components.tuya_local.eurom_600_heater.climate import EuromMonSoleil600Heater
+from custom_components.tuya_local.eurom_600_heater.const import (
     ATTR_ERROR,
     ATTR_TARGET_TEMPERATURE,
     HVAC_MODE_TO_DPS_MODE,
     PROPERTY_TO_DPS_ID,
 )
 
-from ..const import GECO_HEATER_PAYLOAD
+from ..const import EUROM_600_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
 
 
-class TestGoldairGECOHeater(IsolatedAsyncioTestCase):
+class TestEuromMonSoleil600Heater(IsolatedAsyncioTestCase):
     def setUp(self):
         device_patcher = patch("custom_components.tuya_local.device.TuyaLocalDevice")
         self.addCleanup(device_patcher.stop)
         self.mock_device = device_patcher.start()
 
-        self.subject = GoldairGECOHeater(self.mock_device())
+        self.subject = EuromMonSoleil600Heater(self.mock_device())
 
-        self.dps = GECO_HEATER_PAYLOAD.copy()
+        self.dps = EUROM_600_HEATER_PAYLOAD.copy()
         self.subject._device.get_property.side_effect = lambda id: self.dps[id]
 
     def test_supported_features(self):
