@@ -6,7 +6,7 @@
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=make-all_tuya-local&metric=ncloc)](https://sonarcloud.io/dashboard?id=make-all_tuya-local)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=make-all_tuya-local&metric=coverage)](https://sonarcloud.io/dashboard?id=make-all_tuya-local)
 
-The `tuya_local` component integrates Goldair WiFi-enabled [heaters](http://www.goldair.co.nz/product-catalogue/heating/wifi-heaters), [dehumidifiers](http://www.goldair.co.nz/product-catalogue/heating/dehumidifiers) and [fans](http://www.goldair.co.nz/product-catalogue/cooling/pedestal-fans/40cm-dc-quiet-fan-with-wifi-and-remote-gcpf315) and Kogan WiFi-enabled [heaters](https://www.kogan.com/au/c/smarterhome-range/shop/heating-cooling/) and [plugs](https://www.kogan.com/au/shop/connected-home/smart-plug/) into Home Assistant, enabling control of setting the following parameters via the UI and the following services:
+The `tuya_local` component integrates Goldair WiFi-enabled [heaters](http://www.goldair.co.nz/product-catalogue/heating/wifi-heaters), [dehumidifiers](http://www.goldair.co.nz/product-catalogue/heating/dehumidifiers) and [fans](http://www.goldair.co.nz/product-catalogue/cooling/pedestal-fans/40cm-dc-quiet-fan-with-wifi-and-remote-gcpf315), Kogan WiFi-enabled [heaters](https://www.kogan.com/au/c/smarterhome-range/shop/heating-cooling/) and [plugs](https://www.kogan.com/au/shop/connected-home/smart-plug/), Andersson heaters and Eurom [heaters](https://eurom.nl/en/product-category/heating/wifi-heaters/) into Home Assistant, enabling control of setting the following parameters via the UI and the following services:
 
 ### Climate devices
 
@@ -63,6 +63,13 @@ Current temperature is also displayed.
 
 Current temperature is also displayed.
 
+**Eurom Heaters**
+
+- **power** (on/off)
+- **target temperature** (`15`-`35` in °C)
+
+Current temperature is also displayed.
+
 ### Additional features
 
 **Light** (Goldair devices)
@@ -98,6 +105,8 @@ Support for newer Kogan Smartplugs with USB sockets on them is based on feedback
 A number of other brands of plug seem to match the DPS indexes of either the older or newer Kogan Smartplugs, so it is likely to work with other brands of single energy monitoring smartplug also.
 
 Support for heaters visually matching Andersson GSH 3.2 was added based on information from @awaismun on Issue #5.
+
+Support for Eurom Mon Soleil 600 ceiling heaters was added by @FeikoJoosten. It is possible that this support will also work for other models such as Mon Soleil 610 wall panel heaters, and others in the range.
 
 ---
 
@@ -142,7 +151,7 @@ tuya_local:
 
 #### type
 
-&nbsp;&nbsp;&nbsp;&nbsp;_(string) (Optional)_ The type of Tuya device. `auto` to automatically detect the device type, or if that doesn't work, select from the available options `heater`, `geco_heater` `gpcv_heater`, `dehumidifier`, `fan`, `kogan_heater` or `kogan_switch`.
+&nbsp;&nbsp;&nbsp;&nbsp;_(string) (Optional)_ The type of Tuya device. `auto` to automatically detect the device type, or if that doesn't work, select from the available options `heater`, `geco_heater` `gpcv_heater`, `dehumidifier`, `fan`, `kogan_heater`, `gsh_heater`, `eurom_heater` or `kogan_switch`.
 
 &nbsp;&nbsp;&nbsp;&nbsp;_Default value: auto_
 
@@ -154,13 +163,13 @@ tuya_local:
 
 #### display_light
 
-&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this appliance's LED display control as a light (not supported for Kogan, GECO or GPCV Heaters, or switches).
+&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this appliance's LED display control as a light (not supported for Kogan, Andersson, Eurom, GECO or GPCV Heaters, or switches).
 
 &nbsp;&nbsp;&nbsp;&nbsp;_Default value: false_
 
 #### child_lock
 
-&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this appliances's child lock as a lock device (not supported for fans or switches).
+&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this appliances's child lock as a lock device (not supported for fans, switches, or Andersson and Eurom heaters).
 
 &nbsp;&nbsp;&nbsp;&nbsp;_Default value: false_
 
@@ -215,3 +224,5 @@ None of this would have been possible without some foundational discovery work t
 - [clach04](https://github.com/clach04)'s [python-tuya](https://github.com/clach04/python-tuya) library
 - [etamtlosz](https://github.com/etamtlosz) and [KiLLeRRaT](https://github.com/KiLLeRRaT) for their support and dev work towards GECO and GPCV heaters
 - [botts7](https://github.com/botts7) for support towards widening Kogan SmartPlug support.
+- [awaismun](https://github.com/awaismun) for assistance in supporting Andersson heaters.
+- [FeikoJoosten](https://github.com/FeikoJoosten) for development of support for Eurom heaters.
