@@ -10,7 +10,9 @@ from homeassistant.components.climate.const import (
 )
 from homeassistant.const import ATTR_TEMPERATURE, STATE_UNAVAILABLE
 
-from custom_components.tuya_local.eurom_600_heater.climate import EuromMonSoleil600Heater
+from custom_components.tuya_local.eurom_600_heater.climate import (
+    EuromMonSoleil600Heater,
+)
 from custom_components.tuya_local.eurom_600_heater.const import (
     ATTR_ERROR,
     ATTR_TARGET_TEMPERATURE,
