@@ -15,6 +15,7 @@ from .const import (
     CONF_TYPE_DEHUMIDIFIER,
     CONF_TYPE_FAN,
     CONF_TYPE_GECO_HEATER,
+    CONF_TYPE_EUROM_600_HEATER,
     CONF_TYPE_GPCV_HEATER,
     CONF_TYPE_GPPH_HEATER,
     CONF_TYPE_GSH_HEATER,
@@ -98,6 +99,9 @@ class TuyaLocalDevice(object):
         if "8" in cached_state:
             _LOGGER.info(f"Detecting {self.name} as Goldair Fan")
             return CONF_TYPE_FAN
+        if "5" in cached_state and "2" in cached_state and "4" not in cached_state:
+            _LOGGER.info(f"Detecting {self.name} as Eurom Mon Soleil 600 Heater")
+            return CONF_TYPE_EUROM_600_HEATER
         if "5" in cached_state and "3" not in cached_state:
             _LOGGER.info(f"Detecting {self.name} as Kogan Switch")
             return CONF_TYPE_KOGAN_SWITCH
@@ -113,7 +117,7 @@ class TuyaLocalDevice(object):
         if "12" in cached_state:
             _LOGGER.info(f"Detecting {self.name} as Andersson GSH Heter")
             return CONF_TYPE_GSH_HEATER
-        if "3" in cached_state:
+        if "3" in cached_state and "6" in cached_state:
             _LOGGER.info(f"Detecting {self.name} as Goldair GECO Heater")
             return CONF_TYPE_GECO_HEATER
         _LOGGER.warning(f"Detection for {self.name} failed")
