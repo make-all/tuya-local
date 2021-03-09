@@ -15,6 +15,8 @@ from .const import (
     CONF_TYPE_GPPH_HEATER,
     CONF_TYPE_GSH_HEATER,
     CONF_TYPE_KOGAN_HEATER,
+    CONF_TYPE_GARDENPAC_HEATPUMP,
+    CONF_TYPE_PURLINE_M100_HEATER,
     CONF_CLIMATE,
 )
 from .dehumidifier.climate import GoldairDehumidifier
@@ -24,6 +26,8 @@ from .eurom_600_heater.climate import EuromMonSoleil600Heater
 from .gpcv_heater.climate import GoldairGPCVHeater
 from .heater.climate import GoldairHeater
 from .kogan_heater.climate import KoganHeater
+from .gardenpac_heatpump.climate import GardenPACPoolHeatpump
+from .purline_m100_heater.climate import PurlineM100Heater
 from .gsh_heater.climate import AnderssonGSHHeater
 
 
@@ -54,6 +58,10 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         data[CONF_CLIMATE] = KoganHeater(device)
     elif discovery_info[CONF_TYPE] == CONF_TYPE_GSH_HEATER:
         data[CONF_CLIMATE] = AnderssonGSHHeater(device)
+    elif discovery_info[CONF_TYPE] == CONF_TYPE_GARDENPAC_HEATPUMP:
+        data[CONF_CLIMATE] = GardenPACPoolHeatpump(device)
+    elif discovery_info[CONF_TYPE] == CONF_TYPE_PURLINE_M100_HEATER:
+        data[CONF_CLIMATE] = PurlineM100Heater(device)
     else:
         raise ValueError("This device does not support working as a climate device")
 

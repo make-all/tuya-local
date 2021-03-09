@@ -6,10 +6,12 @@ from .const import (
     CONF_DEVICE_ID,
     CONF_TYPE,
     CONF_TYPE_KOGAN_SWITCH,
+    CONF_TYPE_PURLINE_M100_HEATER,
     CONF_TYPE_AUTO,
     CONF_SWITCH,
 )
 from .kogan_socket.switch import KoganSocketSwitch
+from .purline_m100_heater.switch import PurlineM100OpenWindowDetector
 
 
 async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
@@ -25,6 +27,8 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
 
     if discovery_info[CONF_TYPE] == CONF_TYPE_KOGAN_SWITCH:
         data[CONF_SWITCH] = KoganSocketSwitch(device)
+    elif discovery_info[CONF_TYPE] == CONF_TYPE_PURLINE_M100_HEATER:
+        data[CONF_SWITCH] = PurlineM100OpenWindowDetector(device)
     else:
         raise ValueError("This device does not support working as a switch")
 

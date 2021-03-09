@@ -10,10 +10,12 @@ from .const import (
     CONF_TYPE_DEHUMIDIFIER,
     CONF_TYPE_FAN,
     CONF_TYPE_GPPH_HEATER,
+    CONF_TYPE_PURLINE_M100_HEATER,
 )
 from .dehumidifier.light import GoldairDehumidifierLedDisplayLight
 from .fan.light import GoldairFanLedDisplayLight
 from .heater.light import GoldairHeaterLedDisplayLight
+from .purline_m100_heater.light import PurlineM100HeaterLedDisplayLight
 
 
 async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
@@ -33,6 +35,8 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         data[CONF_DISPLAY_LIGHT] = GoldairDehumidifierLedDisplayLight(device)
     elif discovery_info[CONF_TYPE] == CONF_TYPE_FAN:
         data[CONF_DISPLAY_LIGHT] = GoldairFanLedDisplayLight(device)
+    elif discovery_info[CONF_TYPE] == CONF_TYPE_PURLINE_M100_HEATER:
+        dataa[CONF_DISPLAY_LIGHT] = PurlineM100HeaterLedDisplayLight(device)
     else:
         raise ValueError("This device does not support panel lighting control.")
 

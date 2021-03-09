@@ -78,3 +78,29 @@ GSH_HEATER_PAYLOAD = {
     "4": "low",
     "12": 0,
 }
+
+GARDENPAC_HEATPUMP_PAYLOAD = {
+    "1": True,
+    "102": 28,
+    "103": True,
+    "104": 100,
+    "105": "warm",
+    "106": 30,
+    "107": 18,
+    "108": 40,
+    "115": 0,
+    "116": 0,
+    "117": True,
+}
+
+PURLINE_M100_HEATER_PAYLOAD = {
+    "1": True,
+    "2": 23,
+    "3": 23,
+    "5": "off",
+    "10": True,
+    "11": 0,
+    "12": 0,
+    "101": False,
+    "102": False,
+}

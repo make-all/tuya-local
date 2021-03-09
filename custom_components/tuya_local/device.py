@@ -13,14 +13,16 @@ from homeassistant.core import HomeAssistant
 from .const import (
     API_PROTOCOL_VERSIONS,
     CONF_TYPE_DEHUMIDIFIER,
+    CONF_TYPE_EUROM_600_HEATER,
     CONF_TYPE_FAN,
     CONF_TYPE_GECO_HEATER,
-    CONF_TYPE_EUROM_600_HEATER,
     CONF_TYPE_GPCV_HEATER,
     CONF_TYPE_GPPH_HEATER,
     CONF_TYPE_GSH_HEATER,
+    CONF_TYPE_GARDENPAC_HEATPUMP,
     CONF_TYPE_KOGAN_HEATER,
     CONF_TYPE_KOGAN_SWITCH,
+    CONF_TYPE_PURLINE_M100_HEATER,
     DOMAIN,
 )
 
@@ -99,6 +101,9 @@ class TuyaLocalDevice(object):
         if "8" in cached_state:
             _LOGGER.info(f"Detecting {self.name} as Goldair Fan")
             return CONF_TYPE_FAN
+        if "10" in cached_state and "101" in cached_state:
+            _LOGGER.info(f"Detecting {self.name} as Pur Line Hoti M100 heater")
+            return CONF_TYPE_PURLINE_M100_HEATER
         if "5" in cached_state and "2" in cached_state and "4" not in cached_state:
             _LOGGER.info(f"Detecting {self.name} as Eurom Mon Soleil 600 Heater")
             return CONF_TYPE_EUROM_600_HEATER
@@ -108,6 +113,9 @@ class TuyaLocalDevice(object):
         if "18" in cached_state:
             _LOGGER.info(f"Detecting {self.name} as newer type of Kogan Switch")
             return CONF_TYPE_KOGAN_SWITCH
+        if "106" in cached_state and "2" not in cached_state:
+            _LOGGER.info(f"Detecting {self.name} as GardenPAC Pool Heatpump")
+            return CONF_TYPE_GARDENPAC_HEATPUMP
         if "106" in cached_state:
             _LOGGER.info(f"Detecting {self.name} as Goldair GPPH Heater")
             return CONF_TYPE_GPPH_HEATER

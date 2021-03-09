@@ -11,14 +11,16 @@ from .const import (
     CONF_TYPE,
     CONF_TYPE_AUTO,
     CONF_TYPE_DEHUMIDIFIER,
+    CONF_TYPE_EUROM_600_HEATER,
     CONF_TYPE_FAN,
     CONF_TYPE_GECO_HEATER,
-    CONF_TYPE_EUROM_600_HEATER,
     CONF_TYPE_GPCV_HEATER,
     CONF_TYPE_GPPH_HEATER,
     CONF_TYPE_GSH_HEATER,
+    CONF_TYPE_GARDENPAC_HEATPUMP,
     CONF_TYPE_KOGAN_HEATER,
     CONF_TYPE_KOGAN_SWITCH,
+    CONF_TYPE_PURLINE_M100_HEATER,
 )
 
 INDIVIDUAL_CONFIG_SCHEMA_TEMPLATE = [
@@ -31,15 +33,17 @@ INDIVIDUAL_CONFIG_SCHEMA_TEMPLATE = [
         "type": vol.In(
             [
                 CONF_TYPE_AUTO,
-                CONF_TYPE_GPPH_HEATER,
                 CONF_TYPE_DEHUMIDIFIER,
+                CONF_TYPE_EUROM_600_HEATER,
                 CONF_TYPE_FAN,
                 CONF_TYPE_GECO_HEATER,
-                CONF_TYPE_EUROM_600_HEATER,
                 CONF_TYPE_GPCV_HEATER,
+                CONF_TYPE_GPPH_HEATER,
                 CONF_TYPE_GSH_HEATER,
+                CONF_TYPE_GARDENPAC_HEATPUMP,
                 CONF_TYPE_KOGAN_HEATER,
                 CONF_TYPE_KOGAN_SWITCH,
+                CONF_TYPE_PURLINE_M100_HEATER,
             ]
         ),
         "required": False,

@@ -6,7 +6,7 @@
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=make-all_tuya-local&metric=ncloc)](https://sonarcloud.io/dashboard?id=make-all_tuya-local)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=make-all_tuya-local&metric=coverage)](https://sonarcloud.io/dashboard?id=make-all_tuya-local)
 
-The `tuya_local` component integrates Goldair WiFi-enabled [heaters](http://www.goldair.co.nz/product-catalogue/heating/wifi-heaters), [dehumidifiers](http://www.goldair.co.nz/product-catalogue/heating/dehumidifiers) and [fans](http://www.goldair.co.nz/product-catalogue/cooling/pedestal-fans/40cm-dc-quiet-fan-with-wifi-and-remote-gcpf315), Kogan WiFi-enabled [heaters](https://www.kogan.com/au/c/smarterhome-range/shop/heating-cooling/) and [plugs](https://www.kogan.com/au/shop/connected-home/smart-plug/), Andersson heaters and Eurom [heaters](https://eurom.nl/en/product-category/heating/wifi-heaters/) into Home Assistant, enabling control of setting the following parameters via the UI and the following services:
+The `tuya_local` component integrates Goldair WiFi-enabled [heaters](http://www.goldair.co.nz/product-catalogue/heating/wifi-heaters), [dehumidifiers](http://www.goldair.co.nz/product-catalogue/heating/dehumidifiers) and [fans](http://www.goldair.co.nz/product-catalogue/cooling/pedestal-fans/40cm-dc-quiet-fan-with-wifi-and-remote-gcpf315), Kogan WiFi-enabled [heaters](https://www.kogan.com/au/c/smarterhome-range/shop/heating-cooling/) and [plugs](https://www.kogan.com/au/shop/connected-home/smart-plug/), Andersson heaters, Eurom [heaters](https://eurom.nl/en/product-category/heating/wifi-heaters/), Purline [heaters](https://www.purline.es/hoti-m100--ean-8436545097380.htm) and Garden PAC pool [heatpumps](https://www.iot-pool.com/en/products/bomba-de-calor-garden-pac-full-inverter) into Home Assistant, enabling control of setting the following parameters via the UI and the following services:
 
 ### Climate devices
 
@@ -70,15 +70,34 @@ Current temperature is also displayed.
 
 Current temperature is also displayed.
 
+**Garden PAC Pool Heatpumps**
+
+- **power** (on/off)
+- **mode** (silent/smart)
+- **target temperature** (`18`-`45` in °C)
+
+Current temperature is also displayed. Power level, operating mode are available as attributes.
+
+**Purline Hoti M100 Heaters**
+
+- **power** (heat/fan-only/off)
+- **mode** (Fan, 1-5, Auto)
+- **target temperature** (`16`-`35` in °C)
+- **swing** (on/off)
+
 ### Additional features
 
-**Light** (Goldair devices)
+**Light** (Goldair and Purline devices)
 
 - **LED display** (on/off)
 
 **Lock** (Goldair heaters and dehumidifiers)
 
 - **Child lock** (on/off)
+
+**Open Window Detector** (Purline devices)
+
+- **Open Window Detect** (on/off)
 
 ### Switch devices
 
@@ -107,6 +126,8 @@ A number of other brands of plug seem to match the DPS indexes of either the old
 Support for heaters visually matching Andersson GSH 3.2 was added based on information from @awaismun on Issue #5.
 
 Support for Eurom Mon Soleil 600 ceiling heaters was added by @FeikoJoosten. It is possible that this support will also work for other models such as Mon Soleil 610 wall panel heaters, and others in the range.
+
+Support for Purline Hoti M100 heaters and Garden PAC pool heatpumps were added based on information from @Xeovar on Issue #11.
 
 ---
 
@@ -151,7 +172,7 @@ tuya_local:
 
 #### type
 
-&nbsp;&nbsp;&nbsp;&nbsp;_(string) (Optional)_ The type of Tuya device. `auto` to automatically detect the device type, or if that doesn't work, select from the available options `heater`, `geco_heater` `gpcv_heater`, `dehumidifier`, `fan`, `kogan_heater`, `gsh_heater`, `eurom_heater` or `kogan_switch`.
+&nbsp;&nbsp;&nbsp;&nbsp;_(string) (Optional)_ The type of Tuya device. `auto` to automatically detect the device type, or if that doesn't work, select from the available options `heater`, `geco_heater` `gpcv_heater`, `dehumidifier`, `fan`, `kogan_heater`, `gsh_heater`, `eurom_heater`, `gardenpac_heatpump`, `purline_m100_heater`  or `kogan_switch`.
 
 &nbsp;&nbsp;&nbsp;&nbsp;_Default value: auto_
 
@@ -169,13 +190,13 @@ tuya_local:
 
 #### child_lock
 
-&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this appliances's child lock as a lock device (not supported for fans, switches, or Andersson and Eurom heaters).
+&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this appliances's child lock as a lock device (not supported for fans, switches, or Andersson ,Eurom, Purline heaters or Garden PAC heatpumps).
 
 &nbsp;&nbsp;&nbsp;&nbsp;_Default value: false_
 
 #### switch
 
-&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this device as a switch device (supported only for switches)
+&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this device as a switch device (supported only for switches and Purline heaters for the Open Window Detection)
 
 ## Heater gotchas
 
@@ -226,3 +247,4 @@ None of this would have been possible without some foundational discovery work t
 - [botts7](https://github.com/botts7) for support towards widening Kogan SmartPlug support.
 - [awaismun](https://github.com/awaismun) for assistance in supporting Andersson heaters.
 - [FeikoJoosten](https://github.com/FeikoJoosten) for development of support for Eurom heaters.
+- [Xeovar](https://github.com/Xeovar) for assistance in supporting Purline M100 heaters and Garden PAC pool heatpumps.
