@@ -12,7 +12,7 @@ from .const import (
 )
 
 
-class PurlinM100OpenWindowDetector(SwitchEntity):
+class PurlineM100OpenWindowDetector(SwitchEntity):
     """Representation of the Open Window Detection of a Purline M100 heater"""
 
     def __init__(self, device):

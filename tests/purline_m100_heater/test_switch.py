@@ -9,7 +9,7 @@ from custom_components.tuya_local.purline_m100_heater.const import (
     PROPERTY_TO_DPS_ID,
 )
 from custom_components.tuya_local.purline_m100_heater.switch import (
-    PurlinM100OpenWindowDetector,
+    PurlineM100OpenWindowDetector,
 )
 
 from ..const import PURLINE_M100_HEATER_PAYLOAD
@@ -22,7 +22,7 @@ class TestPulineOpenWindowDetector(IsolatedAsyncioTestCase):
         self.addCleanup(device_patcher.stop)
         self.mock_device = device_patcher.start()
 
-        self.subject = PurlinM100OpenWindowDetector(self.mock_device())
+        self.subject = PurlineM100OpenWindowDetector(self.mock_device())
 
         self.dps = PURLINE_M100_HEATER_PAYLOAD.copy()
         self.subject._device.get_property.side_effect = lambda id: self.dps[id]
