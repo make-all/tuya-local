@@ -1,0 +1,71 @@
+name: Goldair Fan
+legacy_type: fan
+primary_device:
+  entity: climate
+  legacy_class: ".fan.climate.GoldairFan"
+  icon: "mdi:fan"
+  dps:
+    - id: 1
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          value: "fan_only"
+      name: hvac_mode
+    - id: 2
+      type: integer
+      range:
+        constraint: preset_mode
+        conditions:
+          - value: normal
+            min: 1
+            max: 12
+          - value: eco
+            mapping:
+              - dps_val: 4
+                value: low
+              - dps_val: 8
+                value: medium
+              - dps_val: 12
+                value: high
+          - value: sleep
+            mapping:
+              - dps_val: 4
+                value: low
+              - dps_val: 8
+                value: medium
+              - dps_val: 12
+                value: high            
+      name: fan_mode
+    - id: 3
+      type: string
+      mapping:
+        - dps_val: normal
+          value: normal
+        - dps_val: nature
+          value: eco
+        - dps_val: sleep
+          value: sleep
+      name: preset_mode
+    - id: 8
+      type: string
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          value: "horizontal"
+      name: swing_mode
+secondary_devices:
+  - entity: light
+    legacy_class: ".fan.light.GoldairFanLedDisplayLight"
+    name: Panel Light
+    dps:
+      - id: 101
+        type: boolean
+        mapping:
+          - dps_val: false
+            icon: "mdi:led-on"
+          - dps_val: true
+            icon: "mdi:led-off"
+        name: switch

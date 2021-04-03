@@ -1,0 +1,94 @@
+name: Goldair Dehumidifier
+legacy_type: dehumidifier
+primary_device:
+  entity: climate
+  legacy_class: ".dehumidifier.climate.GoldairDehumidifier"
+  dps:
+    - id: 1
+      type: boolean
+      mapping:
+        - dps_val: False
+          value: "off"
+          icon: mdi:air-humidifier
+          icon_priority: 3
+        - dps_val: True
+          value: "dry"
+          icon: mdi:air-humidifier
+          icon_priority: 5
+      name: hvac_mode
+    - id: 2
+      type: string
+      mapping:
+        - dps_val: "0"
+          value: "Normal"
+        - dps_val: "1"
+          value: "Low"
+        - dps_val: "2"
+          value: "High"
+        - dps_val: "3"
+          value: "Dry clothes"
+          icon: "mdi:tshirt-crew-outline"
+          icon_priority: 4
+      name: preset_mode
+    - id: 4
+      type: integer
+      name: humidity
+    - id: 5
+      type: boolean
+      name: air_clean_on
+    - id: 6
+      type: string
+      mapping:
+        - dps_val: "1"
+          value: "low"
+        - dps_val: "3"
+          value: "high"
+      name: fan_mode
+    - id: 11
+      type: bitfield
+      mapping:
+        - dps_val: 8
+          value: "Tank full or missing"
+          icon: "mdi:cup-water"
+          icon_priority: 1
+        - dps_val: 0
+          value: "OK"
+      name: error
+      readonly: true
+      - id: 103
+      name: current_temperature
+      readonly: true
+    - id: 104
+      type: integer
+      name: current_humidity
+      readonly: true
+    - id: 105
+      type: boolean
+      name: defrosting
+      mapping:
+        dps_val: true
+        icon: "mdi:snowflake-melt"
+        icon_priority: 2
+      readonly: true
+secondary_devices:
+  - entity: light
+    legacy_class: ".dehumidifier.light.GoldairDehumifierLedDisplayLight"
+    name: Panel Light
+    dps:
+      - id: 102
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: true
+            icon: "mdi:led-on"
+          - dps_val: true
+            value: false
+            icon: "mdi:led-off"
+        name: switch
+  - entity: lock
+    legacy_class: ".dehumidifier.lock.GoldairDehumidifierChildLock"
+    name: Child Lock
+    dps:
+      - id: 7
+        type: boolean
+        name: lock

@@ -1,0 +1,109 @@
+name: Goldair GPPH Heater
+legacy_type: heater
+primary_device:
+  entity: climate
+  legacy_class: ".heater.climate.GoldairHeater"
+  dps:
+    - id: 1
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+          icon: "mdi:radiator-disabled"
+          icon_priority: 1
+        - dps_val: true
+          value: "heat"
+          icon: "mdi:radiator"
+          icon_priority: 3
+      name: hvac_mode
+    - id: 2
+      type: integer
+      range:
+        min: 5
+        max: 35
+      mapping:
+        constraint: preset_mode
+        conditions:
+          - value: eco
+            value-redirect: eco_temperature
+          - value: away
+            invalid: true
+      name: temperature
+    - id: 3
+      type: integer
+      readonly: true
+      name: current_temperature
+    - id: 4
+      type: string
+      mapping:
+        - dps_val: "C"
+          value: "comfort"
+        - dps_val: "ECO"
+          value: "eco"
+        - dps_val: "AF"
+          value: "away"
+      name: preset_mode
+    - id: 12
+      type: bitfield
+      mapping:
+        - dps_val: 0
+          value: OK
+      readonly: true
+      name: error
+    - id: 101
+      type: string
+      mapping:
+        - dps_val: "stop"
+          value: "Stop"
+          icon: "mdi:radiator-disabled"
+          icon_priority: 2
+        - dps_val: "1"
+        - dps_val: "2"
+        - dps_val: "3"
+        - dps_val: "4"
+        - dps_val: "5"
+      name: power_level
+    - id: 105
+      type: string
+      mapping:
+        - dps_val: "stop"
+          value: "Stop"
+        - dps_val: "auto"
+          value: "Auto"
+        - dps_val: "user"
+          value-redirect: power_level
+      name: swing_mode
+    - id: 106
+      value: integer
+      range:
+        min: 5
+        max: 21
+      mapping:
+        constraint: preset_mode
+        conditions:
+          - value: comfort
+            invalid: true
+          - value: away
+            invalid: true
+      hidden: true
+      name: eco_temperature
+secondary_devices:
+  - entity: light
+    legacy_class: ".heater.light.GoldairHeaterLedDisplayLight"
+    name: Panel Light
+    dps:
+      - id: 104
+        type: boolean
+        mapping:
+          - dps_val: false
+            icon: "mdi:led-on"
+          - dps_val: true
+            icon: "mdi:led-off"
+        name: switch
+  - entity: lock
+    legacy_class: ".heater.lock.GoldairHeaterChildLock"
+    name: Child Lock
+    dps:
+      - id: 6
+        type: boolean
+        name: lock

@@ -1,0 +1,25 @@
+name: Kogan Smart Switch
+legacy_type: kogan_switch
+primary_device:
+  entity: switch
+  legacy_class: ".kogan_socket.switch.KoganSocketSwitch"
+  class: outlet
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 2
+      type: integer
+      name: timer
+    - id: 4
+      type: integer
+      name: current_a
+      readonly: true
+    - id: 5
+      type: integer
+      name: current_power_w
+      readonly: true
+    - id: 6
+      type: integer
+      name: voltage_v
+      readonly: true

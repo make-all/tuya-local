@@ -1,0 +1,36 @@
+name: Eurom Mon Soleil 600 Heater
+legacy_type: eurom_heater
+primary_device:
+  entity: climate
+  legacy_class: ".eurom_600_heater.climate.EuromMonSoleil600Heater"
+  dps:
+    - id: 1
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+          icon: "mdi:radiator-disabled"
+          icon_priority: 1
+        - dps_val: true
+          value: "heat"
+          icon: "mdi:radiator"
+          icon_priority: 3
+      name: hvac_mode
+    - id: 2
+      type: integer
+      range:
+        min: 15
+        max: 35
+      name: temperature
+    - id: 5
+      type: integer
+      readonly: true
+      name: current_temperature
+    - id: 6
+      type: bitfield
+      mapping:
+        - dps_val: 0
+          value: "OK"
+      readonly: true
+      name: error
+      

@@ -1,0 +1,42 @@
+name: Goldair GECO Heater
+legacy_type: geco_heater
+primary_device:
+  entity: climate
+  legacy_class: ".geco_heater.climate.GoldairGECOHeater"
+  dps:
+    - id: 1
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+          icon: "mdi:radiator-disabled"
+        - dps_val: true
+          value: "heat"
+          icon: "mdi:radiator"
+      name: hvac_mode
+    - id: 3
+      type: integer
+      range:
+        min: 15
+        max: 35
+      name: temperature
+    - id: 4
+      type: integer
+      readonly: true
+      name: current_temperature
+    - id: 6
+      type: bitfield
+      mapping:
+        - dps_val: 0
+          value: "OK"
+      readonly: true
+      name: error
+secondary_devices:
+  - entity: lock
+    legacy_class: ".geco_heater.lock.GoldairGECOHeaterChildLock"
+    name: "Child Lock"
+    dps:
+      - id: 2
+        type: boolean
+        name: lock
+
