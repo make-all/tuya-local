@@ -1,6 +1,6 @@
 name: Goldair GPPH Heater
 legacy_type: heater
-primary_device:
+primary_entity:
   entity: climate
   legacy_class: ".heater.climate.GoldairHeater"
   dps:
@@ -24,10 +24,11 @@ primary_device:
       mapping:
         constraint: preset_mode
         conditions:
-          - value: eco
+          - dps_val: "ECO"
             value-redirect: eco_temperature
-          - value: away
+          - dps_val: "AF"
             invalid: true
+            value: 5
       name: temperature
     - id: 3
       type: integer
@@ -81,13 +82,13 @@ primary_device:
       mapping:
         constraint: preset_mode
         conditions:
-          - value: comfort
+          - dps_val: "C"
             invalid: true
-          - value: away
+          - dps_val: "AF"
             invalid: true
       hidden: true
       name: eco_temperature
-secondary_devices:
+secondary_entities:
   - entity: light
     legacy_class: ".heater.light.GoldairHeaterLedDisplayLight"
     name: Panel Light

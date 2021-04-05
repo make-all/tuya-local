@@ -1,6 +1,6 @@
 name: Purline Hoti M100 Heater
 legacy_type: purline_m100_heater
-primary_device:
+primary_entity:
   entity: climate
   legacy_class: ".purline_m100_heater.climate.PurlineM100Heater"
   dps:
@@ -15,11 +15,10 @@ primary_device:
         - dps_val: true
           constraint: preset_mode
           conditions:
-            - value: Fan
-              value-override: fan_only
+            - dps_val: "off"
+              value: fan_only
               icon: "mdi:fan"
               icon_priority: 2
-          value: 
           value: "heat"
           icon: "mdi:radiator"
           icon_priority: 3
@@ -66,7 +65,7 @@ primary_device:
           value: "off"
         - dps_val: true
           value: "vertical"
-secondary_devices:
+secondary_entities:
   - entity: light
     legacy_class: ".purline_m100_heater.light.PurlineM100HeaterLedDisplayLight"
     name: Panel Light

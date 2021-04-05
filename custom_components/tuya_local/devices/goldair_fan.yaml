@@ -1,6 +1,6 @@
 name: Goldair Fan
 legacy_type: fan
-primary_device:
+primary_entity:
   entity: climate
   legacy_class: ".fan.climate.GoldairFan"
   icon: "mdi:fan"
@@ -18,10 +18,11 @@ primary_device:
       range:
         constraint: preset_mode
         conditions:
-          - value: normal
-            min: 1
-            max: 12
-          - value: eco
+          - dps_val: normal
+            range:
+              min: 1
+              max: 12
+          - dps_val: nature
             mapping:
               - dps_val: 4
                 value: low
@@ -29,7 +30,7 @@ primary_device:
                 value: medium
               - dps_val: 12
                 value: high
-          - value: sleep
+          - dps_val: sleep
             mapping:
               - dps_val: 4
                 value: low
@@ -56,7 +57,7 @@ primary_device:
         - dps_val: true
           value: "horizontal"
       name: swing_mode
-secondary_devices:
+secondary_entities:
   - entity: light
     legacy_class: ".fan.light.GoldairFanLedDisplayLight"
     name: Panel Light

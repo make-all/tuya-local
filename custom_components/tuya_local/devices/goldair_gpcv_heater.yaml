@@ -1,6 +1,6 @@
 name: Goldair GPCV Heater
 legacy_type: gpcv_heater
-primary_device:
+primary_entity:
   entity: climate
   legacy_class: ".gpcv_heater.climate.GoldairGPCVHeater"
   dps:
@@ -39,7 +39,7 @@ primary_device:
         - dps_val: "High"
           value: "High"
       name: preset_mode
-secondary_devices:
+secondary_entities:
   - entity: lock
     legacy_class: ".gpcv_heater.lock.GoldairGPCVHeaterChildLock"
     name: "Child Lock"

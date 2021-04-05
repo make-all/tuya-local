@@ -1,6 +1,6 @@
 name: Goldair Dehumidifier
 legacy_type: dehumidifier
-primary_device:
+primary_entity:
   entity: climate
   legacy_class: ".dehumidifier.climate.GoldairDehumidifier"
   dps:
@@ -70,7 +70,7 @@ primary_device:
         icon: "mdi:snowflake-melt"
         icon_priority: 2
       readonly: true
-secondary_devices:
+secondary_entities:
   - entity: light
     legacy_class: ".dehumidifier.light.GoldairDehumifierLedDisplayLight"
     name: Panel Light
