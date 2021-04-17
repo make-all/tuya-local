@@ -6,6 +6,8 @@
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=make-all_tuya-local&metric=ncloc)](https://sonarcloud.io/dashboard?id=make-all_tuya-local)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=make-all_tuya-local&metric=coverage)](https://sonarcloud.io/dashboard?id=make-all_tuya-local)
 
+This is a Home Assistant add-on to support Wi-fi devices running Tuya firmware without going via the Tuya cloud.  Using this integration does not stop your devices from sending status to the Tuya cloud, so this should not be seen as a security measure, rather it improves speed and reliability by using local connections, and may unlock some features of your device, or even unlock whole devices, that are not supported by the Tuya cloud API.  Currently the focus is mainly on climate devices, which are not well supported by other similar integrations. The long term plan is to overhaul the architecture to make adding new devices a matter of adding a single configuration file. Until that is done I will not be adding simpler devices like switches and lights which can be covered by [rospogrigio/localtuya](https://github.com/rospogrigio/localtuya/).
+
 The `tuya_local` component integrates Goldair WiFi-enabled [heaters](http://www.goldair.co.nz/product-catalogue/heating/wifi-heaters), [dehumidifiers](http://www.goldair.co.nz/product-catalogue/heating/dehumidifiers) and [fans](http://www.goldair.co.nz/product-catalogue/cooling/pedestal-fans/40cm-dc-quiet-fan-with-wifi-and-remote-gcpf315), Kogan WiFi-enabled [heaters](https://www.kogan.com/au/c/smarterhome-range/shop/heating-cooling/) and [plugs](https://www.kogan.com/au/shop/connected-home/smart-plug/), Andersson heaters, Eurom [heaters](https://eurom.nl/en/product-category/heating/wifi-heaters/), Purline [heaters](https://www.purline.es/hoti-m100--ean-8436545097380.htm) and Garden PAC pool [heatpumps](https://www.iot-pool.com/en/products/bomba-de-calor-garden-pac-full-inverter) into Home Assistant, enabling control of setting the following parameters via the UI and the following services:
 
 ### Climate devices
@@ -239,11 +241,12 @@ Please report any issues and feel free to raise pull requests.
 
 None of this would have been possible without some foundational discovery work to get me started:
 
-- [nikrolls](https://github.com/nikrolls)'s [homeassistant-goldair-climate](https://github.com/nikrolls/homeassistant-goldair-climate) was the starting point for expanding to non-Goldair devices as well
-- [TarxBoy](https://github.com/TarxBoy)'s [investigation using codetheweb/tuyapi](https://github.com/codetheweb/tuyapi/issues/31) to figure out the correlation of the cryptic DPS states 
-- [sean6541](https://github.com/sean6541)'s [tuya-homeassistant](https://github.com/sean6541/tuya-homeassistant) library giving an example of integrating Tuya devices with Home Assistant
-- [clach04](https://github.com/clach04)'s [python-tuya](https://github.com/clach04/python-tuya) library
-- [etamtlosz](https://github.com/etamtlosz) and [KiLLeRRaT](https://github.com/KiLLeRRaT) for their support and dev work towards GECO and GPCV heaters
+- [nikrolls](https://github.com/nikrolls)'s [homeassistant-goldair-climate](https://github.com/nikrolls/homeassistant-goldair-climate) was the starting point for expanding to non-Goldair devices as well.
+- [TarxBoy](https://github.com/TarxBoy)'s [investigation using codetheweb/tuyapi](https://github.com/codetheweb/tuyapi/issues/31) to figure out the correlation of the cryptic DPS states .
+- [sean6541](https://github.com/sean6541)'s [tuya-homeassistant](https://github.com/sean6541/tuya-homeassistant) library giving an example of integrating Tuya devices with Home Assistant.
+- [clach04](https://github.com/clach04)'s [python-tuya](https://github.com/clach04/python-tuya) library.
+- [jasonacox](https://github.com/jasonacox)'s [tinytuya](https://github.com/jasonacox/tinytuya) library which improves on the original.
+- [etamtlosz](https://github.com/etamtlosz) and [KiLLeRRaT](https://github.com/KiLLeRRaT) for their support and dev work towards GECO and GPCV heaters.
 - [botts7](https://github.com/botts7) for support towards widening Kogan SmartPlug support.
 - [awaismun](https://github.com/awaismun) for assistance in supporting Andersson heaters.
 - [FeikoJoosten](https://github.com/FeikoJoosten) for development of support for Eurom heaters.

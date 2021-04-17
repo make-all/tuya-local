@@ -39,12 +39,12 @@ class TuyaLocalDevice(object):
             address (str): The network address.
             local_key (str): The encryption key.
         """
-        import pytuya
+        import tinytuya
 
         self._name = name
         self._api_protocol_version_index = None
         self._api_protocol_working = False
-        self._api = pytuya.Device(dev_id, address, local_key, "device")
+        self._api = tinytuya.Device(dev_id, address, local_key)
         self._refresh_task = None
         self._rotate_api_protocol_version()
 

@@ -38,7 +38,7 @@ from .const import (
 
 class TestDevice(IsolatedAsyncioTestCase):
     def setUp(self):
-        device_patcher = patch("pytuya.Device")
+        device_patcher = patch("tinytuya.Device")
         self.addCleanup(device_patcher.stop)
         self.mock_api = device_patcher.start()
 
@@ -50,9 +50,9 @@ class TestDevice(IsolatedAsyncioTestCase):
             "Some name", "some_dev_id", "some.ip.address", "some_local_key", self.hass()
         )
 
-    def test_configures_pytuya_correctly(self):
+    def test_configures_tinytuya_correctly(self):
         self.mock_api.assert_called_once_with(
-            "some_dev_id", "some.ip.address", "some_local_key", "device"
+            "some_dev_id", "some.ip.address", "some_local_key"
         )
         self.assertIs(self.subject._api, self.mock_api())
 
