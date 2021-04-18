@@ -4,9 +4,9 @@ API for Tuya Local devices.
 
 import json
 import logging
+import tinytuya
 from threading import Lock, Timer
 from time import time
-from tinytuya import CONTROL, Device as TuyaDevice
 
 
 from homeassistant.const import TEMP_CELSIUS
@@ -44,7 +44,7 @@ class TuyaLocalDevice(object):
         self._name = name
         self._api_protocol_version_index = None
         self._api_protocol_working = False
-        self._api = TuyaDevice(dev_id, address, local_key)
+        self._api = tinytuya.Device(dev_id, address, local_key)
         self._refresh_task = None
         self._rotate_api_protocol_version()
 
@@ -207,7 +207,7 @@ class TuyaLocalDevice(object):
 
     def _send_pending_updates(self):
         pending_properties = self._get_pending_properties()
-        payload = self._api.generate_payload(CONTROL, pending_properties)
+        payload = self._api.generate_payload(tinytuya.CONTROL, pending_properties)
 
         _LOGGER.debug(f"sending dps update: {json.dumps(pending_properties)}")
 

@@ -1,4 +1,5 @@
 import threading
+import tinytuya
 from datetime import datetime, timedelta
 from time import sleep, time
 from unittest import IsolatedAsyncioTestCase
@@ -337,7 +338,7 @@ class TestDevice(IsolatedAsyncioTestCase):
             self.subject._api.generate_payload.return_value = "payload"
             self.subject._send_pending_updates()
             self.subject._api.generate_payload.assert_called_once_with(
-                "set", {"1": True, "2": False}
+                tinytuya.CONTROL, {"1": True, "2": False}
             )
             self.subject._api._send_receive.assert_called_once_with("payload")
 
