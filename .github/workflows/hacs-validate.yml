@@ -4,7 +4,7 @@ on:
   push:
   pull_request:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '43 0 * * THU'
 
 jobs:
   validate:
@@ -12,7 +12,6 @@ jobs:
     steps:
       - uses: 'actions/checkout@v2'
       - name: HACS validation
-        uses: 'hacs/integration/action@main'
+        uses: 'hacs/action@main'
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CATEGORY: 'integration'
