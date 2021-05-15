@@ -3,7 +3,6 @@ from unittest.mock import AsyncMock, patch
 
 from homeassistant.components.climate.const import (
     ATTR_HVAC_MODE,
-    ATTR_PRESET_MODE,
     HVAC_MODE_HEAT,
     HVAC_MODE_OFF,
     SUPPORT_TARGET_TEMPERATURE,
@@ -16,7 +15,6 @@ from custom_components.tuya_local.eurom_600_heater.climate import (
 from custom_components.tuya_local.eurom_600_heater.const import (
     ATTR_ERROR,
     ATTR_TARGET_TEMPERATURE,
-    HVAC_MODE_TO_DPS_MODE,
     PROPERTY_TO_DPS_ID,
 )
 
@@ -37,7 +35,8 @@ class TestEuromMonSoleil600Heater(IsolatedAsyncioTestCase):
 
     def test_supported_features(self):
         self.assertEqual(
-            self.subject.supported_features, SUPPORT_TARGET_TEMPERATURE,
+            self.subject.supported_features,
+            SUPPORT_TARGET_TEMPERATURE,
         )
 
     def test_should_poll(self):
@@ -95,7 +94,8 @@ class TestEuromMonSoleil600Heater(IsolatedAsyncioTestCase):
 
     async def test_set_target_temperature_rounds_value_to_closest_integer(self):
         async with assert_device_properties_set(
-            self.subject._device, {PROPERTY_TO_DPS_ID[ATTR_TARGET_TEMPERATURE]: 25},
+            self.subject._device,
+            {PROPERTY_TO_DPS_ID[ATTR_TARGET_TEMPERATURE]: 25},
         ):
             await self.subject.async_set_target_temperature(24.6)
 
@@ -140,7 +140,7 @@ class TestEuromMonSoleil600Heater(IsolatedAsyncioTestCase):
             await self.subject.async_set_hvac_mode(HVAC_MODE_OFF)
 
     def test_error_state(self):
-        # There are currently no known error states; update this as they're discovered
+        # There are currently no known error states; update if discovered
         self.dps[PROPERTY_TO_DPS_ID[ATTR_ERROR]] = "something"
         self.assertEqual(
             self.subject.device_state_attributes, {ATTR_ERROR: "something"}

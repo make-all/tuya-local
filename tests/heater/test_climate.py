@@ -193,7 +193,8 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
 
     async def test_set_target_temperature_rounds_value_to_closest_integer(self):
         async with assert_device_properties_set(
-            self.subject._device, {PROPERTY_TO_DPS_ID[ATTR_TARGET_TEMPERATURE]: 25},
+            self.subject._device,
+            {PROPERTY_TO_DPS_ID[ATTR_TARGET_TEMPERATURE]: 25},
         ):
             await self.subject.async_set_target_temperature(24.6)
 
@@ -353,7 +354,8 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
 
     def test_power_levels(self):
         self.assertEqual(
-            self.subject.swing_modes, ["Stop", "1", "2", "3", "4", "5", "Auto"],
+            self.subject.swing_modes,
+            ["Stop", "1", "2", "3", "4", "5", "Auto"],
         )
 
     async def test_set_power_level_to_stop(self):

@@ -119,7 +119,8 @@ class TestKoganHeater(IsolatedAsyncioTestCase):
 
     async def test_set_target_temperature_rounds_value_to_closest_integer(self):
         async with assert_device_properties_set(
-            self.subject._device, {PROPERTY_TO_DPS_ID[ATTR_TARGET_TEMPERATURE]: 25},
+            self.subject._device,
+            {PROPERTY_TO_DPS_ID[ATTR_TARGET_TEMPERATURE]: 25},
         ):
             await self.subject.async_set_target_temperature(24.6)
 
@@ -201,7 +202,8 @@ class TestKoganHeater(IsolatedAsyncioTestCase):
     def test_device_state_attributes(self):
         self.dps[PROPERTY_TO_DPS_ID[ATTR_TIMER]] = 1
         self.assertEqual(
-            self.subject.device_state_attributes, {ATTR_TIMER: 1},
+            self.subject.device_state_attributes,
+            {ATTR_TIMER: 1},
         )
 
     async def test_update(self):

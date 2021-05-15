@@ -224,7 +224,8 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         ]
 
         async with assert_device_properties_set(
-            self.subject._device, {PROPERTY_TO_DPS_ID[ATTR_FAN_MODE]: "6"},
+            self.subject._device,
+            {PROPERTY_TO_DPS_ID[ATTR_FAN_MODE]: "6"},
         ):
             await self.subject.async_set_fan_mode(6)
 
@@ -251,7 +252,8 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         ]
 
         async with assert_device_properties_set(
-            self.subject._device, {PROPERTY_TO_DPS_ID[ATTR_FAN_MODE]: "4"},
+            self.subject._device,
+            {PROPERTY_TO_DPS_ID[ATTR_FAN_MODE]: "4"},
         ):
             await self.subject.async_set_fan_mode(1)
 
@@ -278,7 +280,8 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         ]
 
         async with assert_device_properties_set(
-            self.subject._device, {PROPERTY_TO_DPS_ID[ATTR_FAN_MODE]: "8"},
+            self.subject._device,
+            {PROPERTY_TO_DPS_ID[ATTR_FAN_MODE]: "8"},
         ):
             await self.subject.async_set_fan_mode(2)
 

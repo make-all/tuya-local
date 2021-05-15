@@ -192,7 +192,8 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         ]
 
         async with assert_device_properties_set(
-            self.subject._device, {PROPERTY_TO_DPS_ID[ATTR_TARGET_HUMIDITY]: 55},
+            self.subject._device,
+            {PROPERTY_TO_DPS_ID[ATTR_TARGET_HUMIDITY]: 55},
         ):
             await self.subject.async_set_humidity(53)
 
@@ -202,7 +203,8 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         ]
 
         async with assert_device_properties_set(
-            self.subject._device, {PROPERTY_TO_DPS_ID[ATTR_TARGET_HUMIDITY]: 50},
+            self.subject._device,
+            {PROPERTY_TO_DPS_ID[ATTR_TARGET_HUMIDITY]: 50},
         ):
             await self.subject.async_set_humidity(52)
 

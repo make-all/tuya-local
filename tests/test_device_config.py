@@ -37,10 +37,10 @@ def test_config_files_parse():
 
 def test_config_files_have_legacy_link():
     """
-       Initially, we require a link between the new style config, and the old
-       classes so we can transition over to the new config.  When the
-       transition is complete, we will drop the requirement, as new devices
-       will only be added as config files.
+    Initially, we require a link between the new style config, and the old
+    classes so we can transition over to the new config.  When the
+    transition is complete, we will drop the requirement, as new devices
+    will only be added as config files.
     """
     for cfg in available_configs():
         parsed = TuyaDeviceConfig(cfg)

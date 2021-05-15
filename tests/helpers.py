@@ -27,7 +27,9 @@ async def assert_device_properties_set(device: TuyaLocalDevice, properties: dict
 
 @asynccontextmanager
 async def assert_device_properties_set_optional(
-    device: TuyaLocalDevice, properties: dict, optional_properties: dict,
+    device: TuyaLocalDevice,
+    properties: dict,
+    optional_properties: dict,
 ):
     results = []
 

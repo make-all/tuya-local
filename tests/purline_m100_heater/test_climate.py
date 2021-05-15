@@ -111,7 +111,8 @@ class TestPulineM100Heater(IsolatedAsyncioTestCase):
 
     async def test_set_target_temperature_rounds_value_to_closest_integer(self):
         async with assert_device_properties_set(
-            self.subject._device, {PROPERTY_TO_DPS_ID[ATTR_TARGET_TEMPERATURE]: 25},
+            self.subject._device,
+            {PROPERTY_TO_DPS_ID[ATTR_TARGET_TEMPERATURE]: 25},
         ):
             await self.subject.async_set_target_temperature(24.6)
 
@@ -159,7 +160,8 @@ class TestPulineM100Heater(IsolatedAsyncioTestCase):
 
     async def test_turn_off(self):
         async with assert_device_properties_set(
-            self.subject._device, {PROPERTY_TO_DPS_ID[ATTR_HVAC_MODE]: False},
+            self.subject._device,
+            {PROPERTY_TO_DPS_ID[ATTR_HVAC_MODE]: False},
         ):
             await self.subject.async_set_hvac_mode(HVAC_MODE_OFF)
 
@@ -206,7 +208,8 @@ class TestPulineM100Heater(IsolatedAsyncioTestCase):
 
     def test_swing_modes(self):
         self.assertCountEqual(
-            self.subject.swing_modes, [SWING_OFF, SWING_VERTICAL],
+            self.subject.swing_modes,
+            [SWING_OFF, SWING_VERTICAL],
         )
 
     async def test_set_swing_mode_on(self):
