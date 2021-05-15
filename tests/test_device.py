@@ -322,6 +322,8 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.subject.set_property("1", False)
         self.subject._cached_state = {"1": True}
         self.assertEqual(self.subject.get_property("1"), False)
+        # wait for the debounce timer to avoid a teardown error
+        sleep(1)
 
     def test_debounces_multiple_set_calls_into_one_api_call(self):
         with patch("custom_components.tuya_local.device.Timer") as mock:
