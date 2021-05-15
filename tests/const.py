@@ -23,7 +23,7 @@ GPCV_HEATER_PAYLOAD = {
     "7": "Low",
 }
 
-EUROM_600_HEATER_PAYLOAD = {"1": True, "2": 15, "5": 18}
+EUROM_600_HEATER_PAYLOAD = {"1": True, "2": 15, "5": 18, "6": 0}
 
 GECO_HEATER_PAYLOAD = {"1": True, "2": True, "3": 30, "4": 25, "5": 0, "6": 0}
 
