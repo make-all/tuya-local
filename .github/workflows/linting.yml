@@ -18,6 +18,6 @@ jobs:
           pip install -r requirements-first.txt
           pip install --pre -r requirements-dev.txt
       - name: isort
-        run: isort --recursive --diff
+        run: isort --recursive --diff .
       - name: Black
         run: black --check .
