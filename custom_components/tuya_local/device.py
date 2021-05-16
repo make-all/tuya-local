@@ -14,19 +14,9 @@ from homeassistant.core import HomeAssistant
 
 from .const import (
     API_PROTOCOL_VERSIONS,
-    CONF_TYPE_DEHUMIDIFIER,
-    CONF_TYPE_EUROM_600_HEATER,
-    CONF_TYPE_FAN,
-    CONF_TYPE_GECO_HEATER,
-    CONF_TYPE_GPCV_HEATER,
-    CONF_TYPE_GPPH_HEATER,
-    CONF_TYPE_GSH_HEATER,
-    CONF_TYPE_GARDENPAC_HEATPUMP,
-    CONF_TYPE_KOGAN_HEATER,
-    CONF_TYPE_KOGAN_SWITCH,
-    CONF_TYPE_PURLINE_M100_HEATER,
     DOMAIN,
 )
+from .helpers.device_config import possible_matches
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -53,11 +43,13 @@ class TuyaLocalDevice(object):
         self._TEMPERATURE_UNIT = TEMP_CELSIUS
         self._hass = hass
 
-        # API calls to update Tuya devices are asynchronous and non-blocking. This means
-        # you can send a change and immediately request an updated state (like HA does),
-        # but because it has not yet finished processing you will be returned the old state.
-        # The solution is to keep a temporary list of changed properties that we can overlay
-        # onto the state while we wait for the board to update its switches.
+        # API calls to update Tuya devices are asynchronous and non-blocking.
+        # This means you can send a change and immediately request an updated
+        # state (like HA does), but because it has not yet finished processing
+        # you will be returned the old state.
+        # The solution is to keep a temporary list of changed properties that
+        # we can overlay onto the state while we wait for the board to update
+        # its switches.
         self._FAKE_IT_TIL_YOU_MAKE_IT_TIMEOUT = 10
         self._CACHE_TIMEOUT = 20
         self._CONNECTION_ATTEMPTS = 4
@@ -86,50 +78,27 @@ class TuyaLocalDevice(object):
         return self._TEMPERATURE_UNIT
 
     async def async_inferred_type(self):
+
         cached_state = self._get_cached_state()
         if "1" not in cached_state and "3" not in cached_state:
             await self.async_refresh()
             cached_state = self._get_cached_state()
 
         _LOGGER.debug(f"Inferring device type from cached state: {cached_state}")
-        if "1" not in cached_state and "3" in cached_state:
-            _LOGGER.info(f"Detecting {self.name} as Kogan Heater")
-            return CONF_TYPE_KOGAN_HEATER
-        if "5" in cached_state and "3" not in cached_state and "103" in cached_state:
-            _LOGGER.info(f"Detecting {self.name} as Goldair Dehumidifier")
-            return CONF_TYPE_DEHUMIDIFIER
-        if "8" in cached_state:
-            _LOGGER.info(f"Detecting {self.name} as Goldair Fan")
-            return CONF_TYPE_FAN
-        if "10" in cached_state and "101" in cached_state:
-            _LOGGER.info(f"Detecting {self.name} as Pur Line Hoti M100 heater")
-            return CONF_TYPE_PURLINE_M100_HEATER
-        if "5" in cached_state and "2" in cached_state and "4" not in cached_state:
-            _LOGGER.info(f"Detecting {self.name} as Eurom Mon Soleil 600 Heater")
-            return CONF_TYPE_EUROM_600_HEATER
-        if "5" in cached_state and "3" not in cached_state:
-            _LOGGER.info(f"Detecting {self.name} as Kogan Switch")
-            return CONF_TYPE_KOGAN_SWITCH
-        if "18" in cached_state:
-            _LOGGER.info(f"Detecting {self.name} as newer type of Kogan Switch")
-            return CONF_TYPE_KOGAN_SWITCH
-        if "106" in cached_state and "2" not in cached_state:
-            _LOGGER.info(f"Detecting {self.name} as GardenPAC Pool Heatpump")
-            return CONF_TYPE_GARDENPAC_HEATPUMP
-        if "106" in cached_state:
-            _LOGGER.info(f"Detecting {self.name} as Goldair GPPH Heater")
-            return CONF_TYPE_GPPH_HEATER
-        if "7" in cached_state:
-            _LOGGER.info(f"Detecting {self.name} as Goldair GPCV Heater")
-            return CONF_TYPE_GPCV_HEATER
-        if "12" in cached_state:
-            _LOGGER.info(f"Detecting {self.name} as Andersson GSH Heter")
-            return CONF_TYPE_GSH_HEATER
-        if "3" in cached_state and "6" in cached_state:
-            _LOGGER.info(f"Detecting {self.name} as Goldair GECO Heater")
-            return CONF_TYPE_GECO_HEATER
-        _LOGGER.warning(f"Detection for {self.name} failed")
-        return None
+        best_match = None
+        best_quality = 0
+        for config in possible_matches(cached_state):
+            quality = config.match_quality(cached_state)
+            _LOGGER.debug(f"Considering {config.name} with quality {quality}")
+            if quality > best_quality:
+                best_quality = quality
+                best_match = config
+
+        if best_match is None:
+            _LOGGER.warning(f"Detection for {self.name} failed")
+            return None
+
+        return best_match.legacy_type
 
     async def async_refresh(self):
         last_updated = self._get_cached_state()["updated_at"]

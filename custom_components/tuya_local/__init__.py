@@ -25,8 +25,6 @@ from .const import (
     CONF_SWITCH,
     DOMAIN,
 )
-from .device import TuyaLocalDevice
-from .config_flow import ConfigFlowHandler
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -106,6 +104,9 @@ async def async_update_entry(hass: HomeAssistant, entry: ConfigEntry):
 
 
 def setup_device(hass: HomeAssistant, config: dict):
+    """Setup a tuya device based on passed in config."""
+    from .device import TuyaLocalDevice
+
     _LOGGER.debug(f"Creating device: {config[CONF_DEVICE_ID]}")
     hass.data[DOMAIN] = hass.data.get(DOMAIN, {})
     device = TuyaLocalDevice(
