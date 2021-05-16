@@ -46,6 +46,16 @@ class TuyaDeviceConfig:
         return self.__config["name"]
 
     @property
+    def config(self):
+        """Return the config file associated with this device."""
+        return self.__fname
+
+    @property
+    def legacy_type(self):
+        """Return the legacy conf_type associated with this device."""
+        return self.__config.get("legacy_type", None)
+
+    @property
     def primary_entity(self):
         """Return the primary type of entity for this device."""
         return TuyaEntityConfig(self, self.__config["primary_entity"])
@@ -80,18 +90,12 @@ class TuyaEntityConfig:
     @property
     def name(self):
         """The friendly name for this entity."""
-        if "name" in self.__config:
-            return self.__config["name"]
-        else:
-            return self.__device.name
+        return self.__config.get("name", self.__device_name)
 
     @property
     def legacy_device(self):
         """Return the legacy device corresponding to this config."""
-        if "legacy_class" in self.__config:
-            return self.__config["legacy_class"]
-        else:
-            return None
+        return self.__config.get("legacy_class", None)
 
     @property
     def entity(self):
