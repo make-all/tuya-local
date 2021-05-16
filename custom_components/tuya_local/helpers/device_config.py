@@ -135,7 +135,6 @@ class TuyaDpsConfig:
     def isreadonly(self):
         return "readonly" in self.__config.keys() and self.__config["readonly"] is True
 
-    @property
     def map_from_dps(self, value):
         result = value
         if "mapping" in self.__config.keys():
@@ -151,7 +150,6 @@ class TuyaDpsConfig:
                     )
         return result
 
-    @property
     def map_to_dps(self, value):
         result = value
         if "mapping" in self.__config.keys():
