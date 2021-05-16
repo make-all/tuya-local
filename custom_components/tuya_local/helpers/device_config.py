@@ -15,6 +15,10 @@ _LOGGER = logging.getLogger("tuya_local")
 
 
 def _typematch(type, value):
+    # Workaround annoying legacy of bool being a subclass of int in Python
+    if type is int and isinstance(value, bool):
+        return False
+
     if isinstance(value, type):
         return True
     # Allow values embedded in strings if they can be converted
@@ -79,6 +83,22 @@ class TuyaDeviceConfig:
         _LOGGER.debug("Matched config for %s", self.name)
         return True
 
+    def match_quality(self, dps):
+        """Determine the match quality for the provided dps map."""
+        keys = list(dps.keys())
+        total = len(keys)
+        for d in self.primary_entity.dps():
+            if d.id not in keys or not _typematch(d.type, dps[d.id]):
+                return 0
+            keys.remove(d.id)
+
+        for dev in self.secondary_entities():
+            for d in dev.dps():
+                if d.id not in keys or not _typematch(d.type, dps[d.id]):
+                    return 0
+                keys.remove(d.id)
+        return (total - len(keys)) * 100 / total
+
 
 class TuyaEntityConfig:
     """Representation of an entity config for a supported entity."""
@@ -93,7 +113,7 @@ class TuyaEntityConfig:
         return self.__config.get("name", self.__device_name)
 
     @property
-    def legacy_device(self):
+    def legacy_class(self):
         """Return the legacy device corresponding to this config."""
         return self.__config.get("legacy_class", None)
 
@@ -176,3 +196,11 @@ def available_configs():
         for basename in sorted(files):
             if fnmatch(basename, "*.yaml"):
                 yield basename
+
+
+def possible_matches(dps):
+    """Return possible matching configs for a given set of dps values."""
+    for cfg in available_configs():
+        parsed = TuyaDeviceConfig(cfg)
+        if parsed.matches(dps):
+            yield parsed

@@ -53,22 +53,25 @@ KOGAN_SOCKET_PAYLOAD = {
     "4": 200,
     "5": 460,
     "6": 2300,
-    "9": None,
-    "18": None,
-    "19": None,
-    "20": None,
 }
 
 KOGAN_SOCKET_PAYLOAD2 = {
     "1": True,
-    "2": None,
-    "4": None,
-    "5": None,
-    "6": None,
     "9": 0,
     "18": 200,
     "19": 460,
     "20": 2300,
+}
+
+KOGAN_SOCKET_CLEAR_PAYLOAD = {
+    "2": None,
+    "4": None,
+    "5": None,
+    "6": None,
+    "9": None,
+    "18": None,
+    "19": None,
+    "20": None,
 }
 
 GSH_HEATER_PAYLOAD = {

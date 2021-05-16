@@ -1,6 +1,25 @@
 """Test the config parser"""
+import unittest
+
+from warnings import warn
+
+from custom_components.tuya_local.const import (
+    CONF_TYPE_DEHUMIDIFIER,
+    CONF_TYPE_EUROM_600_HEATER,
+    CONF_TYPE_FAN,
+    CONF_TYPE_GARDENPAC_HEATPUMP,
+    CONF_TYPE_GECO_HEATER,
+    CONF_TYPE_GPCV_HEATER,
+    CONF_TYPE_GPPH_HEATER,
+    CONF_TYPE_GSH_HEATER,
+    CONF_TYPE_KOGAN_HEATER,
+    CONF_TYPE_KOGAN_SWITCH,
+    CONF_TYPE_PURLINE_M100_HEATER,
+)
+
 from custom_components.tuya_local.helpers.device_config import (
     available_configs,
+    possible_matches,
     TuyaDeviceConfig,
 )
 
@@ -20,137 +39,151 @@ from .const import (
 )
 
 
-def test_can_find_config_files():
-    """Test that the config files can be found by the parser."""
-    found = False
-    for cfg in available_configs():
-        found = True
-        break
-    assert found
+class TestDeviceConfig(unittest.TestCase):
+    """Test the device config parser"""
 
+    def test_can_find_config_files(self):
+        """Test that the config files can be found by the parser."""
+        found = False
+        for cfg in available_configs():
+            found = True
+            break
+        self.assertTrue(found)
 
-def test_config_files_parse():
-    for cfg in available_configs():
-        parsed = TuyaDeviceConfig(cfg)
-        assert parsed.name is not None
+    def test_config_files_parse(self):
+        for cfg in available_configs():
+            parsed = TuyaDeviceConfig(cfg)
+            self.assertIsNotNone(parsed.name)
 
+    def test_config_files_have_legacy_link(self):
+        """
+        Initially, we require a link between the new style config, and the old
+        classes so we can transition over to the new config.  When the
+        transition is complete, we will drop the requirement, as new devices
+        will only be added as config files.
+        """
+        for cfg in available_configs():
+            parsed = TuyaDeviceConfig(cfg)
+            self.assertIsNotNone(parsed.legacy_type)
+            self.assertIsNotNone(parsed.primary_entity)
+            self.assertIsNotNone(parsed.primary_entity.legacy_class)
+            for e in parsed.secondary_entities():
+                self.assertIsNotNone(e.legacy_class)
 
-def test_config_files_have_legacy_link():
-    """
-    Initially, we require a link between the new style config, and the old
-    classes so we can transition over to the new config.  When the
-    transition is complete, we will drop the requirement, as new devices
-    will only be added as config files.
-    """
-    for cfg in available_configs():
-        parsed = TuyaDeviceConfig(cfg)
-        assert parsed.primary_entity is not None
-        assert parsed.primary_entity.legacy_device is not None
-        for e in parsed.secondary_entities():
-            assert e.legacy_device is not None
+    def _test_detect(self, payload, legacy_type, legacy_class):
+        """Test that payload is detected as the correct type and class."""
+        matched = False
+        false_matches = []
+        quality = 0
+        for cfg in possible_matches(payload):
+            self.assertTrue(cfg.matches(payload))
+            if cfg.legacy_type == legacy_type:
+                self.assertFalse(matched)
+                matched = True
+                quality = cfg.match_quality(payload)
+                self.assertEqual(cfg.primary_entity.legacy_class, legacy_class)
+            else:
+                false_matches.append(cfg)
 
+        self.assertTrue(matched)
+        if quality < 100:
+            warn(f"{legacy_type} detected with quality {quality}")
 
-def test_gpph_heater_detection():
-    """Test that the GPPH heater can be detected from its sample payload."""
-    parsed = TuyaDeviceConfig("goldair_gpph_heater.yaml")
-    assert parsed.primary_entity.legacy_device == ".heater.climate.GoldairHeater"
-    assert parsed.matches(GPPH_HEATER_PAYLOAD)
+        best_q = 0
+        for cfg in false_matches:
+            q = cfg.match_quality(payload)
+            if q > best_q:
+                best_q = q
+            warn(f"{legacy_type} also detectable as {cfg.legacy_type} with quality {q}")
 
+        self.assertGreater(quality, best_q)
 
-def test_gpcv_heater_detection():
-    """Test that the GPCV heater can be detected from its sample payload."""
-    parsed = TuyaDeviceConfig("goldair_gpcv_heater.yaml")
-    assert (
-        parsed.primary_entity.legacy_device == ".gpcv_heater.climate.GoldairGPCVHeater"
-    )
-    assert parsed.matches(GPCV_HEATER_PAYLOAD)
+    def test_gpph_heater_detection(self):
+        """Test that GPPH heater can be detected from its sample payload."""
+        self._test_detect(
+            GPPH_HEATER_PAYLOAD, CONF_TYPE_GPPH_HEATER, ".heater.climate.GoldairHeater"
+        )
 
+    def test_gpcv_heater_detection(self):
+        """Test that GPCV heater can be detected from its sample payload."""
+        self._test_detect(
+            GPCV_HEATER_PAYLOAD,
+            CONF_TYPE_GPCV_HEATER,
+            ".gpcv_heater.climate.GoldairGPCVHeater",
+        )
 
-def test_eurom_heater_detection():
-    """Test that the Eurom heater can be detected from its sample payload."""
-    parsed = TuyaDeviceConfig("eurom_600_heater.yaml")
-    assert (
-        parsed.primary_entity.legacy_device
-        == ".eurom_600_heater.climate.EuromMonSoleil600Heater"
-    )
-    assert parsed.matches(EUROM_600_HEATER_PAYLOAD)
+    def test_eurom_heater_detection(self):
+        """Test that Eurom heater can be detected from its sample payload."""
+        self._test_detect(
+            EUROM_600_HEATER_PAYLOAD,
+            CONF_TYPE_EUROM_600_HEATER,
+            ".eurom_600_heater.climate.EuromMonSoleil600Heater",
+        )
 
+    def test_geco_heater_detection(self):
+        """Test that GECO heater can be detected from its sample payload."""
+        self._test_detect(
+            GECO_HEATER_PAYLOAD,
+            CONF_TYPE_GECO_HEATER,
+            ".geco_heater.climate.GoldairGECOHeater",
+        )
 
-def test_geco_heater_detection():
-    """Test that the GECO heater can be detected from its sample payload."""
-    parsed = TuyaDeviceConfig("goldair_geco_heater.yaml")
-    assert (
-        parsed.primary_entity.legacy_device == ".geco_heater.climate.GoldairGECOHeater"
-    )
-    assert parsed.matches(GECO_HEATER_PAYLOAD)
+    def test_kogan_heater_detection(self):
+        """Test that Kogan heater can be detected from its sample payload."""
+        self._test_detect(
+            KOGAN_HEATER_PAYLOAD,
+            CONF_TYPE_KOGAN_HEATER,
+            ".kogan_heater.climate.KoganHeater",
+        )
 
+    def test_goldair_dehumidifier_detection(self):
+        """Test that Goldair dehumidifier can be detected from its sample payload."""
+        self._test_detect(
+            DEHUMIDIFIER_PAYLOAD,
+            CONF_TYPE_DEHUMIDIFIER,
+            ".dehumidifier.climate.GoldairDehumidifier",
+        )
 
-def test_kogan_heater_detection():
-    """Test that the Kogan heater can be detected from its sample payload."""
-    parsed = TuyaDeviceConfig("kogan_heater.yaml")
-    assert parsed.primary_entity.legacy_device == ".kogan_heater.climate.KoganHeater"
-    assert parsed.matches(KOGAN_HEATER_PAYLOAD)
+    def test_goldair_fan_detection(self):
+        """Test that Goldair fan can be detected from its sample payload."""
+        self._test_detect(FAN_PAYLOAD, CONF_TYPE_FAN, ".fan.climate.GoldairFan")
 
+    def test_kogan_socket_detection(self):
+        """Test that 1st gen Kogan Socket can be detected from its sample payload."""
+        self._test_detect(
+            KOGAN_SOCKET_PAYLOAD,
+            CONF_TYPE_KOGAN_SWITCH,
+            ".kogan_socket.switch.KoganSocketSwitch",
+        )
 
-def test_goldair_dehumidifier_detection():
-    """Test that the Goldair dehumidifier can be detected from its sample payload."""
-    parsed = TuyaDeviceConfig("goldair_dehumidifier.yaml")
-    assert (
-        parsed.primary_entity.legacy_device
-        == ".dehumidifier.climate.GoldairDehumidifier"
-    )
-    assert parsed.matches(DEHUMIDIFIER_PAYLOAD)
+    def test_kogan_socket2_detection(self):
+        """Test that 2nd gen Kogan Socket can be detected from its sample payload."""
+        self._test_detect(
+            KOGAN_SOCKET_PAYLOAD2,
+            CONF_TYPE_KOGAN_SWITCH,
+            ".kogan_socket.switch.KoganSocketSwitch",
+        )
 
+    def test_gsh_heater_detection(self):
+        """Test that GSH heater can be detected from its sample payload."""
+        self._test_detect(
+            GSH_HEATER_PAYLOAD,
+            CONF_TYPE_GSH_HEATER,
+            ".gsh_heater.climate.AnderssonGSHHeater",
+        )
 
-def test_goldair_fan_detection():
-    """Test that the Goldair fan can be detected from its sample payload."""
-    parsed = TuyaDeviceConfig("goldair_fan.yaml")
-    assert parsed.primary_entity.legacy_device == ".fan.climate.GoldairFan"
-    assert parsed.matches(FAN_PAYLOAD)
+    def test_gardenpac_heatpump_detection(self):
+        """Test that GardenPac heatpump can be detected from its sample payload."""
+        self._test_detect(
+            GARDENPAC_HEATPUMP_PAYLOAD,
+            CONF_TYPE_GARDENPAC_HEATPUMP,
+            ".gardenpac_heatpump.climate.GardenPACPoolHeatpump",
+        )
 
-
-def test_kogan_socket_detection():
-    """Test that the 1st gen Kogan Socket can be detected from its sample payload."""
-    parsed = TuyaDeviceConfig("kogan_switch.yaml")
-    assert (
-        parsed.primary_entity.legacy_device == ".kogan_socket.switch.KoganSocketSwitch"
-    )
-    assert parsed.matches(KOGAN_SOCKET_PAYLOAD)
-
-
-def test_kogan_socket2_detection():
-    """Test that the 2nd gen Kogan Socket can be detected from its sample payload."""
-    parsed = TuyaDeviceConfig("kogan_switch2.yaml")
-    assert (
-        parsed.primary_entity.legacy_device == ".kogan_socket.switch.KoganSocketSwitch"
-    )
-    assert parsed.matches(KOGAN_SOCKET_PAYLOAD2)
-
-
-def test_gsh_heater_detection():
-    """Test that the GSH heater can be detected from its sample payload."""
-    parsed = TuyaDeviceConfig("andersson_gsh_heater.yaml")
-    assert (
-        parsed.primary_entity.legacy_device == ".gsh_heater.climate.AnderssonGSHHeater"
-    )
-    assert parsed.matches(GSH_HEATER_PAYLOAD)
-
-
-def test_gardenpac_heatpump_detection():
-    """Test that the GardenPac heatpump can be detected from its sample payload."""
-    parsed = TuyaDeviceConfig("gardenpac_heatpump.yaml")
-    assert (
-        parsed.primary_entity.legacy_device
-        == ".gardenpac_heatpump.climate.GardenPACPoolHeatpump"
-    )
-    assert parsed.matches(GARDENPAC_HEATPUMP_PAYLOAD)
-
-
-def test_purline_heater_detection():
-    """Test that the Purline heater can be detected from its sample payload."""
-    parsed = TuyaDeviceConfig("purline_m100_heater.yaml")
-    assert (
-        parsed.primary_entity.legacy_device
-        == ".purline_m100_heater.climate.PurlineM100Heater"
-    )
-    assert parsed.matches(PURLINE_M100_HEATER_PAYLOAD)
+    def test_purline_heater_detection(self):
+        """Test that Purline heater can be detected from its sample payload."""
+        self._test_detect(
+            PURLINE_M100_HEATER_PAYLOAD,
+            CONF_TYPE_PURLINE_M100_HEATER,
+            ".purline_m100_heater.climate.PurlineM100Heater",
+        )

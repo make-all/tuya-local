@@ -13,7 +13,7 @@ from custom_components.tuya_local.kogan_socket.const import (
 )
 from custom_components.tuya_local.kogan_socket.switch import KoganSocketSwitch
 
-from ..const import KOGAN_SOCKET_PAYLOAD
+from ..const import KOGAN_SOCKET_PAYLOAD, KOGAN_SOCKET_CLEAR_PAYLOAD
 from ..helpers import assert_device_properties_set
 
 
@@ -25,7 +25,11 @@ class TestKoganSocket(IsolatedAsyncioTestCase):
 
         self.subject = KoganSocketSwitch(self.mock_device())
 
-        self.dps = KOGAN_SOCKET_PAYLOAD.copy()
+        # since the socket needs to handle both types, give the mock some
+        # dummy fields to prevent breakage.
+        self.dps = KOGAN_SOCKET_CLEAR_PAYLOAD.copy()
+        self.dps.update(KOGAN_SOCKET_PAYLOAD)
+
         self.subject._device.get_property.side_effect = lambda id: self.dps[id]
 
     def test_should_poll(self):
