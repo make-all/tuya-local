@@ -115,7 +115,7 @@ class TuyaEntityConfig:
     @property
     def legacy_class(self):
         """Return the legacy device corresponding to this config."""
-        return self.__config.get("legacy_class", None)
+        return "custom_components.tuya_local" + self.__config.get("legacy_class", None)
 
     @property
     def entity(self):
@@ -204,3 +204,18 @@ def possible_matches(dps):
         parsed = TuyaDeviceConfig(cfg)
         if parsed.matches(dps):
             yield parsed
+
+
+def config_for_legacy_use(conf_type):
+    """
+    Return a config to use with config_type for legacy transition.
+    Note: as there are two variants for Kogan Socket, this is not guaranteed
+    to be the correct config for the device, so only use it for looking up
+    the legacy class during the transition period.
+    """
+    for cfg in available_configs():
+        parsed = TuyaDeviceConfig(cfg)
+        if parsed.legacy_type == conf_type:
+            return parsed
+
+    return None

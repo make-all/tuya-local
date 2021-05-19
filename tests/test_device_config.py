@@ -19,6 +19,7 @@ from custom_components.tuya_local.const import (
 
 from custom_components.tuya_local.helpers.device_config import (
     available_configs,
+    config_for_legacy_use,
     possible_matches,
     TuyaDeviceConfig,
 )
@@ -81,7 +82,10 @@ class TestDeviceConfig(unittest.TestCase):
                 self.assertFalse(matched)
                 matched = True
                 quality = cfg.match_quality(payload)
-                self.assertEqual(cfg.primary_entity.legacy_class, legacy_class)
+                self.assertEqual(
+                    cfg.primary_entity.legacy_class,
+                    "custom_components.tuya_local" + legacy_class,
+                )
             else:
                 false_matches.append(cfg)
 
@@ -97,6 +101,13 @@ class TestDeviceConfig(unittest.TestCase):
             warn(f"{legacy_type} also detectable as {cfg.legacy_type} with quality {q}")
 
         self.assertGreater(quality, best_q)
+
+        # Ensure the same correct config is returned when looked up by type
+        cfg = config_for_legacy_use(legacy_type)
+        self.assertEqual(
+            cfg.primary_entity.legacy_class,
+            "custom_components.tuya_local" + legacy_class,
+        )
 
     def test_gpph_heater_detection(self):
         """Test that GPPH heater can be detected from its sample payload."""

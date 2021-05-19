@@ -2,6 +2,7 @@
 Setup for different kinds of Tuya climate devices
 """
 import logging
+from pydoc import locate
 
 from . import DOMAIN
 from .const import (
@@ -9,17 +10,8 @@ from .const import (
     CONF_DEVICE_ID,
     CONF_TYPE,
     CONF_TYPE_AUTO,
-    CONF_TYPE_DEHUMIDIFIER,
-    CONF_TYPE_GECO_HEATER,
-    CONF_TYPE_GPCV_HEATER,
-    CONF_TYPE_GPPH_HEATER,
-    CONF_TYPE_KOGAN_HEATER,
 )
-from .dehumidifier.lock import GoldairDehumidifierChildLock
-from .geco_heater.lock import GoldairGECOHeaterChildLock
-from .gpcv_heater.lock import GoldairGPCVHeaterChildLock
-from .heater.lock import GoldairHeaterChildLock
-from .kogan_heater.lock import KoganHeaterChildLock
+from .helpers.device_config import config_for_legacy_use
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -36,18 +28,20 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         if discovery_info[CONF_TYPE] is None:
             raise ValueError(f"Unable to detect type for device {device.name}")
 
-    if discovery_info[CONF_TYPE] == CONF_TYPE_GPPH_HEATER:
-        data[CONF_CHILD_LOCK] = GoldairHeaterChildLock(device)
-    elif discovery_info[CONF_TYPE] == CONF_TYPE_DEHUMIDIFIER:
-        data[CONF_CHILD_LOCK] = GoldairDehumidifierChildLock(device)
-    elif discovery_info[CONF_TYPE] == CONF_TYPE_GECO_HEATER:
-        data[CONF_CHILD_LOCK] = GoldairGECOHeaterChildLock(device)
-    elif discovery_info[CONF_TYPE] == CONF_TYPE_GPCV_HEATER:
-        data[CONF_CHILD_LOCK] = GoldairGPCVHeaterChildLock(device)
-    elif discovery_info[CONF_TYPE] == CONF_TYPE_KOGAN_HEATER:
-        data[CONF_CHILD_LOCK] = KoganHeaterChildLock(device)
-    else:
-        raise ValueError("This device does not support child lock.")
+    cfg = config_for_legacy_use(discovery_info[CONF_TYPE])
+    ecfg = cfg.primary_entity
+    if ecfg.entity != "lock":
+        for ecfg in cfg.secondary_entities():
+            if ecfg.entity == "lock":
+                break
+        if ecfg.entity != "lock":
+            raise ValueError(f"{device.name} does not support use as a lock device.")
+
+    legacy_class = locate(ecfg.legacy_class)
+    if legacy_class is None:
+        raise TypeError(f"No legacy class {ecfg.legacy_class} exists.")
+
+    data[CONF_CHILD_LOCK] = legacy_class(device)
 
     if CONF_CHILD_LOCK in data:
         async_add_entities([data[CONF_CHILD_LOCK]])
