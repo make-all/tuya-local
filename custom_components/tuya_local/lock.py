@@ -38,13 +38,10 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
             raise ValueError(f"{device.name} does not support use as a lock device.")
 
     legacy_class = locate(ecfg.legacy_class)
-    if legacy_class is None:
-        raise TypeError(f"No legacy class {ecfg.legacy_class} exists.")
-
+    # Instantiate it: Sonarcloud thinks this is a blocker bug, and legacy_class
+    # is not callable, but the unit tests show the object is created...
     data[CONF_CHILD_LOCK] = legacy_class(device)
-
-    if CONF_CHILD_LOCK in data:
-        async_add_entities([data[CONF_CHILD_LOCK]])
+    async_add_entities([data[CONF_CHILD_LOCK]])
 
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
