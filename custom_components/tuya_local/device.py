@@ -16,7 +16,6 @@ from .const import (
     API_PROTOCOL_VERSIONS,
     DOMAIN,
 )
-from .helpers.device_config import possible_matches
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -78,6 +77,8 @@ class TuyaLocalDevice(object):
         return self._TEMPERATURE_UNIT
 
     async def async_inferred_type(self):
+
+        from .helpers.device_config import possible_matches
 
         cached_state = self._get_cached_state()
         if "1" not in cached_state and "3" not in cached_state:
