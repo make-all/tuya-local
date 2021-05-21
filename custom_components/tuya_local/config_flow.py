@@ -5,7 +5,8 @@ from homeassistant import config_entries, data_entry_flow
 from homeassistant.const import CONF_HOST, CONF_NAME
 from homeassistant.core import HomeAssistant, callback
 
-from . import DOMAIN, individual_config_schema, TuyaLocalDevice
+from . import DOMAIN, individual_config_schema
+from .device import TuyaLocalDevice
 from .const import CONF_DEVICE_ID, CONF_LOCAL_KEY
 
 _LOGGER = logging.getLogger(__name__)
