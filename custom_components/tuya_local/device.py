@@ -9,13 +9,17 @@ from threading import Lock, Timer
 from time import time
 
 
-from homeassistant.const import TEMP_CELSIUS
+from homeassistant.const import CONF_HOST, CONF_NAME, TEMP_CELSIUS
 from homeassistant.core import HomeAssistant
 
 from .const import (
     API_PROTOCOL_VERSIONS,
+    CONF_DEVICE_ID,
+    CONF_LOCAL_KEY,
     DOMAIN,
 )
+from .helpers.device_config import possible_matches
+
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -77,8 +81,6 @@ class TuyaLocalDevice(object):
         return self._TEMPERATURE_UNIT
 
     async def async_inferred_type(self):
-
-        from .helpers.device_config import possible_matches
 
         cached_state = self._get_cached_state()
         if "1" not in cached_state and "3" not in cached_state:
@@ -246,3 +248,25 @@ class TuyaLocalDevice(object):
         keys = list(obj.keys())
         values = list(obj.values())
         return keys[values.index(value)] if value in values else fallback
+
+
+def setup_device(hass: HomeAssistant, config: dict):
+    """Setup a tuya device based on passed in config."""
+
+    _LOGGER.debug(f"Creating device: {config[CONF_DEVICE_ID]}")
+    hass.data[DOMAIN] = hass.data.get(DOMAIN, {})
+    device = TuyaLocalDevice(
+        config[CONF_NAME],
+        config[CONF_DEVICE_ID],
+        config[CONF_HOST],
+        config[CONF_LOCAL_KEY],
+        hass,
+    )
+    hass.data[DOMAIN][config[CONF_DEVICE_ID]] = {"device": device}
+
+    return device
+
+
+def delete_device(hass: HomeAssistant, config: dict):
+    _LOGGER.debug(f"Deleting device: {config[CONF_DEVICE_ID]}")
+    del hass.data[DOMAIN][config[CONF_DEVICE_ID]]["device"]

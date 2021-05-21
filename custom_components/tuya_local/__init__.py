@@ -11,9 +11,7 @@ import logging
 import homeassistant.helpers.config_validation as cv
 import voluptuous as vol
 from homeassistant.config_entries import SOURCE_IMPORT, ConfigEntry
-from homeassistant.const import CONF_HOST, CONF_NAME
 from homeassistant.core import HomeAssistant
-from homeassistant.helpers.discovery import async_load_platform
 
 from .configuration import individual_config_schema
 from .const import (
@@ -21,10 +19,10 @@ from .const import (
     CONF_CLIMATE,
     CONF_DEVICE_ID,
     CONF_DISPLAY_LIGHT,
-    CONF_LOCAL_KEY,
     CONF_SWITCH,
     DOMAIN,
 )
+from .device import setup_device, delete_device
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -101,26 +99,3 @@ async def async_update_entry(hass: HomeAssistant, entry: ConfigEntry):
     _LOGGER.debug(f"Updating entry for device: {entry.data[CONF_DEVICE_ID]}")
     await async_unload_entry(hass, entry)
     await async_setup_entry(hass, entry)
-
-
-def setup_device(hass: HomeAssistant, config: dict):
-    """Setup a tuya device based on passed in config."""
-    from .device import TuyaLocalDevice
-
-    _LOGGER.debug(f"Creating device: {config[CONF_DEVICE_ID]}")
-    hass.data[DOMAIN] = hass.data.get(DOMAIN, {})
-    device = TuyaLocalDevice(
-        config[CONF_NAME],
-        config[CONF_DEVICE_ID],
-        config[CONF_HOST],
-        config[CONF_LOCAL_KEY],
-        hass,
-    )
-    hass.data[DOMAIN][config[CONF_DEVICE_ID]] = {"device": device}
-
-    return device
-
-
-def delete_device(hass: HomeAssistant, config: dict):
-    _LOGGER.debug(f"Deleting device: {config[CONF_DEVICE_ID]}")
-    del hass.data[DOMAIN][config[CONF_DEVICE_ID]]["device"]

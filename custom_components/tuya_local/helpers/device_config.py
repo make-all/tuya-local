@@ -8,9 +8,8 @@ from os.path import join, dirname
 from fnmatch import fnmatch
 from homeassistant.util.yaml import load_yaml
 
-import custom_components.tuya_local.devices
+import custom_components.tuya_local.devices as config_dir
 
-_CONFIG_DIR = dirname(custom_components.tuya_local.devices.__file__)
 _LOGGER = logging.getLogger("tuya_local")
 
 
@@ -39,6 +38,7 @@ class TuyaDeviceConfig:
         """Initialize the device config.
         Args:
             fname (string): The filename of the yaml config to load."""
+        _CONFIG_DIR = dirname(config_dir.__file__)
         self.__fname = fname
         filename = join(_CONFIG_DIR, fname)
         self.__config = load_yaml(filename)
@@ -192,6 +192,8 @@ class TuyaDpsConfig:
 
 def available_configs():
     """List the available config files."""
+    _CONFIG_DIR = dirname(config_dir.__file__)
+
     for (path, dirs, files) in walk(_CONFIG_DIR):
         for basename in sorted(files):
             if fnmatch(basename, "*.yaml"):
