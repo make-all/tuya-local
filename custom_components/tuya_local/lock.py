@@ -2,7 +2,6 @@
 Setup for different kinds of Tuya climate devices
 """
 import logging
-from pydoc import locate
 
 from . import DOMAIN
 from .const import (
@@ -37,11 +36,12 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         if ecfg.entity != "lock":
             raise ValueError(f"{device.name} does not support use as a lock device.")
 
-    legacy_class = locate(ecfg.legacy_class)
+    legacy_class = ecfg.legacy_class
     # Instantiate it: Sonarcloud thinks this is a blocker bug, and legacy_class
     # is not callable, but the unit tests show the object is created...
     data[CONF_CHILD_LOCK] = legacy_class(device)
     async_add_entities([data[CONF_CHILD_LOCK]])
+    _LOGGER.debug(f"Adding lock for {discovery_info[CONF_TYPE]}")
 
 
 async def async_setup_entry(hass, config_entry, async_add_entities):

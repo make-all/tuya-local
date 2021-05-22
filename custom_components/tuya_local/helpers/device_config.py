@@ -1,11 +1,12 @@
 """
 Config parser for Tuya Local devices.
 """
+from fnmatch import fnmatch
 import logging
-
 from os import walk
 from os.path import join, dirname
-from fnmatch import fnmatch
+from pydoc import locate
+
 from homeassistant.util.yaml import load_yaml
 
 import custom_components.tuya_local.devices as config_dir
@@ -110,12 +111,15 @@ class TuyaEntityConfig:
     @property
     def name(self):
         """The friendly name for this entity."""
-        return self.__config.get("name", self.__device_name)
+        return self.__config.get("name", self.__device.name)
 
     @property
     def legacy_class(self):
         """Return the legacy device corresponding to this config."""
-        return "custom_components.tuya_local" + self.__config.get("legacy_class", None)
+        name = self.__config.get("legacy_class", None)
+        if name is None:
+            return None
+        return locate("custom_components.tuya_local" + name)
 
     @property
     def entity(self):

@@ -1,17 +1,18 @@
 """
 Setup for different kinds of Tuya switch devices
 """
+import logging
+
 from . import DOMAIN
 from .const import (
     CONF_DEVICE_ID,
-    CONF_TYPE,
-    CONF_TYPE_KOGAN_SWITCH,
-    CONF_TYPE_PURLINE_M100_HEATER,
-    CONF_TYPE_AUTO,
     CONF_SWITCH,
+    CONF_TYPE,
+    CONF_TYPE_AUTO,
 )
-from .kogan_socket.switch import KoganSocketSwitch
-from .purline_m100_heater.switch import PurlineM100OpenWindowDetector
+from .helpers.device_config import config_for_legacy_use
+
+_LOGGER = logging.getLogger(__name__)
 
 
 async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
@@ -25,15 +26,21 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         if discovery_info[CONF_TYPE] is None:
             raise ValueError(f"Unable to detect type for device {device.name}")
 
-    if discovery_info[CONF_TYPE] == CONF_TYPE_KOGAN_SWITCH:
-        data[CONF_SWITCH] = KoganSocketSwitch(device)
-    elif discovery_info[CONF_TYPE] == CONF_TYPE_PURLINE_M100_HEATER:
-        data[CONF_SWITCH] = PurlineM100OpenWindowDetector(device)
-    else:
-        raise ValueError("This device does not support working as a switch")
+    cfg = config_for_legacy_use(discovery_info[CONF_TYPE])
+    ecfg = cfg.primary_entity
+    if ecfg.entity != "switch":
+        for ecfg in cfg.secondary_entities():
+            if ecfg.entity == "switch":
+                break
+        if ecfg.entity != "switch":
+            raise ValueError(f"{device.name} does not support use as a switch device.")
 
-    if CONF_SWITCH in data:
-        async_add_entities([data[CONF_SWITCH]])
+    legacy_class = ecfg.legacy_class
+    # Instantiate it: Sonarcloud thinks this is a blocker bug, and legacy_class
+    # is not callable, but the unit tests show the object is created...
+    data[CONF_SWITCH] = legacy_class(device)
+    async_add_entities([data[CONF_SWITCH]])
+    _LOGGER.debug(f"Adding switch for {discovery_info[CONF_TYPE]}")
 
 
 async def async_setup_entry(hass, config_entry, async_add_entities):

@@ -67,9 +67,14 @@ class TestDeviceConfig(unittest.TestCase):
             parsed = TuyaDeviceConfig(cfg)
             self.assertIsNotNone(parsed.legacy_type)
             self.assertIsNotNone(parsed.primary_entity)
-            self.assertIsNotNone(parsed.primary_entity.legacy_class)
+            self.assertIsNotNone(
+                parsed.primary_entity.legacy_class,
+                f"No class for {parsed.legacy_type}/primary entity",
+            )
             for e in parsed.secondary_entities():
-                self.assertIsNotNone(e.legacy_class)
+                self.assertIsNotNone(
+                    e.legacy_class, f"No class for {parsed.legacy_type}/{e.name}"
+                )
 
     def _test_detect(self, payload, legacy_type, legacy_class):
         """Test that payload is detected as the correct type and class."""
@@ -83,8 +88,8 @@ class TestDeviceConfig(unittest.TestCase):
                 matched = True
                 quality = cfg.match_quality(payload)
                 self.assertEqual(
-                    cfg.primary_entity.legacy_class,
-                    "custom_components.tuya_local" + legacy_class,
+                    cfg.primary_entity.legacy_class.__name__,
+                    legacy_class,
                 )
             else:
                 false_matches.append(cfg)
@@ -105,22 +110,20 @@ class TestDeviceConfig(unittest.TestCase):
         # Ensure the same correct config is returned when looked up by type
         cfg = config_for_legacy_use(legacy_type)
         self.assertEqual(
-            cfg.primary_entity.legacy_class,
-            "custom_components.tuya_local" + legacy_class,
+            cfg.primary_entity.legacy_class.__name__,
+            legacy_class,
         )
 
     def test_gpph_heater_detection(self):
         """Test that GPPH heater can be detected from its sample payload."""
-        self._test_detect(
-            GPPH_HEATER_PAYLOAD, CONF_TYPE_GPPH_HEATER, ".heater.climate.GoldairHeater"
-        )
+        self._test_detect(GPPH_HEATER_PAYLOAD, CONF_TYPE_GPPH_HEATER, "GoldairHeater")
 
     def test_gpcv_heater_detection(self):
         """Test that GPCV heater can be detected from its sample payload."""
         self._test_detect(
             GPCV_HEATER_PAYLOAD,
             CONF_TYPE_GPCV_HEATER,
-            ".gpcv_heater.climate.GoldairGPCVHeater",
+            "GoldairGPCVHeater",
         )
 
     def test_eurom_heater_detection(self):
@@ -128,7 +131,7 @@ class TestDeviceConfig(unittest.TestCase):
         self._test_detect(
             EUROM_600_HEATER_PAYLOAD,
             CONF_TYPE_EUROM_600_HEATER,
-            ".eurom_600_heater.climate.EuromMonSoleil600Heater",
+            "EuromMonSoleil600Heater",
         )
 
     def test_geco_heater_detection(self):
@@ -136,7 +139,7 @@ class TestDeviceConfig(unittest.TestCase):
         self._test_detect(
             GECO_HEATER_PAYLOAD,
             CONF_TYPE_GECO_HEATER,
-            ".geco_heater.climate.GoldairGECOHeater",
+            "GoldairGECOHeater",
         )
 
     def test_kogan_heater_detection(self):
@@ -144,7 +147,7 @@ class TestDeviceConfig(unittest.TestCase):
         self._test_detect(
             KOGAN_HEATER_PAYLOAD,
             CONF_TYPE_KOGAN_HEATER,
-            ".kogan_heater.climate.KoganHeater",
+            "KoganHeater",
         )
 
     def test_goldair_dehumidifier_detection(self):
@@ -152,19 +155,19 @@ class TestDeviceConfig(unittest.TestCase):
         self._test_detect(
             DEHUMIDIFIER_PAYLOAD,
             CONF_TYPE_DEHUMIDIFIER,
-            ".dehumidifier.climate.GoldairDehumidifier",
+            "GoldairDehumidifier",
         )
 
     def test_goldair_fan_detection(self):
         """Test that Goldair fan can be detected from its sample payload."""
-        self._test_detect(FAN_PAYLOAD, CONF_TYPE_FAN, ".fan.climate.GoldairFan")
+        self._test_detect(FAN_PAYLOAD, CONF_TYPE_FAN, "GoldairFan")
 
     def test_kogan_socket_detection(self):
         """Test that 1st gen Kogan Socket can be detected from its sample payload."""
         self._test_detect(
             KOGAN_SOCKET_PAYLOAD,
             CONF_TYPE_KOGAN_SWITCH,
-            ".kogan_socket.switch.KoganSocketSwitch",
+            "KoganSocketSwitch",
         )
 
     def test_kogan_socket2_detection(self):
@@ -172,7 +175,7 @@ class TestDeviceConfig(unittest.TestCase):
         self._test_detect(
             KOGAN_SOCKET_PAYLOAD2,
             CONF_TYPE_KOGAN_SWITCH,
-            ".kogan_socket.switch.KoganSocketSwitch",
+            "KoganSocketSwitch",
         )
 
     def test_gsh_heater_detection(self):
@@ -180,7 +183,7 @@ class TestDeviceConfig(unittest.TestCase):
         self._test_detect(
             GSH_HEATER_PAYLOAD,
             CONF_TYPE_GSH_HEATER,
-            ".gsh_heater.climate.AnderssonGSHHeater",
+            "AnderssonGSHHeater",
         )
 
     def test_gardenpac_heatpump_detection(self):
@@ -188,7 +191,7 @@ class TestDeviceConfig(unittest.TestCase):
         self._test_detect(
             GARDENPAC_HEATPUMP_PAYLOAD,
             CONF_TYPE_GARDENPAC_HEATPUMP,
-            ".gardenpac_heatpump.climate.GardenPACPoolHeatpump",
+            "GardenPACPoolHeatpump",
         )
 
     def test_purline_heater_detection(self):
@@ -196,5 +199,5 @@ class TestDeviceConfig(unittest.TestCase):
         self._test_detect(
             PURLINE_M100_HEATER_PAYLOAD,
             CONF_TYPE_PURLINE_M100_HEATER,
-            ".purline_m100_heater.climate.PurlineM100Heater",
+            "PurlineM100Heater",
         )

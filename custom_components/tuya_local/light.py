@@ -1,25 +1,22 @@
 """
 Setup for different kinds of Tuya climate devices
 """
+import logging
+
 from . import DOMAIN
 from .const import (
     CONF_DEVICE_ID,
     CONF_DISPLAY_LIGHT,
     CONF_TYPE,
     CONF_TYPE_AUTO,
-    CONF_TYPE_DEHUMIDIFIER,
-    CONF_TYPE_FAN,
-    CONF_TYPE_GPPH_HEATER,
-    CONF_TYPE_PURLINE_M100_HEATER,
 )
-from .dehumidifier.light import GoldairDehumidifierLedDisplayLight
-from .fan.light import GoldairFanLedDisplayLight
-from .heater.light import GoldairHeaterLedDisplayLight
-from .purline_m100_heater.light import PurlineM100HeaterLedDisplayLight
+from .helpers.device_config import config_for_legacy_use
+
+_LOGGER = logging.getLogger(__name__)
 
 
 async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
-    """Set up the Goldair climate device according to its type."""
+    """Set up the light device according to its type."""
     data = hass.data[DOMAIN][discovery_info[CONF_DEVICE_ID]]
     device = data["device"]
 
@@ -29,19 +26,21 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         if discovery_info[CONF_TYPE] is None:
             raise ValueError(f"Unable to detect type for device {device.name}")
 
-    if discovery_info[CONF_TYPE] == CONF_TYPE_GPPH_HEATER:
-        data[CONF_DISPLAY_LIGHT] = GoldairHeaterLedDisplayLight(device)
-    elif discovery_info[CONF_TYPE] == CONF_TYPE_DEHUMIDIFIER:
-        data[CONF_DISPLAY_LIGHT] = GoldairDehumidifierLedDisplayLight(device)
-    elif discovery_info[CONF_TYPE] == CONF_TYPE_FAN:
-        data[CONF_DISPLAY_LIGHT] = GoldairFanLedDisplayLight(device)
-    elif discovery_info[CONF_TYPE] == CONF_TYPE_PURLINE_M100_HEATER:
-        dataa[CONF_DISPLAY_LIGHT] = PurlineM100HeaterLedDisplayLight(device)
-    else:
-        raise ValueError("This device does not support panel lighting control.")
+    cfg = config_for_legacy_use(discovery_info[CONF_TYPE])
+    ecfg = cfg.primary_entity
+    if ecfg.entity != "light":
+        for ecfg in cfg.secondary_entities():
+            if ecfg.entity == "light":
+                break
+        if ecfg.entity != "light":
+            raise ValueError(f"{device.name} does not support use as a light device.")
 
-    if CONF_DISPLAY_LIGHT in data:
-        async_add_entities([data[CONF_DISPLAY_LIGHT]])
+    legacy_class = ecfg.legacy_class
+    # Instantiate it: Sonarcloud thinks this is a blocker bug, and legacy_class
+    # is not callable, but the unit tests show the object is created...
+    data[CONF_DISPLAY_LIGHT] = legacy_class(device)
+    async_add_entities([data[CONF_DISPLAY_LIGHT]])
+    _LOGGER.debug(f"Adding light for {discovery_info[CONF_TYPE]}")
 
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
