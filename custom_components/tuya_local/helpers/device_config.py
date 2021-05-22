@@ -40,35 +40,35 @@ class TuyaDeviceConfig:
         Args:
             fname (string): The filename of the yaml config to load."""
         _CONFIG_DIR = dirname(config_dir.__file__)
-        self.__fname = fname
+        self._fname = fname
         filename = join(_CONFIG_DIR, fname)
-        self.__config = load_yaml(filename)
+        self._config = load_yaml(filename)
         _LOGGER.debug("Loaded device config %s", fname)
 
     @property
     def name(self):
         """Return the friendly name for this device."""
-        return self.__config["name"]
+        return self._config["name"]
 
     @property
     def config(self):
         """Return the config file associated with this device."""
-        return self.__fname
+        return self._fname
 
     @property
     def legacy_type(self):
         """Return the legacy conf_type associated with this device."""
-        return self.__config.get("legacy_type", None)
+        return self._config.get("legacy_type", None)
 
     @property
     def primary_entity(self):
         """Return the primary type of entity for this device."""
-        return TuyaEntityConfig(self, self.__config["primary_entity"])
+        return TuyaEntityConfig(self, self._config["primary_entity"])
 
     def secondary_entities(self):
         """Iterate through entites for any secondary entites supported."""
-        if "secondary_entities" in self.__config.keys():
-            for conf in self.__config["secondary_entities"]:
+        if "secondary_entities" in self._config.keys():
+            for conf in self._config["secondary_entities"]:
                 yield TuyaEntityConfig(self, conf)
 
     def matches(self, dps):
@@ -105,18 +105,18 @@ class TuyaEntityConfig:
     """Representation of an entity config for a supported entity."""
 
     def __init__(self, device, config):
-        self.__device = device
-        self.__config = config
+        self._device = device
+        self._config = config
 
     @property
     def name(self):
         """The friendly name for this entity."""
-        return self.__config.get("name", self.__device.name)
+        return self._config.get("name", self._device.name)
 
     @property
     def legacy_class(self):
         """Return the legacy device corresponding to this config."""
-        name = self.__config.get("legacy_class", None)
+        name = self._config.get("legacy_class", None)
         if name is None:
             return None
         return locate("custom_components.tuya_local" + name)
@@ -124,11 +124,11 @@ class TuyaEntityConfig:
     @property
     def entity(self):
         """The entity type of this entity."""
-        return self.__config["entity"]
+        return self._config["entity"]
 
     def dps(self):
         """Iterate through the list of dps for this entity."""
-        for d in self.__config["dps"]:
+        for d in self._config["dps"]:
             yield TuyaDpsConfig(self, d)
 
 
@@ -136,16 +136,16 @@ class TuyaDpsConfig:
     """Representation of a dps config."""
 
     def __init__(self, entity, config):
-        self.__entity = entity
-        self.__config = config
+        self._entity = entity
+        self._config = config
 
     @property
     def id(self):
-        return str(self.__config["id"])
+        return str(self._config["id"])
 
     @property
     def type(self):
-        t = self.__config["type"]
+        t = self._config["type"]
         types = {
             "boolean": bool,
             "integer": int,
@@ -157,21 +157,21 @@ class TuyaDpsConfig:
 
     @property
     def name(self):
-        return self.__config["name"]
+        return self._config["name"]
 
     @property
     def isreadonly(self):
-        return "readonly" in self.__config.keys() and self.__config["readonly"] is True
+        return "readonly" in self._config.keys() and self._config["readonly"] is True
 
     def map_from_dps(self, value):
         result = value
-        if "mapping" in self.__config.keys():
-            for map in self.__config["mapping"]:
+        if "mapping" in self._config.keys():
+            for map in self._config["mapping"]:
                 if map["dps_val"] == value and "value" in map:
                     result = map["value"]
                     _LOGGER.debug(
                         "%s: Mapped dps %d value from %s to %s",
-                        self.__entity.__device.name,
+                        self._entity._device.name,
                         self.id,
                         value,
                         result,
@@ -180,13 +180,13 @@ class TuyaDpsConfig:
 
     def map_to_dps(self, value):
         result = value
-        if "mapping" in self.__config.keys():
-            for map in self.__config["mapping"]:
+        if "mapping" in self._config.keys():
+            for map in self._config["mapping"]:
                 if "value" in map and map["value"] == value:
                     result = map["dps_val"]
                     _LOGGER.debug(
                         "%s: Mapped dps %d to %s from %s",
-                        self.__entity.__device.name,
+                        self._entity._device.name,
                         self.id,
                         result,
                         value,
