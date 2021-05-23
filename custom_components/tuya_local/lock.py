@@ -17,7 +17,7 @@ _LOGGER = logging.getLogger(__name__)
 
 
 async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
-    """Set up the Goldair climate device according to its type."""
+    """Set up the lock device according to its type."""
     _LOGGER.debug(f"Domain data: {hass.data[DOMAIN]}")
     data = hass.data[DOMAIN][discovery_info[CONF_DEVICE_ID]]
     device = data["device"]
