@@ -29,6 +29,11 @@ class GoldairDehumidifierChildLock(LockEntity):
         return self._device.name
 
     @property
+    def friendly_name(self):
+        """Return the friendly name of the lock, for the UI."""
+        return self._config.name
+
+    @property
     def unique_id(self):
         """Return the unique id for this dehumidifier child lock."""
         return self._device.unique_id
