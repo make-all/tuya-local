@@ -1,5 +1,4 @@
 """Tests for the lock entity."""
-import pytest
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import AsyncMock, Mock, patch
@@ -16,7 +15,6 @@ from custom_components.tuya_local.const import (
     DOMAIN,
 )
 from custom_components.tuya_local.generic.lock import TuyaLocalLock
-from custom_components.tuya_local.heater.lock import GoldairHeaterChildLock
 from custom_components.tuya_local.helpers.device_config import config_for_legacy_use
 from custom_components.tuya_local.lock import async_setup_entry
 
@@ -45,7 +43,7 @@ async def test_init_entry(hass):
     hass.data[DOMAIN]["dummy"]["device"] = m_device
 
     await async_setup_entry(hass, entry, m_add_entities)
-    assert type(hass.data[DOMAIN]["dummy"][CONF_CHILD_LOCK]) == GoldairHeaterChildLock
+    assert type(hass.data[DOMAIN]["dummy"][CONF_CHILD_LOCK]) == TuyaLocalLock
     m_add_entities.assert_called_once()
 
 
