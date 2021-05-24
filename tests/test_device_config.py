@@ -72,9 +72,12 @@ class TestDeviceConfig(unittest.TestCase):
                 f"No class for {parsed.legacy_type}/primary entity",
             )
             for e in parsed.secondary_entities():
-                self.assertIsNotNone(
-                    e.legacy_class, f"No class for {parsed.legacy_type}/{e.name}"
-                )
+                # Exception for entity types that were already moved to the new
+                # generic classes
+                if e.entity != "lock" and e.entity != "light":
+                    self.assertIsNotNone(
+                        e.legacy_class, f"No class for {parsed.legacy_type}/{e.name}"
+                    )
 
     def _test_detect(self, payload, legacy_type, legacy_class):
         """Test that payload is detected as the correct type and class."""
