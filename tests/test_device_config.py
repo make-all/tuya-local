@@ -67,17 +67,6 @@ class TestDeviceConfig(unittest.TestCase):
             parsed = TuyaDeviceConfig(cfg)
             self.assertIsNotNone(parsed.legacy_type)
             self.assertIsNotNone(parsed.primary_entity)
-            self.assertIsNotNone(
-                parsed.primary_entity.legacy_class,
-                f"No class for {parsed.legacy_type}/primary entity",
-            )
-            for e in parsed.secondary_entities():
-                # Exception for entity types that were already moved to the new
-                # generic classes
-                if e.entity != "lock" and e.entity != "light":
-                    self.assertIsNotNone(
-                        e.legacy_class, f"No class for {parsed.legacy_type}/{e.name}"
-                    )
 
     def _test_detect(self, payload, legacy_type, legacy_class):
         """Test that payload is detected as the correct type and class."""
@@ -90,10 +79,11 @@ class TestDeviceConfig(unittest.TestCase):
                 self.assertFalse(matched)
                 matched = True
                 quality = cfg.match_quality(payload)
-                self.assertEqual(
-                    cfg.primary_entity.legacy_class.__name__,
-                    legacy_class,
-                )
+                if legacy_class is not None:
+                    self.assertEqual(
+                        cfg.primary_entity.legacy_class.__name__,
+                        legacy_class,
+                    )
             else:
                 false_matches.append(cfg)
 
@@ -112,10 +102,11 @@ class TestDeviceConfig(unittest.TestCase):
 
         # Ensure the same correct config is returned when looked up by type
         cfg = config_for_legacy_use(legacy_type)
-        self.assertEqual(
-            cfg.primary_entity.legacy_class.__name__,
-            legacy_class,
-        )
+        if legacy_class is not None:
+            self.assertEqual(
+                cfg.primary_entity.legacy_class.__name__,
+                legacy_class,
+            )
 
     def test_gpph_heater_detection(self):
         """Test that GPPH heater can be detected from its sample payload."""
@@ -170,7 +161,7 @@ class TestDeviceConfig(unittest.TestCase):
         self._test_detect(
             KOGAN_SOCKET_PAYLOAD,
             CONF_TYPE_KOGAN_SWITCH,
-            "KoganSocketSwitch",
+            None,
         )
 
     def test_kogan_socket2_detection(self):
@@ -178,7 +169,7 @@ class TestDeviceConfig(unittest.TestCase):
         self._test_detect(
             KOGAN_SOCKET_PAYLOAD2,
             CONF_TYPE_KOGAN_SWITCH,
-            "KoganSocketSwitch",
+            None,
         )
 
     def test_gsh_heater_detection(self):

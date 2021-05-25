@@ -3,7 +3,7 @@ from pytest_homeassistant_custom_component.common import MockConfigEntry
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import AsyncMock, Mock, patch
 
-from homeassistant.components.switch import ATTR_CURRENT_POWER_W, DEVICE_CLASS_OUTLET
+from homeassistant.components.switch import DEVICE_CLASS_OUTLET
 from homeassistant.const import STATE_UNAVAILABLE
 
 from custom_components.tuya_local.const import (
@@ -16,7 +16,6 @@ from custom_components.tuya_local.const import (
 )
 from custom_components.tuya_local.generic.switch import TuyaLocalSwitch
 from custom_components.tuya_local.helpers.device_config import config_for_legacy_use
-from custom_components.tuya_local.kogan_socket.switch import KoganSocketSwitch
 from custom_components.tuya_local.switch import async_setup_entry
 
 from .const import KOGAN_SOCKET_PAYLOAD
