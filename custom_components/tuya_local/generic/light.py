@@ -38,6 +38,7 @@ class TuyaLocalLight(LightEntity):
         """Return the name of the light."""
         return self._device.name
 
+    @property
     def friendly_name(self):
         """Return the friendly name for this entity."""
         return self._config.name
@@ -63,27 +64,21 @@ class TuyaLocalLight(LightEntity):
     @property
     def is_on(self):
         """Return the current state."""
-        return self._switch_dps.map_from_dps(
-            self._device.get_property(self._switch_dps.id)
-        )
+        return self._switch_dps.get_value(self._device)
 
     @property
     def device_state_attributes(self):
         """Get additional attributes that the integration itself does not support."""
         attr = {}
         for a in self._attr_dps:
-            attr[a.name] = a.map_from_dps(self._device.get_property(a.id))
+            attr[a.name] = a.get_value(self._device)
         return attr
 
     async def async_turn_on(self):
-        await self._device.async_set_property(
-            self._switch_dps.id, self._switch_dps.map_to_dps(True)
-        )
+        await self._switch_dps.async_set_value(self._device, True)
 
     async def async_turn_off(self):
-        await self._device.async_set_property(
-            self._switch_dps.id, self._switch_dps.map_to_dps(False)
-        )
+        await self._switch_dps.async_set_value(self._device, False)
 
     async def async_toggle(self):
         dps_display_on = self.is_on
