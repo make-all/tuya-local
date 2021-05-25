@@ -54,6 +54,7 @@ class TestTuyaLocalLight(IsolatedAsyncioTestCase):
                 break
         self.subject = TuyaLocalLight(self.mock_device(), light)
         self.dps = GPPH_HEATER_PAYLOAD.copy()
+        self.light_name = light.name
         self.subject._device.get_property.side_effect = lambda id: self.dps[id]
 
     def test_should_poll(self):
@@ -61,6 +62,9 @@ class TestTuyaLocalLight(IsolatedAsyncioTestCase):
 
     def test_name_returns_device_name(self):
         self.assertEqual(self.subject.name, self.subject._device.name)
+
+    def test_friendly_name_returns_config_name(self):
+        self.assertEqual(self.subject.friendly_name, self.light_name)
 
     def test_unique_id_returns_device_unique_id(self):
         self.assertEqual(self.subject.unique_id, self.subject._device.unique_id)
@@ -81,6 +85,9 @@ class TestTuyaLocalLight(IsolatedAsyncioTestCase):
 
         self.dps[GPPH_LIGHTSWITCH_DPS] = False
         self.assertEqual(self.subject.is_on, False)
+
+    def test_state_attributes(self):
+        self.assertEqual(self.subject.device_state_attributes, {})
 
     async def test_turn_on(self):
         async with assert_device_properties_set(

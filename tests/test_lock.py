@@ -58,6 +58,7 @@ class TestTuyaLocalLock(IsolatedAsyncioTestCase):
                 break
         self.subject = TuyaLocalLock(self.mock_device(), lock)
         self.dps = GPPH_HEATER_PAYLOAD.copy()
+        self.lock_name = lock.name
         self.subject._device.get_property.side_effect = lambda id: self.dps[id]
 
     def test_should_poll(self):
@@ -65,6 +66,9 @@ class TestTuyaLocalLock(IsolatedAsyncioTestCase):
 
     def test_name_returns_device_name(self):
         self.assertEqual(self.subject.name, self.subject._device.name)
+
+    def test_friendly_name_returns_config_name(self):
+        self.assertEqual(self.subject.friendly_name, self.lock_name)
 
     def test_unique_id_returns_device_unique_id(self):
         self.assertEqual(self.subject.unique_id, self.subject._device.unique_id)
@@ -81,6 +85,9 @@ class TestTuyaLocalLock(IsolatedAsyncioTestCase):
 
         self.dps[GPPH_LOCK_DPS] = None
         self.assertEqual(self.subject.state, STATE_UNAVAILABLE)
+
+    def test_state_attributes(self):
+        self.assertEqual(self.subject.device_state_attributes, {})
 
     def test_is_locked(self):
         self.dps[GPPH_LOCK_DPS] = True

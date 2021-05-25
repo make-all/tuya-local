@@ -57,7 +57,7 @@ class TestTuyaLocalSwitch(IsolatedAsyncioTestCase):
         self.mock_device = device_patcher.start()
         kogan_switch_config = config_for_legacy_use(CONF_TYPE_KOGAN_SWITCH)
         switch = kogan_switch_config.primary_entity
-
+        self.switch_name = switch.name
         self.subject = TuyaLocalSwitch(self.mock_device(), switch)
         self.dps = KOGAN_SOCKET_PAYLOAD.copy()
 
@@ -69,8 +69,14 @@ class TestTuyaLocalSwitch(IsolatedAsyncioTestCase):
     def test_name_returns_device_name(self):
         self.assertEqual(self.subject.name, self.subject._device.name)
 
+    def test_friendly_name_returns_config_name(self):
+        self.assertEqual(self.subject.friendly_name, self.switch_name)
+
     def test_unique_id_returns_device_unique_id(self):
         self.assertEqual(self.subject.unique_id, self.subject._device.unique_id)
+
+    def test_device_info_returns_device_info_from_device(self):
+        self.assertEqual(self.subject.device_info, self.subject._device.device_info)
 
     def test_device_class_is_outlet(self):
         self.assertEqual(self.subject.device_class, DEVICE_CLASS_OUTLET)
