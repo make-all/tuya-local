@@ -11,7 +11,7 @@ from homeassistant.util.yaml import load_yaml
 
 import custom_components.tuya_local.devices as config_dir
 
-_LOGGER = logging.getLogger("tuya_local")
+_LOGGER = logging.getLogger(__name__)
 
 
 def _typematch(type, value):
@@ -163,6 +163,25 @@ class TuyaDpsConfig:
     @property
     def name(self):
         return self._config["name"]
+
+    def get_value(self, device):
+        """Return the value of the dps from the given device."""
+        return self.map_from_dps(device.get_property(self.id))
+
+    async def async_set_value(self, device, value):
+        """Set the value of the dps in the given device to given value."""
+        await device.async_set_property(self.id, self.map_to_dps(value))
+
+    @property
+    def values(self):
+        """Return the possible values a dps can take."""
+        if "mapping" not in self._config.keys():
+            return None
+        v = []
+        for map in self._config["mapping"]:
+            if "value" in map:
+                v.append(map["value"])
+        return v
 
     @property
     def isreadonly(self):
