@@ -126,6 +126,11 @@ class TuyaEntityConfig:
         """The entity type of this entity."""
         return self._config["entity"]
 
+    @property
+    def device_class(self):
+        """The device class of this entity."""
+        return self._config.get("class", None)
+
     def dps(self):
         """Iterate through the list of dps for this entity."""
         for d in self._config["dps"]:
@@ -165,9 +170,10 @@ class TuyaDpsConfig:
 
     def map_from_dps(self, value):
         result = value
+        scale = 1
         if "mapping" in self._config.keys():
             for map in self._config["mapping"]:
-                if map["dps_val"] == value and "value" in map:
+                if "value" in map and ("dps_val" not in map or map["dps_val"] == value):
                     result = map["value"]
                     _LOGGER.debug(
                         "%s: Mapped dps %d value from %s to %s",
@@ -176,13 +182,21 @@ class TuyaDpsConfig:
                         value,
                         result,
                     )
-        return result
+                if "scale" in map and "value" not in map:
+                    scale = map["scale"]
+        return (
+            result
+            if scale == 1 or not isinstance(result, (int, float))
+            else result / scale
+        )
 
     def map_to_dps(self, value):
         result = value
+        scale = 1
         if "mapping" in self._config.keys():
             for map in self._config["mapping"]:
-                if "value" in map and map["value"] == value:
+
+                if "value" in map and "dps_val" in map and map["value"] == value:
                     result = map["dps_val"]
                     _LOGGER.debug(
                         "%s: Mapped dps %d to %s from %s",
@@ -191,7 +205,13 @@ class TuyaDpsConfig:
                         result,
                         value,
                     )
-        return result
+                if "scale" in map and "value" not in map:
+                    scale = map["scale"]
+        return (
+            result
+            if scale == 1 or not isinstance(result, (int, float))
+            else result * scale
+        )
 
 
 def available_configs():

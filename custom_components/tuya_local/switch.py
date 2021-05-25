@@ -10,6 +10,7 @@ from .const import (
     CONF_TYPE,
     CONF_TYPE_AUTO,
 )
+from .generic.switch import TuyaLocalSwitch
 from .helpers.device_config import config_for_legacy_use
 
 _LOGGER = logging.getLogger(__name__)
@@ -35,10 +36,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         if ecfg.entity != "switch":
             raise ValueError(f"{device.name} does not support use as a switch device.")
 
-    legacy_class = ecfg.legacy_class
-    # Instantiate it: Sonarcloud thinks this is a blocker bug, and legacy_class
-    # is not callable, but the unit tests show the object is created...
-    data[CONF_SWITCH] = legacy_class(device)
+    data[CONF_SWITCH] = TuyaLocalSwitch(device, ecfg)
     async_add_entities([data[CONF_SWITCH]])
     _LOGGER.debug(f"Adding switch for {discovery_info[CONF_TYPE]}")
 
