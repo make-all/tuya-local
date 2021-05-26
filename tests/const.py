@@ -107,3 +107,5 @@ PURLINE_M100_HEATER_PAYLOAD = {
     "101": False,
     "102": False,
 }
+
+REMORA_HEATPUMP_PAYLOAD = {"1": True, "2": 30, "3": 28, "4": "heat", "9": 0}

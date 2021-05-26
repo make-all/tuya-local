@@ -37,6 +37,7 @@ from .const import (
     KOGAN_SOCKET_PAYLOAD,
     KOGAN_SOCKET_PAYLOAD2,
     PURLINE_M100_HEATER_PAYLOAD,
+    REMORA_HEATPUMP_PAYLOAD,
 )
 
 
@@ -195,3 +196,8 @@ class TestDeviceConfig(unittest.TestCase):
             CONF_TYPE_PURLINE_M100_HEATER,
             "PurlineM100Heater",
         )
+
+    # Non-legacy devices start here.
+    def test_remora_heatpump_detection(self):
+        """Test that Remora heatpump can be detected from its sample payload."""
+        self._test_detect(REMORA_HEATPUMP_PAYLOAD, "remora_heatpump", None)
