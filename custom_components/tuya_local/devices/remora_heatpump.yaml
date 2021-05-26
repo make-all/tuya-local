@@ -1,0 +1,50 @@
+name: Remora Pool Heatpump
+legacy_type: remora_heatpump
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+          icon: "mdi:radiator-disabled"
+          icon_priority: 1
+        - dps_val: true
+          value: "heat"
+          icon: "mdi:hot-tub"
+          icon_priority: 3
+    - id: 2
+      name: temperature
+      type: integer
+      range:
+        min: 5
+        max: 40
+    - id: 3
+      name: current_temperature
+      type: integer
+    - id: 4
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: "heat"
+          value: "Smart Heating"
+        - dps_val: "h_powerful"
+          value: "Powerful Heating"
+        - dps_val: "h_silent"
+          value: "Silent Heating"
+        - dps_val: "cool"
+          value: "Smart Cooling"
+        - dps_val: "c_powerful"
+          value: "Powerful Cooling"
+        - dps_val: "c_silent"
+          value: "Silent Cooling"
+    - id: 9
+      type: integer
+      name: error
+      mapping:
+        - dps_val: 0
+          value: "OK"
+        - dps_val: 1
+          value: "Water Flow Protection"
