@@ -87,12 +87,12 @@ class TuyaLocalDevice(object):
             await self.async_refresh()
             cached_state = self._get_cached_state()
 
-        _LOGGER.debug(f"Inferring device type from cached state: {cached_state}")
+        _LOGGER.info(f"Inferring device type from cached state: {cached_state}")
         best_match = None
         best_quality = 0
         for config in possible_matches(cached_state):
             quality = config.match_quality(cached_state)
-            _LOGGER.debug(f"Considering {config.name} with quality {quality}")
+            _LOGGER.info(f"Considering {config.name} with quality {quality}")
             if quality > best_quality:
                 best_quality = quality
                 best_match = config
@@ -206,7 +206,7 @@ class TuyaLocalDevice(object):
                 self._api_protocol_working = True
                 break
             except Exception as e:
-                _LOGGER.info(f"Retrying after exception {e}")
+                _LOGGER.warning(f"Retrying after exception {e}")
                 if i + 1 == self._CONNECTION_ATTEMPTS:
                     self._reset_cached_state()
                     self._api_protocol_working = False
@@ -253,7 +253,7 @@ class TuyaLocalDevice(object):
 def setup_device(hass: HomeAssistant, config: dict):
     """Setup a tuya device based on passed in config."""
 
-    _LOGGER.debug(f"Creating device: {config[CONF_DEVICE_ID]}")
+    _LOGGER.info(f"Creating device: {config[CONF_DEVICE_ID]}")
     hass.data[DOMAIN] = hass.data.get(DOMAIN, {})
     device = TuyaLocalDevice(
         config[CONF_NAME],
@@ -268,5 +268,5 @@ def setup_device(hass: HomeAssistant, config: dict):
 
 
 def delete_device(hass: HomeAssistant, config: dict):
-    _LOGGER.debug(f"Deleting device: {config[CONF_DEVICE_ID]}")
+    _LOGGER.info(f"Deleting device: {config[CONF_DEVICE_ID]}")
     del hass.data[DOMAIN][config[CONF_DEVICE_ID]]["device"]
