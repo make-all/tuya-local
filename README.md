@@ -6,131 +6,38 @@
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=make-all_tuya-local&metric=ncloc)](https://sonarcloud.io/dashboard?id=make-all_tuya-local)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=make-all_tuya-local&metric=coverage)](https://sonarcloud.io/dashboard?id=make-all_tuya-local)
 
-This is a Home Assistant add-on to support Wi-fi devices running Tuya firmware without going via the Tuya cloud.  Using this integration does not stop your devices from sending status to the Tuya cloud, so this should not be seen as a security measure, rather it improves speed and reliability by using local connections, and may unlock some features of your device, or even unlock whole devices, that are not supported by the Tuya cloud API.  Currently the focus is mainly on climate devices, which are not well supported by other similar integrations. The long term plan is to overhaul the architecture to make adding new devices a matter of adding a single configuration file. Until that is done I will not be adding simpler devices like switches and lights which can be covered by [rospogrigio/localtuya](https://github.com/rospogrigio/localtuya/).
-
-The `tuya_local` component integrates Goldair WiFi-enabled [heaters](http://www.goldair.co.nz/product-catalogue/heating/wifi-heaters), [dehumidifiers](http://www.goldair.co.nz/product-catalogue/heating/dehumidifiers) and [fans](http://www.goldair.co.nz/product-catalogue/cooling/pedestal-fans/40cm-dc-quiet-fan-with-wifi-and-remote-gcpf315), Kogan WiFi-enabled [heaters](https://www.kogan.com/au/c/smarterhome-range/shop/heating-cooling/) and [plugs](https://www.kogan.com/au/shop/connected-home/smart-plug/), Andersson heaters, Eurom [heaters](https://eurom.nl/en/product-category/heating/wifi-heaters/), Purline [heaters](https://www.purline.es/hoti-m100--ean-8436545097380.htm) and Garden PAC pool [heatpumps](https://www.iot-pool.com/en/products/bomba-de-calor-garden-pac-full-inverter) into Home Assistant, enabling control of setting the following parameters via the UI and the following services:
-
-### Climate devices
-
-**Goldair GPPH Heaters**
-
-- **power** (on/off)
-- **mode** (Comfort, Eco, Anti-freeze)
-- **target temperature** (`5`-`35` in Comfort mode, `5`-`21` in Eco mode, in °C)
-- **power level** (via the swing mode setting because no appropriate HA option exists: `Auto`, `1`-`5`, `Stop`)
-
-Current temperature is also displayed.
-
-**Goldair GPCV Heaters**
-- **power** (on/off)
-- **mode** (Low, High)
-- **target temperature** (`15`-`35` in °C)
-
-Current temperature is also displayed.
-
-**Goldair GECO Heaters**
-- **power** (on/off)
-- **target temperature** (`15`-`35` in °C)
-
-Current temperature is also displayed.
-
-**Goldair Dehumidifiers**
-
-- **power** (on/off)
-- **mode** (Normal, Low, High, Dry clothes, Air clean)
-- **target humidity** (`30`-`80`%)
-
-Current temperature is displayed, and current humidity is available as a property. The "tank full" state is available via the **error** attribute, and if you want to you can easily surface this to a top-level entity using a [template sensor](https://www.home-assistant.io/integrations/template/).
-
-**Goldair Fans**
-
-- **power** (on/off)
-- **mode** (Normal, Eco, Sleep)
-- **fan mode** (`1`-`12`)
-- **swing** (on/off)
-
-**Kogan Heaters**
-
-- **power** (on/off)
-- **mode** (LOW/HIGH)
-- **target temperature** (`16`-`30` in °C)
-
-Current temperature is also displayed.
-
-**Andersson Heaters**
-
-- **power** (on/off)
-- **mode** (ANTI-FREEZE/LOW/HIGH)
-- **target temperature** (`5`-`35` in °C)
-
-Current temperature is also displayed.
-
-**Eurom Heaters**
-
-- **power** (on/off)
-- **target temperature** (`15`-`35` in °C)
-
-Current temperature is also displayed.
-
-**Garden PAC Pool Heatpumps**
-
-- **power** (on/off)
-- **mode** (silent/smart)
-- **target temperature** (`18`-`45` in °C)
-
-Current temperature is also displayed. Power level, operating mode are available as attributes.
-
-**Purline Hoti M100 Heaters**
-
-- **power** (heat/fan-only/off)
-- **mode** (Fan, 1-5, Auto)
-- **target temperature** (`16`-`35` in °C)
-- **swing** (on/off)
-
-### Additional features
-
-**Light** (Goldair and Purline devices)
-
-- **LED display** (on/off)
-
-**Lock** (Goldair heaters and dehumidifiers)
-
-- **Child lock** (on/off)
-
-**Open Window Detector** (Purline devices)
-
-- **Open Window Detect** (on/off)
-
-### Switch devices
-
-**Kogan Energy monitoring Smart Plug**
-- **power** (on/off)
-- **current power consumption** (Watts)
-- **Additional non-standard attributes**
-  - **current current draw** (Amps)
-  - **current voltage** (Volts)
-  - **timer** (seconds) [provided as read only]
-
-Newer models with a USB socket are also supported.
+This is a Home Assistant add-on to support Wi-fi devices running Tuya firmware without going via the Tuya cloud.  Using this integration does not stop your devices from sending status to the Tuya cloud, so this should not be seen as a security measure, rather it improves speed and reliability by using local connections, and may unlock some features of your device, or even unlock whole devices, that are not supported by the Tuya cloud API.  Currently the focus is mainly on climate devices, which are not well supported by other similar integrations. Simpler devices like switches and lights can be covered by [rospogrigio/localtuya](https://github.com/rospogrigio/localtuya/).
 
 ---
 
 ### Device support
 
-Please note, this component is actively tested with the Goldair GPPH (inverter), GPDH420 (dehumidifier), Kogan SmarterHome 1500W Smart Panel Heater and Kogan SmarterHome Energy Monitoring SmartPlug. Theoretically it should also work with GECO, GEPH and GPCV heater devices, and GCPF315 fan and may work with the GPDH440 dehumidifier and any other Goldair heaters, dehumidifiers or fans and Kogan heaters and smartplugs based on the Tuya platform.
+Please note, this component is actively tested with the Goldair GPPH (inverter), GPDH420 (dehumidifier), Kogan SmarterHome 1500W Smart Panel Heater and Kogan SmarterHome Energy Monitoring SmartPlug. Other devices have been added at user request, and may or may not still be actively in use by others.
 
-GPCV support is based on feedback from @etamtlosz on upstream Issue #27. GECO support is based on work in [KiLLeRRaT/homeassistant-goldair-climate](https://github.com/KiLLeRRaT/homeassistant-goldair-climate) and the feature set from the online manual for these heaters. GEPH heaters appear to be the same as the GECO270, so may also work with this setting.  This heater is almost compatible with the GPCV but without the Low/High mode. 
+Note that devices sometimes get firmware upgrades, or incompatible versions are sold under the same model name, so it is possible that the device will not work despite being listed below.
 
-Support for newer Kogan Smartplugs with USB sockets on them is based on feedback from @botts7 on Issue #2.
+#### Heaters
 
-A number of other brands of plug seem to match the DPS indexes of either the older or newer Kogan Smartplugs, so it is likely to work with other brands of single energy monitoring smartplug also.
+- Goldair heater models beginning with the code GPPH, GCPV, GECO.
+- Kogan Wi-Fi Convection Panel heaters.
+- Andersson GSH heaters.
+- Eurom heaters.
+- Purline Hoti M100 heaters.
 
-Support for heaters visually matching Andersson GSH 3.2 was added based on information from @awaismun on Issue #5.
+#### Pool heaters
 
-Support for Eurom Mon Soleil 600 ceiling heaters was added by @FeikoJoosten. It is possible that this support will also work for other models such as Mon Soleil 610 wall panel heaters, and others in the range.
+- Garden PAC pool heatpumps.
+- Remora pool heatpumps (possibly also BWT FI 45 models that appear to be similar)
 
-Support for Purline Hoti M100 heaters and Garden PAC pool heatpumps were added based on information from @Xeovar on Issue #11.
+#### Fans
+- Goldair GPCF315 fans
 
+#### Dehumidifiers
+- Goldair GPDH420 dehumidifiers
+
+#### SmartPlugs
+- Kogan Single Smartplug with Energy Monitoring
+Kogan 
 ---
 
 ## Installation
@@ -141,18 +48,8 @@ Installation is via the [Home Assistant Community Store (HACS)](https://hacs.xyz
 
 ## Configuration
 
-You can easily configure your devices using the Integrations UI at `Home Assistant > Configuration > Integrations > +`. This is the preferred method as things will be unlikely to break as this integration is upgraded. You will need to provide your device's IP address, device ID and local key; the last two can be found using [the instructions below](#finding-your-device-id-and-local-key).
+You can easily configure your devices using the Integrations UI at `Home Assistant > Configuration > Integrations > +`. This is the preferred method as the configuration can be migrated as this integration evovles.  You will need to provide your device's IP address, device ID and local key; the last two can be found using [the instructions below](#finding-your-device-id-and-local-key).
 
-If you would rather configure using yaml, add the following lines to your `configuration.yaml` file (but bear in mind that if the configuration options change your configuration may break until you update it to match the changes):
-
-```yaml
-# Example configuration.yaml entry
-tuya_local:
-  - name: My heater
-    host: 1.2.3.4
-    device_id: <your device id>
-    local_key: <your local key>
-```
 
 ### Configuration variables
 
@@ -176,9 +73,7 @@ tuya_local:
 
 #### type
 
-&nbsp;&nbsp;&nbsp;&nbsp;_(string) (Optional)_ The type of Tuya device. `auto` to automatically detect the device type, or if that doesn't work, select from the available options `heater`, `geco_heater` `gpcv_heater`, `dehumidifier`, `fan`, `kogan_heater`, `gsh_heater`, `eurom_heater`, `gardenpac_heatpump`, `purline_m100_heater`  or `kogan_switch`.
-
-&nbsp;&nbsp;&nbsp;&nbsp;_Default value: auto_
+&nbsp;&nbsp;&nbsp;&nbsp;_(string) (Optional)_ The type of Tuya device. `auto` to automatically detect the device type, or if that doesn't work, select from the available options `heater`, `geco_heater` `gpcv_heater`, `dehumidifier`, `fan`, `kogan_heater`, `gsh_heater`, `eurom_heater`, `gardenpac_heatpump`, `purline_m100_heater`  or `kogan_switch`.  Note that the type is likely to change in future to be a configuration file name or product id, as the hardcoded list is a maintenance burden.
 
 #### climate
 
@@ -188,13 +83,13 @@ tuya_local:
 
 #### display_light
 
-&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this appliance's LED display control as a light (not supported for Kogan, Andersson, Eurom, GECO or GPCV Heaters, or switches).
+&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this appliance's LED display control as a light (not supported for Kogan, Andersson, Eurom, GECO or GPCV Heaters, or switches).  This is likely to change in future to `light`, to make way for lights which are not secondary lighting on another device.
 
 &nbsp;&nbsp;&nbsp;&nbsp;_Default value: false_
 
 #### child_lock
 
-&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this appliances's child lock as a lock device (not supported for fans, switches, or Andersson ,Eurom, Purline heaters or Garden PAC heatpumps).
+&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this appliances's child lock as a lock device (not supported for fans, switches, or Andersson ,Eurom, Purline heaters or Garden PAC heatpumps). This is likely to change in future to `lock`, to make way for locks which are not secondary child locks on another device.
 
 &nbsp;&nbsp;&nbsp;&nbsp;_Default value: false_
 
@@ -253,5 +148,6 @@ None of this would have been possible without some foundational discovery work t
 - [awaismun](https://github.com/awaismun) for assistance in supporting Andersson heaters.
 - [FeikoJoosten](https://github.com/FeikoJoosten) for development of support for Eurom heaters.
 - [Xeovar](https://github.com/Xeovar) for assistance in supporting Purline M100 heaters and Garden PAC pool heatpumps.
+- [paulmfclark](https://github.com/paulmfclark) for assistance in supporting Remora Inverter pool heatpumps, and [cartman10](https://github.com/cartman10) for assistance with BWT FI 45 pool heater which appears to use almost identical Wi-Fi controls.
 
 [![BuyMeCoffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/jasonrumney)
