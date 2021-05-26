@@ -2,7 +2,6 @@ name: Kogan Panel Heater
 legacy_type: kogan_heater
 primary_entity:
   entity: climate
-  legacy_class: ".kogan_heater.climate.KoganHeater"
   dps:
     - id: 2
       type: integer
@@ -37,7 +36,6 @@ primary_entity:
       name: timer
 secondary_entities:
   - entity: lock
-    legacy_class: ".kogan_heater.lock.KoganHeaterChildLock"
     name: "Child Lock"
     dps:
       - id: 6

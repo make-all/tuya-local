@@ -117,7 +117,7 @@ class TestDeviceConfig(unittest.TestCase):
         self._test_detect(
             GPCV_HEATER_PAYLOAD,
             CONF_TYPE_GPCV_HEATER,
-            "GoldairGPCVHeater",
+            None,
         )
 
     def test_eurom_heater_detection(self):
@@ -125,7 +125,7 @@ class TestDeviceConfig(unittest.TestCase):
         self._test_detect(
             EUROM_600_HEATER_PAYLOAD,
             CONF_TYPE_EUROM_600_HEATER,
-            "EuromMonSoleil600Heater",
+            None,
         )
 
     def test_geco_heater_detection(self):
@@ -133,7 +133,7 @@ class TestDeviceConfig(unittest.TestCase):
         self._test_detect(
             GECO_HEATER_PAYLOAD,
             CONF_TYPE_GECO_HEATER,
-            "GoldairGECOHeater",
+            None,
         )
 
     def test_kogan_heater_detection(self):
@@ -141,7 +141,7 @@ class TestDeviceConfig(unittest.TestCase):
         self._test_detect(
             KOGAN_HEATER_PAYLOAD,
             CONF_TYPE_KOGAN_HEATER,
-            "KoganHeater",
+            None,
         )
 
     def test_goldair_dehumidifier_detection(self):
@@ -177,7 +177,7 @@ class TestDeviceConfig(unittest.TestCase):
         self._test_detect(
             GSH_HEATER_PAYLOAD,
             CONF_TYPE_GSH_HEATER,
-            "AnderssonGSHHeater",
+            None,
         )
 
     def test_gardenpac_heatpump_detection(self):

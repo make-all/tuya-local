@@ -181,7 +181,19 @@ class TuyaDpsConfig:
         for map in self._config["mapping"]:
             if "value" in map:
                 v.append(map["value"])
-        return v
+        return v if len(v) > 0 else None
+
+    @property
+    def range(self):
+        """Return the range for this dps if configured."""
+        if (
+            "range" in self._config.keys()
+            and "min" in self._config["range"].keys()
+            and "max" in self._config["range"].keys()
+        ):
+            return self._config["range"]
+        else:
+            return None
 
     @property
     def isreadonly(self):
@@ -195,7 +207,7 @@ class TuyaDpsConfig:
                 if "value" in map and ("dps_val" not in map or map["dps_val"] == value):
                     result = map["value"]
                     _LOGGER.debug(
-                        "%s: Mapped dps %d value from %s to %s",
+                        "%s: Mapped dps %s value from %s to %s",
                         self._entity._device.name,
                         self.id,
                         value,
@@ -218,7 +230,7 @@ class TuyaDpsConfig:
                 if "value" in map and "dps_val" in map and map["value"] == value:
                     result = map["dps_val"]
                     _LOGGER.debug(
-                        "%s: Mapped dps %d to %s from %s",
+                        "%s: Mapped dps %s to %s from %s",
                         self._entity._device.name,
                         self.id,
                         result,

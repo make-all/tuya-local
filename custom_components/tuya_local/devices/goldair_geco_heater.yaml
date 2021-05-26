@@ -2,7 +2,6 @@ name: Goldair GECO Heater
 legacy_type: geco_heater
 primary_entity:
   entity: climate
-  legacy_class: ".geco_heater.climate.GoldairGECOHeater"
   dps:
     - id: 1
       type: boolean
@@ -33,7 +32,6 @@ primary_entity:
       name: error
 secondary_entities:
   - entity: lock
-    legacy_class: ".geco_heater.lock.GoldairGECOHeaterChildLock"
     name: "Child Lock"
     dps:
       - id: 2

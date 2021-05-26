@@ -73,9 +73,7 @@ class TuyaLocalSwitch(SwitchEntity):
     @property
     def is_on(self):
         """Return whether the switch is on or not."""
-        is_switched_on = self._switch_dps.map_from_dps(
-            self._device.get_property(self._switch_dps.id)
-        )
+        is_switched_on = self._switch_dps.get_value(self._device)
 
         if is_switched_on is None:
             return STATE_UNAVAILABLE
@@ -88,9 +86,7 @@ class TuyaLocalSwitch(SwitchEntity):
         if self._power_dps is None:
             return None
 
-        pwr = self._power_dps.map_from_dps(
-            self._device.get_property(self._power_dps.id)
-        )
+        pwr = self._power_dps.get_value(self._device)
         if pwr is None:
             return STATE_UNAVAILABLE
 
@@ -101,20 +97,16 @@ class TuyaLocalSwitch(SwitchEntity):
         """Get additional attributes that HA doesn't naturally support."""
         attr = {}
         for a in self._attr_dps:
-            attr[a.name] = a.map_from_dps(self._device.get_property(a.id))
+            attr[a.name] = a.get_value(self._device)
         return attr
 
     async def async_turn_on(self, **kwargs):
         """Turn the switch on"""
-        await self._device.async_set_property(
-            self._switch_dps.id, self._switch_dps.map_to_dps(True)
-        )
+        await self._switch_dps.async_set_value(self._device, True)
 
     async def async_turn_off(self, **kwargs):
         """Turn the switch off"""
-        await self._device.async_set_property(
-            self._switch_dps.id, self._switch_dps.map_to_dps(False)
-        )
+        await self._switch_dps.async_set_value(self._device, False)
 
     async def async_update(self):
         await self._device.async_refresh()

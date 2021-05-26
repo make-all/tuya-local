@@ -57,7 +57,7 @@ class TuyaLocalLock(LockEntity):
     @property
     def state(self):
         """Return the current state."""
-        lock = self._lock_dps.map_from_dps(self._device.get_property(self._lock_dps.id))
+        lock = self._lock_dps.get_value(self._device)
 
         if lock is None:
             return STATE_UNAVAILABLE
@@ -74,20 +74,16 @@ class TuyaLocalLock(LockEntity):
         """Get additional attributes that the integration itself does not support."""
         attr = {}
         for a in self._attr_dps:
-            attr[a.name] = a.map_from_dps(self._device.get_property(a.id))
+            attr[a.name] = a.get_value(self._device)
         return attr
 
     async def async_lock(self, **kwargs):
         """Lock the lock."""
-        await self._device.async_set_property(
-            self._lock_dps.id, self._lock_dps.map_to_dps(True)
-        )
+        await self._lock_dps.async_set_value(self._device, True)
 
     async def async_unlock(self, **kwargs):
         """Unlock the lock."""
-        await self._device.async_set_property(
-            self._lock_dps.id, self._lock_dps.map_to_dps(False)
-        )
+        await self._lock_dps.async_set_value(self._device, False)
 
     async def async_update(self):
         await self._device.async_refresh()
