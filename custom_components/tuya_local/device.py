@@ -83,7 +83,9 @@ class TuyaLocalDevice(object):
     async def async_inferred_type(self):
 
         cached_state = self._get_cached_state()
-        if len(cached_state) == 1:
+        # cached state should have "updated_at" timestamp if it has anything,
+        # so use 1 as the threshold for judging if dps have been fetched.
+        if len(cached_state) <= 1:
             await self.async_refresh()
             cached_state = self._get_cached_state()
 
