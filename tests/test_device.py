@@ -1,6 +1,5 @@
-import threading
 import tinytuya
-from datetime import datetime, timedelta
+from datetime import datetime
 from time import sleep, time
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import AsyncMock, call, patch
@@ -150,7 +149,7 @@ class TestDevice(IsolatedAsyncioTestCase):
         )
 
     async def test_detection_returns_none_when_device_type_could_not_be_detected(self):
-        self.subject._cached_state = {"1": False}
+        self.subject._cached_state = {"1": False, "updated_at": datetime.now()}
         self.assertEqual(await self.subject.async_inferred_type(), None)
 
     async def test_does_not_refresh_more_often_than_cache_timeout(self):
