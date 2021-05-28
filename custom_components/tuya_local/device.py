@@ -108,7 +108,12 @@ class TuyaLocalDevice(object):
         return best_match.legacy_type
 
     async def async_refresh(self):
-        last_updated = self._get_cached_state()["updated_at"]
+        cache = self._get_cached_state()
+        if "updated_at" in cache:
+            last_updated = self._get_cached_state()["updated_at"]
+        else:
+            last_updated = 0
+
         if self._refresh_task is None or time() - last_updated >= self._CACHE_TIMEOUT:
             self._cached_state["updated_at"] = time()
             self._refresh_task = self._hass.async_add_executor_job(self.refresh)
