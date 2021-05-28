@@ -87,6 +87,8 @@ class TuyaDeviceConfig:
     def match_quality(self, dps):
         """Determine the match quality for the provided dps map."""
         keys = list(dps.keys())
+        if "updated_at" in keys:
+            keys.remove("updated_at")
         total = len(keys)
         for d in self.primary_entity.dps():
             if d.id not in keys or not _typematch(d.type, dps[d.id]):

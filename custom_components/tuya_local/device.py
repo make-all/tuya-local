@@ -83,16 +83,20 @@ class TuyaLocalDevice(object):
     async def async_inferred_type(self):
 
         cached_state = self._get_cached_state()
-        if "1" not in cached_state and "3" not in cached_state:
+        if len(cached_state) == 1:
             await self.async_refresh()
             cached_state = self._get_cached_state()
 
-        _LOGGER.info(f"Inferring device type from cached state: {cached_state}")
+        _LOGGER.info(
+            f"{self.name} inferring device type from cached state: {cached_state}"
+        )
         best_match = None
         best_quality = 0
         for config in possible_matches(cached_state):
             quality = config.match_quality(cached_state)
-            _LOGGER.info(f"Considering {config.name} with quality {quality}")
+            _LOGGER.info(
+                f"{self.name} considering {config.name} with quality {quality}"
+            )
             if quality > best_quality:
                 best_quality = quality
                 best_match = config
@@ -148,7 +152,7 @@ class TuyaLocalDevice(object):
         new_state = self._api.status()
         self._cached_state = new_state["dps"]
         self._cached_state["updated_at"] = time()
-        _LOGGER.debug(f"refreshed device state: {json.dumps(new_state)}")
+        _LOGGER.debug(f"{self.name} refreshed device state: {json.dumps(new_state)}")
         _LOGGER.debug(
             f"new cache state (including pending properties): {json.dumps(self._get_cached_state())}"
         )
@@ -167,7 +171,9 @@ class TuyaLocalDevice(object):
         for key, value in properties.items():
             pending_updates[key] = {"value": value, "updated_at": now}
 
-        _LOGGER.debug(f"new pending updates: {json.dumps(self._pending_updates)}")
+        _LOGGER.debug(
+            f"{self.name} new pending updates: {json.dumps(self._pending_updates)}"
+        )
 
     def _debounce_sending_updates(self):
         try:
@@ -181,7 +187,9 @@ class TuyaLocalDevice(object):
         pending_properties = self._get_pending_properties()
         payload = self._api.generate_payload(tinytuya.CONTROL, pending_properties)
 
-        _LOGGER.debug(f"sending dps update: {json.dumps(pending_properties)}")
+        _LOGGER.debug(
+            f"{self.name} sending dps update: {json.dumps(pending_properties)}"
+        )
 
         self._retry_on_failed_connection(
             lambda: self._send_payload(payload), "Failed to update device state."
@@ -206,7 +214,7 @@ class TuyaLocalDevice(object):
                 self._api_protocol_working = True
                 break
             except Exception as e:
-                _LOGGER.warning(f"Retrying after exception {e}")
+                _LOGGER.debug(f"Retrying after exception {e}")
                 if i + 1 == self._CONNECTION_ATTEMPTS:
                     self._reset_cached_state()
                     self._api_protocol_working = False
