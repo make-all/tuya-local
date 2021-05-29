@@ -203,48 +203,72 @@ class TuyaDpsConfig:
 
     def map_from_dps(self, value):
         result = value
+        replaced = False
+        default_value = None
         scale = 1
         if "mapping" in self._config.keys():
             for map in self._config["mapping"]:
-                if "value" in map and ("dps_val" not in map or map["dps_val"] == value):
-                    result = map["value"]
-                    _LOGGER.debug(
-                        "%s: Mapped dps %s value from %s to %s",
-                        self._entity._device.name,
-                        self.id,
-                        value,
-                        result,
-                    )
-                if "scale" in map and "value" not in map:
-                    scale = map["scale"]
-        return (
-            result
-            if scale == 1 or not isinstance(result, (int, float))
-            else result / scale
-        )
+                if "dps_val" not in map:
+                    if "value" in map:
+                        default_value = map["value"]
+                    if "scale" in map:
+                        scale = map["scale"]
+
+                elif str(map["dps_val"]) == str(value):
+                    if "value" in map:
+                        result = map["value"]
+                        replaced = True
+
+        if not replaced and default_value is not None:
+            result = default_value
+            replaced = True
+
+        if scale != 1 and isinstance(result, (int, float)):
+            result = result / scale
+            replaced = True
+
+        if replaced:
+            _LOGGER.debug(
+                "%s: Mapped dps %s value from %s to %s",
+                self._entity._device.name,
+                self.id,
+                value,
+                result,
+            )
+
+        return result
 
     def map_to_dps(self, value):
         result = value
+        replaced = False
         scale = 1
         if "mapping" in self._config.keys():
             for map in self._config["mapping"]:
 
-                if "value" in map and "dps_val" in map and map["value"] == value:
+                if (
+                    "value" in map
+                    and "dps_val" in map
+                    and str(map["value"]) == str(value)
+                ):
                     result = map["dps_val"]
-                    _LOGGER.debug(
-                        "%s: Mapped dps %s to %s from %s",
-                        self._entity._device.name,
-                        self.id,
-                        result,
-                        value,
-                    )
+                    replaced = True
+
                 if "scale" in map and "value" not in map:
                     scale = map["scale"]
-        return (
-            result
-            if scale == 1 or not isinstance(result, (int, float))
-            else result * scale
-        )
+
+        if scale != 1 and isinstance(result, (int, float)):
+            result = result / scale
+            replaced = True
+
+        if replaced:
+            _LOGGER.debug(
+                "%s: Mapped dps %s to %s from %s",
+                self._entity._device.name,
+                self.id,
+                result,
+                value,
+            )
+        return result
 
 
 def available_configs():
