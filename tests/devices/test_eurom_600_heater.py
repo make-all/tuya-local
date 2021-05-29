@@ -12,33 +12,32 @@ from homeassistant.const import STATE_UNAVAILABLE
 from custom_components.tuya_local.generic.climate import TuyaLocalClimate
 from custom_components.tuya_local.helpers.device_config import TuyaDeviceConfig
 
-from ..const import GSH_HEATER_PAYLOAD
+from ..const import EUROM_600_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
 
 HVACMODE_DPS = "1"
 TEMPERATURE_DPS = "2"
-CURRENTTEMP_DPS = "3"
-PRESET_DPS = "4"
-ERROR_DPS = "12"
+CURRENTTEMP_DPS = "5"
+ERROR_DPS = "6"
 
 
-class TestAnderssonGSHHeater(IsolatedAsyncioTestCase):
+class TestEurom600Heater(IsolatedAsyncioTestCase):
     def setUp(self):
         device_patcher = patch("custom_components.tuya_local.device.TuyaLocalDevice")
         self.addCleanup(device_patcher.stop)
         self.mock_device = device_patcher.start()
-        cfg = TuyaDeviceConfig("andersson_gsh_heater.yaml")
+        cfg = TuyaDeviceConfig("eurom_600_heater.yaml")
         climate = cfg.primary_entity
         self.climate_name = climate.name
         self.subject = TuyaLocalClimate(self.mock_device, climate)
-        self.dps = GSH_HEATER_PAYLOAD.copy()
+        self.dps = EUROM_600_HEATER_PAYLOAD.copy()
 
         self.subject._device.get_property.side_effect = lambda id: self.dps[id]
 
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_TARGET_TEMPERATURE | SUPPORT_PRESET_MODE,
+            SUPPORT_TARGET_TEMPERATURE,
         )
 
     def test_should_poll(self):
@@ -73,7 +72,7 @@ class TestAnderssonGSHHeater(IsolatedAsyncioTestCase):
         self.assertEqual(self.subject.target_temperature_step, 1)
 
     def test_minimum_target_temperature(self):
-        self.assertEqual(self.subject.min_temp, 5)
+        self.assertEqual(self.subject.min_temp, 15)
 
     def test_maximum_target_temperature(self):
         self.assertEqual(self.subject.max_temp, 35)
@@ -83,18 +82,6 @@ class TestAnderssonGSHHeater(IsolatedAsyncioTestCase):
             self.subject._device, {TEMPERATURE_DPS: 24}
         ):
             await self.subject.async_set_temperature(temperature=24)
-
-    async def test_legacy_set_temperature_with_preset_mode(self):
-        async with assert_device_properties_set(
-            self.subject._device, {PRESET_DPS: "low"}
-        ):
-            await self.subject.async_set_temperature(preset_mode="Low")
-
-    async def test_legacy_set_temperature_with_both_properties(self):
-        async with assert_device_properties_set(
-            self.subject._device, {TEMPERATURE_DPS: 26, PRESET_DPS: "high"}
-        ):
-            await self.subject.async_set_temperature(temperature=26, preset_mode="High")
 
     async def test_legacy_set_temperature_with_no_valid_properties(self):
         await self.subject.async_set_temperature(something="else")
@@ -115,12 +102,12 @@ class TestAnderssonGSHHeater(IsolatedAsyncioTestCase):
 
     async def test_set_target_temperature_fails_outside_valid_range(self):
         with self.assertRaisesRegex(
-            ValueError, "Target temperature \\(4\\) must be between 5 and 35"
+            ValueError, "Target temperature \\(14\\) must be between 15 and 35"
         ):
-            await self.subject.async_set_target_temperature(4)
+            await self.subject.async_set_target_temperature(14)
 
         with self.assertRaisesRegex(
-            ValueError, "Target temperature \\(36\\) must be between 5 and 35"
+            ValueError, "Target temperature \\(36\\) must be between 15 and 35"
         ):
             await self.subject.async_set_target_temperature(36)
 
@@ -152,43 +139,6 @@ class TestAnderssonGSHHeater(IsolatedAsyncioTestCase):
             self.subject._device, {HVACMODE_DPS: False}
         ):
             await self.subject.async_set_hvac_mode(HVAC_MODE_OFF)
-
-    def test_preset_mode(self):
-        self.dps[PRESET_DPS] = "low"
-        self.assertEqual(self.subject.preset_mode, "Low")
-
-        self.dps[PRESET_DPS] = "high"
-        self.assertEqual(self.subject.preset_mode, "High")
-
-        self.dps[PRESET_DPS] = "af"
-        self.assertEqual(self.subject.preset_mode, "Anti-freeze")
-
-        self.dps[PRESET_DPS] = None
-        self.assertIs(self.subject.preset_mode, None)
-
-    def test_preset_modes(self):
-        self.assertCountEqual(self.subject.preset_modes, ["Low", "High", "Anti-freeze"])
-
-    async def test_set_preset_mode_to_low(self):
-        async with assert_device_properties_set(
-            self.subject._device,
-            {PRESET_DPS: "low"},
-        ):
-            await self.subject.async_set_preset_mode("Low")
-
-    async def test_set_preset_mode_to_high(self):
-        async with assert_device_properties_set(
-            self.subject._device,
-            {PRESET_DPS: "high"},
-        ):
-            await self.subject.async_set_preset_mode("High")
-
-    async def test_set_preset_mode_to_af(self):
-        async with assert_device_properties_set(
-            self.subject._device,
-            {PRESET_DPS: "af"},
-        ):
-            await self.subject.async_set_preset_mode("Anti-freeze")
 
     def test_error_state(self):
         # There are currently no known error states; update this as

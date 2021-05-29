@@ -12,26 +12,26 @@ from homeassistant.const import STATE_UNAVAILABLE
 from custom_components.tuya_local.generic.climate import TuyaLocalClimate
 from custom_components.tuya_local.helpers.device_config import TuyaDeviceConfig
 
-from ..const import GSH_HEATER_PAYLOAD
+from ..const import REMORA_HEATPUMP_PAYLOAD
 from ..helpers import assert_device_properties_set
 
 HVACMODE_DPS = "1"
 TEMPERATURE_DPS = "2"
 CURRENTTEMP_DPS = "3"
 PRESET_DPS = "4"
-ERROR_DPS = "12"
+ERROR_DPS = "9"
 
 
-class TestAnderssonGSHHeater(IsolatedAsyncioTestCase):
+class TestRemoraHeatpump(IsolatedAsyncioTestCase):
     def setUp(self):
         device_patcher = patch("custom_components.tuya_local.device.TuyaLocalDevice")
         self.addCleanup(device_patcher.stop)
         self.mock_device = device_patcher.start()
-        cfg = TuyaDeviceConfig("andersson_gsh_heater.yaml")
+        cfg = TuyaDeviceConfig("remora_heatpump.yaml")
         climate = cfg.primary_entity
         self.climate_name = climate.name
         self.subject = TuyaLocalClimate(self.mock_device, climate)
-        self.dps = GSH_HEATER_PAYLOAD.copy()
+        self.dps = REMORA_HEATPUMP_PAYLOAD.copy()
 
         self.subject._device.get_property.side_effect = lambda id: self.dps[id]
 
@@ -54,11 +54,14 @@ class TestAnderssonGSHHeater(IsolatedAsyncioTestCase):
         self.assertEqual(self.subject.device_info, self.subject._device.device_info)
 
     def test_icon(self):
+        # Temporary: since proper icon parsing from config files is not yet
+        # implemented, the icons are fixed to defaults
         self.dps[HVACMODE_DPS] = True
         self.assertEqual(self.subject.icon, "mdi:radiator")
-
+        # self.assertEqual(self.subject.icon, "mdi:hot-tub")
         self.dps[HVACMODE_DPS] = False
         self.assertEqual(self.subject.icon, "mdi:radiator-disabled")
+        # selt.assertEqual(self.subject.icon, "mdi:hvac_off")
 
     def test_temperature_unit_returns_device_temperature_unit(self):
         self.assertEqual(
@@ -76,7 +79,7 @@ class TestAnderssonGSHHeater(IsolatedAsyncioTestCase):
         self.assertEqual(self.subject.min_temp, 5)
 
     def test_maximum_target_temperature(self):
-        self.assertEqual(self.subject.max_temp, 35)
+        self.assertEqual(self.subject.max_temp, 40)
 
     async def test_legacy_set_temperature_with_temperature(self):
         async with assert_device_properties_set(
@@ -86,15 +89,17 @@ class TestAnderssonGSHHeater(IsolatedAsyncioTestCase):
 
     async def test_legacy_set_temperature_with_preset_mode(self):
         async with assert_device_properties_set(
-            self.subject._device, {PRESET_DPS: "low"}
+            self.subject._device, {PRESET_DPS: "cool"}
         ):
-            await self.subject.async_set_temperature(preset_mode="Low")
+            await self.subject.async_set_temperature(preset_mode="Smart Cooling")
 
     async def test_legacy_set_temperature_with_both_properties(self):
         async with assert_device_properties_set(
-            self.subject._device, {TEMPERATURE_DPS: 26, PRESET_DPS: "high"}
+            self.subject._device, {TEMPERATURE_DPS: 26, PRESET_DPS: "heat"}
         ):
-            await self.subject.async_set_temperature(temperature=26, preset_mode="High")
+            await self.subject.async_set_temperature(
+                temperature=26, preset_mode="Smart Heating"
+            )
 
     async def test_legacy_set_temperature_with_no_valid_properties(self):
         await self.subject.async_set_temperature(something="else")
@@ -115,14 +120,14 @@ class TestAnderssonGSHHeater(IsolatedAsyncioTestCase):
 
     async def test_set_target_temperature_fails_outside_valid_range(self):
         with self.assertRaisesRegex(
-            ValueError, "Target temperature \\(4\\) must be between 5 and 35"
+            ValueError, "Target temperature \\(4\\) must be between 5 and 40"
         ):
             await self.subject.async_set_target_temperature(4)
 
         with self.assertRaisesRegex(
-            ValueError, "Target temperature \\(36\\) must be between 5 and 35"
+            ValueError, "Target temperature \\(41\\) must be between 5 and 40"
         ):
-            await self.subject.async_set_target_temperature(36)
+            await self.subject.async_set_target_temperature(41)
 
     def test_current_temperature(self):
         self.dps[CURRENTTEMP_DPS] = 25
@@ -154,49 +159,96 @@ class TestAnderssonGSHHeater(IsolatedAsyncioTestCase):
             await self.subject.async_set_hvac_mode(HVAC_MODE_OFF)
 
     def test_preset_mode(self):
-        self.dps[PRESET_DPS] = "low"
-        self.assertEqual(self.subject.preset_mode, "Low")
+        self.dps[PRESET_DPS] = "heat"
+        self.assertEqual(self.subject.preset_mode, "Smart Heating")
 
-        self.dps[PRESET_DPS] = "high"
-        self.assertEqual(self.subject.preset_mode, "High")
+        self.dps[PRESET_DPS] = "cool"
+        self.assertEqual(self.subject.preset_mode, "Smart Cooling")
 
-        self.dps[PRESET_DPS] = "af"
-        self.assertEqual(self.subject.preset_mode, "Anti-freeze")
+        self.dps[PRESET_DPS] = "h_powerful"
+        self.assertEqual(self.subject.preset_mode, "Powerful Heating")
+
+        self.dps[PRESET_DPS] = "c_powerful"
+        self.assertEqual(self.subject.preset_mode, "Powerful Cooling")
+
+        self.dps[PRESET_DPS] = "h_silent"
+        self.assertEqual(self.subject.preset_mode, "Silent Heating")
+
+        self.dps[PRESET_DPS] = "c_silent"
+        self.assertEqual(self.subject.preset_mode, "Silent Cooling")
 
         self.dps[PRESET_DPS] = None
         self.assertIs(self.subject.preset_mode, None)
 
     def test_preset_modes(self):
-        self.assertCountEqual(self.subject.preset_modes, ["Low", "High", "Anti-freeze"])
+        self.assertCountEqual(
+            self.subject.preset_modes,
+            [
+                "Smart Heating",
+                "Powerful Heating",
+                "Silent Heating",
+                "Smart Cooling",
+                "Powerful Cooling",
+                "Silent Cooling",
+            ],
+        )
 
-    async def test_set_preset_mode_to_low(self):
+    async def test_set_preset_mode_to_heat(self):
         async with assert_device_properties_set(
             self.subject._device,
-            {PRESET_DPS: "low"},
+            {PRESET_DPS: "heat"},
         ):
-            await self.subject.async_set_preset_mode("Low")
+            await self.subject.async_set_preset_mode("Smart Heating")
 
-    async def test_set_preset_mode_to_high(self):
+    async def test_set_preset_mode_to_cool(self):
         async with assert_device_properties_set(
             self.subject._device,
-            {PRESET_DPS: "high"},
+            {PRESET_DPS: "cool"},
         ):
-            await self.subject.async_set_preset_mode("High")
+            await self.subject.async_set_preset_mode("Smart Cooling")
 
-    async def test_set_preset_mode_to_af(self):
+    async def test_set_preset_mode_to_h_powerful(self):
         async with assert_device_properties_set(
             self.subject._device,
-            {PRESET_DPS: "af"},
+            {PRESET_DPS: "h_powerful"},
         ):
-            await self.subject.async_set_preset_mode("Anti-freeze")
+            await self.subject.async_set_preset_mode("Powerful Heating")
+
+    async def test_set_preset_mode_to_c_powerful(self):
+        async with assert_device_properties_set(
+            self.subject._device,
+            {PRESET_DPS: "c_powerful"},
+        ):
+            await self.subject.async_set_preset_mode("Powerful Cooling")
+
+    async def test_set_preset_mode_to_h_silent(self):
+        async with assert_device_properties_set(
+            self.subject._device,
+            {PRESET_DPS: "h_silent"},
+        ):
+            await self.subject.async_set_preset_mode("Silent Heating")
+
+    async def test_set_preset_mode_to_c_silent(self):
+        async with assert_device_properties_set(
+            self.subject._device,
+            {PRESET_DPS: "c_silent"},
+        ):
+            await self.subject.async_set_preset_mode("Silent Cooling")
 
     def test_error_state(self):
-        # There are currently no known error states; update this as
-        # they are discovered
-        self.dps[ERROR_DPS] = "something"
-        self.assertEqual(self.subject.device_state_attributes, {"error": "something"})
-        self.dps[ERROR_DPS] = "0"
+        self.dps[ERROR_DPS] = 0
         self.assertEqual(self.subject.device_state_attributes, {"error": "OK"})
+
+        self.dps[ERROR_DPS] = 1
+        self.assertEqual(
+            self.subject.device_state_attributes,
+            {"error": "Water Flow Protection"},
+        )
+        self.dps[ERROR_DPS] = 2
+        self.assertEqual(
+            self.subject.device_state_attributes,
+            {"error": 2},
+        )
 
     async def test_update(self):
         result = AsyncMock()

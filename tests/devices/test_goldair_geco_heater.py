@@ -4,54 +4,73 @@ from unittest.mock import AsyncMock, patch
 from homeassistant.components.climate.const import (
     HVAC_MODE_HEAT,
     HVAC_MODE_OFF,
-    SUPPORT_PRESET_MODE,
     SUPPORT_TARGET_TEMPERATURE,
 )
+from homeassistant.components.lock import STATE_LOCKED, STATE_UNLOCKED
 from homeassistant.const import STATE_UNAVAILABLE
 
 from custom_components.tuya_local.generic.climate import TuyaLocalClimate
+from custom_components.tuya_local.generic.lock import TuyaLocalLock
+
 from custom_components.tuya_local.helpers.device_config import TuyaDeviceConfig
 
-from ..const import GSH_HEATER_PAYLOAD
+from ..const import GECO_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
 
 HVACMODE_DPS = "1"
-TEMPERATURE_DPS = "2"
-CURRENTTEMP_DPS = "3"
-PRESET_DPS = "4"
-ERROR_DPS = "12"
+LOCK_DPS = "2"
+TEMPERATURE_DPS = "3"
+CURRENTTEMP_DPS = "4"
+TIMER_DPS = "5"
+ERROR_DPS = "6"
 
 
-class TestAnderssonGSHHeater(IsolatedAsyncioTestCase):
+class TestGoldairGECOHeater(IsolatedAsyncioTestCase):
     def setUp(self):
         device_patcher = patch("custom_components.tuya_local.device.TuyaLocalDevice")
         self.addCleanup(device_patcher.stop)
         self.mock_device = device_patcher.start()
-        cfg = TuyaDeviceConfig("andersson_gsh_heater.yaml")
+        cfg = TuyaDeviceConfig("goldair_geco_heater.yaml")
         climate = cfg.primary_entity
+        lock = None
+        for e in cfg.secondary_entities():
+            if e.entity == "lock":
+                lock = e
         self.climate_name = climate.name
+        self.lock_name = "missing" if lock is None else lock.name
+
         self.subject = TuyaLocalClimate(self.mock_device, climate)
-        self.dps = GSH_HEATER_PAYLOAD.copy()
+        self.lock = None if lock is None else TuyaLocalLock(self.mock_device, lock)
+
+        self.dps = GECO_HEATER_PAYLOAD.copy()
 
         self.subject._device.get_property.side_effect = lambda id: self.dps[id]
 
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_TARGET_TEMPERATURE | SUPPORT_PRESET_MODE,
+            SUPPORT_TARGET_TEMPERATURE,
         )
 
     def test_should_poll(self):
         self.assertTrue(self.subject.should_poll)
+        self.assertTrue(self.lock.should_poll)
 
     def test_name_returns_device_name(self):
         self.assertEqual(self.subject.name, self.subject._device.name)
+        self.assertEqual(self.lock.name, self.subject._device.name)
+
+    def test_friendly_name_returns_config_name(self):
+        self.assertEqual(self.subject.friendly_name, self.climate_name)
+        self.assertEqual(self.lock.friendly_name, self.lock_name)
 
     def test_unique_id_returns_device_unique_id(self):
         self.assertEqual(self.subject.unique_id, self.subject._device.unique_id)
+        self.assertEqual(self.lock.unique_id, self.subject._device.unique_id)
 
     def test_device_info_returns_device_info_from_device(self):
         self.assertEqual(self.subject.device_info, self.subject._device.device_info)
+        self.assertEqual(self.lock.device_info, self.subject._device.device_info)
 
     def test_icon(self):
         self.dps[HVACMODE_DPS] = True
@@ -73,7 +92,7 @@ class TestAnderssonGSHHeater(IsolatedAsyncioTestCase):
         self.assertEqual(self.subject.target_temperature_step, 1)
 
     def test_minimum_target_temperature(self):
-        self.assertEqual(self.subject.min_temp, 5)
+        self.assertEqual(self.subject.min_temp, 15)
 
     def test_maximum_target_temperature(self):
         self.assertEqual(self.subject.max_temp, 35)
@@ -83,18 +102,6 @@ class TestAnderssonGSHHeater(IsolatedAsyncioTestCase):
             self.subject._device, {TEMPERATURE_DPS: 24}
         ):
             await self.subject.async_set_temperature(temperature=24)
-
-    async def test_legacy_set_temperature_with_preset_mode(self):
-        async with assert_device_properties_set(
-            self.subject._device, {PRESET_DPS: "low"}
-        ):
-            await self.subject.async_set_temperature(preset_mode="Low")
-
-    async def test_legacy_set_temperature_with_both_properties(self):
-        async with assert_device_properties_set(
-            self.subject._device, {TEMPERATURE_DPS: 26, PRESET_DPS: "high"}
-        ):
-            await self.subject.async_set_temperature(temperature=26, preset_mode="High")
 
     async def test_legacy_set_temperature_with_no_valid_properties(self):
         await self.subject.async_set_temperature(something="else")
@@ -115,12 +122,12 @@ class TestAnderssonGSHHeater(IsolatedAsyncioTestCase):
 
     async def test_set_target_temperature_fails_outside_valid_range(self):
         with self.assertRaisesRegex(
-            ValueError, "Target temperature \\(4\\) must be between 5 and 35"
+            ValueError, "Target temperature \\(14\\) must be between 15 and 35"
         ):
-            await self.subject.async_set_target_temperature(4)
+            await self.subject.async_set_target_temperature(14)
 
         with self.assertRaisesRegex(
-            ValueError, "Target temperature \\(36\\) must be between 5 and 35"
+            ValueError, "Target temperature \\(36\\) must be between 15 and 35"
         ):
             await self.subject.async_set_target_temperature(36)
 
@@ -153,50 +160,19 @@ class TestAnderssonGSHHeater(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_hvac_mode(HVAC_MODE_OFF)
 
-    def test_preset_mode(self):
-        self.dps[PRESET_DPS] = "low"
-        self.assertEqual(self.subject.preset_mode, "Low")
-
-        self.dps[PRESET_DPS] = "high"
-        self.assertEqual(self.subject.preset_mode, "High")
-
-        self.dps[PRESET_DPS] = "af"
-        self.assertEqual(self.subject.preset_mode, "Anti-freeze")
-
-        self.dps[PRESET_DPS] = None
-        self.assertIs(self.subject.preset_mode, None)
-
-    def test_preset_modes(self):
-        self.assertCountEqual(self.subject.preset_modes, ["Low", "High", "Anti-freeze"])
-
-    async def test_set_preset_mode_to_low(self):
-        async with assert_device_properties_set(
-            self.subject._device,
-            {PRESET_DPS: "low"},
-        ):
-            await self.subject.async_set_preset_mode("Low")
-
-    async def test_set_preset_mode_to_high(self):
-        async with assert_device_properties_set(
-            self.subject._device,
-            {PRESET_DPS: "high"},
-        ):
-            await self.subject.async_set_preset_mode("High")
-
-    async def test_set_preset_mode_to_af(self):
-        async with assert_device_properties_set(
-            self.subject._device,
-            {PRESET_DPS: "af"},
-        ):
-            await self.subject.async_set_preset_mode("Anti-freeze")
-
-    def test_error_state(self):
+    def test_state_attributes(self):
         # There are currently no known error states; update this as
         # they are discovered
         self.dps[ERROR_DPS] = "something"
-        self.assertEqual(self.subject.device_state_attributes, {"error": "something"})
+        self.dps[TIMER_DPS] = 10
+        self.assertCountEqual(
+            self.subject.device_state_attributes, {"error": "something", "timer": 10}
+        )
         self.dps[ERROR_DPS] = "0"
-        self.assertEqual(self.subject.device_state_attributes, {"error": "OK"})
+        self.dps[TIMER_DPS] = 0
+        self.assertCountEqual(
+            self.subject.device_state_attributes, {"error": "OK", "timer": 0}
+        )
 
     async def test_update(self):
         result = AsyncMock()
@@ -205,4 +181,47 @@ class TestAnderssonGSHHeater(IsolatedAsyncioTestCase):
         await self.subject.async_update()
 
         self.subject._device.async_refresh.assert_called_once()
+        result.assert_awaited()
+
+    def test_lock_was_created(self):
+        self.assertIsInstance(self.lock, TuyaLocalLock)
+
+    def test_lock_is_same_device(self):
+        self.assertEqual(self.lock._device, self.subject._device)
+
+    def test_lock_state(self):
+        self.dps[LOCK_DPS] = True
+        self.assertEqual(self.lock.state, STATE_LOCKED)
+
+        self.dps[LOCK_DPS] = False
+        self.assertEqual(self.lock.state, STATE_UNLOCKED)
+
+        self.dps[LOCK_DPS] = None
+        self.assertEqual(self.lock.state, STATE_UNAVAILABLE)
+
+    def test_lock_is_locked(self):
+        self.dps[LOCK_DPS] = True
+        self.assertTrue(self.lock.is_locked)
+
+        self.dps[LOCK_DPS] = False
+        self.assertFalse(self.lock.is_locked)
+
+        self.dps[LOCK_DPS] = None
+        self.assertFalse(self.lock.is_locked)
+
+    async def async_test_lock_locks(self):
+        async with assert_device_properties_set(self.lock._device, {LOCK_DPS: True}):
+            await self.subject.async_lock()
+
+    async def async_test_lock_unlocks(self):
+        async with assert_device_properties_set(self.lock._device, {LOCK_DPS: False}):
+            await self.subject.async_unlock()
+
+    async def async_test_lock_update(self):
+        result = AsyncMock()
+        self.lock._device.async_refresh.return_value = result()
+
+        await self.lock.async_update()
+
+        self.lock._device.async_refresh.assert_called_once()
         result.assert_awaited()

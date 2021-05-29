@@ -90,14 +90,16 @@ class TestDeviceConfig(unittest.TestCase):
 
         self.assertTrue(matched)
         if quality < 100:
-            warn(f"{legacy_type} detected with quality {quality}")
+            warn(f"{legacy_type} detected with imperfect quality {quality}%")
 
         best_q = 0
         for cfg in false_matches:
             q = cfg.match_quality(payload)
             if q > best_q:
                 best_q = q
-            warn(f"{legacy_type} also detectable as {cfg.legacy_type} with quality {q}")
+            warn(
+                f"{legacy_type} also detectable as {cfg.legacy_type} with quality {q}%"
+            )
 
         self.assertGreater(quality, best_q)
 
