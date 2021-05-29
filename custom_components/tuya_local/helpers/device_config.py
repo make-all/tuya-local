@@ -100,7 +100,7 @@ class TuyaDeviceConfig:
                 if d.id not in keys or not _typematch(d.type, dps[d.id]):
                     return 0
                 keys.remove(d.id)
-        return (total - len(keys)) * 100 / total
+        return round((total - len(keys)) * 100 / total)
 
 
 class TuyaEntityConfig:
