@@ -17,7 +17,13 @@ from homeassistant.components.climate.const import (
     SUPPORT_TARGET_HUMIDITY,
     SUPPORT_TARGET_TEMPERATURE,
 )
-from homeassistant.const import ATTR_TEMPERATURE, STATE_UNAVAILABLE
+from homeassistant.const import (
+    ATTR_TEMPERATURE,
+    STATE_UNAVAILABLE,
+    TEMP_CELSIUS,
+    TEMP_FAHRENHEIT,
+    TEMP_KELVIN,
+)
 
 from ..device import TuyaLocalDevice
 from ..helpers.device_config import TuyaEntityConfig
@@ -46,6 +52,7 @@ class TuyaLocalClimate(ClimateEntity):
         self._swing_mode_dps = None
         self._fan_mode_dps = None
         self._hvac_mode_dps = None
+        self._unit_dps = None
         self._attr_dps = []
         self._temperature_step = 1
 
@@ -71,6 +78,8 @@ class TuyaLocalClimate(ClimateEntity):
             elif d.name == "fan_mode":
                 self._fan_mode_dps = d
                 self._support_flags |= SUPPORT_FAN_MODE
+            elif d.name == "temperature_unit":
+                self._unit_dps = d
             else:
                 self._attr_dps.append(d)
 
@@ -115,6 +124,15 @@ class TuyaLocalClimate(ClimateEntity):
     @property
     def temperature_unit(self):
         """Return the unit of measurement."""
+        if self._unit_dps is not None:
+            unit = self._unit_dps.get_value(self._device)
+            # Only return valid units
+            if unit == "C":
+                return TEMP_CELSIUS
+            elif unit == "F":
+                return TEMP_FAHRENHEIT
+            elif unit == "K":
+                return TEMP_KELVIN
         return self._device.temperature_unit
 
     @property
