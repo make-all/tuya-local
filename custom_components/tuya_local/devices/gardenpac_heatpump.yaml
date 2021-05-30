@@ -21,7 +21,7 @@ primary_entity:
       type: integer
       readonly: true
     - id: 103
-      name: temperature_units
+      name: temperature_unit
       type: boolean
       mapping:
         - dps_val: false
@@ -40,7 +40,7 @@ primary_entity:
       name: temperature
       type: integer
       mapping:
-        constraint: temperature_units
+        constraint: temperature_unit
         conditions:
           - dps_val: false
             range:
