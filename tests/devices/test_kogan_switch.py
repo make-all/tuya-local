@@ -97,7 +97,7 @@ class TestKoganSwitch(IsolatedAsyncioTestCase):
         self.dps[VOLTAGE_DPS] = 2350
         self.dps[CURRENT_DPS] = 1234
         self.dps[POWER_DPS] = 5678
-        self.assertEqual(
+        self.assertCountEqual(
             self.subject.device_state_attributes,
             {
                 "timer": 1,
@@ -111,7 +111,7 @@ class TestKoganSwitch(IsolatedAsyncioTestCase):
         self.dps[CURRENT_DPS] = None
         self.dps[VOLTAGE_DPS] = None
         self.dps[POWER_DPS] = None
-        self.assertEqual(
+        self.assertCountEqual(
             self.subject.device_state_attributes,
             {
                 "timer": 0,
