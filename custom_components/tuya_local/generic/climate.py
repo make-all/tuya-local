@@ -6,10 +6,15 @@ import logging
 from homeassistant.components.climate import ClimateEntity
 from homeassistant.components.climate.const import (
     ATTR_PRESET_MODE,
-    DEFAULT_MIN_TEMP,
+    DEFAULT_MAX_HUMIDITY,
     DEFAULT_MAX_TEMP,
+    DEFAULT_MIN_HUMIDITY,
+    DEFAULT_MIN_TEMP,
     HVAC_MODE_HEAT,
+    SUPPORT_FAN_MODE,
     SUPPORT_PRESET_MODE,
+    SUPPORT_SWING_MODE,
+    SUPPORT_TARGET_HUMIDITY,
     SUPPORT_TARGET_TEMPERATURE,
 )
 from homeassistant.const import ATTR_TEMPERATURE, STATE_UNAVAILABLE
@@ -35,7 +40,11 @@ class TuyaLocalClimate(ClimateEntity):
         self._support_flags = 0
         self._current_temperature_dps = None
         self._temperature_dps = None
+        self._current_humidity_dps = None
+        self._humidity_dps = None
         self._preset_mode_dps = None
+        self._swing_mode_dps = None
+        self._fan_mode_dps = None
         self._hvac_mode_dps = None
         self._attr_dps = []
         self._temperature_step = 1
@@ -46,12 +55,22 @@ class TuyaLocalClimate(ClimateEntity):
             elif d.name == "temperature":
                 self._temperature_dps = d
                 self._support_flags |= SUPPORT_TARGET_TEMPERATURE
-
             elif d.name == "current_temperature":
                 self._current_temperature_dps = d
+            elif d.name == "humidity":
+                self._humidity_dps = d
+                self._support_flags |= SUPPORT_TARGET_HUMIDITY
+            elif d.name == "current_humidity":
+                self._current_humidity_dps = d
             elif d.name == "preset_mode":
                 self._preset_mode_dps = d
                 self._support_flags |= SUPPORT_PRESET_MODE
+            elif d.name == "swing_mode":
+                self._swing_mode_dps = d
+                self._support_flags |= SUPPORT_SWING_MODE
+            elif d.name == "fan_mode":
+                self._fan_mode_dps = d
+                self._support_flags |= SUPPORT_FAN_MODE
             else:
                 self._attr_dps.append(d)
 
@@ -113,15 +132,19 @@ class TuyaLocalClimate(ClimateEntity):
     @property
     def min_temp(self):
         """Return the minimum supported target temperature."""
-        if self._temperature_dps is None or self._temperature_dps.range is None:
+        if self._temperature_dps is None:
+            return None
+        if self._temperature_dps.range is None:
             return DEFAULT_MIN_TEMP
         return self._temperature_dps.range["min"]
 
     @property
     def max_temp(self):
         """Return the maximum supported target temperature."""
-        if self._temperature_dps is None or self._temperature_dps.range is None:
-            return DEFAULT_MIN_TEMP
+        if self._temperature_dps is None:
+            return None
+        if self._temperature_dps.range is None:
+            return DEFAULT_MAX_TEMP
         return self._temperature_dps.range["max"]
 
     async def async_set_temperature(self, **kwargs):
@@ -136,20 +159,53 @@ class TuyaLocalClimate(ClimateEntity):
             raise NotImplementedError()
 
         target_temperature = int(round(target_temperature))
-        if not self.min_temp <= target_temperature <= self.max_temp:
-            raise ValueError(
-                f"Target temperature ({target_temperature}) must be between "
-                f"{self.min_temp} and {self.max_temp}."
-            )
 
         await self._temperature_dps.async_set_value(self._device, target_temperature)
 
     @property
     def current_temperature(self):
-        """Return this current temperature."""
+        """Return the current measured temperature."""
         if self._current_temperature_dps is None:
             return None
         return self._current_temperature_dps.get_value(self._device)
+
+    @property
+    def target_humidity(self):
+        """Return the currently set target humidity."""
+        if self._humidity_dps is None:
+            raise NotImplementedError()
+        return self._humidity_dps.get_value(self._device)
+
+    @property
+    def min_humidity(self):
+        """Return the minimum supported target humidity."""
+        if self._humidity_dps is None:
+            return None
+        if self._humidity_dps.range is None:
+            return DEFAULT_MIN_HUMIDITY
+        return self._humidity_dps.range["min"]
+
+    @property
+    def max_humidity(self):
+        """Return the maximum supported target humidity."""
+        if self._humidity_dps is None:
+            return None
+        if self._humidity_dps.range is None:
+            return DEFAULT_MAX_HUMIDITY
+        return self._humidity_dps.range["max"]
+
+    async def async_set_humidity(self, target_humidity):
+        if self._humidity_dps is None:
+            raise NotImplementedError()
+
+        await self._humidity_dps.async_set_value(self._device, target_humidity)
+
+    @property
+    def current_humidity(self):
+        """Return the current measured humidity."""
+        if self._current_humidity_dps is None:
+            return None
+        return self._current_humidity_dps.get_value(self._device)
 
     @property
     def hvac_mode(self):
@@ -192,6 +248,46 @@ class TuyaLocalClimate(ClimateEntity):
         if self._preset_mode_dps is None:
             raise NotImplementedError()
         await self._preset_mode_dps.async_set_value(self._device, preset_mode)
+
+    @property
+    def swing_mode(self):
+        """Return the current swing mode."""
+        if self._swing_mode_dps is None:
+            raise NotImplementedError()
+        return self._swing_mode_dps.get_value(self._device)
+
+    @property
+    def swing_modes(self):
+        """Return the list of swing modes that this device supports."""
+        if self._swing_mode_dps is None:
+            return None
+        return self._swing_mode_dps.values
+
+    async def async_set_swing_mode(self, swing_mode):
+        """Set the preset mode."""
+        if self._swing_mode_dps is None:
+            raise NotImplementedError()
+        await self._swing_mode_dps.async_set_value(self._device, swing_mode)
+
+    @property
+    def fan_mode(self):
+        """Return the current swing mode."""
+        if self._fan_mode_dps is None:
+            raise NotImplementedError()
+        return self._fan_mode_dps.get_value(self._device)
+
+    @property
+    def fan_modes(self):
+        """Return the list of swing modes that this device supports."""
+        if self._fan_mode_dps is None:
+            return None
+        return self._fan_mode_dps.values
+
+    async def async_set_fan_mode(self, fan_mode):
+        """Set the preset mode."""
+        if self._fan_mode_dps is None:
+            raise NotImplementedError()
+        await self._fan_mode_dps.async_set_value(self._device, fan_mode)
 
     @property
     def device_state_attributes(self):

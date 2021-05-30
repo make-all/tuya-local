@@ -28,6 +28,8 @@ AIRCLEAN_DPS = "5"
 FANMODE_DPS = "6"
 LOCK_DPS = "7"
 ERROR_DPS = "11"
+UNKNOWN12_DPS = "12"
+UNKNOWN101_DPS = "101"
 LIGHTOFF_DPS = "102"
 CURRENTTEMP_DPS = "103"
 CURRENTHUMID_DPS = "104"
@@ -66,7 +68,6 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         self.dps = DEHUMIDIFIER_PAYLOAD.copy()
         self.subject._device.get_property.side_effect = lambda id: self.dps[id]
 
-    @skip("Humidity and fan not supported yet")
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
@@ -162,29 +163,25 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         self.dps[DEFROST_DPS] = True
         self.assertEqual(self.subject.icon, "mdi:cup-water")
 
-    @skip("Humidity not supported yet")
     def test_current_humidity(self):
         self.dps[CURRENTHUMID_DPS] = 47
         self.assertEqual(self.subject.current_humidity, 47)
 
-    @skip("Humidity not supported yet")
     def test_min_target_humidity(self):
         self.assertEqual(self.subject.min_humidity, 30)
 
-    @skip("Humidity not supported yet")
     def test_max_target_humidity(self):
         self.assertEqual(self.subject.max_humidity, 80)
 
-    @skip("Humidity not supported yet")
     def test_target_humidity_in_normal_preset(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL
-        self.dps[HUMIDITY_DPS] = 53
+        self.dps[HUMIDITY_DPS] = 55
 
-        self.assertEqual(self.subject.target_humidity, 53)
+        self.assertEqual(self.subject.target_humidity, 55)
 
-    @skip("Humidity not supported yet")
+    @skip("Conditions not supported yet")
     def test_target_humidity_outside_normal_preset(self):
-        self.dps[HUMIDITY_DPS] = 53
+        self.dps[HUMIDITY_DPS] = 55
 
         self.dps[PRESET_DPS] = PRESET_HIGH
         self.assertIs(self.subject.target_humidity, None)
@@ -199,7 +196,6 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         self.dps[AIRCLEAN_DPS] = True
         self.assertIs(self.subject.target_humidity, None)
 
-    @skip("Humidity not supported yet")
     async def test_set_target_humidity_in_normal_preset_rounds_up_to_5_percent(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL
         async with assert_device_properties_set(
@@ -208,7 +204,6 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_humidity(53)
 
-    @skip("Humidity not supported yet")
     async def test_set_target_humidity_in_normal_preset_rounds_down_to_5_percent(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL
 
@@ -218,7 +213,7 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_humidity(52)
 
-    @skip("Humidity not supported yet")
+    @skip("Conditions not supported yet")
     async def test_set_target_humidity_raises_error_outside_of_normal_preset(self):
         self.dps[PRESET_DPS] = PRESET_LOW
         with self.assertRaisesRegex(
@@ -337,7 +332,7 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
             await self.subject.async_set_preset_mode("Normal")
             self.subject._device.anticipate_property_value.assert_not_called()
 
-    @skip("Fan and conditions not supported yet")
+    @skip("Conditions not supported yet")
     async def test_set_preset_mode_to_low(self):
         async with assert_device_properties_set(
             self.subject._device,
@@ -350,7 +345,7 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
                 FANMODE_DPS, "1"
             )
 
-    @skip("Fan and conditions not supported yet")
+    @skip("Conditions not supported yet")
     async def test_set_preset_mode_to_high(self):
         async with assert_device_properties_set(
             self.subject._device,
@@ -363,7 +358,7 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
                 FANMODE_DPS, "3"
             )
 
-    @skip("Fan and conditions not supported yet")
+    @skip("Conditions not supported yet")
     async def test_set_preset_mode_to_dry_clothes(self):
         async with assert_device_properties_set(
             self.subject._device,
@@ -386,7 +381,7 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
                 FANMODE_DPS, "1"
             )
 
-    @skip("Fan and conditions not supported yet")
+    @skip("Conditions not supported yet")
     def test_fan_mode_is_forced_to_high_in_high_dry_clothes_air_clean_presets(self):
         self.dps[FANMODE_DPS] = "1"
         self.dps[PRESET_DPS] = PRESET_HIGH
@@ -399,14 +394,14 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         self.dps[AIRCLEAN_DPS] = True
         self.assertEqual(self.subject.fan_mode, FAN_HIGH)
 
-    @skip("Fan and conditions not supported yet")
+    @skip("Conditions not supported yet")
     def test_fan_mode_is_forced_to_low_in_low_preset(self):
         self.dps[FANMODE_DPS] = "3"
         self.dps[PRESET_DPS] = PRESET_LOW
 
         self.assertEqual(self.subject.fan_mode, FAN_LOW)
 
-    @skip("Fan and conditions not supported yet")
+    @skip("Conditions not supported yet")
     def test_fan_mode_reflects_dps_mode_in_normal_preset(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL
         self.dps[FANMODE_DPS] = "1"
@@ -418,7 +413,7 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         self.dps[FANMODE_DPS] = None
         self.assertEqual(self.subject.fan_mode, None)
 
-    @skip("Fan and conditions not supported yet")
+    @skip("Conditions not supported yet")
     def test_fan_modes_reflect_preset_mode(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL
         self.assertEqual(self.subject.fan_modes, [FAN_LOW, FAN_HIGH])
@@ -440,7 +435,6 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         self.dps[AIRCLEAN_DPS] = False
         self.assertEqual(self.subject.fan_modes, [])
 
-    @skip("Fan not supported yet")
     async def test_set_fan_mode_to_low_succeeds_in_normal_preset(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL
         async with assert_device_properties_set(
@@ -449,7 +443,6 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_fan_mode(FAN_LOW)
 
-    @skip("Fan not supported yet")
     async def test_set_fan_mode_to_high_succeeds_in_normal_preset(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL
         async with assert_device_properties_set(
@@ -458,13 +451,13 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_fan_mode(FAN_HIGH)
 
-    @skip("Fan not supported yet")
+    @skip("Restriction to listed options not supported yet")
     async def test_set_fan_mode_fails_with_invalid_mode(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL
         with self.assertRaisesRegex(ValueError, "Invalid fan mode: something"):
             await self.subject.async_set_fan_mode("something")
 
-    @skip("Fan and conditions not supported yet")
+    @skip("Conditions not supported yet")
     async def test_set_fan_mode_fails_outside_normal_preset(self):
         self.dps[PRESET_DPS] = PRESET_LOW
         with self.assertRaisesRegex(
@@ -491,7 +484,7 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_fan_mode(FAN_HIGH)
 
-    @skip("Redirection supported yet")
+    @skip("Redirection not supported yet")
     def test_tank_full_or_missing(self):
         self.dps[ERROR_DPS] = None
         self.assertEqual(self.subject.tank_full_or_missing, False)
@@ -499,57 +492,36 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         self.dps[ERROR_DPS] = 8
         self.assertEqual(self.subject.tank_full_or_missing, True)
 
-    @skip("Defrosting not supported yet")
-    def test_defrosting(self):
-        self.dps[DEFROST_DPS] = False
-        self.assertEqual(self.subject.defrosting, False)
-
-        self.dps[DEFROST_DPS] = True
-        self.assertEqual(self.subject.defrosting, True)
-
-    @skip("Virtual attributes not supported yet.")
     def test_device_state_attributes(self):
         self.dps[ERROR_DPS] = None
         self.dps[DEFROST_DPS] = False
+        self.dps[AIRCLEAN_DPS] = False
+        self.dps[UNKNOWN12_DPS] = "something"
+        self.dps[UNKNOWN101_DPS] = False
         self.assertCountEqual(
             self.subject.device_state_attributes,
             {
-                "error_code": None,
                 "error": STATE_UNAVAILABLE,
                 "defrosting": False,
-            },
-        )
-
-        self.dps[ERROR_DPS] = 8
-        self.dps[DEFROST_DPS] = False
-        self.assertCountEqual(
-            self.subject.device_state_attributes,
-            {
-                "error": ERROR_TANK,
-                "error_code": 8,
-                "defrosting": False,
-            },
-        )
-
-        self.dps[ERROR_DPS] = None
-        self.dps[DEFROST_DPS] = True
-        self.assertCountEqual(
-            self.subject.device_state_attributes,
-            {
-                "error_code": None,
-                "error": STATE_UNAVAILABLE,
-                "defrosting": True,
+                "air_clean_on": False,
+                "unknown_12": "something",
+                "unknown_101": False,
             },
         )
 
         self.dps[ERROR_DPS] = 8
         self.dps[DEFROST_DPS] = True
+        self.dps[AIRCLEAN_DPS] = True
+        self.dps[UNKNOWN12_DPS] = "something else"
+        self.dps[UNKNOWN101_DPS] = True
         self.assertCountEqual(
             self.subject.device_state_attributes,
             {
                 "error": ERROR_TANK,
-                "error_code": 8,
                 "defrosting": True,
+                "air_clean_on": True,
+                "unknown_12": "something else",
+                "unknown_101": True,
             },
         )
 

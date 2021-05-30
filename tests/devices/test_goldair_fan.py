@@ -49,7 +49,6 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         self.dps = FAN_PAYLOAD.copy()
         self.subject._device.get_property.side_effect = lambda id: self.dps[id]
 
-    @skip("Fan and swing modes are not supported yet.")
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
@@ -149,7 +148,6 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_preset_mode(PRESET_SLEEP)
 
-    @skip("Swing mode not supported yet")
     def test_swing_mode(self):
         self.dps[SWING_DPS] = False
         self.assertEqual(self.subject.swing_mode, SWING_OFF)
@@ -160,11 +158,9 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         self.dps[SWING_DPS] = None
         self.assertIs(self.subject.swing_mode, None)
 
-    @skip("Swing mode not supported yet")
     def test_swing_modes(self):
         self.assertCountEqual(self.subject.swing_modes, [SWING_OFF, SWING_HORIZONTAL])
 
-    @skip("Swing mode not supported yet")
     async def test_set_swing_mode_to_off(self):
         async with assert_device_properties_set(
             self.subject._device,
@@ -172,7 +168,6 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_swing_mode(SWING_OFF)
 
-    @skip("Swing mode not supported yet")
     async def test_set_swing_mode_to_horizontal(self):
         async with assert_device_properties_set(
             self.subject._device,
@@ -180,7 +175,7 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_swing_mode(SWING_HORIZONTAL)
 
-    @skip("Fan modes and conditions not supported yet")
+    @skip("Conditions not supported yet")
     def test_fan_modes(self):
         self.dps[PRESET_DPS] = "normal"
         self.assertCountEqual(self.subject.fan_modes, list(range(1, 13)))
@@ -194,7 +189,7 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         self.dps[PRESET_DPS] = None
         self.assertEqual(self.subject.fan_modes, [])
 
-    @skip("Fan modes and conditions not supported yet")
+    @skip("Conditions not supported yet")
     def test_fan_mode_for_normal_preset(self):
         self.dps[PRESET_DPS] = "normal"
 
@@ -210,7 +205,7 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         self.dps[FANMODE_DPS] = None
         self.assertEqual(self.subject.fan_mode, None)
 
-    @skip("Fan modes and conditions not supported yet")
+    @skip("Conditions not supported yet")
     async def test_set_fan_mode_for_normal_preset(self):
         self.dps[PRESET_DPS] = "normal"
 
@@ -220,7 +215,7 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_fan_mode(6)
 
-    @skip("Fan modes and conditions not supported yet")
+    @skip("Conditions not supported yet")
     def test_fan_mode_for_eco_preset(self):
         self.dps[PRESET_DPS] = "nature"
 
@@ -236,7 +231,7 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         self.dps[FANMODE_DPS] = None
         self.assertEqual(self.subject.fan_mode, None)
 
-    @skip("Fan modes and conditions not supported yet")
+    @skip("Conditions not supported yet")
     async def test_set_fan_mode_for_eco_preset(self):
         self.dps[PRESET_DPS] = "nature"
 
@@ -246,7 +241,7 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_fan_mode(1)
 
-    @skip("Fan modes and conditions not supported yet")
+    @skip("Conditions not supported yet")
     def test_fan_mode_for_sleep_preset(self):
         self.dps[PRESET_DPS] = PRESET_SLEEP
 
@@ -262,7 +257,7 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         self.dps[FANMODE_DPS] = None
         self.assertEqual(self.subject.fan_mode, None)
 
-    @skip("Fan modes and conditions not supported yet")
+    @skip("Conditions not supported yet")
     async def test_set_fan_mode_for_sleep_preset(self):
         self.dps[PRESET_DPS] = PRESET_SLEEP
 
@@ -272,7 +267,7 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_fan_mode(2)
 
-    @skip("Fan modes and conditions not supported yet")
+    @skip("Conditions not supported yet")
     async def test_set_fan_mode_does_nothing_when_preset_mode_is_not_set(self):
         self.dps[PRESET_DPS] = None
 
@@ -280,6 +275,12 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
             ValueError, msg="Fan mode can only be set when a preset mode is set"
         ):
             await self.subject.async_set_fan_mode(2)
+
+    def test_device_state_attributes(self):
+        self.dps[UNKNOWN_DPS] = "something"
+        self.assertEqual(
+            self.subject.device_state_attributes, {"unknown_11": "something"}
+        )
 
     async def test_update(self):
         result = AsyncMock()

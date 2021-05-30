@@ -59,7 +59,6 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
         self.dps = GPPH_HEATER_PAYLOAD.copy()
         self.subject._device.get_property.side_effect = lambda id: self.dps[id]
 
-    @skip("Swing mode not supported yet")
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
@@ -304,7 +303,7 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_preset_mode("away")
 
-    @skip("Swing mode and conditional redirection not yet supported")
+    @skip("Conditional redirection not yet supported")
     def test_power_level_returns_user_power_level(self):
         self.dps[SWING_DPS] = "user"
 
@@ -317,7 +316,6 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
         self.dps[POWERLEVEL_DPS] = None
         self.assertIs(self.subject.swing_mode, None)
 
-    @skip("Swing mode not supported yet")
     def test_non_user_swing_mode(self):
         self.dps[SWING_DPS] = "stop"
         self.assertEqual(self.subject.swing_mode, "Stop")
@@ -328,14 +326,14 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
         self.dps[SWING_DPS] = None
         self.assertIs(self.subject.swing_mode, None)
 
-    @skip("Swing mode and conditional redirection not supported yet")
+    @skip("Conditional redirection not supported yet")
     def test_swing_modes(self):
         self.assertCountEqual(
             self.subject.swing_modes,
             ["Stop", "1", "2", "3", "4", "5", "Auto"],
         )
 
-    @skip("Swing mode and conditional redirection not supported yet")
+    @skip("Conditional redirection not supported yet")
     async def test_set_power_level_to_stop(self):
         async with assert_device_properties_set(
             self.subject._device,
@@ -343,7 +341,7 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_swing_mode("Stop")
 
-    @skip("Swing mode and conditional redirection not supported yet")
+    @skip("Conditional redirection not supported yet")
     async def test_set_swing_mode_to_auto(self):
         async with assert_device_properties_set(
             self.subject._device,
@@ -351,7 +349,7 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_swing_mode("Auto")
 
-    @skip("Swing mode and conditional redirection not supported yet")
+    @skip("Conditional redirection not supported yet")
     async def test_set_power_level_to_numeric_value(self):
         async with assert_device_properties_set(
             self.subject._device,
@@ -359,7 +357,7 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_swing_mode("3")
 
-    @skip("Swing mode and conditional redirection not supported yet")
+    @skip("Conditional redirection not supported yet")
     async def test_set_power_level_to_invalid_value_raises_error(self):
         with self.assertRaisesRegex(ValueError, "Invalid power level: unknown"):
             await self.subject.async_set_swing_mode("unknown")

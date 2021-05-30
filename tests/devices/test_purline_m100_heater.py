@@ -60,7 +60,6 @@ class TestPulineM100Heater(IsolatedAsyncioTestCase):
         self.dps = PURLINE_M100_HEATER_PAYLOAD.copy()
         self.subject._device.get_property.side_effect = lambda id: self.dps[id]
 
-    @skip("Swing mode not supported yet")
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,

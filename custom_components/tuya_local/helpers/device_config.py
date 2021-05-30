@@ -242,6 +242,7 @@ class TuyaDpsConfig:
         result = value
         replaced = False
         scale = 1
+        step = None
         if "mapping" in self._config.keys():
             for map in self._config["mapping"]:
 
@@ -253,12 +254,33 @@ class TuyaDpsConfig:
                     result = map["dps_val"]
                     replaced = True
 
-                if "scale" in map and "value" not in map:
+                if (
+                    "scale" in map
+                    and "value" not in map
+                    and isinstance(map["scale"], (int, float))
+                ):
                     scale = map["scale"]
+                if (
+                    "step" in map
+                    and "value" not in map
+                    and isinstance(map["step"], (int, float))
+                ):
+                    step = map["step"]
 
         if scale != 1 and isinstance(result, (int, float)):
             result = result / scale
             replaced = True
+        if step is not None and isinstance(result, (int, float)):
+            result = step * round(float(result) / step)
+            replaced = True
+
+        if self.range is not None:
+            min = self.range["min"]
+            max = self.range["max"]
+            if result < min or result > max:
+                raise ValueError(
+                    f"Target {self.name} ({value}) must be between {min} and {max}"
+                )
 
         if replaced:
             _LOGGER.debug(
