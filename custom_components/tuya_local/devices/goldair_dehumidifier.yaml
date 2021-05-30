@@ -33,6 +33,11 @@ primary_entity:
     - id: 4
       type: integer
       name: humidity
+      range:
+        min: 30
+        max: 80
+      mapping:
+        - step: 5
     - id: 5
       type: boolean
       name: air_clean_on
@@ -74,10 +79,10 @@ primary_entity:
       type: boolean
       name: defrosting
       mapping:
-        dps_val: true
-        icon: "mdi:snowflake-melt"
-        icon_priority: 2
-      readonly: true
+        - dps_val: true
+          icon: "mdi:snowflake-melt"
+          icon_priority: 2
+          readonly: true
 secondary_entities:
   - entity: light
     name: Panel Light
