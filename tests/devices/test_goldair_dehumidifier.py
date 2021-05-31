@@ -106,7 +106,7 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
 
         self.dps[AIRCLEAN_DPS] = False
         self.dps[PRESET_DPS] = PRESET_DRY_CLOTHES
-        self.assertEqual(self.subject.icon, "mdi:air-humidifier")
+        self.assertEqual(self.subject.icon, "mdi:air-humidifier-off")
 
         self.dps[AIRCLEAN_DPS] = True
         self.dps[PRESET_DPS] = PRESET_NORMAL
@@ -272,7 +272,7 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         self.assertEqual(self.subject.hvac_mode, STATE_UNAVAILABLE)
 
     def test_hvac_modes(self):
-        self.assertEqual(self.subject.hvac_modes, [HVAC_MODE_OFF, HVAC_MODE_DRY])
+        self.assertCountEqual(self.subject.hvac_modes, [HVAC_MODE_OFF, HVAC_MODE_DRY])
 
     async def test_turn_on(self):
         async with assert_device_properties_set(
@@ -311,7 +311,7 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
 
     @skip("Conditions not supported yet")
     def test_preset_modes(self):
-        self.assertEqual(
+        self.assertCountEqual(
             self.subject.preset_modes,
             [
                 "Normal",
@@ -416,7 +416,7 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
     @skip("Conditions not supported yet")
     def test_fan_modes_reflect_preset_mode(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL
-        self.assertEqual(self.subject.fan_modes, [FAN_LOW, FAN_HIGH])
+        self.assertCountEqual(self.subject.fan_modes, [FAN_LOW, FAN_HIGH])
 
         self.dps[PRESET_DPS] = PRESET_LOW
         self.assertEqual(self.subject.fan_modes, [FAN_LOW])
