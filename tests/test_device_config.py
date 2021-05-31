@@ -188,7 +188,7 @@ class TestDeviceConfig(unittest.TestCase):
         self._test_detect(
             GARDENPAC_HEATPUMP_PAYLOAD,
             CONF_TYPE_GARDENPAC_HEATPUMP,
-            "GardenPACPoolHeatpump",
+            None,
         )
 
     def test_purline_heater_detection(self):
