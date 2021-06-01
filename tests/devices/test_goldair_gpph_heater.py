@@ -362,7 +362,6 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
         with self.assertRaisesRegex(ValueError, "Invalid power level: unknown"):
             await self.subject.async_set_swing_mode("unknown")
 
-    @skip("Hidden dps not supported yet")
     def test_device_state_attributes(self):
         self.dps[ERROR_DPS] = "something"
         self.dps[TIMER_DPS] = 5

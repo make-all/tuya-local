@@ -27,7 +27,7 @@ class TuyaLocalLock(LockEntity):
         for d in config.dps():
             if d.name == "lock":
                 self._lock_dps = d
-            else:
+            elif not d.hidden:
                 self._attr_dps.append(d)
 
     @property

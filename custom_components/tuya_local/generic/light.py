@@ -25,7 +25,7 @@ class TuyaLocalLight(LightEntity):
         for d in config.dps():
             if d.name == "switch":
                 self._switch_dps = d
-            else:
+            elif not d.hidden:
                 self._attr_dps.append(d)
 
     @property

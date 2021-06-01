@@ -80,7 +80,7 @@ class TuyaLocalClimate(ClimateEntity):
                 self._support_flags |= SUPPORT_FAN_MODE
             elif d.name == "temperature_unit":
                 self._unit_dps = d
-            else:
+            elif not d.hidden:
                 self._attr_dps.append(d)
 
     @property

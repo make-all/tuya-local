@@ -401,7 +401,6 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
 
         self.assertEqual(self.subject.fan_mode, FAN_LOW)
 
-    @skip("Conditions not supported yet")
     def test_fan_mode_reflects_dps_mode_in_normal_preset(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL
         self.dps[FANMODE_DPS] = "1"

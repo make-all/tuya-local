@@ -175,11 +175,13 @@ class TuyaDpsConfig:
 
     def get_value(self, device):
         """Return the value of the dps from the given device."""
-        return self.map_from_dps(device.get_property(self.id), device)
+        return self._map_from_dps(device.get_property(self.id), device)
 
     async def async_set_value(self, device, value):
         """Set the value of the dps in the given device to given value."""
-        await device.async_set_property(self.id, self.map_to_dps(value, device))
+        if self.readonly:
+            raise TypeError(f"{self.name} is read only")
+        await device.async_set_property(self.id, self._map_to_dps(value, device))
 
     @property
     def values(self):
@@ -210,10 +212,14 @@ class TuyaDpsConfig:
             return None
 
     @property
-    def isreadonly(self):
+    def readonly(self):
         return "readonly" in self._config.keys() and self._config["readonly"] is True
 
-    def map_from_dps(self, value, device):
+    @property
+    def hidden(self):
+        return "hidden" in self._config.keys() and self._config["hidden"] is True
+
+    def _map_from_dps(self, value, device):
         result = value
         replaced = False
         default_value = None
@@ -262,7 +268,7 @@ class TuyaDpsConfig:
 
         return result
 
-    def map_to_dps(self, value, device):
+    def _map_to_dps(self, value, device):
         result = value
         replaced = False
         scale = 1

@@ -34,7 +34,8 @@ class TuyaLocalSwitch(SwitchEntity):
             else:
                 if d.name == "current_power_w":
                     self._power_dps = d
-                self._attr_dps.append(d)
+                if not d.hidden:
+                    self._attr_dps.append(d)
 
     @property
     def should_poll(self):
