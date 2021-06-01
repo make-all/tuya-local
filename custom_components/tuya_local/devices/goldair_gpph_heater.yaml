@@ -22,13 +22,13 @@ primary_entity:
         min: 5
         max: 35
       mapping:
-        constraint: preset_mode
-        conditions:
-          - dps_val: "ECO"
-            value-redirect: eco_temperature
-          - dps_val: "AF"
-            invalid: true
-            value: 5
+        - constraint: preset_mode
+          conditions:
+            - dps_val: "ECO"
+              value-redirect: eco_temperature
+            - dps_val: "AF"
+              invalid: true
+              value: 5
       name: temperature
     - id: 3
       type: integer
@@ -91,12 +91,12 @@ primary_entity:
         min: 5
         max: 21
       mapping:
-        constraint: preset_mode
-        conditions:
-          - dps_val: "C"
-            invalid: true
-          - dps_val: "AF"
-            invalid: true
+        - constraint: preset_mode
+          conditions:
+            - dps_val: "C"
+              invalid: true
+            - dps_val: "AF"
+              invalid: true
       hidden: true
       name: eco_temperature
 secondary_entities:

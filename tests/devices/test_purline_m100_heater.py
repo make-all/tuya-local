@@ -160,7 +160,6 @@ class TestPulineM100Heater(IsolatedAsyncioTestCase):
         self.dps[CURRENTTEMP_DPS] = 25
         self.assertEqual(self.subject.current_temperature, 25)
 
-    @skip("Conditions not supported yet")
     def test_hvac_mode(self):
         self.dps[HVACMODE_DPS] = True
         self.dps[PRESET_DPS] = "auto"
@@ -175,7 +174,6 @@ class TestPulineM100Heater(IsolatedAsyncioTestCase):
         self.dps[HVACMODE_DPS] = None
         self.assertEqual(self.subject.hvac_mode, STATE_UNAVAILABLE)
 
-    @skip("Conditions not supported yet")
     def test_hvac_modes(self):
         self.assertCountEqual(
             self.subject.hvac_modes,
@@ -197,7 +195,6 @@ class TestPulineM100Heater(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_hvac_mode(HVAC_MODE_OFF)
 
-    @skip("Conditions not supported yet")
     async def test_turn_on_fan(self):
         async with assert_device_properties_set_optional(
             self.subject._device,
@@ -332,7 +329,7 @@ class TestPulineM100Heater(IsolatedAsyncioTestCase):
     def test_switch_is_same_device(self):
         self.assertEqual(self.switch._device, self.subject._device)
 
-    def test_switch_class_is_outlet(self):
+    def test_switch_class_is_switch(self):
         self.assertEqual(self.switch.device_class, DEVICE_CLASS_SWITCH)
 
     def test_switch_is_on(self):

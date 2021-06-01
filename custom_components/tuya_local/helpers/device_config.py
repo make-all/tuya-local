@@ -138,6 +138,13 @@ class TuyaEntityConfig:
         for d in self._config["dps"]:
             yield TuyaDpsConfig(self, d)
 
+    def find_dps(self, name):
+        """Find a dps with the specified name."""
+        for d in self.dps():
+            if d.name == name:
+                return d
+        return None
+
 
 class TuyaDpsConfig:
     """Representation of a dps config."""
@@ -168,11 +175,11 @@ class TuyaDpsConfig:
 
     def get_value(self, device):
         """Return the value of the dps from the given device."""
-        return self.map_from_dps(device.get_property(self.id))
+        return self.map_from_dps(device.get_property(self.id), device)
 
     async def async_set_value(self, device, value):
         """Set the value of the dps in the given device to given value."""
-        await device.async_set_property(self.id, self.map_to_dps(value))
+        await device.async_set_property(self.id, self.map_to_dps(value, device))
 
     @property
     def values(self):
@@ -183,7 +190,12 @@ class TuyaDpsConfig:
         for map in self._config["mapping"]:
             if "value" in map:
                 v.append(map["value"])
-        return v if len(v) > 0 else None
+            if "conditions" in map:
+                for c in map["conditions"]:
+                    if "value" in c:
+                        v.append(c["value"])
+
+        return list(set(v)) if len(v) > 0 else None
 
     @property
     def range(self):
@@ -201,7 +213,7 @@ class TuyaDpsConfig:
     def isreadonly(self):
         return "readonly" in self._config.keys() and self._config["readonly"] is True
 
-    def map_from_dps(self, value):
+    def map_from_dps(self, value, device):
         result = value
         replaced = False
         default_value = None
@@ -218,6 +230,18 @@ class TuyaDpsConfig:
                     if "value" in map:
                         result = map["value"]
                         replaced = True
+                    if "conditions" in map:
+                        cond_dps = self
+                        if "constraint" in map:
+                            cond_dps = self._entity.find_dps(map["constraint"])
+                        for c in map["conditions"]:
+                            if (
+                                "dps_val" in c
+                                and c["dps_val"] == device.get_property(cond_dps.id)
+                                and "value" in c
+                            ):
+                                result = c["value"]
+                                replaced = True
 
         if not replaced and default_value is not None:
             result = default_value
@@ -238,7 +262,7 @@ class TuyaDpsConfig:
 
         return result
 
-    def map_to_dps(self, value):
+    def map_to_dps(self, value, device):
         result = value
         replaced = False
         scale = 1
@@ -253,7 +277,12 @@ class TuyaDpsConfig:
                 ):
                     result = map["dps_val"]
                     replaced = True
-
+                elif "conditions" in map:
+                    for c in map["conditions"]:
+                        if "value" in c and c["value"] == value:
+                            result = map["dps_val"]
+                            c_dps = self._entity.find_dps(map["constraint"])
+                            device.set_property(c_dps.id, c["dps_val"])
                 if (
                     "scale" in map
                     and "value" not in map

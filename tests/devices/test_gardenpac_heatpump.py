@@ -150,7 +150,7 @@ class TestGardenPACPoolHeatpump(IsolatedAsyncioTestCase):
         self.assertEqual(self.subject.hvac_mode, STATE_UNAVAILABLE)
 
     def test_hvac_modes(self):
-        self.assertEqual(self.subject.hvac_modes, [HVAC_MODE_OFF, HVAC_MODE_HEAT])
+        self.assertCountEqual(self.subject.hvac_modes, [HVAC_MODE_OFF, HVAC_MODE_HEAT])
 
     async def test_turn_on(self):
         async with assert_device_properties_set(
