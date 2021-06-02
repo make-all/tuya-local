@@ -84,8 +84,15 @@ class TestDeviceConfig(unittest.TestCase):
                 matched = True
                 quality = cfg.match_quality(payload)
                 if legacy_class is not None:
+                    cfg_class = cfg.primary_entity.legacy_class
+                    if cfg_class is None:
+                        for e in cfg.secondary_entities():
+                            cfg_class = e.legacy_class
+                            if cfg_class is not None:
+                                break
+
                     self.assertEqual(
-                        cfg.primary_entity.legacy_class.__name__,
+                        cfg_class.__name__,
                         legacy_class,
                     )
             else:
@@ -109,8 +116,14 @@ class TestDeviceConfig(unittest.TestCase):
         # Ensure the same correct config is returned when looked up by type
         cfg = config_for_legacy_use(legacy_type)
         if legacy_class is not None:
+            cfg_class = cfg.primary_entity.legacy_class
+            if cfg_class is None:
+                for e in cfg.secondary_entities():
+                    cfg_class = e.legacy_class
+                    if cfg_class is not None:
+                        break
             self.assertEqual(
-                cfg.primary_entity.legacy_class.__name__,
+                cfg_class.__name__,
                 legacy_class,
             )
 

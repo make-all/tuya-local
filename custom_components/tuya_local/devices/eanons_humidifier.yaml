@@ -1,7 +1,9 @@
-name: Eanons Humidifier
+name: Eanons/pureenjoy Humidifier
 legacy_type: eanons_humidifier
 primary_entity:
-  entity: climate
+  entity: humidifier
+  name: Humidifier
+  class: humidifier
   dps:
     - id: 2
       name: fan_mode
@@ -28,17 +30,10 @@ primary_entity:
         - dps_val: 1
           value: Water Level Low
     - id: 10
-      name: hvac_mode
+      name: switch
       type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-          icon: mdi:air-humidifier-off
-        - dps_val: true
-          value: "dry"
-          icon: mdi:air-humidifier
     - id: 12
-      name: preset_mode
+      name: mode
       type: string
       mapping:
         - dps_val: sleep
@@ -57,9 +52,7 @@ primary_entity:
       name: current_humidity
       type: integer
 secondary_entities:
-  - entity: humidifier
-    name: Humidifier
-    class: humidifier
+  - entity: climate
     dps:
       - id: 2
         name: fan_mode
@@ -86,10 +79,17 @@ secondary_entities:
           - dps_val: 1
             value: Water Level Low
       - id: 10
-        name: switch
+        name: hvac_mode
         type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+            icon: mdi:air-humidifier-off
+          - dps_val: true
+            value: "dry"
+            icon: mdi:air-humidifier
       - id: 12
-        name: mode
+        name: preset_mode
         type: string
         mapping:
           - dps_val: sleep

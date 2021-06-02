@@ -43,16 +43,20 @@ class TestEanonsHumidifier(IsolatedAsyncioTestCase):
         self.addCleanup(device_patcher.stop)
         self.mock_device = device_patcher.start()
         cfg = TuyaDeviceConfig("eanons_humidifier.yaml")
-        climate = cfg.primary_entity
-        switch = None
+        entities = {}
+        entities[cfg.primary_entity.entity] = cfg.primary_entity
         for e in cfg.secondary_entities():
-            if e.entity == "switch":
-                switch = e
-        self.climate_name = climate.name
-        self.switch_name = "missing" if switch is None else switch.name
+            entities[e.entity] = e
 
-        self.subject = TuyaLocalClimate(self.mock_device(), climate)
-        self.switch = TuyaLocalSwitch(self.mock_device(), switch)
+        self.climate_name = (
+            "missing" if "climate" not in entities else entities["climate"].name
+        )
+        self.switch_name = (
+            "missing" if "switch" not in entities else entities["switch"].name
+        )
+
+        self.subject = TuyaLocalClimate(self.mock_device(), entities.get("climate"))
+        self.switch = TuyaLocalSwitch(self.mock_device(), entities.get("switch"))
 
         self.dps = EANONS_HUMIDIFIER_PAYLOAD.copy()
         self.subject._device.get_property.side_effect = lambda id: self.dps[id]

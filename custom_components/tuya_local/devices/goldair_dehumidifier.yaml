@@ -1,22 +1,22 @@
 name: Goldair Dehumidifier
 legacy_type: dehumidifier
 primary_entity:
-  entity: climate
-  legacy_class: ".dehumidifier.climate.GoldairDehumidifier"
+  entity: humidifier
+  name: Dehumidifier
+  class: dehumidifier
   dps:
     - id: 1
+      name: switch
       type: boolean
       mapping:
-        - dps_val: False
-          value: "off"
-          icon: mdi:air-humidifier-off
+        - dps_val: false
+          icon: "mdi:air-humidifier-off"
           icon_priority: 3
-        - dps_val: True
-          value: "dry"
-          icon: mdi:air-humidifier
+        - dps_val: true
+          icon: "mdi:air-humidifier"
           icon_priority: 5
-      name: hvac_mode
     - id: 2
+      name: mode
       type: string
       mapping:
         - dps_val: "0"
@@ -29,7 +29,6 @@ primary_entity:
           value: "Dry clothes"
           icon: "mdi:tshirt-crew-outline"
           icon_priority: 4
-      name: preset_mode
     - id: 4
       type: integer
       name: humidity
@@ -82,24 +81,24 @@ primary_entity:
         - dps_val: true
           icon: "mdi:snowflake-melt"
           icon_priority: 2
-          readonly: true
+      readonly: true
 secondary_entities:
-  - entity: humidifier
-    name: Dehumidifier
-    class: dehumidifier
+  - entity: climate
+    legacy_class: ".dehumidifier.climate.GoldairDehumidifier"
     dps:
       - id: 1
-        name: switch
         type: boolean
         mapping:
-          - dps_val: false
-            icon: "mdi:air-humidifier-off"
+          - dps_val: False
+            value: "off"
+            icon: mdi:air-humidifier-off
             icon_priority: 3
-          - dps_val: true
-            icon: "mdi:air-humidifier"
+          - dps_val: True
+            value: "dry"
+            icon: mdi:air-humidifier
             icon_priority: 5
+        name: hvac_mode
       - id: 2
-        name: mode
         type: string
         mapping:
           - dps_val: "0"
@@ -112,6 +111,7 @@ secondary_entities:
             value: "Dry clothes"
             icon: "mdi:tshirt-crew-outline"
             icon_priority: 4
+        name: preset_mode
       - id: 4
         type: integer
         name: humidity
@@ -164,7 +164,7 @@ secondary_entities:
           - dps_val: true
             icon: "mdi:snowflake-melt"
             icon_priority: 2
-        readonly: true
+            readonly: true
   - entity: light
     name: Panel Light
     dps:

@@ -51,26 +51,29 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         self.addCleanup(device_patcher.stop)
         self.mock_device = device_patcher.start()
         cfg = TuyaDeviceConfig("goldair_dehumidifier.yaml")
-        climate = cfg.primary_entity
-        light = None
-        lock = None
-        humidifier = None
-        for e in cfg.secondary_entities():
-            if e.entity == "light":
-                light = e
-            elif e.entity == "lock":
-                lock = e
-            elif e.entity == "humidifier":
-                humidifier = e
-        self.climate_name = climate.name
-        self.light_name = "missing" if light is None else light.name
-        self.lock_name = "missing" if lock is None else lock.name
-        self.humidifier_name = "missing" if humidifier is None else humidifier.name
+        entities = {}
+        entities[cfg.primary_entity.entity] = cfg.primary_entity
 
-        self.subject = TuyaLocalClimate(self.mock_device(), climate)
-        self.light = TuyaLocalLight(self.mock_device(), light)
-        self.lock = TuyaLocalLock(self.mock_device(), lock)
-        self.humidifier = TuyaLocalHumidifier(self.mock_device(), humidifier)
+        for e in cfg.secondary_entities():
+            entities[e.entity] = e
+
+        self.climate_name = (
+            "missing" if "climate" not in entities else entities["climate"].name
+        )
+        self.light_name = (
+            "missing" if "light" not in entities else entities["light"].name
+        )
+        self.lock_name = "missing" if "lock" not in entities else entities["lock"].name
+        self.humidifier_name = (
+            "missing" if "humidifier" not in entities else entities["humidifier"].name
+        )
+
+        self.subject = TuyaLocalClimate(self.mock_device(), entities.get("climate"))
+        self.light = TuyaLocalLight(self.mock_device(), entities.get("light"))
+        self.lock = TuyaLocalLock(self.mock_device(), entities.get("lock"))
+        self.humidifier = TuyaLocalHumidifier(
+            self.mock_device(), entities.get("humidifier")
+        )
 
         self.dps = DEHUMIDIFIER_PAYLOAD.copy()
         self.subject._device.get_property.side_effect = lambda id: self.dps[id]
