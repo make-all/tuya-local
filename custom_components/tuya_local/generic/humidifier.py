@@ -139,11 +139,11 @@ class TuyaLocalHumidifier(HumidifierEntity):
             return DEFAULT_MAX_HUMIDITY
         return self._humidity_dps.range["max"]
 
-    async def async_set_humidity(self, target_humidity):
+    async def async_set_humidity(self, humidity):
         if self._humidity_dps is None:
             raise NotImplementedError()
 
-        await self._humidity_dps.async_set_value(self._device, target_humidity)
+        await self._humidity_dps.async_set_value(self._device, humidity)
 
     @property
     def mode(self):
