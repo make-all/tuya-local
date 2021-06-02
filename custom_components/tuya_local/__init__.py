@@ -49,23 +49,23 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     config = {**entry.data, **entry.options, "name": entry.title}
     setup_device(hass, config)
 
-    if config[CONF_CLIMATE] is True:
+    if config.get(CONF_CLIMATE, False) is True:
         hass.async_create_task(
             hass.config_entries.async_forward_entry_setup(entry, "climate")
         )
-    if config[CONF_DISPLAY_LIGHT] is True:
+    if config.get(CONF_DISPLAY_LIGHT, False) is True:
         hass.async_create_task(
             hass.config_entries.async_forward_entry_setup(entry, "light")
         )
-    if config[CONF_CHILD_LOCK] is True:
+    if config.get(CONF_CHILD_LOCK, False) is True:
         hass.async_create_task(
             hass.config_entries.async_forward_entry_setup(entry, "lock")
         )
-    if config[CONF_SWITCH] is True:
+    if config.get(CONF_SWITCH, False) is True:
         hass.async_create_task(
             hass.config_entries.async_forward_entry_setup(entry, "switch")
         )
-    if config[CONF_HUMIDIFIER] is True:
+    if config.get(CONF_HUMIDIFIER, False) is True:
         hass.async_create_task(
             hass.config_entries.async_forward_entry_setup(entry, "humidifier")
         )
