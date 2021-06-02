@@ -19,6 +19,7 @@ from .const import (
     CONF_CLIMATE,
     CONF_DEVICE_ID,
     CONF_DISPLAY_LIGHT,
+    CONF_HUMIDIFIER,
     CONF_SWITCH,
     DOMAIN,
 )
@@ -64,6 +65,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
         hass.async_create_task(
             hass.config_entries.async_forward_entry_setup(entry, "switch")
         )
+    if config[CONF_HUMIDIFIER] is True:
+        hass.async_create_task(
+            hass.config_entries.async_forward_entry_setup(entry, "humidifier")
+        )
+
     entry.add_update_listener(async_update_entry)
 
     return True
@@ -85,6 +91,8 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
         await hass.config_entries.async_forward_entry_unload(entry, "lock")
     if CONF_SWITCH in data:
         await hass.config_entries.async_forward_entry_unload(entry, "switch")
+    if CONF_HUMIDIFIER in data:
+        await hass.config_entries.async_forward_entry_unload(entry, "humidifier")
 
     delete_device(hass, config)
     del hass.data[DOMAIN][config[CONF_DEVICE_ID]]

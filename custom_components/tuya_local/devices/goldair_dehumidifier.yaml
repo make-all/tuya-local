@@ -84,6 +84,80 @@ primary_entity:
           icon_priority: 2
           readonly: true
 secondary_entities:
+  - entity: humidifier
+    name: Dehumidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: mode
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: "Normal"
+          - dps_val: "1"
+            value: "Low"
+          - dps_val: "2"
+            value: "High"
+          - dps_val: "3"
+            value: "Dry clothes"
+            icon: "mdi:tshirt-crew-outline"
+            icon_priority: 4
+      - id: 4
+        type: integer
+        name: humidity
+        range:
+          min: 30
+          max: 80
+        mapping:
+          - step: 5
+      - id: 5
+        type: boolean
+        name: air_clean_on
+      - id: 6
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: "low"
+          - dps_val: "3"
+            value: "high"
+        name: fan_mode
+      - id: 11
+        type: bitfield
+        mapping:
+          - dps_val: 8
+            value: "Tank full or missing"
+            icon: "mdi:cup-water"
+            icon_priority: 1
+          - dps_val: 0
+            value: "OK"
+        name: error
+        readonly: true
+      - id: 12
+        type: string
+        name: unknown_12
+      - id: 101
+        type: boolean
+        name: unknown_101
+        readonly: true
+      - id: 103
+        type: integer
+        name: current_temperature
+        readonly: true
+      - id: 104
+        type: integer
+        name: current_humidity
+        readonly: true
+      - id: 105
+        type: boolean
+        name: defrosting
+        mapping:
+          - dps_val: true
+            icon: "mdi:snowflake-melt"
+            icon_priority: 2
+        readonly: true
   - entity: light
     name: Panel Light
     dps:

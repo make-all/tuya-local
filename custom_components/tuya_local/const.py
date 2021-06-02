@@ -17,10 +17,12 @@ CONF_TYPE_KOGAN_SWITCH = "kogan_switch"
 CONF_TYPE_GSH_HEATER = "gsh_heater"
 CONF_TYPE_GARDENPAC_HEATPUMP = "gardenpac_heatpump"
 CONF_TYPE_PURLINE_M100_HEATER = "purline_m100_heater"
+CONF_TYPE_EANONS_HUMIDIFIER = "eanons_humidifier"
+CONF_TYPE_REMORA_HEATPUMP = "remora_heatpump"
 CONF_CLIMATE = "climate"
 CONF_DISPLAY_LIGHT = "display_light"
 CONF_CHILD_LOCK = "child_lock"
 CONF_SWITCH = "switch"
-
+CONF_HUMIDIFIER = "humidifier"
 API_PROTOCOL_VERSIONS = [3.3, 3.1]
 SCAN_INTERVAL = timedelta(seconds=30)

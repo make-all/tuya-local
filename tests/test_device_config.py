@@ -15,6 +15,8 @@ from custom_components.tuya_local.const import (
     CONF_TYPE_KOGAN_HEATER,
     CONF_TYPE_KOGAN_SWITCH,
     CONF_TYPE_PURLINE_M100_HEATER,
+    CONF_TYPE_REMORA_HEATPUMP,
+    CONF_TYPE_EANONS_HUMIDIFIER,
 )
 
 from custom_components.tuya_local.helpers.device_config import (
@@ -38,6 +40,7 @@ from .const import (
     KOGAN_SOCKET_PAYLOAD2,
     PURLINE_M100_HEATER_PAYLOAD,
     REMORA_HEATPUMP_PAYLOAD,
+    EANONS_HUMIDIFIER_PAYLOAD,
 )
 
 
@@ -196,10 +199,14 @@ class TestDeviceConfig(unittest.TestCase):
         self._test_detect(
             PURLINE_M100_HEATER_PAYLOAD,
             CONF_TYPE_PURLINE_M100_HEATER,
-            "PurlineM100Heater",
+            None,
         )
 
     # Non-legacy devices start here.
     def test_remora_heatpump_detection(self):
         """Test that Remora heatpump can be detected from its sample payload."""
-        self._test_detect(REMORA_HEATPUMP_PAYLOAD, "remora_heatpump", None)
+        self._test_detect(REMORA_HEATPUMP_PAYLOAD, CONF_TYPE_REMORA_HEATPUMP, None)
+
+    def test_eanons_humidifier(self):
+        """Test that Eanons humidifier can be detected from its sample payload."""
+        self._test_detect(EANONS_HUMIDIFIER_PAYLOAD, CONF_TYPE_EANONS_HUMIDIFIER, None)

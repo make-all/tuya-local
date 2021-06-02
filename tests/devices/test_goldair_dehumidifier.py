@@ -10,10 +10,12 @@ from homeassistant.components.climate.const import (
     SUPPORT_PRESET_MODE,
     SUPPORT_TARGET_HUMIDITY,
 )
+from homeassistant.components.humidifier.const import SUPPORT_MODES
 from homeassistant.components.lock import STATE_LOCKED, STATE_UNLOCKED
 from homeassistant.const import ATTR_TEMPERATURE, STATE_UNAVAILABLE
 
 from custom_components.tuya_local.generic.climate import TuyaLocalClimate
+from custom_components.tuya_local.generic.humidifier import TuyaLocalHumidifier
 from custom_components.tuya_local.generic.light import TuyaLocalLight
 from custom_components.tuya_local.generic.lock import TuyaLocalLock
 from custom_components.tuya_local.helpers.device_config import TuyaDeviceConfig
@@ -52,18 +54,23 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         climate = cfg.primary_entity
         light = None
         lock = None
+        humidifier = None
         for e in cfg.secondary_entities():
             if e.entity == "light":
                 light = e
             elif e.entity == "lock":
                 lock = e
+            elif e.entity == "humidifier":
+                humidifier = e
         self.climate_name = climate.name
         self.light_name = "missing" if light is None else light.name
         self.lock_name = "missing" if lock is None else lock.name
+        self.humidifier_name = "missing" if humidifier is None else humidifier.name
 
         self.subject = TuyaLocalClimate(self.mock_device(), climate)
         self.light = TuyaLocalLight(self.mock_device(), light)
         self.lock = TuyaLocalLock(self.mock_device(), lock)
+        self.humidifier = TuyaLocalHumidifier(self.mock_device(), humidifier)
 
         self.dps = DEHUMIDIFIER_PAYLOAD.copy()
         self.subject._device.get_property.side_effect = lambda id: self.dps[id]
@@ -78,26 +85,31 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         self.assertTrue(self.subject.should_poll)
         self.assertTrue(self.light.should_poll)
         self.assertTrue(self.lock.should_poll)
+        self.assertTrue(self.humidifier.should_poll)
 
     def test_name_returns_device_name(self):
         self.assertEqual(self.subject.name, self.subject._device.name)
         self.assertEqual(self.light.name, self.subject._device.name)
         self.assertEqual(self.lock.name, self.subject._device.name)
+        self.assertEqual(self.humidifier.name, self.subject._device.name)
 
     def test_friendly_name_returns_config_name(self):
         self.assertEqual(self.subject.friendly_name, self.climate_name)
         self.assertEqual(self.light.friendly_name, self.light_name)
         self.assertEqual(self.lock.friendly_name, self.lock_name)
+        self.assertEqual(self.humidifier.friendly_name, self.humidifier_name)
 
     def test_unique_id_returns_device_unique_id(self):
         self.assertEqual(self.subject.unique_id, self.subject._device.unique_id)
         self.assertEqual(self.light.unique_id, self.subject._device.unique_id)
         self.assertEqual(self.lock.unique_id, self.subject._device.unique_id)
+        self.assertEqual(self.humidifier.unique_id, self.subject._device.unique_id)
 
     def test_device_info_returns_device_info_from_device(self):
         self.assertEqual(self.subject.device_info, self.subject._device.device_info)
         self.assertEqual(self.light.device_info, self.subject._device.device_info)
         self.assertEqual(self.lock.device_info, self.subject._device.device_info)
+        self.assertEqual(self.humidifier.device_info, self.subject._device.device_info)
 
     @skip("Icon customisation not supported yet")
     def test_icon_is_always_standard_when_off_without_error(self):
@@ -169,15 +181,23 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
 
     def test_min_target_humidity(self):
         self.assertEqual(self.subject.min_humidity, 30)
+        self.assertEqual(self.humidifier.min_humidity, 30)
 
     def test_max_target_humidity(self):
         self.assertEqual(self.subject.max_humidity, 80)
+        self.assertEqual(self.humidifier.max_humidity, 80)
 
     def test_target_humidity_in_normal_preset(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL
         self.dps[HUMIDITY_DPS] = 55
 
         self.assertEqual(self.subject.target_humidity, 55)
+
+    def test_target_humidity_in_humidifier(self):
+        self.dps[PRESET_DPS] = PRESET_NORMAL
+        self.dps[HUMIDITY_DPS] = 45
+
+        self.assertEqual(self.humidifier.target_humidity, 45)
 
     @skip("Conditions not supported yet")
     def test_target_humidity_outside_normal_preset(self):
@@ -212,6 +232,22 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
             {HUMIDITY_DPS: 50},
         ):
             await self.subject.async_set_humidity(52)
+
+    async def test_set_humidity_in_humidifier_rounds_up_to_5_percent(self):
+        self.dps[PRESET_DPS] = PRESET_NORMAL
+        async with assert_device_properties_set(
+            self.humidifier._device,
+            {HUMIDITY_DPS: 45},
+        ):
+            await self.humidifier.async_set_humidity(43)
+
+    async def test_set_humidity_in_humidifier_rounds_down_to_5_percent(self):
+        self.dps[PRESET_DPS] = PRESET_NORMAL
+        async with assert_device_properties_set(
+            self.humidifier._device,
+            {HUMIDITY_DPS: 40},
+        ):
+            await self.humidifier.async_set_humidity(42)
 
     @skip("Conditions not supported yet")
     async def test_set_target_humidity_raises_error_outside_of_normal_preset(self):
@@ -281,26 +317,51 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
             await self.subject.async_set_hvac_mode(HVAC_MODE_DRY)
 
     async def test_turn_off(self):
+
         async with assert_device_properties_set(
             self.subject._device, {HVACMODE_DPS: False}
         ):
             await self.subject.async_set_hvac_mode(HVAC_MODE_OFF)
 
+    def test_humidifier_is_on(self):
+        self.dps[HVACMODE_DPS] = True
+        self.assertTrue(self.humidifier.is_on)
+
+        self.dps[HVACMODE_DPS] = False
+        self.assertFalse(self.humidifier.is_on)
+
+    async def test_dehumidifier_turn_on(self):
+        async with assert_device_properties_set(
+            self.subject._device, {HVACMODE_DPS: True}
+        ):
+            await self.humidifier.async_turn_on()
+
+    async def test_dehumidifier_turn_off(self):
+        async with assert_device_properties_set(
+            self.subject._device, {HVACMODE_DPS: False}
+        ):
+            await self.humidifier.async_turn_off()
+
     def test_preset_mode(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL
         self.assertEqual(self.subject.preset_mode, "Normal")
+        self.assertEqual(self.humidifier.mode, "Normal")
 
         self.dps[PRESET_DPS] = PRESET_LOW
         self.assertEqual(self.subject.preset_mode, "Low")
+        self.assertEqual(self.humidifier.mode, "Low")
 
         self.dps[PRESET_DPS] = PRESET_HIGH
         self.assertEqual(self.subject.preset_mode, "High")
+        self.assertEqual(self.humidifier.mode, "High")
 
         self.dps[PRESET_DPS] = PRESET_DRY_CLOTHES
         self.assertEqual(self.subject.preset_mode, "Dry clothes")
+        self.assertEqual(self.humidifier.mode, "Dry clothes")
 
         self.dps[PRESET_DPS] = None
         self.assertEqual(self.subject.preset_mode, None)
+        self.assertEqual(self.humidifier.mode, None)
 
     @skip("Conditions not supported yet")
     def test_air_clean_is_surfaced_in_preset_mode(self):

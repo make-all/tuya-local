@@ -1,5 +1,5 @@
 """
-Setup for different kinds of Tuya climate devices
+Setup for different kinds of Tuya lock devices
 """
 import logging
 
