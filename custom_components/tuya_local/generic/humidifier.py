@@ -91,10 +91,10 @@ class TuyaLocalHumidifier(HumidifierEntity):
     @property
     def icon(self):
         """Return the icon to use in the frontend for this device."""
-        if self.hvac_mode == HVAC_MODE_HEAT:
-            return "mdi:radiator"
+        if self.is_on:
+            return "mdi:air-humidifier"
         else:
-            return "mdi:radiator-disabled"
+            return "mdi:air-humidifier-off"
 
     @property
     def is_on(self):
