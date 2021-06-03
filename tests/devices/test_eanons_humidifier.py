@@ -13,13 +13,15 @@ from homeassistant.components.climate.const import (
 )
 from homeassistant.components.humidifier.const import (
     MODE_NORMAL,
-    MODE_BOOST,
+    MODE_AUTO,
     MODE_SLEEP,
+    SUPPORT_MODES,
 )
 from homeassistant.components.switch import DEVICE_CLASS_SWITCH
 from homeassistant.const import STATE_UNAVAILABLE
 
 from custom_components.tuya_local.generic.climate import TuyaLocalClimate
+from custom_components.tuya_local.generic.humidifier import TuyaLocalHumidifier
 from custom_components.tuya_local.generic.switch import TuyaLocalSwitch
 from custom_components.tuya_local.helpers.device_config import TuyaDeviceConfig
 
@@ -54,8 +56,14 @@ class TestEanonsHumidifier(IsolatedAsyncioTestCase):
         self.switch_name = (
             "missing" if "switch" not in entities else entities["switch"].name
         )
+        self.humidifier_name = (
+            "missing" if "humidifier" not in entities else entities["humidifier"].name
+        )
 
-        self.subject = TuyaLocalClimate(self.mock_device(), entities.get("climate"))
+        self.subject = TuyaLocalHumidifier(
+            self.mock_device(), entities.get("humidifier")
+        )
+        self.climate = TuyaLocalClimate(self.mock_device(), entities.get("climate"))
         self.switch = TuyaLocalSwitch(self.mock_device(), entities.get("switch"))
 
         self.dps = EANONS_HUMIDIFIER_PAYLOAD.copy()
@@ -63,29 +71,44 @@ class TestEanonsHumidifier(IsolatedAsyncioTestCase):
 
     def test_supported_features(self):
         self.assertEqual(
-            self.subject.supported_features,
+            self.climate.supported_features,
             SUPPORT_TARGET_HUMIDITY | SUPPORT_PRESET_MODE | SUPPORT_FAN_MODE,
         )
+        self.assertEqual(self.subject.supported_features, SUPPORT_MODES)
 
     def test_shouldPoll(self):
         self.assertTrue(self.subject.should_poll)
+        self.assertTrue(self.climate.should_poll)
         self.assertTrue(self.switch.should_poll)
 
     def test_name_returns_device_name(self):
         self.assertEqual(self.subject.name, self.subject._device.name)
+        self.assertEqual(self.climate.name, self.subject._device.name)
         self.assertEqual(self.switch.name, self.subject._device.name)
 
     def test_friendly_name_returns_config_name(self):
-        self.assertEqual(self.subject.friendly_name, self.climate_name)
+        self.assertEqual(self.subject.friendly_name, self.humidifier_name)
+        self.assertEqual(self.climate.friendly_name, self.climate_name)
         self.assertEqual(self.switch.friendly_name, self.switch_name)
 
     def test_unique_id_returns_device_unique_id(self):
         self.assertEqual(self.subject.unique_id, self.subject._device.unique_id)
+        self.assertEqual(self.climate.unique_id, self.subject._device.unique_id)
         self.assertEqual(self.switch.unique_id, self.subject._device.unique_id)
 
     def test_device_info_returns_device_info_from_device(self):
         self.assertEqual(self.subject.device_info, self.subject._device.device_info)
+        self.assertEqual(self.climate.device_info, self.subject._device.device_info)
         self.assertEqual(self.switch.device_info, self.subject._device.device_info)
+
+    @skip("Icon customisation not supported yet")
+    def test_climate_icon_is_humidifier(self):
+        """Test that the icon is as expected."""
+        self.dps[HVACMODE_DPS] = True
+        self.assertEqual(self.climate.icon, "mdi:air-humidifier")
+
+        self.dps[HVACMODE_DPS] = False
+        self.assertEqual(self.climate.icon, "mdi:air-humidifier-off")
 
     @skip("Icon customisation not supported yet")
     def test_icon_is_humidifier(self):
@@ -98,98 +121,161 @@ class TestEanonsHumidifier(IsolatedAsyncioTestCase):
 
     def test_current_humidity(self):
         self.dps[CURRENTHUMID_DPS] = 47
-        self.assertEqual(self.subject.current_humidity, 47)
+        self.assertEqual(self.climate.current_humidity, 47)
 
     def test_min_target_humidity(self):
+        self.assertEqual(self.climate.min_humidity, 40)
         self.assertEqual(self.subject.min_humidity, 40)
 
     def test_max_target_humidity(self):
+        self.assertEqual(self.climate.max_humidity, 90)
         self.assertEqual(self.subject.max_humidity, 90)
 
     def test_target_humidity(self):
         self.dps[HUMIDITY_DPS] = 55
+        self.assertEqual(self.climate.target_humidity, 55)
         self.assertEqual(self.subject.target_humidity, 55)
 
-    def test_hvac_mode(self):
+    def test_climate_hvac_mode(self):
         self.dps[HVACMODE_DPS] = True
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_DRY)
+        self.assertEqual(self.climate.hvac_mode, HVAC_MODE_DRY)
 
         self.dps[HVACMODE_DPS] = False
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_OFF)
+        self.assertEqual(self.climate.hvac_mode, HVAC_MODE_OFF)
 
         self.dps[HVACMODE_DPS] = None
-        self.assertEqual(self.subject.hvac_mode, STATE_UNAVAILABLE)
+        self.assertEqual(self.climate.hvac_mode, STATE_UNAVAILABLE)
 
-    def test_hvac_modes(self):
-        self.assertCountEqual(self.subject.hvac_modes, [HVAC_MODE_OFF, HVAC_MODE_DRY])
+    def test_climate_hvac_modes(self):
+        self.assertCountEqual(self.climate.hvac_modes, [HVAC_MODE_OFF, HVAC_MODE_DRY])
+
+    def test_is_on(self):
+        self.dps[HVACMODE_DPS] = True
+        self.assertEqual(self.subject.is_on, True)
+
+        self.dps[HVACMODE_DPS] = False
+        self.assertEqual(self.subject.is_on, False)
+
+        self.dps[HVACMODE_DPS] = None
+        self.assertEqual(self.subject.is_on, STATE_UNAVAILABLE)
+
+    async def test_climate_turn_on(self):
+        async with assert_device_properties_set(
+            self.climate._device, {HVACMODE_DPS: True}
+        ):
+            await self.climate.async_set_hvac_mode(HVAC_MODE_DRY)
+
+    async def test_climate_turn_off(self):
+        async with assert_device_properties_set(
+            self.climate._device, {HVACMODE_DPS: False}
+        ):
+            await self.climate.async_set_hvac_mode(HVAC_MODE_OFF)
 
     async def test_turn_on(self):
         async with assert_device_properties_set(
             self.subject._device, {HVACMODE_DPS: True}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_DRY)
+            await self.subject.async_turn_on()
 
     async def test_turn_off(self):
         async with assert_device_properties_set(
             self.subject._device, {HVACMODE_DPS: False}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_OFF)
+            await self.subject.async_turn_off()
 
     def test_preset_mode(self):
         self.dps[PRESET_DPS] = "sleep"
-        self.assertEqual(self.subject.preset_mode, MODE_SLEEP)
+        self.assertEqual(self.climate.preset_mode, MODE_SLEEP)
+        self.assertEqual(self.subject.mode, MODE_SLEEP)
 
         self.dps[PRESET_DPS] = "humidity"
-        self.assertEqual(self.subject.preset_mode, MODE_NORMAL)
+        self.assertEqual(self.climate.preset_mode, MODE_AUTO)
+        self.assertEqual(self.subject.mode, MODE_AUTO)
 
         self.dps[PRESET_DPS] = "work"
-        self.assertEqual(self.subject.preset_mode, MODE_BOOST)
+        self.assertEqual(self.climate.preset_mode, MODE_NORMAL)
+        self.assertEqual(self.subject.mode, MODE_NORMAL)
 
         self.dps[PRESET_DPS] = None
-        self.assertEqual(self.subject.preset_mode, None)
+        self.assertEqual(self.climate.preset_mode, None)
+        self.assertEqual(self.subject.mode, None)
 
     def test_preset_modes(self):
         self.assertCountEqual(
-            self.subject.preset_modes,
-            {MODE_NORMAL, MODE_SLEEP, MODE_BOOST},
+            self.climate.preset_modes,
+            {MODE_NORMAL, MODE_SLEEP, MODE_AUTO},
+        )
+        self.assertCountEqual(
+            self.subject.available_modes,
+            {MODE_NORMAL, MODE_SLEEP, MODE_AUTO},
         )
 
-    async def test_set_preset_to_normal(self):
+    async def test_set_climate_preset_to_auto(self):
+        async with assert_device_properties_set(
+            self.climate._device,
+            {
+                PRESET_DPS: "humidity",
+            },
+        ):
+            await self.climate.async_set_preset_mode(MODE_AUTO)
+            self.climate._device.anticipate_property_value.assert_not_called()
+
+    async def test_set_climate_preset_to_sleep(self):
+        async with assert_device_properties_set(
+            self.climate._device,
+            {
+                PRESET_DPS: "sleep",
+            },
+        ):
+            await self.climate.async_set_preset_mode(MODE_SLEEP)
+            self.climate._device.anticipate_property_value.assert_not_called()
+
+    async def test_set_climate_preset_to_normal(self):
+        async with assert_device_properties_set(
+            self.climate._device,
+            {
+                PRESET_DPS: "work",
+            },
+        ):
+            await self.climate.async_set_preset_mode(MODE_NORMAL)
+            self.climate._device.anticipate_property_value.assert_not_called()
+
+    async def test_set_mode_to_auto(self):
         async with assert_device_properties_set(
             self.subject._device,
             {
                 PRESET_DPS: "humidity",
             },
         ):
-            await self.subject.async_set_preset_mode(MODE_NORMAL)
+            await self.subject.async_set_mode(MODE_AUTO)
             self.subject._device.anticipate_property_value.assert_not_called()
 
-    async def test_set_preset_to_sleep(self):
+    async def test_set_mode_to_sleep(self):
         async with assert_device_properties_set(
             self.subject._device,
             {
                 PRESET_DPS: "sleep",
             },
         ):
-            await self.subject.async_set_preset_mode(MODE_SLEEP)
+            await self.subject.async_set_mode(MODE_SLEEP)
             self.subject._device.anticipate_property_value.assert_not_called()
 
-    async def test_set_preset_to_boost(self):
+    async def test_set_mode_to_normal(self):
         async with assert_device_properties_set(
             self.subject._device,
             {
                 PRESET_DPS: "work",
             },
         ):
-            await self.subject.async_set_preset_mode(MODE_BOOST)
+            await self.subject.async_set_mode(MODE_NORMAL)
             self.subject._device.anticipate_property_value.assert_not_called()
 
-    def test_device_state_attributes(self):
+    def test_climate_device_state_attributes(self):
         self.dps[ERROR_DPS] = 0
         self.dps[TIMERHR_DPS] = "cancel"
         self.dps[TIMER_DPS] = 0
         self.assertCountEqual(
-            self.subject.device_state_attributes,
+            self.climate.device_state_attributes,
             {
                 "error": "OK",
                 "timer_hr": "cancel",
@@ -201,7 +287,7 @@ class TestEanonsHumidifier(IsolatedAsyncioTestCase):
         self.dps[TIMERHR_DPS] = "1"
         self.dps[TIMER_DPS] = 60
         self.assertCountEqual(
-            self.subject.device_state_attributes,
+            self.climate.device_state_attributes,
             {
                 "error": 1,
                 "timer_hr": "1",
@@ -209,37 +295,55 @@ class TestEanonsHumidifier(IsolatedAsyncioTestCase):
             },
         )
 
-    def test_fan_mode(self):
+    def test_device_state_attributes(self):
+        self.dps[ERROR_DPS] = 0
+        self.dps[TIMERHR_DPS] = "cancel"
+        self.dps[TIMER_DPS] = 0
+        self.dps[CURRENTHUMID_DPS] = 50
+        self.dps[FANMODE_DPS] = "middle"
+
+        self.assertCountEqual(
+            self.subject.device_state_attributes,
+            {
+                "error": "OK",
+                "timer_hr": "cancel",
+                "timer_min": 0,
+                "current_humidity": 50,
+                "intensity": FAN_MEDIUM,
+            },
+        )
+
+    def test_climate_fan_mode(self):
         self.dps[FANMODE_DPS] = "small"
-        self.assertEqual(self.subject.fan_mode, FAN_LOW)
+        self.assertEqual(self.climate.fan_mode, FAN_LOW)
 
         self.dps[FANMODE_DPS] = "middle"
-        self.assertEqual(self.subject.fan_mode, FAN_MEDIUM)
+        self.assertEqual(self.climate.fan_mode, FAN_MEDIUM)
 
         self.dps[FANMODE_DPS] = "large"
-        self.assertEqual(self.subject.fan_mode, FAN_HIGH)
+        self.assertEqual(self.climate.fan_mode, FAN_HIGH)
 
         self.dps[FANMODE_DPS] = None
-        self.assertEqual(self.subject.fan_mode, None)
+        self.assertEqual(self.climate.fan_mode, None)
 
-    def test_fan_modes(self):
+    def test_climate_fan_modes(self):
         self.assertCountEqual(
-            self.subject.fan_modes,
+            self.climate.fan_modes,
             {FAN_LOW, FAN_MEDIUM, FAN_HIGH},
         )
 
-    async def test_set_fan_mode(self):
+    async def test_climate_set_fan_mode(self):
         async with assert_device_properties_set(
-            self.subject._device,
+            self.climate._device,
             {FANMODE_DPS: "small"},
         ):
-            await self.subject.async_set_fan_mode(FAN_LOW)
+            await self.climate.async_set_fan_mode(FAN_LOW)
 
     def test_switch_was_created(self):
         self.assertIsInstance(self.switch, TuyaLocalSwitch)
 
     def test_switch_is_same_device(self):
-        self.assertEqual(self.switch._device, self.subject._device)
+        self.assertEqual(self.switch._device, self.climate._device)
 
     def test_switch_class_is_switch(self):
         self.assertEqual(self.switch.device_class, DEVICE_CLASS_SWITCH)

@@ -6,7 +6,7 @@ primary_entity:
   class: humidifier
   dps:
     - id: 2
-      name: fan_mode
+      name: intensity
       type: string
       mapping:
         - dps_val: small
@@ -39,9 +39,9 @@ primary_entity:
         - dps_val: sleep
           value: sleep
         - dps_val: humidity
-          value: normal
+          value: auto
         - dps_val: work
-          value: boost
+          value: normal
     - id: 15
       name: humidity
       type: integer
@@ -95,9 +95,9 @@ secondary_entities:
           - dps_val: sleep
             value: sleep
           - dps_val: humidity
-            value: normal
+            value: auto
           - dps_val: work
-            value: boost
+            value: normal
       - id: 15
         name: humidity
         type: integer
