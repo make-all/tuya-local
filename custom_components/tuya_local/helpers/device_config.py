@@ -209,16 +209,16 @@ class TuyaDpsConfig:
         """Return the possible values a dps can take."""
         if "mapping" not in self._config.keys():
             return None
-        v = []
-        for map in self._config["mapping"]:
-            if "value" in map:
-                v.append(map["value"])
-            if "conditions" in map:
-                for c in map["conditions"]:
+        val = []
+        for m in self._config["mapping"]:
+            if "value" in m:
+                val.append(m["value"])
+            if "conditions" in m:
+                for c in m["conditions"]:
                     if "value" in c:
-                        v.append(c["value"])
+                        val.append(c["value"])
 
-        return list(set(v)) if len(v) > 0 else None
+        return list(set(val)) if len(val) > 0 else None
 
     @property
     def range(self):
@@ -244,29 +244,29 @@ class TuyaDpsConfig:
         if "mapping" not in self._config.keys():
             return None
         default = None
-        for map in self._config["mapping"]:
-            if "dps_val" not in map:
-                default = map
-            elif str(map["dps_val"]) == str(value):
-                return map
+        for m in self._config["mapping"]:
+            if "dps_val" not in m:
+                default = m
+            elif str(m["dps_val"]) == str(value):
+                return m
         return default
 
     def _map_from_dps(self, value, device):
         result = value
-        map = self._find_map_for_dps(value)
-        if map is not None:
-            scale = map.get("scale", 1)
+        mapping = self._find_map_for_dps(value)
+        if mapping is not None:
+            scale = mapping.get("scale", 1)
             if not isinstance(scale, (int, float)):
                 scale = 1
-            replaced = "value" in map
-            result = map.get("value", result)
-            if "conditions" in map:
+            replaced = "value" in mapping
+            result = mapping.get("value", result)
+            if "conditions" in mapping:
                 cond_dps = (
                     self
-                    if "constraint" not in map
-                    else self._entity.find_dps(map["constraint"])
+                    if "constraint" not in mapping
+                    else self._entity.find_dps(mapping["constraint"])
                 )
-                for c in map["conditions"]:
+                for c in mapping["conditions"]:
                     if (
                         "dps_val" in c
                         and c["dps_val"] == device.get_property(cond_dps.id)
@@ -294,35 +294,35 @@ class TuyaDpsConfig:
         if "mapping" not in self._config.keys():
             return None
         default = None
-        for map in self._config["mapping"]:
-            if "dps_val" not in map:
-                default = map
-            if "value" in map and str(map["value"]) == str(value):
-                return map
-            if "conditions" in map:
-                for c in map["conditions"]:
+        for m in self._config["mapping"]:
+            if "dps_val" not in m:
+                default = m
+            if "value" in m and str(m["value"]) == str(value):
+                return m
+            if "conditions" in m:
+                for c in m["conditions"]:
                     if "value" in c and c["value"] == value:
-                        return map
+                        return m
         return default
 
     def _map_to_dps(self, value, device):
         result = value
-        map = self._find_map_for_value(value)
-        if map is not None:
+        mapping = self._find_map_for_value(value)
+        if mapping is not None:
             replaced = False
-            scale = map.get("scale", 1)
+            scale = mapping.get("scale", 1)
             if not isinstance(scale, (int, float)):
                 scale = 1
-            step = map.get("step", None)
+            step = mapping.get("step", None)
             if not isinstance(step, (int, float)):
                 step = None
-            if "dps_val" in map:
-                result = map["dps_val"]
+            if "dps_val" in mapping:
+                result = mapping["dps_val"]
                 replaced = True
             # Conditions may have side effect of setting another value.
-            if "conditions" in map and "constraint" in map:
-                c_dps = self._entity.find_dps(map["constraint"])
-                for c in map["conditions"]:
+            if "conditions" in mapping and "constraint" in mapping:
+                c_dps = self._entity.find_dps(mapping["constraint"])
+                for c in mapping["conditions"]:
                     if "value" in c and c["value"] == value:
                         device.set_property(c_dps.id, c["dps_val"])
 
