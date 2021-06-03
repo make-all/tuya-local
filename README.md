@@ -35,6 +35,9 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
 #### Dehumidifiers
 - Goldair GPDH420 dehumidifiers
 
+#### Humidifiers
+- Eanons QT-JS2014 Purifying Humidifer
+
 #### SmartPlugs
 - Kogan Single Smartplug with Energy Monitoring
 Kogan 
@@ -77,25 +80,23 @@ You can easily configure your devices using the Integrations UI at `Home Assista
 
 #### climate
 
-&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this appliance as a climate device. (not supported for switches)
-
-&nbsp;&nbsp;&nbsp;&nbsp;_Default value: true_
+&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this appliance as a climate device. (supported for heaters, fans, heatpumps, dehumidifiers and humidifiers)
 
 #### display_light
 
 &nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this appliance's LED display control as a light (not supported for Kogan, Andersson, Eurom, GECO or GPCV Heaters, or switches).  This is likely to change in future to `light`, to make way for lights which are not secondary lighting on another device.
 
-&nbsp;&nbsp;&nbsp;&nbsp;_Default value: false_
-
 #### child_lock
 
 &nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this appliances's child lock as a lock device (not supported for fans, switches, or Andersson ,Eurom, Purline heaters or Garden PAC heatpumps). This is likely to change in future to `lock`, to make way for locks which are not secondary child locks on another device.
 
-&nbsp;&nbsp;&nbsp;&nbsp;_Default value: false_
-
 #### switch
 
-&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this device as a switch device (supported only for switches and Purline heaters for the Open Window Detection)
+&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this device as a switch device (supported only for switches, Purline heaters for the Open Window Detection and Eanons humidifiers for the UV Sterilzation)
+
+#### humidifier
+
+&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this device as a humidifier device (supported only for humidifiers and dehumidifiers)
 
 ## Heater gotchas
 
@@ -109,7 +110,11 @@ When setting the target temperature, different heaters have different behaviour,
 
 ## Fan gotchas
 
-In my experience, fans can be a bit flaky. If they become unresponsive, give them about 60 seconds to wake up again.
+In my experience, Goldair fans can be a bit flaky. If they become unresponsive, give them about 60 seconds to wake up again.
+
+## Humidifiers and dehumidifiers
+
+Dehumidifiers can be represented either by the humidifier or the climate entity type. There are advantages and disadvantages to both.  Humidifiers can also be represented by the climate entity type, however the on state will show as "Dry", since the climate component does not have a "Humidify" mode.  The climate component has built in support for temperature and humidity sensors, and fan control, while the humidifier component does not.  The default card for a humidifier component will display and allow adjustment of the target humidity, while the climate card expects to work with temperature.
 
 ## Kogan Switch gotchas
 
@@ -126,11 +131,11 @@ You can find these keys the same way as you would for any Tuya local integration
 
 1. Fallback support for a simple switch device using only a boolean dps 1.  As well as covering the failure mode of the Kogan Switch described in Kogan switch gotchas above, it can also cover basic operation of many other devices that use dps 1 for an on/off switch.
 2. Config flow improvement to offer only the options available to the detected device, and an indication of which device was detected.
-3. The devices need to be generalized so a new subdirectory with source code is not needed to add a new device.  Instead, device descriptors should be in a yaml file, which is referenced by the config.
-4. Further config flow improvements to filter the available types to possibilities based on the known dps.  When many device configurations are supported, this will be required, as not all devices will be distinguishable automatically.
-5. This component needs specs! Once they're written I'm considering submitting it to the HA team for inclusion in standard installations. Please report any issues and feel free to raise pull requests.
-6. This component is partially unit-tested thanks to the upstream project, but there are a few more to complete. Feel free to use existing specs as inspiration and the Sonar Cloud analysis to see where the gaps are.
-7. Once unit tests are complete, the next task is to complete the Home Assistant quality checklist before considering submission to the HA team for inclusion in standard installations.
+3. Further config flow improvements to filter the available types to possibilities based on the known dps.  When many device configurations are supported, this will be required, as not all devices will be distinguishable automatically.
+4. This component needs specs! Once they're written I'm considering submitting it to the HA team for inclusion in standard installations. Please report any issues and feel free to raise pull requests.
+5. This component is partially unit-tested thanks to the upstream project, but there are a few more to complete. Feel free to use existing specs as inspiration and the Sonar Cloud analysis to see where the gaps are.
+6. Once unit tests are complete, the next task is to complete the Home Assistant quality checklist before considering submission to the HA team for inclusion in standard installations.
+7. Discovery seems possible with the new tinytuya library, though the steps to get a local key will most likely remain manual.  Discovery also returns a productKey, which might help make the device detection more reliable where different devices use the same dps mapping but different names for the presets for example.
 
 Please report any issues and feel free to raise pull requests.
 
@@ -149,5 +154,5 @@ None of this would have been possible without some foundational discovery work t
 - [FeikoJoosten](https://github.com/FeikoJoosten) for development of support for Eurom heaters.
 - [Xeovar](https://github.com/Xeovar) for assistance in supporting Purline M100 heaters and Garden PAC pool heatpumps.
 - [paulmfclark](https://github.com/paulmfclark) for assistance in supporting Remora Inverter pool heatpumps, and [cartman10](https://github.com/cartman10) for assistance with BWT FI 45 pool heater which appears to use almost identical Wi-Fi controls.
-
+ - [superman110](https://github.com/superman110) for assistance in supporting Eanons/purenjoy humidifier.
 [![BuyMeCoffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/jasonrumney)
