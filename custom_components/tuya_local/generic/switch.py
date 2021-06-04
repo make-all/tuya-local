@@ -27,6 +27,8 @@ class TuyaLocalSwitch(SwitchEntity):
         """
         self._device = device
         self._config = config
+        self._switch_dps = None
+        self._power_dps = None
         self._attr_dps = []
         for d in config.dps():
             if d.name == "switch":
@@ -36,6 +38,9 @@ class TuyaLocalSwitch(SwitchEntity):
                     self._power_dps = d
                 if not d.hidden:
                     self._attr_dps.append(d)
+
+    if self._switch_dps is None:
+        raise AttributeError("A switch device must have a switch.")
 
     @property
     def should_poll(self):
