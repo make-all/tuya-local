@@ -387,5 +387,8 @@ class TestEanonsHumidifier(IsolatedAsyncioTestCase):
         ):
             await self.switch.async_toggle()
 
+    def test_switch_returns_none_for_power(self):
+        self.assertIsNone(self.switch.current_power_w)
+
     def test_switch_state_attributes_set(self):
         self.assertEqual(self.switch.device_state_attributes, {})
