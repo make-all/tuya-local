@@ -27,7 +27,7 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
 #### Pool heaters
 
 - Garden PAC pool heatpumps.
-- Remora pool heatpumps (possibly also BWT FI 45 models that appear to be similar)
+- Remora pool heatpumps (partially also BWT FI 45, which differs in its presets)
 
 #### Fans
 - Goldair GPCF315 fans
@@ -38,9 +38,13 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
 #### Humidifiers
 - Eanons QT-JS2014 Purifying Humidifer
 
+#### Thermostats
+- Inkbird ITC306A thermostat smartplug
+
 #### SmartPlugs
 - Kogan Single Smartplug with Energy Monitoring
-Kogan 
+- Kogan Single Smartplug with Energy Monitoring and USB charging
+
 ---
 
 ## Installation
@@ -155,4 +159,6 @@ None of this would have been possible without some foundational discovery work t
 - [Xeovar](https://github.com/Xeovar) for assistance in supporting Purline M100 heaters and Garden PAC pool heatpumps.
 - [paulmfclark](https://github.com/paulmfclark) for assistance in supporting Remora Inverter pool heatpumps, and [cartman10](https://github.com/cartman10) for assistance with BWT FI 45 pool heater which appears to use almost identical Wi-Fi controls.
  - [superman110](https://github.com/superman110) for assistance in supporting Eanons/purenjoy humidifier.
+ - [woolmonkey](https://github.com/woolmonkey) for assistance in supporting Inkbird ITC306A Thermostat.
+ 
 [![BuyMeCoffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/jasonrumney)
