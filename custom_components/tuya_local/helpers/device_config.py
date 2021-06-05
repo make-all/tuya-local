@@ -202,6 +202,7 @@ class TuyaDpsConfig:
         """Set the value of the dps in the given device to given value."""
         if self.readonly:
             raise TypeError(f"{self.name} is read only")
+
         await device.async_set_property(self.id, self._map_to_dps(value, device))
 
     @property
@@ -231,6 +232,14 @@ class TuyaDpsConfig:
             return self._config["range"]
         else:
             return None
+
+    def step(self, device):
+        step = 1
+        mapping = self._find_map_for_dps(device.get_property(self.id))
+        if mapping is not None:
+            step = mapping.get("step", 1)
+
+        return step
 
     @property
     def readonly(self):
@@ -327,9 +336,12 @@ class TuyaDpsConfig:
                         device.set_property(c_dps.id, c["dps_val"])
 
             if scale != 1 and isinstance(result, (int, float)):
-                result = result / scale
+                _LOGGER.debug(f"Scaling {result} by {scale}")
+                result = result * scale
                 replaced = True
+
             if step is not None and isinstance(result, (int, float)):
+                _LOGGER.debug(f"Stepping {result} to {step}")
                 result = step * round(float(result) / step)
                 replaced = True
 
@@ -351,6 +363,15 @@ class TuyaDpsConfig:
                     f"{minimum} and {maximum}"
                 )
 
+        if self.type is int:
+            _LOGGER.debug(f"Rounding {self.name}")
+            result = int(round(result))
+        elif self.type is bool:
+            result = True if result else False
+        elif self.type is float:
+            result = float(result)
+        elif self.type is str:
+            result = str(result)
         return result
 
 
