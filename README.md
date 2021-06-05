@@ -30,7 +30,7 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
 - Remora pool heatpumps (partially also BWT FI 45, which differs in its presets)
 
 #### Fans
-- Goldair GPCF315 fans
+- Goldair GCPF315 fans
 
 #### Dehumidifiers
 - Goldair GPDH420 dehumidifiers
@@ -101,6 +101,10 @@ You can easily configure your devices using the Integrations UI at `Home Assista
 #### humidifier
 
 &nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this device as a humidifier device (supported only for humidifiers and dehumidifiers)
+
+#### fan
+
+&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this device as a fan device (supported for fans, humidifiers and dehumidifiers)
 
 ## Heater gotchas
 

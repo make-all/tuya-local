@@ -235,11 +235,12 @@ class TuyaDpsConfig:
 
     def step(self, device):
         step = 1
+        scale = 1
         mapping = self._find_map_for_dps(device.get_property(self.id))
         if mapping is not None:
             step = mapping.get("step", 1)
-
-        return step
+            scale = mapping.get("scale", 1)
+        return step / scale
 
     @property
     def readonly(self):

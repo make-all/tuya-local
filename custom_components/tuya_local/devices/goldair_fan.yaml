@@ -1,65 +1,102 @@
 name: Goldair Fan
 legacy_type: fan
 primary_entity:
-  entity: climate
-  legacy_class: ".fan.climate.GoldairFan"
-  icon: "mdi:fan"
+  entity: fan
   dps:
     - id: 1
       type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: "fan_only"
-      name: hvac_mode
+      name: switch
     - id: 2
       type: integer
+      name: speed
+      range:
+        min: 1
+        max: 12
+      mapping:
+        - scale: 0.12
       constraint: preset_mode
       conditions:
-        - dps_val: normal
-          range:
-            min: 1
-            max: 12
         - dps_val: nature
           mapping:
-            - dps_val: 4
-              value: low
-            - dps_val: 8
-              value: medium
-            - dps_val: 12
-              value: high
+            - step: 4
         - dps_val: sleep
           mapping:
-            - dps_val: 4
-              value: low
-            - dps_val: 8
-              value: medium
-            - dps_val: 12
-              value: high            
-      name: fan_mode
+            - step: 4
     - id: 3
       type: string
       mapping:
         - dps_val: normal
           value: normal
         - dps_val: nature
-          value: eco
+          value: nature
         - dps_val: sleep
           value: sleep
       name: preset_mode
     - id: 8
       type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: "horizontal"
-      name: swing_mode
+      name: oscillate
     - id: 11
       type: string
-      name: unknown_11
+      name: timer
 secondary_entities:
+  - entity: climate
+    legacy_class: ".legacy_fan.climate.GoldairFan"
+    icon: "mdi:fan"
+    dps:
+      - id: 1
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "fan_only"
+        name: hvac_mode
+      - id: 2
+        type: integer
+        constraint: preset_mode
+        conditions:
+          - dps_val: normal
+            range:
+              min: 1
+              max: 12
+          - dps_val: nature
+            mapping:
+              - dps_val: 4
+                value: low
+              - dps_val: 8
+                value: medium
+              - dps_val: 12
+                value: high
+          - dps_val: sleep
+            mapping:
+              - dps_val: 4
+                value: low
+              - dps_val: 8
+                value: medium
+              - dps_val: 12
+                value: high            
+        name: fan_mode
+      - id: 3
+        type: string
+        mapping:
+          - dps_val: normal
+            value: normal
+          - dps_val: nature
+            value: eco
+          - dps_val: sleep
+            value: sleep
+        name: preset_mode
+      - id: 8
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "horizontal"
+        name: swing_mode
+      - id: 11
+        type: string
+        name: timer
   - entity: light
     name: Panel Light
     dps:

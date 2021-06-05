@@ -23,6 +23,7 @@ CONF_TYPE_INKBIRD_THERMOSTAT = "inkbird_thermostat"
 CONF_CLIMATE = "climate"
 CONF_DISPLAY_LIGHT = "display_light"
 CONF_CHILD_LOCK = "child_lock"
+CONF_FAN = "fan"
 CONF_SWITCH = "switch"
 CONF_HUMIDIFIER = "humidifier"
 API_PROTOCOL_VERSIONS = [3.3, 3.1]

@@ -18,8 +18,8 @@ from homeassistant.components.climate.const import (
 )
 from homeassistant.const import ATTR_TEMPERATURE, STATE_UNAVAILABLE
 
-from custom_components.tuya_local.fan.climate import GoldairFan
-from custom_components.tuya_local.fan.const import (
+from custom_components.tuya_local.legacy_fan.climate import GoldairFan
+from custom_components.tuya_local.legacy_fan.const import (
     FAN_MODES,
     HVAC_MODE_TO_DPS_MODE,
     PRESET_MODE_TO_DPS_MODE,

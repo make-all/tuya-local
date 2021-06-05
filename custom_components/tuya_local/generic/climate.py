@@ -65,7 +65,6 @@ class TuyaLocalClimate(ClimateEntity):
         self._hvac_mode_dps = None
         self._unit_dps = None
         self._attr_dps = []
-        self._temperature_step = 1
 
         for d in config.dps():
             if d.name == "hvac_mode":
@@ -178,7 +177,14 @@ class TuyaLocalClimate(ClimateEntity):
     @property
     def target_temperature_step(self):
         """Return the supported step of target temperature."""
-        return self._temperature_step
+        dps = self._temperature_dps
+        if dps is None:
+            dps = self._temp_high_dps
+        if dps is None:
+            dps = self._temp_low_dps
+        if dps is None:
+            return 1
+        return dps.step(self._device)
 
     @property
     def min_temp(self):
