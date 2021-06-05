@@ -1,4 +1,4 @@
-from unittest import IsolatedAsyncioTestCase
+from unittest import IsolatedAsyncioTestCase, skip
 from unittest.mock import AsyncMock, patch
 
 from homeassistant.components.climate.const import (
@@ -53,15 +53,12 @@ class TestRemoraHeatpump(IsolatedAsyncioTestCase):
     def test_device_info_returns_device_info_from_device(self):
         self.assertEqual(self.subject.device_info, self.subject._device.device_info)
 
+    @skip("Icon customisation not supported yet")
     def test_icon(self):
-        # Temporary: since proper icon parsing from config files is not yet
-        # implemented, the icons are fixed to defaults
         self.dps[HVACMODE_DPS] = True
-        self.assertEqual(self.subject.icon, "mdi:radiator")
-        # self.assertEqual(self.subject.icon, "mdi:hot-tub")
+        self.assertEqual(self.subject.icon, "mdi:hot-tub")
         self.dps[HVACMODE_DPS] = False
-        self.assertEqual(self.subject.icon, "mdi:radiator-disabled")
-        # selt.assertEqual(self.subject.icon, "mdi:hvac_off")
+        selt.assertEqual(self.subject.icon, "mdi:hvac_off")
 
     def test_temperature_unit_returns_device_temperature_unit(self):
         self.assertEqual(

@@ -17,6 +17,7 @@ from custom_components.tuya_local.const import (
     CONF_TYPE_PURLINE_M100_HEATER,
     CONF_TYPE_REMORA_HEATPUMP,
     CONF_TYPE_EANONS_HUMIDIFIER,
+    CONF_TYPE_INKBIRD_THERMOSTAT,
 )
 
 from custom_components.tuya_local.helpers.device_config import (
@@ -41,6 +42,7 @@ from .const import (
     PURLINE_M100_HEATER_PAYLOAD,
     REMORA_HEATPUMP_PAYLOAD,
     EANONS_HUMIDIFIER_PAYLOAD,
+    INKBIRD_THERMOSTAT_PAYLOAD,
 )
 
 
@@ -223,3 +225,9 @@ class TestDeviceConfig(unittest.TestCase):
     def test_eanons_humidifier(self):
         """Test that Eanons humidifier can be detected from its sample payload."""
         self._test_detect(EANONS_HUMIDIFIER_PAYLOAD, CONF_TYPE_EANONS_HUMIDIFIER, None)
+
+    def test_inkbird_thermostat(self):
+        """Test that Inkbird thermostat can be detected from its sample payload."""
+        self._test_detect(
+            INKBIRD_THERMOSTAT_PAYLOAD, CONF_TYPE_INKBIRD_THERMOSTAT, None
+        )

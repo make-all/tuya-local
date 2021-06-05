@@ -1,4 +1,4 @@
-from unittest import IsolatedAsyncioTestCase
+from unittest import IsolatedAsyncioTestCase, skip
 from unittest.mock import AsyncMock, patch
 
 from homeassistant.components.climate.const import (
@@ -74,6 +74,7 @@ class TestGoldairGPCVHeater(IsolatedAsyncioTestCase):
         self.assertEqual(self.subject.device_info, self.subject._device.device_info)
         self.assertEqual(self.lock.device_info, self.subject._device.device_info)
 
+    @skip("Icon customisation not supported yet")
     def test_icon(self):
         self.dps[HVACMODE_DPS] = True
         self.assertEqual(self.subject.icon, "mdi:radiator")

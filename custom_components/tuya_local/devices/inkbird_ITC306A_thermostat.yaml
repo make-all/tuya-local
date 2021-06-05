@@ -1,0 +1,105 @@
+name: Inkbird ITC-306A Thermostat
+legacy_type: inkbird_thermostat
+primary_entity:
+  entity: climate
+  dps:
+    - id: 12
+      type: bitfield
+      name: error
+      mapping:
+        - dps_val: 0
+          value: OK
+    - id: 101
+      type: string
+      name: temperature_unit
+    - id: 102
+      type: integer
+      name: temperature_calibration_offset
+      mapping:
+        - scale: 10
+    - id: 103
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: 'on'
+          value: 'On'
+        - dps_val: 'pause'
+          value: 'Pause'
+        - dps_val: 'off'
+          value: 'Off'
+    - id: 104
+      type: integer
+      name: current_temperature
+      mapping:
+        - scale: 10
+    - id: 106
+      type: integer
+      name: target_temp_low
+      mapping:
+        - scale: 10
+    - id: 108
+      type: integer
+      name: heat_time_alarm_threshold_hours
+    - id: 109
+      type: integer
+      name: high_temp_alarm_threshold
+      mapping:
+        - scale: 10
+    - id: 110
+      type: integer
+      name: low_temp_alarm_threshold
+      mapping:
+        - scale: 10
+    - id: 111
+      type: boolean
+      name: high_temp_alarm
+      mapping:
+        - dps_val: true
+          icon: "mdi:thermometer-alert"
+          icon_priority: 1
+    - id: 112
+      type: boolean
+      name: low_temp_alarm
+      mapping:
+        - dps_val: true
+          icon: "mdi:thermometer-alert"
+          icon_priority: 2
+    - id: 113
+      type: boolean
+      name: heat_time_alarm
+      mapping:
+        - dps_val: true
+          icon: "mdi:thermometer-alert"
+          icon_priority: 3
+    - id: 114
+      type: integer
+      name: target_temp_high
+      mapping:
+        - scale: 10
+    - id: 115
+      type: boolean
+      name: switch_state
+      mapping:
+        - dps_val: true
+          icon: "mdi:thermometer"
+          icon_priority: 5
+        - dps_val: false
+          icon: "mdi:thermometer-off"
+          icon_priority: 4
+    - id: 116
+      type: integer
+      name: current_temperature_f
+      mapping:
+        - scale: 10
+    - id: 117
+      type: boolean
+      name: unknown_117
+    - id: 118
+      type: boolean
+      name: unknown_118
+    - id: 119
+      type: boolean
+      name: unknown_119
+    - id: 120
+      type: boolean
+      name: unknown_120
