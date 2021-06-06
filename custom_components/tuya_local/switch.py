@@ -36,6 +36,9 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         if ecfg.entity != "switch":
             raise ValueError(f"{device.name} does not support use as a switch device.")
 
+    if ecfg.deprecated:
+        _LOGGER.warning(ecfg.deprecation_message)
+
     data[CONF_SWITCH] = TuyaLocalSwitch(device, ecfg)
     async_add_entities([data[CONF_SWITCH]])
     _LOGGER.debug(f"Adding switch for {discovery_info[CONF_TYPE]}")

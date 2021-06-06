@@ -36,6 +36,8 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
                 break
         if ecfg.entity != "lock":
             raise ValueError(f"{device.name} does not support use as a lock device.")
+    if ecfg.deprecated:
+        _LOGGER.warning(ecfg.deprecation_message)
 
     data[CONF_CHILD_LOCK] = TuyaLocalLock(device, ecfg)
     async_add_entities([data[CONF_CHILD_LOCK]])

@@ -35,6 +35,8 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
                 break
         if ecfg.entity != "climate":
             raise ValueError(f"{device.name} does not support use as a climate device.")
+    if ecfg.deprecated:
+        _LOGGER.warning(ecfg.deprecation_message)
 
     legacy_class = ecfg.legacy_class
     # Transition: generic climate entity exists, but is not complete. More

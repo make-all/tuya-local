@@ -15,6 +15,7 @@ from homeassistant.components.lock import STATE_LOCKED, STATE_UNLOCKED
 from homeassistant.const import ATTR_TEMPERATURE, STATE_UNAVAILABLE
 
 from custom_components.tuya_local.generic.climate import TuyaLocalClimate
+from custom_components.tuya_local.generic.fan import TuyaLocalFan
 from custom_components.tuya_local.generic.humidifier import TuyaLocalHumidifier
 from custom_components.tuya_local.generic.light import TuyaLocalLight
 from custom_components.tuya_local.generic.lock import TuyaLocalLock
@@ -67,6 +68,7 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         self.humidifier_name = (
             "missing" if "humidifier" not in entities else entities["humidifier"].name
         )
+        self.fan_name = "missing" if "fan" not in entities else entities["fan"].name
 
         self.subject = TuyaLocalClimate(self.mock_device(), entities.get("climate"))
         self.light = TuyaLocalLight(self.mock_device(), entities.get("light"))
@@ -74,6 +76,7 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         self.humidifier = TuyaLocalHumidifier(
             self.mock_device(), entities.get("humidifier")
         )
+        self.fan = TuyaLocalFan(self.mock_device(), entities.get("fan"))
 
         self.dps = DEHUMIDIFIER_PAYLOAD.copy()
         self.subject._device.get_property.side_effect = lambda id: self.dps[id]
@@ -86,30 +89,35 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
 
     def test_should_poll(self):
         self.assertTrue(self.subject.should_poll)
+        self.assertTrue(self.fan.should_poll)
         self.assertTrue(self.light.should_poll)
         self.assertTrue(self.lock.should_poll)
         self.assertTrue(self.humidifier.should_poll)
 
     def test_name_returns_device_name(self):
         self.assertEqual(self.subject.name, self.subject._device.name)
+        self.assertEqual(self.fan.name, self.subject._device.name)
         self.assertEqual(self.light.name, self.subject._device.name)
         self.assertEqual(self.lock.name, self.subject._device.name)
         self.assertEqual(self.humidifier.name, self.subject._device.name)
 
     def test_friendly_name_returns_config_name(self):
         self.assertEqual(self.subject.friendly_name, self.climate_name)
+        self.assertEqual(self.fan.friendly_name, self.fan_name)
         self.assertEqual(self.light.friendly_name, self.light_name)
         self.assertEqual(self.lock.friendly_name, self.lock_name)
         self.assertEqual(self.humidifier.friendly_name, self.humidifier_name)
 
     def test_unique_id_returns_device_unique_id(self):
         self.assertEqual(self.subject.unique_id, self.subject._device.unique_id)
+        self.assertEqual(self.fan.unique_id, self.subject._device.unique_id)
         self.assertEqual(self.light.unique_id, self.subject._device.unique_id)
         self.assertEqual(self.lock.unique_id, self.subject._device.unique_id)
         self.assertEqual(self.humidifier.unique_id, self.subject._device.unique_id)
 
     def test_device_info_returns_device_info_from_device(self):
         self.assertEqual(self.subject.device_info, self.subject._device.device_info)
+        self.assertEqual(self.fan.device_info, self.subject._device.device_info)
         self.assertEqual(self.light.device_info, self.subject._device.device_info)
         self.assertEqual(self.lock.device_info, self.subject._device.device_info)
         self.assertEqual(self.humidifier.device_info, self.subject._device.device_info)
@@ -450,13 +458,16 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         self.dps[FANMODE_DPS] = "1"
         self.dps[PRESET_DPS] = PRESET_HIGH
         self.assertEqual(self.subject.fan_mode, FAN_HIGH)
+        self.assertEqual(self.fan.preset_mode, FAN_HIGH)
 
         self.dps[PRESET_DPS] = PRESET_DRY_CLOTHES
         self.assertEqual(self.subject.fan_mode, FAN_HIGH)
+        self.assertEqual(self.fan.preset_mode, FAN_HIGH)
 
         self.dps[PRESET_DPS] = PRESET_NORMAL
         self.dps[AIRCLEAN_DPS] = True
         self.assertEqual(self.subject.fan_mode, FAN_HIGH)
+        self.assertEqual(self.subject.preset_mode, FAN_HIGH)
 
     @skip("Conditions not supported yet")
     def test_fan_mode_is_forced_to_low_in_low_preset(self):
@@ -464,39 +475,44 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         self.dps[PRESET_DPS] = PRESET_LOW
 
         self.assertEqual(self.subject.fan_mode, FAN_LOW)
+        self.assertEqual(self.fan.preset_mode, FAN_LOW)
 
     def test_fan_mode_reflects_dps_mode_in_normal_preset(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL
         self.dps[FANMODE_DPS] = "1"
         self.assertEqual(self.subject.fan_mode, FAN_LOW)
+        self.assertEqual(self.fan.preset_mode, FAN_LOW)
 
         self.dps[FANMODE_DPS] = "3"
         self.assertEqual(self.subject.fan_mode, FAN_HIGH)
+        self.assertEqual(self.fan.preset_mode, FAN_HIGH)
 
         self.dps[FANMODE_DPS] = None
         self.assertEqual(self.subject.fan_mode, None)
+        self.assertEqual(self.fan.preset_mode, None)
 
     @skip("Conditions not supported yet")
     def test_fan_modes_reflect_preset_mode(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL
         self.assertCountEqual(self.subject.fan_modes, [FAN_LOW, FAN_HIGH])
+        self.assertCountEqual(self.fan.preset_modes, [FAN_LOW, FAN_HIGH])
 
         self.dps[PRESET_DPS] = PRESET_LOW
         self.assertEqual(self.subject.fan_modes, [FAN_LOW])
+        self.assertEqual(self.fan.preset_modes, [FAN_LOW])
 
         self.dps[PRESET_DPS] = PRESET_HIGH
         self.assertEqual(self.subject.fan_modes, [FAN_HIGH])
+        self.assertEqual(self.fan.preset_modes, [FAN_HIGH])
 
         self.dps[PRESET_DPS] = PRESET_DRY_CLOTHES
         self.assertEqual(self.subject.fan_modes, [FAN_HIGH])
+        self.assertEqual(self.fan.preset_modes, [FAN_HIGH])
 
         self.dps[PRESET_DPS] = PRESET_NORMAL
         self.dps[AIRCLEAN_DPS] = True
         self.assertEqual(self.subject.fan_modes, [FAN_HIGH])
-
-        self.dps[PRESET_DPS] = None
-        self.dps[AIRCLEAN_DPS] = False
-        self.assertEqual(self.subject.fan_modes, [])
+        self.assertEqual(self.fan.preset_modes, [FAN_HIGH])
 
     async def test_set_fan_mode_to_low_succeeds_in_normal_preset(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL
@@ -513,6 +529,22 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
             {FANMODE_DPS: "3"},
         ):
             await self.subject.async_set_fan_mode(FAN_HIGH)
+
+    async def test_set_fan_preset_to_low_succeeds_in_normal_preset(self):
+        self.dps[PRESET_DPS] = PRESET_NORMAL
+        async with assert_device_properties_set(
+            self.fan._device,
+            {FANMODE_DPS: "1"},
+        ):
+            await self.fan.async_set_preset_mode(FAN_LOW)
+
+    async def test_set_fan_preset_to_high_succeeds_in_normal_preset(self):
+        self.dps[PRESET_DPS] = PRESET_NORMAL
+        async with assert_device_properties_set(
+            self.fan._device,
+            {FANMODE_DPS: "3"},
+        ):
+            await self.fan.async_set_preset_mode(FAN_HIGH)
 
     @skip("Restriction to listed options not supported yet")
     async def test_set_fan_mode_fails_with_invalid_mode(self):

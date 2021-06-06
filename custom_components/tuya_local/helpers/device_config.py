@@ -58,7 +58,7 @@ class TuyaDeviceConfig:
     @property
     def legacy_type(self):
         """Return the legacy conf_type associated with this device."""
-        return self._config.get("legacy_type", None)
+        return self._config.get("legacy_type")
 
     @property
     def primary_entity(self):
@@ -134,15 +134,35 @@ class TuyaEntityConfig:
     @property
     def name(self):
         """The friendly name for this entity."""
-        return self._config.get("name", self._device.name)
+        own_name = self._config.get("name")
+        if own_name is None:
+            return self._device.name
+        else:
+            return self._device.name + " " + own_name
 
     @property
     def legacy_class(self):
         """Return the legacy device corresponding to this config."""
-        name = self._config.get("legacy_class", None)
+        name = self._config.get("legacy_class")
         if name is None:
             return None
         return locate("custom_components.tuya_local" + name)
+
+    @property
+    def deprecated(self):
+        """Return whether this entitiy is deprecated."""
+        return "deprecated" in self._config.keys()
+
+    @property
+    def deprecation_message(self):
+        """Return a deprecation message for this entity"""
+        replacement = self._config.get(
+            "deprecated", "nothing, this warning has been raised in error"
+        )
+        return (
+            f"The use of {self.entity} for {self._device.name} is"
+            f"deprecated and should be replaced by {replacement}"
+        )
 
     @property
     def entity(self):
@@ -152,7 +172,7 @@ class TuyaEntityConfig:
     @property
     def device_class(self):
         """The device class of this entity."""
-        return self._config.get("class", None)
+        return self._config.get("class")
 
     def dps(self):
         """Iterate through the list of dps for this entity."""
@@ -188,7 +208,7 @@ class TuyaDpsConfig:
             "float": float,
             "bitfield": int,
         }
-        return types.get(t, None)
+        return types.get(t)
 
     @property
     def name(self):
@@ -323,7 +343,7 @@ class TuyaDpsConfig:
             scale = mapping.get("scale", 1)
             if not isinstance(scale, (int, float)):
                 scale = 1
-            step = mapping.get("step", None)
+            step = mapping.get("step")
             if not isinstance(step, (int, float)):
                 step = None
             if "dps_val" in mapping:

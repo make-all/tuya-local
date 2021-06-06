@@ -36,6 +36,9 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         if ecfg.entity != "fan":
             raise ValueError(f"{device.name} does not support use as a fan device.")
 
+    if ecfg.deprecated:
+        _LOGGER.warning(ecfg.deprecation_message)
+
     data[CONF_FAN] = TuyaLocalFan(device, ecfg)
 
     async_add_entities([data[CONF_FAN]])

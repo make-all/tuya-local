@@ -35,6 +35,8 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
                 break
         if ecfg.entity != "light":
             raise ValueError(f"{device.name} does not support use as a light device.")
+    if ecfg.deprecated:
+        _LOGGER.warning(ecfg.deprecation_message)
 
     data[CONF_DISPLAY_LIGHT] = TuyaLocalLight(device, ecfg)
     async_add_entities([data[CONF_DISPLAY_LIGHT]])

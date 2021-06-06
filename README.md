@@ -80,11 +80,11 @@ You can easily configure your devices using the Integrations UI at `Home Assista
 
 #### type
 
-&nbsp;&nbsp;&nbsp;&nbsp;_(string) (Optional)_ The type of Tuya device. `auto` to automatically detect the device type, or if that doesn't work, select from the available options `heater`, `geco_heater` `gpcv_heater`, `dehumidifier`, `fan`, `kogan_heater`, `gsh_heater`, `eurom_heater`, `gardenpac_heatpump`, `purline_m100_heater`  or `kogan_switch`.  Note that the type is likely to change in future to be a configuration file name or product id, as the hardcoded list is a maintenance burden.
+&nbsp;&nbsp;&nbsp;&nbsp;_(string) (Optional)_ The type of Tuya device. `auto` to automatically detect the device type, or if that doesn't work, select from the available options `heater`, `geco_heater` `gpcv_heater`, `dehumidifier`, `fan`, `kogan_heater`, `gsh_heater`, `eurom_heater`, `gardenpac_heatpump`, `purline_m100_heater`, `remora_heatpump`,  or `kogan_switch`.  Note that the type is likely to change in future to be a configuration file name or product id, as the hardcoded list is a maintenance burden.
 
 #### climate
 
-&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this appliance as a climate device. (supported for heaters, fans, heatpumps, dehumidifiers and humidifiers)
+&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this appliance as a climate device. (supported for heaters, heatpumps, deprecated for fans, dehumidifiers and humidifiers which should use the fan and humidifier entities instead)
 
 #### display_light
 
@@ -118,11 +118,14 @@ When setting the target temperature, different heaters have different behaviour,
 
 ## Fan gotchas
 
-In my experience, Goldair fans can be a bit flaky. If they become unresponsive, give them about 60 seconds to wake up again.
+Fans should be configured as `fan` entities, with any auxilary functions such as panel lighting control, child locks or additional switches configured as `light`, `lock` or `switch` entities.  Configuration of Goldair fans as `climate` entities is supported for backward compatibility but is deprecated, and may be removed in future.
+
+Reportedly, Goldair fans can be a bit flaky. If they become unresponsive, give them about 60 seconds to wake up again.
 
 ## Humidifiers and dehumidifiers
 
-Dehumidifiers can be represented either by the humidifier or the climate entity type. There are advantages and disadvantages to both.  Humidifiers can also be represented by the climate entity type, however the on state will show as "Dry", since the climate component does not have a "Humidify" mode.  The climate component has built in support for temperature and humidity sensors, and fan control, while the humidifier component does not.  The default card for a humidifier component will display and allow adjustment of the target humidity, while the climate card expects to work with temperature.
+Humidifiers and Dehumidifiers should be configuured as `humidifier` entities, probably with `fan` entities as well if the fan speed can also be controlled, and any other auxilary features such as panel lighting, child locks or additional switches configured as `light`, `lock` or `switch` entities.  Configration of Goldair Dehumidifiers and Eanons Humidifiers as `climate` entities is also supported for backwards compatibility, but is deprecated and may be removed in future.  In particular, when humidifiers are represented as `climate` entities, the running mode will show as `Dry`, as the climate entity only supports functions commonly found on air conditioners/heatpumps.
+
 
 ## Kogan Switch gotchas
 

@@ -37,6 +37,8 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
             raise ValueError(
                 f"{device.name} does not support use as a humidifier device."
             )
+    if ecfg.deprecated:
+        _LOGGER.warning(ecfg.deprecation_message)
 
     data[CONF_HUMIDIFIER] = TuyaLocalHumidifier(device, ecfg)
 

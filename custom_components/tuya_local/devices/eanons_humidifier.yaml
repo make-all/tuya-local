@@ -5,16 +5,6 @@ primary_entity:
   name: Humidifier
   class: humidifier
   dps:
-    - id: 2
-      name: intensity
-      type: string
-      mapping:
-        - dps_val: small
-          value: low
-        - dps_val: middle
-          value: medium
-        - dps_val: large
-          value: high
     - id: 3
       name: timer_hr
       type: string
@@ -52,7 +42,24 @@ primary_entity:
       name: current_humidity
       type: integer
 secondary_entities:
+  - entity: fan
+    name: Intensity
+    dps:
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: small
+            value: low
+          - dps_val: middle
+            value: medium
+          - dps_val: large
+            value: high
+      - id: 10
+        type: boolean
+        name: switch
   - entity: climate
+    deprecated: humidifier and fan
     dps:
       - id: 2
         name: fan_mode

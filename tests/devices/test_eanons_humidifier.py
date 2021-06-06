@@ -309,7 +309,6 @@ class TestEanonsHumidifier(IsolatedAsyncioTestCase):
                 "timer_hr": "cancel",
                 "timer_min": 0,
                 "current_humidity": 50,
-                "intensity": FAN_MEDIUM,
             },
         )
 
