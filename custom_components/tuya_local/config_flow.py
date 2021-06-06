@@ -107,4 +107,4 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
         "Test", config[CONF_DEVICE_ID], config[CONF_HOST], config[CONF_LOCAL_KEY], hass
     )
     await device.async_refresh()
-    return device.has_returned_state()
+    return device.has_returned_state
