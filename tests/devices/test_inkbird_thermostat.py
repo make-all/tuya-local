@@ -40,7 +40,7 @@ class TestInkbirdThermostat(IsolatedAsyncioTestCase):
         device_patcher = patch("custom_components.tuya_local.device.TuyaLocalDevice")
         self.addCleanup(device_patcher.stop)
         self.mock_device = device_patcher.start()
-        cfg = TuyaDeviceConfig("inkbird_ITC306A_thermostat.yaml")
+        cfg = TuyaDeviceConfig("inkbird_thermostat.yaml")
         entities = {}
         entities[cfg.primary_entity.entity] = cfg.primary_entity
         for e in cfg.secondary_entities():
