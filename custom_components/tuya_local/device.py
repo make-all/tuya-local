@@ -77,6 +77,11 @@ class TuyaLocalDevice(object):
         }
 
     @property
+    def has_sent_state(self):
+        """Return True if the device has returned some state."""
+        return len(self._get_cached_state()) > 1
+
+    @property
     def temperature_unit(self):
         return self._TEMPERATURE_UNIT
 
