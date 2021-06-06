@@ -1,5 +1,4 @@
 name: Eanons/pureenjoy Humidifier
-legacy_type: eanons_humidifier
 primary_entity:
   entity: humidifier
   name: Humidifier
@@ -47,14 +46,14 @@ secondary_entities:
     dps:
       - id: 2
         type: string
-        name: preset_mode
+        name: speed
         mapping:
           - dps_val: small
-            value: low
+            value: 33
           - dps_val: middle
-            value: medium
+            value: 67
           - dps_val: large
-            value: high
+            value: 100
       - id: 10
         type: boolean
         name: switch

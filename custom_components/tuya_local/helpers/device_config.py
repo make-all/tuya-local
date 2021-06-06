@@ -4,7 +4,7 @@ Config parser for Tuya Local devices.
 from fnmatch import fnmatch
 import logging
 from os import walk
-from os.path import join, dirname
+from os.path import join, dirname, splitext
 from pydoc import locate
 
 from homeassistant.util.yaml import load_yaml
@@ -58,7 +58,7 @@ class TuyaDeviceConfig:
     @property
     def legacy_type(self):
         """Return the legacy conf_type associated with this device."""
-        return self._config.get("legacy_type")
+        return self._config.get("legacy_type", splitext(self.config)[0])
 
     @property
     def primary_entity(self):

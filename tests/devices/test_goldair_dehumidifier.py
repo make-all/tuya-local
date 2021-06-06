@@ -458,16 +458,16 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         self.dps[FANMODE_DPS] = "1"
         self.dps[PRESET_DPS] = PRESET_HIGH
         self.assertEqual(self.subject.fan_mode, FAN_HIGH)
-        self.assertEqual(self.fan.preset_mode, FAN_HIGH)
+        self.assertEqual(self.fan.percentage, 100)
 
         self.dps[PRESET_DPS] = PRESET_DRY_CLOTHES
         self.assertEqual(self.subject.fan_mode, FAN_HIGH)
-        self.assertEqual(self.fan.preset_mode, FAN_HIGH)
+        self.assertEqual(self.fan.percentage, 100)
 
         self.dps[PRESET_DPS] = PRESET_NORMAL
         self.dps[AIRCLEAN_DPS] = True
         self.assertEqual(self.subject.fan_mode, FAN_HIGH)
-        self.assertEqual(self.subject.preset_mode, FAN_HIGH)
+        self.assertEqual(self.subject.percentage, 100)
 
     @skip("Conditions not supported yet")
     def test_fan_mode_is_forced_to_low_in_low_preset(self):
@@ -475,44 +475,44 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         self.dps[PRESET_DPS] = PRESET_LOW
 
         self.assertEqual(self.subject.fan_mode, FAN_LOW)
-        self.assertEqual(self.fan.preset_mode, FAN_LOW)
+        self.assertEqual(self.fan.percentage, 50)
 
     def test_fan_mode_reflects_dps_mode_in_normal_preset(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL
         self.dps[FANMODE_DPS] = "1"
         self.assertEqual(self.subject.fan_mode, FAN_LOW)
-        self.assertEqual(self.fan.preset_mode, FAN_LOW)
+        self.assertEqual(self.fan.percentage, 50)
 
         self.dps[FANMODE_DPS] = "3"
         self.assertEqual(self.subject.fan_mode, FAN_HIGH)
-        self.assertEqual(self.fan.preset_mode, FAN_HIGH)
+        self.assertEqual(self.fan.percentage, 100)
 
         self.dps[FANMODE_DPS] = None
         self.assertEqual(self.subject.fan_mode, None)
-        self.assertEqual(self.fan.preset_mode, None)
+        self.assertEqual(self.fan.percentage, None)
 
     @skip("Conditions not supported yet")
     def test_fan_modes_reflect_preset_mode(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL
         self.assertCountEqual(self.subject.fan_modes, [FAN_LOW, FAN_HIGH])
-        self.assertCountEqual(self.fan.preset_modes, [FAN_LOW, FAN_HIGH])
+        self.assertCountEqual(self.fan.speed_count, 2)
 
         self.dps[PRESET_DPS] = PRESET_LOW
         self.assertEqual(self.subject.fan_modes, [FAN_LOW])
-        self.assertEqual(self.fan.preset_modes, [FAN_LOW])
+        self.assertCountEqual(self.fan.speed_count, 0)
 
         self.dps[PRESET_DPS] = PRESET_HIGH
         self.assertEqual(self.subject.fan_modes, [FAN_HIGH])
-        self.assertEqual(self.fan.preset_modes, [FAN_HIGH])
+        self.assertCountEqual(self.fan.speed_count, 0)
 
         self.dps[PRESET_DPS] = PRESET_DRY_CLOTHES
         self.assertEqual(self.subject.fan_modes, [FAN_HIGH])
-        self.assertEqual(self.fan.preset_modes, [FAN_HIGH])
+        self.assertCountEqual(self.fan.speed_count, 0)
 
         self.dps[PRESET_DPS] = PRESET_NORMAL
         self.dps[AIRCLEAN_DPS] = True
         self.assertEqual(self.subject.fan_modes, [FAN_HIGH])
-        self.assertEqual(self.fan.preset_modes, [FAN_HIGH])
+        self.assertCountEqual(self.fan.speed_count, 0)
 
     async def test_set_fan_mode_to_low_succeeds_in_normal_preset(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL
@@ -530,21 +530,29 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_fan_mode(FAN_HIGH)
 
-    async def test_set_fan_preset_to_low_succeeds_in_normal_preset(self):
+    async def test_set_fan_50_succeeds_in_normal_preset(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL
         async with assert_device_properties_set(
             self.fan._device,
             {FANMODE_DPS: "1"},
         ):
-            await self.fan.async_set_preset_mode(FAN_LOW)
+            await self.fan.async_set_percentage(50)
 
-    async def test_set_fan_preset_to_high_succeeds_in_normal_preset(self):
+    async def test_set_fan_100_succeeds_in_normal_preset(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL
         async with assert_device_properties_set(
             self.fan._device,
             {FANMODE_DPS: "3"},
         ):
-            await self.fan.async_set_preset_mode(FAN_HIGH)
+            await self.fan.async_set_percentage(100)
+
+    async def test_set_fan_30_snaps_to_50_in_normal_preset(self):
+        self.dps[PRESET_DPS] = PRESET_NORMAL
+        async with assert_device_properties_set(
+            self.fan._device,
+            {FANMODE_DPS: "1"},
+        ):
+            await self.fan.async_set_percentage(30)
 
     @skip("Restriction to listed options not supported yet")
     async def test_set_fan_mode_fails_with_invalid_mode(self):

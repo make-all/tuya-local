@@ -86,22 +86,22 @@ secondary_entities:
         hidden: true
       - id: 6
         type: string
-        name: preset_mode
+        name: speed
         mapping:
           - dps_val: "1"
-            value: "low"
+            value: 50
           - dps_val: "3"
-            value: "high"
+            value: 100
         constraint: dehumidifier_mode
         conditions:
           - dps_val: "1"
-            value: "low"
+            value: 50
             invalid: true
           - dps_val: "2"
-            value: "high"
+            value: 100
             invalid: true
           - dps_val: "3"
-            value: "high"
+            value: 100
             invalid: true
   - entity: climate
     legacy_class: ".dehumidifier.climate.GoldairDehumidifier"

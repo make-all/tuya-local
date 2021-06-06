@@ -11,6 +11,9 @@ from homeassistant.components.climate.const import (
     SUPPORT_PRESET_MODE,
     SUPPORT_TARGET_HUMIDITY,
 )
+from homeassistant.components.fan import (
+    SUPPORT_SET_SPEED,
+)
 from homeassistant.components.humidifier.const import (
     MODE_NORMAL,
     MODE_AUTO,
@@ -21,6 +24,7 @@ from homeassistant.components.switch import DEVICE_CLASS_SWITCH
 from homeassistant.const import STATE_UNAVAILABLE
 
 from custom_components.tuya_local.generic.climate import TuyaLocalClimate
+from custom_components.tuya_local.generic.fan import TuyaLocalFan
 from custom_components.tuya_local.generic.humidifier import TuyaLocalHumidifier
 from custom_components.tuya_local.generic.switch import TuyaLocalSwitch
 from custom_components.tuya_local.helpers.device_config import TuyaDeviceConfig
@@ -59,12 +63,13 @@ class TestEanonsHumidifier(IsolatedAsyncioTestCase):
         self.humidifier_name = (
             "missing" if "humidifier" not in entities else entities["humidifier"].name
         )
-
+        self.fan_name = "missing" if "fan" not in entities else entities["fan"].name
         self.subject = TuyaLocalHumidifier(
             self.mock_device(), entities.get("humidifier")
         )
         self.climate = TuyaLocalClimate(self.mock_device(), entities.get("climate"))
         self.switch = TuyaLocalSwitch(self.mock_device(), entities.get("switch"))
+        self.fan = TuyaLocalFan(self.mock_device(), entities.get("fan"))
 
         self.dps = EANONS_HUMIDIFIER_PAYLOAD.copy()
         self.subject._device.get_property.side_effect = lambda id: self.dps[id]
@@ -75,30 +80,36 @@ class TestEanonsHumidifier(IsolatedAsyncioTestCase):
             SUPPORT_TARGET_HUMIDITY | SUPPORT_PRESET_MODE | SUPPORT_FAN_MODE,
         )
         self.assertEqual(self.subject.supported_features, SUPPORT_MODES)
+        self.assertEqual(self.fan.supported_features, SUPPORT_SET_SPEED)
 
     def test_shouldPoll(self):
         self.assertTrue(self.subject.should_poll)
         self.assertTrue(self.climate.should_poll)
+        self.assertTrue(self.fan.should_poll)
         self.assertTrue(self.switch.should_poll)
 
     def test_name_returns_device_name(self):
         self.assertEqual(self.subject.name, self.subject._device.name)
         self.assertEqual(self.climate.name, self.subject._device.name)
+        self.assertEqual(self.fan.name, self.subject._device.name)
         self.assertEqual(self.switch.name, self.subject._device.name)
 
     def test_friendly_name_returns_config_name(self):
         self.assertEqual(self.subject.friendly_name, self.humidifier_name)
         self.assertEqual(self.climate.friendly_name, self.climate_name)
+        self.assertEqual(self.fan.friendly_name, self.fan_name)
         self.assertEqual(self.switch.friendly_name, self.switch_name)
 
     def test_unique_id_returns_device_unique_id(self):
         self.assertEqual(self.subject.unique_id, self.subject._device.unique_id)
         self.assertEqual(self.climate.unique_id, self.subject._device.unique_id)
+        self.assertEqual(self.fan.unique_id, self.subject._device.unique_id)
         self.assertEqual(self.switch.unique_id, self.subject._device.unique_id)
 
     def test_device_info_returns_device_info_from_device(self):
         self.assertEqual(self.subject.device_info, self.subject._device.device_info)
         self.assertEqual(self.climate.device_info, self.subject._device.device_info)
+        self.assertEqual(self.fan.device_info, self.subject._device.device_info)
         self.assertEqual(self.switch.device_info, self.subject._device.device_info)
 
     @skip("Icon customisation not supported yet")
@@ -151,13 +162,15 @@ class TestEanonsHumidifier(IsolatedAsyncioTestCase):
 
     def test_is_on(self):
         self.dps[HVACMODE_DPS] = True
-        self.assertEqual(self.subject.is_on, True)
-
+        self.assertTrue(self.subject.is_on)
+        self.assertTrue(self.fan.is_on)
         self.dps[HVACMODE_DPS] = False
-        self.assertEqual(self.subject.is_on, False)
+        self.assertFalse(self.subject.is_on)
+        self.assertFalse(self.fan.is_on)
 
         self.dps[HVACMODE_DPS] = None
         self.assertEqual(self.subject.is_on, STATE_UNAVAILABLE)
+        self.assertEqual(self.fan.is_on, STATE_UNAVAILABLE)
 
     async def test_climate_turn_on(self):
         async with assert_device_properties_set(
@@ -182,6 +195,18 @@ class TestEanonsHumidifier(IsolatedAsyncioTestCase):
             self.subject._device, {HVACMODE_DPS: False}
         ):
             await self.subject.async_turn_off()
+
+    async def test_fan_turn_on(self):
+        async with assert_device_properties_set(
+            self.subject._device, {HVACMODE_DPS: True}
+        ):
+            await self.fan.async_turn_on()
+
+    async def test_fan_turn_off(self):
+        async with assert_device_properties_set(
+            self.subject._device, {HVACMODE_DPS: False}
+        ):
+            await self.fan.async_turn_off()
 
     def test_preset_mode(self):
         self.dps[PRESET_DPS] = "sleep"
@@ -312,6 +337,16 @@ class TestEanonsHumidifier(IsolatedAsyncioTestCase):
             },
         )
 
+    def test_fan_speed(self):
+        self.dps[FANMODE_DPS] = "small"
+        self.assertEqual(self.fan.percentage, 33)
+
+        self.dps[FANMODE_DPS] = "middle"
+        self.assertEqual(self.fan.percentage, 67)
+
+        self.dps[FANMODE_DPS] = "large"
+        self.assertEqual(self.fan.percentage, 100)
+
     def test_climate_fan_mode(self):
         self.dps[FANMODE_DPS] = "small"
         self.assertEqual(self.climate.fan_mode, FAN_LOW)
@@ -325,11 +360,31 @@ class TestEanonsHumidifier(IsolatedAsyncioTestCase):
         self.dps[FANMODE_DPS] = None
         self.assertEqual(self.climate.fan_mode, None)
 
+    def test_fan_speed_count(self):
+        self.assertEqual(self.fan.speed_count, 3)
+
+    def test_fan_percentage_step(self):
+        self.assertAlmostEqual(self.fan.percentage_step, 33, 0)
+
     def test_climate_fan_modes(self):
         self.assertCountEqual(
             self.climate.fan_modes,
             {FAN_LOW, FAN_MEDIUM, FAN_HIGH},
         )
+
+    async def test_fan_set_speed(self):
+        async with assert_device_properties_set(
+            self.fan._device,
+            {FANMODE_DPS: "small"},
+        ):
+            await self.fan.async_set_percentage(33)
+
+    async def test_fan_set_speed_snaps(self):
+        async with assert_device_properties_set(
+            self.fan._device,
+            {FANMODE_DPS: "middle"},
+        ):
+            await self.fan.async_set_percentage(60)
 
     async def test_climate_set_fan_mode(self):
         async with assert_device_properties_set(
