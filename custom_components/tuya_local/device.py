@@ -77,7 +77,7 @@ class TuyaLocalDevice(object):
         }
 
     @property
-    def has_sent_state(self):
+    def has_returned_state(self):
         """Return True if the device has returned some state."""
         return len(self._get_cached_state()) > 1
 
