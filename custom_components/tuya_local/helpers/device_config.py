@@ -160,8 +160,8 @@ class TuyaEntityConfig:
             "deprecated", "nothing, this warning has been raised in error"
         )
         return (
-            f"The use of {self.entity} for {self._device.name} is"
-            f"deprecated and should be replaced by {replacement}"
+            f"The use of {self.entity} for {self._device.name} is "
+            f"deprecated and should be replaced by {replacement}."
         )
 
     @property
