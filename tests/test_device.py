@@ -75,6 +75,14 @@ class TestDevice(IsolatedAsyncioTestCase):
             },
         )
 
+    def test_has_returned_state(self):
+        """Returns True if the device has returned its state."""
+        self.subject._cached_state = EUROM_600_HEATER_PAYLOAD
+        self.assertTrue(self.subject.has_returned_state)
+
+        self.subject._cached_state = {"updated_at": 0}
+        self.assertFalse(self.subject.has_returned_state)
+
     def test_temperature_unit(self):
         self.assertEqual(self.subject.temperature_unit, TEMP_CELSIUS)
 
