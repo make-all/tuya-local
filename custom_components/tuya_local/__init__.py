@@ -71,7 +71,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
             hass.config_entries.async_forward_entry_setup(entry, "humidifier")
         )
     if config.get(CONF_FAN, False) is True:
-        has.async_create_task(
+        hass.async_create_task(
             hass.config_entries.async_forward_entry_setup(entry, "fan")
         )
     entry.add_update_listener(async_update_entry)
