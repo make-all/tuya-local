@@ -264,32 +264,32 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
     async def test_set_target_humidity_raises_error_outside_of_normal_preset(self):
         self.dps[PRESET_DPS] = PRESET_LOW
         with self.assertRaisesRegex(
-            ValueError, "Target humidity can only be changed while in Normal mode"
+            AttributeError, "target_humidity cannot be set at this time"
         ):
             await self.subject.async_set_humidity(50)
 
         self.dps[PRESET_DPS] = PRESET_HIGH
         with self.assertRaisesRegex(
-            ValueError, "Target humidity can only be changed while in Normal mode"
+            AttributeError, "target_humidity cannot be set at this time"
         ):
             await self.subject.async_set_humidity(50)
 
         self.dps[PRESET_DPS] = PRESET_LOW
         with self.assertRaisesRegex(
-            ValueError, "Target humidity can only be changed while in Normal mode"
+            AttributeError, "target_humidity cannot be set at this time"
         ):
             await self.subject.async_set_humidity(50)
 
         self.dps[PRESET_DPS] = PRESET_DRY_CLOTHES
         with self.assertRaisesRegex(
-            ValueError, "Target humidity can only be changed while in Normal mode"
+            AttributeError, "target_humidity cannot be set at this time"
         ):
             await self.subject.async_set_humidity(50)
 
         self.dps[PRESET_DPS] = PRESET_NORMAL
         self.dps[AIRCLEAN_DPS] = True
         with self.assertRaisesRegex(
-            ValueError, "Target humidity can only be changed while in Normal mode"
+            AttributeError, "target_humidity cannot be set at this time"
         ):
             await self.subject.async_set_humidity(50)
 
@@ -495,24 +495,24 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
     def test_fan_modes_reflect_preset_mode(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL
         self.assertCountEqual(self.subject.fan_modes, [FAN_LOW, FAN_HIGH])
-        self.assertCountEqual(self.fan.speed_count, 2)
+        self.assertEqual(self.fan.speed_count, 2)
 
         self.dps[PRESET_DPS] = PRESET_LOW
         self.assertEqual(self.subject.fan_modes, [FAN_LOW])
-        self.assertCountEqual(self.fan.speed_count, 0)
+        self.assertEqual(self.fan.speed_count, 0)
 
         self.dps[PRESET_DPS] = PRESET_HIGH
         self.assertEqual(self.subject.fan_modes, [FAN_HIGH])
-        self.assertCountEqual(self.fan.speed_count, 0)
+        self.assertEqual(self.fan.speed_count, 0)
 
         self.dps[PRESET_DPS] = PRESET_DRY_CLOTHES
         self.assertEqual(self.subject.fan_modes, [FAN_HIGH])
-        self.assertCountEqual(self.fan.speed_count, 0)
+        self.assertEqual(self.fan.speed_count, 0)
 
         self.dps[PRESET_DPS] = PRESET_NORMAL
         self.dps[AIRCLEAN_DPS] = True
         self.assertEqual(self.subject.fan_modes, [FAN_HIGH])
-        self.assertCountEqual(self.fan.speed_count, 0)
+        self.assertEqual(self.fan.speed_count, 0)
 
     async def test_set_fan_mode_to_low_succeeds_in_normal_preset(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL

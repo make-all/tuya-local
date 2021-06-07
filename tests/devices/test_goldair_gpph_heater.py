@@ -126,7 +126,6 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
     def test_target_temperature_step(self):
         self.assertEqual(self.subject.target_temperature_step, 1)
 
-    @skip("Conditional ranges not yet implemented")
     def test_minimum_temperature(self):
         self.dps[PRESET_DPS] = "C"
         self.assertEqual(self.subject.min_temp, 5)
@@ -135,9 +134,8 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
         self.assertEqual(self.subject.min_temp, 5)
 
         self.dps[PRESET_DPS] = "AF"
-        self.assertIs(self.subject.min_temp, None)
+        self.assertIs(self.subject.min_temp, 5)
 
-    @skip("Conditional ranges not yet implemented")
     def test_maximum_target_temperature(self):
         self.dps[PRESET_DPS] = "C"
         self.assertEqual(self.subject.max_temp, 35)
@@ -146,7 +144,7 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
         self.assertEqual(self.subject.max_temp, 21)
 
         self.dps[PRESET_DPS] = "AF"
-        self.assertIs(self.subject.max_temp, None)
+        self.assertIs(self.subject.max_temp, 5)
 
     async def test_legacy_set_temperature_with_temperature(self):
         async with assert_device_properties_set(
@@ -200,7 +198,6 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_target_temperature(24.6)
 
-    @skip("Conditional ranges not supported yet")
     async def test_set_target_temperature_fails_outside_valid_range_in_comfort(self):
         self.dps[PRESET_DPS] = "C"
 
@@ -214,7 +211,6 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_target_temperature(36)
 
-    @skip("Conditional ranges not supported yet")
     async def test_set_target_temperature_fails_outside_valid_range_in_eco(self):
         self.dps[PRESET_DPS] = "ECO"
 
@@ -228,12 +224,11 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_target_temperature(22)
 
-    @skip("Conditional ranges not supported yet")
     async def test_set_target_temperature_fails_in_anti_freeze(self):
         self.dps[PRESET_DPS] = "AF"
 
         with self.assertRaisesRegex(
-            ValueError, "You cannot set the temperature in Anti-freeze mode"
+            AttributeError, "temperature cannot be set at this time"
         ):
             await self.subject.async_set_target_temperature(25)
 

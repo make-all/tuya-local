@@ -272,13 +272,12 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_percentage(80)
 
-    @skip("Complex conditions not supported yet")
     async def test_set_speed_in_sleep_mode_snaps(self):
         self.dps[PRESET_DPS] = "sleep"
         async with assert_device_properties_set(self.subject._device, {FANMODE_DPS: 8}):
             await self.subject.async_set_percentage(75)
 
-    @skip("Complex conditions not supported yet")
+    @skip("Fan modes does not work without mapping")
     def test_climate_fan_modes(self):
         self.dps[PRESET_DPS] = "normal"
         self.assertCountEqual(self.climate.fan_modes, list(range(1, 13)))
@@ -292,29 +291,27 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         self.dps[PRESET_DPS] = None
         self.assertEqual(self.climate.fan_modes, [])
 
-    @skip("Complex conditions not supported yet")
     def test_climate_fan_mode_for_normal_preset(self):
         self.dps[PRESET_DPS] = "normal"
 
-        self.dps[FANMODE_DPS] = "1"
+        self.dps[FANMODE_DPS] = 1
         self.assertEqual(self.climate.fan_mode, 1)
 
-        self.dps[FANMODE_DPS] = "6"
+        self.dps[FANMODE_DPS] = 6
         self.assertEqual(self.climate.fan_mode, 6)
 
-        self.dps[FANMODE_DPS] = "12"
+        self.dps[FANMODE_DPS] = 12
         self.assertEqual(self.climate.fan_mode, 12)
 
         self.dps[FANMODE_DPS] = None
         self.assertEqual(self.climate.fan_mode, None)
 
-    @skip("Complex conditions not supported yet")
     async def test_climate_set_fan_mode_for_normal_preset(self):
         self.dps[PRESET_DPS] = "normal"
 
         async with assert_device_properties_set(
             self.climate._device,
-            {FANMODE_DPS: "6"},
+            {FANMODE_DPS: 6},
         ):
             await self.climate.async_set_fan_mode(6)
 
@@ -322,13 +319,13 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
     def test_climate_fan_mode_for_eco_preset(self):
         self.dps[PRESET_DPS] = "nature"
 
-        self.dps[FANMODE_DPS] = "4"
+        self.dps[FANMODE_DPS] = 4
         self.assertEqual(self.climate.fan_mode, 1)
 
-        self.dps[FANMODE_DPS] = "8"
+        self.dps[FANMODE_DPS] = 8
         self.assertEqual(self.climate.fan_mode, 2)
 
-        self.dps[FANMODE_DPS] = "12"
+        self.dps[FANMODE_DPS] = 12
         self.assertEqual(self.climate.fan_mode, 3)
 
         self.dps[FANMODE_DPS] = None

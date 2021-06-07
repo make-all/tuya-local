@@ -90,19 +90,18 @@ secondary_entities:
         mapping:
           - dps_val: "1"
             value: 50
+            constraint: dehumidifier_mode
+            conditions:
+              - dps_val: "2"
+                invalid: true
+              - dps_val: "3"
+                invalid: true              
           - dps_val: "3"
             value: 100
-        constraint: dehumidifier_mode
-        conditions:
-          - dps_val: "1"
-            value: 50
-            invalid: true
-          - dps_val: "2"
-            value: 100
-            invalid: true
-          - dps_val: "3"
-            value: 100
-            invalid: true
+            constraint: dehumidifier_mode
+            conditions:
+              - dps_val: "1"
+                invalid: true
   - entity: climate
     legacy_class: ".dehumidifier.climate.GoldairDehumidifier"
     name: Dehumidifier as Climate

@@ -26,9 +26,15 @@ primary_entity:
           conditions:
             - dps_val: "ECO"
               value-redirect: eco_temperature
+              range:
+                min: 5
+                max: 21
             - dps_val: "AF"
               invalid: true
               value: 5
+              range:
+                min: 5
+                max: 5
       name: temperature
     - id: 3
       type: integer

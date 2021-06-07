@@ -126,18 +126,16 @@ class TuyaLocalHumidifier(HumidifierEntity):
         """Return the minimum supported target humidity."""
         if self._humidity_dps is None:
             return None
-        if self._humidity_dps.range is None:
-            return DEFAULT_MIN_HUMIDITY
-        return self._humidity_dps.range["min"]
+        range = self._humidity_dps.range(self._device)
+        return DEFAULT_MIN_HUMIDITY if range is None else range["min"]
 
     @property
     def max_humidity(self):
         """Return the maximum supported target humidity."""
         if self._humidity_dps is None:
             return None
-        if self._humidity_dps.range is None:
-            return DEFAULT_MAX_HUMIDITY
-        return self._humidity_dps.range["max"]
+        range = self._humidity_dps.range(self._device)
+        return DEFAULT_MAX_HUMIDITY if range is None else range["max"]
 
     async def async_set_humidity(self, humidity):
         if self._humidity_dps is None:

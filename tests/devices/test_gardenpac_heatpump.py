@@ -91,14 +91,12 @@ class TestGardenPACPoolHeatpump(IsolatedAsyncioTestCase):
     def test_maximum_target_temperature(self):
         self.assertEqual(self.subject.max_temp, 45)
 
-    @skip("Conditional ranges not supported yet")
     def test_minimum_fahrenheit_temperature(self):
-        self.dps[UNITS_DPS] = "F"
+        self.dps[UNITS_DPS] = False
         self.assertEqual(self.subject.min_temp, 60)
 
-    @skip("Conditional ranges not supported yet")
     def test_maximum_fahrenheit_temperature(self):
-        self.dps[UNITS_DPS] = "F"
+        self.dps[UNITS_DPS] = False
         self.assertEqual(self.subject.max_temp, 115)
 
     async def test_legacy_set_temperature_with_temperature(self):

@@ -163,16 +163,18 @@ Home Assistant UI.
 
 ## Mapping Rules
 
-Mapping rules can change the behavior of attributes beyond simple copying
-of DPS values to attribute values.  Rules can be defined at the top level
-of the mapping element to apply to all values, or a list of rules that apply
-to particular dps values can be defined to change only particular cases.
-Rules can even depend on the values of other elements.
+Mapping rules can change the behavior of attributes beyond simple
+copying of DPS values to attribute values.  Rules can be defined
+without a dps_val to apply to all values, or a list of rules that
+apply to particular dps values can be defined to change only
+particular cases.  Rules can even depend on the values of other
+elements.
 
 ### `dps_val`
 
-//Mandatory for lists, not used at top level.//
-When a list of rules is defined, `dps_val` defines the DPS value that each
+//Optional, if not provided, the rule is a default that will apply to all
+values not covered by their own dps_val rule.//
+`dps_val` defines the DPS value that each
 rule in the list applies to. This can be used to map specific values from the
 Tuya protocol into attribute values that have specific meaning in Home
 Assistant.  For example, climate entities in Home Assistant define modes
@@ -211,15 +213,6 @@ If you don't specify any priorities, the icons will all get the same priority,
 so if any overlap exists in the rules, it won't always be predictable which
 icon will be displayed.
 
-### `invalid`
-
-//Optional. Boolean, default false.//
-Invalid set to true allows an attribute to temporarily be set read-only in
-some conditions.  Rather than passing requests to set the attribute through
-to the Tuya protocol, attempts to set it will throw an error while it meets
-the conditions to be `invalid`.
-
-
 ### `value-redirect`
 
 //Optional.//
@@ -232,6 +225,18 @@ temperature is "eco" mode.  Depending on the `preset_mode`, you need to use
 one or the other. But Home Assistant just has one `temperature` attribute for
 setting target temperature, so the mapping needs to be done before passing to
 Home Assistant.
+
+### `invalid`
+
+//Optional. Boolean, default false.//
+Invalid set to true allows an attribute to temporarily be set read-only in
+some conditions.  Rather than passing requests to set the attribute through
+to the Tuya protocol, attempts to set it will throw an error while it meets
+the conditions to be `invalid`.  It does not make sense to set this at mapping
+level, as it would cause a situation where you can set a value then not be
+able to unset it.  Instead, this should be used with conditions, below, to
+make the behaviour dependent on another DPS, such as disabling fan speed 
+control when the preset is in sleep mode (since sleep mode should force low).
 
 
 ### `constraint`
