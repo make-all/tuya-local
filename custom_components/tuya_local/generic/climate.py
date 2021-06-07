@@ -223,10 +223,13 @@ class TuyaLocalClimate(ClimateEntity):
 
     async def async_set_target_temperature_range(self, low, high):
         """Set the target temperature range."""
+        dps_map = {}
         if low is not None and self._temp_low_dps is not None:
-            await self._temp_low_dps.async_set_value(self._device, low)
+            dps_map.update(self._temp_low_dps.get_values_to_set(self._device, low))
         if high is not None and self._temp_high_dps is not None:
-            await self._temp_high_dps.async_set_value(self._device, high)
+            dps_map.update(self._temp_high_dps.get_values_to_set(self._device, high))
+        if dps_map:
+            await self._device.async_set_properties(dps_map)
 
     @property
     def current_temperature(self):

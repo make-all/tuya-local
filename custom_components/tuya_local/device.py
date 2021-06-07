@@ -147,6 +147,9 @@ class TuyaLocalDevice(object):
     async def async_set_property(self, dps_id, value):
         await self._hass.async_add_executor_job(self.set_property, dps_id, value)
 
+    async def async_set_properties(self, dps_map):
+        await self._hass.async_add_executor_job(self._set_properties(dps_map))
+
     def anticipate_property_value(self, dps_id, value):
         """
         Update a value in the cached state only. This is good for when you know the device will reflect a new state in

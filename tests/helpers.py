@@ -7,20 +7,28 @@ from custom_components.tuya_local.device import TuyaLocalDevice
 @asynccontextmanager
 async def assert_device_properties_set(device: TuyaLocalDevice, properties: dict):
     results = []
+    provided = {}
 
     def generate_result(*args):
         result = AsyncMock()
         results.append(result)
+        provided[args[0]] = args[1]
+        return result()
+
+    def generate_results(*args):
+        result = AsyncMock()
+        results.append(result)
+        provided.update(args[0])
         return result()
 
     device.async_set_property.side_effect = generate_result
-
+    device.async_set_properties.side_effect = generate_results
     try:
         yield
     finally:
-        assert device.async_set_property.call_count == len(properties.keys())
-        for key in properties.keys():
-            device.async_set_property.assert_any_call(key, properties[key])
+        assert len(provided) == len(properties.keys())
+        for p in properties:
+            assert p in provided
         for result in results:
             result.assert_awaited()
 
@@ -32,23 +40,29 @@ async def assert_device_properties_set_optional(
     optional_properties: dict,
 ):
     results = []
+    provided = {}
 
     def generate_result(*args):
         result = AsyncMock()
         results.append(result)
+        provided[args[0]] = args[1]
+        return result()
+
+    def generate_results(*args):
+        result = AsyncMock()
+        results.append(result)
+        provided.update(args[0])
         return result()
 
     device.async_set_property.side_effect = generate_result
-
+    device.async_set_properties.side_effect = generate_results
     try:
         yield
     finally:
-        assert (device.async_set_property.call_count >= len(properties.keys())) and (
-            device.async_set_property.call_count
-            <= len(properties.keys()) + len(optional_properties.keys())
+        assert len(provided) >= len(properties.keys()) and (
+            len(provided) <= len(properties.keys()) + len(optional_properties.keys())
         )
-
-        for key in properties.keys():
-            device.async_set_property.assert_any_call(key, properties[key])
+        for p in properties:
+            assert p in provided
         for result in results:
             result.assert_awaited()

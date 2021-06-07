@@ -222,8 +222,11 @@ class TuyaDpsConfig:
         """Set the value of the dps in the given device to given value."""
         if self.readonly:
             raise TypeError(f"{self.name} is read only")
+        if self.invalid:
+            raise AttributeError(f"{self.name} cannot be set at this time")
 
-        await device.async_set_property(self.id, self._map_to_dps(value, device))
+        settings = self.get_values_to_set(device, value)
+        await device.async_set_properties(settings)
 
     @property
     def values(self):
@@ -265,6 +268,10 @@ class TuyaDpsConfig:
     @property
     def readonly(self):
         return "readonly" in self._config.keys() and self._config["readonly"] is True
+
+    @property
+    def invalid(self):
+        return False
 
     @property
     def hidden(self):
@@ -335,8 +342,10 @@ class TuyaDpsConfig:
                         return m
         return default
 
-    def _map_to_dps(self, value, device):
+    def get_values_to_set(self, device, value):
+        """Return the dps values that would be set when setting to value"""
         result = value
+        dps_map = {}
         mapping = self._find_map_for_value(value)
         if mapping is not None:
             replaced = False
@@ -354,7 +363,7 @@ class TuyaDpsConfig:
                 c_dps = self._entity.find_dps(mapping["constraint"])
                 for c in mapping["conditions"]:
                     if "value" in c and c["value"] == value:
-                        device.set_property(c_dps.id, c["dps_val"])
+                        dps_map.update(c_dps.get_values_to_set(device, c["dps_val"]))
 
             if scale != 1 and isinstance(result, (int, float)):
                 _LOGGER.debug(f"Scaling {result} by {scale}")
@@ -393,7 +402,8 @@ class TuyaDpsConfig:
             result = float(result)
         elif self.type is str:
             result = str(result)
-        return result
+        dps_map[self.id] = result
+        return dps_map
 
 
 def available_configs():
