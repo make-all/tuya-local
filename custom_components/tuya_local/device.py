@@ -16,6 +16,7 @@ from .const import (
     API_PROTOCOL_VERSIONS,
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
+    CONF_PERSIST,
     DOMAIN,
 )
 from .helpers.device_config import possible_matches
@@ -25,7 +26,7 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class TuyaLocalDevice(object):
-    def __init__(self, name, dev_id, address, local_key, hass: HomeAssistant):
+    def __init__(self, name, dev_id, address, local_key, persist, hass: HomeAssistant):
         """
         Represents a Tuya-based device.
 
@@ -38,6 +39,9 @@ class TuyaLocalDevice(object):
         self._api_protocol_version_index = None
         self._api_protocol_working = False
         self._api = tinytuya.Device(dev_id, address, local_key)
+        if persist:
+            self._api.set_socketPersistent(True)
+
         self._refresh_task = None
         self._rotate_api_protocol_version()
 
@@ -283,8 +287,10 @@ def setup_device(hass: HomeAssistant, config: dict):
         config[CONF_DEVICE_ID],
         config[CONF_HOST],
         config[CONF_LOCAL_KEY],
+        config[CONF_PERSIST],
         hass,
     )
+
     hass.data[DOMAIN][config[CONF_DEVICE_ID]] = {"device": device}
 
     return device

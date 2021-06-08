@@ -4,6 +4,7 @@ DOMAIN = "tuya_local"
 
 CONF_DEVICE_ID = "device_id"
 CONF_LOCAL_KEY = "local_key"
+CONF_PERSIST = "persist"
 CONF_TYPE = "type"
 CONF_TYPE_AUTO = "auto"
 CONF_TYPE_GPPH_HEATER = "heater"
