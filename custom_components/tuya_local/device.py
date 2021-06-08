@@ -287,7 +287,7 @@ def setup_device(hass: HomeAssistant, config: dict):
         config[CONF_DEVICE_ID],
         config[CONF_HOST],
         config[CONF_LOCAL_KEY],
-        config[CONF_PERSIST],
+        config.get(CONF_PERSIST, False),
         hass,
     )
 
