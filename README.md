@@ -78,11 +78,6 @@ You can easily configure your devices using the Integrations UI at `Home Assista
 &nbsp;&nbsp;&nbsp;&nbsp;_(string) (Required)_ Local key retrieved
 [as per the instructions below](#finding-your-device-id-and-local-key).
 
-#### persist
-
-&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to use persistent connections to the device.
-Persistent connections may improve stability and performance, particularly to some older devices using protocol version 3.1.  But using persistent connections, it will not be possible to use the official manufacturer's mobile app to control some devices, as only one local connection is possible at a time.  Without this checked, the device will be polled, leaving opportunities for the mobile app to connect temporarily.
-
 #### type
 
 &nbsp;&nbsp;&nbsp;&nbsp;_(string) (Optional)_ The type of Tuya device. `auto` to automatically detect the device type, or if that doesn't work, select from the available options `heater`, `geco_heater` `gpcv_heater`, `dehumidifier`, `fan`, `kogan_heater`, `gsh_heater`, `eurom_heater`, `gardenpac_heatpump`, `purline_m100_heater`, `remora_heatpump`,  or `kogan_switch`.  Note that the type is likely to change in future to be a configuration file name or product id, as the hardcoded list is a maintenance burden.

@@ -52,12 +52,7 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.hass = hass_patcher.start()
 
         self.subject = TuyaLocalDevice(
-            "Some name",
-            "some_dev_id",
-            "some.ip.address",
-            "some_local_key",
-            False,
-            self.hass(),
+            "Some name", "some_dev_id", "some.ip.address", "some_local_key", self.hass()
         )
 
     def test_configures_tinytuya_correctly(self):

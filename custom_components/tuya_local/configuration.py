@@ -9,7 +9,6 @@ from .const import (
     CONF_FAN,
     CONF_HUMIDIFIER,
     CONF_LOCAL_KEY,
-    CONF_PERSIST,
     CONF_SWITCH,
     CONF_TYPE,
     CONF_TYPE_AUTO,
@@ -99,12 +98,6 @@ INDIVIDUAL_CONFIG_SCHEMA_TEMPLATE = [
         "type": bool,
         "required": False,
         "default": False,
-        "option": True,
-    },
-    {
-        "key": CONF_PERSIST,
-        "type": bool,
-        "required": False,
         "option": True,
     },
 ]

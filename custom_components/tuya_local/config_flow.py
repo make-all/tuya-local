@@ -104,12 +104,7 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
 
 async def async_test_connection(config: dict, hass: HomeAssistant):
     device = TuyaLocalDevice(
-        "Test",
-        config[CONF_DEVICE_ID],
-        config[CONF_HOST],
-        config[CONF_LOCAL_KEY],
-        False,
-        hass,
+        "Test", config[CONF_DEVICE_ID], config[CONF_HOST], config[CONF_LOCAL_KEY], hass
     )
     await device.async_refresh()
     return device.has_returned_state
