@@ -287,7 +287,11 @@ class TuyaDpsConfig:
 
     @property
     def readonly(self):
-        return "readonly" in self._config.keys() and self._config["readonly"] is True
+        return self._config.get("readonly", False)
+
+    @property
+    def stringify(self):
+        return self._config.get("stringify", False)
 
     def invalid_for(self, value, device):
         mapping = self._find_map_for_value(value)
@@ -299,7 +303,7 @@ class TuyaDpsConfig:
 
     @property
     def hidden(self):
-        return "hidden" in self._config.keys() and self._config["hidden"] is True
+        return self._config.get("hidden", False)
 
     def _find_map_for_dps(self, value):
         if "mapping" not in self._config.keys():
@@ -453,6 +457,10 @@ class TuyaDpsConfig:
             result = float(result)
         elif self.type is str:
             result = str(result)
+
+        if self.stringify:
+            result = str(result)
+
         dps_map[self.id] = result
         return dps_map
 
