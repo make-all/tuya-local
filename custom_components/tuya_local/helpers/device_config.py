@@ -319,6 +319,7 @@ class TuyaDpsConfig:
             scale = mapping.get("scale", 1)
             if not isinstance(scale, (int, float)):
                 scale = 1
+            redirect = mapping.get("value-redirect")
             replaced = "value" in mapping
             result = mapping.get("value", result)
             cond = self._active_condition(mapping, device)
@@ -328,11 +329,18 @@ class TuyaDpsConfig:
                 replaced = replaced or "value" in cond
                 result = cond.get("value", result)
                 scale = cond.get("scale", scale)
+                redirect = cond.get("value-redirect", redirect)
+
                 if "mapping" in cond:
                     for m in cond["mapping"]:
                         if str(m.get("dps_val")) == str(result):
                             replaced = "value" in m
                             result = m.get("value", result)
+
+            if redirect is not None:
+                _LOGGER.debug(f"Redirecting {self.name} to {redirect}")
+                r_dps = self._entity.find_dps(redirect)
+                return r_dps.get_value(device)
 
             if scale != 1 and isinstance(result, (int, float)):
                 result = result / scale
@@ -384,6 +392,7 @@ class TuyaDpsConfig:
         if mapping is not None:
             replaced = False
             scale = mapping.get("scale", 1)
+            redirect = mapping.get("value-redirect")
             if not isinstance(scale, (int, float)):
                 scale = 1
             step = mapping.get("step")
@@ -400,6 +409,12 @@ class TuyaDpsConfig:
                     dps_map.update(c_dps.get_values_to_set(device, cond["dps_val"]))
                 scale = cond.get("scale", scale)
                 step = cond.get("step", step)
+                redirect = cond.get("value-redirect", redirect)
+
+            if redirect is not None:
+                _LOGGER.debug(f"Redirecting {self.name} to {redirect}")
+                r_dps = self._entity.find_dps(redirect)
+                return r_dps.get_values_to_set(device, value)
 
             if scale != 1 and isinstance(result, (int, float)):
                 _LOGGER.debug(f"Scaling {result} by {scale}")
@@ -426,8 +441,7 @@ class TuyaDpsConfig:
             maximum = range["max"]
             if result < minimum or result > maximum:
                 raise ValueError(
-                    f"Target {self.name} ({value}) must be between "
-                    f"{minimum} and {maximum}"
+                    f"{self.name} ({value}) must be between " f"{minimum} and {maximum}"
                 )
 
         if self.type is int:

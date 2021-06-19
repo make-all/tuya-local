@@ -117,12 +117,12 @@ class TestRemoraHeatpump(IsolatedAsyncioTestCase):
 
     async def test_set_target_temperature_fails_outside_valid_range(self):
         with self.assertRaisesRegex(
-            ValueError, "Target temperature \\(4\\) must be between 5 and 40"
+            ValueError, "temperature \\(4\\) must be between 5 and 40"
         ):
             await self.subject.async_set_target_temperature(4)
 
         with self.assertRaisesRegex(
-            ValueError, "Target temperature \\(41\\) must be between 5 and 40"
+            ValueError, "temperature \\(41\\) must be between 5 and 40"
         ):
             await self.subject.async_set_target_temperature(41)
 

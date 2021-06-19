@@ -583,14 +583,6 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         # ):
         #     await self.subject.async_set_fan_mode(FAN_HIGH)
 
-    @skip("Redirection not supported yet")
-    def test_tank_full_or_missing(self):
-        self.dps[ERROR_DPS] = None
-        self.assertEqual(self.subject.tank_full_or_missing, False)
-
-        self.dps[ERROR_DPS] = 8
-        self.assertEqual(self.subject.tank_full_or_missing, True)
-
     def test_device_state_attributes(self):
         self.dps[ERROR_DPS] = None
         self.dps[DEFROST_DPS] = False

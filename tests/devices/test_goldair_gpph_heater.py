@@ -112,7 +112,6 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
         self.dps[PRESET_DPS] = "C"
         self.assertEqual(self.subject.target_temperature, 25)
 
-    @skip("Conditional redirection not supported.")
     def test_target_temperature_in_eco_and_af_modes(self):
         self.dps[TEMPERATURE_DPS] = 25
         self.dps[ECOTEMP_DPS] = 15
@@ -182,7 +181,6 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_target_temperature(25)
 
-    @skip("Redirection not yet supported")
     async def test_set_target_temperature_in_eco_mode(self):
         self.dps[PRESET_DPS] = "ECO"
 
@@ -202,12 +200,12 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
         self.dps[PRESET_DPS] = "C"
 
         with self.assertRaisesRegex(
-            ValueError, "Target temperature \\(4\\) must be between 5 and 35"
+            ValueError, "temperature \\(4\\) must be between 5 and 35"
         ):
             await self.subject.async_set_target_temperature(4)
 
         with self.assertRaisesRegex(
-            ValueError, "Target temperature \\(36\\) must be between 5 and 35"
+            ValueError, "temperature \\(36\\) must be between 5 and 35"
         ):
             await self.subject.async_set_target_temperature(36)
 
@@ -215,12 +213,12 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
         self.dps[PRESET_DPS] = "ECO"
 
         with self.assertRaisesRegex(
-            ValueError, "Target temperature \\(4\\) must be between 5 and 21"
+            ValueError, "eco_temperature \\(4\\) must be between 5 and 21"
         ):
             await self.subject.async_set_target_temperature(4)
 
         with self.assertRaisesRegex(
-            ValueError, "Target temperature \\(22\\) must be between 5 and 21"
+            ValueError, "eco_temperature \\(22\\) must be between 5 and 21"
         ):
             await self.subject.async_set_target_temperature(22)
 
@@ -298,7 +296,6 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_preset_mode("away")
 
-    @skip("Conditional redirection not yet supported")
     def test_power_level_returns_user_power_level(self):
         self.dps[SWING_DPS] = "user"
 
@@ -336,7 +333,6 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_swing_mode("Stop")
 
-    @skip("Conditional redirection not supported yet")
     async def test_set_swing_mode_to_auto(self):
         async with assert_device_properties_set(
             self.subject._device,

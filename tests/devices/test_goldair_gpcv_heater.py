@@ -137,12 +137,12 @@ class TestGoldairGPCVHeater(IsolatedAsyncioTestCase):
 
     async def test_set_target_temperature_fails_outside_valid_range(self):
         with self.assertRaisesRegex(
-            ValueError, "Target temperature \\(14\\) must be between 15 and 35"
+            ValueError, "temperature \\(14\\) must be between 15 and 35"
         ):
             await self.subject.async_set_target_temperature(14)
 
         with self.assertRaisesRegex(
-            ValueError, "Target temperature \\(36\\) must be between 15 and 35"
+            ValueError, "temperature \\(36\\) must be between 15 and 35"
         ):
             await self.subject.async_set_target_temperature(36)
 

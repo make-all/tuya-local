@@ -124,12 +124,12 @@ class TestGardenPACPoolHeatpump(IsolatedAsyncioTestCase):
 
     async def test_set_target_temperature_fails_outside_valid_range(self):
         with self.assertRaisesRegex(
-            ValueError, "Target temperature \\(14\\) must be between 18 and 45"
+            ValueError, "temperature \\(14\\) must be between 18 and 45"
         ):
             await self.subject.async_set_target_temperature(14)
 
         with self.assertRaisesRegex(
-            ValueError, "Target temperature \\(46\\) must be between 18 and 45"
+            ValueError, "temperature \\(46\\) must be between 18 and 45"
         ):
             await self.subject.async_set_target_temperature(46)
 
