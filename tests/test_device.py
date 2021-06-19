@@ -31,8 +31,13 @@ from .const import (
     GSH_HEATER_PAYLOAD,
     KOGAN_HEATER_PAYLOAD,
     KOGAN_SOCKET_PAYLOAD,
+    KOGAN_SOCKET_PAYLOAD2,
     GARDENPAC_HEATPUMP_PAYLOAD,
     PURLINE_M100_HEATER_PAYLOAD,
+    REMORA_HEATPUMP_PAYLOAD,
+    EANONS_HUMIDIFIER_PAYLOAD,
+    INKBIRD_THERMOSTAT_PAYLOAD,
+    ANKO_FAN_PAYLOAD,
 )
 
 
@@ -145,6 +150,12 @@ class TestDevice(IsolatedAsyncioTestCase):
             await self.subject.async_inferred_type(), CONF_TYPE_KOGAN_SWITCH
         )
 
+    async def test_detects_kogan_socket_payload2(self):
+        self.subject._cached_state = KOGAN_SOCKET_PAYLOAD2
+        self.assertEqual(
+            await self.subject.async_inferred_type(), CONF_TYPE_KOGAN_SWITCH
+        )
+
     async def test_detects_gsh_heater_payload(self):
         self.subject._cached_state = GSH_HEATER_PAYLOAD
         self.assertEqual(await self.subject.async_inferred_type(), CONF_TYPE_GSH_HEATER)
@@ -160,6 +171,22 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.assertEqual(
             await self.subject.async_inferred_type(), CONF_TYPE_PURLINE_M100_HEATER
         )
+
+    async def test_detects_remora_heatpump_payload(self):
+        self.subject._cached_state = REMORA_HEATPUMP_PAYLOAD
+        self.assertEqual(await self.subject.async_inferred_type(), "remora_heatpump")
+
+    async def test_detects_eanons_humidifier_payload(self):
+        self.subject._cached_state = EANONS_HUMIDIFIER_PAYLOAD
+        self.assertEqual(await self.subject.async_inferred_type(), "eanons_humidifier")
+
+    async def test_detects_inkbird_thermostat_payload(self):
+        self.subject._cached_state = INKBIRD_THERMOSTAT_PAYLOAD
+        self.assertEqual(await self.subject.async_inferred_type(), "inkbird_thermostat")
+
+    async def test_detects_anko_fan_payload(self):
+        self.subject._cached_state = ANKO_FAN_PAYLOAD
+        self.assertEqual(await self.subject.async_inferred_type(), "anko_fan")
 
     async def test_detection_returns_none_when_device_type_could_not_be_detected(self):
         self.subject._cached_state = {"1": False, "updated_at": datetime.now()}

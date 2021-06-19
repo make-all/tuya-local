@@ -272,8 +272,17 @@ class TuyaDpsConfig:
         scale = 1
         mapping = self._find_map_for_dps(device.get_property(self.id))
         if mapping is not None:
+            _LOGGER.debug(f"Considering mapping for step of {self.name}")
             step = mapping.get("step", 1)
             scale = mapping.get("scale", 1)
+            cond = self._active_condition(mapping, device)
+            if cond is not None:
+                constraint = mapping.get("constraint")
+                _LOGGER.debug(f"Considering condition on {constraint}")
+                step = cond.get("step", step)
+                scale = cond.get("scale", scale)
+        if step != 1 or scale != 1:
+            _LOGGER.info(f"Step for {self.name} is {step} with scale {scale}")
         return step / scale
 
     @property
@@ -314,9 +323,16 @@ class TuyaDpsConfig:
             result = mapping.get("value", result)
             cond = self._active_condition(mapping, device)
             if cond is not None:
+                if cond.get("invalid", False):
+                    return None
                 replaced = replaced or "value" in cond
                 result = cond.get("value", result)
                 scale = cond.get("scale", scale)
+                if "mapping" in cond:
+                    for m in cond["mapping"]:
+                        if str(m.get("dps_val")) == str(result):
+                            replaced = "value" in m
+                            result = m.get("value", result)
 
             if scale != 1 and isinstance(result, (int, float)):
                 result = result / scale
@@ -378,9 +394,12 @@ class TuyaDpsConfig:
                 replaced = True
             # Conditions may have side effect of setting another value.
             cond = self._active_condition(mapping, device)
-            if cond is not None and cond.get("value") == value:
-                c_dps = self._entity.find_dps(mapping["constraint"])
-                dps_map.update(c_dps.get_values_to_set(device, cond["dps_val"]))
+            if cond is not None:
+                if cond.get("value") == value:
+                    c_dps = self._entity.find_dps(mapping["constraint"])
+                    dps_map.update(c_dps.get_values_to_set(device, cond["dps_val"]))
+                scale = cond.get("scale", scale)
+                step = cond.get("step", step)
 
             if scale != 1 and isinstance(result, (int, float)):
                 _LOGGER.debug(f"Scaling {result} by {scale}")

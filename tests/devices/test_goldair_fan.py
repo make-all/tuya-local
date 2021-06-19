@@ -315,23 +315,22 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         ):
             await self.climate.async_set_fan_mode(6)
 
-    @skip("Complex conditions not supported yet")
     def test_climate_fan_mode_for_eco_preset(self):
         self.dps[PRESET_DPS] = "nature"
 
         self.dps[FANMODE_DPS] = 4
-        self.assertEqual(self.climate.fan_mode, 1)
+        self.assertEqual(self.climate.fan_mode, "low")
 
         self.dps[FANMODE_DPS] = 8
-        self.assertEqual(self.climate.fan_mode, 2)
+        self.assertEqual(self.climate.fan_mode, "medium")
 
         self.dps[FANMODE_DPS] = 12
-        self.assertEqual(self.climate.fan_mode, 3)
+        self.assertEqual(self.climate.fan_mode, "high")
 
         self.dps[FANMODE_DPS] = None
         self.assertEqual(self.climate.fan_mode, None)
 
-    @skip("Complex conditions not supported yet")
+    @skip("Complex conditions not yet supported for setting")
     async def test_climate_set_fan_mode_for_eco_preset(self):
         self.dps[PRESET_DPS] = "nature"
 
@@ -339,25 +338,24 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
             self.climate._device,
             {FANMODE_DPS: "4"},
         ):
-            await self.climate.async_set_fan_mode(1)
+            await self.climate.async_set_fan_mode("low")
 
-    @skip("Complex conditions not supported yet")
     def test_climate_fan_mode_for_sleep_preset(self):
         self.dps[PRESET_DPS] = PRESET_SLEEP
 
         self.dps[FANMODE_DPS] = "4"
-        self.assertEqual(self.climate.fan_mode, 1)
+        self.assertEqual(self.climate.fan_mode, "low")
 
         self.dps[FANMODE_DPS] = "8"
-        self.assertEqual(self.climate.fan_mode, 2)
+        self.assertEqual(self.climate.fan_mode, "medium")
 
         self.dps[FANMODE_DPS] = "12"
-        self.assertEqual(self.climate.fan_mode, 3)
+        self.assertEqual(self.climate.fan_mode, "high")
 
         self.dps[FANMODE_DPS] = None
         self.assertEqual(self.climate.fan_mode, None)
 
-    @skip("Complex conditions not supported yet")
+    @skip("Complex conditions not yet supported for setting")
     async def test_climate_set_fan_mode_for_sleep_preset(self):
         self.dps[PRESET_DPS] = PRESET_SLEEP
 
@@ -367,7 +365,7 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         ):
             await self.climate.async_set_fan_mode(2)
 
-    @skip("Complex conditions not supported yet")
+    @skip("Complex conditions not yet supported for setting")
     async def test_climate_set_fan_mode_does_nothing_when_preset_mode_is_not_set(self):
         self.dps[PRESET_DPS] = None
 
@@ -379,7 +377,7 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
     def test_device_state_attributes(self):
         self.dps[TIMER_DPS] = "5"
         self.assertEqual(self.climate.device_state_attributes, {"timer": "5"})
-        self.assertEqual(self.climate.device_state_attributes, {"timer": "5"})
+        self.assertEqual(self.subject.device_state_attributes, {"timer": "5"})
 
     async def test_update(self):
         result = AsyncMock()

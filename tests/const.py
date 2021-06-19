@@ -143,3 +143,11 @@ INKBIRD_THERMOSTAT_PAYLOAD = {
     "119": False,
     "120": False,
 }
+
+ANKO_FAN_PAYLOAD = {
+    "1": True,
+    "2": "normal",
+    "3": 1,
+    "4": "off",
+    "6": 0,
+}

@@ -29,6 +29,8 @@ async def assert_device_properties_set(device: TuyaLocalDevice, properties: dict
         assert len(provided) == len(properties.keys())
         for p in properties:
             assert p in provided
+            assert properties[p] == provided[p]
+
         for result in results:
             result.assert_awaited()
 
@@ -64,5 +66,10 @@ async def assert_device_properties_set_optional(
         )
         for p in properties:
             assert p in provided
+            assert properties[p] == provided[p]
+        for p in optional_properties:
+            if p in provided:
+                assert optional_properties[p] == provided[p]
+
         for result in results:
             result.assert_awaited()

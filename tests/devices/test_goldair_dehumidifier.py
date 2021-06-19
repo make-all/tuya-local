@@ -10,9 +10,8 @@ from homeassistant.components.climate.const import (
     SUPPORT_PRESET_MODE,
     SUPPORT_TARGET_HUMIDITY,
 )
-from homeassistant.components.humidifier.const import SUPPORT_MODES
 from homeassistant.components.lock import STATE_LOCKED, STATE_UNLOCKED
-from homeassistant.const import ATTR_TEMPERATURE, STATE_UNAVAILABLE
+from homeassistant.const import STATE_UNAVAILABLE
 
 from custom_components.tuya_local.generic.climate import TuyaLocalClimate
 from custom_components.tuya_local.generic.fan import TuyaLocalFan
@@ -210,7 +209,6 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
 
         self.assertEqual(self.humidifier.target_humidity, 45)
 
-    @skip("Conditions not supported yet")
     def test_target_humidity_outside_normal_preset(self):
         self.dps[HUMIDITY_DPS] = 55
 
@@ -223,9 +221,9 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         self.dps[PRESET_DPS] = PRESET_DRY_CLOTHES
         self.assertIs(self.subject.target_humidity, None)
 
-        self.dps[PRESET_DPS] = PRESET_NORMAL
-        self.dps[AIRCLEAN_DPS] = True
-        self.assertIs(self.subject.target_humidity, None)
+        # self.dps[PRESET_DPS] = PRESET_NORMAL
+        # self.dps[AIRCLEAN_DPS] = True
+        # self.assertIs(self.subject.target_humidity, None)
 
     async def test_set_target_humidity_in_normal_preset_rounds_up_to_5_percent(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL
@@ -260,38 +258,37 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         ):
             await self.humidifier.async_set_humidity(42)
 
-    @skip("Conditions not supported yet")
     async def test_set_target_humidity_raises_error_outside_of_normal_preset(self):
         self.dps[PRESET_DPS] = PRESET_LOW
         with self.assertRaisesRegex(
-            AttributeError, "target_humidity cannot be set at this time"
+            AttributeError, "humidity cannot be set at this time"
         ):
             await self.subject.async_set_humidity(50)
 
         self.dps[PRESET_DPS] = PRESET_HIGH
         with self.assertRaisesRegex(
-            AttributeError, "target_humidity cannot be set at this time"
+            AttributeError, "humidity cannot be set at this time"
         ):
             await self.subject.async_set_humidity(50)
 
         self.dps[PRESET_DPS] = PRESET_LOW
         with self.assertRaisesRegex(
-            AttributeError, "target_humidity cannot be set at this time"
+            AttributeError, "humidity cannot be set at this time"
         ):
             await self.subject.async_set_humidity(50)
 
         self.dps[PRESET_DPS] = PRESET_DRY_CLOTHES
         with self.assertRaisesRegex(
-            AttributeError, "target_humidity cannot be set at this time"
+            AttributeError, "humidity cannot be set at this time"
         ):
             await self.subject.async_set_humidity(50)
 
-        self.dps[PRESET_DPS] = PRESET_NORMAL
-        self.dps[AIRCLEAN_DPS] = True
-        with self.assertRaisesRegex(
-            AttributeError, "target_humidity cannot be set at this time"
-        ):
-            await self.subject.async_set_humidity(50)
+        # self.dps[PRESET_DPS] = PRESET_NORMAL
+        # self.dps[AIRCLEAN_DPS] = True
+        # with self.assertRaisesRegex(
+        #     AttributeError, "humidity cannot be set at this time"
+        # ):
+        #     await self.subject.async_set_humidity(50)
 
     def test_temperature_unit_returns_device_temperature_unit(self):
         self.assertEqual(
@@ -374,14 +371,13 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         self.assertEqual(self.subject.preset_mode, None)
         self.assertEqual(self.humidifier.mode, None)
 
-    @skip("Conditions not supported yet")
+    @skip("Conditions not included in config")
     def test_air_clean_is_surfaced_in_preset_mode(self):
         self.dps[PRESET_DPS] = PRESET_DRY_CLOTHES
         self.dps[AIRCLEAN_DPS] = True
 
         self.assertEqual(self.subject.preset_mode, "Air clean")
 
-    @skip("Conditions not supported yet")
     def test_preset_modes(self):
         self.assertCountEqual(
             self.subject.preset_modes,
@@ -390,7 +386,7 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
                 "Low",
                 "High",
                 "Dry clothes",
-                "Air clean",
+                #                "Air clean",
             ],
         )
 
@@ -404,7 +400,7 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
             await self.subject.async_set_preset_mode("Normal")
             self.subject._device.anticipate_property_value.assert_not_called()
 
-    @skip("Conditions not supported yet")
+    @skip("Conditions not included in config")
     async def test_set_preset_mode_to_low(self):
         async with assert_device_properties_set(
             self.subject._device,
@@ -417,7 +413,7 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
                 FANMODE_DPS, "1"
             )
 
-    @skip("Conditions not supported yet")
+    @skip("Conditions not included in config")
     async def test_set_preset_mode_to_high(self):
         async with assert_device_properties_set(
             self.subject._device,
@@ -430,7 +426,7 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
                 FANMODE_DPS, "3"
             )
 
-    @skip("Conditions not supported yet")
+    @skip("Conditions not included in config")
     async def test_set_preset_mode_to_dry_clothes(self):
         async with assert_device_properties_set(
             self.subject._device,
@@ -443,7 +439,7 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
                 FANMODE_DPS, "3"
             )
 
-    @skip("Conditions not supported yet")
+    @skip("Conditions not included in config")
     async def test_set_preset_mode_to_air_clean(self):
         async with assert_device_properties_set(
             self.subject._device, {AIRCLEAN_DPS: True}
@@ -453,7 +449,7 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
                 FANMODE_DPS, "1"
             )
 
-    @skip("Conditions not supported yet")
+    @skip("Conditions not included in config")
     def test_fan_mode_is_forced_to_high_in_high_dry_clothes_air_clean_presets(self):
         self.dps[FANMODE_DPS] = "1"
         self.dps[PRESET_DPS] = PRESET_HIGH
@@ -469,7 +465,7 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         self.assertEqual(self.subject.fan_mode, FAN_HIGH)
         self.assertEqual(self.subject.percentage, 100)
 
-    @skip("Conditions not supported yet")
+    @skip("Conditions not included in config")
     def test_fan_mode_is_forced_to_low_in_low_preset(self):
         self.dps[FANMODE_DPS] = "3"
         self.dps[PRESET_DPS] = PRESET_LOW
@@ -491,7 +487,7 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         self.assertEqual(self.subject.fan_mode, None)
         self.assertEqual(self.fan.percentage, None)
 
-    @skip("Conditions not supported yet")
+    @skip("Conditions not included in config")
     def test_fan_modes_reflect_preset_mode(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL
         self.assertCountEqual(self.subject.fan_modes, [FAN_LOW, FAN_HIGH])
@@ -509,10 +505,10 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         self.assertEqual(self.subject.fan_modes, [FAN_HIGH])
         self.assertEqual(self.fan.speed_count, 0)
 
-        self.dps[PRESET_DPS] = PRESET_NORMAL
-        self.dps[AIRCLEAN_DPS] = True
-        self.assertEqual(self.subject.fan_modes, [FAN_HIGH])
-        self.assertEqual(self.fan.speed_count, 0)
+        # self.dps[PRESET_DPS] = PRESET_NORMAL
+        # self.dps[AIRCLEAN_DPS] = True
+        # self.assertEqual(self.subject.fan_modes, [FAN_HIGH])
+        # self.assertEqual(self.fan.speed_count, 0)
 
     async def test_set_fan_mode_to_low_succeeds_in_normal_preset(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL
@@ -560,32 +556,32 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         with self.assertRaisesRegex(ValueError, "Invalid fan mode: something"):
             await self.subject.async_set_fan_mode("something")
 
-    @skip("Conditions not supported yet")
+    @skip("Conditions not yet supported for setting")
     async def test_set_fan_mode_fails_outside_normal_preset(self):
         self.dps[PRESET_DPS] = PRESET_LOW
         with self.assertRaisesRegex(
-            ValueError, "Fan mode can only be changed while in Normal preset mode"
+            AttributeError, "fan_mode cannot be set at this time"
         ):
             await self.subject.async_set_fan_mode(FAN_HIGH)
 
         self.dps[PRESET_DPS] = PRESET_HIGH
         with self.assertRaisesRegex(
-            ValueError, "Fan mode can only be changed while in Normal preset mode"
+            AttributeError, "fan_mode cannot be set at this time"
         ):
             await self.subject.async_set_fan_mode(FAN_HIGH)
 
         self.dps[PRESET_DPS] = PRESET_DRY_CLOTHES
         with self.assertRaisesRegex(
-            ValueError, "Fan mode can only be changed while in Normal preset mode"
+            AttributeError, "fan_mode cannot be set at this time"
         ):
             await self.subject.async_set_fan_mode(FAN_HIGH)
 
-        self.dps[PRESET_DPS] = PRESET_NORMAL
-        self.dps[AIRCLEAN_DPS] = True
-        with self.assertRaisesRegex(
-            ValueError, "Fan mode can only be changed while in Normal preset mode"
-        ):
-            await self.subject.async_set_fan_mode(FAN_HIGH)
+        # self.dps[PRESET_DPS] = PRESET_NORMAL
+        # self.dps[AIRCLEAN_DPS] = True
+        # with self.assertRaisesRegex(
+        #     ValueError, "Fan mode can only be changed while in Normal preset mode"
+        # ):
+        #     await self.subject.async_set_fan_mode(FAN_HIGH)
 
     @skip("Redirection not supported yet")
     def test_tank_full_or_missing(self):

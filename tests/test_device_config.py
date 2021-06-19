@@ -43,6 +43,7 @@ from .const import (
     REMORA_HEATPUMP_PAYLOAD,
     EANONS_HUMIDIFIER_PAYLOAD,
     INKBIRD_THERMOSTAT_PAYLOAD,
+    ANKO_FAN_PAYLOAD,
 )
 
 
@@ -231,3 +232,7 @@ class TestDeviceConfig(unittest.TestCase):
         self._test_detect(
             INKBIRD_THERMOSTAT_PAYLOAD, CONF_TYPE_INKBIRD_THERMOSTAT, None
         )
+
+    def test_anko_fan(self):
+        """Test that Anko fan can be detected from its sample payload."""
+        self._test_detect(ANKO_FAN_PAYLOAD, "anko_fan", None)
