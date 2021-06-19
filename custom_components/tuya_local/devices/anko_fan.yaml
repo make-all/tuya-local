@@ -1,0 +1,36 @@
+name: Anko Fan
+primary_entity:
+  entity: fan
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 2
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: normal
+          value: normal
+        - dps_val: nature
+          value: nature
+        - dps_val: sleep
+          value: sleep
+    - id: 3
+      type: integer
+      name: speed
+      range:
+        min: 1
+        max: 8
+      mapping:
+        - scale: 0.08
+    - id: 4
+      type: string
+      name: oscillate
+      mapping:
+        - dps_val: "auto"
+          value: true
+        - dps_val: "off"
+          value: false
+    - id: 6
+      type: integer
+      name: timer
