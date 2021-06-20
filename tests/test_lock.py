@@ -7,7 +7,6 @@ from custom_components.tuya_local.const import (
     CONF_DEVICE_ID,
     CONF_TYPE,
     CONF_TYPE_AUTO,
-    CONF_TYPE_GPPH_HEATER,
     DOMAIN,
 )
 from custom_components.tuya_local.generic.lock import TuyaLocalLock
@@ -25,7 +24,7 @@ async def test_init_entry(hass):
     # AsyncMock, it expects us to await the result.
     m_add_entities = Mock()
     m_device = AsyncMock()
-    m_device.async_inferred_type = AsyncMock(return_value=CONF_TYPE_GPPH_HEATER)
+    m_device.async_inferred_type = AsyncMock(return_value="heater")
 
     hass.data[DOMAIN] = {}
     hass.data[DOMAIN]["dummy"] = {}

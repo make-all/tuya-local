@@ -3,23 +3,6 @@ import unittest
 
 from warnings import warn
 
-from custom_components.tuya_local.const import (
-    CONF_TYPE_DEHUMIDIFIER,
-    CONF_TYPE_EUROM_600_HEATER,
-    CONF_TYPE_FAN,
-    CONF_TYPE_GARDENPAC_HEATPUMP,
-    CONF_TYPE_GECO_HEATER,
-    CONF_TYPE_GPCV_HEATER,
-    CONF_TYPE_GPPH_HEATER,
-    CONF_TYPE_GSH_HEATER,
-    CONF_TYPE_KOGAN_HEATER,
-    CONF_TYPE_KOGAN_SWITCH,
-    CONF_TYPE_PURLINE_M100_HEATER,
-    CONF_TYPE_REMORA_HEATPUMP,
-    CONF_TYPE_EANONS_HUMIDIFIER,
-    CONF_TYPE_INKBIRD_THERMOSTAT,
-)
-
 from custom_components.tuya_local.helpers.device_config import (
     available_configs,
     config_for_legacy_use,
@@ -132,13 +115,13 @@ class TestDeviceConfig(unittest.TestCase):
 
     def test_gpph_heater_detection(self):
         """Test that GPPH heater can be detected from its sample payload."""
-        self._test_detect(GPPH_HEATER_PAYLOAD, CONF_TYPE_GPPH_HEATER, "GoldairHeater")
+        self._test_detect(GPPH_HEATER_PAYLOAD, "heater", "GoldairHeater")
 
     def test_gpcv_heater_detection(self):
         """Test that GPCV heater can be detected from its sample payload."""
         self._test_detect(
             GPCV_HEATER_PAYLOAD,
-            CONF_TYPE_GPCV_HEATER,
+            "gpcv_heater",
             None,
         )
 
@@ -146,7 +129,7 @@ class TestDeviceConfig(unittest.TestCase):
         """Test that Eurom heater can be detected from its sample payload."""
         self._test_detect(
             EUROM_600_HEATER_PAYLOAD,
-            CONF_TYPE_EUROM_600_HEATER,
+            "eurom_heater",
             None,
         )
 
@@ -154,7 +137,7 @@ class TestDeviceConfig(unittest.TestCase):
         """Test that GECO heater can be detected from its sample payload."""
         self._test_detect(
             GECO_HEATER_PAYLOAD,
-            CONF_TYPE_GECO_HEATER,
+            "geco_heater",
             None,
         )
 
@@ -162,7 +145,7 @@ class TestDeviceConfig(unittest.TestCase):
         """Test that Kogan heater can be detected from its sample payload."""
         self._test_detect(
             KOGAN_HEATER_PAYLOAD,
-            CONF_TYPE_KOGAN_HEATER,
+            "kogan_heater",
             None,
         )
 
@@ -170,19 +153,19 @@ class TestDeviceConfig(unittest.TestCase):
         """Test that Goldair dehumidifier can be detected from its sample payload."""
         self._test_detect(
             DEHUMIDIFIER_PAYLOAD,
-            CONF_TYPE_DEHUMIDIFIER,
+            "dehumidifier",
             "GoldairDehumidifier",
         )
 
     def test_goldair_fan_detection(self):
         """Test that Goldair fan can be detected from its sample payload."""
-        self._test_detect(FAN_PAYLOAD, CONF_TYPE_FAN, "GoldairFan")
+        self._test_detect(FAN_PAYLOAD, "fan", "GoldairFan")
 
     def test_kogan_socket_detection(self):
         """Test that 1st gen Kogan Socket can be detected from its sample payload."""
         self._test_detect(
             KOGAN_SOCKET_PAYLOAD,
-            CONF_TYPE_KOGAN_SWITCH,
+            "kogan_switch",
             None,
         )
 
@@ -190,7 +173,7 @@ class TestDeviceConfig(unittest.TestCase):
         """Test that 2nd gen Kogan Socket can be detected from its sample payload."""
         self._test_detect(
             KOGAN_SOCKET_PAYLOAD2,
-            CONF_TYPE_KOGAN_SWITCH,
+            "kogan_switch",
             None,
         )
 
@@ -198,7 +181,7 @@ class TestDeviceConfig(unittest.TestCase):
         """Test that GSH heater can be detected from its sample payload."""
         self._test_detect(
             GSH_HEATER_PAYLOAD,
-            CONF_TYPE_GSH_HEATER,
+            "gsh_heater",
             None,
         )
 
@@ -206,7 +189,7 @@ class TestDeviceConfig(unittest.TestCase):
         """Test that GardenPac heatpump can be detected from its sample payload."""
         self._test_detect(
             GARDENPAC_HEATPUMP_PAYLOAD,
-            CONF_TYPE_GARDENPAC_HEATPUMP,
+            "gardenpac_heatpump",
             None,
         )
 
@@ -214,24 +197,22 @@ class TestDeviceConfig(unittest.TestCase):
         """Test that Purline heater can be detected from its sample payload."""
         self._test_detect(
             PURLINE_M100_HEATER_PAYLOAD,
-            CONF_TYPE_PURLINE_M100_HEATER,
+            "purline_m100_heater",
             None,
         )
 
     # Non-legacy devices start here.
     def test_remora_heatpump_detection(self):
         """Test that Remora heatpump can be detected from its sample payload."""
-        self._test_detect(REMORA_HEATPUMP_PAYLOAD, CONF_TYPE_REMORA_HEATPUMP, None)
+        self._test_detect(REMORA_HEATPUMP_PAYLOAD, "remora_heatpump", None)
 
     def test_eanons_humidifier(self):
         """Test that Eanons humidifier can be detected from its sample payload."""
-        self._test_detect(EANONS_HUMIDIFIER_PAYLOAD, CONF_TYPE_EANONS_HUMIDIFIER, None)
+        self._test_detect(EANONS_HUMIDIFIER_PAYLOAD, "eanons_humidifier", None)
 
     def test_inkbird_thermostat(self):
         """Test that Inkbird thermostat can be detected from its sample payload."""
-        self._test_detect(
-            INKBIRD_THERMOSTAT_PAYLOAD, CONF_TYPE_INKBIRD_THERMOSTAT, None
-        )
+        self._test_detect(INKBIRD_THERMOSTAT_PAYLOAD, "inkbird_thermostat", None)
 
     def test_anko_fan(self):
         """Test that Anko fan can be detected from its sample payload."""
