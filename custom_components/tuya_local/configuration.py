@@ -12,21 +12,16 @@ from .const import (
     CONF_SWITCH,
     CONF_TYPE,
     CONF_TYPE_AUTO,
-    CONF_TYPE_DEHUMIDIFIER,
-    CONF_TYPE_EANONS_HUMIDIFIER,
-    CONF_TYPE_EUROM_600_HEATER,
-    CONF_TYPE_FAN,
-    CONF_TYPE_GECO_HEATER,
-    CONF_TYPE_GPCV_HEATER,
-    CONF_TYPE_GPPH_HEATER,
-    CONF_TYPE_GSH_HEATER,
-    CONF_TYPE_GARDENPAC_HEATPUMP,
-    CONF_TYPE_INKBIRD_THERMOSTAT,
-    CONF_TYPE_KOGAN_HEATER,
-    CONF_TYPE_KOGAN_SWITCH,
-    CONF_TYPE_PURLINE_M100_HEATER,
-    CONF_TYPE_REMORA_HEATPUMP,
 )
+from .helpers.device_config import available_configs, TuyaDeviceConfig
+
+
+def conf_types():
+    types = [CONF_TYPE_AUTO]
+    for cfg in available_configs():
+        parsed = TuyaDeviceConfig(cfg)
+        types.append(parsed.legacy_type)
+
 
 INDIVIDUAL_CONFIG_SCHEMA_TEMPLATE = [
     {"key": CONF_NAME, "type": str, "required": True, "option": False},
@@ -35,25 +30,7 @@ INDIVIDUAL_CONFIG_SCHEMA_TEMPLATE = [
     {"key": CONF_LOCAL_KEY, "type": str, "required": True, "option": True},
     {
         "key": CONF_TYPE,
-        "type": vol.In(
-            [
-                CONF_TYPE_AUTO,
-                CONF_TYPE_DEHUMIDIFIER,
-                CONF_TYPE_EANONS_HUMIDIFIER,
-                CONF_TYPE_EUROM_600_HEATER,
-                CONF_TYPE_FAN,
-                CONF_TYPE_GECO_HEATER,
-                CONF_TYPE_GPCV_HEATER,
-                CONF_TYPE_GPPH_HEATER,
-                CONF_TYPE_GSH_HEATER,
-                CONF_TYPE_GARDENPAC_HEATPUMP,
-                CONF_TYPE_INKBIRD_THERMOSTAT,
-                CONF_TYPE_KOGAN_HEATER,
-                CONF_TYPE_KOGAN_SWITCH,
-                CONF_TYPE_PURLINE_M100_HEATER,
-                CONF_TYPE_REMORA_HEATPUMP,
-            ]
-        ),
+        "type": vol.In(conf_types()),
         "required": False,
         "default": CONF_TYPE_AUTO,
         "option": True,
