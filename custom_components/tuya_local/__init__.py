@@ -29,7 +29,10 @@ from .device import setup_device, delete_device
 _LOGGER = logging.getLogger(__name__)
 
 CONFIG_SCHEMA = vol.Schema(
-    {DOMAIN: vol.All(cv.ensure_list, [vol.Schema(individual_config_schema())])},
+    vol.All(
+        cv.deprecated(DOMAIN),
+        {DOMAIN: vol.All(cv.ensure_list, [vol.Schema(individual_config_schema())])},
+    ),
     extra=vol.ALLOW_EXTRA,
 )
 

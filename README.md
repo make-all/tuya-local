@@ -31,6 +31,7 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
 
 #### Fans
 - Goldair GCPF315 fans
+- Anko HEGSM40 fans
 
 #### Dehumidifiers
 - Goldair GPDH420 dehumidifiers
@@ -80,7 +81,7 @@ You can easily configure your devices using the Integrations UI at `Home Assista
 
 #### type
 
-&nbsp;&nbsp;&nbsp;&nbsp;_(string) (Optional)_ The type of Tuya device. `auto` to automatically detect the device type, or if that doesn't work, select from the available options `heater`, `geco_heater` `gpcv_heater`, `dehumidifier`, `fan`, `kogan_heater`, `gsh_heater`, `eurom_heater`, `gardenpac_heatpump`, `purline_m100_heater`, `remora_heatpump`,  or `kogan_switch`.  Note that the type is likely to change in future to be a configuration file name or product id, as the hardcoded list is a maintenance burden.
+&nbsp;&nbsp;&nbsp;&nbsp;_(string) (Optional)_ The type of Tuya device. `auto` to automatically detect the device type, or if that doesn't work, select from the available options.
 
 #### climate
 
