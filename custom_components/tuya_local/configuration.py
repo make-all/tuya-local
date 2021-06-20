@@ -21,6 +21,7 @@ def conf_types():
     for cfg in available_configs():
         parsed = TuyaDeviceConfig(cfg)
         types.append(parsed.legacy_type)
+    return types
 
 
 INDIVIDUAL_CONFIG_SCHEMA_TEMPLATE = [
