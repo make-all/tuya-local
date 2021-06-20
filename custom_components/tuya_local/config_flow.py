@@ -52,9 +52,6 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             None,
         )
         if existing_entry is not None:
-            self.hass.config_entries.async_update_entry(
-                existing_entry, title=title, options=user_input
-            )
             return self.async_abort(reason="imported")
         else:
             await self.async_set_unique_id(user_input[CONF_DEVICE_ID])
@@ -72,10 +69,7 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
         self.config_entry = config_entry
 
     async def async_step_init(self, user_input=None):
-        if self.config_entry.data.get(config_entries.SOURCE_IMPORT, False):
-            return await self.async_step_imported(user_input)
-        else:
-            return await self.async_step_user(user_input)
+        return await self.async_step_user(user_input)
 
     async def async_step_user(self, user_input=None):
         """Manage the options."""
@@ -97,9 +91,6 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
             ),
             errors=errors,
         )
-
-    async def async_step_imported(self, user_input=None):
-        return {**self.async_abort(reason="imported"), "data": {}}
 
 
 async def async_test_connection(config: dict, hass: HomeAssistant):
