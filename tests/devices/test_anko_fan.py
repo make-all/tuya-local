@@ -144,7 +144,7 @@ class TestAnkoFan(IsolatedAsyncioTestCase):
 
     def test_speed(self):
         self.dps[PRESET_DPS] = "normal"
-        self.dps[SPEED_DPS] = 4
+        self.dps[SPEED_DPS] = "4"
         self.assertEqual(self.subject.percentage, 50)
 
     def test_speed_step(self):
@@ -152,12 +152,12 @@ class TestAnkoFan(IsolatedAsyncioTestCase):
 
     async def test_set_speed_in_normal_mode(self):
         self.dps[PRESET_DPS] = "normal"
-        async with assert_device_properties_set(self.subject._device, {SPEED_DPS: 2}):
+        async with assert_device_properties_set(self.subject._device, {SPEED_DPS: "2"}):
             await self.subject.async_set_percentage(25)
 
     async def test_set_speed_in_normal_mode_snaps(self):
         self.dps[PRESET_DPS] = "normal"
-        async with assert_device_properties_set(self.subject._device, {SPEED_DPS: 6}):
+        async with assert_device_properties_set(self.subject._device, {SPEED_DPS: "6"}):
             await self.subject.async_set_percentage(80)
 
     def test_device_state_attributes(self):

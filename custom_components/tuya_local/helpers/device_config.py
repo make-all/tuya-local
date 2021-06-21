@@ -317,6 +317,12 @@ class TuyaDpsConfig:
         return default
 
     def _map_from_dps(self, value, device):
+        # For stringified dps, convert to desired type if possible
+        if self.stringify and value is not None:
+            try:
+                value = self.type(value)
+            except ValueError:
+                pass
         result = value
         mapping = self._find_map_for_dps(value)
         if mapping is not None:
