@@ -151,3 +151,12 @@ ANKO_FAN_PAYLOAD = {
     "4": "off",
     "6": "0",
 }
+
+DETA_FAN_PAYLOAD = {
+    "1": True,
+    "3": "1",
+    "9": False,
+    "101": True,
+    "102": "0",
+    "103": "0",
+}
