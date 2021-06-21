@@ -117,11 +117,16 @@ When child lock is enabled, the heater's display will flash with the child lock 
 
 When setting the target temperature, different heaters have different behaviour, which you may need to compensate for.  From observation, GPPH heaters allow the temperature to reach 3 degrees higher than the set temperature before turning off, and 1 degree lower before turning on again.  Kogan Heaters on the other hand turn off when the temperature reaches 1 degree over the targetin LOW mode, and turn on again 3 degrees below the target.  To make these heaters act the same in LOW power mode, you need to set the Kogan thermostat 2 degrees higher than the GPPH thermostat.  In HIGH power mode however, they seem to act the same as the GPPH heaters.
 
+The Inkbird thermostat switch does not seem to work for setting anything.  If you can figure out how to make setting temperatures and presets work, please leave feedback in Issue #19.
+
 ## Fan gotchas
 
 Fans should be configured as `fan` entities, with any auxilary functions such as panel lighting control, child locks or additional switches configured as `light`, `lock` or `switch` entities.  Configuration of Goldair fans as `climate` entities is supported for backward compatibility but is deprecated, and may be removed in future.
 
 Reportedly, Goldair fans can be a bit flaky. If they become unresponsive, give them about 60 seconds to wake up again.
+
+Anko fans mostly work, except setting the speed does not seem to work. If you can figure out how to set the speed through the Tuya protocol for these devices, please leave feedback on Issue #22.
+
 
 ## Humidifiers and dehumidifiers
 
