@@ -8,7 +8,6 @@ from .const import (
     CONF_DEVICE_ID,
     CONF_SWITCH,
     CONF_TYPE,
-    CONF_TYPE_AUTO,
 )
 from .generic.switch import TuyaLocalSwitch
 from .helpers.device_config import config_for_legacy_use
@@ -20,11 +19,6 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
     """Set up the switch device according to its type."""
     data = hass.data[DOMAIN][discovery_info[CONF_DEVICE_ID]]
     device = data["device"]
-
-    if discovery_info[CONF_TYPE] == CONF_TYPE_AUTO:
-        raise ValueError(
-            f"Device type for {device.name} not resolved before switch init"
-        )
 
     cfg = config_for_legacy_use(discovery_info[CONF_TYPE])
     ecfg = cfg.primary_entity

@@ -2,22 +2,21 @@ import voluptuous as vol
 from homeassistant.const import CONF_HOST, CONF_NAME
 
 from .const import (
-    CONF_CHILD_LOCK,
     CONF_CLIMATE,
     CONF_DEVICE_ID,
-    CONF_DISPLAY_LIGHT,
     CONF_FAN,
     CONF_HUMIDIFIER,
+    CONF_LIGHT,
     CONF_LOCAL_KEY,
+    CONF_LOCK,
     CONF_SWITCH,
     CONF_TYPE,
-    CONF_TYPE_AUTO,
 )
 from .helpers.device_config import available_configs, TuyaDeviceConfig
 
 
 def conf_types():
-    types = [CONF_TYPE_AUTO]
+    types = []
     for cfg in available_configs():
         parsed = TuyaDeviceConfig(cfg)
         types.append(parsed.legacy_type)
@@ -25,15 +24,17 @@ def conf_types():
 
 
 INDIVIDUAL_CONFIG_SCHEMA_TEMPLATE = [
-    {"key": CONF_NAME, "type": str, "required": True, "option": False},
     {"key": CONF_HOST, "type": str, "required": True, "option": True},
     {"key": CONF_DEVICE_ID, "type": str, "required": True, "option": False},
     {"key": CONF_LOCAL_KEY, "type": str, "required": True, "option": True},
+]
+
+STAGE2_CONFIG_SCHEMA_TEMPLATE = [
+    {"key": CONF_NAME, "type": str, "required": True, "option": False},
     {
         "key": CONF_TYPE,
         "type": vol.In(conf_types()),
-        "required": False,
-        "default": CONF_TYPE_AUTO,
+        "required": True,
         "option": True,
     },
     {
@@ -44,14 +45,14 @@ INDIVIDUAL_CONFIG_SCHEMA_TEMPLATE = [
         "option": True,
     },
     {
-        "key": CONF_DISPLAY_LIGHT,
+        "key": CONF_LIGHT,
         "type": bool,
         "required": False,
         "default": False,
         "option": True,
     },
     {
-        "key": CONF_CHILD_LOCK,
+        "key": CONF_LOCK,
         "type": bool,
         "required": False,
         "default": False,
@@ -81,10 +82,16 @@ INDIVIDUAL_CONFIG_SCHEMA_TEMPLATE = [
 ]
 
 
-def individual_config_schema(defaults={}, options_only=False):
+def individual_config_schema(defaults={}, options_only=False, stage=1):
     output = {}
+    if options_only:
+        schema = [*INDIVIDUAL_CONFIG_SCHEMA_TEMPLATE, *STAGE2_CONFIG_SCHEMA_TEMPLATE]
+    elif stage == 1:
+        schema = INDIVIDUAL_CONFIG_SCHEMA_TEMPLATE
+    else:
+        schema = STAGE2_CONFIG_SCHEMA_TEMPLATE
 
-    for prop in INDIVIDUAL_CONFIG_SCHEMA_TEMPLATE:
+    for prop in schema:
         if options_only and not prop.get("option"):
             continue
 

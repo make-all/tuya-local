@@ -5,15 +5,17 @@ from homeassistant import config_entries, data_entry_flow
 from homeassistant.const import CONF_HOST, CONF_NAME
 from homeassistant.core import HomeAssistant, callback
 
-from . import DOMAIN, individual_config_schema
+from . import DOMAIN
+from .configuration import individual_config_schema
 from .device import TuyaLocalDevice
-from .const import CONF_DEVICE_ID, CONF_LOCAL_KEY
+from .const import CONF_DEVICE_ID, CONF_LOCAL_KEY, CONF_TYPE
+from .helpers.device_config import config_for_legacy_use
 
 _LOGGER = logging.getLogger(__name__)
 
 
 class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
-    VERSION = 1
+    VERSION = 2
     CONNECTION_CLASS = config_entries.CONN_CLASS_LOCAL_POLL
 
     async def async_step_user(self, user_input=None):
@@ -23,11 +25,10 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             await self.async_set_unique_id(user_input[CONF_DEVICE_ID])
             self._abort_if_unique_id_configured()
 
-            device = await async_test_connection(user_input, self.hass)
-            if device:
-                title = user_input[CONF_NAME]
-                del user_input[CONF_NAME]
-                return self.async_create_entry(title=title, data=user_input)
+            self.device = await async_test_connection(user_input, self.hass)
+            if self.device:
+                self.data = user_input
+                return self.async_step_select_type()
             else:
                 errors["base"] = "connection"
 
@@ -37,25 +38,40 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             errors=errors,
         )
 
-    async def async_step_import(self, user_input):
-        title = user_input[CONF_NAME]
-        del user_input[CONF_NAME]
-        user_input[config_entries.SOURCE_IMPORT] = True
+    async def async_step_select_type(self, user_input=None):
+        if user_input is not None:
+            self.data[CONF_TYPE] = user_input[CONF_TYPE]
 
-        current_entries = self.hass.config_entries.async_entries(DOMAIN)
-        existing_entry = next(
-            (
-                entry
-                for entry in current_entries
-                if entry.data[CONF_DEVICE_ID] == user_input[CONF_DEVICE_ID]
-            ),
-            None,
-        )
-        if existing_entry is not None:
-            return self.async_abort(reason="imported")
+        types = []
+        async for type in self.device.async_possible_types():
+            types.append(type)
+        if types:
+            return self.async_show_form(
+                step_id="type",
+                data_schema=vol.Schema({vol.Required(CONF_TYPE): vol.In(types)}),
+            )
         else:
-            await self.async_set_unique_id(user_input[CONF_DEVICE_ID])
-            return self.async_create_entry(title=title, data=user_input)
+            return self.async_abort(reason="not_supported")
+
+    async def async_step_choose_entities(self, user_input=None):
+        if user_input is not None:
+            title = user_input[CONF_NAME]
+            del user_input[CONF_NAME]
+
+            return self.async_create_entry(
+                title=title, data={**self.data, **user_input}
+            )
+        config = config_for_legacy_use(self.data[CONF_TYPE])
+        schema = {vol.Required(CONF_NAME, default=config.name): str}
+        e = config.primary_entity
+        schema[vol.Optional(e.entity, default=True)] = bool
+        for e in config.secondary_entities():
+            schema[vol.Optional(e.entity, default=not e.deprecated)] = bool
+
+        return self.async_show_form(
+            step_id="entities",
+            data_schema=vol.Schema(schema),
+        )
 
     @staticmethod
     @callback

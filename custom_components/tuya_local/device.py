@@ -85,21 +85,20 @@ class TuyaLocalDevice(object):
     def temperature_unit(self):
         return self._TEMPERATURE_UNIT
 
-    async def async_inferred_type(self):
-
+    async def async_possible_types(self):
         cached_state = self._get_cached_state()
-        # cached state should have "updated_at" timestamp if it has anything,
-        # so use 1 as the threshold for judging if dps have been fetched.
         if len(cached_state) <= 1:
             await self.async_refresh()
             cached_state = self._get_cached_state()
 
-        _LOGGER.info(
-            f"{self.name} inferring device type from cached state: {cached_state}"
-        )
+        for match in possible_matches(cached_state):
+            yield match
+
+    async def async_inferred_type(self):
         best_match = None
         best_quality = 0
-        for config in possible_matches(cached_state):
+        cached_state = self._get_cached_state()
+        async for config in self.async_possible_types():
             quality = config.match_quality(cached_state)
             _LOGGER.info(
                 f"{self.name} considering {config.name} with quality {quality}"
@@ -109,7 +108,7 @@ class TuyaLocalDevice(object):
                 best_match = config
 
         if best_match is None:
-            _LOGGER.warning(f"Detection for {self.name} failed")
+            _LOGGER.warning(f"Detection for {self.name} with dps {cached_state} failed")
             return None
 
         return best_match.legacy_type

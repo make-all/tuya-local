@@ -8,46 +8,56 @@ https://github.com/codetheweb/tuyapi/issues/31.
 """
 import logging
 
-import homeassistant.helpers.config_validation as cv
-import voluptuous as vol
 from homeassistant.config_entries import SOURCE_IMPORT, ConfigEntry
+from homeassistant.const import CONF_HOST
 from homeassistant.core import HomeAssistant
 
-from .configuration import individual_config_schema
 from .const import (
-    CONF_CHILD_LOCK,
     CONF_CLIMATE,
     CONF_DEVICE_ID,
-    CONF_DISPLAY_LIGHT,
     CONF_FAN,
     CONF_HUMIDIFIER,
+    CONF_LIGHT,
+    CONF_LOCAL_KEY,
+    CONF_LOCK,
     CONF_SWITCH,
     CONF_TYPE,
-    CONF_TYPE_AUTO,
     DOMAIN,
 )
 from .device import setup_device, delete_device
 
 _LOGGER = logging.getLogger(__name__)
 
-CONFIG_SCHEMA = vol.Schema(
-    vol.All(
-        cv.deprecated(DOMAIN),
-        {DOMAIN: vol.All(cv.ensure_list, [vol.Schema(individual_config_schema())])},
-    ),
-    extra=vol.ALLOW_EXTRA,
-)
 
+async def async_migrate_entry(hass, entry: ConfigEntry):
+    """Migrate to latest config format."""
 
-async def async_setup(hass: HomeAssistant, config: dict):
-    for device_config in config.get(DOMAIN, []):
-        hass.async_create_task(
-            hass.config_entries.flow.async_init(
-                DOMAIN, context={"source": SOURCE_IMPORT}, data=device_config
-            )
-        )
+    CONF_TYPE_AUTO = "auto"
+    CONF_DISPLAY_LIGHT = "display_light"
+    CONF_CHILD_LOCK = "child_lock"
 
-    return True
+    if entry.version == 1:
+        # Removal of Auto detection.
+        config = {**entry.data, **entry.options, "name": entry.title}
+        if config[CONF_TYPE] == CONF_TYPE_AUTO:
+            device = setup_device(hass, config)
+            config[CONF_TYPE] = await device.async_inferred_type()
+            entry.data = {
+                CONF_DEVICE_ID: config[CONF_DEVICE_ID],
+                CONF_LOCAL_KEY: config[CONF_LOCAL_KEY],
+                CONF_HOST: config[CONF_HOST],
+            }
+            opts = {**entry.options}
+            opts[CONF_TYPE] = config[CONF_TYPE]
+            if CONF_CHILD_LOCK in config:
+                opts.pop(CONF_CHILD_LOCK)
+                opts[CONF_LOCK] = config[CONF_CHILD_LOCK]
+            if CONF_DISPLAY_LIGHT in config:
+                opts.pop(CONF_DISPLAY_LIGHT)
+                opts[CONF_LIGHT] = config[CONF_DISPLAY_LIGHT]
+
+            entry.options = {**opts}
+            entry.version = 2
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
@@ -55,21 +65,15 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     config = {**entry.data, **entry.options, "name": entry.title}
     device = setup_device(hass, config)
 
-    if config[CONF_TYPE] == CONF_TYPE_AUTO:
-        config[CONF_TYPE] = await device.async_inferred_type()
-        if config[CONF_TYPE] is None:
-            raise ValueError(f"Unable to detect type for device {device.name}")
-        entry.data = {**config}
-
     if config.get(CONF_CLIMATE, False) is True:
         hass.async_create_task(
             hass.config_entries.async_forward_entry_setup(entry, "climate")
         )
-    if config.get(CONF_DISPLAY_LIGHT, False) is True:
+    if config.get(CONF_LIGHT, False) is True:
         hass.async_create_task(
             hass.config_entries.async_forward_entry_setup(entry, "light")
         )
-    if config.get(CONF_CHILD_LOCK, False) is True:
+    if config.get(CONF_LOCK, False) is True:
         hass.async_create_task(
             hass.config_entries.async_forward_entry_setup(entry, "lock")
         )
@@ -100,9 +104,9 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
 
     if CONF_CLIMATE in data:
         await hass.config_entries.async_forward_entry_unload(entry, "climate")
-    if CONF_DISPLAY_LIGHT in data:
+    if CONF_LIGHT in data:
         await hass.config_entries.async_forward_entry_unload(entry, "light")
-    if CONF_CHILD_LOCK in data:
+    if CONF_LOCK in data:
         await hass.config_entries.async_forward_entry_unload(entry, "lock")
     if CONF_SWITCH in data:
         await hass.config_entries.async_forward_entry_unload(entry, "switch")

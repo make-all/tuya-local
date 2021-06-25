@@ -6,9 +6,8 @@ import logging
 from . import DOMAIN
 from .const import (
     CONF_DEVICE_ID,
-    CONF_DISPLAY_LIGHT,
+    CONF_LIGHT,
     CONF_TYPE,
-    CONF_TYPE_AUTO,
 )
 from .generic.light import TuyaLocalLight
 from .helpers.device_config import config_for_legacy_use
@@ -21,11 +20,6 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
     data = hass.data[DOMAIN][discovery_info[CONF_DEVICE_ID]]
     device = data["device"]
 
-    if discovery_info[CONF_TYPE] == CONF_TYPE_AUTO:
-        raise ValueError(
-            f"Device type for {device.name} not resolved before light init"
-        )
-
     cfg = config_for_legacy_use(discovery_info[CONF_TYPE])
     ecfg = cfg.primary_entity
     if ecfg.entity != "light":
@@ -37,8 +31,8 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
     if ecfg.deprecated:
         _LOGGER.warning(ecfg.deprecation_message)
 
-    data[CONF_DISPLAY_LIGHT] = TuyaLocalLight(device, ecfg)
-    async_add_entities([data[CONF_DISPLAY_LIGHT]])
+    data[CONF_LIGHT] = TuyaLocalLight(device, ecfg)
+    async_add_entities([data[CONF_LIGHT]])
     _LOGGER.debug(f"Adding light for {discovery_info[CONF_TYPE]}")
 
 
