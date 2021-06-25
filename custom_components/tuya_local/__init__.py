@@ -56,7 +56,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     device = setup_device(hass, config)
 
     if config[CONF_TYPE] == CONF_TYPE_AUTO:
-        config[CONF_TYPE] = await device.async_inferred_type
+        config[CONF_TYPE] = await device.async_inferred_type()
         if config[CONF_TYPE] is None:
             raise ValueError(f"Unable to detect type for device {device.name}")
         entry.data[CONF_TYPE] = config[CONF_TYPE]
