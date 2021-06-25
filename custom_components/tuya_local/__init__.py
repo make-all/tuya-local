@@ -59,8 +59,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
         config[CONF_TYPE] = await device.async_inferred_type()
         if config[CONF_TYPE] is None:
             raise ValueError(f"Unable to detect type for device {device.name}")
-        entry.data[CONF_TYPE] = config[CONF_TYPE]
-        entry.options[CONF_TYPE] = config[CONF_TYPE]
+        entry.data = {**config}
 
     if config.get(CONF_CLIMATE, False) is True:
         hass.async_create_task(
