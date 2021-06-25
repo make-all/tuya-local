@@ -6,7 +6,6 @@ from custom_components.tuya_local.const import (
     CONF_HUMIDIFIER,
     CONF_DEVICE_ID,
     CONF_TYPE,
-    CONF_TYPE_AUTO,
     DOMAIN,
 )
 from custom_components.tuya_local.generic.humidifier import TuyaLocalHumidifier
@@ -17,14 +16,13 @@ async def test_init_entry(hass):
     """Test the initialisation."""
     entry = MockConfigEntry(
         domain=DOMAIN,
-        data={CONF_TYPE: CONF_TYPE_AUTO, CONF_DEVICE_ID: "dummy"},
+        data={CONF_TYPE: "dehumidifier", CONF_DEVICE_ID: "dummy"},
     )
     # although async, the async_add_entities function passed to
     # async_setup_entry is called truly asynchronously. If we use
     # AsyncMock, it expects us to await the result.
     m_add_entities = Mock()
     m_device = AsyncMock()
-    m_device.async_inferred_type = AsyncMock(return_value="dehumidifier")
 
     hass.data[DOMAIN] = {}
     hass.data[DOMAIN]["dummy"] = {}

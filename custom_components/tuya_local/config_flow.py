@@ -23,8 +23,8 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             await self.async_set_unique_id(user_input[CONF_DEVICE_ID])
             self._abort_if_unique_id_configured()
 
-            connect_success = await async_test_connection(user_input, self.hass)
-            if connect_success:
+            device = await async_test_connection(user_input, self.hass)
+            if device:
                 title = user_input[CONF_NAME]
                 del user_input[CONF_NAME]
                 return self.async_create_entry(title=title, data=user_input)
@@ -98,4 +98,4 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
         "Test", config[CONF_DEVICE_ID], config[CONF_HOST], config[CONF_LOCAL_KEY], hass
     )
     await device.async_refresh()
-    return device.has_returned_state
+    return device if device.has_returned_state else None

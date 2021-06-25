@@ -230,12 +230,12 @@ class TuyaLocalDevice(object):
                 break
             except Exception as e:
                 _LOGGER.debug(f"Retrying after exception {e}")
-                if i + 1 == self._CONNECTION_ATTEMPTS:
+                if not self._api_protocol_working:
+                    self._rotate_api_protocol_version()
+                elif i + 1 == self._CONNECTION_ATTEMPTS:
                     self._reset_cached_state()
                     self._api_protocol_working = False
                     _LOGGER.error(error_message)
-                elif self._api_protocol_working is False:
-                    self._rotate_api_protocol_version()
 
     def _get_cached_state(self):
         cached_state = self._cached_state.copy()

@@ -22,10 +22,9 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
     device = data["device"]
 
     if discovery_info[CONF_TYPE] == CONF_TYPE_AUTO:
-        discovery_info[CONF_TYPE] = await device.async_inferred_type()
-
-        if discovery_info[CONF_TYPE] is None:
-            raise ValueError(f"Unable to detect type for device {device.name}")
+        raise ValueError(
+            f"Device type for {device.name} not resolved before climate init"
+        )
 
     cfg = config_for_legacy_use(discovery_info[CONF_TYPE])
     ecfg = cfg.primary_entity

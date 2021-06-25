@@ -22,6 +22,8 @@ from .const import (
     CONF_FAN,
     CONF_HUMIDIFIER,
     CONF_SWITCH,
+    CONF_TYPE,
+    CONF_TYPE_AUTO,
     DOMAIN,
 )
 from .device import setup_device, delete_device
@@ -51,7 +53,14 @@ async def async_setup(hass: HomeAssistant, config: dict):
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     _LOGGER.debug(f"Setting up entry for device: {entry.data[CONF_DEVICE_ID]}")
     config = {**entry.data, **entry.options, "name": entry.title}
-    setup_device(hass, config)
+    device = setup_device(hass, config)
+
+    if config[CONF_TYPE] == CONF_TYPE_AUTO:
+        config[CONF_TYPE] = await device.async_inferred_type
+        if config[CONF_TYPE] is None:
+            raise ValueError(f"Unable to detect type for device {device.name}")
+        entry.data[CONF_TYPE] = config[CONF_TYPE]
+        entry.options[CONF_TYPE] = config[CONF_TYPE]
 
     if config.get(CONF_CLIMATE, False) is True:
         hass.async_create_task(
@@ -110,9 +119,6 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
 
 
 async def async_update_entry(hass: HomeAssistant, entry: ConfigEntry):
-    if entry.data.get(SOURCE_IMPORT):
-        raise ValueError("Devices configured via yaml cannot be updated from the UI.")
-
     _LOGGER.debug(f"Updating entry for device: {entry.data[CONF_DEVICE_ID]}")
     await async_unload_entry(hass, entry)
     await async_setup_entry(hass, entry)

@@ -32,6 +32,7 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
 #### Fans
 - Goldair GCPF315 fans
 - Anko HEGSM40 fans
+- Deta fan controllers
 
 #### Dehumidifiers
 - Goldair GPDH420 dehumidifiers
