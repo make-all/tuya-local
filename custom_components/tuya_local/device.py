@@ -97,8 +97,9 @@ class TuyaLocalDevice(object):
     async def async_inferred_type(self):
         best_match = None
         best_quality = 0
-        cached_state = self._get_cached_state()
+        cached_state = {}
         async for config in self.async_possible_types():
+            cached_state = self._get_cached_state()
             quality = config.match_quality(cached_state)
             _LOGGER.info(
                 f"{self.name} considering {config.name} with quality {quality}"

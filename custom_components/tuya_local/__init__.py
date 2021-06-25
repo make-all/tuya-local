@@ -39,26 +39,29 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
     if entry.version == 1:
         # Removal of Auto detection.
         config = {**entry.data, **entry.options, "name": entry.title}
+        opts = {**entry.options}
         if config[CONF_TYPE] == CONF_TYPE_AUTO:
             device = setup_device(hass, config)
             config[CONF_TYPE] = await device.async_inferred_type()
-            entry.data = {
-                CONF_DEVICE_ID: config[CONF_DEVICE_ID],
-                CONF_LOCAL_KEY: config[CONF_LOCAL_KEY],
-                CONF_HOST: config[CONF_HOST],
-            }
-            opts = {**entry.options}
-            opts[CONF_TYPE] = config[CONF_TYPE]
-            if CONF_CHILD_LOCK in config:
-                opts.pop(CONF_CHILD_LOCK)
-                opts[CONF_LOCK] = config[CONF_CHILD_LOCK]
-            if CONF_DISPLAY_LIGHT in config:
-                opts.pop(CONF_DISPLAY_LIGHT)
-                opts[CONF_LIGHT] = config[CONF_DISPLAY_LIGHT]
+            if config[CONF_TYPE] == None
+            return False
 
-            entry.options = {**opts}
-            entry.version = 2
+        entry.data = {
+            CONF_DEVICE_ID: config[CONF_DEVICE_ID],
+            CONF_LOCAL_KEY: config[CONF_LOCAL_KEY],
+            CONF_HOST: config[CONF_HOST],
+        }
+        opts[CONF_TYPE] = config[CONF_TYPE]
+        if CONF_CHILD_LOCK in config:
+            opts.pop(CONF_CHILD_LOCK)
+            opts[CONF_LOCK] = config[CONF_CHILD_LOCK]
+        if CONF_DISPLAY_LIGHT in config:
+            opts.pop(CONF_DISPLAY_LIGHT)
+            opts[CONF_LIGHT] = config[CONF_DISPLAY_LIGHT]
 
+        entry.options = {**opts}
+        entry.version = 2
+        return True
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     _LOGGER.debug(f"Setting up entry for device: {entry.data[CONF_DEVICE_ID]}")
