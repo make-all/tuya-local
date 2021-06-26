@@ -253,17 +253,17 @@ class TuyaDpsConfig:
             if cond is not None:
                 constraint = mapping.get("constraint")
                 _LOGGER.debug(f"Considering condition on {constraint}")
-            range = None if cond is None else cond.get("range")
-            if range is not None and "min" in range and "max" in range:
+            r = None if cond is None else cond.get("range")
+            if r is not None and "min" in r and "max" in r:
                 _LOGGER.info(f"Conditional range returned for {self.name}")
-                return range
-            range = mapping.get("range")
-            if range is not None and "min" in range and "max" in range:
+                return r
+            r = mapping.get("range")
+            if r is not None and "min" in r and "max" in r:
                 _LOGGER.info(f"Mapped range returned for {self.name}")
-                return range
-        range = self._config.get("range")
-        if range is not None and "min" in range and "max" in range:
-            return range
+                return r
+        r = self._config.get("range")
+        if r is not None and "min" in r and "max" in r:
+            return r
         else:
             return None
 
@@ -445,13 +445,13 @@ class TuyaDpsConfig:
                     value,
                 )
 
-        range = self.range(device)
-        if range is not None:
-            minimum = range["min"]
-            maximum = range["max"]
+        r = self.range(device)
+        if r is not None:
+            minimum = r["min"]
+            maximum = r["max"]
             if result < minimum or result > maximum:
                 raise ValueError(
-                    f"{self.name} ({value}) must be between " f"{minimum} and {maximum}"
+                    f"{self.name} ({value}) must be between {minimum} and {maximum}"
                 )
 
         if self.type is int:

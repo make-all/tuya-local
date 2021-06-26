@@ -67,7 +67,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     _LOGGER.debug(f"Setting up entry for device: {entry.data[CONF_DEVICE_ID]}")
     config = {**entry.data, **entry.options, "name": entry.title}
-    device = setup_device(hass, config)
+    setup_device(hass, config)
 
     if config.get(CONF_CLIMATE, False) is True:
         hass.async_create_task(
