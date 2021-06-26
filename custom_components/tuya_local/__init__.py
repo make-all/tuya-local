@@ -43,8 +43,8 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         if config[CONF_TYPE] == CONF_TYPE_AUTO:
             device = setup_device(hass, config)
             config[CONF_TYPE] = await device.async_inferred_type()
-            if config[CONF_TYPE] == None
-            return False
+            if config[CONF_TYPE] is None:
+                return False
 
         entry.data = {
             CONF_DEVICE_ID: config[CONF_DEVICE_ID],
@@ -62,6 +62,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         entry.options = {**opts}
         entry.version = 2
         return True
+
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     _LOGGER.debug(f"Setting up entry for device: {entry.data[CONF_DEVICE_ID]}")
