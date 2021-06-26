@@ -57,7 +57,7 @@ Installation is via the [Home Assistant Community Store (HACS)](https://hacs.xyz
 
 ## Configuration
 
-You can easily configure your devices using the Integrations UI at `Home Assistant > Configuration > Integrations > +`.
+You can easily configure your devices using the Integrations configuration UI. [![Add Integration to your Home Assistant instance.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=tuya_local)
 
 ### Configuration
 
