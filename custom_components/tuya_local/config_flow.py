@@ -45,7 +45,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
         types = []
         async for type in self.device.async_possible_types():
-            types.append(type)
+            types.append(type.legacy_type)
         if types:
             return self.async_show_form(
                 step_id="type",
