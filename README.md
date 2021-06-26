@@ -10,13 +10,13 @@ This is a Home Assistant add-on to support Wi-fi devices running Tuya firmware w
 
 ---
 
-### Device support
+## Device support
 
 Please note, this component is actively tested with the Goldair GPPH (inverter), GPDH420 (dehumidifier), Kogan SmarterHome 1500W Smart Panel Heater and Kogan SmarterHome Energy Monitoring SmartPlug. Other devices have been added at user request, and may or may not still be actively in use by others.
 
 Note that devices sometimes get firmware upgrades, or incompatible versions are sold under the same model name, so it is possible that the device will not work despite being listed below.
 
-#### Heaters
+### Heaters
 
 - Goldair heater models beginning with the code GPPH, GCPV, GECO.
 - Kogan Wi-Fi Convection Panel heaters.
@@ -24,26 +24,26 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
 - Eurom heaters.
 - Purline Hoti M100 heaters.
 
-#### Pool heaters
+### Pool heaters
 
 - Garden PAC pool heatpumps.
 - Remora pool heatpumps (partially also BWT FI 45, which differs in its presets)
 
-#### Fans
+### Fans
 - Goldair GCPF315 fans
 - Anko HEGSM40 fans
 - Deta fan controllers
 
-#### Dehumidifiers
+### Dehumidifiers
 - Goldair GPDH420 dehumidifiers
 
-#### Humidifiers
+### Humidifiers
 - Eanons QT-JS2014 Purifying Humidifer
 
-#### Thermostats
+### Thermostats
 - Inkbird ITC306A thermostat smartplug
 
-#### SmartPlugs
+### SmartPlugs
 - Kogan Single Smartplug with Energy Monitoring
 - Kogan Single Smartplug with Energy Monitoring and USB charging
 
@@ -57,27 +57,27 @@ Installation is via the [Home Assistant Community Store (HACS)](https://hacs.xyz
 
 ## Configuration
 
-You can easily configure your devices using the Integrations configuration UI. [![Add Integration to your Home Assistant instance.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=tuya_local)
+You can easily configure your devices using the Integrations configuration UI.
 
-### Configuration
+[![Add Integration to your Home Assistant instance.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=tuya_local)
 
-#### Stage One
+### Stage One
 
 The first stage of configuration is to provide the information needed to
 connect to the device.
 
 You will need to provide your device's IP address or hostname, device ID and local key; the last two can be found using [the instructions below](#finding-your-device-id-and-local-key).
 
-##### host
+#### host
 
 &nbsp;&nbsp;&nbsp;&nbsp;_(string) (Required)_ IP or hostname of the device.
 
-##### device_id
+#### device_id
 
 &nbsp;&nbsp;&nbsp;&nbsp;_(string) (Required)_ Device ID retrieved
 [as per the instructions below](#finding-your-device-id-and-local-key).
 
-##### local_key
+#### local_key
 
 &nbsp;&nbsp;&nbsp;&nbsp;_(string) (Required)_ Local key retrieved
 [as per the instructions below](#finding-your-device-id-and-local-key).
@@ -92,13 +92,13 @@ your device.  Note that each time you pair the device, the local key changes,
 so if you obtained the local key using the instructions linked above, then
 repaired with your manufacturer's app, then the key will have changed already.
 
-#### Stage Two
+### Stage Two
 
 The second stage of configuration is to select which device you are connecting.
 The list of devices offered will be limited to devices which appear to be
 at least a partial match to the data returned by the device.
 
-##### type
+#### type
 
 &nbsp;&nbsp;&nbsp;&nbsp;_(string) (Optional)_ The type of Tuya device.
 Select from the available options.
@@ -106,7 +106,7 @@ Select from the available options.
 If you pick the wrong type, you will need to delete the device and set it up
 again.
 
-#### Stage Three
+### Stage Three
 
 The final stage is to choose a name for the device in Home Assistant, and
 select which entities you want to enable.  The options availble will depend
@@ -119,34 +119,34 @@ alternative to humidifier and fan entities).  If you have multiple devices
 of the same type, you may want to change the name to make it easier to
 distinguish them.
 
-##### name
+#### name
 
 &nbsp;&nbsp;&nbsp;&nbsp;_(string) (Required)_ Any unique name for the device.
 This will be used as the base for the entitiy names in Home Assistant.
 Although Home Assistant allows you to change the name later, it will only
 change the name used in the UI, not the name of the entities.
 
-##### climate
+#### climate
 
 &nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this device as a climate device. (supported for heaters, heatpumps, deprecated for fans, dehumidifiers and humidifiers which should use the fan and humidifier entities instead)
 
-##### humidifier
+#### humidifier
 
 &nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this device as a humidifier device (supported only for humidifiers and dehumidifiers)
 
-##### fan
+#### fan
 
 &nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this device as a fan device (supported for fans, humidifiers and dehumidifiers)
 
-##### light
+#### light
 
 &nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this device as a light.  This may be an auxiliary display light control on devices such as heaters.
 
-##### lock
+#### lock
 
 &nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this device as a lock device. This may be an auxiliary lock such as a child lock for devices such as heaters.
 
-##### switch
+#### switch
 
 &nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this device as a switch device. This may be a switch for an auxiliary function or a master switch for multi-function devices.
 
