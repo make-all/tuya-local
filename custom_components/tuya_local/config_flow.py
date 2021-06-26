@@ -92,7 +92,6 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
         """Manage the options."""
         errors = {}
         config = {**self.config_entry.data, **self.config_entry.options}
-        device = await async_test_connection(config, self.hass)
 
         if user_input is not None:
             config = {**config, **user_input}
