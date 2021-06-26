@@ -92,20 +92,28 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
         """Manage the options."""
         errors = {}
         config = {**self.config_entry.data, **self.config_entry.options}
+        device = await async_test_connection(config, self.hass)
 
         if user_input is not None:
             config = {**config, **user_input}
-            connect_success = await async_test_connection(config, self.hass)
-            if connect_success:
+            device = await async_test_connection(config, self.hass)
+            if device:
                 return self.async_create_entry(title="", data=user_input)
             else:
                 errors["base"] = "connection"
 
+        schema = {
+            vol.Required(CONF_LOCAL_KEY): str,
+            vol.Required(CONF_HOST): str,
+        }
+        cfg = config_for_legacy_use(config[CONF_TYPE])
+        e = cfg.primary_entity
+        schema[vol.Optional(e.entity, default=True)] = bool
+        for e in cfg.secondary_entities():
+            schema[vol.Optional(e.entity, default=not e.deprecated)] = bool
         return self.async_show_form(
             step_id="user",
-            data_schema=vol.Schema(
-                individual_config_schema(defaults=config, options_only=True)
-            ),
+            data_schema=vol.Schema(schema),
             errors=errors,
         )
 
