@@ -28,7 +28,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             self.device = await async_test_connection(user_input, self.hass)
             if self.device:
                 self.data = user_input
-                return self.async_step_select_type()
+                return await self.async_step_select_type()
             else:
                 errors["base"] = "connection"
 
@@ -41,6 +41,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     async def async_step_select_type(self, user_input=None):
         if user_input is not None:
             self.data[CONF_TYPE] = user_input[CONF_TYPE]
+            return await self.async_step_choose_entities()
 
         types = []
         async for type in self.device.async_possible_types():
