@@ -21,6 +21,8 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
     device = data["device"]
 
     cfg = config_for_legacy_use(discovery_info[CONF_TYPE])
+    if cfg is None:
+        raise ValueError(f"No device config found for {discovery_info}")
     ecfg = cfg.primary_entity
     if ecfg.entity != "climate":
         for ecfg in cfg.secondary_entities():
