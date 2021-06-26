@@ -190,12 +190,10 @@ You can find these keys the same way as you would for any Tuya local integration
 ## Next steps
 
 1. Fallback support for a simple switch device using only a boolean dps 1.  As well as covering the failure mode of the Kogan Switch described in Kogan switch gotchas above, it can also cover basic operation of many other devices that use dps 1 for an on/off switch.
-2. Config flow improvement to offer only the options available to the detected device, and an indication of which device was detected.
-3. Further config flow improvements to filter the available types to possibilities based on the known dps.  When many device configurations are supported, this will be required, as not all devices will be distinguishable automatically.
-4. This component needs specs! Once they're written I'm considering submitting it to the HA team for inclusion in standard installations. Please report any issues and feel free to raise pull requests.
-5. This component is partially unit-tested thanks to the upstream project, but there are a few more to complete. Feel free to use existing specs as inspiration and the Sonar Cloud analysis to see where the gaps are.
-6. Once unit tests are complete, the next task is to complete the Home Assistant quality checklist before considering submission to the HA team for inclusion in standard installations.
-7. Discovery seems possible with the new tinytuya library, though the steps to get a local key will most likely remain manual.  Discovery also returns a productKey, which might help make the device detection more reliable where different devices use the same dps mapping but different names for the presets for example.
+2. This component needs specs! Once they're written I'm considering submitting it to the HA team for inclusion in standard installations. Please report any issues and feel free to raise pull requests.
+3. This component is partially unit-tested thanks to the upstream project, but there are a few more to complete. Feel free to use existing specs as inspiration and the Sonar Cloud analysis to see where the gaps are.
+4. Once unit tests are complete, the next task is to complete the Home Assistant quality checklist before considering submission to the HA team for inclusion in standard installations.
+5. Discovery seems possible with the new tinytuya library, though the steps to get a local key will most likely remain manual.  Discovery also returns a productKey, which might help make the device detection more reliable where different devices use the same dps mapping but different names for the presets for example.
 
 Please report any issues and feel free to raise pull requests.
 
