@@ -48,7 +48,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             types.append(type.legacy_type)
         if types:
             return self.async_show_form(
-                step_id="type",
+                step_id="select_type",
                 data_schema=vol.Schema({vol.Required(CONF_TYPE): vol.In(types)}),
             )
         else:
@@ -70,7 +70,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             schema[vol.Optional(e.entity, default=not e.deprecated)] = bool
 
         return self.async_show_form(
-            step_id="entities",
+            step_id="choose_entities",
             data_schema=vol.Schema(schema),
         )
 
