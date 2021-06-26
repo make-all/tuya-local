@@ -67,9 +67,8 @@ class TuyaDeviceConfig:
 
     def secondary_entities(self):
         """Iterate through entites for any secondary entites supported."""
-        if "secondary_entities" in self._config.keys():
-            for conf in self._config["secondary_entities"]:
-                yield TuyaEntityConfig(self, conf)
+        for conf in self._config.get("secondary_entities", {}):
+            yield TuyaEntityConfig(self, conf)
 
     def matches(self, dps):
         """Determine if this device matches the provided dps map."""
@@ -237,10 +236,9 @@ class TuyaDpsConfig:
         for m in self._config["mapping"]:
             if "value" in m:
                 val.append(m["value"])
-            if "conditions" in m:
-                for c in m["conditions"]:
-                    if "value" in c:
-                        val.append(c["value"])
+            for c in m.get("conditions", {}):
+                if "value" in c:
+                    val.append(c["value"])
 
         return list(set(val)) if len(val) > 0 else None
 
@@ -306,10 +304,8 @@ class TuyaDpsConfig:
         return self._config.get("hidden", False)
 
     def _find_map_for_dps(self, value):
-        if "mapping" not in self._config.keys():
-            return None
         default = None
-        for m in self._config["mapping"]:
+        for m in self._config.get("mapping", {}):
             if "dps_val" not in m:
                 default = m
             elif str(m["dps_val"]) == str(value):
@@ -341,11 +337,10 @@ class TuyaDpsConfig:
                 scale = cond.get("scale", scale)
                 redirect = cond.get("value-redirect", redirect)
 
-                if "mapping" in cond:
-                    for m in cond["mapping"]:
-                        if str(m.get("dps_val")) == str(result):
-                            replaced = "value" in m
-                            result = m.get("value", result)
+                for m in cond.get("mapping", {}):
+                    if str(m.get("dps_val")) == str(result):
+                        replaced = "value" in m
+                        result = m.get("value", result)
 
             if redirect is not None:
                 _LOGGER.debug(f"Redirecting {self.name} to {redirect}")
@@ -368,18 +363,15 @@ class TuyaDpsConfig:
         return result
 
     def _find_map_for_value(self, value):
-        if "mapping" not in self._config.keys():
-            return None
         default = None
-        for m in self._config["mapping"]:
+        for m in self._config.get("mapping", {}):
             if "dps_val" not in m:
                 default = m
             if "value" in m and str(m["value"]) == str(value):
                 return m
-            if "conditions" in m:
-                for c in m["conditions"]:
-                    if "value" in c and c["value"] == value:
-                        return m
+            for c in m.get("conditions", {}):
+                if "value" in c and c["value"] == value:
+                    return m
         return default
 
     def _active_condition(self, mapping, device):
