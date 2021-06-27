@@ -4,6 +4,7 @@ from unittest.mock import ANY, AsyncMock, MagicMock, patch
 from homeassistant.const import CONF_HOST, CONF_NAME
 import pytest
 from pytest_homeassistant_custom_component.common import MockConfigEntry
+
 import voluptuous as vol
 
 from custom_components.tuya_local import config_flow
@@ -21,6 +22,16 @@ from custom_components.tuya_local.const import (
 @pytest.fixture(autouse=True)
 def auto_enable_custom_integrations(enable_custom_integrations):
     yield
+
+
+@pytest.fixture
+def bypass_setup():
+    """Prevent actual setup of the integration after config flow."""
+    with patch(
+        "custom_components.tuya_local.async_setup_entry",
+        return_value=True,
+    ):
+        yield
 
 
 async def test_init_entry(hass):
@@ -234,7 +245,7 @@ async def test_flow_choose_entities_init(hass):
         pass
 
 
-async def test_flow_choose_entities_creates_config_entry(hass):
+async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
     """Test the flow ends when data is valid."""
 
     with patch.dict(
@@ -243,7 +254,7 @@ async def test_flow_choose_entities_creates_config_entry(hass):
             CONF_DEVICE_ID: "deviceid",
             CONF_LOCAL_KEY: "localkey",
             CONF_HOST: "hostname",
-            CONF_TYPE: "kogan_switch",
+            CONF_TYPE: "kogan_heater",
         },
     ):
         flow = await hass.config_entries.flow.async_init(
@@ -251,7 +262,7 @@ async def test_flow_choose_entities_creates_config_entry(hass):
         )
         result = await hass.config_entries.flow.async_configure(
             flow["flow_id"],
-            user_input={CONF_NAME: "test", CONF_SWITCH: True},
+            user_input={CONF_NAME: "test", CONF_CLIMATE: True, CONF_LOCK: False},
         )
         expected = {
             "version": 2,
@@ -264,11 +275,12 @@ async def test_flow_choose_entities_creates_config_entry(hass):
             "result": ANY,
             "options": {},
             "data": {
+                CONF_CLIMATE: True,
                 CONF_DEVICE_ID: "deviceid",
                 CONF_HOST: "hostname",
                 CONF_LOCAL_KEY: "localkey",
-                CONF_SWITCH: True,
-                CONF_TYPE: "kogan_switch",
+                CONF_LOCK: False,
+                CONF_TYPE: "kogan_heater",
             },
         }
         assert expected == result
@@ -316,6 +328,51 @@ async def test_options_flow_modifies_config(mock_test, hass):
         domain=DOMAIN,
         unique_id="uniqueid",
         data={
+            CONF_CLIMATE: True,
+            CONF_DEVICE_ID: "deviceid",
+            CONF_HOST: "hostname",
+            CONF_LOCAL_KEY: "localkey",
+            CONF_LOCK: True,
+            CONF_NAME: "test",
+            CONF_TYPE: "kogan_heater",
+        },
+    )
+    config_entry.add_to_hass(hass)
+
+    assert await hass.config_entries.async_setup(config_entry.entry_id)
+    await hass.async_block_till_done()
+    # show initial form
+    form = await hass.config_entries.options.async_init(config_entry.entry_id)
+    # submit updated config
+    result = await hass.config_entries.options.async_configure(
+        form["flow_id"],
+        user_input={
+            CONF_CLIMATE: True,
+            CONF_HOST: "new_hostname",
+            CONF_LOCAL_KEY: "new_key",
+            CONF_LOCK: False,
+        },
+    )
+    expected = {
+        CONF_CLIMATE: True,
+        CONF_HOST: "new_hostname",
+        CONF_LOCAL_KEY: "new_key",
+        CONF_LOCK: False,
+    }
+    assert "create_entry" == result["type"]
+    assert "" == result["title"]
+    assert result["result"] is True
+    assert expected == result["data"]
+
+
+@patch("custom_components.tuya_local.config_flow.async_test_connection")
+async def test_options_flow_fails_when_connection_fails(mock_test, hass):
+    mock_test.return_value = None
+
+    config_entry = MockConfigEntry(
+        domain=DOMAIN,
+        unique_id="uniqueid",
+        data={
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
             CONF_LOCAL_KEY: "localkey",
@@ -339,12 +396,33 @@ async def test_options_flow_modifies_config(mock_test, hass):
             CONF_SWITCH: False,
         },
     )
-    expected = {
-        CONF_HOST: "new_hostname",
-        CONF_LOCAL_KEY: "new_key",
-        CONF_SWITCH: False,
-    }
-    assert "create_entry" == result["type"]
-    assert "" == result["title"]
-    assert result["result"] is True
-    assert expected == result["data"]
+    assert "form" == result["type"]
+    assert "user" == result["step_id"]
+    assert {"base": "connection"} == result["errors"]
+
+
+@patch("custom_components.tuya_local.config_flow.async_test_connection")
+async def test_options_flow_fails_when_config_is_missing(mock_test, hass):
+    mock_device = MagicMock()
+    mock_test.return_value = mock_device
+
+    config_entry = MockConfigEntry(
+        domain=DOMAIN,
+        unique_id="uniqueid",
+        data={
+            CONF_DEVICE_ID: "deviceid",
+            CONF_HOST: "hostname",
+            CONF_LOCAL_KEY: "localkey",
+            CONF_NAME: "test",
+            CONF_SWITCH: True,
+            CONF_TYPE: "non_existing",
+        },
+    )
+    config_entry.add_to_hass(hass)
+
+    assert await hass.config_entries.async_setup(config_entry.entry_id)
+    await hass.async_block_till_done()
+    # show initial form
+    result = await hass.config_entries.options.async_init(config_entry.entry_id)
+    assert result["type"] == "abort"
+    assert result["reason"] == "not_supported"
