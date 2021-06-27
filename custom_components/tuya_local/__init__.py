@@ -53,10 +53,10 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         }
         opts[CONF_TYPE] = config[CONF_TYPE]
         if CONF_CHILD_LOCK in config:
-            opts.pop(CONF_CHILD_LOCK)
+            opts.pop(CONF_CHILD_LOCK, False)
             opts[CONF_LOCK] = config[CONF_CHILD_LOCK]
         if CONF_DISPLAY_LIGHT in config:
-            opts.pop(CONF_DISPLAY_LIGHT)
+            opts.pop(CONF_DISPLAY_LIGHT, False)
             opts[CONF_LIGHT] = config[CONF_DISPLAY_LIGHT]
 
         entry.options = {**opts}
