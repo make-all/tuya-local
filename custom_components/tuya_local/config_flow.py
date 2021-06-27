@@ -17,6 +17,8 @@ _LOGGER = logging.getLogger(__name__)
 class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION = 2
     CONNECTION_CLASS = config_entries.CONN_CLASS_LOCAL_POLL
+    device = None
+    data = {}
 
     async def async_step_user(self, user_input=None):
         errors = {}
@@ -106,6 +108,8 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
             vol.Required(CONF_HOST): str,
         }
         cfg = config_for_legacy_use(config[CONF_TYPE])
+        if cfg is None:
+            return self.async_abort(reason="not_supported")
         e = cfg.primary_entity
         schema[vol.Optional(e.entity, default=True)] = bool
         for e in cfg.secondary_entities():
