@@ -8,7 +8,7 @@ https://github.com/codetheweb/tuyapi/issues/31.
 """
 import logging
 
-from homeassistant.config_entries import SOURCE_IMPORT, ConfigEntry
+from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_HOST
 from homeassistant.core import HomeAssistant
 
@@ -99,9 +99,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
 
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
-    if entry.data.get(SOURCE_IMPORT):
-        raise ValueError("Devices configured via yaml cannot be deleted from the UI.")
-
     _LOGGER.debug(f"Unloading entry for device: {entry.data[CONF_DEVICE_ID]}")
     config = entry.data
     data = hass.data[DOMAIN][config[CONF_DEVICE_ID]]
