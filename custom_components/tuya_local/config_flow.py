@@ -6,7 +6,6 @@ from homeassistant.const import CONF_HOST, CONF_NAME
 from homeassistant.core import HomeAssistant, callback
 
 from . import DOMAIN
-from .configuration import individual_config_schema
 from .device import TuyaLocalDevice
 from .const import CONF_DEVICE_ID, CONF_LOCAL_KEY, CONF_TYPE
 from .helpers.device_config import config_for_legacy_use
@@ -22,6 +21,9 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
     async def async_step_user(self, user_input=None):
         errors = {}
+        devid_opts = {}
+        host_opts = {}
+        key_opts = {}
 
         if user_input is not None:
             await self.async_set_unique_id(user_input[CONF_DEVICE_ID])
@@ -33,10 +35,19 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                 return await self.async_step_select_type()
             else:
                 errors["base"] = "connection"
+                devid_opts["default"] = user_input[CONF_DEVICE_ID]
+                host_opts["default"] = user_input[CONF_HOST]
+                key_opts["default"] = user_input[CONF_LOCAL_KEY]
 
         return self.async_show_form(
             step_id="user",
-            data_schema=vol.Schema(individual_config_schema(user_input or {})),
+            data_schema=vol.Schema(
+                {
+                    vol.Required(CONF_DEVICE_ID, **devid_opts): str,
+                    vol.Required(CONF_HOST, **host_opts): str,
+                    vol.Required(CONF_LOCAL_KEY, **key_opts): str,
+                }
+            ),
             errors=errors,
         )
 

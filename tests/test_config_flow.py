@@ -7,7 +7,7 @@ from pytest_homeassistant_custom_component.common import MockConfigEntry
 
 import voluptuous as vol
 
-from custom_components.tuya_local import config_flow
+from custom_components.tuya_local import config_flow, async_migrate_entry
 from custom_components.tuya_local.const import (
     CONF_CLIMATE,
     CONF_DEVICE_ID,
@@ -56,13 +56,37 @@ async def test_init_entry(hass):
     assert state
 
 
+@patch("custom_components.tuya_local.setup_device")
+async def test_migrate_entry(mock_setup, hass):
+    """Test migration from old entry format."""
+    mock_device = MagicMock()
+    mock_device.async_inferred_type = AsyncMock(return_value="heater")
+    mock_setup.return_value = mock_device
+
+    entry = MockConfigEntry(
+        domain=DOMAIN,
+        version=1,
+        title="test",
+        data={
+            CONF_DEVICE_ID: "deviceid",
+            CONF_HOST: "hostname",
+            CONF_LOCAL_KEY: "localkey",
+            CONF_TYPE: "auto",
+            CONF_CLIMATE: True,
+            "child_lock": True,
+            "display_light": True,
+        },
+    )
+    assert await async_migrate_entry(hass, entry)
+
+
 async def test_flow_user_init(hass):
     """Test the initialisation of the form in the first step of the config flow."""
     result = await hass.config_entries.flow.async_init(
         DOMAIN, context={"source": "user"}
     )
     expected = {
-        "data_schema": vol.Schema(config_flow.individual_config_schema()),
+        "data_schema": ANY,
         "description_placeholders": None,
         "errors": {},
         "flow_id": ANY,
@@ -72,6 +96,19 @@ async def test_flow_user_init(hass):
         "last_step": ANY,
     }
     assert expected == result
+    # Check the schema.  Simple comparison does not work since they are not
+    # the same object
+    try:
+        result["data_schema"](
+            {CONF_DEVICE_ID: "test", CONF_LOCAL_KEY: "test", CONF_HOST: "test"}
+        )
+    except vol.MultipleInvalid:
+        assert False
+    try:
+        result["data_schema"]({CONF_DEVICE_ID: "missing_some"})
+        assert False
+    except vol.MultipleInvalid:
+        pass
 
 
 @patch("custom_components.tuya_local.config_flow.TuyaLocalDevice")
