@@ -34,20 +34,17 @@ class TuyaLocalHumidifier(HumidifierEntity):
         self._device = device
         self._config = config
         self._support_flags = 0
-        self._humidity_dps = None
-        self._mode_dps = None
-        self._switch_dps = None
         self._attr_dps = []
-        for d in config.dps():
-            if d.name == "switch":
-                self._switch_dps = d
-            elif d.name == "humidity":
-                self._humidity_dps = d
-            elif d.name == "mode":
-                self._mode_dps = d
-                self._support_flags |= SUPPORT_MODES
-            elif not d.hidden:
+        dps_map = {c.name: c for c in config.dps()}
+        self._humidity_dps = dps_map.pop("humidity", None)
+        self._mode_dps = dps_map.pop("mode", None)
+        self._switch_dps = dps_map.pop("switch", None)
+        for d in dps_map.values():
+            if not d.hidden:
                 self._attr_dps.append(d)
+
+        if self._mode_dps:
+            self._support_flags |= SUPPORT_MODES
 
     @property
     def supported_features(self):

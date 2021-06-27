@@ -34,29 +34,26 @@ class TuyaLocalFan(FanEntity):
         self._device = device
         self._config = config
         self._support_flags = 0
-        self._switch_dps = None
-        self._preset_dps = None
-        self._speed_dps = None
-        self._oscillate_dps = None
-        self._direction_dps = None
         self._attr_dps = []
-        for d in config.dps():
-            if d.name == "switch":
-                self._switch_dps = d
-            elif d.name == "preset_mode":
-                self._preset_dps = d
-                self._support_flags |= SUPPORT_PRESET_MODE
-            elif d.name == "speed":
-                self._speed_dps = d
-                self._support_flags |= SUPPORT_SET_SPEED
-            elif d.name == "oscillate":
-                self._oscillate_dps = d
-                self._support_flags |= SUPPORT_OSCILLATE
-            elif d.name == "direction":
-                self._direction_dps = d
-                self._support_flags |= SUPPORT_DIRECTION
-            elif not d.hidden:
+        dps_map = {c.name: c for c in config.dps()}
+        self._switch_dps = dps_map.pop("switch", None)
+        self._preset_dps = dps_map.pop("preset_mode", None)
+        self._speed_dps = dps_map.pop("speed", None)
+        self._oscillate_dps = dps_map.pop("oscillate", None)
+        self._direction_dps = dps_map.pop("direction", None)
+
+        for d in dps_map.values():
+            if not d.hidden:
                 self._attr_dps.append(d)
+
+        if self._preset_dps:
+            self._support_flags |= SUPPORT_PRESET_MODE
+        if self._speed_dps:
+            self._support_flags |= SUPPORT_SET_SPEED
+        if self._oscillate_dps:
+            self._support_flags |= SUPPORT_OSCILLATE
+        if self._direction_dps:
+            self._support_flags |= SUPPORT_DIRECTION
 
     @property
     def supported_features(self):

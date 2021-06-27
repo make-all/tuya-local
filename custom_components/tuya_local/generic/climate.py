@@ -53,50 +53,35 @@ class TuyaLocalClimate(ClimateEntity):
         self._device = device
         self._config = config
         self._support_flags = 0
-        self._current_temperature_dps = None
-        self._temperature_dps = None
-        self._temp_high_dps = None
-        self._temp_low_dps = None
-        self._current_humidity_dps = None
-        self._humidity_dps = None
-        self._preset_mode_dps = None
-        self._swing_mode_dps = None
-        self._fan_mode_dps = None
-        self._hvac_mode_dps = None
-        self._unit_dps = None
         self._attr_dps = []
+        dps_map = {c.name: c for c in config.dps()}
 
-        for d in config.dps():
-            if d.name == "hvac_mode":
-                self._hvac_mode_dps = d
-            elif d.name == ATTR_TEMPERATURE:
-                self._temperature_dps = d
-            elif d.name == ATTR_TARGET_TEMP_HIGH:
-                self._temp_high_dps = d
-            elif d.name == ATTR_TARGET_TEMP_LOW:
-                self._temp_low_dps = d
-            elif d.name == ATTR_CURRENT_TEMPERATURE:
-                self._current_temperature_dps = d
-            elif d.name == ATTR_HUMIDITY:
-                self._humidity_dps = d
-                self._support_flags |= SUPPORT_TARGET_HUMIDITY
-            elif d.name == ATTR_CURRENT_HUMIDITY:
-                self._current_humidity_dps = d
-            elif d.name == ATTR_PRESET_MODE:
-                self._preset_mode_dps = d
-                self._support_flags |= SUPPORT_PRESET_MODE
-            elif d.name == ATTR_SWING_MODE:
-                self._swing_mode_dps = d
-                self._support_flags |= SUPPORT_SWING_MODE
-            elif d.name == ATTR_FAN_MODE:
-                self._fan_mode_dps = d
-                self._support_flags |= SUPPORT_FAN_MODE
-            elif d.name == "temperature_unit":
-                self._unit_dps = d
-            elif not d.hidden:
+        self._current_temperature_dps = dps_map.pop(ATTR_CURRENT_TEMPERATURE, None)
+        self._temperature_dps = dps_map.pop(ATTR_TEMPERATURE, None)
+        self._temp_high_dps = dps_map.pop(ATTR_TARGET_TEMP_HIGH, None)
+        self._temp_low_dps = dps_map.pop(ATTR_TARGET_TEMP_LOW, None)
+        self._current_humidity_dps = dps_map.pop(ATTR_CURRENT_HUMIDITY, None)
+        self._humidity_dps = dps_map.pop(ATTR_HUMIDITY, None)
+        self._preset_mode_dps = dps_map.pop(ATTR_PRESET_MODE, None)
+        self._swing_mode_dps = dps_map.pop(ATTR_SWING_MODE, None)
+        self._fan_mode_dps = dps_map.pop(ATTR_FAN_MODE, None)
+        self._hvac_mode_dps = dps_map.pop("hvac_mode", None)
+        self._unit_dps = dps_map.pop("temperature_unit", None)
+
+        for d in dps_map.values():
+            if not d.hidden:
                 self._attr_dps.append(d)
 
-        if self._temp_high_dps is not None and self._temp_low_dps is not None:
+        if self._humidity_dps:
+            self._support_flags |= SUPPORT_TARGET_HUMIDITY
+        if self._preset_mode_dps:
+            self._support_flags |= SUPPORT_PRESET_MODE
+        if self._swing_mode_dps:
+            self._support_flags |= SUPPORT_SWING_MODE
+        if self._fan_mode_dps:
+            self._support_flags |= SUPPORT_FAN_MODE
+
+        if self._temp_high_dps and self._temp_low_dps:
             self._support_flags |= SUPPORT_TARGET_TEMPERATURE_RANGE
         elif self._temperature_dps is not None:
             self._support_flags |= SUPPORT_TARGET_TEMPERATURE
