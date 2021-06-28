@@ -61,7 +61,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
 
         entry.options = {**opts}
         entry.version = 2
-        return True
+    return True
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
