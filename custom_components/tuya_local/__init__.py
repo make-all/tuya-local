@@ -51,7 +51,6 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
             CONF_LOCAL_KEY: config[CONF_LOCAL_KEY],
             CONF_HOST: config[CONF_HOST],
         }
-        opts[CONF_TYPE] = config[CONF_TYPE]
         if CONF_CHILD_LOCK in config:
             opts.pop(CONF_CHILD_LOCK, False)
             opts[CONF_LOCK] = config[CONF_CHILD_LOCK]
@@ -61,6 +60,29 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
 
         entry.options = {**opts}
         entry.version = 2
+
+    if entry.version == 2:
+        # CONF_TYPE is not configurable, move it from options to the main config.
+        config = {**entry.data, **entry.options, "name": entry.title}
+        opts = {**entry.options}
+        # Ensure type has been migrated.  Some users are reporting errors which
+        # suggest it was removed completely.  But that is probably due to
+        # overwriting options without CONF_TYPE.
+        if config.get(CONF_TYPE, CONF_TYPE_AUTO) == CONF_TYPE_AUTO:
+            device = setup_device(hass, config)
+            config[CONF_TYPE] = await device.async_inferred_type()
+            if config[CONF_TYPE] is None:
+                return False
+        entry.data = {
+            CONF_DEVICE_ID: config[CONF_DEVICE_ID],
+            CONF_LOCAL_KEY: config[CONF_LOCAL_KEY],
+            CONF_HOST: config[CONF_HOST],
+            CONF_TYPE: config[CONF_TYPE],
+        }
+        opts.pop(CONF_TYPE, None)
+        entry.options = {**opts}
+        entry.version = 3
+
     return True
 
 
