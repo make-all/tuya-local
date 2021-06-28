@@ -7,10 +7,17 @@ from pytest_homeassistant_custom_component.common import MockConfigEntry
 
 import voluptuous as vol
 
-from custom_components.tuya_local import config_flow, async_migrate_entry
+from custom_components.tuya_local import (
+    config_flow,
+    async_migrate_entry,
+    async_setup_entry,
+)
 from custom_components.tuya_local.const import (
     CONF_CLIMATE,
     CONF_DEVICE_ID,
+    CONF_FAN,
+    CONF_HUMIDIFIER,
+    CONF_LIGHT,
     CONF_LOCAL_KEY,
     CONF_LOCK,
     CONF_SWITCH,
@@ -52,8 +59,8 @@ async def test_init_entry(hass):
     entry.add_to_hass(hass)
     await hass.config_entries.async_setup(entry.entry_id)
     await hass.async_block_till_done()
-    state = hass.states.get("climate.test")
-    assert state
+    assert hass.states.get("climate.test")
+    assert hass.states.get("lock.test")
 
 
 @patch("custom_components.tuya_local.setup_device")
@@ -463,3 +470,44 @@ async def test_options_flow_fails_when_config_is_missing(mock_test, hass):
     result = await hass.config_entries.options.async_init(config_entry.entry_id)
     assert result["type"] == "abort"
     assert result["reason"] == "not_supported"
+
+
+# More tests to exercise code branches that earlier tests missed.
+@patch("custom_components.tuya_local.setup_device")
+async def test_async_setup_entry_for_dehumidifier(mock_setup, hass):
+    """Test setting up based on a config entry.  Repeats test_init_entry."""
+    config_entry = MockConfigEntry(
+        domain=DOMAIN,
+        unique_id="uniqueid",
+        data={
+            CONF_CLIMATE: False,
+            CONF_DEVICE_ID: "deviceid",
+            CONF_FAN: True,
+            CONF_HOST: "hostname",
+            CONF_HUMIDIFIER: True,
+            CONF_LIGHT: True,
+            CONF_LOCK: False,
+            CONF_LOCAL_KEY: "localkey",
+            CONF_NAME: "test",
+            CONF_TYPE: "dehumidifier",
+        },
+    )
+    assert await async_setup_entry(hass, config_entry)
+
+
+@patch("custom_components.tuya_local.setup_device")
+async def test_async_setup_entry_for_switch(mock_device, hass):
+    """Test setting up based on a config entry.  Repeats test_init_entry."""
+    config_entry = MockConfigEntry(
+        domain=DOMAIN,
+        unique_id="uniqueid",
+        data={
+            CONF_DEVICE_ID: "deviceid",
+            CONF_HOST: "hostname",
+            CONF_LOCAL_KEY: "localkey",
+            CONF_NAME: "test",
+            CONF_SWITCH: True,
+            CONF_TYPE: "kogan_switch",
+        },
+    )
+    assert await async_setup_entry(hass, config_entry)

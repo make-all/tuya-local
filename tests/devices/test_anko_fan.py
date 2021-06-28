@@ -149,6 +149,7 @@ class TestAnkoFan(IsolatedAsyncioTestCase):
 
     def test_speed_step(self):
         self.assertEqual(self.subject.percentage_step, 12.5)
+        self.assertEqual(self.subject.speed_count, 8)
 
     async def test_set_speed_in_normal_mode(self):
         self.dps[PRESET_DPS] = "normal"
