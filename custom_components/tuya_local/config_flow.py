@@ -115,16 +115,16 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
                 errors["base"] = "connection"
 
         schema = {
-            vol.Required(CONF_LOCAL_KEY): str,
-            vol.Required(CONF_HOST): str,
+            vol.Required(CONF_LOCAL_KEY, default=config.get(CONF_LOCAL_KEY, "")): str,
+            vol.Required(CONF_HOST, default=config.get(CONF_HOST, "")): str,
         }
         cfg = config_for_legacy_use(config[CONF_TYPE])
         if cfg is None:
             return self.async_abort(reason="not_supported")
         e = cfg.primary_entity
-        schema[vol.Optional(e.entity, default=True)] = bool
+        schema[vol.Optional(e.entity, default=config.get(e.entity, True))] = bool
         for e in cfg.secondary_entities():
-            schema[vol.Optional(e.entity, default=not e.deprecated)] = bool
+            schema[vol.Optional(e.entity, default=config.get(e.entity, False))] = bool
         return self.async_show_form(
             step_id="user",
             data_schema=vol.Schema(schema),
