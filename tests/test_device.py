@@ -7,6 +7,7 @@ from unittest.mock import AsyncMock, call, patch
 from homeassistant.const import TEMP_CELSIUS
 
 from custom_components.tuya_local.device import TuyaLocalDevice
+from custom_components.tuya_local.helpers.device_config import possible_matches
 
 from .const import (
     DEHUMIDIFIER_PAYLOAD,
@@ -22,6 +23,7 @@ from .const import (
     GARDENPAC_HEATPUMP_PAYLOAD,
     PURLINE_M100_HEATER_PAYLOAD,
     REMORA_HEATPUMP_PAYLOAD,
+    BWT_HEATPUMP_PAYLOAD,
     EANONS_HUMIDIFIER_PAYLOAD,
     INKBIRD_THERMOSTAT_PAYLOAD,
     ANKO_FAN_PAYLOAD,
@@ -137,8 +139,18 @@ class TestDevice(IsolatedAsyncioTestCase):
         )
 
     async def test_detects_remora_heatpump_payload(self):
-        self.subject._cached_state = REMORA_HEATPUMP_PAYLOAD
-        self.assertEqual(await self.subject.async_inferred_type(), "remora_heatpump")
+        for cfg in possible_matches(REMORA_HEATPUMP_PAYLOAD):
+            if cfg.legacy_type == "remora_heatpump":
+                self.assertEqual(cfg.match_quality(REMORA_HEATPUMP_PAYLOAD), 100.0)
+                return
+        self.fail()
+
+    async def test_detects_bwt_heatpump_payload(self):
+        for cfg in possible_matches(BWT_HEATPUMP_PAYLOAD):
+            if cfg.legacy_type == "bwt_heatpump":
+                self.assertEqual(cfg.match_quality(BWT_HEATPUMP_PAYLOAD), 100.0)
+                return
+        self.fail()
 
     async def test_detects_eanons_humidifier_payload(self):
         self.subject._cached_state = EANONS_HUMIDIFIER_PAYLOAD

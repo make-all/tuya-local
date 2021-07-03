@@ -24,6 +24,7 @@ from .const import (
     KOGAN_SOCKET_PAYLOAD2,
     PURLINE_M100_HEATER_PAYLOAD,
     REMORA_HEATPUMP_PAYLOAD,
+    BWT_HEATPUMP_PAYLOAD,
     EANONS_HUMIDIFIER_PAYLOAD,
     INKBIRD_THERMOSTAT_PAYLOAD,
     ANKO_FAN_PAYLOAD,
@@ -234,19 +235,5 @@ class TestDeviceConfig(unittest.TestCase):
             None,
         )
 
-    # Non-legacy devices start here.
-    def test_remora_heatpump_detection(self):
-        """Test that Remora heatpump can be detected from its sample payload."""
-        self._test_detect(REMORA_HEATPUMP_PAYLOAD, "remora_heatpump", None)
-
-    def test_eanons_humidifier(self):
-        """Test that Eanons humidifier can be detected from its sample payload."""
-        self._test_detect(EANONS_HUMIDIFIER_PAYLOAD, "eanons_humidifier", None)
-
-    def test_inkbird_thermostat(self):
-        """Test that Inkbird thermostat can be detected from its sample payload."""
-        self._test_detect(INKBIRD_THERMOSTAT_PAYLOAD, "inkbird_thermostat", None)
-
-    def test_anko_fan(self):
-        """Test that Anko fan can be detected from its sample payload."""
-        self._test_detect(ANKO_FAN_PAYLOAD, "anko_fan", None)
+    # Non-legacy devices endup being the same as the tests in test_device.py, so
+    # skip them.

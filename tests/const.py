@@ -109,6 +109,7 @@ PURLINE_M100_HEATER_PAYLOAD = {
 }
 
 REMORA_HEATPUMP_PAYLOAD = {"1": True, "2": 30, "3": 28, "4": "heat", "9": 0}
+BWT_HEATPUMP_PAYLOAD = {"1": True, "2": 30, "3": 28, "4": "auto", "9": 0}
 
 EANONS_HUMIDIFIER_PAYLOAD = {
     "2": "middle",
