@@ -119,10 +119,11 @@ class TuyaLocalClimate(ClimateEntity):
     @property
     def icon(self):
         """Return the icon to use in the frontend for this device."""
-        if self.hvac_mode == HVAC_MODE_OFF:
-            return "mdi:hvac-off"
+        icon = self._config.icon(self._device)
+        if icon:
+            return icon
         else:
-            return "mdi:hvac"
+            return super().icon
 
     @property
     def temperature_unit(self):

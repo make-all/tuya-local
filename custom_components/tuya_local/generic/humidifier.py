@@ -88,10 +88,11 @@ class TuyaLocalHumidifier(HumidifierEntity):
     @property
     def icon(self):
         """Return the icon to use in the frontend for this device."""
-        if self.is_on:
-            return "mdi:air-humidifier"
+        icon = self._config.icon(self._device)
+        if icon:
+            return icon
         else:
-            return "mdi:air-humidifier-off"
+            return super().icon
 
     @property
     def is_on(self):

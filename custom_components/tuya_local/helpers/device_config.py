@@ -173,6 +173,18 @@ class TuyaEntityConfig:
         """The device class of this entity."""
         return self._config.get("class")
 
+    def icon(self, device):
+        """Return the icon for this device, with state as given."""
+        icon = self._config.get("icon", None)
+        priority = self._config.get("icon_priority", 100)
+
+        for d in self.dps():
+            rule = d.icon_rule(device)
+            if rule and rule["priority"] < priority:
+                icon = rule["icon"]
+                priority = rule["priority"]
+        return icon
+
     def dps(self):
         """Iterate through the list of dps for this entity."""
         for d in self._config["dps"]:
@@ -461,6 +473,20 @@ class TuyaDpsConfig:
 
         dps_map[self.id] = result
         return dps_map
+
+    def icon_rule(self, device):
+        mapping = self._find_map_for_dps(device.get_property(self.id))
+        icon = None
+        priority = 100
+        if mapping:
+            icon = mapping.get("icon", icon)
+            priority = mapping.get("icon_priority", 10 if icon else 100)
+            cond = self._active_condition(mapping, device)
+            if cond and cond.get("icon_priority", 10) < priority:
+                icon = cond.get("icon", icon)
+                priority = cond.get("icon_priority", 10 if icon else 100)
+
+        return {"priority": priority, "icon": icon}
 
 
 def available_configs():

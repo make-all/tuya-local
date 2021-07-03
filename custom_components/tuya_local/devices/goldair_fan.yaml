@@ -39,15 +39,16 @@ primary_entity:
 secondary_entities:
   - entity: climate
     legacy_class: ".legacy_fan.climate.GoldairFan"
-    icon: "mdi:fan"
     dps:
       - id: 1
         type: boolean
         mapping:
           - dps_val: false
             value: "off"
+            icon: "mdi:fan-off"
           - dps_val: true
             value: "fan_only"
+            icon: "mdi:fan"
         name: hvac_mode
       - id: 2
         type: integer
@@ -104,7 +105,7 @@ secondary_entities:
         type: boolean
         mapping:
           - dps_val: false
-            icon: "mdi:led-on"
-          - dps_val: true
             icon: "mdi:led-off"
+          - dps_val: true
+            icon: "mdi:led-on"
         name: switch

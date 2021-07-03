@@ -88,10 +88,11 @@ class TuyaLocalFan(FanEntity):
     @property
     def icon(self):
         """Return the icon to use in the frontend for this device."""
-        if self.is_on:
-            return "mdi:fan"
+        icon = self._config.icon(self._device)
+        if icon:
+            return icon
         else:
-            return "mdi:fan-off"
+            return super().icon
 
     @property
     def is_on(self):

@@ -100,6 +100,15 @@ class TuyaLocalSwitch(SwitchEntity):
             attr[a.name] = a.get_value(self._device)
         return attr
 
+    @property
+    def icon(self):
+        """Return the icon to use in the frontend for this device."""
+        icon = self._config.icon(self._device)
+        if icon:
+            return icon
+        else:
+            return super().icon
+
     async def async_turn_on(self, **kwargs):
         """Turn the switch on"""
         await self._switch_dps.async_set_value(self._device, True)

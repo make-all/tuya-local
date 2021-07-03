@@ -55,6 +55,15 @@ class TuyaLocalLock(LockEntity):
         return self._device.device_info
 
     @property
+    def icon(self):
+        """Return the icon to use in the frontend for this device."""
+        icon = self._config.icon(self._device)
+        if icon:
+            return icon
+        else:
+            return super().icon
+
+    @property
     def state(self):
         """Return the current state."""
         lock = self._lock_dps.get_value(self._device)
