@@ -364,15 +364,6 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         ):
             await self.climate.async_set_fan_mode("medium")
 
-    @skip("Conditions not yet supported for setting")
-    async def test_climate_set_fan_mode_does_nothing_when_preset_mode_is_not_set(self):
-        self.dps[PRESET_DPS] = None
-
-        with self.assertRaises(
-            ValueError, msg="Fan mode can only be set when a preset mode is set"
-        ):
-            await self.climate.async_set_fan_mode(2)
-
     def test_device_state_attributes(self):
         self.dps[TIMER_DPS] = "5"
         self.assertEqual(self.climate.device_state_attributes, {"timer": "5"})

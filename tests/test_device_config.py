@@ -193,7 +193,7 @@ class TestDeviceConfig(unittest.TestCase):
 
     def test_goldair_fan_detection(self):
         """Test that Goldair fan can be detected from its sample payload."""
-        self._test_detect(FAN_PAYLOAD, "fan", "GoldairFan")
+        self._test_detect(FAN_PAYLOAD, "fan", None)
 
     def test_kogan_socket_detection(self):
         """Test that 1st gen Kogan Socket can be detected from its sample payload."""
