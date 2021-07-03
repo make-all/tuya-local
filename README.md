@@ -27,7 +27,13 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
 ### Pool heaters
 
 - Garden PAC pool heatpumps.
-- Remora pool heatpumps (partially also BWT FI 45, which differs in its presets)
+- Madimack pool heatpumps.
+- Remora pool heatpumps.
+- BWT FI 45 heatpumps.
+- many other Pool heatpumps will work using the above
+  configurations.  Report issues if there are any differences
+  in presets or other features, or if any of the "unknown"
+  values that are returned as attributes can be figured out.
 
 ### Fans
 - Goldair GCPF315 fans
@@ -46,6 +52,8 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
 ### SmartPlugs
 - Kogan Single Smartplug with Energy Monitoring
 - Kogan Single Smartplug with Energy Monitoring and USB charging
+- Other brands may work with the above configurations.
+- Simple Switch - a switch only, can be a fallback for many other unsupported devices, to allow just power to be switched on/off.
 
 ---
 
