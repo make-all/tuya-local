@@ -153,7 +153,7 @@ class TuyaLocalHumidifier(HumidifierEntity):
         """Return the list of presets that this device supports."""
         if self._mode_dps is None:
             return None
-        return self._mode_dps.values
+        return self._mode_dps.values(self._device)
 
     async def async_set_mode(self, mode):
         """Set the preset mode."""

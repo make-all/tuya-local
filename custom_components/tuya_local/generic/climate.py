@@ -272,7 +272,7 @@ class TuyaLocalClimate(ClimateEntity):
         if self._hvac_mode_dps is None:
             return []
         else:
-            return self._hvac_mode_dps.values
+            return self._hvac_mode_dps.values(self._device)
 
     async def async_set_hvac_mode(self, hvac_mode):
         """Set new HVAC mode."""
@@ -292,7 +292,7 @@ class TuyaLocalClimate(ClimateEntity):
         """Return the list of presets that this device supports."""
         if self._preset_mode_dps is None:
             return None
-        return self._preset_mode_dps.values
+        return self._preset_mode_dps.values(self._device)
 
     async def async_set_preset_mode(self, preset_mode):
         """Set the preset mode."""
@@ -312,7 +312,7 @@ class TuyaLocalClimate(ClimateEntity):
         """Return the list of swing modes that this device supports."""
         if self._swing_mode_dps is None:
             return None
-        return self._swing_mode_dps.values
+        return self._swing_mode_dps.values(self._device)
 
     async def async_set_swing_mode(self, swing_mode):
         """Set the preset mode."""
@@ -332,7 +332,7 @@ class TuyaLocalClimate(ClimateEntity):
         """Return the list of swing modes that this device supports."""
         if self._fan_mode_dps is None:
             return None
-        return self._fan_mode_dps.values
+        return self._fan_mode_dps.values(self._device)
 
     async def async_set_fan_mode(self, fan_mode):
         """Set the preset mode."""

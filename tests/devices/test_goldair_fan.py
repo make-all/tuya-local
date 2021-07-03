@@ -279,19 +279,18 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         async with assert_device_properties_set(self.subject._device, {FANMODE_DPS: 8}):
             await self.subject.async_set_percentage(75)
 
-    @skip("Fan modes does not work without mapping")
     def test_climate_fan_modes(self):
         self.dps[PRESET_DPS] = "normal"
         self.assertCountEqual(self.climate.fan_modes, list(range(1, 13)))
 
         self.dps[PRESET_DPS] = "nature"
-        self.assertCountEqual(self.climate.fan_modes, [1, 2, 3])
+        self.assertCountEqual(self.climate.fan_modes, ["low", "medium", "high"])
 
         self.dps[PRESET_DPS] = PRESET_SLEEP
-        self.assertCountEqual(self.climate.fan_modes, [1, 2, 3])
+        self.assertCountEqual(self.climate.fan_modes, ["low", "medium", "high"])
 
         self.dps[PRESET_DPS] = None
-        self.assertEqual(self.climate.fan_modes, [])
+        self.assertEqual(self.climate.fan_modes, None)
 
     def test_climate_fan_mode_for_normal_preset(self):
         self.dps[PRESET_DPS] = "normal"
@@ -332,42 +331,40 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         self.dps[FANMODE_DPS] = None
         self.assertEqual(self.climate.fan_mode, None)
 
-    @skip("Complex conditions not yet supported for setting")
     async def test_climate_set_fan_mode_for_eco_preset(self):
         self.dps[PRESET_DPS] = "nature"
 
         async with assert_device_properties_set(
             self.climate._device,
-            {FANMODE_DPS: "4"},
+            {FANMODE_DPS: 4},
         ):
             await self.climate.async_set_fan_mode("low")
 
     def test_climate_fan_mode_for_sleep_preset(self):
         self.dps[PRESET_DPS] = PRESET_SLEEP
 
-        self.dps[FANMODE_DPS] = "4"
+        self.dps[FANMODE_DPS] = 4
         self.assertEqual(self.climate.fan_mode, "low")
 
-        self.dps[FANMODE_DPS] = "8"
+        self.dps[FANMODE_DPS] = 8
         self.assertEqual(self.climate.fan_mode, "medium")
 
-        self.dps[FANMODE_DPS] = "12"
+        self.dps[FANMODE_DPS] = 12
         self.assertEqual(self.climate.fan_mode, "high")
 
         self.dps[FANMODE_DPS] = None
         self.assertEqual(self.climate.fan_mode, None)
 
-    @skip("Complex conditions not yet supported for setting")
     async def test_climate_set_fan_mode_for_sleep_preset(self):
         self.dps[PRESET_DPS] = PRESET_SLEEP
 
         async with assert_device_properties_set(
             self.climate._device,
-            {FANMODE_DPS: "8"},
+            {FANMODE_DPS: 8},
         ):
-            await self.climate.async_set_fan_mode(2)
+            await self.climate.async_set_fan_mode("medium")
 
-    @skip("Complex conditions not yet supported for setting")
+    @skip("Conditions not yet supported for setting")
     async def test_climate_set_fan_mode_does_nothing_when_preset_mode_is_not_set(self):
         self.dps[PRESET_DPS] = None
 

@@ -239,10 +239,12 @@ class TuyaDpsConfig:
         settings = self.get_values_to_set(device, value)
         await device.async_set_properties(settings)
 
-    @property
-    def values(self):
+    def values(self, device):
         """Return the possible values a dps can take."""
         if "mapping" not in self._config.keys():
+            _LOGGER.debug(
+                f"No mapping for {self.name}, unable to determine valid values"
+            )
             return None
         val = []
         for m in self._config["mapping"]:
@@ -251,49 +253,61 @@ class TuyaDpsConfig:
             for c in m.get("conditions", {}):
                 if "value" in c:
                     val.append(c["value"])
-
-        return list(set(val)) if len(val) > 0 else None
+            cond = self._active_condition(m, device)
+            if cond and "mapping" in cond:
+                _LOGGER.debug("Considering conditional mappings")
+                c_val = []
+                for m2 in cond["mapping"]:
+                    if "value" in m2:
+                        c_val.append(m2["value"])
+                # if given, the conditional mapping is an override
+                if c_val:
+                    _LOGGER.debug(f"Overriding {self.name} values {val} with {c_val}")
+                    val = c_val
+                    break
+        _LOGGER.debug(f"{self.name} values: {val}")
+        return list(set(val)) if val else None
 
     def range(self, device):
         """Return the range for this dps if configured."""
         mapping = self._find_map_for_dps(device.get_property(self.id))
-        if mapping is not None:
+        if mapping:
             _LOGGER.debug(f"Considering mapping for range of {self.name}")
             cond = self._active_condition(mapping, device)
-            if cond is not None:
+            if cond:
                 constraint = mapping.get("constraint")
                 _LOGGER.debug(f"Considering condition on {constraint}")
             r = None if cond is None else cond.get("range")
-            if r is not None and "min" in r and "max" in r:
+            if r and "min" in r and "max" in r:
                 _LOGGER.info(f"Conditional range returned for {self.name}")
                 return r
             r = mapping.get("range")
-            if r is not None and "min" in r and "max" in r:
+            if r and "min" in r and "max" in r:
                 _LOGGER.info(f"Mapped range returned for {self.name}")
                 return r
         r = self._config.get("range")
-        if r is not None and "min" in r and "max" in r:
+        if r and "min" in r and "max" in r:
             return r
         else:
             return None
 
-    def step(self, device):
+    def step(self, device, scaled=True):
         step = 1
         scale = 1
         mapping = self._find_map_for_dps(device.get_property(self.id))
-        if mapping is not None:
+        if mapping:
             _LOGGER.debug(f"Considering mapping for step of {self.name}")
             step = mapping.get("step", 1)
             scale = mapping.get("scale", 1)
             cond = self._active_condition(mapping, device)
-            if cond is not None:
+            if cond:
                 constraint = mapping.get("constraint")
                 _LOGGER.debug(f"Considering condition on {constraint}")
                 step = cond.get("step", step)
                 scale = cond.get("scale", scale)
         if step != 1 or scale != 1:
             _LOGGER.info(f"Step for {self.name} is {step} with scale {scale}")
-        return step / scale
+        return step / scale if scaled else step
 
     @property
     def readonly(self):
@@ -305,9 +319,9 @@ class TuyaDpsConfig:
 
     def invalid_for(self, value, device):
         mapping = self._find_map_for_value(value)
-        if mapping is not None:
+        if mapping:
             cond = self._active_condition(mapping, device)
-            if cond is not None:
+            if cond:
                 return cond.get("invalid", False)
         return False
 
@@ -333,7 +347,7 @@ class TuyaDpsConfig:
                 pass
         result = value
         mapping = self._find_map_for_dps(value)
-        if mapping is not None:
+        if mapping:
             scale = mapping.get("scale", 1)
             if not isinstance(scale, (int, float)):
                 scale = 1
@@ -341,7 +355,7 @@ class TuyaDpsConfig:
             replaced = "value" in mapping
             result = mapping.get("value", result)
             cond = self._active_condition(mapping, device)
-            if cond is not None:
+            if cond:
                 if cond.get("invalid", False):
                     return None
                 replaced = replaced or "value" in cond
@@ -354,7 +368,7 @@ class TuyaDpsConfig:
                         replaced = "value" in m
                         result = m.get("value", result)
 
-            if redirect is not None:
+            if redirect:
                 _LOGGER.debug(f"Redirecting {self.name} to {redirect}")
                 r_dps = self._entity.find_dps(redirect)
                 return r_dps.get_value(device)
@@ -389,7 +403,7 @@ class TuyaDpsConfig:
     def _active_condition(self, mapping, device):
         constraint = mapping.get("constraint")
         conditions = mapping.get("conditions")
-        if constraint is not None and conditions is not None:
+        if constraint and conditions:
             c_dps = self._entity.find_dps(constraint)
             c_val = None if c_dps is None else device.get_property(c_dps.id)
             if c_val is not None:
@@ -403,7 +417,7 @@ class TuyaDpsConfig:
         result = value
         dps_map = {}
         mapping = self._find_map_for_value(value)
-        if mapping is not None:
+        if mapping:
             replaced = False
             scale = mapping.get("scale", 1)
             redirect = mapping.get("value-redirect")
@@ -417,15 +431,20 @@ class TuyaDpsConfig:
                 replaced = True
             # Conditions may have side effect of setting another value.
             cond = self._active_condition(mapping, device)
-            if cond is not None:
+            if cond:
                 if cond.get("value") == value:
                     c_dps = self._entity.find_dps(mapping["constraint"])
                     dps_map.update(c_dps.get_values_to_set(device, cond["dps_val"]))
+                # Allow simple conditional mapping overrides
+                for m in cond.get("mapping", {}):
+                    if m.get("value") == value:
+                        result = m.get("dps_val", result)
+
                 scale = cond.get("scale", scale)
                 step = cond.get("step", step)
                 redirect = cond.get("value-redirect", redirect)
 
-            if redirect is not None:
+            if redirect:
                 _LOGGER.debug(f"Redirecting {self.name} to {redirect}")
                 r_dps = self._entity.find_dps(redirect)
                 return r_dps.get_values_to_set(device, value)
@@ -435,7 +454,7 @@ class TuyaDpsConfig:
                 result = result * scale
                 replaced = True
 
-            if step is not None and isinstance(result, (int, float)):
+            if step and isinstance(result, (int, float)):
                 _LOGGER.debug(f"Stepping {result} to {step}")
                 result = step * round(float(result) / step)
                 replaced = True
@@ -450,12 +469,12 @@ class TuyaDpsConfig:
                 )
 
         r = self.range(device)
-        if r is not None:
+        if r:
             minimum = r["min"]
             maximum = r["max"]
             if result < minimum or result > maximum:
                 raise ValueError(
-                    f"{self.name} ({value}) must be between {minimum} and {maximum}"
+                    f"{self.name} ({result}) must be between {minimum} and {maximum}"
                 )
 
         if self.type is int:

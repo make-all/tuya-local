@@ -131,18 +131,18 @@ class TuyaLocalFan(FanEntity):
         """Return the step for percentage."""
         if self._speed_dps is None:
             return None
-        if self._speed_dps.values is None:
+        if self._speed_dps.values(self._device) is None:
             return self._speed_dps.step(self._device)
         else:
-            return 100 / len(self._speed_dps.values)
+            return 100 / len(self._speed_dps.values(self._device))
 
     @property
     def speed_count(self):
         """Return the number of speeds supported by the fan."""
         if self._speed_dps is None:
             return 0
-        if self._speed_dps.values is not None:
-            return len(self._speed_dps.values)
+        if self._speed_dps.values(self._device) is not None:
+            return len(self._speed_dps.values(self._device))
         return int(round(100 / self.percentage_step))
 
     async def async_set_percentage(self, percentage):
@@ -150,8 +150,10 @@ class TuyaLocalFan(FanEntity):
         if self._speed_dps is None:
             return None
         # If there is a fixed list of values, snap to the closest one
-        if self._speed_dps.values is not None:
-            percentage = min(self._speed_dps.values, key=lambda x: abs(x - percentage))
+        if self._speed_dps.values(self._device) is not None:
+            percentage = min(
+                self._speed_dps.values(self._device), key=lambda x: abs(x - percentage)
+            )
 
         await self._speed_dps.async_set_value(self._device, percentage)
 
@@ -167,7 +169,7 @@ class TuyaLocalFan(FanEntity):
         """Return the list of presets that this device supports."""
         if self._preset_dps is None:
             return []
-        return self._preset_dps.values
+        return self._preset_dps.values(self._device)
 
     async def async_set_preset_mode(self, preset_mode):
         """Set the preset mode."""
