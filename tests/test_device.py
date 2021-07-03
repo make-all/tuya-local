@@ -21,6 +21,7 @@ from .const import (
     KOGAN_SOCKET_PAYLOAD,
     KOGAN_SOCKET_PAYLOAD2,
     GARDENPAC_HEATPUMP_PAYLOAD,
+    MADIMACK_HEATPUMP_PAYLOAD,
     PURLINE_M100_HEATER_PAYLOAD,
     REMORA_HEATPUMP_PAYLOAD,
     BWT_HEATPUMP_PAYLOAD,
@@ -132,6 +133,10 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.subject._cached_state = GARDENPAC_HEATPUMP_PAYLOAD
         self.assertEqual(await self.subject.async_inferred_type(), "gardenpac_heatpump")
 
+    async def test_detects_madimack_heatpump_payload(self):
+        self.subject._cached_state = MADIMACK_HEATPUMP_PAYLOAD
+        self.assertEqual(await self.subject.async_inferred_type(), "madimack_heatpump")
+
     async def test_detects_purline_m100_heater_payload(self):
         self.subject._cached_state = PURLINE_M100_HEATER_PAYLOAD
         self.assertEqual(
@@ -165,7 +170,7 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.assertEqual(await self.subject.async_inferred_type(), "anko_fan")
 
     async def test_detection_returns_none_when_device_type_could_not_be_detected(self):
-        self.subject._cached_state = {"1": False, "updated_at": datetime.now()}
+        self.subject._cached_state = {"2": False, "updated_at": datetime.now()}
         self.assertEqual(await self.subject.async_inferred_type(), None)
 
     async def test_does_not_refresh_more_often_than_cache_timeout(self):

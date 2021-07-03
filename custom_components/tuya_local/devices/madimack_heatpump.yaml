@@ -1,0 +1,114 @@
+name: Madimack Pool Heatpump
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+          icon: "mdi:hvac-off"
+          icon_priority: 1
+        - dps_val: true
+          value: "heat"
+          icon: "mdi:hot-tub"
+          icon_priority: 3
+    - id: 102
+      name: current_temperature
+      type: integer
+      readonly: true
+    - id: 103
+      name: temperature_unit
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: F
+        - dps_val: true
+          value: C
+    - id: 104
+      name: power_level
+      type: integer
+      readonly: true
+    - id: 105
+      name: operating_mode
+      type: string
+      readonly: true
+    - id: 106
+      name: temperature
+      type: integer
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: false
+              range:
+                min: 60
+                max: 115
+      range:
+        min: 18
+        max: 45
+    - id: 107
+      type: integer
+      name: unknown_107
+    - id: 108
+      type: integer
+      name: unknown_108
+    - id: 115
+      type: integer
+      name: unknown_115
+    - id: 116
+      type: integer
+      name: unknown_116
+    - id: 117
+      name: preset_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: Silent
+        - dps_val: true
+          value: Boost
+    - id: 118
+      name: unknown_118
+      type: boolean
+    - id: 120
+      name: unknown_120
+      type: integer
+    - id: 122
+      name: unknown_122
+      type: integer
+    - id: 124
+      name: unknown_124
+      type: integer
+    - id: 125
+      name: unknown_125
+      type: integer
+    - id: 126
+      name: unknown_126
+      type: integer
+    - id: 127
+      name: unknown_127
+      type: integer
+    - id: 128
+      name: unknown_128
+      type: integer
+    - id: 129
+      name: unknown_129
+      type: integer
+    - id: 130
+      name: unknown_130
+      type: boolean
+    - id: 134
+      name: unknown_134
+      type: boolean
+    - id: 135
+      name: unknown_135
+      type: boolean
+    - id: 136
+      name: unknown_136
+      type: boolean
+    - id: 139
+      name: unknown_139
+      type: boolean
+    - id: 140
+      name: unknown_140
+      type: string

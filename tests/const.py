@@ -96,6 +96,35 @@ GARDENPAC_HEATPUMP_PAYLOAD = {
     "117": True,
 }
 
+MADIMACK_HEATPUMP_PAYLOAD = {
+    "1": True,
+    "102": 9,
+    "103": True,
+    "104": 0,
+    "105": "warm",
+    "106": 30,
+    "107": 18,
+    "108": 40,
+    "115": 4,
+    "116": 0,
+    "117": True,
+    "118": False,
+    "120": 8,
+    "122": 11,
+    "124": 9,
+    "125": 0,
+    "126": 0,
+    "127": 17,
+    "128": 480,
+    "129": 0,
+    "130": False,
+    "134": False,
+    "135": False,
+    "136": False,
+    "139": False,
+    "140": "LowSpeed",
+}
+
 PURLINE_M100_HEATER_PAYLOAD = {
     "1": True,
     "2": 23,
