@@ -91,7 +91,6 @@ class TestPulineM100Heater(IsolatedAsyncioTestCase):
         self.assertEqual(self.light.device_info, self.subject._device.device_info)
         self.assertEqual(self.switch.device_info, self.subject._device.device_info)
 
-    @skip("Icon customisation not supported yet")
     def test_icon(self):
         self.dps[HVACMODE_DPS] = True
         self.dps[PRESET_DPS] = "auto"

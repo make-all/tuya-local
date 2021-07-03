@@ -90,7 +90,6 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
         self.assertEqual(self.light.device_info, self.subject._device.device_info)
         self.assertEqual(self.lock.device_info, self.subject._device.device_info)
 
-    @skip("Icon customisation not yet supported")
     def test_icon(self):
         self.dps[HVACMODE_DPS] = True
         self.assertEqual(self.subject.icon, "mdi:radiator")

@@ -98,9 +98,11 @@ class TestGoldairFan(IsolatedAsyncioTestCase):
         self.assertEqual(self.climate.device_info, self.subject._device.device_info)
         self.assertEqual(self.light.device_info, self.subject._device.device_info)
 
-    @skip("Icon customisation not supported yet")
     def test_climate_icon_is_fan(self):
+        self.dps[HVACMODE_DPS] = True
         self.assertEqual(self.climate.icon, "mdi:fan")
+        self.dps[HVACMODE_DPS] = False
+        self.assertEqual(self.climate.icon, "mdi:fan-off")
 
     def test_temperature_unit_returns_device_temperature_unit(self):
         self.assertEqual(

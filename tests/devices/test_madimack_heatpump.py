@@ -79,13 +79,12 @@ class TestMadimackPoolHeatpump(IsolatedAsyncioTestCase):
     def test_device_info_returns_device_info_from_device(self):
         self.assertEqual(self.subject.device_info, self.subject._device.device_info)
 
-    @skip("Icon customisation not supported yet")
     def test_icon(self):
         self.dps[HVACMODE_DPS] = True
         self.assertEqual(self.subject.icon, "mdi:hot-tub")
 
         self.dps[HVACMODE_DPS] = False
-        self.assertEqual(self.subject.icon, "mdi:radiator-disabled")
+        self.assertEqual(self.subject.icon, "mdi:hvac-off")
 
     def test_temperature_unit(self):
         self.dps[UNITS_DPS] = False

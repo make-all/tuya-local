@@ -112,7 +112,6 @@ class TestEanonsHumidifier(IsolatedAsyncioTestCase):
         self.assertEqual(self.fan.device_info, self.subject._device.device_info)
         self.assertEqual(self.switch.device_info, self.subject._device.device_info)
 
-    @skip("Icon customisation not supported yet")
     def test_climate_icon_is_humidifier(self):
         """Test that the icon is as expected."""
         self.dps[HVACMODE_DPS] = True
@@ -121,7 +120,6 @@ class TestEanonsHumidifier(IsolatedAsyncioTestCase):
         self.dps[HVACMODE_DPS] = False
         self.assertEqual(self.climate.icon, "mdi:air-humidifier-off")
 
-    @skip("Icon customisation not supported yet")
     def test_icon_is_humidifier(self):
         """Test that the icon is as expected."""
         self.dps[HVACMODE_DPS] = True

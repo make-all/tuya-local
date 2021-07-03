@@ -121,7 +121,6 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         self.assertEqual(self.lock.device_info, self.subject._device.device_info)
         self.assertEqual(self.humidifier.device_info, self.subject._device.device_info)
 
-    @skip("Icon customisation not supported yet")
     def test_icon_is_always_standard_when_off_without_error(self):
         self.dps[ERROR_DPS] = None
         self.dps[HVACMODE_DPS] = False
@@ -132,23 +131,21 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
 
         self.dps[AIRCLEAN_DPS] = True
         self.dps[PRESET_DPS] = PRESET_NORMAL
-        self.assertEqual(self.subject.icon, "mdi:air-humidifier")
+        self.assertEqual(self.subject.icon, "mdi:air-humidifier-off")
 
-    @skip("Icon customisation not supported yet")
+    @skip("Conditions not included in config")
     def test_icon_is_purifier_when_air_clean_is_active(self):
         self.dps[ERROR_DPS] = None
         self.dps[HVACMODE_DPS] = True
         self.dps[AIRCLEAN_DPS] = True
         self.assertEqual(self.subject.icon, "mdi:air-purifier")
 
-    @skip("Icon customisation not supported yet")
     def test_icon_is_tshirt_when_dry_clothes_is_active(self):
         self.dps[ERROR_DPS] = None
         self.dps[HVACMODE_DPS] = True
         self.dps[PRESET_DPS] = PRESET_DRY_CLOTHES
         self.assertEqual(self.subject.icon, "mdi:tshirt-crew-outline")
 
-    @skip("Icon customisation not supported yet")
     def test_icon_is_always_melting_snowflake_when_defrosting_and_tank_not_full(self):
         self.dps[DEFROST_DPS] = True
 
@@ -165,7 +162,6 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
         self.dps[PRESET_DPS] = PRESET_NORMAL
         self.assertEqual(self.subject.icon, "mdi:snowflake-melt")
 
-    @skip("Icon customisation not supported yet")
     def test_icon_is_always_tank_when_tank_full_error_is_present(self):
         self.dps[ERROR_DPS] = 8
 
