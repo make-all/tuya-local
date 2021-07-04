@@ -109,11 +109,17 @@ class TestDetaFan(IsolatedAsyncioTestCase):
         self.assertAlmostEqual(self.subject.percentage_step, 33.3, 1)
 
     async def test_set_speed(self):
+        async with assert_device_properties_set(self.subject._device, {SPEED_DPS: 2}):
+            await self.subject.async_set_percentage(66.7)
+
+    async def test_auto_stringify_speed(self):
+        self.dps[SPEED_DPS] = "1"
+        self.assertAlmostEqual(self.subject.percentage, 33.3, 1)
         async with assert_device_properties_set(self.subject._device, {SPEED_DPS: "2"}):
             await self.subject.async_set_percentage(66.7)
 
     async def test_set_speed_snaps(self):
-        async with assert_device_properties_set(self.subject._device, {SPEED_DPS: "2"}):
+        async with assert_device_properties_set(self.subject._device, {SPEED_DPS: 2}):
             await self.subject.async_set_percentage(55)
 
     def test_device_state_attributes(self):

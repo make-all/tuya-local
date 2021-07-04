@@ -204,6 +204,7 @@ class TuyaDpsConfig:
     def __init__(self, entity, config):
         self._entity = entity
         self._config = config
+        self.stringify = False
 
     @property
     def id(self):
@@ -313,10 +314,6 @@ class TuyaDpsConfig:
     def readonly(self):
         return self._config.get("readonly", False)
 
-    @property
-    def stringify(self):
-        return self._config.get("stringify", False)
-
     def invalid_for(self, value, device):
         mapping = self._find_map_for_value(value)
         if mapping:
@@ -339,12 +336,15 @@ class TuyaDpsConfig:
         return default
 
     def _map_from_dps(self, value, device):
-        # For stringified dps, convert to desired type if possible
-        if self.stringify and value is not None:
+        if value is not None and self.type is not str and isinstance(value, str):
             try:
                 value = self.type(value)
+                self.stringify = True
             except ValueError:
-                pass
+                self.stringify = False
+        else:
+            self.stringify = False
+
         result = value
         mapping = self._find_map_for_dps(value)
         if mapping:

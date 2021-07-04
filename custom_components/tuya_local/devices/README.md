@@ -253,7 +253,7 @@ attribute. The contents are the same as Mapping Rules, but `dps_val` applies
 to the attribute specified by `constraint`. All others act on the current
 attribute as they would in the mapping.  Although conditions are specified
 within a mapping, they can also contain a `mapping` of their own to override
-that mapping.  Normally such mappings will be simple `dps_val` to `value`
-substitutions, as more complex rules will quickly become too complex to
+that mapping.  These nested mappings are limited to simple `dps_val` to `value`
+substitutions, as more complex rules would quickly become too complex to
 manage.
 
