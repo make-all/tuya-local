@@ -127,6 +127,9 @@ class TestElectriqDehumidifier(IsolatedAsyncioTestCase):
         self.dps[SWITCH_DPS] = True
         self.assertEqual(self.subject.icon, "mdi:air-purifier")
 
+        self.dps[MODE_DPS] = "high"
+        self.assertEqual(self.subject.icon, "mdi:tshirt-crew-outline")
+
         self.assertEqual(self.light.icon, "mdi:solar-power")
         self.assertEqual(self.switch.icon, "mdi:creation")
 
