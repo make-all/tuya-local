@@ -127,9 +127,6 @@ class TestDeviceConfig(unittest.TestCase):
             q = cfg.match_quality(payload)
             if q > best_q:
                 best_q = q
-            warn(
-                f"{legacy_type} also detectable as {cfg.legacy_type} with quality {q}%"
-            )
 
         self.assertGreater(quality, best_q)
 
