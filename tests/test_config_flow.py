@@ -171,6 +171,7 @@ async def test_flow_user_init_invalid_config(mock_test, hass):
 def setup_device_mock(mock, failure=False, type="test"):
     mock_type = MagicMock()
     mock_type.legacy_type = type
+    mock_type.match_quality.return_value = 100
     mock_iter = MagicMock()
     mock_iter.__aiter__.return_value = [mock_type] if not failure else []
     mock.async_possible_types = MagicMock(return_value=mock_iter)
