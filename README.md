@@ -42,6 +42,7 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
 
 ### Dehumidifiers
 - Goldair GPDH420 dehumidifiers
+- Electriq CD25PRO-LE-V2 dehumidifiers
 
 ### Humidifiers
 - Eanons QT-JS2014 Purifying Humidifer
@@ -214,6 +215,9 @@ None of this would have been possible without some foundational discovery work t
 - [sean6541](https://github.com/sean6541)'s [tuya-homeassistant](https://github.com/sean6541/tuya-homeassistant) library giving an example of integrating Tuya devices with Home Assistant.
 - [clach04](https://github.com/clach04)'s [python-tuya](https://github.com/clach04/python-tuya) library.
 - [jasonacox](https://github.com/jasonacox)'s [tinytuya](https://github.com/jasonacox/tinytuya) library which improves on the original.
+
+Further device support has been made with the assistance of users.  Please consider contributing if you find a device that is not supported by gathering some information about the device's DPS ids and their values.
+
 - [etamtlosz](https://github.com/etamtlosz) and [KiLLeRRaT](https://github.com/KiLLeRRaT) for their support and dev work towards GECO and GPCV heaters.
 - [botts7](https://github.com/botts7) for support towards widening Kogan SmartPlug support.
 - [awaismun](https://github.com/awaismun) for assistance in supporting Andersson heaters.
@@ -222,5 +226,9 @@ None of this would have been possible without some foundational discovery work t
 - [paulmfclark](https://github.com/paulmfclark) for assistance in supporting Remora Inverter pool heatpumps, and [cartman10](https://github.com/cartman10) for assistance with BWT FI 45 pool heater which appears to use almost identical Wi-Fi controls.
  - [superman110](https://github.com/superman110) for assistance in supporting Eanons/purenjoy humidifier.
  - [woolmonkey](https://github.com/woolmonkey) for assistance in supporting Inkbird ITC306A Thermostat.
- 
+ - [hazell20](https://github.com/hazell20] for assistance in supporting Anko fans.
+ - [meremortals70](https://github.com/meremortals70] for assistance in supporting Deta fan controllers.
+ - [mvnixon](https://github.com/mvnixon) for assistance in supporting Madimack pool heaters.
+ - [Lapy](https://github.com/Lapy) for adding support for Electriq dehumidifiers.
+
 [![BuyMeCoffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/jasonrumney)
