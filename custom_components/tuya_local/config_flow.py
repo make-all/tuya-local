@@ -57,12 +57,31 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             return await self.async_step_choose_entities()
 
         types = []
+        best_match = 0
+        best_matching_type = None
+
         async for type in self.device.async_possible_types():
             types.append(type.legacy_type)
+            q = type.match_quality(self.device._get_cached_state())
+            if q > best_match:
+                best_match = q
+                best_matching_type = type.legacy_type
+
+        if best_match < 100:
+            best_match = int(best_match)
+            dps = self.device._get_cached_state()
+            _LOGGER.warning(
+                f"Device matches {best_matching_type} with quality of {best_match}%. DPS: {dps}"
+            )
+            _LOGGER.warning(
+                f"Report this to https://github.com/make-all/tuya-local/issues/"
+            )
         if types:
             return self.async_show_form(
                 step_id="select_type",
-                data_schema=vol.Schema({vol.Required(CONF_TYPE): vol.In(types)}),
+                data_schema=vol.Schema(
+                    {vol.Required(CONF_TYPE, default=best_matching_type): vol.In(types)}
+                ),
             )
         else:
             return self.async_abort(reason="not_supported")
