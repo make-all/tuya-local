@@ -30,6 +30,7 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
 - Madimack pool heatpumps.
 - Remora pool heatpumps.
 - BWT FI 45 heatpumps.
+- Poolex Silverline FI heatpumps.
 - many other Pool heatpumps will work using the above
   configurations.  Report issues if there are any differences
   in presets or other features, or if any of the "unknown"
@@ -229,6 +230,8 @@ Further device support has been made with the assistance of users.  Please consi
  - [hazell20](https://github.com/hazell20] for assistance in supporting Anko fans.
  - [meremortals70](https://github.com/meremortals70] for assistance in supporting Deta fan controllers.
  - [mvnixon](https://github.com/mvnixon) for assistance in supporting Madimack pool heaters.
- - [Lapy](https://github.com/Lapy) for adding support for Electriq dehumidifiers.
-
+ - [Lapy](https://github.com/Lapy) for contributing support for Electriq dehumidifiers.
+ - [thomas-fr](https://github.com/thomas-fr) for contributing support for Poolex heatpumps.
+ 
+ 
 [![BuyMeCoffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/jasonrumney)

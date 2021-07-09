@@ -29,6 +29,7 @@ from .const import (
     INKBIRD_THERMOSTAT_PAYLOAD,
     ANKO_FAN_PAYLOAD,
     ELECTRIQ_DEHUMIDIFIER_PAYLOAD,
+    POOLEX_HEATPUMP_PAYLOAD,
 )
 
 
@@ -175,6 +176,10 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.assertEqual(
             await self.subject.async_inferred_type(), "electriq_dehumidifier"
         )
+
+    async def test_detects_poolex_heatpump_payload(self):
+        self.subject._cached_state = POOLEX_HEATPUMP_PAYLOAD
+        self.assertEqual(await self.subject.async_inferred_type(), "poolex_heatpump")
 
     async def test_detection_returns_none_when_device_type_could_not_be_detected(self):
         self.subject._cached_state = {"2": False, "updated_at": datetime.now()}

@@ -202,3 +202,5 @@ ELECTRIQ_DEHUMIDIFIER_PAYLOAD = {
     "103": 20,
     "104": False,
 }
+
+POOLEX_HEATPUMP_PAYLOAD = {"1": True, "2": 30, "3": 28, "4": "Heat", "13": 0}

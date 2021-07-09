@@ -1,0 +1,47 @@
+name: Poolex Silverline FI Heatpump
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+          icon: "mdi:hvac-off"
+          icon_priority: 1
+        - dps_val: true
+          value: "heat"
+          icon: "mdi:hot-tub"
+          icon_priority: 3
+    - id: 2
+      name: temperature
+      type: integer
+      range:
+        min: 8
+        max: 40
+    - id: 3
+      name: current_temperature
+      type: integer
+    - id: 4
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: "Auto"
+          value: "Auto"
+        - dps_val: "Cool"
+          value: "Cool"
+        - dps_val: "Heat"
+          value: "Heat"
+        - dps_val: "BoostHeat"
+          value: "BoostHeat"
+    - id: 13
+      type: integer
+      name: error
+      mapping:
+        - dps_val: 0
+          value: "OK"
+        - dps_val: 256
+          value: "Water Flow Protection"
+          icon: "mdi:water-pump-off"
+          icon_priority: 2
