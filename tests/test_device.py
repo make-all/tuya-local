@@ -28,6 +28,7 @@ from .const import (
     EANONS_HUMIDIFIER_PAYLOAD,
     INKBIRD_THERMOSTAT_PAYLOAD,
     ANKO_FAN_PAYLOAD,
+    ELECTRIQ_DEHUMIDIFIER_PAYLOAD,
 )
 
 
@@ -168,6 +169,12 @@ class TestDevice(IsolatedAsyncioTestCase):
     async def test_detects_anko_fan_payload(self):
         self.subject._cached_state = ANKO_FAN_PAYLOAD
         self.assertEqual(await self.subject.async_inferred_type(), "anko_fan")
+
+    async def test_detects_electriq_humidifier_payload(self):
+        self.subject._cached_state = ELECTRIQ_DEHUMIDIFIER_PAYLOAD
+        self.assertEqual(
+            await self.subject.async_inferred_type(), "electriq_dehumidifier"
+        )
 
     async def test_detection_returns_none_when_device_type_could_not_be_detected(self):
         self.subject._cached_state = {"2": False, "updated_at": datetime.now()}

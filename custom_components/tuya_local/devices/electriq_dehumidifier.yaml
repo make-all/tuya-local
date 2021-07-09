@@ -1,5 +1,4 @@
 name: "Electriq Dehumidifier CD25PRO-LE-V2"
-legacy_type: dehumidifier
 primary_entity:
   entity: humidifier
   class: dehumidifier
@@ -24,8 +23,6 @@ primary_entity:
           value: "Low"
         - dps_val: "high"
           value: "High"
-          icon: "mdi:tshirt-crew-outline"
-          icon_priority: 2
         - dps_val: "fan"
           value: "Air clean"
           icon: "mdi:air-purifier"
@@ -42,29 +39,10 @@ primary_entity:
         max: 80
       mapping:
         - step: 5
-    - id: 7
-      type: boolean
-      name: child_lock
-    - id: 10
-      type: boolean
-      name: uv_light
-    - id: 102
-      name: oscillate
-      type: string
-      mapping:
-        - dps_val: "45"
-          value: "Half open"
-        - dps_val: "90"
-          value: "Fully open"
-        - dps_val: "0_90"
-          value: "Oscillate"
     - id: 103
       type: integer
       name: current_temperature
       readonly: true
-    - id: 104
-      type: boolean
-      name: ionizer
 secondary_entities:
   - entity: fan
     name: Fan
@@ -72,46 +50,30 @@ secondary_entities:
       - id: 1
         type: boolean
         name: switch
-      - id: 2
-        type: string
-        name: preset_mode
-        mapping:
-        - dps_val: "auto"
-          value: "Auto"
-        - dps_val: "low"
-          value: "Low"
-        - dps_val: "high"
-          value: "High"
-          icon: "mdi:tshirt-crew-outline"
-        - dps_val: "fan"
-          value: "Air clean"
-          icon: "mdi:air-purifier"
       - id: 102
+        name: preset_mode
         type: string
-        name: oscillate
         mapping:
-          - dps_val: "0_90"
-            value: true
+          - dps_val: "45"
+            value: "Half open"
           - dps_val: "90"
-            value: false
+            value: "Fully open"
+          - dps_val: "0_90"
+            value: "Oscillate"
   - entity: light
     name: "UV light"
+    icon: "mdi:solar-power"    
     dps:
       - id: 10
         name: switch
         type: boolean
-        mapping:
-          - dps_val: true
-            icon: "mdi:solar-power"
   - entity: switch
     name: "Ionizer"
+    icon: "mdi:creation"
     dps:
       - id: 104
         name: switch
         type: boolean
-        mapping:
-          - dps_val: true
-            icon: "mdi:creation"
   - entity: lock
     name: Child Lock
     dps:

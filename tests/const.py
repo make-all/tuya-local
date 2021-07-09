@@ -190,3 +190,15 @@ DETA_FAN_PAYLOAD = {
     "102": "0",
     "103": "0",
 }
+
+ELECTRIQ_DEHUMIDIFIER_PAYLOAD = {
+    "1": True,
+    "2": "auto",
+    "3": 60,
+    "4": 45,
+    "7": False,
+    "10": False,
+    "102": "90",
+    "103": 20,
+    "104": False,
+}

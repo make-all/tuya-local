@@ -403,15 +403,15 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
         self.dps[LOCK_DPS] = None
         self.assertFalse(self.lock.is_locked)
 
-    async def async_test_lock_locks(self):
+    async def test_lock_locks(self):
         async with assert_device_properties_set(self.lock._device, {LOCK_DPS: True}):
-            await self.subject.async_lock()
+            await self.lock.async_lock()
 
-    async def async_test_lock_unlocks(self):
+    async def test_lock_unlocks(self):
         async with assert_device_properties_set(self.lock._device, {LOCK_DPS: False}):
-            await self.subject.async_unlock()
+            await self.lock.async_unlock()
 
-    async def async_test_lock_update(self):
+    async def test_lock_update(self):
         result = AsyncMock()
         self.lock._device.async_refresh.return_value = result()
 
