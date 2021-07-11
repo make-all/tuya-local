@@ -403,15 +403,19 @@ class TuyaDpsConfig:
     def _active_condition(self, mapping, device, value=None):
         constraint = mapping.get("constraint")
         conditions = mapping.get("conditions")
+        c_match = None
         if constraint and conditions:
             c_dps = self._entity.find_dps(constraint)
             c_val = None if c_dps is None else device.get_property(c_dps.id)
             for cond in conditions:
                 if c_val is not None and c_val == cond.get("dps_val"):
-                    return cond
+                    c_match = cond
+                # when changing, another condition may become active
+                # return that if it exists over a current condition
                 if value is not None and value == cond.get("value"):
                     return cond
-        return None
+
+        return c_match
 
     def get_values_to_set(self, device, value):
         """Return the dps values that would be set when setting to value"""

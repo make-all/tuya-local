@@ -13,7 +13,7 @@ primary_entity:
           icon_priority: 3
         - dps_val: true
           icon: "mdi:air-humidifier"
-          icon_priority: 5
+          icon_priority: 6
     - id: 2
       name: mode
       type: string
@@ -27,7 +27,7 @@ primary_entity:
         - dps_val: "3"
           value: "Dry clothes"
           icon: "mdi:tshirt-crew-outline"
-          icon_priority: 4
+          icon_priority: 5
     - id: 4
       type: integer
       name: humidity
@@ -39,8 +39,14 @@ primary_entity:
     - id: 5
       type: boolean
       name: air_clean_on
+      hidden: true
+      mapping:
+        - dps_val: true
+          icon: "mdi:air-purifier"
+          icon_priority: 4
     - id: 11
       type: bitfield
+      name: error
       mapping:
         - dps_val: 8
           value: "Tank full or missing"
@@ -48,7 +54,6 @@ primary_entity:
           icon_priority: 1
         - dps_val: 0
           value: "OK"
-      name: error
       readonly: true
     - id: 12
       type: string
@@ -109,6 +114,7 @@ secondary_entities:
     dps:
       - id: 1
         type: boolean
+        name: hvac_mode
         mapping:
           - dps_val: False
             value: "off"
@@ -117,22 +123,41 @@ secondary_entities:
           - dps_val: True
             value: "dry"
             icon: mdi:air-humidifier
-            icon_priority: 5
-        name: hvac_mode
+            icon_priority: 6
       - id: 2
         type: string
+        name: preset_mode
         mapping:
           - dps_val: "0"
-            value: "Normal"
+            constraint: air_clean_on
+            conditions:
+              - dps_val: true
+                value: "Air clean"
+              - dps_val: false
+                value: "Normal"
           - dps_val: "1"
-            value: "Low"
+            constraint: air_clean_on
+            conditions:
+              - dps_val: true
+                value: "Air clean"
+              - dps_val: false
+                value: "Low"
           - dps_val: "2"
-            value: "High"
+            constraint: air_clean_on
+            conditions:
+              - dps_val: true
+                value: "Air clean"
+              - dps_val: false
+                value: "High"
           - dps_val: "3"
-            value: "Dry clothes"
-            icon: "mdi:tshirt-crew-outline"
-            icon_priority: 4
-        name: preset_mode
+            constraint: air_clean_on
+            conditions:
+              - dps_val: true
+                value: "Air clean"
+              - dps_val: false
+                value: "Dry clothes"
+                icon: "mdi:tshirt-crew-outline"
+                icon_priority: 5
       - id: 4
         type: integer
         name: humidity
@@ -152,16 +177,21 @@ secondary_entities:
       - id: 5
         type: boolean
         name: air_clean_on
+        mapping:
+          - dps_val: true
+            icon: "mdi:air-purifier"
+            icon_priority: 4
       - id: 6
         type: string
+        name: fan_mode
         mapping:
           - dps_val: "1"
             value: "low"
           - dps_val: "3"
             value: "high"
-        name: fan_mode
       - id: 11
         type: bitfield
+        name: error
         mapping:
           - dps_val: 8
             value: "Tank full or missing"
@@ -169,7 +199,6 @@ secondary_entities:
             icon_priority: 1
           - dps_val: 0
             value: "OK"
-        name: error
         readonly: true
       - id: 12
         type: string
@@ -199,6 +228,7 @@ secondary_entities:
     dps:
       - id: 102
         type: boolean
+        name: switch
         mapping:
           - dps_val: false
             value: true
@@ -206,10 +236,16 @@ secondary_entities:
           - dps_val: true
             value: false
             icon: "mdi:led-off"
-        name: switch
   - entity: lock
     name: Child Lock
     dps:
       - id: 7
         type: boolean
         name: lock
+  - entity: switch
+    name: Air Clean
+    icon: "mdi:air-purifier"
+    dps:
+      - id: 5
+        type: boolean
+        name: switch
