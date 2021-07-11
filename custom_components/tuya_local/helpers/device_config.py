@@ -351,7 +351,7 @@ class TuyaDpsConfig:
             scale = mapping.get("scale", 1)
             if not isinstance(scale, (int, float)):
                 scale = 1
-            redirect = mapping.get("value-redirect")
+            redirect = mapping.get("value_redirect")
             replaced = "value" in mapping
             result = mapping.get("value", result)
             cond = self._active_condition(mapping, device)
@@ -361,7 +361,7 @@ class TuyaDpsConfig:
                 replaced = replaced or "value" in cond
                 result = cond.get("value", result)
                 scale = cond.get("scale", scale)
-                redirect = cond.get("value-redirect", redirect)
+                redirect = cond.get("value_redirect", redirect)
 
                 for m in cond.get("mapping", {}):
                     if str(m.get("dps_val")) == str(result):
@@ -400,16 +400,17 @@ class TuyaDpsConfig:
                     return m
         return default
 
-    def _active_condition(self, mapping, device):
+    def _active_condition(self, mapping, device, value=None):
         constraint = mapping.get("constraint")
         conditions = mapping.get("conditions")
         if constraint and conditions:
             c_dps = self._entity.find_dps(constraint)
             c_val = None if c_dps is None else device.get_property(c_dps.id)
-            if c_val is not None:
-                for cond in conditions:
-                    if c_val == cond.get("dps_val"):
-                        return cond
+            for cond in conditions:
+                if c_val is not None and c_val == cond.get("dps_val"):
+                    return cond
+                if value is not None and value == cond.get("value"):
+                    return cond
         return None
 
     def get_values_to_set(self, device, value):
@@ -420,7 +421,7 @@ class TuyaDpsConfig:
         if mapping:
             replaced = False
             scale = mapping.get("scale", 1)
-            redirect = mapping.get("value-redirect")
+            redirect = mapping.get("value_redirect")
             if not isinstance(scale, (int, float)):
                 scale = 1
             step = mapping.get("step")
@@ -430,11 +431,16 @@ class TuyaDpsConfig:
                 result = mapping["dps_val"]
                 replaced = True
             # Conditions may have side effect of setting another value.
-            cond = self._active_condition(mapping, device)
+            cond = self._active_condition(mapping, device, value)
             if cond:
                 if cond.get("value") == value:
                     c_dps = self._entity.find_dps(mapping["constraint"])
-                    dps_map.update(c_dps.get_values_to_set(device, cond["dps_val"]))
+                    c_val = c_dps._map_from_dps(
+                        cond.get("dps_val", device.get_property(c_dps.id)),
+                        device,
+                    )
+                    dps_map.update(c_dps.get_values_to_set(device, c_val))
+
                 # Allow simple conditional mapping overrides
                 for m in cond.get("mapping", {}):
                     if m.get("value") == value:
@@ -442,7 +448,7 @@ class TuyaDpsConfig:
 
                 scale = cond.get("scale", scale)
                 step = cond.get("step", step)
-                redirect = cond.get("value-redirect", redirect)
+                redirect = cond.get("value_redirect", redirect)
 
             if redirect:
                 _LOGGER.debug(f"Redirecting {self.name} to {redirect}")

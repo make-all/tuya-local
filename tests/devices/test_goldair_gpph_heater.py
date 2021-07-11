@@ -258,9 +258,6 @@ class TestGoldairHeater(TuyaDeviceTestCase):
         self.dps[POWERLEVEL_DPS] = "3"
         self.assertEqual(self.subject.swing_mode, "3")
 
-        self.dps[POWERLEVEL_DPS] = None
-        self.assertIs(self.subject.swing_mode, None)
-
     def test_non_user_swing_mode(self):
         self.dps[SWING_DPS] = "stop"
         self.assertEqual(self.subject.swing_mode, "Stop")
@@ -271,14 +268,13 @@ class TestGoldairHeater(TuyaDeviceTestCase):
         self.dps[SWING_DPS] = None
         self.assertIs(self.subject.swing_mode, None)
 
-    @skip("Conditional redirection not supported yet")
     def test_swing_modes(self):
         self.assertCountEqual(
             self.subject.swing_modes,
             ["Stop", "1", "2", "3", "4", "5", "Auto"],
         )
 
-    @skip("Conditional redirection not supported yet")
+    @skip("Paired settings not supported yet")
     async def test_set_power_level_to_stop(self):
         async with assert_device_properties_set(
             self.subject._device,
@@ -293,15 +289,14 @@ class TestGoldairHeater(TuyaDeviceTestCase):
         ):
             await self.subject.async_set_swing_mode("Auto")
 
-    @skip("Conditional redirection not supported yet")
     async def test_set_power_level_to_numeric_value(self):
         async with assert_device_properties_set(
             self.subject._device,
-            {POWERLEVEL_DPS: "3"},
+            {SWING_DPS: "user", POWERLEVEL_DPS: "3"},
         ):
             await self.subject.async_set_swing_mode("3")
 
-    @skip("Conditional redirection not supported yet")
+    @skip("Restriction to mapped values not supported yet")
     async def test_set_power_level_to_invalid_value_raises_error(self):
         with self.assertRaisesRegex(ValueError, "Invalid power level: unknown"):
             await self.subject.async_set_swing_mode("unknown")

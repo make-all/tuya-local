@@ -213,10 +213,10 @@ If you don't specify any priorities, the icons will all get the same priority,
 so if any overlap exists in the rules, it won't always be predictable which
 icon will be displayed.
 
-### `value-redirect`
+### `value_redirect`
 
 //Optional.//
-When `value-redirect` is set, the value of the attribute and any attempt to
+When `value_redirect` is set, the value of the attribute and any attempt to
 set it will be redirected to the named attribute instead of the current one.
 
 An example of how this can be useful is where a Tuya heater has a dps for the
