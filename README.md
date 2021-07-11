@@ -24,17 +24,22 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
 - Eurom heaters.
 - Purline Hoti M100 heaters.
 
+### Air Conditioners
+
+- ElectriQ 12WMINV heatpumps
+
 ### Pool heaters
 
 - Garden PAC pool heatpumps.
 - Madimack pool heatpumps.
 - Remora pool heatpumps.
 - BWT FI 45 heatpumps.
-- Poolex Silverline FI heatpumps.
-- many other Pool heatpumps will work using the above
-  configurations.  Report issues if there are any differences
-  in presets or other features, or if any of the "unknown"
-  values that are returned as attributes can be figured out.
+- Poolex Silverline and Vertigo heatpumps.
+- these seem to use two common controllers, and many other Pool heatpumps
+  will work using the above configurations.
+  Report issues if there are any differences in presets or other features,
+  or if any of the "unknown" values that are returned as attributes can
+  be figured out.
 
 ### Fans
 - Goldair GCPF315 fans
@@ -43,13 +48,13 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
 
 ### Dehumidifiers
 - Goldair GPDH420 dehumidifiers
-- Electriq CD25PRO-LE-V2 dehumidifiers
+- ElectriQ CD25PRO-LE-V2 dehumidifiers
 
 ### Humidifiers
 - Eanons QT-JS2014 Purifying Humidifer
 
 ### Thermostats
-- Inkbird ITC306A thermostat smartplug
+- Inkbird ITC306A thermostat smartplug (not fully functional)
 
 ### SmartPlugs
 - Kogan Single Smartplug with Energy Monitoring
