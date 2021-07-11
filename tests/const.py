@@ -205,3 +205,22 @@ ELECTRIQ_DEHUMIDIFIER_PAYLOAD = {
 
 POOLEX_SILVERLINE_HEATPUMP_PAYLOAD = {"1": True, "2": 30, "3": 28, "4": "Heat", "13": 0}
 POOLEX_VERTIGO_HEATPUMP_PAYLOAD = {"1": True, "2": 30, "3": 28, "4": "heat", "9": 0}
+
+ELECTRIQ_12WMINV_HEATPUMP_PAYLOAD = {
+    "1": True,
+    "2": 20,
+    "3": 18,
+    "4": "auto",
+    "5": "1",
+    "8": False,
+    "12": False,
+    "101": True,
+    "102": False,
+    "103": False,
+    "104": True,
+    "106": False,
+    "107": False,
+    "108": 0,
+    "109": 0,
+    "110": 0,
+}

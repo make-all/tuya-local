@@ -1,0 +1,168 @@
+name: ElectriQ 12WMINV Heatpump
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: power
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+          icon: "mdi:hvac-off"
+          icon_priority: 1
+      hidden: true
+    - id: 2
+      name: temperature
+      type: integer
+      range:
+        min: 16
+        max: 32
+    - id: 3
+      name: current_temperature
+      type: integer
+    - id: 4
+      name: hvac_mode
+      type: string
+      mapping:
+        - dps_val: cold
+          icon: "mdi:snowflake"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value: "off"
+              value_redirect: power
+            - dps_val: true
+              value: cool
+        - dps_val: wind
+          icon: "mdi:fan"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: fan_only
+        - dps_val: wet
+          icon: "mdi:water"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: dry
+        - dps_val: hot
+          icon: "mdi:fire"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: heat
+        - dps_val: auto
+          icon: "mdi:hvac"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: auto
+    - id: 5
+      name: fan_mode
+      type: integer
+      mapping:
+        - dps_val: 1
+          value: auto
+          constraint: hvac_mode
+          conditions:
+            - dps_val: wet
+              invalid: true
+        - dps_val: 2
+          value: Turbo
+          constraint: hvac_mode
+          conditions:
+            - dps_val: wet
+              invalid: true
+        - dps_val: 3
+          value: low
+          constraint: hvac_mode
+          conditions:
+            - dps_val: wet
+              invalid: true
+        - dps_val: 4
+          value: medium
+          constraint: hvac_mode
+          conditions:
+            - dps_val: wet
+              invalid: true
+        - dps_val: 5
+          value: high
+          constraint: hvac_mode
+          conditions:
+            - dps_val: wet
+              invalid: true
+    - id: 8
+      name: unknown_8
+      type: boolean
+    - id: 12
+      name: unknown_12
+      type: boolean
+    - id: 102
+      name: unknown_102
+      type: boolean
+    - id: 103
+      name: unknown_103
+      type: boolean
+    - id: 106
+      name: swing_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          constraint: horiz_swing
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: horizontal
+        - dps_val: true
+          constraint: horiz_swing
+          conditions:
+            - dps_val: false
+              value: vertical
+            - dps_val: true
+              value: both
+    - id: 107
+      name: horiz_swing
+      type: boolean
+      hidden: true
+    - id: 108
+      name: unknown_108
+      type: integer
+    - id: 109
+      name: unknown_109
+      type: integer
+    - id: 110
+      name: unknown_110
+      type: integer
+secondary_entities:
+  - entity: switch
+    name: Sleep
+    icon: "mdi:power-sleep"
+    dps:
+      - id: 101
+        name: switch
+        type: boolean
+  - entity: light
+    name: Display
+    dps:
+      - id: 104
+        name: switch
+        type: boolean
+        mapping:
+          - dps_val: true
+            icon: "mdi:led-on"
+          - dps_val: false
+            icon: "mdi:led-off"
