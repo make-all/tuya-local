@@ -1,5 +1,6 @@
 """Test the config parser"""
-import unittest
+from unittest import IsolatedAsyncioTestCase
+from unittest.mock import MagicMock
 
 from warnings import warn
 
@@ -12,26 +13,12 @@ from custom_components.tuya_local.helpers.device_config import (
 
 from .const import (
     DEHUMIDIFIER_PAYLOAD,
-    EUROM_600_HEATER_PAYLOAD,
-    FAN_PAYLOAD,
-    GARDENPAC_HEATPUMP_PAYLOAD,
-    GECO_HEATER_PAYLOAD,
-    GPCV_HEATER_PAYLOAD,
     GPPH_HEATER_PAYLOAD,
-    GSH_HEATER_PAYLOAD,
     KOGAN_HEATER_PAYLOAD,
-    KOGAN_SOCKET_PAYLOAD,
-    KOGAN_SOCKET_PAYLOAD2,
-    PURLINE_M100_HEATER_PAYLOAD,
-    REMORA_HEATPUMP_PAYLOAD,
-    BWT_HEATPUMP_PAYLOAD,
-    EANONS_HUMIDIFIER_PAYLOAD,
-    INKBIRD_THERMOSTAT_PAYLOAD,
-    ANKO_FAN_PAYLOAD,
 )
 
 
-class TestDeviceConfig(unittest.TestCase):
+class TestDeviceConfig(IsolatedAsyncioTestCase):
     """Test the device config parser"""
 
     def test_can_find_config_files(self):
@@ -84,11 +71,12 @@ class TestDeviceConfig(unittest.TestCase):
         with self.assertRaises(TypeError):
             await voltage.async_set_value(mock_device, 230)
 
-    async def test_dps_values_returns_none_with_no_mapping(self):
+    def test_dps_values_returns_none_with_no_mapping(self):
         """Test that a dps with no mapping returns None as its possible values"""
+        mock_device = MagicMock()
         cfg = config_for_legacy_use("kogan_switch")
         voltage = cfg.primary_entity.find_dps("voltage_v")
-        self.assertIsNone(voltage.values)
+        self.assertIsNone(voltage.values(mock_device))
 
     # Test detection of all devices.
 
@@ -148,88 +136,12 @@ class TestDeviceConfig(unittest.TestCase):
         """Test that GPPH heater can be detected from its sample payload."""
         self._test_detect(GPPH_HEATER_PAYLOAD, "heater", "GoldairHeater")
 
-    def test_gpcv_heater_detection(self):
-        """Test that GPCV heater can be detected from its sample payload."""
-        self._test_detect(
-            GPCV_HEATER_PAYLOAD,
-            "gpcv_heater",
-            None,
-        )
-
-    def test_eurom_heater_detection(self):
-        """Test that Eurom heater can be detected from its sample payload."""
-        self._test_detect(
-            EUROM_600_HEATER_PAYLOAD,
-            "eurom_heater",
-            None,
-        )
-
-    def test_geco_heater_detection(self):
-        """Test that GECO heater can be detected from its sample payload."""
-        self._test_detect(
-            GECO_HEATER_PAYLOAD,
-            "geco_heater",
-            None,
-        )
-
-    def test_kogan_heater_detection(self):
-        """Test that Kogan heater can be detected from its sample payload."""
-        self._test_detect(
-            KOGAN_HEATER_PAYLOAD,
-            "kogan_heater",
-            None,
-        )
-
     def test_goldair_dehumidifier_detection(self):
         """Test that Goldair dehumidifier can be detected from its sample payload."""
         self._test_detect(
             DEHUMIDIFIER_PAYLOAD,
             "dehumidifier",
             "GoldairDehumidifier",
-        )
-
-    def test_goldair_fan_detection(self):
-        """Test that Goldair fan can be detected from its sample payload."""
-        self._test_detect(FAN_PAYLOAD, "fan", None)
-
-    def test_kogan_socket_detection(self):
-        """Test that 1st gen Kogan Socket can be detected from its sample payload."""
-        self._test_detect(
-            KOGAN_SOCKET_PAYLOAD,
-            "kogan_switch",
-            None,
-        )
-
-    def test_kogan_socket2_detection(self):
-        """Test that 2nd gen Kogan Socket can be detected from its sample payload."""
-        self._test_detect(
-            KOGAN_SOCKET_PAYLOAD2,
-            "kogan_switch",
-            None,
-        )
-
-    def test_gsh_heater_detection(self):
-        """Test that GSH heater can be detected from its sample payload."""
-        self._test_detect(
-            GSH_HEATER_PAYLOAD,
-            "gsh_heater",
-            None,
-        )
-
-    def test_gardenpac_heatpump_detection(self):
-        """Test that GardenPac heatpump can be detected from its sample payload."""
-        self._test_detect(
-            GARDENPAC_HEATPUMP_PAYLOAD,
-            "gardenpac_heatpump",
-            None,
-        )
-
-    def test_purline_heater_detection(self):
-        """Test that Purline heater can be detected from its sample payload."""
-        self._test_detect(
-            PURLINE_M100_HEATER_PAYLOAD,
-            "purline_m100_heater",
-            None,
         )
 
     # Non-legacy devices endup being the same as the tests in test_device.py, so

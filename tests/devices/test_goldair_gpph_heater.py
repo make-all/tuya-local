@@ -1,5 +1,4 @@
-from unittest import IsolatedAsyncioTestCase, skip
-from unittest.mock import AsyncMock, patch
+from unittest import skip
 
 from homeassistant.components.climate.const import (
     HVAC_MODE_HEAT,
@@ -12,13 +11,9 @@ from homeassistant.components.lock import STATE_LOCKED, STATE_UNLOCKED
 
 from homeassistant.const import STATE_UNAVAILABLE
 
-from custom_components.tuya_local.generic.climate import TuyaLocalClimate
-from custom_components.tuya_local.generic.light import TuyaLocalLight
-from custom_components.tuya_local.generic.lock import TuyaLocalLock
-from custom_components.tuya_local.helpers.device_config import TuyaDeviceConfig
-
 from ..const import GPPH_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
+from .base_device_tests import TuyaDeviceTestCase
 
 HVACMODE_DPS = "1"
 TEMPERATURE_DPS = "2"
@@ -34,61 +29,20 @@ SWING_DPS = "105"
 ECOTEMP_DPS = "106"
 
 
-class TestGoldairHeater(IsolatedAsyncioTestCase):
+class TestGoldairHeater(TuyaDeviceTestCase):
+    __test__ = True
+
     def setUp(self):
-        device_patcher = patch("custom_components.tuya_local.device.TuyaLocalDevice")
-        self.addCleanup(device_patcher.stop)
-        self.mock_device = device_patcher.start()
-        cfg = TuyaDeviceConfig("goldair_gpph_heater.yaml")
-        climate = cfg.primary_entity
-        light = None
-        lock = None
-        for e in cfg.secondary_entities():
-            if e.entity == "light":
-                light = e
-            elif e.entity == "lock":
-                lock = e
-        self.climate_name = climate.name
-        self.light_name = "missing" if light is None else light.name
-        self.lock_name = "missing" if lock is None else lock.name
-
-        self.subject = TuyaLocalClimate(self.mock_device(), climate)
-        self.light = TuyaLocalLight(self.mock_device(), light)
-        self.lock = TuyaLocalLock(self.mock_device(), lock)
-
-        self.dps = GPPH_HEATER_PAYLOAD.copy()
-        self.subject._device.get_property.side_effect = lambda id: self.dps[id]
+        self.setUpForConfig("goldair_gpph_heater.yaml", GPPH_HEATER_PAYLOAD)
+        self.subject = self.entities.get("climate")
+        self.light = self.entities.get("light")
+        self.lock = self.entities.get("lock")
 
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
             SUPPORT_TARGET_TEMPERATURE | SUPPORT_PRESET_MODE | SUPPORT_SWING_MODE,
         )
-
-    def test_should_poll(self):
-        self.assertTrue(self.subject.should_poll)
-        self.assertTrue(self.light.should_poll)
-        self.assertTrue(self.lock.should_poll)
-
-    def test_name_returns_device_name(self):
-        self.assertEqual(self.subject.name, self.subject._device.name)
-        self.assertEqual(self.light.name, self.subject._device.name)
-        self.assertEqual(self.lock.name, self.subject._device.name)
-
-    def test_friendly_name_returns_config_name(self):
-        self.assertEqual(self.subject.friendly_name, self.climate_name)
-        self.assertEqual(self.light.friendly_name, self.light_name)
-        self.assertEqual(self.lock.friendly_name, self.lock_name)
-
-    def test_unique_id_returns_device_unique_id(self):
-        self.assertEqual(self.subject.unique_id, self.subject._device.unique_id)
-        self.assertEqual(self.light.unique_id, self.subject._device.unique_id)
-        self.assertEqual(self.lock.unique_id, self.subject._device.unique_id)
-
-    def test_device_info_returns_device_info_from_device(self):
-        self.assertEqual(self.subject.device_info, self.subject._device.device_info)
-        self.assertEqual(self.light.device_info, self.subject._device.device_info)
-        self.assertEqual(self.lock.device_info, self.subject._device.device_info)
 
     def test_icon(self):
         self.dps[HVACMODE_DPS] = True
@@ -368,21 +322,6 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
             },
         )
 
-    async def test_update(self):
-        result = AsyncMock()
-        self.subject._device.async_refresh.return_value = result()
-
-        await self.subject.async_update()
-
-        self.subject._device.async_refresh.assert_called_once()
-        result.assert_awaited()
-
-    def test_lock_was_created(self):
-        self.assertIsInstance(self.lock, TuyaLocalLock)
-
-    def test_lock_is_same_device(self):
-        self.assertEqual(self.lock._device, self.subject._device)
-
     def test_lock_state(self):
         self.dps[LOCK_DPS] = True
         self.assertEqual(self.lock.state, STATE_LOCKED)
@@ -410,21 +349,6 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
     async def test_lock_unlocks(self):
         async with assert_device_properties_set(self.lock._device, {LOCK_DPS: False}):
             await self.lock.async_unlock()
-
-    async def test_lock_update(self):
-        result = AsyncMock()
-        self.lock._device.async_refresh.return_value = result()
-
-        await self.lock.async_update()
-
-        self.lock._device.async_refresh.assert_called_once()
-        result.assert_awaited()
-
-    def test_light_was_created(self):
-        self.assertIsInstance(self.light, TuyaLocalLight)
-
-    def test_light_is_same_device(self):
-        self.assertEqual(self.light._device, self.subject._device)
 
     def test_light_icon(self):
         self.dps[LIGHT_DPS] = True
@@ -462,12 +386,3 @@ class TestGoldairHeater(IsolatedAsyncioTestCase):
 
         async with assert_device_properties_set(self.light._device, {LIGHT_DPS: False}):
             await self.light.async_toggle()
-
-    async def test_light_update(self):
-        result = AsyncMock()
-        self.light._device.async_refresh.return_value = result()
-
-        await self.light.async_update()
-
-        self.light._device.async_refresh.assert_called_once()
-        result.assert_awaited()

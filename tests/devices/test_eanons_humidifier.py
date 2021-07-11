@@ -1,6 +1,3 @@
-from unittest import IsolatedAsyncioTestCase, skip
-from unittest.mock import AsyncMock, patch
-
 from homeassistant.components.climate.const import (
     FAN_HIGH,
     FAN_MEDIUM,
@@ -23,14 +20,9 @@ from homeassistant.components.humidifier.const import (
 from homeassistant.components.switch import DEVICE_CLASS_SWITCH
 from homeassistant.const import STATE_UNAVAILABLE
 
-from custom_components.tuya_local.generic.climate import TuyaLocalClimate
-from custom_components.tuya_local.generic.fan import TuyaLocalFan
-from custom_components.tuya_local.generic.humidifier import TuyaLocalHumidifier
-from custom_components.tuya_local.generic.switch import TuyaLocalSwitch
-from custom_components.tuya_local.helpers.device_config import TuyaDeviceConfig
-
 from ..const import EANONS_HUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
+from .base_device_tests import TuyaDeviceTestCase
 
 FANMODE_DPS = "2"
 TIMERHR_DPS = "3"
@@ -43,36 +35,15 @@ CURRENTHUMID_DPS = "16"
 SWITCH_DPS = "22"
 
 
-class TestEanonsHumidifier(IsolatedAsyncioTestCase):
+class TestEanonsHumidifier(TuyaDeviceTestCase):
+    __test__ = True
+
     def setUp(self):
-        device_patcher = patch("custom_components.tuya_local.device.TuyaLocalDevice")
-        self.addCleanup(device_patcher.stop)
-        self.mock_device = device_patcher.start()
-        cfg = TuyaDeviceConfig("eanons_humidifier.yaml")
-        entities = {}
-        entities[cfg.primary_entity.entity] = cfg.primary_entity
-        for e in cfg.secondary_entities():
-            entities[e.entity] = e
-
-        self.climate_name = (
-            "missing" if "climate" not in entities else entities["climate"].name
-        )
-        self.switch_name = (
-            "missing" if "switch" not in entities else entities["switch"].name
-        )
-        self.humidifier_name = (
-            "missing" if "humidifier" not in entities else entities["humidifier"].name
-        )
-        self.fan_name = "missing" if "fan" not in entities else entities["fan"].name
-        self.subject = TuyaLocalHumidifier(
-            self.mock_device(), entities.get("humidifier")
-        )
-        self.climate = TuyaLocalClimate(self.mock_device(), entities.get("climate"))
-        self.switch = TuyaLocalSwitch(self.mock_device(), entities.get("switch"))
-        self.fan = TuyaLocalFan(self.mock_device(), entities.get("fan"))
-
-        self.dps = EANONS_HUMIDIFIER_PAYLOAD.copy()
-        self.subject._device.get_property.side_effect = lambda id: self.dps[id]
+        self.setUpForConfig("eanons_humidifier.yaml", EANONS_HUMIDIFIER_PAYLOAD)
+        self.subject = self.entities["humidifier"]
+        self.climate = self.entities["climate"]
+        self.switch = self.entities["switch"]
+        self.fan = self.entities["fan"]
 
     def test_supported_features(self):
         self.assertEqual(
@@ -81,36 +52,6 @@ class TestEanonsHumidifier(IsolatedAsyncioTestCase):
         )
         self.assertEqual(self.subject.supported_features, SUPPORT_MODES)
         self.assertEqual(self.fan.supported_features, SUPPORT_SET_SPEED)
-
-    def test_shouldPoll(self):
-        self.assertTrue(self.subject.should_poll)
-        self.assertTrue(self.climate.should_poll)
-        self.assertTrue(self.fan.should_poll)
-        self.assertTrue(self.switch.should_poll)
-
-    def test_name_returns_device_name(self):
-        self.assertEqual(self.subject.name, self.subject._device.name)
-        self.assertEqual(self.climate.name, self.subject._device.name)
-        self.assertEqual(self.fan.name, self.subject._device.name)
-        self.assertEqual(self.switch.name, self.subject._device.name)
-
-    def test_friendly_name_returns_config_name(self):
-        self.assertEqual(self.subject.friendly_name, self.humidifier_name)
-        self.assertEqual(self.climate.friendly_name, self.climate_name)
-        self.assertEqual(self.fan.friendly_name, self.fan_name)
-        self.assertEqual(self.switch.friendly_name, self.switch_name)
-
-    def test_unique_id_returns_device_unique_id(self):
-        self.assertEqual(self.subject.unique_id, self.subject._device.unique_id)
-        self.assertEqual(self.climate.unique_id, self.subject._device.unique_id)
-        self.assertEqual(self.fan.unique_id, self.subject._device.unique_id)
-        self.assertEqual(self.switch.unique_id, self.subject._device.unique_id)
-
-    def test_device_info_returns_device_info_from_device(self):
-        self.assertEqual(self.subject.device_info, self.subject._device.device_info)
-        self.assertEqual(self.climate.device_info, self.subject._device.device_info)
-        self.assertEqual(self.fan.device_info, self.subject._device.device_info)
-        self.assertEqual(self.switch.device_info, self.subject._device.device_info)
 
     def test_climate_icon_is_humidifier(self):
         """Test that the icon is as expected."""
@@ -390,12 +331,6 @@ class TestEanonsHumidifier(IsolatedAsyncioTestCase):
             {FANMODE_DPS: "small"},
         ):
             await self.climate.async_set_fan_mode(FAN_LOW)
-
-    def test_switch_was_created(self):
-        self.assertIsInstance(self.switch, TuyaLocalSwitch)
-
-    def test_switch_is_same_device(self):
-        self.assertEqual(self.switch._device, self.climate._device)
 
     def test_switch_class_is_switch(self):
         self.assertEqual(self.switch.device_class, DEVICE_CLASS_SWITCH)

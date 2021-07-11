@@ -1,6 +1,3 @@
-from unittest import IsolatedAsyncioTestCase, skip
-from unittest.mock import AsyncMock, patch
-
 from homeassistant.components.climate.const import (
     SUPPORT_PRESET_MODE,
     SUPPORT_TARGET_TEMPERATURE_RANGE,
@@ -8,11 +5,9 @@ from homeassistant.components.climate.const import (
 from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT
 
 
-from custom_components.tuya_local.generic.climate import TuyaLocalClimate
-from custom_components.tuya_local.helpers.device_config import TuyaDeviceConfig
-
 from ..const import INKBIRD_THERMOSTAT_PAYLOAD
 from ..helpers import assert_device_properties_set
+from .base_device_tests import TuyaDeviceTestCase
 
 ERROR_DPS = "12"
 UNIT_DPS = "101"
@@ -35,45 +30,18 @@ UNKNOWN119_DPS = "119"
 UNKNOWN120_DPS = "120"
 
 
-class TestInkbirdThermostat(IsolatedAsyncioTestCase):
+class TestInkbirdThermostat(TuyaDeviceTestCase):
+    __test__ = True
+
     def setUp(self):
-        device_patcher = patch("custom_components.tuya_local.device.TuyaLocalDevice")
-        self.addCleanup(device_patcher.stop)
-        self.mock_device = device_patcher.start()
-        cfg = TuyaDeviceConfig("inkbird_thermostat.yaml")
-        entities = {}
-        entities[cfg.primary_entity.entity] = cfg.primary_entity
-        for e in cfg.secondary_entities():
-            entities[e.entity] = e
-
-        self.climate_name = (
-            "missing" if "climate" not in entities else entities["climate"].name
-        )
-
-        self.subject = TuyaLocalClimate(self.mock_device(), entities.get("climate"))
-        self.dps = INKBIRD_THERMOSTAT_PAYLOAD.copy()
-        self.subject._device.get_property.side_effect = lambda id: self.dps[id]
+        self.setUpForConfig("inkbird_thermostat.yaml", INKBIRD_THERMOSTAT_PAYLOAD)
+        self.subject = self.entities.get("climate")
 
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
             SUPPORT_TARGET_TEMPERATURE_RANGE | SUPPORT_PRESET_MODE,
         )
-
-    def test_shouldPoll(self):
-        self.assertTrue(self.subject.should_poll)
-
-    def test_name_returns_device_name(self):
-        self.assertEqual(self.subject.name, self.subject._device.name)
-
-    def test_friendly_name_returns_config_name(self):
-        self.assertEqual(self.subject.friendly_name, self.climate_name)
-
-    def test_unique_id_returns_device_unique_id(self):
-        self.assertEqual(self.subject.unique_id, self.subject._device.unique_id)
-
-    def test_device_info_returns_device_info_from_device(self):
-        self.assertEqual(self.subject.device_info, self.subject._device.device_info)
 
     def test_icon(self):
         """Test that the icon is as expected."""
@@ -216,12 +184,3 @@ class TestInkbirdThermostat(IsolatedAsyncioTestCase):
                 "unknown_120": False,
             },
         )
-
-    async def test_update(self):
-        result = AsyncMock()
-        self.subject._device.async_refresh.return_value = result()
-
-        await self.subject.async_update()
-
-        self.subject._device.async_refresh.assert_called_once()
-        result.assert_awaited()

@@ -7,30 +7,9 @@ from unittest.mock import AsyncMock, call, patch
 from homeassistant.const import TEMP_CELSIUS
 
 from custom_components.tuya_local.device import TuyaLocalDevice
-from custom_components.tuya_local.helpers.device_config import possible_matches
 
 from .const import (
-    DEHUMIDIFIER_PAYLOAD,
-    FAN_PAYLOAD,
-    GECO_HEATER_PAYLOAD,
     EUROM_600_HEATER_PAYLOAD,
-    GPCV_HEATER_PAYLOAD,
-    GPPH_HEATER_PAYLOAD,
-    GSH_HEATER_PAYLOAD,
-    KOGAN_HEATER_PAYLOAD,
-    KOGAN_SOCKET_PAYLOAD,
-    KOGAN_SOCKET_PAYLOAD2,
-    GARDENPAC_HEATPUMP_PAYLOAD,
-    MADIMACK_HEATPUMP_PAYLOAD,
-    PURLINE_M100_HEATER_PAYLOAD,
-    REMORA_HEATPUMP_PAYLOAD,
-    BWT_HEATPUMP_PAYLOAD,
-    EANONS_HUMIDIFIER_PAYLOAD,
-    INKBIRD_THERMOSTAT_PAYLOAD,
-    ANKO_FAN_PAYLOAD,
-    ELECTRIQ_DEHUMIDIFIER_PAYLOAD,
-    POOLEX_SILVERLINE_HEATPUMP_PAYLOAD,
-    POOLEX_VERTIGO_HEATPUMP_PAYLOAD,
 )
 
 
@@ -91,107 +70,6 @@ class TestDevice(IsolatedAsyncioTestCase):
         await self.subject.async_inferred_type()
 
         self.subject.async_refresh.assert_awaited()
-
-    async def test_detects_eurom_600_heater_payload(self):
-        self.subject._cached_state = EUROM_600_HEATER_PAYLOAD
-        self.assertEqual(await self.subject.async_inferred_type(), "eurom_heater")
-
-    async def test_detects_geco_heater_payload(self):
-        self.subject._cached_state = GECO_HEATER_PAYLOAD
-        self.assertEqual(await self.subject.async_inferred_type(), "geco_heater")
-
-    async def test_detects_gpcv_heater_payload(self):
-        self.subject._cached_state = GPCV_HEATER_PAYLOAD
-        self.assertEqual(await self.subject.async_inferred_type(), "gpcv_heater")
-
-    async def test_detects_gpph_heater_payload(self):
-        self.subject._cached_state = GPPH_HEATER_PAYLOAD
-        self.assertEqual(await self.subject.async_inferred_type(), "heater")
-
-    async def test_detects_dehumidifier_payload(self):
-        self.subject._cached_state = DEHUMIDIFIER_PAYLOAD
-        self.assertEqual(await self.subject.async_inferred_type(), "dehumidifier")
-
-    async def test_detects_fan_payload(self):
-        self.subject._cached_state = FAN_PAYLOAD
-        self.assertEqual(await self.subject.async_inferred_type(), "fan")
-
-    async def test_detects_kogan_heater_payload(self):
-        self.subject._cached_state = KOGAN_HEATER_PAYLOAD
-        self.assertEqual(await self.subject.async_inferred_type(), "kogan_heater")
-
-    async def test_detects_kogan_socket_payload(self):
-        self.subject._cached_state = KOGAN_SOCKET_PAYLOAD
-        self.assertEqual(await self.subject.async_inferred_type(), "kogan_switch")
-
-    async def test_detects_kogan_socket_payload2(self):
-        self.subject._cached_state = KOGAN_SOCKET_PAYLOAD2
-        self.assertEqual(await self.subject.async_inferred_type(), "kogan_switch")
-
-    async def test_detects_gsh_heater_payload(self):
-        self.subject._cached_state = GSH_HEATER_PAYLOAD
-        self.assertEqual(await self.subject.async_inferred_type(), "gsh_heater")
-
-    async def test_detects_gardenpac_heatpump_payload(self):
-        self.subject._cached_state = GARDENPAC_HEATPUMP_PAYLOAD
-        self.assertEqual(await self.subject.async_inferred_type(), "gardenpac_heatpump")
-
-    async def test_detects_madimack_heatpump_payload(self):
-        self.subject._cached_state = MADIMACK_HEATPUMP_PAYLOAD
-        self.assertEqual(await self.subject.async_inferred_type(), "madimack_heatpump")
-
-    async def test_detects_purline_m100_heater_payload(self):
-        self.subject._cached_state = PURLINE_M100_HEATER_PAYLOAD
-        self.assertEqual(
-            await self.subject.async_inferred_type(), "purline_m100_heater"
-        )
-
-    async def test_detects_remora_heatpump_payload(self):
-        for cfg in possible_matches(REMORA_HEATPUMP_PAYLOAD):
-            if cfg.legacy_type == "remora_heatpump":
-                self.assertEqual(cfg.match_quality(REMORA_HEATPUMP_PAYLOAD), 100.0)
-                return
-        self.fail()
-
-    async def test_detects_bwt_heatpump_payload(self):
-        for cfg in possible_matches(BWT_HEATPUMP_PAYLOAD):
-            if cfg.legacy_type == "bwt_heatpump":
-                self.assertEqual(cfg.match_quality(BWT_HEATPUMP_PAYLOAD), 100.0)
-                return
-        self.fail()
-
-    async def test_detects_eanons_humidifier_payload(self):
-        self.subject._cached_state = EANONS_HUMIDIFIER_PAYLOAD
-        self.assertEqual(await self.subject.async_inferred_type(), "eanons_humidifier")
-
-    async def test_detects_inkbird_thermostat_payload(self):
-        self.subject._cached_state = INKBIRD_THERMOSTAT_PAYLOAD
-        self.assertEqual(await self.subject.async_inferred_type(), "inkbird_thermostat")
-
-    async def test_detects_anko_fan_payload(self):
-        self.subject._cached_state = ANKO_FAN_PAYLOAD
-        self.assertEqual(await self.subject.async_inferred_type(), "anko_fan")
-
-    async def test_detects_electriq_humidifier_payload(self):
-        self.subject._cached_state = ELECTRIQ_DEHUMIDIFIER_PAYLOAD
-        self.assertEqual(
-            await self.subject.async_inferred_type(), "electriq_dehumidifier"
-        )
-
-    async def test_detects_poolex_silverline_heatpump_payload(self):
-        self.subject._cached_state = POOLEX_SILVERLINE_HEATPUMP_PAYLOAD
-        self.assertEqual(
-            await self.subject.async_inferred_type(), "poolex_silverline_heatpump"
-        )
-
-    async def test_detects_poolex_vertigo_heatpump_payload(self):
-        for cfg in possible_matches(POOLEX_VERTIGO_HEATPUMP_PAYLOAD):
-            if cfg.legacy_type == "poolex_vertigo_heatpump":
-                self.assertEqual(
-                    cfg.match_quality(POOLEX_VERTIGO_HEATPUMP_PAYLOAD), 100.0
-                )
-                return
-        self.fail()
 
     async def test_detection_returns_none_when_device_type_could_not_be_detected(self):
         self.subject._cached_state = {"2": False, "updated_at": datetime.now()}

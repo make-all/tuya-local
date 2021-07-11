@@ -1,6 +1,3 @@
-from unittest import IsolatedAsyncioTestCase, skip
-from unittest.mock import AsyncMock, patch
-
 from homeassistant.components.climate.const import (
     HVAC_MODE_FAN_ONLY,
     HVAC_MODE_HEAT,
@@ -14,16 +11,12 @@ from homeassistant.components.climate.const import (
 from homeassistant.components.switch import DEVICE_CLASS_SWITCH
 from homeassistant.const import STATE_UNAVAILABLE
 
-from custom_components.tuya_local.generic.climate import TuyaLocalClimate
-from custom_components.tuya_local.generic.light import TuyaLocalLight
-from custom_components.tuya_local.generic.switch import TuyaLocalSwitch
-from custom_components.tuya_local.helpers.device_config import TuyaDeviceConfig
-
 from ..const import PURLINE_M100_HEATER_PAYLOAD
 from ..helpers import (
     assert_device_properties_set,
     assert_device_properties_set_optional,
 )
+from .base_device_tests import TuyaDeviceTestCase
 
 HVACMODE_DPS = "1"
 TEMPERATURE_DPS = "2"
@@ -36,60 +29,20 @@ SWITCH_DPS = "101"
 SWING_DPS = "102"
 
 
-class TestPulineM100Heater(IsolatedAsyncioTestCase):
-    def setUp(self):
-        device_patcher = patch("custom_components.tuya_local.device.TuyaLocalDevice")
-        self.addCleanup(device_patcher.stop)
-        self.mock_device = device_patcher.start()
-        cfg = TuyaDeviceConfig("purline_m100_heater.yaml")
-        climate = cfg.primary_entity
-        light = None
-        switch = None
-        for e in cfg.secondary_entities():
-            if e.entity == "light":
-                light = e
-            elif e.entity == "switch":
-                switch = e
-        self.climate_name = climate.name
-        self.light_name = "missing" if light is None else light.name
-        self.switch_name = "missing" if switch is None else switch.name
-        self.subject = TuyaLocalClimate(self.mock_device(), climate)
-        self.light = TuyaLocalLight(self.mock_device(), light)
-        self.switch = TuyaLocalSwitch(self.mock_device(), switch)
+class TestPulineM100Heater(TuyaDeviceTestCase):
+    __test__ = True
 
-        self.dps = PURLINE_M100_HEATER_PAYLOAD.copy()
-        self.subject._device.get_property.side_effect = lambda id: self.dps[id]
+    def setUp(self):
+        self.setUpForConfig("purline_m100_heater.yaml", PURLINE_M100_HEATER_PAYLOAD)
+        self.subject = self.entities.get("climate")
+        self.light = self.entities.get("light")
+        self.switch = self.entities.get("switch")
 
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
             SUPPORT_TARGET_TEMPERATURE | SUPPORT_PRESET_MODE | SUPPORT_SWING_MODE,
         )
-
-    def test_should_poll(self):
-        self.assertTrue(self.subject.should_poll)
-        self.assertTrue(self.light.should_poll)
-        self.assertTrue(self.switch.should_poll)
-
-    def test_name_returns_device_name(self):
-        self.assertEqual(self.subject.name, self.subject._device.name)
-        self.assertEqual(self.light.name, self.subject._device.name)
-        self.assertEqual(self.switch.name, self.subject._device.name)
-
-    def test_friendly_name_returns_config_name(self):
-        self.assertEqual(self.subject.friendly_name, self.climate_name)
-        self.assertEqual(self.light.friendly_name, self.light_name)
-        self.assertEqual(self.switch.friendly_name, self.switch_name)
-
-    def test_unique_id_returns_device_unique_id(self):
-        self.assertEqual(self.subject.unique_id, self.subject._device.unique_id)
-        self.assertEqual(self.light.unique_id, self.subject._device.unique_id)
-        self.assertEqual(self.switch.unique_id, self.subject._device.unique_id)
-
-    def test_device_info_returns_device_info_from_device(self):
-        self.assertEqual(self.subject.device_info, self.subject._device.device_info)
-        self.assertEqual(self.light.device_info, self.subject._device.device_info)
-        self.assertEqual(self.switch.device_info, self.subject._device.device_info)
 
     def test_icon(self):
         self.dps[HVACMODE_DPS] = True
@@ -253,21 +206,6 @@ class TestPulineM100Heater(IsolatedAsyncioTestCase):
         ):
             await self.subject.async_set_swing_mode(SWING_OFF)
 
-    async def test_update(self):
-        result = AsyncMock()
-        self.subject._device.async_refresh.return_value = result()
-
-        await self.subject.async_update()
-
-        self.subject._device.async_refresh.assert_called_once()
-        result.assert_awaited()
-
-    def test_light_was_created(self):
-        self.assertIsInstance(self.light, TuyaLocalLight)
-
-    def test_light_is_same_device(self):
-        self.assertEqual(self.light._device, self.subject._device)
-
     def test_light_icon(self):
         self.dps[LIGHTOFF_DPS] = False
         self.assertEqual(self.light.icon, "mdi:led-on")
@@ -312,21 +250,6 @@ class TestPulineM100Heater(IsolatedAsyncioTestCase):
             self.light._device, {LIGHTOFF_DPS: True}
         ):
             await self.light.async_toggle()
-
-    async def test_light_update(self):
-        result = AsyncMock()
-        self.light._device.async_refresh.return_value = result()
-
-        await self.light.async_update()
-
-        self.light._device.async_refresh.assert_called_once()
-        result.assert_awaited()
-
-    def test_switch_was_created(self):
-        self.assertIsInstance(self.switch, TuyaLocalSwitch)
-
-    def test_switch_is_same_device(self):
-        self.assertEqual(self.switch._device, self.subject._device)
 
     def test_switch_class_is_switch(self):
         self.assertEqual(self.switch.device_class, DEVICE_CLASS_SWITCH)

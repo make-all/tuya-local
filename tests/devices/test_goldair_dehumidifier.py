@@ -1,5 +1,4 @@
-from unittest import IsolatedAsyncioTestCase, skip
-from unittest.mock import AsyncMock, patch
+from unittest import skip
 
 from homeassistant.components.climate.const import (
     FAN_HIGH,
@@ -13,15 +12,9 @@ from homeassistant.components.climate.const import (
 from homeassistant.components.lock import STATE_LOCKED, STATE_UNLOCKED
 from homeassistant.const import STATE_UNAVAILABLE
 
-from custom_components.tuya_local.generic.climate import TuyaLocalClimate
-from custom_components.tuya_local.generic.fan import TuyaLocalFan
-from custom_components.tuya_local.generic.humidifier import TuyaLocalHumidifier
-from custom_components.tuya_local.generic.light import TuyaLocalLight
-from custom_components.tuya_local.generic.lock import TuyaLocalLock
-from custom_components.tuya_local.helpers.device_config import TuyaDeviceConfig
-
 from ..const import DEHUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
+from .base_device_tests import TuyaDeviceTestCase
 
 HVACMODE_DPS = "1"
 PRESET_DPS = "2"
@@ -45,81 +38,22 @@ PRESET_DRY_CLOTHES = "3"
 ERROR_TANK = "Tank full or missing"
 
 
-class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
+class TestGoldairDehumidifier(TuyaDeviceTestCase):
+    __test__ = True
+
     def setUp(self):
-        device_patcher = patch("custom_components.tuya_local.device.TuyaLocalDevice")
-        self.addCleanup(device_patcher.stop)
-        self.mock_device = device_patcher.start()
-        cfg = TuyaDeviceConfig("goldair_dehumidifier.yaml")
-        entities = {}
-        entities[cfg.primary_entity.entity] = cfg.primary_entity
-
-        for e in cfg.secondary_entities():
-            entities[e.entity] = e
-
-        self.climate_name = (
-            "missing" if "climate" not in entities else entities["climate"].name
-        )
-        self.light_name = (
-            "missing" if "light" not in entities else entities["light"].name
-        )
-        self.lock_name = "missing" if "lock" not in entities else entities["lock"].name
-        self.humidifier_name = (
-            "missing" if "humidifier" not in entities else entities["humidifier"].name
-        )
-        self.fan_name = "missing" if "fan" not in entities else entities["fan"].name
-
-        self.subject = TuyaLocalClimate(self.mock_device(), entities.get("climate"))
-        self.light = TuyaLocalLight(self.mock_device(), entities.get("light"))
-        self.lock = TuyaLocalLock(self.mock_device(), entities.get("lock"))
-        self.humidifier = TuyaLocalHumidifier(
-            self.mock_device(), entities.get("humidifier")
-        )
-        self.fan = TuyaLocalFan(self.mock_device(), entities.get("fan"))
-
-        self.dps = DEHUMIDIFIER_PAYLOAD.copy()
-        self.subject._device.get_property.side_effect = lambda id: self.dps[id]
+        self.setUpForConfig("goldair_dehumidifier.yaml", DEHUMIDIFIER_PAYLOAD)
+        self.subject = self.entities.get("climate")
+        self.light = self.entities.get("light")
+        self.lock = self.entities.get("lock")
+        self.humidifier = self.entities.get("humidifier")
+        self.fan = self.entities.get("fan")
 
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
             SUPPORT_TARGET_HUMIDITY | SUPPORT_PRESET_MODE | SUPPORT_FAN_MODE,
         )
-
-    def test_should_poll(self):
-        self.assertTrue(self.subject.should_poll)
-        self.assertTrue(self.fan.should_poll)
-        self.assertTrue(self.light.should_poll)
-        self.assertTrue(self.lock.should_poll)
-        self.assertTrue(self.humidifier.should_poll)
-
-    def test_name_returns_device_name(self):
-        self.assertEqual(self.subject.name, self.subject._device.name)
-        self.assertEqual(self.fan.name, self.subject._device.name)
-        self.assertEqual(self.light.name, self.subject._device.name)
-        self.assertEqual(self.lock.name, self.subject._device.name)
-        self.assertEqual(self.humidifier.name, self.subject._device.name)
-
-    def test_friendly_name_returns_config_name(self):
-        self.assertEqual(self.subject.friendly_name, self.climate_name)
-        self.assertEqual(self.fan.friendly_name, self.fan_name)
-        self.assertEqual(self.light.friendly_name, self.light_name)
-        self.assertEqual(self.lock.friendly_name, self.lock_name)
-        self.assertEqual(self.humidifier.friendly_name, self.humidifier_name)
-
-    def test_unique_id_returns_device_unique_id(self):
-        self.assertEqual(self.subject.unique_id, self.subject._device.unique_id)
-        self.assertEqual(self.fan.unique_id, self.subject._device.unique_id)
-        self.assertEqual(self.light.unique_id, self.subject._device.unique_id)
-        self.assertEqual(self.lock.unique_id, self.subject._device.unique_id)
-        self.assertEqual(self.humidifier.unique_id, self.subject._device.unique_id)
-
-    def test_device_info_returns_device_info_from_device(self):
-        self.assertEqual(self.subject.device_info, self.subject._device.device_info)
-        self.assertEqual(self.fan.device_info, self.subject._device.device_info)
-        self.assertEqual(self.light.device_info, self.subject._device.device_info)
-        self.assertEqual(self.lock.device_info, self.subject._device.device_info)
-        self.assertEqual(self.humidifier.device_info, self.subject._device.device_info)
 
     def test_icon_is_always_standard_when_off_without_error(self):
         self.dps[ERROR_DPS] = None
@@ -612,21 +546,6 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
             },
         )
 
-    async def test_update(self):
-        result = AsyncMock()
-        self.subject._device.async_refresh.return_value = result()
-
-        await self.subject.async_update()
-
-        self.subject._device.async_refresh.assert_called_once()
-        result.assert_awaited()
-
-    def test_lock_was_created(self):
-        self.assertIsInstance(self.lock, TuyaLocalLock)
-
-    def test_lock_is_same_device(self):
-        self.assertEqual(self.lock._device, self.subject._device)
-
     def test_lock_state(self):
         self.dps[LOCK_DPS] = True
         self.assertEqual(self.lock.state, STATE_LOCKED)
@@ -654,21 +573,6 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
     async def test_lock_unlocks(self):
         async with assert_device_properties_set(self.lock._device, {LOCK_DPS: False}):
             await self.lock.async_unlock()
-
-    async def test_lock_update(self):
-        result = AsyncMock()
-        self.lock._device.async_refresh.return_value = result()
-
-        await self.lock.async_update()
-
-        self.lock._device.async_refresh.assert_called_once()
-        result.assert_awaited()
-
-    def test_light_was_created(self):
-        self.assertIsInstance(self.light, TuyaLocalLight)
-
-    def test_light_is_same_device(self):
-        self.assertEqual(self.light._device, self.subject._device)
 
     def test_light_icon(self):
         self.dps[LIGHTOFF_DPS] = False
@@ -714,12 +618,3 @@ class TestGoldairDehumidifier(IsolatedAsyncioTestCase):
             self.light._device, {LIGHTOFF_DPS: True}
         ):
             await self.light.async_toggle()
-
-    async def test_light_update(self):
-        result = AsyncMock()
-        self.light._device.async_refresh.return_value = result()
-
-        await self.light.async_update()
-
-        self.light._device.async_refresh.assert_called_once()
-        result.assert_awaited()
