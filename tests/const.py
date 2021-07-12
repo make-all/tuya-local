@@ -224,3 +224,14 @@ ELECTRIQ_12WMINV_HEATPUMP_PAYLOAD = {
     "109": 0,
     "110": 0,
 }
+
+KOGAN_DEHUMIDIFIER_PAYLOAD = {
+    "1": True,
+    "2": "low",
+    "3": 70,
+    "8": False,
+    "11": 0,
+    "12": 0,
+    "13": 0,
+    "101": 50,
+}

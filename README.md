@@ -49,6 +49,7 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
 ### Dehumidifiers
 - Goldair GPDH420 dehumidifiers
 - ElectriQ CD25PRO-LE-V2 dehumidifiers
+- Kogan SmarterHome 7L Desiccant Dehumidifier
 
 ### Humidifiers
 - Eanons QT-JS2014 Purifying Humidifer
@@ -238,6 +239,6 @@ Further device support has been made with the assistance of users.  Please consi
  - [Lapy](https://github.com/Lapy) for contributing support for Electriq dehumidifiers.
  - [thomas-fr](https://github.com/thomas-fr) for contributing support for Poolex Silverline heatpumps.
  - [lperez31](https://github.com/lperez31) for contributing support for Poolex Vertigo heatpumps.
- 
+ - [b3nnyk22](https://github.com/b3nnyk22) for assistance in supporting Kogan Dehumidifiers. 
  
 [![BuyMeCoffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/jasonrumney)
