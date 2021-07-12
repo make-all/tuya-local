@@ -4,7 +4,7 @@ Config parser for Tuya Local devices.
 from fnmatch import fnmatch
 import logging
 from os import walk
-from os.path import join, dirname, splitext
+from os.path import join, dirname, splitext, exists
 from pydoc import locate
 
 from homeassistant.util.yaml import load_yaml
@@ -534,6 +534,19 @@ def possible_matches(dps):
         parsed = TuyaDeviceConfig(cfg)
         if parsed.matches(dps):
             yield parsed
+
+
+def get_config(conf_type):
+    """
+    Return a config to use with config_type.
+    """
+    _CONFIG_DIR = dirname(config_dir.__file__)
+    fname = conf_type + ".yaml"
+    fpath = join(_CONFIG_DIR, fname)
+    if exists(fpath):
+        return TuyaDeviceConfig(fname)
+    else:
+        return config_for_legacy_use(conf_type)
 
 
 def config_for_legacy_use(conf_type):

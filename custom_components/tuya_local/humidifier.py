@@ -10,7 +10,7 @@ from .const import (
     CONF_TYPE,
 )
 from .generic.humidifier import TuyaLocalHumidifier
-from .helpers.device_config import config_for_legacy_use
+from .helpers.device_config import get_config
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -20,7 +20,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
     data = hass.data[DOMAIN][discovery_info[CONF_DEVICE_ID]]
     device = data["device"]
 
-    cfg = config_for_legacy_use(discovery_info[CONF_TYPE])
+    cfg = get_config(discovery_info[CONF_TYPE])
     if cfg is None:
         raise ValueError(f"No device config found for {discovery_info}")
     ecfg = cfg.primary_entity

@@ -6,7 +6,7 @@ from warnings import warn
 
 from custom_components.tuya_local.helpers.device_config import (
     available_configs,
-    config_for_legacy_use,
+    get_config,
     possible_matches,
     TuyaDeviceConfig,
 )
@@ -51,7 +51,7 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
 
     def test_match_quality(self):
         """Test the match_quality function."""
-        cfg = config_for_legacy_use("deta_fan")
+        cfg = get_config("deta_fan")
         q = cfg.match_quality({**KOGAN_HEATER_PAYLOAD, "updated_at": 0})
         self.assertEqual(q, 0)
         q = cfg.match_quality({**GPPH_HEATER_PAYLOAD})
@@ -59,14 +59,14 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
 
     def test_entity_find_unknown_dps_fails(self):
         """Test that finding a dps that doesn't exist fails."""
-        cfg = config_for_legacy_use("kogan_switch")
+        cfg = get_config("kogan_switch")
         non_existing = cfg.primary_entity.find_dps("missing")
         self.assertIsNone(non_existing)
 
     async def test_dps_async_set_readonly_value_fails(self):
         """Test that setting a readonly dps fails."""
         mock_device = MagicMock()
-        cfg = config_for_legacy_use("kogan_switch")
+        cfg = get_config("kogan_switch")
         voltage = cfg.primary_entity.find_dps("voltage_v")
         with self.assertRaises(TypeError):
             await voltage.async_set_value(mock_device, 230)
@@ -74,20 +74,20 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
     def test_dps_values_returns_none_with_no_mapping(self):
         """Test that a dps with no mapping returns None as its possible values"""
         mock_device = MagicMock()
-        cfg = config_for_legacy_use("kogan_switch")
+        cfg = get_config("kogan_switch")
         voltage = cfg.primary_entity.find_dps("voltage_v")
         self.assertIsNone(voltage.values(mock_device))
 
     # Test detection of all devices.
 
-    def _test_detect(self, payload, legacy_type, legacy_class):
+    def _test_detect(self, payload, dev_type, legacy_class):
         """Test that payload is detected as the correct type and class."""
         matched = False
         false_matches = []
         quality = 0
         for cfg in possible_matches(payload):
             self.assertTrue(cfg.matches(payload))
-            if cfg.legacy_type == legacy_type:
+            if cfg.legacy_type == dev_type:
                 self.assertFalse(matched)
                 matched = True
                 quality = cfg.match_quality(payload)
@@ -108,7 +108,7 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
 
         self.assertTrue(matched)
         if quality < 100:
-            warn(f"{legacy_type} detected with imperfect quality {quality}%")
+            warn(f"{dev_type} detected with imperfect quality {quality}%")
 
         best_q = 0
         for cfg in false_matches:
@@ -119,7 +119,7 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
         self.assertGreater(quality, best_q)
 
         # Ensure the same correct config is returned when looked up by type
-        cfg = config_for_legacy_use(legacy_type)
+        cfg = get_config(dev_type)
         if legacy_class is not None:
             cfg_class = cfg.primary_entity.legacy_class
             if cfg_class is None:

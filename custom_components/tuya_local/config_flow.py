@@ -8,7 +8,7 @@ from homeassistant.core import HomeAssistant, callback
 from . import DOMAIN
 from .device import TuyaLocalDevice
 from .const import CONF_DEVICE_ID, CONF_LOCAL_KEY, CONF_TYPE
-from .helpers.device_config import config_for_legacy_use
+from .helpers.device_config import get_config
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -94,7 +94,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             return self.async_create_entry(
                 title=title, data={**self.data, **user_input}
             )
-        config = config_for_legacy_use(self.data[CONF_TYPE])
+        config = get_config(self.data[CONF_TYPE])
         schema = {vol.Required(CONF_NAME, default=config.name): str}
         e = config.primary_entity
         schema[vol.Optional(e.entity, default=True)] = bool
@@ -137,7 +137,7 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
             vol.Required(CONF_LOCAL_KEY, default=config.get(CONF_LOCAL_KEY, "")): str,
             vol.Required(CONF_HOST, default=config.get(CONF_HOST, "")): str,
         }
-        cfg = config_for_legacy_use(config[CONF_TYPE])
+        cfg = get_config(config[CONF_TYPE])
         if cfg is None:
             return self.async_abort(reason="not_supported")
         e = cfg.primary_entity
