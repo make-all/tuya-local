@@ -110,7 +110,7 @@ class TestKoganDehumidifier(TuyaDeviceTestCase):
     def test_mode(self):
         self.dps[MODE_DPS] = "low"
         self.assertEqual(self.subject.mode, "Low")
-        self.dps[MODE_DPS] = "medium"
+        self.dps[MODE_DPS] = "middle"
         self.assertEqual(self.subject.mode, "Medium")
         self.dps[MODE_DPS] = "high"
         self.assertEqual(self.subject.mode, "High")
@@ -131,7 +131,7 @@ class TestKoganDehumidifier(TuyaDeviceTestCase):
         async with assert_device_properties_set(
             self.subject._device,
             {
-                MODE_DPS: "medium",
+                MODE_DPS: "middle",
             },
         ):
             await self.subject.async_set_mode("Medium")
@@ -163,7 +163,7 @@ class TestKoganDehumidifier(TuyaDeviceTestCase):
     def test_fan_speed(self):
         self.dps[MODE_DPS] = "low"
         self.assertAlmostEqual(self.fan.percentage, 33.3, 1)
-        self.dps[MODE_DPS] = "medium"
+        self.dps[MODE_DPS] = "middle"
         self.assertAlmostEqual(self.fan.percentage, 66.7, 1)
         self.dps[MODE_DPS] = "high"
         self.assertEqual(self.fan.percentage, 100)
@@ -183,7 +183,7 @@ class TestKoganDehumidifier(TuyaDeviceTestCase):
         async with assert_device_properties_set(
             self.subject._device,
             {
-                MODE_DPS: "medium",
+                MODE_DPS: "middle",
             },
         ):
             await self.fan.async_set_percentage(66)
