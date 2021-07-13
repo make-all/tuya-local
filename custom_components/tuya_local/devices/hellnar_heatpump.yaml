@@ -1,0 +1,135 @@
+name: TroniTechnik Hellnar Klimagerät
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: power
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: off
+          icon: "mdi:hvac-off"
+          icon_priority: 1
+      hidden: true
+    - id: 2
+      name: temperature
+      type: integer
+      mapping:
+        - scale: 10
+      constraint: preset_mode
+      conditions:
+        - dps_val: cold
+          range:
+            min: 17
+            max: 30
+        - dps_val: auto
+          range:
+            min: 17
+        - dps_val: hot
+          range:
+            min: 0
+            max: 30
+        - dps_val: wet
+          invalid: true
+        - dps_val: wind
+          invalid: true
+    - id: 3
+      name: current_temperature
+      type: integer
+    - id: 4
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: auto
+          icon: "mdi:hvac"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: auto
+        - dps_val: cold
+          icon: "mdi:snowflake"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: cool
+        - dps_val: hot
+          icon: "mdi:fire"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: heat
+        - dps_val: wind
+          icon: "mdi:fan"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: fan_only
+        - dps_val: wet
+          icon: "mdi:water"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: dry
+    - id: 5
+      name: maybe_fan_mode
+      type: string
+    - id: 18
+      name: unknown_18
+      type: integer
+    - id: 20
+      name: unknown_20
+      type: integer
+    - id: 105
+      name: maybe_swing_h_or_v
+      type: string
+    - id: 110
+      name: unknown_110
+      type: integer
+    - id: 113
+      name: unknown_113
+      type: string
+    - id: 114
+      name: unknown_114
+      type: string
+    - id: 119
+      name: unknown_119
+      type: string
+    - id: 120
+      name: maybe_swing_v_or_h
+      type: string
+    - id: 123
+      name: unknown_123
+      type: string
+    - id: 126
+      name: unknown_126
+      type: string
+    - id: 130
+      name: maybe_eco_temp
+      type: integer
+    - id: 131
+      name: unknown_131
+      type: boolean
+    - id: 132
+      name: unknown_132
+      type: boolean
+    - id: 133
+      name: unknown_133
+      type: string
+    - id: 134
+      name: unknown_134
+      type: string
