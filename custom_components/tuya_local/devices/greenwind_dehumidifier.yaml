@@ -1,0 +1,30 @@
+name: Greenwind Dehumidifier
+primary_entity:
+  entity: humidifier
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 5
+      name: mode
+      type: integer
+      mapping:
+        - dps_val: 1
+          value: low
+        - dps_val: 2
+          value: medium
+        - dps_val: 3
+          value: high
+    - id: 6
+      name: humidity
+      type: integer
+      range:
+        min: 20
+        max: 80
+    - id: 15
+      name: error
+      type: integer
+    - id: 18
+      name: current_humidity
+      type: integer
+
