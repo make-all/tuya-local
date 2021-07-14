@@ -12,6 +12,9 @@ primary_entity:
           icon_priority: 1
       hidden: true
     - id: 2
+      name: current_temperature
+      type: integer
+    - id: 3
       name: temperature
       type: integer
       mapping:
@@ -33,9 +36,6 @@ primary_entity:
           invalid: true
         - dps_val: wind
           invalid: true
-    - id: 3
-      name: current_temperature
-      type: integer
     - id: 4
       name: preset_mode
       type: string
@@ -74,6 +74,7 @@ primary_entity:
           conditions:
             - dps_val: false
               value_redirect: power
+              value: off
             - dps_val: true
               value: fan_only
         - dps_val: wet
