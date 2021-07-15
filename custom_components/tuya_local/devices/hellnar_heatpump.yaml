@@ -19,7 +19,7 @@ primary_entity:
     - id: 3
       name: temperature
       type: integer
-      constraint: preset_mode
+      constraint: hvac_mode
       conditions:
         - dps_val: cold
           range:
@@ -37,7 +37,7 @@ primary_entity:
         - dps_val: wind
           invalid: true
     - id: 4
-      name: preset_mode
+      name: hvac_mode
       type: string
       mapping:
         - dps_val: auto
