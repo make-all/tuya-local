@@ -12,13 +12,10 @@ primary_entity:
           icon_priority: 1
       hidden: true
     - id: 2
-      name: current_temperature
+      name: temperature
       type: integer
       mapping:
         - scale: 10
-    - id: 3
-      name: temperature
-      type: integer
       constraint: hvac_mode
       conditions:
         - dps_val: cold
@@ -28,6 +25,7 @@ primary_entity:
         - dps_val: auto
           range:
             min: 17
+            max: 30
         - dps_val: hot
           range:
             min: 0
@@ -36,6 +34,9 @@ primary_entity:
           invalid: true
         - dps_val: wind
           invalid: true
+    - id: 3
+      name: current_temperature
+      type: integer
     - id: 4
       name: hvac_mode
       type: string
