@@ -16,24 +16,24 @@ primary_entity:
       type: integer
       mapping:
         - scale: 10
-      constraint: hvac_mode
-      conditions:
-        - dps_val: cold
-          range:
-            min: 17
-            max: 30
-        - dps_val: auto
-          range:
-            min: 17
-            max: 30
-        - dps_val: hot
-          range:
-            min: 0
-            max: 30
-        - dps_val: wet
-          invalid: true
-        - dps_val: wind
-          invalid: true
+          constraint: hvac_mode
+          conditions:
+            - dps_val: cold
+              range:
+                min: 170
+                max: 300
+            - dps_val: auto
+              range:
+                min: 170
+                max: 300
+            - dps_val: hot
+              range:
+                min: 0
+                max: 300
+            - dps_val: wet
+              invalid: true
+            - dps_val: wind
+              invalid: true
     - id: 3
       name: current_temperature
       type: integer
@@ -97,7 +97,7 @@ primary_entity:
       name: unknown_20
       type: integer
     - id: 105
-      name: maybe_swing_h_or_v
+      name: unknown_105
       type: string
     - id: 110
       name: unknown_110
@@ -112,13 +112,22 @@ primary_entity:
       name: unknown_119
       type: string
     - id: 120
-      name: maybe_swing_v_or_h
+      name: unknown_120
       type: string
     - id: 123
-      name: unknown_123
+      name: swing_mode
       type: string
     - id: 126
       name: unknown_126
+      type: string
+    - id: 127
+      name: unknown_127
+      type: string
+    - id: 128
+      name: unknown_128
+      type: string
+    - id: 129
+      name: unknown_129
       type: string
     - id: 130
       name: maybe_eco_temp
