@@ -1,5 +1,5 @@
 from homeassistant.components.climate.const import (
-    HVAC_MODE_AUTO,
+    HVAC_MODE_HEAT_COOL,
     HVAC_MODE_COOL,
     HVAC_MODE_DRY,
     HVAC_MODE_FAN_ONLY,
@@ -136,7 +136,7 @@ class TestElectriq12WMINVHeatpump(TuyaDeviceTestCase):
         self.assertEqual(self.subject.hvac_mode, HVAC_MODE_FAN_ONLY)
 
         self.dps[HVACMODE_DPS] = "auto"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_AUTO)
+        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT_COOL)
 
         self.dps[HVACMODE_DPS] = None
         self.assertEqual(self.subject.hvac_mode, STATE_UNAVAILABLE)
@@ -151,7 +151,7 @@ class TestElectriq12WMINVHeatpump(TuyaDeviceTestCase):
             [
                 HVAC_MODE_OFF,
                 HVAC_MODE_HEAT,
-                HVAC_MODE_AUTO,
+                HVAC_MODE_HEAT_COOL,
                 HVAC_MODE_COOL,
                 HVAC_MODE_DRY,
                 HVAC_MODE_FAN_ONLY,
