@@ -1,0 +1,95 @@
+name: Tadiran Air Conditioner
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: power
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+          icon: "mdi:hvac-off"
+          icon_priority: 1
+      hidden: true
+    - id: 2
+      name: temperature
+      type: integer
+      range:
+        min: 16
+        max: 32
+    - id: 3
+      name: current_temperture
+      type: integer
+      mapping:
+        - scale: 10
+    - id: 4
+      name: hvac_mode
+      type: string
+      mapping:
+        - dps_val: auto
+          icon: "mdi:hvac"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: heat_cool
+        - dps_val: cooling
+          icon: "mdi:snowflake"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: cool
+        - dps_val: heating
+          icon: "mdi:fire"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: heat
+        - dps_val: fan
+          icon: "mdi:fan"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+              value: "off"
+            - dps_val: true
+              value: fan_only
+        - dps_val: dehum
+          icon: "mdi:water"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: dry
+    - id: 5
+      name: fan_mode
+      type: string
+      mapping:
+        - dps_val: auto
+          value: auto
+        - dps_val: low
+          value: low
+        - dps_val: middle
+          value: medium
+        - dps_val: high
+          value: high
+    - id: 104
+      name: swing_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          value: vertical
+
