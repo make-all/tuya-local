@@ -1,4 +1,4 @@
-name: "Electriq Dehumidifier CD25PRO-LE-V2"
+name: "Electriq Dehumidifier CD20PRO-LE-V2"
 primary_entity:
   entity: humidifier
   class: dehumidifier
@@ -41,6 +41,9 @@ primary_entity:
         max: 80
       mapping:
         - step: 5
+    - id: 5
+      name: anion
+      type: boolean
     - id: 103
       type: integer
       name: current_temperature
@@ -62,25 +65,21 @@ secondary_entities:
             value: "Fully open"
           - dps_val: "0_90"
             value: "Oscillate"
-  - entity: light
-    name: "UV light"
+  - entity: switch
+    name: "UV sanitizer"
     icon: "mdi:solar-power"
     dps:
       - id: 10
         name: switch
         type: boolean
-  - entity: switch
-    name: "Ionizer"
-    icon: "mdi:creation"
-    dps:
-      - id: 5
-        name: switch
-        type: boolean
   - entity: light
     name: "Humidity Indicator"
-    icon: "mdi:radiator"
     dps:
       - id: 101
         type: boolean
         name: switch
-
+        mapping:
+          - dps_val: true
+            icon: "mdi:led-on"
+          - dps_val: false
+            icon: "mdi:led-off"
