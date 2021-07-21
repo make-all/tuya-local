@@ -24,11 +24,12 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
 - Eurom heaters.
 - Purline Hoti M100 heaters.
 
-### Air Conditioners
+### Air Conditioners / Heatpumps
 
-- ElectriQ 12WMINV heatpumps
+- ElectriQ 12WMINV
+- Tadiran Wind 65/3P
 
-### Pool heaters
+### Pool heaters / heatpumps
 
 - Garden PAC pool heatpumps.
 - Madimack pool heatpumps.
@@ -48,6 +49,7 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
 
 ### Dehumidifiers
 - Goldair GPDH420 dehumidifiers
+- ElectriQ CD20PRO-LE-V2 dehumidifiers
 - ElectriQ CD25PRO-LE-V2 dehumidifiers
 - Kogan SmarterHome 7L Desiccant Dehumidifier
 
@@ -212,35 +214,7 @@ You can find these keys the same way as you would for any Tuya local integration
 5. Discovery seems possible with the new tinytuya library, though the steps to get a local key will most likely remain manual.  Discovery also returns a productKey, which might help make the device detection more reliable where different devices use the same dps mapping but different names for the presets for example.
 
 Please report any issues and feel free to raise pull requests.
+[Many others](https://github.com/make-all/tuya-local/blob/main/ACKNOWLEDGEMENTS.md) have contributed their help already.
 
-## Acknowledgements
 
-None of this would have been possible without some foundational discovery work to get me started:
-
-- [nikrolls](https://github.com/nikrolls)'s [homeassistant-goldair-climate](https://github.com/nikrolls/homeassistant-goldair-climate) was the starting point for expanding to non-Goldair devices as well.
-- [TarxBoy](https://github.com/TarxBoy)'s [investigation using codetheweb/tuyapi](https://github.com/codetheweb/tuyapi/issues/31) to figure out the correlation of the cryptic DPS states .
-- [sean6541](https://github.com/sean6541)'s [tuya-homeassistant](https://github.com/sean6541/tuya-homeassistant) library giving an example of integrating Tuya devices with Home Assistant.
-- [clach04](https://github.com/clach04)'s [python-tuya](https://github.com/clach04/python-tuya) library.
-- [jasonacox](https://github.com/jasonacox)'s [tinytuya](https://github.com/jasonacox/tinytuya) library which improves on the original.
-
-Further device support has been made with the assistance of users.  Please consider contributing if you find a device that is not supported by gathering some information about the device's DPS ids and their values.
-
-- [etamtlosz](https://github.com/etamtlosz) and [KiLLeRRaT](https://github.com/KiLLeRRaT) for their support and dev work towards GECO and GPCV heaters.
-- [botts7](https://github.com/botts7) for support towards widening Kogan SmartPlug support.
-- [awaismun](https://github.com/awaismun) for assistance in supporting Andersson heaters.
-- [FeikoJoosten](https://github.com/FeikoJoosten) for development of support for Eurom heaters.
-- [Xeovar](https://github.com/Xeovar) for assistance in supporting Purline M100 heaters and Garden PAC pool heatpumps.
-- [paulmfclark](https://github.com/paulmfclark) for assistance in supporting Remora Inverter pool heatpumps, and [cartman10](https://github.com/cartman10) for assistance with BWT FI 45 pool heater which appears to use almost identical Wi-Fi controls.
- - [superman110](https://github.com/superman110) for assistance in supporting Eanons/purenjoy humidifier.
- - [woolmonkey](https://github.com/woolmonkey) for assistance in supporting Inkbird ITC306A Thermostat.
- - [hazell20](https://github.com/hazell20) for assistance in supporting Anko fans.
- - [meremortals70](https://github.com/meremortals70) for assistance in supporting Deta fan controllers.
- - [mvnixon](https://github.com/mvnixon) for assistance in supporting Madimack pool heaters.
- - [Lapy](https://github.com/Lapy) for contributing support for Electriq dehumidifiers.
- - [thomas-fr](https://github.com/thomas-fr) for contributing support for Poolex Silverline heatpumps.
- - [lperez31](https://github.com/lperez31) for contributing support for Poolex Vertigo heatpumps.
- - [b3nnyk22](https://github.com/b3nnyk22) for assistance in supporting Kogan Dehumidifiers.
- - [rodrigoGA](https://github.com/rodrigoGA) for assistance in supporting Greenwind dehumidifiers.
- - [jorgenDK](https://github.com/jorgenDK) for assistance in supporting TroniTechnik Air Conditioner, and thanks for the coffee!
- 
 [![BuyMeCoffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/jasonrumney)
