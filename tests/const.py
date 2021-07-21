@@ -203,6 +203,18 @@ ELECTRIQ_DEHUMIDIFIER_PAYLOAD = {
     "104": False,
 }
 
+ELECTRIQ_CD20PRO_DEHUMIDIFIER_PAYLOAD = {
+    "1": True,
+    "2": "high",
+    "3": 39,
+    "4": 45,
+    "5": False,
+    "10": False,
+    "101": False,
+    "102": "0_90",
+    "103": 30,
+}
+
 POOLEX_SILVERLINE_HEATPUMP_PAYLOAD = {"1": True, "2": 30, "3": 28, "4": "Heat", "13": 0}
 POOLEX_VERTIGO_HEATPUMP_PAYLOAD = {"1": True, "2": 30, "3": 28, "4": "heat", "9": 0}
 
@@ -260,4 +272,20 @@ HELLNAR_HEATPUMP_PAYLOAD = {
     "132": False,
     "133": "0",
     "134": '{"t":1624086077,"s":false,"clr"true}',
+}
+
+TADIRAN_HEATPUMP_PAYLOAD = {
+    "1": True,
+    "2": 25,
+    "3": 250,
+    "4": "cooling",
+    "5": "low",
+    "101": 0,
+    "102": 260,
+    "103": 225,
+    "104": "low",
+    "105": "stop",
+    "106": -300,
+    "107": False,
+    "108": False,
 }
