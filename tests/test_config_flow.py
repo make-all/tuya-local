@@ -45,13 +45,13 @@ async def test_init_entry(hass):
     """Test initialisation of the config flow."""
     entry = MockConfigEntry(
         domain=DOMAIN,
-        version=3,
+        version=4,
         title="test",
         data={
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
             CONF_LOCAL_KEY: "localkey",
-            CONF_TYPE: "kogan_heater",
+            CONF_TYPE: "kogan_kahtp_heater",
             CONF_CLIMATE: True,
             CONF_LOCK: True,
         },
@@ -300,7 +300,7 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
             CONF_DEVICE_ID: "deviceid",
             CONF_LOCAL_KEY: "localkey",
             CONF_HOST: "hostname",
-            CONF_TYPE: "kogan_heater",
+            CONF_TYPE: "kogan_kahtp_heater",
         },
     ):
         flow = await hass.config_entries.flow.async_init(
@@ -311,7 +311,7 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
             user_input={CONF_NAME: "test", CONF_CLIMATE: True, CONF_LOCK: False},
         )
         expected = {
-            "version": 3,
+            "version": 4,
             "type": "create_entry",
             "flow_id": ANY,
             "handler": DOMAIN,
@@ -326,7 +326,7 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
                 CONF_HOST: "hostname",
                 CONF_LOCAL_KEY: "localkey",
                 CONF_LOCK: False,
-                CONF_TYPE: "kogan_heater",
+                CONF_TYPE: "kogan_kahtp_heater",
             },
         }
         assert expected == result
@@ -336,7 +336,7 @@ async def test_options_flow_init(hass):
     """Test config flow options."""
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=3,
+        version=4,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
@@ -344,7 +344,7 @@ async def test_options_flow_init(hass):
             CONF_LOCAL_KEY: "localkey",
             CONF_NAME: "test",
             CONF_SWITCH: True,
-            CONF_TYPE: "kogan_switch",
+            CONF_TYPE: "smartplugv1",
         },
     )
     config_entry.add_to_hass(hass)
@@ -373,7 +373,7 @@ async def test_options_flow_modifies_config(mock_test, hass):
 
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=3,
+        version=4,
         unique_id="uniqueid",
         data={
             CONF_CLIMATE: True,
@@ -382,7 +382,7 @@ async def test_options_flow_modifies_config(mock_test, hass):
             CONF_LOCAL_KEY: "localkey",
             CONF_LOCK: True,
             CONF_NAME: "test",
-            CONF_TYPE: "kogan_heater",
+            CONF_TYPE: "kogan_kahtp_heater",
         },
     )
     config_entry.add_to_hass(hass)
@@ -419,7 +419,7 @@ async def test_options_flow_fails_when_connection_fails(mock_test, hass):
 
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=3,
+        version=4,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
@@ -427,7 +427,7 @@ async def test_options_flow_fails_when_connection_fails(mock_test, hass):
             CONF_LOCAL_KEY: "localkey",
             CONF_NAME: "test",
             CONF_SWITCH: True,
-            CONF_TYPE: "kogan_switch",
+            CONF_TYPE: "smartplugv1",
         },
     )
     config_entry.add_to_hass(hass)
@@ -457,7 +457,7 @@ async def test_options_flow_fails_when_config_is_missing(mock_test, hass):
 
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=3,
+        version=4,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
@@ -484,7 +484,7 @@ async def test_async_setup_entry_for_dehumidifier(mock_setup, hass):
     """Test setting up based on a config entry.  Repeats test_init_entry."""
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=3,
+        version=4,
         unique_id="uniqueid",
         data={
             CONF_CLIMATE: False,
@@ -507,7 +507,7 @@ async def test_async_setup_entry_for_switch(mock_device, hass):
     """Test setting up based on a config entry.  Repeats test_init_entry."""
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=3,
+        version=4,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
@@ -515,7 +515,7 @@ async def test_async_setup_entry_for_switch(mock_device, hass):
             CONF_LOCAL_KEY: "localkey",
             CONF_NAME: "test",
             CONF_SWITCH: True,
-            CONF_TYPE: "kogan_switch",
+            CONF_TYPE: "smartplugv2",
         },
     )
     assert await async_setup_entry(hass, config_entry)
