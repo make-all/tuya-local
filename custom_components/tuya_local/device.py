@@ -112,7 +112,7 @@ class TuyaLocalDevice(object):
             _LOGGER.warning(f"Detection for {self.name} with dps {cached_state} failed")
             return None
 
-        return best_match.legacy_type
+        return best_match.config_type
 
     async def async_refresh(self):
         cache = self._get_cached_state()

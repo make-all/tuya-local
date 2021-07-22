@@ -56,9 +56,14 @@ class TuyaDeviceConfig:
         return self._fname
 
     @property
+    def config_type(self):
+        """Return the config type associated with this device."""
+        return splitext(self._fname)[0]
+
+    @property
     def legacy_type(self):
         """Return the legacy conf_type associated with this device."""
-        return self._config.get("legacy_type", splitext(self.config)[0])
+        return self._config.get("legacy_type", self.config_type)
 
     @property
     def primary_entity(self):

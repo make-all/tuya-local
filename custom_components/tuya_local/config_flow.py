@@ -61,11 +61,11 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         best_matching_type = None
 
         async for type in self.device.async_possible_types():
-            types.append(type.legacy_type)
+            types.append(type.config_type)
             q = type.match_quality(self.device._get_cached_state())
             if q > best_match:
                 best_match = q
-                best_matching_type = type.legacy_type
+                best_matching_type = type.config_type
 
         if best_match < 100:
             best_match = int(best_match)
