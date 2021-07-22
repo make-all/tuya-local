@@ -13,14 +13,10 @@ from homeassistant.const import CONF_HOST
 from homeassistant.core import HomeAssistant
 
 from .const import (
-    CONF_CLIMATE,
     CONF_DEVICE_ID,
-    CONF_FAN,
-    CONF_HUMIDIFIER,
     CONF_LIGHT,
     CONF_LOCAL_KEY,
     CONF_LOCK,
-    CONF_SWITCH,
     CONF_TYPE,
     DOMAIN,
 )
@@ -112,31 +108,22 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     _LOGGER.debug(f"Setting up entry for device: {entry.data[CONF_DEVICE_ID]}")
     config = {**entry.data, **entry.options, "name": entry.title}
     setup_device(hass, config)
+    device_conf = get_config(config[CONF_TYPE])
+    if device_conf is None:
+        _LOGGER.error(f"COnfiguration file for {config[CONF_TYPE]} not found.")
+        return False
 
-    if config.get(CONF_CLIMATE, False) is True:
-        hass.async_create_task(
-            hass.config_entries.async_forward_entry_setup(entry, "climate")
-        )
-    if config.get(CONF_LIGHT, False) is True:
-        hass.async_create_task(
-            hass.config_entries.async_forward_entry_setup(entry, "light")
-        )
-    if config.get(CONF_LOCK, False) is True:
-        hass.async_create_task(
-            hass.config_entries.async_forward_entry_setup(entry, "lock")
-        )
-    if config.get(CONF_SWITCH, False) is True:
-        hass.async_create_task(
-            hass.config_entries.async_forward_entry_setup(entry, "switch")
-        )
-    if config.get(CONF_HUMIDIFIER, False) is True:
-        hass.async_create_task(
-            hass.config_entries.async_forward_entry_setup(entry, "humidifier")
-        )
-    if config.get(CONF_FAN, False) is True:
-        hass.async_create_task(
-            hass.config_entries.async_forward_entry_setup(entry, "fan")
-        )
+    entities = {}
+    e = device_conf.primary_entity
+    if config.get(e.config_id, False):
+        entities[e.entity] = True
+    for e in device_conf.secondary_entities():
+        if config.get(e.config_id, False):
+            entities[e.entity] = True
+
+    for e in entities:
+        hass.async_create_task(hass.config_entries.async_forward_entry_setup(entry, e))
+
     entry.add_update_listener(async_update_entry)
 
     return True
@@ -146,19 +133,21 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
     _LOGGER.debug(f"Unloading entry for device: {entry.data[CONF_DEVICE_ID]}")
     config = entry.data
     data = hass.data[DOMAIN][config[CONF_DEVICE_ID]]
+    device_conf = get_config(config[CONF_TYPE])
+    if device_conf is None:
+        _LOGGER.error(f"Configuration file for {config[CONF_TYPE]} not found.")
+        return False
 
-    if CONF_CLIMATE in data:
-        await hass.config_entries.async_forward_entry_unload(entry, "climate")
-    if CONF_LIGHT in data:
-        await hass.config_entries.async_forward_entry_unload(entry, "light")
-    if CONF_LOCK in data:
-        await hass.config_entries.async_forward_entry_unload(entry, "lock")
-    if CONF_SWITCH in data:
-        await hass.config_entries.async_forward_entry_unload(entry, "switch")
-    if CONF_HUMIDIFIER in data:
-        await hass.config_entries.async_forward_entry_unload(entry, "humidifier")
-    if CONF_FAN in data:
-        await hass.config_entries.async_forward_entry_unload(entry, "fan")
+    entities = {}
+    e = device_conf.primary_entity
+    if e.config_id in data:
+        entities[e.entity] = True
+    for e in device_conf.secondary_entities():
+        if e.config_id in data:
+            entities[e.entity] = True
+
+    for e in entities:
+        await hass.config_entries.async_forward_entry_unload(entry, e)
 
     delete_device(hass, config)
     del hass.data[DOMAIN][config[CONF_DEVICE_ID]]

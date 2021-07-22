@@ -174,6 +174,11 @@ class TuyaEntityConfig:
         return self._config["entity"]
 
     @property
+    def config_id(self):
+        """The identifier for this entitiy in the config."""
+        return self.entity
+
+    @property
     def device_class(self):
         """The device class of this entity."""
         return self._config.get("class")

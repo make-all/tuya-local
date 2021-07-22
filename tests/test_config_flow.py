@@ -470,7 +470,7 @@ async def test_options_flow_fails_when_config_is_missing(mock_test, hass):
     )
     config_entry.add_to_hass(hass)
 
-    assert await hass.config_entries.async_setup(config_entry.entry_id)
+    await hass.config_entries.async_setup(config_entry.entry_id)
     await hass.async_block_till_done()
     # show initial form
     result = await hass.config_entries.options.async_init(config_entry.entry_id)
