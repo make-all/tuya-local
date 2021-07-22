@@ -17,11 +17,13 @@ CURRENTTEMP_DPS = "103"
 IONIZER_DPS = "104"
 
 
-class TestElectriqDehumidifier(TuyaDeviceTestCase):
+class TestElectriqCD25ProDehumidifier(TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
-        self.setUpForConfig("electriq_dehumidifier.yaml", ELECTRIQ_DEHUMIDIFIER_PAYLOAD)
+        self.setUpForConfig(
+            "electriq_cd25pro_dehumidifier.yaml", ELECTRIQ_DEHUMIDIFIER_PAYLOAD
+        )
         self.subject = self.entities.get("humidifier")
         self.fan = self.entities.get("fan")
         self.light = self.entities.get("light")

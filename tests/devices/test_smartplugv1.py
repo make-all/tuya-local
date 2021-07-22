@@ -2,22 +2,22 @@
 from homeassistant.components.switch import DEVICE_CLASS_OUTLET
 from homeassistant.const import STATE_UNAVAILABLE
 
-from ..const import KOGAN_SOCKET_PAYLOAD2
+from ..const import KOGAN_SOCKET_PAYLOAD
 from ..helpers import assert_device_properties_set
 from .base_device_tests import TuyaDeviceTestCase
 
 SWITCH_DPS = "1"
-TIMER_DPS = "9"
-CURRENT_DPS = "18"
-POWER_DPS = "19"
-VOLTAGE_DPS = "20"
+TIMER_DPS = "2"
+CURRENT_DPS = "4"
+POWER_DPS = "5"
+VOLTAGE_DPS = "6"
 
 
 class TestKoganSwitch(TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
-        self.setUpForConfig("kogan_switch2.yaml", KOGAN_SOCKET_PAYLOAD2)
+        self.setUpForConfig("smartplugv1.yaml", KOGAN_SOCKET_PAYLOAD)
         self.subject = self.entities.get("switch")
 
     def test_device_class_is_outlet(self):

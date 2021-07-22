@@ -34,7 +34,9 @@ class TestInkbirdThermostat(TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
-        self.setUpForConfig("inkbird_thermostat.yaml", INKBIRD_THERMOSTAT_PAYLOAD)
+        self.setUpForConfig(
+            "inkbird_itc306a_thermostat.yaml", INKBIRD_THERMOSTAT_PAYLOAD
+        )
         self.subject = self.entities.get("climate")
 
     def test_supported_features(self):
