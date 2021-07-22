@@ -1,0 +1,60 @@
+name: Beca BHP-6000 Thermostat
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          value: "heat_cool"
+    - id: 2
+      name: temperature
+      type: integer
+      constraint: temperature_unit
+      conditions:
+        - dps_val: 1
+          range:
+            min: 5
+            max: 35
+        - dps_val: 2
+          range:
+            min: 5
+            max: 35
+        - dps_val: 3
+          range:
+            min: 40
+            max: 95
+    - id: 3
+      name: current_temperature
+      type: integer
+    - id: 4
+      name: level
+      type: integer
+    - id: 5
+      name: temperature_unit
+      type: integer
+      mapping:
+        - dps_val: 1
+          value: C
+        - dps_val: 2
+          value: C
+        - dps_val: 3
+          value: F
+    - id: 6
+      name: preset_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: normal
+        - dps_val: true
+          value: eco
+secondary_entities:
+  - entity: lock
+    name: Child Lock
+    dps:
+      - id: 7
+        name: lock
+        type: boolean
