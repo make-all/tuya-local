@@ -25,6 +25,7 @@ from .const import (
     DOMAIN,
 )
 from .device import setup_device, delete_device
+from .helpers.device_config import get_config
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -82,6 +83,27 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         opts.pop(CONF_TYPE, None)
         entry.options = {**opts}
         entry.version = 3
+
+    if entry.version == 3:
+        # Migrate to filename based config_type, to avoid needing to
+        # parse config files to find the right one.
+        config = {**entry.data, **entry.options, "name": entry.title}
+        config_type = get_config(config[CONF_TYPE]).config_type
+
+        # Special case for kogan_switch.  Consider also v2.
+        if config_type == "smartplugv1":
+            device = setup_device(hass, config)
+            config_type = await device.async_inferred_type()
+            if config_type != "smartplugv2":
+                config_type = "smartplugv1"
+
+        entry.data = {
+            CONF_DEVICE_ID: config[CONF_DEVICE_ID],
+            CONF_LOCAL_KEY: config[CONF_LOCAL_KEY],
+            CONF_HOST: config[CONF_HOST],
+            CONF_TYPE: config_type,
+        }
+        entry.version = 4
 
     return True
 
