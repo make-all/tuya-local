@@ -21,11 +21,11 @@ HVACMODE_DPS = "4"
 FAN_DPS = "5"
 
 
-class TestTadiranHeatpump(TuyaDeviceTestCase):
+class TestTadiranWindHeatpump(TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
-        self.setUpForConfig("tadiran_heatpump.yaml", TADIRAN_HEATPUMP_PAYLOAD)
+        self.setUpForConfig("tadiran_wind_heatpump.yaml", TADIRAN_HEATPUMP_PAYLOAD)
         self.subject = self.entities.get("climate")
 
     def test_supported_features(self):

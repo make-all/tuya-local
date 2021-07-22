@@ -19,11 +19,11 @@ HVACMODE_DPS = "7"
 TIMER_DPS = "8"
 
 
-class TestGoldairKoganHeater(TuyaDeviceTestCase):
+class TestGoldairKoganKAHTPHeater(TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
-        self.setUpForConfig("kogan_heater.yaml", KOGAN_HEATER_PAYLOAD)
+        self.setUpForConfig("kogan_kahtp_heater.yaml", KOGAN_HEATER_PAYLOAD)
         self.subject = self.entities.get("climate")
         self.lock = self.entities.get("lock")
 
