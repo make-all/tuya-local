@@ -29,3 +29,5 @@ Further device support has been made with the assistance of users.  Please consi
  - [jorgenDK](https://github.com/jorgenDK) for assistance in supporting TroniTechnik Air Conditioner, and thanks for the coffee!
  - [Fannangir](https://github.com/Fannangir) for assistance in supporting Tadiran Wind Air Conditioner.
  - [marrold](https://github.com/marrold) for contributing support for ElectriQ CD20PRO dehumidifiers.
+ - [Uaeguy](https://github.com/Uaeguy) for assistance in supporting Beca BHP-6000 thermostat.
+ - [Johnnybyzhang](https://github.com/Johnnybyzhang) for assistance in supporting Lexy F501 fans.

@@ -45,6 +45,7 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
 ### Fans
 - Goldair GCPF315 fans
 - Anko HEGSM40 fans
+- Lexy F501 fans
 - Deta fan controllers
 
 ### Dehumidifiers
@@ -58,6 +59,7 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
 
 ### Thermostats
 - Inkbird ITC306A thermostat smartplug (not fully functional)
+- Beca BHP-6000 Room Heat Pump control Thermostat
 
 ### SmartPlugs
 - Kogan Single Smartplug with Energy Monitoring
@@ -189,14 +191,26 @@ Reportedly, Goldair fans can be a bit flaky. If they become unresponsive, give t
 Anko fans mostly work, except setting the speed does not seem to work. If you can figure out how to set the speed through the Tuya protocol for these devices, please leave feedback on Issue #22.
 
 
+## Kogan Switch gotchas
+
+While setting this up, I observed after a while that the current and power readings from the switch were returning 0 when there was clearly a load on the switch.  After unplugging and replugging, the switch started returning only dps 1 and 2 (switch status and timer). If HomeAssistant is restarted in that state, the switch detection would fail, however as Home Assistant was left running, it continued to work with no readings for the current, power and voltage.  I unplugged the switch overnight, and in the morning it was working correctly.
+
+
+## Beca thermostat gotchas
+
+These devices support switching between Celcius and Fahrenheit on the control
+panel, but do not provide any information over the Tuya local protocol about
+which units are selected.  Two configurations for this device are provided,
+`beca_bhp6000_thermostat_c` and `beca_bhp6000_thermostat_f`, please select
+the appropriate one for the temperature units you use.  If you change the
+units on the device control panel, you will need to delete the device from
+Home Assistant and set it up again.
+
+
 ## Humidifiers and dehumidifiers
 
 Humidifiers and Dehumidifiers should be configuured as `humidifier` entities, probably with `fan` entities as well if the fan speed can also be controlled, and any other auxilary features such as panel lighting, child locks or additional switches configured as `light`, `lock` or `switch` entities.  Configration of Goldair Dehumidifiers and Eanons Humidifiers as `climate` entities is also supported for backwards compatibility, but is deprecated and may be removed in future.  In particular, when humidifiers are represented as `climate` entities, the running mode will show as `Dry`, as the climate entity only supports functions commonly found on air conditioners/heatpumps.
 
-
-## Kogan Switch gotchas
-
-While setting this up, I observed after a while that the current and power readings from the switch were returning 0 when there was clearly a load on the switch.  After unplugging and replugging, the switch started returning only dps 1 and 2 (switch status and timer). If HomeAssistant is restarted in that state, the switch detection would fail, however as Home Assistant was left running, it continued to work with no readings for the current, power and voltage.  I unplugged the switch overnight, and in the morning it was working correctly.
 
 ## Finding your device ID and local key
 
