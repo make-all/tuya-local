@@ -336,6 +336,10 @@ class TuyaDpsConfig:
     def hidden(self):
         return self._config.get("hidden", False)
 
+    @property
+    def unit(self):
+        return self._config.get("unit")
+
     def _find_map_for_dps(self, value):
         default = None
         for m in self._config.get("mapping", {}):

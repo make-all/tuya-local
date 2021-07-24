@@ -128,6 +128,7 @@ class TuyaLocalClimate(ClimateEntity):
     @property
     def temperature_unit(self):
         """Return the unit of measurement."""
+        # If there is a separate DPS that returns the units, use that
         if self._unit_dps is not None:
             unit = self._unit_dps.get_value(self._device)
             # Only return valid units
@@ -137,6 +138,17 @@ class TuyaLocalClimate(ClimateEntity):
                 return TEMP_FAHRENHEIT
             elif unit == "K":
                 return TEMP_KELVIN
+        # If there unit attribute configured in the temperature dps, use that
+        if self._temperature_dps:
+            unit = self._temperature_dps.unit
+            # Only return valid units
+            if unit == "C":
+                return TEMP_CELSIUS
+            elif unit == "F":
+                return TEMP_FAHRENHEIT
+            elif unit == "K":
+                return TEMP_KELVIN
+        # Return the default unit from the device
         return self._device.temperature_unit
 
     @property
