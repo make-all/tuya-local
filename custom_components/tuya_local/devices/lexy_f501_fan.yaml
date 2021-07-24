@@ -1,0 +1,65 @@
+name: LEXY F501 fan
+primary_entity:
+  entity: fan
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 2
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: "forestwindhigh"
+          value: Forest High
+        - dps_val: "forestwindlow"
+          value: Forest Low
+        - dps_val: "sleepwindlow"
+          value: Sleep Low
+        - dps_val: "sleepwindhigh"
+          value: Sleep High
+    - id: 4
+      name: oscillate
+      type: string
+      mapping:
+        - dps_val: "off"
+          value: false
+        - dps_val: "30"
+          value: true
+        - dps_val: "60"
+          value: true
+        - dps_val: "90"
+          value: true
+        - dps_val: "360+"
+          value: true
+        - dps_val: "360-"
+          value: true
+    - id: 6
+      name: timer
+      type: integer
+    - id: 102
+      name: speed
+      type: integer
+      range:
+        min: 1
+        max: 15
+      mapping:
+        - scale: 0.15
+secondary_entities:
+  - entity: light
+    name: Light
+    dps:
+      - id: 9
+        name: switch
+        type: boolean
+  - entity: lock
+    name: Child Lock
+    dps:
+      - id: 16
+        name: lock
+        type: boolean
+  - entity: switch
+    name: Sound
+    dps:
+      - id: 17
+        name: switch
+        type: boolean
