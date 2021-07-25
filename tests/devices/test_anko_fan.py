@@ -90,10 +90,10 @@ class TestAnkoFan(TuyaDeviceTestCase):
             await self.subject.async_set_preset_mode("sleep")
 
     def test_oscillating(self):
-        self.dps[OSCILLATE_DPS] = False
+        self.dps[OSCILLATE_DPS] = "off"
         self.assertFalse(self.subject.oscillating)
 
-        self.dps[OSCILLATE_DPS] = True
+        self.dps[OSCILLATE_DPS] = "auto"
         self.assertTrue(self.subject.oscillating)
 
         self.dps[OSCILLATE_DPS] = None

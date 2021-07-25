@@ -289,3 +289,24 @@ TADIRAN_HEATPUMP_PAYLOAD = {
     "107": False,
     "108": False,
 }
+
+BECA_BHP6000_PAYLOAD = {
+    "1": True,
+    "2": 77,
+    "3": 87,
+    "4": "3",
+    "5": "3",
+    "6": False,
+    "7": False,
+}
+
+LEXY_F501_PAYLOAD = {
+    "1": True,
+    "2": "forestwindhigh",
+    "4": "off",
+    "6": 0,
+    "9": False,
+    "16": False,
+    "17": False,
+    "102": 8,
+}
