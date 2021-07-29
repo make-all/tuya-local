@@ -15,7 +15,8 @@ Further device support has been made with the assistance of users.  Please consi
 - [awaismun](https://github.com/awaismun) for assistance in supporting Andersson heaters.
 - [FeikoJoosten](https://github.com/FeikoJoosten) for development of support for Eurom heaters.
 - [Xeovar](https://github.com/Xeovar) for assistance in supporting Purline M100 heaters and Garden PAC pool heatpumps.
-- [paulmfclark](https://github.com/paulmfclark) for assistance in supporting Remora Inverter pool heatpumps, and [cartman10](https://github.com/cartman10) for assistance with BWT FI 45 pool heater which appears to use almost identical Wi-Fi controls.
+- [paulmfclark](https://github.com/paulmfclark) for assistance in supporting Remora Inverter pool heatpumps
+- [cartman10](https://github.com/cartman10) for assistance with BWT FI 45 pool heater.
  - [superman110](https://github.com/superman110) for assistance in supporting Eanons/purenjoy humidifier.
  - [woolmonkey](https://github.com/woolmonkey) for assistance in supporting Inkbird ITC306A Thermostat.
  - [hazell20](https://github.com/hazell20) for assistance in supporting Anko fans.
@@ -29,5 +30,6 @@ Further device support has been made with the assistance of users.  Please consi
  - [jorgenDK](https://github.com/jorgenDK) for assistance in supporting TroniTechnik Air Conditioner, and thanks for the coffee!
  - [Fannangir](https://github.com/Fannangir) for assistance in supporting Tadiran Wind Air Conditioner.
  - [marrold](https://github.com/marrold) for contributing support for ElectriQ CD20PRO dehumidifiers.
- - [Uaeguy](https://github.com/Uaeguy) for assistance in supporting Beca BHP-6000 thermostat.
+ - [Uaeguy](https://github.com/Uaeguy) for assistance in supporting Beca BHP-6000 thermostat, and thanks for the coffee!
  - [Johnnybyzhang](https://github.com/Johnnybyzhang) for assistance in supporting Lexy F501 fans.
+ - [domgrimm](https://github.com/domgrimm) for assistance in supporting newer models of Kogan heater.
