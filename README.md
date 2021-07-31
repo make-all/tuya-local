@@ -19,7 +19,7 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
 ### Heaters
 
 - Goldair heater models beginning with the code GPPH, GCPV, GECO.
-- Kogan Wi-Fi Convection Panel heaters.
+- Kogan Wi-Fi Convection Panel heaters - KAHTP and KAWFHTP models.
 - Andersson GSH heaters.
 - Eurom heaters.
 - Purline Hoti M100 heaters.

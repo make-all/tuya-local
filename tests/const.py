@@ -28,6 +28,14 @@ EUROM_600_HEATER_PAYLOAD = {"1": True, "2": 15, "5": 18, "6": 0}
 GECO_HEATER_PAYLOAD = {"1": True, "2": True, "3": 30, "4": 25, "5": 0, "6": 0}
 
 KOGAN_HEATER_PAYLOAD = {"2": 30, "3": 25, "4": "Low", "6": True, "7": True, "8": 0}
+KOGAN_KAWFHTP_HEATER_PAYLOAD = {
+    "1": True,
+    "2": True,
+    "3": 30,
+    "4": 25,
+    "5": 0,
+    "7": "Low",
+}
 
 DEHUMIDIFIER_PAYLOAD = {
     "1": False,
