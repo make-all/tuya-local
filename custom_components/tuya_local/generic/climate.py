@@ -257,11 +257,11 @@ class TuyaLocalClimate(ClimateEntity):
         r = self._humidity_dps.range(self._device)
         return DEFAULT_MAX_HUMIDITY if r is None else r["max"]
 
-    async def async_set_humidity(self, target_humidity):
+    async def async_set_humidity(self, humidity: int):
         if self._humidity_dps is None:
             raise NotImplementedError()
 
-        await self._humidity_dps.async_set_value(self._device, target_humidity)
+        await self._humidity_dps.async_set_value(self._device, humidity)
 
     @property
     def current_humidity(self):
