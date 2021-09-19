@@ -1,4 +1,4 @@
-name: "ElectriQ Dehumidifier DESD9LW"
+name: ElectriQ Dehumidifier DESD9LW
 primary_entity:
   entity: climate
   dps:
@@ -11,15 +11,14 @@ primary_entity:
           icon: "mdi:air-humidifier-off"
           icon_priority: 1
           value: "off"
-        - dps_val: true
-          icon: "mdi:air-humidifier"
-          icon_priority: 3
     - id: 2
       type: integer
       name: humidity
       range:
         min: 35
         max: 80
+      mapping:
+        - step: 5
     - id: 4
       type: string
       name: fan_mode
@@ -42,40 +41,47 @@ primary_entity:
             - dps_val: "Auto"
               invalid: true
           value: "High"
-        - dps_val: "auto"
-          value: "Auto"
-          invalid: true
     - id: 5
       name: hvac_mode
       type: string
       mapping:
-        - value: "off"
         - dps_val: "Auto"
-          value: "auto"
           constraint: power
           conditions:
           - dps_val: false
             value_redirect: power
+          - dps_val: true
+            value: "auto"
+            icon: "mdi:air-humidifier"
+            icon-priority: 2
         - dps_val: "Heater"
-          value: "heat"
           constraint: power
           conditions:
           - dps_val: false
             value_redirect: power
+          - dps_val: true
+            value: "heat"
+            icon: "mdi:fire"
+            icon-priority: 2
         - dps_val: "Dehumidity"
-          value: "dry"
           constraint: power
           conditions:
           - dps_val: false
             value_redirect: power
+          - dps_val: true
+            value: "dry"
+            icon: "mdi:water"
+            icon-priority: 2
         - dps_val: "Fan"
-          value: "fan_only"
           constraint: power
           conditions:
           - dps_val: false
             value_redirect: power
-          icon: "mdi:air-purifier"
-          icon_priority: 2
+            value: "off"
+          - dps_val: true
+            value: "fan_only"
+            icon: "mdi:fan"
+            icon_priority: 2
     - id: 6
       type: integer
       name: current_humidity
@@ -98,8 +104,6 @@ primary_entity:
       range:
         min: 16
         max: 30
-      mapping:
-        - step: 1
 secondary_entities:
   - entity: light
     name: "UV sanitizer"
@@ -109,23 +113,9 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: switch
-    name: "Power"
+    name: "Ioniser"
+    icon: "mdi:atom-variant"
     dps:
-      - id: 1
-        type: boolean
+      - id: 12
         name: switch
-        mapping:
-          - dps_val: false
-            icon: "mdi:air-humidifier-off"
-            icon_priority: 1
-          - dps_val: true
-            icon: "mdi:air-humidifier"
-            icon_priority: 3
-#At the moment only one switch is supported, this section is included in case multiple switch support is added later
-#  - entity: switch
-#    name: "Ioniser"
-#    icon: "mdi:atom-variant"
-#    dps:
-#      - id: 12
-#        name: switch
-#        type: boolean
+        type: boolean

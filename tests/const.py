@@ -223,6 +223,19 @@ ELECTRIQ_CD20PRO_DEHUMIDIFIER_PAYLOAD = {
     "103": 30,
 }
 
+ELECTRIQ_DESD9LW_DEHUMIDIFIER_PAYLOAD = {
+    "1": True,
+    "2": 50,
+    "4": "Low",
+    "5": "Dehumidity",
+    "6": 55,
+    "7": 18,
+    "10": False,
+    "12": False,
+    "15": False,
+    "101": 20,
+}
+
 POOLEX_SILVERLINE_HEATPUMP_PAYLOAD = {"1": True, "2": 30, "3": 28, "4": "Heat", "13": 0}
 POOLEX_VERTIGO_HEATPUMP_PAYLOAD = {"1": True, "2": 30, "3": 28, "4": "heat", "9": 0}
 
