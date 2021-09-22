@@ -5,10 +5,13 @@ import logging
 
 from homeassistant.components.climate import ClimateEntity
 from homeassistant.components.climate.const import (
+    ATTR_AUX_HEAT,
     ATTR_CURRENT_HUMIDITY,
     ATTR_CURRENT_TEMPERATURE,
     ATTR_FAN_MODE,
     ATTR_HUMIDITY,
+    ATTR_HVAC_ACTION,
+    ATTR_HVAC_MODE,
     ATTR_PRESET_MODE,
     ATTR_SWING_MODE,
     ATTR_TARGET_TEMP_HIGH,
@@ -19,6 +22,7 @@ from homeassistant.components.climate.const import (
     DEFAULT_MIN_TEMP,
     HVAC_MODE_AUTO,
     HVAC_MODE_OFF,
+    SUPPORT_AUX_HEAT,
     SUPPORT_FAN_MODE,
     SUPPORT_PRESET_MODE,
     SUPPORT_SWING_MODE,
@@ -56,30 +60,34 @@ class TuyaLocalClimate(ClimateEntity):
         self._attr_dps = []
         dps_map = {c.name: c for c in config.dps()}
 
+        self._aux_heat_dps = dps_map.pop(ATTR_AUX_HEAT, None)
         self._current_temperature_dps = dps_map.pop(ATTR_CURRENT_TEMPERATURE, None)
+        self._current_humidity_dps = dps_map.pop(ATTR_CURRENT_HUMIDITY, None)
+        self._fan_mode_dps = dps_map.pop(ATTR_FAN_MODE, None)
+        self._humidity_dps = dps_map.pop(ATTR_HUMIDITY, None)
+        self._hvac_mode_dps = dps_map.pop(ATTR_HVAC_MODE, None)
+        self._hvac_action_dps = dps_map.pop(ATTR_HVAC_ACTION, None)
+        self._preset_mode_dps = dps_map.pop(ATTR_PRESET_MODE, None)
+        self._swing_mode_dps = dps_map.pop(ATTR_SWING_MODE, None)
         self._temperature_dps = dps_map.pop(ATTR_TEMPERATURE, None)
         self._temp_high_dps = dps_map.pop(ATTR_TARGET_TEMP_HIGH, None)
         self._temp_low_dps = dps_map.pop(ATTR_TARGET_TEMP_LOW, None)
-        self._current_humidity_dps = dps_map.pop(ATTR_CURRENT_HUMIDITY, None)
-        self._humidity_dps = dps_map.pop(ATTR_HUMIDITY, None)
-        self._preset_mode_dps = dps_map.pop(ATTR_PRESET_MODE, None)
-        self._swing_mode_dps = dps_map.pop(ATTR_SWING_MODE, None)
-        self._fan_mode_dps = dps_map.pop(ATTR_FAN_MODE, None)
-        self._hvac_mode_dps = dps_map.pop("hvac_mode", None)
         self._unit_dps = dps_map.pop("temperature_unit", None)
 
         for d in dps_map.values():
             if not d.hidden:
                 self._attr_dps.append(d)
 
+        if self._aux_heat_dps:
+            self._support_flags |= SUPPORT_AUX_HEAT
+        if self._fan_mode_dps:
+            self._support_flags |= SUPPORT_FAN_MODE
         if self._humidity_dps:
             self._support_flags |= SUPPORT_TARGET_HUMIDITY
         if self._preset_mode_dps:
             self._support_flags |= SUPPORT_PRESET_MODE
         if self._swing_mode_dps:
             self._support_flags |= SUPPORT_SWING_MODE
-        if self._fan_mode_dps:
-            self._support_flags |= SUPPORT_FAN_MODE
 
         if self._temp_high_dps and self._temp_low_dps:
             self._support_flags |= SUPPORT_TARGET_TEMPERATURE_RANGE
@@ -271,6 +279,14 @@ class TuyaLocalClimate(ClimateEntity):
         return self._current_humidity_dps.get_value(self._device)
 
     @property
+    def hvac_action(self):
+        """Return the current HVAC action."""
+        if self._hvac_action_dps is None:
+            return None
+        hvac_action = self._hvac_action.get_value(self.device)
+        return hvac_action
+
+    @property
     def hvac_mode(self):
         """Return current HVAC mode."""
         if self._hvac_mode_dps is None:
@@ -291,6 +307,26 @@ class TuyaLocalClimate(ClimateEntity):
         if self._hvac_mode_dps is None:
             raise NotImplementedError()
         await self._hvac_mode_dps.async_set_value(self._device, hvac_mode)
+
+    @property
+    def is_aux_heat(self):
+        """Return state of aux heater"""
+        if self._aux_heat_dps is None:
+            return None
+        else:
+            return self._aux_heat_dps.get_value(self._device)
+
+    async def async_turn_aux_heat_on(self):
+        """Turn on aux heater."""
+        if self._aux_heat_dps is None:
+            raise NotImplementedError()
+        await self._aux_heat_dps.async_set_value(self._device, True)
+
+    async def async_turn_aux_heat_off(self):
+        """Turn off aux heater."""
+        if self._aux_heat_dps is None:
+            raise NotImplementedError()
+        await self._aux_heat_dps.async_set_value(self._device, False)
 
     @property
     def preset_mode(self):
