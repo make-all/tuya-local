@@ -78,7 +78,7 @@ class TestGoldairKoganKAHTPHeater(TuyaDeviceTestCase):
 
     async def test_legacy_set_temperature_with_no_valid_properties(self):
         await self.subject.async_set_temperature(something="else")
-        self.subject._device.async_set_property.assert_not_called
+        self.subject._device.async_set_property.assert_not_called()
 
     async def test_set_target_temperature_succeeds_within_valid_range(self):
         async with assert_device_properties_set(
