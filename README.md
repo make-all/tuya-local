@@ -18,11 +18,11 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
 
 ### Heaters
 
-- Goldair heater models beginning with the code GPPH, GCPV, GECO.
-- Kogan Wi-Fi Convection Panel heaters - KAHTP and KAWFHTP models.
-- Andersson GSH heaters.
-- Eurom heaters.
-- Purline Hoti M100 heaters.
+- Goldair heater models beginning with the code GPPH, GCPV, GECO
+- Kogan Wi-Fi Convection Panel heaters - KAHTP and KAWFHTP models
+- Andersson GSH heater
+- Eurom heater
+- Purline Hoti M100 heater
 
 ### Air Conditioners / Heatpumps
 
@@ -31,11 +31,11 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
 
 ### Pool heaters / heatpumps
 
-- Garden PAC pool heatpumps.
-- Madimack pool heatpumps.
-- Remora pool heatpumps.
-- BWT FI 45 heatpumps.
-- Poolex Silverline and Vertigo heatpumps.
+- Garden PAC pool heatpump
+- Madimack pool heatpump
+- Remora pool heatpump
+- BWT FI 45 heatpump
+- Poolex Silverline and Vertigo heatpump
 - these seem to use two common controllers, and many other Pool heatpumps
   will work using the above configurations.
   Report issues if there are any differences in presets or other features,
@@ -43,28 +43,30 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
   be figured out.
 
 ### Fans
-- Goldair GCPF315 fans
-- Anko HEGSM40 fans
-- Lexy F501 fans
-- Deta fan controllers
+- Goldair GCPF315 fan
+- Anko HEGSM40 fan
+- Lexy F501 fan
+- Deta fan controller
 
 ### Dehumidifiers
-- Goldair GPDH420 dehumidifiers
-- ElectriQ CD20PRO-LE-V2 dehumidifiers
-- ElectriQ CD25PRO-LE-V2 dehumidifiers
-- Kogan SmarterHome 7L Desiccant Dehumidifier
+- Goldair GPDH420 dehumidifier
+- ElectriQ CD20PRO-LE-V2 dehumidifier
+- ElectriQ CD25PRO-LE-V2 dehumidifier
+- ElectriQ DESD9LW dehumidifier
+- Kogan SmarterHome 7L Desiccant dehumidifier
 
 ### Humidifiers
-- Eanons QT-JS2014 Purifying Humidifer
+- Eanons QT-JS2014 Purifying humidifer
 
 ### Thermostats
 - Inkbird ITC306A thermostat smartplug (not fully functional)
 - Beca BHP-6000 Room Heat Pump control Thermostat
+- Awow/Mi-heat TH213 Thermostat
 
 ### SmartPlugs
 - Kogan Single Smartplug with Energy Monitoring
 - Kogan Single Smartplug with Energy Monitoring and USB charging
-- Other brands may work with the above configurations.
+- Other brands may work with the above configurations
 - Simple Switch - a switch only, can be a fallback for many other unsupported devices, to allow just power to be switched on/off.
 
 ---
@@ -221,11 +223,10 @@ You can find these keys the same way as you would for any Tuya local integration
 
 ## Next steps
 
-1. Fallback support for a simple switch device using only a boolean dps 1.  As well as covering the failure mode of the Kogan Switch described in Kogan switch gotchas above, it can also cover basic operation of many other devices that use dps 1 for an on/off switch.
-2. This component needs specs! Once they're written I'm considering submitting it to the HA team for inclusion in standard installations. Please report any issues and feel free to raise pull requests.
-3. This component is partially unit-tested thanks to the upstream project, but there are a few more to complete. Feel free to use existing specs as inspiration and the Sonar Cloud analysis to see where the gaps are.
-4. Once unit tests are complete, the next task is to complete the Home Assistant quality checklist before considering submission to the HA team for inclusion in standard installations.
-5. Discovery seems possible with the new tinytuya library, though the steps to get a local key will most likely remain manual.  Discovery also returns a productKey, which might help make the device detection more reliable where different devices use the same dps mapping but different names for the presets for example.
+1. This component needs specs! Once they're written I'm considering submitting it to the HA team for inclusion in standard installations. Please report any issues and feel free to raise pull requests.
+2. This component is partially unit-tested thanks to the upstream project, but there are a few more to complete. Feel free to use existing specs as inspiration and the Sonar Cloud analysis to see where the gaps are.
+3. Once unit tests are complete, the next task is to complete the Home Assistant quality checklist before considering submission to the HA team for inclusion in standard installations.
+4. Discovery seems possible with the new tinytuya library, though the steps to get a local key will most likely remain manual.  Discovery also returns a productKey, which might help make the device detection more reliable where different devices use the same dps mapping but different names for the presets for example.
 
 Please report any issues and feel free to raise pull requests.
 [Many others](https://github.com/make-all/tuya-local/blob/main/ACKNOWLEDGEMENTS.md) have contributed their help already.

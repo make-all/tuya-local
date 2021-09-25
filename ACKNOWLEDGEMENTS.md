@@ -33,3 +33,5 @@ Further device support has been made with the assistance of users.  Please consi
  - [Uaeguy](https://github.com/Uaeguy) for assistance in supporting Beca BHP-6000 thermostat, and thanks for the coffee!
  - [Johnnybyzhang](https://github.com/Johnnybyzhang) for assistance in supporting Lexy F501 fans.
  - [domgrimm](https://github.com/domgrimm) for assistance in supporting newer models of Kogan heater.
+ - [EKCJ](https://github.com/EKCJ) for contributing support for ElectriQ DESD9LW dehumidifiers.
+ - [ed-holland](https://github.com/ed-holland) for contributing support for Awow TH213 thermostats
