@@ -476,11 +476,17 @@ class TuyaDpsConfig:
             if scale != 1 and isinstance(result, (int, float)):
                 _LOGGER.debug(f"Scaling {result} by {scale}")
                 result = result * scale
+                remap = self._find_map_for_value(result)
+                if remap and "dps_val" in remap and "dps_val" not in mapping:
+                    result = remap["dps_val"]
                 replaced = True
 
             if step and isinstance(result, (int, float)):
                 _LOGGER.debug(f"Stepping {result} to {step}")
                 result = step * round(float(result) / step)
+                remap = self._find_map_for_value(result)
+                if remap and "dps_val" in remap and "dps_val" not in mapping:
+                    result = remap["dps_val"]
                 replaced = True
 
             if replaced:
