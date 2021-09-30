@@ -1,5 +1,6 @@
 from homeassistant.components.fan import SUPPORT_PRESET_MODE
 from homeassistant.components.humidifier import SUPPORT_MODES
+from homeassistant.components.light import COLOR_MODE_ONOFF
 from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import ELECTRIQ_CD20PRO_DEHUMIDIFIER_PAYLOAD
@@ -207,6 +208,9 @@ class TestElectriqCD20ProDehumidifier(TuyaDeviceTestCase):
         ):
             await self.fan.async_set_preset_mode("Oscillate")
             self.subject._device.anticipate_property_value.assert_not_called()
+
+    def test_light_color_mode(self):
+        self.assertEqual(self.light.color_mode, COLOR_MODE_ONOFF)
 
     def test_light_is_on(self):
         self.dps[LIGHT_DPS] = True

@@ -1,6 +1,5 @@
-from homeassistant.components.fan import (
-    SUPPORT_SET_SPEED,
-)
+from homeassistant.components.fan import SUPPORT_SET_SPEED
+from homeassistant.components.light import COLOR_MODE_ONOFF
 
 from homeassistant.const import STATE_UNAVAILABLE
 
@@ -79,6 +78,9 @@ class TestDetaFan(TuyaDeviceTestCase):
         self.dps[LIGHT_TIMER_DPS] = "6"
         self.assertEqual(self.subject.device_state_attributes, {"timer": 5})
         self.assertEqual(self.light.device_state_attributes, {"timer": 6})
+
+    def test_light_color_mode(self):
+        self.assertEqual(self.light.color_mode, COLOR_MODE_ONOFF)
 
     def test_light_is_on(self):
         self.dps[LIGHT_DPS] = True

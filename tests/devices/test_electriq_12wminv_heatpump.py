@@ -9,6 +9,7 @@ from homeassistant.components.climate.const import (
     SUPPORT_SWING_MODE,
     SUPPORT_TARGET_TEMPERATURE,
 )
+from homeassistant.components.light import COLOR_MODE_ONOFF
 from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import ELECTRIQ_12WMINV_HEATPUMP_PAYLOAD
@@ -305,6 +306,9 @@ class TestElectriq12WMINVHeatpump(TuyaDeviceTestCase):
 
     def test_light_state_attributes(self):
         self.assertEqual(self.light.device_state_attributes, {})
+
+    def test_light_color_mode(self):
+        self.assertEqual(self.light.color_mode, COLOR_MODE_ONOFF)
 
     def test_light_is_on(self):
         self.dps[LIGHT_DPS] = True

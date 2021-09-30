@@ -1,5 +1,6 @@
 from homeassistant.components.fan import SUPPORT_PRESET_MODE
 from homeassistant.components.humidifier import SUPPORT_MODES
+from homeassistant.components.light import COLOR_MODE_ONOFF
 from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import ELECTRIQ_DEHUMIDIFIER_PAYLOAD
@@ -223,6 +224,9 @@ class TestElectriqCD25ProDehumidifier(TuyaDeviceTestCase):
     async def test_lock_unlocks(self):
         async with assert_device_properties_set(self.lock._device, {LOCK_DPS: False}):
             await self.lock.async_unlock()
+
+    def test_light_color_mode(self):
+        self.assertEqual(self.light.color_mode, COLOR_MODE_ONOFF)
 
     def test_light_is_on(self):
         self.dps[LIGHT_DPS] = True

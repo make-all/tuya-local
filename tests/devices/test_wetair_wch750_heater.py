@@ -7,7 +7,7 @@ from homeassistant.components.climate.const import (
     SUPPORT_PRESET_MODE,
     SUPPORT_TARGET_TEMPERATURE,
 )
-
+from homeassistant.components.light import COLOR_MODE_BRIGHTNESS
 from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import WETAIR_WCH750_HEATER_PAYLOAD
@@ -202,6 +202,9 @@ class TestWetairWCH750Heater(TuyaDeviceTestCase):
                 "unknown_21": 21,
             },
         )
+
+    def test_light_color_mode(self):
+        self.assertEqual(self.light.color_mode, COLOR_MODE_BRIGHTNESS)
 
     def test_light_is_on(self):
         self.dps[BRIGHTNESS_DPS] = "level0"

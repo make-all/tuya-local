@@ -110,7 +110,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     setup_device(hass, config)
     device_conf = get_config(config[CONF_TYPE])
     if device_conf is None:
-        _LOGGER.error(f"COnfiguration file for {config[CONF_TYPE]} not found.")
+        _LOGGER.error(f"Configuration file for {config[CONF_TYPE]} not found.")
         return False
 
     entities = {}

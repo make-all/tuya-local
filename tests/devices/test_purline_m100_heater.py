@@ -8,6 +8,7 @@ from homeassistant.components.climate.const import (
     SWING_OFF,
     SWING_VERTICAL,
 )
+from homeassistant.components.light import COLOR_MODE_ONOFF
 from homeassistant.components.switch import DEVICE_CLASS_SWITCH
 from homeassistant.const import STATE_UNAVAILABLE
 
@@ -205,6 +206,9 @@ class TestPulineM100Heater(TuyaDeviceTestCase):
             self.subject._device, {SWING_DPS: False}
         ):
             await self.subject.async_set_swing_mode(SWING_OFF)
+
+    def test_light_color_mode(self):
+        self.assertEqual(self.light.color_mode, COLOR_MODE_ONOFF)
 
     def test_light_icon(self):
         self.dps[LIGHTOFF_DPS] = False

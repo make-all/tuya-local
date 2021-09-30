@@ -3,6 +3,7 @@ from homeassistant.components.fan import (
     SUPPORT_PRESET_MODE,
     SUPPORT_SET_SPEED,
 )
+from homeassistant.components.light import COLOR_MODE_ONOFF
 from homeassistant.components.lock import STATE_LOCKED, STATE_UNLOCKED
 from homeassistant.const import STATE_UNAVAILABLE
 
@@ -152,6 +153,9 @@ class TestLexyF501Fan(TuyaDeviceTestCase):
     def test_device_state_attributes(self):
         self.dps[TIMER_DPS] = "5"
         self.assertEqual(self.subject.device_state_attributes, {"timer": 5})
+
+    def test_light_color_mode(self):
+        self.assertEqual(self.light.color_mode, COLOR_MODE_ONOFF)
 
     def test_light_is_on(self):
         self.dps[LIGHT_DPS] = True
