@@ -3,7 +3,13 @@ Platform to control Tuya lights.
 Initially based on the secondary panel lighting control on some climate
 devices, so only providing simple on/off control.
 """
-from homeassistant.components.light import LightEntity
+from homeassistant.components.light import (
+    LightEntity,
+    ATTR_BRIGHTNESS,
+    COLOR_MODE_BRIGHTNESS,
+    COLOR_MODE_ONOFF,
+    COLOR_MODE_UNKNOWN,
+)
 
 from ..device import TuyaLocalDevice
 from ..helpers.device_config import TuyaEntityConfig
@@ -23,7 +29,9 @@ class TuyaLocalLight(LightEntity):
         self._config = config
         self._attr_dps = []
         dps_map = {c.name: c for c in config.dps()}
-        self._switch_dps = dps_map.pop("switch")
+        self._switch_dps = dps_map.pop("switch", None)
+        self._brightness_dps = dps_map.pop("brightness", None)
+
         for d in dps_map.values():
             if not d.hidden:
                 self._attr_dps.append(d)
@@ -63,9 +71,32 @@ class TuyaLocalLight(LightEntity):
             return super().icon
 
     @property
+    def color_mode(self):
+        """Return the color mode of the light"""
+        if self._brightness_dps:
+            return COLOR_MODE_BRIGHTNESS
+        elif self._switch_dps:
+            return COLOR_MODE_ONOFF
+        else:
+            return COLOR_MODE_UNKNOWN
+
+    @property
     def is_on(self):
         """Return the current state."""
-        return self._switch_dps.get_value(self._device)
+        if self._switch_dps:
+            return self._switch_dps.get_value(self._device)
+        elif self._brightness_dps:
+            return self._brightness_dps.get_value(self._device) > 0
+        else:
+            # There shouldn't be lights without control, but if there are, assume always on
+            return True
+
+    @property
+    def brightness(self):
+        """Get the current brightness of the light"""
+        if self._brightness_dps is None:
+            return None
+        return self._brightness_dps.get_value(self._device)
 
     @property
     def device_state_attributes(self):
@@ -75,11 +106,27 @@ class TuyaLocalLight(LightEntity):
             attr[a.name] = a.get_value(self._device)
         return attr
 
-    async def async_turn_on(self):
-        await self._switch_dps.async_set_value(self._device, True)
+    async def async_turn_on(self, **params):
+        settings = {}
+        if self._switch_dps:
+            settings = {
+                **settings,
+                **self._switch_dps.get_values_to_set(self._device, True),
+            }
+
+        if self._brightness_dps:
+            bright = params.get(ATTR_BRIGHTNESS, 255)
+            settings = {
+                **settings,
+                **self._brightness_dps.get_values_to_set(self._device, bright),
+            }
+        await self._device.async_set_properties(settings)
 
     async def async_turn_off(self):
-        await self._switch_dps.async_set_value(self._device, False)
+        if self._switch_dps:
+            await self._switch_dps.async_set_value(self._device, False)
+        elif self._brightness_dps:
+            await self._brightness_dps.async_set_value(self._device, 0)
 
     async def async_toggle(self):
         dps_display_on = self.is_on
