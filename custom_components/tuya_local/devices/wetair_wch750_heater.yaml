@@ -1,0 +1,80 @@
+name: Wetair WCH-750 AL WiFi Heater
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+          icon: "mdi:radiator-disabled"
+        - dps_val: true
+          value: heat
+          icon: "mdi:radiator"
+      name: hvac_mode
+    - id: 2
+      type: integer
+      range:
+        min: 5
+        max: 35
+      mapping:
+        - constraint: preset_mode
+          conditions:
+            - dps_val: mod_antiforst
+              invalid: true
+      name: temperature
+    - id: 4
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: "mod_free"
+          value: "comfort"
+        - dps_val: "mod_max12h"
+          value: "boost"
+        - dps_val: "mod_antiforst"
+          value: "away"
+    - id: 11
+      type: string
+      name: hvac_action
+      readonly: true
+      mapping:
+        - dps_val: heating
+          constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: heating
+        - dps_val: warm
+          constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: idle
+    - id: 19
+      type: string
+      name: timer
+    - id: 20
+      type: integer
+      name: countdown
+    - id: 21
+      type: integer
+      name: unknown_21
+secondary_entities:
+  - entity: light
+    name: Display
+    dps:
+      - id: 101
+        type: string
+        name: brightness
+        mapping:
+          - dps_val: level0
+            value: 0
+          - dps_val: level1
+            value: 85
+          - dps_val: level2
+            value: 170
+          - dps_val: level3
+            value: 255
+          - step: 85

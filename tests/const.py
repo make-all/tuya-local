@@ -348,3 +348,14 @@ TH213_THERMOSTAT_PAYLOAD = {
     "108": False,
     "110": 0,
 }
+
+WETAIR_WCH750_HEATER_PAYLOAD = {
+    "1": False,
+    "2": 17,
+    "4": "mod_free",
+    "11": "heating",
+    "19": "0h",
+    "20": 0,
+    "21": 0,
+    "101": "level1",
+}

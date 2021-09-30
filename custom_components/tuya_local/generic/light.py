@@ -116,9 +116,10 @@ class TuyaLocalLight(LightEntity):
 
         if self._brightness_dps:
             bright = params.get(ATTR_BRIGHTNESS, 255)
+            bright_values = self._brightness_dps.get_values_to_set(self._device, bright)
             settings = {
                 **settings,
-                **self._brightness_dps.get_values_to_set(self._device, bright),
+                **bright_values,
             }
         await self._device.async_set_properties(settings)
 
