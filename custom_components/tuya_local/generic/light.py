@@ -86,7 +86,8 @@ class TuyaLocalLight(LightEntity):
         if self._switch_dps:
             return self._switch_dps.get_value(self._device)
         elif self._brightness_dps:
-            return self._brightness_dps.get_value(self._device) > 0
+            b = self.brightness
+            return isinstance(b, int) and b > 0
         else:
             # There shouldn't be lights without control, but if there are, assume always on
             return True
