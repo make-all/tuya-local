@@ -206,6 +206,9 @@ class TestWetairWCH750Heater(TuyaDeviceTestCase):
     def test_light_color_mode(self):
         self.assertEqual(self.light.color_mode, COLOR_MODE_BRIGHTNESS)
 
+    def test_light_icon(self):
+        self.assertEqual(self.light.icon, None)
+
     def test_light_is_on(self):
         self.dps[BRIGHTNESS_DPS] = "level0"
         self.assertEqual(self.light.is_on, False)
@@ -216,6 +219,10 @@ class TestWetairWCH750Heater(TuyaDeviceTestCase):
         self.assertEqual(self.light.is_on, True)
         self.dps[BRIGHTNESS_DPS] = "level3"
         self.assertEqual(self.light.is_on, True)
+        # Test the case where device is not ready does not cause errors that
+        # would prevent initialization.
+        self.dps[BRIGHTNESS_DPS] = None
+        self.assertEqual(self.light.is_on, False)
 
     def test_light_brightness(self):
         self.dps[BRIGHTNESS_DPS] = "level0"
