@@ -63,7 +63,7 @@ class TestWetairWCH750Heater(TuyaDeviceTestCase):
         self.assertEqual(self.subject.target_temperature_step, 1)
 
     def test_minimum_temperature(self):
-        self.assertEqual(self.subject.min_temp, 5)
+        self.assertEqual(self.subject.min_temp, 10)
 
     def test_maximum_temperature(self):
         self.assertEqual(self.subject.max_temp, 35)
@@ -108,12 +108,12 @@ class TestWetairWCH750Heater(TuyaDeviceTestCase):
 
     async def test_set_target_temperature_fails_outside_valid_range(self):
         with self.assertRaisesRegex(
-            ValueError, "temperature \\(4\\) must be between 5 and 35"
+            ValueError, "temperature \\(9\\) must be between 10 and 35"
         ):
-            await self.subject.async_set_target_temperature(4)
+            await self.subject.async_set_target_temperature(9)
 
         with self.assertRaisesRegex(
-            ValueError, "temperature \\(36\\) must be between 5 and 35"
+            ValueError, "temperature \\(36\\) must be between 10 and 35"
         ):
             await self.subject.async_set_target_temperature(36)
 
