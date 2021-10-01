@@ -188,6 +188,17 @@ class TestGoldairHeater(TuyaDeviceTestCase):
         self.dps[CURRENTTEMP_DPS] = 25
         self.assertEqual(self.subject.current_temperature, 25)
 
+    def test_humidity_unsupported(self):
+        self.assertIsNone(self.subject.min_humidity)
+        self.assertIsNone(self.subject.max_humidity)
+        self.assertIsNone(self.subject.current_humidity)
+        with self.assertRaises(NotImplementedError):
+            self.subject.target_humidity
+
+    async def test_set_humidity_unsupported(self):
+        with self.assertRaises(NotImplementedError):
+            await self.subject.async_set_humidity(50)
+
     def test_hvac_mode(self):
         self.dps[HVACMODE_DPS] = True
         self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT)
