@@ -8,8 +8,11 @@ from homeassistant.components.climate.const import (
     HVAC_MODE_COOL,
     HVAC_MODE_HEAT,
     HVAC_MODE_OFF,
-    SUPPORT_TARGET_TEMPERATURE,
+    PRESET_AWAY,
+    PRESET_HOME,
     SUPPORT_FAN_MODE,
+    SUPPORT_PRESET_MODE,
+    SUPPORT_TARGET_TEMPERATURE,
 )
 from homeassistant.const import STATE_UNAVAILABLE, TEMP_CELSIUS, TEMP_FAHRENHEIT
 from unittest.mock import ANY
@@ -24,8 +27,8 @@ CURRENTTEMP_DPS = "3"
 HVACACTION_DPS = "4"
 FAN_DPS = "5"
 UNITS_DPS = "19"
-UNKNOWN101_DPS = "101"
-UNKNOWN102_DPS = "102"
+AWAY_DPS = "101"
+PROGRAM_DPS = "102"
 HVACMODE_DPS = "103"
 UNKNOWN112_DPS = "112"
 UNKNOWN113_DPS = "113"
@@ -47,7 +50,7 @@ class TestSaswellT29UTKThermostat(TuyaDeviceTestCase):
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_TARGET_TEMPERATURE | SUPPORT_FAN_MODE,
+            SUPPORT_TARGET_TEMPERATURE | SUPPORT_FAN_MODE | SUPPORT_PRESET_MODE,
         )
 
     def test_icon(self):
@@ -182,9 +185,45 @@ class TestSaswellT29UTKThermostat(TuyaDeviceTestCase):
         ):
             await self.subject.async_set_fan_mode(FAN_AUTO)
 
+    def test_preset_mode(self):
+        self.dps[AWAY_DPS] = False
+        self.dps[PROGRAM_DPS] = False
+        self.assertEqual(self.subject.preset_mode, PRESET_HOME)
+        self.dps[PROGRAM_DPS] = True
+        self.assertEqual(self.subject.preset_mode, "Program")
+        self.dps[AWAY_DPS] = True
+        self.assertEqual(self.subject.preset_mode, PRESET_AWAY)
+        self.dps[PROGRAM_DPS] = False
+        self.assertEqual(self.subject.preset_mode, PRESET_AWAY)
+
+    def test_preset_modes(self):
+        self.assertCountEqual(
+            self.subject.preset_modes,
+            [PRESET_HOME, PRESET_AWAY, "Program"],
+        )
+
+    async def test_set_preset_to_away(self):
+        async with assert_device_properties_set(
+            self.subject._device,
+            {AWAY_DPS: True},
+        ):
+            await self.subject.async_set_preset_mode(PRESET_AWAY)
+
+    async def test_set_preset_to_home(self):
+        async with assert_device_properties_set(
+            self.subject._device,
+            {AWAY_DPS: False, PROGRAM_DPS: False},
+        ):
+            await self.subject.async_set_preset_mode(PRESET_HOME)
+
+    async def test_set_preset_to_program(self):
+        async with assert_device_properties_set(
+            self.subject._device,
+            {AWAY_DPS: False, PROGRAM_DPS: True},
+        ):
+            await self.subject.async_set_preset_mode("Program")
+
     def test_device_state_attributes(self):
-        self.dps[UNKNOWN101_DPS] = True
-        self.dps[UNKNOWN102_DPS] = False
         self.dps[UNKNOWN112_DPS] = "unknown112"
         self.dps[UNKNOWN113_DPS] = 113
         self.dps[TEMPC_DPS] = 114
@@ -195,8 +234,6 @@ class TestSaswellT29UTKThermostat(TuyaDeviceTestCase):
         self.assertCountEqual(
             self.subject.device_state_attributes,
             {
-                "unknown_101": True,
-                "unknown_102": False,
                 "unknown_112": "unknown112",
                 "unknown_113": 113,
                 "temperature_c": 114,

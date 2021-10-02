@@ -67,11 +67,22 @@ primary_entity:
         - dps_val: c
           value: C
     - id: 101
-      name: unknown_101
+      name: preset_mode
       type: boolean
+      mapping:
+        - dps_val: true
+          value: away
+        - dps_val: false
+          constraint: program
+          conditions:
+            - dps_val: true
+              value: "Program"
+            - dps_val: false
+              value: home
     - id: 102
-      name: unknown_102
+      name: program
       type: boolean
+      hidden: true
     - id: 103
       name: hvac_mode
       type: string
