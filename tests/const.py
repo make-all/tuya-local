@@ -359,3 +359,21 @@ WETAIR_WCH750_HEATER_PAYLOAD = {
     "21": 0,
     "101": "level1",
 }
+
+SASWELL_T29UTK_THERMOSTAT_PAYLOAD = {
+    "1": True,
+    "2": 240,
+    "3": 241,
+    "4": "cold",
+    "5": "auto",
+    "19": "c",
+    "101": False,
+    "102": False,
+    "103": "cold",
+    "112": "1",
+    "113": 0,
+    "114": 24,
+    "115": 24,
+    "116": 75,
+    "117": 81,
+}
