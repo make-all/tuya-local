@@ -23,6 +23,7 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
 - Andersson GSH heater
 - Eurom heater
 - Purline Hoti M100 heater
+- Wetair WCH-750 heater
 
 ### Air Conditioners / Heatpumps
 
@@ -62,6 +63,7 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
 - Inkbird ITC306A thermostat smartplug (not fully functional)
 - Beca BHP-6000 Room Heat Pump control Thermostat
 - Awow/Mi-heat TH213 Thermostat
+- Siswell T29UTW Thermostat
 
 ### SmartPlugs
 - Kogan Single Smartplug with Energy Monitoring
