@@ -375,20 +375,20 @@ class TuyaLocalClimate(ClimateEntity):
 
     @property
     def fan_mode(self):
-        """Return the current swing mode."""
+        """Return the current fan mode."""
         if self._fan_mode_dps is None:
             raise NotImplementedError()
         return self._fan_mode_dps.get_value(self._device)
 
     @property
     def fan_modes(self):
-        """Return the list of swing modes that this device supports."""
+        """Return the list of fan modes that this device supports."""
         if self._fan_mode_dps is None:
             return None
         return self._fan_mode_dps.values(self._device)
 
     async def async_set_fan_mode(self, fan_mode):
-        """Set the preset mode."""
+        """Set the fan mode."""
         if self._fan_mode_dps is None:
             raise NotImplementedError()
         await self._fan_mode_dps.async_set_value(self._device, fan_mode)
