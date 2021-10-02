@@ -63,15 +63,15 @@ class TestHellnarHeatpump(TuyaDeviceTestCase):
 
     def test_minimum_target_temperature(self):
         self.dps[HVACMODE_DPS] = "cold"
-        self.assertEqual(self.subject.min_temp, 170)
+        self.assertEqual(self.subject.min_temp, 17.0)
         self.dps[HVACMODE_DPS] = "hot"
-        self.assertEqual(self.subject.min_temp, 0)
+        self.assertEqual(self.subject.min_temp, 0.0)
 
     def test_maximum_target_temperature(self):
         self.dps[HVACMODE_DPS] = "cold"
-        self.assertEqual(self.subject.max_temp, 300)
+        self.assertEqual(self.subject.max_temp, 30.0)
         self.dps[HVACMODE_DPS] = "hot"
-        self.assertEqual(self.subject.max_temp, 300)
+        self.assertEqual(self.subject.max_temp, 30.0)
 
     async def test_legacy_set_temperature_with_temperature(self):
         self.dps[HVACMODE_DPS] = "auto"
@@ -96,15 +96,15 @@ class TestHellnarHeatpump(TuyaDeviceTestCase):
     async def test_set_target_temperature_fails_outside_valid_range(self):
         self.dps[HVACMODE_DPS] = "cold"
         with self.assertRaisesRegex(
-            ValueError, "temperature \\(150\\) must be between 170 and 300"
+            ValueError, "temperature \\(15\\) must be between 17.0 and 30.0"
         ):
             await self.subject.async_set_target_temperature(15)
 
         self.dps[HVACMODE_DPS] = "hot"
         with self.assertRaisesRegex(
-            ValueError, "temperature \\(330\\) must be between 0 and 300"
+            ValueError, "temperature \\(31\\) must be between 0.0 and 30.0"
         ):
-            await self.subject.async_set_target_temperature(33)
+            await self.subject.async_set_target_temperature(31)
 
     def test_current_temperature(self):
         self.dps[CURRENTTEMP_DPS] = 25

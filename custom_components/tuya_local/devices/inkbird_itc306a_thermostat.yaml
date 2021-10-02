@@ -37,6 +37,16 @@ primary_entity:
       name: target_temp_low
       mapping:
         - scale: 10
+          constraint: temperature_unit
+          conditions:
+            - dps_val: "C"
+              range:
+                min: 200
+                max: 350
+            - dps_val: "F"
+              range:
+                min: 680
+                max: 950
     - id: 108
       type: integer
       name: heat_time_alarm_threshold_hours
@@ -76,6 +86,16 @@ primary_entity:
       name: target_temp_high
       mapping:
         - scale: 10
+          constraint: temperature_unit
+          conditions:
+            - dps_val: "C"
+              range:
+                min: 200
+                max: 350
+            - dps_val: "F"
+              range:
+                min: 680
+                max: 950
     - id: 115
       type: boolean
       name: switch_state

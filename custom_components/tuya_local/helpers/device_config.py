@@ -32,6 +32,13 @@ def _typematch(type, value):
     return False
 
 
+def _scale_range(r, s):
+    "Scale range r by factor s"
+    if s == 1:
+        return r
+    return {"min": r["min"] / s, "max": r["max"] / s}
+
+
 class TuyaDeviceConfig:
     """Representation of a device config for Tuya Local devices."""
 
@@ -279,26 +286,31 @@ class TuyaDpsConfig:
         _LOGGER.debug(f"{self.name} values: {val}")
         return list(set(val)) if val else None
 
-    def range(self, device):
+    def range(self, device, scaled=True):
         """Return the range for this dps if configured."""
         mapping = self._find_map_for_dps(device.get_property(self.id))
+        scale = 1
         if mapping:
             _LOGGER.debug(f"Considering mapping for range of {self.name}")
+            if scaled:
+                scale = mapping.get("scale", scale)
             cond = self._active_condition(mapping, device)
             if cond:
                 constraint = mapping.get("constraint")
+                if scaled:
+                    scale = mapping.get("scale", scale)
                 _LOGGER.debug(f"Considering condition on {constraint}")
             r = None if cond is None else cond.get("range")
             if r and "min" in r and "max" in r:
                 _LOGGER.info(f"Conditional range returned for {self.name}")
-                return r
+                return _scale_range(r, scale)
             r = mapping.get("range")
             if r and "min" in r and "max" in r:
                 _LOGGER.info(f"Mapped range returned for {self.name}")
-                return r
+                return _scale_range(r, scale)
         r = self._config.get("range")
         if r and "min" in r and "max" in r:
-            return r
+            return _scale_range(r, scale)
         else:
             return None
 
@@ -498,13 +510,17 @@ class TuyaDpsConfig:
                     value,
                 )
 
-        r = self.range(device)
+        r = self.range(device, scaled=False)
         if r:
             minimum = r["min"]
             maximum = r["max"]
             if result < minimum or result > maximum:
+                # Output scaled values in the error message
+                r = self.range(device, scaled=True)
+                minimum = r["min"]
+                maximum = r["max"]
                 raise ValueError(
-                    f"{self.name} ({result}) must be between {minimum} and {maximum}"
+                    f"{self.name} ({value}) must be between {minimum} and {maximum}"
                 )
 
         if self.type is int:

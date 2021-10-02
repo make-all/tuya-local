@@ -196,16 +196,22 @@ class TuyaLocalClimate(ClimateEntity):
     def min_temp(self):
         """Return the minimum supported target temperature."""
         if self._temperature_dps is None:
-            return None
-        r = self._temperature_dps.range(self._device)
+            if self._temp_low_dps is None:
+                return None
+            r = self._temp_low_dps.range(self._device)
+        else:
+            r = self._temperature_dps.range(self._device)
         return DEFAULT_MIN_TEMP if r is None else r["min"]
 
     @property
     def max_temp(self):
         """Return the maximum supported target temperature."""
         if self._temperature_dps is None:
-            return None
-        r = self._temperature_dps.range(self._device)
+            if self._temp_high_dps is None:
+                return None
+            r = self._temp_high_dps.range(self._device)
+        else:
+            r = self._temperature_dps.range(self._device)
         return DEFAULT_MAX_TEMP if r is None else r["max"]
 
     async def async_set_temperature(self, **kwargs):

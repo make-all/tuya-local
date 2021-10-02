@@ -133,6 +133,18 @@ class TestInkbirdThermostat(TuyaDeviceTestCase):
         self.dps[UNIT_DPS] = "C"
         self.assertEqual(self.subject.temperature_unit, TEMP_CELSIUS)
 
+    def test_minimum_target_temperature(self):
+        self.dps[UNIT_DPS] = "C"
+        self.assertEqual(self.subject.min_temp, 20.0)
+        self.dps[UNIT_DPS] = "F"
+        self.assertEqual(self.subject.min_temp, 68.0)
+
+    def test_maximum_target_temperature(self):
+        self.dps[UNIT_DPS] = "C"
+        self.assertEqual(self.subject.max_temp, 35.0)
+        self.dps[UNIT_DPS] = "F"
+        self.assertEqual(self.subject.max_temp, 95.0)
+
     def test_temperature_range(self):
         self.dps[TEMPHIGH_DPS] = 301
         self.dps[TEMPLOW_DPS] = 255
@@ -149,6 +161,23 @@ class TestInkbirdThermostat(TuyaDeviceTestCase):
         ):
             await self.subject.async_set_temperature(
                 target_temp_high=32.2, target_temp_low=26.6
+            )
+
+    async def test_set_target_temperature_fails_outside_valid_range(self):
+        self.dps[UNIT_DPS] = "C"
+        with self.assertRaisesRegex(
+            ValueError, "target_temp_low \\(19.9\\) must be between 20.0 and 35.0"
+        ):
+            await self.subject.async_set_temperature(
+                target_temp_high=32.2, target_temp_low=19.9
+            )
+
+        self.dps[UNIT_DPS] = "F"
+        with self.assertRaisesRegex(
+            ValueError, "target_temp_high \\(95.1\\) must be between 68.0 and 95.0"
+        ):
+            await self.subject.async_set_temperature(
+                target_temp_low=70.0, target_temp_high=95.1
             )
 
     def test_device_state_attributes(self):
