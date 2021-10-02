@@ -22,7 +22,7 @@ from ..helpers import assert_device_properties_set
 from .base_device_tests import TuyaDeviceTestCase
 
 POWER_DPS = "1"
-TEMPERATURE_DPS = "2"
+SETTEMP_DPS = "2"
 CURRENTTEMP_DPS = "3"
 HVACACTION_DPS = "4"
 FAN_DPS = "5"
@@ -32,7 +32,7 @@ PROGRAM_DPS = "102"
 HVACMODE_DPS = "103"
 UNKNOWN112_DPS = "112"
 UNKNOWN113_DPS = "113"
-TEMPC_DPS = "114"
+TEMPERATURE_DPS = "114"
 CURTEMPC_DPS = "115"
 TEMPF_DPS = "116"
 CURTEMPF_DPS = "117"
@@ -75,13 +75,14 @@ class TestSaswellT29UTKThermostat(TuyaDeviceTestCase):
         self.assertEqual(self.subject.temperature_unit, TEMP_FAHRENHEIT)
 
     def test_target_temperature(self):
-        self.dps[TEMPERATURE_DPS] = 250
-        self.assertEqual(self.subject.target_temperature, 25.0)
+        self.dps[UNITS_DPS] = "c"
+        self.dps[TEMPERATURE_DPS] = 25
+        self.dps[TEMPF_DPS] = 75
+        self.assertEqual(self.subject.target_temperature, 25)
+        self.dps[UNITS_DPS] = "f"
+        self.assertEqual(self.subject.target_temperature, 75)
 
     def test_target_temperature_step(self):
-        self.dps[UNITS_DPS] = "c"
-        self.assertEqual(self.subject.target_temperature_step, 0.5)
-        self.dps[UNITS_DPS] = "f"
         self.assertEqual(self.subject.target_temperature_step, 1)
 
     def test_minimum_target_temperature(self):
@@ -91,22 +92,24 @@ class TestSaswellT29UTKThermostat(TuyaDeviceTestCase):
         self.assertEqual(self.subject.max_temp, 35)
 
     async def test_set_target_temperature(self):
+        self.dps[UNITS_DPS] = "c"
         async with assert_device_properties_set(
             self.subject._device,
-            {TEMPERATURE_DPS: 245},
+            {TEMPERATURE_DPS: 24},
         ):
-            await self.subject.async_set_target_temperature(24.5)
+            await self.subject.async_set_target_temperature(24)
 
-    async def test_set_target_temperature_rounds_value_to_half_degrees(self):
+    async def test_set_target_temperature_f(self):
+        self.dps[UNITS_DPS] = "f"
         async with assert_device_properties_set(
             self.subject._device,
-            {TEMPERATURE_DPS: 245},
+            {TEMPF_DPS: 74},
         ):
-            await self.subject.async_set_target_temperature(24.6)
+            await self.subject.async_set_target_temperature(74)
 
     async def test_set_target_temperature_fails_outside_valid_range(self):
         with self.assertRaisesRegex(
-            ValueError, "temperature \\(4\\) must be between 5.0 and 35.0"
+            ValueError, "temperature \\(4\\) must be between 5 and 35"
         ):
             await self.subject.async_set_target_temperature(4)
 
@@ -224,9 +227,9 @@ class TestSaswellT29UTKThermostat(TuyaDeviceTestCase):
             await self.subject.async_set_preset_mode("Program")
 
     def test_device_state_attributes(self):
+        self.dps[SETTEMP_DPS] = 2
         self.dps[UNKNOWN112_DPS] = "unknown112"
         self.dps[UNKNOWN113_DPS] = 113
-        self.dps[TEMPC_DPS] = 114
         self.dps[CURTEMPC_DPS] = 115
         self.dps[TEMPF_DPS] = 116
         self.dps[CURTEMPF_DPS] = 117
@@ -234,9 +237,9 @@ class TestSaswellT29UTKThermostat(TuyaDeviceTestCase):
         self.assertCountEqual(
             self.subject.device_state_attributes,
             {
+                "set_temperature": 0.2,
                 "unknown_112": "unknown112",
                 "unknown_113": 113,
-                "temperature_c": 114,
                 "current_temperature_c": 115,
                 "temperature_f": 116,
                 "current_temperature_f": 117,
