@@ -26,7 +26,7 @@ primary_entity:
         - dps_val: cold
           value: cooling
           icon: "mdi:thermometer-minus"
-        - dps_val: heat
+        - dps_val: hot
           value: heating
           icon: "mdi:thermometer-plus"
         - dps_val: "off"
@@ -82,7 +82,7 @@ primary_entity:
               value_redirect: power
             - dps_val: true
               value: cool
-        - dps_val: heat
+        - dps_val: hot
           constraint: power
           conditions:
             - dps_val: false
