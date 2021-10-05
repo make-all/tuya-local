@@ -1,0 +1,104 @@
+name: FERSK VIND 2 WIFI HEPA
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: power
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+          icon: "mdi:hvac-off"
+          icon_priority: 1
+      hidden: true
+    - id: 2
+      name: temperature
+      type: integer
+      range:
+        min: 16
+        max: 32
+    - id: 3
+      name: current_temperature
+      type: integer
+    - id: 4
+      name: hvac_mode
+      type: string
+      mapping:
+        - dps_val: COOL
+          icon: "mdi:snowflake"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: cool
+        - dps_val: FAN
+          icon: "mdi:fan"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: fan_only
+        - dps_val: DRY
+          icon: "mdi:water"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: dry
+        - dps_val: HEAT
+          icon: "mdi:fire"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: heat
+    - id: 5
+      name: fan_mode
+      type: integer
+      mapping:
+        - dps_val: 1
+          value: "low"
+        - dps_val: 2
+          value: "medium"
+        - dps_val: 3
+          value: "high"
+    - id: 19
+      name: temperature_unit
+      type: string
+    - id: 101
+      name: unknown_101
+      type: boolean
+    - id: 102
+      name: unknown_102
+      type: boolean
+    - id: 103
+      name: timer
+      type: integer
+    - id: 104
+      name: swing_mode
+      type: boolean
+      mapping:
+        - dps_val: true
+          value: "on"
+        - dps_val: false
+          value: "off"
+    - id: 105
+      name: timer_time_left
+      type: integer
+    - id: 106
+      name: unknown_106
+      type: integer
+    - id: 109
+      name: unknown_109
+      type: boolean
+    - id: 110
+      name: unknown_110
+      type: integer
