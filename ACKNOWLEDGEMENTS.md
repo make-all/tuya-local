@@ -36,3 +36,4 @@ Further device support has been made with the assistance of users.  Please consi
  - [EKCJ](https://github.com/EKCJ) for contributing support for ElectriQ DESD9LW dehumidifiers.
  - [ed-holland](https://github.com/ed-holland) for contributing support for Awow TH213 thermostats
  - [Vikedlol](https://github.com/Vikedlol) for assistance in supporting Wetair WCH-750 heaters.
+ - [wwalczyszyn](https://github.com/wwalczyszyn) for contributing support for Fersk Vind 2 heatpumps.

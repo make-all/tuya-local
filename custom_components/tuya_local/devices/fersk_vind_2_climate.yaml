@@ -14,9 +14,17 @@ primary_entity:
     - id: 2
       name: temperature
       type: integer
-      range:
-        min: 16
-        max: 32
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: "C"
+              range:
+                min: 16
+                max: 32
+            - dps_val: "F"
+              range:
+                min: 60
+                max: 90
     - id: 3
       name: current_temperature
       type: integer
@@ -30,7 +38,7 @@ primary_entity:
           constraint: power
           conditions:
             - dps_val: false
-              value: "off"
+              value_redirect: power
             - dps_val: true
               value: cool
         - dps_val: FAN
@@ -39,6 +47,7 @@ primary_entity:
           constraint: power
           conditions:
             - dps_val: false
+              value_redirect: power
               value: "off"
             - dps_val: true
               value: fan_only
@@ -48,7 +57,7 @@ primary_entity:
           constraint: power
           conditions:
             - dps_val: false
-              value: "off"
+              value_redirect: power
             - dps_val: true
               value: dry
         - dps_val: HEAT
@@ -57,7 +66,7 @@ primary_entity:
           constraint: power
           conditions:
             - dps_val: false
-              value: "off"
+              value_redirect: power
             - dps_val: true
               value: heat
     - id: 5
@@ -87,11 +96,11 @@ primary_entity:
       type: boolean
       mapping:
         - dps_val: true
-          value: "on"
+          value: "vertical"
         - dps_val: false
           value: "off"
     - id: 105
-      name: timer_time_left
+      name: countdown
       type: integer
     - id: 106
       name: unknown_106

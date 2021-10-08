@@ -29,6 +29,7 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
 
 - ElectriQ 12WMINV
 - Tadiran Wind 65/3P
+- Fersk Vind 2
 
 ### Pool heaters / heatpumps
 

@@ -377,3 +377,20 @@ SASWELL_T29UTK_THERMOSTAT_PAYLOAD = {
     "116": 75,
     "117": 81,
 }
+
+FERSK_VIND2_PAYLOAD = {
+    "1": True,
+    "2": 22,
+    "3": 23,
+    "4": "COOL",
+    "5": 1,
+    "19": "C",
+    "101": False,
+    "102": False,
+    "103": 0,
+    "104": False,
+    "105": 0,
+    "106": 0,
+    "109": False,
+    "110": 0,
+}

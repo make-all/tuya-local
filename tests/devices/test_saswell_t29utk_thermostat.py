@@ -58,7 +58,7 @@ class TestSaswellT29UTKThermostat(TuyaDeviceTestCase):
         self.dps[HVACACTION_DPS] = "cold"
         self.assertEqual(self.subject.icon, "mdi:thermometer-minus")
 
-        self.dps[HVACACTION_DPS] = "heat"
+        self.dps[HVACACTION_DPS] = "hot"
         self.assertEqual(self.subject.icon, "mdi:thermometer-plus")
 
         self.dps[HVACACTION_DPS] = "off"
@@ -125,7 +125,7 @@ class TestSaswellT29UTKThermostat(TuyaDeviceTestCase):
         self.dps[POWER_DPS] = True
         self.assertEqual(self.subject.hvac_mode, HVAC_MODE_COOL)
 
-        self.dps[HVACMODE_DPS] = "heat"
+        self.dps[HVACMODE_DPS] = "hot"
         self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT)
 
     def test_hvac_modes(self):
@@ -148,7 +148,7 @@ class TestSaswellT29UTKThermostat(TuyaDeviceTestCase):
 
     async def test_set_hvac_mode_heat(self):
         async with assert_device_properties_set(
-            self.subject._device, {POWER_DPS: True, HVACMODE_DPS: "heat"}
+            self.subject._device, {POWER_DPS: True, HVACMODE_DPS: "hot"}
         ):
             await self.subject.async_set_hvac_mode(HVAC_MODE_HEAT)
 
@@ -157,7 +157,7 @@ class TestSaswellT29UTKThermostat(TuyaDeviceTestCase):
         self.dps[HVACACTION_DPS] = "cold"
         self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_COOL)
 
-        self.dps[HVACACTION_DPS] = "heat"
+        self.dps[HVACACTION_DPS] = "hot"
         self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_HEAT)
         self.dps[HVACACTION_DPS] = "off"
         self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_IDLE)
