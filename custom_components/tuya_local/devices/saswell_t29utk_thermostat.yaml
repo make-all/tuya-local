@@ -50,9 +50,9 @@ primary_entity:
       name: temperature_unit
       type: string
       mapping:
-        - dps_val: f
+        - dps_val: F
           value: F
-        - dps_val: c
+        - dps_val: C
           value: C
     - id: 101
       name: preset_mode
@@ -102,11 +102,11 @@ primary_entity:
       mapping:
         - constraint: temperature_unit
           conditions:
-            - dps_val: c
+            - dps_val: C
               range:
                 min: 5
                 max: 35
-            - dps_val: f
+            - dps_val: F
               value_redirect: temperature_f
               range:
                 min: 41

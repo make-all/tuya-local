@@ -68,31 +68,37 @@ class TestSaswellT29UTKThermostat(TuyaDeviceTestCase):
         self.assertEqual(self.subject.icon, "mdi:thermometer-off")
 
     def test_temperature_unit(self):
-        self.dps[UNITS_DPS] = "c"
+        self.dps[UNITS_DPS] = "C"
         self.assertEqual(self.subject.temperature_unit, TEMP_CELSIUS)
 
-        self.dps[UNITS_DPS] = "f"
+        self.dps[UNITS_DPS] = "F"
         self.assertEqual(self.subject.temperature_unit, TEMP_FAHRENHEIT)
 
     def test_target_temperature(self):
-        self.dps[UNITS_DPS] = "c"
+        self.dps[UNITS_DPS] = "C"
         self.dps[TEMPERATURE_DPS] = 25
         self.dps[TEMPF_DPS] = 75
         self.assertEqual(self.subject.target_temperature, 25)
-        self.dps[UNITS_DPS] = "f"
+        self.dps[UNITS_DPS] = "F"
         self.assertEqual(self.subject.target_temperature, 75)
 
     def test_target_temperature_step(self):
         self.assertEqual(self.subject.target_temperature_step, 1)
 
     def test_minimum_target_temperature(self):
+        self.dps[UNITS_DPS] = "C"
         self.assertEqual(self.subject.min_temp, 5)
+        self.dps[UNITS_DPS] = "F"
+        self.assertEqual(self.subject.min_temp, 41)
 
     def test_maximum_target_temperature(self):
+        self.dps[UNITS_DPS] = "C"
         self.assertEqual(self.subject.max_temp, 35)
+        self.dps[UNITS_DPS] = "F"
+        self.assertEqual(self.subject.max_temp, 95)
 
     async def test_set_target_temperature(self):
-        self.dps[UNITS_DPS] = "c"
+        self.dps[UNITS_DPS] = "C"
         async with assert_device_properties_set(
             self.subject._device,
             {TEMPERATURE_DPS: 24},
@@ -100,7 +106,7 @@ class TestSaswellT29UTKThermostat(TuyaDeviceTestCase):
             await self.subject.async_set_target_temperature(24)
 
     async def test_set_target_temperature_f(self):
-        self.dps[UNITS_DPS] = "f"
+        self.dps[UNITS_DPS] = "F"
         async with assert_device_properties_set(
             self.subject._device,
             {TEMPF_DPS: 74},

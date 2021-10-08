@@ -366,7 +366,7 @@ SASWELL_T29UTK_THERMOSTAT_PAYLOAD = {
     "3": 241,
     "4": "cold",
     "5": "auto",
-    "19": "c",
+    "19": "C",
     "101": False,
     "102": False,
     "103": "cold",
