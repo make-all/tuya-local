@@ -66,6 +66,9 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
 - Awow/Mi-heat TH213 Thermostat
 - Siswell T29UTW Thermostat
 
+### Kettles
+- Kogan Glass 1.7L Smart Kettle
+
 ### SmartPlugs
 - Kogan Single Smartplug with Energy Monitoring
 - Kogan Single Smartplug with Energy Monitoring and USB charging

@@ -394,3 +394,9 @@ FERSK_VIND2_PAYLOAD = {
     "109": False,
     "110": 0,
 }
+
+KOGAN_GLASS_1_7L_KETTLE_PAYLOAD = {
+    "1": False,
+    "5": 99,
+    "102": "90",
+}
