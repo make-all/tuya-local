@@ -209,6 +209,12 @@ class TestElectriqCD20ProDehumidifier(TuyaDeviceTestCase):
             await self.fan.async_set_preset_mode("Oscillate")
             self.subject._device.anticipate_property_value.assert_not_called()
 
+    def test_light_supported_color_modes(self):
+        self.assertCountEqual(
+            self.light.supported_color_modes,
+            [COLOR_MODE_ONOFF],
+        )
+
     def test_light_color_mode(self):
         self.assertEqual(self.light.color_mode, COLOR_MODE_ONOFF)
 

@@ -207,6 +207,12 @@ class TestPulineM100Heater(TuyaDeviceTestCase):
         ):
             await self.subject.async_set_swing_mode(SWING_OFF)
 
+    def test_light_supported_color_modes(self):
+        self.assertCountEqual(
+            self.light.supported_color_modes,
+            [COLOR_MODE_ONOFF],
+        )
+
     def test_light_color_mode(self):
         self.assertEqual(self.light.color_mode, COLOR_MODE_ONOFF)
 

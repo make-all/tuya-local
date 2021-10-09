@@ -20,15 +20,13 @@ The name should also indicate to the user what type of device it is.
 
 ### `legacy_type`
 
-The `legacy_type` is a transitional link back to the device specific
-type enumeration that is used in the old device discovery and creation
-process. This allows a gradual transition to the new way of handling
-devices.  It is required only for devices that exist before the
-completion of migratation to generic device classes. It is recommended
-that any addition of new devices is deferred until the migration is
-complete, as during the transition period it will be neccesary to add
-both old device specific classes and device configuration files for
-any new devices.
+// Optional, deprecated. //
+
+The `legacy_type` is a transitional link back to an old name the device
+was known by.  It is used in the migration process to migrate old
+configs to the latest config which uses the config filename as the identifier
+for the device.  New devices should not define this.
+
 
 ### `primary_entity`
 
@@ -64,16 +62,29 @@ secondary entities, so only basic functionality is implemented.
 
 ### `legacy_class`
 
+//Optional, deprecated.//
+
 The `legacy_class` is a transitional link back to the device specific
-class that contains the implementation of this device. This will allow
-a transition to using device configuration files for discovery and
-initialization while the generic entity class implementation is still
-in progress. It is required only for devices that exist before the
-completion of migratation to generic device classes. It is recommended
-that any addition of new devices is deferred until the migration is
-complete, as during the transition period it will be neccesary to add
-both old device specific classes and device configuration files for
-any new devices.
+class that contains the implementation of this device. This allows
+a transition for more complex devices that are not yet fully supported
+by the generic implementations. It should not be used for new devices.
+
+### `deprecated`
+
+//Optional, deprecated//
+
+This boolean flag is used to mark an entity as deprecated.  This is mainly
+for older devices that were implemented when only climate devices were
+supported, but are better represented in HA as fan or humidifier devices.
+An entity should be moved to `secondary_entities` before being marked as
+deprecated, and the preferred device type moved to the `primary_entity`.
+
+### `class`
+
+//Optional.//
+
+For some entity types, a `class` can be set, for example `switch` entities
+can have a class of `outlet`.  This may slightly alter the UI behaviour.
 
 ### `dps`
 
@@ -159,7 +170,16 @@ is set to Eco.
 
 For integer attributes that are not readonly, a range can be set with `min`
 and `max` values that will limit the values that the user can enter in the
-Home Assistant UI.
+Home Assistant UI.  This can also be set in a `mapping` or `conditions` block.
+
+### `unit`
+
+//Optional. default="C" for temperature dps//
+
+For temperature dps, some devices will use Fahrenhiet.  This needs to be
+indicated back to HomeAssistant by defining `unit` as "F".  In future `unit`
+will also be used for other sensor types, with a bigger range of possible
+values.
 
 ## Mapping Rules
 
@@ -191,6 +211,26 @@ This can be used to set the attribute value seen by Home Assistant to something
 different than the DPS value from the Tuya protocol.  Normally it will be used
 with `dps_val` to map from one value to another. It could also be used at top
 level to override all values, but I can't imagine a useful purpose for that.
+
+### `scale`
+
+//Optional, default=1//
+
+This can be used in an `integer` dps mapping to scale the values.  For example
+some climate devices represent the temperature as an integer in tenths of
+degrees, and require a scale of 10 to convert them to degrees expected by
+Home Assistant.  The scale can also be the other way, for a fan with speeds
+1, 2 and 3 as DPS values, this can be converted to a percentage with a scale
+of 0.03.
+
+### `step`
+
+//Optional, default=1//
+
+This can be used in an `integer` dps mapping to make values jump by a specific
+step.  It can also be set in a conditions block so that the steps change only
+under certain conditions.  An example is where a value has a range of 0-100, but
+only allows settings that are divisible by 10, so a step of 10 would be set.
 
 ### `icon`
 

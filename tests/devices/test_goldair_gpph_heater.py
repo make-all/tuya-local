@@ -357,6 +357,12 @@ class TestGoldairHeater(TuyaDeviceTestCase):
         async with assert_device_properties_set(self.lock._device, {LOCK_DPS: False}):
             await self.lock.async_unlock()
 
+    def test_light_supported_color_modes(self):
+        self.assertCountEqual(
+            self.light.supported_color_modes,
+            [COLOR_MODE_ONOFF],
+        )
+
     def test_light_color_mode(self):
         self.assertEqual(self.light.color_mode, COLOR_MODE_ONOFF)
 

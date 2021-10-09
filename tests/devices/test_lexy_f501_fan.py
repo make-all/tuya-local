@@ -154,6 +154,12 @@ class TestLexyF501Fan(TuyaDeviceTestCase):
         self.dps[TIMER_DPS] = "5"
         self.assertEqual(self.subject.device_state_attributes, {"timer": 5})
 
+    def test_light_supported_color_modes(self):
+        self.assertCountEqual(
+            self.light.supported_color_modes,
+            [COLOR_MODE_ONOFF],
+        )
+
     def test_light_color_mode(self):
         self.assertEqual(self.light.color_mode, COLOR_MODE_ONOFF)
 

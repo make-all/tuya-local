@@ -79,6 +79,12 @@ class TestDetaFan(TuyaDeviceTestCase):
         self.assertEqual(self.subject.device_state_attributes, {"timer": 5})
         self.assertEqual(self.light.device_state_attributes, {"timer": 6})
 
+    def test_light_supported_color_modes(self):
+        self.assertCountEqual(
+            self.light.supported_color_modes,
+            [COLOR_MODE_ONOFF],
+        )
+
     def test_light_color_mode(self):
         self.assertEqual(self.light.color_mode, COLOR_MODE_ONOFF)
 

@@ -71,6 +71,16 @@ class TuyaLocalLight(LightEntity):
             return super().icon
 
     @property
+    def supported_color_modes(self):
+        """Return the supported color modes for this light."""
+        if self._brightness_dps:
+            return [COLOR_MODE_BRIGHTNESS]
+        elif self._switch_dps:
+            return [COLOR_MODE_ONOFF]
+        else:
+            return []
+
+    @property
     def color_mode(self):
         """Return the color mode of the light"""
         if self._brightness_dps:

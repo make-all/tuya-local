@@ -203,6 +203,12 @@ class TestWetairWCH750Heater(TuyaDeviceTestCase):
             },
         )
 
+    def test_light_supported_color_modes(self):
+        self.assertCountEqual(
+            self.light.supported_color_modes,
+            [COLOR_MODE_BRIGHTNESS],
+        )
+
     def test_light_color_mode(self):
         self.assertEqual(self.light.color_mode, COLOR_MODE_BRIGHTNESS)
 
