@@ -1,0 +1,116 @@
+#    device_id: 00523543d8bfc0d3e0a3
+#    local_key: e0f7191d7f34f23c
+#    friendly_name: Master Bedroom Air Purifier
+#    protocol_version: "3.3"
+#    entities:
+#      - platform: fan
+#        friendly_name: Master Bedroom Air Purifier
+#        fan_speed_low: "low"
+#        fan_speed_medium: "mid"
+#        fan_speed_high: "auto"
+#        id: 1
+#        fan_speed_control: 4
+#      - platform: switch
+#        friendly_name: Child Lock
+#        id: 7
+#      - platform: switch
+#        friendly_name: Sleep Mode
+#        id: 101
+#      - platform: sensor
+#        id: 22
+#        friendly_name: Master Air Quality
+#      - platform: sensor
+#        friendly_name: MB Prefilter Life
+#        id: 102
+#      - platform: sensor
+#        friendly_name: MB Charcoal Filter Life
+#        id: 103
+#      - platform: sensor
+#        friendly_name: MB Activated Charcoal Life
+#        id: 104
+#      - platform: sensor
+#        friendly_name: MB HEPA Filter Life
+#        id: 105
+#
+name: Renpho RP-AP001S
+products:
+  - id: oaleouzsq0sk4quk
+primary_entity:
+  entity: fan
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 4
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: "low"
+          value: low
+        - dps_val: "mid"
+          value: mid
+        - dps_val: "high"
+          value: high
+        - dps_val: "auto"
+          value: auto
+    - id: 7
+      name: child_lock
+      type: boolean
+    - id: 8
+      name: aqi_mode
+      type: boolean
+    - id: 19
+      name: timer
+      type: string
+    - id: 22
+      name: air_quality
+      type: string
+    - id: 101
+      name: sleep_mode
+      type: boolean
+      icon: "hass:sleep"
+    - id: 102
+      name: prefilter_life
+      type: integer
+    - id: 103
+      name: charcoal_filter_life
+      type: integer
+    - id: 104
+      name: activated_charcoal_filter_life
+      type: integer
+    - id: 105
+      name: hepa_filter_life
+      type: integer
+
+secondary_entities:
+  - entity: lock
+    name: Child Lock
+    dps:
+      - id: 7
+        name: lock
+        type: boolean
+        mapping:
+          - dps_val: true
+            icon: "mdi:led-on"
+          - dps_val: false
+            icon: "mdi:led-off"
+  - entity: light
+    name: AQI mode
+    class: switch
+    dps:
+      - id: 8
+        name: switch
+        type: boolean
+        mapping:
+          - dps_val: true
+            icon: "mdi:led-on"
+          - dps_val: false
+            icon: "mdi:led-off"
+  - entity: switch
+    name: Sleep Mode
+    class: switch
+    dps:
+      - id: 101
+        name: switch
+        type: boolean
+        icon: "hass:sleep"
