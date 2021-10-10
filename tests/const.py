@@ -400,3 +400,17 @@ KOGAN_GLASS_1_7L_KETTLE_PAYLOAD = {
     "5": 99,
     "102": "90",
 }
+
+RENPHO_PURIFIER_PAYLOAD = {
+    "1": True,
+    "4": "low",
+    "7": False,
+    "8": False,
+    "19": "0",
+    "22": "0",
+    "101": False,
+    "102": 0,
+    "103": 0,
+    "104": 0,
+    "105": 0,
+}
