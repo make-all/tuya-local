@@ -420,7 +420,7 @@ ARLEC_FAN_PAYLOAD = {
     "3": 1,
     "4": "forward",
     "102": "normal",
-    "103": 0,
+    "103": "off",
 }
 
 CARSON_CB_PAYOAD = {

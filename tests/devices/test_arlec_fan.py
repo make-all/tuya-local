@@ -127,5 +127,5 @@ class TestArlecFan(TuyaDeviceTestCase):
             await self.subject.async_set_percentage(80)
 
     def test_device_state_attributes(self):
-        self.dps[TIMER_DPS] = "5"
-        self.assertEqual(self.subject.device_state_attributes, {"timer": 5})
+        self.dps[TIMER_DPS] = "2hour"
+        self.assertEqual(self.subject.device_state_attributes, {"timer": "2hour"})
