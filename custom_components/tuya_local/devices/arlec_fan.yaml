@@ -1,0 +1,31 @@
+name: ARLEC SMART Fan
+primary_entity:
+  entity: fan
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 4
+      type: string
+      name: direction
+    - id: 3
+      type: integer
+      name: speed
+      range:
+        min: 1
+        max: 6
+      mapping:
+        - scale: 0.03
+      - id: 102
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: normal
+          value: normal
+        - dps_val: sleep
+          value: sleep
+        - dps_val: breeze
+          value: breeze
+    - id: 103
+      type: integer
+      name: timer
