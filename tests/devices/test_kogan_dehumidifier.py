@@ -99,12 +99,12 @@ class TestKoganDehumidifier(TuyaDeviceTestCase):
     def test_modes(self):
         self.assertCountEqual(
             self.subject.available_modes,
-            {
+            [
                 "Low",
                 "Medium",
                 "High",
                 "Dry Clothes",
-            },
+            ],
         )
 
     def test_mode(self):
@@ -229,7 +229,7 @@ class TestKoganDehumidifier(TuyaDeviceTestCase):
         self.dps[ERROR_DPS] = 1
         self.dps[TIMER_DPS] = 3
         self.dps[COUNTDOWN_DPS] = 160
-        self.assertCountEqual(
+        self.assertDictEqual(
             self.subject.device_state_attributes,
             {
                 "current_humidity": 55,

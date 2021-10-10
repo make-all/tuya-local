@@ -240,7 +240,7 @@ class TestSaswellT29UTKThermostat(TuyaDeviceTestCase):
         self.dps[TEMPF_DPS] = 116
         self.dps[CURTEMPF_DPS] = 117
 
-        self.assertCountEqual(
+        self.assertDictEqual(
             self.subject.device_state_attributes,
             {
                 "set_temperature": 0.2,

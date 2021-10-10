@@ -253,7 +253,7 @@ class TestFerskVind2Climate(TuyaDeviceTestCase):
         self.dps[UNKNOWN106_DPS] = 106
         self.dps[UNKNOWN109_DPS] = True
         self.dps[UNKNOWN110_DPS] = 110
-        self.assertCountEqual(
+        self.assertDictEqual(
             self.subject.device_state_attributes,
             {
                 "unknown_101": True,

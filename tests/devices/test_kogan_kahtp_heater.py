@@ -162,9 +162,10 @@ class TestGoldairKoganKAHTPHeater(TuyaDeviceTestCase):
 
     def test_state_attributes(self):
         self.dps[TIMER_DPS] = 10
-        self.assertCountEqual(self.subject.device_state_attributes, {"timer": 10})
-        self.dps[TIMER_DPS] = 0
-        self.assertCountEqual(self.subject.device_state_attributes, {"timer": 0})
+        self.assertDictEqual(
+            self.subject.device_state_attributes,
+            {"timer": 10},
+        )
 
     def test_lock_state(self):
         self.dps[LOCK_DPS] = True

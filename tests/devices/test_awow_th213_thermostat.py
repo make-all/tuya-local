@@ -52,10 +52,10 @@ class TestAwowTH213Thermostat(TuyaDeviceTestCase):
         self.assertEqual(self.subject.icon, "mdi:thermometer-off")
 
         self.dps[LOCK_DPS] = True
-        self.assertEqual(self.lock.icon, "mdi:account-lock")
+        self.assertEqual(self.lock.icon, "mdi:hand-back-right-off")
 
         self.dps[LOCK_DPS] = False
-        self.assertEqual(self.lock.icon, "mdi:account")
+        self.assertEqual(self.lock.icon, "mdi:hand-back-right")
 
     def test_temperature_unit_returns_device_temperature_unit(self):
         self.assertEqual(
@@ -225,7 +225,7 @@ class TestAwowTH213Thermostat(TuyaDeviceTestCase):
         self.dps[UNKNOWN108_DPS] = False
         self.dps[UNKNOWN110_DPS] = 110
 
-        self.assertCountEqual(
+        self.assertDictEqual(
             self.subject.device_state_attributes,
             {
                 "error": 8,

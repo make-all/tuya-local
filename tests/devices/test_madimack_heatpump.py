@@ -201,7 +201,7 @@ class TestMadimackPoolHeatpump(TuyaDeviceTestCase):
         self.dps[UNKNOWN136_DPS] = False
         self.dps[UNKNOWN139_DPS] = True
         self.dps[UNKNOWN140_DPS] = "test"
-        self.assertCountEqual(
+        self.assertDictEqual(
             self.subject.device_state_attributes,
             {
                 "power_level": 50,
