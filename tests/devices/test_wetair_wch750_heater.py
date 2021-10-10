@@ -194,7 +194,7 @@ class TestWetairWCH750Heater(TuyaDeviceTestCase):
         self.dps[COUNTDOWN_DPS] = 20
         self.dps[UNKNOWN21_DPS] = 21
 
-        self.assertCountEqual(
+        self.assertDictEqual(
             self.subject.device_state_attributes,
             {
                 "timer": "1h",

@@ -179,7 +179,7 @@ class TestHellnarHeatpump(TuyaDeviceTestCase):
         self.dps["133"] = "unknown133"
         self.dps["134"] = "unknown134"
 
-        self.assertCountEqual(
+        self.assertDictEqual(
             self.subject.device_state_attributes,
             {
                 "maybe_fan_mode": "fan?",

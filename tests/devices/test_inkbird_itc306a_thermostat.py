@@ -89,7 +89,7 @@ class TestInkbirdThermostat(TuyaDeviceTestCase):
     def test_preset_modes(self):
         self.assertCountEqual(
             self.subject.preset_modes,
-            {"On", "Pause", "Off"},
+            ["On", "Pause", "Off"],
         )
 
     async def test_set_preset_to_on(self):
@@ -196,7 +196,7 @@ class TestInkbirdThermostat(TuyaDeviceTestCase):
         self.dps[UNKNOWN119_DPS] = True
         self.dps[UNKNOWN120_DPS] = False
 
-        self.assertCountEqual(
+        self.assertDictEqual(
             self.subject.device_state_attributes,
             {
                 "error": 1,

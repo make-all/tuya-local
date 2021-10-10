@@ -167,11 +167,11 @@ class TestEanonsHumidifier(TuyaDeviceTestCase):
     def test_preset_modes(self):
         self.assertCountEqual(
             self.climate.preset_modes,
-            {MODE_NORMAL, MODE_SLEEP, MODE_AUTO},
+            [MODE_NORMAL, MODE_SLEEP, MODE_AUTO],
         )
         self.assertCountEqual(
             self.subject.available_modes,
-            {MODE_NORMAL, MODE_SLEEP, MODE_AUTO},
+            [MODE_NORMAL, MODE_SLEEP, MODE_AUTO],
         )
 
     async def test_set_climate_preset_to_auto(self):
@@ -238,7 +238,7 @@ class TestEanonsHumidifier(TuyaDeviceTestCase):
         self.dps[ERROR_DPS] = 0
         self.dps[TIMERHR_DPS] = "cancel"
         self.dps[TIMER_DPS] = 0
-        self.assertCountEqual(
+        self.assertDictEqual(
             self.climate.device_state_attributes,
             {
                 "error": "OK",
@@ -250,10 +250,10 @@ class TestEanonsHumidifier(TuyaDeviceTestCase):
         self.dps[ERROR_DPS] = 1
         self.dps[TIMERHR_DPS] = "1"
         self.dps[TIMER_DPS] = 60
-        self.assertCountEqual(
+        self.assertDictEqual(
             self.climate.device_state_attributes,
             {
-                "error": 1,
+                "error": "Water Level Low",
                 "timer_hr": "1",
                 "timer_min": 60,
             },
@@ -266,7 +266,7 @@ class TestEanonsHumidifier(TuyaDeviceTestCase):
         self.dps[CURRENTHUMID_DPS] = 50
         self.dps[FANMODE_DPS] = "middle"
 
-        self.assertCountEqual(
+        self.assertDictEqual(
             self.subject.device_state_attributes,
             {
                 "error": "OK",
@@ -308,7 +308,7 @@ class TestEanonsHumidifier(TuyaDeviceTestCase):
     def test_climate_fan_modes(self):
         self.assertCountEqual(
             self.climate.fan_modes,
-            {FAN_LOW, FAN_MEDIUM, FAN_HIGH},
+            [FAN_LOW, FAN_MEDIUM, FAN_HIGH],
         )
 
     async def test_fan_set_speed(self):

@@ -44,11 +44,23 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
   or if any of the "unknown" values that are returned as attributes can
   be figured out.
 
+### Thermostats
+- Inkbird ITC306A thermostat smartplug (not fully functional)
+- Beca BHP-6000 Room Heat Pump control Thermostat
+- Awow/Mi-heat TH213 Thermostat
+- Siswell T29UTW Thermostat
+
+### Kettles
+- Kogan Glass 1.7L Smart Kettle
+
 ### Fans
 - Goldair GCPF315 fan
 - Anko HEGSM40 fan
 - Lexy F501 fan
 - Deta fan controller
+
+### Air Purifiers
+- Renpho RP-AP001S air purifier
 
 ### Dehumidifiers
 - Goldair GPDH420 dehumidifier
@@ -59,15 +71,6 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
 
 ### Humidifiers
 - Eanons QT-JS2014 Purifying humidifer
-
-### Thermostats
-- Inkbird ITC306A thermostat smartplug (not fully functional)
-- Beca BHP-6000 Room Heat Pump control Thermostat
-- Awow/Mi-heat TH213 Thermostat
-- Siswell T29UTW Thermostat
-
-### Kettles
-- Kogan Glass 1.7L Smart Kettle
 
 ### SmartPlugs
 - Kogan Single Smartplug with Energy Monitoring

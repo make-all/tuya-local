@@ -291,7 +291,7 @@ class TestElectriq12WMINVHeatpump(TuyaDeviceTestCase):
         self.dps[UNKNOWN108_DPS] = 108
         self.dps[UNKNOWN109_DPS] = 109
         self.dps[UNKNOWN110_DPS] = 110
-        self.assertCountEqual(
+        self.assertDictEqual(
             self.subject.device_state_attributes,
             {
                 "unknown_8": True,

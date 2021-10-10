@@ -202,7 +202,7 @@ class TestTadiranWindHeatpump(TuyaDeviceTestCase):
         self.dps["107"] = True
         self.dps["108"] = False
 
-        self.assertCountEqual(
+        self.assertDictEqual(
             self.subject.device_state_attributes,
             {
                 "unknown_101": 101,
@@ -210,7 +210,7 @@ class TestTadiranWindHeatpump(TuyaDeviceTestCase):
                 "unknown_103": 103,
                 "unknown_104": "unknown104",
                 "unknown_105": "unknown105",
-                "unknown_106": 120,
+                "unknown_106": 106,
                 "unknown_107": True,
                 "unknown_108": False,
             },

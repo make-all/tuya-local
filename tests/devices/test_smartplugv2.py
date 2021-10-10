@@ -71,26 +71,12 @@ class TestSwitchV2(TuyaDeviceTestCase):
         self.dps[VOLTAGE_DPS] = 2350
         self.dps[CURRENT_DPS] = 1234
         self.dps[POWER_DPS] = 5678
-        self.assertCountEqual(
+        self.assertDictEqual(
             self.subject.device_state_attributes,
             {
                 "timer": 1,
                 "current_a": 1.234,
                 "voltage_v": 235.0,
                 "current_power_w": 567.8,
-            },
-        )
-
-        self.dps[TIMER_DPS] = 0
-        self.dps[CURRENT_DPS] = None
-        self.dps[VOLTAGE_DPS] = None
-        self.dps[POWER_DPS] = None
-        self.assertCountEqual(
-            self.subject.device_state_attributes,
-            {
-                "timer": 0,
-                "current_a": None,
-                "voltage_v": None,
-                "current_power_w": None,
             },
         )

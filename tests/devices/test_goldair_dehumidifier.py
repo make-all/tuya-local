@@ -528,10 +528,10 @@ class TestGoldairDehumidifier(TuyaDeviceTestCase):
         self.dps[AIRCLEAN_DPS] = False
         self.dps[UNKNOWN12_DPS] = "something"
         self.dps[UNKNOWN101_DPS] = False
-        self.assertCountEqual(
+        self.assertDictEqual(
             self.climate.device_state_attributes,
             {
-                "error": STATE_UNAVAILABLE,
+                "error": None,
                 "defrosting": False,
                 "air_clean_on": False,
                 "unknown_12": "something",
@@ -544,7 +544,7 @@ class TestGoldairDehumidifier(TuyaDeviceTestCase):
         self.dps[AIRCLEAN_DPS] = True
         self.dps[UNKNOWN12_DPS] = "something else"
         self.dps[UNKNOWN101_DPS] = True
-        self.assertCountEqual(
+        self.assertDictEqual(
             self.climate.device_state_attributes,
             {
                 "error": ERROR_TANK,

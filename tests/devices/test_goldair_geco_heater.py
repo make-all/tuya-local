@@ -125,12 +125,13 @@ class TestGoldairGECOHeater(TuyaDeviceTestCase):
         # they are discovered
         self.dps[ERROR_DPS] = "something"
         self.dps[TIMER_DPS] = 10
-        self.assertCountEqual(
-            self.subject.device_state_attributes, {"error": "something", "timer": 10}
+        self.assertDictEqual(
+            self.subject.device_state_attributes,
+            {"error": "something", "timer": 10},
         )
         self.dps[ERROR_DPS] = "0"
         self.dps[TIMER_DPS] = 0
-        self.assertCountEqual(
+        self.assertDictEqual(
             self.subject.device_state_attributes, {"error": "OK", "timer": 0}
         )
 

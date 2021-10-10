@@ -171,7 +171,7 @@ class TestGardenPACPoolHeatpump(TuyaDeviceTestCase):
         self.dps[UNKNOWN108_DPS] = 2
         self.dps[UNKNOWN115_DPS] = 3
         self.dps[UNKNOWN116_DPS] = 4
-        self.assertCountEqual(
+        self.assertDictEqual(
             self.subject.device_state_attributes,
             {
                 "power_level": 50,

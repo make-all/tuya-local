@@ -295,7 +295,7 @@ class TestElectriqCD25ProDehumidifier(TuyaDeviceTestCase):
     def test_state_attributes(self):
         self.dps[CURRENTHUMID_DPS] = 50
         self.dps[CURRENTTEMP_DPS] = 21
-        self.assertCountEqual(
+        self.assertDictEqual(
             self.subject.device_state_attributes,
             {"current_humidity": 50, "current_temperature": 21},
         )

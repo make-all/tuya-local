@@ -319,13 +319,13 @@ class TestGoldairHeater(TuyaDeviceTestCase):
         self.dps[TIMERACT_DPS] = True
         self.dps[POWERLEVEL_DPS] = 4
 
-        self.assertCountEqual(
+        self.assertDictEqual(
             self.subject.device_state_attributes,
             {
                 "error": "something",
                 "timer": 5,
                 "timer_mode": True,
-                "power_level": 4,
+                "power_level": "4",
             },
         )
 

@@ -27,6 +27,21 @@ was known by.  It is used in the migration process to migrate old
 configs to the latest config which uses the config filename as the identifier
 for the device.  New devices should not define this.
 
+### `products`
+
+// Optional, for future use. //
+
+A list of products that this config applies to.  Each product in the list must
+have an `id` specified, which corresponds to the productId or productKey
+(depending on where you are getting it from) in Tuya info.  This is available
+from the Tuya developer web portal listing for your device, or when using
+UDP discovery (via tinytuya).  In future it is intended that UDP discovery
+will be used to more precisely match devices to configs, so it is recommended
+to report these if you can find them when requesting a new device.  Each
+listing can also have an optional `name`, which is intended to override the
+top level `name` when full support for this field is added.
+Probably other info will be added in future to provide better reporting of
+device manufacturer and model etc.
 
 ### `primary_entity`
 
