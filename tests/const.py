@@ -414,3 +414,26 @@ RENPHO_PURIFIER_PAYLOAD = {
     "104": 0,
     "105": 0,
 }
+
+ARLEC_FAN_PAYLOAD = {
+    "1": True,
+    "3": 1,
+    "4": "forward",
+    "102": "normal",
+    "103": 0,
+}
+
+CARSON_CB_PAYOAD = {
+    "1": True,
+    "2": 20,
+    "3": 23,
+    "4": "COOL",
+    "5": 1,
+    "19": "C",
+    "102": False,
+    "103": 0,
+    "104": False,
+    "105": 0,
+    "106": 0,
+    "110": 0,
+}

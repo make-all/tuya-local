@@ -5,15 +5,17 @@ primary_entity:
     - id: 1
       type: boolean
       name: switch
-    - id: 4
-      type: string
-      name: direction
     - id: 3
       type: integer
       name: speed
       range:
         min: 1
         max: 6
+      mapping:
+        - scale: 0.06
+    - id: 4
+      type: string
+      name: direction
     - id: 102
       type: string
       name: preset_mode
