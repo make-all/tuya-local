@@ -39,3 +39,4 @@ Further device support has been made with the assistance of users.  Please consi
  - [wwalczyszyn](https://github.com/wwalczyszyn) for contributing support for Fersk Vind 2 heatpumps.
  - [xbmcnut](https://github.com/xbmcnut) for assistance in supporting Kogan Smart Kettles and the new type of Kogan heater.
  - [ThomasADavis](https://github.com/ThomasADavis) for contributing support for Renpho RP-AP001S air purifiers.
+ - [darek-margas](https://github.com/darek-margas) for contributing support for Arlec fans and Carson portable air conditioners.

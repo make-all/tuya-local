@@ -423,7 +423,7 @@ ARLEC_FAN_PAYLOAD = {
     "103": "off",
 }
 
-CARSON_CB_PAYOAD = {
+CARSON_CB_PAYLOAD = {
     "1": True,
     "2": 20,
     "3": 23,

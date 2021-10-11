@@ -30,6 +30,7 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
 - ElectriQ 12WMINV
 - Tadiran Wind 65/3P
 - Fersk Vind 2
+- Carson CB PA280
 
 ### Pool heaters / heatpumps
 
@@ -58,6 +59,7 @@ Note that devices sometimes get firmware upgrades, or incompatible versions are 
 - Anko HEGSM40 fan
 - Lexy F501 fan
 - Deta fan controller
+- Arlec Grid Connect Smart Ceiling Fan (without light)
 
 ### Air Purifiers
 - Renpho RP-AP001S air purifier

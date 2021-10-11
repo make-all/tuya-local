@@ -14,13 +14,12 @@ primary_entity:
     - id: 2
       name: temperature
       type: integer
+      range:
+        min: 16
+        max: 30
       mapping:
         - constraint: temperature_unit
           conditions:
-            - dps_val: "C"
-              range:
-                min: 16
-                max: 30
             - dps_val: "F"
               range:
                 min: 60
