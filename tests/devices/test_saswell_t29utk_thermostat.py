@@ -14,25 +14,24 @@ from homeassistant.components.climate.const import (
     SUPPORT_PRESET_MODE,
     SUPPORT_TARGET_TEMPERATURE,
 )
-from homeassistant.const import STATE_UNAVAILABLE, TEMP_CELSIUS, TEMP_FAHRENHEIT
-from unittest.mock import ANY
+from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT
 
 from ..const import SASWELL_T29UTK_THERMOSTAT_PAYLOAD
 from ..helpers import assert_device_properties_set
 from .base_device_tests import TuyaDeviceTestCase
 
 POWER_DPS = "1"
-SETTEMP_DPS = "2"
+TEMPERATURE_DPS = "2"
 CURRENTTEMP_DPS = "3"
-HVACACTION_DPS = "4"
+HVACMODE_DPS = "4"
 FAN_DPS = "5"
 UNITS_DPS = "19"
 AWAY_DPS = "101"
 PROGRAM_DPS = "102"
-HVACMODE_DPS = "103"
+HVACACTION_DPS = "103"
 UNKNOWN112_DPS = "112"
 UNKNOWN113_DPS = "113"
-TEMPERATURE_DPS = "114"
+TEMPC_DPS = "114"
 CURTEMPC_DPS = "115"
 TEMPF_DPS = "116"
 CURTEMPF_DPS = "117"
@@ -55,14 +54,11 @@ class TestSaswellT29UTKThermostat(TuyaDeviceTestCase):
 
     def test_icon(self):
         self.dps[POWER_DPS] = True
-        self.dps[HVACACTION_DPS] = "cold"
+        self.dps[HVACMODE_DPS] = "cold"
         self.assertEqual(self.subject.icon, "mdi:thermometer-minus")
 
-        self.dps[HVACACTION_DPS] = "hot"
+        self.dps[HVACMODE_DPS] = "hot"
         self.assertEqual(self.subject.icon, "mdi:thermometer-plus")
-
-        self.dps[HVACACTION_DPS] = "off"
-        self.assertEqual(self.subject.icon, "mdi:thermometer")
 
         self.dps[POWER_DPS] = False
         self.assertEqual(self.subject.icon, "mdi:thermometer-off")
@@ -76,13 +72,15 @@ class TestSaswellT29UTKThermostat(TuyaDeviceTestCase):
 
     def test_target_temperature(self):
         self.dps[UNITS_DPS] = "C"
-        self.dps[TEMPERATURE_DPS] = 25
-        self.dps[TEMPF_DPS] = 75
+        self.dps[TEMPERATURE_DPS] = 250
         self.assertEqual(self.subject.target_temperature, 25)
         self.dps[UNITS_DPS] = "F"
+        self.dps[TEMPERATURE_DPS] = 750
         self.assertEqual(self.subject.target_temperature, 75)
 
     def test_target_temperature_step(self):
+        self.assertEqual(self.subject.target_temperature_step, 0.5)
+        self.dps[UNITS_DPS] = "F"
         self.assertEqual(self.subject.target_temperature_step, 1)
 
     def test_minimum_target_temperature(self):
@@ -101,7 +99,7 @@ class TestSaswellT29UTKThermostat(TuyaDeviceTestCase):
         self.dps[UNITS_DPS] = "C"
         async with assert_device_properties_set(
             self.subject._device,
-            {TEMPERATURE_DPS: 24},
+            {TEMPERATURE_DPS: 240},
         ):
             await self.subject.async_set_target_temperature(24)
 
@@ -109,15 +107,15 @@ class TestSaswellT29UTKThermostat(TuyaDeviceTestCase):
         self.dps[UNITS_DPS] = "F"
         async with assert_device_properties_set(
             self.subject._device,
-            {TEMPF_DPS: 74},
+            {TEMPERATURE_DPS: 740},
         ):
             await self.subject.async_set_target_temperature(74)
 
     async def test_set_target_temperature_fails_outside_valid_range(self):
         with self.assertRaisesRegex(
-            ValueError, "temperature \\(4\\) must be between 5 and 35"
+            ValueError, "temperature \\(4.5\\) must be between 5.0 and 35.0"
         ):
-            await self.subject.async_set_target_temperature(4)
+            await self.subject.async_set_target_temperature(4.5)
 
     def test_current_temperature(self):
         self.dps[CURRENTTEMP_DPS] = 250
@@ -142,7 +140,7 @@ class TestSaswellT29UTKThermostat(TuyaDeviceTestCase):
 
     async def test_turn_off(self):
         async with assert_device_properties_set(
-            self.subject._device, {POWER_DPS: False, HVACMODE_DPS: ANY}
+            self.subject._device, {POWER_DPS: False, HVACMODE_DPS: "off"}
         ):
             await self.subject.async_set_hvac_mode(HVAC_MODE_OFF)
 
@@ -165,8 +163,6 @@ class TestSaswellT29UTKThermostat(TuyaDeviceTestCase):
 
         self.dps[HVACACTION_DPS] = "hot"
         self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_HEAT)
-        self.dps[HVACACTION_DPS] = "off"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_IDLE)
 
         self.dps[POWER_DPS] = False
         self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_OFF)
@@ -233,9 +229,9 @@ class TestSaswellT29UTKThermostat(TuyaDeviceTestCase):
             await self.subject.async_set_preset_mode("Program")
 
     def test_device_state_attributes(self):
-        self.dps[SETTEMP_DPS] = 2
         self.dps[UNKNOWN112_DPS] = "unknown112"
         self.dps[UNKNOWN113_DPS] = 113
+        self.dps[TEMPC_DPS] = 114
         self.dps[CURTEMPC_DPS] = 115
         self.dps[TEMPF_DPS] = 116
         self.dps[CURTEMPF_DPS] = 117
@@ -243,9 +239,9 @@ class TestSaswellT29UTKThermostat(TuyaDeviceTestCase):
         self.assertDictEqual(
             self.subject.device_state_attributes,
             {
-                "set_temperature": 0.2,
                 "unknown_112": "unknown112",
                 "unknown_113": 113,
+                "temperature_c": 114,
                 "current_temperature_c": 115,
                 "temperature_f": 116,
                 "current_temperature_f": 117,

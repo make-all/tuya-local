@@ -9,35 +9,57 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
+          icon: "mdi:thermometer-off"
+          icon_priority: 1
     - id: 2
-      name: set_temperature
+      name: temperature
       type: integer
+      range:
+        min: 50
+        max: 350
       mapping:
         - scale: 10
+          step: 5
+          constraint: temperature_unit
+          conditions:
+            - dps_val: "F"
+              step: 10
+              range:
+                min: 410
+                max: 950
     - id: 3
       name: current_temperature
       type: integer
       mapping:
         - scale: 10
     - id: 4
-      name: hvac_action
+      name: hvac_mode
       type: string
       mapping:
         - dps_val: cold
-          value: cooling
-          icon: "mdi:thermometer-minus"
-        - dps_val: hot
-          value: heating
-          icon: "mdi:thermometer-plus"
-        - dps_val: "off"
           constraint: power
           conditions:
             - dps_val: true
-              value: idle
-              icon: "mdi:thermometer"
+              value: cool
+              icon: "mdi:thermometer-minus"
+              icon_priority: 2
+            - dps_val: false
+              value_redirect: power
+        - dps_val: hot
+          constraint: power
+          conditions:
+            - dps_val: true
+              value: heat
+              icon: "mdi:thermometer-plus"
+              icon_priority: 2
+            - dps_val: false
+              value_redirect: power
+        - dps_val: "off"
+          constraint: power
+          conditions:
             - dps_val: false
               value: "off"
-              icon: "mdi:thermometer-off"
+          icon: "mdi:thermometer-off"
     - id: 5
       name: fan_mode
       type: string
@@ -72,24 +94,23 @@ primary_entity:
       type: boolean
       hidden: true
     - id: 103
-      name: hvac_mode
+      name: hvac_action
       type: string
       mapping:
         - dps_val: cold
           constraint: power
           conditions:
             - dps_val: false
-              value_redirect: power
+              value: "off"
             - dps_val: true
-              value: cool
+              value: cooling
         - dps_val: hot
           constraint: power
           conditions:
             - dps_val: false
-              value-redirect: power
               value: "off"
             - dps_val: true
-              value: heat
+              value: heating
     - id: 112
       name: unknown_112
       type: string
@@ -97,29 +118,14 @@ primary_entity:
       name: unknown_113
       type: integer
     - id: 114
-      name: temperature
+      name: temperature_c
       type: integer
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: C
-              range:
-                min: 5
-                max: 35
-            - dps_val: F
-              value_redirect: temperature_f
-              range:
-                min: 41
-                max: 95
     - id: 115
       name: current_temperature_c
       type: integer
     - id: 116
       name: temperature_f
       type: integer
-      range:
-        min: 41
-        max: 95
     - id: 117
       name: current_temperature_f
       type: integer
