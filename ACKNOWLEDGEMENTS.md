@@ -41,3 +41,5 @@ Further device support has been made with the assistance of users.  Please consi
  - [ThomasADavis](https://github.com/ThomasADavis) for contributing support for Renpho RP-AP001S air purifiers.
  - [darek-margas](https://github.com/darek-margas) for contributing support for Arlec fans and Carson portable air conditioners.
  - [SamJongenelen](https://github.com/SamJongenelen) for assistance in supporting Siswell C16 Thermostats
+ - [antoweb](https://github.com/antoweb) for assistance in supporting Beca BHT-6000 thermostats.
+ - [klausahrenberg](https://github.com/klausahrenberg) for figuring out the BHT-6000 and other thermostats' internal MCU protocol for his alternate MQQT firmware, which helped with finding some of the details.
