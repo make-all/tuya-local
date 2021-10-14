@@ -83,8 +83,6 @@ class TestSaswellC16Thermostat(TuyaDeviceTestCase):
 
     def test_maximum_target_temperature(self):
         self.assertEqual(self.subject.max_temp, 40.0)
-        self.dps[PRESET_DPS] = "Anti_frozen"
-        self.assertEqual(self.subject.max_temp, 15.0)
 
     async def test_set_target_temperature(self):
         async with assert_device_properties_set(
