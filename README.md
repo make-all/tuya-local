@@ -83,6 +83,7 @@ the device will not work despite being listed below.
 
 ### Dehumidifiers
 - Goldair GPDH420 dehumidifier
+- ElectriQ CD12PW dehmidifier
 - ElectriQ CD20PRO-LE-V2 dehumidifier
 - ElectriQ CD25PRO-LE-V2 dehumidifier
 - ElectriQ DESD9LW dehumidifier

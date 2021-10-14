@@ -1,0 +1,53 @@
+name: "Electriq Dehumidifier CD12PW"
+primary_entity:
+  entity: humidifier
+  class: dehumidifier
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+      mapping:
+        - dps_val: false
+          icon: "mdi:air-humidifier-off"
+          icon_priority: 1
+        - dps_val: true
+          icon: "mdi:air-humidifier"
+          icon_priority: 3
+    - id: 2
+      name: mode
+      type: string
+      mapping:
+        - dps_val: "auto"
+          value: "Auto"
+        - dps_val: "fan"
+          value: "Air clean"
+          icon: "mdi:air-purifier"
+          icon_priority: 2
+    - id: 3
+      type: integer
+      name: current_humidity
+      readonly: true
+    - id: 4
+      type: integer
+      name: humidity
+      range:
+        min: 35
+        max: 80
+      mapping:
+        - step: 5
+    - id: 103
+      type: integer
+      name: current_temperature
+      readonly: true
+secondary_entities:
+  - entity: light
+    name: "Humidity Indicator"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            icon: "mdi:led-on"
+          - dps_val: false
+            icon: "mdi:led-off"
