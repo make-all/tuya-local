@@ -5,12 +5,6 @@ primary_entity:
     - id: 1
       name: power
       type: boolean
-      hidden: true
-      mapping:
-        - dps_val: false
-          value: "off"
-          icon: "mdi:thermometer-off"
-          icon_priority: 1
     - id: 2
       name: temperature
       type: integer
@@ -37,28 +31,21 @@ primary_entity:
       type: string
       mapping:
         - dps_val: cold
-          constraint: power
+          value: cool
+          icon: "mdi:thermometer-minus"
+          constraint: configuration
           conditions:
-            - dps_val: true
-              value: cool
-              icon: "mdi:thermometer-minus"
-              icon_priority: 2
-            - dps_val: false
-              value_redirect: power
+            - dps_val: "2"
+              invalid: true
         - dps_val: hot
-          constraint: power
+          value: heat
+          icon: "mdi:thermometer-plus"
+          constraint: configuration
           conditions:
-            - dps_val: true
-              value: heat
-              icon: "mdi:thermometer-plus"
-              icon_priority: 2
-            - dps_val: false
-              value_redirect: power
+            - dps_val: "1"
+              invalid: true
         - dps_val: "off"
-          constraint: power
-          conditions:
-            - dps_val: false
-              value: "off"
+          value: "off"
           icon: "mdi:thermometer-off"
     - id: 5
       name: fan_mode
@@ -112,8 +99,17 @@ primary_entity:
             - dps_val: true
               value: heating
     - id: 112
-      name: unknown_112
+      name: configuration
       type: string
+      mapping:
+        - dps_val: "1"
+          value: "cooling"
+        - dps_val: "2"
+          value: "heating"
+        - dps_val: "3"
+          value: "heat/cool"
+        - dps_val: "5"
+          value: "heatpump"
     - id: 113
       name: unknown_113
       type: integer
