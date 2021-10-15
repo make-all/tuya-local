@@ -44,3 +44,4 @@ Further device support has been made with the assistance of users.  Please consi
  - [antoweb](https://github.com/antoweb) for assistance in supporting Beca BHT-6000 thermostats.
  - [klausahrenberg](https://github.com/klausahrenberg) for figuring out the BHT-6000 and other thermostats' internal MCU protocol for his alternate MQQT firmware, which helped with finding some of the details.
  - [Swiftnesses](https://github.com/Swiftnesses) for contributing support for Electriq CD12PW dehumidifiers
+ - [MrDeon](https://github.com/MrDeon) for assistance in supporting Kogan KAWFPAC09YA air conditioners.

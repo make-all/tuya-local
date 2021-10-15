@@ -480,3 +480,15 @@ CARSON_CB_PAYLOAD = {
     "106": 0,
     "110": 0,
 }
+
+KOGAN_KAWFPAC09YA_AIRCON_PAYLOAD = {
+    "1": True,
+    "2": 19,
+    "3": 18,
+    "4": "COOL",
+    "5": "1",
+    "19": "C",
+    "105": 0,
+    "106": 0,
+    "107": False,
+}

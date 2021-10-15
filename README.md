@@ -46,6 +46,7 @@ the device will not work despite being listed below.
 - Tadiran Wind 65/3P
 - Fersk Vind 2
 - Carson CB PA280
+- Kogan 2.6kW portable air conditioner
 
 ### Pool heaters / heatpumps
 
