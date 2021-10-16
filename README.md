@@ -1,3 +1,11 @@
+# Note on this fork
+
+I've got a shiny new Kogan SmarterHome™ 2000W Flame Heater.
+
+This fork has been created to assist in developing an integration for my new heater.
+
+I plan on submitting a PR back to the upstream branch once the development is complete.
+
 # Home Assistant Tuya Local component
 
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=make-all_tuya-local&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=make-all_tuya-local)
@@ -7,12 +15,12 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=make-all_tuya-local&metric=coverage)](https://sonarcloud.io/dashboard?id=make-all_tuya-local)
 
 This is a Home Assistant add-on to support Wi-fi devices running Tuya
-firmware without going via the Tuya cloud.  Using this integration
+firmware without going via the Tuya cloud. Using this integration
 does not stop your devices from sending status to the Tuya cloud, so
 this should not be seen as a security measure, rather it improves
 speed and reliability by using local connections, and may unlock some
 features of your device, or even unlock whole devices, that are not
-supported by the Tuya cloud API.  Currently the focus is mainly on
+supported by the Tuya cloud API. Currently the focus is mainly on
 climate devices, which are not well supported by other similar
 integrations. Simpler devices like switches and lights can be covered
 by [rospogrigio/localtuya](https://github.com/rospogrigio/localtuya/).
@@ -35,6 +43,7 @@ the device will not work despite being listed below.
 
 - Goldair heater models beginning with the code GPPH, GCPV, GECO
 - Kogan Wi-Fi Convection Panel heaters - KAHTP and KAWFHTP models
+- Kogan SmarterHome™ 2000W Flame heater - KASHMFP20BA model
 - Andersson GSH heater
 - Eurom heater
 - Purline Hoti M100 heater
@@ -62,6 +71,7 @@ the device will not work despite being listed below.
   be figured out.
 
 ### Thermostats
+
 - Inkbird ITC306A thermostat smartplug (not fully functional)
 - Beca BHP-6000 Room Heat Pump control thermostat
 - Beca BHT-6000 Floor Heating thermostat
@@ -70,9 +80,11 @@ the device will not work despite being listed below.
 - Siswell C16 thermostat (rebadged as Warmme, Klima and others)
 
 ### Kettles
+
 - Kogan Glass 1.7L Smart Kettle (not reliably detected)
 
 ### Fans
+
 - Goldair GCPF315 fan
 - Anko HEGSM40 fan
 - Lexy F501 fan
@@ -80,9 +92,11 @@ the device will not work despite being listed below.
 - Arlec Grid Connect Smart Ceiling Fan (without light)
 
 ### Air Purifiers
+
 - Renpho RP-AP001S air purifier
 
 ### Dehumidifiers
+
 - Goldair GPDH420 dehumidifier
 - ElectriQ CD12PW dehmidifier
 - ElectriQ CD20PRO-LE-V2 dehumidifier
@@ -91,9 +105,11 @@ the device will not work despite being listed below.
 - Kogan SmarterHome 7L Desiccant dehumidifier
 
 ### Humidifiers
+
 - Eanons QT-JS2014 Purifying humidifer
 
 ### SmartPlugs
+
 - Kogan Single Smartplug with Energy Monitoring
 - Kogan Single Smartplug with Energy Monitoring and USB charging
 - Other brands may work with the above configurations
@@ -148,7 +164,7 @@ at this point indicates that all settings you have supplied are correct, but
 for protocol version 3.1 devices, the local key is only used for sending
 commands to the device, so if your local key is incorrect the setup will
 appear to work, and you will not see any problems until you try to control
-your device.  Note that each time you pair the device, the local key changes,
+your device. Note that each time you pair the device, the local key changes,
 so if you obtained the local key using the instructions linked above, then
 repaired with your manufacturer's app, then the key will have changed already.
 
@@ -169,22 +185,22 @@ it up again.
 ### Stage Three
 
 The final stage is to choose a name for the device in Home Assistant,
-and select which entities you want to enable.  The options availble
+and select which entities you want to enable. The options availble
 will depend on the capabilities of the device you selected in the
 previous step.
 
-Usually you will want to accept the defaults at this step.  Entities
+Usually you will want to accept the defaults at this step. Entities
 are selected by default, unless they are a deprecated alternative way
 of controlling the device (such as a climate entity for dehumidifiers
-as an alternative to humidifier and fan entities).  If you have
+as an alternative to humidifier and fan entities). If you have
 multiple devices of the same type, you may want to change the name to
 make it easier to distinguish them.
 
 #### name
 
 &nbsp;&nbsp;&nbsp;&nbsp;_(string) (Required)_ Any unique name for the
-device.  This will be used as the base for the entitiy names in Home
-Assistant.  Although Home Assistant allows you to change the name
+device. This will be used as the base for the entitiy names in Home
+Assistant. Although Home Assistant allows you to change the name
 later, it will only change the name used in the UI, not the name of
 the entities.
 
@@ -210,7 +226,7 @@ dehumidifiers)
 #### light
 
 &nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this
-device as a light.  This may be an auxiliary display light control on
+device as a light. This may be an auxiliary display light control on
 devices such as heaters.
 
 #### lock
@@ -254,18 +270,18 @@ rejected due to being locked, however rest assured that the changes
 _are_ taking effect.
 
 When setting the target temperature, different heaters have different
-behaviour, which you may need to compensate for.  From observation,
+behaviour, which you may need to compensate for. From observation,
 GPPH heaters allow the temperature to reach 3 degrees higher than the
 set temperature before turning off, and 1 degree lower before turning
-on again.  Kogan Heaters on the other hand turn off when the
+on again. Kogan Heaters on the other hand turn off when the
 temperature reaches 1 degree over the targetin LOW mode, and turn on
-again 3 degrees below the target.  To make these heaters act the same
+again 3 degrees below the target. To make these heaters act the same
 in LOW power mode, you need to set the Kogan thermostat 2 degrees
-higher than the GPPH thermostat.  In HIGH power mode however, they
+higher than the GPPH thermostat. In HIGH power mode however, they
 seem to act the same as the GPPH heaters.
 
 The Inkbird thermostat switch does not seem to work for setting
-anything.  If you can figure out how to make setting temperatures and
+anything. If you can figure out how to make setting temperatures and
 presets work, please leave feedback in Issue #19.
 
 ## Fan gotchas
@@ -284,22 +300,21 @@ Anko fans mostly work, except setting the speed does not seem to
 work. If you can figure out how to set the speed through the Tuya
 protocol for these devices, please leave feedback on Issue #22.
 
-
 ## Kogan Switch gotchas
 
 While setting this up, I observed after a while that the current and
 power readings from the switch were returning 0 when there was clearly
-a load on the switch.  After unplugging and replugging, the switch
+a load on the switch. After unplugging and replugging, the switch
 started returning only dps 1 and 2 (switch status and timer). If
 HomeAssistant is restarted in that state, the switch detection would
 fail, however as Home Assistant was left running, it continued to work
-with no readings for the current, power and voltage.  I unplugged the
+with no readings for the current, power and voltage. I unplugged the
 switch overnight, and in the morning it was working correctly.
 
 ## Kogan Kettle gotchas
 
 Although these look like simple devices, their behaviour is not
-consistant so they are difficult to detect.  Sometimes they are
+consistant so they are difficult to detect. Sometimes they are
 misdetected as a simple switch, other times they only output the
 temperature sensor so are not detected at all.
 
@@ -307,16 +322,16 @@ temperature sensor so are not detected at all.
 
 These devices support switching between Celcius and Fahrenheit on the control
 panel, but do not provide any information over the Tuya local protocol about
-which units are selected.  Two configurations for this device are provided,
+which units are selected. Two configurations for this device are provided,
 `beca_bhp6000_thermostat_c` and `beca_bhp6000_thermostat_f`, please select
-the appropriate one for the temperature units you use.  If you change the
+the appropriate one for the temperature units you use. If you change the
 units on the device control panel, you will need to delete the device from
 Home Assistant and set it up again.
 
 ## Siswell C19 thermostat gotchas
 
 These support configuration as either heating or cooling controllers, but
-only have one output.  The HVAC mode is provided as an indicator of which
+only have one output. The HVAC mode is provided as an indicator of which
 mode they are in, but are set to readonly so that you cannot accidentally
 switch the thermostat to the wrong mode from HA.
 
@@ -326,13 +341,12 @@ Humidifiers and Dehumidifiers should be configuured as `humidifier`
 entities, probably with `fan` entities as well if the fan speed can
 also be controlled, and any other auxilary features such as panel
 lighting, child locks or additional switches configured as `light`,
-`lock` or `switch` entities.  Configration of Goldair Dehumidifiers
+`lock` or `switch` entities. Configration of Goldair Dehumidifiers
 and Eanons Humidifiers as `climate` entities is also supported for
 backwards compatibility, but is deprecated and may be removed in
-future.  In particular, when humidifiers are represented as `climate`
+future. In particular, when humidifiers are represented as `climate`
 entities, the running mode will show as `Dry`, as the climate entity
 only supports functions commonly found on air conditioners/heatpumps.
-
 
 ## Finding your device ID and local key
 
@@ -345,13 +359,12 @@ You can find these keys the same way as you would for any Tuya local integration
 
 1. This component is mosty unit-tested thanks to the upstream project, but there are a few more to complete. Feel free to use existing specs as inspiration and the Sonar Cloud analysis to see where the gaps are.
 2. Once unit tests are complete, the next task is to complete the Home Assistant quality checklist before considering submission to the HA team for inclusion in standard installations.
-3. Discovery seems possible with the new tinytuya library, though the steps to get a local key will most likely remain manual.  Discovery also returns a productKey, which might help make the device detection more reliable where different devices use the same dps mapping but different names for the presets for example.
-4. Multiple entities of the same type should be supported on the same device.  This will allow surfacing more switches that are currently just attributes, and will allow supporting multi-socket smart switches.
+3. Discovery seems possible with the new tinytuya library, though the steps to get a local key will most likely remain manual. Discovery also returns a productKey, which might help make the device detection more reliable where different devices use the same dps mapping but different names for the presets for example.
+4. Multiple entities of the same type should be supported on the same device. This will allow surfacing more switches that are currently just attributes, and will allow supporting multi-socket smart switches.
 5. A generic sensor entity is needed to surface some of the sensors that are currently attributes in a way that works with HA's analytics and energy features.
 6. number and select entities would help to surface more of the settings that do not fit into the standard types.
 
 Please report any issues and feel free to raise pull requests.
 [Many others](https://github.com/make-all/tuya-local/blob/main/ACKNOWLEDGEMENTS.md) have contributed their help already.
-
 
 [![BuyMeCoffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/jasonrumney)
