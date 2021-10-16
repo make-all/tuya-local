@@ -9,6 +9,7 @@ from homeassistant.components.light import (
     COLOR_MODE_BRIGHTNESS,
     COLOR_MODE_ONOFF,
     COLOR_MODE_UNKNOWN,
+    SUPPORT_EFFECT,
 )
 
 from ..device import TuyaLocalDevice
@@ -31,6 +32,7 @@ class TuyaLocalLight(LightEntity):
         dps_map = {c.name: c for c in config.dps()}
         self._switch_dps = dps_map.pop("switch", None)
         self._brightness_dps = dps_map.pop("brightness", None)
+        self._effect_dps = dps_map.pop("effect", None)
 
         for d in dps_map.values():
             if not d.hidden:
@@ -81,6 +83,14 @@ class TuyaLocalLight(LightEntity):
             return []
 
     @property
+    def supported_features(self):
+        """Return the supported features for this light."""
+        if self._effect_dps:
+            return SUPPORT_EFFECT
+        else:
+            return 0
+
+    @property
     def color_mode(self):
         """Return the color mode of the light"""
         if self._brightness_dps:
@@ -110,6 +120,20 @@ class TuyaLocalLight(LightEntity):
         return self._brightness_dps.get_value(self._device)
 
     @property
+    def effect_list(self):
+        """Return the list of valid effects for the light"""
+        if self._effect_dps is None:
+            return None
+        return self._effect_dps.values(self._device)
+
+    @property
+    def effect(self):
+        """Return the current effect setting of this light"""
+        if self._effect_dps is None:
+            return None
+        return self._effect_dps.get_value(self._device)
+
+    @property
     def device_state_attributes(self):
         """Get additional attributes that the integration itself does not support."""
         attr = {}
@@ -132,6 +156,15 @@ class TuyaLocalLight(LightEntity):
                 **settings,
                 **bright_values,
             }
+        if self._effect_dps:
+            effect = params.get(ATTR_EFFECT, None)
+            if effect:
+                effect_values = self._effect_dps.get_values_to_set(self._device, effect)
+                settings = {
+                    **settings,
+                    **effect_values,
+                }
+
         await self._device.async_set_properties(settings)
 
     async def async_turn_off(self):
@@ -139,6 +172,8 @@ class TuyaLocalLight(LightEntity):
             await self._switch_dps.async_set_value(self._device, False)
         elif self._brightness_dps:
             await self._brightness_dps.async_set_value(self._device, 0)
+        else:
+            raise NotImplementedError()
 
     async def async_toggle(self):
         dps_display_on = self.is_on

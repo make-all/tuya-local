@@ -369,6 +369,10 @@ class TestGoldairHeater(TuyaDeviceTestCase):
     def test_light_has_no_brightness(self):
         self.assertIsNone(self.light.brightness)
 
+    def test_light_has_no_effects(self):
+        self.assertIsNone(self.light.effect_list)
+        self.assertIsNone(self.light.effect)
+
     def test_light_icon(self):
         self.dps[LIGHT_DPS] = True
         self.assertEqual(self.light.icon, "mdi:led-on")
