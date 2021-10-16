@@ -37,6 +37,15 @@ KOGAN_KAWFHTP_HEATER_PAYLOAD = {
     "7": "Low",
 }
 
+KOGAN_KASHMFP20BA_HEATER_PAYLOAD = {
+    "1": True,
+    "2": "high",
+    "3": 27,
+    "4": 26,
+    "5": "orange",
+    "6": "white",
+}
+
 DEHUMIDIFIER_PAYLOAD = {
     "1": False,
     "2": "0",

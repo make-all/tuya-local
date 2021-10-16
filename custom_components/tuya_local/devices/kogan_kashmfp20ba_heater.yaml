@@ -1,0 +1,83 @@
+name: Kogan SmarterHome™ 2000W Flame heater
+product:
+  - id: eqyne046pnqkysqh
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+          icon: "mdi:radiator-disabled"
+        - dps_val: true
+          value: "heat"
+          icon: "mdi:radiator"
+    - id: 2
+      type: string
+      mapping:
+        - dps_val: "low"
+          value: "low"
+        - dps_val: "high"
+          value: "high"
+      name: preset_mode
+    - id: 3
+      type: integer
+      range:
+        min: 10
+        max: 30
+      name: temperature
+    - id: 4
+      type: integer
+      name: current_temperature
+      readonly: true
+secondary_entities:
+  - entity: light
+    name: "backlight"
+    icon: "mdi:lightbulb"
+    dps:
+      - id: 5
+        type: string
+        name: back_light
+        mapping:
+          - dps_val: "white"
+            value: "white"
+          - dps_val: "blue"
+            value: "blue"
+          - dps_val: "orange"
+            value: "orange"
+          - dps_val: "whiteblue"
+            value: "whiteblue"
+          - dps_val: "whiteorange"
+            value: "whiteorange"
+          - dps_val: "blueorange"
+            value: "blueorange"
+  - entity: light
+    name: "flame_colour"
+    icon: "mdi:lightbulb"
+    dps:
+      - id: 6
+        type: string
+        name: flame_color
+        mapping:
+          - dps_val: "orange"
+            value: "orange"
+          - dps_val: "red"
+            value: "red"
+          - dps_val: "green"
+            value: "green"
+          - dps_val: "blue"
+            value: "blue"
+          - dps_val: "redgreen"
+            value: "redgreen"
+          - dps_val: "redblue"
+            value: "redblue"
+          - dps_val: "bluegreen"
+            value: "bluegreen"
+          - dps_val: "redorange"
+            value: "redorange"
+          - dps_val: "greenorange"
+            value: "greenorange"
+          - dps_val: "blueorange"
+            value: "blueorange"
