@@ -19,7 +19,7 @@ async def test_init_entry(hass):
         data={
             CONF_TYPE: "goldair_gpph_heater",
             CONF_DEVICE_ID: "dummy",
-            "light_panel_light": True,
+            "light_display": True,
         },
     )
     # although async, the async_add_entities function passed to
@@ -33,7 +33,7 @@ async def test_init_entry(hass):
     hass.data[DOMAIN]["dummy"]["device"] = m_device
 
     await async_setup_entry(hass, entry, m_add_entities)
-    assert type(hass.data[DOMAIN]["dummy"]["light_panel_light"]) == TuyaLocalLight
+    assert type(hass.data[DOMAIN]["dummy"]["light_display"]) == TuyaLocalLight
     m_add_entities.assert_called_once()
 
 
