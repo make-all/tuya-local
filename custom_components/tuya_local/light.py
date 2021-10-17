@@ -19,29 +19,33 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
     """Set up the light device according to its type."""
     data = hass.data[DOMAIN][discovery_info[CONF_DEVICE_ID]]
     device = data["device"]
+    lights = []
 
     cfg = get_config(discovery_info[CONF_TYPE])
     if cfg is None:
         raise ValueError(f"No device config found for {discovery_info}")
     ecfg = cfg.primary_entity
-    if ecfg.entity != "light":
-        for ecfg in cfg.secondary_entities():
-            if ecfg.entity == "light":
-                break
-        if ecfg.entity != "light":
-            raise ValueError(f"{device.name} does not support use as a light device.")
-    if ecfg.deprecated:
-        _LOGGER.warning(ecfg.deprecation_message)
+    if ecfg.entity == "light" and discovery_info.get(ecfg.config_id, False):
+        data[ecfg.config_id] = TuyaLocalLight(device, ecfg)
+        lights.append(data[ecfg.config_id])
+        if ecfg.deprecated:
+            _LOGGER.warning(ecfg.deprecation_message)
+        _LOGGER.debug(f"Adding light for {device.name}/{ecfg.name}")
 
-    data[CONF_LIGHT] = TuyaLocalLight(device, ecfg)
-    async_add_entities([data[CONF_LIGHT]])
-    _LOGGER.debug(f"Adding light for {discovery_info[CONF_TYPE]}")
+    for ecfg in cfg.secondary_entities():
+        if ecfg.entity == "light" and discovery_info.get(ecfg.config_id, False):
+            data[ecfg.config_id] = TuyaLocalLight(device, ecfg)
+            lights.append(data[ecfg.config_id])
+            if ecfg.deprecated:
+                _LOGGER.warning(ecfg.deprecation_message)
+            _LOGGER.debug(f"Adding light for {ecfg.name}")
+
+    if not lights:
+        raise ValueError(f"{device.name} does not support use as a light device.")
+
+    async_add_entities(lights)
 
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
     config = {**config_entry.data, **config_entry.options}
-    discovery_info = {
-        CONF_DEVICE_ID: config[CONF_DEVICE_ID],
-        CONF_TYPE: config[CONF_TYPE],
-    }
-    await async_setup_platform(hass, {}, async_add_entities, discovery_info)
+    await async_setup_platform(hass, {}, async_add_entities, config)

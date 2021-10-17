@@ -16,7 +16,7 @@ async def test_init_entry(hass):
     """Test the initialisation."""
     entry = MockConfigEntry(
         domain=DOMAIN,
-        data={CONF_TYPE: "kogan_switch", CONF_DEVICE_ID: "dummy"},
+        data={CONF_TYPE: "kogan_switch", CONF_DEVICE_ID: "dummy", CONF_SWITCH: True},
     )
     # although async, the async_add_entities function passed to
     # async_setup_entry is called truly asynchronously. If we use
@@ -37,7 +37,7 @@ async def test_init_entry_as_secondary(hass):
     """Test the initialisation."""
     entry = MockConfigEntry(
         domain=DOMAIN,
-        data={CONF_TYPE: "deta_fan", CONF_DEVICE_ID: "dummy"},
+        data={CONF_TYPE: "deta_fan", CONF_DEVICE_ID: "dummy", CONF_SWITCH: True},
     )
     # although async, the async_add_entities function passed to
     # async_setup_entry is called truly asynchronously. If we use
