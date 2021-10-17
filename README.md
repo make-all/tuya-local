@@ -343,13 +343,13 @@ You can find these keys the same way as you would for any Tuya local integration
 
 ## Next steps
 
-1. Remove the need for custom classes for gpph heater and goldair dehumidifier.
+1. Multiple entities of the same type should be supported on the same device.  This will allow surfacing more switches that are currently just attributes, and will allow supporting multi-socket smart switches.
+2. A generic sensor entity is needed to surface some of the sensors that are currently attributes in a way that works with HA's analytics and energy features.
+3. Remove the need for custom classes for gpph heater and goldair dehumidifier.
 These devices from upstream have some complex logic that currently cannot be represented in the config files.  Find a way to configure this logic so the last of the legacy code can be removed.
-2. This component is mosty unit-tested thanks to the upstream project, but there are a few more to complete. Feel free to use existing specs as inspiration and the Sonar Cloud analysis to see where the gaps are.
-3. Once unit tests are complete, the next task is to complete the Home Assistant quality checklist before considering submission to the HA team for inclusion in standard installations.
-4. Discovery seems possible with the new tinytuya library, though the steps to get a local key will most likely remain manual.  Discovery also returns a productKey, which might help make the device detection more reliable where different devices use the same dps mapping but different names for the presets for example.
-5. Multiple entities of the same type should be supported on the same device.  This will allow surfacing more switches that are currently just attributes, and will allow supporting multi-socket smart switches.
-6. A generic sensor entity is needed to surface some of the sensors that are currently attributes in a way that works with HA's analytics and energy features.
+4. This component is mosty unit-tested thanks to the upstream project, but there are a few more to complete. Feel free to use existing specs as inspiration and the Sonar Cloud analysis to see where the gaps are.
+5. Once unit tests are complete, the next task is to complete the Home Assistant quality checklist before considering submission to the HA team for inclusion in standard installations.
+6. Discovery seems possible with the new tinytuya library, though the steps to get a local key will most likely remain manual.  Discovery also returns a productKey, which might help make the device detection more reliable where different devices use the same dps mapping but different names for the presets for example.
 7. number and select entities would help to surface more of the settings that do not fit into the standard types.
 
 Please report any issues and feel free to raise pull requests.
