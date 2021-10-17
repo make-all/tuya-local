@@ -53,7 +53,7 @@ async def test_init_entry(hass):
             CONF_LOCAL_KEY: "localkey",
             CONF_TYPE: "kogan_kahtp_heater",
             CONF_CLIMATE: True,
-            CONF_LOCK: True,
+            "lock_child_lock": True,
         },
     )
     entry.add_to_hass(hass)
@@ -67,7 +67,7 @@ async def test_init_entry(hass):
 async def test_migrate_entry(mock_setup, hass):
     """Test migration from old entry format."""
     mock_device = MagicMock()
-    mock_device.async_inferred_type = AsyncMock(return_value="heater")
+    mock_device.async_inferred_type = AsyncMock(return_value="goldair_gpph_heater")
     mock_setup.return_value = mock_device
 
     entry = MockConfigEntry(
@@ -308,7 +308,11 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
         )
         result = await hass.config_entries.flow.async_configure(
             flow["flow_id"],
-            user_input={CONF_NAME: "test", CONF_CLIMATE: True, CONF_LOCK: False},
+            user_input={
+                CONF_NAME: "test",
+                CONF_CLIMATE: True,
+                "lock_child_lock": False,
+            },
         )
         expected = {
             "version": 4,
@@ -325,7 +329,7 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
                 CONF_DEVICE_ID: "deviceid",
                 CONF_HOST: "hostname",
                 CONF_LOCAL_KEY: "localkey",
-                CONF_LOCK: False,
+                "lock_child_lock": False,
                 CONF_TYPE: "kogan_kahtp_heater",
             },
         }
@@ -380,7 +384,7 @@ async def test_options_flow_modifies_config(mock_test, hass):
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
             CONF_LOCAL_KEY: "localkey",
-            CONF_LOCK: True,
+            "lock_child_lock": True,
             CONF_NAME: "test",
             CONF_TYPE: "kogan_kahtp_heater",
         },
@@ -398,14 +402,14 @@ async def test_options_flow_modifies_config(mock_test, hass):
             CONF_CLIMATE: True,
             CONF_HOST: "new_hostname",
             CONF_LOCAL_KEY: "new_key",
-            CONF_LOCK: False,
+            "lock_child_lock": False,
         },
     )
     expected = {
         CONF_CLIMATE: True,
         CONF_HOST: "new_hostname",
         CONF_LOCAL_KEY: "new_key",
-        CONF_LOCK: False,
+        "lock_child_lock": False,
     }
     assert "create_entry" == result["type"]
     assert "" == result["title"]

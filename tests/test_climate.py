@@ -38,7 +38,11 @@ async def test_init_entry_as_secondary(hass):
     """Test initialisation when fan is a secondary entity"""
     entry = MockConfigEntry(
         domain=DOMAIN,
-        data={CONF_TYPE: "dehumidifier", CONF_DEVICE_ID: "dummy", CONF_CLIMATE: True},
+        data={
+            CONF_TYPE: "goldair_dehumidifier",
+            CONF_DEVICE_ID: "dummy",
+            "climate_dehumidifier_as_climate": True,
+        },
     )
     # although async, the async_add_entities function passed to
     # async_setup_entry is called truly asynchronously. If we use
@@ -51,7 +55,10 @@ async def test_init_entry_as_secondary(hass):
     hass.data[DOMAIN]["dummy"]["device"] = m_device
 
     await async_setup_entry(hass, entry, m_add_entities)
-    assert type(hass.data[DOMAIN]["dummy"][CONF_CLIMATE]) == GoldairDehumidifier
+    assert (
+        type(hass.data[DOMAIN]["dummy"]["climate_dehumidifier_as_climate"])
+        == GoldairDehumidifier
+    )
     m_add_entities.assert_called_once()
 
 

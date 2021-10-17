@@ -7,6 +7,7 @@ from os import walk
 from os.path import join, dirname, splitext, exists
 from pydoc import locate
 
+from homeassistant.util import slugify
 from homeassistant.util.yaml import load_yaml
 
 import custom_components.tuya_local.devices as config_dir
@@ -183,6 +184,10 @@ class TuyaEntityConfig:
     @property
     def config_id(self):
         """The identifier for this entitiy in the config."""
+        own_name = self._config.get("name")
+        if own_name:
+            return f"{self.entity}_{slugify(own_name)}"
+
         return self.entity
 
     @property

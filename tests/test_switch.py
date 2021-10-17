@@ -37,7 +37,7 @@ async def test_init_entry_as_secondary(hass):
     """Test the initialisation."""
     entry = MockConfigEntry(
         domain=DOMAIN,
-        data={CONF_TYPE: "deta_fan", CONF_DEVICE_ID: "dummy", CONF_SWITCH: True},
+        data={CONF_TYPE: "deta_fan", CONF_DEVICE_ID: "dummy", "switch_master": True},
     )
     # although async, the async_add_entities function passed to
     # async_setup_entry is called truly asynchronously. If we use
@@ -50,7 +50,7 @@ async def test_init_entry_as_secondary(hass):
     hass.data[DOMAIN]["dummy"]["device"] = m_device
 
     await async_setup_entry(hass, entry, m_add_entities)
-    assert type(hass.data[DOMAIN]["dummy"][CONF_SWITCH]) == TuyaLocalSwitch
+    assert type(hass.data[DOMAIN]["dummy"]["switch_master"]) == TuyaLocalSwitch
     m_add_entities.assert_called_once()
 
 
