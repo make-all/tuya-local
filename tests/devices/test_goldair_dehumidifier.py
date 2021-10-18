@@ -47,10 +47,10 @@ class TestGoldairDehumidifier(TuyaDeviceTestCase):
         self.setUpForConfig("goldair_dehumidifier.yaml", DEHUMIDIFIER_PAYLOAD)
         self.subject = self.entities.get("humidifier")
         self.fan = self.entities.get("fan")
-        self.climate = self.entities.get("climate")
-        self.light = self.entities.get("light")
-        self.lock = self.entities.get("lock")
-        self.switch = self.entities.get("switch")
+        self.climate = self.entities.get("climate_dehumidifier_as_climate")
+        self.light = self.entities.get("light_display")
+        self.lock = self.entities.get("lock_child_lock")
+        self.switch = self.entities.get("switch_air_clean")
 
     def test_supported_features(self):
         self.assertEqual(

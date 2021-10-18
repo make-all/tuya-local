@@ -26,9 +26,9 @@ class TestRenphoPurifier(TuyaDeviceTestCase):
     def setUp(self):
         self.setUpForConfig("renpho_rp_ap001s.yaml", RENPHO_PURIFIER_PAYLOAD)
         self.subject = self.entities["fan"]
-        self.light = self.entities["light"]
-        self.lock = self.entities["lock"]
-        self.switch = self.entities["switch"]
+        self.light = self.entities["light_aq_indicator"]
+        self.lock = self.entities["lock_child_lock"]
+        self.switch = self.entities["switch_sleep"]
 
     def test_supported_features(self):
         self.assertEqual(self.subject.supported_features, SUPPORT_PRESET_MODE)

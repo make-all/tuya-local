@@ -22,7 +22,7 @@ class TestElectriqCD20ProDehumidifier(TuyaDeviceTestCase):
             "electriq_cd12pw_dehumidifier.yaml", ELECTRIQ_CD12PW_DEHUMIDIFIER_PAYLOAD
         )
         self.subject = self.entities.get("humidifier")
-        self.light = self.entities.get("light")
+        self.light = self.entities.get("light_display")
 
     def test_supported_features(self):
         self.assertEqual(self.subject.supported_features, SUPPORT_MODES)

@@ -42,8 +42,8 @@ class TestElectriq12WMINVHeatpump(TuyaDeviceTestCase):
             "electriq_12wminv_heatpump.yaml", ELECTRIQ_12WMINV_HEATPUMP_PAYLOAD
         )
         self.subject = self.entities.get("climate")
-        self.light = self.entities.get("light")
-        self.switch = self.entities.get("switch")
+        self.light = self.entities.get("light_display")
+        self.switch = self.entities.get("switch_sleep")
 
     def test_supported_features(self):
         self.assertEqual(

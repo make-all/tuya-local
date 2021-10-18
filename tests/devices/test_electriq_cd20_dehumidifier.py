@@ -27,8 +27,8 @@ class TestElectriqCD20ProDehumidifier(TuyaDeviceTestCase):
         )
         self.subject = self.entities.get("humidifier")
         self.fan = self.entities.get("fan")
-        self.light = self.entities.get("light")
-        self.switch = self.entities.get("switch")
+        self.light = self.entities.get("light_display")
+        self.switch = self.entities.get("switch_uv_sterilization")
 
     def test_supported_features(self):
         self.assertEqual(self.subject.supported_features, SUPPORT_MODES)

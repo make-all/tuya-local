@@ -24,7 +24,7 @@ class TestGoldairGECOHeater(TuyaDeviceTestCase):
     def setUp(self):
         self.setUpForConfig("goldair_geco_heater.yaml", GECO_HEATER_PAYLOAD)
         self.subject = self.entities.get("climate")
-        self.lock = self.entities.get("lock")
+        self.lock = self.entities.get("lock_child_lock")
 
     def test_supported_features(self):
         self.assertEqual(

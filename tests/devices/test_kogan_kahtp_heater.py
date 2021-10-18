@@ -25,7 +25,7 @@ class TestGoldairKoganKAHTPHeater(TuyaDeviceTestCase):
     def setUp(self):
         self.setUpForConfig("kogan_kahtp_heater.yaml", KOGAN_HEATER_PAYLOAD)
         self.subject = self.entities.get("climate")
-        self.lock = self.entities.get("lock")
+        self.lock = self.entities.get("lock_child_lock")
 
     def test_supported_features(self):
         self.assertEqual(

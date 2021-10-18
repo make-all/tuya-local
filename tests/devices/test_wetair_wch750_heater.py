@@ -30,7 +30,7 @@ class TestWetairWCH750Heater(TuyaDeviceTestCase):
     def setUp(self):
         self.setUpForConfig("wetair_wch750_heater.yaml", WETAIR_WCH750_HEATER_PAYLOAD)
         self.subject = self.entities.get("climate")
-        self.light = self.entities.get("light")
+        self.light = self.entities.get("light_display")
 
     def test_supported_features(self):
         self.assertEqual(

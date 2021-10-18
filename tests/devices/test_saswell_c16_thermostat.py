@@ -45,7 +45,7 @@ class TestSaswellC16Thermostat(TuyaDeviceTestCase):
             "saswell_c16_thermostat.yaml", SASWELL_C16_THERMOSTAT_PAYLOAD
         )
         self.subject = self.entities.get("climate")
-        self.lock = self.entities.get("lock")
+        self.lock = self.entities.get("lock_child_lock")
 
     def test_supported_features(self):
         self.assertEqual(

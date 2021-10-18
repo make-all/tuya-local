@@ -36,8 +36,8 @@ class TestGoldairHeater(TuyaDeviceTestCase):
     def setUp(self):
         self.setUpForConfig("goldair_gpph_heater.yaml", GPPH_HEATER_PAYLOAD)
         self.subject = self.entities.get("climate")
-        self.light = self.entities.get("light")
-        self.lock = self.entities.get("lock")
+        self.light = self.entities.get("light_display")
+        self.lock = self.entities.get("lock_child_lock")
 
     def test_supported_features(self):
         self.assertEqual(

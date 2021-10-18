@@ -28,8 +28,8 @@ class TestLexyF501Fan(TuyaDeviceTestCase):
         self.setUpForConfig("lexy_f501_fan.yaml", LEXY_F501_PAYLOAD)
         self.subject = self.entities.get("fan")
         self.light = self.entities.get("light")
-        self.lock = self.entities.get("lock")
-        self.switch = self.entities.get("switch")
+        self.lock = self.entities.get("lock_child_lock")
+        self.switch = self.entities.get("switch_sound")
 
     def test_supported_features(self):
         self.assertEqual(

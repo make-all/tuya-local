@@ -37,7 +37,7 @@ class TestGoldairFan(TuyaDeviceTestCase):
         self.setUpForConfig("goldair_fan.yaml", FAN_PAYLOAD)
         self.subject = self.entities.get("fan")
         self.climate = self.entities.get("climate")
-        self.light = self.entities.get("light")
+        self.light = self.entities.get("light_display")
 
     def test_supported_features(self):
         self.assertEqual(
