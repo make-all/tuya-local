@@ -101,6 +101,32 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         }
         entry.version = 4
 
+    if entry.version == 4:
+        # Migrate indexes to entity id rather than type, to allow for multiple
+        # entities of the same type for a device.
+        config = {**entry.data, **entry.options, "name": entry.title}
+        devcfg = get_config(config[CONF_TYPE])
+        opts = {**entry.options}
+        newopts = {**opts}
+        entry.data = {
+            CONF_DEVICE_ID: config[CONF_DEVICE_ID],
+            CONF_LOCAL_KEY: config[CONF_LOCAL_KEY],
+            CONF_HOST: config[CONF_HOST],
+            CONF_TYPE: config[CONF_TYPE],
+        }
+        e = devcfg.primary_entity
+        if e.config_id != e.entity:
+            newopts.pop(e.entity, None)
+            newopts[e.config_id] = opts[e.entity]
+
+        for e in devcfg.secondary_entities():
+            if e.config_id != e.entity:
+                newopts.pop(e.entity, None)
+                newopts[e.config_id] = opts[e.entity]
+
+        entry.options = {**newopts}
+        entry.version = 5
+
     return True
 
 

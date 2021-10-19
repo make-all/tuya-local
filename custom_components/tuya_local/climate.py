@@ -19,37 +19,41 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
     """Set up the Tuya device according to its type."""
     data = hass.data[DOMAIN][discovery_info[CONF_DEVICE_ID]]
     device = data["device"]
+    climates = []
 
     cfg = get_config(discovery_info[CONF_TYPE])
     if cfg is None:
         raise ValueError(f"No device config found for {discovery_info}")
     ecfg = cfg.primary_entity
-    if ecfg.entity != "climate":
-        for ecfg in cfg.secondary_entities():
-            if ecfg.entity == "climate":
-                break
-        if ecfg.entity != "climate":
-            raise ValueError(f"{device.name} does not support use as a climate device.")
-    if ecfg.deprecated:
-        _LOGGER.warning(ecfg.deprecation_message)
+    if ecfg.entity == "climate" and discovery_info.get(ecfg.config_id, False):
+        legacy_class = ecfg.legacy_class
+        if legacy_class is None:
+            data[ecfg.config_id] = TuyaLocalClimate(device, ecfg)
+        else:
+            data[ecfg.config_id] = legacy_class(device)
+        climates.append(data[ecfg.config_id])
+        if ecfg.deprecated:
+            _LOGGER.warning(ecfg.deprecation_message)
+        _LOGGER.debug(f"Adding climate for {ecfg.name}")
 
-    legacy_class = ecfg.legacy_class
-    # Transition: generic climate entity exists, but is not complete. More
-    # complex climate devices still need a device specific class.
-    # If legacy_class exists, use it, otherwise use the generic climate class.
-    if legacy_class is not None:
-        data[CONF_CLIMATE] = legacy_class(device)
-    else:
-        data[CONF_CLIMATE] = TuyaLocalClimate(device, ecfg)
+    for ecfg in cfg.secondary_entities():
+        if ecfg.entity == "climate" and discovery_info.get(ecfg.config_id, False):
+            legacy_class = ecfg.legacy_class
+            if legacy_class is None:
+                data[ecfg.config_id] = TuyaLocalClimate(device, ecfg)
+            else:
+                data[ecfg.config_id] = legacy_class(device)
+            climates.append(data[ecfg.config_id])
+            if ecfg.deprecated:
+                _LOGGER.warning(ecfg.deprecation_message)
+            _LOGGER.debug(f"Adding climate for {ecfg.name}")
 
-    async_add_entities([data[CONF_CLIMATE]])
-    _LOGGER.debug(f"Adding climate device for {discovery_info[CONF_TYPE]}")
+    if not climates:
+        raise ValueError(f"{device.name} does not support use as a climate device.")
+
+    async_add_entities(climates)
 
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
     config = {**config_entry.data, **config_entry.options}
-    discovery_info = {
-        CONF_DEVICE_ID: config[CONF_DEVICE_ID],
-        CONF_TYPE: config[CONF_TYPE],
-    }
-    await async_setup_platform(hass, {}, async_add_entities, discovery_info)
+    await async_setup_platform(hass, {}, async_add_entities, config)

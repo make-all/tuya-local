@@ -36,8 +36,8 @@ class TestElectriqDESD9LWDehumidifier(TuyaDeviceTestCase):
             ELECTRIQ_DESD9LW_DEHUMIDIFIER_PAYLOAD,
         )
         self.subject = self.entities.get("climate")
-        self.light = self.entities.get("light")
-        self.switch = self.entities.get("switch")
+        self.light = self.entities.get("light_uv_sterilization")
+        self.switch = self.entities.get("switch_ionizer")
 
     def test_supported_features(self):
         self.assertEqual(

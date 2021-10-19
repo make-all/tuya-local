@@ -22,7 +22,7 @@ class TestDetaFan(TuyaDeviceTestCase):
         self.setUpForConfig("deta_fan.yaml", DETA_FAN_PAYLOAD)
         self.subject = self.entities["fan"]
         self.light = self.entities["light"]
-        self.switch = self.entities["switch"]
+        self.switch = self.entities["switch_master"]
 
     def test_supported_features(self):
         self.assertEqual(

@@ -42,8 +42,8 @@ class TestEanonsHumidifier(TuyaDeviceTestCase):
         self.setUpForConfig("eanons_humidifier.yaml", EANONS_HUMIDIFIER_PAYLOAD)
         self.subject = self.entities["humidifier"]
         self.climate = self.entities["climate"]
-        self.switch = self.entities["switch"]
-        self.fan = self.entities["fan"]
+        self.switch = self.entities["switch_uv_sterilization"]
+        self.fan = self.entities["fan_intensity"]
 
     def test_supported_features(self):
         self.assertEqual(

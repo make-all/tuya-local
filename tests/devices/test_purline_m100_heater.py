@@ -36,8 +36,8 @@ class TestPulineM100Heater(TuyaDeviceTestCase):
     def setUp(self):
         self.setUpForConfig("purline_m100_heater.yaml", PURLINE_M100_HEATER_PAYLOAD)
         self.subject = self.entities.get("climate")
-        self.light = self.entities.get("light")
-        self.switch = self.entities.get("switch")
+        self.light = self.entities.get("light_display")
+        self.switch = self.entities.get("switch_open_window_detector")
 
     def test_supported_features(self):
         self.assertEqual(

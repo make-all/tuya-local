@@ -1,9 +1,8 @@
-from homeassistant.components.fan import SUPPORT_PRESET_MODE
 from homeassistant.components.humidifier import SUPPORT_MODES
 from homeassistant.components.light import COLOR_MODE_ONOFF
 from homeassistant.const import STATE_UNAVAILABLE
 
-from ..const import ELECTRIQ_CD20PRO_DEHUMIDIFIER_PAYLOAD
+from ..const import ELECTRIQ_CD12PW_DEHUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
 from .base_device_tests import TuyaDeviceTestCase
 
@@ -11,10 +10,7 @@ SWITCH_DPS = "1"
 MODE_DPS = "2"
 CURRENTHUMID_DPS = "3"
 HUMIDITY_DPS = "4"
-ANION_DPS = "5"
-UV_DPS = "10"
 LIGHT_DPS = "101"
-PRESET_DPS = "102"
 CURRENTTEMP_DPS = "103"
 
 
@@ -23,16 +19,13 @@ class TestElectriqCD20ProDehumidifier(TuyaDeviceTestCase):
 
     def setUp(self):
         self.setUpForConfig(
-            "electriq_cd20pro_dehumidifier.yaml", ELECTRIQ_CD20PRO_DEHUMIDIFIER_PAYLOAD
+            "electriq_cd12pw_dehumidifier.yaml", ELECTRIQ_CD12PW_DEHUMIDIFIER_PAYLOAD
         )
         self.subject = self.entities.get("humidifier")
-        self.fan = self.entities.get("fan")
         self.light = self.entities.get("light_display")
-        self.switch = self.entities.get("switch_uv_sterilization")
 
     def test_supported_features(self):
         self.assertEqual(self.subject.supported_features, SUPPORT_MODES)
-        self.assertEqual(self.fan.supported_features, SUPPORT_PRESET_MODE)
 
     def test_icon(self):
         """Test that the icon is as expected."""
@@ -49,10 +42,6 @@ class TestElectriqCD20ProDehumidifier(TuyaDeviceTestCase):
         self.dps[SWITCH_DPS] = True
         self.assertEqual(self.subject.icon, "mdi:air-purifier")
 
-        self.dps[MODE_DPS] = "high"
-        self.assertEqual(self.subject.icon, "mdi:tshirt-crew-outline")
-
-        self.assertEqual(self.switch.icon, "mdi:solar-power")
         self.dps[LIGHT_DPS] = True
         self.assertEqual(self.light.icon, "mdi:led-on")
         self.dps[LIGHT_DPS] = False
@@ -85,15 +74,12 @@ class TestElectriqCD20ProDehumidifier(TuyaDeviceTestCase):
     def test_is_on(self):
         self.dps[SWITCH_DPS] = True
         self.assertTrue(self.subject.is_on)
-        self.assertTrue(self.fan.is_on)
 
         self.dps[SWITCH_DPS] = False
         self.assertFalse(self.subject.is_on)
-        self.assertFalse(self.fan.is_on)
 
         self.dps[SWITCH_DPS] = None
         self.assertEqual(self.subject.is_on, STATE_UNAVAILABLE)
-        self.assertEqual(self.fan.is_on, STATE_UNAVAILABLE)
 
     async def test_turn_on(self):
         async with assert_device_properties_set(
@@ -107,23 +93,7 @@ class TestElectriqCD20ProDehumidifier(TuyaDeviceTestCase):
         ):
             await self.subject.async_turn_off()
 
-    async def test_fan_turn_on(self):
-        async with assert_device_properties_set(
-            self.subject._device, {SWITCH_DPS: True}
-        ):
-            await self.fan.async_turn_on()
-
-    async def test_fan_turn_off(self):
-        async with assert_device_properties_set(
-            self.subject._device, {SWITCH_DPS: False}
-        ):
-            await self.fan.async_turn_off()
-
     def test_mode(self):
-        self.dps[MODE_DPS] = "low"
-        self.assertEqual(self.subject.mode, "Low")
-        self.dps[MODE_DPS] = "high"
-        self.assertEqual(self.subject.mode, "High")
         self.dps[MODE_DPS] = "auto"
         self.assertEqual(self.subject.mode, "Auto")
         self.dps[MODE_DPS] = "fan"
@@ -139,26 +109,6 @@ class TestElectriqCD20ProDehumidifier(TuyaDeviceTestCase):
             await self.subject.async_set_mode("Auto")
             self.subject._device.anticipate_property_value.assert_not_called()
 
-    async def test_set_mode_to_low(self):
-        async with assert_device_properties_set(
-            self.subject._device,
-            {
-                MODE_DPS: "low",
-            },
-        ):
-            await self.subject.async_set_mode("Low")
-            self.subject._device.anticipate_property_value.assert_not_called()
-
-    async def test_set_mode_to_high(self):
-        async with assert_device_properties_set(
-            self.subject._device,
-            {
-                MODE_DPS: "high",
-            },
-        ):
-            await self.subject.async_set_mode("High")
-            self.subject._device.anticipate_property_value.assert_not_called()
-
     async def test_set_mode_to_fan(self):
         async with assert_device_properties_set(
             self.subject._device,
@@ -167,46 +117,6 @@ class TestElectriqCD20ProDehumidifier(TuyaDeviceTestCase):
             },
         ):
             await self.subject.async_set_mode("Air clean")
-            self.subject._device.anticipate_property_value.assert_not_called()
-
-    def test_fan_preset_mode(self):
-        self.dps[PRESET_DPS] = "45"
-        self.assertEqual(self.fan.preset_mode, "Half open")
-
-        self.dps[PRESET_DPS] = "90"
-        self.assertEqual(self.fan.preset_mode, "Fully open")
-
-        self.dps[PRESET_DPS] = "0_90"
-        self.assertEqual(self.fan.preset_mode, "Oscillate")
-
-    async def test_set_fan_to_half_open(self):
-        async with assert_device_properties_set(
-            self.subject._device,
-            {
-                PRESET_DPS: "45",
-            },
-        ):
-            await self.fan.async_set_preset_mode("Half open")
-            self.subject._device.anticipate_property_value.assert_not_called()
-
-    async def test_set_fan_to_fully_open(self):
-        async with assert_device_properties_set(
-            self.subject._device,
-            {
-                PRESET_DPS: "90",
-            },
-        ):
-            await self.fan.async_set_preset_mode("Fully open")
-            self.subject._device.anticipate_property_value.assert_not_called()
-
-    async def test_set_fan_to_oscillate(self):
-        async with assert_device_properties_set(
-            self.subject._device,
-            {
-                PRESET_DPS: "0_90",
-            },
-        ):
-            await self.fan.async_set_preset_mode("Oscillate")
             self.subject._device.anticipate_property_value.assert_not_called()
 
     def test_light_supported_color_modes(self):
@@ -243,39 +153,11 @@ class TestElectriqCD20ProDehumidifier(TuyaDeviceTestCase):
         async with assert_device_properties_set(self.light._device, {LIGHT_DPS: False}):
             await self.light.async_toggle()
 
-    def test_switch_is_on(self):
-        self.dps[UV_DPS] = True
-        self.assertTrue(self.switch.is_on)
-
-        self.dps[UV_DPS] = False
-        self.assertFalse(self.switch.is_on)
-
-    async def test_switch_turn_on(self):
-        async with assert_device_properties_set(self.switch._device, {UV_DPS: True}):
-            await self.switch.async_turn_on()
-
-    async def test_switch_turn_off(self):
-        async with assert_device_properties_set(self.switch._device, {UV_DPS: False}):
-            await self.switch.async_turn_off()
-
-    async def test_toggle_turns_the_switch_on_when_it_was_off(self):
-        self.dps[UV_DPS] = False
-        async with assert_device_properties_set(self.switch._device, {UV_DPS: True}):
-            await self.switch.async_toggle()
-
-    async def test_toggle_turns_the_switch_off_when_it_was_on(self):
-        self.dps[UV_DPS] = True
-        async with assert_device_properties_set(self.switch._device, {UV_DPS: False}):
-            await self.switch.async_toggle()
-
     def test_state_attributes(self):
         self.dps[CURRENTHUMID_DPS] = 50
         self.dps[CURRENTTEMP_DPS] = 21
-        self.dps[ANION_DPS] = True
         self.assertDictEqual(
             self.subject.device_state_attributes,
-            {"current_humidity": 50, "current_temperature": 21, "anion": True},
+            {"current_humidity": 50, "current_temperature": 21},
         )
-        self.assertEqual(self.fan.device_state_attributes, {})
         self.assertEqual(self.light.device_state_attributes, {})
-        self.assertEqual(self.switch.device_state_attributes, {})

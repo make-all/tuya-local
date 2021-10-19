@@ -29,8 +29,8 @@ class TestBecaBHP6000Thermostat(TuyaDeviceTestCase):
     def setUp(self):
         self.setUpForConfig("beca_bhp6000_thermostat_f.yaml", BECA_BHP6000_PAYLOAD)
         self.subject = self.entities.get("climate")
-        self.light = self.entities.get("light")
-        self.lock = self.entities.get("lock")
+        self.light = self.entities.get("light_display")
+        self.lock = self.entities.get("lock_child_lock")
 
     def test_supported_features(self):
         self.assertEqual(

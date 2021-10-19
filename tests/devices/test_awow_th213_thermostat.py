@@ -36,7 +36,7 @@ class TestAwowTH213Thermostat(TuyaDeviceTestCase):
     def setUp(self):
         self.setUpForConfig("awow_th213_thermostat.yaml", TH213_THERMOSTAT_PAYLOAD)
         self.subject = self.entities.get("climate")
-        self.lock = self.entities.get("lock")
+        self.lock = self.entities.get("lock_child_lock")
 
     def test_supported_features(self):
         self.assertEqual(

@@ -223,6 +223,15 @@ ELECTRIQ_CD20PRO_DEHUMIDIFIER_PAYLOAD = {
     "103": 30,
 }
 
+ELECTRIQ_CD12PW_DEHUMIDIFIER_PAYLOAD = {
+    "1": True,
+    "2": "high",
+    "3": 39,
+    "4": 45,
+    "101": False,
+    "103": 30,
+}
+
 ELECTRIQ_DESD9LW_DEHUMIDIFIER_PAYLOAD = {
     "1": True,
     "2": 50,
@@ -321,6 +330,18 @@ BECA_BHP6000_PAYLOAD = {
     "7": False,
 }
 
+BECA_BHT6000_PAYLOAD = {
+    "1": False,
+    "2": 40,
+    "3": 42,
+    "4": "0",
+    "5": False,
+    "6": False,
+    "102": 0,
+    "103": "1",
+    "104": True,
+}
+
 LEXY_F501_PAYLOAD = {
     "1": True,
     "2": "forestwindhigh",
@@ -370,12 +391,34 @@ SASWELL_T29UTK_THERMOSTAT_PAYLOAD = {
     "101": False,
     "102": False,
     "103": "cold",
-    "112": "1",
+    "112": "3",
     "113": 0,
     "114": 24,
     "115": 24,
     "116": 75,
     "117": 81,
+}
+
+SASWELL_C16_THERMOSTAT_PAYLOAD = {
+    "2": 220,
+    "3": "Smart",
+    "4": 0,
+    "5": 217,
+    "6": 350,
+    "7": False,
+    "8": 241,
+    "9": False,
+    "10": True,
+    "11": False,
+    "12": "7",
+    "14": 0,
+    "15": 0,
+    "17": 0,
+    "21": False,
+    "22": 1500,
+    "23": 12,
+    "24": "Standby",
+    "26": 50,
 }
 
 FERSK_VIND2_PAYLOAD = {
@@ -420,10 +463,10 @@ ARLEC_FAN_PAYLOAD = {
     "3": 1,
     "4": "forward",
     "102": "normal",
-    "103": 0,
+    "103": "off",
 }
 
-CARSON_CB_PAYOAD = {
+CARSON_CB_PAYLOAD = {
     "1": True,
     "2": 20,
     "3": 23,
@@ -436,4 +479,35 @@ CARSON_CB_PAYOAD = {
     "105": 0,
     "106": 0,
     "110": 0,
+}
+
+KOGAN_KAWFPAC09YA_AIRCON_PAYLOAD = {
+    "1": True,
+    "2": 19,
+    "3": 18,
+    "4": "COOL",
+    "5": "1",
+    "19": "C",
+    "105": 0,
+    "106": 0,
+    "107": False,
+}
+
+GRIDCONNECT_2SOCKET_PAYLOAD = {
+    "1": True,
+    "2": True,
+    "9": 0,
+    "10": 0,
+    "17": 0,
+    "18": 500,
+    "19": 1200,
+    "20": 240,
+    "21": 0,
+    "22": 0,
+    "23": 0,
+    "24": 0,
+    "25": 0,
+    "38": "0",
+    "40": False,
+    "101": True,
 }

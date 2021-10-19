@@ -1,0 +1,112 @@
+name: C16 WiFi Thermostat
+products:
+  - id: jIRwsT5yLPJO41Po
+primary_entity:
+  entity: climate
+  dps:
+    - id: 2
+      name: temperature
+      type: integer
+      range:
+        min: 50
+        max: 400
+      mapping:
+        - scale: 10
+          step: 5
+    - id: 3
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: "Smart"
+          value: "home"
+          icon: "mdi:home-thermometer"
+        - dps_val: "Anti_frozen"
+          value: "away"
+          icon: "mdi:snowflake"
+        - dps_val: "Manual"
+          value: "manual"
+          icon: "mdi:cursor-pointer"
+    - id: 4
+      name: unknown_4
+      type: integer
+    - id: 5
+      name: current_temperature
+      type: integer
+      mapping:
+        - scale: 10
+    - id: 6
+      name: floor_temp_limit
+      type: integer
+      mapping:
+        - scale: 10
+    - id: 7
+      name: installation
+      type: boolean
+      mapping:
+        - dps_val: true
+          value: Office
+        - dps_val: false
+          value: Home
+    - id: 8
+      name: floor_temperature
+      type: integer
+      mapping:
+        - scale: 10
+    - id: 9
+      name: hvac_mode
+      type: boolean
+      readonly: true
+      mapping:
+        - dps_val: false
+          value: "heat"
+        - dps_val: true
+          value: "cool"
+    - id: 10
+      name: adaptive
+      type: boolean
+    - id: 12
+      name: schedule
+      type: string
+    - id: 14
+      name: unknown_14
+      type: integer
+    - id: 15
+      name: unknown_15
+      type: integer
+    - id: 17
+      name: unknown_17
+      type: integer
+    - id: 21
+      name: unknown_21
+      type: boolean
+    - id: 22
+      name: power_rating
+      type: integer
+    - id: 23
+      name: unknown_23
+      type: integer
+    - id: 24
+      name: hvac_action
+      type: string
+      mapping:
+        - dps_val: Standby
+          value: idle
+        - dps_val: Heating
+          value: heating
+        - dps_val: Cooling
+          value: cooling
+    - id: 26
+      name: unknown_26
+      type: integer
+secondary_entities:
+  - entity: lock
+    name: Child Lock
+    dps:
+      - id: 11
+        name: lock
+        type: boolean
+        mapping:
+          - dps_val: true
+            icon: "mdi:hand-back-right-off"
+          - dps_val: false
+            icon: "mdi:hand-back-right"
