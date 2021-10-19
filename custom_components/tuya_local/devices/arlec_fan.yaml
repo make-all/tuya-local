@@ -1,0 +1,36 @@
+name: ARLEC Grid Connect SMART Fan
+primary_entity:
+  entity: fan
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 3
+      name: speed
+      type: integer
+      range:
+        min: 0
+        max: 6
+      mapping:
+        - scale: 0.06
+    - id: 4
+      name: direction
+      type: string
+    - id: 102
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: normal
+          value: normal
+        - dps_val: sleep
+          value: sleep
+        - dps_val: breeze
+          value: breeze
+    - id: 103
+      name: timer
+      type: string
+      mapping:
+        - dps_val: "off"
+        - dps_val: 2hour
+        - dps_val: 4hour
+        - dps_val: 8hour
