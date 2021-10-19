@@ -1,0 +1,111 @@
+# With limitation on reiterating same type of entity there is not much left to do to achieve full functionality.
+# However, it might complement existing Tuya v2 cloud integration or even localtuya by providing:
+# -  power reading
+# - child lock
+# - master switch (not very usable)
+
+name: Grid Connnect power metered double outlet with USB
+primary_entity:
+  entity: switch
+  name: Main Switch
+  class: outlet
+  dps:
+    - id: 17
+      name: unknown_17
+      type: integer
+      readonly: true
+    - id: 18
+      type: integer
+      name: current_a
+      readonly: true
+      mapping:
+        - scale: 1000
+    - id: 19
+      type: integer
+      name: current_power_w
+      readonly: true
+      mapping:
+        - scale: 10
+    - id: 20
+      type: integer
+      name: voltage_v
+      readonly: true
+      mapping:
+        - scale: 10
+    - id: 21
+      name: unknown_21
+      type: integer
+      readonly: true
+    - id: 22
+      name: unknown_22
+      type: integer
+      readonly: true
+    - id: 23
+      name: unknown_23
+      type: integer
+      readonly: true
+    - id: 24
+      name: unknown_24
+      type: integer
+      readonly: true
+    - id: 25
+      name: unknown_25
+      type: integer
+      readonly: true
+    - id: 38
+      name: unknown_38
+      type: string
+      readonly: true
+    - id: 101
+      name: switch
+      type: boolean
+secondary_entities:
+  - entity: lock
+    name: Child Lock
+    dps:
+      - id: 40
+        name: lock
+        type: boolean
+        mapping:
+          - dps_val: true
+            icon: "mdi:account-lock"
+          - dps_val: false
+            icon: "mdi:account"
+  - entity: switch
+    class: outlet
+    name: Left Outlet
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+        mapping:
+          - constraint: master
+            conditions:
+              - dps_val: false
+                invalid: true
+      - id: 9
+        name: countdown
+        type: integer
+      - id: 101
+        name: master
+        type: boolean
+        hidden: true
+  - entity: switch
+    class: outlet
+    name: Right Outlet
+    dps:
+      - id: 2
+        name: switch
+        type: boolean
+        mapping:
+          - constraint: master
+            conditions:
+              - dps_val: false
+                invalid: true
+      - id: 10
+        name: countdown
+        type: integer
+      - id: 101
+        name: master
+        type: boolean
+        hidden: true
