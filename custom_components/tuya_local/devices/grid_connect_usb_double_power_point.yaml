@@ -71,21 +71,41 @@ secondary_entities:
             icon: "mdi:account-lock"
           - dps_val: false
             icon: "mdi:account"
-#  - entity: switch
-#    name: Left Outlet
-#    dps:
-#      - id: 1
-#        name: switch
-#        type: boolean
-#      - id: 9
-#        name: countdown
-#        type: integer
-#  - entity: switch
-#    name: Right Outlet
-#    dps:
-#      - id: 2
-#        name: switch
-#        type: boolean
-#      - id: 10
-#        name: countdown
-#        type: integer
+  - entity: switch
+    class: outlet
+    name: Left Outlet
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+        mapping:
+          - constraint: master
+            conditions:
+              - dps_val: false
+                invalid: true
+      - id: 9
+        name: countdown
+        type: integer
+      - id: 101
+        name: master
+        type: boolean
+        hidden: true
+  - entity: switch
+    class: outlet
+    name: Right Outlet
+    dps:
+      - id: 2
+        name: switch
+        type: boolean
+        mapping:
+          - constraint: master
+            conditions:
+              - dps_val: false
+                invalid: true
+      - id: 10
+        name: countdown
+        type: integer
+      - id: 101
+        name: master
+        type: boolean
+        hidden: true
