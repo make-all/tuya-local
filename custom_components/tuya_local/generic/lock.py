@@ -47,7 +47,7 @@ class TuyaLocalLock(LockEntity):
     @property
     def unique_id(self):
         """Return the device unique ID."""
-        return self._device.unique_id
+        return self._config.unique_id(self._device)
 
     @property
     def device_info(self):

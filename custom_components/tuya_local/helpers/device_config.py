@@ -152,6 +152,14 @@ class TuyaEntityConfig:
         else:
             return self._device.name + " " + own_name
 
+    def unique_id(self, device):
+        """Return a suitable unique_id for this entity."""
+        own_name = self._config.get("name")
+        if own_name:
+            return f"{device.unique_id}-{slugify(own_name)}"
+        else:
+            return device.unique_id
+
     @property
     def legacy_class(self):
         """Return the legacy device corresponding to this config."""
