@@ -10,7 +10,8 @@ import logging
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_HOST
-from homeassistant.core import HomeAssistant
+from homeassistant.core import HomeAssistant, callback
+from homeassistant.helpers.entity_registry import async_migrate_entries
 
 from .const import (
     CONF_DEVICE_ID,
@@ -41,6 +42,9 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
             device = setup_device(hass, config)
             config[CONF_TYPE] = await device.async_inferred_type()
             if config[CONF_TYPE] is None:
+                _LOGGER.error(
+                    f"Unable to determine type for device {config[CONF_DEVICE_ID]}."
+                )
                 return False
 
         entry.data = {
@@ -69,6 +73,9 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
             device = setup_device(hass, config)
             config[CONF_TYPE] = await device.async_inferred_type()
             if config[CONF_TYPE] is None:
+                _LOGGER.error(
+                    f"Unable to determine type for device {config[CONF_DEVICE_ID]}."
+                )
                 return False
         entry.data = {
             CONF_DEVICE_ID: config[CONF_DEVICE_ID],
@@ -127,6 +134,35 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         entry.options = {**newopts}
         entry.version = 5
 
+    if entry.version == 5:
+        # Migrate unique ids of existing entities to new format
+        old_id = entry.unique_id
+        conf_file = get_config(entry.data[CONF_TYPE])
+        if conf_file is None:
+            _LOGGER.error(f"Configuration file for {entry.data[CONF_TYPE]} not found.")
+            return False
+
+        @callback
+        def update_unique_id(entity_entry):
+            """Update the unique id of an entity entry."""
+            e = conf_file.primary_entity
+            if e.entity != entity_entry.platform:
+                for e in conf_file.secondary_entities():
+                    if e.entity == entity_entry.platform:
+                        break
+            if e.entity == entity_entry.platform:
+                new_id = e.unique_id(old_id)
+                if new_id != old_id:
+                    _LOGGER.info(
+                        f"Migrating {e.entity} unique_id {old_id} to {new_id}."
+                    )
+                    return {
+                        "new_unique_id": entity_entry.unique_id.replace(old_id, new_id)
+                    }
+
+        await async_migrate_entries(hass, entry.entry_id, update_unique_id)
+        entry.version = 6
+
     return True
 
 
@@ -134,7 +170,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     _LOGGER.debug(f"Setting up entry for device: {entry.data[CONF_DEVICE_ID]}")
     config = {**entry.data, **entry.options, "name": entry.title}
     setup_device(hass, config)
-    device_conf = get_config(config[CONF_TYPE])
+    device_conf = get_config(entry.data[CONF_TYPE])
     if device_conf is None:
         _LOGGER.error(f"Configuration file for {config[CONF_TYPE]} not found.")
         return False

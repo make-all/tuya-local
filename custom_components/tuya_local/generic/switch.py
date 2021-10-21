@@ -43,18 +43,13 @@ class TuyaLocalSwitch(SwitchEntity):
 
     @property
     def name(self):
-        """Return the name of the device."""
-        return self._device.name
-
-    @property
-    def friendly_name(self):
         """Return the friendly name for this entity."""
-        return self._config.name
+        return self._config.name(self._device.name)
 
     @property
     def unique_id(self):
         """Return the unique id of the device."""
-        return self._config.unique_id(self._device)
+        return self._config.unique_id(self._device.unique_id)
 
     @property
     def device_info(self):

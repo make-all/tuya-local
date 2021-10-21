@@ -67,18 +67,13 @@ class TuyaLocalFan(FanEntity):
 
     @property
     def name(self):
-        """Return the name of the climate device."""
-        return f"{self._device.name}"
-
-    @property
-    def friendly_name(self):
-        """Return the friendly name of the climate entity for the UI."""
-        return self._config.name
+        """Return the friendly name of the entity for the UI."""
+        return self._config.name(self._device.name)
 
     @property
     def unique_id(self):
         """Return the unique id for this climate device."""
-        return self._config.unique_id(self._device)
+        return self._config.unique_id(self._device.unique_id)
 
     @property
     def device_info(self):

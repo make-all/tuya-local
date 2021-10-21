@@ -143,22 +143,21 @@ class TuyaEntityConfig:
         self._device = device
         self._config = config
 
-    @property
-    def name(self):
+    def name(self, base_name):
         """The friendly name for this entity."""
         own_name = self._config.get("name")
         if own_name is None:
-            return self._device.name
+            return base_name
         else:
-            return self._device.name + " " + own_name
+            return base_name + " " + own_name
 
-    def unique_id(self, device):
+    def unique_id(self, device_uid):
         """Return a suitable unique_id for this entity."""
         own_name = self._config.get("name")
         if own_name:
-            return f"{device.unique_id}-{slugify(own_name)}"
+            return f"{device_uid}-{slugify(own_name)}"
         else:
-            return device.unique_id
+            return device_uid
 
     @property
     def legacy_class(self):
