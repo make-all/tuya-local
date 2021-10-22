@@ -124,12 +124,12 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         e = devcfg.primary_entity
         if e.config_id != e.entity:
             newopts.pop(e.entity, None)
-            newopts[e.config_id] = opts[e.entity]
+            newopts[e.config_id] = opts.get(e.entity, False)
 
         for e in devcfg.secondary_entities():
             if e.config_id != e.entity:
                 newopts.pop(e.entity, None)
-                newopts[e.config_id] = opts[e.entity]
+                newopts[e.config_id] = opts.get(e.entity, False)
 
         entry.options = {**newopts}
         entry.version = 5
