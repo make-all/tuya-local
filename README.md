@@ -47,6 +47,7 @@ the device will not work despite being listed below.
 - Fersk Vind 2
 - Carson CB PA280
 - Kogan 2.6kW portable air conditioner
+- Eberg Qubo Q40HD
 
 ### Pool heaters / heatpumps
 

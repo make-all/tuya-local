@@ -46,3 +46,4 @@ Further device support has been made with the assistance of users.  Please consi
  - [Swiftnesses](https://github.com/Swiftnesses) for contributing support for Electriq CD12PW dehumidifiers
  - [MrDeon](https://github.com/MrDeon) for assistance in supporting Kogan KAWFPAC09YA air conditioners.
  - [darek-margas](https://github.com/darek-margas) for contributing support for Grid Connect double outlet smart switches.
+ - [SatarisGIT](https://github.com/SatarisGIT) for assistance in supporting Eberg Qubo Q40HD portable heatpump.
