@@ -95,10 +95,12 @@ the device will not work despite being listed below.
 ### Humidifiers
 - Eanons QT-JS2014 Purifying humidifer
 
-### SmartPlugs
+### SmartPlugs/Wall sockets
 - Kogan Single Smartplug with Energy Monitoring
 - Kogan Single Smartplug with Energy Monitoring and USB charging
 - Grid Connect double outlet with Energy Monitoring, Master and Individual switches and Child Lock.
+- Grid Connect double outlet wall socket
+- Mirabella Genio Smart plug with USB
 - Other brands may work with the above configurations
 - Simple Switch - a switch only, can be a fallback for many other unsupported devices, to allow just power to be switched on/off.
 
