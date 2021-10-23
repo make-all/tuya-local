@@ -172,8 +172,12 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
             newopts["switch_master"] = master
         outlet1 = newopts.pop("switch_left_outlet", None)
         outlet2 = newopts.pop("switch_right_outlet", None)
-        outlet1 = newopts.pop("switch_wall_switch_1", None) if outlet1 is None else outlet1
-        outlet2 = newopts.pop("switch_wall_switch_2", None) if outlet2 is None else outlet2
+        outlet1 = (
+            newopts.pop("switch_wall_switch_1", None) if outlet1 is None else outlet1
+        )
+        outlet2 = (
+            newopts.pop("switch_wall_switch_2", None) if outlet2 is None else outlet2
+        )
         if outlet1 is not None:
             newopts["switch_outlet_1"] = outlet1
         if outlet2 is not None:
@@ -181,7 +185,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
 
         entry.options = {**newopts}
         entry.version = 7
-        
+
     return True
 
 
