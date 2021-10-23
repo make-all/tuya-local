@@ -342,6 +342,17 @@ BECA_BHT6000_PAYLOAD = {
     "104": True,
 }
 
+BECA_BHT002_PAYLOAD = {
+    "1": False,
+    "2": 40,
+    "3": 42,
+    "4": "0",
+    "5": False,
+    "6": False,
+    "102": 0,
+    "104": True,
+}
+
 LEXY_F501_PAYLOAD = {
     "1": True,
     "2": "forestwindhigh",

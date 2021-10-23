@@ -47,3 +47,4 @@ Further device support has been made with the assistance of users.  Please consi
  - [MrDeon](https://github.com/MrDeon) for assistance in supporting Kogan KAWFPAC09YA air conditioners.
  - [darek-margas](https://github.com/darek-margas) for contributing support for Grid Connect double outlet smart switches.
  - [SatarisGIT](https://github.com/SatarisGIT) for assistance in supporting Eberg Qubo Q40HD portable heatpump.
+ - [lucaxxaa](https://github.com/lucaxxaa) for assistance in supporting Beca BHT-002 thermostat.

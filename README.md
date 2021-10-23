@@ -66,6 +66,7 @@ the device will not work despite being listed below.
 - Inkbird ITC306A thermostat smartplug (not fully functional)
 - Beca BHP-6000 Room Heat Pump control thermostat
 - Beca BHT-6000 Floor Heating thermostat
+- Beca BHT-002 Floor Heating thermostat
 - Awow/Mi-heat TH213 thermostat
 - Siswell T29UTW thermostat
 - Siswell C16 thermostat (rebadged as Warmme, Klima and others)
