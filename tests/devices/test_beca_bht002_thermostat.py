@@ -136,7 +136,7 @@ class TestBecaBHT002Thermostat(TuyaDeviceTestCase):
 
         self.assertDictEqual(
             self.subject.device_state_attributes,
-            {"floor_temperature": 22.5, "unknown_103": "103", "unknown_104": False},
+            {"floor_temperature": 22.5, "unknown_104": False},
         )
         self.assertDictEqual(self.light.device_state_attributes, {})
         self.assertDictEqual(self.lock.device_state_attributes, {})
