@@ -86,6 +86,93 @@ async def test_migrate_entry(mock_setup, hass):
     )
     assert await async_migrate_entry(hass, entry)
 
+    mock_device.async_inferred_type = AsyncMock(return_value=None)
+    mock_device.reset_mock()
+
+    entry = MockConfigEntry(
+        domain=DOMAIN,
+        version=1,
+        title="test2",
+        data={
+            CONF_DEVICE_ID: "deviceid",
+            CONF_HOST: "hostname",
+            CONF_LOCAL_KEY: "localkey",
+            CONF_TYPE: "unknown",
+            CONF_CLIMATE: False,
+        },
+    )
+    assert not await async_migrate_entry(hass, entry)
+    mock_device.reset_mock()
+
+    entry = MockConfigEntry(
+        domain=DOMAIN,
+        version=2,
+        title="test3",
+        data={
+            CONF_DEVICE_ID: "deviceid",
+            CONF_HOST: "hostname",
+            CONF_LOCAL_KEY: "localkey",
+            CONF_TYPE: "auto",
+            CONF_CLIMATE: False,
+        },
+    )
+    assert not await async_migrate_entry(hass, entry)
+
+    mock_device.async_inferred_type = AsyncMock(return_value="smartplugv1")
+    mock_device.reset_mock()
+
+    entry = MockConfigEntry(
+        domain=DOMAIN,
+        version=3,
+        title="test4",
+        data={
+            CONF_DEVICE_ID: "deviceid",
+            CONF_HOST: "hostname",
+            CONF_LOCAL_KEY: "localkey",
+            CONF_TYPE: "smartplugv1",
+            CONF_SWITCH: True,
+        },
+    )
+    assert await async_migrate_entry(hass, entry)
+
+    mock_device.async_inferred_type = AsyncMock(return_value="smartplugv2")
+    mock_device.reset_mock()
+
+    entry = MockConfigEntry(
+        domain=DOMAIN,
+        version=3,
+        title="test5",
+        data={
+            CONF_DEVICE_ID: "deviceid",
+            CONF_HOST: "hostname",
+            CONF_LOCAL_KEY: "localkey",
+            CONF_TYPE: "smartplugv1",
+            CONF_SWITCH: True,
+        },
+    )
+    assert await async_migrate_entry(hass, entry)
+
+    mock_device.async_inferred_type = AsyncMock(return_value="goldair_dehumidifier")
+    mock_device.reset_mock()
+
+    entry = MockConfigEntry(
+        domain=DOMAIN,
+        version=4,
+        title="test6",
+        data={
+            CONF_DEVICE_ID: "deviceid",
+            CONF_HOST: "hostname",
+            CONF_LOCAL_KEY: "localkey",
+            CONF_TYPE: "goldair_dehumidifier",
+            CONF_HUMIDIFIER: True,
+            CONF_FAN: True,
+            CONF_LIGHT: True,
+            CONF_LOCK: False,
+            CONF_SWITCH: True,
+        },
+    )
+    assert await async_migrate_entry(hass, entry)
+
 
 async def test_flow_user_init(hass):
     """Test the initialisation of the form in the first step of the config flow."""
