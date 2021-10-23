@@ -342,6 +342,17 @@ BECA_BHT6000_PAYLOAD = {
     "104": True,
 }
 
+BECA_BHT002_PAYLOAD = {
+    "1": False,
+    "2": 40,
+    "3": 42,
+    "4": "0",
+    "5": False,
+    "6": False,
+    "102": 0,
+    "104": True,
+}
+
 LEXY_F501_PAYLOAD = {
     "1": True,
     "2": "forestwindhigh",
@@ -510,4 +521,17 @@ GRIDCONNECT_2SOCKET_PAYLOAD = {
     "38": "0",
     "40": False,
     "101": True,
+}
+
+EBERG_QUBO_Q40HD_PAYLOAD = {
+    "1": True,
+    "2": 22,
+    "3": 20,
+    "4": "hot",
+    "5": "middle",
+    "19": "c",
+    "22": 0,
+    "25": False,
+    "30": False,
+    "101": "heat_s",
 }

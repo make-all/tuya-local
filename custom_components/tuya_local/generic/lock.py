@@ -36,18 +36,13 @@ class TuyaLocalLock(LockEntity):
 
     @property
     def name(self):
-        """Return the name for this entity."""
-        return self._device.name
-
-    @property
-    def friendly_name(self):
         """Return the friendly name for this entity."""
-        return self._config.name
+        return self._config.name(self._device.name)
 
     @property
     def unique_id(self):
         """Return the device unique ID."""
-        return self._device.unique_id
+        return self._config.unique_id(self._device.unique_id)
 
     @property
     def device_info(self):
