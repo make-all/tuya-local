@@ -511,3 +511,16 @@ GRIDCONNECT_2SOCKET_PAYLOAD = {
     "40": False,
     "101": True,
 }
+
+EBERG_QUBO_Q40HD_PAYLOAD = {
+    "1": True,
+    "2": 22,
+    "3": 20,
+    "4": "hot",
+    "5": "middle",
+    "19": "c",
+    "22": 0,
+    "25": False,
+    "30": False,
+    "101": "heat_s",
+}
