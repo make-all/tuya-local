@@ -32,9 +32,9 @@ class TestGridConnectDoubleSwitch(TuyaDeviceTestCase):
             "grid_connect_usb_double_power_point.yaml",
             GRIDCONNECT_2SOCKET_PAYLOAD,
         )
-        self.subject = self.entities.get("switch_main_switch")
-        self.switch1 = self.entities.get("switch_left_outlet")
-        self.switch2 = self.entities.get("switch_right_outlet")
+        self.subject = self.entities.get("switch_master")
+        self.switch1 = self.entities.get("switch_outlet_1")
+        self.switch2 = self.entities.get("switch_outlet_2")
         self.lock = self.entities.get("lock_child_lock")
 
     def test_device_class_is_outlet(self):

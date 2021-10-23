@@ -173,6 +173,27 @@ async def test_migrate_entry(mock_setup, hass):
     )
     assert await async_migrate_entry(hass, entry)
 
+    mock_device.async_inferred_type = AsyncMock(
+        return_value="grid_connect_usb_double_power_point"
+    )
+    mock_device.reset_mock()
+
+    entry = MockConfigEntry(
+        domain=DOMAIN,
+        version=6,
+        title="test7",
+        data={
+            CONF_DEVICE_ID: "deviceid",
+            CONF_HOST: "hostname",
+            CONF_LOCAL_KEY: "localkey",
+            CONF_TYPE: "grid_connect_usb_double_power_point",
+            "switch_main_switch": True,
+            "switch_left_outlet": True,
+            "switch_right_outlet": True,
+        },
+    )
+    assert await async_migrate_entry(hass, entry)
+
 
 async def test_flow_user_init(hass):
     """Test the initialisation of the form in the first step of the config flow."""
@@ -402,7 +423,7 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
             },
         )
         expected = {
-            "version": 6,
+            "version": 7,
             "type": "create_entry",
             "flow_id": ANY,
             "handler": DOMAIN,
@@ -427,7 +448,7 @@ async def test_options_flow_init(hass):
     """Test config flow options."""
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=6,
+        version=7,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
@@ -464,7 +485,7 @@ async def test_options_flow_modifies_config(mock_test, hass):
 
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=6,
+        version=7,
         unique_id="uniqueid",
         data={
             CONF_CLIMATE: True,
@@ -510,7 +531,7 @@ async def test_options_flow_fails_when_connection_fails(mock_test, hass):
 
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=6,
+        version=7,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
@@ -548,7 +569,7 @@ async def test_options_flow_fails_when_config_is_missing(mock_test, hass):
 
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=6,
+        version=7,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
@@ -575,7 +596,7 @@ async def test_async_setup_entry_for_dehumidifier(mock_setup, hass):
     """Test setting up based on a config entry.  Repeats test_init_entry."""
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=6,
+        version=7,
         unique_id="uniqueid",
         data={
             CONF_CLIMATE: False,
@@ -598,7 +619,7 @@ async def test_async_setup_entry_for_switch(mock_device, hass):
     """Test setting up based on a config entry.  Repeats test_init_entry."""
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=6,
+        version=7,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
