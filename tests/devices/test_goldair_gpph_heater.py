@@ -38,6 +38,7 @@ class TestGoldairHeater(TuyaDeviceTestCase):
         self.subject = self.entities.get("climate")
         self.light = self.entities.get("light_display")
         self.lock = self.entities.get("lock_child_lock")
+        self.timer = self.entities.get("number_timer")
 
     def test_supported_features(self):
         self.assertEqual(
@@ -409,3 +410,29 @@ class TestGoldairHeater(TuyaDeviceTestCase):
 
         async with assert_device_properties_set(self.light._device, {LIGHT_DPS: False}):
             await self.light.async_toggle()
+
+    def test_timer_min_value(self):
+        self.assertEqual(self.timer.min_value, 0)
+
+    def test_timer_max_value(self):
+        self.assertEqual(self.timer.max_value, 1440)
+
+    def test_timer_step(self):
+        self.assertEqual(self.timer.step, 60)
+
+    def test_timer_mode(self):
+        self.assertEqual(self.timer.mode, "auto")
+
+    def test_timer_value(self):
+        self.dps[TIMER_DPS] = 1234
+        self.assertEqual(self.timer.value, 1234)
+
+    async def test_timer_set_value(self):
+        async with assert_device_properties_set(
+            self.timer._device,
+            {TIMER_DPS: 120},
+        ):
+            await self.timer.async_set_value(120)
+
+    def test_number_device_state_attributes(self):
+        self.assertEqual(self.timer.device_state_attributes, {})

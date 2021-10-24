@@ -1,31 +1,36 @@
 """
-Platform to read Tuya sensors.
+Platform for Tuya Number options that don't fit into other entity types.
 """
-from homeassistant.components.sensor import DEVICE_CLASSES, SensorEntity, STATE_CLASSES
-from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT
+from homeassistant.components.number import NumberEntity
+from homeassistant.components.number.const import (
+    DEFAULT_MIN_VALUE,
+    DEFAULT_MAX_VALUE,
+)
 
 from ..device import TuyaLocalDevice
 from ..helpers.device_config import TuyaEntityConfig
 
+MODE_AUTO = "auto"
 
-class TuyaLocalSensor(SensorEntity):
-    """Representation of a Tuya Sensor"""
+
+class TuyaLocalNumber(NumberEntity):
+    """Representation of a Tuya Number"""
 
     def __init__(self, device: TuyaLocalDevice, config: TuyaEntityConfig):
         """
         Initialise the sensor.
         Args:
-            device (TuyaLocalDevice): the device API instance.
+            device (TuyaLocalDevice): the device API instance
             config (TuyaEntityConfig): the configuration for this entity
         """
         self._device = device
         self._config = config
         self._attr_dps = []
         dps_map = {c.name: c for c in config.dps()}
-        self._sensor_dps = dps_map.pop("sensor")
+        self._value_dps = dps_map.pop("value")
 
-        if self._sensor_dps is None:
-            raise AttributeError(f"{config.name} is missing a sensor dps")
+        if self._value_dps is None:
+            raise AttributeError(f"{config.name} is missing a value dps")
 
         for d in dps_map.values():
             if not d.hidden:
@@ -48,43 +53,39 @@ class TuyaLocalSensor(SensorEntity):
 
     @property
     def device_info(self):
-        """Return device information about the device."""
+        """Return device information about this device."""
         return self._device.device_info
 
     @property
-    def device_class(self):
-        """Return the class of this device"""
-        dclass = self._config.device_class
-        if dclass in DEVICE_CLASSES:
-            return dclass
-        else:
-            return None
+    def min_value(self):
+        r = self._value_dps.range(self._device)
+        return DEFAULT_MIN_VALUE if r is None else r["min"]
 
     @property
-    def state_class(self):
-        """Return the state class of this entity"""
-        sclass = self._sensor_dps.state_class
-        if sclass in STATE_CLASSES:
-            return sclass
-        else:
-            return None
+    def max_value(self):
+        r = self._value_dps.range(self._device)
+        return DEFAULT_MAX_VALUE if r is None else r["max"]
 
     @property
-    def native_value(self):
-        """Return the value reported by the sensor"""
-        return self._sensor_dps.get_value(self._device)
+    def step(self):
+        return self._value_dps.step(self._device)
 
     @property
-    def native_unit_of_measurement(self):
-        """Return the unit for the sensor"""
-        unit = self._sensor_dps.unit
-        # Temperatures use Unicode characters, translate from simpler ASCII
-        if unit == "C":
-            unit = TEMP_CELSIUS
-        elif unit == "F":
-            unit = TEMP_FAHRENHEIT
+    def mode(self):
+        """Return the mode."""
+        m = self._config.mode
+        if m is None:
+            m = MODE_AUTO
+        return m
 
-        return unit
+    @property
+    def value(self):
+        """Return the current value of the number."""
+        return self._value_dps.get_value(self._device)
+
+    async def async_set_value(self, value):
+        """Set the number."""
+        await self._value_dps.async_set_value(self._device, value)
 
     @property
     def device_state_attributes(self):

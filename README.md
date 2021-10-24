@@ -193,42 +193,13 @@ Assistant.  Although Home Assistant allows you to change the name
 later, it will only change the name used in the UI, not the name of
 the entities.
 
-#### climate
+#### (entities)
 
-&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this
-device as a climate device. (supported for heaters, heatpumps,
-deprecated for fans, dehumidifiers and humidifiers which should use
-the fan and humidifier entities instead)
-
-#### humidifier
-
-&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this
-device as a humidifier device (supported only for humidifiers and
-dehumidifiers)
-
-#### fan
-
-&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this
-device as a fan device (supported for fans, humidifiers and
-dehumidifiers)
-
-#### light
-
-&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this
-device as a light.  This may be an auxiliary display light control on
-devices such as heaters.
-
-#### lock
-
-&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this
-device as a lock device. This may be an auxiliary lock such as a child
-lock for devices such as heaters.
-
-#### switch
-
-&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Whether to surface this
-device as a switch device. This may be a switch for an auxiliary
-function or a master switch for multi-function devices.
+&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ A number of options
+will be available for each of the entities exposed by the device.
+They will be named for the platform type and an optional name for
+the entity as a suffix (eg `climate`, `humidifier`, `lock_child_lock`)
+Setting them to True will expose the entity in Home Assistant.
 
 ## Heater gotchas
 
@@ -353,7 +324,7 @@ These devices from upstream have some complex logic that currently cannot be rep
 2. This component is mosty unit-tested thanks to the upstream project, but there are a few more to complete. Feel free to use existing specs as inspiration and the Sonar Cloud analysis to see where the gaps are.
 3. Once unit tests are complete, the next task is to complete the Home Assistant quality checklist before considering submission to the HA team for inclusion in standard installations.
 4. Discovery seems possible with the new tinytuya library, though the steps to get a local key will most likely remain manual.  Discovery also returns a productKey, which might help make the device detection more reliable where different devices use the same dps mapping but different names for the presets for example.
-5. number and select entities would help to surface more of the settings that do not fit into the standard types.
+5. select entities would help to surface more of the settings that do not fit into the standard types.
 
 Please report any issues and feel free to raise pull requests.
 [Many others](https://github.com/make-all/tuya-local/blob/main/ACKNOWLEDGEMENTS.md) have contributed their help already.

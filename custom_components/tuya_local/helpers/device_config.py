@@ -214,6 +214,11 @@ class TuyaEntityConfig:
                 priority = rule["priority"]
         return icon
 
+    @property
+    def mode(self):
+        """Return the mode (used by Number entities)."""
+        return self._config.get("mode")
+
     def dps(self):
         """Iterate through the list of dps for this entity."""
         for d in self._config["dps"]:
