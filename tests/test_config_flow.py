@@ -45,13 +45,15 @@ async def test_init_entry(hass):
     """Test initialisation of the config flow."""
     entry = MockConfigEntry(
         domain=DOMAIN,
-        version=6,
+        version=7,
         title="test",
         data={
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
             CONF_LOCAL_KEY: "localkey",
             CONF_TYPE: "kogan_kahtp_heater",
+        },
+        options={
             CONF_CLIMATE: True,
             "lock_child_lock": True,
         },
@@ -113,6 +115,8 @@ async def test_migrate_entry(mock_setup, hass):
             CONF_HOST: "hostname",
             CONF_LOCAL_KEY: "localkey",
             CONF_TYPE: "auto",
+        },
+        options={
             CONF_CLIMATE: False,
         },
     )
@@ -130,6 +134,8 @@ async def test_migrate_entry(mock_setup, hass):
             CONF_HOST: "hostname",
             CONF_LOCAL_KEY: "localkey",
             CONF_TYPE: "smartplugv1",
+        },
+        options={
             CONF_SWITCH: True,
         },
     )
@@ -147,6 +153,8 @@ async def test_migrate_entry(mock_setup, hass):
             CONF_HOST: "hostname",
             CONF_LOCAL_KEY: "localkey",
             CONF_TYPE: "smartplugv1",
+        },
+        options={
             CONF_SWITCH: True,
         },
     )
@@ -164,6 +172,8 @@ async def test_migrate_entry(mock_setup, hass):
             CONF_HOST: "hostname",
             CONF_LOCAL_KEY: "localkey",
             CONF_TYPE: "goldair_dehumidifier",
+        },
+        options={
             CONF_HUMIDIFIER: True,
             CONF_FAN: True,
             CONF_LIGHT: True,
@@ -187,6 +197,8 @@ async def test_migrate_entry(mock_setup, hass):
             CONF_HOST: "hostname",
             CONF_LOCAL_KEY: "localkey",
             CONF_TYPE: "grid_connect_usb_double_power_point",
+        },
+        options={
             "switch_main_switch": True,
             "switch_left_outlet": True,
             "switch_right_outlet": True,
