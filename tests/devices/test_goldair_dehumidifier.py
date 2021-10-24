@@ -12,7 +12,12 @@ from homeassistant.components.climate.const import (
 )
 from homeassistant.components.light import COLOR_MODE_ONOFF
 from homeassistant.components.lock import STATE_LOCKED, STATE_UNLOCKED
-from homeassistant.const import STATE_UNAVAILABLE, TEMP_CELSIUS
+from homeassistant.const import (
+    DEVICE_CLASS_HUMIDITY,
+    DEVICE_CLASS_TEMPERATURE,
+    STATE_UNAVAILABLE,
+    TEMP_CELSIUS,
+)
 
 from ..const import DEHUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -686,3 +691,11 @@ class TestGoldairDehumidifier(TuyaDeviceTestCase):
             self.switch._device, {AIRCLEAN_DPS: False}
         ):
             await self.switch.async_toggle()
+
+    def test_sensor_state_class(self):
+        self.assertEqual(self.temperature.state_class, "measurement")
+        self.assertEqual(self.humidity.state_class, "measurement")
+
+    def test_sensor_device_class(self):
+        self.assertEqual(self.temperature.device_class, DEVICE_CLASS_TEMPERATURE)
+        self.assertEqual(self.humidity.device_class, DEVICE_CLASS_HUMIDITY)
