@@ -253,3 +253,23 @@ secondary_entities:
       - id: 5
         type: boolean
         name: switch
+  - entity: sensor
+    name: Current Temperature
+    class: temperature
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        readonly: true
+  - entity: sensor
+    name: Current Humidity
+    class: humidity
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        class: measurement
+        unit: "%"
+        readonly: true

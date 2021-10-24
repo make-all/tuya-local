@@ -7,6 +7,7 @@ from custom_components.tuya_local.generic.fan import TuyaLocalFan
 from custom_components.tuya_local.generic.humidifier import TuyaLocalHumidifier
 from custom_components.tuya_local.generic.light import TuyaLocalLight
 from custom_components.tuya_local.generic.lock import TuyaLocalLock
+from custom_components.tuya_local.generic.sensor import TuyaLocalSensor
 from custom_components.tuya_local.generic.switch import TuyaLocalSwitch
 
 from custom_components.tuya_local.helpers.device_config import (
@@ -21,6 +22,7 @@ DEVICE_TYPES = {
     "light": TuyaLocalLight,
     "lock": TuyaLocalLock,
     "switch": TuyaLocalSwitch,
+    "sensor": TuyaLocalSensor,
 }
 
 

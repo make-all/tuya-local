@@ -12,7 +12,7 @@ from homeassistant.components.climate.const import (
 )
 from homeassistant.components.light import COLOR_MODE_ONOFF
 from homeassistant.components.lock import STATE_LOCKED, STATE_UNLOCKED
-from homeassistant.const import STATE_UNAVAILABLE
+from homeassistant.const import STATE_UNAVAILABLE, TEMP_CELSIUS
 
 from ..const import DEHUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -51,6 +51,8 @@ class TestGoldairDehumidifier(TuyaDeviceTestCase):
         self.light = self.entities.get("light_display")
         self.lock = self.entities.get("lock_child_lock")
         self.switch = self.entities.get("switch_air_clean")
+        self.temperature = self.entities.get("sensor_current_temperature")
+        self.humidity = self.entities.get("sensor_current_humidity")
 
     def test_supported_features(self):
         self.assertEqual(
@@ -120,6 +122,7 @@ class TestGoldairDehumidifier(TuyaDeviceTestCase):
     def test_current_humidity(self):
         self.dps[CURRENTHUMID_DPS] = 47
         self.assertEqual(self.climate.current_humidity, 47)
+        self.assertEqual(self.humidity.native_value, 47)
 
     def test_min_target_humidity(self):
         self.assertEqual(self.climate.min_humidity, 30)
@@ -224,7 +227,12 @@ class TestGoldairDehumidifier(TuyaDeviceTestCase):
 
     def test_temperature_unit_returns_device_temperature_unit(self):
         self.assertEqual(
-            self.climate.temperature_unit, self.climate._device.temperature_unit
+            self.climate.temperature_unit,
+            self.climate._device.temperature_unit,
+        )
+        self.assertEqual(
+            self.temperature.native_unit_of_measurement,
+            TEMP_CELSIUS,
         )
 
     def test_minimum_target_temperature(self):
@@ -236,6 +244,7 @@ class TestGoldairDehumidifier(TuyaDeviceTestCase):
     def test_current_temperature(self):
         self.dps[CURRENTTEMP_DPS] = 25
         self.assertEqual(self.climate.current_temperature, 25)
+        self.assertEqual(self.temperature.native_value, 25)
 
     def test_hvac_mode(self):
         self.dps[HVACMODE_DPS] = True

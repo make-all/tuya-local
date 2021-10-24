@@ -364,6 +364,11 @@ class TuyaDpsConfig:
     def unit(self):
         return self._config.get("unit")
 
+    @property
+    def state_class(self):
+        """The state class of this measurement."""
+        return self._config.get("class")
+
     def _find_map_for_dps(self, value):
         default = None
         for m in self._config.get("mapping", {}):
