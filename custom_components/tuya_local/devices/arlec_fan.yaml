@@ -29,8 +29,19 @@ primary_entity:
     - id: 103
       name: timer
       type: string
-      mapping:
-        - dps_val: "off"
-        - dps_val: 2hour
-        - dps_val: 4hour
-        - dps_val: 8hour
+secondary_entities:
+  - entity: select
+    name: timer
+    dps:
+      - id: 103
+        name: option
+        type: string
+        mapping:
+          - dps_val: "off"
+            value: "Off"
+          - dps_val: 2hour
+            value: "2 hours"
+          - dps_val: 4hour
+            value: "4 hours"
+          - dps_val: 8hour
+            value: "8 hours"

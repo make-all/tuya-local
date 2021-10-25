@@ -25,6 +25,7 @@ class TestArlecFan(TuyaDeviceTestCase):
     def setUp(self):
         self.setUpForConfig("arlec_fan.yaml", ARLEC_FAN_PAYLOAD)
         self.subject = self.entities["fan"]
+        self.timer = self.entities["select_timer"]
 
     def test_supported_features(self):
         self.assertEqual(
@@ -129,3 +130,21 @@ class TestArlecFan(TuyaDeviceTestCase):
     def test_device_state_attributes(self):
         self.dps[TIMER_DPS] = "2hour"
         self.assertEqual(self.subject.device_state_attributes, {"timer": "2hour"})
+        self.assertEqual(self.timer.device_state_attributes, {})
+
+    def test_timer_options(self):
+        self.assertCountEqual(
+            self.timer.options,
+            {"Off", "2 hours", "4 hours", "8 hours"},
+        )
+
+    def test_timer_current_option(self):
+        self.dps[TIMER_DPS] = "2hour"
+        self.assertEqual(self.timer.current_option, "2 hours")
+
+    async def test_select_option(self):
+        async with assert_device_properties_set(
+            self.timer._device,
+            {TIMER_DPS: "4hour"},
+        ):
+            await self.timer.async_select_option("4 hours")

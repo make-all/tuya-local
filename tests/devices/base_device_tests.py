@@ -8,6 +8,7 @@ from custom_components.tuya_local.generic.humidifier import TuyaLocalHumidifier
 from custom_components.tuya_local.generic.light import TuyaLocalLight
 from custom_components.tuya_local.generic.lock import TuyaLocalLock
 from custom_components.tuya_local.generic.number import TuyaLocalNumber
+from custom_components.tuya_local.generic.select import TuyaLocalSelect
 from custom_components.tuya_local.generic.sensor import TuyaLocalSensor
 from custom_components.tuya_local.generic.switch import TuyaLocalSwitch
 
@@ -24,6 +25,7 @@ DEVICE_TYPES = {
     "lock": TuyaLocalLock,
     "number": TuyaLocalNumber,
     "switch": TuyaLocalSwitch,
+    "select": TuyaLocalSelect,
     "sensor": TuyaLocalSensor,
 }
 
