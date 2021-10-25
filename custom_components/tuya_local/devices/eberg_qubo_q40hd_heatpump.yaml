@@ -15,14 +15,14 @@ primary_entity:
       name: temperature
       type: integer
       range:
-        min: 15
+        min: 17
         max: 30
       mapping:
         - constraint: temperature_unit
           conditions:
             - dps_val: f
               range:
-                min: 60
+                min: 63
                 max: 86
     - id: 3
       name: current_temperature
@@ -38,6 +38,7 @@ primary_entity:
           conditions:
             - dps_val: false
               value_redirect: power
+              value: "off"
             - dps_val: true
               value: cool
         - dps_val: hot
@@ -49,59 +50,18 @@ primary_entity:
               value_redirect: power
             - dps_val: true
               value: heat
-        - dps_val: wet
-          icon: "mdi:water"
-          icon_priority: 2
-          constraint: power
-          conditions:
-            - dps_val: false
-              value_redirect: power
-            - dps_val: true
-              value: dry
-        - dps_val: wind
-          icon: "mdi:fan"
-          icon_priority: 2
-          constraint: power
-          conditions:
-            - dps_val: false
-              value_redirect: power
-              value: "off"
-            - dps_val: true
-              value: fan_only
     - id: 5
       name: fan_mode
       type: string
       mapping:
         - dps_val: auto
           value: auto
-          constraint: hvac_mode
-          conditions:
-            - dps_val: wet
-              invalid: true
-            - dps_val: hot
-              invalid: true
-            - dps_val: wind
-              invalid: true
         - dps_val: low
           value: low
-          constraint: hvac_mode
-          conditions:
-            - dps_val: hot
-              invalid: true
         - dps_val: middle
           value: medium
-          constraint: hvac_mode
-          conditions:
-            - dps_val: wet
-              invalid: true
-            - dps_val: hot
-              invalid: true
         - dps_val: high
           value: high
-          constraint: hvac_mode
-          conditions:
-            - dps_val: wet
-              invalid: true
     - id: 19
       name: temperature_unit
       type: string
@@ -115,13 +75,51 @@ primary_entity:
       name: timer
     - id: 25
       type: boolean
-      name: unknown_25
+      name: preset_mode
+      mapping:
+        - dps_val: true
+          value: sleep
+        - dps_val: false
+          value: comfort
     - id: 30
       type: boolean
-      name: boolean
-      name: unknown_30
-      # Suspect one of 25 or 30 is Sleep (can model as preset or switch)
+      name: swing_mode
+      mapping:
+        - dps_val: true
+          value: vertical
+        - dps_val: false
+          value: "off"
     - id: 101
-      name: unknown_101
+      name: hvac_action
       type: string
-#     suspect hvac_action, but mapping unknown. Observed value "heat_s"
+      # mappings based on dev portal info and observed values
+      mapping:
+        - dps_val: heat_s
+          value: heating
+        - dps_val: cool_s
+          value: cooling
+        - dps_val: ventilation
+          value: fan
+        - dps_val: auto
+          value: idle
+        - dps_val: anti-clockwise
+          value: fan
+        - dps_val: hot
+          value: heating
+        - dps_val: appointment
+          value: idle
+        - dps_val: wet
+          value: drying
+        - dps_val: auto_clean
+          value: idle
+        - dps_val: wind
+          value: fan
+        - dps_val: eco
+          value: idle
+        - dps_val: "off"
+          constraint: power
+          conditions:
+            - dps_val: False
+              value: "off"
+            - dps_val: True
+              value: idle
