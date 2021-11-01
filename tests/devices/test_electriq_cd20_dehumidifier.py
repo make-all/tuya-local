@@ -1,7 +1,6 @@
 from homeassistant.components.fan import SUPPORT_PRESET_MODE
 from homeassistant.components.humidifier import SUPPORT_MODES
 from homeassistant.components.light import COLOR_MODE_ONOFF
-from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import ELECTRIQ_CD20PRO_DEHUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -92,8 +91,8 @@ class TestElectriqCD20ProDehumidifier(TuyaDeviceTestCase):
         self.assertFalse(self.fan.is_on)
 
         self.dps[SWITCH_DPS] = None
-        self.assertEqual(self.subject.is_on, STATE_UNAVAILABLE)
-        self.assertEqual(self.fan.is_on, STATE_UNAVAILABLE)
+        self.assertIsNone(self.subject.is_on)
+        self.assertIsNone(self.fan.is_on)
 
     async def test_turn_on(self):
         async with assert_device_properties_set(

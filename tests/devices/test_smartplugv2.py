@@ -1,6 +1,5 @@
 """Tests for the switch entity."""
 from homeassistant.components.switch import DEVICE_CLASS_OUTLET
-from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import KOGAN_SOCKET_PAYLOAD2
 from ..helpers import assert_device_properties_set
@@ -32,7 +31,7 @@ class TestSwitchV2(TuyaDeviceTestCase):
 
     def test_is_on_when_unavailable(self):
         self.dps[SWITCH_DPS] = None
-        self.assertEqual(self.subject.is_on, STATE_UNAVAILABLE)
+        self.assertIsNone(self.subject.is_on)
 
     async def test_turn_on(self):
         async with assert_device_properties_set(

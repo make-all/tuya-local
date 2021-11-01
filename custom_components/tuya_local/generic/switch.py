@@ -68,12 +68,15 @@ class TuyaLocalSwitch(SwitchEntity):
     @property
     def is_on(self):
         """Return whether the switch is on or not."""
-        is_switched_on = self._switch_dps.get_value(self._device)
+        # if there is no switch, it is always on if available.
+        if self._switch_dps is None:
+            return self.available
+        return self._switch_dps.get_value(self._device)
 
-        if is_switched_on is None:
-            return STATE_UNAVAILABLE
-        else:
-            return is_switched_on
+    @property
+    def available(self):
+        """Return whether the switch is available."""
+        return self._device.has_returned_state
 
     @property
     def current_power_w(self):

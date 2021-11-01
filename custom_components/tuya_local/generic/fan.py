@@ -11,10 +11,6 @@ from homeassistant.components.fan import (
     SUPPORT_SET_SPEED,
 )
 
-from homeassistant.const import (
-    STATE_UNAVAILABLE,
-)
-
 from ..device import TuyaLocalDevice
 from ..helpers.device_config import TuyaEntityConfig
 
@@ -66,6 +62,11 @@ class TuyaLocalFan(FanEntity):
         return True
 
     @property
+    def available(self):
+        """Return whether the switch is available."""
+        return self._device.has_returned_state
+
+    @property
     def name(self):
         """Return the friendly name of the entity for the UI."""
         return self._config.name(self._device.name)
@@ -94,13 +95,8 @@ class TuyaLocalFan(FanEntity):
         """Return whether the switch is on or not."""
         # If there is no switch, it is always on
         if self._switch_dps is None:
-            return True
-        is_switched_on = self._switch_dps.get_value(self._device)
-
-        if is_switched_on is None:
-            return STATE_UNAVAILABLE
-        else:
-            return bool(is_switched_on)
+            return self.available
+        return self._switch_dps.get_value(self._device)
 
     async def async_turn_on(self, **kwargs):
         """Turn the switch on"""

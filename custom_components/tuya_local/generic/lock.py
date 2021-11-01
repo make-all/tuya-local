@@ -35,6 +35,11 @@ class TuyaLocalLock(LockEntity):
         return True
 
     @property
+    def available(self):
+        """Return whether the switch is available."""
+        return self._device.has_returned_state
+
+    @property
     def name(self):
         """Return the friendly name for this entity."""
         return self._config.name(self._device.name)

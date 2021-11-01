@@ -11,9 +11,6 @@ from homeassistant.components.humidifier.const import (
     DEVICE_CLASS_HUMIDIFIER,
     SUPPORT_MODES,
 )
-from homeassistant.const import (
-    STATE_UNAVAILABLE,
-)
 
 from ..device import TuyaLocalDevice
 from ..helpers.device_config import TuyaEntityConfig
@@ -57,6 +54,11 @@ class TuyaLocalHumidifier(HumidifierEntity):
         return True
 
     @property
+    def available(self):
+        """Return whether the switch is available."""
+        return self._device.has_returned_state
+
+    @property
     def name(self):
         """Return the friendly name of the entity for the UI."""
         return self._config.name(self._device.name)
@@ -92,12 +94,10 @@ class TuyaLocalHumidifier(HumidifierEntity):
     @property
     def is_on(self):
         """Return whether the switch is on or not."""
-        is_switched_on = self._switch_dps.get_value(self._device)
-
-        if is_switched_on is None:
-            return STATE_UNAVAILABLE
-        else:
-            return is_switched_on
+        # If there is no switch, it is always on if available
+        if self._switch_dps is None:
+            return self.available
+        return self._switch_dps.get_value(self._device)
 
     async def async_turn_on(self, **kwargs):
         """Turn the switch on"""

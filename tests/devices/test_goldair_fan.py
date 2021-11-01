@@ -71,7 +71,7 @@ class TestGoldairFan(TuyaDeviceTestCase):
 
         self.dps[HVACMODE_DPS] = None
         self.assertEqual(self.climate.hvac_mode, STATE_UNAVAILABLE)
-        self.assertEqual(self.subject.is_on, STATE_UNAVAILABLE)
+        self.assertIsNone(self.subject.is_on)
 
     def test_climate_hvac_modes(self):
         self.assertCountEqual(

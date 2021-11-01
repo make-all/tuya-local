@@ -225,10 +225,10 @@ class TestPulineM100Heater(TuyaDeviceTestCase):
 
     def test_light_is_on(self):
         self.dps[LIGHTOFF_DPS] = False
-        self.assertEqual(self.light.is_on, True)
+        self.assertTrue(self.light.is_on)
 
         self.dps[LIGHTOFF_DPS] = True
-        self.assertEqual(self.light.is_on, False)
+        self.assertFalse(self.light.is_on)
 
     def test_light_state_attributes(self):
         self.assertEqual(self.light.device_state_attributes, {})
@@ -273,7 +273,7 @@ class TestPulineM100Heater(TuyaDeviceTestCase):
 
     def test_switch_is_on_when_unavailable(self):
         self.dps[SWITCH_DPS] = None
-        self.assertEqual(self.switch.is_on, STATE_UNAVAILABLE)
+        self.assertIsNone(self.switch.is_on)
 
     async def test_switch_turn_on(self):
         async with assert_device_properties_set(

@@ -44,6 +44,11 @@ class TuyaLocalLight(LightEntity):
         return True
 
     @property
+    def available(self):
+        """Return whether the switch is available."""
+        return self._device.has_returned_state
+
+    @property
     def name(self):
         """Return the friendly name for this entity."""
         return self._config.name(self._device.name)
@@ -104,8 +109,8 @@ class TuyaLocalLight(LightEntity):
             b = self.brightness
             return isinstance(b, int) and b > 0
         else:
-            # There shouldn't be lights without control, but if there are, assume always on
-            return True
+            # There shouldn't be lights without control, but if there are, assume always on if they are responding
+            return self.available
 
     @property
     def brightness(self):

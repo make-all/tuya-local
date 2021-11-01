@@ -41,7 +41,7 @@ class TestArlecFan(TuyaDeviceTestCase):
         self.assertFalse(self.subject.is_on)
 
         self.dps[SWITCH_DPS] = None
-        self.assertEqual(self.subject.is_on, STATE_UNAVAILABLE)
+        self.assertIsNone(self.subject.is_on)
 
     async def test_turn_on(self):
         async with assert_device_properties_set(

@@ -42,6 +42,7 @@ class TuyaDeviceTestCase(IsolatedAsyncioTestCase):
         self.mock_device.get_property.side_effect = lambda id: self.dps[id]
         cfg = TuyaDeviceConfig(config_file)
         self.conf_type = cfg.legacy_type
+        type(self.mock_device).has_returned_state = PropertyMock(return_value=True)
         type(self.mock_device).unique_id = PropertyMock(return_value=str(uuid4()))
         self.mock_device.name = cfg.name
 
@@ -72,6 +73,10 @@ class TuyaDeviceTestCase(IsolatedAsyncioTestCase):
     def test_should_poll(self):
         for e in self.entities.values():
             self.assertTrue(e.should_poll)
+
+    def test_available(self):
+        for e in self.entities.values():
+            self.assertTrue(e.available)
 
     def test_name_returns_device_name(self):
         for e in self.entities:

@@ -1,8 +1,6 @@
 from homeassistant.components.fan import SUPPORT_SET_SPEED
 from homeassistant.components.light import COLOR_MODE_ONOFF
 
-from homeassistant.const import STATE_UNAVAILABLE
-
 from ..const import DETA_FAN_PAYLOAD
 from ..helpers import assert_device_properties_set
 from .base_device_tests import TuyaDeviceTestCase
@@ -38,7 +36,7 @@ class TestDetaFan(TuyaDeviceTestCase):
         self.assertFalse(self.subject.is_on)
 
         self.dps[SWITCH_DPS] = None
-        self.assertEqual(self.subject.is_on, STATE_UNAVAILABLE)
+        self.assertIsNone(self.subject.is_on)
 
     async def test_turn_on(self):
         async with assert_device_properties_set(
@@ -111,7 +109,7 @@ class TestDetaFan(TuyaDeviceTestCase):
         self.assertFalse(self.switch.is_on)
 
         self.dps[MASTER_DPS] = None
-        self.assertEqual(self.switch.is_on, STATE_UNAVAILABLE)
+        self.assertIsNone(self.switch.is_on)
 
     async def test_switch_turn_on(self):
         async with assert_device_properties_set(

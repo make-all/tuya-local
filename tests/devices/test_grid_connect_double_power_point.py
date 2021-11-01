@@ -1,6 +1,5 @@
 """Tests for the switch entity."""
 from homeassistant.components.switch import DEVICE_CLASS_OUTLET
-from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import GRIDCONNECT_2SOCKET_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -47,8 +46,8 @@ class TestGridConnectDoubleSwitch(TuyaDeviceTestCase):
         self.dps[MASTER_DPS] = False
         self.assertFalse(self.subject.is_on)
 
-        self.assertEqual(self.switch1.is_on, STATE_UNAVAILABLE)
-        self.assertEqual(self.switch1.is_on, STATE_UNAVAILABLE)
+        self.assertIsNone(self.switch1.is_on)
+        self.assertIsNone(self.switch1.is_on)
 
         self.dps[MASTER_DPS] = True
         self.dps[SWITCH1_DPS] = True
@@ -63,7 +62,7 @@ class TestGridConnectDoubleSwitch(TuyaDeviceTestCase):
 
     def test_is_on_when_unavailable(self):
         self.dps[MASTER_DPS] = None
-        self.assertEqual(self.subject.is_on, STATE_UNAVAILABLE)
+        self.assertIsNone(self.subject.is_on)
 
     async def test_turn_on(self):
         async with assert_device_properties_set(

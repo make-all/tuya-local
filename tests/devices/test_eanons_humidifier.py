@@ -108,8 +108,8 @@ class TestEanonsHumidifier(TuyaDeviceTestCase):
         self.assertFalse(self.fan.is_on)
 
         self.dps[HVACMODE_DPS] = None
-        self.assertEqual(self.subject.is_on, STATE_UNAVAILABLE)
-        self.assertEqual(self.fan.is_on, STATE_UNAVAILABLE)
+        self.assertIsNone(self.subject.is_on)
+        self.assertIsNone(self.fan.is_on)
 
     async def test_climate_turn_on(self):
         async with assert_device_properties_set(
@@ -344,7 +344,7 @@ class TestEanonsHumidifier(TuyaDeviceTestCase):
 
     def test_switch_is_on_when_unavailable(self):
         self.dps[SWITCH_DPS] = None
-        self.assertEqual(self.switch.is_on, STATE_UNAVAILABLE)
+        self.assertIsNone(self.switch.is_on)
 
     async def test_switch_turn_on(self):
         async with assert_device_properties_set(
