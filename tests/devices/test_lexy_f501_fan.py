@@ -3,13 +3,16 @@ from homeassistant.components.fan import (
     SUPPORT_PRESET_MODE,
     SUPPORT_SET_SPEED,
 )
-from homeassistant.components.light import COLOR_MODE_ONOFF
-from homeassistant.components.lock import STATE_LOCKED, STATE_UNLOCKED
-from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import LEXY_F501_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import TuyaDeviceTestCase
+from .base_device_tests import (
+    BasicLightTests,
+    BasicLockTests,
+    BasicSwitchTests,
+    SwitchableTests,
+    TuyaDeviceTestCase,
+)
 
 POWER_DPS = "1"
 PRESET_DPS = "2"
@@ -21,43 +24,28 @@ SWITCH_DPS = "17"
 SPEED_DPS = "102"
 
 
-class TestLexyF501Fan(TuyaDeviceTestCase):
+class TestLexyF501Fan(
+    SwitchableTests,
+    BasicLightTests,
+    BasicLockTests,
+    BasicSwitchTests,
+    TuyaDeviceTestCase,
+):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("lexy_f501_fan.yaml", LEXY_F501_PAYLOAD)
         self.subject = self.entities.get("fan")
-        self.light = self.entities.get("light")
-        self.lock = self.entities.get("lock_child_lock")
-        self.switch = self.entities.get("switch_sound")
+        self.setUpSwitchable(POWER_DPS, self.subject)
+        self.setUpBasicLight(LIGHT_DPS, self.entities.get("light"))
+        self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
+        self.setUpBasicSwitch(SWITCH_DPS, self.entities.get("switch_sound"))
 
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
             SUPPORT_OSCILLATE | SUPPORT_PRESET_MODE | SUPPORT_SET_SPEED,
         )
-
-    def test_is_on(self):
-        self.dps[POWER_DPS] = True
-        self.assertTrue(self.subject.is_on)
-
-        self.dps[POWER_DPS] = False
-        self.assertFalse(self.subject.is_on)
-
-        self.dps[POWER_DPS] = None
-        self.assertIsNone(self.subject.is_on)
-
-    async def test_turn_on(self):
-        async with assert_device_properties_set(
-            self.subject._device, {POWER_DPS: True}
-        ):
-            await self.subject.async_turn_on()
-
-    async def test_turn_off(self):
-        async with assert_device_properties_set(
-            self.subject._device, {POWER_DPS: False}
-        ):
-            await self.subject.async_turn_off()
 
     def test_preset_mode(self):
         self.dps[PRESET_DPS] = "forestwindhigh"
@@ -154,114 +142,9 @@ class TestLexyF501Fan(TuyaDeviceTestCase):
         self.dps[TIMER_DPS] = "5"
         self.assertEqual(self.subject.device_state_attributes, {"timer": 5})
 
-    def test_light_supported_color_modes(self):
-        self.assertCountEqual(
-            self.light.supported_color_modes,
-            [COLOR_MODE_ONOFF],
-        )
-
-    def test_light_color_mode(self):
-        self.assertEqual(self.light.color_mode, COLOR_MODE_ONOFF)
-
-    def test_light_is_on(self):
-        self.dps[LIGHT_DPS] = True
-        self.assertEqual(self.light.is_on, True)
-
-        self.dps[LIGHT_DPS] = False
-        self.assertEqual(self.light.is_on, False)
-
-    def test_light_state_attributes(self):
-        self.assertEqual(self.light.device_state_attributes, {})
-
-    async def test_light_turn_on(self):
-        async with assert_device_properties_set(self.light._device, {LIGHT_DPS: True}):
-            await self.light.async_turn_on()
-
-    async def test_light_turn_off(self):
-        async with assert_device_properties_set(self.light._device, {LIGHT_DPS: False}):
-            await self.light.async_turn_off()
-
-    async def test_toggle_turns_the_light_on_when_it_was_off(self):
-        self.dps[LIGHT_DPS] = False
-
-        async with assert_device_properties_set(self.light._device, {LIGHT_DPS: True}):
-            await self.light.async_toggle()
-
-    async def test_toggle_turns_the_light_off_when_it_was_on(self):
-        self.dps[LIGHT_DPS] = True
-
-        async with assert_device_properties_set(self.light._device, {LIGHT_DPS: False}):
-            await self.light.async_toggle()
-
-    def test_switch_is_on(self):
-        self.dps[SWITCH_DPS] = True
-        self.assertEqual(self.switch.is_on, True)
-
-        self.dps[SWITCH_DPS] = False
-        self.assertEqual(self.switch.is_on, False)
-
-    def test_switch_state_attributes(self):
-        self.assertEqual(self.switch.device_state_attributes, {})
-
-    async def test_switch_turn_on(self):
-        async with assert_device_properties_set(
-            self.switch._device, {SWITCH_DPS: True}
-        ):
-            await self.switch.async_turn_on()
-
-    async def test_switch_turn_off(self):
-        async with assert_device_properties_set(
-            self.switch._device, {SWITCH_DPS: False}
-        ):
-            await self.switch.async_turn_off()
-
-    async def test_toggle_turns_the_switch_on_when_it_was_off(self):
-        self.dps[SWITCH_DPS] = False
-
-        async with assert_device_properties_set(
-            self.switch._device, {SWITCH_DPS: True}
-        ):
-            await self.switch.async_toggle()
-
-    async def test_toggle_turns_the_switch_off_when_it_was_on(self):
-        self.dps[SWITCH_DPS] = True
-
-        async with assert_device_properties_set(
-            self.switch._device, {SWITCH_DPS: False}
-        ):
-            await self.switch.async_toggle()
-
-    def test_lock_state(self):
-        self.dps[LOCK_DPS] = True
-        self.assertEqual(self.lock.state, STATE_LOCKED)
-
-        self.dps[LOCK_DPS] = False
-        self.assertEqual(self.lock.state, STATE_UNLOCKED)
-
-        self.dps[LOCK_DPS] = None
-        self.assertEqual(self.lock.state, STATE_UNAVAILABLE)
-
-    def test_lock_is_locked(self):
-        self.dps[LOCK_DPS] = True
-        self.assertTrue(self.lock.is_locked)
-
-        self.dps[LOCK_DPS] = False
-        self.assertFalse(self.lock.is_locked)
-
-        self.dps[LOCK_DPS] = None
-        self.assertFalse(self.lock.is_locked)
-
-    async def test_lock_locks(self):
-        async with assert_device_properties_set(self.lock._device, {LOCK_DPS: True}):
-            await self.lock.async_lock()
-
-    async def test_lock_unlocks(self):
-        async with assert_device_properties_set(self.lock._device, {LOCK_DPS: False}):
-            await self.lock.async_unlock()
-
     def test_icons(self):
         self.dps[LIGHT_DPS] = True
-        self.assertEqual(self.light.icon, "mdi:led-on")
+        self.assertEqual(self.basicLight.icon, "mdi:led-on")
 
         self.dps[LIGHT_DPS] = False
-        self.assertEqual(self.light.icon, "mdi:led-off")
+        self.assertEqual(self.basicLight.icon, "mdi:led-off")

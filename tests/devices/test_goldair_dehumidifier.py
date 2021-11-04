@@ -21,7 +21,12 @@ from homeassistant.const import (
 
 from ..const import DEHUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import TuyaDeviceTestCase
+from .base_device_tests import (
+    BasicLockTests,
+    BasicSwitchTests,
+    SwitchableTests,
+    TuyaDeviceTestCase,
+)
 
 HVACMODE_DPS = "1"
 PRESET_DPS = "2"
@@ -45,17 +50,24 @@ PRESET_DRY_CLOTHES = "3"
 ERROR_TANK = "Tank full or missing"
 
 
-class TestGoldairDehumidifier(TuyaDeviceTestCase):
+class TestGoldairDehumidifier(
+    BasicLockTests,
+    BasicSwitchTests,
+    SwitchableTests,
+    TuyaDeviceTestCase,
+):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("goldair_dehumidifier.yaml", DEHUMIDIFIER_PAYLOAD)
         self.subject = self.entities.get("humidifier")
+        self.setUpSwitchable(HVACMODE_DPS, self.subject)
         self.fan = self.entities.get("fan")
         self.climate = self.entities.get("climate_dehumidifier_as_climate")
+        # BasicLightTests mixin is not used here because the switch is inverted
         self.light = self.entities.get("light_display")
-        self.lock = self.entities.get("lock_child_lock")
-        self.switch = self.entities.get("switch_air_clean")
+        self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
+        self.setUpBasicSwitch(AIRCLEAN_DPS, self.entities.get("switch_air_clean"))
         self.temperature = self.entities.get("sensor_current_temperature")
         self.humidity = self.entities.get("sensor_current_humidity")
 
@@ -251,7 +263,7 @@ class TestGoldairDehumidifier(TuyaDeviceTestCase):
         self.assertEqual(self.climate.current_temperature, 25)
         self.assertEqual(self.temperature.native_value, 25)
 
-    def test_hvac_mode(self):
+    def test_climate_hvac_mode(self):
         self.dps[HVACMODE_DPS] = True
         self.assertEqual(self.climate.hvac_mode, HVAC_MODE_DRY)
 
@@ -261,40 +273,21 @@ class TestGoldairDehumidifier(TuyaDeviceTestCase):
         self.dps[HVACMODE_DPS] = None
         self.assertEqual(self.climate.hvac_mode, STATE_UNAVAILABLE)
 
-    def test_hvac_modes(self):
+    def test_climate_hvac_modes(self):
         self.assertCountEqual(self.climate.hvac_modes, [HVAC_MODE_OFF, HVAC_MODE_DRY])
 
-    async def test_turn_on(self):
+    async def test_climate_set_hvac_mode_to_dry(self):
         async with assert_device_properties_set(
             self.climate._device, {HVACMODE_DPS: True}
         ):
             await self.climate.async_set_hvac_mode(HVAC_MODE_DRY)
 
-    async def test_turn_off(self):
+    async def test_climate_set_hvac_mode_to_off(self):
 
         async with assert_device_properties_set(
             self.climate._device, {HVACMODE_DPS: False}
         ):
             await self.climate.async_set_hvac_mode(HVAC_MODE_OFF)
-
-    def test_humidifier_is_on(self):
-        self.dps[HVACMODE_DPS] = True
-        self.assertTrue(self.subject.is_on)
-
-        self.dps[HVACMODE_DPS] = False
-        self.assertFalse(self.subject.is_on)
-
-    async def test_dehumidifier_turn_on(self):
-        async with assert_device_properties_set(
-            self.subject._device, {HVACMODE_DPS: True}
-        ):
-            await self.subject.async_turn_on()
-
-    async def test_dehumidifier_turn_off(self):
-        async with assert_device_properties_set(
-            self.subject._device, {HVACMODE_DPS: False}
-        ):
-            await self.subject.async_turn_off()
 
     def test_preset_mode(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL
@@ -569,34 +562,6 @@ class TestGoldairDehumidifier(TuyaDeviceTestCase):
             },
         )
 
-    def test_lock_state(self):
-        self.dps[LOCK_DPS] = True
-        self.assertEqual(self.lock.state, STATE_LOCKED)
-
-        self.dps[LOCK_DPS] = False
-        self.assertEqual(self.lock.state, STATE_UNLOCKED)
-
-        self.dps[LOCK_DPS] = None
-        self.assertEqual(self.lock.state, STATE_UNAVAILABLE)
-
-    def test_lock_is_locked(self):
-        self.dps[LOCK_DPS] = True
-        self.assertTrue(self.lock.is_locked)
-
-        self.dps[LOCK_DPS] = False
-        self.assertFalse(self.lock.is_locked)
-
-        self.dps[LOCK_DPS] = None
-        self.assertFalse(self.lock.is_locked)
-
-    async def test_lock_locks(self):
-        async with assert_device_properties_set(self.lock._device, {LOCK_DPS: True}):
-            await self.lock.async_lock()
-
-    async def test_lock_unlocks(self):
-        async with assert_device_properties_set(self.lock._device, {LOCK_DPS: False}):
-            await self.lock.async_unlock()
-
     def test_light_supported_color_modes(self):
         self.assertCountEqual(
             self.light.supported_color_modes,
@@ -652,45 +617,7 @@ class TestGoldairDehumidifier(TuyaDeviceTestCase):
             await self.light.async_toggle()
 
     def test_switch_icon(self):
-        self.assertEqual(self.switch.icon, "mdi:air-purifier")
-
-    def test_switch_is_on(self):
-        self.dps[AIRCLEAN_DPS] = True
-        self.assertEqual(self.switch.is_on, True)
-
-        self.dps[AIRCLEAN_DPS] = False
-        self.assertEqual(self.switch.is_on, False)
-
-    def test_switch_state_attributes(self):
-        self.assertEqual(self.switch.device_state_attributes, {})
-
-    async def test_switch_turn_on(self):
-        async with assert_device_properties_set(
-            self.switch._device, {AIRCLEAN_DPS: True}
-        ):
-            await self.switch.async_turn_on()
-
-    async def test_switch_turn_off(self):
-        async with assert_device_properties_set(
-            self.switch._device, {AIRCLEAN_DPS: False}
-        ):
-            await self.switch.async_turn_off()
-
-    async def test_toggle_turns_the_switch_on_when_it_was_off(self):
-        self.dps[AIRCLEAN_DPS] = False
-
-        async with assert_device_properties_set(
-            self.switch._device, {AIRCLEAN_DPS: True}
-        ):
-            await self.switch.async_toggle()
-
-    async def test_toggle_turns_the_switch_off_when_it_was_on(self):
-        self.dps[AIRCLEAN_DPS] = True
-
-        async with assert_device_properties_set(
-            self.switch._device, {AIRCLEAN_DPS: False}
-        ):
-            await self.switch.async_toggle()
+        self.assertEqual(self.basicSwitch.icon, "mdi:air-purifier")
 
     def test_sensor_state_class(self):
         self.assertEqual(self.temperature.state_class, "measurement")

@@ -12,7 +12,7 @@ from homeassistant.const import STATE_UNAVAILABLE, TEMP_CELSIUS, TEMP_FAHRENHEIT
 
 from ..const import BECA_BHP6000_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import TuyaDeviceTestCase
+from .base_device_tests import BasicLightTests, BasicLockTests, TuyaDeviceTestCase
 
 LIGHT_DPS = "1"
 TEMPERATURE_DPS = "2"
@@ -23,14 +23,14 @@ FAN_DPS = "6"
 LOCK_DPS = "7"
 
 
-class TestBecaBHP6000Thermostat(TuyaDeviceTestCase):
+class TestBecaBHP6000Thermostat(BasicLightTests, BasicLockTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("beca_bhp6000_thermostat_f.yaml", BECA_BHP6000_PAYLOAD)
         self.subject = self.entities.get("climate")
-        self.light = self.entities.get("light_display")
-        self.lock = self.entities.get("lock_child_lock")
+        self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_display"))
+        self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
 
     def test_supported_features(self):
         self.assertEqual(
@@ -170,8 +170,6 @@ class TestBecaBHP6000Thermostat(TuyaDeviceTestCase):
 
     def test_device_state_attribures(self):
         self.assertEqual(self.subject.device_state_attributes, {})
-        self.assertEqual(self.light.device_state_attributes, {})
-        self.assertEqual(self.lock.device_state_attributes, {})
 
     def test_icons(self):
         self.dps[HVACMODE_DPS] = 1
@@ -186,9 +184,9 @@ class TestBecaBHP6000Thermostat(TuyaDeviceTestCase):
         self.assertEqual(self.subject.icon, "mdi:hvac")
 
         self.dps[LIGHT_DPS] = True
-        self.assertEqual(self.light.icon, "mdi:led-on")
+        self.assertEqual(self.basicLight.icon, "mdi:led-on")
         self.dps[LIGHT_DPS] = False
-        self.assertEqual(self.light.icon, "mdi:led-off")
+        self.assertEqual(self.basicLight.icon, "mdi:led-off")
 
 
 class TestBecaBHP6000ThermostatC(TuyaDeviceTestCase):

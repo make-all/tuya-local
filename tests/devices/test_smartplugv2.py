@@ -3,7 +3,7 @@ from homeassistant.components.switch import DEVICE_CLASS_OUTLET
 
 from ..const import KOGAN_SOCKET_PAYLOAD2
 from ..helpers import assert_device_properties_set
-from .base_device_tests import TuyaDeviceTestCase
+from .base_device_tests import SwitchableTests, TuyaDeviceTestCase
 
 SWITCH_DPS = "1"
 TIMER_DPS = "9"
@@ -12,54 +12,16 @@ POWER_DPS = "19"
 VOLTAGE_DPS = "20"
 
 
-class TestSwitchV2(TuyaDeviceTestCase):
+class TestSwitchV2(SwitchableTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("smartplugv2.yaml", KOGAN_SOCKET_PAYLOAD2)
         self.subject = self.entities.get("switch")
+        self.setUpSwitchable(SWITCH_DPS, self.subject)
 
     def test_device_class_is_outlet(self):
         self.assertEqual(self.subject.device_class, DEVICE_CLASS_OUTLET)
-
-    def test_is_on(self):
-        self.dps[SWITCH_DPS] - True
-        self.assertTrue(self.subject.is_on)
-
-        self.dps[SWITCH_DPS] = False
-        self.assertFalse(self.subject.is_on)
-
-    def test_is_on_when_unavailable(self):
-        self.dps[SWITCH_DPS] = None
-        self.assertIsNone(self.subject.is_on)
-
-    async def test_turn_on(self):
-        async with assert_device_properties_set(
-            self.subject._device, {SWITCH_DPS: True}
-        ):
-            await self.subject.async_turn_on()
-
-    async def test_turn_off(self):
-        async with assert_device_properties_set(
-            self.subject._device, {SWITCH_DPS: False}
-        ):
-            await self.subject.async_turn_off()
-
-    async def test_toggle_turns_the_switch_on_when_it_was_off(self):
-        self.dps[SWITCH_DPS] = False
-
-        async with assert_device_properties_set(
-            self.subject._device, {SWITCH_DPS: True}
-        ):
-            await self.subject.async_toggle()
-
-    async def test_toggle_turns_the_switch_off_when_it_was_on(self):
-        self.dps[SWITCH_DPS] = True
-
-        async with assert_device_properties_set(
-            self.subject._device, {SWITCH_DPS: False}
-        ):
-            await self.subject.async_toggle()
 
     def test_current_power_w(self):
         self.dps[POWER_DPS] = 1234

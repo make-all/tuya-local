@@ -10,7 +10,7 @@ from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import BECA_BHT002_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import TuyaDeviceTestCase
+from .base_device_tests import BasicLightTests, BasicLockTests, TuyaDeviceTestCase
 
 LIGHT_DPS = "1"
 TEMPERATURE_DPS = "2"
@@ -22,7 +22,7 @@ FLOOR_DPS = "102"
 UNKNOWN104_DPS = "104"
 
 
-class TestBecaBHT002Thermostat(TuyaDeviceTestCase):
+class TestBecaBHT002Thermostat(BasicLightTests, BasicLockTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
@@ -31,8 +31,8 @@ class TestBecaBHT002Thermostat(TuyaDeviceTestCase):
             BECA_BHT002_PAYLOAD,
         )
         self.subject = self.entities.get("climate")
-        self.light = self.entities.get("light_display")
-        self.lock = self.entities.get("lock_child_lock")
+        self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_display"))
+        self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
 
     def test_supported_features(self):
         self.assertEqual(
@@ -138,16 +138,14 @@ class TestBecaBHT002Thermostat(TuyaDeviceTestCase):
             self.subject.device_state_attributes,
             {"floor_temperature": 22.5, "unknown_104": False},
         )
-        self.assertDictEqual(self.light.device_state_attributes, {})
-        self.assertDictEqual(self.lock.device_state_attributes, {})
 
     def test_icons(self):
         self.dps[LIGHT_DPS] = True
-        self.assertEqual(self.light.icon, "mdi:led-on")
+        self.assertEqual(self.basicLight.icon, "mdi:led-on")
         self.dps[LIGHT_DPS] = False
-        self.assertEqual(self.light.icon, "mdi:led-off")
+        self.assertEqual(self.basicLight.icon, "mdi:led-off")
 
         self.dps[LOCK_DPS] = True
-        self.assertEqual(self.lock.icon, "mdi:hand-back-right-off")
+        self.assertEqual(self.basicLock.icon, "mdi:hand-back-right-off")
         self.dps[LOCK_DPS] = False
-        self.assertEqual(self.lock.icon, "mdi:hand-back-right")
+        self.assertEqual(self.basicLock.icon, "mdi:hand-back-right")

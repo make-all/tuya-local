@@ -8,7 +8,7 @@ from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import GECO_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import TuyaDeviceTestCase
+from .base_device_tests import BasicLockTests, TuyaDeviceTestCase
 
 HVACMODE_DPS = "1"
 LOCK_DPS = "2"
@@ -18,13 +18,13 @@ TIMER_DPS = "5"
 ERROR_DPS = "6"
 
 
-class TestGoldairGECOHeater(TuyaDeviceTestCase):
+class TestGoldairGECOHeater(BasicLockTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("goldair_geco_heater.yaml", GECO_HEATER_PAYLOAD)
         self.subject = self.entities.get("climate")
-        self.lock = self.entities.get("lock_child_lock")
+        self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
 
     def test_supported_features(self):
         self.assertEqual(
@@ -134,31 +134,3 @@ class TestGoldairGECOHeater(TuyaDeviceTestCase):
         self.assertDictEqual(
             self.subject.device_state_attributes, {"error": "OK", "timer": 0}
         )
-
-    def test_lock_state(self):
-        self.dps[LOCK_DPS] = True
-        self.assertEqual(self.lock.state, STATE_LOCKED)
-
-        self.dps[LOCK_DPS] = False
-        self.assertEqual(self.lock.state, STATE_UNLOCKED)
-
-        self.dps[LOCK_DPS] = None
-        self.assertEqual(self.lock.state, STATE_UNAVAILABLE)
-
-    def test_lock_is_locked(self):
-        self.dps[LOCK_DPS] = True
-        self.assertTrue(self.lock.is_locked)
-
-        self.dps[LOCK_DPS] = False
-        self.assertFalse(self.lock.is_locked)
-
-        self.dps[LOCK_DPS] = None
-        self.assertFalse(self.lock.is_locked)
-
-    async def test_lock_locks(self):
-        async with assert_device_properties_set(self.lock._device, {LOCK_DPS: True}):
-            await self.lock.async_lock()
-
-    async def test_lock_unlocks(self):
-        async with assert_device_properties_set(self.lock._device, {LOCK_DPS: False}):
-            await self.lock.async_unlock()

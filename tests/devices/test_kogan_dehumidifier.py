@@ -3,7 +3,7 @@ from homeassistant.components.humidifier import SUPPORT_MODES
 
 from ..const import KOGAN_DEHUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import TuyaDeviceTestCase
+from .base_device_tests import SwitchableTests, TuyaDeviceTestCase
 
 SWITCH_DPS = "1"
 MODE_DPS = "2"
@@ -15,12 +15,13 @@ COUNTDOWN_DPS = "13"
 HUMIDITY_DPS = "101"
 
 
-class TestKoganDehumidifier(TuyaDeviceTestCase):
+class TestKoganDehumidifier(SwitchableTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("kogan_dehumidifier.yaml", KOGAN_DEHUMIDIFIER_PAYLOAD)
         self.subject = self.entities.get("humidifier")
+        self.setUpSwitchable(SWITCH_DPS, self.subject)
         self.fan = self.entities.get("fan")
 
     def test_supported_features(self):
@@ -57,31 +58,6 @@ class TestKoganDehumidifier(TuyaDeviceTestCase):
     def test_target_humidity(self):
         self.dps[HUMIDITY_DPS] = 55
         self.assertEqual(self.subject.target_humidity, 55)
-
-    def test_is_on(self):
-        self.dps[SWITCH_DPS] = True
-        self.assertTrue(self.subject.is_on)
-        self.assertTrue(self.fan.is_on)
-
-        self.dps[SWITCH_DPS] = False
-        self.assertFalse(self.subject.is_on)
-        self.assertFalse(self.fan.is_on)
-
-        self.dps[SWITCH_DPS] = None
-        self.assertIsNone(self.subject.is_on)
-        self.assertIsNone(self.fan.is_on)
-
-    async def test_turn_on(self):
-        async with assert_device_properties_set(
-            self.subject._device, {SWITCH_DPS: True}
-        ):
-            await self.subject.async_turn_on()
-
-    async def test_turn_off(self):
-        async with assert_device_properties_set(
-            self.subject._device, {SWITCH_DPS: False}
-        ):
-            await self.subject.async_turn_off()
 
     async def test_fan_turn_on(self):
         async with assert_device_properties_set(

@@ -20,7 +20,7 @@ from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import FAN_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import TuyaDeviceTestCase
+from .base_device_tests import BasicLightTests, SwitchableTests, TuyaDeviceTestCase
 
 HVACMODE_DPS = "1"
 FANMODE_DPS = "2"
@@ -30,14 +30,15 @@ TIMER_DPS = "11"
 LIGHT_DPS = "101"
 
 
-class TestGoldairFan(TuyaDeviceTestCase):
+class TestGoldairFan(BasicLightTests, SwitchableTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("goldair_fan.yaml", FAN_PAYLOAD)
         self.subject = self.entities.get("fan")
         self.climate = self.entities.get("climate")
-        self.light = self.entities.get("light_display")
+        self.setUpSwitchable(HVACMODE_DPS, self.subject)
+        self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_display"))
 
     def test_supported_features(self):
         self.assertEqual(
@@ -320,48 +321,9 @@ class TestGoldairFan(TuyaDeviceTestCase):
         self.assertEqual(self.climate.device_state_attributes, {"timer": "5"})
         self.assertEqual(self.subject.device_state_attributes, {"timer": "5"})
 
-    def test_light_supported_color_modes(self):
-        self.assertCountEqual(
-            self.light.supported_color_modes,
-            [COLOR_MODE_ONOFF],
-        )
-
-    def test_light_color_mode(self):
-        self.assertEqual(self.light.color_mode, COLOR_MODE_ONOFF)
-
     def test_light_icon(self):
         self.dps[LIGHT_DPS] = True
-        self.assertEqual(self.light.icon, "mdi:led-on")
+        self.assertEqual(self.basicLight.icon, "mdi:led-on")
 
         self.dps[LIGHT_DPS] = False
-        self.assertEqual(self.light.icon, "mdi:led-off")
-
-    def test_light_is_on(self):
-        self.dps[LIGHT_DPS] = True
-        self.assertEqual(self.light.is_on, True)
-
-        self.dps[LIGHT_DPS] = False
-        self.assertEqual(self.light.is_on, False)
-
-    def test_light_state_attributes(self):
-        self.assertEqual(self.light.device_state_attributes, {})
-
-    async def test_light_turn_on(self):
-        async with assert_device_properties_set(self.light._device, {LIGHT_DPS: True}):
-            await self.light.async_turn_on()
-
-    async def test_light_turn_off(self):
-        async with assert_device_properties_set(self.light._device, {LIGHT_DPS: False}):
-            await self.light.async_turn_off()
-
-    async def test_toggle_turns_the_light_on_when_it_was_off(self):
-        self.dps[LIGHT_DPS] = False
-
-        async with assert_device_properties_set(self.light._device, {LIGHT_DPS: True}):
-            await self.light.async_toggle()
-
-    async def test_toggle_turns_the_light_off_when_it_was_on(self):
-        self.dps[LIGHT_DPS] = True
-
-        async with assert_device_properties_set(self.light._device, {LIGHT_DPS: False}):
-            await self.light.async_toggle()
+        self.assertEqual(self.basicLight.icon, "mdi:led-off")

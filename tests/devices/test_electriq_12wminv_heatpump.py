@@ -14,7 +14,7 @@ from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import ELECTRIQ_12WMINV_HEATPUMP_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import TuyaDeviceTestCase
+from .base_device_tests import BasicLightTests, BasicSwitchTests, TuyaDeviceTestCase
 
 POWER_DPS = "1"
 TEMPERATURE_DPS = "2"
@@ -34,7 +34,9 @@ UNKNOWN109_DPS = "109"
 UNKNOWN110_DPS = "110"
 
 
-class TestElectriq12WMINVHeatpump(TuyaDeviceTestCase):
+class TestElectriq12WMINVHeatpump(
+    BasicLightTests, BasicSwitchTests, TuyaDeviceTestCase
+):
     __test__ = True
 
     def setUp(self):
@@ -42,8 +44,8 @@ class TestElectriq12WMINVHeatpump(TuyaDeviceTestCase):
             "electriq_12wminv_heatpump.yaml", ELECTRIQ_12WMINV_HEATPUMP_PAYLOAD
         )
         self.subject = self.entities.get("climate")
-        self.light = self.entities.get("light_display")
-        self.switch = self.entities.get("switch_sleep")
+        self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_display"))
+        self.setUpBasicSwitch(SWITCH_DPS, self.entities.get("switch_sleep"))
 
     def test_supported_features(self):
         self.assertEqual(
@@ -304,95 +306,12 @@ class TestElectriq12WMINVHeatpump(TuyaDeviceTestCase):
             },
         )
 
-    def test_light_state_attributes(self):
-        self.assertEqual(self.light.device_state_attributes, {})
-
-    def test_light_supported_color_modes(self):
-        self.assertCountEqual(
-            self.light.supported_color_modes,
-            [COLOR_MODE_ONOFF],
-        )
-
-    def test_light_color_mode(self):
-        self.assertEqual(self.light.color_mode, COLOR_MODE_ONOFF)
-
-    def test_light_is_on(self):
-        self.dps[LIGHT_DPS] = True
-        self.assertTrue(self.light.is_on)
-        self.dps[LIGHT_DPS] = False
-        self.assertFalse(self.light.is_on)
-
-    async def test_light_turn_on(self):
-        async with assert_device_properties_set(
-            self.light._device,
-            {LIGHT_DPS: True},
-        ):
-            await self.light.async_turn_on()
-
-    async def test_light_turn_off(self):
-        async with assert_device_properties_set(
-            self.light._device,
-            {LIGHT_DPS: False},
-        ):
-            await self.light.async_turn_off()
-
-    async def test_toggle_turns_the_light_on_when_it_was_off(self):
-        self.dps[LIGHT_DPS] = False
-
-        async with assert_device_properties_set(self.light._device, {LIGHT_DPS: True}):
-            await self.light.async_toggle()
-
-    async def test_toggle_turns_the_light_off_when_it_was_on(self):
-        self.dps[LIGHT_DPS] = True
-
-        async with assert_device_properties_set(self.light._device, {LIGHT_DPS: False}):
-            await self.light.async_toggle()
-
     def test_light_icon(self):
         self.dps[LIGHT_DPS] = True
-        self.assertEqual(self.light.icon, "mdi:led-on")
+        self.assertEqual(self.basicLight.icon, "mdi:led-on")
 
         self.dps[LIGHT_DPS] = False
-        self.assertEqual(self.light.icon, "mdi:led-off")
-
-    def test_switch_state_attributes(self):
-        self.assertEqual(self.switch.device_state_attributes, {})
-
-    def test_switch_is_on(self):
-        self.dps[SWITCH_DPS] = True
-        self.assertTrue(self.switch.is_on)
-        self.dps[SWITCH_DPS] = False
-        self.assertFalse(self.switch.is_on)
-
-    async def test_switch_turn_on(self):
-        async with assert_device_properties_set(
-            self.switch._device,
-            {SWITCH_DPS: True},
-        ):
-            await self.switch.async_turn_on()
-
-    async def test_switch_turn_off(self):
-        async with assert_device_properties_set(
-            self.switch._device,
-            {SWITCH_DPS: False},
-        ):
-            await self.switch.async_turn_off()
-
-    async def test_toggle_turns_the_switch_on_when_it_was_off(self):
-        self.dps[SWITCH_DPS] = False
-
-        async with assert_device_properties_set(
-            self.switch._device, {SWITCH_DPS: True}
-        ):
-            await self.switch.async_toggle()
-
-    async def test_toggle_turns_the_switch_off_when_it_was_on(self):
-        self.dps[SWITCH_DPS] = True
-
-        async with assert_device_properties_set(
-            self.switch._device, {SWITCH_DPS: False}
-        ):
-            await self.switch.async_toggle()
+        self.assertEqual(self.basicLight.icon, "mdi:led-off")
 
     def test_switch_icon(self):
-        self.assertEqual(self.switch.icon, "mdi:power-sleep")
+        self.assertEqual(self.basicSwitch.icon, "mdi:power-sleep")

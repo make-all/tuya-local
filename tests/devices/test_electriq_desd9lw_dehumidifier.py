@@ -13,7 +13,7 @@ from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import ELECTRIQ_DESD9LW_DEHUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import TuyaDeviceTestCase
+from .base_device_tests import BasicLightTests, BasicSwitchTests, TuyaDeviceTestCase
 
 POWER_DPS = "1"
 HUMIDITY_DPS = "2"
@@ -27,7 +27,9 @@ LIGHT_DPS = "15"
 TEMPERATURE_DPS = "101"
 
 
-class TestElectriqDESD9LWDehumidifier(TuyaDeviceTestCase):
+class TestElectriqDESD9LWDehumidifier(
+    BasicLightTests, BasicSwitchTests, TuyaDeviceTestCase
+):
     __test__ = True
 
     def setUp(self):
@@ -36,8 +38,8 @@ class TestElectriqDESD9LWDehumidifier(TuyaDeviceTestCase):
             ELECTRIQ_DESD9LW_DEHUMIDIFIER_PAYLOAD,
         )
         self.subject = self.entities.get("climate")
-        self.light = self.entities.get("light_uv_sterilization")
-        self.switch = self.entities.get("switch_ionizer")
+        self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_uv_sterilization"))
+        self.setUpBasicSwitch(SWITCH_DPS, self.entities.get("switch_ionizer"))
 
     def test_supported_features(self):
         self.assertEqual(
@@ -286,82 +288,8 @@ class TestElectriqDESD9LWDehumidifier(TuyaDeviceTestCase):
         ):
             await self.subject.async_set_swing_mode("off")
 
-    def test_light_state_attributes(self):
-        self.assertEqual(self.light.device_state_attributes, {})
-
-    def test_light_is_on(self):
-        self.dps[LIGHT_DPS] = True
-        self.assertTrue(self.light.is_on)
-        self.dps[LIGHT_DPS] = False
-        self.assertFalse(self.light.is_on)
-
-    async def test_light_turn_on(self):
-        async with assert_device_properties_set(
-            self.light._device,
-            {LIGHT_DPS: True},
-        ):
-            await self.light.async_turn_on()
-
-    async def test_light_turn_off(self):
-        async with assert_device_properties_set(
-            self.light._device,
-            {LIGHT_DPS: False},
-        ):
-            await self.light.async_turn_off()
-
-    async def test_toggle_turns_the_light_on_when_it_was_off(self):
-        self.dps[LIGHT_DPS] = False
-
-        async with assert_device_properties_set(self.light._device, {LIGHT_DPS: True}):
-            await self.light.async_toggle()
-
-    async def test_toggle_turns_the_light_off_when_it_was_on(self):
-        self.dps[LIGHT_DPS] = True
-
-        async with assert_device_properties_set(self.light._device, {LIGHT_DPS: False}):
-            await self.light.async_toggle()
-
     def test_light_icon(self):
-        self.assertEqual(self.light.icon, "mdi:solar-power")
-
-    def test_switch_state_attributes(self):
-        self.assertEqual(self.switch.device_state_attributes, {})
-
-    def test_switch_is_on(self):
-        self.dps[SWITCH_DPS] = True
-        self.assertTrue(self.switch.is_on)
-        self.dps[SWITCH_DPS] = False
-        self.assertFalse(self.switch.is_on)
-
-    async def test_switch_turn_on(self):
-        async with assert_device_properties_set(
-            self.switch._device,
-            {SWITCH_DPS: True},
-        ):
-            await self.switch.async_turn_on()
-
-    async def test_switch_turn_off(self):
-        async with assert_device_properties_set(
-            self.switch._device,
-            {SWITCH_DPS: False},
-        ):
-            await self.switch.async_turn_off()
-
-    async def test_toggle_turns_the_switch_on_when_it_was_off(self):
-        self.dps[SWITCH_DPS] = False
-
-        async with assert_device_properties_set(
-            self.switch._device, {SWITCH_DPS: True}
-        ):
-            await self.switch.async_toggle()
-
-    async def test_toggle_turns_the_switch_off_when_it_was_on(self):
-        self.dps[SWITCH_DPS] = True
-
-        async with assert_device_properties_set(
-            self.switch._device, {SWITCH_DPS: False}
-        ):
-            await self.switch.async_toggle()
+        self.assertEqual(self.basicLight.icon, "mdi:solar-power")
 
     def test_switch_icon(self):
-        self.assertEqual(self.switch.icon, "mdi:atom-variant")
+        self.assertEqual(self.basicSwitch.icon, "mdi:atom-variant")

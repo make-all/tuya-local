@@ -12,7 +12,7 @@ from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import TH213_THERMOSTAT_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import TuyaDeviceTestCase
+from .base_device_tests import BasicLockTests, TuyaDeviceTestCase
 
 HVACMODE_DPS = "1"
 TEMPERATURE_DPS = "2"
@@ -30,13 +30,13 @@ UNKNOWN108_DPS = "108"
 UNKNOWN110_DPS = "110"
 
 
-class TestAwowTH213Thermostat(TuyaDeviceTestCase):
+class TestAwowTH213Thermostat(BasicLockTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("awow_th213_thermostat.yaml", TH213_THERMOSTAT_PAYLOAD)
         self.subject = self.entities.get("climate")
-        self.lock = self.entities.get("lock_child_lock")
+        self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
 
     def test_supported_features(self):
         self.assertEqual(
@@ -52,10 +52,10 @@ class TestAwowTH213Thermostat(TuyaDeviceTestCase):
         self.assertEqual(self.subject.icon, "mdi:thermometer-off")
 
         self.dps[LOCK_DPS] = True
-        self.assertEqual(self.lock.icon, "mdi:hand-back-right-off")
+        self.assertEqual(self.basicLock.icon, "mdi:hand-back-right-off")
 
         self.dps[LOCK_DPS] = False
-        self.assertEqual(self.lock.icon, "mdi:hand-back-right")
+        self.assertEqual(self.basicLock.icon, "mdi:hand-back-right")
 
     def test_temperature_unit_returns_device_temperature_unit(self):
         self.assertEqual(
@@ -238,31 +238,3 @@ class TestAwowTH213Thermostat(TuyaDeviceTestCase):
                 "unknown_110": 110,
             },
         )
-
-    def test_lock_state(self):
-        self.dps[LOCK_DPS] = True
-        self.assertEqual(self.lock.state, STATE_LOCKED)
-
-        self.dps[LOCK_DPS] = False
-        self.assertEqual(self.lock.state, STATE_UNLOCKED)
-
-        self.dps[LOCK_DPS] = None
-        self.assertEqual(self.lock.state, STATE_UNAVAILABLE)
-
-    def test_lock_is_locked(self):
-        self.dps[LOCK_DPS] = True
-        self.assertTrue(self.lock.is_locked)
-
-        self.dps[LOCK_DPS] = False
-        self.assertFalse(self.lock.is_locked)
-
-        self.dps[LOCK_DPS] = None
-        self.assertFalse(self.lock.is_locked)
-
-    async def test_lock_locks(self):
-        async with assert_device_properties_set(self.lock._device, {LOCK_DPS: True}):
-            await self.lock.async_lock()
-
-    async def test_lock_unlocks(self):
-        async with assert_device_properties_set(self.lock._device, {LOCK_DPS: False}):
-            await self.lock.async_unlock()

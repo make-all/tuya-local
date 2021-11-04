@@ -9,7 +9,7 @@ from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import KOGAN_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import TuyaDeviceTestCase
+from .base_device_tests import BasicLockTests, TuyaDeviceTestCase
 
 TEMPERATURE_DPS = "2"
 CURRENTTEMP_DPS = "3"
@@ -19,13 +19,13 @@ HVACMODE_DPS = "7"
 TIMER_DPS = "8"
 
 
-class TestGoldairKoganKAHTPHeater(TuyaDeviceTestCase):
+class TestGoldairKoganKAHTPHeater(BasicLockTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("kogan_kahtp_heater.yaml", KOGAN_HEATER_PAYLOAD)
         self.subject = self.entities.get("climate")
-        self.lock = self.entities.get("lock_child_lock")
+        self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
 
     def test_supported_features(self):
         self.assertEqual(
@@ -166,31 +166,3 @@ class TestGoldairKoganKAHTPHeater(TuyaDeviceTestCase):
             self.subject.device_state_attributes,
             {"timer": 10},
         )
-
-    def test_lock_state(self):
-        self.dps[LOCK_DPS] = True
-        self.assertEqual(self.lock.state, STATE_LOCKED)
-
-        self.dps[LOCK_DPS] = False
-        self.assertEqual(self.lock.state, STATE_UNLOCKED)
-
-        self.dps[LOCK_DPS] = None
-        self.assertEqual(self.lock.state, STATE_UNAVAILABLE)
-
-    def test_lock_is_locked(self):
-        self.dps[LOCK_DPS] = True
-        self.assertTrue(self.lock.is_locked)
-
-        self.dps[LOCK_DPS] = False
-        self.assertFalse(self.lock.is_locked)
-
-        self.dps[LOCK_DPS] = None
-        self.assertFalse(self.lock.is_locked)
-
-    async def test_lock_locks(self):
-        async with assert_device_properties_set(self.lock._device, {LOCK_DPS: True}):
-            await self.lock.async_lock()
-
-    async def test_lock_unlocks(self):
-        async with assert_device_properties_set(self.lock._device, {LOCK_DPS: False}):
-            await self.lock.async_unlock()

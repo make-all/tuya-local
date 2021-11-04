@@ -17,7 +17,7 @@ from ..helpers import (
     assert_device_properties_set,
     assert_device_properties_set_optional,
 )
-from .base_device_tests import TuyaDeviceTestCase
+from .base_device_tests import BasicSwitchTests, TuyaDeviceTestCase
 
 HVACMODE_DPS = "1"
 TEMPERATURE_DPS = "2"
@@ -30,14 +30,17 @@ SWITCH_DPS = "101"
 SWING_DPS = "102"
 
 
-class TestPulineM100Heater(TuyaDeviceTestCase):
+class TestPulineM100Heater(BasicSwitchTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("purline_m100_heater.yaml", PURLINE_M100_HEATER_PAYLOAD)
         self.subject = self.entities.get("climate")
+        # BasicLightTests mixin not used due to inverted switch
         self.light = self.entities.get("light_display")
-        self.switch = self.entities.get("switch_open_window_detector")
+        self.setUpBasicSwitch(
+            SWITCH_DPS, self.entities.get("switch_open_window_detector")
+        )
 
     def test_supported_features(self):
         self.assertEqual(
@@ -260,51 +263,3 @@ class TestPulineM100Heater(TuyaDeviceTestCase):
             self.light._device, {LIGHTOFF_DPS: True}
         ):
             await self.light.async_toggle()
-
-    def test_switch_class_is_switch(self):
-        self.assertEqual(self.switch.device_class, DEVICE_CLASS_SWITCH)
-
-    def test_switch_is_on(self):
-        self.dps[SWITCH_DPS] = True
-        self.assertTrue(self.switch.is_on)
-
-        self.dps[SWITCH_DPS] = False
-        self.assertFalse(self.switch.is_on)
-
-    def test_switch_is_on_when_unavailable(self):
-        self.dps[SWITCH_DPS] = None
-        self.assertIsNone(self.switch.is_on)
-
-    async def test_switch_turn_on(self):
-        async with assert_device_properties_set(
-            self.switch._device, {SWITCH_DPS: True}
-        ):
-            await self.switch.async_turn_on()
-
-    async def test_switch_turn_off(self):
-        async with assert_device_properties_set(
-            self.switch._device, {SWITCH_DPS: False}
-        ):
-            await self.switch.async_turn_off()
-
-    async def test_toggle_turns_the_switch_on_when_it_was_off(self):
-        self.dps[SWITCH_DPS] = False
-
-        async with assert_device_properties_set(
-            self.switch._device, {SWITCH_DPS: True}
-        ):
-            await self.switch.async_toggle()
-
-    async def test_toggle_turns_the_switch_off_when_it_was_on(self):
-        self.dps[SWITCH_DPS] = True
-
-        async with assert_device_properties_set(
-            self.switch._device, {SWITCH_DPS: False}
-        ):
-            await self.switch.async_toggle()
-
-    def test_switch_returns_none_for_power(self):
-        self.assertIsNone(self.switch.current_power_w)
-
-    def test_switch_state_attributes_set(self):
-        self.assertEqual(self.switch.device_state_attributes, {})

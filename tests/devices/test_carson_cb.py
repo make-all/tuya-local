@@ -8,7 +8,6 @@ from homeassistant.components.climate.const import (
     SUPPORT_SWING_MODE,
     SUPPORT_TARGET_TEMPERATURE,
 )
-from homeassistant.components.light import COLOR_MODE_ONOFF
 from homeassistant.const import STATE_UNAVAILABLE, TEMP_CELSIUS, TEMP_FAHRENHEIT
 
 from ..const import CARSON_CB_PAYLOAD
@@ -35,8 +34,6 @@ class TestCarsonCBHeatpump(TuyaDeviceTestCase):
     def setUp(self):
         self.setUpForConfig("carson_cb.yaml", CARSON_CB_PAYLOAD)
         self.subject = self.entities.get("climate")
-        self.light = self.entities.get("light")
-        self.switch = self.entities.get("switch")
 
     def test_supported_features(self):
         self.assertEqual(

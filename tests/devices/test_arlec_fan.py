@@ -10,7 +10,7 @@ from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import ARLEC_FAN_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import TuyaDeviceTestCase
+from .base_device_tests import SwitchableTests, TuyaDeviceTestCase
 
 SWITCH_DPS = "1"
 SPEED_DPS = "3"
@@ -19,41 +19,20 @@ PRESET_DPS = "102"
 TIMER_DPS = "103"
 
 
-class TestArlecFan(TuyaDeviceTestCase):
+class TestArlecFan(SwitchableTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("arlec_fan.yaml", ARLEC_FAN_PAYLOAD)
         self.subject = self.entities["fan"]
         self.timer = self.entities["select_timer"]
+        self.setUpSwitchable(SWITCH_DPS, self.subject)
 
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
             SUPPORT_DIRECTION | SUPPORT_PRESET_MODE | SUPPORT_SET_SPEED,
         )
-
-    def test_is_on(self):
-        self.dps[SWITCH_DPS] = True
-        self.assertTrue(self.subject.is_on)
-
-        self.dps[SWITCH_DPS] = False
-        self.assertFalse(self.subject.is_on)
-
-        self.dps[SWITCH_DPS] = None
-        self.assertIsNone(self.subject.is_on)
-
-    async def test_turn_on(self):
-        async with assert_device_properties_set(
-            self.subject._device, {SWITCH_DPS: True}
-        ):
-            await self.subject.async_turn_on()
-
-    async def test_turn_off(self):
-        async with assert_device_properties_set(
-            self.subject._device, {SWITCH_DPS: False}
-        ):
-            await self.subject.async_turn_off()
 
     def test_preset_mode(self):
         self.dps[PRESET_DPS] = "normal"

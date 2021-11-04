@@ -5,7 +5,13 @@ from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import RENPHO_PURIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import TuyaDeviceTestCase
+from .base_device_tests import (
+    BasicLightTests,
+    BasicLockTests,
+    BasicSwitchTests,
+    SwitchableTests,
+    TuyaDeviceTestCase,
+)
 
 SWITCH_DPS = "1"
 PRESET_DPS = "4"
@@ -20,40 +26,25 @@ ACTIVATED_DPS = "104"
 HEPA_DPS = "105"
 
 
-class TestRenphoPurifier(TuyaDeviceTestCase):
+class TestRenphoPurifier(
+    BasicLightTests,
+    BasicLockTests,
+    BasicSwitchTests,
+    SwitchableTests,
+    TuyaDeviceTestCase,
+):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("renpho_rp_ap001s.yaml", RENPHO_PURIFIER_PAYLOAD)
-        self.subject = self.entities["fan"]
-        self.light = self.entities["light_aq_indicator"]
-        self.lock = self.entities["lock_child_lock"]
-        self.switch = self.entities["switch_sleep"]
+        self.subject = self.entities.get("fan")
+        self.setUpSwitchable(SWITCH_DPS, self.subject)
+        self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_aq_indicator"))
+        self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
+        self.setUpBasicSwitch(SLEEP_DPS, self.entities.get("switch_sleep"))
 
     def test_supported_features(self):
         self.assertEqual(self.subject.supported_features, SUPPORT_PRESET_MODE)
-
-    def test_is_on(self):
-        self.dps[SWITCH_DPS] = True
-        self.assertTrue(self.subject.is_on)
-        self.dps[SWITCH_DPS] = False
-        self.assertFalse(self.subject.is_on)
-        self.dps[SWITCH_DPS] = None
-        self.assertIsNone(self.subject.is_on)
-
-    async def test_turn_on(self):
-        async with assert_device_properties_set(
-            self.subject._device,
-            {SWITCH_DPS: True},
-        ):
-            await self.subject.async_turn_on()
-
-    async def test_turn_off(self):
-        async with assert_device_properties_set(
-            self.subject._device,
-            {SWITCH_DPS: False},
-        ):
-            await self.subject.async_turn_off()
 
     def test_preset_modes(self):
         self.assertCountEqual(
@@ -119,119 +110,4 @@ class TestRenphoPurifier(TuyaDeviceTestCase):
             },
         )
 
-    def test_lock_state(self):
-        self.dps[LOCK_DPS] = True
-        self.assertEqual(self.lock.state, STATE_LOCKED)
-
-        self.dps[LOCK_DPS] = False
-        self.assertEqual(self.lock.state, STATE_UNLOCKED)
-
-        self.dps[LOCK_DPS] = None
-        self.assertEqual(self.lock.state, STATE_UNAVAILABLE)
-
-    def test_lock_is_locked(self):
-        self.dps[LOCK_DPS] = True
-        self.assertTrue(self.lock.is_locked)
-
-        self.dps[LOCK_DPS] = False
-        self.assertFalse(self.lock.is_locked)
-
-        self.dps[LOCK_DPS] = None
-        self.assertFalse(self.lock.is_locked)
-
-    async def test_lock_locks(self):
-        async with assert_device_properties_set(
-            self.lock._device,
-            {LOCK_DPS: True},
-        ):
-            await self.lock.async_lock()
-
-    async def test_lock_unlocks(self):
-        async with assert_device_properties_set(
-            self.lock._device,
-            {LOCK_DPS: False},
-        ):
-            await self.lock.async_unlock()
-
-    def test_light_supported_color_modes(self):
-        self.assertCountEqual(
-            self.light.supported_color_modes,
-            [COLOR_MODE_ONOFF],
-        )
-
-    def test_light_color_mode(self):
-        self.assertEqual(self.light.color_mode, COLOR_MODE_ONOFF)
-
-    def test_light_has_no_brightness(self):
-        self.assertIsNone(self.light.brightness)
-
-    def test_light_icon(self):
-        self.dps[LIGHT_DPS] = True
-        self.assertEqual(self.light.icon, "mdi:led-on")
-
-        self.dps[LIGHT_DPS] = False
-        self.assertEqual(self.light.icon, "mdi:led-off")
-
-    def test_light_is_on(self):
-        self.dps[LIGHT_DPS] = True
-        self.assertEqual(self.light.is_on, True)
-
-        self.dps[LIGHT_DPS] = False
-        self.assertEqual(self.light.is_on, False)
-
-    async def test_light_turn_on(self):
-        async with assert_device_properties_set(self.light._device, {LIGHT_DPS: True}):
-            await self.light.async_turn_on()
-
-    async def test_light_turn_off(self):
-        async with assert_device_properties_set(self.light._device, {LIGHT_DPS: False}):
-            await self.light.async_turn_off()
-
-    async def test_toggle_turns_the_light_on_when_it_was_off(self):
-        self.dps[LIGHT_DPS] = False
-
-        async with assert_device_properties_set(self.light._device, {LIGHT_DPS: True}):
-            await self.light.async_toggle()
-
-    async def test_toggle_turns_the_light_off_when_it_was_on(self):
-        self.dps[LIGHT_DPS] = True
-
-        async with assert_device_properties_set(self.light._device, {LIGHT_DPS: False}):
-            await self.light.async_toggle()
-
-    def test_switch_icon(self):
-        self.assertEqual(self.switch.icon, "mdi:power-sleep")
-
-    def test_switch_is_on(self):
-        self.dps[SLEEP_DPS] = True
-        self.assertEqual(self.switch.is_on, True)
-
-        self.dps[SLEEP_DPS] = False
-        self.assertEqual(self.switch.is_on, False)
-
-    def test_switch_state_attributes(self):
-        self.assertEqual(self.switch.device_state_attributes, {})
-
-    async def test_switch_turn_on(self):
-        async with assert_device_properties_set(self.switch._device, {SLEEP_DPS: True}):
-            await self.switch.async_turn_on()
-
-    async def test_switch_turn_off(self):
-        async with assert_device_properties_set(
-            self.switch._device, {SLEEP_DPS: False}
-        ):
-            await self.switch.async_turn_off()
-
-    async def test_toggle_turns_the_switch_on_when_it_was_off(self):
-        self.dps[SLEEP_DPS] = False
-
-        async with assert_device_properties_set(self.switch._device, {SLEEP_DPS: True}):
-            await self.switch.async_toggle()
-
-    async def test_toggle_turns_the_switch_off_when_it_was_on(self):
-        self.dps[SLEEP_DPS] = True
-
-        async with assert_device_properties_set(
-            self.switch._device, {SLEEP_DPS: False}
-        ):
-            await self.switch.async_toggle()
+        self.assertEqual(self.basicSwitch.icon, "mdi:power-sleep")

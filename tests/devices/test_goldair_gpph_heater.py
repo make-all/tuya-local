@@ -7,14 +7,12 @@ from homeassistant.components.climate.const import (
     SUPPORT_SWING_MODE,
     SUPPORT_TARGET_TEMPERATURE,
 )
-from homeassistant.components.light import COLOR_MODE_ONOFF
-from homeassistant.components.lock import STATE_LOCKED, STATE_UNLOCKED
 
 from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import GPPH_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import TuyaDeviceTestCase
+from .base_device_tests import BasicLightTests, BasicLockTests, TuyaDeviceTestCase
 
 HVACMODE_DPS = "1"
 TEMPERATURE_DPS = "2"
@@ -30,14 +28,14 @@ SWING_DPS = "105"
 ECOTEMP_DPS = "106"
 
 
-class TestGoldairHeater(TuyaDeviceTestCase):
+class TestGoldairHeater(BasicLightTests, BasicLockTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("goldair_gpph_heater.yaml", GPPH_HEATER_PAYLOAD)
         self.subject = self.entities.get("climate")
-        self.light = self.entities.get("light_display")
-        self.lock = self.entities.get("lock_child_lock")
+        self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_display"))
+        self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
         self.timer = self.entities.get("number_timer")
 
     def test_supported_features(self):
@@ -330,86 +328,12 @@ class TestGoldairHeater(TuyaDeviceTestCase):
             },
         )
 
-    def test_lock_state(self):
-        self.dps[LOCK_DPS] = True
-        self.assertEqual(self.lock.state, STATE_LOCKED)
-
-        self.dps[LOCK_DPS] = False
-        self.assertEqual(self.lock.state, STATE_UNLOCKED)
-
-        self.dps[LOCK_DPS] = None
-        self.assertEqual(self.lock.state, STATE_UNAVAILABLE)
-
-    def test_lock_is_locked(self):
-        self.dps[LOCK_DPS] = True
-        self.assertTrue(self.lock.is_locked)
-
-        self.dps[LOCK_DPS] = False
-        self.assertFalse(self.lock.is_locked)
-
-        self.dps[LOCK_DPS] = None
-        self.assertFalse(self.lock.is_locked)
-
-    async def test_lock_locks(self):
-        async with assert_device_properties_set(self.lock._device, {LOCK_DPS: True}):
-            await self.lock.async_lock()
-
-    async def test_lock_unlocks(self):
-        async with assert_device_properties_set(self.lock._device, {LOCK_DPS: False}):
-            await self.lock.async_unlock()
-
-    def test_light_supported_color_modes(self):
-        self.assertCountEqual(
-            self.light.supported_color_modes,
-            [COLOR_MODE_ONOFF],
-        )
-
-    def test_light_color_mode(self):
-        self.assertEqual(self.light.color_mode, COLOR_MODE_ONOFF)
-
-    def test_light_has_no_brightness(self):
-        self.assertIsNone(self.light.brightness)
-
-    def test_light_has_no_effects(self):
-        self.assertIsNone(self.light.effect_list)
-        self.assertIsNone(self.light.effect)
-
     def test_light_icon(self):
         self.dps[LIGHT_DPS] = True
-        self.assertEqual(self.light.icon, "mdi:led-on")
+        self.assertEqual(self.basicLight.icon, "mdi:led-on")
 
         self.dps[LIGHT_DPS] = False
-        self.assertEqual(self.light.icon, "mdi:led-off")
-
-    def test_light_is_on(self):
-        self.dps[LIGHT_DPS] = True
-        self.assertEqual(self.light.is_on, True)
-
-        self.dps[LIGHT_DPS] = False
-        self.assertEqual(self.light.is_on, False)
-
-    def test_light_state_attributes(self):
-        self.assertEqual(self.light.device_state_attributes, {})
-
-    async def test_light_turn_on(self):
-        async with assert_device_properties_set(self.light._device, {LIGHT_DPS: True}):
-            await self.light.async_turn_on()
-
-    async def test_light_turn_off(self):
-        async with assert_device_properties_set(self.light._device, {LIGHT_DPS: False}):
-            await self.light.async_turn_off()
-
-    async def test_toggle_turns_the_light_on_when_it_was_off(self):
-        self.dps[LIGHT_DPS] = False
-
-        async with assert_device_properties_set(self.light._device, {LIGHT_DPS: True}):
-            await self.light.async_toggle()
-
-    async def test_toggle_turns_the_light_off_when_it_was_on(self):
-        self.dps[LIGHT_DPS] = True
-
-        async with assert_device_properties_set(self.light._device, {LIGHT_DPS: False}):
-            await self.light.async_toggle()
+        self.assertEqual(self.basicLight.icon, "mdi:led-off")
 
     def test_timer_min_value(self):
         self.assertEqual(self.timer.min_value, 0)
