@@ -86,13 +86,14 @@ by the generic implementations. It should not be used for new devices.
 
 ### `deprecated`
 
-//Optional, deprecated//
+//Optional//
 
-This boolean flag is used to mark an entity as deprecated.  This is mainly
+This is used to mark an entity as deprecated.  This is mainly
 for older devices that were implemented when only climate devices were
 supported, but are better represented in HA as fan or humidifier devices.
 An entity should be moved to `secondary_entities` before being marked as
 deprecated, and the preferred device type moved to the `primary_entity`.
+The value of this should indicated what to use instead.
 
 ### `class`
 

@@ -9,9 +9,9 @@ from homeassistant.components.climate.const import (
 )
 from homeassistant.const import STATE_UNAVAILABLE
 
-from ..const import BECA_BHT002_PAYLOAD
+from ..const import MOES_BHT002_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import BasicLightTests, BasicLockTests, TuyaDeviceTestCase
+from .base_device_tests import BasicLockTests, TuyaDeviceTestCase
 
 POWER_DPS = "1"
 TEMPERATURE_DPS = "2"
@@ -19,20 +19,18 @@ CURRENTTEMP_DPS = "3"
 HVACMODE_DPS = "4"
 PRESET_DPS = "5"
 LOCK_DPS = "6"
-FLOOR_DPS = "102"
 UNKNOWN104_DPS = "104"
 
 
-class TestBecaBHT002Thermostat(BasicLightTests, BasicLockTests, TuyaDeviceTestCase):
+class TestMoesBHT002Thermostat(BasicLockTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig(
-            "beca_bht002_thermostat_c.yaml",
-            BECA_BHT002_PAYLOAD,
+            "moes_bht002_thermostat_c.yaml",
+            MOES_BHT002_PAYLOAD,
         )
         self.subject = self.entities.get("climate")
-        self.setUpBasicLight(POWER_DPS, self.entities.get("light_display"))
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
 
     def test_supported_features(self):
@@ -137,20 +135,14 @@ class TestBecaBHT002Thermostat(BasicLightTests, BasicLockTests, TuyaDeviceTestCa
         )
 
     def test_device_state_attribures(self):
-        self.dps[FLOOR_DPS] = 45
         self.dps[UNKNOWN104_DPS] = False
 
         self.assertDictEqual(
             self.subject.device_state_attributes,
-            {"floor_temperature": 22.5, "unknown_104": False},
+            {"unknown_104": False},
         )
 
     def test_icons(self):
-        self.dps[POWER_DPS] = True
-        self.assertEqual(self.basicLight.icon, "mdi:led-on")
-        self.dps[POWER_DPS] = False
-        self.assertEqual(self.basicLight.icon, "mdi:led-off")
-
         self.dps[LOCK_DPS] = True
         self.assertEqual(self.basicLock.icon, "mdi:hand-back-right-off")
         self.dps[LOCK_DPS] = False

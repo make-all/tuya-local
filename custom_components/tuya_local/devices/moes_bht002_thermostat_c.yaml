@@ -1,4 +1,4 @@
-name: BHT-002 Thermostat with external sensor (C)
+name: BHT-002 Thermostat without external sensor (C)
 primary_entity:
   entity: climate
   dps:
@@ -49,27 +49,10 @@ primary_entity:
           value: eco 
         - dps_val: false
           value: comfort
-    - id: 102
-      type: integer
-      name: floor_temperature
-      mapping:
-        - scale: 2
     - id: 104
       type: boolean
       name: unknown_104
 secondary_entities:
-  - entity: light
-    name: Display
-    deprecated: climate hvac_mode
-    dps:
-      - id: 1
-        type: boolean
-        name: switch
-        mapping:
-          - dps_val: true
-            icon: "mdi:led-on"
-          - dps_val: false
-            icon: "mdi:led-off"
   - entity: lock
     name: Child Lock
     dps:
