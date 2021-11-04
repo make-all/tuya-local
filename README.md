@@ -80,6 +80,7 @@ the device will not work despite being listed below.
 - Lexy F501 fan
 - Deta fan controller
 - Arlec Grid Connect Smart Ceiling Fan (without light)
+- Stirling FS1-40DC Pedestal fan
 
 ### Air Purifiers
 - Renpho RP-AP001S air purifier

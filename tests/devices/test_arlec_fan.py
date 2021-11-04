@@ -114,7 +114,7 @@ class TestArlecFan(SwitchableTests, TuyaDeviceTestCase):
     def test_timer_options(self):
         self.assertCountEqual(
             self.timer.options,
-            {"Off", "2 hours", "4 hours", "8 hours"},
+            ["Off", "2 hours", "4 hours", "8 hours"],
         )
 
     def test_timer_current_option(self):

@@ -47,3 +47,5 @@ Further device support has been made with the assistance of users.  Please consi
  - [MrDeon](https://github.com/MrDeon) for assistance in supporting Kogan KAWFPAC09YA air conditioners.
  - [SatarisGIT](https://github.com/SatarisGIT) for assistance in supporting Eberg Qubo Q40HD portable heatpump.
  - [lucaxxaa](https://github.com/lucaxxaa) for assistance in supporting Beca BHT-002 thermostat.
+ - [nickdos](https://github.com/nickdos) for assistance in supporting Stirling FS1-40DC fan.
+ 
