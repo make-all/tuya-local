@@ -49,3 +49,4 @@ Further device support has been made with the assistance of users.  Please consi
  - [lucaxxaa](https://github.com/lucaxxaa) for assistance in supporting Beca BHT-002 thermostat.
  - [nickdos](https://github.com/nickdos) for assistance in supporting Stirling FS1-40DC fan.
  - [Skro11-ru](https://github.com/Skro11-ru) for assistance in supporting Moes BHT-002 variant without external temperature sensor.
+ - [novisys](https://github.com/novisys) for clarifications about BHT-6000 thermostat functionality.
