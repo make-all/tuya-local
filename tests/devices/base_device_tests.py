@@ -164,6 +164,9 @@ class BasicLightTests:
         self.basicLight = subject
         self.basicLightDps = dps
 
+    def test_basic_light_supported_features(self):
+        self.assertEqual(self.basicLight.supported_features, 0)
+
     def test_basic_light_supported_color_modes(self):
         self.assertCountEqual(
             self.basicLight.supported_color_modes,

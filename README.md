@@ -39,6 +39,7 @@ the device will not work despite being listed below.
 - Eurom heater
 - Purline Hoti M100 heater
 - Wetair WCH-750 heater
+- Kogan Flame effect heater - KAWHMFP20BA model
 
 ### Air Conditioners / Heatpumps
 

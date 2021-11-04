@@ -6,6 +6,7 @@ devices, so only providing simple on/off control.
 from homeassistant.components.light import (
     LightEntity,
     ATTR_BRIGHTNESS,
+    ATTR_EFFECT,
     COLOR_MODE_BRIGHTNESS,
     COLOR_MODE_ONOFF,
     COLOR_MODE_UNKNOWN,
