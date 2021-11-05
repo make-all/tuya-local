@@ -322,8 +322,7 @@ You can find these keys the same way as you would for any Tuya local integration
 
 ## Next steps
 
-1. Implement the binary_sensor platform for exposing boolean read-only values,
-and cover platform for curtains, blinds, garage doors and the like.
+1. Implement the cover platform for curtains, blinds, garage doors and the like.
 2. Remove the need for custom classes for gpph heater and goldair dehumidifier.
 These devices from upstream have some complex logic that currently cannot be represented in the config files.  Find a way to configure this logic so the last of the legacy code can be removed.
 3. This component is mosty unit-tested thanks to the upstream project, but there are a few more to complete. Feel free to use existing specs as inspiration and the Sonar Cloud analysis to see where the gaps are.
