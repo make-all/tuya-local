@@ -13,11 +13,12 @@ from homeassistant.components.fan import (
 
 from ..device import TuyaLocalDevice
 from ..helpers.device_config import TuyaEntityConfig
+from ..helpers.mixin import TuyaLocalEntity
 
 _LOGGER = logging.getLogger(__name__)
 
 
-class TuyaLocalFan(FanEntity):
+class TuyaLocalFan(TuyaLocalEntity, FanEntity):
     """Representation of a Tuya Fan entity."""
 
     def __init__(self, device: TuyaLocalDevice, config: TuyaEntityConfig):
@@ -27,21 +28,15 @@ class TuyaLocalFan(FanEntity):
            device (TuyaLocalDevice): The device API instance.
            config (TuyaEntityConfig): The entity config.
         """
-        self._device = device
-        self._config = config
-        self._support_flags = 0
-        self._attr_dps = []
-        dps_map = {c.name: c for c in config.dps()}
+        dps_map = self._init_begin(device, config)
         self._switch_dps = dps_map.pop("switch", None)
         self._preset_dps = dps_map.pop("preset_mode", None)
         self._speed_dps = dps_map.pop("speed", None)
         self._oscillate_dps = dps_map.pop("oscillate", None)
         self._direction_dps = dps_map.pop("direction", None)
+        self._init_end(dps_map)
 
-        for d in dps_map.values():
-            if not d.hidden:
-                self._attr_dps.append(d)
-
+        self._support_flags = 0
         if self._preset_dps:
             self._support_flags |= SUPPORT_PRESET_MODE
         if self._speed_dps:
@@ -55,40 +50,6 @@ class TuyaLocalFan(FanEntity):
     def supported_features(self):
         """Return the features supported by this climate device."""
         return self._support_flags
-
-    @property
-    def should_poll(self):
-        """Return the polling state."""
-        return True
-
-    @property
-    def available(self):
-        """Return whether the switch is available."""
-        return self._device.has_returned_state
-
-    @property
-    def name(self):
-        """Return the friendly name of the entity for the UI."""
-        return self._config.name(self._device.name)
-
-    @property
-    def unique_id(self):
-        """Return the unique id for this climate device."""
-        return self._config.unique_id(self._device.unique_id)
-
-    @property
-    def device_info(self):
-        """Return device information about this heater."""
-        return self._device.device_info
-
-    @property
-    def icon(self):
-        """Return the icon to use in the frontend for this device."""
-        icon = self._config.icon(self._device)
-        if icon:
-            return icon
-        else:
-            return super().icon
 
     @property
     def is_on(self):
@@ -193,14 +154,3 @@ class TuyaLocalFan(FanEntity):
         if self._oscillate_dps is None:
             raise NotImplementedError()
         await self._oscillate_dps.async_set_value(self._device, oscillating)
-
-    @property
-    def device_state_attributes(self):
-        """Get additional attributes that the integration itself does not support."""
-        attr = {}
-        for a in self._attr_dps:
-            attr[a.name] = a.get_value(self._device)
-        return attr
-
-    async def async_update(self):
-        await self._device.async_refresh()

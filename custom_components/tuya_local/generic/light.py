@@ -15,9 +15,10 @@ from homeassistant.components.light import (
 
 from ..device import TuyaLocalDevice
 from ..helpers.device_config import TuyaEntityConfig
+from ..helpers.mixin import TuyaLocalEntity
 
 
-class TuyaLocalLight(LightEntity):
+class TuyaLocalLight(TuyaLocalEntity, LightEntity):
     """Representation of a Tuya WiFi-connected light."""
 
     def __init__(self, device: TuyaLocalDevice, config: TuyaEntityConfig):
@@ -27,51 +28,11 @@ class TuyaLocalLight(LightEntity):
             device (TuyaLocalDevice): The device API instance.
             config (TuyaEntityConfig): The configuration for this entity.
         """
-        self._device = device
-        self._config = config
-        self._attr_dps = []
-        dps_map = {c.name: c for c in config.dps()}
+        dps_map = self._init_begin(device, config)
         self._switch_dps = dps_map.pop("switch", None)
         self._brightness_dps = dps_map.pop("brightness", None)
         self._effect_dps = dps_map.pop("effect", None)
-
-        for d in dps_map.values():
-            if not d.hidden:
-                self._attr_dps.append(d)
-
-    @property
-    def should_poll(self):
-        """Return the polling state."""
-        return True
-
-    @property
-    def available(self):
-        """Return whether the switch is available."""
-        return self._device.has_returned_state
-
-    @property
-    def name(self):
-        """Return the friendly name for this entity."""
-        return self._config.name(self._device.name)
-
-    @property
-    def unique_id(self):
-        """Return the unique id for this heater LED display."""
-        return self._config.unique_id(self._device.unique_id)
-
-    @property
-    def device_info(self):
-        """Return device information about this heater LED display."""
-        return self._device.device_info
-
-    @property
-    def icon(self):
-        """Return the icon to use in the frontend for this device."""
-        icon = self._config.icon(self._device)
-        if icon:
-            return icon
-        else:
-            return super().icon
+        self._init_end(dps_map)
 
     @property
     def supported_color_modes(self):
@@ -134,14 +95,6 @@ class TuyaLocalLight(LightEntity):
             return None
         return self._effect_dps.get_value(self._device)
 
-    @property
-    def device_state_attributes(self):
-        """Get additional attributes that the integration itself does not support."""
-        attr = {}
-        for a in self._attr_dps:
-            attr[a.name] = a.get_value(self._device)
-        return attr
-
     async def async_turn_on(self, **params):
         settings = {}
         if self._switch_dps:
@@ -180,6 +133,3 @@ class TuyaLocalLight(LightEntity):
         dps_display_on = self.is_on
 
         await (self.async_turn_on() if not dps_display_on else self.async_turn_off())
-
-    async def async_update(self):
-        await self._device.async_refresh()

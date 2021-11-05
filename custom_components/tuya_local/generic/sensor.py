@@ -6,9 +6,10 @@ from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT
 
 from ..device import TuyaLocalDevice
 from ..helpers.device_config import TuyaEntityConfig
+from ..helpers.mixin import TuyaLocalEntity
 
 
-class TuyaLocalSensor(SensorEntity):
+class TuyaLocalSensor(TuyaLocalEntity, SensorEntity):
     """Representation of a Tuya Sensor"""
 
     def __init__(self, device: TuyaLocalDevice, config: TuyaEntityConfig):
@@ -18,43 +19,11 @@ class TuyaLocalSensor(SensorEntity):
             device (TuyaLocalDevice): the device API instance.
             config (TuyaEntityConfig): the configuration for this entity
         """
-        self._device = device
-        self._config = config
-        self._attr_dps = []
-        dps_map = {c.name: c for c in config.dps()}
+        dps_map = self._init_begin(device, config)
         self._sensor_dps = dps_map.pop("sensor")
-
         if self._sensor_dps is None:
             raise AttributeError(f"{config.name} is missing a sensor dps")
-
-        for d in dps_map.values():
-            if not d.hidden:
-                self._attr_dps.append(d)
-
-    @property
-    def should_poll(self):
-        """Return the polling state."""
-        return True
-
-    @property
-    def available(self):
-        """Return whether the switch is available."""
-        return self._device.has_returned_state
-
-    @property
-    def name(self):
-        """Return the name for this entity."""
-        return self._config.name(self._device.name)
-
-    @property
-    def unique_id(self):
-        """Return the unique id of the device."""
-        return self._config.unique_id(self._device.unique_id)
-
-    @property
-    def device_info(self):
-        """Return device information about the device."""
-        return self._device.device_info
+        self._init_end(dps_map)
 
     @property
     def device_class(self):
@@ -90,14 +59,3 @@ class TuyaLocalSensor(SensorEntity):
             unit = TEMP_FAHRENHEIT
 
         return unit
-
-    @property
-    def device_state_attributes(self):
-        """Get additional attributes that the integration itself does not support."""
-        attr = {}
-        for a in self._attr_dps:
-            attr[a.name] = a.get_value(self._device)
-        return attr
-
-    async def async_update(self):
-        await self._device.async_refresh()

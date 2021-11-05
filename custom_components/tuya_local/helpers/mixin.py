@@ -1,0 +1,64 @@
+"""
+Mixins to make writing new platforms easier
+"""
+import logging
+
+_LOGGER = logging.getLogger(__name__)
+
+
+class TuyaLocalEntity:
+    """Common functions for all entity types."""
+
+    def _init_begin(self, device, config):
+        self._device = device
+        self._config = config
+        self._attr_dps = []
+        return {c.name: c for c in config.dps()}
+
+    def _init_end(self, dps):
+        for d in dps.values():
+            if not d.hidden:
+                self._attr_dps.append(d)
+
+    @property
+    def should_poll(self):
+        return True
+
+    @property
+    def available(self):
+        return self._device.has_returned_state
+
+    @property
+    def name(self):
+        """Return the name for the UI."""
+        return self._config.name(self._device.name)
+
+    @property
+    def unique_id(self):
+        """Return the unique id for this entity."""
+        return self._config.unique_id(self._device.unique_id)
+
+    @property
+    def device_info(self):
+        """Return the device's information."""
+        return self._device.device_info
+
+    @property
+    def icon(self):
+        """Return the icon to use in the frontend for this device."""
+        icon = self._config.icon(self._device)
+        if icon:
+            return icon
+        else:
+            return super().icon
+
+    @property
+    def device_state_attributes(self):
+        """Get additional attributes that the platform itself does not support."""
+        attr = {}
+        for a in self._attr_dps:
+            attr[a.name] = a.get_value(self._device)
+        return attr
+
+    async def async_update(self):
+        await self._device.async_refresh()
