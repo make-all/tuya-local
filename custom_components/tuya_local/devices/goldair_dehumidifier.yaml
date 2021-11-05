@@ -273,3 +273,21 @@ secondary_entities:
         class: measurement
         unit: "%"
         readonly: true
+  - entity: binary_sensor
+    name: Tank
+    class: problem
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 8
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: defrost
+    class: cold
+    dps:
+      - id: 105
+        type: boolean
+        name: sensor

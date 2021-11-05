@@ -7,6 +7,7 @@ from homeassistant.components.lock import STATE_LOCKED, STATE_UNLOCKED
 from homeassistant.components.switch import DEVICE_CLASS_SWITCH
 from homeassistant.const import STATE_UNAVAILABLE
 
+from custom_components.tuya_local.generic.binary_sensor import TuyaLocalBinarySensor
 from custom_components.tuya_local.generic.climate import TuyaLocalClimate
 from custom_components.tuya_local.generic.fan import TuyaLocalFan
 from custom_components.tuya_local.generic.humidifier import TuyaLocalHumidifier
@@ -25,6 +26,7 @@ from custom_components.tuya_local.helpers.device_config import (
 from ..helpers import assert_device_properties_set
 
 DEVICE_TYPES = {
+    "binary_sensor": TuyaLocalBinarySensor,
     "climate": TuyaLocalClimate,
     "fan": TuyaLocalFan,
     "humidifier": TuyaLocalHumidifier,

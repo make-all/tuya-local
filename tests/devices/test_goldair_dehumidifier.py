@@ -1,6 +1,10 @@
 from unittest import skip
 from unittest.mock import ANY
 
+from homeassistant.components.binary_sensor import (
+    DEVICE_CLASS_COLD,
+    DEVICE_CLASS_PROBLEM,
+)
 from homeassistant.components.climate.const import (
     FAN_HIGH,
     FAN_LOW,
@@ -11,7 +15,6 @@ from homeassistant.components.climate.const import (
     SUPPORT_TARGET_HUMIDITY,
 )
 from homeassistant.components.light import COLOR_MODE_ONOFF
-from homeassistant.components.lock import STATE_LOCKED, STATE_UNLOCKED
 from homeassistant.const import (
     DEVICE_CLASS_HUMIDITY,
     DEVICE_CLASS_TEMPERATURE,
@@ -70,6 +73,8 @@ class TestGoldairDehumidifier(
         self.setUpBasicSwitch(AIRCLEAN_DPS, self.entities.get("switch_air_clean"))
         self.temperature = self.entities.get("sensor_current_temperature")
         self.humidity = self.entities.get("sensor_current_humidity")
+        self.tank = self.entities.get("binary_sensor_tank")
+        self.defrost = self.entities.get("binary_sensor_defrost")
 
     def test_supported_features(self):
         self.assertEqual(
@@ -626,3 +631,19 @@ class TestGoldairDehumidifier(
     def test_sensor_device_class(self):
         self.assertEqual(self.temperature.device_class, DEVICE_CLASS_TEMPERATURE)
         self.assertEqual(self.humidity.device_class, DEVICE_CLASS_HUMIDITY)
+
+    def test_binary_sensor_device_class(self):
+        self.assertEqual(self.tank.device_class, DEVICE_CLASS_PROBLEM)
+        self.assertEqual(self.defrost.device_class, DEVICE_CLASS_COLD)
+
+    def test_binary_sensor_is_on(self):
+        self.dps[ERROR_DPS] = 0
+        self.dps[DEFROST_DPS] = False
+        self.assertFalse(self.tank.is_on)
+        self.assertFalse(self.defrost.is_on)
+        self.dps[ERROR_DPS] = 8
+        self.dps[DEFROST_DPS] = True
+        self.assertTrue(self.tank.is_on)
+        self.assertTrue(self.defrost.is_on)
+        self.dps[ERROR_DPS] = 1
+        self.assertFalse(self.tank.is_on)
