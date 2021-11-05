@@ -44,6 +44,11 @@ class TuyaLocalEntity:
         return self._device.device_info
 
     @property
+    def entity_category(self):
+        """Return the entitiy's category."""
+        return self._config.entity_category
+
+    @property
     def icon(self):
         """Return the icon to use in the frontend for this device."""
         icon = self._config.icon(self._device)

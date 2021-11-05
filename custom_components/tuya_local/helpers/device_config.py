@@ -76,7 +76,7 @@ class TuyaDeviceConfig:
     @property
     def primary_entity(self):
         """Return the primary type of entity for this device."""
-        return TuyaEntityConfig(self, self._config["primary_entity"])
+        return TuyaEntityConfig(self, self._config["primary_entity"], primary=True)
 
     def secondary_entities(self):
         """Iterate through entites for any secondary entites supported."""
@@ -139,9 +139,10 @@ class TuyaDeviceConfig:
 class TuyaEntityConfig:
     """Representation of an entity config for a supported entity."""
 
-    def __init__(self, device, config):
+    def __init__(self, device, config, primary=False):
         self._device = device
         self._config = config
+        self._is_primary = primary
 
     def name(self, base_name):
         """The friendly name for this entity."""
@@ -166,6 +167,15 @@ class TuyaEntityConfig:
         if name is None:
             return None
         return locate("custom_components.tuya_local" + name)
+
+    @property
+    def entity_category(self):
+        if self._is_primary:
+            return None
+        elif self.entity in ["binary_sensor", "sensor"]:
+            return "diagnostic"
+        else:
+            return "config"
 
     @property
     def deprecated(self):

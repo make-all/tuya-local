@@ -56,9 +56,8 @@ class TuyaDeviceTestCase(IsolatedAsyncioTestCase):
         self.mock_device.name = cfg.name
 
         self.entities = {}
-        self.entities[cfg.primary_entity.config_id] = self.create_entity(
-            cfg.primary_entity
-        )
+        self.primary_entity = cfg.primary_entity.config_id
+        self.entities[self.primary_entity] = self.create_entity(cfg.primary_entity)
 
         self.names = {}
         self.names[cfg.primary_entity.config_id] = cfg.primary_entity.name(cfg.name)
@@ -86,6 +85,16 @@ class TuyaDeviceTestCase(IsolatedAsyncioTestCase):
     def test_available(self):
         for e in self.entities.values():
             self.assertTrue(e.available)
+
+    def test_entity_category(self):
+        for k in self.entities:
+            e = self.entities[k]
+            if k == self.primary_entity:
+                self.assertIsNone(e.entity_category)
+            elif type(e) in [TuyaLocalBinarySensor, TuyaLocalSensor]:
+                self.assertEqual(e.entity_category, "diagnostic")
+            else:
+                self.assertEqual(e.entity_category, "config")
 
     def test_name_returns_device_name(self):
         for e in self.entities:
