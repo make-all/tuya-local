@@ -24,12 +24,12 @@ from homeassistant.const import (
 
 from ..const import DEHUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import (
-    BasicLockTests,
-    BasicSwitchTests,
-    SwitchableTests,
-    TuyaDeviceTestCase,
-)
+from ..mixins.binary_sensor import MultiBinarySensorTests
+from ..mixins.lock import BasicLockTests
+from ..mixins.number import BasicNumberTests
+from ..mixins.sensor import MultiSensorTests
+from ..mixins.switch import BasicSwitchTests, SwitchableTests
+from .base_device_tests import TuyaDeviceTestCase
 
 HVACMODE_DPS = "1"
 PRESET_DPS = "2"
@@ -38,7 +38,7 @@ AIRCLEAN_DPS = "5"
 FANMODE_DPS = "6"
 LOCK_DPS = "7"
 ERROR_DPS = "11"
-UNKNOWN12_DPS = "12"
+TIMER_DPS = "12"
 UNKNOWN101_DPS = "101"
 LIGHTOFF_DPS = "102"
 CURRENTTEMP_DPS = "103"
@@ -55,7 +55,10 @@ ERROR_TANK = "Tank full or missing"
 
 class TestGoldairDehumidifier(
     BasicLockTests,
+    BasicNumberTests,
     BasicSwitchTests,
+    MultiBinarySensorTests,
+    MultiSensorTests,
     SwitchableTests,
     TuyaDeviceTestCase,
 ):
@@ -71,10 +74,41 @@ class TestGoldairDehumidifier(
         self.light = self.entities.get("light_display")
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
         self.setUpBasicSwitch(AIRCLEAN_DPS, self.entities.get("switch_air_clean"))
-        self.temperature = self.entities.get("sensor_current_temperature")
-        self.humidity = self.entities.get("sensor_current_humidity")
-        self.tank = self.entities.get("binary_sensor_tank")
-        self.defrost = self.entities.get("binary_sensor_defrost")
+        self.setUpBasicNumber(TIMER_DPS, self.entities.get("number_timer"), max=24)
+
+        self.setUpMultiSensors(
+            [
+                {
+                    "name": "sensor_current_temperature",
+                    "dps": CURRENTTEMP_DPS,
+                    "unit": TEMP_CELSIUS,
+                    "device_class": DEVICE_CLASS_TEMPERATURE,
+                    "state_class": "measurement",
+                },
+                {
+                    "name": "sensor_current_humidity",
+                    "dps": CURRENTHUMID_DPS,
+                    "unit": "%",
+                    "device_class": DEVICE_CLASS_HUMIDITY,
+                    "state_class": "measurement",
+                },
+            ]
+        )
+        self.setUpMultiBinarySensors(
+            [
+                {
+                    "name": "binary_sensor_tank",
+                    "dps": ERROR_DPS,
+                    "device_class": DEVICE_CLASS_PROBLEM,
+                    "testdata": (8, 0),
+                },
+                {
+                    "name": "binary_sensor_defrost",
+                    "dps": DEFROST_DPS,
+                    "device_class": DEVICE_CLASS_COLD,
+                },
+            ]
+        )
 
     def test_supported_features(self):
         self.assertEqual(
@@ -144,7 +178,6 @@ class TestGoldairDehumidifier(
     def test_current_humidity(self):
         self.dps[CURRENTHUMID_DPS] = 47
         self.assertEqual(self.climate.current_humidity, 47)
-        self.assertEqual(self.humidity.native_value, 47)
 
     def test_min_target_humidity(self):
         self.assertEqual(self.climate.min_humidity, 30)
@@ -252,10 +285,6 @@ class TestGoldairDehumidifier(
             self.climate.temperature_unit,
             self.climate._device.temperature_unit,
         )
-        self.assertEqual(
-            self.temperature.native_unit_of_measurement,
-            TEMP_CELSIUS,
-        )
 
     def test_minimum_target_temperature(self):
         self.assertIs(self.climate.min_temp, None)
@@ -266,7 +295,6 @@ class TestGoldairDehumidifier(
     def test_current_temperature(self):
         self.dps[CURRENTTEMP_DPS] = 25
         self.assertEqual(self.climate.current_temperature, 25)
-        self.assertEqual(self.temperature.native_value, 25)
 
     def test_climate_hvac_mode(self):
         self.dps[HVACMODE_DPS] = True
@@ -538,7 +566,6 @@ class TestGoldairDehumidifier(
         self.dps[ERROR_DPS] = None
         self.dps[DEFROST_DPS] = False
         self.dps[AIRCLEAN_DPS] = False
-        self.dps[UNKNOWN12_DPS] = "something"
         self.dps[UNKNOWN101_DPS] = False
         self.assertDictEqual(
             self.climate.device_state_attributes,
@@ -546,7 +573,6 @@ class TestGoldairDehumidifier(
                 "error": None,
                 "defrosting": False,
                 "air_clean_on": False,
-                "unknown_12": "something",
                 "unknown_101": False,
             },
         )
@@ -554,7 +580,6 @@ class TestGoldairDehumidifier(
         self.dps[ERROR_DPS] = 8
         self.dps[DEFROST_DPS] = True
         self.dps[AIRCLEAN_DPS] = True
-        self.dps[UNKNOWN12_DPS] = "something else"
         self.dps[UNKNOWN101_DPS] = True
         self.assertDictEqual(
             self.climate.device_state_attributes,
@@ -562,7 +587,6 @@ class TestGoldairDehumidifier(
                 "error": ERROR_TANK,
                 "defrosting": True,
                 "air_clean_on": True,
-                "unknown_12": "something else",
                 "unknown_101": True,
             },
         )
@@ -623,27 +647,3 @@ class TestGoldairDehumidifier(
 
     def test_switch_icon(self):
         self.assertEqual(self.basicSwitch.icon, "mdi:air-purifier")
-
-    def test_sensor_state_class(self):
-        self.assertEqual(self.temperature.state_class, "measurement")
-        self.assertEqual(self.humidity.state_class, "measurement")
-
-    def test_sensor_device_class(self):
-        self.assertEqual(self.temperature.device_class, DEVICE_CLASS_TEMPERATURE)
-        self.assertEqual(self.humidity.device_class, DEVICE_CLASS_HUMIDITY)
-
-    def test_binary_sensor_device_class(self):
-        self.assertEqual(self.tank.device_class, DEVICE_CLASS_PROBLEM)
-        self.assertEqual(self.defrost.device_class, DEVICE_CLASS_COLD)
-
-    def test_binary_sensor_is_on(self):
-        self.dps[ERROR_DPS] = 0
-        self.dps[DEFROST_DPS] = False
-        self.assertFalse(self.tank.is_on)
-        self.assertFalse(self.defrost.is_on)
-        self.dps[ERROR_DPS] = 8
-        self.dps[DEFROST_DPS] = True
-        self.assertTrue(self.tank.is_on)
-        self.assertTrue(self.defrost.is_on)
-        self.dps[ERROR_DPS] = 1
-        self.assertFalse(self.tank.is_on)

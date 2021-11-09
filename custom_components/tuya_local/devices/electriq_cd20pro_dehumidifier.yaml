@@ -73,6 +73,7 @@ secondary_entities:
         type: boolean
   - entity: light
     name: Display
+    category: config
     dps:
       - id: 101
         type: boolean
@@ -82,3 +83,30 @@ secondary_entities:
             icon: "mdi:led-on"
           - dps_val: false
             icon: "mdi:led-off"
+  - entity: switch
+    name: Ionizer
+    icon: mdi:creation
+    dps:
+      - id: 5
+        name: switch
+        type: boolean
+  - entity: sensor
+    class: humidity
+    name: Current Humidity
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        readonly: true
+  - entity: sensor
+    class: temperature
+    name: Current Temperature
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        readonly: true

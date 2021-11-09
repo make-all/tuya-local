@@ -6,7 +6,8 @@ from homeassistant.components.fan import (
 
 from ..const import STIRLING_FS1_FAN_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import SwitchableTests, TuyaDeviceTestCase
+from ..mixins.switch import SwitchableTests
+from .base_device_tests import TuyaDeviceTestCase
 
 SWITCH_DPS = "1"
 PRESET_DPS = "2"

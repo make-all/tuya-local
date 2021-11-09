@@ -34,3 +34,14 @@ primary_entity:
     - id: 6
       type: integer
       name: timer
+secondary_entities:
+  - entity: number
+    name: Timer
+    category: config
+    dps:
+      - id: 6
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 9

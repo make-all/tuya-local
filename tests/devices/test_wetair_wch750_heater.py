@@ -8,10 +8,12 @@ from homeassistant.components.climate.const import (
     SUPPORT_TARGET_TEMPERATURE,
 )
 from homeassistant.components.light import COLOR_MODE_BRIGHTNESS
-from homeassistant.const import STATE_UNAVAILABLE
+from homeassistant.const import STATE_UNAVAILABLE, TIME_MINUTES
 
 from ..const import WETAIR_WCH750_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
+from ..mixins.select import BasicSelectTests
+from ..mixins.sensor import BasicSensorTests
 from .base_device_tests import TuyaDeviceTestCase
 
 HVACMODE_DPS = "1"
@@ -24,13 +26,47 @@ UNKNOWN21_DPS = "21"
 BRIGHTNESS_DPS = "101"
 
 
-class TestWetairWCH750Heater(TuyaDeviceTestCase):
+class TestWetairWCH750Heater(BasicSelectTests, BasicSensorTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("wetair_wch750_heater.yaml", WETAIR_WCH750_HEATER_PAYLOAD)
         self.subject = self.entities.get("climate")
         self.light = self.entities.get("light_display")
+        self.setUpBasicSelect(
+            TIMER_DPS,
+            self.entities.get("select_timer"),
+            {
+                "0h": "Off",
+                "1h": "1 hour",
+                "2h": "2 hours",
+                "3h": "3 hours",
+                "4h": "4 hours",
+                "5h": "5 hours",
+                "6h": "6 hours",
+                "7h": "7 hours",
+                "8h": "8 hours",
+                "9h": "9 hours",
+                "10h": "10 hours",
+                "11h": "11 hours",
+                "12h": "12 hours",
+                "13h": "13 hours",
+                "14h": "14 hours",
+                "15h": "15 hours",
+                "16h": "16 hours",
+                "17h": "17 hours",
+                "18h": "18 hours",
+                "19h": "19 hours",
+                "20h": "20 hours",
+                "21h": "21 hours",
+                "22h": "22 hours",
+                "23h": "23 hours",
+                "24h": "24 hours",
+            },
+        )
+        self.setUpBasicSensor(
+            COUNTDOWN_DPS, self.entities.get("sensor_timer"), unit=TIME_MINUTES
+        )
 
     def test_supported_features(self):
         self.assertEqual(

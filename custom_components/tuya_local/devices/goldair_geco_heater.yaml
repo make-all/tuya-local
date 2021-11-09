@@ -36,6 +36,7 @@ primary_entity:
 secondary_entities:
   - entity: lock
     name: "Child Lock"
+    category: config
     dps:
       - id: 2
         type: boolean
@@ -45,4 +46,25 @@ secondary_entities:
             icon: "mdi:hand-back-right-off"
           - dps_val: false
             icon: "mdi:hand-back-right"
-
+  - entity: number
+    name: Timer
+    category: config
+    dps:
+      - id: 5
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 24
+  - entity: binary_sensor
+    name: Error
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 6
+        name: sensor
+        type: bitfield
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true

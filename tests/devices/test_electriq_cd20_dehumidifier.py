@@ -1,15 +1,18 @@
 from homeassistant.components.fan import SUPPORT_PRESET_MODE
 from homeassistant.components.humidifier import SUPPORT_MODES
-from homeassistant.components.light import COLOR_MODE_ONOFF
+from homeassistant.const import (
+    DEVICE_CLASS_HUMIDITY,
+    DEVICE_CLASS_TEMPERATURE,
+    PERCENTAGE,
+    TEMP_CELSIUS,
+)
 
 from ..const import ELECTRIQ_CD20PRO_DEHUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import (
-    BasicLightTests,
-    BasicSwitchTests,
-    SwitchableTests,
-    TuyaDeviceTestCase,
-)
+from ..mixins.light import BasicLightTests
+from ..mixins.sensor import MultiSensorTests
+from ..mixins.switch import MultiSwitchTests, SwitchableTests
+from .base_device_tests import TuyaDeviceTestCase
 
 SWITCH_DPS = "1"
 MODE_DPS = "2"
@@ -23,7 +26,11 @@ CURRENTTEMP_DPS = "103"
 
 
 class TestElectriqCD20ProDehumidifier(
-    BasicLightTests, BasicSwitchTests, SwitchableTests, TuyaDeviceTestCase
+    BasicLightTests,
+    MultiSensorTests,
+    MultiSwitchTests,
+    SwitchableTests,
+    TuyaDeviceTestCase,
 ):
     __test__ = True
 
@@ -35,7 +42,30 @@ class TestElectriqCD20ProDehumidifier(
         self.fan = self.entities.get("fan")
         self.setUpSwitchable(SWITCH_DPS, self.subject)
         self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_display"))
-        self.setUpBasicSwitch(UV_DPS, self.entities.get("switch_uv_sterilization"))
+        self.setUpMultiSwitch(
+            [
+                {"dps": UV_DPS, "name": "switch_uv_sterilization"},
+                {"dps": ANION_DPS, "name": "switch_ionizer"},
+            ]
+        )
+        self.setUpMultiSensors(
+            [
+                {
+                    "name": "sensor_current_temperature",
+                    "dps": CURRENTTEMP_DPS,
+                    "unit": TEMP_CELSIUS,
+                    "device_class": DEVICE_CLASS_TEMPERATURE,
+                    "state_class": "measurement",
+                },
+                {
+                    "name": "sensor_current_humidity",
+                    "dps": CURRENTHUMID_DPS,
+                    "unit": PERCENTAGE,
+                    "device_class": DEVICE_CLASS_HUMIDITY,
+                    "state_class": "measurement",
+                },
+            ]
+        )
 
     def test_supported_features(self):
         self.assertEqual(self.subject.supported_features, SUPPORT_MODES)
@@ -59,7 +89,14 @@ class TestElectriqCD20ProDehumidifier(
         self.dps[MODE_DPS] = "high"
         self.assertEqual(self.subject.icon, "mdi:tshirt-crew-outline")
 
-        self.assertEqual(self.basicSwitch.icon, "mdi:solar-power")
+        self.assertEqual(
+            self.multiSwitch["switch_uv_sterilization"].icon,
+            "mdi:solar-power",
+        )
+        self.assertEqual(
+            self.multiSwitch["switch_ionizer"].icon,
+            "mdi:creation",
+        )
         self.dps[LIGHT_DPS] = True
         self.assertEqual(self.basicLight.icon, "mdi:led-on")
         self.dps[LIGHT_DPS] = False

@@ -6,13 +6,11 @@ from homeassistant.components.fan import (
 
 from ..const import LEXY_F501_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import (
-    BasicLightTests,
-    BasicLockTests,
-    BasicSwitchTests,
-    SwitchableTests,
-    TuyaDeviceTestCase,
-)
+from ..mixins.light import BasicLightTests
+from ..mixins.lock import BasicLockTests
+from ..mixins.number import BasicNumberTests
+from ..mixins.switch import BasicSwitchTests, SwitchableTests
+from .base_device_tests import TuyaDeviceTestCase
 
 POWER_DPS = "1"
 PRESET_DPS = "2"
@@ -28,6 +26,7 @@ class TestLexyF501Fan(
     SwitchableTests,
     BasicLightTests,
     BasicLockTests,
+    BasicNumberTests,
     BasicSwitchTests,
     TuyaDeviceTestCase,
 ):
@@ -39,6 +38,7 @@ class TestLexyF501Fan(
         self.setUpSwitchable(POWER_DPS, self.subject)
         self.setUpBasicLight(LIGHT_DPS, self.entities.get("light"))
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
+        self.setUpBasicNumber(TIMER_DPS, self.entities.get("number_timer"), max=7)
         self.setUpBasicSwitch(SWITCH_DPS, self.entities.get("switch_sound"))
 
     def test_supported_features(self):

@@ -31,9 +31,17 @@ primary_entity:
       type: integer
       readonly: true
     - id: 105
-      name: operating_mode
+      name: hvac_action
       type: string
       readonly: true
+      mapping:
+        - dps_val: "warm"
+          constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: idle
     - id: 106
       name: temperature
       type: integer
@@ -112,3 +120,14 @@ primary_entity:
     - id: 140
       name: unknown_140
       type: string
+secondary_entities:
+  - entity: sensor
+    category: disagnostic
+    name: Power Level
+    class: power_factor
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: "%"
+        readonly: true

@@ -1,5 +1,6 @@
 from unittest import skip
 
+from homeassistant.components.binary_sensor import DEVICE_CLASS_PROBLEM
 from homeassistant.components.climate.const import (
     HVAC_MODE_HEAT,
     HVAC_MODE_OFF,
@@ -8,11 +9,16 @@ from homeassistant.components.climate.const import (
     SUPPORT_TARGET_TEMPERATURE,
 )
 
-from homeassistant.const import STATE_UNAVAILABLE
+from homeassistant.const import DEVICE_CLASS_POWER_FACTOR, PERCENTAGE, STATE_UNAVAILABLE
 
 from ..const import GPPH_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import BasicLightTests, BasicLockTests, TuyaDeviceTestCase
+from ..mixins.binary_sensor import BasicBinarySensorTests
+from ..mixins.light import BasicLightTests
+from ..mixins.lock import BasicLockTests
+from ..mixins.number import BasicNumberTests
+from ..mixins.sensor import BasicSensorTests
+from .base_device_tests import TuyaDeviceTestCase
 
 HVACMODE_DPS = "1"
 TEMPERATURE_DPS = "2"
@@ -28,7 +34,14 @@ SWING_DPS = "105"
 ECOTEMP_DPS = "106"
 
 
-class TestGoldairHeater(BasicLightTests, BasicLockTests, TuyaDeviceTestCase):
+class TestGoldairHeater(
+    BasicBinarySensorTests,
+    BasicLightTests,
+    BasicLockTests,
+    BasicNumberTests,
+    BasicSensorTests,
+    TuyaDeviceTestCase,
+):
     __test__ = True
 
     def setUp(self):
@@ -36,7 +49,22 @@ class TestGoldairHeater(BasicLightTests, BasicLockTests, TuyaDeviceTestCase):
         self.subject = self.entities.get("climate")
         self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_display"))
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
-        self.timer = self.entities.get("number_timer")
+        self.setUpBasicNumber(
+            TIMER_DPS, self.entities.get("number_timer"), min=0, max=1440, step=60
+        )
+        self.setUpBasicSensor(
+            POWERLEVEL_DPS,
+            self.entities.get("sensor_power_level"),
+            unit=PERCENTAGE,
+            device_class=DEVICE_CLASS_POWER_FACTOR,
+            testdata=("2", 40),
+        )
+        self.setUpBasicBinarySensor(
+            ERROR_DPS,
+            self.entities.get("binary_sensor_error"),
+            device_class=DEVICE_CLASS_PROBLEM,
+            testdata=(1, 0),
+        )
 
     def test_supported_features(self):
         self.assertEqual(
@@ -334,29 +362,3 @@ class TestGoldairHeater(BasicLightTests, BasicLockTests, TuyaDeviceTestCase):
 
         self.dps[LIGHT_DPS] = False
         self.assertEqual(self.basicLight.icon, "mdi:led-off")
-
-    def test_timer_min_value(self):
-        self.assertEqual(self.timer.min_value, 0)
-
-    def test_timer_max_value(self):
-        self.assertEqual(self.timer.max_value, 1440)
-
-    def test_timer_step(self):
-        self.assertEqual(self.timer.step, 60)
-
-    def test_timer_mode(self):
-        self.assertEqual(self.timer.mode, "auto")
-
-    def test_timer_value(self):
-        self.dps[TIMER_DPS] = 1234
-        self.assertEqual(self.timer.value, 1234)
-
-    async def test_timer_set_value(self):
-        async with assert_device_properties_set(
-            self.timer._device,
-            {TIMER_DPS: 120},
-        ):
-            await self.timer.async_set_value(120)
-
-    def test_number_device_state_attributes(self):
-        self.assertEqual(self.timer.device_state_attributes, {})

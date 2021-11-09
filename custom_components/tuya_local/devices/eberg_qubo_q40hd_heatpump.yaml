@@ -123,3 +123,14 @@ primary_entity:
               value: "off"
             - dps_val: True
               value: idle
+secondary_entities:
+  - entity: number
+    name: Timer
+    category: config
+    dps:
+      - id: 22
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 24

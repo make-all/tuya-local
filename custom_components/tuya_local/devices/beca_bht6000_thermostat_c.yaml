@@ -64,6 +64,7 @@ secondary_entities:
   - entity: light
     deprecated: climate hvac_mode
     name: Display
+    category: config
     dps:
       - id: 1
         type: boolean
@@ -75,6 +76,7 @@ secondary_entities:
             icon: "mdi:led-off"
   - entity: lock
     name: Child Lock
+    category: config
     dps:
       - id: 6
         type: boolean
@@ -84,3 +86,14 @@ secondary_entities:
             icon: "mdi:hand-back-right-off"
           - dps_val: false
             icon: "mdi:hand-back-right"
+  - entity: sensor
+    name: External Temperature
+    class: temperature
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 2

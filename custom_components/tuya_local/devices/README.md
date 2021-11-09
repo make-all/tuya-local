@@ -99,8 +99,19 @@ The value of this should indicated what to use instead.
 
 //Optional.//
 
-For some entity types, a `class` can be set, for example `switch` entities
-can have a class of `outlet`.  This may slightly alter the UI behaviour.
+For some entity types, a device `class` can be set, for example `switch`
+entities can have a class of `outlet`.  This may slightly alter the UI
+behaviour. 
+For most entities, it will alter the default icon, and for binary sensors
+also the state that off and on values translate to in the UI.
+
+### `category`
+
+//Optional.//
+
+This specifies the `entity category` of the entity.  Entities can be categorized
+as `config` or `diagnostic` to restrict where they appear automatically in
+Home Assistant.
 
 ### `dps`
 
@@ -119,7 +130,15 @@ it will inherit the name at the top level. This is mostly useful for
 overriding the name of secondary entities to give more information
 about the purpose of the entity, as the generic type with the top level
 name may not be sufficient to describe the function.
- 
+
+### `mode`
+
+//Optional.  For number entities, default="auto", for others, None
+
+For number entities, this can be used to force `slider` or `box` as the
+input method.  The default `auto` uses a slider if the range is small enough,
+or a box otherwise.
+
 ## DPS configuration
  
 ### `id`
@@ -190,12 +209,21 @@ Home Assistant UI.  This can also be set in a `mapping` or `conditions` block.
 
 ### `unit`
 
-//Optional. default="C" for temperature dps//
+//Optional. default="C" for temperature dps on climate devices, None for sensors.//
 
 For temperature dps, some devices will use Fahrenhiet.  This needs to be
-indicated back to HomeAssistant by defining `unit` as "F".  In future `unit`
-will also be used for other sensor types, with a bigger range of possible
-values.
+indicated back to HomeAssistant by defining `unit` as "F".  For sensor 
+entities, see the HomeAssistant developer documentation for the full list
+of possible units (C and F are automatically translated to their Unicode 
+equivalents, other units are currently ASCII so can be easily entered directly).
+
+### `class`
+
+//Optional.  default=None.//
+
+For sensors, this sets the state class of the sensor (measurement, total
+or total_increasing)
+
 
 ## Mapping Rules
 

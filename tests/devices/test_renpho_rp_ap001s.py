@@ -1,17 +1,13 @@
 from homeassistant.components.fan import SUPPORT_PRESET_MODE
-from homeassistant.components.light import COLOR_MODE_ONOFF
-from homeassistant.components.lock import STATE_LOCKED, STATE_UNLOCKED
-from homeassistant.const import STATE_UNAVAILABLE
+from homeassistant.const import DEVICE_CLASS_AQI
 
 from ..const import RENPHO_PURIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import (
-    BasicLightTests,
-    BasicLockTests,
-    BasicSwitchTests,
-    SwitchableTests,
-    TuyaDeviceTestCase,
-)
+from ..mixins.light import BasicLightTests
+from ..mixins.lock import BasicLockTests
+from ..mixins.sensor import MultiSensorTests
+from ..mixins.switch import BasicSwitchTests, SwitchableTests
+from .base_device_tests import TuyaDeviceTestCase
 
 SWITCH_DPS = "1"
 PRESET_DPS = "4"
@@ -30,6 +26,7 @@ class TestRenphoPurifier(
     BasicLightTests,
     BasicLockTests,
     BasicSwitchTests,
+    MultiSensorTests,
     SwitchableTests,
     TuyaDeviceTestCase,
 ):
@@ -42,6 +39,31 @@ class TestRenphoPurifier(
         self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_aq_indicator"))
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
         self.setUpBasicSwitch(SLEEP_DPS, self.entities.get("switch_sleep"))
+        self.setUpMultiSensors(
+            [
+                {
+                    "name": "sensor_air_quality",
+                    "dps": QUALITY_DPS,
+                    "device_class": DEVICE_CLASS_AQI,
+                },
+                {
+                    "name": "sensor_prefilter_life",
+                    "dps": PREFILTER_DPS,
+                },
+                {
+                    "name": "sensor_charcoal_filter_life",
+                    "dps": CHARCOAL_DPS,
+                },
+                {
+                    "name": "sensor_active_filter_life",
+                    "dps": ACTIVATED_DPS,
+                },
+                {
+                    "name": "sensor_hepa_filter_life",
+                    "dps": HEPA_DPS,
+                },
+            ]
+        )
 
     def test_supported_features(self):
         self.assertEqual(self.subject.supported_features, SUPPORT_PRESET_MODE)

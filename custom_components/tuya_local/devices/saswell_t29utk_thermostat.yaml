@@ -125,5 +125,32 @@ primary_entity:
     - id: 117
       name: current_temperature_f
       type: integer
-
-      
+secondary_entities:
+  - entity: select
+    name: Temperature Unit
+    category: config
+    dps:
+      - id: 19
+        name: option
+        type: string
+        mapping:
+          - dps_val: F
+            value: Fahrenheit
+          - dps_val: C
+            value: Celsius
+  - entity: select
+    name: Configuration
+    category: config
+    dps:
+      - id: 112
+        name: option
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: "cooling"
+          - dps_val: "2"
+            value: "heating"
+          - dps_val: "3"
+            value: "heat/cool"
+          - dps_val: "5"
+            value: "heatpump"

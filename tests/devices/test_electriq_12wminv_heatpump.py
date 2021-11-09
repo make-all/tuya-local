@@ -9,12 +9,13 @@ from homeassistant.components.climate.const import (
     SUPPORT_SWING_MODE,
     SUPPORT_TARGET_TEMPERATURE,
 )
-from homeassistant.components.light import COLOR_MODE_ONOFF
 from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import ELECTRIQ_12WMINV_HEATPUMP_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import BasicLightTests, BasicSwitchTests, TuyaDeviceTestCase
+from ..mixins.light import BasicLightTests
+from ..mixins.switch import BasicSwitchTests
+from .base_device_tests import TuyaDeviceTestCase
 
 POWER_DPS = "1"
 TEMPERATURE_DPS = "2"

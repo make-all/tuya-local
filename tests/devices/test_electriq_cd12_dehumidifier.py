@@ -1,9 +1,17 @@
 from homeassistant.components.humidifier import SUPPORT_MODES
-from homeassistant.components.light import COLOR_MODE_ONOFF
+from homeassistant.const import (
+    DEVICE_CLASS_HUMIDITY,
+    DEVICE_CLASS_TEMPERATURE,
+    PERCENTAGE,
+    TEMP_CELSIUS,
+)
 
 from ..const import ELECTRIQ_CD12PW_DEHUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import BasicLightTests, SwitchableTests, TuyaDeviceTestCase
+from ..mixins.light import BasicLightTests
+from ..mixins.sensor import MultiSensorTests
+from ..mixins.switch import SwitchableTests
+from .base_device_tests import TuyaDeviceTestCase
 
 SWITCH_DPS = "1"
 MODE_DPS = "2"
@@ -14,7 +22,7 @@ CURRENTTEMP_DPS = "103"
 
 
 class TestElectriqCD20ProDehumidifier(
-    BasicLightTests, SwitchableTests, TuyaDeviceTestCase
+    BasicLightTests, MultiSensorTests, SwitchableTests, TuyaDeviceTestCase
 ):
     __test__ = True
 
@@ -25,6 +33,24 @@ class TestElectriqCD20ProDehumidifier(
         self.subject = self.entities.get("humidifier")
         self.setUpSwitchable(SWITCH_DPS, self.subject)
         self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_display"))
+        self.setUpMultiSensors(
+            [
+                {
+                    "name": "sensor_current_temperature",
+                    "dps": CURRENTTEMP_DPS,
+                    "unit": TEMP_CELSIUS,
+                    "device_class": DEVICE_CLASS_TEMPERATURE,
+                    "state_class": "measurement",
+                },
+                {
+                    "name": "sensor_current_humidity",
+                    "dps": CURRENTHUMID_DPS,
+                    "unit": PERCENTAGE,
+                    "device_class": DEVICE_CLASS_HUMIDITY,
+                    "state_class": "measurement",
+                },
+            ]
+        )
 
     def test_supported_features(self):
         self.assertEqual(self.subject.supported_features, SUPPORT_MODES)

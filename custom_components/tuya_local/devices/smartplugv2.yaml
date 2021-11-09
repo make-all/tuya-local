@@ -28,3 +28,36 @@ primary_entity:
       read-only: true
       mapping:
         - scale: 10
+secondary_entities:
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    name: Voltage
+    dps:
+      - id: 20
+        name: sensor
+        type: integer
+        class: measurement
+        unit: V
+        mapping:
+          - scale: 10
+  - entity: sensor
+    category: diagnostic
+    class: current
+    name: Current
+    dps:
+      - id: 18
+        name: sensor
+        type: integer
+        class: measurement
+        unit: mA
+  - entity: number
+    category: config
+    name: Timer
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 1440

@@ -7,11 +7,18 @@ from homeassistant.components.climate.const import (
     SUPPORT_PRESET_MODE,
     SUPPORT_TARGET_TEMPERATURE,
 )
-from homeassistant.const import STATE_UNAVAILABLE
+from homeassistant.const import (
+    DEVICE_CLASS_TEMPERATURE,
+    STATE_UNAVAILABLE,
+    TEMP_CELSIUS,
+)
 
 from ..const import BECA_BHT6000_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import BasicLightTests, BasicLockTests, TuyaDeviceTestCase
+from ..mixins.light import BasicLightTests
+from ..mixins.lock import BasicLockTests
+from ..mixins.sensor import BasicSensorTests
+from .base_device_tests import TuyaDeviceTestCase
 
 POWER_DPS = "1"
 TEMPERATURE_DPS = "2"
@@ -24,7 +31,9 @@ UNKNOWN103_DPS = "103"
 UNKNOWN104_DPS = "104"
 
 
-class TestBecaBHT6000Thermostat(BasicLightTests, BasicLockTests, TuyaDeviceTestCase):
+class TestBecaBHT6000Thermostat(
+    BasicLightTests, BasicLockTests, BasicSensorTests, TuyaDeviceTestCase
+):
     __test__ = True
 
     def setUp(self):
@@ -35,6 +44,14 @@ class TestBecaBHT6000Thermostat(BasicLightTests, BasicLockTests, TuyaDeviceTestC
         self.subject = self.entities.get("climate")
         self.setUpBasicLight(POWER_DPS, self.entities.get("light_display"))
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
+        self.setUpBasicSensor(
+            FLOOR_DPS,
+            self.entities.get("sensor_external_temperature"),
+            unit=TEMP_CELSIUS,
+            device_class=DEVICE_CLASS_TEMPERATURE,
+            state_class="measurement",
+            testdata=(36, 18),
+        )
 
     def test_supported_features(self):
         self.assertEqual(

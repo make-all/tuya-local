@@ -1,15 +1,18 @@
+from homeassistant.components.binary_sensor import DEVICE_CLASS_PROBLEM
 from homeassistant.components.climate.const import (
     HVAC_MODE_HEAT,
     HVAC_MODE_OFF,
     SUPPORT_PRESET_MODE,
     SUPPORT_TARGET_TEMPERATURE,
 )
-from homeassistant.components.lock import STATE_LOCKED, STATE_UNLOCKED
 from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import GPCV_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import BasicLockTests, TuyaDeviceTestCase
+from ..mixins.binary_sensor import BasicBinarySensorTests
+from ..mixins.lock import BasicLockTests
+from ..mixins.number import BasicNumberTests
+from .base_device_tests import TuyaDeviceTestCase
 
 HVACMODE_DPS = "1"
 LOCK_DPS = "2"
@@ -20,13 +23,22 @@ ERROR_DPS = "6"
 PRESET_DPS = "7"
 
 
-class TestGoldairGPCVHeater(BasicLockTests, TuyaDeviceTestCase):
+class TestGoldairGPCVHeater(
+    BasicBinarySensorTests, BasicLockTests, BasicNumberTests, TuyaDeviceTestCase
+):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("goldair_gpcv_heater.yaml", GPCV_HEATER_PAYLOAD)
         self.subject = self.entities.get("climate")
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
+        self.setUpBasicNumber(TIMER_DPS, self.entities.get("number_timer"), max=24)
+        self.setUpBasicBinarySensor(
+            ERROR_DPS,
+            self.entities.get("binary_sensor_error"),
+            device_class=DEVICE_CLASS_PROBLEM,
+            testdata=(1, 0),
+        )
 
     def test_supported_features(self):
         self.assertEqual(

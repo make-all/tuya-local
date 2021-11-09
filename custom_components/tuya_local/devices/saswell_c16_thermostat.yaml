@@ -101,6 +101,7 @@ primary_entity:
 secondary_entities:
   - entity: lock
     name: Child Lock
+    category: config
     dps:
       - id: 11
         name: lock
@@ -110,3 +111,69 @@ secondary_entities:
             icon: "mdi:hand-back-right-off"
           - dps_val: false
             icon: "mdi:hand-back-right"
+  - entity: number
+    name: Floor Temperature Limit
+    category: config
+    dps:
+      - id: 6
+        name: value
+        type: integer
+        range:
+          min: 200
+          max: 500
+        mapping:
+          - scale: 10
+            step: 5
+  - entity: select
+    name: Installation
+    category: config
+    dps:
+      - id: 7
+        name: option
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: Office
+          - dps_val: false
+            value: Home
+  - entity: sensor
+    name: Floor Temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 8
+        name: sensor
+        type: integer
+        class: measurement
+        unit: C
+        mapping:
+          - scale: 10
+  - entity: switch
+    name: Adaptive
+    category: config
+    dps:
+      - id: 10
+        name: switch
+        type: boolean
+  - entity: select
+    name: Schedule
+    category: config
+    dps:
+      - id: 12
+        name: option
+        type: string
+        mapping:
+          - dps_val: "5_1_1"
+            value: "Weekdays+Sat+Sun"
+          - dps_val: "7"
+            value: "Daily"
+  - entity: number
+    name: Power Rating
+    category: config
+    dps:
+      - id: 22
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 3500

@@ -1,10 +1,15 @@
 from homeassistant.components.climate.const import (
+    CURRENT_HVAC_HEAT,
+    CURRENT_HVAC_IDLE,
+    CURRENT_HVAC_OFF,
     HVAC_MODE_HEAT,
     HVAC_MODE_OFF,
     SUPPORT_PRESET_MODE,
     SUPPORT_TARGET_TEMPERATURE,
 )
 from homeassistant.const import (
+    DEVICE_CLASS_POWER_FACTOR,
+    PERCENTAGE,
     STATE_UNAVAILABLE,
     TEMP_CELSIUS,
     TEMP_FAHRENHEIT,
@@ -12,6 +17,7 @@ from homeassistant.const import (
 
 from ..const import MADIMACK_HEATPUMP_PAYLOAD
 from ..helpers import assert_device_properties_set
+from ..mixins.sensor import BasicSensorTests
 from .base_device_tests import TuyaDeviceTestCase
 
 HVACMODE_DPS = "1"
@@ -42,12 +48,18 @@ UNKNOWN140_DPS = "140"
 PRESET_DPS = "117"
 
 
-class TestMadimackPoolHeatpump(TuyaDeviceTestCase):
+class TestMadimackPoolHeatpump(BasicSensorTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("madimack_heatpump.yaml", MADIMACK_HEATPUMP_PAYLOAD)
         self.subject = self.entities.get("climate")
+        self.setUpBasicSensor(
+            POWERLEVEL_DPS,
+            self.entities.get("sensor_power_level"),
+            device_class=DEVICE_CLASS_POWER_FACTOR,
+            unit=PERCENTAGE,
+        )
 
     def test_supported_features(self):
         self.assertEqual(
@@ -179,9 +191,17 @@ class TestMadimackPoolHeatpump(TuyaDeviceTestCase):
         ):
             await self.subject.async_set_preset_mode("Boost")
 
+    def test_hvac_action(self):
+        self.dps[HVACMODE_DPS] = True
+        self.dps[OPMODE_DPS] = "heating"
+        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_HEAT)
+        self.dps[OPMODE_DPS] = "warm"
+        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_IDLE)
+        self.dps[HVACMODE_DPS] = False
+        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_OFF)
+
     def test_device_state_attributes(self):
         self.dps[POWERLEVEL_DPS] = 50
-        self.dps[OPMODE_DPS] = "cool"
         self.dps[UNKNOWN107_DPS] = 1
         self.dps[UNKNOWN108_DPS] = 2
         self.dps[UNKNOWN115_DPS] = 3
@@ -205,7 +225,6 @@ class TestMadimackPoolHeatpump(TuyaDeviceTestCase):
             self.subject.device_state_attributes,
             {
                 "power_level": 50,
-                "operating_mode": "cool",
                 "unknown_107": 1,
                 "unknown_108": 2,
                 "unknown_115": 3,

@@ -432,6 +432,7 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
                 CONF_NAME: "test",
                 CONF_CLIMATE: True,
                 "lock_child_lock": False,
+                "number_timer": False,
             },
         )
         expected = {
@@ -450,6 +451,7 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
                 CONF_HOST: "hostname",
                 CONF_LOCAL_KEY: "localkey",
                 "lock_child_lock": False,
+                "number_timer": False,
                 CONF_TYPE: "kogan_kahtp_heater",
             },
         }
@@ -505,6 +507,7 @@ async def test_options_flow_modifies_config(mock_test, hass):
             CONF_HOST: "hostname",
             CONF_LOCAL_KEY: "localkey",
             "lock_child_lock": True,
+            "number_timer": False,
             CONF_NAME: "test",
             CONF_TYPE: "kogan_kahtp_heater",
         },
@@ -523,6 +526,7 @@ async def test_options_flow_modifies_config(mock_test, hass):
             CONF_HOST: "new_hostname",
             CONF_LOCAL_KEY: "new_key",
             "lock_child_lock": False,
+            "number_timer": True,
         },
     )
     expected = {
@@ -530,6 +534,7 @@ async def test_options_flow_modifies_config(mock_test, hass):
         CONF_HOST: "new_hostname",
         CONF_LOCAL_KEY: "new_key",
         "lock_child_lock": False,
+        "number_timer": True,
     }
     assert "create_entry" == result["type"]
     assert "" == result["title"]

@@ -6,7 +6,9 @@ from homeassistant.components.fan import (
 
 from ..const import ANKO_FAN_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import SwitchableTests, TuyaDeviceTestCase
+from ..mixins.number import BasicNumberTests
+from ..mixins.switch import SwitchableTests
+from .base_device_tests import TuyaDeviceTestCase
 
 SWITCH_DPS = "1"
 PRESET_DPS = "2"
@@ -15,13 +17,14 @@ OSCILLATE_DPS = "4"
 TIMER_DPS = "6"
 
 
-class TestAnkoFan(SwitchableTests, TuyaDeviceTestCase):
+class TestAnkoFan(SwitchableTests, BasicNumberTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("anko_fan.yaml", ANKO_FAN_PAYLOAD)
         self.subject = self.entities["fan"]
         self.setUpSwitchable(SWITCH_DPS, self.subject)
+        self.setUpBasicNumber(TIMER_DPS, self.entities.get("number_timer"), max=9)
 
     def test_supported_features(self):
         self.assertEqual(

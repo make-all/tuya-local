@@ -1,9 +1,12 @@
 """Tests for the switch entity."""
 from homeassistant.components.switch import DEVICE_CLASS_OUTLET
+from homeassistant.const import DEVICE_CLASS_CURRENT, DEVICE_CLASS_VOLTAGE
 
 from ..const import KOGAN_SOCKET_PAYLOAD2
-from ..helpers import assert_device_properties_set
-from .base_device_tests import SwitchableTests, TuyaDeviceTestCase
+from ..mixins.number import BasicNumberTests
+from ..mixins.sensor import MultiSensorTests
+from ..mixins.switch import SwitchableTests
+from .base_device_tests import TuyaDeviceTestCase
 
 SWITCH_DPS = "1"
 TIMER_DPS = "9"
@@ -12,13 +15,35 @@ POWER_DPS = "19"
 VOLTAGE_DPS = "20"
 
 
-class TestSwitchV2(SwitchableTests, TuyaDeviceTestCase):
+class TestSwitchV2(
+    BasicNumberTests, MultiSensorTests, SwitchableTests, TuyaDeviceTestCase
+):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("smartplugv2.yaml", KOGAN_SOCKET_PAYLOAD2)
         self.subject = self.entities.get("switch")
         self.setUpSwitchable(SWITCH_DPS, self.subject)
+        self.setUpBasicNumber(TIMER_DPS, self.entities.get("number_timer"), max=1440)
+        self.setUpMultiSensors(
+            [
+                {
+                    "name": "sensor_voltage",
+                    "dps": VOLTAGE_DPS,
+                    "unit": "V",
+                    "device_class": DEVICE_CLASS_VOLTAGE,
+                    "state_class": "measurement",
+                    "testdata": (2300, 230.0),
+                },
+                {
+                    "name": "sensor_current",
+                    "dps": CURRENT_DPS,
+                    "unit": "mA",
+                    "device_class": DEVICE_CLASS_CURRENT,
+                    "state_class": "measurement",
+                },
+            ]
+        )
 
     def test_device_class_is_outlet(self):
         self.assertEqual(self.subject.device_class, DEVICE_CLASS_OUTLET)

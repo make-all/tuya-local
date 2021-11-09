@@ -9,12 +9,16 @@ from homeassistant.components.climate.const import (
     SUPPORT_PRESET_MODE,
     SUPPORT_TARGET_TEMPERATURE,
 )
-from homeassistant.components.lock import STATE_LOCKED, STATE_UNLOCKED
-from homeassistant.const import STATE_UNAVAILABLE
+from homeassistant.const import DEVICE_CLASS_TEMPERATURE, TEMP_CELSIUS
 
 from ..const import SASWELL_C16_THERMOSTAT_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import BasicLockTests, TuyaDeviceTestCase
+from ..mixins.lock import BasicLockTests
+from ..mixins.number import MultiNumberTests
+from ..mixins.select import MultiSelectTests
+from ..mixins.sensor import BasicSensorTests
+from ..mixins.switch import BasicSwitchTests
+from .base_device_tests import TuyaDeviceTestCase
 
 TEMPERATURE_DPS = "2"
 PRESET_DPS = "3"
@@ -37,7 +41,14 @@ HVACACTION_DPS = "24"
 UNKNOWN26_DPS = "26"
 
 
-class TestSaswellC16Thermostat(BasicLockTests, TuyaDeviceTestCase):
+class TestSaswellC16Thermostat(
+    BasicLockTests,
+    BasicSensorTests,
+    BasicSwitchTests,
+    MultiNumberTests,
+    MultiSelectTests,
+    TuyaDeviceTestCase,
+):
     __test__ = True
 
     def setUp(self):
@@ -46,6 +57,52 @@ class TestSaswellC16Thermostat(BasicLockTests, TuyaDeviceTestCase):
         )
         self.subject = self.entities.get("climate")
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
+        self.setUpBasicSensor(
+            FLOORTEMP_DPS,
+            self.entities.get("sensor_floor_temperature"),
+            device_class=DEVICE_CLASS_TEMPERATURE,
+            state_class="measurement",
+            unit=TEMP_CELSIUS,
+            testdata=(218, 21.8),
+        )
+        self.setUpBasicSwitch(ADAPTIVE_DPS, self.entities.get("switch_adaptive"))
+        self.setUpMultiNumber(
+            [
+                {
+                    "name": "number_floor_temperature_limit",
+                    "dps": FLOORTEMPLIMIT_DPS,
+                    "min": 20.0,
+                    "max": 50.0,
+                    "scale": 10,
+                    "step": 0.5,
+                },
+                {
+                    "name": "number_power_rating",
+                    "dps": POWERRATING_DPS,
+                    "max": 3500,
+                },
+            ]
+        )
+        self.setUpMultiSelect(
+            [
+                {
+                    "name": "select_installation",
+                    "dps": INSTALL_DPS,
+                    "options": {
+                        True: "Office",
+                        False: "Home",
+                    },
+                },
+                {
+                    "name": "select_schedule",
+                    "dps": SCHED_DPS,
+                    "options": {
+                        "5_1_1": "Weekdays+Sat+Sun",
+                        "7": "Daily",
+                    },
+                },
+            ]
+        )
 
     def test_supported_features(self):
         self.assertEqual(

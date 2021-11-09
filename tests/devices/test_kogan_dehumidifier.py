@@ -1,9 +1,16 @@
+from homeassistant.components.binary_sensor import DEVICE_CLASS_PROBLEM
 from homeassistant.components.fan import SUPPORT_OSCILLATE, SUPPORT_SET_SPEED
 from homeassistant.components.humidifier import SUPPORT_MODES
-
+from homeassistant.const import (
+    DEVICE_CLASS_HUMIDITY,
+    PERCENTAGE,
+)
 from ..const import KOGAN_DEHUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import SwitchableTests, TuyaDeviceTestCase
+from ..mixins.binary_sensor import BasicBinarySensorTests
+from ..mixins.sensor import BasicSensorTests
+from ..mixins.switch import SwitchableTests
+from .base_device_tests import TuyaDeviceTestCase
 
 SWITCH_DPS = "1"
 MODE_DPS = "2"
@@ -15,7 +22,9 @@ COUNTDOWN_DPS = "13"
 HUMIDITY_DPS = "101"
 
 
-class TestKoganDehumidifier(SwitchableTests, TuyaDeviceTestCase):
+class TestKoganDehumidifier(
+    BasicBinarySensorTests, BasicSensorTests, SwitchableTests, TuyaDeviceTestCase
+):
     __test__ = True
 
     def setUp(self):
@@ -23,6 +32,19 @@ class TestKoganDehumidifier(SwitchableTests, TuyaDeviceTestCase):
         self.subject = self.entities.get("humidifier")
         self.setUpSwitchable(SWITCH_DPS, self.subject)
         self.fan = self.entities.get("fan")
+        self.setUpBasicBinarySensor(
+            ERROR_DPS,
+            self.entities.get("binary_sensor_tank"),
+            device_class=DEVICE_CLASS_PROBLEM,
+            testdata=(1, 0),
+        )
+        self.setUpBasicSensor(
+            CURRENTHUMID_DPS,
+            self.entities.get("sensor_current_humidity"),
+            device_class=DEVICE_CLASS_HUMIDITY,
+            state_class="measurement",
+            unit=PERCENTAGE,
+        )
 
     def test_supported_features(self):
         self.assertEqual(self.subject.supported_features, SUPPORT_MODES)

@@ -7,6 +7,7 @@
 name: Grid Connnect power metered double outlet with USB
 primary_entity:
   entity: switch
+  category: config
   name: Master
   class: outlet
   dps:
@@ -62,6 +63,7 @@ primary_entity:
 secondary_entities:
   - entity: lock
     name: Child Lock
+    category: config
     dps:
       - id: 40
         name: lock

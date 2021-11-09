@@ -11,7 +11,8 @@ from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import MOES_BHT002_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import BasicLockTests, TuyaDeviceTestCase
+from ..mixins.lock import BasicLockTests
+from .base_device_tests import TuyaDeviceTestCase
 
 POWER_DPS = "1"
 TEMPERATURE_DPS = "2"

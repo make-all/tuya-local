@@ -7,12 +7,19 @@ from homeassistant.components.climate.const import (
     SUPPORT_PRESET_MODE,
     SUPPORT_TARGET_TEMPERATURE,
 )
-from homeassistant.components.lock import STATE_LOCKED, STATE_UNLOCKED
-from homeassistant.const import STATE_UNAVAILABLE
+from homeassistant.const import (
+    DEVICE_CLASS_TEMPERATURE,
+    STATE_UNAVAILABLE,
+    TEMP_CELSIUS,
+)
 
 from ..const import TH213_THERMOSTAT_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import BasicLockTests, TuyaDeviceTestCase
+from ..mixins.lock import BasicLockTests
+from ..mixins.number import MultiNumberTests
+from ..mixins.select import BasicSelectTests
+from ..mixins.sensor import BasicSensorTests
+from .base_device_tests import TuyaDeviceTestCase
 
 HVACMODE_DPS = "1"
 TEMPERATURE_DPS = "2"
@@ -30,13 +37,51 @@ UNKNOWN108_DPS = "108"
 UNKNOWN110_DPS = "110"
 
 
-class TestAwowTH213Thermostat(BasicLockTests, TuyaDeviceTestCase):
+class TestAwowTH213Thermostat(
+    BasicLockTests,
+    BasicSelectTests,
+    BasicSensorTests,
+    MultiNumberTests,
+    TuyaDeviceTestCase,
+):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("awow_th213_thermostat.yaml", TH213_THERMOSTAT_PAYLOAD)
         self.subject = self.entities.get("climate")
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
+        self.setUpBasicSensor(
+            EXTERNTEMP_DPS,
+            self.entities.get("sensor_external_temperature"),
+            unit=TEMP_CELSIUS,
+            device_class=DEVICE_CLASS_TEMPERATURE,
+            state_class="measurement",
+        )
+        self.setUpBasicSelect(
+            SENSOR_DPS,
+            self.entities.get("select_temperature_sensor"),
+            {
+                0: "Internal",
+                1: "External",
+                2: "Both",
+            },
+        )
+        self.setUpMultiNumber(
+            [
+                {
+                    "name": "number_calibration_offset",
+                    "dps": CALIBRATE_DPS,
+                    "min": -9,
+                    "max": 9,
+                },
+                {
+                    "name": "number_calibration_swing",
+                    "dps": CALIBSWING_DPS,
+                    "min": 1,
+                    "max": 9,
+                },
+            ]
+        )
 
     def test_supported_features(self):
         self.assertEqual(

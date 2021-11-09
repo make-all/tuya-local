@@ -21,6 +21,7 @@ from homeassistant.const import STATE_UNAVAILABLE, TEMP_CELSIUS, TEMP_FAHRENHEIT
 
 from ..const import EBERG_QUBO_Q40HD_PAYLOAD
 from ..helpers import assert_device_properties_set
+from ..mixins.number import BasicNumberTests
 from .base_device_tests import TuyaDeviceTestCase
 
 POWER_DPS = "1"
@@ -35,7 +36,7 @@ SWING_DPS = "30"
 HVACACTION_DPS = "101"
 
 
-class TestEbergQuboQ40HDHeatpump(TuyaDeviceTestCase):
+class TestEbergQuboQ40HDHeatpump(BasicNumberTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
@@ -44,6 +45,7 @@ class TestEbergQuboQ40HDHeatpump(TuyaDeviceTestCase):
             EBERG_QUBO_Q40HD_PAYLOAD,
         )
         self.subject = self.entities.get("climate")
+        self.setUpBasicNumber(TIMER_DPS, self.entities.get("number_timer"), max=24)
 
     def test_supported_features(self):
         self.assertEqual(

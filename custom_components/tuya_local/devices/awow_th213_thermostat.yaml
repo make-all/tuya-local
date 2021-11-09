@@ -92,6 +92,7 @@ primary_entity:
 secondary_entities:
   - entity: lock
     name: Child Lock
+    category: config
     dps:
       - id: 6
         type: boolean
@@ -101,3 +102,47 @@ secondary_entities:
             icon: "mdi:hand-back-right-off"
           - dps_val: false
             icon: "mdi:hand-back-right"
+  - entity: sensor
+    name: External Temperature
+    class: temperature
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        class: measurement
+        unit: C
+        readonly: true
+  - entity: select
+    name: Temperature Sensor
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: option
+        mapping:
+          - dps_val: 0
+            value: Internal
+          - dps_val: 1
+            value: External
+          - dps_val: 2
+            value: Both
+  - entity: number
+    name: Calibration Offset
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        range:
+          min: -9
+          max: 9
+  - entity: number
+    name: Calibration Swing
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 9

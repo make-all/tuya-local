@@ -76,3 +76,25 @@ secondary_entities:
       - id: 8
         name: oscillate
         type: boolean
+  - entity: sensor
+    class: humidity
+    name: Current Humidity
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        class: measurement
+        unit: "%"
+  - entity: binary_sensor
+    class: problem
+    name: Tank
+    dps:
+      - id: 11
+        name: sensor
+        type: integer
+        readonly: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+     

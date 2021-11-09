@@ -48,6 +48,7 @@ primary_entity:
         - scale: 0.15
 secondary_entities:
   - entity: light
+    category: config
     dps:
       - id: 9
         name: switch
@@ -59,6 +60,7 @@ secondary_entities:
             icon: "mdi:led-off"
   - entity: lock
     name: Child Lock
+    category: config
     dps:
       - id: 16
         name: lock
@@ -70,6 +72,7 @@ secondary_entities:
             icon: "mdi:hand-back-right"
   - entity: switch
     name: Sound
+    category: config
     dps:
       - id: 17
         name: switch
@@ -79,3 +82,13 @@ secondary_entities:
             icon: "mdi:volume-high"
           - dps_val: false
             icon: "mdi:volume-mute"
+  - entity: number
+    name: Timer
+    category: config
+    dps:
+      - id: 6
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 7

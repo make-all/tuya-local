@@ -10,7 +10,9 @@ from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import ARLEC_FAN_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import SwitchableTests, TuyaDeviceTestCase
+from ..mixins.select import BasicSelectTests
+from ..mixins.switch import SwitchableTests
+from .base_device_tests import TuyaDeviceTestCase
 
 SWITCH_DPS = "1"
 SPEED_DPS = "3"
@@ -19,7 +21,7 @@ PRESET_DPS = "102"
 TIMER_DPS = "103"
 
 
-class TestArlecFan(SwitchableTests, TuyaDeviceTestCase):
+class TestArlecFan(SwitchableTests, BasicSelectTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
@@ -27,6 +29,16 @@ class TestArlecFan(SwitchableTests, TuyaDeviceTestCase):
         self.subject = self.entities["fan"]
         self.timer = self.entities["select_timer"]
         self.setUpSwitchable(SWITCH_DPS, self.subject)
+        self.setUpBasicSelect(
+            TIMER_DPS,
+            self.entities["select_timer"],
+            {
+                "off": "Off",
+                "2hour": "2 hours",
+                "4hour": "4 hours",
+                "8hour": "8 hours",
+            },
+        )
 
     def test_supported_features(self):
         self.assertEqual(
@@ -109,21 +121,3 @@ class TestArlecFan(SwitchableTests, TuyaDeviceTestCase):
     def test_device_state_attributes(self):
         self.dps[TIMER_DPS] = "2hour"
         self.assertEqual(self.subject.device_state_attributes, {"timer": "2hour"})
-        self.assertEqual(self.timer.device_state_attributes, {})
-
-    def test_timer_options(self):
-        self.assertCountEqual(
-            self.timer.options,
-            ["Off", "2 hours", "4 hours", "8 hours"],
-        )
-
-    def test_timer_current_option(self):
-        self.dps[TIMER_DPS] = "2hour"
-        self.assertEqual(self.timer.current_option, "2 hours")
-
-    async def test_select_option(self):
-        async with assert_device_properties_set(
-            self.timer._device,
-            {TIMER_DPS: "4hour"},
-        ):
-            await self.timer.async_select_option("4 hours")

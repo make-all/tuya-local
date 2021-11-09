@@ -1,3 +1,4 @@
+from homeassistant.components.binary_sensor import DEVICE_CLASS_PROBLEM
 from homeassistant.components.climate.const import (
     FAN_HIGH,
     FAN_MEDIUM,
@@ -21,7 +22,11 @@ from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import EANONS_HUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import BasicSwitchTests, SwitchableTests, TuyaDeviceTestCase
+from ..mixins.binary_sensor import BasicBinarySensorTests
+from ..mixins.select import BasicSelectTests
+from ..mixins.sensor import BasicSensorTests
+from ..mixins.switch import BasicSwitchTests, SwitchableTests
+from .base_device_tests import TuyaDeviceTestCase
 
 FANMODE_DPS = "2"
 TIMERHR_DPS = "3"
@@ -34,16 +39,53 @@ CURRENTHUMID_DPS = "16"
 SWITCH_DPS = "22"
 
 
-class TestEanonsHumidifier(BasicSwitchTests, SwitchableTests, TuyaDeviceTestCase):
+class TestEanonsHumidifier(
+    BasicBinarySensorTests,
+    BasicSelectTests,
+    BasicSensorTests,
+    BasicSwitchTests,
+    SwitchableTests,
+    TuyaDeviceTestCase,
+):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("eanons_humidifier.yaml", EANONS_HUMIDIFIER_PAYLOAD)
-        self.subject = self.entities["humidifier"]
+        self.subject = self.entities.get("humidifier")
         self.setUpSwitchable(HVACMODE_DPS, self.subject)
-        self.climate = self.entities["climate"]
-        self.fan = self.entities["fan_intensity"]
-        self.setUpBasicSwitch(SWITCH_DPS, self.entities["switch_uv_sterilization"])
+        self.climate = self.entities.get("climate")
+        self.fan = self.entities.get("fan_intensity")
+        self.setUpBasicSwitch(SWITCH_DPS, self.entities.get("switch_uv_sterilization"))
+        self.setUpBasicSelect(
+            TIMERHR_DPS,
+            self.entities.get("select_timer"),
+            {
+                "cancel": "Off",
+                "1": "1 hour",
+                "2": "2 hours",
+                "3": "3 hours",
+                "4": "4 hours",
+                "5": "5 hours",
+                "6": "6 hours",
+                "7": "7 hours",
+                "8": "8 hours",
+                "9": "9 hours",
+                "10": "10 hours",
+                "11": "11 hours",
+                "12": "12 hours",
+            },
+        )
+        self.setUpBasicSensor(
+            TIMER_DPS,
+            self.entities.get("sensor_timer"),
+            unit="min",
+        )
+        self.setUpBasicBinarySensor(
+            ERROR_DPS,
+            self.entities.get("binary_sensor_tank"),
+            device_class=DEVICE_CLASS_PROBLEM,
+            testdata=(1, 0),
+        )
 
     def test_supported_features(self):
         self.assertEqual(

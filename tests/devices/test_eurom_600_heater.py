@@ -1,3 +1,4 @@
+from homeassistant.components.binary_sensor import DEVICE_CLASS_PROBLEM
 from homeassistant.components.climate.const import (
     HVAC_MODE_HEAT,
     HVAC_MODE_OFF,
@@ -7,6 +8,7 @@ from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import EUROM_600_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
+from ..mixins.binary_sensor import BasicBinarySensorTests
 from .base_device_tests import TuyaDeviceTestCase
 
 HVACMODE_DPS = "1"
@@ -15,12 +17,18 @@ CURRENTTEMP_DPS = "5"
 ERROR_DPS = "6"
 
 
-class TestEurom600Heater(TuyaDeviceTestCase):
+class TestEurom600Heater(BasicBinarySensorTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("eurom_600_heater.yaml", EUROM_600_HEATER_PAYLOAD)
         self.subject = self.entities.get("climate")
+        self.setUpBasicBinarySensor(
+            ERROR_DPS,
+            self.entities.get("binary_sensor_error"),
+            device_class=DEVICE_CLASS_PROBLEM,
+            testdata=(1, 0),
+        )
 
     def test_supported_features(self):
         self.assertEqual(

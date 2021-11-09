@@ -1,7 +1,6 @@
 from homeassistant.components.climate.const import (
     CURRENT_HVAC_COOL,
     CURRENT_HVAC_HEAT,
-    CURRENT_HVAC_IDLE,
     CURRENT_HVAC_OFF,
     FAN_AUTO,
     FAN_ON,
@@ -18,6 +17,7 @@ from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT
 
 from ..const import SASWELL_T29UTK_THERMOSTAT_PAYLOAD
 from ..helpers import assert_device_properties_set
+from ..mixins.select import MultiSelectTests
 from .base_device_tests import TuyaDeviceTestCase
 
 POWER_DPS = "1"
@@ -37,7 +37,7 @@ TEMPF_DPS = "116"
 CURTEMPF_DPS = "117"
 
 
-class TestSaswellT29UTKThermostat(TuyaDeviceTestCase):
+class TestSaswellT29UTKThermostat(MultiSelectTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
@@ -45,6 +45,28 @@ class TestSaswellT29UTKThermostat(TuyaDeviceTestCase):
             "saswell_t29utk_thermostat.yaml", SASWELL_T29UTK_THERMOSTAT_PAYLOAD
         )
         self.subject = self.entities.get("climate")
+        self.setUpMultiSelect(
+            [
+                {
+                    "name": "select_temperature_unit",
+                    "dps": UNITS_DPS,
+                    "options": {
+                        "C": "Celsius",
+                        "F": "Fahrenheit",
+                    },
+                },
+                {
+                    "name": "select_configuration",
+                    "dps": CONFIG_DPS,
+                    "options": {
+                        "1": "cooling",
+                        "2": "heating",
+                        "3": "heat/cool",
+                        "5": "heatpump",
+                    },
+                },
+            ]
+        )
 
     def test_supported_features(self):
         self.assertEqual(

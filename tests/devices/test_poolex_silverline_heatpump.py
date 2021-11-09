@@ -1,3 +1,4 @@
+from homeassistant.components.binary_sensor import DEVICE_CLASS_PROBLEM
 from homeassistant.components.climate.const import (
     HVAC_MODE_HEAT,
     HVAC_MODE_OFF,
@@ -8,6 +9,7 @@ from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import POOLEX_SILVERLINE_HEATPUMP_PAYLOAD
 from ..helpers import assert_device_properties_set
+from ..mixins.binary_sensor import BasicBinarySensorTests
 from .base_device_tests import TuyaDeviceTestCase
 
 HVACMODE_DPS = "1"
@@ -17,7 +19,7 @@ PRESET_DPS = "4"
 ERROR_DPS = "13"
 
 
-class TestPoolexSilverlineHeatpump(TuyaDeviceTestCase):
+class TestPoolexSilverlineHeatpump(BasicBinarySensorTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
@@ -25,6 +27,12 @@ class TestPoolexSilverlineHeatpump(TuyaDeviceTestCase):
             "poolex_silverline_heatpump.yaml", POOLEX_SILVERLINE_HEATPUMP_PAYLOAD
         )
         self.subject = self.entities.get("climate")
+        self.setUpBasicBinarySensor(
+            ERROR_DPS,
+            self.entities.get("binary_sensor_water_flow"),
+            device_class=DEVICE_CLASS_PROBLEM,
+            testdata=(256, 0),
+        )
 
     def test_supported_features(self):
         self.assertEqual(

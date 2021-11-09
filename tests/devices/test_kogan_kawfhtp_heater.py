@@ -4,12 +4,13 @@ from homeassistant.components.climate.const import (
     SUPPORT_PRESET_MODE,
     SUPPORT_TARGET_TEMPERATURE,
 )
-from homeassistant.components.lock import STATE_LOCKED, STATE_UNLOCKED
 from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import KOGAN_KAWFHTP_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import BasicLockTests, TuyaDeviceTestCase
+from ..mixins.lock import BasicLockTests
+from ..mixins.number import BasicNumberTests
+from .base_device_tests import TuyaDeviceTestCase
 
 HVACMODE_DPS = "1"
 TEMPERATURE_DPS = "3"
@@ -19,13 +20,14 @@ PRESET_DPS = "7"
 LOCK_DPS = "2"
 
 
-class TestGoldairKoganKAHTPHeater(BasicLockTests, TuyaDeviceTestCase):
+class TestGoldairKoganKAHTPHeater(BasicLockTests, BasicNumberTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("kogan_kawfhtp_heater.yaml", KOGAN_KAWFHTP_HEATER_PAYLOAD)
         self.subject = self.entities.get("climate")
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
+        self.setUpBasicNumber(TIMER_DPS, self.entities.get("number_timer"), max=24)
 
     def test_supported_features(self):
         self.assertEqual(

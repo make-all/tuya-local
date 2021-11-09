@@ -3,12 +3,9 @@ from homeassistant.components.light import COLOR_MODE_ONOFF
 
 from ..const import DETA_FAN_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import (
-    BasicLightTests,
-    BasicSwitchTests,
-    SwitchableTests,
-    TuyaDeviceTestCase,
-)
+from ..mixins.light import BasicLightTests
+from ..mixins.switch import BasicSwitchTests, SwitchableTests
+from .base_device_tests import TuyaDeviceTestCase
 
 SWITCH_DPS = "1"
 SPEED_DPS = "3"

@@ -37,6 +37,7 @@ primary_entity:
 secondary_entities:
   - entity: lock
     name: "Child Lock"
+    category: config
     dps:
       - id: 6
         type: boolean
@@ -46,3 +47,13 @@ secondary_entities:
             icon: "mdi:hand-back-right-off"
           - dps_val: false
             icon: "mdi:hand-back-right"
+  - entity: number
+    name: Timer
+    category: config
+    dps:
+      - id: 8
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 24

@@ -87,3 +87,23 @@ secondary_entities:
             icon: "mdi:hand-back-right-off"
           - dps_val: false
             icon: "mdi:hand-back-right"
+  - entity: sensor
+    class: humidity
+    name: Current Humidity
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        readonly: true
+  - entity: sensor
+    class: temperature
+    name: Current Temperature
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        readonly: true

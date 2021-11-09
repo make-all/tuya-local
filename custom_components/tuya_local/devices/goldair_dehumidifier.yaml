@@ -55,9 +55,6 @@ primary_entity:
         - dps_val: 0
           value: "OK"
       readonly: true
-    - id: 12
-      type: string
-      name: unknown_12
     - id: 101
       type: boolean
       name: unknown_101
@@ -199,9 +196,6 @@ secondary_entities:
           - dps_val: 0
             value: "OK"
         readonly: true
-      - id: 12
-        type: string
-        name: unknown_12
       - id: 101
         type: boolean
         name: unknown_101
@@ -224,6 +218,7 @@ secondary_entities:
             readonly: true
   - entity: light
     name: Display
+    category: config
     dps:
       - id: 102
         type: boolean
@@ -237,6 +232,7 @@ secondary_entities:
             icon: "mdi:led-off"
   - entity: lock
     name: Child Lock
+    category: config
     dps:
       - id: 7
         type: boolean
@@ -276,18 +272,30 @@ secondary_entities:
   - entity: binary_sensor
     name: Tank
     class: problem
+    category: diagnostic
     dps:
       - id: 11
         type: bitfield
         name: sensor
         mapping:
-          - dps_val: 8
-            value: true
-          - value: false
+          - dps_val: 0
+            value: false
+          - value: true
   - entity: binary_sensor
     name: defrost
     class: cold
+    category: diagnostic
     dps:
       - id: 105
         type: boolean
         name: sensor
+  - entity: number
+    name: timer
+    category: config
+    dps:
+      - id: 12
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 24

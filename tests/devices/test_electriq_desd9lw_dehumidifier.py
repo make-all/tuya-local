@@ -9,11 +9,18 @@ from homeassistant.components.climate.const import (
     SUPPORT_TARGET_HUMIDITY,
     SUPPORT_TARGET_TEMPERATURE,
 )
-from homeassistant.const import STATE_UNAVAILABLE
+from homeassistant.const import (
+    DEVICE_CLASS_HUMIDITY,
+    PERCENTAGE,
+    STATE_UNAVAILABLE,
+)
 
 from ..const import ELECTRIQ_DESD9LW_DEHUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import BasicLightTests, BasicSwitchTests, TuyaDeviceTestCase
+from ..mixins.light import BasicLightTests
+from ..mixins.sensor import BasicSensorTests
+from ..mixins.switch import BasicSwitchTests
+from .base_device_tests import TuyaDeviceTestCase
 
 POWER_DPS = "1"
 HUMIDITY_DPS = "2"
@@ -28,7 +35,7 @@ TEMPERATURE_DPS = "101"
 
 
 class TestElectriqDESD9LWDehumidifier(
-    BasicLightTests, BasicSwitchTests, TuyaDeviceTestCase
+    BasicLightTests, BasicSensorTests, BasicSwitchTests, TuyaDeviceTestCase
 ):
     __test__ = True
 
@@ -40,6 +47,13 @@ class TestElectriqDESD9LWDehumidifier(
         self.subject = self.entities.get("climate")
         self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_uv_sterilization"))
         self.setUpBasicSwitch(SWITCH_DPS, self.entities.get("switch_ionizer"))
+        self.setUpBasicSensor(
+            CURRENTHUM_DPS,
+            self.entities.get("sensor_current_humidity"),
+            unit=PERCENTAGE,
+            device_class=DEVICE_CLASS_HUMIDITY,
+            state_class="measurement",
+        )
 
     def test_supported_features(self):
         self.assertEqual(

@@ -17,7 +17,8 @@ from ..helpers import (
     assert_device_properties_set,
     assert_device_properties_set_optional,
 )
-from .base_device_tests import BasicSwitchTests, TuyaDeviceTestCase
+from ..mixins.switch import BasicSwitchTests
+from .base_device_tests import TuyaDeviceTestCase
 
 HVACMODE_DPS = "1"
 TEMPERATURE_DPS = "2"

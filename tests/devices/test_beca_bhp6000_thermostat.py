@@ -12,7 +12,9 @@ from homeassistant.const import STATE_UNAVAILABLE, TEMP_CELSIUS, TEMP_FAHRENHEIT
 
 from ..const import BECA_BHP6000_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import BasicLightTests, BasicLockTests, TuyaDeviceTestCase
+from ..mixins.light import BasicLightTests
+from ..mixins.lock import BasicLockTests
+from .base_device_tests import TuyaDeviceTestCase
 
 LIGHT_DPS = "1"
 TEMPERATURE_DPS = "2"

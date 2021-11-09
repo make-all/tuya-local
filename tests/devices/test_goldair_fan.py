@@ -14,13 +14,14 @@ from homeassistant.components.fan import (
     SUPPORT_PRESET_MODE,
     SUPPORT_SET_SPEED,
 )
-from homeassistant.components.light import COLOR_MODE_ONOFF
 
 from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import FAN_PAYLOAD
 from ..helpers import assert_device_properties_set
-from .base_device_tests import BasicLightTests, SwitchableTests, TuyaDeviceTestCase
+from ..mixins.light import BasicLightTests
+from ..mixins.switch import SwitchableTests
+from .base_device_tests import TuyaDeviceTestCase
 
 HVACMODE_DPS = "1"
 FANMODE_DPS = "2"
