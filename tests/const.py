@@ -562,3 +562,11 @@ STIRLING_FS1_FAN_PAYLOAD = {
     "5": False,
     "22": "cancel",
 }
+
+QOTO_SPRINKLER_PAYLOAD = {
+    "102": 100,
+    "103": 100,
+    "104": 10036,
+    "105": 10800,
+    "108": 0,
+}

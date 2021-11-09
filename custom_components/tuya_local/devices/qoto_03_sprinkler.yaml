@@ -1,0 +1,51 @@
+name: QOTO 03 Sprinkler Controller
+primary_entity:
+  entity: number
+  dps:
+    - id: 102
+      type: integer
+      name: value
+      range:
+        min: 0
+        max: 100
+      mapping:
+        - step: 5
+secondary_entities:
+  - entity: sensor
+    category: diagnostic
+    name: Open
+    dps:
+      - id: 103
+        name: sensor
+        type: integer
+        unit: "%"
+  - entity: sensor
+    category: diagnostic
+    name: Timer
+    dps:
+      - id: 104
+        name: sensor
+        type: integer
+        unit: s
+  - entity: number
+    category: config
+    name: Timer
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 86399
+  - entity: binary_sensor
+    name: Error
+    category: diagnostic
+    class: problem
+    dps:
+      - id: 108
+        name: sensor
+        type: integer
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
