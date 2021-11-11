@@ -51,3 +51,4 @@ Further device support has been made with the assistance of users.  Please consi
  - [Skro11-ru](https://github.com/Skro11-ru) for assistance in supporting Moes BHT-002 variant without external temperature sensor.
  - [novisys](https://github.com/novisys) for clarifications about BHT-6000 thermostat functionality.
  - [nzcodarnoc](https://github.com/nzcodarnoc) for contributing support for Kogan KASHMFP heaters.
+ - [pascaltippelt](https://github.com/pascaltippelt) for assistance in supporting Minco MH-1823 thermostat.

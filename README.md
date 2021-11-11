@@ -72,6 +72,7 @@ the device will not work despite being listed below.
 - Awow/Mi-heat TH213 thermostat
 - Siswell T29UTW thermostat
 - Siswell C16 thermostat (rebadged as Warmme, Klima and others)
+- Minco MH-1823D thermostat
 
 ### Kettles
 - Kogan Glass 1.7L Smart Kettle (not reliably detected)

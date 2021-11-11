@@ -20,9 +20,11 @@ class TuyaLocalSensor(TuyaLocalEntity, SensorEntity):
             config (TuyaEntityConfig): the configuration for this entity
         """
         dps_map = self._init_begin(device, config)
-        self._sensor_dps = dps_map.pop("sensor")
+        self._sensor_dps = dps_map.pop("sensor", None)
         if self._sensor_dps is None:
             raise AttributeError(f"{config.name} is missing a sensor dps")
+        self._unit_dps = dps_map.pop("unit", None)
+
         self._init_end(dps_map)
 
     @property
@@ -51,7 +53,11 @@ class TuyaLocalSensor(TuyaLocalEntity, SensorEntity):
     @property
     def native_unit_of_measurement(self):
         """Return the unit for the sensor"""
-        unit = self._sensor_dps.unit
+        if self._unit_dps is None:
+            unit = self._sensor_dps.unit
+        else:
+            unit = self._unit_dps.get_value(self._device)
+
         # Temperatures use Unicode characters, translate from simpler ASCII
         if unit == "C":
             unit = TEMP_CELSIUS
