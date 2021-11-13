@@ -2,6 +2,7 @@ from homeassistant.components.climate.const import (
     CURRENT_HVAC_HEAT,
     CURRENT_HVAC_IDLE,
     CURRENT_HVAC_OFF,
+    HVAC_MODE_AUTO,
     HVAC_MODE_HEAT,
     HVAC_MODE_OFF,
     SUPPORT_PRESET_MODE,
@@ -16,16 +17,18 @@ from homeassistant.const import (
 
 from ..const import MINCO_MH1823D_THERMOSTAT_PAYLOAD
 from ..helpers import assert_device_properties_set
+from ..mixins.lock import BasicLockTests
 from ..mixins.number import MultiNumberTests
 from ..mixins.select import MultiSelectTests
 from ..mixins.sensor import BasicSensorTests
+from ..mixins.switch import BasicSwitchTests
 from .base_device_tests import TuyaDeviceTestCase
 
 HVACMODE_DPS = "1"
-UNKNOWN2_DPS = "2"
+PRESET_DPS = "2"
 HVACACTION_DPS = "3"
-UNKNOWN5_DPS = "5"
-PRESET_DPS = "9"
+LOCK_DPS = "5"
+ANTIFROST_DPS = "9"
 UNKNOWN12_DPS = "12"
 SELECT_DPS = "18"
 UNIT_DPS = "19"
@@ -33,13 +36,13 @@ TEMPERATURE_DPS = "22"
 TEMPF_DPS = "23"
 UNKNOWN32_DPS = "32"
 CURRENTTEMP_DPS = "33"
-UNKNOWN35_DPS = "35"
+CALIBINT_DPS = "35"
 CURTEMPF_DPS = "37"
 SCHEDULE_DPS = "39"
 UNKNOWN45_DPS = "45"
 EXTERNTEMP_DPS = "101"
 EXTTEMPF_DPS = "102"
-CALIBRATE_DPS = "103"
+CALIBEXT_DPS = "103"
 CALIBSWING_DPS = "104"
 UNKNOWN105_DPS = "105"
 TEMPLIMIT_DPS = "106"
@@ -47,7 +50,9 @@ TEMPLIMITF_DPS = "107"
 
 
 class TestMincoMH1823DThermostat(
+    BasicLockTests,
     BasicSensorTests,
+    BasicSwitchTests,
     MultiNumberTests,
     MultiSelectTests,
     TuyaDeviceTestCase,
@@ -60,6 +65,7 @@ class TestMincoMH1823DThermostat(
             MINCO_MH1823D_THERMOSTAT_PAYLOAD,
         )
         self.subject = self.entities.get("climate")
+        self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
         self.setUpBasicSensor(
             EXTERNTEMP_DPS,
             self.entities.get("sensor_external_temperature"),
@@ -68,11 +74,18 @@ class TestMincoMH1823DThermostat(
             state_class="measurement",
             testdata=(300, 30.0),
         )
+        self.setUpBasicSwitch(ANTIFROST_DPS, self.entities.get("switch_anti_frost"))
         self.setUpMultiNumber(
             [
                 {
-                    "name": "number_calibration_offset",
-                    "dps": CALIBRATE_DPS,
+                    "name": "number_calibration_offset_internal",
+                    "dps": CALIBINT_DPS,
+                    "min": -9,
+                    "max": 9,
+                },
+                {
+                    "name": "number_calibration_offset_external",
+                    "dps": CALIBEXT_DPS,
                     "min": -9,
                     "max": 9,
                 },
@@ -129,14 +142,12 @@ class TestMincoMH1823DThermostat(
     def test_icon(self):
         self.dps[HVACMODE_DPS] = True
         self.dps[HVACACTION_DPS] = "start"
-        self.dps[PRESET_DPS] = False
         self.assertEqual(self.subject.icon, "mdi:thermometer")
 
         self.dps[HVACACTION_DPS] = "stop"
         self.assertEqual(self.subject.icon, "mdi:thermometer-off")
 
-        self.dps[PRESET_DPS] = True
-        self.assertEqual(self.subject.icon, "mdi:snowflake")
+        self.assertEqual(self.basicSwitch.icon, "mdi:snowflake")
 
     def test_temperature_unit(self):
         self.dps[UNIT_DPS] = "c"
@@ -176,19 +187,21 @@ class TestMincoMH1823DThermostat(
 
     async def test_legacy_set_temperature_with_preset_mode(self):
         async with assert_device_properties_set(
-            self.subject._device, {PRESET_DPS: True}
+            self.subject._device, {PRESET_DPS: "holiday"}
         ):
-            await self.subject.async_set_temperature(preset_mode="away")
+            await self.subject.async_set_temperature(preset_mode="holiday")
 
     async def test_legacy_set_temperature_with_both_properties(self):
         async with assert_device_properties_set(
             self.subject._device,
             {
                 TEMPERATURE_DPS: 25,
-                PRESET_DPS: False,
+                PRESET_DPS: "program",
             },
         ):
-            await self.subject.async_set_temperature(temperature=25, preset_mode="home")
+            await self.subject.async_set_temperature(
+                temperature=25, preset_mode="program"
+            )
 
     async def test_legacy_set_temperature_with_no_valid_properties(self):
         await self.subject.async_set_temperature(something="else")
@@ -240,7 +253,12 @@ class TestMincoMH1823DThermostat(
 
     def test_hvac_mode(self):
         self.dps[HVACMODE_DPS] = True
+        self.dps[PRESET_DPS] = "manual"
         self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT)
+        self.dps[PRESET_DPS] = "program"
+        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_AUTO)
+        self.dps[PRESET_DPS] = "holiday"
+        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_AUTO)
 
         self.dps[HVACMODE_DPS] = False
         self.assertEqual(self.subject.hvac_mode, HVAC_MODE_OFF)
@@ -249,13 +267,21 @@ class TestMincoMH1823DThermostat(
         self.assertEqual(self.subject.hvac_mode, STATE_UNAVAILABLE)
 
     def test_hvac_modes(self):
-        self.assertCountEqual(self.subject.hvac_modes, [HVAC_MODE_OFF, HVAC_MODE_HEAT])
+        self.assertCountEqual(
+            self.subject.hvac_modes, [HVAC_MODE_OFF, HVAC_MODE_HEAT, HVAC_MODE_AUTO]
+        )
 
-    async def test_turn_on(self):
+    async def test_set_hvac_heat(self):
         async with assert_device_properties_set(
-            self.subject._device, {HVACMODE_DPS: True}
+            self.subject._device, {HVACMODE_DPS: True, PRESET_DPS: "manual"}
         ):
             await self.subject.async_set_hvac_mode(HVAC_MODE_HEAT)
+
+    async def test_set_hvac_auto(self):
+        async with assert_device_properties_set(
+            self.subject._device, {HVACMODE_DPS: True, PRESET_DPS: "program"}
+        ):
+            await self.subject.async_set_hvac_mode(HVAC_MODE_AUTO)
 
     async def test_turn_off(self):
         async with assert_device_properties_set(
@@ -264,11 +290,14 @@ class TestMincoMH1823DThermostat(
             await self.subject.async_set_hvac_mode(HVAC_MODE_OFF)
 
     def test_preset_mode(self):
-        self.dps[PRESET_DPS] = False
-        self.assertEqual(self.subject.preset_mode, "home")
+        self.dps[PRESET_DPS] = "manual"
+        self.assertEqual(self.subject.preset_mode, "manual")
 
-        self.dps[PRESET_DPS] = True
-        self.assertEqual(self.subject.preset_mode, "away")
+        self.dps[PRESET_DPS] = "program"
+        self.assertEqual(self.subject.preset_mode, "program")
+
+        self.dps[PRESET_DPS] = "holiday"
+        self.assertEqual(self.subject.preset_mode, "holiday")
 
         self.dps[PRESET_DPS] = None
         self.assertEqual(self.subject.preset_mode, None)
@@ -276,22 +305,29 @@ class TestMincoMH1823DThermostat(
     def test_preset_modes(self):
         self.assertCountEqual(
             self.subject.preset_modes,
-            ["home", "away"],
+            ["manual", "program", "holiday"],
         )
 
-    async def test_set_preset_mode_to_home(self):
+    async def test_set_preset_mode_to_program(self):
         async with assert_device_properties_set(
             self.subject._device,
-            {PRESET_DPS: False},
+            {PRESET_DPS: "program"},
         ):
-            await self.subject.async_set_preset_mode("home")
+            await self.subject.async_set_preset_mode("program")
 
-    async def test_set_preset_mode_to_away(self):
+    async def test_set_preset_mode_to_manual(self):
         async with assert_device_properties_set(
             self.subject._device,
-            {PRESET_DPS: True},
+            {PRESET_DPS: "manual"},
         ):
-            await self.subject.async_set_preset_mode("away")
+            await self.subject.async_set_preset_mode("manual")
+
+    async def test_set_preset_mode_to_holiday(self):
+        async with assert_device_properties_set(
+            self.subject._device,
+            {PRESET_DPS: "holiday"},
+        ):
+            await self.subject.async_set_preset_mode("holiday")
 
     def test_hvac_action(self):
         self.dps[HVACMODE_DPS] = True
@@ -305,22 +341,16 @@ class TestMincoMH1823DThermostat(
         self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_OFF)
 
     def test_device_state_attributes(self):
-        self.dps[UNKNOWN2_DPS] = "unknown 2"
-        self.dps[UNKNOWN5_DPS] = True
         self.dps[UNKNOWN12_DPS] = False
         self.dps[UNKNOWN32_DPS] = 32
-        self.dps[UNKNOWN35_DPS] = 35
         self.dps[UNKNOWN45_DPS] = 45
         self.dps[UNKNOWN105_DPS] = "unknown 105"
 
         self.assertDictEqual(
             self.subject.device_state_attributes,
             {
-                "unknown_2": "unknown 2",
-                "unknown_5": True,
                 "unknown_12": False,
                 "unknown_32": 32,
-                "unknown_35": 35,
                 "unknown_45": 45,
                 "unknown_105": "unknown 105",
             },

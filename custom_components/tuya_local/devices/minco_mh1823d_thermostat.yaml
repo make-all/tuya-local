@@ -9,10 +9,24 @@ primary_entity:
         - dps_val: false
           value: "off"
         - dps_val: true
-          value: heat
+          constraint: preset_mode
+          conditions:
+            - dps_val: manual
+              value: heat
+            - dps_val: program
+              value: auto
+            - dps_val: holiday
+              value: auto
     - id: 2
       type: string
-      name: unknown_2
+      name: preset_mode
+      mapping:
+        - dps_val: program
+          value: program
+        - dps_val: manual
+          value: manual
+        - dps_val: holiday
+          value: holiday
     - id: 3
       type: string
       name: hvac_action
@@ -38,19 +52,6 @@ primary_entity:
               value: heating
               icon: "mdi:thermometer"
               icon_priority: 3
-    - id: 5
-      type: boolean
-      name: unknown_5
-    - id: 9
-      type: boolean
-      name: preset_mode
-      mapping:
-        - dps_val: true
-          value: away
-          icon: "mdi:snowflake"
-          icon_priority: 2
-        - dps_val: false
-          value: home
     - id: 12
       type: boolean
       name: unknown_12
@@ -95,9 +96,6 @@ primary_entity:
           conditions:
             - dps_val: f
               value_redirect: current_temp_f
-    - id: 35
-      type: integer
-      name: unknown_35
     - id: 37
       type: integer
       name: current_temp_f
@@ -139,7 +137,25 @@ secondary_entities:
             value: Fahrenheit
             icon: "mdi:temperature-fahrenheit"
   - entity: number
-    name: Calibration Offset
+    name: Calibration Offset Internal
+    category: config
+    icon: "mdi: arrow-collapse-up"
+    dps:
+      - id: 35
+        type: integer
+        name: value
+        range:
+          min: -9
+          max: 9
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: f
+                range:
+                  min: -15
+                  max: 15
+  - entity: number
+    name: Calibration Offset External
     category: config
     icon: "mdi: arrow-collapse-up"
     dps:
@@ -255,3 +271,23 @@ secondary_entities:
             value: C
           - dps_val: f
             value: F
+  - entity: lock
+    name: Child Lock
+    category: config
+    dps:
+      - id: 5
+        type: boolean
+        name: lock
+        mapping:
+          - dps_val: true
+            icon: "mdi:hand-back-right-off"
+          - dps_val: false
+            icon: "mdi:hand-back-right"
+  - entity: switch
+    category: config
+    name: Anti-Frost
+    icon: "mdi:snowflake"
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
