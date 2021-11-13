@@ -105,6 +105,7 @@ the device will not work despite being listed below.
 - Grid Connect double outlet with Energy Monitoring, Master and Individual switches and Child Lock.
 - Grid Connect double outlet wall socket
 - Mirabella Genio Smart plug with USB
+- CBE Smart plug with advanced energy monitoring
 - Other brands may work with the above configurations
 - Simple Switch - a switch only, can be a fallback for many other unsupported devices, to allow just power to be switched on/off.
 
@@ -268,9 +269,9 @@ work. If you can figure out how to set the speed through the Tuya
 protocol for these devices, please leave feedback on Issue #22.
 
 
-## Kogan Switch gotchas
+## Smart Switch gotchas
 
-While setting this up, I observed after a while that the current and
+It has been observed after a while that the current and
 power readings from the switch were returning 0 when there was clearly
 a load on the switch.  After unplugging and replugging, the switch
 started returning only dps 1 and 2 (switch status and timer). If
@@ -278,6 +279,14 @@ HomeAssistant is restarted in that state, the switch detection would
 fail, however as Home Assistant was left running, it continued to work
 with no readings for the current, power and voltage.  I unplugged the
 switch overnight, and in the morning it was working correctly.
+
+Cumulative Energy readings seem to be reset whenever the reading is
+successfully sent to the server.  This leads to the energy usage never moving
+from the minimum reporting level of 0.1kWh, which isn't very useful.
+It may be possible to get useful readings by blocking the switch from accessing
+the internet, otherwise an integration sensor based on the Power sensor
+will need to be set up on the Home Assistant side, and the Energy sensor
+ignored.
 
 ## Kogan Kettle gotchas
 
