@@ -1,0 +1,133 @@
+"""Tests for the switch entity."""
+from homeassistant.components.binary_sensor import DEVICE_CLASS_PROBLEM
+from homeassistant.components.switch import DEVICE_CLASS_OUTLET
+from homeassistant.const import (
+    DEVICE_CLASS_CURRENT,
+    DEVICE_CLASS_ENERGY,
+    DEVICE_CLASS_POWER,
+    DEVICE_CLASS_VOLTAGE,
+    ELECTRIC_CURRENT_MILLIAMPERE,
+    ELECTRIC_POTENTIAL_VOLT,
+    ENERGY_WATT_HOUR,
+    POWER_WATT,
+)
+
+from ..const import SMARTSWITCH_ENERGY_PAYLOAD
+from ..mixins.binary_sensor import BasicBinarySensorTests
+from ..mixins.number import BasicNumberTests
+from ..mixins.select import BasicSelectTests
+from ..mixins.sensor import MultiSensorTests
+from ..mixins.switch import BasicSwitchTests
+from .base_device_tests import TuyaDeviceTestCase
+
+SWITCH_DPS = "1"
+TIMER_DPS = "9"
+ENERGY_DPS = "17"
+CURRENT_DPS = "18"
+POWER_DPS = "19"
+VOLTAGE_DPS = "20"
+TEST_DPS = "21"
+CALIBV_DPS = "22"
+CALIBI_DPS = "23"
+CALIBP_DPS = "24"
+CALIBE_DPS = "25"
+ERROR_DPS = "26"
+INITIAL_DPS = "38"
+CYCLE_DPS = "41"
+RANDOM_DPS = "42"
+UNKNOWN46_DPS = "46"
+
+
+class TestSwitchV2Energy(
+    BasicBinarySensorTests,
+    BasicNumberTests,
+    BasicSelectTests,
+    MultiSensorTests,
+    BasicSwitchTests,
+    TuyaDeviceTestCase,
+):
+    __test__ = True
+
+    def setUp(self):
+        self.setUpForConfig("smartplugv2_energy.yaml", SMARTSWITCH_ENERGY_PAYLOAD)
+        self.setUpBasicSwitch(
+            SWITCH_DPS,
+            self.entities.get("switch"),
+            device_class=DEVICE_CLASS_OUTLET,
+        )
+        self.setUpBasicBinarySensor(
+            ERROR_DPS,
+            self.entities.get("binary_sensor_error"),
+            device_class=DEVICE_CLASS_PROBLEM,
+            testdata=(1, 0),
+        )
+        self.setUpBasicNumber(TIMER_DPS, self.entities.get("number_timer"), max=1440)
+        self.setUpBasicSelect(
+            INITIAL_DPS,
+            self.entities.get("select_initial_state"),
+            {
+                "on": "On",
+                "off": "Off",
+                "memory": "Last State",
+            },
+        )
+        self.setUpMultiSensors(
+            [
+                {
+                    "name": "sensor_energy",
+                    "dps": ENERGY_DPS,
+                    "unit": ENERGY_WATT_HOUR,
+                    "device_class": DEVICE_CLASS_ENERGY,
+                    "state_class": "total_increasing",
+                },
+                {
+                    "name": "sensor_voltage",
+                    "dps": VOLTAGE_DPS,
+                    "unit": ELECTRIC_POTENTIAL_VOLT,
+                    "device_class": DEVICE_CLASS_VOLTAGE,
+                    "state_class": "measurement",
+                    "testdata": (2300, 230.0),
+                },
+                {
+                    "name": "sensor_current",
+                    "dps": CURRENT_DPS,
+                    "unit": ELECTRIC_CURRENT_MILLIAMPERE,
+                    "device_class": DEVICE_CLASS_CURRENT,
+                    "state_class": "measurement",
+                },
+                {
+                    "name": "sensor_power",
+                    "dps": POWER_DPS,
+                    "unit": POWER_WATT,
+                    "device_class": DEVICE_CLASS_POWER,
+                    "state_class": "measurement",
+                    "testdata": (1234, 123.4),
+                },
+            ]
+        )
+
+    def test_basic_switch_state_attributes(self):
+        self.dps[TEST_DPS] = 21
+        self.dps[CALIBV_DPS] = 22
+        self.dps[CALIBI_DPS] = 23
+        self.dps[CALIBP_DPS] = 24
+        self.dps[CALIBE_DPS] = 25
+        self.dps[ERROR_DPS] = 26
+        self.dps[CYCLE_DPS] = "1A2B"
+        self.dps[RANDOM_DPS] = "3C4D"
+        self.dps[UNKNOWN46_DPS] = True
+
+        self.assertDictEqual(
+            self.basicSwitch.device_state_attributes,
+            {
+                "test_bit": 21,
+                "voltage_calibration": 22,
+                "current_calibration": 23,
+                "power_calibration": 24,
+                "energy_calibration": 25,
+                "fault_code": 26,
+                "cycle_timer": "1A2B",
+                "random_timer": "3C4D",
+                "unknown_46": True,
+            },
+        )
