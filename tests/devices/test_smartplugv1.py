@@ -1,6 +1,13 @@
 """Tests for the switch entity."""
 from homeassistant.components.switch import DEVICE_CLASS_OUTLET
-from homeassistant.const import DEVICE_CLASS_CURRENT, DEVICE_CLASS_VOLTAGE
+from homeassistant.const import (
+    DEVICE_CLASS_CURRENT,
+    DEVICE_CLASS_POWER,
+    DEVICE_CLASS_VOLTAGE,
+    ELECTRIC_CURRENT_MILLIAMPERE,
+    ELECTRIC_POTENTIAL_VOLT,
+    POWER_WATT,
+)
 
 from ..const import KOGAN_SOCKET_PAYLOAD
 from ..mixins.number import BasicNumberTests
@@ -30,7 +37,7 @@ class TestKoganSwitch(
                 {
                     "name": "sensor_voltage",
                     "dps": VOLTAGE_DPS,
-                    "unit": "V",
+                    "unit": ELECTRIC_POTENTIAL_VOLT,
                     "device_class": DEVICE_CLASS_VOLTAGE,
                     "state_class": "measurement",
                     "testdata": (2300, 230.0),
@@ -38,9 +45,17 @@ class TestKoganSwitch(
                 {
                     "name": "sensor_current",
                     "dps": CURRENT_DPS,
-                    "unit": "mA",
+                    "unit": ELECTRIC_CURRENT_MILLIAMPERE,
                     "device_class": DEVICE_CLASS_CURRENT,
                     "state_class": "measurement",
+                },
+                {
+                    "name": "sensor_power",
+                    "dps": POWER_DPS,
+                    "unit": POWER_WATT,
+                    "device_class": DEVICE_CLASS_POWER,
+                    "state_class": "measurement",
+                    "testdata": (1234, 123.4),
                 },
             ]
         )

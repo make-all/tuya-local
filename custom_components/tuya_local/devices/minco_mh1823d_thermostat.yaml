@@ -1,0 +1,257 @@
+name: Minco MH-1823D Thermostat
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          value: heat
+    - id: 2
+      type: string
+      name: unknown_2
+    - id: 3
+      type: string
+      name: hvac_action
+      mapping:
+        - dps_val: stop
+          icon: "mdi:thermometer-off"
+          constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+              icon_priority: 1
+            - dps_val: true
+              value: idle
+              icon_priority: 3
+        - dps_val: start
+          constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+              icon: "mdi:thermometer-off"
+              icon_priority: 1
+            - dps_val: true
+              value: heating
+              icon: "mdi:thermometer"
+              icon_priority: 3
+    - id: 5
+      type: boolean
+      name: unknown_5
+    - id: 9
+      type: boolean
+      name: preset_mode
+      mapping:
+        - dps_val: true
+          value: away
+          icon: "mdi:snowflake"
+          icon_priority: 2
+        - dps_val: false
+          value: home
+    - id: 12
+      type: boolean
+      name: unknown_12
+    - id: 19
+      type: string
+      name: temperature_unit
+      mapping:
+        - dps_val: c
+          value: C
+        - dps_val: f
+          value: F
+    - id: 22
+      type: integer
+      name: temperature
+      range:
+        min: 5
+        max: 50
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: temp_f
+              range:
+                min: 41
+                max: 99
+    - id: 23
+      type: integer
+      name: temp_f
+      range:
+        min: 41
+        max: 99
+      hidden: true
+    - id: 32
+      type: integer
+      name: unknown_32
+    - id: 33
+      type: integer
+      name: current_temperature
+      mapping:
+        - scale: 10
+          constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: current_temp_f
+    - id: 35
+      type: integer
+      name: unknown_35
+    - id: 37
+      type: integer
+      name: current_temp_f
+      mapping:
+        - scale: 10
+      hidden: true
+    - id: 45
+      type: integer
+      name: unknown_45
+    - id: 105
+      type: string
+      name: unknown_105
+secondary_entities:
+  - entity: select
+    name: Sensor
+    category: config
+    icon: "mdi:thermometer"
+    dps:
+      - id: 18
+        type: string
+        name: option
+        mapping:
+          - dps_val: in
+            value: Internal
+          - dps_val: out
+            value: External
+  - entity: select
+    name: Temperature Unit
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: Celsius
+            icon: "mdi:temperature-celsius"
+          - dps_val: f
+            value: Fahrenheit
+            icon: "mdi:temperature-fahrenheit"
+  - entity: number
+    name: Calibration Offset
+    category: config
+    icon: "mdi: arrow-collapse-up"
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        range:
+          min: -9
+          max: 9
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: f
+                range:
+                  min: -15
+                  max: 15
+      - id: 19
+        type: string
+        name: unit
+        hidden: true
+  - entity: number
+    name: Calibration Swing
+    category: config
+    icon: "mdi:arrow-expand-vertical"
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 9
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: f
+                range:
+                  min: 2
+                  max: 15
+      - id: 19
+        type: string
+        name: unit
+        hidden: true
+  - entity: number
+    category: config
+    name: High Temperature Limit
+    icon: "mdi:thermometer-alert"
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        range:
+          min: 5
+          max: 65
+        constraint: unit
+        conditions:
+          - dps_val: f
+            value_redirect: max_temp_f
+            range:
+              min: 41
+              max: 150
+      - id: 107
+        type: integer
+        name: max_temp_f
+        range:
+          min: 41
+          max: 150
+        hidden: true
+      - id: 19
+        type: string
+        name: unit
+        hidden: true        
+  - entity: select
+    name: Schedule
+    category: config
+    icon: "mdi:calendar-clock"
+    dps:
+      - id: 39
+        type: string
+        name: option
+        mapping:
+          - dps_val: "7"
+            value: "7 day"
+          - dps_val: "6_1"
+            value: "6+1 day"
+          - dps_val: "5_2"
+            value: "5+2 day"
+  - entity: sensor
+    name: External Temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+            constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: extern_temp_f
+      - id: 102
+        type: integer
+        name: extern_temp_f
+        hidden: true
+        mapping:
+          - scale: 10
+      - id: 19
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F

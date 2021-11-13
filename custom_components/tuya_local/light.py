@@ -6,7 +6,6 @@ import logging
 from . import DOMAIN
 from .const import (
     CONF_DEVICE_ID,
-    CONF_LIGHT,
     CONF_TYPE,
 )
 from .generic.light import TuyaLocalLight

@@ -11,10 +11,6 @@ primary_entity:
   name: Master
   class: outlet
   dps:
-    - id: 17
-      name: unknown_17
-      type: integer
-      readonly: true
     - id: 18
       type: integer
       name: current_a
@@ -34,28 +30,24 @@ primary_entity:
       mapping:
         - scale: 10
     - id: 21
-      name: unknown_21
+      name: test_bit
       type: integer
       readonly: true
     - id: 22
-      name: unknown_22
+      name: voltage_calibration
       type: integer
       readonly: true
     - id: 23
-      name: unknown_23
+      name: current_calibration
       type: integer
       readonly: true
     - id: 24
-      name: unknown_24
+      name: power_calibration
       type: integer
       readonly: true
     - id: 25
-      name: unknown_25
+      name: energy_calibration
       type: integer
-      readonly: true
-    - id: 38
-      name: unknown_38
-      type: string
       readonly: true
     - id: 101
       name: switch
@@ -111,3 +103,81 @@ secondary_entities:
         name: master
         type: boolean
         hidden: true
+  - entity: sensor
+    class: energy
+    category: diagnostic
+    name: Energy
+    dps:
+      - id: 17
+        name: sensor
+        type: integer
+        class: total_increasing
+        unit: Wh
+  - entity: sensor
+    class: current
+    category: diagnostic
+    name: Current
+    dps:
+      - id: 18
+        name: sensor
+        type: integer
+        class: measurement
+        unit: mA
+  - entity: sensor
+    class: power
+    category: diagnostic
+    name: Power
+    dps:
+      - id: 19
+        name: sensor
+        type: integer
+        class: measurement
+        unit: W
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    name: Voltage
+    dps:
+      - id: 20
+        name: sensor
+        type: integer
+        class: measurement
+        unit: V
+        mapping:
+          - scale: 10
+  - entity: select
+    category: config
+    name: Initial State
+    dps:
+      - id: 38
+        name: option
+        type: string
+        mapping:
+          - dps_val: "on"
+            value: "On"
+          - dps_val: "off"
+            value: "Off"
+          - dps_val: "memory"
+            value: "Last State"
+  - entity: number
+    name: Timer 1
+    category: config
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 86400
+  - entity: number
+    name: Timer 2
+    category: config
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 86400

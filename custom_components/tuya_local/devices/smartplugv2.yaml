@@ -51,6 +51,18 @@ secondary_entities:
         type: integer
         class: measurement
         unit: mA
+  - entity: sensor
+    category: diagnostic
+    class: power
+    name: Power
+    dps:
+      - id: 19
+        name: sensor
+        type: integer
+        class: measurement
+        unit: W
+        mapping:
+          - scale: 10
   - entity: number
     category: config
     name: Timer

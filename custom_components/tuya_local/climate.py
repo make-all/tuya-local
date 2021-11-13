@@ -5,7 +5,6 @@ import logging
 
 from . import DOMAIN
 from .const import (
-    CONF_CLIMATE,
     CONF_DEVICE_ID,
     CONF_TYPE,
 )

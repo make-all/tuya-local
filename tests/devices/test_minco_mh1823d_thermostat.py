@@ -1,0 +1,327 @@
+from homeassistant.components.climate.const import (
+    CURRENT_HVAC_HEAT,
+    CURRENT_HVAC_IDLE,
+    CURRENT_HVAC_OFF,
+    HVAC_MODE_HEAT,
+    HVAC_MODE_OFF,
+    SUPPORT_PRESET_MODE,
+    SUPPORT_TARGET_TEMPERATURE,
+)
+from homeassistant.const import (
+    DEVICE_CLASS_TEMPERATURE,
+    STATE_UNAVAILABLE,
+    TEMP_CELSIUS,
+    TEMP_FAHRENHEIT,
+)
+
+from ..const import MINCO_MH1823D_THERMOSTAT_PAYLOAD
+from ..helpers import assert_device_properties_set
+from ..mixins.number import MultiNumberTests
+from ..mixins.select import MultiSelectTests
+from ..mixins.sensor import BasicSensorTests
+from .base_device_tests import TuyaDeviceTestCase
+
+HVACMODE_DPS = "1"
+UNKNOWN2_DPS = "2"
+HVACACTION_DPS = "3"
+UNKNOWN5_DPS = "5"
+PRESET_DPS = "9"
+UNKNOWN12_DPS = "12"
+SELECT_DPS = "18"
+UNIT_DPS = "19"
+TEMPERATURE_DPS = "22"
+TEMPF_DPS = "23"
+UNKNOWN32_DPS = "32"
+CURRENTTEMP_DPS = "33"
+UNKNOWN35_DPS = "35"
+CURTEMPF_DPS = "37"
+SCHEDULE_DPS = "39"
+UNKNOWN45_DPS = "45"
+EXTERNTEMP_DPS = "101"
+EXTTEMPF_DPS = "102"
+CALIBRATE_DPS = "103"
+CALIBSWING_DPS = "104"
+UNKNOWN105_DPS = "105"
+TEMPLIMIT_DPS = "106"
+TEMPLIMITF_DPS = "107"
+
+
+class TestMincoMH1823DThermostat(
+    BasicSensorTests,
+    MultiNumberTests,
+    MultiSelectTests,
+    TuyaDeviceTestCase,
+):
+    __test__ = True
+
+    def setUp(self):
+        self.setUpForConfig(
+            "minco_mh1823d_thermostat.yaml",
+            MINCO_MH1823D_THERMOSTAT_PAYLOAD,
+        )
+        self.subject = self.entities.get("climate")
+        self.setUpBasicSensor(
+            EXTERNTEMP_DPS,
+            self.entities.get("sensor_external_temperature"),
+            unit=TEMP_CELSIUS,
+            device_class=DEVICE_CLASS_TEMPERATURE,
+            state_class="measurement",
+            testdata=(300, 30.0),
+        )
+        self.setUpMultiNumber(
+            [
+                {
+                    "name": "number_calibration_offset",
+                    "dps": CALIBRATE_DPS,
+                    "min": -9,
+                    "max": 9,
+                },
+                {
+                    "name": "number_calibration_swing",
+                    "dps": CALIBSWING_DPS,
+                    "min": 1,
+                    "max": 9,
+                },
+                {
+                    "name": "number_high_temperature_limit",
+                    "dps": TEMPLIMIT_DPS,
+                    "min": 5,
+                    "max": 65,
+                },
+            ]
+        )
+        self.setUpMultiSelect(
+            [
+                {
+                    "name": "select_sensor",
+                    "dps": SELECT_DPS,
+                    "options": {
+                        "in": "Internal",
+                        "out": "External",
+                    },
+                },
+                {
+                    "name": "select_temperature_unit",
+                    "dps": UNIT_DPS,
+                    "options": {
+                        "c": "Celsius",
+                        "f": "Fahrenheit",
+                    },
+                },
+                {
+                    "name": "select_schedule",
+                    "dps": SCHEDULE_DPS,
+                    "options": {
+                        "7": "7 day",
+                        "5_2": "5+2 day",
+                        "6_1": "6+1 day",
+                    },
+                },
+            ]
+        )
+
+    def test_supported_features(self):
+        self.assertEqual(
+            self.subject.supported_features,
+            SUPPORT_TARGET_TEMPERATURE | SUPPORT_PRESET_MODE,
+        )
+
+    def test_icon(self):
+        self.dps[HVACMODE_DPS] = True
+        self.dps[HVACACTION_DPS] = "start"
+        self.dps[PRESET_DPS] = False
+        self.assertEqual(self.subject.icon, "mdi:thermometer")
+
+        self.dps[HVACACTION_DPS] = "stop"
+        self.assertEqual(self.subject.icon, "mdi:thermometer-off")
+
+        self.dps[PRESET_DPS] = True
+        self.assertEqual(self.subject.icon, "mdi:snowflake")
+
+    def test_temperature_unit(self):
+        self.dps[UNIT_DPS] = "c"
+        self.assertEqual(self.subject.temperature_unit, TEMP_CELSIUS)
+        self.dps[UNIT_DPS] = "f"
+        self.assertEqual(self.subject.temperature_unit, TEMP_FAHRENHEIT)
+
+    def test_target_temperature(self):
+        self.dps[TEMPERATURE_DPS] = 25
+        self.dps[TEMPF_DPS] = 70
+
+        self.dps[UNIT_DPS] = "c"
+        self.assertEqual(self.subject.target_temperature, 25)
+        self.dps[UNIT_DPS] = "f"
+        self.assertEqual(self.subject.target_temperature, 70)
+
+    def test_target_temperature_step(self):
+        self.assertEqual(self.subject.target_temperature_step, 1)
+
+    def test_minimum_target_temperature(self):
+        self.dps[UNIT_DPS] = "c"
+        self.assertEqual(self.subject.min_temp, 5)
+        self.dps[UNIT_DPS] = "f"
+        self.assertEqual(self.subject.min_temp, 41)
+
+    def test_maximum_target_temperature(self):
+        self.dps[UNIT_DPS] = "c"
+        self.assertEqual(self.subject.max_temp, 50)
+        self.dps[UNIT_DPS] = "f"
+        self.assertEqual(self.subject.max_temp, 99)
+
+    async def test_legacy_set_temperature_with_temperature(self):
+        async with assert_device_properties_set(
+            self.subject._device, {TEMPERATURE_DPS: 24}
+        ):
+            await self.subject.async_set_temperature(temperature=24)
+
+    async def test_legacy_set_temperature_with_preset_mode(self):
+        async with assert_device_properties_set(
+            self.subject._device, {PRESET_DPS: True}
+        ):
+            await self.subject.async_set_temperature(preset_mode="away")
+
+    async def test_legacy_set_temperature_with_both_properties(self):
+        async with assert_device_properties_set(
+            self.subject._device,
+            {
+                TEMPERATURE_DPS: 25,
+                PRESET_DPS: False,
+            },
+        ):
+            await self.subject.async_set_temperature(temperature=25, preset_mode="home")
+
+    async def test_legacy_set_temperature_with_no_valid_properties(self):
+        await self.subject.async_set_temperature(something="else")
+        self.subject._device.async_set_property.assert_not_called()
+
+    async def test_set_target_temperature(self):
+        async with assert_device_properties_set(
+            self.subject._device, {TEMPERATURE_DPS: 25}
+        ):
+            await self.subject.async_set_target_temperature(25)
+
+    async def test_set_target_temperature_rounds_value_to_closest_integer(self):
+        async with assert_device_properties_set(
+            self.subject._device,
+            {TEMPERATURE_DPS: 25},
+        ):
+            await self.subject.async_set_target_temperature(24.6)
+
+    async def test_set_target_temperature_fails_outside_valid_range(self):
+        self.dps[UNIT_DPS] = "c"
+        with self.assertRaisesRegex(
+            ValueError, "temperature \\(4\\) must be between 5 and 50"
+        ):
+            await self.subject.async_set_target_temperature(4)
+
+        with self.assertRaisesRegex(
+            ValueError, "temperature \\(51\\) must be between 5 and 50"
+        ):
+            await self.subject.async_set_target_temperature(51)
+
+        self.dps[UNIT_DPS] = "f"
+        with self.assertRaisesRegex(
+            ValueError, "temp_f \\(40\\) must be between 41 and 99"
+        ):
+            await self.subject.async_set_target_temperature(40)
+
+        with self.assertRaisesRegex(
+            ValueError, "temp_f \\(100\\) must be between 41 and 99"
+        ):
+            await self.subject.async_set_target_temperature(100)
+
+    def test_current_temperature(self):
+        self.dps[CURRENTTEMP_DPS] = 251
+        self.dps[CURTEMPF_DPS] = 783
+        self.dps[UNIT_DPS] = "c"
+        self.assertEqual(self.subject.current_temperature, 25.1)
+        self.dps[UNIT_DPS] = "f"
+        self.assertEqual(self.subject.current_temperature, 78.3)
+
+    def test_hvac_mode(self):
+        self.dps[HVACMODE_DPS] = True
+        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT)
+
+        self.dps[HVACMODE_DPS] = False
+        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_OFF)
+
+        self.dps[HVACMODE_DPS] = None
+        self.assertEqual(self.subject.hvac_mode, STATE_UNAVAILABLE)
+
+    def test_hvac_modes(self):
+        self.assertCountEqual(self.subject.hvac_modes, [HVAC_MODE_OFF, HVAC_MODE_HEAT])
+
+    async def test_turn_on(self):
+        async with assert_device_properties_set(
+            self.subject._device, {HVACMODE_DPS: True}
+        ):
+            await self.subject.async_set_hvac_mode(HVAC_MODE_HEAT)
+
+    async def test_turn_off(self):
+        async with assert_device_properties_set(
+            self.subject._device, {HVACMODE_DPS: False}
+        ):
+            await self.subject.async_set_hvac_mode(HVAC_MODE_OFF)
+
+    def test_preset_mode(self):
+        self.dps[PRESET_DPS] = False
+        self.assertEqual(self.subject.preset_mode, "home")
+
+        self.dps[PRESET_DPS] = True
+        self.assertEqual(self.subject.preset_mode, "away")
+
+        self.dps[PRESET_DPS] = None
+        self.assertEqual(self.subject.preset_mode, None)
+
+    def test_preset_modes(self):
+        self.assertCountEqual(
+            self.subject.preset_modes,
+            ["home", "away"],
+        )
+
+    async def test_set_preset_mode_to_home(self):
+        async with assert_device_properties_set(
+            self.subject._device,
+            {PRESET_DPS: False},
+        ):
+            await self.subject.async_set_preset_mode("home")
+
+    async def test_set_preset_mode_to_away(self):
+        async with assert_device_properties_set(
+            self.subject._device,
+            {PRESET_DPS: True},
+        ):
+            await self.subject.async_set_preset_mode("away")
+
+    def test_hvac_action(self):
+        self.dps[HVACMODE_DPS] = True
+        self.dps[HVACACTION_DPS] = "start"
+        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_HEAT)
+
+        self.dps[HVACACTION_DPS] = "stop"
+        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_IDLE)
+
+        self.dps[HVACMODE_DPS] = False
+        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_OFF)
+
+    def test_device_state_attributes(self):
+        self.dps[UNKNOWN2_DPS] = "unknown 2"
+        self.dps[UNKNOWN5_DPS] = True
+        self.dps[UNKNOWN12_DPS] = False
+        self.dps[UNKNOWN32_DPS] = 32
+        self.dps[UNKNOWN35_DPS] = 35
+        self.dps[UNKNOWN45_DPS] = 45
+        self.dps[UNKNOWN105_DPS] = "unknown 105"
+
+        self.assertDictEqual(
+            self.subject.device_state_attributes,
+            {
+                "unknown_2": "unknown 2",
+                "unknown_5": True,
+                "unknown_12": False,
+                "unknown_32": 32,
+                "unknown_35": 35,
+                "unknown_45": 45,
+                "unknown_105": "unknown 105",
+            },
+        )
