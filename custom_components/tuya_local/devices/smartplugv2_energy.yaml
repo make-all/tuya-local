@@ -30,13 +30,11 @@ primary_entity:
     - id: 42
       type: string
       name: random_timer
-    - id: 46
-      type: boolean
-      name: unknown_46
 secondary_entities:
   - entity: number
     category: config
     name: Timer
+    icon: "mdi:timer"
     dps:
       - id: 9
         type: integer
@@ -103,6 +101,7 @@ secondary_entities:
   - entity: select
     category: config
     name: Initial State
+    icon: "mdi:toggle-switch"
     dps:
       - id: 38
         type: string
@@ -114,3 +113,11 @@ secondary_entities:
             value: "Off"
           - dps_val: memory
             value: "Last State"
+  - entity: switch
+    name: Overcharge Cutoff
+    category: config
+    icon: "mdi:battery-charging"
+    dps:
+      - id: 46
+        type: boolean
+        name: switch

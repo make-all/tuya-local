@@ -17,7 +17,7 @@ from ..mixins.binary_sensor import BasicBinarySensorTests
 from ..mixins.number import BasicNumberTests
 from ..mixins.select import BasicSelectTests
 from ..mixins.sensor import MultiSensorTests
-from ..mixins.switch import BasicSwitchTests
+from ..mixins.switch import MultiSwitchTests
 from .base_device_tests import TuyaDeviceTestCase
 
 SWITCH_DPS = "1"
@@ -35,7 +35,7 @@ ERROR_DPS = "26"
 INITIAL_DPS = "38"
 CYCLE_DPS = "41"
 RANDOM_DPS = "42"
-UNKNOWN46_DPS = "46"
+OVERCHARGE_DPS = "46"
 
 
 class TestSwitchV2Energy(
@@ -43,17 +43,25 @@ class TestSwitchV2Energy(
     BasicNumberTests,
     BasicSelectTests,
     MultiSensorTests,
-    BasicSwitchTests,
+    MultiSwitchTests,
     TuyaDeviceTestCase,
 ):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("smartplugv2_energy.yaml", SMARTSWITCH_ENERGY_PAYLOAD)
-        self.setUpBasicSwitch(
-            SWITCH_DPS,
-            self.entities.get("switch"),
-            device_class=DEVICE_CLASS_OUTLET,
+        self.setUpMultiSwitch(
+            [
+                {
+                    "name": "switch",
+                    "dps": SWITCH_DPS,
+                    "device_class": DEVICE_CLASS_OUTLET,
+                },
+                {
+                    "name": "switch_overcharge_cutoff",
+                    "dps": OVERCHARGE_DPS,
+                },
+            ]
         )
         self.setUpBasicBinarySensor(
             ERROR_DPS,
@@ -106,7 +114,7 @@ class TestSwitchV2Energy(
             ]
         )
 
-    def test_basic_switch_state_attributes(self):
+    def test_multi_switch_state_attributes(self):
         self.dps[TEST_DPS] = 21
         self.dps[CALIBV_DPS] = 22
         self.dps[CALIBI_DPS] = 23
@@ -115,10 +123,9 @@ class TestSwitchV2Energy(
         self.dps[ERROR_DPS] = 26
         self.dps[CYCLE_DPS] = "1A2B"
         self.dps[RANDOM_DPS] = "3C4D"
-        self.dps[UNKNOWN46_DPS] = True
 
         self.assertDictEqual(
-            self.basicSwitch.device_state_attributes,
+            self.multiSwitch["switch"].device_state_attributes,
             {
                 "test_bit": 21,
                 "voltage_calibration": 22,
@@ -128,6 +135,5 @@ class TestSwitchV2Energy(
                 "fault_code": 26,
                 "cycle_timer": "1A2B",
                 "random_timer": "3C4D",
-                "unknown_46": True,
             },
         )
