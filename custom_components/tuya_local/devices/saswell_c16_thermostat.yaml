@@ -114,6 +114,7 @@ secondary_entities:
   - entity: number
     name: Floor Temperature Limit
     category: config
+    icon: "mdi:thermometer-alert"
     dps:
       - id: 6
         name: value
@@ -134,8 +135,10 @@ secondary_entities:
         mapping:
           - dps_val: true
             value: Office
+            icon: "mdi:office-building-marker"
           - dps_val: false
             value: Home
+            icon: "mdi:home-map-marker"
   - entity: sensor
     name: Floor Temperature
     class: temperature
@@ -150,6 +153,7 @@ secondary_entities:
           - scale: 10
   - entity: switch
     name: Adaptive
+    icon: "mdi:school"
     category: config
     dps:
       - id: 10
@@ -157,6 +161,7 @@ secondary_entities:
         type: boolean
   - entity: select
     name: Schedule
+    icon: "mdi:calendar-clock"
     category: config
     dps:
       - id: 12
@@ -170,6 +175,7 @@ secondary_entities:
   - entity: number
     name: Power Rating
     category: config
+    icon: "mdi:signal"
     dps:
       - id: 22
         name: value

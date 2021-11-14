@@ -106,7 +106,7 @@ class TestMincoMH1823DThermostat(
         self.setUpMultiSelect(
             [
                 {
-                    "name": "select_sensor",
+                    "name": "select_temperature_sensor",
                     "dps": SELECT_DPS,
                     "options": {
                         "in": "Internal",

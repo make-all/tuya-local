@@ -306,4 +306,4 @@ class TestElectriqDESD9LWDehumidifier(
         self.assertEqual(self.basicLight.icon, "mdi:solar-power")
 
     def test_switch_icon(self):
-        self.assertEqual(self.basicSwitch.icon, "mdi:atom-variant")
+        self.assertEqual(self.basicSwitch.icon, "mdi:creation")

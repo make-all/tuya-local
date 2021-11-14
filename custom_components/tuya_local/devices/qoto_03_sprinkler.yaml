@@ -1,6 +1,7 @@
 name: QOTO 03 Sprinkler Controller
 primary_entity:
   entity: number
+  icon: "mdi:pipe-valve"
   dps:
     - id: 102
       type: integer
@@ -13,6 +14,7 @@ primary_entity:
 secondary_entities:
   - entity: sensor
     category: diagnostic
+    icon: "mdi:valve"
     name: Open
     dps:
       - id: 103
@@ -22,6 +24,7 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     name: Timer
+    icon: "mdi:timer"
     dps:
       - id: 104
         name: sensor
@@ -30,6 +33,7 @@ secondary_entities:
   - entity: number
     category: config
     name: Timer
+    icon: "mdi:timer"
     dps:
       - id: 105
         type: integer
