@@ -4,6 +4,7 @@ from uuid import uuid4
 
 from custom_components.tuya_local.generic.binary_sensor import TuyaLocalBinarySensor
 from custom_components.tuya_local.generic.climate import TuyaLocalClimate
+from custom_components.tuya_local.generic.cover import TuyaLocalCover
 from custom_components.tuya_local.generic.fan import TuyaLocalFan
 from custom_components.tuya_local.generic.humidifier import TuyaLocalHumidifier
 from custom_components.tuya_local.generic.light import TuyaLocalLight
@@ -23,6 +24,7 @@ from ..helpers import assert_device_properties_set
 DEVICE_TYPES = {
     "binary_sensor": TuyaLocalBinarySensor,
     "climate": TuyaLocalClimate,
+    "cover": TuyaLocalCover,
     "fan": TuyaLocalFan,
     "humidifier": TuyaLocalHumidifier,
     "light": TuyaLocalLight,

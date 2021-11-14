@@ -615,3 +615,8 @@ MINCO_MH1823D_THERMOSTAT_PAYLOAD = {
     "106": 35,
     "107": 95,
 }
+
+SIMPLE_GARAGE_DOOR_PAYLOAD = {
+    "1": True,
+    "101": False,
+}

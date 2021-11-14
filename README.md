@@ -109,6 +109,9 @@ the device will not work despite being listed below.
 - Other brands may work with the above configurations
 - Simple Switch - a switch only, can be a fallback for many other unsupported devices, to allow just power to be switched on/off.
 
+### Covers
+- Simple Garage Door
+
 ### Miscellaneous
 - Qoto 03 Smart Water Valve / Sprinkler Controller
 
