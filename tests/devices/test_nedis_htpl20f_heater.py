@@ -1,7 +1,7 @@
-from homeassistant.components.binary_sensor import DEVICE_CLASS_PROBLEM
 from homeassistant.components.climate.const import (
     HVAC_MODE_HEAT,
     HVAC_MODE_OFF,
+    PRESET_AWAY,
     PRESET_COMFORT,
     PRESET_ECO,
     SUPPORT_TARGET_TEMPERATURE,
@@ -9,30 +9,33 @@ from homeassistant.components.climate.const import (
 )
 from homeassistant.const import STATE_UNAVAILABLE
 
-from ..const import EUROM_601_HEATER_PAYLOAD
+from ..const import NEDIS_HTPL20F_PAYLOAD
 from ..helpers import assert_device_properties_set
-from ..mixins.binary_sensor import BasicBinarySensorTests
+from ..mixins.lock import BasicLockTests
+from ..mixins.number import BasicNumberTests
 from .base_device_tests import TuyaDeviceTestCase
 
 HVACMODE_DPS = "1"
 TEMPERATURE_DPS = "2"
 CURRENTTEMP_DPS = "3"
-PRESET_DPS = "6"
-ERROR_DPS = "13"
+PRESET_DPS = "4"
+LOCK_DPS = "7"
+UNKNOWN11_DPS = "11"
+TIMER_DPS = "13"
+UNKNOWN101_DPS = "101"
 
 
-class TestEurom601Heater(BasicBinarySensorTests, TuyaDeviceTestCase):
+class TestNedisHtpl20fHeater(BasicLockTests, BasicNumberTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
-        self.setUpForConfig("eurom_601_heater.yaml", EUROM_601_HEATER_PAYLOAD)
+        self.setUpForConfig("nedis_htpl20f_heater.yaml", NEDIS_HTPL20F_PAYLOAD)
         self.subject = self.entities.get("climate")
-        self.setUpBasicBinarySensor(
-            ERROR_DPS,
-            self.entities.get("binary_sensor_error"),
-            device_class=DEVICE_CLASS_PROBLEM,
-            testdata=(1, 0),
+        self.setUpBasicLock(
+            LOCK_DPS,
+            self.entities.get("lock_child_lock"),
         )
+        self.setUpBasicNumber(TIMER_DPS, self.entities.get("number_timer"), max=1440)
 
     def test_supported_features(self):
         self.assertEqual(
@@ -131,31 +134,42 @@ class TestEurom601Heater(BasicBinarySensorTests, TuyaDeviceTestCase):
     def test_preset_modes(self):
         self.assertCountEqual(
             self.subject.preset_modes,
-            [PRESET_COMFORT, PRESET_ECO],
+            [PRESET_COMFORT, PRESET_ECO, PRESET_AWAY],
         )
 
     def test_preset_mode(self):
-        self.dps[PRESET_DPS] = True
+        self.dps[PRESET_DPS] = "1"
         self.assertEqual(self.subject.preset_mode, PRESET_ECO)
 
-        self.dps[PRESET_DPS] = False
+        self.dps[PRESET_DPS] = "2"
         self.assertEqual(self.subject.preset_mode, PRESET_COMFORT)
+
+        self.dps[PRESET_DPS] = "3"
+        self.assertEqual(self.subject.preset_mode, PRESET_AWAY)
 
     async def test_set_preset_more_to_eco(self):
         async with assert_device_properties_set(
-            self.subject._device, {PRESET_DPS: True}
+            self.subject._device, {PRESET_DPS: "1"}
         ):
             await self.subject.async_set_preset_mode(PRESET_ECO)
 
     async def test_set_preset_more_to_comfort(self):
         async with assert_device_properties_set(
-            self.subject._device, {PRESET_DPS: False}
+            self.subject._device, {PRESET_DPS: "2"}
         ):
             await self.subject.async_set_preset_mode(PRESET_COMFORT)
 
+    async def test_set_preset_more_to_away(self):
+        async with assert_device_properties_set(
+            self.subject._device, {PRESET_DPS: "3"}
+        ):
+            await self.subject.async_set_preset_mode(PRESET_AWAY)
+
     def test_device_state_attributes(self):
-        self.dps[ERROR_DPS] = 13
+        self.dps[UNKNOWN11_DPS] = "11"
+        self.dps[UNKNOWN101_DPS] = True
+
         self.assertCountEqual(
             self.subject.device_state_attributes,
-            {"error": 13},
+            {"unknown_11": "11", "unknown_101": True},
         )

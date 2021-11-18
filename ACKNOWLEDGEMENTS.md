@@ -55,3 +55,4 @@ Further device support has been made with the assistance of users.  Please consi
  - [voed](https://github.com/voed) for assistance in supporting Advanced Energy monitoring smart switch, based on CBE smart switch but seeming to follow a Tuya Standard Template, so probably applicable to others.
  - [myevit](https://github.com/myevit) for assistance in supporting simple garage doors.
  - [maartendamen](https://github.com/maartendamen) for assistance in supporting Eurom Mon Soleil 601 heaters.
+ - [TeddyLafrite](https://github.com/TeddyLafrite) for assistance in supporting Nedis HTPL20F heaters.

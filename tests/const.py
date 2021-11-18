@@ -622,3 +622,14 @@ SIMPLE_GARAGE_DOOR_PAYLOAD = {
     "1": True,
     "101": False,
 }
+
+NEDIS_HTPL20F_PAYLOAD = {
+    "1": True,
+    "2": 25,
+    "3": 25,
+    "4": "1",
+    "7": False,
+    "11": "0",
+    "13": 0,
+    "101": False,
+}

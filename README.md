@@ -40,6 +40,7 @@ the device will not work despite being listed below.
 - Purline Hoti M100 heater
 - Wetair WCH-750 heater
 - Kogan Flame effect heater - KAWHMFP20BA model
+- Nedis convection heater - WIFIHTPL20F models
 
 ### Air Conditioners / Heatpumps
 
