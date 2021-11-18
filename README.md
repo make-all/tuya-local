@@ -36,7 +36,7 @@ the device will not work despite being listed below.
 - Goldair heater models beginning with the code GPPH, GCPV, GECO
 - Kogan Wi-Fi Convection Panel heaters - KAHTP and KAWFHTP models
 - Andersson GSH heater
-- Eurom heater
+- Eurom Mon Soleil 600 and 601 heaters
 - Purline Hoti M100 heater
 - Wetair WCH-750 heater
 - Kogan Flame effect heater - KAWHMFP20BA model
