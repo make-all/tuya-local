@@ -37,6 +37,7 @@ the device will not work despite being listed below.
 - Kogan Wi-Fi Convection Panel heaters - KAHTP and KAWFHTP models
 - Andersson GSH heater
 - Eurom Mon Soleil 600 and 601 heaters
+- Eurom SaniWall 2000 heater
 - Purline Hoti M100 heater
 - Wetair WCH-750 heater
 - Kogan Flame effect heater - KAWHMFP20BA model
