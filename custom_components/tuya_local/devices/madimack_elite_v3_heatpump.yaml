@@ -1,0 +1,151 @@
+name: Madimack Elite V3 Pool Heatpump
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: power
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+          icon: "mdi:hvac-off"
+          icon_priority: 1
+      hidden: false
+    - id: 2
+      name: hvac_mode
+      type: string
+      mapping:
+        - dps_val: auto
+          icon: "mdi:refresh-auto"
+          icon_priority: 1
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: auto
+        - dps_val: cold
+          icon: "mdi:snowflake"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+              value: "off"
+            - dps_val: true
+              value: cool
+        - dps_val: heating
+          icon: "mdi:hot-tub"
+          icon_priority: 3
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: heat
+    - id: 102
+      name: current_temperature
+      type: integer
+      readonly: true
+    - id: 6
+      name: temperature_unit
+      type: string
+      mapping:
+        - dps_val: f
+          value: F
+        - dps_val: c
+          value: C
+    - id: 20
+      name: power_level
+      type: integer
+      readonly: true
+    - id: 4
+      name: temperature
+      type: integer
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              range:
+                min: 60
+                max: 104 # is it?
+      range:
+        min: 18
+        max: 40
+    # ^ in reality, the range is different for cool and auto
+    - id: 2
+      type: string
+      name: mode
+    - id: 21
+      type: integer
+      name: max_temperature
+      readonly: true
+    - id: 22
+      type: integer
+      name: min_temperature
+      readonly: true
+    - id: 23
+      type: integer
+      name: c4_evaporator_coil_pipe_temperature
+      readonly: true
+    - id: 5
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: silence
+          value: Silence
+        - dps_val: power
+          value: Perfect
+        - dps_val: boost
+          value: Power
+    - id: 24
+      name: c3_exhaust_gas_temperature
+      type: integer
+      readonly: true
+    - id: 25
+      name: c1_outlet_water_temperature
+      type: integer
+      readonly: true
+    - id: 26
+      name: c2_ambient_temperature
+      type: integer
+      readonly: true
+    - id: 103
+      name: c5_return_gas_temperature
+      type: integer
+      readonly: true
+    - id: 104
+      name: c6_cooling_coil_pipe_temperature
+      type: integer
+      readonly: true
+    - id: 105
+      name: c9_cooling_plate_temperature
+      type: integer
+      readonly: true
+    - id: 106
+      name: eev_opening
+      type: integer
+      readonly: true
+    - id: 15
+      name: unknown_15
+      type: integer
+      readonly: true
+    - id: 101
+      name: unknown_101
+      type: integer
+      readonly: true
+    - id: 107
+      name: unknown_130
+      type: boolean
+      readonly: true
+secondary_entities:
+  - entity: sensor
+    category: diagnostic
+    name: Power Level
+    class: power_factor
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: "%"
+        readonly: true
