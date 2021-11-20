@@ -3,6 +3,7 @@ from homeassistant.components.climate.const import (
     HVAC_MODE_HEAT,
     HVAC_MODE_OFF,
     PRESET_BOOST,
+    PRESET_COMFORT,
     PRESET_ECO,
     SUPPORT_TARGET_TEMPERATURE,
     SUPPORT_PRESET_MODE,
@@ -42,7 +43,7 @@ class TestEuromSaniWall2000Heater(TuyaDeviceTestCase):
         self.dps[HVACMODE_DPS] = False
         self.assertEqual(self.subject.icon, "mdi:radiator-disabled")
         self.dps[HVACMODE_DPS] = True
-        self.dps[PRESET_DPS] = "low"
+        self.dps[PRESET_DPS] = "auto"
         self.assertEqual(self.subject.icon, "mdi:radiator")
         self.dps[PRESET_DPS] = "off"
         self.assertEqual(self.subject.icon, "mdi:fan")
@@ -105,7 +106,7 @@ class TestEuromSaniWall2000Heater(TuyaDeviceTestCase):
 
     def test_hvac_mode(self):
         self.dps[HVACMODE_DPS] = True
-        self.dps[PRESET_DPS] = "high"
+        self.dps[PRESET_DPS] = "100_perc"
         self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT)
 
         self.dps[PRESET_DPS] = "off"
@@ -125,7 +126,7 @@ class TestEuromSaniWall2000Heater(TuyaDeviceTestCase):
 
     async def test_set_hvac_mode_to_heat(self):
         async with assert_device_properties_set(
-            self.subject._device, {HVACMODE_DPS: True, PRESET_DPS: "low"}
+            self.subject._device, {HVACMODE_DPS: True, PRESET_DPS: "auto"}
         ):
             await self.subject.async_set_hvac_mode(HVAC_MODE_HEAT)
 
@@ -144,29 +145,36 @@ class TestEuromSaniWall2000Heater(TuyaDeviceTestCase):
     def test_preset_modes(self):
         self.assertCountEqual(
             self.subject.preset_modes,
-            [PRESET_BOOST, PRESET_ECO, "fan"],
+            [PRESET_BOOST, PRESET_COMFORT, PRESET_ECO, "fan"],
         )
 
     def test_preset_mode(self):
         self.dps[PRESET_DPS] = "off"
         self.assertEqual(self.subject.preset_mode, "fan")
-        self.dps[PRESET_DPS] = "low"
+        self.dps[PRESET_DPS] = "50_perc"
         self.assertEqual(self.subject.preset_mode, PRESET_ECO)
-
-        self.dps[PRESET_DPS] = "high"
+        self.dps[PRESET_DPS] = "100_perc"
         self.assertEqual(self.subject.preset_mode, PRESET_BOOST)
+        self.dps[PRESET_DPS] = "auto"
+        self.assertEqual(self.subject.preset_mode, PRESET_COMFORT)
 
     async def test_set_preset_more_to_eco(self):
         async with assert_device_properties_set(
-            self.subject._device, {PRESET_DPS: "low"}
+            self.subject._device, {PRESET_DPS: "50_perc"}
         ):
             await self.subject.async_set_preset_mode(PRESET_ECO)
 
     async def test_set_preset_more_to_boost(self):
         async with assert_device_properties_set(
-            self.subject._device, {PRESET_DPS: "high"}
+            self.subject._device, {PRESET_DPS: "100_perc"}
         ):
             await self.subject.async_set_preset_mode(PRESET_BOOST)
+
+    async def test_set_preset_mode_to_comfort(self):
+        async with assert_device_properties_set(
+            self.subject._device, {PRESET_DPS: "auto"}
+        ):
+            await self.subject.async_set_preset_mode(PRESET_COMFORT)
 
     async def test_set_preset_mode_to_fan(self):
         async with assert_device_properties_set(

@@ -15,10 +15,13 @@ primary_entity:
             - dps_val: "off"
               value: fan_only
               icon: "mdi:fan"
-            - dps_val: low
+            - dps_val: auto
               value: heat
               icon: "mdi:radiator"
-            - dps_val: high
+            - dps_val: "50_perc"
+              value: heat
+              icon: "mdi:radiator"
+            - dps_val: "100_perc"
               value: heat
               icon: "mdi:radiator"
     - id: 2
@@ -36,10 +39,12 @@ primary_entity:
       mapping:
         - dps_val: "off"
           value: fan
-        - dps_val: low
+        - dps_val: "50_perc"
           value: eco
-        - dps_val: high
+        - dps_val: "100_perc"
           value: boost
+        - dps_val: auto
+          value: comfort
     - id: 7
       type: boolean
       name: swing_mode
