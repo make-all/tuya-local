@@ -132,10 +132,6 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
                 legacy_class,
             )
 
-    def test_gpph_heater_detection(self):
-        """Test that GPPH heater can be detected from its sample payload."""
-        self._test_detect(GPPH_HEATER_PAYLOAD, "heater", "GoldairHeater")
-
     def test_goldair_dehumidifier_detection(self):
         """Test that Goldair dehumidifier can be detected from its sample payload."""
         self._test_detect(

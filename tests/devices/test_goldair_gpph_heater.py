@@ -1,5 +1,3 @@
-from unittest import skip
-
 from homeassistant.components.binary_sensor import DEVICE_CLASS_PROBLEM
 from homeassistant.components.climate.const import (
     HVAC_MODE_HEAT,
@@ -313,11 +311,10 @@ class TestGoldairHeater(
             ["Stop", "1", "2", "3", "4", "5", "Auto"],
         )
 
-    @skip("Paired settings not supported yet")
     async def test_set_power_level_to_stop(self):
         async with assert_device_properties_set(
             self.subject._device,
-            {POWERLEVEL_DPS: "stop"},
+            {POWERLEVEL_DPS: "stop", SWING_DPS: "stop"},
         ):
             await self.subject.async_set_swing_mode("Stop")
 
@@ -334,11 +331,6 @@ class TestGoldairHeater(
             {SWING_DPS: "user", POWERLEVEL_DPS: "3"},
         ):
             await self.subject.async_set_swing_mode("3")
-
-    @skip("Restriction to mapped values not supported yet")
-    async def test_set_power_level_to_invalid_value_raises_error(self):
-        with self.assertRaisesRegex(ValueError, "Invalid power level: unknown"):
-            await self.subject.async_set_swing_mode("unknown")
 
     def test_device_state_attributes(self):
         self.dps[ERROR_DPS] = "something"

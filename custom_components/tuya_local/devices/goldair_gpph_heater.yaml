@@ -2,7 +2,6 @@ name: Goldair GPPH Heater
 legacy_type: heater
 primary_entity:
   entity: climate
-  legacy_class: ".heater.climate.GoldairHeater"
   dps:
     - id: 1
       type: boolean
@@ -61,9 +60,12 @@ primary_entity:
       type: string
       mapping:
         - dps_val: "stop"
-          value: "Stop"
           icon: "mdi:radiator-disabled"
           icon_priority: 2
+          constraint: swing_mode
+          conditions:
+            - dps_val: stop
+              value: "Stop"
         - dps_val: "1"
           value: "1"
         - dps_val: "2"
@@ -85,6 +87,11 @@ primary_entity:
       type: string
       mapping:
         - dps_val: "stop"
+          constraint: power_level
+          conditions:
+            - dps_val: stop
+              value: "Stop"
+          value-redirect: power_level
           value: "Stop"
         - dps_val: "auto"
           value: "Auto"
