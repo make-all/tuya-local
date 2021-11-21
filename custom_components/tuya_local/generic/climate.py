@@ -69,6 +69,8 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         self._temp_high_dps = dps_map.pop(ATTR_TARGET_TEMP_HIGH, None)
         self._temp_low_dps = dps_map.pop(ATTR_TARGET_TEMP_LOW, None)
         self._unit_dps = dps_map.pop("temperature_unit", None)
+        self._mintemp_dps = dps_map.pop("min_temperature", None)
+        self._maxtemp_dps = dps_map.pop("max_temperature", None)
 
         self._init_end(dps_map)
         self._support_flags = 0
@@ -156,6 +158,10 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
     @property
     def min_temp(self):
         """Return the minimum supported target temperature."""
+        # if a separate min_temperature dps is specified, the device tells us.
+        if self._mintemp_dps is not None:
+            return self._mintemp_dps.get_value(self._device)
+
         if self._temperature_dps is None:
             if self._temp_low_dps is None:
                 return None
@@ -167,6 +173,10 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
     @property
     def max_temp(self):
         """Return the maximum supported target temperature."""
+        # if a separate max_temperature dps is specified, the device tells us.
+        if self._maxtemp_dps is not None:
+            return self._maxtemp_dps.get_value(self._device)
+
         if self._temperature_dps is None:
             if self._temp_high_dps is None:
                 return None
