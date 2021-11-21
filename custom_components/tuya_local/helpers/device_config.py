@@ -161,14 +161,6 @@ class TuyaEntityConfig:
             return device_uid
 
     @property
-    def legacy_class(self):
-        """Return the legacy device corresponding to this config."""
-        name = self._config.get("legacy_class")
-        if name is None:
-            return None
-        return locate("custom_components.tuya_local" + name)
-
-    @property
     def entity_category(self):
         if self._is_primary:
             return None

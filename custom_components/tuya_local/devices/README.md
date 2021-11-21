@@ -75,15 +75,6 @@ devices until now and may need to be extended for new devices.  In
 particular, the light and lock entities have only been used for simple
 secondary entities, so only basic functionality is implemented.
 
-### `legacy_class`
-
-//Optional, deprecated.//
-
-The `legacy_class` is a transitional link back to the device specific
-class that contains the implementation of this device. This allows
-a transition for more complex devices that are not yet fully supported
-by the generic implementations. It should not be used for new devices.
-
 ### `deprecated`
 
 //Optional//

@@ -1,4 +1,3 @@
-from unittest import skip
 from unittest.mock import ANY
 
 from homeassistant.components.binary_sensor import (
@@ -211,10 +210,6 @@ class TestGoldairDehumidifier(
         self.dps[PRESET_DPS] = PRESET_DRY_CLOTHES
         self.assertIs(self.climate.target_humidity, None)
 
-        # self.dps[PRESET_DPS] = PRESET_NORMAL
-        # self.dps[AIRCLEAN_DPS] = True
-        # self.assertIs(self.climate.target_humidity, None)
-
     async def test_set_target_humidity_in_normal_preset_rounds_up_to_5_percent(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL
         async with assert_device_properties_set(
@@ -272,13 +267,6 @@ class TestGoldairDehumidifier(
             AttributeError, "humidity cannot be set at this time"
         ):
             await self.climate.async_set_humidity(50)
-
-        # self.dps[PRESET_DPS] = PRESET_NORMAL
-        # self.dps[AIRCLEAN_DPS] = True
-        # with self.assertRaisesRegex(
-        #     AttributeError, "humidity cannot be set at this time"
-        # ):
-        #     await self.climate.async_set_humidity(50)
 
     def test_temperature_unit_returns_device_temperature_unit(self):
         self.assertEqual(
@@ -382,11 +370,6 @@ class TestGoldairDehumidifier(
         ):
             await self.climate.async_set_preset_mode("Low")
 
-            # No anticipation of device behaviour in generic implementation
-            # self.climate._device.anticipate_property_value.assert_called_once_with(
-            #     FANMODE_DPS, "1"
-            # )
-
     async def test_set_preset_mode_to_high(self):
         async with assert_device_properties_set(
             self.climate._device,
@@ -396,11 +379,6 @@ class TestGoldairDehumidifier(
             },
         ):
             await self.climate.async_set_preset_mode("High")
-
-            # No anticipation of device behaviour in generic implementation
-            # self.climate._device.anticipate_property_value.assert_called_once_with(
-            #     FANMODE_DPS, "3"
-            # )
 
     async def test_set_preset_mode_to_dry_clothes(self):
         async with assert_device_properties_set(
@@ -412,45 +390,11 @@ class TestGoldairDehumidifier(
         ):
             await self.climate.async_set_preset_mode("Dry clothes")
 
-            # No anticipation of device behaviour in generic implementation
-            # self.climate._device.anticipate_property_value.assert_called_once_with(
-            #     FANMODE_DPS, "3"
-            # )
-
     async def test_set_preset_mode_to_air_clean(self):
         async with assert_device_properties_set(
             self.climate._device, {AIRCLEAN_DPS: True, PRESET_DPS: ANY}
         ):
             await self.climate.async_set_preset_mode("Air clean")
-
-            # No anticipation of device behaviour in generic implementation
-            # self.climate._device.anticipate_property_value.assert_called_once_with(
-            #     FANMODE_DPS, "1"
-            # )
-
-    @skip("Conditions not included in config")
-    def test_fan_mode_is_forced_to_high_in_high_dry_clothes_air_clean_presets(self):
-        self.dps[FANMODE_DPS] = "1"
-        self.dps[PRESET_DPS] = PRESET_HIGH
-        self.assertEqual(self.climate.fan_mode, FAN_HIGH)
-        self.assertEqual(self.fan.percentage, 100)
-
-        self.dps[PRESET_DPS] = PRESET_DRY_CLOTHES
-        self.assertEqual(self.climate.fan_mode, FAN_HIGH)
-        self.assertEqual(self.fan.percentage, 100)
-
-        self.dps[PRESET_DPS] = PRESET_NORMAL
-        self.dps[AIRCLEAN_DPS] = True
-        self.assertEqual(self.climate.fan_mode, FAN_HIGH)
-        self.assertEqual(self.climate.percentage, 100)
-
-    @skip("Conditions not included in config")
-    def test_fan_mode_is_forced_to_low_in_low_preset(self):
-        self.dps[FANMODE_DPS] = "3"
-        self.dps[PRESET_DPS] = PRESET_LOW
-
-        self.assertEqual(self.climate.fan_mode, FAN_LOW)
-        self.assertEqual(self.fan.percentage, 50)
 
     def test_fan_mode_reflects_dps_mode_in_normal_preset(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL
@@ -465,29 +409,6 @@ class TestGoldairDehumidifier(
         self.dps[FANMODE_DPS] = None
         self.assertEqual(self.climate.fan_mode, None)
         self.assertEqual(self.fan.percentage, None)
-
-    @skip("Conditions not included in config")
-    def test_fan_modes_reflect_preset_mode(self):
-        self.dps[PRESET_DPS] = PRESET_NORMAL
-        self.assertCountEqual(self.climate.fan_modes, [FAN_LOW, FAN_HIGH])
-        self.assertEqual(self.fan.speed_count, 2)
-
-        self.dps[PRESET_DPS] = PRESET_LOW
-        self.assertEqual(self.climate.fan_modes, [FAN_LOW])
-        self.assertEqual(self.fan.speed_count, 0)
-
-        self.dps[PRESET_DPS] = PRESET_HIGH
-        self.assertEqual(self.climate.fan_modes, [FAN_HIGH])
-        self.assertEqual(self.fan.speed_count, 0)
-
-        self.dps[PRESET_DPS] = PRESET_DRY_CLOTHES
-        self.assertEqual(self.climate.fan_modes, [FAN_HIGH])
-        self.assertEqual(self.fan.speed_count, 0)
-
-        # self.dps[PRESET_DPS] = PRESET_NORMAL
-        # self.dps[AIRCLEAN_DPS] = True
-        # self.assertEqual(self.climate.fan_modes, [FAN_HIGH])
-        # self.assertEqual(self.fan.speed_count, 0)
 
     async def test_set_fan_mode_to_low_succeeds_in_normal_preset(self):
         self.dps[PRESET_DPS] = PRESET_NORMAL
@@ -528,39 +449,6 @@ class TestGoldairDehumidifier(
             {FANMODE_DPS: "1"},
         ):
             await self.fan.async_set_percentage(30)
-
-    @skip("Restriction to listed options not supported yet")
-    async def test_set_fan_mode_fails_with_invalid_mode(self):
-        self.dps[PRESET_DPS] = PRESET_NORMAL
-        with self.assertRaisesRegex(ValueError, "Invalid fan mode: something"):
-            await self.climate.async_set_fan_mode("something")
-
-    @skip("Conditions not yet supported for setting")
-    async def test_set_fan_mode_fails_outside_normal_preset(self):
-        self.dps[PRESET_DPS] = PRESET_LOW
-        with self.assertRaisesRegex(
-            AttributeError, "fan_mode cannot be set at this time"
-        ):
-            await self.climate.async_set_fan_mode(FAN_HIGH)
-
-        self.dps[PRESET_DPS] = PRESET_HIGH
-        with self.assertRaisesRegex(
-            AttributeError, "fan_mode cannot be set at this time"
-        ):
-            await self.climate.async_set_fan_mode(FAN_HIGH)
-
-        self.dps[PRESET_DPS] = PRESET_DRY_CLOTHES
-        with self.assertRaisesRegex(
-            AttributeError, "fan_mode cannot be set at this time"
-        ):
-            await self.climate.async_set_fan_mode(FAN_HIGH)
-
-        # self.dps[PRESET_DPS] = PRESET_NORMAL
-        # self.dps[AIRCLEAN_DPS] = True
-        # with self.assertRaisesRegex(
-        #     ValueError, "Fan mode can only be changed while in Normal preset mode"
-        # ):
-        #     await self.climate.async_set_fan_mode(FAN_HIGH)
 
     def test_device_state_attributes(self):
         self.dps[ERROR_DPS] = None

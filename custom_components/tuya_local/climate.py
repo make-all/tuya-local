@@ -25,11 +25,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         raise ValueError(f"No device config found for {discovery_info}")
     ecfg = cfg.primary_entity
     if ecfg.entity == "climate" and discovery_info.get(ecfg.config_id, False):
-        legacy_class = ecfg.legacy_class
-        if legacy_class is None:
-            data[ecfg.config_id] = TuyaLocalClimate(device, ecfg)
-        else:
-            data[ecfg.config_id] = legacy_class(device)
+        data[ecfg.config_id] = TuyaLocalClimate(device, ecfg)
         climates.append(data[ecfg.config_id])
         if ecfg.deprecated:
             _LOGGER.warning(ecfg.deprecation_message)
@@ -37,11 +33,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
 
     for ecfg in cfg.secondary_entities():
         if ecfg.entity == "climate" and discovery_info.get(ecfg.config_id, False):
-            legacy_class = ecfg.legacy_class
-            if legacy_class is None:
-                data[ecfg.config_id] = TuyaLocalClimate(device, ecfg)
-            else:
-                data[ecfg.config_id] = legacy_class(device)
+            data[ecfg.config_id] = TuyaLocalClimate(device, ecfg)
             climates.append(data[ecfg.config_id])
             if ecfg.deprecated:
                 _LOGGER.warning(ecfg.deprecation_message)
