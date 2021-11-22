@@ -13,7 +13,7 @@ from homeassistant.components.climate.const import (
 )
 from homeassistant.const import STATE_UNAVAILABLE
 
-from ..const import EUROM_SANIWALL2000_HEATER_PAYLOAD
+from ..const import EUROM_WALLDESIGNHEAT2000_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
 from .base_device_tests import TuyaDeviceTestCase
 
@@ -24,12 +24,13 @@ PRESET_DPS = "4"
 SWING_DPS = "7"
 
 
-class TestEuromSaniWall2000Heater(TuyaDeviceTestCase):
+class TestEuromWallDesignheat2000Heater(TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig(
-            "eurom_saniwall2000_heater.yaml", EUROM_SANIWALL2000_HEATER_PAYLOAD
+            "eurom_walldesignheat2000_heater.yaml",
+            EUROM_WALLDESIGNHEAT2000_HEATER_PAYLOAD,
         )
         self.subject = self.entities.get("climate")
 

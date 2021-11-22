@@ -27,7 +27,7 @@ EUROM_600_HEATER_PAYLOAD = {"1": True, "2": 15, "5": 18, "6": 0}
 
 EUROM_601_HEATER_PAYLOAD = {"1": True, "2": 21, "3": 20, "6": False, "13": 0}
 
-EUROM_SANIWALL2000_HEATER_PAYLOAD = {
+EUROM_WALLDESIGNHEAT2000_HEATER_PAYLOAD = {
     "1": True,
     "2": 21,
     "3": 19,
