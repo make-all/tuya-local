@@ -11,6 +11,7 @@ from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import MOES_BHT002_PAYLOAD
 from ..helpers import assert_device_properties_set
+from ..mixins.climate import TargetTemperatureTests
 from ..mixins.lock import BasicLockTests
 from .base_device_tests import TuyaDeviceTestCase
 
@@ -23,7 +24,9 @@ LOCK_DPS = "6"
 UNKNOWN104_DPS = "104"
 
 
-class TestMoesBHT002Thermostat(BasicLockTests, TuyaDeviceTestCase):
+class TestMoesBHT002Thermostat(
+    BasicLockTests, TargetTemperatureTests, TuyaDeviceTestCase
+):
     __test__ = True
 
     def setUp(self):
@@ -32,6 +35,13 @@ class TestMoesBHT002Thermostat(BasicLockTests, TuyaDeviceTestCase):
             MOES_BHT002_PAYLOAD,
         )
         self.subject = self.entities.get("climate")
+        self.setUpTargetTemperature(
+            TEMPERATURE_DPS,
+            self.subject,
+            min=5.0,
+            max=35.0,
+            scale=2,
+        )
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
 
     def test_supported_features(self):
@@ -45,25 +55,6 @@ class TestMoesBHT002Thermostat(BasicLockTests, TuyaDeviceTestCase):
             self.subject.temperature_unit,
             self.subject._device.temperature_unit,
         )
-
-    def test_target_temperature(self):
-        self.dps[TEMPERATURE_DPS] = 50
-        self.assertEqual(self.subject.target_temperature, 25)
-
-    def test_target_temperature_step(self):
-        self.assertEqual(self.subject.target_temperature_step, 0.5)
-
-    def test_minimum_target_temperature(self):
-        self.assertEqual(self.subject.min_temp, 5)
-
-    def test_maximum_target_temperature(self):
-        self.assertEqual(self.subject.max_temp, 35)
-
-    async def test_legacy_set_temperature_with_temperature(self):
-        async with assert_device_properties_set(
-            self.subject._device, {TEMPERATURE_DPS: 41}
-        ):
-            await self.subject.async_set_temperature(temperature=20.5)
 
     async def test_legacy_set_temperature_with_preset_mode(self):
         async with assert_device_properties_set(
@@ -82,30 +73,6 @@ class TestMoesBHT002Thermostat(BasicLockTests, TuyaDeviceTestCase):
             await self.subject.async_set_temperature(
                 temperature=22, preset_mode=PRESET_COMFORT
             )
-
-    async def test_set_target_temperature_succeeds_within_valid_range(self):
-        async with assert_device_properties_set(
-            self.subject._device,
-            {TEMPERATURE_DPS: 45},
-        ):
-            await self.subject.async_set_target_temperature(22.5)
-
-    async def test_set_target_temperature_rounds_value_to_closest_half(self):
-        async with assert_device_properties_set(
-            self.subject._device, {TEMPERATURE_DPS: 35}
-        ):
-            await self.subject.async_set_target_temperature(17.6)
-
-    async def test_set_target_temperature_fails_outside_valid_range(self):
-        with self.assertRaisesRegex(
-            ValueError, "temperature \\(4.5\\) must be between 5.0 and 35.0"
-        ):
-            await self.subject.async_set_target_temperature(4.5)
-
-        with self.assertRaisesRegex(
-            ValueError, "temperature \\(35.5\\) must be between 5.0 and 35.0"
-        ):
-            await self.subject.async_set_target_temperature(35.5)
 
     def test_current_temperature(self):
         self.dps[CURRENTTEMP_DPS] = 44

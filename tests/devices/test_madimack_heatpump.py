@@ -17,6 +17,7 @@ from homeassistant.const import (
 
 from ..const import MADIMACK_HEATPUMP_PAYLOAD
 from ..helpers import assert_device_properties_set
+from ..mixins.climate import TargetTemperatureTests
 from ..mixins.sensor import BasicSensorTests
 from .base_device_tests import TuyaDeviceTestCase
 
@@ -48,12 +49,22 @@ UNKNOWN140_DPS = "140"
 PRESET_DPS = "117"
 
 
-class TestMadimackPoolHeatpump(BasicSensorTests, TuyaDeviceTestCase):
+class TestMadimackPoolHeatpump(
+    BasicSensorTests,
+    TargetTemperatureTests,
+    TuyaDeviceTestCase,
+):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("madimack_heatpump.yaml", MADIMACK_HEATPUMP_PAYLOAD)
         self.subject = self.entities.get("climate")
+        self.setUpTargetTemperature(
+            TEMPERATURE_DPS,
+            self.subject,
+            min=18,
+            max=45,
+        )
         self.setUpBasicSensor(
             POWERLEVEL_DPS,
             self.entities.get("sensor_power_level"),
@@ -80,19 +91,6 @@ class TestMadimackPoolHeatpump(BasicSensorTests, TuyaDeviceTestCase):
         self.dps[UNITS_DPS] = True
         self.assertEqual(self.subject.temperature_unit, TEMP_CELSIUS)
 
-    def test_target_temperature(self):
-        self.dps[TEMPERATURE_DPS] = 25
-        self.assertEqual(self.subject.target_temperature, 25)
-
-    def test_target_temperature_step(self):
-        self.assertEqual(self.subject.target_temperature_step, 1)
-
-    def test_minimum_target_temperature(self):
-        self.assertEqual(self.subject.min_temp, 18)
-
-    def test_maximum_target_temperature(self):
-        self.assertEqual(self.subject.max_temp, 45)
-
     def test_minimum_fahrenheit_temperature(self):
         self.dps[UNITS_DPS] = False
         self.assertEqual(self.subject.min_temp, 60)
@@ -100,40 +98,6 @@ class TestMadimackPoolHeatpump(BasicSensorTests, TuyaDeviceTestCase):
     def test_maximum_fahrenheit_temperature(self):
         self.dps[UNITS_DPS] = False
         self.assertEqual(self.subject.max_temp, 115)
-
-    async def test_legacy_set_temperature_with_temperature(self):
-        async with assert_device_properties_set(
-            self.subject._device, {TEMPERATURE_DPS: 25}
-        ):
-            await self.subject.async_set_temperature(temperature=25)
-
-    async def test_legacy_set_temperature_with_no_valid_properties(self):
-        await self.subject.async_set_temperature(something="else")
-        self.subject._device.async_set_property.assert_not_called()
-
-    async def test_set_target_temperature_succeeds_within_valid_range(self):
-        async with assert_device_properties_set(
-            self.subject._device, {TEMPERATURE_DPS: 25}
-        ):
-            await self.subject.async_set_target_temperature(25)
-
-    async def test_set_target_temperature_rounds_value_to_closest_integer(self):
-        async with assert_device_properties_set(
-            self.subject._device,
-            {TEMPERATURE_DPS: 25},
-        ):
-            await self.subject.async_set_target_temperature(24.6)
-
-    async def test_set_target_temperature_fails_outside_valid_range(self):
-        with self.assertRaisesRegex(
-            ValueError, "temperature \\(14\\) must be between 18 and 45"
-        ):
-            await self.subject.async_set_target_temperature(14)
-
-        with self.assertRaisesRegex(
-            ValueError, "temperature \\(46\\) must be between 18 and 45"
-        ):
-            await self.subject.async_set_target_temperature(46)
 
     def test_current_temperature(self):
         self.dps[CURRENTTEMP_DPS] = 25

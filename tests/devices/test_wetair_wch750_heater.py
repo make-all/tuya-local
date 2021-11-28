@@ -12,6 +12,7 @@ from homeassistant.const import STATE_UNAVAILABLE, TIME_MINUTES
 
 from ..const import WETAIR_WCH750_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
+from ..mixins.climate import TargetTemperatureTests
 from ..mixins.select import BasicSelectTests
 from ..mixins.sensor import BasicSensorTests
 from .base_device_tests import TuyaDeviceTestCase
@@ -26,12 +27,23 @@ UNKNOWN21_DPS = "21"
 BRIGHTNESS_DPS = "101"
 
 
-class TestWetairWCH750Heater(BasicSelectTests, BasicSensorTests, TuyaDeviceTestCase):
+class TestWetairWCH750Heater(
+    BasicSelectTests,
+    BasicSensorTests,
+    TargetTemperatureTests,
+    TuyaDeviceTestCase,
+):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("wetair_wch750_heater.yaml", WETAIR_WCH750_HEATER_PAYLOAD)
         self.subject = self.entities.get("climate")
+        self.setUpTargetTemperature(
+            TEMPERATURE_DPS,
+            self.subject,
+            min=10,
+            max=35,
+        )
         self.light = self.entities.get("light_display")
         self.setUpBasicSelect(
             TIMER_DPS,
@@ -86,29 +98,10 @@ class TestWetairWCH750Heater(BasicSelectTests, BasicSensorTests, TuyaDeviceTestC
             self.subject.temperature_unit, self.subject._device.temperature_unit
         )
 
-    def test_target_temperature(self):
-        self.dps[TEMPERATURE_DPS] = 25
-        self.assertEqual(self.subject.target_temperature, 25)
-
     def test_target_temperature_in_af_mode(self):
         self.dps[TEMPERATURE_DPS] = 25
         self.dps[PRESET_DPS] = "mod_antiforst"
         self.assertEqual(self.subject.target_temperature, None)
-
-    def test_target_temperature_step(self):
-        self.assertEqual(self.subject.target_temperature_step, 1)
-
-    def test_minimum_temperature(self):
-        self.assertEqual(self.subject.min_temp, 10)
-
-    def test_maximum_temperature(self):
-        self.assertEqual(self.subject.max_temp, 35)
-
-    async def test_legacy_set_temperature_with_temperature(self):
-        async with assert_device_properties_set(
-            self.subject._device, {TEMPERATURE_DPS: 25}
-        ):
-            await self.subject.async_set_temperature(temperature=25)
 
     async def test_legacy_set_temperature_with_preset_mode(self):
         async with assert_device_properties_set(
@@ -124,34 +117,6 @@ class TestWetairWCH750Heater(BasicSelectTests, BasicSensorTests, TuyaDeviceTestC
             await self.subject.async_set_temperature(
                 preset_mode=PRESET_BOOST, temperature=25
             )
-
-    async def test_legacy_set_temperature_with_no_valid_properties(self):
-        await self.subject.async_set_temperature(something="else")
-        self.subject._device.async_set_property.assert_not_called()
-
-    async def test_set_target_temperature(self):
-        async with assert_device_properties_set(
-            self.subject._device, {TEMPERATURE_DPS: 25}
-        ):
-            await self.subject.async_set_target_temperature(25)
-
-    async def test_set_target_temperature_rounds_value_to_closest_integer(self):
-        async with assert_device_properties_set(
-            self.subject._device,
-            {TEMPERATURE_DPS: 25},
-        ):
-            await self.subject.async_set_target_temperature(24.6)
-
-    async def test_set_target_temperature_fails_outside_valid_range(self):
-        with self.assertRaisesRegex(
-            ValueError, "temperature \\(9\\) must be between 10 and 35"
-        ):
-            await self.subject.async_set_target_temperature(9)
-
-        with self.assertRaisesRegex(
-            ValueError, "temperature \\(36\\) must be between 10 and 35"
-        ):
-            await self.subject.async_set_target_temperature(36)
 
     async def test_set_target_temperature_fails_in_anti_frost(self):
         self.dps[PRESET_DPS] = "mod_antiforst"

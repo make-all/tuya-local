@@ -15,6 +15,7 @@ from homeassistant.const import (
 
 from ..const import BECA_BHT002_PAYLOAD
 from ..helpers import assert_device_properties_set
+from ..mixins.climate import TargetTemperatureTests
 from ..mixins.light import BasicLightTests
 from ..mixins.lock import BasicLockTests
 from ..mixins.sensor import BasicSensorTests
@@ -31,7 +32,11 @@ UNKNOWN104_DPS = "104"
 
 
 class TestBecaBHT002Thermostat(
-    BasicLightTests, BasicLockTests, BasicSensorTests, TuyaDeviceTestCase
+    BasicLightTests,
+    BasicLockTests,
+    BasicSensorTests,
+    TargetTemperatureTests,
+    TuyaDeviceTestCase,
 ):
     __test__ = True
 
@@ -41,6 +46,13 @@ class TestBecaBHT002Thermostat(
             BECA_BHT002_PAYLOAD,
         )
         self.subject = self.entities.get("climate")
+        self.setUpTargetTemperature(
+            TEMPERATURE_DPS,
+            self.subject,
+            min=5.0,
+            max=35.0,
+            scale=2,
+        )
         self.setUpBasicLight(POWER_DPS, self.entities.get("light_display"))
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
         self.setUpBasicSensor(
@@ -64,25 +76,6 @@ class TestBecaBHT002Thermostat(
             self.subject._device.temperature_unit,
         )
 
-    def test_target_temperature(self):
-        self.dps[TEMPERATURE_DPS] = 50
-        self.assertEqual(self.subject.target_temperature, 25)
-
-    def test_target_temperature_step(self):
-        self.assertEqual(self.subject.target_temperature_step, 0.5)
-
-    def test_minimum_target_temperature(self):
-        self.assertEqual(self.subject.min_temp, 5)
-
-    def test_maximum_target_temperature(self):
-        self.assertEqual(self.subject.max_temp, 35)
-
-    async def test_legacy_set_temperature_with_temperature(self):
-        async with assert_device_properties_set(
-            self.subject._device, {TEMPERATURE_DPS: 41}
-        ):
-            await self.subject.async_set_temperature(temperature=20.5)
-
     async def test_legacy_set_temperature_with_preset_mode(self):
         async with assert_device_properties_set(
             self.subject._device, {PRESET_DPS: True}
@@ -100,30 +93,6 @@ class TestBecaBHT002Thermostat(
             await self.subject.async_set_temperature(
                 temperature=22, preset_mode=PRESET_COMFORT
             )
-
-    async def test_set_target_temperature_succeeds_within_valid_range(self):
-        async with assert_device_properties_set(
-            self.subject._device,
-            {TEMPERATURE_DPS: 45},
-        ):
-            await self.subject.async_set_target_temperature(22.5)
-
-    async def test_set_target_temperature_rounds_value_to_closest_half(self):
-        async with assert_device_properties_set(
-            self.subject._device, {TEMPERATURE_DPS: 35}
-        ):
-            await self.subject.async_set_target_temperature(17.6)
-
-    async def test_set_target_temperature_fails_outside_valid_range(self):
-        with self.assertRaisesRegex(
-            ValueError, "temperature \\(4.5\\) must be between 5.0 and 35.0"
-        ):
-            await self.subject.async_set_target_temperature(4.5)
-
-        with self.assertRaisesRegex(
-            ValueError, "temperature \\(35.5\\) must be between 5.0 and 35.0"
-        ):
-            await self.subject.async_set_target_temperature(35.5)
 
     def test_current_temperature(self):
         self.dps[CURRENTTEMP_DPS] = 44

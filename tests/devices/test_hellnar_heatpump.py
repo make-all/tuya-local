@@ -12,6 +12,7 @@ from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import HELLNAR_HEATPUMP_PAYLOAD
 from ..helpers import assert_device_properties_set
+from ..mixins.climate import TargetTemperatureTests
 from .base_device_tests import TuyaDeviceTestCase
 
 POWER_DPS = "1"
@@ -20,12 +21,19 @@ CURRENTTEMP_DPS = "3"
 HVACMODE_DPS = "4"
 
 
-class TestHellnarHeatpump(TuyaDeviceTestCase):
+class TestHellnarHeatpump(TargetTemperatureTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("hellnar_heatpump.yaml", HELLNAR_HEATPUMP_PAYLOAD)
         self.subject = self.entities.get("climate")
+        self.setUpTargetTemperature(
+            TEMPERATURE_DPS,
+            self.subject,
+            min=17.0,
+            max=30.0,
+            scale=10,
+        )
 
     def test_supported_features(self):
         self.assertEqual(
@@ -53,53 +61,15 @@ class TestHellnarHeatpump(TuyaDeviceTestCase):
             self.subject.temperature_unit, self.subject._device.temperature_unit
         )
 
-    def test_target_temperature(self):
-        self.dps[HVACMODE_DPS] = "auto"
-        self.dps[TEMPERATURE_DPS] = 250
-        self.assertEqual(self.subject.target_temperature, 25)
-
-    def test_target_temperature_step(self):
-        self.assertEqual(self.subject.target_temperature_step, 0.1)
-
-    def test_minimum_target_temperature(self):
-        self.dps[HVACMODE_DPS] = "cold"
-        self.assertEqual(self.subject.min_temp, 17.0)
+    def test_minimum_target_temperature_in_hot(self):
         self.dps[HVACMODE_DPS] = "hot"
         self.assertEqual(self.subject.min_temp, 0.0)
 
-    def test_maximum_target_temperature(self):
-        self.dps[HVACMODE_DPS] = "cold"
-        self.assertEqual(self.subject.max_temp, 30.0)
+    def test_maximum_target_temperature_in_hot(self):
         self.dps[HVACMODE_DPS] = "hot"
         self.assertEqual(self.subject.max_temp, 30.0)
 
-    async def test_legacy_set_temperature_with_temperature(self):
-        self.dps[HVACMODE_DPS] = "auto"
-        async with assert_device_properties_set(
-            self.subject._device, {TEMPERATURE_DPS: 240}
-        ):
-            await self.subject.async_set_temperature(temperature=24)
-
-    async def test_legacy_set_temperature_with_no_valid_properties(self):
-        self.dps[HVACMODE_DPS] = "auto"
-        await self.subject.async_set_temperature(something="else")
-        self.subject._device.async_set_property.assert_not_called()
-
-    async def test_set_target_temperature_succeeds_within_valid_range(self):
-        self.dps[HVACMODE_DPS] = "auto"
-        async with assert_device_properties_set(
-            self.subject._device,
-            {TEMPERATURE_DPS: 250},
-        ):
-            await self.subject.async_set_target_temperature(25)
-
-    async def test_set_target_temperature_fails_outside_valid_range(self):
-        self.dps[HVACMODE_DPS] = "cold"
-        with self.assertRaisesRegex(
-            ValueError, "temperature \\(15\\) must be between 17.0 and 30.0"
-        ):
-            await self.subject.async_set_target_temperature(15)
-
+    async def test_set_target_temperature_fails_outside_valid_range_in_hot(self):
         self.dps[HVACMODE_DPS] = "hot"
         with self.assertRaisesRegex(
             ValueError, "temperature \\(31\\) must be between 0.0 and 30.0"

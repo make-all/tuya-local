@@ -12,6 +12,7 @@ from homeassistant.const import DEVICE_CLASS_POWER_FACTOR, PERCENTAGE, STATE_UNA
 from ..const import GPPH_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
 from ..mixins.binary_sensor import BasicBinarySensorTests
+from ..mixins.climate import TargetTemperatureTests
 from ..mixins.light import BasicLightTests
 from ..mixins.lock import BasicLockTests
 from ..mixins.number import BasicNumberTests
@@ -38,6 +39,7 @@ class TestGoldairHeater(
     BasicLockTests,
     BasicNumberTests,
     BasicSensorTests,
+    TargetTemperatureTests,
     TuyaDeviceTestCase,
 ):
     __test__ = True
@@ -45,6 +47,12 @@ class TestGoldairHeater(
     def setUp(self):
         self.setUpForConfig("goldair_gpph_heater.yaml", GPPH_HEATER_PAYLOAD)
         self.subject = self.entities.get("climate")
+        self.setUpTargetTemperature(
+            TEMPERATURE_DPS,
+            self.subject,
+            min=5,
+            max=35,
+        )
         self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_display"))
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
         self.setUpBasicNumber(
@@ -86,11 +94,6 @@ class TestGoldairHeater(
             self.subject.temperature_unit, self.subject._device.temperature_unit
         )
 
-    def test_target_temperature(self):
-        self.dps[TEMPERATURE_DPS] = 25
-        self.dps[PRESET_DPS] = "C"
-        self.assertEqual(self.subject.target_temperature, 25)
-
     def test_target_temperature_in_eco_and_af_modes(self):
         self.dps[TEMPERATURE_DPS] = 25
         self.dps[ECOTEMP_DPS] = 15
@@ -100,9 +103,6 @@ class TestGoldairHeater(
 
         self.dps[PRESET_DPS] = "AF"
         self.assertIs(self.subject.target_temperature, None)
-
-    def test_target_temperature_step(self):
-        self.assertEqual(self.subject.target_temperature_step, 1)
 
     def test_minimum_temperature(self):
         self.dps[PRESET_DPS] = "C"
@@ -124,12 +124,6 @@ class TestGoldairHeater(
         self.dps[PRESET_DPS] = "AF"
         self.assertIs(self.subject.max_temp, 5)
 
-    async def test_legacy_set_temperature_with_temperature(self):
-        async with assert_device_properties_set(
-            self.subject._device, {TEMPERATURE_DPS: 25}
-        ):
-            await self.subject.async_set_temperature(temperature=25)
-
     async def test_legacy_set_temperature_with_preset_mode(self):
         async with assert_device_properties_set(
             self.subject._device, {PRESET_DPS: "C"}
@@ -148,18 +142,6 @@ class TestGoldairHeater(
                 temperature=25, preset_mode="comfort"
             )
 
-    async def test_legacy_set_temperature_with_no_valid_properties(self):
-        await self.subject.async_set_temperature(something="else")
-        self.subject._device.async_set_property.assert_not_called()
-
-    async def test_set_target_temperature_in_comfort_mode(self):
-        self.dps[PRESET_DPS] = "C"
-
-        async with assert_device_properties_set(
-            self.subject._device, {TEMPERATURE_DPS: 25}
-        ):
-            await self.subject.async_set_target_temperature(25)
-
     async def test_set_target_temperature_in_eco_mode(self):
         self.dps[PRESET_DPS] = "ECO"
 
@@ -167,26 +149,6 @@ class TestGoldairHeater(
             self.subject._device, {ECOTEMP_DPS: 15}
         ):
             await self.subject.async_set_target_temperature(15)
-
-    async def test_set_target_temperature_rounds_value_to_closest_integer(self):
-        async with assert_device_properties_set(
-            self.subject._device,
-            {TEMPERATURE_DPS: 25},
-        ):
-            await self.subject.async_set_target_temperature(24.6)
-
-    async def test_set_target_temperature_fails_outside_valid_range_in_comfort(self):
-        self.dps[PRESET_DPS] = "C"
-
-        with self.assertRaisesRegex(
-            ValueError, "temperature \\(4\\) must be between 5 and 35"
-        ):
-            await self.subject.async_set_target_temperature(4)
-
-        with self.assertRaisesRegex(
-            ValueError, "temperature \\(36\\) must be between 5 and 35"
-        ):
-            await self.subject.async_set_target_temperature(36)
 
     async def test_set_target_temperature_fails_outside_valid_range_in_eco(self):
         self.dps[PRESET_DPS] = "ECO"

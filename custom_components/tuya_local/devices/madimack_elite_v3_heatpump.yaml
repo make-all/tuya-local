@@ -10,7 +10,7 @@ primary_entity:
           value: "off"
           icon: "mdi:hvac-off"
           icon_priority: 1
-      hidden: false
+      hidden: true
     - id: 2
       name: hvac_mode
       type: string
@@ -23,7 +23,7 @@ primary_entity:
             - dps_val: false
               value_redirect: power
             - dps_val: true
-              value: auto
+              value: heat_cool
         - dps_val: cold
           icon: "mdi:snowflake"
           icon_priority: 2
@@ -43,22 +43,6 @@ primary_entity:
               value_redirect: power
             - dps_val: true
               value: heat
-    - id: 102
-      name: current_temperature
-      type: integer
-      readonly: true
-    - id: 6
-      name: temperature_unit
-      type: string
-      mapping:
-        - dps_val: f
-          value: F
-        - dps_val: c
-          value: C
-    - id: 20
-      name: power_level
-      type: integer
-      readonly: true
     - id: 4
       name: temperature
       type: integer
@@ -68,26 +52,11 @@ primary_entity:
             - dps_val: f
               range:
                 min: 60
-                max: 104 # is it?
+                max: 104
       range:
         min: 18
         max: 40
     # ^ in reality, the range is different for cool and auto
-    - id: 2
-      type: string
-      name: mode
-    - id: 21
-      type: integer
-      name: max_temperature
-      readonly: true
-    - id: 22
-      type: integer
-      name: min_temperature
-      readonly: true
-    - id: 23
-      type: integer
-      name: c4_evaporator_coil_pipe_temperature
-      readonly: true
     - id: 5
       name: preset_mode
       type: string
@@ -98,32 +67,24 @@ primary_entity:
           value: Perfect
         - dps_val: boost
           value: Power
-    - id: 24
-      name: c3_exhaust_gas_temperature
+    - id: 6
+      name: temperature_unit
+      type: string
+      mapping:
+        - dps_val: f
+          value: F
+        - dps_val: c
+          value: C
+    - id: 21
       type: integer
+      name: max_temperature
       readonly: true
-    - id: 25
-      name: c1_outlet_water_temperature
+    - id: 22
       type: integer
+      name: min_temperature
       readonly: true
-    - id: 26
-      name: c2_ambient_temperature
-      type: integer
-      readonly: true
-    - id: 103
-      name: c5_return_gas_temperature
-      type: integer
-      readonly: true
-    - id: 104
-      name: c6_cooling_coil_pipe_temperature
-      type: integer
-      readonly: true
-    - id: 105
-      name: c9_cooling_plate_temperature
-      type: integer
-      readonly: true
-    - id: 106
-      name: eev_opening
+    - id: 102
+      name: current_temperature
       type: integer
       readonly: true
     - id: 15
@@ -135,7 +96,7 @@ primary_entity:
       type: integer
       readonly: true
     - id: 107
-      name: unknown_130
+      name: unknown_107
       type: boolean
       readonly: true
 secondary_entities:
@@ -148,4 +109,131 @@ secondary_entities:
         type: integer
         name: sensor
         unit: "%"
+        readonly: true
+  - entity: sensor
+    category: diagnostic
+    name: Evaporator Coil Pipe Temperature
+    class: temperature
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        readonly: true
+      - id: 6
+        name: unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+  - entity: sensor
+    category: diagnostic
+    name: Exhaust Gas Temperature
+    class: temperature
+    dps:
+      - id: 24
+        name: sensor
+        type: integer
+        readonly: true
+      - id: 6
+        name: unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+  - entity: sensor
+    category: diagnostic
+    name: Outlet Water Temperature
+    class: temperature
+    dps:
+      - id: 25
+        name: sensor
+        type: integer
+        readonly: true
+      - id: 6
+        name: unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+  - entity: sensor
+    category: diagnostic
+    name: Ambient Temperature
+    class: temperature
+    dps:
+      - id: 26
+        name: sensor
+        type: integer
+        readonly: true
+      - id: 6
+        name: unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+  - entity: sensor
+    category: diagnostic
+    name: Return Gas Temperature
+    class: temperature
+    dps:
+      - id: 103
+        name: sensor
+        type: integer
+        readonly: true
+      - id: 6
+        name: unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+  - entity: sensor
+    category: diagnostic
+    name: Cooling Coil Pipe Temperature
+    class: temperature
+    dps:
+      - id: 104
+        name: sensor
+        type: integer
+        readonly: true
+      - id: 6
+        name: unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+  - entity: sensor
+    category: diagnostic
+    name: Cooling Plate Temperature
+    class: temperature
+    dps:
+      - id: 105
+        name: sensor
+        type: integer
+        readonly: true
+      - id: 6
+        name: unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+  - entity: sensor
+    category: diagnostic
+    name: EEV Opening
+    dps:
+      - id: 106
+        name: sensor
+        type: integer
         readonly: true

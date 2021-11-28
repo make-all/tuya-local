@@ -17,6 +17,7 @@ from homeassistant.const import (
 
 from ..const import ELECTRIQ_DESD9LW_DEHUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
+from ..mixins.climate import TargetTemperatureTests
 from ..mixins.light import BasicLightTests
 from ..mixins.sensor import BasicSensorTests
 from ..mixins.switch import BasicSwitchTests
@@ -35,7 +36,11 @@ TEMPERATURE_DPS = "101"
 
 
 class TestElectriqDESD9LWDehumidifier(
-    BasicLightTests, BasicSensorTests, BasicSwitchTests, TuyaDeviceTestCase
+    BasicLightTests,
+    BasicSensorTests,
+    BasicSwitchTests,
+    TargetTemperatureTests,
+    TuyaDeviceTestCase,
 ):
     __test__ = True
 
@@ -45,6 +50,12 @@ class TestElectriqDESD9LWDehumidifier(
             ELECTRIQ_DESD9LW_DEHUMIDIFIER_PAYLOAD,
         )
         self.subject = self.entities.get("climate")
+        self.setUpTargetTemperature(
+            TEMPERATURE_DPS,
+            self.subject,
+            min=16,
+            max=30,
+        )
         self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_uv_sterilization"))
         self.setUpBasicSwitch(SWITCH_DPS, self.entities.get("switch_ionizer"))
         self.setUpBasicSensor(
@@ -81,46 +92,6 @@ class TestElectriqDESD9LWDehumidifier(
         self.assertEqual(
             self.subject.temperature_unit, self.subject._device.temperature_unit
         )
-
-    def test_target_temperature(self):
-        self.dps[TEMPERATURE_DPS] = 24
-        self.assertEqual(self.subject.target_temperature, 24)
-
-    def test_target_temperature_step(self):
-        self.assertEqual(self.subject.target_temperature_step, 1)
-
-    def test_minimum_target_temperature(self):
-        self.assertEqual(self.subject.min_temp, 16)
-
-    def test_maximum_target_temperature(self):
-        self.assertEqual(self.subject.max_temp, 30)
-
-    async def test_legacy_set_temperature_with_temperature(self):
-        async with assert_device_properties_set(
-            self.subject._device, {TEMPERATURE_DPS: 22}
-        ):
-            await self.subject.async_set_temperature(temperature=22)
-
-    async def test_legacy_set_temperature_with_no_valid_properties(self):
-        await self.subject.async_set_temperature(something="else")
-        self.subject._device.async_set_property.assert_not_called()
-
-    async def test_set_target_temperature_rounds_value_to_closest_integer(self):
-        async with assert_device_properties_set(
-            self.subject._device, {TEMPERATURE_DPS: 23}
-        ):
-            await self.subject.async_set_target_temperature(22.6)
-
-    async def test_set_target_temperature_fails_outside_valid_range(self):
-        with self.assertRaisesRegex(
-            ValueError, "temperature \\(15\\) must be between 16 and 30"
-        ):
-            await self.subject.async_set_target_temperature(15)
-
-        with self.assertRaisesRegex(
-            ValueError, "temperature \\(31\\) must be between 16 and 30"
-        ):
-            await self.subject.async_set_target_temperature(31)
 
     def test_current_temperature(self):
         self.dps[CURRENTTEMP_DPS] = 21

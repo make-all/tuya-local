@@ -17,6 +17,7 @@ from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT
 
 from ..const import SASWELL_T29UTK_THERMOSTAT_PAYLOAD
 from ..helpers import assert_device_properties_set
+from ..mixins.climate import TargetTemperatureTests
 from ..mixins.select import MultiSelectTests
 from .base_device_tests import TuyaDeviceTestCase
 
@@ -37,7 +38,9 @@ TEMPF_DPS = "116"
 CURTEMPF_DPS = "117"
 
 
-class TestSaswellT29UTKThermostat(MultiSelectTests, TuyaDeviceTestCase):
+class TestSaswellT29UTKThermostat(
+    MultiSelectTests, TargetTemperatureTests, TuyaDeviceTestCase
+):
     __test__ = True
 
     def setUp(self):
@@ -45,6 +48,14 @@ class TestSaswellT29UTKThermostat(MultiSelectTests, TuyaDeviceTestCase):
             "saswell_t29utk_thermostat.yaml", SASWELL_T29UTK_THERMOSTAT_PAYLOAD
         )
         self.subject = self.entities.get("climate")
+        self.setUpTargetTemperature(
+            TEMPERATURE_DPS,
+            self.subject,
+            min=5.0,
+            max=35.0,
+            scale=10,
+            step=5,
+        )
         self.setUpMultiSelect(
             [
                 {
@@ -91,38 +102,17 @@ class TestSaswellT29UTKThermostat(MultiSelectTests, TuyaDeviceTestCase):
         self.dps[UNITS_DPS] = "F"
         self.assertEqual(self.subject.temperature_unit, TEMP_FAHRENHEIT)
 
-    def test_target_temperature(self):
-        self.dps[UNITS_DPS] = "C"
-        self.dps[TEMPERATURE_DPS] = 250
-        self.assertEqual(self.subject.target_temperature, 25)
-        self.dps[UNITS_DPS] = "F"
-        self.dps[TEMPERATURE_DPS] = 750
-        self.assertEqual(self.subject.target_temperature, 75)
-
-    def test_target_temperature_step(self):
-        self.assertEqual(self.subject.target_temperature_step, 0.5)
+    def test_target_temperature_step_f(self):
         self.dps[UNITS_DPS] = "F"
         self.assertEqual(self.subject.target_temperature_step, 1)
 
-    def test_minimum_target_temperature(self):
-        self.dps[UNITS_DPS] = "C"
-        self.assertEqual(self.subject.min_temp, 5)
+    def test_minimum_target_temperature_f(self):
         self.dps[UNITS_DPS] = "F"
         self.assertEqual(self.subject.min_temp, 41)
 
-    def test_maximum_target_temperature(self):
-        self.dps[UNITS_DPS] = "C"
-        self.assertEqual(self.subject.max_temp, 35)
+    def test_maximum_target_temperature_f(self):
         self.dps[UNITS_DPS] = "F"
         self.assertEqual(self.subject.max_temp, 95)
-
-    async def test_set_target_temperature(self):
-        self.dps[UNITS_DPS] = "C"
-        async with assert_device_properties_set(
-            self.subject._device,
-            {TEMPERATURE_DPS: 240},
-        ):
-            await self.subject.async_set_target_temperature(24)
 
     async def test_set_target_temperature_f(self):
         self.dps[UNITS_DPS] = "F"
@@ -131,12 +121,6 @@ class TestSaswellT29UTKThermostat(MultiSelectTests, TuyaDeviceTestCase):
             {TEMPERATURE_DPS: 740},
         ):
             await self.subject.async_set_target_temperature(74)
-
-    async def test_set_target_temperature_fails_outside_valid_range(self):
-        with self.assertRaisesRegex(
-            ValueError, "temperature \\(4.5\\) must be between 5.0 and 35.0"
-        ):
-            await self.subject.async_set_target_temperature(4.5)
 
     def test_current_temperature(self):
         self.dps[CURRENTTEMP_DPS] = 250

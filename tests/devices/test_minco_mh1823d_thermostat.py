@@ -17,6 +17,7 @@ from homeassistant.const import (
 
 from ..const import MINCO_MH1823D_THERMOSTAT_PAYLOAD
 from ..helpers import assert_device_properties_set
+from ..mixins.climate import TargetTemperatureTests
 from ..mixins.lock import BasicLockTests
 from ..mixins.number import MultiNumberTests
 from ..mixins.select import MultiSelectTests
@@ -55,6 +56,7 @@ class TestMincoMH1823DThermostat(
     BasicSwitchTests,
     MultiNumberTests,
     MultiSelectTests,
+    TargetTemperatureTests,
     TuyaDeviceTestCase,
 ):
     __test__ = True
@@ -65,6 +67,12 @@ class TestMincoMH1823DThermostat(
             MINCO_MH1823D_THERMOSTAT_PAYLOAD,
         )
         self.subject = self.entities.get("climate")
+        self.setUpTargetTemperature(
+            TEMPERATURE_DPS,
+            self.subject,
+            min=5,
+            max=50,
+        )
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
         self.setUpBasicSensor(
             EXTERNTEMP_DPS,
@@ -155,35 +163,19 @@ class TestMincoMH1823DThermostat(
         self.dps[UNIT_DPS] = "f"
         self.assertEqual(self.subject.temperature_unit, TEMP_FAHRENHEIT)
 
-    def test_target_temperature(self):
-        self.dps[TEMPERATURE_DPS] = 25
+    def test_target_temperature_f(self):
         self.dps[TEMPF_DPS] = 70
 
-        self.dps[UNIT_DPS] = "c"
-        self.assertEqual(self.subject.target_temperature, 25)
         self.dps[UNIT_DPS] = "f"
         self.assertEqual(self.subject.target_temperature, 70)
 
-    def test_target_temperature_step(self):
-        self.assertEqual(self.subject.target_temperature_step, 1)
-
-    def test_minimum_target_temperature(self):
-        self.dps[UNIT_DPS] = "c"
-        self.assertEqual(self.subject.min_temp, 5)
+    def test_minimum_target_temperature_f(self):
         self.dps[UNIT_DPS] = "f"
         self.assertEqual(self.subject.min_temp, 41)
 
-    def test_maximum_target_temperature(self):
-        self.dps[UNIT_DPS] = "c"
-        self.assertEqual(self.subject.max_temp, 50)
+    def test_maximum_target_temperature_f(self):
         self.dps[UNIT_DPS] = "f"
         self.assertEqual(self.subject.max_temp, 99)
-
-    async def test_legacy_set_temperature_with_temperature(self):
-        async with assert_device_properties_set(
-            self.subject._device, {TEMPERATURE_DPS: 24}
-        ):
-            await self.subject.async_set_temperature(temperature=24)
 
     async def test_legacy_set_temperature_with_preset_mode(self):
         async with assert_device_properties_set(
@@ -203,35 +195,7 @@ class TestMincoMH1823DThermostat(
                 temperature=25, preset_mode="program"
             )
 
-    async def test_legacy_set_temperature_with_no_valid_properties(self):
-        await self.subject.async_set_temperature(something="else")
-        self.subject._device.async_set_property.assert_not_called()
-
-    async def test_set_target_temperature(self):
-        async with assert_device_properties_set(
-            self.subject._device, {TEMPERATURE_DPS: 25}
-        ):
-            await self.subject.async_set_target_temperature(25)
-
-    async def test_set_target_temperature_rounds_value_to_closest_integer(self):
-        async with assert_device_properties_set(
-            self.subject._device,
-            {TEMPERATURE_DPS: 25},
-        ):
-            await self.subject.async_set_target_temperature(24.6)
-
-    async def test_set_target_temperature_fails_outside_valid_range(self):
-        self.dps[UNIT_DPS] = "c"
-        with self.assertRaisesRegex(
-            ValueError, "temperature \\(4\\) must be between 5 and 50"
-        ):
-            await self.subject.async_set_target_temperature(4)
-
-        with self.assertRaisesRegex(
-            ValueError, "temperature \\(51\\) must be between 5 and 50"
-        ):
-            await self.subject.async_set_target_temperature(51)
-
+    async def test_set_target_temperature_fails_outside_valid_range_f(self):
         self.dps[UNIT_DPS] = "f"
         with self.assertRaisesRegex(
             ValueError, "temp_f \\(40\\) must be between 41 and 99"

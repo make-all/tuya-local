@@ -14,6 +14,7 @@ from homeassistant.const import STATE_UNAVAILABLE, TEMP_CELSIUS, TEMP_FAHRENHEIT
 
 from ..const import FERSK_VIND2_PAYLOAD
 from ..helpers import assert_device_properties_set
+from ..mixins.climate import TargetTemperatureTests
 from .base_device_tests import TuyaDeviceTestCase
 
 POWER_DPS = "1"
@@ -32,12 +33,18 @@ UNKNOWN109_DPS = "109"
 UNKNOWN110_DPS = "110"
 
 
-class TestFerskVind2Climate(TuyaDeviceTestCase):
+class TestFerskVind2Climate(TargetTemperatureTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("fersk_vind_2_climate.yaml", FERSK_VIND2_PAYLOAD)
         self.subject = self.entities.get("climate")
+        self.setUpTargetTemperature(
+            TEMPERATURE_DPS,
+            self.subject,
+            min=16,
+            max=32,
+        )
 
     def test_supported_features(self):
         self.assertEqual(
@@ -64,66 +71,13 @@ class TestFerskVind2Climate(TuyaDeviceTestCase):
         self.dps[UNIT_DPS] = "F"
         self.assertEqual(self.subject.temperature_unit, TEMP_FAHRENHEIT)
 
-    def test_target_temperature(self):
-        self.dps[TEMPERATURE_DPS] = 25
-        self.assertEqual(self.subject.target_temperature, 25)
-
-    def test_target_temperature_step(self):
-        self.assertEqual(self.subject.target_temperature_step, 1)
-
-    def test_minimum_target_temperature(self):
-        self.dps[UNIT_DPS] = "C"
-        self.assertEqual(self.subject.min_temp, 16)
+    def test_minimum_target_temperature_f(self):
         self.dps[UNIT_DPS] = "F"
         self.assertEqual(self.subject.min_temp, 60)
 
-    def test_maximum_target_temperature(self):
-        self.dps[UNIT_DPS] = "C"
-        self.assertEqual(self.subject.max_temp, 32)
+    def test_maximum_target_temperature_f(self):
         self.dps[UNIT_DPS] = "F"
         self.assertEqual(self.subject.max_temp, 90)
-
-    async def test_legacy_set_temperature_with_temperature(self):
-        self.dps[UNIT_DPS] = "C"
-        async with assert_device_properties_set(
-            self.subject._device, {TEMPERATURE_DPS: 24}
-        ):
-            await self.subject.async_set_temperature(temperature=24)
-
-    async def test_set_target_temperature_succeeds_within_valid_range(self):
-        self.dps[UNIT_DPS] = "C"
-        async with assert_device_properties_set(
-            self.subject._device, {TEMPERATURE_DPS: 24}
-        ):
-            await self.subject.async_set_target_temperature(24)
-        self.dps[UNIT_DPS] = "F"
-        async with assert_device_properties_set(
-            self.subject._device, {TEMPERATURE_DPS: 80}
-        ):
-            await self.subject.async_set_target_temperature(80)
-
-    async def test_set_target_temperature_fails_outside_valid_range(self):
-        self.dps[UNIT_DPS] = "C"
-        with self.assertRaisesRegex(
-            ValueError, "temperature \\(15\\) must be between 16 and 32"
-        ):
-            await self.subject.async_set_target_temperature(15)
-
-        with self.assertRaisesRegex(
-            ValueError, "temperature \\(33\\) must be between 16 and 32"
-        ):
-            await self.subject.async_set_target_temperature(33)
-
-        self.dps[UNIT_DPS] = "F"
-        with self.assertRaisesRegex(
-            ValueError, "temperature \\(59\\) must be between 60 and 90"
-        ):
-            await self.subject.async_set_target_temperature(59)
-
-        with self.assertRaisesRegex(
-            ValueError, "temperature \\(91\\) must be between 60 and 90"
-        ):
-            await self.subject.async_set_target_temperature(91)
 
     def test_current_temperature(self):
         self.dps[CURRENTTEMP_DPS] = 25

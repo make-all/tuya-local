@@ -171,6 +171,29 @@ MADIMACK_HEATPUMP_PAYLOAD = {
     "140": "LowSpeed",
 }
 
+MADIMACK_ELITEV3_HEATPUMP_PAYLOAD = {
+    "1": True,
+    "2": "heating",
+    "4": 28,
+    "5": "power",
+    "6": "c",
+    "15": 0,
+    "20": 50,
+    "21": 40,
+    "22": 18,
+    "23": 45,
+    "24": 40,
+    "25": 33,
+    "26": 18,
+    "101": 0,
+    "102": 21,
+    "103": 23,
+    "104": 18,
+    "105": 18,
+    "106": 480,
+    "107": False,
+}
+
 PURLINE_M100_HEATER_PAYLOAD = {
     "1": True,
     "2": 23,
@@ -320,7 +343,7 @@ HELLNAR_HEATPUMP_PAYLOAD = {
     "1": False,
     "2": 260,
     "3": 26,
-    "4": "wet",
+    "4": "cold",
     "5": "low",
     "18": 0,
     "20": 0,

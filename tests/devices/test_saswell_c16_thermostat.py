@@ -13,6 +13,7 @@ from homeassistant.const import DEVICE_CLASS_TEMPERATURE, TEMP_CELSIUS
 
 from ..const import SASWELL_C16_THERMOSTAT_PAYLOAD
 from ..helpers import assert_device_properties_set
+from ..mixins.climate import TargetTemperatureTests
 from ..mixins.lock import BasicLockTests
 from ..mixins.number import MultiNumberTests
 from ..mixins.select import MultiSelectTests
@@ -47,6 +48,7 @@ class TestSaswellC16Thermostat(
     BasicSwitchTests,
     MultiNumberTests,
     MultiSelectTests,
+    TargetTemperatureTests,
     TuyaDeviceTestCase,
 ):
     __test__ = True
@@ -56,6 +58,14 @@ class TestSaswellC16Thermostat(
             "saswell_c16_thermostat.yaml", SASWELL_C16_THERMOSTAT_PAYLOAD
         )
         self.subject = self.entities.get("climate")
+        self.setUpTargetTemperature(
+            TEMPERATURE_DPS,
+            self.subject,
+            min=5.0,
+            max=40.0,
+            scale=10,
+            step=5,
+        )
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
         self.setUpBasicSensor(
             FLOORTEMP_DPS,
@@ -127,32 +137,6 @@ class TestSaswellC16Thermostat(
             self.subject.temperature_unit,
             self.subject._device.temperature_unit,
         )
-
-    def test_target_temperature(self):
-        self.dps[TEMPERATURE_DPS] = 250
-        self.assertEqual(self.subject.target_temperature, 25.0)
-
-    def test_target_temperature_step(self):
-        self.assertEqual(self.subject.target_temperature_step, 0.5)
-
-    def test_minimum_target_temperature(self):
-        self.assertEqual(self.subject.min_temp, 5.0)
-
-    def test_maximum_target_temperature(self):
-        self.assertEqual(self.subject.max_temp, 40.0)
-
-    async def test_set_target_temperature(self):
-        async with assert_device_properties_set(
-            self.subject._device,
-            {TEMPERATURE_DPS: 240},
-        ):
-            await self.subject.async_set_target_temperature(24)
-
-    async def test_set_target_temperature_fails_outside_valid_range(self):
-        with self.assertRaisesRegex(
-            ValueError, "temperature \\(4.5\\) must be between 5.0 and 40.0"
-        ):
-            await self.subject.async_set_target_temperature(4.5)
 
     def test_current_temperature(self):
         self.dps[CURRENTTEMP_DPS] = 250
