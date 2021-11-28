@@ -13,6 +13,7 @@ from homeassistant.const import STATE_UNAVAILABLE, TIME_MINUTES
 from ..const import WETAIR_WCH750_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
 from ..mixins.climate import TargetTemperatureTests
+from ..mixins.light import DimmableLightTests
 from ..mixins.select import BasicSelectTests
 from ..mixins.sensor import BasicSensorTests
 from .base_device_tests import TuyaDeviceTestCase
@@ -30,6 +31,7 @@ BRIGHTNESS_DPS = "101"
 class TestWetairWCH750Heater(
     BasicSelectTests,
     BasicSensorTests,
+    DimmableLightTests,
     TargetTemperatureTests,
     TuyaDeviceTestCase,
 ):
@@ -43,6 +45,16 @@ class TestWetairWCH750Heater(
             self.subject,
             min=10,
             max=35,
+        )
+        self.setUpDimmableLight(
+            BRIGHTNESS_DPS,
+            self.entities.get("light_display"),
+            offval="level0",
+            tests=[
+                ("level1", 85),
+                ("level2", 170),
+                ("level3", 255),
+            ],
         )
         self.light = self.entities.get("light_display")
         self.setUpBasicSelect(
@@ -149,7 +161,7 @@ class TestWetairWCH750Heater(
         ):
             await self.subject.async_set_hvac_mode(HVAC_MODE_HEAT)
 
-    async def test_trn_off(self):
+    async def test_turn_off(self):
         async with assert_device_properties_set(
             self.subject._device,
             {HVACMODE_DPS: False},
@@ -204,111 +216,12 @@ class TestWetairWCH750Heater(
             },
         )
 
-    def test_light_supported_color_modes(self):
-        self.assertCountEqual(
-            self.light.supported_color_modes,
-            [COLOR_MODE_BRIGHTNESS],
-        )
-
-    def test_light_color_mode(self):
-        self.assertEqual(self.light.color_mode, COLOR_MODE_BRIGHTNESS)
-
     def test_light_icon(self):
-        self.assertEqual(self.light.icon, None)
-
-    def test_light_is_on(self):
-        self.dps[BRIGHTNESS_DPS] = "level0"
-        self.assertEqual(self.light.is_on, False)
-
-        self.dps[BRIGHTNESS_DPS] = "level1"
-        self.assertEqual(self.light.is_on, True)
-        self.dps[BRIGHTNESS_DPS] = "level2"
-        self.assertEqual(self.light.is_on, True)
-        self.dps[BRIGHTNESS_DPS] = "level3"
-        self.assertEqual(self.light.is_on, True)
-        # Test the case where device is not ready does not cause errors that
-        # would prevent initialization.
-        self.dps[BRIGHTNESS_DPS] = None
-        self.assertEqual(self.light.is_on, False)
-
-    def test_light_brightness(self):
-        self.dps[BRIGHTNESS_DPS] = "level0"
-        self.assertEqual(self.light.brightness, 0)
-
-        self.dps[BRIGHTNESS_DPS] = "level1"
-        self.assertEqual(self.light.brightness, 85)
-
-        self.dps[BRIGHTNESS_DPS] = "level2"
-        self.assertEqual(self.light.brightness, 170)
-
-        self.dps[BRIGHTNESS_DPS] = "level3"
-        self.assertEqual(self.light.brightness, 255)
-
-    def test_light_state_attributes(self):
-        self.assertEqual(self.light.device_state_attributes, {})
-
-    async def test_light_turn_on(self):
-        async with assert_device_properties_set(
-            self.light._device, {BRIGHTNESS_DPS: "level3"}
-        ):
-            await self.light.async_turn_on()
-
-    async def test_light_turn_off(self):
-        async with assert_device_properties_set(
-            self.light._device,
-            {BRIGHTNESS_DPS: "level0"},
-        ):
-            await self.light.async_turn_off()
-
-    async def test_light_brightness_to_low(self):
-        async with assert_device_properties_set(
-            self.light._device,
-            {BRIGHTNESS_DPS: "level1"},
-        ):
-            await self.light.async_turn_on(brightness=85)
-
-    async def test_light_brightness_to_mid(self):
-        async with assert_device_properties_set(
-            self.light._device,
-            {BRIGHTNESS_DPS: "level2"},
-        ):
-            await self.light.async_turn_on(brightness=170)
-
-    async def test_light_brightness_to_high(self):
-        async with assert_device_properties_set(
-            self.light._device,
-            {BRIGHTNESS_DPS: "level3"},
-        ):
-            await self.light.async_turn_on(brightness=255)
-
-    async def test_light_brightness_to_off(self):
-        async with assert_device_properties_set(
-            self.light._device,
-            {BRIGHTNESS_DPS: "level0"},
-        ):
-            await self.light.async_turn_on(brightness=0)
-
-    async def test_toggle_turns_the_light_on_when_it_was_off(self):
-        self.dps[BRIGHTNESS_DPS] = "level0"
-
-        async with assert_device_properties_set(
-            self.light._device,
-            {BRIGHTNESS_DPS: "level3"},
-        ):
-            await self.light.async_toggle()
-
-    async def test_toggle_turns_the_light_off_when_it_was_on(self):
-        self.dps[BRIGHTNESS_DPS] = "level2"
-
-        async with assert_device_properties_set(
-            self.light._device,
-            {BRIGHTNESS_DPS: "level0"},
-        ):
-            await self.light.async_toggle()
+        self.assertEqual(self.dimmableLight.icon, None)
 
     async def test_light_brightness_snaps(self):
         async with assert_device_properties_set(
-            self.light._device,
+            self.dimmableLight._device,
             {BRIGHTNESS_DPS: "level1"},
         ):
-            await self.light.async_turn_on(brightness=100)
+            await self.dimmableLight.async_turn_on(brightness=100)

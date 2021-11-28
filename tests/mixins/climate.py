@@ -67,7 +67,7 @@ class TargetTemperatureTests:
         test_dpsval = test_val * self.targetTempScale
         test_val = (test_dpsval + 0.3) / self.targetTempScale
         async with assert_device_properties_set(
-            self.subject._device,
+            self.targetTemp._device,
             {self.targetTempDps: test_dpsval},
         ):
-            await self.subject.async_set_target_temperature(test_val)
+            await self.targetTemp.async_set_target_temperature(test_val)

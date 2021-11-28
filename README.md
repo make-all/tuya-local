@@ -55,7 +55,8 @@ the device will not work despite being listed below.
 ### Pool heaters / heatpumps
 
 - Garden PAC pool heatpump
-- Madimack pool heatpump
+- Madimack Elite V3 pool heatpump
+- Madimack(model unknown) pool heatpump
 - Remora pool heatpump
 - BWT FI 45 heatpump
 - Poolex Silverline and Vertigo heatpump
@@ -86,6 +87,8 @@ the device will not work despite being listed below.
 - Deta fan controller
 - Arlec Grid Connect Smart Ceiling Fan (without light)
 - Stirling FS1-40DC Pedestal fan
+- Aspen ASP 200 fan
+- TMWF02 fan controller
 
 ### Air Purifiers
 - Renpho RP-AP001S air purifier

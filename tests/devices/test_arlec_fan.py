@@ -6,8 +6,6 @@ from homeassistant.components.fan import (
     SUPPORT_SET_SPEED,
 )
 
-from homeassistant.const import STATE_UNAVAILABLE
-
 from ..const import ARLEC_FAN_PAYLOAD
 from ..helpers import assert_device_properties_set
 from ..mixins.select import BasicSelectTests

@@ -664,3 +664,14 @@ NEDIS_HTPL20F_PAYLOAD = {
     "13": 0,
     "101": False,
 }
+
+ASPEN_ASP200_FAN_PAYLOAD = {
+    "1": True,
+    "2": "in",
+    "3": 1,
+    "8": 0,
+    "18": 20,
+    "19": 25,
+    "101": True,
+    "102": 3,
+}

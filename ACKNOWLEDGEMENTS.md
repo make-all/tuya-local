@@ -57,3 +57,7 @@ Further device support has been made with the assistance of users.  Please consi
  - [maartendamen](https://github.com/maartendamen) for assistance in supporting Eurom Mon Soleil 601 heaters.
  - [TeddyLafrite](https://github.com/TeddyLafrite) for assistance in supporting Nedis HTPL20F heaters.
  - [mvroosmalen1970](https://github.com/mvroosmalen1970) for assistance in supporting Eurom SaniWall 2000 heaters.
+ - [petrkotek](https://github.com/petrkotek) for contributing support for Madimack Elite V3 pool heatpumps.
+ - [irakhlin](https://github.com/irakhlin) for contributing support for Aspen ASP200 fans.
+ - [vampywiz17](https://github.com/vampywiz17) for contributing support for TMWF02 fan controllers.
+
