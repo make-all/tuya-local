@@ -1,21 +1,19 @@
-name: TMWF02 Wi-Fi Fan Module
+name: TMWF02 Fan Controller
 primary_entity:
   entity: fan
   dps:
     - id: 1
       type: boolean
       name: switch
-    - id: 4
-      type: integer
-      name: speed
-      unit: "%"
-      range:
-        min: 1
-        max: 100
     - id: 3
       type: string
       name: fan_level
-      hidden: true
+    - id: 4
+      type: integer
+      name: speed
+      range:
+        min: 0
+        max: 100
 secondary_entities:
   - entity: number
     category: config
@@ -27,3 +25,6 @@ secondary_entities:
         range:
           min: 0
           max: 86400
+        mapping:
+          - scale: 60
+            step: 60

@@ -675,3 +675,10 @@ ASPEN_ASP200_FAN_PAYLOAD = {
     "101": True,
     "102": 3,
 }
+
+TMWF02_FAN_PAYLOAD = {
+    "1": True,
+    "2": 0,
+    "3": "level_2",
+    "4": 40,
+}
