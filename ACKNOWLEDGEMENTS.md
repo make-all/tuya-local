@@ -60,4 +60,4 @@ Further device support has been made with the assistance of users.  Please consi
  - [petrkotek](https://github.com/petrkotek) for contributing support for Madimack Elite V3 pool heatpumps.
  - [irakhlin](https://github.com/irakhlin) for contributing support for Aspen ASP200 fans.
  - [vampywiz17](https://github.com/vampywiz17) for contributing support for TMWF02 fan controllers.
-
+ - [awaldram](https://github.com/awaldram) for confirming BHT-3000 support.
