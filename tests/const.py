@@ -463,6 +463,19 @@ WETAIR_WCH750_HEATER_PAYLOAD = {
     "101": "level1",
 }
 
+WETAIR_WAWH1210_HUMIDIFIER_PAYLOAD = {
+    "1": True,
+    "5": True,
+    "8": True,
+    "13": 50,
+    "14": 57,
+    "22": 0,
+    "24": "AUTO",
+    "25": True,
+    "29": False,
+    "101": "Have_water",
+}
+
 SASWELL_T29UTK_THERMOSTAT_PAYLOAD = {
     "1": True,
     "2": 240,

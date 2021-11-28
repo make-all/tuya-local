@@ -102,7 +102,8 @@ the device will not work despite being listed below.
 - Kogan SmarterHome 7L Desiccant dehumidifier
 
 ### Humidifiers
-- Eanons QT-JS2014 Purifying humidifer
+- Eanons QT-JS2014 Purifying humidifier
+- Wetair WAW-H1210LW humidifier
 
 ### SmartPlugs/Wall sockets
 - Kogan Single Smartplug with Energy Monitoring

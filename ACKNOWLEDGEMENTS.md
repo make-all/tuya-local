@@ -61,3 +61,4 @@ Further device support has been made with the assistance of users.  Please consi
  - [irakhlin](https://github.com/irakhlin) for contributing support for Aspen ASP200 fans.
  - [vampywiz17](https://github.com/vampywiz17) for contributing support for TMWF02 fan controllers.
  - [awaldram](https://github.com/awaldram) for confirming BHT-3000 support.
+ - [bob-tm](https://github.com/bob-tm) for contributing support from Wetair WAW-H1210LW humidifiers.
