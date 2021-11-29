@@ -62,3 +62,4 @@ Further device support has been made with the assistance of users.  Please consi
  - [vampywiz17](https://github.com/vampywiz17) for contributing support for TMWF02 fan controllers.
  - [awaldram](https://github.com/awaldram) for confirming BHT-3000 support.
  - [bob-tm](https://github.com/bob-tm) for contributing support from Wetair WAW-H1210LW humidifiers.
+ - [shakin89](https://github.com/shakin89) for assistance in supporting Beca BAC-002 thermostats.

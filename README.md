@@ -72,6 +72,7 @@ the device will not work despite being listed below.
 - Beca BHT-6000/8000 Floor Heating thermostat
 - Beca BHT-002/3000 Floor Heating thermostat (with external temp sensor)
 - Moes BHT-002 thermostat (without external temp sensor)
+- Beca BAC-002 thermostat
 - Awow/Mi-heat TH213 thermostat
 - Siswell T29UTW thermostat
 - Siswell C16 thermostat (rebadged as Warmme, Klima and others)
