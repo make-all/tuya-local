@@ -301,6 +301,19 @@ one or the other. But Home Assistant just has one `temperature` attribute for
 setting target temperature, so the mapping needs to be done before passing to
 Home Assistant.
 
+### `value_mirror`
+
+//Optional.//
+When `value_mirror` is set, the value of the attribute will be redirected to
+the current value of the named attribute.  Unlike `value_redirect`, this does
+not redirect attempts to set the dps to the redirected dps, but when used in
+a map, this can make the mapping dynamic.
+
+An example of how this can be useful is where a thermostat can be configured
+to control either a heating or cooling device, but it is not expected to
+change this setting during operation.  Once set up, the hvac_mode dps can
+have a mapping that mirrors the value of the configuration dps.
+
 ### `invalid`
 
 //Optional. Boolean, default false.//

@@ -1,0 +1,110 @@
+name: WetAir-1210 Humidifier
+primary_entity:
+  entity: humidifier
+  class: humidifier
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+      mapping:
+        - dps_val: true
+          icon: "mdi:air-humidifier"
+        - dps_val: false
+          icon: "mdi:air-humidifier-off"
+    - id: 13
+      name: humidity
+      type: integer
+      range:
+        min: 30
+        max: 80
+    - id: 24
+      type: string
+      name: mode
+      mapping:
+        - dps_val: AUTO
+          value: auto
+        - dps_val: MIDDLE
+          value: normal
+        - dps_val: HIGH
+          value: boost
+        - dps_val: SLEEP
+          value: sleep
+    - id: 22
+      type: integer
+      name: unknown_22
+secondary_entities:
+  - entity: light
+    name: Display
+    category: config
+    dps:
+      - id: 5
+        type: boolean
+        name: switch
+        mapping:
+            - dps_val: true
+              icon: "mdi:led-on"
+            - dps_val: false
+              icon: "mdi:led-off"
+              
+  - entity: switch
+    name: Sound
+    category: config
+    dps:
+      - id: 8
+        name: "switch"
+        type: boolean
+        mapping:
+            - dps_val: true
+              icon: "mdi:volume-high"
+            - dps_val: false
+              icon: "mdi:volume-off"
+
+  - entity: sensor
+    name: Current Humidity
+    class: humidity
+    dps:
+      - id: 14
+        name: sensor
+        type: integer 
+        class: measurement
+        unit: "%"
+
+  - entity: sensor
+    name: Water Level
+    category: diagnostic
+    dps:
+      - id: 101
+        name: sensor
+        type: string
+        unit: "%"
+        mapping:
+          - dps_val: No_water
+            icon: "mdi:cup-outline"
+            value: 0
+          - dps_val: Have_water
+            icon: "mdi:cup-water"
+            value: 50
+          - dps_val: Full_water
+            icon: "mdi-cup"
+            value: 100
+
+  - entity: switch
+    name: Ionizer
+    icon: "mdi:creation"
+    dps:
+      - id: 25
+        name: switch
+        type: boolean
+
+  - entity: lock
+    name: Child Lock
+    category: config
+    dps:
+      - id: 29
+        type: boolean
+        name: lock
+        mapping:
+          - dps_val: true
+            icon: "mdi:hand-back-right-off"
+          - dps_val: false
+            icon: "mdi:hand-back-right"

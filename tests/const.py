@@ -424,6 +424,17 @@ MOES_BHT002_PAYLOAD = {
     "104": True,
 }
 
+BECA_BAC002_PAYLOAD = {
+    "1": True,
+    "2": 39,
+    "3": 45,
+    "4": "1",
+    "5": False,
+    "6": False,
+    "102": "1",
+    "103": "2",
+}
+
 LEXY_F501_PAYLOAD = {
     "1": True,
     "2": "forestwindhigh",

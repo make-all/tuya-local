@@ -1,0 +1,102 @@
+name: BAC-002 Thermostat with external sensor (C)
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: power
+      mapping:
+        - dps_val: false
+          value: "off"
+      hidden: true
+    - id: 2
+      type: integer
+      name: current_temperature
+      mapping:
+        - scale: 2
+    - id: 3
+      type: integer
+      name: temperature
+      unit: C
+      range:
+        min: 10
+        max: 70
+      mapping:
+        - scale: 2
+    - id: 4
+      type: string
+      name: hvac_mode
+      mapping:
+        - dps_val: "0"
+          constraint: power
+          conditions:
+            - dps_val: true
+              value: auto
+            - dps_val: false
+              value_redirect: power
+              value: "off"
+        - dps_val: "1"
+          constraint: power
+          conditions:
+            - dps_val: true
+              value_mirror: installation_type
+            - dps_val: false
+              value_redirect: power
+              value: "off"
+    - id: 5
+      type: boolean
+      name: preset_mode
+      mapping:
+        - dps_val: true
+          value: eco 
+        - dps_val: false
+          value: comfort
+    - id: 102
+      type: string
+      name: installation_type
+      mapping:
+        - dps_val: "0"
+          value: cool
+        - dps_val: "1"
+          value: heat
+        - dps_val: "2"
+          value: fan_only
+      hidden: true
+    - id: 103
+      type: string
+      name: fan_mode
+      mapping:
+        - dps_val: "0"
+          value: auto
+        - dps_val: "1"
+          value: high
+        - dps_val: "2"
+          value: medium
+        - dps_val: "3"
+          value: low
+secondary_entities:
+  - entity: lock
+    name: Child Lock
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: lock
+        mapping:
+          - dps_val: true
+            icon: "mdi:hand-back-right-off"
+          - dps_val: false
+            icon: "mdi:hand-back-right"
+  - entity: select
+    name: Installation
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Cooling
+          - dps_val: "1"
+            value: Heating
+          - dps_val: "2"
+            value: Fan
