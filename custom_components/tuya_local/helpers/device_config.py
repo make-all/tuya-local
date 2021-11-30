@@ -162,12 +162,7 @@ class TuyaEntityConfig:
 
     @property
     def entity_category(self):
-        if self._is_primary:
-            return None
-        elif self.entity in ["binary_sensor", "sensor"]:
-            return "diagnostic"
-        else:
-            return "config"
+        return self._config.get("category")
 
     @property
     def deprecated(self):
