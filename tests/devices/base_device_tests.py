@@ -83,15 +83,15 @@ class TuyaDeviceTestCase(IsolatedAsyncioTestCase):
         for e in self.entities.values():
             self.assertTrue(e.available)
 
-    def test_entity_category(self):
-        for k in self.entities:
-            e = self.entities[k]
-            if k == self.primary_entity:
-                self.assertIsNone(e.entity_category)
-            elif type(e) in [TuyaLocalBinarySensor, TuyaLocalSensor]:
-                self.assertEqual(e.entity_category, "diagnostic")
-            else:
-                self.assertEqual(e.entity_category, "config")
+    # def test_entity_category(self):
+    #     for k in self.entities:
+    #         e = self.entities[k]
+    #         if k == self.primary_entity:
+    #             self.assertIsNone(e.entity_category)
+    #         elif type(e) in [TuyaLocalBinarySensor, TuyaLocalSensor]:
+    #             self.assertEqual(e.entity_category, "diagnostic")
+    #         else:
+    #             self.assertEqual(e.entity_category, "config")
 
     def test_name_returns_device_name(self):
         for e in self.entities:
