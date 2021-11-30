@@ -1,0 +1,83 @@
+name: Woox R4028 + DIGOO DG-PS01
+primary_entity:
+  entity: switch
+  name: switch_1
+  class: switch
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: switch
+    name: switch_2
+    class: switch
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+  - entity: switch
+    name: switch_3
+    class: switch
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+  - entity: switch
+    name: switch_usb1
+    class: switch
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+  - entity: number
+    category: config
+    name: Timer_1
+    dps:
+      - id: 101
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    category: config
+    name: Timer_2
+    dps:
+      - id: 102
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    category: config
+    name: Timer_3
+    dps:
+      - id: 103
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    category: config
+    name: Timer_usb1
+    dps:
+      - id: 105
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
