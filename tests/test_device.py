@@ -250,7 +250,7 @@ class TestDevice(IsolatedAsyncioTestCase):
     def test_debounces_multiple_set_calls_into_one_api_call(self):
         with patch("custom_components.tuya_local.device.Timer") as mock:
             self.subject.set_property("1", True)
-            mock.assert_called_once_with(1, self.subject._send_pending_updates)
+            mock.assert_called_once_with(0.001, self.subject._send_pending_updates)
 
             debounce = self.subject._debounce
             mock.reset_mock()

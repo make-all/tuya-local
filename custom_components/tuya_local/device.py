@@ -162,6 +162,7 @@ class TuyaLocalDevice(object):
     def _reset_cached_state(self):
         self._cached_state = {"updated_at": 0}
         self._pending_updates = {}
+        self._last_connection = 0
 
     def _refresh_cached_state(self):
         new_state = self._api.status()
@@ -191,11 +192,21 @@ class TuyaLocalDevice(object):
         )
 
     def _debounce_sending_updates(self):
+        now = time()
+        since = now - self._last_connection
+        # set this now to avoid a race condition, it will be updated later
+        # when the data is actally sent
+        self._last_connection = now
+        # Only delay a second if there was recently another command.
+        # Otherwise delay 1ms, to keep things simple by reusing the
+        # same send mechanism.
+        waittime = 1 if since < 1.0 else 0.001
+
         try:
             self._debounce.cancel()
         except AttributeError:
             pass
-        self._debounce = Timer(1, self._send_pending_updates)
+        self._debounce = Timer(waittime, self._send_pending_updates)
         self._debounce.start()
 
     def _send_pending_updates(self):
@@ -216,6 +227,7 @@ class TuyaLocalDevice(object):
             self._api._send_receive(payload)
             self._cached_state["updated_at"] = 0
             now = time()
+            self._last_connection = now
             pending_updates = self._get_pending_updates()
             for key, value in pending_updates.items():
                 pending_updates[key]["updated_at"] = now
