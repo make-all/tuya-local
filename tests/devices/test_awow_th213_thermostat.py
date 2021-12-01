@@ -90,6 +90,14 @@ class TestAwowTH213Thermostat(
                 },
             ]
         )
+        self.mark_secondary(
+            [
+                "lock_child_lock",
+                "select_temperature_sensor",
+                "number_calibration_offset",
+                "number_calibration_swing",
+            ]
+        )
 
     def test_supported_features(self):
         self.assertEqual(

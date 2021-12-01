@@ -57,6 +57,7 @@ class TestGardenPACPoolHeatpump(
             device_class=DEVICE_CLASS_POWER_FACTOR,
             state_class="measurement",
         )
+        self.mark_secondary(["sensor_power_level"])
 
     def test_supported_features(self):
         self.assertEqual(

@@ -61,6 +61,7 @@ class TestBecaBAC002Thermostat(
                 "2": "Fan",
             },
         )
+        self.mark_secondary(["lock_child_lock"])
 
     def test_supported_features(self):
         self.assertEqual(

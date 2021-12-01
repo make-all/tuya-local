@@ -45,6 +45,7 @@ class TestBecaBHP6000Thermostat(
         )
         self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_display"))
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
+        self.mark_secondary(["light_display", "lock_child_lock"])
 
     def test_supported_features(self):
         self.assertEqual(
@@ -162,6 +163,7 @@ class TestBecaBHP6000ThermostatC(TuyaDeviceTestCase):
     def setUp(self):
         self.setUpForConfig("beca_bhp6000_thermostat_c.yaml", BECA_BHP6000_PAYLOAD)
         self.subject = self.entities.get("climate")
+        self.mark_secondary(["light_display", "lock_child_lock"])
 
     def test_temperature_unit_returns_configured_temperature_unit(self):
         self.assertEqual(self.subject.temperature_unit, TEMP_CELSIUS)

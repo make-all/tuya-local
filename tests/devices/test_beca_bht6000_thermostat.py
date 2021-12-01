@@ -60,6 +60,7 @@ class TestBecaBHT6000Thermostat(
             state_class="measurement",
             testdata=(36, 18),
         )
+        self.mark_secondary(["light_display", "lock_child_lock"])
 
     def test_supported_features(self):
         self.assertEqual(

@@ -40,6 +40,7 @@ MASTER_DPS = "101"
 class TestGridConnectDoubleSwitch(
     BasicLockTests,
     BasicSelectTests,
+    MultiNumberTests,
     MultiSensorTests,
     MultiSwitchTests,
     TuyaDeviceTestCase,
@@ -118,6 +119,33 @@ class TestGridConnectDoubleSwitch(
                     "testdata": (2345, 234.5),
                 },
             ]
+        )
+        self.setUpMultiNumber(
+            [
+                {
+                    "name": "number_timer_1",
+                    "dps": COUNTDOWN1_DPS,
+                    "max": 86400,
+                },
+                {
+                    "name": "number_timer_2",
+                    "dps": COUNTDOWN2_DPS,
+                    "max": 86400,
+                },
+            ]
+        )
+        self.mark_secondary(
+            [
+                "lock_child_lock",
+                "number_timer_1",
+                "number_timer_2",
+                "select_initial_state",
+                "switch_master",
+                "sensor_energy",
+                "sensor_current",
+                "sensor_power",
+                "sensor_voltage",
+            ],
         )
 
     async def test_turn_on_fails_when_master_is_off(self):

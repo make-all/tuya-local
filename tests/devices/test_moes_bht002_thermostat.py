@@ -43,6 +43,7 @@ class TestMoesBHT002Thermostat(
             scale=2,
         )
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
+        self.mark_secondary(["lock_child_lock"])
 
     def test_supported_features(self):
         self.assertEqual(

@@ -140,6 +140,19 @@ class TestMincoMH1823DThermostat(
                 },
             ]
         )
+        self.mark_secondary(
+            [
+                "lock_child_lock",
+                "number_calibration_offset_internal",
+                "number_calibration_offset_external",
+                "number_calibration_swing",
+                "number_high_temperature_limit",
+                "select_temperature_sensor",
+                "select_temperature_unit",
+                "select_schedule",
+                "switch_anti_frost",
+            ]
+        )
 
     def test_supported_features(self):
         self.assertEqual(

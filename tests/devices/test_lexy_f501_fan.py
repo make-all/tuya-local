@@ -40,6 +40,14 @@ class TestLexyF501Fan(
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
         self.setUpBasicNumber(TIMER_DPS, self.entities.get("number_timer"), max=7)
         self.setUpBasicSwitch(SWITCH_DPS, self.entities.get("switch_sound"))
+        self.mark_secondary(
+            [
+                "light",
+                "lock_child_lock",
+                "number_timer",
+                "switch_sound",
+            ]
+        )
 
     def test_supported_features(self):
         self.assertEqual(

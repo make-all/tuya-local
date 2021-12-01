@@ -24,6 +24,7 @@ class TestStirlingFS1Fan(SwitchableTests, TuyaDeviceTestCase):
         self.subject = self.entities.get("fan")
         self.timer = self.entities.get("select_timer")
         self.setUpSwitchable(SWITCH_DPS, self.subject)
+        self.mark_secondary(["select_timer"])
 
     def test_supported_features(self):
         self.assertEqual(

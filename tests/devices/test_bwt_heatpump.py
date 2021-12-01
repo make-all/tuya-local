@@ -42,6 +42,7 @@ class TestBWTHeatpump(
             device_class=DEVICE_CLASS_PROBLEM,
             testdata=(1, 0),
         )
+        self.mark_secondary(["binary_sensor_water_flow"])
 
     def test_supported_features(self):
         self.assertEqual(

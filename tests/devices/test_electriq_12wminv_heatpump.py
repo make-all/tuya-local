@@ -57,6 +57,7 @@ class TestElectriq12WMINVHeatpump(
         )
         self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_display"))
         self.setUpBasicSwitch(SWITCH_DPS, self.entities.get("switch_sleep"))
+        self.mark_secondary(["light_display", "lock_child_lock"])
 
     def test_supported_features(self):
         self.assertEqual(

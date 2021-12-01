@@ -25,6 +25,7 @@ class TestAnkoFan(SwitchableTests, BasicNumberTests, TuyaDeviceTestCase):
         self.subject = self.entities["fan"]
         self.setUpSwitchable(SWITCH_DPS, self.subject)
         self.setUpBasicNumber(TIMER_DPS, self.entities.get("number_timer"), max=9)
+        self.mark_secondary(["number_timer"])
 
     def test_supported_features(self):
         self.assertEqual(

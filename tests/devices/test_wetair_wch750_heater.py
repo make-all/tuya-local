@@ -56,7 +56,6 @@ class TestWetairWCH750Heater(
                 ("level3", 255),
             ],
         )
-        self.light = self.entities.get("light_display")
         self.setUpBasicSelect(
             TIMER_DPS,
             self.entities.get("select_timer"),
@@ -90,6 +89,13 @@ class TestWetairWCH750Heater(
         )
         self.setUpBasicSensor(
             COUNTDOWN_DPS, self.entities.get("sensor_timer"), unit=TIME_MINUTES
+        )
+        self.mark_secondary(
+            [
+                "light_display",
+                "select_timer",
+                "sensor_timer",
+            ]
         )
 
     def test_supported_features(self):

@@ -53,6 +53,7 @@ class TuyaDeviceTestCase(IsolatedAsyncioTestCase):
         self.mock_device.name = cfg.name
 
         self.entities = {}
+        self.secondary_category = []
         self.primary_entity = cfg.primary_entity.config_id
         self.entities[self.primary_entity] = self.create_entity(cfg.primary_entity)
 
@@ -68,10 +69,17 @@ class TuyaDeviceTestCase(IsolatedAsyncioTestCase):
         if dev_type:
             return dev_type(self.mock_device, config)
 
+    def mark_secondary(self, entities):
+        self.secondary_category = self.secondary_category + entities
+
     def test_config_matched(self):
         for cfg in possible_matches(self.dps):
             if cfg.legacy_type == self.conf_type:
-                self.assertEqual(cfg.match_quality(self.dps), 100.0)
+                self.assertEqual(
+                    cfg.match_quality(self.dps),
+                    100.0,
+                    msg=f"{self.conf_type} is an imperfect match",
+                )
                 return
         self.fail()
 
@@ -83,15 +91,26 @@ class TuyaDeviceTestCase(IsolatedAsyncioTestCase):
         for e in self.entities.values():
             self.assertTrue(e.available)
 
-    # def test_entity_category(self):
-    #     for k in self.entities:
-    #         e = self.entities[k]
-    #         if k == self.primary_entity:
-    #             self.assertIsNone(e.entity_category)
-    #         elif type(e) in [TuyaLocalBinarySensor, TuyaLocalSensor]:
-    #             self.assertEqual(e.entity_category, "diagnostic")
-    #         else:
-    #             self.assertEqual(e.entity_category, "config")
+    def test_entity_category(self):
+        for k, e in self.entities.items():
+            if k in self.secondary_category:
+                if type(e) in [TuyaLocalBinarySensor, TuyaLocalSensor]:
+                    self.assertEqual(
+                        e.entity_category,
+                        "diagnostic",
+                        msg=f"{k} is {e.entity_category}, expected diagnostic",
+                    )
+                else:
+                    self.assertEqual(
+                        e.entity_category,
+                        "config",
+                        msg=f"{k} is {e.entity_category}, expected config",
+                    )
+            else:
+                self.assertIsNone(
+                    e.entity_category,
+                    msg=f"{k} is {e.entity_category}, expected None",
+                )
 
     def test_name_returns_device_name(self):
         for e in self.entities:

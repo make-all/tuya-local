@@ -45,6 +45,7 @@ class TestNedisHtpl20fHeater(
             self.entities.get("lock_child_lock"),
         )
         self.setUpBasicNumber(TIMER_DPS, self.entities.get("number_timer"), max=1440)
+        self.mark_secondary(["lock_child_lock", "number_timer"])
 
     def test_supported_features(self):
         self.assertEqual(

@@ -59,3 +59,11 @@ class TestQoboSprinkler(
                 },
             ]
         )
+        self.mark_secondary(
+            [
+                "binary_sensor_error",
+                "number_timer",
+                "sensor_open",
+                "sensor_timer",
+            ]
+        )

@@ -113,6 +113,18 @@ class TestSwitchV2Energy(
                 },
             ]
         )
+        self.mark_secondary(
+            [
+                "binary_sensor_error",
+                "number_timer",
+                "select_initial_state",
+                "sensor_current",
+                "sensor_energy",
+                "sensor_power",
+                "sensor_voltage",
+                "switch_overcharge_cutoff",
+            ]
+        )
 
     def test_multi_switch_state_attributes(self):
         self.dps[TEST_DPS] = 21

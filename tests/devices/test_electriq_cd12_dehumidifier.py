@@ -51,6 +51,7 @@ class TestElectriqCD20ProDehumidifier(
                 },
             ]
         )
+        self.mark_secondary(["light_display"])
 
     def test_supported_features(self):
         self.assertEqual(self.subject.supported_features, SUPPORT_MODES)

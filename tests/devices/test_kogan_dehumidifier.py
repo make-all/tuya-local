@@ -45,6 +45,7 @@ class TestKoganDehumidifier(
             state_class="measurement",
             unit=PERCENTAGE,
         )
+        self.mark_secondary(["binary_sensor_tank"])
 
     def test_supported_features(self):
         self.assertEqual(self.subject.supported_features, SUPPORT_MODES)

@@ -119,6 +119,19 @@ class TestInkbirdThermostat(
                 },
             ]
         )
+        self.mark_secondary(
+            [
+                "select_temperature_unit",
+                "binary_sensor_high_temperature",
+                "binary_sensor_low_temperature",
+                "binary_sensor_continuous_heat",
+                "binary_sensor_error",
+                "number_calibration_offset",
+                "number_continuous_heat_hours",
+                "number_high_temperature_limit",
+                "number_low_temperature_limit",
+            ]
+        )
 
     def test_supported_features(self):
         self.assertEqual(

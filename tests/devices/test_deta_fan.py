@@ -26,6 +26,7 @@ class TestDetaFan(
         self.setUpSwitchable(SWITCH_DPS, self.subject)
         self.setUpBasicLight(LIGHT_DPS, self.entities["light"])
         self.setUpBasicSwitch(MASTER_DPS, self.entities["switch_master"])
+        self.mark_secondary(["switch_master"])
 
     def test_supported_features(self):
         self.assertEqual(

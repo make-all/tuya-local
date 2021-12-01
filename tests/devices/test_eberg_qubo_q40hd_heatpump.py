@@ -55,6 +55,7 @@ class TestEbergQuboQ40HDHeatpump(
             max=30,
         )
         self.setUpBasicNumber(TIMER_DPS, self.entities.get("number_timer"), max=24)
+        self.mark_secondary(["number_timer"])
 
     def test_supported_features(self):
         self.assertEqual(

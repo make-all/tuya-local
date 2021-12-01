@@ -11,7 +11,6 @@ from homeassistant.const import (
     DEVICE_CLASS_POWER_FACTOR,
     DEVICE_CLASS_TEMPERATURE,
     PERCENTAGE,
-    STATE_UNAVAILABLE,
     TEMP_CELSIUS,
     TEMP_FAHRENHEIT,
 )
@@ -117,6 +116,19 @@ class TestMadimackEliteV3Heatpump(
                     "name": "sensor_eev_opening",
                     "dps": EEVOPENING_DPS,
                 },
+            ]
+        )
+        self.mark_secondary(
+            [
+                "sensor_power_level",
+                "sensor_evaporator_coil_pipe_temperature",
+                "sensor_exhaust_gas_temperature",
+                "sensor_outlet_water_temperature",
+                "sensor_ambient_temperature",
+                "sensor_return_gas_temperature",
+                "sensor_cooling_coil_pipe_temperature",
+                "sensor_cooling_plate_temperature",
+                "sensor_eev_opening",
             ]
         )
 

@@ -108,6 +108,15 @@ class TestGoldairDehumidifier(
                 },
             ]
         )
+        self.mark_secondary(
+            [
+                "light_display",
+                "lock_child_lock",
+                "number_timer",
+                "binary_sensor_tank",
+                "binary_sensor_defrost",
+            ],
+        )
 
     def test_supported_features(self):
         self.assertEqual(

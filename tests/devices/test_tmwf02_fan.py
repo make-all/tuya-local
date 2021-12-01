@@ -28,6 +28,7 @@ class TestTMWF02Fan(BasicNumberTests, SwitchableTests, TuyaDeviceTestCase):
             max=1440,
             scale=60,
         )
+        self.mark_secondary(["number_timer"])
 
     def test_supported_features(self):
         self.assertEqual(

@@ -55,6 +55,7 @@ class TestAspenASP200Fan(
             min=40,
             max=95,
         )
+        self.mark_secondary(["light_display"])
 
     def test_supported_features(self):
         self.assertEqual(

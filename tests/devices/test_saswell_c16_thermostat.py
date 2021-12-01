@@ -113,6 +113,17 @@ class TestSaswellC16Thermostat(
                 },
             ]
         )
+        self.mark_secondary(
+            [
+                "lock_child_lock",
+                "sensor_floor_temperature",
+                "switch_adaptive",
+                "number_floor_temperature_limit",
+                "number_power_rating",
+                "select_installation",
+                "select_schedule",
+            ]
+        )
 
     def test_supported_features(self):
         self.assertEqual(

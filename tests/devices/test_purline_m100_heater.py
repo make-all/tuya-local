@@ -52,6 +52,7 @@ class TestPulineM100Heater(
         self.setUpBasicSwitch(
             SWITCH_DPS, self.entities.get("switch_open_window_detector")
         )
+        self.mark_secondary(["light_display", "switch_open_window_detector"])
 
     def test_supported_features(self):
         self.assertEqual(

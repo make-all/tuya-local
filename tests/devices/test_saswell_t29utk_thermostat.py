@@ -78,6 +78,7 @@ class TestSaswellT29UTKThermostat(
                 },
             ]
         )
+        self.mark_secondary(["select_configuration", "select_temperature_unit"])
 
     def test_supported_features(self):
         self.assertEqual(

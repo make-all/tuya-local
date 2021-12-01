@@ -7,7 +7,11 @@ from homeassistant.components.climate.const import (
     SUPPORT_TARGET_TEMPERATURE,
 )
 
-from homeassistant.const import DEVICE_CLASS_POWER_FACTOR, PERCENTAGE, STATE_UNAVAILABLE
+from homeassistant.const import (
+    DEVICE_CLASS_POWER_FACTOR,
+    PERCENTAGE,
+    STATE_UNAVAILABLE,
+)
 
 from ..const import GPPH_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -70,6 +74,15 @@ class TestGoldairHeater(
             self.entities.get("binary_sensor_error"),
             device_class=DEVICE_CLASS_PROBLEM,
             testdata=(1, 0),
+        )
+        self.mark_secondary(
+            [
+                "light_display",
+                "lock_child_lock",
+                "number_timer",
+                "sensor_power_level",
+                "binary_sensor_error",
+            ]
         )
 
     def test_supported_features(self):

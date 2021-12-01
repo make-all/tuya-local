@@ -37,6 +37,7 @@ class TestArlecFan(SwitchableTests, BasicSelectTests, TuyaDeviceTestCase):
                 "8hour": "8 hours",
             },
         )
+        self.mark_secondary(["select_timer"])
 
     def test_supported_features(self):
         self.assertEqual(

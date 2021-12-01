@@ -86,6 +86,7 @@ class TestEanonsHumidifier(
             device_class=DEVICE_CLASS_PROBLEM,
             testdata=(1, 0),
         )
+        self.mark_secondary(["select_timer", "sensor_timer", "binary_sensor_tank"])
 
     def test_supported_features(self):
         self.assertEqual(

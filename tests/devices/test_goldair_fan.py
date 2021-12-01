@@ -40,6 +40,7 @@ class TestGoldairFan(BasicLightTests, SwitchableTests, TuyaDeviceTestCase):
         self.climate = self.entities.get("climate")
         self.setUpSwitchable(HVACMODE_DPS, self.subject)
         self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_display"))
+        self.mark_secondary(["light_display"])
 
     def test_supported_features(self):
         self.assertEqual(

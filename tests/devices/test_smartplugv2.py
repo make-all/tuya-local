@@ -59,6 +59,14 @@ class TestSwitchV2(
                 },
             ]
         )
+        self.mark_secondary(
+            [
+                "number_timer",
+                "sensor_current",
+                "sensor_power",
+                "sensor_voltage",
+            ]
+        )
 
     def test_device_class_is_outlet(self):
         self.assertEqual(self.subject.device_class, DEVICE_CLASS_OUTLET)

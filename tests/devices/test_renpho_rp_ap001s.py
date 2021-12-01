@@ -64,6 +64,17 @@ class TestRenphoPurifier(
                 },
             ]
         )
+        self.mark_secondary(
+            [
+                "light_aq_indicator",
+                "lock_child_lock",
+                "sensor_air_quality",
+                "sensor_active_filter_life",
+                "sensor_charcoal_filter_life",
+                "sensor_hepa_filter_life",
+                "sensor_prefilter_life",
+            ]
+        )
 
     def test_supported_features(self):
         self.assertEqual(self.subject.supported_features, SUPPORT_PRESET_MODE)
