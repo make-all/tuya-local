@@ -706,3 +706,29 @@ TMWF02_FAN_PAYLOAD = {
     "3": "level_2",
     "4": 40,
 }
+
+TIMED_SOCKET_PAYLOAD = {
+    "1": True,
+    "11": 0,
+}
+
+DIGOO_DGSP202_SOCKET_PAYLOAD = {
+    "1": True,
+    "2": True,
+    "9": 0,
+    "10": 0,
+    "18": 500,
+    "19": 1200,
+    "20": 240,
+}
+
+WOOX_R4028_SOCKET_PAYLOAD = {
+    "1": True,
+    "2": True,
+    "3": True,
+    "7": True,
+    "101": 0,
+    "102": 0,
+    "103": 0,
+    "105": 0,
+}

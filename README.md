@@ -109,12 +109,16 @@ the device will not work despite being listed below.
 ### SmartPlugs/Wall sockets
 - Kogan Single Smartplug with Energy Monitoring
 - Kogan Single Smartplug with Energy Monitoring and USB charging
-- Grid Connect double outlet with Energy Monitoring, Master and Individual switches and Child Lock.
-- Grid Connect double outlet wall socket
-- Mirabella Genio Smart plug with USB
 - CBE Smart plug with advanced energy monitoring
-- Other brands may work with the above configurations
+- Mirabella Genio Smart plug with USB
+- Grid Connect double outlet with Energy Monitoring, Master and Individual switches and Child Lock.
+- DIGOO DG-SP202 dual smartplug with energy monitoring and timers.
+- Grid Connect double outlet wall socket
+- Woox R4028/DIGOO DG-PS01 3 outlet + USB powerstrip with individual timers.
+Other brands may work with the above configurations
+
 - Simple Switch - a switch only, can be a fallback for many other unsupported devices, to allow just power to be switched on/off.
+- Simple Switch with Timer - a single switch and timer, will probably work for a lot of smart switches that are not covered by the more advanced configs above.
 
 ### Covers
 - Simple Garage Door

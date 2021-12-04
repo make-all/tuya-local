@@ -1,8 +1,8 @@
-name: Woox R4028 + DIGOO DG-PS01
+name: 3 outlet + USB powerstrip
 primary_entity:
   entity: switch
   name: outlet 1
-  class: switch
+  class: outlet
   dps:
     - id: 1
       type: boolean
@@ -10,14 +10,14 @@ primary_entity:
 secondary_entities:
   - entity: switch
     name: outlet 2
-    class: switch
+    class: outlet
     dps:
       - id: 2
         type: boolean
         name: switch
   - entity: switch
     name: outlet 3
-    class: switch
+    class: outlet
     dps:
       - id: 3
         type: boolean
@@ -32,6 +32,7 @@ secondary_entities:
   - entity: number
     category: config
     name: Timer 1
+    icon: "mdi:timer"
     dps:
       - id: 101
         name: value
@@ -45,6 +46,7 @@ secondary_entities:
   - entity: number
     category: config
     name: Timer 2
+    icon: "mdi:timer"
     dps:
       - id: 102
         name: value
@@ -58,6 +60,7 @@ secondary_entities:
   - entity: number
     category: config
     name: Timer 3
+    icon: "mdi:timer"
     dps:
       - id: 103
         name: value
@@ -71,6 +74,7 @@ secondary_entities:
   - entity: number
     category: config
     name: USB Timer
+    icon: "mdi:timer"
     dps:
       - id: 105
         name: value
