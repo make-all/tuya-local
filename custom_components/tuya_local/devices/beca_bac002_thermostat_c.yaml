@@ -23,26 +23,6 @@ primary_entity:
         max: 70
       mapping:
         - scale: 2
-    - id: 4
-      type: string
-      name: hvac_mode
-      mapping:
-        - dps_val: "0"
-          constraint: power
-          conditions:
-            - dps_val: true
-              value: auto
-            - dps_val: false
-              value_redirect: power
-              value: "off"
-        - dps_val: "1"
-          constraint: power
-          conditions:
-            - dps_val: true
-              value_mirror: installation_type
-            - dps_val: false
-              value_redirect: power
-              value: "off"
     - id: 5
       type: boolean
       name: preset_mode
@@ -53,15 +33,32 @@ primary_entity:
           value: comfort
     - id: 102
       type: string
-      name: installation_type
+      name: hvac_mode
       mapping:
         - dps_val: "0"
-          value: cool
+          constraint: power
+          conditions:
+            - dps_val: true
+              value: cool
+            - dps_val: false
+              value_redirect: power
+              value: "off"
         - dps_val: "1"
-          value: heat
+          constraint: power
+          conditions:
+            - dps_val: true
+              value: heat
+            - dps_val: false
+              value_redirect: power
+              value: "off"
         - dps_val: "2"
-          value: fan_only
-      hidden: true
+          constraint: power
+          conditions:
+            - dps_val: true
+              value: fan_only
+            - dps_val: false
+              value_redirect: power
+              value: "off"
     - id: 103
       type: string
       name: fan_mode
@@ -88,15 +85,13 @@ secondary_entities:
           - dps_val: false
             icon: "mdi:hand-back-right"
   - entity: select
-    name: Installation
+    name: Schedule
     dps:
-      - id: 102
+      - id: 4
         type: string
         name: option
         mapping:
           - dps_val: "0"
-            value: Cooling
+            value: program
           - dps_val: "1"
-            value: Heating
-          - dps_val: "2"
-            value: Fan
+            value: manual

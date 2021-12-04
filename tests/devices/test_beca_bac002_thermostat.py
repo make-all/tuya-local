@@ -3,7 +3,6 @@ from homeassistant.components.climate.const import (
     FAN_HIGH,
     FAN_LOW,
     FAN_MEDIUM,
-    HVAC_MODE_AUTO,
     HVAC_MODE_COOL,
     HVAC_MODE_HEAT,
     HVAC_MODE_FAN_ONLY,
@@ -26,10 +25,10 @@ from .base_device_tests import TuyaDeviceTestCase
 SWITCH_DPS = "1"
 CURRENTTEMP_DPS = "2"
 TEMPERATURE_DPS = "3"
-HVACMODE_DPS = "4"
+PROGRAM_DPS = "4"
 PRESET_DPS = "5"
 LOCK_DPS = "6"
-INSTALL_DPS = "102"
+HVACMODE_DPS = "102"
 FAN_DPS = "103"
 
 
@@ -53,12 +52,11 @@ class TestBecaBAC002Thermostat(
         )
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
         self.setUpBasicSelect(
-            INSTALL_DPS,
-            self.entities.get("select_installation"),
+            PROGRAM_DPS,
+            self.entities.get("select_schedule"),
             {
-                "0": "Cooling",
-                "1": "Heating",
-                "2": "Fan",
+                "0": "program",
+                "1": "manual",
             },
         )
         self.mark_secondary(["lock_child_lock"])
@@ -96,46 +94,48 @@ class TestBecaBAC002Thermostat(
 
     def test_hvac_mode(self):
         self.dps[SWITCH_DPS] = True
-        self.dps[INSTALL_DPS] = "0"
-        self.dps[HVACMODE_DPS] = "1"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_COOL)
-        self.dps[INSTALL_DPS] = "1"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT)
-        self.dps[INSTALL_DPS] = "2"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_FAN_ONLY)
         self.dps[HVACMODE_DPS] = "0"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_AUTO)
+        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_COOL)
+        self.dps[HVACMODE_DPS] = "1"
+        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT)
+        self.dps[HVACMODE_DPS] = "2"
+        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_FAN_ONLY)
         self.dps[SWITCH_DPS] = False
         self.assertEqual(self.subject.hvac_mode, HVAC_MODE_OFF)
         self.dps[HVACMODE_DPS] = None
         self.assertEqual(self.subject.hvac_mode, STATE_UNAVAILABLE)
 
     def test_hvac_modes(self):
-        self.dps[INSTALL_DPS] = "1"
         self.assertCountEqual(
             self.subject.hvac_modes,
             [
-                HVAC_MODE_AUTO,
+                HVAC_MODE_COOL,
+                HVAC_MODE_FAN_ONLY,
                 HVAC_MODE_HEAT,
                 HVAC_MODE_OFF,
             ],
         )
 
-    async def test_set_hvac_mode_to_auto(self):
-        self.dps[INSTALL_DPS] = "1"
+    async def test_set_hvac_mode_to_cool(self):
         async with assert_device_properties_set(
             self.subject._device,
             {SWITCH_DPS: True, HVACMODE_DPS: "0"},
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_AUTO)
+            await self.subject.async_set_hvac_mode(HVAC_MODE_COOL)
 
     async def test_set_hvac_mode_to_heat(self):
-        self.dps[INSTALL_DPS] = "1"
         async with assert_device_properties_set(
             self.subject._device,
             {SWITCH_DPS: True, HVACMODE_DPS: "1"},
         ):
             await self.subject.async_set_hvac_mode(HVAC_MODE_HEAT)
+
+    async def test_set_hvac_mode_to_fan(self):
+        async with assert_device_properties_set(
+            self.subject._device,
+            {SWITCH_DPS: True, HVACMODE_DPS: "2"},
+        ):
+            await self.subject.async_set_hvac_mode(HVAC_MODE_FAN_ONLY)
 
     async def test_set_hvac_mode_to_off(self):
         async with assert_device_properties_set(
