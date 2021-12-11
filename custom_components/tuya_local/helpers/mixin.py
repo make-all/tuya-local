@@ -58,7 +58,7 @@ class TuyaLocalEntity:
             return super().icon
 
     @property
-    def device_state_attributes(self):
+    def extra_state_attributes(self):
         """Get additional attributes that the platform itself does not support."""
         attr = {}
         for a in self._attr_dps:
