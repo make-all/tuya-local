@@ -41,7 +41,12 @@ class TestGoldairGECOHeater(
             max=35,
         )
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
-        self.setUpBasicNumber(TIMER_DPS, self.entities.get("number_timer"), max=24, unit=TIME_HOURS)
+        self.setUpBasicNumber(
+            TIMER_DPS,
+            self.entities.get("number_timer"),
+            max=24,
+            unit=TIME_HOURS,
+        )
         self.setUpBasicBinarySensor(
             ERROR_DPS,
             self.entities.get("binary_sensor_error"),
