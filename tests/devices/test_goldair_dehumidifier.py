@@ -19,6 +19,7 @@ from homeassistant.const import (
     DEVICE_CLASS_TEMPERATURE,
     STATE_UNAVAILABLE,
     TEMP_CELSIUS,
+    TIME_HOURS,
 )
 
 from ..const import DEHUMIDIFIER_PAYLOAD
@@ -73,7 +74,12 @@ class TestGoldairDehumidifier(
         self.light = self.entities.get("light_display")
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
         self.setUpBasicSwitch(AIRCLEAN_DPS, self.entities.get("switch_air_clean"))
-        self.setUpBasicNumber(TIMER_DPS, self.entities.get("number_timer"), max=24)
+        self.setUpBasicNumber(
+            TIMER_DPS,
+            self.entities.get("number_timer"),
+            max=24,
+            unit=TIME_HOURS,
+        )
 
         self.setUpMultiSensors(
             [

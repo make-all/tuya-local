@@ -2,6 +2,7 @@
 Mixins to make writing new platforms easier
 """
 import logging
+from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -67,3 +68,16 @@ class TuyaLocalEntity:
 
     async def async_update(self):
         await self._device.async_refresh()
+
+
+UNIT_ASCII_MAP = {
+    "C": TEMP_CELSIUS,
+    "F": TEMP_FAHRENHEIT,
+}
+
+
+def unit_from_ascii(unit):
+    if unit in UNIT_ASCII_MAP:
+        return UNIT_ASCII_MAP[unit]
+
+    return unit

@@ -3,7 +3,9 @@ from ..helpers import assert_device_properties_set
 
 
 class BasicNumberTests:
-    def setUpBasicNumber(self, dps, subject, max, min=0, step=1, mode="auto", scale=1):
+    def setUpBasicNumber(
+        self, dps, subject, max, min=0, step=1, mode="auto", scale=1, unit=None
+    ):
         self.basicNumber = subject
         self.basicNumberDps = dps
         self.basicNumberMin = min
@@ -11,6 +13,7 @@ class BasicNumberTests:
         self.basicNumberStep = step
         self.basicNumberMode = mode
         self.basicNumberScale = scale
+        self.basicNumberUnit = unit
 
     def test_number_min_value(self):
         self.assertEqual(self.basicNumber.min_value, self.basicNumberMin)
@@ -23,6 +26,9 @@ class BasicNumberTests:
 
     def test_number_mode(self):
         self.assertEqual(self.basicNumber.mode, self.basicNumberMode)
+
+    def test_number_unit_of_measurement(self):
+        self.assertEqual(self.basicNumber.unit_of_measurement, self.basicNumberUnit)
 
     def test_number_value(self):
         val = min(max(self.basicNumberMin, self.basicNumberStep), self.basicNumberMax)
@@ -51,6 +57,7 @@ class MultiNumberTests:
         self.multiNumberStep = {}
         self.multiNumberMode = {}
         self.multiNumberScale = {}
+        self.multiNumberUnit = {}
 
         for n in numbers:
             name = n.get("name")
@@ -64,6 +71,7 @@ class MultiNumberTests:
             self.multiNumberStep[name] = n.get("step", 1)
             self.multiNumberMode[name] = n.get("mode", "auto")
             self.multiNumberScale[name] = n.get("scale", 1)
+            self.multiNumberUnit[name] = n.get("unit", None)
 
     def test_multi_number_min_value(self):
         for key, subject in self.multiNumber.items():
@@ -84,6 +92,11 @@ class MultiNumberTests:
         for key, subject in self.multiNumber.items():
             with self.subTest(key):
                 self.assertEqual(subject.mode, self.multiNumberMode[key])
+
+    def test_multi_number_unit_of_measurement(self):
+        for key, subject in self.multiNumber.items():
+            with self.subTest(key):
+                self.assertEqual(subject.unit_of_measurement, self.multiNumberUnit[key])
 
     def test_multi_number_value(self):
         for key, subject in self.multiNumber.items():

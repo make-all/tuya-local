@@ -7,6 +7,7 @@ from homeassistant.const import (
     ELECTRIC_CURRENT_MILLIAMPERE,
     ELECTRIC_POTENTIAL_VOLT,
     POWER_WATT,
+    TIME_MINUTES,
 )
 
 from ..const import DIGOO_DGSP202_SOCKET_PAYLOAD
@@ -54,12 +55,14 @@ class TestDigooDGSP202Switch(
                     "name": "number_timer_1",
                     "max": 1440,
                     "scale": 60,
+                    "unit": TIME_MINUTES,
                 },
                 {
                     "dps": TIMER2_DPS,
                     "name": "number_timer_2",
                     "max": 1440,
                     "scale": 60,
+                    "unit": TIME_MINUTES,
                 },
             ]
         )

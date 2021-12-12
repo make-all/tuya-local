@@ -90,24 +90,28 @@ class TestMincoMH1823DThermostat(
                     "dps": CALIBINT_DPS,
                     "min": -9,
                     "max": 9,
+                    "unit": TEMP_CELSIUS,
                 },
                 {
                     "name": "number_calibration_offset_external",
                     "dps": CALIBEXT_DPS,
                     "min": -9,
                     "max": 9,
+                    "unit": TEMP_CELSIUS,
                 },
                 {
                     "name": "number_calibration_swing",
                     "dps": CALIBSWING_DPS,
                     "min": 1,
                     "max": 9,
+                    "unit": TEMP_CELSIUS,
                 },
                 {
                     "name": "number_high_temperature_limit",
                     "dps": TEMPLIMIT_DPS,
                     "min": 5,
                     "max": 65,
+                    "unit": TEMP_CELSIUS,
                 },
             ]
         )

@@ -9,7 +9,7 @@ from homeassistant.components.climate.const import (
     SUPPORT_PRESET_MODE,
     SUPPORT_TARGET_TEMPERATURE_RANGE,
 )
-from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT
+from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT, TIME_HOURS
 
 
 from ..const import INKBIRD_THERMOSTAT_PAYLOAD
@@ -95,11 +95,13 @@ class TestInkbirdThermostat(
                     "step": 0.1,
                     "min": -9.9,
                     "max": 9.9,
+                    "unit": TEMP_CELSIUS,
                 },
                 {
                     "name": "number_continuous_heat_hours",
                     "dps": TIME_THRES_DPS,
                     "max": 96,
+                    "unit": TIME_HOURS,
                 },
                 {
                     "name": "number_high_temperature_limit",
@@ -108,6 +110,7 @@ class TestInkbirdThermostat(
                     "step": 0.1,
                     "min": -40,
                     "max": 100,
+                    "unit": TEMP_CELSIUS,
                 },
                 {
                     "name": "number_low_temperature_limit",
@@ -116,6 +119,7 @@ class TestInkbirdThermostat(
                     "step": 0.1,
                     "min": -40,
                     "max": 100,
+                    "unit": TEMP_CELSIUS,
                 },
             ]
         )

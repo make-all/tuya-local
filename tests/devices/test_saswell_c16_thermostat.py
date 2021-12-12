@@ -9,7 +9,7 @@ from homeassistant.components.climate.const import (
     SUPPORT_PRESET_MODE,
     SUPPORT_TARGET_TEMPERATURE,
 )
-from homeassistant.const import DEVICE_CLASS_TEMPERATURE, TEMP_CELSIUS
+from homeassistant.const import DEVICE_CLASS_TEMPERATURE, POWER_WATT, TEMP_CELSIUS
 
 from ..const import SASWELL_C16_THERMOSTAT_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -85,11 +85,13 @@ class TestSaswellC16Thermostat(
                     "max": 50.0,
                     "scale": 10,
                     "step": 0.5,
+                    "unit": TEMP_CELSIUS,
                 },
                 {
                     "name": "number_power_rating",
                     "dps": POWERRATING_DPS,
                     "max": 3500,
+                    "unit": POWER_WATT,
                 },
             ]
         )

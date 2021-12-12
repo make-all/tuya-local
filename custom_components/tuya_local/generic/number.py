@@ -9,7 +9,7 @@ from homeassistant.components.number.const import (
 
 from ..device import TuyaLocalDevice
 from ..helpers.device_config import TuyaEntityConfig
-from ..helpers.mixin import TuyaLocalEntity
+from ..helpers.mixin import TuyaLocalEntity, unit_from_ascii
 
 MODE_AUTO = "auto"
 
@@ -28,6 +28,7 @@ class TuyaLocalNumber(TuyaLocalEntity, NumberEntity):
         self._value_dps = dps_map.pop("value")
         if self._value_dps is None:
             raise AttributeError(f"{config.name} is missing a value dps")
+        self._unit_dps = dps_map.pop("unit", None)
         self._init_end(dps_map)
 
     @property
@@ -51,6 +52,16 @@ class TuyaLocalNumber(TuyaLocalEntity, NumberEntity):
         if m is None:
             m = MODE_AUTO
         return m
+
+    @property
+    def unit_of_measurement(self):
+        """Return the unit associated with this number."""
+        if self._unit_dps is None:
+            unit = self._value_dps.unit
+        else:
+            unit = self._unit_dps.get_value(self._device)
+
+        return unit_from_ascii(unit)
 
     @property
     def value(self):

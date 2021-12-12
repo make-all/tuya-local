@@ -7,7 +7,7 @@ from homeassistant.components.climate.const import (
     SUPPORT_TARGET_TEMPERATURE,
     SUPPORT_PRESET_MODE,
 )
-from homeassistant.const import STATE_UNAVAILABLE
+from homeassistant.const import STATE_UNAVAILABLE, TIME_MINUTES
 
 from ..const import NEDIS_HTPL20F_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -44,7 +44,12 @@ class TestNedisHtpl20fHeater(
             LOCK_DPS,
             self.entities.get("lock_child_lock"),
         )
-        self.setUpBasicNumber(TIMER_DPS, self.entities.get("number_timer"), max=1440)
+        self.setUpBasicNumber(
+            TIMER_DPS,
+            self.entities.get("number_timer"),
+            max=1440,
+            unit=TIME_MINUTES,
+        )
         self.mark_secondary(["lock_child_lock", "number_timer"])
 
     def test_supported_features(self):

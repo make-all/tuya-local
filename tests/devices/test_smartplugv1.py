@@ -7,6 +7,7 @@ from homeassistant.const import (
     ELECTRIC_CURRENT_MILLIAMPERE,
     ELECTRIC_POTENTIAL_VOLT,
     POWER_WATT,
+    TIME_MINUTES,
 )
 
 from ..const import KOGAN_SOCKET_PAYLOAD
@@ -31,7 +32,12 @@ class TestKoganSwitch(
         self.setUpForConfig("smartplugv1.yaml", KOGAN_SOCKET_PAYLOAD)
         self.subject = self.entities.get("switch")
         self.setUpSwitchable(SWITCH_DPS, self.subject)
-        self.setUpBasicNumber(TIMER_DPS, self.entities.get("number_timer"), max=1440)
+        self.setUpBasicNumber(
+            TIMER_DPS,
+            self.entities.get("number_timer"),
+            max=1440,
+            unit=TIME_MINUTES,
+        )
         self.setUpMultiSensors(
             [
                 {

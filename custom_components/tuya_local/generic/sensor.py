@@ -1,12 +1,15 @@
 """
 Platform to read Tuya sensors.
 """
-from homeassistant.components.sensor import DEVICE_CLASSES, SensorEntity, STATE_CLASSES
-from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT
+from homeassistant.components.sensor import (
+    DEVICE_CLASSES,
+    SensorEntity,
+    STATE_CLASSES,
+)
 
 from ..device import TuyaLocalDevice
 from ..helpers.device_config import TuyaEntityConfig
-from ..helpers.mixin import TuyaLocalEntity
+from ..helpers.mixin import TuyaLocalEntity, unit_from_ascii
 
 
 class TuyaLocalSensor(TuyaLocalEntity, SensorEntity):
@@ -58,10 +61,4 @@ class TuyaLocalSensor(TuyaLocalEntity, SensorEntity):
         else:
             unit = self._unit_dps.get_value(self._device)
 
-        # Temperatures use Unicode characters, translate from simpler ASCII
-        if unit == "C":
-            unit = TEMP_CELSIUS
-        elif unit == "F":
-            unit = TEMP_FAHRENHEIT
-
-        return unit
+        return unit_from_ascii(unit)

@@ -155,6 +155,15 @@ secondary_entities:
                 range:
                   min: -15
                   max: 15
+      - id: 19
+        type: string
+        name: unit
+        hidden: true
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
   - entity: number
     name: Calibration Offset External
     category: config
@@ -177,6 +186,11 @@ secondary_entities:
         type: string
         name: unit
         hidden: true
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
   - entity: number
     name: Calibration Swing
     category: config
@@ -199,6 +213,11 @@ secondary_entities:
         type: string
         name: unit
         hidden: true
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
   - entity: number
     category: config
     name: High Temperature Limit
@@ -227,7 +246,12 @@ secondary_entities:
       - id: 19
         type: string
         name: unit
-        hidden: true        
+        hidden: true
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
   - entity: select
     name: Schedule
     category: config

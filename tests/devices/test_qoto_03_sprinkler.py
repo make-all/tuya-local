@@ -1,5 +1,6 @@
 """Tests for the Quto 03 Sprinkler."""
 from homeassistant.components.binary_sensor import DEVICE_CLASS_PROBLEM
+from homeassistant.const import PERCENTAGE, TIME_SECONDS
 
 from ..const import QOTO_SPRINKLER_PAYLOAD
 from ..mixins.binary_sensor import BasicBinarySensorTests
@@ -14,7 +15,7 @@ TIMER_DPS = "105"
 ERROR_DPS = "108"
 
 
-class TestQoboSprinkler(
+class TestQotoSprinkler(
     BasicBinarySensorTests,
     MultiNumberTests,
     MultiSensorTests,
@@ -37,11 +38,13 @@ class TestQoboSprinkler(
                     "dps": TARGET_DPS,
                     "max": 100,
                     "step": 5,
+                    "unit": PERCENTAGE,
                 },
                 {
                     "name": "number_timer",
                     "dps": TIMER_DPS,
                     "max": 86399,
+                    "unit": TIME_SECONDS,
                 },
             ]
         )

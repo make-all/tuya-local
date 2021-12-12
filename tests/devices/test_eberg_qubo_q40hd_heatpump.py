@@ -17,7 +17,12 @@ from homeassistant.components.climate.const import (
     SWING_OFF,
     SWING_VERTICAL,
 )
-from homeassistant.const import STATE_UNAVAILABLE, TEMP_CELSIUS, TEMP_FAHRENHEIT
+from homeassistant.const import (
+    STATE_UNAVAILABLE,
+    TEMP_CELSIUS,
+    TEMP_FAHRENHEIT,
+    TIME_HOURS,
+)
 
 from ..const import EBERG_QUBO_Q40HD_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -54,7 +59,12 @@ class TestEbergQuboQ40HDHeatpump(
             min=17,
             max=30,
         )
-        self.setUpBasicNumber(TIMER_DPS, self.entities.get("number_timer"), max=24)
+        self.setUpBasicNumber(
+            TIMER_DPS,
+            self.entities.get("number_timer"),
+            max=24,
+            unit=TIME_HOURS,
+        )
         self.mark_secondary(["number_timer"])
 
     def test_supported_features(self):

@@ -3,6 +3,7 @@ from homeassistant.components.fan import (
     SUPPORT_PRESET_MODE,
     SUPPORT_SET_SPEED,
 )
+from homeassistant.const import TIME_SECONDS
 
 from ..const import ANKO_FAN_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -24,7 +25,12 @@ class TestAnkoFan(SwitchableTests, BasicNumberTests, TuyaDeviceTestCase):
         self.setUpForConfig("anko_fan.yaml", ANKO_FAN_PAYLOAD)
         self.subject = self.entities["fan"]
         self.setUpSwitchable(SWITCH_DPS, self.subject)
-        self.setUpBasicNumber(TIMER_DPS, self.entities.get("number_timer"), max=9)
+        self.setUpBasicNumber(
+            TIMER_DPS,
+            self.entities.get("number_timer"),
+            max=9,
+            unit=TIME_SECONDS,
+        )
         self.mark_secondary(["number_timer"])
 
     def test_supported_features(self):

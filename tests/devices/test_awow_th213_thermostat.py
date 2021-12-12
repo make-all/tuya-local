@@ -81,12 +81,14 @@ class TestAwowTH213Thermostat(
                     "dps": CALIBRATE_DPS,
                     "min": -9,
                     "max": 9,
+                    "unit": TEMP_CELSIUS,
                 },
                 {
                     "name": "number_calibration_swing",
                     "dps": CALIBSWING_DPS,
                     "min": 1,
                     "max": 9,
+                    "unit": TEMP_CELSIUS,
                 },
             ]
         )

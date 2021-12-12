@@ -4,7 +4,7 @@ from homeassistant.components.climate.const import (
     HVAC_MODE_OFF,
     SUPPORT_TARGET_TEMPERATURE,
 )
-from homeassistant.const import STATE_UNAVAILABLE
+from homeassistant.const import STATE_UNAVAILABLE, TIME_HOURS
 
 from ..const import GECO_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -41,7 +41,7 @@ class TestGoldairGECOHeater(
             max=35,
         )
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
-        self.setUpBasicNumber(TIMER_DPS, self.entities.get("number_timer"), max=24)
+        self.setUpBasicNumber(TIMER_DPS, self.entities.get("number_timer"), max=24, unit=TIME_HOURS)
         self.setUpBasicBinarySensor(
             ERROR_DPS,
             self.entities.get("binary_sensor_error"),

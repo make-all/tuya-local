@@ -11,6 +11,7 @@ from homeassistant.const import (
     DEVICE_CLASS_POWER_FACTOR,
     PERCENTAGE,
     STATE_UNAVAILABLE,
+    TIME_MINUTES,
 )
 
 from ..const import GPPH_HEATER_PAYLOAD
@@ -60,7 +61,11 @@ class TestGoldairHeater(
         self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_display"))
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
         self.setUpBasicNumber(
-            TIMER_DPS, self.entities.get("number_timer"), min=0, max=1440, step=60
+            TIMER_DPS,
+            self.entities.get("number_timer"),
+            max=1440,
+            step=60,
+            unit=TIME_MINUTES,
         )
         self.setUpBasicSensor(
             POWERLEVEL_DPS,

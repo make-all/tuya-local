@@ -39,9 +39,16 @@ from homeassistant.const import (
 
 from ..device import TuyaLocalDevice
 from ..helpers.device_config import TuyaEntityConfig
-from ..helpers.mixin import TuyaLocalEntity
+from ..helpers.mixin import TuyaLocalEntity, unit_from_ascii
 
 _LOGGER = logging.getLogger(__name__)
+
+VALID_TEMP_UNIT = [TEMP_CELSIUS, TEMP_FAHRENHEIT, TEMP_KELVIN]
+
+
+def validate_temp_unit(unit):
+    unit = unit_from_ascii(unit)
+    return unit if unit in VALID_TEMP_UNIT else None
 
 
 class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
@@ -101,24 +108,15 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         """Return the unit of measurement."""
         # If there is a separate DPS that returns the units, use that
         if self._unit_dps is not None:
-            unit = self._unit_dps.get_value(self._device)
+            unit = validate_temp_unit(self._unit_dps.get_value(self._device))
             # Only return valid units
-            if unit == "C":
-                return TEMP_CELSIUS
-            elif unit == "F":
-                return TEMP_FAHRENHEIT
-            elif unit == "K":
-                return TEMP_KELVIN
+            if unit is not None:
+                return unit
         # If there unit attribute configured in the temperature dps, use that
         if self._temperature_dps:
-            unit = self._temperature_dps.unit
-            # Only return valid units
-            if unit == "C":
-                return TEMP_CELSIUS
-            elif unit == "F":
-                return TEMP_FAHRENHEIT
-            elif unit == "K":
-                return TEMP_KELVIN
+            unit = validate_temp_unit(self._temperature_dps.unit)
+            if unit is not None:
+                return unit
         # Return the default unit from the device
         return self._device.temperature_unit
 

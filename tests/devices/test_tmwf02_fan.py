@@ -1,7 +1,6 @@
 from homeassistant.components.fan import SUPPORT_SET_SPEED
 from homeassistant.const import (
-    DEVICE_CLASS_POWER_FACTOR,
-    PERCENTAGE,
+    TIME_MINUTES,
 )
 from ..const import TMWF02_FAN_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -27,6 +26,7 @@ class TestTMWF02Fan(BasicNumberTests, SwitchableTests, TuyaDeviceTestCase):
             self.entities.get("number_timer"),
             max=1440,
             scale=60,
+            unit=TIME_MINUTES,
         )
         self.mark_secondary(["number_timer"])
 

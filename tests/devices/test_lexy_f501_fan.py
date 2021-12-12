@@ -3,6 +3,7 @@ from homeassistant.components.fan import (
     SUPPORT_PRESET_MODE,
     SUPPORT_SET_SPEED,
 )
+from homeassistant.const import TIME_HOURS
 
 from ..const import LEXY_F501_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -38,7 +39,12 @@ class TestLexyF501Fan(
         self.setUpSwitchable(POWER_DPS, self.subject)
         self.setUpBasicLight(LIGHT_DPS, self.entities.get("light"))
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
-        self.setUpBasicNumber(TIMER_DPS, self.entities.get("number_timer"), max=7)
+        self.setUpBasicNumber(
+            TIMER_DPS,
+            self.entities.get("number_timer"),
+            max=7,
+            unit=TIME_HOURS,
+        )
         self.setUpBasicSwitch(SWITCH_DPS, self.entities.get("switch_sound"))
         self.mark_secondary(
             [

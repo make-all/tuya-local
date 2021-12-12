@@ -9,6 +9,7 @@ from homeassistant.const import (
     ELECTRIC_POTENTIAL_VOLT,
     ENERGY_WATT_HOUR,
     POWER_WATT,
+    TIME_SECONDS,
 )
 
 from ..const import GRIDCONNECT_2SOCKET_PAYLOAD
@@ -126,11 +127,13 @@ class TestGridConnectDoubleSwitch(
                     "name": "number_timer_1",
                     "dps": COUNTDOWN1_DPS,
                     "max": 86400,
+                    "unit": TIME_SECONDS,
                 },
                 {
                     "name": "number_timer_2",
                     "dps": COUNTDOWN2_DPS,
                     "max": 86400,
+                    "unit": TIME_SECONDS,
                 },
             ]
         )
