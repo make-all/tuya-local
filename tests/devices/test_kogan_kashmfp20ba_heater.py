@@ -126,10 +126,10 @@ class TestKoganKASHMF20BAHeater(TargetTemperatureTests, TuyaDeviceTestCase):
         ):
             await self.subject.async_set_preset_mode("high")
 
-    def test_device_state_attribures(self):
-        self.assertEqual(self.subject.device_state_attributes, {})
-        self.assertEqual(self.backlight.device_state_attributes, {})
-        self.assertEqual(self.flame.device_state_attributes, {})
+    def test_extra_state_attributes(self):
+        self.assertEqual(self.subject.extra_state_attributes, {})
+        self.assertEqual(self.backlight.extra_state_attributes, {})
+        self.assertEqual(self.flame.extra_state_attributes, {})
 
     def test_lighting_supported_color_modes(self):
         self.assertCountEqual(self.backlight.supported_color_modes, [])

@@ -215,5 +215,5 @@ class TestBecaBAC002Thermostat(
         ):
             await self.subject.async_set_fan_mode(FAN_LOW)
 
-    def test_device_state_attribures(self):
-        self.assertEqual(self.subject.device_state_attributes, {})
+    def test_extra_state_attribures(self):
+        self.assertEqual(self.subject.extra_state_attributes, {})

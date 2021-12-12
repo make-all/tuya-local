@@ -199,7 +199,7 @@ class TestFerskVind2Climate(TargetTemperatureTests, TuyaDeviceTestCase):
         ):
             await self.subject.async_set_swing_mode(SWING_OFF)
 
-    def test_device_state_attribures(self):
+    def test_extra_state_attributes(self):
         self.dps[UNKNOWN101_DPS] = True
         self.dps[UNKNOWN102_DPS] = False
         self.dps[TIMER_DPS] = 103
@@ -208,7 +208,7 @@ class TestFerskVind2Climate(TargetTemperatureTests, TuyaDeviceTestCase):
         self.dps[UNKNOWN109_DPS] = True
         self.dps[UNKNOWN110_DPS] = 110
         self.assertDictEqual(
-            self.subject.device_state_attributes,
+            self.subject.extra_state_attributes,
             {
                 "unknown_101": True,
                 "unknown_102": False,

@@ -91,6 +91,6 @@ class TestEurom600Heater(
         # There are currently no known error states; update this as
         # they are discovered
         self.dps[ERROR_DPS] = "something"
-        self.assertEqual(self.subject.device_state_attributes, {"error": "something"})
+        self.assertEqual(self.subject.extra_state_attributes, {"error": "something"})
         self.dps[ERROR_DPS] = "0"
-        self.assertEqual(self.subject.device_state_attributes, {"error": "OK"})
+        self.assertEqual(self.subject.extra_state_attributes, {"error": "OK"})

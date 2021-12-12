@@ -170,7 +170,7 @@ class TestGridConnectDoubleSwitch(
         self.dps[CALIBW_DPS] = 24
         self.dps[CALIBE_DPS] = 25
         self.assertDictEqual(
-            self.multiSwitch["switch_master"].device_state_attributes,
+            self.multiSwitch["switch_master"].extra_state_attributes,
             {
                 "current_a": 1.234,
                 "voltage_v": 235.0,
@@ -183,13 +183,13 @@ class TestGridConnectDoubleSwitch(
             },
         )
         self.assertDictEqual(
-            self.multiSwitch["switch_outlet_1"].device_state_attributes,
+            self.multiSwitch["switch_outlet_1"].extra_state_attributes,
             {
                 "countdown": 9,
             },
         )
         self.assertDictEqual(
-            self.multiSwitch["switch_outlet_2"].device_state_attributes,
+            self.multiSwitch["switch_outlet_2"].extra_state_attributes,
             {
                 "countdown": 10,
             },

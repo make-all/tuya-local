@@ -26,8 +26,8 @@ class BasicSelectTests:
             ):
                 await self.basicSelect.async_select_option(val)
 
-    def test_basicSelect_device_state_attributes(self):
-        self.assertEqual(self.basicSelect.device_state_attributes, {})
+    def test_basicSelect_extra_state_attributes(self):
+        self.assertEqual(self.basicSelect.extra_state_attributes, {})
 
 
 class MultiSelectTests:
@@ -68,7 +68,7 @@ class MultiSelectTests:
                     ):
                         await subject.async_select_option(val)
 
-    def test_multiSelect_device_state_attributes(self):
+    def test_multiSelect_extra_state_attributes(self):
         for key, subject in self.multiSelect.items():
             with self.subTest(key):
-                self.assertEqual(subject.device_state_attributes, {})
+                self.assertEqual(subject.extra_state_attributes, {})

@@ -145,12 +145,12 @@ class TestKoganKAWFPAC09YA(TargetTemperatureTests, TuyaDeviceTestCase):
         ):
             await self.subject.async_set_fan_mode("high")
 
-    def test_device_state_attribures(self):
+    def test_extra_state_attributes(self):
         self.dps[COUNTDOWN_DPS] = 105
         self.dps[UNKNOWN106_DPS] = 106
         self.dps[UNKNOWN107_DPS] = True
         self.assertDictEqual(
-            self.subject.device_state_attributes,
+            self.subject.extra_state_attributes,
             {
                 "countdown": 105,
                 "unknown_106": 106,

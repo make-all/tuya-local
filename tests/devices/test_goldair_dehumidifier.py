@@ -459,13 +459,13 @@ class TestGoldairDehumidifier(
         ):
             await self.fan.async_set_percentage(30)
 
-    def test_device_state_attributes(self):
+    def test_extra_state_attributes(self):
         self.dps[ERROR_DPS] = None
         self.dps[DEFROST_DPS] = False
         self.dps[AIRCLEAN_DPS] = False
         self.dps[UNKNOWN101_DPS] = False
         self.assertDictEqual(
-            self.climate.device_state_attributes,
+            self.climate.extra_state_attributes,
             {
                 "error": None,
                 "defrosting": False,
@@ -479,7 +479,7 @@ class TestGoldairDehumidifier(
         self.dps[AIRCLEAN_DPS] = True
         self.dps[UNKNOWN101_DPS] = True
         self.assertDictEqual(
-            self.climate.device_state_attributes,
+            self.climate.extra_state_attributes,
             {
                 "error": ERROR_TANK,
                 "defrosting": True,
@@ -512,7 +512,7 @@ class TestGoldairDehumidifier(
         self.assertEqual(self.light.is_on, False)
 
     def test_light_state_attributes(self):
-        self.assertEqual(self.light.device_state_attributes, {})
+        self.assertEqual(self.light.extra_state_attributes, {})
 
     async def test_light_turn_on(self):
         async with assert_device_properties_set(

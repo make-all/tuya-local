@@ -137,7 +137,7 @@ class TestSwitchV2Energy(
         self.dps[RANDOM_DPS] = "3C4D"
 
         self.assertDictEqual(
-            self.multiSwitch["switch"].device_state_attributes,
+            self.multiSwitch["switch"].extra_state_attributes,
             {
                 "test_bit": 21,
                 "voltage_calibration": 22,

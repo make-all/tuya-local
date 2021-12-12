@@ -79,7 +79,7 @@ class MultiSensorTests:
                 self.dps[self.multiSensorDps[key]] = dpsval
                 self.assertEqual(subject.native_value, val)
 
-    def test_multi_sensor_device_state_attributes(self):
+    def test_multi_sensor_extra_state_attributes(self):
         for key, subject in self.multiSensor.items():
             with self.subTest(key):
-                self.assertEqual(subject.device_state_attributes, {})
+                self.assertEqual(subject.extra_state_attributes, {})

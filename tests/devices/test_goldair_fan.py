@@ -318,10 +318,10 @@ class TestGoldairFan(BasicLightTests, SwitchableTests, TuyaDeviceTestCase):
         ):
             await self.climate.async_set_fan_mode("medium")
 
-    def test_device_state_attributes(self):
+    def test_extra_state_attributes(self):
         self.dps[TIMER_DPS] = "5"
-        self.assertEqual(self.climate.device_state_attributes, {"timer": "5"})
-        self.assertEqual(self.subject.device_state_attributes, {"timer": "5"})
+        self.assertEqual(self.climate.extra_state_attributes, {"timer": "5"})
+        self.assertEqual(self.subject.extra_state_attributes, {"timer": "5"})
 
     def test_light_icon(self):
         self.dps[LIGHT_DPS] = True

@@ -103,11 +103,11 @@ class TestMoesBHT002Thermostat(
             ],
         )
 
-    def test_device_state_attribures(self):
+    def test_extra_state_attributes(self):
         self.dps[UNKNOWN104_DPS] = False
 
         self.assertDictEqual(
-            self.subject.device_state_attributes,
+            self.subject.extra_state_attributes,
             {"unknown_104": False},
         )
 

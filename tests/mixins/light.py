@@ -66,7 +66,7 @@ class BasicLightTests:
             await self.basicLight.async_toggle()
 
     def test_basic_light_state_attributes(self):
-        self.assertEqual(self.basicLight.device_state_attributes, {})
+        self.assertEqual(self.basicLight.extra_state_attributes, {})
 
 
 class DimmableLightTests:
@@ -92,7 +92,7 @@ class DimmableLightTests:
             self.assertEqual(self.dimmableLight.brightness, val)
 
     def test_dimmable_light_state_attributes(self):
-        self.assertEqual(self.dimmableLight.device_state_attributes, {})
+        self.assertEqual(self.dimmableLight.extra_state_attributes, {})
 
     async def test_dimmable_light_turn_off(self):
         async with assert_device_properties_set(

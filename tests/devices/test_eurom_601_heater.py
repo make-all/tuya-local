@@ -116,9 +116,9 @@ class TestEurom601Heater(
         ):
             await self.subject.async_set_preset_mode(PRESET_COMFORT)
 
-    def test_device_state_attributes(self):
+    def test_extra_state_attributes(self):
         self.dps[ERROR_DPS] = 13
         self.assertCountEqual(
-            self.subject.device_state_attributes,
+            self.subject.extra_state_attributes,
             {"error": 13},
         )

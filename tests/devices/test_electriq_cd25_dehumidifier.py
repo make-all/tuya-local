@@ -217,11 +217,11 @@ class TestElectriqCD25ProDehumidifier(
             await self.fan.async_set_preset_mode("Oscillate")
             self.subject._device.anticipate_property_value.assert_not_called()
 
-    def test_state_attributes(self):
+    def test_extra_state_attributes(self):
         self.dps[CURRENTHUMID_DPS] = 50
         self.dps[CURRENTTEMP_DPS] = 21
         self.assertDictEqual(
-            self.subject.device_state_attributes,
+            self.subject.extra_state_attributes,
             {"current_humidity": 50, "current_temperature": 21},
         )
-        self.assertEqual(self.fan.device_state_attributes, {})
+        self.assertEqual(self.fan.extra_state_attributes, {})

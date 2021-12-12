@@ -286,10 +286,10 @@ class TestEbergQuboQ40HDHeatpump(
         self.dps[POWER_DPS] = False
         self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_OFF)
 
-    def test_device_state_attribures(self):
+    def test_extra_state_attributes(self):
         self.dps[TIMER_DPS] = 22
         self.assertDictEqual(
-            self.subject.device_state_attributes,
+            self.subject.extra_state_attributes,
             {
                 "timer": 22,
             },

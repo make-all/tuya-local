@@ -247,13 +247,13 @@ class TestMadimackEliteV3Heatpump(
         ):
             await self.subject.async_set_preset_mode("Power")
 
-    def test_device_state_attributes(self):
+    def test_extra_state_attributes(self):
         self.dps[UNKNOWN15_DPS] = 15
         self.dps[UNKNOWN101_DPS] = 101
         self.dps[UNKNOWN107_DPS] = True
 
         self.assertDictEqual(
-            self.subject.device_state_attributes,
+            self.subject.extra_state_attributes,
             {
                 "unknown_15": 15,
                 "unknown_101": 101,

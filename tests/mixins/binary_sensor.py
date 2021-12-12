@@ -24,8 +24,8 @@ class BasicBinarySensorTests:
         self.dps[self.basicBSensorDps] = offval
         self.assertFalse(self.basicBSensor.is_on)
 
-    def test_basic_bsensor_device_state_attributes(self):
-        self.assertEqual(self.basicBSensor.device_state_attributes, {})
+    def test_basic_bsensor_extra_state_attributes(self):
+        self.assertEqual(self.basicBSensor.extra_state_attributes, {})
 
 
 class MultiBinarySensorTests:
@@ -59,7 +59,7 @@ class MultiBinarySensorTests:
                 self.dps[dps] = offval
                 self.assertFalse(subject.is_on)
 
-    def test_multi_bsensor_device_state_attributes(self):
+    def test_multi_bsensor_extra_state_attributes(self):
         for key, subject in self.multiBSensor.items():
             with self.subTest(key):
-                self.assertEqual(subject.device_state_attributes, {})
+                self.assertEqual(subject.extra_state_attributes, {})

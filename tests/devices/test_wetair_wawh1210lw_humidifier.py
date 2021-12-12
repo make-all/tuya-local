@@ -145,9 +145,9 @@ class TestWetairWAWH1210LWHumidifier(
         ):
             await self.subject.async_set_mode(MODE_SLEEP)
 
-    def test_device_state_attributes(self):
+    def test_extra_state_attributes(self):
         self.dps[UNKNOWN22_DPS] = 22
         self.assertDictEqual(
-            self.subject.device_state_attributes,
+            self.subject.extra_state_attributes,
             {"unknown_22": 22},
         )

@@ -165,7 +165,7 @@ class TestMadimackPoolHeatpump(
         self.dps[HVACMODE_DPS] = False
         self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_OFF)
 
-    def test_device_state_attributes(self):
+    def test_extra_state_attributes(self):
         self.dps[POWERLEVEL_DPS] = 50
         self.dps[UNKNOWN107_DPS] = 1
         self.dps[UNKNOWN108_DPS] = 2
@@ -187,7 +187,7 @@ class TestMadimackPoolHeatpump(
         self.dps[UNKNOWN139_DPS] = True
         self.dps[UNKNOWN140_DPS] = "test"
         self.assertDictEqual(
-            self.subject.device_state_attributes,
+            self.subject.extra_state_attributes,
             {
                 "power_level": 50,
                 "unknown_107": 1,

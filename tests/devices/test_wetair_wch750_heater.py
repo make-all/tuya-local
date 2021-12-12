@@ -208,13 +208,13 @@ class TestWetairWCH750Heater(
         ):
             await self.subject.async_set_preset_mode(PRESET_AWAY)
 
-    def test_device_state_attributes(self):
+    def test_extra_state_attributes(self):
         self.dps[TIMER_DPS] = "1h"
         self.dps[COUNTDOWN_DPS] = 20
         self.dps[UNKNOWN21_DPS] = 21
 
         self.assertDictEqual(
-            self.subject.device_state_attributes,
+            self.subject.extra_state_attributes,
             {
                 "timer": "1h",
                 "countdown": 20,

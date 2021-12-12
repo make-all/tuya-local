@@ -110,9 +110,9 @@ class TestStirlingFS1Fan(SwitchableTests, TuyaDeviceTestCase):
         async with assert_device_properties_set(self.subject._device, {SPEED_DPS: 10}):
             await self.subject.async_set_percentage(64)
 
-    def test_device_state_attributes(self):
-        self.assertEqual(self.subject.device_state_attributes, {})
-        self.assertEqual(self.timer.device_state_attributes, {})
+    def test_extra_state_attributes(self):
+        self.assertEqual(self.subject.extra_state_attributes, {})
+        self.assertEqual(self.timer.extra_state_attributes, {})
 
     def test_timer_options(self):
         self.assertCountEqual(

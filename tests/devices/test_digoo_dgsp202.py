@@ -1,4 +1,4 @@
-"""Tests for the switch entity."""
+"""Tests for Digoo DSSP202 dual switch with timers and energy monitoring"""
 from homeassistant.components.switch import DEVICE_CLASS_OUTLET
 from homeassistant.const import (
     DEVICE_CLASS_CURRENT,
@@ -9,29 +9,60 @@ from homeassistant.const import (
     POWER_WATT,
 )
 
-from ..const import KOGAN_SOCKET_PAYLOAD2
-from ..mixins.number import BasicNumberTests
+from ..const import DIGOO_DGSP202_SOCKET_PAYLOAD
+from ..mixins.number import MultiNumberTests
 from ..mixins.sensor import MultiSensorTests
-from ..mixins.switch import SwitchableTests
+from ..mixins.switch import MultiSwitchTests
 from .base_device_tests import TuyaDeviceTestCase
 
-SWITCH_DPS = "1"
-TIMER_DPS = "9"
+SWITCH1_DPS = "1"
+SWITCH2_DPS = "2"
+TIMER1_DPS = "9"
+TIMER2_DPS = "10"
 CURRENT_DPS = "18"
 POWER_DPS = "19"
 VOLTAGE_DPS = "20"
 
 
-class TestSwitchV2(
-    BasicNumberTests, MultiSensorTests, SwitchableTests, TuyaDeviceTestCase
+class TestDigooDGSP202Switch(
+    MultiNumberTests, MultiSensorTests, MultiSwitchTests, TuyaDeviceTestCase
 ):
     __test__ = True
 
     def setUp(self):
-        self.setUpForConfig("smartplugv2.yaml", KOGAN_SOCKET_PAYLOAD2)
-        self.subject = self.entities.get("switch")
-        self.setUpSwitchable(SWITCH_DPS, self.subject)
-        self.setUpBasicNumber(TIMER_DPS, self.entities.get("number_timer"), max=1440)
+        self.setUpForConfig("digoo_dgsp202.yaml", DIGOO_DGSP202_SOCKET_PAYLOAD)
+        self.setUpMultiSwitch(
+            [
+                {
+                    "dps": SWITCH1_DPS,
+                    "name": "switch_outlet_1",
+                    "device_class": DEVICE_CLASS_OUTLET,
+                    "power_dps": POWER_DPS,
+                    "power_scale": 10,
+                },
+                {
+                    "dps": SWITCH2_DPS,
+                    "name": "switch_outlet_2",
+                    "device_class": DEVICE_CLASS_OUTLET,
+                },
+            ]
+        )
+        self.setUpMultiNumber(
+            [
+                {
+                    "dps": TIMER1_DPS,
+                    "name": "number_timer_1",
+                    "max": 1440,
+                    "scale": 60,
+                },
+                {
+                    "dps": TIMER2_DPS,
+                    "name": "number_timer_2",
+                    "max": 1440,
+                    "scale": 60,
+                },
+            ]
+        )
         self.setUpMultiSensors(
             [
                 {
@@ -61,31 +92,10 @@ class TestSwitchV2(
         )
         self.mark_secondary(
             [
-                "number_timer",
+                "number_timer_1",
+                "number_timer_2",
+                "sensor_voltage",
                 "sensor_current",
                 "sensor_power",
-                "sensor_voltage",
             ]
-        )
-
-    def test_device_class_is_outlet(self):
-        self.assertEqual(self.subject.device_class, DEVICE_CLASS_OUTLET)
-
-    def test_current_power_w(self):
-        self.dps[POWER_DPS] = 1234
-        self.assertEqual(self.subject.current_power_w, 123.4)
-
-    def test_extra_state_attributes_set(self):
-        self.dps[TIMER_DPS] = 1
-        self.dps[VOLTAGE_DPS] = 2350
-        self.dps[CURRENT_DPS] = 1234
-        self.dps[POWER_DPS] = 5678
-        self.assertDictEqual(
-            self.subject.extra_state_attributes,
-            {
-                "timer": 1,
-                "current_a": 1.234,
-                "voltage_v": 235.0,
-                "current_power_w": 567.8,
-            },
         )

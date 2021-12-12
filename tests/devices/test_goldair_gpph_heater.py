@@ -307,14 +307,14 @@ class TestGoldairHeater(
         ):
             await self.subject.async_set_swing_mode("3")
 
-    def test_device_state_attributes(self):
+    def test_extra_state_attributes(self):
         self.dps[ERROR_DPS] = "something"
         self.dps[TIMER_DPS] = 5
         self.dps[TIMERACT_DPS] = True
         self.dps[POWERLEVEL_DPS] = 4
 
         self.assertDictEqual(
-            self.subject.device_state_attributes,
+            self.subject.extra_state_attributes,
             {
                 "error": "something",
                 "timer": 5,

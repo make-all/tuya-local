@@ -250,7 +250,7 @@ class TestElectriq12WMINVHeatpump(
         ):
             await self.subject.async_set_swing_mode("vertical")
 
-    def test_device_state_attribures(self):
+    def test_extra_state_attribures(self):
         self.dps[UNKNOWN8_DPS] = True
         self.dps[UNKNOWN12_DPS] = False
         self.dps[UNKNOWN102_DPS] = True
@@ -259,7 +259,7 @@ class TestElectriq12WMINVHeatpump(
         self.dps[UNKNOWN109_DPS] = 109
         self.dps[UNKNOWN110_DPS] = 110
         self.assertDictEqual(
-            self.subject.device_state_attributes,
+            self.subject.extra_state_attributes,
             {
                 "unknown_8": True,
                 "unknown_12": False,

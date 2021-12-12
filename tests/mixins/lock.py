@@ -45,4 +45,4 @@ class BasicLockTests:
             await self.basicLock.async_unlock()
 
     def test_basic_lock_state_attributes(self):
-        self.assertEqual(self.basicLock.device_state_attributes, {})
+        self.assertEqual(self.basicLock.extra_state_attributes, {})

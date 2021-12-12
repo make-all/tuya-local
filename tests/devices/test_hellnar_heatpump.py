@@ -129,7 +129,7 @@ class TestHellnarHeatpump(TargetTemperatureTests, TuyaDeviceTestCase):
         ):
             await self.subject.async_set_hvac_mode(HVAC_MODE_OFF)
 
-    def test_device_state_attributes(self):
+    def test_extra_state_attributes(self):
         self.dps["5"] = "fan?"
         self.dps["18"] = 18
         self.dps["20"] = 20
@@ -150,7 +150,7 @@ class TestHellnarHeatpump(TargetTemperatureTests, TuyaDeviceTestCase):
         self.dps["134"] = "unknown134"
 
         self.assertDictEqual(
-            self.subject.device_state_attributes,
+            self.subject.extra_state_attributes,
             {
                 "maybe_fan_mode": "fan?",
                 "unknown_18": 18,

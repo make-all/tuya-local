@@ -199,7 +199,7 @@ class TestPulineM100Heater(
         self.assertFalse(self.light.is_on)
 
     def test_light_state_attributes(self):
-        self.assertEqual(self.light.device_state_attributes, {})
+        self.assertEqual(self.light.extra_state_attributes, {})
 
     async def test_light_turn_on(self):
         async with assert_device_properties_set(

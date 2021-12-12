@@ -317,14 +317,14 @@ class TestMincoMH1823DThermostat(
         self.dps[HVACMODE_DPS] = False
         self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_OFF)
 
-    def test_device_state_attributes(self):
+    def test_extra_state_attributes(self):
         self.dps[UNKNOWN12_DPS] = False
         self.dps[UNKNOWN32_DPS] = 32
         self.dps[UNKNOWN45_DPS] = 45
         self.dps[UNKNOWN105_DPS] = "unknown 105"
 
         self.assertDictEqual(
-            self.subject.device_state_attributes,
+            self.subject.extra_state_attributes,
             {
                 "unknown_12": False,
                 "unknown_32": 32,

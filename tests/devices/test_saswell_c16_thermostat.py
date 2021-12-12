@@ -219,7 +219,7 @@ class TestSaswellC16Thermostat(
         ):
             await self.subject.async_set_preset_mode("manual")
 
-    def test_device_state_attributes(self):
+    def test_extra_state_attributes(self):
         self.dps[UNKNOWN4_DPS] = 4
         self.dps[FLOORTEMPLIMIT_DPS] = 355
         self.dps[INSTALL_DPS] = True
@@ -235,7 +235,7 @@ class TestSaswellC16Thermostat(
         self.dps[UNKNOWN26_DPS] = 26
 
         self.assertDictEqual(
-            self.subject.device_state_attributes,
+            self.subject.extra_state_attributes,
             {
                 "unknown_4": 4,
                 "floor_temp_limit": 35.5,

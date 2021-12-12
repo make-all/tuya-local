@@ -280,7 +280,7 @@ class TestInkbirdThermostat(
         self.dps[SWITCH_DPS] = True
         self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_HEAT)
 
-    def test_device_state_attributes(self):
+    def test_extra_state_attributes(self):
         self.dps[ERROR_DPS] = 1
         self.dps[CALIBRATE_DPS] = 1
         self.dps[TIME_THRES_DPS] = 5
@@ -296,7 +296,7 @@ class TestInkbirdThermostat(
         self.dps[UNKNOWN120_DPS] = False
 
         self.assertDictEqual(
-            self.subject.device_state_attributes,
+            self.subject.extra_state_attributes,
             {
                 "error": 1,
                 "temperature_calibration_offset": 0.1,

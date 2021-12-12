@@ -229,7 +229,7 @@ class TestAwowTH213Thermostat(
         self.dps[HVACMODE_DPS] = False
         self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_OFF)
 
-    def test_device_state_attributes(self):
+    def test_extra_state_attributes(self):
         self.dps[ERROR_DPS] = 8
         self.dps[EXTERNTEMP_DPS] = 27
         self.dps[SENSOR_DPS] = 1
@@ -240,7 +240,7 @@ class TestAwowTH213Thermostat(
         self.dps[UNKNOWN110_DPS] = 110
 
         self.assertDictEqual(
-            self.subject.device_state_attributes,
+            self.subject.extra_state_attributes,
             {
                 "error": 8,
                 "external_temperature": 27,

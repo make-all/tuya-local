@@ -182,14 +182,14 @@ class TestCarsonCBHeatpump(TargetTemperatureTests, TuyaDeviceTestCase):
         ):
             await self.subject.async_set_swing_mode("vertical")
 
-    def test_device_state_attribures(self):
+    def test_extra_state_attribures(self):
         self.dps[UNKNOWN102_DPS] = True
         self.dps[TIMER_DPS] = 103
         self.dps[COUNTDOWN_DPS] = 105
         self.dps[UNKNOWN106_DPS] = 106
         self.dps[UNKNOWN110_DPS] = 110
         self.assertDictEqual(
-            self.subject.device_state_attributes,
+            self.subject.extra_state_attributes,
             {
                 "unknown_102": True,
                 "timer": 103,

@@ -136,8 +136,8 @@ class TestBecaBHP6000Thermostat(
         ):
             await self.subject.async_set_fan_mode("on")
 
-    def test_device_state_attribures(self):
-        self.assertEqual(self.subject.device_state_attributes, {})
+    def test_extra_state_attributes(self):
+        self.assertEqual(self.subject.extra_state_attributes, {})
 
     def test_icons(self):
         self.dps[HVACMODE_DPS] = 1

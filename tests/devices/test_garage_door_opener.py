@@ -85,5 +85,5 @@ class TestSimpleGarageOpener(TuyaDeviceTestCase):
         with self.assertRaises(NotImplementedError):
             await self.subject.async_stop_cover()
 
-    def test_device_state_attributes(self):
-        self.assertEqual(self.subject.device_state_attributes, {})
+    def test_extra_state_attributes(self):
+        self.assertEqual(self.subject.extra_state_attributes, {})

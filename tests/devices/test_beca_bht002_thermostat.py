@@ -123,12 +123,12 @@ class TestBecaBHT002Thermostat(
             ],
         )
 
-    def test_device_state_attribures(self):
+    def test_extra_state_attributes(self):
         self.dps[FLOOR_DPS] = 45
         self.dps[UNKNOWN104_DPS] = False
 
         self.assertDictEqual(
-            self.subject.device_state_attributes,
+            self.subject.extra_state_attributes,
             {"floor_temperature": 22.5, "unknown_104": False},
         )
 

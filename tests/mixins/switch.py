@@ -109,11 +109,11 @@ class BasicSwitchTests:
 
     def test_basic_switch_state_attributes(self):
         if self.basicSwitchPowerDps is None:
-            self.assertEqual(self.basicSwitch.device_state_attributes, {})
+            self.assertEqual(self.basicSwitch.extra_state_attributes, {})
         else:
             self.dps[self.basicSwitchPowerDps] = 99 * self.basicSwitchPowerScale
             self.assertDictEqual(
-                self.basicSwitch.device_state_attributes, {"current_power_w": 99.0}
+                self.basicSwitch.extra_state_attributes, {"current_power_w": 99.0}
             )
 
 
@@ -203,10 +203,10 @@ class MultiSwitchTests:
             with self.subTest(key):
                 dp = self.multiSwitchPowerDps.get(key)
                 if dp is None:
-                    self.assertEqual(subject.device_state_attributes, {})
+                    self.assertEqual(subject.extra_state_attributes, {})
                 else:
                     self.dps[dp] = 987 * self.multiSwitchPowerScale.get(key, 1)
                     self.assertDictEqual(
-                        subject.device_state_attributes,
+                        subject.extra_state_attributes,
                         {"current_power_w": 987.0},
                     )

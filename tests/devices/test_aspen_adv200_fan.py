@@ -175,7 +175,7 @@ class TestAspenASP200Fan(
         ):
             await self.climate.async_set_hvac_mode(HVAC_MODE_OFF)
 
-    def test_device_state_attributes(self):
+    def test_extra_state_attributes(self):
         self.dps[UNKNOWN8_DPS] = 8
-        self.assertDictEqual(self.subject.device_state_attributes, {"unknown_8": 8})
-        self.assertEqual(self.climate.device_state_attributes, {})
+        self.assertDictEqual(self.subject.extra_state_attributes, {"unknown_8": 8})
+        self.assertEqual(self.climate.extra_state_attributes, {})

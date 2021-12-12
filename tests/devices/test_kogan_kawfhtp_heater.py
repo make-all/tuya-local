@@ -128,6 +128,6 @@ class TestGoldairKoganKAHTPHeater(
         ):
             await self.subject.async_set_preset_mode("High")
 
-    def test_state_attributes(self):
+    def test_extra_state_attributes(self):
         self.dps[TIMER_DPS] = 10
-        self.assertDictEqual(self.subject.device_state_attributes, {"timer": 10})
+        self.assertDictEqual(self.subject.extra_state_attributes, {"timer": 10})

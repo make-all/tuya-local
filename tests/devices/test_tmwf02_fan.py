@@ -51,9 +51,9 @@ class TestTMWF02Fan(BasicNumberTests, SwitchableTests, TuyaDeviceTestCase):
         async with assert_device_properties_set(self.subject._device, {SPEED_DPS: 25}):
             await self.subject.async_set_percentage(24.8)
 
-    def test_device_state_attributes(self):
+    def test_extra_state_attributes(self):
         self.dps[LEVEL_DPS] = "level_3"
         self.assertDictEqual(
-            self.subject.device_state_attributes,
+            self.subject.extra_state_attributes,
             {"fan_level": "level_3"},
         )

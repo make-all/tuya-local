@@ -222,13 +222,13 @@ class TestKoganDehumidifier(
             await self.fan.async_oscillate(False)
             self.subject._device.anticipate_property_value.assert_not_called()
 
-    def test_device_state_attributes(self):
+    def test_extra_state_attributes(self):
         self.dps[CURRENTHUMID_DPS] = 55
         self.dps[ERROR_DPS] = 1
         self.dps[TIMER_DPS] = 3
         self.dps[COUNTDOWN_DPS] = 160
         self.assertDictEqual(
-            self.subject.device_state_attributes,
+            self.subject.extra_state_attributes,
             {
                 "current_humidity": 55,
                 "error": "Tank full",
@@ -236,4 +236,4 @@ class TestKoganDehumidifier(
                 "timer": 160,
             },
         )
-        self.assertEqual(self.fan.device_state_attributes, {})
+        self.assertEqual(self.fan.extra_state_attributes, {})

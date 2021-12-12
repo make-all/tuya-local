@@ -75,13 +75,13 @@ class TestKoganSwitch(
         self.dps[POWER_DPS] = 1234
         self.assertEqual(self.subject.current_power_w, 123.4)
 
-    def test_device_state_attributes_set(self):
+    def test_extra_state_attributes_set(self):
         self.dps[TIMER_DPS] = 1
         self.dps[VOLTAGE_DPS] = 2350
         self.dps[CURRENT_DPS] = 1234
         self.dps[POWER_DPS] = 5678
         self.assertDictEqual(
-            self.subject.device_state_attributes,
+            self.subject.extra_state_attributes,
             {
                 "timer": 1,
                 "current_a": 1.234,

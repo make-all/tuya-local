@@ -128,11 +128,11 @@ class TestNedisHtpl20fHeater(
         ):
             await self.subject.async_set_preset_mode(PRESET_AWAY)
 
-    def test_device_state_attributes(self):
+    def test_extra_state_attributes(self):
         self.dps[UNKNOWN11_DPS] = "11"
         self.dps[UNKNOWN101_DPS] = True
 
         self.assertCountEqual(
-            self.subject.device_state_attributes,
+            self.subject.extra_state_attributes,
             {"unknown_11": "11", "unknown_101": True},
         )

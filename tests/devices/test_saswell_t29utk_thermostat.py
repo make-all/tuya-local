@@ -247,7 +247,7 @@ class TestSaswellT29UTKThermostat(
         ):
             await self.subject.async_set_preset_mode("Program")
 
-    def test_device_state_attributes(self):
+    def test_extra_state_attributes(self):
         self.dps[POWER_DPS] = True
         self.dps[CONFIG_DPS] = "2"
         self.dps[UNKNOWN113_DPS] = 113
@@ -257,7 +257,7 @@ class TestSaswellT29UTKThermostat(
         self.dps[CURTEMPF_DPS] = 117
 
         self.assertDictEqual(
-            self.subject.device_state_attributes,
+            self.subject.extra_state_attributes,
             {
                 "power": True,
                 "configuration": "heating",

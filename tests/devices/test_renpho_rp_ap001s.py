@@ -123,7 +123,7 @@ class TestRenphoPurifier(
         ):
             await self.subject.async_set_preset_mode("auto")
 
-    def test_device_state_attributes(self):
+    def test_extra_state_attributes(self):
         self.dps[TIMER_DPS] = "19"
         self.dps[QUALITY_DPS] = "22"
         self.dps[PREFILTER_DPS] = 102
@@ -132,7 +132,7 @@ class TestRenphoPurifier(
         self.dps[HEPA_DPS] = 105
 
         self.assertDictEqual(
-            self.subject.device_state_attributes,
+            self.subject.extra_state_attributes,
             {
                 "timer": "19",
                 "air_quality": "22",
@@ -143,4 +143,5 @@ class TestRenphoPurifier(
             },
         )
 
+    def test_icons(self):
         self.assertEqual(self.basicSwitch.icon, "mdi:power-sleep")

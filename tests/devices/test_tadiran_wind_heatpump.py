@@ -158,7 +158,7 @@ class TestTadiranWindHeatpump(TargetTemperatureTests, TuyaDeviceTestCase):
         ):
             await self.subject.async_set_fan_mode("auto")
 
-    def test_device_state_attributes(self):
+    def test_extra_state_attributes(self):
         self.dps["101"] = 101
         self.dps["102"] = 102
         self.dps["103"] = 103
@@ -169,7 +169,7 @@ class TestTadiranWindHeatpump(TargetTemperatureTests, TuyaDeviceTestCase):
         self.dps["108"] = False
 
         self.assertDictEqual(
-            self.subject.device_state_attributes,
+            self.subject.extra_state_attributes,
             {
                 "unknown_101": 101,
                 "unknown_102": 102,

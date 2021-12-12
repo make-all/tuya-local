@@ -38,8 +38,8 @@ class BasicNumberTests:
         ):
             await self.basicNumber.async_set_value(val)
 
-    def test_number_device_state_attributes(self):
-        self.assertEqual(self.basicNumber.device_state_attributes, {})
+    def test_number_extra_state_attributes(self):
+        self.assertEqual(self.basicNumber.extra_state_attributes, {})
 
 
 class MultiNumberTests:
@@ -109,7 +109,7 @@ class MultiNumberTests:
                 ):
                     await subject.async_set_value(val)
 
-    def test_multi_number_device_state_attributes(self):
+    def test_multi_number_extra_state_attributes(self):
         for key, subject in self.multiNumber.items():
             with self.subTest(key):
-                self.assertEqual(subject.device_state_attributes, {})
+                self.assertEqual(subject.extra_state_attributes, {})

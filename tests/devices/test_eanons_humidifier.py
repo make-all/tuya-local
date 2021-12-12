@@ -253,12 +253,12 @@ class TestEanonsHumidifier(
             await self.subject.async_set_mode(MODE_NORMAL)
             self.subject._device.anticipate_property_value.assert_not_called()
 
-    def test_climate_device_state_attributes(self):
+    def test_climate_extra_state_attributes(self):
         self.dps[ERROR_DPS] = 0
         self.dps[TIMERHR_DPS] = "cancel"
         self.dps[TIMER_DPS] = 0
         self.assertDictEqual(
-            self.climate.device_state_attributes,
+            self.climate.extra_state_attributes,
             {
                 "error": "OK",
                 "timer_hr": "cancel",
@@ -270,7 +270,7 @@ class TestEanonsHumidifier(
         self.dps[TIMERHR_DPS] = "1"
         self.dps[TIMER_DPS] = 60
         self.assertDictEqual(
-            self.climate.device_state_attributes,
+            self.climate.extra_state_attributes,
             {
                 "error": "Water Level Low",
                 "timer_hr": "1",
@@ -278,7 +278,7 @@ class TestEanonsHumidifier(
             },
         )
 
-    def test_device_state_attributes(self):
+    def test_extra_state_attributes(self):
         self.dps[ERROR_DPS] = 0
         self.dps[TIMERHR_DPS] = "cancel"
         self.dps[TIMER_DPS] = 0
@@ -286,7 +286,7 @@ class TestEanonsHumidifier(
         self.dps[FANMODE_DPS] = "middle"
 
         self.assertDictEqual(
-            self.subject.device_state_attributes,
+            self.subject.extra_state_attributes,
             {
                 "error": "OK",
                 "timer_hr": "cancel",
