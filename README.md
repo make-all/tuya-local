@@ -107,9 +107,12 @@ the device will not work despite being listed below.
 - Wetair WAW-H1210LW humidifier
 
 ### SmartPlugs/Wall sockets
-- Kogan Single Smartplug with Energy Monitoring
-- Kogan Single Smartplug with Energy Monitoring and USB charging
-- CBE Smart plug with advanced energy monitoring
+- Generic Smartplug with Energy monitoring (older models)
+  confirmed as working with Kogan Single Smartplugs
+- Generic Smartplug with Energy monitoring (newer models)
+  confirmed working with Kogan single smartplug with USB and Rillpac smartplugs
+- Generic Smartplg with more advanced energy monitoring
+  confirmed working with CBE smartplugs
 - Mirabella Genio Smart plug with USB
 - Grid Connect double outlet with Energy Monitoring, Master and Individual switches and Child Lock.
 - DIGOO DG-SP202 dual smartplug with energy monitoring and timers.
