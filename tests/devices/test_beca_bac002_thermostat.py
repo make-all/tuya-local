@@ -23,8 +23,8 @@ from ..mixins.select import BasicSelectTests
 from .base_device_tests import TuyaDeviceTestCase
 
 SWITCH_DPS = "1"
-CURRENTTEMP_DPS = "2"
-TEMPERATURE_DPS = "3"
+TEMPERATURE_DPS = "2"
+CURRENTTEMP_DPS = "3"
 PROGRAM_DPS = "4"
 PRESET_DPS = "5"
 LOCK_DPS = "6"
