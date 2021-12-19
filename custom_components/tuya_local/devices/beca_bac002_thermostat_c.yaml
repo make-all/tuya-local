@@ -11,16 +11,16 @@ primary_entity:
       hidden: true
     - id: 2
       type: integer
-      name: current_temperature
-      mapping:
-        - scale: 2
-    - id: 3
-      type: integer
       name: temperature
       unit: C
       range:
         min: 10
         max: 70
+      mapping:
+        - scale: 2
+    - id: 3
+      type: integer
+      name: current_temperature
       mapping:
         - scale: 2
     - id: 5
