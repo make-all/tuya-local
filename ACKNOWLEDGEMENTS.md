@@ -63,3 +63,5 @@ Further device support has been made with the assistance of users.  Please consi
  - [awaldram](https://github.com/awaldram) for confirming BHT-3000 support.
  - [bob-tm](https://github.com/bob-tm) for contributing support from Wetair WAW-H1210LW humidifiers.
  - [shakin89](https://github.com/shakin89) for assistance in supporting Beca BAC-002 thermostats.
+ - [PaulJoosten](https://github.com/PaulJoosten) for assistance in figuring out the similarities and capabilities of different Eurom heaters.
+ 
