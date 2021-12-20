@@ -6,7 +6,7 @@ from homeassistant.components.climate.const import (
 )
 from homeassistant.const import STATE_UNAVAILABLE
 
-from ..const import EUROM_600_HEATER_PAYLOAD
+from ..const import EUROM_600v2_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
 from ..mixins.binary_sensor import BasicBinarySensorTests
 from ..mixins.climate import TargetTemperatureTests
@@ -15,7 +15,7 @@ from .base_device_tests import TuyaDeviceTestCase
 HVACMODE_DPS = "1"
 TEMPERATURE_DPS = "2"
 CURRENTTEMP_DPS = "5"
-ERROR_DPS = "6"
+ERROR_DPS = "7"
 
 
 class TestEurom600Heater(
@@ -24,7 +24,7 @@ class TestEurom600Heater(
     __test__ = True
 
     def setUp(self):
-        self.setUpForConfig("eurom_600_heater.yaml", EUROM_600_HEATER_PAYLOAD)
+        self.setUpForConfig("eurom_600_heater_v2.yaml", EUROM_600v2_HEATER_PAYLOAD)
         self.subject = self.entities.get("climate")
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,

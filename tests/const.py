@@ -24,6 +24,7 @@ GPCV_HEATER_PAYLOAD = {
 }
 
 EUROM_600_HEATER_PAYLOAD = {"1": True, "2": 15, "5": 18, "6": 0}
+EUROM_600v2_HEATER_PAYLOAD = {"1": True, "2": 15, "5": 18, "7": 0}
 
 EUROM_601_HEATER_PAYLOAD = {"1": True, "2": 21, "3": 20, "6": False, "13": 0}
 
