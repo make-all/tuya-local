@@ -2,17 +2,13 @@
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import MagicMock
 
-from warnings import warn
-
 from custom_components.tuya_local.helpers.device_config import (
     available_configs,
     get_config,
-    possible_matches,
     TuyaDeviceConfig,
 )
 
 from .const import (
-    DEHUMIDIFIER_PAYLOAD,
     GPPH_HEATER_PAYLOAD,
     KOGAN_HEATER_PAYLOAD,
 )
@@ -77,3 +73,8 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
         cfg = get_config("kogan_switch")
         voltage = cfg.primary_entity.find_dps("voltage_v")
         self.assertIsNone(voltage.values(mock_device))
+
+    def test_config_returned(self):
+        """Test that config file is returned by config"""
+        cfg = get_config("kogan_switch")
+        self.assertEqual(cfg.config, "smartplugv1.yaml")
