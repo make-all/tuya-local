@@ -35,8 +35,9 @@ class TestKoganSwitch(
         self.setUpBasicNumber(
             TIMER_DPS,
             self.entities.get("number_timer"),
-            max=1440,
+            max=1440.0,
             unit=TIME_MINUTES,
+            scale=60,
         )
         self.setUpMultiSensors(
             [
