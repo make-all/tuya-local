@@ -226,6 +226,11 @@ They will be named for the platform type and an optional name for
 the entity as a suffix (eg `climate`, `humidifier`, `lock_child_lock`)
 Setting them to True will expose the entity in Home Assistant.
 
+## Offline operation gotchas
+
+Many Tuya devices will stop responding if unable to connect to the Tuya servers for an extended period.  Reportedly, some devices act better offline if DNS as well as TCP connections is blocked.
+
+
 ## Heater gotchas
 
 Goldair GPPH heaters have individual target temperatures for their
