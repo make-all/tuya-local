@@ -40,6 +40,7 @@ PRESET_DPS = "120"
 DUTYCYCLE_DPS = "123"
 HVACACTION_DPS = "129"
 
+
 class TestOwonPCT513Thermostat(
     BasicNumberTests,
     TargetTemperatureTests,
@@ -116,7 +117,7 @@ class TestOwonPCT513Thermostat(
         self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT_COOL)
         self.dps[HVACMODE_DPS] = "emergencyheat"
         self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT)
-        
+
     async def test_set_hvac_mode_off(self):
         async with assert_device_properties_set(
             self.subject._device, {HVACMODE_DPS: "off"}
@@ -260,5 +261,5 @@ class TestOwonPCT513Thermostat(
                 "temp_f2": 110,
                 "unknown_111": 111,
                 "unknown_116": "116",
-             },
+            },
         )
