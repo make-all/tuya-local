@@ -1,0 +1,162 @@
+name: PCT513 Themostat
+products:
+  - id: rsujjtinksnzcezy
+primary_entity:
+  entity: climate
+  dps:
+    - id: 2
+      type: string
+      name: hvac_mode
+      mapping:
+        - dps_val: "off"
+          value: "off"
+        - dps_val: cool
+          value: cool
+        - dps_val: heat
+          value: heat
+        - dps_val: auto
+          value: heat_cool
+        - dps_val: emergencyheat
+          value: heat
+    - id: 16
+      type: integer
+      name: temperature
+      range:
+        min: 1500
+        max: 4500
+      mapping:
+        - scale: 100
+          step: 50
+          constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: temp_f
+              scale: 1
+              step: 1
+              range:
+                min: 32
+                max: 122
+    - id: 17
+      type: integer
+      name: temp_f
+      hidden: true
+      range:
+        min: 32
+        max: 122
+    - id: 23
+      type: string
+      name: temperature_unit
+      mapping:
+        - dps_val: c
+          value: C
+        - dps_val: f
+          value: F
+    - id: 24
+      type: integer
+      name: current_temperature
+      mapping:
+        - scale: 100
+          constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              scale: 1
+              value_redirect: curtemp_f
+    - id: 29
+      type: integer
+      name: curtemp_f
+      hidden: true
+    - id: 34
+      type: integer
+      name: current_humidity
+    - id: 45
+      type: integer
+      name: unknown_45
+    - id: 107
+      type: string
+      name: installation
+    - id: 108
+      type: integer
+      name: temp_c
+      mapping:
+        - scale: 100
+    - id: 109
+      type: integer
+      name: unknown_109
+    - id: 110
+      type: integer
+      name: temp_f2
+    - id: 111
+      type: integer
+      name: unknown_111
+    - id: 115
+      type: string
+      name: fan_mode
+      mapping:
+        - dps_val: auto
+          value: auto
+        - dps_val: "on"
+          value: "on"
+        - dps_val: cycle
+          value: cycle
+    - id: 116
+      type: string
+      name: unknown_116
+    - id: 119
+      type: boolean
+      name: scheduling
+      hidden: true
+      mapping:
+        - dps_val: false
+          value: Manual
+    - id: 120
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: followschedule
+          constraint: scheduling
+          conditions:
+            - dps_val: false
+              value_redirect: scheduling
+              value: Manual
+            - dps_val: true
+              value: Follow Schedule
+        - dps_val: temphold
+          constraint: scheduling
+          conditions:
+            - dps_val: false
+              value_redirect: scheduling
+            - dps_val: true
+              value: Temporary Hold
+        - dps_val: permhold
+          constraint: scheduling
+          conditions:
+            - dps_val: false
+              value_redirect: scheduling
+            - dps_val: true
+              value: Permanent Hold
+    - id: 129
+      type: string
+      name: hvac_action
+      mapping:
+        - dps_val: coolfanon
+          value: cooling
+        - dps_val: alloff
+          value: idle
+        - dps_val: fanon
+          value: fan
+        - dps_val: heatfanon
+          value: heating
+secondary_entities:
+  - entity: number
+    name: Fan Runtime
+    category: config
+    dps:
+      - id: 123
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 55
+        mapping:
+          - step: 5
