@@ -72,17 +72,10 @@ primary_entity:
       mapping:
         - dps_val: true
           icon: "mdi:weather-night"
-    - id: 103
-      type: integer
-      name: current_temperature
-      readonly: true
-    - id: 104
-      type: integer
-      name: current_humidity
-      readonly: true
     - id: 105
       type: boolean
       name: defrosting
+      hidden: true
       mapping:
         - dps_val: true
           icon: "mdi:snowflake-melt"
@@ -94,10 +87,6 @@ secondary_entities:
       - id: 1
         type: boolean
         name: switch
-      - id: 2
-        name: dehumidifier_mode
-        type: string
-        hidden: true
       - id: 6
         type: string
         name: speed
@@ -107,7 +96,7 @@ secondary_entities:
           - dps_val: "3"
             value: 100
   - entity: switch
-    name: Anion
+    name: Ionizer
     icon: "mdi:leaf"
     dps:
       - id: 5
@@ -153,7 +142,7 @@ secondary_entities:
             value: false
           - value: true
   - entity: binary_sensor
-    name: defrost
+    name: Defrost
     class: cold
     icon: "mdi:snowflake"
     category: diagnostic
@@ -162,7 +151,7 @@ secondary_entities:
         type: boolean
         name: sensor
   - entity: number
-    name: timer
+    name: Timer
     icon: "mdi:timer"
     category: config
     dps:
