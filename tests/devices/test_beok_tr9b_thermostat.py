@@ -39,7 +39,7 @@ class TestBeokTR9BThermostat(
     MultiSelectTests,
     BasicSwitchTests,
     TargetTemperatureTests,
-    TuyaDeviceTestCase
+    TuyaDeviceTestCase,
 ):
     __test__ = True
 
