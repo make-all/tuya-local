@@ -77,6 +77,8 @@ the device will not work despite being listed below.
 - Siswell T29UTW thermostat
 - Siswell C16 thermostat (rebadged as Warmme, Klima and others)
 - Minco MH-1823D thermostat
+- Owon PCT513 thermostat
+- Beok TR9B thermostat (rebadged as Vancoo and perhaps others)
 
 ### Kettles
 - Kogan Glass 1.7L Smart Kettle (not reliably detected)

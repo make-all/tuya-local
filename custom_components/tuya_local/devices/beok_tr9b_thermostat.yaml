@@ -1,0 +1,175 @@
+name: BHT-002 Thermostat (C)
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: power
+      hidden: true
+      mapping:
+        - dps_val: false
+          value: "off"
+    - id: 2
+      type: string
+      name: hvac_mode
+      mapping:
+        - dps_val: "auto"
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+              value: "off"
+            - dps_val: true
+              value: auto
+        - dps_val: manual
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: heat
+    - id: 16
+      type: integer
+      name: temperature
+      range:
+        min: 50
+        max: 10000
+      mapping:
+        - scale: 10
+          step: 5
+    - id: 19
+      type: integer
+      name: max_temperature
+      mapping:
+        - scale: 10
+    - id: 23
+      type: string
+      name: temperature_unit
+      mapping:
+        - dps_val: c
+          value: C
+        - dps_val: f
+          value: F
+    - id: 24
+      type: integer
+      name: current_temperature
+      mapping:
+        - scale: 10
+    - id: 26
+      type: integer
+      name: min_temperature
+      mapping:
+        - scale: 10
+    - id: 45
+      type: integer
+      name: Error Code
+    - id: 101
+      type: integer
+      name: unknown_101
+    - id: 102
+      type: integer
+      name: unknown_102
+secondary_entities:
+  - entity: switch
+    name: Anti-frost
+    icon: "mdi:snowflake"
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: select
+    name: Temperature Unit
+    category: config
+    icon: "mdi:temperature-celsius"
+    dps:
+      - id: 23
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: Celsius
+          - dps_val: f
+            value: Fahrenheit
+  - entity: select
+    name: Schedule
+    category: config
+    icon: "mdi:calendar-clock"
+    dps:
+      - id: 31
+        type: string
+        name: option
+        mapping:
+          - dps_val: "5_2"
+            value: "Weekday+Weekend"
+          - dps_val: "6_1"
+            value: "Mon-Sat+Sun"
+          - dps_val: "7"
+            value: "Daily"
+  - entity: binary_sensor
+    name: Valve
+    class: opening
+    category: diagnostic
+    dps:
+      - id: 36
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: open
+            value: True
+          - dps_val: close
+            value: False
+  - entity: lock
+    name: "Child Lock"
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        name: lock
+        mapping:
+          - dps_val: true
+            icon: "mdi:hand-back-right-off"
+          - dps_val: false
+            icon: "mdi:hand-back-right"
+  - entity: binary_sensor
+    name: Error
+    category: diagnostic
+    class: problem
+    dps:
+      - id: 45
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: False
+          - value: True
+  - entity: number
+    name: High Temperature Limit
+    category: config
+    icon: "mdi:thermometer"
+    dps:
+      - id: 19
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 50
+          max: 10000
+        mapping:
+          - scale: 10
+            step: 10
+  - entity: number
+    name: Low Temperature Limit
+    category: config
+    dps:
+      - id: 26
+        name: value
+        type: integer
+        unit: C
+        icon: "mdi:thermometer"
+        range:
+          min: 50
+          max: 10000
+        mapping:
+          - scale: 10
+            step: 10
