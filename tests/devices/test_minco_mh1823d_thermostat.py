@@ -172,7 +172,7 @@ class TestMincoMH1823DThermostat(
         self.dps[HVACACTION_DPS] = "stop"
         self.assertEqual(self.subject.icon, "mdi:thermometer-off")
 
-        self.assertEqual(self.basicSwitch.icon, "mdi:snowflake")
+        self.assertEqual(self.basicSwitch.icon, "mdi:snowflake-melt")
 
     def test_temperature_unit(self):
         self.dps[UNIT_DPS] = "c"

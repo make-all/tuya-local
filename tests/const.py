@@ -38,7 +38,23 @@ EUROM_WALLDESIGNHEAT2000_HEATER_PAYLOAD = {
 
 GECO_HEATER_PAYLOAD = {"1": True, "2": True, "3": 30, "4": 25, "5": 0, "6": 0}
 
+JJPRO_JPD01_PAYLOAD = {
+    "1": True,
+    "2": "0",
+    "4": 50,
+    "5": True,
+    "6": "1",
+    "11": 0,
+    "12": 0,
+    "101": False,
+    "102": False,
+    "103": 20,
+    "104": 62,
+    "105": False,
+}
+
 KOGAN_HEATER_PAYLOAD = {"2": 30, "3": 25, "4": "Low", "6": True, "7": True, "8": 0}
+
 KOGAN_KAWFHTP_HEATER_PAYLOAD = {
     "1": True,
     "2": True,

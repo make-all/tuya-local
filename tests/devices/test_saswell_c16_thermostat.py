@@ -139,7 +139,7 @@ class TestSaswellC16Thermostat(
         self.dps[PRESET_DPS] = "Manual"
         self.assertEqual(self.subject.icon, "mdi:cursor-pointer")
         self.dps[PRESET_DPS] = "Anti_frozen"
-        self.assertEqual(self.subject.icon, "mdi:snowflake")
+        self.assertEqual(self.subject.icon, "mdi:snowflake-melt")
         self.dps[LOCK_DPS] = True
         self.assertEqual(self.basicLock.icon, "mdi:hand-back-right-off")
         self.dps[LOCK_DPS] = False
