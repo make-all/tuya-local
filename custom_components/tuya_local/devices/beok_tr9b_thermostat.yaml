@@ -1,4 +1,4 @@
-name: BHT-002 Thermostat (C)
+name: TR9B Thermostat
 primary_entity:
   entity: climate
   dps:
@@ -37,6 +37,10 @@ primary_entity:
       mapping:
         - scale: 10
           step: 5
+          constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              step: 10
     - id: 19
       type: integer
       name: max_temperature

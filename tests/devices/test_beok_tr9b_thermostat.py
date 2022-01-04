@@ -55,7 +55,7 @@ class TestBeokTR9BThermostat(
             min=41.0,
             max=99.0,
             scale=10,
-            step=5,
+            step=10,
         )
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
         self.setUpMultiSelect(
@@ -146,11 +146,14 @@ class TestBeokTR9BThermostat(
             self.subject.temperature_unit,
             TEMP_CELSIUS,
         )
+        self.assertEqual(self.subject.target_temperature_step, 0.5)
+
         self.dps[UNIT_DPS] = "f"
         self.assertEqual(
             self.subject.temperature_unit,
             TEMP_FAHRENHEIT,
         )
+        self.assertEqual(self.subject.target_temperature_step, 1.0)
 
     def test_current_temperature(self):
         self.dps[CURRENTTEMP_DPS] = 685
@@ -192,9 +195,9 @@ class TestBeokTR9BThermostat(
             await self.subject.async_set_target_temperature(4.5)
         with self.assertRaisesRegex(
             ValueError,
-            f"temperature \\(1000.5\\) must be between 5.0 and 1000.0",
+            f"temperature \\(1001\\) must be between 5.0 and 1000.0",
         ):
-            await self.subject.async_set_target_temperature(1000.5)
+            await self.subject.async_set_target_temperature(1001)
 
     def test_extra_state_attributes(self):
         self.dps[ERROR_DPS] = 8
