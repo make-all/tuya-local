@@ -109,6 +109,9 @@ class TestHysenHY08WE2Thermostat(
             EXTTEMP_DPS,
             self.entities.get("sensor_external_temperature"),
             device_class=DEVICE_CLASS_TEMPERATURE,
+            testdata=(205, 20.5),
+            unit=TEMP_CELSIUS,
+            state_class="measurement",
         )
         self.setUpMultiNumber(
             [
@@ -254,7 +257,7 @@ class TestHysenHY08WE2Thermostat(
     def test_preset_modes(self):
         self.assertCountEqual(
             self.subject.preset_modes,
-            [ "Manual", "Program", "Program Override", "Holiday"],
+            ["Manual", "Program", "Program Override", "Holiday"],
         )
 
     def test_preset_mode(self):
@@ -297,7 +300,7 @@ class TestHysenHY08WE2Thermostat(
                 "unknown_106": False,
                 "unknown_107": True,
                 "unknown_108": False,
-             },
+            },
         )
 
     def test_icons(self):
