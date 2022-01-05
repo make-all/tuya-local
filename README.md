@@ -13,9 +13,10 @@ this should not be seen as a security measure, rather it improves
 speed and reliability by using local connections, and may unlock some
 features of your device, or even unlock whole devices, that are not
 supported by the Tuya cloud API.  Currently the focus is mainly on
-climate devices, which are not well supported by other similar
+more complex devices, which are not well supported by other similar
 integrations. Simpler devices like switches and lights can be covered
-by [rospogrigio/localtuya](https://github.com/rospogrigio/localtuya/).
+by [rospogrigio/localtuya](https://github.com/rospogrigio/localtuya/),
+though some switches are now covered by this integration.
 
 ---
 
@@ -79,6 +80,7 @@ the device will not work despite being listed below.
 - Minco MH-1823D thermostat
 - Owon PCT513 thermostat
 - Beok TR9B thermostat (rebadged as Vancoo and perhaps others)
+- Hysen HY08WE-2 thermostat
 
 ### Kettles
 - Kogan Glass 1.7L Smart Kettle (not reliably detected)
@@ -114,7 +116,7 @@ the device will not work despite being listed below.
   confirmed as working with Kogan Single Smartplugs
 - Generic Smartplug with Energy monitoring (newer models)
   confirmed working with Kogan single smartplug with USB and Rillpac smartplugs
-- Generic Smartplg with more advanced energy monitoring
+- Generic Smartplug with more advanced energy monitoring
   confirmed working with CBE smartplugs
 - Mirabella Genio Smart plug with USB
 - Grid Connect double outlet with Energy Monitoring, Master and Individual switches and Child Lock.

@@ -1,0 +1,240 @@
+name: Hysen HY08WE-2 Thermostat
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: true
+          value: heat
+        - dps_val: false
+          value: "off"
+    - id: 2
+      type: integer
+      name: temperature
+      range:
+        min: 5
+        max: 1220
+      mapping:
+        - scale: 10
+          step: 5
+    - id: 3
+      type: integer
+      name: current_temperature
+      mapping:
+        - scale: 10
+    - id: 4
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: Manual
+          value: Manual
+        - dps_val: Program
+          value: Program
+        - dps_val: TempProg
+          value: Program Override
+        - dps_val: Holiday
+          value: Holiday
+    - id: 12
+      type: integer
+      name: unknown_12
+    - id: 101
+      type: boolean
+      name: unknown_101
+    - id: 102
+      type: boolean
+      name: hvac_action
+      mapping:
+        - dps_val: true
+          value: heating
+        - dps_val: false
+          constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: idle
+    - id: 106
+      type: boolean
+      name: unknown_106
+    - id: 107
+      type: boolean
+      name: unknown_107
+    - id: 108
+      type: boolean
+      name: unknown_108
+    - id: 114
+      type: integer
+      name: max_temperature
+    - id: 115
+      type: integer
+      name: min_temperature
+secondary_entities:
+  - entity: lock
+    name: Child Lock
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: lock
+        mapping:
+          - dps_val: True
+            icon: "mdi:hand-back-right-off"
+          - dps_val: False
+            icon: "mdi:hand-back-right"
+  - entity: sensor
+    name: External Temperature
+    class: temperature
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+  - entity: number
+    name: Holiday Days
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        unit: d
+        name: value
+        range:
+          min: 1
+          max: 30
+  - entity: number
+    name: Holiday Temperature
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        unit: C
+        name: value
+      - id: 114
+        type: integer
+        name: maximum
+      - id: 115
+        type: integer
+        name: minimum
+  - entity: number
+    name: Calibration Offset
+    category: config
+    dps:
+    - id: 109
+      type: integer
+      name: value
+      unit: C
+      range:
+        min: -9
+        max: 9
+  - entity: number
+    name: Calibration Swing Internal
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 5
+          max: 25
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Calibration Swing External
+    category: config
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 1
+          max: 10
+        mapping:
+          - scale: 10
+  - entity: number
+    name: High Temperature Protection
+    category: config
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 35
+          max: 70
+  - entity: number
+    name: Low Temperature Protection
+    category: config
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 1
+          max: 10
+  - entity: number
+    name: High Temperature Limit
+    category: config
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 2
+          max: 70
+  - entity: number
+    name: Low Temperature Limit
+    category: config
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 1
+          max: 10
+  - entity: select
+    name: Temperature Sensor
+    category: config
+    dps:
+      - id: 116
+        type: string
+        name: option
+        mapping:
+          - dps_val: in
+            value: Internal
+          - dps_val: ext
+            value: External
+          - dps_val: all
+            value: Both
+  - entity: select
+    name: Initial State
+    category: config
+    dps:
+      - id: 117
+        type: string
+        name: option
+        mapping:
+          - dps_val: keep
+            value: Previous
+          - dps_val: "off"
+            value: "Off"
+          - dps_val: "on"
+            value: "On"
+  - entity: select
+    name: Schedule
+    category: config
+    dps:
+      - id: 118
+        type: string
+        name: option
+        mapping:
+          - dps_val: 0days
+            value: 7 day
+          - dps_val: 1days
+            value: 6 + 1 day
+          - dps_val: 2days
+            value: 5 + 2 day

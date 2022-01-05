@@ -67,4 +67,5 @@ Further device support has been made with the assistance of users.  Please consi
  - [jdavidr17](https://github.com/jdavidr17) for assistance with discovering timer parameters for switches.
  - [miannelli516](https://github.com/miannelli516) for assistance with TR9B thermostats.
  - [edwinyoo44](https://github.com/edwinyoo44) for contributing support for JJPro JPD01 dehumidifiers.
+ - [mpetcuRO](https://github.com/mpetcuRO) for assistance with Hysen HT08WE-2 thermometers.
  

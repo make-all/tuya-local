@@ -29,15 +29,21 @@ class TuyaLocalNumber(TuyaLocalEntity, NumberEntity):
         if self._value_dps is None:
             raise AttributeError(f"{config.name} is missing a value dps")
         self._unit_dps = dps_map.pop("unit", None)
+        self._min_dps = dps_map.pop("minimum", None)
+        self._max_dps = dps_map.pop("maximum", None)
         self._init_end(dps_map)
 
     @property
     def min_value(self):
+        if self._min_dps is not None:
+            return self._min_dps.get_value(self._device)
         r = self._value_dps.range(self._device)
         return DEFAULT_MIN_VALUE if r is None else r["min"]
 
     @property
     def max_value(self):
+        if self._max_dps is not None:
+            return self._max_dps.get_value(self._device)
         r = self._value_dps.range(self._device)
         return DEFAULT_MAX_VALUE if r is None else r["max"]
 
