@@ -7,7 +7,7 @@ from homeassistant.const import (
     STATE_UNAVAILABLE,
     TEMP_CELSIUS,
     TEMP_FAHRENHEIT,
-    TIME_MINUTES,
+    TIME_HOURS,
 )
 
 from ..const import ECOSTRAD_ACCENTIQ_HEATER_PAYLOAD
@@ -40,8 +40,8 @@ class TestEcostradAccentIqHeater(
         self.setUpBasicNumber(
             TIMER_DPS,
             self.entities.get("number_timer"),
-            max=720,
-            unit=TIME_MINUTES,
+            max=12,
+            unit=TIME_HOURS,
         )
         self.mark_secondary(["number_timer"])
 
