@@ -826,3 +826,11 @@ POIEMA_ONE_PURIFIER_PAYLOAD = {
     "18": "cancel",
     "19": 0,
 }
+
+ECOSTRAD_ACCENTIQ_HEATER_PAYLOAD = {
+    "1": True,
+    "2": 200,
+    "3": 195,
+    "10": 0,
+    "101": True,
+}
