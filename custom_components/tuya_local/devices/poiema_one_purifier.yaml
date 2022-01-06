@@ -1,0 +1,92 @@
+name: Poiema One Air Purifier
+products:
+  - id: 2q2jgeegaziyugdg
+primary_entity:
+  entity: fan
+  icon: "mdi:air-purifier"
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 3
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: manual
+          value: Manual
+        - dps_val: auto
+          value: Auto
+        - dps_val: sleep
+          value: Sleep
+    - id: 4
+      type: string
+      name: speed
+      mapping:
+        - dps_val: "low"
+          value: 25
+        - dps_val: "mid"
+          value: 50
+        - dps_val: "high"
+          value: 75
+        - dps_val: "strong"
+          value: 100
+secondary_entities:
+  - entity: sensor
+    name: PM2.5
+    class: pm25
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        class: measurement
+        unit: ugm3
+  - entity: lock
+    name: Child Lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+        mapping:
+          - dps_val: true
+            icon: "mdi:hand-back-right-off"
+          - dps_val: false
+            icon: "mdi-hand-back-right"
+  - entity: switch
+    name: Filter Reset
+    category: config
+    icon: "mdi:refresh"
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
+  - entity: select
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 18
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: "off"
+          - dps_val: "1h"
+            value: "1 hour"
+          - dps_val: "2h"
+            value: "2 hours"
+          - dps_val: "3h"
+            value: "3 hours"
+          - dps_val: "4h"
+            value: "4 hours"
+          - dps_val: "5h"
+            value: "5 hours"
+  - entity: sensor
+    name: Timer
+    category: diagnostic
+    icon: "mdi:timer"
+    dps:
+      - id: 19
+        type: integer
+        unit: min
+        name: sensor

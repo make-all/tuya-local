@@ -815,3 +815,14 @@ HYSEN_HY08WE2_THERMOSTAT_PAYLOAD = {
     "117": "keep",
     "118": "2days",
 }
+
+POIEMA_ONE_PURIFIER_PAYLOAD = {
+    "1": True,
+    "2": 12,
+    "3": "manual",
+    "4": "mid",
+    "7": False,
+    "11": False,
+    "18": "cancel",
+    "19": 0,
+}

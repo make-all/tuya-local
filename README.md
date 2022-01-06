@@ -97,6 +97,7 @@ the device will not work despite being listed below.
 
 ### Air Purifiers
 - Renpho RP-AP001S air purifier
+- Poiema One air purifier
 
 ### Dehumidifiers
 - Goldair GPDH420 dehumidifier

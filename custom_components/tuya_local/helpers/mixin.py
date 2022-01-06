@@ -2,7 +2,11 @@
 Mixins to make writing new platforms easier
 """
 import logging
-from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT
+from homeassistant.const import (
+    CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
+    TEMP_CELSIUS,
+    TEMP_FAHRENHEIT,
+)
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -73,6 +77,7 @@ class TuyaLocalEntity:
 UNIT_ASCII_MAP = {
     "C": TEMP_CELSIUS,
     "F": TEMP_FAHRENHEIT,
+    "ugm3": CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
 }
 
 
