@@ -78,10 +78,10 @@ the device will not work despite being listed below.
 - Beca BAC-002 thermostat
 - Awow/Mi-heat TH213 thermostat
 - Siswell T29UTW thermostat
-- Siswell C16 thermostat (rebadged as Warmme, Klima and others)
+- Siswell C16 thermostat _(rebadged as Warmme, Klima and others)_
 - Minco MH-1823D thermostat
 - Owon PCT513 thermostat
-- Beok TR9B thermostat (rebadged as Vancoo and perhaps others)
+- Beok TR9B thermostat _(rebadged as Vancoo and perhaps others)_
 - Hysen HY08WE-2 thermostat
 - Nashone MTS-700-WB thermostat smartplug
 
@@ -117,11 +117,11 @@ the device will not work despite being listed below.
 
 ### SmartPlugs/Wall sockets
 - Generic Smartplug with Energy monitoring (older models)
-  confirmed as working with Kogan Single Smartplugs
+  _confirmed as working with Kogan and Blitzwolf Single Smartplugs_
 - Generic Smartplug with Energy monitoring (newer models)
-  confirmed working with Kogan single smartplug with USB and Rillpac smartplugs
+  _confirmed working with Kogan single smartplug with USB and Rillpac smartplugs_
 - Generic Smartplug with more advanced energy monitoring
-  confirmed working with CBE smartplugs
+  _confirmed working with CBE smartplugs_
 - Mirabella Genio Smart plug with USB
 - Grid Connect double outlet with Energy Monitoring, Master and Individual switches and Child Lock.
 - DIGOO DG-SP202 dual smartplug with energy monitoring and timers.
