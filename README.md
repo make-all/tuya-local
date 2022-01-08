@@ -53,6 +53,7 @@ the device will not work despite being listed below.
 - Carson CB PA280
 - Kogan 2.6kW portable air conditioner
 - Eberg Qubo Q40HD
+- Eberg Cooly C35HD
 
 ### Pool heaters / heatpumps
 
