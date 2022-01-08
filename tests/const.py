@@ -834,3 +834,18 @@ ECOSTRAD_ACCENTIQ_HEATER_PAYLOAD = {
     "10": 0,
     "101": True,
 }
+
+NASHONE_MTS700WB_THERMOSTAT_PAYLOAD = {
+    "1": True,
+    "2": "hot",
+    "3": "manual",
+    "16": 20,
+    "17": 68,
+    "23": "c",
+    "24": 19,
+    "27": 0,
+    "29": 66,
+    "39": False,
+    "41": "cancel",
+    "42": 0,
+}

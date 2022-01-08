@@ -69,4 +69,5 @@ Further device support has been made with the assistance of users.  Please consi
  - [edwinyoo44](https://github.com/edwinyoo44) for contributing support for JJPro JPD01 dehumidifiers and assistance with Poiema One purifiers.
  - [mpetcuRO](https://github.com/mpetcuRO) for assistance with Hysen HT08WE-2 thermometers.
  - [Paul-C-S](https://github.com/Paul-C-S) for assistance with Ecostrad Accent iQ heaters.
- 
+ - [WildeRNS](https://github.com/WildeRNS) for assistance with Nashone MTS-700-WB thermostat smartplugs.
+

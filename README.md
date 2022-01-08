@@ -82,6 +82,7 @@ the device will not work despite being listed below.
 - Owon PCT513 thermostat
 - Beok TR9B thermostat (rebadged as Vancoo and perhaps others)
 - Hysen HY08WE-2 thermostat
+- Nashone MTS-700-WB thermostat smartplug
 
 ### Kettles
 - Kogan Glass 1.7L Smart Kettle (not reliably detected)
