@@ -1,0 +1,117 @@
+name: Eberg Cooly C35HD
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: power
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+          icon: "mdi:hvac-off"
+          icon_priority: 1
+      hidden: true
+    - id: 4
+      name: unknown_4
+      type: integer
+    - id: 5
+      name: hvac_mode
+      type: string
+      mapping:
+        - dps_val: 1
+          icon: "mdi:fire"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: heat
+        - dps_val: 2
+          icon: "mdi:water"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: dry
+        - dps_val: 3
+          icon: "mdi:snowflake"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: cool
+        - dps_val: 4
+          icon: "mdi:fan"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+              value: "off"
+            - dps_val: true
+              value: fan_only
+    - id: 6
+      name: temperature
+      type: integer
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: false
+              range:
+                min: 13
+                max: 32
+            - dps_val: true
+              range:
+                min: 55
+                max: 90
+    - id: 8
+      name: fan_mode
+      type: string
+      mapping:
+        - dps_val: 0
+          value: "auto"
+        - dps_val: 1
+          value: "low"
+        - dps_val: 2
+          value: "medium"
+        - dps_val: 3
+          value: "high"
+    - id: 10
+      name: temperature_unit
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "C"
+        - dps_val: true
+          value: "F"
+    - id: 13
+      type: integer
+      name: unknown_13
+    - id: 14
+      type: integer
+      name: unknown_14
+    - id: 15
+      type: integer
+      name: unknown_15
+    - id: 16
+      name: swing_mode
+      type: boolean
+      mapping:
+        - dps_val: true
+          value: "vertical"
+        - dps_val: false
+          value: "off"
+    - id: 17
+      type: boolean
+      name: unknown_15
+    - id: 18
+      type: integer
+      name: temperature_f
+    - id: 19
+      type: boolean
+      name: unknown_19
