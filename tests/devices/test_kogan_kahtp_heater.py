@@ -4,7 +4,7 @@ from homeassistant.components.climate.const import (
     SUPPORT_PRESET_MODE,
     SUPPORT_TARGET_TEMPERATURE,
 )
-from homeassistant.const import STATE_UNAVAILABLE, TIME_HOURS
+from homeassistant.const import STATE_UNAVAILABLE, TIME_MINUTES
 
 from ..const import KOGAN_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -39,8 +39,8 @@ class TestGoldairKoganKAHTPHeater(
         self.setUpBasicNumber(
             TIMER_DPS,
             self.entities.get("number_timer"),
-            max=24,
-            unit=TIME_HOURS,
+            max=1440,
+            unit=TIME_MINUTES,
         )
         self.mark_secondary(["lock_child_lock", "number_timer"])
 
