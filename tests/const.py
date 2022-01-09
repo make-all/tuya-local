@@ -665,6 +665,22 @@ EBERG_QUBO_Q40HD_PAYLOAD = {
     "101": "heat_s",
 }
 
+EBERG_COOLY_C35HD_PAYLOAD = {
+    "1": True,
+    "4": 0,
+    "5": "4",
+    "6": 25,
+    "8": "1",
+    "10": False,
+    "13": 0,
+    "14": 0,
+    "15": 0,
+    "16": False,
+    "17": False,
+    "18": 78,
+    "19": False,
+}
+
 STIRLING_FS1_FAN_PAYLOAD = {
     "1": True,
     "2": "normal",

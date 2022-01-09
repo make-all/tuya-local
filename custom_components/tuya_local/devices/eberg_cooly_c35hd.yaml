@@ -58,14 +58,14 @@ primary_entity:
     - id: 6
       name: temperature
       type: integer
+      range:
+        min: 13
+        max: 32
       mapping:
         - constraint: temperature_unit
           conditions:
-            - dps_val: false
-              range:
-                min: 13
-                max: 32
             - dps_val: true
+              value_redirect: temperature_f
               range:
                 min: 55
                 max: 90
@@ -108,10 +108,28 @@ primary_entity:
           value: "off"
     - id: 17
       type: boolean
-      name: unknown_15
+      name: unknown_17
     - id: 18
       type: integer
       name: temperature_f
+      hidden: true
+      range:
+        min: 55
+        max: 90
     - id: 19
       type: boolean
       name: unknown_19
+secondary_entities:
+  - entity: select
+    category: config
+    name: Temperature Unit
+    icon: "mdi:temperature-celsius"
+    dps:
+      - id: 10
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: true
+            value: "Fahrenheit"
+          - dps_val: false
+            value: "Celsius"

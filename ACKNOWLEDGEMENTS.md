@@ -70,4 +70,5 @@ Further device support has been made with the assistance of users.  Please consi
  - [mpetcuRO](https://github.com/mpetcuRO) for assistance with Hysen HT08WE-2 thermometers.
  - [Paul-C-S](https://github.com/Paul-C-S) for assistance with Ecostrad Accent iQ heaters.
  - [WildeRNS](https://github.com/WildeRNS) for assistance with Nashone MTS-700-WB thermostat smartplugs.
-
+ - [ishioni](https://github.com/ishioni) for contributing support for Eberg Cooly C32HD air conditioner.
+ 
