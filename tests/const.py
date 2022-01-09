@@ -310,6 +310,16 @@ ELECTRIQ_CD12PW_DEHUMIDIFIER_PAYLOAD = {
     "103": 30,
 }
 
+ELECTRIQ_CD12PWV2_DEHUMIDIFIER_PAYLOAD = {
+    "1": True,
+    "2": 45,
+    "5": "Smart",
+    "6": 39,
+    "19": 0,
+    "101": True,
+    "104": False,
+}
+
 ELECTRIQ_DESD9LW_DEHUMIDIFIER_PAYLOAD = {
     "1": True,
     "2": 50,

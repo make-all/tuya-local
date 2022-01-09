@@ -71,4 +71,4 @@ Further device support has been made with the assistance of users.  Please consi
  - [Paul-C-S](https://github.com/Paul-C-S) for assistance with Ecostrad Accent iQ heaters.
  - [WildeRNS](https://github.com/WildeRNS) for assistance with Nashone MTS-700-WB thermostat smartplugs.
  - [ishioni](https://github.com/ishioni) for contributing support for Eberg Cooly C32HD air conditioner.
- 
+ - [Gekko47](https://github.com/Gekko47) for contributing support for ElectriQ CD12v2 dehumidifiers.
