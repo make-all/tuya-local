@@ -4,21 +4,30 @@ products:
 primary_entity:
   entity: switch
   dps:
-    - id: 6
-      type: string
-      name: phase_a
-    - id: 7
-      type: string
-      name: phase_b
-    - id: 8
-      type: string
-      name: phase_c
     - id: 16
       type: boolean
       name: switch
     - id: 19
       type: string
       name: breaker_number
+    - id: 101
+      type: integer
+      name: unknown_101
+    - id: 102
+      type: integer
+      name: unknown_102
+    - id: 103
+      type: integer
+      name: unknown_103
+    - id: 104
+      type: integer
+      name: unknown_104
+    - id: 105
+      type: boolean
+      name: unknown_105
+    - id: 106
+      type: boolean
+      name: unknown_106
 secondary_entities:
   - entity: sensor
     name: energy
@@ -243,19 +252,14 @@ secondary_entities:
       - id: 11
         type: boolean
         name: switch
-  - entity: select
+  - entity: switch
     name: Energy Reset
     category: config
     icon: "mdi:cog-refresh"
     dps:
       - id: 12
-        type: string
-        name: option
-        mapping:
-          - dps_val: ""
-            value: ""
-          - dps_val: empty
-            value: Reset
+        type: boolean
+        name: switch
   - entity: sensor
     name: Balance Energy
     category: diagnostic
@@ -267,18 +271,5 @@ secondary_entities:
         name: sensor
         unit: kWh
         class: total
-        mapping:
-          - scale: 100
-  - entity: number
-    name: Charge Energy
-    category: config
-    icon: "mdi:home-lightning-bolt"
-    dps:
-      - id: 14
-        type: integer
-        name: value
-        range:
-          min: 0
-          max: 999999
         mapping:
           - scale: 100

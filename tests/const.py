@@ -877,15 +877,21 @@ NASHONE_MTS700WB_THERMOSTAT_PAYLOAD = {
 }
 
 SMARTMCB_SMT006_METER_PAYLOAD = {
-    "1": 139470,
-    "6": "CHoAQgQADlwAAA==",
-    "7": "AAAAAAAAAAAAAA==",
-    "8": "AAAAAAAAAAAAAA==",
+    "1": 141630,
+    #    "6": "CHoAQgQADlwAAA==",
+    #    "7": "AAAAAAAAAAAAAA==",
+    #    "8": "AAAAAAAAAAAAAA==",
     "9": 0,
     "11": False,
-    "12": "",
+    "12": False,
     "13": 0,
-    "14": 0,
+    #    "14": 0,
     "16": True,
     "19": "FSE-F723C46A04FC6C",
+    "101": 275,
+    "102": 170,
+    "103": 40,
+    "104": 30,
+    "105": False,
+    "106": False,
 }

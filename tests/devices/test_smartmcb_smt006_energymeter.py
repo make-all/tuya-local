@@ -19,29 +19,27 @@ from homeassistant.const import (
 
 from ..const import SMARTMCB_SMT006_METER_PAYLOAD
 from ..mixins.binary_sensor import MultiBinarySensorTests
-from ..mixins.number import BasicNumberTests
-from ..mixins.select import BasicSelectTests
 from ..mixins.sensor import MultiSensorTests
 from ..mixins.switch import MultiSwitchTests
 from .base_device_tests import TuyaDeviceTestCase
 
 TOTALENERGY_DPS = "1"
-PHASEA_DPS = "6"
-PHASEB_DPS = "7"
-PHASEC_DPS = "8"
 ERROR_DPS = "9"
 PREPAY_DPS = "11"
 RESET_DPS = "12"
 BALANCE_DPS = "13"
-CHARGE_DPS = "14"
 SWITCH_DPS = "16"
 SERIAL_DPS = "19"
+UNKNOWN101_DPS = "101"
+UNKNOWN102_DPS = "102"
+UNKNOWN103_DPS = "103"
+UNKNOWN104_DPS = "104"
+UNKNOWN105_DPS = "105"
+UNKNOWN106_DPS = "106"
 
 
 class TestSmartMcbSMT006EnergyMeter(
     MultiBinarySensorTests,
-    BasicNumberTests,
-    BasicSelectTests,
     MultiSensorTests,
     MultiSwitchTests,
     TuyaDeviceTestCase,
@@ -63,6 +61,10 @@ class TestSmartMcbSMT006EnergyMeter(
                 {
                     "name": "switch_prepay",
                     "dps": PREPAY_DPS,
+                },
+                {
+                    "name": "switch_energy_reset",
+                    "dps": RESET_DPS,
                 },
             ],
         )
@@ -193,21 +195,6 @@ class TestSmartMcbSMT006EnergyMeter(
                 },
             ],
         )
-        self.setUpBasicNumber(
-            CHARGE_DPS,
-            self.entities.get("number_charge_energy"),
-            max=9999.99,
-            scale=100,
-            step=0.01,
-        )
-        self.setUpBasicSelect(
-            RESET_DPS,
-            self.entities.get("select_energy_reset"),
-            {
-                "": "",
-                "empty": "Reset",
-            },
-        )
         self.mark_secondary(
             [
                 "binary_sensor_credit",
@@ -227,26 +214,31 @@ class TestSmartMcbSMT006EnergyMeter(
                 "binary_sensor_surge",
                 "binary_sensor_unbalanced",
                 "binary_sensor_undervoltage",
-                "number_charge_energy",
-                "select_energy_reset",
                 "sensor_balance_energy",
+                "switch_energy_reset",
                 "switch_prepay",
             ]
         )
 
     def test_multi_switch_state_attributes(self):
-        self.dps[PHASEA_DPS] = "Phase A"
-        self.dps[PHASEB_DPS] = "Phase B"
-        self.dps[PHASEC_DPS] = "Phase C"
         self.dps[SERIAL_DPS] = "Breaker Number"
+        self.dps[UNKNOWN101_DPS] = 101
+        self.dps[UNKNOWN102_DPS] = 102
+        self.dps[UNKNOWN103_DPS] = 103
+        self.dps[UNKNOWN104_DPS] = 104
+        self.dps[UNKNOWN105_DPS] = True
+        self.dps[UNKNOWN106_DPS] = False
 
         self.assertDictEqual(
             self.multiSwitch["switch"].extra_state_attributes,
             {
-                "phase_a": "Phase A",
-                "phase_b": "Phase B",
-                "phase_c": "Phase C",
                 "breaker_number": "Breaker Number",
+                "unknown_101": 101,
+                "unknown_102": 102,
+                "unknown_103": 103,
+                "unknown_104": 104,
+                "unknown_105": True,
+                "unknown_106": False,
             },
         )
 
