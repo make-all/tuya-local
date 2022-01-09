@@ -875,3 +875,17 @@ NASHONE_MTS700WB_THERMOSTAT_PAYLOAD = {
     "41": "cancel",
     "42": 0,
 }
+
+SMARTMCB_SMT006_METER_PAYLOAD = {
+    "1": 139470,
+    "6": "CHoAQgQADlwAAA==",
+    "7": "AAAAAAAAAAAAAA==",
+    "8": "AAAAAAAAAAAAAA==",
+    "9": 0,
+    "11": False,
+    "12": "",
+    "13": 0,
+    "14": 0,
+    "16": True,
+    "19": "FSE-F723C46A04FC6C",
+}

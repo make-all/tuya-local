@@ -116,6 +116,9 @@ the device will not work despite being listed below.
 - Eanons QT-JS2014 Purifying humidifier
 - Wetair WAW-H1210LW humidifier
 
+### Smart Meter/Circuit Breaker
+- SmartMCB SMT006 Energy Meter
+
 ### SmartPlugs/Wall sockets
 - Generic Smartplug with Energy monitoring (older models)
   _confirmed as working with Kogan and Blitzwolf Single Smartplugs_
