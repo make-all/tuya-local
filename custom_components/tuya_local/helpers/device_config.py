@@ -261,6 +261,16 @@ class TuyaDpsConfig:
         """Return the value of the dps from the given device."""
         return self._map_from_dps(device.get_property(self.id), device)
 
+    def _match(self, matchdata, value):
+        """Return true val1 matches val2"""
+        if self._config["type"] == "bitfield" and matchdata:
+            try:
+                return (int(value) & int(matchdata)) != 0
+            except BaseException:
+                return False
+        else:
+            return str(value) == str(matchdata)
+
     async def async_set_value(self, device, value):
         """Set the value of the dps in the given device to given value."""
         if self.readonly:
@@ -387,7 +397,7 @@ class TuyaDpsConfig:
         for m in self._config.get("mapping", {}):
             if "dps_val" not in m:
                 default = m
-            elif str(m["dps_val"]) == str(value):
+            elif self._match(m["dps_val"], value):
                 return m
         return default
 

@@ -249,3 +249,12 @@ class TestSmartMcbSMT006EnergyMeter(
                 "breaker_number": "Breaker Number",
             },
         )
+
+    def test_multiple_concurrent_errors(self):
+        self.dps[ERROR_DPS] = 15
+        self.assertTrue(self.multiBSensor["binary_sensor_short_circuit"].is_on)
+        self.assertTrue(self.multiBSensor["binary_sensor_surge"].is_on)
+        self.assertTrue(self.multiBSensor["binary_sensor_overload"].is_on)
+        self.assertTrue(self.multiBSensor["binary_sensor_leakage_current"].is_on)
+        self.assertFalse(self.multiBSensor["binary_sensor_high_temperature"].is_on)
+        self.assertFalse(self.multiBSensor["binary_sensor_fire"].is_on)
