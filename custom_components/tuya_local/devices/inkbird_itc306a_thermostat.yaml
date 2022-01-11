@@ -32,6 +32,10 @@ primary_entity:
       name: current_temperature
       mapping:
         - scale: 10
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: F
+              value_redirect: current_temperature_f
     - id: 106
       type: integer
       name: target_temp_low
@@ -111,6 +115,7 @@ primary_entity:
       name: current_temperature_f
       mapping:
         - scale: 10
+      hidden: true
     - id: 117
       type: boolean
       name: unknown_117
