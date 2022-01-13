@@ -100,7 +100,6 @@ class TestInkbirdThermostat(
                     "step": 0.1,
                     "min": -9.9,
                     "max": 9.9,
-                    "unit": TEMP_CELSIUS,
                 },
                 {
                     "name": "number_continuous_heat_hours",
