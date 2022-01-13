@@ -30,14 +30,14 @@ HIGH_THRES_DPS = "109"
 LOW_THRES_DPS = "110"
 ALARM_HIGH_DPS = "111"
 ALARM_LOW_DPS = "112"
-ALARM_TIME_DPS = "113"
+ALARM_DIFF_DPS = "113"
 TEMPHIGH_DPS = "114"
 SWITCH_DPS = "115"
 TEMPF_DPS = "116"
 UNKNOWN117_DPS = "117"
 UNKNOWN118_DPS = "118"
 UNKNOWN119_DPS = "119"
-UNKNOWN120_DPS = "120"
+ALARM_TIME_DPS = "120"
 
 
 class TestInkbirdThermostat(
@@ -79,6 +79,11 @@ class TestInkbirdThermostat(
                     "device_class": DEVICE_CLASS_PROBLEM,
                 },
                 {
+                    "name": "binary_sensor_unbalanced",
+                    "dps": ALARM_DIFF_DPS,
+                    "device_class": DEVICE_CLASS_PROBLEM,
+                },
+                {
                     "name": "binary_sensor_error",
                     "dps": ERROR_DPS,
                     "device_class": DEVICE_CLASS_PROBLEM,
@@ -95,7 +100,6 @@ class TestInkbirdThermostat(
                     "step": 0.1,
                     "min": -9.9,
                     "max": 9.9,
-                    "unit": TEMP_CELSIUS,
                 },
                 {
                     "name": "number_continuous_heat_hours",
@@ -129,6 +133,7 @@ class TestInkbirdThermostat(
                 "binary_sensor_high_temperature",
                 "binary_sensor_low_temperature",
                 "binary_sensor_continuous_heat",
+                "binary_sensor_unbalanced",
                 "binary_sensor_error",
                 "number_calibration_offset",
                 "number_continuous_heat_hours",
@@ -162,10 +167,14 @@ class TestInkbirdThermostat(
 
         self.dps[ALARM_HIGH_DPS] = False
         self.dps[ALARM_LOW_DPS] = True
-        self.assertEqual(self.subject.icon, "mdi:thermometer-alert")
+        self.assertEqual(self.subject.icon, "mdi:snowflake-alert")
 
         self.dps[ALARM_LOW_DPS] = False
         self.dps[ALARM_TIME_DPS] = True
+        self.assertEqual(self.subject.icon, "mdi:clock-alert")
+
+        self.dps[ALARM_TIME_DPS] = False
+        self.dps[ALARM_DIFF_DPS] = True
         self.assertEqual(self.subject.icon, "mdi:thermometer-alert")
 
     def test_climate_hvac_modes(self):
@@ -221,8 +230,12 @@ class TestInkbirdThermostat(
             self.subject._device.anticipate_property_value.assert_not_called()
 
     def test_current_temperature(self):
+        self.dps[UNIT_DPS] = "C"
         self.dps[CURRENTTEMP_DPS] = 289
         self.assertEqual(self.subject.current_temperature, 28.9)
+        self.dps[UNIT_DPS] = "F"
+        self.dps[TEMPF_DPS] = 789
+        self.assertEqual(self.subject.current_temperature, 78.9)
 
     def test_temperature_unit(self):
         self.dps[UNIT_DPS] = "F"
@@ -286,34 +299,16 @@ class TestInkbirdThermostat(
 
     def test_extra_state_attributes(self):
         self.dps[ERROR_DPS] = 1
-        self.dps[CALIBRATE_DPS] = 1
-        self.dps[TIME_THRES_DPS] = 5
-        self.dps[HIGH_THRES_DPS] = 400
-        self.dps[LOW_THRES_DPS] = 300
-        self.dps[ALARM_HIGH_DPS] = True
-        self.dps[ALARM_LOW_DPS] = False
-        self.dps[ALARM_TIME_DPS] = True
-        self.dps[TEMPF_DPS] = 999
         self.dps[UNKNOWN117_DPS] = True
         self.dps[UNKNOWN118_DPS] = False
         self.dps[UNKNOWN119_DPS] = True
-        self.dps[UNKNOWN120_DPS] = False
 
         self.assertDictEqual(
             self.subject.extra_state_attributes,
             {
                 "error": 1,
-                "temperature_calibration_offset": 0.1,
-                "heat_time_alarm_threshold_hours": 5,
-                "high_temp_alarm_threshold": 40.0,
-                "low_temp_alarm_threshold": 30.0,
-                "high_temp_alarm": True,
-                "low_temp_alarm": False,
-                "heat_time_alarm": True,
-                "current_temperature_f": 99.9,
                 "unknown_117": True,
                 "unknown_118": False,
                 "unknown_119": True,
-                "unknown_120": False,
             },
         )
