@@ -1,4 +1,6 @@
-name: Tesla Smart Air Purifier Pro M/L/XL
+name: Tesla Smart Air Purifier Pro M
+products:
+  - id: 3hjcrjktvkoim7zu
 primary_entity:
   entity: fan
   dps:
@@ -52,29 +54,28 @@ secondary_entities:
       - id: 9
         name: switch
         type: boolean
-  - entity: number
+  - entity: sensor
     name: Filter
     category: diagnostic
     icon: "mdi:air-filter"
-    mode: box
     dps:
       - id: 5
         type: integer
-        name: value
+        name: sensor
         unit: "%"
         readonly: true
-  - entity: number
+  - entity: sensor
     name: Temp
     category: diagnostic
     icon: "mdi:thermometer"
-    mode: box
     dps:
       - id: 12
         type: integer
-        name: value
+        name: sensor
+        class: temperature
         unit: "°C"
         readonly: true
-  - entity: number
+  - entity: sensor
     name: Humidity
     category: diagnostic
     icon: "mdi:water-percent"
@@ -82,7 +83,8 @@ secondary_entities:
     dps:
       - id: 13
         type: integer
-        name: value
+        name: sensor
+        class: humidity
         unit: "%"
         readonly: true
   - entity: select
@@ -101,4 +103,15 @@ secondary_entities:
           - dps_val: "2h"
             value: "2 hours"
           - dps_val: "4h"
-            value: "4 hours"                
+            value: "4 hours"
+  - entity: sensor
+    name: PM2.5
+    class: pm25
+    icon: "mdi:factory"
+    category: diagnostic
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        class: measurement
+        unit: ugm3                

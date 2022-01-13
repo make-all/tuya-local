@@ -1,4 +1,6 @@
 name: Tesla Smart Air Purifier Mini
+products:
+  - id: sgodozglgymucvq2
 primary_entity:
   entity: fan
   dps:
@@ -34,15 +36,14 @@ secondary_entities:
       - id: 6
         name: switch
         type: boolean        
-  - entity: number
+  - entity: sensor
     name: Filter
     category: diagnostic
     icon: "mdi:air-filter"
-    mode: box
     dps:
       - id: 5
         type: integer
-        name: value
+        name: sensor
         unit: "%"
         readonly: true
   - entity: select
