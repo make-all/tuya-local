@@ -861,6 +861,19 @@ ECOSTRAD_ACCENTIQ_HEATER_PAYLOAD = {
     "101": True,
 }
 
+ECOSTRAD_IQCERAMIC_RADIATOR_PAYLOAD = {
+    "1": True,
+    "2": "hot",
+    "16": 180,
+    "24": 90,
+    "27": 0,
+    "40": False,
+    "104": "15",
+    "107": "1",
+    "108": "0",
+    "109": "0",
+}
+
 NASHONE_MTS700WB_THERMOSTAT_PAYLOAD = {
     "1": True,
     "2": "hot",

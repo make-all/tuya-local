@@ -44,6 +44,7 @@ the device will not work despite being listed below.
 - Kogan Flame effect heater - KAWHMFP20BA model
 - Nedis convection heater - WIFIHTPL20F models
 - Ecostrad Accent iQ heating panels
+- Ecostrad iQ Ceramic radiators
 
 ### Air Conditioners / Heatpumps
 

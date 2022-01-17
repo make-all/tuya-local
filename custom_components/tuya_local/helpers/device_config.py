@@ -250,8 +250,14 @@ class TuyaDpsConfig:
             "string": str,
             "float": float,
             "bitfield": int,
+            "json": str,
+            "base64": str,
         }
         return types.get(t)
+
+    @property
+    def rawtype(self):
+        return self._config["type"]
 
     @property
     def name(self):
@@ -263,7 +269,7 @@ class TuyaDpsConfig:
 
     def _match(self, matchdata, value):
         """Return true val1 matches val2"""
-        if self._config["type"] == "bitfield" and matchdata:
+        if self.rawtype == "bitfield" and matchdata:
             try:
                 return (int(value) & int(matchdata)) != 0
             except BaseException:

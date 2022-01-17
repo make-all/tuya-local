@@ -53,45 +53,48 @@ class BasicSwitchTests:
         device_class=DEVICE_CLASS_SWITCH,
         power_dps=None,
         power_scale=1,
+        testdata=(True, False),
     ):
         self.basicSwitch = subject
         self.basicSwitchDps = dps
         self.basicSwitchDevClass = device_class
         self.basicSwitchPowerDps = power_dps
         self.basicSwitchPowerScale = power_scale
+        self.basicSwitchOn = testdata[0]
+        self.basicSwitchOff = testdata[1]
 
     def test_basic_switch_is_on(self):
-        self.dps[self.basicSwitchDps] = True
+        self.dps[self.basicSwitchDps] = self.basicSwitchOn
         self.assertEqual(self.basicSwitch.is_on, True)
 
-        self.dps[self.basicSwitchDps] = False
+        self.dps[self.basicSwitchDps] = self.basicSwitchOff
         self.assertEqual(self.basicSwitch.is_on, False)
 
     async def test_basic_switch_turn_on(self):
         async with assert_device_properties_set(
-            self.basicSwitch._device, {self.basicSwitchDps: True}
+            self.basicSwitch._device, {self.basicSwitchDps: self.basicSwitchOn}
         ):
             await self.basicSwitch.async_turn_on()
 
     async def test_basic_switch_turn_off(self):
         async with assert_device_properties_set(
-            self.basicSwitch._device, {self.basicSwitchDps: False}
+            self.basicSwitch._device, {self.basicSwitchDps: self.basicSwitchOff}
         ):
             await self.basicSwitch.async_turn_off()
 
     async def test_basic_switch_toggle_turns_on_when_it_was_off(self):
-        self.dps[self.basicSwitchDps] = False
+        self.dps[self.basicSwitchDps] = self.basicSwitchOff
 
         async with assert_device_properties_set(
-            self.basicSwitch._device, {self.basicSwitchDps: True}
+            self.basicSwitch._device, {self.basicSwitchDps: self.basicSwitchOn}
         ):
             await self.basicSwitch.async_toggle()
 
     async def test_basic_switch_toggle_turns_off_when_it_was_on(self):
-        self.dps[self.basicSwitchDps] = True
+        self.dps[self.basicSwitchDps] = self.basicSwitchOn
 
         async with assert_device_properties_set(
-            self.basicSwitch._device, {self.basicSwitchDps: False}
+            self.basicSwitch._device, {self.basicSwitchDps: self.basicSwitchOff}
         ):
             await self.basicSwitch.async_toggle()
 
