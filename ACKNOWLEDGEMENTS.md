@@ -72,3 +72,4 @@ Further device support has been made with the assistance of users.  Please consi
  - [WildeRNS](https://github.com/WildeRNS) for assistance with Nashone MTS-700-WB thermostat smartplugs, SmartMCB Energy meter.
  - [ishioni](https://github.com/ishioni) for contributing support for Eberg Cooly C32HD air conditioner.
  - [Gekko47](https://github.com/Gekko47) for contributing support for ElectriQ CD12v2 dehumidifiers.
+ - [andreq](https://github.com/andreq) for assistance with Inkbird ITC-308 thermostats.

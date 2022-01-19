@@ -238,7 +238,7 @@ EANONS_HUMIDIFIER_PAYLOAD = {
     "22": True,
 }
 
-INKBIRD_THERMOSTAT_PAYLOAD = {
+INKBIRD_ITC306A_THERMOSTAT_PAYLOAD = {
     "12": 0,
     "101": "C",
     "102": 0,
@@ -258,6 +258,24 @@ INKBIRD_THERMOSTAT_PAYLOAD = {
     "118": False,
     "119": False,
     "120": False,
+}
+
+INKBIRD_ITC308_THERMOSTAT_PAYLOAD = {
+    "12": 0,
+    "101": "C",
+    "102": 0,
+    "104": 136,
+    "106": 15,
+    "108": 3,
+    "109": 370,
+    "110": 10,
+    "111": False,
+    "112": False,
+    "113": False,
+    "115": "1",
+    "116": 565,
+    "117": 10,
+    "118": 5,
 }
 
 ANKO_FAN_PAYLOAD = {

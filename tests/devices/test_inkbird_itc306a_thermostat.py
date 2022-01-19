@@ -12,7 +12,7 @@ from homeassistant.components.climate.const import (
 from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT, TIME_HOURS
 
 
-from ..const import INKBIRD_THERMOSTAT_PAYLOAD
+from ..const import INKBIRD_ITC306A_THERMOSTAT_PAYLOAD
 from ..helpers import assert_device_properties_set
 from ..mixins.binary_sensor import MultiBinarySensorTests
 from ..mixins.number import MultiNumberTests
@@ -50,7 +50,7 @@ class TestInkbirdThermostat(
 
     def setUp(self):
         self.setUpForConfig(
-            "inkbird_itc306a_thermostat.yaml", INKBIRD_THERMOSTAT_PAYLOAD
+            "inkbird_itc306a_thermostat.yaml", INKBIRD_ITC306A_THERMOSTAT_PAYLOAD
         )
         self.subject = self.entities.get("climate")
         self.setUpBasicSelect(

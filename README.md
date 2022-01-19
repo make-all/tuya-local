@@ -71,7 +71,8 @@ the device will not work despite being listed below.
   be figured out.
 
 ### Thermostats
-- Inkbird ITC306A thermostat smartplug (not fully functional)
+- Inkbird ITC306A thermostat smartplug
+- Inkbird ITC308 thermostat smartplug
 - Beca BHP-6000 Room Heat Pump control thermostat
 - Beca BHT-6000/8000 Floor Heating thermostat
 - Beca BHT-002/3000 Floor Heating thermostat (with external temp sensor)
@@ -85,9 +86,6 @@ the device will not work despite being listed below.
 - Beok TR9B thermostat _(rebadged as Vancoo and perhaps others)_
 - Hysen HY08WE-2 thermostat
 - Nashone MTS-700-WB thermostat smartplug
-
-### Kettles
-- Kogan Glass 1.7L Smart Kettle (not reliably detected)
 
 ### Fans
 - Goldair GCPF315 fan
@@ -116,6 +114,9 @@ the device will not work despite being listed below.
 ### Humidifiers
 - Eanons QT-JS2014 Purifying humidifier
 - Wetair WAW-H1210LW humidifier
+
+### Kitchen Appliances
+- Kogan Glass 1.7L Smart Kettle (not reliably detected)
 
 ### Smart Meter/Circuit Breaker
 - SmartMCB SMT006 Energy Meter
