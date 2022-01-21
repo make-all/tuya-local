@@ -525,6 +525,21 @@ TH213_THERMOSTAT_PAYLOAD = {
     "110": 0,
 }
 
+TH213V2_THERMOSTAT_PAYLOAD = {
+    "1": True,
+    "2": 16,
+    "3": 21,
+    "4": "3",
+    "6": False,
+    "12": 0,
+    "101": 23,
+    "102": "2",
+    "103": 1,
+    "104": 1,
+    "105": False,
+    "116": "1",
+}
+
 WETAIR_WCH750_HEATER_PAYLOAD = {
     "1": False,
     "2": 17,
