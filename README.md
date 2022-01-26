@@ -110,6 +110,7 @@ the device will not work despite being listed below.
 - ElectriQ DESD9LW dehumidifier
 - Kogan SmarterHome 7L Desiccant dehumidifier
 - JJPro JPD01 dehumidifer
+- JJPro JPD02 dehumidifier
 
 ### Humidifiers
 - Eanons QT-JS2014 Purifying humidifier
