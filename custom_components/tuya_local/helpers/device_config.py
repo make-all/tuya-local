@@ -252,6 +252,7 @@ class TuyaDpsConfig:
             "bitfield": int,
             "json": str,
             "base64": str,
+            "hex": str,
         }
         return types.get(t)
 
