@@ -815,6 +815,19 @@ DIGOO_DGSP202_SOCKET_PAYLOAD = {
     "20": 240,
 }
 
+DIGOO_DGSP01_SOCKET_PAYLOAD = {
+    "1": True,
+    "27": True,
+    "28": "colour",
+    "29": 76,
+    "31": "1c0d00001b640b",
+    "32": "3855b40168ffff",
+    "33": "ffff500100ff00",
+    "34": "ffff8003ff000000ff000000ff000000000000000000",
+    "35": "ffff5001ff0000",
+    "36": "ffff0505ff000000ff00ffff00ff00ff0000ff000000",
+}
+
 WOOX_R4028_SOCKET_PAYLOAD = {
     "1": True,
     "2": True,
