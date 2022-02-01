@@ -42,7 +42,11 @@ async def test_init_entry_fails_if_device_has_no_sensor(hass):
     """Test initialisation when device has no matching entity"""
     entry = MockConfigEntry(
         domain=DOMAIN,
-        data={CONF_TYPE: "mirabella_genio_usb", CONF_DEVICE_ID: "dummy"},
+        data={
+            CONF_TYPE: "mirabella_genio_usb",
+            CONF_DEVICE_ID: "dummy",
+            "sensor": True,
+        },
     )
     m_add_entities = Mock()
     m_device = AsyncMock()
@@ -62,7 +66,7 @@ async def test_init_entry_fails_if_config_is_missing(hass):
     """Test initialisation when device has no matching entity"""
     entry = MockConfigEntry(
         domain=DOMAIN,
-        data={CONF_TYPE: "non_existing", CONF_DEVICE_ID: "dummy"},
+        data={CONF_TYPE: "non_existing", CONF_DEVICE_ID: "dummy", "sensor": True},
     )
     m_add_entities = Mock()
     m_device = AsyncMock()

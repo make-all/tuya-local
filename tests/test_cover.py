@@ -38,7 +38,7 @@ async def test_init_entry_fails_if_device_has_no_cover(hass):
     """Test initialisation when device has no matching entity"""
     entry = MockConfigEntry(
         domain=DOMAIN,
-        data={CONF_TYPE: "kogan_heater", CONF_DEVICE_ID: "dummy"},
+        data={CONF_TYPE: "kogan_heater", CONF_DEVICE_ID: "dummy", "cover": True},
     )
     m_add_entities = Mock()
     m_device = AsyncMock()
@@ -60,7 +60,7 @@ async def test_init_entry_fails_if_config_is_missing(hass):
     """Test initialisation when device has no matching entity"""
     entry = MockConfigEntry(
         domain=DOMAIN,
-        data={CONF_TYPE: "non_existing", CONF_DEVICE_ID: "dummy"},
+        data={CONF_TYPE: "non_existing", CONF_DEVICE_ID: "dummy", "cover": True},
     )
     # although async, the async_add_entities function passed to
     # async_setup_entry is called truly asynchronously. If we use
