@@ -59,7 +59,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             ]
         else:
             mode = self.color_mode
-            if mode:
+            if mode and mode != COLOR_MODE_UNKNOWN:
                 return [mode]
 
         return []
