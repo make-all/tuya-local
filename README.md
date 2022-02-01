@@ -92,7 +92,7 @@ the device will not work despite being listed below.
 - Anko HEGSM40 fan
 - Lexy F501 fan
 - Deta fan controller
-- Arlec Grid Connect Smart Ceiling Fan (without light)
+- Arlec Grid Connect Smart Ceiling Fan (with and without light)
 - Stirling FS1-40DC Pedestal fan
 - Aspen ASP 200 fan
 - TMWF02 fan controller

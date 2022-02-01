@@ -7,9 +7,11 @@ from homeassistant.components.light import (
     LightEntity,
     ATTR_BRIGHTNESS,
     ATTR_COLOR_MODE,
+    ATTR_COLOR_TEMP,
     ATTR_EFFECT,
     ATTR_RGBW_COLOR,
     COLOR_MODE_BRIGHTNESS,
+    COLOR_MODE_COLOR_TEMP,
     COLOR_MODE_ONOFF,
     COLOR_MODE_RGBW,
     COLOR_MODE_UNKNOWN,
@@ -18,9 +20,13 @@ from homeassistant.components.light import (
 )
 import homeassistant.util.color as color_util
 
+import logging
+
 from ..device import TuyaLocalDevice
 from ..helpers.device_config import TuyaEntityConfig
 from ..helpers.mixin import TuyaLocalEntity
+
+_LOGGER = logging.getLogger(__name__)
 
 
 class TuyaLocalLight(TuyaLocalEntity, LightEntity):
@@ -37,6 +43,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
         self._switch_dps = dps_map.pop("switch", None)
         self._brightness_dps = dps_map.pop("brightness", None)
         self._color_mode_dps = dps_map.pop("color_mode", None)
+        self._color_temp_dps = dps_map.pop("color_temp", None)
         self._rgbhsv_dps = dps_map.pop("rgbhsv", None)
         self._effect_dps = dps_map.pop("effect", None)
         self._init_end(dps_map)
@@ -50,15 +57,12 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                 for mode in self._color_mode_dps.values(self._device)
                 if mode in VALID_COLOR_MODES
             ]
-
-        elif self._rgbhsv_dps:
-            return [COLOR_MODE_RGBW]
-        elif self._brightness_dps:
-            return [COLOR_MODE_BRIGHTNESS]
-        elif self._switch_dps:
-            return [COLOR_MODE_ONOFF]
         else:
-            return []
+            mode = self.color_mode
+            if mode:
+                return [mode]
+
+        return []
 
     @property
     def supported_features(self):
@@ -78,12 +82,28 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
 
         if self._rgbhsv_dps:
             return COLOR_MODE_RGBW
+        elif self._color_temp_dps:
+            return COLOR_MODE_COLOR_TEMP
         elif self._brightness_dps:
             return COLOR_MODE_BRIGHTNESS
         elif self._switch_dps:
             return COLOR_MODE_ONOFF
         else:
             return COLOR_MODE_UNKNOWN
+
+    @property
+    def color_temp(self):
+        """Return the color temperature in mireds"""
+        if self._color_temp_dps:
+            unscaled = self._color_temp_dps.get_value(self._device)
+            range = self._color_temp_dps.range(self._device)
+            if range:
+                min = range["min"]
+                max = range["max"]
+                return unscaled * 347 / (max - min) + 153 - min
+            else:
+                return unscaled
+        return None
 
     @property
     def is_on(self):
@@ -150,10 +170,38 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
 
         if self._color_mode_dps:
             color_mode = params.get(ATTR_COLOR_MODE)
-            effect = params.get(ATTR_EFFECT)
             if color_mode:
                 color_values = self._color_mode_dps.get_values_to_set(
                     self._device, color_mode
+                )
+                settings = {
+                    **settings,
+                    **color_values,
+                }
+            elif not self._effect_dps:
+                effect = params.get(ATTR_EFFECT)
+                if effect:
+                    color_values = self._color_mode_dps.get_values_to_set(
+                        self._device, effect
+                    )
+                    settings = {
+                        **settings,
+                        **color_values,
+                    }
+
+        if self._color_temp_dps:
+            color_temp = params.get(ATTR_COLOR_TEMP)
+            range = self._color_temp_dps.range(self._device)
+
+            if range and color_temp:
+                min = range["min"]
+                max = range["max"]
+                color_temp = round((color_temp - 153 + min) * (max - min) / 347)
+
+            if color_temp:
+                color_values = self._color_temp_dps.get_values_to_set(
+                    self._device,
+                    color_temp,
                 )
                 settings = {
                     **settings,
@@ -213,6 +261,6 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             raise NotImplementedError()
 
     async def async_toggle(self):
-        dps_display_on = self.is_on
+        disp_on = self.is_on
 
-        await (self.async_turn_on() if not dps_display_on else self.async_turn_off())
+        await (self.async_turn_on() if not disp_on else self.async_turn_off())

@@ -649,6 +649,17 @@ ARLEC_FAN_PAYLOAD = {
     "103": "off",
 }
 
+ARLEC_FAN_LIGHT_PAYLOAD = {
+    "1": True,
+    "3": "6",
+    "4": "forward",
+    "9": False,
+    "10": 100,
+    "11": 100,
+    "102": "normal",
+    "103": "off",
+}
+
 CARSON_CB_PAYLOAD = {
     "1": True,
     "2": 20,

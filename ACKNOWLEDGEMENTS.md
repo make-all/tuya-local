@@ -74,4 +74,5 @@ Further device support has been made with the assistance of users.  Please consi
  - [Gekko47](https://github.com/Gekko47) for contributing support for ElectriQ CD12v2 dehumidifiers.
  - [andreq](https://github.com/andreq) for assistance with Inkbird ITC-308 thermostats.
  - [dlosito](https://github.com/dlosito) for assistance with a second variant of Awow TH213 thermostat.
+ - [UrZdcw9](https://github.com/UrZdcw9) for assistance with Arlec ceiling fan with light.
  
