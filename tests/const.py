@@ -965,3 +965,22 @@ SMARTMCB_SMT006_METER_PAYLOAD = {
     "105": False,
     "106": False,
 }
+
+LEFANT_M213_VACUUM_PAYLOAD = {
+    "1": True,
+    "2": False,
+    "3": "standby",
+    "4": "forward",
+    "5": "0",
+    "6": 91,
+    "13": False,
+    "16": 0,
+    "17": 0,
+    "18": 0,
+    "101": "nar",
+    "102": -23,
+    "103": 27,
+    "104": 0,
+    "106": "ChargeStage:DETSWITCGH",
+    "108": "BatVol:13159",
+}
