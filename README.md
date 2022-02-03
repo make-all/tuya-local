@@ -100,6 +100,7 @@ the device will not work despite being listed below.
 ### Air Purifiers
 - Renpho RP-AP001S air purifier
 - Poiema One air purifier
+- Himox H06 Air Purifier
 
 ### Dehumidifiers
 - Goldair GPDH420 dehumidifier
@@ -115,7 +116,6 @@ the device will not work despite being listed below.
 ### Humidifiers
 - Eanons QT-JS2014 Purifying humidifier
 - Wetair WAW-H1210LW humidifier
-- Himox H06 Air Purifier
 
 ### Kitchen Appliances
 - Kogan Glass 1.7L Smart Kettle (not reliably detected)
