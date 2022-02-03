@@ -49,13 +49,8 @@ primary_entity:
           value: 100
 
 secondary_entities:
-  - entity: light
-    dps:
-      - id: 8
-        type: boolean
-        name: switch
-  # '5': 46, "property":{"unit":"％","min":0,"max":100,"scale":0,"step":1,"type":"value"}, ro
-  - entity: sensor
+  # {'5': 4}, "property":{"unit":"％","min":0,"max":100,"scale":0,"step":1,"type":"value"}, {mode:ro}
+  - entity: sensor # No Description entity showed
     name: Filter Remaining
 #   icon: mdi:filter
     dps:
@@ -70,6 +65,16 @@ secondary_entities:
           max: 100
         scale: 0
         step: 1
+  - entity: light
+    dps:
+      - id: 8
+        type: boolean
+        name: switch ##!! Device matches himox_h06_purifier with quality of 44%. !!##
+  - entity: switch
+    dps:
+      - id: 8
+        type: boolean
+        name: switch ##!! Device matches himox_h06_purifier with quality of 44%. !!##
 
 
   # - entity: switch
