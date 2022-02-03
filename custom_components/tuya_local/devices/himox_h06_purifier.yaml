@@ -1,0 +1,105 @@
+---
+## @antudev custom addition to tuya_local ##
+
+#{dps.id.101};{name.switch};{type.boolean}#{'1': True,
+#{dps.id.104};{name.fan_speed};{type.string}#'4': 'low',
+#{dps.id.105};{name.filter};{type.integrer};{unit.'%'};#'5': 47,
+#{dps.id.108};{name.light_switch};{type.boolean}#'8': False,
+#{dps.id.111};{name.filter_reset};{type.boolean}#'11': False,
+#{dps.id.119};{name.countdown_left};{type.integrer};{unit.min}#'19': 0,
+#{dps.id.122};{name.string}#'22': 'severe',
+
+  # 2022-02-02 15:55:31 WARNING (MainThread) [custom_components.tuya_local.config_flow] Device matches himox_h06_purifier with quality of 33%. DPS:
+
+  # {'1': True,
+  # '4': "property":{"range":["low","mid","high"];"type":"enum", rw
+  # '5': 46, "property":{"unit":"％","min":0,"max":100,"scale":0,"step":1,"type":"value"}, ro
+  # '8': True, "property":{"type":"bool"} rw
+  # '11': False, "property":{"type":"bool"} rw
+  # '18': 'cancel', "property":{"range":["cancel","4h","8h"],"type":"enum"} rw
+  # '19': 0, "property":{"unit":"min","min":0,"max":480,"scale":0,"step":1,"type":"value"} ro
+  # '22': 'severe', "property":{"range":["great","medium","severe"],"type":"enum"} ro
+  # '101': '1', {"range":["calcle","1","2"],"type":"enum"} rw DEVELOPMENT // "great","medium","severe"
+  # 'updated_at': 1643817329.115454}
+
+
+#local_key.bf08b0a160be8da1
+#ip.10_0_0_39
+
+
+name: HIMOX H06 Purifier
+products:
+ - id: 80256465f4cfa2c5ec84
+primary_entity:
+  entity: fan
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+  # {'4'}: "property":{"range":["low","mid","high"];{"type":"enum"}, {mode:rw}
+    - id: 4
+      type: string
+      name: speed
+      mapping:
+        - dps_val: "low"
+          value: 33.34
+        - dps_val: "mid"
+          value: 66.67
+        - dps_val: "high"
+          value: 100
+
+secondary_entities:
+  - entity: light
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  # '5': 46, "property":{"unit":"％","min":0,"max":100,"scale":0,"step":1,"type":"value"}, ro
+  - entity: sensor
+    name: Filter Remaining
+#   icon: mdi:filter
+    dps:
+      - id: 5
+        type: integrer
+        name: sensor
+        readonly: true
+        unit: "%"
+        class: measurement
+        range:
+          min: 0
+          max: 100
+        scale: 0
+        step: 1
+
+
+  # - entity: switch
+  #   name: Filter Reset
+  #   icon: mdi:refresh
+  #   dps:
+  #     - id: 11
+  #       type: boolean
+  #       name: switch
+  # - entity: sensor
+  #   name: Filter Remaining
+  #   icon: mdi:filter
+  #   dps:
+  #     - id: 5
+  #       type: integrer
+  #       name: sensor
+  #       readonly: true
+  #       unit: "%"
+  #       class: measurement
+  # - entity: sensor
+  #   name: Air Quality
+  #   dps:
+  #     - id: 22
+  #       type: string
+  #       name: sensor
+  #       readonly: true
+  # - entity: sensor
+  #   name: Countdown Left
+  #   dps:
+  #     - id: 19
+  #       type: string
+  #       name: sensor
+  #       readonly: true
