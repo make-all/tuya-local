@@ -94,7 +94,7 @@ secondary_entities:
           - dps_val: 8h
             value: "8 hours"
 # '19': 0, "property":{"unit":"min","min":0,"max":480,"scale":0,"step":1,"type":"value"} ro
-  - entity: sensor
+  - entity: sensor # No Description entity showed
     name: countdown_left
 #   icon: mdi:filter
     dps:
@@ -109,6 +109,29 @@ secondary_entities:
           max: 480
         scale: 0
         step: 1
+# '22': 'severe', "property":{"range":["great","medium","severe"],"type":"enum"} ro
+  - entity: sensor
+    name: air_quality
+    dps:
+      - id: 22
+        type: string
+        name: sensor
+        readonly: true
+# '101': '1', {"range":["calcle","1","2"],"type":"enum"} rw DEVELOPMENT // "great","medium","severe"
+  - entity: select
+    name: air_debugger
+    category: diagnostic
+    dps:
+      - id: 101
+        name: option
+        type: string
+        mapping:
+          - dps_val: calcle
+            value: "great"
+          - dps_val: 1
+            value: "medium"
+          - dps_val: 2
+            value: "severe"
   # - entity: switch
   #   name: Filter Reset
   #   icon: mdi:refresh
