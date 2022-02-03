@@ -142,9 +142,13 @@ The type of data returned by the Tuya API. Can be one of the following:
  
  - **string** can contain arbitrary text.
  - **boolean** can contain the values **True** or **False**.
- - **integer** can contain only numbers (the Tuya protocol typically encloses them in quotes as if they are strings, but integers can have range set on them)
+ - **integer** can contain only numbers. Integers can have range set on them, be scaled and steped
  - **bitfield** is a special case of integer, where the bits that make up the value each has individal meaning.
-
+ - **base64** is a special case of string, where binary data is base64 encoded.  Platforms that use this type will need special handling to make sense of the data.
+ - **hex** is a special case of string, where binary data is hex encoded. Platforms that use this type will need special handling to make sense of the data.
+ - **json** is a special case of string, where multiple data points are encoded in json format in the string.  Platforms that use this type will need special handling to make sense of the data.
+ - **float** can contain floating point numbers.  No known devices use this, but it is supported if needed.
+ 
 ### `name`
 
 The name given to the attribute in Home Assistant. Certain names are used
@@ -345,3 +349,124 @@ that mapping.  These nested mappings are limited to simple `dps_val` to `value`
 substitutions, as more complex rules would quickly become too complex to
 manage.
 
+## Entity types
+
+Entities have specific mappings of dps names to functions.  Any unrecognized dps name is added
+to the entity as a read-only extra attribute, so can be observed and queried from HA, but if you need
+to be able to change it, you should split it into its own entity of an appropriate type (number, select, switch for example).
+
+If the type of dps does not match the expected type, a mapping should be provided to convert.
+Note that "on" and "off" require quotes in yaml, otherwise it they are interpretted as true/false.
+
+Many entity types support a class attribute which may change the UI behaviour, icons etc.  See the
+HA documentation for the entity type to see what is valid (these may expand over time)
+
+### binary_sensor
+- **sensor** (required, boolean) the dps to attach to the sensor.
+
+### climate
+- **aux_heat** (optional, boolean) a dps to control the aux heat switch if the device has one.
+- **current_temperature** (optional, number) a dps that reports the current temperature.
+- **current_humidity** (optional, number) a dps that reports the current humidity (%).
+- **fan_mode** (optional, mapping of strings) a dps to control the fan mode if available.
+    Any value is allowed, but HA has some standard modes: 
+    `"on", "off", auto, low, medium, high, top, middle, focus, diffuse` 
+- **humidity** (optional, number) a dps to control the target humidity if available. (%)
+- **hvac_mode** (optional, mapping of strings) a dps to control the mode of the device.
+    Possible values are: `"off", cool, heat, heat_cool, auto, dry, fan_only`
+- **hvac_action** (optional, string) a dps thar reports the current action of the device.
+    Possible values are: `"off", idle, cooling, heating, drying, fan`
+- **preset_mode** (optional, mapping of strings) a dps to control preset modes of the device.
+   Any value is allowed, but HA has some standard presets: 
+    `none, eco, away, boost, comfort, home, sleep, activity` 
+- **swing_mode** (optional, mapping of strings) a dps to control swing modes of the device.
+   Possible values are: `"off", vertical, horizontal`
+- **temperature** (optional, number) a dps to set the target temperature of the device.
+      A unit may be specified as part of the attribute if a temperature_unit dps is not available, if not
+      the default unit configured in HA will be used.
+- **target_temp_high** (optional, number) a dps to set the upper temperature range of the device.
+     This dps should be paired with `target_temp_low`, and is mutually exclusive with `temperature`
+- **target_temp_low** (optional, number) a dps to set the lower temperature range of the device.
+- **temperature_unit** (optional, string) a dps that specifies the unit the device is configured for.
+    Values should be mapped to "C" or "F" (case sensitive) - often the device will use a boolean or
+	lower case for this
+- **min_temperature** (optional, number) a dps that specifies the minimum temperature that can be set.   Some devices provide this, otherwise a fixed range on the temperature dps can be used.
+- **max_temperature** (optional, number) a dps that specifies the maximum temperature that can be set.
+
+### cover
+
+Either **position** or **open** should be specified.
+
+- **position** (optional, number 0-100): a dps to control the percentage that the cover is open.
+    0 means completely close, 100 means completely open.
+- **control** (optional, mapping of strings): a dps to control the cover. Mainly useful if **position** cannot be used.
+    Valid values are `open, close, stop`
+- **action** (optional, string): a dps that reports the current state of the cover.
+   Special values are `opening, closing`
+- **open** (optional, boolean): a dps that reports if the cover is open. Only used if **position** is not available.
+
+### fan
+- **switch** (optional, boolean): a dps to control the power state of the fan
+- **preset_mode** (optional, mapping of strings): a dps to control different modes of the fan.
+   Values `"off", low, medium, high` are handled specially by HA as deprecated speed aliases which will be removed in mid 2022.  Consider mapping these as **speed** values instead, as voice assistants will respond to phrases like "turn the fan up/down" for speed.
+- **speed** (optional, number 0-100): a dps to control the speed of the fan (%).
+    scale and step can be used to convert smaller ranges to percentages, or a mapping for discrete values.
+- **oscillate** (optional, boolean): a dps to control whether the fan will oscillate or not.
+- **direction** (optional, string): a dps to control the spin direction of the fan.
+   Valid values are `forward, reverse`.
+
+### humidifier
+Humidifer can also cover dehumidifiers (use class to specify which).
+
+- **switch** (optional, boolean): a dps to control the power state of the fan
+- **mode** (optional, mapping of strings): a dps to control preset modes of the device
+- **humidity** (optional, number):  a dps to control the target humidity of the device
+
+### light
+- **switch** (optional, boolean): a dps to control the on/off state of the light
+- **brightness** (optional, number 0-255): a dps to control the dimmer if available.
+- **color_temp** (optional, number): a dps to control the color temperature if available.
+    will be mapped so the minimum corresponds to 153 mireds (6500K), and max to 500 (2000K).
+- **rgbhsv** (optional, hex): a dps to control the color of the light, using 14 digit hex encoding of RGB and HSV values. 
+- **color_mode** (optional, mapping of strings): a dps to control which mode to use if the light supports multiple modes.
+    Special values: `white, color_temp, rgbw, hs, xy, rgb, rgbww`, others will be treated as effects,
+	Note: only white, color_temp and rgbw are currently supported.
+- **effect** (optional, mapping of strings): a dps to control effects / presets supported by the light.
+   If the light mixes in color modes in the same dps, **color_mode** should be used instead.
+
+### lock
+- **lock** (required, boolean): a dps to control the lock state: true = locked, false = unlocked
+
+### number
+- **value** (required, number): a dps to control the number that is set.
+- **unit** (optional, string): a dps that reports the units returned by the number.
+    This may be useful for devices that switch between C and F, otherwise a fixed unit attribute on the **value** dps can be used.
+- **minimum** (optional, number): a dps that reports the minimum the number can be set to.
+    This may be used as an alternative to a range setting on the **value** dps if the range is dynamic
+- **maximum** (optional, number): a dps that reports the maximum the number can be set to.
+    This may be used as an alternative to a range setting on the **value** dps if the range is dynamic
+
+### select
+- **option** (required, mapping of strings): a dps to control the option that is selected.
+
+### sensor
+- **sensor** (required, number or string): a dps that returns the current value of the sensor.
+- **unit** (optional, string): a dps that returns the unit returned by the sensor.
+    This may be useful for devices that switch between C and F, otherwise a fixed unit attribute on the **sensor** dps can be used.
+
+### switch
+- **switch** (required, boolean): a dps to control the switch state.
+- **current_power_w** (optional, number): a dps that returns the current power consumption in watts.
+   This is a legacy attribute, for the HA Energy dashboard it is advisable to also provide a sensor entity linked to the same dps as well.
+
+### vacuum
+-**status** (required, mapping of strings): a dps to report and control the status of the vacuum.
+    Special values: `return_to_base, clean_spot`, others are sent as general commands
+- **locate** (optional, boolean): a dps to trigger a locator beep on the vacuum.
+- **power** (optional, boolean): a dps to switch full system power on and off
+- **activate** (optional, boolean): a dps to start and pause the vacuum
+- **battery** (optional, number 0-100): a dps that reports the current battery level (%)
+- **direction_control** (optional, mapping of strings): a dps that is used for directional commands
+    These are additional commands that are not part of **status**. They can be sent as general commands from HA.
+- **error** (optional, bitfield): a dps that reports error status.
+    As this is mapped to a single "fault" state, you could consider separate binary_sensors to report on individual errors
