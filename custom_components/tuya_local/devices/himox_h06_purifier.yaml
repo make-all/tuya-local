@@ -49,9 +49,9 @@ primary_entity:
           value: 100
 
 secondary_entities:
-  # {'5': 4}, "property":{"unit":"％","min":0,"max":100,"scale":0,"step":1,"type":"value"}, {mode:ro}
+# {'5': 4}, "property":{"unit":"％","min":0,"max":100,"scale":0,"step":1,"type":"value"}, {mode:ro}
   - entity: sensor # No Description entity showed
-    name: Filter Remaining
+    name: filter remaining
 #   icon: mdi:filter
     dps:
       - id: 5
@@ -65,18 +65,50 @@ secondary_entities:
           max: 100
         scale: 0
         step: 1
+# '8': True, "property":{"type":"bool"} rw
   - entity: light
     dps:
       - id: 8
         type: boolean
         name: switch ##!! Device matches himox_h06_purifier with quality of 44%. !!##
+# '11': False, "property":{"type":"bool"} rw
   - entity: switch
     dps:
       - id: 11
         type: boolean
-        name: switch ##!! Device matches himox_h06_purifier with quality of 44%. !!##
-
-
+        name: switch
+# '18': 'cancel', "property":{"range":["cancel","4h","8h"],"type":"enum"} rw
+  - entity: select
+    name: timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 18
+        name: option
+        type: string
+        mapping:
+          - dps_val: cancel
+            value: "Off"
+          - dps_val: 4h
+            value: "4 hours"
+          - dps_val: 8h
+            value: "8 hours"
+# '19': 0, "property":{"unit":"min","min":0,"max":480,"scale":0,"step":1,"type":"value"} ro
+  - entity: sensor
+    name: countdown_left
+#   icon: mdi:filter
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        readonly: true
+        unit: "min"
+        class: measurement
+        range:
+          min: 0
+          max: 480
+        scale: 0
+        step: 1
   # - entity: switch
   #   name: Filter Reset
   #   icon: mdi:refresh
