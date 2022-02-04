@@ -75,4 +75,6 @@ Further device support has been made with the assistance of users.  Please consi
  - [andreq](https://github.com/andreq) for assistance with Inkbird ITC-308 thermostats.
  - [dlosito](https://github.com/dlosito) for assistance with a second variant of Awow TH213 thermostat.
  - [UrZdcw9](https://github.com/UrZdcw9) for assistance with Arlec ceiling fan with light.
+ - [dlosito](https://github.com/dlosito) for assistance with Lefant M213 vacuum cleaners.
+- [kramttocs](https://github.com/kramttocs) for assistance with Kyvol E30 vacuum cleaners.
  

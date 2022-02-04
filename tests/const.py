@@ -984,3 +984,26 @@ LEFANT_M213_VACUUM_PAYLOAD = {
     "106": "ChargeStage:DETSWITCGH",
     "108": "BatVol:13159",
 }
+
+KYVOL_E30_VACUUM_PAYLOAD = {
+    "1": True,
+    "2": False,
+    "3": "standby",
+    "4": "stop",
+    "5": "Charging_Base",
+    "6": 2,
+    "7": 20,
+    "8": 60,
+    "9": 20,
+    "10": False,
+    "11": False,
+    "12": False,
+    "13": False,
+    "14": "3",
+    "17": 0,
+    "18": 0,
+    "101": "2",
+    "102": "900234",
+    "104": "standby",
+    "107": 1,
+}

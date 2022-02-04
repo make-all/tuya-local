@@ -132,6 +132,7 @@ the device will not work despite being listed below.
 - Mirabella Genio Smart plug with USB
 - Grid Connect double outlet with Energy Monitoring, Master and Individual switches and Child Lock.
 - DIGOO DG-SP202 dual smartplug with energy monitoring and timers.
+- DIGOO DG-SP01 USB smartplug with night light.
 - Grid Connect double outlet wall socket
 - Woox R4028/DIGOO DG-PS01 3 outlet + USB powerstrip with individual timers.
 Other brands may work with the above configurations
@@ -141,6 +142,10 @@ Other brands may work with the above configurations
 
 ### Covers
 - Simple Garage Door
+
+### Vacuum Cleaners
+- Lefant M213 Vacuum Cleaner
+- Kyvol E30 Vacuum Cleaner
 
 ### Miscellaneous
 - Qoto 03 Smart Water Valve / Sprinkler Controller

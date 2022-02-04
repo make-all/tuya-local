@@ -9,6 +9,7 @@ from homeassistant.components.vacuum import (
     STATE_RETURNING,
     STATE_ERROR,
     SUPPORT_BATTERY,
+    SUPPORT_FAN_SPEED,
     SUPPORT_CLEAN_SPOT,
     SUPPORT_LOCATE,
     SUPPORT_PAUSE,
@@ -44,6 +45,7 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
         self._battery_dps = dps_map.pop("battery", None)
         self._direction_dps = dps_map.get("direction_control")
         self._error_dps = dps_map.get("error")
+        self._fan_dps = dps_map.pop("fan_speed", None)
 
         if self._status_dps is None:
             raise AttributeError(f"{config.name} is missing a status dps")
@@ -55,12 +57,15 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
         support = SUPPORT_STATE | SUPPORT_STATUS | SUPPORT_SEND_COMMAND
         if self._battery_dps:
             support |= SUPPORT_BATTERY
+        if self._fan_dps:
+            support |= SUPPORT_FAN_SPEED
         if self._power_dps:
             support |= SUPPORT_TURN_ON | SUPPORT_TURN_OFF
         if self._active_dps:
             support |= SUPPORT_START | SUPPORT_PAUSE
         if self._locate_dps:
             support |= SUPPORT_LOCATE
+
         status_support = self._status_dps.values(self._device)
         if SERVICE_RETURN_TO_BASE in status_support:
             support |= SUPPORT_RETURN_HOME
@@ -151,3 +156,20 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
             self._device
         ):
             await self._direction_dps.async_set_value(self._device, command)
+
+    @property
+    def fan_speed_list(self):
+        """Return the list of fan speeds supported"""
+        if self._fan_dps:
+            return self._fan_dps.values(self._device)
+
+    @property
+    def fan_speed(self):
+        """Return the current fan speed"""
+        if self._fan_dps:
+            return self._fan_dps.get_value(self._device)
+
+    async def async_set_fan_speed(self, speed, **kwargs):
+        """Set the fan speed of the vacuum."""
+        if self._fan_dps:
+            await self._fan_dps.async_set_value(self._device, speed)

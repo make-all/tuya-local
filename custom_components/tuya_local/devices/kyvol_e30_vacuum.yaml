@@ -1,0 +1,194 @@
+name: Kyvol E30 Vacuum
+primary_entity:
+  entity: vacuum
+  dps:
+    - id: 1
+      type: boolean
+      name: power
+    - id: 2
+      type: boolean
+      name: activate
+    - id: 3
+      type: string
+      name: status
+      mapping:
+        - dps_val: standby
+          value: standby
+        - dps_val: random
+          value: random
+        - dps_val: smart
+          value: smart
+        - dps_val: wall_follow
+          value: wall_follow
+        - dps_val: mop
+          value: mop
+        - dps_val: spiral
+          value: clean_spot
+        - dps_val: left_spiral
+          value: left_spiral
+        - dps_val: right_spiral
+          value: right_spiral
+        - dps_val: bow
+          value: bow
+        - dps_val: left_bow
+          value: left_bow
+        - dps_val: right_bow
+          value: right_bow
+        - dps_val: partial_bow
+          value: partial_bow
+        - dps_val: chargego
+          value: return_to_base
+        - dps_val: single
+          value: single
+        - dps_val: zone
+          value: zone
+        - dps_val: pose
+          value: pose
+        - dps_val: point
+          value: point
+        - dps_val: part
+          value: part
+        - dps_val: pick_zone
+          value: pick_zone
+    - id: 4
+      type: string
+      name: direction_control
+      mapping:
+        - dps_val: forward
+          value: forward
+        - dps_val: backward
+          value: reverse
+        - dps_val: turn_left
+          value: left
+        - dps_val: turn_right
+          value: right
+        - dps_val: stop
+          value: stop
+    - id: 6
+      name: battery
+      type: integer
+      readonly: true
+    - id: 13
+      type: boolean
+      name: locate
+    - id: 14
+      type: string
+      name: fan_speed
+      mapping:
+        - dps_val: strong
+          value: strong
+        - dps_val: normal
+          value: normal
+        - dps_val: quiet
+          value: quiet
+        - dps_val: gentle
+          value: gentle
+        - dps_val: closed
+          value: closed
+#    - id: 15
+#      type: string
+#      name: clean_record
+#      readonly: true
+#    - id: 16
+#      type: integer
+#      name: clean_area
+#      unit: m2
+    - id: 18
+      type: bitfield
+      name: error
+      mapping:
+        - dps_val: 1
+          value: edge_sweep
+        - dps_val: 2
+          value: middle_sweep
+        - dps_val: 4
+          value: left_wheel
+        - dps_val: 8
+          value: right_wheel
+        - dps_val: 16
+          value: garbage_box
+        - dps_val: 32
+          value: land_check
+        - dps_val: 64
+          value: collision
+    - id: 101
+      type: string
+      name: unknown_101
+    - id: 102
+      type: string
+      name: unknown_102
+    - id: 104
+      type: string
+      name: unknown_104
+    - id: 107
+      type: integer
+      name: unknown_107
+secondary_entities:
+  - entity: sensor
+    name: Clean Time
+    category: diagnostic
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        unit: min
+  - entity: switch
+    name: Edge Brush Reset
+    category: config
+    icon: "mdi:arrow-expand-all"
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Roll Brush Reset
+    icon: "mdi:refresh-circle"
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Filter Reset
+    category: config
+    icon: "mdi:air-filter"
+    dps:
+      - id: 12
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Edge Brush
+    category: diagnostic
+    icon: "mdi-arrow-expand-all"
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    name: Roll Brush
+    category: diagnostic
+    icon: "mdi:circle"
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    name: Filter
+    category: diagnostic
+    icon: "mdi:air-filter"
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    name: Status
+    category: diagnostic
+    icon: "mdi:robot-vacuum"
+    dps:
+      - id: 5
+        type: string
+        name: sensor
