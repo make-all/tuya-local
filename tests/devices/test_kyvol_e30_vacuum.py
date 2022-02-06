@@ -279,7 +279,7 @@ class TestKyvolE30Vacuum(MultiSensorTests, MultiSwitchTests, TuyaDeviceTestCase)
             await self.subject.async_send_command("stop")
 
     def test_fan_speed(self):
-        self.dps[FAN_DPS] = "quiet"
+        self.dps[FAN_DPS] = "2"
         self.assertEqual(self.subject.fan_speed, "quiet")
 
     def test_fan_speed_list(self):
@@ -295,7 +295,5 @@ class TestKyvolE30Vacuum(MultiSensorTests, MultiSwitchTests, TuyaDeviceTestCase)
         )
 
     async def test_async_set_fan_speed(self):
-        async with assert_device_properties_set(
-            self.subject._device, {FAN_DPS: "gentle"}
-        ):
+        async with assert_device_properties_set(self.subject._device, {FAN_DPS: "3"}):
             await self.subject.async_set_fan_speed("gentle")
