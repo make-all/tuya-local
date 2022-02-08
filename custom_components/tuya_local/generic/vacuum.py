@@ -169,7 +169,7 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
         if self._fan_dps:
             return self._fan_dps.get_value(self._device)
 
-    async def async_set_fan_speed(self, speed, **kwargs):
+    async def async_set_fan_speed(self, fan_speed, **kwargs):
         """Set the fan speed of the vacuum."""
         if self._fan_dps:
-            await self._fan_dps.async_set_value(self._device, speed)
+            await self._fan_dps.async_set_value(self._device, fan_speed)
