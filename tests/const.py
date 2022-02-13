@@ -1007,3 +1007,15 @@ KYVOL_E30_VACUUM_PAYLOAD = {
     "104": "standby",
     "107": 1,
 }
+
+HIMOX_H06_PURIFIER_PAYLOAD = {
+    "1": True,
+    "4": "low",
+    "5": 50,
+    "8": True,
+    "11": False,
+    "18": "cancel",
+    "19": 0,
+    "22": "medium",
+    "101": "calcle",
+}

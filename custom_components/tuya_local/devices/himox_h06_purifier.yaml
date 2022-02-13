@@ -1,6 +1,4 @@
-name: himox h06
-products:
- - id: 80256465f4cfa2c5ec84
+name: Himox H06 Air Purifier
 primary_entity:
   entity: fan
   dps:
@@ -12,41 +10,43 @@ primary_entity:
       name: speed
       mapping:
         - dps_val: "low"
-          value: 33.34
+          value: 33
         - dps_val: "mid"
-          value: 66.67
+          value: 67
         - dps_val: "high"
           value: 100
 secondary_entities:
   - entity: sensor
-    name: active_filter_life
-#   icon: mdi:filter
+    name: Active Filter Life
+    icon: "mdi:air-filter"
+    category: diagnostic
     dps:
       - id: 5
         type: integer
         name: sensor
         readonly: true
         unit: "%"
-        class: measurement
         range:
           min: 0
           max: 100
         scale: 0
         step: 1
   - entity: light
-    name: aq_indicator
+    name: AQ Indicator
+    category: config
     dps:
       - id: 8
         type: boolean
         name: switch
   - entity: switch
-    name: filter_reset
+    name: Filter Reset
+    category: config
     dps:
       - id: 11
         type: boolean
         name: switch
   - entity: select
-    name: timer
+    name: Timer
     icon: "mdi:timer"
     category: config
     dps:
@@ -61,37 +61,37 @@ secondary_entities:
           - dps_val: 8h
             value: "8 hours"
   - entity: sensor
-    name: countdown_left
+    name: Timer
+    icon: "mdi:timer"
+    category: diagnostic
     dps:
       - id: 19
         type: integer
         name: sensor
         readonly: true
         unit: "min"
-        class: measurement
         range:
           min: 0
           max: 480
         scale: 0
         step: 1
   - entity: sensor
-    name: aq_indicator
+    name: Air Quality
     dps:
       - id: 22
         type: string
         name: sensor
         readonly: true
   - entity: select
-    name: air_debugger
-    category: diagnostic
+    name: Configuration
     dps:
       - id: 101
         name: option
         type: string
         mapping:
           - dps_val: calcle
-            value: "great"
-          - dps_val: 1
-            value: "medium"
-          - dps_val: 2
-            value: "severe"
+            value: "Auto"
+          - dps_val: "1"
+            value: "Medium"
+          - dps_val: "2"
+            value: "Severe"
