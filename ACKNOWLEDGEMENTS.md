@@ -77,4 +77,4 @@ Further device support has been made with the assistance of users.  Please consi
  - [UrZdcw9](https://github.com/UrZdcw9) for assistance with Arlec ceiling fan with light.
  - [dlosito](https://github.com/dlosito) for assistance with Lefant M213 vacuum cleaners.
 - [kramttocs](https://github.com/kramttocs) for assistance with Kyvol E30 vacuum cleaners.
- 
+- [dieantu](https://github.com/dieantu) for contributing support for Himox H06 purifiers.
