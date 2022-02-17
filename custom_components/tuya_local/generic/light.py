@@ -223,11 +223,11 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             rgbw = params.get(ATTR_RGBW_COLOR, None)
             if rgbw:
                 rgb = (rgbw[0], rgbw[1], rgbw[2])
-                hs = color_util.color_RGB_to_hs(rgb)
+                hs = color_util.color_RGB_to_hs(rgbw[0], rgbw[1], rgbw[2])
                 color = "{:02x}{:02x}{:02x}{:04x}{:02x}{:02x}".format(
-                    round(rgb[0]),
-                    round(rgb[1]),
-                    round(rgb[2]),
+                    round(rgbw[0]),
+                    round(rgbw[1]),
+                    round(rgbw[2]),
                     round(hs[0]),
                     round(hs[1]),
                     round(rgbw[3] * 100 / 255),
