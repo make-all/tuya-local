@@ -20,16 +20,14 @@ primary_entity:
         - dps_val: "high"
           value: "high"     
 secondary_entities:
-  - entity: switch
-    name: Light
+  - entity: light
     category: config
-    icon: "mdi:lightbulb"
     dps:
       - id: 8
         name: switch
         type: boolean
   - entity: switch
-    name: Anion
+    name: Ionizer
     category: config
     icon: "mdi:dots-hexagon"
     dps:
@@ -47,7 +45,7 @@ secondary_entities:
         unit: "%"
         readonly: true
   - entity: select
-    name: Countdown
+    name: Timer
     icon: "mdi:timer"
     category: config
     dps:

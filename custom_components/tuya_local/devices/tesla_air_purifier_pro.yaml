@@ -30,16 +30,14 @@ primary_entity:
         - dps_val: "high"
           value: "high"     
 secondary_entities:
-  - entity: switch
-    name: Light
+  - entity: light
     category: config
-    icon: "mdi:lightbulb"
     dps:
       - id: 8
         name: switch
         type: boolean
   - entity: switch
-    name: Anion
+    name: Ionizer
     category: config
     icon: "mdi:dots-hexagon"
     dps:
@@ -47,7 +45,7 @@ secondary_entities:
         name: switch
         type: boolean        
   - entity: switch
-    name: UV
+    name: UV Sterilization
     category: config
     icon: "mdi:sun-wireless"
     dps:
@@ -65,30 +63,30 @@ secondary_entities:
         unit: "%"
         readonly: true
   - entity: sensor
-    name: Temp
+    name: Current Temperature
     category: diagnostic
-    icon: "mdi:thermometer"
+    class: temperature
     dps:
       - id: 12
         type: integer
         name: sensor
-        class: temperature
+        class: measurement
         unit: "°C"
         readonly: true
   - entity: sensor
-    name: Humidity
+    name: Current Humidity
     category: diagnostic
-    icon: "mdi:water-percent"
+    class: humidity
     mode: box
     dps:
       - id: 13
         type: integer
         name: sensor
-        class: humidity
+        class: measurement
         unit: "%"
         readonly: true
   - entity: select
-    name: Countdown
+    name: Timer
     icon: "mdi:timer"
     category: config
     dps:
@@ -107,7 +105,6 @@ secondary_entities:
   - entity: sensor
     name: PM2.5
     class: pm25
-    icon: "mdi:factory"
     category: diagnostic
     dps:
       - id: 2
