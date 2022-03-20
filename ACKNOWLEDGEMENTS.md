@@ -78,3 +78,5 @@ Further device support has been made with the assistance of users.  Please consi
  - [dlosito](https://github.com/dlosito) for assistance with Lefant M213 vacuum cleaners.
 - [kramttocs](https://github.com/kramttocs) for assistance with Kyvol E30 vacuum cleaners.
 - [dieantu](https://github.com/dieantu) for contributing support for Himox H06 purifiers.
+- [pgistrand](https://github.com/pgistrand) for contributing support for Vork VK6067AW purifiers.
+- [markbvdh](https://github.com/markbvdh) for assistance with Kogan garage openers and confirmation of Summerwave Si pool heatpumps.

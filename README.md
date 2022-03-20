@@ -58,7 +58,7 @@ the device will not work despite being listed below.
 
 ### Pool heaters / heatpumps
 
-- Garden PAC pool heatpump
+- Garden PAC pool heatpump (also works with Summerwave Si Series)
 - Madimack Elite V3 pool heatpump
 - Madimack(model unknown) pool heatpump
 - Remora pool heatpump
@@ -101,6 +101,7 @@ the device will not work despite being listed below.
 - Renpho RP-AP001S air purifier
 - Poiema One air purifier
 - Himox H06 Air Purifier
+- Vork VK6067AW Air Purifier
 
 ### Dehumidifiers
 - Goldair GPDH420 dehumidifier
@@ -143,6 +144,7 @@ Other brands may work with the above configurations
 
 ### Covers
 - Simple Garage Door
+- Kogan Garage Door with tilt sensor
 
 ### Vacuum Cleaners
 - Lefant M213 Vacuum Cleaner
