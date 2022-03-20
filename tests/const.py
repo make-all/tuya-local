@@ -1019,3 +1019,15 @@ HIMOX_H06_PURIFIER_PAYLOAD = {
     "22": "medium",
     "101": "calcle",
 }
+
+VORK_VK6067_PURIFIER_PAYLOAD = {
+    "1": True,
+    "4": "auto",
+    "5": 80,
+    "8": True,
+    "11": False,
+    "18": "cancel",
+    "19": 0,
+    "21": "good",
+    "22": 0,
+}

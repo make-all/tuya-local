@@ -1,0 +1,109 @@
+name: Vork VK-6067AW Air Purifier
+products:
+  - id: trpege6ebn8at1el
+primary_entity:
+  entity: fan
+  icon: "mdi:air-purifier"
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 4
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: "low"
+          value: "Low"
+        - dps_val: "mid"
+          value: "Mid"
+        - dps_val: "high"
+          value: "High"
+        - dps_val: "auto"
+          value: "Auto"
+        - dps_val: "sleep"
+          value: "Sleep"
+    - id: 22
+      name: error_code
+      type: integer
+secondary_entities:
+  - entity: sensor
+    name: Filter
+    category: diagnostic
+    icon: "mdi:air-filter"
+    dps:
+      - id: 5
+        name: sensor
+        type: integer
+        unit: "%"
+  - entity: light
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+        mapping:
+            - dps_val: true
+              icon: "mdi:led-on"
+            - dps_val: false
+              icon: "mdi:led-off"
+  - entity: switch
+    name: Filter Reset
+    category: config
+    icon: "mdi:refresh"
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
+  - entity: select
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 18
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: "off"
+          - dps_val: "1h"
+            value: "1 hour"
+          - dps_val: "2h"
+            value: "2 hours" 
+  - entity: sensor
+    name: Timer
+    category: diagnostic
+    icon: "mdi:timer"
+    dps:
+      - id: 19
+        name: sensor
+        type: integer
+        unit: min
+  - entity: sensor
+    name: Air Quality
+    category: diagnostic
+    icon: "mdi:air-filter"
+    dps:
+      - id: 21
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: great
+            value: "Great"
+          - dps_val: "good"
+            value: "Good"
+          - dps_val: "medium"
+            value: "Medium" 
+          - dps_val: "severe"
+            value: "Severe" 
+  - entity: binary_sensor
+    name: Error
+    category: diagnostic
+    class: problem
+    dps:
+      - id: 22
+        name: sensor
+        type: bitfield
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
