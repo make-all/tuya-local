@@ -1031,3 +1031,10 @@ VORK_VK6067_PURIFIER_PAYLOAD = {
     "21": "good",
     "22": 0,
 }
+
+KOGAN_GARAGE_DOOR_PAYLOAD = {
+    "101": "fopen",
+    "102": "opening",
+    "104": 100,
+    "105": True,
+}
