@@ -2,7 +2,7 @@
 
 None of this would have been possible without some foundational discovery work to get me started:
 
-- [nikrolls](https://github.com/nikrolls)'s [homeassistant-goldair-climate](https://github.com/nikrolls/homeassistant-goldair-climate) was the starting point for expanding to non-Goldair devices as well.
+- [nicole-ashley](https://github.com/nicole-ashley)'s [homeassistant-goldair-climate](https://github.com/nicole-ashley/homeassistant-goldair-climate) was the starting point for expanding to non-Goldair devices as well.
 - [TarxBoy](https://github.com/TarxBoy)'s [investigation using codetheweb/tuyapi](https://github.com/codetheweb/tuyapi/issues/31) to figure out the correlation of the cryptic DPS states .
 - [sean6541](https://github.com/sean6541)'s [tuya-homeassistant](https://github.com/sean6541/tuya-homeassistant) library giving an example of integrating Tuya devices with Home Assistant.
 - [clach04](https://github.com/clach04)'s [python-tuya](https://github.com/clach04/python-tuya) library.
