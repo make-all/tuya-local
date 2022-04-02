@@ -137,7 +137,7 @@ class TestArlecFan(SwitchableTests, BasicSelectTests, TuyaDeviceTestCase):
 
     def test_light_color_temp(self):
         self.dps[COLORTEMP_DPS] = 70
-        self.assertEqual(self.light.color_temp, 395.9)
+        self.assertEqual(self.light.color_temp, 396)
 
     async def test_light_async_turn_on(self):
         async with assert_device_properties_set(
