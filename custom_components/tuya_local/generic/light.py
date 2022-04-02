@@ -239,15 +239,16 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                 }
 
         if self._brightness_dps:
-            bright = params.get(ATTR_BRIGHTNESS, 255)
-            bright_values = self._brightness_dps.get_values_to_set(
-                self._device,
-                bright,
-            )
-            settings = {
-                **settings,
-                **bright_values,
-            }
+            bright = params.get(ATTR_BRIGHTNESS, None if self._switch_dps else 255)
+            if bright is not None:
+                bright_values = self._brightness_dps.get_values_to_set(
+                    self._device,
+                    bright,
+                )
+                settings = {
+                    **settings,
+                    **bright_values,
+                }
 
         if self._rgbhsv_dps:
             rgbw = params.get(ATTR_RGBW_COLOR, None)
@@ -258,7 +259,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                 rgbhsv = {
                     "r": rgb[0],
                     "g": rgb[1],
-                    "b": rgb[3],
+                    "b": rgb[2],
                     "h": hs[0],
                     "s": hs[1],
                     "v": rgbw[3],
@@ -274,10 +275,9 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                         scale = r["max"] / 360
                     else:
                         scale = r["max"] / 255
-                    ordered[idx] = round(rgbhsv[n] * scale)
+                    ordered.append(round(rgbhsv[n] * scale))
                     idx += 1
-
-                binary = pack(format["format"], (*ordered,))
+                binary = pack(format["format"], *ordered)
                 color_dps = self._rgbhsv_dps.get_values_to_set(
                     self._device,
                     self._rgbhsv_dps.encode_value(binary),

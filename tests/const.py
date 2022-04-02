@@ -1038,3 +1038,21 @@ KOGAN_GARAGE_DOOR_PAYLOAD = {
     "104": 100,
     "105": True,
 }
+
+MOES_RGB_SOCKET_PAYLOAD = {
+    "1": True,
+    "2": "colour",
+    "3": 255,
+    "4": 14,
+    "5": "ff99000024ffff",
+    "6": "bd76000168ffff",
+    "7": "ffff320100ff00",
+    "8": "ffff3203ff000000ff000000ff",
+    "9": "ffff3201ff0000",
+    "10": "ffff3205ff000000ff00ffff00ff00ff0000ff",
+    "101": True,
+    "102": 0,
+    "104": 0,
+    "105": 0,
+    "106": 2332,
+}
