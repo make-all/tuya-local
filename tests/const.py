@@ -1056,3 +1056,16 @@ MOES_RGB_SOCKET_PAYLOAD = {
     "105": 0,
     "106": 2332,
 }
+
+LOGICOM_STRIPPY_PAYLOAD = {
+    "1": False,
+    "2": False,
+    "3": False,
+    "4": False,
+    "5": False,
+    "9": 0,
+    "10": 0,
+    "11": 0,
+    "12": 0,
+    "13": 0,
+}
