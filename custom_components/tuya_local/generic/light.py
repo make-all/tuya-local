@@ -21,6 +21,7 @@ from homeassistant.components.light import (
 import homeassistant.util.color as color_util
 
 import logging
+from struct import pack, unpack
 
 from ..device import TuyaLocalDevice
 from ..helpers.device_config import TuyaEntityConfig
@@ -100,7 +101,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             if range:
                 min = range["min"]
                 max = range["max"]
-                return unscaled * 347 / (max - min) + 153 - min
+                return round(unscaled * 347 / (max - min) + 153 - min)
             else:
                 return unscaled
         return None
@@ -127,15 +128,44 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
     @property
     def rgbw_color(self):
         """Get the current RGBW color of the light"""
-        if self._rgbhsv_dps and self._rgbhsv_dps.rawtype == "hex":
+        if self._rgbhsv_dps:
             # color data in hex format RRGGBBHHHHSSVV (14 digit hex)
+            # can also be base64 encoded.
             # Either RGB or HSV can be used.
-            color = self._rgbhsv_dps.get_value(self._device)
-            h = int(color[6:10], 16)
-            s = int(color[10:12], 16)
-            r, g, b = color_util.color_hs_to_RGB(h, s)
-            w = int(color[12:14], 16) * 255 / 100
-            return (r, g, b, w)
+            color = self._rgbhsv_dps.decoded_value(self._device)
+
+            format = self._rgbhsv_dps.format
+            if format:
+                vals = unpack(format.get("format"), color)
+                rgbhsv = {}
+                idx = 0
+                for v in vals:
+                    # Range in HA is 0-100 for s, 0-255 for rgb and v, 0-360
+                    # for h
+                    n = format["names"][idx]
+                    r = format["ranges"][idx]
+                    if r["min"] != 0:
+                        raise AttributeError(
+                            f"Unhandled minimum range for {n} in RGBW value"
+                        )
+                    max = r["max"]
+                    scale = 1
+                    if n == "h":
+                        scale = 360 / max
+                    elif n == "s":
+                        scale = 100 / max
+                    else:
+                        scale = 255 / max
+
+                    rgbhsv[n] = round(scale * v)
+                    idx += 1
+
+                h = rgbhsv["h"]
+                s = rgbhsv["s"]
+                # convert RGB from H and S to seperate out the V component
+                r, g, b = color_util.color_hs_to_RGB(h, s)
+                w = rgbhsv["v"]
+                return (r, g, b, w)
 
     @property
     def effect_list(self):
@@ -221,20 +251,36 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
 
         if self._rgbhsv_dps:
             rgbw = params.get(ATTR_RGBW_COLOR, None)
-            if rgbw:
+            format = self._rgbhsv_dps.format
+            if rgbw and format:
                 rgb = (rgbw[0], rgbw[1], rgbw[2])
                 hs = color_util.color_RGB_to_hs(rgbw[0], rgbw[1], rgbw[2])
-                color = "{:02x}{:02x}{:02x}{:04x}{:02x}{:02x}".format(
-                    round(rgbw[0]),
-                    round(rgbw[1]),
-                    round(rgbw[2]),
-                    round(hs[0]),
-                    round(hs[1]),
-                    round(rgbw[3] * 100 / 255),
-                )
+                rgbhsv = {
+                    "r": rgb[0],
+                    "g": rgb[1],
+                    "b": rgb[3],
+                    "h": hs[0],
+                    "s": hs[1],
+                    "v": rgbw[3],
+                }
+                ordered = []
+                idx = 0
+                for n in format["names"]:
+                    r = format["ranges"][idx]
+                    scale = 1
+                    if n == "s":
+                        scale = r["max"] / 100
+                    elif n == "h":
+                        scale = r["max"] / 360
+                    else:
+                        scale = r["max"] / 255
+                    ordered[idx] = round(rgbhsv[n] * scale)
+                    idx += 1
+
+                binary = pack(format["format"], (*ordered,))
                 color_dps = self._rgbhsv_dps.get_values_to_set(
                     self._device,
-                    color,
+                    self._rgbhsv_dps.encode_value(binary),
                 )
                 settings = {**settings, **color_dps}
 

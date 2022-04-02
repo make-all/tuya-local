@@ -42,6 +42,28 @@ secondary_entities:
       - id: 31
         name: rgbhsv
         type: hex
+        format:
+          - name: r
+            bytes: 1
+          - name: g
+            bytes: 1
+          - name: b
+            bytes: 1
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 1
+            range:
+              min: 0
+              max: 100
+          - name: v
+            bytes: 1
+            range:
+              min: 0
+              max: 100
       - id: 32
         name: unknown_32
         type: hex

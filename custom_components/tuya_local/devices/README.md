@@ -220,6 +220,15 @@ For sensors, this sets the state class of the sensor (measurement, total
 or total_increasing)
 
 
+### `format`
+
+*Optional. default=None*
+
+For base64 and hex types, this specifies how to decode the binary data (after hex or base64 decoding).
+This is a container field, the contents of which should be a list consisting of `name`, `bytes` and `range` fields.  `range` is as described above.  `bytes` is the number of bytes for the field, which can be `1`, `2`, or `4`.  `name` is a name for the field, which will have special handling depending on
+the device type.
+
+
 ## Mapping Rules
 
 Mapping rules can change the behavior of attributes beyond simple
@@ -263,6 +272,15 @@ degrees, and require a scale of 10 to convert them to degrees expected by
 Home Assistant.  The scale can also be the other way, for a fan with speeds
 1, 2 and 3 as DPS values, this can be converted to a percentage with a scale
 of 0.03.
+
+###`invert`
+
+*Optional, default=False*
+
+This can be used in an `integer` dps mapping to invert the range.  For example,
+some cover devices have an opposite idea of which end of the percentage scale open
+and closed are from what Home Assistant assumes.  To use this mapping option, a range
+must also be specified for the dps.
 
 ### `step`
 
@@ -436,10 +454,10 @@ Humidifer can also cover dehumidifiers (use class to specify which).
 - **brightness** (optional, number 0-255): a dps to control the dimmer if available.
 - **color_temp** (optional, number): a dps to control the color temperature if available.
     will be mapped so the minimum corresponds to 153 mireds (6500K), and max to 500 (2000K).
-- **rgbhsv** (optional, hex): a dps to control the color of the light, using 14 digit hex encoding of RGB and HSV values. 
+- **rgbhsv** (optional, hex): a dps to control the color of the light, using encoded RGB and HSV values.  The `format` field names recognized for decoding this field are `r`, `g`, `b`, `h`, `s`, `v`.
 - **color_mode** (optional, mapping of strings): a dps to control which mode to use if the light supports multiple modes.
     Special values: `white, color_temp, rgbw, hs, xy, rgb, rgbww`, others will be treated as effects,
-	Note: only white, color_temp and rgbw are currently supported.
+	Note: only white, color_temp and rgbw are currently supported, others listed above are reserved and may be implemented in future when the need arises.
 - **effect** (optional, mapping of strings): a dps to control effects / presets supported by the light.
    If the light mixes in color modes in the same dps, **color_mode** should be used instead.
 
