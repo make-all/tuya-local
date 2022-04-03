@@ -159,6 +159,20 @@ GARDENPAC_HEATPUMP_PAYLOAD = {
     "117": True,
 }
 
+IPS_HEATPUMP_PAYLOAD = {
+    "1": True,
+    "2": "silence",
+    "102": 10,
+    "103": True,
+    "104": 100,
+    "105": "warm",
+    "106": 30,
+    "107": 18,
+    "108": 40,
+    "115": 0,
+    "116": 0,
+}
+
 MADIMACK_HEATPUMP_PAYLOAD = {
     "1": True,
     "102": 9,
