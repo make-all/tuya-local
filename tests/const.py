@@ -1069,3 +1069,21 @@ LOGICOM_STRIPPY_PAYLOAD = {
     "12": 0,
     "13": 0,
 }
+
+PARKSIDE_PLGS2012A1_PAYLOAD = {
+    "1": True,
+    "2": "test",
+    "3": 1000,
+    "4": 1320,
+    "5": 80,
+    "6": 25,
+    "7": "standard",
+    "8": False,
+    "9": True,
+    "10": 5,
+    "11": "unknown",
+    "101": 2500,
+    "102": 11,
+    "103": False,
+    "104": False,
+}

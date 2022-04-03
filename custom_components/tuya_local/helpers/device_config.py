@@ -44,12 +44,14 @@ def _scale_range(r, s):
 _unsignedFmts = {
     1: "B",
     2: "H",
+    3: "3s",
     4: "I",
 }
 
 _signedFmts = {
     1: "b",
     2: "h",
+    3: "3s",
     4: "i",
 }
 
@@ -304,7 +306,7 @@ class TuyaDpsConfig:
                     max = range.get("max")
                 else:
                     min = 0
-                    max = 256**bytes - 1
+                    max = 256 ** bytes - 1
 
                 unpack_fmt = unpack_fmt + _bytesToFmt(bytes, min < 0)
                 ranges.append({"min": min, "max": max})
