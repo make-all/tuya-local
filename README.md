@@ -64,9 +64,8 @@ the device will not work despite being listed below.
 - Remora pool heatpump
 - BWT FI 45 heatpump
 - Poolex Silverline and Vertigo heatpump
-- IPS Pro Pool-Systems Heatpump
-- these seem to use two common controllers, and many other Pool heatpumps
-  will work using the above configurations.
+- IPS Pro Pool-Systems Heatpump (seems to match Fairland Inver-X as well)
+- these seem to use a small number of common controllers with minor variations, and many other Pool heatpumps will work using the above configurations.
   Report issues if there are any differences in presets or other features,
   or if any of the "unknown" values that are returned as attributes can
   be figured out.
