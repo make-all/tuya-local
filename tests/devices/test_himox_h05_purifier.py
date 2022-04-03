@@ -47,6 +47,8 @@ class TestHimoxH05Purifier(
             self.entities.get("select_timer"),
             {
                 "cancel": "Off",
+                "1h": "1 hour",
+                "2h": "2 hours",
                 "4h": "4 hours",
                 "8h": "8 hours",
             },
