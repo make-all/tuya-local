@@ -100,7 +100,7 @@ the device will not work despite being listed below.
 ### Air Purifiers
 - Renpho RP-AP001S air purifier
 - Poiema One air purifier
-- Himox H06 air purifier
+- Himox H05 and H06 air purifiers
 - Tesla Pro and Mini air purifiers
 - Vork VK6067AW air purifier
 
