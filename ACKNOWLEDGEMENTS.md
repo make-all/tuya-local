@@ -17,7 +17,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [Xeovar](https://github.com/Xeovar) for assistance in supporting Purline M100 heaters, Garden PAC pool heatpumps and Qoto sprinklers.
 - [paulmfclark](https://github.com/paulmfclark) for assistance in supporting Remora Inverter pool heatpumps
 - [cartman10](https://github.com/cartman10) for assistance with BWT FI 45 pool heater.
- - [superman110](https://github.com/superman110) for assistance in supporting Eanons/purenjoy humidifier.
+ - [superman110](https://github.com/superman110) for assistance in supporting Eanons/purenjoy humidifier and SD123 human presence radar.
  - [woolmonkey](https://github.com/woolmonkey) for assistance in supporting Inkbird ITC306A Thermostat.
  - [hazell20](https://github.com/hazell20) for assistance in supporting Anko fans.
  - [meremortals70](https://github.com/meremortals70) for assistance in supporting Deta fan controllers.
