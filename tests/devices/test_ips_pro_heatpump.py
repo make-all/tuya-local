@@ -159,7 +159,6 @@ class TestIpsProHeatpump(
         self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_OFF)
 
     def test_extra_state_attributes(self):
-        self.dps[POWERLEVEL_DPS] = 50
         self.dps[UNKNOWN107_DPS] = 1
         self.dps[UNKNOWN108_DPS] = 2
         self.dps[UNKNOWN115_DPS] = 3
@@ -167,7 +166,6 @@ class TestIpsProHeatpump(
         self.assertDictEqual(
             self.subject.extra_state_attributes,
             {
-                "power_level": 50,
                 "unknown_107": 1,
                 "unknown_108": 2,
                 "unknown_115": 3,
