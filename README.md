@@ -101,8 +101,9 @@ the device will not work despite being listed below.
 ### Air Purifiers
 - Renpho RP-AP001S air purifier
 - Poiema One air purifier
-- Himox H06 Air Purifier
-- Vork VK6067AW Air Purifier
+- Himox H06 air purifier
+- Tesla Pro and Mini air purifiers
+- Vork VK6067AW air purifier
 
 ### Dehumidifiers
 - Goldair GPDH420 dehumidifier
@@ -125,6 +126,9 @@ the device will not work despite being listed below.
 ### Smart Meter/Circuit Breaker
 - SmartMCB SMT006 Energy Meter
 
+### Battery Charger
+- Parkside PLGS 2012 A1 Smart Charger for powertools
+
 ### SmartPlugs/Wall sockets
 - Generic Smartplug with Energy monitoring (older models)
   _confirmed as working with Kogan and Blitzwolf Single Smartplugs_
@@ -139,6 +143,8 @@ the device will not work despite being listed below.
 - Grid Connect double outlet wall socket
 - Woox R4028/DIGOO DG-PS01 3 outlet + USB powerstrip with individual timers.
 Other brands may work with the above configurations
+- MoesHouse Smartplug with RGBW nightlight
+- Logicom Strippy 4 way power strip with USB
 
 - Simple Switch - a switch only, can be a fallback for many other unsupported devices, to allow just power to be switched on/off.
 - Simple Switch with Timer - a single switch and timer, will probably work for a lot of smart switches that are not covered by the more advanced configs above.
