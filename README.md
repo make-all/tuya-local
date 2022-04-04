@@ -55,6 +55,8 @@ the device will not work despite being listed below.
 - Kogan 2.6kW portable air conditioner
 - Eberg Qubo Q40HD
 - Eberg Cooly C35HD
+- Star-Light air conditioner
+- TroniTechnik Hellnar Klimagerät
 
 ### Pool heaters / heatpumps
 
