@@ -80,7 +80,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [dieantu](https://github.com/dieantu) for contributing support for Himox H06 purifiers.
 - [pgistrand](https://github.com/pgistrand) for contributing support for Vork VK6067AW purifiers, and assistance with Parkside smart charger.
 - [markbvdh](https://github.com/markbvdh) for assistance with Kogan garage openers and confirmation of Summerwave Si pool heatpumps.
-- [tavicu](https://github.com/tavicu) for contributing support for Starlight Heatpumps, and for the idea to support inverted values.
+- [tavicu](https://github.com/tavicu) for contributing support for Starlight Heatpumps, Simple Blinds and for the idea to support inverted values.
 - [Chris061290](https://github.com/Chris061290) for contributing support for IPS Pro pool heatpumps, complete with unit tests.
 - [MartinCarbol](https://github.com/MartinCarbol) for contributing support for two models of Tesla Air Purifier.
 - [gschmidl](https://github.com/gschmidl) for assistance with Himox H05 purifiers

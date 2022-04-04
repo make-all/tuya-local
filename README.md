@@ -150,6 +150,7 @@ Other brands may work with the above configurations
 
 ### Covers
 - Simple Garage Door
+- Simple Blind Controller
 - Kogan Garage Door with tilt sensor
 
 ### Vacuum Cleaners

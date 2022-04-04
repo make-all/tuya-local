@@ -1130,3 +1130,10 @@ SD123_PRESENCE_PAYLOAD = {
     "113": 0,
     "114": True,
 }
+
+SIMPLE_BLINDS_PAYLOAD = {
+    "1": "stop",
+    "2": 0,
+    "5": False,
+    "7": "opening",
+}
