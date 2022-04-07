@@ -2,6 +2,8 @@ from unittest import IsolatedAsyncioTestCase
 from unittest.mock import AsyncMock, patch, PropertyMock
 from uuid import uuid4
 
+from homeassistant.helpers.entity import EntityCategory
+
 from custom_components.tuya_local.generic.binary_sensor import TuyaLocalBinarySensor
 from custom_components.tuya_local.generic.climate import TuyaLocalClimate
 from custom_components.tuya_local.generic.cover import TuyaLocalCover
@@ -99,14 +101,14 @@ class TuyaDeviceTestCase(IsolatedAsyncioTestCase):
                 if type(e) in [TuyaLocalBinarySensor, TuyaLocalSensor]:
                     self.assertEqual(
                         e.entity_category,
-                        "diagnostic",
-                        msg=f"{k} is {e.entity_category}, expected diagnostic",
+                        EntityCategory.DIAGNOSTIC,
+                        msg=f"{k} is {e.entity_category.value}, expected diagnostic",
                     )
                 else:
                     self.assertEqual(
                         e.entity_category,
-                        "config",
-                        msg=f"{k} is {e.entity_category}, expected config",
+                        EntityCategory.CONFIG,
+                        msg=f"{k} is {e.entity_category.value}, expected config",
                     )
             else:
                 self.assertIsNone(
