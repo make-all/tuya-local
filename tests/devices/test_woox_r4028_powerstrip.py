@@ -1,5 +1,5 @@
 """Tests for the Woox R4028 powerstrip."""
-from homeassistant.components.switch import DEVICE_CLASS_OUTLET
+from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import TIME_MINUTES
 
 from ..const import WOOX_R4028_SOCKET_PAYLOAD
@@ -31,17 +31,17 @@ class TestWooxR4028Powerstrip(
                 {
                     "dps": SWITCH1_DPS,
                     "name": "switch_outlet_1",
-                    "device_class": DEVICE_CLASS_OUTLET,
+                    "device_class": SwitchDeviceClass.OUTLET,
                 },
                 {
                     "dps": SWITCH2_DPS,
                     "name": "switch_outlet_2",
-                    "device_class": DEVICE_CLASS_OUTLET,
+                    "device_class": SwitchDeviceClass.OUTLET,
                 },
                 {
                     "dps": SWITCH3_DPS,
                     "name": "switch_outlet_3",
-                    "device_class": DEVICE_CLASS_OUTLET,
+                    "device_class": SwitchDeviceClass.OUTLET,
                 },
                 {"dps": SWITCHUSB_DPS, "name": "switch_usb_switch"},
             ]

@@ -1,10 +1,9 @@
-from homeassistant.components.binary_sensor import DEVICE_CLASS_PROBLEM
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.fan import SUPPORT_OSCILLATE, SUPPORT_SET_SPEED
 from homeassistant.components.humidifier import SUPPORT_MODES
-from homeassistant.const import (
-    DEVICE_CLASS_HUMIDITY,
-    PERCENTAGE,
-)
+from homeassistant.components.sensor import SensorDeviceClass
+from homeassistant.const import PERCENTAGE
+
 from ..const import KOGAN_DEHUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
 from ..mixins.binary_sensor import BasicBinarySensorTests
@@ -35,13 +34,13 @@ class TestKoganDehumidifier(
         self.setUpBasicBinarySensor(
             ERROR_DPS,
             self.entities.get("binary_sensor_tank"),
-            device_class=DEVICE_CLASS_PROBLEM,
+            device_class=BinarySensorDeviceClass.PROBLEM,
             testdata=(1, 0),
         )
         self.setUpBasicSensor(
             CURRENTHUMID_DPS,
             self.entities.get("sensor_current_humidity"),
-            device_class=DEVICE_CLASS_HUMIDITY,
+            device_class=SensorDeviceClass.HUMIDITY,
             state_class="measurement",
             unit=PERCENTAGE,
         )

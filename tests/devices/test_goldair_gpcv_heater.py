@@ -1,4 +1,4 @@
-from homeassistant.components.binary_sensor import DEVICE_CLASS_PROBLEM
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.climate.const import (
     HVAC_MODE_HEAT,
     HVAC_MODE_OFF,
@@ -52,7 +52,7 @@ class TestGoldairGPCVHeater(
         self.setUpBasicBinarySensor(
             ERROR_DPS,
             self.entities.get("binary_sensor_error"),
-            device_class=DEVICE_CLASS_PROBLEM,
+            device_class=BinarySensorDeviceClass.PROBLEM,
             testdata=(1, 0),
         )
         self.mark_secondary(

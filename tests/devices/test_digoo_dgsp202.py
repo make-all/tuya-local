@@ -1,9 +1,7 @@
 """Tests for Digoo DSSP202 dual switch with timers and energy monitoring"""
-from homeassistant.components.switch import DEVICE_CLASS_OUTLET
+from homeassistant.components.switch import SwitchDeviceClass
+from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
-    DEVICE_CLASS_CURRENT,
-    DEVICE_CLASS_POWER,
-    DEVICE_CLASS_VOLTAGE,
     ELECTRIC_CURRENT_MILLIAMPERE,
     ELECTRIC_POTENTIAL_VOLT,
     POWER_WATT,
@@ -37,14 +35,14 @@ class TestDigooDGSP202Switch(
                 {
                     "dps": SWITCH1_DPS,
                     "name": "switch_outlet_1",
-                    "device_class": DEVICE_CLASS_OUTLET,
+                    "device_class": SwitchDeviceClass.OUTLET,
                     "power_dps": POWER_DPS,
                     "power_scale": 10,
                 },
                 {
                     "dps": SWITCH2_DPS,
                     "name": "switch_outlet_2",
-                    "device_class": DEVICE_CLASS_OUTLET,
+                    "device_class": SwitchDeviceClass.OUTLET,
                 },
             ]
         )
@@ -72,7 +70,7 @@ class TestDigooDGSP202Switch(
                     "name": "sensor_voltage",
                     "dps": VOLTAGE_DPS,
                     "unit": ELECTRIC_POTENTIAL_VOLT,
-                    "device_class": DEVICE_CLASS_VOLTAGE,
+                    "device_class": SensorDeviceClass.VOLTAGE,
                     "state_class": "measurement",
                     "testdata": (2300, 230.0),
                 },
@@ -80,14 +78,14 @@ class TestDigooDGSP202Switch(
                     "name": "sensor_current",
                     "dps": CURRENT_DPS,
                     "unit": ELECTRIC_CURRENT_MILLIAMPERE,
-                    "device_class": DEVICE_CLASS_CURRENT,
+                    "device_class": SensorDeviceClass.CURRENT,
                     "state_class": "measurement",
                 },
                 {
                     "name": "sensor_power",
                     "dps": POWER_DPS,
                     "unit": POWER_WATT,
-                    "device_class": DEVICE_CLASS_POWER,
+                    "device_class": SensorDeviceClass.POWER,
                     "state_class": "measurement",
                     "testdata": (1234, 123.4),
                 },

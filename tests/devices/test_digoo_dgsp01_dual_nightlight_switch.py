@@ -1,5 +1,5 @@
 """Tests for the switch entity."""
-from homeassistant.components.switch import DEVICE_CLASS_OUTLET
+from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.components.light import (
     COLOR_MODE_RGBW,
     COLOR_MODE_WHITE,
@@ -36,7 +36,7 @@ class TestDigooNightlightSwitch(BasicSwitchTests, TuyaDeviceTestCase):
         self.light = self.entities.get("light_night_light")
 
         self.setUpBasicSwitch(
-            SWITCH_DPS, self.subject, device_class=DEVICE_CLASS_OUTLET
+            SWITCH_DPS, self.subject, device_class=SwitchDeviceClass.OUTLET
         )
 
     def test_light_is_on(self):

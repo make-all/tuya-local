@@ -22,8 +22,6 @@ from custom_components.tuya_local.helpers.device_config import (
     possible_matches,
 )
 
-from ..helpers import assert_device_properties_set
-
 DEVICE_TYPES = {
     "binary_sensor": TuyaLocalBinarySensor,
     "climate": TuyaLocalClimate,

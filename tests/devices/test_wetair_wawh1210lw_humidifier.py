@@ -5,8 +5,8 @@ from homeassistant.components.humidifier.const import (
     MODE_SLEEP,
     SUPPORT_MODES,
 )
+from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
-    DEVICE_CLASS_HUMIDITY,
     PERCENTAGE,
     STATE_UNAVAILABLE,
 )
@@ -54,7 +54,7 @@ class TestWetairWAWH1210LWHumidifier(
                 {
                     "dps": CURRENTHUMID_DPS,
                     "name": "sensor_current_humidity",
-                    "device_class": DEVICE_CLASS_HUMIDITY,
+                    "device_class": SensorDeviceClass.HUMIDITY,
                     "state_class": "measurement",
                     "unit": PERCENTAGE,
                 },

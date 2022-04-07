@@ -6,10 +6,8 @@ from homeassistant.components.climate.const import (
     SUPPORT_PRESET_MODE,
     SUPPORT_TARGET_TEMPERATURE,
 )
-
+from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
-    DEVICE_CLASS_POWER_FACTOR,
-    DEVICE_CLASS_TEMPERATURE,
     PERCENTAGE,
     TEMP_CELSIUS,
     TEMP_FAHRENHEIT,
@@ -67,49 +65,49 @@ class TestMadimackEliteV3Heatpump(
                 {
                     "name": "sensor_power_level",
                     "dps": PWRLEVEL_DPS,
-                    "device_class": DEVICE_CLASS_POWER_FACTOR,
+                    "device_class": SensorDeviceClass.POWER_FACTOR,
                     "unit": PERCENTAGE,
                 },
                 {
                     "name": "sensor_evaporator_coil_pipe_temperature",
                     "dps": COILTEMP_DPS,
-                    "device_class": DEVICE_CLASS_TEMPERATURE,
+                    "device_class": SensorDeviceClass.TEMPERATURE,
                     "unit": TEMP_CELSIUS,
                 },
                 {
                     "name": "sensor_exhaust_gas_temperature",
                     "dps": EXHAUSTTEMP_DPS,
-                    "device_class": DEVICE_CLASS_TEMPERATURE,
+                    "device_class": SensorDeviceClass.TEMPERATURE,
                     "unit": TEMP_CELSIUS,
                 },
                 {
                     "name": "sensor_outlet_water_temperature",
                     "dps": OUTLETTEMP_DPS,
-                    "device_class": DEVICE_CLASS_TEMPERATURE,
+                    "device_class": SensorDeviceClass.TEMPERATURE,
                     "unit": TEMP_CELSIUS,
                 },
                 {
                     "name": "sensor_ambient_temperature",
                     "dps": AMBIENTTEMP_DPS,
-                    "device_class": DEVICE_CLASS_TEMPERATURE,
+                    "device_class": SensorDeviceClass.TEMPERATURE,
                     "unit": TEMP_CELSIUS,
                 },
                 {
                     "name": "sensor_return_gas_temperature",
                     "dps": RETURNGASTEMP_DPS,
-                    "device_class": DEVICE_CLASS_TEMPERATURE,
+                    "device_class": SensorDeviceClass.TEMPERATURE,
                     "unit": TEMP_CELSIUS,
                 },
                 {
                     "name": "sensor_cooling_coil_pipe_temperature",
                     "dps": COOLCOILTEMP_DPS,
-                    "device_class": DEVICE_CLASS_TEMPERATURE,
+                    "device_class": SensorDeviceClass.TEMPERATURE,
                     "unit": TEMP_CELSIUS,
                 },
                 {
                     "name": "sensor_cooling_plate_temperature",
                     "dps": COOLPLATETEMP_DPS,
-                    "device_class": DEVICE_CLASS_TEMPERATURE,
+                    "device_class": SensorDeviceClass.TEMPERATURE,
                     "unit": TEMP_CELSIUS,
                 },
                 {

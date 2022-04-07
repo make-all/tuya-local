@@ -1,6 +1,6 @@
 from homeassistant.components.fan import SUPPORT_PRESET_MODE
 from homeassistant.components.sensor import (
-    DEVICE_CLASS_TEMPERATURE,
+    SensorDeviceClass,
     STATE_CLASS_MEASUREMENT,
 )
 from homeassistant.const import (
@@ -60,7 +60,7 @@ class TestHimoxH05Purifier(
                     "dps": TEMP_DPS,
                     "name": "sensor_current_temperature",
                     "unit": TEMP_CELSIUS,
-                    "device_class": DEVICE_CLASS_TEMPERATURE,
+                    "device_class": SensorDeviceClass.TEMPERATURE,
                     "state_class": STATE_CLASS_MEASUREMENT,
                 },
                 {

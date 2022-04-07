@@ -1,5 +1,5 @@
 """Tests for SD123 Human Presence Radar HPR01"""
-from homeassistant.components.binary_sensor import DEVICE_CLASS_OCCUPANCY
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 
 from ..const import SD123_PRESENCE_PAYLOAD
 from ..mixins.binary_sensor import BasicBinarySensorTests
@@ -41,7 +41,7 @@ class TestSD123HumanPresenceRadar(
         self.setUpBasicBinarySensor(
             PRESENCE_DPS,
             self.entities.get("binary_sensor"),
-            device_class=DEVICE_CLASS_OCCUPANCY,
+            device_class=BinarySensorDeviceClass.OCCUPANCY,
             testdata=("presence", "none"),
         )
         self.setUpBasicLight(

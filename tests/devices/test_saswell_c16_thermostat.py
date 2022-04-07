@@ -9,7 +9,8 @@ from homeassistant.components.climate.const import (
     SUPPORT_PRESET_MODE,
     SUPPORT_TARGET_TEMPERATURE,
 )
-from homeassistant.const import DEVICE_CLASS_TEMPERATURE, POWER_WATT, TEMP_CELSIUS
+from homeassistant.components.sensor import SensorDeviceClass
+from homeassistant.const import POWER_WATT, TEMP_CELSIUS
 
 from ..const import SASWELL_C16_THERMOSTAT_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -70,7 +71,7 @@ class TestSaswellC16Thermostat(
         self.setUpBasicSensor(
             FLOORTEMP_DPS,
             self.entities.get("sensor_floor_temperature"),
-            device_class=DEVICE_CLASS_TEMPERATURE,
+            device_class=SensorDeviceClass.TEMPERATURE,
             state_class="measurement",
             unit=TEMP_CELSIUS,
             testdata=(218, 21.8),

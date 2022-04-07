@@ -5,11 +5,9 @@ from homeassistant.components.light import (
     EFFECT_COLORLOOP,
     SUPPORT_EFFECT,
 )
-from homeassistant.components.switch import DEVICE_CLASS_OUTLET
+from homeassistant.components.sensor import SensorDeviceClass
+from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (
-    DEVICE_CLASS_CURRENT,
-    DEVICE_CLASS_POWER,
-    DEVICE_CLASS_VOLTAGE,
     ELECTRIC_CURRENT_MILLIAMPERE,
     ELECTRIC_POTENTIAL_VOLT,
     POWER_WATT,
@@ -55,7 +53,7 @@ class TestMoesRGBWSocket(
         self.setUpBasicSwitch(
             SWITCH_DPS,
             self.entities.get("switch"),
-            device_class=DEVICE_CLASS_OUTLET,
+            device_class=SwitchDeviceClass.OUTLET,
             power_dps=POWER_DPS,
             power_scale=10,
         )
@@ -72,7 +70,7 @@ class TestMoesRGBWSocket(
                     "name": "sensor_voltage",
                     "dps": VOLTAGE_DPS,
                     "unit": ELECTRIC_POTENTIAL_VOLT,
-                    "device_class": DEVICE_CLASS_VOLTAGE,
+                    "device_class": SensorDeviceClass.VOLTAGE,
                     "state_class": "measurement",
                     "testdata": (2300, 230.0),
                 },
@@ -80,14 +78,14 @@ class TestMoesRGBWSocket(
                     "name": "sensor_current",
                     "dps": CURRENT_DPS,
                     "unit": ELECTRIC_CURRENT_MILLIAMPERE,
-                    "device_class": DEVICE_CLASS_CURRENT,
+                    "device_class": SensorDeviceClass.CURRENT,
                     "state_class": "measurement",
                 },
                 {
                     "name": "sensor_power",
                     "dps": POWER_DPS,
                     "unit": POWER_WATT,
-                    "device_class": DEVICE_CLASS_POWER,
+                    "device_class": SensorDeviceClass.POWER,
                     "state_class": "measurement",
                     "testdata": (1234, 123.4),
                 },

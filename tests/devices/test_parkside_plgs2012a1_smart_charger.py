@@ -7,9 +7,7 @@ from homeassistant.const import (
     TIME_MINUTES,
 )
 from homeassistant.components.sensor import (
-    DEVICE_CLASS_BATTERY,
-    DEVICE_CLASS_CURRENT,
-    DEVICE_CLASS_TEMPERATURE,
+    SensorDeviceClass,
     STATE_CLASS_MEASUREMENT,
 )
 from ..const import PARKSIDE_PLGS2012A1_PAYLOAD
@@ -98,7 +96,7 @@ class TestParksidePLGS2012A1Charger(
                     "name": "sensor_battery",
                     "dps": BATTERY_DPS,
                     "unit": PERCENTAGE,
-                    "device_class": DEVICE_CLASS_BATTERY,
+                    "device_class": SensorDeviceClass.BATTERY,
                 },
                 {
                     "name": "sensor_time_remaining",
@@ -109,14 +107,14 @@ class TestParksidePLGS2012A1Charger(
                     "name": "sensor_current_temperature",
                     "dps": TEMPERATURE_DPS,
                     "unit": TEMP_CELSIUS,
-                    "device_class": DEVICE_CLASS_TEMPERATURE,
+                    "device_class": SensorDeviceClass.TEMPERATURE,
                     "state_class": STATE_CLASS_MEASUREMENT,
                 },
                 {
                     "name": "sensor_max_current",
                     "dps": MAXCURRENT_DPS,
                     "unit": ELECTRIC_CURRENT_MILLIAMPERE,
-                    "device_class": DEVICE_CLASS_CURRENT,
+                    "device_class": SensorDeviceClass.CURRENT,
                 },
                 {
                     "name": "sensor_max_temperature_count",

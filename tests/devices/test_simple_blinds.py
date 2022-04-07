@@ -1,6 +1,6 @@
 """Tests for the simple blinds controller."""
 from homeassistant.components.cover import (
-    DEVICE_CLASS_BLIND,
+    CoverDeviceClass,
     SUPPORT_CLOSE,
     SUPPORT_OPEN,
     SUPPORT_SET_POSITION,
@@ -25,7 +25,7 @@ class TestSimpleBlinds(TuyaDeviceTestCase):
         self.subject = self.entities["cover"]
 
     def test_device_class_is_blind(self):
-        self.assertEqual(self.subject.device_class, DEVICE_CLASS_BLIND)
+        self.assertEqual(self.subject.device_class, CoverDeviceClass.BLIND)
 
     def test_supported_features(self):
         self.assertEqual(

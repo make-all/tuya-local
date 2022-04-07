@@ -1,12 +1,8 @@
-from homeassistant.components.binary_sensor import (
-    DEVICE_CLASS_COLD,
-    DEVICE_CLASS_PROBLEM,
-)
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.fan import SUPPORT_SET_SPEED
 from homeassistant.components.humidifier import SUPPORT_MODES
+from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
-    DEVICE_CLASS_HUMIDITY,
-    DEVICE_CLASS_TEMPERATURE,
     PERCENTAGE,
     TIME_HOURS,
     TEMP_CELSIUS,
@@ -59,13 +55,13 @@ class TestJJProJPD01Dehumidifier(
                 {
                     "dps": ERROR_DPS,
                     "name": "binary_sensor_tank",
-                    "device_class": DEVICE_CLASS_PROBLEM,
+                    "device_class": BinarySensorDeviceClass.PROBLEM,
                     "testdata": (1, 0),
                 },
                 {
                     "dps": DEFROST_DPS,
                     "name": "binary_sensor_defrost",
-                    "device_class": DEVICE_CLASS_COLD,
+                    "device_class": BinarySensorDeviceClass.COLD,
                 },
             ]
         )
@@ -74,14 +70,14 @@ class TestJJProJPD01Dehumidifier(
                 {
                     "dps": CURRENTHUMID_DPS,
                     "name": "sensor_current_humidity",
-                    "device_class": DEVICE_CLASS_HUMIDITY,
+                    "device_class": SensorDeviceClass.HUMIDITY,
                     "state_class": "measurement",
                     "unit": PERCENTAGE,
                 },
                 {
                     "dps": CURRENTTEMP_DPS,
                     "name": "sensor_current_temperature",
-                    "device_class": DEVICE_CLASS_TEMPERATURE,
+                    "device_class": SensorDeviceClass.TEMPERATURE,
                     "state_class": "measurement",
                     "unit": TEMP_CELSIUS,
                 },

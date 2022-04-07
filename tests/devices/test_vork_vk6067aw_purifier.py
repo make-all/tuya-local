@@ -1,4 +1,4 @@
-from homeassistant.components.binary_sensor import DEVICE_CLASS_PROBLEM
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.fan import SUPPORT_PRESET_MODE
 from homeassistant.const import (
     PERCENTAGE,
@@ -43,7 +43,7 @@ class TestVorkVK6267AWPurifier(
         self.setUpBasicBinarySensor(
             ERROR_DPS,
             self.entities.get("binary_sensor_error"),
-            device_class=DEVICE_CLASS_PROBLEM,
+            device_class=BinarySensorDeviceClass.PROBLEM,
             testdata=(1, 0),
         )
         self.setUpBasicLight(LIGHT_DPS, self.entities.get("light"))
