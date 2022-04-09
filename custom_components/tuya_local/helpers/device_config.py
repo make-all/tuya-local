@@ -41,14 +41,14 @@ def _scale_range(r, s):
     return {"min": r["min"] / s, "max": r["max"] / s}
 
 
-_unsignedFmts = {
+_unsigned_fmts = {
     1: "B",
     2: "H",
     3: "3s",
     4: "I",
 }
 
-_signedFmts = {
+_signed_fmts = {
     1: "b",
     2: "h",
     3: "3s",
@@ -56,12 +56,12 @@ _signedFmts = {
 }
 
 
-def _bytesToFmt(bytes, signed=False):
+def _bytes_to_fmt(bytes, signed=False):
     "Convert a byte count to an unpack format."
-    knownFmts = _signedFmts if signed else _unsignedFmts
+    fmt = _signed_fmts if signed else _unsigned_fmts
 
-    if bytes in knownFmts:
-        return _unsignedFmts[bytes]
+    if bytes in fmt:
+        return fmt[bytes]
     else:
         return f"{bytes}s"
 
@@ -299,17 +299,17 @@ class TuyaDpsConfig:
             names = []
             for f in fmt:
                 name = f.get("name")
-                bytes = f.get("bytes", 1)
-                range = f.get("range")
-                if range:
-                    min = range.get("min")
-                    max = range.get("max")
+                b = f.get("bytes", 1)
+                r = f.get("range")
+                if r:
+                    mn = r.get("min")
+                    mx = r.get("max")
                 else:
-                    min = 0
-                    max = 256**bytes - 1
+                    mn = 0
+                    mx = 256 ** b - 1
 
-                unpack_fmt = unpack_fmt + _bytesToFmt(bytes, min < 0)
-                ranges.append({"min": min, "max": max})
+                unpack_fmt = unpack_fmt + _bytes_to_fmt(b, mn < 0)
+                ranges.append({"min": mn, "max": mx})
                 names.append(name)
             _LOGGER.debug(f"format of {unpack_fmt} found")
             return {"format": unpack_fmt, "ranges": ranges, "names": names}
@@ -342,7 +342,7 @@ class TuyaDpsConfig:
         if self.rawtype == "bitfield" and matchdata:
             try:
                 return (int(value) & int(matchdata)) != 0
-            except BaseException:
+            except (TypeError, ValueError):
                 return False
         else:
             return str(value) == str(matchdata)
@@ -527,9 +527,9 @@ class TuyaDpsConfig:
                 replaced = True
 
             if invert:
-                range = self._config.get("range")
-                if range and "min" in range and "max" in range:
-                    result = -1 * result + range["min"] + range["max"]
+                r = self._config.get("range")
+                if r and "min" in r and "max" in r:
+                    result = -1 * result + r["min"] + r["max"]
                     replaced = True
 
             if replaced:
@@ -632,9 +632,9 @@ class TuyaDpsConfig:
                 return r_dps.get_values_to_set(device, value)
 
             if invert:
-                range = self._config.get("range")
-                if range and "min" in range and "max" in range:
-                    result = -1 * result + range["min"] + range["max"]
+                r = self._config.get("range")
+                if r and "min" in r and "max" in r:
+                    result = -1 * result + r["min"] + r["max"]
                     replaced = True
 
             if scale != 1 and isinstance(result, (int, float)):

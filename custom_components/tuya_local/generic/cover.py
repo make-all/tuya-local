@@ -78,7 +78,12 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
 
         if self._action_dps:
             state = self._action_dps.get_value(self._device)
-            return 100 if state == "opened" else 0 if state == "closed" else 50
+            if state == "opened":
+                return 100
+            elif state == "closed":
+                return 0
+            else:
+                return 50
 
     @property
     def is_opening(self):
