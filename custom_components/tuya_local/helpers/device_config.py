@@ -306,7 +306,7 @@ class TuyaDpsConfig:
                     mx = r.get("max")
                 else:
                     mn = 0
-                    mx = 256 ** b - 1
+                    mx = 256**b - 1
 
                 unpack_fmt = unpack_fmt + _bytes_to_fmt(b, mn < 0)
                 ranges.append({"min": mn, "max": mx})
