@@ -26,6 +26,8 @@ jobs:
         run: pytest --cov=. --cov-config=.coveragerc --cov-report xml:coverage.xml
       - name: Track master branch
         run: git fetch --no-tags https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY +refs/heads/main:refs/remotes/origin/main
+      - name: SonarCloud Debug
+        run: echo "event: ${{ github.event_name }}, repo: ${{ github.event.repository.name}} "
       - name: SonarCloud scan
         uses: sonarsource/sonarcloud-github-action@master
         if: github.event_name == 'push' && github.event.repository.name == 'make-all/tuya-local'
