@@ -30,7 +30,7 @@ jobs:
         env:
           GH_EVENT: ${{ github.event_name }}
           GH_REPO: ${{ github.event.repository.name }}
-        run: echo "event: $GH_EVENT, repo: $GH_REPO"
+        run: echo "event $GH_EVENT repo $GH_REPO"
       - name: SonarCloud scan
         uses: sonarsource/sonarcloud-github-action@master
         if: github.event_name == 'push' && github.event.repository.name == 'make-all/tuya-local'
