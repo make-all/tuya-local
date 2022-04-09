@@ -29,11 +29,11 @@ jobs:
       - name: SonarCloud Debug
         env:
           GH_EVENT: ${{ github.event_name }}
-          GH_REPO: ${{ github.event.repository.owner }}
+          GH_REPO: ${{ github.event.repository.owner.login }}
         run: echo "event $GH_EVENT repo $GH_REPO"
       - name: SonarCloud scan
         uses: sonarsource/sonarcloud-github-action@master
-        if: github.event_name == 'push' && github.event.repository.owner == 'make-all'
+        if: github.event_name == 'push' && github.event.repository.owner.login == 'make-all'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
