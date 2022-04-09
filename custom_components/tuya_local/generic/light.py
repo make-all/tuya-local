@@ -98,14 +98,11 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
         """Return the color temperature in mireds"""
         if self._color_temp_dps:
             unscaled = self._color_temp_dps.get_value(self._device)
-            range = self._color_temp_dps.range(self._device)
-            if range:
-                min = range["min"]
-                max = range["max"]
-                return round(unscaled * 347 / (max - min) + 153 - min)
+            r = self._color_temp_dps.range(self._device)
+            if r:
+                return round(unscaled * 347 / (r["max"] - r["min"]) + 153 - r["min"])
             else:
                 return unscaled
-        return None
 
     @property
     def is_on(self):
@@ -135,28 +132,28 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             # Either RGB or HSV can be used.
             color = self._rgbhsv_dps.decoded_value(self._device)
 
-            format = self._rgbhsv_dps.format
-            if format:
-                vals = unpack(format.get("format"), color)
+            fmt = self._rgbhsv_dps.format
+            if fmt:
+                vals = unpack(fmt.get("format"), color)
                 rgbhsv = {}
                 idx = 0
                 for v in vals:
                     # Range in HA is 0-100 for s, 0-255 for rgb and v, 0-360
                     # for h
-                    n = format["names"][idx]
-                    r = format["ranges"][idx]
+                    n = fmt["names"][idx]
+                    r = fmt["ranges"][idx]
                     if r["min"] != 0:
                         raise AttributeError(
                             f"Unhandled minimum range for {n} in RGBW value"
                         )
-                    max = r["max"]
+                    mx = r["max"]
                     scale = 1
                     if n == "h":
-                        scale = 360 / max
+                        scale = 360 / mx
                     elif n == "s":
-                        scale = 100 / max
+                        scale = 100 / mx
                     else:
-                        scale = 255 / max
+                        scale = 255 / mx
 
                     rgbhsv[n] = round(scale * v)
                     idx += 1
@@ -187,9 +184,8 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             return self._effect_dps.get_value(self._device)
         elif self._color_mode_dps:
             mode = self._color_mode_dps.get_value(self._device)
-            if mode in VALID_COLOR_MODES:
-                return None
-            return mode
+            if mode not in VALID_COLOR_MODES:
+                return mode
 
     async def async_turn_on(self, **params):
         settings = {}
@@ -205,12 +201,12 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                     **self._color_mode_dps.get_values_to_set(self._device, color_mode),
                 }
             color_temp = params.get(ATTR_COLOR_TEMP)
-            range = self._color_temp_dps.range(self._device)
+            r = self._color_temp_dps.range(self._device)
 
-            if range and color_temp:
-                min = range["min"]
-                max = range["max"]
-                color_temp = round((color_temp - 153 + min) * (max - min) / 347)
+            if r and color_temp:
+                color_temp = round(
+                    (color_temp - 153 + r["min"]) * (r["max"] - r["min"]) / 347
+                )
 
             _LOGGER.debug(f"Setting color temp to {color_temp}")
             settings = {
@@ -231,8 +227,8 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                 }
             rgbw = params.get(ATTR_RGBW_COLOR, self.rgbw_color or (0, 0, 0, 0))
             brightness = params.get(ATTR_BRIGHTNESS, rgbw[3])
-            format = self._rgbhsv_dps.format
-            if rgbw and format:
+            fmt = self._rgbhsv_dps.format
+            if rgbw and fmt:
                 rgb = (rgbw[0], rgbw[1], rgbw[2])
                 hs = color_util.color_RGB_to_hs(rgbw[0], rgbw[1], rgbw[2])
                 rgbhsv = {
@@ -248,8 +244,8 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                 )
                 ordered = []
                 idx = 0
-                for n in format["names"]:
-                    r = format["ranges"][idx]
+                for n in fmt["names"]:
+                    r = fmt["ranges"][idx]
                     scale = 1
                     if n == "s":
                         scale = r["max"] / 100
@@ -259,7 +255,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                         scale = r["max"] / 255
                     ordered.append(round(rgbhsv[n] * scale))
                     idx += 1
-                binary = pack(format["format"], *ordered)
+                binary = pack(fmt["format"], *ordered)
                 settings = {
                     **settings,
                     **self._rgbhsv_dps.get_values_to_set(

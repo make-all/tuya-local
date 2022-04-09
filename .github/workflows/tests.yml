@@ -26,14 +26,9 @@ jobs:
         run: pytest --cov=. --cov-config=.coveragerc --cov-report xml:coverage.xml
       - name: Track master branch
         run: git fetch --no-tags https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY +refs/heads/main:refs/remotes/origin/main
-      - name: SonarCloud Debug
-        env:
-          GH_EVENT: ${{ github.event_name }}
-          GH_REPO: ${{ github.event.repository.owner.login }}
-        run: echo "event $GH_EVENT repo $GH_REPO"
       - name: SonarCloud scan
         uses: sonarsource/sonarcloud-github-action@master
-        if: github.event_name == 'push' && github.event.repository.owner.login == 'make-all'
+        if: github.event.repository.owner.login == 'make-all'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
