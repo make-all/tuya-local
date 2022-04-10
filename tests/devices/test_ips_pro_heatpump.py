@@ -15,7 +15,7 @@ from homeassistant.const import (
     TEMP_FAHRENHEIT,
 )
 
-from ..const import FULL_INVERTER_HEATPUMP_PAYLOAD
+from ..const import IPS_HEATPUMP_PAYLOAD
 from ..helpers import assert_device_properties_set
 from ..mixins.climate import TargetTemperatureTests
 from ..mixins.sensor import BasicSensorTests
@@ -34,7 +34,7 @@ UNKNOWN116_DPS = "116"
 PRESET_DPS = "2"
 
 
-class TestFullInverterHeatpump(
+class TestIpsProHeatpump(
     BasicSensorTests,
     TargetTemperatureTests,
     TuyaDeviceTestCase,
@@ -42,7 +42,7 @@ class TestFullInverterHeatpump(
     __test__ = True
 
     def setUp(self):
-        self.setUpForConfig("full_inverter_heatpump.yaml", FULL_INVERTER_HEATPUMP_PAYLOAD)
+        self.setUpForConfig("ips_pro_heatpump.yaml", IPS_HEATPUMP_PAYLOAD)
         self.subject = self.entities.get("climate")
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,

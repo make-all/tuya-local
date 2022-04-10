@@ -159,7 +159,7 @@ GARDENPAC_HEATPUMP_PAYLOAD = {
     "117": True,
 }
 
-FULL_INVERTER_HEATPUMP_PAYLOAD = {
+IPS_HEATPUMP_PAYLOAD = {
     "1": True,
     "2": "silence",
     "102": 10,
