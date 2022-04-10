@@ -1,11 +1,17 @@
 """
 Platform to read Tuya binary sensors.
 """
-from homeassistant.components.binary_sensor import DEVICE_CLASSES, BinarySensorEntity
+from homeassistant.components.binary_sensor import (
+    BinarySensorEntity,
+    BinarySensorDeviceClass,
+)
+import logging
 
 from ..device import TuyaLocalDevice
 from ..helpers.device_config import TuyaEntityConfig
 from ..helpers.mixin import TuyaLocalEntity
+
+_LOGGER = logging.getLogger(__name__)
 
 
 class TuyaLocalBinarySensor(TuyaLocalEntity, BinarySensorEntity):
@@ -28,9 +34,13 @@ class TuyaLocalBinarySensor(TuyaLocalEntity, BinarySensorEntity):
     def device_class(self):
         """Return the class of this device"""
         dclass = self._config.device_class
-        if dclass in DEVICE_CLASSES:
-            return dclass
-        else:
+        try:
+            return BinarySensorDeviceClass(dclass)
+        except ValueError:
+            if dclass:
+                _LOGGER.warning(
+                    f"Unrecognised binary_sensor device class of {dclass} ignored"
+                )
             return None
 
     @property

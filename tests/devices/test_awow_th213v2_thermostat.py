@@ -1,4 +1,4 @@
-from homeassistant.components.binary_sensor import DEVICE_CLASS_PROBLEM
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.climate.const import (
     CURRENT_HVAC_HEAT,
     CURRENT_HVAC_IDLE,
@@ -8,8 +8,8 @@ from homeassistant.components.climate.const import (
     SUPPORT_PRESET_MODE,
     SUPPORT_TARGET_TEMPERATURE,
 )
+from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
-    DEVICE_CLASS_TEMPERATURE,
     STATE_UNAVAILABLE,
     TEMP_CELSIUS,
 )
@@ -63,7 +63,7 @@ class TestAwowTH213v2Thermostat(
             EXTERNTEMP_DPS,
             self.entities.get("sensor_external_temperature"),
             unit=TEMP_CELSIUS,
-            device_class=DEVICE_CLASS_TEMPERATURE,
+            device_class=SensorDeviceClass.TEMPERATURE,
             state_class="measurement",
         )
         self.setUpBasicSelect(
@@ -78,7 +78,7 @@ class TestAwowTH213v2Thermostat(
         self.setUpBasicBinarySensor(
             ERROR_DPS,
             self.entities.get("binary_sensor_error"),
-            device_class=DEVICE_CLASS_PROBLEM,
+            device_class=BinarySensorDeviceClass.PROBLEM,
             testdata=(1, 0),
         )
         self.setUpMultiNumber(

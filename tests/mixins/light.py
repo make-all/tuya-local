@@ -8,9 +8,11 @@ from ..helpers import assert_device_properties_set
 
 
 class BasicLightTests:
-    def setUpBasicLight(self, dps, subject):
+    def setUpBasicLight(self, dps, subject, testdata=(True, False)):
         self.basicLight = subject
         self.basicLightDps = dps
+        self.basicLightOn = testdata[0]
+        self.basicLightOff = testdata[1]
 
     def test_basic_light_supported_features(self):
         self.assertEqual(self.basicLight.supported_features, 0)
@@ -32,36 +34,36 @@ class BasicLightTests:
         self.assertIsNone(self.basicLight.effect)
 
     def test_basic_light_is_on(self):
-        self.dps[self.basicLightDps] = True
+        self.dps[self.basicLightDps] = self.basicLightOn
         self.assertTrue(self.basicLight.is_on)
-        self.dps[self.basicLightDps] = False
+        self.dps[self.basicLightDps] = self.basicLightOff
         self.assertFalse(self.basicLight.is_on)
 
     async def test_basic_light_turn_on(self):
         async with assert_device_properties_set(
-            self.basicLight._device, {self.basicLightDps: True}
+            self.basicLight._device, {self.basicLightDps: self.basicLightOn}
         ):
             await self.basicLight.async_turn_on()
 
     async def test_basic_light_turn_off(self):
         async with assert_device_properties_set(
-            self.basicLight._device, {self.basicLightDps: False}
+            self.basicLight._device, {self.basicLightDps: self.basicLightOff}
         ):
             await self.basicLight.async_turn_off()
 
     async def test_basic_light_toggle_turns_on_when_it_was_off(self):
-        self.dps[self.basicLightDps] = False
+        self.dps[self.basicLightDps] = self.basicLightOff
         async with assert_device_properties_set(
             self.basicLight._device,
-            {self.basicLightDps: True},
+            {self.basicLightDps: self.basicLightOn},
         ):
             await self.basicLight.async_toggle()
 
     async def test_basic_light_toggle_turns_off_when_it_was_on(self):
-        self.dps[self.basicLightDps] = True
+        self.dps[self.basicLightDps] = self.basicLightOn
         async with assert_device_properties_set(
             self.basicLight._device,
-            {self.basicLightDps: False},
+            {self.basicLightDps: self.basicLightOff},
         ):
             await self.basicLight.async_toggle()
 

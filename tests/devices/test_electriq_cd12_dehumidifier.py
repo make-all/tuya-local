@@ -1,7 +1,6 @@
 from homeassistant.components.humidifier import SUPPORT_MODES
+from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
-    DEVICE_CLASS_HUMIDITY,
-    DEVICE_CLASS_TEMPERATURE,
     PERCENTAGE,
     TEMP_CELSIUS,
 )
@@ -39,14 +38,14 @@ class TestElectriqCD12PWDehumidifier(
                     "name": "sensor_current_temperature",
                     "dps": CURRENTTEMP_DPS,
                     "unit": TEMP_CELSIUS,
-                    "device_class": DEVICE_CLASS_TEMPERATURE,
+                    "device_class": SensorDeviceClass.TEMPERATURE,
                     "state_class": "measurement",
                 },
                 {
                     "name": "sensor_current_humidity",
                     "dps": CURRENTHUMID_DPS,
                     "unit": PERCENTAGE,
-                    "device_class": DEVICE_CLASS_HUMIDITY,
+                    "device_class": SensorDeviceClass.HUMIDITY,
                     "state_class": "measurement",
                 },
             ]

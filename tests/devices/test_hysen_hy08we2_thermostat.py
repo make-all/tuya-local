@@ -7,8 +7,8 @@ from homeassistant.components.climate.const import (
     SUPPORT_PRESET_MODE,
     SUPPORT_TARGET_TEMPERATURE,
 )
+from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
-    DEVICE_CLASS_TEMPERATURE,
     STATE_UNAVAILABLE,
     TEMP_CELSIUS,
     TIME_DAYS,
@@ -108,7 +108,7 @@ class TestHysenHY08WE2Thermostat(
         self.setUpBasicSensor(
             EXTTEMP_DPS,
             self.entities.get("sensor_external_temperature"),
-            device_class=DEVICE_CLASS_TEMPERATURE,
+            device_class=SensorDeviceClass.TEMPERATURE,
             testdata=(205, 20.5),
             unit=TEMP_CELSIUS,
             state_class="measurement",

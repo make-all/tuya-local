@@ -9,8 +9,8 @@ from homeassistant.components.climate.const import (
     SUPPORT_TARGET_HUMIDITY,
     SUPPORT_TARGET_TEMPERATURE,
 )
+from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
-    DEVICE_CLASS_HUMIDITY,
     PERCENTAGE,
     STATE_UNAVAILABLE,
 )
@@ -62,7 +62,7 @@ class TestElectriqDESD9LWDehumidifier(
             CURRENTHUM_DPS,
             self.entities.get("sensor_current_humidity"),
             unit=PERCENTAGE,
-            device_class=DEVICE_CLASS_HUMIDITY,
+            device_class=SensorDeviceClass.HUMIDITY,
             state_class="measurement",
         )
 

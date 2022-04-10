@@ -2,7 +2,7 @@
 
 None of this would have been possible without some foundational discovery work to get me started:
 
-- [nikrolls](https://github.com/nikrolls)'s [homeassistant-goldair-climate](https://github.com/nikrolls/homeassistant-goldair-climate) was the starting point for expanding to non-Goldair devices as well.
+- [nicole-ashley](https://github.com/nicole-ashley)'s [homeassistant-goldair-climate](https://github.com/nicole-ashley/homeassistant-goldair-climate) was the starting point for expanding to non-Goldair devices as well.
 - [TarxBoy](https://github.com/TarxBoy)'s [investigation using codetheweb/tuyapi](https://github.com/codetheweb/tuyapi/issues/31) to figure out the correlation of the cryptic DPS states .
 - [sean6541](https://github.com/sean6541)'s [tuya-homeassistant](https://github.com/sean6541/tuya-homeassistant) library giving an example of integrating Tuya devices with Home Assistant.
 - [clach04](https://github.com/clach04)'s [python-tuya](https://github.com/clach04/python-tuya) library.
@@ -17,7 +17,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [Xeovar](https://github.com/Xeovar) for assistance in supporting Purline M100 heaters, Garden PAC pool heatpumps and Qoto sprinklers.
 - [paulmfclark](https://github.com/paulmfclark) for assistance in supporting Remora Inverter pool heatpumps
 - [cartman10](https://github.com/cartman10) for assistance with BWT FI 45 pool heater.
- - [superman110](https://github.com/superman110) for assistance in supporting Eanons/purenjoy humidifier.
+ - [superman110](https://github.com/superman110) for assistance in supporting Eanons/purenjoy humidifier and SD123 human presence radar.
  - [woolmonkey](https://github.com/woolmonkey) for assistance in supporting Inkbird ITC306A Thermostat.
  - [hazell20](https://github.com/hazell20) for assistance in supporting Anko fans.
  - [meremortals70](https://github.com/meremortals70) for assistance in supporting Deta fan controllers.
@@ -59,7 +59,7 @@ Further device support has been made with the assistance of users.  Please consi
  - [mvroosmalen1970](https://github.com/mvroosmalen1970) for assistance in supporting Eurom SaniWall 2000 heaters.
  - [petrkotek](https://github.com/petrkotek) for contributing support for Madimack Elite V3 pool heatpumps.
  - [irakhlin](https://github.com/irakhlin) for contributing support for Aspen ASP200 fans.
- - [vampywiz17](https://github.com/vampywiz17) for contributing support for TMWF02 fan controllers, Digoo and Woox smartplugs and powerstrips and simple switches with timers.
+ - [vampywiz17](https://github.com/vampywiz17) for contributing support for TMWF02 fan controllers, Digoo, Woox and MoesHouse smartplugs and powerstrips and simple switches with timers. Also sasistance with figuring out the formats used by Tuya for RGBW lighting.
  - [awaldram](https://github.com/awaldram) for confirming BHT-3000 support.
  - [bob-tm](https://github.com/bob-tm) for contributing support from Wetair WAW-H1210LW humidifiers.
  - [shakin89](https://github.com/shakin89) for assistance in supporting Beca BAC-002 thermostats.
@@ -78,5 +78,9 @@ Further device support has been made with the assistance of users.  Please consi
  - [dlosito](https://github.com/dlosito) for assistance with Lefant M213 vacuum cleaners.
 - [kramttocs](https://github.com/kramttocs) for assistance with Kyvol E30 vacuum cleaners.
 - [dieantu](https://github.com/dieantu) for contributing support for Himox H06 purifiers.
-- [pgistrand](https://github.com/pgistrand) for contributing support for Vork VK6067AW purifiers.
+- [pgistrand](https://github.com/pgistrand) for contributing support for Vork VK6067AW purifiers, and assistance with Parkside smart charger.
 - [markbvdh](https://github.com/markbvdh) for assistance with Kogan garage openers and confirmation of Summerwave Si pool heatpumps.
+- [tavicu](https://github.com/tavicu) for contributing support for Starlight Heatpumps, Simple Blinds and for the idea to support inverted values.
+- [Chris061290](https://github.com/Chris061290) for contributing support for IPS Pro pool heatpumps, complete with unit tests.
+- [MartinCarbol](https://github.com/MartinCarbol) for contributing support for two models of Tesla Air Purifier.
+- [gschmidl](https://github.com/gschmidl) for assistance with Himox H05 purifiers

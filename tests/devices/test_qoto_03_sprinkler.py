@@ -1,5 +1,5 @@
 """Tests for the Quto 03 Sprinkler."""
-from homeassistant.components.binary_sensor import DEVICE_CLASS_PROBLEM
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.const import PERCENTAGE, TIME_SECONDS
 
 from ..const import QOTO_SPRINKLER_PAYLOAD
@@ -28,7 +28,7 @@ class TestQotoSprinkler(
         self.setUpBasicBinarySensor(
             ERROR_DPS,
             self.entities.get("binary_sensor_error"),
-            device_class=DEVICE_CLASS_PROBLEM,
+            device_class=BinarySensorDeviceClass.PROBLEM,
             testdata=(1, 0),
         )
         self.setUpMultiNumber(

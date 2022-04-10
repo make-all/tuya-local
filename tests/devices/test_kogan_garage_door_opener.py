@@ -1,11 +1,11 @@
 """Tests for the simple garage door opener."""
-from homeassistant.components.binary_sensor import DEVICE_CLASS_GARAGE_DOOR
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.cover import (
-    DEVICE_CLASS_GARAGE,
+    CoverDeviceClass,
     SUPPORT_CLOSE,
     SUPPORT_OPEN,
 )
-from homeassistant.components.sensor import DEVICE_CLASS_BATTERY
+from homeassistant.components.sensor import SensorDeviceClass
 
 from ..const import KOGAN_GARAGE_DOOR_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -32,17 +32,17 @@ class TestKoganGarageOpener(
         self.setUpBasicBinarySensor(
             LEFTOPEN_DPS,
             self.entities.get("binary_sensor_door_open"),
-            device_class=DEVICE_CLASS_GARAGE_DOOR,
+            device_class=BinarySensorDeviceClass.GARAGE_DOOR,
         )
         self.setUpBasicSensor(
             BATTERY_DPS,
             self.entities.get("sensor_battery"),
-            device_class=DEVICE_CLASS_BATTERY,
+            device_class=SensorDeviceClass.BATTERY,
         )
         self.mark_secondary(["binary_sensor_door_open", "sensor_battery"])
 
     def test_device_class_is_garage(self):
-        self.assertEqual(self.subject.device_class, DEVICE_CLASS_GARAGE)
+        self.assertEqual(self.subject.device_class, CoverDeviceClass.GARAGE)
 
     def test_supported_features(self):
         self.assertEqual(

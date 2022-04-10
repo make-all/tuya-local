@@ -1034,6 +1034,17 @@ HIMOX_H06_PURIFIER_PAYLOAD = {
     "101": "calcle",
 }
 
+HIMOX_H05_PURIFIER_PAYLOAD = {
+    "1": True,
+    "2": 21,
+    "4": "auto",
+    "5": 92,
+    "7": False,
+    "11": False,
+    "18": "cancel",
+    "21": "good",
+}
+
 VORK_VK6067_PURIFIER_PAYLOAD = {
     "1": True,
     "4": "auto",
@@ -1051,4 +1062,104 @@ KOGAN_GARAGE_DOOR_PAYLOAD = {
     "102": "opening",
     "104": 100,
     "105": True,
+}
+
+MOES_RGB_SOCKET_PAYLOAD = {
+    "1": True,
+    "2": "colour",
+    "3": 255,
+    "4": 14,
+    "5": "ff99000024ffff",
+    "6": "bd76000168ffff",
+    "7": "ffff320100ff00",
+    "8": "ffff3203ff000000ff000000ff",
+    "9": "ffff3201ff0000",
+    "10": "ffff3205ff000000ff00ffff00ff00ff0000ff",
+    "101": True,
+    "102": 0,
+    "104": 0,
+    "105": 0,
+    "106": 2332,
+}
+
+LOGICOM_STRIPPY_PAYLOAD = {
+    "1": False,
+    "2": False,
+    "3": False,
+    "4": False,
+    "5": False,
+    "9": 0,
+    "10": 0,
+    "11": 0,
+    "12": 0,
+    "13": 0,
+}
+
+PARKSIDE_PLGS2012A1_PAYLOAD = {
+    "1": True,
+    "2": "test",
+    "3": 1000,
+    "4": 1320,
+    "5": 80,
+    "6": 25,
+    "7": "standard",
+    "8": False,
+    "9": True,
+    "10": 5,
+    "11": "unknown",
+    "101": 2500,
+    "102": 11,
+    "103": False,
+    "104": False,
+}
+
+SD123_PRESENCE_PAYLOAD = {
+    "1": "none",
+    "101": "0_meters",
+    "102": "6_meters",
+    "103": "case_0",
+    "104": "case_1",
+    "105": "not_reset",
+    "106": "normal",
+    "107": 1200,
+    "108": 1000,
+    "109": 1,
+    "110": 1,
+    "111": 10,
+    "112": 2,
+    "113": 0,
+    "114": True,
+}
+
+SIMPLE_BLINDS_PAYLOAD = {
+    "1": "stop",
+    "2": 0,
+    "5": False,
+    "7": "opening",
+}
+
+STARLIGHT_HEATPUMP_PAYLOAD = {
+    "1": True,
+    "2": 260,
+    "3": 22,
+    "4": "hot",
+    "5": "auto",
+    "18": 0,
+    "20": 0,
+    "105": "off",
+    "110": 131644,
+    "113": "0",
+    "114": "0",
+    "119": "0",
+    "120": "off",
+    "123": "0018",
+    "126": "0",
+    "127": "0",
+    "128": "0",
+    "129": "1",
+    "130": 26,
+    "131": False,
+    "132": False,
+    "133": "0",
+    "134": '{"t":8601,"s":false,"clr":true}',
 }

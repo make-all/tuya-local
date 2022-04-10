@@ -5,7 +5,7 @@ import logging
 
 from homeassistant.components.cover import (
     CoverEntity,
-    DEVICE_CLASSES,
+    CoverDeviceClass,
     SUPPORT_CLOSE,
     SUPPORT_OPEN,
     SUPPORT_SET_POSITION,
@@ -53,9 +53,11 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
     def device_class(self):
         """Return the class of ths device"""
         dclass = self._config.device_class
-        if dclass in DEVICE_CLASSES:
-            return dclass
-        else:
+        try:
+            return CoverDeviceClass(dclass)
+        except ValueError:
+            if dclass:
+                _LOGGER.warning(f"Unrecognised cover device class of {dclass} ignored")
             return None
 
     @property
@@ -76,7 +78,12 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
 
         if self._action_dps:
             state = self._action_dps.get_value(self._device)
-            return 100 if state == "opened" else 0 if state == "closed" else 50
+            if state == "opened":
+                return 100
+            elif state == "closed":
+                return 0
+            else:
+                return 50
 
     @property
     def is_opening(self):

@@ -1,5 +1,5 @@
 # Mixins for testing switches
-from homeassistant.components.switch import DEVICE_CLASS_SWITCH
+from homeassistant.components.switch import SwitchDeviceClass
 
 from ..helpers import assert_device_properties_set
 
@@ -50,14 +50,18 @@ class BasicSwitchTests:
         self,
         dps,
         subject,
-        device_class=DEVICE_CLASS_SWITCH,
+        device_class="switch",
         power_dps=None,
         power_scale=1,
         testdata=(True, False),
     ):
         self.basicSwitch = subject
         self.basicSwitchDps = dps
-        self.basicSwitchDevClass = device_class
+        try:
+            self.basicSwitchDevClass = SwitchDeviceClass(device_class)
+        except ValueError:
+            self.basicSwitchDevClass = None
+
         self.basicSwitchPowerDps = power_dps
         self.basicSwitchPowerScale = power_scale
         self.basicSwitchOn = testdata[0]
@@ -135,7 +139,13 @@ class MultiSwitchTests:
                 raise AttributeError(f"No switch for {name} found.")
             self.multiSwitch[name] = subject
             self.multiSwitchDps[name] = s.get("dps")
-            self.multiSwitchDevClass[name] = s.get("device_class", DEVICE_CLASS_SWITCH)
+            try:
+                self.multiSwitchDevClass[name] = SwitchDeviceClass(
+                    s.get("device_class", "switch")
+                )
+            except ValueError:
+                self.multiSwitchDevClass[name] = None
+
             self.multiSwitchPowerDps[name] = s.get("power_dps")
             self.multiSwitchPowerScale[name] = s.get("power_scale", 1)
 

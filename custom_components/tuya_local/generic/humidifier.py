@@ -3,12 +3,10 @@ Platform to control tuya humidifier and dehumidifier devices.
 """
 import logging
 
-from homeassistant.components.humidifier import HumidifierEntity
+from homeassistant.components.humidifier import HumidifierEntity, HumidifierDeviceClass
 from homeassistant.components.humidifier.const import (
     DEFAULT_MAX_HUMIDITY,
     DEFAULT_MIN_HUMIDITY,
-    DEVICE_CLASS_DEHUMIDIFIER,
-    DEVICE_CLASS_HUMIDIFIER,
     SUPPORT_MODES,
 )
 
@@ -48,9 +46,9 @@ class TuyaLocalHumidifier(TuyaLocalEntity, HumidifierEntity):
     def device_class(self):
         """Return the class of this device"""
         return (
-            DEVICE_CLASS_DEHUMIDIFIER
+            HumidifierDeviceClass.DEHUMIDIFIER
             if self._config.device_class == "dehumidifier"
-            else DEVICE_CLASS_HUMIDIFIER
+            else HumidifierDeviceClass.HUMIDIFIER
         )
 
     @property

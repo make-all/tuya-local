@@ -9,27 +9,19 @@ primary_entity:
         - dps_val: false
           value: "off"
           icon: "mdi:hvac-off"
-          icon_priority: 1
         - dps_val: true
           value: "heat"
           icon: "mdi:hot-tub"
-          icon_priority: 3
     - id: 2
       name: preset_mode
       type: string
       mapping:
         - dps_val: "silence"
           value: "silence"
-          icon: "mdi:hot-tub"
-          icon_priority: 1
         - dps_val: "smart"
           value: "smart"
-          icon: "mdi:hot-tub"
-          icon_priority: 3
         - dps_val: "turbo"
           value: "turbo"
-          icon: "mdi:hot-tub"
-          icon_priority: 3
     - id: 102
       name: current_temperature
       type: integer
@@ -42,10 +34,6 @@ primary_entity:
           value: F
         - dps_val: true
           value: C
-    - id: 104
-      name: power_level
-      type: integer
-      readonly: true
     - id: 105
       name: hvac_action
       type: string

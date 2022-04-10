@@ -1,6 +1,6 @@
 """Tests for the simple garage door opener."""
 from homeassistant.components.cover import (
-    DEVICE_CLASS_GARAGE,
+    CoverDeviceClass,
     SUPPORT_CLOSE,
     SUPPORT_OPEN,
 )
@@ -21,7 +21,7 @@ class TestSimpleGarageOpener(TuyaDeviceTestCase):
         self.subject = self.entities["cover"]
 
     def test_device_class_is_garage(self):
-        self.assertEqual(self.subject.device_class, DEVICE_CLASS_GARAGE)
+        self.assertEqual(self.subject.device_class, CoverDeviceClass.GARAGE)
 
     def test_supported_features(self):
         self.assertEqual(

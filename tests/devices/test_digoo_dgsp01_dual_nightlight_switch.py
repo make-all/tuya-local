@@ -1,5 +1,5 @@
 """Tests for the switch entity."""
-from homeassistant.components.switch import DEVICE_CLASS_OUTLET
+from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.components.light import (
     COLOR_MODE_RGBW,
     COLOR_MODE_WHITE,
@@ -8,7 +8,7 @@ from homeassistant.components.light import (
     SUPPORT_EFFECT,
 )
 from ..const import DIGOO_DGSP01_SOCKET_PAYLOAD
-
+from ..helpers import assert_device_properties_set
 from ..mixins.switch import BasicSwitchTests
 from .base_device_tests import TuyaDeviceTestCase
 
@@ -36,7 +36,7 @@ class TestDigooNightlightSwitch(BasicSwitchTests, TuyaDeviceTestCase):
         self.light = self.entities.get("light_night_light")
 
         self.setUpBasicSwitch(
-            SWITCH_DPS, self.subject, device_class=DEVICE_CLASS_OUTLET
+            SWITCH_DPS, self.subject, device_class=SwitchDeviceClass.OUTLET
         )
 
     def test_light_is_on(self):
@@ -113,6 +113,42 @@ class TestDigooNightlightSwitch(BasicSwitchTests, TuyaDeviceTestCase):
 
     def test_light_supported_features(self):
         self.assertEqual(self.light.supported_features, SUPPORT_EFFECT)
+
+    async def test_turn_on(self):
+        async with assert_device_properties_set(
+            self.light._device, {LIGHTSW_DPS: True}
+        ):
+            await self.light.async_turn_on()
+
+    async def test_turn_off(self):
+        async with assert_device_properties_set(
+            self.light._device, {LIGHTSW_DPS: False}
+        ):
+            await self.light.async_turn_off()
+
+    async def test_set_brightness(self):
+        async with assert_device_properties_set(
+            self.light._device,
+            {
+                LIGHTSW_DPS: True,
+                COLORMODE_DPS: "white",
+                BRIGHTNESS_DPS: 128,
+            },
+        ):
+            await self.light.async_turn_on(color_mode=COLOR_MODE_WHITE, brightness=128)
+
+    async def test_set_rgbw(self):
+        async with assert_device_properties_set(
+            self.light._device,
+            {
+                LIGHTSW_DPS: True,
+                COLORMODE_DPS: "colour",
+                RGBW_DPS: "ff000000006464",
+            },
+        ):
+            await self.light.async_turn_on(
+                color_mode=COLOR_MODE_RGBW, rgbw_color=(255, 0, 0, 255)
+            )
 
     def test_extra_state_attributes_set(self):
         self.dps[UNKNOWN32_DPS] = "32"

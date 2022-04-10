@@ -1,3 +1,4 @@
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.climate.const import (
     HVAC_MODE_AUTO,
     HVAC_MODE_HEAT,
@@ -88,13 +89,13 @@ class TestBeokTR9BThermostat(
                 {
                     "dps": ERROR_DPS,
                     "name": "binary_sensor_error",
-                    "device_class": "problem",
+                    "device_class": BinarySensorDeviceClass.PROBLEM,
                     "testdata": (1, 0),
                 },
                 {
                     "dps": VALVE_DPS,
                     "name": "binary_sensor_valve",
-                    "device_class": "opening",
+                    "device_class": BinarySensorDeviceClass.OPENING,
                     "testdata": ("open", "close"),
                 },
             ],

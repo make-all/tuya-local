@@ -1,0 +1,147 @@
+name: Parkside PLGS2012A1 Charger
+product:
+  - id: h6pglenun37dzsgo
+primary_entity:
+  entity: switch
+  icon: "mdi:ev-station"
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 11
+      type: string
+      name: unknown_11
+secondary_entities:
+  - entity: number
+    name: Charge Current
+    icon: "mdi:current-dc"
+    category: config
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 30000
+        mapping:
+          - step: 100
+        unit: mA
+  - entity: number
+    name: Charge Voltage
+    icon: "mdi:battery-charging"
+    category: config
+    dps:
+      - id: 4
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 25000
+        mapping:
+          - scale: 1000
+            step: 100
+        unit: V
+  - entity: switch
+    name: Storage
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            icon: "mdi:battery-60"
+          - dps_val: false
+            icon: "mdi:battery"
+  - entity: switch
+    name: Temperature Limiter
+    category: config
+    icon: "mdi:thermometer-alert"
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Battery
+    class: battery
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    name: Current Temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Max Temperature Count
+    icon: "mdi:thermometer-plus"
+    category: diagnostic
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+  - entity: sensor
+    name: Name
+    icon: "mdi:form-textbox"
+    category: diagnostic
+    dps:
+      - id: 2
+        type: string
+        name: sensor
+  - entity: select
+    name: Charge Type
+    icon: "mdi:battery-unknown"
+    category: config
+    dps:
+      - id: 7
+        type: string
+        name: option
+        mapping:
+          - dps_val: ECO
+            value: Eco
+          - dps_val: quick
+            value: Performance
+          - dps_val: standard
+            value: Balanced
+          - dps_val: individual
+            value: Expert
+  - entity: sensor
+    name: Max Current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: mA
+  - entity: sensor
+    name: Time Remaining
+    icon: "mdi:battery-clock"
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: min
+  - entity: binary_sensor
+    name: Almost Charged
+    icon: "mdi:battery-charging-90"
+    category: diagnostic
+    dps:
+      - id: 103
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Fully Charged
+    icon: "mdi:battery-charging-100"
+    category: diagnostic
+    dps:
+      - id: 104
+        type: boolean
+        name: sensor

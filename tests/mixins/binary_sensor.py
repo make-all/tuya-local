@@ -1,4 +1,5 @@
 # Mixins for testing sensor entities
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 
 
 class BasicBinarySensorTests:
@@ -11,7 +12,11 @@ class BasicBinarySensorTests:
     ):
         self.basicBSensor = subject
         self.basicBSensorDps = dps
-        self.basicBSensorDeviceClass = device_class
+        try:
+            self.basicBSensorDeviceClass = BinarySensorDeviceClass(device_class)
+        except ValueError:
+            self.basicBSensorDeviceClass = None
+
         self.basicBSensorTestData = testdata
 
     def test_basic_bsensor_device_class(self):
@@ -41,7 +46,13 @@ class MultiBinarySensorTests:
                 raise AttributeError(f"No binary sensor for {name} found.")
             self.multiBSensor[name] = subject
             self.multiBSensorDps[name] = s.get("dps")
-            self.multiBSensorDevClass[name] = s.get("device_class")
+            try:
+                self.multiBSensorDevClass[name] = BinarySensorDeviceClass(
+                    s.get("device_class")
+                )
+            except ValueError:
+                self.multiBSensorDevClass[name] = None
+
             self.multiBSensorTestData[name] = s.get("testdata", (True, False))
 
     def test_multi_bsensor_device_class(self):

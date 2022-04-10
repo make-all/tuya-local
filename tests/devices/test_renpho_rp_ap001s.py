@@ -1,5 +1,5 @@
 from homeassistant.components.fan import SUPPORT_PRESET_MODE
-from homeassistant.const import DEVICE_CLASS_AQI
+from homeassistant.components.sensor import SensorDeviceClass
 
 from ..const import RENPHO_PURIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -44,7 +44,7 @@ class TestRenphoPurifier(
                 {
                     "name": "sensor_air_quality",
                     "dps": QUALITY_DPS,
-                    "device_class": DEVICE_CLASS_AQI,
+                    "device_class": SensorDeviceClass.AQI,
                 },
                 {
                     "name": "sensor_prefilter_life",

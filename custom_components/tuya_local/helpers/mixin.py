@@ -8,6 +8,7 @@ from homeassistant.const import (
     TEMP_CELSIUS,
     TEMP_FAHRENHEIT,
 )
+from homeassistant.helpers.entity import EntityCategory
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -52,7 +53,11 @@ class TuyaLocalEntity:
     @property
     def entity_category(self):
         """Return the entitiy's category."""
-        return self._config.entity_category
+        return (
+            None
+            if self._config.entity_category is None
+            else EntityCategory(self._config.entity_category)
+        )
 
     @property
     def icon(self):

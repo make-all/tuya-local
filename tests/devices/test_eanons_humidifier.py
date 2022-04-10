@@ -1,4 +1,4 @@
-from homeassistant.components.binary_sensor import DEVICE_CLASS_PROBLEM
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.climate.const import (
     FAN_HIGH,
     FAN_MEDIUM,
@@ -83,7 +83,7 @@ class TestEanonsHumidifier(
         self.setUpBasicBinarySensor(
             ERROR_DPS,
             self.entities.get("binary_sensor_tank"),
-            device_class=DEVICE_CLASS_PROBLEM,
+            device_class=BinarySensorDeviceClass.PROBLEM,
             testdata=(1, 0),
         )
         self.mark_secondary(["select_timer", "sensor_timer", "binary_sensor_tank"])

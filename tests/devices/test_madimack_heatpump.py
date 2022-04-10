@@ -7,8 +7,8 @@ from homeassistant.components.climate.const import (
     SUPPORT_PRESET_MODE,
     SUPPORT_TARGET_TEMPERATURE,
 )
+from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
-    DEVICE_CLASS_POWER_FACTOR,
     PERCENTAGE,
     STATE_UNAVAILABLE,
     TEMP_CELSIUS,
@@ -68,7 +68,7 @@ class TestMadimackPoolHeatpump(
         self.setUpBasicSensor(
             POWERLEVEL_DPS,
             self.entities.get("sensor_power_level"),
-            device_class=DEVICE_CLASS_POWER_FACTOR,
+            device_class=SensorDeviceClass.POWER_FACTOR,
             unit=PERCENTAGE,
         )
         self.mark_secondary(["sensor_power_level"])

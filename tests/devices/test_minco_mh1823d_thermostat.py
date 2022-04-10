@@ -8,8 +8,8 @@ from homeassistant.components.climate.const import (
     SUPPORT_PRESET_MODE,
     SUPPORT_TARGET_TEMPERATURE,
 )
+from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
-    DEVICE_CLASS_TEMPERATURE,
     STATE_UNAVAILABLE,
     TEMP_CELSIUS,
     TEMP_FAHRENHEIT,
@@ -78,7 +78,7 @@ class TestMincoMH1823DThermostat(
             EXTERNTEMP_DPS,
             self.entities.get("sensor_external_temperature"),
             unit=TEMP_CELSIUS,
-            device_class=DEVICE_CLASS_TEMPERATURE,
+            device_class=SensorDeviceClass.TEMPERATURE,
             state_class="measurement",
             testdata=(300, 30.0),
         )

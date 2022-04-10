@@ -20,7 +20,7 @@ The name should also indicate to the user what type of device it is.
 
 ### `legacy_type`
 
-// Optional, deprecated. //
+*Optional, deprecated.*
 
 The `legacy_type` is a transitional link back to an old name the device
 was known by.  It is used in the migration process to migrate old
@@ -29,7 +29,7 @@ for the device.  New devices should not define this.
 
 ### `products`
 
-// Optional, for future use. //
+*Optional, for future use.*
 
 A list of products that this config applies to.  Each product in the list must
 have an `id` specified, which corresponds to the productId or productKey
@@ -53,7 +53,7 @@ The configuration for entities is detailed in its own section below.
 
 ### `secondary_entities`
 
-//Optional.//
+*Optional.*
 
 This contains a list of additional Home Assistant entities
 providing additional functionality beyond the capabilities of the primary
@@ -77,7 +77,7 @@ secondary entities, so only basic functionality is implemented.
 
 ### `deprecated`
 
-//Optional//
+*Optional*
 
 This is used to mark an entity as deprecated.  This is mainly
 for older devices that were implemented when only climate devices were
@@ -88,7 +88,7 @@ The value of this should indicated what to use instead.
 
 ### `class`
 
-//Optional.//
+*Optional.*
 
 For some entity types, a device `class` can be set, for example `switch`
 entities can have a class of `outlet`.  This may slightly alter the UI
@@ -98,7 +98,7 @@ also the state that off and on values translate to in the UI.
 
 ### `category`
 
-//Optional.//
+*Optional.*
 
 This specifies the `entity category` of the entity.  Entities can be categorized
 as `config` or `diagnostic` to restrict where they appear automatically in
@@ -114,7 +114,7 @@ The configuration of DPS entries is detailed in its own section below.
 
 ### `name`
 
-//Optional.//
+*Optional.*
 
 The name associated with this entity can be set here. If no name is set,
 it will inherit the name at the top level. This is mostly useful for
@@ -124,7 +124,7 @@ name may not be sufficient to describe the function.
 
 ### `mode`
 
-//Optional.  For number entities, default="auto", for others, None
+*Optional.  For number entities, default="auto", for others, None*
 
 For number entities, this can be used to force `slider` or `box` as the
 input method.  The default `auto` uses a slider if the range is small enough,
@@ -160,7 +160,7 @@ to use a secondary entity for that.
 
 ### `readonly`
 
-//Optional.//
+*Optional.*
 
 A boolean setting to mark attributes as readonly. If not specified, the
 default is `false`.  If set to `true`, the attributes will be reported
@@ -168,7 +168,7 @@ to Home Assistant, but no functionality for setting them will be exposed.
 
 ### `mapping`
 
-//Optional.//
+*Optional.*
 This can be used to define a list of additional rules that modify the DPS
 to Home Assistant attribute mapping to something other than a one to one
 copy. 
@@ -180,7 +180,7 @@ defined in their own section below.
 
 ### `hidden`
 
-//Optional.//
+*Optional.*
 This can be used to define DPS that do not directly expose Home Assistant
 attributes.  When set to **true**, no attribute will be sent. A `name` should
 still be specified and the attribute can be referenced as a `constraint`
@@ -196,7 +196,7 @@ is set to Eco.
 
 ### `range`
 
-//Optional.//
+*Optional.*
 
 For integer attributes that are not readonly, a range can be set with `min`
 and `max` values that will limit the values that the user can enter in the
@@ -204,7 +204,7 @@ Home Assistant UI.  This can also be set in a `mapping` or `conditions` block.
 
 ### `unit`
 
-//Optional. default="C" for temperature dps on climate devices, None for sensors.//
+*Optional. default="C" for temperature dps on climate devices, None for sensors.*
 
 For temperature dps, some devices will use Fahrenhiet.  This needs to be
 indicated back to HomeAssistant by defining `unit` as "F".  For sensor 
@@ -214,10 +214,19 @@ equivalents, other units are currently ASCII so can be easily entered directly).
 
 ### `class`
 
-//Optional.  default=None.//
+*Optional.  default=None.*
 
 For sensors, this sets the state class of the sensor (measurement, total
 or total_increasing)
+
+
+### `format`
+
+*Optional. default=None*
+
+For base64 and hex types, this specifies how to decode the binary data (after hex or base64 decoding).
+This is a container field, the contents of which should be a list consisting of `name`, `bytes` and `range` fields.  `range` is as described above.  `bytes` is the number of bytes for the field, which can be `1`, `2`, or `4`.  `name` is a name for the field, which will have special handling depending on
+the device type.
 
 
 ## Mapping Rules
@@ -231,8 +240,9 @@ elements.
 
 ### `dps_val`
 
-//Optional, if not provided, the rule is a default that will apply to all
-values not covered by their own dps_val rule.//
+*Optional, if not provided, the rule is a default that will apply to all
+values not covered by their own dps_val rule.*
+
 `dps_val` defines the DPS value that each
 rule in the list applies to. This can be used to map specific values from the
 Tuya protocol into attribute values that have specific meaning in Home
@@ -245,7 +255,8 @@ instead of "mdi:radiator" when in that mode.
 
 ### `value`
 
-//Optional.//
+*Optional.*
+
 This can be used to set the attribute value seen by Home Assistant to something
 different than the DPS value from the Tuya protocol.  Normally it will be used
 with `dps_val` to map from one value to another. It could also be used at top
@@ -253,7 +264,7 @@ level to override all values, but I can't imagine a useful purpose for that.
 
 ### `scale`
 
-//Optional, default=1//
+*Optional, default=1*
 
 This can be used in an `integer` dps mapping to scale the values.  For example
 some climate devices represent the temperature as an integer in tenths of
@@ -262,9 +273,18 @@ Home Assistant.  The scale can also be the other way, for a fan with speeds
 1, 2 and 3 as DPS values, this can be converted to a percentage with a scale
 of 0.03.
 
+###`invert`
+
+*Optional, default=False*
+
+This can be used in an `integer` dps mapping to invert the range.  For example,
+some cover devices have an opposite idea of which end of the percentage scale open
+and closed are from what Home Assistant assumes.  To use this mapping option, a range
+must also be specified for the dps.
+
 ### `step`
 
-//Optional, default=1//
+*Optional, default=1*
 
 This can be used in an `integer` dps mapping to make values jump by a specific
 step.  It can also be set in a conditions block so that the steps change only
@@ -273,14 +293,16 @@ only allows settings that are divisible by 10, so a step of 10 would be set.
 
 ### `icon`
 
-//Optional.//
+*Optional.*
+
 This can be used to override the icon.  Most useful with a `dps_val` which
 indicates a change from normal operating mode, such as "fan-only",
 "defrosting", "tank-full" or some error state.
 
 ### `icon_priority`
 
-//Optional. Default 10. Lower numbers mean higher priorities.//
+*Optional. Default 10. Lower numbers mean higher priorities.*
+
 When a number of rules on different attributes define `icon` changes, you
 may need to control which have priority over the others.  For example,
 if the device is off, probably it is more important to indicate that than
@@ -294,7 +316,8 @@ icon will be displayed.
 
 ### `value_redirect`
 
-//Optional.//
+*Optional.*
+
 When `value_redirect` is set, the value of the attribute and any attempt to
 set it will be redirected to the named attribute instead of the current one.
 
@@ -307,7 +330,8 @@ Home Assistant.
 
 ### `value_mirror`
 
-//Optional.//
+*Optional.*
+
 When `value_mirror` is set, the value of the attribute will be redirected to
 the current value of the named attribute.  Unlike `value_redirect`, this does
 not redirect attempts to set the dps to the redirected dps, but when used in
@@ -320,7 +344,8 @@ have a mapping that mirrors the value of the configuration dps.
 
 ### `invalid`
 
-//Optional. Boolean, default false.//
+*Optional. Boolean, default false.*
+
 Invalid set to true allows an attribute to temporarily be set read-only in
 some conditions.  Rather than passing requests to set the attribute through
 to the Tuya protocol, attempts to set it will throw an error while it meets
@@ -333,13 +358,15 @@ control when the preset is in sleep mode (since sleep mode should force low).
 
 ### `constraint`
 
-//Optional. Always paired with `conditions`.//
+*Optional. Always paired with `conditions`.*
+
 If a rule depends on an attribute other than the current one, then `constraint`
 can be used to specify the element that `conditions` applies to.
 
 ### `conditions`
 
-//Optional. Always paired with `constraint.`//
+*Optional. Always paired with `constraint.`*
+
 Conditions defines a list of rules that are applied based on the `constraint`
 attribute. The contents are the same as Mapping Rules, but `dps_val` applies
 to the attribute specified by `constraint`. All others act on the current
@@ -427,10 +454,10 @@ Humidifer can also cover dehumidifiers (use class to specify which).
 - **brightness** (optional, number 0-255): a dps to control the dimmer if available.
 - **color_temp** (optional, number): a dps to control the color temperature if available.
     will be mapped so the minimum corresponds to 153 mireds (6500K), and max to 500 (2000K).
-- **rgbhsv** (optional, hex): a dps to control the color of the light, using 14 digit hex encoding of RGB and HSV values. 
+- **rgbhsv** (optional, hex): a dps to control the color of the light, using encoded RGB and HSV values.  The `format` field names recognized for decoding this field are `r`, `g`, `b`, `h`, `s`, `v`.
 - **color_mode** (optional, mapping of strings): a dps to control which mode to use if the light supports multiple modes.
     Special values: `white, color_temp, rgbw, hs, xy, rgb, rgbww`, others will be treated as effects,
-	Note: only white, color_temp and rgbw are currently supported.
+	Note: only white, color_temp and rgbw are currently supported, others listed above are reserved and may be implemented in future when the need arises.
 - **effect** (optional, mapping of strings): a dps to control effects / presets supported by the light.
    If the light mixes in color modes in the same dps, **color_mode** should be used instead.
 

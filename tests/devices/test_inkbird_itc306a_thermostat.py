@@ -1,8 +1,4 @@
-from homeassistant.components.binary_sensor import (
-    DEVICE_CLASS_COLD,
-    DEVICE_CLASS_HEAT,
-    DEVICE_CLASS_PROBLEM,
-)
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.climate.const import (
     CURRENT_HVAC_HEAT,
     CURRENT_HVAC_IDLE,
@@ -66,27 +62,27 @@ class TestInkbirdThermostat(
                 {
                     "name": "binary_sensor_high_temperature",
                     "dps": ALARM_HIGH_DPS,
-                    "device_class": DEVICE_CLASS_HEAT,
+                    "device_class": BinarySensorDeviceClass.HEAT,
                 },
                 {
                     "name": "binary_sensor_low_temperature",
                     "dps": ALARM_LOW_DPS,
-                    "device_class": DEVICE_CLASS_COLD,
+                    "device_class": BinarySensorDeviceClass.COLD,
                 },
                 {
                     "name": "binary_sensor_continuous_heat",
                     "dps": ALARM_TIME_DPS,
-                    "device_class": DEVICE_CLASS_PROBLEM,
+                    "device_class": BinarySensorDeviceClass.PROBLEM,
                 },
                 {
                     "name": "binary_sensor_unbalanced",
                     "dps": ALARM_DIFF_DPS,
-                    "device_class": DEVICE_CLASS_PROBLEM,
+                    "device_class": BinarySensorDeviceClass.PROBLEM,
                 },
                 {
                     "name": "binary_sensor_error",
                     "dps": ERROR_DPS,
-                    "device_class": DEVICE_CLASS_PROBLEM,
+                    "device_class": BinarySensorDeviceClass.PROBLEM,
                     "testdata": (1, 0),
                 },
             ]

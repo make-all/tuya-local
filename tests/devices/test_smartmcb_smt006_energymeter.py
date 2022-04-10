@@ -1,19 +1,11 @@
 """Tests for the SmartMCB SMT006 Energy Meter"""
-from homeassistant.components.binary_sensor import (
-    DEVICE_CLASS_BATTERY,
-    DEVICE_CLASS_HEAT,
-    DEVICE_CLASS_PLUG,
-    DEVICE_CLASS_POWER,
-    DEVICE_CLASS_PROBLEM,
-    DEVICE_CLASS_SAFETY,
-    DEVICE_CLASS_SMOKE,
-)
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.sensor import (
+    SensorDeviceClass,
     STATE_CLASS_TOTAL,
     STATE_CLASS_TOTAL_INCREASING,
 )
 from homeassistant.const import (
-    DEVICE_CLASS_ENERGY,
     ENERGY_KILO_WATT_HOUR,
 )
 
@@ -73,7 +65,7 @@ class TestSmartMcbSMT006EnergyMeter(
                 {
                     "name": "sensor_energy",
                     "dps": TOTALENERGY_DPS,
-                    "device_class": DEVICE_CLASS_ENERGY,
+                    "device_class": SensorDeviceClass.ENERGY,
                     "unit": ENERGY_KILO_WATT_HOUR,
                     "state_class": STATE_CLASS_TOTAL_INCREASING,
                     "testdata": (123456, 1234.56),
@@ -81,7 +73,7 @@ class TestSmartMcbSMT006EnergyMeter(
                 {
                     "name": "sensor_balance_energy",
                     "dps": BALANCE_DPS,
-                    "device_class": DEVICE_CLASS_ENERGY,
+                    "device_class": SensorDeviceClass.ENERGY,
                     "unit": ENERGY_KILO_WATT_HOUR,
                     "state_class": STATE_CLASS_TOTAL,
                     "testdata": (123456, 1234.56),
@@ -93,103 +85,103 @@ class TestSmartMcbSMT006EnergyMeter(
                 {
                     "name": "binary_sensor_short_circuit",
                     "dps": ERROR_DPS,
-                    "device_class": DEVICE_CLASS_PROBLEM,
+                    "device_class": BinarySensorDeviceClass.PROBLEM,
                     "testdata": (1, 0),
                 },
                 {
                     "name": "binary_sensor_surge",
                     "dps": ERROR_DPS,
-                    "device_class": DEVICE_CLASS_PROBLEM,
+                    "device_class": BinarySensorDeviceClass.PROBLEM,
                     "testdata": (2, 0),
                 },
                 {
                     "name": "binary_sensor_overload",
                     "dps": ERROR_DPS,
-                    "device_class": DEVICE_CLASS_PROBLEM,
+                    "device_class": BinarySensorDeviceClass.PROBLEM,
                     "testdata": (4, 0),
                 },
                 {
                     "name": "binary_sensor_leakage_current",
                     "dps": ERROR_DPS,
-                    "device_class": DEVICE_CLASS_SAFETY,
+                    "device_class": BinarySensorDeviceClass.SAFETY,
                     "testdata": (8, 0),
                 },
                 {
                     "name": "binary_sensor_high_temperature",
                     "dps": ERROR_DPS,
-                    "device_class": DEVICE_CLASS_HEAT,
+                    "device_class": BinarySensorDeviceClass.HEAT,
                     "testdata": (16, 0),
                 },
                 {
                     "name": "binary_sensor_fire",
                     "dps": ERROR_DPS,
-                    "device_class": DEVICE_CLASS_SMOKE,
+                    "device_class": BinarySensorDeviceClass.SMOKE,
                     "testdata": (32, 0),
                 },
                 {
                     "name": "binary_sensor_high_power",
                     "dps": ERROR_DPS,
-                    "device_class": DEVICE_CLASS_POWER,
+                    "device_class": BinarySensorDeviceClass.POWER,
                     "testdata": (64, 0),
                 },
                 {
                     "name": "binary_sensor_self_test",
                     "dps": ERROR_DPS,
-                    "device_class": DEVICE_CLASS_PROBLEM,
+                    "device_class": BinarySensorDeviceClass.PROBLEM,
                     "testdata": (128, 0),
                 },
                 {
                     "name": "binary_sensor_overcurrent",
                     "dps": ERROR_DPS,
-                    "device_class": DEVICE_CLASS_PROBLEM,
+                    "device_class": BinarySensorDeviceClass.PROBLEM,
                     "testdata": (256, 0),
                 },
                 {
                     "name": "binary_sensor_unbalanced",
                     "dps": ERROR_DPS,
-                    "device_class": DEVICE_CLASS_PROBLEM,
+                    "device_class": BinarySensorDeviceClass.PROBLEM,
                     "testdata": (512, 0),
                 },
                 {
                     "name": "binary_sensor_overvoltage",
                     "dps": ERROR_DPS,
-                    "device_class": DEVICE_CLASS_PROBLEM,
+                    "device_class": BinarySensorDeviceClass.PROBLEM,
                     "testdata": (1024, 0),
                 },
                 {
                     "name": "binary_sensor_undervoltage",
                     "dps": ERROR_DPS,
-                    "device_class": DEVICE_CLASS_PROBLEM,
+                    "device_class": BinarySensorDeviceClass.PROBLEM,
                     "testdata": (2048, 0),
                 },
                 {
                     "name": "binary_sensor_phase_fault",
                     "dps": ERROR_DPS,
-                    "device_class": DEVICE_CLASS_PROBLEM,
+                    "device_class": BinarySensorDeviceClass.PROBLEM,
                     "testdata": (4096, 0),
                 },
                 {
                     "name": "binary_sensor_outage",
                     "dps": ERROR_DPS,
-                    "device_class": DEVICE_CLASS_POWER,
+                    "device_class": BinarySensorDeviceClass.POWER,
                     "testdata": (0, 8192),
                 },
                 {
                     "name": "binary_sensor_magnetism",
                     "dps": ERROR_DPS,
-                    "device_class": DEVICE_CLASS_PROBLEM,
+                    "device_class": BinarySensorDeviceClass.PROBLEM,
                     "testdata": (16384, 0),
                 },
                 {
                     "name": "binary_sensor_low_credit",
                     "dps": ERROR_DPS,
-                    "device_class": DEVICE_CLASS_BATTERY,
+                    "device_class": BinarySensorDeviceClass.BATTERY,
                     "testdata": (32768, 0),
                 },
                 {
                     "name": "binary_sensor_credit",
                     "dps": ERROR_DPS,
-                    "device_class": DEVICE_CLASS_PLUG,
+                    "device_class": BinarySensorDeviceClass.PLUG,
                     "testdata": (0, 65536),
                     "unit": ENERGY_KILO_WATT_HOUR,
                 },

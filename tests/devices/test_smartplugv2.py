@@ -1,9 +1,7 @@
 """Tests for the switch entity."""
-from homeassistant.components.switch import DEVICE_CLASS_OUTLET
+from homeassistant.components.sensor import SensorDeviceClass
+from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (
-    DEVICE_CLASS_CURRENT,
-    DEVICE_CLASS_POWER,
-    DEVICE_CLASS_VOLTAGE,
     ELECTRIC_CURRENT_MILLIAMPERE,
     ELECTRIC_POTENTIAL_VOLT,
     POWER_WATT,
@@ -45,7 +43,7 @@ class TestSwitchV2(
                     "name": "sensor_voltage",
                     "dps": VOLTAGE_DPS,
                     "unit": ELECTRIC_POTENTIAL_VOLT,
-                    "device_class": DEVICE_CLASS_VOLTAGE,
+                    "device_class": SensorDeviceClass.VOLTAGE,
                     "state_class": "measurement",
                     "testdata": (2300, 230.0),
                 },
@@ -53,14 +51,14 @@ class TestSwitchV2(
                     "name": "sensor_current",
                     "dps": CURRENT_DPS,
                     "unit": ELECTRIC_CURRENT_MILLIAMPERE,
-                    "device_class": DEVICE_CLASS_CURRENT,
+                    "device_class": SensorDeviceClass.CURRENT,
                     "state_class": "measurement",
                 },
                 {
                     "name": "sensor_power",
                     "dps": POWER_DPS,
                     "unit": POWER_WATT,
-                    "device_class": DEVICE_CLASS_POWER,
+                    "device_class": SensorDeviceClass.POWER,
                     "state_class": "measurement",
                     "testdata": (1234, 123.4),
                 },
@@ -76,7 +74,7 @@ class TestSwitchV2(
         )
 
     def test_device_class_is_outlet(self):
-        self.assertEqual(self.subject.device_class, DEVICE_CLASS_OUTLET)
+        self.assertEqual(self.subject.device_class, SwitchDeviceClass.OUTLET)
 
     def test_current_power_w(self):
         self.dps[POWER_DPS] = 1234

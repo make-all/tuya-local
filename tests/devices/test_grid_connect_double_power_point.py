@@ -1,10 +1,7 @@
 """Tests for the switch entity."""
-from homeassistant.components.switch import DEVICE_CLASS_OUTLET
+from homeassistant.components.sensor import SensorDeviceClass
+from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (
-    DEVICE_CLASS_CURRENT,
-    DEVICE_CLASS_ENERGY,
-    DEVICE_CLASS_POWER,
-    DEVICE_CLASS_VOLTAGE,
     ELECTRIC_CURRENT_MILLIAMPERE,
     ELECTRIC_POTENTIAL_VOLT,
     ENERGY_WATT_HOUR,
@@ -71,17 +68,17 @@ class TestGridConnectDoubleSwitch(
                 {
                     "name": "switch_outlet_1",
                     "dps": SWITCH1_DPS,
-                    "device_class": DEVICE_CLASS_OUTLET,
+                    "device_class": SwitchDeviceClass.OUTLET,
                 },
                 {
                     "name": "switch_outlet_2",
                     "dps": SWITCH2_DPS,
-                    "device_class": DEVICE_CLASS_OUTLET,
+                    "device_class": SwitchDeviceClass.OUTLET,
                 },
                 {
                     "name": "switch_master",
                     "dps": MASTER_DPS,
-                    "device_class": DEVICE_CLASS_OUTLET,
+                    "device_class": SwitchDeviceClass.OUTLET,
                     "power_dps": POWER_DPS,
                     "power_scale": 10,
                 },
@@ -92,21 +89,21 @@ class TestGridConnectDoubleSwitch(
                 {
                     "name": "sensor_energy",
                     "dps": ENERGY_DPS,
-                    "device_class": DEVICE_CLASS_ENERGY,
+                    "device_class": SensorDeviceClass.ENERGY,
                     "unit": ENERGY_WATT_HOUR,
                     "state_class": "total_increasing",
                 },
                 {
                     "name": "sensor_current",
                     "dps": CURRENT_DPS,
-                    "device_class": DEVICE_CLASS_CURRENT,
+                    "device_class": SensorDeviceClass.CURRENT,
                     "unit": ELECTRIC_CURRENT_MILLIAMPERE,
                     "state_class": "measurement",
                 },
                 {
                     "name": "sensor_power",
                     "dps": POWER_DPS,
-                    "device_class": DEVICE_CLASS_POWER,
+                    "device_class": SensorDeviceClass.POWER,
                     "unit": POWER_WATT,
                     "state_class": "measurement",
                     "testdata": (1234, 123.4),
@@ -114,7 +111,7 @@ class TestGridConnectDoubleSwitch(
                 {
                     "name": "sensor_voltage",
                     "dps": VOLTAGE_DPS,
-                    "device_class": DEVICE_CLASS_VOLTAGE,
+                    "device_class": SensorDeviceClass.VOLTAGE,
                     "unit": ELECTRIC_POTENTIAL_VOLT,
                     "state_class": "measurement",
                     "testdata": (2345, 234.5),

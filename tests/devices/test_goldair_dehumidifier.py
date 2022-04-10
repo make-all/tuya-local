@@ -1,9 +1,6 @@
 from unittest.mock import ANY
 
-from homeassistant.components.binary_sensor import (
-    DEVICE_CLASS_COLD,
-    DEVICE_CLASS_PROBLEM,
-)
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.climate.const import (
     FAN_HIGH,
     FAN_LOW,
@@ -14,9 +11,8 @@ from homeassistant.components.climate.const import (
     SUPPORT_TARGET_HUMIDITY,
 )
 from homeassistant.components.light import COLOR_MODE_ONOFF
+from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
-    DEVICE_CLASS_HUMIDITY,
-    DEVICE_CLASS_TEMPERATURE,
     STATE_UNAVAILABLE,
     TEMP_CELSIUS,
     TIME_HOURS,
@@ -87,14 +83,14 @@ class TestGoldairDehumidifier(
                     "name": "sensor_current_temperature",
                     "dps": CURRENTTEMP_DPS,
                     "unit": TEMP_CELSIUS,
-                    "device_class": DEVICE_CLASS_TEMPERATURE,
+                    "device_class": SensorDeviceClass.TEMPERATURE,
                     "state_class": "measurement",
                 },
                 {
                     "name": "sensor_current_humidity",
                     "dps": CURRENTHUMID_DPS,
                     "unit": "%",
-                    "device_class": DEVICE_CLASS_HUMIDITY,
+                    "device_class": SensorDeviceClass.HUMIDITY,
                     "state_class": "measurement",
                 },
             ]
@@ -104,13 +100,13 @@ class TestGoldairDehumidifier(
                 {
                     "name": "binary_sensor_tank",
                     "dps": ERROR_DPS,
-                    "device_class": DEVICE_CLASS_PROBLEM,
+                    "device_class": BinarySensorDeviceClass.PROBLEM,
                     "testdata": (8, 0),
                 },
                 {
                     "name": "binary_sensor_defrost",
                     "dps": DEFROST_DPS,
-                    "device_class": DEVICE_CLASS_COLD,
+                    "device_class": BinarySensorDeviceClass.COLD,
                 },
             ]
         )

@@ -7,8 +7,8 @@ from homeassistant.components.climate.const import (
     SUPPORT_PRESET_MODE,
     SUPPORT_TARGET_TEMPERATURE,
 )
+from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
-    DEVICE_CLASS_POWER_FACTOR,
     PERCENTAGE,
     STATE_UNAVAILABLE,
     TEMP_CELSIUS,
@@ -54,7 +54,7 @@ class TestFullInverterHeatpump(
             POWERLEVEL_DPS,
             self.entities.get("sensor_power_level"),
             unit=PERCENTAGE,
-            device_class=DEVICE_CLASS_POWER_FACTOR,
+            device_class=SensorDeviceClass.POWER_FACTOR,
             state_class="measurement",
         )
         self.mark_secondary(["sensor_power_level"])
@@ -159,7 +159,6 @@ class TestFullInverterHeatpump(
         self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_OFF)
 
     def test_extra_state_attributes(self):
-        self.dps[POWERLEVEL_DPS] = 50
         self.dps[UNKNOWN107_DPS] = 1
         self.dps[UNKNOWN108_DPS] = 2
         self.dps[UNKNOWN115_DPS] = 3
@@ -167,7 +166,6 @@ class TestFullInverterHeatpump(
         self.assertDictEqual(
             self.subject.extra_state_attributes,
             {
-                "power_level": 50,
                 "unknown_107": 1,
                 "unknown_108": 2,
                 "unknown_115": 3,

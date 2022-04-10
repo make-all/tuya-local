@@ -3,11 +3,7 @@ Platform to control Tuya switches.
 Initially based on the Kogan Switch and secondary switch for Purline M100
 heater open window detector toggle.
 """
-from homeassistant.components.switch import SwitchEntity
-from homeassistant.components.switch import (
-    DEVICE_CLASS_OUTLET,
-    DEVICE_CLASS_SWITCH,
-)
+from homeassistant.components.switch import SwitchEntity, SwitchDeviceClass
 
 from homeassistant.const import STATE_UNAVAILABLE
 
@@ -34,9 +30,9 @@ class TuyaLocalSwitch(TuyaLocalEntity, SwitchEntity):
     def device_class(self):
         """Return the class of this device"""
         return (
-            DEVICE_CLASS_OUTLET
+            SwitchDeviceClass.OUTLET
             if self._config.device_class == "outlet"
-            else DEVICE_CLASS_SWITCH
+            else SwitchDeviceClass.SWITCH
         )
 
     @property

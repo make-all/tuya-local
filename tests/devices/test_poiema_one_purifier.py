@@ -1,7 +1,7 @@
 from homeassistant.components.fan import SUPPORT_PRESET_MODE, SUPPORT_SET_SPEED
+from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
-    DEVICE_CLASS_PM25,
     TIME_MINUTES,
 )
 
@@ -56,7 +56,7 @@ class TestPoeimaOnePurifier(
                 {
                     "dps": PM25_DPS,
                     "name": "sensor_pm2_5",
-                    "device_class": DEVICE_CLASS_PM25,
+                    "device_class": SensorDeviceClass.PM25,
                     "state_class": "measurement",
                     "unit": CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
                 },

@@ -1,4 +1,5 @@
 # Mixins for testing sensor entities
+from homeassistant.components.sensor import SensorDeviceClass
 
 
 class BasicSensorTests:
@@ -15,7 +16,11 @@ class BasicSensorTests:
         self.basicSensorDps = dps
         self.basicSensorUnit = unit
         self.basicSensorStateClass = state_class
-        self.basicSensorDeviceClass = device_class
+        try:
+            self.basicSensorDeviceClass = SensorDeviceClass(device_class)
+        except ValueError:
+            self.basicSensorDeviceClass = None
+
         self.basicSensorTestData = testdata
 
     def test_basic_sensor_units(self):
@@ -52,7 +57,13 @@ class MultiSensorTests:
             self.multiSensorDps[name] = s.get("dps")
             self.multiSensorUnit[name] = s.get("unit")
             self.multiSensorStateClass[name] = s.get("state_class")
-            self.multiSensorDevClass[name] = s.get("device_class")
+            try:
+                self.multiSensorDevClass[name] = SensorDeviceClass(
+                    s.get("device_class")
+                )
+            except ValueError:
+                self.multiSensorDevClass[name] = None
+
             self.multiSensorTestData[name] = s.get("testdata", (30, 30))
 
     def test_multi_sensor_units(self):

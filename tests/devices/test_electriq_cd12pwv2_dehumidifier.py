@@ -1,6 +1,6 @@
 from homeassistant.components.humidifier import SUPPORT_MODES
+from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
-    DEVICE_CLASS_HUMIDITY,
     PERCENTAGE,
 )
 
@@ -46,7 +46,7 @@ class TestElectriqCD12PWV2Dehumidifier(
             CURRENTHUMID_DPS,
             self.entities.get("sensor_current_humidity"),
             unit=PERCENTAGE,
-            device_class=DEVICE_CLASS_HUMIDITY,
+            device_class=SensorDeviceClass.HUMIDITY,
             state_class="measurement",
         )
         self.setUpBasicSwitch(

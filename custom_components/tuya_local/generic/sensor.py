@@ -2,14 +2,17 @@
 Platform to read Tuya sensors.
 """
 from homeassistant.components.sensor import (
-    DEVICE_CLASSES,
+    SensorDeviceClass,
     SensorEntity,
     STATE_CLASSES,
 )
+import logging
 
 from ..device import TuyaLocalDevice
 from ..helpers.device_config import TuyaEntityConfig
 from ..helpers.mixin import TuyaLocalEntity, unit_from_ascii
+
+_LOGGER = logging.getLogger(__name__)
 
 
 class TuyaLocalSensor(TuyaLocalEntity, SensorEntity):
@@ -34,9 +37,11 @@ class TuyaLocalSensor(TuyaLocalEntity, SensorEntity):
     def device_class(self):
         """Return the class of this device"""
         dclass = self._config.device_class
-        if dclass in DEVICE_CLASSES:
-            return dclass
-        else:
+        try:
+            return SensorDeviceClass(dclass)
+        except ValueError:
+            if dclass:
+                _LOGGER.warning(f"Unrecognized sensor device class of {dclass} ignored")
             return None
 
     @property

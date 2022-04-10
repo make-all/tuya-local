@@ -1,0 +1,264 @@
+name: StarLight Heatpump
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: power
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+          icon: "mdi:hvac-off"
+          icon_priority: 1
+      hidden: true
+    - id: 2
+      name: temperature
+      type: integer
+      range:
+        min: 160
+        max: 310
+      mapping:
+        - scale: 10
+          step: 5
+          constraint: hvac_mode
+          conditions:
+            - dps_val: wet
+              invalid: true
+            - dps_val: wind
+              invalid: true
+    - id: 3
+      name: current_temperature
+      type: integer
+    - id: 4
+      name: hvac_mode
+      type: string
+      mapping:
+        - dps_val: auto
+          icon: "mdi:hvac"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: heat_cool
+        - dps_val: cold
+          icon: "mdi:snowflake"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: cool
+        - dps_val: hot
+          icon: "mdi:fire"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: heat
+        - dps_val: wind
+          icon: "mdi:fan"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+              value: "off"
+            - dps_val: true
+              value: fan_only
+        - dps_val: wet
+          icon: "mdi:water"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: dry
+    - id: 5
+      name: fan_mode
+      type: string
+      mapping:
+        - dps_val: auto
+          value: Auto
+        - dps_val: mute
+          value: Mute
+        - dps_val: low
+          value: Low
+        - dps_val: mid_low
+          value: Med-Low
+        - dps_val: mid
+          value: Medium
+        - dps_val: mid_high
+          value: Med-High
+        - dps_val: high
+          value: High
+        - dps_val: strong
+          value: Strong
+    - id: 18
+      name: unknown_18
+      type: integer
+    - id: 20
+      name: unknown_20
+      type: integer
+    - id: 105
+      name: sleep_mode
+      type: string
+    - id: 110
+      name: unknown_110
+      type: integer
+    - id: 113
+      name: swing_mode
+      type: string
+      mapping:
+        - dps_val: "0"
+          constraint: horizontal_swing
+          conditions:
+            - dps_val: "0"
+              value: "off"
+            - dps_val: "1"
+              value: horizontal
+            - value: horizontal
+        - dps_val: "1"
+          constraint: horizontal_swing
+          conditions:
+            - dps_val: "0"
+              value: vertical
+            - dps_val: "1"
+              value: both
+            - value: both
+        - dps_val: "2"
+          constraint: horizontal_swing
+          conditions:
+            - dps_val: "0"
+              value: vertical
+            - value: both
+        - dps_val: "3"
+          constraint: horizontal_swing
+          conditions:
+            - dps_val: "0"
+              value: vertical
+            - value: both
+    - id: 114
+      name: horizontal_swing
+      type: string
+      hidden: true
+    - id: 119
+      name: unknown_119
+      type: string
+    - id: 120
+      name: unknown_120
+      type: string
+    - id: 123
+      name: unknown_123
+      type: string
+    - id: 126
+      name: vertical_flow_position
+      type: string
+    - id: 127
+      name: horizontal_flow_position
+      type: string
+    - id: 128
+      name: unknown_128
+      type: string
+    - id: 129
+      name: unknown_129
+      type: string
+    - id: 130
+      name: maybe_eco_temp
+      type: integer
+    - id: 131
+      name: unknown_131
+      type: boolean
+    - id: 132
+      name: unknown_132
+      type: boolean
+    - id: 133
+      name: unknown_133
+      type: string
+    - id: 134
+      name: unknown_134
+      type: json
+secondary_entities:
+  - entity: select
+    name: Vertical Swing
+    category: config
+    icon: "mdi:arrow-up-down-bold"
+    dps:
+      - id: 113
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: Full
+          - dps_val: "2"
+            value: Upper
+          - dps_val: "3"
+            value: Lower
+  - entity: select
+    name: Vertical Position
+    category: config
+    icon: "mdi:unfold-more-horizontal"
+    dps:
+      - id: 126
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Unknown
+          - dps_val: "1"
+            value: Top
+          - dps_val: "2"
+            value: Slightly Up
+          - dps_val: "3"
+            value: Middle
+          - dps_val: "4"
+            value: Slightly Down
+          - dps_val: "5"
+            value: Bottom
+  - entity: select
+    name: Horizontal Swing
+    category: config
+    icon: "mdi:arrow-left-right-bold"
+    dps:
+      - id: 114
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: Full
+          - dps_val: "2"
+            value: Left
+          - dps_val: "3"
+            value: Center
+          - dps_val: "4"
+            value: Right
+  - entity: select
+    name: Horizontal Position
+    category: config
+    icon: "mdi:unfold-more-vertical"
+    dps:
+      - id: 127
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Unknown
+          - dps_val: "1"
+            value: Leftmost
+          - dps_val: "2"
+            value: Slight Left
+          - dps_val: "3"
+            value: Center
+          - dps_val: "4"
+            value: Slight Right
+          - dps_val: "5"
+            value: Rightmost
