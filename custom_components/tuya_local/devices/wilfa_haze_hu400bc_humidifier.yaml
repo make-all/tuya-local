@@ -19,29 +19,45 @@ primary_entity:
       range:
         min: 30
         max: 90
-    - id: 23
-      type: string
-      name: intensity
       mapping:
-        - dps_val: ONE
-          value: level_0
-        - dps_val: TWO
-          value: level_1
-        - dps_val: THREE
-          value: level_2
-        - dps_val: FOUR
-          value: level_3
-        - dps_val: FIVE
-          value: level_4
+        - constraint: mode
+          conditions:
+            - dps_val: auto
+              invalid: true
     - id: 24
       type: string
       name: mode
       mapping:
-        - dps_val: AUTO
-          value: auto
-        - dps_val: MANUAL
-          value: humidity
+        - dps_val: auto
+          value: AUTO
+        - dps_val: humidity
+          value: MANUAL
+    - id: 20
+      type: integer
+      name: unknown_20
+    - id: 22
+      type: integer
+      name: unknown_22
 secondary_entities:
+  - entity: fan
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 23
+        type: string
+        name: speed
+        mapping:
+          - dps_val: ONE
+            value: 20
+          - dps_val: TWO
+            value: 40
+          - dps_val: THREE
+            value: 60
+          - dps_val: FOUR
+            value: 80
+          - dps_val: FIVE
+            value: 100
   - entity: light
     name: Mood
     category: config
@@ -50,10 +66,10 @@ secondary_entities:
         type: boolean
         name: switch
         mapping:
-            - dps_val: true
-              icon: "mdi:led-on"
-            - dps_val: false
-              icon: "mdi:led-off"
+          - dps_val: true
+            icon: "mdi:led-on"
+          - dps_val: false
+            icon: "mdi:led-off"
   - entity: switch
     name: Sound
     category: config
@@ -62,40 +78,49 @@ secondary_entities:
         name: "switch"
         type: boolean
         mapping:
-            - dps_val: true
-              icon: "mdi:volume-high"
-            - dps_val: false
-              icon: "mdi:volume-off"
+          - dps_val: true
+            icon: "mdi:volume-high"
+          - dps_val: false
+            icon: "mdi:volume-off"
   - entity: sensor
     name: Current Temperature
     class: temperature
     dps:
       - id: 10
         name: sensor
-        type: integer 
+        type: integer
         class: measurement
-        unit: "°C/°F"
+      - id: 18
+        name: unit
+        type: string
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
   - entity: sensor
     name: Current Humidity
     class: humidity
     dps:
       - id: 14
         name: sensor
-        type: integer 
+        type: integer
         class: measurement
         unit: "%"
   - entity: light
-    name: Sleep
+    name: Display
     category: config
     dps:
       - id: 16
         type: boolean
         name: switch
         mapping:
-            - dps_val: true
-              icon: "mdi:led-off"
-            - dps_val: false
-              icon: "mdi:led-on"
+          - dps_val: true
+            value: false
+            icon: "mdi:led-off"
+          - dps_val: false
+            value: true
+            icon: "mdi:led-on"
   - entity: select
     category: config
     name: Temperature Unit
@@ -144,34 +169,10 @@ secondary_entities:
             value: "11 hours"
           - dps_val: "12"
             value: "12 hours"
-  - entity: binary_sensor
-    name: Diag20
-    class: problem
-    category: diagnostic
-    dps:
-      - id: 20
-        name: sensor
-        type: bitfield
-        mapping:
-          - dps_val: 0
-            value: false
-          - value: true
-  - entity: binary_sensor
-    name: Diag22
-    class: problem
-    category: diagnostic
-    dps:
-      - id: 22
-        name: sensor
-        type: bitfield
-        mapping:
-          - dps_val: 0
-            value: false
-          - value: true
   - entity: switch
-    name: Heater
+    name: Air Clean
     category: config
-    icon: "mdi:fire"
+    icon: "mdi:air-purifier"
     dps:
       - id: 26
         name: switch

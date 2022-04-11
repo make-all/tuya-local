@@ -62,7 +62,9 @@ def test_config_and_options_match(translations):
 def subtest_entity_covered(entity):
     strings = get_english()
     TestCase().assertIn(
-        entity.config_id, strings, f"{entity.config_id} is missing a translation"
+        entity.config_id,
+        strings,
+        f"{entity._device.config}: {entity.config_id} is missing a translation",
     )
 
 
