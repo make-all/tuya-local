@@ -21,7 +21,7 @@ primary_entity:
         max: 90
       mapping:
         - step: 5
-        - constraint: mode
+          constraint: mode
           conditions:
             - dps_val: AUTO
               invalid: true
@@ -32,7 +32,7 @@ primary_entity:
         - dps_val: AUTO
           value: auto
         - dps_val: MANUAL
-          value: humidity
+          value: normal
     - id: 20
       type: integer
       name: unknown_20
@@ -191,3 +191,16 @@ secondary_entities:
       - id: 35
         name: switch
         type: boolean
+  - entity: binary_sensor
+    class: problem
+    name: Tank
+    category: diagnostic
+    icon: "mdi:cup-outline"
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false

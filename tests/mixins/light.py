@@ -26,10 +26,10 @@ class BasicLightTests:
     def test_basic_light_color_mode(self):
         self.assertEqual(self.basicLight.color_mode, COLOR_MODE_ONOFF)
 
-    def test_light_has_no_brightness(self):
+    def test_basic_light_has_no_brightness(self):
         self.assertIsNone(self.basicLight.brightness)
 
-    def test_light_has_no_effects(self):
+    def test_basic_light_has_no_effects(self):
         self.assertIsNone(self.basicLight.effect_list)
         self.assertIsNone(self.basicLight.effect)
 
@@ -69,6 +69,98 @@ class BasicLightTests:
 
     def test_basic_light_state_attributes(self):
         self.assertEqual(self.basicLight.extra_state_attributes, {})
+
+
+class MultiLightTests:
+    def setUpMultiLights(self, lights):
+        self.multiLight = {}
+        self.multiLightDps = {}
+        self.multiLightOn = {}
+        self.multiLightOff = {}
+        for l in lights:
+            name = l["name"]
+            subject = self.entities.get(name)
+            testdata = l.get("testdata", (True, False))
+            if subject is None:
+                raise AttributeError(f"No light for {name} found.")
+            self.multiLight[name] = subject
+            self.multiLightDps[name] = l.get("dps")
+            self.multiLightOn[name] = testdata[0]
+            self.multiLightOff[name] = testdata[1]
+
+    def test_multi_light_supported_features(self):
+        for light in self.multiLight.values():
+            self.assertEqual(light.supported_features, 0)
+
+    def test_multi_light_supported_color_modes(self):
+        for light in self.multiLight.values():
+            self.assertCountEqual(
+                light.supported_color_modes,
+                [COLOR_MODE_ONOFF],
+            )
+
+    def test_multi_light_color_mode(self):
+        for light in self.multiLight.values():
+            self.assertEqual(light.color_mode, COLOR_MODE_ONOFF)
+
+    def test_multi_lights_have_no_brightness(self):
+        for light in self.multiLight.values():
+            self.assertIsNone(light.brightness)
+
+    def test_multi_lights_have_no_effects(self):
+        for light in self.multiLight.values():
+            self.assertIsNone(light.effect_list)
+            self.assertIsNone(light.effect)
+
+    def test_multi_light_is_on(self):
+        for key, light in self.multiLight.items():
+            with self.subTest(key):
+                dp_id = self.multiLightDps[key]
+                self.dps[dp_id] = self.multiLightOn[key]
+                self.assertTrue(light.is_on)
+                self.dps[dp_id] = self.multiLightOff[key]
+                self.assertFalse(light.is_on)
+
+    async def test_multi_light_turn_on(self):
+        for key, light in self.multiLight.items():
+            with self.subTest(key):
+                async with assert_device_properties_set(
+                    light._device, {self.multiLightDps[key]: self.multiLightOn[key]}
+                ):
+                    await light.async_turn_on()
+
+    async def test_multi_light_turn_off(self):
+        for key, light in self.multiLight.items():
+            with self.subTest(key):
+                async with assert_device_properties_set(
+                    light._device,
+                    {self.multiLightDps[key]: self.multiLightOff[key]},
+                ):
+                    await light.async_turn_off()
+
+    async def test_multi_light_toggle_turns_on_when_it_was_off(self):
+        for key, light in self.multiLight.items():
+            with self.subTest(key):
+                self.dps[self.multiLightDps[key]] = self.multiLightOff[key]
+                async with assert_device_properties_set(
+                    light._device,
+                    {self.multiLightDps[key]: self.multiLightOn[key]},
+                ):
+                    await light.async_toggle()
+
+    async def test_multi_light_toggle_turns_off_when_it_was_on(self):
+        for key, light in self.multiLight.items():
+            with self.subTest(key):
+                self.dps[self.multiLightDps[key]] = self.multiLightOn[key]
+                async with assert_device_properties_set(
+                    light._device,
+                    {self.multiLightDps[key]: self.multiLightOff[key]},
+                ):
+                    await light.async_toggle()
+
+    def test_multi_light_state_attributes(self):
+        for light in self.multiLight.values():
+            self.assertEqual(light.extra_state_attributes, {})
 
 
 class DimmableLightTests:

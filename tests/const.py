@@ -181,7 +181,7 @@ MADIMACK_HEATPUMP_PAYLOAD = {
     "105": "warm",
     "106": 30,
     "107": 18,
-    "108": 40,
+    "108": 45,
     "115": 4,
     "116": 0,
     "117": True,
@@ -1162,4 +1162,22 @@ STARLIGHT_HEATPUMP_PAYLOAD = {
     "132": False,
     "133": "0",
     "134": '{"t":8601,"s":false,"clr":true}',
+}
+
+WILFA_HAZE_HUMIDIFIER_PAYLOAD = {
+    "1": True,
+    "5": False,
+    "8": False,
+    "10": 20,
+    "13": 70,
+    "14": 55,
+    "16": False,
+    "18": "c",
+    "19": "cancel",
+    "20": 0,
+    "22": 0,
+    "23": "level_3",
+    "24": "MANUAL",
+    "26": False,
+    "35": False,
 }
