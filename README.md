@@ -62,7 +62,7 @@ the device will not work despite being listed below.
 
 - Garden PAC pool heatpump (also works with Summerwave Si Series)
 - Madimack Elite V3 pool heatpump
-- Madimack(model unknown) pool heatpump
+- Madimack(model unknown) pool heatpump (seems to match Fairland IPH45 as well)
 - Remora pool heatpump
 - BWT FI 45 heatpump
 - Poolex Silverline and Vertigo heatpump
@@ -120,6 +120,7 @@ the device will not work despite being listed below.
 ### Humidifiers
 - Eanons QT-JS2014 Purifying humidifier
 - Wetair WAW-H1210LW humidifier
+- Wilfa Haze HU400BC humidifier
 
 ### Kitchen Appliances
 - Kogan Glass 1.7L Smart Kettle (not reliably detected)

@@ -26,10 +26,6 @@ primary_entity:
           value: F
         - dps_val: true
           value: C
-    - id: 104
-      name: power_level
-      type: integer
-      readonly: true
     - id: 105
       name: hvac_action
       type: string
@@ -57,10 +53,10 @@ primary_entity:
         max: 45
     - id: 107
       type: integer
-      name: unknown_107
+      name: min_temperature
     - id: 108
       type: integer
-      name: unknown_108
+      name: max_temperature
     - id: 115
       type: integer
       name: unknown_115
@@ -78,29 +74,8 @@ primary_entity:
     - id: 118
       name: unknown_118
       type: boolean
-    - id: 120
-      name: unknown_120
-      type: integer
-    - id: 122
-      name: unknown_122
-      type: integer
-    - id: 124
-      name: unknown_124
-      type: integer
-    - id: 125
-      name: unknown_125
-      type: integer
     - id: 126
       name: unknown_126
-      type: integer
-    - id: 127
-      name: unknown_127
-      type: integer
-    - id: 128
-      name: unknown_128
-      type: integer
-    - id: 129
-      name: unknown_129
       type: integer
     - id: 130
       name: unknown_130
@@ -132,3 +107,90 @@ secondary_entities:
         name: sensor
         unit: "%"
         readonly: true
+  - entity: sensor
+    category: diagnostic
+    class: temperature
+    name: Evaporator Coil Pipe Temperature
+    dps:
+      - id: 120
+        type: integer
+        name: sensor
+      - id: 103
+        name: unit
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: F
+          - dps_val: true
+            value: C
+  - entity: sensor
+    category: diagnostic
+    class: temperature
+    name: Exhaust Gas Temperature
+    dps:
+      - id: 122
+        type: integer
+        name: sensor
+      - id: 103
+        name: unit
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: F
+          - dps_val: true
+            value: C
+  - entity: sensor
+    category: diagnostic
+    class: temperature
+    name: Ambient Temperature
+    dps:
+      - id: 124
+        type: integer
+        name: sensor
+      - id: 103
+        name: unit
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: F
+          - dps_val: true
+            value: C
+  - entity: sensor
+    category: diagnostic
+    name: Compressor Speed
+    class: power_factor
+    dps:
+      - id: 125
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    category: diagnostic
+    class: temperature
+    name: Cooling Plate Temperature
+    dps:
+      - id: 127
+        type: integer
+        name: sensor
+      - id: 103
+        name: unit
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: F
+          - dps_val: true
+            value: C
+  - entity: sensor
+    category: diagnostic
+    name: EEV Opening
+    dps:
+      - id: 128
+        name: sensor
+        type: integer
+  - entity: sensor
+    category: diagnostic
+    name: Fan Speed
+    dps:
+      - id: 129
+        name: sensor
+        type: integer

@@ -18,7 +18,7 @@ from homeassistant.const import (
 from ..const import MADIMACK_HEATPUMP_PAYLOAD
 from ..helpers import assert_device_properties_set
 from ..mixins.climate import TargetTemperatureTests
-from ..mixins.sensor import BasicSensorTests
+from ..mixins.sensor import MultiSensorTests
 from .base_device_tests import TuyaDeviceTestCase
 
 HVACMODE_DPS = "1"
@@ -27,19 +27,19 @@ UNITS_DPS = "103"
 POWERLEVEL_DPS = "104"
 OPMODE_DPS = "105"
 TEMPERATURE_DPS = "106"
-UNKNOWN107_DPS = "107"
-UNKNOWN108_DPS = "108"
+MINTEMP_DPS = "107"
+MAXTEMP_DPS = "108"
 UNKNOWN115_DPS = "115"
 UNKNOWN116_DPS = "116"
 UNKNOWN118_DPS = "118"
-UNKNOWN120_DPS = "120"
-UNKNOWN122_DPS = "122"
-UNKNOWN124_DPS = "124"
-UNKNOWN125_DPS = "125"
+COIL_DPS = "120"
+EXHAUST_DPS = "122"
+AMBIENT_DPS = "124"
+COMPRESSOR_DPS = "125"
 UNKNOWN126_DPS = "126"
-UNKNOWN127_DPS = "127"
-UNKNOWN128_DPS = "128"
-UNKNOWN129_DPS = "129"
+COOLINGPLATE_DPS = "127"
+EEV_DPS = "128"
+FANSPEED_DPS = "129"
 UNKNOWN130_DPS = "130"
 UNKNOWN134_DPS = "134"
 UNKNOWN135_DPS = "135"
@@ -50,7 +50,7 @@ PRESET_DPS = "117"
 
 
 class TestMadimackPoolHeatpump(
-    BasicSensorTests,
+    MultiSensorTests,
     TargetTemperatureTests,
     TuyaDeviceTestCase,
 ):
@@ -65,13 +65,66 @@ class TestMadimackPoolHeatpump(
             min=18,
             max=45,
         )
-        self.setUpBasicSensor(
-            POWERLEVEL_DPS,
-            self.entities.get("sensor_power_level"),
-            device_class=SensorDeviceClass.POWER_FACTOR,
-            unit=PERCENTAGE,
+        self.setUpMultiSensors(
+            [
+                {
+                    "dps": POWERLEVEL_DPS,
+                    "name": "sensor_power_level",
+                    "device_class": SensorDeviceClass.POWER_FACTOR,
+                    "unit": PERCENTAGE,
+                },
+                {
+                    "dps": COIL_DPS,
+                    "name": "sensor_evaporator_coil_pipe_temperature",
+                    "device_class": SensorDeviceClass.TEMPERATURE,
+                    "unit": TEMP_CELSIUS,
+                },
+                {
+                    "dps": EXHAUST_DPS,
+                    "name": "sensor_exhaust_gas_temperature",
+                    "device_class": SensorDeviceClass.TEMPERATURE,
+                    "unit": TEMP_CELSIUS,
+                },
+                {
+                    "dps": AMBIENT_DPS,
+                    "name": "sensor_ambient_temperature",
+                    "device_class": SensorDeviceClass.TEMPERATURE,
+                    "unit": TEMP_CELSIUS,
+                },
+                {
+                    "dps": COMPRESSOR_DPS,
+                    "name": "sensor_compressor_speed",
+                    "device_class": SensorDeviceClass.POWER_FACTOR,
+                    "unit": PERCENTAGE,
+                },
+                {
+                    "dps": COOLINGPLATE_DPS,
+                    "name": "sensor_cooling_plate_temperature",
+                    "device_class": SensorDeviceClass.TEMPERATURE,
+                    "unit": TEMP_CELSIUS,
+                },
+                {
+                    "dps": EEV_DPS,
+                    "name": "sensor_eev_opening",
+                },
+                {
+                    "dps": FANSPEED_DPS,
+                    "name": "sensor_fan_speed",
+                },
+            ]
         )
-        self.mark_secondary(["sensor_power_level"])
+        self.mark_secondary(
+            [
+                "sensor_power_level",
+                "sensor_ambient_temperature",
+                "sensor_compressor_speed",
+                "sensor_cooling_plate_temperature",
+                "sensor_evaporator_coil_pipe_temperature",
+                "sensor_eev_opening",
+                "sensor_exhaust_gas_temperature",
+                "sensor_fan_speed",
+            ]
+        )
 
     def test_supported_features(self):
         self.assertEqual(
@@ -94,10 +147,12 @@ class TestMadimackPoolHeatpump(
 
     def test_minimum_fahrenheit_temperature(self):
         self.dps[UNITS_DPS] = False
+        self.dps[MINTEMP_DPS] = 60
         self.assertEqual(self.subject.min_temp, 60)
 
     def test_maximum_fahrenheit_temperature(self):
         self.dps[UNITS_DPS] = False
+        self.dps[MAXTEMP_DPS] = 115
         self.assertEqual(self.subject.max_temp, 115)
 
     def test_current_temperature(self):
@@ -166,20 +221,10 @@ class TestMadimackPoolHeatpump(
         self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_OFF)
 
     def test_extra_state_attributes(self):
-        self.dps[POWERLEVEL_DPS] = 50
-        self.dps[UNKNOWN107_DPS] = 1
-        self.dps[UNKNOWN108_DPS] = 2
         self.dps[UNKNOWN115_DPS] = 3
         self.dps[UNKNOWN116_DPS] = 4
         self.dps[UNKNOWN118_DPS] = 5
-        self.dps[UNKNOWN120_DPS] = 6
-        self.dps[UNKNOWN122_DPS] = 7
-        self.dps[UNKNOWN124_DPS] = 8
-        self.dps[UNKNOWN125_DPS] = 9
         self.dps[UNKNOWN126_DPS] = 10
-        self.dps[UNKNOWN127_DPS] = 11
-        self.dps[UNKNOWN128_DPS] = 12
-        self.dps[UNKNOWN129_DPS] = 13
         self.dps[UNKNOWN130_DPS] = True
         self.dps[UNKNOWN134_DPS] = False
         self.dps[UNKNOWN135_DPS] = True
@@ -189,20 +234,10 @@ class TestMadimackPoolHeatpump(
         self.assertDictEqual(
             self.subject.extra_state_attributes,
             {
-                "power_level": 50,
-                "unknown_107": 1,
-                "unknown_108": 2,
                 "unknown_115": 3,
                 "unknown_116": 4,
                 "unknown_118": 5,
-                "unknown_120": 6,
-                "unknown_122": 7,
-                "unknown_124": 8,
-                "unknown_125": 9,
                 "unknown_126": 10,
-                "unknown_127": 11,
-                "unknown_128": 12,
-                "unknown_129": 13,
                 "unknown_130": True,
                 "unknown_134": False,
                 "unknown_135": True,
