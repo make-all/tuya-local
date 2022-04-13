@@ -27,8 +27,8 @@ UNITS_DPS = "103"
 POWERLEVEL_DPS = "104"
 OPMODE_DPS = "105"
 TEMPERATURE_DPS = "106"
-UNKNOWN107_DPS = "107"
-UNKNOWN108_DPS = "108"
+MINTEMP_DPS = "107"
+MAXTEMP_DPS = "108"
 UNKNOWN115_DPS = "115"
 UNKNOWN116_DPS = "116"
 PRESET_DPS = "117"
@@ -80,10 +80,12 @@ class TestGardenPACPoolHeatpump(
 
     def test_minimum_fahrenheit_temperature(self):
         self.dps[UNITS_DPS] = False
+        self.dps[MINTEMP_DPS] = 60
         self.assertEqual(self.subject.min_temp, 60)
 
     def test_maximum_fahrenheit_temperature(self):
         self.dps[UNITS_DPS] = False
+        self.dps[MAXTEMP_DPS] = 115
         self.assertEqual(self.subject.max_temp, 115)
 
     def test_current_temperature(self):
@@ -153,16 +155,12 @@ class TestGardenPACPoolHeatpump(
 
     def test_extra_state_attributes(self):
         self.dps[POWERLEVEL_DPS] = 50
-        self.dps[UNKNOWN107_DPS] = 1
-        self.dps[UNKNOWN108_DPS] = 2
         self.dps[UNKNOWN115_DPS] = 3
         self.dps[UNKNOWN116_DPS] = 4
         self.assertDictEqual(
             self.subject.extra_state_attributes,
             {
                 "power_level": 50,
-                "unknown_107": 1,
-                "unknown_108": 2,
                 "unknown_115": 3,
                 "unknown_116": 4,
             },
