@@ -176,20 +176,20 @@ class TestWilfaHazeHumidifier(
         )
 
     def test_mode(self):
-        self.dps[PRESET_DPS] = "AUTO"
+        self.dps[PRESET_DPS] = "auto"
         self.assertEqual(self.subject.mode, MODE_AUTO)
-        self.dps[PRESET_DPS] = "MANUAL"
+        self.dps[PRESET_DPS] = "humidity"
         self.assertEqual(self.subject.mode, MODE_NORMAL)
 
     async def test_set_mode_to_auto(self):
         async with assert_device_properties_set(
-            self.subject._device, {PRESET_DPS: "AUTO"}
+            self.subject._device, {PRESET_DPS: "auto"}
         ):
             await self.subject.async_set_mode(MODE_AUTO)
 
     async def test_set_mode_to_normal(self):
         async with assert_device_properties_set(
-            self.subject._device, {PRESET_DPS: "MANUAL"}
+            self.subject._device, {PRESET_DPS: "humidity"}
         ):
             await self.subject.async_set_mode(MODE_NORMAL)
 

@@ -1177,7 +1177,7 @@ WILFA_HAZE_HUMIDIFIER_PAYLOAD = {
     "20": 0,
     "22": 0,
     "23": "level_3",
-    "24": "MANUAL",
+    "24": "humidity",
     "26": False,
     "35": False,
 }
