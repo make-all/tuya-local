@@ -1181,3 +1181,11 @@ WILFA_HAZE_HUMIDIFIER_PAYLOAD = {
     "26": False,
     "35": False,
 }
+
+WEAU_POOL_HEATPUMP_PAYLOAD = {
+    "1": True,
+    "2": 33,
+    "3": 195,
+    "4": "auto",
+    "6": 0,
+}

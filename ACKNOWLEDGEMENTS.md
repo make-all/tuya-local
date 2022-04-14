@@ -86,3 +86,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [gschmidl](https://github.com/gschmidl) for assistance with Himox H05 purifier.
 - [daitj](https://github.com/daitj) for contributing support for Wilfa Haze humidifier.
 - [Utopia69](https://github.com/Utopia69) for providing additional info on his Fairland IPH45 heatpump (matching Madimack)
+- [Seopgroenten](https://github.com/Soepgronten) for assistance with W'eau pool heatpumps.
