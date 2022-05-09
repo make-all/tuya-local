@@ -157,6 +157,7 @@ Other brands may work with the above configurations
 - Simple Garage Door
 - Simple Blind Controller
 - Kogan Garage Door with tilt sensor
+- QS-WIFI-C01(BK) Curtain Module
 
 ### Vacuum Cleaners
 - Lefant M213 Vacuum Cleaner
