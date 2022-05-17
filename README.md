@@ -170,7 +170,7 @@ Other brands may work with the above configurations
 
 ## Installation
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg?style=for-the-badge)](https://github.com/custom-components/hacs)
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg?style=for-the-badge)](https://github.com/hacs/integration)
 
 Installation is via the [Home Assistant Community Store
 (HACS)](https://hacs.xyz/), which is the best place to get third-party
