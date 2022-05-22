@@ -1,0 +1,121 @@
+name: Devola Patio Heater
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+          icon: "mdi:fire-off"
+        - dps_val: true
+          value: heat
+          icon: "mdi:fire"
+    - id: 2
+      type: integer
+      name: temperature
+      range:
+        min: 5
+        max: 45
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: temp_f
+              range:
+                min: 44
+                max: 99
+    - id: 3
+      type: integer
+      name: current_temperature
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: current_temp_f
+    - id: 6
+      type: boolean
+      name: preset_mode
+      mapping:
+        - dps_val: true
+          value: Eco
+        - dps_val: false
+          value: Normal
+    - id: 14
+      type: string
+      name: hvac_action
+      mapping:
+        - dps_val: heating
+          value: heating
+        - dps_val: warming
+          value: idle
+    - id: 19
+      type: string
+      name: temperature_unit
+      mapping:
+        - dps_val: c
+          value: C
+        - dps_val: f
+          value: F
+    - id: 20
+      type: integer
+      name: temp_f
+      range:
+        min: 44
+        max: 99
+      hidden: true
+    - id: 21
+      type: integer
+      name: current_temp_f
+      hidden: true
+secondary_entities:
+  - entity: lock
+    name: Child Lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+        mapping:
+          - dps_val: true
+            icon: "mdi:hand-back-right-off"
+          - dps_val: false
+            icon: "mdi:hand-back-right"
+  - entity: sensor
+    name: Power Level
+    category: diagnostic
+    class: power_factor
+    dps:
+      - id: 5
+        type: string
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: "1"
+            value: 25
+          - dps_val: "2"
+            value: 50
+          - dps_val: "3"
+            value: 75
+          - dps_val: "4"
+            value: 100
+  - entity: sensor
+    name: Mode
+    category: diagnostic
+    dps:
+      - id: 4
+        type: string
+        name: sensor
+  - entity: number
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 12
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 1440
+        unit: min

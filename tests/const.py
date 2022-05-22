@@ -1189,3 +1189,26 @@ WEAU_POOL_HEATPUMP_PAYLOAD = {
     "4": "auto",
     "6": 0,
 }
+
+SMARTPLUG_ENCODED_PAYLOAD = {
+    "1": True,
+    "11": 0,
+    "101": "QVA=",
+    "102": "QVA=",
+    "103": "QVA=",
+}
+
+DEVOLA_PATIO_HEATER_PAYLOAD = {
+    "1": True,
+    "2": 20,
+    "3": 15,
+    "4": "smart",
+    "5": "4",
+    "6": False,
+    "7": False,
+    "12": 0,
+    "14": "heating",
+    "19": "c",
+    "20": 68,
+    "21": 59,  
+}
