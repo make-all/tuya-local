@@ -112,8 +112,10 @@ class TestPoolexSilverlineHeatpump(
         self.assertEqual(self.subject.preset_mode, "Cool")
 
         self.dps[PRESET_DPS] = "BoostHeat"
-        self.assertEqual(self.subject.preset_mode, "BoostHeat")
+        self.assertEqual(self.subject.preset_mode, "Boost Heat")
 
+        self.dps[PRESET_DPS] = "SilentHeat"
+        self.assertEqual(self.subject.preset_mode, "Silent Heat")
         self.dps[PRESET_DPS] = "Auto"
         self.assertEqual(self.subject.preset_mode, "Auto")
 
@@ -127,7 +129,8 @@ class TestPoolexSilverlineHeatpump(
                 "Auto",
                 "Heat",
                 "Cool",
-                "BoostHeat",
+                "Boost Heat",
+                "Silent Heat",
             ],
         )
 
@@ -150,7 +153,7 @@ class TestPoolexSilverlineHeatpump(
             self.subject._device,
             {PRESET_DPS: "BoostHeat"},
         ):
-            await self.subject.async_set_preset_mode("BoostHeat")
+            await self.subject.async_set_preset_mode("Boost Heat")
 
     async def test_set_preset_mode_to_auto(self):
         async with assert_device_properties_set(
