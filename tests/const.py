@@ -1212,3 +1212,10 @@ DEVOLA_PATIO_HEATER_PAYLOAD = {
     "20": 68,
     "21": 59,
 }
+
+QS_C01_CURTAIN_PAYLOAD = {
+    "1": "stop",
+    "2": 0,
+    "8": "forward",
+    "10": 20,
+}
