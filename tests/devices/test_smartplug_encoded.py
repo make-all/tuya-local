@@ -16,9 +16,7 @@ UNKNOWN102_DPS = "102"
 UNKNOWN103_DPS = "103"
 
 
-class TestSwitchEncoded(
-    BasicNumberTests, SwitchableTests, TuyaDeviceTestCase
-):
+class TestSwitchEncoded(BasicNumberTests, SwitchableTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
