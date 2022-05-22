@@ -1210,5 +1210,5 @@ DEVOLA_PATIO_HEATER_PAYLOAD = {
     "14": "heating",
     "19": "c",
     "20": 68,
-    "21": 59,  
+    "21": 59,
 }
