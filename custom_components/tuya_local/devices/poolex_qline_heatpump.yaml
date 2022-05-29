@@ -11,27 +11,30 @@ primary_entity:
           icon: "mdi:hvac-off"
           icon_priority: 1
         - dps_val: true
-          value: "heat"
-          icon: "mdi:hot-tub"
-          icon_priority: 3
+          constraint: heating_mode
+          conditions:
+            - dps_val: cold
+              value: cool
+            - dps_val: heating
+              value: heat
     - id: 2
-      name: preset_mode
+      name: heating_mode
+      hidden: true
       type: string
+      icon_priority: 3
       mapping:
-        - dps_val: "cold"
-          value: "Cool"
-        - dps_val: "heating"
-          value: "Heat"
-        - dps_val: "mute"
-          value: "Silent Heat"
+        - dps_val: heating
+          icon: "mdi:hot-tub"
+        - dps_val: cold
+          icon: "mdi:snowflake"
     - id: 4
       name: temperature
       type: integer
       range:
-        min: 15
+        min: 8
         max: 40
     - id: 15
-      type: integer
+      type: bitfield
       name: error
       mapping:
         - dps_val: 0
