@@ -31,8 +31,15 @@ primary_entity:
       type: string
       readonly: true
       mapping:
-        - dps_val: "warm"
-          constraint: hvac_mode
+        - dps_val: heating
+          value: heating
+        - dps_val: "1"
+          value: heating
+        - dps_val: cooling
+          value: cooling
+        - dps_val: "2"
+          value: cooling
+        - constraint: hvac_mode
           conditions:
             - dps_val: false
               value: "off"
