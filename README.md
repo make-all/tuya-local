@@ -45,6 +45,7 @@ the device will not work despite being listed below.
 - Nedis convection heater - WIFIHTPL20F models
 - Ecostrad Accent iQ heating panels
 - Ecostrad iQ Ceramic radiators
+- Devola Patio heater
 
 ### Air Conditioners / Heatpumps
 
@@ -65,7 +66,7 @@ the device will not work despite being listed below.
 - Madimack(model unknown) pool heatpump (seems to match Fairland IPH45 as well)
 - Remora pool heatpump
 - BWT FI 45 heatpump
-- Poolex Silverline and Vertigo heatpump
+- Poolex Silverline, Q-line and Vertigo heatpumps
 - IPS Pro Pool-Systems Heatpump (seems to match Fairland Inver-X as well)
 - W'eau Pool Heatpump
 
@@ -140,6 +141,8 @@ the device will not work despite being listed below.
   _confirmed working with Kogan single smartplug with USB and Rillpac smartplugs_
 - Generic Smartplug with more advanced energy monitoring
   _confirmed working with CBE smartplugs_
+- Generic Smartplug with some additional encoded schedule info.
+  _confirmed working as a simple switch and timer with Kashimura KJ-173_
 - Mirabella Genio Smart plug with USB
 - Grid Connect double outlet with Energy Monitoring, Master and Individual switches and Child Lock.
 - DIGOO DG-SP202 dual smartplug with energy monitoring and timers.

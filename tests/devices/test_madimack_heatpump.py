@@ -1,3 +1,4 @@
+from homeassistant.components.binary_sensor import DEVICE_CLASS_PROBLEM
 from homeassistant.components.climate.const import (
     CURRENT_HVAC_HEAT,
     CURRENT_HVAC_IDLE,
@@ -17,6 +18,7 @@ from homeassistant.const import (
 
 from ..const import MADIMACK_HEATPUMP_PAYLOAD
 from ..helpers import assert_device_properties_set
+from ..mixins.binary_sensor import BasicBinarySensorTests
 from ..mixins.climate import TargetTemperatureTests
 from ..mixins.sensor import MultiSensorTests
 from .base_device_tests import TuyaDeviceTestCase
@@ -29,7 +31,7 @@ OPMODE_DPS = "105"
 TEMPERATURE_DPS = "106"
 MINTEMP_DPS = "107"
 MAXTEMP_DPS = "108"
-UNKNOWN115_DPS = "115"
+ERROR_DPS = "115"
 UNKNOWN116_DPS = "116"
 UNKNOWN118_DPS = "118"
 COIL_DPS = "120"
@@ -50,6 +52,7 @@ PRESET_DPS = "117"
 
 
 class TestMadimackPoolHeatpump(
+    BasicBinarySensorTests,
     MultiSensorTests,
     TargetTemperatureTests,
     TuyaDeviceTestCase,
@@ -64,6 +67,12 @@ class TestMadimackPoolHeatpump(
             self.subject,
             min=18,
             max=45,
+        )
+        self.setUpBasicBinarySensor(
+            ERROR_DPS,
+            self.entities.get("binary_sensor_water_flow"),
+            device_class=DEVICE_CLASS_PROBLEM,
+            testdata=(4, 0),
         )
         self.setUpMultiSensors(
             [
@@ -123,6 +132,7 @@ class TestMadimackPoolHeatpump(
                 "sensor_eev_opening",
                 "sensor_exhaust_gas_temperature",
                 "sensor_fan_speed",
+                "binary_sensor_water_flow",
             ]
         )
 
@@ -221,7 +231,7 @@ class TestMadimackPoolHeatpump(
         self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_OFF)
 
     def test_extra_state_attributes(self):
-        self.dps[UNKNOWN115_DPS] = 3
+        self.dps[ERROR_DPS] = 4
         self.dps[UNKNOWN116_DPS] = 4
         self.dps[UNKNOWN118_DPS] = 5
         self.dps[UNKNOWN126_DPS] = 10
@@ -234,7 +244,7 @@ class TestMadimackPoolHeatpump(
         self.assertDictEqual(
             self.subject.extra_state_attributes,
             {
-                "unknown_115": 3,
+                "error": "Water Flow Protection",
                 "unknown_116": 4,
                 "unknown_118": 5,
                 "unknown_126": 10,
