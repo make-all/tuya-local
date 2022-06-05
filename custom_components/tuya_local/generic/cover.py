@@ -31,6 +31,7 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
         """
         dps_map = self._init_begin(device, config)
         self._position_dps = dps_map.pop("position", None)
+        self._currentpos_dps = dps_map.pop("current_position", None)
         self._control_dps = dps_map.pop("control", None)
         self._action_dps = dps_map.pop("action", None)
         self._open_dps = dps_map.pop("open", None)
@@ -68,6 +69,8 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
     @property
     def current_cover_position(self):
         """Return current position of cover."""
+        if self._currentpos_dps:
+            return self._currentpos_dps.get_value(self._device)
         if self._position_dps:
             return self._position_dps.get_value(self._device)
 

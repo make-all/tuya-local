@@ -1220,3 +1220,13 @@ QS_C01_CURTAIN_PAYLOAD = {
     "8": "forward",
     "10": 20,
 }
+
+M027_CURTAIN_PAYLOAD = {
+    "1": "stop",
+    "2": 0,
+    "3": 0,
+    "4": "morning",
+    "7": "opening",
+    "9": 0,
+    "10": 20000,
+}

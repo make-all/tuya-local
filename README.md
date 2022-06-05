@@ -161,6 +161,7 @@ Other brands may work with the above configurations
 - Simple Blind Controller
 - Kogan Garage Door with tilt sensor
 - QS-WIFI-C01(BK) Curtain Module
+- M027 Curtain Module (sold under several brands, including zemismart, meterk and others)
 
 ### Vacuum Cleaners
 - Lefant M213 Vacuum Cleaner
