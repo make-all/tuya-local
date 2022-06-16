@@ -639,7 +639,7 @@ FERSK_VIND2_PAYLOAD = {
 KOGAN_GLASS_1_7L_KETTLE_PAYLOAD = {
     "1": False,
     "5": 99,
-    "102": "90",
+    #    "102": "90",
 }
 
 RENPHO_PURIFIER_PAYLOAD = {

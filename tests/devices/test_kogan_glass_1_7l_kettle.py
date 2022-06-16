@@ -11,7 +11,7 @@ from .base_device_tests import TuyaDeviceTestCase
 
 HVACMODE_DPS = "1"
 CURRENTTEMP_DPS = "5"
-PRESET_DPS = "102"
+# PRESET_DPS = "102"
 
 
 class TestKoganGlass1_7LKettle(TuyaDeviceTestCase):
@@ -25,10 +25,7 @@ class TestKoganGlass1_7LKettle(TuyaDeviceTestCase):
         self.subject = self.entities.get("climate")
 
     def test_supported_features(self):
-        self.assertEqual(
-            self.subject.supported_features,
-            SUPPORT_PRESET_MODE,
-        )
+        self.assertEqual(self.subject.supported_features, 0)  # SUPPORT_PRESET_MODE,
 
     def test_icon(self):
         self.dps[HVACMODE_DPS] = True
@@ -66,64 +63,64 @@ class TestKoganGlass1_7LKettle(TuyaDeviceTestCase):
         ):
             await self.subject.async_set_hvac_mode(HVAC_MODE_OFF)
 
-    def test_preset_modes(self):
-        self.assertCountEqual(
-            self.subject.preset_modes,
-            ["40", "50", "60", "80", "90", "Current Temp"],
-        )
+    # def test_preset_modes(self):
+    #     self.assertCountEqual(
+    #         self.subject.preset_modes,
+    #         ["40", "50", "60", "80", "90", "Current Temp"],
+    #     )
 
-    def test_preset_mode(self):
-        self.dps[PRESET_DPS] = "40"
-        self.assertEqual(self.subject.preset_mode, "40")
-        self.dps[PRESET_DPS] = "50"
-        self.assertEqual(self.subject.preset_mode, "50")
-        self.dps[PRESET_DPS] = "60"
-        self.assertEqual(self.subject.preset_mode, "60")
-        self.dps[PRESET_DPS] = "80"
-        self.assertEqual(self.subject.preset_mode, "80")
-        self.dps[PRESET_DPS] = "90"
-        self.assertEqual(self.subject.preset_mode, "90")
-        self.dps[PRESET_DPS] = "currenttemp"
-        self.assertEqual(self.subject.preset_mode, "Current Temp")
+    # def test_preset_mode(self):
+    #     self.dps[PRESET_DPS] = "40"
+    #     self.assertEqual(self.subject.preset_mode, "40")
+    #     self.dps[PRESET_DPS] = "50"
+    #     self.assertEqual(self.subject.preset_mode, "50")
+    #     self.dps[PRESET_DPS] = "60"
+    #     self.assertEqual(self.subject.preset_mode, "60")
+    #     self.dps[PRESET_DPS] = "80"
+    #     self.assertEqual(self.subject.preset_mode, "80")
+    #     self.dps[PRESET_DPS] = "90"
+    #     self.assertEqual(self.subject.preset_mode, "90")
+    #     self.dps[PRESET_DPS] = "currenttemp"
+    #     self.assertEqual(self.subject.preset_mode, "Current Temp")
 
-    async def test_set_preset_to_40(self):
-        async with assert_device_properties_set(
-            self.subject._device,
-            {PRESET_DPS: "40"},
-        ):
-            await self.subject.async_set_preset_mode("40")
+    # async def test_set_preset_to_40(self):
+    #     async with assert_device_properties_set(
+    #         self.subject._device,
+    #         {PRESET_DPS: "40"},
+    #     ):
+    #         await self.subject.async_set_preset_mode("40")
 
-    async def test_set_preset_to_50(self):
-        async with assert_device_properties_set(
-            self.subject._device,
-            {PRESET_DPS: "50"},
-        ):
-            await self.subject.async_set_preset_mode("50")
+    # async def test_set_preset_to_50(self):
+    #     async with assert_device_properties_set(
+    #         self.subject._device,
+    #         {PRESET_DPS: "50"},
+    #     ):
+    #         await self.subject.async_set_preset_mode("50")
 
-    async def test_set_preset_to_60(self):
-        async with assert_device_properties_set(
-            self.subject._device,
-            {PRESET_DPS: "60"},
-        ):
-            await self.subject.async_set_preset_mode("60")
+    # async def test_set_preset_to_60(self):
+    #     async with assert_device_properties_set(
+    #         self.subject._device,
+    #         {PRESET_DPS: "60"},
+    #     ):
+    #         await self.subject.async_set_preset_mode("60")
 
-    async def test_set_preset_to_80(self):
-        async with assert_device_properties_set(
-            self.subject._device,
-            {PRESET_DPS: "80"},
-        ):
-            await self.subject.async_set_preset_mode("80")
+    # async def test_set_preset_to_80(self):
+    #     async with assert_device_properties_set(
+    #         self.subject._device,
+    #         {PRESET_DPS: "80"},
+    #     ):
+    #         await self.subject.async_set_preset_mode("80")
 
-    async def test_set_preset_to_90(self):
-        async with assert_device_properties_set(
-            self.subject._device,
-            {PRESET_DPS: "90"},
-        ):
-            await self.subject.async_set_preset_mode("90")
+    # async def test_set_preset_to_90(self):
+    #     async with assert_device_properties_set(
+    #         self.subject._device,
+    #         {PRESET_DPS: "90"},
+    #     ):
+    #         await self.subject.async_set_preset_mode("90")
 
-    async def test_set_preset_to_currenttemp(self):
-        async with assert_device_properties_set(
-            self.subject._device,
-            {PRESET_DPS: "currenttemp"},
-        ):
-            await self.subject.async_set_preset_mode("Current Temp")
+    # async def test_set_preset_to_currenttemp(self):
+    #     async with assert_device_properties_set(
+    #         self.subject._device,
+    #         {PRESET_DPS: "currenttemp"},
+    #     ):
+    #         await self.subject.async_set_preset_mode("Current Temp")
