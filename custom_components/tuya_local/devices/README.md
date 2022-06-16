@@ -77,14 +77,16 @@ secondary entities, so only basic functionality is implemented.
 
 ### `deprecated`
 
-*Optional*
+*Optional, deprecated*
 
 This is used to mark an entity as deprecated.  This is mainly
 for older devices that were implemented when only climate devices were
 supported, but are better represented in HA as fan or humidifier devices.
+This option will be removed in a future release, so do not use it in new
+devices.
 An entity should be moved to `secondary_entities` before being marked as
 deprecated, and the preferred device type moved to the `primary_entity`.
-The value of this should indicated what to use instead.
+The value of this should indicate what to use instead.
 
 ### `class`
 

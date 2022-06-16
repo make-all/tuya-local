@@ -71,7 +71,9 @@ def subtest_entity_covered(entity):
 @pytest.mark.parametrize("device", get_devices())
 def test_device_covered(device):
     entity = device.primary_entity
-    subtest_entity_covered(entity)
+    if entity.deprecated:
+        subtest_entity_covered(entity)
 
     for entity in device.secondary_entities():
-        subtest_entity_covered(entity)
+        if entity.deprecated:
+            subtest_entity_covered(entity)

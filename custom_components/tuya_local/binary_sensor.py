@@ -24,20 +24,24 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
     if cfg is None:
         raise ValueError(f"No device config found for {discovery_info}")
     ecfg = cfg.primary_entity
-    if ecfg.entity == "binary_sensor" and discovery_info.get(ecfg.config_id, False):
+    if ecfg.entity == "binary_sensor" and (
+        discovery_info.get(ecfg.config_id, False) or not ecfg.deprecated
+    ):
         data[ecfg.config_id] = TuyaLocalBinarySensor(device, ecfg)
         sensors.append(data[ecfg.config_id])
         if ecfg.deprecated:
             _LOGGER.warning(ecfg.deprecation_message)
-        _LOGGER.debug(f"Adding binary_sensor for {discovery_info[ecfg.config_id]}")
+        _LOGGER.debug(f"Adding binary_sensor for {ecfg.config_id}")
 
     for ecfg in cfg.secondary_entities():
-        if ecfg.entity == "binary_sensor" and discovery_info.get(ecfg.config_id, False):
+        if ecfg.entity == "binary_sensor" and (
+            discovery_info.get(ecfg.config_id, False) or not ecfg.deprecated
+        ):
             data[ecfg.config_id] = TuyaLocalBinarySensor(device, ecfg)
             sensors.append(data[ecfg.config_id])
             if ecfg.deprecated:
                 _LOGGER.warning(ecfg.deprecation_message)
-            _LOGGER.debug(f"Adding binary_sensor for {discovery_info[ecfg.config_id]}")
+            _LOGGER.debug(f"Adding binary_sensor for {ecfg.config_id}")
     if not sensors:
         raise ValueError(
             f"{device.name} does not support use as a binary_sensor device."

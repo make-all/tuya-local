@@ -240,17 +240,14 @@ it up again.
 
 ### Stage Three
 
-The final stage is to choose a name for the device in Home Assistant,
-and select which entities you want to enable.  The options availble
-will depend on the capabilities of the device you selected in the
-previous step.
+The final stage is to choose a name for the device in Home Assistant.
 
-Usually you will want to accept the defaults at this step.  Entities
-are selected by default, unless they are a deprecated alternative way
-of controlling the device (such as a climate entity for dehumidifiers
-as an alternative to humidifier and fan entities).  If you have
-multiple devices of the same type, you may want to change the name to
-make it easier to distinguish them.
+If you have multiple devices of the same type, you may want to change
+the name to make it easier to distinguish them.
+
+Besides the name, usually you will want to accept the defaults at this
+step, as any checkboxes are for backwards compatibility deprecated entities
+that will be removed in future, alternatives should be available.
 
 #### name
 
@@ -262,11 +259,16 @@ the entities.
 
 #### (entities)
 
-&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ A number of options
-will be available for each of the entities exposed by the device.
+&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Additional options
+may be available for deprecated entities exposed by the device.
 They will be named for the platform type and an optional name for
 the entity as a suffix (eg `climate`, `humidifier`, `lock_child_lock`)
 Setting them to True will expose the entity in Home Assistant.
+
+It is strongly recommended that you do not enable deprecated entities when
+setting up a new device.  They are only retained for users who set up the
+device before support was added for the actual entity matching the device,
+or when a function was misunderstood, and will not be retained forever.
 
 ## Offline operation gotchas
 

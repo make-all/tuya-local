@@ -24,7 +24,9 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
     if cfg is None:
         raise ValueError(f"No device config found for {discovery_info}")
     ecfg = cfg.primary_entity
-    if ecfg.entity == "select" and discovery_info.get(ecfg.config_id, False):
+    if ecfg.entity == "select" and (
+        discovery_info.get(ecfg.config_id, False) or not ecfg.deprecated
+    ):
         data[ecfg.config_id] = TuyaLocalSelect(device, ecfg)
         selects.append(data[ecfg.config_id])
         if ecfg.deprecated:
@@ -32,7 +34,9 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
         _LOGGER.debug(f"Adding select for {discovery_info[ecfg.config_id]}")
 
     for ecfg in cfg.secondary_entities():
-        if ecfg.entity == "select" and discovery_info.get(ecfg.config_id, False):
+        if ecfg.entity == "select" and (
+            discovery_info.get(ecfg.config_id, False) or not ecfg.deprecated
+        ):
             data[ecfg.config_id] = TuyaLocalSelect(device, ecfg)
             selects.append(data[ecfg.config_id])
             if ecfg.deprecated:
