@@ -76,7 +76,6 @@ primary_entity:
     - id: 107
       name: temperature_unit
       type: boolean
-      hidden: true
       mapping:
         - dps_val: false
           value: C
@@ -151,11 +150,10 @@ secondary_entities:
       - id: 107
         name: unit
         type: boolean
-        hidden: true
         mapping:
           - dps_val: false
             value: C
-            dps_val: true
+          - dps_val: true
             value: F
   - entity: sensor
     name: Floor Temperature
@@ -172,11 +170,10 @@ secondary_entities:
       - id: 107
         name: unit
         type: boolean
-        hidden: true
         mapping:
           - dps_val: false
             value: C
-            dps_val: true
+          - dps_val: true
             value: F
   - entity: sensor
     name: Energy
@@ -222,14 +219,20 @@ secondary_entities:
         mapping:
           - scale: 10
             step: 5
+            constraint: unit
+            conditions:
+              - dps_val: true
+                step: 30
+                range:
+                  min: 120
+                  max: 750
       - id: 107
         name: unit
         type: boolean
-        hidden: true
         mapping:
           - dps_val: false
             value: C
-            dps_val: true
+          - dps_val: true
             value: F
   - entity: select
     category: config
