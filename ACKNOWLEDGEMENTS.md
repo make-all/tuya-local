@@ -91,4 +91,6 @@ Further device support has been made with the assistance of users.  Please consi
 - [Swiftnesses](https://github.com/Swiftnesses) for assistance with Devola patio heaters.
 - [odeBuXTeR](https://github.com/odeBuXTeR) for contributing support for Poolex Q-line pool heatpumps.
 - [peterforeman](https:github.com/peterforeman) for assistance with improving Fairland/Madimack support.
-- [Krispkiwi](https://github.com/Krispkiwi) for assistance with M027 curtain modules.
+- [Krispkiwi](https://github.com/Krispkiwi) for assistance with M027 curtain modules and debugging Kogan Kettle.
+- [craibo](https://github.com/craibo) for contributing support for Jiahong ET-72W thermostats.
+- [x-keita](https://github.com/x-keita) for contributing support for Betterlife BL1500 IR heaters.

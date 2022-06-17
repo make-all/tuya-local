@@ -46,6 +46,7 @@ the device will not work despite being listed below.
 - Ecostrad Accent iQ heating panels
 - Ecostrad iQ Ceramic radiators
 - Devola Patio heater
+- Betterlife BT1500 IR heater
 
 ### Air Conditioners / Heatpumps
 
@@ -91,6 +92,7 @@ the device will not work despite being listed below.
 - Beok TR9B thermostat _(rebadged as Vancoo and perhaps others)_
 - Hysen HY08WE-2 thermostat
 - Nashone MTS-700-WB thermostat smartplug
+- Jiahong ET-72W thermostat
 
 ### Fans
 - Goldair GCPF315 fan
