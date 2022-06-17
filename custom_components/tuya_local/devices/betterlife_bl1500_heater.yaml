@@ -24,7 +24,10 @@ primary_entity:
         - constraint: preset_mode
           conditions:
             - dps_val: "2"
-              invalid: true
+              value: 20
+              range:
+                min: 20
+                max: 20
     - id: 4
       type: string
       name: preset_mode
