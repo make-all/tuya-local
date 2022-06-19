@@ -1254,7 +1254,7 @@ JIAHONG_ET72W_PAYLOAD = {
 BETTERLIFE_BL1500_PAYLOAD = {
     "1": True,
     "2": 20,
-    "4": "comfort",
+    "4": "0",
     "7": False,
     "11": "0",
     "12": 0,
