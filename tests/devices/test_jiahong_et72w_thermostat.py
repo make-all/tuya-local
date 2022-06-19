@@ -173,6 +173,20 @@ class TestJiahongEt72wThermostat(
         self.dps[CURRENTTEMP_DPS] = 385
         self.assertEqual(self.subject.current_temperature, 38.5)
 
+    def test_farenheit(self):
+        self.dps[UNIT_DPS] = True
+        # these seem suspicious, but are the values provided by the device
+        # owner in the config.  Basically in C they translate to:
+        # Setting    C            F
+        # min temp   5           12F = -11C
+        # max temp  40           75F = 24C
+        # temp step  0.5          3F = 2C
+        # It seems more likely that it should be 40 - 100 with step 1
+        # (or in the config, 400 - 1000, step 10, scale 10)
+        self.assertEqual(self.subject.min_temp, 12.0)
+        self.assertEqual(self.subject.max_temp, 75.0)
+        self.assertEqual(self.subject.target_temperature_step, 3.0)
+
     def test_hvac_mode(self):
         self.dps[POWER_DPS] = False
         self.dps[HVACMODE_DPS] = "Smart"
