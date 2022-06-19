@@ -1,14 +1,11 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.climate.const import (
-    HVAC_MODE_AUTO,
-    HVAC_MODE_HEAT,
-    HVAC_MODE_OFF,
-    SUPPORT_TARGET_TEMPERATURE,
+    ClimateEntityFeature,
+    HVACMode,
 )
-from homeassistant.const import STATE_UNAVAILABLE, TEMP_CELSIUS, TEMP_FAHRENHEIT
+from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT
 
 from ..const import BEOK_TR9B_PAYLOAD
-from ..helpers import assert_device_properties_set
 from ..mixins.climate import TargetTemperatureTests
 from ..mixins.binary_sensor import MultiBinarySensorTests
 from ..mixins.lock import BasicLockTests
@@ -138,7 +135,7 @@ class TestBeokTR9BThermostat(
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_TARGET_TEMPERATURE,
+            ClimateEntityFeature.TARGET_TEMPERATURE,
         )
 
     def test_temperature_unit(self):
@@ -163,24 +160,21 @@ class TestBeokTR9BThermostat(
     def test_hvac_mode(self):
         self.dps[POWER_DPS] = False
         self.dps[HVACMODE_DPS] = "auto"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_OFF)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.OFF)
 
         self.dps[POWER_DPS] = True
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_AUTO)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.AUTO)
 
         self.dps[HVACMODE_DPS] = "manual"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT)
-
-        self.dps[HVACMODE_DPS] = None
-        self.assertEqual(self.subject.hvac_mode, STATE_UNAVAILABLE)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT)
 
     def test_hvac_modes(self):
         self.assertCountEqual(
             self.subject.hvac_modes,
             [
-                HVAC_MODE_HEAT,
-                HVAC_MODE_AUTO,
-                HVAC_MODE_OFF,
+                HVACMode.HEAT,
+                HVACMode.AUTO,
+                HVACMode.OFF,
             ],
         )
 

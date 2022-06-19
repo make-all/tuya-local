@@ -1,17 +1,10 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.climate.const import (
-    HVAC_MODE_HEAT,
-    HVAC_MODE_OFF,
-    SUPPORT_PRESET_MODE,
-    SUPPORT_SWING_MODE,
-    SUPPORT_TARGET_TEMPERATURE,
+    ClimateEntityFeature,
+    HVACMode,
 )
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import (
-    PERCENTAGE,
-    STATE_UNAVAILABLE,
-    TIME_MINUTES,
-)
+from homeassistant.const import PERCENTAGE, TIME_MINUTES
 
 from ..const import GPPH_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -92,7 +85,11 @@ class TestGoldairHeater(
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_TARGET_TEMPERATURE | SUPPORT_PRESET_MODE | SUPPORT_SWING_MODE,
+            (
+                ClimateEntityFeature.TARGET_TEMPERATURE
+                | ClimateEntityFeature.PRESET_MODE
+                | ClimateEntityFeature.SWING_MODE
+            ),
         )
 
     def test_icon(self):
@@ -205,28 +202,25 @@ class TestGoldairHeater(
 
     def test_hvac_mode(self):
         self.dps[HVACMODE_DPS] = True
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT)
 
         self.dps[HVACMODE_DPS] = False
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_OFF)
-
-        self.dps[HVACMODE_DPS] = None
-        self.assertEqual(self.subject.hvac_mode, STATE_UNAVAILABLE)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.OFF)
 
     def test_hvac_modes(self):
-        self.assertCountEqual(self.subject.hvac_modes, [HVAC_MODE_OFF, HVAC_MODE_HEAT])
+        self.assertCountEqual(self.subject.hvac_modes, [HVACMode.OFF, HVACMode.HEAT])
 
     async def test_turn_on(self):
         async with assert_device_properties_set(
             self.subject._device, {HVACMODE_DPS: True}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_HEAT)
+            await self.subject.async_set_hvac_mode(HVACMode.HEAT)
 
     async def test_turn_off(self):
         async with assert_device_properties_set(
             self.subject._device, {HVACMODE_DPS: False}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_OFF)
+            await self.subject.async_set_hvac_mode(HVACMode.OFF)
 
     def test_preset_mode(self):
         self.dps[PRESET_DPS] = "C"

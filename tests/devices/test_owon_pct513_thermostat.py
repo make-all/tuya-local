@@ -1,15 +1,7 @@
 from homeassistant.components.climate.const import (
-    CURRENT_HVAC_COOL,
-    CURRENT_HVAC_FAN,
-    CURRENT_HVAC_HEAT,
-    CURRENT_HVAC_IDLE,
-    HVAC_MODE_COOL,
-    HVAC_MODE_HEAT,
-    HVAC_MODE_HEAT_COOL,
-    HVAC_MODE_OFF,
-    SUPPORT_FAN_MODE,
-    SUPPORT_PRESET_MODE,
-    SUPPORT_TARGET_TEMPERATURE,
+    ClimateEntityFeature,
+    HVACAction,
+    HVACMode,
 )
 
 from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT
@@ -74,7 +66,11 @@ class TestOwonPCT513Thermostat(
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_FAN_MODE | SUPPORT_PRESET_MODE | SUPPORT_TARGET_TEMPERATURE,
+            (
+                ClimateEntityFeature.FAN_MODE
+                | ClimateEntityFeature.PRESET_MODE
+                | ClimateEntityFeature.TARGET_TEMPERATURE
+            ),
         )
 
     def test_temperature_unit(self):
@@ -99,58 +95,58 @@ class TestOwonPCT513Thermostat(
         self.assertCountEqual(
             self.subject.hvac_modes,
             [
-                HVAC_MODE_COOL,
-                HVAC_MODE_HEAT,
-                HVAC_MODE_HEAT_COOL,
-                HVAC_MODE_OFF,
+                HVACMode.COOL,
+                HVACMode.HEAT,
+                HVACMode.HEAT_COOL,
+                HVACMode.OFF,
             ],
         )
 
     def test_hvac_mode(self):
         self.dps[HVACMODE_DPS] = "off"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_OFF)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.OFF)
         self.dps[HVACMODE_DPS] = "cool"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_COOL)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.COOL)
         self.dps[HVACMODE_DPS] = "heat"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT)
         self.dps[HVACMODE_DPS] = "auto"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT_COOL)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT_COOL)
         self.dps[HVACMODE_DPS] = "emergencyheat"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT)
 
     async def test_set_hvac_mode_off(self):
         async with assert_device_properties_set(
             self.subject._device, {HVACMODE_DPS: "off"}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_OFF)
+            await self.subject.async_set_hvac_mode(HVACMode.OFF)
 
     async def test_set_hvac_mode_cool(self):
         async with assert_device_properties_set(
             self.subject._device, {HVACMODE_DPS: "cool"}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_COOL)
+            await self.subject.async_set_hvac_mode(HVACMode.COOL)
 
     async def test_set_hvac_mode_heat(self):
         async with assert_device_properties_set(
             self.subject._device, {HVACMODE_DPS: "heat"}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_HEAT)
+            await self.subject.async_set_hvac_mode(HVACMode.HEAT)
 
     async def test_set_hvac_mode_heatcool(self):
         async with assert_device_properties_set(
             self.subject._device, {HVACMODE_DPS: "auto"}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_HEAT_COOL)
+            await self.subject.async_set_hvac_mode(HVACMode.HEAT_COOL)
 
     def test_hvac_action(self):
         self.dps[HVACACTION_DPS] = "coolfanon"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_COOL)
+        self.assertEqual(self.subject.hvac_action, HVACAction.COOLING)
         self.dps[HVACACTION_DPS] = "alloff"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_IDLE)
+        self.assertEqual(self.subject.hvac_action, HVACAction.IDLE)
         self.dps[HVACACTION_DPS] = "fanon"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_FAN)
+        self.assertEqual(self.subject.hvac_action, HVACAction.FAN)
         self.dps[HVACACTION_DPS] = "heatfanon"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_HEAT)
+        self.assertEqual(self.subject.hvac_action, HVACAction.HEATING)
 
     def test_preset_modes(self):
         self.assertCountEqual(

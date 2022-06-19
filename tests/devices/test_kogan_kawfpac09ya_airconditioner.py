@@ -1,12 +1,8 @@
 from homeassistant.components.climate.const import (
-    HVAC_MODE_COOL,
-    HVAC_MODE_DRY,
-    HVAC_MODE_FAN_ONLY,
-    HVAC_MODE_OFF,
-    SUPPORT_FAN_MODE,
-    SUPPORT_TARGET_TEMPERATURE,
+    ClimateEntityFeature,
+    HVACMode,
 )
-from homeassistant.const import STATE_UNAVAILABLE, TEMP_CELSIUS, TEMP_FAHRENHEIT
+from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT
 
 from ..const import KOGAN_KAWFPAC09YA_AIRCON_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -43,7 +39,7 @@ class TestKoganKAWFPAC09YA(TargetTemperatureTests, TuyaDeviceTestCase):
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_TARGET_TEMPERATURE | SUPPORT_FAN_MODE,
+            (ClimateEntityFeature.TARGET_TEMPERATURE | ClimateEntityFeature.FAN_MODE),
         )
 
     def test_icon(self):
@@ -78,29 +74,26 @@ class TestKoganKAWFPAC09YA(TargetTemperatureTests, TuyaDeviceTestCase):
     def test_hvac_mode(self):
         self.dps[POWER_DPS] = True
         self.dps[HVACMODE_DPS] = "COOL"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_COOL)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.COOL)
 
         self.dps[HVACMODE_DPS] = "DRY"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_DRY)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.DRY)
 
         self.dps[HVACMODE_DPS] = "FAN"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_FAN_ONLY)
-
-        self.dps[HVACMODE_DPS] = None
-        self.assertEqual(self.subject.hvac_mode, STATE_UNAVAILABLE)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.FAN_ONLY)
 
         self.dps[HVACMODE_DPS] = "FAN"
         self.dps[POWER_DPS] = False
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_OFF)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.OFF)
 
     def test_hvac_modes(self):
         self.assertCountEqual(
             self.subject.hvac_modes,
             [
-                HVAC_MODE_OFF,
-                HVAC_MODE_COOL,
-                HVAC_MODE_DRY,
-                HVAC_MODE_FAN_ONLY,
+                HVACMode.OFF,
+                HVACMode.COOL,
+                HVACMode.DRY,
+                HVACMode.FAN_ONLY,
             ],
         )
 
@@ -108,13 +101,13 @@ class TestKoganKAWFPAC09YA(TargetTemperatureTests, TuyaDeviceTestCase):
         async with assert_device_properties_set(
             self.subject._device, {POWER_DPS: True, HVACMODE_DPS: "COOL"}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_COOL)
+            await self.subject.async_set_hvac_mode(HVACMode.COOL)
 
     async def test_turn_off(self):
         async with assert_device_properties_set(
             self.subject._device, {POWER_DPS: False}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_OFF)
+            await self.subject.async_set_hvac_mode(HVACMode.OFF)
 
     def test_fan_mode(self):
         self.dps[FAN_DPS] = "1"

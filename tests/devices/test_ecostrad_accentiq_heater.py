@@ -1,10 +1,8 @@
 from homeassistant.components.climate.const import (
-    HVAC_MODE_HEAT,
-    HVAC_MODE_OFF,
-    SUPPORT_TARGET_TEMPERATURE,
+    ClimateEntityFeature,
+    HVACMode,
 )
 from homeassistant.const import (
-    STATE_UNAVAILABLE,
     TEMP_CELSIUS,
     TEMP_FAHRENHEIT,
     TIME_HOURS,
@@ -48,7 +46,7 @@ class TestEcostradAccentIqHeater(
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_TARGET_TEMPERATURE,
+            ClimateEntityFeature.TARGET_TEMPERATURE,
         )
 
     def test_temperature_unit(self):
@@ -63,28 +61,25 @@ class TestEcostradAccentIqHeater(
 
     def test_hvac_mode(self):
         self.dps[HVACMODE_DPS] = True
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT)
 
         self.dps[HVACMODE_DPS] = False
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_OFF)
-
-        self.dps[HVACMODE_DPS] = None
-        self.assertEqual(self.subject.hvac_mode, STATE_UNAVAILABLE)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.OFF)
 
     def test_hvac_modes(self):
-        self.assertCountEqual(self.subject.hvac_modes, [HVAC_MODE_OFF, HVAC_MODE_HEAT])
+        self.assertCountEqual(self.subject.hvac_modes, [HVACMode.OFF, HVACMode.HEAT])
 
     async def test_turn_on(self):
         async with assert_device_properties_set(
             self.subject._device, {HVACMODE_DPS: True}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_HEAT)
+            await self.subject.async_set_hvac_mode(HVACMode.HEAT)
 
     async def test_turn_off(self):
         async with assert_device_properties_set(
             self.subject._device, {HVACMODE_DPS: False}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_OFF)
+            await self.subject.async_set_hvac_mode(HVACMode.OFF)
 
     def test_extra_state_attributes(self):
         self.assertEqual(self.subject.extra_state_attributes, {})

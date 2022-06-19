@@ -1,13 +1,10 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.climate.const import (
+    ClimateEntityFeature,
     FAN_HIGH,
     FAN_MEDIUM,
     FAN_LOW,
-    HVAC_MODE_DRY,
-    HVAC_MODE_OFF,
-    SUPPORT_FAN_MODE,
-    SUPPORT_PRESET_MODE,
-    SUPPORT_TARGET_HUMIDITY,
+    HVACMode,
 )
 from homeassistant.components.fan import (
     SUPPORT_SET_SPEED,
@@ -18,7 +15,6 @@ from homeassistant.components.humidifier.const import (
     MODE_SLEEP,
     SUPPORT_MODES,
 )
-from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import EANONS_HUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -91,7 +87,11 @@ class TestEanonsHumidifier(
     def test_supported_features(self):
         self.assertEqual(
             self.climate.supported_features,
-            SUPPORT_TARGET_HUMIDITY | SUPPORT_PRESET_MODE | SUPPORT_FAN_MODE,
+            (
+                ClimateEntityFeature.TARGET_HUMIDITY
+                | ClimateEntityFeature.PRESET_MODE
+                | ClimateEntityFeature.FAN_MODE
+            ),
         )
         self.assertEqual(self.subject.supported_features, SUPPORT_MODES)
         self.assertEqual(self.fan.supported_features, SUPPORT_SET_SPEED)
@@ -131,28 +131,25 @@ class TestEanonsHumidifier(
 
     def test_climate_hvac_mode(self):
         self.dps[HVACMODE_DPS] = True
-        self.assertEqual(self.climate.hvac_mode, HVAC_MODE_DRY)
+        self.assertEqual(self.climate.hvac_mode, HVACMode.DRY)
 
         self.dps[HVACMODE_DPS] = False
-        self.assertEqual(self.climate.hvac_mode, HVAC_MODE_OFF)
-
-        self.dps[HVACMODE_DPS] = None
-        self.assertEqual(self.climate.hvac_mode, STATE_UNAVAILABLE)
+        self.assertEqual(self.climate.hvac_mode, HVACMode.OFF)
 
     def test_climate_hvac_modes(self):
-        self.assertCountEqual(self.climate.hvac_modes, [HVAC_MODE_OFF, HVAC_MODE_DRY])
+        self.assertCountEqual(self.climate.hvac_modes, [HVACMode.OFF, HVACMode.DRY])
 
     async def test_climate_turn_on(self):
         async with assert_device_properties_set(
             self.climate._device, {HVACMODE_DPS: True}
         ):
-            await self.climate.async_set_hvac_mode(HVAC_MODE_DRY)
+            await self.climate.async_set_hvac_mode(HVACMode.DRY)
 
     async def test_climate_turn_off(self):
         async with assert_device_properties_set(
             self.climate._device, {HVACMODE_DPS: False}
         ):
-            await self.climate.async_set_hvac_mode(HVAC_MODE_OFF)
+            await self.climate.async_set_hvac_mode(HVACMode.OFF)
 
     async def test_fan_turn_on(self):
         async with assert_device_properties_set(

@@ -1,9 +1,6 @@
 from homeassistant.components.climate.const import (
-    HVAC_MODE_AUTO,
-    HVAC_MODE_COOL,
-    HVAC_MODE_HEAT,
-    HVAC_MODE_OFF,
-    SUPPORT_TARGET_TEMPERATURE,
+    ClimateEntityFeature,
+    HVACMode,
 )
 from homeassistant.components.sensor import (
     STATE_CLASS_MEASUREMENT,
@@ -13,7 +10,6 @@ from homeassistant.const import (
     DEVICE_CLASS_ENERGY,
     DEVICE_CLASS_TEMPERATURE,
     ENERGY_KILO_WATT_HOUR,
-    STATE_UNAVAILABLE,
     TEMP_CELSIUS,
     TEMP_FAHRENHEIT,
 )
@@ -151,7 +147,7 @@ class TestJiahongEt72wThermostat(
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_TARGET_TEMPERATURE,
+            ClimateEntityFeature.TARGET_TEMPERATURE,
         )
 
     def test_temperature_unit(self):
@@ -190,35 +186,28 @@ class TestJiahongEt72wThermostat(
     def test_hvac_mode(self):
         self.dps[POWER_DPS] = False
         self.dps[HVACMODE_DPS] = "Smart"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_OFF)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.OFF)
 
         self.dps[POWER_DPS] = True
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_AUTO)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.AUTO)
 
         self.dps[HVACMODE_DPS] = "Manual"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT)
 
         self.dps[HVACMODE_DPS] = "Anti_frozen"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_COOL)
-
-        self.dps[HVACMODE_DPS] = None
-        self.assertEqual(self.subject.hvac_mode, STATE_UNAVAILABLE)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.COOL)
 
     def test_hvac_modes(self):
         self.assertCountEqual(
             self.subject.hvac_modes,
             [
-                HVAC_MODE_AUTO,
-                HVAC_MODE_COOL,
-                HVAC_MODE_HEAT,
-                HVAC_MODE_OFF,
+                HVACMode.AUTO,
+                HVACMode.COOL,
+                HVACMode.HEAT,
+                HVACMode.OFF,
             ],
         )
 
-    # Override - since min and max are set by attributes, the range
-    # allowed when setting is wider than normal.  The thermostat seems
-    # to be configurable as at least a water heater (to 212F), as tuya
-    # doc says max 1000.0 (after scaling)
     async def test_set_target_temperature_fails_outside_valid_range(self):
         with self.assertRaisesRegex(
             ValueError,

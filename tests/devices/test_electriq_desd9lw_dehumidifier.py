@@ -1,19 +1,9 @@
 from homeassistant.components.climate.const import (
-    HVAC_MODE_AUTO,
-    HVAC_MODE_DRY,
-    HVAC_MODE_FAN_ONLY,
-    HVAC_MODE_HEAT,
-    HVAC_MODE_OFF,
-    SUPPORT_FAN_MODE,
-    SUPPORT_SWING_MODE,
-    SUPPORT_TARGET_HUMIDITY,
-    SUPPORT_TARGET_TEMPERATURE,
+    ClimateEntityFeature,
+    HVACMode,
 )
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import (
-    PERCENTAGE,
-    STATE_UNAVAILABLE,
-)
+from homeassistant.const import PERCENTAGE
 
 from ..const import ELECTRIQ_DESD9LW_DEHUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -69,10 +59,12 @@ class TestElectriqDESD9LWDehumidifier(
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_FAN_MODE
-            | SUPPORT_SWING_MODE
-            | SUPPORT_TARGET_HUMIDITY
-            | SUPPORT_TARGET_TEMPERATURE,
+            (
+                ClimateEntityFeature.FAN_MODE
+                | ClimateEntityFeature.SWING_MODE
+                | ClimateEntityFeature.TARGET_HUMIDITY
+                | ClimateEntityFeature.TARGET_TEMPERATURE
+            ),
         )
 
     def test_icon(self):
@@ -127,33 +119,29 @@ class TestElectriqDESD9LWDehumidifier(
     def test_hvac_mode(self):
         self.dps[POWER_DPS] = True
         self.dps[HVACMODE_DPS] = "Heater"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT)
 
         self.dps[HVACMODE_DPS] = "Dehumidity"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_DRY)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.DRY)
 
         self.dps[HVACMODE_DPS] = "Fan"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_FAN_ONLY)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.FAN_ONLY)
 
         self.dps[HVACMODE_DPS] = "Auto"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_AUTO)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.AUTO)
 
-        self.dps[HVACMODE_DPS] = None
-        self.assertEqual(self.subject.hvac_mode, STATE_UNAVAILABLE)
-
-        self.dps[HVACMODE_DPS] = "Auto"
         self.dps[POWER_DPS] = False
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_OFF)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.OFF)
 
     def test_hvac_modes(self):
         self.assertCountEqual(
             self.subject.hvac_modes,
             [
-                HVAC_MODE_AUTO,
-                HVAC_MODE_DRY,
-                HVAC_MODE_FAN_ONLY,
-                HVAC_MODE_HEAT,
-                HVAC_MODE_OFF,
+                HVACMode.AUTO,
+                HVACMode.DRY,
+                HVACMode.FAN_ONLY,
+                HVACMode.HEAT,
+                HVACMode.OFF,
             ],
         )
 
@@ -164,7 +152,7 @@ class TestElectriqDESD9LWDehumidifier(
         async with assert_device_properties_set(
             self.subject._device, {POWER_DPS: True, HVACMODE_DPS: "Heater"}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_HEAT)
+            await self.subject.async_set_hvac_mode(HVACMode.HEAT)
 
     async def test_turn_off(self):
         self.dps[HVACMODE_DPS] = "Auto"
@@ -173,7 +161,7 @@ class TestElectriqDESD9LWDehumidifier(
         async with assert_device_properties_set(
             self.subject._device, {POWER_DPS: False}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_OFF)
+            await self.subject.async_set_hvac_mode(HVACMode.OFF)
 
     async def test_set_mode_to_heater(self):
         self.dps[HVACMODE_DPS] = "Auto"
@@ -182,7 +170,7 @@ class TestElectriqDESD9LWDehumidifier(
         async with assert_device_properties_set(
             self.subject._device, {HVACMODE_DPS: "Heater", POWER_DPS: True}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_HEAT)
+            await self.subject.async_set_hvac_mode(HVACMode.HEAT)
 
     async def test_set_mode_to_dehumidity(self):
         self.dps[HVACMODE_DPS] = "Auto"
@@ -191,7 +179,7 @@ class TestElectriqDESD9LWDehumidifier(
         async with assert_device_properties_set(
             self.subject._device, {HVACMODE_DPS: "Dehumidity", POWER_DPS: True}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_DRY)
+            await self.subject.async_set_hvac_mode(HVACMode.DRY)
 
     async def test_set_mode_to_fan(self):
         self.dps[HVACMODE_DPS] = "Auto"
@@ -200,7 +188,7 @@ class TestElectriqDESD9LWDehumidifier(
         async with assert_device_properties_set(
             self.subject._device, {HVACMODE_DPS: "Fan", POWER_DPS: True}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_FAN_ONLY)
+            await self.subject.async_set_hvac_mode(HVACMode.FAN_ONLY)
 
     async def test_set_mode_to_auto(self):
         self.dps[HVACMODE_DPS] = "Fan"
@@ -209,7 +197,7 @@ class TestElectriqDESD9LWDehumidifier(
         async with assert_device_properties_set(
             self.subject._device, {HVACMODE_DPS: "Auto", POWER_DPS: True}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_AUTO)
+            await self.subject.async_set_hvac_mode(HVACMode.AUTO)
 
     def test_fan_mode(self):
         self.dps[FAN_DPS] = "Low"

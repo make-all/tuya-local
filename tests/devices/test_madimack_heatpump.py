@@ -1,17 +1,12 @@
 from homeassistant.components.binary_sensor import DEVICE_CLASS_PROBLEM
 from homeassistant.components.climate.const import (
-    CURRENT_HVAC_HEAT,
-    CURRENT_HVAC_IDLE,
-    CURRENT_HVAC_OFF,
-    HVAC_MODE_HEAT,
-    HVAC_MODE_OFF,
-    SUPPORT_PRESET_MODE,
-    SUPPORT_TARGET_TEMPERATURE,
+    ClimateEntityFeature,
+    HVACAction,
+    HVACMode,
 )
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     PERCENTAGE,
-    STATE_UNAVAILABLE,
     TEMP_CELSIUS,
     TEMP_FAHRENHEIT,
 )
@@ -139,7 +134,10 @@ class TestMadimackPoolHeatpump(
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_TARGET_TEMPERATURE | SUPPORT_PRESET_MODE,
+            (
+                ClimateEntityFeature.TARGET_TEMPERATURE
+                | ClimateEntityFeature.PRESET_MODE
+            ),
         )
 
     def test_icon(self):
@@ -171,28 +169,25 @@ class TestMadimackPoolHeatpump(
 
     def test_hvac_mode(self):
         self.dps[HVACMODE_DPS] = True
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT)
 
         self.dps[HVACMODE_DPS] = False
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_OFF)
-
-        self.dps[HVACMODE_DPS] = None
-        self.assertEqual(self.subject.hvac_mode, STATE_UNAVAILABLE)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.OFF)
 
     def test_hvac_modes(self):
-        self.assertCountEqual(self.subject.hvac_modes, [HVAC_MODE_OFF, HVAC_MODE_HEAT])
+        self.assertCountEqual(self.subject.hvac_modes, [HVACMode.OFF, HVACMode.HEAT])
 
     async def test_turn_on(self):
         async with assert_device_properties_set(
             self.subject._device, {HVACMODE_DPS: True}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_HEAT)
+            await self.subject.async_set_hvac_mode(HVACMode.HEAT)
 
     async def test_turn_off(self):
         async with assert_device_properties_set(
             self.subject._device, {HVACMODE_DPS: False}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_OFF)
+            await self.subject.async_set_hvac_mode(HVACMode.OFF)
 
     def test_preset_mode(self):
         self.dps[PRESET_DPS] = False
@@ -224,11 +219,11 @@ class TestMadimackPoolHeatpump(
     def test_hvac_action(self):
         self.dps[HVACMODE_DPS] = True
         self.dps[OPMODE_DPS] = "heating"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_HEAT)
+        self.assertEqual(self.subject.hvac_action, HVACAction.HEATING)
         self.dps[OPMODE_DPS] = "warm"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_IDLE)
+        self.assertEqual(self.subject.hvac_action, HVACAction.IDLE)
         self.dps[HVACMODE_DPS] = False
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_OFF)
+        self.assertEqual(self.subject.hvac_action, HVACAction.OFF)
 
     def test_extra_state_attributes(self):
         self.dps[ERROR_DPS] = 4

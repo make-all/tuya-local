@@ -1,13 +1,9 @@
 from homeassistant.components.climate.const import (
-    CURRENT_HVAC_COOL,
-    CURRENT_HVAC_HEAT,
-    CURRENT_HVAC_IDLE,
-    HVAC_MODE_COOL,
-    HVAC_MODE_HEAT,
+    ClimateEntityFeature,
+    HVACAction,
+    HVACMode,
     PRESET_AWAY,
     PRESET_HOME,
-    SUPPORT_PRESET_MODE,
-    SUPPORT_TARGET_TEMPERATURE,
 )
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import POWER_WATT, TEMP_CELSIUS
@@ -131,7 +127,10 @@ class TestSaswellC16Thermostat(
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_TARGET_TEMPERATURE | SUPPORT_PRESET_MODE,
+            (
+                ClimateEntityFeature.TARGET_TEMPERATURE
+                | ClimateEntityFeature.PRESET_MODE
+            ),
         )
 
     def test_icon(self):
@@ -158,34 +157,34 @@ class TestSaswellC16Thermostat(
 
     def test_hvac_mode(self):
         self.dps[HVACMODE_DPS] = True
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_COOL)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.COOL)
 
         self.dps[HVACMODE_DPS] = False
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT)
 
     def test_hvac_modes(self):
         self.assertCountEqual(
             self.subject.hvac_modes,
-            [HVAC_MODE_COOL, HVAC_MODE_HEAT],
+            [HVACMode.COOL, HVACMode.HEAT],
         )
 
     async def test_set_hvac_mode_cool(self):
         with self.assertRaises(TypeError):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_COOL)
+            await self.subject.async_set_hvac_mode(HVACMode.COOL)
 
     async def test_set_hvac_mode_heat(self):
         with self.assertRaises(TypeError):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_HEAT)
+            await self.subject.async_set_hvac_mode(HVACMode.HEAT)
 
     def test_hvac_action(self):
         self.dps[HVACACTION_DPS] = "Cooling"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_COOL)
+        self.assertEqual(self.subject.hvac_action, HVACAction.COOLING)
 
         self.dps[HVACACTION_DPS] = "Heating"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_HEAT)
+        self.assertEqual(self.subject.hvac_action, HVACAction.HEATING)
 
         self.dps[HVACACTION_DPS] = "Standby"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_IDLE)
+        self.assertEqual(self.subject.hvac_action, HVACAction.IDLE)
 
     def test_preset_mode(self):
         self.dps[PRESET_DPS] = "Smart"

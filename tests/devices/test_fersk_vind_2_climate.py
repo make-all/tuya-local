@@ -1,16 +1,10 @@
 from homeassistant.components.climate.const import (
-    HVAC_MODE_COOL,
-    HVAC_MODE_DRY,
-    HVAC_MODE_FAN_ONLY,
-    HVAC_MODE_HEAT,
-    HVAC_MODE_OFF,
-    SUPPORT_FAN_MODE,
-    SUPPORT_SWING_MODE,
-    SUPPORT_TARGET_TEMPERATURE,
+    ClimateEntityFeature,
+    HVACMode,
     SWING_OFF,
     SWING_VERTICAL,
 )
-from homeassistant.const import STATE_UNAVAILABLE, TEMP_CELSIUS, TEMP_FAHRENHEIT
+from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT
 
 from ..const import FERSK_VIND2_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -49,7 +43,11 @@ class TestFerskVind2Climate(TargetTemperatureTests, TuyaDeviceTestCase):
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_TARGET_TEMPERATURE | SUPPORT_FAN_MODE | SUPPORT_SWING_MODE,
+            (
+                ClimateEntityFeature.TARGET_TEMPERATURE
+                | ClimateEntityFeature.FAN_MODE
+                | ClimateEntityFeature.SWING_MODE
+            ),
         )
 
     def test_icon(self):
@@ -86,25 +84,25 @@ class TestFerskVind2Climate(TargetTemperatureTests, TuyaDeviceTestCase):
     def test_hvac_mode(self):
         self.dps[POWER_DPS] = True
         self.dps[HVACMODE_DPS] = "COOL"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_COOL)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.COOL)
         self.dps[HVACMODE_DPS] = "FAN"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_FAN_ONLY)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.FAN_ONLY)
         self.dps[HVACMODE_DPS] = "DRY"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_DRY)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.DRY)
         self.dps[HVACMODE_DPS] = "HEAT"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT)
         self.dps[POWER_DPS] = False
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_OFF)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.OFF)
 
     def test_hvac_modes(self):
         self.assertCountEqual(
             self.subject.hvac_modes,
             [
-                HVAC_MODE_COOL,
-                HVAC_MODE_DRY,
-                HVAC_MODE_FAN_ONLY,
-                HVAC_MODE_HEAT,
-                HVAC_MODE_OFF,
+                HVACMode.COOL,
+                HVACMode.DRY,
+                HVACMode.FAN_ONLY,
+                HVACMode.HEAT,
+                HVACMode.OFF,
             ],
         )
 
@@ -112,31 +110,31 @@ class TestFerskVind2Climate(TargetTemperatureTests, TuyaDeviceTestCase):
         async with assert_device_properties_set(
             self.subject._device, {POWER_DPS: False}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_OFF)
+            await self.subject.async_set_hvac_mode(HVACMode.OFF)
 
     async def test_set_hvac_mode_cool(self):
         async with assert_device_properties_set(
             self.subject._device, {POWER_DPS: True, HVACMODE_DPS: "COOL"}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_COOL)
+            await self.subject.async_set_hvac_mode(HVACMode.COOL)
 
     async def test_set_hvac_mode_dry(self):
         async with assert_device_properties_set(
             self.subject._device, {POWER_DPS: True, HVACMODE_DPS: "DRY"}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_DRY)
+            await self.subject.async_set_hvac_mode(HVACMode.DRY)
 
     async def test_set_hvac_mode_fan(self):
         async with assert_device_properties_set(
             self.subject._device, {POWER_DPS: True, HVACMODE_DPS: "FAN"}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_FAN_ONLY)
+            await self.subject.async_set_hvac_mode(HVACMode.FAN_ONLY)
 
     async def test_set_hvac_mode_heat(self):
         async with assert_device_properties_set(
             self.subject._device, {POWER_DPS: True, HVACMODE_DPS: "HEAT"}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_HEAT)
+            await self.subject.async_set_hvac_mode(HVACMode.HEAT)
 
     def test_fan_mode(self):
         self.dps[FAN_DPS] = 1

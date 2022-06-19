@@ -3,7 +3,12 @@ Platform to control tuya climate devices.
 """
 import logging
 
-from homeassistant.components.climate import ClimateEntity
+from homeassistant.components.climate import (
+    ClimateEntity,
+    ClimateEntityFeature,
+    HVACAction,
+    HVACMode,
+)
 from homeassistant.components.climate.const import (
     ATTR_AUX_HEAT,
     ATTR_CURRENT_HUMIDITY,
@@ -20,18 +25,9 @@ from homeassistant.components.climate.const import (
     DEFAULT_MAX_TEMP,
     DEFAULT_MIN_HUMIDITY,
     DEFAULT_MIN_TEMP,
-    HVAC_MODE_AUTO,
-    SUPPORT_AUX_HEAT,
-    SUPPORT_FAN_MODE,
-    SUPPORT_PRESET_MODE,
-    SUPPORT_SWING_MODE,
-    SUPPORT_TARGET_HUMIDITY,
-    SUPPORT_TARGET_TEMPERATURE,
-    SUPPORT_TARGET_TEMPERATURE_RANGE,
 )
 from homeassistant.const import (
     ATTR_TEMPERATURE,
-    STATE_UNAVAILABLE,
     TEMP_CELSIUS,
     TEMP_FAHRENHEIT,
     TEMP_KELVIN,
@@ -83,20 +79,20 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         self._support_flags = 0
 
         if self._aux_heat_dps:
-            self._support_flags |= SUPPORT_AUX_HEAT
+            self._support_flags |= ClimateEntityFeature.AUX_HEAT
         if self._fan_mode_dps:
-            self._support_flags |= SUPPORT_FAN_MODE
+            self._support_flags |= ClimateEntityFeature.FAN_MODE
         if self._humidity_dps:
-            self._support_flags |= SUPPORT_TARGET_HUMIDITY
+            self._support_flags |= ClimateEntityFeature.TARGET_HUMIDITY
         if self._preset_mode_dps:
-            self._support_flags |= SUPPORT_PRESET_MODE
+            self._support_flags |= ClimateEntityFeature.PRESET_MODE
         if self._swing_mode_dps:
-            self._support_flags |= SUPPORT_SWING_MODE
+            self._support_flags |= ClimateEntityFeature.SWING_MODE
 
         if self._temp_high_dps and self._temp_low_dps:
-            self._support_flags |= SUPPORT_TARGET_TEMPERATURE_RANGE
+            self._support_flags |= ClimateEntityFeature.TARGET_TEMPERATURE_RANGE
         elif self._temperature_dps is not None:
-            self._support_flags |= SUPPORT_TARGET_TEMPERATURE
+            self._support_flags |= ClimateEntityFeature.TARGET_TEMPERATURE
 
     @property
     def supported_features(self):
@@ -258,15 +254,24 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         """Return the current HVAC action."""
         if self._hvac_action_dps is None:
             return None
-        return self._hvac_action_dps.get_value(self._device)
+        action = self._hvac_action_dps.get_value(self._device)
+        try:
+            return HVACAction(action)
+        except ValueError:
+            _LOGGER.warning(f"_Unrecognised HVAC Action {action} ignored")
+            return None
 
     @property
     def hvac_mode(self):
         """Return current HVAC mode."""
         if self._hvac_mode_dps is None:
-            return HVAC_MODE_AUTO
+            return HVACMode.AUTO
         hvac_mode = self._hvac_mode_dps.get_value(self._device)
-        return STATE_UNAVAILABLE if hvac_mode is None else hvac_mode
+        try:
+            return HVACMode(hvac_mode)
+        except ValueError:
+            _LOGGER.warning(f"Unrecognised HVAC Mode of {hvac_mode} ignored")
+            return None
 
     @property
     def hvac_modes(self):

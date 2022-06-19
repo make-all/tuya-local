@@ -8,7 +8,6 @@ from homeassistant.components.humidifier.const import (
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     PERCENTAGE,
-    STATE_UNAVAILABLE,
 )
 
 from ..const import WETAIR_WAWH1210_HUMIDIFIER_PAYLOAD

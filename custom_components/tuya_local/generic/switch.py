@@ -5,8 +5,6 @@ heater open window detector toggle.
 """
 from homeassistant.components.switch import SwitchEntity, SwitchDeviceClass
 
-from homeassistant.const import STATE_UNAVAILABLE
-
 from ..device import TuyaLocalDevice
 from ..helpers.device_config import TuyaEntityConfig
 from ..helpers.mixin import TuyaLocalEntity
@@ -50,9 +48,6 @@ class TuyaLocalSwitch(TuyaLocalEntity, SwitchEntity):
             return None
 
         pwr = self._power_dps.get_value(self._device)
-        if pwr is None:
-            return STATE_UNAVAILABLE
-
         return pwr
 
     async def async_turn_on(self, **kwargs):

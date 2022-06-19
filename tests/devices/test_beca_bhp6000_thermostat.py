@@ -1,14 +1,8 @@
 from homeassistant.components.climate.const import (
-    HVAC_MODE_AUTO,
-    HVAC_MODE_COOL,
-    HVAC_MODE_HEAT,
-    HVAC_MODE_HEAT_COOL,
-    HVAC_MODE_OFF,
-    SUPPORT_FAN_MODE,
-    SUPPORT_PRESET_MODE,
-    SUPPORT_TARGET_TEMPERATURE,
+    ClimateEntityFeature,
+    HVACMode,
 )
-from homeassistant.const import STATE_UNAVAILABLE, TEMP_CELSIUS, TEMP_FAHRENHEIT
+from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT
 
 from ..const import BECA_BHP6000_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -50,7 +44,11 @@ class TestBecaBHP6000Thermostat(
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_FAN_MODE | SUPPORT_PRESET_MODE | SUPPORT_TARGET_TEMPERATURE,
+            (
+                ClimateEntityFeature.FAN_MODE
+                | ClimateEntityFeature.PRESET_MODE
+                | ClimateEntityFeature.TARGET_TEMPERATURE
+            ),
         )
 
     def test_temperature_unit_returns_configured_temperature_unit(self):
@@ -78,32 +76,29 @@ class TestBecaBHP6000Thermostat(
 
     def test_hvac_mode(self):
         self.dps[HVACMODE_DPS] = "1"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_COOL)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.COOL)
 
         self.dps[HVACMODE_DPS] = "2"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT)
 
         self.dps[HVACMODE_DPS] = "3"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_OFF)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.OFF)
 
         self.dps[HVACMODE_DPS] = "4"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT_COOL)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT_COOL)
 
         self.dps[HVACMODE_DPS] = "5"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_AUTO)
-
-        self.dps[HVACMODE_DPS] = None
-        self.assertEqual(self.subject.hvac_mode, STATE_UNAVAILABLE)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.AUTO)
 
     def test_hvac_modes(self):
         self.assertCountEqual(
             self.subject.hvac_modes,
             [
-                HVAC_MODE_OFF,
-                HVAC_MODE_HEAT,
-                HVAC_MODE_HEAT_COOL,
-                HVAC_MODE_COOL,
-                HVAC_MODE_AUTO,
+                HVACMode.OFF,
+                HVACMode.HEAT,
+                HVACMode.HEAT_COOL,
+                HVACMode.COOL,
+                HVACMode.AUTO,
             ],
         )
 

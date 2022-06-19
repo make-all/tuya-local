@@ -1,24 +1,13 @@
 from homeassistant.components.climate.const import (
-    CURRENT_HVAC_COOL,
-    CURRENT_HVAC_DRY,
-    CURRENT_HVAC_FAN,
-    CURRENT_HVAC_HEAT,
-    CURRENT_HVAC_IDLE,
-    CURRENT_HVAC_OFF,
-    HVAC_MODE_COOL,
-    HVAC_MODE_HEAT,
-    HVAC_MODE_OFF,
+    ClimateEntityFeature,
+    HVACAction,
+    HVACMode,
     PRESET_SLEEP,
     PRESET_COMFORT,
-    SUPPORT_FAN_MODE,
-    SUPPORT_PRESET_MODE,
-    SUPPORT_SWING_MODE,
-    SUPPORT_TARGET_TEMPERATURE,
     SWING_OFF,
     SWING_VERTICAL,
 )
 from homeassistant.const import (
-    STATE_UNAVAILABLE,
     TEMP_CELSIUS,
     TEMP_FAHRENHEIT,
     TIME_HOURS,
@@ -71,10 +60,10 @@ class TestEbergQuboQ40HDHeatpump(
         self.assertEqual(
             self.subject.supported_features,
             (
-                SUPPORT_TARGET_TEMPERATURE
-                | SUPPORT_FAN_MODE
-                | SUPPORT_PRESET_MODE
-                | SUPPORT_SWING_MODE
+                ClimateEntityFeature.TARGET_TEMPERATURE
+                | ClimateEntityFeature.FAN_MODE
+                | ClimateEntityFeature.PRESET_MODE
+                | ClimateEntityFeature.SWING_MODE
             ),
         )
 
@@ -108,25 +97,22 @@ class TestEbergQuboQ40HDHeatpump(
     def test_hvac_mode(self):
         self.dps[POWER_DPS] = True
         self.dps[HVACMODE_DPS] = "cold"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_COOL)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.COOL)
 
         self.dps[HVACMODE_DPS] = "hot"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT)
-
-        self.dps[HVACMODE_DPS] = None
-        self.assertEqual(self.subject.hvac_mode, STATE_UNAVAILABLE)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT)
 
         self.dps[HVACMODE_DPS] = "cold"
         self.dps[POWER_DPS] = False
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_OFF)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.OFF)
 
     def test_hvac_modes(self):
         self.assertCountEqual(
             self.subject.hvac_modes,
             [
-                HVAC_MODE_OFF,
-                HVAC_MODE_COOL,
-                HVAC_MODE_HEAT,
+                HVACMode.OFF,
+                HVACMode.COOL,
+                HVACMode.HEAT,
             ],
         )
 
@@ -134,13 +120,13 @@ class TestEbergQuboQ40HDHeatpump(
         async with assert_device_properties_set(
             self.subject._device, {POWER_DPS: True, HVACMODE_DPS: "cold"}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_COOL)
+            await self.subject.async_set_hvac_mode(HVACMode.COOL)
 
     async def test_turn_off(self):
         async with assert_device_properties_set(
             self.subject._device, {POWER_DPS: False}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_OFF)
+            await self.subject.async_set_hvac_mode(HVACMode.OFF)
 
     def test_fan_mode(self):
         self.dps[FAN_DPS] = "low"
@@ -252,49 +238,49 @@ class TestEbergQuboQ40HDHeatpump(
     def test_hvac_action(self):
         self.dps[POWER_DPS] = True
         self.dps[HVACACTION_DPS] = "heat_s"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_HEAT)
+        self.assertEqual(self.subject.hvac_action, HVACAction.HEATING)
 
         self.dps[HVACACTION_DPS] = "hot"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_HEAT)
+        self.assertEqual(self.subject.hvac_action, HVACAction.HEATING)
 
         self.dps[HVACACTION_DPS] = "heating"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_HEAT)
+        self.assertEqual(self.subject.hvac_action, HVACAction.HEATING)
 
         self.dps[HVACACTION_DPS] = "cool_s"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_COOL)
+        self.assertEqual(self.subject.hvac_action, HVACAction.COOLING)
 
         self.dps[HVACACTION_DPS] = "cooling"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_COOL)
+        self.assertEqual(self.subject.hvac_action, HVACAction.COOLING)
 
         self.dps[HVACACTION_DPS] = "anti-clockwise"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_FAN)
+        self.assertEqual(self.subject.hvac_action, HVACAction.FAN)
 
         self.dps[HVACACTION_DPS] = "ventilation"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_FAN)
+        self.assertEqual(self.subject.hvac_action, HVACAction.FAN)
 
         self.dps[HVACACTION_DPS] = "wind"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_FAN)
+        self.assertEqual(self.subject.hvac_action, HVACAction.FAN)
 
         self.dps[HVACACTION_DPS] = "appointment"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_IDLE)
+        self.assertEqual(self.subject.hvac_action, HVACAction.IDLE)
 
         self.dps[HVACACTION_DPS] = "auto"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_IDLE)
+        self.assertEqual(self.subject.hvac_action, HVACAction.IDLE)
 
         self.dps[HVACACTION_DPS] = "auto_clean"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_IDLE)
+        self.assertEqual(self.subject.hvac_action, HVACAction.IDLE)
 
         self.dps[HVACACTION_DPS] = "eco"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_IDLE)
+        self.assertEqual(self.subject.hvac_action, HVACAction.IDLE)
 
         self.dps[HVACACTION_DPS] = "wet"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_DRY)
+        self.assertEqual(self.subject.hvac_action, HVACAction.DRYING)
 
         self.dps[HVACACTION_DPS] = "off"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_IDLE)
+        self.assertEqual(self.subject.hvac_action, HVACAction.IDLE)
 
         self.dps[POWER_DPS] = False
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_OFF)
+        self.assertEqual(self.subject.hvac_action, HVACAction.OFF)
 
     def test_extra_state_attributes(self):
         self.dps[TIMER_DPS] = 22
