@@ -1,4 +1,4 @@
-from homeassistant.components.fan import SUPPORT_PRESET_MODE
+from homeassistant.components.fan import FanEntityFeature
 from homeassistant.components.sensor import SensorDeviceClass
 
 from ..const import RENPHO_PURIFIER_PAYLOAD
@@ -77,7 +77,7 @@ class TestRenphoPurifier(
         )
 
     def test_supported_features(self):
-        self.assertEqual(self.subject.supported_features, SUPPORT_PRESET_MODE)
+        self.assertEqual(self.subject.supported_features, FanEntityFeature.PRESET_MODE)
 
     def test_preset_modes(self):
         self.assertCountEqual(

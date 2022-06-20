@@ -5,9 +5,7 @@ from homeassistant.components.climate.const import (
 from homeassistant.components.fan import (
     DIRECTION_FORWARD,
     DIRECTION_REVERSE,
-    SUPPORT_DIRECTION,
-    SUPPORT_PRESET_MODE,
-    SUPPORT_SET_SPEED,
+    FanEntityFeature,
 )
 from homeassistant.const import TEMP_FAHRENHEIT
 
@@ -59,7 +57,11 @@ class TestAspenASP200Fan(
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_DIRECTION | SUPPORT_PRESET_MODE | SUPPORT_SET_SPEED,
+            (
+                FanEntityFeature.DIRECTION
+                | FanEntityFeature.PRESET_MODE
+                | FanEntityFeature.SET_SPEED
+            ),
         )
         self.assertEqual(
             self.climate.supported_features,

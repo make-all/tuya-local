@@ -6,14 +6,12 @@ from homeassistant.components.climate.const import (
     FAN_LOW,
     HVACMode,
 )
-from homeassistant.components.fan import (
-    SUPPORT_SET_SPEED,
-)
+from homeassistant.components.fan import FanEntityFeature
+from homeassistant.components.humidifier import HumidifierEntityFeature
 from homeassistant.components.humidifier.const import (
     MODE_NORMAL,
     MODE_AUTO,
     MODE_SLEEP,
-    SUPPORT_MODES,
 )
 
 from ..const import EANONS_HUMIDIFIER_PAYLOAD
@@ -93,8 +91,8 @@ class TestEanonsHumidifier(
                 | ClimateEntityFeature.FAN_MODE
             ),
         )
-        self.assertEqual(self.subject.supported_features, SUPPORT_MODES)
-        self.assertEqual(self.fan.supported_features, SUPPORT_SET_SPEED)
+        self.assertEqual(self.subject.supported_features, HumidifierEntityFeature.MODES)
+        self.assertEqual(self.fan.supported_features, FanEntityFeature.SET_SPEED)
 
     def test_climate_icon_is_humidifier(self):
         """Test that the icon is as expected."""

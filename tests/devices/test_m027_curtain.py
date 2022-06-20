@@ -1,10 +1,7 @@
 """Tests for the M027 curtain module."""
 from homeassistant.components.cover import (
     CoverDeviceClass,
-    SUPPORT_CLOSE,
-    SUPPORT_OPEN,
-    SUPPORT_SET_POSITION,
-    SUPPORT_STOP,
+    CoverEntityFeature,
 )
 from homeassistant.const import TIME_MILLISECONDS, TIME_SECONDS
 
@@ -65,7 +62,12 @@ class TestM027Curtains(MultiSensorTests, BasicSelectTests, TuyaDeviceTestCase):
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_OPEN | SUPPORT_CLOSE | SUPPORT_SET_POSITION | SUPPORT_STOP,
+            (
+                CoverEntityFeature.OPEN
+                | CoverEntityFeature.CLOSE
+                | CoverEntityFeature.SET_POSITION
+                | CoverEntityFeature.STOP
+            ),
         )
 
     def test_current_cover_position(self):

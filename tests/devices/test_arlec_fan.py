@@ -1,9 +1,7 @@
 from homeassistant.components.fan import (
     DIRECTION_FORWARD,
     DIRECTION_REVERSE,
-    SUPPORT_DIRECTION,
-    SUPPORT_PRESET_MODE,
-    SUPPORT_SET_SPEED,
+    FanEntityFeature,
 )
 
 from ..const import ARLEC_FAN_PAYLOAD
@@ -42,7 +40,11 @@ class TestArlecFan(SwitchableTests, BasicSelectTests, TuyaDeviceTestCase):
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_DIRECTION | SUPPORT_PRESET_MODE | SUPPORT_SET_SPEED,
+            (
+                FanEntityFeature.DIRECTION
+                | FanEntityFeature.PRESET_MODE
+                | FanEntityFeature.SET_SPEED
+            ),
         )
 
     def test_preset_mode(self):

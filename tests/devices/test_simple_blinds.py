@@ -1,10 +1,7 @@
 """Tests for the simple blinds controller."""
 from homeassistant.components.cover import (
     CoverDeviceClass,
-    SUPPORT_CLOSE,
-    SUPPORT_OPEN,
-    SUPPORT_SET_POSITION,
-    SUPPORT_STOP,
+    CoverEntityFeature,
 )
 
 from ..const import SIMPLE_BLINDS_PAYLOAD
@@ -30,7 +27,12 @@ class TestSimpleBlinds(TuyaDeviceTestCase):
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_OPEN | SUPPORT_CLOSE | SUPPORT_SET_POSITION | SUPPORT_STOP,
+            (
+                CoverEntityFeature.OPEN
+                | CoverEntityFeature.CLOSE
+                | CoverEntityFeature.SET_POSITION
+                | CoverEntityFeature.STOP
+            ),
         )
 
     def test_current_cover_position(self):

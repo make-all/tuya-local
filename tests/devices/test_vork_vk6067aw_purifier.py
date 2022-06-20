@@ -1,5 +1,5 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
-from homeassistant.components.fan import SUPPORT_PRESET_MODE
+from homeassistant.components.fan import FanEntityFeature
 from homeassistant.const import (
     PERCENTAGE,
     TIME_MINUTES,
@@ -91,7 +91,7 @@ class TestVorkVK6267AWPurifier(
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_PRESET_MODE,
+            FanEntityFeature.PRESET_MODE,
         )
 
     def test_preset_modes(self):

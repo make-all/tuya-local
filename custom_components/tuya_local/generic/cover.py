@@ -4,12 +4,9 @@ Platform to control tuya cover devices.
 import logging
 
 from homeassistant.components.cover import (
-    CoverEntity,
     CoverDeviceClass,
-    SUPPORT_CLOSE,
-    SUPPORT_OPEN,
-    SUPPORT_SET_POSITION,
-    SUPPORT_STOP,
+    CoverEntity,
+    CoverEntityFeature,
 )
 
 from ..device import TuyaLocalDevice
@@ -40,14 +37,14 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
 
         self._support_flags = 0
         if self._position_dps:
-            self._support_flags |= SUPPORT_SET_POSITION
+            self._support_flags |= CoverEntityFeature.SET_POSITION
         if self._control_dps:
             if "stop" in self._control_dps.values(self._device):
-                self._support_flags |= SUPPORT_STOP
+                self._support_flags |= CoverEntityFeature.STOP
             if "open" in self._control_dps.values(self._device):
-                self._support_flags |= SUPPORT_OPEN
+                self._support_flags |= CoverEntityFeature.OPEN
             if "close" in self._control_dps.values(self._device):
-                self._support_flags |= SUPPORT_CLOSE
+                self._support_flags |= CoverEntityFeature.CLOSE
         # Tilt not yet supported, as no test devices known
 
     @property

@@ -7,9 +7,7 @@ from homeassistant.components.climate.const import (
     SWING_OFF,
 )
 from homeassistant.components.fan import (
-    SUPPORT_OSCILLATE,
-    SUPPORT_PRESET_MODE,
-    SUPPORT_SET_SPEED,
+    FanEntityFeature,
 )
 
 from ..const import FAN_PAYLOAD
@@ -40,7 +38,11 @@ class TestGoldairFan(BasicLightTests, SwitchableTests, TuyaDeviceTestCase):
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_OSCILLATE | SUPPORT_PRESET_MODE | SUPPORT_SET_SPEED,
+            (
+                FanEntityFeature.OSCILLATE
+                | FanEntityFeature.PRESET_MODE
+                | FanEntityFeature.SET_SPEED
+            ),
         )
         self.assertEqual(
             self.climate.supported_features,

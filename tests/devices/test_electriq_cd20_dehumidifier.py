@@ -1,5 +1,5 @@
-from homeassistant.components.fan import SUPPORT_PRESET_MODE
-from homeassistant.components.humidifier import SUPPORT_MODES
+from homeassistant.components.fan import FanEntityFeature
+from homeassistant.components.humidifier import HumidifierEntityFeature
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     PERCENTAGE,
@@ -68,8 +68,8 @@ class TestElectriqCD20ProDehumidifier(
         self.mark_secondary(["light_display"])
 
     def test_supported_features(self):
-        self.assertEqual(self.subject.supported_features, SUPPORT_MODES)
-        self.assertEqual(self.fan.supported_features, SUPPORT_PRESET_MODE)
+        self.assertEqual(self.subject.supported_features, HumidifierEntityFeature.MODES)
+        self.assertEqual(self.fan.supported_features, FanEntityFeature.PRESET_MODE)
 
     def test_icon(self):
         """Test that the icon is as expected."""

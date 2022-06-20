@@ -1,4 +1,4 @@
-from homeassistant.components.fan import SUPPORT_SET_SPEED
+from homeassistant.components.fan import FanEntityFeature
 from homeassistant.components.light import COLOR_MODE_ONOFF
 
 from ..const import DETA_FAN_PAYLOAD
@@ -31,7 +31,7 @@ class TestDetaFan(
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_SET_SPEED,
+            FanEntityFeature.SET_SPEED,
         )
 
     def test_speed(self):

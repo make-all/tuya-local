@@ -2,8 +2,7 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.cover import (
     CoverDeviceClass,
-    SUPPORT_CLOSE,
-    SUPPORT_OPEN,
+    CoverEntityFeature,
 )
 from homeassistant.components.sensor import SensorDeviceClass
 
@@ -47,7 +46,7 @@ class TestKoganGarageOpener(
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_OPEN | SUPPORT_CLOSE,
+            CoverEntityFeature.OPEN | CoverEntityFeature.CLOSE,
         )
 
     def test_current_cover_position(self):

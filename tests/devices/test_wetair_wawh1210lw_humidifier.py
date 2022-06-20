@@ -1,9 +1,9 @@
+from homeassistant.components.humidifier import HumidifierEntityFeature
 from homeassistant.components.humidifier.const import (
     MODE_AUTO,
     MODE_BOOST,
     MODE_NORMAL,
     MODE_SLEEP,
-    SUPPORT_MODES,
 )
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
@@ -86,7 +86,7 @@ class TestWetairWAWH1210LWHumidifier(
         )
 
     def test_supported_features(self):
-        self.assertEqual(self.subject.supported_features, SUPPORT_MODES)
+        self.assertEqual(self.subject.supported_features, HumidifierEntityFeature.MODES)
 
     def test_icons(self):
         self.dps[SWITCH_DPS] = True

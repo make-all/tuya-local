@@ -1,11 +1,10 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
+from homeassistant.components.humidifier import HumidifierEntityFeature
 from homeassistant.components.humidifier.const import (
     MODE_AUTO,
     MODE_NORMAL,
-    SUPPORT_MODES,
 )
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.components.humidifier import HumidifierDeviceClass
 
 from homeassistant.const import PERCENTAGE, TEMP_CELSIUS
 
@@ -151,7 +150,7 @@ class TestWilfaHazeHumidifier(
         )
 
     def test_supported_features(self):
-        self.assertEqual(self.subject.supported_features, SUPPORT_MODES)
+        self.assertEqual(self.subject.supported_features, HumidifierEntityFeature.MODES)
 
     def test_icons(self):
         self.dps[SWITCH_DPS] = True

@@ -5,10 +5,7 @@ import logging
 
 from homeassistant.components.fan import (
     FanEntity,
-    SUPPORT_DIRECTION,
-    SUPPORT_OSCILLATE,
-    SUPPORT_PRESET_MODE,
-    SUPPORT_SET_SPEED,
+    FanEntityFeature,
 )
 
 from ..device import TuyaLocalDevice
@@ -38,13 +35,13 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
 
         self._support_flags = 0
         if self._preset_dps:
-            self._support_flags |= SUPPORT_PRESET_MODE
+            self._support_flags |= FanEntityFeature.PRESET_MODE
         if self._speed_dps:
-            self._support_flags |= SUPPORT_SET_SPEED
+            self._support_flags |= FanEntityFeature.SET_SPEED
         if self._oscillate_dps:
-            self._support_flags |= SUPPORT_OSCILLATE
+            self._support_flags |= FanEntityFeature.OSCILLATE
         if self._direction_dps:
-            self._support_flags |= SUPPORT_DIRECTION
+            self._support_flags |= FanEntityFeature.DIRECTION
 
     @property
     def supported_features(self):
