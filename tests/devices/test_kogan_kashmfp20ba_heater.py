@@ -3,8 +3,8 @@ from homeassistant.components.climate.const import (
     HVACMode,
 )
 from homeassistant.components.light import (
-    COLOR_MODE_UNKNOWN,
-    SUPPORT_EFFECT,
+    ColorMode,
+    LightEntityFeature,
 )
 
 from ..const import KOGAN_KASHMFP20BA_HEATER_PAYLOAD
@@ -130,12 +130,12 @@ class TestKoganKASHMF20BAHeater(TargetTemperatureTests, TuyaDeviceTestCase):
         self.assertCountEqual(self.flame.supported_color_modes, [])
 
     def test_lighting_supported_features(self):
-        self.assertEqual(self.backlight.supported_features, SUPPORT_EFFECT)
-        self.assertEqual(self.flame.supported_features, SUPPORT_EFFECT)
+        self.assertEqual(self.backlight.supported_features, LightEntityFeature.EFFECT)
+        self.assertEqual(self.flame.supported_features, LightEntityFeature.EFFECT)
 
     def test_lighting_color_mode(self):
-        self.assertEqual(self.backlight.color_mode, COLOR_MODE_UNKNOWN)
-        self.assertEqual(self.flame.color_mode, COLOR_MODE_UNKNOWN)
+        self.assertEqual(self.backlight.color_mode, ColorMode.UNKNOWN)
+        self.assertEqual(self.flame.color_mode, ColorMode.UNKNOWN)
 
     def test_lighting_is_on(self):
         self.assertTrue(self.backlight.is_on)

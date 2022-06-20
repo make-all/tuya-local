@@ -5,7 +5,6 @@ from homeassistant.components.climate.const import (
     PRESET_COMFORT,
     PRESET_BOOST,
 )
-from homeassistant.components.light import COLOR_MODE_BRIGHTNESS
 from homeassistant.const import TIME_MINUTES
 
 from ..const import WETAIR_WCH750_HEATER_PAYLOAD

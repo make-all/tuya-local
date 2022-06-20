@@ -6,7 +6,7 @@ from homeassistant.components.fan import (
 from homeassistant.components.light import (
     ATTR_BRIGHTNESS,
     ATTR_COLOR_TEMP,
-    COLOR_MODE_COLOR_TEMP,
+    ColorMode,
 )
 from ..const import ARLEC_FAN_LIGHT_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -127,11 +127,11 @@ class TestArlecFan(SwitchableTests, BasicSelectTests, TuyaDeviceTestCase):
     def test_light_supported_color_modes(self):
         self.assertCountEqual(
             self.light.supported_color_modes,
-            [COLOR_MODE_COLOR_TEMP],
+            [ColorMode.COLOR_TEMP],
         )
 
     def test_light_color_mode(self):
-        self.assertEqual(self.light.color_mode, COLOR_MODE_COLOR_TEMP)
+        self.assertEqual(self.light.color_mode, ColorMode.COLOR_TEMP)
 
     def test_light_brightness(self):
         self.dps[BRIGHTNESS_DPS] = 50

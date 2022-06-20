@@ -1,5 +1,4 @@
 from homeassistant.components.fan import FanEntityFeature
-from homeassistant.components.light import COLOR_MODE_ONOFF
 
 from ..const import DETA_FAN_PAYLOAD
 from ..helpers import assert_device_properties_set

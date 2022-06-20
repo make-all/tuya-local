@@ -4,7 +4,7 @@ from homeassistant.components.climate.const import (
     SWING_OFF,
     SWING_VERTICAL,
 )
-from homeassistant.components.light import COLOR_MODE_ONOFF
+from homeassistant.components.light import ColorMode
 
 from ..const import PURLINE_M100_HEATER_PAYLOAD
 from ..helpers import (
@@ -174,11 +174,11 @@ class TestPulineM100Heater(
     def test_light_supported_color_modes(self):
         self.assertCountEqual(
             self.light.supported_color_modes,
-            [COLOR_MODE_ONOFF],
+            [ColorMode.ONOFF],
         )
 
     def test_light_color_mode(self):
-        self.assertEqual(self.light.color_mode, COLOR_MODE_ONOFF)
+        self.assertEqual(self.light.color_mode, ColorMode.ONOFF)
 
     def test_light_icon(self):
         self.dps[LIGHTOFF_DPS] = False

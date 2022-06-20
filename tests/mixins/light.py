@@ -1,7 +1,6 @@
 # Mixins for testing lights
 from homeassistant.components.light import (
-    COLOR_MODE_BRIGHTNESS,
-    COLOR_MODE_ONOFF,
+    ColorMode,
 )
 
 from ..helpers import assert_device_properties_set
@@ -20,11 +19,11 @@ class BasicLightTests:
     def test_basic_light_supported_color_modes(self):
         self.assertCountEqual(
             self.basicLight.supported_color_modes,
-            [COLOR_MODE_ONOFF],
+            [ColorMode.ONOFF],
         )
 
     def test_basic_light_color_mode(self):
-        self.assertEqual(self.basicLight.color_mode, COLOR_MODE_ONOFF)
+        self.assertEqual(self.basicLight.color_mode, ColorMode.ONOFF)
 
     def test_basic_light_has_no_brightness(self):
         self.assertIsNone(self.basicLight.brightness)
@@ -96,12 +95,12 @@ class MultiLightTests:
         for light in self.multiLight.values():
             self.assertCountEqual(
                 light.supported_color_modes,
-                [COLOR_MODE_ONOFF],
+                [ColorMode.ONOFF],
             )
 
     def test_multi_light_color_mode(self):
         for light in self.multiLight.values():
-            self.assertEqual(light.color_mode, COLOR_MODE_ONOFF)
+            self.assertEqual(light.color_mode, ColorMode.ONOFF)
 
     def test_multi_lights_have_no_brightness(self):
         for light in self.multiLight.values():
