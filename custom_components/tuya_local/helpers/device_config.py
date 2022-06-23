@@ -522,15 +522,15 @@ class TuyaDpsConfig:
                 r_dps = self._entity.find_dps(mirror)
                 return r_dps.get_value(device)
 
-            if scale != 1 and isinstance(result, (int, float)):
-                result = result / scale
-                replaced = True
-
             if invert:
                 r = self._config.get("range")
                 if r and "min" in r and "max" in r:
                     result = -1 * result + r["min"] + r["max"]
                     replaced = True
+
+            if scale != 1 and isinstance(result, (int, float)):
+                result = result / scale
+                replaced = True
 
             if replaced:
                 _LOGGER.debug(
@@ -631,12 +631,6 @@ class TuyaDpsConfig:
                 r_dps = self._entity.find_dps(redirect)
                 return r_dps.get_values_to_set(device, value)
 
-            if invert:
-                r = self._config.get("range")
-                if r and "min" in r and "max" in r:
-                    result = -1 * result + r["min"] + r["max"]
-                    replaced = True
-
             if scale != 1 and isinstance(result, (int, float)):
                 _LOGGER.debug(f"Scaling {result} by {scale}")
                 result = result * scale
@@ -644,6 +638,12 @@ class TuyaDpsConfig:
                 if remap and "dps_val" in remap and "dps_val" not in mapping:
                     result = remap["dps_val"]
                 replaced = True
+
+            if invert:
+                r = self._config.get("range")
+                if r and "min" in r and "max" in r:
+                    result = -1 * result + r["min"] + r["max"]
+                    replaced = True
 
             if step and isinstance(result, (int, float)):
                 _LOGGER.debug(f"Stepping {result} to {step}")
