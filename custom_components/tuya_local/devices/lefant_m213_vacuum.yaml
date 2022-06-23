@@ -28,6 +28,8 @@ primary_entity:
       type: string
       name: direction_control
       mapping:
+        - dps_val: forward
+          value: forward
         - dps_val: backward
           value: reverse
         - dps_val: turn_left
@@ -83,9 +85,9 @@ primary_entity:
     - id: 106
       type: string
       name: unknown_106
-    - id: 108
-      type: string
-      name: unknown_108
+#    - id: 108
+#      type: string
+#      name: unknown_108
 secondary_entities:
   - entity: sensor
     name: Clean Area
