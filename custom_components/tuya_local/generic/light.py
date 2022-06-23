@@ -51,7 +51,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             return [
                 ColorMode(mode)
                 for mode in self._color_mode_dps.values(self._device)
-                if hasattr(ColorMode, mode.upper())
+                if mode and hasattr(ColorMode, mode.upper())
             ]
         else:
             try:
@@ -75,7 +75,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
         """Return the color mode of the light"""
         if self._color_mode_dps:
             mode = self._color_mode_dps.get_value(self._device)
-            if hasattr(ColorMode, mode.upper()):
+            if mode and hasattr(ColorMode, mode.upper()):
                 return ColorMode(mode)
 
         if self._rgbhsv_dps:
@@ -170,7 +170,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             return [
                 effect
                 for effect in self._color_mode_dps.values(self._device)
-                if not hasattr(ColorMode, effect.upper())
+                if effect and not hasattr(ColorMode, effect.upper())
             ]
 
     @property
@@ -180,7 +180,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             return self._effect_dps.get_value(self._device)
         elif self._color_mode_dps:
             mode = self._color_mode_dps.get_value(self._device)
-            if not hasattr(ColorMode, mode.upper()):
+            if mode and not hasattr(ColorMode, mode.upper()):
                 return mode
 
     async def async_turn_on(self, **params):
