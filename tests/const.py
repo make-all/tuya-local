@@ -996,7 +996,7 @@ LEFANT_M213_VACUUM_PAYLOAD = {
     "102": -23,
     "103": 27,
     "104": 0,
-    "106": "ChargeStage:DETSWITCGH",
+    #   "106": "ChargeStage:DETSWITCGH",
     #    "108": "BatVol:13159",
 }
 
