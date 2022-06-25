@@ -1259,3 +1259,14 @@ BETTERLIFE_BL1500_PAYLOAD = {
     "11": "0",
     "12": 0,
 }
+
+EESEE_ADAM_PAYLOAD = {
+    "1": True,
+    "2": 50,
+    "4": "manual",
+    "5": "low",
+    "14": False,
+    "16": 72,
+    "17": "cancel",
+    "19": 0,
+}

@@ -121,6 +121,7 @@ the device will not work despite being listed below.
 - Kogan SmarterHome 7L Desiccant dehumidifier
 - JJPro JPD01 dehumidifer
 - JJPro JPD02 dehumidifier
+- Eesee Adam dehumidifier
 
 ### Humidifiers
 - Eanons QT-JS2014 Purifying humidifier
@@ -158,6 +159,9 @@ Other brands may work with the above configurations
 - Simple Switch - a switch only, can be a fallback for many other unsupported devices, to allow just power to be switched on/off.
 - Simple Switch with Timer - a single switch and timer, will probably work for a lot of smart switches that are not covered by the more advanced configs above.
 
+### Lights
+- Generic RGBCW/RGBWW lightbulb (expected to match many such devices)
+
 ### Covers
 - Simple Garage Door
 - Simple Blind Controller
@@ -166,7 +170,7 @@ Other brands may work with the above configurations
 - M027 Curtain Module (sold under several brands, including zemismart, meterk and others)
 
 ### Vacuum Cleaners
-- Lefant M213 Vacuum Cleaner
+- Lefant M213 Vacuum Cleaner (also works for Lefant M213S and APOSEN A550)
 - Kyvol E30 Vacuum Cleaner
 
 ### Miscellaneous
