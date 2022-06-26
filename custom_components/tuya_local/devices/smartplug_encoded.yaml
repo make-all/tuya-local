@@ -1,0 +1,40 @@
+name: Smartplug with encoded info
+product:
+  - id: A6bBfm2fmKKRfIxU
+    name: スマートプラグ
+primary_entity:
+  entity: switch
+  class: outlet
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 101
+      type: base64
+      name: unknown_101
+      readonly: true
+    - id: 102
+      type: base64
+      name: unknown_102
+      readonly: true
+    - id: 103
+      type: base64
+      name: unknown_103
+      readonly: true
+secondary_entities:
+  - entity: number
+    category: config
+    icon: "mdi:timer"
+    name: Timer
+    dps:
+      - id: 11
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  

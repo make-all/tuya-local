@@ -83,4 +83,17 @@ Further device support has been made with the assistance of users.  Please consi
 - [tavicu](https://github.com/tavicu) for contributing support for Starlight Heatpumps, Simple Blinds and for the idea to support inverted values.
 - [Chris061290](https://github.com/Chris061290) for contributing support for IPS Pro pool heatpumps, complete with unit tests.
 - [MartinCarbol](https://github.com/MartinCarbol) for contributing support for two models of Tesla Air Purifier.
-- [gschmidl](https://github.com/gschmidl) for assistance with Himox H05 purifiers
+- [gschmidl](https://github.com/gschmidl) for assistance with Himox H05 purifier.
+- [daitj](https://github.com/daitj) for contributing support for Wilfa Haze humidifier.
+- [Utopia69](https://github.com/Utopia69) for providing additional info on his Fairland IPH45 heatpump (matching Madimack)
+- [Seopgroenten](https://github.com/Soepgronten) for assistance with W'eau pool heatpumps.
+- [choppedpork](https://github.com/choppedpork) for contributing support for QS Wifi curtain modules.
+- [Swiftnesses](https://github.com/Swiftnesses) for assistance with Devola patio heaters.
+- [odeBuXTeR](https://github.com/odeBuXTeR) for contributing support for Poolex Q-line pool heatpumps.
+- [peterforeman](https:github.com/peterforeman) for assistance with improving Fairland/Madimack support.
+- [Krispkiwi](https://github.com/Krispkiwi) for assistance with M027 curtain modules and debugging Kogan Kettle.
+- [craibo](https://github.com/craibo) for contributing support for Jiahong ET-72W thermostats.
+- [x-keita](https://github.com/x-keita) for contributing support for Betterlife BL1500 IR heaters.
+- [Der-Nax](https:github.com/Der-Nax) for assistant with a second variant of energy monitoring smart switch.
+- [17hoehbr](https://github.com/17hoehbr) for assistance supporting APOSEN A550
+- [yurgh](https://github.com/yurgh) for assistant supporting Eesee Adam dehumidifier

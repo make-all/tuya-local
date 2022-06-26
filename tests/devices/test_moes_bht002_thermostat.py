@@ -1,13 +1,9 @@
 from homeassistant.components.climate.const import (
-    HVAC_MODE_AUTO,
-    HVAC_MODE_HEAT,
-    HVAC_MODE_OFF,
+    ClimateEntityFeature,
+    HVACMode,
     PRESET_ECO,
     PRESET_COMFORT,
-    SUPPORT_PRESET_MODE,
-    SUPPORT_TARGET_TEMPERATURE,
 )
-from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import MOES_BHT002_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -48,7 +44,10 @@ class TestMoesBHT002Thermostat(
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_PRESET_MODE | SUPPORT_TARGET_TEMPERATURE,
+            (
+                ClimateEntityFeature.PRESET_MODE
+                | ClimateEntityFeature.TARGET_TEMPERATURE
+            ),
         )
 
     def test_temperature_unit(self):
@@ -82,24 +81,21 @@ class TestMoesBHT002Thermostat(
     def test_hvac_mode(self):
         self.dps[POWER_DPS] = False
         self.dps[HVACMODE_DPS] = "0"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_OFF)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.OFF)
 
         self.dps[POWER_DPS] = True
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_AUTO)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.AUTO)
 
         self.dps[HVACMODE_DPS] = "1"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT)
-
-        self.dps[HVACMODE_DPS] = None
-        self.assertEqual(self.subject.hvac_mode, STATE_UNAVAILABLE)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT)
 
     def test_hvac_modes(self):
         self.assertCountEqual(
             self.subject.hvac_modes,
             [
-                HVAC_MODE_HEAT,
-                HVAC_MODE_AUTO,
-                HVAC_MODE_OFF,
+                HVACMode.HEAT,
+                HVACMode.AUTO,
+                HVACMode.OFF,
             ],
         )
 

@@ -1,6 +1,6 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
-from homeassistant.components.fan import SUPPORT_SET_SPEED
-from homeassistant.components.humidifier import SUPPORT_MODES
+from homeassistant.components.fan import FanEntityFeature
+from homeassistant.components.humidifier import HumidifierEntityFeature
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     PERCENTAGE,
@@ -104,8 +104,8 @@ class TestJJProJPD01Dehumidifier(
         )
 
     def test_supported_features(self):
-        self.assertEqual(self.subject.supported_features, SUPPORT_MODES)
-        self.assertEqual(self.fan.supported_features, SUPPORT_SET_SPEED)
+        self.assertEqual(self.subject.supported_features, HumidifierEntityFeature.MODES)
+        self.assertEqual(self.fan.supported_features, FanEntityFeature.SET_SPEED)
 
     def test_icon(self):
         """Test that the icon is as expected."""

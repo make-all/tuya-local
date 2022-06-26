@@ -1,9 +1,7 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.climate.const import (
-    CURRENT_HVAC_COOL,
-    CURRENT_HVAC_HEAT,
-    CURRENT_HVAC_IDLE,
-    SUPPORT_TARGET_TEMPERATURE,
+    ClimateEntityFeature,
+    HVACAction,
 )
 from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT, TIME_MINUTES
 
@@ -160,7 +158,7 @@ class TestInkbirdITC308Thermostat(
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_TARGET_TEMPERATURE,
+            ClimateEntityFeature.TARGET_TEMPERATURE,
         )
 
     def test_icon(self):
@@ -210,11 +208,11 @@ class TestInkbirdITC308Thermostat(
 
     def test_hvac_action(self):
         self.dps[STATUS_DPS] = "1"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_COOL)
+        self.assertEqual(self.subject.hvac_action, HVACAction.COOLING)
         self.dps[STATUS_DPS] = "2"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_IDLE)
+        self.assertEqual(self.subject.hvac_action, HVACAction.IDLE)
         self.dps[STATUS_DPS] = "3"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_HEAT)
+        self.assertEqual(self.subject.hvac_action, HVACAction.HEATING)
 
     def test_extra_state_attributes(self):
         self.dps[ERROR_DPS] = 12

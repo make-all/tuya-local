@@ -1,8 +1,4 @@
-from homeassistant.components.fan import (
-    SUPPORT_OSCILLATE,
-    SUPPORT_PRESET_MODE,
-    SUPPORT_SET_SPEED,
-)
+from homeassistant.components.fan import FanEntityFeature
 from homeassistant.const import TIME_HOURS
 
 from ..const import LEXY_F501_PAYLOAD
@@ -58,7 +54,11 @@ class TestLexyF501Fan(
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_OSCILLATE | SUPPORT_PRESET_MODE | SUPPORT_SET_SPEED,
+            (
+                FanEntityFeature.OSCILLATE
+                | FanEntityFeature.PRESET_MODE
+                | FanEntityFeature.SET_SPEED
+            ),
         )
 
     def test_preset_mode(self):

@@ -45,6 +45,8 @@ the device will not work despite being listed below.
 - Nedis convection heater - WIFIHTPL20F models
 - Ecostrad Accent iQ heating panels
 - Ecostrad iQ Ceramic radiators
+- Devola Patio heater
+- Betterlife BT1500 IR heater
 
 ### Air Conditioners / Heatpumps
 
@@ -62,11 +64,13 @@ the device will not work despite being listed below.
 
 - Garden PAC pool heatpump (also works with Summerwave Si Series)
 - Madimack Elite V3 pool heatpump
-- Madimack(model unknown) pool heatpump
+- Madimack(model unknown) pool heatpump (seems to match Fairland IPH45 as well)
 - Remora pool heatpump
 - BWT FI 45 heatpump
-- Poolex Silverline and Vertigo heatpump
+- Poolex Silverline, Q-line and Vertigo heatpumps
 - IPS Pro Pool-Systems Heatpump (seems to match Fairland Inver-X as well)
+- W'eau Pool Heatpump
+
 - these seem to use a small number of common controllers with minor variations, and many other Pool heatpumps will work using the above configurations.
   Report issues if there are any differences in presets or other features,
   or if any of the "unknown" values that are returned as attributes can
@@ -88,6 +92,7 @@ the device will not work despite being listed below.
 - Beok TR9B thermostat _(rebadged as Vancoo and perhaps others)_
 - Hysen HY08WE-2 thermostat
 - Nashone MTS-700-WB thermostat smartplug
+- Jiahong ET-72W thermostat
 
 ### Fans
 - Goldair GCPF315 fan
@@ -116,10 +121,12 @@ the device will not work despite being listed below.
 - Kogan SmarterHome 7L Desiccant dehumidifier
 - JJPro JPD01 dehumidifer
 - JJPro JPD02 dehumidifier
+- Eesee Adam dehumidifier
 
 ### Humidifiers
 - Eanons QT-JS2014 Purifying humidifier
 - Wetair WAW-H1210LW humidifier
+- Wilfa Haze HU400BC humidifier
 
 ### Kitchen Appliances
 - Kogan Glass 1.7L Smart Kettle (not reliably detected)
@@ -137,6 +144,8 @@ the device will not work despite being listed below.
   _confirmed working with Kogan single smartplug with USB and Rillpac smartplugs_
 - Generic Smartplug with more advanced energy monitoring
   _confirmed working with CBE smartplugs_
+- Generic Smartplug with some additional encoded schedule info.
+  _confirmed working as a simple switch and timer with Kashimura KJ-173_
 - Mirabella Genio Smart plug with USB
 - Grid Connect double outlet with Energy Monitoring, Master and Individual switches and Child Lock.
 - DIGOO DG-SP202 dual smartplug with energy monitoring and timers.
@@ -150,13 +159,18 @@ Other brands may work with the above configurations
 - Simple Switch - a switch only, can be a fallback for many other unsupported devices, to allow just power to be switched on/off.
 - Simple Switch with Timer - a single switch and timer, will probably work for a lot of smart switches that are not covered by the more advanced configs above.
 
+### Lights
+- Generic RGBCW/RGBWW lightbulb (expected to match many such devices)
+
 ### Covers
 - Simple Garage Door
 - Simple Blind Controller
 - Kogan Garage Door with tilt sensor
+- QS-WIFI-C01(BK) Curtain Module
+- M027 Curtain Module (sold under several brands, including zemismart, meterk and others)
 
 ### Vacuum Cleaners
-- Lefant M213 Vacuum Cleaner
+- Lefant M213 Vacuum Cleaner (also works for Lefant M213S and APOSEN A550)
 - Kyvol E30 Vacuum Cleaner
 
 ### Miscellaneous
@@ -167,7 +181,7 @@ Other brands may work with the above configurations
 
 ## Installation
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg?style=for-the-badge)](https://github.com/custom-components/hacs)
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg?style=for-the-badge)](https://github.com/hacs/integration)
 
 Installation is via the [Home Assistant Community Store
 (HACS)](https://hacs.xyz/), which is the best place to get third-party
@@ -232,17 +246,14 @@ it up again.
 
 ### Stage Three
 
-The final stage is to choose a name for the device in Home Assistant,
-and select which entities you want to enable.  The options availble
-will depend on the capabilities of the device you selected in the
-previous step.
+The final stage is to choose a name for the device in Home Assistant.
 
-Usually you will want to accept the defaults at this step.  Entities
-are selected by default, unless they are a deprecated alternative way
-of controlling the device (such as a climate entity for dehumidifiers
-as an alternative to humidifier and fan entities).  If you have
-multiple devices of the same type, you may want to change the name to
-make it easier to distinguish them.
+If you have multiple devices of the same type, you may want to change
+the name to make it easier to distinguish them.
+
+Besides the name, usually you will want to accept the defaults at this
+step, as any checkboxes are for backwards compatibility deprecated entities
+that will be removed in future, alternatives should be available.
 
 #### name
 
@@ -254,11 +265,16 @@ the entities.
 
 #### (entities)
 
-&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ A number of options
-will be available for each of the entities exposed by the device.
+&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Additional options
+may be available for deprecated entities exposed by the device.
 They will be named for the platform type and an optional name for
 the entity as a suffix (eg `climate`, `humidifier`, `lock_child_lock`)
 Setting them to True will expose the entity in Home Assistant.
+
+It is strongly recommended that you do not enable deprecated entities when
+setting up a new device.  They are only retained for users who set up the
+device before support was added for the actual entity matching the device,
+or when a function was misunderstood, and will not be retained forever.
 
 ## Offline operation gotchas
 

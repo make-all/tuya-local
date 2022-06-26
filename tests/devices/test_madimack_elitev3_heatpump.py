@@ -1,10 +1,6 @@
 from homeassistant.components.climate.const import (
-    HVAC_MODE_COOL,
-    HVAC_MODE_HEAT,
-    HVAC_MODE_HEAT_COOL,
-    HVAC_MODE_OFF,
-    SUPPORT_PRESET_MODE,
-    SUPPORT_TARGET_TEMPERATURE,
+    ClimateEntityFeature,
+    HVACMode,
 )
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
@@ -133,7 +129,10 @@ class TestMadimackEliteV3Heatpump(
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_PRESET_MODE | SUPPORT_TARGET_TEMPERATURE,
+            (
+                ClimateEntityFeature.PRESET_MODE
+                | ClimateEntityFeature.TARGET_TEMPERATURE
+            ),
         )
 
     def test_icon(self):
@@ -168,18 +167,18 @@ class TestMadimackEliteV3Heatpump(
     def test_hvac_mode(self):
         self.dps[POWER_DPS] = True
         self.dps[HVACMODE_DPS] = "auto"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT_COOL)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT_COOL)
         self.dps[HVACMODE_DPS] = "cold"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_COOL)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.COOL)
         self.dps[HVACMODE_DPS] = "heating"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT)
         self.dps[POWER_DPS] = False
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_OFF)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.OFF)
 
     def test_hvac_modes(self):
         self.assertCountEqual(
             self.subject.hvac_modes,
-            [HVAC_MODE_OFF, HVAC_MODE_COOL, HVAC_MODE_HEAT, HVAC_MODE_HEAT_COOL],
+            [HVACMode.OFF, HVACMode.COOL, HVACMode.HEAT, HVACMode.HEAT_COOL],
         )
 
     async def test_set_hvac_mode_to_cool(self):
@@ -187,28 +186,28 @@ class TestMadimackEliteV3Heatpump(
             self.subject._device,
             {POWER_DPS: True, HVACMODE_DPS: "cold"},
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_COOL)
+            await self.subject.async_set_hvac_mode(HVACMode.COOL)
 
     async def test_set_hvac_mode_to_heat(self):
         async with assert_device_properties_set(
             self.subject._device,
             {POWER_DPS: True, HVACMODE_DPS: "heating"},
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_HEAT)
+            await self.subject.async_set_hvac_mode(HVACMode.HEAT)
 
     async def test_set_hvac_mode_to_auto(self):
         async with assert_device_properties_set(
             self.subject._device,
             {POWER_DPS: True, HVACMODE_DPS: "auto"},
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_HEAT_COOL)
+            await self.subject.async_set_hvac_mode(HVACMode.HEAT_COOL)
 
     async def test_set_hvac_mode_to_off(self):
         async with assert_device_properties_set(
             self.subject._device,
             {POWER_DPS: False},
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_OFF)
+            await self.subject.async_set_hvac_mode(HVACMode.OFF)
 
     def test_preset_mode(self):
         self.dps[PRESET_DPS] = "silence"

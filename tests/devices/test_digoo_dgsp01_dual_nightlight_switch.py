@@ -1,11 +1,10 @@
 """Tests for the switch entity."""
 from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.components.light import (
-    COLOR_MODE_RGBW,
-    COLOR_MODE_WHITE,
+    ColorMode,
     EFFECT_COLORLOOP,
     EFFECT_RANDOM,
-    SUPPORT_EFFECT,
+    LightEntityFeature,
 )
 from ..const import DIGOO_DGSP01_SOCKET_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -51,21 +50,21 @@ class TestDigooNightlightSwitch(BasicSwitchTests, TuyaDeviceTestCase):
 
     def test_light_color_mode(self):
         self.dps[COLORMODE_DPS] = "colour"
-        self.assertEqual(self.light.color_mode, COLOR_MODE_RGBW)
+        self.assertEqual(self.light.color_mode, ColorMode.RGBW)
         self.dps[COLORMODE_DPS] = "white"
-        self.assertEqual(self.light.color_mode, COLOR_MODE_WHITE)
+        self.assertEqual(self.light.color_mode, ColorMode.WHITE)
         self.dps[COLORMODE_DPS] = "scene"
-        self.assertEqual(self.light.color_mode, COLOR_MODE_RGBW)
+        self.assertEqual(self.light.color_mode, ColorMode.RGBW)
         self.dps[COLORMODE_DPS] = "music"
-        self.assertEqual(self.light.color_mode, COLOR_MODE_RGBW)
+        self.assertEqual(self.light.color_mode, ColorMode.RGBW)
         self.dps[COLORMODE_DPS] = "scene_1"
-        self.assertEqual(self.light.color_mode, COLOR_MODE_RGBW)
+        self.assertEqual(self.light.color_mode, ColorMode.RGBW)
         self.dps[COLORMODE_DPS] = "scene_2"
-        self.assertEqual(self.light.color_mode, COLOR_MODE_RGBW)
+        self.assertEqual(self.light.color_mode, ColorMode.RGBW)
         self.dps[COLORMODE_DPS] = "scene_3"
-        self.assertEqual(self.light.color_mode, COLOR_MODE_RGBW)
+        self.assertEqual(self.light.color_mode, ColorMode.RGBW)
         self.dps[COLORMODE_DPS] = "scene_4"
-        self.assertEqual(self.light.color_mode, COLOR_MODE_RGBW)
+        self.assertEqual(self.light.color_mode, ColorMode.RGBW)
 
     def test_light_rgbw_color(self):
         self.dps[RGBW_DPS] = "ffff00003c6464"
@@ -108,11 +107,11 @@ class TestDigooNightlightSwitch(BasicSwitchTests, TuyaDeviceTestCase):
     def test_light_supported_color_modes(self):
         self.assertCountEqual(
             self.light.supported_color_modes,
-            {COLOR_MODE_RGBW, COLOR_MODE_WHITE},
+            {ColorMode.RGBW, ColorMode.WHITE},
         )
 
     def test_light_supported_features(self):
-        self.assertEqual(self.light.supported_features, SUPPORT_EFFECT)
+        self.assertEqual(self.light.supported_features, LightEntityFeature.EFFECT)
 
     async def test_turn_on(self):
         async with assert_device_properties_set(
@@ -135,7 +134,7 @@ class TestDigooNightlightSwitch(BasicSwitchTests, TuyaDeviceTestCase):
                 BRIGHTNESS_DPS: 128,
             },
         ):
-            await self.light.async_turn_on(color_mode=COLOR_MODE_WHITE, brightness=128)
+            await self.light.async_turn_on(color_mode=ColorMode.WHITE, brightness=128)
 
     async def test_set_rgbw(self):
         async with assert_device_properties_set(
@@ -147,7 +146,7 @@ class TestDigooNightlightSwitch(BasicSwitchTests, TuyaDeviceTestCase):
             },
         ):
             await self.light.async_turn_on(
-                color_mode=COLOR_MODE_RGBW, rgbw_color=(255, 0, 0, 255)
+                color_mode=ColorMode.RGBW, rgbw_color=(255, 0, 0, 255)
             )
 
     def test_extra_state_attributes_set(self):

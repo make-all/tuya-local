@@ -1,4 +1,4 @@
-from homeassistant.components.fan import SUPPORT_PRESET_MODE, SUPPORT_SET_SPEED
+from homeassistant.components.fan import FanEntityFeature
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
@@ -79,7 +79,7 @@ class TestPoeimaOnePurifier(
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_PRESET_MODE | SUPPORT_SET_SPEED,
+            FanEntityFeature.PRESET_MODE | FanEntityFeature.SET_SPEED,
         )
 
     def test_speed(self):

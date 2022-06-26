@@ -1,15 +1,10 @@
 from homeassistant.components.climate.const import (
-    HVAC_MODE_FAN_ONLY,
-    HVAC_MODE_HEAT,
-    HVAC_MODE_OFF,
-    SUPPORT_PRESET_MODE,
-    SUPPORT_SWING_MODE,
-    SUPPORT_TARGET_TEMPERATURE,
+    ClimateEntityFeature,
+    HVACMode,
     SWING_OFF,
     SWING_VERTICAL,
 )
-from homeassistant.components.light import COLOR_MODE_ONOFF
-from homeassistant.const import STATE_UNAVAILABLE
+from homeassistant.components.light import ColorMode
 
 from ..const import PURLINE_M100_HEATER_PAYLOAD
 from ..helpers import (
@@ -57,7 +52,11 @@ class TestPulineM100Heater(
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_TARGET_TEMPERATURE | SUPPORT_PRESET_MODE | SUPPORT_SWING_MODE,
+            (
+                ClimateEntityFeature.TARGET_TEMPERATURE
+                | ClimateEntityFeature.PRESET_MODE
+                | ClimateEntityFeature.SWING_MODE
+            ),
         )
 
     def test_icon(self):
@@ -84,21 +83,18 @@ class TestPulineM100Heater(
     def test_hvac_mode(self):
         self.dps[HVACMODE_DPS] = True
         self.dps[PRESET_DPS] = "auto"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT)
 
         self.dps[PRESET_DPS] = "off"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_FAN_ONLY)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.FAN_ONLY)
 
         self.dps[HVACMODE_DPS] = False
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_OFF)
-
-        self.dps[HVACMODE_DPS] = None
-        self.assertEqual(self.subject.hvac_mode, STATE_UNAVAILABLE)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.OFF)
 
     def test_hvac_modes(self):
         self.assertCountEqual(
             self.subject.hvac_modes,
-            [HVAC_MODE_OFF, HVAC_MODE_HEAT, HVAC_MODE_FAN_ONLY],
+            [HVACMode.OFF, HVACMode.HEAT, HVACMode.FAN_ONLY],
         )
 
     async def test_turn_on(self):
@@ -107,14 +103,14 @@ class TestPulineM100Heater(
             {HVACMODE_DPS: True},
             {PRESET_DPS: "auto"},
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_HEAT)
+            await self.subject.async_set_hvac_mode(HVACMode.HEAT)
 
     async def test_turn_off(self):
         async with assert_device_properties_set(
             self.subject._device,
             {HVACMODE_DPS: False},
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_OFF)
+            await self.subject.async_set_hvac_mode(HVACMode.OFF)
 
     async def test_turn_on_fan(self):
         async with assert_device_properties_set_optional(
@@ -122,7 +118,7 @@ class TestPulineM100Heater(
             {HVACMODE_DPS: True},
             {PRESET_DPS: "off"},
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_FAN_ONLY)
+            await self.subject.async_set_hvac_mode(HVACMode.FAN_ONLY)
 
     def test_preset_mode(self):
         self.dps[PRESET_DPS] = "auto"
@@ -178,11 +174,11 @@ class TestPulineM100Heater(
     def test_light_supported_color_modes(self):
         self.assertCountEqual(
             self.light.supported_color_modes,
-            [COLOR_MODE_ONOFF],
+            [ColorMode.ONOFF],
         )
 
     def test_light_color_mode(self):
-        self.assertEqual(self.light.color_mode, COLOR_MODE_ONOFF)
+        self.assertEqual(self.light.color_mode, ColorMode.ONOFF)
 
     def test_light_icon(self):
         self.dps[LIGHTOFF_DPS] = False

@@ -8,19 +8,8 @@ from homeassistant.components.vacuum import (
     STATE_DOCKED,
     STATE_RETURNING,
     STATE_ERROR,
-    SUPPORT_BATTERY,
-    SUPPORT_FAN_SPEED,
-    SUPPORT_CLEAN_SPOT,
-    SUPPORT_LOCATE,
-    SUPPORT_PAUSE,
-    SUPPORT_RETURN_HOME,
-    SUPPORT_SEND_COMMAND,
-    SUPPORT_START,
-    SUPPORT_STATE,
-    SUPPORT_STATUS,
-    SUPPORT_TURN_ON,
-    SUPPORT_TURN_OFF,
     StateVacuumEntity,
+    VacuumEntityFeature,
 )
 from ..device import TuyaLocalDevice
 from ..helpers.device_config import TuyaEntityConfig
@@ -54,23 +43,27 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
     @property
     def supported_features(self):
         """Return the features supported by this vacuum cleaner."""
-        support = SUPPORT_STATE | SUPPORT_STATUS | SUPPORT_SEND_COMMAND
+        support = (
+            VacuumEntityFeature.STATE
+            | VacuumEntityFeature.STATUS
+            | VacuumEntityFeature.SEND_COMMAND
+        )
         if self._battery_dps:
-            support |= SUPPORT_BATTERY
+            support |= VacuumEntityFeature.BATTERY
         if self._fan_dps:
-            support |= SUPPORT_FAN_SPEED
+            support |= VacuumEntityFeature.FAN_SPEED
         if self._power_dps:
-            support |= SUPPORT_TURN_ON | SUPPORT_TURN_OFF
+            support |= VacuumEntityFeature.TURN_ON | VacuumEntityFeature.TURN_OFF
         if self._active_dps:
-            support |= SUPPORT_START | SUPPORT_PAUSE
+            support |= VacuumEntityFeature.START | VacuumEntityFeature.PAUSE
         if self._locate_dps:
-            support |= SUPPORT_LOCATE
+            support |= VacuumEntityFeature.LOCATE
 
         status_support = self._status_dps.values(self._device)
         if SERVICE_RETURN_TO_BASE in status_support:
-            support |= SUPPORT_RETURN_HOME
+            support |= VacuumEntityFeature.RETURN_HOME
         if SERVICE_CLEAN_SPOT in status_support:
-            support |= SUPPORT_CLEAN_SPOT
+            support |= VacuumEntityFeature.CLEAN_SPOT
         return support
 
     @property

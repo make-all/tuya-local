@@ -1,8 +1,4 @@
-from homeassistant.components.fan import (
-    SUPPORT_OSCILLATE,
-    SUPPORT_PRESET_MODE,
-    SUPPORT_SET_SPEED,
-)
+from homeassistant.components.fan import FanEntityFeature
 
 from ..const import STIRLING_FS1_FAN_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -29,7 +25,11 @@ class TestStirlingFS1Fan(SwitchableTests, TuyaDeviceTestCase):
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_OSCILLATE | SUPPORT_PRESET_MODE | SUPPORT_SET_SPEED,
+            (
+                FanEntityFeature.OSCILLATE
+                | FanEntityFeature.PRESET_MODE
+                | FanEntityFeature.SET_SPEED
+            ),
         )
 
     def test_preset_mode(self):

@@ -1,17 +1,11 @@
 from homeassistant.components.climate.const import (
-    CURRENT_HVAC_COOL,
-    CURRENT_HVAC_HEAT,
-    CURRENT_HVAC_OFF,
+    ClimateEntityFeature,
+    HVACAction,
+    HVACMode,
     FAN_AUTO,
     FAN_ON,
-    HVAC_MODE_COOL,
-    HVAC_MODE_HEAT,
-    HVAC_MODE_OFF,
     PRESET_AWAY,
     PRESET_HOME,
-    SUPPORT_FAN_MODE,
-    SUPPORT_PRESET_MODE,
-    SUPPORT_TARGET_TEMPERATURE,
 )
 from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT
 
@@ -83,7 +77,11 @@ class TestSaswellT29UTKThermostat(
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_TARGET_TEMPERATURE | SUPPORT_FAN_MODE | SUPPORT_PRESET_MODE,
+            (
+                ClimateEntityFeature.TARGET_TEMPERATURE
+                | ClimateEntityFeature.FAN_MODE
+                | ClimateEntityFeature.PRESET_MODE
+            ),
         )
 
     def test_icon(self):
@@ -129,62 +127,62 @@ class TestSaswellT29UTKThermostat(
 
     def test_hvac_mode(self):
         self.dps[HVACMODE_DPS] = "off"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_OFF)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.OFF)
 
         self.dps[HVACMODE_DPS] = "cold"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_COOL)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.COOL)
 
         self.dps[HVACMODE_DPS] = "hot"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT)
 
     def test_hvac_modes(self):
         self.assertCountEqual(
             self.subject.hvac_modes,
-            [HVAC_MODE_COOL, HVAC_MODE_HEAT, HVAC_MODE_OFF],
+            [HVACMode.COOL, HVACMode.HEAT, HVACMode.OFF],
         )
 
     async def test_turn_off(self):
         async with assert_device_properties_set(
             self.subject._device, {HVACMODE_DPS: "off"}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_OFF)
+            await self.subject.async_set_hvac_mode(HVACMode.OFF)
 
     async def test_set_hvac_mode_cool(self):
         async with assert_device_properties_set(
             self.subject._device, {HVACMODE_DPS: "cold"}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_COOL)
+            await self.subject.async_set_hvac_mode(HVACMode.COOL)
 
     async def test_set_hvac_mode_heat(self):
         async with assert_device_properties_set(
             self.subject._device, {HVACMODE_DPS: "hot"}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_HEAT)
+            await self.subject.async_set_hvac_mode(HVACMode.HEAT)
 
     async def test_set_hvac_mode_heat_fails_in_cooling_config(self):
         self.dps[CONFIG_DPS] = "1"
         with self.assertRaisesRegex(
             AttributeError, "hvac_mode cannot be set at this time"
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_HEAT)
+            await self.subject.async_set_hvac_mode(HVACMode.HEAT)
 
     async def test_set_hvac_mode_cool_fails_in_heating_config(self):
         self.dps[CONFIG_DPS] = "2"
         with self.assertRaisesRegex(
             AttributeError, "hvac_mode cannot be set at this time"
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_COOL)
+            await self.subject.async_set_hvac_mode(HVACMode.COOL)
 
     def test_hvac_action(self):
         self.dps[POWER_DPS] = True
         self.dps[HVACACTION_DPS] = "cold"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_COOL)
+        self.assertEqual(self.subject.hvac_action, HVACAction.COOLING)
 
         self.dps[HVACACTION_DPS] = "hot"
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_HEAT)
+        self.assertEqual(self.subject.hvac_action, HVACAction.HEATING)
 
         self.dps[POWER_DPS] = False
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_OFF)
+        self.assertEqual(self.subject.hvac_action, HVACAction.OFF)
 
     def test_fan_mode(self):
         self.dps[FAN_DPS] = "auto"

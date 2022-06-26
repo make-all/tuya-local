@@ -187,6 +187,18 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         entry.options = {**newopts}
         entry.version = 7
 
+    if entry.version == 7:
+        # Non-deprecated entities are now always enabled, remove the config
+        conf_file = get_config(entry.data[CONF_TYPE])
+        opts = {**entry.options}
+        e = conf_file.primary_entity
+        if not e.deprecated:
+            opts.pop(e.config_id, None)
+        for e in conf_file.secondary_entities():
+            if not e.deprecated:
+                opts.pop(e.config_id, None)
+        entry.options = {**opts}
+        entry.version = 8
     return True
 
 
@@ -201,10 +213,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
 
     entities = {}
     e = device_conf.primary_entity
-    if config.get(e.config_id, False):
+    if config.get(e.config_id, False) or not e.deprecated:
         entities[e.entity] = True
     for e in device_conf.secondary_entities():
-        if config.get(e.config_id, False):
+        if config.get(e.config_id, False) or not e.deprecated:
             entities[e.entity] = True
 
     for e in entities:

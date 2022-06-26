@@ -19,8 +19,6 @@ async def test_init_entry(hass):
             CONF_TYPE: "goldair_dehumidifier",
             CONF_DEVICE_ID: "dummy",
             "humidifier": False,
-            "binary_sensor_tank": True,
-            "binary_sensor_defrost": False,
         },
     )
     m_add_entities = Mock()
@@ -44,7 +42,6 @@ async def test_init_entry_fails_if_device_has_no_binary_sensor(hass):
         data={
             CONF_TYPE: "mirabella_genio_usb",
             CONF_DEVICE_ID: "dummy",
-            "binary_sensor": True,
         },
     )
     m_add_entities = Mock()
@@ -68,7 +65,6 @@ async def test_init_entry_fails_if_config_is_missing(hass):
         data={
             CONF_TYPE: "non_existing",
             CONF_DEVICE_ID: "dummy",
-            "binary_sensor": True,
         },
     )
     m_add_entities = Mock()

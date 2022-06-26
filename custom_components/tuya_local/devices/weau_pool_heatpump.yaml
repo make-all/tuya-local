@@ -1,0 +1,51 @@
+name: W'Eau Pool Heatpump
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: power
+      hidden: true
+      mapping:
+        - dps_val: false
+          value: "off"
+    - id: 2
+      type: integer
+      name: temperature
+      range:
+        min: 7
+        max: 60
+    - id: 3
+      type: integer
+      name: current_temperature
+      mapping:
+        - scale: 10
+    - id: 4
+      type: string
+      name: hvac_mode
+      mapping:
+        - dps_val: hot
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+              value: "off"
+            - dps_val: true
+              value: heat
+        - dps_val: cold
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: cool
+        - dps_val: auto
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: heat_cool
+    - id: 6
+      type: integer
+      name: unknown_6

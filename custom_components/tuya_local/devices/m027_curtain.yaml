@@ -1,0 +1,74 @@
+name: M027 Curtain
+primary_entity:
+  entity: cover
+  class: curtain
+  dps:
+    - id: 1
+      name: control
+      type: string
+      mapping:
+        - dps_val: open
+          value: open
+        - dps_val: close
+          value: close
+        - dps_val: stop
+          value: stop
+    - id: 2
+      name: position
+      type: integer
+      unit: "%"
+      range:
+        min: 0
+        max: 100
+    - id: 3
+      name: current_position
+      type: integer
+      unit: "%"
+    - id: 7
+      name: action
+      type: string
+      mapping:
+        - dps_val: opening
+          constraint: current_position
+          conditions:
+            - dps_val: 100
+              value: opened
+            - value: opening
+        - dps_val: closing
+          constraint: current_position
+          conditions:
+            - dps_val: 0
+              value: closed
+            - value: closing
+secondary_entities:
+  - entity: select
+    name: Mode
+    icon: "mdi:theme-light-dark"
+    category: config
+    dps:
+      - id: 4
+        name: option
+        type: string
+        mapping:
+          - dps_val: morning
+            value: Morning
+          - dps_val: night
+            value: Night
+  - entity: sensor
+    name: Time Remaining
+    icon: "mdi:timer"
+    category: diagnostic
+    dps:
+      - id: 9
+        name: sensor
+        type: integer
+        unit: s
+  - entity: sensor
+    name: Travel Time
+    icon: "mdi:hourglass"
+    category: diagnostic
+    dps:
+      - id: 10
+        name: sensor
+        type: integer
+        unit: ms

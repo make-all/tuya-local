@@ -1,6 +1,5 @@
 # Mixins for testing locks
 from homeassistant.components.lock import STATE_LOCKED, STATE_UNLOCKED
-from homeassistant.const import STATE_UNAVAILABLE
 
 from ..helpers import assert_device_properties_set
 
@@ -16,9 +15,6 @@ class BasicLockTests:
 
         self.dps[self.basicLockDps] = False
         self.assertEqual(self.basicLock.state, STATE_UNLOCKED)
-
-        self.dps[self.basicLockDps] = None
-        self.assertEqual(self.basicLock.state, STATE_UNAVAILABLE)
 
     def test_basic_lock_is_locked(self):
         self.dps[self.basicLockDps] = True

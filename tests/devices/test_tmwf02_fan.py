@@ -1,4 +1,4 @@
-from homeassistant.components.fan import SUPPORT_SET_SPEED
+from homeassistant.components.fan import FanEntityFeature
 from homeassistant.const import (
     TIME_MINUTES,
 )
@@ -33,7 +33,7 @@ class TestTMWF02Fan(BasicNumberTests, SwitchableTests, TuyaDeviceTestCase):
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_SET_SPEED,
+            FanEntityFeature.SET_SPEED,
         )
 
     def test_speed(self):

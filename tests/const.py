@@ -153,7 +153,7 @@ GARDENPAC_HEATPUMP_PAYLOAD = {
     "105": "warm",
     "106": 30,
     "107": 18,
-    "108": 40,
+    "108": 45,
     "115": 0,
     "116": 0,
     "117": True,
@@ -181,7 +181,7 @@ MADIMACK_HEATPUMP_PAYLOAD = {
     "105": "warm",
     "106": 30,
     "107": 18,
-    "108": 40,
+    "108": 45,
     "115": 4,
     "116": 0,
     "117": True,
@@ -367,6 +367,7 @@ ELECTRIQ_DESD9LW_DEHUMIDIFIER_PAYLOAD = {
 
 POOLEX_SILVERLINE_HEATPUMP_PAYLOAD = {"1": True, "2": 30, "3": 28, "4": "Heat", "13": 0}
 POOLEX_VERTIGO_HEATPUMP_PAYLOAD = {"1": True, "2": 30, "3": 28, "4": "heat", "9": 0}
+POOLEX_QLINE_HEATPUMP_PAYLOAD = {"1": True, "2": "heating", "4": 30, "15": 0, "16": 28}
 
 ELECTRIQ_12WMINV_HEATPUMP_PAYLOAD = {
     "1": True,
@@ -638,7 +639,7 @@ FERSK_VIND2_PAYLOAD = {
 KOGAN_GLASS_1_7L_KETTLE_PAYLOAD = {
     "1": False,
     "5": 99,
-    "102": "90",
+    #    "102": "90",
 }
 
 RENPHO_PURIFIER_PAYLOAD = {
@@ -995,8 +996,8 @@ LEFANT_M213_VACUUM_PAYLOAD = {
     "102": -23,
     "103": 27,
     "104": 0,
-    "106": "ChargeStage:DETSWITCGH",
-    "108": "BatVol:13159",
+    #   "106": "ChargeStage:DETSWITCGH",
+    #    "108": "BatVol:13159",
 }
 
 KYVOL_E30_VACUUM_PAYLOAD = {
@@ -1162,4 +1163,110 @@ STARLIGHT_HEATPUMP_PAYLOAD = {
     "132": False,
     "133": "0",
     "134": '{"t":8601,"s":false,"clr":true}',
+}
+
+WILFA_HAZE_HUMIDIFIER_PAYLOAD = {
+    "1": True,
+    "5": False,
+    "8": False,
+    "10": 20,
+    "13": 70,
+    "14": 55,
+    "16": False,
+    "18": "c",
+    "19": "cancel",
+    "20": 0,
+    "22": 0,
+    "23": "level_3",
+    "24": "humidity",
+    "26": False,
+    "35": False,
+}
+
+WEAU_POOL_HEATPUMP_PAYLOAD = {
+    "1": True,
+    "2": 33,
+    "3": 195,
+    "4": "auto",
+    "6": 0,
+}
+
+SMARTPLUG_ENCODED_PAYLOAD = {
+    "1": True,
+    "11": 0,
+    "101": "QVA=",
+    "102": "QVA=",
+    "103": "QVA=",
+}
+
+DEVOLA_PATIO_HEATER_PAYLOAD = {
+    "1": True,
+    "2": 20,
+    "3": 15,
+    "4": "smart",
+    "5": "4",
+    "6": False,
+    "7": False,
+    "12": 0,
+    "14": "heating",
+    "19": "c",
+    "20": 68,
+    "21": 59,
+}
+
+QS_C01_CURTAIN_PAYLOAD = {
+    "1": "stop",
+    "2": 0,
+    "8": "forward",
+    "10": 20,
+}
+
+M027_CURTAIN_PAYLOAD = {
+    "1": "stop",
+    "2": 0,
+    "3": 0,
+    "4": "morning",
+    "7": "opening",
+    "9": 0,
+    "10": 20000,
+}
+
+JIAHONG_ET72W_PAYLOAD = {
+    "101": True,
+    "102": 220,
+    "103": "Manual",
+    "104": 0,
+    "105": 205,
+    "106": 240,
+    "107": False,
+    "108": False,
+    "109": False,
+    "110": 2,
+    "111": "0",
+    "112": 0,
+    "113": 0,
+    "116": 500,
+    "117": 1234,
+    "118": True,
+    "121": 300,
+}
+
+BETTERLIFE_BL1500_PAYLOAD = {
+    "1": True,
+    "2": 20,
+    "4": "0",
+    "7": False,
+    "11": "0",
+    "12": 0,
+}
+
+EESEE_ADAM_PAYLOAD = {
+    "1": True,
+    "2": 50,
+    "4": "manual",
+    "5": "low",
+    "14": False,
+    "16": 72,
+    "17": "cancel",
+    "19": 0,
 }

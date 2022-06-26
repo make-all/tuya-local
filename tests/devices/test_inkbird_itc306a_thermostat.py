@@ -1,9 +1,7 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.climate.const import (
-    CURRENT_HVAC_HEAT,
-    CURRENT_HVAC_IDLE,
-    SUPPORT_PRESET_MODE,
-    SUPPORT_TARGET_TEMPERATURE_RANGE,
+    ClimateEntityFeature,
+    HVACAction,
 )
 from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT, TIME_HOURS
 
@@ -141,7 +139,10 @@ class TestInkbirdThermostat(
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_TARGET_TEMPERATURE_RANGE | SUPPORT_PRESET_MODE,
+            (
+                ClimateEntityFeature.TARGET_TEMPERATURE_RANGE
+                | ClimateEntityFeature.PRESET_MODE
+            ),
         )
 
     def test_icon(self):
@@ -289,9 +290,9 @@ class TestInkbirdThermostat(
 
     def test_hvac_action(self):
         self.dps[SWITCH_DPS] = False
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_IDLE)
+        self.assertEqual(self.subject.hvac_action, HVACAction.IDLE)
         self.dps[SWITCH_DPS] = True
-        self.assertEqual(self.subject.hvac_action, CURRENT_HVAC_HEAT)
+        self.assertEqual(self.subject.hvac_action, HVACAction.HEATING)
 
     def test_extra_state_attributes(self):
         self.dps[ERROR_DPS] = 1

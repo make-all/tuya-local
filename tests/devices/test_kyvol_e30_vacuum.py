@@ -3,18 +3,7 @@ from homeassistant.components.vacuum import (
     STATE_DOCKED,
     STATE_ERROR,
     STATE_RETURNING,
-    SUPPORT_BATTERY,
-    SUPPORT_CLEAN_SPOT,
-    SUPPORT_FAN_SPEED,
-    SUPPORT_LOCATE,
-    SUPPORT_PAUSE,
-    SUPPORT_RETURN_HOME,
-    SUPPORT_SEND_COMMAND,
-    SUPPORT_START,
-    SUPPORT_STATE,
-    SUPPORT_STATUS,
-    SUPPORT_TURN_OFF,
-    SUPPORT_TURN_ON,
+    VacuumEntityFeature,
 )
 from homeassistant.const import (
     TIME_MINUTES,
@@ -115,18 +104,20 @@ class TestKyvolE30Vacuum(MultiSensorTests, MultiSwitchTests, TuyaDeviceTestCase)
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_STATE
-            | SUPPORT_STATUS
-            | SUPPORT_SEND_COMMAND
-            | SUPPORT_BATTERY
-            | SUPPORT_FAN_SPEED
-            | SUPPORT_TURN_ON
-            | SUPPORT_TURN_OFF
-            | SUPPORT_START
-            | SUPPORT_PAUSE
-            | SUPPORT_LOCATE
-            | SUPPORT_RETURN_HOME
-            | SUPPORT_CLEAN_SPOT,
+            (
+                VacuumEntityFeature.STATE
+                | VacuumEntityFeature.STATUS
+                | VacuumEntityFeature.SEND_COMMAND
+                | VacuumEntityFeature.BATTERY
+                | VacuumEntityFeature.FAN_SPEED
+                | VacuumEntityFeature.TURN_ON
+                | VacuumEntityFeature.TURN_OFF
+                | VacuumEntityFeature.START
+                | VacuumEntityFeature.PAUSE
+                | VacuumEntityFeature.LOCATE
+                | VacuumEntityFeature.RETURN_HOME
+                | VacuumEntityFeature.CLEAN_SPOT
+            ),
         )
 
     def test_battery_level(self):

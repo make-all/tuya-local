@@ -1,0 +1,61 @@
+name: Poolex Q-Line Heatpump
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+          icon: "mdi:hvac-off"
+          icon_priority: 1
+        - dps_val: true
+          constraint: heating_mode
+          conditions:
+            - dps_val: cold
+              value: cool
+            - dps_val: heating
+              value: heat
+    - id: 2
+      name: heating_mode
+      hidden: true
+      type: string
+      icon_priority: 3
+      mapping:
+        - dps_val: heating
+          icon: "mdi:hot-tub"
+        - dps_val: cold
+          icon: "mdi:snowflake"
+    - id: 4
+      name: temperature
+      type: integer
+      range:
+        min: 8
+        max: 40
+    - id: 15
+      type: bitfield
+      name: error
+      mapping:
+        - dps_val: 0
+          value: "OK"
+        - dps_val: 1
+          value: "Water Flow Protection"
+          icon: "mdi:water-pump-off"
+          icon_priority: 2
+    - id: 16
+      name: current_temperature
+      type: integer
+secondary_entities:
+  - entity: binary_sensor
+    name: Water Flow
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 15
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true

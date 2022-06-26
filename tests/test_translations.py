@@ -62,14 +62,18 @@ def test_config_and_options_match(translations):
 def subtest_entity_covered(entity):
     strings = get_english()
     TestCase().assertIn(
-        entity.config_id, strings, f"{entity.config_id} is missing a translation"
+        entity.config_id,
+        strings,
+        f"{entity._device.config}: {entity.config_id} is missing a translation",
     )
 
 
 @pytest.mark.parametrize("device", get_devices())
 def test_device_covered(device):
     entity = device.primary_entity
-    subtest_entity_covered(entity)
+    if entity.deprecated:
+        subtest_entity_covered(entity)
 
     for entity in device.secondary_entities():
-        subtest_entity_covered(entity)
+        if entity.deprecated:
+            subtest_entity_covered(entity)

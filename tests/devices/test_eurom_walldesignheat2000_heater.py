@@ -1,17 +1,12 @@
 from homeassistant.components.climate.const import (
-    HVAC_MODE_FAN_ONLY,
-    HVAC_MODE_HEAT,
-    HVAC_MODE_OFF,
+    ClimateEntityFeature,
+    HVACMode,
     PRESET_BOOST,
     PRESET_COMFORT,
     PRESET_ECO,
-    SUPPORT_TARGET_TEMPERATURE,
-    SUPPORT_PRESET_MODE,
-    SUPPORT_SWING_MODE,
     SWING_OFF,
     SWING_VERTICAL,
 )
-from homeassistant.const import STATE_UNAVAILABLE
 
 from ..const import EUROM_WALLDESIGNHEAT2000_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -47,7 +42,11 @@ class TestEuromWallDesignheat2000Heater(
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            SUPPORT_TARGET_TEMPERATURE | SUPPORT_PRESET_MODE | SUPPORT_SWING_MODE,
+            (
+                ClimateEntityFeature.TARGET_TEMPERATURE
+                | ClimateEntityFeature.PRESET_MODE
+                | ClimateEntityFeature.SWING_MODE
+            ),
         )
 
     def test_icon(self):
@@ -71,40 +70,37 @@ class TestEuromWallDesignheat2000Heater(
     def test_hvac_mode(self):
         self.dps[HVACMODE_DPS] = True
         self.dps[PRESET_DPS] = "100_perc"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_HEAT)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT)
 
         self.dps[PRESET_DPS] = "off"
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_FAN_ONLY)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.FAN_ONLY)
 
         self.dps[HVACMODE_DPS] = False
-        self.assertEqual(self.subject.hvac_mode, HVAC_MODE_OFF)
-
-        self.dps[HVACMODE_DPS] = None
-        self.assertEqual(self.subject.hvac_mode, STATE_UNAVAILABLE)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.OFF)
 
     def test_hvac_modes(self):
         self.assertCountEqual(
             self.subject.hvac_modes,
-            [HVAC_MODE_OFF, HVAC_MODE_HEAT, HVAC_MODE_FAN_ONLY],
+            [HVACMode.OFF, HVACMode.HEAT, HVACMode.FAN_ONLY],
         )
 
     async def test_set_hvac_mode_to_heat(self):
         async with assert_device_properties_set(
             self.subject._device, {HVACMODE_DPS: True, PRESET_DPS: "auto"}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_HEAT)
+            await self.subject.async_set_hvac_mode(HVACMode.HEAT)
 
     async def test_set_hvac_mode_to_fan(self):
         async with assert_device_properties_set(
             self.subject._device, {HVACMODE_DPS: True, PRESET_DPS: "off"}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_FAN_ONLY)
+            await self.subject.async_set_hvac_mode(HVACMode.FAN_ONLY)
 
     async def test_turn_off(self):
         async with assert_device_properties_set(
             self.subject._device, {HVACMODE_DPS: False}
         ):
-            await self.subject.async_set_hvac_mode(HVAC_MODE_OFF)
+            await self.subject.async_set_hvac_mode(HVACMode.OFF)
 
     def test_preset_modes(self):
         self.assertCountEqual(

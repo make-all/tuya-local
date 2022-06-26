@@ -5,7 +5,6 @@ Initial implementation is based on the secondary child-lock feature of Goldair
 climate devices.
 """
 from homeassistant.components.lock import LockEntity, STATE_LOCKED, STATE_UNLOCKED
-from homeassistant.const import STATE_UNAVAILABLE
 
 from ..device import TuyaLocalDevice
 from ..helpers.device_config import TuyaEntityConfig
@@ -32,7 +31,7 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
         lock = self._lock_dps.get_value(self._device)
 
         if lock is None:
-            return STATE_UNAVAILABLE
+            return None
         else:
             return STATE_LOCKED if lock else STATE_UNLOCKED
 
