@@ -221,7 +221,9 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                     **settings,
                     **self._color_mode_dps.get_values_to_set(self._device, color_mode),
                 }
-            rgbw = params.get(ATTR_RGBW_COLOR, self.rgbw_color or (0, 0, 0, 0))
+            rgbw = params.get(
+                ATTR_RGBW_COLOR, self.rgbw_color or (0, 0, 0, self.brightness or 255)
+            )
             brightness = params.get(ATTR_BRIGHTNESS, rgbw[3])
             fmt = self._rgbhsv_dps.format
             if rgbw and fmt:
