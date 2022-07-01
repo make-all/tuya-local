@@ -1270,3 +1270,14 @@ EESEE_ADAM_PAYLOAD = {
     "17": "cancel",
     "19": 0,
 }
+
+HYUNDAI_SAHARA_PAYLOAD = {
+    "1": True,
+    "2": 50,
+    "4": "high",
+    "6": 73,
+    "7": 25,
+    "14": False,
+    "16": False,
+    "19": 0,
+}

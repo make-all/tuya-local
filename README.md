@@ -122,6 +122,7 @@ the device will not work despite being listed below.
 - JJPro JPD01 dehumidifer
 - JJPro JPD02 dehumidifier
 - Eesee Adam dehumidifier
+- Hyundai Sahara dehumidifier
 
 ### Humidifiers
 - Eanons QT-JS2014 Purifying humidifier

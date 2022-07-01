@@ -97,3 +97,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [Der-Nax](https:github.com/Der-Nax) for assistant with a second variant of energy monitoring smart switch.
 - [17hoehbr](https://github.com/17hoehbr) for assistance supporting APOSEN A550
 - [yurgh](https://github.com/yurgh) for assistant supporting Eesee Adam dehumidifier
+- [KaportsevIA](https://github.com/KaportsevIA) for assistance supporting Hyundai Sahara dehumidifier and Yandax color bulb.
