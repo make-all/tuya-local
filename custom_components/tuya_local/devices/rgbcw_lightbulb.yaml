@@ -1,6 +1,9 @@
 name: RGBCW Light bulb
 product:
   - id: aok3caeleulg1neh
+    name: Lijun Smart Bulb RGBCW
+  - id: muushnich7dcbbxi
+    name: Yandex Color Bulb
 primary_entity:
   entity: light
   dps:
@@ -57,6 +60,23 @@ primary_entity:
     - id: 25
       name: scene_data
       type: hex
+#  The following were removed because they aren't always present,
+#  and anyway they are complex hex data fields that we cannot handle.
+#   - id: 27
+#     name: music_data
+#     type: hex
+#   - id: 28
+#     name: control_data
+#     type: hex
+#   - id: 30
+#     name: rhythm_mode
+#     type: hex
+#   - id: 31
+#     name: sleep_mode
+#     type: hex
+#   - id: 32
+#     name: wakeup_mode
+#     type: hex
 secondary_entities:
   - entity: number
     name: Timer
