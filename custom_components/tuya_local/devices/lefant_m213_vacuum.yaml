@@ -10,7 +10,7 @@ primary_entity:
       name: activate
     - id: 3
       type: string
-      name: status
+      name: command
       mapping:
         - dps_val: standby
           value: standby
@@ -40,7 +40,24 @@ primary_entity:
           value: stop
     - id: 5
       type: string
-      name: unknown_5
+      name: status
+      mapping:
+        - dps_val: "0"
+          value: paused
+        - dps_val: "1"
+          value: smart
+        - dps_val: "2"
+          value: wall follow
+        - dps_val: "3"
+          value: spiral
+        - dps_val: "4"
+          value: returning
+        - dps_val: "5"
+          value: charging
+        - dps_val: "6"
+          value: random
+        - dps_val: "7"
+          value: standby
     - id: 6
       name: battery
       type: integer
@@ -73,13 +90,20 @@ primary_entity:
           value: collision
     - id: 101
       type: string
-      name: unknown_101
+      name: fan_speed
+      mapping:
+        - dps_val: low
+          value: Low
+        - dps_val: nar
+          value: Medium
+        - dps_val: high
+          value: High
     - id: 102
       type: integer
       name: unknown_102
     - id: 103
       type: integer
-      name: unknown_103
+      name: heading
     - id: 104
       type: integer
       name: unknown_104
@@ -88,7 +112,7 @@ primary_entity:
 #    - id: 106
 #      type: string
 #      name: unknown_106
-# dp 108 returned only by Lefant M213, not be M213S or APOSEN A550
+# dp 108 returned only sometimes?
 # seems to be some encoded ASCII descriptor of battery voltage
 #    - id: 108
 #      type: string
