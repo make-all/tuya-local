@@ -93,6 +93,7 @@ the device will not work despite being listed below.
 - Hysen HY08WE-2 thermostat
 - Nashone MTS-700-WB thermostat smartplug
 - Jiahong ET-72W thermostat
+- Moes MS-103 Temperature and Humidity Switch (partial functions, temperature only)
 
 ### Fans
 - Goldair GCPF315 fan
@@ -161,7 +162,7 @@ Other brands may work with the above configurations
 - Simple Switch with Timer - a single switch and timer, will probably work for a lot of smart switches that are not covered by the more advanced configs above.
 
 ### Lights
-- Generic RGBCW/RGBWW lightbulb (confirmed with Lijun and Yandex branded bulbs, expected to match many more)
+- Generic RGBCW/RGBWW lightbulb (confirmed with Lijun branded bulb, expected to match others also)
 
 ### Covers
 - Simple Garage Door

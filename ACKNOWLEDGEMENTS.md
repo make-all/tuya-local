@@ -98,3 +98,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [17hoehbr](https://github.com/17hoehbr) for assistance supporting APOSEN A550
 - [yurgh](https://github.com/yurgh) for assistant supporting Eesee Adam dehumidifier
 - [KaportsevIA](https://github.com/KaportsevIA) for assistance supporting Hyundai Sahara dehumidifier and Yandax color bulb.
+- [poolMiniDomo](https://github.com/poolMiniDomo) for assistance supporting Moes Temperature and Humidity switches.
