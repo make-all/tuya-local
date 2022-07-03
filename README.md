@@ -176,6 +176,9 @@ Other brands may work with the above configurations
 - Lefant M213 Vacuum Cleaner (also works for Lefant M213S and APOSEN A550)
 - Kyvol E30 Vacuum Cleaner
 
+### Locks
+- Orion Grid Connect Smart Lock
+
 ### Miscellaneous
 - Qoto 03 Smart Water Valve / Sprinkler Controller
 - SD123 HPR01 Human Presence Radar

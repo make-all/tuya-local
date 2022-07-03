@@ -4,7 +4,7 @@ Platform to control Tuya lock devices.
 Initial implementation is based on the secondary child-lock feature of Goldair
 climate devices.
 """
-from homeassistant.components.lock import LockEntity, STATE_LOCKED, STATE_UNLOCKED
+from homeassistant.components.lock import LockEntity
 
 from ..device import TuyaLocalDevice
 from ..helpers.device_config import TuyaEntityConfig
@@ -22,28 +22,79 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
           config (TuyaEntityConfig): The configuration for this entity.
         """
         dps_map = self._init_begin(device, config)
-        self._lock_dps = dps_map.pop("lock")
+        self._lock_dp = dps_map.pop("lock", None)
+        self._unlock_fp_dp = dps_map.pop("unlock_fingerprint", None)
+        self._unlock_pw_dp = dps_map.pop("unlock_password", None)
+        self._unlock_tmppw_dp = dps_map.pop("unlock_temp_pwd", None)
+        self._unlock_dynpw_dp = dps_map.pop("unlock_dynamic_pwd", None)
+        self._unlock_card_dp = dps_map.pop("unlock_card", None)
+        self._unlock_app_dp = dps_map.pop("unlock_app", None)
+        self._req_unlock_dp = dps_map.pop("request_unlock", None)
+        self._approve_unlock_dp = dps_map.pop("approve_unlock", None)
+        self._jam_dp = dps_map.pop("jammed", None)
         self._init_end(dps_map)
-
-    @property
-    def state(self):
-        """Return the current state."""
-        lock = self._lock_dps.get_value(self._device)
-
-        if lock is None:
-            return None
-        else:
-            return STATE_LOCKED if lock else STATE_UNLOCKED
 
     @property
     def is_locked(self):
         """Return the a boolean representing whether the lock is locked."""
-        return self.state == STATE_LOCKED
+        lock = None
+        if self._lock_dp:
+            lock = self._lock_dp.get_value(self._device)
+        else:
+            for d in (
+                self._unlock_card_dp,
+                self._unlock_dynpw_dp,
+                self._unlock_fp_dp,
+                self._unlock_pw_dp,
+                self._unlock_tmppw_dp,
+                self._unlock_app_dp,
+            ):
+                if d:
+                    if d.get_value(self._device):
+                        lock = False
+                    elif lock is None:
+                        lock = True
+        return lock
+
+    @property
+    def is_jammed(self):
+        if self._jam_dp:
+            return self._jam_dp.get_value(self._device)
+
+    def unlocker_id(self, dp, type):
+        if dp:
+            id = dp.get_value(self._device)
+            if id:
+                return f"{type} #{id}"
+
+    @property
+    def changed_by(self):
+        for dp, desc in {
+            self._unlock_app_dp: "App",
+            self._unlock_card_dp: "Card",
+            self._unlock_dynpw_dp: "Dynamic Password",
+            self._unlock_fp_dp: "Finger",
+            self._unlock_pw_dp: "Password",
+            self._unlock_tmppw_dp: "Temporary Password",
+        }.items():
+            by = self.unlocker_id(dp, desc)
+            if by:
+                return by
 
     async def async_lock(self, **kwargs):
         """Lock the lock."""
-        await self._lock_dps.async_set_value(self._device, True)
+        if self._lock_dp:
+            await self._lock_dp.async_set_value(self._device, True)
+        else:
+            raise NotImplementedError()
 
     async def async_unlock(self, **kwargs):
         """Unlock the lock."""
-        await self._lock_dps.async_set_value(self._device, False)
+        if self._lock_dp:
+            await self._lock_dp.async_set_value(self._device, False)
+        elif self._approve_unlock_dp:
+            if self._req_unlock_dp and not self._req_unlock_dp.get_value(self._device):
+                raise TimeoutError()
+            await self._approve_unlock_dp.async_set_value(self._device, True)
+        else:
+            raise NotImplementedError()
