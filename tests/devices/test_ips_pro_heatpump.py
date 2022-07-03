@@ -1,4 +1,10 @@
 from homeassistant.components.climate.const import HVACMode
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass
+from homeassistant.components.climate.const import (
+    ClimateEntityFeature,
+    HVACAction,
+    HVACMode,
+)
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     PERCENTAGE,
@@ -9,6 +15,7 @@ from homeassistant.const import (
 
 from ..const import IPS_HEATPUMP_PAYLOAD
 from ..helpers import assert_device_properties_set
+from ..mixins.binary_sensor import BasicBinarySensorTests
 from ..mixins.climate import TargetTemperatureTests
 from ..mixins.sensor import BasicSensorTests
 from .base_device_tests import TuyaDeviceTestCase
@@ -20,8 +27,8 @@ POWERLEVEL_DPS = "104"
 TEMPERATURE_DPS = "106"
 MIN_TEMPERATUR_DPS = "107"
 MAX_TEMPERATUR_DPS = "108"
-UNKNOWN115_DPS = "115"
-UNKNOWN116_DPS = "116"
+ERROR_DPS = "115"
+ERROR2_DPS = "116"
 PRESET_DPS = "2"
 # min and max temperature are not static in real model
 MAX_TEMPERATUR = 40
@@ -29,6 +36,7 @@ MIN_TEMPERATUR = 18
 
 
 class TestIpsProHeatpump(
+    BasicBinarySensorTests,
     BasicSensorTests,
     TargetTemperatureTests,
     TuyaDeviceTestCase,
@@ -51,7 +59,13 @@ class TestIpsProHeatpump(
             device_class=SensorDeviceClass.POWER_FACTOR,
             state_class="measurement",
         )
-        self.mark_secondary(["sensor_power_level"])
+        self.setUpBasicBinarySensor(
+            ERROR_DPS,
+            self.entities.get("binary_sensor_water_flow"),
+            device_class=BinarySensorDeviceClass.PROBLEM,
+            testdata=(4, 0),
+        )
+        self.mark_secondary(["sensor_power_level", "binary_sensor_water_flow"])
 
     def test_temperature_unit(self):
         self.dps[UNITS_DPS] = False
@@ -136,7 +150,7 @@ class TestIpsProHeatpump(
         ):
             await self.subject.async_set_preset_mode("smart")
 
-    async def test_set_preset_mode_to_smart(self):
+    async def test_set_preset_mode_to_turbo(self):
         async with assert_device_properties_set(
             self.subject._device,
             {PRESET_DPS: "booster"},
@@ -149,12 +163,12 @@ class TestIpsProHeatpump(
         self.assertEqual(self.targetTemp.target_temperature, MAX_TEMPERATUR)
 
     def test_extra_state_attributes(self):
-        self.dps[UNKNOWN115_DPS] = 3
-        self.dps[UNKNOWN116_DPS] = 4
+        self.dps[ERROR_DPS] = 3
+        self.dps[ERROR2_DPS] = 4
         self.assertDictEqual(
             self.subject.extra_state_attributes,
             {
-                "unknown_115": 3,
-                "unknown_116": 4,
+                "error": 3,
+                "error_2": 4,
             },
         )

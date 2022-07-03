@@ -1,0 +1,131 @@
+name: Moes Thermostat and Hydrostat
+product:
+  - id: dlsdk5zvkuuhufpy
+primary_entity:
+  entity: switch
+  name: Main Switch
+  category: config
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+# Known missing features: C/F switch, current humidity, High and Low temp alarms
+    - id: 8
+      type: boolean
+      name: unknown_8
+    - id: 9
+      type: integer
+      name: unknown_9
+    - id: 11
+      type: boolean
+      name: unknown_11
+    - id: 12
+      type: integer
+      name: unknown_12
+    - id: 20
+      type: integer
+      name: unknown_20
+    - id: 21
+      type: integer
+      name: unknown_21
+    - id: 22
+      type: integer
+      name: unknown_22
+    - id: 24
+      type: string
+      name: unknown_24
+    - id: 106
+      type: string
+      name: unknown_106
+secondary_entities:
+  - entity: switch
+    name: Switch 1
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+        # Auto rules are in an undocumented encoding, so just added as an attribute
+      - id: 101
+        type: hex
+        name: auto_rules
+  - entity: switch
+    name: Switch 2
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+        # Auto rules are in an undocumented encoding, so just added as an attribute
+      - id: 102
+        type: hex
+        name: auto_rules
+  - entity: select
+    name: Mode
+    category: config
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: auto
+            value: Auto
+          - dps_val: manual
+            value: Manual
+  - entity: sensor
+    name: Current Temperature
+    class: temperature
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Temperature Calibration
+    category: config
+    dps:
+      - id: 18
+        type: integer
+        name: value
+        range:
+          min: -99
+          max: 99
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Timer 1
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 86400
+  - entity: number
+    name: Timer 2
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 86400
+  - entity: select
+    name: Power On State
+    category: config
+    dps:
+      - id: 105
+        type: string
+        name: option
+        mapping:
+          - dps_val: "on"
+            value: "On"
+          - dps_val: "off"
+            value: "Off"
+          - dps_val: memory
+            value: Last State

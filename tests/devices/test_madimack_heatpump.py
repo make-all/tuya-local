@@ -1,4 +1,4 @@
-from homeassistant.components.binary_sensor import DEVICE_CLASS_PROBLEM
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.climate.const import (
     ClimateEntityFeature,
     HVACAction,
@@ -13,7 +13,7 @@ from homeassistant.const import (
 
 from ..const import MADIMACK_HEATPUMP_PAYLOAD
 from ..helpers import assert_device_properties_set
-from ..mixins.binary_sensor import BasicBinarySensorTests
+from ..mixins.binary_sensor import MultiBinarySensorTests
 from ..mixins.climate import TargetTemperatureTests
 from ..mixins.sensor import MultiSensorTests
 from .base_device_tests import TuyaDeviceTestCase
@@ -27,7 +27,8 @@ TEMPERATURE_DPS = "106"
 MINTEMP_DPS = "107"
 MAXTEMP_DPS = "108"
 ERROR_DPS = "115"
-UNKNOWN116_DPS = "116"
+FAULT2_DPS = "116"
+PRESET_DPS = "117"
 UNKNOWN118_DPS = "118"
 COIL_DPS = "120"
 EXHAUST_DPS = "122"
@@ -37,17 +38,16 @@ UNKNOWN126_DPS = "126"
 COOLINGPLATE_DPS = "127"
 EEV_DPS = "128"
 FANSPEED_DPS = "129"
-UNKNOWN130_DPS = "130"
+DEFROST_DPS = "130"
 UNKNOWN134_DPS = "134"
 UNKNOWN135_DPS = "135"
 UNKNOWN136_DPS = "136"
 UNKNOWN139_DPS = "139"
 UNKNOWN140_DPS = "140"
-PRESET_DPS = "117"
 
 
 class TestMadimackPoolHeatpump(
-    BasicBinarySensorTests,
+    MultiBinarySensorTests,
     MultiSensorTests,
     TargetTemperatureTests,
     TuyaDeviceTestCase,
@@ -63,11 +63,20 @@ class TestMadimackPoolHeatpump(
             min=18,
             max=45,
         )
-        self.setUpBasicBinarySensor(
-            ERROR_DPS,
-            self.entities.get("binary_sensor_water_flow"),
-            device_class=DEVICE_CLASS_PROBLEM,
-            testdata=(4, 0),
+        self.setUpMultiBinarySensors(
+            [
+                {
+                    "dps": ERROR_DPS,
+                    "name": "binary_sensor_water_flow",
+                    "device_class": BinarySensorDeviceClass.PROBLEM,
+                    "testdata": (4, 0),
+                },
+                {
+                    "dps": DEFROST_DPS,
+                    "name": "binary_sensor_defrosting",
+                    "device_class": BinarySensorDeviceClass.COLD,
+                },
+            ]
         )
         self.setUpMultiSensors(
             [
@@ -128,6 +137,7 @@ class TestMadimackPoolHeatpump(
                 "sensor_exhaust_gas_temperature",
                 "sensor_fan_speed",
                 "binary_sensor_water_flow",
+                "binary_sensor_defrosting",
             ]
         )
 
@@ -141,8 +151,16 @@ class TestMadimackPoolHeatpump(
         )
 
     def test_icon(self):
+        self.dps[ERROR_DPS] = 0
+        self.dps[DEFROST_DPS] = False
         self.dps[HVACMODE_DPS] = True
         self.assertEqual(self.subject.icon, "mdi:hot-tub")
+
+        self.dps[DEFROST_DPS] = True
+        self.assertEqual(self.subject.icon, "mdi:snowflake-melt")
+
+        self.dps[ERROR_DPS] = 4
+        self.assertEqual(self.subject.icon, "mdi:water-pump-off")
 
         self.dps[HVACMODE_DPS] = False
         self.assertEqual(self.subject.icon, "mdi:hvac-off")
@@ -227,10 +245,9 @@ class TestMadimackPoolHeatpump(
 
     def test_extra_state_attributes(self):
         self.dps[ERROR_DPS] = 4
-        self.dps[UNKNOWN116_DPS] = 4
+        self.dps[FAULT2_DPS] = 4
         self.dps[UNKNOWN118_DPS] = 5
         self.dps[UNKNOWN126_DPS] = 10
-        self.dps[UNKNOWN130_DPS] = True
         self.dps[UNKNOWN134_DPS] = False
         self.dps[UNKNOWN135_DPS] = True
         self.dps[UNKNOWN136_DPS] = False
@@ -240,10 +257,9 @@ class TestMadimackPoolHeatpump(
             self.subject.extra_state_attributes,
             {
                 "error": "Water Flow Protection",
-                "unknown_116": 4,
+                "error_2": 4,
                 "unknown_118": 5,
                 "unknown_126": 10,
-                "unknown_130": True,
                 "unknown_134": False,
                 "unknown_135": True,
                 "unknown_136": False,
