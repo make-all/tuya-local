@@ -1271,6 +1271,18 @@ EESEE_ADAM_PAYLOAD = {
     "19": 0,
 }
 
+ALECOAIR_D14_PAYLOAD = {
+    "1": True,
+    "2": 50,
+    "4": "manual",
+    "5": "low",
+    "10": False,
+    "14": False,
+    "16": 72,
+    "17": "cancel",
+    "19": 0,
+}
+
 HYUNDAI_SAHARA_PAYLOAD = {
     "1": True,
     "2": 50,
