@@ -3,12 +3,11 @@ from homeassistant.components.climate.const import (
     HVACMode,
 )
 from homeassistant.components.sensor import (
+    SensorDeviceClass,
     STATE_CLASS_MEASUREMENT,
     STATE_CLASS_TOTAL_INCREASING,
 )
 from homeassistant.const import (
-    DEVICE_CLASS_ENERGY,
-    DEVICE_CLASS_TEMPERATURE,
     ENERGY_KILO_WATT_HOUR,
     TEMP_CELSIUS,
     TEMP_FAHRENHEIT,
@@ -111,7 +110,7 @@ class TestJiahongEt72wThermostat(
                 {
                     "dps": CURRENTTEMP_DPS,
                     "name": "sensor_room_temperature",
-                    "device_class": DEVICE_CLASS_TEMPERATURE,
+                    "device_class": SensorDeviceClass.TEMPERATURE,
                     "state_class": STATE_CLASS_MEASUREMENT,
                     "unit": TEMP_CELSIUS,
                     "testdata": (195, 19.5),
@@ -119,7 +118,7 @@ class TestJiahongEt72wThermostat(
                 {
                     "dps": FLOORTEMP_DPS,
                     "name": "sensor_floor_temperature",
-                    "device_class": DEVICE_CLASS_TEMPERATURE,
+                    "device_class": SensorDeviceClass.TEMPERATURE,
                     "state_class": STATE_CLASS_MEASUREMENT,
                     "unit": TEMP_CELSIUS,
                     "testdata": (214, 21.4),
@@ -127,7 +126,7 @@ class TestJiahongEt72wThermostat(
                 {
                     "dps": ENERGY_DPS,
                     "name": "sensor_energy",
-                    "device_class": DEVICE_CLASS_ENERGY,
+                    "device_class": SensorDeviceClass.ENERGY,
                     "state_class": STATE_CLASS_TOTAL_INCREASING,
                     "unit": ENERGY_KILO_WATT_HOUR,
                     "testdata": (1234, 123.4),
