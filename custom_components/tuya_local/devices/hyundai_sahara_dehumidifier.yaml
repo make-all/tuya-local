@@ -1,0 +1,108 @@
+name: Sahara Dehumidifier
+product:
+  - id: r6gik8xajfg0lv1y
+    name: Dehumidifier-D030
+primary_entity:
+  entity: humidifier
+  class: dehumidifier
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+      mapping:
+        - dps_val: false
+          icon: "mdi:air-humidifier-off"
+          icon_priority: 1
+        - dps_val: true
+          icon: "mdi:air-humidifier"
+          icon_priority: 4
+    - id: 2
+      name: humidity
+      type: integer
+      range:
+        min: 30
+        max: 80
+      mapping:
+        - step: 5
+    - id: 14
+      type: boolean
+      name: mode
+      mapping:
+        - dps_val: false
+          value: Normal
+        - dps_val: true
+          value: Sleep
+          icon: "mdi:power-sleep"
+          icon_priority: 3
+    - id: 19
+      name: error
+      type: bitfield
+      # Docs mention E1 and E2, it isn't clear which is tank full, so for now
+      # treat both as that.
+      mapping:
+        - dps_val: 0
+          value: OK
+        - dps_val: 1
+          value: E1
+          icon: "mdi:cup-water"
+          icon_priority: 2
+        - dps_val: 2
+          value: E2
+          icon: "mdi:cup-water"
+          icon_priority: 2
+secondary_entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: low
+            value: 50
+          - dps_val: high
+            value: 100
+  - entity: sensor
+    name: Current Humidity
+    class: humidity
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Current Temperature
+    class: temperature
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: lock
+    name: Child Lock
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: lock
+        mapping:
+          - dps_val: false
+            icon: "mdi:hand-back-right"
+          - dps_val: true
+            icon: "mdi:hand-back-right-off"
+  - entity: binary_sensor
+    name: Tank
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true

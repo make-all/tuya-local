@@ -9,13 +9,6 @@ class BasicLockTests:
         self.basicLock = subject
         self.basicLockDps = dps
 
-    def test_basic_lock_state(self):
-        self.dps[self.basicLockDps] = True
-        self.assertEqual(self.basicLock.state, STATE_LOCKED)
-
-        self.dps[self.basicLockDps] = False
-        self.assertEqual(self.basicLock.state, STATE_UNLOCKED)
-
     def test_basic_lock_is_locked(self):
         self.dps[self.basicLockDps] = True
         self.assertTrue(self.basicLock.is_locked)

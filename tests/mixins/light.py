@@ -169,14 +169,6 @@ class DimmableLightTests:
         self.dimmableLightOff = offval
         self.dimmableLightTest = tests
 
-    def test_dimmable_light_supported_features(self):
-        self.dps[self.dimmableLightDps] = self.dimmableLightOff
-        self.assertFalse(self.dimmableLight.is_on)
-        self.dps[self.dimmableLightDps] = self.dimmableLightTest[0][0]
-        self.assertTrue(self.dimmableLight.is_on)
-        self.dps[self.dimmableLightDps] = None
-        self.assertFalse(self.dimmableLight.is_on)
-
     def test_dimmable_light_brightness(self):
         self.dps[self.dimmableLightDps] = self.dimmableLightOff
         self.assertEqual(self.dimmableLight.brightness, 0)

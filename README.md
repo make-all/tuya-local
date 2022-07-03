@@ -93,6 +93,7 @@ the device will not work despite being listed below.
 - Hysen HY08WE-2 thermostat
 - Nashone MTS-700-WB thermostat smartplug
 - Jiahong ET-72W thermostat
+- Moes MS-103 Temperature and Humidity Switch (partial functions, temperature only)
 
 ### Fans
 - Goldair GCPF315 fan
@@ -122,6 +123,8 @@ the device will not work despite being listed below.
 - JJPro JPD01 dehumidifer
 - JJPro JPD02 dehumidifier
 - Eesee Adam dehumidifier
+- Hyundai Sahara dehumidifier
+- AlecoAir D14 Purifying Dehumidifier
 
 ### Humidifiers
 - Eanons QT-JS2014 Purifying humidifier
@@ -160,7 +163,7 @@ Other brands may work with the above configurations
 - Simple Switch with Timer - a single switch and timer, will probably work for a lot of smart switches that are not covered by the more advanced configs above.
 
 ### Lights
-- Generic RGBCW/RGBWW lightbulb (expected to match many such devices)
+- Generic RGBCW/RGBWW lightbulb (confirmed with Lijun branded bulb, expected to match others also)
 
 ### Covers
 - Simple Garage Door
@@ -172,6 +175,9 @@ Other brands may work with the above configurations
 ### Vacuum Cleaners
 - Lefant M213 Vacuum Cleaner (also works for Lefant M213S and APOSEN A550)
 - Kyvol E30 Vacuum Cleaner
+
+### Locks
+- Orion Grid Connect Smart Lock
 
 ### Miscellaneous
 - Qoto 03 Smart Water Valve / Sprinkler Controller

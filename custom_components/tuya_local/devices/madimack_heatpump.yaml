@@ -13,7 +13,7 @@ primary_entity:
         - dps_val: true
           value: "heat"
           icon: "mdi:hot-tub"
-          icon_priority: 3
+          icon_priority: 4
     - id: 102
       name: current_temperature
       type: integer
@@ -72,9 +72,11 @@ primary_entity:
           value: OK
         - dps_val: 4
           value: Water Flow Protection
+          icon: "mdi:water-pump-off"
+          icon_priority: 2
     - id: 116
-      type: integer
-      name: unknown_116
+      type: bitfield
+      name: error_2
     - id: 117
       name: preset_mode
       type: boolean
@@ -90,8 +92,13 @@ primary_entity:
       name: unknown_126
       type: integer
     - id: 130
-      name: unknown_130
+      name: defrosting
       type: boolean
+      hidden: true
+      mapping:
+        - dps_val: true
+          icon: "mdi:snowflake-melt"
+          icon_priority: 3
     - id: 134
       name: unknown_134
       type: boolean
@@ -147,6 +154,14 @@ secondary_entities:
           - dps_val: 4
             value: true
           - value: false
+  - entity: binary_sensor
+    name: Defrosting
+    class: cold
+    category: diagnostic
+    dps:
+      - id: 130
+        type: boolean
+        name: sensor
   - entity: sensor
     category: diagnostic
     class: temperature
@@ -218,3 +233,4 @@ secondary_entities:
       - id: 129
         name: sensor
         type: integer
+

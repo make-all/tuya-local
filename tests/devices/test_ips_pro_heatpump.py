@@ -9,6 +9,7 @@ from homeassistant.const import (
 
 from ..const import IPS_HEATPUMP_PAYLOAD
 from ..helpers import assert_device_properties_set
+from ..mixins.binary_sensor import BasicBinarySensorTests
 from ..mixins.climate import TargetTemperatureTests
 from ..mixins.sensor import BasicSensorTests
 from .base_device_tests import TuyaDeviceTestCase
@@ -147,14 +148,3 @@ class TestIpsProHeatpump(
     async def test_set_target_temperature_fails_outside_valid_range(self):
         self.dps[TEMPERATURE_DPS] = MAX_TEMPERATUR
         self.assertEqual(self.targetTemp.target_temperature, MAX_TEMPERATUR)
-
-    def test_extra_state_attributes(self):
-        self.dps[UNKNOWN115_DPS] = 3
-        self.dps[UNKNOWN116_DPS] = 4
-        self.assertDictEqual(
-            self.subject.extra_state_attributes,
-            {
-                "unknown_115": 3,
-                "unknown_116": 4,
-            },
-        )

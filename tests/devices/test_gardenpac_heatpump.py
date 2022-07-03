@@ -1,3 +1,4 @@
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.climate.const import (
     ClimateEntityFeature,
     HVACAction,
@@ -12,6 +13,7 @@ from homeassistant.const import (
 
 from ..const import GARDENPAC_HEATPUMP_PAYLOAD
 from ..helpers import assert_device_properties_set
+from ..mixins.binary_sensor import BasicBinarySensorTests
 from ..mixins.climate import TargetTemperatureTests
 from ..mixins.sensor import BasicSensorTests
 from .base_device_tests import TuyaDeviceTestCase
@@ -24,12 +26,13 @@ OPMODE_DPS = "105"
 TEMPERATURE_DPS = "106"
 MINTEMP_DPS = "107"
 MAXTEMP_DPS = "108"
-UNKNOWN115_DPS = "115"
-UNKNOWN116_DPS = "116"
+ERROR_DPS = "115"
+ERROR2_DPS = "116"
 PRESET_DPS = "117"
 
 
 class TestGardenPACPoolHeatpump(
+    BasicBinarySensorTests,
     BasicSensorTests,
     TargetTemperatureTests,
     TuyaDeviceTestCase,
@@ -52,7 +55,13 @@ class TestGardenPACPoolHeatpump(
             device_class=SensorDeviceClass.POWER_FACTOR,
             state_class="measurement",
         )
-        self.mark_secondary(["sensor_power_level"])
+        self.setUpBasicBinarySensor(
+            ERROR_DPS,
+            self.entities.get("binary_sensor_water_flow"),
+            device_class=BinarySensorDeviceClass.PROBLEM,
+            testdata=(4, 0),
+        )
+        self.mark_secondary(["sensor_power_level", "binary_sensor_water_flow"])
 
     def test_supported_features(self):
         self.assertEqual(
@@ -64,8 +73,12 @@ class TestGardenPACPoolHeatpump(
         )
 
     def test_icon(self):
+        self.dps[ERROR_DPS] = 0
         self.dps[HVACMODE_DPS] = True
         self.assertEqual(self.subject.icon, "mdi:hot-tub")
+
+        self.dps[ERROR_DPS] = 4
+        self.assertEqual(self.subject.icon, "mdi:water-pump-off")
 
         self.dps[HVACMODE_DPS] = False
         self.assertEqual(self.subject.icon, "mdi:hvac-off")
@@ -149,14 +162,12 @@ class TestGardenPACPoolHeatpump(
         self.assertEqual(self.subject.hvac_action, HVACAction.OFF)
 
     def test_extra_state_attributes(self):
-        self.dps[POWERLEVEL_DPS] = 50
-        self.dps[UNKNOWN115_DPS] = 3
-        self.dps[UNKNOWN116_DPS] = 4
+        self.dps[ERROR_DPS] = 3
+        self.dps[ERROR2_DPS] = 4
         self.assertDictEqual(
             self.subject.extra_state_attributes,
             {
-                "power_level": 50,
-                "unknown_115": 3,
-                "unknown_116": 4,
+                "error": 3,
+                "error_2": 4,
             },
         )

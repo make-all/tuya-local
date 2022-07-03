@@ -1,0 +1,112 @@
+name: Orion Grid Connect Smart Lock
+primary_entity:
+  entity: lock
+  dps:
+    - id: 1
+      type: integer
+      name: unlock_fingerprint
+    - id: 2
+      type: integer
+      name: unlock_password
+    - id: 3
+      type: integer
+      name: unlock_temp_pwd
+    - id: 4
+      type: integer
+      name: unlock_dynamic_pwd
+    - id: 5
+      type: integer
+      name: unlock_card
+    - id: 8
+      type: bitfield
+      name: jammed
+      mapping:
+        - dps_val: 16
+          value: true
+        - dps_val: 128
+          value: true
+        - value: false
+    - id: 9
+      type: integer
+      name: request_unlock
+    - id: 10
+      type: boolean
+      name: approve_unlock
+    - id: 15
+      type: integer
+      name: unlock_app
+# Suspect the following are not always reported, as they are large hex fields
+#    - id: 25
+#      type: hex
+#      name: fingers_enrolled
+#    - id: 26
+#      type: hex
+#      name: passwords_enrolled
+#    - id: 27
+#      type: hex
+#      name: cards_enrolled
+secondary_entities:
+  - entity: sensor
+    name: alert
+    category: diagnostic
+    dps:
+      - id: 8
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: wrong_finger
+          - dps_val: 2
+            value: wrong_password
+          - dps_val: 4
+            value: wrong_card
+          - dps_val: 8
+            value: wrong_face
+          - dps_val: 16
+            value: lock_jammed_closed
+          - dps_val: 32
+            value: high_temperature
+          - dps_val: 64
+            value: open_too_long
+          - dps_val: 128
+            value: lock_jammed_open
+          - dps_val: 256
+            value: lock_forced
+          - dps_val: 512
+            value: key_left_in
+          - dps_val: 1024
+            value: battery_low
+          - dps_val: 2048
+            value: battery_dead
+          - dps_val: 4096
+            value: shock
+  - entity: sensor
+    class: battery
+    name: Battery
+    dps:
+      - id: 12
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: binary_sensor
+    class: safety
+    name: Duress
+    dps:
+      - id: 16
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    class: tamper
+    name: Tampered
+    dps:
+      - id: 8
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 32
+            value: true
+          - dps_val: 256
+            value: true
+          - dps_val: 4096
+            value: true
+          - value: false

@@ -83,11 +83,18 @@ primary_entity:
       name: max_temperature
       readonly: true
     - id: 115
-      type: integer
-      name: unknown_115
+      type: bitfield
+      name: error
+      mapping:
+        - dps_val: 0
+          value: OK
+        - dps_val: 4
+          value: Water Flow Protection
+          icon: "mdi:water-pump-off"
+          icon_priority: 2
     - id: 116
-      type: integer
-      name: unknown_116
+      type: bitfield
+      name: error_2
 secondary_entities:
   - entity: sensor
     name: Power Level
@@ -101,3 +108,15 @@ secondary_entities:
         unit: "%"
         class: measurement
         readonly: true
+  - entity: binary_sensor
+    name: Water Flow
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 115
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 4
+            value: true
+          - value: false
