@@ -3,15 +3,52 @@ primary_entity:
   entity: climate
   dps:
     - id: 1
-      name: hvac_mode
+      name: power
       type: boolean
       mapping:
         - dps_val: false
           value: "off"
           icon: "mdi:hvac-off"
+          icon_priority: 1
         - dps_val: true
-          value: "heat"
+          value: "on"
+          icon: "mdi:hvac-on"
+          icon_priority: 1
+      hidden: true
+    - id: 105
+      name: hvac_mode
+      type: string
+      mapping:
+        - dps_val: smart
+          icon: "mdi:refresh-auto"
+          icon_priority: 1
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+              value: "off"
+            - dps_val: true
+              value: heat_cool
+        - dps_val: cool
+          icon: "mdi:snowflake"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+              value: "off"
+            - dps_val: true
+              value: cool
+        - dps_val: warm
           icon: "mdi:hot-tub"
+          icon_priority: 3
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+              value: "off"
+            - dps_val: true
+              value: heat
     - id: 2
       name: preset_mode
       type: string
@@ -20,8 +57,8 @@ primary_entity:
           value: "silence"
         - dps_val: "smart"
           value: "smart"
-        - dps_val: "turbo"
-          value: "turbo"
+        - dps_val: "booster"
+          value: "booster"
     - id: 102
       name: current_temperature
       type: integer
@@ -34,41 +71,17 @@ primary_entity:
           value: F
         - dps_val: true
           value: C
-    - id: 105
-      name: hvac_action
-      type: string
-      readonly: true
-      mapping:
-        - dps_val: warm
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: idle
     - id: 106
       name: temperature
       type: integer
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: false
-              range:
-                min: 60
-                max: 115
-            - dps_val: true
-              range:
-                min: 18
-                max: 40
-      range:
-        min: 18
-        max: 45
     - id: 107
       type: integer
       name: min_temperature
+      readonly: true
     - id: 108
       type: integer
       name: max_temperature
+      readonly: true
     - id: 115
       type: integer
       name: unknown_115
@@ -88,21 +101,3 @@ secondary_entities:
         unit: "%"
         class: measurement
         readonly: true
-
-  - entity: sensor
-    category: diagnostic
-    name: Current Temperature
-    class: temperature
-    dps:
-      - id: 102
-        name: current_temperature
-        type: integer
-        readonly: true
-      - id: 103
-        name: unit
-        type: string
-        mapping:
-          - dps_val: false
-            value: F
-          - dps_val: true
-            value: C
