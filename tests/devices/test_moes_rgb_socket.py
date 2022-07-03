@@ -127,6 +127,7 @@ class TestMoesRGBWSocket(
 
     def test_light_rgbw_color(self):
         self.dps[RGBW_DPS] = "ffff00003cffff"
+        self.dps[BRIGHTNESS_DPS] = 255
         self.assertSequenceEqual(
             self.light.rgbw_color,
             (255, 255, 0, 255),
@@ -185,6 +186,7 @@ class TestMoesRGBWSocket(
             await self.light.async_turn_on(color_mode=ColorMode.WHITE, brightness=128)
 
     async def test_set_rgbw(self):
+        self.dps[BRIGHTNESS_DPS] = 255
         async with assert_device_properties_set(
             self.light._device,
             {

@@ -9,6 +9,7 @@ from homeassistant.const import (
 
 from ..const import IPS_HEATPUMP_PAYLOAD
 from ..helpers import assert_device_properties_set
+from ..mixins.binary_sensor import BasicBinarySensorTests
 from ..mixins.climate import TargetTemperatureTests
 from ..mixins.sensor import BasicSensorTests
 from .base_device_tests import TuyaDeviceTestCase

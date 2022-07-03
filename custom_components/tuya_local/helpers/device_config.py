@@ -413,11 +413,11 @@ class TuyaDpsConfig:
                 _LOGGER.debug(f"Considering condition on {constraint}")
             r = None if cond is None else cond.get("range")
             if r and "min" in r and "max" in r:
-                _LOGGER.info(f"Conditional range returned for {self.name}")
+                _LOGGER.debug(f"Conditional range returned for {self.name}")
                 return _scale_range(r, scale)
             r = mapping.get("range")
             if r and "min" in r and "max" in r:
-                _LOGGER.info(f"Mapped range returned for {self.name}")
+                _LOGGER.debug(f"Mapped range returned for {self.name}")
                 return _scale_range(r, scale)
         r = self._config.get("range")
         if r and "min" in r and "max" in r:
@@ -440,7 +440,7 @@ class TuyaDpsConfig:
                 step = cond.get("step", step)
                 scale = cond.get("scale", scale)
         if step != 1 or scale != 1:
-            _LOGGER.info(f"Step for {self.name} is {step} with scale {scale}")
+            _LOGGER.debug(f"Step for {self.name} is {step} with scale {scale}")
         return step / scale if scaled else step
 
     @property
