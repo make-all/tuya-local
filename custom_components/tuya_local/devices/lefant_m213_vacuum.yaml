@@ -65,11 +65,11 @@ primary_entity:
     - id: 13
       type: boolean
       name: locate
-# Listed at iot.tuya.com, but does not seem to be returned by default
-#    - id: 15
-#      type: string
-#      name: clean_record
-#      readonly: true
+    - id: 15
+      type: string
+      name: clean_record
+      readonly: true
+      optional: true
     - id: 18
       type: bitfield
       name: error
@@ -107,16 +107,14 @@ primary_entity:
     - id: 104
       type: integer
       name: unknown_104
-# dp 106 returned only by Lefant M213 and M213S, not by APOSEN A550
-# seems to be some encoded ASCII descriptor related to charging status
-#    - id: 106
-#      type: string
-#      name: unknown_106
-# dp 108 returned only sometimes?
-# seems to be some encoded ASCII descriptor of battery voltage
-#    - id: 108
-#      type: string
-#      name: unknown_108
+    - id: 106
+      type: string
+      name: charge_status
+      optional: true
+    - id: 108
+      type: string
+      name: battery_status
+      optional: true
 secondary_entities:
   - entity: sensor
     name: Clean Area

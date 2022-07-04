@@ -112,12 +112,16 @@ class TuyaDeviceConfig:
     def matches(self, dps):
         """Determine if this device matches the provided dps map."""
         for d in self.primary_entity.dps():
-            if d.id not in dps.keys() or not _typematch(d.type, dps[d.id]):
+            if (d.id not in dps.keys() and not d.optional) or (
+                d.id in dps.keys() and not _typematch(d.type, dps[d.id])
+            ):
                 return False
 
         for dev in self.secondary_entities():
             for d in dev.dps():
-                if d.id not in dps.keys() or not _typematch(d.type, dps[d.id]):
+                if (d.id not in dps.keys() and not d.optional) or (
+                    d.id in dps.keys() and not _typematch(d.type, dps[d.id])
+                ):
                     return False
         _LOGGER.debug("Matched config for %s", self.name)
         return True
@@ -136,8 +140,8 @@ class TuyaDeviceConfig:
             True if all dps in entity could be matched to dps, False otherwise
         """
         for d in entity.dps():
-            if (d.id not in keys and d.id not in matched) or not _typematch(
-                d.type, dps[d.id]
+            if (d.id not in keys and d.id not in matched and not d.optional) or (
+                (d.id in keys or d.id in matched) and not _typematch(d.type, dps[d.id])
             ):
                 return False
             if d.id in keys:
@@ -289,6 +293,10 @@ class TuyaDpsConfig:
     @property
     def name(self):
         return self._config["name"]
+
+    @property
+    def optional(self):
+        return self._config.get("optional", False)
 
     @property
     def format(self):
@@ -485,6 +493,7 @@ class TuyaDpsConfig:
             except ValueError:
                 self.stringify = False
         else:
+
             self.stringify = False
 
         result = value

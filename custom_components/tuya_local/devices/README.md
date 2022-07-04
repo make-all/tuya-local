@@ -77,7 +77,7 @@ secondary entities, so only basic functionality is implemented.
 
 ### `deprecated`
 
-*Optional, deprecated*
+*Deprecated, DO NOT USE for new devices.*
 
 This is used to mark an entity as deprecated.  This is mainly
 for older devices that were implemented when only climate devices were
@@ -162,11 +162,20 @@ to use a secondary entity for that.
 
 ### `readonly`
 
-*Optional.*
+*Optional, default false.*
 
 A boolean setting to mark attributes as readonly. If not specified, the
 default is `false`.  If set to `true`, the attributes will be reported
 to Home Assistant, but no functionality for setting them will be exposed.
+
+### `optional`
+
+*Optional, default false.*
+
+A boolean setting to mark attributes as optional.  This allows a device to be
+matched even if it is not sending the dp at the time when adding a new device.
+It can also be used to match a range of devices that have variations in the extra
+attributes that are sent.
 
 ### `mapping`
 
@@ -182,7 +191,7 @@ defined in their own section below.
 
 ### `hidden`
 
-*Optional.*
+*Optional, default false.*
 This can be used to define DPs that do not directly expose Home Assistant
 attributes.  When set to **true**, no attribute will be sent. A `name` should
 still be specified and the attribute can be referenced as a `constraint`
@@ -198,7 +207,7 @@ is set to Eco.
 
 ### `range`
 
-*Optional.*
+*Optional, may be required in some contexts, may have defaults in others.*
 
 For integer attributes that are not readonly, a range can be set with `min`
 and `max` values that will limit the values that the user can enter in the
@@ -206,7 +215,7 @@ Home Assistant UI.  This can also be set in a `mapping` or `conditions` block.
 
 ### `unit`
 
-*Optional. default="C" for temperature dps on climate devices, None for sensors.*
+*Optional, default="C" for temperature dps on climate devices.*
 
 For temperature dps, some devices will use Fahrenhiet.  This needs to be
 indicated back to HomeAssistant by defining `unit` as "F".  For sensor 
@@ -216,7 +225,7 @@ equivalents, other units are currently ASCII so can be easily entered directly).
 
 ### `class`
 
-*Optional.  default=None.*
+*Optional.*
 
 For sensors, this sets the state class of the sensor (measurement, total
 or total_increasing)
@@ -224,7 +233,7 @@ or total_increasing)
 
 ### `format`
 
-*Optional. default=None*
+*Optional.*
 
 For base64 and hex types, this specifies how to decode the binary data (after hex or base64 decoding).
 This is a container field, the contents of which should be a list consisting of `name`, `bytes` and `range` fields.  `range` is as described above.  `bytes` is the number of bytes for the field, which can be `1`, `2`, or `4`.  `name` is a name for the field, which will have special handling depending on
@@ -266,7 +275,7 @@ level to override all values, but I can't imagine a useful purpose for that.
 
 ### `scale`
 
-*Optional, default=1*
+*Optional, default=1.*
 
 This can be used in an `integer` dp mapping to scale the values.  For example
 some climate devices represent the temperature as an integer in tenths of
@@ -277,7 +286,7 @@ of 0.03.
 
 ###`invert`
 
-*Optional, default=False*
+*Optional, default=False.*
 
 This can be used in an `integer` dp mapping to invert the range.  For example,
 some cover devices have an opposite idea of which end of the percentage scale open
@@ -286,7 +295,7 @@ must also be specified for the dp.
 
 ### `step`
 
-*Optional, default=1*
+*Optional, default=1.*
 
 This can be used in an `integer` dp mapping to make values jump by a specific
 step.  It can also be set in a conditions block so that the steps change only
@@ -346,7 +355,7 @@ have a mapping that mirrors the value of the configuration dp.
 
 ### `invalid`
 
-*Optional. Boolean, default false.*
+*Optional, default false.*
 
 Invalid set to true allows an attribute to temporarily be set read-only in
 some conditions.  Rather than passing requests to set the attribute through
@@ -360,14 +369,14 @@ control when the preset is in sleep mode (since sleep mode should force low).
 
 ### `constraint`
 
-*Optional. Always paired with `conditions`.*
+*Optional, always paired with `conditions`.*
 
 If a rule depends on an attribute other than the current one, then `constraint`
 can be used to specify the element that `conditions` applies to.
 
 ### `conditions`
 
-*Optional. Always paired with `constraint.`*
+*Optional, always paired with `constraint.`*
 
 Conditions defines a list of rules that are applied based on the `constraint`
 attribute. The contents are the same as Mapping Rules, but `dps_val` applies
@@ -464,7 +473,16 @@ Humidifer can also cover dehumidifiers (use class to specify which).
    If the light mixes in color modes in the same dp, **color_mode** should be used instead.
 
 ### lock
-- **lock** (required, boolean): a dp to control the lock state: true = locked, false = unlocked
+- **lock** (optional, boolean): a dp to control the lock state: true = locked, false = unlocked
+- **unlock_fingerprint** (optional, integer): a dp to identify the fingerprint used to unlock the lock.
+- **unlock_password** (optional, integer): a dp to identify the password used to unlock the lock.
+- **unlock_temp_pwd** (optional, integer): a dp to identify the temporary password used to unlock the lock.
+- **unlock_dynamic_pwd** (optional, integer): a dp to identify the dynamic password used to unlock the lock.
+- **unlock_card** (optional, integer): a dp to identify the card used to unlock the lock.
+- **unlock_app** (optional, integer): a dp to identify the app used to unlock the lock.
+- **request_unlock** (optional, integer): a dp to signal that a request has been made to unlock, the value should indicate the time remaining for approval.
+- **approve_unlock** (optional, boolean): a dp to unlock the lock in response to a request.
+- **jammed** (optional, boolean): a dp to signal that the lock is jammed.
 
 ### number
 - **value** (required, number): a dp to control the number that is set.

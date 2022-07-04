@@ -19,9 +19,10 @@ primary_entity:
           - scale: 10
         class: measurement
         readonly: true
-#    - id: 22
-#      type: string
-#      name: fault_type
+    - id: 22
+      type: string
+      name: fault_type
+      optional: true
     - id: 58
       type: string
       name: wind_direct
@@ -134,27 +135,30 @@ secondary_entities:
     dps:
       - id: 30
         <<: *battery
-#  - entity: binary_sensor
-#    name: Battery Ch1
-#    class: battery
-#    category: diagnostic
-#    dps:
-#      - id: 31
-#        <<: *battery
-#  - entity: binary_sensor
-#    name: Battery Ch2
-#    class: battery
-#    category: diagnostic
-#    dps:
-#      - id: 32
-#        <<: *battery
-#  - entity: binary_sensor
-#    name: Battery Ch3
-#    class: battery
-#    category: diagnostic
-#    dps:
-#      - id: 33
-#        <<: *battery
+  - entity: binary_sensor
+    name: Battery Ch1
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 31
+        optional: true
+        <<: *battery
+  - entity: binary_sensor
+    name: Battery Ch2
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 32
+        optional: true
+        <<: *battery
+  - entity: binary_sensor
+    name: Battery Ch3
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 33
+        optional: true
+        <<: *battery
   - entity: sensor
     name: Temperature
     class: temperature
@@ -167,42 +171,48 @@ secondary_entities:
     dps:
       - id: 39
         <<: *humidity
-#  - entity: sensor
-#    name: Temperature Ch1
-#    class: temperature
-#    dps:
-#      - id: 40
-#        <<: *temperature
-#  - entity: sensor
-#    name: Humidity Ch1
-#    class: humidity
-#    dps:
-#      - id: 41
-#        <<: *humidity
-#  - entity: sensor
-#    name: Temperature Ch2
-#    class: temperature
-#    dps:
-#      - id: 42
-#        <<: *temperature
-#  - entity: sensor
-#    name: Humidity Ch2
-#    class: humidity
-#    dps:
-#      - id: 43
-#        <<: *humidity
-#  - entity: sensor
-#    name: Temperature Ch3
-#    class: temperature
-#    dps:
-#      - id: 44
-#        <<: *temperature
-#  - entity: sensor
-#    name: Humidity Ch3
-#    class: humidity
-#    dps:
-#      - id: 45
-#        <<: *humidity
+  - entity: sensor
+    name: Temperature Ch1
+    class: temperature
+    dps:
+      - id: 40
+        optional: true
+        <<: *temperature
+  - entity: sensor
+    name: Humidity Ch1
+    class: humidity
+    dps:
+      - id: 41
+        optional: true
+        <<: *humidity
+  - entity: sensor
+    name: Temperature Ch2
+    class: temperature
+    dps:
+      - id: 42
+        optional: true
+        <<: *temperature
+  - entity: sensor
+    name: Humidity Ch2
+    class: humidity
+    dps:
+      - id: 43
+        optional: true
+        <<: *humidity
+  - entity: sensor
+    name: Temperature Ch3
+    class: temperature
+    dps:
+      - id: 44
+        optional: true
+        <<: *temperature
+  - entity: sensor
+    name: Humidity Ch3
+    class: humidity
+    dps:
+      - id: 45
+        optional: true
+        <<: *humidity
   - entity: sensor
     name: Pressure
     class: pressure

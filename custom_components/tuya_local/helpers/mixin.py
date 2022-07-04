@@ -73,7 +73,9 @@ class TuyaLocalEntity:
         """Get additional attributes that the platform itself does not support."""
         attr = {}
         for a in self._attr_dps:
-            attr[a.name] = a.get_value(self._device)
+            value = a.get_value(self._device)
+            if value is not None or not a.optional:
+                attr[a.name] = value
         return attr
 
     async def async_update(self):

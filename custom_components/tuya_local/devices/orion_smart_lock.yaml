@@ -35,16 +35,18 @@ primary_entity:
     - id: 15
       type: integer
       name: unlock_app
-# Suspect the following are not always reported, as they are large hex fields
-#    - id: 25
-#      type: hex
-#      name: fingers_enrolled
-#    - id: 26
-#      type: hex
-#      name: passwords_enrolled
-#    - id: 27
-#      type: hex
-#      name: cards_enrolled
+    - id: 25
+      type: hex
+      name: fingers_enrolled
+      optional: true
+    - id: 26
+      type: hex
+      name: passwords_enrolled
+      optional: true
+    - id: 27
+      type: hex
+      name: cards_enrolled
+      optional: true
 secondary_entities:
   - entity: sensor
     name: alert
