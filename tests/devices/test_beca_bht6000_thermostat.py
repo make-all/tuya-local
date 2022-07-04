@@ -10,7 +10,6 @@ from homeassistant.const import TEMP_CELSIUS
 from ..const import BECA_BHT6000_PAYLOAD
 from ..helpers import assert_device_properties_set
 from ..mixins.climate import TargetTemperatureTests
-from ..mixins.light import BasicLightTests
 from ..mixins.lock import BasicLockTests
 from ..mixins.sensor import BasicSensorTests
 from .base_device_tests import TuyaDeviceTestCase
@@ -27,7 +26,6 @@ UNKNOWN104_DPS = "104"
 
 
 class TestBecaBHT6000Thermostat(
-    BasicLightTests,
     BasicLockTests,
     BasicSensorTests,
     TargetTemperatureTests,
@@ -44,7 +42,6 @@ class TestBecaBHT6000Thermostat(
         self.setUpTargetTemperature(
             TEMPERATURE_DPS, self.subject, min=5.0, max=35.0, scale=2
         )
-        self.setUpBasicLight(POWER_DPS, self.entities.get("light_display"))
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
         self.setUpBasicSensor(
             FLOOR_DPS,
@@ -54,7 +51,7 @@ class TestBecaBHT6000Thermostat(
             state_class="measurement",
             testdata=(36, 18),
         )
-        self.mark_secondary(["light_display", "lock_child_lock"])
+        self.mark_secondary(["lock_child_lock"])
 
     def test_supported_features(self):
         self.assertEqual(
@@ -124,11 +121,6 @@ class TestBecaBHT6000Thermostat(
         )
 
     def test_icons(self):
-        self.dps[POWER_DPS] = True
-        self.assertEqual(self.basicLight.icon, "mdi:led-on")
-        self.dps[POWER_DPS] = False
-        self.assertEqual(self.basicLight.icon, "mdi:led-off")
-
         self.dps[LOCK_DPS] = True
         self.assertEqual(self.basicLock.icon, "mdi:hand-back-right-off")
         self.dps[LOCK_DPS] = False

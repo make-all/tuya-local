@@ -18,15 +18,6 @@ the brand and model of the device is a good choice.  If a whole family of
 devices is supported, a generalization of the model type can be used.
 The name should also indicate to the user what type of device it is.
 
-### `legacy_type`
-
-*Optional, deprecated.*
-
-The `legacy_type` is a transitional link back to an old name the device
-was known by.  It is used in the migration process to migrate old
-configs to the latest config which uses the config filename as the identifier
-for the device.  New devices should not define this.
-
 ### `products`
 
 *Optional, for future use.*
@@ -74,19 +65,6 @@ for these entities is limited to that which has been required for the
 devices until now and may need to be extended for new devices.  In
 particular, the light and lock entities have only been used for simple
 secondary entities, so only basic functionality is implemented.
-
-### `deprecated`
-
-*Deprecated, DO NOT USE for new devices.*
-
-This is used to mark an entity as deprecated.  This is mainly
-for older devices that were implemented when only climate devices were
-supported, but are better represented in HA as fan or humidifier devices.
-This option will be removed in a future release, so do not use it in new
-devices.
-An entity should be moved to `secondary_entities` before being marked as
-deprecated, and the preferred device type moved to the `primary_entity`.
-The value of this should indicate what to use instead.
 
 ### `class`
 
@@ -446,7 +424,7 @@ Either **position** or **open** should be specified.
 ### fan
 - **switch** (optional, boolean): a dp to control the power state of the fan
 - **preset_mode** (optional, mapping of strings): a dp to control different modes of the fan.
-   Values `"off", low, medium, high` are handled specially by HA as deprecated speed aliases which will be removed in mid 2022.  Consider mapping these as **speed** values instead, as voice assistants will respond to phrases like "turn the fan up/down" for speed.
+   Values `"off", low, medium, high` used to be handled specially by HA as deprecated speed aliases.  If these are the only "presets", consider mapping them as **speed** values instead, as voice assistants will respond to phrases like "turn the fan up/down" for speed.
 - **speed** (optional, number 0-100): a dp to control the speed of the fan (%).
     scale and step can be used to convert smaller ranges to percentages, or a mapping for discrete values.
 - **oscillate** (optional, boolean): a dp to control whether the fan will oscillate or not.
