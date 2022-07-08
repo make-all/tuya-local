@@ -4,11 +4,21 @@ primary_entity:
   dps:
     - id: 1
       type: boolean
-      name: power
-      hidden: true
+      name: hvac_mode
       mapping:
         - dps_val: false
           value: "off"
+        - dps_val: true
+          constraint: preset_mode
+          conditions:
+            - dps_val: eco
+              value: heat
+            - dps_val: hot
+              value: heat
+            - dps_val: cold
+              value: cool
+            - dps_val: auto
+              value: heat_cool
     - id: 2
       type: integer
       name: temperature
@@ -22,30 +32,29 @@ primary_entity:
         - scale: 10
     - id: 4
       type: string
-      name: hvac_mode
+      name: preset_mode
       mapping:
         - dps_val: hot
-          constraint: power
-          conditions:
-            - dps_val: false
-              value_redirect: power
-              value: "off"
-            - dps_val: true
-              value: heat
+          value: Boost Heat
+        - dps_val: eco
+          value: Eco Heat
         - dps_val: cold
-          constraint: power
-          conditions:
-            - dps_val: false
-              value_redirect: power
-            - dps_val: true
-              value: cool
+          value: Cool
         - dps_val: auto
-          constraint: power
-          conditions:
-            - dps_val: false
-              value_redirect: power
-            - dps_val: true
-              value: heat_cool
+          value: Auto
     - id: 6
-      type: integer
-      name: unknown_6
+      name: fault
+      type: bitfield
+secondary_entities:
+  - entity: binary_sensor
+    class: problem
+    name: Fault
+    category: diagnostic
+    dps:
+      - id: 6
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
