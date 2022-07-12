@@ -51,6 +51,7 @@ the device will not work despite being listed below.
 ### Air Conditioners / Heatpumps
 
 - ElectriQ 12WMINV
+- ElectriQ Airflex 15W
 - Tadiran Wind 65/3P
 - Fersk Vind 2
 - Carson CB PA280

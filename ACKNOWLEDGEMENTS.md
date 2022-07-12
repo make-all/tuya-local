@@ -101,3 +101,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [poolMiniDomo](https://github.com/poolMiniDomo) for assistance supporting Moes Temperature and Humidity switches.
 - [pretoriano80](https://github.com/pretoriano80) for assistance supporting AlecoAir dehumidifiers.
 - [JanekSMC](https://github.com/JanekSMC) for assistance supporting Orion Smart Locks.
+- [RichardMawdsley](https://github.com/RichardMawdsley) for assistance supporting ElectriQ Airflex 15W heatpumps.
