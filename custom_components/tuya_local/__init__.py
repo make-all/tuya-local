@@ -199,6 +199,19 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
                 opts.pop(e.config_id, None)
         entry.options = {**opts}
         entry.version = 8
+    if entry.version == 8:
+        # Deprecated entities are removed, trim the config back to required
+        # config only
+        conf = {**entry.data, **entry.options}
+        entry.data = {
+            CONF_DEVICE_ID: conf[CONF_DEVICE_ID],
+            CONF_LOCAL_KEY: conf[CONF_LOCAL_KEY],
+            CONF_HOST: conf[CONF_HOST],
+            CONF_TYPE: conf[CONF_TYPE],
+        }
+        entry.options = {}
+        entry.version = 9
+
     return True
 
 

@@ -260,10 +260,6 @@ The final stage is to choose a name for the device in Home Assistant.
 If you have multiple devices of the same type, you may want to change
 the name to make it easier to distinguish them.
 
-Besides the name, usually you will want to accept the defaults at this
-step, as any checkboxes are for backwards compatibility deprecated entities
-that will be removed in future, alternatives should be available.
-
 #### name
 
 &nbsp;&nbsp;&nbsp;&nbsp;_(string) (Required)_ Any unique name for the
@@ -285,9 +281,15 @@ setting up a new device.  They are only retained for users who set up the
 device before support was added for the actual entity matching the device,
 or when a function was misunderstood, and will not be retained forever.
 
+As of 0.18.0, there are no longer any deprecated entities, but they
+may be reintroduced in future if better representations of existing
+devices emerge again.
+
 ## Offline operation gotchas
 
-Many Tuya devices will stop responding if unable to connect to the Tuya servers for an extended period.  Reportedly, some devices act better offline if DNS as well as TCP connections is blocked.
+Many Tuya devices will stop responding if unable to connect to the
+Tuya servers for an extended period.  Reportedly, some devices act
+better offline if DNS as well as TCP connections is blocked.
 
 
 ## Heater gotchas
@@ -334,13 +336,6 @@ anything.  If you can figure out how to make setting temperatures and
 presets work, please leave feedback in Issue #19.
 
 ## Fan gotchas
-
-Fans should be configured as `fan` entities, with any auxilary
-functions such as panel lighting control, child locks or additional
-switches configured as `light`, `lock` or `switch` entities.
-Configuration of Goldair fans as `climate` entities is supported for
-backward compatibility but is deprecated, and may be removed in
-future.
 
 Reportedly, Goldair fans can be a bit flaky. If they become
 unresponsive, give them about 60 seconds to wake up again.
@@ -392,19 +387,6 @@ These support configuration as either heating or cooling controllers, but
 only have one output.  The HVAC mode is provided as an indicator of which
 mode they are in, but are set to readonly so that you cannot accidentally
 switch the thermostat to the wrong mode from HA.
-
-## Humidifiers and dehumidifiers
-
-Humidifiers and Dehumidifiers should be configuured as `humidifier`
-entities, probably with `fan` entities as well if the fan speed can
-also be controlled, and any other auxilary features such as panel
-lighting, child locks or additional switches configured as `light`,
-`lock` or `switch` entities.  Configration of Goldair Dehumidifiers
-and Eanons Humidifiers as `climate` entities is also supported for
-backwards compatibility, but is deprecated and may be removed in
-future.  In particular, when humidifiers are represented as `climate`
-entities, the running mode will show as `Dry`, as the climate entity
-only supports functions commonly found on air conditioners/heatpumps.
 
 
 ## Finding your device ID and local key
