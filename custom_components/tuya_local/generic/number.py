@@ -34,21 +34,21 @@ class TuyaLocalNumber(TuyaLocalEntity, NumberEntity):
         self._init_end(dps_map)
 
     @property
-    def min_value(self):
+    def native_min_value(self):
         if self._min_dps is not None:
             return self._min_dps.get_value(self._device)
         r = self._value_dps.range(self._device)
         return DEFAULT_MIN_VALUE if r is None else r["min"]
 
     @property
-    def max_value(self):
+    def native_max_value(self):
         if self._max_dps is not None:
             return self._max_dps.get_value(self._device)
         r = self._value_dps.range(self._device)
         return DEFAULT_MAX_VALUE if r is None else r["max"]
 
     @property
-    def step(self):
+    def native_step(self):
         return self._value_dps.step(self._device)
 
     @property
@@ -60,7 +60,7 @@ class TuyaLocalNumber(TuyaLocalEntity, NumberEntity):
         return m
 
     @property
-    def unit_of_measurement(self):
+    def native_unit_of_measurement(self):
         """Return the unit associated with this number."""
         if self._unit_dps is None:
             unit = self._value_dps.unit
@@ -70,10 +70,10 @@ class TuyaLocalNumber(TuyaLocalEntity, NumberEntity):
         return unit_from_ascii(unit)
 
     @property
-    def value(self):
+    def native_value(self):
         """Return the current value of the number."""
         return self._value_dps.get_value(self._device)
 
-    async def async_set_value(self, value):
+    async def async_set_native_value(self, value):
         """Set the number."""
         await self._value_dps.async_set_value(self._device, value)
