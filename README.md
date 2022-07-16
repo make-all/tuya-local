@@ -157,6 +157,7 @@ the device will not work despite being listed below.
 - DIGOO DG-SP01 USB smartplug with night light.
 - Grid Connect double outlet wall socket
 - Woox R4028/DIGOO DG-PS01 3 outlet + USB powerstrip with individual timers.
+- ES01 3 outlet + USB powerstrip with individual timers.
 Other brands may work with the above configurations
 - MoesHouse Smartplug with RGBW nightlight
 - Logicom Strippy 4 way power strip with USB

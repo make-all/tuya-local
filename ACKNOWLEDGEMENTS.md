@@ -97,7 +97,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [Der-Nax](https:github.com/Der-Nax) for assistant with a second variant of energy monitoring smart switch and for contributing support for PY321-TY power clamps.
 - [17hoehbr](https://github.com/17hoehbr) for assistance supporting APOSEN A550
 - [yurgh](https://github.com/yurgh) for assistant supporting Eesee Adam dehumidifier
-- [KaportsevIA](https://github.com/KaportsevIA) for assistance supporting Hyundai Sahara dehumidifier and Yandax color bulb.
+- [KaportsevIA](https://github.com/KaportsevIA) for assistance supporting Hyundai Sahara dehumidifier, Yandax color bulb and ES01 powerstrip.
 - [poolMiniDomo](https://github.com/poolMiniDomo) for assistance supporting Moes Temperature and Humidity switches.
 - [pretoriano80](https://github.com/pretoriano80) for assistance supporting AlecoAir dehumidifiers.
 - [JanekSMC](https://github.com/JanekSMC) for assistance supporting Orion Smart Locks.

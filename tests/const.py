@@ -865,6 +865,17 @@ WOOX_R4028_SOCKET_PAYLOAD = {
     "105": 0,
 }
 
+ES01_POWERSTRIP_PAYLOAD = {
+    "1": True,
+    "2": True,
+    "3": True,
+    "4": True,
+    "5": 0,
+    "6": 0,
+    "7": 0,
+    "8": 0,
+}
+
 OWON_PCT513_THERMOSTAT_PAYLOAD = {
     "2": "cool",
     "16": 2150,
