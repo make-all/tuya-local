@@ -16,25 +16,27 @@ class BasicNumberTests:
         self.basicNumberUnit = unit
 
     def test_number_min_value(self):
-        self.assertEqual(self.basicNumber.min_value, self.basicNumberMin)
+        self.assertEqual(self.basicNumber.native_min_value, self.basicNumberMin)
 
     def test_number_max_value(self):
-        self.assertEqual(self.basicNumber.max_value, self.basicNumberMax)
+        self.assertEqual(self.basicNumber.native_max_value, self.basicNumberMax)
 
     def test_number_step(self):
-        self.assertEqual(self.basicNumber.step, self.basicNumberStep)
+        self.assertEqual(self.basicNumber.native_step, self.basicNumberStep)
 
     def test_number_mode(self):
         self.assertEqual(self.basicNumber.mode, self.basicNumberMode)
 
     def test_number_unit_of_measurement(self):
-        self.assertEqual(self.basicNumber.unit_of_measurement, self.basicNumberUnit)
+        self.assertEqual(
+            self.basicNumber.native_unit_of_measurement, self.basicNumberUnit
+        )
 
     def test_number_value(self):
         val = min(max(self.basicNumberMin, self.basicNumberStep), self.basicNumberMax)
         dps_val = val * self.basicNumberScale
         self.dps[self.basicNumberDps] = dps_val
-        self.assertEqual(self.basicNumber.value, val)
+        self.assertEqual(self.basicNumber.native_value, val)
 
     async def test_number_set_value(self):
         val = min(max(self.basicNumberMin, self.basicNumberStep), self.basicNumberMax)
@@ -42,7 +44,7 @@ class BasicNumberTests:
         async with assert_device_properties_set(
             self.basicNumber._device, {self.basicNumberDps: dps_val}
         ):
-            await self.basicNumber.async_set_value(val)
+            await self.basicNumber.async_set_native_value(val)
 
     def test_number_extra_state_attributes(self):
         self.assertEqual(self.basicNumber.extra_state_attributes, {})
@@ -76,17 +78,17 @@ class MultiNumberTests:
     def test_multi_number_min_value(self):
         for key, subject in self.multiNumber.items():
             with self.subTest(key):
-                self.assertEqual(subject.min_value, self.multiNumberMin[key])
+                self.assertEqual(subject.native_min_value, self.multiNumberMin[key])
 
     def test_multi_number_max_value(self):
         for key, subject in self.multiNumber.items():
             with self.subTest(key):
-                self.assertEqual(subject.max_value, self.multiNumberMax[key])
+                self.assertEqual(subject.native_max_value, self.multiNumberMax[key])
 
     def test_multi_number_step(self):
         for key, subject in self.multiNumber.items():
             with self.subTest(key):
-                self.assertEqual(subject.step, self.multiNumberStep[key])
+                self.assertEqual(subject.native_step, self.multiNumberStep[key])
 
     def test_multi_number_mode(self):
         for key, subject in self.multiNumber.items():
@@ -96,7 +98,9 @@ class MultiNumberTests:
     def test_multi_number_unit_of_measurement(self):
         for key, subject in self.multiNumber.items():
             with self.subTest(key):
-                self.assertEqual(subject.unit_of_measurement, self.multiNumberUnit[key])
+                self.assertEqual(
+                    subject.native_unit_of_measurement, self.multiNumberUnit[key]
+                )
 
     def test_multi_number_value(self):
         for key, subject in self.multiNumber.items():
@@ -107,7 +111,7 @@ class MultiNumberTests:
                 )
                 dps_val = val * self.multiNumberScale[key]
                 self.dps[self.multiNumberDps[key]] = dps_val
-                self.assertEqual(subject.value, val)
+                self.assertEqual(subject.native_value, val)
 
     async def test_multi_number_set_value(self):
         for key, subject in self.multiNumber.items():
@@ -120,7 +124,7 @@ class MultiNumberTests:
                 async with assert_device_properties_set(
                     subject._device, {self.multiNumberDps[key]: dps_val}
                 ):
-                    await subject.async_set_value(val)
+                    await subject.async_set_native_value(val)
 
     def test_multi_number_extra_state_attributes(self):
         for key, subject in self.multiNumber.items():
