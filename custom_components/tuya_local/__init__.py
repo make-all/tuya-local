@@ -31,13 +31,10 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
     """Migrate to latest config format."""
 
     CONF_TYPE_AUTO = "auto"
-    CONF_DISPLAY_LIGHT = "display_light"
-    CONF_CHILD_LOCK = "child_lock"
 
     if entry.version == 1:
         # Removal of Auto detection.
         config = {**entry.data, **entry.options, "name": entry.title}
-        opts = {**entry.options}
         if config[CONF_TYPE] == CONF_TYPE_AUTO:
             device = setup_device(hass, config)
             config[CONF_TYPE] = await device.async_inferred_type()
@@ -52,14 +49,6 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
             CONF_LOCAL_KEY: config[CONF_LOCAL_KEY],
             CONF_HOST: config[CONF_HOST],
         }
-        if CONF_CHILD_LOCK in config:
-            opts.pop(CONF_CHILD_LOCK, False)
-            opts[CONF_LOCK] = config[CONF_CHILD_LOCK]
-        if CONF_DISPLAY_LIGHT in config:
-            opts.pop(CONF_DISPLAY_LIGHT, False)
-            opts[CONF_LIGHT] = config[CONF_DISPLAY_LIGHT]
-
-        entry.options = {**opts}
         entry.version = 2
 
     if entry.version == 2:
@@ -108,33 +97,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         }
         entry.version = 4
 
-    if entry.version == 4:
-        # Migrate indexes to entity id rather than type, to allow for multiple
-        # entities of the same type for a device.
-        config = {**entry.data, **entry.options, "name": entry.title}
-        devcfg = get_config(config[CONF_TYPE])
-        opts = {**entry.options}
-        newopts = {**opts}
-        entry.data = {
-            CONF_DEVICE_ID: config[CONF_DEVICE_ID],
-            CONF_LOCAL_KEY: config[CONF_LOCAL_KEY],
-            CONF_HOST: config[CONF_HOST],
-            CONF_TYPE: config[CONF_TYPE],
-        }
-        e = devcfg.primary_entity
-        if e.config_id != e.entity:
-            newopts.pop(e.entity, None)
-            newopts[e.config_id] = opts.get(e.entity, False)
-
-        for e in devcfg.secondary_entities():
-            if e.config_id != e.entity:
-                newopts.pop(e.entity, None)
-                newopts[e.config_id] = opts.get(e.entity, False)
-
-        entry.options = {**newopts}
-        entry.version = 5
-
-    if entry.version == 5:
+    if entry.version <= 5:
         # Migrate unique ids of existing entities to new format
         old_id = entry.unique_id
         conf_file = get_config(entry.data[CONF_TYPE])
@@ -163,43 +126,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         await async_migrate_entries(hass, entry.entry_id, update_unique_id)
         entry.version = 6
 
-    if entry.version == 6:
-        # Migrate some entity names to make them consistent for translations
-        opts = {**entry.data, **entry.options}
-        newopts = {**entry.options}
-        master = opts.get("switch_main_switch")
-        if master is not None:
-            newopts.pop("switch_main_switch", None)
-            newopts["switch_master"] = master
-        outlet1 = opts.get("switch_left_outlet")
-        outlet2 = opts.get("switch_right_outlet")
-        outlet1 = opts.get("switch_wall_switch_1") if outlet1 is None else outlet1
-        outlet2 = opts.get("switch_wall_switch_2") if outlet2 is None else outlet2
-        if outlet1 is not None:
-            newopts.pop("switch_left_outlet", None)
-            newopts.pop("switch_wall_switch_1", None)
-            newopts["switch_outlet_1"] = outlet1
-        if outlet2 is not None:
-            newopts.pop("switch_right_outlet", None)
-            newopts.pop("switch_wall_switch_2", None)
-            newopts["switch_outlet_2"] = outlet2
-
-        entry.options = {**newopts}
-        entry.version = 7
-
-    if entry.version == 7:
-        # Non-deprecated entities are now always enabled, remove the config
-        conf_file = get_config(entry.data[CONF_TYPE])
-        opts = {**entry.options}
-        e = conf_file.primary_entity
-        if not e.deprecated:
-            opts.pop(e.config_id, None)
-        for e in conf_file.secondary_entities():
-            if not e.deprecated:
-                opts.pop(e.config_id, None)
-        entry.options = {**opts}
-        entry.version = 8
-    if entry.version == 8:
+    if entry.version <= 8:
         # Deprecated entities are removed, trim the config back to required
         # config only
         conf = {**entry.data, **entry.options}
@@ -226,11 +153,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
 
     entities = {}
     e = device_conf.primary_entity
-    if config.get(e.config_id, False) or not e.deprecated:
-        entities[e.entity] = True
+    entities[e.entity] = True
     for e in device_conf.secondary_entities():
-        if config.get(e.config_id, False) or not e.deprecated:
-            entities[e.entity] = True
+        entities[e.entity] = True
 
     for e in entities:
         hass.async_create_task(hass.config_entries.async_forward_entry_setup(entry, e))
