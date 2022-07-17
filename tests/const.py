@@ -1233,13 +1233,13 @@ QS_C01_CURTAIN_PAYLOAD = {
 }
 
 M027_CURTAIN_PAYLOAD = {
-    "1": "stop",
+    "1": "close",
     "2": 0,
-    "3": 0,
     "4": "morning",
-    "7": "opening",
-    "9": 0,
-    "10": 20000,
+    "7": "closing",
+    "10": 0,
+    "12": 0,
+    "101": False,
 }
 
 JIAHONG_ET72W_PAYLOAD = {

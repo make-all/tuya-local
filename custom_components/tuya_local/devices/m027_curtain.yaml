@@ -24,6 +24,7 @@ primary_entity:
       name: current_position
       type: integer
       unit: "%"
+      optional: true
     - id: 7
       name: action
       type: string
@@ -33,13 +34,23 @@ primary_entity:
           conditions:
             - dps_val: 100
               value: opened
+            - dps_val: null
+              value: opened
             - value: opening
         - dps_val: closing
           constraint: current_position
           conditions:
             - dps_val: 0
               value: closed
+            - dps_val: null
+              value: closed
             - value: closing
+    - id: 12
+      name: unknown_12
+      type: integer
+    - id: 101
+      name: unknown_101
+      type: boolean
 secondary_entities:
   - entity: select
     name: Mode
@@ -62,6 +73,7 @@ secondary_entities:
       - id: 9
         name: sensor
         type: integer
+        optional: true
         unit: s
   - entity: sensor
     name: Travel Time

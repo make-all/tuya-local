@@ -67,7 +67,9 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
     def current_cover_position(self):
         """Return current position of cover."""
         if self._currentpos_dps:
-            return self._currentpos_dps.get_value(self._device)
+            pos = self._currentpos_dps.get_value(self._device)
+            if pos is not None:
+                return pos
         if self._position_dps:
             return self._position_dps.get_value(self._device)
 

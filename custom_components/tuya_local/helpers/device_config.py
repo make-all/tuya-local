@@ -583,6 +583,15 @@ class TuyaDpsConfig:
             for cond in conditions:
                 if c_val is not None and c_val == cond.get("dps_val"):
                     c_match = cond
+                # Case where matching None, need extra checks to ensure we
+                # are not just defaulting and it is really a match
+                elif (
+                    c_val is None
+                    and c_dps is not None
+                    and "dps_val" in cond
+                    and cond.get("dps_val") is None
+                ):
+                    c_match = cond
                 # when changing, another condition may become active
                 # return that if it exists over a current condition
                 if value is not None and value == cond.get("value"):

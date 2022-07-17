@@ -18,6 +18,8 @@ MODE_DPS = "4"
 ACTION_DPS = "7"
 TIMER_DPS = "9"
 TRAVELTIME_DPS = "10"
+UNKNOWN12_DPS = "12"
+UNKNOWN101_DPS = "101"
 
 
 class TestM027Curtains(MultiSensorTests, BasicSelectTests, TuyaDeviceTestCase):
@@ -82,6 +84,9 @@ class TestM027Curtains(MultiSensorTests, BasicSelectTests, TuyaDeviceTestCase):
         self.assertTrue(self.subject.is_opening)
         self.dps[ACTION_DPS] = "closing"
         self.assertFalse(self.subject.is_opening)
+        self.dps[ACTION_DPS] = "opening"
+        self.dps[CURRENTPOS_DPS] = None
+        self.assertFalse(self.subject.is_opening)
 
     def test_is_closing(self):
         self.dps[ACTION_DPS] = "closing"
@@ -91,11 +96,17 @@ class TestM027Curtains(MultiSensorTests, BasicSelectTests, TuyaDeviceTestCase):
         self.assertTrue(self.subject.is_closing)
         self.dps[ACTION_DPS] = "opening"
         self.assertFalse(self.subject.is_closing)
+        self.dps[ACTION_DPS] = "closing"
+        self.dps[CURRENTPOS_DPS] = None
+        self.assertFalse(self.subject.is_closing)
 
     def test_is_closed(self):
         self.dps[CURRENTPOS_DPS] = 100
         self.assertFalse(self.subject.is_closed)
         self.dps[CURRENTPOS_DPS] = 0
+        self.assertTrue(self.subject.is_closed)
+        self.dps[ACTION_DPS] = "closing"
+        self.dps[CURRENTPOS_DPS] = None
         self.assertTrue(self.subject.is_closed)
 
     async def test_open_cover(self):
