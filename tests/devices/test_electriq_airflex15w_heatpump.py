@@ -14,8 +14,12 @@ POWER_DPS = "1"
 TEMPERATURE_DPS = "2"
 CURRENTTEMP_DPS = "3"
 HUMIDITY_DPS = "17"
+UNKNOWN20_DPS = "20"
 HVACMODE_DPS = "101"
+UNKNOWN103_DPS = "103"
 FAN_DPS = "104"
+UNKNOWN105_DPS = "105"
+UNKNOWN106_DPS = "106"
 UNIT_DPS = "109"
 TEMPF_DPS = "110"
 CURTEMPF_DPS = "111"
@@ -45,8 +49,8 @@ class TestElectriqAirflex15WHeatpump(
             UNIT_DPS,
             self.entities.get("select_temperature_unit"),
             {
-                "C": "Celsius",
-                "F": "Fahrenheit",
+                False: "Celsius",
+                True: "Fahrenheit",
             },
         )
         self.mark_secondary(["select_temperature_unit"])
@@ -64,42 +68,42 @@ class TestElectriqAirflex15WHeatpump(
 
     def test_icon(self):
         self.dps[POWER_DPS] = True
-        self.dps[HVACMODE_DPS] = "auto"
+        self.dps[HVACMODE_DPS] = "0"
         self.assertEqual(self.subject.icon, "mdi:hvac")
-        self.dps[HVACMODE_DPS] = "cold"
+        self.dps[HVACMODE_DPS] = "1"
         self.assertEqual(self.subject.icon, "mdi:snowflake")
-        self.dps[HVACMODE_DPS] = "hot"
+        self.dps[HVACMODE_DPS] = "2"
         self.assertEqual(self.subject.icon, "mdi:fire")
-        self.dps[HVACMODE_DPS] = "wet"
+        self.dps[HVACMODE_DPS] = "3"
         self.assertEqual(self.subject.icon, "mdi:water")
-        self.dps[HVACMODE_DPS] = "wind"
+        self.dps[HVACMODE_DPS] = "4"
         self.assertEqual(self.subject.icon, "mdi:fan")
-        self.dps[HVACMODE_DPS] = "eco"
+        self.dps[HVACMODE_DPS] = "5"
         self.assertEqual(self.subject.icon, "mdi:leaf")
         self.dps[POWER_DPS] = False
         self.assertEqual(self.subject.icon, "mdi:hvac-off")
 
     def test_temperature_unit(self):
-        self.dps[UNIT_DPS] = "C"
+        self.dps[UNIT_DPS] = False
         self.assertEqual(self.subject.temperature_unit, TEMP_CELSIUS)
-        self.dps[UNIT_DPS] = "F"
+        self.dps[UNIT_DPS] = True
         self.assertEqual(self.subject.temperature_unit, TEMP_FAHRENHEIT)
 
     def test_current_temperature(self):
-        self.dps[UNIT_DPS] = "C"
+        self.dps[UNIT_DPS] = False
         self.dps[CURRENTTEMP_DPS] = 25
         self.assertEqual(self.subject.current_temperature, 25)
-        self.dps[UNIT_DPS] = "F"
+        self.dps[UNIT_DPS] = True
         self.dps[CURTEMPF_DPS] = 78
         self.assertEqual(self.subject.current_temperature, 78)
 
     def test_temperature_f(self):
-        self.dps[UNIT_DPS] = "F"
+        self.dps[UNIT_DPS] = True
         self.dps[TEMPF_DPS] = 90
         self.assertEqual(self.subject.target_temperature, 90)
 
     async def test_set_temperature_f(self):
-        self.dps[UNIT_DPS] = "F"
+        self.dps[UNIT_DPS] = True
         async with assert_device_properties_set(
             self.subject._device,
             {TEMPF_DPS: 85},
@@ -108,17 +112,17 @@ class TestElectriqAirflex15WHeatpump(
 
     def test_hvac_mode(self):
         self.dps[POWER_DPS] = True
-        self.dps[HVACMODE_DPS] = "hot"
+        self.dps[HVACMODE_DPS] = "2"
         self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT)
-        self.dps[HVACMODE_DPS] = "cold"
+        self.dps[HVACMODE_DPS] = "1"
         self.assertEqual(self.subject.hvac_mode, HVACMode.COOL)
-        self.dps[HVACMODE_DPS] = "wet"
+        self.dps[HVACMODE_DPS] = "3"
         self.assertEqual(self.subject.hvac_mode, HVACMode.DRY)
-        self.dps[HVACMODE_DPS] = "wind"
+        self.dps[HVACMODE_DPS] = "4"
         self.assertEqual(self.subject.hvac_mode, HVACMode.FAN_ONLY)
-        self.dps[HVACMODE_DPS] = "auto"
+        self.dps[HVACMODE_DPS] = "0"
         self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT_COOL)
-        self.dps[HVACMODE_DPS] = "eco"
+        self.dps[HVACMODE_DPS] = "5"
         self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT_COOL)
         self.dps[POWER_DPS] = False
         self.assertEqual(self.subject.hvac_mode, HVACMode.OFF)
@@ -138,7 +142,7 @@ class TestElectriqAirflex15WHeatpump(
 
     async def test_turn_on(self):
         async with assert_device_properties_set(
-            self.subject._device, {POWER_DPS: True, HVACMODE_DPS: "hot"}
+            self.subject._device, {POWER_DPS: True, HVACMODE_DPS: "2"}
         ):
             await self.subject.async_set_hvac_mode(HVACMode.HEAT)
 
@@ -199,7 +203,16 @@ class TestElectriqAirflex15WHeatpump(
             await self.subject.async_set_humidity(40)
 
     def test_extra_state_attribures(self):
+        self.dps[UNKNOWN20_DPS] = 20
+        self.dps[UNKNOWN103_DPS] = True
+        self.dps[UNKNOWN105_DPS] = 105
+        self.dps[UNKNOWN106_DPS] = True
         self.assertEqual(
             self.subject.extra_state_attributes,
-            {},
+            {
+                "unknown_20": 20,
+                "unknown_103": True,
+                "unknown_105": 105,
+                "unknown_106": True,
+            },
         )

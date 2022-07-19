@@ -14,22 +14,22 @@ primary_entity:
         - dps_val: true
           constraint: preset_mode
           conditions:
-            - dps_val: auto
+            - dps_val: "0" # auto
               value: heat_cool
               icon: "mdi:hvac"
-            - dps_val: cold
+            - dps_val: "1" # cold
               value: cool
               icon: "mdi:snowflake"
-            - dps_val: hot
+            - dps_val: "2" # hot
               value: heat
               icon: "mdi:fire"
-            - dps_val: wet
+            - dps_val: "3" # wet
               value: dry
               icon: "mdi:water"
-            - dps_val: wind
+            - dps_val: "4" # wind
               value: fan_only
               icon: "mdi:fan"
-            - dps_val: eco
+            - dps_val: "5" # eco
               value: heat_cool
               icon: "mdi:leaf"
     - id: 2
@@ -41,7 +41,7 @@ primary_entity:
       mapping:
         - constraint: temperature_unit
           conditions:
-            - dps_val: F
+            - dps_val: true
               value_redirect: temp_set_f
               range:
                 min: 62
@@ -52,7 +52,7 @@ primary_entity:
       mapping:
         - constraint: temperature_unit
           conditions:
-            - dps_val: F
+            - dps_val: true
               value_redirect: temp_current_f
     - id: 17
       type: integer
@@ -60,22 +60,28 @@ primary_entity:
       range:
         min: 0
         max: 100
+    - id: 20
+      type: integer
+      name: unknown_20
     - id: 101
       type: string
       name: preset_mode
       mapping:
-        - dps_val: auto
+        - dps_val: "0" # auto
           value: Auto
-        - dps_val: cold
+        - dps_val: "1" # cold
           value: Cool
-        - dps_val: hot
+        - dps_val: "2" # hot
           value: Heat
-        - dps_val: wet
+        - dps_val: "3" # wet
           value: Dry
-        - dps_val: wind
+        - dps_val: "4" # wind
           value: Fan
-        - dps_val: eco
+        - dps_val: "5" # eco
           value: eco
+    - id: 103
+      type: boolean
+      name: unknown_103
     - id: 104
       type: string
       name: fan_mode
@@ -86,9 +92,19 @@ primary_entity:
           value: medium
         - dps_val: "3"
           value: high
+    - id: 105
+      type: integer
+      name: unknown_105
+    - id: 106
+      type: boolean
+      name: unknown_106
     - id: 109
-      type: string
+      type: boolean
       name: temperature_unit
+      mapping:
+        - dps_val: true
+          value: F
+        - value: C
     - id: 110
       type: integer
       name: temp_set_f
@@ -96,10 +112,12 @@ primary_entity:
         min: 62
         max: 90
       hidden: true
+      optional: true
     - id: 111
       type: integer
       name: temp_current_f
       hidden: true
+      optional: true
     - id: 112
       type: integer
       name: current_humidity
@@ -109,10 +127,10 @@ secondary_entities:
     category: config
     dps:
       - id: 109
-        type: string
+        type: boolean
         name: option
         mapping:
-          - dps_val: C
+          - dps_val: false
             value: Celsius
-          - dps_val: F
+          - dps_val: true
             value: Fahrenheit
