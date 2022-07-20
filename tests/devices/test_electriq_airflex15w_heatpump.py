@@ -154,19 +154,19 @@ class TestElectriqAirflex15WHeatpump(
 
     def test_fan_mode(self):
         self.dps[FAN_DPS] = "1"
-        self.assertEqual(self.subject.fan_mode, "low")
+        self.assertEqual(self.subject.fan_mode, "high")
         self.dps[FAN_DPS] = "2"
         self.assertEqual(self.subject.fan_mode, "medium")
         self.dps[FAN_DPS] = "3"
-        self.assertEqual(self.subject.fan_mode, "high")
+        self.assertEqual(self.subject.fan_mode, "low")
 
     def test_fan_modes(self):
         self.assertCountEqual(
             self.subject.fan_modes,
             [
-                "low",
-                "medium",
                 "high",
+                "medium",
+                "low",
             ],
         )
 
@@ -175,7 +175,7 @@ class TestElectriqAirflex15WHeatpump(
             self.subject._device,
             {FAN_DPS: "1"},
         ):
-            await self.subject.async_set_fan_mode("low")
+            await self.subject.async_set_fan_mode("high")
 
     async def test_set_fan_mode_to_medium(self):
         async with assert_device_properties_set(
@@ -189,7 +189,7 @@ class TestElectriqAirflex15WHeatpump(
             self.subject._device,
             {FAN_DPS: "3"},
         ):
-            await self.subject.async_set_fan_mode("high")
+            await self.subject.async_set_fan_mode("low")
 
     def test_humidity(self):
         self.dps[HUMIDITY_DPS] = 74
