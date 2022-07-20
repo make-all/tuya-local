@@ -26,12 +26,9 @@ primary_entity:
             - dps_val: "3" # wet
               value: dry
               icon: "mdi:water"
-            - dps_val: "4" # wind
-              value: fan_only
-              icon: "mdi:fan"
-            - dps_val: "5" # eco
+            - dps_val: "5" # fan
               value: heat_cool
-              icon: "mdi:leaf"
+              icon: "mdi:fan"
     - id: 2
       type: integer
       name: temperature
@@ -75,10 +72,8 @@ primary_entity:
           value: Heat
         - dps_val: "3" # wet
           value: Dry
-        - dps_val: "4" # wind
+        - dps_val: "5" # fan
           value: Fan
-        - dps_val: "5" # eco
-          value: eco
     - id: 103
       type: boolean
       name: unknown_103
@@ -86,11 +81,11 @@ primary_entity:
       type: string
       name: fan_mode
       mapping:
-        - dps_val: "1"
+        - dps_val: "3"
           value: low
         - dps_val: "2"
           value: medium
-        - dps_val: "3"
+        - dps_val: "1"
           value: high
     - id: 105
       type: integer
