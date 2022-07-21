@@ -76,10 +76,8 @@ class TestElectriqAirflex15WHeatpump(
         self.assertEqual(self.subject.icon, "mdi:fire")
         self.dps[HVACMODE_DPS] = "3"
         self.assertEqual(self.subject.icon, "mdi:water")
-        self.dps[HVACMODE_DPS] = "4"
-        self.assertEqual(self.subject.icon, "mdi:fan")
         self.dps[HVACMODE_DPS] = "5"
-        self.assertEqual(self.subject.icon, "mdi:leaf")
+        self.assertEqual(self.subject.icon, "mdi:fan")
         self.dps[POWER_DPS] = False
         self.assertEqual(self.subject.icon, "mdi:hvac-off")
 
@@ -117,8 +115,6 @@ class TestElectriqAirflex15WHeatpump(
         self.dps[HVACMODE_DPS] = "1"
         self.assertEqual(self.subject.hvac_mode, HVACMode.COOL)
         self.dps[HVACMODE_DPS] = "3"
-        self.assertEqual(self.subject.hvac_mode, HVACMode.DRY)
-        self.dps[HVACMODE_DPS] = "4"
         self.assertEqual(self.subject.hvac_mode, HVACMode.FAN_ONLY)
         self.dps[HVACMODE_DPS] = "0"
         self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT_COOL)
@@ -135,7 +131,6 @@ class TestElectriqAirflex15WHeatpump(
                 HVACMode.HEAT,
                 HVACMode.HEAT_COOL,
                 HVACMode.COOL,
-                HVACMode.DRY,
                 HVACMode.FAN_ONLY,
             ],
         )
