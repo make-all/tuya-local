@@ -1202,6 +1202,18 @@ WEAU_POOL_HEATPUMP_PAYLOAD = {
     "6": 0,
 }
 
+WEAU_POOL_HEATPUMPV2_PAYLOAD = {
+    "1": True,
+    "2": "eheat",
+    "9": 15,
+    "10": 260,
+    "20": 0,
+    "101": 0,
+    "102": 40,
+    "103": 15,
+    "104": True,
+}
+
 SMARTPLUG_ENCODED_PAYLOAD = {
     "1": True,
     "11": 0,
