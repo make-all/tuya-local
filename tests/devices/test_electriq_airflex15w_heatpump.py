@@ -115,11 +115,11 @@ class TestElectriqAirflex15WHeatpump(
         self.dps[HVACMODE_DPS] = "1"
         self.assertEqual(self.subject.hvac_mode, HVACMode.COOL)
         self.dps[HVACMODE_DPS] = "3"
-        self.assertEqual(self.subject.hvac_mode, HVACMode.FAN_ONLY)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.DRY)
         self.dps[HVACMODE_DPS] = "0"
         self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT_COOL)
         self.dps[HVACMODE_DPS] = "5"
-        self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT_COOL)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.FAN_ONLY)
         self.dps[POWER_DPS] = False
         self.assertEqual(self.subject.hvac_mode, HVACMode.OFF)
 
@@ -131,6 +131,7 @@ class TestElectriqAirflex15WHeatpump(
                 HVACMode.HEAT,
                 HVACMode.HEAT_COOL,
                 HVACMode.COOL,
+                HVACMode.DRY,
                 HVACMode.FAN_ONLY,
             ],
         )
