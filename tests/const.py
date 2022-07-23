@@ -831,6 +831,11 @@ TIMED_SOCKET_PAYLOAD = {
     "11": 0,
 }
 
+TIMED_SOCKETV2_PAYLOAD = {
+    "1": True,
+    "9": 0,
+}
+
 DIGOO_DGSP202_SOCKET_PAYLOAD = {
     "1": True,
     "2": True,
