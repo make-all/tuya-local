@@ -3,22 +3,15 @@ primary_entity:
   entity: climate
   dps:
     - id: 1
-      name: hvac_mode
       type: boolean
+      name: hvac_mode
       mapping:
         - dps_val: false
           value: "off"
           icon: "mdi:power"
           icon_priority: 1
         - dps_val: true
-          constraint: heating_mode
-          conditions:
-            - dps_val: FAN
-              value: fan_only
-            - dps_val: LOW
-              value: dry
-            - dps_val: HIGH
-              value: heat
+          value: "auto"
     - id: 2
       type: integer
       range:
@@ -35,24 +28,28 @@ primary_entity:
           - dps_val: false
             invalid: true
     - id: 4
-      name: heating_mode
-      hidden: true
+      name: preset_mode
       type: string
-      icon_priority: 2
       mapping:
-        - dps_val: FAN
-          icon: "mdi:fan"
         - dps_val: LOW
+          value: "Low"
           icon: "mdi:radiator"
+          icon_priority: 2
+        - dps_val: FAN
+          value: "Fan"
+          icon: "mdi:fan"
+          icon_priority: 2
         - dps_val: HIGH
+          value: "High"
           icon: "mdi:fire"
+          icon_priority: 2
     - id: 8
       type: boolean
       mapping:
         - dps_val: true
-          value: "On"
+          value: "on"
         - dps_val: false
-          value: "Off"
+          value: "off"
       name: swing_mode
 secondary_entities:
   - entity: switch
