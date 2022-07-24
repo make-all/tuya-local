@@ -1,0 +1,34 @@
+name: S10 Wireless Dimmer
+products:
+  - id: aok3caeleulg1neh
+    name: S10 Wireless Dimmer
+primary_entity:
+  entity: light
+  dps:
+    - id: 20
+      type: boolean
+      name: switch
+    - id: 22
+      name: brightness
+      type: integer
+      range:
+        min: 10
+        max: 1000
+      mapping:
+        - scale: 3.92
+secondary_entities:
+  - entity: number
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 26
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 86400
+        unit: min
+        mapping:
+          - scale: 60
+            step: 60
