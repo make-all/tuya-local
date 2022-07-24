@@ -162,6 +162,7 @@ the device will not work despite being listed below.
 Other brands may work with the above configurations
 - MoesHouse Smartplug with RGBW nightlight
 - Logicom Strippy 4 way power strip with USB
+- 4 way power monitoring strip
 
 - Simple Switch - a switch only, can be a fallback for many other unsupported devices, to allow just power to be switched on/off.
 - Simple Switch with Timer - a single switch and timer, will probably work for a lot of smart switches that are not covered by the more advanced configs above.

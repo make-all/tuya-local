@@ -1,0 +1,79 @@
+name: Energy Monitoring Powerstrip
+products:
+  - id: 7hBwPPNdDP1xHrWv
+primary_entity:
+  entity: switch
+  name: Switch 1
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 105
+      type: integer
+      name: unknown_105
+    - id: 106
+      type: integer
+      name: unknown_106
+    - id: 107
+      type: integer
+      name: unknown_107
+    - id: 108
+      type: integer
+      name: unknown_108
+    - id: 109
+      type: integer
+      name: unknown_109
+secondary_entities:
+  - entity: switch
+    name: Switch 2
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Switch 3
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Switch 4
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    name: Current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: mA
+        class: measurement
+  - entity: sensor
+    name: Power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
