@@ -23,6 +23,12 @@ UNKNOWN17_DPS = "17"
 TEMPF_DPS = "18"
 UNKNOWN19_DPS = "19"
 
+MODE_AUTO = "0"
+MODE_FAN = "1"
+MODE_DRY = "2"
+MODE_COOL = "3"
+MODE_HEAT = "5"
+
 
 class TestBWTHeatpump(
     TargetTemperatureTests,
@@ -56,15 +62,15 @@ class TestBWTHeatpump(
         self.dps[HVACMODE_DPS] = False
         self.assertEqual(self.subject.hvac_mode, HVACMode.OFF)
         self.dps[HVACMODE_DPS] = True
-        self.dps[MODE_DPS] = "0"
+        self.dps[MODE_DPS] = MODE_AUTO
         self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT_COOL)
-        self.dps[MODE_DPS] = "1"
+        self.dps[MODE_DPS] = MODE_COOL
         self.assertEqual(self.subject.hvac_mode, HVACMode.COOL)
-        self.dps[MODE_DPS] = "2"
+        self.dps[MODE_DPS] = MODE_HEAT
         self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT)
-        self.dps[MODE_DPS] = "3"
+        self.dps[MODE_DPS] = MODE_DRY
         self.assertEqual(self.subject.hvac_mode, HVACMode.DRY)
-        self.dps[MODE_DPS] = "4"
+        self.dps[MODE_DPS] = MODE_FAN
         self.assertEqual(self.subject.hvac_mode, HVACMode.FAN_ONLY)
 
     def test_hvac_modes(self):
@@ -82,31 +88,31 @@ class TestBWTHeatpump(
 
     async def test_turn_on_to_auto(self):
         async with assert_device_properties_set(
-            self.subject._device, {HVACMODE_DPS: True, MODE_DPS: "0"}
+            self.subject._device, {HVACMODE_DPS: True, MODE_DPS: MODE_AUTO}
         ):
             await self.subject.async_set_hvac_mode(HVACMode.HEAT_COOL)
 
     async def test_turn_on_to_cool(self):
         async with assert_device_properties_set(
-            self.subject._device, {HVACMODE_DPS: True, MODE_DPS: "1"}
+            self.subject._device, {HVACMODE_DPS: True, MODE_DPS: MODE_COOL}
         ):
             await self.subject.async_set_hvac_mode(HVACMode.COOL)
 
     async def test_turn_on_to_heat(self):
         async with assert_device_properties_set(
-            self.subject._device, {HVACMODE_DPS: True, MODE_DPS: "2"}
+            self.subject._device, {HVACMODE_DPS: True, MODE_DPS: MODE_HEAT}
         ):
             await self.subject.async_set_hvac_mode(HVACMode.HEAT)
 
     async def test_turn_on_to_dry(self):
         async with assert_device_properties_set(
-            self.subject._device, {HVACMODE_DPS: True, MODE_DPS: "3"}
+            self.subject._device, {HVACMODE_DPS: True, MODE_DPS: MODE_DRY}
         ):
             await self.subject.async_set_hvac_mode(HVACMode.DRY)
 
     async def test_turn_on_to_fan(self):
         async with assert_device_properties_set(
-            self.subject._device, {HVACMODE_DPS: True, MODE_DPS: "4"}
+            self.subject._device, {HVACMODE_DPS: True, MODE_DPS: MODE_FAN}
         ):
             await self.subject.async_set_hvac_mode(HVACMode.FAN_ONLY)
 
