@@ -61,6 +61,7 @@ the device will not work despite being listed below.
 - Eberg Cooly C35HD
 - Star-Light air conditioner
 - TroniTechnik Hellnar Klimagerät
+- Be Cool BC14KL2101F
 
 ### Pool heaters / heatpumps
 

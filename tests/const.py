@@ -1434,3 +1434,18 @@ COMPTEUR_SMARTMETER_PAYLOAD = {
     "25": 0,
     "26": 0,
 }
+
+BECOOL_HEATPUMP_PAYLOAD = {
+    "1": False,
+    "4": 0,
+    "5": "4",
+    "6": 24,
+    "8": "0",
+    "10": False,
+    "13": 0,
+    "14": 0,
+    "15": 0,
+    "16": True,
+    "17": False,
+    "19": False,
+}

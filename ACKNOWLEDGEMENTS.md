@@ -105,4 +105,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [fwelvering](https://github.com/fwelvering) for assistance supporting a second variant of W'eau pool heatpumps. 
 - [illuzn](https://github.com/illuzn) for contributing support for Kogan Tower Heaters.
 - [vnkorol](https://github.com/vnkorol) for assistance supporting 4-way power monitoring strip.
-
+- [OmegaKill](https://github.com/OmegaKill) for assistance supporting Be Cool heatpumps.
