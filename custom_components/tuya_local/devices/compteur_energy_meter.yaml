@@ -1,0 +1,70 @@
+name: Compteur Digital Electric
+products:
+  - id: 1whdy4a8ypamjloi
+primary_entity:
+  entity: sensor
+  class: energy
+  dps:
+    - id: 17
+      type: integer
+      name: sensor
+      mapping:
+        - scale: 1000
+      unit: kWh
+      class: total_increasing
+    - id: 21
+      name: unknown_21
+      type: integer
+    - id: 22
+      name: unknown_22
+      type: integer
+    - id: 23
+      name: unknown_23
+      type: integer
+    - id: 24
+      name: unknown_24
+      type: integer
+    - id: 25
+      name: unknown_25
+      type: integer
+    - id: 26
+      name: unknown_26
+      type: integer
+secondary_entities:
+  - entity: sensor
+    category: diagnostic
+    name: Voltage
+    class: voltage
+    dps:
+      - id: 20
+        name: sensor
+        type: integer
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    category: diagnostic
+    class: current
+    name: Current
+    dps:
+      - id: 18
+        name: sensor
+        type: integer
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    class: power
+    name: Power
+    dps:
+      - id: 19
+        name: sensor
+        type: integer
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+

@@ -139,6 +139,7 @@ the device will not work despite being listed below.
 ### Smart Meter/Circuit Breaker
 - SmartMCB SMT006 Energy Meter
 - PC321-TY 3 phase Power Clamp meter
+- Compteur Digital Electric (single phase)
 
 ### Battery Charger
 - Parkside PLGS 2012 A1 Smart Charger for powertools
