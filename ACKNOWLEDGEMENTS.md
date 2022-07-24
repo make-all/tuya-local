@@ -94,7 +94,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [Krispkiwi](https://github.com/Krispkiwi) for assistance with M027 curtain modules and debugging Kogan Kettle.
 - [craibo](https://github.com/craibo) for contributing support for Jiahong ET-72W thermostats.
 - [x-keita](https://github.com/x-keita) for contributing support for Betterlife BL1500 IR heaters and Nexxt smart switches.
-- [Der-Nax](https:github.com/Der-Nax) for assistant with a second variant of energy monitoring smart switch and for contributing support for PY321-TY power clamps and Compteur smart meters.
+- [Der-Nax](https:github.com/Der-Nax) for assistance with a second variant of energy monitoring smart switch and for contributing support for PY321-TY power clamps, Compteur smart meters and sensors on a Universal Remote Control.
 - [17hoehbr](https://github.com/17hoehbr) for assistance supporting APOSEN A550
 - [yurgh](https://github.com/yurgh) for assistant supporting Eesee Adam dehumidifier
 - [KaportsevIA](https://github.com/KaportsevIA) for assistance supporting Hyundai Sahara dehumidifier, Yandax color bulb and ES01 powerstrip.

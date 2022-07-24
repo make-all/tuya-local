@@ -190,6 +190,7 @@ Other brands may work with the above configurations
 ### Miscellaneous
 - Qoto 03 Smart Water Valve / Sprinkler Controller
 - SD123 HPR01 Human Presence Radar
+- Universal Remote Control (supports sensors only)
 
 ---
 
