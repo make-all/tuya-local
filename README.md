@@ -47,7 +47,7 @@ the device will not work despite being listed below.
 - Ecostrad iQ Ceramic radiators
 - Devola Patio heater
 - Betterlife BT1500 IR heater
-- Kogan Towel Heater - KASTHFP2KWA model
+- Kogan Tower Heater - KASTHFP2KWA model
 
 ### Air Conditioners / Heatpumps
 
