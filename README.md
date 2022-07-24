@@ -42,11 +42,12 @@ the device will not work despite being listed below.
 - Purline Hoti M100 heater
 - Wetair WCH-750 heater
 - Kogan Flame effect heater - KAWHMFP20BA model
-- Nedis convection heater - WIFIHTPL20F models
+- Nedis convection heater - WIFIHTPL20F model
 - Ecostrad Accent iQ heating panels
 - Ecostrad iQ Ceramic radiators
 - Devola Patio heater
 - Betterlife BT1500 IR heater
+- Kogan Towel Heater - KASTHFP2KWA model
 
 ### Air Conditioners / Heatpumps
 
@@ -164,6 +165,7 @@ Other brands may work with the above configurations
 
 - Simple Switch - a switch only, can be a fallback for many other unsupported devices, to allow just power to be switched on/off.
 - Simple Switch with Timer - a single switch and timer, will probably work for a lot of smart switches that are not covered by the more advanced configs above.
+- Simple Switch with Timer v2 - the above with timer moved from dp 11 to 9, confirmed with a Nexxt 220V smart switch. 
 
 ### Lights
 - Generic RGBCW/RGBWW lightbulb (confirmed with Lijun branded bulb, expected to match others also)
