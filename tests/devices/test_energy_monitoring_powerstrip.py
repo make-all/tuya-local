@@ -1,87 +1,118 @@
 """Tests for the energy monitoring powerstrip."""
+from homeassistant.components.sensor import SensorDeviceClass, STATE_CLASS_MEASUREMENT
 from homeassistant.components.switch import SwitchDeviceClass
+from homeassistant.const import (
+    ELECTRIC_CURRENT_MILLIAMPERE,
+    ELECTRIC_POTENTIAL_VOLT,
+    POWER_WATT,
+)
 
-from ..const import ES01_POWERSTRIP_PAYLOAD
-from ..mixins.number import MultiNumberTests
+from ..const import ENERGY_POWERSTRIP_PAYLOAD
+from ..mixins.sensor import MultiSensorTests
 from ..mixins.switch import MultiSwitchTests
 from .base_device_tests import TuyaDeviceTestCase
 
-SWITCH1_DPS = "1"
-SWITCH2_DPS = "2"
-SWITCH3_DPS = "3"
-SWITCHUSB_DPS = "4"
-TIMER1_DPS = "5"
-TIMER2_DPS = "6"
-TIMER3_DPS = "7"
-TIMERUSB_DPS = "8"
+SWITCH1_DP = "1"
+SWITCH2_DP = "2"
+SWITCH3_DP = "3"
+SWITCH4_DP = "4"
+CURRENT_DP = "102"
+POWER_DP = "103"
+VOLTAGE_DP = "104"
+UNKNOWN105_DP = "105"
+UNKNOWN106_DP = "106"
+UNKNOWN107_DP = "107"
+UNKNOWN108_DP = "108"
+UNKNOWN109_DP = "109"
 
 
-class TestES01Powerstrip(
-    MultiNumberTests,
+class TestEnergyMonitoringPowerstrip(
+    MultiSensorTests,
     MultiSwitchTests,
     TuyaDeviceTestCase,
 ):
     __test__ = True
 
     def setUp(self):
-        self.setUpForConfig("es01_powerstrip.yaml", ES01_POWERSTRIP_PAYLOAD)
+        self.setUpForConfig(
+            "energy_monitoring_powerstrip.yaml", ENERGY_POWERSTRIP_PAYLOAD
+        )
         self.setUpMultiSwitch(
             [
                 {
-                    "dps": SWITCH1_DPS,
+                    "dps": SWITCH1_DP,
                     "name": "switch_switch_1",
                     "device_class": SwitchDeviceClass.OUTLET,
                 },
                 {
-                    "dps": SWITCH2_DPS,
+                    "dps": SWITCH2_DP,
                     "name": "switch_switch_2",
                     "device_class": SwitchDeviceClass.OUTLET,
                 },
                 {
-                    "dps": SWITCH3_DPS,
+                    "dps": SWITCH3_DP,
                     "name": "switch_switch_3",
                     "device_class": SwitchDeviceClass.OUTLET,
                 },
-                {"dps": SWITCHUSB_DPS, "name": "switch_usb_switch"},
+                {
+                    "dps": SWITCH4_DP,
+                    "name": "switch_switch_4",
+                    "device_class": SwitchDeviceClass.OUTLET,
+                },
             ]
         )
-        self.setUpMultiNumber(
+        self.setUpMultiSensors(
             [
                 {
-                    "dps": TIMER1_DPS,
-                    "name": "number_timer_socket_1",
-                    "max": 1440,
-                    "scale": 60,
-                    "unit": TIME_MINUTES,
+                    "name": "sensor_current",
+                    "dps": CURRENT_DP,
+                    "device_class": SensorDeviceClass.CURRENT,
+                    "unit": ELECTRIC_CURRENT_MILLIAMPERE,
+                    "state_class": STATE_CLASS_MEASUREMENT,
                 },
                 {
-                    "dps": TIMER2_DPS,
-                    "name": "number_timer_socket_2",
-                    "max": 1440,
-                    "scale": 60,
-                    "unit": TIME_MINUTES,
+                    "name": "sensor_power",
+                    "dps": POWER_DP,
+                    "device_class": SensorDeviceClass.POWER,
+                    "unit": POWER_WATT,
+                    "state_class": STATE_CLASS_MEASUREMENT,
+                    "testdata": (1234, 123.4),
                 },
                 {
-                    "dps": TIMER3_DPS,
-                    "name": "number_timer_socket_3",
-                    "max": 1440,
-                    "scale": 60,
-                    "unit": TIME_MINUTES,
-                },
-                {
-                    "dps": TIMERUSB_DPS,
-                    "name": "number_usb_timer",
-                    "max": 1440,
-                    "scale": 60,
-                    "unit": TIME_MINUTES,
+                    "name": "sensor_voltage",
+                    "dps": VOLTAGE_DP,
+                    "device_class": SensorDeviceClass.VOLTAGE,
+                    "unit": ELECTRIC_POTENTIAL_VOLT,
+                    "state_class": STATE_CLASS_MEASUREMENT,
+                    "testdata": (2345, 234.5),
                 },
             ]
         )
         self.mark_secondary(
             [
-                "number_timer_socket_1",
-                "number_timer_socket_2",
-                "number_timer_socket_3",
-                "number_usb_timer",
+                "sensor_current",
+                "sensor_power",
+                "sensor_voltage",
             ]
         )
+
+    def test_multi_switch_state_attributes(self):
+        self.dps[UNKNOWN105_DP] = 105
+        self.dps[UNKNOWN106_DP] = 106
+        self.dps[UNKNOWN107_DP] = 107
+        self.dps[UNKNOWN108_DP] = 108
+        self.dps[UNKNOWN109_DP] = 109
+        for k, v in self.multiSwitch.items():
+            if k == "switch_switch_1":
+                self.assertDictEqual(
+                    v.extra_state_attributes,
+                    {
+                        "unknown_105": 105,
+                        "unknown_106": 106,
+                        "unknown_107": 107,
+                        "unknown_108": 108,
+                        "unknown_109": 109,
+                    },
+                )
+            else:
+                self.assertEqual(v.extra_state_attributes, {})
