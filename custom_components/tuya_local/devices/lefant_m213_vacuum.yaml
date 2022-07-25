@@ -88,6 +88,10 @@ primary_entity:
           value: land_check
         - dps_val: 64
           value: collision
+    - id: 19
+      type: string
+      name: map_parameter
+      optional: true
     - id: 101
       type: string
       name: fan_speed
@@ -100,16 +104,24 @@ primary_entity:
           value: High
     - id: 102
       type: integer
-      name: unknown_102
+      name: chassis_temperature
     - id: 103
       type: integer
       name: heading
     - id: 104
       type: integer
-      name: unknown_104
+      name: iic_error_count
+    - id: 105
+      type: string
+      name: wheel_status
+      optional: true
     - id: 106
       type: string
       name: dock_info
+      optional: true
+    - id: 107
+      type: string
+      name: robot_status
       optional: true
     - id: 108
       type: string
