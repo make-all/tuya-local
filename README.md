@@ -22,15 +22,30 @@ though some switches are now covered by this integration.
 
 ## Device support
 
-Please note, this component is actively tested with the Goldair GPPH
-(inverter), GPDH420 (dehumidifier), Kogan SmarterHome 1500W Smart
-Panel Heater and Kogan SmarterHome Energy Monitoring SmartPlug. Other
-devices have been added at user request, and may or may not still be
-actively in use by others.
-
 Note that devices sometimes get firmware upgrades, or incompatible
 versions are sold under the same model name, so it is possible that
 the device will not work despite being listed below.
+
+If your device is not listed, you can find the information required to add a
+configuration for it in the following locations:
+
+1. When attempting to add the device, if it is not supported, you will either get a message saying the device cannot be recognised at all, or you will be offered a list of devices (maybe a list of length 1) that are partial matches, often simple switch is among them.  You can cancel the process at this point, and look in the Home Assistant log - there should be a message there containing the currnet data points (dps) returned by the device.
+
+2. If you have signed up for iot.tuya.com to get your local key, you should also have access to the API Explorer under "Cloud".  One of the functions under the "Device Control" section - the last "Get Device Specification Attribute" function listed, returns the dp_id in addition to range information that is needed for integer and enum data types.
+
+3. By following the method described at the link below, you can find information for all the data points supported by your device, including those not listed by the API explorer method above and those that are only returned under specific conditions.
+
+https://www.zigbee2mqtt.io/advanced/support-new-devices/03_find_tuya_data_points.html
+
+
+If you file an issue to request support for a new device, please include the following information:
+
+1. Identification of the device, such as model and brand name.
+2. As much information on the datapoints you can gather using the above methods.
+3. If manuals or webpages are available online, links to those help understand how to interpret the technical info above - even if they are not in English automatic translations can help, or information in them may help to identify identical devices sold under other brands in other countries that do have English or more detailed information available.
+
+If you submit a pull request, please understand that the config file naming and details of the configuration may get modified before release - for example if your name was too generic, I may rename it to a more specific name, or conversely if the device appears to be generic and sold under many brands, I may change the brand specific name to something more general.  So it may be necessary to remove and re-add your device once it has been integrated into a release.
+
 
 ### Heaters
 
