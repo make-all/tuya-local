@@ -1463,3 +1463,14 @@ ESSENTIALS_PURIFIER_PAYLOAD = {
     "21": "good",
     "101": "Standard",
 }
+
+AVATTO_BLINDS_PAYLOAD = {
+    "1": "close",
+    "2": 0,
+    "3": 0,
+    "5": False,
+    "7": "closing",
+    "8": "cancel",
+    "9": 0,
+    "11": 0,
+}

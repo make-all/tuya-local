@@ -201,6 +201,7 @@ Other brands may work with the above configurations
 - Kogan Garage Door with tilt sensor
 - QS-WIFI-C01(BK) Curtain Module
 - M027 Curtain Module (sold under several brands, including zemismart, meterk and others)
+- Avatto Roller Blinds controller
 
 ### Vacuum Cleaners
 - Lefant M213 Vacuum Cleaner (also works for Lefant M213S and APOSEN A550)
