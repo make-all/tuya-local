@@ -148,15 +148,6 @@ class TestGridConnectDoubleSwitch(
             ],
         )
 
-    async def test_turn_on_fails_when_master_is_off(self):
-        self.dps[MASTER_DPS] = False
-        self.dps[SWITCH1_DPS] = False
-        self.dps[SWITCH2_DPS] = False
-        with self.assertRaises(AttributeError):
-            await self.multiSwitch["switch_outlet_1"].async_turn_on()
-        with self.assertRaises(AttributeError):
-            await self.multiSwitch["switch_outlet_2"].async_turn_on()
-
     # Since we have attributes, override the default test which expects none.
     def test_multi_switch_state_attributes(self):
         self.dps[COUNTDOWN1_DPS] = 9
