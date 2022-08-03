@@ -1449,3 +1449,17 @@ BECOOL_HEATPUMP_PAYLOAD = {
     "17": False,
     "19": False,
 }
+
+ESSENTIALS_PURIFIER_PAYLOAD = {
+    "1": True,
+    "2": 12,
+    "3": "auto",
+    "5": 50,
+    "7": False,
+    "9": False,
+    "11": False,
+    "18": "cancel",
+    "19": 0,
+    "21": "good",
+    "101": "Standard",
+}

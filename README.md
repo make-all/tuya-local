@@ -7,16 +7,22 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=make-all_tuya-local&metric=coverage)](https://sonarcloud.io/dashboard?id=make-all_tuya-local)
 
 This is a Home Assistant add-on to support Wi-fi devices running Tuya
-firmware without going via the Tuya cloud.  Using this integration
-does not stop your devices from sending status to the Tuya cloud, so
-this should not be seen as a security measure, rather it improves
-speed and reliability by using local connections, and may unlock some
-features of your device, or even unlock whole devices, that are not
-supported by the Tuya cloud API.  Currently the focus is mainly on
-more complex devices, which are not well supported by other similar
-integrations. Simpler devices like switches and lights can be covered
-by [rospogrigio/localtuya](https://github.com/rospogrigio/localtuya/),
-though some switches are now covered by this integration.
+firmware without going via the Tuya cloud.  Currently only WiFi
+devices are supported, Tuya also makes Zigbee, BLE and other devices
+that connect to WiFi using a gateway, such devices are not yet
+supported.
+
+Using this integration does not stop your devices from sending status
+to the Tuya cloud, so this should not be seen as a security measure,
+rather it improves speed and reliability by using local connections,
+and may unlock some features of your device, or even unlock whole
+devices, that are not supported by the Tuya cloud API. 
+
+A similar but unrelated integration is
+[rospogrigio/localtuya](https://github.com/rospogrigio/localtuya/), if
+your device is not supported by this integration, you may find it
+easier to set up using that as an alternative.
+
 
 ---
 
@@ -33,7 +39,7 @@ configuration for it in the following locations:
 
 2. If you have signed up for iot.tuya.com to get your local key, you should also have access to the API Explorer under "Cloud".  One of the functions under the "Device Control" section - the last "Get Device Specification Attribute" function listed, returns the dp_id in addition to range information that is needed for integer and enum data types.
 
-3. By following the method described at the link below, you can find information for all the data points supported by your device, including those not listed by the API explorer method above and those that are only returned under specific conditions.
+3. By following the method described at the link below, you can find information for all the data points supported by your device, including those not listed by the API explorer method above and those that are only returned under specific conditions. Ignore the requirement for a Tuya Zigbee gateway, that is for Zigbee devices, and this integration does not currently support devices connected via a gateway, but the non-Zigbee/gateway specific parts of the procedure apply also to WiFi devices.
 
 https://www.zigbee2mqtt.io/advanced/support-new-devices/03_find_tuya_data_points.html
 
@@ -129,6 +135,7 @@ If you submit a pull request, please understand that the config file naming and 
 - Himox H05 and H06 air purifiers
 - Tesla Pro and Mini air purifiers
 - Vork VK6067AW air purifier
+- essentials portable air purifier
 
 ### Dehumidifiers
 - Goldair GPDH420 dehumidifier

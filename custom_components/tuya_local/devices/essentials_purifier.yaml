@@ -1,0 +1,126 @@
+name: essentials Air Purifier
+primary_entity:
+  entity: switch
+  icon: "mdi:air-purifier"
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: sensor
+    name: Active Filter Life
+    icon: "mdi:air-filter"
+    category: diagnostic
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        readonly: true
+        unit: "%"
+  - entity: lock
+    name: Child Lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+        mapping:
+          - dps_val: true
+            icon: "mdi:hand-back-right-off"
+          - dps_val: false
+            icon: "mdi-hand-back-right"
+  - entity: select
+    name: Light
+    category: config
+    dps:
+      - id: 101
+        name: option
+        type: string
+        mapping:
+          - dps_val: Standard
+            value: "On"
+            icon: "mdi:lightbulb-on"
+          - dps_val: Soft
+            value: "Soft"
+            icon: "mdi:lightbulb-on-outline"
+          - dps_val: Close
+            value: "Off"
+            icon: "mdi:lightbulb-outline"
+  - entity: switch
+    name: UV Disinfection
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            icon: "mdi:lightbulb"
+          - dps_val: false
+            icon: "mdi:lightbulb-outline"
+  - entity: switch
+    name: Filter Reset
+    category: config
+    icon: "mdi:refresh"
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
+  - entity: select
+    name: Timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 18
+        name: option
+        type: string
+        mapping:
+          - dps_val: cancel
+            value: "Off"
+          - dps_val: 2h
+            value: "2 hours"
+          - dps_val: 4h
+            value: "4 hours"
+          - dps_val: 8h
+            value: "8 hours"
+  - entity: sensor
+    name: Timer
+    icon: "mdi:timer"
+    category: diagnostic
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        readonly: true
+        unit: "min"
+  - entity: sensor
+    name: PM2.5
+    class: pm25
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        class: measurement
+        unit: ugm3
+  - entity: sensor
+    name: Air Quality
+    dps:
+      - id: 21
+        type: string
+        name: sensor
+        readonly: true
+  - entity: select
+    name: Mode
+    dps:
+      - id: 3
+        name: option
+        type: string
+        mapping:
+          - dps_val: auto
+            value: "Auto"
+          - dps_val: "M"
+            value: "Medium"
+          - dps_val: "H"
+            value: "High"
+          - dps_val: "sleep"
+            value: "Sleep"
