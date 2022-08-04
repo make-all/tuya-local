@@ -42,6 +42,22 @@ secondary_entities:
       - id: 10
         type: boolean
         name: switch
+  - entity: select
+    name: Water Level
+    icon: "mdi:beaker-outline"
+    category: config
+    dps:
+      - id: 12
+        type: string
+        name: option
+        readonly: true
+        mapping:
+          - dps_val: level_1
+            value: Low
+          - dps_val: level_2
+            value: Medium
+          - dps_val: level_3
+            value: Full
   - entity: number
     name: UV Runtime
     icon: "mdi:timer-outline"
