@@ -17,15 +17,15 @@ secondary_entities:
       - id: 7
         type: boolean
         name: switch
-  - entity: number
+
+  - entity: sensor
     name: Filter Life
     icon: "mdi:air-filter"
-    category: config
+    category: diagnostic
     dps:
       - id: 4
         type: integer
-        name: value
-        readonly: true
+        name: sensor
         range:
           min: 0
           max: 43200
@@ -34,6 +34,7 @@ secondary_entities:
             step: 1
             invert: true
         unit: days
+
   - entity: switch
     name: Run UV Cycle
     icon: "mdi:bacteria"
@@ -42,31 +43,33 @@ secondary_entities:
       - id: 10
         type: boolean
         name: switch
-  - entity: select
+
+  - entity: sensor
     name: Water Level
-    icon: "mdi:beaker-outline"
-    category: config
+    category: diagnostic
     dps:
       - id: 12
+        name: sensor
         type: string
-        name: option
-        readonly: true
         mapping:
           - dps_val: level_1
+            icon: "mdi:cup-outline"
             value: Low
           - dps_val: level_2
+            icon: "mdi:cup-water"
             value: Medium
           - dps_val: level_3
+            icon: "mdi:cup"
             value: Full
-  - entity: number
+
+  - entity: sensor
     name: UV Runtime
     icon: "mdi:timer-outline"
-    category: config
+    category: diagnostic
     dps:
       - id: 11
         type: integer
-        name: value
-        readonly: true
+        name: sensor
         mapping:
           - scale: 60
             step: 1
