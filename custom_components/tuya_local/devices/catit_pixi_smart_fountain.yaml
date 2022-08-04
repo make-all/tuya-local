@@ -25,13 +25,15 @@ secondary_entities:
       - id: 4
         type: integer
         name: value
+        readonly: true
         range:
           min: 0
           max: 43200
         mapping:
-          - scale: 1
+          - scale: 1440 # minutes => days
             step: 1
-        unit: min
+            invert: true
+        unit: days
   - entity: switch
     name: Run UV Cycle
     icon: "mdi:bacteria"
@@ -48,10 +50,8 @@ secondary_entities:
       - id: 11
         type: integer
         name: value
-        range:
-          min: 0
-          max: 10800
+        readonly: true
         mapping:
-          - scale: 1
+          - scale: 60
             step: 1
-        unit: s
+        unit: min
