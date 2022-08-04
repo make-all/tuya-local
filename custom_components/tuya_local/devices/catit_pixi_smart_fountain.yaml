@@ -1,0 +1,57 @@
+name: Catit Pixi Smart Fountain
+products:
+  - id: z3rpyvznfcch99aa
+primary_entity:
+  entity: switch
+  icon: "mdi:water-pump"
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: switch
+    name: Filter Replaced
+    icon: "mdi:air-filter"
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+  - entity: number
+    name: Filter Life
+    icon: "mdi:air-filter"
+    category: config
+    dps:
+      - id: 4
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 43200
+        mapping:
+          - scale: 0
+            step: 1
+        unit: min
+  - entity: switch
+    name: Run UV Cycle
+    icon: "mdi:bacteria"
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: number
+    name: UV Runtime
+    icon: "mdi:timer-outline"
+    category: config
+    dps:
+      - id: 11
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 10800
+        mapping:
+          - scale: 0
+            step: 1
+        unit: s
