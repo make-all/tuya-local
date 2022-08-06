@@ -34,7 +34,7 @@ def _async_get_diagnostics(
     device: DeviceEntry | None = None,
 ) -> dict[str, Any]:
     """Return diagnostics for a tuya-local config entry."""
-    hass_data = hass.data[DOMAIN][entry.entry_id]
+    hass_data = hass.data[DOMAIN][entry.data["device_id"]]
 
     data = {
         "name": entry["title"],
