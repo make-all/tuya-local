@@ -18,8 +18,6 @@ async def test_init_entry(hass):
         data={
             CONF_TYPE: "goldair_gpph_heater",
             CONF_DEVICE_ID: "dummy",
-            "climate": False,
-            "number_timer": True,
         },
     )
     m_add_entities = Mock()
@@ -38,7 +36,7 @@ async def test_init_entry_fails_if_device_has_no_number(hass):
     """Test initialisation when device has no matching entity"""
     entry = MockConfigEntry(
         domain=DOMAIN,
-        data={CONF_TYPE: "simple_switch", CONF_DEVICE_ID: "dummy", "number": True},
+        data={CONF_TYPE: "simple_switch", CONF_DEVICE_ID: "dummy"},
     )
     m_add_entities = Mock()
     m_device = AsyncMock()
@@ -58,7 +56,7 @@ async def test_init_entry_fails_if_config_is_missing(hass):
     """Test initialisation when device has no matching entity"""
     entry = MockConfigEntry(
         domain=DOMAIN,
-        data={CONF_TYPE: "non_existing", CONF_DEVICE_ID: "dummy", "number": True},
+        data={CONF_TYPE: "non_existing", CONF_DEVICE_ID: "dummy"},
     )
     m_add_entities = Mock()
     m_device = AsyncMock()

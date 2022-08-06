@@ -19,7 +19,6 @@ async def test_init_entry(hass):
         data={
             CONF_TYPE: "dehumidifier",
             CONF_DEVICE_ID: "dummy",
-            CONF_HUMIDIFIER: True,
         },
     )
     # although async, the async_add_entities function passed to
@@ -44,7 +43,6 @@ async def test_init_entry_fails_if_device_has_no_humidifier(hass):
         data={
             CONF_TYPE: "kogan_heater",
             CONF_DEVICE_ID: "dummy",
-            CONF_HUMIDIFIER: True,
         },
     )
     # although async, the async_add_entities function passed to
@@ -71,7 +69,6 @@ async def test_init_entry_fails_if_config_is_missing(hass):
         data={
             CONF_TYPE: "non_existing",
             CONF_DEVICE_ID: "dummy",
-            CONF_HUMIDIFIER: True,
         },
     )
     # although async, the async_add_entities function passed to

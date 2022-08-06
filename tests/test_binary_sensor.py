@@ -18,7 +18,6 @@ async def test_init_entry(hass):
         data={
             CONF_TYPE: "goldair_dehumidifier",
             CONF_DEVICE_ID: "dummy",
-            "humidifier": False,
         },
     )
     m_add_entities = Mock()

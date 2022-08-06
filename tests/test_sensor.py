@@ -18,9 +18,6 @@ async def test_init_entry(hass):
         data={
             CONF_TYPE: "goldair_dehumidifier",
             CONF_DEVICE_ID: "dummy",
-            "humidifier": False,
-            "sensor_current_temperature": True,
-            "sensor_current_humidity": False,
         },
     )
     m_add_entities = Mock()
@@ -45,7 +42,6 @@ async def test_init_entry_fails_if_device_has_no_sensor(hass):
         data={
             CONF_TYPE: "mirabella_genio_usb",
             CONF_DEVICE_ID: "dummy",
-            "sensor": True,
         },
     )
     m_add_entities = Mock()
@@ -66,7 +62,7 @@ async def test_init_entry_fails_if_config_is_missing(hass):
     """Test initialisation when device has no matching entity"""
     entry = MockConfigEntry(
         domain=DOMAIN,
-        data={CONF_TYPE: "non_existing", CONF_DEVICE_ID: "dummy", "sensor": True},
+        data={CONF_TYPE: "non_existing", CONF_DEVICE_ID: "dummy"},
     )
     m_add_entities = Mock()
     m_device = AsyncMock()
