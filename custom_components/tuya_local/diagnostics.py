@@ -67,7 +67,9 @@ def _async_device_as_dict(
 
     device_registry = dr.async_get(hass)
     entity_registry = er.async_get(hass)
-    hass_device = device_registry.async_get_device(identifiers={(DOMAIN, device.id)})
+    hass_device = device_registry.async_get_device(
+        identifiers={(DOMAIN, device.unique_id)}
+    )
     if hass_device:
         data["home_assistant"] = {
             "name": hass_device.name,
