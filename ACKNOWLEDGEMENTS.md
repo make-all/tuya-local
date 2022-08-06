@@ -107,3 +107,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [vnkorol](https://github.com/vnkorol) for assistance supporting 4-way power monitoring strip and Avatto roller blinds.
 - [OmegaKill](https://github.com/OmegaKill) for assistance supporting Be Cool heatpumps.
 - [djusHa](https://github.com/djusHa) for contributing support for essentials portable air purifier.
+- [alexmaras](https://github.com/alexmaras) for contributing support for Catit Pixi smart fountain.
