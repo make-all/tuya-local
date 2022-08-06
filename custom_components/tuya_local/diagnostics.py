@@ -37,7 +37,7 @@ def _async_get_diagnostics(
     hass_data = hass.data[DOMAIN][entry.data["device_id"]]
 
     data = {
-        "name": entry["title"],
+        "name": entry.title,
         "type": entry.data["type"],
         "device_id": REDACTED,
         "local_key": REDACTED,
