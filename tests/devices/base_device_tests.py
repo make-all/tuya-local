@@ -14,6 +14,7 @@ from custom_components.tuya_local.generic.lock import TuyaLocalLock
 from custom_components.tuya_local.generic.number import TuyaLocalNumber
 from custom_components.tuya_local.generic.select import TuyaLocalSelect
 from custom_components.tuya_local.generic.sensor import TuyaLocalSensor
+from custom_components.tuya_local.generic.siren import TuyaLocalSiren
 from custom_components.tuya_local.generic.switch import TuyaLocalSwitch
 from custom_components.tuya_local.generic.vacuum import TuyaLocalVacuum
 
@@ -34,6 +35,7 @@ DEVICE_TYPES = {
     "switch": TuyaLocalSwitch,
     "select": TuyaLocalSelect,
     "sensor": TuyaLocalSensor,
+    "siren": TuyaLocalSiren,
     "vacuum": TuyaLocalVacuum,
 }
 

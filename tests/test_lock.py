@@ -3,7 +3,6 @@ from pytest_homeassistant_custom_component.common import MockConfigEntry
 from unittest.mock import AsyncMock, Mock
 
 from custom_components.tuya_local.const import (
-    CONF_LOCK,
     CONF_DEVICE_ID,
     CONF_TYPE,
     DOMAIN,

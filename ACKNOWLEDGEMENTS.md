@@ -108,3 +108,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [OmegaKill](https://github.com/OmegaKill) for assistance supporting Be Cool heatpumps.
 - [djusHa](https://github.com/djusHa) for contributing support for essentials portable air purifier.
 - [alexmaras](https://github.com/alexmaras) for contributing support for Catit Pixi smart fountain.
+- [jamiergrs](https://github.com/jamiergrs) for assistance supporting Orion Grid Connect outdoor sirens.

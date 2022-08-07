@@ -1,0 +1,64 @@
+name: Orion Outdoor Siren
+product:
+  - id: im2eqqhj72suwwko
+    model: SWS08HA
+primary_entity:
+  entity: siren
+  dps:
+    - id: 1
+      name: tone
+      type: string
+      mapping:
+        - dps_val: alarm_sound
+          value: sound
+        - dps_val: alarm_light
+          value: light
+        - dps_val: alarm_sound_light
+          value: sound+light
+        - dps_val: normal
+          value: normal
+    - id: 5
+      name: volume_level
+      type: string
+      mapping:
+        - dps_val: mute
+          value: 0.0
+        - dps_val: low
+          value: 0.33
+        - dps_val: middle
+          value: 0.67
+        - dps_val: high
+          value: 1.0
+    - id: 7
+      name: duration
+      type: integer
+      range:
+        min: 1
+        max: 10
+      unit: min
+secondary_entities:
+  - entity: binary_sensor
+    name: Charging
+    category: diagnostic
+    class: battery_charging
+    dps:
+      - id: 6
+        name: sensor
+        type: boolean
+  - entity: sensor
+    name: Battery
+    category: diagnostic
+    class: battery
+    dps:
+      - id: 15
+        name: sensor
+        type: integer
+        unit: "%"
+  - entity: binary_sensor
+    name: Tamper Detect
+    category: diagnostic
+    class: tamper
+    dps:
+      - id: 20
+        name: sensor
+        type: boolean

@@ -1474,3 +1474,12 @@ AVATTO_BLINDS_PAYLOAD = {
     "9": 0,
     "11": 0,
 }
+
+ORION_SIREN_PAYLOAD = {
+    "1": "normal",
+    "5": "middle",
+    "6": True,
+    "7": 10,
+    "15": 0,
+    "20": True,
+}

@@ -210,6 +210,9 @@ Other brands may work with the above configurations
 ### Locks
 - Orion Grid Connect Smart Lock
 
+### Sirens
+- Orion Grid Connect Outdoor Siren
+
 ### Miscellaneous
 - Qoto 03 Smart Water Valve / Sprinkler Controller
 - SD123 HPR01 Human Presence Radar
