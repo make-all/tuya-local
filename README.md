@@ -218,6 +218,7 @@ Other brands may work with the above configurations
 - SD123 HPR01 Human Presence Radar
 - Universal Remote Control (supports sensors only)
 - Catit Pixi Smart Fountain
+- Bresser Smart 7-in-1 Weather Station
 
 ---
 
