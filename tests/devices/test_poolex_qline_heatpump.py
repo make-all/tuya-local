@@ -53,6 +53,8 @@ class TestPoolexSilverlineHeatpump(
         self.assertEqual(self.subject.icon, "mdi:hot-tub")
         self.dps[MODE_DPS] = "cold"
         self.assertEqual(self.subject.icon, "mdi:snowflake")
+        self.dps[MODE_DPS] = "mute"
+        self.assertEqual(self.subject.icon, "mdi:hot-tub")
         self.dps[ERROR_DPS] = 1
         self.assertEqual(self.subject.icon, "mdi:water-pump-off")
         self.dps[HVACMODE_DPS] = False
@@ -75,13 +77,16 @@ class TestPoolexSilverlineHeatpump(
         self.dps[MODE_DPS] = "cold"
         self.assertEqual(self.subject.hvac_mode, HVACMode.COOL)
 
+        self.dps[MODE_DPS] = "mute"
+        self.assertEqual(self.subject.hvac_mode, HVACMode.FAN_ONLY)
+
         self.dps[HVACMODE_DPS] = False
         self.assertEqual(self.subject.hvac_mode, HVACMode.OFF)
 
     def test_hvac_modes(self):
         self.assertCountEqual(
             self.subject.hvac_modes,
-            [HVACMode.OFF, HVACMode.COOL, HVACMode.HEAT],
+            [HVACMode.OFF, HVACMode.COOL, HVACMode.HEAT, HVACMode.FAN_ONLY],
         )
 
     async def test_hvac_mode_heat(self):
@@ -95,6 +100,12 @@ class TestPoolexSilverlineHeatpump(
             self.subject._device, {HVACMODE_DPS: True, MODE_DPS: "cold"}
         ):
             await self.subject.async_set_hvac_mode(HVACMode.COOL)
+
+    async def test_hvac_mode_mute(self):
+        async with assert_device_properties_set(
+            self.subject._device, {HVACMODE_DPS: True, MODE_DPS: "mute"}
+        ):
+            await self.subject.async_set_hvac_mode(HVACMode.FAN_ONLY)
 
     async def test_turn_off(self):
         async with assert_device_properties_set(
