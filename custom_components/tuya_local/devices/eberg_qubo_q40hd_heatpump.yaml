@@ -50,6 +50,15 @@ primary_entity:
               value_redirect: power
             - dps_val: true
               value: heat
+        - dps_val: dehumidify
+          icon: "mdi:fan"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: dry              
     - id: 5
       name: fan_mode
       type: string
