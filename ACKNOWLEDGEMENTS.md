@@ -110,3 +110,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [alexmaras](https://github.com/alexmaras) for contributing support for Catit Pixi smart fountain.
 - [jamiergrs](https://github.com/jamiergrs) for assistance supporting Orion Grid Connect outdoor sirens.
 - [myhomeiot](https://github.com/myhomeiot) for contributing support for Bresser 7-in-1 Weather Station.
+- [Condorello](https://github.com/Condorello) for assistance supporting Inkbird sous vide cookers.

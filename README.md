@@ -219,6 +219,7 @@ Other brands may work with the above configurations
 - Universal Remote Control (supports sensors only)
 - Catit Pixi Smart Fountain
 - Bresser Smart 7-in-1 Weather Station
+- Inkbird Sous Vide Cooker
 
 ---
 
