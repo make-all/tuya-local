@@ -73,6 +73,8 @@ class TestEbergQuboQ40HDHeatpump(
         self.assertEqual(self.subject.icon, "mdi:snowflake")
         self.dps[HVACMODE_DPS] = "hot"
         self.assertEqual(self.subject.icon, "mdi:fire")
+        self.dps[HVACMODE_DPS] = "dehumidify"
+        self.assertEqual(self.subject.icon, "mdi:water-percent")
         self.dps[POWER_DPS] = False
         self.assertEqual(self.subject.icon, "mdi:hvac-off")
 
@@ -102,6 +104,9 @@ class TestEbergQuboQ40HDHeatpump(
         self.dps[HVACMODE_DPS] = "hot"
         self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT)
 
+        self.dps[HVACMODE_DPS] = "dehumidify"
+        self.assertEqual(self.subject.hvac_mode, HVACMode.DRY)
+
         self.dps[HVACMODE_DPS] = "cold"
         self.dps[POWER_DPS] = False
         self.assertEqual(self.subject.hvac_mode, HVACMode.OFF)
@@ -112,6 +117,7 @@ class TestEbergQuboQ40HDHeatpump(
             [
                 HVACMode.OFF,
                 HVACMode.COOL,
+                HVACMode.DRY,
                 HVACMode.HEAT,
             ],
         )

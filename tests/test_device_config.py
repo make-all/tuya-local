@@ -26,20 +26,12 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
         self.assertTrue(found)
 
     def test_config_files_parse(self):
+        """
+        All configs should be parsable and have at least a name and primary entity.
+        """
         for cfg in available_configs():
             parsed = TuyaDeviceConfig(cfg)
             self.assertIsNotNone(parsed.name)
-
-    def test_config_files_have_legacy_link(self):
-        """
-        Initially, we require a link between the new style config, and the old
-        classes so we can transition over to the new config.  When the
-        transition is complete, we will drop the requirement, as new devices
-        will only be added as config files.
-        """
-        for cfg in available_configs():
-            parsed = TuyaDeviceConfig(cfg)
-            self.assertIsNotNone(parsed.legacy_type)
             self.assertIsNotNone(parsed.primary_entity)
 
     # Most of the device_config functionality is exercised during testing of
