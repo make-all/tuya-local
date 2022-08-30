@@ -112,3 +112,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [myhomeiot](https://github.com/myhomeiot) for contributing support for Bresser 7-in-1 Weather Station.
 - [Condorello](https://github.com/Condorello) for assistance supporting Inkbird sous vide cookers.
 - [sebastiangebosz](https://github.com/sebastiangebosz) for contributing improvements to Eberg Qubo heatpumps.
+- [VoyteckPL](https://github.com/VoyteckPL) for contributing support for Fairland IPHCR15 pool heatpumps.

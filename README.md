@@ -94,6 +94,7 @@ If you submit a pull request, please understand that the config file naming and 
 - Poolex Silverline, Q-line and Vertigo heatpumps
 - IPS Pro Pool-Systems Heatpump (seems to match Fairland Inver-X as well)
 - W'eau Pool Heatpump
+- Fairland IPHCR15 pool heatpump (matches others above, but allows control of heat/cool modes while others seem to be fixed to auto only)
 
 - these seem to use a small number of common controllers with minor variations, and many other Pool heatpumps will work using the above configurations.
   Report issues if there are any differences in presets or other features,
