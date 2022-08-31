@@ -11,9 +11,9 @@ from .base_device_tests import TuyaDeviceTestCase
 
 SWITCH_DPS = "1"
 TIMER_DPS = "11"
-UNKNOWN101_DPS = "101"
-UNKNOWN102_DPS = "102"
-UNKNOWN103_DPS = "103"
+RANDOM_DPS = "101"
+CIRCULATE_DPS = "102"
+SCHEDULE_DPS = "103"
 
 
 class TestSwitchEncoded(BasicNumberTests, SwitchableTests, TuyaDeviceTestCase):
@@ -36,14 +36,14 @@ class TestSwitchEncoded(BasicNumberTests, SwitchableTests, TuyaDeviceTestCase):
         self.assertEqual(self.subject.device_class, SwitchDeviceClass.OUTLET)
 
     def test_extra_state_attributes_set(self):
-        self.dps[UNKNOWN101_DPS] = "101"
-        self.dps[UNKNOWN102_DPS] = "102"
-        self.dps[UNKNOWN103_DPS] = "103"
+        self.dps[RANDOM_DPS] = "101"
+        self.dps[CIRCULATE_DPS] = "102"
+        self.dps[SCHEDULE_DPS] = "103"
         self.assertDictEqual(
             self.subject.extra_state_attributes,
             {
-                "unknown_101": "101",
-                "unknown_102": "102",
-                "unknown_103": "103",
+                "random": "101",
+                "circulate": "102",
+                "schedule": "103",
             },
         )

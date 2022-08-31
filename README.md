@@ -159,6 +159,7 @@ If you submit a pull request, please understand that the config file naming and 
 
 ### Kitchen Appliances
 - Kogan Glass 1.7L Smart Kettle (not reliably detected)
+- Inkbird Sous Vide Cooker
 
 ### Smart Meter/Circuit Breaker
 - SmartMCB SMT006 Energy Meter
@@ -220,7 +221,6 @@ Other brands may work with the above configurations
 - Universal Remote Control (supports sensors only)
 - Catit Pixi Smart Fountain
 - Bresser Smart 7-in-1 Weather Station
-- Inkbird Sous Vide Cooker
 
 ---
 
