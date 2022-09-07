@@ -80,8 +80,8 @@ class TestInkbirdSousVideCooker(
             UNIT_DPS,
             self.entities.get("select_temperature_unit"),
             {
-                True: "Fahrenheit",
-                False: "Celsius",
+                False: "Fahrenheit",
+                True: "Celsius",
             },
         )
         self.setUpBasicSensor(
@@ -120,9 +120,9 @@ class TestInkbirdSousVideCooker(
         self.assertEqual(self.subject.icon, "mdi:alert")
 
     def test_temperature_unit(self):
-        self.dps[UNIT_DPS] = False
-        self.assertEqual(self.subject.temperature_unit, TEMP_CELSIUS)
         self.dps[UNIT_DPS] = True
+        self.assertEqual(self.subject.temperature_unit, TEMP_CELSIUS)
+        self.dps[UNIT_DPS] = False
         self.assertEqual(self.subject.temperature_unit, TEMP_FAHRENHEIT)
 
     def test_current_temperature(self):

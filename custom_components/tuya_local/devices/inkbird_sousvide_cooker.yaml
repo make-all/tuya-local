@@ -49,9 +49,9 @@ primary_entity:
       type: boolean
       name: temperature_unit
       mapping:
-        - dps_val: false
-          value: C
         - dps_val: true
+          value: C
+        - dps_val: false
           value: F
 secondary_entities:
   - entity: number
@@ -96,9 +96,9 @@ secondary_entities:
         type: boolean
         name: option
         mapping:
-          - dps_val: false
-            value: Celsius
           - dps_val: true
+            value: Celsius
+          - dps_val: false
             value: Fahrenheit
   - entity: number
     name: Recipe
