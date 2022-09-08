@@ -431,6 +431,7 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
         )
         expected = {
             "version": 9,
+            "context": {"source": "choose_entities"},
             "type": "create_entry",
             "flow_id": ANY,
             "handler": DOMAIN,
