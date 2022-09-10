@@ -1,0 +1,70 @@
+# Dongguan Pinjia Technology Co., Door Controller, PJ-WGDOOR01
+# Tuya Smart Life WiFi Motorized Swing Gate Sliding Gate Opener Dry Contact 110V 240V Voice Control with Alexa Google Home
+# https://www.aliexpress.com/item/1005003913566298.html
+name: Dongguan Garage Door
+products:
+  - id: 1wwbzczt9hrtwqjr
+    name: WIFI Door Opener
+    model: PJ-WGDOOR01
+primary_entity:
+  entity: cover
+  class: garage
+  dps:
+    - id: 1
+      type: boolean
+      name: control
+      optional: true #BUGBUG Sometimes after power off this DP doesn't report state but will be available later
+      mapping:
+        - dps_val: true
+          value: open
+        - dps_val: false
+          value: close
+    - id: 3
+      type: boolean
+      name: action
+      mapping:
+        - dps_val: true
+          value: opened
+        - dps_val: false
+          value: closed
+secondary_entities:
+  - entity: number
+    name: Countdown
+    icon: mdi:timer-lock
+    category: config
+    dps:
+      - id: 2
+        <<: &timer
+          type: integer
+          name: value
+          unit: s
+          range:
+            min: 0
+            max: 86400
+  - entity: number
+    name: Run Times
+    icon: mdi:timer
+    category: config
+    dps:
+      - id: 4
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 10
+          max: 120
+  - entity: number
+    name: Timeout Alarm
+    icon: mdi:timer-alert
+    category: config
+    dps:
+      - id: 5
+        <<: *timer
+  - entity: sensor
+    name: Fault
+    icon: mdi:alert
+    dps:
+      - id: 12
+        type: string
+        name: sensor
+        optional: true #BUGBUG Sometimes after power off this DP doesn't report state but will be available later
