@@ -200,6 +200,7 @@ Other brands may work with the above configurations
 ### Covers
 - Simple Garage Door
 - Simple Blind Controller
+- Dongguan Garage Door
 - Kogan Garage Door with tilt sensor
 - QS-WIFI-C01(BK) Curtain Module
 - M027 Curtain Module (sold under several brands, including zemismart, meterk and others)
