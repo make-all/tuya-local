@@ -1,0 +1,115 @@
+name: TGR81 WIFI-EP Controller
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: true
+          value: "heat"
+          icon: "mdi:radiator"
+        - dps_val: false
+          value: "off"
+          icon: "mdi:radiator-disabled"
+    - id: 2
+      name: mode
+      type: string
+      mapping:
+        - dps_val: "auto"
+          icon: "mdi:cog"
+        - dps_val: "manual"
+          icon: "mdi:hand-back-right"
+      hidden: true
+    - id: 16
+      type: integer
+      name: temperature
+      range:
+        min: 5
+        max: 90
+      mapping:
+        - scale: 1
+          step: 1
+    - id: 19
+      type: integer
+      name: max_temperature
+      optional: true
+      mapping:
+        - scale: 10
+          range:
+            min: 30
+            max: 90
+    - id: 24
+      type: integer
+      name: current_temperature
+      mapping:
+        - scale: 10
+    - id: 26
+      type: integer
+      name: min_temperature
+      optional: true
+      mapping:
+        - scale: 10
+    - id: 45
+      type: integer
+      name: Error Code
+    - id: 101
+      type: integer
+      name: unknown_101
+    - id: 102
+      type: integer
+      name: unknown_102
+
+secondary_entities:
+  - entity: sensor
+    name: Temperature
+    class: temperature
+    dps:
+      - id: 24
+        type: integer
+        name: current_temp
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Calibration Offset
+    category: config
+    icon: "mdi:thermometer"
+    dps:
+      - id: 27
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -9
+          max: 9
+  - entity: switch
+    name: Anti-frost
+    icon: "mdi:snowflake-melt"
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: lock
+    name: Child Lock
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        name: lock
+  - entity: select
+    name: Sensor Selection
+    category: config
+    dps:
+      - id: 43
+        type: string
+        name: option
+        mapping:
+          - dps_val: "in"
+            icon: "mdi:gauge"
+          - dps_val: "out"
+            icon: "mdi:thermometer-chevron-down"
+          - dps_val: "all"
+            icon: "mdi:thermometer"
