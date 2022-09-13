@@ -33,9 +33,9 @@ primary_entity:
     - id: 19
       type: integer
       name: max_temperature
-      optional: true
       mapping:
-        - scale: 10
+        - scale: 1
+          step: 1
           range:
             min: 30
             max: 90
@@ -49,7 +49,11 @@ primary_entity:
       name: min_temperature
       optional: true
       mapping:
-        - scale: 10
+        - scale: 1
+          step: 1
+          range:
+            min: 5
+            max: 20
     - id: 45
       type: integer
       name: Error Code
