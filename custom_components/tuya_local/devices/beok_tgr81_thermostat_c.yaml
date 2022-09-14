@@ -94,6 +94,22 @@ secondary_entities:
       - id: 10
         type: boolean
         name: switch
+  - entity: sensor
+    name: Relay Status
+    category: diagnostic
+    icon: mdi:power
+    dps:
+      - id: 36
+        type: string
+        name: sensor
+        readonly: true
+        mapping:
+          - dps_val: "close"
+            icon: mdi:power-off
+            value: "Off"
+          - dps_val: "open"
+            icon: mdi:power-on
+            value: "On"
   - entity: lock
     name: Child Lock
     category: config
