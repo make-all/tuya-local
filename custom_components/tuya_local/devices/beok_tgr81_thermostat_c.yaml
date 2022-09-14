@@ -54,14 +54,11 @@ primary_entity:
           range:
             min: 5
             max: 20
-    - id: 45
-      type: integer
-      name: Error Code
     - id: 101
       type: integer
       name: unknown_101
     - id: 102
-      type: integer
+      type: string
       name: unknown_102
 
 secondary_entities:
@@ -71,9 +68,10 @@ secondary_entities:
     dps:
       - id: 24
         type: integer
-        name: current_temp
+        name: sensor
         unit: C
         class: measurement
+        readonly: true
         mapping:
           - scale: 10
   - entity: number
@@ -113,7 +111,19 @@ secondary_entities:
         mapping:
           - dps_val: "in"
             icon: "mdi:gauge"
+            value: "Internal"
           - dps_val: "out"
             icon: "mdi:thermometer-chevron-down"
+            value: "External"
           - dps_val: "all"
             icon: "mdi:thermometer"
+            value: "Both"
+  - entity: sensor
+    name: Error Code
+    category: diagnostic
+    icon: mdi:alert-circle
+    dps:
+      - id: 45
+        type: integer
+        name: sensor
+        readonly: true
