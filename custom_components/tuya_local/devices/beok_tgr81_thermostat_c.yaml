@@ -8,19 +8,16 @@ primary_entity:
       mapping:
         - dps_val: true
           value: "heat"
-          icon: "mdi:radiator"
         - dps_val: false
           value: "off"
-          icon: "mdi:radiator-disabled"
     - id: 2
-      name: mode
+      name: preset_mode
       type: string
       mapping:
         - dps_val: "auto"
-          icon: "mdi:cog"
+          value: "Schedule"
         - dps_val: "manual"
-          icon: "mdi:hand-back-right"
-      hidden: true
+          value: "Manual"
     - id: 16
       type: integer
       name: temperature
@@ -44,6 +41,17 @@ primary_entity:
       name: current_temperature
       mapping:
         - scale: 10
+    - id: 36
+      type: string
+      name: hvac_action
+      readonly: true
+      mapping:
+        - dps_val: "close"
+          icon: "mdi:radiator-disabled"
+          value: "idle"
+        - dps_val: "open"
+          icon: "mdi:radiator"
+          value: "heating"
     - id: 26
       type: integer
       name: min_temperature
@@ -62,18 +70,6 @@ primary_entity:
       name: unknown_102
 
 secondary_entities:
-  - entity: sensor
-    name: Temperature
-    class: temperature
-    dps:
-      - id: 24
-        type: integer
-        name: sensor
-        unit: C
-        class: measurement
-        readonly: true
-        mapping:
-          - scale: 10
   - entity: number
     name: Calibration Offset
     category: config
@@ -94,22 +90,6 @@ secondary_entities:
       - id: 10
         type: boolean
         name: switch
-  - entity: sensor
-    name: Relay Status
-    category: diagnostic
-    icon: mdi:power
-    dps:
-      - id: 36
-        type: string
-        name: sensor
-        readonly: true
-        mapping:
-          - dps_val: "close"
-            icon: mdi:power-off
-            value: "Off"
-          - dps_val: "open"
-            icon: mdi:power-on
-            value: "On"
   - entity: lock
     name: Child Lock
     category: config
