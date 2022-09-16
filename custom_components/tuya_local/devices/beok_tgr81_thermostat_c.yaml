@@ -32,15 +32,18 @@ primary_entity:
       name: max_temperature
       mapping:
         - scale: 1
-          step: 1
-          range:
-            min: 30
-            max: 90
     - id: 24
       type: integer
       name: current_temperature
+      readonly: true
       mapping:
         - scale: 10
+    - id: 26
+      optional: true
+      type: integer
+      name: min_temperature
+      mapping:
+        - scale: 1
     - id: 36
       type: string
       name: hvac_action
@@ -52,22 +55,6 @@ primary_entity:
         - dps_val: "open"
           icon: "mdi:radiator"
           value: "heating"
-    - id: 26
-      type: integer
-      name: min_temperature
-      optional: true
-      mapping:
-        - scale: 1
-          step: 1
-          range:
-            min: 5
-            max: 20
-    - id: 101
-      type: integer
-      name: unknown_101
-    - id: 102
-      type: string
-      name: unknown_102
 
 secondary_entities:
   - entity: number
@@ -95,6 +82,7 @@ secondary_entities:
     category: config
     dps:
       - id: 40
+        optional: true
         type: boolean
         name: lock
   - entity: select
@@ -114,12 +102,46 @@ secondary_entities:
           - dps_val: "all"
             icon: "mdi:thermometer"
             value: "Both"
-  - entity: sensor
-    name: Error Code
+  - entity: binary_sensor
+    name: Error
     category: diagnostic
-    icon: mdi:alert-circle
+    class: problem
     dps:
       - id: 45
-        type: integer
+        type: bitfield
         name: sensor
-        readonly: true
+        mapping:
+          - dps_val: 0
+            value: False
+          - value: True
+  - entity: number
+    name: High Temperature Limit
+    category: config
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 19
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 30
+          max: 90
+        mapping:
+          - scale: 1
+            step: 1
+  - entity: number
+    name: Low Temperature Limit
+    category: config
+    icon: "mdi:thermometer-chevron-down"
+    dps:
+      - id: 26
+        optional: true
+        name: value
+        type: integer
+        unit: C
+        range:
+          min: 5
+          max: 20
+        mapping:
+          - scale: 1
+            step: 1
