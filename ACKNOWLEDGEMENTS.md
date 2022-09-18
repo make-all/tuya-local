@@ -114,3 +114,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [sebastiangebosz](https://github.com/sebastiangebosz) for contributing improvements to Eberg Qubo heatpumps.
 - [VoyteckPL](https://github.com/VoyteckPL) for contributing support for Fairland IPHCR15 pool heatpumps.
 - [AlfredBroda](https://github.com/AlfredBroda) for contributing support for Beok TGR81 thermostats.
+- [bedtiming](https://github.com/bedtiming) for assisting with support for Ledkia fan and light controllers.

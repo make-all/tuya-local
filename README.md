@@ -130,6 +130,7 @@ If you submit a pull request, please understand that the config file naming and 
 - Stirling FS1-40DC Pedestal fan
 - Aspen ASP 200 fan
 - TMWF02 fan controller
+- Ledkia Fan and Light controller
 
 ### Air Purifiers
 - Renpho RP-AP001S air purifier
