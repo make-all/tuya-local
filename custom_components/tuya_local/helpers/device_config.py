@@ -405,6 +405,17 @@ class TuyaDpsConfig:
         _LOGGER.debug(f"{self.name} values: {val}")
         return list(set(val)) if val else None
 
+    def default(self):
+        """Return the default value for a dp."""
+        if "mapping" not in self._config.keys():
+            _LOGGER.debug(
+                f"No mapping for {self.name}, unable to determine default value"
+            )
+            return None
+        for m in self._config["mapping"]:
+            if m.get("default", False):
+                return m.get("dps_val", None)
+
     def range(self, device, scaled=True):
         """Return the range for this dps if configured."""
         mapping = self._find_map_for_dps(device.get_property(self.id))

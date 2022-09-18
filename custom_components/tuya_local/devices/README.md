@@ -344,6 +344,16 @@ able to unset it.  Instead, this should be used with conditions, below, to
 make the behaviour dependent on another DP, such as disabling fan speed 
 control when the preset is in sleep mode (since sleep mode should force low).
 
+### `default`
+
+*Optional, default false.*
+
+Default set to true allows an attribute to be set as the default value.
+This is used by some entities when an argument is not provided to a service call
+but the attribute is required to be set to function correctly.
+An example is the siren entity which uses the tone attribute to turn on and
+off the siren, but when turn_on is called without any argument, it needs to
+pick a defaulttone to use to turn on the siren.
 
 ### `constraint`
 
@@ -496,3 +506,9 @@ Humidifer can also cover dehumidifiers (use class to specify which).
     These are additional commands that are not part of **status**. They can be sent as general commands from HA.
 - **error** (optional, bitfield): a dp that reports error status.
     As this is mapped to a single "fault" state, you could consider separate binary_sensors to report on individual errors
+
+### siren
+- **tone** (required, mapping of strings): a dp to report and control the siren tone. As this is used to turn on and off the siren, it is required. If this does not fit your siren, the underlying implementation will need to be modified.
+The value "off" will be used for turning off the siren, and will be filtered from the list of available tones.
+- **volume** (optional, float in range 0.0-1.0): a dp to control the volume of the siren (probably needs a scale and step applied, since Tuya devices will probably use an integer, or strings with fixed values).
+- **duration** (optional, integer): a dp to control how long the siren will sound for.

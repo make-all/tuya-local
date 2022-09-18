@@ -29,11 +29,18 @@ class TuyaLocalSiren(TuyaLocalEntity, SirenEntity):
         self._init_end(dps_map)
         # All control of features is through the turn_on service, so we need to
         # support that, even if the siren does not support direct control
-        support = SirenEntityFeature.TURN_ON
+        support = 0
         if self._tone_dp:
-            support |= SirenEntityFeature.TONES
+            support |= (
+                SirenEntityFeature.TONES
+                | SirenEntityFeature.TURN_ON
+                | SirenEntityFeature.TURN_OFF
+            )
             self.entity_description = SirenEntityDescription
-            self.entity_description.available_tones = self._tone_dp.values(device)
+            self.entity_description.available_tones = [
+                x for x in self._tone_dp.values(device) if x != "off"
+            ]
+            self._default_tone = self._tone_dp.default()
 
         if self._volume_dp:
             support |= SirenEntityFeature.VOLUME_SET
@@ -41,17 +48,29 @@ class TuyaLocalSiren(TuyaLocalEntity, SirenEntity):
             support |= SirenEntityFeature.DURATION
         self._attr_supported_features = support
 
+    @property
+    def is_on(self):
+        """Return whether the siren is on."""
+        if self._tone_dp:
+            return self._tone_dp.get_value(self._device)
+
     async def async_turn_on(self, **kwargs) -> None:
         tone = kwargs.get("tone", None)
         duration = kwargs.get("duration", None)
         volume = kwargs.get("volume", None)
         set_dps = {}
 
-        if tone is not None and self._tone_dp:
+        if self._tone_dp:
+            if tone is None:
+                tone = self._tone_dp.get_value(self._device)
+                if tone == "off":
+                    tone = self._default_tone
+
             set_dps = {
                 **set_dps,
                 **self._tone_dp.get_values_to_set(self._device, tone),
             }
+
         if duration is not None and self._duration_dp:
             set_dps = {
                 **set_dps,
@@ -74,3 +93,8 @@ class TuyaLocalSiren(TuyaLocalEntity, SirenEntity):
             }
 
         await self._device.async_set_properties(set_dps)
+
+    async def async_turn_off(self) -> None:
+        """Turn off the siren"""
+        if self._tone_dp:
+            await self._tone_dp.async_set_value(self._device, "off")

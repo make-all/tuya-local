@@ -16,6 +16,8 @@ DURATION_DP = "7"
 BATTERY_DP = "15"
 TAMPER_DP = "20"
 
+DEFAULT_TONE = "alarm_sound_light"
+
 
 class TestOrionSiren(MultiBinarySensorTests, BasicSensorTests, TuyaDeviceTestCase):
     __test__ = True
@@ -52,6 +54,7 @@ class TestOrionSiren(MultiBinarySensorTests, BasicSensorTests, TuyaDeviceTestCas
         self.assertEqual(
             self.subject.supported_features,
             SirenEntityFeature.TURN_ON
+            | SirenEntityFeature.TURN_OFF
             | SirenEntityFeature.TONES
             | SirenEntityFeature.DURATION
             | SirenEntityFeature.VOLUME_SET,
@@ -65,7 +68,6 @@ class TestOrionSiren(MultiBinarySensorTests, BasicSensorTests, TuyaDeviceTestCas
                 "sound",
                 "light",
                 "sound+light",
-                "normal",
             ],
         )
 
@@ -90,44 +92,54 @@ class TestOrionSiren(MultiBinarySensorTests, BasicSensorTests, TuyaDeviceTestCas
         ):
             await self.subject.async_turn_on(tone="sound+light")
 
-    async def test_set_to_normal(self):
+    async def test_turn_off(self):
         """Test turning on the siren with various parameters"""
         async with assert_device_properties_set(
             self.subject._device, {TONE_DP: "normal"}
         ):
-            await self.subject.async_turn_on(tone="normal")
+            await self.subject.async_turn_off()
+
+    async def test_turn_on_no_param(self):
+        """Test turning on the siren with no parameters"""
+        async with assert_device_properties_set(
+            self.subject._device,
+            {TONE_DP: DEFAULT_TONE},
+        ):
+            await self.subject.async_turn_on()
 
     async def test_set_volume_low(self):
         """Test turning on the siren with various parameters"""
         async with assert_device_properties_set(
-            self.subject._device, {VOLUME_DP: "low"}
+            self.subject._device, {VOLUME_DP: "low", TONE_DP: DEFAULT_TONE}
         ):
             await self.subject.async_turn_on(volume=0.3)
 
     async def test_set_volume_mid(self):
         """Test turning on the siren with various parameters"""
         async with assert_device_properties_set(
-            self.subject._device, {VOLUME_DP: "middle"}
+            self.subject._device, {VOLUME_DP: "middle", TONE_DP: DEFAULT_TONE}
         ):
             await self.subject.async_turn_on(volume=0.7)
 
     async def test_set_volume_high(self):
         """Test turning on the siren with various parameters"""
         async with assert_device_properties_set(
-            self.subject._device, {VOLUME_DP: "high"}
+            self.subject._device, {VOLUME_DP: "high", TONE_DP: DEFAULT_TONE}
         ):
             await self.subject.async_turn_on(volume=1.0)
 
     async def test_set_volume_mute(self):
         """Test turning on the siren with various parameters"""
         async with assert_device_properties_set(
-            self.subject._device, {VOLUME_DP: "mute"}
+            self.subject._device, {VOLUME_DP: "mute", TONE_DP: DEFAULT_TONE}
         ):
             await self.subject.async_turn_on(volume=0.0)
 
     async def test_set_duration(self):
         """Test turning on the siren with various parameters"""
-        async with assert_device_properties_set(self.subject._device, {DURATION_DP: 5}):
+        async with assert_device_properties_set(
+            self.subject._device, {DURATION_DP: 5, TONE_DP: DEFAULT_TONE}
+        ):
             await self.subject.async_turn_on(duration=5)
 
     async def test_set_multi(self):
