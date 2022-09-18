@@ -7,31 +7,26 @@ primary_entity:
       type: boolean
       mapping:
         - dps_val: true
-          value: "heat"
+          value: heat
         - dps_val: false
           value: "off"
     - id: 2
       name: preset_mode
       type: string
       mapping:
-        - dps_val: "auto"
-          value: "Schedule"
-        - dps_val: "manual"
-          value: "Manual"
+        - dps_val: auto
+          value: Schedule
+        - dps_val: manual
+          value: Manual
     - id: 16
       type: integer
       name: temperature
       range:
         min: 5
         max: 90
-      mapping:
-        - scale: 1
-          step: 1
     - id: 19
       type: integer
       name: max_temperature
-      mapping:
-        - scale: 1
     - id: 24
       type: integer
       name: current_temperature
@@ -42,19 +37,28 @@ primary_entity:
       optional: true
       type: integer
       name: min_temperature
-      mapping:
-        - scale: 1
     - id: 36
       type: string
       name: hvac_action
       readonly: true
       mapping:
-        - dps_val: "close"
+        - dps_val: close
           icon: "mdi:radiator-disabled"
-          value: "idle"
-        - dps_val: "open"
-          icon: "mdi:radiator"
-          value: "heating"
+          constraint: hvac_mode
+          conditions:
+            - dps_val: true
+              value: idle
+            - dps_val: false
+              value: "off"
+        - dps_val: open
+          constraint: hvac_mode
+          conditions:
+            - dps_val: true
+              icon: "mdi:radiator"
+              value: heating
+            - dps_val: false
+              icon: "mdi:radiator-disabled"
+              value: "off"
 
 secondary_entities:
   - entity: number
@@ -85,6 +89,11 @@ secondary_entities:
         optional: true
         type: boolean
         name: lock
+        mapping:
+          - dps_val: true
+            icon: "mdi:hand-back-right-off"
+          - dps_val: false
+            icon: "mdi:hand-back-right"
   - entity: select
     name: Sensor Selection
     category: config
@@ -93,15 +102,15 @@ secondary_entities:
         type: string
         name: option
         mapping:
-          - dps_val: "in"
+          - dps_val: in
             icon: "mdi:gauge"
-            value: "Internal"
-          - dps_val: "out"
+            value: Internal
+          - dps_val: out
             icon: "mdi:thermometer-chevron-down"
-            value: "External"
-          - dps_val: "all"
+            value: External
+          - dps_val: all
             icon: "mdi:thermometer"
-            value: "Both"
+            value: Both
   - entity: binary_sensor
     name: Error
     category: diagnostic
@@ -126,9 +135,6 @@ secondary_entities:
         range:
           min: 30
           max: 90
-        mapping:
-          - scale: 1
-            step: 1
   - entity: number
     name: Low Temperature Limit
     category: config
@@ -142,6 +148,3 @@ secondary_entities:
         range:
           min: 5
           max: 20
-        mapping:
-          - scale: 1
-            step: 1

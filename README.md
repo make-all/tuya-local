@@ -119,6 +119,7 @@ If you submit a pull request, please understand that the config file naming and 
 - Nashone MTS-700-WB thermostat smartplug
 - Jiahong ET-72W thermostat
 - Moes MS-103 Temperature and Humidity Switch (partial functions, temperature only)
+- Beok TGR81 thermostat
 
 ### Fans
 - Goldair GCPF315 fan

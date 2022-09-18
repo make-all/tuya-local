@@ -113,3 +113,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [Condorello](https://github.com/Condorello) for assistance supporting Inkbird sous vide cookers.
 - [sebastiangebosz](https://github.com/sebastiangebosz) for contributing improvements to Eberg Qubo heatpumps.
 - [VoyteckPL](https://github.com/VoyteckPL) for contributing support for Fairland IPHCR15 pool heatpumps.
+- [AlfredBroda](https://github.com/AlfredBroda) for contributing support for Beok TGR81 thermostats.
