@@ -8,6 +8,7 @@ primary_entity:
     - id: 62
       type: integer
       name: speed
+      optional: true
       range:
         min: 1
         max: 6
@@ -32,24 +33,6 @@ secondary_entities:
               - dps_val: led
                 value: color_temp
               - value: brightness
-          - dps_val: colour
-            value: rgbw
-            constraint: light_type
-            conditions:
-              - dps_val: led
-              - invalid: true
-          - dps_val: scene
-            value: colorloop
-            constraint: light_type
-            conditions:
-              - dps_val: led
-              - invalid: true
-          - dps_val: music
-            value: random
-            constraint: light_type
-            conditions:
-              - dps_val: led
-              - invalid: true
       - id: 22
         type: integer
         name: brightness
@@ -67,39 +50,11 @@ secondary_entities:
         optional: true
         mapping:
           - invert: true
-      - id: 24
-        type: hex
-        name: rgbhsv
-        optional: true
-        format:
-          - name: h
-            bytes: 2
-            range:
-              min: 0
-              max: 360
-          - name: s
-            bytes: 2
-            range:
-              min: 0
-              max: 1000
-          - name: v
-            bytes: 2
-            range:
-              min: 0
-              max: 1000
-      - id: 25
-        type: hex
-        name: scene_data
-        optional: true
-      - id: 28
-        type: hex
-        name: control_data
-        optional: true
+            step: 500
       - id: 59
         type: string
         name: light_type
         optional: true
-        hidden: true
   - entity: number
     name: Minimum brightness
     icon: "mdi:brightness-6"
@@ -112,24 +67,8 @@ secondary_entities:
         range:
           min: 10
           max: 1000
-  - entity: select
-    name: Light Type
-    icon: "mdi:ceiling-fan-light"
-    category: config
-    dps:
-      - id: 59
-        type: string
-        name: option
-        optional: true
-        mapping:
-          - dps_val: led
-            value: LED
-          - dps_val: incandescent
-            value: Incandescent
-          - dps_val: halogen
-            value: Halogen
   - entity: number
-    name: Timer
+    name: Fan timer
     icon: "mdi:timer"
     category: config
     dps:
