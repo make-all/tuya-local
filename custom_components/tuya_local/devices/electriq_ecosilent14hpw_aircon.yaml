@@ -1,0 +1,193 @@
+name: ElectriQ EcoSilent14HPW
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: power
+      type: boolean
+      mapping:
+        - dps_val: true
+          value: "on"
+        - dps_val: false
+          value: "off"
+          icon: "mdi:hvac-off"
+          icon_priority: 1
+    - id: 2
+      name: temperature
+      type: integer
+      range:
+        min: 17
+        max: 30
+      mapping:
+        - scale: 1
+          constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: temperature_f
+    - id: 3
+      name: current_temperature
+      type: integer
+      mapping:
+        - scale: 1
+          constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: current_temperature_f
+    - id: 4
+      name: hvac_mode
+      type: string
+      mapping:
+        - dps_val: "cool"
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+              value: "off"
+            - dps_val: true
+              value: cool
+          icon: "mdi:snowflake"
+          icon_priority: 2
+        - dps_val: "fan"
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+              value: "off"
+            - dps_val: true
+              value: fan_only
+          icon: "mdi:fan"
+          icon_priority: 2
+        - dps_val: "heat"
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+              value: "off"
+            - dps_val: true
+              value: heat
+          icon: "mdi:fire"
+          icon_priority: 2
+        - dps_val: "smart_cool"
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+              value: "off"
+            - dps_val: true
+              value: auto
+          icon: "mdi:hvac"
+          icon_priority: 2
+        - dps_val: "dry"
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+              value: "off"
+            - dps_val: true
+              value: dry
+          icon: "mdi:water"
+          icon_priority: 2
+    - id: 5
+      name: fan_mode
+      type: string
+      mapping:
+        - dps_val: "f1"
+          constraint: power
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: low
+        - dps_val: "f2"
+          constraint: power
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: diffuse
+        - dps_val: "f3"
+          constraint: power
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: medium
+        - dps_val: "f4"
+          constraint: power
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: high
+        - dps_val: "f5"
+          constraint: power
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: top
+    - id: 19
+      name: temperature_unit
+      type: string
+      mapping:
+        - dps_val: f
+          value: F
+        - dps_val: c
+          value: C
+    - id: 22
+      name: timer
+      type: integer
+    - id: 23
+      name: current_temperature_f
+      type: integer
+      hidden: true
+    - id: 24
+      name: temperature_f
+      type: integer
+      hidden: true
+    - id: 101
+      name: swing_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          constraint: power
+          value: "off"
+        - dps_val: true
+          value: vertical
+    - id: 102
+      name: sleep_mode
+      type: boolean
+secondary_entities:
+  - entity: select
+    category: config
+    name: Temperature Unit
+    icon: "mdi:temperature-celsius"
+    dps:
+      - id: 19
+        name: option
+        type: string
+        mapping:
+          - dps_val: "c"
+            value: Celsius
+          - dps_val: "f"
+            value: Fahrenheit
+  - entity: switch
+    name: Sleep Mode
+    category: config
+    icon: "mdi:power-sleep"
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: number
+    name: Timer
+    category: config
+    icon: "mdi:timer-cog"
+    dps:
+      - id: 22
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 23

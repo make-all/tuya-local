@@ -74,6 +74,7 @@ If you submit a pull request, please understand that the config file naming and 
 
 - ElectriQ 12WMINV
 - ElectriQ Airflex 15W
+- ElectriQ EcoSilent 14HPW
 - Tadiran Wind 65/3P
 - Fersk Vind 2
 - Carson CB PA280
