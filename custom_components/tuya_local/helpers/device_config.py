@@ -174,17 +174,13 @@ class TuyaEntityConfig:
         self._config = config
         self._is_primary = primary
 
-    def name(self, base_name):
+    def name(self):
         """The friendly name for this entity."""
-        own_name = self._config.get("name")
-        if own_name is None:
-            return base_name
-        else:
-            return base_name + " " + own_name
+        return self._config.get("name")
 
     def unique_id(self, device_uid):
         """Return a suitable unique_id for this entity."""
-        own_name = self._config.get("name")
+        own_name = self.name()
         if own_name:
             return f"{device_uid}-{slugify(own_name)}"
         else:
@@ -218,7 +214,7 @@ class TuyaEntityConfig:
     @property
     def config_id(self):
         """The identifier for this entity in the config."""
-        own_name = self._config.get("name")
+        own_name = self.name()
         if own_name:
             return f"{self.entity}_{slugify(own_name)}"
 

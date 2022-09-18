@@ -38,7 +38,11 @@ class TuyaLocalEntity:
     @property
     def name(self):
         """Return the name for the UI."""
-        return self._config.name(self._device.name)
+        return self._config.name()
+
+    @property
+    def has_entity_name(self):
+        return True
 
     @property
     def unique_id(self):
