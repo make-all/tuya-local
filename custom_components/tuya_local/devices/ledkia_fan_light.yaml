@@ -1,0 +1,142 @@
+name: Ledkia fan and light controller
+primary_entity:
+  entity: fan
+  dps:
+    - id: 60
+      type: boolean
+      name: switch
+    - id: 62
+      type: integer
+      name: speed
+      range:
+        min: 1
+        max: 6
+      mapping:
+        - scale: 0.06
+    - id: 63
+      type: string
+      name: direction
+secondary_entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: white
+            constraint: light_type
+            conditions:
+              - dps_val: led
+                value: color_temp
+              - value: brightness
+          - dps_val: colour
+            value: rgbw
+            constraint: light_type
+            conditions:
+              - dps_val: led
+              - invalid: true
+          - dps_val: scene
+            value: colorloop
+            constraint: light_type
+            conditions:
+              - dps_val: led
+              - invalid: true
+          - dps_val: music
+            value: random
+            constraint: light_type
+            conditions:
+              - dps_val: led
+              - invalid: true
+      - id: 22
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - scale: 3.92
+      - id: 23
+        type: integer
+        name: color_temp
+        range:
+          min: 0
+          max: 1000
+        optional: true
+        mapping:
+          - invert: true
+      - id: 24
+        type: hex
+        name: rgbhsv
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 25
+        type: hex
+        name: scene_data
+        optional: true
+      - id: 28
+        type: hex
+        name: control_data
+        optional: true
+      - id: 59
+        type: string
+        name: light_type
+        optional: true
+        hidden: true
+  - entity: number
+    name: Minimum brightness
+    icon: "mdi:brightness-6"
+    category: config
+    dps:
+      - id: 58
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 10
+          max: 1000
+  - entity: select
+    name: Light Type
+    icon: "mdi:ceiling-fan-light"
+    category: config
+    dps:
+      - id: 59
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: led
+            value: LED
+          - dps_val: incandescent
+            value: Incandescent
+          - dps_val: halogen
+            value: Halogen
+  - entity: number
+    name: Timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 64
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 540
+        unit: min
