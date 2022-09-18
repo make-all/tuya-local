@@ -78,7 +78,7 @@ class TestPoolexSilverlineHeatpump(
         self.assertEqual(self.subject.hvac_mode, HVACMode.COOL)
 
         self.dps[MODE_DPS] = "mute"
-        self.assertEqual(self.subject.hvac_mode, HVACMode.FAN_ONLY)
+        self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT_COOL)
 
         self.dps[HVACMODE_DPS] = False
         self.assertEqual(self.subject.hvac_mode, HVACMode.OFF)
@@ -86,7 +86,7 @@ class TestPoolexSilverlineHeatpump(
     def test_hvac_modes(self):
         self.assertCountEqual(
             self.subject.hvac_modes,
-            [HVACMode.OFF, HVACMode.COOL, HVACMode.HEAT, HVACMode.FAN_ONLY],
+            [HVACMode.OFF, HVACMode.COOL, HVACMode.HEAT, HVACMode.HEAT_COOL],
         )
 
     async def test_hvac_mode_heat(self):
@@ -105,7 +105,7 @@ class TestPoolexSilverlineHeatpump(
         async with assert_device_properties_set(
             self.subject._device, {HVACMODE_DPS: True, MODE_DPS: "mute"}
         ):
-            await self.subject.async_set_hvac_mode(HVACMode.FAN_ONLY)
+            await self.subject.async_set_hvac_mode(HVACMode.HEAT_COOL)
 
     async def test_turn_off(self):
         async with assert_device_properties_set(
