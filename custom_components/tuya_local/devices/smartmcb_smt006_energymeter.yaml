@@ -1,4 +1,4 @@
-name: SmartMCB SMT006 Energy Meter
+name: SmartMCB SMT006 energy meter
 products:
   - id: ntwmuj82anq1l92i
 primary_entity:
@@ -30,7 +30,7 @@ primary_entity:
       name: unknown_106
 secondary_entities:
   - entity: sensor
-    name: energy
+    name: Energy
     class: energy
     dps:
       - id: 1
@@ -41,7 +41,7 @@ secondary_entities:
         mapping:
           - scale: 100
   - entity: binary_sensor
-    name: Short Circuit
+    name: Short circuit
     class: problem
     category: diagnostic
     dps:
@@ -77,7 +77,7 @@ secondary_entities:
           - dps_val: 4
             value: true
   - entity: binary_sensor
-    name: Leakage Current
+    name: Leakage current
     class: safety
     category: diagnostic
     dps:
@@ -89,7 +89,7 @@ secondary_entities:
           - dps_val: 8
             value: true
   - entity: binary_sensor
-    name: High Temperature
+    name: High temperature
     class: heat
     category: diagnostic
     dps:
@@ -113,7 +113,7 @@ secondary_entities:
           - dps_val: 32
             value: true
   - entity: binary_sensor
-    name: High Power
+    name: High power
     class: power
     category: diagnostic
     dps:
@@ -125,7 +125,7 @@ secondary_entities:
           - dps_val: 64
             value: true
   - entity: binary_sensor
-    name: Self Test
+    name: Self test
     class: problem
     category: diagnostic
     dps:
@@ -221,7 +221,7 @@ secondary_entities:
           - dps_val: 16384
             value: true
   - entity: binary_sensor
-    name: Low Credit
+    name: Low credit
     class: battery
     category: diagnostic
     dps:
@@ -253,7 +253,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Energy Reset
+    name: Energy reset
     category: config
     icon: "mdi:cog-refresh"
     dps:
@@ -261,7 +261,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: sensor
-    name: Balance Energy
+    name: Balance energy
     category: diagnostic
     class: energy
     icon: "mdi:home-lightning-bolt"

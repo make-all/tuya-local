@@ -1,4 +1,4 @@
-name: C16 WiFi Thermostat
+name: C16 WiFi thermostat
 products:
   - id: jIRwsT5yLPJO41Po
 primary_entity:
@@ -101,7 +101,7 @@ primary_entity:
       type: integer
 secondary_entities:
   - entity: lock
-    name: Child Lock
+    name: Child lock
     category: config
     dps:
       - id: 11
@@ -113,7 +113,7 @@ secondary_entities:
           - dps_val: false
             icon: "mdi:hand-back-right"
   - entity: number
-    name: Floor Temperature Limit
+    name: Floor temperature limit
     category: config
     icon: "mdi:thermometer-alert"
     dps:
@@ -142,7 +142,7 @@ secondary_entities:
             value: Home
             icon: "mdi:home-map-marker"
   - entity: sensor
-    name: Floor Temperature
+    name: Floor temperature
     class: temperature
     category: diagnostic
     dps:
@@ -175,7 +175,7 @@ secondary_entities:
           - dps_val: "7"
             value: "Daily"
   - entity: number
-    name: Power Rating
+    name: Power rating
     category: config
     icon: "mdi:signal"
     dps:

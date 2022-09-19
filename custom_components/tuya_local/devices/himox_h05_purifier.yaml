@@ -1,4 +1,4 @@
-name: Himox H05 Air Purifier
+name: Himox H05 air purifier
 primary_entity:
   entity: fan
   dps:
@@ -19,7 +19,7 @@ primary_entity:
           value: high
 secondary_entities:
   - entity: sensor
-    name: Current Temperature
+    name: Current temperature
     class: temperature
     category: diagnostic
     dps:
@@ -29,7 +29,7 @@ secondary_entities:
         unit: C
         class: measurement
   - entity: sensor
-    name: Active Filter Life
+    name: Active filter life
     icon: "mdi:air-filter"
     category: diagnostic
     dps:
@@ -39,7 +39,7 @@ secondary_entities:
         readonly: true
         unit: "%"
   - entity: lock
-    name: Child Lock
+    name: Child lock
     category: config
     dps:
       - id: 7
@@ -51,7 +51,7 @@ secondary_entities:
           - dps_val: false
             icon: "mdi:hand-back-right"
   - entity: switch
-    name: Filter Reset
+    name: Filter reset
     category: config
     dps:
       - id: 11
@@ -77,7 +77,7 @@ secondary_entities:
           - dps_val: 8h
             value: "8 hours"
   - entity: sensor
-    name: Air Quality
+    name: Air quality
     dps:
       - id: 21
         type: string

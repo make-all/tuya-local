@@ -1,4 +1,4 @@
-name: "Electriq Dehumidifier CD25PRO-LE-V2"
+name: "Electriq CD25PRO-LE-V2 dehumidifier"
 legacy_type: electriq_dehumidifier
 primary_entity:
   entity: humidifier
@@ -63,7 +63,7 @@ secondary_entities:
           - dps_val: "0_90"
             value: "Oscillate"
   - entity: light
-    name: "UV Sterilization"
+    name: "UV sterilization"
     icon: "mdi:solar-power"    
     dps:
       - id: 10
@@ -77,7 +77,7 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: lock
-    name: Child Lock
+    name: Child lock
     category: config
     dps:
       - id: 7
@@ -90,7 +90,7 @@ secondary_entities:
             icon: "mdi:hand-back-right"
   - entity: sensor
     class: humidity
-    name: Current Humidity
+    name: Current humidity
     dps:
       - id: 3
         type: integer
@@ -100,7 +100,7 @@ secondary_entities:
         readonly: true
   - entity: sensor
     class: temperature
-    name: Current Temperature
+    name: Current temperature
     dps:
       - id: 103
         type: integer

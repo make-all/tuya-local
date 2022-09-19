@@ -1,4 +1,4 @@
-name: IPS Inverter Heatpump
+name: IPS heatpump
 primary_entity:
   entity: climate
   dps:
@@ -86,7 +86,7 @@ primary_entity:
       name: error_2
 secondary_entities:
   - entity: sensor
-    name: Power Level
+    name: Power level
     class: power_factor
     icon: "mdi:signal"
     category: diagnostic
@@ -98,7 +98,7 @@ secondary_entities:
         class: measurement
         readonly: true
   - entity: binary_sensor
-    name: Water Flow
+    name: Water flow
     class: problem
     category: diagnostic
     dps:

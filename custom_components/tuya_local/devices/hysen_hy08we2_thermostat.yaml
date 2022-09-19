@@ -1,4 +1,4 @@
-name: Hysen HY08WE-2 Thermostat
+name: Hysen HY08WE-2 thermostat
 primary_entity:
   entity: climate
   dps:
@@ -72,7 +72,7 @@ primary_entity:
       name: min_temperature
 secondary_entities:
   - entity: lock
-    name: Child Lock
+    name: Child lock
     category: config
     dps:
       - id: 6
@@ -84,7 +84,7 @@ secondary_entities:
           - dps_val: False
             icon: "mdi:hand-back-right"
   - entity: sensor
-    name: External Temperature
+    name: External temperature
     class: temperature
     dps:
       - id: 103
@@ -95,7 +95,7 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: number
-    name: Holiday Days
+    name: Holiday days
     category: config
     dps:
       - id: 104
@@ -106,7 +106,7 @@ secondary_entities:
           min: 1
           max: 30
   - entity: number
-    name: Holiday Temperature
+    name: Holiday temperature
     category: config
     dps:
       - id: 105
@@ -120,7 +120,7 @@ secondary_entities:
         type: integer
         name: minimum
   - entity: number
-    name: Calibration Offset
+    name: Calibration offset
     category: config
     dps:
     - id: 109
@@ -131,7 +131,7 @@ secondary_entities:
         min: -9
         max: 9
   - entity: number
-    name: Calibration Swing Internal
+    name: Calibration swing internal
     category: config
     dps:
       - id: 110
@@ -144,7 +144,7 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: number
-    name: Calibration Swing External
+    name: Calibration swing external
     category: config
     dps:
       - id: 111
@@ -157,7 +157,7 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: number
-    name: High Temperature Protection
+    name: High temperature protection
     category: config
     dps:
       - id: 112
@@ -168,7 +168,7 @@ secondary_entities:
           min: 35
           max: 70
   - entity: number
-    name: Low Temperature Protection
+    name: Low temperature protection
     category: config
     dps:
       - id: 113
@@ -179,7 +179,7 @@ secondary_entities:
           min: 1
           max: 10
   - entity: number
-    name: High Temperature Limit
+    name: High temperature limit
     category: config
     dps:
       - id: 114
@@ -190,7 +190,7 @@ secondary_entities:
           min: 2
           max: 70
   - entity: number
-    name: Low Temperature Limit
+    name: Low temperature limit
     category: config
     dps:
       - id: 115
@@ -201,7 +201,7 @@ secondary_entities:
           min: 1
           max: 10
   - entity: select
-    name: Temperature Sensor
+    name: Temperature sensor
     category: config
     dps:
       - id: 116
@@ -215,7 +215,7 @@ secondary_entities:
           - dps_val: all
             value: Both
   - entity: select
-    name: Initial State
+    name: Initial state
     category: config
     dps:
       - id: 117

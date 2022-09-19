@@ -1,4 +1,4 @@
-name: Goldair Dehumidifier
+name: Goldair dehumidifier
 legacy_type: dehumidifier
 primary_entity:
   entity: humidifier
@@ -118,7 +118,7 @@ secondary_entities:
             value: false
             icon: "mdi:led-off"
   - entity: lock
-    name: Child Lock
+    name: Child lock
     category: config
     dps:
       - id: 7
@@ -130,14 +130,14 @@ secondary_entities:
           - dps_val: false
             icon: "mdi:hand-back-right"
   - entity: switch
-    name: Air Clean
+    name: Air clean
     icon: "mdi:air-purifier"
     dps:
       - id: 5
         type: boolean
         name: switch
   - entity: sensor
-    name: Current Temperature
+    name: Current temperature
     class: temperature
     dps:
       - id: 103
@@ -147,7 +147,7 @@ secondary_entities:
         class: measurement
         readonly: true
   - entity: sensor
-    name: Current Humidity
+    name: Current humidity
     class: humidity
     dps:
       - id: 104
@@ -169,7 +169,7 @@ secondary_entities:
             value: false
           - value: true
   - entity: binary_sensor
-    name: defrost
+    name: Defrost
     class: cold
     icon: "mdi:snowflake-melt"
     category: diagnostic
@@ -178,7 +178,7 @@ secondary_entities:
         type: boolean
         name: sensor
   - entity: number
-    name: timer
+    name: Timer
     icon: "msi:timer"
     category: config
     dps:

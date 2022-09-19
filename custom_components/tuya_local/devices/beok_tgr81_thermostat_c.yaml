@@ -1,4 +1,4 @@
-name: TGR81 WIFI-EP Controller
+name: Beok TGR81 thermostat
 primary_entity:
   entity: climate
   dps:
@@ -62,7 +62,7 @@ primary_entity:
 
 secondary_entities:
   - entity: number
-    name: Calibration Offset
+    name: Calibration offset
     category: config
     icon: "mdi:thermometer"
     dps:
@@ -82,7 +82,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: lock
-    name: Child Lock
+    name: Child lock
     category: config
     dps:
       - id: 40
@@ -95,7 +95,7 @@ secondary_entities:
           - dps_val: false
             icon: "mdi:hand-back-right"
   - entity: select
-    name: Sensor Selection
+    name: Sensor selection
     category: config
     dps:
       - id: 43
@@ -124,7 +124,7 @@ secondary_entities:
             value: False
           - value: True
   - entity: number
-    name: High Temperature Limit
+    name: High temperature limit
     category: config
     icon: "mdi:thermometer-chevron-up"
     dps:
@@ -136,7 +136,7 @@ secondary_entities:
           min: 30
           max: 90
   - entity: number
-    name: Low Temperature Limit
+    name: Low temperature limit
     category: config
     icon: "mdi:thermometer-chevron-down"
     dps:

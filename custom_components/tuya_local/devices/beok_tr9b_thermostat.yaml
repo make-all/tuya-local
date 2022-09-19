@@ -1,4 +1,4 @@
-name: TR9B Thermostat
+name: Beok TR9B thermostat
 primary_entity:
   entity: climate
   dps:
@@ -83,7 +83,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: select
-    name: Temperature Unit
+    name: Temperature unit
     category: config
     icon: "mdi:temperature-celsius"
     dps:
@@ -124,7 +124,7 @@ secondary_entities:
           - dps_val: close
             value: False
   - entity: lock
-    name: "Child Lock"
+    name: "Child lock"
     category: config
     dps:
       - id: 40
@@ -148,7 +148,7 @@ secondary_entities:
             value: False
           - value: True
   - entity: number
-    name: High Temperature Limit
+    name: High temperature limit
     category: config
     icon: "mdi:thermometer"
     dps:
@@ -163,7 +163,7 @@ secondary_entities:
           - scale: 10
             step: 10
   - entity: number
-    name: Low Temperature Limit
+    name: Low temperature limit
     category: config
     dps:
       - id: 26

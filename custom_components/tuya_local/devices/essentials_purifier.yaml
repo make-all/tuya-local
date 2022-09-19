@@ -1,4 +1,4 @@
-name: essentials Air Purifier
+name: Essentials air purifier
 primary_entity:
   entity: switch
   icon: "mdi:air-purifier"
@@ -8,7 +8,7 @@ primary_entity:
       name: switch
 secondary_entities:
   - entity: sensor
-    name: Active Filter Life
+    name: Active filter life
     icon: "mdi:air-filter"
     category: diagnostic
     dps:
@@ -18,7 +18,7 @@ secondary_entities:
         readonly: true
         unit: "%"
   - entity: lock
-    name: Child Lock
+    name: Child lock
     category: config
     dps:
       - id: 7
@@ -47,7 +47,7 @@ secondary_entities:
             value: "Off"
             icon: "mdi:lightbulb-outline"
   - entity: switch
-    name: UV Disinfection
+    name: UV disinfection
     category: config
     dps:
       - id: 9
@@ -59,7 +59,7 @@ secondary_entities:
           - dps_val: false
             icon: "mdi:lightbulb-outline"
   - entity: switch
-    name: Filter Reset
+    name: Filter reset
     category: config
     icon: "mdi:refresh"
     dps:
@@ -103,7 +103,7 @@ secondary_entities:
         class: measurement
         unit: ugm3
   - entity: sensor
-    name: Air Quality
+    name: Air quality
     dps:
       - id: 21
         type: string

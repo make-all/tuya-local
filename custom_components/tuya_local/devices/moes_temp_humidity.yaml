@@ -1,9 +1,9 @@
-name: Moes Thermostat and Hydrostat
+name: Moes thermostat and hydrostat
 products:
   - id: dlsdk5zvkuuhufpy
 primary_entity:
   entity: switch
-  name: Main Switch
+  name: Main switch
   category: config
   dps:
     - id: 1
@@ -71,7 +71,7 @@ secondary_entities:
           - dps_val: manual
             value: Manual
   - entity: sensor
-    name: Current Temperature
+    name: Current temperature
     class: temperature
     dps:
       - id: 6
@@ -82,7 +82,7 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: number
-    name: Temperature Calibration
+    name: Temperature calibration
     category: config
     dps:
       - id: 18
@@ -116,7 +116,7 @@ secondary_entities:
           min: 0
           max: 86400
   - entity: select
-    name: Power On State
+    name: Power on state
     category: config
     dps:
       - id: 105

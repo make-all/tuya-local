@@ -1,4 +1,4 @@
-name: Minco MH-1823D Thermostat
+name: Minco MH-1823D thermostat
 primary_entity:
   entity: climate
   dps:
@@ -110,7 +110,7 @@ primary_entity:
       name: unknown_105
 secondary_entities:
   - entity: select
-    name: Temperature Sensor
+    name: Temperature sensor
     category: config
     icon: "mdi:thermometer"
     dps:
@@ -123,7 +123,7 @@ secondary_entities:
           - dps_val: out
             value: External
   - entity: select
-    name: Temperature Unit
+    name: Temperature unit
     icon: "mdi:temperature-celsius"
     category: config
     dps:
@@ -138,7 +138,7 @@ secondary_entities:
             value: Fahrenheit
             icon: "mdi:temperature-fahrenheit"
   - entity: number
-    name: Calibration Offset Internal
+    name: Calibration offset internal
     category: config
     icon: "mdi:arrow-collapse-up"
     dps:
@@ -165,7 +165,7 @@ secondary_entities:
           - dps_val: f
             value: F
   - entity: number
-    name: Calibration Offset External
+    name: Calibration offset external
     category: config
     icon: "mdi:arrow-collapse-up"
     dps:
@@ -192,7 +192,7 @@ secondary_entities:
           - dps_val: f
             value: F
   - entity: number
-    name: Calibration Swing
+    name: Calibration swing
     category: config
     icon: "mdi:arrow-expand-vertical"
     dps:
@@ -220,7 +220,7 @@ secondary_entities:
             value: F
   - entity: number
     category: config
-    name: High Temperature Limit
+    name: High temperature limit
     icon: "mdi:thermometer-alert"
     dps:
       - id: 106
@@ -268,7 +268,7 @@ secondary_entities:
           - dps_val: "5_2"
             value: "5+2 day"
   - entity: sensor
-    name: External Temperature
+    name: External temperature
     class: temperature
     dps:
       - id: 101
@@ -296,7 +296,7 @@ secondary_entities:
           - dps_val: f
             value: F
   - entity: lock
-    name: Child Lock
+    name: Child lock
     category: config
     dps:
       - id: 5
@@ -309,7 +309,7 @@ secondary_entities:
             icon: "mdi:hand-back-right"
   - entity: switch
     category: config
-    name: Anti-Frost
+    name: Anti-frost
     icon: "mdi:snowflake-melt"
     dps:
       - id: 9

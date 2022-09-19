@@ -1,4 +1,4 @@
-name: Inkbird ITC-306A Thermostat
+name: Inkbird ITC-306A thermostat
 legacy_type: inkbird_thermostat
 primary_entity:
   entity: climate
@@ -121,7 +121,7 @@ primary_entity:
 secondary_entities:
   - entity: number
     category: config
-    name: Calibration Offset
+    name: Calibration offset
     icon: "mdi:arrow-collapse-up"
     dps:
       - id: 102
@@ -139,7 +139,7 @@ secondary_entities:
                   min: -150
                   max: 150
   - entity: number
-    name: Continuous Heat Hours
+    name: Continuous heat hours
     icon: "mdi:clock"
     category: config
     dps:
@@ -151,7 +151,7 @@ secondary_entities:
           min: 0
           max: 96
   - entity: number
-    name: High Temperature Limit
+    name: High temperature limit
     category: config
     icon: "mdi:thermometer-alert"
     dps:
@@ -174,7 +174,7 @@ secondary_entities:
         type: string
         hidden: true
   - entity: number
-    name: Low Temperature Limit
+    name: Low temperature limit
     icon: "mdi:snowflake-alert"
     category: config
     dps:
@@ -198,7 +198,7 @@ secondary_entities:
         hidden: true
   - entity: select
     category: config
-    name: Temperature Unit
+    name: Temperature unit
     icon: "mdi:temperature-celsius"
     dps:
       - id: 101
@@ -212,7 +212,7 @@ secondary_entities:
   - entity: binary_sensor
     class: heat
     category: diagnostic
-    name: High Temperature
+    name: High temperature
     dps:
       - id: 111
         type: boolean
@@ -220,7 +220,7 @@ secondary_entities:
   - entity: binary_sensor
     class: cold
     category: diagnostic
-    name: Low Temperature
+    name: Low temperature
     dps:
       - id: 112
         type: boolean
@@ -228,7 +228,7 @@ secondary_entities:
   - entity: binary_sensor
     class: problem
     category: diagnostic
-    name: Continuous Heat
+    name: Continuous heat
     dps:
       - id: 120
         type: boolean

@@ -1,4 +1,4 @@
-name: SD123 Human Presence Radar
+name: SD123 human presence radar
 primary_entity:
   entity: binary_sensor
   class: occupancy
@@ -19,7 +19,7 @@ primary_entity:
       name: unknown_111
 secondary_entities:
   - entity: select
-    name: Safe Range
+    name: Safe range
     category: config
     dps:
       - id: 101
@@ -41,7 +41,7 @@ secondary_entities:
           - dps_val: 6_meters
             value: 6m
   - entity: select
-    name: Max Range
+    name: Max range
     category: config
     dps:
       - id: 102
@@ -115,7 +115,7 @@ secondary_entities:
           - dps_val: slient
             value: false
   - entity: number
-    name: Trigger Power
+    name: Trigger power
     category: config
     dps:
       - id: 107
@@ -127,7 +127,7 @@ secondary_entities:
         mapping:
           - step: 100
   - entity: number
-    name: Maintain Power
+    name: Maintain power
     category: config
     dps:
       - id: 108
@@ -159,7 +159,7 @@ secondary_entities:
           min: 0
           max: 20
   - entity: number
-    name: Trigger Points
+    name: Trigger points
     category: config
     dps:
       - id: 112
@@ -169,7 +169,7 @@ secondary_entities:
           min: 0
           max: 10
   - entity: number
-    name: Maintain Points
+    name: Maintain points
     category: config
     dps:
       - id: 113
