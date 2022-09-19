@@ -28,11 +28,7 @@ secondary_entities:
         name: color_mode
         mapping:
           - dps_val: white
-            constraint: light_type
-            conditions:
-              - dps_val: led
-                value: color_temp
-              - value: brightness
+            value: color_temp
       - id: 22
         type: integer
         name: brightness
