@@ -56,19 +56,19 @@ If you submit a pull request, please understand that the config file naming and 
 ### Heaters
 
 - Goldair heater models beginning with the code GPPH, GCPV, GECO
-- Kogan Wi-Fi Convection Panel heaters - KAHTP and KAWFHTP models
+- Kogan Wi-Fi convection panel heaters - KAHTP and KAWFHTP models
 - Andersson GSH heater
 - Eurom Mon Soleil 300,600,800, 350,601,720 and 300,450,720 Verre heaters
 - Eurom Wall Designheat 2000 heater
 - Purline Hoti M100 heater
 - Wetair WCH-750 heater
-- Kogan Flame effect heater - KAWHMFP20BA model
+- Kogan flame effect heater - KAWHMFP20BA model
 - Nedis convection heater - WIFIHTPL20F model
 - Ecostrad Accent iQ heating panels
-- Ecostrad iQ Ceramic radiators
-- Devola Patio heater
+- Ecostrad iQ ceramic radiators
+- Devola patio heater
 - Betterlife BT1500 IR heater
-- Kogan Tower Heater - KASTHFP2KWA model
+- Kogan tower heater - KASTHFP2KWA model
 
 ### Air Conditioners / Heatpumps
 
@@ -93,8 +93,8 @@ If you submit a pull request, please understand that the config file naming and 
 - Remora pool heatpump
 - BWT FI 45 heatpump
 - Poolex Silverline, Q-line and Vertigo heatpumps
-- IPS Pro Pool-Systems Heatpump (seems to match Fairland Inver-X as well)
-- W'eau Pool Heatpump
+- IPS Pro pool-systems heatpump (seems to match Fairland Inver-X as well)
+- W'eau pool heatpump
 - Fairland IPHCR15 pool heatpump (matches others above, but allows control of heat/cool modes while others seem to be fixed to auto only)
 
 - these seem to use a small number of common controllers with minor variations, and many other Pool heatpumps will work using the above configurations.
@@ -105,9 +105,9 @@ If you submit a pull request, please understand that the config file naming and 
 ### Thermostats
 - Inkbird ITC306A thermostat smartplug
 - Inkbird ITC308 thermostat smartplug
-- Beca BHP-6000 Room Heat Pump control thermostat
-- Beca BHT-6000/8000 Floor Heating thermostat
-- Beca BHT-002/3000 Floor Heating thermostat (with external temp sensor)
+- Beca BHP-6000 room heat pump control thermostat
+- Beca BHT-6000/8000 floor heating thermostat
+- Beca BHT-002/3000 floor heating thermostat (with external temp sensor)
 - Moes BHT-002 thermostat (without external temp sensor)
 - Beca BAC-002 thermostat
 - Awow/Mi-heat TH213 thermostat (two variants)
@@ -119,7 +119,7 @@ If you submit a pull request, please understand that the config file naming and 
 - Hysen HY08WE-2 thermostat
 - Nashone MTS-700-WB thermostat smartplug
 - Jiahong ET-72W thermostat
-- Moes MS-103 Temperature and Humidity Switch (partial functions, temperature only)
+- Moes MS-103 temperature and humidity switch (partial functions, temperature only)
 - Beok TGR81 thermostat
 
 ### Fans
@@ -127,11 +127,11 @@ If you submit a pull request, please understand that the config file naming and 
 - Anko HEGSM40 fan
 - Lexy F501 fan
 - Deta fan controller
-- Arlec Grid Connect Smart Ceiling Fan (with and without light)
-- Stirling FS1-40DC Pedestal fan
+- Arlec Grid Connect smart ceiling fan (with and without light)
+- Stirling FS1-40DC pedestal fan
 - Aspen ASP 200 fan
 - TMWF02 fan controller
-- Ledkia Fan and Light controller
+- Ledkia fan and light controller
 
 ### Air Purifiers
 - Renpho RP-AP001S air purifier
@@ -148,40 +148,40 @@ If you submit a pull request, please understand that the config file naming and 
 - ElectriQ CD20PRO-LE-V2 dehumidifier
 - ElectriQ CD25PRO-LE-V2 dehumidifier
 - ElectriQ DESD9LW dehumidifier
-- Kogan SmarterHome 7L Desiccant dehumidifier
+- Kogan SmarterHome 7L desiccant dehumidifier
 - JJPro JPD01 dehumidifer
 - JJPro JPD02 dehumidifier
 - Eesee Adam dehumidifier
 - Hyundai Sahara dehumidifier
-- AlecoAir D14 Purifying Dehumidifier
+- AlecoAir D14 purifying dehumidifier
 
 ### Humidifiers
-- Eanons QT-JS2014 Purifying humidifier
+- Eanons QT-JS2014 purifying humidifier
 - Wetair WAW-H1210LW humidifier
 - Wilfa Haze HU400BC humidifier
 
 ### Kitchen Appliances
-- Kogan Glass 1.7L Smart Kettle (not reliably detected)
-- Inkbird Sous Vide Cooker
+- Kogan glass 1.7L smart kettle
+- Inkbird sous vide cooker
 
 ### Smart Meter/Circuit Breaker
-- SmartMCB SMT006 Energy Meter
-- PC321-TY 3 phase Power Clamp meter
-- Compteur Digital Electric (single phase)
+- SmartMCB SMT006 energy meter
+- PC321-TY 3 phase power clamp meter
+- Compteur digital electric (single phase)
 
 ### Battery Charger
-- Parkside PLGS 2012 A1 Smart Charger for powertools
+- Parkside PLGS 2012 A1 smart charger for powertools
 
 ### SmartPlugs/Wall sockets
-- Generic Smartplug with Energy monitoring (older models)
-  _confirmed as working with Kogan and Blitzwolf Single Smartplugs_
-- Generic Smartplug with Energy monitoring (newer models)
+- Generic smartplug with energy monitoring (older models)
+  _confirmed as working with Kogan and Blitzwolf single smartplugs_
+- Generic smartplug with energy monitoring (newer models)
   _confirmed working with Kogan single smartplug with USB and Rillpac smartplugs_
-- Generic Smartplug with more advanced energy monitoring
+- Generic smartplug with more advanced energy monitoring
   _confirmed working with CBE smartplugs_
-- Generic Smartplug with some additional encoded schedule info.
+- Generic smartplug with some additional encoded schedule info.
   _confirmed working as a simple switch and timer with Kashimura KJ-173_
-- Mirabella Genio Smart plug with USB
+- Mirabella Genio smartplug with USB
 - Grid Connect double outlet with Energy Monitoring, Master and Individual switches and Child Lock.
 - DIGOO DG-SP202 dual smartplug with energy monitoring and timers.
 - DIGOO DG-SP01 USB smartplug with night light.
@@ -189,42 +189,43 @@ If you submit a pull request, please understand that the config file naming and 
 - Woox R4028/DIGOO DG-PS01 3 outlet + USB powerstrip with individual timers.
 - ES01 3 outlet + USB powerstrip with individual timers.
 Other brands may work with the above configurations
-- MoesHouse Smartplug with RGBW nightlight
+- MoesHouse smartplug with RGBW nightlight
 - Logicom Strippy 4 way power strip with USB
 - 4 way power monitoring strip
 
-- Simple Switch - a switch only, can be a fallback for many other unsupported devices, to allow just power to be switched on/off.
-- Simple Switch with Timer - a single switch and timer, will probably work for a lot of smart switches that are not covered by the more advanced configs above.
-- Simple Switch with Timer v2 - the above with timer moved from dp 11 to 9, confirmed with a Nexxt 220V smart switch. 
+- Simple switch - a switch only, can be a fallback for many other unsupported devices, to allow just power to be switched on/off.
+- Simple switch with timer - a single switch and timer, will probably work for a lot of smart switches that are not covered by the more advanced configs above.
+- Simple switch with timer v2 - the above with timer moved from dp 11 to 9, confirmed with a Nexxt 220V smart switch. 
 
 ### Lights
 - Generic RGBCW/RGBWW lightbulb (confirmed with Lijun branded bulb, expected to match others also)
 
 ### Covers
-- Simple Garage Door
-- Simple Blind Controller
-- Dongguan Garage Door
-- Kogan Garage Door with tilt sensor
-- QS-WIFI-C01(BK) Curtain Module
-- M027 Curtain Module (sold under several brands, including zemismart, meterk and others)
-- Avatto Roller Blinds controller
+- Simple garage door
+- Simple blind controller
+- Dongguan garage door
+- Kogan garage door with tilt sensor
+- QS-WIFI-C01(BK) curtain module
+- M027 curtain module (sold under several brands, including zemismart, meterk and others)
+- Avatto roller blinds controller
+- Wistar roller blinds controller
 
 ### Vacuum Cleaners
-- Lefant M213 Vacuum Cleaner (also works for Lefant M213S and APOSEN A550)
-- Kyvol E30 Vacuum Cleaner
+- Lefant M213 vacuum cleaner (also works for Lefant M213S and APOSEN A550)
+- Kyvol E30 vacuum cleaner
 
 ### Locks
-- Orion Grid Connect Smart Lock
+- Orion Grid Connect smart lock
 
 ### Sirens
-- Orion Grid Connect Outdoor Siren
+- Orion Grid Connect outdoor siren
 
 ### Miscellaneous
-- Qoto 03 Smart Water Valve / Sprinkler Controller
-- SD123 HPR01 Human Presence Radar
-- Universal Remote Control (supports sensors only)
-- Catit Pixi Smart Fountain
-- Bresser Smart 7-in-1 Weather Station
+- Qoto 03 smart water valve / sprinkler controller
+- SD123 HPR01 human presence radar
+- Universal remote control (supports sensors only)
+- Catit Pixi smart fountain
+- Bresser smart 7-in-1 weather station
 
 ---
 
