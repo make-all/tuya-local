@@ -167,6 +167,7 @@ class TestMoesRGBWSocket(
         self.assertEqual(self.light.supported_features, LightEntityFeature.EFFECT)
 
     async def test_turn_on(self):
+        self.dps[LIGHT_DPS] = False
         async with assert_device_properties_set(self.light._device, {LIGHT_DPS: True}):
             await self.light.async_turn_on()
 
@@ -175,10 +176,10 @@ class TestMoesRGBWSocket(
             await self.light.async_turn_off()
 
     async def test_set_brightness(self):
+        self.dps[LIGHT_DPS] = True
         async with assert_device_properties_set(
             self.light._device,
             {
-                LIGHT_DPS: True,
                 MODE_DPS: "white",
                 BRIGHTNESS_DPS: 128,
             },
@@ -187,10 +188,11 @@ class TestMoesRGBWSocket(
 
     async def test_set_rgbw(self):
         self.dps[BRIGHTNESS_DPS] = 255
+        self.dps[LIGHT_DPS] = True
+
         async with assert_device_properties_set(
             self.light._device,
             {
-                LIGHT_DPS: True,
                 MODE_DPS: "colour",
                 RGBW_DPS: "ff00000000ffff",
             },

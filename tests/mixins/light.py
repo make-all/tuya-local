@@ -39,12 +39,14 @@ class BasicLightTests:
         self.assertFalse(self.basicLight.is_on)
 
     async def test_basic_light_turn_on(self):
+        self.dps[self.basicLightDps] = self.basicLightOff
         async with assert_device_properties_set(
             self.basicLight._device, {self.basicLightDps: self.basicLightOn}
         ):
             await self.basicLight.async_turn_on()
 
     async def test_basic_light_turn_off(self):
+        self.dps[self.basicLightDps] = self.basicLightOn
         async with assert_device_properties_set(
             self.basicLight._device, {self.basicLightDps: self.basicLightOff}
         ):
@@ -123,6 +125,7 @@ class MultiLightTests:
     async def test_multi_light_turn_on(self):
         for key, light in self.multiLight.items():
             with self.subTest(key):
+                self.dps[self.multiLightDps[key]] = self.multiLightOff[key]
                 async with assert_device_properties_set(
                     light._device, {self.multiLightDps[key]: self.multiLightOn[key]}
                 ):

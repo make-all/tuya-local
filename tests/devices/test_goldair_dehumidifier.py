@@ -212,6 +212,7 @@ class TestGoldairDehumidifier(
         self.assertEqual(self.light.extra_state_attributes, {})
 
     async def test_light_turn_on(self):
+        self.dps[LIGHTOFF_DPS] = True
         async with assert_device_properties_set(
             self.light._device, {LIGHTOFF_DPS: False}
         ):

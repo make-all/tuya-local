@@ -98,6 +98,7 @@ class TestRGBCWLightbulb(BasicNumberTests, TuyaDeviceTestCase):
         self.assertEqual(self.subject.supported_features, LightEntityFeature.EFFECT)
 
     async def test_turn_on(self):
+        self.dps[SWITCH_DPS] = False
         async with assert_device_properties_set(
             self.subject._device,
             {SWITCH_DPS: True},
@@ -112,10 +113,10 @@ class TestRGBCWLightbulb(BasicNumberTests, TuyaDeviceTestCase):
             await self.subject.async_turn_off()
 
     async def test_set_brightness(self):
+        self.dps[SWITCH_DPS] = True
         async with assert_device_properties_set(
             self.subject._device,
             {
-                SWITCH_DPS: True,
                 MODE_DPS: "white",
                 BRIGHTNESS_DPS: 502,
             },
@@ -124,10 +125,10 @@ class TestRGBCWLightbulb(BasicNumberTests, TuyaDeviceTestCase):
 
     async def test_set_rgbw(self):
         self.dps[BRIGHTNESS_DPS] = 1000
+        self.dps[SWITCH_DPS] = True
         async with assert_device_properties_set(
             self.subject._device,
             {
-                SWITCH_DPS: True,
                 MODE_DPS: "colour",
                 HSV_DPS: "000003e803e8",
             },

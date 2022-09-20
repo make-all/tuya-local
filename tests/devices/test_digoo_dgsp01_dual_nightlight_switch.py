@@ -115,6 +115,7 @@ class TestDigooNightlightSwitch(BasicSwitchTests, TuyaDeviceTestCase):
         self.assertEqual(self.light.supported_features, LightEntityFeature.EFFECT)
 
     async def test_turn_on(self):
+        self.dps[LIGHTSW_DPS] = False
         async with assert_device_properties_set(
             self.light._device, {LIGHTSW_DPS: True}
         ):
@@ -130,7 +131,6 @@ class TestDigooNightlightSwitch(BasicSwitchTests, TuyaDeviceTestCase):
         async with assert_device_properties_set(
             self.light._device,
             {
-                LIGHTSW_DPS: True,
                 COLORMODE_DPS: "white",
                 BRIGHTNESS_DPS: 128,
             },
@@ -142,7 +142,6 @@ class TestDigooNightlightSwitch(BasicSwitchTests, TuyaDeviceTestCase):
         async with assert_device_properties_set(
             self.light._device,
             {
-                LIGHTSW_DPS: True,
                 COLORMODE_DPS: "colour",
                 RGBW_DPS: "ff000000006464",
             },
