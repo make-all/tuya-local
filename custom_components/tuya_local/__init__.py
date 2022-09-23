@@ -151,13 +151,14 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
         _LOGGER.error(f"Configuration file for {config[CONF_TYPE]} not found.")
         return False
 
-    entities = set()
+    entities = {}
     e = device_conf.primary_entity
-    entities.add(e.entity)
+    entities[e.entity] = True
     for e in device_conf.secondary_entities():
-        entities.add(e.entity)
+        entities[e.entity] = True
 
-    await hass.config_entries.async_forward_entry_setups(entry, entities)
+    for e in entities:
+        hass.async_create_task(hass.config_entries.async_forward_entry_setup(entry, e))
 
     entry.add_update_listener(async_update_entry)
 
