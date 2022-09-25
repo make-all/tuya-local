@@ -137,7 +137,7 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.assertEqual(self.subject._api.status.call_count, 4)
         self.assertEqual(self.subject._cached_state["1"], False)
 
-    def test_refresh_clears_cached_state_and_pending_updates_after_failing_four_times(
+    def test_refresh_clears_cached_state_and_pending_updates_after_failing_nine_times(
         self,
     ):
         self.subject._cached_state = {"1": True}
@@ -147,11 +147,16 @@ class TestDevice(IsolatedAsyncioTestCase):
             Exception("Error"),
             Exception("Error"),
             Exception("Error"),
+            Exception("Error"),
+            Exception("Error"),
+            Exception("Error"),
+            Exception("Error"),
+            Exception("Error"),
         ]
 
         self.subject.refresh()
 
-        self.assertEqual(self.subject._api.status.call_count, 4)
+        self.assertEqual(self.subject._api.status.call_count, 9)
         self.assertEqual(self.subject._cached_state, {"updated_at": 0})
         self.assertEqual(self.subject._pending_updates, {})
 
