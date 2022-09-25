@@ -11,5 +11,5 @@ CONF_LIGHT = "light"
 CONF_LOCK = "lock"
 CONF_SWITCH = "switch"
 CONF_HUMIDIFIER = "humidifier"
-API_PROTOCOL_VERSIONS = [3.3, 3.1, 3.2]
+API_PROTOCOL_VERSIONS = [3.3, 3.1]
 SCAN_INTERVAL = timedelta(seconds=30)
