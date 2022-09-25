@@ -55,7 +55,7 @@ class TuyaLocalDevice(object):
         # its switches.
         self._FAKE_IT_TIL_YOU_MAKE_IT_TIMEOUT = 10
         self._CACHE_TIMEOUT = 20
-        self._CONNECTION_ATTEMPTS = 4
+        self._CONNECTION_ATTEMPTS = 9
         self._lock = Lock()
 
     @property
