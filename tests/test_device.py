@@ -164,13 +164,11 @@ class TestDevice(IsolatedAsyncioTestCase):
             Exception("Error"),
             Exception("Error"),
             Exception("Error"),
-            Exception("Error"),
-            Exception("Error"),
         ]
         self.subject.refresh()
 
         self.subject._api.set_version.assert_has_calls(
-            [call(3.1), call(3.2), call(3.3), call(3.1)]
+            [call(3.1), call(3.3), call(3.1)]
         )
 
     def test_api_protocol_version_is_stable_once_successful(self):
@@ -190,7 +188,7 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.subject.refresh()
         self.subject.refresh()
 
-        self.subject._api.set_version.assert_has_calls([call(3.1), call(3.2)])
+        self.subject._api.set_version.assert_has_calls([call(3.1), call(3.3)])
 
     def test_reset_cached_state_clears_cached_state_and_pending_updates(self):
         self.subject._cached_state = {"1": True, "updated_at": time()}
