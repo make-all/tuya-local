@@ -51,6 +51,10 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
     def _is_reversed(self):
         return self._reversed_dp and self._reversed_dp.get_value(self._device)
 
+    def _maybe_reverse(self, percent):
+        """Reverse the percentage if it should be, otherwise leave it alone"""
+        return 100 - percent if self._is_reversed else percent
+
     @property
     def device_class(self):
         """Return the class of ths device"""
@@ -67,21 +71,26 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
         """Inform HA of the supported features."""
         return self._support_flags
 
+    def _state_to_percent(self, state):
+        """Convert a state to percent open"""
+        if state == "opened":
+            return 100
+        elif state == "closed":
+            return 0
+        else:
+            return 50
+
     @property
     def current_cover_position(self):
         """Return current position of cover."""
         if self._currentpos_dp:
             pos = self._currentpos_dp.get_value(self._device)
             if pos is not None:
-                if self._is_reversed:
-                    return 100 - pos
-                return pos
+                return self._maybe_reverse(pos)
 
         if self._position_dp:
             pos = self._position_dp.get_value(self._device)
-            if self._is_reversed:
-                return 100 - pos
-            return pos
+            return self._maybe_reverse(pos)
 
         if self._open_dp:
             state = self._open_dp.get_value(self._device)
@@ -90,12 +99,7 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
 
         if self._action_dp:
             state = self._action_dp.get_value(self._device)
-            if state == "opened":
-                return 100
-            elif state == "closed":
-                return 0
-            else:
-                return 50
+            return self._state_to_percent(state)
 
     @property
     def is_opening(self):
@@ -153,8 +157,7 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
         if position is None:
             raise AttributeError()
         if self._position_dp:
-            if self._is_reversed:
-                position = 100 - position
+            position = self._maybe_reverse(position)
             await self._position_dp.async_set_value(self._device, position)
         else:
             raise NotImplementedError()
