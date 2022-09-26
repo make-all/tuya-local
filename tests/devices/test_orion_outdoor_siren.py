@@ -150,6 +150,25 @@ class TestOrionSiren(MultiBinarySensorTests, BasicSensorTests, TuyaDeviceTestCas
         ):
             await self.subject.async_turn_on(tone="sound", duration=4, volume=0.9)
 
+    async def test_turn_on_keeps_tone_when_already_on(self):
+        """Test calling turn_on without a tone parameter when the siren is on"""
+        self.dps[TONE_DP] = "alarm_light"
+        async with assert_device_properties_set(
+            self.subject._device, {VOLUME_DP: "low", TONE_DP: "alarm_light"}
+        ):
+            await self.subject.async_turn_on(volume=0.5)
+
+    def test_is_on(self):
+        """Test the is_on property"""
+        self.dps[TONE_DP] = "normal"
+        self.assertFalse(self.subject.is_on)
+        self.dps[TONE_DP] = "alarm_light"
+        self.assertTrue(self.subject.is_on)
+        self.dps[TONE_DP] = "alarm_sound"
+        self.assertTrue(self.subject.is_on)
+        self.dps[TONE_DP] = "alarm_sound_light"
+        self.assertTrue(self.subject.is_on)
+
     def test_extra_attributes(self):
         """Test reading the extra attributes from the siren"""
         self.dps[TONE_DP] = "alarm_light"

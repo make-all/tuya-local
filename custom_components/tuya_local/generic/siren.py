@@ -52,7 +52,7 @@ class TuyaLocalSiren(TuyaLocalEntity, SirenEntity):
     def is_on(self):
         """Return whether the siren is on."""
         if self._tone_dp:
-            return self._tone_dp.get_value(self._device)
+            return self._tone_dp.get_value(self._device) != "off"
 
     async def async_turn_on(self, **kwargs) -> None:
         tone = kwargs.get("tone", None)
