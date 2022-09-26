@@ -492,6 +492,23 @@ class TuyaDpsConfig:
                 return m
         return default
 
+    def _correct_type(self, result):
+        """Convert value to the correct type for this dp."""
+        if self.type is int:
+            _LOGGER.debug(f"Rounding {self.name}")
+            result = int(round(result))
+        elif self.type is bool:
+            result = True if result else False
+        elif self.type is float:
+            result = float(result)
+        elif self.type is str:
+            result = str(result)
+
+        if self.stringify:
+            result = str(result)
+
+        return result
+
     def _map_from_dps(self, value, device):
         if value is not None and self.type is not str and isinstance(value, str):
             try:
@@ -700,20 +717,7 @@ class TuyaDpsConfig:
                     f"{self.name} ({value}) must be between {minimum} and {maximum}"
                 )
 
-        if self.type is int:
-            _LOGGER.debug(f"Rounding {self.name}")
-            result = int(round(result))
-        elif self.type is bool:
-            result = True if result else False
-        elif self.type is float:
-            result = float(result)
-        elif self.type is str:
-            result = str(result)
-
-        if self.stringify:
-            result = str(result)
-
-        dps_map[self.id] = result
+        dps_map[self.id] = self._correct_type(result)
         return dps_map
 
     def icon_rule(self, device):
