@@ -1,0 +1,400 @@
+name: T5E-WF thermostat
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+          constraint: temp_mode
+          conditions:
+            - dps_val: cold
+              icon: "mdi:snowflake-off"
+            - dps_val: hot
+              icon: "mdi:fire-off"
+          icon_priority: 1
+        - dps_val: true
+          constraint: temp_mode
+          conditions:
+            - dps_val: cold
+              value: cool
+              icon: "mdi:snowflake"
+            - dps_val: hot
+              value: heat
+              icon: "mdi:fire"
+    - id: 2
+      type: string
+      name: temp_mode
+      hidden: true
+    - id: 3
+      type: string
+      name: hvac_action
+      mapping:
+        - dps_val: auto
+          constraint: temp_mode
+          conditions:
+            - dps_val: cold
+              value: cooling
+            - dps_val: hot
+              value: heating
+        - dps_val: auxiliary_heat
+          value: heating
+        - dps_val: cold
+          value: cooling
+        - dps_val: comfortable
+          constraint: temp_mode
+          conditions:
+            - dps_val: cold
+              value: cooling
+            - dps_val: hot
+              value: heating
+        - dps_val: dry
+          value: drying
+        - dps_val: eco
+          constraint: temp_mode
+          conditions:
+            - dps_val: cold
+              value: cooling
+            - dps_val: hot
+              value: heating
+        - dps_val: energy
+          constraint: temp_mode
+          conditions:
+            - dps_val: cold
+              value: cooling
+            - dps_val: hot
+              value: heating
+        - dps_val: floor_heat
+          value: heating
+        - dps_val: holiday
+          value: idle
+        - dps_val: hot
+          value: heating
+        - dps_val: manual
+          constraint: temp_mode
+          conditions:
+            - dps_val: cold
+              value: cooling
+            - dps_val: hot
+              value: heating
+        - dps_val: program
+          constraint: temp_mode
+          conditions:
+            - dps_val: cold
+              value: cooling
+            - dps_val: hot
+              value: heating
+        - dps_val: sleep
+          constraint: temp_mode
+          conditions:
+            - dps_val: cold
+              value: cooling
+            - dps_val: hot
+              value: heating
+        - dps_val: wind
+          value: fan
+        - dps_val: wait
+          value: idle
+    - id: 4
+      type: boolean
+      name: preset_mode
+      mapping:
+        - dps_val: true
+          value: Eco
+        - dps_val: false
+          value: Normal
+    - id: 16
+      type: integer
+      name: temperature
+      range:
+        min: 0
+        max: 400
+      mapping:
+        - scale: 10
+          step: 5
+          constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: temp_set_f
+              step: 10
+    - id: 17
+      type: integer
+      name: temp_set_f
+      range:
+        min: 320
+        max: 1040
+      mapping:
+        - scale: 10
+          step: 10
+      hidden: true
+    - id: 18
+      type: integer
+      name: upper_temp_f
+      mapping:
+        - scale: 10
+      hidden: true
+    - id: 19
+      type: integer
+      name: max_temperature
+      mapping:
+        - scale: 10
+          constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: upper_temp_f
+    - id: 20
+      type: integer
+      name: lower_temp_f
+      mapping:
+        - scale: 10
+      hidden: true
+    - id: 24
+      type: integer
+      name: current_temperature
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: curr_temp_f
+    - id: 26
+      type: integer
+      name: min_temperature
+      mapping:
+        - scale: 10
+          constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: lower_temp_f
+    - id: 29
+      type: integer
+      name: curr_temp_f
+    - id: 43
+      type: string
+      name: temperature_unit
+      mapping:
+        - dps_val: c
+          value: C
+        - dps_val: f
+          value: F
+    - id: 58
+      type: string
+      name: unknown_58
+    - id: 43
+      type: boolean
+      name: unknown_43
+secondary_entities:
+  - entity: number
+    name: Maximum temperature
+    category: config
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 18
+        type: integer
+        name: upper_temp_f
+        range:
+          min: 370
+          max: 1040
+        mapping:
+          - scale: 10
+            step: 10
+        hidden: true
+      - id: 19
+        type: integer
+        name: value
+        range:
+          min: 25
+          max: 400
+        mapping:
+          - scale: 10
+            step: 5
+            constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: upper_temp_f
+                step: 10
+      - id: 43
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+  - entity: number
+    name: Minimum temperature
+    category: config
+    icon: "mdi:thermometer-chevron-down"
+    dps:
+      - id: 20
+        type: integer
+        name: lower_temp_f
+        range:
+          min: 330
+          max: 1000
+        mapping:
+          - scale: 10
+            step: 10
+        hidden: true
+      - id: 26
+        type: integer
+        name: value
+        range:
+          min: 5
+          max: 380
+        mapping:
+          - scale: 10
+            step: 5
+            constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: lower_temp_f
+                step: 10
+      - id: 43
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+  - entity: select
+    name: Temperature unit
+    category: config
+    icon: "mdi:temperature-celsius"
+    dps:
+      - id: 43
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: Celsius
+          - dps_val: f
+            value: Fahrenheit
+  - entity: sensor
+    name: Working status
+    category: diagnostic
+    icon: "mdi:cogs"
+    dps:
+      - id: 3
+        type: string
+        name: sensor
+  - entity: switch
+    name: Window check
+    category: config
+    icon: "mdi:window-closed-variant"
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Frost protection
+    category: config
+    icon: "mdi:snowflake"
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Power
+    category: config
+    class: power
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: W
+        mapping:
+          - scale: 10
+  - entity: binary_sensor
+    name: Window sensor
+    category: diagnostic
+    class: window
+    dps:
+      - id: 25
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: close
+            value: false
+          - dps_val: open
+            value: true
+  - entity: number
+    name: Temperature calibration
+    category: config
+    icon: "mdi:arrow-collapse-up"
+    dps:
+      - id: 27
+        type: integer
+        name: value
+        range:
+          min: -10
+          max: 10
+  - entity: select
+    name: Schedule
+    category: config
+    icon: "mdi:calendar-clock"
+    dps:
+      - id: 31
+        type: string
+        name: option
+        mapping:
+          - dps_val: 5_2
+            value: 5 + 2
+          - dps_val: 6_1
+            value: 6 + 1
+  - entity: switch
+    name: Factory reset
+    category: config
+    icon: "mdi:store-cog"
+    dps:
+      - id: 39
+        type: boolean
+        name: switch
+  - entity: lock
+    name: Child lock
+    category: config
+    icon: "mdi:hand-back-right-off"
+    dps:
+      - id: 40
+        type: boolean
+        name: lock
+  - entity: light
+    name: Backlight
+    category: config
+    icon: "mdi:television-ambient-light"
+    dps:
+      - id: 44
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 100
+        mapping:
+        - step: 10
+  - entity: sensor
+    name: Fault
+    category: diagnostic
+    icon: "mdi:alert-circle"
+    dps:
+      - id: 45
+        type: bitfield
+        name: Fault
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: Error 1
+          - dps_val: 2
+            value: Error 2
+          - dps_val: 4
+            value: Error 3
+          - dps_val: 8
+            value: Error 4
+          - dps_val: 16
+            value: Error 5
+          - dps_val: 32
+            value: Error 6
+          - dps_val: 64
+            value: Error 7
