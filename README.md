@@ -90,6 +90,7 @@ If you submit a pull request, please understand that the config file naming and 
 - Star-Light air conditioner
 - TroniTechnik Hellnar Klimagerät
 - Be Cool BC14KL2101F
+- Sendo air conditioner
 
 ### Pool heaters / heatpumps
 
@@ -127,6 +128,7 @@ If you submit a pull request, please understand that the config file naming and 
 - Jiahong ET-72W thermostat
 - Moes MS-103 temperature and humidity switch (partial functions, temperature only)
 - Beok TGR81 thermostat
+- T5E-WF thermostat
 
 ### Fans
 - Goldair GCPF315 fan

@@ -117,3 +117,5 @@ Further device support has been made with the assistance of users.  Please consi
 - [AlfredBroda](https://github.com/AlfredBroda) for contributing support for Beok TGR81 thermostats.
 - [bedtiming](https://github.com/bedtiming) for assisting with support for Ledkia fan and light controllers.
 - [timlaing](https://github.com/timlaing) for contributing support for ElectriQ EcoSilent 14HPW air conditioners.
+- [Svellem](https://github.com/Svellem) for assisting with support for T5E-WF thermostats.
+- [Aptul9](https://github.com/Aptul9) for assisting with support for Sendo air conditioners.
