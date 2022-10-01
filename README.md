@@ -12,6 +12,12 @@ devices are supported, Tuya also makes Zigbee, BLE and other devices
 that connect to WiFi using a gateway, such devices are not yet
 supported.
 
+Note that most Tuya devices seem to support only one local connection.
+If you have connection issues when using this integration, ensure that other
+integrations offering local Tuya connections are not configured to use the
+same device, mobile applications on devices on the local network are closed,
+and no other software is trying to connect locally to your Tuya devices.
+
 Using this integration does not stop your devices from sending status
 to the Tuya cloud, so this should not be seen as a security measure,
 rather it improves speed and reliability by using local connections,
