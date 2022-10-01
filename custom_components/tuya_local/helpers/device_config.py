@@ -555,7 +555,7 @@ class TuyaDpsConfig:
                 r_dps = self._entity.find_dps(mirror)
                 return r_dps.get_value(device)
 
-            if invert:
+            if invert and isinstance(result, (int, float)):
                 r = self._config.get("range")
                 if r and "min" in r and "max" in r:
                     result = -1 * result + r["min"] + r["max"]
