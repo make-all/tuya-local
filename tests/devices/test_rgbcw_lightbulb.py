@@ -53,6 +53,8 @@ class TestRGBCWLightbulb(BasicNumberTests, TuyaDeviceTestCase):
         self.assertAlmostEqual(self.subject.color_temp, 153, 0)
         self.dps[COLORTEMP_DPS] = 0
         self.assertAlmostEqual(self.subject.color_temp, 500, 0)
+        self.dps[COLORTEMP_DPS] = None
+        self.assertEqual(self.subject.color_temp, None)
 
     def test_color_mode(self):
         self.dps[MODE_DPS] = "white"
