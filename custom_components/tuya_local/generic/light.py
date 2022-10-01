@@ -95,7 +95,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
         if self._color_temp_dps:
             unscaled = self._color_temp_dps.get_value(self._device)
             r = self._color_temp_dps.range(self._device)
-            if r:
+            if r and isinstance(unscaled, (int, float)):
                 return round(unscaled * 347 / (r["max"] - r["min"]) + 153 - r["min"])
             else:
                 return unscaled
