@@ -57,6 +57,7 @@ def get_devices():
 #     entity = device.primary_entity
 #     if entity.deprecated:
 #         subtest_entity_covered(entity)
+    options.pop("device_cid", None)
 
 #     for entity in device.secondary_entities():
 #         if entity.deprecated:

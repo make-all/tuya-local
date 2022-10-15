@@ -14,6 +14,7 @@ from custom_components.tuya_local import (
 )
 from custom_components.tuya_local.const import (
     CONF_DEVICE_ID,
+    CONF_DEVICE_CID,
     CONF_LOCAL_KEY,
     CONF_PROTOCOL_VERSION,
     CONF_TYPE,
@@ -57,6 +58,7 @@ async def test_init_entry(hass):
             CONF_LOCAL_KEY: "localkey",
             CONF_PROTOCOL_VERSION: "auto",
             CONF_TYPE: "kogan_kahtp_heater",
+            CONF_DEVICE_CID: "",
         },
         options={},
     )
@@ -522,6 +524,7 @@ async def test_options_flow_modifies_config(mock_test, hass):
             CONF_NAME: "test",
             CONF_PROTOCOL_VERSION: "auto",
             CONF_TYPE: "kogan_kahtp_heater",
+            CONF_DEVICE_CID: "subdeviceid"
         },
     )
     config_entry.add_to_hass(hass)
@@ -543,6 +546,7 @@ async def test_options_flow_modifies_config(mock_test, hass):
         CONF_HOST: "new_hostname",
         CONF_LOCAL_KEY: "new_key",
         CONF_PROTOCOL_VERSION: 3.3,
+        CONF_DEVICE_CID: "subdeviceid",
     }
     assert "create_entry" == result["type"]
     assert "" == result["title"]

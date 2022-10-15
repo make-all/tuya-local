@@ -2,6 +2,7 @@
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import MagicMock
 
+from custom_components.tuya_local.helpers.config import get_device_id
 from custom_components.tuya_local.helpers.device_config import (
     available_configs,
     get_config,
@@ -233,3 +234,10 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
         mock_config = {"id": "1", "name": "test", "type": "string"}
         cfg = TuyaDpsConfig(mock_entity, mock_config)
         self.assertIsNone(cfg.default())
+
+    def test_get_device_id(self):
+        """Test that check if device id is correct"""
+        self.assertEqual("my-device-id",
+                         get_device_id({"device_id": "my-device-id"}))
+        self.assertEqual("sub-id", get_device_id({"device_cid": "sub-id"}))
+        self.assertEqual("s", get_device_id({"device_id": "d", "device_cid": "s"}))

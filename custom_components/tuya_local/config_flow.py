@@ -12,6 +12,7 @@ from .const import (
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
     CONF_TYPE,
+    CONF_DEVICE_CID,
     CONF_PROTOCOL_VERSION,
 )
 from .helpers.device_config import get_config
@@ -20,7 +21,7 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
-    VERSION = 10
+    VERSION = 11
     CONNECTION_CLASS = config_entries.CONN_CLASS_LOCAL_POLL
     device = None
     data = {}
@@ -28,12 +29,13 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     async def async_step_user(self, user_input=None):
         errors = {}
         devid_opts = {}
+        devcid_opts = {}
         host_opts = {}
         key_opts = {}
         proto_opts = {"default": "auto"}
 
         if user_input is not None:
-            await self.async_set_unique_id(user_input[CONF_DEVICE_ID])
+            await self.async_set_unique_id(get_device_id(user_input))
             self._abort_if_unique_id_configured()
 
             self.device = await async_test_connection(user_input, self.hass)
@@ -46,6 +48,8 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                 host_opts["default"] = user_input[CONF_HOST]
                 key_opts["default"] = user_input[CONF_LOCAL_KEY]
                 proto_opts["default"] = user_input[CONF_PROTOCOL_VERSION]
+                if CONF_DEVICE_CID in user_input:
+                    devcid_opts["default"] = user_input[CONF_DEVICE_CID]
 
         return self.async_show_form(
             step_id="user",
@@ -58,6 +62,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                         CONF_PROTOCOL_VERSION,
                         **proto_opts,
                     ): vol.In(["auto"] + API_PROTOCOL_VERSIONS),
+                    vol.Optional(CONF_DEVICE_CID, **devcid_opts): str,
                 }
             ),
             errors=errors,
@@ -147,6 +152,7 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
             vol.Required(
                 CONF_PROTOCOL_VERSION, default=config.get(CONF_PROTOCOL_VERSION, "auto")
             ): vol.In(["auto"] + API_PROTOCOL_VERSIONS),
+            vol.Optional(CONF_DEVICE_CID, default=config.get(CONF_DEVICE_CID, "")): str,
         }
         cfg = get_config(config[CONF_TYPE])
         if cfg is None:
@@ -160,13 +166,15 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
 
 
 async def async_test_connection(config: dict, hass: HomeAssistant):
+    subdevice_id = config[CONF_DEVICE_CID] if CONF_DEVICE_CID in config else None
     device = TuyaLocalDevice(
         "Test",
         config[CONF_DEVICE_ID],
         config[CONF_HOST],
         config[CONF_LOCAL_KEY],
         config[CONF_PROTOCOL_VERSION],
-        hass,
+        subdevice_id,
+		hass,
     )
     await device.async_refresh()
     return device if device.has_returned_state else None

@@ -45,6 +45,7 @@ class TestDevice(IsolatedAsyncioTestCase):
             "some.ip.address",
             "some_local_key",
             "auto",
+            None,
             self.hass(),
         )
         # For most tests we want the protocol working
@@ -54,7 +55,7 @@ class TestDevice(IsolatedAsyncioTestCase):
 
     def test_configures_tinytuya_correctly(self):
         self.mock_api.assert_called_once_with(
-            "some_dev_id", "some.ip.address", "some_local_key"
+            "some_dev_id", "some.ip.address", "some_local_key", None
         )
         self.assertIs(self.subject._api, self.mock_api())
 

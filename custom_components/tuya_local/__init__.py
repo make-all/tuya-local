@@ -20,8 +20,9 @@ from .const import (
     CONF_TYPE,
     DOMAIN,
 )
-from .device import setup_device, async_delete_device
+from .device import setup_device, async_delete_device, get_device_id
 from .helpers.device_config import get_config
+
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -155,7 +156,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
-    _LOGGER.debug(f"Setting up entry for device: {entry.data[CONF_DEVICE_ID]}")
+    _LOGGER.debug(f"Setting up entry for device: {get_device_id(entry.data)}")
     config = {**entry.data, **entry.options, "name": entry.title}
     setup_device(hass, config)
     device_conf = get_config(entry.data[CONF_TYPE])
@@ -179,7 +180,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
     _LOGGER.debug(f"Unloading entry for device: {entry.data[CONF_DEVICE_ID]}")
     config = entry.data
-    data = hass.data[DOMAIN][config[CONF_DEVICE_ID]]
+    data = hass.data[DOMAIN][get_device_id(config)]
     device_conf = get_config(config[CONF_TYPE])
     if device_conf is None:
         _LOGGER.error(f"Configuration file for {config[CONF_TYPE]} not found.")
@@ -197,7 +198,7 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
         await hass.config_entries.async_forward_entry_unload(entry, e)
 
     await async_delete_device(hass, config)
-    del hass.data[DOMAIN][config[CONF_DEVICE_ID]]
+    del hass.data[DOMAIN][get_device_id(config)]
 
     return True
 
