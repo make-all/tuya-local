@@ -119,3 +119,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [timlaing](https://github.com/timlaing) for contributing support for ElectriQ EcoSilent 14HPW air conditioners.
 - [Svellem](https://github.com/Svellem) for assisting with support for T5E-WF thermostats.
 - [Aptul9](https://github.com/Aptul9) for assisting with support for Sendo air conditioners.
+- [dilorenzo1987](https://github.com/dilorenzo1987) for contributing support for Stadler Form Roger purifiers.

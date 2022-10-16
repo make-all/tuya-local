@@ -90,6 +90,7 @@
 - Tesla Pro and Mini air purifiers
 - Vork VK6067AW air purifier
 - essentials portable air purifier
+- Stadler Form Roger air purifier
 
 ### Dehumidifiers
 - Goldair GPDH420 dehumidifier
