@@ -30,15 +30,7 @@ primary_entity:
               value_redirect: power
     - id: 3
       type: string
-      name: hvac_action
-      mapping:
-        - dps_val: manual
-          constraint: hvac_mode
-          conditions:
-            - dps_val: cold
-              value: cooling
-            - dps_val: hot
-              value: heating
+      name: work_state
     - id: 16
       type: integer
       name: temperature
