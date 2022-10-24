@@ -11,5 +11,6 @@ CONF_LIGHT = "light"
 CONF_LOCK = "lock"
 CONF_SWITCH = "switch"
 CONF_HUMIDIFIER = "humidifier"
+CONF_WATER_HEATER = "water_heater"
 API_PROTOCOL_VERSIONS = [3.3, 3.1, 3.2, 3.4]
 SCAN_INTERVAL = timedelta(seconds=30)
