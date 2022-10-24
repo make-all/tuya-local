@@ -9,8 +9,6 @@ from homeassistant.components.water_heater import (
 )
 from homeassistant.components.climate.const import (
     ATTR_CURRENT_TEMPERATURE,
-    ATTR_TARGET_TEMP_HIGH,
-    ATTR_TARGET_TEMP_LOW,
 )
 from homeassistant.const import (
     ATTR_TEMPERATURE,
@@ -47,8 +45,6 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
 
         self._current_temperature_dps = dps_map.pop(ATTR_CURRENT_TEMPERATURE, None)
         self._temperature_dps = dps_map.pop(ATTR_TEMPERATURE, None)
-        self._temp_high_dps = dps_map.pop(ATTR_TARGET_TEMP_HIGH, None)
-        self._temp_low_dps = dps_map.pop(ATTR_TARGET_TEMP_LOW, None)
         self._unit_dps = dps_map.pop("temperature_unit", None)
         self._mintemp_dps = dps_map.pop("min_temperature", None)
         self._maxtemp_dps = dps_map.pop("max_temperature", None)
