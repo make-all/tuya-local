@@ -4,11 +4,10 @@ Platform to control tuya water heater devices.
 import logging
 
 from homeassistant.components.water_heater import (
+    ATTR_CURRENT_TEMPERATURE,
+    ATTR_OPERATION_MODE,
     WaterHeaterEntity,
     WaterHeaterEntityFeature,
-)
-from homeassistant.components.climate.const import (
-    ATTR_CURRENT_TEMPERATURE,
 )
 from homeassistant.const import (
     ATTR_TEMPERATURE,
@@ -54,6 +53,8 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
 
         if self._operation_mode_dps:
             self._support_flags |= WaterHeaterEntityFeature.OPERATION_MODE
+        if self._temperature_dps and not self._temperature_dps.readonly:
+            self._support_flags |= WaterHeaterEntityFeature.TARGET_TEMPERATURE
 
     @property
     def supported_features(self):
@@ -113,8 +114,18 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
         return dps.step(self._device)
 
     async def async_set_temperature(self, **kwargs):
-        """Disable changing temperature manually to protect certain devices (e.g., Hydrotherm DYNAMIC/X8)"""
-        raise NotImplementedError()
+        """Set the target temperature of the water heater."""
+        if kwargs.get(ATTR_OPERATION_MODE) is not None:
+            if self._operation_mode_dps is None:
+                raise NotImplementedError()
+            await self.async_set_operation_mode(kwargs.get(ATTR_OPERATION_MODE))
+
+        if kwargs.get(ATTR_TEMPERATURE) is not None:
+            if self._temperature_dps is None:
+                raise NotImplementedError()
+            await self._temperature_dps.async_set_value(
+                self._device, kwargs.get(ATTR_TEMPERATURE)
+            )
 
     async def async_set_operation_mode(self, operation_mode):
         """Set new target operation mode."""

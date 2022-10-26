@@ -120,3 +120,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [Svellem](https://github.com/Svellem) for assisting with support for T5E-WF thermostats.
 - [Aptul9](https://github.com/Aptul9) for assisting with support for Sendo air conditioners.
 - [dilorenzo1987](https://github.com/dilorenzo1987) for contributing support for Stadler Form Roger purifiers.
+- [fsevilla3](https://github.com/fsevilla3) for contributing support for water_heater entities and Hydrotherm Dynamix/X8 water heaters.

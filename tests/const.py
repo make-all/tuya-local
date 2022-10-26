@@ -1496,3 +1496,11 @@ INKBIRD_SOUSVIDE_PAYLOAD = {
     "109": 0,
     "110": 0,
 }
+
+HYDROTHERM_DYNAMICX8_PAYLOAD = {
+    "1": True,
+    "2": 65,
+    "3": 60,
+    "4": "STANDARD",
+    "21": 0,
+}

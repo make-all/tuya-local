@@ -15,11 +15,10 @@ primary_entity:
       range:
         min: 60
         max: 70
+      readonly: true
     - id: 3
       type: integer
       name: current_temperature
-      mapping:
-        - scale: 1
     - id: 4
       type: string
       name: operation_mode
@@ -29,7 +28,6 @@ primary_entity:
           conditions:
             - dps_val: false
               value_redirect: power
-              value: "off"
             - dps_val: true
               value: eco
         - dps_val: STANDARD
@@ -45,7 +43,6 @@ primary_entity:
           conditions:
             - dps_val: false
               value_redirect: power
-              value: "off"
             - dps_val: true
               value: high_demand
         - dps_val: HYBRID1
@@ -53,7 +50,6 @@ primary_entity:
           conditions:
             - dps_val: false
               value_redirect: power
-              value: "off"
             - dps_val: true
               value: performance
         - dps_val: ELEMENT
@@ -61,9 +57,11 @@ primary_entity:
           conditions:
             - dps_val: false
               value_redirect: power
-              value: "off"
             - dps_val: true
               value: electric
+    - id: 21
+      type: bitfield
+      name: fault_code
 secondary_entities:
   - entity: binary_sensor
     class: problem

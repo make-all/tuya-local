@@ -51,7 +51,12 @@
   or if any of the "unknown" values that are returned as attributes can
   be figured out.
 
+### Water heaters
+
+- Hydrotherm Dynamic/X8 heat pump hot water systems
+
 ### Thermostats
+
 - Inkbird ITC306A thermostat smartplug
 - Inkbird ITC308 thermostat smartplug
 - Beca BHP-6000 room heat pump control thermostat
@@ -73,6 +78,7 @@
 - T5E-WF thermostat
 
 ### Fans
+
 - Goldair GCPF315 fan
 - Anko HEGSM40 fan
 - Lexy F501 fan
@@ -84,6 +90,7 @@
 - Ledkia fan and light controller
 
 ### Air Purifiers
+
 - Renpho RP-AP001S air purifier
 - Poiema One air purifier
 - Himox H05 and H06 air purifiers
@@ -93,6 +100,7 @@
 - Stadler Form Roger air purifier
 
 ### Dehumidifiers
+
 - Goldair GPDH420 dehumidifier
 - ElectriQ CD12PW dehumidifier
 - ElectriQ CD12PWv2 dehumidifier
@@ -107,23 +115,28 @@
 - AlecoAir D14 purifying dehumidifier
 
 ### Humidifiers
+
 - Eanons QT-JS2014 purifying humidifier
 - Wetair WAW-H1210LW humidifier
 - Wilfa Haze HU400BC humidifier
 
 ### Kitchen Appliances
+
 - Kogan glass 1.7L smart kettle
 - Inkbird sous vide cooker
 
 ### Smart Meter/Circuit Breaker
+
 - SmartMCB SMT006 energy meter
 - PC321-TY 3 phase power clamp meter
 - Compteur digital electric (single phase)
 
 ### Battery Charger
+
 - Parkside PLGS 2012 A1 smart charger for powertools
 
 ### SmartPlugs/Wall sockets
+
 - Generic smartplug with energy monitoring (older models)
   _confirmed as working with Kogan and Blitzwolf single smartplugs_
 - Generic smartplug with energy monitoring (newer models)
@@ -150,9 +163,11 @@ Other brands may work with the above configurations
 - Simple switch with timer v2 - the above with timer moved from dp 11 to 9, confirmed with a Nexxt 220V smart switch. 
 
 ### Lights
+
 - Generic RGBCW/RGBWW lightbulb (confirmed with Lijun branded bulb, expected to match others also)
 
 ### Covers
+
 - Simple garage door
 - Simple blind controller
 - Dongguan garage door
@@ -163,16 +178,20 @@ Other brands may work with the above configurations
 - Wistar roller blinds controller
 
 ### Vacuum Cleaners
+
 - Lefant M213 vacuum cleaner (also works for Lefant M213S and APOSEN A550)
 - Kyvol E30 vacuum cleaner
 
 ### Locks
+
 - Orion Grid Connect smart lock
 
 ### Sirens
+
 - Orion Grid Connect outdoor siren
 
 ### Miscellaneous
+
 - Qoto 03 smart water valve / sprinkler controller
 - SD123 HPR01 human presence radar
 - Universal remote control (supports sensors only)
