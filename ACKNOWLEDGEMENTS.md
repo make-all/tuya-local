@@ -102,7 +102,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [pretoriano80](https://github.com/pretoriano80) for assistance supporting AlecoAir dehumidifiers.
 - [JanekSMC](https://github.com/JanekSMC) for assistance supporting Orion Smart Locks.
 - [RichardMawdsley](https://github.com/RichardMawdsley) for assistance supporting ElectriQ Airflex 15W heatpumps.
-- [fwelvering](https://github.com/fwelvering) for assistance supporting a second variant of W'eau pool heatpumps. 
+- [fwelvering](https://github.com/fwelvering) for assistance supporting a second variant of W'eau pool heatpumps.
 - [illuzn](https://github.com/illuzn) for contributing support for Kogan Tower Heaters and Arlec PB88UHA power strips.
 - [vnkorol](https://github.com/vnkorol) for assistance supporting 4-way power monitoring strip and Avatto roller blinds.
 - [OmegaKill](https://github.com/OmegaKill) for assistance supporting Be Cool heatpumps.
@@ -123,3 +123,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [fsevilla3](https://github.com/fsevilla3) for contributing support for water_heater entities and Hydrotherm Dynamix/X8 water heaters.
 - [allistermaguire](https://github.com/allistermaguire) for contributing improvements to Saswell C16 thermostats.
 - [karnas99](https://github.com/karnas99) for assistance in improving Hysen thermostat support.
+- [cooperaj](https://github.com/cooperaj) for contributing support for ElectriQ CD12PRO-LE dehumidifiers.
