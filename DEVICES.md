@@ -104,6 +104,7 @@
 - Goldair GPDH420 dehumidifier
 - ElectriQ CD12PW dehumidifier
 - ElectriQ CD12PWv2 dehumidifier
+- ElectriQ CD12PRO-LE dehumidifier
 - ElectriQ CD20PRO-LE-V2 dehumidifier
 - ElectriQ CD25PRO-LE-V2 dehumidifier
 - ElectriQ DESD9LW dehumidifier
@@ -160,7 +161,7 @@ Other brands may work with the above configurations
 
 - Simple switch - a switch only, can be a fallback for many other unsupported devices, to allow just power to be switched on/off.
 - Simple switch with timer - a single switch and timer, will probably work for a lot of smart switches that are not covered by the more advanced configs above.
-- Simple switch with timer v2 - the above with timer moved from dp 11 to 9, confirmed with a Nexxt 220V smart switch. 
+- Simple switch with timer v2 - the above with timer moved from dp 11 to 9, confirmed with a Nexxt 220V smart switch.
 
 ### Lights
 
