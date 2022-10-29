@@ -68,14 +68,29 @@ primary_entity:
       name: schedule
       type: string
     - id: 14
-      name: unknown_14
+      name: sensor_selection
       type: integer
+      mapping:
+        - dps_val: 0
+          value: "Floor sensor"
+        - dps_val: 1
+          value: "Room sensor"
+        - dps_val: 2
+          value: "Room sensor with floor sensor limit"
+        - dps_val: 3
+          value: "External room sensor"
+        - dps_val: 4
+          value: "External room sensor with floor sensor limit"
     - id: 15
-      name: unknown_15
+      name: room_temp_calibration
       type: integer
+      mapping:
+        - scale: 10
     - id: 17
-      name: unknown_17
+      name: floor_temp_calibration
       type: integer
+      mapping:
+        - scale: 10
     - id: 21
       name: unknown_21
       type: boolean
@@ -174,6 +189,55 @@ secondary_entities:
             value: "Weekdays+Sat+Sun"
           - dps_val: "7"
             value: "Daily"
+  - entity: select
+    name: Sensor select
+    icon: "mdi:home-thermometer"
+    category: config
+    dps:
+      - id: 14
+        name: option
+        type: integer
+        mapping:
+          - dps_val: 0
+            value: "Floor sensor"
+          - dps_val: 1
+            value: "Room sensor"
+          - dps_val: 2
+            value: "Room sensor with floor sensor limit"
+          - dps_val: 3
+            value: "External room sensor"
+          - dps_val: 4
+            value: "External room sensor with floor sensor limit"
+  - entity: number
+    name: Room temperature calibration
+    icon: "mdi:thermometer-check"
+    category: config
+    dps:
+      - id: 15
+        name: value
+        type: integer
+        unit: C
+        range:
+          min: -50
+          max: 50
+        mapping:
+          - scale: 10
+            step: 5
+  - entity: number
+    name: Floor temperature calibration
+    icon: "mdi:thermometer-check"
+    category: config
+    dps:
+      - id: 17
+        name: value
+        type: integer
+        unit: C
+        range:
+          min: -50
+          max: 50
+        mapping:
+          - scale: 10
+            step: 5
   - entity: number
     name: Power rating
     category: config
