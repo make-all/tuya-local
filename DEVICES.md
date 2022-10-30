@@ -65,8 +65,8 @@
 - Moes BHT-002 thermostat (without external temp sensor)
 - Beca BAC-002 thermostat
 - Awow/Mi-heat TH213 thermostat (two variants)
-- Siswell T29UTW thermostat
-- Siswell C16 thermostat _(rebadged as Warmme, Klima and others)_
+- Saswell T29UTW thermostat
+- Saswell C16 thermostat _(rebadged as Warmme, Klima and others)_
 - Minco MH-1823D thermostat
 - Owon PCT513 thermostat
 - Beok TR9B thermostat _(rebadged as Vancoo and perhaps others)_
@@ -136,7 +136,7 @@
 
 - Parkside PLGS 2012 A1 smart charger for powertools
 
-### SmartPlugs/Wall sockets
+### SmartPlugs/Wall sockets/Wall switches
 
 - Generic smartplug with energy monitoring (older models)
   _confirmed as working with Kogan and Blitzwolf single smartplugs_
@@ -158,14 +158,19 @@ Other brands may work with the above configurations
 - Logicom Strippy 4 way power strip with USB
 - 4 way power monitoring strip
 - Arlec PB88UHA 4 way powerstrip with child lock
+- Somgam single wall switch
+- Somgam double wall switch
 
 - Simple switch - a switch only, can be a fallback for many other unsupported devices, to allow just power to be switched on/off.
 - Simple switch with timer - a single switch and timer, will probably work for a lot of smart switches that are not covered by the more advanced configs above.
-- Simple switch with timer v2 - the above with timer moved from dp 11 to 9, confirmed with a Nexxt 220V smart switch.
+- Simple switch with timer v2 - the above with timer moved from dp 11 to 9, confirmed with a Nexxt 220V smart switch. 
+- Simple triple switch - three switches in a single device, tested with Somgam 3 gang wall switches.
+- Simple quad switch - four switches in a single device, tested with Somgam 4 gang wall switches.
 
 ### Lights
 
 - Generic RGBCW/RGBWW lightbulb (confirmed with Lijun branded bulb, expected to match others also)
+- Atomi smart color string light
 
 ### Covers
 
@@ -177,6 +182,7 @@ Other brands may work with the above configurations
 - M027 curtain module (sold under several brands, including zemismart, meterk and others)
 - Avatto roller blinds controller
 - Wistar roller blinds controller
+- Zemismart curtain rail
 
 ### Vacuum Cleaners
 

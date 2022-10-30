@@ -256,7 +256,7 @@ the appropriate one for the temperature units you use.  If you change the
 units on the device control panel, you will need to delete the device from
 Home Assistant and set it up again.
 
-## Siswell C19 thermostat gotchas
+## Saswell C16 thermostat gotchas
 
 These support configuration as either heating or cooling controllers, but
 only have one output.  The HVAC mode is provided as an indicator of which
