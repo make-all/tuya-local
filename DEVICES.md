@@ -176,6 +176,7 @@ Other brands may work with the above configurations
 - M027 curtain module (sold under several brands, including zemismart, meterk and others)
 - Avatto roller blinds controller
 - Wistar roller blinds controller
+- Zemismart curtain rail
 
 ### Vacuum Cleaners
 
