@@ -30,7 +30,7 @@ Further device support has been made with the assistance of users.  Please consi
  - [jorgenDK](https://github.com/jorgenDK) for assistance in supporting TroniTechnik Air Conditioner, and thanks for the coffee!
  - [Fannangir](https://github.com/Fannangir) for assistance in supporting Tadiran Wind Air Conditioner.
  - [marrold](https://github.com/marrold) for contributing support for ElectriQ CD20PRO dehumidifiers.
- - [Uaeguy](https://github.com/Uaeguy) for assistance in supporting Beca BHP-6000, Siswell T29UTK and Owon PCT513 thermostats, and thanks for the coffee!
+ - [Uaeguy](https://github.com/Uaeguy) for assistance in supporting Beca BHP-6000, Saswell T29UTK and Owon PCT513 thermostats, and thanks for the coffee!
  - [Johnnybyzhang](https://github.com/Johnnybyzhang) for assistance in supporting Lexy F501 fans.
  - [domgrimm](https://github.com/domgrimm) for assistance in supporting newer models of Kogan heater.
  - [EKCJ](https://github.com/EKCJ) for contributing support for ElectriQ DESD9LW dehumidifiers.
@@ -40,7 +40,7 @@ Further device support has been made with the assistance of users.  Please consi
  - [xbmcnut](https://github.com/xbmcnut) for assistance in supporting Kogan Smart Kettles and the new type of Kogan heater.
  - [ThomasADavis](https://github.com/ThomasADavis) for contributing support for Renpho RP-AP001S air purifiers.
  - [darek-margas](https://github.com/darek-margas) for contributing support for Arlec fans, Carson portable air conditioners, Grid Connect double outlets with and without USB and power monitoring, Mirabella Genio smartplugs.
- - [SamJongenelen](https://github.com/SamJongenelen) for assistance in supporting Siswell C16 Thermostats
+ - [SamJongenelen](https://github.com/SamJongenelen) for assistance in supporting Saswell C16 Thermostats
  - [antoweb](https://github.com/antoweb) for assistance in supporting Beca BHT-6000 thermostats.
  - [klausahrenberg](https://github.com/klausahrenberg) for figuring out the BHT-6000 and other thermostats' internal MCU protocol for his alternate MQQT firmware, which helped with finding some of the details.
  - [Swiftnesses](https://github.com/Swiftnesses) for contributing support for Electriq CD12PW dehumidifiers
@@ -121,3 +121,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [Aptul9](https://github.com/Aptul9) for assisting with support for Sendo air conditioners.
 - [dilorenzo1987](https://github.com/dilorenzo1987) for contributing support for Stadler Form Roger purifiers.
 - [fsevilla3](https://github.com/fsevilla3) for contributing support for water_heater entities and Hydrotherm Dynamix/X8 water heaters.
+- [allistermaguire](https://github.com/allistermaguire) for contributing improvements to Saswell C16 thermostats.

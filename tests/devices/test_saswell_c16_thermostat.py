@@ -29,9 +29,9 @@ HVACMODE_DPS = "9"
 ADAPTIVE_DPS = "10"
 LOCK_DPS = "11"
 SCHED_DPS = "12"
-UNKNOWN14_DPS = "14"
-UNKNOWN15_DPS = "15"
-UNKNOWN17_DPS = "17"
+SENSOR_DPS = "14"
+ROOMCALIB_DPS = "15"
+FLOORCALIB_DPS = "17"
 UNKNOWN21_DPS = "21"
 POWERRATING_DPS = "22"
 UNKNOWN23_DPS = "23"
@@ -90,6 +90,24 @@ class TestSaswellC16Thermostat(
                     "max": 3500,
                     "unit": POWER_WATT,
                 },
+                {
+                    "name": "number_room_temperature_calibration",
+                    "dps": ROOMCALIB_DPS,
+                    "min": -5.0,
+                    "max": 5.0,
+                    "scale": 10,
+                    "step": 0.5,
+                    "unit": TEMP_CELSIUS,
+                },
+                {
+                    "name": "number_floor_temperature_calibration",
+                    "dps": FLOORCALIB_DPS,
+                    "min": -5.0,
+                    "max": 5.0,
+                    "scale": 10,
+                    "step": 0.5,
+                    "unit": TEMP_CELSIUS,
+                },
             ]
         )
         self.setUpMultiSelect(
@@ -110,6 +128,17 @@ class TestSaswellC16Thermostat(
                         "7": "Daily",
                     },
                 },
+                {
+                    "name": "select_sensor_select",
+                    "dps": SENSOR_DPS,
+                    "options": {
+                        "0": "Floor sensor",
+                        "1": "Room sensor",
+                        "2": "Room sensor with floor sensor limit",
+                        "3": "External room sensor",
+                        "4": "External room sensor with floor sensor limit",
+                    },
+                },
             ]
         )
         self.mark_secondary(
@@ -117,10 +146,13 @@ class TestSaswellC16Thermostat(
                 "lock_child_lock",
                 "sensor_floor_temperature",
                 "switch_adaptive",
+                "number_floor_temperature_calibration",
                 "number_floor_temperature_limit",
                 "number_power_rating",
+                "number_room_temperature_calibration",
                 "select_installation",
                 "select_schedule",
+                "select_sensor_select",
             ]
         )
 
@@ -228,9 +260,6 @@ class TestSaswellC16Thermostat(
         self.dps[FLOORTEMP_DPS] = 251
         self.dps[ADAPTIVE_DPS] = False
         self.dps[SCHED_DPS] = "5_1_1"
-        self.dps[UNKNOWN14_DPS] = 14
-        self.dps[UNKNOWN15_DPS] = 15
-        self.dps[UNKNOWN17_DPS] = 17
         self.dps[UNKNOWN21_DPS] = True
         self.dps[POWERRATING_DPS] = 2000
         self.dps[UNKNOWN23_DPS] = 23
@@ -245,9 +274,6 @@ class TestSaswellC16Thermostat(
                 "floor_temperature": 25.1,
                 "adaptive": False,
                 "schedule": "5_1_1",
-                "unknown_14": 14,
-                "unknown_15": 15,
-                "unknown_17": 17,
                 "unknown_21": True,
                 "power_rating": 2000,
                 "unknown_23": 23,

@@ -609,7 +609,7 @@ SASWELL_C16_THERMOSTAT_PAYLOAD = {
     "10": True,
     "11": False,
     "12": "7",
-    "14": 0,
+    "14": "0",
     "15": 0,
     "17": 0,
     "21": False,

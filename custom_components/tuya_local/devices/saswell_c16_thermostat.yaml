@@ -67,30 +67,6 @@ primary_entity:
     - id: 12
       name: schedule
       type: string
-    - id: 14
-      name: sensor_selection
-      type: integer
-      mapping:
-        - dps_val: 0
-          value: "Floor sensor"
-        - dps_val: 1
-          value: "Room sensor"
-        - dps_val: 2
-          value: "Room sensor with floor sensor limit"
-        - dps_val: 3
-          value: "External room sensor"
-        - dps_val: 4
-          value: "External room sensor with floor sensor limit"
-    - id: 15
-      name: room_temp_calibration
-      type: integer
-      mapping:
-        - scale: 10
-    - id: 17
-      name: floor_temp_calibration
-      type: integer
-      mapping:
-        - scale: 10
     - id: 21
       name: unknown_21
       type: boolean
@@ -196,17 +172,17 @@ secondary_entities:
     dps:
       - id: 14
         name: option
-        type: integer
+        type: string
         mapping:
-          - dps_val: 0
+          - dps_val: "0"
             value: "Floor sensor"
-          - dps_val: 1
+          - dps_val: "1"
             value: "Room sensor"
-          - dps_val: 2
+          - dps_val: "2"
             value: "Room sensor with floor sensor limit"
-          - dps_val: 3
+          - dps_val: "3"
             value: "External room sensor"
-          - dps_val: 4
+          - dps_val: "4"
             value: "External room sensor with floor sensor limit"
   - entity: number
     name: Room temperature calibration

@@ -65,8 +65,8 @@
 - Moes BHT-002 thermostat (without external temp sensor)
 - Beca BAC-002 thermostat
 - Awow/Mi-heat TH213 thermostat (two variants)
-- Siswell T29UTW thermostat
-- Siswell C16 thermostat _(rebadged as Warmme, Klima and others)_
+- Saswell T29UTW thermostat
+- Saswell C16 thermostat _(rebadged as Warmme, Klima and others)_
 - Minco MH-1823D thermostat
 - Owon PCT513 thermostat
 - Beok TR9B thermostat _(rebadged as Vancoo and perhaps others)_
