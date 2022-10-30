@@ -169,6 +169,7 @@ Other brands may work with the above configurations
 ### Lights
 
 - Generic RGBCW/RGBWW lightbulb (confirmed with Lijun branded bulb, expected to match others also)
+- Atomi smart color string light
 
 ### Covers
 
