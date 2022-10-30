@@ -135,7 +135,7 @@
 
 - Parkside PLGS 2012 A1 smart charger for powertools
 
-### SmartPlugs/Wall sockets
+### SmartPlugs/Wall sockets/Wall switches
 
 - Generic smartplug with energy monitoring (older models)
   _confirmed as working with Kogan and Blitzwolf single smartplugs_
@@ -157,10 +157,14 @@ Other brands may work with the above configurations
 - Logicom Strippy 4 way power strip with USB
 - 4 way power monitoring strip
 - Arlec PB88UHA 4 way powerstrip with child lock
+- Somgam single wall switch
+- Somgam double wall switch
 
 - Simple switch - a switch only, can be a fallback for many other unsupported devices, to allow just power to be switched on/off.
 - Simple switch with timer - a single switch and timer, will probably work for a lot of smart switches that are not covered by the more advanced configs above.
 - Simple switch with timer v2 - the above with timer moved from dp 11 to 9, confirmed with a Nexxt 220V smart switch. 
+- Simple triple switch - three switches in a single device, tested with Somgam 3 gang wall switches.
+- Simple quad switch - four switches in a single device, tested with Somgam 4 gang wall switches.
 
 ### Lights
 
