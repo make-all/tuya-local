@@ -122,3 +122,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [dilorenzo1987](https://github.com/dilorenzo1987) for contributing support for Stadler Form Roger purifiers.
 - [fsevilla3](https://github.com/fsevilla3) for contributing support for water_heater entities and Hydrotherm Dynamix/X8 water heaters.
 - [allistermaguire](https://github.com/allistermaguire) for contributing improvements to Saswell C16 thermostats.
+- [karnas99](https://github.com/karnas99) for assistance in improving Hysen thermostat support.
