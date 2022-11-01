@@ -115,14 +115,6 @@ class TestHysenHY08WE2Thermostat(
                         True: "Fahrenheit",
                     },
                 },
-                {
-                    "dps": DISPLAY_DPS,
-                    "name": "select_display_temperature",
-                    "options": {
-                        False: "Internal",
-                        True: "External",
-                    },
-                },
             ],
         )
         self.setUpBasicSensor(
@@ -217,7 +209,6 @@ class TestHysenHY08WE2Thermostat(
                 "number_low_temperature_protection",
                 "number_low_temperature_limit",
                 "number_high_temperature_limit",
-                "select_display_temperature",
                 "select_initial_state",
                 "select_schedule",
                 "select_temperature_sensor",
@@ -313,12 +304,24 @@ class TestHysenHY08WE2Thermostat(
         self.dps[ERROR_DPS] = 12
         self.dps[UNKNOWN106_DPS] = False
         self.dps[UNKNOWN107_DPS] = True
+        self.dps[DISPLAY_DPS] = True
         self.assertDictEqual(
             self.subject.extra_state_attributes,
             {
                 "fault_code": 12,
                 "unknown_106": False,
                 "unknown_107": True,
+                "temperature_display": "external",
+            },
+        )
+        self.dps[DISPLAY_DPS] = False
+        self.assertDictEqual(
+            self.subject.extra_state_attributes,
+            {
+                "fault_code": 12,
+                "unknown_106": False,
+                "unknown_107": True,
+                "temperature_display": "internal",
             },
         )
 

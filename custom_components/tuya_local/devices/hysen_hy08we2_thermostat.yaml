@@ -71,6 +71,14 @@ primary_entity:
     - id: 107
       type: boolean
       name: unknown_107
+    - id: 108
+      type: boolean
+      name: temperature_display
+      mapping:
+        - dps_val: false
+          value: internal
+        - dps_val: true
+          value: external
     - id: 114
       type: integer
       name: max_temperature
@@ -349,19 +357,6 @@ secondary_entities:
             value: Celsius
           - dps_val: true
             value: Fahrenheit
-  - entity: select
-    name: Display Temperature
-    category: config
-    icon: "mdi:thermometer"
-    dps:
-      - id: 108
-        type: boolean
-        name: option
-        mapping:
-          - dps_val: false
-            value: Internal
-          - dps_val: true
-            value: External
   - entity: binary_sensor
     name: Fault
     class: problem
