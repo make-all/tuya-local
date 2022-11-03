@@ -5,7 +5,6 @@ from unittest.mock import AsyncMock, Mock
 from custom_components.tuya_local.const import (
     CONF_DEVICE_ID,
     CONF_TYPE,
-    CONF_WATER_HEATER,
     DOMAIN,
 )
 from custom_components.tuya_local.generic.water_heater import TuyaLocalWaterHeater
@@ -29,7 +28,7 @@ async def test_init_entry(hass):
     hass.data[DOMAIN]["dummy"]["device"] = m_device
 
     await async_setup_entry(hass, entry, m_add_entities)
-    assert type(hass.data[DOMAIN]["dummy"][CONF_WATER_HEATER]) == TuyaLocalWaterHeater
+    assert type(hass.data[DOMAIN]["dummy"]["water_heater"]) == TuyaLocalWaterHeater
     m_add_entities.assert_called_once()
 
 

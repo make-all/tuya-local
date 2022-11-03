@@ -13,14 +13,8 @@ from custom_components.tuya_local import (
     async_setup_entry,
 )
 from custom_components.tuya_local.const import (
-    CONF_CLIMATE,
     CONF_DEVICE_ID,
-    CONF_FAN,
-    CONF_HUMIDIFIER,
-    CONF_LIGHT,
     CONF_LOCAL_KEY,
-    CONF_LOCK,
-    CONF_SWITCH,
     CONF_TYPE,
     DOMAIN,
 )
@@ -78,7 +72,7 @@ async def test_migrate_entry(mock_setup, hass):
             CONF_HOST: "hostname",
             CONF_LOCAL_KEY: "localkey",
             CONF_TYPE: "auto",
-            CONF_CLIMATE: True,
+            "climate": True,
             "child_lock": True,
             "display_light": True,
         },
@@ -97,7 +91,7 @@ async def test_migrate_entry(mock_setup, hass):
             CONF_HOST: "hostname",
             CONF_LOCAL_KEY: "localkey",
             CONF_TYPE: "unknown",
-            CONF_CLIMATE: False,
+            "climate": False,
         },
     )
     assert not await async_migrate_entry(hass, entry)
@@ -114,7 +108,7 @@ async def test_migrate_entry(mock_setup, hass):
             CONF_TYPE: "auto",
         },
         options={
-            CONF_CLIMATE: False,
+            "climate": False,
         },
     )
     assert not await async_migrate_entry(hass, entry)
@@ -133,7 +127,7 @@ async def test_migrate_entry(mock_setup, hass):
             CONF_TYPE: "smartplugv1",
         },
         options={
-            CONF_SWITCH: True,
+            "switch": True,
         },
     )
     assert await async_migrate_entry(hass, entry)
@@ -152,7 +146,7 @@ async def test_migrate_entry(mock_setup, hass):
             CONF_TYPE: "smartplugv1",
         },
         options={
-            CONF_SWITCH: True,
+            "switch": True,
         },
     )
     assert await async_migrate_entry(hass, entry)
@@ -171,11 +165,11 @@ async def test_migrate_entry(mock_setup, hass):
             CONF_TYPE: "goldair_dehumidifier",
         },
         options={
-            CONF_HUMIDIFIER: True,
-            CONF_FAN: True,
-            CONF_LIGHT: True,
-            CONF_LOCK: False,
-            CONF_SWITCH: True,
+            "humidifier": True,
+            "fan": True,
+            "light": True,
+            "lock": False,
+            "switch": True,
         },
     )
     assert await async_migrate_entry(hass, entry)
@@ -402,7 +396,7 @@ async def test_flow_choose_entities_init(hass):
     except vol.MultipleInvalid:
         assert False
     try:
-        result["data_schema"]({CONF_CLIMATE: True})
+        result["data_schema"]({"climate": True})
         assert False
     except vol.MultipleInvalid:
         pass
