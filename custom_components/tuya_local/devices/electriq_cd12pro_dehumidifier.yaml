@@ -13,6 +13,15 @@ primary_entity:
         - dps_val: true
           icon: "mdi:air-humidifier"
           icon_priority: 3
+    - id: 2
+      type: integer
+      name: humidity
+      class: humidity
+      range:
+        min: 35
+        max: 80
+      mapping:
+        - step: 5
     - id: 5
       name: mode
       type: string
@@ -29,35 +38,35 @@ primary_entity:
           value: "Air clean"
           icon: "mdi:air-purifier"
           icon_priority: 2
-    - id: 6
+    - id: 19
+      name: fault_code
       type: integer
-      name: current_humidity
-      class: humidity
-      readonly: true
-    - id: 2
-      type: integer
-      name: humidity
-      class: humidity
-      range:
-        min: 35
-        max: 80
-      mapping:
-        - step: 5
 secondary_entities:
-  - entity: select
-    name: "Fan Speed"
-    category: config
+  - entity: fan
     dps:
+      - id: 1
+        type: boolean
+        name: switch
       - id: 4
-        name: option
+        name: speed
         type: string
         mapping:
-          - dps_val: "high"
-            value: "High"
-          - dps_val: "low"
-            value: "Low"
+          - dps_val: low
+            value: 50
+          - dps_val: high
+            value: 100
+      - id: 102
+        name: oscillate
+        type: string
+        mapping:
+          - dps_val: "90"
+            value: false
+          - dps_val: "45"
+            value: false
+          - dps_val: "45_90"
+            value: true
   - entity: select
-    name: "Fan Oscillation"
+    name: "Fan position"
     category: config
     dps:
       - id: 102
@@ -73,12 +82,13 @@ secondary_entities:
   - entity: switch
     name: "UV sterilization"
     icon: "mdi:solar-power"
+    category: config
     dps:
       - id: 13
         name: switch
         type: boolean
   - entity: light
-    name: Light
+    name: Indicator light
     category: config
     dps:
       - id: 101
@@ -91,6 +101,7 @@ secondary_entities:
             icon: "mdi:led-off"
   - entity: switch
     name: Ionizer
+    category: config
     icon: mdi:creation
     dps:
       - id: 10
