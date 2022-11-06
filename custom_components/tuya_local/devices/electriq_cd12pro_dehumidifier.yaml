@@ -16,7 +16,6 @@ primary_entity:
     - id: 2
       type: integer
       name: humidity
-      class: humidity
       range:
         min: 35
         max: 80
@@ -131,6 +130,7 @@ secondary_entities:
             icon: "mdi:sleep-off"
   - entity: binary_sensor
     name: Tank
+    class: problem
     category: diagnostic
     dps:
       - id: 19
