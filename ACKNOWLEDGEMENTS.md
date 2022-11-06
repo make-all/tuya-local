@@ -124,3 +124,5 @@ Further device support has been made with the assistance of users.  Please consi
 - [allistermaguire](https://github.com/allistermaguire) for contributing improvements to Saswell C16 thermostats.
 - [karnas99](https://github.com/karnas99) for assistance in improving Hysen thermostat support.
 - [cooperaj](https://github.com/cooperaj) for contributing support for ElectriQ CD12PRO-LE dehumidifiers.
+- [geroulas](https://github.com/geroulas) for assisting with support for Inventor Atmosphere XL dehumidifiers.
+- [and7ey](https://github.com/and7ey) for assisting with support for Screen sync smart lights.

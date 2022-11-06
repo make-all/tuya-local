@@ -114,6 +114,7 @@
 - Eesee Adam dehumidifier
 - Hyundai Sahara dehumidifier
 - AlecoAir D14 purifying dehumidifier
+- Inventor Atmosphere XL dehumidifier
 
 ### Humidifiers
 
@@ -171,6 +172,7 @@ Other brands may work with the above configurations
 
 - Generic RGBCW/RGBWW lightbulb (confirmed with Lijun branded bulb, expected to match others also)
 - Atomi smart color string light
+- Screen sync smart light 2.0
 
 ### Covers
 
