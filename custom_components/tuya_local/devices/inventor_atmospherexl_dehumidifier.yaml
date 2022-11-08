@@ -27,6 +27,8 @@ primary_entity:
       mapping:
         - dps_val: drying
           value: Dehumidify
+        - dps_val: night
+          value: Sleep
     - id: 19
       type: bitfield
       name: error_code
@@ -37,10 +39,10 @@ primary_entity:
       type: string
       name: air_purifier
     - id: 106
-      type: string
+      type: integer
       name: hi
     - id: 107
-      type: string
+      type: integer
       name: lo
     - id: 108
       type: string
@@ -134,7 +136,7 @@ secondary_entities:
         type: string
         name: option
         mapping:
-          - dps_val: "off"
+          - dps_val: "None"
             value: "Off"
           - dps_val: 1h
             value: 1 hour
