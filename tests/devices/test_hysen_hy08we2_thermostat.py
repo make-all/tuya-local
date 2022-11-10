@@ -1,13 +1,17 @@
+from homeassistant.components.binary_sensor import (
+    BinarySensorDeviceClass,
+)
 from homeassistant.components.climate.const import (
     ClimateEntityFeature,
     HVACAction,
     HVACMode,
 )
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import TEMP_CELSIUS, TIME_DAYS
+from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT, TIME_DAYS
 
 from ..const import HYSEN_HY08WE2_THERMOSTAT_PAYLOAD
 from ..helpers import assert_device_properties_set
+from ..mixins.binary_sensor import BasicBinarySensorTests
 from ..mixins.climate import TargetTemperatureTests
 from ..mixins.lock import BasicLockTests
 from ..mixins.number import MultiNumberTests
@@ -20,15 +24,15 @@ TEMPERATURE_DPS = "2"
 CURRENTTEMP_DPS = "3"
 PRESET_DPS = "4"
 LOCK_DPS = "6"
-UNKNOWN12_DPS = "12"
-UNKNOWN101_DPS = "101"
+ERROR_DPS = "12"
+UNIT_DPS = "101"
 HVACACTION_DPS = "102"
 EXTTEMP_DPS = "103"
 HOLIDAYS_DPS = "104"
 HOLIDAYTEMP_DPS = "105"
 UNKNOWN106_DPS = "106"
 UNKNOWN107_DPS = "107"
-UNKNOWN108_DPS = "108"
+DISPLAY_DPS = "108"
 CALIBOFFSET_DPS = "109"
 CALIBSWINGINT_DPS = "110"
 CALIBSWINGEXT_DPS = "111"
@@ -42,10 +46,11 @@ SCHED_DPS = "118"
 
 
 class TestHysenHY08WE2Thermostat(
+    BasicBinarySensorTests,
     BasicLockTests,
+    BasicSensorTests,
     MultiNumberTests,
     MultiSelectTests,
-    BasicSensorTests,
     TargetTemperatureTests,
     TuyaDeviceTestCase,
 ):
@@ -66,6 +71,13 @@ class TestHysenHY08WE2Thermostat(
             step=5,
         )
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
+        self.setUpBasicBinarySensor(
+            ERROR_DPS,
+            self.entities.get("binary_sensor_fault"),
+            testdata=(1, 0),
+            device_class=BinarySensorDeviceClass.PROBLEM,
+        )
+
         self.setUpMultiSelect(
             [
                 {
@@ -93,6 +105,14 @@ class TestHysenHY08WE2Thermostat(
                         "in": "Internal",
                         "ext": "External",
                         "all": "Both",
+                    },
+                },
+                {
+                    "dps": UNIT_DPS,
+                    "name": "select_temperature_unit",
+                    "options": {
+                        False: "Celsius",
+                        True: "Fahrenheit",
                     },
                 },
             ],
@@ -178,6 +198,7 @@ class TestHysenHY08WE2Thermostat(
         )
         self.mark_secondary(
             [
+                "binary_sensor_fault",
                 "lock_child_lock",
                 "number_holiday_days",
                 "number_holiday_temperature",
@@ -188,9 +209,10 @@ class TestHysenHY08WE2Thermostat(
                 "number_low_temperature_protection",
                 "number_low_temperature_limit",
                 "number_high_temperature_limit",
-                "select_temperature_sensor",
                 "select_initial_state",
                 "select_schedule",
+                "select_temperature_sensor",
+                "select_temperature_unit",
             ],
         )
 
@@ -279,19 +301,27 @@ class TestHysenHY08WE2Thermostat(
             await self.subject.async_set_target_temperature(122.5)
 
     def test_extra_state_attributes(self):
-        self.dps[UNKNOWN12_DPS] = 12
-        self.dps[UNKNOWN101_DPS] = True
+        self.dps[ERROR_DPS] = 12
         self.dps[UNKNOWN106_DPS] = False
         self.dps[UNKNOWN107_DPS] = True
-        self.dps[UNKNOWN108_DPS] = False
+        self.dps[DISPLAY_DPS] = True
         self.assertDictEqual(
             self.subject.extra_state_attributes,
             {
-                "unknown_12": 12,
-                "unknown_101": True,
+                "fault_code": 12,
                 "unknown_106": False,
                 "unknown_107": True,
-                "unknown_108": False,
+                "temperature_display": "external",
+            },
+        )
+        self.dps[DISPLAY_DPS] = False
+        self.assertDictEqual(
+            self.subject.extra_state_attributes,
+            {
+                "fault_code": 12,
+                "unknown_106": False,
+                "unknown_107": True,
+                "temperature_display": "internal",
             },
         )
 

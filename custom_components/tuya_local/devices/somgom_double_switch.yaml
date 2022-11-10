@@ -1,0 +1,50 @@
+name: Somgoms double switch
+primary_entity:
+  entity: switch
+  name: Switch 1
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+secondary_entities:
+  - entity: switch
+    name: Switch 2
+    dps:
+      - id: 2
+        name: switch
+        type: boolean
+  - entity: number
+    name: Timer 1
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 7
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+        unit: min
+  - entity: number
+    name: Timer 2
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 8
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+        unit: min
+  - entity: light
+    name: Backlight
+    category: config
+    dps:
+      - id: 16
+        name: switch
+        type: boolean

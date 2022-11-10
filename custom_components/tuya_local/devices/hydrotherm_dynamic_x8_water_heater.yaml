@@ -1,0 +1,77 @@
+name: Hydrotherm DYNAMIC/X8
+primary_entity:
+  entity: water_heater
+  dps:
+    - id: 1
+      type: boolean
+      name: power
+      hidden: true
+      mapping:
+        - dps_val: false
+          value: "off"
+    - id: 2
+      type: integer
+      name: temperature
+      range:
+        min: 60
+        max: 70
+      readonly: true
+    - id: 3
+      type: integer
+      name: current_temperature
+    - id: 4
+      type: string
+      name: operation_mode
+      mapping:
+        - dps_val: ECO
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: eco
+        - dps_val: STANDARD
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+              value: "off"
+            - dps_val: true
+              value: heat_pump
+        - dps_val: HYBRID
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: high_demand
+        - dps_val: HYBRID1
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: performance
+        - dps_val: ELEMENT
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+            - dps_val: true
+              value: electric
+    - id: 21
+      type: bitfield
+      name: fault_code
+secondary_entities:
+  - entity: binary_sensor
+    class: problem
+    name: Fault
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true

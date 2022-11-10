@@ -15,9 +15,7 @@ from homeassistant.helpers.entity_registry import async_migrate_entries
 
 from .const import (
     CONF_DEVICE_ID,
-    CONF_LIGHT,
     CONF_LOCAL_KEY,
-    CONF_LOCK,
     CONF_TYPE,
     DOMAIN,
 )

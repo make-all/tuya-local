@@ -28,9 +28,9 @@ Further device support has been made with the assistance of users.  Please consi
  - [b3nnyk22](https://github.com/b3nnyk22) for assistance in supporting Kogan Dehumidifiers.
  - [rodrigoGA](https://github.com/rodrigoGA) for assistance in supporting Greenwind dehumidifiers.
  - [jorgenDK](https://github.com/jorgenDK) for assistance in supporting TroniTechnik Air Conditioner, and thanks for the coffee!
- - [Fannangir](https://github.com/Fannangir) for assistance in supporting Tadiran Wind Air Conditioner.
+ - [Fannangir](https://github.com/Fannangir) for assistance in supporting Tadiran Wind Air Conditioner, Zemismart curtain rail and Somgam 1, 2, 3 and 4 gang switches.
  - [marrold](https://github.com/marrold) for contributing support for ElectriQ CD20PRO dehumidifiers.
- - [Uaeguy](https://github.com/Uaeguy) for assistance in supporting Beca BHP-6000, Siswell T29UTK and Owon PCT513 thermostats, and thanks for the coffee!
+ - [Uaeguy](https://github.com/Uaeguy) for assistance in supporting Beca BHP-6000, Saswell T29UTK and Owon PCT513 thermostats, and thanks for the coffee!
  - [Johnnybyzhang](https://github.com/Johnnybyzhang) for assistance in supporting Lexy F501 fans.
  - [domgrimm](https://github.com/domgrimm) for assistance in supporting newer models of Kogan heater.
  - [EKCJ](https://github.com/EKCJ) for contributing support for ElectriQ DESD9LW dehumidifiers.
@@ -40,7 +40,7 @@ Further device support has been made with the assistance of users.  Please consi
  - [xbmcnut](https://github.com/xbmcnut) for assistance in supporting Kogan Smart Kettles and the new type of Kogan heater.
  - [ThomasADavis](https://github.com/ThomasADavis) for contributing support for Renpho RP-AP001S air purifiers.
  - [darek-margas](https://github.com/darek-margas) for contributing support for Arlec fans, Carson portable air conditioners, Grid Connect double outlets with and without USB and power monitoring, Mirabella Genio smartplugs.
- - [SamJongenelen](https://github.com/SamJongenelen) for assistance in supporting Siswell C16 Thermostats
+ - [SamJongenelen](https://github.com/SamJongenelen) for assistance in supporting Saswell C16 Thermostats
  - [antoweb](https://github.com/antoweb) for assistance in supporting Beca BHT-6000 thermostats.
  - [klausahrenberg](https://github.com/klausahrenberg) for figuring out the BHT-6000 and other thermostats' internal MCU protocol for his alternate MQQT firmware, which helped with finding some of the details.
  - [Swiftnesses](https://github.com/Swiftnesses) for contributing support for Electriq CD12PW dehumidifiers
@@ -88,7 +88,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [Utopia69](https://github.com/Utopia69) for providing additional info on his Fairland IPH45 heatpump (matching Madimack)
 - [Seopgroenten](https://github.com/Soepgronten) for assistance with W'eau pool heatpumps.
 - [choppedpork](https://github.com/choppedpork) for contributing support for QS Wifi curtain modules.
-- [Swiftnesses](https://github.com/Swiftnesses) for assistance with Devola patio heaters.
+- [Swiftnesses](https://github.com/Swiftnesses) for assistance with Devola patio heaters and Atomi string lights.
 - [odeBuXTeR](https://github.com/odeBuXTeR) for contributing support for Poolex Q-line pool heatpumps.
 - [peterforeman](https:github.com/peterforeman) for assistance with improving Fairland/Madimack support.
 - [Krispkiwi](https://github.com/Krispkiwi) for assistance with M027 curtain modules and debugging Kogan Kettle.
@@ -102,7 +102,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [pretoriano80](https://github.com/pretoriano80) for assistance supporting AlecoAir dehumidifiers.
 - [JanekSMC](https://github.com/JanekSMC) for assistance supporting Orion Smart Locks.
 - [RichardMawdsley](https://github.com/RichardMawdsley) for assistance supporting ElectriQ Airflex 15W heatpumps.
-- [fwelvering](https://github.com/fwelvering) for assistance supporting a second variant of W'eau pool heatpumps. 
+- [fwelvering](https://github.com/fwelvering) for assistance supporting a second variant of W'eau pool heatpumps.
 - [illuzn](https://github.com/illuzn) for contributing support for Kogan Tower Heaters and Arlec PB88UHA power strips.
 - [vnkorol](https://github.com/vnkorol) for assistance supporting 4-way power monitoring strip and Avatto roller blinds.
 - [OmegaKill](https://github.com/OmegaKill) for assistance supporting Be Cool heatpumps.
@@ -119,3 +119,10 @@ Further device support has been made with the assistance of users.  Please consi
 - [timlaing](https://github.com/timlaing) for contributing support for ElectriQ EcoSilent 14HPW air conditioners.
 - [Svellem](https://github.com/Svellem) for assisting with support for T5E-WF thermostats.
 - [Aptul9](https://github.com/Aptul9) for assisting with support for Sendo air conditioners.
+- [dilorenzo1987](https://github.com/dilorenzo1987) for contributing support for Stadler Form Roger purifiers.
+- [fsevilla3](https://github.com/fsevilla3) for contributing support for water_heater entities and Hydrotherm Dynamix/X8 water heaters.
+- [allistermaguire](https://github.com/allistermaguire) for contributing improvements to Saswell C16 thermostats.
+- [karnas99](https://github.com/karnas99) for assistance in improving Hysen thermostat support.
+- [cooperaj](https://github.com/cooperaj) for contributing support for ElectriQ CD12PRO-LE dehumidifiers.
+- [geroulas](https://github.com/geroulas) for assisting with support for Inventor Atmosphere XL dehumidifiers.
+- [and7ey](https://github.com/and7ey) for assisting with support for Screen sync smart lights.

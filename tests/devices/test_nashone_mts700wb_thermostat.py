@@ -139,15 +139,19 @@ class TestNashoneMTS700WBThermostat(
         ):
             await self.subject.async_set_hvac_mode(HVACMode.OFF)
 
-    def test_hvac_action(self):
-        self.dps[HVACMODE_DPS] = "hot"
-        self.dps[HVACACTION_DPS] = "manual"
-        self.assertEqual(self.subject.hvac_action, HVACAction.HEATING)
-        self.dps[HVACMODE_DPS] = "cold"
-        self.assertEqual(self.subject.hvac_action, HVACAction.COOLING)
+    # def test_hvac_action(self):
+    #     self.dps[HVACMODE_DPS] = "hot"
+    #     self.dps[HVACACTION_DPS] = "manual"
+    #     self.assertEqual(self.subject.hvac_action, HVACAction.HEATING)
+    #     self.dps[HVACMODE_DPS] = "cold"
+    #     self.assertEqual(self.subject.hvac_action, HVACAction.COOLING)
 
     def test_extra_state_attributes(self):
-        self.assertEqual(self.subject.extra_state_attributes, {})
+        self.dps[HVACACTION_DPS] = "manual"
+        self.assertEqual(
+            self.subject.extra_state_attributes,
+            {"work_state": "manual"},
+        )
 
     def test_icons(self):
         self.assertEqual(self.basicNumber.icon, "mdi:arrow-collapse-up")

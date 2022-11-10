@@ -609,7 +609,7 @@ SASWELL_C16_THERMOSTAT_PAYLOAD = {
     "10": True,
     "11": False,
     "12": "7",
-    "14": 0,
+    "14": "0",
     "15": 0,
     "17": 0,
     "21": False,
@@ -1495,4 +1495,12 @@ INKBIRD_SOUSVIDE_PAYLOAD = {
     "108": True,
     "109": 0,
     "110": 0,
+}
+
+HYDROTHERM_DYNAMICX8_PAYLOAD = {
+    "1": True,
+    "2": 65,
+    "3": 60,
+    "4": "STANDARD",
+    "21": 0,
 }

@@ -1,0 +1,168 @@
+name: Inventor Atomsphere XL dehumidifier
+primary_entity:
+  entity: humidifier
+  class: dehumidifier
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+      mapping:
+        - dps_val: false
+          icon: "mdi:air-humidifier-off"
+          icon_priority: 1
+        - dps_val: true
+          icon: "mdi:air-humidifier"
+          icon_priority: 3
+    - id: 3
+      type: integer
+      name: humidity
+      range:
+        min: 40
+        max: 50
+      mapping:
+        - step: 10
+    - id: 5
+      type: string
+      name: mode
+      mapping:
+        - dps_val: drying
+          value: Dehumidify
+        - dps_val: night
+          value: Sleep
+    - id: 19
+      type: bitfield
+      name: error_code
+# The following do not have descriptions in iot.tuya.com, the names
+# though can be obtained from the debugger.  But functionality needs
+# to be confirmed before making them separate entities
+    - id: 105
+      type: string
+      name: air_purifier
+    - id: 106
+      type: integer
+      name: hi
+    - id: 107
+      type: integer
+      name: lo
+    - id: 108
+      type: string
+      name: air_quality
+    - id: 110
+      type: string
+      name: operation
+    - id: 111
+      type: string
+      name: light
+    - id: 112
+      type: string
+      name: fan_speed_purifier
+secondary_entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 4
+        name: speed
+        type: string
+        mapping:
+          - dps_val: low
+            value: 50
+          - dps_val: high
+            value: 100
+      - id: 8
+        name: oscillate
+        type: boolean
+  - entity: sensor
+    class: humidity
+    name: Room humidity
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: temperature
+    name: Room temperature
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: switch
+    category: config
+    name: Ionizer
+    icon: "mdi:creation"
+    dps:
+      - id: 10
+        name: switch
+        type: boolean
+  - entity: switch
+    category: config
+    name: UV sterilization
+    icon: "mdi:solar-power"
+    dps:
+      - id: 13
+        name: switch
+        type: boolean
+  - entity: sensor
+    class: pm25
+    name: PM2.5
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        unit: ugm3
+  - entity: lock
+    name: Child lock
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: lock
+        mapping:
+          - dps_val: true
+            icon: "mdi:hand-back-right-off"
+          - dps_val: false
+            icon: "mdi:hand-back-right"
+  - entity: select
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 17
+        type: string
+        name: option
+        mapping:
+          - dps_val: "None"
+            value: "Off"
+          - dps_val: 1h
+            value: 1 hour
+          - dps_val: 2h
+            value: 2 hours
+          - dps_val: 3h
+            value: 3 hours
+  - entity: sensor
+    name: Timer
+    category: diagnostic
+    icon: "mdi:timer"
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: min
+  - entity: binary_sensor
+    class: problem
+    name: Error
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+    
