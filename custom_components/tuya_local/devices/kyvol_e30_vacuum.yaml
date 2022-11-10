@@ -90,11 +90,6 @@ primary_entity:
       name: clean_record
       readonly: true
       optional: true
-    - id: 16
-      type: integer
-      name: clean_area
-      unit: m2
-      optional: true
     - id: 18
       type: bitfield
       name: error
@@ -135,6 +130,17 @@ secondary_entities:
         type: integer
         name: sensor
         unit: min
+  - entity: sensor
+    name: Clean area
+    category: diagnostic
+    icon: "mdi:floor-plan"
+    dps:
+      - id: 16
+        type: integer
+        name: sensor
+        unit: m2  
+        mapping:
+          - scale: 10
   - entity: switch
     name: Edge brush reset
     category: config
