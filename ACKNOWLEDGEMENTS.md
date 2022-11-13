@@ -126,3 +126,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [cooperaj](https://github.com/cooperaj) for contributing support for ElectriQ CD12PRO-LE dehumidifiers.
 - [geroulas](https://github.com/geroulas) for assisting with support for Inventor Atmosphere XL dehumidifiers.
 - [and7ey](https://github.com/and7ey) for assisting with support for Screen sync smart lights.
+- [dragosmd](https://github.com/dragosmd) and [RomchikL](https://github.com/RomchikL) for assisting with support for more dual switches.

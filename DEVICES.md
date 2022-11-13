@@ -147,6 +147,8 @@
   _confirmed working with CBE smartplugs_
 - Generic smartplug with some additional encoded schedule info.
   _confirmed working as a simple switch and timer with Kashimura KJ-173_
+- Generic double switch with timers (confirmed with Living dual switch)
+- Generic triple and quad switches (confirmed with Songam wall switches)
 - Mirabella Genio smartplug with USB
 - Grid Connect double outlet with Energy Monitoring, Master and Individual switches and Child Lock.
 - DIGOO DG-SP202 dual smartplug with energy monitoring and timers.
