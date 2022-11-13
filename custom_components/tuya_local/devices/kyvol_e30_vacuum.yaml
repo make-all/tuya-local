@@ -110,16 +110,16 @@ primary_entity:
           value: collision
     - id: 101
       type: string
-      name: WaterStatus
+      name: water_status
     - id: 102
       type: string
-      name: RobotModel
+      name: model
     - id: 104
       type: string
-      name: Mode
+      name: mode
     - id: 107
       type: integer
-      name: CarpetAdaptive
+      name: carpet_adaptive
 secondary_entities:
   - entity: sensor
     name: Clean time
@@ -138,7 +138,7 @@ secondary_entities:
       - id: 16
         type: integer
         name: sensor
-        unit: m2  
+        unit: m2
         mapping:
           - scale: 10
   - entity: switch

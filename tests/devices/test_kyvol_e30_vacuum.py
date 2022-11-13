@@ -6,6 +6,7 @@ from homeassistant.components.vacuum import (
     VacuumEntityFeature,
 )
 from homeassistant.const import (
+    AREA_SQUARE_METERS,
     TIME_MINUTES,
     PERCENTAGE,
 )
@@ -30,12 +31,13 @@ RSTROLL_DPS = "11"
 RSTFILTER_DPS = "12"
 LOCATE_DPS = "13"
 FAN_DPS = "14"
+AREA_DPS = "16"
 TIME_DPS = "17"
 ERROR_DPS = "18"
-UNKNOWN101_DPS = "101"
-UNKNOWN102_DPS = "102"
-UNKNOWN104_DPS = "104"
-UNKNOWN106_DPS = "107"
+WATER_DPS = "101"
+MODEL_DPS = "102"
+MODE_DPS = "104"
+CARPET_DPS = "107"
 
 
 class TestKyvolE30Vacuum(MultiSensorTests, MultiSwitchTests, TuyaDeviceTestCase):
@@ -46,6 +48,12 @@ class TestKyvolE30Vacuum(MultiSensorTests, MultiSwitchTests, TuyaDeviceTestCase)
         self.subject = self.entities.get("vacuum")
         self.setUpMultiSensors(
             [
+                {
+                    "dps": AREA_DPS,
+                    "name": "sensor_clean_area",
+                    "unit": AREA_SQUARE_METERS,
+                    "testdata": (30, 3.0),
+                },
                 {
                     "dps": TIME_DPS,
                     "name": "sensor_clean_time",
@@ -90,6 +98,7 @@ class TestKyvolE30Vacuum(MultiSensorTests, MultiSwitchTests, TuyaDeviceTestCase)
         )
         self.mark_secondary(
             [
+                "sensor_clean_area",
                 "sensor_clean_time",
                 "sensor_edge_brush",
                 "sensor_roll_brush",
