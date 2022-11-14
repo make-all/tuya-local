@@ -127,3 +127,6 @@ Further device support has been made with the assistance of users.  Please consi
 - [geroulas](https://github.com/geroulas) for assisting with support for Inventor Atmosphere XL dehumidifiers.
 - [and7ey](https://github.com/and7ey) for assisting with support for Screen sync smart lights.
 - [dragosmd](https://github.com/dragosmd) and [RomchikL](https://github.com/RomchikL) for assisting with support for more dual switches.
+- [patrik-malina](https://github.com/patrik-malina) for contributing improvements to Kyvol vacuums.
+- [cr4shydlo](https://github.com/cr4shydlo) for assistance supporting Rotenso Roni heat pumps.
+- [mojiro](https://github.com/mojiro) for contributing support for ETOP-HT thermostats.

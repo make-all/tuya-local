@@ -33,6 +33,7 @@
 - TroniTechnik Hellnar Klimagerät
 - Be Cool BC14KL2101F
 - Sendo air conditioner
+- Rotenso Roni R35WI
 
 ### Pool heaters / heatpumps
 
@@ -76,6 +77,7 @@
 - Moes MS-103 temperature and humidity switch (partial functions, temperature only)
 - Beok TGR81 thermostat
 - T5E-WF thermostat
+- ETOP-HT thermostat
 
 ### Fans
 
