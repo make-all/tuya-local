@@ -69,10 +69,12 @@ If you submit a pull request, please understand that the config file naming and 
 
 Installation is via the [Home Assistant Community Store
 (HACS)](https://hacs.xyz/), which is the best place to get third-party
-integrations for Home Assistant. Once you have HACS set up, simply
+integrations for Home Assistant. Once you have HACS set up, simply click the button bellow or 
 follow the [instructions for adding a custom
 repository](https://hacs.xyz/docs/faq/custom_repositories) and then
 the integration will be available to install like any other.
+
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=make-all&repository=tuya-local&category=integration)
 
 ## Configuration
 
