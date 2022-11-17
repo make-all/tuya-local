@@ -73,12 +73,6 @@ primary_entity:
     - id: 105
       type: string
       name: air_purifier
-    - id: 106
-      type: integer
-      name: hi
-    - id: 107
-      type: integer
-      name: lo
 secondary_entities:
   - entity: fan
     dps:
@@ -90,13 +84,7 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: low
-            value: 33
-            constraint: dehumid_mode
-            conditions:
-              - dps_val: air_purifier
-                value_redirect: fan_speed_purifier
-          - dps_val: middle
-            value: 66
+            value: 50
             constraint: dehumid_mode
             conditions:
               - dps_val: air_purifier
@@ -218,11 +206,88 @@ secondary_entities:
         name: sensor
         unit: min
   - entity: binary_sensor
-    class: problem
-    name: Error
+    class: cold
+    name: Defrost
     category: diagnostic
     dps:
       - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 32
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    name: Tank full or missing
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 64
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    name: Error
+    category: diagnostic
+    # Several errors are bundled here since they are actual faults and the
+    # recommended action is turn off for 10 minutes for all and get it serviced
+    # if the error persists.
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          # C1: Defrost sensor error
+          - dps_val: 1
+            value: true
+          # C1: Humidity/temperature sensor failure
+          - dps_val: 2
+            value: true
+          # C2: Possible refridgerant leakage (sensor temps too close)
+          - dps_val: 4
+            value: true
+          # 000: not described
+          - dps_val: 8
+            value: true
+          # 999: not described
+          - dps_val: 16
+            value: true
+          # no error / P1/P2/Replace_Hepa (covered by individual sensors)
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    name: HEPA filter replacement
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 128
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    name: High humidity
+    category: diagnostic
+    dps:
+      - id: 106
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: binary_sensor
+    class: problem
+    name: Low humidity
+    category: diagnostic
+    dps:
+      - id: 107
         type: bitfield
         name: sensor
         mapping:
