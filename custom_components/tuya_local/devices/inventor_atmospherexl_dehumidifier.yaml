@@ -14,13 +14,21 @@ primary_entity:
           icon: "mdi:air-humidifier"
           icon_priority: 3
     - id: 3
-      type: integer
+      type: string
       name: humidity
       range:
         min: 40
         max: 50
       mapping:
-        - step: 10
+        - dps_val: "CO"
+          value: 30
+          step: 10
+        - dps_val: "40"
+          value: 40
+          step: 10
+        - dps_val: "50"
+          value: 50
+          step: 10
     - id: 5
       type: string
       name: mode
@@ -29,6 +37,8 @@ primary_entity:
           value: Dehumidify
         - dps_val: night
           value: Sleep
+        - dps_val: manual
+          value: Manual
     - id: 19
       type: bitfield
       name: error_code
