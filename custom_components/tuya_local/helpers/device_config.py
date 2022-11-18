@@ -705,7 +705,7 @@ class TuyaDpsConfig:
                 )
 
         r = self.range(device, scaled=False)
-        if r:
+        if r and isinstance(result, (int, float)):
             minimum = r["min"]
             maximum = r["max"]
             if result < minimum or result > maximum:
