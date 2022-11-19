@@ -49,9 +49,7 @@ primary_entity:
               value: heat
             - dps_val: false
               value_redirect: power
-
 secondary_entities:
-
   - entity: lock
     name: Child lock
     category: config
@@ -64,7 +62,6 @@ secondary_entities:
             icon: "mdi:hand-back-right-off"
           - dps_val: false
             icon: "mdi:hand-back-right"
-
   - entity: switch 
     name: Sound
     icon: "mdi:music-note"
@@ -73,7 +70,6 @@ secondary_entities:
       - id: 13
         type: boolean
         name: switch
-
   - entity: number
     name: Calibration offset
     category: config
@@ -88,7 +84,6 @@ secondary_entities:
           max: 90
         mapping:
           - scale: 10
-
   - entity: number
     name: High temperature limit
     category: config
@@ -101,7 +96,6 @@ secondary_entities:
         range:
           min: 15
           max: 95
-
   - entity: select
     name: Sensor selection
     category: config
@@ -119,7 +113,6 @@ secondary_entities:
           - dps_val: 3
             icon: "mdi:thermometer"
             value: Both
-
   - entity: switch
     name: Anti-frost
     icon: "mdi:snowflake-melt"
@@ -128,7 +121,6 @@ secondary_entities:
       - id: 26
         type: boolean
         name: switch
-
   - entity: select
     name: Backlight brightness
     category: config
@@ -149,7 +141,6 @@ secondary_entities:
           - dps_val: 3
             icon: "mdi:lightbulb-on"
             value: High
-
   - entity: select
     name: Schedule
     category: config
@@ -165,7 +156,6 @@ secondary_entities:
             value: "Mon-Sat+Sun"
           - dps_val: 3
             value: "Daily"	 
-
   - entity: switch
     name: Output main reverse
     icon: "mdi:swap-horizontal"
@@ -174,7 +164,6 @@ secondary_entities:
       - id: 101
         type: boolean
         name: switch
-
   - entity: number
     name: Temperature control switch difference
     category: config
@@ -189,7 +178,6 @@ secondary_entities:
           max: 95
         mapping:
           - scale: 10
-
   - entity: number
     name: External Sensor temperature limit
     category: config
