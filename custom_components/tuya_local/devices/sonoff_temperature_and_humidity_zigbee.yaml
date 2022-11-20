@@ -1,0 +1,30 @@
+name: Sonoff temperature and humidity sensor
+primary_entity:
+  entity: sensor
+  name: Temperature
+  class: temperature
+  dps:
+    - id: 103
+      name: sensor
+      type: integer
+      class: measurement
+      unit: C
+secondary_entities:
+  - entity: sensor
+    name: Humidity
+    class: humidity
+    dps:
+      - id: 101
+        name: sensor
+        type: integer
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Battery
+    class: battery
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        readonly: true
+        unit: "%"
