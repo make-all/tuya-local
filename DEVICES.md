@@ -78,6 +78,7 @@
 - Beok TGR81 thermostat
 - T5E-WF thermostat
 - ETOP-HT thermostat
+- ME80 touchscreen thermostat
 
 ### Fans
 

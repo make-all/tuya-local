@@ -1,0 +1,299 @@
+name: ME80 thermostat
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: true
+          value: heat
+        - dps_val: false
+          value: "off"
+    - id: 2
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: auto
+          value: Auto
+        - dps_val: manual
+          value: Manual
+    - id: 16
+      type: integer
+      name: temperature
+      range:
+        min: 5
+        max: 99
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: target_temp_f
+              range:
+                min: 32
+                max: 210
+    - id: 17
+      type: integer
+      name: target_temp_f
+      range:
+        min: 32
+        max: 210
+      hidden: true
+      optional: true
+    - id: 18
+      type: integer
+      name: max_temp_f
+      hidden: true
+      optional: true
+    - id: 19
+      type: integer
+      name: max_temperature
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: max_temp_f
+    - id: 20
+      type: integer
+      name: min_temp_f
+      hidden: true
+      optional: true
+    - id: 23
+      type: string
+      name: temperature_unit
+      mapping:
+        - dps_val: c
+          value: C
+        - dps_val: f
+          value: F
+    - id: 24
+      type: integer
+      name: current_temperature
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: current_temp_f
+    - id: 26
+      type: integer
+      name: min_temperature
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: min_temp_f
+    - id: 29
+      type: integer
+      name: current_temp_f
+      hidden: true
+      optional: true
+    - id: 36
+      type: string
+      name: hvac_action
+      mapping:
+        - dps_val: close
+          value: idle
+          constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+        - dps_val: open
+          value: heating
+          constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+    # 39 = factory reset (boolean but seems write only)
+    - id: 45
+      type: bitfield
+      name: fault_code
+    - id: 104
+      type: string
+      name: program
+secondary_entities:
+  - entity: number
+    name: Maximum Temperature
+    category: config
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 18
+        type: integer
+        name: max_temp_f
+        range:
+          min: 86
+          max: 203
+        hidden: true
+        optional: true
+      - id: 19
+        type: integer
+        name: value
+        range:
+          min: 30
+          max: 95
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: max_temp_f
+                range:
+                  min: 86
+                  max: 203
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+  - entity: number
+    name: Minimum temperature
+    category: config
+    icon: "mdi:thermometer-chevron-down"
+    dps:
+      - id: 20
+        type: integer
+        name: min_temp_f
+        hidden: true
+        optional: true
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 26
+        type: integer
+        name: value
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: min_temp_f
+  - entity: select
+    name: Temperature unit
+    category: config
+    icon: "mdi:temperature-celsius"
+    dps:
+      - id: 23
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: Celsius
+          - dps_val: f
+            value: Fahrenheit
+  - entity: number
+    name: Temperature calibration
+    category: config
+    icon: "mdi:format-vertical-align-center"
+    dps:
+      - id: 27
+        type:  integer
+        name: value
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_calib_f
+      - id: 23
+        type: string
+        name: temperature_unit
+        hidden: true
+      - id: 105
+        type: integer
+        name: temp_calib_f
+        hidden: true
+        optional: true
+  - entity: lock
+    name: Child lock
+    category: config
+    icon: "mdi:hand-back-right-off"
+    dps:
+      - id: 40
+        type: boolean
+        name: lock
+  - entity: select
+    name: Sensor
+    category: config
+    icon: "mdi:home-thermometer"
+    dps:
+      - id: 43
+        type: string
+        name: option
+        mapping:
+          - dps_val: in
+            value: Internal
+          - dps_val: out
+            value: External
+  - entity: binary_sensor
+    name: Fault
+    category: diagnostic
+    class: problem
+    dps:
+      - id: 45
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: sensor
+    name: Floor temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: floor_temp_f
+      - id: 102
+        type: integer
+        name: floor_temp_f
+        hidden: true
+        optional: true
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+  - entity: switch
+    name: Anti-frost
+    category: config
+    icon: "mdi:snowflake"
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: number
+    name: Temperature difference start
+    category: config
+    icon: "mdi:arrow-collapse-vertical"
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_diff_start_f
+      - id: 107
+        type: integer
+        name: temp_diff_start_f
+        hidden: true
+        optional: true
+      - id: 23
+        type: string
+        name: temperature_unit
+        hidden: true
+
