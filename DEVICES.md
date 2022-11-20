@@ -79,6 +79,7 @@
 - T5E-WF thermostat
 - ETOP-HT thermostat
 - ME80 touchscreen thermostat
+- Avatto WT100 thermostat
 
 ### Fans
 

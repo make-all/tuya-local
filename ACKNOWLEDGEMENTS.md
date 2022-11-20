@@ -131,3 +131,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [cr4shydlo](https://github.com/cr4shydlo) for assistance supporting Rotenso Roni heat pumps.
 - [mojiro](https://github.com/mojiro) for contributing support for ETOP-HT thermostats.
 - [griszamen](https://github.com/griszamen) for assistance supporting ME80 thermostats.
+- [Tommy032017](https://github.com/Tommy032017) for assistance supporting Avatto WT100 thermostats.
