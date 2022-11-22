@@ -132,3 +132,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [mojiro](https://github.com/mojiro) for contributing support for ETOP-HT thermostats.
 - [griszamen](https://github.com/griszamen) for assistance supporting ME80 thermostats.
 - [Tommy032017](https://github.com/Tommy032017) for assistance supporting Avatto WT100 thermostats.
+- [kekkutya](https://github.com/kekkutya) for contributing support for Beok TOL47 thermostats.
