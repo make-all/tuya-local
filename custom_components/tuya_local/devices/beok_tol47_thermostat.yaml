@@ -4,17 +4,21 @@ primary_entity:
   dps:
     - id: 1
       type: boolean
-      name: power
+      name: hvac_mode
       mapping:
         - dps_val: false
           value: "off"
-      hidden: true
+        - dps_val: true
+          value: heat
     - id: 2
       type: integer
       name: temperature
       mapping:
         - scale: 10
           step: 5
+      range:
+        min: 50
+        max: 950
     - id: 3
       type: integer
       name: current_temperature
@@ -32,23 +36,25 @@ primary_entity:
           value: Temporary program mode
     - id: 5
       type: string
-      name: hvac_mode
+      name: hvac_action
       mapping:
         - dps_val: "0"
           constraint: power
           conditions:
             - dps_val: true
-              value: auto
+              value: idle
             - dps_val: false
-              value_redirect: power
               value: "off"
         - dps_val: "1"
           constraint: power
           conditions:
             - dps_val: true
-              value: heat
+              value: heating
             - dps_val: false
-              value_redirect: power
+              value: "off"
+    - id: 21
+      type: integer
+      name: max_temperature
 secondary_entities:
   - entity: lock
     name: Child lock
