@@ -29,16 +29,17 @@ primary_entity:
       name: preset_mode
       mapping:
         - dps_val: "cold"
-          value: Manual mode
+          value: Manual
         - dps_val: "hot"
-          value: Program mode
+          value: Program
         - dps_val: "wind"
-          value: Temporary program mode
+          value: Temporary
     - id: 5
       type: string
       name: hvac_action
       mapping:
         - dps_val: "0"
+          icon: "mdi:radiator-disabled"
           constraint: power
           conditions:
             - dps_val: true
@@ -46,12 +47,8 @@ primary_entity:
             - dps_val: false
               value: "off"
         - dps_val: "1"
-          constraint: power
-          conditions:
-            - dps_val: true
-              value: heating
-            - dps_val: false
-              value: "off"
+          value: heating
+          icon: "mdi:radiator"
     - id: 21
       type: integer
       name: max_temperature
