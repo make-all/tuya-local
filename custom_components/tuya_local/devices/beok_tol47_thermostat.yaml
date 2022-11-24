@@ -9,7 +9,14 @@ primary_entity:
         - dps_val: false
           value: "off"
         - dps_val: true
-          value: heat
+          constraint: preset_mode
+          conditions:
+            - dps_val: cold
+              value: heat
+            - dps_val: hot
+              value: auto
+            - dps_val: wind
+              value: auto
     - id: 2
       type: integer
       name: temperature
@@ -28,30 +35,28 @@ primary_entity:
       type: string
       name: preset_mode
       mapping:
-        - dps_val: "cold"
+        - dps_val: cold
           value: Manual
-        - dps_val: "hot"
+        - dps_val: hot
           value: Program
-        - dps_val: "wind"
+        - dps_val: wind
           value: Temporary
     - id: 5
       type: string
       name: hvac_action
       mapping:
-        - dps_val: "0"
-          icon: "mdi:radiator-disabled"
-          constraint: power
+        - dps_val: 0
+          constraint: hvac_mode
           conditions:
             - dps_val: true
               value: idle
+              icon: "mdi:radiator-disabled"
             - dps_val: false
               value: "off"
-        - dps_val: "1"
+              icon: "mdi:radiator-off"
+        - dps_val: 1
           value: heating
           icon: "mdi:radiator"
-    - id: 21
-      type: integer
-      name: max_temperature
 secondary_entities:
   - entity: lock
     name: Child lock
@@ -67,8 +72,8 @@ secondary_entities:
             icon: "mdi:hand-back-right"
   - entity: switch 
     name: Sound
-    icon: "mdi:music-note"
     category: config
+    icon: "mdi:music-note"
     dps:
       - id: 13
         type: boolean
@@ -76,6 +81,7 @@ secondary_entities:
   - entity: binary_sensor
     name: Fault alarm
     category: diagnostic
+    icon: "mdi:alert"
     class: problem
     dps:
       - id: 16
@@ -130,8 +136,8 @@ secondary_entities:
             value: Both
   - entity: switch
     name: Anti-frost
-    icon: "mdi:snowflake-melt"
     category: config
+    icon: "mdi:snowflake-melt"
     dps:
       - id: 26
         type: boolean
@@ -173,8 +179,8 @@ secondary_entities:
             value: "Daily"	 
   - entity: switch
     name: Output main reverse
-    icon: "mdi:swap-horizontal"
     category: config
+    icon: "mdi:swap-horizontal"   
     dps:
       - id: 101
         type: boolean
