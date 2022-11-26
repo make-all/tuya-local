@@ -138,3 +138,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [presslab-us](https://github.com/presslab-us) for assistance supporting Daizuki heatpumps and improving the almost compatible Starlink heatpump.
 - [filipole](https://github.com/filipole) for assistance supporting Aubess switch with energy monitoring.
 - [catdogmaus](https://github.com/catdogmaus) for assistance supporting Ryra TYTE-D1 thermostats.
+- [Kulturnilpferd](https://github.com/Kulturnilpferd) for contributing support for Hosome air purifiers.
