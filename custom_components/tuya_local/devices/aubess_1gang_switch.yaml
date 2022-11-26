@@ -1,0 +1,93 @@
+name: Aubess energy monitor switch
+primary_entity:
+  entity: switch
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 24
+      name: test_bit
+      type: integer
+    - id: 42
+      name: random_time
+      type: string
+    - id: 43
+      name: cycle_time
+      type: string
+    - id: 44
+      name: switch_inching
+      type: string
+secondary_entities:
+  - entity: number
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 9
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: select
+    name: Restore power state
+    category: config
+    icon: "mdi:toggle-switch"
+    dps:
+      - id: 38
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: "On"
+          - dps_val: "2"
+            value: Remember last state
+  - entity: sensor
+    name: Energy
+    category: diagnostic
+    class: energy
+    dps:
+      - id: 20
+        name: sensor
+        type: integer
+        class: total_increasing
+        unit: Wh
+  - entity: sensor
+    name: Current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 21
+        name: sensor
+        type: integer
+        class: measurement
+        unit: mA
+  - entity: sensor
+    name: Power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 22
+        name: sensor
+        type: integer
+        class: measurement
+        unit: W
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 23
+        name: sensor
+        type: integer
+        class: measurement
+        unit: V
+        mapping:
+          - scale: 10
