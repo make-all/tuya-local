@@ -27,9 +27,6 @@ primary_entity:
           value: 67
         - dps_val: "3"
           value: 100
-    - id: 7
-      type: boolean
-      name: unknown_7
     - id: 22
       type: string
       name: unknown_22
@@ -43,8 +40,6 @@ secondary_entities:
         name: sensor
         class: measurement
         unit: ugm3
-        mapping:
-          - scale: 10
   - entity: sensor
     name: Filter
     category: diagnostic
@@ -54,3 +49,12 @@ secondary_entities:
         type: integer
         name: sensor
         unit: "%"
+  - entity: lock
+    name: Child lock
+    category: config
+    icon: "mdi:hand-back-right-off"
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+
