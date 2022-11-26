@@ -178,7 +178,7 @@ Other brands may work with the above configurations
 
 ### Lights
 
-- Generic RGBCW/RGBWW lightbulb (confirmed with Lijun branded bulb, expected to match others also)
+- Generic RGBCW/RGBWW lightbulb (confirmed with Lijun branded bulb, expected to match others also). Two versions - with and without scene/music modes and timer.
 - Atomi smart color string light
 - Screen sync smart light 2.0
 
