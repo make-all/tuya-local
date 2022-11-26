@@ -99,9 +99,6 @@ primary_entity:
           value: High
         - dps_val: strong
           value: Strong
-    - id: 18
-      name: unknown_18
-      type: integer
     - id: 20
       name: unknown_20
       type: integer
@@ -184,6 +181,15 @@ primary_entity:
       name: unknown_134
       type: json
 secondary_entities:
+  - entity: sensor
+    name: Current humidity
+    category: diagnostic
+    class: humidity
+    dps:
+      - id: 18
+        name: sensor
+        type: integer
+        unit: "%"
   - entity: select
     name: Vertical swing
     category: config

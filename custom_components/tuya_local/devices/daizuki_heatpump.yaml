@@ -1,0 +1,227 @@
+name: Daizuki Heatpump (F)
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: cold
+              value: cool
+            - dps_val: hot
+              value: heat
+            - dps_val: wet
+              value: dry
+            - dps_val: wind
+              value: fan_only
+            - dps_val: auto
+              value: heat_cool
+    - id: 2
+      type: integer
+      name: temperature
+      range:
+        min: 610
+        max: 880
+      mapping:
+        - scale: 10
+          step: 10
+      unit: F
+    - id: 4
+      type: string
+      name: mode
+      type: hidden
+    - id: 5
+      type: string
+      name: fan_mode
+      mapping:
+        - dps_val: auto
+          value: Auto
+        - dps_val: mute
+          value: Mute
+        - dps_val: low
+          value: Low
+        - dps_val: mid_low
+          value: Med-low
+        - dps_val: mid
+          value: Medium
+        - dps_val: mid_high
+          value: Med-high
+        - dps_val: high
+          value: High
+        - dps_val: strong
+          value: Strong
+    - id: 20
+      type: integer
+      name: unknown_20
+    - id: 101
+      type: integer
+      name: unknown_101
+    - id: 105
+      type: string
+      name: sleep_mode
+    - id: 110
+      type: bitfield
+      name: flags
+    - id: 113
+      type: string
+      name: swing_mode
+      mapping:
+        - dps_val: "0"
+          constraint: horizontal_swing
+          conditions:
+            - dps_val: "0"
+              value: "off"
+            - dps_val: "1"
+              value: horizontal
+            - value: horizontal
+        - dps_val: "1"
+          constraint: horizontal_swing
+          conditions:
+            - dps_val: "0"
+              value: vertical
+            - dps_val: "1"
+              value: both
+            - value: both
+        - constraint: horizontal_swing
+          conditions:
+            - dps_val: "0"
+              value: vertical
+            - value: both
+    - id: 114
+      type: string
+      name: horizontal_swing
+      hidden: true
+    - id: 119
+      type: string
+      name: unknown_119
+    - id: 120
+      type: string
+      name: unknown_120
+    - id: 123
+      type: string
+      name: flags_2
+    - id: 125
+      type: string
+    - id: 128
+      type: string
+      name: unknown_128
+    - id: 129
+      type: string
+      name: unknown_129
+    - id: 130
+      type: integer
+      name: maybe_eco_temp
+    - id: 131
+      type: boolean
+      name: unknown_131
+    - id: 132
+      type: boolean
+      name: unknown_132
+    - id: 133
+      type: string
+      name: unknown_133
+    - id: 134
+      type: json
+      name: unknown_134
+secondary_entities:
+  - entity: sensor
+    class: temperature
+    name: Current temperature
+    dps:
+      - id: 3
+        name: sensor
+        type: integer
+        unit: C
+        class: measurement
+  - entity: sensor
+    class: humidity
+    name: Current humidity
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: select
+    name: Vertical swing
+    category: config
+    icon: "mdi:arrow-up-down-bold"
+    dps:
+      - id: 113
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: Full
+          - dps_val: "2"
+            value: Upper
+          - dps_val: "3"
+            value: Lower
+  - entity: select
+    name: Vertical position
+    category: config
+    icon: "mdi:unfold-more-horizontal"
+    dps:
+      - id: 126
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Unknown
+          - dps_val: "1"
+            value: Top
+          - dps_val: "2"
+            value: Slightly up
+          - dps_val: "3"
+            value: Middle
+          - dps_val: "4"
+            value: Slightly down
+          - dps_val: "5"
+            value: Bottom
+  - entity: select
+    name: Horizontal swing
+    category: config
+    icon: "mdi:arrow-left-right-bold"
+    dps:
+      - id: 114
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: Full
+          - dps_val: "2"
+            value: Left
+          - dps_val: "3"
+            value: Center
+          - dps_val: "4"
+            value: Right
+  - entity: select
+    name: Horizontal position
+    category: config
+    icon: "mdi:unfold-more-vertical"
+    dps:
+      - id: 127
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Unknown
+          - dps_val: "1"
+            value: Leftmost
+          - dps_val: "2"
+            value: Slight Left
+          - dps_val: "3"
+            value: Center
+          - dps_val: "4"
+            value: Slight Right
+          - dps_val: "5"
+            value: Rightmost

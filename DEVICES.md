@@ -22,6 +22,7 @@
 
 - Be Cool BC14KL2101F
 - Carson CB PA280
+- Daizuki heat pump
 - Eberg Cooly C35HD
 - Eberg Qubo Q40HD
 - ElectriQ 12WMINV
@@ -214,3 +215,4 @@ Other brands may work with the above configurations
 - Qoto 03 smart water valve / sprinkler controller
 - SD123 HPR01 human presence radar
 - Universal remote control (supports sensors only)
+- Catit pet feeder (experimental)
