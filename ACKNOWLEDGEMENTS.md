@@ -137,3 +137,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [sindrebroch](https://github.com/sindrebroch) for assistance supporting Catit pet feeder.
 - [presslab-us](https://github.com/presslab-us) for assistance supporting Daizuki heatpumps and improving the almost compatible Starlink heatpump.
 - [filipole](https://github.com/filipole) for assistance supporting Aubess switch with energy monitoring.
+- [catdogmaus](https://github.com/catdogmaus) for assistance supporting Ryra TYTE-D1 thermostats.

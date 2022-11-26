@@ -79,6 +79,7 @@
 - Moes MS-103 temperature and humidity switch (partial functions, temperature only)
 - Nashone MTS-700-WB thermostat smartplug
 - Owon PCT513 thermostat
+- RYRA TYTE-D1 thermostat with energy monitoring
 - Saswell C16 thermostat _(rebadged as Warmme, Klima and others)_
 - Saswell T29UTW thermostat
 - T5E-WF thermostat
