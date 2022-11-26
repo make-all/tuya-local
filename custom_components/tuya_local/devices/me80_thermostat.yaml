@@ -23,21 +23,21 @@ primary_entity:
       name: temperature
       range:
         min: 5
-        max: 99
+        max: 95
       mapping:
         - constraint: temperature_unit
           conditions:
             - dps_val: f
               value_redirect: target_temp_f
               range:
-                min: 32
-                max: 210
+                min: 41
+                max: 203
     - id: 17
       type: integer
       name: target_temp_f
       range:
-        min: 32
-        max: 210
+        min: 41
+        max: 203
       hidden: true
       optional: true
     - id: 18
@@ -154,6 +154,9 @@ secondary_entities:
       - id: 20
         type: integer
         name: min_temp_f
+        range:
+          min: 41
+          max: 68
         hidden: true
         optional: true
       - id: 23
@@ -167,11 +170,17 @@ secondary_entities:
       - id: 26
         type: integer
         name: value
+        range:
+          min: 5
+          max: 20
         mapping:
           - constraint: unit
             conditions:
               - dps_val: f
                 value_redirect: min_temp_f
+                range:
+                  min: 41
+                  max: 68
   - entity: select
     name: Temperature unit
     category: config
@@ -193,11 +202,17 @@ secondary_entities:
       - id: 27
         type:  integer
         name: value
+        range:
+          min: -9
+          max: 9
         mapping:
           - constraint: temperature_unit
             conditions:
               - dps_val: f
                 value_redirect: temp_calib_f
+                range:
+                  min: -16
+                  max: 16
       - id: 23
         type: string
         name: temperature_unit
@@ -207,6 +222,9 @@ secondary_entities:
         name: temp_calib_f
         hidden: true
         optional: true
+        range:
+          min: -16
+          max: 16
   - entity: lock
     name: Child lock
     category: config
@@ -228,6 +246,8 @@ secondary_entities:
             value: Internal
           - dps_val: out
             value: External
+          - dps_val: both
+            value: Both
   - entity: binary_sensor
     name: Fault
     category: diagnostic
@@ -282,16 +302,25 @@ secondary_entities:
       - id: 106
         type: integer
         name: value
+        range:
+          min: 1
+          max: 5
         mapping:
           - constraint: temperature_unit
             conditions:
               - dps_val: f
                 value_redirect: temp_diff_start_f
+                range:
+                  min: 1
+                  max: 9
       - id: 107
         type: integer
         name: temp_diff_start_f
         hidden: true
         optional: true
+        range:
+          min: 1
+          max: 9
       - id: 23
         type: string
         name: temperature_unit
