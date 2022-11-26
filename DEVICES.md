@@ -156,6 +156,7 @@
 - Generic triple and quad switches (confirmed with Songam wall switches)
 - 4 way power monitoring strip
 - Arlec PB88UHA 4 way powerstrip with child lock
+- Aubess 2-gang switch
 - DIGOO DG-SP202 dual smartplug with energy monitoring and timers.
 - DIGOO DG-SP01 USB smartplug with night light.
 - ES01 3 outlet + USB powerstrip with individual timers.

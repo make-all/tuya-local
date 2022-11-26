@@ -1,0 +1,70 @@
+name: Aubess 2-gang
+primary_entity:
+  entity: switch
+  name: Switch 1
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 42
+      type: string
+      name: unknown_42
+    - id: 43
+      type: string
+      name: unknown_43
+    - id: 44
+      type: string
+      name: unknown_44
+    - id: 47
+      type: string
+      name: unknown_47
+secondary_entities:
+  - entity: switch
+    name: Switch 2
+    dps:
+      - id: 2
+        name: switch
+        type: boolean
+  - entity: number
+    name: Timer 1
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    name: Timer 2
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: select
+    name: Restore power state
+    category: config
+    icon: 
+    dps:
+      - id: 38
+        type: string
+        name: option
+        mapping:
+          - dps_val: memory
+            value: Remember last state
+          - dps_val: "on"
+            value: "On"
+          - dps_val: "off"
+            value: "Off"
