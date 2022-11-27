@@ -1,0 +1,149 @@
+name: HY367 thermostat
+products:
+  - id: 2atgpdho
+
+primary_entity:
+  entity: climate
+  dps:
+    - id: 2
+      type: integer
+      name: target_temperature
+      unit: C
+      range:
+        min: 160
+        max: 700
+      mapping:
+        - scale: 10
+          step: 5
+    - id: 3
+      type: integer
+      name: current_temperature
+      range:
+        min: 160
+        max: 700
+      mapping:
+        - scale: 10
+          step: 5
+    - id: 4
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: manual
+          value: none
+          icon: "mdi:cursor-pointer"
+        - dps_val: eco
+          value: eco
+          icon: "mdi:sprout"
+        - dps_val: temp_auto
+          value: temp_auto
+        - dps_val: auto
+          value: auto
+          icon: "mdi:thermostat-auto"
+    - id: 44
+      type: integer
+      name: open
+      unit: "%"
+      range:
+        min: 0
+        max: 100
+      mapping:
+        - scale: 0
+          step: 10
+
+secondary_entities:
+  - entity: lock
+    name: Key lock
+    category: config
+    dps:
+      - id: 7
+        name: lock
+        type: boolean
+        mapping:
+          - dps_val: true
+            icon: "mdi:hand-back-right-off"
+          - dps_val: false
+            icon: "mdi:hand-back-right"
+  - entity: number
+    name: Temperature calibration
+    category: config
+    icon: "mdi:arrow-collapse-up"
+    dps:
+      - id: 20
+        type: integer
+        name: value
+        range:
+          min: -90
+          max: 90
+        mapping:
+          - scale: 10
+        unit: C
+  - entity: number
+    name: Maximum temperature
+    category: config
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+    - id: 103
+      type: integer
+      name: value
+      unit: C
+      range:
+        min: 0
+        max: 70
+  - entity: number
+    name: Boos mode
+    category: config
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 100
+          max: 900
+  - entity: number
+    name: Comfort temperature
+    category: config
+    dps:
+    - id: 107
+      type: integer
+      name: value
+      unit: C
+      range:
+        min: 0
+        max: 70
+  - entity: number
+    name: Energy saving temperature
+    category: config
+    dps:
+    - id: 108
+      type: integer
+      name: value
+      unit: C
+      range:
+        min: 0
+        max: 70
+  - entity: number
+    name: Min temperature
+    category: config
+    icon: "mdi:thermometer-chevron-down"
+    dps:
+    - id: 114
+      type: integer
+      name: value
+      unit: C
+      range:
+        min: 0
+        max: 70
+  - entity: lock
+    name: Child lock
+    category: config
+    dps:
+      - id: 116
+        name: lock
+        type: boolean
+        mapping:
+          - dps_val: true
+            icon: "mdi:hand-back-right-off"
+          - dps_val: false
+            icon: "mdi:hand-back-right"
