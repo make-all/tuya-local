@@ -7,7 +7,14 @@ primary_entity:
       name: hvac_mode
       mapping:
         - dps_val: true
-          value: heat
+          constraint: preset_mode
+          conditions:
+            - dps_val: auto
+              value: auto
+            - dps_val: manual
+              value: heat
+              # in case of unknown presets
+            - value: heat
         - dps_val: false
           value: "off"
     - id: 2
