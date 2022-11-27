@@ -47,8 +47,7 @@ primary_entity:
         min: 0
         max: 100
       mapping:
-        - scale: 0
-          step: 10
+        - step: 10
 
 secondary_entities:
   - entity: lock
@@ -63,20 +62,6 @@ secondary_entities:
             icon: "mdi:hand-back-right-off"
           - dps_val: false
             icon: "mdi:hand-back-right"
-  - entity: number
-    name: Temperature calibration
-    category: config
-    icon: "mdi:arrow-collapse-up"
-    dps:
-      - id: 20
-        type: integer
-        name: value
-        range:
-          min: -90
-          max: 90
-        mapping:
-          - scale: 10
-        unit: C
   - entity: number
     name: Maximum temperature
     category: config
