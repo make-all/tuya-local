@@ -66,8 +66,8 @@ class TuyaLocalDevice(object):
         self._startup_listener = None
         self._api_protocol_version_index = None
         self._api_protocol_working = False
-        self._api = tinytuya.Device(dev_id, address, local_key, dev_cid)
         self.dev_cid = dev_cid
+        self._api = tinytuya.Device(dev_id, address, local_key, dev_cid)
         self._refresh_task = None
         self._protocol_configured = protocol_version
 
