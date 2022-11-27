@@ -45,7 +45,7 @@ primary_entity:
       type: string
       name: hvac_action
       mapping:
-        - dps_val: 0
+        - dps_val: "0"
           constraint: hvac_mode
           conditions:
             - dps_val: true
@@ -54,9 +54,12 @@ primary_entity:
             - dps_val: false
               value: "off"
               icon: "mdi:radiator-off"
-        - dps_val: 1
+        - dps_val: "1"
           value: heating
           icon: "mdi:radiator"
+    - id: 16
+      type: bitfield
+      name: fault_code
 secondary_entities:
   - entity: lock
     name: Child lock
@@ -81,7 +84,6 @@ secondary_entities:
   - entity: binary_sensor
     name: Fault alarm
     category: diagnostic
-    icon: "mdi:alert"
     class: problem
     dps:
       - id: 16
@@ -94,7 +96,7 @@ secondary_entities:
   - entity: number
     name: Calibration offset
     category: config
-    icon: "mdi:thermometer"
+    icon: "mdi:arrow-collapse-up"
     dps:
       - id: 20
         type: integer
@@ -108,7 +110,7 @@ secondary_entities:
   - entity: number
     name: High temperature limit
     category: config
-    icon: "mdi:thermometer"
+    icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 21
         type: integer
@@ -120,19 +122,17 @@ secondary_entities:
   - entity: select
     name: Sensor selection
     category: config
+    icon: "mdi:home-thermometer"
     dps:
       - id: 25
         type: string
         name: option
         mapping:
           - dps_val: "1"
-            icon: "mdi:gauge"
             value: Internal
           - dps_val: "2"
-            icon: "mdi:thermometer-chevron-down"
             value: External
           - dps_val: "3"
-            icon: "mdi:thermometer"
             value: Both
   - entity: switch
     name: Anti-frost
@@ -176,7 +176,7 @@ secondary_entities:
           - dps_val: "2" 
             value: "Mon-Sat+Sun"
           - dps_val: "3"
-            value: "Daily"	 
+            value: "Daily"
   - entity: switch
     name: Output main reverse
     category: config
@@ -188,7 +188,7 @@ secondary_entities:
   - entity: number
     name: Temperature control switch difference
     category: config
-    icon: "mdi:thermometer"
+    icon: "mdi:thermometer-plus"
     dps:
       - id: 105
         type: integer
@@ -202,7 +202,7 @@ secondary_entities:
   - entity: number
     name: External sensor temperature limit
     category: config
-    icon: "mdi:thermometer"
+    icon: "mdi:arrow-collapse-up"
     dps:
       - id: 107
         type: integer

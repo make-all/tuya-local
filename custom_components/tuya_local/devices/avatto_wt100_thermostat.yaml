@@ -12,33 +12,14 @@ primary_entity:
           constraint: preset_mode
           conditions:
             - dps_val: cold
-              value: cool
+              # manual
+              value: heat
             - dps_val: hot
-              value: heat
+              # program
+              value: auto
             - dps_val: wind
-              value: fan_only
-            - dps_val: comfortable
-              value: heat
-            - dps_val: energy
-              value: heat
-            - dps_val: auto
-              value: heat_cool
-            - dps_val: program
+              # temporary program - HA does not have a distinct mode for this
               value: auto
-            - dps_val: holiday
-              value: auto
-            - dps_val: eco
-              value: heat
-            - dps_val: manual
-              value: heat
-            - dps_val: sleep
-              value: heat
-            - dps_val: dry
-              value: dry
-            - dps_val: floor_heat
-              value: heat
-            - dps_val: auxiliary_heat
-              value: heat
     - id: 2
       name: temperature
       type: integer
@@ -57,72 +38,33 @@ primary_entity:
       type: string
       mapping:
         - dps_val: cold
-          value: Cool
-        - dps_val: hot
-          value: Heat
-        - dps_val: wind
-          value: Fan
-        - dps_val: comfortable
-          value: Comfort
-        - dps_val: energy
-          value: Energy
-        - dps_val: auto
-          value: Auto
-        - dps_val: holiday
-          value: Holiday
-        - dps_val: eco
-          value: Eco
-        - dps_val: manual
           value: Manual
-        - dps_val: sleep
-          value: Sleep
-        - dps_val: dry
-          value: Dehumidify
-        - dps_val: program
+        - dps_val: hot
           value: Program
-        - dps_val: floor_heat
-          value: Floor Heating
-        - dps_val: auxiliary_heat
-          value: Auxiliary Heating
+        - dps_val: wind
+          value: Temporary Program
     - id: 5
-      name: unknown_5
+      name: hvac_action
       type: string
-    - id: 13
-      name: unknown_13
-      type: boolean
+      mapping:
+        - dps_val: "0"
+          constraint: hvac_mode
+          conditions:
+            - dps_val: true
+              value: idle
+              icon: "mdi:radiator-disabled"
+            - dps_val: false
+              value: "off"
+              icon: "mdi:radiator-off"
+        - dps_val: "1"
+          value: heating
+          icon: "mdi:radiator"
     - id: 16
-      name: unknown_16
-      type: integer
-    - id: 20
-      name: unknown_20
-      type: integer
-    - id: 21
-      name: unknown_21
-      type: integer
-    - id: 25
-      name: unknown_25
-      type: string
-    - id: 26
-      name: unknown_26
-      type: boolean
+      name: fault_code
+      type: bitfield
     - id: 31
       name: unknown_31
       type: boolean
-    - id: 41
-      name: unknown_41
-      type: string
-    - id: 42
-      name: unknown_42
-      type: string
-    - id: 101
-      name: unknown_101
-      type: boolean
-    - id: 105
-      name: unknown_105
-      type: integer
-    - id: 107
-      name: unknown_107
-      type: integer
 secondary_entities:
   - entity: lock
     name: Child lock
@@ -132,3 +74,146 @@ secondary_entities:
       - id: 8
         name: lock
         type: boolean
+        mapping:
+          - dps_val: true
+            icon: "mdi:hand-back-right-off"
+          - dps_val: false
+            icon: "mdi:hand-back-right"
+  - entity: switch 
+    name: Sound
+    category: config
+    icon: "mdi:music-note"
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    name: Fault alarm
+    category: diagnostic
+    class: problem
+    dps:
+      - id: 16
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: False
+          - value: True
+  - entity: number
+    name: Temperature calibration
+    category: config
+    icon: "mdi:arrow-collapse-up"
+    dps:
+      - id: 20
+        type: integer
+        name: value
+        range:
+          min: -90
+          max: 90
+        mapping:
+          - scale: 10
+        unit: C
+  - entity: number
+    name: Maximum temperature
+    category: config
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 21
+        type: integer
+        name: value
+        range:
+          min: 15
+          max: 70
+        unit: C
+  - entity: select
+    name: Sensor
+    category: config
+    icon: "mdi:home-thermometer"
+    dps:
+      -id: 25
+      type: string
+      name: option
+      mapping:
+        - dps_val: "1"
+          value: Internal
+        - dps_val: "2"
+          value: External
+        - dps_val: "3"
+          value: Both
+  - entity: switch
+    name: Anti-frost
+    category: config
+    icon: "mdi:snowflake-melt"
+    dps:
+      - id: 26
+        type: boolean
+        name: switch
+  - entity: select
+    name: Backlight brightness
+    category: config
+    dps:
+      - id: 41
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            icon: "mdi:lightbulb-on-10"
+            value: None
+          - dps_val: "1"
+            icon: "mdi:lightbulb-on-40"
+            value: Low
+          - dps_val: "2"
+            icon: "mdi:lightbulb-on-70"
+            value: Middle
+          - dps_val: "3"
+            icon: "mdi:lightbulb-on"
+            value: High
+  - entity: select
+    name: Schedule
+    category: config
+    icon: "mdi:calendar-clock"
+    dps:
+      - id: 42
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: "Weekday+Weekend"
+          - dps_val: "2" 
+            value: "Mon-Sat+Sun"
+          - dps_val: "3"
+            value: "Daily"
+  - entity: switch
+    name: Output reverse
+    category: config
+    icon: "mdi:swap-horizontal"   
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: number
+    name: Temperature hysteresis
+    category: config
+    icon: "mdi:thermometer-plus"
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        range:
+          min: 5
+          max: 95
+        mapping:
+          - scale: 10
+        unit: C
+  - entity: number
+    name: External temperature limit
+    category: config
+    icon: "mdi:arrow-collapse-up"
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        range:
+          min: 20
+          max: 70
+        unit: C
