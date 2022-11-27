@@ -1,0 +1,132 @@
+name: AGL Ultra Magic lock
+primary_entity:
+  entity: lock
+  dps:
+    - id: 1
+      type: boolean
+      name: lock
+    - id: 3
+      type: boolean
+      name: door_contact
+    - id: 5
+      name: num_tags
+      type: integer
+    - id: 101
+      name: write_tag
+      type: integer
+    - id: 104
+      name: approve_unlock
+      type: boolean
+    - id: 105
+      name: approve_intercom
+      type: boolean
+    - id: 106
+      name: open_alarm
+      type: boolean
+      optional: true
+    - id: 108
+      name: interlock
+      type: boolean
+    - id: 109
+      name: unlock_card
+      type: boolean
+    - id: 110
+      name: tag_last_added
+      type: integer
+    - id: 111
+      name: alarm
+      type: boolean
+    - id: 112
+      name: open_notification
+      type: boolean
+    - id: 113
+      name: closed_notification
+      type: boolean
+    - id: 114
+      name: backup
+      type: string
+    - id: 116
+      name: powered
+      type: boolean
+    - id: 117
+      name: gate_contact
+      type: string
+    - id: 120
+      name: request_intercom
+      type: boolean
+    - id: 121
+      name: request_unlock
+      type: boolean
+    - id: 122
+      name: notify_app
+      type: boolean
+    - id: 123
+      name: delete_control
+      type: boolean
+    - id: 124
+      name: door_contact_open
+      type: boolean
+    - id: 125
+      name: door_alarm_trigger
+      type: boolean
+    - id: 126
+      name: backup_saved
+      type: boolean
+    - id: 127
+      name: backup_recovered
+      type: boolean
+    - id: 128
+      name: backup_error
+      type: boolean
+    - id: 129
+      name: unlock_key
+      type: boolean
+secondary_entities:
+  - entity: number
+    category: config
+    name: Lock timeout
+    icon: "mdi:lock-clock"
+    dps:
+      - id: 102
+        name: value
+        type: integer
+        range:
+          min: 1
+          max: 5
+        unit: s
+  - entity: select
+    category: config
+    name: Beep
+    icon: "mdi:volume-high"
+    dps:
+      - id: 103
+        name: option
+        type: string
+        mapping:
+          - dps_val: Silensioso
+            value: Mute
+          - dps_val: Baixo
+            value: Low
+          - dps_val: Médio
+            value: Medium
+          - dps_val: Alto
+            value: High
+  - entity: switch
+    category: config
+    name: Auto close
+    dps:
+      - id: 107
+        name: switch
+        type: boolean
+  - entity: number
+    category: config
+    icon: "mdi:clock-end"
+    name: Auto close timeout
+    dps:
+      - id: 115
+        name: value
+        type: integer
+        range:
+          min: 1
+          max: 1200
+          unit: s

@@ -206,6 +206,7 @@ Other brands may work with the above configurations
 ### Locks
 
 - Orion Grid Connect smart lock
+- AGL Ultramagic smart lock (experimental)
 
 ### Sirens
 
