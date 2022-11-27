@@ -1,0 +1,64 @@
+name: Single Switch With Backlight
+products:
+  - id: gbdzignerqxddcuj
+primary_entity:
+  entity: switch
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+secondary_entities:
+  - entity: number
+    name: Timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 7
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+        unit: min
+  - entity: select
+    category: config
+    name: "Restore Power State"
+    dps:
+      - id: 14
+        name: option
+        type: string
+        mapping:
+          - dps_val: last
+            value: "Remember Last Status"
+          - dps_val: power_on
+            value: "On"
+          - dps_val: power_off
+            value: "Off"
+  - entity: select
+    category: config
+    name: "Backlight Mode"
+    dps:
+      - id: 15
+        name: option
+        type: string
+        mapping:
+          - dps_val: relay
+            value: "Indicate On/Off"
+          - dps_val: pos
+            value: "Indicate Location"
+          - dps_val: none
+            value: "Off"
+  - entity: light
+    name: "Backlight"
+    category: config
+    dps:
+      - id: 16
+        name: switch
+        type: boolean
+        mapping:
+          - dps_val: true
+            icon: "mdi:lightbulb-on"
+          - dps_val: false
+            icon: "mdi:lightbulb-outline"
