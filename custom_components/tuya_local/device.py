@@ -46,7 +46,7 @@ class TuyaLocalDevice(object):
         address,
         local_key,
         protocol_version,
-        dev_cid,
+        cid,
         hass: HomeAssistant,
     ):
         """
@@ -57,7 +57,7 @@ class TuyaLocalDevice(object):
             address (str): The network address.
             local_key (str): The encryption key.
             protocol_version (str | number): The protocol version.
-            dev_cid (str): The sub device id.
+            cid (str): The sub device id.
         """
         self._name = name
         self._children = []
@@ -66,8 +66,11 @@ class TuyaLocalDevice(object):
         self._startup_listener = None
         self._api_protocol_version_index = None
         self._api_protocol_working = False
-        self.dev_cid = dev_cid
-        self._api = tinytuya.Device(dev_id, address, local_key, dev_cid)
+        parent = None
+        if cid is not None:
+            parent = tinytuya.Device(dev_id, address, local_key)
+        self.cid = cid
+        self._api = tinytuya.Device(dev_id, address, local_key, cid, parent)
         self._refresh_task = None
         self._protocol_configured = protocol_version
 
@@ -97,7 +100,7 @@ class TuyaLocalDevice(object):
     @property
     def unique_id(self):
         """Return the unique id for this device (the dev_id or dev_cid)."""
-        return self.dev_cid if self.dev_cid is not None else self._api.id
+        return self.cid if self.cid is not None else self._api.id
 
     @property
     def device_info(self):

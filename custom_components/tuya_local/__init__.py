@@ -133,7 +133,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         conf = {**entry.data, **entry.options}
         entry.data = {
             CONF_DEVICE_ID: conf[CONF_DEVICE_ID],
-            CONF_DEVICE_CID: conf[CONF_DEVICE_CID],
+            CONF_DEVICE_CID: conf[CONF_DEVICE_CID] if CONF_DEVICE_CID in conf else "",
             CONF_LOCAL_KEY: conf[CONF_LOCAL_KEY],
             CONF_HOST: conf[CONF_HOST],
             CONF_TYPE: conf[CONF_TYPE],
