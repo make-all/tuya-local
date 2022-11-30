@@ -5,9 +5,9 @@ from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (
     ELECTRIC_CURRENT_MILLIAMPERE,
     ELECTRIC_POTENTIAL_VOLT,
-    ENERGY_WATT_HOUR,
-    POWER_WATT,
     TIME_MINUTES,
+    UnitOfEnergy,
+    UnitOfPower,
 )
 
 from ..const import SMARTSWITCH_ENERGY_PAYLOAD
@@ -88,7 +88,7 @@ class TestSwitchV2Energy(
                 {
                     "name": "sensor_energy",
                     "dps": ENERGY_DPS,
-                    "unit": ENERGY_WATT_HOUR,
+                    "unit": UnitOfEnergy.WATT_HOUR,
                     "device_class": SensorDeviceClass.ENERGY,
                     "state_class": "total_increasing",
                 },
@@ -110,7 +110,7 @@ class TestSwitchV2Energy(
                 {
                     "name": "sensor_power",
                     "dps": POWER_DPS,
-                    "unit": POWER_WATT,
+                    "unit": UnitOfPower.WATT,
                     "device_class": SensorDeviceClass.POWER,
                     "state_class": "measurement",
                     "testdata": (1234, 123.4),

@@ -4,8 +4,8 @@ from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     ELECTRIC_CURRENT_MILLIAMPERE,
     ELECTRIC_POTENTIAL_VOLT,
-    POWER_WATT,
     TIME_MINUTES,
+    UnitOfPower,
 )
 
 from ..const import DIGOO_DGSP202_SOCKET_PAYLOAD
@@ -84,7 +84,7 @@ class TestDigooDGSP202Switch(
                 {
                     "name": "sensor_power",
                     "dps": POWER_DPS,
-                    "unit": POWER_WATT,
+                    "unit": UnitOfPower.WATT,
                     "device_class": SensorDeviceClass.POWER,
                     "state_class": "measurement",
                     "testdata": (1234, 123.4),

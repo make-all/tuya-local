@@ -4,9 +4,9 @@ from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (
     ELECTRIC_CURRENT_MILLIAMPERE,
     ELECTRIC_POTENTIAL_VOLT,
-    ENERGY_WATT_HOUR,
-    POWER_WATT,
     TIME_SECONDS,
+    UnitOfEnergy,
+    UnitOfPower,
 )
 
 from ..const import GRIDCONNECT_2SOCKET_PAYLOAD
@@ -90,7 +90,7 @@ class TestGridConnectDoubleSwitch(
                     "name": "sensor_energy",
                     "dps": ENERGY_DPS,
                     "device_class": SensorDeviceClass.ENERGY,
-                    "unit": ENERGY_WATT_HOUR,
+                    "unit": UnitOfEnergy.WATT_HOUR,
                     "state_class": "total_increasing",
                 },
                 {
@@ -104,7 +104,7 @@ class TestGridConnectDoubleSwitch(
                     "name": "sensor_power",
                     "dps": POWER_DPS,
                     "device_class": SensorDeviceClass.POWER,
-                    "unit": POWER_WATT,
+                    "unit": UnitOfPower.WATT,
                     "state_class": "measurement",
                     "testdata": (1234, 123.4),
                 },

@@ -6,7 +6,7 @@ from homeassistant.components.climate.const import (
     PRESET_HOME,
 )
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import POWER_WATT, UnitOfTemperature
+from homeassistant.const import UnitOfPower, UnitOfTemperature
 
 from ..const import SASWELL_C16_THERMOSTAT_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -88,7 +88,7 @@ class TestSaswellC16Thermostat(
                     "name": "number_power_rating",
                     "dps": POWERRATING_DPS,
                     "max": 3500,
-                    "unit": POWER_WATT,
+                    "unit": UnitOfPower.WATT,
                 },
                 {
                     "name": "number_room_temperature_calibration",

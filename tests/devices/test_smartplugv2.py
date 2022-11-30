@@ -4,8 +4,8 @@ from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (
     ELECTRIC_CURRENT_MILLIAMPERE,
     ELECTRIC_POTENTIAL_VOLT,
-    POWER_WATT,
     TIME_MINUTES,
+    UnitOfPower,
 )
 
 from ..const import KOGAN_SOCKET_PAYLOAD2
@@ -57,7 +57,7 @@ class TestSwitchV2(
                 {
                     "name": "sensor_power",
                     "dps": POWER_DPS,
-                    "unit": POWER_WATT,
+                    "unit": UnitOfPower.WATT,
                     "device_class": SensorDeviceClass.POWER,
                     "state_class": "measurement",
                     "testdata": (1234, 123.4),

@@ -8,7 +8,7 @@ from homeassistant.components.sensor import (
     STATE_CLASS_TOTAL_INCREASING,
 )
 from homeassistant.const import (
-    ENERGY_KILO_WATT_HOUR,
+    UnitOfEnergy,
     UnitOfTemperature,
 )
 from ..const import JIAHONG_ET72W_PAYLOAD
@@ -127,7 +127,7 @@ class TestJiahongEt72wThermostat(
                     "name": "sensor_energy",
                     "device_class": SensorDeviceClass.ENERGY,
                     "state_class": STATE_CLASS_TOTAL_INCREASING,
-                    "unit": ENERGY_KILO_WATT_HOUR,
+                    "unit": UnitOfEnergy.KILO_WATT_HOUR,
                     "testdata": (1234, 123.4),
                 },
             ]

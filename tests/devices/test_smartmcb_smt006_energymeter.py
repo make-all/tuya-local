@@ -5,9 +5,7 @@ from homeassistant.components.sensor import (
     STATE_CLASS_TOTAL,
     STATE_CLASS_TOTAL_INCREASING,
 )
-from homeassistant.const import (
-    ENERGY_KILO_WATT_HOUR,
-)
+from homeassistant.const import UnitOfEnergy
 
 from ..const import SMARTMCB_SMT006_METER_PAYLOAD
 from ..mixins.binary_sensor import MultiBinarySensorTests
@@ -66,7 +64,7 @@ class TestSmartMcbSMT006EnergyMeter(
                     "name": "sensor_energy",
                     "dps": TOTALENERGY_DPS,
                     "device_class": SensorDeviceClass.ENERGY,
-                    "unit": ENERGY_KILO_WATT_HOUR,
+                    "unit": UnitOfEnergy.KILO_WATT_HOUR,
                     "state_class": STATE_CLASS_TOTAL_INCREASING,
                     "testdata": (123456, 1234.56),
                 },
@@ -74,7 +72,7 @@ class TestSmartMcbSMT006EnergyMeter(
                     "name": "sensor_balance_energy",
                     "dps": BALANCE_DPS,
                     "device_class": SensorDeviceClass.ENERGY,
-                    "unit": ENERGY_KILO_WATT_HOUR,
+                    "unit": UnitOfEnergy.KILO_WATT_HOUR,
                     "state_class": STATE_CLASS_TOTAL,
                     "testdata": (123456, 1234.56),
                 },
@@ -183,7 +181,7 @@ class TestSmartMcbSMT006EnergyMeter(
                     "dps": ERROR_DPS,
                     "device_class": BinarySensorDeviceClass.PLUG,
                     "testdata": (0, 65536),
-                    "unit": ENERGY_KILO_WATT_HOUR,
+                    "unit": UnitOfEnergy.KILO_WATT_HOUR,
                 },
             ],
         )
