@@ -107,14 +107,15 @@ below](#finding-your-device-id-and-local-key).
 [as per the instructions below](#finding-your-device-id-and-local-key).
 
 At the end of this step, an attempt is made to connect to the device and see if
-it returns any data. For tuya protocol version 3.3 devices, success
-at this point indicates that all settings you have supplied are correct, but
-for protocol version 3.1 devices, the local key is only used for sending
-commands to the device, so if your local key is incorrect the setup will
-appear to work, and you will not see any problems until you try to control
-your device.  Note that each time you pair the device, the local key changes,
-so if you obtained the local key using the instructions linked above, then
-repaired with your manufacturer's app, then the key will have changed already.
+it returns any data. For tuya protocol version 3.1 devices, the local key is
+only used for sending commands to the device, so if your local key is
+incorrect the setup will appear to work, and you will not see any problems
+until you try to control your device.  For more recent Tuya protocol versions,
+the local key is used to decrypt received data as well, so an incorrect key
+will be detected at this step and cause an immediate failure.  Note that each
+time you pair the device, the local key changes, so if you obtained the
+local key using the instructions below, then re-paired with your
+manufacturer's app, then the key will have changed already.
 
 ### Stage Two
 
@@ -268,10 +269,31 @@ switch the thermostat to the wrong mode from HA.
 
 ## Finding your device ID and local key
 
-You can find these keys the same way as you would for any Tuya local integration. You'll need the Goldair app or the Tuya Tuya Smart app (the Goldair app is just a rebranded Tuya app), then follow these instructions.
+The easiest way to find your local key is with the Tuya Developer portal.
+If you have previously configured the built in Tuya cloud integration, or
+localtuya, you probably already have a developer account with the Tuya app
+linked.  Note that you need to use Tuya's own branded "Tuya Smart" or
+"SmartLife" apps to access devices through the developer portal.  For most
+devices, your device will work identically with those apps as it does with
+your manufacturer's branded app, but there are a few devices where that is
+not the case and you will need to decide whether you are willing to potentially
+lose access to some functionality (such as mapping for some vacuum cleaners).
 
-- [Instructions for iOS](https://github.com/codetheweb/tuyapi/blob/master/docs/SETUP.md)
-- [Instructions for Android](https://github.com/codetheweb/tuyapi/blob/cdb4289/docs/SETUP_DEPRECATED.md#capture-https-traffic)
+If you log on to your Developer Portal account, under Cloud you should
+be able to get a list of your devices, which contains the "Device ID".
+If you don't see them, check your server is set correctly at the top
+of the page.  Make a note of the Device IDs for all your devices, then
+select Cloud on the side bar again and go to the API Explorer.
+
+Under General Device Capabilities / General Devices Management, select the
+"Get Device Information" function, and enter your Device ID.  In the results
+you should see your local_key.
+
+The IP address you should be able to get from your router.  Using a
+command line Tuya client like tuyaapi/cli or
+[tinytuya](https://github.com/jasonacox/tinytuya) you may also be able
+to scan your network for Tuya devices to find the IP address and also automate
+the above process of connecting to the portal and getting the local key.
 
 ## Next steps
 
