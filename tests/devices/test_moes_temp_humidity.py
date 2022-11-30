@@ -1,5 +1,5 @@
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import TEMP_CELSIUS, TIME_SECONDS
+from homeassistant.const import TIME_SECONDS, UnitOfTemperature
 
 from ..const import MOES_TEMP_HUMID_PAYLOAD
 from ..mixins.number import MultiNumberTests
@@ -44,7 +44,7 @@ class TestMoesTempHumidity(
         self.setUpBasicSensor(
             TEMP_DPS,
             self.entities.get("sensor_current_temperature"),
-            unit=TEMP_CELSIUS,
+            unit=UnitOfTemperature.CELSIUS,
             device_class=SensorDeviceClass.TEMPERATURE,
             state_class="measurement",
             testdata=(251, 25.1),

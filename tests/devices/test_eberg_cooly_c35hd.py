@@ -4,7 +4,7 @@ from homeassistant.components.climate.const import (
     SWING_OFF,
     SWING_VERTICAL,
 )
-from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT
+from homeassistant.const import UnitOfTemperature
 
 from ..const import EBERG_COOLY_C35HD_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -79,9 +79,9 @@ class TestEbergCoolyC35HDHeatpump(
 
     def test_temperature_unit(self):
         self.dps[UNIT_DPS] = False
-        self.assertEqual(self.subject.temperature_unit, TEMP_CELSIUS)
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
         self.dps[UNIT_DPS] = True
-        self.assertEqual(self.subject.temperature_unit, TEMP_FAHRENHEIT)
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.FAHRENHEIT)
 
     def test_minimum_target_temperature_f(self):
         self.dps[UNIT_DPS] = True

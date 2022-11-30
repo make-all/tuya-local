@@ -9,8 +9,7 @@ from homeassistant.components.sensor import (
 )
 from homeassistant.const import (
     ENERGY_KILO_WATT_HOUR,
-    TEMP_CELSIUS,
-    TEMP_FAHRENHEIT,
+    UnitOfTemperature,
 )
 from ..const import JIAHONG_ET72W_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -103,7 +102,7 @@ class TestJiahongEt72wThermostat(
             max=40.0,
             step=0.5,
             scale=10,
-            unit=TEMP_CELSIUS,
+            unit=UnitOfTemperature.CELSIUS,
         )
         self.setUpMultiSensors(
             [
@@ -112,7 +111,7 @@ class TestJiahongEt72wThermostat(
                     "name": "sensor_room_temperature",
                     "device_class": SensorDeviceClass.TEMPERATURE,
                     "state_class": STATE_CLASS_MEASUREMENT,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                     "testdata": (195, 19.5),
                 },
                 {
@@ -120,7 +119,7 @@ class TestJiahongEt72wThermostat(
                     "name": "sensor_floor_temperature",
                     "device_class": SensorDeviceClass.TEMPERATURE,
                     "state_class": STATE_CLASS_MEASUREMENT,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                     "testdata": (214, 21.4),
                 },
                 {
@@ -153,14 +152,14 @@ class TestJiahongEt72wThermostat(
         self.dps[UNIT_DPS] = False
         self.assertEqual(
             self.subject.temperature_unit,
-            TEMP_CELSIUS,
+            UnitOfTemperature.CELSIUS,
         )
         self.assertEqual(self.subject.target_temperature_step, 0.5)
 
         self.dps[UNIT_DPS] = True
         self.assertEqual(
             self.subject.temperature_unit,
-            TEMP_FAHRENHEIT,
+            UnitOfTemperature.FAHRENHEIT,
         )
         self.assertEqual(self.subject.target_temperature_step, 3.0)
 

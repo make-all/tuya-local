@@ -3,9 +3,8 @@ from homeassistant.components.climate.const import (
     HVACMode,
 )
 from homeassistant.const import (
-    TEMP_CELSIUS,
-    TEMP_FAHRENHEIT,
     TIME_HOURS,
+    UnitOfTemperature,
 )
 
 from ..const import ECOSTRAD_ACCENTIQ_HEATER_PAYLOAD
@@ -51,9 +50,9 @@ class TestEcostradAccentIqHeater(
 
     def test_temperature_unit(self):
         self.dps[UNIT_DPS] = True
-        self.assertEqual(self.subject.temperature_unit, TEMP_CELSIUS)
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
         self.dps[UNIT_DPS] = False
-        self.assertEqual(self.subject.temperature_unit, TEMP_FAHRENHEIT)
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.FAHRENHEIT)
 
     def test_current_temperature(self):
         self.dps[CURRENTTEMP_DPS] = 250

@@ -5,7 +5,7 @@ from homeassistant.components.climate.const import (
     PRESET_COMFORT,
 )
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import TEMP_CELSIUS
+from homeassistant.const import UnitOfTemperature
 
 from ..const import BECA_BHT6000_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -46,7 +46,7 @@ class TestBecaBHT6000Thermostat(
         self.setUpBasicSensor(
             FLOOR_DPS,
             self.entities.get("sensor_external_temperature"),
-            unit=TEMP_CELSIUS,
+            unit=UnitOfTemperature.CELSIUS,
             device_class=SensorDeviceClass.TEMPERATURE,
             state_class="measurement",
             testdata=(36, 18),

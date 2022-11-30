@@ -2,7 +2,7 @@ from homeassistant.components.climate.const import (
     ClimateEntityFeature,
     HVACMode,
 )
-from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT
+from homeassistant.const import UnitOfTemperature
 
 from ..const import BECA_BHP6000_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -52,7 +52,7 @@ class TestBecaBHP6000Thermostat(
         )
 
     def test_temperature_unit_returns_configured_temperature_unit(self):
-        self.assertEqual(self.subject.temperature_unit, TEMP_FAHRENHEIT)
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.FAHRENHEIT)
 
     async def test_legacy_set_temperature_with_preset_mode(self):
         async with assert_device_properties_set(self.subject._device, {PRESET_DPS: 1}):
@@ -161,7 +161,7 @@ class TestBecaBHP6000ThermostatC(TuyaDeviceTestCase):
         self.mark_secondary(["light_display", "lock_child_lock"])
 
     def test_temperature_unit_returns_configured_temperature_unit(self):
-        self.assertEqual(self.subject.temperature_unit, TEMP_CELSIUS)
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
 
     def test_minimum_target_temperature(self):
         self.assertEqual(self.subject.min_temp, 5)

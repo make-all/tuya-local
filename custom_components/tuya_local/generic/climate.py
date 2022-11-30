@@ -28,9 +28,7 @@ from homeassistant.components.climate.const import (
 )
 from homeassistant.const import (
     ATTR_TEMPERATURE,
-    TEMP_CELSIUS,
-    TEMP_FAHRENHEIT,
-    TEMP_KELVIN,
+    UnitOfTemperature,
 )
 
 from ..device import TuyaLocalDevice
@@ -39,12 +37,13 @@ from ..helpers.mixin import TuyaLocalEntity, unit_from_ascii
 
 _LOGGER = logging.getLogger(__name__)
 
-VALID_TEMP_UNIT = [TEMP_CELSIUS, TEMP_FAHRENHEIT, TEMP_KELVIN]
-
 
 def validate_temp_unit(unit):
     unit = unit_from_ascii(unit)
-    return unit if unit in VALID_TEMP_UNIT else None
+    try:
+        return UnitOfTemperature(unit)
+    except ValueError:
+        return None
 
 
 class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):

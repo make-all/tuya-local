@@ -3,7 +3,7 @@ from homeassistant.components.climate.const import (
     ClimateEntityFeature,
     HVACAction,
 )
-from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT, TIME_HOURS
+from homeassistant.const import TIME_HOURS, UnitOfTemperature
 
 
 from ..const import INKBIRD_ITC306A_THERMOSTAT_PAYLOAD
@@ -108,7 +108,7 @@ class TestInkbirdThermostat(
                     "step": 0.1,
                     "min": -40,
                     "max": 100,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
                 {
                     "name": "number_low_temperature_limit",
@@ -117,7 +117,7 @@ class TestInkbirdThermostat(
                     "step": 0.1,
                     "min": -40,
                     "max": 100,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
             ]
         )
@@ -236,10 +236,10 @@ class TestInkbirdThermostat(
 
     def test_temperature_unit(self):
         self.dps[UNIT_DPS] = "F"
-        self.assertEqual(self.subject.temperature_unit, TEMP_FAHRENHEIT)
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.FAHRENHEIT)
 
         self.dps[UNIT_DPS] = "C"
-        self.assertEqual(self.subject.temperature_unit, TEMP_CELSIUS)
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
 
     def test_minimum_target_temperature(self):
         self.dps[UNIT_DPS] = "C"

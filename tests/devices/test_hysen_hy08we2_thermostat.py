@@ -7,7 +7,7 @@ from homeassistant.components.climate.const import (
     HVACMode,
 )
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT, TIME_DAYS
+from homeassistant.const import TIME_DAYS, UnitOfTemperature
 
 from ..const import HYSEN_HY08WE2_THERMOSTAT_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -122,7 +122,7 @@ class TestHysenHY08WE2Thermostat(
             self.entities.get("sensor_external_temperature"),
             device_class=SensorDeviceClass.TEMPERATURE,
             testdata=(205, 20.5),
-            unit=TEMP_CELSIUS,
+            unit=UnitOfTemperature.CELSIUS,
             state_class="measurement",
         )
         self.setUpMultiNumber(
@@ -139,14 +139,14 @@ class TestHysenHY08WE2Thermostat(
                     "name": "number_holiday_temperature",
                     "min": 5,
                     "max": 30,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
                 {
                     "dps": CALIBOFFSET_DPS,
                     "name": "number_calibration_offset",
                     "min": -9,
                     "max": 9,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
                 {
                     "dps": CALIBSWINGINT_DPS,
@@ -155,7 +155,7 @@ class TestHysenHY08WE2Thermostat(
                     "max": 2.5,
                     "scale": 10,
                     "step": 0.1,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
                 {
                     "dps": CALIBSWINGEXT_DPS,
@@ -164,35 +164,35 @@ class TestHysenHY08WE2Thermostat(
                     "max": 1.0,
                     "scale": 10,
                     "step": 0.1,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
                 {
                     "dps": HIGHTEMP_DPS,
                     "name": "number_high_temperature_protection",
                     "min": 35,
                     "max": 70,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
                 {
                     "dps": LOWTEMP_DPS,
                     "name": "number_low_temperature_protection",
                     "min": 1,
                     "max": 10,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
                 {
                     "dps": MINTEMP_DPS,
                     "name": "number_low_temperature_limit",
                     "min": 1,
                     "max": 10,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
                 {
                     "dps": MAXTEMP_DPS,
                     "name": "number_high_temperature_limit",
                     "min": 2,
                     "max": 70,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
             ],
         )

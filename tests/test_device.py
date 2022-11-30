@@ -4,7 +4,7 @@ from time import sleep, time
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import AsyncMock, call, patch
 
-from homeassistant.const import TEMP_CELSIUS
+from homeassistant.const import UnitOfTemperature
 
 from custom_components.tuya_local.device import TuyaLocalDevice
 
@@ -61,7 +61,7 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.assertFalse(self.subject.has_returned_state)
 
     def test_temperature_unit(self):
-        self.assertEqual(self.subject.temperature_unit, TEMP_CELSIUS)
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
 
     async def test_refreshes_state_if_no_cached_state_exists(self):
         self.subject._cached_state = {}

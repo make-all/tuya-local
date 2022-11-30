@@ -2,7 +2,7 @@ from homeassistant.components.climate.const import (
     ClimateEntityFeature,
     HVACMode,
 )
-from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT
+from homeassistant.const import UnitOfTemperature
 
 from ..const import KOGAN_KAWFPAC09YA_AIRCON_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -55,9 +55,9 @@ class TestKoganKAWFPAC09YA(TargetTemperatureTests, TuyaDeviceTestCase):
 
     def test_temperature_unit(self):
         self.dps[UNIT_DPS] = "C"
-        self.assertEqual(self.subject.temperature_unit, TEMP_CELSIUS)
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
         self.dps[UNIT_DPS] = "F"
-        self.assertEqual(self.subject.temperature_unit, TEMP_FAHRENHEIT)
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.FAHRENHEIT)
 
     def test_minimum_target_temperature_f(self):
         self.dps[UNIT_DPS] = "F"

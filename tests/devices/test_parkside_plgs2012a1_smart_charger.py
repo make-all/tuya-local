@@ -3,8 +3,8 @@ from homeassistant.const import (
     ELECTRIC_CURRENT_MILLIAMPERE,
     ELECTRIC_POTENTIAL_VOLT,
     PERCENTAGE,
-    TEMP_CELSIUS,
     TIME_MINUTES,
+    UnitOfTemperature,
 )
 from homeassistant.components.sensor import (
     SensorDeviceClass,
@@ -106,7 +106,7 @@ class TestParksidePLGS2012A1Charger(
                 {
                     "name": "sensor_current_temperature",
                     "dps": TEMPERATURE_DPS,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                     "device_class": SensorDeviceClass.TEMPERATURE,
                     "state_class": STATE_CLASS_MEASUREMENT,
                 },

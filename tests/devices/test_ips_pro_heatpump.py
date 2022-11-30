@@ -7,8 +7,7 @@ from homeassistant.components.climate.const import (
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     PERCENTAGE,
-    TEMP_CELSIUS,
-    TEMP_FAHRENHEIT,
+    UnitOfTemperature,
 )
 
 from ..const import IPS_HEATPUMP_PAYLOAD
@@ -81,9 +80,9 @@ class TestIpsProHeatpump(
 
     def test_temperature_unit(self):
         self.dps[UNITS_DPS] = False
-        self.assertEqual(self.subject.temperature_unit, TEMP_FAHRENHEIT)
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.FAHRENHEIT)
         self.dps[UNITS_DPS] = True
-        self.assertEqual(self.subject.temperature_unit, TEMP_CELSIUS)
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
 
     def test_minimum_fahrenheit_temperature(self):
         self.dps[UNITS_DPS] = False

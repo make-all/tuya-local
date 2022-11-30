@@ -6,7 +6,7 @@ from homeassistant.components.climate.const import (
     PRESET_HOME,
 )
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import POWER_WATT, TEMP_CELSIUS
+from homeassistant.const import POWER_WATT, UnitOfTemperature
 
 from ..const import SASWELL_C16_THERMOSTAT_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -69,7 +69,7 @@ class TestSaswellC16Thermostat(
             self.entities.get("sensor_floor_temperature"),
             device_class=SensorDeviceClass.TEMPERATURE,
             state_class="measurement",
-            unit=TEMP_CELSIUS,
+            unit=UnitOfTemperature.CELSIUS,
             testdata=(218, 21.8),
         )
         self.setUpBasicSwitch(ADAPTIVE_DPS, self.entities.get("switch_adaptive"))
@@ -82,7 +82,7 @@ class TestSaswellC16Thermostat(
                     "max": 50.0,
                     "scale": 10,
                     "step": 0.5,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
                 {
                     "name": "number_power_rating",
@@ -97,7 +97,7 @@ class TestSaswellC16Thermostat(
                     "max": 5.0,
                     "scale": 10,
                     "step": 0.5,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
                 {
                     "name": "number_floor_temperature_calibration",
@@ -106,7 +106,7 @@ class TestSaswellC16Thermostat(
                     "max": 5.0,
                     "scale": 10,
                     "step": 0.5,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
             ]
         )

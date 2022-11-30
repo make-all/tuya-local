@@ -7,7 +7,7 @@ from homeassistant.components.fan import (
     DIRECTION_REVERSE,
     FanEntityFeature,
 )
-from homeassistant.const import TEMP_FAHRENHEIT
+from homeassistant.const import UnitOfTemperature
 
 from ..const import ASPEN_ASP200_FAN_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -148,7 +148,7 @@ class TestAspenASP200Fan(
         self.assertEqual(self.climate.current_temperature, 24)
 
     def test_climate_temperature_unit(self):
-        self.assertEqual(self.climate.temperature_unit, TEMP_FAHRENHEIT)
+        self.assertEqual(self.climate.temperature_unit, UnitOfTemperature.FAHRENHEIT)
 
     def test_climate_hvac_mode(self):
         self.dps[SWITCH_DPS] = False

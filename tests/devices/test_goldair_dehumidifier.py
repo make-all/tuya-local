@@ -3,7 +3,7 @@ from unittest.mock import ANY
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.light import ColorMode
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import TEMP_CELSIUS, TIME_HOURS
+from homeassistant.const import TIME_HOURS, UnitOfTemperature
 
 from ..const import DEHUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -68,7 +68,7 @@ class TestGoldairDehumidifier(
                 {
                     "name": "sensor_current_temperature",
                     "dps": CURRENTTEMP_DPS,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                     "device_class": SensorDeviceClass.TEMPERATURE,
                     "state_class": "measurement",
                 },

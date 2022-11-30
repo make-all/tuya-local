@@ -10,7 +10,7 @@ from homeassistant.const import (
     ENERGY_KILO_WATT_HOUR,
     FREQUENCY_HERTZ,
     POWER_WATT,
-    TEMP_CELSIUS,
+    UnitOfTemperature,
 )
 
 from ..const import PC321TY_POWERCLAMP_PAYLOAD
@@ -196,7 +196,7 @@ class TestPC321TYPowerClamp(MultiSensorTests, TuyaDeviceTestCase):
                 {
                     "dps": TEMPERATURE_DP,
                     "name": "sensor_temperature",
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                     "device_class": SensorDeviceClass.TEMPERATURE,
                     "state_class": STATE_CLASS_MEASUREMENT,
                     "testdata": (234, 23.4),

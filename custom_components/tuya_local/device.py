@@ -9,7 +9,7 @@ from threading import Lock, Timer
 from time import time
 
 
-from homeassistant.const import CONF_HOST, CONF_NAME, TEMP_CELSIUS
+from homeassistant.const import CONF_HOST, CONF_NAME, UnitOfTemperature
 from homeassistant.core import HomeAssistant
 
 from .const import (
@@ -43,7 +43,7 @@ class TuyaLocalDevice(object):
 
         self._reset_cached_state()
 
-        self._TEMPERATURE_UNIT = TEMP_CELSIUS
+        self._TEMPERATURE_UNIT = UnitOfTemperature.CELSIUS
         self._hass = hass
 
         # API calls to update Tuya devices are asynchronous and non-blocking.

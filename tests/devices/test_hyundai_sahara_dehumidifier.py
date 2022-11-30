@@ -2,7 +2,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.fan import FanEntityFeature
 from homeassistant.components.humidifier import HumidifierEntityFeature
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import PERCENTAGE, TEMP_CELSIUS
+from homeassistant.const import PERCENTAGE, UnitOfTemperature
 
 from ..const import HYUNDAI_SAHARA_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -60,7 +60,7 @@ class TestHyundaiSaharaDehumidifier(
                     "name": "sensor_current_temperature",
                     "device_class": SensorDeviceClass.TEMPERATURE,
                     "state_class": "measurement",
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
             ]
         )

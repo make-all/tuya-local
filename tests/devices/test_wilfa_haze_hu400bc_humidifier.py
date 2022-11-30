@@ -6,7 +6,7 @@ from homeassistant.components.humidifier.const import (
 )
 from homeassistant.components.sensor import SensorDeviceClass
 
-from homeassistant.const import PERCENTAGE, TEMP_CELSIUS
+from homeassistant.const import PERCENTAGE, UnitOfTemperature
 
 from ..const import WILFA_HAZE_HUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -109,7 +109,7 @@ class TestWilfaHazeHumidifier(
                     "name": "sensor_current_temperature",
                     "device_class": SensorDeviceClass.TEMPERATURE,
                     "state_class": "measurement",
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
                 {
                     "dps": CURRENTHUMID_DPS,

@@ -4,7 +4,7 @@ from homeassistant.components.climate.const import (
     HVACAction,
     HVACMode,
 )
-from homeassistant.const import TIME_MINUTES, TEMP_CELSIUS, TEMP_FAHRENHEIT
+from homeassistant.const import TIME_MINUTES, UnitOfTemperature
 
 from ..const import INKBIRD_SOUSVIDE_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -121,9 +121,9 @@ class TestInkbirdSousVideCooker(
 
     def test_temperature_unit(self):
         self.dps[UNIT_DPS] = True
-        self.assertEqual(self.subject.temperature_unit, TEMP_CELSIUS)
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
         self.dps[UNIT_DPS] = False
-        self.assertEqual(self.subject.temperature_unit, TEMP_FAHRENHEIT)
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.FAHRENHEIT)
 
     def test_current_temperature(self):
         self.dps[CURRENTTEMP_DPS] = 522

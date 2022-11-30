@@ -1,11 +1,8 @@
 from homeassistant.components.climate.const import (
     ClimateEntityFeature,
-    HVACAction,
     HVACMode,
 )
 from homeassistant.const import (
-    TEMP_CELSIUS,
-    TEMP_FAHRENHEIT,
     TIME_MINUTES,
 )
 

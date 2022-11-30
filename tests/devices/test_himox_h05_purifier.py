@@ -5,8 +5,8 @@ from homeassistant.components.sensor import (
 )
 from homeassistant.const import (
     PERCENTAGE,
-    TEMP_CELSIUS,
     TIME_MINUTES,
+    UnitOfTemperature,
 )
 
 from ..const import HIMOX_H05_PURIFIER_PAYLOAD
@@ -59,7 +59,7 @@ class TestHimoxH05Purifier(
                 {
                     "dps": TEMP_DPS,
                     "name": "sensor_current_temperature",
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                     "device_class": SensorDeviceClass.TEMPERATURE,
                     "state_class": STATE_CLASS_MEASUREMENT,
                 },

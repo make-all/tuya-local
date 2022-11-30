@@ -5,8 +5,7 @@ from homeassistant.components.climate.const import (
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     PERCENTAGE,
-    TEMP_CELSIUS,
-    TEMP_FAHRENHEIT,
+    UnitOfTemperature,
 )
 
 from ..const import MADIMACK_ELITEV3_HEATPUMP_PAYLOAD
@@ -68,43 +67,43 @@ class TestMadimackEliteV3Heatpump(
                     "name": "sensor_evaporator_coil_pipe_temperature",
                     "dps": COILTEMP_DPS,
                     "device_class": SensorDeviceClass.TEMPERATURE,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
                 {
                     "name": "sensor_exhaust_gas_temperature",
                     "dps": EXHAUSTTEMP_DPS,
                     "device_class": SensorDeviceClass.TEMPERATURE,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
                 {
                     "name": "sensor_outlet_water_temperature",
                     "dps": OUTLETTEMP_DPS,
                     "device_class": SensorDeviceClass.TEMPERATURE,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
                 {
                     "name": "sensor_ambient_temperature",
                     "dps": AMBIENTTEMP_DPS,
                     "device_class": SensorDeviceClass.TEMPERATURE,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
                 {
                     "name": "sensor_return_gas_temperature",
                     "dps": RETURNGASTEMP_DPS,
                     "device_class": SensorDeviceClass.TEMPERATURE,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
                 {
                     "name": "sensor_cooling_coil_pipe_temperature",
                     "dps": COOLCOILTEMP_DPS,
                     "device_class": SensorDeviceClass.TEMPERATURE,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
                 {
                     "name": "sensor_cooling_plate_temperature",
                     "dps": COOLPLATETEMP_DPS,
                     "device_class": SensorDeviceClass.TEMPERATURE,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
                 {
                     "name": "sensor_eev_opening",
@@ -148,9 +147,9 @@ class TestMadimackEliteV3Heatpump(
 
     def test_temperature_unit(self):
         self.dps[UNIT_DPS] = "c"
-        self.assertEqual(self.subject.temperature_unit, TEMP_CELSIUS)
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
         self.dps[UNIT_DPS] = "f"
-        self.assertEqual(self.subject.temperature_unit, TEMP_FAHRENHEIT)
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.FAHRENHEIT)
 
     def test_minimum_target_temperature(self):
         self.dps[TEMPMIN_DPS] = 60

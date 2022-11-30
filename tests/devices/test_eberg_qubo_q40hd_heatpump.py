@@ -8,9 +8,8 @@ from homeassistant.components.climate.const import (
     SWING_VERTICAL,
 )
 from homeassistant.const import (
-    TEMP_CELSIUS,
-    TEMP_FAHRENHEIT,
     TIME_HOURS,
+    UnitOfTemperature,
 )
 
 from ..const import EBERG_QUBO_Q40HD_PAYLOAD
@@ -80,9 +79,9 @@ class TestEbergQuboQ40HDHeatpump(
 
     def test_temperature_unit(self):
         self.dps[UNIT_DPS] = "c"
-        self.assertEqual(self.subject.temperature_unit, TEMP_CELSIUS)
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
         self.dps[UNIT_DPS] = "f"
-        self.assertEqual(self.subject.temperature_unit, TEMP_FAHRENHEIT)
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.FAHRENHEIT)
 
     def test_minimum_target_temperature_f(self):
         self.dps[UNIT_DPS] = "f"

@@ -3,7 +3,7 @@ from homeassistant.components.humidifier import HumidifierEntityFeature
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     PERCENTAGE,
-    TEMP_CELSIUS,
+    UnitOfTemperature,
 )
 
 from ..const import ELECTRIQ_DEHUMIDIFIER_PAYLOAD
@@ -50,7 +50,7 @@ class TestElectriqCD25ProDehumidifier(
                 {
                     "name": "sensor_current_temperature",
                     "dps": CURRENTTEMP_DPS,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                     "device_class": SensorDeviceClass.TEMPERATURE,
                     "state_class": "measurement",
                 },

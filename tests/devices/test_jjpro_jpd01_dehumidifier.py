@@ -5,7 +5,7 @@ from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     PERCENTAGE,
     TIME_HOURS,
-    TEMP_CELSIUS,
+    UnitOfTemperature,
 )
 from ..const import JJPRO_JPD01_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -79,7 +79,7 @@ class TestJJProJPD01Dehumidifier(
                     "name": "sensor_current_temperature",
                     "device_class": SensorDeviceClass.TEMPERATURE,
                     "state_class": "measurement",
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
             ]
         )

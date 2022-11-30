@@ -5,7 +5,7 @@ from homeassistant.components.climate.const import (
     HVACMode,
 )
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import TEMP_CELSIUS
+from homeassistant.const import UnitOfTemperature
 
 from ..const import TH213V2_THERMOSTAT_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -55,7 +55,7 @@ class TestAwowTH213v2Thermostat(
         self.setUpBasicSensor(
             EXTERNTEMP_DPS,
             self.entities.get("sensor_external_temperature"),
-            unit=TEMP_CELSIUS,
+            unit=UnitOfTemperature.CELSIUS,
             device_class=SensorDeviceClass.TEMPERATURE,
             state_class="measurement",
         )
@@ -81,14 +81,14 @@ class TestAwowTH213v2Thermostat(
                     "dps": CALIBRATE_DPS,
                     "min": -9,
                     "max": 9,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
                 {
                     "name": "number_calibration_swing",
                     "dps": CALIBSWING_DPS,
                     "min": 1,
                     "max": 9,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
             ]
         )

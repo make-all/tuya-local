@@ -8,7 +8,7 @@ from homeassistant.components.climate.const import (
     PRESET_COMFORT,
     PRESET_ECO,
 )
-from homeassistant.const import TEMP_CELSIUS
+from homeassistant.const import UnitOfTemperature
 
 from ..const import BECA_BAC002_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -67,7 +67,7 @@ class TestBecaBAC002Thermostat(
         )
 
     def test_temperature_unit_returns_configured_temperature_unit(self):
-        self.assertEqual(self.subject.temperature_unit, TEMP_CELSIUS)
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
 
     async def test_legacy_set_temperature_with_preset_mode(self):
         async with assert_device_properties_set(

@@ -7,7 +7,7 @@ from homeassistant.components.climate.const import (
     PRESET_AWAY,
     PRESET_HOME,
 )
-from homeassistant.const import TEMP_CELSIUS, TEMP_FAHRENHEIT
+from homeassistant.const import UnitOfTemperature
 
 from ..const import SASWELL_T29UTK_THERMOSTAT_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -96,10 +96,10 @@ class TestSaswellT29UTKThermostat(
 
     def test_temperature_unit(self):
         self.dps[UNITS_DPS] = "C"
-        self.assertEqual(self.subject.temperature_unit, TEMP_CELSIUS)
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
 
         self.dps[UNITS_DPS] = "F"
-        self.assertEqual(self.subject.temperature_unit, TEMP_FAHRENHEIT)
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.FAHRENHEIT)
 
     def test_target_temperature_step_f(self):
         self.dps[UNITS_DPS] = "F"

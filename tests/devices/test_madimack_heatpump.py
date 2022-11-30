@@ -7,8 +7,7 @@ from homeassistant.components.climate.const import (
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     PERCENTAGE,
-    TEMP_CELSIUS,
-    TEMP_FAHRENHEIT,
+    UnitOfTemperature,
 )
 
 from ..const import MADIMACK_HEATPUMP_PAYLOAD
@@ -90,19 +89,19 @@ class TestMadimackPoolHeatpump(
                     "dps": COIL_DPS,
                     "name": "sensor_evaporator_coil_pipe_temperature",
                     "device_class": SensorDeviceClass.TEMPERATURE,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
                 {
                     "dps": EXHAUST_DPS,
                     "name": "sensor_exhaust_gas_temperature",
                     "device_class": SensorDeviceClass.TEMPERATURE,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
                 {
                     "dps": AMBIENT_DPS,
                     "name": "sensor_ambient_temperature",
                     "device_class": SensorDeviceClass.TEMPERATURE,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
                 {
                     "dps": COMPRESSOR_DPS,
@@ -114,7 +113,7 @@ class TestMadimackPoolHeatpump(
                     "dps": COOLINGPLATE_DPS,
                     "name": "sensor_cooling_plate_temperature",
                     "device_class": SensorDeviceClass.TEMPERATURE,
-                    "unit": TEMP_CELSIUS,
+                    "unit": UnitOfTemperature.CELSIUS,
                 },
                 {
                     "dps": EEV_DPS,
@@ -167,9 +166,9 @@ class TestMadimackPoolHeatpump(
 
     def test_temperature_unit(self):
         self.dps[UNITS_DPS] = False
-        self.assertEqual(self.subject.temperature_unit, TEMP_FAHRENHEIT)
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.FAHRENHEIT)
         self.dps[UNITS_DPS] = True
-        self.assertEqual(self.subject.temperature_unit, TEMP_CELSIUS)
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
 
     def test_minimum_fahrenheit_temperature(self):
         self.dps[UNITS_DPS] = False
