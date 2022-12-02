@@ -5,6 +5,7 @@ primary_entity:
     - id: 20
       type: boolean
       name: switch
+      optional: true
     - id: 21
       type: string
       name: color_mode
@@ -42,7 +43,6 @@ primary_entity:
           range:
             min: 0
             max: 1000
-      optional: true
     - id: 25
       type: hex
       name: effect
@@ -110,19 +110,7 @@ primary_entity:
       type: string
       name: scene
       optional: true
-secondary_entities:
-  - entity: number
-    name: Timer
-    category: config
-    icon: "mdi:timer"
-    dps:
-      - id: 26
-        name: value
-        type: integer
-        range:
-          min: 0
-          max: 86400
-        unit: min
-        mapping:
-          - scale: 60
-            step: 60
+    - id: 26
+      name: timer
+      type: integer
+      optional: true
