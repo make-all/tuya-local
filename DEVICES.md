@@ -169,6 +169,7 @@
 - Logicom Strippy 4 way power strip with USB
 - Mirabella Genio smartplug with USB
 - MoesHouse smartplug with RGBW nightlight
+- Single switch with backlight (unbranded)
 - Somgam single wall switch
 - Somgam double wall switch
 - Woox R4028/DIGOO DG-PS01 3 outlet + USB powerstrip with individual timers.
