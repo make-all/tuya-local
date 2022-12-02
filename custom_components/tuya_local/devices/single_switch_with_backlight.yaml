@@ -21,10 +21,12 @@ secondary_entities:
           max: 86400
         mapping:
           - scale: 60
+            step: 60
         unit: min
   - entity: select
     category: config
     name: "Restore Power State"
+    icon: "mdi:toggle-switch"
     dps:
       - id: 14
         name: option
@@ -39,6 +41,7 @@ secondary_entities:
   - entity: select
     category: config
     name: "Backlight Mode"
+    icon: "mdi:television-ambient-light"
     dps:
       - id: 15
         name: option
