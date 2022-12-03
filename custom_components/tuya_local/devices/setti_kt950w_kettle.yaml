@@ -2,17 +2,17 @@ name: Smart kettle Setti+ KT950W
 primary_entity:
   entity: climate
   dps:
-    - id: 1
+    - id: 15
       type: boolean
       name: hvac_mode
       mapping:
-        - dps_val: false
-          value: "off"
+        - dps_val: standby
+          value: "standby"
           icon: "mdi:kettle-off"
-        - dps_val: true
-          value: "heat"
+        - dps_val: heating
+          value: "heating"
           icon: "mdi:kettle"
-    - id: 5
+    - id: 2
       type: integer
       name: current_temperature
       readonly: true
