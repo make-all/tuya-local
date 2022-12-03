@@ -166,7 +166,7 @@ class TuyaLocalDevice(object):
 
     def _refresh_cached_state(self):
         new_state = self._api.status()
-        self._cached_state = new_state["dps"]
+        self._cached_state = self._cached_state | new_state["dps"]
         self._cached_state["updated_at"] = time()
         _LOGGER.debug(f"{self.name} refreshed device state: {json.dumps(new_state)}")
         _LOGGER.debug(
