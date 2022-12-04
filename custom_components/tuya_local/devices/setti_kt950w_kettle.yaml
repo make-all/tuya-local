@@ -2,6 +2,14 @@ name: Smart kettle Setti KT950W
 primary_entity:
   entity: climate
   dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          value: heat
     - id: 15
       type: string
       name: hvac_mode
@@ -16,3 +24,5 @@ primary_entity:
       type: integer
       name: current_temperature
       readonly: true
+      unit: C
+      
