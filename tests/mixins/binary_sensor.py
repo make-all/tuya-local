@@ -57,20 +57,25 @@ class MultiBinarySensorTests:
 
     def test_multi_bsensor_device_class(self):
         for key, subject in self.multiBSensor.items():
-            with self.subTest(key):
-                self.assertEqual(subject.device_class, self.multiBSensorDevClass[key])
+            self.assertEqual(
+                subject.device_class,
+                self.multiBSensorDevClass[key],
+                f"device_class mismatch in {key}",
+            )
 
     def test_multi_bsensor_is_on(self):
         for key, subject in self.multiBSensor.items():
-            with self.subTest(key):
-                dps = self.multiBSensorDps[key]
-                onval, offval = self.multiBSensorTestData[key]
-                self.dps[dps] = onval
-                self.assertTrue(subject.is_on)
-                self.dps[dps] = offval
-                self.assertFalse(subject.is_on)
+            dps = self.multiBSensorDps[key]
+            onval, offval = self.multiBSensorTestData[key]
+            self.dps[dps] = onval
+            self.assertTrue(subject.is_on, f"{key} fails in ON state")
+            self.dps[dps] = offval
+            self.assertFalse(subject.is_on, f"{key} fails in OFF state")
 
     def test_multi_bsensor_extra_state_attributes(self):
         for key, subject in self.multiBSensor.items():
-            with self.subTest(key):
-                self.assertEqual(subject.extra_state_attributes, {})
+            self.assertEqual(
+                subject.extra_state_attributes,
+                {},
+                f"extra_state_attributes mismatch in {key}",
+            )

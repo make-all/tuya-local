@@ -77,56 +77,72 @@ class MultiNumberTests:
 
     def test_multi_number_min_value(self):
         for key, subject in self.multiNumber.items():
-            with self.subTest(key):
-                self.assertEqual(subject.native_min_value, self.multiNumberMin[key])
+            self.assertEqual(
+                subject.native_min_value,
+                self.multiNumberMin[key],
+                f"{key} min value mismatch",
+            )
 
     def test_multi_number_max_value(self):
         for key, subject in self.multiNumber.items():
-            with self.subTest(key):
-                self.assertEqual(subject.native_max_value, self.multiNumberMax[key])
+            self.assertEqual(
+                subject.native_max_value,
+                self.multiNumberMax[key],
+                f"{key} max value mismatch",
+            )
 
     def test_multi_number_step(self):
         for key, subject in self.multiNumber.items():
-            with self.subTest(key):
-                self.assertEqual(subject.native_step, self.multiNumberStep[key])
+            self.assertEqual(
+                subject.native_step,
+                self.multiNumberStep[key],
+                f"{key} step mismatch",
+            )
 
     def test_multi_number_mode(self):
         for key, subject in self.multiNumber.items():
-            with self.subTest(key):
-                self.assertEqual(subject.mode, self.multiNumberMode[key])
+            self.assertEqual(
+                subject.mode,
+                self.multiNumberMode[key],
+                f"{key} mode mismatch",
+            )
 
     def test_multi_number_unit_of_measurement(self):
         for key, subject in self.multiNumber.items():
-            with self.subTest(key):
-                self.assertEqual(
-                    subject.native_unit_of_measurement, self.multiNumberUnit[key]
-                )
+            self.assertEqual(
+                subject.native_unit_of_measurement,
+                self.multiNumberUnit[key],
+                f"{key} unit mismatch",
+            )
 
     def test_multi_number_value(self):
         for key, subject in self.multiNumber.items():
-            with self.subTest(key):
-                val = min(
-                    max(self.multiNumberMin[key], self.multiNumberStep[key]),
-                    self.multiNumberMax[key],
-                )
-                dps_val = val * self.multiNumberScale[key]
-                self.dps[self.multiNumberDps[key]] = dps_val
-                self.assertEqual(subject.native_value, val)
+            val = min(
+                max(self.multiNumberMin[key], self.multiNumberStep[key]),
+                self.multiNumberMax[key],
+            )
+            dps_val = val * self.multiNumberScale[key]
+            self.dps[self.multiNumberDps[key]] = dps_val
+            self.assertEqual(subject.native_value, val, f"{key} value mismatch")
 
     async def test_multi_number_set_value(self):
         for key, subject in self.multiNumber.items():
-            with self.subTest(key):
-                val = min(
-                    max(self.multiNumberMin[key], self.multiNumberStep[key]),
-                    self.multiNumberMax[key],
-                )
-                dps_val = val * self.multiNumberScale[key]
-                async with assert_device_properties_set(
-                    subject._device, {self.multiNumberDps[key]: dps_val}
-                ):
-                    await subject.async_set_native_value(val)
+            val = min(
+                max(self.multiNumberMin[key], self.multiNumberStep[key]),
+                self.multiNumberMax[key],
+            )
+            dps_val = val * self.multiNumberScale[key]
+            async with assert_device_properties_set(
+                subject._device,
+                {self.multiNumberDps[key]: dps_val},
+                f"{key} failed to set correct value",
+            ):
+                await subject.async_set_native_value(val)
 
     def test_multi_number_extra_state_attributes(self):
         for key, subject in self.multiNumber.items():
-            with self.subTest(key):
-                self.assertEqual(subject.extra_state_attributes, {})
+            self.assertEqual(
+                subject.extra_state_attributes,
+                {},
+                f"{key} extra_state_attributes mismatch",
+            )

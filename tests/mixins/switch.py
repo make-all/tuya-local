@@ -151,75 +151,88 @@ class MultiSwitchTests:
 
     def test_multi_switch_is_on(self):
         for key, subject in self.multiSwitch.items():
-            with self.subTest(key):
-                dp = self.multiSwitchDps[key]
-                self.dps[dp] = True
-                self.assertEqual(subject.is_on, True)
+            dp = self.multiSwitchDps[key]
+            self.dps[dp] = True
+            self.assertEqual(subject.is_on, True, f"{key} fails when ON")
 
-                self.dps[dp] = False
-                self.assertEqual(subject.is_on, False)
+            self.dps[dp] = False
+            self.assertEqual(subject.is_on, False, f"{key} fails when OFF")
 
     async def test_multi_switch_turn_on(self):
         for key, subject in self.multiSwitch.items():
-            with self.subTest(key):
-                async with assert_device_properties_set(
-                    subject._device, {self.multiSwitchDps[key]: True}
-                ):
-                    await subject.async_turn_on()
+            async with assert_device_properties_set(
+                subject._device,
+                {self.multiSwitchDps[key]: True},
+                f"{key} failed to turn on",
+            ):
+                await subject.async_turn_on()
 
     async def test_multi_switch_turn_off(self):
         for key, subject in self.multiSwitch.items():
-            with self.subTest(key):
-                async with assert_device_properties_set(
-                    subject._device, {self.multiSwitchDps[key]: False}
-                ):
-                    await subject.async_turn_off()
+            async with assert_device_properties_set(
+                subject._device,
+                {self.multiSwitchDps[key]: False},
+                f"{key} failed to turn off",
+            ):
+                await subject.async_turn_off()
 
     async def test_multi_switch_toggle_turns_on_when_it_was_off(self):
         for key, subject in self.multiSwitch.items():
-            with self.subTest(key):
-                dp = self.multiSwitchDps[key]
-                self.dps[dp] = False
+            dp = self.multiSwitchDps[key]
+            self.dps[dp] = False
 
-                async with assert_device_properties_set(subject._device, {dp: True}):
-                    await subject.async_toggle()
+            async with assert_device_properties_set(
+                subject._device, {dp: True}, f"{key} failed to toggle"
+            ):
+                await subject.async_toggle()
 
     async def test_multi_switch_toggle_turns_off_when_it_was_on(self):
         for key, subject in self.multiSwitch.items():
-            with self.subTest(key):
-                dp = self.multiSwitchDps[key]
-                self.dps[dp] = True
+            dp = self.multiSwitchDps[key]
+            self.dps[dp] = True
 
-                async with assert_device_properties_set(subject._device, {dp: False}):
-                    await subject.async_toggle()
+            async with assert_device_properties_set(
+                subject._device, {dp: False}, f"{key} failed to toggle"
+            ):
+                await subject.async_toggle()
 
     def test_multi_switch_device_class(self):
         for key, subject in self.multiSwitch.items():
-            with self.subTest(key):
-                self.assertEqual(subject.device_class, self.multiSwitchDevClass[key])
+            self.assertEqual(
+                subject.device_class,
+                self.multiSwitchDevClass[key],
+                f"{key} device_class mismatch",
+            )
 
     def test_multi_switch_current_power_w(self):
         for key, subject in self.multiSwitch.items():
-            with self.subTest(key):
-                dp = self.multiSwitchPowerDps.get(key)
-                if dp is None:
-                    self.assertIsNone(subject.current_power_w)
-                else:
-                    self.dps[dp] = 1234
-                    self.assertEqual(
-                        subject.current_power_w,
-                        1234 / self.multiSwitchPowerScale.get(key, 1),
-                    )
+            dp = self.multiSwitchPowerDps.get(key)
+            if dp is None:
+                self.assertIsNone(
+                    subject.current_power_w,
+                    f"{key} current_power_w unexpectedly exists",
+                )
+            else:
+                self.dps[dp] = 1234
+                self.assertEqual(
+                    subject.current_power_w,
+                    1234 / self.multiSwitchPowerScale.get(key, 1),
+                    f"{key} current_power_w not as expected",
+                )
 
     def test_multi_switch_state_attributes(self):
         for key, subject in self.multiSwitch.items():
-            with self.subTest(key):
-                dp = self.multiSwitchPowerDps.get(key)
-                if dp is None:
-                    self.assertEqual(subject.extra_state_attributes, {})
-                else:
-                    self.dps[dp] = 987 * self.multiSwitchPowerScale.get(key, 1)
-                    self.assertDictEqual(
-                        subject.extra_state_attributes,
-                        {"current_power_w": 987.0},
-                    )
+            dp = self.multiSwitchPowerDps.get(key)
+            if dp is None:
+                self.assertEqual(
+                    subject.extra_state_attributes,
+                    {},
+                    f"{key} has unexpected extra_state_attributes",
+                )
+            else:
+                self.dps[dp] = 987 * self.multiSwitchPowerScale.get(key, 1)
+                self.assertDictEqual(
+                    subject.extra_state_attributes,
+                    {"current_power_w": 987.0},
+                    f"{key} extra_state_attributes mismatch",
+                )
