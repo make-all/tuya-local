@@ -10,18 +10,29 @@ primary_entity:
           value: "off"
         - dps_val: true
           value: heat
+    - id: 15
+      type: string
+      name: hvac_mode
+      mapping:
+        - dps_val: standby
+          value: "standby"
+          icon: "mdi:kettle-off"
+        - dps_val: heating
+          value: "heating"
+          icon: "mdi:kettle"
     - id: 2
       type: integer
       name: current_temperature
       readonly: true
       unit: C
-    - id: 10
+    - id: 6
       type: integer
       name: temperature
+      readonly: true
+      unit: C
       mapping:
         - scale: 1
-          step: 5
+          step: 10
       range:
         min: 40
         max: 100
-      
