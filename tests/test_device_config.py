@@ -54,6 +54,10 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
         """
         for cfg in available_configs():
             parsed = TuyaDeviceConfig(cfg)
+            # Check for error messages or unparsed config
+            if isinstance(parsed, str) or isinstance(parsed._config, str):
+                self.fail(f"unparsable yaml in {cfg}")
+
             self.assertIsNotNone(parsed._config.get("name"), f"name missing from {cfg}")
             self.assertIsNotNone(
                 parsed._config.get("primary_entity"),

@@ -6,11 +6,17 @@ primary_entity:
   dps:
     - id: 1
       type: boolean
-      name: power
-      hidden: true
+      name: hvac_mode
       mapping:
         - dps_val: false
           value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: eheat
+              value: heat
+            - dps_val: ecool
+              value: cool
     - id: 9
       type: integer
       name: temperature
@@ -24,23 +30,8 @@ primary_entity:
         - scale: 10
     - id: 2
       type: string
-      name: hvac_mode
-      mapping:
-        - dps_val: eheat
-          constraint: power
-          conditions:
-            - dps_val: false
-              value_redirect: power
-              value: "off"
-            - dps_val: true
-              value: heat
-        - dps_val: ecool
-          constraint: power
-          conditions:
-            - dps_val: false
-              value_redirect: power
-            - dps_val: true
-              value: cool
+      name: mode
+      hidden: true
     - id: 20
       type: bitfield
       name: fault

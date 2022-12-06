@@ -3,15 +3,30 @@ primary_entity:
   entity: climate
   dps:
     - id: 1
-      name: power
+      name: hvac_mode
       type: boolean
       mapping:
         - dps_val: true
-          value: "on"
+          constraint: mode
+          conditions:
+            - dps_val: "cool"
+              value: cool
+              icon: "mdi:snowflake"
+            - dps_val: "fan"
+              value: fan_only
+              icon: "mdi:fan"
+            - dps_val: "heat"
+              value: heat
+              icon: "mdi:fire"
+            - dps_val: "smart_cool"
+              value: auto
+              icon: "mdi:hvac"
+            - dps_val: "dry"
+              value: dry
+              icon: "mdi:water"
         - dps_val: false
           value: "off"
           icon: "mdi:hvac-off"
-          icon_priority: 1
     - id: 2
       name: temperature
       type: integer
@@ -34,93 +49,43 @@ primary_entity:
             - dps_val: f
               value_redirect: current_temperature_f
     - id: 4
-      name: hvac_mode
+      name: mode
       type: string
-      mapping:
-        - dps_val: "cool"
-          constraint: power
-          conditions:
-            - dps_val: false
-              value_redirect: power
-              value: "off"
-            - dps_val: true
-              value: cool
-          icon: "mdi:snowflake"
-          icon_priority: 2
-        - dps_val: "fan"
-          constraint: power
-          conditions:
-            - dps_val: false
-              value_redirect: power
-              value: "off"
-            - dps_val: true
-              value: fan_only
-          icon: "mdi:fan"
-          icon_priority: 2
-        - dps_val: "heat"
-          constraint: power
-          conditions:
-            - dps_val: false
-              value_redirect: power
-              value: "off"
-            - dps_val: true
-              value: heat
-          icon: "mdi:fire"
-          icon_priority: 2
-        - dps_val: "smart_cool"
-          constraint: power
-          conditions:
-            - dps_val: false
-              value_redirect: power
-              value: "off"
-            - dps_val: true
-              value: auto
-          icon: "mdi:hvac"
-          icon_priority: 2
-        - dps_val: "dry"
-          constraint: power
-          conditions:
-            - dps_val: false
-              value_redirect: power
-              value: "off"
-            - dps_val: true
-              value: dry
-          icon: "mdi:water"
-          icon_priority: 2
+      hidden: true
     - id: 5
       name: fan_mode
       type: string
       mapping:
         - dps_val: "f1"
-          constraint: power
+          constraint: hvac_mode
           conditions:
             - dps_val: false
               value: "off"
             - dps_val: true
               value: low
         - dps_val: "f2"
-          constraint: power
+          constraint: hvac_mode
           conditions:
             - dps_val: false
               value: "off"
             - dps_val: true
               value: diffuse
         - dps_val: "f3"
-          constraint: power
+          constraint: hvac_mode
           conditions:
             - dps_val: false
               value: "off"
             - dps_val: true
               value: medium
         - dps_val: "f4"
-          constraint: power
+          constraint: hvac_mode
           conditions:
             - dps_val: false
               value: "off"
             - dps_val: true
               value: high
         - dps_val: "f5"
-          constraint: power
+          constraint: hvac_mode
           conditions:
             - dps_val: false
               value: "off"
@@ -150,7 +115,7 @@ primary_entity:
       type: boolean
       mapping:
         - dps_val: false
-          constraint: power
+          constraint: hvac_mode
           value: "off"
         - dps_val: true
           value: vertical

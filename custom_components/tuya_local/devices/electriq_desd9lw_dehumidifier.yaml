@@ -3,14 +3,27 @@ primary_entity:
   entity: climate
   dps:
     - id: 1
-      name: power
+      name: hvac_mode
       type: boolean
-      hidden: true
       mapping:
         - dps_val: false
           icon: "mdi:air-humidifier-off"
-          icon_priority: 1
           value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: "Auto"
+              value: "auto"
+              icon: "mdi:air-humidifier"
+            - dps_val: "Heater"
+              value: "heat"
+              icon: "mdi:fire"
+            - dps_val: "Dehumidity"
+              value: "dry"
+              icon: "mdi:water"
+            - dps_val: "Fan"
+              value: "fan_only"
+              icon: "mdi:fan"
     - id: 2
       type: integer
       name: humidity
@@ -24,64 +37,27 @@ primary_entity:
       name: fan_mode
       mapping:
         - dps_val: "Low"
-          constraint: hvac_mode
+          constraint: mode
           conditions:
             - dps_val: "Auto"
               invalid: true
           value: "Low"
         - dps_val: "Medium"
-          constraint: hvac_mode
+          constraint: mode
           conditions:
             - dps_val: "Auto"
               invalid: true
           value: "Medium"
         - dps_val: "High"
-          constraint: hvac_mode
+          constraint: mode
           conditions:
             - dps_val: "Auto"
               invalid: true
           value: "High"
     - id: 5
-      name: hvac_mode
+      name: mode
       type: string
-      mapping:
-        - dps_val: "Auto"
-          constraint: power
-          conditions:
-          - dps_val: false
-            value_redirect: power
-          - dps_val: true
-            value: "auto"
-            icon: "mdi:air-humidifier"
-            icon-priority: 2
-        - dps_val: "Heater"
-          constraint: power
-          conditions:
-          - dps_val: false
-            value_redirect: power
-          - dps_val: true
-            value: "heat"
-            icon: "mdi:fire"
-            icon-priority: 2
-        - dps_val: "Dehumidity"
-          constraint: power
-          conditions:
-          - dps_val: false
-            value_redirect: power
-          - dps_val: true
-            value: "dry"
-            icon: "mdi:water"
-            icon-priority: 2
-        - dps_val: "Fan"
-          constraint: power
-          conditions:
-          - dps_val: false
-            value_redirect: power
-            value: "off"
-          - dps_val: true
-            value: "fan_only"
-            icon: "mdi:fan"
-            icon_priority: 2
+      hidden: true
     - id: 6
       type: integer
       name: current_humidity

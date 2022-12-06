@@ -4,30 +4,21 @@ primary_entity:
   dps:
     - id: 1
       type: boolean
-      name: power
-      hidden: true
+      name: hvac_mode
       mapping:
         - dps_val: False
           value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: cold
+              value: cool
+            - dps_val: hot
+              value: heat
     - id: 2
       type: string
-      name: hvac_mode
-      mapping:
-        - dps_val: cold
-          constraint: power
-          conditions:
-            - dps_val: true
-              value: cool
-            - dps_val: false
-              value_redirect: power
-              value: "off"
-        - dps_val: hot
-          constraint: power
-          conditions:
-            - dps_val: true
-              value: heat
-            - dps_val: false
-              value_redirect: power
+      name: mode
+      hidden: true
     - id: 3
       type: string
       name: work_state

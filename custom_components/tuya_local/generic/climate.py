@@ -286,6 +286,24 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
             raise NotImplementedError()
         await self._hvac_mode_dps.async_set_value(self._device, hvac_mode)
 
+    async def async_turn_on(self):
+        """Turn on the climate device."""
+        # Bypass the usual dps mapping to switch the power dp directly
+        # this way the hvac_mode will be kept when toggling off and on.
+        if self._hvac_mode_dps and self._hvac_mode_dps.type is bool:
+            await self.device.async_set_property(self._hvac_mode_dps, True)
+        else:
+            await super.async_turn_on()
+
+    async def async_turn_off(self):
+        """Turn off the climate device."""
+        # Bypass the usual dps mapping to switch the power dp directly
+        # this way the hvac_mode will be kept when toggling off and on.
+        if self._hvac_mode_dps and self._hvac_mode_dps.type is bool:
+            await self.device.async_set_property(self._hvac_mode_dps, False)
+        else:
+            await super.async_turn_off()
+
     @property
     def is_aux_heat(self):
         """Return state of aux heater"""

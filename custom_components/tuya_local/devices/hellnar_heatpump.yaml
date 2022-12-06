@@ -3,20 +3,36 @@ primary_entity:
   entity: climate
   dps:
     - id: 1
-      name: power
+      name: hvac_mode
       type: boolean
       mapping:
         - dps_val: false
           value: "off"
           icon: "mdi:hvac-off"
-          icon_priority: 1
-      hidden: true
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: auto
+              icon: "mdi:hvac"
+              value: heat_cool
+            - dps_val: cold
+              icon: "mdi:snowflake"
+              value: cool
+            - dps_val: hot
+              icon: "mdi:fire"
+              value: heat
+            - dps_val: wind
+              icon: "mdi:fan"
+              value: fan_only
+            - dps_val: wet
+              icon: "mdi:water"
+              value: dry
     - id: 2
       name: temperature
       type: integer
       mapping:
         - scale: 10
-          constraint: hvac_mode
+          constraint: mode
           conditions:
             - dps_val: cold
               range:
@@ -38,55 +54,9 @@ primary_entity:
       name: current_temperature
       type: integer
     - id: 4
-      name: hvac_mode
+      name: mode
       type: string
-      mapping:
-        - dps_val: auto
-          icon: "mdi:hvac"
-          icon_priority: 2
-          constraint: power
-          conditions:
-            - dps_val: false
-              value_redirect: power
-            - dps_val: true
-              value: heat_cool
-        - dps_val: cold
-          icon: "mdi:snowflake"
-          icon_priority: 2
-          constraint: power
-          conditions:
-            - dps_val: false
-              value_redirect: power
-            - dps_val: true
-              value: cool
-        - dps_val: hot
-          icon: "mdi:fire"
-          icon_priority: 2
-          constraint: power
-          conditions:
-            - dps_val: false
-              value_redirect: power
-            - dps_val: true
-              value: heat
-        - dps_val: wind
-          icon: "mdi:fan"
-          icon_priority: 2
-          constraint: power
-          conditions:
-            - dps_val: false
-              value_redirect: power
-              value: "off"
-            - dps_val: true
-              value: fan_only
-        - dps_val: wet
-          icon: "mdi:water"
-          icon_priority: 2
-          constraint: power
-          conditions:
-            - dps_val: false
-              value_redirect: power
-            - dps_val: true
-              value: dry
+      hidden: true
     - id: 5
       name: maybe_fan_mode
       type: string
