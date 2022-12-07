@@ -121,17 +121,29 @@ class TestEbergQuboQ40HDHeatpump(
             ],
         )
 
-    async def test_turn_on(self):
+    async def test_set_hvac_cool(self):
         async with assert_device_properties_set(
             self.subject._device, {POWER_DPS: True, HVACMODE_DPS: "cold"}
         ):
             await self.subject.async_set_hvac_mode(HVACMode.COOL)
 
-    async def test_turn_off(self):
+    async def test_set_hvac_off(self):
         async with assert_device_properties_set(
             self.subject._device, {POWER_DPS: False}
         ):
             await self.subject.async_set_hvac_mode(HVACMode.OFF)
+
+    async def test_turn_on(self):
+        async with assert_device_properties_set(
+            self.subject._device, {POWER_DPS: True}
+        ):
+            await self.subject.async_turn_on()
+
+    async def test_turn_off(self):
+        async with assert_device_properties_set(
+            self.subject._device, {POWER_DPS: False}
+        ):
+            await self.subject.async_turn_off()
 
     def test_fan_mode(self):
         self.dps[FAN_DPS] = "low"
