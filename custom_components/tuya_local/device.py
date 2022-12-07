@@ -66,11 +66,16 @@ class TuyaLocalDevice(object):
         self._startup_listener = None
         self._api_protocol_version_index = None
         self._api_protocol_working = False
+
         parent = None
+        tuya_device_id = dev_id
         if cid is not None:
-            parent = tinytuya.Device(dev_id, address, local_key)
+            _LOGGER.info(f"Creating sub device {cid} from gateway {dev_id}.")
+            parent = tinytuya.Device(dev_id, address, local_key, persist=True)
+            tuya_device_id  = cid
+            local_key = None
+        self._api = tinytuya.Device(tuya_device_id, address, local_key, cid, parent)
         self.cid = cid
-        self._api = tinytuya.Device(dev_id, address, local_key, cid, parent)
         self._refresh_task = None
         self._protocol_configured = protocol_version
 
