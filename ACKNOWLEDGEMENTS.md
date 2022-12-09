@@ -141,3 +141,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [Kulturnilpferd](https://github.com/Kulturnilpferd) for contributing support for Hosome air purifiers.
 - [raphaeleduardo42](https://github.com/raphaeleduardo42) for assistance supporting AGL Ultramagic locks.
 - [EnginDzhemil](https://github.com/EnginDzhemil) for contributing support for single switches with backlight.
+- [billxinli](https://github.com/billxinli) for contributing support for Honeywell TP dehumidifiers.

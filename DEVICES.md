@@ -118,6 +118,7 @@
 - ElectriQ DESD9LW dehumidifier
 - Eesee Adam dehumidifier
 - Goldair GPDH420 dehumidifier
+- Honeywell TP(30/50/70) dehumidifiers
 - Hyundai Sahara dehumidifier
 - Inventor Atmosphere XL dehumidifier
 - JJPro JPD01 dehumidifer
