@@ -1,0 +1,46 @@
+name: Dual switch with timers
+primary_entity:
+  entity: switch
+  name: Switch 1
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: switch
+    name: Switch 2
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+  - entity: number
+    name: Timer 1
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+        unit: min
+  - entity: number
+    name: Timer 2
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+        unit: min
+

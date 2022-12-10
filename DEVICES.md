@@ -156,7 +156,7 @@
   _confirmed working with CBE smartplugs_
 - Generic smartplug with some additional encoded schedule info.
   _confirmed working as a simple switch and timer with Kashimura KJ-173_
-- Generic double switch with timers (confirmed with Living dual switch)
+- Generic double switch with timers (confirmed with Living dual switch and another v2 variant with Avatto dual switch)
 - Generic triple and quad switches (confirmed with Songam wall switches)
 - 4 way power monitoring strip
 - Arlec PB88UHA 4 way powerstrip with child lock
