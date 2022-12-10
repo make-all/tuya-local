@@ -145,3 +145,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [isarib01](https://github.com/isarib01) for assistance supporting Deta motion sensor lights.
 - [iDontWantAUsername](https://github.com/iDontWantAUsername) for assistance supporting Grid Connect USB charger with power socket.
 - [engusz](https://github.com/engusz) for assistance supporting Avatto curtain switches and dual switch with timers.
+- [81k5](https://github.com/81k5) for assistance supporting Aubess smart switches.
