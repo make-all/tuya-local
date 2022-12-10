@@ -143,3 +143,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [EnginDzhemil](https://github.com/EnginDzhemil) for contributing support for single switches with backlight.
 - [billxinli](https://github.com/billxinli) for contributing support for Honeywell TP dehumidifiers.
 - [isarib01](https://github.com/isarib01) for assistance supporting Deta motion sensor lights.
+- [iDontWantAUsername](https://github.com/iDontWantAUsername) for assistance supporting Grid Connect USB charger with power socket.
