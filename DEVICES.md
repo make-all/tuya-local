@@ -194,6 +194,7 @@ Other brands may work with the above configurations
 
 - Simple garage door
 - Simple blind controller
+- Avatto curtain switch
 - Avatto roller blinds controller
 - Dongguan garage door
 - Kogan garage door with tilt sensor
