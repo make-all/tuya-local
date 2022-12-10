@@ -28,6 +28,30 @@ primary_entity:
       read-only: true
       mapping:
         - scale: 10
+    - id: 21
+      type: bitfield
+      name: factory_test
+      optional: true
+    - id: 22
+      type: integer
+      name: voltage_calibration
+      optional: true
+    - id: 23
+      type: integer
+      name: current_calibration
+      optional: true
+    - id: 24
+      type: integer
+      name: power_calibration
+      optional: true
+    - id: 25
+      type: integer
+      name: energy_calibration
+      optional: true
+    - id: 26
+      type: integer
+      name: fault_code
+      optional: true
 secondary_entities:
   - entity: sensor
     category: diagnostic
