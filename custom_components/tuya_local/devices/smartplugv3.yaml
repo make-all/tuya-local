@@ -1,0 +1,117 @@
+name: Advanced energy monitoring smartplug
+primary_entity:
+  entity: switch
+  class: outlet
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 21
+      type: integer
+      name: test_bit
+    - id: 22
+      type: integer
+      name: voltage_calibration
+    - id: 23
+      type: integer
+      name: current_calibration
+    - id: 24
+      type: integer
+      name: power_calibration
+    - id: 25
+      type: integer
+      name: energy_calibration
+    - id: 26
+      type: bitfield
+      name: fault_code
+    - id: 41
+      type: string
+      name: cycle_timer
+    - id: 42
+      type: string
+      name: random_timer
+secondary_entities:
+  - entity: number
+    category: config
+    name: Timer
+    icon: "mdi:timer"
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: sensor
+    category: diagnostic
+    class: current
+    name: Current
+    dps:
+      - id: 18
+        name: sensor
+        type: integer
+        class: measurement
+        unit: mA
+  - entity: sensor
+    category: diagnostic
+    class: power
+    name: Power
+    dps:
+      - id: 19
+        name: sensor
+        type: integer
+        class: measurement
+        unit: W
+        mapping:
+          - scale: 10
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    name: Voltage
+    dps:
+      - id: 20
+        name: sensor
+        type: integer
+        class: measurement
+        unit: V
+        mapping:
+          - scale: 10
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    name: Error
+    dps:
+      - id: 26
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: select
+    category: config
+    name: Initial state
+    icon: "mdi:toggle-switch"
+    dps:
+      - id: 38
+        type: string
+        name: option
+        mapping:
+          - dps_val: "on"
+            value: "On"
+          - dps_val: "off"
+            value: "Off"
+          - dps_val: memory
+            value: "Last State"
+  - entity: switch
+    name: Overcharge cutoff
+    category: config
+    icon: "mdi:battery-charging"
+    dps:
+      - id: 46
+        type: boolean
+        name: switch
