@@ -1,0 +1,68 @@
+name: Motion Sensor Light
+products:
+  - id: oapo5mmfbcr2y7ox
+    name: Deta 360 Motion Sensor
+  - id: 8mrw54ape8opgl69
+    name: Deta Light Motion Sensor
+primary_entity:
+  entity: light
+  dps:
+    - id: 101
+      type: string
+      name: effect
+      mapping:
+        - dps_val: mode_off
+          value: "Off"
+        - dps_val: mode_auto
+          value: Auto
+        - dps_val: mode_on
+          value: "On"
+    - id: 102
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: number
+    name: Sensitivity
+    icon: "mdi:human-greeting-proximity"
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 100
+  - entity: number
+    name: Duration
+    icon: "mdi:camera-timer"
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 900
+        mapping:
+          - step: 10
+  - entity: number
+    name: Light Level
+    icon: "mdi:theme-light-dark"
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: lx
+        range:
+          min: 3
+          max: 2000
+  - entity: binary_sensor
+    name: Detect
+    category: diagnostic
+    class: presence
+    dps:
+      - id: 106
+        type: boolean
+        name: sensor
