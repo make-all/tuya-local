@@ -1,0 +1,85 @@
+name: HJZ radiator
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+          icon: "mdi:radiator-disabled"
+        - dps_val: true
+          value: heat
+          icon: "mdi:radiator"
+    - id: 2
+      type: integer
+      name: temperature
+      range:
+        min: 15
+        max: 50
+    - id: 4
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: "0"
+          value: comfort
+        - dps_val: "1"
+          value: eco
+        - dps_val: "2"
+          value: anti-frost
+    - id: 21
+      type: bitfield
+      name: fault_code
+secondary_entities:
+  - entity: lock
+    category: config
+    name: Child lock
+    icon: "mdi:hand-back-right-off"
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: light
+    category: config
+    name: Display
+    icon: "mdi:television-ambient-light"
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: select
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: "Off"
+          - dps_val: 1h
+            value: "1 hour"
+          - dps_val: 2h
+            value: "2 hour"
+          - dps_val: 3h
+            value: "3 hour"
+          - dps_val: 4h
+            value: "4 hour"
+          - dps_val: 5h
+            value: "5 hour"
+          - dps_val: 6h
+            value: "6 hour"
+  - entity: binary_sensor
+    category: diagnostic
+    name: Fault
+    class: problem
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true

@@ -147,3 +147,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [engusz](https://github.com/engusz) for assistance supporting Avatto curtain switches and dual switch with timers.
 - [81k5](https://github.com/81k5) for assistance supporting Aubess smart switches.
 - [SvenMartin81](https://github.com/SvenMartin81) for assistance supporting another variant of common smartplug (via GNCC branded one)
+- [cjones813](https://github.com/cjones813) for assistance supporting HJZ radiators.
