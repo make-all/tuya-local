@@ -96,7 +96,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [x-keita](https://github.com/x-keita) for contributing support for Betterlife BL1500 IR heaters and Nexxt smart switches.
 - [Der-Nax](https:github.com/Der-Nax) for assistance with a second variant of energy monitoring smart switch and for contributing support for PY321-TY power clamps, Compteur smart meters and sensors on a Universal Remote Control.
 - [17hoehbr](https://github.com/17hoehbr) for assistance supporting APOSEN A550
-- [yurgh](https://github.com/yurgh) for assistant supporting Eesee Adam dehumidifier
+- [yurgh](https://github.com/yurgh) for assistance supporting Eeese Adam dehumidifier
 - [KaportsevIA](https://github.com/KaportsevIA) for assistance supporting Hyundai Sahara dehumidifier, Yandax color bulb and ES01 powerstrip.
 - [poolMiniDomo](https://github.com/poolMiniDomo) for assistance supporting Moes Temperature and Humidity switches.
 - [pretoriano80](https://github.com/pretoriano80) for assistance supporting AlecoAir dehumidifiers.
@@ -148,3 +148,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [81k5](https://github.com/81k5) for assistance supporting Aubess smart switches.
 - [SvenMartin81](https://github.com/SvenMartin81) for assistance supporting another variant of common smartplug (via GNCC branded one)
 - [cjones813](https://github.com/cjones813) for assistance supporting HJZ radiators.
+- [cnrd](https://github.com/cnrd) for contributing support for Eeese Otto dehumidifiers.
