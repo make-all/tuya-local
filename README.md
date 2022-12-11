@@ -169,6 +169,31 @@ Many Tuya devices will stop responding if unable to connect to the
 Tuya servers for an extended period.  Reportedly, some devices act
 better offline if DNS as well as TCP connections is blocked.
 
+## General gotchas
+
+Many Tuya devices do not handle multiple commands sent in quick
+succession.  Some will reboot, possibly changing state in the process,
+others will go offline for 30s to a few minutes if you overload them.
+There is some rate limiting to try to avoid this, but it is not
+sufficient for many devices, and may not work across entities where
+you are sending commands to multiple entities on the same device.  The
+rate limiting also combines commands, which not all devices can
+handle. If you are sending commands from an automation, it is best to
+add delays between commands - if your automation is for multiple
+devices, it might be enough to send commands to other devices first
+before coming back to send a second command to the first one, or you
+may still need a delay after that.  The exact timing depends on the
+device, so you may need to experiment to find the minimum delay that
+gives reliable results.
+
+Some devices can handle multiple commands in a single message, so for
+entity platforms that support it (eg climate `set_temperature` can
+include presets, lights pretty much everything is set through
+`turn_on`) multiple settings are sent at once.  But some devices do
+not like this and require all commands to set only a single dp at a
+time, so you may need to experiment with your automations to see
+whether a single command or multiple commands (with delays, see above)
+work best with your devices.
 
 ## Heater gotchas
 
