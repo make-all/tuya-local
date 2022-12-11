@@ -1,0 +1,26 @@
+name: benexmart blind motor
+primary_entity:
+  entity: cover
+  class: blind
+  dps:
+    - id: 1
+      name: control
+      type: string
+      mapping:
+        - dps_val: open
+          value: open
+        - dps_val: close
+          value: close
+        - dps_val: stop
+          value: stop
+    - id: 2
+      name: position
+      type: integer
+      range:
+        min: 0
+        max: 100
+      mapping:
+        - invert: true
+    - id: 5
+      name: motor_reverse
+      type: boolean
