@@ -86,6 +86,10 @@ primary_entity:
           conditions:
             - dps_val: f
               value_redirect: current_temp_f
+    - id: 27
+      name: temperature_calibration
+      type: integer
+      optional: true
     - id: 28
       name: fan_mode
       type: string
@@ -140,16 +144,6 @@ secondary_entities:
           - dps_val: f
             value: Fahrenheit
             icon: "mdi:temperature-fahrenheit"
-  - entity: number
-    name: Temperature calibration
-    category: config
-    dps:
-      - id: 27
-        type: integer
-        name: value
-        range:
-          min: -3
-          max: 3
   - entity: sensor
     name: Current humidity
     class: humidity
