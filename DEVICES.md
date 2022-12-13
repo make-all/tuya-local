@@ -198,6 +198,7 @@ Other brands may work with the above configurations
 - Simple blind controller
 - Avatto curtain switch
 - Avatto roller blinds controller
+- Benexmart blind motor
 - Dongguan garage door
 - Kogan garage door with tilt sensor
 - M027 curtain module (sold under several brands, including zemismart, meterk and others)
