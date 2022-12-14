@@ -191,6 +191,7 @@ Other brands may work with the above configurations
 - Generic RGBCW/RGBWW lightbulb (confirmed with Lijun branded bulb, expected to match others also). Two versions - with and without scene/music modes and timer.
 - Atomi smart color string light
 - Deta motion sensor lights (DET100HA/DET102HA)
+- Dual-mode magic light string controller
 
 ### Covers
 
