@@ -36,6 +36,14 @@ EUROM_WALLDESIGNHEAT2000_HEATER_PAYLOAD = {
     "7": False,
 }
 
+EUROM_SANIWALLHEAT2000_HEATER_PAYLOAD = {
+    "1": True,
+    "2": 21,
+    "3": 19,
+    "4": "off",
+    "7": False,
+}
+
 GECO_HEATER_PAYLOAD = {"1": True, "2": True, "3": 30, "4": 25, "5": 0, "6": 0}
 
 JJPRO_JPD01_PAYLOAD = {
