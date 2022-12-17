@@ -46,7 +46,7 @@ configuration for it in the following locations:
 
 1. When attempting to add the device, if it is not supported, you will either get a message saying the device cannot be recognised at all, or you will be offered a list of devices (maybe a list of length 1) that are partial matches, often simple switch is among them.  You can cancel the process at this point, and look in the Home Assistant log - there should be a message there containing the current data points (dps) returned by the device.
 
-2. If you have signed up for iot.tuya.com to get your local key, you should also have access to the API Explorer under "Cloud".  One of the functions under the "Device Control" section - the last "Get Device Specification Attribute" function listed, returns the dp_id in addition to range information that is needed for integer and enum data types.
+2. If you have signed up for iot.tuya.com to get your local key, you should also have access to the API Explorer under "Cloud".  One of the functions under the "Smart Home Device System" / "Device Control" section - the last "Get Device Specification Attribute" function listed, returns the dp_id in addition to range information that is needed for integer and enum data types.
 
 3. By following the method described at the link below, you can find information for all the data points supported by your device, including those not listed by the API explorer method above and those that are only returned under specific conditions. Ignore the requirement for a Tuya Zigbee gateway, that is for Zigbee devices, and this integration does not currently support devices connected via a gateway, but the non-Zigbee/gateway specific parts of the procedure apply also to WiFi devices.
 
