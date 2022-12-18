@@ -109,25 +109,46 @@ primary_entity:
       name: unknown_101
       type: boolean
     - id: 104
-      name: temperature
+      name: target_temp_high
       type: integer
       range:
-        min: 5
+        min: 6
         max: 40
       mapping:
         - constraint: temperature_unit
           conditions:
             - dps_val: f
-              value_redirect: temp_f
+              value_redirect: temp_high_f
               range:
-                min: 32
+                min: 33
                 max: 104
     - id: 106
-      name: temp_f
+      name: temp_high_f
+      type: integer
+      range:
+        min: 33
+        max: 104
+      hidden: true
+    - id: 105
+      name: target_temp_low
+      type: integer
+      range:
+        min: 5
+        max: 39
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: temp_low_f
+              range:
+                min: 32
+                max: 103
+    - id: 107
+      name: temp_low_f
       type: integer
       range:
         min: 32
-        max: 104
+        max: 103
       hidden: true
 secondary_entities:
   - entity: select
@@ -218,88 +239,6 @@ secondary_entities:
         range:
           min: 32
           max: 104
-        hidden: true
-      - id: 23
-        name: temperature_unit
-        type: string
-        mapping:
-          - dps_val: c
-            value: C
-          - dps_val: f
-            value: F
-      - id: 24
-        name: current_temperature
-        type: integer
-        mapping:
-          - constraint: temperature_unit
-            conditions:
-              - dps_val: f
-                value_redirect: current_temp_f
-      - id: 29
-        name: current_temp_f
-        type: integer
-        hidden: true
-  - entity: climate
-    name: Auto range
-    category: config
-    dps:
-      - id: 1
-        name: power
-        type: boolean
-        hidden: true
-      - id: 2
-        name: hvac_mode
-        type: string
-        mapping:
-          - dps_val: auto
-            constraint: power
-            conditions:
-              - dps_val: false
-                value: "off"
-              - dps_val: true
-                value: heat_cool
-          - value: "off"
-      - id: 104
-        name: target_temp_high
-        type: integer
-        range:
-          min: 6
-          max: 40
-        mapping:
-          - constraint: temperature_unit
-            conditions:
-              - dps_val: f
-                value_redirect: temp_high_f
-                range:
-                  min: 33
-                  max: 104
-      - id: 106
-        name: temp_high_f
-        type: integer
-        range:
-          min: 33
-          max: 104
-        hidden: true
-      - id: 105
-        name: target_temp_low
-        type: integer
-        range:
-          min: 5
-          max: 39
-        mapping:
-          - constraint: temperature_unit
-            conditions:
-              - dps_val: f
-                value_redirect: temp_low_f
-                range:
-                  min: 32
-                  max: 103
-      - id: 107
-        name: temp_low_f
-        type: integer
-        range:
-          min: 32
-          max: 103
         hidden: true
       - id: 23
         name: temperature_unit
