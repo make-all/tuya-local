@@ -9,6 +9,7 @@
 - Ecostrad Accent iQ heating panels
 - Ecostrad iQ ceramic radiators
 - Eurom Mon Soleil 300,600,800, 350,601,720 and 300,450,720 Verre heaters
+- Eurom Sani Wall Heat 2000 heater
 - Eurom Wall Designheat 2000 heater
 - Goldair heater models beginning with the code GPPH, GCPV, GECO
 - HJZ oil column radiator

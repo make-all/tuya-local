@@ -149,3 +149,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [SvenMartin81](https://github.com/SvenMartin81) for assistance supporting another variant of common smartplug (via GNCC branded one)
 - [cjones813](https://github.com/cjones813) for assistance supporting HJZ radiators, and contributing Benexmart blinds support.
 - [cnrd](https://github.com/cnrd) for contributing support for Eeese Otto dehumidifiers.
+- [markwellis](https://github.com/markwellis) for contributing support for Eurom Sani Wall Heat 2000 heaters.
