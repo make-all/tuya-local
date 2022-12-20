@@ -153,17 +153,6 @@
 
 ### SmartPlugs/Wall sockets/Wall switches
 
-- Generic smartplug with energy monitoring (older models)
-  _confirmed as working with Kogan and Blitzwolf single smartplugs_
-- Generic smartplug with energy monitoring (newer models)
-  _confirmed working with Kogan single smartplug with USB and Rillpac smartplugs_
-- Generic smartplug with more advanced energy monitoring
-  _confirmed working with CBE smartplugs, another variant with child lock, backlight and inching switch confirmed with Aubess_
-- Generic smartplug with some additional encoded schedule info.
-  _confirmed working as a simple switch and timer with Kashimura KJ-173_
-- Generic double switch with timers (confirmed with Living dual switch and another v2 variant with Avatto dual switch)
-- Generic triple and quad switches (confirmed with Songam wall switches)
-- 4 way power monitoring strip
 - Arlec PB88UHA 4 way powerstrip with child lock
 - Aubess 1-gang switch with energy monitoring
 - Aubess 2-gang switch
@@ -179,9 +168,23 @@
 - Single switch with backlight (unbranded)
 - Somgam single wall switch
 - Somgam double wall switch
+- Tellur 3 outlet + USB power strip with individual timers.
 - Woox R4028/DIGOO DG-PS01 3 outlet + USB powerstrip with individual timers.
-Other brands may work with the above configurations
 
+Other brands may work with the above configurations, or the below are
+generic configurations known to work with multiple brands of device.
+
+- 4 way power monitoring strip
+- Generic smartplug with energy monitoring (older models)
+  _confirmed as working with Kogan and Blitzwolf single smartplugs_
+- Generic smartplug with energy monitoring (newer models)
+  _confirmed working with Kogan single smartplug with USB and Rillpac smartplugs_
+- Generic smartplug with more advanced energy monitoring
+  _confirmed working with CBE smartplugs, another variant with child lock, backlight and inching switch confirmed with Aubess_
+- Generic smartplug with some additional encoded schedule info.
+  _confirmed working as a simple switch and timer with Kashimura KJ-173_
+- Generic double switch with timers (confirmed with Living dual switch and another v2 variant with Avatto dual switch)
+- Generic triple and quad switches (confirmed with Songam wall switches)
 - Simple switch - a switch only, can be a fallback for many other unsupported devices, to allow just power to be switched on/off.
 - Simple switch with timer - a single switch and timer, will probably work for a lot of smart switches that are not covered by the more advanced configs above.
 - Simple switch with timer v2 - the above with timer moved from dp 11 to 9, confirmed with a Nexxt 220V smart switch.

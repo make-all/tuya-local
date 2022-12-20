@@ -150,3 +150,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [cjones813](https://github.com/cjones813) for assistance supporting HJZ radiators, and contributing Benexmart blinds support.
 - [cnrd](https://github.com/cnrd) for contributing support for Eeese Otto dehumidifiers.
 - [markwellis](https://github.com/markwellis) for contributing support for Eurom Sani Wall Heat 2000 heaters.
+- [escoand](https://github.com/escoand) for contributing support for Tellur USB power strip.
