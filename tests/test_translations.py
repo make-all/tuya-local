@@ -43,22 +43,6 @@ def get_devices():
         yield TuyaDeviceConfig(device)
 
 
-@pytest.mark.parametrize("translations", get_translations())
-def test_config_and_options_match(translations):
-
-    config = translations["config"]["step"]["choose_entities"]["data"]
-    options = translations["options"]["step"]["user"]["data"]
-
-    # remove expected differences
-    config.pop("name", None)
-    options.pop("host", None)
-    options.pop("local_key", None)
-
-    test = TestCase()
-    test.maxDiff = None
-    test.assertDictEqual(config, options)
-
-
 def subtest_entity_covered(entity):
     strings = get_english()
     TestCase().assertIn(
