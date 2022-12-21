@@ -166,7 +166,6 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.assertEqual(self.subject._pending_updates, {})
 
     def test_api_protocol_version_is_rotated_with_each_failure(self):
-        self.subject._api.set_version.assert_called_once_with(3.3)
         self.subject._api.set_version.reset_mock()
 
         self.subject._api.status.side_effect = [
@@ -184,7 +183,6 @@ class TestDevice(IsolatedAsyncioTestCase):
         )
 
     def test_api_protocol_version_is_stable_once_successful(self):
-        self.subject._api.set_version.assert_called_once_with(3.3)
         self.subject._api.set_version.reset_mock()
 
         self.subject._api.status.side_effect = [
