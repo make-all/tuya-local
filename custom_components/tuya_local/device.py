@@ -50,7 +50,6 @@ class TuyaLocalDevice(object):
         self._api = tinytuya.Device(dev_id, address, local_key)
         self._refresh_task = None
         self._protocol_configured = protocol_version
-        self._rotate_api_protocol_version()
 
         self._reset_cached_state()
 
@@ -246,6 +245,9 @@ class TuyaLocalDevice(object):
             self._lock.release()
 
     def _retry_on_failed_connection(self, func, error_message):
+        if self._api_protocol_version_index is None:
+            self._rotate_api_protocol_version()
+
         for i in range(self._CONNECTION_ATTEMPTS):
             try:
                 func()
