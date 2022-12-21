@@ -15,6 +15,7 @@ from custom_components.tuya_local import (
 from custom_components.tuya_local.const import (
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
+    CONF_PROTOCOL_VERSION,
     CONF_TYPE,
     DOMAIN,
 )
@@ -39,12 +40,13 @@ async def test_init_entry(hass):
     """Test initialisation of the config flow."""
     entry = MockConfigEntry(
         domain=DOMAIN,
-        version=9,
+        version=10,
         title="test",
         data={
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
             CONF_LOCAL_KEY: "localkey",
+            CONF_PROTOCOL_VERSION: "auto",
             CONF_TYPE: "kogan_kahtp_heater",
         },
         options={},
@@ -240,6 +242,7 @@ async def test_async_test_connection_valid(mock_device, hass):
             CONF_DEVICE_ID: "deviceid",
             CONF_LOCAL_KEY: "localkey",
             CONF_HOST: "hostname",
+            CONF_PROTOCOL_VERSION: "auto",
         },
         hass,
     )
@@ -257,6 +260,7 @@ async def test_async_test_connection_invalid(mock_device, hass):
             CONF_DEVICE_ID: "deviceid",
             CONF_LOCAL_KEY: "localkey",
             CONF_HOST: "hostname",
+            CONF_PROTOCOL_VERSION: "auto",
         },
         hass,
     )
@@ -274,6 +278,7 @@ async def test_flow_user_init_invalid_config(mock_test, hass):
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
             CONF_LOCAL_KEY: "badkey",
+            CONF_PROTOCOL_VERSION: "auto",
         },
     )
     assert {"base": "connection"} == result["errors"]
@@ -411,6 +416,7 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
             CONF_DEVICE_ID: "deviceid",
             CONF_LOCAL_KEY: "localkey",
             CONF_HOST: "hostname",
+            CONF_PROTOCOL_VERSION: "auto",
             CONF_TYPE: "kogan_kahtp_heater",
         },
     ):
@@ -424,7 +430,7 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
             },
         )
         expected = {
-            "version": 9,
+            "version": 10,
             "context": {"source": "choose_entities"},
             "type": "create_entry",
             "flow_id": ANY,
@@ -438,6 +444,7 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
                 CONF_DEVICE_ID: "deviceid",
                 CONF_HOST: "hostname",
                 CONF_LOCAL_KEY: "localkey",
+                CONF_PROTOCOL_VERSION: "auto",
                 CONF_TYPE: "kogan_kahtp_heater",
             },
         }
@@ -448,13 +455,14 @@ async def test_options_flow_init(hass):
     """Test config flow options."""
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=9,
+        version=10,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
             CONF_LOCAL_KEY: "localkey",
             CONF_NAME: "test",
+            CONF_PROTOCOL_VERSION: "auto",
             CONF_TYPE: "smartplugv1",
         },
     )
@@ -483,13 +491,14 @@ async def test_options_flow_modifies_config(mock_test, hass):
 
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=9,
+        version=10,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
             CONF_LOCAL_KEY: "localkey",
             CONF_NAME: "test",
+            CONF_PROTOCOL_VERSION: "auto",
             CONF_TYPE: "kogan_kahtp_heater",
         },
     )
@@ -505,11 +514,13 @@ async def test_options_flow_modifies_config(mock_test, hass):
         user_input={
             CONF_HOST: "new_hostname",
             CONF_LOCAL_KEY: "new_key",
+            CONF_PROTOCOL_VERSION: 3.3,
         },
     )
     expected = {
         CONF_HOST: "new_hostname",
         CONF_LOCAL_KEY: "new_key",
+        CONF_PROTOCOL_VERSION: 3.3,
     }
     assert "create_entry" == result["type"]
     assert "" == result["title"]
@@ -523,13 +534,14 @@ async def test_options_flow_fails_when_connection_fails(mock_test, hass):
 
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=9,
+        version=10,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
             CONF_LOCAL_KEY: "localkey",
             CONF_NAME: "test",
+            CONF_PROTOCOL_VERSION: "auto",
             CONF_TYPE: "smartplugv1",
         },
     )
@@ -559,13 +571,14 @@ async def test_options_flow_fails_when_config_is_missing(mock_test, hass):
 
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=9,
+        version=10,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
             CONF_LOCAL_KEY: "localkey",
             CONF_NAME: "test",
+            CONF_PROTOCOL_VERSION: "auto",
             CONF_TYPE: "non_existing",
         },
     )
@@ -584,13 +597,14 @@ async def test_async_setup_entry_for_switch(mock_device, hass):
     """Test setting up based on a config entry.  Repeats test_init_entry."""
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=9,
+        version=10,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
             CONF_LOCAL_KEY: "localkey",
             CONF_NAME: "test",
+            CONF_PROTOCOL_VERSION: "auto",
             CONF_TYPE: "smartplugv2",
         },
     )

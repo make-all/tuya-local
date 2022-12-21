@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers import device_registry as dr, entity_registry as er
 from homeassistant.helpers.device_registry import DeviceEntry
 
-from .const import DOMAIN
+from .const import CONF_PROTOCOL_VERSION, CONF_TYPE, DOMAIN
 from .device import TuyaLocalDevice
 
 
@@ -38,10 +38,11 @@ def _async_get_diagnostics(
 
     data = {
         "name": entry.title,
-        "type": entry.data["type"],
+        "type": entry.data[CONF_TYPE],
         "device_id": REDACTED,
         "local_key": REDACTED,
         "host": REDACTED,
+        "protocol_version": entry.data[CONF_PROTOCOL_VERSION],
     }
 
     # TODO: investigate what device entry holds

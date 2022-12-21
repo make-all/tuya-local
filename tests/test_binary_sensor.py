@@ -4,6 +4,7 @@ from unittest.mock import AsyncMock, Mock
 
 from custom_components.tuya_local.const import (
     CONF_DEVICE_ID,
+    CONF_PROTOCOL_VERSION,
     CONF_TYPE,
     DOMAIN,
 )
@@ -18,6 +19,7 @@ async def test_init_entry(hass):
         data={
             CONF_TYPE: "goldair_dehumidifier",
             CONF_DEVICE_ID: "dummy",
+            CONF_PROTOCOL_VERSION: "auto",
         },
     )
     m_add_entities = Mock()
@@ -41,6 +43,7 @@ async def test_init_entry_fails_if_device_has_no_binary_sensor(hass):
         data={
             CONF_TYPE: "mirabella_genio_usb",
             CONF_DEVICE_ID: "dummy",
+            CONF_PROTOCOL_VERSION: "auto",
         },
     )
     m_add_entities = Mock()
@@ -64,6 +67,7 @@ async def test_init_entry_fails_if_config_is_missing(hass):
         data={
             CONF_TYPE: "non_existing",
             CONF_DEVICE_ID: "dummy",
+            CONF_PROTOCOL_VERSION: "auto",
         },
     )
     m_add_entities = Mock()

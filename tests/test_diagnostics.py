@@ -6,6 +6,7 @@ from custom_components.tuya_local.const import (
     DOMAIN,
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
+    CONF_PROTOCOL_VERSION,
     CONF_TYPE,
 )
 
@@ -21,6 +22,7 @@ async def test_config_entry_diagnostics(hass):
         data={
             CONF_DEVICE_ID: "test_device",
             CONF_LOCAL_KEY: "test_key",
+            CONF_PROTOCOL_VERSION: "auto",
             CONF_TYPE: "simple_switch",
         },
     )
@@ -36,6 +38,7 @@ async def test_device_diagnostics(hass):
         data={
             CONF_DEVICE_ID: "test_device",
             CONF_LOCAL_KEY: "test_key",
+            CONF_PROTOCOL_VERSION: "auto",
             CONF_TYPE: "simple_switch",
         },
     )
