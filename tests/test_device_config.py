@@ -1,5 +1,5 @@
 """Test the config parser"""
-from unittest import IsolatedAsyncioTestCase, TestCase
+from unittest import IsolatedAsyncioTestCase
 from unittest.mock import MagicMock
 
 from custom_components.tuya_local.helpers.device_config import (

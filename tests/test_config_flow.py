@@ -36,6 +36,7 @@ def bypass_setup():
         yield
 
 
+@pytest.mark.asyncio
 async def test_init_entry(hass):
     """Test initialisation of the config flow."""
     entry = MockConfigEntry(
@@ -58,6 +59,7 @@ async def test_init_entry(hass):
     assert hass.states.get("lock.test_child_lock")
 
 
+@pytest.mark.asyncio
 @patch("custom_components.tuya_local.setup_device")
 async def test_migrate_entry(mock_setup, hass):
     """Test migration from old entry format."""
@@ -200,6 +202,7 @@ async def test_migrate_entry(mock_setup, hass):
     assert await async_migrate_entry(hass, entry)
 
 
+@pytest.mark.asyncio
 async def test_flow_user_init(hass):
     """Test the initialisation of the form in the first step of the config flow."""
     result = await hass.config_entries.flow.async_init(
@@ -231,6 +234,7 @@ async def test_flow_user_init(hass):
         pass
 
 
+@pytest.mark.asyncio
 @patch("custom_components.tuya_local.config_flow.TuyaLocalDevice")
 async def test_async_test_connection_valid(mock_device, hass):
     """Test that device is returned when connection is valid."""
@@ -249,6 +253,7 @@ async def test_async_test_connection_valid(mock_device, hass):
     assert device == mock_instance
 
 
+@pytest.mark.asyncio
 @patch("custom_components.tuya_local.config_flow.TuyaLocalDevice")
 async def test_async_test_connection_invalid(mock_device, hass):
     """Test that None is returned when connection is invalid."""
@@ -267,6 +272,7 @@ async def test_async_test_connection_invalid(mock_device, hass):
     assert device is None
 
 
+@pytest.mark.asyncio
 @patch("custom_components.tuya_local.config_flow.async_test_connection")
 async def test_flow_user_init_invalid_config(mock_test, hass):
     """Test errors populated when config is invalid."""
@@ -294,6 +300,7 @@ def setup_device_mock(mock, failure=False, type="test"):
     mock.async_possible_types = MagicMock(return_value=mock_iter)
 
 
+@pytest.mark.asyncio
 @patch("custom_components.tuya_local.config_flow.async_test_connection")
 async def test_flow_user_init_data_valid(mock_test, hass):
     """Test we advance to the next step when connection config is valid."""
@@ -314,6 +321,7 @@ async def test_flow_user_init_data_valid(mock_test, hass):
     assert "select_type" == result["step_id"]
 
 
+@pytest.mark.asyncio
 @patch.object(config_flow.ConfigFlowHandler, "device")
 async def test_flow_select_type_init(mock_device, hass):
     """Test the initialisation of the form in the 2nd step of the config flow."""
@@ -346,6 +354,7 @@ async def test_flow_select_type_init(mock_device, hass):
         pass
 
 
+@pytest.mark.asyncio
 @patch.object(config_flow.ConfigFlowHandler, "device")
 async def test_flow_select_type_aborts_when_no_match(mock_device, hass):
     """Test the flow aborts when an unsupported device is used."""
@@ -359,6 +368,7 @@ async def test_flow_select_type_aborts_when_no_match(mock_device, hass):
     assert result["reason"] == "not_supported"
 
 
+@pytest.mark.asyncio
 @patch.object(config_flow.ConfigFlowHandler, "device")
 async def test_flow_select_type_data_valid(mock_device, hass):
     """Test the flow continues when valid data is supplied."""
@@ -375,6 +385,7 @@ async def test_flow_select_type_data_valid(mock_device, hass):
     assert "choose_entities" == result["step_id"]
 
 
+@pytest.mark.asyncio
 async def test_flow_choose_entities_init(hass):
     """Test the initialisation of the form in the 3rd step of the config flow."""
 
@@ -407,6 +418,7 @@ async def test_flow_choose_entities_init(hass):
         pass
 
 
+@pytest.mark.asyncio
 async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
     """Test the flow ends when data is valid."""
 
@@ -451,6 +463,7 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
         assert expected == result
 
 
+@pytest.mark.asyncio
 async def test_options_flow_init(hass):
     """Test config flow options."""
     config_entry = MockConfigEntry(
@@ -484,6 +497,7 @@ async def test_options_flow_init(hass):
     )
 
 
+@pytest.mark.asyncio
 @patch("custom_components.tuya_local.config_flow.async_test_connection")
 async def test_options_flow_modifies_config(mock_test, hass):
     mock_device = MagicMock()
@@ -528,6 +542,7 @@ async def test_options_flow_modifies_config(mock_test, hass):
     assert expected == result["data"]
 
 
+@pytest.mark.asyncio
 @patch("custom_components.tuya_local.config_flow.async_test_connection")
 async def test_options_flow_fails_when_connection_fails(mock_test, hass):
     mock_test.return_value = None
@@ -564,6 +579,7 @@ async def test_options_flow_fails_when_connection_fails(mock_test, hass):
     assert {"base": "connection"} == result["errors"]
 
 
+@pytest.mark.asyncio
 @patch("custom_components.tuya_local.config_flow.async_test_connection")
 async def test_options_flow_fails_when_config_is_missing(mock_test, hass):
     mock_device = MagicMock()
@@ -592,6 +608,7 @@ async def test_options_flow_fails_when_config_is_missing(mock_test, hass):
     assert result["reason"] == "not_supported"
 
 
+@pytest.mark.asyncio
 @patch("custom_components.tuya_local.setup_device")
 async def test_async_setup_entry_for_switch(mock_device, hass):
     """Test setting up based on a config entry.  Repeats test_init_entry."""

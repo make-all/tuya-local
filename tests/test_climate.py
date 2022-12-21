@@ -1,5 +1,6 @@
 """Tests for the light entity."""
 from pytest_homeassistant_custom_component.common import MockConfigEntry
+import pytest
 from unittest.mock import AsyncMock, Mock
 
 from custom_components.tuya_local.const import (
@@ -12,6 +13,7 @@ from custom_components.tuya_local.generic.climate import TuyaLocalClimate
 from custom_components.tuya_local.climate import async_setup_entry
 
 
+@pytest.mark.asyncio
 async def test_init_entry(hass):
     """Test the initialisation."""
     entry = MockConfigEntry(
@@ -65,6 +67,7 @@ async def test_init_entry(hass):
 #     m_add_entities.assert_called_once()
 
 
+@pytest.mark.asyncio
 async def test_init_entry_fails_if_device_has_no_climate(hass):
     """Test initialisation when device has no matching entity"""
     entry = MockConfigEntry(
@@ -92,6 +95,7 @@ async def test_init_entry_fails_if_device_has_no_climate(hass):
     m_add_entities.assert_not_called()
 
 
+@pytest.mark.asyncio
 async def test_init_entry_fails_if_config_is_missing(hass):
     """Test initialisation when device has no matching entity"""
     entry = MockConfigEntry(

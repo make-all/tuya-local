@@ -1,5 +1,6 @@
 """Tests for the siren entity."""
 from pytest_homeassistant_custom_component.common import MockConfigEntry
+import pytest
 from unittest.mock import AsyncMock, Mock
 
 from custom_components.tuya_local.const import (
@@ -12,6 +13,7 @@ from custom_components.tuya_local.generic.siren import TuyaLocalSiren
 from custom_components.tuya_local.siren import async_setup_entry
 
 
+@pytest.mark.asyncio
 async def test_init_entry(hass):
     """Test initialisation"""
     entry = MockConfigEntry(
@@ -32,6 +34,7 @@ async def test_init_entry(hass):
     m_add_entities.assert_called_once()
 
 
+@pytest.mark.asyncio
 async def test_init_entry_fails_if_device_has_no_siren(hass):
     """Test initialisation when device as no matching entity"""
     entry = MockConfigEntry(
@@ -54,6 +57,7 @@ async def test_init_entry_fails_if_device_has_no_siren(hass):
     m_add_entities.assert_not_called()
 
 
+@pytest.mark.asyncio
 async def test_init_entry_fails_if_config_is_missing(hass):
     """Test initialisation when config does not exist"""
     entry = MockConfigEntry(

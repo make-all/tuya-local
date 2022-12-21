@@ -1,6 +1,7 @@
 """Tests for diagnostics platform"""
 from pytest_homeassistant_custom_component.common import MockConfigEntry
-from unittest.mock import AsyncMock, Mock
+import pytest
+from unittest.mock import AsyncMock
 
 from custom_components.tuya_local.const import (
     DOMAIN,
@@ -16,6 +17,7 @@ from custom_components.tuya_local.diagnostics import (
 )
 
 
+@pytest.mark.asyncio
 async def test_config_entry_diagnostics(hass):
     entry = MockConfigEntry(
         domain=DOMAIN,
@@ -32,6 +34,7 @@ async def test_config_entry_diagnostics(hass):
     assert diag
 
 
+@pytest.mark.asyncio
 async def test_device_diagnostics(hass):
     entry = MockConfigEntry(
         domain=DOMAIN,
