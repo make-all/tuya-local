@@ -106,6 +106,11 @@ below](#finding-your-device-id-and-local-key).
 &nbsp;&nbsp;&nbsp;&nbsp;_(string) (Required)_ Local key retrieved
 [as per the instructions below](#finding-your-device-id-and-local-key).
 
+
+#### protocol_version
+
+&nbsp;&nbsp;&nbsp;&nbsp;_(string or float) (Required)_ Valid options are "auto", 3.1, 3.2, 3.3, 3.4.  If you aren't sure, choose "auto", but some 3.2 and maybe 3.4 devices may be misdetected as 3.3 (or vice-versa), so if your device does not seem to respond to commands reliably, try selecting between those protocol versions.
+
 At the end of this step, an attempt is made to connect to the device and see if
 it returns any data. For tuya protocol version 3.1 devices, the local key is
 only used for sending commands to the device, so if your local key is
@@ -116,6 +121,7 @@ will be detected at this step and cause an immediate failure.  Note that each
 time you pair the device, the local key changes, so if you obtained the
 local key using the instructions below, then re-paired with your
 manufacturer's app, then the key will have changed already.
+
 
 ### Stage Two
 
