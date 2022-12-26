@@ -1,3 +1,4 @@
+from homeassistant.components.button import ButtonDeviceClass
 from homeassistant.components.climate.const import (
     ClimateEntityFeature,
     HVACMode,
@@ -8,6 +9,7 @@ from homeassistant.const import (
 
 from ..const import NASHONE_MTS700WB_THERMOSTAT_PAYLOAD
 from ..helpers import assert_device_properties_set
+from ..mixins.button import BasicButtonTests
 from ..mixins.climate import TargetTemperatureTests
 from ..mixins.number import BasicNumberTests
 from ..mixins.select import BasicSelectTests
@@ -30,6 +32,7 @@ COUNTDOWN_DPS = "42"
 
 
 class TestNashoneMTS700WBThermostat(
+    BasicButtonTests,
     BasicNumberTests,
     BasicSelectTests,
     BasicSensorTests,
@@ -50,6 +53,11 @@ class TestNashoneMTS700WBThermostat(
             self.subject,
             min=-20,
             max=105,
+        )
+        self.setUpBasicButton(
+            RESET_DPS,
+            self.entities.get("button_factory_reset"),
+            device_class=ButtonDeviceClass.RESTART,
         )
         self.setUpBasicNumber(
             CALIBOFFSET_DPS,
@@ -77,6 +85,7 @@ class TestNashoneMTS700WBThermostat(
         )
         self.mark_secondary(
             [
+                "button_factory_reset",
                 "number_calibration_offset",
                 "select_timer",
                 "sensor_timer",

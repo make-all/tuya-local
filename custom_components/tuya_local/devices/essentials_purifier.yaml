@@ -58,7 +58,16 @@ secondary_entities:
             icon: "mdi:lightbulb"
           - dps_val: false
             icon: "mdi:lightbulb-outline"
+  - entity: button
+    name: Filter reset
+    class: restart
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: button
   - entity: switch
+    deprecated: button
     name: Filter reset
     category: config
     icon: "mdi:refresh"

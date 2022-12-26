@@ -1,3 +1,4 @@
+from homeassistant.components.button import ButtonDeviceClass
 from homeassistant.components.fan import FanEntityFeature
 from homeassistant.const import (
     PERCENTAGE,
@@ -6,6 +7,7 @@ from homeassistant.const import (
 
 from ..const import HIMOX_H06_PURIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
+from ..mixins.button import BasicButtonTests
 from ..mixins.light import BasicLightTests
 from ..mixins.select import MultiSelectTests
 from ..mixins.sensor import MultiSensorTests
@@ -24,6 +26,7 @@ MODE_DPS = "101"
 
 
 class TestHimoxH06Purifier(
+    BasicButtonTests,
     BasicLightTests,
     BasicSwitchTests,
     MultiSelectTests,
@@ -37,6 +40,11 @@ class TestHimoxH06Purifier(
         self.setUpForConfig("himox_h06_purifier.yaml", HIMOX_H06_PURIFIER_PAYLOAD)
         self.subject = self.entities["fan"]
         self.setUpSwitchable(SWITCH_DPS, self.subject)
+        self.setUpBasicButton(
+            RESET_DPS,
+            self.entities.get("button_filter_reset"),
+            ButtonDeviceClass.RESTART,
+        )
         self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_aq_indicator"))
         self.setUpMultiSelect(
             [
@@ -81,6 +89,7 @@ class TestHimoxH06Purifier(
         )
         self.mark_secondary(
             [
+                "button_filter_reset",
                 "light_aq_indicator",
                 "switch_filter_reset",
                 "sensor_active_filter_life",

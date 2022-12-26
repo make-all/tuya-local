@@ -1,3 +1,4 @@
+from homeassistant.components.button import ButtonDeviceClass
 from homeassistant.components.fan import FanEntityFeature
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
@@ -7,6 +8,7 @@ from homeassistant.const import (
 
 from ..const import POIEMA_ONE_PURIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
+from ..mixins.button import BasicButtonTests
 from ..mixins.lock import BasicLockTests
 from ..mixins.select import BasicSelectTests
 from ..mixins.sensor import MultiSensorTests
@@ -24,6 +26,7 @@ COUNTDOWN_DPS = "19"
 
 
 class TestPoeimaOnePurifier(
+    BasicButtonTests,
     BasicLockTests,
     BasicSelectTests,
     BasicSwitchTests,
@@ -37,6 +40,11 @@ class TestPoeimaOnePurifier(
         self.setUpForConfig("poiema_one_purifier.yaml", POIEMA_ONE_PURIFIER_PAYLOAD)
         self.subject = self.entities["fan"]
         self.setUpSwitchable(SWITCH_DPS, self.subject)
+        self.setUpBasicButton(
+            RESET_DPS,
+            self.entities.get("button_filter_reset"),
+            ButtonDeviceClass.RESTART,
+        )
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
         self.setUpBasicSelect(
             TIMER_DPS,
@@ -69,6 +77,7 @@ class TestPoeimaOnePurifier(
         )
         self.mark_secondary(
             [
+                "button_filter_reset",
                 "lock_child_lock",
                 "switch_filter_reset",
                 "select_timer",

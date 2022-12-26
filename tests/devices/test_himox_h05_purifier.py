@@ -1,3 +1,4 @@
+from homeassistant.components.button import ButtonDeviceClass
 from homeassistant.components.fan import FanEntityFeature
 from homeassistant.components.sensor import (
     SensorDeviceClass,
@@ -11,6 +12,7 @@ from homeassistant.const import (
 
 from ..const import HIMOX_H05_PURIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
+from ..mixins.button import BasicButtonTests
 from ..mixins.lock import BasicLockTests
 from ..mixins.select import BasicSelectTests
 from ..mixins.sensor import MultiSensorTests
@@ -28,6 +30,7 @@ AQI_DPS = "21"
 
 
 class TestHimoxH05Purifier(
+    BasicButtonTests,
     BasicLockTests,
     BasicSwitchTests,
     BasicSelectTests,
@@ -41,6 +44,11 @@ class TestHimoxH05Purifier(
         self.setUpForConfig("himox_h05_purifier.yaml", HIMOX_H05_PURIFIER_PAYLOAD)
         self.subject = self.entities["fan"]
         self.setUpSwitchable(SWITCH_DPS, self.subject)
+        self.setUpBasicButton(
+            RESET_DPS,
+            self.entities.get("button_filter_reset"),
+            ButtonDeviceClass.RESTART,
+        )
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
         self.setUpBasicSelect(
             TIMER_DPS,
@@ -76,6 +84,7 @@ class TestHimoxH05Purifier(
         )
         self.mark_secondary(
             [
+                "button_filter_reset",
                 "lock_child_lock",
                 "switch_filter_reset",
                 "sensor_active_filter_life",

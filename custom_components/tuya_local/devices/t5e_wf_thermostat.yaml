@@ -344,7 +344,16 @@ secondary_entities:
             value: 5 + 2
           - dps_val: 6_1
             value: 6 + 1
+  - entity: button
+    name: Factory reset
+    category: config
+    class: restart
+    dps:
+      - id: 39
+        type: boolean
+        name: button
   - entity: switch
+    deprecated: button
     name: Factory reset
     category: config
     icon: "mdi:store-cog"

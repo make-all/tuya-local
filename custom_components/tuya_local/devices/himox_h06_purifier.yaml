@@ -33,7 +33,16 @@ secondary_entities:
       - id: 8
         type: boolean
         name: switch
+  - entity: button
+    name: Filter reset
+    category: config
+    class: restart
+    dps:
+      - id: 11
+        type: boolean
+        name: button
   - entity: switch
+    deprecated: button
     name: Filter reset
     category: config
     dps:

@@ -252,7 +252,16 @@ secondary_entities:
       - id: 11
         type: boolean
         name: switch
+  - entity: button
+    name: Energy reset
+    category: config
+    class: restart
+    dps:
+      - id: 12
+        type: boolean
+        name: button
   - entity: switch
+    deprecated: button
     name: Energy reset
     category: config
     icon: "mdi:cog-refresh"

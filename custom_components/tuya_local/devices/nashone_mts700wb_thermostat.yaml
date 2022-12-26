@@ -75,7 +75,16 @@ secondary_entities:
         range:
           min: -5
           max: 5
+  - entity: button
+    name: Factory reset
+    category: config
+    class: restart
+    dps:
+      - id: 39
+        type: boolean
+        name: button
   - entity: switch
+    deprecated: button
     category: config
     name: Factory reset
     icon: "mdi:cog-refresh"
