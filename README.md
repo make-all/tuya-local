@@ -282,13 +282,18 @@ temperature sensor so are not detected at all.
 
 ## Beca thermostat gotchas
 
-These devices support switching between Celcius and Fahrenheit on the control
-panel, but do not provide any information over the Tuya local protocol about
-which units are selected.  Two configurations for this device are provided,
-`beca_bhp6000_thermostat_c` and `beca_bhp6000_thermostat_f`, please select
-the appropriate one for the temperature units you use.  If you change the
-units on the device control panel, you will need to delete the device from
-Home Assistant and set it up again.
+Some of these devices support switching between Celcius and Fahrenheit
+on the control panel, but do not provide any information over the Tuya
+local protocol about which units are selected.  Three configurations
+for BHP6000 are provided, `beca_bhp6000_thermostat_c` and
+`beca_bhp6000_thermostat_f`, which use Celsius and Fahrenheit
+respectively, and `beca_bhp6000_thermostat_mapped` for a buggy looking
+firmware which displays the temperature on the thermostat in Celsius
+in increments of half a degree, but uses a slightly offset Fahrenheit
+for the protocol, as detailed in issue #215.  Please select the appropriate
+config for the temperature units you use.  If you change the units on the
+device control panel, you will need to delete the device from Home Assistant
+and set it up again.
 
 ## Saswell C16 thermostat gotchas
 
