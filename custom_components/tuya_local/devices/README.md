@@ -390,6 +390,13 @@ HA documentation for the entity type to see what is valid (these may expand over
 ### binary_sensor
 - **sensor** (required, boolean) the dp to attach to the sensor.
 
+### button
+- **button** (required, boolean) the dp to attach to the button.  Any
+read value will be ignored, but the dp is expected to be present for
+device detection unless set to optional.  A value of true will be sent
+for a button press, map this to the desired dps_val if a different
+value is required.
+
 ### climate
 - **aux_heat** (optional, boolean) a dp to control the aux heat switch if the device has one.
 - **current_temperature** (optional, number) a dp that reports the current temperature.

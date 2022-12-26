@@ -1484,6 +1484,11 @@ AVATTO_BLINDS_PAYLOAD = {
     "11": 0,
 }
 
+AVATTO_CURTAIN_PAYLOAD = {
+    "1": "stop",
+    "101": True,
+}
+
 ORION_SIREN_PAYLOAD = {
     "1": "normal",
     "5": "middle",
