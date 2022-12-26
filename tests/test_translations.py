@@ -43,21 +43,21 @@ def get_devices():
         yield TuyaDeviceConfig(device)
 
 
-def subtest_entity_covered(entity):
-    strings = get_english()
-    TestCase().assertIn(
-        entity.config_id,
-        strings,
-        f"{entity._device.config}: {entity.config_id} is missing a translation",
-    )
+# def subtest_entity_covered(entity):
+#     strings = get_english()
+#     TestCase().assertIn(
+#         entity.config_id,
+#         strings,
+#         f"{entity._device.config}: {entity.config_id} is missing a translation",
+#     )
 
 
-@pytest.mark.parametrize("device", get_devices())
-def test_device_covered(device):
-    entity = device.primary_entity
-    if entity.deprecated:
-        subtest_entity_covered(entity)
+# @pytest.mark.parametrize("device", get_devices())
+# def test_device_covered(device):
+#     entity = device.primary_entity
+#     if entity.deprecated:
+#         subtest_entity_covered(entity)
 
-    for entity in device.secondary_entities():
-        if entity.deprecated:
-            subtest_entity_covered(entity)
+#     for entity in device.secondary_entities():
+#         if entity.deprecated:
+#             subtest_entity_covered(entity)
