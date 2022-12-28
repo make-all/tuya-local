@@ -65,7 +65,10 @@ class TuyaLocalDevice(object):
         # its switches.
         self._FAKE_IT_TIL_YOU_MAKE_IT_TIMEOUT = 10
         self._CACHE_TIMEOUT = 20
-        self._CONNECTION_ATTEMPTS = 9
+        # More attempts are needed in auto mode so we can cycle through all
+        # the possibilities a couple of times
+        self._AUTO_CONNECTION_ATTEMPTS = 9
+        self._SINGLE_PROTO_CONNECTION_ATTEMPTS = 3
         self._lock = Lock()
 
     @property
@@ -210,7 +213,7 @@ class TuyaLocalDevice(object):
         # Only delay a second if there was recently another command.
         # Otherwise delay 1ms, to keep things simple by reusing the
         # same send mechanism.
-        waittime = 1 if since < 1.0 else 0.001
+        waittime = 1 if since < 1.1 else 0.001
 
         try:
             self._debounce.cancel()
@@ -247,15 +250,20 @@ class TuyaLocalDevice(object):
     def _retry_on_failed_connection(self, func, error_message):
         if self._api_protocol_version_index is None:
             self._rotate_api_protocol_version()
+        connections = (
+            self._AUTO_CONNECTION_ATTEMPTS
+            if (self._protocol_configured == "auto" and not self._api_protocol_working)
+            else self._SINGLE_PROTO_CONNECTION_ATTEMPTS
+        )
 
-        for i in range(self._CONNECTION_ATTEMPTS):
+        for i in range(connections):
             try:
                 func()
                 self._api_protocol_working = True
                 break
             except Exception as e:
                 _LOGGER.debug(f"Retrying after exception {e}")
-                if i + 1 == self._CONNECTION_ATTEMPTS:
+                if i + 1 == connections:
                     self._reset_cached_state()
                     self._api_protocol_working = False
                     _LOGGER.error(error_message)
