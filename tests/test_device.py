@@ -193,11 +193,6 @@ class TestDevice(IsolatedAsyncioTestCase):
             {"dps": {"1": False}},
             Exception("Error"),
             Exception("Error"),
-            Exception("Error"),
-            Exception("Error"),
-            Exception("Error"),
-            Exception("Error"),
-            Exception("Error"),
             {"dps": {"1": False}},
         ]
         self.subject.refresh()
