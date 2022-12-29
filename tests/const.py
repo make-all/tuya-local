@@ -1518,3 +1518,9 @@ HYDROTHERM_DYNAMICX8_PAYLOAD = {
     "4": "STANDARD",
     "21": 0,
 }
+
+TREATLIFE_DS02F_PAYLOAD = {
+    "1": True,
+    "2": 0,
+    "3": "level_2",
+}

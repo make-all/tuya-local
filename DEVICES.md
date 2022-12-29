@@ -99,6 +99,7 @@
 - Lexy F501 fan
 - Stirling FS1-40DC pedestal fan
 - TMWF02 fan controller
+- Treatlife DS02-F fan switch
 
 ### Air Purifiers
 
