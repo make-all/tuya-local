@@ -21,6 +21,10 @@ def _typematch(type, value):
     if type is int and isinstance(value, bool):
         return False
 
+    # Allow integers to pass as floats.
+    if type is float and isinstance(value, int):
+        return True
+
     if isinstance(value, type):
         return True
     # Allow values embedded in strings if they can be converted
