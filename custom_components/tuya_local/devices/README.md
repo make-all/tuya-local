@@ -464,8 +464,10 @@ Humidifer can also cover dehumidifiers (use class to specify which).
 - **color_mode** (optional, mapping of strings): a dp to control which mode to use if the light supports multiple modes.
     Special values: `white, color_temp, rgbw, hs, xy, rgb, rgbww`, others will be treated as effects,
 	Note: only white, color_temp and rgbw are currently supported, others listed above are reserved and may be implemented in future when the need arises.
+    If no `color_mode` dp is available, a single supported color mode will be
+    calculated based on which of the above dps are available.
 - **effect** (optional, mapping of strings): a dp to control effects / presets supported by the light.
-   If the light mixes in color modes in the same dp, **color_mode** should be used instead.
+   Note: If the light mixes in color modes in the same dp, `color_mode` should be used instead.  If the light contains both a separate dp for effects/scenes/presets and a mix of color_modes and effects (commonly scene and music) in the `color_mode` dp, then a separate select entity should be used for the dedicated dp to ensure the effects from `color_mode` are selectable.
 
 ### lock
 - **lock** (optional, boolean): a dp to control the lock state: true = locked, false = unlocked
