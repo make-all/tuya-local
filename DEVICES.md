@@ -129,6 +129,7 @@
 - Honeywell TP(30/50/70) dehumidifiers
 - Hyundai Sahara dehumidifier
 - Inventor Atmosphere XL dehumidifier
+- Inventor Eva Ion Pro dehumidifier
 - JJPro JPD01 dehumidifer
 - JJPro JPD02 dehumidifier
 - Kogan SmarterHome 7L desiccant dehumidifier

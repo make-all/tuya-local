@@ -152,3 +152,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [markwellis](https://github.com/markwellis) for contributing support for Eurom Sani Wall Heat 2000 heaters.
 - [escoand](https://github.com/escoand) for contributing support for Tellur USB power strip.
 - [BrettEBowman](https://github.com/BrettEBowman) for assistance supporting Treatlife DS02-F fans.
+- [sohail579](https://github.com/sohail579) for assistance supporting Inventor Eva Ion Pro dehumidifiers.
