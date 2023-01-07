@@ -149,6 +149,7 @@
 
 - Compteur digital electric (single phase)
 - PC321-TY 3 phase power clamp meter
+- PJ-1103 power clamp meter
 - SmartMCB SMT006 energy meter
 
 ### Battery Charger
