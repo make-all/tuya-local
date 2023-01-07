@@ -125,7 +125,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [karnas99](https://github.com/karnas99) for assistance in improving Hysen thermostat support.
 - [cooperaj](https://github.com/cooperaj) for contributing support for ElectriQ CD12PRO-LE dehumidifiers.
 - [geroulas](https://github.com/geroulas) for assisting with support for Inventor Atmosphere XL dehumidifiers.
-- [and7ey](https://github.com/and7ey) for all the effort investigating Screen sync smart lights, which in the end proved too problematic to support, and for contributing support for dual mode light strings.
+- [and7ey](https://github.com/and7ey) for all the effort investigating Screen sync smart lights, which in the end proved too problematic to support, and for contributing support for dual mode light strings and Space Dog music lamps.
 - [dragosmd](https://github.com/dragosmd) and [RomchikL](https://github.com/RomchikL) for assisting with support for more dual switches.
 - [patrik-malina](https://github.com/patrik-malina) for contributing improvements to Kyvol vacuums.
 - [cr4shydlo](https://github.com/cr4shydlo) for assistance supporting Rotenso Roni heat pumps.
