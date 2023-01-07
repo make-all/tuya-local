@@ -66,10 +66,10 @@ class TuyaDeviceTestCase(IsolatedAsyncioTestCase):
         self.entities[self.primary_entity] = self.create_entity(cfg.primary_entity)
 
         self.names = {}
-        self.names[cfg.primary_entity.config_id] = cfg.primary_entity.name()
+        self.names[cfg.primary_entity.config_id] = cfg.primary_entity.name
         for e in cfg.secondary_entities():
             self.entities[e.config_id] = self.create_entity(e)
-            self.names[e.config_id] = e.name()
+            self.names[e.config_id] = e.name
 
     def create_entity(self, config):
         """Create an entity to match the config"""
