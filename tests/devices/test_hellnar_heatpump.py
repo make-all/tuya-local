@@ -2,6 +2,7 @@ from homeassistant.components.climate.const import (
     ClimateEntityFeature,
     HVACMode,
 )
+from homeassistant.const import UnitOfTemperature
 
 from ..const import HELLNAR_HEATPUMP_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -49,10 +50,8 @@ class TestHellnarHeatpump(TargetTemperatureTests, TuyaDeviceTestCase):
         self.dps[POWER_DPS] = False
         self.assertEqual(self.subject.icon, "mdi:hvac-off")
 
-    def test_temperature_unit_returns_device_temperature_unit(self):
-        self.assertEqual(
-            self.subject.temperature_unit, self.subject._device.temperature_unit
-        )
+    def test_temperature_unit_celsius(self):
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
 
     def test_minimum_target_temperature_in_hot(self):
         self.dps[HVACMODE_DPS] = "hot"

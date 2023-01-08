@@ -112,8 +112,8 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
             unit = validate_temp_unit(self._temperature_dps.unit)
             if unit is not None:
                 return unit
-        # Return the default unit from the device
-        return self._device.temperature_unit
+        # Return the default unit
+        return UnitOfTemperature.CELSIUS
 
     @property
     def target_temperature(self):

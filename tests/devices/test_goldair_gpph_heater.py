@@ -4,7 +4,7 @@ from homeassistant.components.climate.const import (
     HVACMode,
 )
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import PERCENTAGE, TIME_MINUTES
+from homeassistant.const import PERCENTAGE, TIME_MINUTES, UnitOfTemperature
 
 from ..const import GPPH_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -103,10 +103,8 @@ class TestGoldairHeater(
         self.dps[POWERLEVEL_DPS] = "stop"
         self.assertEqual(self.subject.icon, "mdi:radiator-disabled")
 
-    def test_temperature_unit_returns_device_temperature_unit(self):
-        self.assertEqual(
-            self.subject.temperature_unit, self.subject._device.temperature_unit
-        )
+    def test_temperature_unit_returns_celsius(self):
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
 
     def test_target_temperature_in_eco_and_af_modes(self):
         self.dps[TEMPERATURE_DPS] = 25

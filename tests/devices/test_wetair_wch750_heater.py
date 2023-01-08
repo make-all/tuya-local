@@ -5,7 +5,7 @@ from homeassistant.components.climate.const import (
     PRESET_COMFORT,
     PRESET_BOOST,
 )
-from homeassistant.const import TIME_MINUTES
+from homeassistant.const import TIME_MINUTES, UnitOfTemperature
 
 from ..const import WETAIR_WCH750_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -112,9 +112,7 @@ class TestWetairWCH750Heater(
         self.assertEqual(self.subject.icon, "mdi:radiator-disabled")
 
     def test_temperatre_unit_retrns_device_temperatre_unit(self):
-        self.assertEqual(
-            self.subject.temperature_unit, self.subject._device.temperature_unit
-        )
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
 
     def test_target_temperature_in_af_mode(self):
         self.dps[TEMPERATURE_DPS] = 25

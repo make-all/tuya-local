@@ -5,6 +5,7 @@ from homeassistant.components.climate.const import (
     PRESET_COMFORT,
     PRESET_ECO,
 )
+from homeassistant.const import UnitOfTemperature
 
 from ..const import EUROM_601_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -57,10 +58,8 @@ class TestEurom601Heater(
         self.dps[HVACMODE_DPS] = False
         self.assertEqual(self.subject.icon, "mdi:radiator-disabled")
 
-    def test_temperature_unit_returns_device_temperature_unit(self):
-        self.assertEqual(
-            self.subject.temperature_unit, self.subject._device.temperature_unit
-        )
+    def test_temperature_unit_returns_celsius(self):
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
 
     def test_current_temperature(self):
         self.dps[CURRENTTEMP_DPS] = 25

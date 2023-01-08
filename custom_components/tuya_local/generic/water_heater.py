@@ -72,7 +72,7 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
             if unit is not None:
                 return unit
         # Return the default unit from the device
-        return self._device.temperature_unit
+        return UnitOfTemperature.CELSIUS
 
     @property
     def current_operation(self):
