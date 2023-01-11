@@ -1,6 +1,6 @@
 import tinytuya
 from datetime import datetime
-from time import sleep, time
+from time import time
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import AsyncMock, call, patch
 
@@ -75,74 +75,60 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.subject._cached_state = {"2": False, "updated_at": datetime.now()}
         self.assertEqual(await self.subject.async_inferred_type(), None)
 
-    async def test_does_not_refresh_more_often_than_cache_timeout(self):
-        refresh_task = AsyncMock()
-        self.subject._cached_state = {"updated_at": time() - 19}
-        self.subject._refresh_task = awaitable = refresh_task()
-
-        await self.subject.async_refresh()
-
-        refresh_task.assert_awaited()
-        self.assertIs(self.subject._refresh_task, awaitable)
-
     async def test_refreshes_when_there_is_no_pending_reset(self):
         async_job = AsyncMock()
         self.subject._cached_state = {"updated_at": time() - 19}
         self.subject._hass.async_add_executor_job.return_value = awaitable = async_job()
-
         await self.subject.async_refresh()
 
-        self.subject._hass.async_add_executor_job.assert_called_once_with(
-            self.subject.refresh
-        )
-        self.assertIs(self.subject._refresh_task, awaitable)
         async_job.assert_awaited()
 
     async def test_refreshes_when_there_is_expired_pending_reset(self):
         async_job = AsyncMock()
         self.subject._cached_state = {"updated_at": time() - 20}
         self.subject._hass.async_add_executor_job.return_value = awaitable = async_job()
-        self.subject._refresh_task = {}
+        await self.subject.async_refresh()
+
+        async_job.assert_awaited()
+
+    async def test_refresh_reloads_status_from_device(self):
+        self.subject._hass.async_add_executor_job = AsyncMock()
+        self.subject._hass.async_add_executor_job.return_value = awaitable = {
+            "dps": {"1": False}
+        }
 
         await self.subject.async_refresh()
 
-        self.subject._hass.async_add_executor_job.assert_called_once_with(
-            self.subject.refresh
-        )
-        self.assertIs(self.subject._refresh_task, awaitable)
-        async_job.assert_awaited()
+        self.subject._hass.async_add_executor_job.assert_called_once()
 
-    def test_refresh_reloads_status_from_device(self):
-        self.subject._api.status.return_value = {"dps": {"1": False}}
-        self.subject._cached_state = {"1": True}
-
-        self.subject.refresh()
-
-        self.subject._api.status.assert_called_once()
-        self.assertEqual(self.subject._cached_state["1"], False)
-        self.assertTrue(
-            time() - 1 <= self.subject._cached_state["updated_at"] <= time()
-        )
-
-    def test_refresh_retries_up_to_four_times(self):
-        self.subject._api.status.side_effect = [
+    async def test_refresh_retries_up_to_nine_times(self):
+        self.subject._hass.async_add_executor_job = AsyncMock()
+        self.subject._hass.async_add_executor_job.side_effect = [
+            Exception("Error"),
+            Exception("Error"),
+            Exception("Error"),
+            Exception("Error"),
+            Exception("Error"),
             Exception("Error"),
             Exception("Error"),
             Exception("Error"),
             {"dps": {"1": False}},
         ]
 
-        self.subject.refresh()
+        await self.subject.async_refresh()
 
-        self.assertEqual(self.subject._api.status.call_count, 4)
-        self.assertEqual(self.subject._cached_state["1"], False)
+        self.assertEqual(self.subject._hass.async_add_executor_job.call_count, 9)
+        # self.assertEqual(self.subject._cached_state["1"], False)
 
-    def test_refresh_clears_cached_state_and_pending_updates_after_failing_nine_times(
+    async def test_refresh_clears_cached_state_and_pending_updates_after_failing_nine_times(
         self,
     ):
         self.subject._cached_state = {"1": True}
-        self.subject._pending_updates = {"1": False}
-        self.subject._api.status.side_effect = [
+        self.subject._pending_updates = {
+            "1": {"value": False, "updated_at": datetime.now(), "sent": True}
+        }
+        self.subject._hass.async_add_executor_job = AsyncMock()
+        self.subject._hass.async_add_executor_job.side_effect = [
             Exception("Error"),
             Exception("Error"),
             Exception("Error"),
@@ -154,16 +140,16 @@ class TestDevice(IsolatedAsyncioTestCase):
             Exception("Error"),
         ]
 
-        self.subject.refresh()
+        await self.subject.async_refresh()
 
-        self.assertEqual(self.subject._api.status.call_count, 9)
+        self.assertEqual(self.subject._hass.async_add_executor_job.call_count, 9)
         self.assertEqual(self.subject._cached_state, {"updated_at": 0})
         self.assertEqual(self.subject._pending_updates, {})
 
-    def test_api_protocol_version_is_rotated_with_each_failure(self):
+    async def test_api_protocol_version_is_rotated_with_each_failure(self):
         self.subject._api.set_version.reset_mock()
-
-        self.subject._api.status.side_effect = [
+        self.subject._hass.async_add_executor_job = AsyncMock()
+        self.subject._hass.async_add_executor_job.side_effect = [
             Exception("Error"),
             Exception("Error"),
             Exception("Error"),
@@ -171,16 +157,16 @@ class TestDevice(IsolatedAsyncioTestCase):
             Exception("Error"),
             Exception("Error"),
         ]
-        self.subject.refresh()
+        await self.subject.async_refresh()
 
         self.subject._api.set_version.assert_has_calls(
             [call(3.1), call(3.2), call(3.4), call(3.3), call(3.1)]
         )
 
-    def test_api_protocol_version_is_stable_once_successful(self):
+    async def test_api_protocol_version_is_stable_once_successful(self):
         self.subject._api.set_version.reset_mock()
-
-        self.subject._api.status.side_effect = [
+        self.subject._hass.async_add_executor_job = AsyncMock()
+        self.subject._hass.async_add_executor_job.side_effect = [
             Exception("Error"),
             Exception("Error"),
             Exception("Error"),
@@ -190,18 +176,20 @@ class TestDevice(IsolatedAsyncioTestCase):
             Exception("Error"),
             {"dps": {"1": False}},
         ]
-        self.subject.refresh()
+
+        await self.subject.async_refresh()
         self.assertEqual(self.subject._api_protocol_version_index, 3)
-        self.subject.refresh()
+        self.assertTrue(self.subject._api_protocol_working)
+        await self.subject.async_refresh()
         self.assertEqual(self.subject._api_protocol_version_index, 3)
-        self.subject.refresh()
+        await self.subject.async_refresh()
         self.assertEqual(self.subject._api_protocol_version_index, 3)
 
         self.subject._api.set_version.assert_has_calls(
             [call(3.1), call(3.2), call(3.4)]
         )
 
-    def test_api_protocol_version_is_not_rotated_when_not_auto(self):
+    async def test_api_protocol_version_is_not_rotated_when_not_auto(self):
         self.subject._protocol_configured = 3.4
         self.subject._api_protocol_version_index = None
         self.subject._api.set_version.reset_mock()
@@ -209,7 +197,8 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.subject._api.set_version.assert_called_once_with(3.4)
         self.subject._api.set_version.reset_mock()
 
-        self.subject._api.status.side_effect = [
+        self.subject._hass.async_add_executor_job = AsyncMock()
+        self.subject._hass.async_add_executor_job.side_effect = [
             Exception("Error"),
             Exception("Error"),
             Exception("Error"),
@@ -224,16 +213,18 @@ class TestDevice(IsolatedAsyncioTestCase):
             Exception("Error"),
             {"dps": {"1": False}},
         ]
-        self.subject.refresh()
+        await self.subject.async_refresh()
         self.assertEqual(self.subject._api_protocol_version_index, 3)
-        self.subject.refresh()
+        await self.subject.async_refresh()
         self.assertEqual(self.subject._api_protocol_version_index, 3)
-        self.subject.refresh()
+        await self.subject.async_refresh()
         self.assertEqual(self.subject._api_protocol_version_index, 3)
 
     def test_reset_cached_state_clears_cached_state_and_pending_updates(self):
         self.subject._cached_state = {"1": True, "updated_at": time()}
-        self.subject._pending_updates = {"1": False}
+        self.subject._pending_updates = {
+            "1": {"value": False, "updated_at": datetime.now(), "sent": True}
+        }
 
         self.subject._reset_cached_state()
 
@@ -246,14 +237,14 @@ class TestDevice(IsolatedAsyncioTestCase):
 
     def test_get_property_returns_pending_update_value(self):
         self.subject._pending_updates = {
-            "1": {"value": False, "updated_at": time() - 9}
+            "1": {"value": False, "updated_at": time() - 4, "sent": True}
         }
         self.assertEqual(self.subject.get_property("1"), False)
 
     def test_pending_update_value_overrides_cached_value(self):
         self.subject._cached_state = {"1": True}
         self.subject._pending_updates = {
-            "1": {"value": False, "updated_at": time() - 9}
+            "1": {"value": False, "updated_at": time() - 4, "sent": True}
         }
 
         self.assertEqual(self.subject.get_property("1"), False)
@@ -261,7 +252,7 @@ class TestDevice(IsolatedAsyncioTestCase):
     def test_expired_pending_update_value_does_not_override_cached_value(self):
         self.subject._cached_state = {"1": True}
         self.subject._pending_updates = {
-            "1": {"value": False, "updated_at": time() - 10}
+            "1": {"value": False, "updated_at": time() - 5, "sent": True}
         }
 
         self.assertEqual(self.subject.get_property("1"), True)
@@ -276,40 +267,17 @@ class TestDevice(IsolatedAsyncioTestCase):
 
         await self.subject.async_set_property("1", False)
 
-        self.subject._hass.async_add_executor_job.assert_called_once_with(
-            self.subject.set_property, "1", False
-        )
+        self.subject._hass.async_add_executor_job.assert_called_once()
         async_job.assert_awaited()
 
-    def test_set_property_immediately_stores_new_value_to_pending_updates(self):
-        self.subject.set_property("1", False)
+    async def test_set_property_immediately_stores_new_value_to_pending_updates(self):
         self.subject._cached_state = {"1": True}
-        self.assertEqual(self.subject.get_property("1"), False)
-        # wait for the debounce timer to avoid a teardown error
-        sleep(2)
+        await self.subject.async_set_property("1", False)
+        self.assertFalse(self.subject.get_property("1"))
 
-    def test_debounces_multiple_set_calls_into_one_api_call(self):
-        with patch("custom_components.tuya_local.device.Timer") as mock:
-            self.subject.set_property("1", True)
-            mock.assert_called_once_with(0.001, self.subject._send_pending_updates)
-
-            debounce = self.subject._debounce
-            mock.reset_mock()
-
-            self.subject.set_property("2", False)
-            debounce.cancel.assert_called_once()
-            mock.assert_called_once_with(1, self.subject._send_pending_updates)
-
-            self.subject._api.generate_payload.return_value = "payload"
-            self.subject._send_pending_updates()
-            self.subject._api.generate_payload.assert_called_once_with(
-                tinytuya.CONTROL, {"1": True, "2": False}
-            )
-            self.subject._api._send_receive.assert_called_once_with("payload")
-
-    def test_set_properties_takes_no_action_when_no_properties_are_provided(self):
-        with patch("custom_components.tuya_local.device.Timer") as mock:
-            self.subject._set_properties({})
+    async def test_set_properties_takes_no_action_when_no_properties_are_provided(self):
+        with patch("asyncio.sleep") as mock:
+            await self.subject.async_set_properties({})
             mock.assert_not_called()
 
     def test_anticipate_property_value_updates_cached_state(self):

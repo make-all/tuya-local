@@ -26,6 +26,14 @@ def auto_enable_custom_integrations(enable_custom_integrations):
     yield
 
 
+@pytest.fixture(autouse=True)
+def prevent_task_creation():
+    with patch(
+        "custom_components.tuya_local.device.TuyaLocalDevice.register_entity",
+    ):
+        yield
+
+
 @pytest.fixture
 def bypass_setup():
     """Prevent actual setup of the integration after config flow."""

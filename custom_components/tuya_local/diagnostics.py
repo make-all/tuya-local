@@ -64,6 +64,7 @@ def _async_device_as_dict(
         "status": device._api.dps_cache,
         "cached_state": device._cached_state,
         "pending_state": device._pending_updates,
+        "connected": device._running,
     }
 
     device_registry = dr.async_get(hass)

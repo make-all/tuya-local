@@ -2,14 +2,20 @@
 API for Tuya Local devices.
 """
 
+import asyncio
 import json
 import logging
 import tinytuya
-from threading import Lock, Timer
+from threading import Lock
 from time import time
 
 
-from homeassistant.const import CONF_HOST, CONF_NAME
+from homeassistant.const import (
+    CONF_HOST,
+    CONF_NAME,
+    EVENT_HOMEASSISTANT_STARTED,
+    EVENT_HOMEASSISTANT_STOP,
+)
 from homeassistant.core import HomeAssistant
 
 from .const import (
@@ -45,6 +51,10 @@ class TuyaLocalDevice(object):
             protocol_version (str | number): The protocol version.
         """
         self._name = name
+        self._children = []
+        self._running = False
+        self._shutdown_listener = None
+        self._startup_listener = None
         self._api_protocol_version_index = None
         self._api_protocol_working = False
         self._api = tinytuya.Device(dev_id, address, local_key)
@@ -62,8 +72,8 @@ class TuyaLocalDevice(object):
         # The solution is to keep a temporary list of changed properties that
         # we can overlay onto the state while we wait for the board to update
         # its switches.
-        self._FAKE_IT_TIL_YOU_MAKE_IT_TIMEOUT = 10
-        self._CACHE_TIMEOUT = 20
+        self._FAKE_IT_TIMEOUT = 5
+        self._CACHE_TIMEOUT = 120
         # More attempts are needed in auto mode so we can cycle through all
         # the possibilities a couple of times
         self._AUTO_CONNECTION_ATTEMPTS = 9
@@ -93,6 +103,115 @@ class TuyaLocalDevice(object):
         """Return True if the device has returned some state."""
         return len(self._get_cached_state()) > 1
 
+    def actually_start(self, event=None):
+        _LOGGER.debug(f"Starting monitor loop for {self.name}")
+        self._running = True
+        self._shutdown_listener = self._hass.bus.async_listen_once(
+            EVENT_HOMEASSISTANT_STOP, self.async_stop
+        )
+        self._refresh_task = self._hass.async_create_task(self.receive_loop())
+
+    def start(self):
+        if self._hass.is_running and not self._hass.is_stopping:
+            if self._startup_listener:
+                self._startup_listener()
+                self._startup_listener = None
+            self.actually_start()
+        else:
+            self._startup_listener = self._hass.bus.async_listen_once(
+                EVENT_HOMEASSISTANT_STARTED, self.actually_start
+            )
+
+    async def async_stop(self, event=None):
+        _LOGGER.debug(f"Stopping monitor loop for {self.name}")
+        self._running = False
+        if self._shutdown_listener:
+            self._shutdown_listener()
+            self._shutdown_listener = None
+        self._children.clear()
+        if self._refresh_task:
+            await self._refresh_task
+        _LOGGER.debug(f"Monitor loop for {self.name} stopped")
+        self._refresh_task = None
+
+    def register_entity(self, entity):
+        self._children.append(entity)
+        if not self._running and not self._startup_listener:
+            self.start()
+
+    async def async_unregister_entity(self, entity):
+        self._children.remove(entity)
+        if not self._children:
+            await self.async_stop()
+
+    async def receive_loop(self):
+        """Coroutine wrapper for async_receive generator."""
+        try:
+            async for poll in self.async_receive():
+                if type(poll) is dict:
+                    _LOGGER.debug(f"{self.name} received {poll}")
+                    self._cached_state = self._cached_state | poll
+                    self._cached_state["updated_at"] = time()
+                    for entity in self._children:
+                        entity.async_schedule_update_ha_state()
+                else:
+                    _LOGGER.debug(f"{self.name} received non data {poll}")
+            _LOGGER.warning(f"{self.name} receive loop has terminated")
+
+        except BaseException as t:
+            _LOGGER.exception(
+                f"{self.name} receive loop terminated by exception {t}",
+            )
+
+    async def async_receive(self):
+        """Receive messages from a persistent connection asynchronously."""
+        self._api.set_socketPersistent(self._running)
+        while self._running:
+            try:
+                last_cache = self._cached_state["updated_at"]
+                now = time()
+                if now - last_cache > self._CACHE_TIMEOUT:
+                    poll = await self._retry_on_failed_connection(
+                        lambda: self._api.status(),
+                        f"Failed to refresh device state for {self.name}",
+                    )
+                else:
+                    await self._hass.async_add_executor_job(
+                        self._api.heartbeat,
+                        True,
+                    )
+                    poll = await self._hass.async_add_executor_job(
+                        self._api.receive,
+                    )
+
+                if poll:
+                    if "Error" in poll:
+                        _LOGGER.warning(
+                            f"{self.name} error reading: {poll['Error']}",
+                        )
+                        if "Payload" in poll and poll["Payload"]:
+                            _LOGGER.info(
+                                f"{self.name} err payload: {poll['Payload']}",
+                            )
+                    else:
+                        if "dps" in poll:
+                            poll = poll["dps"]
+                        yield poll
+
+                await asyncio.sleep(0.1)
+
+            except asyncio.CancelledError:
+                self._running = False
+                # Close the persistent connection when exiting the loop
+                self._api.set_socketPersistent(False)
+                raise
+            except BaseException as t:
+                _LOGGER.exception(
+                    f"{self.name} receive loop error {type(t)}:{t}",
+                )
+        # Close the persistent connection when exiting the loop
+        self._api.set_socketPersistent(False)
+
     async def async_possible_types(self):
         cached_state = self._get_cached_state()
         if len(cached_state) <= 1:
@@ -117,27 +236,16 @@ class TuyaLocalDevice(object):
                 best_match = config
 
         if best_match is None:
-            _LOGGER.warning(f"Detection for {self.name} with dps {cached_state} failed")
+            _LOGGER.warning(
+                f"Detection for {self.name} with dps {cached_state} failed",
+            )
             return None
 
         return best_match.config_type
 
     async def async_refresh(self):
-        cache = self._get_cached_state()
-        if "updated_at" in cache:
-            last_updated = self._get_cached_state()["updated_at"]
-        else:
-            last_updated = 0
-
-        if self._refresh_task is None or time() - last_updated >= self._CACHE_TIMEOUT:
-            self._cached_state["updated_at"] = time()
-            self._refresh_task = self._hass.async_add_executor_job(self.refresh)
-
-        await self._refresh_task
-
-    def refresh(self):
         _LOGGER.debug(f"Refreshing device state for {self.name}.")
-        self._retry_on_failed_connection(
+        await self._retry_on_failed_connection(
             lambda: self._refresh_cached_state(),
             f"Failed to refresh device state for {self.name}.",
         )
@@ -149,19 +257,15 @@ class TuyaLocalDevice(object):
         else:
             return None
 
-    def set_property(self, dps_id, value):
-        self._set_properties({dps_id: value})
-
     async def async_set_property(self, dps_id, value):
-        await self._hass.async_add_executor_job(self.set_property, dps_id, value)
-
-    async def async_set_properties(self, dps_map):
-        await self._hass.async_add_executor_job(self._set_properties, dps_map)
+        await self.async_set_properties({dps_id: value})
 
     def anticipate_property_value(self, dps_id, value):
         """
-        Update a value in the cached state only. This is good for when you know the device will reflect a new state in
-        the next update, but don't want to wait for that update for the device to represent this state.
+        Update a value in the cached state only. This is good for when you
+        know the device will reflect a new state in the next update, but
+        don't want to wait for that update for the device to represent
+        this state.
 
         The anticipated value will be cleared with the next update.
         """
@@ -176,30 +280,36 @@ class TuyaLocalDevice(object):
         new_state = self._api.status()
         self._cached_state = self._cached_state | new_state["dps"]
         self._cached_state["updated_at"] = time()
-        _LOGGER.debug(f"{self.name} refreshed device state: {json.dumps(new_state)}")
         _LOGGER.debug(
-            f"new cache state (including pending properties): {json.dumps(self._get_cached_state())}"
+            f"{self.name} refreshed device state: {json.dumps(new_state)}",
+        )
+        _LOGGER.debug(
+            f"new state (incl pending): {json.dumps(self._get_cached_state())}"
         )
 
-    def _set_properties(self, properties):
+    async def async_set_properties(self, properties):
         if len(properties) == 0:
             return
 
         self._add_properties_to_pending_updates(properties)
-        self._debounce_sending_updates()
+        await self._debounce_sending_updates()
 
     def _add_properties_to_pending_updates(self, properties):
         now = time()
 
         pending_updates = self._get_pending_updates()
         for key, value in properties.items():
-            pending_updates[key] = {"value": value, "updated_at": now}
+            pending_updates[key] = {
+                "value": value,
+                "updated_at": now,
+                "sent": False,
+            }
 
         _LOGGER.debug(
-            f"{self.name} new pending updates: {json.dumps(self._pending_updates)}"
+            f"{self.name} new pending updates: {json.dumps(pending_updates)}",
         )
 
-    def _debounce_sending_updates(self):
+    async def _debounce_sending_updates(self):
         now = time()
         since = now - self._last_connection
         # set this now to avoid a race condition, it will be updated later
@@ -210,52 +320,56 @@ class TuyaLocalDevice(object):
         # same send mechanism.
         waittime = 1 if since < 1.1 else 0.001
 
-        try:
-            self._debounce.cancel()
-        except AttributeError:
-            pass
-        self._debounce = Timer(waittime, self._send_pending_updates)
-        self._debounce.start()
+        await asyncio.sleep(waittime)
+        await self._send_pending_updates()
 
-    def _send_pending_updates(self):
-        pending_properties = self._get_pending_properties()
-        payload = self._api.generate_payload(tinytuya.CONTROL, pending_properties)
+    async def _send_pending_updates(self):
+        pending_properties = self._get_unsent_properties()
+        payload = self._api.generate_payload(
+            tinytuya.CONTROL,
+            pending_properties,
+        )
 
         _LOGGER.debug(
             f"{self.name} sending dps update: {json.dumps(pending_properties)}"
         )
 
-        self._retry_on_failed_connection(
-            lambda: self._send_payload(payload), "Failed to update device state."
+        await self._retry_on_failed_connection(
+            lambda: self._send_payload(payload),
+            "Failed to update device state.",
         )
 
     def _send_payload(self, payload):
         try:
             self._lock.acquire()
-            self._api._send_receive(payload)
+            self._api.send(payload)
             self._cached_state["updated_at"] = 0
             now = time()
             self._last_connection = now
             pending_updates = self._get_pending_updates()
-            for key, value in pending_updates.items():
+            for key in list(pending_updates):
                 pending_updates[key]["updated_at"] = now
+                pending_updates[key]["sent"] = True
         finally:
             self._lock.release()
 
-    def _retry_on_failed_connection(self, func, error_message):
+    async def _retry_on_failed_connection(self, func, error_message):
         if self._api_protocol_version_index is None:
             self._rotate_api_protocol_version()
+        auto = (self._protocol_configured == "auto") and (
+            not self._api_protocol_working
+        )
         connections = (
             self._AUTO_CONNECTION_ATTEMPTS
-            if (self._protocol_configured == "auto" and not self._api_protocol_working)
+            if auto
             else self._SINGLE_PROTO_CONNECTION_ATTEMPTS
         )
 
         for i in range(connections):
             try:
-                func()
+                retval = await self._hass.async_add_executor_job(func)
                 self._api_protocol_working = True
-                break
+                return retval
             except Exception as e:
                 _LOGGER.debug(f"Retrying after exception {e}")
                 if i + 1 == connections:
@@ -270,14 +384,24 @@ class TuyaLocalDevice(object):
         return {**cached_state, **self._get_pending_properties()}
 
     def _get_pending_properties(self):
-        return {key: info["value"] for key, info in self._get_pending_updates().items()}
+        return {
+            key: property["value"]
+            for key, property in self._get_pending_updates().items()
+        }
+
+    def _get_unsent_properties(self):
+        return {
+            key: info["value"]
+            for key, info in self._get_pending_updates().items()
+            if not info["sent"]
+        }
 
     def _get_pending_updates(self):
         now = time()
         self._pending_updates = {
             key: value
             for key, value in self._pending_updates.items()
-            if now - value["updated_at"] < self._FAKE_IT_TIL_YOU_MAKE_IT_TIMEOUT
+            if now - value["updated_at"] < self._FAKE_IT_TIMEOUT
         }
         return self._pending_updates
 
@@ -298,7 +422,9 @@ class TuyaLocalDevice(object):
             self._api_protocol_version_index = 0
 
         new_version = API_PROTOCOL_VERSIONS[self._api_protocol_version_index]
-        _LOGGER.info(f"Setting protocol version for {self.name} to {new_version}.")
+        _LOGGER.info(
+            f"Setting protocol version for {self.name} to {new_version}.",
+        )
         self._api.set_version(new_version)
 
     @staticmethod
@@ -326,6 +452,7 @@ def setup_device(hass: HomeAssistant, config: dict):
     return device
 
 
-def delete_device(hass: HomeAssistant, config: dict):
+async def async_delete_device(hass: HomeAssistant, config: dict):
     _LOGGER.info(f"Deleting device: {config[CONF_DEVICE_ID]}")
+    await hass.data[DOMAIN][config[CONF_DEVICE_ID]]["device"].async_stop()
     del hass.data[DOMAIN][config[CONF_DEVICE_ID]]["device"]

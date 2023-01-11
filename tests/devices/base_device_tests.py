@@ -93,7 +93,7 @@ class TuyaDeviceTestCase(IsolatedAsyncioTestCase):
 
     def test_should_poll(self):
         for e in self.entities.values():
-            self.assertTrue(e.should_poll)
+            self.assertFalse(e.should_poll)
 
     def test_available(self):
         for e in self.entities.values():
