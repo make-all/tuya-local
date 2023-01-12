@@ -112,7 +112,9 @@ class TuyaLocalDevice(object):
         self._refresh_task = self._hass.async_create_task(self.receive_loop())
 
     def start(self):
-        if self._hass.is_running and not self._hass.is_stopping:
+        if self._hass.is_stopping:
+            return
+        elif self._hass.is_running:
             if self._startup_listener:
                 self._startup_listener()
                 self._startup_listener = None
