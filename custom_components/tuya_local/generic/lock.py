@@ -67,12 +67,12 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
 
     def unlocker_id(self, dp, type):
         if dp:
-            id = dp.get_value(self._device)
-            if id:
-                if id is True:
+            unlock = dp.get_value(self._device)
+            if unlock:
+                if unlock is True:
                     return f"{type}"
                 else:
-                    return f"{type} #{id}"
+                    return f"{type} #{unlock}"
 
     @property
     def changed_by(self):

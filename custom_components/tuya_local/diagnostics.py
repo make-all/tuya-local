@@ -45,7 +45,10 @@ def _async_get_diagnostics(
         "protocol_version": entry.data[CONF_PROTOCOL_VERSION],
     }
 
-    # TODO: investigate what device entry holds
+    # The DeviceEntry also has interesting looking data, but this
+    # integration does not publish anything to it other than some hardcoded
+    # values that don't change between devices. Instead get the live data
+    # from the running hass.
     data |= _async_device_as_dict(hass, hass_data["device"])
 
     return data
