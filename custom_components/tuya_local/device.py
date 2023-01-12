@@ -158,7 +158,7 @@ class TuyaLocalDevice(object):
                     _LOGGER.debug(f"{self.name} received non data {poll}")
             _LOGGER.warning(f"{self.name} receive loop has terminated")
 
-        except BaseException as t:
+        except Exception as t:
             _LOGGER.exception(
                 f"{self.name} receive loop terminated by exception {t}",
             )
@@ -205,7 +205,7 @@ class TuyaLocalDevice(object):
                 # Close the persistent connection when exiting the loop
                 self._api.set_socketPersistent(False)
                 raise
-            except BaseException as t:
+            except Exception as t:
                 _LOGGER.exception(
                     f"{self.name} receive loop error {type(t)}:{t}",
                 )
