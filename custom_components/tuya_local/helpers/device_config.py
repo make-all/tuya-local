@@ -377,16 +377,16 @@ class TuyaDpsConfig:
         for m in self._config["mapping"]:
             if "value" in m:
                 val.append(m["value"])
-            # If there is a mirroring with no value override, use current value
+            # If there is mirroring with no value override, include mirrored values
             elif "value_mirror" in m:
                 r_dps = self._entity.find_dps(m["value_mirror"])
-                val.append(r_dps.get_value(device))
+                val = val + r_dps.values(device)
             for c in m.get("conditions", {}):
                 if "value" in c:
                     val.append(c["value"])
                 elif "value_mirror" in c:
                     r_dps = self._entity.find_dps(c["value_mirror"])
-                    val.append(r_dps.get_value(device))
+                    val = val + r_dps.values(device)
 
             cond = self._active_condition(m, device)
             if cond and "mapping" in cond:
@@ -397,7 +397,7 @@ class TuyaDpsConfig:
                         c_val.append(m2["value"])
                     elif "value_mirror" in m:
                         r_dps = self._entity.find_dps(m["value_mirror"])
-                        c_val.append(r_dps.get_value(device))
+                        c_val = c_val + r_dps.values(device)
                 # if given, the conditional mapping is an override
                 if c_val:
                     _LOGGER.debug(f"Overriding {self.name} values {val} with {c_val}")
@@ -434,10 +434,6 @@ class TuyaDpsConfig:
             r = None if cond is None else cond.get("range")
             if r and "min" in r and "max" in r:
                 _LOGGER.debug(f"Conditional range returned for {self.name}")
-                return _scale_range(r, scale)
-            r = mapping.get("range")
-            if r and "min" in r and "max" in r:
-                _LOGGER.debug(f"Mapped range returned for {self.name}")
                 return _scale_range(r, scale)
         r = self._config.get("range")
         if r and "min" in r and "max" in r:

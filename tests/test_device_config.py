@@ -5,7 +5,11 @@ from unittest.mock import MagicMock
 from custom_components.tuya_local.helpers.device_config import (
     available_configs,
     get_config,
+    _bytes_to_fmt,
+    _typematch,
     TuyaDeviceConfig,
+    TuyaDpsConfig,
+    TuyaEntityConfig,
 )
 
 from .const import (
@@ -58,7 +62,10 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
             if isinstance(parsed, str) or isinstance(parsed._config, str):
                 self.fail(f"unparsable yaml in {cfg}")
 
-            self.assertIsNotNone(parsed._config.get("name"), f"name missing from {cfg}")
+            self.assertIsNotNone(
+                parsed._config.get("name"),
+                f"name missing from {cfg}",
+            )
             self.assertIsNotNone(
                 parsed._config.get("primary_entity"),
                 f"primary_entity missing from {cfg}",
@@ -105,3 +112,124 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
         """Test that config file is returned by config"""
         cfg = get_config("kogan_switch")
         self.assertEqual(cfg.config, "smartplugv1.yaml")
+
+    def test_float_matches_ints(self):
+        """Test that the _typematch function matches int values to float dps"""
+        self.assertTrue(_typematch(float, 1))
+
+    def test_bytes_to_fmt_returns_string_for_unknown(self):
+        """
+        Test that the _bytes_to_fmt function parses unknown number of bytes
+        as a string format.
+        """
+        self.assertEqual(_bytes_to_fmt(5), "5s")
+
+    def test_deprecation(self):
+        """Test that deprecation messages are picked from the config."""
+        mock_device = MagicMock()
+        mock_device.name = "Testing"
+        mock_config = {"entity": "Test", "deprecated": "Passed"}
+        cfg = TuyaEntityConfig(mock_device, mock_config)
+        self.assertTrue(cfg.deprecated)
+        self.assertEqual(
+            cfg.deprecation_message,
+            "The use of Test for Testing is deprecated and should be "
+            "replaced by Passed.",
+        )
+
+    def test_format_with_none_defined(self):
+        """Test that format returns None when there is none configured."""
+        mock_entity = MagicMock()
+        mock_config = {"id": "1", "name": "test", "type": "string"}
+        cfg = TuyaDpsConfig(mock_entity, mock_config)
+        self.assertIsNone(cfg.format)
+
+    def test_decoding_base64(self):
+        """Test that decoded_value works with base64 encoding."""
+        mock_entity = MagicMock()
+        mock_config = {"id": "1", "name": "test", "type": "base64"}
+        mock_device = MagicMock()
+        mock_device.get_property.return_value = "VGVzdA=="
+        cfg = TuyaDpsConfig(mock_entity, mock_config)
+        self.assertEqual(
+            cfg.decoded_value(mock_device),
+            bytes("Test", "utf-8"),
+        )
+
+    def test_decoding_unencoded(self):
+        """Test that decoded_value returns the raw value when not encoded."""
+        mock_entity = MagicMock()
+        mock_config = {"id": "1", "name": "test", "type": "string"}
+        mock_device = MagicMock()
+        mock_device.get_property.return_value = "VGVzdA=="
+        cfg = TuyaDpsConfig(mock_entity, mock_config)
+        self.assertEqual(
+            cfg.decoded_value(mock_device),
+            "VGVzdA==",
+        )
+
+    def test_encoding_base64(self):
+        """Test that encode_value works with base64."""
+        mock_entity = MagicMock()
+        mock_config = {"id": "1", "name": "test", "type": "base64"}
+        cfg = TuyaDpsConfig(mock_entity, mock_config)
+        self.assertEqual(cfg.encode_value(bytes("Test", "utf-8")), "VGVzdA==")
+
+    def test_encoding_unencoded(self):
+        """Test that encode_value works with base64."""
+        mock_entity = MagicMock()
+        mock_config = {"id": "1", "name": "test", "type": "string"}
+        cfg = TuyaDpsConfig(mock_entity, mock_config)
+        self.assertEqual(cfg.encode_value("Test"), "Test")
+
+    def test_match_returns_false_on_errors_with_bitfield(self):
+        """Test that TypeError and ValueError cause match to return False."""
+        mock_entity = MagicMock()
+        mock_config = {"id": "1", "name": "test", "type": "bitfield"}
+        cfg = TuyaDpsConfig(mock_entity, mock_config)
+        self.assertFalse(cfg._match(15, "not an integer"))
+
+    def test_values_with_mirror(self):
+        """Test that value_mirror redirects."""
+        mock_entity = MagicMock()
+        mock_config = {
+            "id": "1",
+            "type": "string",
+            "name": "test",
+            "mapping": [
+                {"dps_val": "mirror", "value_mirror": "map_mirror"},
+                {"dps_val": "plain", "value": "unmirrored"},
+            ],
+        }
+        mock_map_config = {
+            "id": "2",
+            "type": "string",
+            "name": "map_mirror",
+            "mapping": [
+                {"dps_val": "1", "value": "map_one"},
+                {"dps_val": "2", "value": "map_two"},
+            ],
+        }
+        mock_device = MagicMock()
+        mock_device.get_property.return_value = "1"
+        cfg = TuyaDpsConfig(mock_entity, mock_config)
+        map = TuyaDpsConfig(mock_entity, mock_map_config)
+        mock_entity.find_dps.return_value = map
+
+        self.assertCountEqual(
+            cfg.values(mock_device),
+            ["unmirrored", "map_one", "map_two"],
+        )
+
+    # values gets very complex, with things like mappings within conditions
+    # within mappings. I'd expect something like this was added with purpose,
+    # but it isn't exercised by any of the existing unit tests.
+    # value-mirror above is explained by the fact that the device it was
+    # added for never worked properly, so was removed.
+
+    def test_default_without_mapping(self):
+        """Test that default returns None when there is no mapping"""
+        mock_entity = MagicMock()
+        mock_config = {"id": "1", "name": "test", "type": "string"}
+        cfg = TuyaDpsConfig(mock_entity, mock_config)
+        self.assertIsNone(cfg.default())
