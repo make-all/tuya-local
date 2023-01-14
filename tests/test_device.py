@@ -541,23 +541,27 @@ class TestDevice(IsolatedAsyncioTestCase):
 
     async def test_async_receive(self):
         # Set up preconditions
-        status = AsyncMock(
+        def job(func, *args):
+            return func(*args)
+
+        status = Mock(
             name="status",
             return_value={"dps": {"1": "INIT", "2": 2}},
         )
         self.mock_api().status = status
-        heartbeat = AsyncMock(name="heartbeat")
+        heartbeat = Mock(name="heartbeat")
         self.mock_api().heartbeat = heartbeat
-        receive = AsyncMock(name="receive", return_value={"1": "UPDATE"})
+        receive = Mock(name="receive", return_value={"1": "UPDATED"})
         self.mock_api().receive = receive
-        self.subject._running = True
-        self.subject._cached_state = {"updated_at": 0}
         async_add_executor_job = AsyncMock(
             name="async_add_executor_job",
-            side_effect=lambda func, *args: func(*args),
+            side_effect=job,
         )
         self.hass().async_add_executor_job = async_add_executor_job
-
+        self.subject._running = True
+        self.subject._cached_state = {"updated_at": 0}
+        self.subject._api_protocol_version_index = 0
+        self.subject._api_protocol_working = True
         # Call the function under test
         loop = self.subject.async_receive()
         result = await loop.__anext__()
@@ -565,26 +569,33 @@ class TestDevice(IsolatedAsyncioTestCase):
         # Check that the loop was started
         self.mock_api().set_socketPersistent.assert_called_once_with(True)
         # Check that a full poll was done
-        async_add_executor_job.assert_called_once_with(status)
+        async_add_executor_job.assert_called_once()
+        status.assert_called_once()
         self.assertDictEqual(result, {"1": "INIT", "2": 2})
         # Prepare for next round
         self.mock_api().set_socketPersistent.reset_mock()
+        status.reset_mock()
         self.subject._cached_state["updated_at"] = time()
 
         # Call the function under test
         result = await loop.__anext__()
+
         # Check that the loop was not restarted
         self.mock_api().set_socketPersistent.assert_not_called()
         # Check that a heartbeat poll was done
-        async_add_executor_job.assert_called_with(heartbeat)
-        async_add_executor_job.assert_called_with(receive)
+        status.assert_not_called()
+        heartbeat.assert_called_once()
+        receive.assert_called_once()
         self.assertDictEqual(result, {"1": "UPDATED"})
         # Prepare for next iteration
         async_add_executor_job.reset_mock()
         self.subject._running = False
 
         # Call the function under test
-        result = await loop.__anext__()
+        try:
+            result = await loop.__anext__()
+            self.assertTrue(False)
         # Check that the loop terminated
+        except StopAsyncIteration:
+            pass
         self.mock_api().set_socketPersistent.assert_called_once_with(False)
-        self.assertIsNone(result)
