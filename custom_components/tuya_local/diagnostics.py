@@ -5,6 +5,7 @@ from typing import Any
 
 from homeassistant.components.diagnostics import REDACTED
 from homeassistant.config_entries import ConfigEntry
+from homeassistant.const import API_PROTOCOL_VERSIONS
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers import device_registry as dr, entity_registry as er
 from homeassistant.helpers.device_registry import DeviceEntry
@@ -63,7 +64,9 @@ def _async_device_as_dict(
     # Base device information, without sensitive information
     data = {
         "name": device.name,
-        "api_version": device._api.version,
+        "api_version_set": device._api.version,
+        "api_version_used": API_PROTOCOL_VERSIONS[device._api_protocol_version_index],
+        "api_working": device._api_protocol_working,
         "status": device._api.dps_cache,
         "cached_state": device._cached_state,
         "pending_state": device._pending_updates,
