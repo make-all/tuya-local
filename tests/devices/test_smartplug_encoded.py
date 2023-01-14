@@ -1,7 +1,7 @@
 """Tests for the switch entity."""
 from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (
-    TIME_MINUTES,
+    UnitOfTime,
 )
 
 from ..const import SMARTPLUG_ENCODED_PAYLOAD
@@ -27,7 +27,7 @@ class TestSwitchEncoded(BasicNumberTests, SwitchableTests, TuyaDeviceTestCase):
             TIMER_DPS,
             self.entities.get("number_timer"),
             max=1440.0,
-            unit=TIME_MINUTES,
+            unit=UnitOfTime.MINUTES,
             scale=60,
         )
         self.mark_secondary(["number_timer"])

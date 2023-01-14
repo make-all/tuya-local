@@ -6,7 +6,6 @@ from homeassistant.components.sensor import (
 )
 from homeassistant.const import (
     PERCENTAGE,
-    TIME_MINUTES,
     UnitOfTemperature,
 )
 

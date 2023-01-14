@@ -1,5 +1,5 @@
 from homeassistant.components.fan import FanEntityFeature
-from homeassistant.const import TIME_MINUTES
+from homeassistant.const import UnitOfTime
 
 from ..const import TREATLIFE_DS02F_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -24,7 +24,7 @@ class TestTreatlifeFan(SwitchableTests, BasicNumberTests, TuyaDeviceTestCase):
             self.entities.get("number_timer"),
             max=1440.0,
             scale=60,
-            unit=TIME_MINUTES,
+            unit=UnitOfTime.MINUTES,
         )
         self.mark_secondary(["number_timer"])
 

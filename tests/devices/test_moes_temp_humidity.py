@@ -1,5 +1,5 @@
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import TIME_SECONDS, UnitOfTemperature
+from homeassistant.const import UnitOfTime, UnitOfTemperature
 
 from ..const import MOES_TEMP_HUMID_PAYLOAD
 from ..mixins.number import MultiNumberTests
@@ -63,13 +63,13 @@ class TestMoesTempHumidity(
                     "dps": TIMER1_DPS,
                     "name": "number_timer_1",
                     "max": 86400,
-                    "unit": TIME_SECONDS,
+                    "unit": UnitOfTime.SECONDS,
                 },
                 {
                     "dps": TIMER2_DPS,
                     "name": "number_timer_2",
                     "max": 86400,
-                    "unit": TIME_SECONDS,
+                    "unit": UnitOfTime.SECONDS,
                 },
             ]
         )

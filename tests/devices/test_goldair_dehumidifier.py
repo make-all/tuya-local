@@ -3,7 +3,7 @@ from unittest.mock import ANY
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.light import ColorMode
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import TIME_HOURS, UnitOfTemperature
+from homeassistant.const import UnitOfTime, UnitOfTemperature
 
 from ..const import DEHUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -60,7 +60,7 @@ class TestGoldairDehumidifier(
             TIMER_DPS,
             self.entities.get("number_timer"),
             max=24,
-            unit=TIME_HOURS,
+            unit=UnitOfTime.HOURS,
         )
 
         self.setUpMultiSensors(

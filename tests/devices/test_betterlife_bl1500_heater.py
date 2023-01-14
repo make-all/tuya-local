@@ -2,7 +2,7 @@ from homeassistant.components.climate.const import (
     ClimateEntityFeature,
     HVACMode,
 )
-from homeassistant.const import TIME_MINUTES, UnitOfTemperature
+from homeassistant.const import UnitOfTime, UnitOfTemperature
 
 from ..const import BETTERLIFE_BL1500_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -62,7 +62,7 @@ class TestBetterlifeBL1500Heater(
         self.setUpBasicSensor(
             COUNTDOWN_DPS,
             self.entities.get("sensor_timer_countdown"),
-            unit=TIME_MINUTES,
+            unit=UnitOfTime.MINUTES,
         )
         self.mark_secondary(
             ["lock_child_lock", "select_timer", "sensor_timer_countdown"]

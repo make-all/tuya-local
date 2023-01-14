@@ -4,7 +4,7 @@ from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
     PERCENTAGE,
-    TIME_MINUTES,
+    UnitOfTime,
 )
 
 from ..const import ESSENTIALS_PURIFIER_PAYLOAD
@@ -89,7 +89,7 @@ class TestEssentialsPurifier(
                 {
                     "dps": COUNTDOWN_DP,
                     "name": "sensor_timer",
-                    "unit": TIME_MINUTES,
+                    "unit": UnitOfTime.MINUTES,
                 },
                 {
                     "dps": PM25_DP,

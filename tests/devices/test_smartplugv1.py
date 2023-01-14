@@ -2,9 +2,9 @@
 from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
-    ELECTRIC_CURRENT_MILLIAMPERE,
-    ELECTRIC_POTENTIAL_VOLT,
-    TIME_MINUTES,
+    UnitOfElectricCurrent,
+    UnitOfElectricPotential,
+    UnitOfTime,
     UnitOfPower,
 )
 
@@ -34,7 +34,7 @@ class TestKoganSwitch(
             TIMER_DPS,
             self.entities.get("number_timer"),
             max=1440.0,
-            unit=TIME_MINUTES,
+            unit=UnitOfTime.MINUTES,
             scale=60,
         )
         self.setUpMultiSensors(
@@ -42,7 +42,7 @@ class TestKoganSwitch(
                 {
                     "name": "sensor_voltage",
                     "dps": VOLTAGE_DPS,
-                    "unit": ELECTRIC_POTENTIAL_VOLT,
+                    "unit": UnitOfElectricPotential.VOLT,
                     "device_class": SensorDeviceClass.VOLTAGE,
                     "state_class": "measurement",
                     "testdata": (2300, 230.0),
@@ -50,7 +50,7 @@ class TestKoganSwitch(
                 {
                     "name": "sensor_current",
                     "dps": CURRENT_DPS,
-                    "unit": ELECTRIC_CURRENT_MILLIAMPERE,
+                    "unit": UnitOfElectricCurrent.MILLIAMPERE,
                     "device_class": SensorDeviceClass.CURRENT,
                     "state_class": "measurement",
                 },

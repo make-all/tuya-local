@@ -3,7 +3,7 @@ from homeassistant.components.climate.const import (
     HVACMode,
 )
 from homeassistant.const import (
-    TIME_HOURS,
+    UnitOfTime,
     UnitOfTemperature,
 )
 
@@ -38,7 +38,7 @@ class TestEcostradAccentIqHeater(
             TIMER_DPS,
             self.entities.get("number_timer"),
             max=12,
-            unit=TIME_HOURS,
+            unit=UnitOfTime.HOURS,
         )
         self.mark_secondary(["number_timer"])
 

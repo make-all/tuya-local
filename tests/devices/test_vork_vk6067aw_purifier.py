@@ -3,7 +3,7 @@ from homeassistant.components.button import ButtonDeviceClass
 from homeassistant.components.fan import FanEntityFeature
 from homeassistant.const import (
     PERCENTAGE,
-    TIME_MINUTES,
+    UnitOfTime,
 )
 
 from ..const import VORK_VK6067_PURIFIER_PAYLOAD
@@ -75,7 +75,7 @@ class TestVorkVK6267AWPurifier(
                 {
                     "dps": COUNTDOWN_DPS,
                     "name": "sensor_timer",
-                    "unit": TIME_MINUTES,
+                    "unit": UnitOfTime.MINUTES,
                 },
                 {
                     "dps": FILTER_DPS,

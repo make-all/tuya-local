@@ -4,7 +4,7 @@ from homeassistant.components.climate.const import (
     HVACMode,
 )
 from homeassistant.const import (
-    TIME_MINUTES,
+    UnitOfTime,
 )
 
 from ..const import NASHONE_MTS700WB_THERMOSTAT_PAYLOAD
@@ -76,7 +76,7 @@ class TestNashoneMTS700WBThermostat(
         self.setUpBasicSensor(
             COUNTDOWN_DPS,
             self.entities.get("sensor_timer"),
-            unit=TIME_MINUTES,
+            unit=UnitOfTime.MINUTES,
             testdata=(600, 10.0),
         )
         self.setUpBasicSwitch(

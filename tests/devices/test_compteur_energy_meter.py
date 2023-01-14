@@ -5,8 +5,8 @@ from homeassistant.components.sensor import (
     STATE_CLASS_TOTAL_INCREASING,
 )
 from homeassistant.const import (
-    ELECTRIC_CURRENT_AMPERE,
-    ELECTRIC_POTENTIAL_VOLT,
+    UnitOfElectricCurrent,
+    UnitOfElectricPotential,
     UnitOfEnergy,
     UnitOfPower,
 )
@@ -49,7 +49,7 @@ class TestCompteurEnergyMeter(MultiSensorTests, TuyaDeviceTestCase):
                 {
                     "dps": VOLTAGE_DP,
                     "name": "sensor_voltage",
-                    "unit": ELECTRIC_POTENTIAL_VOLT,
+                    "unit": UnitOfElectricPotential.VOLT,
                     "device_class": SensorDeviceClass.VOLTAGE,
                     "state_class": STATE_CLASS_MEASUREMENT,
                     "testdata": (2348, 234.8),
@@ -57,7 +57,7 @@ class TestCompteurEnergyMeter(MultiSensorTests, TuyaDeviceTestCase):
                 {
                     "dps": CURRENT_DP,
                     "name": "sensor_current",
-                    "unit": ELECTRIC_CURRENT_AMPERE,
+                    "unit": UnitOfElectricCurrent.AMPERE,
                     "device_class": SensorDeviceClass.CURRENT,
                     "state_class": STATE_CLASS_MEASUREMENT,
                     "testdata": (4567, 4.567),

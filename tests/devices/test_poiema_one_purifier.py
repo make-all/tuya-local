@@ -3,7 +3,7 @@ from homeassistant.components.fan import FanEntityFeature
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
-    TIME_MINUTES,
+    UnitOfTime,
 )
 
 from ..const import POIEMA_ONE_PURIFIER_PAYLOAD
@@ -71,7 +71,7 @@ class TestPoeimaOnePurifier(
                 {
                     "dps": COUNTDOWN_DPS,
                     "name": "sensor_timer",
-                    "unit": TIME_MINUTES,
+                    "unit": UnitOfTime.MINUTES,
                 },
             ]
         )

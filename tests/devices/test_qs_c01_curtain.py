@@ -3,7 +3,7 @@ from homeassistant.components.cover import (
     CoverDeviceClass,
     CoverEntityFeature,
 )
-from homeassistant.const import TIME_SECONDS
+from homeassistant.const import UnitOfTime
 
 from ..const import QS_C01_CURTAIN_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -28,7 +28,7 @@ class TestQSC01Curtains(BasicNumberTests, BasicSelectTests, TuyaDeviceTestCase):
             self.entities.get("number_travel_time"),
             min=1,
             max=60,
-            unit=TIME_SECONDS,
+            unit=UnitOfTime.SECONDS,
         )
         self.setUpBasicSelect(
             BACKMODE_DPS,

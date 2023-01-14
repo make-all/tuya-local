@@ -5,9 +5,9 @@ from homeassistant.components.sensor import (
     STATE_CLASS_TOTAL_INCREASING,
 )
 from homeassistant.const import (
-    ELECTRIC_CURRENT_AMPERE,
-    ELECTRIC_POTENTIAL_VOLT,
-    FREQUENCY_HERTZ,
+    UnitOfElectricCurrent,
+    UnitOfElectricPotential,
+    UnitOfFrequency,
     UnitOfEnergy,
     UnitOfPower,
     UnitOfTemperature,
@@ -60,7 +60,7 @@ class TestPC321TYPowerClamp(MultiSensorTests, TuyaDeviceTestCase):
                 {
                     "dps": VOLTAGE1_DP,
                     "name": "sensor_voltage_a",
-                    "unit": ELECTRIC_POTENTIAL_VOLT,
+                    "unit": UnitOfElectricPotential.VOLT,
                     "device_class": SensorDeviceClass.VOLTAGE,
                     "state_class": STATE_CLASS_MEASUREMENT,
                     "testdata": (2348, 234.8),
@@ -68,7 +68,7 @@ class TestPC321TYPowerClamp(MultiSensorTests, TuyaDeviceTestCase):
                 {
                     "dps": CURRENT1_DP,
                     "name": "sensor_current_a",
-                    "unit": ELECTRIC_CURRENT_AMPERE,
+                    "unit": UnitOfElectricCurrent.AMPERE,
                     "device_class": SensorDeviceClass.CURRENT,
                     "state_class": STATE_CLASS_MEASUREMENT,
                     "testdata": (4567, 4.567),
@@ -98,7 +98,7 @@ class TestPC321TYPowerClamp(MultiSensorTests, TuyaDeviceTestCase):
                 {
                     "dps": VOLTAGE2_DP,
                     "name": "sensor_voltage_b",
-                    "unit": ELECTRIC_POTENTIAL_VOLT,
+                    "unit": UnitOfElectricPotential.VOLT,
                     "device_class": SensorDeviceClass.VOLTAGE,
                     "state_class": STATE_CLASS_MEASUREMENT,
                     "testdata": (2348, 234.8),
@@ -106,7 +106,7 @@ class TestPC321TYPowerClamp(MultiSensorTests, TuyaDeviceTestCase):
                 {
                     "dps": CURRENT2_DP,
                     "name": "sensor_current_b",
-                    "unit": ELECTRIC_CURRENT_AMPERE,
+                    "unit": UnitOfElectricCurrent.AMPERE,
                     "device_class": SensorDeviceClass.CURRENT,
                     "state_class": STATE_CLASS_MEASUREMENT,
                     "testdata": (4567, 4.567),
@@ -136,7 +136,7 @@ class TestPC321TYPowerClamp(MultiSensorTests, TuyaDeviceTestCase):
                 {
                     "dps": VOLTAGE3_DP,
                     "name": "sensor_voltage_c",
-                    "unit": ELECTRIC_POTENTIAL_VOLT,
+                    "unit": UnitOfElectricPotential.VOLT,
                     "device_class": SensorDeviceClass.VOLTAGE,
                     "state_class": STATE_CLASS_MEASUREMENT,
                     "testdata": (2348, 234.8),
@@ -144,7 +144,7 @@ class TestPC321TYPowerClamp(MultiSensorTests, TuyaDeviceTestCase):
                 {
                     "dps": CURRENT3_DP,
                     "name": "sensor_current_c",
-                    "unit": ELECTRIC_CURRENT_AMPERE,
+                    "unit": UnitOfElectricCurrent.AMPERE,
                     "device_class": SensorDeviceClass.CURRENT,
                     "state_class": STATE_CLASS_MEASUREMENT,
                     "testdata": (4567, 4.567),
@@ -174,7 +174,7 @@ class TestPC321TYPowerClamp(MultiSensorTests, TuyaDeviceTestCase):
                 {
                     "dps": TOTALCURRENT_DP,
                     "name": "sensor_total_current",
-                    "unit": ELECTRIC_CURRENT_AMPERE,
+                    "unit": UnitOfElectricCurrent.AMPERE,
                     "device_class": SensorDeviceClass.CURRENT,
                     "state_class": STATE_CLASS_MEASUREMENT,
                     "testdata": (12345, 12.345),
@@ -189,7 +189,7 @@ class TestPC321TYPowerClamp(MultiSensorTests, TuyaDeviceTestCase):
                 {
                     "dps": FREQUENCY_DP,
                     "name": "sensor_frequency",
-                    "unit": FREQUENCY_HERTZ,
+                    "unit": UnitOfFrequency.HERTZ,
                     "state_class": STATE_CLASS_MEASUREMENT,
                     "device_class": SensorDeviceClass.FREQUENCY,
                 },

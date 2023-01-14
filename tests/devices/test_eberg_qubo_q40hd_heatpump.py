@@ -8,7 +8,7 @@ from homeassistant.components.climate.const import (
     SWING_VERTICAL,
 )
 from homeassistant.const import (
-    TIME_HOURS,
+    UnitOfTime,
     UnitOfTemperature,
 )
 
@@ -51,7 +51,7 @@ class TestEbergQuboQ40HDHeatpump(
             TIMER_DPS,
             self.entities.get("number_timer"),
             max=24,
-            unit=TIME_HOURS,
+            unit=UnitOfTime.HOURS,
         )
         self.mark_secondary(["number_timer"])
 

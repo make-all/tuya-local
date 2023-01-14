@@ -4,7 +4,7 @@ from homeassistant.components.climate.const import (
     HVACAction,
     HVACMode,
 )
-from homeassistant.const import TIME_MINUTES, UnitOfTemperature
+from homeassistant.const import UnitOfTime, UnitOfTemperature
 
 from ..const import INKBIRD_SOUSVIDE_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -53,7 +53,7 @@ class TestInkbirdSousVideCooker(
                     "dps": TIMER_DPS,
                     "name": "number_cooking_time",
                     "max": 5999,
-                    "unit": TIME_MINUTES,
+                    "unit": UnitOfTime.MINUTES,
                 },
                 {
                     "dps": RECIPE_DPS,
@@ -87,7 +87,7 @@ class TestInkbirdSousVideCooker(
         self.setUpBasicSensor(
             REMAIN_DPS,
             self.entities.get("sensor_remaining_time"),
-            unit=TIME_MINUTES,
+            unit=UnitOfTime.MINUTES,
         )
         self.mark_secondary(
             [

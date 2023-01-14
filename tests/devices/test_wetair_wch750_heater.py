@@ -5,7 +5,7 @@ from homeassistant.components.climate.const import (
     PRESET_COMFORT,
     PRESET_BOOST,
 )
-from homeassistant.const import TIME_MINUTES, UnitOfTemperature
+from homeassistant.const import UnitOfTime, UnitOfTemperature
 
 from ..const import WETAIR_WCH750_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -85,7 +85,7 @@ class TestWetairWCH750Heater(
             },
         )
         self.setUpBasicSensor(
-            COUNTDOWN_DPS, self.entities.get("sensor_timer"), unit=TIME_MINUTES
+            COUNTDOWN_DPS, self.entities.get("sensor_timer"), unit=UnitOfTime.MINUTES
         )
         self.mark_secondary(
             [

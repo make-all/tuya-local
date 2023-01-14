@@ -8,7 +8,7 @@ from homeassistant.components.vacuum import (
 )
 from homeassistant.const import (
     AREA_SQUARE_METERS,
-    TIME_MINUTES,
+    UnitOfTime,
     PERCENTAGE,
 )
 
@@ -80,7 +80,7 @@ class TestKyvolE30Vacuum(
                 {
                     "dps": TIME_DPS,
                     "name": "sensor_clean_time",
-                    "unit": TIME_MINUTES,
+                    "unit": UnitOfTime.MINUTES,
                 },
                 {
                     "dps": EDGE_DPS,

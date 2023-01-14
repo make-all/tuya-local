@@ -3,7 +3,7 @@ from homeassistant.components.climate.const import (
     ClimateEntityFeature,
     HVACMode,
 )
-from homeassistant.const import TIME_HOURS, UnitOfTemperature
+from homeassistant.const import UnitOfTime, UnitOfTemperature
 
 from ..const import GPCV_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -45,7 +45,7 @@ class TestGoldairGPCVHeater(
             TIMER_DPS,
             self.entities.get("number_timer"),
             max=24,
-            unit=TIME_HOURS,
+            unit=UnitOfTime.HOURS,
         )
         self.setUpBasicBinarySensor(
             ERROR_DPS,

@@ -1,9 +1,9 @@
 """Tests for Parkside PLGS 2012 A1 Smart Charger"""
 from homeassistant.const import (
-    ELECTRIC_CURRENT_MILLIAMPERE,
-    ELECTRIC_POTENTIAL_VOLT,
+    UnitOfElectricCurrent,
+    UnitOfElectricPotential,
     PERCENTAGE,
-    TIME_MINUTES,
+    UnitOfTime,
     UnitOfTemperature,
 )
 from homeassistant.components.sensor import (
@@ -68,7 +68,7 @@ class TestParksidePLGS2012A1Charger(
                     "dps": CURRENT_DPS,
                     "max": 30000,
                     "step": 100,
-                    "unit": ELECTRIC_CURRENT_MILLIAMPERE,
+                    "unit": UnitOfElectricCurrent.MILLIAMPERE,
                 },
                 {
                     "name": "number_charge_voltage",
@@ -76,7 +76,7 @@ class TestParksidePLGS2012A1Charger(
                     "max": 25.0,
                     "scale": 1000,
                     "step": 0.1,
-                    "unit": ELECTRIC_POTENTIAL_VOLT,
+                    "unit": UnitOfElectricPotential.VOLT,
                 },
             ],
         )
@@ -101,7 +101,7 @@ class TestParksidePLGS2012A1Charger(
                 {
                     "name": "sensor_time_remaining",
                     "dps": REMAIN_DPS,
-                    "unit": TIME_MINUTES,
+                    "unit": UnitOfTime.MINUTES,
                 },
                 {
                     "name": "sensor_current_temperature",
@@ -113,7 +113,7 @@ class TestParksidePLGS2012A1Charger(
                 {
                     "name": "sensor_max_current",
                     "dps": MAXCURRENT_DPS,
-                    "unit": ELECTRIC_CURRENT_MILLIAMPERE,
+                    "unit": UnitOfElectricCurrent.MILLIAMPERE,
                     "device_class": SensorDeviceClass.CURRENT,
                 },
                 {

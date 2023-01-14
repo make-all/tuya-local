@@ -4,7 +4,7 @@ from homeassistant.components.climate.const import (
     HVACMode,
 )
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import PERCENTAGE, TIME_MINUTES, UnitOfTemperature
+from homeassistant.const import PERCENTAGE, UnitOfTime, UnitOfTemperature
 
 from ..const import GPPH_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -57,7 +57,7 @@ class TestGoldairHeater(
             self.entities.get("number_timer"),
             max=1440,
             step=60,
-            unit=TIME_MINUTES,
+            unit=UnitOfTime.MINUTES,
         )
         self.setUpBasicSensor(
             POWERLEVEL_DPS,

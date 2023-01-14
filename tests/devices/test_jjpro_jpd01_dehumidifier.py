@@ -4,7 +4,7 @@ from homeassistant.components.humidifier import HumidifierEntityFeature
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     PERCENTAGE,
-    TIME_HOURS,
+    UnitOfTime,
     UnitOfTemperature,
 )
 from ..const import JJPRO_JPD01_PAYLOAD
@@ -48,7 +48,7 @@ class TestJJProJPD01Dehumidifier(
             TIMER_DPS,
             self.entities.get("number_timer"),
             max=24,
-            unit=TIME_HOURS,
+            unit=UnitOfTime.HOURS,
         )
         self.setUpMultiBinarySensors(
             [

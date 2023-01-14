@@ -2,7 +2,7 @@ from homeassistant.components.climate.const import (
     ClimateEntityFeature,
     HVACMode,
 )
-from homeassistant.const import TIME_MINUTES, UnitOfTemperature
+from homeassistant.const import UnitOfTime, UnitOfTemperature
 
 from ..const import KOGAN_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -38,7 +38,7 @@ class TestGoldairKoganKAHTPHeater(
             TIMER_DPS,
             self.entities.get("number_timer"),
             max=1440,
-            unit=TIME_MINUTES,
+            unit=UnitOfTime.MINUTES,
         )
         self.mark_secondary(["lock_child_lock", "number_timer"])
 
