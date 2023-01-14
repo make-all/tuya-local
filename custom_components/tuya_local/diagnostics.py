@@ -5,12 +5,16 @@ from typing import Any
 
 from homeassistant.components.diagnostics import REDACTED
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import API_PROTOCOL_VERSIONS
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers import device_registry as dr, entity_registry as er
 from homeassistant.helpers.device_registry import DeviceEntry
 
-from .const import CONF_PROTOCOL_VERSION, CONF_TYPE, DOMAIN
+from .const import (
+    API_PROTOCOL_VERSIONS,
+    CONF_PROTOCOL_VERSION,
+    CONF_TYPE,
+    DOMAIN,
+)
 from .device import TuyaLocalDevice
 
 
