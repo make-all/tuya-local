@@ -6,7 +6,7 @@ from homeassistant.const import CONF_HOST, CONF_NAME
 from homeassistant.core import HomeAssistant, callback
 
 from . import DOMAIN
-from .device import TuyaLocalDevice
+from .device import TuyaLocalDevice, get_device_id
 from .const import (
     API_PROTOCOL_VERSIONS,
     CONF_DEVICE_ID,
@@ -174,7 +174,7 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
         config[CONF_LOCAL_KEY],
         config[CONF_PROTOCOL_VERSION],
         subdevice_id,
-		hass,
+        hass,
     )
     await device.async_refresh()
     return device if device.has_returned_state else None

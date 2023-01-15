@@ -14,11 +14,12 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.entity_registry import async_migrate_entries
 
 from .const import (
+    CONF_DEVICE_CID,
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
     CONF_PROTOCOL_VERSION,
     CONF_TYPE,
-    DOMAIN, CONF_DEVICE_CID,
+    DOMAIN,
 )
 from .device import setup_device, async_delete_device, get_device_id
 from .helpers.device_config import get_config
@@ -133,7 +134,6 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         conf = {**entry.data, **entry.options}
         entry.data = {
             CONF_DEVICE_ID: conf[CONF_DEVICE_ID],
-            CONF_DEVICE_CID: conf[CONF_DEVICE_CID] if CONF_DEVICE_CID in conf else "",
             CONF_LOCAL_KEY: conf[CONF_LOCAL_KEY],
             CONF_HOST: conf[CONF_HOST],
             CONF_TYPE: conf[CONF_TYPE],
@@ -153,6 +153,21 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         }
         entry.options = {}
         entry.version = 10
+
+    if entry.version <= 10:
+        # Added device_cid, default to empty string as no devices before
+        # this version supported it
+        conf = {**entry.data, **entry.options}
+        entry.data = {
+            CONF_DEVICE_ID: conf[CONF_DEVICE_ID],
+            CONF_LOCAL_KEY: conf[CONF_LOCAL_KEY],
+            CONF_HOST: conf[CONF_HOST],
+            CONF_TYPE: conf[CONF_TYPE],
+            CONF_PROTOCOL_VERSION: conf[CONF_PROTOCOL_VERSION],
+            CONF_DEVICE_CID: "",
+        }
+        entry.options = {}
+        entry.version = 11
 
     return True
 
