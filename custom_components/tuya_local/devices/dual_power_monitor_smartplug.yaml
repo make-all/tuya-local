@@ -1,0 +1,87 @@
+name: Dual power monitoring smartplug
+primary_entity:
+  entity: switch
+  name: Outlet 1
+  class: outlet
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 6
+      type: integer
+      name: add_ele
+      optional: true
+secondary_entities:
+  - entity: switch
+    name: Outlet 2
+    class: outlet
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Timer 1
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    name: Timer 2
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 11
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60

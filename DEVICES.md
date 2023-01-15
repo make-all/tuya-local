@@ -163,6 +163,7 @@
 - Aubess 2-gang switch
 - DIGOO DG-SP202 dual smartplug with energy monitoring and timers.
 - DIGOO DG-SP01 USB smartplug with night light.
+- Dual power monitoring smartplug (Geex).
 - ES01 3 outlet + USB powerstrip with individual timers.
 - Grid Connect double outlet wall socket
 - Grid Connect double outlet with Energy Monitoring, Master and Individual switches and Child Lock

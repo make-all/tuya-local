@@ -154,3 +154,5 @@ Further device support has been made with the assistance of users.  Please consi
 - [BrettEBowman](https://github.com/BrettEBowman) for assistance supporting Treatlife DS02-F fans.
 - [sohail579](https://github.com/sohail579) for assistance supporting Inventor Eva Ion Pro dehumidifiers.
 - [MoosJ80](https://github.com/MoosJ80) for assistance supporting PJ-1103 clamp power meters.
+- [david1111967](https://github.com/david1111967) for contributing Spanish translations.
+- [s3anyboy](https://github.com/s3anyboy) for assistance supporting Dual power monitoring smartplug (Geex).
