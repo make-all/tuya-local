@@ -237,7 +237,12 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
 
     def test_get_device_id(self):
         """Test that check if device id is correct"""
-        self.assertEqual("my-device-id",
-                         get_device_id({"device_id": "my-device-id"}))
+        self.assertEqual(
+            "my-device-id",
+            get_device_id({"device_id": "my-device-id"}),
+        )
         self.assertEqual("sub-id", get_device_id({"device_cid": "sub-id"}))
-        self.assertEqual("s", get_device_id({"device_id": "d", "device_cid": "s"}))
+        self.assertEqual(
+            "s",
+            get_device_id({"device_id": "d", "device_cid": "s"}),
+        )

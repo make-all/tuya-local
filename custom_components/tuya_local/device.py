@@ -72,9 +72,15 @@ class TuyaLocalDevice(object):
         if cid is not None:
             _LOGGER.info(f"Creating sub device {cid} from gateway {dev_id}.")
             parent = tinytuya.Device(dev_id, address, local_key, persist=True)
-            tuya_device_id  = cid
+            tuya_device_id = cid
             local_key = None
-        self._api = tinytuya.Device(tuya_device_id, address, local_key, cid, parent)
+        self._api = tinytuya.Device(
+            tuya_device_id,
+            address,
+            local_key,
+            cid,
+            parent,
+        )
         self.cid = cid
         self._refresh_task = None
         self._protocol_configured = protocol_version
@@ -491,6 +497,7 @@ def setup_device(hass: HomeAssistant, config: dict):
     hass.data[DOMAIN][get_device_id(config)] = {"device": device}
 
     return device
+
 
 async def async_delete_device(hass: HomeAssistant, config: dict):
     device_id = get_device_id(config)
