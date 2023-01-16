@@ -73,6 +73,7 @@
 - Beok TR9B thermostat _(rebadged as Vancoo and perhaps others)_
 - ETOP-HP thermostat (CH7100)
 - ETOP-HT thermostat
+- Hysen HY08ACF thermostat
 - Hysen HY08WE-2 thermostat
 - Inkbird ITC306A thermostat smartplug
 - Inkbird ITC308 thermostat smartplug

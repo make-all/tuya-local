@@ -1,0 +1,69 @@
+name: Hysen HY08ACF thermostat
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          value: heat
+    - id: 2
+      type: integer
+      name: temperature
+      range:
+        min: 50
+        max: 500
+      mapping:
+        - scale: 10
+          step: 5
+    - id: 3
+      type: integer
+      name: current_temperature
+      mapping:
+        - scale: 10
+    - id: 5
+      type: string
+      name: fan_speed
+      mapping:
+        - dps_val: low
+          value: Low
+        - dps_val: high
+          value: High
+        - dps_val: auto
+          value: Auto
+    - id: 13
+      type: bitfield
+      name: fault_code
+secondary_entities:
+  - entity: lock
+    name: Child lock
+    icon: "mdi:hand-back-right-off"
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 13
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: switch
+    name: Sleep
+    category: config
+    icon: "mdi:power-sleep"
+    dps:
+      - id: 117
+        type: boolean
+        name: switch
+
