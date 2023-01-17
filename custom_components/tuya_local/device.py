@@ -167,11 +167,23 @@ class TuyaLocalDevice(object):
 
     async def async_receive(self):
         """Receive messages from a persistent connection asynchronously."""
-        self._api.set_socketPersistent(self._running)
+        # If we didn't yet get any state from the device, we may need to
+        # negotiate the protocol before making the connection persistent
+        persist = self.has_returned_state
+        self._api.set_socketPersistent(persist)
         while self._running:
             try:
                 last_cache = self._cached_state["updated_at"]
                 now = time()
+                if persist != self.has_returned_state:
+                    # use persistent connections after initial communication
+                    # has been established.  Until then, we need to rotate
+                    # the protocol version, which seems to require a fresh
+                    # connection.
+                    persist = self.has_returned_state
+                    self._api.set_socketPersistent(persist)
+                    last_cache = 0
+
                 if now - last_cache > self._CACHE_TIMEOUT:
                     poll = await self._retry_on_failed_connection(
                         lambda: self._api.status(),
@@ -200,7 +212,7 @@ class TuyaLocalDevice(object):
                             poll = poll["dps"]
                         yield poll
 
-                await asyncio.sleep(0.1)
+                await asyncio.sleep(0.1 if self.has_returned_state else 5)
 
             except asyncio.CancelledError:
                 self._running = False
@@ -211,6 +223,8 @@ class TuyaLocalDevice(object):
                 _LOGGER.exception(
                     f"{self.name} receive loop error {type(t)}:{t}",
                 )
+                await asyncio.sleep(5)
+
         # Close the persistent connection when exiting the loop
         self._api.set_socketPersistent(False)
 
@@ -357,7 +371,7 @@ class TuyaLocalDevice(object):
 
     async def _retry_on_failed_connection(self, func, error_message):
         if self._api_protocol_version_index is None:
-            self._rotate_api_protocol_version()
+            await self._rotate_api_protocol_version()
         auto = (self._protocol_configured == "auto") and (
             not self._api_protocol_working
         )
@@ -370,6 +384,8 @@ class TuyaLocalDevice(object):
         for i in range(connections):
             try:
                 retval = await self._hass.async_add_executor_job(func)
+                if type(retval) is dict and "Error" in retval:
+                    raise AttributeError
                 self._api_protocol_working = True
                 return retval
             except Exception as e:
@@ -379,7 +395,7 @@ class TuyaLocalDevice(object):
                     self._api_protocol_working = False
                     _LOGGER.error(error_message)
                 if not self._api_protocol_working:
-                    self._rotate_api_protocol_version()
+                    await self._rotate_api_protocol_version()
 
     def _get_cached_state(self):
         cached_state = self._cached_state.copy()
@@ -407,7 +423,7 @@ class TuyaLocalDevice(object):
         }
         return self._pending_updates
 
-    def _rotate_api_protocol_version(self):
+    async def _rotate_api_protocol_version(self):
         if self._api_protocol_version_index is None:
             try:
                 self._api_protocol_version_index = API_PROTOCOL_VERSIONS.index(
@@ -427,7 +443,10 @@ class TuyaLocalDevice(object):
         _LOGGER.info(
             f"Setting protocol version for {self.name} to {new_version}.",
         )
-        self._api.set_version(new_version)
+        await self._hass.async_add_executor_job(
+            self._api.set_version,
+            new_version,
+        )
 
     @staticmethod
     def get_key_for_value(obj, value, fallback=None):
