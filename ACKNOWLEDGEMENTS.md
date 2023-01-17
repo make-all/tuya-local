@@ -157,3 +157,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [david1111967](https://github.com/david1111967) for contributing Spanish translations.
 - [s3anyboy](https://github.com/s3anyboy) for assistance supporting Dual power monitoring smartplug (Geex).
 - [FritsOV](https://github.com/FritsOV) for assistance supporting Hysen HY08ACF thermostats.
+- [Andreasjkoch](https://github.com/Andreasjkoch) for contributing support for Eeese Carl dehumidifiers.
