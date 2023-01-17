@@ -125,6 +125,7 @@
 - ElectriQ CD25PRO-LE-V2 dehumidifier
 - ElectriQ DESD9LW dehumidifier
 - Eeese Adam dehumidifier
+- Eeese Carl dehumidifier
 - Eeese Otto dehumidifier
 - Goldair GPDH420 dehumidifier
 - Honeywell TP(30/50/70) dehumidifiers
