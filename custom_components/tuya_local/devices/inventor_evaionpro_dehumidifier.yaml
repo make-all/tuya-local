@@ -40,10 +40,12 @@ primary_entity:
         - dps_val: 2
           value: Temperature sensor error
         - dps_val: 4
-          value: Unit malfunction
+          value: Tank full or removed
         - dps_val: 8
-          value: Refrigerant leak
+          value: Unit malfunction
         - dps_val: 16
+          value: Refrigerant leak
+        - dps_val: 32
           value: Defrosting
     # The following two are documented in the protocol as read/write, and appear
     # in the app to be so.  But there is no mention in the manual of a pump
@@ -108,6 +110,9 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: 0
+            value: false
+            # Tank has its own binary sensor
+          - dps_val: 4
             value: false
           - value: true
   - entity: binary_sensor
