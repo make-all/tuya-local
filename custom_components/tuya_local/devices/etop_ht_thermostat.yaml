@@ -12,10 +12,8 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
-          icon_priority: 1
         - dps_val: true
           value: heat
-          icon_priority: 1
     - id: 2
       type: string
       name: preset_mode
@@ -73,7 +71,9 @@ primary_entity:
       mapping:
         - scale: 10
           step: 5
-
+    - id: 45
+      type: bitfield
+      name: fault_code
 secondary_entities:
   - entity: switch
     name: "Anti-frost"
@@ -103,6 +103,7 @@ secondary_entities:
       - id: 26
         name: value
         type: integer
+        icon: "mdi:thermometer-low"
         unit: C
         range:
           min: 0
@@ -110,7 +111,6 @@ secondary_entities:
         mapping:
           - scale: 10
             step: 5
-            icon: "mdi:thermometer-low"
   - entity: number
     name: "Setpoint max."
     category: config
@@ -119,6 +119,7 @@ secondary_entities:
       - id: 19
         type: integer
         name: value
+        icon: "mdi:thermometer-high"
         unit: C
         range:
           min: 50
@@ -126,7 +127,6 @@ secondary_entities:
         mapping:
           - scale: 10
             step: 5
-            icon: "mdi:thermometer-high"
   - entity: number
     name: Temperature correction
     category: config
@@ -136,14 +136,14 @@ secondary_entities:
         name: value
         type: integer
         unit: C
+        icon: "mdi:wrench-clock"
         range:
           min: -100
           max: 100
         mapping:
           - scale: 10
             step: 5
-            icon: "mdi:wrench-clock"
-  - entity: sensor
+  - entity: binary_sensor
     name: Error
     category: diagnostic
     class: problem
@@ -153,4 +153,6 @@ secondary_entities:
         name: sensor
         readonly: true
         mapping:
-          - icon: "mdi:alert"
+          - dps_val: 0
+            value: false
+          - value: true
