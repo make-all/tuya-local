@@ -143,14 +143,14 @@ secondary_entities:
           - scale: 10
             step: 5
             icon: "mdi:wrench-clock"
-  - entity: number
+  - entity: sensor
     name: Error
     category: diagnostic
     class: problem
     dps:
       - id: 45
         type: bitfield
-        name: value
+        name: sensor
         readonly: true
         mapping:
           - icon: "mdi:alert"
