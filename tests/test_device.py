@@ -25,6 +25,16 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.addCleanup(hass_patcher.stop)
         self.hass = hass_patcher.start()
 
+        def job(func, *args):
+            return func(*args)
+
+        self.hass().async_add_executor_job = AsyncMock()
+        self.hass().async_add_executor_job.side_effect = job
+
+        sleep_patcher = patch("asyncio.sleep")
+        self.addCleanup(sleep_patcher.stop)
+        self.mock_sleep = sleep_patcher.start()
+
         lock_patcher = patch("custom_components.tuya_local.device.Lock")
         self.addCleanup(lock_patcher.stop)
         self.mock_lock = lock_patcher.start()
@@ -37,6 +47,10 @@ class TestDevice(IsolatedAsyncioTestCase):
             "auto",
             self.hass(),
         )
+        # For most tests we want the protocol working
+        self.subject._api_protocol_version_index = 0
+        self.subject._api_protocol_working = True
+        self.subject._protocol_configured = "auto"
 
     def test_configures_tinytuya_correctly(self):
         self.mock_api.assert_called_once_with(
@@ -84,32 +98,26 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.assertEqual(await self.subject.async_inferred_type(), None)
 
     async def test_refreshes_when_there_is_no_pending_reset(self):
-        async_job = AsyncMock()
         self.subject._cached_state = {"updated_at": time() - 19}
-        self.hass().async_add_executor_job.return_value = async_job()
+        self.mock_api().status.return_value = {"dps": {"1": "called"}}
+
         await self.subject.async_refresh()
 
-        async_job.assert_awaited()
+        self.mock_api().status.assert_called_once()
+        self.assertEqual(self.subject._cached_state["1"], "called")
 
     async def test_refreshes_when_there_is_expired_pending_reset(self):
-        async_job = AsyncMock()
         self.subject._cached_state = {"updated_at": time() - 20}
-        self.hass().async_add_executor_job.return_value = async_job()
-        await self.subject.async_refresh()
-
-        async_job.assert_awaited()
-
-    async def test_refresh_reloads_status_from_device(self):
-        self.hass().async_add_executor_job = AsyncMock()
-        self.hass().async_add_executor_job.return_value = {"dps": {"1": False}}
+        self.mock_api().status.return_value = {"dps": {"1": "called"}}
 
         await self.subject.async_refresh()
 
-        self.hass().async_add_executor_job.assert_called_once()
+        self.mock_api().status.assert_called_once()
+        self.assertEqual(self.subject._cached_state["1"], "called")
 
     async def test_refresh_retries_up_to_nine_times(self):
-        self.hass().async_add_executor_job = AsyncMock()
-        self.hass().async_add_executor_job.side_effect = [
+        self.subject._api_protocol_working = False
+        self.mock_api().status.side_effect = [
             Exception("Error"),
             Exception("Error"),
             Exception("Error"),
@@ -123,24 +131,15 @@ class TestDevice(IsolatedAsyncioTestCase):
 
         await self.subject.async_refresh()
 
-        self.assertEqual(self.hass().async_add_executor_job.call_count, 9)
-        # self.assertEqual(self.subject._cached_state["1"], False)
+        self.assertEqual(self.mock_api().status.call_count, 9)
+        self.assertEqual(self.subject._cached_state["1"], False)
 
-    async def test_refresh_clears_cached_and_pending_after_nine_fails(
-        self,
-    ):
+    async def test_refresh_clears_cache_after_allowed_failures(self):
         self.subject._cached_state = {"1": True}
         self.subject._pending_updates = {
             "1": {"value": False, "updated_at": datetime.now(), "sent": True}
         }
-        self.hass().async_add_executor_job = AsyncMock()
-        self.hass().async_add_executor_job.side_effect = [
-            Exception("Error"),
-            Exception("Error"),
-            Exception("Error"),
-            Exception("Error"),
-            Exception("Error"),
-            Exception("Error"),
+        self.mock_api().status.side_effect = [
             Exception("Error"),
             Exception("Error"),
             Exception("Error"),
@@ -148,14 +147,14 @@ class TestDevice(IsolatedAsyncioTestCase):
 
         await self.subject.async_refresh()
 
-        self.assertEqual(self.hass().async_add_executor_job.call_count, 9)
+        self.assertEqual(self.mock_api().status.call_count, 3)
         self.assertEqual(self.subject._cached_state, {"updated_at": 0})
         self.assertEqual(self.subject._pending_updates, {})
 
     async def test_api_protocol_version_is_rotated_with_each_failure(self):
-        self.mock_api().set_version.reset_mock()
-        self.hass().async_add_executor_job = AsyncMock()
-        self.hass().async_add_executor_job.side_effect = [
+        self.subject._api_protocol_version_index = None
+        self.subject._api_protocol_working = False
+        self.mock_api().status.side_effect = [
             Exception("Error"),
             Exception("Error"),
             Exception("Error"),
@@ -170,9 +169,9 @@ class TestDevice(IsolatedAsyncioTestCase):
         )
 
     async def test_api_protocol_version_is_stable_once_successful(self):
-        self.mock_api().set_version.reset_mock()
-        self.hass().async_add_executor_job = AsyncMock()
-        self.hass().async_add_executor_job.side_effect = [
+        self.subject._api_protocol_version_index = None
+        self.subject._api_protocol_working = False
+        self.mock_api().status.side_effect = [
             Exception("Error"),
             Exception("Error"),
             Exception("Error"),
@@ -200,15 +199,12 @@ class TestDevice(IsolatedAsyncioTestCase):
         )
 
     async def test_api_protocol_version_is_not_rotated_when_not_auto(self):
+        # Set up preconditions for the test
+
         self.subject._protocol_configured = 3.4
         self.subject._api_protocol_version_index = None
-        self.mock_api().set_version.reset_mock()
-        self.subject._rotate_api_protocol_version()
-        self.mock_api().set_version.assert_called_once_with(3.4)
-        self.mock_api().set_version.reset_mock()
-
-        self.hass().async_add_executor_job = AsyncMock()
-        self.hass().async_add_executor_job.side_effect = [
+        self.subject._api_protocol_working = False
+        self.mock_api().status.side_effect = [
             Exception("Error"),
             Exception("Error"),
             Exception("Error"),
@@ -223,6 +219,10 @@ class TestDevice(IsolatedAsyncioTestCase):
             Exception("Error"),
             {"dps": {"1": False}},
         ]
+        await self.subject._rotate_api_protocol_version()
+        self.mock_api().set_version.assert_called_once_with(3.4)
+        self.mock_api().set_version.reset_mock()
+
         await self.subject.async_refresh()
         self.assertEqual(self.subject._api_protocol_version_index, 3)
         await self.subject.async_refresh()
@@ -271,14 +271,11 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.subject._cached_state = {"1": True}
         self.assertIs(self.subject.get_property("2"), None)
 
-    async def test_async_set_property_schedules_job(self):
-        async_job = AsyncMock()
-        self.hass().async_add_executor_job.return_value = async_job()
+    async def test_async_set_property_sends_to_api(self):
 
         await self.subject.async_set_property("1", False)
 
-        self.hass().async_add_executor_job.assert_called_once()
-        async_job.assert_awaited()
+        self.mock_api().send.assert_called_once()
 
     async def test_set_property_immediately_stores_pending_updates(self):
         self.subject._cached_state = {"1": True}
@@ -541,57 +538,47 @@ class TestDevice(IsolatedAsyncioTestCase):
 
     async def test_async_receive(self):
         # Set up preconditions
-        def job(func, *args):
-            return func(*args)
-
-        status = Mock(
-            name="status",
-            return_value={"dps": {"1": "INIT", "2": 2}},
-        )
-        self.mock_api().status = status
-        heartbeat = Mock(name="heartbeat")
-        self.mock_api().heartbeat = heartbeat
-        receive = Mock(name="receive", return_value={"1": "UPDATED"})
-        self.mock_api().receive = receive
-        async_add_executor_job = AsyncMock(
-            name="async_add_executor_job",
-            side_effect=job,
-        )
-        self.hass().async_add_executor_job = async_add_executor_job
+        self.mock_api().status.return_value = {"dps": {"1": "INIT", "2": 2}}
+        self.mock_api().receive.return_value = {"1": "UPDATED"}
         self.subject._running = True
         self.subject._cached_state = {"updated_at": 0}
-        self.subject._api_protocol_version_index = 0
-        self.subject._api_protocol_working = True
         # Call the function under test
+        print("starting test loop...")
         loop = self.subject.async_receive()
+        print("getting first iteration...")
         result = await loop.__anext__()
 
-        # Check that the loop was started
-        self.mock_api().set_socketPersistent.assert_called_once_with(True)
+        # Check that the loop was started, but without persistent connection
+        # since there was no state returned yet and it might need to negotiate
+        # version.
+        self.mock_api().set_socketPersistent.assert_called_once_with(False)
         # Check that a full poll was done
-        async_add_executor_job.assert_called_once()
-        status.assert_called_once()
+        self.mock_api().status.assert_called_once()
         self.assertDictEqual(result, {"1": "INIT", "2": 2})
         # Prepare for next round
+        self.subject._cached_state = self.subject._cached_state | result
         self.mock_api().set_socketPersistent.reset_mock()
-        status.reset_mock()
+        self.mock_api().status.reset_mock()
         self.subject._cached_state["updated_at"] = time()
 
         # Call the function under test
+        print("getting second iteration...")
         result = await loop.__anext__()
 
-        # Check that the loop was not restarted
-        self.mock_api().set_socketPersistent.assert_not_called()
         # Check that a heartbeat poll was done
-        status.assert_not_called()
-        heartbeat.assert_called_once()
-        receive.assert_called_once()
+        self.mock_api().status.assert_not_called()
+        self.mock_api().heartbeat.assert_called_once()
+        self.mock_api().receive.assert_called_once()
         self.assertDictEqual(result, {"1": "UPDATED"})
+        # Check that the connection was made persistent now that data has been
+        # returned
+        self.mock_api().set_socketPersistent.assert_called_once_with(True)
         # Prepare for next iteration
-        async_add_executor_job.reset_mock()
         self.subject._running = False
+        self.mock_api().set_socketPersistent.reset_mock()
 
         # Call the function under test
+        print("getting last iteration...")
         try:
             result = await loop.__anext__()
             self.assertTrue(False)

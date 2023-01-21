@@ -31,6 +31,11 @@ from .helpers.device_config import possible_matches
 _LOGGER = logging.getLogger(__name__)
 
 
+def non_json(input):
+    """Handler for json_dumps when used for debugging."""
+    return f"Non-JSON: ({input})"
+
+
 class TuyaLocalDevice(object):
     def __init__(
         self,
@@ -182,7 +187,6 @@ class TuyaLocalDevice(object):
                     # connection.
                     persist = self.has_returned_state
                     self._api.set_socketPersistent(persist)
-                    last_cache = 0
 
                 if now - last_cache > self._CACHE_TIMEOUT:
                     poll = await self._retry_on_failed_connection(
@@ -297,10 +301,10 @@ class TuyaLocalDevice(object):
         self._cached_state = self._cached_state | new_state["dps"]
         self._cached_state["updated_at"] = time()
         _LOGGER.debug(
-            f"{self.name} refreshed device state: {json.dumps(new_state)}",
+            f"{self.name} refreshed device state: {json.dumps(new_state, default=non_json)}",
         )
         _LOGGER.debug(
-            f"new state (incl pending): {json.dumps(self._get_cached_state())}"
+            f"new state (incl pending): {json.dumps(self._get_cached_state(), default=non_json)}"
         )
 
     async def async_set_properties(self, properties):
@@ -322,7 +326,7 @@ class TuyaLocalDevice(object):
             }
 
         _LOGGER.debug(
-            f"{self.name} new pending updates: {json.dumps(pending_updates)}",
+            f"{self.name} new pending updates: {json.dumps(pending_updates, default=non_json)}",
         )
 
     async def _debounce_sending_updates(self):
@@ -347,7 +351,7 @@ class TuyaLocalDevice(object):
         )
 
         _LOGGER.debug(
-            f"{self.name} sending dps update: {json.dumps(pending_properties)}"
+            f"{self.name} sending dps update: {json.dumps(pending_properties, default=non_json)}"
         )
 
         await self._retry_on_failed_connection(
@@ -389,7 +393,9 @@ class TuyaLocalDevice(object):
                 self._api_protocol_working = True
                 return retval
             except Exception as e:
-                _LOGGER.debug(f"Retrying after exception {e}")
+                _LOGGER.debug(
+                    f"Retrying after exception {e} ({i}/{connections})",
+                )
                 if i + 1 == connections:
                     self._reset_cached_state()
                     self._api_protocol_working = False
