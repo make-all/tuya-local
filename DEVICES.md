@@ -83,6 +83,7 @@
 - Moes BHT-002 thermostat (without external temp sensor)
 - Moes MS-103 temperature and humidity switch (partial functions, temperature only)
 - Nashone MTS-700-WB thermostat smartplug
+- Netmostat N-1 (RTAFN1) thermostat
 - Owon PCT513 thermostat
 - RYRA TYTE-D1 thermostat with energy monitoring
 - Saswell C16 thermostat _(rebadged as Warmme, Klima and others)_
