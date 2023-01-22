@@ -144,6 +144,10 @@
 - Wetair WAW-H1210LW humidifier
 - Wilfa Haze HU400BC humidifier
 
+### Aroma diffusers
+
+- YYM-805SW aroma diffuser with nightlight
+
 ### Kitchen Appliances
 
 - Inkbird sous vide cooker

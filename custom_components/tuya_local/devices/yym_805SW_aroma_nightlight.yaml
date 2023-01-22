@@ -1,0 +1,24 @@
+name:  YYM-805SW Aroma diffuser
+products:
+    - id: c0nh3LmEk0NDebrq
+primary_entity:
+  entity: fan
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 2
+      name: speed
+      type: string
+      mapping:
+        - dps_val: large
+          value: 100
+        - dps_val: small
+          value: 50
+secondary_entities:
+  - entity: light
+    name: Nightlight
+    dps:
+      - id: 5
+        name: switch
+        type: boolean
