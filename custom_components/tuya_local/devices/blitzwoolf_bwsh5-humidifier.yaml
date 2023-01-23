@@ -1,0 +1,193 @@
+# sample DPS {'updated_at': 1674438037.778799, '1': True, '4': 'health', '5': True, '10': 24, '12': 75, '13': 55, '14': 77, '18': 'c', '19': 'cancel', '20': 0, '21': True, '22': 0, '23': 'level_1', '26': True, '35': True} 
+name: BlitzWoolf BWSH5 Humidifier
+products: 
+  - id: lqzme7o0kzhumdxr
+primary_entity:
+  entity: humidifier
+  class: humidifier
+  dps:
+    - id: 1
+      name: switch   
+      type: boolean
+      mapping:
+        - dps_val: true
+          icon: "mdi:air-humidifier"
+          value: ON
+        - dps_val: false
+          icon: "mdi:air-humidifier-off"
+          value: OFF
+    - id: 5
+      name: led
+      type: boolean
+    - id: 10
+      name: temperature 
+      type: integer
+      readonly: true
+      unit: C
+    - id: 12
+      name: temperature_f
+      type: integer
+      readonly: true
+      hidden: true
+      unit: F
+    - id: 13             
+      name: humidity
+      type: integer
+      optional: true
+      range:
+        min: 35
+        max: 75
+      mapping:
+        - step: 5
+    - id: 14
+      name: current_humidity
+      type: integer
+      readonly: true
+    - id: 18
+      name: temp_unit_convert
+      type: string
+      hidden: true
+secondary_entities:
+  - entity: switch
+    name: "UV Sterilization"
+    icon: "mdi:sun-wireless"
+    dps:
+      - id: 21
+        name: switch
+        type: boolean
+  - entity: switch
+    name: "Warm mist"
+    icon: "mdi:fire"
+    dps:
+      - id: 26
+        name: switch
+        type: boolean
+  - entity: switch
+    name: "Plasma"
+    icon: "mdi:dots-circle"
+    dps:
+      - id: 35
+        name: switch
+        type: boolean        
+  - entity: switch
+    name: "LED"
+    icon: "mdi:led-off"
+    dps:
+      - id: 5
+        name: switch
+        type: boolean
+        mapping:
+          - dps_val: true
+            icon: "mdi:led-on"
+          - dps_val: false
+            icon: "mdi:led-off"
+  - entity: sensor
+    name: Current humidity
+    class: humidity
+    dps:
+      - id: 14
+        type: integer
+        name: sensor
+        class: measurement
+        unit: "%"
+        readonly: true
+  - entity: sensor
+    name: Current temperature
+    class: temperature
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        class: measurement
+        readonly: true
+        unit: C
+      - id: 12
+        name: temperature_f
+        type: integer
+        unit: F
+        readonly: true
+        hidden: true
+      - id: 18
+        name: temp_unit_convert
+        type: string        
+        hidden: true
+  - entity: select
+    name: Timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 19
+        name: option  
+        type: string
+        mapping:
+          - dps_val: "cancel"
+            value: "Off"
+          - dps_val: "1h"
+            value: "1 hour"
+          - dps_val: "2h"
+            value: "2 hours"
+          - dps_val: "3h"
+            value: "3 hours"
+          - dps_val: "4h"
+            value: "4 hours"
+          - dps_val: "5h"
+            value: "5 hours"
+          - dps_val: "6h"
+            value: "6 hours"
+          - dps_val: "7h"
+            value: "7 hours"
+          - dps_val: "8h"
+            value: "8 hours"
+          - dps_val: "9h"
+            value: "9 hours"
+          - dps_val: "10h"
+            value: "10 hours"
+          - dps_val: "11h"
+            value: "11 hours"
+          - dps_val: "12h"
+            value: "12 hours"
+  - entity: select
+    name: "Spray mode"
+    category: config
+    icon: "mdi:scent"
+    dps:
+    - id: 4
+      name: option
+      type: string
+      mapping:
+        - dps_val: "auto"
+          value: "Auto"
+          icon: "mdi:fan-auto"
+        - dps_val: health
+          value: "Health"
+          icon: "mdi:heart-flash"
+        - dps_val: baby
+          name: "Baby"
+          icon: "mdi:baby-face-outline"
+        - dps_val: sleep
+          value: "Sleep"
+          icon: "mdi:weather-night"
+        - dps_val: humidity
+          value: "Humidity"
+        - dps_val: work
+          value: "Work"
+          icon: "mdi:electron-framework"
+        - dps_val: manual
+          value: "Manual"
+          icon: "mdi:car-shift-pattern"
+  - entity: select
+    # note: this is used only for device display. To adjust temperature sensor unit change it in entity settings
+    name: "Display temperature unit"
+    category: config
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 18
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: Celsius
+            icon: "mdi:temperature-celsius"
+          - dps_val: f
+            value: Fahrenheit  
+            icon: "mdi:temperature-fahrenheit"
