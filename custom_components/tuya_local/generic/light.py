@@ -313,9 +313,10 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             ):
                 # Special case for motion sensor lights with readonly switch
                 # that have tristate switch available as effect
-                settings = settings | self._effect_dps.get_values_to_set(
-                    self._device, "on"
-                )
+                if self._effect_dps.id not in settings:
+                    settings = settings | self._effect_dps.get_values_to_set(
+                        self._device, "on"
+                    )
             else:
                 settings = settings | self._switch_dps.get_values_to_set(
                     self._device, True
@@ -329,7 +330,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             if (
                 self._switch_dps.readonly
                 and self._effect_dps
-                and "off" in _self._effect_dps.values(self._device)
+                and "off" in self._effect_dps.values(self._device)
             ):
                 # Special case for motion sensor lights with readonly switch
                 # that have tristate switch available as effect

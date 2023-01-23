@@ -1524,3 +1524,12 @@ TREATLIFE_DS02F_PAYLOAD = {
     "2": 0,
     "3": "level_2",
 }
+
+MOTION_LIGHT_PAYLOAD = {
+    "101": "mode_auto",
+    "102": False,
+    "103": 0,
+    "104": 249,
+    "105": 374,
+    "106": False,
+}
