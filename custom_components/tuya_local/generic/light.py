@@ -306,17 +306,36 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                 }
 
         if self._switch_dps and not self.is_on:
-            settings = {
-                **settings,
-                **self._switch_dps.get_values_to_set(self._device, True),
-            }
+            if (
+                self._switch_dps.readonly
+                and self._effect_dps
+                and "on" in self._effect_dps.values(self._device)
+            ):
+                # Special case for motion sensor lights with readonly switch
+                # that have tristate switch available as effect
+                settings = settings | self._effect_dps.get_values_to_set(
+                    self._device, "on"
+                )
+            else:
+                settings = settings | self._switch_dps.get_values_to_set(
+                    self._device, True
+                )
 
         if settings:
             await self._device.async_set_properties(settings)
 
     async def async_turn_off(self):
         if self._switch_dps:
-            await self._switch_dps.async_set_value(self._device, False)
+            if (
+                self._switch_dps.readonly
+                and self._effect_dps
+                and "off" in _self._effect_dps.values(self._device)
+            ):
+                # Special case for motion sensor lights with readonly switch
+                # that have tristate switch available as effect
+                await self._effect_dps.async_set_value(self._device, "off")
+            else:
+                await self._switch_dps.async_set_value(self._device, False)
         elif self._brightness_dps:
             await self._brightness_dps.async_set_value(self._device, 0)
         else:
