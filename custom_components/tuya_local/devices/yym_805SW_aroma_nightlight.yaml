@@ -22,18 +22,8 @@ primary_entity:
       mapping:
         - dps_val: large
           value: 100
-          icon: "mdi:sprinkler-variant"
         - dps_val: small
           value: 50
-          icon: "mdi:sprinkler"
-    - id: 4          
-      name: "Left time"
-      readolny: true
-      optional: true
-      type: integer
-      range:
-        min: 0
-        max: 360
 secondary_entities:
   - entity: light
     name: Nightlight
@@ -42,14 +32,7 @@ secondary_entities:
       - id: 5
         name: switch
         type: boolean
-      - id: 6 
-        name: color_mode  #effect
-        type: string
-        hidden: true
-        mapping:
-          - dps_val: colour
-            value: rgbw 
-      - id: 8   # not working
+      - id: 8   
         name: rgbhsv  
         type: hex     
         format:
@@ -68,40 +51,42 @@ secondary_entities:
             bytes: 1
             range:
               min: 0
-              max: 100
+              max: 255
           - name: v
             bytes: 1
             range:
               min: 0
-              max: 100
+              max: 255
   - entity: select
     name: "Color mode"
     category: config
     icon: "mdi:palette"
     dps:
-    - id: 6
-      name: option
-      type: string
-      mapping:
-        - dps_val: colour
-          value: Color
-        - dps_val: colourful1
-          value: Colorful          
+      - id: 6
+        name: option
+        type: string
+        mapping:
+          - dps_val: colour
+            value: Color
+          - dps_val: colourful1
+            value: Colorful          
   - entity: select
     name: "Spray mode"
     category: config
     icon: "mdi:sprinkler-variant"
     dps:
-    - id: 2
-      name: option
-      type: string
-      mapping:
-        - dps_val: large
-          value: Large
-          icon: "mdi:sprinkler-variant"
-        - dps_val: small
-          value: Small
-          icon: "mdi:sprinkler"
+      - id: 2
+        name: option
+        type: string
+        mapping:
+          - dps_val: large
+            value: Large
+            icon: "mdi:sprinkler-variant"
+            icon_priority: 5
+          - dps_val: small
+            value: Small
+            icon: "mdi:sprinkler"
+            icon_priority: 10
   - entity: select
     name: Timer
     icon: "mdi:timer"
@@ -119,3 +104,11 @@ secondary_entities:
             value: "3 hours"
           - dps_val: "6"
             value: "6 hours"
+      - id: 4          
+        name: "Left time"
+        readolny: true
+        optional: true
+        type: integer
+        range:
+          min: 0
+          max: 360
