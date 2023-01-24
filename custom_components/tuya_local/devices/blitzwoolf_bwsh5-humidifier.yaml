@@ -16,20 +16,6 @@ primary_entity:
         - dps_val: false
           icon: "mdi:air-humidifier-off"
           value: OFF
-    - id: 5
-      name: led
-      type: boolean
-    - id: 10
-      name: temperature 
-      type: integer
-      readonly: true
-      unit: C
-    - id: 12
-      name: temperature_f
-      type: integer
-      readonly: true
-      hidden: true
-      unit: F
     - id: 13             
       name: humidity
       type: integer
@@ -39,14 +25,6 @@ primary_entity:
         max: 75
       mapping:
         - step: 5
-    - id: 14
-      name: current_humidity
-      type: integer
-      readonly: true
-    - id: 18
-      name: temp_unit_convert
-      type: string
-      hidden: true
 secondary_entities:
   - entity: switch
     name: "UV Sterilization"
@@ -106,10 +84,6 @@ secondary_entities:
         type: integer
         unit: F
         readonly: true
-        hidden: true
-      - id: 18
-        name: temp_unit_convert
-        type: string        
         hidden: true
   - entity: select
     name: Timer
@@ -177,7 +151,7 @@ secondary_entities:
           icon: "mdi:car-shift-pattern"
   - entity: select
     # note: this is used only for device display. To adjust temperature sensor unit change it in entity settings
-    name: "Display temperature unit"
+    name: "Device display temperature unit"
     category: config
     icon: "mdi:thermometer-check"
     dps:
