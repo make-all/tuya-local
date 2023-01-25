@@ -156,7 +156,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [MoosJ80](https://github.com/MoosJ80) for assistance supporting PJ-1103 clamp power meters.
 - [david1111967](https://github.com/david1111967) for contributing Spanish translations.
 - [s3anyboy](https://github.com/s3anyboy) for assistance supporting Dual power monitoring smartplug (Geex).
-- [FritsOV](https://github.com/FritsOV) for assistance supporting Hysen HY08ACF thermostats.
+- [FritsOV](https://github.com/FritsOV) for assistance supporting Hysen HY08ACF thermostats and confirming Myuet ME98.
 - [Andreasjkoch](https://github.com/Andreasjkoch) for contributing support for Eeese Carl dehumidifiers.
 - [ppprpd](https://github.com/ppprpd) for contributing support for Netmostat N-1 thermostats.
 - [Pokemowka25](https://github.com/Pokemowka26) for assistance supporting Kyvol EA200 humidifiers.

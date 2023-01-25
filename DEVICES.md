@@ -68,7 +68,7 @@
 - Beca BHT-002/3000 floor heating thermostat (with external temp sensor)
 - Beca BHP-6000 room heat pump control thermostat
 - Beca BHT-6000/8000 floor heating thermostat
-- Beok TGR81 thermostat
+- Beok TGR81 thermostat (also reported working with Myuet ME98)
 - Beok TOL47 thermostat
 - Beok TR9B thermostat _(rebadged as Vancoo and perhaps others)_
 - ETOP-HP thermostat (CH7100)

@@ -59,7 +59,10 @@ primary_entity:
             - dps_val: false
               icon: "mdi:radiator-disabled"
               value: "off"
-
+    - id: 38
+      type: string
+      name: week_program
+      optional: true
 secondary_entities:
   - entity: number
     name: Calibration offset
@@ -148,3 +151,12 @@ secondary_entities:
         range:
           min: 5
           max: 20
+  - entity: button
+    name: Reset
+    category: config
+    class: restart
+    dps:
+      - id: 39
+        name: button
+        type: boolean
+        optional: true
