@@ -73,10 +73,9 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
     @property
     def color_mode(self):
         """Return the color mode of the light"""
-        if self._color_mode_dps:
-            mode = self._color_mode_dps.get_value(self._device)
-            if mode and hasattr(ColorMode, mode.upper()):
-                return ColorMode(mode)
+        from_dp = self.raw_color_mode
+        if from_dp:
+            return from_dp
 
         if self._rgbhsv_dps:
             return ColorMode.RGBW
@@ -88,6 +87,14 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             return ColorMode.ONOFF
         else:
             return ColorMode.UNKNOWN
+
+    @property
+    def raw_color_mode(self):
+        """Return the color_mode as set from the dps."""
+        if self._color_mode_dps:
+            mode = self._color_mode_dps.get_value(self._device)
+            if mode and hasattr(ColorMode, mode.upper()):
+                return ColorMode(mode)
 
     @property
     def color_temp(self):
@@ -185,17 +192,12 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
 
     async def async_turn_on(self, **params):
         settings = {}
-        color_mode = params.get(ATTR_COLOR_MODE, self.color_mode)
+        color_mode = None
 
         if self._color_temp_dps and ATTR_COLOR_TEMP in params:
-            if ATTR_COLOR_MODE not in params:
+            if self.color_mode != ColorMode.COLOR_TEMP:
                 color_mode = ColorMode.COLOR_TEMP
-            if self._color_mode_dps:
-                _LOGGER.debug("Auto setting color mode to COLOR_TEMP")
-                settings = {
-                    **settings,
-                    **self._color_mode_dps.get_values_to_set(self._device, color_mode),
-                }
+
             color_temp = params.get(ATTR_COLOR_TEMP)
             r = self._color_temp_dps.range(self._device)
 
@@ -211,16 +213,11 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             }
         elif self._rgbhsv_dps and (
             ATTR_RGBW_COLOR in params
-            or (ATTR_BRIGHTNESS in params and color_mode == ColorMode.RGBW)
+            or (ATTR_BRIGHTNESS in params and self.raw_color_mode == ColorMode.RGBW)
         ):
-            if ATTR_COLOR_MODE not in params:
+            if self.raw_color_mode != ColorMode.RGBW:
                 color_mode = ColorMode.RGBW
-            if self._color_mode_dps:
-                _LOGGER.debug("Auto setting color mode to RGBW")
-                settings = {
-                    **settings,
-                    **self._color_mode_dps.get_values_to_set(self._device, color_mode),
-                }
+
             rgbw = params.get(ATTR_RGBW_COLOR, self.rgbw_color or (0, 0, 0, 0))
             brightness = params.get(ATTR_BRIGHTNESS, self.brightness or 255)
             fmt = self._rgbhsv_dps.format
@@ -259,9 +256,9 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                         self._rgbhsv_dps.encode_value(binary),
                     ),
                 }
-        elif self._color_mode_dps and ATTR_COLOR_MODE in params:
+        if self._color_mode_dps:
             if color_mode:
-                _LOGGER.debug(f"Explicitly setting color mode to {color_mode}")
+                _LOGGER.debug(f"Auto setting color mode to {color_mode}")
                 settings = {
                     **settings,
                     **self._color_mode_dps.get_values_to_set(self._device, color_mode),
@@ -280,7 +277,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
 
         if (
             ATTR_BRIGHTNESS in params
-            and color_mode != ColorMode.RGBW
+            and self.raw_color_mode != ColorMode.RGBW
             and self._brightness_dps
         ):
             bright = params.get(ATTR_BRIGHTNESS)

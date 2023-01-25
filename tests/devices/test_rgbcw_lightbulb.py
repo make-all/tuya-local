@@ -114,20 +114,48 @@ class TestRGBCWLightbulb(BasicNumberTests, TuyaDeviceTestCase):
         ):
             await self.subject.async_turn_off()
 
-    async def test_set_brightness(self):
+    async def test_set_brightness_white(self):
         self.dps[SWITCH_DPS] = True
+        self.dps[MODE_DPS] = "white"
+
         async with assert_device_properties_set(
             self.subject._device,
             {
-                MODE_DPS: "white",
                 BRIGHTNESS_DPS: 502,
             },
         ):
-            await self.subject.async_turn_on(color_mode=ColorMode.WHITE, brightness=128)
+            await self.subject.async_turn_on(brightness=128)
+
+    async def test_set_brightness_color(self):
+        self.dps[SWITCH_DPS] = True
+        self.dps[MODE_DPS] = "colour"
+        self.dps[HSV_DPS] = "000003e803e8"
+        async with assert_device_properties_set(
+            self.subject._device,
+            {
+                HSV_DPS: "000003e801f6",
+            },
+        ):
+            await self.subject.async_turn_on(brightness=128)
 
     async def test_set_rgbw(self):
         self.dps[BRIGHTNESS_DPS] = 1000
         self.dps[SWITCH_DPS] = True
+        self.dps[MODE_DPS] = "colour"
+        async with assert_device_properties_set(
+            self.subject._device,
+            {
+                HSV_DPS: "000003e803e8",
+            },
+        ):
+            await self.subject.async_turn_on(
+                rgbw_color=(255, 0, 0, 255),
+            )
+
+    async def test_set_rgbw_from_white(self):
+        self.dps[BRIGHTNESS_DPS] = 1000
+        self.dps[SWITCH_DPS] = True
+        self.dps[MODE_DPS] = "white"
         async with assert_device_properties_set(
             self.subject._device,
             {
@@ -136,7 +164,6 @@ class TestRGBCWLightbulb(BasicNumberTests, TuyaDeviceTestCase):
             },
         ):
             await self.subject.async_turn_on(
-                color_mode=ColorMode.RGBW,
                 rgbw_color=(255, 0, 0, 255),
             )
 
