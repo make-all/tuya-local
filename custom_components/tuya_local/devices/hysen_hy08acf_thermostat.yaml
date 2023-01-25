@@ -22,6 +22,7 @@ primary_entity:
     - id: 2
       type: integer
       name: temperature
+      unit: C
       range:
         min: 50
         max: 500
@@ -114,6 +115,7 @@ secondary_entities:
       - id: 101
         type: integer
         name: sensor
+        unit: C
         mapping:
           - scale: 10
   - entity: number
