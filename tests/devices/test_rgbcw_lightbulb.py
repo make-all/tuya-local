@@ -34,7 +34,7 @@ class TestRGBCWLightbulb(BasicNumberTests, TuyaDeviceTestCase):
             unit=UnitOfTime.MINUTES,
             scale=60,
         )
-        self.mark_secondary(["number_timer"])
+        self.mark_secondary(["number_timer", "select_scene"])
 
     def test_is_on(self):
         self.dps[SWITCH_DPS] = True
