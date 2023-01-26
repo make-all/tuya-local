@@ -300,6 +300,8 @@ class TuyaLocalDevice(object):
         new_state = self._api.status()
         self._cached_state = self._cached_state | new_state["dps"]
         self._cached_state["updated_at"] = time()
+        for entity in self._children:
+            entity.async_schedule_update_ha_state()
         _LOGGER.debug(
             f"{self.name} refreshed device state: {json.dumps(new_state, default=non_json)}",
         )
