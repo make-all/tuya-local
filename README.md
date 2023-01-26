@@ -7,7 +7,7 @@ Please report any [issues](https://github.com/make-all/tuya-local/issues) and fe
 
 [![BuyMeCoffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/jasonrumney)
 
-This is a Home Assistant add-on to support Wi-fi devices running Tuya
+This is a Home Assistant integration to support Wi-fi devices running Tuya
 firmware without going via the Tuya cloud.  Currently only WiFi
 devices are supported, Tuya also makes Zigbee, BLE and other devices
 that connect to WiFi using a gateway, such devices are not yet
