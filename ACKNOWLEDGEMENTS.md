@@ -162,3 +162,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [Pokemowka25](https://github.com/Pokemowka26) for assistance supporting Kyvol EA200 humidifiers.
 - [spuljko](https://github.com/spuljko) for contributing support for YYM-805SW aroma diffuser with nightlight and BlitzWoolf BWSH5 humidifier.
 - [raphaelcouzet](https://github.com/raphaelcouzet) for contributing support for Arlec motion sensor lights which were used to improve Deta motion light support.
+- [TheExenth](https://github.com/TheExenth) for assistance supporting Salcar T9W thermostats, and identifying the likely identical Tellur model.
