@@ -46,7 +46,7 @@ primary_entity:
           value: Manual
     - id: 5
       type: string
-      name: fan_speed
+      name: fan_mode
       mapping:
         - dps_val: low
           value: Low
@@ -68,13 +68,30 @@ primary_entity:
       type: string
       hidden: true
     - id: 119
-      name: valve
+      name: hvac_action
       type: string
       mapping:
         - dps_val: "0"
-          value: closed
+          constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: idle
         - dps_val: "1"
-          value: open
+          constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: heating
+        - dps_val: "2"
+          constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: cooling
     - id: 121
       name: program
       type: integer
