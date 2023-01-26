@@ -1,5 +1,5 @@
 # sample DPS {'updated_at': 1674438037.778799, '1': True, '4': 'health', '5': True, '10': 24, '12': 75, '13': 55, '14': 77, '18': 'c', '19': 'cancel', '20': 0, '21': True, '22': 0, '23': 'level_1', '26': True, '35': True} 
-name: BlitzWoolf BWSH5 Humidifier
+name: BlitzWoolf BWSH5 humidifier
 products: 
   - id: lqzme7o0kzhumdxr
 primary_entity:
@@ -11,11 +11,27 @@ primary_entity:
       type: boolean
       mapping:
         - dps_val: true
-          icon: "mdi:air-humidifier"
           value: ON
         - dps_val: false
-          icon: "mdi:air-humidifier-off"
           value: OFF
+    - id: 4
+      name: mode
+      type: string
+      mapping:
+        - dps_val: "auto"
+          value: "Auto"
+        - dps_val: health
+          value: "Health"
+        - dps_val: baby
+          value: "Baby"
+        - dps_val: sleep
+          value: "Sleep"
+        - dps_val: humidity
+          value: "Humidity"
+        - dps_val: work
+          value: "Work"
+        - dps_val: manual
+          value: "Manual"
     - id: 13             
       name: humidity
       type: integer
@@ -25,31 +41,43 @@ primary_entity:
         max: 75
       mapping:
         - step: 5
+    - id: 22
+      name: unknown_22
+      type: integer
+      optional: true
+    - id: 23
+      name: unknown_23
+      type: string
+      optional: true
 secondary_entities:
   - entity: switch
-    name: "UV Sterilization"
+    name: UV sterilization
     icon: "mdi:sun-wireless"
+    category: config
     dps:
       - id: 21
         name: switch
         type: boolean
   - entity: switch
-    name: "Warm mist"
+    name: Warm mist
     icon: "mdi:fire"
+    category: config
     dps:
       - id: 26
         name: switch
         type: boolean
   - entity: switch
-    name: "Plasma"
+    name: Plasma
     icon: "mdi:dots-circle"
+    category: config
     dps:
       - id: 35
         name: switch
         type: boolean        
-  - entity: switch
-    name: "LED"
+  - entity: light
+    name: LED
     icon: "mdi:led-off"
+    category: config
     dps:
       - id: 5
         name: switch
@@ -68,7 +96,6 @@ secondary_entities:
         name: sensor
         class: measurement
         unit: "%"
-        readonly: true
   - entity: sensor
     name: Current temperature
     class: temperature
@@ -77,14 +104,11 @@ secondary_entities:
         type: integer
         name: sensor
         class: measurement
-        readonly: true
         unit: C
       - id: 12
         name: temperature_f
         type: integer
         unit: F
-        readonly: true
-        hidden: true
   - entity: select
     name: Timer
     icon: "mdi:timer"
@@ -120,38 +144,13 @@ secondary_entities:
             value: "11 hours"
           - dps_val: "12h"
             value: "12 hours"
-  - entity: select
-    name: "Spray mode"
-    category: config
-    icon: "mdi:scent"
-    dps:
-    - id: 4
-      name: option
-      type: string
-      mapping:
-        - dps_val: "auto"
-          value: "Auto"
-          icon: "mdi:fan-auto"
-        - dps_val: health
-          value: "Health"
-          icon: "mdi:heart-flash"
-        - dps_val: baby
-          name: "Baby"
-          icon: "mdi:baby-face-outline"
-        - dps_val: sleep
-          value: "Sleep"
-          icon: "mdi:weather-night"
-        - dps_val: humidity
-          value: "Humidity"
-        - dps_val: work
-          value: "Work"
-          icon: "mdi:electron-framework"
-        - dps_val: manual
-          value: "Manual"
-          icon: "mdi:car-shift-pattern"
+      - id: 20
+        name: remaining
+        type: integer
+        optional: true
   - entity: select
     # note: this is used only for device display. To adjust temperature sensor unit change it in entity settings
-    name: "Device display temperature unit"
+    name: Display temperature unit
     category: config
     icon: "mdi:thermometer-check"
     dps:
