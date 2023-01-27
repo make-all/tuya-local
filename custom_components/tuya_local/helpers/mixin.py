@@ -85,7 +85,7 @@ class TuyaLocalEntity:
         await self._device.async_refresh()
 
     async def async_added_to_hass(self):
-        self._device.register_entity(self)
+        await self._device.async_register_entity(self)
 
     async def async_will_remove_from_hass(self):
         await self._device.async_unregister_entity(self)

@@ -463,50 +463,55 @@ class TestDevice(IsolatedAsyncioTestCase):
         # Was the refresh task left empty?
         self.assertIsNone(self.subject._refresh_task)
 
-    def test_register_first_entity_ha_running(self):
+    async def test_register_first_entity_ha_running(self):
         # Set up preconditions
         self.subject._children = []
         self.subject._running = False
         self.subject._startup_listener = None
         self.subject.start = Mock()
+        entity = AsyncMock()
 
         # Call the function under test
-        self.subject.register_entity("Entity")
+        await self.subject.async_register_entity(entity)
 
         # Was the entity added to the list?
-        self.assertEqual(self.subject._children, ["Entity"])
+        self.assertEqual(self.subject._children, [entity])
 
         # Did we start the loop?
         self.subject.start.assert_called_once()
 
-    def test_register_subsequent_entity_ha_running(self):
+    async def test_register_subsequent_entity_ha_running(self):
         # Set up preconditions
-        self.subject._children = ["First"]
+        first = AsyncMock()
+        second = AsyncMock()
+        self.subject._children = [first]
         self.subject._running = True
         self.subject._startup_listener = None
         self.subject.start = Mock()
 
         # Call the function under test
-        self.subject.register_entity("Entity")
+        await self.subject.async_register_entity(second)
 
         # Was the entity added to the list?
-        self.assertCountEqual(self.subject._children, ["First", "Entity"])
+        self.assertCountEqual(self.subject._children, [first, second])
 
         # Did we avoid restarting the loop?
         self.subject.start.assert_not_called()
 
-    def test_register_subsequent_entity_ha_starting(self):
+    async def test_register_subsequent_entity_ha_starting(self):
         # Set up preconditions
-        self.subject._children = ["First"]
+        first = AsyncMock()
+        second = AsyncMock()
+        self.subject._children = [first]
         self.subject._running = False
         self.subject._startup_listener = Mock()
         self.subject.start = Mock()
 
         # Call the function under test
-        self.subject.register_entity("Entity")
+        await self.subject.async_register_entity(second)
 
         # Was the entity added to the list?
-        self.assertCountEqual(self.subject._children, ["First", "Entity"])
+        self.assertCountEqual(self.subject._children, [first, second])
         # Did we avoid restarting the loop?
         self.subject.start.assert_not_called()
 
