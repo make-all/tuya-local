@@ -104,6 +104,9 @@ secondary_entities:
       - id: 7
         type: boolean
         name: lock
+      - id: 105
+        type: string
+        name: lock_type
   - entity: binary_sensor
     name: Fault
     class: problem
@@ -170,19 +173,6 @@ secondary_entities:
         range:
           min: 5
           max: 15
-  - entity: select
-    name: Child lock type
-    category: config
-    icon: "mdi:hand-back-right-off"
-    dps:
-      - id: 105
-        type: string
-        name: option
-        mapping:
-          - dps_val: lockfull
-            value: Full lock
-          - dps_val: lockhalf
-            value: Semi lock
   - entity: switch
     name: Fan ECO
     category: config
