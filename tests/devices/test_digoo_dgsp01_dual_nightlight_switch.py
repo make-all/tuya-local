@@ -2,8 +2,6 @@
 from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.components.light import (
     ColorMode,
-    EFFECT_COLORLOOP,
-    EFFECT_RANDOM,
     LightEntityFeature,
 )
 from ..const import DIGOO_DGSP01_SOCKET_PAYLOAD
@@ -78,8 +76,8 @@ class TestDigooNightlightSwitch(BasicSwitchTests, TuyaDeviceTestCase):
         self.assertCountEqual(
             self.light.effect_list,
             [
-                EFFECT_COLORLOOP,
-                EFFECT_RANDOM,
+                "Scene",
+                "Music",
                 "Scene 1",
                 "Scene 2",
                 "Scene 3",
@@ -89,9 +87,9 @@ class TestDigooNightlightSwitch(BasicSwitchTests, TuyaDeviceTestCase):
 
     def test_light_effect(self):
         self.dps[COLORMODE_DPS] = "scene"
-        self.assertEqual(self.light.effect, EFFECT_COLORLOOP)
+        self.assertEqual(self.light.effect, "Scene")
         self.dps[COLORMODE_DPS] = "music"
-        self.assertEqual(self.light.effect, EFFECT_RANDOM)
+        self.assertEqual(self.light.effect, "Music")
         self.dps[COLORMODE_DPS] = "scene_1"
         self.assertEqual(self.light.effect, "Scene 1")
         self.dps[COLORMODE_DPS] = "scene_2"

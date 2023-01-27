@@ -1,8 +1,6 @@
 from homeassistant.components.light import (
     ColorMode,
     LightEntityFeature,
-    EFFECT_COLORLOOP,
-    EFFECT_RANDOM,
 )
 from homeassistant.const import UnitOfTime
 
@@ -77,14 +75,14 @@ class TestRGBCWLightbulb(BasicNumberTests, TuyaDeviceTestCase):
     def test_effect_list(self):
         self.assertCountEqual(
             self.subject.effect_list,
-            [EFFECT_COLORLOOP, EFFECT_RANDOM],
+            ["Scene", "Music"],
         )
 
     def test_effect(self):
         self.dps[MODE_DPS] = "scene"
-        self.assertEqual(self.subject.effect, EFFECT_COLORLOOP)
+        self.assertEqual(self.subject.effect, "Scene")
         self.dps[MODE_DPS] = "music"
-        self.assertEqual(self.subject.effect, EFFECT_RANDOM)
+        self.assertEqual(self.subject.effect, "Music")
         self.dps[MODE_DPS] = "white"
         self.assertIsNone(self.subject.effect)
         self.dps[MODE_DPS] = "colour"

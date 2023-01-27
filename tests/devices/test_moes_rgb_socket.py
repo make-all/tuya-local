@@ -1,7 +1,6 @@
 """Tests for the MoesHouse RGBW smart socket."""
 from homeassistant.components.light import (
     ColorMode,
-    EFFECT_COLORLOOP,
     LightEntityFeature,
 )
 from homeassistant.components.sensor import SensorDeviceClass
@@ -137,7 +136,7 @@ class TestMoesRGBWSocket(
         self.assertCountEqual(
             self.light.effect_list,
             [
-                EFFECT_COLORLOOP,
+                "Scene",
                 "Scene 1",
                 "Scene 2",
                 "Scene 3",
@@ -147,7 +146,7 @@ class TestMoesRGBWSocket(
 
     def test_light_effect(self):
         self.dps[MODE_DPS] = "scene"
-        self.assertEqual(self.light.effect, EFFECT_COLORLOOP)
+        self.assertEqual(self.light.effect, "Scene")
         self.dps[MODE_DPS] = "scene_1"
         self.assertEqual(self.light.effect, "Scene 1")
         self.dps[MODE_DPS] = "scene_2"
