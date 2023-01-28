@@ -115,9 +115,11 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.mock_api().status.assert_called_once()
         self.assertEqual(self.subject._cached_state["1"], "called")
 
-    async def test_refresh_retries_up_to_nine_times(self):
+    async def test_refresh_retries_up_to_eleven_times(self):
         self.subject._api_protocol_working = False
         self.mock_api().status.side_effect = [
+            Exception("Error"),
+            Exception("Error"),
             Exception("Error"),
             Exception("Error"),
             Exception("Error"),
@@ -131,7 +133,7 @@ class TestDevice(IsolatedAsyncioTestCase):
 
         await self.subject.async_refresh()
 
-        self.assertEqual(self.mock_api().status.call_count, 9)
+        self.assertEqual(self.mock_api().status.call_count, 11)
         self.assertEqual(self.subject._cached_state["1"], False)
 
     async def test_refresh_clears_cache_after_allowed_failures(self):
@@ -161,11 +163,12 @@ class TestDevice(IsolatedAsyncioTestCase):
             Exception("Error"),
             Exception("Error"),
             Exception("Error"),
+            Exception("Error"),
         ]
         await self.subject.async_refresh()
 
         self.mock_api().set_version.assert_has_calls(
-            [call(3.1), call(3.2), call(3.4), call(3.3), call(3.1)]
+            [call(3.1), call(3.2), call(3.4), call(3.5), call(3.3), call(3.1)]
         )
 
     async def test_api_protocol_version_is_stable_once_successful(self):

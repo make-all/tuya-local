@@ -81,7 +81,7 @@ class TuyaLocalDevice(object):
         self._CACHE_TIMEOUT = 120
         # More attempts are needed in auto mode so we can cycle through all
         # the possibilities a couple of times
-        self._AUTO_CONNECTION_ATTEMPTS = 9
+        self._AUTO_CONNECTION_ATTEMPTS = 11
         self._SINGLE_PROTO_CONNECTION_ATTEMPTS = 3
         self._lock = Lock()
 
