@@ -136,6 +136,7 @@
 - Inventor Eva Ion Pro dehumidifier
 - JJPro JPD01 dehumidifer
 - JJPro JPD02 dehumidifier
+- Klarstein DryFy Pro Connect dehumidifier
 - Kogan SmarterHome 7L desiccant dehumidifier
 
 ### Humidifiers
