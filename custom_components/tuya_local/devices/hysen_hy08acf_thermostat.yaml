@@ -51,9 +51,15 @@ primary_entity:
         - dps_val: low
           value: Low
         - dps_val: med
+          value: Medium
+        - dps_val: high
           value: High
         - dps_val: auto
           value: Auto
+          constraint: operation
+          conditions:
+            - dps_val: ventilate
+              invalid: true
     - id: 13
       type: bitfield
       name: fault_code
