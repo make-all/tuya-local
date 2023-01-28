@@ -136,13 +136,9 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
         if self._mintemp_dps is not None:
             return self._mintemp_dps.get_value(self._device)
 
-        if self._temperature_dps is None:
-            if self._temp_low_dps is None:
-                return None
-            r = self._temp_low_dps.range(self._device)
-        else:
+        if self._temperature_dps:
             r = self._temperature_dps.range(self._device)
-        return DEFAULT_MIN_TEMP if r is None else r["min"]
+            return r.get("min")
 
     @property
     def max_temp(self):
@@ -151,10 +147,6 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
         if self._maxtemp_dps is not None:
             return self._maxtemp_dps.get_value(self._device)
 
-        if self._temperature_dps is None:
-            if self._temp_high_dps is None:
-                return None
-            r = self._temp_high_dps.range(self._device)
-        else:
+        if self._temperature_dps:
             r = self._temperature_dps.range(self._device)
-        return DEFAULT_MAX_TEMP if r is None else r["max"]
+            return r.get("max")
