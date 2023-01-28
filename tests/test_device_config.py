@@ -1,4 +1,5 @@
 """Test the config parser"""
+from fuzzywuzzy import fuzz
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import MagicMock
 
@@ -17,6 +18,100 @@ from .const import (
     KOGAN_HEATER_PAYLOAD,
 )
 
+KNOWN_DPS = {
+    "binary_sensor": {"required": ["sensor"], "optional": []},
+    "button": {"required": ["button"], "optional": []},
+    "climate": {
+        "required": [],
+        "optional": [
+            "aux_heat",
+            "current_temperature",
+            "current_humidity",
+            "fan_mode",
+            "humidity",
+            "hvac_mode",
+            "hvac_action",
+            "min_temperature",
+            "max_temperature",
+            "preset_mode",
+            "swing_mode",
+            {
+                "xor": [
+                    "temperature",
+                    {"and": ["target_temp_high", "target_temp_low"]},
+                ]
+            },
+            "temperature_unit",
+        ],
+    },
+    "cover": {
+        "required": [{"or": ["control", "position"]}],
+        "optional": [
+            "current_position",
+            "action",
+            "open",
+            "reversed",
+        ],
+    },
+    "fan": {
+        "required": [{"or": ["preset_mode", "speed"]}],
+        "optional": ["switch", "oscillate", "direction"],
+    },
+    "humidifier": {"required": ["switch", "humidity"], "optional": ["mode"]},
+    "light": {
+        "required": [{"or": ["switch", "brightness", "effect"]}],
+        "optional": ["color_mode", "color_temp", "rgbhsv"],
+    },
+    "lock": {
+        "required": [
+            {"or": ["lock", {"and": ["request_unlock", "approve_unlock"]}]},
+        ],
+        "optional": [
+            "unlock_fingerprint",
+            "unlock_password",
+            "unlock_temp_pwd",
+            "unlock_dynamic_pwd",
+            "unlock_card",
+            "unlock_app",
+            "unlock_key",
+            {"and": ["request_intercom", "approve_intercom"]},
+            "jammed",
+        ],
+    },
+    "number": {
+        "required": ["value"],
+        "optional": ["unit", "minimum", "maximum"],
+    },
+    "select": {"required": ["option"], "optional": []},
+    "sensor": {"required": ["sensor"], "optional": ["unit"]},
+    "siren": {"required": [], "optional": ["tone", "volume", "duration"]},
+    "switch": {"required": ["switch"], "optional": ["current_power_w"]},
+    "vacuum": {
+        "required": ["status"],
+        "optional": [
+            "command",
+            "locate",
+            "power",
+            "activate",
+            "battery",
+            "direction_control",
+            "error",
+            "fan_speed",
+        ],
+    },
+    "water_heater": {
+        "required": [],
+        "optional": [
+            "current_temperature",
+            "operation_mode",
+            "temperature",
+            "temperature_unit",
+            "min_temperature",
+            "max_temperature",
+        ],
+    },
+}
+
 
 class TestDeviceConfig(IsolatedAsyncioTestCase):
     """Test the device config parser"""
@@ -28,6 +123,92 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
             found = True
             break
         self.assertTrue(found)
+
+    def dp_match(self, condition, accounted, unaccounted, known, required=False):
+        if type(condition) is str:
+            known.add(condition)
+            if condition in unaccounted:
+                unaccounted.remove(condition)
+                accounted.add(condition)
+            if required:
+                return condition in accounted
+            else:
+                return True
+        elif "and" in condition:
+            return self.and_match(
+                condition["and"], accounted, unaccounted, known, required
+            )
+        elif "or" in condition:
+            return self.or_match(condition["or"], accounted, unaccounted, known)
+        elif "xor" in condition:
+            return self.xor_match(
+                condition["xor"], accounted, unaccounted, known, required
+            )
+        else:
+            self.assertTrue(False, f"Unrecognized condition {condition}")
+
+    def and_match(self, conditions, accounted, unaccounted, known, required):
+        single_match = False
+        all_match = True
+        for cond in conditions:
+            match = self.dp_match(cond, accounted, unaccounted, known, True)
+            all_match = all_match and match
+            single_match = single_match or match
+        if required:
+            return all_match
+        else:
+            return all_match == single_match
+
+    def or_match(self, conditions, accounted, unaccounted, known):
+        match = False
+        # loop through all, to ensure they are transferred to accounted list
+        for cond in conditions:
+            match = match or self.dp_match(cond, accounted, unaccounted, known, True)
+        return match
+
+    def xor_match(self, conditions, accounted, unaccounted, known, required):
+        prior_match = False
+        for cond in conditions:
+            match = self.dp_match(cond, accounted, unaccounted, known, True)
+
+            if match and prior_match:
+                return False
+            prior_match = prior_match or match
+
+        # If any matched, all should be considered matched
+        # this bit only handles nesting "and" within "xor"
+
+        if prior_match:
+            for c in conditions:
+                if type(c) is str:
+                    accounted.add(c)
+                elif "and" in c:
+                    for c2 in c["and"]:
+                        if type(c2) is str:
+                            accounted.add(c2)
+
+        return prior_match or not required
+
+    def rule_broken_msg(self, rule):
+        msg = ""
+        if type(rule) is str:
+            return f"{msg} {rule}"
+        elif "and" in rule:
+            msg = f"{msg} all of ["
+            for sub in rule["and"]:
+                msg = f"{msg} {self.rule_broken_msg(sub)}"
+            return f"{msg} ]"
+        elif "or" in rule:
+            msg = f"{msg} at least one of ["
+            for sub in rule["or"]:
+                msg = f"{msg} {self.rule_broken_msg(sub)}"
+            return f"{msg} ]"
+        elif "xor" in rule:
+            msg = f"{msg} only one of ["
+            for sub in rule["xor"]:
+                msg = f"{msg} {self.rule_broken_msg(sub)}"
+            return f"{msg} ]"
+        return "for reason unknown"
 
     def check_entity(self, entity, cfg):
         """
@@ -41,6 +222,10 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
         self.assertIsNotNone(
             entity._config.get("dps"), f"dps missing from {e} in {cfg}"
         )
+        functions = set()
+        extra = set()
+        known = set()
+
         for dp in entity.dps():
             self.assertIsNotNone(
                 dp._config.get("id"), f"dp id missing from {e} in {cfg}"
@@ -51,6 +236,30 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
             self.assertIsNotNone(
                 dp._config.get("name"), f"dp name missing from {e} in {cfg}"
             )
+            extra.add(dp.name)
+
+        expected = KNOWN_DPS.get(entity.entity)
+        for rule in expected["required"]:
+            self.assertTrue(
+                self.dp_match(rule, functions, extra, known, True),
+                f"{cfg} missing required {self.rule_broken_msg(rule)} in {e}",
+            )
+
+        for rule in expected["optional"]:
+            self.assertTrue(
+                self.dp_match(rule, functions, extra, known, False),
+                f"{cfg} expecting {self.rule_broken_msg(rule)} in {e}",
+            )
+
+        # Check for potential typos in extra attributes
+        known_extra = known - functions
+        for attr in extra:
+            for dp in known_extra:
+                self.assertLess(
+                    fuzz.ratio(attr, dp),
+                    85,
+                    f"Probable typo {attr} is too similar to {dp} in {cfg} {e}",
+                )
 
     def test_config_files_parse(self):
         """
@@ -225,6 +434,7 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
     # within mappings. I'd expect something like this was added with purpose,
     # but it isn't exercised by any of the existing unit tests.
     # value-mirror above is explained by the fact that the device it was
+
     # added for never worked properly, so was removed.
 
     def test_default_without_mapping(self):
