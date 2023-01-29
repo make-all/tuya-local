@@ -403,14 +403,14 @@ class TuyaLocalDevice(object):
                 self._api_protocol_working = True
                 return retval
             except Exception as e:
-                for entity in self._children:
-                    entity.async_schedule_update_ha_state()
                 _LOGGER.debug(
                     f"Retrying after exception {e} ({i}/{connections})",
                 )
                 if i + 1 == connections:
                     self._reset_cached_state()
                     self._api_protocol_working = False
+                    for entity in self._children:
+                        entity.async_schedule_update_ha_state()
                     _LOGGER.error(error_message)
                 if not self._api_protocol_working:
                     await self._rotate_api_protocol_version()
