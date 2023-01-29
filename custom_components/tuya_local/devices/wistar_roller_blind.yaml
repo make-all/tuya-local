@@ -1,5 +1,5 @@
 name: Wistar roller blinds
-product:
+products:
   - id: c4hBLohzUgxULw5a
 primary_entity:
   entity: cover
@@ -11,16 +11,8 @@ primary_entity:
       mapping:
         - dps_val: "0"
           value: open
-          constraint: border_state
-          conditions:
-            - dps_val: false
-              invalid: true
         - dps_val: "1"
           value: close
-          constraint: border_state
-          conditions:
-            - dps_val: false
-              invalid: true
         - dps_val: "2"
           value: stop
     - id: 102
@@ -32,12 +24,17 @@ primary_entity:
     - id: 103
       type: boolean
       name: reversed
+      mapping:
+        - dps_val: true
+          value: false
+        - dps_val: false
+          value: true
     - id: 105
       type: boolean
       name: curtain_hand
     - id: 106
       type: string
-      name: state
+      name: curtain_state
       mapping:
         - dps_val: "0"
           value: status_0
@@ -147,3 +144,8 @@ secondary_entities:
       - id: 103
         type: boolean
         name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true

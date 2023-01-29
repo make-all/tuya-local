@@ -30,7 +30,7 @@ Further device support has been made with the assistance of users.  Please consi
  - [jorgenDK](https://github.com/jorgenDK) for assistance in supporting TroniTechnik Air Conditioner, and thanks for the coffee!
  - [Fannangir](https://github.com/Fannangir) for assistance in supporting Tadiran Wind Air Conditioner, Zemismart curtain rail and Somgam 1, 2, 3 and 4 gang switches.
  - [marrold](https://github.com/marrold) for contributing support for ElectriQ CD20PRO dehumidifiers.
- - [Uaeguy](https://github.com/Uaeguy) for assistance in supporting Beca BHP-6000, Saswell T29UTK and Owon PCT513 thermostats, and thanks for the coffee!
+ - [Uaeguy](https://github.com/Uaeguy) for assistance in supporting Beca BHP-6000, Saswell T29UTK, Owon PCT513 and E-TOP CH7100 thermostats, and thanks for the coffee!
  - [Johnnybyzhang](https://github.com/Johnnybyzhang) for assistance in supporting Lexy F501 fans.
  - [domgrimm](https://github.com/domgrimm) for assistance in supporting newer models of Kogan heater.
  - [EKCJ](https://github.com/EKCJ) for contributing support for ElectriQ DESD9LW dehumidifiers.
@@ -67,8 +67,8 @@ Further device support has been made with the assistance of users.  Please consi
  - [jdavidr17](https://github.com/jdavidr17) for assistance with discovering timer parameters for switches.
  - [miannelli516](https://github.com/miannelli516) for assistance with TR9B thermostats.
  - [edwinyoo44](https://github.com/edwinyoo44) for contributing support for JJPro JPD01 and JPD02 dehumidifiers and assistance with Poiema One purifiers.
- - [mpetcuRO](https://github.com/mpetcuRO) for assistance with Hysen HT08WE-2 thermometers.
- - [Paul-C-S](https://github.com/Paul-C-S) for assistance with Ecostrad Accent iQ heaters and contributing support for iQ Ceramic radiators.
+ - [mpetcuRO](https://github.com/mpetcuRO) for assistance with Hysen HT08WE-2 thermostats.
+ - [Paul-C-S](https://github.com/Paul-C-S) for assistance with Ecostrad Accent iQ heaters and contributing support for iQ Ceramic radiators and INOW heating elements.
  - [WildeRNS](https://github.com/WildeRNS) for assistance with Nashone MTS-700-WB thermostat smartplugs, SmartMCB Energy meter.
  - [ishioni](https://github.com/ishioni) for contributing support for Eberg Cooly C32HD air conditioner.
  - [Gekko47](https://github.com/Gekko47) for contributing support for ElectriQ CD12v2 dehumidifiers.
@@ -80,7 +80,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [dieantu](https://github.com/dieantu) for contributing support for Himox H06 purifiers.
 - [pgistrand](https://github.com/pgistrand) for contributing support for Vork VK6067AW purifiers, and assistance with Parkside smart charger.
 - [markbvdh](https://github.com/markbvdh) for assistance with Kogan garage openers and confirmation of Summerwave Si pool heatpumps.
-- [tavicu](https://github.com/tavicu) for contributing support for Starlight Heatpumps, Simple Blinds and for the idea to support inverted values.
+- [tavicu](https://github.com/tavicu) for contributing support for Starlight Heatpumps, Simple Blinds and for the idea to support inverted values, and thanks for the coffee!
 - [Chris061290](https://github.com/Chris061290) for contributing support for IPS Pro pool heatpumps, complete with unit tests.
 - [MartinCarbol](https://github.com/MartinCarbol) for contributing support for two models of Tesla Air Purifier.
 - [gschmidl](https://github.com/gschmidl) for assistance with Himox H05 purifier.
@@ -96,7 +96,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [x-keita](https://github.com/x-keita) for contributing support for Betterlife BL1500 IR heaters and Nexxt smart switches.
 - [Der-Nax](https:github.com/Der-Nax) for assistance with a second variant of energy monitoring smart switch and for contributing support for PY321-TY power clamps, Compteur smart meters and sensors on a Universal Remote Control.
 - [17hoehbr](https://github.com/17hoehbr) for assistance supporting APOSEN A550
-- [yurgh](https://github.com/yurgh) for assistant supporting Eesee Adam dehumidifier
+- [yurgh](https://github.com/yurgh) for assistance supporting Eeese Adam dehumidifier
 - [KaportsevIA](https://github.com/KaportsevIA) for assistance supporting Hyundai Sahara dehumidifier, Yandax color bulb and ES01 powerstrip.
 - [poolMiniDomo](https://github.com/poolMiniDomo) for assistance supporting Moes Temperature and Humidity switches.
 - [pretoriano80](https://github.com/pretoriano80) for assistance supporting AlecoAir dehumidifiers.
@@ -113,19 +113,19 @@ Further device support has been made with the assistance of users.  Please consi
 - [Condorello](https://github.com/Condorello) for assistance supporting Inkbird sous vide cookers.
 - [sebastiangebosz](https://github.com/sebastiangebosz) for contributing improvements to Eberg Qubo heatpumps.
 - [VoyteckPL](https://github.com/VoyteckPL) for contributing support for Fairland IPHCR15 pool heatpumps.
-- [mihsu81](https://github.com/mihsu81) for assiting with support for Wistar roller blind controllers.
+- [mihsu81](https://github.com/mihsu81) for assiting with support for Wistar roller blind controllers and contributing support for AlecoAir D12 and D16 dehumidifiers.
 - [AlfredBroda](https://github.com/AlfredBroda) for contributing support for Beok TGR81 thermostats.
 - [bedtiming](https://github.com/bedtiming) for assisting with support for Ledkia fan and light controllers.
 - [timlaing](https://github.com/timlaing) for contributing support for ElectriQ EcoSilent 14HPW air conditioners.
 - [Svellem](https://github.com/Svellem) for assisting with support for T5E-WF thermostats.
-- [Aptul9](https://github.com/Aptul9) for assisting with support for Sendo air conditioners.
+- [Aptul9](https://github.com/Aptul9) for assisting with support for Sendo air conditioners, and thanks for the coffee!
 - [dilorenzo1987](https://github.com/dilorenzo1987) for contributing support for Stadler Form Roger purifiers.
 - [fsevilla3](https://github.com/fsevilla3) for contributing support for water_heater entities and Hydrotherm Dynamix/X8 water heaters.
 - [allistermaguire](https://github.com/allistermaguire) for contributing improvements to Saswell C16 thermostats.
 - [karnas99](https://github.com/karnas99) for assistance in improving Hysen thermostat support.
 - [cooperaj](https://github.com/cooperaj) for contributing support for ElectriQ CD12PRO-LE dehumidifiers.
 - [geroulas](https://github.com/geroulas) for assisting with support for Inventor Atmosphere XL dehumidifiers.
-- [and7ey](https://github.com/and7ey) for assisting with support for Screen sync smart lights.
+- [and7ey](https://github.com/and7ey) for all the effort investigating Screen sync smart lights, which in the end proved too problematic to support, and for contributing support for dual mode light strings and Space Dog music lamps.
 - [dragosmd](https://github.com/dragosmd) and [RomchikL](https://github.com/RomchikL) for assisting with support for more dual switches.
 - [patrik-malina](https://github.com/patrik-malina) for contributing improvements to Kyvol vacuums.
 - [cr4shydlo](https://github.com/cr4shydlo) for assistance supporting Rotenso Roni heat pumps.
@@ -141,3 +141,26 @@ Further device support has been made with the assistance of users.  Please consi
 - [Kulturnilpferd](https://github.com/Kulturnilpferd) for contributing support for Hosome air purifiers.
 - [raphaeleduardo42](https://github.com/raphaeleduardo42) for assistance supporting AGL Ultramagic locks.
 - [EnginDzhemil](https://github.com/EnginDzhemil) for contributing support for single switches with backlight.
+- [billxinli](https://github.com/billxinli) for contributing support for Honeywell TP dehumidifiers.
+- [isarib01](https://github.com/isarib01) for assistance supporting Deta motion sensor lights.
+- [iDontWantAUsername](https://github.com/iDontWantAUsername) for assistance supporting Grid Connect USB charger with power socket.
+- [engusz](https://github.com/engusz) for assistance supporting Avatto curtain switches and dual switch with timers.
+- [81k5](https://github.com/81k5) for assistance supporting Aubess smart switches.
+- [SvenMartin81](https://github.com/SvenMartin81) for assistance supporting another variant of common smartplug (via GNCC branded one)
+- [cjones813](https://github.com/cjones813) for assistance supporting HJZ radiators, and contributing Benexmart blinds support.
+- [cnrd](https://github.com/cnrd) for contributing support for Eeese Otto dehumidifiers.
+- [markwellis](https://github.com/markwellis) for contributing support for Eurom Sani Wall Heat 2000 heaters.
+- [escoand](https://github.com/escoand) for contributing support for Tellur USB power strip.
+- [BrettEBowman](https://github.com/BrettEBowman) for assistance supporting Treatlife DS02-F fans.
+- [sohail579](https://github.com/sohail579) for assistance supporting Inventor Eva Ion Pro dehumidifiers.
+- [MoosJ80](https://github.com/MoosJ80) for assistance supporting PJ-1103 clamp power meters.
+- [david1111967](https://github.com/david1111967) for contributing Spanish translations.
+- [s3anyboy](https://github.com/s3anyboy) for assistance supporting Dual power monitoring smartplug (Geex).
+- [FritsOV](https://github.com/FritsOV) for assistance supporting Hysen HY08ACF thermostats and confirming Myuet ME98.
+- [Andreasjkoch](https://github.com/Andreasjkoch) for contributing support for Eeese Carl dehumidifiers.
+- [ppprpd](https://github.com/ppprpd) for contributing support for Netmostat N-1 thermostats.
+- [Pokemowka25](https://github.com/Pokemowka26) for assistance supporting Kyvol EA200 humidifiers.
+- [spuljko](https://github.com/spuljko) for contributing support for YYM-805SW aroma diffuser with nightlight, BlitzWoolf BWSH5 humidifier and Klarstein DryFy Pro Connect dehumidifier.
+- [raphaelcouzet](https://github.com/raphaelcouzet) for contributing support for Arlec motion sensor lights which were used to improve Deta motion light support.
+- [TheExenth](https://github.com/TheExenth) for assistance supporting Salcar T9W thermostats, and identifying the likely identical Tellur model.
+- [MadDoct](https://github.com/MadDoct) for contributing support for RGB nightlight sockets.

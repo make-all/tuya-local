@@ -6,11 +6,12 @@ on:
 
 jobs:
   validate:
-    runs-on: 'ubuntu-latest'
+    runs-on: ubuntu-latest
     steps:
-      - uses: 'actions/checkout@v2'
+      - uses: actions/checkout@v3
       - name: HACS validation
-        uses: 'hacs/action@main'
+        uses: hacs/action@main
         with:
-          category: 'integration'
-          ignore: "wheels"
+          category: integration
+          ignore: wheels
+

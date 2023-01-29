@@ -3,7 +3,7 @@ from homeassistant.components.climate.const import (
     HVACMode,
 )
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import PERCENTAGE
+from homeassistant.const import PERCENTAGE, UnitOfTemperature
 
 from ..const import ELECTRIQ_DESD9LW_DEHUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -80,10 +80,8 @@ class TestElectriqDESD9LWDehumidifier(
         self.dps[POWER_DPS] = False
         self.assertEqual(self.subject.icon, "mdi:air-humidifier-off")
 
-    def test_temperature_unit_returns_device_temperature_unit(self):
-        self.assertEqual(
-            self.subject.temperature_unit, self.subject._device.temperature_unit
-        )
+    def test_temperature_unit_returns_celsius(self):
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
 
     def test_current_temperature(self):
         self.dps[CURRENTTEMP_DPS] = 21

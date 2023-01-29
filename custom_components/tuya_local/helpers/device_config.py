@@ -21,6 +21,10 @@ def _typematch(type, value):
     if type is int and isinstance(value, bool):
         return False
 
+    # Allow integers to pass as floats.
+    if type is float and isinstance(value, int):
+        return True
+
     if isinstance(value, type):
         return True
     # Allow values embedded in strings if they can be converted
@@ -174,13 +178,14 @@ class TuyaEntityConfig:
         self._config = config
         self._is_primary = primary
 
+    @property
     def name(self):
         """The friendly name for this entity."""
         return self._config.get("name")
 
     def unique_id(self, device_uid):
         """Return a suitable unique_id for this entity."""
-        own_name = self.name()
+        own_name = self.name
         if own_name:
             return f"{device_uid}-{slugify(own_name)}"
         else:
@@ -214,7 +219,7 @@ class TuyaEntityConfig:
     @property
     def config_id(self):
         """The identifier for this entity in the config."""
-        own_name = self.name()
+        own_name = self.name
         if own_name:
             return f"{self.entity}_{slugify(own_name)}"
 
@@ -372,16 +377,16 @@ class TuyaDpsConfig:
         for m in self._config["mapping"]:
             if "value" in m:
                 val.append(m["value"])
-            # If there is a mirroring with no value override, use current value
+            # If there is mirroring with no value override, include mirrored values
             elif "value_mirror" in m:
                 r_dps = self._entity.find_dps(m["value_mirror"])
-                val.append(r_dps.get_value(device))
+                val = val + r_dps.values(device)
             for c in m.get("conditions", {}):
                 if "value" in c:
                     val.append(c["value"])
                 elif "value_mirror" in c:
                     r_dps = self._entity.find_dps(c["value_mirror"])
-                    val.append(r_dps.get_value(device))
+                    val = val + r_dps.values(device)
 
             cond = self._active_condition(m, device)
             if cond and "mapping" in cond:
@@ -392,7 +397,7 @@ class TuyaDpsConfig:
                         c_val.append(m2["value"])
                     elif "value_mirror" in m:
                         r_dps = self._entity.find_dps(m["value_mirror"])
-                        c_val.append(r_dps.get_value(device))
+                        c_val = c_val + r_dps.values(device)
                 # if given, the conditional mapping is an override
                 if c_val:
                     _LOGGER.debug(f"Overriding {self.name} values {val} with {c_val}")
@@ -429,10 +434,6 @@ class TuyaDpsConfig:
             r = None if cond is None else cond.get("range")
             if r and "min" in r and "max" in r:
                 _LOGGER.debug(f"Conditional range returned for {self.name}")
-                return _scale_range(r, scale)
-            r = mapping.get("range")
-            if r and "min" in r and "max" in r:
-                _LOGGER.debug(f"Mapped range returned for {self.name}")
                 return _scale_range(r, scale)
         r = self._config.get("range")
         if r and "min" in r and "max" in r:

@@ -103,7 +103,7 @@ class TestEcostradAccentIqHeater(
     def test_temperature_unit(self):
         self.assertEqual(
             self.subject.temperature_unit,
-            self.subject._device.temperature_unit,
+            UnitOfTemperature.CELSIUS,
         )
 
     def test_current_temperature(self):

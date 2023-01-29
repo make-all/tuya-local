@@ -1,0 +1,76 @@
+name: Grid Connect USB charger with power socket
+primary_entity:
+  entity: switch
+  class: outlet
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: switch
+    name: USB
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+  - entity: number
+    name: Outlet timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+        unit: mi
+  - entity: number
+    name: USB timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+        unit: min
+  - entity: select
+    name: Initial state
+    category: config
+    icon: "mdi:toggle-switch"
+    dps:
+      - id: 38
+        type: string
+        name: option
+        mapping:
+          - dps_val: power_off
+            value: "Off"
+          - dps_val: power_on
+            value: "On"
+          - dps_val: last
+            value: Keep state
+  - entity: lock
+    name: Child lock
+    category: config
+    icon: "mdi:hand-back-right-off"
+    dps:
+      - id: 41
+        type: boolean
+        name: lock
+  - entity: switch
+    name: Auto-off
+    category: config
+    icon: "mdi:camera-timer"
+    dps:
+      - id: 44
+        type: boolean
+        name: switch

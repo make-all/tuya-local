@@ -109,10 +109,12 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
             return self._action_dp.get_value(self._device) == "opening"
         # Otherwise use last command and check it hasn't completed
         if self._control_dp:
-            return (
-                self._control_dp.get_value(self._device) == "open"
-                and self.current_cover_position != 100
-            )
+            pos = self.current_cover_position
+            if pos is not None:
+                return (
+                    self._control_dp.get_value(self._device) == "open"
+                    and self.current_cover_position != 100
+                )
 
     @property
     def is_closing(self):
@@ -122,15 +124,20 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
             return self._action_dp.get_value(self._device) == "closing"
         # Otherwise use last command and check it hasn't completed
         if self._control_dp:
-            return (
-                self._control_dp.get_value(self._device) == "close"
-                and not self.is_closed
-            )
+            closed = self.is_closed
+            if closed is not None:
+                return (
+                    self._control_dp.get_value(self._device) == "close" and not closed
+                )
 
     @property
     def is_closed(self):
-        """Return if the cover is closed or not."""
-        return self.current_cover_position == 0
+        """Return if the cover is closed or not, if it can be determined."""
+        # Only use position if it is reliable, otherwise curtain can become
+        # stuck in "open" state when we don't actually know what state it is.
+        pos = self.current_cover_position
+        if isinstance(pos, int):
+            return pos == 0
 
     async def async_open_cover(self, **kwargs):
         """Open the cover."""

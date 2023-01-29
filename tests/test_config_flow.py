@@ -15,6 +15,7 @@ from custom_components.tuya_local import (
 from custom_components.tuya_local.const import (
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
+    CONF_PROTOCOL_VERSION,
     CONF_TYPE,
     DOMAIN,
 )
@@ -23,6 +24,14 @@ from custom_components.tuya_local.const import (
 @pytest.fixture(autouse=True)
 def auto_enable_custom_integrations(enable_custom_integrations):
     yield
+
+
+@pytest.fixture(autouse=True)
+def prevent_task_creation():
+    with patch(
+        "custom_components.tuya_local.device.TuyaLocalDevice.async_register_entity",
+    ):
+        yield
 
 
 @pytest.fixture
@@ -35,16 +44,18 @@ def bypass_setup():
         yield
 
 
+@pytest.mark.asyncio
 async def test_init_entry(hass):
     """Test initialisation of the config flow."""
     entry = MockConfigEntry(
         domain=DOMAIN,
-        version=9,
+        version=10,
         title="test",
         data={
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
             CONF_LOCAL_KEY: "localkey",
+            CONF_PROTOCOL_VERSION: "auto",
             CONF_TYPE: "kogan_kahtp_heater",
         },
         options={},
@@ -56,6 +67,7 @@ async def test_init_entry(hass):
     assert hass.states.get("lock.test_child_lock")
 
 
+@pytest.mark.asyncio
 @patch("custom_components.tuya_local.setup_device")
 async def test_migrate_entry(mock_setup, hass):
     """Test migration from old entry format."""
@@ -198,6 +210,7 @@ async def test_migrate_entry(mock_setup, hass):
     assert await async_migrate_entry(hass, entry)
 
 
+@pytest.mark.asyncio
 async def test_flow_user_init(hass):
     """Test the initialisation of the form in the first step of the config flow."""
     result = await hass.config_entries.flow.async_init(
@@ -229,6 +242,7 @@ async def test_flow_user_init(hass):
         pass
 
 
+@pytest.mark.asyncio
 @patch("custom_components.tuya_local.config_flow.TuyaLocalDevice")
 async def test_async_test_connection_valid(mock_device, hass):
     """Test that device is returned when connection is valid."""
@@ -240,12 +254,14 @@ async def test_async_test_connection_valid(mock_device, hass):
             CONF_DEVICE_ID: "deviceid",
             CONF_LOCAL_KEY: "localkey",
             CONF_HOST: "hostname",
+            CONF_PROTOCOL_VERSION: "auto",
         },
         hass,
     )
     assert device == mock_instance
 
 
+@pytest.mark.asyncio
 @patch("custom_components.tuya_local.config_flow.TuyaLocalDevice")
 async def test_async_test_connection_invalid(mock_device, hass):
     """Test that None is returned when connection is invalid."""
@@ -257,12 +273,14 @@ async def test_async_test_connection_invalid(mock_device, hass):
             CONF_DEVICE_ID: "deviceid",
             CONF_LOCAL_KEY: "localkey",
             CONF_HOST: "hostname",
+            CONF_PROTOCOL_VERSION: "auto",
         },
         hass,
     )
     assert device is None
 
 
+@pytest.mark.asyncio
 @patch("custom_components.tuya_local.config_flow.async_test_connection")
 async def test_flow_user_init_invalid_config(mock_test, hass):
     """Test errors populated when config is invalid."""
@@ -274,6 +292,7 @@ async def test_flow_user_init_invalid_config(mock_test, hass):
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
             CONF_LOCAL_KEY: "badkey",
+            CONF_PROTOCOL_VERSION: "auto",
         },
     )
     assert {"base": "connection"} == result["errors"]
@@ -289,6 +308,7 @@ def setup_device_mock(mock, failure=False, type="test"):
     mock.async_possible_types = MagicMock(return_value=mock_iter)
 
 
+@pytest.mark.asyncio
 @patch("custom_components.tuya_local.config_flow.async_test_connection")
 async def test_flow_user_init_data_valid(mock_test, hass):
     """Test we advance to the next step when connection config is valid."""
@@ -309,6 +329,7 @@ async def test_flow_user_init_data_valid(mock_test, hass):
     assert "select_type" == result["step_id"]
 
 
+@pytest.mark.asyncio
 @patch.object(config_flow.ConfigFlowHandler, "device")
 async def test_flow_select_type_init(mock_device, hass):
     """Test the initialisation of the form in the 2nd step of the config flow."""
@@ -341,6 +362,7 @@ async def test_flow_select_type_init(mock_device, hass):
         pass
 
 
+@pytest.mark.asyncio
 @patch.object(config_flow.ConfigFlowHandler, "device")
 async def test_flow_select_type_aborts_when_no_match(mock_device, hass):
     """Test the flow aborts when an unsupported device is used."""
@@ -354,6 +376,7 @@ async def test_flow_select_type_aborts_when_no_match(mock_device, hass):
     assert result["reason"] == "not_supported"
 
 
+@pytest.mark.asyncio
 @patch.object(config_flow.ConfigFlowHandler, "device")
 async def test_flow_select_type_data_valid(mock_device, hass):
     """Test the flow continues when valid data is supplied."""
@@ -370,6 +393,7 @@ async def test_flow_select_type_data_valid(mock_device, hass):
     assert "choose_entities" == result["step_id"]
 
 
+@pytest.mark.asyncio
 async def test_flow_choose_entities_init(hass):
     """Test the initialisation of the form in the 3rd step of the config flow."""
 
@@ -402,6 +426,7 @@ async def test_flow_choose_entities_init(hass):
         pass
 
 
+@pytest.mark.asyncio
 async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
     """Test the flow ends when data is valid."""
 
@@ -411,6 +436,7 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
             CONF_DEVICE_ID: "deviceid",
             CONF_LOCAL_KEY: "localkey",
             CONF_HOST: "hostname",
+            CONF_PROTOCOL_VERSION: "auto",
             CONF_TYPE: "kogan_kahtp_heater",
         },
     ):
@@ -424,7 +450,7 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
             },
         )
         expected = {
-            "version": 9,
+            "version": 10,
             "context": {"source": "choose_entities"},
             "type": "create_entry",
             "flow_id": ANY,
@@ -438,23 +464,26 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
                 CONF_DEVICE_ID: "deviceid",
                 CONF_HOST: "hostname",
                 CONF_LOCAL_KEY: "localkey",
+                CONF_PROTOCOL_VERSION: "auto",
                 CONF_TYPE: "kogan_kahtp_heater",
             },
         }
         assert expected == result
 
 
+@pytest.mark.asyncio
 async def test_options_flow_init(hass):
     """Test config flow options."""
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=9,
+        version=10,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
             CONF_LOCAL_KEY: "localkey",
             CONF_NAME: "test",
+            CONF_PROTOCOL_VERSION: "auto",
             CONF_TYPE: "smartplugv1",
         },
     )
@@ -476,6 +505,7 @@ async def test_options_flow_init(hass):
     )
 
 
+@pytest.mark.asyncio
 @patch("custom_components.tuya_local.config_flow.async_test_connection")
 async def test_options_flow_modifies_config(mock_test, hass):
     mock_device = MagicMock()
@@ -483,13 +513,14 @@ async def test_options_flow_modifies_config(mock_test, hass):
 
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=9,
+        version=10,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
             CONF_LOCAL_KEY: "localkey",
             CONF_NAME: "test",
+            CONF_PROTOCOL_VERSION: "auto",
             CONF_TYPE: "kogan_kahtp_heater",
         },
     )
@@ -505,11 +536,13 @@ async def test_options_flow_modifies_config(mock_test, hass):
         user_input={
             CONF_HOST: "new_hostname",
             CONF_LOCAL_KEY: "new_key",
+            CONF_PROTOCOL_VERSION: 3.3,
         },
     )
     expected = {
         CONF_HOST: "new_hostname",
         CONF_LOCAL_KEY: "new_key",
+        CONF_PROTOCOL_VERSION: 3.3,
     }
     assert "create_entry" == result["type"]
     assert "" == result["title"]
@@ -517,19 +550,21 @@ async def test_options_flow_modifies_config(mock_test, hass):
     assert expected == result["data"]
 
 
+@pytest.mark.asyncio
 @patch("custom_components.tuya_local.config_flow.async_test_connection")
 async def test_options_flow_fails_when_connection_fails(mock_test, hass):
     mock_test.return_value = None
 
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=9,
+        version=10,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
             CONF_LOCAL_KEY: "localkey",
             CONF_NAME: "test",
+            CONF_PROTOCOL_VERSION: "auto",
             CONF_TYPE: "smartplugv1",
         },
     )
@@ -552,6 +587,7 @@ async def test_options_flow_fails_when_connection_fails(mock_test, hass):
     assert {"base": "connection"} == result["errors"]
 
 
+@pytest.mark.asyncio
 @patch("custom_components.tuya_local.config_flow.async_test_connection")
 async def test_options_flow_fails_when_config_is_missing(mock_test, hass):
     mock_device = MagicMock()
@@ -559,13 +595,14 @@ async def test_options_flow_fails_when_config_is_missing(mock_test, hass):
 
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=9,
+        version=10,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
             CONF_LOCAL_KEY: "localkey",
             CONF_NAME: "test",
+            CONF_PROTOCOL_VERSION: "auto",
             CONF_TYPE: "non_existing",
         },
     )
@@ -579,18 +616,20 @@ async def test_options_flow_fails_when_config_is_missing(mock_test, hass):
     assert result["reason"] == "not_supported"
 
 
+@pytest.mark.asyncio
 @patch("custom_components.tuya_local.setup_device")
 async def test_async_setup_entry_for_switch(mock_device, hass):
     """Test setting up based on a config entry.  Repeats test_init_entry."""
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=9,
+        version=10,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
             CONF_HOST: "hostname",
             CONF_LOCAL_KEY: "localkey",
             CONF_NAME: "test",
+            CONF_PROTOCOL_VERSION: "auto",
             CONF_TYPE: "smartplugv2",
         },
     )

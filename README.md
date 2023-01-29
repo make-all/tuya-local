@@ -7,7 +7,7 @@ Please report any [issues](https://github.com/make-all/tuya-local/issues) and fe
 
 [![BuyMeCoffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/jasonrumney)
 
-This is a Home Assistant add-on to support Wi-fi devices running Tuya
+This is a Home Assistant integration to support Wi-fi devices running Tuya
 firmware without going via the Tuya cloud.  Currently only WiFi
 devices are supported, Tuya also makes Zigbee, BLE and other devices
 that connect to WiFi using a gateway, such devices are not yet
@@ -46,7 +46,7 @@ configuration for it in the following locations:
 
 1. When attempting to add the device, if it is not supported, you will either get a message saying the device cannot be recognised at all, or you will be offered a list of devices (maybe a list of length 1) that are partial matches, often simple switch is among them.  You can cancel the process at this point, and look in the Home Assistant log - there should be a message there containing the current data points (dps) returned by the device.
 
-2. If you have signed up for iot.tuya.com to get your local key, you should also have access to the API Explorer under "Cloud".  One of the functions under the "Device Control" section - the last "Get Device Specification Attribute" function listed, returns the dp_id in addition to range information that is needed for integer and enum data types.
+2. If you have signed up for iot.tuya.com to get your local key, you should also have access to the API Explorer under "Cloud".  One of the functions under the "Smart Home Device System" / "Device Control" section - the last "Get Device Specification Attribute" function listed, returns the dp_id in addition to range information that is needed for integer and enum data types.
 
 3. By following the method described at the link below, you can find information for all the data points supported by your device, including those not listed by the API explorer method above and those that are only returned under specific conditions. Ignore the requirement for a Tuya Zigbee gateway, that is for Zigbee devices, and this integration does not currently support devices connected via a gateway, but the non-Zigbee/gateway specific parts of the procedure apply also to WiFi devices.
 
@@ -106,6 +106,11 @@ below](#finding-your-device-id-and-local-key).
 &nbsp;&nbsp;&nbsp;&nbsp;_(string) (Required)_ Local key retrieved
 [as per the instructions below](#finding-your-device-id-and-local-key).
 
+
+#### protocol_version
+
+&nbsp;&nbsp;&nbsp;&nbsp;_(string or float) (Required)_ Valid options are "auto", 3.1, 3.2, 3.3, 3.4.  If you aren't sure, choose "auto", but some 3.2 and maybe 3.4 devices may be misdetected as 3.3 (or vice-versa), so if your device does not seem to respond to commands reliably, try selecting between those protocol versions.
+
 At the end of this step, an attempt is made to connect to the device and see if
 it returns any data. For tuya protocol version 3.1 devices, the local key is
 only used for sending commands to the device, so if your local key is
@@ -116,6 +121,7 @@ will be detected at this step and cause an immediate failure.  Note that each
 time you pair the device, the local key changes, so if you obtained the
 local key using the instructions below, then re-paired with your
 manufacturer's app, then the key will have changed already.
+
 
 ### Stage Two
 
@@ -169,6 +175,31 @@ Many Tuya devices will stop responding if unable to connect to the
 Tuya servers for an extended period.  Reportedly, some devices act
 better offline if DNS as well as TCP connections is blocked.
 
+## General gotchas
+
+Many Tuya devices do not handle multiple commands sent in quick
+succession.  Some will reboot, possibly changing state in the process,
+others will go offline for 30s to a few minutes if you overload them.
+There is some rate limiting to try to avoid this, but it is not
+sufficient for many devices, and may not work across entities where
+you are sending commands to multiple entities on the same device.  The
+rate limiting also combines commands, which not all devices can
+handle. If you are sending commands from an automation, it is best to
+add delays between commands - if your automation is for multiple
+devices, it might be enough to send commands to other devices first
+before coming back to send a second command to the first one, or you
+may still need a delay after that.  The exact timing depends on the
+device, so you may need to experiment to find the minimum delay that
+gives reliable results.
+
+Some devices can handle multiple commands in a single message, so for
+entity platforms that support it (eg climate `set_temperature` can
+include presets, lights pretty much everything is set through
+`turn_on`) multiple settings are sent at once.  But some devices do
+not like this and require all commands to set only a single dp at a
+time, so you may need to experiment with your automations to see
+whether a single command or multiple commands (with delays, see above)
+work best with your devices.
 
 ## Heater gotchas
 
@@ -251,13 +282,18 @@ temperature sensor so are not detected at all.
 
 ## Beca thermostat gotchas
 
-These devices support switching between Celcius and Fahrenheit on the control
-panel, but do not provide any information over the Tuya local protocol about
-which units are selected.  Two configurations for this device are provided,
-`beca_bhp6000_thermostat_c` and `beca_bhp6000_thermostat_f`, please select
-the appropriate one for the temperature units you use.  If you change the
-units on the device control panel, you will need to delete the device from
-Home Assistant and set it up again.
+Some of these devices support switching between Celcius and Fahrenheit
+on the control panel, but do not provide any information over the Tuya
+local protocol about which units are selected.  Three configurations
+for BHP6000 are provided, `beca_bhp6000_thermostat_c` and
+`beca_bhp6000_thermostat_f`, which use Celsius and Fahrenheit
+respectively, and `beca_bhp6000_thermostat_mapped` for a buggy looking
+firmware which displays the temperature on the thermostat in Celsius
+in increments of half a degree, but uses a slightly offset Fahrenheit
+for the protocol, as detailed in issue #215.  Please select the appropriate
+config for the temperature units you use.  If you change the units on the
+device control panel, you will need to delete the device from Home Assistant
+and set it up again.
 
 ## Saswell C16 thermostat gotchas
 

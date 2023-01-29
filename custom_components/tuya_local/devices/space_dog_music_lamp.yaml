@@ -1,0 +1,308 @@
+name: Space Dog Music Lamp
+primary_entity:
+  entity: light
+  icon: "mdi:dog-side"
+  dps:
+    - id: 20
+      type: boolean
+      name: switch
+    # Mode
+    # values: White, Scene, Music, Color
+    - id: 21
+      type: string
+      name: color_mode
+      mapping:
+        - dps_val: white
+          value: white
+        - dps_val: colour
+          value: rgbw
+        - dps_val: scene
+          value: Scene
+        - dps_val: music
+          value: Music
+
+    # Brightness
+    # values: 1000, 400
+    - id: 22
+      name: brightness
+      type: integer
+      range:
+        min: 10
+        max: 1000
+      mapping:
+        - scale: 3.92
+
+    # Color
+    # sample values: 00f003e803e8, 00b403e803e8, 000003e803e8, 00f003e803e8
+    - id: 24
+      name: rgbhsv
+      type: hex
+      format:
+        - name: h
+          bytes: 2
+          range:
+            min: 0
+            max: 360
+        - name: s
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+        - name: v
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+
+    # Moire speed
+    # values: horotelic, fast
+    # - id: 104
+    #   type: string
+    #   name: moire
+    #   mapping:
+    #     - dps_val: horotelic
+    #       value: Horotelic
+    #     - dps_val: fast
+    #       value: Fast    
+
+    # Local music control
+    # values: 010001 (minimum volume), 016401 (maximum volume), 001e00 (previous song), 011e00 (next song), 023900, 023500, 033500, 033900, 033c00, 034000, 034300, 034700, 034b00, 034e00
+    # looks like two values are combined there - volume and song id (?)
+    # - id: 107
+    
+
+    # adjust
+    # values: (no records found)
+    # - id: 117
+
+secondary_entities:
+  - entity: select
+    name: Scene
+    category: config
+    icon: "mdi:palette"
+    dps:
+      # 场景 (scenes)
+      # values: see below
+      - id: 111
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "00"
+            value: Passion - Single colors
+          - dps_val: "01"
+            value: Passion - Mixed colors
+          - dps_val: "02"
+            value: Passion - Multi colors
+          - dps_val: "03"
+            value: Nature - Spring
+          - dps_val: "04"
+            value: Nature - Summer
+          - dps_val: "05"
+            value: Nature - Autumn
+          - dps_val: "06"
+            value: Nature - Winter
+          - dps_val: "07"
+            value: Nature - Coral Red
+          - dps_val: "08"
+            value: Nature - Tangerine
+          - dps_val: "09"
+            value: Nature - Light Yellow
+          - dps_val: "0a"
+            value: Nature - Emerald
+          - dps_val: "0b"
+            value: Nature - Aquamarine
+          - dps_val: "0c"
+            value: Nature - Dodger Blue
+          - dps_val: "0d"
+            value: Nature - Violet
+          - dps_val: "0e"
+            value: Medley - Dynamic
+          - dps_val: "0f"
+            value: Medley - Prairie
+          - dps_val: "10"
+            value: Medley - Multi-colors
+          - dps_val: "11"
+            value: Medley - Splendid
+          - dps_val: "12"
+            value: Medley - Gorgeous
+          - dps_val: "13"
+            value: Medley - Blue Sky
+          - dps_val: "14"
+            value: Medley - Sunrise
+          - dps_val: "15"
+            value: Medley - Sunset
+          - dps_val: "16"
+            value: Medley - Ocean
+          - dps_val: "17"
+            value: Medley - Forest
+          - dps_val: "18"
+            value: Medley - Campfire
+          - dps_val: "19"
+            value: Medley - Strobe
+          - dps_val: "1a"
+            value: Medley - Pulse
+          - dps_val: "1b"
+            value: Medley - Breathing
+          - dps_val: "1c"
+            value: Medley - Dreamlike
+          - dps_val: "1d"
+            value: Medley - Mediterranean
+          - dps_val: "1e"
+            value: Medley - Flashing
+          - dps_val: "1f"
+            value: Medley - Romance
+          - dps_val: "20"
+            value: Medley - Passion
+          - dps_val: "21"
+            value: Medley - Soft
+          - dps_val: "22"
+            value: Medley - Peace
+          - dps_val: "23"
+            value: Medley - Leasure
+          - dps_val: "24"
+            value: Festival - Birthday
+          - dps_val: "2d"
+            value: Theme - Romance
+          - dps_val: "2e"
+            value: Theme - Gallop
+          - dps_val: "2f"
+            value: Theme - Motivated
+
+  - entity: number
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 26
+        name: value
+        optional: true
+        type: integer
+        range:
+          min: 0
+          max: 86400
+        unit: min
+        mapping:
+          - scale: 60
+            step: 60
+        
+  - entity: switch
+    name: Laser
+    icon: "mdi:laser-pointer"
+    dps:
+      # laser switch
+      # values: laser off, laser on
+      - id: 105
+        name: switch
+        type: boolean
+        optional: true
+        
+  - entity: switch
+    name: Laser breather
+    icon: "mdi:laser-pointer"
+    dps:
+      # values: Laser breather off, Laser breather on
+      - id: 106
+        name: switch
+        type: boolean
+        optional: true
+        
+  - entity: number
+    name: Laser intensity
+    icon: "mdi:laser-pointer"
+    # The laser intensity
+    # values: 0..1000
+    dps:
+      - id: 116
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 1000
+    
+  - entity: switch
+    name: Ocean Wave
+    icon: "mdi:waves"
+    dps:
+      # values: Ocean Wave On, Ocean Wave Off
+      - id: 102
+        name: switch
+        type: boolean
+        optional: true        
+        
+  - entity: switch
+    name: Ocean Wave breathing
+    icon: "mdi:waves"
+    dps:
+      # values: Ocean Wave breathing OFF, Ocean Wave breathing ON
+      - id: 103
+        name: switch
+        type: boolean
+        optional: true   
+        
+  - entity: switch
+    name: Microphone
+    dps:
+      - id: 110
+        name: switch
+        type: boolean
+        optional: true   
+        mapping:
+          - dps_val: true
+            icon: "mdi:microphone"
+          - icon: "mdi:microphone-off"
+
+  - entity: number
+    name: Microphone sensitivity
+    icon: "mdi:microphone-settings"
+    # 麦克风灵敏度 (Microphone sensitivity)
+    # values: 100, 60, 0
+    dps:
+      - id: 109
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 100            
+          
+  - entity: switch
+    name: White light
+    icon: "mdi:lightbulb"
+    dps:
+      # values: ON, OFF
+      - id: 114
+        name: switch
+        type: boolean
+        optional: true 
+  
+  - entity: switch
+    name: Color light
+    icon: "mdi:lightbulb"
+    dps:
+      # values: ON, OFF
+      - id: 115
+        name: switch
+        type: boolean
+        optional: true 
+
+  - entity: select
+    name: Rhythm scene
+    icon: "mdi:music"
+    # 本地音乐风格 (local music style / rhythm scenes)
+    # values: 1 (rock), 2 (jazz), 3 (classical), 4 (ball game), 5 (game)
+    dps:
+      - id: 108
+        type: string
+        name: option
+        optional: true 
+        mapping:
+          - dps_val: "1"
+            value: Rock
+          - dps_val: "2"
+            value: Jazz
+          - dps_val: "3"
+            value: Classical
+          - dps_val: "4"
+            value: Ball game
+          - dps_val: "5"
+            value: Game

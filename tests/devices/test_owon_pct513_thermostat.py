@@ -138,6 +138,18 @@ class TestOwonPCT513Thermostat(
         ):
             await self.subject.async_set_hvac_mode(HVACMode.HEAT_COOL)
 
+    async def test_turn_off(self):
+        async with assert_device_properties_set(
+            self.subject._device, {HVACMODE_DPS: "off"}
+        ):
+            await self.subject.async_turn_off()
+
+    async def test_turn_on(self):
+        async with assert_device_properties_set(
+            self.subject._device, {HVACMODE_DPS: "auto"}
+        ):
+            await self.subject.async_turn_on()
+
     def test_hvac_action(self):
         self.dps[HVACACTION_DPS] = "coolfanon"
         self.assertEqual(self.subject.hvac_action, HVACAction.COOLING)

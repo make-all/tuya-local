@@ -36,6 +36,14 @@ EUROM_WALLDESIGNHEAT2000_HEATER_PAYLOAD = {
     "7": False,
 }
 
+EUROM_SANIWALLHEAT2000_HEATER_PAYLOAD = {
+    "1": True,
+    "2": 21,
+    "3": 19,
+    "4": "off",
+    "7": False,
+}
+
 GECO_HEATER_PAYLOAD = {"1": True, "2": True, "3": 30, "4": 25, "5": 0, "6": 0}
 
 JJPRO_JPD01_PAYLOAD = {
@@ -1476,6 +1484,11 @@ AVATTO_BLINDS_PAYLOAD = {
     "11": 0,
 }
 
+AVATTO_CURTAIN_PAYLOAD = {
+    "1": "stop",
+    "101": True,
+}
+
 ORION_SIREN_PAYLOAD = {
     "1": "normal",
     "5": "middle",
@@ -1504,4 +1517,19 @@ HYDROTHERM_DYNAMICX8_PAYLOAD = {
     "3": 60,
     "4": "STANDARD",
     "21": 0,
+}
+
+TREATLIFE_DS02F_PAYLOAD = {
+    "1": True,
+    "2": 0,
+    "3": "level_2",
+}
+
+MOTION_LIGHT_PAYLOAD = {
+    "101": "mode_auto",
+    "102": False,
+    "103": 0,
+    "104": 249,
+    "105": 374,
+    "106": False,
 }

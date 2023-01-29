@@ -4,6 +4,7 @@ from homeassistant.components.climate.const import (
     PRESET_ECO,
     PRESET_COMFORT,
 )
+from homeassistant.const import UnitOfTemperature
 
 from ..const import MOES_BHT002_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -51,10 +52,7 @@ class TestMoesBHT002Thermostat(
         )
 
     def test_temperature_unit(self):
-        self.assertEqual(
-            self.subject.temperature_unit,
-            self.subject._device.temperature_unit,
-        )
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
 
     async def test_legacy_set_temperature_with_preset_mode(self):
         async with assert_device_properties_set(

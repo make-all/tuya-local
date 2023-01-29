@@ -5,6 +5,7 @@ from homeassistant.components.climate.const import (
     SWING_VERTICAL,
 )
 from homeassistant.components.light import ColorMode
+from homeassistant.const import UnitOfTemperature
 
 from ..const import PURLINE_M100_HEATER_PAYLOAD
 from ..helpers import (
@@ -71,10 +72,8 @@ class TestPulineM100Heater(
         self.dps[PRESET_DPS] = "off"
         self.assertEqual(self.subject.icon, "mdi:fan")
 
-    def test_temperature_unit_returns_device_temperature_unit(self):
-        self.assertEqual(
-            self.subject.temperature_unit, self.subject._device.temperature_unit
-        )
+    def test_temperature_unit_returns_celsius(self):
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
 
     def test_current_temperature(self):
         self.dps[CURRENTTEMP_DPS] = 25

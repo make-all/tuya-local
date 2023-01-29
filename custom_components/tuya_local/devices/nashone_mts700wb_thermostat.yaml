@@ -4,30 +4,21 @@ primary_entity:
   dps:
     - id: 1
       type: boolean
-      name: power
-      hidden: true
+      name: hvac_mode
       mapping:
         - dps_val: False
           value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: cold
+              value: cool
+            - dps_val: hot
+              value: heat
     - id: 2
       type: string
-      name: hvac_mode
-      mapping:
-        - dps_val: cold
-          constraint: power
-          conditions:
-            - dps_val: true
-              value: cool
-            - dps_val: false
-              value_redirect: power
-              value: "off"
-        - dps_val: hot
-          constraint: power
-          conditions:
-            - dps_val: true
-              value: heat
-            - dps_val: false
-              value_redirect: power
+      name: mode
+      hidden: true
     - id: 3
       type: string
       name: work_state
@@ -84,7 +75,16 @@ secondary_entities:
         range:
           min: -5
           max: 5
+  - entity: button
+    name: Factory reset
+    category: config
+    class: restart
+    dps:
+      - id: 39
+        type: boolean
+        name: button
   - entity: switch
+    deprecated: button
     category: config
     name: Factory reset
     icon: "mdi:cog-refresh"

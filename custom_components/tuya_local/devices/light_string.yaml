@@ -1,0 +1,107 @@
+name: Fairy lights
+primary_entity:
+  entity: light
+  dps:
+    - id: 20
+      name: switch
+      type: boolean
+    - id: 21
+      name: color_mode
+      type: string
+      mapping:
+        - dps_val: colour
+          value: rgbw
+        - dps_val: scene
+          value: Scene
+        - dps_val: music
+          value: Music
+    - id: 24
+      name: rgbhsv
+      type: hex
+      format:
+        - name: h
+          bytes: 2
+          range:
+            min: 0
+            max: 360
+        - name: s
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+        - name: v
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+secondary_entities:
+  - entity: select
+    name: Scene
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 25
+        type: hex
+        name: option
+        mapping:
+          - dps_val: "0103e8"
+            value: Palm
+          - dps_val: "0101f1"
+            value: "Palm 50%"
+          - dps_val: "0203e8"
+            value: Christmas tree
+          - dps_val: "0201f1"
+            value: "Christmas tree 50%"
+          - dps_val: "0303e8"
+            value: Fence
+          - dps_val: "0301f1"
+            value: "Fence 50%"
+          - dps_val: "0403e8"
+            value: Rainbow
+          - dps_val: "0401f1"
+            value: "Rainbox 50%"
+          - dps_val: "0503e8"
+            value: Photos
+          - dps_val: "0501f1"
+            value: "Photos 50%"
+          - dps_val: "0603e8"
+            value: Fairy lights
+          - dps_val: "0601f1"
+            value: "Fairy lights 50%"
+          - dps_val: "0703e8"
+            value: Wreath
+          - dps_val: "0701f1"
+            value: "Wreath 50%"
+  - entity: select
+    name: Music mode
+    category: config
+    icon: "mdi:music"
+    dps:
+      - id: 101
+        type: hex
+        name: option
+        mapping:
+          - dps_val: 16401bb1006e03e801f4
+            value: Energy
+          - dps_val: 26401bb1006e03e801f4
+            value: Rhythm
+          - dps_val: 36401bb1006e03e801f4
+            value: Spectrum
+          - dps_val: 46401bb1006e03e801f4
+            value: Rolling
+  - entity: number
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+        unit: min

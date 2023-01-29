@@ -1,12 +1,14 @@
 """Tests for the essentials air purifier."""
+from homeassistant.components.button import ButtonDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
     PERCENTAGE,
-    TIME_MINUTES,
+    UnitOfTime,
 )
 
 from ..const import ESSENTIALS_PURIFIER_PAYLOAD
+from ..mixins.button import BasicButtonTests
 from ..mixins.lock import BasicLockTests
 from ..mixins.select import MultiSelectTests
 from ..mixins.sensor import MultiSensorTests
@@ -27,6 +29,7 @@ LIGHT_DP = "101"
 
 
 class TestEssentialsPurifier(
+    BasicButtonTests,
     BasicLockTests,
     MultiSelectTests,
     MultiSensorTests,
@@ -37,6 +40,11 @@ class TestEssentialsPurifier(
 
     def setUp(self):
         self.setUpForConfig("essentials_purifier.yaml", ESSENTIALS_PURIFIER_PAYLOAD)
+        self.setUpBasicButton(
+            RESET_DP,
+            self.entities.get("button_filter_reset"),
+            ButtonDeviceClass.RESTART,
+        )
         self.setUpBasicLock(LOCK_DP, self.entities.get("lock_child_lock"))
         self.setUpMultiSelect(
             [
@@ -81,7 +89,7 @@ class TestEssentialsPurifier(
                 {
                     "dps": COUNTDOWN_DP,
                     "name": "sensor_timer",
-                    "unit": TIME_MINUTES,
+                    "unit": UnitOfTime.MINUTES,
                 },
                 {
                     "dps": PM25_DP,
@@ -114,6 +122,7 @@ class TestEssentialsPurifier(
         )
         self.mark_secondary(
             [
+                "button_filter_reset",
                 "sensor_active_filter_life",
                 "lock_child_lock",
                 "select_light",

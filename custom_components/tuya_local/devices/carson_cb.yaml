@@ -3,14 +3,27 @@ primary_entity:
   entity: climate
   dps:
     - id: 1
-      name: power
+      name: hvac_mode
       type: boolean
       mapping:
         - dps_val: false
           value: "off"
           icon: "mdi:hvac-off"
-          icon_priority: 1
-      hidden: true
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: COOL
+              icon: "mdi:snowflake"
+              value: cool
+            - dps_val: FAN
+              icon: "mdi:fan"
+              value: fan_only
+            - dps_val: DRY
+              icon: "mdi:water"
+              value: dry
+            - dps_val: HEAT
+              icon: "mdi:fire"
+              value: heat   
     - id: 2
       name: temperature
       type: integer
@@ -28,46 +41,9 @@ primary_entity:
       name: current_temperature
       type: integer
     - id: 4
-      name: hvac_mode
+      name: mode
       type: string
-      mapping:
-        - dps_val: COOL
-          icon: "mdi:snowflake"
-          icon_priority: 2
-          constraint: power
-          conditions:
-            - dps_val: false
-              value_redirect: power
-            - dps_val: true
-              value: cool
-        - dps_val: FAN
-          icon: "mdi:fan"
-          icon_priority: 2
-          constraint: power
-          conditions:
-            - dps_val: false
-              value_redirect: power
-              value: "off"
-            - dps_val: true
-              value: fan_only
-        - dps_val: DRY
-          icon: "mdi:water"
-          icon_priority: 2
-          constraint: power
-          conditions:
-            - dps_val: false
-              value_redirect: power
-            - dps_val: true
-              value: dry
-        - dps_val: HEAT
-          icon: "mdi:fire"
-          icon_priority: 2
-          constraint: power
-          conditions:
-            - dps_val: false
-              value_redirect: power
-            - dps_val: true
-              value: heat
+      hidden: true
     - id: 5
       name: fan_mode
       type: integer

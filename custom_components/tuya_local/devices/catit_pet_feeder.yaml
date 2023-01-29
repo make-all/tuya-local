@@ -26,7 +26,16 @@ secondary_entities:
         name: sensor
         type: integer
     type: integer
+  - entity: button
+    class: restart
+    name: Factory reset
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: button
   - entity: switch
+    deprecated: button
     icon: "mdi:cog-refresh"
     name: Factory reset
     category: config

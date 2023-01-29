@@ -16,10 +16,11 @@ from homeassistant.helpers.entity_registry import async_migrate_entries
 from .const import (
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
+    CONF_PROTOCOL_VERSION,
     CONF_TYPE,
     DOMAIN,
 )
-from .device import setup_device, delete_device
+from .device import setup_device, async_delete_device
 from .helpers.device_config import get_config
 
 _LOGGER = logging.getLogger(__name__)
@@ -137,6 +138,19 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         entry.options = {}
         entry.version = 9
 
+    if entry.version <= 9:
+        # Added protocol_version, default to auto
+        conf = {**entry.data, **entry.options}
+        entry.data = {
+            CONF_DEVICE_ID: conf[CONF_DEVICE_ID],
+            CONF_LOCAL_KEY: conf[CONF_LOCAL_KEY],
+            CONF_HOST: conf[CONF_HOST],
+            CONF_TYPE: conf[CONF_TYPE],
+            CONF_PROTOCOL_VERSION: "auto",
+        }
+        entry.options = {}
+        entry.version = 10
+
     return True
 
 
@@ -182,7 +196,7 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
     for e in entities:
         await hass.config_entries.async_forward_entry_unload(entry, e)
 
-    delete_device(hass, config)
+    await async_delete_device(hass, config)
     del hass.data[DOMAIN][config[CONF_DEVICE_ID]]
 
     return True

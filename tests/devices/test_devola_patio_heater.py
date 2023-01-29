@@ -5,7 +5,7 @@ from homeassistant.components.climate.const import (
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     PERCENTAGE,
-    TIME_MINUTES,
+    UnitOfTime,
     UnitOfTemperature,
 )
 
@@ -55,7 +55,7 @@ class TestDevolaPatioHeater(
             self.entities.get("number_timer"),
             max=1440,
             step=1.0,
-            unit=TIME_MINUTES,
+            unit=UnitOfTime.MINUTES,
         )
         self.setUpMultiSensors(
             [

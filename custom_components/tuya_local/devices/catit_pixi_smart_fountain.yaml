@@ -9,7 +9,17 @@ primary_entity:
       type: boolean
       name: switch
 secondary_entities:
+  - entity: button
+    name: Filter replaced
+    class: restart
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: button
+
   - entity: switch
+    deprecated: button
     name: Filter replaced
     icon: "mdi:air-filter"
     category: config

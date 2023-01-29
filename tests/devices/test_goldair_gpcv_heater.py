@@ -3,7 +3,7 @@ from homeassistant.components.climate.const import (
     ClimateEntityFeature,
     HVACMode,
 )
-from homeassistant.const import TIME_HOURS
+from homeassistant.const import UnitOfTime, UnitOfTemperature
 
 from ..const import GPCV_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -45,7 +45,7 @@ class TestGoldairGPCVHeater(
             TIMER_DPS,
             self.entities.get("number_timer"),
             max=24,
-            unit=TIME_HOURS,
+            unit=UnitOfTime.HOURS,
         )
         self.setUpBasicBinarySensor(
             ERROR_DPS,
@@ -73,10 +73,8 @@ class TestGoldairGPCVHeater(
         self.dps[HVACMODE_DPS] = False
         self.assertEqual(self.subject.icon, "mdi:radiator-disabled")
 
-    def test_temperature_unit_returns_device_temperature_unit(self):
-        self.assertEqual(
-            self.subject.temperature_unit, self.subject._device.temperature_unit
-        )
+    def test_temperature_unit_returns_celsius(self):
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
 
     async def test_legacy_set_temperature_with_preset_mode(self):
         async with assert_device_properties_set(

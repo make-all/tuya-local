@@ -68,7 +68,7 @@ class TestBecaBHT002Thermostat(
     def test_temperature_unit(self):
         self.assertEqual(
             self.subject.temperature_unit,
-            self.subject._device.temperature_unit,
+            UnitOfTemperature.CELSIUS,
         )
 
     async def test_legacy_set_temperature_with_preset_mode(self):

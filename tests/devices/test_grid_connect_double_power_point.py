@@ -2,9 +2,9 @@
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (
-    ELECTRIC_CURRENT_MILLIAMPERE,
-    ELECTRIC_POTENTIAL_VOLT,
-    TIME_SECONDS,
+    UnitOfElectricCurrent,
+    UnitOfElectricPotential,
+    UnitOfTime,
     UnitOfEnergy,
     UnitOfPower,
 )
@@ -97,7 +97,7 @@ class TestGridConnectDoubleSwitch(
                     "name": "sensor_current",
                     "dps": CURRENT_DPS,
                     "device_class": SensorDeviceClass.CURRENT,
-                    "unit": ELECTRIC_CURRENT_MILLIAMPERE,
+                    "unit": UnitOfElectricCurrent.MILLIAMPERE,
                     "state_class": "measurement",
                 },
                 {
@@ -112,7 +112,7 @@ class TestGridConnectDoubleSwitch(
                     "name": "sensor_voltage",
                     "dps": VOLTAGE_DPS,
                     "device_class": SensorDeviceClass.VOLTAGE,
-                    "unit": ELECTRIC_POTENTIAL_VOLT,
+                    "unit": UnitOfElectricPotential.VOLT,
                     "state_class": "measurement",
                     "testdata": (2345, 234.5),
                 },
@@ -124,13 +124,13 @@ class TestGridConnectDoubleSwitch(
                     "name": "number_timer_1",
                     "dps": COUNTDOWN1_DPS,
                     "max": 86400,
-                    "unit": TIME_SECONDS,
+                    "unit": UnitOfTime.SECONDS,
                 },
                 {
                     "name": "number_timer_2",
                     "dps": COUNTDOWN2_DPS,
                     "max": 86400,
-                    "unit": TIME_SECONDS,
+                    "unit": UnitOfTime.SECONDS,
                 },
             ]
         )

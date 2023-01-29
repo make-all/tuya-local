@@ -7,7 +7,7 @@ from homeassistant.components.climate.const import (
     HVACMode,
 )
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import TIME_DAYS, UnitOfTemperature
+from homeassistant.const import UnitOfTime, UnitOfTemperature
 
 from ..const import HYSEN_HY08WE2_THERMOSTAT_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -132,7 +132,7 @@ class TestHysenHY08WE2Thermostat(
                     "name": "number_holiday_days",
                     "min": 1,
                     "max": 30,
-                    "unit": TIME_DAYS,
+                    "unit": UnitOfTime.DAYS,
                 },
                 {
                     "dps": HOLIDAYTEMP_DPS,

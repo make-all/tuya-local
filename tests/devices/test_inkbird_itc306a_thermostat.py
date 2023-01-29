@@ -3,7 +3,7 @@ from homeassistant.components.climate.const import (
     ClimateEntityFeature,
     HVACAction,
 )
-from homeassistant.const import TIME_HOURS, UnitOfTemperature
+from homeassistant.const import UnitOfTime, UnitOfTemperature
 
 
 from ..const import INKBIRD_ITC306A_THERMOSTAT_PAYLOAD
@@ -99,7 +99,7 @@ class TestInkbirdThermostat(
                     "name": "number_continuous_heat_hours",
                     "dps": TIME_THRES_DPS,
                     "max": 96,
-                    "unit": TIME_HOURS,
+                    "unit": UnitOfTime.HOURS,
                 },
                 {
                     "name": "number_high_temperature_limit",

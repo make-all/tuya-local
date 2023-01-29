@@ -9,7 +9,12 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers import device_registry as dr, entity_registry as er
 from homeassistant.helpers.device_registry import DeviceEntry
 
-from .const import DOMAIN
+from .const import (
+    API_PROTOCOL_VERSIONS,
+    CONF_PROTOCOL_VERSION,
+    CONF_TYPE,
+    DOMAIN,
+)
 from .device import TuyaLocalDevice
 
 
@@ -38,13 +43,17 @@ def _async_get_diagnostics(
 
     data = {
         "name": entry.title,
-        "type": entry.data["type"],
+        "type": entry.data[CONF_TYPE],
         "device_id": REDACTED,
         "local_key": REDACTED,
         "host": REDACTED,
+        "protocol_version": entry.data[CONF_PROTOCOL_VERSION],
     }
 
-    # TODO: investigate what device entry holds
+    # The DeviceEntry also has interesting looking data, but this
+    # integration does not publish anything to it other than some hardcoded
+    # values that don't change between devices. Instead get the live data
+    # from the running hass.
     data |= _async_device_as_dict(hass, hass_data["device"])
 
     return data
@@ -59,10 +68,13 @@ def _async_device_as_dict(
     # Base device information, without sensitive information
     data = {
         "name": device.name,
-        "api_version": device._api.version,
+        "api_version_set": device._api.version,
+        "api_version_used": API_PROTOCOL_VERSIONS[device._api_protocol_version_index],
+        "api_working": device._api_protocol_working,
         "status": device._api.dps_cache,
         "cached_state": device._cached_state,
         "pending_state": device._pending_updates,
+        "connected": device._running,
     }
 
     device_registry = dr.async_get(hass)

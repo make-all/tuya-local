@@ -1,0 +1,66 @@
+name: PJ-1103 clamp power meter
+product:
+  - id: djfep9s6s3b2qk89
+primary_entity:
+  entity: sensor
+  name: Power
+  class: power
+  dps:
+    - id: 19
+      name: sensor
+      type: integer
+      unit: W
+      class: measurement
+      mapping:
+        - scale: 10
+    - id: 52
+      name: maximum
+      type: integer
+    - id: 21
+      type: bitfield
+      name: test
+      optional: true
+secondary_entities:
+  - entity: sensor
+    name: Current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: mA
+        class: measurement
+  - entity: sensor
+    name: Voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 22
+        type: integer
+        name: calibration
+        optional: true
+  - entity: number
+    name: Maximum Standby Power
+    category: config
+    dps:
+      - id: 51
+        type: integer
+        name: value
+        optional: true
+        unit: W
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - scale: 10
+
+
+

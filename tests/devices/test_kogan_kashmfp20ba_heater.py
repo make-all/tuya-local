@@ -6,6 +6,7 @@ from homeassistant.components.light import (
     ColorMode,
     LightEntityFeature,
 )
+from homeassistant.const import UnitOfTemperature
 
 from ..const import KOGAN_KASHMFP20BA_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -50,10 +51,8 @@ class TestKoganKASHMF20BAHeater(TargetTemperatureTests, TuyaDeviceTestCase):
         self.dps[HVACMODE_DPS] = False
         self.assertEqual(self.subject.icon, "mdi:radiator-disabled")
 
-    def test_temperature_unit_returns_device_temperature_unit(self):
-        self.assertEqual(
-            self.subject.temperature_unit, self.subject._device.temperature_unit
-        )
+    def test_temperature_unit_returns_celsius(self):
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
 
     async def test_legacy_set_temperature_with_preset_mode(self):
         async with assert_device_properties_set(

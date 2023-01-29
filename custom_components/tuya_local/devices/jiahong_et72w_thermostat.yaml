@@ -4,11 +4,22 @@ primary_entity:
   dps:
     - id: 101
       type: boolean
-      name: power
+      name: hvac_mode
       mapping:
         - dps_val: false
           value: "off"
-      hidden: true
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: "Smart"
+              icon: "mdi:calendar-sync"
+              value: auto
+            - dps_val: "Manual"
+              icon: "mdi:fire"
+              value: heat
+            - dps_val: "Anti_frozen"
+              icon: "mdi:snowflake"
+              value: cool
     - id: 102
       type: integer
       name: temperature
@@ -27,33 +38,8 @@ primary_entity:
                 max: 750
     - id: 103
       type: string
-      name: hvac_mode
-      mapping:
-        - dps_val: "Smart"
-          icon: "mdi:calendar-sync"
-          constraint: power
-          conditions:
-            - dps_val: true
-              value: auto
-            - dps_val: false
-              value_redirect: power
-        - dps_val: "Manual"
-          icon: "mdi:fire"
-          constraint: power
-          conditions:
-            - dps_val: true
-              value: heat
-            - dps_val: false
-              value_redirect: power
-              value: "off"
-        - dps_val: "Anti_frozen"
-          icon: "mdi:snowflake"
-          constraint: power
-          conditions:
-            - dps_val: true
-              value: cool
-            - dps_val: false
-              value_redirect: power
+      name: mode
+      hidden: true
     - id: 105
       type: integer
       name: current_temperature
@@ -91,20 +77,18 @@ primary_entity:
       readonly: true
       mapping:
         - dps_val: true
-          constraint: power
+          constraint: hvac_mode
           conditions:
             - dps_val: true
               value: heating
             - dps_val: false
-              value_redirect: power
               value: "off"
         - dps_val: false
-          constraint: power
+          constraint: hvac_mode
           conditions:
             - dps_val: true
               value: idle
             - dps_val: false
-              value_redirect: power
               value: "off"
     - id: 104
       type: integer

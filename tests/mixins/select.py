@@ -46,29 +46,36 @@ class MultiSelectTests:
 
     def test_multiSelect_options(self):
         for key, subject in self.multiSelect.items():
-            with self.subTest(key):
-                self.assertCountEqual(
-                    subject.options,
-                    self.multiSelectOptions[key].values(),
-                )
+            self.assertCountEqual(
+                subject.options,
+                self.multiSelectOptions[key].values(),
+                f"{key} options mismatch",
+            )
 
     def test_multiSelect_current_option(self):
         for key, subject in self.multiSelect.items():
-            with self.subTest(key):
-                for dpsVal, val in self.multiSelectOptions[key].items():
-                    self.dps[self.multiSelectDps[key]] = dpsVal
-                    self.assertEqual(subject.current_option, val)
+            for dpsVal, val in self.multiSelectOptions[key].items():
+                self.dps[self.multiSelectDps[key]] = dpsVal
+                self.assertEqual(
+                    subject.current_option,
+                    val,
+                    f"{key} option mapping mismatch",
+                )
 
     async def test_multiSelect_select_option(self):
         for key, subject in self.multiSelect.items():
-            with self.subTest(key):
-                for dpsVal, val in self.multiSelectOptions[key].items():
-                    async with assert_device_properties_set(
-                        subject._device, {self.multiSelectDps[key]: dpsVal}
-                    ):
-                        await subject.async_select_option(val)
+            for dpsVal, val in self.multiSelectOptions[key].items():
+                async with assert_device_properties_set(
+                    subject._device,
+                    {self.multiSelectDps[key]: dpsVal},
+                    f"{key} failed to select expected option",
+                ):
+                    await subject.async_select_option(val)
 
     def test_multiSelect_extra_state_attributes(self):
         for key, subject in self.multiSelect.items():
-            with self.subTest(key):
-                self.assertEqual(subject.extra_state_attributes, {})
+            self.assertEqual(
+                subject.extra_state_attributes,
+                {},
+                f"{key} extra_state_attributes mismatch",
+            )

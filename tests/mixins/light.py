@@ -115,54 +115,58 @@ class MultiLightTests:
 
     def test_multi_light_is_on(self):
         for key, light in self.multiLight.items():
-            with self.subTest(key):
-                dp_id = self.multiLightDps[key]
-                self.dps[dp_id] = self.multiLightOn[key]
-                self.assertTrue(light.is_on)
-                self.dps[dp_id] = self.multiLightOff[key]
-                self.assertFalse(light.is_on)
+            dp_id = self.multiLightDps[key]
+            self.dps[dp_id] = self.multiLightOn[key]
+            self.assertTrue(light.is_on, f"{key} fails when ON")
+            self.dps[dp_id] = self.multiLightOff[key]
+            self.assertFalse(light.is_on, f"{key} fails when OFF")
 
     async def test_multi_light_turn_on(self):
         for key, light in self.multiLight.items():
-            with self.subTest(key):
-                self.dps[self.multiLightDps[key]] = self.multiLightOff[key]
-                async with assert_device_properties_set(
-                    light._device, {self.multiLightDps[key]: self.multiLightOn[key]}
-                ):
-                    await light.async_turn_on()
+            self.dps[self.multiLightDps[key]] = self.multiLightOff[key]
+            async with assert_device_properties_set(
+                light._device,
+                {self.multiLightDps[key]: self.multiLightOn[key]},
+                f"{key} failed to turn on",
+            ):
+                await light.async_turn_on()
 
     async def test_multi_light_turn_off(self):
         for key, light in self.multiLight.items():
-            with self.subTest(key):
-                async with assert_device_properties_set(
-                    light._device,
-                    {self.multiLightDps[key]: self.multiLightOff[key]},
-                ):
-                    await light.async_turn_off()
+            async with assert_device_properties_set(
+                light._device,
+                {self.multiLightDps[key]: self.multiLightOff[key]},
+                f"{key} failed to turn off",
+            ):
+                await light.async_turn_off()
 
     async def test_multi_light_toggle_turns_on_when_it_was_off(self):
         for key, light in self.multiLight.items():
-            with self.subTest(key):
-                self.dps[self.multiLightDps[key]] = self.multiLightOff[key]
-                async with assert_device_properties_set(
-                    light._device,
-                    {self.multiLightDps[key]: self.multiLightOn[key]},
-                ):
-                    await light.async_toggle()
+            self.dps[self.multiLightDps[key]] = self.multiLightOff[key]
+            async with assert_device_properties_set(
+                light._device,
+                {self.multiLightDps[key]: self.multiLightOn[key]},
+                f"{key} failed to toggle",
+            ):
+                await light.async_toggle()
 
     async def test_multi_light_toggle_turns_off_when_it_was_on(self):
         for key, light in self.multiLight.items():
-            with self.subTest(key):
-                self.dps[self.multiLightDps[key]] = self.multiLightOn[key]
-                async with assert_device_properties_set(
-                    light._device,
-                    {self.multiLightDps[key]: self.multiLightOff[key]},
-                ):
-                    await light.async_toggle()
+            self.dps[self.multiLightDps[key]] = self.multiLightOn[key]
+            async with assert_device_properties_set(
+                light._device,
+                {self.multiLightDps[key]: self.multiLightOff[key]},
+                f"{key} failed to toggle",
+            ):
+                await light.async_toggle()
 
     def test_multi_light_state_attributes(self):
-        for light in self.multiLight.values():
-            self.assertEqual(light.extra_state_attributes, {})
+        for key, light in self.multiLight.items():
+            self.assertEqual(
+                light.extra_state_attributes,
+                {},
+                f"{key} extra_state_attributes mismatch",
+            )
 
 
 class DimmableLightTests:

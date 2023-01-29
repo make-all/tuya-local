@@ -1,0 +1,68 @@
+name: Honeywell TP Series Dehumidifier
+products:
+  - id: anAaZAfvsdrdl9Oy
+primary_entity:
+  entity: humidifier
+  class: dehumidifier
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+      mapping:
+        - dps_val: false
+          icon: "mdi:air-humidifier-off"
+          icon_priority: 1
+        - dps_val: true
+          icon: "mdi:air-humidifier"
+          icon_priority: 4
+    - id: 6
+      name: humidity
+      type: integer
+      range:
+        min: 15
+        max: 90
+      mapping:
+        - step: 5
+    - id: 8
+      name: mode
+      type: integer
+      mapping:
+        - dps_val: 0
+          value: low
+        - dps_val: 2
+          value: high
+    - id: 15
+      name: error
+      type: bitfield
+      mapping:
+        - dps_val: 0
+          value: OK
+        - dps_val: 1
+          value: Sensor fault
+        - dps_val: 2
+          value: Temperature fault
+    - id: 18
+      name: current_humidity
+      type: integer
+    - id: 25
+      name: filter_cleaning_reminder
+      type: boolean
+secondary_entities:
+  - entity: sensor
+    name: Current humidity
+    class: humidity
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+
+  - entity: binary_sensor
+    name: Filter cleaning reminder
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 25
+        type: boolean
+        name: sensor

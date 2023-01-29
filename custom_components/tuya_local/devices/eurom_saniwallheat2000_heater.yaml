@@ -1,0 +1,55 @@
+name: Eurom Sani-Wall-Heat 2000 Wifi heater
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+          icon: "mdi:radiator-disabled"
+        - dps_val: true
+          constraint: preset_mode
+          conditions:
+            - dps_val: "off"
+              value: fan_only
+              icon: "mdi:fan"
+            - dps_val: auto
+              value: heat
+              icon: "mdi:radiator"
+            - dps_val: "50_per"
+              value: heat
+              icon: "mdi:radiator"
+            - dps_val: "100_per"
+              value: heat
+              icon: "mdi:radiator"
+    - id: 2
+      type: integer
+      name: temperature
+      range:
+        min: 10
+        max: 35
+    - id: 3
+      type: integer
+      name: current_temperature
+    - id: 4
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: "off"
+          value: fan
+        - dps_val: "50_per"
+          value: eco
+        - dps_val: "100_per"
+          value: boost
+        - dps_val: auto
+          value: comfort
+    - id: 7
+      type: boolean
+      name: swing_mode
+      mapping:
+        - dps_val: true
+          value: vertical
+        - dps_val: false
+          value: "off"

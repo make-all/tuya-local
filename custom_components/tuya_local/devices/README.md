@@ -390,6 +390,13 @@ HA documentation for the entity type to see what is valid (these may expand over
 ### binary_sensor
 - **sensor** (required, boolean) the dp to attach to the sensor.
 
+### button
+- **button** (required, boolean) the dp to attach to the button.  Any
+read value will be ignored, but the dp is expected to be present for
+device detection unless set to optional.  A value of true will be sent
+for a button press, map this to the desired dps_val if a different
+value is required.
+
 ### climate
 - **aux_heat** (optional, boolean) a dp to control the aux heat switch if the device has one.
 - **current_temperature** (optional, number) a dp that reports the current temperature.
@@ -457,8 +464,10 @@ Humidifer can also cover dehumidifiers (use class to specify which).
 - **color_mode** (optional, mapping of strings): a dp to control which mode to use if the light supports multiple modes.
     Special values: `white, color_temp, rgbw, hs, xy, rgb, rgbww`, others will be treated as effects,
 	Note: only white, color_temp and rgbw are currently supported, others listed above are reserved and may be implemented in future when the need arises.
+    If no `color_mode` dp is available, a single supported color mode will be
+    calculated based on which of the above dps are available.
 - **effect** (optional, mapping of strings): a dp to control effects / presets supported by the light.
-   If the light mixes in color modes in the same dp, **color_mode** should be used instead.
+   Note: If the light mixes in color modes in the same dp, `color_mode` should be used instead.  If the light contains both a separate dp for effects/scenes/presets and a mix of color_modes and effects (commonly scene and music) in the `color_mode` dp, then a separate select entity should be used for the dedicated dp to ensure the effects from `color_mode` are selectable.
 
 ### lock
 - **lock** (optional, boolean): a dp to control the lock state: true = locked, false = unlocked

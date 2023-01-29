@@ -3,7 +3,7 @@ from homeassistant.components.climate.const import (
     ClimateEntityFeature,
     HVACAction,
 )
-from homeassistant.const import TIME_MINUTES, UnitOfTemperature
+from homeassistant.const import UnitOfTime, UnitOfTemperature
 
 
 from ..const import INKBIRD_ITC308_THERMOSTAT_PAYLOAD
@@ -99,7 +99,7 @@ class TestInkbirdITC308Thermostat(
                     "name": "number_compressor_delay",
                     "dps": TIME_THRES_DPS,
                     "max": 10,
-                    "unit": TIME_MINUTES,
+                    "unit": UnitOfTime.MINUTES,
                 },
                 {
                     "name": "number_high_temperature_limit",

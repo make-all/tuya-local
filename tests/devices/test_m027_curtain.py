@@ -3,7 +3,7 @@ from homeassistant.components.cover import (
     CoverDeviceClass,
     CoverEntityFeature,
 )
-from homeassistant.const import TIME_MILLISECONDS, TIME_SECONDS
+from homeassistant.const import UnitOfTime
 
 from ..const import M027_CURTAIN_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -35,14 +35,14 @@ class TestM027Curtains(MultiSensorTests, BasicSelectTests, TuyaDeviceTestCase):
                     "name": "sensor_travel_time",
                     "min": 1,
                     "max": 120000,
-                    "unit": TIME_MILLISECONDS,
+                    "unit": UnitOfTime.MILLISECONDS,
                 },
                 {
                     "dps": TIMER_DPS,
                     "name": "sensor_time_remaining",
                     "min": 0,
                     "max": 86400,
-                    "unit": TIME_SECONDS,
+                    "unit": UnitOfTime.SECONDS,
                 },
             ]
         )

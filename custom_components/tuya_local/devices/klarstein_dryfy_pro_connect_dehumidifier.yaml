@@ -1,0 +1,113 @@
+name: Klarstein DryFy Pro Connect
+# {'updated_at': 1674605185.2896934, '1': True, '2': 'auto', '3': 57, '4': 55, '10': True, '101': True, '102': '0_90', '103': 24}
+products:
+  - id: 6cguug02fnygou5c
+primary_entity:
+  entity: humidifier
+  class: dehumidifier
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 4
+      type: integer
+      name: humidity
+      range:
+        min: 35
+        max: 80
+      mapping:
+        - step: 5          
+secondary_entities:
+  - entity: fan
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: preset_mode
+        type: string
+        optional: true
+        mapping:
+          - dps_val: "auto"
+            value: "Auto"
+          - dps_val: "high"
+            value: "High"
+            icon_priority: 4
+          - dps_val: "low"
+            value: "Low"
+          - dps_val: "fan"
+            value: "Fan"
+      - id: 102
+        name: oscillate
+        type: string
+        optional: true
+        mapping:
+          - dps_val: "0_90"
+            value: true
+          - dps_val: "45"
+            value: false
+          - dps_val: "90"
+            value: false
+  - entity: select
+    name: Direction
+    category: config
+    icon: "mdi:sprinkler-variant"
+    dps:
+      - id: 102
+        name: option
+        type: string
+        optional: true
+        mapping:
+          - dps_val: "0_90"
+            value:  "45°-90°"
+          - dps_val: "45"
+            value: "45°"
+          - dps_val: "90"
+            value: "90°"
+  - entity: sensor
+    name: Current humidity
+    class: humidity
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        class: measurement
+        unit: "%"
+  - entity: sensor
+    name: Current temperature
+    class: temperature
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: switch
+    name: UV sterilization
+    icon: "mdi:shield-half-full"
+    dps:
+      - id: 10
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Ionizer
+    icon: "mdi:creation"
+    dps:
+      - id: 5
+        name: switch 
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false  
+  - entity: switch
+    name: "Humidity indicator"
+    category: config
+    icon: "mdi:dots-circle"
+    dps:
+      - id: 101
+        name: switch
+        type: boolean 
+

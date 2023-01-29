@@ -5,7 +5,7 @@ from homeassistant.components.climate.const import (
     PRESET_COMFORT,
     PRESET_ECO,
 )
-from homeassistant.const import TIME_MINUTES
+from homeassistant.const import UnitOfTime, UnitOfTemperature
 
 from ..const import NEDIS_HTPL20F_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -46,7 +46,7 @@ class TestNedisHtpl20fHeater(
             TIMER_DPS,
             self.entities.get("number_timer"),
             max=1440,
-            unit=TIME_MINUTES,
+            unit=UnitOfTime.MINUTES,
         )
         self.mark_secondary(["lock_child_lock", "number_timer"])
 
@@ -66,10 +66,8 @@ class TestNedisHtpl20fHeater(
         self.dps[HVACMODE_DPS] = False
         self.assertEqual(self.subject.icon, "mdi:radiator-disabled")
 
-    def test_temperature_unit_returns_device_temperature_unit(self):
-        self.assertEqual(
-            self.subject.temperature_unit, self.subject._device.temperature_unit
-        )
+    def test_temperature_unit_returns_celsius(self):
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
 
     def test_current_temperature(self):
         self.dps[CURRENTTEMP_DPS] = 25

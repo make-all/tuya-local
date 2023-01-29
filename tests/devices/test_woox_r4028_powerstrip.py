@@ -1,6 +1,6 @@
 """Tests for the Woox R4028 powerstrip."""
 from homeassistant.components.switch import SwitchDeviceClass
-from homeassistant.const import TIME_MINUTES
+from homeassistant.const import UnitOfTime
 
 from ..const import WOOX_R4028_SOCKET_PAYLOAD
 from ..mixins.number import MultiNumberTests
@@ -53,28 +53,28 @@ class TestWooxR4028Powerstrip(
                     "name": "number_timer_1",
                     "max": 1440,
                     "scale": 60,
-                    "unit": TIME_MINUTES,
+                    "unit": UnitOfTime.MINUTES,
                 },
                 {
                     "dps": TIMER2_DPS,
                     "name": "number_timer_2",
                     "max": 1440,
                     "scale": 60,
-                    "unit": TIME_MINUTES,
+                    "unit": UnitOfTime.MINUTES,
                 },
                 {
                     "dps": TIMER3_DPS,
                     "name": "number_timer_3",
                     "max": 1440,
                     "scale": 60,
-                    "unit": TIME_MINUTES,
+                    "unit": UnitOfTime.MINUTES,
                 },
                 {
                     "dps": TIMERUSB_DPS,
                     "name": "number_usb_timer",
                     "max": 1440,
                     "scale": 60,
-                    "unit": TIME_MINUTES,
+                    "unit": UnitOfTime.MINUTES,
                 },
             ]
         )

@@ -1,0 +1,151 @@
+name: Wistar roller blinds no position sensor
+products:
+  - id: c4hBLohzUgxULw5a
+primary_entity:
+  entity: cover
+  class: blind
+  dps:
+    - id: 101
+      type: string
+      name: control
+      mapping:
+        - dps_val: "0"
+          value: open
+        - dps_val: "1"
+          value: close
+        - dps_val: "2"
+          value: stop
+    - id: 102
+      type: integer
+      name: position
+      range:
+        min: 0
+        max: 100
+    - id: 103
+      type: boolean
+      name: reversed
+      mapping:
+        - dps_val: true
+          value: false
+        - dps_val: false
+          value: true
+    - id: 105
+      type: boolean
+      name: curtain_hand
+    - id: 106
+      type: string
+      name: curtain_state
+      mapping:
+        - dps_val: "0"
+          value: status_0
+        - dps_val: "1"
+          value: status_1
+        - dps_val: "2"
+          value: status_2
+        - dps_val: "3"
+          value: status_3
+    - id: 107
+      type: string
+      name: ac_control
+      mapping:
+        - dps_val: "1"
+          value: control_1
+        - dps_val: "2"
+          value: control_2
+        - dps_val: "3"
+          value: control_3
+        - dps_val: "4"
+          value: control_4
+    - id: 108
+      type: string
+      name: dc_control
+      mapping:
+        - dps_val: "1"
+          value: control_1
+        - dps_val: "2"
+          value: control_2
+        - dps_val: "3"
+          value: control_3
+        - dps_val: "4"
+          value: control_4
+    - id: 109
+      type: string
+      name: curtain_type
+      optional: true
+    - id: 110
+      type: string
+      name: report
+      optional: true
+    - id: 111
+      type: boolean
+      name: border_state
+      readonly: true
+    - id: 112
+      type: integer
+      name: broken_position
+secondary_entities:
+  - entity: select
+    name: Border setting
+    category: config
+    icon: "mdi:border-outside"
+    dps:
+      - id: 104
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: Upper Limit Set
+          - dps_val: "2"
+            value: Upper Limit Remove
+          - dps_val: "3"
+            value: Lower Limit Set
+          - dps_val: "4"
+            value: Lower Limit Remove
+          - dps_val: "5"
+            value: Both Limits Remove
+  - entity: select
+    category: config
+    name: Style
+    icon: "mdi:blinds-horizontal"
+    dps:
+      - id: 113
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Venetian blind
+          - dps_val: "1"
+            value: Silhouette blind
+          - dps_val: "2"
+            value: Roman blind
+          - dps_val: "3"
+            value: Roller blind
+          - dps_val: "4"
+            value: Soft blind
+          - dps_val: "5"
+            value: Roller shutter
+          - dps_val: "6"
+            value: Honeycomb blind
+          - dps_val: "7"
+            value: Pleated blind
+          - dps_val: "8"
+            value: Roller door
+          - dps_val: "9"
+            value: Awning
+          - dps_val: "10"
+            value: Curtain
+          - dps_val: "11"
+            value: Roman pole
+  - entity: switch
+    category: config
+    name: Reversed
+    icon: "mdi:arrow-u-down-left"
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true

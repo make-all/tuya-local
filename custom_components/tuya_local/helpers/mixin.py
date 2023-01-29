@@ -28,7 +28,7 @@ class TuyaLocalEntity:
 
     @property
     def should_poll(self):
-        return True
+        return False
 
     @property
     def available(self):
@@ -37,7 +37,7 @@ class TuyaLocalEntity:
     @property
     def name(self):
         """Return the name for the UI."""
-        return self._config.name()
+        return self._config.name
 
     @property
     def has_entity_name(self):
@@ -83,6 +83,12 @@ class TuyaLocalEntity:
 
     async def async_update(self):
         await self._device.async_refresh()
+
+    async def async_added_to_hass(self):
+        await self._device.async_register_entity(self)
+
+    async def async_will_remove_from_hass(self):
+        await self._device.async_unregister_entity(self)
 
 
 UNIT_ASCII_MAP = {

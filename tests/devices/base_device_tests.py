@@ -5,6 +5,7 @@ from uuid import uuid4
 from homeassistant.helpers.entity import EntityCategory
 
 from custom_components.tuya_local.generic.binary_sensor import TuyaLocalBinarySensor
+from custom_components.tuya_local.generic.button import TuyaLocalButton
 from custom_components.tuya_local.generic.climate import TuyaLocalClimate
 from custom_components.tuya_local.generic.cover import TuyaLocalCover
 from custom_components.tuya_local.generic.fan import TuyaLocalFan
@@ -26,6 +27,7 @@ from custom_components.tuya_local.helpers.device_config import (
 
 DEVICE_TYPES = {
     "binary_sensor": TuyaLocalBinarySensor,
+    "button": TuyaLocalButton,
     "climate": TuyaLocalClimate,
     "cover": TuyaLocalCover,
     "fan": TuyaLocalFan,
@@ -64,10 +66,10 @@ class TuyaDeviceTestCase(IsolatedAsyncioTestCase):
         self.entities[self.primary_entity] = self.create_entity(cfg.primary_entity)
 
         self.names = {}
-        self.names[cfg.primary_entity.config_id] = cfg.primary_entity.name()
+        self.names[cfg.primary_entity.config_id] = cfg.primary_entity.name
         for e in cfg.secondary_entities():
             self.entities[e.config_id] = self.create_entity(e)
-            self.names[e.config_id] = e.name()
+            self.names[e.config_id] = e.name
 
     def create_entity(self, config):
         """Create an entity to match the config"""
@@ -91,7 +93,7 @@ class TuyaDeviceTestCase(IsolatedAsyncioTestCase):
 
     def test_should_poll(self):
         for e in self.entities.values():
-            self.assertTrue(e.should_poll)
+            self.assertFalse(e.should_poll)
 
     def test_available(self):
         for e in self.entities.values():
