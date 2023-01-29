@@ -403,6 +403,8 @@ class TuyaLocalDevice(object):
                 self._api_protocol_working = True
                 return retval
             except Exception as e:
+                for entity in self._children:
+                    entity.async_schedule_update_ha_state()
                 _LOGGER.debug(
                     f"Retrying after exception {e} ({i}/{connections})",
                 )
