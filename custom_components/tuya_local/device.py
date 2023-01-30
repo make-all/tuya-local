@@ -141,7 +141,7 @@ class TuyaLocalDevice(object):
         _LOGGER.debug(f"Monitor loop for {self.name} stopped")
         self._refresh_task = None
 
-    async def async_register_entity(self, entity):
+    def register_entity(self, entity):
         # If this is the first child entity to register, refresh the device
         # state
         should_poll = len(self._children) == 0
@@ -150,9 +150,9 @@ class TuyaLocalDevice(object):
         if not self._running and not self._startup_listener:
             self.start()
         if self.has_returned_state:
-            await entity.async_schedule_update_ha_state()
+            entity.async_schedule_update_ha_state()
         elif should_poll:
-            await entity.async_schedule_update_ha_state(True)
+            entity.async_schedule_update_ha_state(True)
 
     async def async_unregister_entity(self, entity):
         self._children.remove(entity)

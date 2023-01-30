@@ -466,7 +466,7 @@ class TestDevice(IsolatedAsyncioTestCase):
         # Was the refresh task left empty?
         self.assertIsNone(self.subject._refresh_task)
 
-    async def test_register_first_entity_ha_running(self):
+    def test_register_first_entity_ha_running(self):
         # Set up preconditions
         self.subject._children = []
         self.subject._running = False
@@ -475,7 +475,7 @@ class TestDevice(IsolatedAsyncioTestCase):
         entity = AsyncMock()
 
         # Call the function under test
-        await self.subject.async_register_entity(entity)
+        self.subject.register_entity(entity)
 
         # Was the entity added to the list?
         self.assertEqual(self.subject._children, [entity])
@@ -483,7 +483,7 @@ class TestDevice(IsolatedAsyncioTestCase):
         # Did we start the loop?
         self.subject.start.assert_called_once()
 
-    async def test_register_subsequent_entity_ha_running(self):
+    def test_register_subsequent_entity_ha_running(self):
         # Set up preconditions
         first = AsyncMock()
         second = AsyncMock()
@@ -493,7 +493,7 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.subject.start = Mock()
 
         # Call the function under test
-        await self.subject.async_register_entity(second)
+        self.subject.register_entity(second)
 
         # Was the entity added to the list?
         self.assertCountEqual(self.subject._children, [first, second])
@@ -501,7 +501,7 @@ class TestDevice(IsolatedAsyncioTestCase):
         # Did we avoid restarting the loop?
         self.subject.start.assert_not_called()
 
-    async def test_register_subsequent_entity_ha_starting(self):
+    def test_register_subsequent_entity_ha_starting(self):
         # Set up preconditions
         first = AsyncMock()
         second = AsyncMock()
@@ -511,7 +511,7 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.subject.start = Mock()
 
         # Call the function under test
-        await self.subject.async_register_entity(second)
+        self.subject.register_entity(second)
 
         # Was the entity added to the list?
         self.assertCountEqual(self.subject._children, [first, second])
