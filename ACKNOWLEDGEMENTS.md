@@ -164,3 +164,5 @@ Further device support has been made with the assistance of users.  Please consi
 - [raphaelcouzet](https://github.com/raphaelcouzet) for contributing support for Arlec motion sensor lights which were used to improve Deta motion light support.
 - [TheExenth](https://github.com/TheExenth) for assistance supporting Salcar T9W thermostats, and identifying the likely identical Tellur model.
 - [MadDoct](https://github.com/MadDoct) for contributing support for RGB nightlight sockets.
+- [larueli](https://github.com/larueli) for contributing improvements to unavailable device detection when using persistent connections.
+- [austinhodak](https://github.com/austinhodak) for contributing support for generic dimmable lights.
