@@ -141,7 +141,7 @@
 
 ### Humidifiers
 
-- BlitzWoolf BWSH5 humidifier
+- BlitzWolf BWSH5 humidifier
 - Eanons QT-JS2014 purifying humidifier
 - Kyvol EA200 humidifier
 - Wetair WAW-H1210LW humidifier
