@@ -22,6 +22,7 @@ from .const import (
     API_PROTOCOL_VERSIONS,
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
+    CONF_POLL_ONLY,
     CONF_PROTOCOL_VERSION,
     DOMAIN,
 )
@@ -45,6 +46,7 @@ class TuyaLocalDevice(object):
         local_key,
         protocol_version,
         hass: HomeAssistant,
+        poll_only=False,
     ):
         """
         Represents a Tuya-based device.
@@ -54,6 +56,8 @@ class TuyaLocalDevice(object):
             address (str): The network address.
             local_key (str): The encryption key.
             protocol_version (str | number): The protocol version.
+            hass (HomeAssistant): The Home Assistant instance.
+            poll_only (bool): True if the device should be polled only
         """
         self._name = name
         self._children = []
@@ -65,7 +69,8 @@ class TuyaLocalDevice(object):
         self._api = tinytuya.Device(dev_id, address, local_key)
         self._refresh_task = None
         self._protocol_configured = protocol_version
-
+        self._poll_only = poll_only
+        self._temporary_poll = False
         self._reset_cached_state()
 
         self._hass = hass
@@ -178,22 +183,32 @@ class TuyaLocalDevice(object):
                 f"{self.name} receive loop terminated by exception {t}",
             )
 
+    @property
+    def should_poll(self):
+        return self._poll_only or self._temporary_poll or not self.has_returned_state
+
+    def pause(self):
+        self._temporary_poll = True
+
+    def resume(self):
+        self._temporary_poll = False
+
     async def async_receive(self):
         """Receive messages from a persistent connection asynchronously."""
         # If we didn't yet get any state from the device, we may need to
         # negotiate the protocol before making the connection persistent
-        persist = self.has_returned_state
+        persist = not self.should_poll
         self._api.set_socketPersistent(persist)
         while self._running:
             try:
                 last_cache = self._cached_state["updated_at"]
                 now = time()
-                if persist != self.has_returned_state:
+                if persist == self.should_poll:
                     # use persistent connections after initial communication
                     # has been established.  Until then, we need to rotate
                     # the protocol version, which seems to require a fresh
                     # connection.
-                    persist = self.has_returned_state
+                    persist = not self.should_poll
                     self._api.set_socketPersistent(persist)
 
                 if now - last_cache > self._CACHE_TIMEOUT:
@@ -485,6 +500,7 @@ def setup_device(hass: HomeAssistant, config: dict):
         config[CONF_LOCAL_KEY],
         config[CONF_PROTOCOL_VERSION],
         hass,
+        config[CONF_POLL_ONLY],
     )
     hass.data[DOMAIN][config[CONF_DEVICE_ID]] = {"device": device}
 

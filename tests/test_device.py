@@ -594,3 +594,24 @@ class TestDevice(IsolatedAsyncioTestCase):
         except StopAsyncIteration:
             pass
         self.mock_api().set_socketPersistent.assert_called_once_with(False)
+
+    def test_should_poll(self):
+        self.subject._cached_state = {"1": "sample", "updated_at": time()}
+        self.subject._poll_only = False
+        self.subject._temporary_poll = False
+
+        # Test temporary poll via pause/resume
+        self.assertFalse(self.subject.should_poll)
+        self.subject.pause()
+        self.assertTrue(self.subject.should_poll)
+        self.subject.resume()
+        self.assertFalse(self.subject.should_poll)
+
+        # Test configured polling
+        self.subject._poll_only = True
+        self.assertTrue(self.subject.should_poll)
+        self.subject._poll_only = False
+
+        # Test initial polling
+        self.subject._cached_state = {}
+        self.assertTrue(self.subject.should_poll)
