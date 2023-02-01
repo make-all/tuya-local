@@ -1,7 +1,7 @@
-name: Zemismart curtain rail
+name: Simple curtain
 primary_entity:
   entity: cover
-  class: blind
+  class: curtain
   dps:
     - id: 1
       name: control
@@ -29,11 +29,37 @@ primary_entity:
         max: 100
       mapping:
         - invert: true
-    - id: 5
-      name: control_back_mode
-      type: boolean
     - id: 7
       name: work_state
       type: string
+      optional: true
       # seems intended to match action, but doesn't change in observation
+    - id: 12
+      name: fault_code
+      type: bitfield
+      optional: true
+secondary_entities:
+  - entity: switch
+    name: Reverse
+    category: config
+    icon: "mdi:arrow-u-down-left"
+    dps:
+      - id: 5
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 12
+        type: boolean
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
 
