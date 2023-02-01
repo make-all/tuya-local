@@ -166,3 +166,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [MadDoct](https://github.com/MadDoct) for contributing support for RGB nightlight sockets.
 - [larueli](https://github.com/larueli) for contributing improvements to unavailable device detection when using persistent connections.
 - [austinhodak](https://github.com/austinhodak) for contributing support for generic dimmable lights.
+- [x5500](https://github.com/x5500) for contributing support for Loonas curtains.

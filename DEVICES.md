@@ -230,7 +230,7 @@ generic configurations known to work with multiple brands of device.
 - M027 curtain module (sold under several brands, including zemismart, meterk and others)
 - QS-WIFI-C01(BK) curtain module
 - Wistar roller blinds controller
-- Zemismart curtain rail
+- Zemismart curtain rail (also matches Loonas and probably many others)
 
 ### Vacuum Cleaners
 
