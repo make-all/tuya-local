@@ -46,8 +46,8 @@ primary_entity:
               value: closed
             - value: closing
     - id: 12
-      name: unknown_12
-      type: integer
+      name: fault_code
+      type: bitfield
     - id: 101
       name: unknown_101
       type: boolean
@@ -84,3 +84,12 @@ secondary_entities:
         name: sensor
         type: integer
         unit: ms
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 12
+        type: boolean
+        name: sensor
+
