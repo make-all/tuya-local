@@ -518,7 +518,6 @@ class TuyaDpsConfig:
             except ValueError:
                 self.stringify = False
         else:
-
             self.stringify = False
 
         result = value
@@ -740,7 +739,7 @@ def available_configs():
     """List the available config files."""
     _CONFIG_DIR = dirname(config_dir.__file__)
 
-    for (path, dirs, files) in walk(_CONFIG_DIR):
+    for path, dirs, files in walk(_CONFIG_DIR):
         for basename in sorted(files):
             if fnmatch(basename, "*.yaml"):
                 yield basename

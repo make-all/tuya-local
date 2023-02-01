@@ -5,9 +5,6 @@ from fnmatch import fnmatch
 from os import walk
 from os.path import join, dirname
 
-import pytest
-from unittest import TestCase
-
 from homeassistant.util.json import load_json
 
 import custom_components.tuya_local as root
@@ -19,7 +16,7 @@ from custom_components.tuya_local.helpers.device_config import (
 
 def get_translations():
     translations = join(dirname(root.__file__), "translations")
-    for (path, dirs, files) in walk(translations):
+    for path, dirs, files in walk(translations):
         for file in files:
             if fnmatch(file, "*.json"):
                 yield load_json(join(path, file))

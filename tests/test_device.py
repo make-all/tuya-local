@@ -275,7 +275,6 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.assertIs(self.subject.get_property("2"), None)
 
     async def test_async_set_property_sends_to_api(self):
-
         await self.subject.async_set_property("1", False)
 
         self.mock_api().send.assert_called_once()
