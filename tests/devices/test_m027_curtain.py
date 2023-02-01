@@ -55,7 +55,12 @@ class TestM027Curtains(MultiSensorTests, BasicSelectTests, TuyaDeviceTestCase):
             },
         ),
         self.mark_secondary(
-            ["sensor_travel_time", "sensor_time_remaining", "select_mode"]
+            [
+                "binary_sensor_fault",
+                "select_mode",
+                "sensor_time_remaining",
+                "sensor_travel_time",
+            ]
         )
 
     def test_device_class_is_curtain(self):

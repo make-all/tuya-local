@@ -90,6 +90,9 @@ secondary_entities:
     category: diagnostic
     dps:
       - id: 12
-        type: boolean
+        type: bitfield
         name: sensor
-
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
