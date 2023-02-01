@@ -167,3 +167,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [larueli](https://github.com/larueli) for contributing improvements to unavailable device detection when using persistent connections.
 - [austinhodak](https://github.com/austinhodak) for contributing support for generic dimmable lights.
 - [x5500](https://github.com/x5500) for contributing support for Loonas curtains.
+- [mypixies](https://github.com/mypixies) for assisting with support for Moes dimmer switch.
