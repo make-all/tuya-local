@@ -54,9 +54,18 @@ class TestHydrothermDynamicX8(
         self.dps[CURRENTTEMP_DP] = 55
         self.assertEqual(self.subject.current_temperature, 55)
 
+    def test_min_temp(self):
+        self.assertEqual(self.subject.min_temp, 60)
+
+    def test_max_temp(self):
+        self.assertEqual(self.subject.max_temp, 70)
+
     def test_target_temperature(self):
         self.dps[TEMPERATURE_DP] = 61
         self.assertEqual(self.subject.target_temperature, 61)
+
+    def test_target_temperature_step(self):
+        self.assertEqual(self.subject.target_temperature_step, 1)
 
     def test_operation_list(self):
         self.assertCountEqual(
@@ -96,6 +105,13 @@ class TestHydrothermDynamicX8(
             {POWER_DP: True, MODE_DP: "ECO"},
         ):
             await self.subject.async_set_operation_mode(STATE_ECO)
+
+    async def test_set_operation_mode_with_temperature_service(self):
+        async with assert_device_properties_set(
+            self.subject._device,
+            {POWER_DP: True, MODE_DP: "ECO"},
+        ):
+            await self.subject.async_set_temperature(operation_mode=STATE_ECO)
 
     async def test_set_operation_mode_to_heat_pump(self):
         async with assert_device_properties_set(
