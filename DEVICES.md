@@ -228,10 +228,11 @@ generic configurations known to work with multiple brands of device.
 - Benexmart blind motor
 - Dongguan garage door
 - Kogan garage door with tilt sensor
+- Loonas smart curtain
 - M027 curtain module (sold under several brands, including zemismart, meterk and others)
 - QS-WIFI-C01(BK) curtain module
 - Wistar roller blinds controller
-- Zemismart curtain rail (also matches Loonas and probably many others)
+- Zemismart curtain rail
 
 ### Vacuum Cleaners
 

@@ -1,4 +1,6 @@
-name: Zemismart curtain
+name: Loonas smart curtain
+products:
+  - id: wraaecjqfiirj8go
 primary_entity:
   entity: cover
   class: curtain
@@ -29,11 +31,6 @@ primary_entity:
         max: 100
       mapping:
         - invert: true
-    - id: 7
-      name: work_state
-      type: string
-      optional: true
-      # seems intended to match action, but doesn't change in observation
     - id: 12
       name: fault_code
       type: bitfield
@@ -45,8 +42,13 @@ secondary_entities:
     icon: "mdi:arrow-u-down-left"
     dps:
       - id: 5
-        type: boolean
+        type: string
         name: switch
+        mapping:
+          - dps_val: back
+            value: true
+          - dps_val: forward
+            value: false
   - entity: binary_sensor
     name: Fault
     class: problem
