@@ -20,7 +20,7 @@ class TestMotionLight(BasicSwitchTests, MultiNumberTests, TuyaDeviceTestCase):
     def setUp(self):
         self.setUpForConfig("motion_sensor_light.yaml", MOTION_LIGHT_PAYLOAD)
         self.subject = self.entities.get("light")
-
+        self.auto_sw = self.entities.get("switch_auto_mode")
         self.setUpBasicSwitch(RESET_DPS, self.entities.get("switch_auto_reset"))
         self.setUpMultiNumber(
             [
@@ -99,3 +99,52 @@ class TestMotionLight(BasicSwitchTests, MultiNumberTests, TuyaDeviceTestCase):
             {EFFECT_DPS: "mode_auto"},
         ):
             await self.subject.async_turn_on(effect="auto")
+
+    def test_auto_mode_is_on(self):
+        self.dps[SWITCH_DPS] = False
+        self.dps[EFFECT_DPS] = "mode_auto"
+        self.assertTrue(self.auto_sw.is_on)
+        self.assertFalse(self.subject.is_on)
+        self.dps[EFFECT_DPS] = "mode_off"
+        self.assertFalse(self.auto_sw.is_on)
+        self.assertFalse(self.subject.is_on)
+        self.dps[SWITCH_DPS] = True
+        self.dps[EFFECT_DPS] = "mode_auto"
+        self.assertTrue(self.auto_sw.is_on)
+        self.assertTrue(self.subject.is_on)
+        self.dps[EFFECT_DPS] = "mode_on"
+        self.assertFalse(self.auto_sw.is_on)
+        self.assertTrue(self.subject.is_on)
+
+    async def test_auto_mode_async_turn_on_off(self):
+        self.dps[SWITCH_DPS] = True
+        self.dps[EFFECT_DPS] = "mode_auto"
+        async with assert_device_properties_set(
+            self.subject._device,
+            {EFFECT_DPS: "mode_on"},
+        ):
+            await self.auto_sw.async_turn_off()
+
+        self.dps[SWITCH_DPS] = False
+        self.dps[EFFECT_DPS] = "mode_auto"
+        async with assert_device_properties_set(
+            self.subject._device,
+            {EFFECT_DPS: "mode_off"},
+        ):
+            await self.auto_sw.async_turn_off()
+
+        self.dps[SWITCH_DPS] = True
+        self.dps[EFFECT_DPS] = "mode_on"
+        async with assert_device_properties_set(
+            self.subject._device,
+            {EFFECT_DPS: "mode_auto"},
+        ):
+            await self.auto_sw.async_turn_on()
+
+        self.dps[SWITCH_DPS] = False
+        self.dps[EFFECT_DPS] = "mode_off"
+        async with assert_device_properties_set(
+            self.subject._device,
+            {EFFECT_DPS: "mode_auto"},
+        ):
+            await self.auto_sw.async_turn_on()

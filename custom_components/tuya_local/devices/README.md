@@ -375,6 +375,66 @@ that mapping.  These nested mappings are limited to simple `dps_val` to `value`
 substitutions, as more complex rules would quickly become too complex to
 manage.
 
+When setting a dp which has conditions attached, the behaviour is slightly different depending on whether the constraint dp is readonly or not.
+
+For non-readonly constraints, the constraint dp will be set along with the
+target dp so that the first condition with a value matching the target value
+is met.
+
+For readonly constraints, the condition must match the constraint dp's current value for anything to be set.
+
+**Example**
+```yaml
+  ...
+  name: target_dp
+  mapping:
+    - dps_val: 1
+      constraint: constraint_dp
+      conditions:
+        - dps_val: a
+          value: x
+        - dpa_val: c
+          value: z
+    - dps_val: 2
+      constraint: constraint_dp
+      conditions:
+        - dps_val: b
+          value: x
+        - dps_val: c
+          value: y
+```
+If `constraint_dp` is not readonly:
+|---|---|---|
+| constraint_dp current dps_val | target_dp target value | dps set |
+|---|---|---|
+| a | x | target_dp: 1, constraint_dp: a |
+| a | y | target_dp: 2, constraint_dp: c |
+| a | z | target_dp: 1, constraint_dp: c |
+| b | x | target_dp: 1, constraint_dp: a |
+| b | y | target_dp: 2, constraint_dp: c |
+| b | z | target_dp: 1, constraint_dp: c |
+| c | x | target_dp: 1, constraint_dp: a |
+| c | y | target_dp: 2, constraint_dp: c |
+| c | z | target_dp: 1, constraint_dp: c |
+|---|---|---|
+
+If `constraint_dp` is readonly:
+|---|---|---|
+| current constraint_dp | target target_dp | dps set |
+|---|---|---|
+| a | x | target_dp: 1 |
+| a | y | - |
+| a | z | - |
+| b | x | target_dp: 2 |
+| b | y | - |
+| b | z | - |
+| c | x | - |
+| c | y | target_dp: 2 |
+| c | z | target_dp: 1 |
+|---|---|---|
+
+
+
 ## Entity types
 
 Entities have specific mappings of dp names to functions.  Any unrecognized dp name is added

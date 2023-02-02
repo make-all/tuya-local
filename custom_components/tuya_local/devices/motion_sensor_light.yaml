@@ -24,6 +24,31 @@ primary_entity:
       name: switch
       readonly: true
 secondary_entities:
+  - entity: switch
+    name: Auto mode
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 101
+        type: string
+        name: switch
+        mapping:
+          - dps_val: mode_auto
+            value: on
+          - dps_val: mode_on
+            constraint: relay
+            conditions:
+              - dps_val: true
+                value: false
+          - dps_val: mode_off
+            constraint: relay
+            conditions:
+              - dps_val: false
+                value: false
+      - id: 102
+        name: relay
+        type: boolean
+        readonly: true
+        hidden: true
   - entity: number
     name: Sensitivity
     icon: "mdi:human-greeting-proximity"
