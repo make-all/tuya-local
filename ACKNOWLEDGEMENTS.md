@@ -168,3 +168,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [austinhodak](https://github.com/austinhodak) for contributing support for generic dimmable lights.
 - [x5500](https://github.com/x5500) for contributing support for Loonas curtains.
 - [mypixies](https://github.com/mypixies) for assisting with support for Moes dimmer switch.
+- [BeardedTinker](https://github.com/BeardedTinker) for assisting with support for SG600MD smart inverter.
