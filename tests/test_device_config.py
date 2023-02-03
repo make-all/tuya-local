@@ -266,6 +266,7 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
         All configs should be parsable and meet certain criteria
         """
         for cfg in available_configs():
+            entities = []
             parsed = TuyaDeviceConfig(cfg)
             # Check for error messages or unparsed config
             if isinstance(parsed, str) or isinstance(parsed._config, str):
@@ -280,8 +281,11 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
                 f"primary_entity missing from {cfg}",
             )
             self.check_entity(parsed.primary_entity, cfg)
+            entities.append(parsed.primary_entity.config_id)
             for entity in parsed.secondary_entities():
                 self.check_entity(entity, cfg)
+                entities.append(entity.config_id)
+            self.assertCountEqual(entities, set(entities))
 
     # Most of the device_config functionality is exercised during testing of
     # the various supported devices.  These tests concentrate only on the gaps.

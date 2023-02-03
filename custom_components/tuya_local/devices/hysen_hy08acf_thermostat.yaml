@@ -77,30 +77,28 @@ primary_entity:
       name: hvac_action
       type: string
       mapping:
-        - dps_val: "0"
-          constraint: hvac_mode
+        - constraint: hvac_mode
           conditions:
             - dps_val: false
               value: "off"
             - dps_val: true
-              value: idle
-        - dps_val: "1"
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: heating
-        - dps_val: "2"
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: cooling
+              mapping:
+                - dps_val: "0"
+                  value: idle
+                - dps_val: "1"
+                  value: heating
+                - dps_val: "2"
+                  value: cooling
+                # another variant uses long names
+                - dps_val: heatvalve
+                  value: heating
+                - dps_val: coolvalve
+                  value: cooling
+                - value: idle
     - id: 121
       name: program
       type: integer
+      optional: true
 secondary_entities:
   - entity: lock
     name: Child lock
@@ -169,7 +167,7 @@ secondary_entities:
           min: 16
           max: 50
   - entity: number
-    name: Maximum temperature
+    name: Minimum temperature
     category: config
     icon: "mdi:temperature-chevron-down"
     dps:
