@@ -217,6 +217,7 @@ generic configurations known to work with multiple brands of device.
 - Atomi smart color string light
 - Deta/Arlec motion sensor lights (DET100HA/DET102HA/MAL315HA)
 - Dual-mode magic light string controller
+- HDMI sync light
 - Moes dimmer switch
 - Space Dog Music Lamp
 
