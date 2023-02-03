@@ -113,7 +113,7 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
             if pos is not None:
                 return (
                     self._control_dp.get_value(self._device) == "open"
-                    and self.current_cover_position != 100
+                    and self.current_cover_position < 95
                 )
 
     @property
@@ -137,14 +137,14 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
         # stuck in "open" state when we don't actually know what state it is.
         pos = self.current_cover_position
         if isinstance(pos, int):
-            return pos == 0
+            return pos < 5
 
     async def async_open_cover(self, **kwargs):
         """Open the cover."""
         if self._control_dp and "open" in self._control_dp.values(self._device):
             await self._control_dp.async_set_value(self._device, "open")
         elif self._position_dp:
-            pos = 0 if self._is_reversed else 100
+            pos = self._maybe_reverse(100)
             await self._position_dp.async_set_value(self._device, pos)
         else:
             raise NotImplementedError()
@@ -154,7 +154,7 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
         if self._control_dp and "close" in self._control_dp.values(self._device):
             await self._control_dp.async_set_value(self._device, "close")
         elif self._position_dp:
-            pos = 100 if self._is_reversed else 0
+            pos = self._maybe_reverse(0)
             await self._position_dp.async_set_value(self._device, pos)
         else:
             raise NotImplementedError()
