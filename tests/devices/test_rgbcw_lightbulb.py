@@ -72,6 +72,14 @@ class TestRGBCWLightbulb(BasicNumberTests, TuyaDeviceTestCase):
             (255, 255, 0, 255),
         )
 
+    # Lights have been observed to return N, O and P mixed in with the hex
+    # number.  Maybe it has some special meaning, but since it is undocumented,
+    # we just want to reject such values without an exception.
+    def test_invalid_rgbw_color(self):
+        self.dps[HSV_DPS] = "0010001000OP"
+        self.dps[BRIGHTNESS_DPS] = 1000
+        self.assertIsNone(self.subject.rgbw_color)
+
     def test_effect_list(self):
         self.assertCountEqual(
             self.subject.effect_list,

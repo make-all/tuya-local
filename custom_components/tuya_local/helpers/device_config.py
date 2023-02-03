@@ -332,9 +332,22 @@ class TuyaDpsConfig:
     def decoded_value(self, device):
         v = self.get_value(device)
         if self.rawtype == "hex" and isinstance(v, str):
-            return bytes.fromhex(v)
+            try:
+                return bytes.fromhex(v)
+            except ValueError:
+                _LOGGER.warning(
+                    f"{device.name} sent invalid hex '{v}' for {self.name}",
+                )
+                return None
+
         elif self.rawtype == "base64":
-            return b64decode(v)
+            try:
+                return b64decode(v)
+            except ValueError:
+                _LOGGER.warning(
+                    f"{device.name} sent invalid base64 '{v}' for {self.name}",
+                )
+                return None
         else:
             return v
 
