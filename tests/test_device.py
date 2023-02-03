@@ -277,7 +277,7 @@ class TestDevice(IsolatedAsyncioTestCase):
     async def test_async_set_property_sends_to_api(self):
         await self.subject.async_set_property("1", False)
 
-        self.mock_api().send.assert_called_once()
+        self.mock_api().set_multiple_values.assert_called_once()
 
     async def test_set_property_immediately_stores_pending_updates(self):
         self.subject._cached_state = {"1": True}
@@ -335,17 +335,19 @@ class TestDevice(IsolatedAsyncioTestCase):
             delta=2,
         )
 
-    def test_send_payload(self):
+    def test_set_values(self):
         # set up preconditions
         self.subject._pending_updates = {
             "1": {"value": "sample", "updated_at": time() - 2, "sent": False},
         }
 
         # call the function under test
-        self.subject._send_payload("PAYLOAD")
+        self.subject._set_values({"1": "sample"})
 
         # did it send what it was asked?
-        self.mock_api().send.assert_called_once_with("PAYLOAD")
+        self.mock_api().set_multiple_values.assert_called_once_with(
+            {"1": "sample"}, nowait=True
+        )
         # did it mark the pending updates as sent?
         self.assertTrue(self.subject._pending_updates["1"]["sent"])
         # did it update the time on the pending updates?

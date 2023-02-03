@@ -370,29 +370,25 @@ class TuyaLocalDevice(object):
 
     async def _send_pending_updates(self):
         pending_properties = self._get_unsent_properties()
-        payload = self._api.generate_payload(
-            tinytuya.CONTROL,
-            pending_properties,
-        )
 
         _LOGGER.debug(
             f"{self.name} sending dps update: {json.dumps(pending_properties, default=non_json)}"
         )
 
         await self._retry_on_failed_connection(
-            lambda: self._send_payload(payload),
+            lambda: self._set_values(pending_properties),
             "Failed to update device state.",
         )
 
-    def _send_payload(self, payload):
+    def _set_values(self, properties):
         try:
             self._lock.acquire()
-            self._api.send(payload)
+            self._api.set_multiple_values(properties, nowait=True)
             self._cached_state["updated_at"] = 0
             now = time()
             self._last_connection = now
             pending_updates = self._get_pending_updates()
-            for key in list(pending_updates):
+            for key in properties.keys():
                 pending_updates[key]["updated_at"] = now
                 pending_updates[key]["sent"] = True
         finally:
