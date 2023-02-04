@@ -9,8 +9,7 @@ from custom_components.tuya_local.const import (
     CONF_PROTOCOL_VERSION,
     DOMAIN,
 )
-from custom_components.tuya_local.generic.lock import TuyaLocalLock
-from custom_components.tuya_local.lock import async_setup_entry
+from custom_components.tuya_local.lock import async_setup_entry, TuyaLocalLock
 
 
 @pytest.mark.asyncio

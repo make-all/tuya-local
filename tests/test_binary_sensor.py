@@ -9,8 +9,10 @@ from custom_components.tuya_local.const import (
     CONF_TYPE,
     DOMAIN,
 )
-from custom_components.tuya_local.generic.binary_sensor import TuyaLocalBinarySensor
-from custom_components.tuya_local.binary_sensor import async_setup_entry
+from custom_components.tuya_local.binary_sensor import (
+    async_setup_entry,
+    TuyaLocalBinarySensor,
+)
 
 
 @pytest.mark.asyncio

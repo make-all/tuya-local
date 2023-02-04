@@ -9,8 +9,7 @@ from custom_components.tuya_local.const import (
     CONF_PROTOCOL_VERSION,
     DOMAIN,
 )
-from custom_components.tuya_local.generic.light import TuyaLocalLight
-from custom_components.tuya_local.light import async_setup_entry
+from custom_components.tuya_local.light import async_setup_entry, TuyaLocalLight
 
 
 @pytest.mark.asyncio

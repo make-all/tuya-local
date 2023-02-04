@@ -9,8 +9,7 @@ from custom_components.tuya_local.const import (
     CONF_TYPE,
     DOMAIN,
 )
-from custom_components.tuya_local.generic.switch import TuyaLocalSwitch
-from custom_components.tuya_local.switch import async_setup_entry
+from custom_components.tuya_local.switch import async_setup_entry, TuyaLocalSwitch
 
 
 @pytest.mark.asyncio

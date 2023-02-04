@@ -9,8 +9,7 @@ from custom_components.tuya_local.const import (
     CONF_TYPE,
     DOMAIN,
 )
-from custom_components.tuya_local.generic.siren import TuyaLocalSiren
-from custom_components.tuya_local.siren import async_setup_entry
+from custom_components.tuya_local.siren import async_setup_entry, TuyaLocalSiren
 
 
 @pytest.mark.asyncio

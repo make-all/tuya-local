@@ -9,8 +9,10 @@ from custom_components.tuya_local.const import (
     CONF_TYPE,
     DOMAIN,
 )
-from custom_components.tuya_local.generic.water_heater import TuyaLocalWaterHeater
-from custom_components.tuya_local.water_heater import async_setup_entry
+from custom_components.tuya_local.water_heater import (
+    async_setup_entry,
+    TuyaLocalWaterHeater,
+)
 
 
 @pytest.mark.asyncio

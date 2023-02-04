@@ -9,8 +9,7 @@ from custom_components.tuya_local.const import (
     CONF_TYPE,
     DOMAIN,
 )
-from custom_components.tuya_local.generic.climate import TuyaLocalClimate
-from custom_components.tuya_local.climate import async_setup_entry
+from custom_components.tuya_local.climate import async_setup_entry, TuyaLocalClimate
 
 
 @pytest.mark.asyncio

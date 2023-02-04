@@ -8,8 +8,7 @@ from custom_components.tuya_local.const import (
     CONF_TYPE,
     DOMAIN,
 )
-from custom_components.tuya_local.generic.vacuum import TuyaLocalVacuum
-from custom_components.tuya_local.vacuum import async_setup_entry
+from custom_components.tuya_local.vacuum import async_setup_entry, TuyaLocalVacuum
 
 
 @pytest.mark.asyncio

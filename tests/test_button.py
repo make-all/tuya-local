@@ -9,8 +9,10 @@ from custom_components.tuya_local.const import (
     CONF_TYPE,
     DOMAIN,
 )
-from custom_components.tuya_local.generic.button import TuyaLocalButton
-from custom_components.tuya_local.button import async_setup_entry
+from custom_components.tuya_local.button import (
+    async_setup_entry,
+    TuyaLocalButton,
+)
 
 
 @pytest.mark.asyncio

@@ -9,8 +9,10 @@ from custom_components.tuya_local.const import (
     CONF_PROTOCOL_VERSION,
     DOMAIN,
 )
-from custom_components.tuya_local.generic.humidifier import TuyaLocalHumidifier
-from custom_components.tuya_local.humidifier import async_setup_entry
+from custom_components.tuya_local.humidifier import (
+    async_setup_entry,
+    TuyaLocalHumidifier,
+)
 
 
 @pytest.mark.asyncio

@@ -9,8 +9,7 @@ from custom_components.tuya_local.const import (
     CONF_PROTOCOL_VERSION,
     DOMAIN,
 )
-from custom_components.tuya_local.generic.select import TuyaLocalSelect
-from custom_components.tuya_local.select import async_setup_entry
+from custom_components.tuya_local.select import async_setup_entry, TuyaLocalSelect
 
 
 @pytest.mark.asyncio

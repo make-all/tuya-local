@@ -9,8 +9,7 @@ from custom_components.tuya_local.const import (
     CONF_TYPE,
     DOMAIN,
 )
-from custom_components.tuya_local.generic.sensor import TuyaLocalSensor
-from custom_components.tuya_local.sensor import async_setup_entry
+from custom_components.tuya_local.sensor import async_setup_entry, TuyaLocalSensor
 
 
 @pytest.mark.asyncio

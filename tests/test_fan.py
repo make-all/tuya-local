@@ -9,8 +9,7 @@ from custom_components.tuya_local.const import (
     CONF_TYPE,
     DOMAIN,
 )
-from custom_components.tuya_local.generic.fan import TuyaLocalFan
-from custom_components.tuya_local.fan import async_setup_entry
+from custom_components.tuya_local.fan import async_setup_entry, TuyaLocalFan
 
 
 @pytest.mark.asyncio

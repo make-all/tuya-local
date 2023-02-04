@@ -4,21 +4,21 @@ from uuid import uuid4
 
 from homeassistant.helpers.entity import EntityCategory
 
-from custom_components.tuya_local.generic.binary_sensor import TuyaLocalBinarySensor
-from custom_components.tuya_local.generic.button import TuyaLocalButton
-from custom_components.tuya_local.generic.climate import TuyaLocalClimate
-from custom_components.tuya_local.generic.cover import TuyaLocalCover
-from custom_components.tuya_local.generic.fan import TuyaLocalFan
-from custom_components.tuya_local.generic.humidifier import TuyaLocalHumidifier
-from custom_components.tuya_local.generic.light import TuyaLocalLight
-from custom_components.tuya_local.generic.lock import TuyaLocalLock
-from custom_components.tuya_local.generic.number import TuyaLocalNumber
-from custom_components.tuya_local.generic.select import TuyaLocalSelect
-from custom_components.tuya_local.generic.sensor import TuyaLocalSensor
-from custom_components.tuya_local.generic.siren import TuyaLocalSiren
-from custom_components.tuya_local.generic.switch import TuyaLocalSwitch
-from custom_components.tuya_local.generic.vacuum import TuyaLocalVacuum
-from custom_components.tuya_local.generic.water_heater import TuyaLocalWaterHeater
+from custom_components.tuya_local.binary_sensor import TuyaLocalBinarySensor
+from custom_components.tuya_local.button import TuyaLocalButton
+from custom_components.tuya_local.climate import TuyaLocalClimate
+from custom_components.tuya_local.cover import TuyaLocalCover
+from custom_components.tuya_local.fan import TuyaLocalFan
+from custom_components.tuya_local.humidifier import TuyaLocalHumidifier
+from custom_components.tuya_local.light import TuyaLocalLight
+from custom_components.tuya_local.lock import TuyaLocalLock
+from custom_components.tuya_local.number import TuyaLocalNumber
+from custom_components.tuya_local.select import TuyaLocalSelect
+from custom_components.tuya_local.sensor import TuyaLocalSensor
+from custom_components.tuya_local.siren import TuyaLocalSiren
+from custom_components.tuya_local.switch import TuyaLocalSwitch
+from custom_components.tuya_local.vacuum import TuyaLocalVacuum
+from custom_components.tuya_local.water_heater import TuyaLocalWaterHeater
 
 from custom_components.tuya_local.helpers.device_config import (
     TuyaDeviceConfig,
