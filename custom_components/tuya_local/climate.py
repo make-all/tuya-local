@@ -132,7 +132,10 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         """Return the precision of the temperature setting."""
         # unlike sensor, this is a decimal of the smallest unit that can be
         # represented, not a number of decimal places.
-        return 1.0 / self._temperature_dps.scale(self._device)
+        return 1.0 / max(
+            self._temperature_dps.scale(self._device),
+            self._current_temperature_dps.scale(self._device),
+        )
 
     @property
     def target_temperature(self):
