@@ -454,6 +454,23 @@ class TuyaDpsConfig:
         else:
             return None
 
+    def precision(self, device):
+        if self.type is int:
+            scale = 1
+            mapping = self._find_map_for_dps(device.get_property(self.id))
+            if mapping:
+                scale = mapping.get("scale", 1)
+                cond = self._active_condition(mapping, device)
+                if cond:
+                    scale = cond.get("scale", scale)
+            precision = 0
+            _LOGGER.debug(f"calculating precision of scale {scale}...")
+            while scale > 1.0:
+                scale /= 10.0
+                precision += 1
+            _LOGGER.debug(f"...precision calculated as {precision}")
+            return precision
+
     def step(self, device, scaled=True):
         step = 1
         scale = 1

@@ -94,3 +94,8 @@ class TestSwitchV2(
                 "current_power_w": 567.8,
             },
         )
+
+    def test_sensor_precision(self):
+        self.assertEqual(self.multiSensor["sensor_current"].native_precision, 0)
+        self.assertEqual(self.multiSensor["sensor_power"].native_precision, 1)
+        self.assertEqual(self.multiSensor["sensor_voltage"].native_precision, 1)

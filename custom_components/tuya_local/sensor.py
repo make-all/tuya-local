@@ -79,3 +79,8 @@ class TuyaLocalSensor(TuyaLocalEntity, SensorEntity):
             unit = self._unit_dps.get_value(self._device)
 
         return unit_from_ascii(unit)
+
+    @property
+    def native_precision(self):
+        """Return the precision for the sensor"""
+        return self._sensor_dps.precision(self._device)
