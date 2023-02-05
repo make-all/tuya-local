@@ -8,7 +8,7 @@ from homeassistant.components.water_heater import (
     STATE_PERFORMANCE,
     WaterHeaterEntityFeature,
 )
-from homeassistant.const import UnitOfTemperature
+from homeassistant.const import PRECISION_WHOLE, UnitOfTemperature
 
 from ..const import HYDROTHERM_DYNAMICX8_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -49,6 +49,9 @@ class TestHydrothermDynamicX8(
 
     def test_temperature_unit_returns_celsius(self):
         self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
+
+    def test_precision(self):
+        self.assertEqual(self.subject.precision, PRECISION_WHOLE)
 
     def test_current_temperature(self):
         self.dps[CURRENTTEMP_DP] = 55

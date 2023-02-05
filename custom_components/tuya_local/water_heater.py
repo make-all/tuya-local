@@ -86,6 +86,16 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
         return UnitOfTemperature.CELSIUS
 
     @property
+    def precision(self):
+        """Return the precision of the temperature setting."""
+        # unlike sensor, this is a decimal of the smallest unit that can be
+        # represented, not a number of decimal places.
+        return 1.0 / max(
+            self._temperature_dps.scale(self._device),
+            self._current_temperature_dps.scale(self._device),
+        )
+
+    @property
     def current_operation(self):
         """Return current operation ie. eco, electric, performance, ..."""
         return self._operation_mode_dps.get_value(self._device)
