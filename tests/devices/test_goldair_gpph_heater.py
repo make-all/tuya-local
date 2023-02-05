@@ -4,7 +4,12 @@ from homeassistant.components.climate.const import (
     HVACMode,
 )
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import PERCENTAGE, UnitOfTime, UnitOfTemperature
+from homeassistant.const import (
+    PERCENTAGE,
+    PRECISION_WHOLE,
+    UnitOfTime,
+    UnitOfTemperature,
+)
 
 from ..const import GPPH_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -105,6 +110,9 @@ class TestGoldairHeater(
 
     def test_temperature_unit_returns_celsius(self):
         self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
+
+    def test_precision(self):
+        self.assertEqual(self.subject.precision, PRECISION_WHOLE)
 
     def test_target_temperature_in_eco_and_af_modes(self):
         self.dps[TEMPERATURE_DPS] = 25

@@ -432,59 +432,51 @@ class TuyaDpsConfig:
 
     def range(self, device, scaled=True):
         """Return the range for this dps if configured."""
+        scale = self.scale(device) if scaled else 1
         mapping = self._find_map_for_dps(device.get_property(self.id))
-        scale = 1
+        r = self._config.get("range")
         if mapping:
             _LOGGER.debug(f"Considering mapping for range of {self.name}")
-            if scaled:
-                scale = mapping.get("scale", scale)
             cond = self._active_condition(mapping, device)
             if cond:
-                constraint = mapping.get("constraint")
-                if scaled:
-                    scale = mapping.get("scale", scale)
-                _LOGGER.debug(f"Considering condition on {constraint}")
-            r = None if cond is None else cond.get("range")
-            if r and "min" in r and "max" in r:
-                _LOGGER.debug(f"Conditional range returned for {self.name}")
-                return _scale_range(r, scale)
-        r = self._config.get("range")
+                r = cond.get("range", r)
+
         if r and "min" in r and "max" in r:
             return _scale_range(r, scale)
         else:
             return None
 
+    def scale(self, device):
+        scale = 1
+        mapping = self._find_map_for_dps(device.get_property(self.id))
+        if mapping:
+            scale = mapping.get("scale", 1)
+            cond = self._active_condition(mapping, device)
+            if cond:
+                scale = cond.get("scale", scale)
+        return scale
+
     def precision(self, device):
         if self.type is int:
-            scale = 1
-            mapping = self._find_map_for_dps(device.get_property(self.id))
-            if mapping:
-                scale = mapping.get("scale", 1)
-                cond = self._active_condition(mapping, device)
-                if cond:
-                    scale = cond.get("scale", scale)
+            scale = self.scale(device)
             precision = 0
-            _LOGGER.debug(f"calculating precision of scale {scale}...")
             while scale > 1.0:
                 scale /= 10.0
                 precision += 1
-            _LOGGER.debug(f"...precision calculated as {precision}")
             return precision
 
     def step(self, device, scaled=True):
         step = 1
-        scale = 1
+        scale = self.scale(device) if scaled else 1
         mapping = self._find_map_for_dps(device.get_property(self.id))
         if mapping:
             _LOGGER.debug(f"Considering mapping for step of {self.name}")
             step = mapping.get("step", 1)
-            scale = mapping.get("scale", 1)
             cond = self._active_condition(mapping, device)
             if cond:
                 constraint = mapping.get("constraint")
                 _LOGGER.debug(f"Considering condition on {constraint}")
                 step = cond.get("step", step)
-                scale = cond.get("scale", scale)
         if step != 1 or scale != 1:
             _LOGGER.debug(f"Step for {self.name} is {step} with scale {scale}")
         return step / scale if scaled else step
@@ -551,14 +543,11 @@ class TuyaDpsConfig:
             self.stringify = False
 
         result = value
+        scale = self.scale(device)
 
         mapping = self._find_map_for_dps(value)
         if mapping:
-            scale = mapping.get("scale", 1)
             invert = mapping.get("invert", False)
-
-            if not isinstance(scale, (int, float)):
-                scale = 1
             redirect = mapping.get("value_redirect")
             mirror = mapping.get("value_mirror")
             replaced = "value" in mapping
@@ -569,7 +558,6 @@ class TuyaDpsConfig:
                     return None
                 replaced = replaced or "value" in cond
                 result = cond.get("value", result)
-                scale = cond.get("scale", scale)
                 redirect = cond.get("value_redirect", redirect)
                 mirror = cond.get("value_mirror", mirror)
                 for m in cond.get("mapping", {}):
@@ -667,14 +655,12 @@ class TuyaDpsConfig:
             return dps_map
 
         mapping = self._find_map_for_value(value, device)
+        scale = self.scale(device)
         if mapping:
             replaced = False
-            scale = mapping.get("scale", 1)
             redirect = mapping.get("value_redirect")
             invert = mapping.get("invert", False)
 
-            if not isinstance(scale, (int, float)):
-                scale = 1
             step = mapping.get("step")
             if not isinstance(step, (int, float)):
                 step = None
@@ -703,7 +689,6 @@ class TuyaDpsConfig:
                     if m.get("value") == value:
                         result = m.get("dps_val", result)
 
-                scale = cond.get("scale", scale)
                 step = cond.get("step", step)
                 redirect = cond.get("value_redirect", redirect)
 

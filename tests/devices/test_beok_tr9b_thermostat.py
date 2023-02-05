@@ -3,7 +3,7 @@ from homeassistant.components.climate.const import (
     ClimateEntityFeature,
     HVACMode,
 )
-from homeassistant.const import UnitOfTemperature
+from homeassistant.const import PRECISION_TENTHS, UnitOfTemperature
 
 from ..const import BEOK_TR9B_PAYLOAD
 from ..mixins.climate import TargetTemperatureTests
@@ -152,6 +152,9 @@ class TestBeokTR9BThermostat(
             UnitOfTemperature.FAHRENHEIT,
         )
         self.assertEqual(self.subject.target_temperature_step, 1.0)
+
+    def test_precision(self):
+        self.assertEqual(self.subject.precision, PRECISION_TENTHS)
 
     def test_current_temperature(self):
         self.dps[CURRENTTEMP_DPS] = 685
