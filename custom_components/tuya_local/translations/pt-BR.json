@@ -1,0 +1,59 @@
+{
+    "title": "Tuya Local",
+    "config": {
+        "step": {
+            "user": {
+                "title": "Configure seu dispositivo Tuya Local",
+                "description": "[Siga estas instruções para encontrar o ID do seu dispositivo e a chave local.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "Endereço IP ou nome do host",
+                    "device_id": "Device ID (uuid)",
+                    "local_key": "Chave Local",
+                    "protocol_version": "Versão do protocolo (tente auto se não souber)",
+                    "poll_only": "Pesquisar (tente isto se o seu dispositivo não funcionar totalmente)"
+                }
+            },
+            "select_type": {
+                "title": "Escolha o tipo de dispositivo",
+                "description": "Escolha o tipo que corresponde ao seu dispositivo",
+                "data": {
+                    "type": "Tipo de dispositivo"
+                }
+            },
+            "choose_entities": {
+                "title": "Detalhes do dispositivo",
+                "description": "Escolha um nome para este dispositivo e quais entidades serão habilitadas",
+                "data": {
+                    "name": "Nome"
+                }
+            }
+        },
+        "abort": {
+            "already_configured": "Um dispositivo com esse ID já foi adicionado.",
+            "not_supported": "Desculpe, não há suporte para este dispositivo."
+        },
+        "error": {
+            "connection": "Não foi possível conectar ao seu dispositivo com esses detalhes. Pode ser um problema intermitente ou eles podem estar incorretos."
+        }
+    },
+    "options": {
+        "step": {
+            "user": {
+                "title": "Configure seu dispositivo Tuya Local",
+                "description": "[Siga estas instruções para encontrar o ID do seu dispositivo e a chave local.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "Endereço IP ou nome do host",
+                    "local_key": "Chave Local",
+                    "protocol_version": "Versão do protocolo (tente auto se não souber)",
+                    "poll_only": "Pesquisar (tente isto se o seu dispositivo não funcionar totalmente)"
+                }
+            }
+        },
+        "error": {
+            "connection": "Não foi possível conectar ao seu dispositivo com esses detalhes. Pode ser um problema intermitente ou eles podem estar incorretos."
+        },
+        "abort": {
+            "not_supported": "Desculpe, não há suporte para este dispositivo."
+        }
+    }
+}
