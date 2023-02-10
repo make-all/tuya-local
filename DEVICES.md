@@ -254,7 +254,8 @@ generic configurations known to work with multiple brands of device.
 
 - Bresser smart 7-in-1 weather station
 - Catit Pixi smart fountain
+- Catit pet feeder (experimental)
+- Nedis pet feeder
 - Qoto 03 smart water valve / sprinkler controller
 - SD123 HPR01 human presence radar
 - Universal remote control (supports sensors only)
-- Catit pet feeder (experimental)

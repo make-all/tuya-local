@@ -171,3 +171,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [BeardedTinker](https://github.com/BeardedTinker) for assisting with support for SG600MD smart inverter.
 - [LeandroIssa](https://github.com/LeandroIssa) for contributing Brazilian Portuguese translations.
 - [YuriiMaiboroda](https://github.com/YuriiMaiboroda) for contributing Ukrainian translations.
+- [samios88](https://github.com/samios88) for assistance supporting Nedis pet feeders.
