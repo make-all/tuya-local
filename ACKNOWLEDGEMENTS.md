@@ -174,3 +174,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [samios88](https://github.com/samios88) for assistance supporting Nedis pet feeders.
 - [janchrillesen](https://github.com/janchrillesen) for assistance supporting Nedis air quality monitors.
 - [Celezak](https://github.com/Celezak) for assistance supporting Qnect 3 outlet + USB powerstrips.
+- [ShayGus](https://github.com/ShayGus) for contributing support for Avatto curtain and light switch.

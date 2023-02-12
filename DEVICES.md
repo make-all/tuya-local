@@ -226,6 +226,7 @@ generic configurations known to work with multiple brands of device.
 
 - Simple garage door
 - Simple blind controller
+- Avatto curtain and light switch
 - Avatto curtain switch
 - Avatto roller blinds controller
 - Benexmart blind motor
