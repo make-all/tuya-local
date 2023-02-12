@@ -172,3 +172,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [LeandroIssa](https://github.com/LeandroIssa) for contributing Brazilian Portuguese translations.
 - [YuriiMaiboroda](https://github.com/YuriiMaiboroda) for contributing Ukrainian translations.
 - [samios88](https://github.com/samios88) for assistance supporting Nedis pet feeders.
+- [janchrillesen](https://github.com/janchrillesen) for assistance supporting Nedis air quality monitors.

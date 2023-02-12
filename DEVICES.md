@@ -256,6 +256,7 @@ generic configurations known to work with multiple brands of device.
 - Catit Pixi smart fountain
 - Catit pet feeder (experimental)
 - Nedis pet feeder
+- Nedis WIFISA10CWT air quality monitor
 - Qoto 03 smart water valve / sprinkler controller
 - SD123 HPR01 human presence radar
 - Universal remote control (supports sensors only)
