@@ -173,21 +173,22 @@
 - Arlec PB88UHA 4 way powerstrip with child lock
 - Aubess 1-gang switch with energy monitoring
 - Aubess 2-gang switch
-- DIGOO DG-SP202 dual smartplug with energy monitoring and timers.
-- DIGOO DG-SP01 USB smartplug with night light.
-- Dual power monitoring smartplug (Geex).
-- ES01 3 outlet + USB powerstrip with individual timers.
+- DIGOO DG-SP202 dual smartplug with energy monitoring and timers
+- DIGOO DG-SP01 USB smartplug with night light
+- Dual power monitoring smartplug (Geex)
+- ES01 3 outlet + USB powerstrip with individual timers
 - Grid Connect double outlet wall socket
 - Grid Connect double outlet with Energy Monitoring, Master and Individual switches and Child Lock
 - Grid Connect USB charger with power socket
 - Logicom Strippy 4 way power strip with USB
 - Mirabella Genio smartplug with USB
 - MoesHouse smartplug with RGBW nightlight
+- Qnect QN-WPO3 3 outlet + USB powerstrip with individual timers
 - Single switch with backlight (unbranded)
 - Somgam single wall switch
 - Somgam double wall switch
-- Tellur 3 outlet + USB power strip with individual timers.
-- Woox R4028/DIGOO DG-PS01 3 outlet + USB powerstrip with individual timers.
+- Tellur 3 outlet + USB power strip with individual timers
+- Woox R4028/DIGOO DG-PS01 3 outlet + USB powerstrip with individual timers
 
 Other brands may work with the above configurations, or the below are
 generic configurations known to work with multiple brands of device.
