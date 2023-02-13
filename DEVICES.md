@@ -118,7 +118,7 @@
 ### Dehumidifiers
 
 - AlecoAir D12 ECO dehumidifier
-- AlecoAir D12 Home dehumidifier
+- AlecoAir D12/D16 Home dehumidifier
 - AlecoAir D14 purifying dehumidifier
 - AlecoAir D16 purifying dehumidifier
 - ElectriQ CD12PRO-LE dehumidifier

@@ -176,3 +176,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [Celezak](https://github.com/Celezak) for assistance supporting Qnect 3 outlet + USB powerstrips.
 - [ShayGus](https://github.com/ShayGus) for contributing support for Avatto curtain and light switch.
 - [garry0garry](https://github.com/garry0garry) for assistance supporting TOMPD circuit breakers.
+- [romicaiarca](https://github.com/romicaiarca) for contributing Aleco D12 Home dehumidifier support.
