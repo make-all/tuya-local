@@ -262,6 +262,7 @@ generic configurations known to work with multiple brands of device.
 - Bresser smart 7-in-1 weather station
 - Catit Pixi smart fountain
 - Catit pet feeder (experimental)
+- Konlen/Rockson WF96L water level controller
 - Nedis pet feeder
 - Nedis WIFISA10CWT air quality monitor
 - Qoto 03 smart water valve / sprinkler controller
