@@ -101,6 +101,7 @@
 - Goldair GCPF315 fan
 - Ledkia fan and light controller
 - Lexy F501 fan
+- Skyfan DC fan
 - Stirling FS1-40DC pedestal fan
 - TMWF02 fan controller
 - Treatlife DS02-F fan switch
