@@ -268,3 +268,4 @@ generic configurations known to work with multiple brands of device.
 - Qoto 03 smart water valve / sprinkler controller
 - SD123 HPR01 human presence radar
 - Universal remote control (supports sensors only)
+- VisorTech ZX-3150 smoke detector

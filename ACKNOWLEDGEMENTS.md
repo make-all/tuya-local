@@ -181,3 +181,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [berdahl](https://github.com/bergdahl) for contributing support for Stadler Eva humidifiers.
 - [dezinc57](https://github.com/dezinc57) for assistance supporting Fanco ceiling fan and light.
 - [hasio144](https://github.com/hasio144) for assistance supporting WF96L water level controllers.
+- [boekerolli](https://github.com/boekerolli) for assistance supporting VisorTech smoke alarms.
