@@ -145,6 +145,7 @@
 - BlitzWolf BWSH5 humidifier
 - Eanons QT-JS2014 purifying humidifier
 - Kyvol EA200 humidifier
+- Stadler Eva humidifier
 - Wetair WAW-H1210LW humidifier
 - Wilfa Haze HU400BC humidifier
 
@@ -178,6 +179,7 @@
 - DIGOO DG-SP202 dual smartplug with energy monitoring and timers
 - DIGOO DG-SP01 USB smartplug with night light
 - Dual power monitoring smartplug (Geex)
+- Elivco energy monitoring smartplug
 - ES01 3 outlet + USB powerstrip with individual timers
 - Gosund P1 3 outlet + USB powerstrip with power monitoring
 - Grid Connect double outlet wall socket
