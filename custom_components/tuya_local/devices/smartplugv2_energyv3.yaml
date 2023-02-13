@@ -2,6 +2,8 @@ name: Energy monitoring smartplug
 products:
   - id: 2iepauebcvo74ujc
     name: Aubess 20A
+  - id: wrz6vzch8htux2zp
+    name: Elivco CB2S-16DL
 primary_entity:
   entity: switch
   class: outlet
@@ -12,27 +14,18 @@ primary_entity:
     - id: 21
       type: integer
       name: test_bit
-    - id: 22
-      type: integer
-      name: voltage_calibration
-    - id: 23
-      type: integer
-      name: current_calibration
-    - id: 24
-      type: integer
-      name: power_calibration
-    - id: 25
-      type: integer
-      name: energy_calibration
     - id: 26
       type: bitfield
       name: fault_code
     - id: 42
-      type: string
+      type: base64
       name: cycle_timer
     - id: 43
-      type: string
+      type: base64
       name: random_timer
+    - id: 44
+      type: base64
+      name: inching
 secondary_entities:
   - entity: number
     category: config
@@ -59,6 +52,12 @@ secondary_entities:
         type: integer
         unit: Wh
         class: total_increasing
+        optional: true
+      - id: 25
+        type: integer
+        name: calibration
+        # seems to be present even when 17 is missing, but for consistency
+        optional: true
   - entity: sensor
     category: diagnostic
     class: current
@@ -69,6 +68,9 @@ secondary_entities:
         type: integer
         class: measurement
         unit: mA
+      - id: 23
+        type: integer
+        name: calibration
   - entity: sensor
     category: diagnostic
     class: power
@@ -81,6 +83,9 @@ secondary_entities:
         unit: W
         mapping:
           - scale: 10
+      - id: 24
+        type: integer
+        name: calibration
   - entity: sensor
     category: diagnostic
     class: voltage
@@ -93,6 +98,9 @@ secondary_entities:
         unit: V
         mapping:
           - scale: 10
+      - id: 22
+        type: integer
+        name: calibration
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -146,11 +154,10 @@ secondary_entities:
           - dps_val: "on"
             value: "On"
   - entity: switch
-    name: Auto-off
+    name: Overcharge protection
     category: config
-    icon: "mdi:camera-timer"
     dps:
-      - id: 44
+      - id: 39
         type: boolean
         name: switch
-
+        optional: true

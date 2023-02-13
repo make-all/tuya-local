@@ -172,17 +172,23 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
     if existing:
         existing["device"].pause()
 
-    device = TuyaLocalDevice(
-        "Test",
-        config[CONF_DEVICE_ID],
-        config[CONF_HOST],
-        config[CONF_LOCAL_KEY],
-        config[CONF_PROTOCOL_VERSION],
-        hass,
-        True,
-    )
-    await device.async_refresh()
+    try:
+        device = TuyaLocalDevice(
+            "Test",
+            config[CONF_DEVICE_ID],
+            config[CONF_HOST],
+            config[CONF_LOCAL_KEY],
+            config[CONF_PROTOCOL_VERSION],
+            hass,
+            True,
+        )
+        await device.async_refresh()
+        retval = device if device.has_returned_state else None
+    except Exception as e:
+        _LOGGER.warning(e)
+        retval = None
+
     if existing:
         existing["device"].resume()
 
-    return device if device.has_returned_state else None
+    return retval

@@ -170,7 +170,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [mypixies](https://github.com/mypixies) for assisting with support for Moes dimmer switch.
 - [BeardedTinker](https://github.com/BeardedTinker) for assisting with support for SG600MD smart inverter.
 - [LeandroIssa](https://github.com/LeandroIssa) for contributing Brazilian Portuguese translations.
-- [YuriiMaiboroda](https://github.com/YuriiMaiboroda) for contributing Ukrainian translations.
+- [YuriiMaiboroda](https://github.com/YuriiMaiboroda) for contributing Ukrainian translations and assistance supporting Elivco smartplugs.
 - [samios88](https://github.com/samios88) for assistance supporting Nedis pet feeders.
 - [janchrillesen](https://github.com/janchrillesen) for assistance supporting Nedis air quality monitors.
 - [Celezak](https://github.com/Celezak) for assistance supporting Qnect 3 outlet + USB powerstrips.
@@ -178,3 +178,9 @@ Further device support has been made with the assistance of users.  Please consi
 - [garry0garry](https://github.com/garry0garry) for assistance supporting TOMPD circuit breakers.
 - [romicaiarca](https://github.com/romicaiarca) for contributing Aleco D12 Home dehumidifier support.
 - [spitfire](https://github.com/spitfire) for assistance supporting Gosund P1 powerstrips.
+- [berdahl](https://github.com/bergdahl) for contributing support for Stadler Eva humidifiers.
+- [dezinc57](https://github.com/dezinc57) for assistance supporting Fanco ceiling fan and light.
+- [hasio144](https://github.com/hasio144) for assistance supporting WF96L water level controllers.
+- [boekerolli](https://github.com/boekerolli) for assistance supporting VisorTech smoke alarms.
+- [ruaandeysel](https://github.com/ruaandeysel) for assistance supporting Skyfan DC fans.
+- [DataGeek-AU](https://github.com/DataGeek-AU) for contributing support for Breville Easy Air purifiers.

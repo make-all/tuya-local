@@ -97,15 +97,18 @@
 - Arlec Grid Connect smart ceiling fan (with and without light)
 - Aspen ASP 200 fan
 - Deta fan controller
+- Fanco Eco Silent Deluxe ceiling fan with LED light
 - Goldair GCPF315 fan
 - Ledkia fan and light controller
 - Lexy F501 fan
+- Skyfan DC fan
 - Stirling FS1-40DC pedestal fan
 - TMWF02 fan controller
 - Treatlife DS02-F fan switch
 
 ### Air Purifiers
 
+- Breville Easy Air purifier
 - essentials portable air purifier
 - Himox H05 and H06 air purifiers
 - Hosome air purifier
@@ -145,6 +148,7 @@
 - BlitzWolf BWSH5 humidifier
 - Eanons QT-JS2014 purifying humidifier
 - Kyvol EA200 humidifier
+- Stadler Eva humidifier
 - Wetair WAW-H1210LW humidifier
 - Wilfa Haze HU400BC humidifier
 
@@ -202,7 +206,7 @@ generic configurations known to work with multiple brands of device.
 - Generic smartplug with energy monitoring (newer models)
   _confirmed working with Kogan single smartplug with USB and Rillpac smartplugs_
 - Generic smartplug with more advanced energy monitoring
-  _confirmed working with CBE smartplugs, another variant with child lock, backlight and inching switch confirmed with Aubess_
+  _confirmed working with CBE smartplugs, another variant with child lock, backlight and inching switch confirmed with Aubess and Elivco_
 - Generic smartplug with some additional encoded schedule info.
   _confirmed working as a simple switch and timer with Kashimura KJ-173_
 - Generic double switch with timers (confirmed with Living dual switch and another v2 variant with Avatto dual switch)
@@ -260,8 +264,10 @@ generic configurations known to work with multiple brands of device.
 - Bresser smart 7-in-1 weather station
 - Catit Pixi smart fountain
 - Catit pet feeder (experimental)
+- Konlen/Rockson WF96L water level controller
 - Nedis pet feeder
 - Nedis WIFISA10CWT air quality monitor
 - Qoto 03 smart water valve / sprinkler controller
 - SD123 HPR01 human presence radar
 - Universal remote control (supports sensors only)
+- VisorTech ZX-3150 smoke detector
