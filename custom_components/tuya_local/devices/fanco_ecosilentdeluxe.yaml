@@ -1,0 +1,40 @@
+name: Fanco Eco Silent Deluxe
+product:
+  - id: agyqzsfpafsvkrl9
+    name: MZ-DCFAN
+primary_entity:
+  entity: fan
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 3
+      name: speed
+      type: integer
+      range:
+        min: 1
+        max: 6
+      mapping:
+        - scale: 0.06
+secondary_entities:
+  - entity: light
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+      - id: 16
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - scale: 3.92
+      - id: 17
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - invert: true

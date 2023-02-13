@@ -97,6 +97,7 @@
 - Arlec Grid Connect smart ceiling fan (with and without light)
 - Aspen ASP 200 fan
 - Deta fan controller
+- Fanco Eco Silent Deluxe ceiling fan with LED light
 - Goldair GCPF315 fan
 - Ledkia fan and light controller
 - Lexy F501 fan
