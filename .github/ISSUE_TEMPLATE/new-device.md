@@ -30,7 +30,7 @@ If you do not have access to iot.tuya.com, please try to identify as many DPs as
 # Product ID
 
 <!--
-If you have access to the IoT portal, please paste just the product_id line from API Explorer: General Device Capabilities" / "General Devices management" / "Get Device Information".  You will also find the local_key in here, please take care not to post that publicly.  If you do, then re-pairing the device with the mobile app will refresh the local key. 
+If you have access to the IoT portal, please paste just the product_id line from API Explorer: General Device Capabilities" / "General Devices management" / "Get Device Information".  You will also find the local_key in here, please take care not to post that publicly.  If you do, then re-pairing the device with the mobile app will refresh the local key.
 
 Although this information is optional and not required, it will be used in future to identify matching devices.
 -->
@@ -41,4 +41,4 @@ Although this information is optional and not required, it will be used in futur
 <!--
 If there is a manual or other explanation available online, please link to it (even if not in English)
 Otherwise if it is not obvious what all the functions do, please give a brief description.
-->
+-->
