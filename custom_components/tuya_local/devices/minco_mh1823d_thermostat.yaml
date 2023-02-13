@@ -252,6 +252,40 @@ secondary_entities:
             value: C
           - dps_val: f
             value: F
+  - entity: number
+    category: config
+    name: Set temperature
+    icon: "mdi:thermometer"
+    dps:
+      - id: 22
+        type: integer
+        name: value
+        range:
+          min: 5
+          max: 30
+        constraint: unit
+        conditions:
+          - dps_val: f
+            value_redirect: temp_f
+            range:
+              min: 41
+              max: 99
+      - id: 23
+        type: integer
+        name: temp_f
+        range:
+          min: 41
+          max: 99
+        hidden: true
+      - id: 19
+        type: string
+        name: unit
+        hidden: true
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
   - entity: select
     name: Schedule
     category: config
@@ -285,6 +319,33 @@ secondary_entities:
         type: integer
         name: extern_temp_f
         hidden: true
+        mapping:
+          - scale: 10
+      - id: 19
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+  - entity: sensor
+    name: Internal temperature
+    class: temperature
+    dps:
+      - id: 33
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+            constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: current_temp_f
+      - id: 37
+        type: integer
+        name: current_temp_f
         mapping:
           - scale: 10
       - id: 19
