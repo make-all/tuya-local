@@ -118,7 +118,7 @@
 ### Dehumidifiers
 
 - AlecoAir D12 ECO dehumidifier
-- AlecoAir D12 Home dehumidifier
+- AlecoAir D12/D16 Home dehumidifier
 - AlecoAir D14 purifying dehumidifier
 - AlecoAir D16 purifying dehumidifier
 - ElectriQ CD12PRO-LE dehumidifier
@@ -164,6 +164,7 @@
 - PJ-1103 power clamp meter
 - SG600MD Smart Solar Inverter (also SG700MD, other SGxx0MD and SGxx0W models) sold under various brands
 - SmartMCB SMT006 energy meter
+- TOMPD-63LW energy meter circuit breaker
 
 ### Battery Charger
 
@@ -174,21 +175,23 @@
 - Arlec PB88UHA 4 way powerstrip with child lock
 - Aubess 1-gang switch with energy monitoring
 - Aubess 2-gang switch
-- DIGOO DG-SP202 dual smartplug with energy monitoring and timers.
-- DIGOO DG-SP01 USB smartplug with night light.
-- Dual power monitoring smartplug (Geex).
-- ES01 3 outlet + USB powerstrip with individual timers.
+- DIGOO DG-SP202 dual smartplug with energy monitoring and timers
+- DIGOO DG-SP01 USB smartplug with night light
+- Dual power monitoring smartplug (Geex)
+- ES01 3 outlet + USB powerstrip with individual timers
+- Gosund P1 3 outlet + USB powerstrip with power monitoring
 - Grid Connect double outlet wall socket
 - Grid Connect double outlet with Energy Monitoring, Master and Individual switches and Child Lock
 - Grid Connect USB charger with power socket
 - Logicom Strippy 4 way power strip with USB
 - Mirabella Genio smartplug with USB
 - MoesHouse smartplug with RGBW nightlight
+- Qnect QN-WPO3 3 outlet + USB powerstrip with individual timers
 - Single switch with backlight (unbranded)
 - Somgam single wall switch
 - Somgam double wall switch
-- Tellur 3 outlet + USB power strip with individual timers.
-- Woox R4028/DIGOO DG-PS01 3 outlet + USB powerstrip with individual timers.
+- Tellur 3 outlet + USB power strip with individual timers
+- Woox R4028/DIGOO DG-PS01 3 outlet + USB powerstrip with individual timers
 
 Other brands may work with the above configurations, or the below are
 generic configurations known to work with multiple brands of device.
@@ -226,6 +229,7 @@ generic configurations known to work with multiple brands of device.
 
 - Simple garage door
 - Simple blind controller
+- Avatto curtain and light switch
 - Avatto curtain switch
 - Avatto roller blinds controller
 - Benexmart blind motor
@@ -257,6 +261,7 @@ generic configurations known to work with multiple brands of device.
 - Catit Pixi smart fountain
 - Catit pet feeder (experimental)
 - Nedis pet feeder
+- Nedis WIFISA10CWT air quality monitor
 - Qoto 03 smart water valve / sprinkler controller
 - SD123 HPR01 human presence radar
 - Universal remote control (supports sensors only)

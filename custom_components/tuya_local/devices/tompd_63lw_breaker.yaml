@@ -1,0 +1,111 @@
+name: Circuit breaker energy meter
+product:
+  - id: rrmpzckqm5pfd642
+    name: TOMPD-63LW
+primary_entity:
+  entity: switch
+  dps:
+    - id: 16
+      name: switch
+      type: boolean
+    - id: 17
+      name: alarm_set_1
+      optional: true
+      type: string
+    - id: 18
+      name: alarm_set_2
+      optional: true
+      type: string
+    - id: 6
+      name: phase_a
+      type: string
+      optional: true
+    - id: 9
+      name: fault
+      type: bitfield
+      mapping:
+        - dps_val: 0
+          value: OK
+    - id: 19
+      name: breaker_number
+      type: string
+secondary_entities:
+  - entity: switch
+    name: Prepayment
+    icon: "mdi:cash-multiple"
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
+  - entity: button
+    name: Energy reset
+    class: restart
+    category: config
+    dps:
+      - id: 12
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: empty
+            value: true
+  - entity: sensor
+    name: Balance energy
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Charge energy
+    category: config
+    icon: "mdi:cash"
+    dps:
+      - id: 14
+        type: integer
+        name: value
+        optional: true
+        unit: kWh
+        range:
+          min: 0
+          max: 99999
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Leakage current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        unit: mA
+        class: measurement
+  - entity: button
+    name: Earth leak test
+    icon: "mdi:current-ac"
+    category: config
+    dps:
+      - id: 21
+        type: boolean
+        name: button
+        optional: true
+  - entity: sensor
+    name: Energy
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+
+
