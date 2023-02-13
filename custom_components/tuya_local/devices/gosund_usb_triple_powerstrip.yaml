@@ -32,6 +32,66 @@ secondary_entities:
       - id: 7
         type: boolean
         name: switch
+  - entity: number
+    name: Timer 1
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        unit: min 
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    name: Timer 2
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        unit: min 
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    name: Timer 3
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 11
+        type: integer
+        name: value
+        unit: min 
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    name: USB Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 15
+        type: integer
+        name: value
+        unit: min 
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
   - entity: sensor
     name: Current
     class: current
@@ -52,6 +112,8 @@ secondary_entities:
         name: sensor
         unit: W
         class: measurement
+        mapping:
+          - scale: 10
   - entity: sensor
     name: Voltage
     class: voltage
@@ -62,8 +124,22 @@ secondary_entities:
         name: sensor
         unit: V
         class: measurement
-
-
-
- 
+        mapping:
+          - scale: 10
+  - entity: binary_sensor
+    name: Overload
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 101
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: USB Overload
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 102
+        type: boolean
+        name: sensor
 
