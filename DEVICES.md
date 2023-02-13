@@ -180,7 +180,6 @@
 - DIGOO DG-SP202 dual smartplug with energy monitoring and timers
 - DIGOO DG-SP01 USB smartplug with night light
 - Dual power monitoring smartplug (Geex)
-- Elivco energy monitoring smartplug
 - ES01 3 outlet + USB powerstrip with individual timers
 - Gosund P1 3 outlet + USB powerstrip with power monitoring
 - Grid Connect double outlet wall socket
@@ -205,7 +204,7 @@ generic configurations known to work with multiple brands of device.
 - Generic smartplug with energy monitoring (newer models)
   _confirmed working with Kogan single smartplug with USB and Rillpac smartplugs_
 - Generic smartplug with more advanced energy monitoring
-  _confirmed working with CBE smartplugs, another variant with child lock, backlight and inching switch confirmed with Aubess_
+  _confirmed working with CBE smartplugs, another variant with child lock, backlight and inching switch confirmed with Aubess and Elivco_
 - Generic smartplug with some additional encoded schedule info.
   _confirmed working as a simple switch and timer with Kashimura KJ-173_
 - Generic double switch with timers (confirmed with Living dual switch and another v2 variant with Avatto dual switch)
