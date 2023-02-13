@@ -183,3 +183,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [hasio144](https://github.com/hasio144) for assistance supporting WF96L water level controllers.
 - [boekerolli](https://github.com/boekerolli) for assistance supporting VisorTech smoke alarms.
 - [ruaandeysel](https://github.com/ruaandeysel) for assistance supporting Skyfan DC fans.
+- [DataGeek-AU](https://github.com/DataGeek-AU) for contributing support for Breville Easy Air purifiers.
