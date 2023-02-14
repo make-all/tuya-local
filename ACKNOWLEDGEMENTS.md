@@ -184,3 +184,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [boekerolli](https://github.com/boekerolli) for assistance supporting VisorTech smoke alarms.
 - [ruaandeysel](https://github.com/ruaandeysel) for assistance supporting Skyfan DC fans.
 - [DataGeek-AU](https://github.com/DataGeek-AU) for contributing support for Breville Easy Air purifiers.
+- [Clam58](https://github.com/Clam58) for contributing support for Ebac DJ4000 dehumidifierss.

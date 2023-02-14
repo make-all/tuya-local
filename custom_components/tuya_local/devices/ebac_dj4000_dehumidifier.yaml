@@ -1,0 +1,196 @@
+name: EBAC DJ4000 dehumidifier
+products:
+  - id: ehsgslj5gb0amqnx
+    name: DJ4000
+primary_entity:
+  entity: humidifier
+  class: dehumidifier
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+      mapping:
+      - dps_val: false
+        icon: "mdi:ait-humidifier-off"
+        icon_priority: 1
+      - dps_val: true
+        icon: "mdi:air-humidifier"
+        icon_priority: 3
+    - id: 2
+      name: humidity
+      type: integer
+      range:
+        min: 35
+        max: 80
+      mapping:
+        - step: 5
+    - id: 5
+      name: mode
+      type: string
+      mapping:
+        - dps_val: dehumidify
+          value: Smart
+        - dps_val: drying
+          value: Laundry
+          icon: "mdi:tshirt-crew-outline"
+          icon_priority: 2
+        - dps_val: manual
+          value: Target
+        - dps_val: boost
+          value: Boost
+    - id: 9
+      type: boolean
+      name: defrosst
+      optional: true
+    - id: 13
+      type: boolean
+      name: uv
+      optional: true
+    - id: 19
+      type: bitfield
+      name: fault_code
+    - id: 27
+      type: integer
+      name: total_runtime
+    - id: 28
+      type: boolean
+      name: runtime_reset
+secondary_entities:
+  - entity: fan
+    dps:
+      - id: 103
+        name: switch
+        type: boolean
+        readonly: true
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: low
+            value: 50
+          - dps_val: high
+            value: 100
+  - entity: sensor
+    name: Current humidity
+    class: humidity
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Current temperature
+    class: temperature
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Filter life
+    category: diagnostic
+    icon: "mdi:air-filter"
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: button
+    name: Filter reset
+    category: config
+    icon: "mdi:air-filter"
+    dps:
+      - id: 20
+        type: boolean
+        name: button
+  - entity: sensor
+    name: Time left
+    category: diagnostic
+    icon: "mdi:timer-outline"
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: "min"
+        class: duration
+  - entity: binary_sensor
+    name: Tank
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 102
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: Bucket_OK
+            value: false
+            icon: "mdi:pail-outline"
+          - dps_val: Bucket_Full
+            value: true
+            icon: "mdi:pail-remove"
+# Runtime Total does not update
+# uncomment the next two sensor blocks if you want to use them
+#   - entity: sensor
+#     name: Runtime total
+#     category: diagnostic
+#     icon: "mdi:timelapse"
+#     dps:
+#       - id: 27
+#         type: integer
+#         range:
+#         min: 0
+#         max: 1000
+#         name: sensor
+#         unit: "min"
+#         class: duration
+#   - entity: button
+#     name: Runtime total reset
+#     category: config
+#     icon: "mdi:timelapse"
+#     dps:
+#       - id: 28
+#         type: boolean
+#         name: button
+  - entity: switch
+    name: Night mode
+    category: config
+    icon: "mdi:weather-night"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+      - id: 30
+        type: integer
+        name: display_brightness
+        mapping:
+          - scale: 0.05
+  - entity: select
+    name: Timer
+    icon: "mdi:timer-cog-outline"
+    category: config
+    dps:
+      - id: 17
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: "Continuous"
+          - dps_val: 1h
+            value: 1 hour
+          - dps_val: 2h
+            value: 2 hours
+          - dps_val: 3h
+            value: 3 hours
+          - dps_val: 4h
+            value: 4 hours
+          - dps_val: 5h
+            value: 5 hours
+          - dps_val: 6h
+            value: 6 hours
+          - dps_val: 7h
+            value: 7 hours
+          - dps_val: 8h
+            value: 8 hours
