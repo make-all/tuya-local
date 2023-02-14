@@ -112,8 +112,11 @@ class MultiSensorTests:
 
     def test_multi_sensor_options(self):
         for key, subject in self.multiSensor.items():
-            self.assertEqual(
-                subject.options,
-                self.multiSensorOptions[key],
-                f"{key} options not as expected",
-            )
+            if self.multiSensorOptions[key]:
+                self.assertCountEqual(
+                    subject.options,
+                    self.multiSensorOptions[key],
+                    f"{key} options not as expected",
+                )
+            else:
+                self.assertIsNone(subject.options)

@@ -1,6 +1,7 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.button import ButtonDeviceClass
 from homeassistant.components.fan import FanEntityFeature
+from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     PERCENTAGE,
     UnitOfTime,
@@ -70,7 +71,9 @@ class TestVorkVK6267AWPurifier(
                 {
                     "dps": AQI_DPS,
                     "name": "sensor_air_quality",
+                    "device_class": SensorDeviceClass.ENUM,
                     "testdata": ("great", "Great"),
+                    "options": ["Great", "Good", "Severe", "Medium"],
                 },
                 {
                     "dps": COUNTDOWN_DPS,
