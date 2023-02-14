@@ -24,7 +24,7 @@ Due to increasing volume of requests, it is likely that those in category 5 will
 # Log Message
 
 <!--
-Please paste the message from HA log that shows the **DPS** returned from the device.
+Please paste the message from HA log (Settings / System / Logs) that shows the DPS returned from the device.
 -->
 
 # Information about DPS mappings
