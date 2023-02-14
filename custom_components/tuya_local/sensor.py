@@ -84,3 +84,8 @@ class TuyaLocalSensor(TuyaLocalEntity, SensorEntity):
     def native_precision(self):
         """Return the precision for the sensor"""
         return self._sensor_dps.precision(self._device)
+
+    @property
+    def options(self):
+        """Return a set of possible options."""
+        return self._sensor_dps.values(self._device)
