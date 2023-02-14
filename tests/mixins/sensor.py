@@ -48,6 +48,7 @@ class MultiSensorTests:
         self.multiSensorDevClass = {}
         self.multiSensorStateClass = {}
         self.multiSensorTestData = {}
+        self.multiSensorOptions = {}
         for s in sensors:
             name = s.get("name")
             subject = self.entities.get(name)
@@ -65,6 +66,7 @@ class MultiSensorTests:
                 self.multiSensorDevClass[name] = None
 
             self.multiSensorTestData[name] = s.get("testdata", (30, 30))
+            self.multiSensorOptions[name] = s.get("options")
 
     def test_multi_sensor_units(self):
         for key, subject in self.multiSensor.items():
@@ -106,4 +108,12 @@ class MultiSensorTests:
                 subject.extra_state_attributes,
                 {},
                 f"{key} extra_state_attributes mismatch",
+            )
+
+    def test_multi_sensor_options(self):
+        for key, subject in self.multiSensor.items():
+            self.assertEqual(
+                subject.options,
+                self.multiSensorOptions[key],
+                f"{key} options not as expected",
             )

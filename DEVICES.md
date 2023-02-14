@@ -159,6 +159,7 @@
 
 ### Kitchen Appliances
 
+- Czajnik Setti+ KT950W smart kettle
 - Inkbird sous vide cooker
 - Kogan glass 1.7L smart kettle
 
