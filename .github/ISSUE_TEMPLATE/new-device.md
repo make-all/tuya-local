@@ -8,7 +8,17 @@ assignees: ''
 ---
 
 <!--
-Thank you for reporting a new device to add support for.  Please provide as much of the information requested below as you can.  Requests with all the information required will be prioritised over issues which are missing important information.
+Thank you for reporting a new device to add support for.  Please provide as much of the information requested below as you can.
+
+New device requests will be processed with the following priority:
+
+1. Pull requests
+2. Issues containing logs, iot portal info with dp_ids and links that explain the usage.
+3. Issues containing partial info, but probably enough to make a good guess at the likely config
+4. Issues containing partial info, but some additional info needs to be requested
+5. Low effort issues with virtually no useful information
+
+Due to increasing volume of requests, it is likely that those in category 5 will be closed without further discussion.  Those in category 4 are likely to take some time to make it to the top of the priority stack.
 -->
 
 # Log Message
