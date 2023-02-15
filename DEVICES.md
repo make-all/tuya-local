@@ -203,10 +203,12 @@ Other brands may work with the above configurations, or the below are
 generic configurations known to work with multiple brands of device.
 
 - 4 way power monitoring strip
+- 4 way powerstrip with USB
+  _confirmed as working with AOFO ZLD-44EU-W_
 - Generic smartplug with energy monitoring (older models)
   _confirmed as working with Kogan and Blitzwolf single smartplugs_
 - Generic smartplug with energy monitoring (newer models)
-  _confirmed working with Kogan single smartplug with USB and Rillpac smartplugs_
+  _confirmed as working with Kogan single smartplug with USB and Rillpac smartplugs_
 - Generic smartplug with more advanced energy monitoring
   _confirmed working with CBE smartplugs, another variant with child lock, backlight and inching switch confirmed with Aubess and Elivco_
 - Generic smartplug with some additional encoded schedule info.
