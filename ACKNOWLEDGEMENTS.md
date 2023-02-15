@@ -179,7 +179,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [romicaiarca](https://github.com/romicaiarca) for contributing Aleco D12 Home dehumidifier support.
 - [spitfire](https://github.com/spitfire) for assistance supporting Gosund P1 powerstrips and Czajnik Setti+ kettles.
 - [berdahl](https://github.com/bergdahl) for contributing support for Stadler Eva humidifiers.
-- [dezinc57](https://github.com/dezinc57) for assistance supporting Fanco ceiling fan and light.
+- [dezinc57](https://github.com/dezinc57) for assistance supporting Fanco ceiling fan and light and Deta dimmer switch.
 - [hasio144](https://github.com/hasio144) for assistance supporting WF96L water level controllers.
 - [boekerolli](https://github.com/boekerolli) for assistance supporting VisorTech smoke alarms.
 - [ruaandeysel](https://github.com/ruaandeysel) for assistance supporting Skyfan DC fans.
