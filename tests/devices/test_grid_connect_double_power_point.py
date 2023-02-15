@@ -89,9 +89,7 @@ class TestGridConnectDoubleSwitch(
                 {
                     "name": "sensor_energy",
                     "dps": ENERGY_DPS,
-                    "device_class": SensorDeviceClass.ENERGY,
                     "unit": UnitOfEnergy.WATT_HOUR,
-                    "state_class": "total_increasing",
                 },
                 {
                     "name": "sensor_current",

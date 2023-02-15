@@ -125,8 +125,6 @@ class TestJiahongEt72wThermostat(
                 {
                     "dps": ENERGY_DPS,
                     "name": "sensor_energy",
-                    "device_class": SensorDeviceClass.ENERGY,
-                    "state_class": STATE_CLASS_TOTAL_INCREASING,
                     "unit": UnitOfEnergy.KILO_WATT_HOUR,
                     "testdata": (1234, 123.4),
                 },

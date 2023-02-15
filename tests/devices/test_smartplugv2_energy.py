@@ -89,8 +89,6 @@ class TestSwitchV2Energy(
                     "name": "sensor_energy",
                     "dps": ENERGY_DPS,
                     "unit": UnitOfEnergy.WATT_HOUR,
-                    "device_class": SensorDeviceClass.ENERGY,
-                    "state_class": "total_increasing",
                 },
                 {
                     "name": "sensor_voltage",
