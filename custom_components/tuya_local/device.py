@@ -67,6 +67,8 @@ class TuyaLocalDevice(object):
         self._api_protocol_version_index = None
         self._api_protocol_working = False
         self._api = tinytuya.Device(dev_id, address, local_key)
+        # we handle retries at a higher level so we can rotate protocol version
+        self._api.set_socketRetryLimit(1)
         self._refresh_task = None
         self._protocol_configured = protocol_version
         self._poll_only = poll_only
