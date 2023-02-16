@@ -185,4 +185,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [ruaandeysel](https://github.com/ruaandeysel) for assistance supporting Skyfan DC fans.
 - [DataGeek-AU](https://github.com/DataGeek-AU) for contributing support for Breville Easy Air purifiers.
 - [Clam58](https://github.com/Clam58) for contributing support for Ebac DJ4000 dehumidifierss.
-- [rafazundt](https://github.com/rafazundt) for assisting with support for AOFO ZLD and other 4-way+USB powerstrips.
+- [rafazundt](https://github.com/rafazundt) for assisting with support for AOFO ZLD and other 4-way+USB powerstrips, and iH001 LED controllers.

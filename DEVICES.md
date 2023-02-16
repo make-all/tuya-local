@@ -231,6 +231,7 @@ generic configurations known to work with multiple brands of device.
 - Deta 6910HA series2 dimmer switch
 - Dual-mode magic light string controller
 - HDMI sync light
+- iHD001 LED controller
 - Moes dimmer switch
 - Space Dog Music Lamp
 
