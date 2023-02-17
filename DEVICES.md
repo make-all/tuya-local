@@ -239,6 +239,7 @@ generic configurations known to work with multiple brands of device.
 
 - Simple garage door
 - Simple blind controller
+- Abalon BCM700D curtain motor (likely to work with other brands)
 - Avatto curtain and light switch
 - Avatto curtain switch
 - Avatto roller blinds controller

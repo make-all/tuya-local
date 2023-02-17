@@ -186,3 +186,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [DataGeek-AU](https://github.com/DataGeek-AU) for contributing support for Breville Easy Air purifiers.
 - [Clam58](https://github.com/Clam58) for contributing support for Ebac DJ4000 dehumidifierss.
 - [rafazundt](https://github.com/rafazundt) for assisting with support for AOFO ZLD and other 4-way+USB powerstrips, and iH001 LED controllers.
+- [robertvanroosmal](https://github.com/robertvanroosmal) for assisting with support for Abalon smart curtains.
