@@ -1,107 +1,80 @@
 name: W'Eau pool heatpump 13kW
 primary_entity:
-  - entity: climate
-    dps:
-      - id: 1
-        type: boolean
-        name: hvac_mode
-        mapping:
-          - dps_val: false
-            value: "off"
-          - dps_val: true
-            constraint: preset_mode
-            conditions:
-              - dps_val: eco
-                value: heat
-              - dps_val: hot
-                value: heat
-              - dps_val: cold
-                value: cool
-              - dps_val: auto
-                value: heat_cool
-      - id: 2
-        type: integer
-        name: temperature
-        range:
-          min: 7
-          max: 60
-      - id: 3
-        type: integer
-        name: current_temperature
-      - id: 4
-        type: string
-        name: preset_mode
-        mapping:
-          - dps_val: hot
-            value: Boost Heat
-          - dps_val: eco
-            value: Eco Heat
-          - dps_val: cold
-            value: Cool
-          - dps_val: auto
-            value: Auto
-      - id: 6
-        name: fault
-        type: bitfield
-  - entity: sensor
-    name: unknown_101
-    dps:
-      - id: 101
-        name: sensor
-        type: integer
-        class: measurement
-  - entity: sensor
-    name: unknown_103
-    dps:
-      - id: 103
-        name: sensor
-        type: integer
-        class: measurement
-  - entity: sensor
-    name: unknown_106
-    dps:
-      - id: 106
-        name: sensor
-        type: integer
-        class: measurement
-  - entity: sensor
-    name: unknown_110
-    dps:
-      - id: 110
-        name: sensor
-        type: integer
-        class: measurement
-  - entity: sensor
-    name: unknown_111
-    dps:
-      - id: 111
-        name: sensor
-        type: integer
-        class: measurement
-  - entity: binary_sensor
-    name: unknown_113
-    dps:
-      - id: 113
-        type: boolean
-        name: sensor
-  - entity: binary_sensor
-    name: unknown_114
-    dps:
-      - id: 114
-        type: boolean
-        name: sensor
-  - entity: binary_sensor
-    name: unknown_117
-    dps:
-      - id: 117
-        type: boolean
-        name: sensor
-  - entity: binary_sensor
-    name: unknown_118
-    dps:
-      - id: 118
-        type: boolean
-        name: sensor
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: preset_mode
+          conditions:
+            - dps_val: eco
+              value: heat
+            - dps_val: hot
+              value: heat
+            - dps_val: cold
+              value: cool
+            - dps_val: auto
+              value: heat_cool
+    - id: 2
+      type: integer
+      name: temperature
+      range:
+        min: 7
+        max: 60
+    - id: 3
+      type: integer
+      name: current_temperature
+    - id: 4
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: hot
+          value: Boost Heat
+        - dps_val: eco
+          value: Eco Heat
+        - dps_val: cold
+          value: Cool
+        - dps_val: auto
+          value: Auto
+    - id: 6
+      name: fault
+      type: bitfield
+    - id: 101
+      name: sensor
+      type: integer
+      class: measurement
+    - id: 103
+      name: sensor
+      type: integer
+      class: measurement
+    - id: 106
+      name: sensor
+      type: integer
+      class: measurement
+    - id: 110
+      name: sensor
+      type: integer
+      class: measurement
+    - id: 111
+      name: sensor
+      type: integer
+      class: measurement
+    - id: 113
+      type: boolean
+      name: sensor
+    - id: 114
+      type: boolean
+      name: sensor
+    - id: 117
+      type: boolean
+      name: sensor
+    - id: 118
+      type: boolean
+      name: sensor
 secondary_entities:
   - entity: binary_sensor
     class: problem
@@ -187,5 +160,3 @@ secondary_entities:
       - id: 116
         type: boolean
         name: sensor
-
-
