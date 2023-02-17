@@ -79,9 +79,7 @@ class TestSmartMcbSMT006EnergyMeter(
                 {
                     "name": "sensor_balance_energy",
                     "dps": BALANCE_DPS,
-                    "device_class": SensorDeviceClass.ENERGY,
                     "unit": UnitOfEnergy.KILO_WATT_HOUR,
-                    "state_class": STATE_CLASS_TOTAL,
                     "testdata": (123456, 1234.56),
                 },
             ],
