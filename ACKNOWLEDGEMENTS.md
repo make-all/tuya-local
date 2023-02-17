@@ -188,3 +188,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [rafazundt](https://github.com/rafazundt) for assisting with support for AOFO ZLD and other 4-way+USB powerstrips, and iH001 LED controllers.
 - [robertvanroosmal](https://github.com/robertvanroosmal) for assisting with support for Abalon smart curtains.
 - [garry0garry](https://github.com/garry0garry) for assisting with support for Emax EM3378 weather station.
+- [abroeders](https://github.com/abroeders) for contributing support for a 13kW variant of W'eau pool heatpump.
