@@ -49,7 +49,7 @@
 - Madimack(model unknown) pool heatpump (seems to match Fairland IPH45 as well)
 - Poolex Silverline, Q-line and Vertigo heatpumps
 - Remora pool heatpump
-- W'eau pool heatpump
+- W'eau pool heatpump (simple model and a more complex 13kW model)
 
 - these seem to use a small number of common controllers with minor variations, and many other Pool heatpumps will work using the above configurations.
   Report issues if there are any differences in presets or other features,
@@ -271,6 +271,7 @@ generic configurations known to work with multiple brands of device.
 - Bresser smart 7-in-1 weather station
 - Catit Pixi smart fountain
 - Catit pet feeder (experimental)
+- Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
 - Konlen/Rockson WF96L water level controller
 - Nedis pet feeder
 - Nedis WIFISA10CWT air quality monitor
