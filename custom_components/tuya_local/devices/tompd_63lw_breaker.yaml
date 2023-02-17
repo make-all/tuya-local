@@ -52,14 +52,12 @@ secondary_entities:
             value: true
   - entity: sensor
     name: Balance energy
-    class: energy
     category: diagnostic
     dps:
       - id: 13
         type: integer
         name: sensor
         unit: kWh
-        class: measurement
         mapping:
           - scale: 10
   - entity: number
@@ -104,8 +102,6 @@ secondary_entities:
         type: integer
         name: sensor
         unit: kWh
-        class: measurement
+        class: total_increasing
         mapping:
           - scale: 100
-
-
