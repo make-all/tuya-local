@@ -410,11 +410,12 @@ class TuyaLocalDevice(object):
 
         for i in range(connections):
             try:
-                retval = await self._hass.async_add_executor_job(func)
-                if type(retval) is dict and "Error" in retval:
-                    raise AttributeError
-                self._api_protocol_working = True
-                return retval
+                if not self._hass.is_stopping:
+                    retval = await self._hass.async_add_executor_job(func)
+                    if type(retval) is dict and "Error" in retval:
+                        raise AttributeError
+                    self._api_protocol_working = True
+                    return retval
             except Exception as e:
                 _LOGGER.debug(
                     f"Retrying after exception {e} ({i}/{connections})",
