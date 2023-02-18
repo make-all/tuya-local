@@ -24,6 +24,8 @@ class TestDevice(IsolatedAsyncioTestCase):
         hass_patcher = patch("homeassistant.core.HomeAssistant")
         self.addCleanup(hass_patcher.stop)
         self.hass = hass_patcher.start()
+        self.hass().is_running = True
+        self.hass().is_stopping = False
 
         def job(func, *args):
             return func(*args)
@@ -383,7 +385,6 @@ class TestDevice(IsolatedAsyncioTestCase):
     def test_start_starts_when_ha_running(self):
         # Set up preconditions
         self.hass().is_running = True
-        self.hass().is_stopping = False
         listener = Mock()
         self.subject._startup_listener = listener
         self.subject.actually_start = Mock()
@@ -400,7 +401,6 @@ class TestDevice(IsolatedAsyncioTestCase):
     def test_start_schedules_for_later_when_ha_starting(self):
         # Set up preconditions
         self.hass().is_running = False
-        self.hass().is_stopping = False
         self.hass().bus.async_listen_once.return_value = "LISTENER"
         self.subject.actually_start = Mock()
 
