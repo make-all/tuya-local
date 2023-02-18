@@ -197,6 +197,7 @@
 - Single switch with backlight (unbranded)
 - Somgam single wall switch
 - Somgam double wall switch
+- Teckin SS42 outdoor double smartplug
 - Tellur 3 outlet + USB power strip with individual timers
 - Woox R4028/DIGOO DG-PS01 3 outlet + USB powerstrip with individual timers
 
