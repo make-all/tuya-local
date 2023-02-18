@@ -190,3 +190,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [garry0garry](https://github.com/garry0garry) for assisting with support for Emax EM3378 weather station.
 - [abroeders](https://github.com/abroeders) for contributing support for a 13kW variant of W'eau pool heatpump.
 - [DrFate09](https://github.com/DrFate09) for assisting with support for Atomi ceramic heaters.
+- [Saentist](https://github.com/Saentist) for contributing Bulgarian translations.
