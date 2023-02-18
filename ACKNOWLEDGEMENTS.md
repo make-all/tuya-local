@@ -192,3 +192,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [DrFate09](https://github.com/DrFate09) for assisting with support for Atomi ceramic heaters.
 - [Saentist](https://github.com/Saentist) for contributing Bulgarian translations.
 - [drudgebg](https://github.com/drudgebg) for contributing support for Teckin SS42 outdoor double smartplug.
+- [saotthon](https://github.com/saotthon) for assisting with support for BVF CP1 heaters.
