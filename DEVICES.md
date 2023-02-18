@@ -4,6 +4,7 @@
 ### Heaters
 
 - Andersson GSH heater
+- Atomi AT1632 ceramic heater
 - Betterlife BT1500 IR heater
 - Devola patio heater
 - Ecostrad Accent iQ heating panels
