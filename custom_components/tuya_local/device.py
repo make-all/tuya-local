@@ -61,6 +61,7 @@ class TuyaLocalDevice(object):
         """
         self._name = name
         self._children = []
+        self._force_dps = []
         self._running = False
         self._shutdown_listener = None
         self._startup_listener = None
@@ -143,6 +144,7 @@ class TuyaLocalDevice(object):
             self._shutdown_listener()
             self._shutdown_listener = None
         self._children.clear()
+        self._force_dps.clear()
         if self._refresh_task:
             await self._refresh_task
         _LOGGER.debug(f"Monitor loop for {self.name} stopped")
@@ -154,6 +156,10 @@ class TuyaLocalDevice(object):
         should_poll = len(self._children) == 0
 
         self._children.append(entity)
+        for dp in entity._config.dps():
+            if dp.force and dp.id not in self._force_dps:
+                self._force_dps.append(dp.id)
+
         if not self._running and not self._startup_listener:
             self.start()
         if self.has_returned_state:
@@ -214,10 +220,16 @@ class TuyaLocalDevice(object):
                     self._api.set_socketPersistent(persist)
 
                 if now - last_cache > self._CACHE_TIMEOUT:
-                    poll = await self._retry_on_failed_connection(
-                        lambda: self._api.status(),
-                        f"Failed to refresh device state for {self.name}",
-                    )
+                    if self._force_dps:
+                        poll = await self._retry_on_failed_connection(
+                            lambda: self._api.updatedps(self._force_dps),
+                            f"Failed to refresh device state for {self.name}",
+                        )
+                    else:
+                        poll = await self._retry_on_failed_connection(
+                            lambda: self._api.status(),
+                            f"Failed to refresh device state for {self.name}",
+                        )
                 else:
                     await self._hass.async_add_executor_job(
                         self._api.heartbeat,

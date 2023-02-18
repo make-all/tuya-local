@@ -300,6 +300,10 @@ class TuyaDpsConfig:
         return self._config.get("optional", False)
 
     @property
+    def force(self):
+        return self._config.get("force", False)
+
+    @property
     def format(self):
         fmt = self._config.get("format")
         if fmt:

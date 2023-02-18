@@ -144,7 +144,10 @@ to use a secondary entity for that.
 
 A boolean setting to mark attributes as readonly. If not specified, the
 default is `false`.  If set to `true`, the attributes will be reported
-to Home Assistant, but no functionality for setting them will be exposed.
+to Home Assistant, but attempting to set them will result in an error.
+This is only needed in contexts where it would normally be possible to set
+the value.  If you are creating a sensor entity, or adding an attribute of an
+entity which is inherently read-only, then you do not need to specify this.
 
 ### `optional`
 
@@ -154,6 +157,16 @@ A boolean setting to mark attributes as optional.  This allows a device to be
 matched even if it is not sending the dp at the time when adding a new device.
 It can also be used to match a range of devices that have variations in the extra
 attributes that are sent.
+
+### `force`
+
+*Optional, default false.*
+
+A boolean setting to mark dps as requiring an explicit update request
+to fetch.  Many energy monitoring smartplugs require this, without a
+explicit request to update them, such plugs will only return monitoring data
+rarely or never.  Devices can misbehave if this is used on dps that do not
+require it.  Use this only where needed, and generally only on read-only dps.
 
 ### `mapping`
 

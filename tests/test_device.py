@@ -9,6 +9,8 @@ from homeassistant.const import (
 )
 
 from custom_components.tuya_local.device import TuyaLocalDevice
+from custom_components.tuya_local.helpers.device_config import TuyaEntityConfig
+from custom_components.tuya_local.switch import TuyaLocalSwitch
 
 from .const import (
     EUROM_600_HEATER_PAYLOAD,
@@ -474,7 +476,8 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.subject._startup_listener = None
         self.subject.start = Mock()
         entity = AsyncMock()
-
+        entity._config = Mock()
+        entity._config.dps.return_value = []
         # Call the function under test
         self.subject.register_entity(entity)
 
@@ -488,6 +491,8 @@ class TestDevice(IsolatedAsyncioTestCase):
         # Set up preconditions
         first = AsyncMock()
         second = AsyncMock()
+        second._config = Mock()
+        second._config.dps.return_value = []
         self.subject._children = [first]
         self.subject._running = True
         self.subject._startup_listener = None
@@ -506,6 +511,8 @@ class TestDevice(IsolatedAsyncioTestCase):
         # Set up preconditions
         first = AsyncMock()
         second = AsyncMock()
+        second._config = Mock()
+        second._config.dps.return_value = []
         self.subject._children = [first]
         self.subject._running = False
         self.subject._startup_listener = Mock()
