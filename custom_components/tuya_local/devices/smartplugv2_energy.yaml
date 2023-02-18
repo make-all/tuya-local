@@ -9,27 +9,18 @@ primary_entity:
     - id: 21
       type: integer
       name: test_bit
-    - id: 22
-      type: integer
-      name: voltage_calibration
-    - id: 23
-      type: integer
-      name: current_calibration
-    - id: 24
-      type: integer
-      name: power_calibration
-    - id: 25
-      type: integer
-      name: energy_calibration
     - id: 26
       type: bitfield
       name: fault_code
+      optional: true
     - id: 41
       type: string
       name: cycle_timer
+      optional: true
     - id: 42
       type: string
       name: random_timer
+      optional: true
 secondary_entities:
   - entity: number
     category: config
@@ -54,6 +45,10 @@ secondary_entities:
         name: sensor
         type: integer
         unit: Wh
+    - id: 25
+      type: integer
+      name: energy_calibration
+      optional: true
   - entity: sensor
     category: diagnostic
     class: current
@@ -64,6 +59,10 @@ secondary_entities:
         type: integer
         class: measurement
         unit: mA
+      - id: 23
+        type: integer
+        name: calibration
+        optional: true
   - entity: sensor
     category: diagnostic
     class: power
@@ -76,6 +75,10 @@ secondary_entities:
         unit: W
         mapping:
           - scale: 10
+      - id: 24
+        type: integer
+        name: calibration
+        optional: true
   - entity: sensor
     category: diagnostic
     class: voltage
@@ -88,6 +91,10 @@ secondary_entities:
         unit: V
         mapping:
           - scale: 10
+      - id: 22
+        type: integer
+        name: calibration
+        optional: true
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -96,8 +103,11 @@ secondary_entities:
       - id: 26
         type: bitfield
         name: sensor
+        optional: true
         mapping:
           - dps_val: 0
+            value: false
+          - dps_val: null
             value: false
           - value: true
   - entity: select
@@ -123,3 +133,7 @@ secondary_entities:
       - id: 46
         type: boolean
         name: switch
+        optional: true
+        mapping:
+          - dps_val: null
+            invalid: true
