@@ -278,6 +278,7 @@ generic configurations known to work with multiple brands of device.
 - Konlen/Rockson WF96L water level controller
 - Nedis pet feeder
 - Nedis WIFISA10CWT air quality monitor
+- PGST PA-010 indoor temperature and humidity sensor
 - Qoto 03 smart water valve / sprinkler controller
 - SD123 HPR01 human presence radar
 - Universal remote control (supports sensors only)
