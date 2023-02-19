@@ -158,7 +158,7 @@ class TuyaLocalDevice(object):
         self._children.append(entity)
         for dp in entity._config.dps():
             if dp.force and dp.id not in self._force_dps:
-                self._force_dps.append(dp.id)
+                self._force_dps.append(int(dp.id))
 
         if not self._running and not self._startup_listener:
             self.start()
@@ -456,12 +456,13 @@ class TuyaLocalDevice(object):
                 if not self._hass.is_stopping:
                     retval = await self._hass.async_add_executor_job(func)
                     if type(retval) is dict and "Error" in retval:
-                        raise AttributeError
+                        raise AttributeError(retval["Error"])
                     self._api_protocol_working = True
                     return retval
             except Exception as e:
                 _LOGGER.debug(
                     "Retrying after exception %s (%d/%d)",
+                    type(e),
                     e,
                     i,
                     connections,
@@ -521,7 +522,7 @@ class TuyaLocalDevice(object):
 
         new_version = API_PROTOCOL_VERSIONS[self._api_protocol_version_index]
         _LOGGER.info(
-            "Setting protocol version for %s to %f",
+            "Setting protocol version for %s to %0.1f",
             self.name,
             new_version,
         )
