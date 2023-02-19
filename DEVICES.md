@@ -149,7 +149,8 @@
 
 ### Humidifiers
 
-- BlitzWolf BWSH5 humidifier
+- BlitzWolf BW-SH2 humidifier
+- BlitzWolf BW-SH5 humidifier
 - Eanons QT-JS2014 purifying humidifier
 - Kyvol EA200 humidifier
 - Stadler Eva humidifier
