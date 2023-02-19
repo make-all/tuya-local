@@ -279,6 +279,11 @@ the internet, otherwise an integration sensor based on the Power sensor
 will need to be set up on the Home Assistant side, and the Energy sensor
 ignored.
 
+For the amount of consumed energy, it may be reasonable to use an additional
+helper - the [Riemann integral](https://www.home-assistant.io/integrations/integration/).
+Select `power` of switch as the sensor for it. The result of the integral will be
+calculated in `(k/M/G/T)W*h` and will correspond to the consumed energy.
+
 ## Kogan Kettle gotchas
 
 Although these look like simple devices, their behaviour is not
