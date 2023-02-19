@@ -232,7 +232,11 @@ class TuyaLocalDevice(object):
                     self._api.set_socketPersistent(persist)
 
                 if now - last_cache > self._CACHE_TIMEOUT:
-                    if self._force_dps and not dps_updated:
+                    if (
+                        self._force_dps
+                        and not dps_updated
+                        and self._api_protocol_working
+                    ):
                         poll = await self._retry_on_failed_connection(
                             lambda: self._api.updatedps(self._force_dps),
                             f"Failed to refresh device state for {self.name}",
