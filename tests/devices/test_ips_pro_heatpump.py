@@ -28,6 +28,8 @@ MAXTEMP_DPS = "108"
 ERROR_DPS = "115"
 ERROR2_DPS = "116"
 PRESET_DPS = "2"
+POWER_DPS = "142"
+UNKNOWN143_DPS = "143"
 
 
 class TestIpsProHeatpump(
@@ -60,7 +62,9 @@ class TestIpsProHeatpump(
             device_class=BinarySensorDeviceClass.PROBLEM,
             testdata=(4, 0),
         )
-        self.mark_secondary(["sensor_power_level", "binary_sensor_water_flow"])
+        self.mark_secondary(
+            ["sensor_power_level", "binary_sensor_water_flow", "sensor_power"]
+        )
 
     def test_supported_features(self):
         self.assertEqual(
@@ -80,9 +84,15 @@ class TestIpsProHeatpump(
 
     def test_temperature_unit(self):
         self.dps[UNITS_DPS] = False
-        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.FAHRENHEIT)
+        self.assertEqual(
+            self.subject.temperature_unit,
+            UnitOfTemperature.FAHRENHEIT,
+        )
         self.dps[UNITS_DPS] = True
-        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
+        self.assertEqual(
+            self.subject.temperature_unit,
+            UnitOfTemperature.CELSIUS,
+        )
 
     def test_minimum_fahrenheit_temperature(self):
         self.dps[UNITS_DPS] = False
@@ -106,7 +116,10 @@ class TestIpsProHeatpump(
         self.assertEqual(self.subject.hvac_mode, HVACMode.OFF)
 
     def test_hvac_modes(self):
-        self.assertCountEqual(self.subject.hvac_modes, [HVACMode.OFF, HVACMode.HEAT])
+        self.assertCountEqual(
+            self.subject.hvac_modes,
+            [HVACMode.OFF, HVACMode.HEAT],
+        )
 
     async def test_turn_on(self):
         async with assert_device_properties_set(
@@ -131,7 +144,10 @@ class TestIpsProHeatpump(
         self.assertEqual(self.subject.preset_mode, "turbo")
 
     def test_preset_modes(self):
-        self.assertCountEqual(self.subject.preset_modes, ["silence", "smart", "turbo"])
+        self.assertCountEqual(
+            self.subject.preset_modes,
+            ["silence", "smart", "turbo"],
+        )
 
     async def test_set_preset_mode_to_silent(self):
         async with assert_device_properties_set(
