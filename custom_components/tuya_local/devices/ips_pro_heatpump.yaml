@@ -84,11 +84,14 @@ primary_entity:
     - id: 116
       type: bitfield
       name: error_2
+    - id: 143
+      type: boolean
+      name: unknown_43
+      optional: true
 secondary_entities:
   - entity: sensor
     name: Power level
     class: power_factor
-    icon: "mdi:signal"
     category: diagnostic
     dps:
       - id: 104
@@ -97,6 +100,16 @@ secondary_entities:
         unit: "%"
         class: measurement
         readonly: true
+  - entity: sensor
+    name: Power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 142
+        name: sensor
+        type: integer
+        unit: W
+        optional: true
   - entity: binary_sensor
     name: Water flow
     class: problem
