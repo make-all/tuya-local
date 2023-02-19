@@ -478,6 +478,9 @@ class TestDevice(IsolatedAsyncioTestCase):
         entity = AsyncMock()
         entity._config = Mock()
         entity._config.dps.return_value = []
+        # despite the name, the below HA function is not async and does not need to be awaited
+        entity.async_schedule_update_ha_state = Mock()
+
         # Call the function under test
         self.subject.register_entity(entity)
 
