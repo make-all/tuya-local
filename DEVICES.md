@@ -20,6 +20,7 @@
 - Kogan tower heater - KASTHFP2KWA model
 - Kogan Wi-Fi convection panel heaters - KAHTP and KAWFHTP models
 - Nedis convection heater - WIFIHTPL20F model
+- Orion OWH-PTC2000 heater
 - Purline Hoti M100 heater
 - Wetair WCH-750 heater
 
