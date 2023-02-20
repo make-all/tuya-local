@@ -359,10 +359,11 @@ class TuyaLocalDevice(object):
 
     def _refresh_cached_state(self):
         new_state = self._api.status()
-        self._cached_state = self._cached_state | new_state.get("dps", {})
-        self._cached_state["updated_at"] = time()
-        for entity in self._children:
-            entity.async_schedule_update_ha_state()
+        if new_state:
+            self._cached_state = self._cached_state | new_state.get("dps", {})
+            self._cached_state["updated_at"] = time()
+            for entity in self._children:
+                entity.async_schedule_update_ha_state()
         _LOGGER.debug(
             "%s refreshed device state: %s",
             self.name,
