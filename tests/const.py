@@ -1533,3 +1533,10 @@ MOTION_LIGHT_PAYLOAD = {
     "105": 374,
     "106": False,
 }
+
+BLITZWOLF_BWSH2_PAYLOAD = {
+    "1": True,
+    "3": "grade1",
+    "6": "close",
+    "19": "cancel",
+}
