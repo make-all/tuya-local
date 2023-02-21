@@ -1,0 +1,119 @@
+name: the Smart Air™ Viral Protect Plus
+products:
+  - id: "emh1sylyfw7n2b50"
+primary_entity:
+  entity: fan
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+      mapping:
+        - dps_val: true
+          icon: "mdi:air-purifier"
+        - dps_val: false
+          icon: "mdi:air-purifier-off"
+    - id: 4
+      type: string
+      name: speed
+      mapping:
+        - dps_val: "low"
+          value: 25
+          icon: "mdi:fan-speed-1"
+        - dps_val: "mid"
+          value: 50
+          icon: "mdi:fan-speed-2"
+        - dps_val: "high"
+          value: 75
+          icon: "mdi:fan-speed-3"
+        - dps_val: "tubo" # there's a typo in the firmware
+          value: 100
+          icon: "mdi:fan-plus"
+secondary_entities:
+  - entity: sensor
+    name: PM2.5
+    icon: "mdi:air-filter"
+    class: pm25
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+        mapping:
+          - scale: 10
+        readonly: true
+  - entity: select
+    name: Mode
+    category: config
+    dps:
+      - id: 3
+        type: string
+        name: option
+        mapping:
+          - dps_val: "auto"
+            value: "Auto"
+            icon: "mdi:fan-auto"
+          - dps_val: "manual"
+            value: "Manual"
+            icon: "mdi:fan"
+          - dps_val: "sleep"
+            value: "Sleep"
+            icon: "mdi:power-sleep"
+  - entity: switch
+    name: Microbe Shield
+    category: config
+    icon: "mdi:shield-bug"
+    dps:
+      - id: 9
+        name: switch
+        type: boolean
+  - entity: sensor
+    name: Filter Days Left
+    category: diagnostic
+    icon: "mdi:air-filter"
+    class: duration
+    dps:
+      - id: 16
+        name: sensor
+        type: integer
+        unit: d
+  - entity: select
+    name: Timer
+    category: config
+    dps:
+      - id: 18
+        type: string
+        name: option
+        mapping:
+          - dps_val: "cancel"
+            value: "Cancel"
+            icon: "mdi:timer"
+          - dps_val: "2h"
+            value: "2 hours"
+            icon: "mdi:fan-clock"
+          - dps_val: "4h"
+            value: "4 hours"
+            icon: "mdi:fan-clock"
+          - dps_val: "8h"
+            value: "8 hours"
+            icon: "mdi:fan-clock"
+  - entity: sensor
+    name: Timer Minutes Left
+    category: diagnostic
+    icon: "mdi:timer-sand"
+    class: duration
+    dps:
+      - id: 19
+        name: sensor
+        type: integer
+        unit: min
+        readonly: true
+  - entity: sensor
+    name: Air Quality
+    icon: "mdi:air-filter"
+    dps:
+      - id: 21
+        type: string
+        name: sensor
+        class: measurement
+        readonly: true
