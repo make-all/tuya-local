@@ -192,6 +192,6 @@ Further device support has been made with the assistance of users.  Please consi
 - [Saentist](https://github.com/Saentist) for contributing Bulgarian translations.
 - [drudgebg](https://github.com/drudgebg) for contributing support for Teckin SS42 outdoor double smartplug.
 - [saotthon](https://github.com/saotthon) for assisting with support for BVF CP1 heaters.
-- [MarciPain](https://github.com/MarciPain) for contributing support for PGST temperature and humidity sensors and Orion OWH-PTC2000 heaters.
+- [MarciPain](https://github.com/MarciPain) for contributing support for PGST temperature and humidity sensors, Orion OWH-PTC2000 heaters and BlitzWolf SHP6 smartplugs.
 - [fischrobi](https://github.com/fischrobi) for assisting with support for Blitzwolf BW-SH2 humidifiers.
 - [elninosi](https://github.com/elninosi) for assisting with support for LoraTap curtain switches.
