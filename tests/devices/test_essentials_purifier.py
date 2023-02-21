@@ -90,6 +90,7 @@ class TestEssentialsPurifier(
                     "dps": COUNTDOWN_DP,
                     "name": "sensor_timer",
                     "unit": UnitOfTime.MINUTES,
+                    "device_class": SensorDeviceClass.DURATION,
                 },
                 {
                     "dps": PM25_DP,

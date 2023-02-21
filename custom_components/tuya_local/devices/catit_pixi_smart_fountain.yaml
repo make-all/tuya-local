@@ -71,16 +71,13 @@ secondary_entities:
           - dps_val: level_3
             icon: "mdi:cup"
             value: Full
-
   - entity: sensor
     name: UV runtime
+    class: duration
     icon: "mdi:timer-outline"
     category: diagnostic
     dps:
       - id: 11
         type: integer
         name: sensor
-        mapping:
-          - scale: 60
-            step: 1
-        unit: min
+        unit: s

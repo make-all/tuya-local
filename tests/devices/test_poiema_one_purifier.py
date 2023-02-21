@@ -72,6 +72,7 @@ class TestPoeimaOnePurifier(
                     "dps": COUNTDOWN_DPS,
                     "name": "sensor_timer",
                     "unit": UnitOfTime.MINUTES,
+                    "device_class": SensorDeviceClass.DURATION,
                 },
             ]
         )

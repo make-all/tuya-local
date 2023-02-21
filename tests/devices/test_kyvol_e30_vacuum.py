@@ -1,4 +1,5 @@
 from homeassistant.components.button import ButtonDeviceClass
+from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.components.vacuum import (
     STATE_CLEANING,
     STATE_DOCKED,
@@ -81,6 +82,7 @@ class TestKyvolE30Vacuum(
                     "dps": TIME_DPS,
                     "name": "sensor_clean_time",
                     "unit": UnitOfTime.MINUTES,
+                    "device_class": SensorDeviceClass.DURATION,
                 },
                 {
                     "dps": EDGE_DPS,

@@ -4,6 +4,7 @@ from homeassistant.components.climate.const import (
     HVACAction,
     HVACMode,
 )
+from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import UnitOfTime, UnitOfTemperature
 
 from ..const import INKBIRD_SOUSVIDE_PAYLOAD
@@ -88,6 +89,7 @@ class TestInkbirdSousVideCooker(
             REMAIN_DPS,
             self.entities.get("sensor_remaining_time"),
             unit=UnitOfTime.MINUTES,
+            device_class=SensorDeviceClass.DURATION,
         )
         self.mark_secondary(
             [

@@ -462,7 +462,7 @@ class TuyaLocalDevice(object):
                     return retval
             except Exception as e:
                 _LOGGER.debug(
-                    "Retrying after exception %s (%d/%d)",
+                    "Retrying after exception %s %s (%d/%d)",
                     type(e),
                     e,
                     i,

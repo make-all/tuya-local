@@ -102,6 +102,7 @@ class TestParksidePLGS2012A1Charger(
                     "name": "sensor_time_remaining",
                     "dps": REMAIN_DPS,
                     "unit": UnitOfTime.MINUTES,
+                    "device_class": SensorDeviceClass.DURATION,
                 },
                 {
                     "name": "sensor_current_temperature",

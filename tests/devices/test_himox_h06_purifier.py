@@ -1,5 +1,6 @@
 from homeassistant.components.button import ButtonDeviceClass
 from homeassistant.components.fan import FanEntityFeature
+from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     PERCENTAGE,
     UnitOfTime,
@@ -80,6 +81,7 @@ class TestHimoxH06Purifier(
                     "dps": COUNTDOWN_DPS,
                     "name": "sensor_timer",
                     "unit": UnitOfTime.MINUTES,
+                    "device_class": SensorDeviceClass.DURATION,
                 },
                 {
                     "dps": AQI_DPS,

@@ -97,7 +97,6 @@ secondary_entities:
         type: integer
         name: sensor
         unit: "%"
-        class: measurement
   - entity: button
     name: Filter reset
     category: config
@@ -110,12 +109,12 @@ secondary_entities:
     name: Time left
     category: diagnostic
     icon: "mdi:timer-outline"
+    class: duration
     dps:
       - id: 18
         type: integer
         name: sensor
-        unit: "min"
-        class: duration
+        unit: min
   - entity: binary_sensor
     name: Tank
     class: problem
@@ -137,6 +136,7 @@ secondary_entities:
 #     name: Runtime total
 #     category: diagnostic
 #     icon: "mdi:timelapse"
+#     class: duration
 #     dps:
 #       - id: 27
 #         type: integer
@@ -144,8 +144,7 @@ secondary_entities:
 #         min: 0
 #         max: 1000
 #         name: sensor
-#         unit: "min"
-#         class: duration
+#         unit: min
 #   - entity: button
 #     name: Runtime total reset
 #     category: config

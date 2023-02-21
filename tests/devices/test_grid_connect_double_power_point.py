@@ -79,8 +79,6 @@ class TestGridConnectDoubleSwitch(
                     "name": "switch_master",
                     "dps": MASTER_DPS,
                     "device_class": SwitchDeviceClass.OUTLET,
-                    "power_dps": POWER_DPS,
-                    "power_scale": 10,
                 },
             ]
         )
@@ -148,38 +146,33 @@ class TestGridConnectDoubleSwitch(
 
     # Since we have attributes, override the default test which expects none.
     def test_multi_switch_state_attributes(self):
-        self.dps[COUNTDOWN1_DPS] = 9
-        self.dps[COUNTDOWN2_DPS] = 10
-        self.dps[VOLTAGE_DPS] = 2350
-        self.dps[CURRENT_DPS] = 1234
-        self.dps[POWER_DPS] = 5678
         self.dps[TEST_DPS] = 21
-        self.dps[CALIBV_DPS] = 22
-        self.dps[CALIBA_DPS] = 23
-        self.dps[CALIBW_DPS] = 24
-        self.dps[CALIBE_DPS] = 25
         self.assertDictEqual(
             self.multiSwitch["switch_master"].extra_state_attributes,
             {
-                "current_a": 1.234,
-                "voltage_v": 235.0,
-                "current_power_w": 567.8,
                 "test_bit": 21,
-                "voltage_calibration": 22,
-                "current_calibration": 23,
-                "power_calibration": 24,
-                "energy_calibration": 25,
             },
         )
+
+    def test_multi_sensor_extra_state_attributes(self):
+        self.dps[CALIBA_DPS] = 1
+        self.dps[CALIBE_DPS] = 2
+        self.dps[CALIBV_DPS] = 3
+        self.dps[CALIBW_DPS] = 4
+
         self.assertDictEqual(
-            self.multiSwitch["switch_outlet_1"].extra_state_attributes,
-            {
-                "countdown": 9,
-            },
+            self.multiSensor["sensor_current"].extra_state_attributes,
+            {"calibration": 1},
         )
         self.assertDictEqual(
-            self.multiSwitch["switch_outlet_2"].extra_state_attributes,
-            {
-                "countdown": 10,
-            },
+            self.multiSensor["sensor_energy"].extra_state_attributes,
+            {"calibration": 2},
+        )
+        self.assertDictEqual(
+            self.multiSensor["sensor_voltage"].extra_state_attributes,
+            {"calibration": 3},
+        )
+        self.assertDictEqual(
+            self.multiSensor["sensor_power"].extra_state_attributes,
+            {"calibration": 4},
         )

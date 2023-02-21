@@ -61,10 +61,9 @@ secondary_entities:
   - entity: sensor
     name: Timer
     category: diagnostic
+    class: duration
     dps:
       - id: 24
         type: integer
         name: sensor
-        unit: min
-        mapping:
-          - scale: 60
+        unit: s
