@@ -252,6 +252,7 @@ generic configurations known to work with multiple brands of device.
 - Dongguan garage door
 - Kogan garage door with tilt sensor
 - Loonas smart curtain
+- LoraTap SC500W-V1 curtain switch
 - M027 curtain module (sold under several brands, including zemismart, meterk and others)
 - QS-WIFI-C01(BK) curtain module
 - Wistar roller blinds controller

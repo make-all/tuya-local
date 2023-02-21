@@ -1,0 +1,36 @@
+name: LoraTap curtain switch
+product:
+  - id: tuh2eatk4hsq336s
+    name: SC500W-V1
+primary_entity:
+  entity: button
+  name: Open
+  icon: "mdi:curtains"
+  dps:
+    - id: 1
+      type: string
+      name: button
+      mapping:
+        - dps_val: "1"
+          value: true
+secondary_entities:
+  - entity: button
+    name: Close
+    icon: "mdi:curtains-closed"
+    dps:
+      - id: 1
+        type: string
+        name: button
+        mapping:
+          - dps_val: "2"
+            value: true
+  - entity: button
+    name: Stop
+    icon: "mdi:stop-circle-outline"
+    dps:
+      - id: 1
+        type: string
+        name: button
+        mapping:
+          - dps_val: "3"
+            value: true
