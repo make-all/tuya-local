@@ -32,22 +32,6 @@ primary_entity:
       type: bitfield
       name: factory_test
       optional: true
-    - id: 22
-      type: integer
-      name: voltage_calibration
-      optional: true
-    - id: 23
-      type: integer
-      name: current_calibration
-      optional: true
-    - id: 24
-      type: integer
-      name: power_calibration
-      optional: true
-    - id: 25
-      type: integer
-      name: energy_calibration
-      optional: true
     - id: 26
       type: integer
       name: fault_code
@@ -65,6 +49,10 @@ secondary_entities:
         unit: V
         mapping:
           - scale: 10
+      - id: 22
+        type: integer
+        name: calibration
+        optional: true
   - entity: sensor
     category: diagnostic
     class: current
@@ -75,6 +63,10 @@ secondary_entities:
         type: integer
         class: measurement
         unit: mA
+      - id: 23
+        type: integer
+        name: calibration
+        optional: true
   - entity: sensor
     category: diagnostic
     class: power
@@ -87,6 +79,10 @@ secondary_entities:
         unit: W
         mapping:
           - scale: 10
+      - id: 24
+        type: integer
+        name: calibration
+        optional: true
   - entity: number
     category: config
     name: Timer
