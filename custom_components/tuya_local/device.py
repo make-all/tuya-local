@@ -151,9 +151,10 @@ class TuyaLocalDevice(object):
         self._refresh_task = None
 
     def register_entity(self, entity):
-        # If this is the first child entity to register, refresh the device
-        # state
-        should_poll = len(self._children) == 0
+        # If this is the first child entity to register, and HA is still
+        # starting, refresh the device state so it shows as available without
+        # waiting for startup to complete.
+        should_poll = len(self._children) == 0 and not self._hass.is_running
 
         self._children.append(entity)
         for dp in entity._config.dps():
