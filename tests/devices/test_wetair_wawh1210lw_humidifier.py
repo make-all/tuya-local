@@ -61,7 +61,6 @@ class TestWetairWAWH1210LWHumidifier(
                     "dps": LEVEL_DPS,
                     "name": "sensor_water_level",
                     "unit": PERCENTAGE,
-                    "options": [0, 50, 100],
                 },
             ]
         )
