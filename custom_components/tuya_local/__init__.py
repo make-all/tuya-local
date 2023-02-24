@@ -177,21 +177,22 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         def update_unique_id12(entity_entry):
             """Update the unique id of an entity entry."""
             old_id = entity_entry.unique_id
+            platform = entity_entry.entity_id.split(".", 1)[0]
             e = conf_file.primary_entity
             if e.name:
                 expect_id = f"{device_id}-{e.name}"
             else:
                 expect_id = device_id
-            if e.entity != entity_entry.platform or expect_id != old_id:
+            if e.entity != platform or expect_id != old_id:
                 for e in conf_file.secondary_entities():
                     if e.name:
                         expect_id = f"{device_id}-{e.name}"
                     else:
                         expect_id = device_id
-                    if e.entity == entity_entry.platform and expect_id == old_id:
+                    if e.entity == platform and expect_id == old_id:
                         break
 
-            if e.entity == entity_entry.platform and expect_id == old_id:
+            if e.entity == platform and expect_id == old_id:
                 new_id = e.unique_id(device_id)
                 if new_id != old_id:
                     _LOGGER.info(
