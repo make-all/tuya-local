@@ -3,7 +3,6 @@ API for Tuya Local devices.
 """
 
 import asyncio
-import json
 import logging
 import tinytuya
 from threading import Lock
@@ -27,14 +26,10 @@ from .const import (
     DOMAIN,
 )
 from .helpers.device_config import possible_matches
+from .helpers.log import log_json
 
 
 _LOGGER = logging.getLogger(__name__)
-
-
-def non_json(input):
-    """Handler for json_dumps when used for debugging."""
-    return f"Non-JSON: ({input})"
 
 
 class TuyaLocalDevice(object):
@@ -181,7 +176,7 @@ class TuyaLocalDevice(object):
                     _LOGGER.debug(
                         "%s received %s",
                         self.name,
-                        json.dumps(poll, default=non_json),
+                        log_json(poll),
                     )
                     self._cached_state = self._cached_state | poll
                     self._cached_state["updated_at"] = time()
@@ -191,7 +186,7 @@ class TuyaLocalDevice(object):
                     _LOGGER.debug(
                         "%s received non data %s",
                         self.name,
-                        json.dumps(poll, default=non_json),
+                        log_json(poll),
                     )
             _LOGGER.warning("%s receive loop has terminated", self.name)
 
@@ -322,7 +317,7 @@ class TuyaLocalDevice(object):
             _LOGGER.warning(
                 "Detection for %s with dps %s failed",
                 self.name,
-                json.dumps(cached_state, default=non_json),
+                log_json(cached_state),
             )
             return None
 
@@ -368,11 +363,11 @@ class TuyaLocalDevice(object):
         _LOGGER.debug(
             "%s refreshed device state: %s",
             self.name,
-            json.dumps(new_state, default=non_json),
+            log_json(new_state),
         )
         _LOGGER.debug(
             "new state (incl pending): %s",
-            json.dumps(self._get_cached_state(), default=non_json),
+            log_json(self._get_cached_state()),
         )
 
     async def async_set_properties(self, properties):
@@ -396,7 +391,7 @@ class TuyaLocalDevice(object):
         _LOGGER.debug(
             "%s new pending updates: %s",
             self.name,
-            json.dumps(pending_updates, default=non_json),
+            log_json(pending_updates),
         )
 
     async def _debounce_sending_updates(self):
@@ -419,7 +414,7 @@ class TuyaLocalDevice(object):
         _LOGGER.debug(
             "%s sending dps update: %s",
             self.name,
-            json.dumps(pending_properties, default=non_json),
+            log_json(pending_properties),
         )
 
         await self._retry_on_failed_connection(
