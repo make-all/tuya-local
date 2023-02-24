@@ -458,7 +458,7 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
             },
         )
         expected = {
-            "version": 11,
+            "version": 12,
             "context": {"source": "choose_entities"},
             "type": "create_entry",
             "flow_id": ANY,
@@ -485,7 +485,7 @@ async def test_options_flow_init(hass):
     """Test config flow options."""
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=11,
+        version=12,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
@@ -523,7 +523,7 @@ async def test_options_flow_modifies_config(mock_test, hass):
 
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=11,
+        version=12,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
@@ -570,7 +570,7 @@ async def test_options_flow_fails_when_connection_fails(mock_test, hass):
 
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=11,
+        version=12,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
@@ -609,7 +609,7 @@ async def test_options_flow_fails_when_config_is_missing(mock_test, hass):
 
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=11,
+        version=12,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
@@ -637,7 +637,7 @@ async def test_async_setup_entry_for_switch(mock_device, hass):
     """Test setting up based on a config entry.  Repeats test_init_entry."""
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=11,
+        version=12,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",

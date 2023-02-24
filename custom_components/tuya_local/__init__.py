@@ -165,6 +165,45 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         entry.options = {}
         entry.version = 11
 
+    if entry.version <= 11:
+        # Migrate unique ids of existing entities to new format
+        device_id = entry.unique_id
+        conf_file = get_config(entry.data[CONF_TYPE])
+        if conf_file is None:
+            _LOGGER.error(f"Configuration file for {entry.data[CONF_TYPE]} not found.")
+            return False
+
+        @callback
+        def update_unique_id(entity_entry):
+            """Update the unique id of an entity entry."""
+            old_id = entity_entry.unique_id
+            e = conf_file.primary_entity
+            if e.name:
+                expect_id = f"{device_id}-{e.name}"
+            else:
+                expect_id = device_id
+            if e.entity != entity_entry.platform or expect_id != old_id:
+                for e in conf_file.secondary_entities():
+                    if e.name:
+                        expect_id = f"{device_id}-{e.name}"
+                    else:
+                        expect_id = device_id
+                    if e.entity == entity_entry.platform and expect_id == old_id:
+                        break
+
+            if e.entity == entity_entry.platform and expect_id == old_id:
+                new_id = e.unique_id(device_id)
+                if new_id != old_id:
+                    _LOGGER.info(
+                        f"Migrating {e.entity} unique_id {old_id} to {new_id}."
+                    )
+                    return {
+                        "new_unique_id": entity_entry.unique_id.replace(old_id, new_id)
+                    }
+
+        await async_migrate_entries(hass, entry.entry_id, update_unique_id)
+        entry.version = 12
+
     return True
 
 

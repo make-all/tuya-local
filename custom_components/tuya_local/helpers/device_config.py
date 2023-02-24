@@ -185,11 +185,7 @@ class TuyaEntityConfig:
 
     def unique_id(self, device_uid):
         """Return a suitable unique_id for this entity."""
-        own_name = self.name
-        if own_name:
-            return f"{device_uid}-{slugify(own_name)}"
-        else:
-            return device_uid
+        return f"{device_uid}-{slugify(self.config_id)}"
 
     @property
     def entity_category(self):
