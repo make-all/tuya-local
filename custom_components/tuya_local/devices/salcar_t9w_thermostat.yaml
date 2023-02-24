@@ -9,13 +9,12 @@ primary_entity:
         - dps_val: false
           value: "off"
         - dps_val: true
-          mapping:
-            - constraint: mode
-              conditions:
-                - dps_val: auto
-                  value: auto
-                - dps_val: manual
-                  value: heat
+          constraint: mode
+          conditions:
+            - dps_val: auto
+              value: auto
+            - dps_val: manual
+              value: heat
     - id: 2
       name: mode
       type: string
