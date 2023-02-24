@@ -174,7 +174,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
             return False
 
         @callback
-        def update_unique_id(entity_entry):
+        def update_unique_id12(entity_entry):
             """Update the unique id of an entity entry."""
             old_id = entity_entry.unique_id
             e = conf_file.primary_entity
@@ -201,7 +201,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
                         "new_unique_id": entity_entry.unique_id.replace(old_id, new_id)
                     }
 
-        await async_migrate_entries(hass, entry.entry_id, update_unique_id)
+        await async_migrate_entries(hass, entry.entry_id, update_unique_id12)
         entry.version = 12
 
     return True
