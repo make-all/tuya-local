@@ -248,8 +248,9 @@ generic configurations known to work with multiple brands of device.
 - Abalon BCM700D curtain motor (likely to work with other brands)
 - Avatto curtain and light switch
 - Avatto curtain switch
-- Avatto roller blinds controller
+- Avatto roller blind controller
 - Benexmart blind motor
+- CCB-11 blind controller
 - Dongguan garage door
 - FS-03W curtain switch with backlight control
 - Kogan garage door with tilt sensor
@@ -257,7 +258,7 @@ generic configurations known to work with multiple brands of device.
 - LoraTap SC500W-V1 curtain switch
 - M027 curtain module (sold under several brands, including zemismart, meterk and others)
 - QS-WIFI-C01(BK) curtain module
-- Wistar roller blinds controller
+- Wistar roller blind controller
 - Zemismart curtain rail
 
 ### Vacuum Cleaners

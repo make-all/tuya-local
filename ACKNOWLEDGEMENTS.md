@@ -195,3 +195,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [MarciPain](https://github.com/MarciPain) for contributing support for PGST temperature and humidity sensors, Orion OWH-PTC2000 heaters and BlitzWolf SHP6 smartplugs.
 - [fischrobi](https://github.com/fischrobi) for assisting with support for Blitzwolf BW-SH2 humidifiers.
 - [elninosi](https://github.com/elninosi) for assisting with support for LoraTap curtain switches.
+- [mrulke](https://github.com/mrulke) for assisting with support for CCB-11 blind controllers.
