@@ -12,6 +12,7 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_HOST
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.entity_registry import async_migrate_entries
+from homeassistant.util import slugify
 
 from .const import (
     CONF_DEVICE_ID,
@@ -194,13 +195,13 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
             platform = entity_entry.entity_id.split(".", 1)[0]
             e = conf_file.primary_entity
             if e.name:
-                expect_id = f"{device_id}-{e.name}"
+                expect_id = f"{device_id}-{slugify(e.name)}"
             else:
                 expect_id = device_id
             if e.entity != platform or expect_id != old_id:
                 for e in conf_file.secondary_entities():
                     if e.name:
-                        expect_id = f"{device_id}-{e.name}"
+                        expect_id = f"{device_id}-{slugify(e.name)}"
                     else:
                         expect_id = device_id
                     if e.entity == platform and expect_id == old_id:
