@@ -1,6 +1,5 @@
 # Supported devices
 
-
 ### Heaters
 
 - Andersson GSH heater
@@ -208,7 +207,8 @@
 Other brands may work with the above configurations, or the below are
 generic configurations known to work with multiple brands of device.
 
-- 4 way power monitoring strip
+- 4 way power monitoring strip (2 types)
+  _confirmed as working with Kogan KASPS10A3P3UA 3 socket + USB powerstrip
 - 4 way powerstrip with USB
   _confirmed as working with AOFO ZLD-44EU-W_
 - Generic smartplug with energy monitoring (older models)
