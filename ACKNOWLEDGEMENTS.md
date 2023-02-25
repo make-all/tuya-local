@@ -184,7 +184,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [ruaandeysel](https://github.com/ruaandeysel) for assistance supporting Skyfan DC fans.
 - [DataGeek-AU](https://github.com/DataGeek-AU) for contributing support for Breville Easy Air purifiers.
 - [Clam58](https://github.com/Clam58) for contributing support for Ebac DJ4000 dehumidifierss.
-- [rafazundt](https://github.com/rafazundt) for assisting with support for AOFO ZLD and other 4-way+USB powerstrips, and iH001 LED controllers.
+- [rafazundt](https://github.com/rafazundt) for assisting with support for AOFO ZLD and other 4-way+USB powerstrips, iH001 LED controllers and FS-03W curtains.
 - [robertvanroosmal](https://github.com/robertvanroosmal) for assisting with support for Abalon smart curtains.
 - [garry0garry](https://github.com/garry0garry) for assisting with support for Emax EM3378 weather station.
 - [abroeders](https://github.com/abroeders) for contributing support for a 13kW variant of W'eau pool heatpump.

@@ -251,6 +251,7 @@ generic configurations known to work with multiple brands of device.
 - Avatto roller blinds controller
 - Benexmart blind motor
 - Dongguan garage door
+- FS-03W curtain switch with backlight control
 - Kogan garage door with tilt sensor
 - Loonas smart curtain
 - LoraTap SC500W-V1 curtain switch
