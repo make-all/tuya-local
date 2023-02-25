@@ -111,6 +111,7 @@
 ### Air Purifiers
 
 - Breville Easy Air purifier
+- Breville Smart Air purifier
 - essentials portable air purifier
 - Himox H05 and H06 air purifiers
 - Hosome air purifier
