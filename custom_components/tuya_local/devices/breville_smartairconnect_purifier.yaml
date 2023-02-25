@@ -13,7 +13,7 @@ primary_entity:
         - dps_val: false
           icon: "mdi:air-purifier-off"
     - id: 3
-      name: mode
+      name: preset_mode
       type: string
       mapping:
         - dps_val: "manual"
@@ -41,19 +41,6 @@ secondary_entities:
         class: measurement
         type: integer
         unit: µg/m3
-  - entity: select
-    name: Fan Mode
-    icon: "mdi:auto-mode"
-    category: config
-    dps:
-      - id: 3
-        type: string
-        name: option
-        mapping:
-          - dps_val: "auto"
-            value: "Auto"
-          - dps_val: "manual"
-            value: "Manual"
   - entity: switch
     name: Night mode
     category: config
@@ -105,7 +92,7 @@ secondary_entities:
       - id: 20
         name: sensor
         type: integer
-        unit: min
+        unit: d
   - entity: sensor
     name: Air quality
     class: enum
