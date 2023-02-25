@@ -44,12 +44,13 @@ secondary_entities:
   - entity: sensor
     name: Filter days left
     category: diagnostic
+    class: duration
     icon: "mdi:air-filter"
     dps:
       - id: 16
         name: sensor
         type: integer
-        unit: day
+        unit: d
   - entity: select
     name: Timer
     icon: "mdi:fan-clock"

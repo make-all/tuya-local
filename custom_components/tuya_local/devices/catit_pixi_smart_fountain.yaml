@@ -32,6 +32,7 @@ secondary_entities:
     name: Filter life
     icon: "mdi:air-filter"
     category: diagnostic
+    class: duration
     dps:
       - id: 4
         type: integer
@@ -43,7 +44,7 @@ secondary_entities:
           - scale: 1440 # minutes => days
             step: 1
             invert: true
-        unit: days
+        unit: d
 
   - entity: switch
     name: Run UV cycle
