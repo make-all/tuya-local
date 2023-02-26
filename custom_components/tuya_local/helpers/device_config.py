@@ -465,6 +465,10 @@ class TuyaDpsConfig:
                 precision += 1
             return precision
 
+    @property
+    def suggested_display_precision(self):
+        return self._config.get("precision")
+
     def step(self, device, scaled=True):
         step = 1
         scale = self.scale(device) if scaled else 1
@@ -492,7 +496,7 @@ class TuyaDpsConfig:
             if cond:
                 return cond.get("invalid", False)
         return False
-
+
     @property
     def hidden(self):
         return self._config.get("hidden", False)

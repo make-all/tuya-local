@@ -87,6 +87,11 @@ class TuyaLocalSensor(TuyaLocalEntity, SensorEntity):
         return self._sensor_dps.precision(self._device)
 
     @property
+    def suggested_display_precision(self):
+        """Return the suggested display precision for the sensor"""
+        return self._sensor_dps.suggested_display_precision
+
+    @property
     def options(self):
         """Return a set of possible options."""
         # if mappings are all integers,  they are not options to HA
