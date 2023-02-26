@@ -6,6 +6,12 @@ labels: 'bug'
 assignees: ''
 
 ---
+This form is for reporting bugs.  If you have encountered a bug, you should
+generally have some log messages or device diagnostics to show something is
+going wrong.  If your problem is more of a question or a request for help,
+then [Discussions](https://github.com/make-all/tuya-local/discussions) is
+probably a more suitable venue.
+
 
 **Describe the bug**
 A clear and concise description of what the bug is.
