@@ -171,3 +171,25 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
         if self._temperature_dps:
             r = self._temperature_dps.range(self._device)
             return r.get("max")
+
+    async def async_turn_on(self):
+        """
+        Turn on the water heater.  Works only if operation_mode is a
+        boolean dp.
+        """
+        if self._operation_mode_dps and self._operation_mode_dps.type is bool:
+            await self._device.async_set_property(
+                self._operation_mode_dps.id,
+                True,
+            )
+
+    async def async_turn_off(self):
+        """
+        Turn off the water heater.  Works only if operation_mode is a
+        boolean dp.
+        """
+        if self._operation_mode_dps and self._operation_mode_dps.type is bool:
+            await self._device.async_set_property(
+                self._operation_mode_dps.id,
+                False,
+            )

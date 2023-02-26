@@ -31,6 +31,7 @@ secondary_entities:
         type: integer
         class: measurement
         unit: V
+        force: true
         mapping:
           - scale: 10
   - entity: sensor
@@ -42,6 +43,7 @@ secondary_entities:
         name: sensor
         type: integer
         class: measurement
+        force: true
         unit: mA
   - entity: sensor
     category: diagnostic
@@ -52,6 +54,7 @@ secondary_entities:
         name: sensor
         type: integer
         class: measurement
+        force: true
         unit: W
         mapping:
           - scale: 10

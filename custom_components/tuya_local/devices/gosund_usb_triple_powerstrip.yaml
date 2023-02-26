@@ -101,6 +101,7 @@ secondary_entities:
         type: integer
         name: sensor
         unit: mA
+        force: true
         class: measurement
   - entity: sensor
     name: Power
@@ -112,6 +113,7 @@ secondary_entities:
         name: sensor
         unit: W
         class: measurement
+        force: true
         mapping:
           - scale: 10
   - entity: sensor
@@ -124,6 +126,7 @@ secondary_entities:
         name: sensor
         unit: V
         class: measurement
+        force: true
         mapping:
           - scale: 10
   - entity: binary_sensor

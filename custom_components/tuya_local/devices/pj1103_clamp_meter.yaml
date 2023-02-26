@@ -11,6 +11,7 @@ primary_entity:
       type: integer
       unit: W
       class: measurement
+      force: true
       mapping:
         - scale: 10
     - id: 24
@@ -39,6 +40,7 @@ secondary_entities:
         type: integer
         name: sensor
         unit: mA
+        force: true
         class: measurement
       - id: 23
         type: integer
@@ -53,6 +55,7 @@ secondary_entities:
         type: integer
         name: sensor
         unit: V
+        force: true
         class: measurement
         mapping:
           - scale: 10

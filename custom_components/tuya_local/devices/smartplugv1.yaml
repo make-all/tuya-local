@@ -7,27 +7,6 @@ primary_entity:
     - id: 1
       type: boolean
       name: switch
-    - id: 2
-      type: integer
-      name: timer
-    - id: 4
-      type: integer
-      name: current_a
-      readonly: true
-      mapping:
-        - scale: 1000
-    - id: 5
-      type: integer
-      name: current_power_w
-      readonly: true
-      mapping:
-        - scale: 10
-    - id: 6
-      type: integer
-      name: voltage_v
-      readonly: true
-      mapping:
-        - scale: 10
 secondary_entities:
   - entity: sensor
     category: diagnostic
@@ -39,6 +18,7 @@ secondary_entities:
         type: integer
         class: measurement
         unit: V
+        force: true
         mapping:
           - scale: 10
   - entity: sensor
@@ -51,6 +31,7 @@ secondary_entities:
         type: integer
         class: measurement
         unit: mA
+        force: true
   - entity: sensor
     category: diagnostic
     class: power
@@ -61,6 +42,7 @@ secondary_entities:
         type: integer
         class: measurement
         unit: W
+        force: true
         mapping:
           - scale: 10
   - entity: number
