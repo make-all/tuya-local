@@ -147,7 +147,7 @@ class TuyaDeviceConfig:
         Return Value:
             True if all dps in entity could be matched to dps, False otherwise
         """
-        all = keys | matched
+        all = keys + matched
         for d in entity.dps():
             if (d.id not in all and not d.optional) or (
                 d.id in all and not _typematch(d.type, dps[d.id])
