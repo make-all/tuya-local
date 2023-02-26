@@ -387,14 +387,14 @@ async def test_flow_select_type_aborts_when_no_match(mock_device, hass):
 @patch.object(config_flow.ConfigFlowHandler, "device")
 async def test_flow_select_type_data_valid(mock_device, hass):
     """Test the flow continues when valid data is supplied."""
-    setup_device_mock(mock_device, type="kogan_switch")
+    setup_device_mock(mock_device, type="smartplugv1")
 
     flow = await hass.config_entries.flow.async_init(
         DOMAIN, context={"source": "select_type"}
     )
     result = await hass.config_entries.flow.async_configure(
         flow["flow_id"],
-        user_input={CONF_TYPE: "kogan_switch"},
+        user_input={CONF_TYPE: "smartplugv1"},
     )
     assert "form" == result["type"]
     assert "choose_entities" == result["step_id"]
@@ -404,7 +404,7 @@ async def test_flow_select_type_data_valid(mock_device, hass):
 async def test_flow_choose_entities_init(hass):
     """Test the initialisation of the form in the 3rd step of the config flow."""
 
-    with patch.dict(config_flow.ConfigFlowHandler.data, {CONF_TYPE: "kogan_switch"}):
+    with patch.dict(config_flow.ConfigFlowHandler.data, {CONF_TYPE: "smartplugv1"}):
         result = await hass.config_entries.flow.async_init(
             DOMAIN, context={"source": "choose_entities"}
         )

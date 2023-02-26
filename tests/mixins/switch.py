@@ -105,23 +105,8 @@ class BasicSwitchTests:
     def test_basic_switch_class_device_class(self):
         self.assertEqual(self.basicSwitch.device_class, self.basicSwitchDevClass)
 
-    def test_basic_switch_current_power_w(self):
-        if self.basicSwitchPowerDps is None:
-            self.assertIsNone(self.basicSwitch.current_power_w)
-        else:
-            self.dps[self.basicSwitchPowerDps] = 123
-            self.assertEqual(
-                self.basicSwitch.current_power_w, 123 / self.basicSwitchPowerScale
-            )
-
     def test_basic_switch_state_attributes(self):
-        if self.basicSwitchPowerDps is None:
-            self.assertEqual(self.basicSwitch.extra_state_attributes, {})
-        else:
-            self.dps[self.basicSwitchPowerDps] = 99 * self.basicSwitchPowerScale
-            self.assertDictEqual(
-                self.basicSwitch.extra_state_attributes, {"current_power_w": 99.0}
-            )
+        self.assertEqual(self.basicSwitch.extra_state_attributes, {})
 
 
 class MultiSwitchTests:
@@ -204,35 +189,10 @@ class MultiSwitchTests:
                 f"{key} device_class mismatch",
             )
 
-    def test_multi_switch_current_power_w(self):
-        for key, subject in self.multiSwitch.items():
-            dp = self.multiSwitchPowerDps.get(key)
-            if dp is None:
-                self.assertIsNone(
-                    subject.current_power_w,
-                    f"{key} current_power_w unexpectedly exists",
-                )
-            else:
-                self.dps[dp] = 1234
-                self.assertEqual(
-                    subject.current_power_w,
-                    1234 / self.multiSwitchPowerScale.get(key, 1),
-                    f"{key} current_power_w not as expected",
-                )
-
     def test_multi_switch_state_attributes(self):
         for key, subject in self.multiSwitch.items():
-            dp = self.multiSwitchPowerDps.get(key)
-            if dp is None:
-                self.assertEqual(
-                    subject.extra_state_attributes,
-                    {},
-                    f"{key} has unexpected extra_state_attributes",
-                )
-            else:
-                self.dps[dp] = 987 * self.multiSwitchPowerScale.get(key, 1)
-                self.assertDictEqual(
-                    subject.extra_state_attributes,
-                    {"current_power_w": 987.0},
-                    f"{key} extra_state_attributes mismatch",
-                )
+            self.assertEqual(
+                subject.extra_state_attributes,
+                {},
+                f"{key} has unexpected extra_state_attributes",
+            )

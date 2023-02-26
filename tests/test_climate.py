@@ -72,7 +72,7 @@ async def test_init_entry_fails_if_device_has_no_climate(hass):
     entry = MockConfigEntry(
         domain=DOMAIN,
         data={
-            CONF_TYPE: "kogan_switch",
+            CONF_TYPE: "smartplugv1",
             CONF_DEVICE_ID: "dummy",
             CONF_PROTOCOL_VERSION: "auto",
         },

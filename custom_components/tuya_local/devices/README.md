@@ -571,8 +571,6 @@ Humidifer can also cover dehumidifiers (use class to specify which).
 
 ### switch
 - **switch** (required, boolean): a dp to control the switch state.
-- **current_power_w** (optional, number): a dp that returns the current power consumption in watts.
-   This is a legacy attribute, for the HA Energy dashboard it is advisable to also provide a sensor entity linked to the same dp as well.
 
 ### vacuum
 - **status** (required, mapping of strings): a dp to report and control the status of the vacuum.
