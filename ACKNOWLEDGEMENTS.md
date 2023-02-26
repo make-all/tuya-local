@@ -197,3 +197,5 @@ Further device support has been made with the assistance of users.  Please consi
 - [elninosi](https://github.com/elninosi) for assisting with support for LoraTap curtain switches.
 - [mrulke](https://github.com/mrulke) for assisting with support for CCB-11 blind controllers.
 - [Codeazure](https://github.com/Codeazure) for assisting with support for 4-way power monitoring powerstrips (via Kogan 3-way + USB powerstrip).
+- [hebenon](https://github.com/hebenon) for contributing support for Breville Smart Air Connect purifiers.
+- [pvillanyi](https://github.com/pvillanyi) for contributing support for smartplugs with USB (Gosund SP112).

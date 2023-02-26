@@ -182,6 +182,16 @@
 
 ### SmartPlugs/Wall sockets/Wall switches
 
+Most smartplugs follow a fairly standard template from Tuya, so many
+will work with other brands configs.  However there are many
+permutations of features enabled, and some manufacturers move
+datapoints around so smartplugs take up a lot more configurations than
+such simple devices should.  A future release will look at
+consolidating these into a smaller number of configs.  When you add a device,
+the default selected option for the device type has the most matching
+datapoints, so provided it looks like the same  type of device, it is probably
+the best option.
+
 - Arlec PB88UHA 4 way powerstrip with child lock
 - Aubess 1-gang switch with energy monitoring
 - Aubess 2-gang switch
@@ -206,7 +216,9 @@
 - Woox R4028/DIGOO DG-PS01 3 outlet + USB powerstrip with individual timers
 
 Other brands may work with the above configurations, or the below are
-generic configurations known to work with multiple brands of device.
+generic configurations that basically follow Tuya's templates with
+different features enabled, so are known to work with multiple brands
+of device.
 
 - 4 way power monitoring strip (2 types)
   _confirmed as working with Kogan KASPS10A3P3UA 3 socket + USB powerstrip
@@ -216,6 +228,8 @@ generic configurations known to work with multiple brands of device.
   _confirmed as working with Kogan and Blitzwolf single smartplugs_
 - Generic smartplug with energy monitoring (newer models)
   _confirmed as working with Kogan single smartplug with USB and Rillpac smartplugs_
+- Generic smartplug with energy monitoring and USB ports
+  _confirmed as working with Gosund SP112 smartplugs_
 - Generic smartplug with more advanced energy monitoring
   _confirmed working with CBE smartplugs, another variant with child lock, backlight and inching switch confirmed with Aubess and Elivco_
 - Generic smartplug with some additional encoded schedule info.
