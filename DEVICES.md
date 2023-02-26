@@ -290,6 +290,10 @@ of device.
 
 - Orion Grid Connect outdoor siren
 
+### Cameras
+
+- BCom Majic IPBox intercom camera
+
 ### Miscellaneous
 
 - Bresser smart 7-in-1 weather station
