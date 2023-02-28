@@ -1,0 +1,139 @@
+name: Robô Aspirador de Pó KaBuM! Smart 500
+products:
+  - id: wexaeucvbdawkkpo
+primary_entity:
+  entity: vacuum
+  dps:
+    - id: 1
+      type: boolean
+      name: power
+    - id: 11
+      type: bitfield
+      name: error
+      mapping:
+        - dps_val: 1
+          value: edge_sweep
+        - dps_val: 2
+          value: middle_sweep
+        - dps_val: 4
+          value: left_wheel
+        - dps_val: 8
+          value: right_wheel
+        - dps_val: 16
+          value: garbage_box
+        - dps_val: 32
+          value: land_check
+        - dps_val: 64
+          value: collision
+    - id: 14
+      name: battery
+      type: integer
+      readonly: true
+    - id: 25
+      type: boolean
+      name: activate
+    - id: 26
+      type: string
+      name: direction_control
+      optional: true
+      mapping:
+        - dps_val: forward
+          value: forward
+        - dps_val: backward
+          value: reverse
+        - dps_val: turn_left
+          value: left
+        - dps_val: turn_right
+          value: right
+        - dps_val: stop
+          value: stop
+    - id: 27
+      type: string
+      name: command
+      mapping:
+        - dps_val: standby
+          value: standby
+        - dps_val: smart
+          value: Auto cleaning
+        - dps_val: spiral
+          value: Stop_cleanning
+        - dps_value: single
+          value: Room cleaning
+        - dps_val: wall_follow
+          value: Edge cleaning
+        - dps_val: chargego
+          value: Return to base
+    - id: 28
+      type: string
+      name: status
+      mapping:
+        - dps_val: cleanning
+          value: Cleanning
+        - dps_val: returning
+          value: Returning to dock
+        - dps_val: charging
+          value: Charging
+        - dps_val: standby
+          value: Standby
+        - dps_val: chargecompleted
+          value: Charge completed
+    - id: 29
+      type: boolean
+      name: locate
+      optional: true
+    - id: 30
+      type: string
+      name: fan_speed
+      mapping:
+        - dps_val: low
+          value: Low
+        - dps_val: normal
+          value: Medium
+        - dps_val: high
+          value: High
+secondary_entities:
+  - entity: switch
+    name: Mute voice
+    icon: "mdi:account-voice"
+    dps:
+      - id: 31
+        type: boolean
+        name: switch
+  - entity: select
+    name: Mode
+    icon: mdi:vacuum-outline
+    dps:
+      - id: 27
+        type: string
+        name: option
+        mapping:
+          - dps_val: standby
+            value: Standby
+          - dps_val: smart
+            value: Auto cleaning
+          - dps_val: spiral
+            value: Spot cleanning
+          - dps_value: single
+            value: Room cleaning
+          - dps_val: wall_follow
+            value: Edge cleaning
+          - dps_val: chargego
+            value: Return to base
+  - entity: sensor
+    name: Clean area
+    category: diagnostic
+    icon: "mdi:floor-plan"
+    dps:
+      - id: 32
+        type: integer
+        name: sensor
+        unit: m2
+  - entity: sensor
+    name: Clean time
+    category: diagnostic
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 33
+        type: integer
+        name: sensor
+        unit: min
