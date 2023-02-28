@@ -3,6 +3,7 @@ Config parser for Tuya Local devices.
 """
 from base64 import b64decode, b64encode
 
+from collections.abc import Sequence
 from fnmatch import fnmatch
 import logging
 from os import walk
@@ -61,13 +62,21 @@ _signed_fmts = {
 
 
 def _bytes_to_fmt(bytes, signed=False):
-    "Convert a byte count to an unpack format."
+    """Convert a byte count to an unpack format."""
     fmt = _signed_fmts if signed else _unsigned_fmts
 
     if bytes in fmt:
         return fmt[bytes]
     else:
         return f"{bytes}s"
+
+
+def _equal_or_in(value1, values2):
+    """Return true if value1 is the same as values2, or appears in values2."""
+    if type(values2) is not str and isinstance(values2, Sequence):
+        return value1 in values2
+    else:
+        return value1 == values2
 
 
 class TuyaDeviceConfig:
@@ -501,7 +510,7 @@ class TuyaDpsConfig:
             step = mapping.get("step", 1)
             cond = self._active_condition(mapping, device)
             if cond:
-                constraint = mapping.get("constraint")
+                constraint = mapping.get("constraint", self.name)
                 _LOGGER.debug("Considering condition on %s", constraint)
                 step = cond.get("step", step)
         if step != 1 or scale != 1:
@@ -640,11 +649,14 @@ class TuyaDpsConfig:
 
             for c in m.get("conditions", {}):
                 if "value" in c and str(c["value"]) == str(value):
-                    c_dp = self._entity.find_dps(m.get("constraint"))
+                    c_dp = self._entity.find_dps(m.get("constraint", self.name))
                     # only consider the condition a match if we can change
                     # the dp to match, or it already matches
-                    if not c_dp.readonly or (
-                        device.get_property(c_dp.id) == c.get("dps_val")
+                    if (c_dp.id != self.id and not c_dp.readonly) or (
+                        _equal_or_in(
+                            device.get_property(c_dp.id),
+                            c.get("dps_val"),
+                        )
                     ):
                         return m
                 if "value" not in c and "value_mirror" in c:
@@ -654,14 +666,14 @@ class TuyaDpsConfig:
         return default
 
     def _active_condition(self, mapping, device, value=None):
-        constraint = mapping.get("constraint")
+        constraint = mapping.get("constraint", self.name)
         conditions = mapping.get("conditions")
         c_match = None
         if constraint and conditions:
             c_dps = self._entity.find_dps(constraint)
             c_val = None if c_dps is None else device.get_property(c_dps.id)
             for cond in conditions:
-                if c_val is not None and c_val == cond.get("dps_val"):
+                if c_val is not None and (_equal_or_in(c_val, cond.get("dps_val"))):
                     c_match = cond
                 # Case where matching None, need extra checks to ensure we
                 # are not just defaulting and it is really a match
@@ -709,12 +721,17 @@ class TuyaDpsConfig:
                         cval = self._entity.find_dps(r_dps).get_value(device)
 
                 if cval == value:
-                    c_dps = self._entity.find_dps(mapping["constraint"])
-                    c_val = c_dps._map_from_dps(
-                        cond.get("dps_val", device.get_property(c_dps.id)),
-                        device,
+                    c_dps = self._entity.find_dps(mapping.get("constraint", self.name))
+                    cond_dpsval = cond.get("dps_val")
+                    single_match = type(cond_dpsval) == str or (
+                        not isinstance(cond_dpsval, Sequence)
                     )
-                    dps_map.update(c_dps.get_values_to_set(device, c_val))
+                    if c_dps.id != self.id and single_match:
+                        c_val = c_dps._map_from_dps(
+                            cond.get("dps_val", device.get_property(c_dps.id)),
+                            device,
+                        )
+                        dps_map.update(c_dps.get_values_to_set(device, c_val))
 
                 # Allow simple conditional mapping overrides
                 for m in cond.get("mapping", {}):
