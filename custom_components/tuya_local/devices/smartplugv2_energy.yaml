@@ -9,6 +9,7 @@ primary_entity:
     - id: 21
       type: integer
       name: test_bit
+      optional: true
     - id: 26
       type: bitfield
       name: fault_code
@@ -45,6 +46,7 @@ secondary_entities:
         name: sensor
         type: integer
         unit: Wh
+        optional: true
       - id: 25
         type: integer
         name: calibration
@@ -58,6 +60,7 @@ secondary_entities:
         name: sensor
         type: integer
         class: measurement
+        force: true
         unit: mA
       - id: 23
         type: integer
@@ -72,6 +75,7 @@ secondary_entities:
         name: sensor
         type: integer
         class: measurement
+        force: true
         unit: W
         mapping:
           - scale: 10
@@ -87,6 +91,7 @@ secondary_entities:
       - id: 20
         name: sensor
         type: integer
+        force: true
         class: measurement
         unit: V
         mapping:

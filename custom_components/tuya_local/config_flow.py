@@ -1,7 +1,7 @@
 import logging
 
 import voluptuous as vol
-from homeassistant import config_entries, data_entry_flow
+from homeassistant import config_entries
 from homeassistant.const import CONF_HOST, CONF_NAME
 from homeassistant.core import HomeAssistant, callback
 
@@ -16,12 +16,13 @@ from .const import (
     CONF_TYPE,
 )
 from .helpers.device_config import get_config
+from .helpers.log import log_json
 
 _LOGGER = logging.getLogger(__name__)
 
 
 class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
-    VERSION = 11
+    VERSION = 12
     CONNECTION_CLASS = config_entries.CONN_CLASS_LOCAL_PUSH
     device = None
     data = {}
@@ -87,16 +88,24 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             best_match = int(best_match)
             dps = self.device._get_cached_state()
             _LOGGER.warning(
-                f"Device matches {best_matching_type} with quality of {best_match}%. DPS: {dps}"
+                "Device matches %s with quality of %d%%. DPS: %s",
+                best_matching_type,
+                best_match,
+                log_json(dps),
             )
             _LOGGER.warning(
-                f"Report this to https://github.com/make-all/tuya-local/issues/"
+                "Report this to https://github.com/make-all/tuya-local/issues/"
             )
         if types:
             return self.async_show_form(
                 step_id="select_type",
                 data_schema=vol.Schema(
-                    {vol.Required(CONF_TYPE, default=best_matching_type): vol.In(types)}
+                    {
+                        vol.Required(
+                            CONF_TYPE,
+                            default=best_matching_type,
+                        ): vol.In(types),
+                    }
                 ),
             )
         else:
@@ -146,10 +155,14 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
                 errors["base"] = "connection"
 
         schema = {
-            vol.Required(CONF_LOCAL_KEY, default=config.get(CONF_LOCAL_KEY, "")): str,
+            vol.Required(
+                CONF_LOCAL_KEY,
+                default=config.get(CONF_LOCAL_KEY, ""),
+            ): str,
             vol.Required(CONF_HOST, default=config.get(CONF_HOST, "")): str,
             vol.Required(
-                CONF_PROTOCOL_VERSION, default=config.get(CONF_PROTOCOL_VERSION, "auto")
+                CONF_PROTOCOL_VERSION,
+                default=config.get(CONF_PROTOCOL_VERSION, "auto"),
             ): vol.In(["auto"] + API_PROTOCOL_VERSIONS),
             vol.Required(
                 CONF_POLL_ONLY, default=config.get(CONF_POLL_ONLY, False)
@@ -185,7 +198,7 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
         await device.async_refresh()
         retval = device if device.has_returned_state else None
     except Exception as e:
-        _LOGGER.warning(e)
+        _LOGGER.warning("Connection test failed with %s %s", type(e), e)
         retval = None
 
     if existing:

@@ -79,6 +79,7 @@ class TestVorkVK6267AWPurifier(
                     "dps": COUNTDOWN_DPS,
                     "name": "sensor_timer",
                     "unit": UnitOfTime.MINUTES,
+                    "device_class": SensorDeviceClass.DURATION,
                 },
                 {
                     "dps": FILTER_DPS,

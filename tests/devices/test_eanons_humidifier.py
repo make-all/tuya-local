@@ -6,6 +6,7 @@ from homeassistant.components.humidifier.const import (
     MODE_AUTO,
     MODE_SLEEP,
 )
+from homeassistant.components.sensor import SensorDeviceClass
 
 from ..const import EANONS_HUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -65,6 +66,7 @@ class TestEanonsHumidifier(
             TIMER_DPS,
             self.entities.get("sensor_timer"),
             unit="min",
+            device_class=SensorDeviceClass.DURATION,
         )
         self.setUpBasicBinarySensor(
             ERROR_DPS,

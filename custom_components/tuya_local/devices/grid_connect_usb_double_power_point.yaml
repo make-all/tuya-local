@@ -1,9 +1,3 @@
-# With limitation on reiterating same type of entity there is not much left to do to achieve full functionality.
-# However, it might complement existing Tuya v2 cloud integration or even localtuya by providing:
-# -  power reading
-# - child lock
-# - master switch (not very usable)
-
 name: Grid Connnect power metered double outlet with USB
 primary_entity:
   entity: switch
@@ -11,47 +5,12 @@ primary_entity:
   name: Master
   class: outlet
   dps:
-    - id: 18
-      type: integer
-      name: current_a
-      readonly: true
-      mapping:
-        - scale: 1000
-    - id: 19
-      type: integer
-      name: current_power_w
-      readonly: true
-      mapping:
-        - scale: 10
-    - id: 20
-      type: integer
-      name: voltage_v
-      readonly: true
-      mapping:
-        - scale: 10
-    - id: 21
-      name: test_bit
-      type: integer
-      readonly: true
-    - id: 22
-      name: voltage_calibration
-      type: integer
-      readonly: true
-    - id: 23
-      name: current_calibration
-      type: integer
-      readonly: true
-    - id: 24
-      name: power_calibration
-      type: integer
-      readonly: true
-    - id: 25
-      name: energy_calibration
-      type: integer
-      readonly: true
     - id: 101
       name: switch
       type: boolean
+    - id: 21
+      name: test_bit
+      type: integer
 secondary_entities:
   - entity: lock
     name: Child lock
@@ -72,13 +31,6 @@ secondary_entities:
       - id: 1
         name: switch
         type: boolean
-      - id: 9
-        name: countdown
-        type: integer
-      - id: 101
-        name: master
-        type: boolean
-        hidden: true
   - entity: switch
     class: outlet
     name: Outlet 2
@@ -86,13 +38,6 @@ secondary_entities:
       - id: 2
         name: switch
         type: boolean
-      - id: 10
-        name: countdown
-        type: integer
-      - id: 101
-        name: master
-        type: boolean
-        hidden: true
   - entity: sensor
     category: diagnostic
     name: Energy
@@ -101,6 +46,9 @@ secondary_entities:
         name: sensor
         type: integer
         unit: Wh
+      - id: 25
+        name: calibration
+        type: integer
   - entity: sensor
     class: current
     category: diagnostic
@@ -110,7 +58,11 @@ secondary_entities:
         name: sensor
         type: integer
         class: measurement
+        force: true
         unit: mA
+      - id: 23
+        name: calibration
+        type: integer
   - entity: sensor
     class: power
     category: diagnostic
@@ -121,8 +73,12 @@ secondary_entities:
         type: integer
         class: measurement
         unit: W
+        force: true
         mapping:
           - scale: 10
+      - id: 24
+        name: calibration
+        type: integer
   - entity: sensor
     class: voltage
     category: diagnostic
@@ -133,8 +89,12 @@ secondary_entities:
         type: integer
         class: measurement
         unit: V
+        force: true
         mapping:
           - scale: 10
+      - id: 22
+        name: calibration
+        type: integer
   - entity: select
     category: config
     name: Initial state
@@ -148,8 +108,8 @@ secondary_entities:
             value: "On"
           - dps_val: "off"
             value: "Off"
-          - dps_val: "memory"
-            value: "Last State"
+          - dps_val: memory
+            value: Last State
   - entity: number
     name: Timer 1
     icon: "mdi:timer"

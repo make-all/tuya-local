@@ -4,6 +4,7 @@ product:
     name: Abalon BCM700D
 primary_entity:
   entity: cover
+  class: curtain
   dps:
     - id: 101
       name: position
@@ -15,9 +16,9 @@ primary_entity:
       name: control
       type: string
       mapping:
-        - dps_val: FZ
-          value: open
         - dps_val: ZZ
+          value: open
+        - dps_val: FZ
           value: close
         - dps_val: STOP
           value: stop

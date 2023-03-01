@@ -49,12 +49,13 @@ class TuyaLocalSensor(TuyaLocalEntity, SensorEntity):
     def device_class(self):
         """Return the class of this device"""
         dclass = self._config.device_class
-        try:
-            return SensorDeviceClass(dclass)
-        except ValueError:
-            if dclass:
-                _LOGGER.warning(f"Unrecognized sensor device class of {dclass} ignored")
-            return None
+        if dclass:
+            try:
+                return SensorDeviceClass(dclass)
+            except ValueError:
+                _LOGGER.warning(
+                    "Unrecognized sensor device class of %s ignored", dclass
+                )
 
     @property
     def state_class(self):
@@ -86,6 +87,16 @@ class TuyaLocalSensor(TuyaLocalEntity, SensorEntity):
         return self._sensor_dps.precision(self._device)
 
     @property
+    def suggested_display_precision(self):
+        """Return the suggested display precision for the sensor"""
+        return self._sensor_dps.suggested_display_precision
+
+    @property
     def options(self):
         """Return a set of possible options."""
-        return self._sensor_dps.values(self._device)
+        # if mappings are all integers,  they are not options to HA
+        values = self._sensor_dps.values(self._device)
+        if values:
+            for val in values:
+                if isinstance(val, str):
+                    return values

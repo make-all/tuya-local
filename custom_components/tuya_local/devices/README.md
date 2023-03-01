@@ -168,6 +168,19 @@ explicit request to update them, such plugs will only return monitoring data
 rarely or never.  Devices can misbehave if this is used on dps that do not
 require it.  Use this only where needed, and generally only on read-only dps.
 
+### `precision`
+
+*Optional, default None.*
+
+For integer dps that are sensor values, the suggested precision for
+display in Home Assistant can be specified.  If unspecified, the Home
+Assistant will use the native precision, which is calculated based on
+the scale of the dp so as to provide distinct values with as few
+decimal places as possible. For example a scale of 3 will result in
+one decimal place by default, (values displayed as x.3, x.7 rather
+than x.33333333 and x.666666) but you could override that to 2 or 0
+with by specifying the precision explicitly.
+
 ### `mapping`
 
 *Optional.*
@@ -370,29 +383,20 @@ pick a defaulttone to use to turn on the siren.
 
 ### `constraint`
 
-*Optional, always paired with `conditions`.*
+*Optional, always paired with `conditions`.  Default if unspecified is the current attribute*
 
 If a rule depends on an attribute other than the current one, then `constraint`
-can be used to specify the element that `conditions` applies to.
+can be used to specify the element that `conditions` applies to.  `constraint` can also refer back to the same attribute - this can be useful for specifying conditional mappings, for example to support two different variants of a device in a single config file, where the only difference is the way they represent enum attributes.
 
 ### `conditions`
 
-*Optional, always paired with `constraint.`*
+*Optional, usually paired with `constraint.`*
 
-Conditions defines a list of rules that are applied based on the `constraint`
-attribute. The contents are the same as Mapping Rules, but `dps_val` applies
-to the attribute specified by `constraint`. All others act on the current
-attribute as they would in the mapping.  Although conditions are specified
-within a mapping, they can also contain a `mapping` of their own to override
-that mapping.  These nested mappings are limited to simple `dps_val` to `value`
-substitutions, as more complex rules would quickly become too complex to
-manage.
+Conditions defines a list of rules that are applied based on the `constraint` attribute. The contents are the same as Mapping Rules, but `dps_val` applies to the attribute specified by `constraint`, and also can be a list of values to match as well rather than a single value.  All others act on the current attribute as they would in the mapping.  Although conditions are specified within a mapping, they can also contain a `mapping` of their own to override that mapping.  These nested mappings are limited to simple `dps_val` to `value` substitutions, as more complex rules would quickly become too complex to manage.
 
 When setting a dp which has conditions attached, the behaviour is slightly different depending on whether the constraint dp is readonly or not.
 
-For non-readonly constraints, the constraint dp will be set along with the
-target dp so that the first condition with a value matching the target value
-is met.
+For non-readonly constraints that specify a single dps_val, the constraint dp will be set along with the target dp so that the first condition with a value matching the target value is met.
 
 For readonly constraints, the condition must match the constraint dp's current value for anything to be set.
 
@@ -571,8 +575,6 @@ Humidifer can also cover dehumidifiers (use class to specify which).
 
 ### switch
 - **switch** (required, boolean): a dp to control the switch state.
-- **current_power_w** (optional, number): a dp that returns the current power consumption in watts.
-   This is a legacy attribute, for the HA Energy dashboard it is advisable to also provide a sensor entity linked to the same dp as well.
 
 ### vacuum
 - **status** (required, mapping of strings): a dp to report and control the status of the vacuum.

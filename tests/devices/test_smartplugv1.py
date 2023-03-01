@@ -75,22 +75,3 @@ class TestKoganSwitch(
 
     def test_device_class_is_outlet(self):
         self.assertEqual(self.subject.device_class, SwitchDeviceClass.OUTLET)
-
-    def test_current_power_w(self):
-        self.dps[POWER_DPS] = 1234
-        self.assertEqual(self.subject.current_power_w, 123.4)
-
-    def test_extra_state_attributes_set(self):
-        self.dps[TIMER_DPS] = 1
-        self.dps[VOLTAGE_DPS] = 2350
-        self.dps[CURRENT_DPS] = 1234
-        self.dps[POWER_DPS] = 5678
-        self.assertDictEqual(
-            self.subject.extra_state_attributes,
-            {
-                "timer": 1,
-                "current_a": 1.234,
-                "voltage_v": 235.0,
-                "current_power_w": 567.8,
-            },
-        )

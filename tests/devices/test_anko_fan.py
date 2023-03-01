@@ -25,7 +25,7 @@ class TestAnkoFan(SwitchableTests, BasicNumberTests, TuyaDeviceTestCase):
             TIMER_DPS,
             self.entities.get("number_timer"),
             max=9,
-            unit=UnitOfTime.SECONDS,
+            unit=UnitOfTime.HOURS,
         )
         self.mark_secondary(["number_timer"])
 

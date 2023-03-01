@@ -3,6 +3,7 @@ from homeassistant.components.cover import (
     CoverDeviceClass,
     CoverEntityFeature,
 )
+from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import UnitOfTime
 
 from ..const import AVATTO_BLINDS_PAYLOAD
@@ -39,6 +40,7 @@ class TestAvattoBlinds(MultiSensorTests, BasicSelectTests, TuyaDeviceTestCase):
                 {
                     "dps": COUNTDOWN_DP,
                     "name": "sensor_timer",
+                    "device_class": SensorDeviceClass.DURATION,
                     "min": 0,
                     "max": 86400,
                     "unit": UnitOfTime.SECONDS,

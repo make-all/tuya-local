@@ -166,7 +166,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [MadDoct](https://github.com/MadDoct) for contributing support for RGB nightlight sockets.
 - [larueli](https://github.com/larueli) for contributing improvements to unavailable device detection when using persistent connections.
 - [austinhodak](https://github.com/austinhodak) for contributing support for generic dimmable lights.
-- [x5500](https://github.com/x5500) for contributing support for Loonas curtains.
+- [x5500](https://github.com/x5500) for contributing support for Loonas curtains and assisting with support for BCom doorbell camera.
 - [mypixies](https://github.com/mypixies) for assisting with support for Moes dimmer switch.
 - [BeardedTinker](https://github.com/BeardedTinker) for assisting with support for SG600MD smart inverter.
 - [LeandroIssa](https://github.com/LeandroIssa) for contributing Brazilian Portuguese translations.
@@ -184,7 +184,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [ruaandeysel](https://github.com/ruaandeysel) for assistance supporting Skyfan DC fans.
 - [DataGeek-AU](https://github.com/DataGeek-AU) for contributing support for Breville Easy Air purifiers.
 - [Clam58](https://github.com/Clam58) for contributing support for Ebac DJ4000 dehumidifierss.
-- [rafazundt](https://github.com/rafazundt) for assisting with support for AOFO ZLD and other 4-way+USB powerstrips, and iH001 LED controllers.
+- [rafazundt](https://github.com/rafazundt) for assisting with support for AOFO ZLD and other 4-way+USB powerstrips, iH001 LED controllers and FS-03W curtains.
 - [robertvanroosmal](https://github.com/robertvanroosmal) for assisting with support for Abalon smart curtains.
 - [garry0garry](https://github.com/garry0garry) for assisting with support for Emax EM3378 weather station.
 - [abroeders](https://github.com/abroeders) for contributing support for a 13kW variant of W'eau pool heatpump.
@@ -192,6 +192,10 @@ Further device support has been made with the assistance of users.  Please consi
 - [Saentist](https://github.com/Saentist) for contributing Bulgarian translations.
 - [drudgebg](https://github.com/drudgebg) for contributing support for Teckin SS42 outdoor double smartplug.
 - [saotthon](https://github.com/saotthon) for assisting with support for BVF CP1 heaters.
-- [MarciPain](https://github.com/MarciPain) for contributing support for PGST temperature and humidity sensors and Orion OWH-PTC2000 heaters.
+- [MarciPain](https://github.com/MarciPain) for contributing support for PGST temperature and humidity sensors, Orion OWH-PTC2000 heaters and BlitzWolf SHP6 smartplugs.
 - [fischrobi](https://github.com/fischrobi) for assisting with support for Blitzwolf BW-SH2 humidifiers.
 - [elninosi](https://github.com/elninosi) for assisting with support for LoraTap curtain switches.
+- [mrulke](https://github.com/mrulke) for assisting with support for CCB-11 blind controllers.
+- [Codeazure](https://github.com/Codeazure) for assisting with support for 4-way power monitoring powerstrips (via Kogan 3-way + USB powerstrip).
+- [hebenon](https://github.com/hebenon) for contributing support for Breville Smart Air Connect purifiers.
+- [pvillanyi](https://github.com/pvillanyi) for contributing support for smartplugs with USB (Gosund SP112).

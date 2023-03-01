@@ -1,0 +1,141 @@
+name: Smartplug with USB
+products:
+  - id: zmql6aexy8ua5rox
+    name: Gosund SP112
+primary_entity:
+  entity: switch
+  class: outlet
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 21
+      type: bitfield
+      name: factory_test
+      optional: true
+    - id: 26
+      type: integer
+      name: fault_code
+      optional: true
+secondary_entities:
+  - entity: switch
+    name: USB
+    icon: "mdi:usb"
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    name: Voltage
+    dps:
+      - id: 20
+        name: sensor
+        type: integer
+        class: measurement
+        force: true
+        unit: V
+        mapping:
+          - scale: 10
+      - id: 22
+        type: integer
+        name: calibration
+        optional: true
+  - entity: sensor
+    category: diagnostic
+    class: current
+    name: Current
+    dps:
+      - id: 18
+        name: sensor
+        type: integer
+        class: measurement
+        force: true
+        unit: mA
+      - id: 23
+        type: integer
+        name: calibration
+        optional: true
+  - entity: sensor
+    category: diagnostic
+    class: power
+    name: Power
+    dps:
+      - id: 19
+        name: sensor
+        type: integer
+        class: measurement
+        force: true
+        unit: W
+        mapping:
+          - scale: 10
+      - id: 24
+        type: integer
+        name: calibration
+        optional: true
+  - entity: number
+    category: config
+    name: Outlet Timer
+    icon: "mdi:timer"
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    name: USB Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 15
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: select
+    name: Initial state
+    icon: "mdi:toggle-switch"
+    category: config
+    dps:
+      - id: 38
+        type: string
+        name: option
+        mapping:
+          - dps_val: power_on
+            value: "On"
+          - dps_val: power_off
+            value: "Off"
+          - dps_val: last
+            value: Last state
+  - entity: select
+    name: Indicator
+    icon: "mdi:led-on"
+    category: config
+    dps:
+      - id: 39
+        type: string
+        name: option
+        mapping:
+          - dps_val: relay
+            value: State
+          - dps_val: pos
+            value: Position
+          - dps_val: none
+            value: "Off"
+
+            
+
+
+

@@ -3,6 +3,7 @@ from homeassistant.components.climate.const import (
     ClimateEntityFeature,
     HVACMode,
 )
+from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     UnitOfTime,
 )
@@ -76,8 +77,8 @@ class TestNashoneMTS700WBThermostat(
         self.setUpBasicSensor(
             COUNTDOWN_DPS,
             self.entities.get("sensor_timer"),
-            unit=UnitOfTime.MINUTES,
-            testdata=(600, 10.0),
+            unit=UnitOfTime.SECONDS,
+            device_class=SensorDeviceClass.DURATION,
         )
         self.setUpBasicSwitch(
             RESET_DPS,

@@ -65,7 +65,6 @@ class TestDevolaPatioHeater(
                     "unit": PERCENTAGE,
                     "device_class": SensorDeviceClass.POWER_FACTOR,
                     "testdata": ("2", 50),
-                    "options": [25, 50, 75, 100],
                 },
                 {
                     "dps": MODE_DPS,

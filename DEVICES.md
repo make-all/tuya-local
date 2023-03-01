@@ -1,6 +1,5 @@
 # Supported devices
 
-
 ### Heaters
 
 - Andersson GSH heater
@@ -112,6 +111,7 @@
 ### Air Purifiers
 
 - Breville Easy Air purifier
+- Breville Smart Air Connect purifier
 - essentials portable air purifier
 - Himox H05 and H06 air purifiers
 - Hosome air purifier
@@ -182,9 +182,20 @@
 
 ### SmartPlugs/Wall sockets/Wall switches
 
+Most smartplugs follow a fairly standard template from Tuya, so many
+will work with other brands configs.  However there are many
+permutations of features enabled, and some manufacturers move
+datapoints around so smartplugs take up a lot more configurations than
+such simple devices should.  A future release will look at
+consolidating these into a smaller number of configs.  When you add a device,
+the default selected option for the device type has the most matching
+datapoints, so provided it looks like the same  type of device, it is probably
+the best option.
+
 - Arlec PB88UHA 4 way powerstrip with child lock
 - Aubess 1-gang switch with energy monitoring
 - Aubess 2-gang switch
+- Blitzwolf BW-SHP6 PRO smartplug with child lock
 - DIGOO DG-SP202 dual smartplug with energy monitoring and timers
 - DIGOO DG-SP01 USB smartplug with night light
 - Dual power monitoring smartplug (Geex)
@@ -205,15 +216,20 @@
 - Woox R4028/DIGOO DG-PS01 3 outlet + USB powerstrip with individual timers
 
 Other brands may work with the above configurations, or the below are
-generic configurations known to work with multiple brands of device.
+generic configurations that basically follow Tuya's templates with
+different features enabled, so are known to work with multiple brands
+of device.
 
-- 4 way power monitoring strip
+- 4 way power monitoring strip (2 types)
+  _confirmed as working with Kogan KASPS10A3P3UA 3 socket + USB powerstrip
 - 4 way powerstrip with USB
   _confirmed as working with AOFO ZLD-44EU-W_
 - Generic smartplug with energy monitoring (older models)
   _confirmed as working with Kogan and Blitzwolf single smartplugs_
 - Generic smartplug with energy monitoring (newer models)
   _confirmed as working with Kogan single smartplug with USB and Rillpac smartplugs_
+- Generic smartplug with energy monitoring and USB ports
+  _confirmed as working with Gosund SP112 smartplugs_
 - Generic smartplug with more advanced energy monitoring
   _confirmed working with CBE smartplugs, another variant with child lock, backlight and inching switch confirmed with Aubess and Elivco_
 - Generic smartplug with some additional encoded schedule info.
@@ -247,15 +263,17 @@ generic configurations known to work with multiple brands of device.
 - Abalon BCM700D curtain motor (likely to work with other brands)
 - Avatto curtain and light switch
 - Avatto curtain switch
-- Avatto roller blinds controller
+- Avatto roller blind controller
 - Benexmart blind motor
+- CCB-11 blind controller
 - Dongguan garage door
+- FS-03W curtain switch with backlight control
 - Kogan garage door with tilt sensor
 - Loonas smart curtain
 - LoraTap SC500W-V1 curtain switch
 - M027 curtain module (sold under several brands, including zemismart, meterk and others)
 - QS-WIFI-C01(BK) curtain module
-- Wistar roller blinds controller
+- Wistar roller blind controller
 - Zemismart curtain rail
 
 ### Vacuum Cleaners
@@ -271,6 +289,10 @@ generic configurations known to work with multiple brands of device.
 ### Sirens
 
 - Orion Grid Connect outdoor siren
+
+### Cameras
+
+- BCom Majic IPBox intercom camera
 
 ### Miscellaneous
 

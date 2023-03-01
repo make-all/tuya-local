@@ -6,6 +6,7 @@ from homeassistant.helpers.entity import EntityCategory
 
 from custom_components.tuya_local.binary_sensor import TuyaLocalBinarySensor
 from custom_components.tuya_local.button import TuyaLocalButton
+from custom_components.tuya_local.camera import TuyaLocalCamera
 from custom_components.tuya_local.climate import TuyaLocalClimate
 from custom_components.tuya_local.cover import TuyaLocalCover
 from custom_components.tuya_local.fan import TuyaLocalFan
@@ -28,6 +29,7 @@ from custom_components.tuya_local.helpers.device_config import (
 DEVICE_TYPES = {
     "binary_sensor": TuyaLocalBinarySensor,
     "button": TuyaLocalButton,
+    "camera": TuyaLocalCamera,
     "climate": TuyaLocalClimate,
     "cover": TuyaLocalCover,
     "fan": TuyaLocalFan,

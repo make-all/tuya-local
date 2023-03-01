@@ -9,18 +9,6 @@ primary_entity:
     - id: 21
       type: integer
       name: test_bit
-    - id: 22
-      type: integer
-      name: voltage_calibration
-    - id: 23
-      type: integer
-      name: current_calibration
-    - id: 24
-      type: integer
-      name: power_calibration
-    - id: 25
-      type: integer
-      name: energy_calibration
     - id: 26
       type: bitfield
       name: fault_code
@@ -55,7 +43,12 @@ secondary_entities:
         name: sensor
         type: integer
         class: measurement
+        force: true
         unit: mA
+      - id: 23
+        type: integer
+        name: calibration
+        optional: true
   - entity: sensor
     category: diagnostic
     class: power
@@ -65,9 +58,14 @@ secondary_entities:
         name: sensor
         type: integer
         class: measurement
+        force: true
         unit: W
         mapping:
           - scale: 10
+      - id: 24
+        type: integer
+        name: calibration
+        optional: true
   - entity: sensor
     category: diagnostic
     class: voltage
@@ -76,10 +74,15 @@ secondary_entities:
       - id: 20
         name: sensor
         type: integer
+        force: true
         class: measurement
         unit: V
         mapping:
           - scale: 10
+      - id: 22
+        type: integer
+        name: calibration
+        optional: true
   - entity: binary_sensor
     class: problem
     category: diagnostic
