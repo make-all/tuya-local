@@ -56,13 +56,13 @@ primary_entity:
         - dps_val: smart
           value: Auto cleaning
         - dps_val: spiral
-          value: Stop_cleanning
+          value: clean_spot
         - dps_value: single
           value: Room cleaning
         - dps_val: wall_follow
           value: Edge cleaning
         - dps_val: chargego
-          value: Return to base
+          value: return_to_base
     - id: 28
       type: string
       name: status
@@ -99,30 +99,11 @@ secondary_entities:
       - id: 31
         type: boolean
         name: switch
-  - entity: select
-    name: Mode
-    icon: mdi:vacuum-outline
-    dps:
-      - id: 27
-        type: string
-        name: option
-        mapping:
-          - dps_val: standby
-            value: Standby
-          - dps_val: smart
-            value: Auto cleaning
-          - dps_val: spiral
-            value: Spot cleanning
-          - dps_value: single
-            value: Room cleaning
-          - dps_val: wall_follow
-            value: Edge cleaning
-          - dps_val: chargego
-            value: Return to base
   - entity: sensor
     name: Clean area
     category: diagnostic
     icon: "mdi:floor-plan"
+    optional: true
     dps:
       - id: 32
         type: integer
@@ -132,6 +113,7 @@ secondary_entities:
     name: Clean time
     category: diagnostic
     icon: "mdi:clock-outline"
+    optional: true
     dps:
       - id: 33
         type: integer
