@@ -1,6 +1,6 @@
-name: Breville Smart Air Connect Purifier
+name: Breville Smart Air Plus
 products:
-  - id: tltdxtehttjbkjni
+  - id: "emh1sylyfw7n2b50"
 primary_entity:
   entity: fan
   dps:
@@ -9,22 +9,26 @@ primary_entity:
       type: boolean
       icon: "mdi:air-purifier"
     - id: 3
-      name: preset_mode
       type: string
+      name: preset_mode
       mapping:
-        - dps_val: "manual"
-          value: "Manual"
         - dps_val: "auto"
           value: "Auto"
+        - dps_val: "manual"
+          value: "Manual"
+        - dps_val: "sleep"
+          value: "Sleep"
     - id: 4
       type: string
       name: speed
       mapping:
-        - dps_val: low
-          value: 33
-        - dps_val: mid
-          value: 66
-        - dps_val: high
+        - dps_val: "low"
+          value: 25
+        - dps_val: "mid"
+          value: 50
+        - dps_val: "high"
+          value: 75
+        - dps_val: "tubo" # there's a typo in the firmware
           value: 100
 secondary_entities:
   - entity: sensor
@@ -33,20 +37,14 @@ secondary_entities:
     class: pm25
     dps:
       - id: 2
-        name: sensor
-        class: measurement
         type: integer
+        name: sensor
         unit: ugm3
+        class: measurement
+        mapping:
+          - scale: 10
   - entity: switch
-    name: Night mode
-    category: config
-    icon: "mdi:lightbulb-night"
-    dps:
-      - id: 8
-        name: switch
-        type: boolean
-  - entity: switch
-    name: Micro shield
+    name: Microbe shield
     category: config
     icon: "mdi:shield-bug"
     dps:
@@ -54,9 +52,10 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: sensor
-    name: Filter days left
+    name: Filter days Left
     category: diagnostic
     icon: "mdi:air-filter"
+    class: duration
     dps:
       - id: 16
         name: sensor
@@ -64,45 +63,35 @@ secondary_entities:
         unit: d
   - entity: select
     name: Timer
-    icon: "mdi:fan-clock"
     category: config
+    icon: "mdi:fan-clock"
     dps:
-      - id: 19
+      - id: 18
         type: string
         name: option
         mapping:
-          - dps_val: "cancle"
+          - dps_val: "cancel"
             value: "Cancel"
-          - dps_val: "2"
-            value: "2 hour"
-          - dps_val: "4"
+          - dps_val: "2h"
+            value: "2 hours"
+          - dps_val: "4h"
             value: "4 hours"
-          - dps_val: "8"
+          - dps_val: "8h"
             value: "8 hours"
   - entity: sensor
-    name: Time left
+    name: Timer remaining
     category: diagnostic
+    icon: "mdi:timer-sand"
     class: duration
-    icon: "mdi:timer"
     dps:
-      - id: 20
+      - id: 19
         name: sensor
         type: integer
         unit: min
   - entity: sensor
     name: Air quality
-    class: enum
     icon: "mdi:air-filter"
     dps:
-      - id: 22
-        name: sensor
+      - id: 21
         type: string
-        mapping:
-          - dps_val: "great"
-            value: "Great"
-          - dps_val: "good"
-            value: "Good"
-          - dps_val: "medium"
-            value: "Medium"
-          - dps_val: "severe"
-            value: "Severe"
+        name: sensor
