@@ -1,6 +1,7 @@
-name: Robô Aspirador de Pó KaBuM! Smart 500
+name: Kabum Smart 500
 products:
   - id: wexaeucvbdawkkpo
+    name: Robô Aspirador de Pó KaBuM! Smart 500
 primary_entity:
   entity: vacuum
   dps:
@@ -54,13 +55,13 @@ primary_entity:
         - dps_val: standby
           value: standby
         - dps_val: smart
-          value: Auto cleaning
+          value: smart
         - dps_val: spiral
           value: clean_spot
         - dps_value: single
-          value: Room cleaning
+          value: single_room
         - dps_val: wall_follow
-          value: Edge cleaning
+          value: wall_follow
         - dps_val: chargego
           value: return_to_base
     - id: 28
@@ -68,15 +69,15 @@ primary_entity:
       name: status
       mapping:
         - dps_val: cleanning
-          value: Cleanning
+          value: cleaning
         - dps_val: returning
-          value: Returning to dock
+          value: returning
         - dps_val: charging
-          value: Charging
+          value: charging
         - dps_val: standby
-          value: Standby
+          value: standby
         - dps_val: chargecompleted
-          value: Charge completed
+          value: charged
     - id: 29
       type: boolean
       name: locate
@@ -103,19 +104,20 @@ secondary_entities:
     name: Clean area
     category: diagnostic
     icon: "mdi:floor-plan"
-    optional: true
     dps:
       - id: 32
         type: integer
         name: sensor
+        optional: true
         unit: m2
   - entity: sensor
     name: Clean time
     category: diagnostic
+    class: duration
     icon: "mdi:clock-outline"
-    optional: true
     dps:
       - id: 33
         type: integer
         name: sensor
+        optional: true
         unit: min
