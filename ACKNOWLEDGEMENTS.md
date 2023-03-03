@@ -200,3 +200,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [hebenon](https://github.com/hebenon) for contributing support for Breville Smart Air Connect purifiers.
 - [pvillanyi](https://github.com/pvillanyi) for contributing support for smartplugs with USB (Gosund SP112).
 - [jaichinger](https://github.com/jaichinger) for contributing support for Breville Smart Air Viral Protect Plus purifier.
+- [kytro](https://github.com/kytro) for assistaing with support for Anko smart kettles.
