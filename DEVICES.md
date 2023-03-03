@@ -225,11 +225,13 @@ of device.
   _confirmed as working with Kogan KASPS10A3P3UA 3 socket + USB powerstrip
 - 4 way powerstrip with USB
   _confirmed as working with AOFO ZLD-44EU-W_
-- Generic smartplug with energy monitoring (older models)
-  _confirmed as working with Kogan and Blitzwolf single smartplugs_
-- Generic smartplug with energy monitoring (newer models)
-  _confirmed as working with Kogan single smartplug with USB and Rillpac smartplugs_
-- Generic smartplug with energy monitoring and USB ports
+- Generic smartplug with power monitoring (older models)
+  _confirmed as working with Kogan and Blitzwolf single smartplugs (smartplugv1)_
+- Generic smartplug with power monitoring (newer models)
+  _confirmed as working with Kogan single smartplug with USB and Rillpac smartplugs (smartplugv2)_
+- Generic smartplug with power monitoring requiring polling of sensors
+  _same as above smartplugv2, but only reports power/current/voltage when explicitly requested - choose `smartplugv2_polled_power`_
+- Generic smartplug with power monitoring and USB ports
   _confirmed as working with Gosund SP112 smartplugs_
 - Generic smartplug with more advanced energy monitoring
   _confirmed working with CBE smartplugs, another variant with child lock, backlight and inching switch confirmed with Aubess and Elivco_
