@@ -1,0 +1,160 @@
+name: MoeBot S series
+products:
+  - id: mvt4l2evgq2l3nkn
+    name: MoeBot S20
+primary_entity:
+  entity: vacuum
+  icon: "mdi:robot-mower"
+  dps:
+    - id: 6
+      name: battery
+      type: integer
+    - id: 101
+      name: status
+      type: string
+      mapping:
+        - dps_val: STANDBY
+          value: standby
+        - dps_val: MOWING
+          value: mowing
+        - dps_val: CHARGING
+          value: charging
+        - dps_val: EMERGENCY
+          value: manually stopped
+        - dps_val: LOCKED
+          value: locked
+        - dps_val: PAUSED
+          value: paused
+        - dps_val: PARK
+          value: returning
+        - dps_val: CHARGING_WITH_TASK_SUSPEND
+          value: charging
+        - dps_val: FIXED_MOWING
+          value: spot mowing
+        - dps_val: ERROR
+          value: error
+    - id: 115
+      name: command
+      type: string
+      mapping:
+        - dps_val: StartMowing
+          value: start
+        - dps_val: StartFixedMowing
+          value: clean_spot
+        - dps_val: PauseWork
+          value: pause
+        - dps_val: CancelWork
+          value: stop
+        - dps_val: StartReturnStation
+          value: return_to_base
+    - id: 102
+      name: error
+      type: bitfield
+      mapping:
+        - dps_val: 0
+          value: OK
+      # out_of_bounds, lifted, tilted, overturned, trapped, signal lost, motor fault, overheated, battery damaged
+    - id: 106
+      type: string
+      name: password
+    - id: 110
+      type: string
+      name: schedule
+    - id: 111
+      type: string
+      name: error_log
+    - id: 112
+      type: string
+      name: work_log
+    - id: 113
+      type: string
+      name: zones
+    - id: 114
+      type: string
+      name: auto_mode
+secondary_entities:
+  - entity: binary_sensor
+    name: Error
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 102
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Problem
+    icon: "mdi:robot-mower-outline"
+    icon_priority: 2
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 103
+        name: sensor
+        type: string
+        icon_priority: 1
+        mapping:
+          - dps_val: MOWER_LEAN
+            value: Tilted
+            icon: "mdi:angle-acute"
+          - dps_val: MOWER_EMERGENCY
+            value: Stopped
+            icon: "mdi:octagon"
+          - dps_val: MOWER_UI_LOCKED
+            value: UI locked
+            icon: "mdi:hand-back-right-off"
+          - dps_val: NO_LOOP_SIGNAL
+            value: Weak signal
+            icon: "mdi:signal-cellular-1"
+          - dps_val: BATTERY_NOT_ENOUGH
+            value: Low battery
+            icon: "mdi:battery-low"
+  - entity: switch
+    name: Rain mode
+    icon: "mdi:weather-pouring"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: number
+    name: Running time
+    category: config
+    icon: "mdi:clock"
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 1
+          max: 99
+  - entity: button
+    name: Clear schedule
+    icon: "mdi:calendar-remove"
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: button
+  - entity: button
+    name: Query schedule
+    icon: "mdi:calendar-refresh"
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: button
+  - entity: button
+    name: Query zones
+    icon: "mdi:map-search"
+    category: config
+    dps:
+      - id: 109
+        type: boolean
+        name: button

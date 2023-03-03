@@ -200,5 +200,6 @@ Further device support has been made with the assistance of users.  Please consi
 - [hebenon](https://github.com/hebenon) for contributing support for Breville Smart Air Connect purifiers.
 - [pvillanyi](https://github.com/pvillanyi) for contributing support for smartplugs with USB (Gosund SP112).
 - [jaichinger](https://github.com/jaichinger) for contributing support for Breville Smart Air Viral Protect Plus purifier.
-- [kytro](https://github.com/kytro) for assistaing with support for Anko smart kettles.
+- [kytro](https://github.com/kytro) for assistaing with support for Anko smart kettles and MoeBot mowers.
 - [Oglaf](https://github.com/Oglaf) for contributing support for Kabum Smart 500 vacuum cleaners.
+- [Whytey](https://github.com/Whytey/pymoebot) for investigation work into the MoeBot protocol.

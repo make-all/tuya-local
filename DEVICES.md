@@ -286,6 +286,10 @@ of device.
 - Kyvol E30 vacuum cleaner
 - Lefant M213 vacuum cleaner (also works for Lefant M213S and APOSEN A550)
 
+### Lawnmowers
+
+- MoeBot S-series mowers
+
 ### Locks
 
 - Orion Grid Connect smart lock

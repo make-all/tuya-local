@@ -67,8 +67,6 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
             support |= VacuumEntityFeature.FAN_SPEED
         if self._power_dps:
             support |= VacuumEntityFeature.TURN_ON | VacuumEntityFeature.TURN_OFF
-        if self._active_dps:
-            support |= VacuumEntityFeature.START | VacuumEntityFeature.PAUSE
         if self._locate_dps:
             support |= VacuumEntityFeature.LOCATE
 
@@ -78,6 +76,15 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
             support |= VacuumEntityFeature.RETURN_HOME
         if SERVICE_CLEAN_SPOT in cmd_support:
             support |= VacuumEntityFeature.CLEAN_SPOT
+
+        if self._active_dps:
+            support |= VacuumEntityFeature.START | VacuumEntityFeature.PAUSE
+        else:
+            if "start" in cmd_support:
+                support |= VacuumEntityFeature.START
+            if "pause" in cmd_support:
+                support |= VacuumEntityFeature.PAUSE
+
         return support
 
     @property
@@ -130,11 +137,19 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
     async def async_start(self):
         if self._active_dps:
             await self._active_dps.async_set_value(self._device, True)
+        else:
+            dps = self._command_dps or self._status_dps
+            if "start" in dps.values(self._device):
+                await dps.async_set_value(self._device, "start")
 
     async def async_pause(self):
         """Pause the vacuum cleaner."""
         if self._active_dps:
             await self._active_dps.async_set_value(self._device, False)
+        else:
+            dps = self._command_dps or self._status_dps
+            if "pause" in dps.values(self._device):
+                await dps.async_set_value(self._device, "pause")
 
     async def async_return_to_base(self, **kwargs):
         """Tell the vacuum cleaner to return to its base."""
