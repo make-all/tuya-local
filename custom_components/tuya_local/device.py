@@ -62,7 +62,17 @@ class TuyaLocalDevice(object):
         self._startup_listener = None
         self._api_protocol_version_index = None
         self._api_protocol_working = False
-        self._api = tinytuya.Device(dev_id, address, local_key)
+        try:
+            self._api = tinytuya.Device(dev_id, address, local_key)
+        except Exception as e:
+            _LOGGER.error(
+                "%s: %s while initialising device %s",
+                type(e),
+                e,
+                dev_id,
+            )
+            raise e
+
         # we handle retries at a higher level so we can rotate protocol version
         self._api.set_socketRetryLimit(1)
         self._refresh_task = None
