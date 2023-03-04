@@ -1,0 +1,36 @@
+name: ZX-G30 Alarm
+product:
+  - id: mw27s3tus4bb7nz3
+    name: Dual-Network Security System
+primary_entity:
+  entity: button
+  name: Disarm
+  icon: "mdi:shield-off"
+  dps:
+    - id: 1
+      type: string
+      name: button
+      mapping:
+        - dps_val: "disarmed"
+          value: true
+secondary_entities:
+  - entity: button
+    name: Away arm
+    icon: "mdi:shield-lock"
+    dps:
+      - id: 1
+        type: string
+        name: button
+        mapping:
+          - dps_val: "arm"
+            value: true
+  - entity: button
+    name: Home arm
+    icon: "mdi:shield-home"
+    dps:
+      - id: 1
+        type: string
+        name: button
+        mapping:
+          - dps_val: "home"
+            value: true
