@@ -203,3 +203,5 @@ Further device support has been made with the assistance of users.  Please consi
 - [kytro](https://github.com/kytro) for assistaing with support for Anko smart kettles and MoeBot mowers.
 - [Oglaf](https://github.com/Oglaf) for contributing support for Kabum Smart 500 vacuum cleaners.
 - [Whytey](https://github.com/Whytey/pymoebot) for investigation work into the MoeBot protocol.
+- [launchm](https://github.com/launchm) for assisting with support for Asakuki aroma diffusers.
+

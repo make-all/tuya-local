@@ -171,11 +171,17 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                     rgbhsv[n] = round(scale * v)
                     idx += 1
 
-                h = rgbhsv["h"]
-                s = rgbhsv["s"]
-                # convert RGB from H and S to seperate out the V component
-                r, g, b = color_util.color_hs_to_RGB(h, s)
-                w = rgbhsv["v"]
+                if "h" in rgbhsv and "s" in rgbhsv and "v" in rgbhsv:
+                    h = rgbhsv["h"]
+                    s = rgbhsv["s"]
+                    # convert RGB from H and S to seperate out the V component
+                    r, g, b = color_util.color_hs_to_RGB(h, s)
+                    w = rgbhsv["v"]
+                else:
+                    r = rgbhsv.get("r")
+                    g = rgbhsv.get("g")
+                    b = rgbhsv.get("b")
+                    w = self.brightness
                 return (r, g, b, w)
 
     @property
