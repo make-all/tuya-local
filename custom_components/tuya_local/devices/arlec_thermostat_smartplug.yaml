@@ -89,6 +89,12 @@ primary_entity:
       range:
         min: 1
         max: 99
+    - id: 46
+      type: integer
+      name: current_humidity
+    - id: 50
+      type: bitfield
+      name: fault_code
 secondary_entities:
   - entity: number
     name: Timer
@@ -254,7 +260,17 @@ secondary_entities:
       - id: 56
         type: boolean
         name: switch
-
-
-
-
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 50
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value:: false
+          - value: true
