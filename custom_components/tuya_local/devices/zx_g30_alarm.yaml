@@ -46,34 +46,33 @@ secondary_entities:
         range:
           min: 0
           max: 300
-  - entity: number
-    name: Alarm duration
-    category: config
-    icon: "mdi:timer"
+  - entity: siren
+    name: Alarm
     dps:
       - id: 3
         type: integer
-        name: value
+        name: duration
         unit: min
         range:
           min: 1
           max: 60
-  - entity: switch
-    name: Alarm sound
-    category: config
-    icon: "mdi:volume-high"
-    dps:
       - id: 4
         type: boolean
-        name: switch
-  - entity: switch
+        name: tone
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
+            default: true
+  - entity: binary_sensor
     name: Tamper
+    class: tamper
     category: config
-    icon: "mdi:alert-circle-outline"
     dps:
       - id: 9
         type: boolean
-        name: switch
+        name: sensor
   - entity: switch
     name: Arm/disarm voice prompt
     category: config
@@ -90,23 +89,23 @@ secondary_entities:
       - id: 15
         type: boolean
         name: switch
-  - entity: number
+  - entity: sensor
     name: Battery
+    class: battery
     category: config
-    icon: "mdi:battery"
     dps:
       - id: 16
         type: integer
-        name: value
+        name: sensor
         unit: "%"
-  - entity: switch
-    name: Sensor low battery alarm
+  - entity: binary_sensor
+    name: Low battery alarm
+    class: battery
     category: config
-    icon: "mdi:battery-low"
     dps:
       - id: 17
         type: boolean
-        name: switch
+        name: sensor
   - entity: switch
     name: Alarm notification
     category: config

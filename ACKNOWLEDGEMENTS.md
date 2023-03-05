@@ -206,3 +206,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [launchm](https://github.com/launchm) for assisting with support for Asakuki aroma diffusers.
 - [ajvandr](https://github.com/ajvandr) for assisting with support for Arlec temperature and humidity smart switches.
 - [denveronly](https://github.com/denveronly) for assisting with support for Dooya curtain motors.
+- [pasqualehun](https://github/com/pasqualehun) for contributing support for ZX-G30 alarm systems.
