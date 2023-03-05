@@ -204,4 +204,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [Oglaf](https://github.com/Oglaf) for contributing support for Kabum Smart 500 vacuum cleaners.
 - [Whytey](https://github.com/Whytey/pymoebot) for investigation work into the MoeBot protocol.
 - [launchm](https://github.com/launchm) for assisting with support for Asakuki aroma diffusers.
-
+- [ajvandr](https://github.com/ajvandr) for assisting with support for Arlec temperature and humidity smart switches.
