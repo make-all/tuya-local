@@ -273,6 +273,7 @@ of device.
 - Benexmart blind motor
 - CCB-11 blind controller
 - Dongguan garage door
+- Dooya curtain motor
 - FS-03W curtain switch with backlight control
 - Kogan garage door with tilt sensor
 - Loonas smart curtain
