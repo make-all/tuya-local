@@ -34,3 +34,101 @@ secondary_entities:
         mapping:
           - dps_val: "home"
             value: true
+  - entity: number
+    name: Exit delay
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        unit: sec
+        range:
+          min: 0
+          max: 300
+  - entity: number
+    name: Alarm duration
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 60
+  - entity: switch
+    name: Alarm sound
+    category: config
+    icon: "mdi:volume-high"
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Tamper
+    category: config
+    icon: "mdi:alert-circle-outline"
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Arm/disarm voice prompt
+    category: config
+    icon: "mdi:account-voice"
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: switch
+    name: AC Power
+    category: config
+    icon: "mdi:current-ac"
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+  - entity: number
+    name: Battery
+    category: config
+    icon: "mdi:battery"
+    dps:
+      - id: 16
+        type: integer
+        name: value
+        unit: "%"
+  - entity: switch
+    name: Sensor low battery alarm
+    category: config
+    icon: "mdi:battery-low"
+    dps:
+      - id: 17
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Alarm notification
+    category: config
+    icon: "mdi:bell"
+    dps:
+      - id: 27
+        type: boolean
+        name: switch
+  - entity: number
+    name: Entry delay
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 28
+        type: integer
+        name: value
+        unit: sec
+  - entity: switch
+    name: Countdown with tick tone
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 29
+        type: boolean
+        name: switch
