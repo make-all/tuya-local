@@ -154,6 +154,7 @@ secondary_entities:
       - id: 102
         type: integer
         name: value
+        unit: C
         range:
           min: -90
           max: 90
@@ -162,22 +163,26 @@ secondary_entities:
   - entity: number
     name: Maximum temperature
     category: config
+    class: temperature
     icon: "mdi:temperature-chevron-up"
     dps:
       - id: 103
         type: integer
         name: value
+        unit: C
         range:
           min: 16
           max: 50
   - entity: number
     name: Minimum temperature
     category: config
+    class: temperature
     icon: "mdi:temperature-chevron-down"
     dps:
       - id: 104
         type: integer
         name: value
+        unit: C
         range:
           min: 5
           max: 15

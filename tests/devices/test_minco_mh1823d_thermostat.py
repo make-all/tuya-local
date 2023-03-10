@@ -3,6 +3,7 @@ from homeassistant.components.climate.const import (
     HVACAction,
     HVACMode,
 )
+from homeassistant.components.number.const import NumberDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import UnitOfTemperature
 
@@ -100,6 +101,7 @@ class TestMincoMH1823DThermostat(
                 {
                     "name": "number_high_temperature_limit",
                     "dps": TEMPLIMIT_DPS,
+                    "device_class": NumberDeviceClass.TEMPERATURE,
                     "min": 5,
                     "max": 65,
                     "unit": UnitOfTemperature.CELSIUS,

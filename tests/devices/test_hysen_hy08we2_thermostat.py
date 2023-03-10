@@ -6,6 +6,7 @@ from homeassistant.components.climate.const import (
     HVACAction,
     HVACMode,
 )
+from homeassistant.components.number.const import NumberDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import UnitOfTime, UnitOfTemperature
 
@@ -137,6 +138,7 @@ class TestHysenHY08WE2Thermostat(
                 {
                     "dps": HOLIDAYTEMP_DPS,
                     "name": "number_holiday_temperature",
+                    "device_class": NumberDeviceClass.TEMPERATURE,
                     "min": 5,
                     "max": 30,
                     "unit": UnitOfTemperature.CELSIUS,
@@ -169,6 +171,7 @@ class TestHysenHY08WE2Thermostat(
                 {
                     "dps": HIGHTEMP_DPS,
                     "name": "number_high_temperature_protection",
+                    "device_class": NumberDeviceClass.TEMPERATURE,
                     "min": 35,
                     "max": 70,
                     "unit": UnitOfTemperature.CELSIUS,
@@ -176,6 +179,7 @@ class TestHysenHY08WE2Thermostat(
                 {
                     "dps": LOWTEMP_DPS,
                     "name": "number_low_temperature_protection",
+                    "device_class": NumberDeviceClass.TEMPERATURE,
                     "min": 1,
                     "max": 10,
                     "unit": UnitOfTemperature.CELSIUS,
@@ -183,6 +187,7 @@ class TestHysenHY08WE2Thermostat(
                 {
                     "dps": MINTEMP_DPS,
                     "name": "number_low_temperature_limit",
+                    "device_class": NumberDeviceClass.TEMPERATURE,
                     "min": 1,
                     "max": 10,
                     "unit": UnitOfTemperature.CELSIUS,
@@ -190,6 +195,7 @@ class TestHysenHY08WE2Thermostat(
                 {
                     "dps": MAXTEMP_DPS,
                     "name": "number_high_temperature_limit",
+                    "device_class": NumberDeviceClass.TEMPERATURE,
                     "min": 2,
                     "max": 70,
                     "unit": UnitOfTemperature.CELSIUS,

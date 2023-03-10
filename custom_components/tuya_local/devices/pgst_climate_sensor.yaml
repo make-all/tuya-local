@@ -57,6 +57,7 @@ secondary_entities:
   - entity: number
     name: Maximum temperature
     category: config
+    class: temperature
     icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 10
@@ -69,6 +70,7 @@ secondary_entities:
   - entity: number
     name: Minimum temperature
     category: config
+    class: temperature
     icon: "mdi:thermometer-chevron-down"
     dps:
       - id: 11
@@ -81,7 +83,7 @@ secondary_entities:
   - entity: number
     name: Maximum humidity
     category: config
-    icon: "mdi:water-percent"
+    class: humidity
     dps:
       - id: 12
         type: integer
@@ -93,7 +95,7 @@ secondary_entities:
   - entity: number
     name: Minimum humidity
     category: config
-    icon: "mdi:water-percent"
+    class: humidity
     dps:
       - id: 13
         type: integer

@@ -3,6 +3,7 @@ from homeassistant.components.climate.const import (
     ClimateEntityFeature,
     HVACAction,
 )
+from homeassistant.components.number.const import NumberDeviceClass
 from homeassistant.const import UnitOfTime, UnitOfTemperature
 
 
@@ -104,6 +105,7 @@ class TestInkbirdITC308Thermostat(
                 {
                     "name": "number_high_temperature_limit",
                     "dps": HIGH_THRES_DPS,
+                    "device_class": NumberDeviceClass.TEMPERATURE,
                     "scale": 10,
                     "step": 0.1,
                     "min": -50,
@@ -113,6 +115,7 @@ class TestInkbirdITC308Thermostat(
                 {
                     "name": "number_low_temperature_limit",
                     "dps": LOW_THRES_DPS,
+                    "device_class": NumberDeviceClass.TEMPERATURE,
                     "scale": 10,
                     "step": 0.1,
                     "min": -50,

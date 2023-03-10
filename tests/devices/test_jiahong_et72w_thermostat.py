@@ -2,10 +2,10 @@ from homeassistant.components.climate.const import (
     ClimateEntityFeature,
     HVACMode,
 )
+from homeassistant.components.number.const import NumberDeviceClass
 from homeassistant.components.sensor import (
     SensorDeviceClass,
     STATE_CLASS_MEASUREMENT,
-    STATE_CLASS_TOTAL_INCREASING,
 )
 from homeassistant.const import (
     UnitOfEnergy,
@@ -98,6 +98,7 @@ class TestJiahongEt72wThermostat(
         self.setUpBasicNumber(
             TEMPLIMIT_DPS,
             self.entities.get("number_room_temperature_limit"),
+            device_class=NumberDeviceClass.TEMPERATURE,
             min=10.0,
             max=40.0,
             step=0.5,

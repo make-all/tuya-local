@@ -3,6 +3,7 @@ from homeassistant.components.climate.const import (
     ClimateEntityFeature,
     HVACMode,
 )
+from homeassistant.components.number.const import NumberDeviceClass
 from homeassistant.const import PRECISION_TENTHS, UnitOfTemperature
 
 from ..const import BEOK_TR9B_PAYLOAD
@@ -102,6 +103,7 @@ class TestBeokTR9BThermostat(
                 {
                     "dps": MINTEMP_DPS,
                     "name": "number_low_temperature_limit",
+                    "device_class": NumberDeviceClass.TEMPERATURE,
                     "min": 5.0,
                     "max": 1000.0,
                     "step": 1.0,
@@ -111,6 +113,7 @@ class TestBeokTR9BThermostat(
                 {
                     "dps": MAXTEMP_DPS,
                     "name": "number_high_temperature_limit",
+                    "device_class": NumberDeviceClass.TEMPERATURE,
                     "min": 5.0,
                     "max": 1000.0,
                     "step": 1.0,

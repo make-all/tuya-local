@@ -5,6 +5,7 @@ from homeassistant.components.climate.const import (
     PRESET_AWAY,
     PRESET_HOME,
 )
+from homeassistant.components.number.const import NumberDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import UnitOfPower, UnitOfTemperature
 
@@ -78,6 +79,7 @@ class TestSaswellC16Thermostat(
                 {
                     "name": "number_floor_temperature_limit",
                     "dps": FLOORTEMPLIMIT_DPS,
+                    "device_class": NumberDeviceClass.TEMPERATURE,
                     "min": 20.0,
                     "max": 50.0,
                     "scale": 10,
@@ -87,6 +89,7 @@ class TestSaswellC16Thermostat(
                 {
                     "name": "number_power_rating",
                     "dps": POWERRATING_DPS,
+                    "device_class": NumberDeviceClass.POWER,
                     "max": 3500,
                     "unit": UnitOfPower.WATT,
                 },

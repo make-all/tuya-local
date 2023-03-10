@@ -1,3 +1,4 @@
+from homeassistant.components.number.const import NumberDeviceClass
 from homeassistant.const import LIGHT_LUX, UnitOfTime
 
 from ..const import MOTION_LIGHT_PAYLOAD
@@ -42,6 +43,7 @@ class TestMotionLight(BasicSwitchTests, MultiNumberTests, TuyaDeviceTestCase):
                 {
                     "dps": LUX_DPS,
                     "name": "number_light_level",
+                    "device_class": NumberDeviceClass.ILLUMINANCE,
                     "min": 0,
                     "max": 3900,
                     "unit": LIGHT_LUX,

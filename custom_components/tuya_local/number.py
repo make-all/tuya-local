@@ -5,6 +5,7 @@ from homeassistant.components.number import NumberEntity
 from homeassistant.components.number.const import (
     DEFAULT_MIN_VALUE,
     DEFAULT_MAX_VALUE,
+    NumberDeviceClass,
 )
 
 from .device import TuyaLocalDevice
@@ -44,6 +45,18 @@ class TuyaLocalNumber(TuyaLocalEntity, NumberEntity):
         self._min_dps = dps_map.pop("minimum", None)
         self._max_dps = dps_map.pop("maximum", None)
         self._init_end(dps_map)
+
+    @property
+    def device_class(self):
+        """Return the class of this device"""
+        dclass = self._config.device_class
+        if dclass:
+            try:
+                return NumberDeviceClass(dclass)
+            except ValueError:
+                _LOGGER.warning(
+                    "Unrecognized number device class of %s ignored", dclass
+                )
 
     @property
     def native_min_value(self):

@@ -6,6 +6,7 @@ from homeassistant.const import (
     UnitOfTime,
     UnitOfTemperature,
 )
+from homeassistant.components.number.const import NumberDeviceClass
 from homeassistant.components.sensor import (
     SensorDeviceClass,
     STATE_CLASS_MEASUREMENT,
@@ -66,6 +67,7 @@ class TestParksidePLGS2012A1Charger(
                 {
                     "name": "number_charge_current",
                     "dps": CURRENT_DPS,
+                    "device_class": NumberDeviceClass.CURRENT,
                     "max": 30000,
                     "step": 100,
                     "unit": UnitOfElectricCurrent.MILLIAMPERE,
@@ -73,6 +75,7 @@ class TestParksidePLGS2012A1Charger(
                 {
                     "name": "number_charge_voltage",
                     "dps": VOLTAGE_DPS,
+                    "device_class": NumberDeviceClass.VOLTAGE,
                     "max": 25.0,
                     "scale": 1000,
                     "step": 0.1,

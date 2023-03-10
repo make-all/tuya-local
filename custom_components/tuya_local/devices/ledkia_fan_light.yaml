@@ -59,10 +59,13 @@ secondary_entities:
       - id: 58
         type: integer
         name: value
+        unit: "%"
         optional: true
         range:
           min: 10
           max: 1000
+        mapping:
+          - scale: 10
   - entity: number
     name: Fan timer
     icon: "mdi:timer"
