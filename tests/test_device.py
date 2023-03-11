@@ -1,7 +1,7 @@
 from datetime import datetime
 from time import time
 from unittest import IsolatedAsyncioTestCase
-from unittest.mock import AsyncMock, Mock, call, patch
+from unittest.mock import AsyncMock, Mock, call, patch, ANY
 
 from homeassistant.const import (
     EVENT_HOMEASSISTANT_STARTED,
@@ -573,7 +573,7 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.mock_api().set_socketPersistent.assert_called_once_with(False)
         # Check that a full poll was done
         self.mock_api().status.assert_called_once()
-        self.assertDictEqual(result, {"1": "INIT", "2": 2})
+        self.assertDictEqual(result, {"1": "INIT", "2": 2, "full_poll": ANY})
         # Prepare for next round
         self.subject._cached_state = self.subject._cached_state | result
         self.mock_api().set_socketPersistent.reset_mock()
@@ -588,7 +588,7 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.mock_api().status.assert_not_called()
         self.mock_api().heartbeat.assert_called_once()
         self.mock_api().receive.assert_called_once()
-        self.assertDictEqual(result, {"1": "UPDATED"})
+        self.assertDictEqual(result, {"1": "UPDATED", "full_poll": ANY})
         # Check that the connection was made persistent now that data has been
         # returned
         self.mock_api().set_socketPersistent.assert_called_once_with(True)

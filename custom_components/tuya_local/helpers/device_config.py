@@ -315,6 +315,10 @@ class TuyaDpsConfig:
         return self._config.get("optional", False)
 
     @property
+    def persist(self):
+        return self._config.get("persist", True)
+
+    @property
     def force(self):
         return self._config.get("force", False)
 
@@ -508,6 +512,7 @@ class TuyaDpsConfig:
         if mapping:
             _LOGGER.debug("Considering mapping for step of %s", self.name)
             step = mapping.get("step", 1)
+
             cond = self._active_condition(mapping, device)
             if cond:
                 constraint = mapping.get("constraint", self.name)

@@ -302,6 +302,10 @@ of device.
 
 - Orion Grid Connect outdoor siren
 
+### Doorbells
+
+- WHM-04 doorbell (sold under various brands)
+
 ### Cameras
 
 - BCom Majic IPBox intercom camera

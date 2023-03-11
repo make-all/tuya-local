@@ -188,9 +188,15 @@ class TuyaLocalDevice(object):
                         self.name,
                         log_json(poll),
                     )
+                    full_poll = poll.pop("full_poll", False)
                     self._cached_state = self._cached_state | poll
                     self._cached_state["updated_at"] = time()
                     for entity in self._children:
+                        # clear non-persistant dps that were not in a full poll
+                        if full_poll:
+                            for dp in entity.dps():
+                                if not dp.persist and dp.id not in poll:
+                                    self._cached_state.pop(dp.id, None)
                         entity.async_schedule_update_ha_state()
                 else:
                     _LOGGER.debug(
@@ -229,6 +235,7 @@ class TuyaLocalDevice(object):
             try:
                 last_cache = self._cached_state.get("updated_at", 0)
                 now = time()
+                full_poll = False
                 if persist == self.should_poll:
                     # use persistent connections after initial communication
                     # has been established.  Until then, we need to rotate
@@ -254,6 +261,7 @@ class TuyaLocalDevice(object):
                             f"Failed to refresh device state for {self.name}",
                         )
                         dps_updated = False
+                        full_poll = True
                 else:
                     await self._hass.async_add_executor_job(
                         self._api.heartbeat,
@@ -277,6 +285,7 @@ class TuyaLocalDevice(object):
                     else:
                         if "dps" in poll:
                             poll = poll["dps"]
+                        poll["full_poll"] = full_poll
                         yield poll
 
                 await asyncio.sleep(0.1 if self.has_returned_state else 5)
@@ -369,6 +378,10 @@ class TuyaLocalDevice(object):
             self._cached_state = self._cached_state | new_state.get("dps", {})
             self._cached_state["updated_at"] = time()
             for entity in self._children:
+                for dp in entity.dps():
+                    # Clear non-persistant dps that were not in the poll
+                    if not dp.persist and dp.id not in new_state.get("dps", {}):
+                        self._cached_state.pop(dp.id, None)
                 entity.async_schedule_update_ha_state()
         _LOGGER.debug(
             "%s refreshed device state: %s",

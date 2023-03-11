@@ -158,6 +158,17 @@ matched even if it is not sending the dp at the time when adding a new device.
 It can also be used to match a range of devices that have variations in the extra
 attributes that are sent.
 
+### `persist`
+
+*Optional, default true.*
+
+Whether to persist the value if the device does not return it on every status
+refresh.  Some devices don't return every value on every status poll. In most
+cases, it is better to remember the previous value, but in some cases the
+dp is used to signal an event, so when it is next sent, it should trigger
+automations even if it is the same value as previously sent.  In that case 
+the value needs to go to null in between when the device is not sending it.
+
 ### `force`
 
 *Optional, default false.*
