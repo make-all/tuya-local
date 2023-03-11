@@ -13,6 +13,7 @@
 - Eurom Sani Wall Heat 2000 heater
 - Eurom Wall Designheat 2000 heater
 - Goldair heater models beginning with the code GPPH, GCPV, GECO
+- Heatstorm HS-6000-GC heavy duty heater
 - HJZ oil column radiator
 - INOW Wi-Fi heating element
 - Kogan flame effect heater - KAWHMFP20BA model

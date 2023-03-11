@@ -210,3 +210,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [maksmink](https://github.com/maksmink) for assisting with support for Eurom Mon Soleil 800 heaters (different again than the two 600 models already supported).
 - [nijel](https://github.com/nijel) for assisting with support for WHM-04 doorbells.
 - [shiner66](https://github.com/shiner66) for assisting with support for Shinco 30D dehumidifier.
+- [A-J-O](https://github.com/A-J-O) for assisting with support for Heat Storm 6000W heaters.
