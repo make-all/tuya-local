@@ -194,7 +194,7 @@ class TuyaLocalDevice(object):
                     for entity in self._children:
                         # clear non-persistant dps that were not in a full poll
                         if full_poll:
-                            for dp in entity.dps():
+                            for dp in entity._config.dps():
                                 if not dp.persist and dp.id not in poll:
                                     self._cached_state.pop(dp.id, None)
                         entity.async_schedule_update_ha_state()
@@ -378,7 +378,7 @@ class TuyaLocalDevice(object):
             self._cached_state = self._cached_state | new_state.get("dps", {})
             self._cached_state["updated_at"] = time()
             for entity in self._children:
-                for dp in entity.dps():
+                for dp in entity._config.dps():
                     # Clear non-persistant dps that were not in the poll
                     if not dp.persist and dp.id not in new_state.get("dps", {}):
                         self._cached_state.pop(dp.id, None)
