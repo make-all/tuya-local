@@ -164,7 +164,8 @@
 ### Aroma diffusers
 
 - Asakuki aroma diffuser with light
-- YYM-805SW aroma diffuser with nightlight
+- Etersky aroma diffuser with light
+- YYM-805SW aroma diffuser with light
 
 ### Kitchen Appliances
 
