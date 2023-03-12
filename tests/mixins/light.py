@@ -170,15 +170,24 @@ class MultiLightTests:
 
 
 class DimmableLightTests:
-    def setUpDimmableLight(self, dps, subject, offval=0, tests=[(100, 100)]):
+    def setUpDimmableLight(
+        self,
+        dps,
+        subject,
+        offval=0,
+        tests=[(100, 100)],
+        no_off=False,
+    ):
         self.dimmableLight = subject
         self.dimmableLightDps = dps
         self.dimmableLightOff = offval
         self.dimmableLightTest = tests
+        self.dimmableLightNoOff = no_off
 
     def test_dimmable_light_brightness(self):
         self.dps[self.dimmableLightDps] = self.dimmableLightOff
-        self.assertEqual(self.dimmableLight.brightness, 0)
+        if not self.dimmableLightNoOff:
+            self.assertEqual(self.dimmableLight.brightness, 0)
         for dps, val in self.dimmableLightTest:
             self.dps[self.dimmableLightDps] = dps
             self.assertEqual(self.dimmableLight.brightness, val)

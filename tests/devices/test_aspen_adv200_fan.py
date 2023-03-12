@@ -38,12 +38,13 @@ class TestAspenASP200Fan(
         self.setUpDimmableLight(
             LIGHT_DPS,
             self.entities.get("light_display"),
-            offval=0,
+            offval=1,
             tests=[
-                (1, 85),
-                (2, 170),
+                (1, 51),
+                (2, 128),
                 (3, 255),
             ],
+            no_off=True,
         )
         self.setUpSwitchable(SWITCH_DPS, self.subject)
         self.setUpTargetTemperature(

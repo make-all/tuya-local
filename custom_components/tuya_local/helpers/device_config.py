@@ -6,6 +6,7 @@ from base64 import b64decode, b64encode
 from collections.abc import Sequence
 from fnmatch import fnmatch
 import logging
+from numbers import Number
 from os import walk
 from os.path import join, dirname, splitext, exists
 
@@ -23,7 +24,7 @@ def _typematch(type, value):
         return False
 
     # Allow integers to pass as floats.
-    if type is float and isinstance(value, int):
+    if type is float and isinstance(value, Number):
         return True
 
     if isinstance(value, type):
@@ -619,13 +620,13 @@ class TuyaDpsConfig:
                 r_dps = self._entity.find_dps(mirror)
                 return r_dps.get_value(device)
 
-            if invert and isinstance(result, (int, float)):
+            if invert and isinstance(result, Number):
                 r = self._config.get("range")
                 if r and "min" in r and "max" in r:
                     result = -1 * result + r["min"] + r["max"]
                     replaced = True
 
-            if scale != 1 and isinstance(result, (int, float)):
+            if scale != 1 and isinstance(result, Number):
                 result = result / scale
                 replaced = True
 
@@ -642,11 +643,23 @@ class TuyaDpsConfig:
 
     def _find_map_for_value(self, value, device):
         default = None
+        nearest = None
+        distance = float("inf")
         for m in self._config.get("mapping", {}):
             if "dps_val" not in m:
                 default = m
             if "value" in m and str(m["value"]) == str(value):
                 return m
+            if (
+                "value" in m
+                and isinstance(m["value"], Number)
+                and isinstance(value, Number)
+            ):
+                d = abs(m["value"] - value)
+                if d < distance:
+                    distance = d
+                    nearest = m
+
             if "value" not in m and "value_mirror" in m:
                 r_dps = self._entity.find_dps(m["value_mirror"])
                 if str(r_dps.get_value(device)) == str(value):
@@ -668,6 +681,8 @@ class TuyaDpsConfig:
                     r_dps = self._entity.find_dps(c["value_mirror"])
                     if str(r_dps.get_value(device)) == str(value):
                         return m
+        if nearest:
+            return nearest
         return default
 
     def _active_condition(self, mapping, device, value=None):
@@ -711,7 +726,7 @@ class TuyaDpsConfig:
             invert = mapping.get("invert", False)
 
             step = mapping.get("step")
-            if not isinstance(step, (int, float)):
+            if not isinstance(step, Number):
                 step = None
             if "dps_val" in mapping:
                 result = mapping["dps_val"]
@@ -751,7 +766,7 @@ class TuyaDpsConfig:
                 r_dps = self._entity.find_dps(redirect)
                 return r_dps.get_values_to_set(device, value)
 
-            if scale != 1 and isinstance(result, (int, float)):
+            if scale != 1 and isinstance(result, Number):
                 _LOGGER.debug("Scaling %s by %s", result, scale)
                 result = result * scale
                 remap = self._find_map_for_value(result, device)
@@ -765,7 +780,7 @@ class TuyaDpsConfig:
                     result = -1 * result + r["min"] + r["max"]
                     replaced = True
 
-            if step and isinstance(result, (int, float)):
+            if step and isinstance(result, Number):
                 _LOGGER.debug("Stepping %s to %s", result, step)
                 result = step * round(float(result) / step)
                 remap = self._find_map_for_value(result, device)
@@ -783,7 +798,7 @@ class TuyaDpsConfig:
                 )
 
         r = self.range(device, scaled=False)
-        if r and isinstance(result, (int, float)):
+        if r and isinstance(result, Number):
             min = r["min"]
             max = r["max"]
             if result < min or result > max:
