@@ -205,6 +205,7 @@ the best option.
 - DIGOO DG-SP202 dual smartplug with energy monitoring and timers
 - DIGOO DG-SP01 USB smartplug with night light
 - Dual power monitoring smartplug (Geex)
+- Dual power monitoring smartplug v2 (Smatrul, Deltaco)
 - ES01 3 outlet + USB powerstrip with individual timers
 - Gosund P1 3 outlet + USB powerstrip with power monitoring
 - Grid Connect double outlet wall socket
