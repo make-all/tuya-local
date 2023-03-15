@@ -4,6 +4,8 @@ products:
     name: Lijun smart bulb RGBCW
   - id: nh2i3k5q5aenhdq3
     name: Aubess E14 smart bulb RGBCW
+  - id: ei0cjv7ogxdgcekq
+    name: BrilliantSmart RGB garden lights
 primary_entity:
   entity: light
   dps:
@@ -25,10 +27,12 @@ primary_entity:
     - id: 22
       name: brightness
       type: integer
+      optional: true
       range:
         min: 10
         max: 1000
       mapping:
+        - dps_val: null
         - scale: 3.92
     - id: 23
       name: color_temp
