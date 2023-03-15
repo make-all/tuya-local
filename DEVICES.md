@@ -137,6 +137,7 @@
 - ElectriQ CD20PRO-LE-V2 dehumidifier
 - ElectriQ CD25PRO-LE-V2 dehumidifier
 - ElectriQ DESD9LW dehumidifier
+- Electriq PD45E dehumidifier
 - Eeese Adam dehumidifier
 - Eeese Carl dehumidifier
 - Eeese Otto dehumidifier
