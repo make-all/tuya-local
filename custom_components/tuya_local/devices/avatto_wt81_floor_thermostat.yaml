@@ -1,0 +1,213 @@
+name: Avatto WT81 floor thermostat
+products:
+  - id: gogb05wrtredz3bs
+    name: Avatto WT81(ME81) floor thermostat
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: true
+          value: heat
+        - dps_val: false
+          value: "off"
+    - id: 2
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: auto
+          value: Auto
+        - dps_val: manual
+          value: Manual
+    - id: 16
+      name: temperature
+      type: integer
+      range:
+        min: 5
+        max: 90
+    - id: 19
+      name: max_temperature
+      type: integer
+    - id: 24
+      name: current_temperature
+      type: integer
+      mapping:
+        - scale: 10
+    - id: 26
+      name: min_temperature
+      optional: true
+      type: integer
+    - id: 36
+      name: hvac_action
+      type: string
+      mapping:
+        - dps_val: close
+          icon: "mdi:radiator-disabled"
+          constraint: hvac_mode
+          conditions:
+            - dps_val: true
+              value: idle
+            - dps_val: false
+              value: "off"
+        - dps_val: open
+          constraint: hvac_mode
+          conditions:
+            - dps_val: true
+              icon: "mdi:radiator"
+              value: heating
+            - dps_val: false
+              icon: "mdi:radiator-disabled"
+              value: "off"
+
+secondary_entities:
+  - entity: switch
+    name: Anti-frost
+    icon: "mdi:snowflake-melt"
+    category: config
+    dps:
+      - id: 10
+        name: switch
+        type: boolean
+  - entity: number
+    name: Upper temperature limit
+    category: config
+    class: temperature
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 19
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 30
+          max: 90
+  - entity: sensor
+    name: Current Temperature
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 24
+        name: sensor
+        type: integer
+        unit: "°C"
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Lower temperature limit
+    category: config
+    class: temperature
+    optional: true
+    icon: "mdi:thermometer-chevron-down"
+    dps:
+      - id: 26
+        name: value
+        type: integer
+        unit: C
+        range:
+          min: 5
+          max: 20
+
+  - entity: number
+    name: Temperature calibration"
+    category: config
+    icon: "mdi:video-input-component"
+    class: temperature
+    dps:
+      - id: 27
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -9
+          max: 9
+  - entity: lock
+    name: Child lock
+    category: config
+    optional: true
+    dps:
+      - id: 40
+        name: lock
+        type: boolean
+        mapping:
+          - dps_val: true
+            icon: "mdi:lock"
+          - dps_val: false
+            icon: "mdi:lock-open-variant"
+  - entity: select
+    name: Sensor
+    category: config
+    optional: true
+    dps:
+      - id: 43
+        name: option
+        type: string
+        mapping:
+          - dps_val: in
+            icon: "mdi:heating-coil"
+            value: Internal
+          - dps_val: out
+            icon: "mdi:thermometer-chevron-down"
+            value: External
+          - dps_val: all
+            icon: "mdi:all-inclusive"
+            value: Both
+  - entity: sensor
+    name: Error
+    optional: true
+    category: diagnostic
+    class: enum
+    options:
+      - "In_sensor error"
+      - "Out_sensor error"
+      - "E3"
+      - "OK"
+    dps:
+      - id: 45
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            icon: mdi:check-outline
+            value: "OK"
+          - dps_val: 1
+            icon: "mdi:heating-coil"
+            value: "In_sensor error"
+          - dps_val: 2
+            icon: "mdi:thermometer-chevron-down"
+            value: "Out_sensor error"
+          - dps_val: 4
+            value: "E3"
+  - entity: number
+    name: Switch diff
+    category: config
+    optional: true
+    icon: "mdi:vector-difference"
+    dps:
+      - id: 101
+        name: value
+        type: integer
+        unit: C
+        range:
+          min: 1
+          max: 5
+  - entity: select
+    name: Program Mode
+    category: config
+    optional: true
+    icon: "mdi:cog"
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: "00"
+            value: "OFF"
+          - dps_val: "52"
+            value: Two-day dayoffs
+          - dps_val: "62"
+            value: One-day dayoff
+          - dps_val: "70"
+            value: No Weekends
