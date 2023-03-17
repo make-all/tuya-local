@@ -1,4 +1,7 @@
 name: Beok TGR81 thermostat
+products:
+  - id: gogb05wrtredz3bs
+    name: Avatto WT81 thermostat
 primary_entity:
   entity: climate
   dps:
@@ -59,10 +62,10 @@ primary_entity:
             - dps_val: false
               icon: "mdi:radiator-disabled"
               value: "off"
-    - id: 38
-      type: string
-      name: week_program
-      optional: true
+    - id: 45
+      name: fault_code
+      type: bitfield
+      
 secondary_entities:
   - entity: number
     name: Calibration offset
@@ -162,3 +165,51 @@ secondary_entities:
         name: button
         type: boolean
         optional: true
+  - entity: select
+    name: Working week
+    icon: "mdi:calendar-clock"
+    category: config
+    dps:
+      - id: 38
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "00"
+            value: "Off"
+          - dps_val: "52"
+            value: "5 days"
+          - dps_val: "61"
+            value: "6 days"
+          - dps_val: "70"
+            value: "7 days"
+          - dps_val: null
+            value_redirect: 102
+      - id: 102
+        type: string
+        name: alt
+        optional: true
+        mapping:
+          - dps_val: "00"
+            value: "Off"
+          - dps_val: "52"
+            value: "5 days"
+          - dps_val: "61"
+            value: "6 days"
+          - dps_val: "70"
+            value: "7 days"
+          - dps_val: null
+            invalid: true
+  - entity: number
+    name: Hysteresis
+    category: config
+    icon: "mdi:arrow-expand-vertical"
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        optional: true
+        unit: C
+        range:
+          min: 1
+          max: 5
