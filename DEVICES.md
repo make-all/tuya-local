@@ -28,6 +28,7 @@
 
 - Be Cool BC14KL2101F
 - Carson CB PA280
+- Cooper&Hunter Nordic Evo Ng
 - Daizuki heat pump
 - Eberg Cooly C35HD
 - Eberg Qubo Q40HD
