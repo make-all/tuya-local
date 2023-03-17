@@ -171,9 +171,10 @@
 ### Kitchen Appliances
 
 - Anko 1.7L smart kettle
-- Czajnik Setti+ KT950W smart kettle
+- Setti+ KT950W smart kettle
 - Inkbird sous vide cooker
 - Kogan glass 1.7L smart kettle
+- Silvercrest 1.7L smart kettle
 
 ### Smart Meter/Circuit Breaker
 
