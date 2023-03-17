@@ -180,6 +180,7 @@
 ### Smart Meter/Circuit Breaker
 
 - Compteur digital electric (single phase)
+- eMylo EAI-90 smart meter
 - PC321-TY 3 phase power clamp meter
 - PJ-1103 power clamp meter
 - SG600MD Smart Solar Inverter (also SG700MD, other SGxx0MD and SGxx0W models) sold under various brands
