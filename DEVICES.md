@@ -158,6 +158,7 @@
 - BlitzWolf BW-SH2 humidifier
 - BlitzWolf BW-SH5 humidifier
 - Eanons QT-JS2014 purifying humidifier
+- Klarta Humea humidifier
 - Kyvol EA200 humidifier
 - Stadler Eva humidifier
 - Wetair WAW-H1210LW humidifier

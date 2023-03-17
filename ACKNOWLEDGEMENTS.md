@@ -219,3 +219,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [yarosman](https://github.com/yarosman) for contributing Avatto WT81 support, which was merged with the Beok TGR81.
 - [endrumaj](https://github.com/endrumaj) for assisting with support for Treatlife DS03 ceiling fans with lights.
 - [fjvva](https://github.com/fjvva) for assisting with support for eMylo smart meters.
+- [AdamB2023](https://github.com/AdamB2023) for assistaing with support for Klarta Humea humidifiers.
