@@ -217,3 +217,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [Daverover66](https://github.com/Daverover66) for assisting with support for ElectriQ PD45E dehumidifiers.
 - [ettiennegous](https://github.com/ettiennegous) for assisting with support for BrilliantSmart RGB garden lights.
 - [yarosman](https://github.com/yarosman) for contributing Avatto WT81 support, which was merged with the Beok TGR81.
+- [endrumaj](https://github.com/endrumaj) for assisting with support for Treatlife DS03 ceiling fans with lights.

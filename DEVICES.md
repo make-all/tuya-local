@@ -109,6 +109,7 @@
 - Stirling FS1-40DC pedestal fan
 - TMWF02 fan controller
 - Treatlife DS02-F fan switch
+- Treatlife DS03 fan with dimmable light
 
 ### Air Purifiers
 
