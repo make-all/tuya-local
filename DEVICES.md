@@ -67,7 +67,6 @@
 ### Thermostats
 
 - Arlec PCTH01HA temperature/humidity smart switch
-- Avatto WT81(ME81) thermostat
 - Avatto WT100 thermostat
 - Awow/Mi-heat TH213 thermostat (two variants)
 - Beca BAC-002 thermostat
