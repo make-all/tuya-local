@@ -8,6 +8,7 @@ primary_entity:
     - id: 2
       type: boolean
       name: hvac_mode
+      icon: "mdi:thermostat-box"
       mapping:
         - dps_val: false
           value: "off"
@@ -112,13 +113,31 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: switch
-    name: Customize mode
-    icon: "mdi:tune"
+    name: Climate mode
     category: config
     dps:
       - id: 9
         type: boolean
         name: switch
+        mapping:
+          - dps_val: true
+            icon: "mdi:thermostat-auto"
+          - dps_val: false
+            icon: "mdi:toggle-switch"
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          constraint: climate_mode
+          conditions:
+            - dps_val: true
+              invalid: true
+      - id: 9
+        type: boolean
+        name: climate_mode
   - entity: sensor
     name: Current
     class: current
