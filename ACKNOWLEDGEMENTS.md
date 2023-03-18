@@ -221,3 +221,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [fjvva](https://github.com/fjvva) for assisting with support for eMylo smart meters.
 - [AdamB2023](https://github.com/AdamB2023) for assisting with support for Klarta Humea humidifiers.
 - [M4R7IN5](https://github.com/M4R7IN5) for assisting with support for Lenovo E1 vacuum cleaners.
+- [pmazz](https://github.com/pmazz) for contributing Italian translations.
