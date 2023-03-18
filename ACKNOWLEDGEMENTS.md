@@ -216,7 +216,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [Kannix2005](https://github.com/Kannix2005) for assisting with support for Etersky aroma diffusers.
 - [Daverover66](https://github.com/Daverover66) for assisting with support for ElectriQ PD45E dehumidifiers.
 - [ettiennegous](https://github.com/ettiennegous) for assisting with support for BrilliantSmart RGB garden lights.
-- [yarosman](https://github.com/yarosman) for contributing Avatto WT81 support, which was merged with the Beok TGR81.
+- [yarosman](https://github.com/yarosman) for contributing Avatto WT81, which was merged with the Beok TGR81, and Cooper and Hunter Nordic Evo NG support.
 - [endrumaj](https://github.com/endrumaj) for assisting with support for Treatlife DS03 ceiling fans with lights.
 - [fjvva](https://github.com/fjvva) for assisting with support for eMylo smart meters.
 - [AdamB2023](https://github.com/AdamB2023) for assisting with support for Klarta Humea humidifiers.
