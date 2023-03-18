@@ -1,3 +1,4 @@
+import asyncio
 import logging
 
 import voluptuous as vol
@@ -184,6 +185,7 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
     existing = domain_data.get(config[CONF_DEVICE_ID]) if domain_data else None
     if existing:
         existing["device"].pause()
+        await asyncio.sleep(5)
 
     try:
         device = TuyaLocalDevice(
