@@ -6,6 +6,8 @@ products:
     name: Aubess E14 smart bulb RGBCW
   - id: ei0cjv7ogxdgcekq
     name: BrilliantSmart RGB garden lights
+  - id: ivxfweclfhvra3ym
+    name: Lampux bedside lamp
 primary_entity:
   entity: light
   dps:
@@ -96,6 +98,7 @@ secondary_entities:
       - id: 26
         name: value
         type: integer
+        optional: true
         range:
           min: 0
           max: 86400
@@ -103,6 +106,7 @@ secondary_entities:
         mapping:
           - scale: 60
             step: 60
+          - dps_val: null
   - entity: select
     name: Scene
     icon: "mdi:palette"
