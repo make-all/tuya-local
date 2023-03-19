@@ -22,20 +22,22 @@ primary_entity:
       name: humidity
       mapping:
         - dps_val: "0"
-          value: 40
+          value: 35
         - dps_val: "1"
-          value: 45
+          value: 40
         - dps_val: "2"
-          value: 50
+          value: 45
         - dps_val: "3"
-          value: 55
+          value: 50
         - dps_val: "4"
-          value: 60
+          value: 55
         - dps_val: "5"
-          value: 65
+          value: 60
         - dps_val: "6"
-          value: 70
+          value: 65
         - dps_val: "7"
+          value: 70
+        - dps_val: "8"
           value: 75
 secondary_entities:
   - entity: light
@@ -97,6 +99,9 @@ secondary_entities:
             value: 8
           - dps_val: "9"
             value: 9
+        range:
+          min: 1
+          max: 9
   - entity: sensor
     name: Water level
     category: diagnostic
