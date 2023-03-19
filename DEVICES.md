@@ -100,7 +100,8 @@
 
 - Anko HEGSM40 fan
 - Arlec Grid Connect smart ceiling fan (with and without light)
-- Arlec 12 speed Tower fan
+- Arlec 12 speed tower fan
+- Arlec 6 speed floor fan
 - Aspen ASP 200 fan
 - Deta fan controller
 - Fanco Eco Silent Deluxe ceiling fan with LED light
