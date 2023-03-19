@@ -32,12 +32,12 @@ primary_entity:
         max: 100
       mapping:
         - step: 5
-      # One of these unknowns should be the "16 preset programs". Both are numeric strings (so probably enums)
     - id: 13
       type: boolean
       name: warm
       optional: true
       hidden: true
+      # One of these unknowns should be the "16 preset programs". Both are numeric strings (so probably enums)
     - id: 15
       type: string
       name: unknown_15
@@ -63,6 +63,7 @@ secondary_entities:
         type: integer
         name: value
         unit: min
+        optional: true
         range:
           min: 0
           max: 120
