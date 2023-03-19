@@ -127,18 +127,9 @@ secondary_entities:
             icon: "mdi:toggle-switch"
   - entity: switch
     dps:
-      - id: 1
+      - id: 2
         type: boolean
         name: switch
-        optional: true
-        mapping:
-          constraint: climate_mode
-          conditions:
-            - dps_val: true
-              invalid: true
-      - id: 9
-        type: boolean
-        name: climate_mode
   - entity: sensor
     name: Current
     class: current
