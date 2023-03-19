@@ -179,6 +179,7 @@
 
 - Anko 1.7L smart kettle
 - Setti+ KT950W smart kettle
+- Inkbird iBBQ-4BW cooking probe thermometer
 - Inkbird sous vide cooker
 - Kogan glass 1.7L smart kettle
 - Silvercrest 1.7L smart kettle
