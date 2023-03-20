@@ -1,0 +1,89 @@
+name: Arlec floor fan
+products:
+  - id: tsgf7ywzeit2d90b
+    name: Arlec 45cm black floor fan
+primary_entity:
+  entity: fan
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 2
+      name: preset_mode
+      type: string
+      optional: true
+      mapping:
+        - dps_val: nature
+          value: Natural
+        - dps_val: sleep
+          value: Sleep
+        - dps_val: fresh
+          value: Fresh
+        - dps_val: smart
+          value: Smart
+        - dps_val: strong
+          value: Strong
+        - dps_val: closed
+          value: "Off"
+        - dps_val: ordinary
+          value: Normal
+        - dps_val: null
+          value: "Off"
+    - id: 3
+      name: speed
+      type: string
+      mapping:
+        - dps_val: "1"
+          value: 17
+        - dps_val: "2"
+          value: 33
+        - dps_val: "3"
+          value: 50
+        - dps_val: "4"
+          value: 67
+        - dps_val: "5"
+          value: 83
+        - dps_val: "6"
+          value: 100
+    - id: 101
+      type: boolean
+      name: oscillate
+    - id: 8
+      type: bitfield
+      name: fault_code
+secondary_entities:
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 8
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: select
+    name: Timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 6
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: "1 hour"
+          - dps_val: "2"
+            value: "2 hours"
+          - dps_val: "3"
+            value: "3 hours"
+          - dps_val: "4"
+            value: "4 hours"
+          - dps_val: "5"
+            value: "5 hours"
+          - dps_val: "6"
+            value: "6 hours"

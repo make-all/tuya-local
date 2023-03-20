@@ -262,7 +262,7 @@ class TuyaLocalDevice(object):
                         )
                         dps_updated = False
                         full_poll = True
-                else:
+                elif persist:
                     await self._hass.async_add_executor_job(
                         self._api.heartbeat,
                         True,
@@ -270,6 +270,9 @@ class TuyaLocalDevice(object):
                     poll = await self._hass.async_add_executor_job(
                         self._api.receive,
                     )
+                else:
+                    asyncio.sleep(5)
+                    poll = None
 
                 if poll:
                     if "Error" in poll:

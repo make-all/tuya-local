@@ -28,6 +28,7 @@
 
 - Be Cool BC14KL2101F
 - Carson CB PA280
+- Cooper&Hunter Nordic Evo Ng
 - Daizuki heat pump
 - Eberg Cooly C35HD
 - Eberg Qubo Q40HD
@@ -72,7 +73,7 @@
 - Beca BHT-002/3000 floor heating thermostat (with external temp sensor)
 - Beca BHP-6000 room heat pump control thermostat
 - Beca BHT-6000/8000 floor heating thermostat
-- Beok TGR81 thermostat (also reported working with Myuet ME98)
+- Beok TGR81 thermostat (also reported working with Myuet ME98, Avatto WT81/ME81)
 - Beok TOL47 thermostat
 - Beok TR9B thermostat _(rebadged as Vancoo and perhaps others)_
 - ETOP-HP thermostat (CH7100)
@@ -99,7 +100,11 @@
 
 - Anko HEGSM40 fan
 - Arlec Grid Connect smart ceiling fan (with and without light)
+- Arlec 12 speed tower fan
+- Arlec 19 speed wall fan
+- Arlec 6 speed floor fan
 - Aspen ASP 200 fan
+- Chanfok ceiling fan with cool/warm white dimmable light
 - Deta fan controller
 - Fanco Eco Silent Deluxe ceiling fan with LED light
 - Goldair GCPF315 fan
@@ -109,6 +114,7 @@
 - Stirling FS1-40DC pedestal fan
 - TMWF02 fan controller
 - Treatlife DS02-F fan switch
+- Treatlife DS03 fan with dimmable light
 
 ### Air Purifiers
 
@@ -157,6 +163,7 @@
 - BlitzWolf BW-SH2 humidifier
 - BlitzWolf BW-SH5 humidifier
 - Eanons QT-JS2014 purifying humidifier
+- Klarta Humea humidifier
 - Kyvol EA200 humidifier
 - Stadler Eva humidifier
 - Wetair WAW-H1210LW humidifier
@@ -171,13 +178,16 @@
 ### Kitchen Appliances
 
 - Anko 1.7L smart kettle
-- Czajnik Setti+ KT950W smart kettle
+- Setti+ KT950W smart kettle
+- Inkbird iBBQ-4BW cooking probe thermometer
 - Inkbird sous vide cooker
 - Kogan glass 1.7L smart kettle
+- Silvercrest 1.7L smart kettle
 
 ### Smart Meter/Circuit Breaker
 
 - Compteur digital electric (single phase)
+- eMylo EAI-90 smart meter
 - PC321-TY 3 phase power clamp meter
 - PJ-1103 power clamp meter
 - SG600MD Smart Solar Inverter (also SG700MD, other SGxx0MD and SGxx0W models) sold under various brands
@@ -293,6 +303,7 @@ of device.
 - Kabum Smart 500 vacuum cleaner
 - Kyvol E30 vacuum cleaner
 - Lefant M213 vacuum cleaner (also works for Lefant M213S and APOSEN A550)
+- Lenovo E1 vacuum cleaner
 
 ### Lawnmowers
 

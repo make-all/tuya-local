@@ -1,0 +1,221 @@
+name: Inkbird BBQ thermometer
+products:
+  - id: coa4tu1646wdybzy
+    name: IBBQ-4BW
+primary_entity:
+  entity: sensor
+  name: Temperature probe 1
+  class: temperature
+  dps:
+    - id: 107
+      type: integer
+      name: sensor
+      class: measurement
+      mapping:
+        - scale: 100
+    - id: 13
+      type: bitfield
+      name: fault_code
+    - id: 19
+      type: string
+      name: unit
+secondary_entities:
+  - entity: sensor
+    name: Temperature probe 2
+    class: temperature
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+      - id: 19
+        type: string
+        name: unit
+  - entity: sensor
+    name: Temperature probe 3
+    class: temperature
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+      - id: 19
+        type: string
+        name: unit
+  - entity: sensor
+    name: Temperature probe 4
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+      - id: 19
+        type: string
+        name: unit
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 13
+        type: boolean
+        name: sensor
+  - entity: select
+    name: Temperature unit
+    icon: "mdi:temperature-celsius"
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: F
+            value: Fahrenheit
+          - dps_val: C
+            value: Celsius
+  - entity: sensor
+    name: Battery
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: number
+    name: Screen timeout
+    category: config
+    icon: "mdi:camera-timer"
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 3600
+  - entity: switch
+    name: Alarm
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: light
+    name: Backlight
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Internal temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: number
+    name: Calibration probe 1
+    category: config
+    icon: "mdi:format-vertical-align-center"
+    dps:
+      - id: 116
+        type: integer
+        name: value
+        range:
+          min: -126
+          max: 126
+        mapping:
+          - scale: 10
+            constraint: temp_unit
+            conditions:
+              - dps_val: C
+                range:
+                  min: -70
+                  max: 70
+      - id: 19
+        type: string
+        name: temp_unit
+  - entity: number
+    name: Calibration probe 2
+    category: config
+    icon: "mdi:format-vertical-align-center"
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        range:
+          min: -126
+          max: 126
+        mapping:
+          - scale: 10
+            constraint: temp_unit
+            conditions:
+              - dps_val: C
+                range:
+                  min: -70
+                  max: 70
+      - id: 19
+        type: string
+        name: temp_unit
+  - entity: number
+    name: Calibration probe 3
+    category: config
+    icon: "mdi:format-vertical-align-center"
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        range:
+          min: -126
+          max: 126
+        mapping:
+          - scale: 10
+            constraint: temp_unit
+            conditions:
+              - dps_val: C
+                range:
+                  min: -70
+                  max: 70
+      - id: 19
+        type: string
+        name: temp_unit
+  - entity: number
+    name: Calibration probe 4
+    category: config
+    icon: "mdi:format-vertical-align-center"
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        range:
+          min: -126
+          max: 126
+        mapping:
+          - scale: 10
+            constraint: temp_unit
+            conditions:
+              - dps_val: C
+                range:
+                  min: -70
+                  max: 70
+      - id: 19
+        type: string
+        name: temp_unit

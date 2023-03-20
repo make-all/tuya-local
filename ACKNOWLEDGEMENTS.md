@@ -177,7 +177,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [ShayGus](https://github.com/ShayGus) for contributing support for Avatto curtain and light switch.
 - [garry0garry](https://github.com/garry0garry) for assistance supporting TOMPD circuit breakers.
 - [romicaiarca](https://github.com/romicaiarca) for contributing Aleco D12 Home dehumidifier support.
-- [spitfire](https://github.com/spitfire) for assistance supporting Gosund P1 powerstrips and Czajnik Setti+ kettles.
+- [spitfire](https://github.com/spitfire) for assistance supporting Gosund P1 powerstrips and Setti+ and Silvercrest kettles.
 - [berdahl](https://github.com/bergdahl) for contributing support for Stadler Eva humidifiers.
 - [dezinc57](https://github.com/dezinc57) for assistance supporting Fanco ceiling fan and light and Deta dimmer switch.
 - [hasio144](https://github.com/hasio144) for assistance supporting WF96L water level controllers.
@@ -216,3 +216,11 @@ Further device support has been made with the assistance of users.  Please consi
 - [Kannix2005](https://github.com/Kannix2005) for assisting with support for Etersky aroma diffusers.
 - [Daverover66](https://github.com/Daverover66) for assisting with support for ElectriQ PD45E dehumidifiers.
 - [ettiennegous](https://github.com/ettiennegous) for assisting with support for BrilliantSmart RGB garden lights.
+- [yarosman](https://github.com/yarosman) for contributing Avatto WT81, which was merged with the Beok TGR81, and Cooper and Hunter Nordic Evo NG support.
+- [endrumaj](https://github.com/endrumaj) for assisting with support for Treatlife DS03 ceiling fans with lights.
+- [fjvva](https://github.com/fjvva) for assisting with support for eMylo smart meters.
+- [AdamB2023](https://github.com/AdamB2023) for assisting with support for Klarta Humea humidifiers.
+- [M4R7IN5](https://github.com/M4R7IN5) for assisting with support for Lenovo E1 vacuum cleaners.
+- [pmazz](https://github.com/pmazz) for contributing Italian translations.
+- [thewolf-oz](https://github.com/thewolf-oz) for assisting with support for Arlec 12-speed tower fans, 6-speed floor fans and 19-speed wall fans.
+- [dhuddle](https://github.com/dhuddle) for assisting with support for Chanfok ceiling fan with light, Inkbird BBQ thermometer.
