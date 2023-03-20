@@ -71,8 +71,12 @@ secondary_entities:
     category: diagnostic
     dps:
       - id: 13
-        type: boolean
+        type: bitfield
         name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
   - entity: select
     name: Temperature unit
     icon: "mdi:temperature-celsius"
