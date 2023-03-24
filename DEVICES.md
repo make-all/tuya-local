@@ -287,6 +287,7 @@ of device.
 - Avatto roller blind controller
 - Benexmart blind motor
 - CCB-11 blind controller
+- CC curtain controller 1
 - Dongguan garage door
 - Dooya curtain motor
 - FS-03W curtain switch with backlight control
