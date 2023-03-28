@@ -1,26 +1,26 @@
-name: Leo’s Loo Too
+name: Leo's Loo Too
 products:
   - id: 1badzyvwh1e1hrog
 primary_entity:
-  entity: switch
-  name: Power
+  entity: select
+  category: config
+  name: Cleaning Mode
   dps:
-    - id: 1
-      name: switch
-      type: boolean
+    - id: 2
+      type: string
+      name: work_mode
+      mapping:
+        - dps_val: auto_clean
+          value: Auto Clean
+        - dps_val: manual_clean
+          value: Manual Clean
 secondary_entities:
-  - entity: select
-    category: config
-    name: Cleaning Mode
+  - entity: switch
+    name: Power
     dps:
-      - id: 2
-        type: string
-        name: work_mode
-        mapping:
-          - dps_val: auto_clean
-            value: Auto Clean
-          - dps_val: manual_clean
-            value: Manual Clean
+      - id: 1
+        name: switch
+        type: boolean
   - entity: number
     category: config
     name: Cleaning Delay
@@ -43,7 +43,8 @@ secondary_entities:
         name: cat_weight
         unit: kg
         class: measurement
-        scale: 10
+        mapping:
+          - scale: 0.1
   - entity: sensor
     category: diagnostic
     name: Time Used (Today)
