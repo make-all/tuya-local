@@ -36,6 +36,7 @@ primary_entity:
     - id: 115
       name: command
       type: string
+      optional: true
       mapping:
         - dps_val: StartMowing
           value: start
@@ -55,20 +56,24 @@ primary_entity:
           value: OK
       # out_of_bounds, lifted, tilted, overturned, trapped, signal lost, motor fault, overheated, battery damaged
     - id: 106
-      type: string
+      type: integer
       name: password
     - id: 110
       type: string
       name: schedule
+      optional: true
     - id: 111
       type: string
       name: error_log
+      optional: true
     - id: 112
       type: string
       name: work_log
+      optional: true
     - id: 113
       type: string
       name: zones
+      optional: true
     - id: 114
       type: string
       name: auto_mode
@@ -144,6 +149,7 @@ secondary_entities:
       - id: 107
         type: boolean
         name: button
+        optional: true
   - entity: button
     name: Query schedule
     icon: "mdi:calendar-refresh"
@@ -152,6 +158,7 @@ secondary_entities:
       - id: 108
         type: boolean
         name: button
+        optional: true
   - entity: button
     name: Query zones
     icon: "mdi:map-search"
@@ -160,3 +167,4 @@ secondary_entities:
       - id: 109
         type: boolean
         name: button
+        optional: true

@@ -308,7 +308,7 @@ of device.
 
 ### Lawnmowers
 
-- MoeBot S-series mowers
+- MoeBot S-series mowers (may require protocol version set manually to 3.4)
 
 ### Locks
 
