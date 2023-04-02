@@ -173,7 +173,7 @@
 
 - Asakuki aroma diffuser with light
 - Etersky aroma diffuser with light
-- YYM-805SW aroma diffuser with light
+- YYM-805SW aroma diffuser with light (also supports GX Aroma diffuser)
 
 ### Kitchen Appliances
 
