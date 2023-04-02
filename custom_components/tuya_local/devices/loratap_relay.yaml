@@ -39,6 +39,12 @@ secondary_entities:
             value: "On"
           - dps_val: 2
             value: Keep state
+      - id: 42
+        type: string
+        name: cycle_time
+      - id: 43
+        type: string
+        name: random_time
   - entity: select
     name: Light Mode
     category: config
@@ -62,15 +68,3 @@ secondary_entities:
       - id: 41
         type: boolean
         name: lock
-  - entity: cycle_time
-    name: Cycle Time
-    dps:
-      - id: 42
-        type: string
-        name: cycle_time
-  - entity: random_time
-    name: Random Time
-    dps:
-      - id: 43
-        type: string
-        name: random_time
