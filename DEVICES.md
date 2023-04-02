@@ -183,6 +183,7 @@
 - Inkbird sous vide cooker
 - Kogan glass 1.7L smart kettle
 - Silvercrest 1.7L smart kettle
+- Ultenic K10 air fryer
 
 ### Smart Meter/Circuit Breaker
 
