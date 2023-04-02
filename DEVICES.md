@@ -335,6 +335,7 @@ of device.
 - Catit Pixi smart fountain
 - Catit pet feeder (experimental)
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
+- Kogan bidet toilet seat
 - Konlen/Rockson WF96L water level controller
 - Nedis pet feeder
 - Nedis WIFISA10CWT air quality monitor
