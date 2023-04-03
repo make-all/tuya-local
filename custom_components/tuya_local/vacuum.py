@@ -165,7 +165,7 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
         dps = self._command_dps or self._status_dps
         if dps and SERVICE_CLEAN_SPOT in dps.values(self._device):
             await dps.async_set_value(self._device, SERVICE_CLEAN_SPOT)
-        
+
     async def async_stop(self, **kwargs):
         """Tell the vacuum cleaner to stop."""
         dps = self._command_dps or self._status_dps
