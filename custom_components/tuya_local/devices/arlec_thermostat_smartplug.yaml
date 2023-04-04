@@ -5,7 +5,7 @@ product:
 primary_entity:
   entity: climate
   dps:
-    - id: 2
+    - id: 9
       type: boolean
       name: hvac_mode
       icon: "mdi:thermostat-box"
@@ -98,6 +98,13 @@ primary_entity:
       type: bitfield
       name: fault_code
 secondary_entities:
+  - entity: switch
+    name: Manual Switch
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+        icon: mdi:light-switch
   - entity: number
     name: Timer
     category: config
@@ -125,11 +132,6 @@ secondary_entities:
             icon: "mdi:thermostat-auto"
           - dps_val: false
             icon: "mdi:toggle-switch"
-  - entity: switch
-    dps:
-      - id: 2
-        type: boolean
-        name: switch
   - entity: sensor
     name: Current
     class: current
