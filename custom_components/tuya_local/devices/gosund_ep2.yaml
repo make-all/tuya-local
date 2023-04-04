@@ -1,0 +1,80 @@
+name: Gosund EP2
+products:
+  - id: 370053454855194e5607
+primary_entity:
+  entity: switch
+  class: outlet
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    name: Voltage
+    dps:
+      - id: 6
+        name: sensor
+        type: integer
+        class: measurement
+        unit: V
+        mapping:
+          - scale: 10
+  - entity: sensor
+    category: diagnostic
+    class: current
+    name: Current
+    dps:
+      - id: 4
+        name: sensor
+        type: integer
+        class: measurement
+        unit: mA
+  - entity: sensor
+    category: diagnostic
+    class: power
+    name: Power
+    dps:
+      - id: 5
+        name: sensor
+        type: integer
+        class: measurement
+        unit: W
+        mapping:
+          - scale: 10
+  - entity: sensor
+    category: diagnostic
+    class: power
+    name: Power
+    dps:
+      - id: 5
+        name: sensor
+        type: integer
+        class: measurement
+        unit: W
+        mapping:
+          - scale: 10
+  - entity: binary_sensor
+    category: diagnostic
+    class: problem
+    name: Overcurrent alarm
+    dps:
+      - id: 7
+        type: boolean
+        name: sensor
+  - entity: number
+    category: config
+    icon: "mdi:timer"
+    name: Timer
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
