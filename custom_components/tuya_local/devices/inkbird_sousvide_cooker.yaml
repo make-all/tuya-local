@@ -1,4 +1,7 @@
-name: Inkbird sous vide
+name: Sous vide
+products:
+  - id: ljrmmds82n6kln4u
+    name: Silvercrest SSVSS 1200 A1
 primary_entity:
   entity: climate
   dps:
@@ -14,6 +17,7 @@ primary_entity:
       type: string
       name: hvac_action
       icon_priority: 2
+      optional: true
       mapping:
         - dps_val: stop
           value: "off"
@@ -120,6 +124,7 @@ secondary_entities:
       - id: 110
         type: integer
         name: value
+        optional: true
         range:
           min: -99
           max: 99
