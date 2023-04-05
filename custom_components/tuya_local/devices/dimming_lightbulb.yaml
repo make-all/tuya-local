@@ -1,0 +1,18 @@
+name: Dimming lightbulb
+products:
+  - id: uoqzzanrvopvxddl
+    name: Deta Grid Connect Smart 18W 1900lm Daylight T8 Tube DET018HA
+  - id: vjapigi170njdq09
+    name: Arlec Smart 4W 380lm Candle Dimmable Bulb GLD060HA
+primary_entity:
+  entity: light
+  dps:
+    - id: 20
+      type: boolean
+      name: switch
+    - id: 22
+      name: brightness
+      type: integer
+      range:
+        min: 10
+        max: 1000

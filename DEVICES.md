@@ -173,7 +173,7 @@
 
 - Asakuki aroma diffuser with light
 - Etersky aroma diffuser with light
-- YYM-805SW aroma diffuser with light
+- YYM-805SW aroma diffuser with light (also supports GX Aroma diffuser)
 
 ### Kitchen Appliances
 
@@ -183,6 +183,7 @@
 - Inkbird sous vide cooker
 - Kogan glass 1.7L smart kettle
 - Silvercrest 1.7L smart kettle
+- Ultenic K10 air fryer
 
 ### Smart Meter/Circuit Breaker
 
@@ -266,8 +267,9 @@ of device.
 
 ### Lights
 
-- Generic dimmable light
+- Generic dimmable light (2 types, using dp 1,2 and 20,22)
 - Generic RGBCW/RGBWW lightbulb (confirmed with Lijun branded bulb, expected to match others also). Two versions - with and without scene/music modes and timer.
+- Generic dimmable/color temperature adjustable desktop lamp (confirmed with Setti+ SL601)
 - Atomi smart color string light
 - Deta/Arlec motion sensor lights (DET100HA/DET102HA/MAL315HA)
 - Deta 6910HA series2 dimmer switch
@@ -287,6 +289,7 @@ of device.
 - Avatto roller blind controller
 - Benexmart blind motor
 - CCB-11 blind controller
+- CC curtain controller 1
 - Dongguan garage door
 - Dooya curtain motor
 - FS-03W curtain switch with backlight control
@@ -307,7 +310,7 @@ of device.
 
 ### Lawnmowers
 
-- MoeBot S-series mowers
+- MoeBot S-series mowers (may require protocol version set manually to 3.4)
 
 ### Locks
 
@@ -332,6 +335,7 @@ of device.
 - Catit Pixi smart fountain
 - Catit pet feeder (experimental)
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
+- Kogan bidet toilet seat
 - Konlen/Rockson WF96L water level controller
 - Nedis pet feeder
 - Nedis WIFISA10CWT air quality monitor
@@ -339,4 +343,5 @@ of device.
 - Qoto 03 smart water valve / sprinkler controller
 - SD123 HPR01 human presence radar
 - Universal remote control (supports sensors only)
+- Yieryi pH meter (also matches unbranded pH-W3988 device)
 - ZX-G30 alarm system (not as an alarm_control_panel, as individual inputs and sensors)

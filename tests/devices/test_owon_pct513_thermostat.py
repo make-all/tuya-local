@@ -79,6 +79,9 @@ class TestOwonPCT513Thermostat(
         self.dps[UNIT_DPS] = "f"
         self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.FAHRENHEIT)
 
+    def test_precision(self):
+        self.assertAlmostEqual(self.subject.precision, 0.01, 2)
+
     def test_current_temperature(self):
         self.dps[UNIT_DPS] = "c"
         self.dps[CURRENTTEMP_DPS] = 2100

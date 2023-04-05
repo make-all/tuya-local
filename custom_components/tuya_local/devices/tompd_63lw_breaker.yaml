@@ -2,6 +2,8 @@ name: Circuit breaker energy meter
 product:
   - id: rrmpzckqm5pfd642
     name: TOMPD-63LW
+  - id: psjg8ldomxnelfp5
+    name: TOMZN-63A
 primary_entity:
   entity: switch
   dps:
@@ -45,12 +47,9 @@ secondary_entities:
     category: config
     dps:
       - id: 12
-        type: string
+        type: boolean
         name: button
         optional: true
-        mapping:
-          - dps_val: empty
-            value: true
   - entity: sensor
     name: Balance energy
     category: diagnostic

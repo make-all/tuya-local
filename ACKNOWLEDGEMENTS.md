@@ -200,7 +200,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [hebenon](https://github.com/hebenon) for contributing support for Breville Smart Air Connect purifiers.
 - [pvillanyi](https://github.com/pvillanyi) for contributing support for smartplugs with USB (Gosund SP112).
 - [jaichinger](https://github.com/jaichinger) for contributing support for Breville Smart Air Viral Protect Plus purifier.
-- [kytro](https://github.com/kytro) for assistaing with support for Anko smart kettles and MoeBot mowers.
+- [kytro](https://github.com/kytro) for assistaing with support for Anko smart kettles, MoeBot mowers and Kogan bidets.
 - [Oglaf](https://github.com/Oglaf) for contributing support for Kabum Smart 500 vacuum cleaners.
 - [Whytey](https://github.com/Whytey/pymoebot) for investigation work into the MoeBot protocol.
 - [launchm](https://github.com/launchm) for assisting with support for Asakuki aroma diffusers.
@@ -222,5 +222,9 @@ Further device support has been made with the assistance of users.  Please consi
 - [AdamB2023](https://github.com/AdamB2023) for assisting with support for Klarta Humea humidifiers.
 - [M4R7IN5](https://github.com/M4R7IN5) for assisting with support for Lenovo E1 vacuum cleaners.
 - [pmazz](https://github.com/pmazz) for contributing Italian translations.
-- [thewolf-oz](https://github.com/thewolf-oz) for assisting with support for Arlec 12-speed tower fans, 6-speed floor fans and 19-speed wall fans.
-- [dhuddle](https://github.com/dhuddle) for assisting with support for Chanfok ceiling fan with light, Inkbird BBQ thermometer.
+- [thewolf-oz](https://github.com/thewolf-oz) for assisting with support for Arlec 12-speed tower fans, 6-speed floor fans and 19-speed wall fans, and contributing support for Arlec/Deta dimming lightbulbs.
+- [dhuddle](https://github.com/dhuddle) for assisting with support for Chanfok ceiling fan with light, Inkbird BBQ thermometer, Lepro lights (variant of RGBCW light without timer) and Yieryi pH meter.
+- [theshop35](https://github.com/theshop35) for assisting with support for CC curtains.
+- [blakadder](https://github.com/blakadder) for assisting with support for Ultonic K10 air fryer.
+- [szupi-ipuzs](https://github.com/szupi-ipuzs) for contributing support for desk lamps (Setti+ SL601).
+- [MackoMici](https://github.com/MackoMici) for contributing support for GX aroma diffuser, which was merged with the YYM config.

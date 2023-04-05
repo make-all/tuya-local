@@ -4,6 +4,7 @@ Setup for different kinds of Tuya vacuum cleaners
 from homeassistant.components.vacuum import (
     SERVICE_CLEAN_SPOT,
     SERVICE_RETURN_TO_BASE,
+    SERVICE_STOP,
     STATE_CLEANING,
     STATE_DOCKED,
     STATE_RETURNING,
@@ -76,6 +77,8 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
             support |= VacuumEntityFeature.RETURN_HOME
         if SERVICE_CLEAN_SPOT in cmd_support:
             support |= VacuumEntityFeature.CLEAN_SPOT
+        if SERVICE_STOP in cmd_support:
+            support |= VacuumEntityFeature.STOP
 
         if self._active_dps:
             support |= VacuumEntityFeature.START | VacuumEntityFeature.PAUSE
@@ -162,6 +165,12 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
         dps = self._command_dps or self._status_dps
         if dps and SERVICE_CLEAN_SPOT in dps.values(self._device):
             await dps.async_set_value(self._device, SERVICE_CLEAN_SPOT)
+
+    async def async_stop(self, **kwargs):
+        """Tell the vacuum cleaner to stop."""
+        dps = self._command_dps or self._status_dps
+        if dps and SERVICE_STOP in dps.values(self._device):
+            await dps.async_set_value(self._device, SERVICE_STOP)
 
     async def async_locate(self, **kwargs):
         """Locate the vacuum cleaner."""

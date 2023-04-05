@@ -1559,3 +1559,25 @@ BCOM_CAMERA_PAYLOAD = {
     "231": "",
     "232": False,
 }
+
+GX_AROMA_PAYLOAD = {
+    "1": True,
+    "2": "high",
+    "3": "cancel",
+    "4": 0,
+    "5": True,
+    "6": "colour",
+    "8": "b9fff500ab46ff",
+    "9": 0,
+}
+
+MOEBOT_PAYLOAD = {
+    "6": 41,
+    "101": "MOWING",
+    "102": 0,
+    "103": "MOWER_LEAN",
+    "104": True,
+    "105": 8,
+    "106": 1343,
+    "114": "AutoMode",
+}

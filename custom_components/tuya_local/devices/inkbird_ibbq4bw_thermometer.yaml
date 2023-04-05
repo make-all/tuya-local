@@ -13,12 +13,13 @@ primary_entity:
       class: measurement
       mapping:
         - scale: 100
+      unit: F
     - id: 13
       type: bitfield
       name: fault_code
-    - id: 19
-      type: string
-      name: unit
+    # - id: 19
+    #   type: string
+    #   name: unit
 secondary_entities:
   - entity: sensor
     name: Temperature probe 2
@@ -30,9 +31,10 @@ secondary_entities:
         class: measurement
         mapping:
           - scale: 100
-      - id: 19
-        type: string
-        name: unit
+        unit: F
+      # - id: 19
+      #   type: string
+      #   name: unit
   - entity: sensor
     name: Temperature probe 3
     class: temperature
@@ -43,13 +45,13 @@ secondary_entities:
         class: measurement
         mapping:
           - scale: 100
-      - id: 19
-        type: string
-        name: unit
+        unit: F
+      # - id: 19
+      #   type: string
+      #   name: unit
   - entity: sensor
     name: Temperature probe 4
     class: temperature
-    category: diagnostic
     dps:
       - id: 110
         type: integer
@@ -57,9 +59,10 @@ secondary_entities:
         class: measurement
         mapping:
           - scale: 100
-      - id: 19
-        type: string
-        name: unit
+        unit: F
+      # - id: 19
+      #   type: string
+      #   name: unit
   - entity: switch
     dps:
       - id: 1
@@ -71,8 +74,12 @@ secondary_entities:
     category: diagnostic
     dps:
       - id: 13
-        type: boolean
+        type: bitfield
         name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
   - entity: select
     name: Temperature unit
     icon: "mdi:temperature-celsius"
@@ -144,12 +151,12 @@ secondary_entities:
           max: 126
         mapping:
           - scale: 10
-            constraint: temp_unit
-            conditions:
-              - dps_val: C
-                range:
-                  min: -70
-                  max: 70
+            # constraint: temp_unit
+            # conditions:
+            #   - dps_val: C
+            #     range:
+            #       min: -70
+            #       max: 70
       - id: 19
         type: string
         name: temp_unit
@@ -166,12 +173,12 @@ secondary_entities:
           max: 126
         mapping:
           - scale: 10
-            constraint: temp_unit
-            conditions:
-              - dps_val: C
-                range:
-                  min: -70
-                  max: 70
+            # constraint: temp_unit
+            # conditions:
+            #   - dps_val: C
+            #     range:
+            #       min: -70
+            #       max: 70
       - id: 19
         type: string
         name: temp_unit
@@ -188,12 +195,12 @@ secondary_entities:
           max: 126
         mapping:
           - scale: 10
-            constraint: temp_unit
-            conditions:
-              - dps_val: C
-                range:
-                  min: -70
-                  max: 70
+            # constraint: temp_unit
+            # conditions:
+            #   - dps_val: C
+            #     range:
+            #       min: -70
+            #       max: 70
       - id: 19
         type: string
         name: temp_unit
@@ -210,12 +217,12 @@ secondary_entities:
           max: 126
         mapping:
           - scale: 10
-            constraint: temp_unit
-            conditions:
-              - dps_val: C
-                range:
-                  min: -70
-                  max: 70
+            # constraint: temp_unit
+            # conditions:
+            #   - dps_val: C
+            #     range:
+            #       min: -70
+            #       max: 70
       - id: 19
         type: string
         name: temp_unit

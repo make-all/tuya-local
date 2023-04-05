@@ -43,6 +43,9 @@ secondary_entities:
         type: integer
         name: sensor
         precision: 0
+        range:
+          min: 0
+          max: 43200
         mapping:
           - scale: 1440 # minutes => days
             invert: true
@@ -56,6 +59,9 @@ secondary_entities:
         type: integer
         name: sensor
         precision: 0
+        range:
+          min: 0
+          max: 86400
         mapping:
           - scale: 1440
             invert: true
