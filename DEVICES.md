@@ -180,7 +180,7 @@
 - Anko 1.7L smart kettle
 - Setti+ KT950W smart kettle
 - Inkbird iBBQ-4BW cooking probe thermometer
-- Inkbird sous vide cooker
+- Inkbird sous vide cooker (also supports Silvercrest sous vide sticks)
 - Kogan glass 1.7L smart kettle
 - Silvercrest 1.7L smart kettle
 - Ultenic K10 air fryer
@@ -225,6 +225,7 @@ the best option.
 - Grid Connect double outlet with Energy Monitoring, Master and Individual switches and Child Lock
 - Grid Connect USB charger with power socket
 - Logicom Strippy 4 way power strip with USB
+- Loratap RR400W-V2 relay switch
 - Mirabella Genio smartplug with USB
 - MoesHouse smartplug with RGBW nightlight
 - Qnect QN-WPO3 3 outlet + USB powerstrip with individual timers
@@ -245,7 +246,7 @@ of device.
 - 4 way powerstrip with USB
   _confirmed as working with AOFO ZLD-44EU-W_
 - Generic smartplug with power monitoring (older models)
-  _confirmed as working with Kogan and Blitzwolf single smartplugs (smartplugv1)_
+  _confirmed as working with Kogan, Blitzwolf and Gosund single smartplugs (smartplugv1)_
 - Generic smartplug with power monitoring (newer models)
   _confirmed as working with Kogan single smartplug with USB and Rillpac smartplugs (smartplugv2)_
 - Generic smartplug with power monitoring requiring polling of sensors

@@ -1,4 +1,4 @@
-name: Loratap Relay
+name: Relay switch
 products:
   - id: owzofmjyg7foteb6
     name: Loratap RR500W
@@ -8,6 +8,18 @@ primary_entity:
     - id: 1
       type: boolean
       name: switch
+    - id: 42
+      type: string
+      name: cycle_time
+      optional: true
+    - id: 43
+      type: string
+      name: random_time
+      optional: true
+    - id: 44
+      type: string
+      name: inching
+      optional: true
 secondary_entities:
   - entity: number
     name: Countdown
