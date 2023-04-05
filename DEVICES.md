@@ -3,6 +3,7 @@
 ### Heaters
 
 - Andersson GSH heater
+- Arlec 2200W and 2400W panel heaters
 - Atomi AT1632 ceramic heater
 - Betterlife BT1500 IR heater
 - BVF CP1 heater
