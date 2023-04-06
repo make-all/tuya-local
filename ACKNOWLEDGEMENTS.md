@@ -228,3 +228,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [blakadder](https://github.com/blakadder) for assisting with support for Ultonic K10 air fryer.
 - [szupi-ipuzs](https://github.com/szupi-ipuzs) for contributing support for desk lamps (Setti+ SL601) and Loratap relays.
 - [MackoMici](https://github.com/MackoMici) for contributing support for GX aroma diffuser, which was merged with the YYM config.
+- [Die-Meester](https://github.com/Die-Meester) for contributing support for CBI Astute smart switches.
