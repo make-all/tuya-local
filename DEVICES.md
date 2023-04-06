@@ -303,6 +303,7 @@ of device.
 - QS-WIFI-C01(BK) curtain module
 - Wistar roller blind controller
 - Zemismart curtain rail
+- Zemismart roller shade
 
 ### Vacuum Cleaners
 
