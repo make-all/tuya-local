@@ -21,6 +21,7 @@ TIMER_DPS = "2"
 CURRENT_DPS = "4"
 POWER_DPS = "5"
 VOLTAGE_DPS = "6"
+OVERCURRENT_DPS = "7"
 
 
 class TestKoganSwitch(
