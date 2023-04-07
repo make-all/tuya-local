@@ -344,8 +344,9 @@ of device.
 - Nedis pet feeder
 - Nedis WIFISA10CWT air quality monitor
 - PGST PA-010 indoor temperature and humidity sensor
+- PH-W218 water quality monitor
 - Qoto 03 smart water valve / sprinkler controller
 - SD123 HPR01 human presence radar
 - Universal remote control (supports sensors only)
-- Yieryi pH meter (also matches unbranded pH-W3988 device)
+- Yieryi water quality monitor (also matches unbranded PH-W3988 device)
 - ZX-G30 alarm system (not as an alarm_control_panel, as individual inputs and sensors)
