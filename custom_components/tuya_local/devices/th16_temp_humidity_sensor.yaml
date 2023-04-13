@@ -1,5 +1,9 @@
 # Example DPS Status
 # {'dps': {'1': 226, '2': 41, '9': 'f'}}
+# from issue #608 { "1": 183, "2": 63, "9": "c", "10": 390, "11": 0, "12": 60,
+#                   "13": 20, "14": "cancel", "15": "upperalarm", "21": true,
+#                   "101": true, "102": 9, "103": 0, "104": 1, "105": 0,
+#                   "106": 0, "107": 1 }
 name: TH16 TH06WB3S Temperature and Humidity Sensor
 products:
   - id: 7akwzwfwhukkdsib
@@ -37,3 +41,12 @@ secondary_entities:
             value: Fahrenheit
           - dps_val: "c"
             value: Celcius
+  - entity: light
+    name: Display
+    icon: "mdi:television-ambient-light"
+    category: config
+    dps:
+      - id: 21
+        type: boolean
+        name: switch
+        optional: true
