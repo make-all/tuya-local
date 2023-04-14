@@ -18,10 +18,6 @@ primary_entity:
       name: calibration
       type: integer
       optional: true
-    - id: 52
-      name: maximum
-      type: integer
-      optional: true
     - id: 21
       type: bitfield
       name: test
@@ -64,22 +60,39 @@ secondary_entities:
         name: calibration
         optional: true
   - entity: number
-    name: Maximum Standby Power
+    name: Maximum reactive power
+    category: config
+    class: power_factor
+    dps:
+      - id: 51
+        type: integer
+        name: value
+        optional: true
+        unit: "%"
+        range:
+          min: 10
+          max: 100
+        mapping:
+          - dps_val: null
+            invalid: true
+  - entity: number
+    name: Maximum effective power
     category: config
     class: power
     dps:
-      - id: 51
+      - id: 52
         type: integer
         name: value
         optional: true
         unit: W
         range:
           min: 0
-          max: 100
+          max: 150000
         mapping:
           - dps_val: null
             invalid: true
           - scale: 10
+            step: 100
   - entity: sensor
     name: Energy
     category: diagnostic
