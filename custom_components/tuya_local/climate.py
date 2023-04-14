@@ -26,6 +26,8 @@ from homeassistant.components.climate.const import (
 )
 from homeassistant.const import (
     ATTR_TEMPERATURE,
+    PRECISION_TENTHS,
+    PRECISION_WHOLE,
     UnitOfTemperature,
 )
 import logging
@@ -144,7 +146,9 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
             if self._current_temperature_dps
             else 1
         )
-        return 1.0 / max(temp, current)
+        if max(temp, current) > 1.0:
+            return PRECISION_TENTHS
+        return PRECISION_WHOLE
 
     @property
     def target_temperature(self):
