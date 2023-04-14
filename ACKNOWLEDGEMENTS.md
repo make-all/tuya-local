@@ -232,3 +232,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [ResteNarquois](https://github.com/ResteNarquois) for assisting with support for Zemismart roller shades.
 - [grangoni](https://github.com/grangoni) for contributing support for PH-W218 water quality monitors.
 - [antonio1475](https://github.com/antonio1475) for contributing support for Rojeco pet feeders.
+- [erelke](https://github.com/erelke) for contributing Hungarian translations.
