@@ -1,0 +1,66 @@
+name: Catit Pixi 6-Meal Feeder
+product:
+  - id: wmkepdif6qzirl7a
+primary_entity:
+  entity: button
+  class: restart
+  name: Quick Feed
+  icon: "mdi:food-drumstick"
+  dps:
+    - id: 2
+      type: boolean
+      name: button
+      optional: True
+secondary_entities:
+  - entity: number
+    name: Meal plan
+    dps:
+    - id: 1
+      name: Meal Plan
+      # Meal plan is the following binary blob (1 byte per line), encoded in base64:
+      # - Date (1 bit per day Monday -> Sunday, padded with 0 on the MSB). Ex: Monday, Wednesday, Sunday -> 0b01010001
+      # - Hour
+      # - Minute
+      # - Feed #
+      # - Enable/Disabled
+      type: string
+      optional: True
+  - entity: sensor
+    icon: "mdi:paw"
+    name: Feed report
+    category: diagnostic
+    dps:
+      - id: 15
+        name: sensor
+        type: integer
+        readonly: True
+        optional: True
+    type: integer
+  - entity: number
+    name: Battery
+    category: diagnostic
+    dps:
+      - id: 11
+        name: sensor
+        type: integer
+        unit: "%"
+        readonly: True
+  - entity: number
+    name: Voice configuration
+    category: config
+    dps:
+      - id: 18
+        name: voice
+        type: integer
+        range:
+          min: 0
+          max: 1
+  - entity: button
+    class: restart
+    name: Factory reset
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: button
+        optional: True
