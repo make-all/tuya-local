@@ -26,6 +26,7 @@ from .device import setup_device, async_delete_device
 from .helpers.device_config import get_config
 
 _LOGGER = logging.getLogger(__name__)
+NOT_FOUND = "Configuration file for %s not found"
 
 
 async def async_migrate_entry(hass, entry: ConfigEntry):
@@ -105,10 +106,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         old_id = entry.unique_id
         conf_file = get_config(entry.data[CONF_TYPE])
         if conf_file is None:
-            _LOGGER.error(
-                "Configuration file for %s not found",
-                entry.data[CONF_TYPE],
-            )
+            _LOGGER.error(NOT_FOUND, entry.data[CONF_TYPE])
             return False
 
         @callback
@@ -183,7 +181,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         conf_file = get_config(entry.data[CONF_TYPE])
         if conf_file is None:
             _LOGGER.error(
-                "Configuration file for %s not found",
+                NOT_FOUND,
                 entry.data[CONF_TYPE],
             )
             return False
@@ -238,7 +236,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     setup_device(hass, config)
     device_conf = get_config(entry.data[CONF_TYPE])
     if device_conf is None:
-        _LOGGER.error("Configuration file for %s not found", config[CONF_TYPE])
+        _LOGGER.error(NOT_FOUND, config[CONF_TYPE])
         return False
 
     entities = set()
@@ -260,7 +258,7 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
     data = hass.data[DOMAIN][config[CONF_DEVICE_ID]]
     device_conf = get_config(config[CONF_TYPE])
     if device_conf is None:
-        _LOGGER.error("Configuration file for %s not found", config[CONF_TYPE])
+        _LOGGER.error(NOT_FOUND, config[CONF_TYPE])
         return False
 
     entities = {}
