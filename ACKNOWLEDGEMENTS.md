@@ -233,3 +233,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [grangoni](https://github.com/grangoni) for contributing support for PH-W218 water quality monitors.
 - [antonio1475](https://github.com/antonio1475) for contributing support for Rojeco pet feeders.
 - [erelke](https://github.com/erelke) for contributing Hungarian translations.
+- [p-owerscripter](https://github.com/p-owerscripter) for contributing support for KKMoon air quality monitors.
