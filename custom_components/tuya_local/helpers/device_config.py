@@ -157,10 +157,10 @@ class TuyaDeviceConfig:
         Return Value:
             True if all dps in entity could be matched to dps, False otherwise
         """
-        all = keys + matched
+        all_dp = keys + matched
         for d in entity.dps():
-            if (d.id not in all and not d.optional) or (
-                d.id in all and not _typematch(d.type, dps[d.id])
+            if (d.id not in all_dp and not d.optional) or (
+                d.id in all_dp and not _typematch(d.type, dps[d.id])
             ):
                 return False
             if d.id in keys:
@@ -799,16 +799,14 @@ class TuyaDpsConfig:
 
         r = self.range(device, scaled=False)
         if r and isinstance(result, Number):
-            min = r["min"]
-            max = r["max"]
-            if result < min or result > max:
+            mn = r["min"]
+            mx = r["max"]
+            if result < mn or result > mx:
                 # Output scaled values in the error message
                 r = self.range(device, scaled=True)
-                min = r["min"]
-                max = r["max"]
-                raise ValueError(
-                    f"{self.name} ({value}) must be between {min} and {max}"
-                )
+                mn = r["min"]
+                mx = r["max"]
+                raise ValueError(f"{self.name} ({value}) must be between {mn} and {mx}")
 
         dps_map[self.id] = self._correct_type(result)
         return dps_map
