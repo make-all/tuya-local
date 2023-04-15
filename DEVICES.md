@@ -349,6 +349,7 @@ of device.
 - Rojeco PTM-001 pet feeder
 - Qoto 03 smart water valve / sprinkler controller
 - SD123 HPR01 human presence radar
+- SH07-8 smart sprinkler controller
 - Universal remote control (supports sensors only)
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)
 - ZX-G30 alarm system (not as an alarm_control_panel, as individual inputs and sensors)

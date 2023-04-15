@@ -234,3 +234,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [antonio1475](https://github.com/antonio1475) for contributing support for Rojeco pet feeders.
 - [erelke](https://github.com/erelke) for contributing Hungarian translations.
 - [p-owerscripter](https://github.com/p-owerscripter) for contributing support for KKMoon air quality monitors.
+- [cataseven](https://github.com/cataseven) for contributing support for SM07-8 sprinkler controllers.
