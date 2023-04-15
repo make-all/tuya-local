@@ -281,6 +281,7 @@ of device.
 - HDMI sync light
 - iHD001 LED controller
 - Moes dimmer switch
+- Moes motion sensor lights (XZ-CGV3)
 - Space Dog Music Lamp
 
 ### Covers

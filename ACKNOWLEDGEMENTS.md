@@ -235,3 +235,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [erelke](https://github.com/erelke) for contributing Hungarian translations.
 - [p-owerscripter](https://github.com/p-owerscripter) for contributing support for KKMoon air quality monitors.
 - [cataseven](https://github.com/cataseven) for contributing support for SM07-8 sprinkler controllers.
+- [tientmit88](https://github.com/tientmit88) for contributing support for Moes motion sensor lights.
