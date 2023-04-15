@@ -16,7 +16,7 @@ secondary_entities:
     name: Meal plan
     dps:
     - id: 1
-      name: Meal Plan
+      name: value
       # Meal plan is the following binary blob (1 byte per line), encoded in base64:
       # - Date (1 bit per day Monday -> Sunday, padded with 0 on the MSB). Ex: Monday, Wednesday, Sunday -> 0b01010001
       # - Hour
@@ -34,12 +34,12 @@ secondary_entities:
         name: sensor
         # Encountered values so far:
         # 11: Feeding OK
-        # 21: Rotating plate is stuck
+        # 10/21: Rotating plate is stuck
         type: integer
         readonly: True
         optional: True
     type: integer
-  - entity: number
+  - entity: sensor
     name: Battery
     category: diagnostic
     dps:
@@ -48,16 +48,21 @@ secondary_entities:
         type: integer
         unit: "%"
         readonly: True
-  - entity: number
+  - entity: switch
     name: Voice configuration
     category: config
     dps:
       - id: 18
-        name: voice
+        name: switch
         type: integer
         range:
           min: 0
           max: 1
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: true
   - entity: button
     class: restart
     name: Factory reset
