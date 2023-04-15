@@ -211,7 +211,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [nijel](https://github.com/nijel) for assisting with support for WHM-04 doorbells.
 - [shiner66](https://github.com/shiner66) for assisting with support for Shinco 30D dehumidifier.
 - [A-J-O](https://github.com/A-J-O) for assisting with support for Heat Storm 6000W heaters.
-- [demonkazuya](https://github.com/demonkazuya) for assisting with support for Smartrul smart wallplugs (dual_power_monitor_smartplugv2)
+- [demonkazuya](https://github.com/demonkazuya) for assisting with support for Smartrul smart wallplugs (dual_power_monitor_smartplugv2) and Taxnele energy meters.
 - [runlar](https://github.com/runlar) for assisting with support for Deltaco SH-P02E smartplugs (dual_power_monitoring_smartplugv2 without some optional features)
 - [Kannix2005](https://github.com/Kannix2005) for assisting with support for Etersky aroma diffusers.
 - [Daverover66](https://github.com/Daverover66) for assisting with support for ElectriQ PD45E dehumidifiers.
