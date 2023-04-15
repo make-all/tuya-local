@@ -600,7 +600,7 @@ class TestDevice(IsolatedAsyncioTestCase):
         print("getting last iteration...")
         try:
             result = await loop.__anext__()
-            self.assertTrue(False)
+            self.fail("Should have raised an exception to quit the loop")
         # Check that the loop terminated
         except StopAsyncIteration:
             pass
