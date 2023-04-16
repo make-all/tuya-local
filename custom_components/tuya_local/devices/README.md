@@ -254,6 +254,11 @@ For base64 and hex types, this specifies how to decode the binary data (after he
 This is a container field, the contents of which should be a list consisting of `name`, `bytes` and `range` fields.  `range` is as described above.  `bytes` is the number of bytes for the field, which can be `1`, `2`, or `4`.  `name` is a name for the field, which will have special handling depending on
 the device type.
 
+### `mask`
+
+*Optional.*
+
+For base64 and hex types, this specifies how to extract a single numeric value from the binary data.  The value should be a hex bit mask (eg 00FF00 to extract the middle byte of a 3 byte value).  Unlike format, this does not require special handling in the entity platform, as only a single value is being extracted.
 
 ## Mapping Rules
 

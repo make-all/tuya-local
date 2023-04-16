@@ -349,12 +349,27 @@ class TuyaDpsConfig:
 
         return None
 
+    def mask(self, device):
+        mapping = self._find_map_for_dps(device.get_property(self.id))
+        if mapping:
+            mask = mapping.get("mask")
+            if mask:
+                return int(mask, 16)
+
     def get_value(self, device):
         """Return the value of the dps from the given device."""
-        return self._map_from_dps(device.get_property(self.id), device)
+        mask = self.mask(device)
+        if mask:
+            bytevalue = self.decoded_value(device)
+            value = int.from_bytes(bytevalue, "big")
+            scale = mask & (1 + ~mask)
+            map_scale = self.scale(device)
+            return ((value & mask) // scale) / map_scale
+        else:
+            return self._map_from_dps(device.get_property(self.id), device)
 
     def decoded_value(self, device):
-        v = self.get_value(device)
+        v = self._map_from_dps(device.get_property(self.id), device)
         if self.rawtype == "hex" and isinstance(v, str):
             try:
                 return bytes.fromhex(v)
@@ -405,7 +420,6 @@ class TuyaDpsConfig:
             raise TypeError(f"{self.name} is read only")
         if self.invalid_for(value, device):
             raise AttributeError(f"{self.name} cannot be set at this time")
-
         settings = self.get_values_to_set(device, value)
         await device.async_set_properties(settings)
 
@@ -720,11 +734,12 @@ class TuyaDpsConfig:
 
         mapping = self._find_map_for_value(value, device)
         scale = self.scale(device)
+        mask = None
         if mapping:
             replaced = False
             redirect = mapping.get("value_redirect")
             invert = mapping.get("invert", False)
-
+            mask = mapping.get("mask")
             step = mapping.get("step")
             if not isinstance(step, Number):
                 step = None
@@ -807,6 +822,15 @@ class TuyaDpsConfig:
                 mn = r["min"]
                 mx = r["max"]
                 raise ValueError(f"{self.name} ({value}) must be between {mn} and {mx}")
+
+        if mask and isinstance(result, Number):
+            # Convert to int
+            length = len(mask)
+            mask = int(mask, 16)
+            mask_scale = mask & (1 + ~mask)
+            current_value = int.from_bytes(self.decoded_value(device), "big")
+            result = (current_value & ~mask) | (mask & (result * mask_scale))
+            result = self.encode_value(result.to_bytes(length, "big"))
 
         dps_map[self.id] = self._correct_type(result)
         return dps_map

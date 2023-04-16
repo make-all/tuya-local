@@ -1581,3 +1581,20 @@ MOEBOT_PAYLOAD = {
     "106": 1343,
     "114": "AutoMode",
 }
+
+TOMPD63LW_SOCKET_PAYLOAD = {
+    "1": 139470,
+    "6": "CHoAQgQADlwAAA==",
+    "9": 0,
+    "11": False,
+    "12": False,
+    "13": 0,
+    "16": True,
+    "19": "FSE-F723C46A04FC6C",
+    # "101": 275,
+    # "102": 170,
+    # "103": 40,
+    # "104": 30,
+    # "105": False,
+    # "106": False,
+}
