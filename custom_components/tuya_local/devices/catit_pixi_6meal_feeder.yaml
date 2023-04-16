@@ -12,19 +12,20 @@ primary_entity:
       name: button
       optional: True
 secondary_entities:
-  - entity: number
+  - entity: sensor
     name: Meal plan
     dps:
-    - id: 1
-      name: value
-      # Meal plan is the following binary blob (1 byte per line), encoded in base64:
-      # - Date (1 bit per day Monday -> Sunday, padded with 0 on the MSB). Ex: Monday, Wednesday, Sunday -> 0b01010001
-      # - Hour
-      # - Minute
-      # - Feed #
-      # - Enable/Disabled
-      type: string
-      optional: True
+      - id: 1
+        name: sensor
+        # Meal plan is the following binary blob (1 byte per line), encoded in base64:
+        # - Date (1 bit per day Monday -> Sunday, padded with 0 on the MSB). Ex: Monday, Wednesday, Sunday -> 0b01010001
+        # - Hour
+        # - Minute
+        # - Feed #
+        # - Enable/Disabled
+        type: string
+        optional: True
+        readonly: True
   - entity: sensor
     icon: "mdi:paw"
     name: Feed report
@@ -38,7 +39,6 @@ secondary_entities:
         type: integer
         readonly: True
         optional: True
-    type: integer
   - entity: sensor
     name: Battery
     category: diagnostic
