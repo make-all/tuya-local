@@ -9,15 +9,14 @@ primary_entity:
     - id: 21
       type: integer
       name: test_bit
+      optional: true
     - id: 26
       type: bitfield
       name: fault_code
-    - id: 41
-      type: boolean
-      name: unknown_41
     - id: 42
       type: string
       name: random_timer
+      optional: true
 secondary_entities:
   - entity: number
     category: config
@@ -118,4 +117,28 @@ secondary_entities:
             value: "Off"
           - dps_val: memory
             value: "Last State"
+  - entity: lock
+    name: Child lock
+    icon: "mdi:hand-back-right-off"
+    category: config
+    dps:
+      - id: 41
+        type: boolean
+        name: lock
+  - entity: select
+    name: Light mode
+    icon: "mdi:television-ambient-light"
+    category: config
+    dps:
+      - id: 40
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: relay 
+            value: State
+          - dps_val: pos
+            value: Position
+          - dps_val: "on"
+            value: "On"
 
