@@ -15,7 +15,6 @@ from ..mixins.climate import TargetTemperatureTests
 from ..mixins.number import BasicNumberTests
 from ..mixins.select import BasicSelectTests
 from ..mixins.sensor import BasicSensorTests
-from ..mixins.switch import BasicSwitchTests
 from .base_device_tests import TuyaDeviceTestCase
 
 POWER_DPS = "1"
@@ -37,7 +36,6 @@ class TestNashoneMTS700WBThermostat(
     BasicNumberTests,
     BasicSelectTests,
     BasicSensorTests,
-    BasicSwitchTests,
     TargetTemperatureTests,
     TuyaDeviceTestCase,
 ):
@@ -54,11 +52,6 @@ class TestNashoneMTS700WBThermostat(
             self.subject,
             min=-20,
             max=105,
-        )
-        self.setUpBasicButton(
-            RESET_DPS,
-            self.entities.get("button_factory_reset"),
-            device_class=ButtonDeviceClass.RESTART,
         )
         self.setUpBasicNumber(
             CALIBOFFSET_DPS,
@@ -90,7 +83,6 @@ class TestNashoneMTS700WBThermostat(
                 "number_calibration_offset",
                 "select_timer",
                 "sensor_timer",
-                "switch_factory_reset",
             ],
         )
 

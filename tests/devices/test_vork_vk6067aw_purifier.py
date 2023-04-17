@@ -14,7 +14,7 @@ from ..mixins.button import BasicButtonTests
 from ..mixins.light import BasicLightTests
 from ..mixins.select import BasicSelectTests
 from ..mixins.sensor import MultiSensorTests
-from ..mixins.switch import BasicSwitchTests, SwitchableTests
+from ..mixins.switch import SwitchableTests
 from .base_device_tests import TuyaDeviceTestCase
 
 SWITCH_DPS = "1"
@@ -33,7 +33,6 @@ class TestVorkVK6267AWPurifier(
     BasicButtonTests,
     BasicLightTests,
     BasicSelectTests,
-    BasicSwitchTests,
     MultiSensorTests,
     SwitchableTests,
     TuyaDeviceTestCase,
@@ -60,7 +59,6 @@ class TestVorkVK6267AWPurifier(
                 "2h": "2 hours",
             },
         )
-        self.setUpBasicSwitch(RESET_DPS, self.entities.get("switch_filter_reset"))
         self.setUpBasicButton(
             RESET_DPS,
             self.entities.get("button_filter_reset"),
@@ -97,7 +95,6 @@ class TestVorkVK6267AWPurifier(
                 "sensor_air_quality",
                 "sensor_filter",
                 "sensor_timer",
-                "switch_filter_reset",
             ]
         )
 

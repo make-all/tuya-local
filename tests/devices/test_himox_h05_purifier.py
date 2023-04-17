@@ -15,7 +15,7 @@ from ..mixins.button import BasicButtonTests
 from ..mixins.lock import BasicLockTests
 from ..mixins.select import BasicSelectTests
 from ..mixins.sensor import MultiSensorTests
-from ..mixins.switch import BasicSwitchTests, SwitchableTests
+from ..mixins.switch import SwitchableTests
 from .base_device_tests import TuyaDeviceTestCase
 
 SWITCH_DPS = "1"
@@ -31,7 +31,6 @@ AQI_DPS = "21"
 class TestHimoxH05Purifier(
     BasicButtonTests,
     BasicLockTests,
-    BasicSwitchTests,
     BasicSelectTests,
     MultiSensorTests,
     SwitchableTests,
@@ -60,7 +59,6 @@ class TestHimoxH05Purifier(
                 "8h": "8 hours",
             },
         )
-        self.setUpBasicSwitch(RESET_DPS, self.entities.get("switch_filter_reset"))
         self.setUpMultiSensors(
             [
                 {
@@ -85,7 +83,6 @@ class TestHimoxH05Purifier(
             [
                 "button_filter_reset",
                 "lock_child_lock",
-                "switch_filter_reset",
                 "sensor_active_filter_life",
                 "select_timer",
                 "sensor_current_temperature",

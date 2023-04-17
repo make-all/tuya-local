@@ -17,7 +17,6 @@ from ..const import KYVOL_E30_VACUUM_PAYLOAD
 from ..helpers import assert_device_properties_set
 from ..mixins.button import MultiButtonTests
 from ..mixins.sensor import MultiSensorTests
-from ..mixins.switch import MultiSwitchTests
 from .base_device_tests import TuyaDeviceTestCase
 
 POWER_DPS = "1"
@@ -43,9 +42,7 @@ MODE_DPS = "104"
 CARPET_DPS = "107"
 
 
-class TestKyvolE30Vacuum(
-    MultiButtonTests, MultiSensorTests, MultiSwitchTests, TuyaDeviceTestCase
-):
+class TestKyvolE30Vacuum(MultiButtonTests, MultiSensorTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
@@ -105,22 +102,7 @@ class TestKyvolE30Vacuum(
                 },
             ],
         )
-        self.setUpMultiSwitch(
-            [
-                {
-                    "dps": RSTEDGE_DPS,
-                    "name": "switch_edge_brush_reset",
-                },
-                {
-                    "dps": RSTROLL_DPS,
-                    "name": "switch_roll_brush_reset",
-                },
-                {
-                    "dps": RSTFILTER_DPS,
-                    "name": "switch_filter_reset",
-                },
-            ],
-        )
+
         self.mark_secondary(
             [
                 "button_edge_brush_reset",
@@ -132,9 +114,6 @@ class TestKyvolE30Vacuum(
                 "sensor_roll_brush",
                 "sensor_filter",
                 "sensor_status",
-                "switch_edge_brush_reset",
-                "switch_roll_brush_reset",
-                "switch_filter_reset",
             ]
         )
 

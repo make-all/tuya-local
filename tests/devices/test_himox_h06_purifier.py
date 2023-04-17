@@ -12,7 +12,7 @@ from ..mixins.button import BasicButtonTests
 from ..mixins.light import BasicLightTests
 from ..mixins.select import MultiSelectTests
 from ..mixins.sensor import MultiSensorTests
-from ..mixins.switch import BasicSwitchTests, SwitchableTests
+from ..mixins.switch import SwitchableTests
 from .base_device_tests import TuyaDeviceTestCase
 
 SWITCH_DPS = "1"
@@ -29,7 +29,6 @@ MODE_DPS = "101"
 class TestHimoxH06Purifier(
     BasicButtonTests,
     BasicLightTests,
-    BasicSwitchTests,
     MultiSelectTests,
     MultiSensorTests,
     SwitchableTests,
@@ -69,7 +68,6 @@ class TestHimoxH06Purifier(
                 },
             ]
         )
-        self.setUpBasicSwitch(RESET_DPS, self.entities.get("switch_filter_reset"))
         self.setUpMultiSensors(
             [
                 {
@@ -93,7 +91,6 @@ class TestHimoxH06Purifier(
             [
                 "button_filter_reset",
                 "light_aq_indicator",
-                "switch_filter_reset",
                 "sensor_active_filter_life",
                 "select_timer",
                 "sensor_timer",
