@@ -208,6 +208,9 @@ class TestSmartMcbSMT006EnergyMeter(
                 "binary_sensor_undervoltage",
                 "button_energy_reset",
                 "sensor_balance_energy",
+                "sensor_current_a",
+                "sensor_power_a",
+                "sensor_voltage_a",
                 "switch_prepay",
             ]
         )
