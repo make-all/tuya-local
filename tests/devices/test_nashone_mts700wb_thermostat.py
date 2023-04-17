@@ -53,6 +53,11 @@ class TestNashoneMTS700WBThermostat(
             min=-20,
             max=105,
         )
+        self.setUpBasicButton(
+            RESET_DPS,
+            self.entities.get("button_factory_reset"),
+            device_class=ButtonDeviceClass.RESTART,
+        )
         self.setUpBasicNumber(
             CALIBOFFSET_DPS,
             self.entities.get("number_calibration_offset"),
