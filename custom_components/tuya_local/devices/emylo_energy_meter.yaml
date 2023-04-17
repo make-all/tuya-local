@@ -18,6 +18,7 @@ primary_entity:
       type: string
       name: phase_a
       optional: true
+      force: true
     - id: 10
       type: bitfield
       name: fault_code
@@ -93,3 +94,40 @@ secondary_entities:
         type: boolean
         name: button
         optional: true
+  - entity: sensor
+    name: Voltage A
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mapping:
+          - mask: "FFFFFF0000000000000000"
+            scale: 10
+  - entity: sensor
+    name: Current A
+    class: current
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: mA
+        mapping:
+          - mask: "000000FFFFFF0000000000"
+  - entity: sensor
+    name: Power A
+    class: power
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: W
+        mapping:
+          - mask: "000000000000FFFFFF0000"

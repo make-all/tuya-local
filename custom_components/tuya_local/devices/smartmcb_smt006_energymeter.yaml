@@ -7,6 +7,11 @@ primary_entity:
     - id: 16
       type: boolean
       name: switch
+    - id: 6
+      name: phase_a
+      type: base64
+      optional: true
+      force: true
     - id: 19
       type: string
       name: breaker_number
@@ -260,15 +265,6 @@ secondary_entities:
       - id: 12
         type: boolean
         name: button
-  - entity: switch
-    deprecated: button
-    name: Energy reset
-    category: config
-    icon: "mdi:cog-refresh"
-    dps:
-      - id: 12
-        type: boolean
-        name: switch
   - entity: sensor
     name: Balance energy
     category: diagnostic
@@ -280,3 +276,40 @@ secondary_entities:
         unit: kWh
         mapping:
           - scale: 100
+  - entity: sensor
+    name: Voltage A
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mapping:
+          - mask: "FFFFFF0000000000000000"
+            scale: 10
+  - entity: sensor
+    name: Current A
+    class: current
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: mA
+        mapping:
+          - mask: "000000FFFFFF0000000000"
+  - entity: sensor
+    name: Power A
+    class: power
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: W
+        mapping:
+          - mask: "000000000000FFFFFF0000"
