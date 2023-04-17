@@ -73,10 +73,6 @@ class TestNashoneMTS700WBThermostat(
             unit=UnitOfTime.SECONDS,
             device_class=SensorDeviceClass.DURATION,
         )
-        self.setUpBasicSwitch(
-            RESET_DPS,
-            self.entities.get("switch_factory_reset"),
-        )
         self.mark_secondary(
             [
                 "button_factory_reset",
