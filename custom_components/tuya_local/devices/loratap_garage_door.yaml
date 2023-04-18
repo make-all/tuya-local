@@ -1,0 +1,29 @@
+name: Loratap garage door
+products:
+  - id: kksjmhr9nhjudvzo
+    name: LoraTap GDC100W
+primary_entity:
+  entity: cover
+  class: garage
+  dps:
+    - id: 1
+      type: boolean
+      name: control
+      optional: true
+      mapping:
+        - dps_val: true
+          value: open
+        - dps_val: false
+          value: close
+    - id: 101
+      name: open
+      type: boolean
+    - id: 7
+      name: countdown_1
+      type: integer
+    - id: 102
+      name: travel_time
+      type: integer
+    - id: 103
+      name: countdown_2
+      type: integer
