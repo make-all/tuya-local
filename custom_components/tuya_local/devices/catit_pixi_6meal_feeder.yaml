@@ -3,29 +3,24 @@ product:
   - id: wmkepdif6qzirl7a
 primary_entity:
   entity: button
-  class: restart
   name: Quick Feed
   icon: "mdi:food-drumstick"
   dps:
     - id: 2
       type: boolean
       name: button
-      optional: True
-secondary_entities:
-  - entity: sensor
-    name: Meal plan
-    dps:
-      - id: 1
-        name: sensor
+      optional: true
+    - id: 1
+      type: string
         # Meal plan is the following binary blob (1 byte per line), encoded in base64:
         # - Date (1 bit per day Monday -> Sunday, padded with 0 on the MSB). Ex: Monday, Wednesday, Sunday -> 0b01010001
         # - Hour
         # - Minute
         # - Feed #
         # - Enable/Disabled
-        type: string
-        optional: True
-        readonly: True
+      name: meal_plan
+      optional: true
+secondary_entities:
   - entity: sensor
     icon: "mdi:paw"
     name: Feed report
@@ -37,8 +32,7 @@ secondary_entities:
         # 11: Feeding OK
         # 10/21: Rotating plate is stuck
         type: integer
-        readonly: True
-        optional: True
+        optional: true
   - entity: sensor
     name: Battery
     category: diagnostic
@@ -47,7 +41,6 @@ secondary_entities:
         name: sensor
         type: integer
         unit: "%"
-        readonly: True
   - entity: switch
     name: Voice configuration
     category: config
@@ -55,9 +48,6 @@ secondary_entities:
       - id: 18
         name: switch
         type: integer
-        range:
-          min: 0
-          max: 1
         mapping:
           - dps_val: 0
             value: false
@@ -71,4 +61,4 @@ secondary_entities:
       - id: 9
         type: boolean
         name: button
-        optional: True
+        optional: true
