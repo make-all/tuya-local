@@ -304,6 +304,7 @@ of device.
 - LoraTap SC500W-V1 curtain switch
 - M027 curtain module (sold under several brands, including zemismart, meterk and others)
 - QS-WIFI-C01(BK) curtain module
+- SHerko curtain motor
 - Wistar roller blind controller
 - Zemismart curtain rail
 - Zemismart roller shade
