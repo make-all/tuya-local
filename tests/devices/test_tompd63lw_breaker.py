@@ -70,3 +70,9 @@ class TestTOMPD63lw(MultiSensorTests, TuyaDeviceTestCase):
                 "switch_prepayment",
             ]
         )
+
+    def test_phasea_encoding(self):
+        self.dps[PHASEA_DP] = "CMAAD6AAAzUAAA=="
+        self.assertEqual(self.multiSensor["sensor_voltage_a"].native_value, 224.0)
+        self.assertEqual(self.multiSensor["sensor_current_a"].native_value, 4000)
+        self.assertEqual(self.multiSensor["sensor_power_a"].native_value, 821.0)
