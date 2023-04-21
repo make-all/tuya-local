@@ -78,6 +78,7 @@
 - Beok TGR81 thermostat (also reported working with Myuet ME98, Avatto WT81/ME81)
 - Beok TOL47 thermostat
 - Beok TR9B thermostat _(rebadged as Vancoo and perhaps others)_
+- BHT-002-GALW thermostat _(rebadged as many different brands)_
 - ETOP-HP thermostat (CH7100)
 - ETOP-HT thermostat
 - Hysen HY08ACF thermostat
