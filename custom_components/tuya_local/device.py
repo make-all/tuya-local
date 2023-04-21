@@ -313,6 +313,12 @@ class TuyaLocalDevice(object):
     async def async_possible_types(self):
         cached_state = self._get_cached_state()
         if len(cached_state) <= 1:
+            # in case of device22 devices, we need to poll them with a dp
+            # that exists on the device to get anything back.  Most switch-like
+            # devices have dp 1. Lights generally start from 20.  101 is where
+            # vendor specific dps start.  Between them, these three should cover
+            # most devices.
+            self._api.set_dpsUsed({"1": None, "20": None, "101": None})
             await self.async_refresh()
             cached_state = self._get_cached_state()
 
