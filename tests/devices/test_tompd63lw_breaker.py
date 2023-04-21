@@ -76,3 +76,9 @@ class TestTOMPD63lw(MultiSensorTests, TuyaDeviceTestCase):
         self.assertEqual(self.multiSensor["sensor_voltage_a"].native_value, 224.0)
         self.assertEqual(self.multiSensor["sensor_current_a"].native_value, 4000)
         self.assertEqual(self.multiSensor["sensor_power_a"].native_value, 821.0)
+
+    def test_phasea_missing(self):
+        self.dps[PHASEA_DP] = None
+        self.assertIsNone(self.multiSensor["sensor_voltage_a"].native_value)
+        self.assertIsNone(self.multiSensor["sensor_current_a"].native_value)
+        self.assertIsNone(self.multiSensor["sensor_power_a"].native_value)
