@@ -239,3 +239,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [matteozamu](https://github.com/matteozamu) for assisting with support for LoraTap garage doors.
 - [chemicalstorm](https://github.com/chemicalstorm) for contributing support for Catit pixi 6-meal pet feeder.
 - [darki73](https://github.com/darki73) for contributing support for SHerko smart curtain motorss.
+- [karolzamosc](https://github.com/karolzamosc) for assisting with support for Rumba bathroom heaters.
