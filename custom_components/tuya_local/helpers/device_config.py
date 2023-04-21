@@ -380,7 +380,7 @@ class TuyaDpsConfig:
                     v,
                     self.name,
                 )
-                return v
+                return None
 
         elif self.rawtype == "base64" and isinstance(v, str):
             try:
@@ -392,7 +392,7 @@ class TuyaDpsConfig:
                     v,
                     self.name,
                 )
-                return v
+                return None
         else:
             return v
 
