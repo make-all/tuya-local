@@ -345,6 +345,7 @@ of device.
 - Catit Pixi smart fountain
 - Catit pet feeder (2.2kg dispenser and 6 meal versions)
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
+- Inkbird PTH-9CW air quality monitor
 - KKMoon 7in1 air quality monitor
 - Kogan bidet toilet seat
 - Konlen/Rockson WF96L water level controller
