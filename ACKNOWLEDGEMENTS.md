@@ -240,3 +240,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [chemicalstorm](https://github.com/chemicalstorm) for contributing support for Catit pixi 6-meal pet feeder.
 - [darki73](https://github.com/darki73) for contributing support for SHerko smart curtain motorss.
 - [karolzamosc](https://github.com/karolzamosc) for assisting with support for Rumba bathroom heaters, BHT-002-GALW thermostats.
+- [pnm1977](https://github.com/pnm1977) for assisting with support for Gosund UP111_RTL smartplugs.

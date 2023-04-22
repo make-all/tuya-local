@@ -259,7 +259,7 @@ of device.
 - Generic smartplug with power monitoring and USB ports
   _confirmed as working with Gosund SP112 smartplugs_
 - Generic smartplug with more advanced energy monitoring
-  _confirmed working with CBE smartplugs, another variant with child lock, backlight and inching switch confirmed with Aubess and Elivco_
+  _confirmed working with CBE smartplugs, another variant with child lock, backlight and inching switch confirmed with Aubess and Elivco, and another variant with Gosund UP111-RTL_
 - Generic smartplug with some additional encoded schedule info.
   _confirmed working as a simple switch and timer with Kashimura KJ-173_
 - Generic double switch with timers (confirmed with Living dual switch and another v2 variant with Avatto dual switch)
