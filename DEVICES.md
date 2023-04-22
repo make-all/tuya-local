@@ -127,6 +127,7 @@
 - essentials portable air purifier
 - Himox H05 and H06 air purifiers
 - Hosome air purifier
+- Lifubide X600 air purifier
 - Poiema One air purifier
 - Renpho RP-AP001S air purifier
 - Stadler Form Roger air purifier

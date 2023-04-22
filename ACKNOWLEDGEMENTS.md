@@ -243,3 +243,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [pnm1977](https://github.com/pnm1977) for assisting with support for Gosund UP111_RTL smartplugs.
 - [jprasm](https://github.com/jprasm) for assisting with support for Inkbird air quality monitors.
 - [Muelner](https://github.com/Muelner) for assisting with support for WDYK 3-phase energy meter circuit breakers.
+- [Cyrelion](https://github.com/Cyrelion) for assisting with support for Lifubide X600 air purifiers.
