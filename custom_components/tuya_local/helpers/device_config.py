@@ -864,8 +864,11 @@ def possible_matches(dps):
     """Return possible matching configs for a given set of dps values."""
     for cfg in available_configs():
         parsed = TuyaDeviceConfig(cfg)
-        if parsed.matches(dps):
-            yield parsed
+        try:
+            if parsed.matches(dps):
+                yield parsed
+        except TypeError:
+            _LOGGER.error("Parse error in %s", cfg)
 
 
 def get_config(conf_type):
