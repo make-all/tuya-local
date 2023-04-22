@@ -22,6 +22,7 @@
 - Kogan Wi-Fi convection panel heaters - KAHTP and KAWFHTP models
 - Nedis convection heater - WIFIHTPL20F model
 - Orion OWH-PTC2000 heater
+- Princess 350 panel heater
 - Purline Hoti M100 heater
 - Rumba bathroom heater
 - Wetair WCH-750 heater
