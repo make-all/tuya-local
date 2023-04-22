@@ -198,6 +198,7 @@
 - SmartMCB SMT006 energy meter
 - Taxnele circuit breaker and energy meter
 - TOMPD-63LW energy meter circuit breaker
+- WDYK 3 phase 4 pole 400V energy meter circuit breaker
 
 ### Battery Charger
 
