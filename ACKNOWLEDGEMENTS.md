@@ -246,3 +246,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [Cyrelion](https://github.com/Cyrelion) for assisting with support for Lifubide X600 air purifiers.
 - [mwkchan](https://github.com/mwkchan) for assisting with support for Princess 350 panel heater.
 - [aletsweb](https://github.com/aletsweb) for assisting with support for A60 rgbcw lightbubs and Rinkmo D2 vacuums.
+- [FaboThePlayer](https://github.com/FaboThePlayer) for assisting with support for a whitelabel PIR motion sensor.
