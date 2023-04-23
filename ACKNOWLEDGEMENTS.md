@@ -245,4 +245,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [Muelner](https://github.com/Muelner) for assisting with support for WDYK 3-phase energy meter circuit breakers.
 - [Cyrelion](https://github.com/Cyrelion) for assisting with support for Lifubide X600 air purifiers.
 - [mwkchan](https://github.com/mwkchan) for assisting with support for Princess 350 panel heater.
-- [aletsweb](https://github.com/aletsweb) for assisting with support for A60 rgbcw lightbubs.
+- [aletsweb](https://github.com/aletsweb) for assisting with support for A60 rgbcw lightbubs and Rinkmo D2 vacuums.

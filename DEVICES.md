@@ -321,6 +321,7 @@ of device.
 - Lefant M213 vacuum cleaner (also works for Lefant M213S and APOSEN A550)
 - Lenovo E1 vacuum cleaner
 - Mellerware City Move vacuum cleaner (high likelihood of mismatch)
+- Rinkmo D2 vacuum cleaner
 
 ### Lawnmowers
 
