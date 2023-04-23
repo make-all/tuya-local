@@ -13,8 +13,6 @@ primary_entity:
       name: error
       optional: true
       mapping:
-        - dps_val: [ null, 0 ]
-          value: OK
         - dps_val: 1
           value: cliff
         - dps_val: 2
@@ -40,7 +38,11 @@ primary_entity:
       name: status
       optional: true
       mapping:
-        - dps_val: [ null, SLEEP, CHARG_COMP ]
+        - dps_val: SLEEP
+          value: standby
+        - dps_val: CHARG_COMP
+          value: standby
+        - dps_val: null
           value: standby
         - dps_val: HALTING
           value: paused
@@ -50,7 +52,9 @@ primary_entity:
           value: cleaning_complete
         - dps_val: FIND_STA
           value: returning
-        - dps_val: [ CHARGING_STA, CHARGING_DC ]
+        - dps_val: CHARGING_STA
+          value: charging
+        - dps_val: CHARGING_DC
           value: charging
     - id: 102
       type: string
