@@ -77,6 +77,7 @@ primary_entity:
       type: string
       name: fan_speed
       optional: true
+      force: true
       mapping:
         - dps_val: FANHALTING
           value: Low
@@ -128,6 +129,10 @@ primary_entity:
       type: integer
       name: data_sample
       optional: true
+    - id: 117
+      type: string
+      name: time
+      optional: true
 secondary_entities:
   - entity: sensor
     name: Clean area
@@ -161,6 +166,7 @@ secondary_entities:
         type: integer
         name: sensor
         unit: "%"
+        force: true
         optional: true
   - entity: sensor
     name: Roller brush remaining
@@ -171,6 +177,7 @@ secondary_entities:
         type: integer
         name: sensor
         unit: "%"
+        force: true
         optional: true
   - entity: sensor
     name: HEPA filter remaining
@@ -181,6 +188,7 @@ secondary_entities:
         type: integer
         name: sensor
         unit: "%"
+        force: true
         optional: true
   - entity: button
     name: Reset brush
@@ -209,25 +217,3 @@ secondary_entities:
         type: boolean
         name: button
         optional: true
-  - entity: select
-    name: Scheduled task
-    icon: "mdi:calendar-clock"
-    category: config
-    dps:
-      - id: 117
-        type: string
-        name: option
-        optional: true
-        mapping:
-          - dps_val: clean_auto
-            value: Auto
-          - dps_val: clean_random
-            value: Random
-          - dps_val: clean_wall
-            value: Wall follow
-          - dps_val: clean_spot
-            value: Clean spot
-          - dps_val: clean_sroom
-            value: Clean room
-          - dps_val: find_sta
-            value: Return to base
