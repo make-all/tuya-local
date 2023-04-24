@@ -1,0 +1,102 @@
+name: INOW heating element v2
+primary_entity:
+  entity: climate
+  icon: "mdi:heating-coil"
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: true
+          value: heat
+        - dps_val: false
+          value: "off"
+    - id: 102
+      type: integer
+      name: temperature
+      range:
+        min: 30
+        max: 70
+      mapping:
+        - step: 5
+    - id: 101
+      type: integer
+      name: current_temperature
+    - id: 4
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: comfort
+          value: comfort
+        - dps_val: antifreezin
+          value: Anti-freeze
+        - dps_val: eco
+          value: Eco
+        - dps_val: water_temp
+          value: Radiator
+secondary_entities:
+  - entity: lock
+    name: Child lock
+    icon: "mdi:hand-back-right-off"
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: lock
+  - entity: switch
+    name: Program enabled
+    icon: "mdi:home-clock-outline"
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+  - entity: select
+    name: Boost
+    icon: "mdi:timer-outline"
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0h"
+            value: "off"
+          - dps_val: "2h"
+            value: "2 hours"
+          - dps_val: "4h"
+            value: "4 hours"
+  - entity: climate
+    name: Room temperature
+    icon: "mdi:home-thermometer-outline"
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: true
+            value: heat
+          - dps_val: false
+            value: "off"
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 7
+          max: 30
+        mapping:
+          - step: 1
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: comfort
+            value: comfort
+          - dps_val: antifreezin
+            value: Anti-freeze
+          - dps_val: eco
+            value: Eco
+          - dps_val: water_temp
+            value: Radiator
