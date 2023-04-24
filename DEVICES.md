@@ -366,3 +366,4 @@ of device.
 - Universal remote control (supports sensors only)
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)
 - ZX-G30 alarm system (not as an alarm_control_panel, as individual inputs and sensors)
+- ZY-M100-WiFi mmWave human presence sensor

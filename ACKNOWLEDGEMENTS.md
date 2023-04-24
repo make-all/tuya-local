@@ -244,6 +244,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [jprasm](https://github.com/jprasm) for assisting with support for Inkbird air quality monitors.
 - [Muelner](https://github.com/Muelner) for assisting with support for WDYK 3-phase energy meter circuit breakers.
 - [Cyrelion](https://github.com/Cyrelion) for assisting with support for Lifubide X600 air purifiers.
-- [mwkchan](https://github.com/mwkchan) for assisting with support for Princess 350 panel heater.
+- [mwkchan](https://github.com/mwkchan) for assisting with support for Princess 350 panel heaters.
 - [aletsweb](https://github.com/aletsweb) for assisting with support for A60 rgbcw lightbubs and Rinkmo D2 vacuums.
-- [FaboThePlayer](https://github.com/FaboThePlayer) for assisting with support for a whitelabel PIR motion sensor.
+- [FaboThePlayer](https://github.com/FaboThePlayer) for assisting with support for a whitelabel PIR motion sensors.
+- [paobrunelli](https://github.com/paobrunelli) for assisting with support for ZY-M100 WiFi mmWave presence sensors.
