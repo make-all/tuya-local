@@ -19,8 +19,12 @@ primary_entity:
         - dps_val: continue
           value: continue
     - id: "2"
-      name: percent_control
+      name: position
       type: integer
+      # We set persist to false because
+      # this is used as a control, not
+      # a status
+      persist: false
       range:
         min: 0
         max: 100
