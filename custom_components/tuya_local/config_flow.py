@@ -13,9 +13,11 @@ from .const import (
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
     CONF_POLL_ONLY,
+    CONF_DEVICE_CID,
     CONF_PROTOCOL_VERSION,
     CONF_TYPE,
 )
+from .helpers.config import get_device_id
 from .helpers.device_config import get_config
 from .helpers.log import log_json
 
@@ -35,9 +37,10 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         key_opts = {}
         proto_opts = {"default": "auto"}
         polling_opts = {"default": False}
+        devcid_opts = {}
 
         if user_input is not None:
-            await self.async_set_unique_id(user_input[CONF_DEVICE_ID])
+            await self.async_set_unique_id(get_device_id(user_input))
             self._abort_if_unique_id_configured()
 
             self.device = await async_test_connection(user_input, self.hass)
@@ -49,6 +52,8 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                 devid_opts["default"] = user_input[CONF_DEVICE_ID]
                 host_opts["default"] = user_input[CONF_HOST]
                 key_opts["default"] = user_input[CONF_LOCAL_KEY]
+                if CONF_DEVICE_CID in user_input:
+                    devcid_opts["default"] = user_input[CONF_DEVICE_CID]
                 proto_opts["default"] = user_input[CONF_PROTOCOL_VERSION]
                 polling_opts["default"] = user_input[CONF_POLL_ONLY]
 
@@ -64,6 +69,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                         **proto_opts,
                     ): vol.In(["auto"] + API_PROTOCOL_VERSIONS),
                     vol.Required(CONF_POLL_ONLY, **polling_opts): bool,
+                    vol.Optional(CONF_DEVICE_CID, **devcid_opts): str,
                 }
             ),
             errors=errors,
@@ -188,12 +194,14 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
         await asyncio.sleep(5)
 
     try:
+        subdevice_id = config[CONF_DEVICE_CID] if CONF_DEVICE_CID in config else None
         device = TuyaLocalDevice(
             "Test",
             config[CONF_DEVICE_ID],
             config[CONF_HOST],
             config[CONF_LOCAL_KEY],
             config[CONF_PROTOCOL_VERSION],
+            subdevice_id,
             hass,
             True,
         )

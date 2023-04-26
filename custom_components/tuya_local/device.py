@@ -24,7 +24,9 @@ from .const import (
     CONF_POLL_ONLY,
     CONF_PROTOCOL_VERSION,
     DOMAIN,
+    CONF_DEVICE_CID
 )
+from .helpers.config import get_device_id
 from .helpers.device_config import possible_matches
 from .helpers.log import log_json
 
@@ -40,6 +42,7 @@ class TuyaLocalDevice(object):
         address,
         local_key,
         protocol_version,
+        dev_cid,
         hass: HomeAssistant,
         poll_only=False,
     ):
@@ -51,6 +54,7 @@ class TuyaLocalDevice(object):
             address (str): The network address.
             local_key (str): The encryption key.
             protocol_version (str | number): The protocol version.
+            dev_cid (str): The sub device id.
             hass (HomeAssistant): The Home Assistant instance.
             poll_only (bool): True if the device should be polled only
         """
@@ -63,7 +67,11 @@ class TuyaLocalDevice(object):
         self._api_protocol_version_index = None
         self._api_protocol_working = False
         try:
-            self._api = tinytuya.Device(dev_id, address, local_key)
+            if dev_cid is not None:
+                self._api = tinytuya.Device(dev_id, cid=dev_cid, parent=tinytuya.Device(dev_id, address, local_key, version=protocol_version))
+            else:
+                self._api = tinytuya.Device(dev_id, address, local_key, version=protocol_version)
+            self.dev_cid = dev_cid
         except Exception as e:
             _LOGGER.error(
                 "%s: %s while initialising device %s",
@@ -104,8 +112,8 @@ class TuyaLocalDevice(object):
 
     @property
     def unique_id(self):
-        """Return the unique id for this device (the dev_id)."""
-        return self._api.id
+        """Return the unique id for this device (the dev_id or dev_cid)."""
+        return self.dev_cid if self.dev_cid is not None else self._api.id
 
     @property
     def device_info(self):
@@ -570,7 +578,7 @@ class TuyaLocalDevice(object):
 def setup_device(hass: HomeAssistant, config: dict):
     """Setup a tuya device based on passed in config."""
 
-    _LOGGER.info("Creating device: %s", config[CONF_DEVICE_ID])
+    _LOGGER.info("Creating device: %s", get_device_id(config))
     hass.data[DOMAIN] = hass.data.get(DOMAIN, {})
     device = TuyaLocalDevice(
         config[CONF_NAME],
@@ -578,15 +586,17 @@ def setup_device(hass: HomeAssistant, config: dict):
         config[CONF_HOST],
         config[CONF_LOCAL_KEY],
         config[CONF_PROTOCOL_VERSION],
+        config[CONF_DEVICE_CID] if CONF_DEVICE_CID in config else None,
         hass,
         config[CONF_POLL_ONLY],
     )
-    hass.data[DOMAIN][config[CONF_DEVICE_ID]] = {"device": device}
+    hass.data[DOMAIN][get_device_id(config)] = {"device": device}
 
     return device
 
 
 async def async_delete_device(hass: HomeAssistant, config: dict):
-    _LOGGER.info("Deleting device: %s", config[CONF_DEVICE_ID])
-    await hass.data[DOMAIN][config[CONF_DEVICE_ID]]["device"].async_stop()
-    del hass.data[DOMAIN][config[CONF_DEVICE_ID]]["device"]
+    device_id = get_device_id(config)
+    _LOGGER.info("Deleting device: %s", device_id)
+    await hass.data[DOMAIN][device_id]["device"].async_stop()
+    del hass.data[DOMAIN][device_id]["device"]
