@@ -14,6 +14,7 @@ from custom_components.tuya_local import (
 )
 from custom_components.tuya_local.const import (
     CONF_DEVICE_ID,
+    CONF_DEVICE_CID,
     CONF_LOCAL_KEY,
     CONF_POLL_ONLY,
     CONF_PROTOCOL_VERSION,
@@ -57,8 +58,9 @@ async def test_init_entry(hass):
             CONF_HOST: "hostname",
             CONF_LOCAL_KEY: "localkey",
             CONF_POLL_ONLY: False,
-            CONF_PROTOCOL_VERSION: "auto",
+            CONF_PROTOCOL_VERSION: 3.3,
             CONF_TYPE: "kogan_kahtp_heater",
+            CONF_DEVICE_CID: None,
         },
         options={},
     )
@@ -258,7 +260,7 @@ async def test_async_test_connection_valid(mock_device, hass):
             CONF_DEVICE_ID: "deviceid",
             CONF_LOCAL_KEY: "localkey",
             CONF_HOST: "hostname",
-            CONF_PROTOCOL_VERSION: "auto",
+            CONF_PROTOCOL_VERSION: 3.3,
         },
         hass,
     )
@@ -279,7 +281,7 @@ async def test_async_test_connection_invalid(mock_device, hass):
             CONF_DEVICE_ID: "deviceid",
             CONF_LOCAL_KEY: "localkey",
             CONF_HOST: "hostname",
-            CONF_PROTOCOL_VERSION: "auto",
+            CONF_PROTOCOL_VERSION: 3.3,
         },
         hass,
     )
@@ -444,8 +446,9 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
             CONF_LOCAL_KEY: "localkey",
             CONF_HOST: "hostname",
             CONF_POLL_ONLY: False,
-            CONF_PROTOCOL_VERSION: "auto",
+            CONF_PROTOCOL_VERSION: 3.5,
             CONF_TYPE: "kogan_kahtp_heater",
+            CONF_DEVICE_CID: None,
         },
     ):
         flow = await hass.config_entries.flow.async_init(
@@ -473,8 +476,9 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
                 CONF_HOST: "hostname",
                 CONF_LOCAL_KEY: "localkey",
                 CONF_POLL_ONLY: False,
-                CONF_PROTOCOL_VERSION: "auto",
+                CONF_PROTOCOL_VERSION: 3.5,
                 CONF_TYPE: "kogan_kahtp_heater",
+                CONF_DEVICE_CID: None,
             },
         }
         assert expected == result
@@ -493,8 +497,9 @@ async def test_options_flow_init(hass):
             CONF_LOCAL_KEY: "localkey",
             CONF_NAME: "test",
             CONF_POLL_ONLY: False,
-            CONF_PROTOCOL_VERSION: "auto",
+            CONF_PROTOCOL_VERSION: 3.4,
             CONF_TYPE: "smartplugv1",
+            CONF_DEVICE_CID: None,
         },
     )
     config_entry.add_to_hass(hass)
@@ -531,8 +536,9 @@ async def test_options_flow_modifies_config(mock_test, hass):
             CONF_LOCAL_KEY: "localkey",
             CONF_NAME: "test",
             CONF_POLL_ONLY: False,
-            CONF_PROTOCOL_VERSION: "auto",
+            CONF_PROTOCOL_VERSION: 3.3,
             CONF_TYPE: "kogan_kahtp_heater",
+            CONF_DEVICE_CID: None,
         },
     )
     config_entry.add_to_hass(hass)
@@ -578,8 +584,9 @@ async def test_options_flow_fails_when_connection_fails(mock_test, hass):
             CONF_LOCAL_KEY: "localkey",
             CONF_NAME: "test",
             CONF_POLL_ONLY: False,
-            CONF_PROTOCOL_VERSION: "auto",
+            CONF_PROTOCOL_VERSION: 3.5,
             CONF_TYPE: "smartplugv1",
+            CONF_DEVICE_CID: None,
         },
     )
     config_entry.add_to_hass(hass)
@@ -617,7 +624,7 @@ async def test_options_flow_fails_when_config_is_missing(mock_test, hass):
             CONF_LOCAL_KEY: "localkey",
             CONF_NAME: "test",
             CONF_POLL_ONLY: False,
-            CONF_PROTOCOL_VERSION: "auto",
+            CONF_PROTOCOL_VERSION: 3.4,
             CONF_TYPE: "non_existing",
         },
     )
@@ -645,7 +652,7 @@ async def test_async_setup_entry_for_switch(mock_device, hass):
             CONF_LOCAL_KEY: "localkey",
             CONF_NAME: "test",
             CONF_POLL_ONLY: False,
-            CONF_PROTOCOL_VERSION: "auto",
+            CONF_PROTOCOL_VERSION: 3.3,
             CONF_TYPE: "smartplugv2",
         },
     )
