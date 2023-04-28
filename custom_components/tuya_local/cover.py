@@ -117,7 +117,9 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
         """Return if the cover is opening or not."""
         # If dps is available to inform current action, use that
         if self._action_dp:
-            return self._action_dp.get_value(self._device) == "opening"
+            action = self._action_dp.get_value(self._device)
+            if action is not None:
+                return action == "opening"
         # Otherwise use last command and check it hasn't completed
         if self._control_dp:
             pos = self.current_cover_position
@@ -132,7 +134,9 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
         """Return if the cover is closing or not."""
         # If dps is available to inform current action, use that
         if self._action_dp:
-            return self._action_dp.get_value(self._device) == "closing"
+            action = self._action_dp.get_value(self._device)
+            if action is not None:
+                return action == "closing"
         # Otherwise use last command and check it hasn't completed
         if self._control_dp:
             closed = self.is_closed

@@ -251,3 +251,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [tomassj9](https://github.com/tomassj9) for contributing support for Moes 3-gang switches.
 - [pdw-mb](https://github.com/pdw-mb) for contributing support for inow heater element with dual air and water temperature control.
 - [ianalexander](https://github.com/ianalexander) for contributing support for Zemismart roller shade, which was merged into loratap curtain switch config.
+- [xZetsubou](https://github.com/xZetsubou) for contributing improvements for covers to better support Zemismart roller shades.
