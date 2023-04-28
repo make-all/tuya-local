@@ -254,6 +254,7 @@ of device.
   _confirmed as working with Kogan KASPS10A3P3UA 3 socket + USB powerstrip
 - 4 way powerstrip with USB
   _confirmed as working with AOFO ZLD-44EU-W_
+- 4 way powerstrip with USB and restore power state config.
 - Generic smartplug with power monitoring (older models)
   _confirmed as working with Kogan, Blitzwolf and Gosund single smartplugs (smartplugv1)_
 - Generic smartplug with power monitoring (newer models)
@@ -268,6 +269,7 @@ of device.
   _confirmed working as a simple switch and timer with Kashimura KJ-173_
 - Generic double switch with timers (confirmed with Living dual switch and another v2 variant with Avatto dual switch)
 - Generic triple and quad switches (confirmed with Songam wall switches)
+- Generic triple switch with timers.
 - Simple switch - a switch only, can be a fallback for many other unsupported devices, to allow just power to be switched on/off.
 - Simple switch with timer - a single switch and timer, will probably work for a lot of smart switches that are not covered by the more advanced configs above.
 - Simple switch with timer v2 - the above with timer moved from dp 11 to 9, confirmed with a Nexxt 220V smart switch.
