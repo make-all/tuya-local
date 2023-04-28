@@ -24,7 +24,7 @@ from .const import (
     CONF_POLL_ONLY,
     CONF_PROTOCOL_VERSION,
     DOMAIN,
-    CONF_DEVICE_CID
+    CONF_DEVICE_CID,
 )
 from .helpers.config import get_device_id
 from .helpers.device_config import possible_matches
@@ -68,9 +68,17 @@ class TuyaLocalDevice(object):
         self._api_protocol_working = False
         try:
             if dev_cid is not None:
-                self._api = tinytuya.Device(dev_id, cid=dev_cid, parent=tinytuya.Device(dev_id, address, local_key, version=protocol_version))
+                self._api = tinytuya.Device(
+                    dev_id,
+                    cid=dev_cid,
+                    parent=tinytuya.Device(
+                        dev_id, address, local_key, version=protocol_version
+                    ),
+                )
             else:
-                self._api = tinytuya.Device(dev_id, address, local_key, version=protocol_version)
+                self._api = tinytuya.Device(
+                    dev_id, address, local_key, version=protocol_version
+                )
             self.dev_cid = dev_cid
         except Exception as e:
             _LOGGER.error(

@@ -46,4 +46,8 @@ async def async_tuya_setup_platform(
 
 
 def get_device_id(config: dict):
-    return config[CONF_DEVICE_CID] if CONF_DEVICE_CID in config and config[CONF_DEVICE_CID] != "" else config[CONF_DEVICE_ID]
+    return (
+        config[CONF_DEVICE_CID]
+        if CONF_DEVICE_CID in config and config[CONF_DEVICE_CID] != ""
+        else config[CONF_DEVICE_ID]
+    )
