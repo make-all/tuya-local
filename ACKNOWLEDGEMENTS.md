@@ -248,3 +248,6 @@ Further device support has been made with the assistance of users.  Please consi
 - [aletsweb](https://github.com/aletsweb) for assisting with support for A60 rgbcw lightbubs and Rinkmo D2 vacuums.
 - [FaboThePlayer](https://github.com/FaboThePlayer) for assisting with support for a whitelabel PIR motion sensors.
 - [paobrunelli](https://github.com/paobrunelli) for assisting with support for ZY-M100 WiFi mmWave presence sensors.
+- [tomassj9](https://github.com/tomassj9) for contributing support for Moes 3-gang switches.
+- [pdw-mb](https://github.com/pdw-mb) for contributing support for inow heater element with dual air and water temperature control.
+- [ianalexander](https://github.com/ianalexander) for contributing support for Zemismart roller shade, which was merged into loratap curtain switch config.

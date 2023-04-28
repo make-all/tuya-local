@@ -16,7 +16,7 @@
 - Goldair heater models beginning with the code GPPH, GCPV, GECO
 - Heatstorm HS-6000-GC heavy duty heater
 - HJZ oil column radiator
-- INOW Wi-Fi heating element
+- INOW Wi-Fi heating element (single and dual air/water temperature control variants)
 - Kogan flame effect heater - KAWHMFP20BA model
 - Kogan tower heater - KASTHFP2KWA model
 - Kogan Wi-Fi convection panel heaters - KAHTP and KAWFHTP models
@@ -235,6 +235,7 @@ the best option.
 - Logicom Strippy 4 way power strip with USB
 - Loratap RR400W-V2 relay switch
 - Mirabella Genio smartplug with USB
+- Moes 3-gang switch
 - MoesHouse smartplug with RGBW nightlight
 - Qnect QN-WPO3 3 outlet + USB powerstrip with individual timers
 - Single switch with backlight (unbranded)
@@ -306,7 +307,7 @@ of device.
 - Kogan garage door with tilt sensor
 - Loonas smart curtain
 - LoraTap GDC100W garage door opener
-- LoraTap SC500W-V1 curtain switch
+- LoraTap SC500W-V1 curtain switch (supports many other simple curtain/blind controllers)
 - M027 curtain module (sold under several brands, including zemismart, meterk and others)
 - QS-WIFI-C01(BK) curtain module
 - SHerko curtain motor
