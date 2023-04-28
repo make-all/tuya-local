@@ -105,7 +105,7 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
     def state(self):
         """Return the state of the vacuum cleaner."""
         status = self.status
-        if self._error_dps and self._error_dps.get_value(self._device) != 0:
+        if self._error_dps and self._error_dps.get_value(self._device):
             return STATE_ERROR
         elif status in [SERVICE_RETURN_TO_BASE, "returning"]:
             return STATE_RETURNING
