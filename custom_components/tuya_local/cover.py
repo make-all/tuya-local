@@ -42,7 +42,6 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
         self._currentpos_dp = dps_map.pop("current_position", None)
         self._control_dp = dps_map.pop("control", None)
         self._action_dp = dps_map.pop("action", None)
-        self._action_stuck_dp = dps_map.pop("action_stuck", None)
         self._open_dp = dps_map.pop("open", None)
         self._reversed_dp = dps_map.pop("reversed", None)
         self._init_end(dps_map)
@@ -116,11 +115,6 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
     @property
     def is_opening(self):
         """Return if the cover is opening or not."""
-        # this fix an issue where is some of shades actions is stuck
-        if self._action_stuck_dp:
-            pos = self.current_cover_position
-            if pos < 100:
-                return self._action_stuck_dp.get_value(self._device) == None
         # If dps is available to inform current action, use that
         if self._action_dp:
             action = self._action_dp.get_value(self._device)
@@ -140,11 +134,6 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
     @property
     def is_closing(self):
         """Return if the cover is closing or not."""
-        # this fix an issue where is some of shades actions is firmware stuck
-        if self._action_stuck_dp:
-            pos = self.current_cover_position
-            if pos > 0:
-                return self._action_stuck_dp.get_value(self._device) == None
         # If dps is available to inform current action, use that
         if self._action_dp:
             action = self._action_dp.get_value(self._device)
