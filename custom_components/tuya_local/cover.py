@@ -122,10 +122,12 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
                 return action == "opening"
         # Otherwise use last command and check it hasn't completed
         if self._control_dp:
+            cmd = self._control_dp.get_value(self._device)
             pos = self.current_cover_position
             if pos is not None:
                 return (
-                    self._control_dp.get_value(self._device) == "open"
+                    cmd != "close"
+                    and cmd != "stop"
                     and self.current_cover_position < 95
                 )
 
@@ -140,10 +142,9 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
         # Otherwise use last command and check it hasn't completed
         if self._control_dp:
             closed = self.is_closed
+            cmd = self._control_dp.get_value(self._device)
             if closed is not None:
-                return (
-                    self._control_dp.get_value(self._device) == "close" and not closed
-                )
+                return cmd != "open" and cmd != "stop" and not closed
 
     @property
     def is_closed(self):
