@@ -1,0 +1,79 @@
+name: Water timer
+primary_entity:
+  entity: switch
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 12
+      type: string
+      name: state
+secondary_entities:
+  - entity: sensor
+    name: Battery
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: "%"
+        mapping:
+          - scale: 0.05
+      - id: 8
+        type: string
+        name: state
+  - entity: select
+    name: Weather delay
+    icon: "mdi:weather-cloudy-clock"
+    category: config
+    dps:
+      - id: 10
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: "Off"
+          - dps_val: "24h"
+            value: "1 day"
+          - dps_val: "48h"
+            value: "2 days"
+          - dps_val: "72h"
+            value: "3 days"
+  - entity: number
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 11
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: select
+    name: Smart weather
+    icon: "mdi:sun-wireless"
+    category: config
+    dps:
+      - id: 13
+        type: string
+        name: option
+        mapping:
+          - dps_val: sunny
+            value: Sunny
+          - dps_val: clear
+            value: Clear
+          - dps_val: cloudy
+            value: Cloudy
+          - dps_val: rainy
+            value: Rain
+          - dps_val: snow
+            value: Snow
+          - dps_val: fog
+            value: Fog
+
