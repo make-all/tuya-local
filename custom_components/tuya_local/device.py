@@ -87,6 +87,9 @@ class TuyaLocalDevice(object):
 
         # we handle retries at a higher level so we can rotate protocol version
         self._api.set_socketRetryLimit(1)
+        if self._api.parent:
+            self._api.parent.set_socketRetryLimit(1)
+
         self._refresh_task = None
         self._protocol_configured = protocol_version
         self._poll_only = poll_only
@@ -243,6 +246,9 @@ class TuyaLocalDevice(object):
         dps_updated = False
 
         self._api.set_socketPersistent(persist)
+        if self._api.parent:
+            self._api.parent.set_socketPersistent(persist)
+
         while self._running:
             try:
                 last_cache = self._cached_state.get("updated_at", 0)
@@ -255,6 +261,8 @@ class TuyaLocalDevice(object):
                     # connection.
                     persist = not self.should_poll
                     self._api.set_socketPersistent(persist)
+                    if self._api.parent:
+                        self._api.parent.set_socketPersistent(persist)
 
                 if now - last_cache > self._CACHE_TIMEOUT:
                     if (
@@ -309,6 +317,8 @@ class TuyaLocalDevice(object):
                 self._running = False
                 # Close the persistent connection when exiting the loop
                 self._api.set_socketPersistent(False)
+                if self._api.parent:
+                    self._api.parent.set_socketPersistent(False)
                 raise
             except Exception as t:
                 _LOGGER.exception(
@@ -321,6 +331,8 @@ class TuyaLocalDevice(object):
 
         # Close the persistent connection when exiting the loop
         self._api.set_socketPersistent(False)
+        if self._api.parent:
+            self._api.parent.set_socketPersistent(False)
 
     async def async_possible_types(self):
         cached_state = self._get_cached_state()
@@ -571,6 +583,11 @@ class TuyaLocalDevice(object):
             self._api.set_version,
             new_version,
         )
+        if self._api.parent:
+            await self._hass.async_add_executor_job(
+                self._api.parent.set_version,
+                new_version,
+            )
 
     @staticmethod
     def get_key_for_value(obj, value, fallback=None):
