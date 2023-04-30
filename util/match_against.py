@@ -29,7 +29,7 @@ def main() -> int:
                 f"    {dp.name} type mismatch, expected {dp.type.__name__}, got {dps.get(dp.id)}"
             )
         else:
-            print(f"   {dp.name}: {dp.get_value(device)}")
+            print(f"   {dp.name}: {dp.get_value(device)} from {dp.values(device)}")
     for entity in config.secondary_entities():
         print(f"{entity.config_id}:")
         for dp in entity.dps():
