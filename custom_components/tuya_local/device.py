@@ -71,14 +71,10 @@ class TuyaLocalDevice(object):
                 self._api = tinytuya.Device(
                     dev_id,
                     cid=dev_cid,
-                    parent=tinytuya.Device(
-                        dev_id, address, local_key, version=protocol_version
-                    ),
+                    parent=tinytuya.Device(dev_id, address, local_key),
                 )
             else:
-                self._api = tinytuya.Device(
-                    dev_id, address, local_key, version=protocol_version
-                )
+                self._api = tinytuya.Device(dev_id, address, local_key)
             self.dev_cid = dev_cid
         except Exception as e:
             _LOGGER.error(
@@ -121,7 +117,7 @@ class TuyaLocalDevice(object):
     @property
     def unique_id(self):
         """Return the unique id for this device (the dev_id or dev_cid)."""
-        return self.dev_cid if self.dev_cid is not None else self._api.id
+        return self.dev_cid or self._api.id
 
     @property
     def device_info(self):
@@ -594,7 +590,7 @@ def setup_device(hass: HomeAssistant, config: dict):
         config[CONF_HOST],
         config[CONF_LOCAL_KEY],
         config[CONF_PROTOCOL_VERSION],
-        config[CONF_DEVICE_CID] if CONF_DEVICE_CID in config else None,
+        config.get(CONF_DEVICE_CID),
         hass,
         config[CONF_POLL_ONLY],
     )
