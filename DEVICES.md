@@ -370,3 +370,21 @@ of device.
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)
 - ZX-G30 alarm system (not as an alarm_control_panel, as individual inputs and sensors)
 - ZY-M100-WiFi mmWave human presence sensor
+
+### Devices supported via Bluetooth hubs
+
+- PT216/PT19DB-2 BLE temperature and humidity sensor
+
+### Devices supported via IR hubs
+
+### Devices supported via Zigbee hubs
+
+- LoraTap SC500ZB-V2 curtain controller
+
+
+NOTE: this project does not intend to expand the scope to support non-Tuya
+devices via Tuya hubs.  Though it may be techincally feasible to do such a
+thing, it expands the support requirements beyond the capacity of the
+volunteer manpower of this project.  The community would be better served by
+making Tuya devices work with the standard BLE and Zigbee support in
+Home Assistant rather than the other way around.

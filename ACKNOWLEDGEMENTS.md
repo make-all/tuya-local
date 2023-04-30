@@ -252,3 +252,5 @@ Further device support has been made with the assistance of users.  Please consi
 - [pdw-mb](https://github.com/pdw-mb) for contributing support for inow heater element with dual air and water temperature control.
 - [ianalexander](https://github.com/ianalexander) for contributing support for Zemismart roller shade, which was merged into loratap curtain switch config.
 - [xZetsubou](https://github.com/xZetsubou) for contributing improvements for covers to better support Zemismart roller shades, triple switch with timers, and quad switch plus USB with restore power state config.
+- [burn1879](https://github.com/burn1879) for contributing support for subdevices, and Loratap zigbee curtains.
+- [hronek](https://github.com/hronek) for assisting with support for BLE PT216 temperature and humidity sensors.
