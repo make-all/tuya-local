@@ -377,6 +377,8 @@ of device.
 
 ### Devices supported via IR hubs
 
+- Air conditioner / heatpump via Moes IR hub
+
 ### Devices supported via Zigbee hubs
 
 - LoraTap SC500ZB-V2 curtain controller

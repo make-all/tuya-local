@@ -254,3 +254,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [xZetsubou](https://github.com/xZetsubou) for contributing improvements for covers to better support Zemismart roller shades, triple switch with timers, and quad switch plus USB with restore power state config.
 - [burn1879](https://github.com/burn1879) for contributing support for subdevices, and Loratap zigbee curtains.
 - [hronek](https://github.com/hronek) for assisting with support for BLE PT216 temperature and humidity sensors.
+- [bparten](https://github.com/bparten) for assisting with support for Moes IR hub connected heatpump.
