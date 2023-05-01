@@ -4,6 +4,7 @@ from homeassistant.components.vacuum import (
     STATE_CLEANING,
     STATE_DOCKED,
     STATE_ERROR,
+    STATE_IDLE,
     STATE_RETURNING,
     VacuumEntityFeature,
 )
@@ -161,7 +162,7 @@ class TestKyvolE30Vacuum(MultiButtonTests, MultiSensorTests, TuyaDeviceTestCase)
         self.dps[COMMAND_DPS] = "return_to_base"
         self.assertEqual(self.subject.state, STATE_RETURNING)
         self.dps[COMMAND_DPS] = "standby"
-        self.assertEqual(self.subject.state, STATE_DOCKED)
+        self.assertEqual(self.subject.state, STATE_IDLE)
         self.dps[COMMAND_DPS] = "random"
         self.assertEqual(self.subject.state, STATE_CLEANING)
         self.dps[POWER_DPS] = False
