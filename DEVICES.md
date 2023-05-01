@@ -379,6 +379,7 @@ of device.
 ### Devices supported via IR hubs
 
 - Air conditioner / heatpump via Moes IR hub
+- Neo IR Air Conditioner controller
 
 ### Devices supported via Zigbee hubs
 

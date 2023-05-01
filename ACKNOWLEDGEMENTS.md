@@ -256,3 +256,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [hronek](https://github.com/hronek) for assisting with support for BLE PT216 temperature and humidity sensors.
 - [bparten](https://github.com/bparten) for assisting with support for Moes IR hub connected heatpump.
 - [spanzetta](https://github.com/spanzetta) for assisting with BLE connected HCT-611 water timer.
+- [MiloRoNu](https://github.com/MiloRoNu) for assisting with Neo IR Air Conditioner controller.
