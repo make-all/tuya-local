@@ -71,10 +71,9 @@ KNOWN_DPS = {
         "optional": ["color_mode", "color_temp", "rgbhsv"],
     },
     "lock": {
-        "required": [
-            {"or": ["lock", {"and": ["request_unlock", "approve_unlock"]}]},
-        ],
         "optional": [
+            "lock",
+            {"and": ["request_unlock", "approve_unlock"]},
             "unlock_fingerprint",
             "unlock_password",
             "unlock_temp_pwd",
