@@ -258,3 +258,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [spanzetta](https://github.com/spanzetta) for assisting with support for BLE connected HCT-611 water timer.
 - [MiloRoNu](https://github.com/MiloRoNu) for assisting with support for Neo IR Air Conditioner controller.
 - [jaydisc](https://github.com/jaydisc) for assisting with support for Orion DL021HA BLE locks.
+- [robertrebor](https://github.com/robertreor) for assisting with support for generic Illuminance sensors.
