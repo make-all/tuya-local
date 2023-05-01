@@ -7,8 +7,10 @@ from homeassistant.components.vacuum import (
     SERVICE_STOP,
     STATE_CLEANING,
     STATE_DOCKED,
-    STATE_RETURNING,
     STATE_ERROR,
+    STATE_IDLE,
+    STATE_PAUSED,
+    STATE_RETURNING,
     StateVacuumEntity,
     VacuumEntityFeature,
 )
@@ -109,11 +111,15 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
             return STATE_ERROR
         elif status in [SERVICE_RETURN_TO_BASE, "returning"]:
             return STATE_RETURNING
-        elif status in ["standby", "charging"]:
+        elif status == "standby":
+            return STATE_IDLE
+        elif status == "paused":
+            return STATE_PAUSED
+        elif status in ["charging", "charged"]:
             return STATE_DOCKED
-        elif self._power_dps and not self._power_dps.get_value(self._device):
+        elif self._power_dps and self._power_dps.get_value(self._device) is False:
             return STATE_DOCKED
-        elif self._active_dps and not self._active_dps.get_value(self._device):
+        elif self._active_dps and self._active_dps.get_value(self._device) is False:
             return STATE_DOCKED
         else:
             return STATE_CLEANING
