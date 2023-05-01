@@ -1,0 +1,44 @@
+name: Orion BLE lock
+products:
+  - id: a6nttc41
+    name: Orion DL021HA
+primary_entity:
+  entity: lock
+  dps:
+    - id: 1
+      type: string
+      name: unlock_method_register
+      optional: true
+    - id: 2
+      type: string
+      name: unlock_method_delete
+      optional: true
+    - id: 12
+      type: integer
+      name: unlock_fingerprint
+    - id: 19
+      type: integer
+      name: unlock_app
+    - id: 54
+      type: string
+      name: sync_method
+secondary_entities:
+  - entity: sensor
+    name: Battery
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: switch
+    name: Auto lock
+    category: config
+    icon: "mdi:lock-clock"
+    dps:
+      - id: 33
+        type: boolean
+        name: switch
+
+

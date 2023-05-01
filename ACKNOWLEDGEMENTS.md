@@ -255,5 +255,6 @@ Further device support has been made with the assistance of users.  Please consi
 - [burn1879](https://github.com/burn1879) for contributing support for subdevices, and Loratap zigbee curtains.
 - [hronek](https://github.com/hronek) for assisting with support for BLE PT216 temperature and humidity sensors.
 - [bparten](https://github.com/bparten) for assisting with support for Moes IR hub connected heatpump.
-- [spanzetta](https://github.com/spanzetta) for assisting with BLE connected HCT-611 water timer.
-- [MiloRoNu](https://github.com/MiloRoNu) for assisting with Neo IR Air Conditioner controller.
+- [spanzetta](https://github.com/spanzetta) for assisting with support for BLE connected HCT-611 water timer.
+- [MiloRoNu](https://github.com/MiloRoNu) for assisting with support for Neo IR Air Conditioner controller.
+- [jaydisc](https://github.com/jaydisc) for assisting with support for Orion DL021HA BLE locks.
