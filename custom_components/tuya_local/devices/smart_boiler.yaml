@@ -1,0 +1,44 @@
+name: Smart Boiler
+products:
+  - id: atico42xjbgqgiys
+    name: Smart Boiler
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: true
+          value: "heat"
+          icon: "mdi:radiator"
+        - dps_val: false
+          value: "off"
+          icon: "mdi:radiator-disabled"
+    - id: 2
+      name: temperature
+      type: integer
+      range:
+        min: 5
+        max: 1220
+      mapping:
+        - scale: 10
+          step: 5
+    - id: 3
+      name: current_temperature
+      type: integer
+      mapping:
+        - scale: 10
+          step: 5
+      readonly: true
+
+secondary_entities:
+  - entity: lock
+    name: Child lock
+    icon: "mdi:hand-back-right-off"
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: lock
+ 
