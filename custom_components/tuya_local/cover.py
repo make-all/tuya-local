@@ -45,7 +45,7 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
         self._open_dp = dps_map.pop("open", None)
         self._reversed_dp = dps_map.pop("reversed", None)
         self._init_end(dps_map)
-
+        self._current_action = "stop"
         self._support_flags = 0
         if self._position_dp:
             self._support_flags |= CoverEntityFeature.SET_POSITION
@@ -111,7 +111,23 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
         if self._action_dp:
             state = self._action_dp.get_value(self._device)
             return self._state_to_percent(state)
-
+        
+    def update_action(self, action, position=None):
+        """Updating state action"""
+        # Set Commands func,
+        if self._current_action and self._control_dp and position is None:
+            self._current_action = action
+            return action
+        # Set position cmd, check if target position weither close or open
+        if action is "_set_position" and position is not None and self._current_action and self._position_dp:
+            pos_diff = self._maybe_reverse(position) - self.current_cover_position #self._maybe_reverse(self._position_dp.get_value(self._device))
+            if pos_diff > 0:
+                self._current_action = "set_opening"
+                return self._current_action
+            elif pos_diff <= 0:
+                self._current_action = "set_closing"
+                return self._current_action
+        
     @property
     def is_opening(self):
         """Return if the cover is opening or not."""
@@ -120,16 +136,18 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
             action = self._action_dp.get_value(self._device)
             if action is not None:
                 return action == "opening"
-        # Otherwise use last command and check it hasn't completed
-        if self._control_dp:
-            cmd = self._control_dp.get_value(self._device)
-            pos = self.current_cover_position
-            if pos is not None:
-                return (
-                    cmd != "close"
-                    and cmd != "stop"
-                    and self.current_cover_position < 95
-                )
+        # Otherwise check action via commands
+        if self._control_dp or self._position_dp:
+            cur_pos = self.current_cover_position
+            # if it's opening by open cmd
+            if self._current_action == "opening":
+                cmd = self._control_dp.get_value(self._device)
+                return cmd != "close" and cmd != "stop" and self.current_cover_position < 95
+            # if opening by set position cmd
+            elif self._current_action == "set_opening" and self._position_dp:
+                pos_val = self._maybe_reverse(self._position_dp.get_value(self._device))
+                mov_steps = cur_pos - pos_val
+                return cur_pos < 95 and cur_pos != pos_val and mov_steps > 5 or mov_steps < -5
 
     @property
     def is_closing(self):
@@ -139,12 +157,19 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
             action = self._action_dp.get_value(self._device)
             if action is not None:
                 return action == "closing"
-        # Otherwise use last command and check it hasn't completed
-        if self._control_dp:
+        # Otherwise check action via commands.
+        if self._control_dp or self._position_dp:
+            cur_pos = self.current_cover_position
             closed = self.is_closed
-            cmd = self._control_dp.get_value(self._device)
-            if closed is not None:
+            # if it's closing by close cmd
+            if self._current_action == "closing":
+                cmd = self._control_dp.get_value(self._device)
                 return cmd != "open" and cmd != "stop" and not closed
+            # if closing by set position cmd
+            elif self._current_action == "set_closing" and self._position_dp:
+                pos_val = self._maybe_reverse(self._position_dp.get_value(self._device))
+                mov_steps = cur_pos - pos_val
+                return not closed and mov_steps > 5 or mov_steps < -5 
 
     @property
     def is_closed(self):
@@ -164,6 +189,7 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
             await self._position_dp.async_set_value(self._device, pos)
         else:
             raise NotImplementedError()
+        self.update_action("opening")
 
     async def async_close_cover(self, **kwargs):
         """Close the cover."""
@@ -174,6 +200,7 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
             await self._position_dp.async_set_value(self._device, pos)
         else:
             raise NotImplementedError()
+        self.update_action("closing")
 
     async def async_set_cover_position(self, position, **kwargs):
         """Set the cover to a specific position."""
@@ -184,6 +211,7 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
             await self._position_dp.async_set_value(self._device, position)
         else:
             raise NotImplementedError()
+        self.update_action("_set_position", position)
 
     async def async_stop_cover(self, **kwargs):
         """Stop the cover."""
@@ -191,3 +219,4 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
             await self._control_dp.async_set_value(self._device, "stop")
         else:
             raise NotImplementedError()
+        self.update_action("stop")
