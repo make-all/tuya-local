@@ -44,14 +44,6 @@ primary_entity:
     - id: 12
       type: bitfield
       name: fault_code
-    - id: 101
-      type: boolean
-      name: temperature_unit
-      mapping:
-        - dps_val: false
-          value: C
-        - dps_val: true
-          value: F
     - id: 102
       type: boolean
       name: hvac_action
@@ -115,12 +107,7 @@ secondary_entities:
         name: value
       - id: 101
         type: boolean
-        name: unit
-        mapping:
-          - dps_val: false
-            value: C
-          - dps_val: true
-            value: F
+        unit: C
       - id: 114
         type: integer
         name: maximum
@@ -139,12 +126,7 @@ secondary_entities:
           max: 9
       - id: 101
         type: boolean
-        name: unit
-        mapping:
-          - dps_val: false
-            value: C
-          - dps_val: true
-            value: F
+        unit: C
   - entity: number
     name: Calibration swing internal
     category: config
@@ -159,12 +141,7 @@ secondary_entities:
           - scale: 10
       - id: 101
         type: boolean
-        name: unit
-        mapping:
-          - dps_val: false
-            value: C
-          - dps_val: true
-            value: F
+        unit: C
   - entity: number
     name: Low temperature protection
     category: config
@@ -184,12 +161,7 @@ secondary_entities:
               max: 50
       - id: 101
         type: boolean
-        name: unit
-        mapping:
-          - dps_val: false
-            value: C
-          - dps_val: true
-            value: F
+        unit: C
   - entity: number
     name: High temperature limit
     category: config
@@ -209,12 +181,7 @@ secondary_entities:
               max: 158
       - id: 101
         type: boolean
-        name: unit
-        mapping:
-          - dps_val: false
-            value: C
-          - dps_val: true
-            value: F
+        unit: C
   - entity: number
     name: Low temperature limit
     category: config
@@ -234,12 +201,7 @@ secondary_entities:
               max: 50
       - id: 101
         type: boolean
-        name: unit
-        mapping:
-          - dps_val: false
-            value: C
-          - dps_val: true
-            value: F
+        unit: C
   - entity: select
     name: Initial state
     category: config
@@ -268,19 +230,6 @@ secondary_entities:
             value: 6 + 1 day
           - dps_val: 2days
             value: 5 + 2 day
-  - entity: select
-    name: Temperature unit
-    category: config
-    icon: "mdi:temperature-celsius"
-    dps:
-      - id: 101
-        type: boolean
-        name: option
-        mapping:
-          - dps_val: false
-            value: Celsius
-          - dps_val: true
-            value: Fahrenheit
   - entity: binary_sensor
     name: Fault
     class: problem
