@@ -88,16 +88,12 @@ primary_entity:
 secondary_entities:
   - entity: lock
     name: Child lock
+    icon: "mdi:hand-back-right"
     category: config
     dps:
       - id: 6
         type: boolean
         name: lock
-        mapping:
-          - dps_val: True
-            icon: "mdi:hand-back-right-off"
-          - dps_val: False
-            icon: "mdi:hand-back-right"
       - entity: number
     name: Holiday days
     category: config
