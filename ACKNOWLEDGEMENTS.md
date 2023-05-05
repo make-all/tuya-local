@@ -259,3 +259,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [MiloRoNu](https://github.com/MiloRoNu) for assisting with support for Neo IR Air Conditioner controller.
 - [jaydisc](https://github.com/jaydisc) for assisting with support for Orion DL021HA BLE locks.
 - [robertrebor](https://github.com/robertreor) for assisting with support for generic Illuminance sensors.
+- [aurelmarius](https://github.com/aurelmarius) for assisting with support for Ditua DT-1522-YN aroma diffuser.
