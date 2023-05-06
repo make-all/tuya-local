@@ -323,9 +323,10 @@ of device.
 
 - Kabum Smart 500 vacuum cleaner
 - Kyvol E30 vacuum cleaner
+- Lefant LS1 Pro vacuum cleaner
 - Lefant M213 vacuum cleaner (also works for Lefant M213S and APOSEN A550)
 - Lenovo E1 vacuum cleaner
-- Mellerware City Move vacuum cleaner (high likelihood of mismatch)
+- Mellerware City Move vacuum cleaner
 - Rinkmo D2 vacuum cleaner
 
 ### Lawnmowers

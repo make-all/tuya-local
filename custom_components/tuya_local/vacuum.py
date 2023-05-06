@@ -111,16 +111,16 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
             return STATE_ERROR
         elif status in [SERVICE_RETURN_TO_BASE, "returning"]:
             return STATE_RETURNING
-        elif status == "standby":
+        elif status in ["standby", "sleep"]:
             return STATE_IDLE
         elif status == "paused":
             return STATE_PAUSED
         elif status in ["charging", "charged"]:
             return STATE_DOCKED
         elif self._power_dps and self._power_dps.get_value(self._device) is False:
-            return STATE_DOCKED
+            return STATE_IDLE
         elif self._active_dps and self._active_dps.get_value(self._device) is False:
-            return STATE_DOCKED
+            return STATE_PAUSED
         else:
             return STATE_CLEANING
 
