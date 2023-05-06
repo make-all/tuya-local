@@ -9,31 +9,24 @@ primary_entity:
     - id: 1
       type: boolean
       name: switch
-# Known missing features: C/F switch, current humidity, High and Low temp alarms
-    - id: 8
-      type: boolean
-      name: unknown_8
-    - id: 9
-      type: integer
-      name: unknown_9
-    - id: 11
-      type: boolean
-      name: unknown_11
-    - id: 12
-      type: integer
-      name: unknown_12
-    - id: 20
-      type: integer
-      name: unknown_20
-    - id: 21
-      type: integer
-      name: unknown_21
-    - id: 22
-      type: integer
-      name: unknown_22
+    - id: 19
+      type: bitfield
+      optional: true
+      name: fault_code
+      mapping:
+        - dps_val: null
+          value: OK
+        - dps_val: 0
+          value: OK
+        - dps_val: 1
+          value: Cooling fault
+        - dps_val: 2
+          value: Heating fault
+        - dps_val: 4
+          value: Temperature diff fault
     - id: 24
       type: string
-      name: unknown_24
+      name: cycle_time
     - id: 106
       type: string
       name: unknown_106
@@ -89,8 +82,47 @@ secondary_entities:
         type: integer
         name: value
         range:
-          min: -99
-          max: 99
+          min: -90
+          max: 90
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Current humidity
+    class: humidity
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Maximum humidity
+    category: config
+    class: humidity
+    dps:
+      - id: 21
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Minimum humidity
+    category: config
+    class: humidity
+    dps:
+      - id: 22
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 1000
         mapping:
           - scale: 10
   - entity: number
@@ -129,3 +161,94 @@ secondary_entities:
             value: "Off"
           - dps_val: memory
             value: Last State
+  - entity: number
+    name: High temperature switch level
+    category: config
+    class: temperature
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 7
+        type: integer
+        name: value
+        optional: true
+        unit: C
+        range:
+          min: -500
+          max: 1100
+        mapping:
+          - scale: 10
+  - entity: switch
+    name: High temperature switch
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  - entity: number
+    name: High temperature alarm level
+    category: config
+    class: temperature
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        unit: C 
+        range:
+          min: -500
+          max: 1100
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Low temperature switch level
+    category: config
+    class: temperature
+    icon: "mdi:thermometer-chevron-down"
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        optional: true
+        unit: C
+        range:
+          min: -500
+          max: 1100
+        mapping:
+          - scale: 10
+  - entity: switch
+    name: Low temperature switch
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
+  - entity: number
+    name: Low temperature alarm level
+    category: config
+    class: temperature
+    icon: "mdi:thermometer-chevron-down"
+    dps:
+      - id: 12
+        type: integer
+        name: value
+        unit: C 
+        range:
+          min: -500
+          max: 1100
+        mapping:
+          - scale: 10
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: 0
+            value: false
+          - value: true
