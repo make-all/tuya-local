@@ -260,3 +260,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [jaydisc](https://github.com/jaydisc) for assisting with support for Orion DL021HA BLE locks.
 - [robertrebor](https://github.com/robertreor) for assisting with support for generic Illuminance sensors.
 - [aurelmarius](https://github.com/aurelmarius) for assisting with support for Ditua DT-1522-YN aroma diffuser.
+- [ssorgatem](https://github.com/ssorgatem) for contributing support for Ledlux thermostat and another variant of quad powerstrip with USB and timers.
