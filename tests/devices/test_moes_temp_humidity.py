@@ -13,15 +13,15 @@ SW1_DPS = "2"
 SW2_DPS = "3"
 MODE_DPS = "4"
 TEMP_DPS = "6"
-UNKNOWN8_DPS = "8"
-UNKNOWN9_DPS = "9"
-UNKNOWN11_DPS = "11"
-UNKNOWN12_DPS = "12"
+HIGHTEMPSW_DPS = "8"
+HIGHTEMPAL_DPS = "9"
+LOWTEMPSW_DPS = "11"
+LOWTEMPAL_DPS = "12"
 CALIB_DPS = "18"
-UNKNOWN20_DPS = "20"
-UNKNOWN21_DPS = "21"
-UNKNOWN22_DPS = "22"
-UNKNOWN24_DPS = "24"
+HUMIDITY_DPS = "20"
+MAXHUMID_DPS = "21"
+MINHUMID_DPS = "22"
+CYCLE_DPS = "24"
 RULE1_DPS = "101"
 RULE2_DPS = "102"
 TIMER1_DPS = "103"
@@ -54,8 +54,8 @@ class TestMoesTempHumidity(
                 {
                     "dps": CALIB_DPS,
                     "name": "number_temperature_calibration",
-                    "min": -9.9,
-                    "max": 9.9,
+                    "min": -9.0,
+                    "max": 9.0,
                     "scale": 10,
                     "step": 0.1,
                 },
@@ -115,21 +115,23 @@ class TestMoesTempHumidity(
                 "switch_main_switch",
                 "select_mode",
                 "number_temperature_calibration",
+                "number_maximum_humidity",
+                "number_minimum_humidity",
                 "number_timer_1",
                 "number_timer_2",
                 "select_power_on_state",
+                "number_high_temperature_switch_level",
+                "switch_high_temperature_switch",
+                "number_high_temperature_alarm_level",
+                "number_low_temperature_switch_level",
+                "switch_low_temperature_switch",
+                "number_low_temperature_alarm_level",
+                "binary_sensor_fault",
             ]
         )
 
     def test_multi_switch_state_attributes(self):
-        self.dps[UNKNOWN8_DPS] = True
-        self.dps[UNKNOWN9_DPS] = 9
-        self.dps[UNKNOWN11_DPS] = False
-        self.dps[UNKNOWN12_DPS] = 12
-        self.dps[UNKNOWN20_DPS] = 20
-        self.dps[UNKNOWN21_DPS] = 21
-        self.dps[UNKNOWN22_DPS] = 22
-        self.dps[UNKNOWN24_DPS] = "unknown24"
+        self.dps[CYCLE_DPS] = "ABCDEF0123456789"
         self.dps[UNKNOWN106_DPS] = "unknown106"
         self.dps[RULE1_DPS] = "rules for switch 1"
         self.dps[RULE2_DPS] = "rules for switch 2"
@@ -137,14 +139,8 @@ class TestMoesTempHumidity(
         self.assertDictEqual(
             self.multiSwitch["switch_main_switch"].extra_state_attributes,
             {
-                "unknown_8": True,
-                "unknown_9": 9,
-                "unknown_11": False,
-                "unknown_12": 12,
-                "unknown_20": 20,
-                "unknown_21": 21,
-                "unknown_22": 22,
-                "unknown_24": "unknown24",
+                "fault_code": "OK",
+                "cycle_time": "ABCDEF0123456789",
                 "unknown_106": "unknown106",
             },
         )
