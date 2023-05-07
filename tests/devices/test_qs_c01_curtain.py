@@ -81,6 +81,7 @@ class TestQSC01Curtains(BasicNumberTests, BasicSelectTests, TuyaDeviceTestCase):
         self.assertFalse(self.subject.is_closing)
 
     def test_is_closed(self):
+        self.dps[COMMAND_DPS] = "close"
         self.dps[POSITION_DPS] = 100
         self.assertFalse(self.subject.is_closed)
         self.dps[POSITION_DPS] = 0

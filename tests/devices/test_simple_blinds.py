@@ -62,10 +62,13 @@ class TestSimpleBlinds(TuyaDeviceTestCase):
         self.assertFalse(self.subject.is_closing)
 
     def test_is_closed(self):
+        self.dps[COMMAND_DPS] = "close"
         self.dps[POSITION_DPS] = 0
         self.assertFalse(self.subject.is_closed)
         self.dps[POSITION_DPS] = 100
         self.assertTrue(self.subject.is_closed)
+        self.dps[COMMAND_DPS] = "stop"
+        self.assertIsNone(self.subject.is_closed)
 
     async def test_open_cover(self):
         async with assert_device_properties_set(
