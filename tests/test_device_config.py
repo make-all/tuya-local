@@ -306,10 +306,21 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
             )
             self.check_entity(parsed.primary_entity, cfg)
             entities.append(parsed.primary_entity.config_id)
+            secondary = False
             for entity in parsed.secondary_entities():
+                secondary = True
                 self.check_entity(entity, cfg)
                 entities.append(entity.config_id)
+            # check entities are unique
             self.assertCountEqual(entities, set(entities))
+
+            # If there are no secondary entities, check that it is intended
+            if not secondary:
+                for key in parsed._config.keys():
+                    self.assertFalse(
+                        key.startswith("sec"),
+                        f"misspelled secondary_entities in {cfg}",
+                    )
 
     # Most of the device_config functionality is exercised during testing of
     # the various supported devices.  These tests concentrate only on the gaps.
