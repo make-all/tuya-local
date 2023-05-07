@@ -110,7 +110,7 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
         """
         if self._action_dp:
             action = self._action_dp.get_value(self._device)
-            if action in ["opening", "closing", "open", "closed"]:
+            if action in ["opening", "closing", "opened", "closed"]:
                 return action
 
         if self._currentpos_dp:
@@ -122,13 +122,13 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
             if pos < 5:
                 return "closed"
             elif pos > 95:
-                return "open"
+                return "opened"
             if self._position_dp:
                 setpos = self._position_dp.get_value(self._device)
                 if setpos == pos:
                     # if the current position is around the set position,
                     # probably the curtain is as set, somewhere in the middle
-                    # so none of open, closed, opening or closing
+                    # so none of opened, closed, opening or closing
                     return None
         if self._control_dp:
             cmd = self._control_dp.get_value(self._device)
@@ -136,7 +136,7 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
             if pos is not None:
                 if cmd == "open":
                     if pos > 95:
-                        return "open"
+                        return "opened"
                     else:
                         return "opening"
                 elif cmd == "close":
