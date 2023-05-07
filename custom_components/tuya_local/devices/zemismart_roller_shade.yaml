@@ -35,6 +35,19 @@ primary_entity:
     - id: 7
       name: unreliable_action
       type: string
+      mapping:
+        - dps_val: opening
+          constraint: current_position
+          conditions:
+            - dps_val: 0
+              value: opened
+            - value: opening
+        - dps_val: closing
+          constraint: current_position
+          conditions:
+            - dps_val: 100
+              value: closed
+            - value: closing
     - id: 12
       name: fault_code
       type: bitfield
