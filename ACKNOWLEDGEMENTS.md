@@ -265,3 +265,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [csarmat](https://github.com/csarmat) for assisting with support for WDYK 2P63A energy meters.
 - [nyok92](https://github.com/nyok92) for assisting with support for Duux Blizzard air conditioners.
 - [mattbruman](https://github.com/mattbruman) for assisting with support for Atomi ceiling fans.
+- [dh0llyw00d](https://github.com/dh0llyw00d) for assisting with support for Skyfan DC fans with light.
