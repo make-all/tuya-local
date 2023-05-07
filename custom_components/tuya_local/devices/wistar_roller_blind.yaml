@@ -21,14 +21,7 @@ primary_entity:
       range:
         min: 0
         max: 100
-    - id: 103
-      type: boolean
-      name: reversed
-      mapping:
-        - dps_val: true
-          value: false
-        - dps_val: false
-          value: true
+      invert: true
     - id: 105
       type: boolean
       name: curtain_hand
@@ -83,6 +76,10 @@ primary_entity:
     - id: 112
       type: integer
       name: current_position
+      range:
+        min: 0
+        max: 100
+      invert: true
 secondary_entities:
   - entity: select
     name: Border setting
@@ -144,8 +141,3 @@ secondary_entities:
       - id: 103
         type: boolean
         name: switch
-        mapping:
-          - dps_val: true
-            value: false
-          - dps_val: false
-            value: true
