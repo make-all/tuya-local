@@ -110,6 +110,7 @@
 - Arlec 19 speed wall fan
 - Arlec 6 speed floor fan
 - Aspen ASP 200 fan
+- Atomi 52 inch ceiling fan
 - Chanfok ceiling fan with cool/warm white dimmable light
 - Deta fan controller
 - Fanco Eco Silent Deluxe ceiling fan with LED light
