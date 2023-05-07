@@ -33,6 +33,7 @@
 - Carson CB PA280
 - Cooper&Hunter Nordic Evo Ng
 - Daizuki heat pump
+- Duux Blizzard portable air conditioner
 - Eberg Cooly C35HD
 - Eberg Qubo Q40HD
 - ElectriQ 12WMINV

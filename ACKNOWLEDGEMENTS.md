@@ -263,3 +263,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [ssorgatem](https://github.com/ssorgatem) for contributing support for Ledlux thermostat and another variant of quad powerstrip with USB and timers.
 - [remoteassist](https://github.com/remoteassist) for assisting with support for Lefant LS1 Pro vacuums.
 - [csarmat](https://github.com/csarmat) for assisting with support for WDYK 2P63A energy meters.
+- [nyok92](https://github.com/nyok92) for assisting with support for Duux Blizzard air conditioners.
