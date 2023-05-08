@@ -266,3 +266,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [nyok92](https://github.com/nyok92) for assisting with support for Duux Blizzard air conditioners.
 - [mattbruman](https://github.com/mattbruman) for assisting with support for Atomi ceiling fans.
 - [dh0llyw00d](https://github.com/dh0llyw00d) for assisting with support for Skyfan DC fans with light.
+- [syepes](https://github.com/syepes) for contributing support for Klarstein DryFy Connect, which was merged into Shinco 30D config.

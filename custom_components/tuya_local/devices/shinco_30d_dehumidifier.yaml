@@ -1,4 +1,7 @@
-name: Shinco dehumidifier
+name: Dehumidifier
+products:
+  - id: to4nyl9qxvkqmcmk
+    name: Klarstein DryFy Connect
 primary_entity:
   entity: humidifier
   class: dehumidifier
@@ -20,9 +23,6 @@ primary_entity:
       range:
         min: 25
         max: 80
-    - id: 11
-      type: bitfield
-      name: fault_code
 secondary_entities:
   - entity: fan
     dps:
@@ -73,9 +73,63 @@ secondary_entities:
         type: bitfield
         name: sensor
         mapping:
+          - dps_val: 1
+            value: true
+          - dps_val: 2
+            value: true
+          - dps_val: 16
+            value: true
+          - dps_val: 32
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Tank
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 8
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Defrost
+    class: cold
+    icon: "mdi:snowflake-melt"
+    category: diagnostic
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 4
+            value: true
+          - value: false
+  - entity: sensor
+    name: Fault code
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        mapping:
           - dps_val: 0
-            value: false
-          - value: true
+            value: OK
+          - dps_val: 1
+            value: Temperature sensor fault
+          - dps_val: 2
+            value: Coil sensor fault
+          - dps_val: 4
+            value: Defrosting
+          - dps_val: 8
+            value: Tank full
+          - dps_val: 16
+            value: Low temperature
+          - dps_val: 32
+            value: High temperature
   - entity: select
     name: Timer
     icon: "mdi:timer"
@@ -137,7 +191,7 @@ secondary_entities:
           - dps_val: "24"
             value: "24 hours"
   - entity: sensor
-    name: Time remaing
+    name: Time remaining
     class: duration
     category: diagnostic
     dps:
@@ -145,24 +199,24 @@ secondary_entities:
         type: integer
         name: sensor
         unit: min
-  - entity: binary_sensor
+  - entity: switch
     name: Inside drying
-    class: running
-    category: diagnostic
+    category: config
+    icon: "mdi:hair-dryer"
     dps:
       - id: 101
         type: boolean
-        name: sensor
+        name: switch
         optional: true
         persist: false
         mapping:
           - dps_val: null
             value: false
-  - entity: binary_sensor
+  - entity: switch
     name: Water pump
-    class: running
-    category: diagnostic
+    icon: "mdi:water-pump"
+    category: config
     dps:
       - id: 102
         type: boolean
-        name: sensor
+        name: switch
