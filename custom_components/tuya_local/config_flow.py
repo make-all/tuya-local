@@ -192,7 +192,7 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
 
 async def async_test_connection(config: dict, hass: HomeAssistant):
     domain_data = hass.data.get(DOMAIN)
-    existing = domain_data.get(config[CONF_DEVICE_ID]) if domain_data else None
+    existing = domain_data.get(get_device_id(config)) if domain_data else None
     if existing:
         existing["device"].pause()
         await asyncio.sleep(5)

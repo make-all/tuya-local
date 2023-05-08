@@ -271,6 +271,30 @@ async def test_async_test_connection_valid(mock_device, hass):
 
 @pytest.mark.asyncio
 @patch("custom_components.tuya_local.config_flow.TuyaLocalDevice")
+async def test_async_test_connection_for_subdevice_valid(mock_device, hass):
+    """Test that subdevice is returned when connection is valid."""
+    mock_instance = AsyncMock()
+    mock_instance.has_returned_state = True
+    mock_device.return_value = mock_instance
+    hass.data[DOMAIN] = {"subdeviceid": {"device": mock_instance}}
+
+    device = await config_flow.async_test_connection(
+        {
+            CONF_DEVICE_ID: "deviceid",
+            CONF_LOCAL_KEY: "localkey",
+            CONF_HOST: "hostname",
+            CONF_PROTOCOL_VERSION: "auto",
+            CONF_DEVICE_CID: "subdeviceid",
+        },
+        hass,
+    )
+    assert device == mock_instance
+    mock_instance.pause.assert_called_once()
+    mock_instance.resume.assert_called_once()
+
+
+@pytest.mark.asyncio
+@patch("custom_components.tuya_local.config_flow.TuyaLocalDevice")
 async def test_async_test_connection_invalid(mock_device, hass):
     """Test that None is returned when connection is invalid."""
     mock_instance = AsyncMock()
