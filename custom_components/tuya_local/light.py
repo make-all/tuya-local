@@ -214,10 +214,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
         if self._color_mode_dps and ATTR_WHITE in params:
             if self.color_mode != ColorMode.WHITE:
                 color_mode = ColorMode.WHITE
-            if (
-               ATTR_BRIGHTNESS not in params
-               and self._brightness_dps
-             ):
+            if ATTR_BRIGHTNESS not in params and self._brightness_dps:
                 bright = params.get(ATTR_WHITE)
                 _LOGGER.debug(f"Setting brightness via WHITE parameter to {bright}")
                 settings = {
