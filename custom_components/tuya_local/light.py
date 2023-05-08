@@ -53,7 +53,6 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
         self._color_temp_dps = dps_map.pop("color_temp", None)
         self._rgbhsv_dps = dps_map.pop("rgbhsv", None)
         self._effect_dps = dps_map.pop("effect", None)
-        self._white_dps = dps_map.pop("white", None)
         self._init_end(dps_map)
 
     @property
