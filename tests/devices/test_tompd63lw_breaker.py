@@ -44,16 +44,16 @@ class TestTOMPD63lw(MultiSensorTests, TuyaDeviceTestCase):
                 {
                     "name": "sensor_current_a",
                     "dps": PHASEA_DP,
-                    "unit": UnitOfElectricCurrent.MILLIAMPERE,
+                    "unit": UnitOfElectricCurrent.AMPERE,
                     "device_class": SensorDeviceClass.CURRENT,
-                    "testdata": ("CHoAQgQADlwAAA==", 16900),
+                    "testdata": ("CHoAQgQADlwAAA==", 16.9),
                 },
                 {
                     "name": "sensor_power_a",
                     "dps": PHASEA_DP,
-                    "unit": UnitOfPower.WATT,
+                    "unit": UnitOfPower.KILO_WATT,
                     "device_class": SensorDeviceClass.POWER,
-                    "testdata": ("CHoAQgQADlwAAA==", 3676),
+                    "testdata": ("CHoAQgQADlwAAA==", 3.676),
                 },
             ]
         )
@@ -74,8 +74,8 @@ class TestTOMPD63lw(MultiSensorTests, TuyaDeviceTestCase):
     def test_phasea_encoding(self):
         self.dps[PHASEA_DP] = "CMAAD6AAAzUAAA=="
         self.assertEqual(self.multiSensor["sensor_voltage_a"].native_value, 224.0)
-        self.assertEqual(self.multiSensor["sensor_current_a"].native_value, 4000)
-        self.assertEqual(self.multiSensor["sensor_power_a"].native_value, 821.0)
+        self.assertEqual(self.multiSensor["sensor_current_a"].native_value, 4.0)
+        self.assertEqual(self.multiSensor["sensor_power_a"].native_value, 0.821)
 
     def test_phasea_missing(self):
         self.dps[PHASEA_DP] = None

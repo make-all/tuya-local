@@ -68,9 +68,10 @@ class TestParksidePLGS2012A1Charger(
                     "name": "number_charge_current",
                     "dps": CURRENT_DPS,
                     "device_class": NumberDeviceClass.CURRENT,
-                    "max": 30000,
-                    "step": 100,
-                    "unit": UnitOfElectricCurrent.MILLIAMPERE,
+                    "max": 30.000,
+                    "step": 0.1,
+                    "scale": 1000,
+                    "unit": UnitOfElectricCurrent.AMPERE,
                 },
                 {
                     "name": "number_charge_voltage",
@@ -117,8 +118,9 @@ class TestParksidePLGS2012A1Charger(
                 {
                     "name": "sensor_max_current",
                     "dps": MAXCURRENT_DPS,
-                    "unit": UnitOfElectricCurrent.MILLIAMPERE,
+                    "unit": UnitOfElectricCurrent.AMPERE,
                     "device_class": SensorDeviceClass.CURRENT,
+                    "testdata": (1234, 1.234),
                 },
                 {
                     "name": "sensor_max_temperature_count",
