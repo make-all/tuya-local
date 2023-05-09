@@ -269,3 +269,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [syepes](https://github.com/syepes) for contributing support for Klarstein DryFy Connect, which was merged into Shinco 30D config.
 - [LesTR](https://github.com/LesTR) for early assistance with the subdevice support, and contribution of test improvements for subdevices.
 - [JonF-49](https://github.com/JonF-49) for contributing support for RGBW lightbulbs, and improvements to color light entities that lack color temperature control.
+- [charliesjc](https://github.com/charliesjc) for contributing support for CBI Astute smart controller breaker switches.

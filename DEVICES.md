@@ -197,6 +197,7 @@
 
 ### Smart Meter/Circuit Breaker
 
+- CBI Astute smart controller breaker switch
 - Compteur digital electric (single phase)
 - eMylo EAI-90 smart meter
 - PC321-TY 3 phase power clamp meter
