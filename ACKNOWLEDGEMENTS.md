@@ -268,3 +268,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [dh0llyw00d](https://github.com/dh0llyw00d) for assisting with support for Skyfan DC fans with light.
 - [syepes](https://github.com/syepes) for contributing support for Klarstein DryFy Connect, which was merged into Shinco 30D config.
 - [LesTR](https://github.com/LesTR) for early assistance with the subdevice support, and contribution of test improvements for subdevices.
+- [JonF-49](https://github.com/JonF-49) for contributing support for RGBW lightbulbs, and improvements to color light entities that lack color temperature control.
