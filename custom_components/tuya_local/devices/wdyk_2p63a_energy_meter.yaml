@@ -313,9 +313,10 @@ secondary_entities:
         type: base64
         name: sensor
         optional: true
-        unit: mA
+        unit: A
         mapping:
           - mask: "000000FFFFFF0000000000"
+            scale: 1000
   - entity: sensor
     name: Power A
     class: power
@@ -325,9 +326,10 @@ secondary_entities:
         type: base64
         name: sensor
         optional: true
-        unit: W
+        unit: kW
         mapping:
           - mask: "000000000000FFFFFF0000"
+            scale: 1000
   - entity: sensor
     name: Voltage B
     class: voltage
@@ -350,9 +352,10 @@ secondary_entities:
         type: base64
         name: sensor
         optional: true
-        unit: mA
+        unit: A
         mapping:
           - mask: "000000FFFFFF0000000000"
+            scale: 1000
   - entity: sensor
     name: Power B
     class: power
@@ -362,9 +365,10 @@ secondary_entities:
         type: base64
         name: sensor
         optional: true
-        unit: W
+        unit: kW
         mapping:
           - mask: "000000000000FFFFFF0000"
+            scale: 1000
   - entity: sensor
     name: Voltage C
     class: voltage
@@ -387,9 +391,10 @@ secondary_entities:
         type: base64
         name: sensor
         optional: true
-        unit: mA
+        unit: A
         mapping:
           - mask: "000000FFFFFF0000000000"
+            scale: 1000
   - entity: sensor
     name: Power C
     class: power
@@ -399,6 +404,7 @@ secondary_entities:
         type: base64
         name: sensor
         optional: true
-        unit: W
+        unit: kW
         mapping:
           - mask: "000000000000FFFFFF0000"
+            scale: 1000

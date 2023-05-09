@@ -26,7 +26,8 @@ secondary_entities:
           max: 30000
         mapping:
           - step: 100
-        unit: mA
+            scale: 1000
+        unit: A
   - entity: number
     name: Charge voltage
     icon: "mdi:battery-charging"
@@ -122,7 +123,9 @@ secondary_entities:
       - id: 101
         type: integer
         name: sensor
-        unit: mA
+        unit: A
+        mapping:
+          - scale: 1000
   - entity: sensor
     name: Time remaining
     class: duration

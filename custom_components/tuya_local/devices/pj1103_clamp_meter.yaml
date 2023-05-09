@@ -35,9 +35,11 @@ secondary_entities:
       - id: 18
         type: integer
         name: sensor
-        unit: mA
+        unit: A
         force: true
         class: measurement
+        mapping:
+          - scale: 1000
       - id: 23
         type: integer
         name: calibration

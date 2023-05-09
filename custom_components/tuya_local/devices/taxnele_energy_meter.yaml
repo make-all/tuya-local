@@ -64,8 +64,10 @@ secondary_entities:
       - id: 15
         type: integer
         name: sensor
-        unit: mA
+        unit: A
         class: measurement
+        mapping:
+          - scale: 1000
   - entity: switch
     name: Circuit breaker
     icon: "mdi:fuse"
