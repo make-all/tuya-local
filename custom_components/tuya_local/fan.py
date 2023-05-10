@@ -92,17 +92,16 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
         """Return the step for percentage."""
         if self._speed_dps is None:
             return None
-        if self._speed_dps.values(self._device) is None:
-            return self._speed_dps.step(self._device)
-        else:
+        if self._speed_dps.values(self._device):
             return 100 / len(self._speed_dps.values(self._device))
+        return self._speed_dps.step(self._device)
 
     @property
     def speed_count(self):
         """Return the number of speeds supported by the fan."""
         if self._speed_dps is None:
             return 0
-        if self._speed_dps.values(self._device) is not None:
+        if self._speed_dps.values(self._device):
             return len(self._speed_dps.values(self._device))
         return int(round(100 / self.percentage_step))
 
@@ -111,7 +110,7 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
         if self._speed_dps is None:
             return None
         # If there is a fixed list of values, snap to the closest one
-        if self._speed_dps.values(self._device) is not None:
+        if self._speed_dps.values(self._device):
             percentage = min(
                 self._speed_dps.values(self._device), key=lambda x: abs(x - percentage)
             )

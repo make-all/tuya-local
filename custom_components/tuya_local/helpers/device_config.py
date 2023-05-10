@@ -430,7 +430,7 @@ class TuyaDpsConfig:
                 "No mapping for %s, unable to determine valid values",
                 self.name,
             )
-            return None
+            return []
         val = []
         for m in self._config["mapping"]:
             if "value" in m:
@@ -467,7 +467,7 @@ class TuyaDpsConfig:
                     val = c_val
                     break
         _LOGGER.debug("%s values: %s", self.name, val)
-        return list(set(val)) if val else None
+        return list(set(val)) if val else []
 
     def default(self):
         """Return the default value for a dp."""
