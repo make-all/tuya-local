@@ -443,7 +443,7 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
         mock_config = {
             "id": "1",
             "type": "string",
-            "name": "test",
+            "name": "test",
             "mapping": [
                 {"dps_val": "mirror", "value_mirror": "map_mirror"},
                 {"dps_val": "plain", "value": "unmirrored"},
