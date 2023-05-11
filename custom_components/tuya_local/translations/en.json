@@ -1,61 +1,61 @@
 {
-    "title": "Tuya Local",
-    "config": {
-        "step": {
-            "user": {
-                "title": "Configure your Tuya Local device",
-                "description": "[Follow these instructions to find your device id and local key.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
-                "data": {
-                    "host": "IP address or hostname",
-                    "device_id": "Device ID (uuid)",
-                    "local_key": "Local key",
-                    "protocol_version": "Protocol version (try auto if not known)",
-                    "poll_only": "Poll only (try this if your device does not work fully)",
-                    "device_cid": "Sub device ID (for devices connected via gateway)"
-                }
-            },
-            "select_type": {
-                "title": "Choose the type of device",
-                "description": "Choose the type that matches your device",
-                "data": {
-                    "type": "Device type"
-                }
-            },
-            "choose_entities": {
-                "title": "Device details",
-                "description": "Choose a name for this device, and which entities will be enabled",
-                "data": {
-                    "name": "Name"
-                }
-            }
-        },
-        "abort": {
-            "already_configured": "A device with that ID has already been added.",
-            "not_supported": "Sorry, there is no support for this device."
-        },
-        "error": {
-            "connection": "Unable to connect to your device with those details. It could be an intermittent issue, or they may be incorrect."
+  "title": "Tuya Local",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configure your Tuya Local device",
+        "description": "[Follow these instructions to find your device id and local key.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+        "data": {
+          "host": "IP address or hostname",
+          "device_id": "Device ID (uuid)",
+          "local_key": "Local key",
+          "protocol_version": "Protocol version (try auto if not known)",
+          "poll_only": "Poll only (try this if your device does not work fully)",
+          "device_cid": "Sub device ID (for devices connected via gateway)"
         }
+      },
+      "select_type": {
+        "title": "Choose the type of device",
+        "description": "Choose the type that matches your device",
+        "data": {
+          "type": "Device type"
+        }
+      },
+      "choose_entities": {
+        "title": "Device details",
+        "description": "Choose a name for this device, and which entities will be enabled",
+        "data": {
+          "name": "Name"
+        }
+      }
     },
-    "options": {
-        "step": {
-            "user": {
-                "title": "Configure your Tuya Local device",
-                "description": "[Follow these instructions to find your local key.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
-                "data": {
-                    "host": "IP address or hostname",
-                    "local_key": "Local key",
-                    "protocol_version": "Protocol version (try auto if not known)",
-                    "poll_only": "Poll only (try this if your device does not work fully)",
-                    "device_cid": "Sub device ID (for devices connected via gateway)"
-                }
-            }
-        },
-        "error": {
-            "connection": "Unable to connect to your device with those details. It could be an intermittent issue, or they may be incorrect."
-        },
-        "abort": {
-            "not_supported": "Sorry, there is no support for this device."
-        }
+    "abort": {
+      "already_configured": "A device with that ID has already been added.",
+      "not_supported": "Sorry, there is no support for this device."
+    },
+    "error": {
+      "connection": "Unable to connect to your device with those details. It could be an intermittent issue, or they may be incorrect."
     }
+  },
+  "options": {
+    "step": {
+      "user": {
+        "title": "Configure your Tuya Local device",
+        "description": "[Follow these instructions to find your local key.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+        "data": {
+          "host": "IP address or hostname",
+          "local_key": "Local key",
+          "protocol_version": "Protocol version (try auto if not known)",
+          "poll_only": "Poll only (try this if your device does not work fully)",
+          "device_cid": "Sub device ID (for devices connected via gateway)"
+        }
+      }
+    },
+    "error": {
+      "connection": "Unable to connect to your device with those details. It could be an intermittent issue, or they may be incorrect."
+    },
+    "abort": {
+      "not_supported": "Sorry, there is no support for this device."
+    }
+  }
 }
