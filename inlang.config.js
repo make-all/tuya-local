@@ -10,7 +10,7 @@ export async function defineConfig(env) {
     return {
         referenceLanguage: 'en',
         plugins: [pluginJson({
-            pathPattern: './custom_components/tuya_loca/translations/{language}.json'
+            pathPattern: './custom_components/tuya_local/translations/{language}.json'
         }), standardLintRules()]
     };
 }
