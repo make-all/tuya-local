@@ -1,6 +1,6 @@
 name: Ceiling Fan and Light Switch
 product:
-  - id: qmijt70hk4op6snl
+  - id: 6ahfblexspuaem65
     name: Carro PN-04F02D ceiling fan and light switch
 primary_entity:
   entity: light
@@ -8,6 +8,12 @@ primary_entity:
     - id: 20
       type: boolean
       name: switch
+    - id: 21
+      type: string
+      # Has white/colour/scene/music values but this
+      # is a dimming switch and doesn't have color/scene dps
+      name: work_mode
+      optional: true
     - id: 22
       name: brightness
       type: integer
