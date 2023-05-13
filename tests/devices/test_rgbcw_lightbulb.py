@@ -58,27 +58,24 @@ class TestRGBCWLightbulb(BasicNumberTests, TuyaDeviceTestCase):
         self.dps[MODE_DPS] = "white"
         self.assertEqual(self.subject.color_mode, ColorMode.COLOR_TEMP)
         self.dps[MODE_DPS] = "colour"
-        self.assertEqual(self.subject.color_mode, ColorMode.RGBW)
+        self.assertEqual(self.subject.color_mode, ColorMode.HS)
         self.dps[MODE_DPS] = "scene"
-        self.assertEqual(self.subject.color_mode, ColorMode.RGBW)
+        self.assertEqual(self.subject.color_mode, ColorMode.HS)
         self.dps[MODE_DPS] = "music"
-        self.assertEqual(self.subject.color_mode, ColorMode.RGBW)
+        self.assertEqual(self.subject.color_mode, ColorMode.HS)
 
-    def test_rgbw_color(self):
+    def test_hs_color(self):
         self.dps[HSV_DPS] = "003c03e803e8"
         self.dps[BRIGHTNESS_DPS] = 1000
-        self.assertSequenceEqual(
-            self.subject.rgbw_color,
-            (255, 255, 0, 255),
-        )
+        self.assertSequenceEqual(self.subject.hs_color, (60, 100))
 
     # Lights have been observed to return N, O and P mixed in with the hex
     # number.  Maybe it has some special meaning, but since it is undocumented,
     # we just want to reject such values without an exception.
-    def test_invalid_rgbw_color(self):
+    def test_invalid_hs_color(self):
         self.dps[HSV_DPS] = "0010001000OP"
         self.dps[BRIGHTNESS_DPS] = 1000
-        self.assertIsNone(self.subject.rgbw_color)
+        self.assertIsNone(self.subject.hs_color)
 
     def test_effect_list(self):
         self.assertCountEqual(
@@ -99,7 +96,7 @@ class TestRGBCWLightbulb(BasicNumberTests, TuyaDeviceTestCase):
     def test_supported_color_modes(self):
         self.assertCountEqual(
             self.subject.supported_color_modes,
-            {ColorMode.RGBW, ColorMode.COLOR_TEMP},
+            {ColorMode.HS, ColorMode.COLOR_TEMP},
         )
 
     def test_supported_features(self):
@@ -144,7 +141,7 @@ class TestRGBCWLightbulb(BasicNumberTests, TuyaDeviceTestCase):
         ):
             await self.subject.async_turn_on(brightness=128)
 
-    async def test_set_rgbw(self):
+    async def test_set_hs_color(self):
         self.dps[BRIGHTNESS_DPS] = 1000
         self.dps[SWITCH_DPS] = True
         self.dps[MODE_DPS] = "colour"
@@ -155,10 +152,10 @@ class TestRGBCWLightbulb(BasicNumberTests, TuyaDeviceTestCase):
             },
         ):
             await self.subject.async_turn_on(
-                rgbw_color=(255, 0, 0, 255),
+                hs_color=(0, 100),
             )
 
-    async def test_set_rgbw_from_white(self):
+    async def test_set_hs_from_white(self):
         self.dps[BRIGHTNESS_DPS] = 1000
         self.dps[SWITCH_DPS] = True
         self.dps[MODE_DPS] = "white"
@@ -170,7 +167,7 @@ class TestRGBCWLightbulb(BasicNumberTests, TuyaDeviceTestCase):
             },
         ):
             await self.subject.async_turn_on(
-                rgbw_color=(255, 0, 0, 255),
+                hs_color=(0, 100),
             )
 
     def test_extra_state_attributes(self):

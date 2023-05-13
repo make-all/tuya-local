@@ -553,8 +553,8 @@ Humidifer can also cover dehumidifiers (use class to specify which).
     will be mapped so the minimum corresponds to 153 mireds (6500K), and max to 500 (2000K).
 - **rgbhsv** (optional, hex): a dp to control the color of the light, using encoded RGB and HSV values.  The `format` field names recognized for decoding this field are `r`, `g`, `b`, `h`, `s`, `v`.
 - **color_mode** (optional, mapping of strings): a dp to control which mode to use if the light supports multiple modes.
-    Special values: `white, color_temp, rgbw, hs, xy, rgb, rgbww`, others will be treated as effects,
-	Note: only white, color_temp and rgbw are currently supported, others listed above are reserved and may be implemented in future when the need arises.
+    Special values: `white, color_temp, hs, xy, rgb, rgbw, rgbww`, others will be treated as effects,
+	Note: only white, color_temp and hs are currently supported, others listed above are reserved and may be implemented in future when the need arises.
     If no `color_mode` dp is available, a single supported color mode will be
     calculated based on which of the above dps are available.
 - **effect** (optional, mapping of strings): a dp to control effects / presets supported by the light.

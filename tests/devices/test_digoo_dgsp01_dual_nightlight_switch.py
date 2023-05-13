@@ -13,7 +13,7 @@ SWITCH_DPS = "1"
 LIGHTSW_DPS = "27"
 COLORMODE_DPS = "28"
 BRIGHTNESS_DPS = "29"
-RGBW_DPS = "31"
+RGB_DPS = "31"
 UNKNOWN32_DPS = "32"
 UNKNOWN33_DPS = "33"
 UNKNOWN34_DPS = "34"
@@ -48,29 +48,26 @@ class TestDigooNightlightSwitch(BasicSwitchTests, TuyaDeviceTestCase):
 
     def test_light_color_mode(self):
         self.dps[COLORMODE_DPS] = "colour"
-        self.assertEqual(self.light.color_mode, ColorMode.RGBW)
+        self.assertEqual(self.light.color_mode, ColorMode.HS)
         self.dps[COLORMODE_DPS] = "white"
         self.assertEqual(self.light.color_mode, ColorMode.WHITE)
         self.dps[COLORMODE_DPS] = "scene"
-        self.assertEqual(self.light.color_mode, ColorMode.RGBW)
+        self.assertEqual(self.light.color_mode, ColorMode.HS)
         self.dps[COLORMODE_DPS] = "music"
-        self.assertEqual(self.light.color_mode, ColorMode.RGBW)
+        self.assertEqual(self.light.color_mode, ColorMode.HS)
         self.dps[COLORMODE_DPS] = "scene_1"
-        self.assertEqual(self.light.color_mode, ColorMode.RGBW)
+        self.assertEqual(self.light.color_mode, ColorMode.HS)
         self.dps[COLORMODE_DPS] = "scene_2"
-        self.assertEqual(self.light.color_mode, ColorMode.RGBW)
+        self.assertEqual(self.light.color_mode, ColorMode.HS)
         self.dps[COLORMODE_DPS] = "scene_3"
-        self.assertEqual(self.light.color_mode, ColorMode.RGBW)
+        self.assertEqual(self.light.color_mode, ColorMode.HS)
         self.dps[COLORMODE_DPS] = "scene_4"
-        self.assertEqual(self.light.color_mode, ColorMode.RGBW)
+        self.assertEqual(self.light.color_mode, ColorMode.HS)
 
-    def test_light_rgbw_color(self):
-        self.dps[RGBW_DPS] = "ffff00003c6464"
+    def test_light_hs_color(self):
+        self.dps[RGB_DPS] = "ffff00003c6464"
         self.dps[BRIGHTNESS_DPS] = 255
-        self.assertSequenceEqual(
-            self.light.rgbw_color,
-            (255, 255, 0, 255),
-        )
+        self.assertSequenceEqual(self.light.hs_color, (60, 100))
 
     def test_light_effect_list(self):
         self.assertCountEqual(
@@ -106,7 +103,7 @@ class TestDigooNightlightSwitch(BasicSwitchTests, TuyaDeviceTestCase):
     def test_light_supported_color_modes(self):
         self.assertCountEqual(
             self.light.supported_color_modes,
-            {ColorMode.RGBW, ColorMode.WHITE},
+            {ColorMode.HS, ColorMode.WHITE},
         )
 
     def test_light_supported_features(self):
@@ -135,16 +132,16 @@ class TestDigooNightlightSwitch(BasicSwitchTests, TuyaDeviceTestCase):
         ):
             await self.light.async_turn_on(brightness=128)
 
-    async def test_set_rgbw(self):
+    async def test_set_hs_color(self):
         self.dps[BRIGHTNESS_DPS] = 255
         self.dps[COLORMODE_DPS] = "colour"
         async with assert_device_properties_set(
             self.light._device,
             {
-                RGBW_DPS: "ff000000006464",
+                RGB_DPS: "ff000000006464",
             },
         ):
-            await self.light.async_turn_on(rgbw_color=(255, 0, 0, 255))
+            await self.light.async_turn_on(hs_color=(0, 100))
 
     def test_extra_state_attributes_set(self):
         self.dps[UNKNOWN32_DPS] = "32"
