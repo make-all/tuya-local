@@ -66,6 +66,7 @@ class TuyaLocalDevice(object):
         self._startup_listener = None
         self._api_protocol_version_index = None
         self._api_protocol_working = False
+        self._api_working_protocol_failures = 0
         try:
             if dev_cid is not None:
                 self._api = tinytuya.Device(
@@ -111,6 +112,8 @@ class TuyaLocalDevice(object):
         # the possibilities a couple of times
         self._AUTO_CONNECTION_ATTEMPTS = len(API_PROTOCOL_VERSIONS) * 2 + 1
         self._SINGLE_PROTO_CONNECTION_ATTEMPTS = 3
+        # The number of failures from a working protocol before retrying other protocols.
+        self._AUTO_FAILURE_RESET_COUNT = 10
         self._lock = Lock()
 
     @property
@@ -511,6 +514,7 @@ class TuyaLocalDevice(object):
                     if type(retval) is dict and "Error" in retval:
                         raise AttributeError(retval["Error"])
                     self._api_protocol_working = True
+                    self._api_working_protocol_failures = 0
                     return retval
             except Exception as e:
                 _LOGGER.debug(
@@ -523,7 +527,12 @@ class TuyaLocalDevice(object):
 
                 if i + 1 == connections:
                     self._reset_cached_state()
-                    self._api_protocol_working = False
+                    self._api_working_protocol_failures += 1
+                    if (
+                        self._api_working_protocol_failures
+                        > self._AUTO_FAILURE_RESET_COUNT
+                    ):
+                        self._api_protocol_working = False
                     for entity in self._children:
                         entity.async_schedule_update_ha_state()
                     _LOGGER.error(error_message)
