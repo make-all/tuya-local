@@ -106,7 +106,11 @@ class TestMoesRGBSocket(
 
     def test_light_brightness(self):
         self.dps[BRIGHTNESS_DPS] = 45
+        self.dps[MODE_DPS] = "white"
         self.assertEqual(self.light.brightness, 45)
+        self.dps[RGB_DPS] = "808000003cff80"
+        self.dps[MODE_DPS] = "colour"
+        self.assertEqual(self.light.brightness, 128)
 
     def test_light_color_mode(self):
         self.dps[MODE_DPS] = "colour"
