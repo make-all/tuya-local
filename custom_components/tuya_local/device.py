@@ -272,13 +272,13 @@ class TuyaLocalDevice(object):
                     ):
                         poll = await self._retry_on_failed_connection(
                             lambda: self._api.updatedps(self._force_dps),
-                            f"Failed to refresh device state for {self.name}",
+                            f"Failed to update device dps for {self.name}",
                         )
                         dps_updated = True
                     else:
                         poll = await self._retry_on_failed_connection(
                             lambda: self._api.status(),
-                            f"Failed to refresh device state for {self.name}",
+                            f"Failed to fetch device status for {self.name}",
                         )
                         dps_updated = False
                         full_poll = True
