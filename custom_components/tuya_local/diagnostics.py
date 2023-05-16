@@ -14,8 +14,10 @@ from .const import (
     CONF_PROTOCOL_VERSION,
     CONF_TYPE,
     DOMAIN,
+    CONF_DEVICE_CID,
 )
 from .device import TuyaLocalDevice
+from .helpers.config import get_device_id
 
 
 async def async_get_config_entry_diagnostics(
@@ -39,12 +41,13 @@ def _async_get_diagnostics(
     device: DeviceEntry | None = None,
 ) -> dict[str, Any]:
     """Return diagnostics for a tuya-local config entry."""
-    hass_data = hass.data[DOMAIN][entry.data["device_id"]]
+    hass_data = hass.data[DOMAIN][get_device_id(entry.data)]
 
     data = {
         "name": entry.title,
         "type": entry.data[CONF_TYPE],
         "device_id": REDACTED,
+        "device_cid": REDACTED if entry.data.get(CONF_DEVICE_CID, "") != "" else "",
         "local_key": REDACTED,
         "host": REDACTED,
         "protocol_version": entry.data[CONF_PROTOCOL_VERSION],
@@ -63,7 +66,7 @@ def _async_get_diagnostics(
 def _async_device_as_dict(
     hass: HomeAssistant, device: TuyaLocalDevice
 ) -> dict[str, Any]:
-    """Represent a Tuya Local devcie as a dictionary."""
+    """Represent a Tuya Local device as a dictionary."""
 
     # Base device information, without sensitive information
     data = {
