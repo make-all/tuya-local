@@ -1,0 +1,259 @@
+name: Kogan LX10 Robot Vacuum
+products:
+  - id: ldb9ygikft5awhlu
+    name: Kogan LX10 Robot Vacuum
+primary_entity:
+  entity: vacuum
+  dps:
+    - id: 101
+      name: clean_switch
+      type: boolean
+    - id: 102
+      name: pause_switch
+      type: boolean
+    - id: 103
+      name: charge_switch
+      type: boolean
+    - id: 104
+      name: clean_mode
+      type: string
+      mapping:
+        - dps_val: smart
+          value: smart
+        - dps_val: pose
+          value: pose
+        - dps_val: zone
+          value: zone
+        - dps_val: backcharge
+          value: backcharge
+    - id: 105
+      name: robot_state
+      type: string
+      mapping:
+        - dps_val: idle
+          value: idle
+        - dps_val: pointing\areaing
+          value: pointing\areaing
+        - dps_val: totaling
+          value: totaling
+        - dps_val: sweep
+          value: sweep
+        - dps_val: mop
+          value: mop
+        - dps_val: fault
+          value: fault
+        - dps_val: pause
+          value: pause
+        - dps_val: chargring
+          value: chargring
+        - dps_val: tocharge
+          value: tocharge
+        - dps_val: fullcharge
+          value: fullcharge
+        - dps_val: remotectl
+          value: remotectl
+    - id: 106
+      name: battery
+      type: integer
+    - id: 107
+      name: cur_clean_time
+      type: integer
+    - id: 108
+      name: cur_clean_area
+      type: integer
+    - id: 109
+      name: fan_mode
+      type: string
+      mapping:
+        - dps_val: quiet
+          value: quiet
+        - dps_val: strong
+          value: strong
+        - dps_val: auto
+          value: auto
+    - id: 110
+      name: water_mode
+      type: string
+      mapping:
+        - dps_val: 'off'
+          value: 'off'
+        - dps_val: quiet
+          value: quiet
+        - dps_val: auto
+          value: auto
+        - dps_val: strong
+          value: strong
+    - id: 111
+      name: remote_ctrl
+      optional: true
+      type: string
+      mapping:
+        - dps_val: forward
+          value: forward
+        - dps_val: backward
+          value: backward
+        - dps_val: left
+          value: left
+        - dps_val: right
+          value: right
+        - dps_val: stop
+          value: stop
+    - id: 112
+      name: seek_robot
+      optional: true
+      type: boolean
+    - id: 113
+      name: disturb_switch_1
+      type: boolean
+    - id: 114
+      name: volume
+      type: integer
+      range:
+        min: 0
+        max: 10
+    - id: 115
+      name: material_reset
+      optional: true
+      type: string
+      mapping:
+        - dps_val: gettime
+          value: gettime
+        - dps_val: resetsidebrush
+          value: resetsidebrush
+        - dps_val: resetmainbrush
+          value: resetmainbrush
+        - dps_val: resetfilter
+          value: resetfilter
+    - id: 116
+      name: total_clean_time
+      type: integer
+      unit: min
+    - id: 117
+      name: total_clean_area
+      type: integer
+      unit: m²
+    - id: 118
+      name: total_clean_count
+      type: integer
+    - id: 119
+      name: side_brush_time
+      type: integer
+      unit: s
+    - id: 120
+      name: main_brush_time
+      type: integer
+      unit: s
+    - id: 121
+      name: filter_time
+      type: integer
+      unit: s
+    - id: 122
+      name: robot_fault
+      # TODO: correctly parse the bitfield
+      type: boolean # should result in non-zero showing as true
+      # type: bitfield
+      # "values": "{\"label\":[\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"15\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"22\",\"23\",\"24\",\"25\",\"26\",\"27\",\"28\",\"29\",\"30\"],\"maxlen\":30}"
+      # mapping:
+      #   - dps_val: 1
+      #     value: cliff
+      #   - dps_val: 2
+      #     value: imp
+      #   - dps_val: 4
+      #     value: whl
+      #   - dps_val: 8
+      #     value: brush
+      #   - dps_val: 16
+      #     value: fan
+      #   - dps_val: 32
+      #     value: roller_brush
+      #   - dps_val: 64
+      #     value: low_power
+      #   - dps_val: 128
+      #     value: give_up
+      #   - dps_val: 256
+      #     value: no_dust
+      #   - dps_val: 512
+      #     value: "none"
+    - id: 123
+      name: path_comm
+      optional: true
+      type: string
+    - id: 124
+      name: cmd_comm
+      optional: true
+      type: string
+    - id: 125
+      name: request_data
+      optional: true
+      type: string
+    - id: 126
+      name: comm_flag
+      optional: true
+      type: string
+    - id: 127
+      name: comm_raw
+      optional: true
+      type: string
+    - id: 128
+      name: message_report
+      type: string
+      mapping:
+        # TODO: figure out the meanings of these
+        - dps_val: '0'
+          value: '0'
+        - dps_val: '1'
+          value: '1'
+        - dps_val: '2'
+          value: '2'
+        - dps_val: '3'
+          value: '3'
+        - dps_val: '4'
+          value: '4'
+        - dps_val: '5'
+          value: '5'
+        - dps_val: '6'
+          value: '6'
+        - dps_val: '7'
+          value: '7'
+        - dps_val: '8'
+          value: '8'
+        - dps_val: '9'
+          value: '9'
+        - dps_val: '10'
+          value: '10'
+        - dps_val: '11'
+          value: '11'
+        - dps_val: '12'
+          value: '12'
+        - dps_val: '13'
+          value: '13'
+        - dps_val: '14'
+          value: '14'
+        - dps_val: '15'
+          value: '15'
+        - dps_val: '16'
+          value: '16'
+        - dps_val: '17'
+          value: '17'
+        - dps_val: '18'
+          value: '18'
+        - dps_val: '19'
+          value: '19'
+        - dps_val: '20'
+          value: '20'
+    - id: 129
+      name: reset_map
+      optional: true
+      type: boolean
+    - id: 130
+      name: sn
+      optional: true
+      type: string
+    - id: 131
+      name: uuid
+      optional: true
+      type: string
+    - id: 132
+      name: device_info
+      optional: true
+      type: string
