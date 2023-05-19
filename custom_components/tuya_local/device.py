@@ -345,7 +345,7 @@ class TuyaLocalDevice(object):
             # devices have dp 1. Lights generally start from 20.  101 is where
             # vendor specific dps start.  Between them, these three should cover
             # most devices.
-            self._api.set_dpsUsed({"1": None, "20": None, "101": None})
+            self._api.set_dpsUsed({"1": None, "2": None, "20": None, "101": None})
             await self.async_refresh()
             cached_state = self._get_cached_state()
 
