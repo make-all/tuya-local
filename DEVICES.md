@@ -46,6 +46,7 @@
 - Star-Light air conditioner
 - Tadiran Wind 65/3P
 - TroniTechnik Hellnar Klimagerät
+- Friedrich Chill
 
 ### Pool heaters / heatpumps
 
