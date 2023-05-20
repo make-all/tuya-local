@@ -31,22 +31,22 @@ primary_entity:
       name: temperature
       type: integer
       range:
-        min: 16
-        max: 30
+        min: 0
+        max: 100
       mapping:
         - constraint: temperature_unit
           conditions:
-            - dps_val: "F"
+            - dps_val: "C"
               range:
-                min: 60
-                max: 86
+                min: 61
+                max: 88
     - id: 3
       name: current_temperature
       type: integer
     - id: 1
       name: mode
       type: string
-      hidden: true
+      hidden: false
     - id: 5
       name: fan_mode
       type: integer
@@ -63,8 +63,9 @@ primary_entity:
       name: temperature_unit
       type: string
     - id: 102
-      name: unknown_102
+      name: Temperature scale switching
       type: boolean
+      value: true
     - id: 103
       name: timer
       type: integer
