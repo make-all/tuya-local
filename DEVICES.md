@@ -156,6 +156,7 @@
 - Eeese Adam dehumidifier
 - Eeese Carl dehumidifier
 - Eeese Otto dehumidifier
+- Goldair GPDH340 dehumidifier
 - Goldair GPDH420 dehumidifier
 - Honeywell TP(30/50/70) dehumidifiers
 - Hyundai Sahara dehumidifier
