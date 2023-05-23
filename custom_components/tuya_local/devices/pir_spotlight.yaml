@@ -57,18 +57,20 @@ secondary_entities:
           - scale: 60
             step: 60
           - dps_val: null
-  - entity: select
-    name: Mode
+  - entity: switch
+    name: Manual Mode
     category: config
     dps:
       - id: 51
         type: string
-        name: option
+        name: switch
         mapping:
-          - dps_val: auto
-            value: Sensor
-          - dps_val: manual
-            value: Manual
+        - dps_val: auto
+          value: false
+        - dps_val: manual
+          value: true
+        optional: true
+        force: true
   - entity: switch
     name: PIR enabled
     category: config
@@ -76,6 +78,8 @@ secondary_entities:
       - id: 56
         type: boolean
         name: switch
+        optional: true
+        force: true
   - entity: binary_sensor
     class: motion
     dps:
@@ -87,6 +91,8 @@ secondary_entities:
             value: true
           - dps_val: "none"
             value: false
+        optional: true
+        force: true
   - entity: select
     name: Motion Distance
     category: config
@@ -101,6 +107,8 @@ secondary_entities:
             value: "Near"
           - dps_val: "middle"
             value: "Medium"
+        optional: true
+        force: true
   - entity: number
     name: Full light duration
     category: config
@@ -112,10 +120,12 @@ secondary_entities:
         range:
           min: 5
           max: 3600
-        unit: s
+        unit: sec
         mapping:
           - scale: 1
           - dps_val: null
+        optional: true
+        force: true
   - entity: number
     name: Standby Delay
     category: config
@@ -126,10 +136,12 @@ secondary_entities:
         range:
           min: 1
           max: 480
-        unit: m
+        unit: min
         mapping:
           - scale: 1
           - dps_val: null
+        optional: true
+        force: true
   - entity: number
     name: Standby Bright
     category: config
@@ -140,10 +152,12 @@ secondary_entities:
         range:
           min: 0
           max: 1000
-        unit: m
+        unit: min
         mapping:
           - scale: 1
           - dps_val: null
+        optional: true
+        force: true
   - entity: select
     name: Ambient Light Sensor
     category: config
@@ -166,3 +180,5 @@ secondary_entities:
             value: 5lux
           - dps_val: now
             value: Now
+        optional: true
+        force: true
