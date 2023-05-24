@@ -12,15 +12,6 @@ primary_entity:
     - id: 21
       type: string
       name: work_mode
-      mapping:
-        - dps_val: colour
-          value: hs
-        - dps_val: white
-          value: white
-        - dps_val: music
-          value: Music
-        - dps_val: scene
-          value: Scene
     - id: 22
       name: brightness
       type: integer
@@ -58,7 +49,7 @@ secondary_entities:
             step: 60
           - dps_val: null
   - entity: switch
-    name: Manual Mode
+    name: Manual mode
     category: config
     dps:
       - id: 51
@@ -94,7 +85,7 @@ secondary_entities:
         optional: true
         force: true
   - entity: select
-    name: Motion Distance
+    name: Motion distance
     category: config
     dps:
       - id: 54
@@ -127,7 +118,7 @@ secondary_entities:
         optional: true
         force: true
   - entity: number
-    name: Standby Delay
+    name: Standby delay
     category: config
     dps:
       - id: 58
@@ -143,7 +134,7 @@ secondary_entities:
         optional: true
         force: true
   - entity: number
-    name: Standby Bright
+    name: Standby bright
     category: config
     dps:
       - id: 59
@@ -159,7 +150,7 @@ secondary_entities:
         optional: true
         force: true
   - entity: select
-    name: Ambient Light Sensor
+    name: Ambient light sensor
     category: config
     dps:
       - id: 53
