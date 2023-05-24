@@ -1598,3 +1598,18 @@ TOMPD63LW_SOCKET_PAYLOAD = {
     # "105": False,
     # "106": False,
 }
+
+GOLDAIR_GPDH340_PAYLOAD = {
+    "1": True,
+    "2": "2",
+    "4": 60,
+    "6": "2",
+    "11": 0,
+    "103": 20,
+    "104": 72,
+    "105": 40,
+    "106": False,
+    "107": True,
+    "108": False,
+    "109": False,
+}

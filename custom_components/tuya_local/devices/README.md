@@ -293,6 +293,17 @@ different than the DP value from the Tuya protocol.  Normally it will be used
 with `dps_val` to map from one value to another. It could also be used at top
 level to override all values, but I can't imagine a useful purpose for that.
 
+### `hidden`
+
+*Optional, default=false*
+
+When set to true, the mapping value is hidden from the list of all values.
+This can be used for items that should not be available for selection by the
+user but you still want to map for feedback coming from the device.  For
+example, some devices have a "Manual" mode, which is automatically selected
+when adjustments are made to other settings, but should not be available as
+an explicit mode for the user to select.
+
 ### `scale`
 
 *Optional, default=1.*
