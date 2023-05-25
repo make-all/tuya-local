@@ -362,6 +362,7 @@ of device.
 
 - generic PIR motion sensor
 - generic illuminance sensor
+- Brennenstuhl WFD3050P PIR motion activated CCT spotlight
 - Bresser smart 7-in-1 weather station
 - Catit Pixi smart fountain
 - Catit pet feeder (2.2kg dispenser and 6 meal versions)
