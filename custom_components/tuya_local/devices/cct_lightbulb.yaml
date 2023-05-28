@@ -1,0 +1,49 @@
+name: CCT lightbulb
+products:
+  - id: dqs8oqdeccnqjfkx
+    name: A60 lightbulb
+  - id: znfxaaxc89zz6m5a
+    name: A65 lightbulb
+primary_entity:
+  entity: light
+  dps:
+    - id: 20
+      type: boolean
+      name: switch
+    - id: 21
+      name: work_mode
+      type: string
+    - id: 22
+      name: brightness
+      type: integer
+      range:
+        min: 10
+        max: 1000
+    - id: 23
+      name: color_temp
+      type: integer
+      range:
+        min: 0
+        max: 1000
+    - id: 25
+      name: scene
+      type: hex
+      optional: true
+secondary_entities:
+  - entity: number
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+        optional: true
+
