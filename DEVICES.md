@@ -331,6 +331,7 @@ of device.
 ### Vacuum Cleaners
 
 - Kabum Smart 500 vacuum cleaner
+- Kogan LX10 vacuum cleaner with mop
 - Kyvol E30 vacuum cleaner
 - Lefant LS1 Pro vacuum cleaner
 - Lefant M213 vacuum cleaner (also works for Lefant M213S and APOSEN A550)

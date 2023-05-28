@@ -271,3 +271,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [JonF-49](https://github.com/JonF-49) for contributing support for RGBW lightbulbs, and improvements to color light entities that lack color temperature control.
 - [charliesjc](https://github.com/charliesjc) for contributing support for CBI Astute smart controller breaker switches.
 - [stijnb1234](https://github.com/stijnb1234) for assisting with support for CCT lightbulbs.
+- [YodaDaCoda](https://github.com/YodaDaCoda) for contributing support for Kogan LX10 vacuum cleaners.
