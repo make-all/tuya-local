@@ -3,7 +3,6 @@ Setup for Tuya siren devices
 """
 from homeassistant.components.siren import (
     SirenEntity,
-    SirenEntityDescription,
     SirenEntityFeature,
 )
 
@@ -48,8 +47,7 @@ class TuyaLocalSiren(TuyaLocalEntity, SirenEntity):
                 | SirenEntityFeature.TURN_ON
                 | SirenEntityFeature.TURN_OFF
             )
-            self.entity_description = SirenEntityDescription
-            self.entity_description.available_tones = [
+            self._attr_available_tones = [
                 x for x in self._tone_dp.values(device) if x != "off"
             ]
             self._default_tone = self._tone_dp.default()
