@@ -176,6 +176,7 @@
 - Klarta Humea humidifier
 - Kyvol EA200 humidifier
 - Stadler Eva humidifier
+- Stadler Form Karl/Karl Big humidifier
 - Wetair WAW-H1210LW humidifier
 - Wilfa Haze HU400BC humidifier
 

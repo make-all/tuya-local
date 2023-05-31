@@ -272,3 +272,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [charliesjc](https://github.com/charliesjc) for contributing support for CBI Astute smart controller breaker switches.
 - [stijnb1234](https://github.com/stijnb1234) for assisting with support for CCT lightbulbs.
 - [YodaDaCoda](https://github.com/YodaDaCoda) for contributing support for Kogan LX10 vacuum cleaners.
+- [itn3rd77](https://github.com/itn3rd77) for contributing support for Stadler Form Karl/Karl Big humidifiers.
