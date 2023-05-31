@@ -9,6 +9,8 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers import device_registry as dr, entity_registry as er
 from homeassistant.helpers.device_registry import DeviceEntry
 
+from tinytuya import __version__ as tinytuya_version
+
 from .const import (
     API_PROTOCOL_VERSIONS,
     CONF_PROTOCOL_VERSION,
@@ -51,6 +53,7 @@ def _async_get_diagnostics(
         "local_key": REDACTED,
         "host": REDACTED,
         "protocol_version": entry.data[CONF_PROTOCOL_VERSION],
+        "tinytuya_version": tinytuya_version,
     }
 
     # The DeviceEntry also has interesting looking data, but this
