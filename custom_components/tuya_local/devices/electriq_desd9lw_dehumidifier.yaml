@@ -36,24 +36,24 @@ primary_entity:
       type: string
       name: fan_mode
       mapping:
-        - dps_val: "Low"
+        - dps_val: Low
           constraint: mode
           conditions:
-            - dps_val: "Auto"
+            - dps_val: Auto
               invalid: true
-          value: "Low"
-        - dps_val: "Medium"
+          value: low
+        - dps_val: Medium
           constraint: mode
           conditions:
-            - dps_val: "Auto"
+            - dps_val: Auto
               invalid: true
-          value: "Medium"
-        - dps_val: "High"
+          value: medium
+        - dps_val: High
           constraint: mode
           conditions:
-            - dps_val: "Auto"
+            - dps_val: Auto
               invalid: true
-          value: "High"
+          value: high
     - id: 5
       name: mode
       type: string
