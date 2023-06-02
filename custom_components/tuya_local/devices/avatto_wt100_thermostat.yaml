@@ -38,11 +38,12 @@ primary_entity:
       type: string
       mapping:
         - dps_val: cold
-          value: Manual
+          value: none
         - dps_val: hot
-          value: Program
+          value: home
         - dps_val: wind
-          value: Temporary Program
+          value: comfort
+          hidden: true
     - id: 5
       name: hvac_action
       type: string

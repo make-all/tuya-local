@@ -36,11 +36,12 @@ primary_entity:
       name: preset_mode
       mapping:
         - dps_val: cold
-          value: Manual
+          value: none
         - dps_val: hot
-          value: Program
+          value: home
         - dps_val: wind
-          value: Temporary
+          value: comfort
+          hidden: true
     - id: 5
       type: string
       name: hvac_action

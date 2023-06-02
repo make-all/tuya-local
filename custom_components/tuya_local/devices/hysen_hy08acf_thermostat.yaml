@@ -41,13 +41,14 @@ primary_entity:
       name: preset_mode
       mapping:
         - dps_val: Program
-          value: Program
+          value: home
         - dps_val: TempProg
-          value: Temporary Override
+          value: comfort
+          hidden: true
         - dps_val: Manual
-          value: Manual
+          value: none
         - dps_val: Holiday
-          value: Holiday
+          value: away
     - id: 5
       type: string
       name: fan_mode
