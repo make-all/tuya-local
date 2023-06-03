@@ -7,8 +7,13 @@ primary_entity:
   class: occupancy
   dps:
     - id: 1
-      type: boolean
+      type: string
       name: sensor
+      mapping:
+        - dps_val: presence
+          value: true
+        - dps_val: none
+          value: false
     - id: 101
       type: integer
       name: detection_delay
@@ -79,3 +84,15 @@ secondary_entities:
             value: Timeout
           - dps_val: radar_fault
             value: Radar fault
+  - entity: sensor
+    name: Target distance
+    class: distance
+    category: diagnostic
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: m
+        class: measurement
+        mapping:
+          - scale: 100
