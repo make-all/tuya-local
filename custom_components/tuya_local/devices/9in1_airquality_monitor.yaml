@@ -41,9 +41,6 @@ secondary_entities:
         name: sensor
         unit: "%"
         class: measurement
-        range:
-          min: 0
-          max: 100
   - entity: sensor
     name: CO2
     class: carbon_dioxide
@@ -74,9 +71,6 @@ secondary_entities:
         name: sensor
         unit: µg/m³
         class: measurement
-        range:
-          min: 0
-          max: 1000
         mapping:
           - scale: 1
             step: 1
@@ -90,9 +84,6 @@ secondary_entities:
         name: sensor
         unit: µg/m³
         class: measurement
-        range:
-          min: 0
-          max: 999
         mapping:
           - scale: 1
             step: 1
@@ -106,9 +97,6 @@ secondary_entities:
         name: sensor
         unit: µg/m³
         class: measurement
-        range:
-          min: 0
-          max: 999
   - entity: sensor
     name: PM 10
     class: pm10
@@ -119,9 +107,6 @@ secondary_entities:
         name: sensor
         unit: µg/m³
         class: measurement
-        range:
-          min: 0
-          max: 999
   - entity: sensor
     name: Battery
     class: battery
@@ -132,9 +117,6 @@ secondary_entities:
         name: sensor
         unit: "%"
         class: measurement
-        range:
-          min: 0
-          max: 100
   - entity: sensor
     name: Charge State
     class: enum
@@ -150,7 +132,6 @@ secondary_entities:
           - dps_val: true
             value: "Charging"
             icon: "mdi:battery-charging"
-            default: true
   - entity: sensor
     name: Alarm Volume
     category: diagnostic
