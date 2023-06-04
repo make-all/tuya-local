@@ -406,7 +406,7 @@ This is used by some entities when an argument is not provided to a service call
 but the attribute is required to be set to function correctly.
 An example is the siren entity which uses the tone attribute to turn on and
 off the siren, but when turn_on is called without any argument, it needs to
-pick a defaulttone to use to turn on the siren.
+pick a default tone to use to turn on the siren.
 
 ### `constraint`
 

@@ -368,7 +368,7 @@ of device.
 - Brennenstuhl WFD3050P PIR motion activated CCT spotlight
 - Bresser smart 7-in-1 weather station
 - Catit Pixi smart fountain
-- Catit pet feeder (2.2kg dispenser and 6 meal versions)
+- Catit pet feeder (Pixi 2.2kg dispenser and 6 meal versions, and another non-Pixi branded single dispenser)
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
 - Inkbird PTH-9CW air quality monitor
 - KKMoon 7in1 air quality monitor
@@ -384,6 +384,7 @@ of device.
 - SH07-8 smart sprinkler controller
 - Universal remote control (supports sensors only)
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)
+- ZN-2C09 9-in-1 air quality monitor
 - ZX-G30 alarm system (not as an alarm_control_panel, as individual inputs and sensors)
 - ZY-M100-WiFi mmWave human presence sensor
 

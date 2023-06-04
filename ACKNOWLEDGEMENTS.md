@@ -266,10 +266,11 @@ Further device support has been made with the assistance of users.  Please consi
 - [nyok92](https://github.com/nyok92) for assisting with support for Duux Blizzard air conditioners.
 - [mattbruman](https://github.com/mattbruman) for assisting with support for Atomi ceiling fans.
 - [dh0llyw00d](https://github.com/dh0llyw00d) for assisting with support for Skyfan DC fans with light.
-- [syepes](https://github.com/syepes) for contributing support for Klarstein DryFy Connect, which was merged into Shinco 30D config.
+- [syepes](https://github.com/syepes) for contributing support for Klarstein DryFy Connect, which was merged into Shinco 30D config, and ZN-2C09 air quality monitor.
 - [LesTR](https://github.com/LesTR) for early assistance with the subdevice support, and contribution of test improvements for subdevices.
 - [JonF-49](https://github.com/JonF-49) for contributing support for RGBW lightbulbs, and improvements to color light entities that lack color temperature control.
 - [charliesjc](https://github.com/charliesjc) for contributing support for CBI Astute smart controller breaker switches.
 - [stijnb1234](https://github.com/stijnb1234) for assisting with support for CCT lightbulbs.
 - [YodaDaCoda](https://github.com/YodaDaCoda) for contributing support for Kogan LX10 vacuum cleaners.
 - [itn3rd77](https://github.com/itn3rd77) for contributing support for Stadler Form Karl/Karl Big humidifiers.
+- [Mikey887](https://github.com/Mikey887) for contributing support for Catit Pixi Smart feeder.
