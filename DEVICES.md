@@ -390,9 +390,10 @@ of device.
 
 ### Devices supported via Bluetooth hubs
 
-- PT216/PT19DB-2 temperature and humidity sensor
 - HCT-611 water timer
+- Johgee water timer
 - Orion DL021HA lock
+- PT216/PT19DB-2 temperature and humidity sensor
 
 ### Devices supported via IR hubs
 
