@@ -6,15 +6,19 @@ primary_entity:
   entity: vacuum
   dps:
     - id: 101
-      name: power # clean_switch
+      name: start # clean_switch
       type: boolean
     - id: 102
-      name: activate # pause_switch
+      name: pause # pause_switch
       type: boolean
     - id: 104
       name: command # clean_mode
       type: string
       mapping:
+        - value: start
+          value_redirect: start
+        - value: pause
+          value_redirect: pause
         - dps_val: smart
           value: smart
         - dps_val: pose
@@ -108,6 +112,7 @@ primary_entity:
       type: string
     - id: 128
       name: message_report
+      optional: true
       type: string
     - id: 130
       name: sn
@@ -193,6 +198,7 @@ secondary_entities:
       - id: 115
         type: string
         name: button
+        optional: true
         mapping:
           - dps_val: gettime
             value: true
@@ -204,6 +210,7 @@ secondary_entities:
       - id: 115
         type: string
         name: button
+        optional: true
         mapping:
           - dps_val: resetsidebrush
             value: true
@@ -215,6 +222,7 @@ secondary_entities:
       - id: 115
         type: string
         name: button
+        optional: true
         mapping:
           - dps_val: resetmainbrush
             value: true
@@ -226,6 +234,7 @@ secondary_entities:
       - id: 115
         type: string
         name: button
+        optional: true
         mapping:
           - dps_val: resetfilter
             value: true
@@ -264,6 +273,7 @@ secondary_entities:
     dps:
       - id: 119
         name: sensor
+        optional: true
         type: integer
         unit: s
   - entity: sensor
@@ -274,6 +284,7 @@ secondary_entities:
     dps:
       - id: 120
         name: sensor
+        optional: true
         type: integer
         unit: s
   - entity: sensor
@@ -284,6 +295,7 @@ secondary_entities:
     dps:
       - id: 121
         name: sensor
+        optional: true
         type: integer
         unit: s
   - entity: button
@@ -293,10 +305,5 @@ secondary_entities:
     dps:
       - id: 129
         name: button
+        optional: true
         type: boolean
-
-
-
-
-
-
