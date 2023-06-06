@@ -128,21 +128,43 @@ class TuyaDeviceConfig:
             yield TuyaEntityConfig(self, conf)
 
     def matches(self, dps):
-        """Determine if this device matches the provided dps map."""
-        for d in self.primary_entity.dps():
-            if (d.id not in dps.keys() and not d.optional) or (
-                d.id in dps.keys() and not _typematch(d.type, dps[d.id])
-            ):
-                return False
+        required_dps = self._get_required_dps()
 
-        for dev in self.secondary_entities():
-            for d in dev.dps():
-                if (d.id not in dps.keys() and not d.optional) or (
-                    d.id in dps.keys() and not _typematch(d.type, dps[d.id])
-                ):
-                    return False
-        _LOGGER.debug("Matched config for %s", self.name)
-        return True
+        missing_dps = [dp for dp in required_dps if dp.id not in dps.keys()]
+        if len(missing_dps) > 0:
+            _LOGGER.debug(
+                "Not match for %s, missing required DPs: %s",
+                self.name,
+                [{dp.id: dp.type.__name__} for dp in missing_dps],
+            )
+
+        incorrect_type_dps = [
+            dp
+            for dp in required_dps
+            if dp.id in dps.keys() and not _typematch(dp.type, dps[dp.id])
+        ]
+        if len(incorrect_type_dps) > 0:
+            _LOGGER.debug(
+                "Not match for %s, DPs have incorrect type: %s",
+                self.name,
+                [{dp.id: dp.type.__name__} for dp in incorrect_type_dps],
+            )
+
+        return len(missing_dps) == 0 and len(incorrect_type_dps) == 0
+
+    def _get_required_dps(self):
+        required_dps_primary = {
+            d.id: d for d in self.primary_entity.dps() if not d.optional
+        }
+        required_dps_secondary = {
+            d.id: d
+            for dev in self.secondary_entities()
+            for d in dev.dps()
+            if not d.optional
+        }
+        required_dps = {**required_dps_primary, **required_dps_secondary}
+        required_dps_list = list(required_dps.values())
+        return required_dps_list
 
     def _entity_match_analyse(self, entity, keys, matched, dps):
         """
@@ -432,7 +454,8 @@ class TuyaDpsConfig:
         """Return the possible values a dps can take."""
         if "mapping" not in self._config.keys():
             _LOGGER.debug(
-                "No mapping for %s, unable to determine valid values",
+                "No mapping for dpid %s (%s), unable to determine valid values",
+                self.id,
                 self.name,
             )
             return []
