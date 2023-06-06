@@ -11,6 +11,14 @@ primary_entity:
     - id: 12
       type: string
       name: state
+      optional: true
+    - id: 14
+      type: boolean
+      # Smart weather switch as per similar johgee device?
+      name: unknown_14
+    - id: 110
+      type: boolean
+      name: unknown_110
 secondary_entities:
   - entity: sensor
     name: Battery
@@ -34,6 +42,7 @@ secondary_entities:
       - id: 10
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: cancel
             value: "Off"
@@ -52,6 +61,7 @@ secondary_entities:
         type: integer
         name: value
         unit: min
+        optional: true
         range:
           min: 0
           max: 86400
