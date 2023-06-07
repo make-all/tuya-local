@@ -4,6 +4,7 @@ products:
     name: HCT-611
 primary_entity:
   entity: switch
+  icon: "mdi:pipe-valve"
   dps:
     - id: 1
       type: boolean
@@ -12,13 +13,41 @@ primary_entity:
       type: string
       name: state
       optional: true
-    - id: 14
-      type: boolean
-      # Smart weather switch as per similar johgee device?
-      name: unknown_14
     - id: 110
       type: boolean
-      name: unknown_110
+      name: switch_record
+    - id: 101
+      type: base64
+      name: program_1
+      optional: true
+    - id: 102
+      type: base64
+      name: program_2
+      optional: true
+    - id: 103
+      type: base64
+      name: program_3
+      optional: true
+    - id: 104
+      type: base64
+      name: program_4
+      optional: true
+    - id: 105
+      type: base64
+      name: program_5
+      optional: true
+    - id: 106
+      type: base64
+      name: program_6
+      optional: true
+    - id: 107
+      type: base64
+      name: program_7
+      optional: true
+    - id: 108
+      type: base64
+      name: program_8
+      optional: true
 secondary_entities:
   - entity: sensor
     name: Battery
@@ -52,6 +81,9 @@ secondary_entities:
             value: "2 days"
           - dps_val: "72h"
             value: "3 days"
+          - dps_val: null
+            value: "not set"
+            hidden: true
   - entity: number
     name: Timer
     category: config
@@ -91,4 +123,12 @@ secondary_entities:
             value: snowy
           - dps_val: fog
             value: fog
-
+  - entity: switch
+    name: Smart weather switch
+    category: config
+    icon: "mdi:weather-partly-cloudy"
+    dps:
+      - id: 14
+        type: boolean
+        name: switch
+        
