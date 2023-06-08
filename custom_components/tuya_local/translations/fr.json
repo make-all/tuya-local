@@ -1,0 +1,61 @@
+{
+    "title": "Tuya Local",
+    "config": {
+        "step": {
+            "user": {
+                "title": "Configurer votre appareil Tuya Local",
+                "description": "[Suivre ces instructions pour trouver le 'device id' et la 'local key'.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "Adresse IP ou Nom d'hote",
+                    "device_id": "Device ID (uuid)",
+                    "local_key": "Local key",
+                    "protocol_version": "Version du Protocol (Auto si inconnu)",
+                    "poll_only": "Sondage uniquement (Essayez ceci si votre appareil ne fonctionne pas complètement)",
+                    "device_cid": "ID de sous-appareil (Pour les appareils connectés via une passerelle)"
+                }
+            },
+            "select_type": {
+                "title": "Choisissez le type d'appareil",
+                "description": "Choisissez le type qui correspond à votre appareil",
+                "data": {
+                    "type": "Type appareil"
+                }
+            },
+            "choose_entities": {
+                "title": "Details appareil",
+                "description": "Choisissez un nom pour cet appareil et quelles entités seront activées",
+                "data": {
+                    "name": "Nom"
+                }
+            }
+        },
+        "abort": {
+            "already_configured": "Un appareil avec cet ID a déjà été ajouté.",
+            "not_supported": "Désolé, il n'y a pas de support pour cet appareil."
+        },
+        "error": {
+            "connection": "Impossible de se connecter à votre appareil avec ces réglages. Il peut s'agir d'un problème intermittent ou ils peuvent être incorrects."
+        }
+    },
+    "options": {
+        "step": {
+            "user": {
+                "title": "Configurer votre appareil Tuya Local",
+                "description": "[Suivre ces instructions pour trouver le 'device id' et la 'local key'.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "Adresse IP ou Nom d'hote",
+                    "local_key": "Local key",
+                    "protocol_version": "Version du Protocol (Auto si inconnu)",
+                    "poll_only": "Sondage uniquement (essayez ceci si votre appareil ne fonctionne pas complètement)",
+                    "device_cid": "ID de sous-appareil (pour les appareils connectés via une passerelle)"
+                }
+            }
+        },
+        "error": {
+            "connection": "Impossible de se connecter à votre appareil avec ces réglages. Il peut s'agir d'un problème intermittent ou ils peuvent être incorrects."
+        },
+        "abort": {
+            "not_supported": "Désolé, il n'y a pas de support pour cet appareil."
+        }
+    }
+}
