@@ -54,3 +54,16 @@ primary_entity:
               value_redirect: power
             - dps_val: true
               value: Turbo	
+secondary_entities:
+  - entity: binary_sensor
+    class: problem
+    name: ERROR
+    category: diagnostic
+    dps:
+      - id: 106
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true                            
