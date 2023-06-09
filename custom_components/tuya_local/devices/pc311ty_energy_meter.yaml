@@ -16,6 +16,93 @@ primary_entity:
 secondary_entities:
   - entity: sensor
     category: diagnostic
+    name: Total Energy
+    class: energy
+    dps:
+      - id: 1
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    name: Total Generation
+    class: energy
+    dps:
+      - id: 2
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    class: current
+    name: Total current
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        force: true
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    name: Voltage
+    class: voltage
+    dps:
+      - id: 106
+        name: sensor
+        type: integer
+        unit: V
+        class: measurement
+        force: true
+        mapping:
+          - scale: 10
+  - entity: sensor
+    category: diagnostic
+    class: frequency
+    name: Frequency
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        unit: Hz
+        class: measurement
+        
+        
+        
+  - entity: sensor
+    category: diagnostic
+    name: Energy A
+    class: energy
+    dps:
+      - id: 101
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    name: Generation A
+    class: energy
+    dps:
+      - id: 102
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100 
+  - entity: sensor
+    category: diagnostic
     class: current
     name: Current A
     dps:
@@ -48,19 +135,10 @@ secondary_entities:
         type: integer
         class: measurement
         mapping:
-          - scale: 100
+          - scale: 100         
   - entity: sensor
     category: diagnostic
-    name: Energy A
-    dps:
-      - id: 101
-        name: sensor
-        type: integer
-        unit: kWh
-        mapping:
-          - scale: 100
-  - entity: sensor
-    category: diagnostic
+    class: reactive_power
     name: Reactive Power A
     dps:
       - id: 115
@@ -69,6 +147,33 @@ secondary_entities:
         unit: kVar
         mapping:
           - scale: 1000
+          
+          
+          
+  - entity: sensor
+    category: diagnostic
+    name: Energy B
+    class: energy
+    dps:
+      - id: 103
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100 
+  - entity: sensor
+    category: diagnostic
+    name: Generation B
+    class: energy
+    dps:
+      - id: 104
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100 
   - entity: sensor
     category: diagnostic
     class: current
@@ -106,16 +211,7 @@ secondary_entities:
           - scale: 100
   - entity: sensor
     category: diagnostic
-    name: Energy B
-    dps:
-      - id: 116
-        name: sensor
-        type: integer
-        unit: kWh
-        mapping:
-          - scale: 100 
-  - entity: sensor
-    category: diagnostic
+    class: reactive_power
     name: Reactive Power B
     dps:
       - id: 116
@@ -124,39 +220,3 @@ secondary_entities:
         unit: kVar
         mapping:
           - scale: 1000
-  - entity: sensor
-    category: diagnostic
-    class: current
-    name: Total current
-    dps:
-      - id: 105
-        type: integer
-        name: sensor
-        unit: A
-        class: measurement
-        force: true
-        mapping:
-          - scale: 1000
-  - entity: sensor
-    category: diagnostic
-    name: Voltage
-    class: voltage
-    dps:
-      - id: 106
-        name: sensor
-        type: integer
-        unit: V
-        class: measurement
-        force: true
-        mapping:
-          - scale: 10
-  - entity: sensor
-    category: diagnostic
-    class: frequency
-    name: Frequency
-    dps:
-      - id: 117
-        type: integer
-        name: sensor
-        unit: Hz
-        class: measurement
