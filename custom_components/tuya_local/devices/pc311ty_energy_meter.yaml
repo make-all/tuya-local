@@ -2,18 +2,6 @@ name: PC311-TY power clamp
 products:
   - id: vfwxetkavqrvg02u
 primary_entity:
-  entity: sensor
-  category: diagnostic
-  class: power
-  name: Total active power
-  dps:
-    - id: 9
-      type: integer
-      name: sensor
-      unit: W
-      force: true
-      class: measurement
-secondary_entities:
   - entity: sensor
     category: diagnostic
     name: Total Energy
@@ -38,6 +26,18 @@ secondary_entities:
         class: total_increasing
         mapping:
           - scale: 100
+secondary_entities:
+  - entity: sensor
+    category: diagnostic
+    class: power
+    name: Total active power
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: W
+        force: true
+        class: measurement
   - entity: sensor
     category: diagnostic
     class: current
