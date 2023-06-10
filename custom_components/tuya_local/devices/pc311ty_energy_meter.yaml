@@ -2,18 +2,19 @@ name: PC311-TY power clamp
 products:
   - id: vfwxetkavqrvg02u
 primary_entity:
-  - entity: sensor
-    category: diagnostic
-    name: Total Energy
-    class: energy
-    dps:
-      - id: 1
-        name: sensor
-        type: integer
-        unit: kWh
-        class: total_increasing
-        mapping:
-          - scale: 100
+  entity: sensor
+  category: diagnostic
+  name: Total Energy
+  class: energy
+  dps:
+    - id: 1
+      name: sensor
+      type: integer
+      unit: kWh
+      class: total_increasing
+      mapping:
+        - scale: 100
+secondary_entities:
   - entity: sensor
     category: diagnostic
     name: Total Generation
@@ -26,7 +27,6 @@ primary_entity:
         class: total_increasing
         mapping:
           - scale: 100
-secondary_entities:
   - entity: sensor
     category: diagnostic
     class: power
