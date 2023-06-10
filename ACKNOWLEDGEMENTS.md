@@ -275,3 +275,6 @@ Further device support has been made with the assistance of users.  Please consi
 - [itn3rd77](https://github.com/itn3rd77) for contributing support for Stadler Form Karl/Karl Big humidifiers.
 - [Mikey887](https://github.com/Mikey887) for contributing support for Catit Pixi Smart feeder.
 - [fcrozat](https://github.com/fcrozat) for contributing support for BLE connected Johgee water timers.
+- [Doudou14](https://github.com/Doudou14) for contributing support for PC311-TY power meter, and French translation.
+- [ntrits](https://github.com/ntrits) for contributing support for 8 byte phase info variant of SmartSMB SMT-006 energy meter.
+

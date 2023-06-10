@@ -202,10 +202,11 @@
 - CBI Astute smart controller breaker switch
 - Compteur digital electric (single phase)
 - eMylo EAI-90 smart meter
+- PC311-TY 2 phase power clamp meter
 - PC321-TY 3 phase power clamp meter
 - PJ-1103 power clamp meter
 - SG600MD Smart Solar Inverter (also SG700MD, other SGxx0MD and SGxx0W models) sold under various brands
-- SmartMCB SMT006 energy meter
+- SmartMCB SMT006 energy meter (10 byte and 8 byte phase info variants)
 - Taxnele circuit breaker and energy meter
 - TOMPD-63LW energy meter circuit breaker
 - WDYK 2P63A energy meter

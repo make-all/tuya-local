@@ -1,38 +1,21 @@
-name: SmartMCB SMT006 energy meter
+name: SmartMCB SMT006-10 energy meter
 products:
   - id: ntwmuj82anq1l92i
 primary_entity:
   entity: switch
+  icon: "mdi:fuse"
+  name: Breaker
   dps:
     - id: 16
       type: boolean
       name: switch
-    - id: 6
-      name: phase_a
-      type: base64
-      optional: true
-      force: true
+    - id: 9
+      type: bitfield
+      name: fault_code
     - id: 19
       type: string
       name: breaker_number
-    - id: 101
-      type: integer
-      name: unknown_101
-    - id: 102
-      type: integer
-      name: unknown_102
-    - id: 103
-      type: integer
-      name: unknown_103
-    - id: 104
-      type: integer
-      name: unknown_104
-    - id: 105
-      type: boolean
-      name: unknown_105
-    - id: 106
-      type: boolean
-      name: unknown_106
+      optional: true
 secondary_entities:
   - entity: sensor
     name: Energy
@@ -287,7 +270,7 @@ secondary_entities:
         optional: true
         unit: V
         mapping:
-          - mask: "FFFFFF0000000000000000"
+          - mask: "FFFF0000000000000000"
             scale: 10
   - entity: sensor
     name: Current A
@@ -300,7 +283,7 @@ secondary_entities:
         optional: true
         unit: A
         mapping:
-          - mask: "000000FFFFFF0000000000"
+          - mask: "0000FFFFFF0000000000"
             scale: 1000
   - entity: sensor
     name: Power A
@@ -313,5 +296,26 @@ secondary_entities:
         optional: true
         unit: kW
         mapping:
-          - mask: "000000000000FFFFFF0000"
+          - mask: "0000000000FFFFFF0000"
             scale: 1000
+  - entity: sensor
+    name: Temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Leakage current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        unit: mA
+        class: measurement
+        optional: true
