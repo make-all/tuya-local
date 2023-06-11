@@ -278,3 +278,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [Doudou14](https://github.com/Doudou14) for contributing support for PC311-TY power meter, and French translation.
 - [ntrits](https://github.com/ntrits) for contributing support for 8 byte phase info variant of SmartMCB SMT-006 energy meter.
 - [xgustavoh](https://github.com/xgustavoh) for contributing support for NovaDigital 4-way switches, and single switch which was merged with the Somgom switch.
+- [cramer52](https://github.com/cramer52) for contributing support for Galaxy Projectors.

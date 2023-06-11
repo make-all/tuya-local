@@ -300,6 +300,7 @@ of device.
 - Deta/Arlec motion sensor lights (DET100HA/DET102HA/MAL315HA)
 - Deta 6910HA series2 dimmer switch
 - Dual-mode magic light string controller
+- Galaxy Projector
 - HDMI sync light
 - iHD001 LED controller
 - Moes dimmer switch
