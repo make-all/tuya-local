@@ -281,3 +281,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [cramer52](https://github.com/cramer52) for contributing support for Galaxy Projectors.
 - [kajapa](https://github.com/kajapa) for contributing support for Proscenic A8 air purifiers.
 - [Pagi13](https://github.com/Pagi13) for assisting with support for DTS238-7 smart meters.
+- [kshepard339](https://github.com/kshepard339) for assisting with support for Petlibro pet feeder with camera.
