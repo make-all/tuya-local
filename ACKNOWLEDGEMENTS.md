@@ -279,3 +279,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [ntrits](https://github.com/ntrits) for contributing support for 8 byte phase info variant of SmartMCB SMT-006 energy meter.
 - [xgustavoh](https://github.com/xgustavoh) for contributing support for NovaDigital 4-way switches, and single switch which was merged with the Somgom switch.
 - [cramer52](https://github.com/cramer52) for contributing support for Galaxy Projectors.
+- [kajapa](https://github.com/kajapa) for contributing support for Proscenic A8 air purifiers.

@@ -134,6 +134,7 @@
 - Hosome air purifier
 - Lifubide X600 air purifier
 - Poiema One air purifier
+- Proscenic A8 air purifier
 - Renpho RP-AP001S air purifier
 - Stadler Form Roger air purifier
 - Tesla Pro and Mini air purifiers
