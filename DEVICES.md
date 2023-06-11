@@ -41,6 +41,7 @@
 - ElectriQ EcoSilent 14HPW
 - Fersk Vind 2
 - Kogan 2.6kW portable air conditioner
+- Nedis ACMB1WT12 portable air conditioner
 - Rotenso Roni R35WI
 - Sendo air conditioner
 - Star-Light air conditioner
