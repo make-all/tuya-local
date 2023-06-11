@@ -46,6 +46,7 @@
 - Star-Light air conditioner
 - Tadiran Wind 65/3P
 - TroniTechnik Hellnar Klimagerät
+- Vivax Cool ACP-12CH35REWI
 
 ### Pool heaters / heatpumps
 
