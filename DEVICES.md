@@ -56,7 +56,7 @@
 - IPS Pro pool-systems heatpump (seems to match Fairland Inver-X as well)
 - Madimack Elite V3 pool heatpump
 - Madimack(model unknown) pool heatpump (seems to match Fairland IPH45 as well)
-- Poolex Silverline, Q-line and Vertigo heatpumps
+- Poolex Silverline, Q-7, Q-line and Vertigo heatpumps
 - Remora pool heatpump
 - W'eau pool heatpump (simple model and a more complex 13kW model)
 
