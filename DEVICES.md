@@ -324,6 +324,7 @@ of device.
 - CC curtain controller 1
 - Dongguan garage door
 - Dooya curtain motor
+- Etersky curtain switch with backlight and timing control
 - FS-03W curtain switch with backlight control
 - Kogan garage door with tilt sensor
 - Loonas smart curtain

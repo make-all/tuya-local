@@ -285,3 +285,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [mkrznar](https://github.com/mkrznar) for assisting with support for Beok TR8B thermostats.
 - [Rain-ZG](https://github.com/Rain-ZG) for assisting with support for Vivax Cool air conditioners.
 - [WilcoE](https://github.com/WilcoE) for assisting with support for Poolex Qline new Q7 variant of pool heatpumps.
+- [WiestDaessle](https://github.com/WiestDaessle) for contributing support for Etersky curtain switches.
