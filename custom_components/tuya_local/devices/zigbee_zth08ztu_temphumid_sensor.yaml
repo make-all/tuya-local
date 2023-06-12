@@ -1,0 +1,28 @@
+name: Temperature humidity sensor
+products:
+  - id: cirvgep4
+    name: ZTH08ZTU
+primary_entity:
+  entity: sensor
+  name: Temperature
+  class: temperature
+  dps:
+    - id: 1
+      type: integer
+      name: sensor
+      unit: C
+      class: measurement
+      mapping:
+        - scale: 10
+secondary_entities:
+  - entity: sensor
+    name: Humidity
+    class: humidity
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+
+
