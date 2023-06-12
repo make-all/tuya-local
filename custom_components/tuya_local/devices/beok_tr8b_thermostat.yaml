@@ -1,6 +1,7 @@
 name: Beok TR8B thermostat
 primary_entity:
   entity: climate
+  translation_key: combo_floor
   dps:
     - id: 1
       type: boolean
@@ -26,15 +27,15 @@ primary_entity:
       name: preset_mode
       mapping:
         - dps_val: cool
-          value: Cool
+          value: cool
         - dps_val: ventil
-          value: Fan only
+          value: fan_only
         - dps_val: heat
-          value: Heat
+          value: heat
         - dps_val: floor
-          value: Floor cool
+          value: floor_cool
         - dps_val: floor_heat
-          value: Floor heat
+          value: floor_heat
     - id: 16
       type: integer
       name: temperature

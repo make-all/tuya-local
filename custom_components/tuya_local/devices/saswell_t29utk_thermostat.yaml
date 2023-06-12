@@ -1,6 +1,7 @@
 name: Saswell T29UTK-7-S-(TY) thermostat
 primary_entity:
   entity: climate
+  translation_key: thermostat
   dps:
     - id: 1
       name: power
@@ -73,9 +74,9 @@ primary_entity:
           constraint: program
           conditions:
             - dps_val: true
-              value: home
+              value: program
             - dps_val: false
-              value: none
+              value: manual
     - id: 102
       name: program
       type: boolean

@@ -3,6 +3,7 @@ products:
   - id: xhx9h0duu9b9bobs
 primary_entity:
   entity: climate
+  translation_key: thermostat
   dps:
     - id: 1
       type: boolean
@@ -41,12 +42,12 @@ primary_entity:
       name: preset_mode
       mapping:
         - dps_val: Program
-          value: home
+          value: program
         - dps_val: TempProg
-          value: comfort
+          value: temp_override
           hidden: true
         - dps_val: Manual
-          value: none
+          value: manual
         - dps_val: Holiday
           value: away
     - id: 5

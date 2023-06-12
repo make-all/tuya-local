@@ -3,6 +3,7 @@ products:
   - id: drwezxukumr9ohuh
 primary_entity:
   entity: climate
+  translation_key: thermostat
   dps:
     - id: 2
       name: temperature
@@ -350,13 +351,13 @@ primary_entity:
       type: integer
       mapping:
         - dps_val: 1
-          value: Schedule
+          value: program
         - dps_val: 2
-          value: Temporary Hold
+          value: temp_override
         - dps_val: 3
-          value: Permanent Hold
+          value: perm_override
         - dps_val: 4
-          value: Holiday Hold
+          value: away
     - id: 5
       name: hvac_mode
       type: integer
