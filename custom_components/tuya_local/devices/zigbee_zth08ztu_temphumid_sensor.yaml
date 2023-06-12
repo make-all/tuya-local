@@ -26,20 +26,18 @@ secondary_entities:
         class: measurement
   - entity: sensor
     name: Battery
-    class: enum
+    class: battery
     category: diagnostic
     dps:
       - id: 3
         type: integer
         name: sensor
         optional: true
+        unit: "%"
         mapping:
           - dps_val: low
-            value: low
+            value: 20
           - dps_val: middle
-            value: medium
+            value: 50
           - dps_val: high
-            value: high
-
-
-
+            value: 90
