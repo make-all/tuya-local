@@ -289,3 +289,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [Xpl0jd](https://github.com/Xpl0jd) for contributing support for Nedis portable air conditioners.
 - [jirijanu](https://github.com/jirijanu) for assisting with support for ZTH08ZTU zigbee temperature and humidity sensors.
 - [AndaPlays](https://github.com/AndaPlays) for assisting with support for Linkoze dual button wall switch.
+- [alexeyatbluescape](https://github.com/alexeyatbluescape) for contributing support for Feit dimmer.
