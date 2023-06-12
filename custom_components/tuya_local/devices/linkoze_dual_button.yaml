@@ -11,7 +11,7 @@ primary_entity:
       name: sensor
       persist: false
       mapping:
-        - dps_val: click
+        - dps_val: single_click
           value: true
         - value: false
 secondary_entities:
@@ -23,7 +23,7 @@ secondary_entities:
         name: sensor
         persist: false
         mapping:
-          - dps_val: click
+          - dps_val: single_click
             value: true
           - value: false
   - entity: binary_sensor
@@ -32,6 +32,7 @@ secondary_entities:
       - id: 1
         type: string
         name: sensor
+        persist: false
         mapping:
           - dps_val: press
             value: true
@@ -42,7 +43,30 @@ secondary_entities:
       - id: 2
         type: string
         name: sensor
+        persist: false
         mapping:
           - dps_val: press
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Double click 1
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        persist: false
+        mapping:
+          - dps_val: double_click
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Double click 2
+    dps:
+      - id: 2
+        type: string
+        name: sensor
+        persist: false
+        mapping:
+          - dps_val: double_click
             value: true
           - value: false
