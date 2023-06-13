@@ -50,7 +50,7 @@ class TuyaLocalSiren(TuyaLocalEntity, SirenEntity):
             self._attr_available_tones = [
                 x for x in self._tone_dp.values(device) if x != "off"
             ]
-            self._default_tone = self._tone_dp.default()
+            self._default_tone = self._tone_dp.default
 
         if self._volume_dp:
             support |= SirenEntityFeature.VOLUME_SET

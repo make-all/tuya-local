@@ -474,6 +474,7 @@ class TuyaDpsConfig:
         _LOGGER.debug("%s values: %s", self.name, val)
         return list(set(val)) if val else []
 
+    @property
     def default(self):
         """Return the default value for a dp."""
         if "mapping" not in self._config.keys():

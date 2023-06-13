@@ -116,6 +116,7 @@ KNOWN_DPS = {
             "temperature_unit",
             "min_temperature",
             "max_temperature",
+            "away_mode",
         ],
     },
 }
