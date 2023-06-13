@@ -503,7 +503,10 @@ class TuyaDpsConfig:
             return None
         for m in self._config["mapping"]:
             if m.get("default", False):
-                return m.get("dps_val", None)
+                return m.get("value", m.get("dps_val", None))
+            for c in m.get("conditions", {}):
+                if c.get("default", False):
+                    return c.get("value", m.get("value", m.get("dps_val", None)))
 
     def range(self, device, scaled=True):
         """Return the range for this dps if configured."""

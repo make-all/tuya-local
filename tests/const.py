@@ -1593,3 +1593,11 @@ GOLDAIR_GPDH340_PAYLOAD = {
     "108": False,
     "109": False,
 }
+
+THERMEX_IF50V_PAYLOAD = {
+    "101": False,
+    "102": 37,
+    "104": 65,
+    "105": "2",
+    "106": 0,
+}
