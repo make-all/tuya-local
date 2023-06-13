@@ -140,7 +140,7 @@ class TuyaDeviceConfig:
 
         incorrect_type_dps = [
             dp
-            for dp in required_dps
+            for dp in self._get_all_dps()
             if dp.id in dps.keys() and not _typematch(dp.type, dps[dp.id])
         ]
         if len(incorrect_type_dps) > 0:
@@ -152,18 +152,13 @@ class TuyaDeviceConfig:
 
         return len(missing_dps) == 0 and len(incorrect_type_dps) == 0
 
+    def _get_all_dps(self):
+        all_dps_list = [d for d in self.primary_entity.dps()]
+        all_dps_list += [d for dev in self.secondary_entities() for d in dev.dps()]
+        return all_dps_list
+
     def _get_required_dps(self):
-        required_dps_primary = {
-            d.id: d for d in self.primary_entity.dps() if not d.optional
-        }
-        required_dps_secondary = {
-            d.id: d
-            for dev in self.secondary_entities()
-            for d in dev.dps()
-            if not d.optional
-        }
-        required_dps = {**required_dps_primary, **required_dps_secondary}
-        required_dps_list = list(required_dps.values())
+        required_dps_list = [d for d in self._get_all_dps() if not d.optional]
         return required_dps_list
 
     def _entity_match_analyse(self, entity, keys, matched, dps):
