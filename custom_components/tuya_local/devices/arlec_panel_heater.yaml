@@ -1,5 +1,5 @@
 name: Arlec 2400W Panel Heater
-product:
+products:
   - id: 70kki9an9nr0oqbj
     name: Arlec Panel Heater (2400W)
 primary_entity:
@@ -29,12 +29,12 @@ primary_entity:
       name: preset_mode
       type: string
       mapping:
-        - dps_val: "low"
-          value: "Low"
-        - dps_val: "high"
-          value: "High"
-        - dps_val: "af"
-          value: "Anti-freeze"
+        - dps_val: low
+          value: eco
+        - dps_val: high
+          value: boost
+        - dps_val: af
+          value: away
     - id: 12
       name: error
       type: bitfield

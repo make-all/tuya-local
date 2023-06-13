@@ -1,0 +1,91 @@
+name: Poolex Q-7 pool heatpump
+products:
+  - id: qhrpnqjhakrn3jvv
+primary_entity:
+  entity: water_heater
+  icon: "mdi:pool-thermometer"
+  dps:
+    - id: 1
+      type: boolean
+      name: operation_mode
+      mapping:
+        - dps_val: false
+          value: off
+        - dps_val: true
+          value: heatpump
+    - id: 2
+      type: integer
+      name: temperature
+      range:
+        min: 5
+        max: 80
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              range:
+                min: 41
+                max: 176
+              value_redirect: temp_set_f
+    - id: 3
+      type: integer
+      name: current_temperature
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: temp_current_f
+    - id: 13
+      type: string
+      name: temperature_unit
+      mapping:
+        - dps_val: c
+          value: C
+        - dps_val: f
+          value: F
+    - id: 14
+      type: integer
+      name: temp_set_f
+      range:
+        min: 41
+        max: 176
+      hidden: true
+      optional: true
+    - id: 15
+      type: integer
+      name: temp_current_f
+      hidden: true
+      optional: true
+    - id: 4
+      type: string
+      name: unknown_4
+    - id: 21
+      type: integer
+      name: unknown_21
+secondary_entities:
+  - entity: select
+    name: Temperature unit
+    icon: "mdi:temperature-celsius"
+    category: config
+    dps:
+      - id: 13
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: Celsius
+          - dps_val: f
+            value: Fahrenheit
+  - entity: binary_sensor
+    name: Status
+    class: running
+    category: diagnostic
+    dps:
+      - id: 11
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: heating
+            value: true
+          - value: false
+

@@ -4,6 +4,7 @@ Setup for different kinds of Tuya water heater devices
 from homeassistant.components.water_heater import (
     ATTR_CURRENT_TEMPERATURE,
     ATTR_OPERATION_MODE,
+    ATTR_AWAY_MODE,
     WaterHeaterEntity,
     WaterHeaterEntityFeature,
 )
@@ -54,7 +55,8 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
         self._unit_dps = dps_map.pop("temperature_unit", None)
         self._mintemp_dps = dps_map.pop("min_temperature", None)
         self._maxtemp_dps = dps_map.pop("max_temperature", None)
-        self._operation_mode_dps = dps_map.pop("operation_mode", None)
+        self._operation_mode_dps = dps_map.pop(ATTR_OPERATION_MODE, None)
+        self._away_mode_dps = dps_map.pop(ATTR_AWAY_MODE, None)
         self._init_end(dps_map)
         self._support_flags = 0
 
@@ -62,6 +64,11 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
             self._support_flags |= WaterHeaterEntityFeature.OPERATION_MODE
         if self._temperature_dps and not self._temperature_dps.readonly:
             self._support_flags |= WaterHeaterEntityFeature.TARGET_TEMPERATURE
+        if self._away_mode_dps or (
+            self._operation_mode_dps
+            and "away" in self._operation_mode_dps.values(device)
+        ):
+            self._support_flags |= WaterHeaterEntityFeature.AWAY_MODE
 
     @property
     def supported_features(self):
@@ -109,6 +116,15 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
             return self._operation_mode_dps.values(self._device)
 
     @property
+    def is_away_mode_on(self):
+        if self._away_mode_dps:
+            return self._away_mode_dps.get_value(self._device)
+        elif self._operation_mode_dps and "away" in self._operation_mode_dps.values(
+            self._device
+        ):
+            return self.current_operation == "away"
+
+    @property
     def current_temperature(self):
         """Return the current temperature."""
         if self._current_temperature_dps is None:
@@ -149,6 +165,29 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
         if self._operation_mode_dps is None:
             raise NotImplementedError()
         await self._operation_mode_dps.async_set_value(self._device, operation_mode)
+
+    async def async_turn_away_mode_on(self):
+        """Turn away mode on"""
+        if self._away_mode_dps:
+            await self._away_mode_dps.async_set_value(self._device, True)
+        elif self._operation_mode_dps and "away" in self._operation_mode_dps.values(
+            self._device
+        ):
+            await self.async_set_operation_mode("away")
+        else:
+            raise NotImplementedError()
+
+    async def async_turn_away_mode_off(self):
+        """Turn away mode off"""
+        if self._away_mode_dps:
+            await self._away_mode_dps.async_set_value(self._device, False)
+        elif self._operation_mode_dps and "away" in self._operation_mode_dps.values(
+            self._device
+        ):
+            # switch to the default mode
+            await self.async_set_operation_mode(self._operation_mode_dps.default)
+        else:
+            raise NotImplementedError()
 
     @property
     def min_temp(self):

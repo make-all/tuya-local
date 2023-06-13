@@ -12,7 +12,7 @@ primary_entity:
           value: "off"
           icon: "mdi:hvac-off"
         - dps_val: true
-          constraint: preset_mode
+          constraint: work_mode
           conditions:
             - dps_val: "0" # auto
               value: heat_cool
@@ -62,18 +62,8 @@ primary_entity:
       name: unknown_20
     - id: 101
       type: string
-      name: preset_mode
-      mapping:
-        - dps_val: "0" # auto
-          value: Auto
-        - dps_val: "1" # cold
-          value: Cool
-        - dps_val: "2" # hot
-          value: Heat
-        - dps_val: "3" # wet
-          value: Dry
-        - dps_val: "5" # fan
-          value: Fan
+      name: work_mode
+      hidden: true
     - id: 103
       type: boolean
       name: unknown_103

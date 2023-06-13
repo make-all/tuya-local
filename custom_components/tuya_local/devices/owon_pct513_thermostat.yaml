@@ -3,6 +3,7 @@ products:
   - id: rsujjtinksnzcezy
 primary_entity:
   entity: climate
+  translation_key: thermostat
   dps:
     - id: 2
       type: string
@@ -107,7 +108,7 @@ primary_entity:
       hidden: true
       mapping:
         - dps_val: false
-          value: Manual
+          value: manual
     - id: 120
       type: string
       name: preset_mode
@@ -117,23 +118,23 @@ primary_entity:
           conditions:
             - dps_val: false
               value_redirect: scheduling
-              value: Manual
+              value: manual
             - dps_val: true
-              value: Follow Schedule
+              value: program
         - dps_val: temphold
           constraint: scheduling
           conditions:
             - dps_val: false
               value_redirect: scheduling
             - dps_val: true
-              value: Temporary Hold
+              value: temp_override
         - dps_val: permhold
           constraint: scheduling
           conditions:
             - dps_val: false
               value_redirect: scheduling
             - dps_val: true
-              value: Permanent Hold
+              value: perm_override
     - id: 129
       type: string
       name: hvac_action

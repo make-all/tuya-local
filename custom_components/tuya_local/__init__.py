@@ -253,7 +253,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
 
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
-    _LOGGER.debug("Unloading entry for device: %s", entry.data[CONF_DEVICE_ID])
+    _LOGGER.debug("Unloading entry for device: %s", get_device_id(entry.data))
     config = entry.data
     data = hass.data[DOMAIN][get_device_id(config)]
     device_conf = get_config(config[CONF_TYPE])
@@ -279,6 +279,6 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
 
 
 async def async_update_entry(hass: HomeAssistant, entry: ConfigEntry):
-    _LOGGER.debug("Updating entry for device: %s", entry.data[CONF_DEVICE_ID])
+    _LOGGER.debug("Updating entry for device: %s", get_device_id(entry.data))
     await async_unload_entry(hass, entry)
     await async_setup_entry(hass, entry)

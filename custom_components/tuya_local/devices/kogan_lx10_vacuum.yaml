@@ -1,0 +1,302 @@
+name: Kogan LX10 Robot Vacuum
+products:
+  - id: ldb9ygikft5awhlu
+    name: Kogan LX10 Robot Vacuum
+primary_entity:
+  entity: vacuum
+  dps:
+    - id: 101
+      name: power # clean_switch
+      type: boolean
+    - id: 102
+      name: activate # pause_switch
+      type: boolean
+    - id: 104
+      name: command # clean_mode
+      type: string
+      mapping:
+        - dps_val: smart
+          value: smart
+        - dps_val: pose
+          value: clean_spot
+        - dps_val: zone
+          value: zone
+        - dps_val: backcharge
+          value: return_to_base
+    - id: 105
+      name: status # robot_state
+      type: string
+      mapping:
+        - dps_val: idle
+          value: idle
+        - dps_val: pointing\areaing
+          value: pointing_areaing
+        - dps_val: totaling
+          value: totaling
+        - dps_val: sweep
+          value: sweep
+        - dps_val: mop
+          value: mop
+        - dps_val: fault
+          value: fault
+        - dps_val: pause
+          value: pause
+        - dps_val: chargring
+          value: charging
+        - dps_val: tocharge
+          value: returning_to_base
+        - dps_val: fullcharge
+          value: charged
+        - dps_val: remotectl
+          value: remotectl
+    - id: 106
+      name: battery
+      type: integer
+    - id: 109
+      name: fan_speed # fan_mode
+      type: string
+      mapping:
+        - dps_val: quiet
+          value: quiet
+        - dps_val: strong
+          value: strong
+        - dps_val: auto
+          value: auto
+    - id: 111
+      name: direction_control # remote_ctrl
+      optional: true
+      type: string
+      mapping:
+        - dps_val: forward
+          value: forward
+        - dps_val: backward
+          value: backward
+        - dps_val: left
+          value: left
+        - dps_val: right
+          value: right
+        - dps_val: stop
+          value: stop
+    - id: 112
+      name: locate # seek_robot
+      optional: true
+      type: boolean
+    - id: 122
+      name: error # robot_fault
+      # TODO: correctly parse the bitfield
+      type: integer
+      # "values": "{\"label\":[\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"15\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"22\",\"23\",\"24\",\"25\",\"26\",\"27\",\"28\",\"29\",\"30\"],\"maxlen\":30}"
+    - id: 123
+      name: path_comm
+      optional: true
+      type: string
+    - id: 124
+      name: cmd_comm
+      optional: true
+      type: string
+    - id: 125
+      name: request_data
+      optional: true
+      type: string
+    - id: 126
+      name: comm_flag
+      optional: true
+      type: string
+    - id: 127
+      name: comm_raw
+      optional: true
+      type: string
+    - id: 128
+      name: message_report
+      type: string
+    - id: 130
+      name: sn
+      optional: true
+      type: string
+    - id: 131
+      name: uuid
+      optional: true
+      type: string
+    - id: 132
+      name: device_info
+      optional: true
+      type: string
+secondary_entities:
+  - entity: switch
+    name: Charge switch
+    category: config
+    icon: "mdi:power-plug"
+    dps:
+      - id: 103
+        name: switch
+        type: boolean
+  - entity: sensor
+    name: Current clean time
+    category: diagnostic
+    class: duration
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 107
+        name: sensor
+        type: integer
+        unit: min
+  - entity: sensor
+    name: Current clean area
+    category: diagnostic
+    icon: "mdi:map-marker-distance"
+    dps:
+      - id: 108
+        name: sensor
+        type: integer
+        unit: m²
+  - entity: select
+    name: Water mode
+    category: config
+    icon: "mdi:water"
+    dps:
+      - id: 110
+        name: option
+        type: string
+        mapping:
+          - dps_val: 'off'
+            value: 'off'
+          - dps_val: quiet
+            value: quiet
+          - dps_val: auto
+            value: auto
+          - dps_val: strong
+            value: strong
+  - entity: switch
+    name: Disturb switch
+    category: config
+    icon: "mdi:bell-ring"
+    dps:
+      - id: 113
+        name: switch
+        type: boolean
+  - entity: number
+    name: Volume
+    category: config
+    icon: "mdi:volume-high"
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 10
+  - entity: button
+    name: Get time
+    category: config
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 115
+        type: string
+        name: button
+        mapping:
+          - dps_val: gettime
+            value: true
+  - entity: button
+    name: Reset side brush
+    category: config
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 115
+        type: string
+        name: button
+        mapping:
+          - dps_val: resetsidebrush
+            value: true
+  - entity: button
+    name: Reset main brush
+    category: config
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 115
+        type: string
+        name: button
+        mapping:
+          - dps_val: resetmainbrush
+            value: true
+  - entity: button
+    name: Reset filter
+    category: config
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 115
+        type: string
+        name: button
+        mapping:
+          - dps_val: resetfilter
+            value: true
+  - entity: sensor
+    name: Total clean time
+    category: diagnostic
+    class: duration
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 116
+        name: sensor
+        type: integer
+        unit: min
+  - entity: sensor
+    name: Total clean area
+    category: diagnostic
+    icon: "mdi:map-marker-distance"
+    dps:
+      - id: 117
+        name: sensor
+        type: integer
+        unit: m²
+  - entity: sensor
+    name: Total clean count
+    category: diagnostic
+    icon: "mdi:counter"
+    dps:
+      - id: 118
+        name: sensor
+        type: integer
+  - entity: sensor
+    name: Side brush time
+    category: diagnostic
+    class: duration
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 119
+        name: sensor
+        type: integer
+        unit: s
+  - entity: sensor
+    name: Main brush time
+    category: diagnostic
+    class: duration
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 120
+        name: sensor
+        type: integer
+        unit: s
+  - entity: sensor
+    name: Filter time
+    category: diagnostic
+    class: duration
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 121
+        name: sensor
+        type: integer
+        unit: s
+  - entity: button
+    name: Reset map
+    category: config
+    icon: "mdi:map-marker-remove"
+    dps:
+      - id: 129
+        name: button
+        type: boolean
+
+
+
+
+
+

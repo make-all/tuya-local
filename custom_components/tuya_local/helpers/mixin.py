@@ -40,6 +40,11 @@ class TuyaLocalEntity:
         return self._config.name
 
     @property
+    def translation_key(self):
+        """Return the translation key."""
+        return self._config.translation_key
+
+    @property
     def has_entity_name(self):
         return True
 

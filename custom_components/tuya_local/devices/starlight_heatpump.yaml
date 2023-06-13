@@ -1,6 +1,7 @@
 name: StarLight heatpump
 primary_entity:
   entity: climate
+  translation_key: aircon_extra
   dps:
     - id: 1
       name: hvac_mode
@@ -54,21 +55,21 @@ primary_entity:
       type: string
       mapping:
         - dps_val: auto
-          value: Auto
+          value: auto
         - dps_val: mute
-          value: Mute
+          value: quiet
         - dps_val: low
-          value: Low
+          value: low
         - dps_val: mid_low
-          value: Med-Low
+          value: medlow
         - dps_val: mid
-          value: Medium
+          value: medium
         - dps_val: mid_high
-          value: Med-High
+          value: medhigh
         - dps_val: high
-          value: High
+          value: high
         - dps_val: strong
-          value: Strong
+          value: strong
     - id: 20
       name: unknown_20
       type: integer

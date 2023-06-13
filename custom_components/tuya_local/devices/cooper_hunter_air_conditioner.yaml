@@ -4,6 +4,7 @@ products:
     name: Cooper and Hunter Nordic Evo NG
 primary_entity:
   entity: climate
+  translation_key: aircon_extra
   dps:
     - id: 1
       name: hvac_mode
@@ -60,19 +61,19 @@ primary_entity:
       type: string
       mapping:
         - dps_val: auto
-          value: Auto
+          value: auto
         - dps_val: quiet
-          value: Quiet
+          value: quiet
         - dps_val: fan1
-          value: Slow
+          value: low
         - dps_val: fan2
-          value: Low
+          value: medlow
         - dps_val: fan3
-          value: Medium
+          value: medium
         - dps_val: fan4
-          value: High
+          value: medhigh
         - dps_val: fan5
-          value: Super High
+          value: high
     - id: 31
       name: swing_mode
       type: string
@@ -82,15 +83,15 @@ primary_entity:
         - dps_val: "on"
           value: "on"
         - dps_val: "angle1" #Topmost
-          value: "Topmost"
+          value: "topmost"
         - dps_val: "angle2" #Top
-          value: "Top"
+          value: "top"
         - dps_val: "angle3" #Middle
-          value: "Middle"
+          value: "middle"
         - dps_val: "angle4" #Down
-          value: "Down"
+          value: "down"
         - dps_val: "angle5" #Downmost
-          value: "Downmost"
+          value: "downmost"
     - id: 19
       name: temperature_unit
       type: string

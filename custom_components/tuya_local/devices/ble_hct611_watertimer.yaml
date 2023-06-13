@@ -1,6 +1,10 @@
 name: Water timer
+products:
+  - id: tqzkwarw
+    name: HCT-611
 primary_entity:
   entity: switch
+  icon: "mdi:pipe-valve"
   dps:
     - id: 1
       type: boolean
@@ -8,6 +12,42 @@ primary_entity:
     - id: 12
       type: string
       name: state
+      optional: true
+    - id: 110
+      type: boolean
+      name: switch_record
+    - id: 101
+      type: base64
+      name: program_1
+      optional: true
+    - id: 102
+      type: base64
+      name: program_2
+      optional: true
+    - id: 103
+      type: base64
+      name: program_3
+      optional: true
+    - id: 104
+      type: base64
+      name: program_4
+      optional: true
+    - id: 105
+      type: base64
+      name: program_5
+      optional: true
+    - id: 106
+      type: base64
+      name: program_6
+      optional: true
+    - id: 107
+      type: base64
+      name: program_7
+      optional: true
+    - id: 108
+      type: base64
+      name: program_8
+      optional: true
 secondary_entities:
   - entity: sensor
     name: Battery
@@ -31,6 +71,7 @@ secondary_entities:
       - id: 10
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: cancel
             value: "Off"
@@ -40,6 +81,9 @@ secondary_entities:
             value: "2 days"
           - dps_val: "72h"
             value: "3 days"
+          - dps_val: null
+            value: "not set"
+            hidden: true
   - entity: number
     name: Timer
     category: config
@@ -49,6 +93,7 @@ secondary_entities:
         type: integer
         name: value
         unit: min
+        optional: true
         range:
           min: 0
           max: 86400
@@ -65,15 +110,25 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: sunny
-            value: Sunny
+            value: sunny
           - dps_val: clear
-            value: Clear
+            value: clear-night
+          - dps_val: cloud
+            value: partlycloudy
           - dps_val: cloudy
-            value: Cloudy
+            value: cloudy
           - dps_val: rainy
-            value: Rain
+            value: rainy
           - dps_val: snow
-            value: Snow
+            value: snowy
           - dps_val: fog
-            value: Fog
-
+            value: fog
+  - entity: switch
+    name: Smart weather switch
+    category: config
+    icon: "mdi:weather-partly-cloudy"
+    dps:
+      - id: 14
+        type: boolean
+        name: switch
+        

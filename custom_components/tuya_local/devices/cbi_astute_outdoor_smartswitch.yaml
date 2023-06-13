@@ -18,13 +18,13 @@ secondary_entities:
       - id: 7
         type: integer
         name: value
-        unit: sec
+        unit: min
         range:
           min: 0
           max: 86400
         mapping:
-          - scale: 0
-            step: 1
+          - scale: 60
+            step: 60
   - entity: select
     category: config
     name: Initial state
@@ -51,7 +51,7 @@ secondary_entities:
         unit: Wh
         class: measurement
         force: true
-        readonly: true
+        optional: true
   - entity: sensor
     category: diagnostic
     class: current
@@ -79,7 +79,6 @@ secondary_entities:
           max: 50000
         mapping:
           - scale: 10
-            step: 1
   - entity: sensor
     category: diagnostic
     class: voltage
@@ -96,4 +95,3 @@ secondary_entities:
           max: 5000
         mapping:
           - scale: 10
-            step: 1

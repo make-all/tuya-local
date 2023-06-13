@@ -364,6 +364,10 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                 settings = settings | self._switch_dps.get_values_to_set(
                     self._device, True
                 )
+        elif self._brightness_dps and not self.is_on:
+            settings = settings | self._brightness_dps.get_values_to_set(
+                self._device, 255
+            )
 
         if settings:
             await self._device.async_set_properties(settings)

@@ -203,6 +203,11 @@ class TuyaEntityConfig:
         """The friendly name for this entity."""
         return self._config.get("name")
 
+    @property
+    def translation_key(self):
+        """The translation key for this entity."""
+        return self._config.get("translation_key")
+
     def unique_id(self, device_uid):
         """Return a suitable unique_id for this entity."""
         return f"{device_uid}-{slugify(self.config_id)}"
@@ -433,14 +438,14 @@ class TuyaDpsConfig:
             return []
         val = []
         for m in self._config["mapping"]:
-            if "value" in m:
+            if "value" in m and not m.get("hidden", False):
                 val.append(m["value"])
             # If there is mirroring without override, include mirrored values
             elif "value_mirror" in m:
                 r_dps = self._entity.find_dps(m["value_mirror"])
                 val = val + r_dps.values(device)
             for c in m.get("conditions", {}):
-                if "value" in c:
+                if "value" in c and not c.get("hidden", False):
                     val.append(c["value"])
                 elif "value_mirror" in c:
                     r_dps = self._entity.find_dps(c["value_mirror"])
@@ -451,7 +456,7 @@ class TuyaDpsConfig:
                 _LOGGER.debug("Considering conditional mappings")
                 c_val = []
                 for m2 in cond["mapping"]:
-                    if "value" in m2:
+                    if "value" in m2 and not m2.get("hidden", False):
                         c_val.append(m2["value"])
                     elif "value_mirror" in m:
                         r_dps = self._entity.find_dps(m["value_mirror"])
@@ -469,6 +474,7 @@ class TuyaDpsConfig:
         _LOGGER.debug("%s values: %s", self.name, val)
         return list(set(val)) if val else []
 
+    @property
     def default(self):
         """Return the default value for a dp."""
         if "mapping" not in self._config.keys():

@@ -1,6 +1,7 @@
 name: Remora pool heatpump
 primary_entity:
   entity: climate
+  translation_key: pool_heatpump
   dps:
     - id: 1
       name: hvac_mode
@@ -27,18 +28,18 @@ primary_entity:
       name: preset_mode
       type: string
       mapping:
-        - dps_val: "heat"
-          value: "Smart Heating"
-        - dps_val: "h_powerful"
-          value: "Powerful Heating"
-        - dps_val: "h_silent"
-          value: "Silent Heating"
-        - dps_val: "cool"
-          value: "Smart Cooling"
-        - dps_val: "c_powerful"
-          value: "Powerful Cooling"
-        - dps_val: "c_silent"
-          value: "Silent Cooling"
+        - dps_val: heat
+          value: smart_heat
+        - dps_val: h_powerful
+          value: quick_heat
+        - dps_val: h_silent
+          value: quiet_heat
+        - dps_val: cool
+          value: smart_cool
+        - dps_val: c_powerful
+          value: quick_cool
+        - dps_val: c_silent
+          value: quiet_cool
     - id: 9
       type: integer
       name: error

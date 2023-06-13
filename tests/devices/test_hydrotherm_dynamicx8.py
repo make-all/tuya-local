@@ -98,6 +98,9 @@ class TestHydrothermDynamicX8(
         self.dps[POWER_DP] = False
         self.assertEqual(self.subject.current_operation, STATE_OFF)
 
+    def test_is_away_mode_is_none_when_unsupported(self):
+        self.assertIsNone(self.subject.is_away_mode_on)
+
     async def test_set_temperature_fails(self):
         with self.assertRaises(TypeError):
             await self.subject.async_set_temperature(temperature=65)
@@ -150,3 +153,25 @@ class TestHydrothermDynamicX8(
             {POWER_DP: False},
         ):
             await self.subject.async_set_operation_mode(STATE_OFF)
+
+    async def test_turn_on(self):
+        async with assert_device_properties_set(
+            self.subject._device,
+            {POWER_DP: True},
+        ):
+            await self.subject.async_turn_on()
+
+    async def test_turn_off(self):
+        async with assert_device_properties_set(
+            self.subject._device,
+            {POWER_DP: False},
+        ):
+            await self.subject.async_turn_off()
+
+    async def test_turn_away_mode_on_fails(self):
+        with self.assertRaises(NotImplementedError):
+            await self.subject.async_turn_away_mode_on()
+
+    async def test_turn_away_mode_off_fails(self):
+        with self.assertRaises(NotImplementedError):
+            await self.subject.async_turn_away_mode_off()

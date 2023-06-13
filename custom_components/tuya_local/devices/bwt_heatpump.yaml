@@ -1,6 +1,7 @@
 name: BWT FI 45 pool heatpump
 primary_entity:
   entity: climate
+  translation_key: pool_heatpump
   dps:
     - id: 1
       name: hvac_mode
@@ -27,20 +28,20 @@ primary_entity:
       name: preset_mode
       type: string
       mapping:
-        - dps_val: "heat"
-          value: "Smart Heating"
-        - dps_val: "quickheat"
-          value: "Boost Heating"
-        - dps_val: "quietheat"
-          value: "Eco Heating"
-        - dps_val: "cool"
-          value: "Smart Cooling"
-        - dps_val: "quickcool"
-          value: "Boost Cooling"
-        - dps_val: "quietcool"
-          value: "Eco Cooling"
-        - dps_val: "auto"
-          value: "Auto"
+        - dps_val: heat
+          value: smart_heat
+        - dps_val: quickheat
+          value: quick_heat
+        - dps_val: quietheat
+          value: quiet_heat
+        - dps_val: cool
+          value: smart_cool
+        - dps_val: quickcool
+          value: quick_cool
+        - dps_val: quietcool
+          value: quiet_cool
+        - dps_val: auto
+          value: auto
     - id: 9
       type: integer
       name: error

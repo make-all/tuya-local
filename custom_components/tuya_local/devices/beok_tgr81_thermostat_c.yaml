@@ -4,6 +4,7 @@ products:
     name: Avatto WT81 thermostat
 primary_entity:
   entity: climate
+  translation_key: thermostat
   dps:
     - id: 1
       name: hvac_mode
@@ -18,9 +19,9 @@ primary_entity:
       type: string
       mapping:
         - dps_val: auto
-          value: Schedule
+          value: program
         - dps_val: manual
-          value: Manual
+          value: manual
     - id: 16
       type: integer
       name: temperature

@@ -293,6 +293,17 @@ different than the DP value from the Tuya protocol.  Normally it will be used
 with `dps_val` to map from one value to another. It could also be used at top
 level to override all values, but I can't imagine a useful purpose for that.
 
+### `hidden`
+
+*Optional, default=false*
+
+When set to true, the mapping value is hidden from the list of all values.
+This can be used for items that should not be available for selection by the
+user but you still want to map for feedback coming from the device.  For
+example, some devices have a "Manual" mode, which is automatically selected
+when adjustments are made to other settings, but should not be available as
+an explicit mode for the user to select.
+
 ### `scale`
 
 *Optional, default=1.*
@@ -395,7 +406,7 @@ This is used by some entities when an argument is not provided to a service call
 but the attribute is required to be set to function correctly.
 An example is the siren entity which uses the tone attribute to turn on and
 off the siren, but when turn_on is called without any argument, it needs to
-pick a defaulttone to use to turn on the siren.
+pick a default tone to use to turn on the siren.
 
 ### `constraint`
 
@@ -607,6 +618,23 @@ Humidifer can also cover dehumidifiers (use class to specify which).
 
 ### siren
 - **tone** (required, mapping of strings): a dp to report and control the siren tone. As this is used to turn on and off the siren, it is required. If this does not fit your siren, the underlying implementation will need to be modified.
-The value "off" will be used for turning off the siren, and will be filtered from the list of available tones.
+The value "off" will be used for turning off the siren, and will be filtered from the list of available tones. One value must be marked as `default: true` so that the `turn_on` service with no commands works.
 - **volume** (optional, float in range 0.0-1.0): a dp to control the volume of the siren (probably needs a scale and step applied, since Tuya devices will probably use an integer, or strings with fixed values).
 - **duration** (optional, integer): a dp to control how long the siren will sound for.
+
+### water_heater
+- **current_temperature** (optional, number): a dp that reports the current water temperature.
+
+- **operation_mode** (optional, mapping of strings): a dp to report and control the operation mode of the water heater.  If `away` is one of the modes, another mode must be marked as `default: true` to that the `away_mode_off` service knows which mode to switch out of away mode to.
+
+- **temperature** (optional, number): a dp to control the target water temperature of the water heater. A unit may be specified as an attribute if the `temperature_unit` dp is not available, otherwise the default of HA's current setting will be used.
+
+- **temperature_unit** (optional, string): a dp that reports the unit the device is configured for.
+    Values should be mapped to "C" or "F" (case sensitive) - often the device will use a boolean or	lower case for this
+
+- **min_temperature** (optional, number): a dp that reports the minimum temperature the water heater can be set to, in case this is not a fixed value.
+
+- **max_temperature** (optional, number): a dp that reports the maximum temperature the water heater can be set to, in case this is not a fixed value. 
+
+- **away_mode** (optional, boolean): a dp to control whether the water heater is in away mode.
+

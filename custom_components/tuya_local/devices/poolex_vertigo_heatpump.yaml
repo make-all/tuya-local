@@ -1,6 +1,7 @@
 name: Poolex Vertigo FI heatpump
 primary_entity:
   entity: climate
+  translation_key: pool_heatpump
   dps:
     - id: 1
       name: hvac_mode
@@ -28,11 +29,11 @@ primary_entity:
       type: string
       mapping:
         - dps_val: "cool"
-          value: "Cool"
-        - dps_val: "heat"
-          value: "Heat"
-        - dps_val: "silent"
-          value: "Silent"
+          value: smart_cool
+        - dps_val: heat
+          value: smart_heat
+        - dps_val: silent
+          value: quiet_heat
     - id: 9
       type: integer
       name: error

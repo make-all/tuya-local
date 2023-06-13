@@ -2,6 +2,7 @@ name: Goldair GPPH heater
 legacy_type: heater
 primary_entity:
   entity: climate
+  translation_key: swing_as_powerlevel
   dps:
     - id: 1
       type: boolean
@@ -42,12 +43,12 @@ primary_entity:
     - id: 4
       type: string
       mapping:
-        - dps_val: "C"
-          value: "comfort"
-        - dps_val: "ECO"
-          value: "eco"
-        - dps_val: "AF"
-          value: "away"
+        - dps_val: C
+          value: comfort
+        - dps_val: ECO
+          value: eco
+        - dps_val: AF
+          value: away
       name: preset_mode
     - id: 12
       type: bitfield
@@ -65,7 +66,7 @@ primary_entity:
           constraint: swing_mode
           conditions:
             - dps_val: stop
-              value: "Stop"
+              value: Stop
         - dps_val: "1"
           value: "1"
         - dps_val: "2"
@@ -90,12 +91,11 @@ primary_entity:
           constraint: power_level
           conditions:
             - dps_val: stop
-              value: "Stop"
-          value-redirect: power_level
-          value: "Stop"
-        - dps_val: "auto"
-          value: "Auto"
-        - dps_val: "user"
+              value: stop
+          value: stop
+        - dps_val: auto
+          value: auto
+        - dps_val: user
           constraint: power_level
           conditions:
             - dps_val: "1"
@@ -108,8 +108,8 @@ primary_entity:
               value: "4"
             - dps_val: "5"
               value: "5"
-            - dps_val: "stop"
-              value: "Stop"
+            - dps_val: stop
+              value: stop
       name: swing_mode
     - id: 106
       type: integer
@@ -176,6 +176,8 @@ secondary_entities:
         unit: "%"
         mapping:
           - dps_val: "stop"
+            value: 0
+          - dps_val: "auto"
             value: 0
           - dps_val: "1"
             value: 20
