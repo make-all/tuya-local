@@ -186,6 +186,8 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
         ):
             # switch to the default mode
             await self.async_set_operation_mode(self._operation_mode_dps.default)
+        else:
+            raise NotImplementedError()
 
     @property
     def min_temp(self):
