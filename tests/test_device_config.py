@@ -476,16 +476,9 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
         self.assertEqual("sub-id", get_device_id({"device_cid": "sub-id"}))
         self.assertEqual("s", get_device_id({"device_id": "d", "device_cid": "s"}))
 
-    # values gets very complex, with things like mappings within conditions
-    # within mappings. I'd expect something like this was added with purpose,
-    # but it isn't exercised by any of the existing unit tests.
-    # value-mirror above is explained by the fact that the device it was
-
-    # added for never worked properly, so was removed.
-
     def test_default_without_mapping(self):
         """Test that default returns None when there is no mapping"""
         mock_entity = MagicMock()
         mock_config = {"id": "1", "name": "test", "type": "string"}
         cfg = TuyaDpsConfig(mock_entity, mock_config)
-        self.assertIsNone(cfg.default())
+        self.assertIsNone(cfg.default)
