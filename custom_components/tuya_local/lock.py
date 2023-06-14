@@ -30,6 +30,7 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
           device (TuyaLocalDevice): The device API instance.
           config (TuyaEntityConfig): The configuration for this entity.
         """
+        super().__init__()
         dps_map = self._init_begin(device, config)
         self._lock_dp = dps_map.pop("lock", None)
         self._unlock_fp_dp = dps_map.pop("unlock_fingerprint", None)

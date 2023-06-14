@@ -37,6 +37,7 @@ class TuyaLocalCamera(TuyaLocalEntity, CameraEntity):
             device (TuyaLocalDevice): the device API instance
             config (TuyaEntityConfig): the configuration for this entity
         """
+        super().__init__()
         dps_map = self._init_begin(device, config)
         self._switch_dp = dps_map.pop("switch", None)
         self._snapshot_dp = dps_map.pop("snapshot", None)

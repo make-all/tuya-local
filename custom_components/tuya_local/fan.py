@@ -37,6 +37,7 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
            device (TuyaLocalDevice): The device API instance.
            config (TuyaEntityConfig): The entity config.
         """
+        super().__init__()
         dps_map = self._init_begin(device, config)
         self._switch_dps = dps_map.pop("switch", None)
         self._preset_dps = dps_map.pop("preset_mode", None)
@@ -112,7 +113,8 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
         # If there is a fixed list of values, snap to the closest one
         if self._speed_dps.values(self._device):
             percentage = min(
-                self._speed_dps.values(self._device), key=lambda x: abs(x - percentage)
+                self._speed_dps.values(self._device),
+                key=lambda x: abs(x - percentage),
             )
 
         await self._speed_dps.async_set_value(self._device, percentage)
