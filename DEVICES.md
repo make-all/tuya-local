@@ -69,6 +69,7 @@
 ### Water heaters
 
 - Hydrotherm Dynamic/X8 heat pump hot water systems
+- Thermex IF series V pro hot water systems.
 
 ### Thermostats
 

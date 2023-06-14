@@ -46,7 +46,7 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
         self._command_dps = dps_map.get("command")
         self._locate_dps = dps_map.get("locate")
         self._power_dps = dps_map.get("power")
-        self._active_dps = dps_map.get("activate")
+        self._activate_dps = dps_map.get("activate")
         self._battery_dps = dps_map.pop("battery", None)
         self._direction_dps = dps_map.get("direction_control")
         self._error_dps = dps_map.get("error")
@@ -82,7 +82,7 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
         if SERVICE_STOP in cmd_support:
             support |= VacuumEntityFeature.STOP
 
-        if self._active_dps:
+        if self._activate_dps:
             support |= VacuumEntityFeature.START | VacuumEntityFeature.PAUSE
         else:
             if "start" in cmd_support:
@@ -119,7 +119,7 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
             return STATE_DOCKED
         elif self._power_dps and self._power_dps.get_value(self._device) is False:
             return STATE_IDLE
-        elif self._active_dps and self._active_dps.get_value(self._device) is False:
+        elif self._activate_dps and self._activate_dps.get_value(self._device) is False:
             return STATE_PAUSED
         else:
             return STATE_CLEANING
@@ -144,8 +144,8 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
             await dps.async_set_value(self._device, switch_to)
 
     async def async_start(self):
-        if self._active_dps:
-            await self._active_dps.async_set_value(self._device, True)
+        if self._activate_dps:
+            await self._activate_dps.async_set_value(self._device, True)
         else:
             dps = self._command_dps or self._status_dps
             if "start" in dps.values(self._device):
@@ -153,8 +153,8 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
 
     async def async_pause(self):
         """Pause the vacuum cleaner."""
-        if self._active_dps:
-            await self._active_dps.async_set_value(self._device, False)
+        if self._activate_dps:
+            await self._activate_dps.async_set_value(self._device, False)
         else:
             dps = self._command_dps or self._status_dps
             if "pause" in dps.values(self._device):
