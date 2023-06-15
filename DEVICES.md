@@ -313,6 +313,7 @@ of device.
 - Galaxy Projector
 - HDMI sync light
 - iHD001 LED controller
+- Lytmi Fantasy/Neo 3 HDMI sync backlight
 - Moes dimmer switch
 - Moes motion sensor lights (XZ-CGV3)
 - Space Dog Music Lamp
