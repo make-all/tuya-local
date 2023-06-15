@@ -1,6 +1,7 @@
 name: Beok TOL47 thermostat
 primary_entity:
   entity: climate
+  translation_key: thermostat
   dps:
     - id: 1
       type: boolean
@@ -36,11 +37,11 @@ primary_entity:
       name: preset_mode
       mapping:
         - dps_val: cold
-          value: none
+          value: manual
         - dps_val: hot
-          value: home
+          value: program
         - dps_val: wind
-          value: comfort
+          value: temp_override
           hidden: true
     - id: 5
       type: string

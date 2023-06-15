@@ -2,6 +2,7 @@ name: Inkbird ITC-306A thermostat
 legacy_type: inkbird_thermostat
 primary_entity:
   entity: climate
+  translation_key: thermo_switch
   dps:
     - id: 12
       type: bitfield
@@ -17,11 +18,11 @@ primary_entity:
       name: preset_mode
       mapping:
         - dps_val: 'on'
-          value: 'On'
+          value: 'on'
         - dps_val: 'pause'
-          value: 'Pause'
+          value: 'pause'
         - dps_val: 'off'
-          value: 'Off'
+          value: 'off'
     - id: 104
       type: integer
       name: current_temperature

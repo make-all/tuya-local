@@ -271,7 +271,24 @@ Further device support has been made with the assistance of users.  Please consi
 - [JonF-49](https://github.com/JonF-49) for contributing support for RGBW lightbulbs, and improvements to color light entities that lack color temperature control.
 - [charliesjc](https://github.com/charliesjc) for contributing support for CBI Astute smart controller breaker switches.
 - [stijnb1234](https://github.com/stijnb1234) for assisting with support for CCT lightbulbs.
-- [YodaDaCoda](https://github.com/YodaDaCoda) for contributing support for Kogan LX10 vacuum cleaners.
+- [YodaDaCoda](https://github.com/YodaDaCoda) for contributing support for Kogan LX10 vacuum cleaners and improvements to device detection debug feedback.
 - [itn3rd77](https://github.com/itn3rd77) for contributing support for Stadler Form Karl/Karl Big humidifiers.
 - [Mikey887](https://github.com/Mikey887) for contributing support for Catit Pixi Smart feeder.
 - [fcrozat](https://github.com/fcrozat) for contributing support for BLE connected Johgee water timers.
+- [Doudou14](https://github.com/Doudou14) for contributing support for PC311-TY power meter, and French translation.
+- [ntrits](https://github.com/ntrits) for contributing support for 8 byte phase info variant of SmartMCB SMT-006 energy meter.
+- [xgustavoh](https://github.com/xgustavoh) for contributing support for NovaDigital 4-way switches, and single switch which was merged with the Somgom switch.
+- [cramer52](https://github.com/cramer52) for contributing support for Galaxy Projectors.
+- [kajapa](https://github.com/kajapa) for contributing support for Proscenic A8 air purifiers.
+- [Pagi13](https://github.com/Pagi13) for assisting with support for DTS238-7 smart meters.
+- [kshepard339](https://github.com/kshepard339) for assisting with support for Petlibro pet feeder with camera.
+- [mkrznar](https://github.com/mkrznar) for assisting with support for Beok TR8B thermostats.
+- [Rain-ZG](https://github.com/Rain-ZG) for assisting with support for Vivax Cool air conditioners.
+- [WilcoE](https://github.com/WilcoE) for assisting with support for Poolex Qline new Q7 variant of pool heatpumps.
+- [WiestDaessle](https://github.com/WiestDaessle) for contributing support for Etersky curtain switches.
+- [Xpl0jd](https://github.com/Xpl0jd) for contributing support for Nedis portable air conditioners.
+- [jirijanu](https://github.com/jirijanu) for assisting with support for ZTH08ZTU zigbee temperature and humidity sensors.
+- [AndaPlays](https://github.com/AndaPlays) for assisting with support for Linkoze dual button wall switch.
+- [alexeyatbluescape](https://github.com/alexeyatbluescape) for contributing support for Feit dimmer.
+- [g470258](https://github.com/g470258) for contributing support for Thermex IF water heaters and Russian language translations.
+- [julianocomg](https://github.com/julianocomg) for contributing support for Adaprox fingerbot plus and 6-way simple switches.

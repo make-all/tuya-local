@@ -283,15 +283,20 @@ a simple heater just has a boolean off/on switch.  It can also be used to
 change the icon when a specific mode is operational.  For example if
 a heater device has a fan-only mode, you could change the icon to "mdi:fan"
 instead of "mdi:radiator" when in that mode.
-
+A `dps_val` of `null` can be used to specify a value to be assumed when a
+dp is not being returned by the device, to avoid None in some locations where
+that causes an issue such as entities showing as unavailable.  Such a mapping
+is one-way, the value will not be mapped back to a null when setting the dp.
+x
 ### `value`
 
 *Optional.*
 
 This can be used to set the attribute value seen by Home Assistant to something
 different than the DP value from the Tuya protocol.  Normally it will be used
-with `dps_val` to map from one value to another. It could also be used at top
-level to override all values, but I can't imagine a useful purpose for that.
+with `dps_val` to map from one value to another. Without `dps_val` it will
+one-way map all otherwise unmapped dps values to the specified value.  This
+can be useful for a binary_sensor.
 
 ### `hidden`
 
@@ -618,6 +623,23 @@ Humidifer can also cover dehumidifiers (use class to specify which).
 
 ### siren
 - **tone** (required, mapping of strings): a dp to report and control the siren tone. As this is used to turn on and off the siren, it is required. If this does not fit your siren, the underlying implementation will need to be modified.
-The value "off" will be used for turning off the siren, and will be filtered from the list of available tones.
+The value "off" will be used for turning off the siren, and will be filtered from the list of available tones. One value must be marked as `default: true` so that the `turn_on` service with no commands works.
 - **volume** (optional, float in range 0.0-1.0): a dp to control the volume of the siren (probably needs a scale and step applied, since Tuya devices will probably use an integer, or strings with fixed values).
 - **duration** (optional, integer): a dp to control how long the siren will sound for.
+
+### water_heater
+- **current_temperature** (optional, number): a dp that reports the current water temperature.
+
+- **operation_mode** (optional, mapping of strings): a dp to report and control the operation mode of the water heater.  If `away` is one of the modes, another mode must be marked as `default: true` to that the `away_mode_off` service knows which mode to switch out of away mode to.
+
+- **temperature** (optional, number): a dp to control the target water temperature of the water heater. A unit may be specified as an attribute if the `temperature_unit` dp is not available, otherwise the default of HA's current setting will be used.
+
+- **temperature_unit** (optional, string): a dp that reports the unit the device is configured for.
+    Values should be mapped to "C" or "F" (case sensitive) - often the device will use a boolean or	lower case for this
+
+- **min_temperature** (optional, number): a dp that reports the minimum temperature the water heater can be set to, in case this is not a fixed value.
+
+- **max_temperature** (optional, number): a dp that reports the maximum temperature the water heater can be set to, in case this is not a fixed value. 
+
+- **away_mode** (optional, boolean): a dp to control whether the water heater is in away mode.
+

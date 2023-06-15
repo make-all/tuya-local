@@ -53,9 +53,6 @@ primary_entity:
     - id: 102
       name: error
       type: bitfield
-      mapping:
-        - dps_val: 0
-          value: OK
       # out_of_bounds, lifted, tilted, overturned, trapped, signal lost, motor fault, overheated, battery damaged
     - id: 106
       type: integer
@@ -124,6 +121,9 @@ secondary_entities:
           - dps_val: BATTERY_NOT_ENOUGH
             value: Low battery
             icon: "mdi:battery-low"
+          - dps_val: RAIN_PARK
+            value: Raining
+            icon: "mdi:weather-pouring"
   - entity: switch
     name: Rain mode
     icon: "mdi:weather-pouring"

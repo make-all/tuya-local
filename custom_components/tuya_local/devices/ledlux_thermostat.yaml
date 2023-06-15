@@ -4,6 +4,7 @@ products:
     name: Smart Boiler
 primary_entity:
   entity: climate
+  translation_key: thermostat
   dps:
     - id: 1
       name: hvac_mode
@@ -36,9 +37,9 @@ primary_entity:
       name: preset_mode
       mapping:
         - dps_val: Manual
-          value: none
+          value: manual
         - dps_val: Program
-          value: home
+          value: program
         - dps_val: Holiday
           value: away
     - id: 12

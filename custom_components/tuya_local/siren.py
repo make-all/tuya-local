@@ -33,6 +33,7 @@ class TuyaLocalSiren(TuyaLocalEntity, SirenEntity):
            device (TuyaLocalDevice): The device API instance.
            config (TuyaEntityConfig): The config for this entity.
         """
+        super().__init__()
         dps_map = self._init_begin(device, config)
         self._tone_dp = dps_map.get("tone", None)
         self._volume_dp = dps_map.get("volume_level", None)
@@ -50,7 +51,7 @@ class TuyaLocalSiren(TuyaLocalEntity, SirenEntity):
             self._attr_available_tones = [
                 x for x in self._tone_dp.values(device) if x != "off"
             ]
-            self._default_tone = self._tone_dp.default()
+            self._default_tone = self._tone_dp.default
 
         if self._volume_dp:
             support |= SirenEntityFeature.VOLUME_SET
@@ -94,7 +95,8 @@ class TuyaLocalSiren(TuyaLocalEntity, SirenEntity):
             # for fixed values, we need to snap to closest value.
             if self._volume_dp.values(self._device) is not None:
                 volume = min(
-                    self._volume_dp.values(self._device), key=lambda x: abs(x - volume)
+                    self._volume_dp.values(self._device),
+                    key=lambda x: abs(x - volume),
                 )
 
             set_dps = {

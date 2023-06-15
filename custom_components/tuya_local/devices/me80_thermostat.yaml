@@ -1,6 +1,7 @@
 name: ME80 thermostat
 primary_entity:
   entity: climate
+  translation_key: thermostat
   dps:
     - id: 1
       type: boolean
@@ -22,9 +23,9 @@ primary_entity:
       name: preset_mode
       mapping:
         - dps_val: auto
-          value: Auto
+          value: program
         - dps_val: manual
-          value: Manual
+          value: manual
     - id: 16
       type: integer
       name: temperature

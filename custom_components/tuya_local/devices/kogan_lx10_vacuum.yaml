@@ -6,15 +6,19 @@ primary_entity:
   entity: vacuum
   dps:
     - id: 101
-      name: power # clean_switch
+      name: start # clean_switch
       type: boolean
     - id: 102
-      name: activate # pause_switch
+      name: pause # pause_switch
       type: boolean
     - id: 104
       name: command # clean_mode
       type: string
       mapping:
+        - value: start
+          value_redirect: start
+        - value: pause
+          value_redirect: pause
         - dps_val: smart
           value: smart
         - dps_val: pose
@@ -28,23 +32,23 @@ primary_entity:
       type: string
       mapping:
         - dps_val: idle
-          value: idle
+          value: standby
         - dps_val: pointing\areaing
           value: pointing_areaing
         - dps_val: totaling
-          value: totaling
+          value: cleaning
         - dps_val: sweep
           value: sweep
         - dps_val: mop
           value: mop
         - dps_val: fault
-          value: fault
+          value: error
         - dps_val: pause
-          value: pause
+          value: paused
         - dps_val: chargring
           value: charging
         - dps_val: tocharge
-          value: returning_to_base
+          value: returning
         - dps_val: fullcharge
           value: charged
         - dps_val: remotectl
@@ -83,9 +87,16 @@ primary_entity:
       type: boolean
     - id: 122
       name: error # robot_fault
-      # TODO: correctly parse the bitfield
-      type: integer
-      # "values": "{\"label\":[\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\",\"10\",\"11\",\"12\",\"13\",\"14\",\"15\",\"16\",\"17\",\"18\",\"19\",\"20\",\"21\",\"22\",\"23\",\"24\",\"25\",\"26\",\"27\",\"28\",\"29\",\"30\"],\"maxlen\":30}"
+      type: bitfield
+      mapping:
+        - dps_val: 0
+          value: 0
+        - dps_val: 32
+          value: Drop sensor abnormal
+        - dps_val: 524288
+          value: Machine trapped
+        - dps_val: 1048576
+          value: Was picked up at work
     - id: 123
       name: path_comm
       optional: true
@@ -108,6 +119,7 @@ primary_entity:
       type: string
     - id: 128
       name: message_report
+      optional: true
       type: string
     - id: 130
       name: sn
@@ -139,7 +151,7 @@ secondary_entities:
       - id: 107
         name: sensor
         type: integer
-        unit: min
+        unit: s
   - entity: sensor
     name: Current clean area
     category: diagnostic
@@ -193,6 +205,7 @@ secondary_entities:
       - id: 115
         type: string
         name: button
+        optional: true
         mapping:
           - dps_val: gettime
             value: true
@@ -204,6 +217,7 @@ secondary_entities:
       - id: 115
         type: string
         name: button
+        optional: true
         mapping:
           - dps_val: resetsidebrush
             value: true
@@ -215,6 +229,7 @@ secondary_entities:
       - id: 115
         type: string
         name: button
+        optional: true
         mapping:
           - dps_val: resetmainbrush
             value: true
@@ -226,6 +241,7 @@ secondary_entities:
       - id: 115
         type: string
         name: button
+        optional: true
         mapping:
           - dps_val: resetfilter
             value: true
@@ -238,7 +254,7 @@ secondary_entities:
       - id: 116
         name: sensor
         type: integer
-        unit: min
+        unit: s
   - entity: sensor
     name: Total clean area
     category: diagnostic
@@ -264,6 +280,7 @@ secondary_entities:
     dps:
       - id: 119
         name: sensor
+        optional: true
         type: integer
         unit: s
   - entity: sensor
@@ -274,6 +291,7 @@ secondary_entities:
     dps:
       - id: 120
         name: sensor
+        optional: true
         type: integer
         unit: s
   - entity: sensor
@@ -284,6 +302,7 @@ secondary_entities:
     dps:
       - id: 121
         name: sensor
+        optional: true
         type: integer
         unit: s
   - entity: button
@@ -293,10 +312,5 @@ secondary_entities:
     dps:
       - id: 129
         name: button
+        optional: true
         type: boolean
-
-
-
-
-
-

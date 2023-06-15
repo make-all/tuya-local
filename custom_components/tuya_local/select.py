@@ -30,6 +30,7 @@ class TuyaLocalSelect(TuyaLocalEntity, SelectEntity):
             device (TuyaLocalDevice): the device API instance
             config (TuyaEntityConfig): the configuration for this entity
         """
+        super().__init__()
         dps_map = self._init_begin(device, config)
         self._option_dps = dps_map.pop("option")
         if self._option_dps is None:
