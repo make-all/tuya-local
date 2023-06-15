@@ -37,6 +37,7 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
           device (TuyaLocalDevice): The device API instance
           config (TuyaEntityConfig): The entity config
         """
+        super().__init__()
         dps_map = self._init_begin(device, config)
         self._position_dp = dps_map.pop("position", None)
         self._currentpos_dp = dps_map.pop("current_position", None)
@@ -65,7 +66,10 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
             return CoverDeviceClass(dclass)
         except ValueError:
             if dclass:
-                _LOGGER.warning(f"Unrecognised cover device class of {dclass} ignored")
+                _LOGGER.warning(
+                    "Unrecognised cover device class of %s ignored",
+                    dclass,
+                )
             return None
 
     @property

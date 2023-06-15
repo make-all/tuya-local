@@ -70,10 +70,14 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
            device (TuyaLocalDevice): The device API instance.
            config (TuyaEntityConfig): The entity config.
         """
+        super().__init__()
         dps_map = self._init_begin(device, config)
 
         self._aux_heat_dps = dps_map.pop(ATTR_AUX_HEAT, None)
-        self._current_temperature_dps = dps_map.pop(ATTR_CURRENT_TEMPERATURE, None)
+        self._current_temperature_dps = dps_map.pop(
+            ATTR_CURRENT_TEMPERATURE,
+            None,
+        )
         self._current_humidity_dps = dps_map.pop(ATTR_CURRENT_HUMIDITY, None)
         self._fan_mode_dps = dps_map.pop(ATTR_FAN_MODE, None)
         self._humidity_dps = dps_map.pop(ATTR_HUMIDITY, None)
@@ -213,7 +217,9 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         if kwargs.get(ATTR_PRESET_MODE) is not None:
             await self.async_set_preset_mode(kwargs.get(ATTR_PRESET_MODE))
         if kwargs.get(ATTR_TEMPERATURE) is not None:
-            await self.async_set_target_temperature(kwargs.get(ATTR_TEMPERATURE))
+            await self.async_set_target_temperature(
+                kwargs.get(ATTR_TEMPERATURE),
+            )
         high = kwargs.get(ATTR_TARGET_TEMP_HIGH)
         low = kwargs.get(ATTR_TARGET_TEMP_LOW)
         if high is not None or low is not None:
@@ -223,15 +229,22 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         if self._temperature_dps is None:
             raise NotImplementedError()
 
-        await self._temperature_dps.async_set_value(self._device, target_temperature)
+        await self._temperature_dps.async_set_value(
+            self._device,
+            target_temperature,
+        )
 
     async def async_set_target_temperature_range(self, low, high):
         """Set the target temperature range."""
         dps_map = {}
         if low is not None and self._temp_low_dps is not None:
-            dps_map.update(self._temp_low_dps.get_values_to_set(self._device, low))
+            dps_map.update(
+                self._temp_low_dps.get_values_to_set(self._device, low),
+            )
         if high is not None and self._temp_high_dps is not None:
-            dps_map.update(self._temp_high_dps.get_values_to_set(self._device, high))
+            dps_map.update(
+                self._temp_high_dps.get_values_to_set(self._device, high),
+            )
         if dps_map:
             await self._device.async_set_properties(dps_map)
 
@@ -287,7 +300,7 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         try:
             return HVACAction(action) if action else None
         except ValueError:
-            _LOGGER.warning(f"_Unrecognised HVAC Action {action} ignored")
+            _LOGGER.warning("Unrecognised HVAC Action %s ignored", action)
             return None
 
     @property
@@ -299,7 +312,7 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         try:
             return HVACMode(hvac_mode) if hvac_mode else None
         except ValueError:
-            _LOGGER.warning(f"Unrecognised HVAC Mode of {hvac_mode} ignored")
+            _LOGGER.warning("Unrecognised HVAC Mode of %s ignored", hvac_mode)
             return None
 
     @property
@@ -330,7 +343,10 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         # Bypass the usual dps mapping to switch the power dp directly
         # this way the hvac_mode will be kept when toggling off and on.
         if self._hvac_mode_dps and self._hvac_mode_dps.type is bool:
-            await self._device.async_set_property(self._hvac_mode_dps.id, False)
+            await self._device.async_set_property(
+                self._hvac_mode_dps.id,
+                False,
+            )
         else:
             await super().async_turn_off()
 

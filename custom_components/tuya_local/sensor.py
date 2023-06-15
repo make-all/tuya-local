@@ -37,6 +37,7 @@ class TuyaLocalSensor(TuyaLocalEntity, SensorEntity):
             device (TuyaLocalDevice): the device API instance.
             config (TuyaEntityConfig): the configuration for this entity
         """
+        super().__init__()
         dps_map = self._init_begin(device, config)
         self._sensor_dps = dps_map.pop("sensor", None)
         if self._sensor_dps is None:

@@ -283,15 +283,20 @@ a simple heater just has a boolean off/on switch.  It can also be used to
 change the icon when a specific mode is operational.  For example if
 a heater device has a fan-only mode, you could change the icon to "mdi:fan"
 instead of "mdi:radiator" when in that mode.
-
+A `dps_val` of `null` can be used to specify a value to be assumed when a
+dp is not being returned by the device, to avoid None in some locations where
+that causes an issue such as entities showing as unavailable.  Such a mapping
+is one-way, the value will not be mapped back to a null when setting the dp.
+x
 ### `value`
 
 *Optional.*
 
 This can be used to set the attribute value seen by Home Assistant to something
 different than the DP value from the Tuya protocol.  Normally it will be used
-with `dps_val` to map from one value to another. It could also be used at top
-level to override all values, but I can't imagine a useful purpose for that.
+with `dps_val` to map from one value to another. Without `dps_val` it will
+one-way map all otherwise unmapped dps values to the specified value.  This
+can be useful for a binary_sensor.
 
 ### `hidden`
 

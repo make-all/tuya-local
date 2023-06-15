@@ -1,6 +1,8 @@
 """
 Setup for different kinds of Tuya numbers
 """
+import logging
+
 from homeassistant.components.number import NumberEntity
 from homeassistant.components.number.const import (
     DEFAULT_MIN_VALUE,
@@ -12,6 +14,8 @@ from .device import TuyaLocalDevice
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
 from .helpers.mixin import TuyaLocalEntity, unit_from_ascii
+
+_LOGGER = logging.getLogger(__name__)
 
 MODE_AUTO = "auto"
 
@@ -37,6 +41,7 @@ class TuyaLocalNumber(TuyaLocalEntity, NumberEntity):
             device (TuyaLocalDevice): the device API instance
             config (TuyaEntityConfig): the configuration for this entity
         """
+        super().__init__()
         dps_map = self._init_begin(device, config)
         self._value_dps = dps_map.pop("value")
         if self._value_dps is None:

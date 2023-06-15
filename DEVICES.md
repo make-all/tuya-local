@@ -294,6 +294,7 @@ of device.
 - Simple switch with timer v2 - the above with timer moved from dp 11 to 9, confirmed with a Nexxt 220V smart switch.
 - Simple triple switch - three switches in a single device, tested with Somgam 3 gang wall switches.
 - Simple quad switch - four switches in a single device, tested with Somgam 4 gang wall switches.
+- Simple 6-way switch - six switches in a single device
 - RGB Nightlight outlet - one smartplug with a small built-in RGB light.
 
 ### Lights
@@ -404,6 +405,7 @@ of device.
 
 ### Devices supported via Bluetooth hubs
 
+- Adaprox Fingerbot plus
 - HCT-611 water timer
 - Johgee water timer
 - Orion DL021HA lock

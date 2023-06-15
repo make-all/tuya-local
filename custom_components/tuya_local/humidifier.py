@@ -42,6 +42,7 @@ class TuyaLocalHumidifier(TuyaLocalEntity, HumidifierEntity):
            device (TuyaLocalDevice): The device API instance.
            config (TuyaEntityConfig): The entity config.
         """
+        super().__init__()
         dps_map = self._init_begin(device, config)
         self._humidity_dps = dps_map.pop("humidity", None)
         self._mode_dps = dps_map.pop("mode", None)

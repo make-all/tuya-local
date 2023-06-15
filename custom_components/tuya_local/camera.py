@@ -37,6 +37,7 @@ class TuyaLocalCamera(TuyaLocalEntity, CameraEntity):
             device (TuyaLocalDevice): the device API instance
             config (TuyaEntityConfig): the configuration for this entity
         """
+        super().__init__()
         dps_map = self._init_begin(device, config)
         self._switch_dp = dps_map.pop("switch", None)
         self._snapshot_dp = dps_map.pop("snapshot", None)
@@ -67,7 +68,7 @@ class TuyaLocalCamera(TuyaLocalEntity, CameraEntity):
     def is_on(self):
         """Return the power state of the camera"""
         if self._switch_dp:
-            return self._switch_dp.get_value(self.device)
+            return self._switch_dp.get_value(self._device)
 
     async def async_turn_off(self):
         """Turn off the camera"""

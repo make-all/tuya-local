@@ -36,6 +36,7 @@ class TuyaLocalBinarySensor(TuyaLocalEntity, BinarySensorEntity):
             device (TuyaLocalDevice): the device API instance.
             config (TuyaEntityConfig): the configuration for this entity
         """
+        super().__init__()
         dps_map = self._init_begin(device, config)
         self._sensor_dps = dps_map.pop("sensor")
         if self._sensor_dps is None:
@@ -51,7 +52,8 @@ class TuyaLocalBinarySensor(TuyaLocalEntity, BinarySensorEntity):
         except ValueError:
             if dclass:
                 _LOGGER.warning(
-                    f"Unrecognised binary_sensor device class of {dclass} ignored"
+                    "Unrecognised binary_sensor device class of %s ignored",
+                    dclass,
                 )
             return None
 

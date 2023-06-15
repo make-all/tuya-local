@@ -689,6 +689,12 @@ class TuyaDpsConfig:
         for m in self._config.get("mapping", {}):
             if "dps_val" not in m:
                 default = m
+            # The following avoids further matching on the above case
+            # and in the null mapping case, which is intended to be
+            # a one-way map to prevent the entity showing as unavailable
+            # when no value is being reported by the device.
+            if m.get("dps_val") is None:
+                continue
             if "value" in m and str(m["value"]) == str(value):
                 return m
             if (
