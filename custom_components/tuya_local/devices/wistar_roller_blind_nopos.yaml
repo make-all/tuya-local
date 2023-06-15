@@ -22,7 +22,15 @@ primary_entity:
         min: 0
         max: 100
       mapping:
-        - invert: true
+        - invert: false
+    - id: 103
+      type: boolean
+      name: reversed
+      mapping:
+        - dps_val: true
+          value: false
+        - dps_val: false
+          value: true
     - id: 105
       type: boolean
       name: curtain_hand
@@ -138,3 +146,8 @@ secondary_entities:
       - id: 103
         type: boolean
         name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
