@@ -293,3 +293,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [g470258](https://github.com/g470258) for contributing support for Thermex IF water heaters and Russian language translations.
 - [julianocomg](https://github.com/julianocomg) for contributing support for Adaprox fingerbot plus and 6-way simple switches.
 - [andyrak](https://github.com/andyrak) for assisting with support for Lytmi HDMI sync backlights.
+- [melvanderwal](https://github.com/melvanderwal) for assisting with support for Inkbird iBBQ-4T thermometers.
