@@ -134,6 +134,7 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
                     # probably the curtain is as set, somewhere in the middle
                     # so none of opened, closed, opening or closing
                     return None
+
         if self._control_dp:
             cmd = self._control_dp.get_value(self._device)
             pos = self.current_cover_position
@@ -174,13 +175,13 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
     @property
     def is_closed(self):
         """Return if the cover is closed or not, if it can be determined."""
-        state = self._current_state
-        if state is None:
+        pos = self.current_cover_position
+        if pos is None:
             # If we return false, and is_closing and is_opening are also false,
             # HA assumes open.  If we don't know, return None.
             return None
         else:
-            return state == "closed"
+            return pos == 0
 
     async def async_open_cover(self, **kwargs):
         """Open the cover."""
