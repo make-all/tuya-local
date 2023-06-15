@@ -68,7 +68,7 @@ class TuyaLocalCamera(TuyaLocalEntity, CameraEntity):
     def is_on(self):
         """Return the power state of the camera"""
         if self._switch_dp:
-            return self._switch_dp.get_value(self.device)
+            return self._switch_dp.get_value(self._device)
 
     async def async_turn_off(self):
         """Turn off the camera"""
