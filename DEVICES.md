@@ -386,6 +386,7 @@ of device.
 - Bresser smart 7-in-1 weather station
 - Catit Pixi smart fountain
 - Catit pet feeder (Pixi 2.2kg dispenser and 6 meal versions, and another non-Pixi branded single dispenser)
+- CO2-Box air quality monitor
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
 - Inkbird PTH-9CW air quality monitor
 - KKMoon 7in1 air quality monitor
