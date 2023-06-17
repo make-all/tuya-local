@@ -109,6 +109,7 @@
 ### Fans
 
 - Anko HEGSM40 fan
+- Arlec ceiling fan and light remote control kit (CFR225HA)
 - Arlec Grid Connect smart ceiling fan (with and without light)
 - Arlec 12 speed tower fan
 - Arlec 19 speed wall fan
