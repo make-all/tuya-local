@@ -378,6 +378,10 @@ of device.
 
 - BCom Majic IPBox intercom camera
 
+### Alarm control panels
+
+- ZX-G30 alarm system
+
 ### Miscellaneous
 
 - generic PIR motion sensor
@@ -404,7 +408,6 @@ of device.
 - Universal remote control (supports sensors only)
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)
 - ZN-2C09 9-in-1 air quality monitor
-- ZX-G30 alarm system (not as an alarm_control_panel, as individual inputs and sensors)
 - ZY-M100-WiFi mmWave human presence sensor
 
 ### Devices supported via Bluetooth hubs

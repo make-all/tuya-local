@@ -494,17 +494,21 @@ Note that "on" and "off" require quotes in yaml, otherwise it they are interpret
 Many entity types support a class attribute which may change the UI behaviour, icons etc.  See the
 HA documentation for the entity type to see what is valid (these may expand over time)
 
-### binary_sensor
+### `alarm_control_panel`
+- **alarm_state** (required, string) the alarm state, used to report and change the current state of the alarm. Expects values from the set `disarmed`, `armed_home`, `armed_away`, `armed_night`, `armed_vacation`, `armed_custom_bypass`, `pending`, `arming`, `disarming`, `triggered`.  Other states are allowed for read-only status, but only the armed... and disarmed states are available as commands.
+- **trigger** (optional, boolean) used to trigger the alarm remotely for test or panic button etc.
+
+### `binary_sensor`
 - **sensor** (required, boolean) the dp to attach to the sensor.
 
-### button
+### `button`
 - **button** (required, boolean) the dp to attach to the button.  Any
 read value will be ignored, but the dp is expected to be present for
 device detection unless set to optional.  A value of true will be sent
 for a button press, map this to the desired dps_val if a different
 value is required.
 
-### climate
+### `climate`
 - **aux_heat** (optional, boolean) a dp to control the aux heat switch if the device has one.
 - **current_temperature** (optional, number) a dp that reports the current temperature.
 - **current_humidity** (optional, number) a dp that reports the current humidity (%).
@@ -533,7 +537,7 @@ value is required.
 - **min_temperature** (optional, number) a dp that specifies the minimum temperature that can be set.   Some devices provide this, otherwise a fixed range on the temperature dp can be used.
 - **max_temperature** (optional, number) a dp that specifies the maximum temperature that can be set.
 
-### cover
+### `cover`
 
 Either **position** or **open** should be specified.
 
@@ -545,7 +549,7 @@ Either **position** or **open** should be specified.
    Special values are `opening, closing`
 - **open** (optional, boolean): a dp that reports if the cover is open. Only used if **position** is not available.
 
-### fan
+### `fan`
 - **switch** (optional, boolean): a dp to control the power state of the fan
 - **preset_mode** (optional, mapping of strings): a dp to control different modes of the fan.
    Values `"off", low, medium, high` used to be handled specially by HA as deprecated speed aliases.  If these are the only "presets", consider mapping them as **speed** values instead, as voice assistants will respond to phrases like "turn the fan up/down" for speed.
@@ -555,14 +559,14 @@ Either **position** or **open** should be specified.
 - **direction** (optional, string): a dp to control the spin direction of the fan.
    Valid values are `forward, reverse`.
 
-### humidifier
+### `humidifier`
 Humidifer can also cover dehumidifiers (use class to specify which).
 
 - **switch** (optional, boolean): a dp to control the power state of the fan
 - **mode** (optional, mapping of strings): a dp to control preset modes of the device
 - **humidity** (optional, number):  a dp to control the target humidity of the device
 
-### light
+### `light`
 - **switch** (optional, boolean): a dp to control the on/off state of the light
 - **brightness** (optional, number 0-255): a dp to control the dimmer if available.
 - **color_temp** (optional, number): a dp to control the color temperature if available.
@@ -576,7 +580,7 @@ Humidifer can also cover dehumidifiers (use class to specify which).
 - **effect** (optional, mapping of strings): a dp to control effects / presets supported by the light.
    Note: If the light mixes in color modes in the same dp, `color_mode` should be used instead.  If the light contains both a separate dp for effects/scenes/presets and a mix of color_modes and effects (commonly scene and music) in the `color_mode` dp, then a separate select entity should be used for the dedicated dp to ensure the effects from `color_mode` are selectable.
 
-### lock
+### `lock`
 - **lock** (optional, boolean): a dp to control the lock state: true = locked, false = unlocked
 - **unlock_fingerprint** (optional, integer): a dp to identify the fingerprint used to unlock the lock.
 - **unlock_password** (optional, integer): a dp to identify the password used to unlock the lock.
@@ -588,7 +592,7 @@ Humidifer can also cover dehumidifiers (use class to specify which).
 - **approve_unlock** (optional, boolean): a dp to unlock the lock in response to a request.
 - **jammed** (optional, boolean): a dp to signal that the lock is jammed.
 
-### number
+### `number`
 - **value** (required, number): a dp to control the number that is set.
 - **unit** (optional, string): a dp that reports the units returned by the number.
     This may be useful for devices that switch between C and F, otherwise a fixed unit attribute on the **value** dp can be used.
@@ -597,18 +601,24 @@ Humidifer can also cover dehumidifiers (use class to specify which).
 - **maximum** (optional, number): a dp that reports the maximum the number can be set to.
     This may be used as an alternative to a range setting on the **value** dp if the range is dynamic
 
-### select
+### `select`
 - **option** (required, mapping of strings): a dp to control the option that is selected.
 
-### sensor
+### `sensor`
 - **sensor** (required, number or string): a dp that returns the current value of the sensor.
 - **unit** (optional, string): a dp that returns the unit returned by the sensor.
     This may be useful for devices that switch between C and F, otherwise a fixed unit attribute on the **sensor** dp can be used.
 
-### switch
+### `siren`
+- **tone** (required, mapping of strings): a dp to report and control the siren tone. As this is used to turn on and off the siren, it is required. If this does not fit your siren, the underlying implementation will need to be modified.
+The value "off" will be used for turning off the siren, and will be filtered from the list of available tones. One value must be marked as `default: true` so that the `turn_on` service with no commands works.
+- **volume** (optional, float in range 0.0-1.0): a dp to control the volume of the siren (probably needs a scale and step applied, since Tuya devices will probably use an integer, or strings with fixed values).
+- **duration** (optional, integer): a dp to control how long the siren will sound for.
+
+### `switch`
 - **switch** (required, boolean): a dp to control the switch state.
 
-### vacuum
+### `vacuum`
 - **status** (required, mapping of strings): a dp to report and control the status of the vacuum.
 - **command** (optional, mapping of strings): a dp to control the statuss of the vacuum.  If supplied, the status dp is only used to report the state.
     Special values: `return_to_base, clean_spot`, others are sent as general commands
@@ -621,13 +631,7 @@ Humidifer can also cover dehumidifiers (use class to specify which).
 - **error** (optional, bitfield): a dp that reports error status.
     As this is mapped to a single "fault" state, you could consider separate binary_sensors to report on individual errors
 
-### siren
-- **tone** (required, mapping of strings): a dp to report and control the siren tone. As this is used to turn on and off the siren, it is required. If this does not fit your siren, the underlying implementation will need to be modified.
-The value "off" will be used for turning off the siren, and will be filtered from the list of available tones. One value must be marked as `default: true` so that the `turn_on` service with no commands works.
-- **volume** (optional, float in range 0.0-1.0): a dp to control the volume of the siren (probably needs a scale and step applied, since Tuya devices will probably use an integer, or strings with fixed values).
-- **duration** (optional, integer): a dp to control how long the siren will sound for.
-
-### water_heater
+### `water_heater`
 - **current_temperature** (optional, number): a dp that reports the current water temperature.
 
 - **operation_mode** (optional, mapping of strings): a dp to report and control the operation mode of the water heater.  If `away` is one of the modes, another mode must be marked as `default: true` to that the `away_mode_off` service knows which mode to switch out of away mode to.

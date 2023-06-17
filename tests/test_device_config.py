@@ -23,6 +23,7 @@ from .const import (
 )
 
 KNOWN_DPS = {
+    "alarm_control_panel": {"required": ["alarm_state"], "optional": []},
     "binary_sensor": {"required": ["sensor"], "optional": []},
     "button": {"required": ["button"], "optional": []},
     "camera": {
