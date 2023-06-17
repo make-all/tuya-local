@@ -380,6 +380,7 @@ of device.
 
 ### Alarm control panels
 
+- ZX-DB11 doorbell and alarm system
 - ZX-G30 alarm system
 
 ### Miscellaneous

@@ -109,6 +109,7 @@ class TuyaLocalAlarmControlPanel(TuyaLocalEntity, AlarmControlPanelEntity):
         await self._alarm_send_command(STATE_ALARM_ARMED_CUSTOM_BYPASS)
 
     async def async_alarm_trigger(self, code=None):
-        if not self._trigger_dp:
-            raise NotImplementedError()
-        await self._trigger_dp.async_set_value(self._device, True)
+        if self._trigger_dp:
+            await self._trigger_dp.async_set_value(self._device, True)
+        else:
+            await self._alarm_send_command(STATE_ALARM_TRIGGERED)

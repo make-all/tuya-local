@@ -40,6 +40,30 @@ async def test_init_entry(hass):
 
 
 @pytest.mark.asyncio
+async def test_init_entry_as_secondary(hass):
+    """Test initialisation when alarm_control_panel is a secondary entity"""
+    entry = MockConfigEntry(
+        domain=DOMAIN,
+        data={
+            CONF_TYPE: "zx_db11_doorbell_alarm",
+            CONF_DEVICE_ID: "dummy",
+            CONF_PROTOCOL_VERSION: "auto",
+        },
+    )
+    m_add_entities = Mock()
+    m_device = AsyncMock()
+
+    hass.data[DOMAIN] = {"dummy": {"device": m_device}}
+
+    await async_setup_entry(hass, entry, m_add_entities)
+    assert (
+        type(hass.data[DOMAIN]["dummy"]["alarm_control_panel_alarm"])
+        == TuyaLocalAlarmControlPanel
+    )
+    m_add_entities.assert_called_once()
+
+
+@pytest.mark.asyncio
 async def test_init_entry_fails_if_device_has_no_alarm_control_panel(hass):
     """Test initialisation when device has no matching entity"""
     entry = MockConfigEntry(
