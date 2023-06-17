@@ -287,7 +287,7 @@ A `dps_val` of `null` can be used to specify a value to be assumed when a
 dp is not being returned by the device, to avoid None in some locations where
 that causes an issue such as entities showing as unavailable.  Such a mapping
 is one-way, the value will not be mapped back to a null when setting the dp.
-x
+
 ### `value`
 
 *Optional.*
