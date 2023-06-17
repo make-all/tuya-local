@@ -32,6 +32,7 @@
 - Be Cool BC14KL2101F
 - Carson CB PA280
 - Cooper&Hunter Nordic Evo Ng
+- Daewoo Dhome OL-A011 air conditioner (DA9KWE)
 - Daizuki heat pump
 - Duux Blizzard portable air conditioner
 - Eberg Cooly C35HD

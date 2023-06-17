@@ -296,3 +296,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [melvanderwal](https://github.com/melvanderwal) for assisting with support for Inkbird iBBQ-4T thermometers.
 - [ahori](https://github.com/ahori) for contributing support for CO2-Box air quality monitors.
 - [NatMan3000](https://github.com/NatMan3000) for assisting with support for Arlec Ceiling fan/light remote control kits.
+- [TanYauRei](https://github.com/TanYauRei) for assisting with support for Daewoo Dhome air conditioners.
