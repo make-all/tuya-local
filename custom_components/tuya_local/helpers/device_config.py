@@ -80,6 +80,15 @@ def _equal_or_in(value1, values2):
         return value1 == values2
 
 
+def _remove_duplicates(seq):
+    """Remove dulicates from seq, maintaining order."""
+    if not seq:
+        return []
+    seen = set()
+    adder = seen.add
+    return [x for x in seq if not (x in seen or adder(x))]
+
+
 class TuyaDeviceConfig:
     """Representation of a device config for Tuya Local devices."""
 
@@ -490,7 +499,7 @@ class TuyaDpsConfig:
                     val = c_val
                     break
         _LOGGER.debug("%s values: %s", self.name, val)
-        return list(set(val)) if val else []
+        return _remove_duplicates(val)
 
     @property
     def default(self):
