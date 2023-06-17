@@ -131,9 +131,9 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
                 setpos = self._position_dp.get_value(self._device)
                 if setpos == pos:
                     # if the current position is around the set position,
-                    # probably the curtain is as set, somewhere in the middle
-                    # so none of opened, closed, opening or closing
-                    return None
+                    # which is not closed, then we want is_closed to return
+                    # false, so HA gets the full state from position.
+                    return "opened"
         if self._control_dp:
             cmd = self._control_dp.get_value(self._device)
             pos = self.current_cover_position
