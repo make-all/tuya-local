@@ -297,3 +297,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [ahori](https://github.com/ahori) for contributing support for CO2-Box air quality monitors.
 - [NatMan3000](https://github.com/NatMan3000) for assisting with support for Arlec Ceiling fan/light remote control kits.
 - [TanYauRei](https://github.com/TanYauRei) for assisting with support for Daewoo Dhome air conditioners.
+- [eivindsor](https://github.com/eivindsor) for assisting with support for Lucking HS6 smart locks.

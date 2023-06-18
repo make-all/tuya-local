@@ -366,8 +366,9 @@ of device.
 
 ### Locks
 
+- AGL Ultramagic smart lock
+- Lucking HF06 smart lock
 - Orion Grid Connect smart lock
-- AGL Ultramagic smart lock (experimental)
 
 ### Sirens
 
