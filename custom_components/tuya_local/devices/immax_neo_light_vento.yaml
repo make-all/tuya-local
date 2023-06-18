@@ -1,4 +1,4 @@
-name: Immax NEO LITE VENTO Smart
+name: Ceiling fan
 products:
   - id: ea6vpac5hfe5rqw4
     name: Immax NEO LITE VENTO Smart
@@ -8,11 +8,6 @@ primary_entity:
     - id: 1
       type: boolean
       name: switch
-      mapping:
-        - dps_val: true
-          value: ON
-        - dps_val: false
-          value: OFF
     - id: 2
       type: string
       name: preset_mode
@@ -43,22 +38,12 @@ primary_entity:
       name: direction
       type: string
       category: config
-      mapping:
-        - dps_val: forward
-          value: forward
-        - dps_val: reverse
-          value: reverse
 secondary_entities:
   - entity: light
     dps:
       - id: 15
         type: boolean
         name: switch
-        mapping:
-          - dps_val: true
-            value: ON
-          - dps_val: false
-            value: OFF
   - entity: select
     name: timer
     icon: "mdi:timer"

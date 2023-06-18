@@ -130,7 +130,7 @@
 - TMWF02 fan controller
 - Treatlife DS02-F fan switch
 - Treatlife DS03 fan with dimmable light
-- IMMAX NEO LITE VENTO SMART with light
+- Immax Neo Lite Vento ceiling fan with light
 
 ### Air Purifiers
 
