@@ -23,7 +23,10 @@ from .const import (
 )
 
 KNOWN_DPS = {
-    "alarm_control_panel": {"required": ["alarm_state"], "optional": []},
+    "alarm_control_panel": {
+        "required": ["alarm_state"],
+        "optional": ["trigger"],
+    },
     "binary_sensor": {"required": ["sensor"], "optional": []},
     "button": {"required": ["button"], "optional": []},
     "camera": {
@@ -81,9 +84,11 @@ KNOWN_DPS = {
             "unlock_password",
             "unlock_temp_pwd",
             "unlock_dynamic_pwd",
+            "unlock_offline_pwd",
             "unlock_card",
             "unlock_app",
             "unlock_key",
+            "unlock_ble",
             "jammed",
         ],
     },
@@ -93,7 +98,10 @@ KNOWN_DPS = {
     },
     "select": {"required": ["option"], "optional": []},
     "sensor": {"required": ["sensor"], "optional": ["unit"]},
-    "siren": {"required": [], "optional": ["tone", "volume", "duration"]},
+    "siren": {
+        "required": [],
+        "optional": ["tone", "volume", "duration", "switch"],
+    },
     "switch": {"required": ["switch"], "optional": ["current_power_w"]},
     "vacuum": {
         "required": ["status"],

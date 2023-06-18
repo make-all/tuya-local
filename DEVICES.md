@@ -373,6 +373,7 @@ of device.
 ### Sirens
 
 - Orion Grid Connect outdoor siren
+- Neo Coolcam Siren with temperature and humidity alert (NAS-AB02W)
 
 ### Doorbells
 
