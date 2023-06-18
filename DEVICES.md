@@ -384,6 +384,7 @@ of device.
 
 ### Alarm control panels
 
+- BlitzWolf BW-IS6 security alarm system
 - ZX-DB11 doorbell and alarm system
 - ZX-G30 alarm system
 
