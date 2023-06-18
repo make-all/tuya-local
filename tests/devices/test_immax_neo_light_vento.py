@@ -61,7 +61,7 @@ class TestImmaxNeoLightVento(
         )
 
     def test_preset_modes(self):
-        self.assertCountEqual(self.fan.preset_modes, ["Normal", "Natural", "Sleep"])
+        self.assertCountEqual(self.fan.preset_modes, ["normal", "nature", "sleep"])
 
     def test_speed(self):
         self.dps[SPEED_DPS] = 2
@@ -79,13 +79,13 @@ class TestImmaxNeoLightVento(
 
     def test_preset_mode(self):
         self.dps[PRESET_DPS] = "normal"
-        self.assertEqual(self.fan.preset_mode, "Normal")
+        self.assertEqual(self.fan.preset_mode, "normal")
 
         self.dps[PRESET_DPS] = "nature"
-        self.assertEqual(self.fan.preset_mode, "Natural")
+        self.assertEqual(self.fan.preset_mode, "nature")
 
-        self.dps[PRESET_DPS] = "Sleep"
-        self.assertEqual(self.fan.preset_mode, "Sleep")
+        self.dps[PRESET_DPS] = "sleep"
+        self.assertEqual(self.fan.preset_mode, "sleep")
 
     def test_direction(self):
         self.dps[DIRECTION_DPS] = "forward"

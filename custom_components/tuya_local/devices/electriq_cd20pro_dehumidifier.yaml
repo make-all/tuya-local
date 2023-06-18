@@ -59,11 +59,20 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: "45"
-            value: "Half open"
+            value: sleep
           - dps_val: "90"
-            value: "Fully open"
+            value: fresh
           - dps_val: "0_90"
-            value: "Oscillate"
+            value: nature
+      - id: 102
+        name: oscillate
+        type: string
+        mapping:
+          - dps_val: "0_90"
+            value: true
+          - dps_val: "90"
+            value: false
+          - value: false
   - entity: switch
     name: "UV sterilization"
     icon: "mdi:solar-power"

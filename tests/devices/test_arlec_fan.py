@@ -52,7 +52,7 @@ class TestArlecFan(SwitchableTests, BasicSelectTests, TuyaDeviceTestCase):
         self.assertEqual(self.subject.preset_mode, "normal")
 
         self.dps[PRESET_DPS] = "breeze"
-        self.assertEqual(self.subject.preset_mode, "breeze")
+        self.assertEqual(self.subject.preset_mode, "nature")
 
         self.dps[PRESET_DPS] = "sleep"
         self.assertEqual(self.subject.preset_mode, "sleep")
@@ -61,7 +61,7 @@ class TestArlecFan(SwitchableTests, BasicSelectTests, TuyaDeviceTestCase):
         self.assertIs(self.subject.preset_mode, None)
 
     def test_preset_modes(self):
-        self.assertCountEqual(self.subject.preset_modes, ["normal", "breeze", "sleep"])
+        self.assertCountEqual(self.subject.preset_modes, ["normal", "nature", "sleep"])
 
     async def test_set_preset_mode_to_normal(self):
         async with assert_device_properties_set(
@@ -75,7 +75,7 @@ class TestArlecFan(SwitchableTests, BasicSelectTests, TuyaDeviceTestCase):
             self.subject._device,
             {PRESET_DPS: "breeze"},
         ):
-            await self.subject.async_set_preset_mode("breeze")
+            await self.subject.async_set_preset_mode("nature")
 
     async def test_set_preset_mode_to_sleep(self):
         async with assert_device_properties_set(

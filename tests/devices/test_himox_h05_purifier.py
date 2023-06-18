@@ -98,15 +98,15 @@ class TestHimoxH05Purifier(
     def test_preset_modes(self):
         self.assertCountEqual(
             self.subject.preset_modes,
-            ["auto", "low", "mid", "high"],
+            ["smart", "sleep", "fresh", "strong"],
         )
 
     def test_preset_mode(self):
         self.dps[PRESET_DPS] = "low"
-        self.assertEqual(self.subject.preset_mode, "low")
+        self.assertEqual(self.subject.preset_mode, "sleep")
 
     async def test_set_preset_mode(self):
         async with assert_device_properties_set(
             self.subject._device, {PRESET_DPS: "mid"}
         ):
-            await self.subject.async_set_preset_mode("mid")
+            await self.subject.async_set_preset_mode("fresh")
