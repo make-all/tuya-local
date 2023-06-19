@@ -374,7 +374,7 @@ of device.
 
 - Iebeyond ECH doorbell with 433MHz RF hub
 - Neo Coolcam Siren with temperature and humidity alert (NAS-AB02W)
-- Orion Grid Connect outdoor siren
+- Orion Grid Connect outdoor siren (also Elesion NX-4980)
 
 ### Doorbells
 
