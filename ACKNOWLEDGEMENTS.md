@@ -299,3 +299,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [TanYauRei](https://github.com/TanYauRei) for assisting with support for Daewoo Dhome air conditioners.
 - [eivindsor](https://github.com/eivindsor) for assisting with support for Lucking HS6 smart locks.
 - [epajfl00](https://github.com/epajfl00) for assisting with support for Neo Coolcam sirens.
+- [jorometala](https://github.com/jorometala) for assisting with support for Iebeyond ECH RF hub doorbells.
