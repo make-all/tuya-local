@@ -1,6 +1,7 @@
-name: COSTWAY Portable Air Conditioner
+name: Portable air conditioner
 products:
   - id: 86sjxqebxymrjt3z
+    name: COSTWAY
 primary_entity:
   entity: climate
   dps:
@@ -29,13 +30,7 @@ primary_entity:
       range:
         min: 16
         max: 30
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: C
-              range:
-                min: 16
-                max: 31
+      unit: C
     - id: 3
       type: integer
       name: current_temperature
@@ -53,7 +48,7 @@ primary_entity:
           value: high
     - id: 20
       type: integer
-      name: unknow_20
+      name: unknown_20
     - id: 103
       type: boolean
       name: unknown_103
