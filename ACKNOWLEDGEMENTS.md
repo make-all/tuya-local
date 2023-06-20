@@ -301,3 +301,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [epajfl00](https://github.com/epajfl00) for assisting with support for Neo Coolcam sirens.
 - [jorometala](https://github.com/jorometala) for assisting with support for Iebeyond ECH RF hub doorbells.
 - [Yersi88](https://github.com/Yersi88) for contributing support for Costway portable air conditioners.
+- [bdkacz](https://github.com/bdkacz) for assisting with support for ZX-GS21 gask leak alarms.

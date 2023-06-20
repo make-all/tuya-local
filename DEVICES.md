@@ -417,6 +417,7 @@ of device.
 - Universal remote control (supports sensors only)
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)
 - ZN-2C09 9-in-1 air quality monitor
+- ZX-GS21 gas leak alarm monitor
 - ZY-M100-WiFi mmWave human presence sensor
 
 ### Devices supported via Bluetooth hubs
