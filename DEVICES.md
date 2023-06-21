@@ -125,6 +125,7 @@
 - Goldair GCPF315 fan
 - Ledkia fan and light controller
 - Lexy F501 fan
+- Mantra ceiling fan with light
 - Skyfan DC fan
 - Skyfan DC fan with light
 - Stirling FS1-40DC pedestal fan

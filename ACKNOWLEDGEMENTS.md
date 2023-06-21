@@ -302,3 +302,5 @@ Further device support has been made with the assistance of users.  Please consi
 - [jorometala](https://github.com/jorometala) for assisting with support for Iebeyond ECH RF hub doorbells.
 - [Yersi88](https://github.com/Yersi88) for contributing support for Costway portable air conditioners.
 - [bdkacz](https://github.com/bdkacz) for assisting with support for ZX-GS21 gask leak alarms.
+- [mild-delirium](https://github.com/mild-delirium) for contributing a bugfix for polling devices.
+- [jorgejavier2321](https://github.com/jorgejavier2321) for assisting with support for Mantra ceiling fans.
