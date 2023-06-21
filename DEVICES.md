@@ -211,6 +211,7 @@
 
 ### Smart Meter/Circuit Breaker
 
+- Aulifants SMES200 energy monitoring breaker switch
 - CBI Astute smart controller breaker switch
 - Compteur digital electric (single phase)
 - DTS238-7 3 phase smart meter

@@ -304,3 +304,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [bdkacz](https://github.com/bdkacz) for assisting with support for ZX-GS21 gask leak alarms.
 - [mild-delirium](https://github.com/mild-delirium) for contributing a bugfix for polling devices.
 - [jorgejavier2321](https://github.com/jorgejavier2321) for assisting with support for Mantra ceiling fans.
+- [diystu](https://github.com/diystu) for assisting with support for Aulifants SMES200 breaker switch.
