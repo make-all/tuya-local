@@ -294,7 +294,7 @@ class TuyaLocalDevice(object):
                         self._api.receive,
                     )
                 else:
-                    asyncio.sleep(5)
+                    await asyncio.sleep(5)
                     poll = None
 
                 if poll:
