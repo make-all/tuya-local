@@ -1,0 +1,157 @@
+name: Smart Bird Feeder Camera
+products:
+  - id: bk9uhkngejjo8wup
+    name: Pinelake BF002
+primary_entity:
+  entity: camera
+  dps:
+    - id: 150
+      name: record
+      type: boolean
+      optional: true
+      force: true
+secondary_entities:
+  - entity: switch
+    name: Siren
+    dps:
+      - id: 159
+        type: boolean
+        name: switch
+        optional: true
+        force: true
+  - entity: switch
+    name: Light indicator
+    category: config
+    icon: "mdi:led-on"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+        optional: true
+        force: true
+  - entity: sensor
+    name: Battery level
+    class: battery
+    dps:
+      - id: 145
+        type: integer
+        name: sensor
+        unit: "%"
+        optional: true
+        force: true
+  - entity: select
+    name: Power supply
+    category: diagnostic
+    dps:
+      - id: 146
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Battery"
+          - dps_val: "1"
+            value: "AC"
+        optional: true
+        force: true
+        readonly: true
+  - entity: select
+    name: Device state
+    category: diagnostic
+    dps:
+      - id: 149
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: false
+            value: "Dormant"
+          - dps_val: true
+            value: "Waking"
+        optional: true
+        force: true
+        readonly: true
+  - entity: switch
+    name: Vision flip
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+        optional: true
+        force: true
+  - entity: switch
+    name: OSD watermark
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+        optional: true
+        force: true
+  - entity: select
+    name: Night vision
+    category: config
+    dps:
+      - id: 108
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Auto"
+          - dps_val: "1"
+            value: "Off"
+          - dps_val: "2"
+            value: "On"
+        optional: true
+        force: true
+  - entity: switch
+    name: Motion detection
+    category: config
+    dps:
+      - id: 134
+        type: boolean
+        name: switch
+        optional: true
+        force: true
+  - entity: select
+    name: Motion sensitivity
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Low"
+          - dps_val: "1"
+            value: "Medium"
+          - dps_val: "2"
+            value: "High"
+        optional: true
+        force: true
+  - entity: switch
+    name: Motion Detection Timer
+    category: config
+    dps:
+      - id: 135
+        type: boolean
+        name: switch
+        optional: true
+        force: true
+  - entity: switch
+    name: Record1
+    category: config
+    dps:
+      - id: 137
+        type: boolean
+        name: switch
+        optional: true
+        force: true
+  - entity: sensor
+    name: Message
+    category: diagnostic
+    dps:
+      - id: 212
+        type: string
+        name: sensor
+        optional: true
+        force: true
