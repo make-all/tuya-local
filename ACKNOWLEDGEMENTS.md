@@ -305,3 +305,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [mild-delirium](https://github.com/mild-delirium) for contributing a bugfix for polling devices.
 - [jorgejavier2321](https://github.com/jorgejavier2321) for assisting with support for Mantra ceiling fans.
 - [diystu](https://github.com/diystu) for assisting with support for Aulifants SMES200 breaker switch.
+- [mariustt](https://github.com/mariustt) for assisting with support for Tampa LED lighting system.

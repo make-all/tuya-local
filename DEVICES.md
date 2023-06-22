@@ -325,6 +325,7 @@ of device.
 - Moes dimmer switch
 - Moes motion sensor lights (XZ-CGV3)
 - Space Dog Music Lamp
+- Tampa Magnetic LED System CD-TY-WY05
 
 ### Covers
 
