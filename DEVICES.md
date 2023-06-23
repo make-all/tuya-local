@@ -417,6 +417,7 @@ of device.
 - Qoto 03 smart water valve / sprinkler controller
 - SD123 HPR01 human presence radar
 - SH07-8 smart sprinkler controller
+- Tontine electric blanket
 - Universal remote control (supports sensors only)
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)
 - ZN-2C09 9-in-1 air quality monitor

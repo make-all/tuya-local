@@ -306,3 +306,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [jorgejavier2321](https://github.com/jorgejavier2321) for assisting with support for Mantra ceiling fans.
 - [diystu](https://github.com/diystu) for assisting with support for Aulifants SMES200 breaker switch.
 - [mariustt](https://github.com/mariustt) for assisting with support for Tampa LED lighting system.
+- [prunes-git](https://github.com/prunes-git) for contributing support for Tontine electric blankets.

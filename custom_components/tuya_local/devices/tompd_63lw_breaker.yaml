@@ -54,6 +54,7 @@ secondary_entities:
   - entity: sensor
     name: Balance energy
     category: diagnostic
+    class: energy_storage
     dps:
       - id: 13
         type: integer
@@ -64,6 +65,7 @@ secondary_entities:
   - entity: number
     name: Charge energy
     category: config
+    class: energy_storage
     icon: "mdi:cash"
     dps:
       - id: 14

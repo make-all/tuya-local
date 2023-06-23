@@ -75,6 +75,7 @@ secondary_entities:
         name: switch
   - entity: sensor
     name: Energy balance
+    class: energy_storage
     category: diagnostic
     dps:
       - id: 13
@@ -96,6 +97,7 @@ secondary_entities:
   - entity: number
     name: Charge energy
     category: config
+    class: energy_storage
     icon: "mdi:cash"
     dps:
       - id: 15
