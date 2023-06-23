@@ -34,11 +34,11 @@ primary_entity:
       name: fan_mode
       mapping:
         - dps_val: low
-          value: Low
+          value: low
         - dps_val: mid
-          value: Medium
+          value: medium
         - dps_val: high
-          value: High
+          value: high
     - id: 5
       type: integer
       name: temperature
@@ -123,8 +123,8 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: 0
-            value: False
-          - value: True
+            value: false
+          - value: true
   - entity: switch
     name: Display ionizer
     category: config
@@ -140,7 +140,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: select
-    name: Temperature display units
+    name: Temperature unit
     icon: "mdi:temperature-celsius"
     category: config
     dps:
@@ -153,8 +153,8 @@ secondary_entities:
           - dps_val: true
             value: Fahrenheit
   - entity: sensor
-    name: countdown timer
-    icon: "mdi:timer-alert-outline"
+    name: Timer
+    class: duration
     category: config
     dps:
       - id: 15
