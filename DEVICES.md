@@ -70,8 +70,9 @@
 
 ### Water heaters
 
+- Aquatech Rapid/X6 heat pump water heaters
 - Hydrotherm Dynamic/X8 heat pump hot water systems
-- Thermex IF series V pro hot water systems.
+- Thermex IF series V pro hot water systems
 
 ### Thermostats
 

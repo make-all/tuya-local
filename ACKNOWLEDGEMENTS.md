@@ -263,7 +263,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [ssorgatem](https://github.com/ssorgatem) for contributing support for Ledlux thermostat and another variant of quad powerstrip with USB and timers.
 - [remoteassist](https://github.com/remoteassist) for assisting with support for Lefant LS1 Pro vacuums.
 - [csarmat](https://github.com/csarmat) for assisting with support for WDYK 2P63A energy meters.
-- [nyok92](https://github.com/nyok92) for assisting with support for Duux Blizzard air conditioners.
+- [nyok92](https://github.com/nyok92) for assisting with support for Duux Blizzard air conditioners and contributing later improvements for it.
 - [mattbruman](https://github.com/mattbruman) for assisting with support for Atomi ceiling fans.
 - [dh0llyw00d](https://github.com/dh0llyw00d) for assisting with support for Skyfan DC fans with light.
 - [syepes](https://github.com/syepes) for contributing support for Klarstein DryFy Connect, which was merged into Shinco 30D config, and ZN-2C09 air quality monitor.
@@ -307,3 +307,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [diystu](https://github.com/diystu) for assisting with support for Aulifants SMES200 breaker switch.
 - [mariustt](https://github.com/mariustt) for assisting with support for Tampa LED lighting system.
 - [prunes-git](https://github.com/prunes-git) for contributing support for Tontine electric blankets.
+- [jrotenstein](https://github.com/jrotenstein) for contributing support for Aquatech Rapid X6 water heaters.
