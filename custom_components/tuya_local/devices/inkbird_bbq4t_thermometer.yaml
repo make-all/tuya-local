@@ -70,11 +70,14 @@ secondary_entities:
       # - id: 19
       #   type: string
       #   name: unit
-  - entity: switch
+  - entity: binary_sensor
+    name: Power
+    class: power
+    category: diagnostics
     dps:
       - id: 1
         type: boolean
-        name: switch
+        name: sensor
   - entity: binary_sensor
     name: Fault
     class: problem
@@ -86,6 +89,8 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: 0
+            value: false
+          - dps_val: null
             value: false
           - value: true
   - entity: select
