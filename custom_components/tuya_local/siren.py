@@ -5,7 +5,11 @@ from homeassistant.components.siren import (
     SirenEntity,
     SirenEntityFeature,
 )
-
+from homeassistant.components.siren.const import (
+    ATTR_DURATION,
+    ATTR_TONE,
+    ATTR_VOLUME_LEVEL,
+)
 from .device import TuyaLocalDevice
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
@@ -35,9 +39,9 @@ class TuyaLocalSiren(TuyaLocalEntity, SirenEntity):
         """
         super().__init__()
         dps_map = self._init_begin(device, config)
-        self._tone_dp = dps_map.get("tone", None)
-        self._volume_dp = dps_map.get("volume_level", None)
-        self._duration_dp = dps_map.get("duration", None)
+        self._tone_dp = dps_map.get(ATTR_TONE, None)
+        self._volume_dp = dps_map.get(ATTR_VOLUME_LEVEL, None)
+        self._duration_dp = dps_map.get(ATTR_DURATION, None)
         self._switch_dp = dps_map.get("switch", None)
         self._init_end(dps_map)
         # All control of features is through the turn_on service, so we need to
@@ -69,9 +73,9 @@ class TuyaLocalSiren(TuyaLocalEntity, SirenEntity):
             return self._tone_dp.get_value(self._device) != "off"
 
     async def async_turn_on(self, **kwargs) -> None:
-        tone = kwargs.get("tone", None)
-        duration = kwargs.get("duration", None)
-        volume = kwargs.get("volume", None)
+        tone = kwargs.get(ATTR_TONE, None)
+        duration = kwargs.get(ATTR_DURATION, None)
+        volume = kwargs.get(ATTR_VOLUME_LEVEL, None)
 
         set_dps = {}
 

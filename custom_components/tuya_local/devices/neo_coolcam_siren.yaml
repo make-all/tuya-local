@@ -9,41 +9,41 @@ primary_entity:
       type: string
       name: tone
       mapping:
-        - dps_val: "0"
-          value: Doorbell
         - dps_val: "1"
-          value: Für Elise
+          value: Doorbell
         - dps_val: "2"
-          value: Big Ben
+          value: Für Elise
         - dps_val: "3"
-          value: Ring ring
+          value: Big Ben
         - dps_val: "4"
-          value: Lone Ranger
+          value: Ring ring
         - dps_val: "5"
-          value: Turkish march
+          value: Lone Ranger
         - dps_val: "6"
-          value: High pitched
+          value: Turkish march
         - dps_val: "7"
-          value: Red alert
+          value: High pitched
         - dps_val: "8"
-          value: Crickets
+          value: Red alert
         - dps_val: "9"
-          value: Beep
+          value: Crickets
         - dps_val: "10"
-          value: Dog bark
+          value: Beep
         - dps_val: "11"
-          value: Police siren
+          value: Dog bark
         - dps_val: "12"
-          value: Grandfather clock
+          value: Police siren
         - dps_val: "13"
-          value: Phone ring
+          value: Grandfather clock
         - dps_val: "14"
-          value: Fire truck
+          value: Phone ring
         - dps_val: "15"
-          value: Clock chime
+          value: Fire truck
         - dps_val: "16"
-          value: Alarm clock
+          value: Clock chime
         - dps_val: "17"
+          value: Alarm clock
+        - dps_val: "18"
           value: School bell
     - id: 103
       type: integer
@@ -123,10 +123,8 @@ secondary_entities:
         name: value
         unit: C
         range:
-          min: -200
-          max: 500
-        mapping:
-          - scale: 10
+          min: -20
+          max: 50
   - entity: number
     name: High temperature threshold
     category: config
@@ -137,10 +135,8 @@ secondary_entities:
         name: value
         unit: C
         range:
-          min: -200
-          max: 500
-        mapping:
-          - scale: 10
+          min: -20
+          max: 50
   - entity: number
     name: Low humidity threshold
     category: config
