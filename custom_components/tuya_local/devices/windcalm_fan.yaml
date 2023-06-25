@@ -1,0 +1,33 @@
+name: Windcalm Ceiling Fan
+primary_entity:
+  entity: fan
+  dps:
+    - id: 60
+      type: boolean
+      name: switch
+    - id: 62
+      type: integer
+      name: speed
+      mapping:
+        - dps_val: 1
+          value: 20
+        - dps_val: 2
+          value: 36
+        - dps_val: 3
+          value: 52
+        - dps_val: 4
+          value: 68
+        - dps_val: 5
+          value: 84
+        - dps_val: 6
+          value: 100
+    - id: 63
+      type: string
+      name: direction
+    - id: 64
+      type: integer
+      name: timer
+      range:
+        min: 0
+        max: 540
+      unit: min
