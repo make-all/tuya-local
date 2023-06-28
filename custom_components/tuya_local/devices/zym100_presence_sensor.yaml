@@ -96,3 +96,16 @@ secondary_entities:
         class: measurement
         mapping:
           - scale: 100
+  - entity: sensor
+    name: Illuminance lux
+    class: illuminance
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: lx
+        class: measurement
+        range:
+          min: 0
+          max: 1000
