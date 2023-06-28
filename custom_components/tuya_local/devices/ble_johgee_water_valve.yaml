@@ -38,6 +38,7 @@ secondary_entities:
       - id: 4
         type: integer
         name: sensor
+        optional: true
   - entity: binary_sensor
     name: Fault
     class: problem
@@ -46,6 +47,7 @@ secondary_entities:
       - id: 4
         type: bitfield
         name: sensor
+        optional: true
         mapping:
           - dps_val: 0
             value: false
@@ -75,6 +77,7 @@ secondary_entities:
         type: integer
         name: sensor
         unit: s
+        optional: true
   - entity: select
     name: Weather delay
     icon: "mdi:weather-cloudy-clock"
@@ -101,6 +104,7 @@ secondary_entities:
         type: integer
         name: value
         unit: min
+        optional: true
         range:
           min: 0
           max: 86400
