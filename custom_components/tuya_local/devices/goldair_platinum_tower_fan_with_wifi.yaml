@@ -39,13 +39,6 @@ primary_entity:
     - id: 6
       type: integer
       name: timer
-    - id: 19
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 0
-        max: 50
 secondary_entities:
   - entity: number
     name: Timer
@@ -59,3 +52,12 @@ secondary_entities:
         range:
           min: 0
           max: 9
+  - entity: sensor
+    class: temperature
+    name: Temperature
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        class: measurement
+        unit: C
