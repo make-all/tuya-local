@@ -163,6 +163,10 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
 
         schema = {
             vol.Required(
+                CONF_DEVICE_ID,
+                default=config.get(CONF_DEVICE_ID, ""),
+            ): str,
+            vol.Required(
                 CONF_LOCAL_KEY,
                 default=config.get(CONF_LOCAL_KEY, ""),
             ): str,

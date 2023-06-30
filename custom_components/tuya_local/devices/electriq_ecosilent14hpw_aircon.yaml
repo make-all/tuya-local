@@ -1,4 +1,8 @@
 name: ElectriQ EcoSilent14HPW
+products:
+  - id: nizrlkzey4fstckp
+    model: EcoSilent14HPW
+    manufacturer: ElectriQ
 primary_entity:
   entity: climate
   dps:
@@ -106,10 +110,12 @@ primary_entity:
       name: current_temperature_f
       type: integer
       hidden: true
+      optional: true
     - id: 24
       name: temperature_f
       type: integer
       hidden: true
+      optional: true
     - id: 101
       name: swing_mode
       type: boolean

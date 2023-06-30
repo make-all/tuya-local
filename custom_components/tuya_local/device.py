@@ -16,18 +16,21 @@ from homeassistant.const import (
     EVENT_HOMEASSISTANT_STOP,
 )
 from homeassistant.core import HomeAssistant
+from homeassistant.helpers.entity import DeviceInfo
+
 
 from .const import (
     API_PROTOCOL_VERSIONS,
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
     CONF_POLL_ONLY,
+    CONF_TYPE,
     CONF_PROTOCOL_VERSION,
     DOMAIN,
     CONF_DEVICE_CID,
 )
 from .helpers.config import get_device_id
-from .helpers.device_config import possible_matches
+from .helpers.device_config import possible_matches, get_config, TuyaDeviceConfig
 from .helpers.log import log_json
 
 
@@ -44,6 +47,7 @@ class TuyaLocalDevice(object):
         protocol_version,
         dev_cid,
         hass: HomeAssistant,
+        config: TuyaDeviceConfig,
         poll_only=False,
     ):
         """
@@ -67,6 +71,7 @@ class TuyaLocalDevice(object):
         self._api_protocol_version_index = None
         self._api_protocol_working = False
         self._api_working_protocol_failures = 0
+        self._config = config
         try:
             if dev_cid is not None:
                 self._api = tinytuya.Device(
@@ -128,18 +133,22 @@ class TuyaLocalDevice(object):
     @property
     def device_info(self):
         """Return the device information for this device."""
-        return {
-            "identifiers": {(DOMAIN, self.unique_id)},
-            "name": self.name,
-            "manufacturer": "Tuya",
-        }
+        device_info = DeviceInfo(
+            identifiers={(DOMAIN, self.unique_id)},
+            name=self.name,
+            default_manufacturer="Tuya",
+            manufacturer = self._config.manufacturer,
+            model = self._config.model,
+        )
+
+        return device_info
 
     @property
     def has_returned_state(self):
         """Return True if the device has returned some state."""
         return len(self._get_cached_state()) > 1
 
-    def actually_start(self, event=None):
+    async def actually_start(self, event=None):
         _LOGGER.debug("Starting monitor loop for %s", self.name)
         self._running = True
         self._shutdown_listener = self._hass.bus.async_listen_once(
@@ -605,7 +614,7 @@ class TuyaLocalDevice(object):
         return keys[values.index(value)] if value in values else fallback
 
 
-def setup_device(hass: HomeAssistant, config: dict):
+async def setup_device(hass: HomeAssistant, config: dict):
     """Setup a tuya device based on passed in config."""
 
     _LOGGER.info("Creating device: %s", get_device_id(config))
@@ -618,6 +627,7 @@ def setup_device(hass: HomeAssistant, config: dict):
         config[CONF_PROTOCOL_VERSION],
         config.get(CONF_DEVICE_CID),
         hass,
+        get_config(config[CONF_TYPE]),
         config[CONF_POLL_ONLY],
     )
     hass.data[DOMAIN][get_device_id(config)] = {"device": device}

@@ -233,7 +233,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
         get_device_id(entry.data),
     )
     config = {**entry.data, **entry.options, "name": entry.title}
-    setup_device(hass, config)
+    await setup_device(hass, config)
     device_conf = get_config(entry.data[CONF_TYPE])
     if device_conf is None:
         _LOGGER.error(NOT_FOUND, config[CONF_TYPE])

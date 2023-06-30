@@ -131,6 +131,22 @@ class TuyaDeviceConfig:
             primary=True,
         )
 
+    @property
+    def model(self):
+        """Return the (first) device model if available"""
+        try:
+            return self._config["products"][0]["model"]
+        except (IndexError, KeyError):
+            pass
+
+    @property
+    def manufacturer(self):
+        """Return the (first) device manufacturer if available"""
+        try:
+            return self._config["products"][0]["manufacturer"]
+        except (IndexError, KeyError):
+            pass
+
     def secondary_entities(self):
         """Iterate through entites for any secondary entites supported."""
         for conf in self._config.get("secondary_entities", {}):
@@ -157,6 +173,18 @@ class TuyaDeviceConfig:
                 "Not match for %s, DPs have incorrect type: %s",
                 self.name,
                 [{dp.id: dp.type.__name__} for dp in incorrect_type_dps],
+            )
+
+        if "ecosil" in self._fname:
+            _LOGGER.warning(
+                "Not match for %s, DPs have incorrect type: %s",
+                self.name,
+                [{dp.id: dp.type.__name__} for dp in incorrect_type_dps],
+            )
+            _LOGGER.warning(
+                "Not match for %s, missing required DPs: %s",
+                self.name,
+                [{dp.id: dp.type.__name__} for dp in missing_dps],
             )
 
         return len(missing_dps) == 0 and len(incorrect_type_dps) == 0
