@@ -227,7 +227,6 @@
 - WDYK 2P63A energy meter
 - WDYK 3 phase 4 pole 400V energy meter circuit breaker
 
-
 ### Battery Charger
 
 - Parkside PLGS 2012 A1 smart charger for powertools
@@ -235,13 +234,13 @@
 ### SmartPlugs/Wall sockets/Wall switches
 
 Most smartplugs follow a fairly standard template from Tuya, so many
-will work with other brands configs.  However there are many
+will work with other brands configs. However there are many
 permutations of features enabled, and some manufacturers move
 datapoints around so smartplugs take up a lot more configurations than
-such simple devices should.  A future release will look at
-consolidating these into a smaller number of configs.  When you add a device,
+such simple devices should. A future release will look at
+consolidating these into a smaller number of configs. When you add a device,
 the default selected option for the device type has the most matching
-datapoints, so provided it looks like the same  type of device, it is probably
+datapoints, so provided it looks like the same type of device, it is probably
 the best option.
 
 - Arlec PB88UHA 4 way powerstrip with child lock
@@ -279,7 +278,7 @@ different features enabled, so are known to work with multiple brands
 of device.
 
 - 4 way power monitoring strip (2 types)
-  _confirmed as working with Kogan KASPS10A3P3UA 3 socket + USB powerstrip
+  \_confirmed as working with Kogan KASPS10A3P3UA 3 socket + USB powerstrip
 - 4 way powerstrip with USB
   _confirmed as working with AOFO ZLD-44EU-W_
 - 4 way powerstrip with USB and restore power state config.
@@ -432,6 +431,8 @@ of device.
 - Johgee water timer
 - Orion DL021HA lock
 - PT216/PT19DB-2 temperature and humidity sensor
+- Diivoo Dual Smart Water Timer (WT05)
+- Generic Smart Water Timer (SP01)
 
 ### Devices supported via IR hubs
 
@@ -444,8 +445,8 @@ of device.
 - ZTH08ZTU temperature and humidity sensor
 
 NOTE: this project does not intend to expand the scope to support non-Tuya
-devices via Tuya hubs.  Though it may be techincally feasible to do such a
+devices via Tuya hubs. Though it may be techincally feasible to do such a
 thing, it expands the support requirements beyond the capacity of the
-volunteer manpower of this project.  The community would be better served by
+volunteer manpower of this project. The community would be better served by
 making Tuya devices work with the standard BLE and Zigbee support in
 Home Assistant rather than the other way around.

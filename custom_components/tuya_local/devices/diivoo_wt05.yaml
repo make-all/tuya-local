@@ -1,0 +1,152 @@
+# "11": 100,     battery
+# "103": 0,      countdown (m)
+# "104": false,  switch
+# "105": false,  switch
+# "106": 0,      countdown (m)
+
+# "110": 44,     last run time (s)
+# "111": 60,     last run time (s)
+
+# "112": "idle", status
+# "113": "idle", status
+# "114": "OFF",  rain (d)
+# "117": "OFF"   rain (d)
+
+name: Diivoo smart dual water timer
+product:
+  - id: fdrbxxbg
+    model: WT-05
+primary_entity:
+  entity: switch
+  name: Water Switch 1
+  icon: "mdi:water-pump"
+  dps:
+    - id: 105
+      type: boolean
+      name: switch
+
+secondary_entities:
+  - entity: switch
+    name: Watch Switch 2
+    icon: "mdi:water-pump"
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Battery
+    class: battery
+    dps:
+      - id: 11
+        name: sensor
+        type: integer
+        unit: "%"
+  - entity: sensor
+    category: diagnostic
+    name: Status 2
+    dps:
+      - id: 113
+        name: sensor
+        type: string
+  - entity: sensor
+    category: diagnostic
+    name: Status 1
+    dps:
+      - id: 112
+        name: sensor
+        type: string
+  - entity: sensor
+    category: diagnostic
+    name: Last run time 2
+    dps:
+      - id: 111
+        name: sensor
+        type: number
+        unit: sec
+        optional: true
+  - entity: sensor
+    category: diagnostic
+    name: Last run time 1
+    dps:
+      - id: 110
+        name: sensor
+        type: number
+        unit: sec
+        optional: true
+
+  - entity: number
+    name: Countdown 1
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 106
+        type: integer
+        unit: min
+        name: value
+        range:
+          max: 1440
+          min: 0
+  - entity: number
+    name: Countdown 2
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 103
+        type: integer
+        unit: min
+        name: value
+        range:
+          max: 1440
+          min: 0
+  - entity: select
+    name: Rain delay 1
+    category: config
+    icon: "mdi:cloud"
+    dps:
+      - id: 117
+        name: option
+        type: string
+        unit: day
+        mapping:
+          - dps_val: "OFF"
+            value: "OFF"
+          - dps_val: "1"
+            value: "1"
+          - dps_val: "2"
+            value: "2"
+          - dps_val: "3"
+            value: "3"
+          - dps_val: "3"
+            value: "4"
+          - dps_val: "5"
+            value: "5"
+          - dps_val: "6"
+            value: "6"
+          - dps_val: "7"
+            value: "7"
+  - entity: select
+    name: Rain delay 2
+    category: config
+    icon: "mdi:cloud"
+    dps:
+      - id: 114
+        name: option
+        type: string
+        unit: day
+        mapping:
+          - dps_val: "OFF"
+            value: "OFF"
+          - dps_val: "1"
+            value: "1"
+          - dps_val: "2"
+            value: "2"
+          - dps_val: "3"
+            value: "3"
+          - dps_val: "3"
+            value: "4"
+          - dps_val: "5"
+            value: "5"
+          - dps_val: "6"
+            value: "6"
+          - dps_val: "7"
+            value: "7"

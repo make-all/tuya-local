@@ -1,0 +1,84 @@
+# {"updated_at": 1686480325.6967278, "1": false, "7": 100, "9": 24707, "10": "cancel", "11": 0, "12": "idle", "14": false, "15": 1212}
+name: Smart Water Timer
+product:
+  - id: nxquc5lb
+    model: SOP10
+primary_entity:
+  entity: switch
+  name: Water Switch
+  icon: "mdi:water-pump"
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+
+secondary_entities:
+  - entity: number
+    name: Usage
+    category: config
+    dps:
+      - id: 9
+        name: value
+        type: integer
+        unit: s
+        range:
+          min: 0
+          max: 2592000
+  - entity: select
+    name: Weather delay
+    category: config
+    icon: "mdi:cloud"
+    dps:
+      - id: 10
+        name: option
+        type: string
+        mapping:
+          - dps_val: "cancel"
+            value: "OFF"
+          - dps_val: "24h"
+            value: "1 day"
+          - dps_val: "48h"
+            value: "2 days"
+          - dps_val: "72h"
+            value: "3 days"
+  - entity: number
+    name: Duration
+    category: config
+    dps:
+      - id: 11
+        name: value
+        type: integer
+        unit: s
+        range:
+          min: 0
+          max: 86400
+  - entity: sensor
+    name: Battery
+    class: battery
+    dps:
+      - id: 7
+        name: sensor
+        type: integer
+        unit: "%"
+  - entity: select
+    name: State
+    readonly: true
+    dps:
+      - id: 12
+        name: option
+        type: string
+        mapping:
+          - dps_val: "auto"
+            value: "Auto"
+          - dps_val: "manual"
+            value: "Manual"
+          - dps_val: "idle"
+            value: "Idle"
+  - entity: sensor
+    name: Last Duration
+    icon: "mdi:timer"
+    dps:
+      - id: 15
+        name: sensor
+        type: integer
+        unit: sec
