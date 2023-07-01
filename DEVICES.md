@@ -44,6 +44,7 @@
 - Fersk Vind 2
 - Kogan 2.6kW portable air conditioner
 - Nedis ACMB1WT12 portable air conditioner
+- Polar SIEH0035SDO (select starlight heat pump for correct temperature values and detailed fan/swing control)
 - Rotenso Roni R35WI
 - Sendo air conditioner
 - Star-Light air conditioner
