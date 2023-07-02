@@ -308,3 +308,6 @@ Further device support has been made with the assistance of users.  Please consi
 - [mariustt](https://github.com/mariustt) for assisting with support for Tampa LED lighting system.
 - [prunes-git](https://github.com/prunes-git) for contributing support for Tontine electric blankets.
 - [jrotenstein](https://github.com/jrotenstein) for contributing support for Aquatech Rapid X6 water heaters.
+- [hanzwo](https://github.com/hanzwo) for contributing support for Windcalm ceiling fans.
+- [stikonas](https://github.com/stikonas) for contributing support for Monzana Klimaanlage air conditioners.
+- [horse-pants](https://github.com/horse-pants) for contributing support for Goldair tower fans.

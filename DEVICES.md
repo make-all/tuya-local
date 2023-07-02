@@ -43,10 +43,11 @@
 - ElectriQ EcoSilent 14HPW
 - Fersk Vind 2
 - Kogan 2.6kW portable air conditioner
+- Monzana Klimaanlage air conditioner
 - Nedis ACMB1WT12 portable air conditioner
 - Rotenso Roni R35WI
 - Sendo air conditioner
-- Star-Light air conditioner
+- Star-Light air conditioner (also confirmed to work with Polar branded devices)
 - Tadiran Wind 65/3P
 - TroniTechnik Hellnar Klimagerät
 - Vivax Cool ACP-12CH35REWI
@@ -124,6 +125,8 @@
 - Deta fan controller
 - Fanco Eco Silent Deluxe ceiling fan with LED light
 - Goldair GCPF315 fan
+- Goldair Platinum tower fan
+- Immax Neo Lite Vento ceiling fan with light
 - Ledkia fan and light controller
 - Lexy F501 fan
 - Mantra ceiling fan with light
@@ -133,7 +136,7 @@
 - TMWF02 fan controller
 - Treatlife DS02-F fan switch
 - Treatlife DS03 fan with dimmable light
-- Immax Neo Lite Vento ceiling fan with light
+- Windcalm ceiling fans with and without cool.warm white dimmable light
 
 ### Air Purifiers
 
@@ -429,9 +432,9 @@ of device.
 
 - Adaprox Fingerbot plus
 - HCT-611 water timer
-- Johgee water timer
 - Orion DL021HA lock
 - PT216/PT19DB-2 temperature and humidity sensor
+- Water timers (confirmed with Johgee and Diivoo branded devices)
 
 ### Devices supported via IR hubs
 
