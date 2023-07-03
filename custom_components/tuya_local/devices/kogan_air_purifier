@@ -14,14 +14,14 @@ primary_entity:
       name: preset_mode
       mapping:
         - dps_val: 1
-          value: "Sleep"
+          value: "sleep"
         - dps_val: 2
-          value: "High"
+          value: "strong"
         - dps_val: 3
-          value: "Auto"
+          value: "smart"
 secondary_entities:
   - entity: sensor
-    name: Filter Remaining
+    name: Filter remaining
     icon: "mdi:shield-bug"
     dps:
       - id: 5
@@ -40,11 +40,11 @@ secondary_entities:
           - dps_val: cancle
             value: "OFF"
           - dps_val: 1
-            value: "Low"
+            value: "low"
           - dps_val: 2
-            value: "High" 
+            value: "high" 
   - entity: button
-    name: Filter Reset
+    name: Filter reset
     category: config
     class: restart
     dps:
@@ -61,13 +61,13 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: 1
-            value: "OFF"
+            value: "off"
           - dps_val: 2
-            value: "4 hour"
+            value: "4 hours"
           - dps_val: 3
             value: "8 hours"          
   - entity: sensor
-    name: Timer Remaining
+    name: Timer remaining
     class: duration
     icon: "mdi:timer"
     dps:
@@ -76,7 +76,7 @@ secondary_entities:
         type: integer
         unit: min
   - entity: sensor
-    name: Air Quality
+    name: Air quality
     class: enum
     icon: "mdi:air-filter"
     dps:
@@ -85,10 +85,10 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: 1
-            value: "Good"
+            value: "good"
           - dps_val: 2
-            value: "Normal"
+            value: "normal"
           - dps_val: 3
-            value: "Poor" 
+            value: "poor" 
           - dps_val: 4
-            value: "Severe"
+            value: "severe"
