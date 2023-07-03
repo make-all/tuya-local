@@ -53,7 +53,7 @@ Please paste logs here
 
 <!--
 If you have an iot.tuya.com account, please go to "Cloud" -> "API
-Explorer".  Under "Device Control", select the "Query Properties"
+Explorer".  Under "Device Control", select the "Query Things Data Model"
 function, check the server is set correctly, and enter your device ID.
 -->
 ```
