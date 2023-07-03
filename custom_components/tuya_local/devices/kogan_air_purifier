@@ -28,21 +28,20 @@ secondary_entities:
         name: sensor
         type: integer
         unit: "%"
-  - entity: select
+  - entity: light
     name: Light
     category: config
-    icon: "mdi:lightbulb"
     dps:
       - id: 101
         type: string
-        name: option
+        name: brightness
         mapping:
           - dps_val: cancle
-            value: "OFF"
+            value: 0
           - dps_val: 1
-            value: "low"
+            value: 128
           - dps_val: 2
-            value: "high" 
+            value: 255  
   - entity: button
     name: Filter reset
     category: config
@@ -61,7 +60,7 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: 1
-            value: "off"
+            value: "Off"
           - dps_val: 2
             value: "4 hours"
           - dps_val: 3
@@ -85,10 +84,10 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: 1
-            value: "good"
+            value: "Good"
           - dps_val: 2
-            value: "normal"
+            value: "Normal"
           - dps_val: 3
-            value: "poor" 
+            value: "Poor" 
           - dps_val: 4
-            value: "severe"
+            value: "Severe"
