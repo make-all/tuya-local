@@ -10,6 +10,7 @@ primary_entity:
     - id: 2
       type: boolean
       name: button
+      optional: true
     - id: 13
       type: bitfield
       name: fault_code
@@ -23,6 +24,7 @@ secondary_entities:
         name: sensor
         type: integer
         unit: portions
+        optional: true
   - entity: sensor
     category: diagnostic
     name: Feed state
@@ -80,3 +82,14 @@ secondary_entities:
           - dps_val: 2
             value: true
           - value: false
+  - entity: sensor
+    name: Battery level
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        optional: true
