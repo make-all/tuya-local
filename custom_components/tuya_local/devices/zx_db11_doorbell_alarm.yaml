@@ -266,20 +266,20 @@ secondary_entities:
             value: false
           - dps_val: false
             value: true
-  entity: binary_sensor
-  name: Ringing
-  class: sound
-  category: diagnostic
-  dps:
-    - id: 26
-      type: boolean
-      name: sensor
-      optional: true
-      persist: false
-      mapping:
-        - dps_val: null
-          value: false
-        - value: true
+  - entity: binary_sensor
+    name: Ringing
+    class: sound
+    category: diagnostic
+    dps:
+      - id: 26
+        type: boolean
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: switch
     name: Doorbell notify
     icon: "mdi:bell-badge"
