@@ -51,7 +51,7 @@ primary_entity:
       unit: s
       range:
         min: 0
-        max: 300
+        max: 1800
     - id: 116
       type: string
       name: volume_level
@@ -73,6 +73,8 @@ secondary_entities:
         name: sensor
         unit: "%"
         mapping:
+          - dps_val: "0"
+            value: 100
           - dps_val: "1"
             value: 80
           - dps_val: "2"
@@ -190,11 +192,23 @@ secondary_entities:
       - id: 114
         type: boolean
         name: switch
-
-            
-
-
-
-
-
-
+  - entity: sensor
+    name: Alarm status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 115
+        type: string
+        name: sensor
+        class: enum
+        mapping:
+          - dps_val: "0"
+            value: High temperature
+          - dps_val: "1"
+            value: High humidity
+          - dps_val: "2"
+            value: Low temperature
+          - dps_val: "3"
+            value: Low humidity
+          - dps_val: "4"
+            value: OK
