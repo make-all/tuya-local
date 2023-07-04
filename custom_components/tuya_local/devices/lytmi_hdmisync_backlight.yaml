@@ -11,6 +11,7 @@ primary_entity:
     - id: 21
       name: color_mode
       type: string
+      optional: true
       mapping:
         - dps_val: white
           value: white
@@ -20,6 +21,8 @@ primary_entity:
           value: scene
         - dps_val: music
           value: music
+        - dps_val: null
+          value: hs
     - id: 22
       name: brightness
       type: integer
