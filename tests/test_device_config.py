@@ -414,6 +414,18 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
             bytes("Test", "utf-8"),
         )
 
+    def test_decoding_hex(self):
+        """Test that decoded_value works with hex encoding."""
+        mock_entity = MagicMock()
+        mock_config = {"id": "1", "name": "test", "type": "hex"}
+        mock_device = MagicMock()
+        mock_device.get_property.return_value = "babe"
+        cfg = TuyaDpsConfig(mock_entity, mock_config)
+        self.assertEqual(
+            cfg.decoded_value(mock_device),
+            b"\xba\xbe",
+        )
+
     def test_decoding_unencoded(self):
         """Test that decoded_value returns the raw value when not encoded."""
         mock_entity = MagicMock()
@@ -432,6 +444,13 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
         mock_config = {"id": "1", "name": "test", "type": "base64"}
         cfg = TuyaDpsConfig(mock_entity, mock_config)
         self.assertEqual(cfg.encode_value(bytes("Test", "utf-8")), "VGVzdA==")
+
+    def test_encoding_hex(self):
+        """Test that encode_value works with base64."""
+        mock_entity = MagicMock()
+        mock_config = {"id": "1", "name": "test", "type": "hex"}
+        cfg = TuyaDpsConfig(mock_entity, mock_config)
+        self.assertEqual(cfg.encode_value(b"\xca\xfe"), "cafe")
 
     def test_encoding_unencoded(self):
         """Test that encode_value works with base64."""
@@ -484,6 +503,44 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
         self.assertEqual("my-device-id", get_device_id({"device_id": "my-device-id"}))
         self.assertEqual("sub-id", get_device_id({"device_cid": "sub-id"}))
         self.assertEqual("s", get_device_id({"device_id": "d", "device_cid": "s"}))
+
+    def test_getting_masked_hex(self):
+        """Test that get_value works with masked hex encoding."""
+        mock_entity = MagicMock()
+        mock_config = {
+            "id": "1",
+            "name": "test",
+            "type": "hex",
+            "mapping": [
+                {"mask": "ff00"},
+            ],
+        }
+        mock_device = MagicMock()
+        mock_device.get_property.return_value = "babe"
+        cfg = TuyaDpsConfig(mock_entity, mock_config)
+        self.assertEqual(
+            cfg.get_value(mock_device),
+            0xBA,
+        )
+
+    def test_setting_masked_hex(self):
+        """Test that get_values_to_set works with masked hex encoding."""
+        mock_entity = MagicMock()
+        mock_config = {
+            "id": "1",
+            "name": "test",
+            "type": "hex",
+            "mapping": [
+                {"mask": "ff00"},
+            ],
+        }
+        mock_device = MagicMock()
+        mock_device.get_property.return_value = "babe"
+        cfg = TuyaDpsConfig(mock_entity, mock_config)
+        self.assertEqual(
+            cfg.get_values_to_set(mock_device, 0xCA),
+            {"1": "cabe"},
+        )
 
     def test_default_without_mapping(self):
         """Test that default returns None when there is no mapping"""
