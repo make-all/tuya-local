@@ -866,8 +866,9 @@ class TuyaDpsConfig:
                 raise ValueError(f"{self.name} ({value}) must be between {mn} and {mx}")
 
         if mask and isinstance(result, Number):
+            # mask is in hex, 2 digits/characters per byte
+            length = int(len(mask) / 2)
             # Convert to int
-            length = len(mask)
             mask = int(mask, 16)
             mask_scale = mask & (1 + ~mask)
             current_value = int.from_bytes(self.decoded_value(device), "big")
