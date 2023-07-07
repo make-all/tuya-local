@@ -116,13 +116,13 @@ primary_entity:
       type: string
       hidden: true
     - id: 119
-      name: unknown_119
+      name: electricity_management
       type: string
     - id: 120
       name: unknown_120
       type: string
     - id: 123
-      name: unknown_123
+      name: flags
       type: string
     - id: 126
       name: vertical_flow_position
@@ -240,3 +240,97 @@ secondary_entities:
             value: Slight Right
           - dps_val: "5"
             value: Rightmost
+  - entity: select
+    name: Sleep mode
+    category: config
+    icon: "mdi:weather-night"
+    dps:
+      - id: 105
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "Off"
+          - dps_val: "normal"
+            value: Standard
+          - dps_val: "old"
+            value: "Elderly"
+          - dps_val: "child"
+            value: "Child"
+  - entity: switch
+    name: Display
+    category: config
+    icon: "mdi:lightbulb-on-outline"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - scale: 1
+            mask: "0008"
+  - entity: switch
+    name: Buzzer
+    category: config
+    icon: "mdi:access-point"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - scale: 1
+            mask: "0010"
+  - entity: switch
+    name: Soft wind
+    category: config
+    icon: "mdi:weather-windy"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - scale: 1
+            mask: "8000"
+  - entity: switch
+    name: Anti-mildew
+    category: config
+    icon: "mdi:water-off-outline"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - scale: 1
+            mask: "0100"
+  - entity: switch
+    name: Health
+    category: config
+    icon: "mdi:heart-outline"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - scale: 1
+            mask: "0020"
+  - entity: switch
+    name: Anti-freeze
+    category: config
+    icon: "mdi:radiator"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - scale: 1
+            mask: "1000"
+  - entity: switch
+    name: Eco mode
+    category: config
+    icon: "mdi:leaf"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - scale: 1
+            mask: "0001"
