@@ -8,7 +8,6 @@ primary_entity:
     - id: 1
       name: hvac_mode
       type: boolean
-      persists: true
       mapping:
         - dps_val: false
           value: "off"
@@ -18,7 +17,7 @@ primary_entity:
           conditions:
             - dps_val: auto
               icon: mdi:thermostat-auto
-              value: auto
+              value: heat_cool
             - dps_val: cold
               icon: "mdi:snowflake"
               value: cool
@@ -37,7 +36,7 @@ primary_entity:
       range:
         min: 15
         max: 31
-      persists: true
+      unit: C
     - id: 3
       name: current_temperature
       type: integer
@@ -45,7 +44,7 @@ primary_entity:
     - id: 4
       name: mode
       type: string
-      hidden: false
+      hidden: true
     - id: 5
       name: fan_mode
       type: string
@@ -54,16 +53,11 @@ primary_entity:
           value: low
         - dps_val: "1"
           value: high
-      persists: true
-secondary_entities:
-  - entity: switch
-    name: Swing
-    category: config
-    dps:
-      - id: 104
-        name: switch
-        type: boolean
-        persists: true
-
-
-
+    - id: 104
+      name: swing_mode
+      type: boolean
+      mapping:
+        - dps_val: true
+          value: "on"
+        - dps_val: false
+          value: "off"
