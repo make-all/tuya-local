@@ -284,7 +284,7 @@ different features enabled, so are known to work with multiple brands
 of device.
 
 - 4 way power monitoring strip (2 types)
-  _confirmed as working with Kogan KASPS10A3P3UA 3 socket + USB powerstrip
+  _confirmed as working with Kogan KASPS10A3P3UA 3 socket + USB powerstrip_
 - 4 way powerstrip with USB
   _confirmed as working with AOFO ZLD-44EU-W, another variant with Home Awesome device_
 - 4 way powerstrip with USB and restore power state config.
