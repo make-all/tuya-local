@@ -135,7 +135,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [kekkutya](https://github.com/kekkutya) for contributing support for Beok TOL47 thermostats.
 - [eutampieri](https://github.com/eutampieri) for assistance supporting for a simpler RGBCW lightbulb without timer.
 - [sindrebroch](https://github.com/sindrebroch) for assistance supporting Catit pet feeder.
-- [presslab-us](https://github.com/presslab-us) for assistance supporting Daizuki heatpumps and improving the almost compatible Starlink heatpump.
+- [presslab-us](https://github.com/presslab-us) for assistance supporting Daizuki heatpumps and improving the almost compatible Starlight heatpump.
 - [filipole](https://github.com/filipole) for assistance supporting Aubess switch with energy monitoring.
 - [catdogmaus](https://github.com/catdogmaus) for assistance supporting Ryra TYTE-D1 thermostats.
 - [Kulturnilpferd](https://github.com/Kulturnilpferd) for contributing support for Hosome air purifiers.
@@ -311,3 +311,8 @@ Further device support has been made with the assistance of users.  Please consi
 - [hanzwo](https://github.com/hanzwo) for contributing support for Windcalm ceiling fans.
 - [stikonas](https://github.com/stikonas) for contributing support for Monzana Klimaanlage air conditioners.
 - [horse-pants](https://github.com/horse-pants) for contributing support for Goldair tower fans.
+- [xpavli44](https://github.com/xpavli44) for contributing Czech translations.
+- [kondi](https://github.com/kondi) for contributing improvements to masked values and Starlight heatpumps.
+- [scotttimmins](https://github.com/scotttimmins) for contributing support for 4 outlet + USB smart powerstrip.
+- [madchuska](https://github.com/madchuska) for contributing support for Kogan air purifiers.
+^ [bskjon](https://github.com/bskjon) for contributing support for Woods Milan air conditioner and Norwegian translations.

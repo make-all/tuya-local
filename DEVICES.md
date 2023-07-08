@@ -51,6 +51,7 @@
 - Tadiran Wind 65/3P
 - TroniTechnik Hellnar Klimagerät
 - Vivax Cool ACP-12CH35REWI
+- Woods Milan portable air conditioner
 
 ### Pool heaters / heatpumps
 
@@ -146,6 +147,7 @@
 - essentials portable air purifier
 - Himox H05 and H06 air purifiers
 - Hosome air purifier
+- Kogan air purifier
 - Lifubide X600 air purifier
 - Poiema One air purifier
 - Proscenic A8 air purifier
@@ -284,7 +286,7 @@ of device.
 - 4 way power monitoring strip (2 types)
   _confirmed as working with Kogan KASPS10A3P3UA 3 socket + USB powerstrip
 - 4 way powerstrip with USB
-  _confirmed as working with AOFO ZLD-44EU-W_
+  _confirmed as working with AOFO ZLD-44EU-W, another variant with Home Awesome device_
 - 4 way powerstrip with USB and restore power state config.
 - Generic smartplug with power monitoring (older models)
   _confirmed as working with Kogan, Blitzwolf and Gosund single smartplugs (smartplugv1)_
