@@ -1,12 +1,13 @@
 """
 Setup for different kinds of Tuya sensors
 """
+import logging
+
 from homeassistant.components.sensor import (
+    STATE_CLASSES,
     SensorDeviceClass,
     SensorEntity,
-    STATE_CLASSES,
 )
-import logging
 
 from .device import TuyaLocalDevice
 from .helpers.config import async_tuya_setup_platform

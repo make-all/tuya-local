@@ -1,20 +1,19 @@
 """Tests for the config flow."""
 from unittest.mock import ANY, AsyncMock, MagicMock, patch
 
-from homeassistant.const import CONF_HOST, CONF_NAME
 import pytest
+import voluptuous as vol
+from homeassistant.const import CONF_HOST, CONF_NAME
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
-import voluptuous as vol
-
 from custom_components.tuya_local import (
-    config_flow,
     async_migrate_entry,
     async_setup_entry,
+    config_flow,
 )
 from custom_components.tuya_local.const import (
-    CONF_DEVICE_ID,
     CONF_DEVICE_CID,
+    CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
     CONF_POLL_ONLY,
     CONF_PROTOCOL_VERSION,

@@ -1,15 +1,12 @@
 """Tests for the Avatto roller blinds controller."""
-from homeassistant.components.cover import (
-    CoverDeviceClass,
-    CoverEntityFeature,
-)
+from homeassistant.components.cover import CoverDeviceClass, CoverEntityFeature
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import UnitOfTime
 
 from ..const import AVATTO_BLINDS_PAYLOAD
 from ..helpers import assert_device_properties_set
-from ..mixins.sensor import MultiSensorTests
 from ..mixins.select import BasicSelectTests
+from ..mixins.sensor import MultiSensorTests
 from .base_device_tests import TuyaDeviceTestCase
 
 COMMAND_DP = "1"

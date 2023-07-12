@@ -1,11 +1,12 @@
 """
 Setup for different kinds of Tuya Binary sensors
 """
-from homeassistant.components.binary_sensor import (
-    BinarySensorEntity,
-    BinarySensorDeviceClass,
-)
 import logging
+
+from homeassistant.components.binary_sensor import (
+    BinarySensorDeviceClass,
+    BinarySensorEntity,
+)
 
 from .device import TuyaLocalDevice
 from .helpers.config import async_tuya_setup_platform

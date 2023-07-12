@@ -1,14 +1,13 @@
 """
 Config parser for Tuya Local devices.
 """
+import logging
 from base64 import b64decode, b64encode
-
 from collections.abc import Sequence
 from fnmatch import fnmatch
-import logging
 from numbers import Number
 from os import walk
-from os.path import join, dirname, splitext, exists
+from os.path import dirname, exists, join, splitext
 
 from homeassistant.util import slugify
 from homeassistant.util.yaml import load_yaml

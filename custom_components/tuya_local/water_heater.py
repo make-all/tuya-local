@@ -1,15 +1,16 @@
 """
 Setup for different kinds of Tuya water heater devices
 """
+import logging
+
 from homeassistant.components.water_heater import (
+    ATTR_AWAY_MODE,
     ATTR_CURRENT_TEMPERATURE,
     ATTR_OPERATION_MODE,
-    ATTR_AWAY_MODE,
     WaterHeaterEntity,
     WaterHeaterEntityFeature,
 )
 from homeassistant.const import ATTR_TEMPERATURE, UnitOfTemperature
-import logging
 
 from .device import TuyaLocalDevice
 from .helpers.config import async_tuya_setup_platform

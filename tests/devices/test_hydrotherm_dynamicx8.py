@@ -2,8 +2,8 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.water_heater import (
     STATE_ECO,
     STATE_ELECTRIC,
-    STATE_HIGH_DEMAND,
     STATE_HEAT_PUMP,
+    STATE_HIGH_DEMAND,
     STATE_OFF,
     STATE_PERFORMANCE,
     WaterHeaterEntityFeature,

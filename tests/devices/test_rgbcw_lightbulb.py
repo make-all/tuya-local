@@ -1,7 +1,4 @@
-from homeassistant.components.light import (
-    ColorMode,
-    LightEntityFeature,
-)
+from homeassistant.components.light import ColorMode, LightEntityFeature
 from homeassistant.const import UnitOfTime
 
 from ..const import RGBCW_LIGHTBULB_PAYLOAD

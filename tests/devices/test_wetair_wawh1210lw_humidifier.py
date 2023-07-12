@@ -6,9 +6,7 @@ from homeassistant.components.humidifier.const import (
     MODE_SLEEP,
 )
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import (
-    PERCENTAGE,
-)
+from homeassistant.const import PERCENTAGE
 
 from ..const import WETAIR_WAWH1210_HUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set

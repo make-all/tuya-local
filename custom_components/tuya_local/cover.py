@@ -1,12 +1,13 @@
 """
 Setup for different kinds of Tuya cover devices
 """
+import logging
+
 from homeassistant.components.cover import (
     CoverDeviceClass,
     CoverEntity,
     CoverEntityFeature,
 )
-import logging
 
 from .device import TuyaLocalDevice
 from .helpers.config import async_tuya_setup_platform

@@ -1,22 +1,22 @@
 """
 Setup for different kinds of Tuya humidifier devices
 """
+import logging
+
 from homeassistant.components.humidifier import (
     HumidifierDeviceClass,
     HumidifierEntity,
     HumidifierEntityFeature,
 )
-
 from homeassistant.components.humidifier.const import (
     DEFAULT_MAX_HUMIDITY,
     DEFAULT_MIN_HUMIDITY,
 )
-import logging
 
 from .device import TuyaLocalDevice
+from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
 from .helpers.mixin import TuyaLocalEntity
-from .helpers.config import async_tuya_setup_platform
 
 _LOGGER = logging.getLogger(__name__)
 

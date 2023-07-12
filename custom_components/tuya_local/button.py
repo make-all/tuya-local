@@ -3,7 +3,7 @@ Setup for different kinds of Tuya button devices
 """
 import logging
 
-from homeassistant.components.button import ButtonEntity, ButtonDeviceClass
+from homeassistant.components.button import ButtonDeviceClass, ButtonEntity
 
 from .device import TuyaLocalDevice
 from .helpers.config import async_tuya_setup_platform

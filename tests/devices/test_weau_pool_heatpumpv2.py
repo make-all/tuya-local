@@ -1,8 +1,5 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
-from homeassistant.components.climate.const import (
-    ClimateEntityFeature,
-    HVACMode,
-)
+from homeassistant.components.climate.const import ClimateEntityFeature, HVACMode
 
 from ..const import WEAU_POOL_HEATPUMPV2_PAYLOAD
 from ..helpers import assert_device_properties_set

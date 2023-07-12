@@ -22,7 +22,7 @@ from .const import (
     CONF_TYPE,
     DOMAIN,
 )
-from .device import setup_device, get_device_id, async_delete_device
+from .device import async_delete_device, get_device_id, setup_device
 from .helpers.device_config import get_config
 
 _LOGGER = logging.getLogger(__name__)

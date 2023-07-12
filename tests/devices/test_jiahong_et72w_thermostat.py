@@ -1,16 +1,8 @@
-from homeassistant.components.climate.const import (
-    ClimateEntityFeature,
-    HVACMode,
-)
+from homeassistant.components.climate.const import ClimateEntityFeature, HVACMode
 from homeassistant.components.number.const import NumberDeviceClass
-from homeassistant.components.sensor import (
-    SensorDeviceClass,
-    STATE_CLASS_MEASUREMENT,
-)
-from homeassistant.const import (
-    UnitOfEnergy,
-    UnitOfTemperature,
-)
+from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT, SensorDeviceClass
+from homeassistant.const import UnitOfEnergy, UnitOfTemperature
+
 from ..const import JIAHONG_ET72W_PAYLOAD
 from ..helpers import assert_device_properties_set
 from ..mixins.climate import TargetTemperatureTests

@@ -1,7 +1,7 @@
 from homeassistant.components.fan import (
-    FanEntityFeature,
     DIRECTION_FORWARD,
     DIRECTION_REVERSE,
+    FanEntityFeature,
 )
 
 from ..helpers import assert_device_properties_set

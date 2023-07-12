@@ -1,8 +1,8 @@
 from homeassistant.components.climate.const import (
+    PRESET_COMFORT,
+    PRESET_ECO,
     ClimateEntityFeature,
     HVACMode,
-    PRESET_ECO,
-    PRESET_COMFORT,
 )
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import UnitOfTemperature

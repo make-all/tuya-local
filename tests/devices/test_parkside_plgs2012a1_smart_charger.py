@@ -1,16 +1,14 @@
 """Tests for Parkside PLGS 2012 A1 Smart Charger"""
+from homeassistant.components.number.const import NumberDeviceClass
+from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT, SensorDeviceClass
 from homeassistant.const import (
+    PERCENTAGE,
     UnitOfElectricCurrent,
     UnitOfElectricPotential,
-    PERCENTAGE,
-    UnitOfTime,
     UnitOfTemperature,
+    UnitOfTime,
 )
-from homeassistant.components.number.const import NumberDeviceClass
-from homeassistant.components.sensor import (
-    SensorDeviceClass,
-    STATE_CLASS_MEASUREMENT,
-)
+
 from ..const import PARKSIDE_PLGS2012A1_PAYLOAD
 from ..mixins.binary_sensor import MultiBinarySensorTests
 from ..mixins.number import MultiNumberTests

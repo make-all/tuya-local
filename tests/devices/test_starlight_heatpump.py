@@ -1,6 +1,4 @@
-from homeassistant.components.climate.const import (
-    ClimateEntityFeature,
-)
+from homeassistant.components.climate.const import ClimateEntityFeature
 
 from ..const import STARLIGHT_HEATPUMP_PAYLOAD
 from ..helpers import assert_device_properties_set

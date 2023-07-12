@@ -1,14 +1,14 @@
 """Tests for the PC321-TY Power Clamp Energy meter"""
 from homeassistant.components.sensor import (
-    SensorDeviceClass,
     STATE_CLASS_MEASUREMENT,
     STATE_CLASS_TOTAL_INCREASING,
+    SensorDeviceClass,
 )
 from homeassistant.const import (
     UnitOfElectricCurrent,
     UnitOfElectricPotential,
-    UnitOfFrequency,
     UnitOfEnergy,
+    UnitOfFrequency,
     UnitOfPower,
     UnitOfTemperature,
 )

@@ -1,17 +1,14 @@
 """
 Setup for different kinds of Tuya fan devices
 """
-from homeassistant.components.fan import (
-    FanEntity,
-    FanEntityFeature,
-)
 import logging
+
+from homeassistant.components.fan import FanEntity, FanEntityFeature
 
 from .device import TuyaLocalDevice
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
 from .helpers.mixin import TuyaLocalEntity
-
 
 _LOGGER = logging.getLogger(__name__)
 

@@ -1,16 +1,20 @@
 from unittest import IsolatedAsyncioTestCase
-from unittest.mock import AsyncMock, patch, PropertyMock
+from unittest.mock import AsyncMock, PropertyMock, patch
 from uuid import uuid4
 
 from homeassistant.helpers.entity import EntityCategory
 
-from custom_components.tuya_local.binary_sensor import TuyaLocalBinarySensor
 from custom_components.tuya_local.alarm_control_panel import TuyaLocalAlarmControlPanel
+from custom_components.tuya_local.binary_sensor import TuyaLocalBinarySensor
 from custom_components.tuya_local.button import TuyaLocalButton
 from custom_components.tuya_local.camera import TuyaLocalCamera
 from custom_components.tuya_local.climate import TuyaLocalClimate
 from custom_components.tuya_local.cover import TuyaLocalCover
 from custom_components.tuya_local.fan import TuyaLocalFan
+from custom_components.tuya_local.helpers.device_config import (
+    TuyaDeviceConfig,
+    possible_matches,
+)
 from custom_components.tuya_local.humidifier import TuyaLocalHumidifier
 from custom_components.tuya_local.light import TuyaLocalLight
 from custom_components.tuya_local.lock import TuyaLocalLock
@@ -21,11 +25,6 @@ from custom_components.tuya_local.siren import TuyaLocalSiren
 from custom_components.tuya_local.switch import TuyaLocalSwitch
 from custom_components.tuya_local.vacuum import TuyaLocalVacuum
 from custom_components.tuya_local.water_heater import TuyaLocalWaterHeater
-
-from custom_components.tuya_local.helpers.device_config import (
-    TuyaDeviceConfig,
-    possible_matches,
-)
 
 DEVICE_TYPES = {
     "alarm_control_panel": TuyaLocalAlarmControlPanel,

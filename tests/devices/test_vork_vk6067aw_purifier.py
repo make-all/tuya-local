@@ -2,10 +2,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.button import ButtonDeviceClass
 from homeassistant.components.fan import FanEntityFeature
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import (
-    PERCENTAGE,
-    UnitOfTime,
-)
+from homeassistant.const import PERCENTAGE, UnitOfTime
 
 from ..const import VORK_VK6067_PURIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
