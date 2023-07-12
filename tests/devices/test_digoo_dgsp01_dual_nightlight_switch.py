@@ -1,9 +1,7 @@
 """Tests for the switch entity."""
+from homeassistant.components.light import ColorMode, LightEntityFeature
 from homeassistant.components.switch import SwitchDeviceClass
-from homeassistant.components.light import (
-    ColorMode,
-    LightEntityFeature,
-)
+
 from ..const import DIGOO_DGSP01_SOCKET_PAYLOAD
 from ..helpers import assert_device_properties_set
 from ..mixins.switch import BasicSwitchTests

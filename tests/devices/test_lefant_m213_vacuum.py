@@ -8,10 +8,7 @@ from homeassistant.components.vacuum import (
     STATE_RETURNING,
     VacuumEntityFeature,
 )
-from homeassistant.const import (
-    AREA_SQUARE_METERS,
-    UnitOfTime,
-)
+from homeassistant.const import AREA_SQUARE_METERS, UnitOfTime
 
 from ..const import LEFANT_M213_VACUUM_PAYLOAD
 from ..helpers import assert_device_properties_set

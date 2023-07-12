@@ -1,11 +1,11 @@
 """Tests for Digoo DSSP202 dual switch with timers and energy monitoring"""
-from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass
+from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (
     UnitOfElectricCurrent,
     UnitOfElectricPotential,
-    UnitOfTime,
     UnitOfPower,
+    UnitOfTime,
 )
 
 from ..const import DIGOO_DGSP202_SOCKET_PAYLOAD

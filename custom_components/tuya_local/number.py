@@ -5,8 +5,8 @@ import logging
 
 from homeassistant.components.number import NumberEntity
 from homeassistant.components.number.const import (
-    DEFAULT_MIN_VALUE,
     DEFAULT_MAX_VALUE,
+    DEFAULT_MIN_VALUE,
     NumberDeviceClass,
 )
 

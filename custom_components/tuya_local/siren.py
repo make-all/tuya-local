@@ -1,15 +1,13 @@
 """
 Setup for Tuya siren devices
 """
-from homeassistant.components.siren import (
-    SirenEntity,
-    SirenEntityFeature,
-)
+from homeassistant.components.siren import SirenEntity, SirenEntityFeature
 from homeassistant.components.siren.const import (
     ATTR_DURATION,
     ATTR_TONE,
     ATTR_VOLUME_LEVEL,
 )
+
 from .device import TuyaLocalDevice
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig

@@ -1,8 +1,5 @@
 """Tests for the simple garage door opener."""
-from homeassistant.components.cover import (
-    CoverDeviceClass,
-    CoverEntityFeature,
-)
+from homeassistant.components.cover import CoverDeviceClass, CoverEntityFeature
 
 from ..const import SIMPLE_GARAGE_DOOR_PAYLOAD
 from ..helpers import assert_device_properties_set

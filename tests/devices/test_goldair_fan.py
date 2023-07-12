@@ -1,6 +1,4 @@
-from homeassistant.components.fan import (
-    FanEntityFeature,
-)
+from homeassistant.components.fan import FanEntityFeature
 
 from ..const import FAN_PAYLOAD
 from ..helpers import assert_device_properties_set

@@ -4,8 +4,8 @@ from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (
     UnitOfElectricCurrent,
     UnitOfElectricPotential,
-    UnitOfTime,
     UnitOfPower,
+    UnitOfTime,
 )
 
 from ..const import KOGAN_SOCKET_PAYLOAD2

@@ -1,6 +1,8 @@
 """
 Setup for different kinds of Tuya climate devices
 """
+import logging
+
 from homeassistant.components.climate import (
     ClimateEntity,
     ClimateEntityFeature,
@@ -30,8 +32,6 @@ from homeassistant.const import (
     PRECISION_WHOLE,
     UnitOfTemperature,
 )
-import logging
-
 
 from .device import TuyaLocalDevice
 from .helpers.config import async_tuya_setup_platform

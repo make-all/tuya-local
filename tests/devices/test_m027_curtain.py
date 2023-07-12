@@ -1,14 +1,11 @@
 """Tests for the M027 curtain module."""
-from homeassistant.components.cover import (
-    CoverDeviceClass,
-    CoverEntityFeature,
-)
+from homeassistant.components.cover import CoverDeviceClass, CoverEntityFeature
 from homeassistant.const import UnitOfTime
 
 from ..const import M027_CURTAIN_PAYLOAD
 from ..helpers import assert_device_properties_set
-from ..mixins.sensor import MultiSensorTests
 from ..mixins.select import BasicSelectTests
+from ..mixins.sensor import MultiSensorTests
 from .base_device_tests import TuyaDeviceTestCase
 
 COMMAND_DPS = "1"

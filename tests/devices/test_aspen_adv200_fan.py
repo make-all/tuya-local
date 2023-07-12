@@ -1,7 +1,4 @@
-from homeassistant.components.climate.const import (
-    ClimateEntityFeature,
-    HVACMode,
-)
+from homeassistant.components.climate.const import ClimateEntityFeature, HVACMode
 from homeassistant.components.fan import (
     DIRECTION_FORWARD,
     DIRECTION_REVERSE,

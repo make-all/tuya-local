@@ -5,7 +5,7 @@ from homeassistant.components.climate.const import (
     HVACMode,
 )
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import UnitOfTime, UnitOfTemperature
+from homeassistant.const import UnitOfTemperature, UnitOfTime
 
 from ..const import INKBIRD_SOUSVIDE_PAYLOAD
 from ..helpers import assert_device_properties_set

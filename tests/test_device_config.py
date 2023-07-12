@@ -1,26 +1,23 @@
 """Test the config parser"""
-from fuzzywuzzy import fuzz
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import MagicMock
 
+from fuzzywuzzy import fuzz
 from homeassistant.components.sensor import SensorDeviceClass
 
 from custom_components.tuya_local.helpers.config import get_device_id
 from custom_components.tuya_local.helpers.device_config import (
-    available_configs,
-    get_config,
-    _bytes_to_fmt,
-    _typematch,
     TuyaDeviceConfig,
     TuyaDpsConfig,
     TuyaEntityConfig,
+    _bytes_to_fmt,
+    _typematch,
+    available_configs,
+    get_config,
 )
 from custom_components.tuya_local.sensor import TuyaLocalSensor
 
-from .const import (
-    GPPH_HEATER_PAYLOAD,
-    KOGAN_HEATER_PAYLOAD,
-)
+from .const import GPPH_HEATER_PAYLOAD, KOGAN_HEATER_PAYLOAD
 
 KNOWN_DPS = {
     "alarm_control_panel": {

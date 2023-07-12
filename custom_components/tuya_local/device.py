@@ -4,11 +4,10 @@ API for Tuya Local devices.
 
 import asyncio
 import logging
-import tinytuya
 from threading import Lock
 from time import time
 
-
+import tinytuya
 from homeassistant.const import (
     CONF_HOST,
     CONF_NAME,
@@ -19,17 +18,16 @@ from homeassistant.core import HomeAssistant
 
 from .const import (
     API_PROTOCOL_VERSIONS,
+    CONF_DEVICE_CID,
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
     CONF_POLL_ONLY,
     CONF_PROTOCOL_VERSION,
     DOMAIN,
-    CONF_DEVICE_CID,
 )
 from .helpers.config import get_device_id
 from .helpers.device_config import possible_matches
 from .helpers.log import log_json
-
 
 _LOGGER = logging.getLogger(__name__)
 

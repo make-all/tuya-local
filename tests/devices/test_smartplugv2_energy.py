@@ -5,9 +5,9 @@ from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (
     UnitOfElectricCurrent,
     UnitOfElectricPotential,
-    UnitOfTime,
     UnitOfEnergy,
     UnitOfPower,
+    UnitOfTime,
 )
 
 from ..const import SMARTSWITCH_ENERGY_PAYLOAD

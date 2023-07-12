@@ -9,11 +9,7 @@ from homeassistant.components.vacuum import (
     STATE_RETURNING,
     VacuumEntityFeature,
 )
-from homeassistant.const import (
-    AREA_SQUARE_METERS,
-    UnitOfTime,
-    PERCENTAGE,
-)
+from homeassistant.const import AREA_SQUARE_METERS, PERCENTAGE, UnitOfTime
 
 from ..const import KYVOL_E30_VACUUM_PAYLOAD
 from ..helpers import assert_device_properties_set

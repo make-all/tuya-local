@@ -1,13 +1,7 @@
 from homeassistant.components.button import ButtonDeviceClass
 from homeassistant.components.fan import FanEntityFeature
-from homeassistant.components.sensor import (
-    SensorDeviceClass,
-    STATE_CLASS_MEASUREMENT,
-)
-from homeassistant.const import (
-    PERCENTAGE,
-    UnitOfTemperature,
-)
+from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT, SensorDeviceClass
+from homeassistant.const import PERCENTAGE, UnitOfTemperature
 
 from ..const import HIMOX_H05_PURIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set

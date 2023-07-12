@@ -1,14 +1,11 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
-from homeassistant.components.climate.const import (
-    ClimateEntityFeature,
-    HVACMode,
-)
+from homeassistant.components.climate.const import ClimateEntityFeature, HVACMode
 from homeassistant.components.number.const import NumberDeviceClass
 from homeassistant.const import PRECISION_TENTHS, UnitOfTemperature
 
 from ..const import BEOK_TR9B_PAYLOAD
-from ..mixins.climate import TargetTemperatureTests
 from ..mixins.binary_sensor import MultiBinarySensorTests
+from ..mixins.climate import TargetTemperatureTests
 from ..mixins.lock import BasicLockTests
 from ..mixins.number import MultiNumberTests
 from ..mixins.select import MultiSelectTests

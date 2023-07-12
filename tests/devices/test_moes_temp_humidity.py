@@ -1,5 +1,5 @@
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import UnitOfTime, UnitOfTemperature
+from homeassistant.const import UnitOfTemperature, UnitOfTime
 
 from ..const import MOES_TEMP_HUMID_PAYLOAD
 from ..mixins.number import MultiNumberTests

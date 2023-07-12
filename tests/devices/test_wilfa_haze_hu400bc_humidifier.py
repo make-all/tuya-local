@@ -1,11 +1,7 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.humidifier import HumidifierEntityFeature
-from homeassistant.components.humidifier.const import (
-    MODE_AUTO,
-    MODE_NORMAL,
-)
+from homeassistant.components.humidifier.const import MODE_AUTO, MODE_NORMAL
 from homeassistant.components.sensor import SensorDeviceClass
-
 from homeassistant.const import PERCENTAGE, UnitOfTemperature
 
 from ..const import WILFA_HAZE_HUMIDIFIER_PAYLOAD

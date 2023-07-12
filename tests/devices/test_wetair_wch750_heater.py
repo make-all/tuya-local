@@ -1,12 +1,12 @@
 from homeassistant.components.climate.const import (
+    PRESET_AWAY,
+    PRESET_BOOST,
+    PRESET_COMFORT,
     ClimateEntityFeature,
     HVACMode,
-    PRESET_AWAY,
-    PRESET_COMFORT,
-    PRESET_BOOST,
 )
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import UnitOfTime, UnitOfTemperature
+from homeassistant.const import UnitOfTemperature, UnitOfTime
 
 from ..const import WETAIR_WCH750_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set

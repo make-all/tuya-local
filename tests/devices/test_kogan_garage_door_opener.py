@@ -1,9 +1,6 @@
 """Tests for the simple garage door opener."""
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
-from homeassistant.components.cover import (
-    CoverDeviceClass,
-    CoverEntityFeature,
-)
+from homeassistant.components.cover import CoverDeviceClass, CoverEntityFeature
 from homeassistant.components.sensor import SensorDeviceClass
 
 from ..const import KOGAN_GARAGE_DOOR_PAYLOAD

@@ -1,10 +1,7 @@
 from homeassistant.components.button import ButtonDeviceClass
 from homeassistant.components.fan import FanEntityFeature
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import (
-    CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
-    UnitOfTime,
-)
+from homeassistant.const import CONCENTRATION_MICROGRAMS_PER_CUBIC_METER, UnitOfTime
 
 from ..const import POIEMA_ONE_PURIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set

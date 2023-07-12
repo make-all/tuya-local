@@ -1,11 +1,7 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.fan import FanEntityFeature
 from homeassistant.components.humidifier import HumidifierEntityFeature
-from homeassistant.components.humidifier.const import (
-    MODE_NORMAL,
-    MODE_AUTO,
-    MODE_SLEEP,
-)
+from homeassistant.components.humidifier.const import MODE_AUTO, MODE_NORMAL, MODE_SLEEP
 from homeassistant.components.sensor import SensorDeviceClass
 
 from ..const import EANONS_HUMIDIFIER_PAYLOAD

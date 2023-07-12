@@ -1,5 +1,6 @@
 # Mixins for testing climate entities
 from math import floor
+
 from ..helpers import assert_device_properties_set
 
 

@@ -1,17 +1,15 @@
 """Tests for the button entity."""
-from pytest_homeassistant_custom_component.common import MockConfigEntry
-import pytest
 from unittest.mock import AsyncMock, Mock
 
+import pytest
+from pytest_homeassistant_custom_component.common import MockConfigEntry
+
+from custom_components.tuya_local.button import TuyaLocalButton, async_setup_entry
 from custom_components.tuya_local.const import (
     CONF_DEVICE_ID,
     CONF_PROTOCOL_VERSION,
     CONF_TYPE,
     DOMAIN,
-)
-from custom_components.tuya_local.button import (
-    async_setup_entry,
-    TuyaLocalButton,
 )
 
 
