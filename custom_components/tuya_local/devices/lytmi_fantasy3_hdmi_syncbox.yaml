@@ -8,12 +8,6 @@ primary_entity:
     - id: 20
       name: switch
       type: boolean
-    - id: 21
-      name: color_mode
-      type: string
-      mapping:
-        - dps_val: colour
-          value: hs
     - id: 22
       name: brightness
       type: integer
@@ -44,21 +38,51 @@ primary_entity:
     - id: 101
       type: integer
       name: unknown_101
-    - id: 105
-      type: integer
-      name: unknown_105
     - id: 107
       type: boolean
       name: unknown_107
-    - id: 109
-      type: boolean
-      name: unknown_109
-
+      
 secondary_entities:
+  - entity: switch
+    name: TV synchronization switch
+    dps:
+      - id: 109
+        type: boolean
+  - entity: select
+    name: HDMI Input
+    icon: "mdi:hdmi-port"
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: option
+        mapping:
+          - dps_val: 0
+            value: HDMI 1
+          - dps_val: 1
+            value: HDMI 2
+          - dps_val: 2
+            value: HDMI 3
+          - dps_val: 3
+            value: HDMI 4
+  - entity: select
+    name: Setup side
+    icon: "mdi:arrow-collapse-horizontal"
+    category: config
+    dps:
+      - id: 101
+        type: integer
+        name: option
+        mapping:
+          - dps_val: 0
+            value: Right
+          - dps_val: 1
+            value: Left
   - entity: number
     category: config
     name: Degree of diffusion
     type: integer
+    mode: slider
     dps:
       - id: 108
         name: value
@@ -69,7 +93,6 @@ secondary_entities:
           max: 1000
         mapping:
           - scale: 10
-
   - entity: select
     name: Scene
     format:
