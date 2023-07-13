@@ -50,14 +50,26 @@ primary_entity:
     - id: 107
       type: boolean
       name: unknown_107
-    - id: 108
-      type: integer
-      name: unknown_108
     - id: 109
       type: boolean
       name: unknown_109
 
 secondary_entities:
+  - entity: number
+    category: config
+    name: Degree of diffusion
+    type: integer
+    dps:
+      - id: 108
+        name: value
+        type: integer
+        precision: 0
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - scale: 10
+
   - entity: select
     name: Scene
     format:
@@ -100,19 +112,18 @@ secondary_entities:
           - dps_val: "89000000000000000000000000000000"
             value: Scene - Firework
           - dps_val: "90000000000000000000000000000000"
-            value: Scene - Star
+            value: Scene (Color) - Star
           - dps_val: "91000000000000000000000000000000"
-            value: Scene - Drip
+            value: Scene (Color) - Drip
           - dps_val: "92000000000000000000000000000000"
-            value: Scene - Practice
+            value: Scene (Color) - Practice
           - dps_val: "93000000000000000000000000000000"
-            value: Scene - Flow
+            value: Scene (Color) - Flow
           - dps_val: "94000000000000000000000000000000"
-            value: Scene - Ball
+            value: Scene (Color) - Ball
           - dps_val: "95000000000000000000000000000000"
-            value: Scene - Swing
+            value: Scene (Color) - Swing
           - dps_val: "96000000000000000000000000000000"
-            value: Scene - Breath
+            value: Scene (Color) - Breath
           - dps_val: "97000000000000000000000000000000"
-            value: Scene - Pure     
-
+            value: Scene (Color) - Pure     
