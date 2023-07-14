@@ -45,8 +45,10 @@ primary_entity:
 secondary_entities:
   - entity: switch
     name: TV synchronization switch
+    category: config
     dps:
       - id: 109
+        name: switch
         type: boolean
   - entity: select
     name: HDMI Input
@@ -93,6 +95,7 @@ secondary_entities:
           max: 1000
         mapping:
           - scale: 10
+            step: 1
   - entity: select
     name: Scene
     format:
