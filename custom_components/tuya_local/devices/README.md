@@ -166,7 +166,7 @@ Whether to persist the value if the device does not return it on every status
 refresh.  Some devices don't return every value on every status poll. In most
 cases, it is better to remember the previous value, but in some cases the
 dp is used to signal an event, so when it is next sent, it should trigger
-automations even if it is the same value as previously sent.  In that case 
+automations even if it is the same value as previously sent.  In that case
 the value needs to go to null in between when the device is not sending it.
 
 ### `force`
@@ -259,6 +259,12 @@ the device type.
 *Optional.*
 
 For base64 and hex types, this specifies how to extract a single numeric value from the binary data.  The value should be a hex bit mask (eg 00FF00 to extract the middle byte of a 3 byte value).  Unlike format, this does not require special handling in the entity platform, as only a single value is being extracted.
+
+### `endianness`
+
+*Optional, default="big"*
+
+For base64 and hex types, this specifies the endianess of the data and mask. Could be "big" or "little".
 
 ## Mapping Rules
 
@@ -643,7 +649,7 @@ The value "off" will be used for turning off the siren, and will be filtered fro
 
 - **min_temperature** (optional, number): a dp that reports the minimum temperature the water heater can be set to, in case this is not a fixed value.
 
-- **max_temperature** (optional, number): a dp that reports the maximum temperature the water heater can be set to, in case this is not a fixed value. 
+- **max_temperature** (optional, number): a dp that reports the maximum temperature the water heater can be set to, in case this is not a fixed value.
 
 - **away_mode** (optional, boolean): a dp to control whether the water heater is in away mode.
 
