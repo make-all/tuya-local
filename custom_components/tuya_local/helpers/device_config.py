@@ -386,15 +386,23 @@ class TuyaDpsConfig:
             if mask:
                 return int(mask, 16)
 
+    def endianness(self, device):
+        mapping = self._find_map_for_dps(device.get_property(self.id))
+        if mapping:
+            endianness = mapping.get("endianness")
+            if endianness:
+                return endianness
+        return "big"
+
     def get_value(self, device):
         """Return the value of the dps from the given device."""
         mask = self.mask(device)
         bytevalue = self.decoded_value(device)
         if mask and isinstance(bytevalue, bytes):
-            value = int.from_bytes(bytevalue, "big")
+            value = int.from_bytes(bytevalue, self.endianness(device))
             scale = mask & (1 + ~mask)
             map_scale = self.scale(device)
-            return ((value & mask) // scale) / map_scale
+            return self._map_from_dps((value & mask) // scale, device)
         else:
             return self._map_from_dps(device.get_property(self.id), device)
 
@@ -746,7 +754,9 @@ class TuyaDpsConfig:
         c_match = None
         if constraint and conditions:
             c_dps = self._entity.find_dps(constraint)
-            c_val = None if c_dps is None else device.get_property(c_dps.id)
+            # base64 and hex have to be decoded
+            binary_type = c_dps.rawtype == "base64" or c_dps.rawtype == "hex"
+            c_val = None if c_dps is None else (c_dps.get_value(device) if binary_type else device.get_property(c_dps.id))
             for cond in conditions:
                 if c_val is not None and (_equal_or_in(c_val, cond.get("dps_val"))):
                     c_match = cond
@@ -781,6 +791,7 @@ class TuyaDpsConfig:
             redirect = mapping.get("value_redirect")
             invert = mapping.get("invert", False)
             mask = mapping.get("mask")
+            endianness = mapping.get("endianness", "big")
             step = mapping.get("step")
             if not isinstance(step, Number):
                 step = None
@@ -870,9 +881,9 @@ class TuyaDpsConfig:
             # Convert to int
             mask = int(mask, 16)
             mask_scale = mask & (1 + ~mask)
-            current_value = int.from_bytes(self.decoded_value(device), "big")
+            current_value = int.from_bytes(self.decoded_value(device), endianness)
             result = (current_value & ~mask) | (mask & (result * mask_scale))
-            result = self.encode_value(result.to_bytes(length, "big"))
+            result = self.encode_value(result.to_bytes(length, endianness))
 
         dps_map[self.id] = self._correct_type(result)
         return dps_map
