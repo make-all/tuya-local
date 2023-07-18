@@ -401,7 +401,6 @@ class TuyaDpsConfig:
         if mask and isinstance(bytevalue, bytes):
             value = int.from_bytes(bytevalue, self.endianness(device))
             scale = mask & (1 + ~mask)
-            map_scale = self.scale(device)
             return self._map_from_dps((value & mask) // scale, device)
         else:
             return self._map_from_dps(device.get_property(self.id), device)
@@ -755,8 +754,15 @@ class TuyaDpsConfig:
         if constraint and conditions:
             c_dps = self._entity.find_dps(constraint)
             # base64 and hex have to be decoded
-            binary_type = c_dps.rawtype == "base64" or c_dps.rawtype == "hex"
-            c_val = None if c_dps is None else (c_dps.get_value(device) if binary_type else device.get_property(c_dps.id))
+            c_val = (
+                None
+                if c_dps is None
+                else (
+                    c_dps.get_value(device)
+                    if c_dps.rawtype == "base64" or c_dps.rawtype == "hex"
+                    else device.get_property(c_dps.id)
+                )
+            )
             for cond in conditions:
                 if c_val is not None and (_equal_or_in(c_val, cond.get("dps_val"))):
                     c_match = cond
