@@ -194,7 +194,7 @@ with by specifying the precision explicitly.
 
 ### `mapping`
 
-*Optional. Must be a list starting with a `- ` (a dash and a space):*
+*Optional. Must be a list with each item starting with a `- ` (a dash and a space):*
 This can be used to define a list of additional rules that modify the DP
 to Home Assistant attribute mapping to something other than a one to one
 copy.
