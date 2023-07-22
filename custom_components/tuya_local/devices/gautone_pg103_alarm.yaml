@@ -1,7 +1,7 @@
-name: GauTone PG-103 alarm
+name: Alarm security system
 products:
   - id: eb26b0818666ecd284o4qe
-    name: GauTone PG-103 alarm security system
+    name: GauTone PG-103
 primary_entity:
   entity: alarm_control_panel
   dps:
@@ -52,7 +52,7 @@ secondary_entities:
           min: 0
           max: 1000
   - entity: number
-    name: Siren Duration
+    name: Siren duration
     category: config
     icon: "mdi:timer"
     dps:
@@ -64,7 +64,7 @@ secondary_entities:
           min: 0
           max: 1000
   - entity: switch
-    name: Alarm Sound
+    name: Alarm sound
     category: config
     dps:
       - id: 6
@@ -78,21 +78,21 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Arm Beep
+    name: Arm beep
     category: config
     dps:
       - id: 4
         type: boolean
         name: switch
   - entity: switch
-    name: Mode App Sound
+    name: Mode notification
     category: config
     dps:
       - id: 10
         type: boolean
         name: switch
   - entity: switch
-    name: Alarm Message propel
+    name: Alarm notification
     category: config
     dps:
       - id: 27
