@@ -1,4 +1,4 @@
-name: Aubess Irrigation System 
+name: Irrigation system
 products:
   - id: 2ak7r2culspkc7hx
     model: RainPoint TTP106W
@@ -10,10 +10,9 @@ primary_entity:
     - id: 1
       name: switch
       type: boolean
-
 secondary_entities:
   - entity: sensor
-    name: Work State
+    name: Status
     class: enum
     category: diagnostic
     dps:
@@ -23,16 +22,15 @@ secondary_entities:
         icon_priority: 1
         mapping:
           - dps_val: "0"
-            value: unknown
+            value: Unknown
           - dps_val: "1"
-            value: idle
+            value: Idle
           - dps_val: "2"
-            value: auto_run
+            value: Auto running
           - dps_val: "3"
-            value: manual_run
-
+            value: Manually running
   - entity: switch
-    name: Auto Run
+    name: Auto run
     icon: "mdi:timer"
     category: config
     dps:
@@ -40,9 +38,8 @@ secondary_entities:
         name: switch
         type: boolean
         optional: true
-
   - entity: number
-    name: How long
+    name: Duration
     icon: "mdi:timer"
     category: config
     mode: box
@@ -54,12 +51,8 @@ secondary_entities:
         range:
           min: 6
           max: 1440
-        mapping:
-        - scale: 1
-          step: 1
-
   - entity: number
-    name: How often
+    name: Interval
     icon: "mdi:clock-outline"
     category: config
     mode: box
@@ -67,52 +60,30 @@ secondary_entities:
       - id: 103
         type: integer
         name: value
-        unit: h  
+        unit: h
         range:
           min: 1
-          max: 720  
-        mapping:
-        - scale: 1
-          step: 1
-
-  
+          max: 720
   - entity: sensor
-    name: Next irrigation time
+    name: Next irrigation
     icon: "mdi:clock-outline"
     category: diagnostic
-    mode: box
+    class: duration
     dps:
       - id: 107
         type: integer
         name: sensor
-        unit: s  
-        readonly: true
-        range:
-          min: 1
-          max: 1440  
-        mapping:
-        - scale: 1
-          step: 1
-
-
+        unit: s
   - entity: sensor
     category: diagnostic
     class: duration
-    name: Remaining Time
+    name: Remaining time
     icon: "mdi:timer"
     dps:
       - id: 104
         type: integer
         name: sensor
         unit: s
-        readolny: true
-        range:
-          min: 1
-          max: 14500  
-        mapping:
-        - scale: 1
-          step: 1
-
   - entity: sensor
     name: Battery
     class: battery
@@ -124,7 +95,6 @@ secondary_entities:
         unit: "%"
         mapping:
           - scale: 0.04
-
   - entity: binary_sensor
     name: Error
     category: diagnostic
@@ -136,5 +106,4 @@ secondary_entities:
         mapping:
           - dps_val: 0
             value: false
-          - dps_val: 1
-            value: true
+          - value: true
