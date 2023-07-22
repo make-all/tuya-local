@@ -315,4 +315,5 @@ Further device support has been made with the assistance of users.  Please consi
 - [kondi](https://github.com/kondi) for contributing improvements to masked values and Starlight heatpumps.
 - [scotttimmins](https://github.com/scotttimmins) for contributing support for 4 outlet + USB smart powerstrip.
 - [madchuska](https://github.com/madchuska) for contributing support for Kogan air purifiers.
-^ [bskjon](https://github.com/bskjon) for contributing support for Woods Milan air conditioner and Norwegian translations.
+- [bskjon](https://github.com/bskjon) for contributing support for Woods Milan air conditioner and Norwegian translations.
+- [jamarju](https://github.com/jamarju) for contributing support for Garza Wi-Fi garden irrigation systems.

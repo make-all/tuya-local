@@ -429,6 +429,7 @@ of device.
 - ZN-2C09 9-in-1 air quality monitor
 - ZX-GS21 gas leak alarm monitor
 - ZY-M100-WiFi mmWave human presence sensor
+- Garza Wi-Fi garden irrigation system model: ITV103W, ref: 401303. Connects to Wi-Fi hub via 433 MHz RF.
 
 ### Devices supported via Bluetooth hubs
 
