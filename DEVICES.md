@@ -433,10 +433,11 @@ of device.
 ### Devices supported via Bluetooth hubs
 
 - Adaprox Fingerbot plus
+- Diivoo WT05 dual water timer
 - HCT-611 water timer
 - Orion DL021HA lock
 - PT216/PT19DB-2 temperature and humidity sensor
-- Water timers (confirmed with Johgee and Diivoo branded devices)
+- Generic water timers (confirmed with Johgee and Diivoo branded devices)
 
 ### Devices supported via IR hubs
 
