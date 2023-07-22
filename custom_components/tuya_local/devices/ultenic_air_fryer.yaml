@@ -22,7 +22,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: select
-    name: Cooking Mode
+    name: Cooking mode
     dps:
       - id: 3
         type: string
@@ -126,7 +126,7 @@ secondary_entities:
           - dps_val: f
             value: F
   - entity: sensor
-    name: Internal Temperature
+    name: Internal temperature
     class: temperature
     dps:
       - id: 7
@@ -203,7 +203,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: binary_sensor
-    name: Tray Status
+    name: Tray status
     class: opening
     icon: "mdi:tray"
     dps:
@@ -218,9 +218,9 @@ secondary_entities:
         name: sensor
         type: string
         mapping:
-          - dps_val: 0
+          - dps_val: "0"
             value: false
-          - dps_val: 1
+          - dps_val: "1"
             value: true
   - entity: sensor
     name: Current stage remaining time
