@@ -59,6 +59,7 @@
 - Fairland IPHCR15 pool heatpump (matches others above, but allows control of heat/cool modes while others seem to be fixed to auto only)
 - Garden PAC pool heatpump (also works with Summerwave Si Series)
 - IPS Pro pool-systems heatpump (seems to match Fairland Inver-X as well)
+- ITS-4.5HD super pool heatpump
 - Madimack Elite V3 pool heatpump
 - Madimack(model unknown) pool heatpump (seems to match Fairland IPH45 as well)
 - Poolex Silverline, Q-7, Q-line and Vertigo heatpumps
