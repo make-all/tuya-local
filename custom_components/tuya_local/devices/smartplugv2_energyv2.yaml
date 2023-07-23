@@ -1,4 +1,7 @@
 name: Energy monitoring smartplug
+products:
+  - id: jdj6ccklup7btq3a
+    name: Tongou TO-Q-SY1-JWT
 primary_entity:
   entity: switch
   class: outlet
@@ -141,4 +144,20 @@ secondary_entities:
             value: Position
           - dps_val: "on"
             value: "On"
-
+  - entity: binary_sensor
+    name: Online
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 66
+        type: boolean
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: offline
+            value: false
+          - dps_val: online
+            value: true
+          # if missing, assume online as we can reach it
+          - dps_val: null
+            value: true
