@@ -1,11 +1,11 @@
-name: Garza WiFi garden irrigation system
+name: Garden irrigation system
 product:
   - id: xnajzurgqo1ugohn
     model: ITV103W
+    manufacturer: Garza
 primary_entity:
   entity: switch
   icon: "mdi:watering-can"
-  name: Switch
   dps:
     - id: 108
       type: boolean
@@ -53,12 +53,12 @@ secondary_entities:
       - id: 107
         type: integer
         name: value
-        unit: m
+        unit: min
         range:
           min: 0
           max: 60
   - entity: sensor
-    name: Work status
+    name: Status
     class: enum
     icon: "mdi:list-status"
     category: diagnostic
@@ -74,7 +74,7 @@ secondary_entities:
           - dps_val: 2
             value: "Auto"
   - entity: binary_sensor
-    name: Alarm status
+    name: Alarm
     category: diagnostic
     class: problem
     dps:
