@@ -323,3 +323,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [samgalagher](https://github.com/samgalagher) for contributing support for Yinmik WF-3188 water quality monitors.
 - [tariya-garker](https://github.com/tariya-garker) for assitance with support for Royal Clima RCB 150 ventilation systems.
 - [nicopret1](https://github.com/nicopret1) for assistance with support for ITS-4.5HD super pool heatpumps.
+- [simposiummm](https://github.com/simposiummm) for assistance with support for Sulion ceiling fans.

@@ -136,6 +136,7 @@
 - Skyfan DC fan
 - Skyfan DC fan with light
 - Stirling FS1-40DC pedestal fan
+- Sulion Crixus L ceiling fan with light
 - TMWF02 fan controller
 - Treatlife DS02-F fan switch
 - Treatlife DS03 fan with dimmable light
