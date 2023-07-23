@@ -1,6 +1,9 @@
 name: PCT513 themostat
 products:
   - id: rsujjtinksnzcezy
+    name: Owon PCT513
+  - id: sqkxklkleeasfk8w
+    name: MoesGo PCT513-WB-TY
 primary_entity:
   entity: climate
   translation_key: thermostat
@@ -32,18 +35,19 @@ primary_entity:
           conditions:
             - dps_val: f
               value_redirect: temp_f
-              scale: 1
-              step: 1
+              mapping:
+                - scale: 1
+                  step: 1
               range:
-                min: 32
-                max: 122
+                min: 41
+                max: 90
     - id: 17
       type: integer
       name: temp_f
       hidden: true
       range:
-        min: 32
-        max: 122
+        min: 41
+        max: 90
     - id: 23
       type: string
       name: temperature_unit
@@ -60,7 +64,8 @@ primary_entity:
           constraint: temperature_unit
           conditions:
             - dps_val: f
-              scale: 1
+              mapping:
+                - scale: 1
               value_redirect: curtemp_f
     - id: 29
       type: integer
@@ -70,25 +75,25 @@ primary_entity:
       type: integer
       name: current_humidity
     - id: 45
-      type: integer
-      name: unknown_45
+      type: bitfield
+      name: fault_code
     - id: 107
       type: string
       name: installation
     - id: 108
       type: integer
-      name: temp_c
+      name: cool_temp_set
       mapping:
         - scale: 100
     - id: 109
       type: integer
-      name: unknown_109
+      name: heat_temp_set
     - id: 110
       type: integer
-      name: temp_f2
+      name: cool_temp_set_f
     - id: 111
       type: integer
-      name: unknown_111
+      name: heat_temp_set_f
     - id: 115
       type: string
       name: fan_mode
@@ -101,7 +106,11 @@ primary_entity:
           value: cycle
     - id: 116
       type: string
-      name: unknown_116
+      name: home_mode
+    - id: 118
+      type: base64
+      name: schedule
+      optional: true
     - id: 119
       type: boolean
       name: scheduling
@@ -163,3 +172,15 @@ secondary_entities:
           max: 55
         mapping:
           - step: 5
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 45
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
