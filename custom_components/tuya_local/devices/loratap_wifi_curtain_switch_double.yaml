@@ -1,0 +1,175 @@
+name: Loratap Wifi Double Curtain Switch
+products:
+  - id: zqypumy8ot4clzyi
+primary_entity:
+  entity: cover
+  name: Curtain
+  class: blind
+  dps:
+    - id: 1
+      name: control
+      type: string
+      mapping:
+        - dps_val: open
+          value: open
+        - dps_val: close
+          value: close
+        - dps_val: stop
+          value: stop
+    - id: 2
+      name: position
+      type: integer
+      unit: "%"
+      range:
+        max: 100
+        min: 0
+      mapping:
+        - step: 1
+secondary_entities:
+  - entity: cover
+    name: Curtain 2
+    dps:
+      - id: 4
+        name: control
+        type: string
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 5
+        name: position
+        type: integer
+        unit: "%"
+        range:
+          max: 100
+          min: 0
+        mapping:
+          - step: 1
+  - entity: number
+    name: Position 1
+    category: config
+    icon: "mdi:blinds-horizontal-closed"
+    dps:
+      - id: 2
+        name: value
+        type: integer
+        unit: "%"
+        range:
+          max: 100
+          min: 0
+        mapping:
+          - scale: 0
+          - step: 1
+  - entity: number
+    name: Position 2
+    category: config
+    icon: "mdi:blinds-horizontal-closed"
+    dps:
+      - id: 5
+        name: value
+        type: integer
+        unit: "%"
+        range:
+          max: 100
+          min: 0
+        mapping:
+          - scale: 0
+          - step: 1
+  - entity: number
+    name: timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 10
+        name: value
+        type: integer
+        range:
+          max: 120
+          min: 2
+        mapping:
+          - scale: 0
+          - step: 1
+  - entity: number
+    name: timer 2
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 11
+        name: value
+        type: integer
+        range:
+          max: 120
+          min: 2
+        mapping:
+          - scale: 0
+          - step: 1
+  - entity: select
+    name: direction
+    category: config
+    icon: "mdi:arrow-u-down-left"
+    dps:
+      - id: 8
+        name: option
+        type: string
+        mapping:
+          - dps_val: "forward"
+            value: forward
+          - dps_val: "back"
+            value: back
+  - entity: select
+    name: direction 2
+    category: config
+    icon: "mdi:arrow-u-down-left"
+    dps:
+      - id: 9
+        name: option
+        type: string
+        mapping:
+          - dps_val: "forward"
+            value: forward
+          - dps_val: "back"
+            value: back
+  - entity: select
+    name: Light Mode
+    category: config
+    icon: "mdi:toggle-switch"
+    dps:
+      - id: 14
+        name: option
+        type: string
+        mapping:
+          - dps_val: "relay"
+            value: Mode 1
+          - dps_val: "pos"
+            value: Mode 2
+          - dps_val: "none"
+            value: None
+  - entity: select
+    name: Calibration 1
+    category: config
+    icon: "mdi:toggle-switch"
+    dps:
+      - id: 3
+        name: option
+        type: string
+        mapping:
+          - dps_val: "start"
+            value: start
+          - dps_val: "end"
+            value: end
+  - entity: select
+    name: Calibration 2
+    category: config
+    icon: "mdi:toggle-switch"
+    dps:
+      - id: 6
+        name: option
+        type: string
+        mapping:
+          - dps_val: "start"
+            value: start
+          - dps_val: "end"
+            value: end
