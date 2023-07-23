@@ -2,6 +2,8 @@ name: Alarm security system
 products:
   - id: eb26b0818666ecd284o4qe
     name: GauTone PG-103
+  - id: gyitctrjj1kefxp2
+    name: "PG103/PG105/PG106/PG107/PG109"
 primary_entity:
   entity: alarm_control_panel
   dps:
@@ -23,6 +25,7 @@ primary_entity:
     - id: 36
       type: string
       name: sub_class
+      optional: true
     - id: 101
       type: string
       name: power_state
@@ -35,7 +38,7 @@ secondary_entities:
       - id: 2
         type: integer
         name: value
-        unit: sec
+        unit: s
         range:
           min: 0
           max: 1000
@@ -47,7 +50,7 @@ secondary_entities:
       - id: 28
         type: integer
         name: value
-        unit: sec
+        unit: s
         range:
           min: 0
           max: 1000
