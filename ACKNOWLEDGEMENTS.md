@@ -321,3 +321,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [luyzfernando08](https://github.com/luyzfernando08) for contributing support for GauTone PG-103 alarm systems.
 - [jafar-atili](https://github.com/jafar-atili) for contributing improvements to Lytmi Fantasy 3 HDMI sync backlights.
 - [samgalagher](https://github.com/samgalagher) for contributing support for Yinmik WF-3188 water quality monitors.
+- [tariya-garker](https://github.com/tariya-garker) for assitance with support for Royal Clima RCB 150 ventilation systems.

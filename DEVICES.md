@@ -131,6 +131,7 @@
 - Ledkia fan and light controller
 - Lexy F501 fan
 - Mantra ceiling fan with light
+- Royal Clima RCB 150 ventilation system
 - Skyfan DC fan
 - Skyfan DC fan with light
 - Stirling FS1-40DC pedestal fan
