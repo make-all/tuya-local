@@ -430,6 +430,7 @@ of device.
 - Tontine electric blanket
 - Universal remote control (supports sensors only)
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)
+- Yinmik WF-3188 water quality monitor
 - ZN-2C09 9-in-1 air quality monitor
 - ZX-GS21 gas leak alarm monitor
 - ZY-M100-WiFi mmWave human presence sensor
