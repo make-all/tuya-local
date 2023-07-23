@@ -266,6 +266,7 @@ the best option.
 - Linkoze LKWSW201 dual button
 - Logicom Strippy 4 way power strip with USB
 - Loratap RR400W-V2 relay switch
+- Makegood double power point (sold under AusElectronicsDirect, Cleverlife, Kogan, Ozsmartthings and other brands)
 - Mirabella Genio smartplug with USB
 - Moes 3-gang switch
 - MoesHouse smartplug with RGBW nightlight
@@ -397,6 +398,7 @@ of device.
 ### Alarm control panels
 
 - BlitzWolf BW-IS6 security alarm system
+- GauTone PG-103 security alarm system
 - ZX-DB11 doorbell and alarm system
 - ZX-G30 alarm system
 
@@ -404,12 +406,14 @@ of device.
 
 - generic PIR motion sensor
 - generic illuminance sensor
+- Aubess Rainpoint TTP106W irrigation system
 - Brennenstuhl WFD3050P PIR motion activated CCT spotlight
 - Bresser smart 7-in-1 weather station
 - Catit Pixi smart fountain
 - Catit pet feeder (Pixi 2.2kg dispenser and 6 meal versions, and another non-Pixi branded single dispenser)
 - CO2-Box air quality monitor
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
+- Garza Wi-Fi garden irrigation system (ITV103W with 433MHz WiFi hub)
 - Inkbird PTH-9CW air quality monitor
 - KKMoon 7in1 air quality monitor
 - Kogan bidet toilet seat
@@ -429,7 +433,6 @@ of device.
 - ZN-2C09 9-in-1 air quality monitor
 - ZX-GS21 gas leak alarm monitor
 - ZY-M100-WiFi mmWave human presence sensor
-- Garza Wi-Fi garden irrigation system model: ITV103W, ref: 401303. Connects to Wi-Fi hub via 433 MHz RF.
 
 ### Devices supported via Bluetooth hubs
 
