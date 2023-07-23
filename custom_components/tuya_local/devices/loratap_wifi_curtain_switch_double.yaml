@@ -1,4 +1,4 @@
-name: Loratap Wifi Double Curtain Switch
+name: Double Curtain Wifi WiFi
 products:
   - id: zqypumy8ot4clzyi
 primary_entity:
@@ -23,8 +23,6 @@ primary_entity:
       range:
         max: 100
         min: 0
-      mapping:
-        - step: 1
 secondary_entities:
   - entity: cover
     name: Curtain 2
@@ -46,8 +44,6 @@ secondary_entities:
         range:
           max: 100
           min: 0
-        mapping:
-          - step: 1
   - entity: number
     name: Position 1
     category: config
@@ -60,9 +56,6 @@ secondary_entities:
         range:
           max: 100
           min: 0
-        mapping:
-          - scale: 0
-          - step: 1
   - entity: number
     name: Position 2
     category: config
@@ -75,39 +68,32 @@ secondary_entities:
         range:
           max: 100
           min: 0
-        mapping:
-          - scale: 0
-          - step: 1
   - entity: number
-    name: timer
+    name: Timer
     category: config
     icon: "mdi:timer"
     dps:
       - id: 10
         name: value
         type: integer
+        unit: sec
         range:
           max: 120
           min: 2
-        mapping:
-          - scale: 0
-          - step: 1
   - entity: number
-    name: timer 2
+    name: Timer 2
     category: config
     icon: "mdi:timer"
     dps:
       - id: 11
         name: value
         type: integer
+        unit: sec
         range:
           max: 120
           min: 2
-        mapping:
-          - scale: 0
-          - step: 1
   - entity: select
-    name: direction
+    name: Direction
     category: config
     icon: "mdi:arrow-u-down-left"
     dps:
@@ -120,7 +106,7 @@ secondary_entities:
           - dps_val: "back"
             value: back
   - entity: select
-    name: direction 2
+    name: Direction 2
     category: config
     icon: "mdi:arrow-u-down-left"
     dps:
