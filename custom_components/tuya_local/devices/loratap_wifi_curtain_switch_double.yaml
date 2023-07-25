@@ -1,9 +1,10 @@
-name: Loratap Wifi Double Curtain Switch
+name: Double curtain switch
 products:
   - id: zqypumy8ot4clzyi
+    name: Loratap QCSC420W
 primary_entity:
   entity: cover
-  name: Curtain
+  name: Curtain 1
   class: blind
   dps:
     - id: 1
@@ -19,10 +20,12 @@ primary_entity:
     - id: 2
       name: position
       type: integer
-      unit: "%"
       range:
         max: 100
         min: 0
+    - id: 2
+      name: current_position
+      type: integer
 secondary_entities:
   - entity: cover
     name: Curtain 2
@@ -40,36 +43,14 @@ secondary_entities:
       - id: 5
         name: position
         type: integer
-        unit: "%"
         range:
           max: 100
           min: 0
-  - entity: number
-    name: Position 1
-    category: config
-    icon: "mdi:blinds-horizontal-closed"
-    dps:
-      - id: 2
-        name: value
-        type: integer
-        unit: "%"
-        range:
-          max: 100
-          min: 0
-  - entity: number
-    name: Position 2
-    category: config
-    icon: "mdi:blinds-horizontal-closed"
-    dps:
       - id: 5
-        name: value
+        name: currrent_position
         type: integer
-        unit: "%"
-        range:
-          max: 100
-          min: 0
   - entity: number
-    name: Timer
+    name: Timer 1
     category: config
     icon: "mdi:timer"
     dps:
@@ -93,7 +74,7 @@ secondary_entities:
           max: 120
           min: 2
   - entity: select
-    name: Direction
+    name: Direction 1
     category: config
     icon: "mdi:arrow-u-down-left"
     dps:
@@ -119,7 +100,7 @@ secondary_entities:
           - dps_val: "back"
             value: back
   - entity: select
-    name: Light Mode
+    name: Backlight
     category: config
     icon: "mdi:toggle-switch"
     dps:
