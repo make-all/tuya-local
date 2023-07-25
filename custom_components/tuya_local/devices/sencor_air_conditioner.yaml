@@ -1,7 +1,8 @@
-name: Sencor Air Conditioner
+name: Air conditioner
 products:
   - id: ypgwqvhjrl5chq6h
     model: SAC MT7048C Air Conditioner
+    manufacturer: Sencor
 primary_entity:
   entity: climate
   translation_key: aircon_extra
@@ -52,9 +53,6 @@ primary_entity:
           conditions:
             - dps_val: true
               invalid: true
-    - id: 19
-      name: temperature_unit
-      type: string
     - id: 22
       type: bitfield
       name: fault_code
@@ -69,7 +67,6 @@ primary_entity:
     - id: 103
       name: type
       type: string
-      hidden: true
 secondary_entities:
   - entity: binary_sensor
     name: Fault
@@ -83,3 +80,16 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+  - entity: select
+    name: Display temperature unit
+    category: config
+    icon: "mdi:temperature-celsius"
+    dps:
+      - id: 19
+        name: option
+        type: string
+        mapping:
+          - dps_val: C
+            value: Celsius
+          - dps_val: F
+            value: Fahrenheit
