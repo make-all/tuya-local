@@ -58,7 +58,7 @@ primary_entity:
     - id: 20
       type: integer
       name: compressor_strength
-    - id: 26
+    - id: 21
       type: integer
       name: current_temperature
     - id: 28
@@ -100,16 +100,6 @@ secondary_entities:
             value: false
           - value: true
   - entity: sensor
-    name: Energy today
-    category: diagnostic
-    dps:
-      - id: 18
-        type: integer
-        name: sensor
-        unit: kWh
-        mapping:
-          - scale: 100
-  - entity: sensor
     name: Water flow
     class: enum
     category: diagnostic
@@ -127,6 +117,16 @@ secondary_entities:
       - id: 107
         type: boolean
         name: valve
+  - entity: sensor
+    name: Suction temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
   - entity: sensor
     name: Inlet temperature
     class: temperature
@@ -158,11 +158,21 @@ secondary_entities:
         unit: C
         class: measurement
   - entity: sensor
-    name: Exhaust temperature
+    name: Vent temperature
     class: temperature
     category: diagnostic
     dps:
       - id: 24
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Ambient temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 26
         type: integer
         name: sensor
         unit: C
@@ -182,13 +192,6 @@ secondary_entities:
     category: diagnostic
     dps:
       - id: 29
-        type: boolean
-        name: sensor
-  - entity: binary_sensor
-    name: Chorination
-    category: diagnostic
-    dps:
-      - id: 30
         type: boolean
         name: sensor
   - entity: binary_sensor
@@ -217,67 +220,3 @@ secondary_entities:
         type: integer
         name: sensor
         unit: min
-  - entity: sensor
-    name: Current
-    class: current
-    category: diagnostic
-    dps:
-      - id: 101
-        type: integer
-        name: sensor
-        unit: A
-        class: measurement
-        mapping:
-          - scale: 1000
-  - entity: sensor
-    name: Voltage
-    class: voltage
-    category: diagnostic
-    dps:
-      - id: 102
-        type: integer
-        name: sensor
-        unit: V
-        class: measurement
-        mapping:
-          - scale: 10
-  - entity: sensor
-    name: Power
-    class: power
-    category: diagnostic
-    dps:
-      - id: 103
-        type: integer
-        name: sensor
-        unit: W
-        class: measurement
-        mapping:
-          - scale: 10
-  - entity: sensor
-    name: Energy
-    class: energy
-    category: diagnostic
-    dps:
-      - id: 104
-        type: integer
-        name: sensor
-        unit: kWh
-        class: total_increasing
-        mapping:
-          - scale: 100
-  - entity: binary_sensor
-    name: Electricity monitor
-    class: power
-    category: diagnostic
-    dps:
-      - id: 105
-        type: boolean
-        name: sensor
-  - entity: binary_sensor
-    name: Linkage
-    class: connectivity
-    category: diagnostic
-    dps:
-      - id: 106
-        type: boolean
-        name: sensor
