@@ -1,0 +1,53 @@
+name: Temperature and Humidity Sensor
+products:
+  - id: xlk3mtpjo1zkmdvh
+    name: TH08
+primary_entity:
+  entity: sensor
+  name: Temperature
+  class: temperature
+  dps:
+    - id: 1
+      name: sensor
+      type: integer
+      unit: C
+      mapping:
+        - scale: 10
+      class: measurement
+secondary_entities:
+  - entity: sensor
+    name: Humidity
+    class: humidity
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Power State
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 3
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: low
+            value: low
+          - dps_val: middle
+            value: middle
+          - dps_val: high
+            value: high
+  - entity: select
+    name: Display Units
+    category: config
+    dps:
+      - id: 9
+        name: option
+        type: string
+        mapping:
+          - dps_val: "f"
+            value: Fahrenheit
+          - dps_val: "c"
+            value: Celsius
