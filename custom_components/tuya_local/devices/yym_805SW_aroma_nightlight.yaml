@@ -5,6 +5,8 @@ products:
     name: YYM-805SW
   - id: 4870500398f4abbfbae4
     name: GX
+  - id: 58107061e868e7c462da
+    name: Tellur WiFi Aroma Diffuser
 primary_entity:
   entity: fan
   dps:
@@ -12,12 +14,27 @@ primary_entity:
       name: switch
       type: boolean
       mapping:
-        - dps_val: true
-          icon: mdi:scent
-          value: ON
-        - dps_val: false
-          icon: mdi:scent-off
-          value: OFF
+        - conditions:
+            - dps_val:
+                - true
+                - false
+              mapping:
+                - dps_val: true
+                  icon: mdi:scent
+                  value: ON
+                - dps_val: false
+                  icon: mdi:scent-off
+                  value: OFF
+            - dps_val:
+                - on
+                - off
+              mapping:
+                - dps_val: on
+                  icon: mdi:scent
+                  value: ON
+                - dps_val: off
+                  icon: mdi:scent-off
+                  value: OFF
     - id: 2
       name: speed
       type: string
