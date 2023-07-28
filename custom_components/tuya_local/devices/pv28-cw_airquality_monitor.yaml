@@ -1,4 +1,4 @@
-name: 8 in 1 Air Quality
+name: 8 in 1 air quality
 products:
   - id: yrr3eiyiacm31ski
     name: PV28-CW
@@ -12,7 +12,9 @@ primary_entity:
       name: sensor
       unit: ppm
       class: measurement
-
+    - id: 103
+      name: current_humidity
+      hidden: true
 secondary_entities:
   - entity: binary_sensor
     name: CO2 levels
@@ -77,7 +79,7 @@ secondary_entities:
   #       mapping:
   #         - step: 1
   - entity: switch
-    name: Alarm Switch
+    name: Alarm switch
     category: config
     dps:
       - id: 13
@@ -89,7 +91,7 @@ secondary_entities:
           - dps_val: false
             icon: "mdi:bell-off"
   - entity: sensor
-    name: Power State
+    name: Power state
     class: enum
     category: diagnostic
     dps:
@@ -131,7 +133,7 @@ secondary_entities:
       - id: 18
         type: integer
         name: sensor
-        unit: "°C"
+        unit: C
         class: measurement
   - entity: sensor
     name: Humidity
@@ -189,7 +191,7 @@ secondary_entities:
         mapping:
           - step: 1
   - entity: select
-    name: Temperature unit
+    name: Unit displayed
     category: config
     dps:
       - id: 31
@@ -217,15 +219,6 @@ secondary_entities:
         type: integer
         name: sensor
         unit: µg/m³
-        class: measurement
-  - entity: sensor
-    name: Humidity
-    class: humidity
-    dps:
-      - id: 103
-        type: integer
-        name: sensor
-        unit: "%"
         class: measurement
   # - entity: sensor
   #   name: Air Quality
