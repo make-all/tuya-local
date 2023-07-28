@@ -166,9 +166,6 @@ primary_entity:
       name: language
       type: string
       optional: true
-    - id: 39
-      name: customize_mode_switch # moved here since it's not useful without the app
-      type: boolean
     - id: 132
       name: chaging_base_type
       type: string
@@ -452,6 +449,14 @@ secondary_entities:
     dps:
       - id: 38
         name: button
+        type: boolean
+  - entity: switch
+    name: Customize mode
+    icon: "mdi:store-cog"
+    category: config
+    dps:
+      - id: 39
+        name: switch # required so the mop and suction options work
         type: boolean
   - entity: binary_sensor
     name: Mop installed
