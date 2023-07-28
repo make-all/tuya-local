@@ -237,7 +237,6 @@
 - WDYK 2P63A energy meter
 - WDYK 3 phase 4 pole 400V energy meter circuit breaker
 
-
 ### Battery Charger
 
 - Parkside PLGS 2012 A1 smart charger for powertools
@@ -430,6 +429,7 @@ of device.
 - Petlibro PLAF203 camera pet feeder
 - PGST PA-010 indoor temperature and humidity sensor
 - PH-W218 water quality monitor
+- PV28-CW 8 in 1 air quality monitor
 - Rojeco PTM-001 pet feeder
 - Qoto 03 smart water valve / sprinkler controller
 - SD123 HPR01 human presence radar
