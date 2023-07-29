@@ -60,7 +60,6 @@
 - Fairland IPHCR15 pool heatpump (matches others above, but allows control of heat/cool modes while others seem to be fixed to auto only)
 - Garden PAC pool heatpump (also works with Summerwave Si Series)
 - IPS Pro pool-systems heatpump (seems to match Fairland Inver-X as well)
-- ITS-4.5HD super pool heatpump
 - Madimack Elite V3 pool heatpump
 - Madimack(model unknown) pool heatpump (seems to match Fairland IPH45 as well)
 - Poolex Silverline, Q-7, Q-line and Vertigo heatpumps
@@ -76,6 +75,7 @@
 
 - Aquatech Rapid/X6 heat pump water heaters
 - Hydrotherm Dynamic/X8 heat pump hot water systems
+- ITS-4.5HD super water heatpump
 - Thermex IF series V pro hot water systems
 
 ### Thermostats
@@ -128,7 +128,7 @@
 - Deta fan controller
 - Fanco Eco Silent Deluxe ceiling fan with LED light
 - Goldair GCPF315 fan
-- Goldair Platinum tower fan
+- Goldair Platinum tower fan (2 variants)
 - Immax Neo Lite Vento ceiling fan with light
 - Ledkia fan and light controller
 - Lexy F501 fan
@@ -253,10 +253,12 @@ the default selected option for the device type has the most matching
 datapoints, so provided it looks like the same  type of device, it is probably
 the best option.
 
+- Acme SH3305 powerstrip (2 x 3 outlet switch + USB switch)
 - Arlec PB88UHA 4 way powerstrip with child lock
 - Aubess 1-gang switch with energy monitoring
 - Aubess 2-gang switch
 - Blitzwolf BW-SHP6 PRO smartplug with child lock
+- Blitzwolf BW-SHP-9 3 outlet + USB powerstrip
 - CBI Astute smart controller
 - DIGOO DG-SP202 dual smartplug with energy monitoring and timers
 - DIGOO DG-SP01 USB smartplug with night light
@@ -424,6 +426,7 @@ of device.
 - KKMoon 7in1 air quality monitor
 - Kogan bidet toilet seat
 - Konlen/Rockson WF96L water level controller
+- Mirabella Genio motion sensor
 - Nedis pet feeder
 - Nedis WIFISA10CWT air quality monitor
 - Petlibro PLAF203 camera pet feeder
@@ -434,6 +437,8 @@ of device.
 - Qoto 03 smart water valve / sprinkler controller
 - SD123 HPR01 human presence radar
 - SH07-8 smart sprinkler controller
+- TH08 temperature and humidity sensor
+- TH16 temperature and humidity sensor 
 - Tontine electric blanket
 - Universal remote control (supports sensors only)
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)
