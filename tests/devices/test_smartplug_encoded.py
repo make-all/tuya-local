@@ -19,7 +19,7 @@ class TestSwitchEncoded(BasicNumberTests, SwitchableTests, TuyaDeviceTestCase):
 
     def setUp(self):
         self.setUpForConfig("smartplug_encoded.yaml", SMARTPLUG_ENCODED_PAYLOAD)
-        self.subject = self.entities.get("switch")
+        self.subject = self.entities.get("switch_outlet")
         self.setUpSwitchable(SWITCH_DPS, self.subject)
         self.setUpBasicNumber(
             TIMER_DPS,

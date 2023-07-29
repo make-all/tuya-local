@@ -19,7 +19,7 @@ class TestQSC01Curtains(BasicNumberTests, BasicSelectTests, TuyaDeviceTestCase):
 
     def setUp(self):
         self.setUpForConfig("qs_c01_curtain.yaml", QS_C01_CURTAIN_PAYLOAD)
-        self.subject = self.entities["cover"]
+        self.subject = self.entities["cover_curtain"]
         self.setUpBasicNumber(
             TRAVELTIME_DPS,
             self.entities.get("number_travel_time"),

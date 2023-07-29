@@ -16,7 +16,7 @@ class TestSimpleBlinds(TuyaDeviceTestCase):
 
     def setUp(self):
         self.setUpForConfig("simple_blinds.yaml", SIMPLE_BLINDS_PAYLOAD)
-        self.subject = self.entities["cover"]
+        self.subject = self.entities["cover_blind"]
 
     def test_device_class_is_blind(self):
         self.assertEqual(self.subject.device_class, CoverDeviceClass.BLIND)

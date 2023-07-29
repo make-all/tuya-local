@@ -42,7 +42,7 @@ class TestWetairWAWH1210LWHumidifier(
         self.setUpForConfig(
             "wetair_wawh1210lw_humidifier.yaml", WETAIR_WAWH1210_HUMIDIFIER_PAYLOAD
         )
-        self.subject = self.entities.get("humidifier")
+        self.subject = self.entities.get("humidifier_humidifier")
         self.setUpSwitchable(SWITCH_DPS, self.subject)
         self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_display"))
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))

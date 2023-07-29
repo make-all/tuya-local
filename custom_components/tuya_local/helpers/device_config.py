@@ -265,7 +265,7 @@ class TuyaEntityConfig:
     @property
     def config_id(self):
         """The identifier for this entity in the config."""
-        own_name = self.name
+        own_name = self._config.get("name", self.device_class)
         if own_name:
             return f"{self.entity}_{slugify(own_name)}"
 

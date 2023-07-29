@@ -16,7 +16,7 @@ class TestTimedSwitch(BasicNumberTests, SwitchableTests, TuyaDeviceTestCase):
 
     def setUp(self):
         self.setUpForConfig("simple_switch_timerv2.yaml", TIMED_SOCKETV2_PAYLOAD)
-        self.subject = self.entities.get("switch")
+        self.subject = self.entities.get("switch_outlet")
         self.setUpSwitchable(SWITCH_DPS, self.subject)
         self.setUpBasicNumber(
             TIMER_DPS,

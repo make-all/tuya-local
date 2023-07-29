@@ -45,7 +45,7 @@ class TestWilfaHazeHumidifier(
         self.setUpForConfig(
             "wilfa_haze_hu400bc_humidifier.yaml", WILFA_HAZE_HUMIDIFIER_PAYLOAD
         )
-        self.subject = self.entities.get("humidifier")
+        self.subject = self.entities.get("humidifier_humidifier")
         self.fan = self.entities.get("fan")
         self.setUpSwitchable(SWITCH_DPS, self.subject)
         self.setUpBasicBinarySensor(

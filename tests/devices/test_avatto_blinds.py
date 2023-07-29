@@ -24,7 +24,7 @@ class TestAvattoBlinds(MultiSensorTests, BasicSelectTests, TuyaDeviceTestCase):
 
     def setUp(self):
         self.setUpForConfig("avatto_roller_blinds.yaml", AVATTO_BLINDS_PAYLOAD)
-        self.subject = self.entities["cover"]
+        self.subject = self.entities["cover_blind"]
         self.setUpMultiSensors(
             [
                 {

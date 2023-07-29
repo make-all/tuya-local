@@ -51,7 +51,7 @@ class TestPC321TYPowerClamp(MultiSensorTests, TuyaDeviceTestCase):
             [
                 {
                     "dps": TOTALENERGY_DP,
-                    "name": "sensor",
+                    "name": "sensor_energy",
                     "unit": UnitOfEnergy.KILO_WATT_HOUR,
                     "device_class": SensorDeviceClass.ENERGY,
                     "state_class": STATE_CLASS_TOTAL_INCREASING,

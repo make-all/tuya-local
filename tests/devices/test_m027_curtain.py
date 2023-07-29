@@ -24,7 +24,7 @@ class TestM027Curtains(MultiSensorTests, BasicSelectTests, TuyaDeviceTestCase):
 
     def setUp(self):
         self.setUpForConfig("m027_curtain.yaml", M027_CURTAIN_PAYLOAD)
-        self.subject = self.entities["cover"]
+        self.subject = self.entities["cover_curtain"]
         self.setUpMultiSensors(
             [
                 {

@@ -35,7 +35,7 @@ class TestKoganSwitch(
 
     def setUp(self):
         self.setUpForConfig("smartplugv1.yaml", KOGAN_SOCKET_PAYLOAD)
-        self.subject = self.entities.get("switch")
+        self.subject = self.entities.get("switch_outlet")
         self.setUpSwitchable(SWITCH_DPS, self.subject)
         self.setUpBasicBinarySensor(
             OVERCURRENT_DPS,

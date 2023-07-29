@@ -47,7 +47,7 @@ class TestMoesRGBSocket(
 
         self.setUpBasicSwitch(
             SWITCH_DPS,
-            self.entities.get("switch"),
+            self.entities.get("switch_outlet"),
             device_class=SwitchDeviceClass.OUTLET,
             power_dps=POWER_DPS,
             power_scale=10,

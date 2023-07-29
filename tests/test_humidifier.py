@@ -38,7 +38,10 @@ async def test_init_entry(hass):
     hass.data[DOMAIN]["dummy"]["device"] = m_device
 
     await async_setup_entry(hass, entry, m_add_entities)
-    assert type(hass.data[DOMAIN]["dummy"]["humidifier"]) == TuyaLocalHumidifier
+    assert (
+        type(hass.data[DOMAIN]["dummy"]["humidifier_dehumidifier"])
+        == TuyaLocalHumidifier
+    )
     m_add_entities.assert_called_once()
 
 

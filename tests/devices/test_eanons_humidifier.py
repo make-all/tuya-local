@@ -35,7 +35,7 @@ class TestEanonsHumidifier(
 
     def setUp(self):
         self.setUpForConfig("eanons_humidifier.yaml", EANONS_HUMIDIFIER_PAYLOAD)
-        self.subject = self.entities.get("humidifier")
+        self.subject = self.entities.get("humidifier_humidifier")
         self.setUpSwitchable(HVACMODE_DPS, self.subject)
         self.fan = self.entities.get("fan_intensity")
         self.setUpBasicSwitch(SWITCH_DPS, self.entities.get("switch_uv_sterilization"))
