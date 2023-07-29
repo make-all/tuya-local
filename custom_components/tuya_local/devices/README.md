@@ -570,7 +570,8 @@ Humidifer can also cover dehumidifiers (use class to specify which).
 
 - **switch** (optional, boolean): a dp to control the power state of the fan
 - **mode** (optional, mapping of strings): a dp to control preset modes of the device
-- **humidity** (optional, number):  a dp to control the target humidity of the device
+- **humidity** (optional, number): a dp to control the target humidity of the device
+- **current_humidity** (optional, number): a dp to report the current humidity measured by the device
 
 ### `light`
 - **switch** (optional, boolean): a dp to control the on/off state of the light

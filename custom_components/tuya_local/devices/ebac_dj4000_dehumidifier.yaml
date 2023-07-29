@@ -38,6 +38,9 @@ primary_entity:
           value: normal
         - dps_val: boost
           value: boost
+    - id: 6
+      type: integer
+      name: current_humidity
     - id: 9
       type: boolean
       name: defrosst
@@ -72,6 +75,7 @@ secondary_entities:
             value: 100
   - entity: sensor
     name: Current humidity
+    deprecated: humidifier
     class: humidity
     dps:
       - id: 6

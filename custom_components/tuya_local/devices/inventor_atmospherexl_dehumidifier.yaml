@@ -64,6 +64,9 @@ primary_entity:
           value: laundry
         - dps_val: night
           value: sleep
+    - id: 6
+      type: integer
+      name: current_humidity
     - id: 19
       type: bitfield
       name: error_code
@@ -115,6 +118,7 @@ secondary_entities:
             value: 100
   - entity: sensor
     class: humidity
+    deprecated: humidifier
     name: Room humidity
     dps:
       - id: 6

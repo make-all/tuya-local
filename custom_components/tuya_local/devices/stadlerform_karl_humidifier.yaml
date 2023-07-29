@@ -10,6 +10,9 @@ primary_entity:
     - id: 1
       name: switch
       type: boolean
+    - id: 14
+      name: current_humidity
+      type: integer
     - id: 103
       name: humidity
       type: integer
@@ -29,6 +32,7 @@ primary_entity:
 secondary_entities:
   - entity: sensor
     name: Humidity
+    deprecated: humidifier
     class: humidity
     dps:
       - id: 14

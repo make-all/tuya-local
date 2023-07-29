@@ -26,6 +26,9 @@ primary_entity:
           value: auto
         - dps_val: drying
           value: laundry
+    - id: 6
+      type: integer
+      name: current_humidity
     - id: 19
       type: bitfield
       name: fault_code
@@ -85,6 +88,7 @@ secondary_entities:
   - entity: sensor
     name: Humidity
     class: humidity
+    deprecated: humidifier
     dps:
       - id: 6
         type: integer
