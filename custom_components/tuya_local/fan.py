@@ -120,7 +120,7 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
 
         values_to_set = self._speed_dps.get_values_to_set(self._device, percentage)
         if not self.is_on and self._switch_dps:
-            values_to_set.update(self._switch_dps.get_values_to_set(self._device, true))
+            values_to_set.update(self._switch_dps.get_values_to_set(self._device, True))
 
         await self._device.async_set_properties(values_to_set)
 
