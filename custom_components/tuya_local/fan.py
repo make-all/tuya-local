@@ -107,7 +107,7 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
         """Set the fan speed as a percentage."""
         # If speed is 0, turn the fan off
         if percentage == 0 and self._switch_dps:
-            return self.async_turn_off(self)
+            return await self.async_turn_off()
 
         if self._speed_dps is None:
             return None
