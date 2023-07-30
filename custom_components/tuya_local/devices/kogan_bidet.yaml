@@ -82,6 +82,7 @@ secondary_entities:
       - id: 55
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: pos_1
             value: Front
@@ -98,7 +99,7 @@ secondary_entities:
     category: config
     icon: "mdi:car-seat-heater"
     dps:
-      - id: 60 
+      - id: 60
         type: string
         name: value
         range:
@@ -155,3 +156,16 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+  - entity: binary_sensor
+    name: Seated
+    class: occupancy
+    icon: "mdi:toilet"
+    category: diagnostic
+    dps:
+      - id: 46
+        type: boolean
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
