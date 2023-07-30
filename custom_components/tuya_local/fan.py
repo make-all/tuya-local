@@ -105,6 +105,10 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
 
     async def async_set_percentage(self, percentage):
         """Set the fan speed as a percentage."""
+        # If speed is 0, turn the fan off
+        if percentage == 0 and self._switch_dps:
+            return self.async_turn_off(self)
+
         if self._speed_dps is None:
             return None
         # If there is a fixed list of values, snap to the closest one
@@ -114,7 +118,11 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
                 key=lambda x: abs(x - percentage),
             )
 
-        await self._speed_dps.async_set_value(self._device, percentage)
+        values_to_set = self._speed_dps.get_values_to_set(self._device, percentage)
+        if not self.is_on and self._switch_dps:
+            values_to_set.update(self._switch_dps.get_values_to_set(self._device, true))
+
+        await self._device.async_set_properties(values_to_set)
 
     @property
     def preset_mode(self):
