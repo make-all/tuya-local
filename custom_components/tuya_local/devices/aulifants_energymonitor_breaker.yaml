@@ -16,7 +16,6 @@ primary_entity:
         - scale: 100
 secondary_entities:
   - entity: sensor
-    name: Voltage
     class: voltage
     dps:
       - id: 6
@@ -28,7 +27,6 @@ secondary_entities:
           - mask: "FFFF000000000000"
             scale: 10
   - entity: sensor
-    name: Current
     class: current
     dps:
       - id: 6
@@ -39,7 +37,6 @@ secondary_entities:
           - mask: "0000FFFFFF000000"
             scale: 1000
   - entity: sensor
-    name: Power
     class: power
     dps:
       - id: 6

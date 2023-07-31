@@ -128,7 +128,6 @@ secondary_entities:
           - dps_val: wm2
             value: W/m2
   - entity: binary_sensor
-    name: Battery
     class: battery
     category: diagnostic
     dps:
@@ -159,13 +158,11 @@ secondary_entities:
         optional: true
         <<: *battery
   - entity: sensor
-    name: Temperature
     class: temperature
     dps:
       - id: 38
         <<: *temperature
   - entity: sensor
-    name: Humidity
     class: humidity
     dps:
       - id: 39
@@ -213,7 +210,6 @@ secondary_entities:
         optional: true
         <<: *humidity
   - entity: sensor
-    name: Pressure
     class: pressure
     dps:
       - id: 54

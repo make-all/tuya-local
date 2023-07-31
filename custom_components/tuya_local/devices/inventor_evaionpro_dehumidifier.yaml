@@ -86,9 +86,9 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: sensor
-    name: Humidity
     class: humidity
     deprecated: humidifier
+    category: diagnostic
     dps:
       - id: 6
         type: integer
@@ -96,7 +96,6 @@ secondary_entities:
         unit: "%"
         class: measurement
   - entity: sensor
-    name: Temperature
     class: temperature
     dps:
       - id: 7

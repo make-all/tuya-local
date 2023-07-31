@@ -139,6 +139,7 @@ class TestWilfaHazeHumidifier(
                 "light_mood",
                 "select_temperature_unit",
                 "select_timer",
+                "sensor_current_humidity",
                 "switch_air_clean",
                 "switch_ionizer",
                 "switch_sound",

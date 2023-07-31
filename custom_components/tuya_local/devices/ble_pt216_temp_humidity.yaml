@@ -4,7 +4,6 @@ products:
     name: PT216 / PT19DB-2
 primary_entity:
   entity: sensor
-  name: Temperature
   class: temperature
   dps:
     - id: 1
@@ -16,7 +15,6 @@ primary_entity:
         - scale: 10
 secondary_entities:
   - entity: sensor
-    name: Humidity
     class: humidity
     dps:
       - id: 2
@@ -25,7 +23,6 @@ secondary_entities:
         unit: "%"
         class: measurement
   - entity: sensor
-    name: Battery
     class: battery
     category: diagnostic
     dps:

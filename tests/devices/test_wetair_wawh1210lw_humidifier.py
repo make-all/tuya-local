@@ -78,6 +78,7 @@ class TestWetairWAWH1210LWHumidifier(
             [
                 "light_display",
                 "lock_child_lock",
+                "sensor_current_humidity",
                 "sensor_water_level",
                 "switch_sound",
             ]
