@@ -195,7 +195,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                 r = rgbhsv.get("r")
                 g = rgbhsv.get("g")
                 b = rgbhsv.get("b")
-                hs = color_util.color_rgb_to_hs(r, g, b)
+                hs = color_util.color_RGB_to_hs(r, g, b)
             return hs
 
     @property
