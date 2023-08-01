@@ -17,8 +17,7 @@ primary_entity:
         min: 0
         max: 100
       mapping:
-        - step: 1
-          scale: 0.392
+        - scale: 0.392
           constraint: video_mode
           conditions:
             - dps_val: ambi_mode
@@ -33,8 +32,7 @@ primary_entity:
         min: 0
         max: 100
       mapping:
-        - step: 1
-          scale: 0.392
+        - scale: 0.392
     - id: 112
       hidden: true
       name: color_brightness
@@ -43,8 +41,7 @@ primary_entity:
         min: 0
         max: 100
       mapping:
-        - step: 1
-          scale: 0.392
+        - scale: 0.392
     - id: 111
       name: rgbhsv
       type: hex
@@ -86,18 +83,9 @@ secondary_entities:
         range:
           min: 1
           max: 3
-        mapping:
-          - step: 1
-            scale: 1
   - entity: select
     icon: mdi:shimmer
     name: Scene select
-    format:
-      - name: scene_num
-        bytes: 2
-        range:
-          min: 1
-          max: 12
     dps:
       - id: 113
         name: option
@@ -142,7 +130,7 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     icon: mdi:information-outline
-    name: Video Output
+    name: Video output
     dps:
       - id: 127
         name: sensor
@@ -181,7 +169,7 @@ secondary_entities:
         type: string
   - entity: sensor
     category: diagnostic
-    name: Cap Height
+    name: Cap height
     icon: mdi:arrow-expand-vertical
     dps:
       - id: 118
@@ -190,7 +178,7 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     icon: mdi:arrow-expand-horizontal
-    name: Cap Width
+    name: Cap width
     dps:
       - id: 119
         name: sensor
