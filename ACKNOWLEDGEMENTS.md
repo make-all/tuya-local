@@ -327,3 +327,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [mbakhtin](https://github.com/mbakhtin) for contributing support for Inkbird IBS-M1S thermo-probe hubs.
 - [Levanterman](https://github.com/Levanterman) for contributing support for LoraTap double curtain switches.
 - [WallyCZ](https://github.com/WallyCZ) for contributing support for Sencor air conditioners.
+- [lageorgem](https://github.com/lageorgem) for contributing support for Loginovo TV sync backlights.
