@@ -455,6 +455,7 @@ of device.
 - HCT-611 water timer
 - Orion DL021HA lock
 - PT216/PT19DB-2 temperature and humidity sensor
+- Smart Ape solar garden light
 - Generic water timers (confirmed with Johgee and Diivoo branded devices)
 
 ### Devices supported via IR hubs
