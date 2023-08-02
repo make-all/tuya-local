@@ -23,6 +23,7 @@ secondary_entities:
         type: integer
         name: sensor
         unit: "%"
+        optional: true
   - entity: sensor
     name: pH
     icon: "mdi:ph"
@@ -44,6 +45,7 @@ secondary_entities:
         name: sensor
         unit: mS/cm
         class: measurement
+        optional: true
         mapping:
           - scale: 1000
   - entity: sensor
@@ -200,6 +202,7 @@ secondary_entities:
         type: integer
         name: sensor
         class: measurement
+        optional: true
         mapping:
           - scale: 10
   - entity: sensor
