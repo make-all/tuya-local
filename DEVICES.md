@@ -273,6 +273,7 @@ the best option.
 - Logicom Strippy 4 way power strip with USB
 - Loratap RR400W-V2 relay switch
 - Makegood double power point (sold under AusElectronicsDirect, Cleverlife, Kogan, Ozsmartthings and other brands)
+- MakeGood double switch with timers and power monitoring on whole device
 - Mirabella Genio smartplug with USB
 - Moes 3-gang switch
 - MoesHouse smartplug with RGBW nightlight
@@ -308,8 +309,6 @@ of device.
 - Generic smartplug with some additional encoded schedule info.
   _confirmed working as a simple switch and timer with Kashimura KJ-173_
 - Generic double switch with timers (confirmed with Living dual switch and another v2 variant with Avatto dual switch)
-- Generic double switch with timers and power monitoring on whole device
-  _confirmed working as simple switches, timers and whole device power monitoring with MG-MD04W_
 - Generic triple and quad switches (confirmed with Songam wall switches)
 - Generic triple switch with timers.
 - Simple switch - a switch only, can be a fallback for many other unsupported devices, to allow just power to be switched on/off.
