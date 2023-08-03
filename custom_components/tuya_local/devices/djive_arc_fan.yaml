@@ -1,0 +1,81 @@
+name: djive Flowmate ARC Humidifier
+products:
+  - id: bf5fd02f13d3f6d92exy2t
+    name: djive ARC Humidifier
+primary_entity:
+  entity: fan
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 2
+      name: preset_mode
+      type: string
+      optional: true
+      mapping:
+        - dps_val: close
+          value: standard
+        - dps_val: auto
+          value: auto
+        - dps_val: strong
+          value: max
+        - dps_val: fresh
+          value: fresh
+        - dps_val: sleep
+          value: sleep
+    - id: 3
+      name: speed
+      type: integer
+      range:
+        min: 0
+        max: 9
+      mapping:
+        - scale: 0.09
+    - id: 5
+      type: boolean
+      name: oscillate
+secondary_entities:
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 24
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: switch
+    name: UV Disinfectant
+    icon: "mdi:asterisk"
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Sound
+    icon: "mdi:volume-high"
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Current Humidity
+    class: humidity
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        class: measurement
+        unit: "%"
+  - entity: sensor
+    name: Air Quality
+    class: pm25
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        class: measurement
+        unit: "μg/m³"
