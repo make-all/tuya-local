@@ -61,10 +61,14 @@ If you file an issue to request support for a new device, please include the fol
 If you submit a pull request, please understand that the config file naming and details of the configuration may get modified before release - for example if your name was too generic, I may rename it to a more specific name, or conversely if the device appears to be generic and sold under many brands, I may change the brand specific name to something more general.  So it may be necessary to remove and re-add your device once it has been integrated into a release.
 
 Please use this file naming convention:
-`<manufacturer>_<device type>_<sub-type>_<further features>.yaml`. e.g.:
-`arlec_plug_single_energy.yaml`
-`generic_switch_double_timer-energy.yaml`
-`bestfriend_sex_allnight_pregnant.yaml`
+```
+<manufacturer>_<device type>_<sub-type>_<further features>.yaml
+
+e.g.
+arlec_plug_single_energy.yaml
+generic_switch_double_timer-energy.yaml
+bestfriend_sex_allnight_pregnant.yaml
+```
 
 ---
 
