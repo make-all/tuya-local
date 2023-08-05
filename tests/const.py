@@ -1628,3 +1628,14 @@ ZXG30_ALARM_PAYLOAD = {
     "39": "0",
     "40": "1",
 }
+
+POOLSANA_HEATPUMP_PAYLOAD = {
+    "1": False,
+    "2": 30,
+    "3": 28,
+    "4": "ECO_Heat",
+    "11": "standby",
+    "13": "c",
+    "21": 0,
+    "updated_at": 1659284455.1327195,
+}

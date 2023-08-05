@@ -63,6 +63,7 @@
 - Madimack Elite V3 pool heatpump
 - Madimack(model unknown) pool heatpump (seems to match Fairland IPH45 as well)
 - Poolex Silverline, Q-7, Q-line and Vertigo heatpumps
+- POOLSANA InverPOWER
 - Remora pool heatpump
 - W'eau pool heatpump (simple model and a more complex 13kW model)
 
@@ -244,13 +245,13 @@
 ### SmartPlugs/Wall sockets/Wall switches
 
 Most smartplugs follow a fairly standard template from Tuya, so many
-will work with other brands configs.  However there are many
+will work with other brands configs. However there are many
 permutations of features enabled, and some manufacturers move
 datapoints around so smartplugs take up a lot more configurations than
-such simple devices should.  A future release will look at
-consolidating these into a smaller number of configs.  When you add a device,
+such simple devices should. A future release will look at
+consolidating these into a smaller number of configs. When you add a device,
 the default selected option for the device type has the most matching
-datapoints, so provided it looks like the same  type of device, it is probably
+datapoints, so provided it looks like the same type of device, it is probably
 the best option.
 
 - Acme SH3305 powerstrip (2 x 3 outlet switch + USB switch)
@@ -440,7 +441,7 @@ of device.
 - SD123 HPR01 human presence radar
 - SH07-8 smart sprinkler controller
 - TH08 temperature and humidity sensor
-- TH16 temperature and humidity sensor 
+- TH16 temperature and humidity sensor
 - Tontine electric blanket
 - Universal remote control (supports sensors only)
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)
@@ -470,8 +471,8 @@ of device.
 - ZTH08ZTU temperature and humidity sensor
 
 NOTE: this project does not intend to expand the scope to support non-Tuya
-devices via Tuya hubs.  Though it may be techincally feasible to do such a
+devices via Tuya hubs. Though it may be techincally feasible to do such a
 thing, it expands the support requirements beyond the capacity of the
-volunteer manpower of this project.  The community would be better served by
+volunteer manpower of this project. The community would be better served by
 making Tuya devices work with the standard BLE and Zigbee support in
 Home Assistant rather than the other way around.

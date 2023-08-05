@@ -1,0 +1,111 @@
+name: POOLSANA InverPOWER Heatpump
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: power
+      type: boolean
+      mapping:
+        - dps_val: True
+          value: "on"
+          icon: "mdi:hvac"
+          icon_priority: 10
+        - dps_val: False
+          value: "off"
+          icon: "mdi:hvac-off"
+          icon_priority: 10
+    - id: 2
+      name: temperature
+      type: integer
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: c
+              range:
+                min: 20
+                max: 40
+    - id: 3
+      name: current_temperature
+      type: integer
+      readonly: true
+    - id: 4
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: Boost_Heat
+          value: Boost
+        - dps_val: Boost_Cool
+          value: Boost
+        - dps_val: Silent_Heat
+          value: Silent
+        - dps_val: Silent_Cool
+          value: Silent
+        - dps_val: ECO_Heat
+          value: ECO
+        - dps_val: ECO_Cool
+          value: ECO
+    - id: 4
+      type: string
+      name: hvac_mode
+      mapping:
+        - dps_val: Boost_Heat
+          constraint: power
+          conditions: &heat_if_on
+            - dps_val: true
+              value: heat
+            - dps_val: false
+              value_redirect: power
+              value: "off"
+        - dps_val: ECO_Heat
+          constraint: power
+          conditions: *heat_if_on
+        - dps_val: "Silent_Heat"
+          constraint: power
+          conditions: *heat_if_on
+        - dps_val: "ECO_Cool"
+          constraint: power
+          conditions: &cool_if_on
+            - dps_val: false
+              value: "off"
+              value_redirect: power
+            - dps_val: true
+              value: cool
+        - dps_val: "Silent_Cool"
+          constraint: power
+          conditions: *cool_if_on
+        - dps_val: "Boost_Cool"
+          constraint: power
+          conditions: *cool_if_on
+
+    - id: 11
+      name: hvac_action
+      type: string
+      readonly: True
+      mapping:
+        - dps_val: standby
+          icon: "mdi:hvac"
+          icon_priority: 2
+          value: idle
+        - dps_val: heating
+          icon: "mdi:hot-tub"
+          icon_priority: 2
+          value: heating
+        - dps_val: cooling
+          icon: "mdi:snowflake"
+          icon_priority: 2
+          value: cooling
+        - dps_val:
+          value: "off"
+          icon: "mdi:hvac-off"
+          icon_priority: 2
+    - id: 13
+      type: string
+      name: temperature_unit
+      mapping:
+        - dps_val: c
+          value: C
+        - dps_val: f
+          value: F
+    - id: 21
+      type: integer
+      name: unknown_21
