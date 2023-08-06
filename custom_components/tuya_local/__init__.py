@@ -224,6 +224,50 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         await async_migrate_entries(hass, entry.entry_id, update_unique_id12)
         entry.version = 12
 
+    if entry.version <= 12:
+        # Migrate unique ids of existing entities to new format taking into
+        # account device_class if name is missing.
+        device_id = entry.unique_id
+        conf_file = get_config(entry.data[CONF_TYPE])
+        if conf_file is None:
+            _LOGGER.error(
+                NOT_FOUND,
+                entry.data[CONF_TYPE],
+            )
+            return False
+
+        @callback
+        def update_unique_id13(entity_entry):
+            """Update the unique id of an entity entry."""
+            old_id = entity_entry.unique_id
+            platform = entity_entry.entity_id.split(".", 1)[0]
+            # if unique_id ends with platform name, then this may have
+            # changed with the addition of device_class.
+            if old_id.endswith(platform):
+                e = conf_file.primary_entity
+                if e.entity != platform or e.name:
+                    for e in conf_file.secondary_entities():
+                        if e.entity == platform and not e.name:
+                            break
+                if e.entity == platform and not e.name:
+                    new_id = e.unique_id(device_id)
+                    if new_id != old_id:
+                        _LOGGER.info(
+                            "Migrating %s unique_id %s to %s",
+                            e.entity,
+                            old_id,
+                            new_id,
+                        )
+                        return {
+                            "new_unique_id": entity_entry.unique_id.replace(
+                                old_id,
+                                new_id,
+                            )
+                        }
+
+        await async_migrate_entries(hass, entry.entry_id, update_unique_id13)
+        entry.version = 13
+
     return True
 
 

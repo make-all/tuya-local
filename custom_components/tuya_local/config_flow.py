@@ -25,7 +25,7 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
-    VERSION = 12
+    VERSION = 13
     CONNECTION_CLASS = config_entries.CONN_CLASS_LOCAL_PUSH
     device = None
     data = {}
