@@ -16,7 +16,7 @@ class TestTimedSwitch(BasicNumberTests, SwitchableTests, TuyaDeviceTestCase):
 
     def setUp(self):
         self.setUpForConfig("simple_switch_timerv2.yaml", TIMED_SOCKETV2_PAYLOAD)
-        self.subject = self.entities.get("switch_outlet")
+        self.subject = self.entities.get("switch")
         self.setUpSwitchable(SWITCH_DPS, self.subject)
         self.setUpBasicNumber(
             TIMER_DPS,
@@ -26,9 +26,6 @@ class TestTimedSwitch(BasicNumberTests, SwitchableTests, TuyaDeviceTestCase):
             unit=UnitOfTime.MINUTES,
         )
         self.mark_secondary(["number_timer", "select_power_on_state"])
-
-    def test_device_class_is_outlet(self):
-        self.assertEqual(self.subject.device_class, SwitchDeviceClass.OUTLET)
 
     def test_extra_state_attributes_set(self):
         self.assertDictEqual(
