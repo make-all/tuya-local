@@ -7,7 +7,10 @@ modification, then again after to compare the two outputs.
 """
 import sys
 
-from custom_components.tuya_local.helpers.device_config import available_configs, TuyaDeviceConfig
+from custom_components.tuya_local.helpers.device_config import (
+    available_configs,
+    TuyaDeviceConfig,
+)
 
 def main() -> int:
     print("Catalog================")
@@ -16,6 +19,7 @@ def main() -> int:
         print(f"{config}: {device.primary_entity.config_id}")
         for entity in device.secondary_entities():
             print(f"{config}: {entity.config_id}")
+
 
 if __name__ == "__main__":
     sys.exit(main())
