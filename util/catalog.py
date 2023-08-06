@@ -12,6 +12,7 @@ from custom_components.tuya_local.helpers.device_config import (
     TuyaDeviceConfig,
 )
 
+
 def main() -> int:
     print("Catalog================")
     for config in available_configs():
