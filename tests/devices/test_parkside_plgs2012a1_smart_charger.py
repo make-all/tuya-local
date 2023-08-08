@@ -107,7 +107,7 @@ class TestParksidePLGS2012A1Charger(
                     "device_class": SensorDeviceClass.DURATION,
                 },
                 {
-                    "name": "sensor_current_temperature",
+                    "name": "sensor_temperature",
                     "dps": TEMPERATURE_DPS,
                     "unit": UnitOfTemperature.CELSIUS,
                     "device_class": SensorDeviceClass.TEMPERATURE,
@@ -154,7 +154,7 @@ class TestParksidePLGS2012A1Charger(
                 "number_charge_voltage",
                 "switch_storage",
                 "switch_temperature_limiter",
-                "sensor_current_temperature",
+                "sensor_temperature",
                 "sensor_max_temperature_count",
                 "sensor_name",
                 "select_charge_type",

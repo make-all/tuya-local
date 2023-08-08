@@ -22,14 +22,12 @@ primary_entity:
       name: temperature
     - id: 5
       type: integer
-      readonly: true
       name: current_temperature
     - id: 7
       type: bitfield
       mapping:
         - dps_val: 0
           value: "OK"
-      readonly: true
       name: error
 secondary_entities:
   - entity: binary_sensor

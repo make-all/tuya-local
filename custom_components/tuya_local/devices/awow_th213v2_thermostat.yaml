@@ -19,7 +19,6 @@ primary_entity:
     - id: 3
       name: current_temperature
       type: integer
-      readonly: true
     - id: 4
       name: preset_mode
       type: integer
@@ -53,7 +52,6 @@ primary_entity:
               value: idle
             - dps_val: false
               value: "off"
-      readonly: true
     - id: 116
       type: string
       name: unknown_116
@@ -79,7 +77,6 @@ secondary_entities:
         name: sensor
         class: measurement
         unit: C
-        readonly: true
   - entity: select
     name: Temperature sensor
     icon: "mdi:thermometer"

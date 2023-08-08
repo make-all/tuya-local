@@ -264,6 +264,40 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
                                 new_id,
                             )
                         }
+            else:
+                replacements = {
+                    "sensor_co2": "sensor_carbon_dioxide",
+                    "sensor_co": "sensor_carbon_monoxide",
+                    "sensor_pm2_5": "sensor_pm25",
+                    "sensor_pm_10": "sensor_pm10",
+                    "sensor_pm_1_0": "sensor_pm1",
+                    "sensor_pm_2_5": "sensor_pm25",
+                    "sensor_tvoc": "sensor_volatile_organic_compounds",
+                    "sensor_current_humidity": "sensor_humidity",
+                    "sensor_current_temperature": "sensor_temperature",
+                }
+                for suffix, new_suffix in replacements.items():
+                    if old_id.endswith(suffix):
+                        e = conf_file.primary_entity
+                        if e.entity != platform or e.name:
+                            for e in conf_file.secondary_entities():
+                                if e.entity == platform and not e.name:
+                                    break
+                        if e.entity == platform and not e.name:
+                            new_id = e.unique_id(device_id)
+                            if new_id.endsWith(new_suffix):
+                                _LOGGER.info(
+                                    "Migrating %s unique_id %s to %s",
+                                    e.entity,
+                                    old_id,
+                                    new_id,
+                                )
+                                return {
+                                    "new_unique_id": entity_entry.unique_id.replace(
+                                        old_id,
+                                        new_id,
+                                    )
+                                }
 
         await async_migrate_entries(hass, entry.entry_id, update_unique_id13)
         entry.version = 13

@@ -58,7 +58,7 @@ class TestPoeimaOnePurifier(
             [
                 {
                     "dps": PM25_DPS,
-                    "name": "sensor_pm2_5",
+                    "name": "sensor_pm25",
                     "device_class": SensorDeviceClass.PM25,
                     "state_class": "measurement",
                     "unit": CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,

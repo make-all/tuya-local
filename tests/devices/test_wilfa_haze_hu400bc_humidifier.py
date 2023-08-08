@@ -102,7 +102,7 @@ class TestWilfaHazeHumidifier(
             [
                 {
                     "dps": CURRENTTEMP_DPS,
-                    "name": "sensor_current_temperature",
+                    "name": "sensor_temperature",
                     "device_class": SensorDeviceClass.TEMPERATURE,
                     "state_class": "measurement",
                     "unit": UnitOfTemperature.CELSIUS,

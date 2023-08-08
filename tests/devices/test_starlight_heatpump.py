@@ -31,7 +31,7 @@ class TestStarLightHeatpump(
         )
         self.mark_secondary(
             [
-                "sensor_current_humidity",
+                "sensor_humidity",
                 "select_vertical_swing",
                 "select_vertical_position",
                 "select_horizontal_swing",

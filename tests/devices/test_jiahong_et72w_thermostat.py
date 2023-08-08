@@ -228,7 +228,7 @@ class TestJiahongEt72wThermostat(
         self.dps[CALIB_DPS] = 321
         self.assertEqual(
             self.multiSensor["sensor_energy"].extra_state_attributes,
-            {"energy_calibration": 321},
+            {"calibration": 321},
         )
 
     def test_icons(self):
