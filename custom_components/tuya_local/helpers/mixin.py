@@ -20,6 +20,9 @@ class TuyaLocalEntity:
         self._device = device
         self._config = config
         self._attr_dps = []
+        self._attr_name = config.name
+        self._attr_translation_key = config.translation_key
+
         return {c.name: c for c in config.dps()}
 
     def _init_end(self, dps):
@@ -34,16 +37,6 @@ class TuyaLocalEntity:
     @property
     def available(self):
         return self._device.has_returned_state
-
-    @property
-    def name(self):
-        """Return the name for the UI."""
-        return self._config.name
-
-    @property
-    def translation_key(self):
-        """Return the translation key."""
-        return self._config.translation_key
 
     @property
     def has_entity_name(self):
