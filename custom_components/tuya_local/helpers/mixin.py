@@ -20,7 +20,6 @@ class TuyaLocalEntity:
         self._device = device
         self._config = config
         self._attr_dps = []
-        self._attr_name = config.name
         self._attr_translation_key = config.translation_key
 
         return {c.name: c for c in config.dps()}
@@ -41,6 +40,12 @@ class TuyaLocalEntity:
     @property
     def has_entity_name(self):
         return True
+
+    @property
+    def name(self):
+        """Return the name for the UI."""
+        super_name = getattr(super(), 'name')
+        return self._config.name or super_name
 
     @property
     def unique_id(self):
