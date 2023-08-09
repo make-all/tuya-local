@@ -34,10 +34,10 @@ class TuyaLocalSelect(TuyaLocalEntity, SelectEntity):
         dps_map = self._init_begin(device, config)
         self._option_dps = dps_map.pop("option")
         if self._option_dps is None:
-            raise AttributeError(f"{config.name} is missing an option dps")
+            raise AttributeError(f"{config.config_id} is missing an option dps")
         if not self._option_dps.values(device):
             raise AttributeError(
-                f"{config.name} does not have a mapping to a list of options"
+                f"{config.config_id} does not have a mapping to a list of options"
             )
         self._init_end(dps_map)
 

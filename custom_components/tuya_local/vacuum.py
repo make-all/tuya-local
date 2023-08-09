@@ -55,7 +55,7 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
         self._fan_dps = dps_map.pop("fan_speed", None)
 
         if self._status_dps is None:
-            raise AttributeError(f"{config.name} is missing a status dps")
+            raise AttributeError(f"{config.config_id} is missing a status dps")
         self._init_end(dps_map)
 
     @property

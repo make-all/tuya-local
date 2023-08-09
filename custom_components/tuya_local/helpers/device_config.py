@@ -231,7 +231,7 @@ class TuyaEntityConfig:
     @property
     def translation_key(self):
         """The translation key for this entity."""
-        return self._config.get("translation_key")
+        return self._config.get("translation_key", self.device_class)
 
     def unique_id(self, device_uid):
         """Return a suitable unique_id for this entity."""
