@@ -8,9 +8,6 @@ primary_entity:
   entity: vacuum
   icon: "mdi:robot-mower"
   dps:
-    - id: 6
-      name: battery
-      type: integer
     - id: 101
       name: status
       type: string
@@ -78,6 +75,14 @@ primary_entity:
       name: auto_mode
       optional: true
 secondary_entities:
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
   - entity: binary_sensor
     name: Error
     class: problem

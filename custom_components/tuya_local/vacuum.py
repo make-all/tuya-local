@@ -49,7 +49,6 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
         self._locate_dps = dps_map.get("locate")
         self._power_dps = dps_map.get("power")
         self._activate_dps = dps_map.get("activate")
-        self._battery_dps = dps_map.pop("battery", None)
         self._direction_dps = dps_map.get("direction_control")
         self._error_dps = dps_map.get("error")
         self._fan_dps = dps_map.pop("fan_speed", None)
@@ -66,8 +65,6 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
             | VacuumEntityFeature.STATUS
             | VacuumEntityFeature.SEND_COMMAND
         )
-        if self._battery_dps:
-            support |= VacuumEntityFeature.BATTERY
         if self._fan_dps:
             support |= VacuumEntityFeature.FAN_SPEED
         if self._power_dps:
@@ -93,12 +90,6 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
                 support |= VacuumEntityFeature.PAUSE
 
         return support
-
-    @property
-    def battery_level(self):
-        """Return the battery level of the vacuum cleaner."""
-        if self._battery_dps:
-            return self._battery_dps.get_value(self._device)
 
     @property
     def status(self):

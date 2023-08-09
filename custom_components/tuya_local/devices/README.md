@@ -632,7 +632,6 @@ The value "off" will be used for turning off the siren, and will be filtered fro
 - **locate** (optional, boolean): a dp to trigger a locator beep on the vacuum.
 - **power** (optional, boolean): a dp to switch full system power on and off
 - **activate** (optional, boolean): a dp to start and pause the vacuum
-- **battery** (optional, number 0-100): a dp that reports the current battery level (%)
 - **direction_control** (optional, mapping of strings): a dp that is used for directional commands
     These are additional commands that are not part of **status**. They can be sent as general commands from HA.
 - **error** (optional, bitfield): a dp that reports error status.

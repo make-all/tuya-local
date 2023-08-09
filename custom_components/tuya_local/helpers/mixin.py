@@ -44,7 +44,7 @@ class TuyaLocalEntity:
     @property
     def name(self):
         """Return the name for the UI."""
-        super_name = getattr(super(), 'name')
+        super_name = getattr(super(), "name")
         return self._config.name or super_name
 
     @property
