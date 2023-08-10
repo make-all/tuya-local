@@ -560,7 +560,7 @@ async def test_options_flow_modifies_config(mock_test, hass):
             CONF_NAME: "test",
             CONF_POLL_ONLY: False,
             CONF_PROTOCOL_VERSION: "auto",
-            CONF_TYPE: "kogan_kahtp_heater",
+            CONF_TYPE: "ble_pt216_temp_humidity",
             CONF_DEVICE_CID: "subdeviceid",
         },
     )
