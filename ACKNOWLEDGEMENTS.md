@@ -329,3 +329,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [WallyCZ](https://github.com/WallyCZ) for contributing support for Sencor air conditioners.
 - [lageorgem](https://github.com/lageorgem) for contributing support for Loginovo TV sync backlights.
 - [jaymunro](https://github.com/jaymunro) for contributing support for Makegood dual switches.
+- [oleg-d](https://github.com/oleg-d) for assistance with support for Nedis outdoor cameras.

@@ -404,6 +404,7 @@ of device.
 ### Cameras
 
 - BCom Majic IPBox intercom camera
+- Nedis outdoor camera
 
 ### Alarm control panels
 
