@@ -330,3 +330,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [lageorgem](https://github.com/lageorgem) for contributing support for Loginovo TV sync backlights.
 - [jaymunro](https://github.com/jaymunro) for contributing support for Makegood dual switches.
 - [oleg-d](https://github.com/oleg-d) for assistance with support for Nedis outdoor cameras.
+- [ScottWoolven5](https://github.com/ScottWoolven5) for assistance with support for MoesGo dimmer switch.

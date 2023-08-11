@@ -339,6 +339,7 @@ of device.
 - Lytmi Fantasy/Neo 3 HDMI sync backlight
 - Moes dimmer switch
 - Moes motion sensor lights (XZ-CGV3)
+- MoesGo dimmer switch
 - Space Dog Music Lamp
 - Tampa Magnetic LED System CD-TY-WY05
 
