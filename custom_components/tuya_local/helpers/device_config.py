@@ -801,7 +801,7 @@ class TuyaDpsConfig:
             step = mapping.get("step")
             if not isinstance(step, Number):
                 step = None
-            if "dps_val" in mapping:
+            if "dps_val" in mapping and not mapping.get("hidden", False):
                 result = mapping["dps_val"]
                 replaced = True
             # Conditions may have side effect of setting another value.
@@ -828,7 +828,7 @@ class TuyaDpsConfig:
 
                 # Allow simple conditional mapping overrides
                 for m in cond.get("mapping", {}):
-                    if m.get("value") == value:
+                    if m.get("value") == value and not m.get("hidden", False):
                         result = m.get("dps_val", result)
 
                 step = cond.get("step", step)
@@ -843,7 +843,12 @@ class TuyaDpsConfig:
                 _LOGGER.debug("Scaling %s by %s", result, scale)
                 result = result * scale
                 remap = self._find_map_for_value(result, device)
-                if remap and "dps_val" in remap and "dps_val" not in mapping:
+                if (
+                    remap
+                    and "dps_val" in remap
+                    and "dps_val" not in mapping
+                    and not remap.get("hidden", False)
+                ):
                     result = remap["dps_val"]
                 replaced = True
 
@@ -857,7 +862,12 @@ class TuyaDpsConfig:
                 _LOGGER.debug("Stepping %s to %s", result, step)
                 result = step * round(float(result) / step)
                 remap = self._find_map_for_value(result, device)
-                if remap and "dps_val" in remap and "dps_val" not in mapping:
+                if (
+                    remap
+                    and "dps_val" in remap
+                    and "dps_val" not in mapping
+                    and not remap.get("hidden", False)
+                ):
                     result = remap["dps_val"]
                 replaced = True
 
