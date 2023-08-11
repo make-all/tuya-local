@@ -126,6 +126,9 @@ secondary_entities:
           - dps_val: BATTERY_NOT_ENOUGH
             value: Low battery
             icon: "mdi:battery-low"
+          - dps_val: CHARGING_PAUSE
+            value: Charging interrupted
+            icon: "mdi:battery-alert"
           - dps_val: RAIN_PARK
             value: Raining
             icon: "mdi:weather-pouring"
@@ -148,7 +151,7 @@ secondary_entities:
         unit: h
         range:
           min: 1
-          max: 99
+          max: 24
   - entity: button
     name: Clear schedule
     icon: "mdi:calendar-remove"
