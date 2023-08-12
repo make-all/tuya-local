@@ -204,6 +204,7 @@
 ### Aroma diffusers
 
 - Asakuki aroma diffuser with light
+- Cadance ultrasonic aroma diffuser with light and music playback
 - Ditua DT-1522-YN aroma diffuser
 - Etersky aroma diffuser with light
 - YYM-805SW aroma diffuser with light (also supports GX Aroma diffuser)
