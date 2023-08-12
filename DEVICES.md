@@ -411,6 +411,7 @@ of device.
 
 - BCom Majic IPBox intercom camera
 - Nedis outdoor camera
+- RL video intercom
 
 ### Alarm control panels
 
