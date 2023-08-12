@@ -337,6 +337,7 @@ of device.
 - iHD001 LED controller
 - Loginovo TV sync backlight
 - Lytmi Fantasy/Neo 3 HDMI sync backlight
+- Marpou RGBCW ceiling light
 - Moes dimmer switch
 - Moes motion sensor lights (XZ-CGV3)
 - MoesGo dimmer switch
@@ -426,6 +427,7 @@ of device.
 - CO2-Box air quality monitor
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
 - Garza Wi-Fi garden irrigation system (ITV103W with 433MHz WiFi hub)
+- Holman WX1 tap timer (sprinkler controller)
 - Inkbird PTH-9CW air quality monitor
 - KKMoon 7in1 air quality monitor
 - Kogan bidet toilet seat
