@@ -29,13 +29,6 @@ primary_entity:
         - dps_val: tongue_bad
           value: true
         - value: false
-    - id: 40
-      name: closed_opened
-      type: string
-      mapping:
-        - dps_val: unknown
-        - dps_val: open
-        - dps_val: closed
     - id: 43
       name: unlock_fingerprint
       type: integer
@@ -197,6 +190,20 @@ secondary_entities:
           mapping:
             - step: 10
           unit: s
+  - entity: binary_sensor
+    class: door
+    category: diagnostic
+    dps:
+      - id: 40
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: unknown
+            value: null
+          - dps_val: open
+            value: true
+          - dps_val: closed
+            value: false
   - entity: binary_sensor
     name: Keypad reset
     class: running
