@@ -588,15 +588,25 @@ Humidifer can also cover dehumidifiers (use class to specify which).
    Note: If the light mixes in color modes in the same dp, `color_mode` should be used instead.  If the light contains both a separate dp for effects/scenes/presets and a mix of color_modes and effects (commonly scene and music) in the `color_mode` dp, then a separate select entity should be used for the dedicated dp to ensure the effects from `color_mode` are selectable.
 
 ### `lock`
+
+The unlock... dps below are normally integers, but can also be boolean, in which case
+no information will be available about which specific credential was used to unlock the lock.
+
 - **lock** (optional, boolean): a dp to control the lock state: true = locked, false = unlocked
 - **unlock_fingerprint** (optional, integer): a dp to identify the fingerprint used to unlock the lock.
 - **unlock_password** (optional, integer): a dp to identify the password used to unlock the lock.
 - **unlock_temp_pwd** (optional, integer): a dp to identify the temporary password used to unlock the lock.
 - **unlock_dynamic_pwd** (optional, integer): a dp to identify the dynamic password used to unlock the lock.
+- **unlock_offline_pwd** (optional, integer): a dp to identify the offline password used to unlock the lock.
 - **unlock_card** (optional, integer): a dp to identify the card used to unlock the lock.
 - **unlock_app** (optional, integer): a dp to identify the app used to unlock the lock.
+- **unlock_key** (optional, integer): a dp to identify the key used to unlock the lock.
+- **unlock_ble** (optional, integer): a dp to identify the BLE device used to unlock the lock.
+- **unlock_voice** (optional, integer): a dp to identify the voice assistant user used to unlock the lock.
 - **request_unlock** (optional, integer): a dp to signal that a request has been made to unlock, the value should indicate the time remaining for approval.
 - **approve_unlock** (optional, boolean): a dp to unlock the lock in response to a request.
+- **request_intercom** (optional, integer): a dp to signal that a request has been made via intercom to unlock, the value should indicate the time remaining for approval.
+- **approve_intercom** (optional, boolean): a dp to unlock the lock in response to an intercom request.
 - **jammed** (optional, boolean): a dp to signal that the lock is jammed.
 
 ### `number`

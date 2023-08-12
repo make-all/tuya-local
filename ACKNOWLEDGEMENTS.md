@@ -335,3 +335,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [Brazen00](https://github.com/Brazen00) for contributing support for Holman WX1 tap timers.
 - [nima-002](https://github.com/nima-002) for contributing improvements to Moebot S lawnmowers.
 - [maxupunk](https://github.com/maxupunk) for assistance with support for Kabum Smart 700 vacuum cleaners.
+- [thugseus](https://github.com/thugseus) for assistance with support for HU06 Bluetooth smart locks.
