@@ -43,6 +43,7 @@
 - ElectriQ EcoSilent 14HPW
 - Fersk Vind 2
 - Kogan 2.6kW portable air conditioner
+- Lyfco OL-A012 air conditioner
 - Monzana Klimaanlage air conditioner
 - Nedis ACMB1WT12 portable air conditioner
 - Rotenso Roni R35WI
