@@ -124,7 +124,9 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
                 raise TimeoutError()
             await self._approve_unlock_dp.async_set_value(self._device, True)
         elif self._approve_intercom_dp:
-            if self._req_intercom_dp and not self._req_intercom_dp.get_value(self._device):
+            if self._req_intercom_dp and not self._req_intercom_dp.get_value(
+                self._device
+            ):
                 raise TimeoutError()
             await self._approve_intercom_dp.async_set_value(self._device, True)
         else:
