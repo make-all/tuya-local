@@ -334,3 +334,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [robsonmantovani](https://github.com/robsonmantovani) for contributing support for Marpou ceiling lights.
 - [Brazen00](https://github.com/Brazen00) for contributing support for Holman WX1 tap timers.
 - [nima-002](https://github.com/nima-002) for contributing improvements to Moebot S lawnmowers.
+- [maxupunk](https://github.com/maxupunk) for assistance with support for Kabum Smart 700 vacuum cleaners.
