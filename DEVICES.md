@@ -281,6 +281,7 @@ the best option.
 - MoesHouse smartplug with RGBW nightlight
 - Novadigital 4-way switch with backlight, power on state and timers
 - Qnect QN-WPO3 3 outlet + USB powerstrip with individual timers
+- Relay switch with 433MHz remote (unbranded)
 - Single switch with backlight (unbranded)
 - Somgam single wall switch
 - Somgam double wall switch
