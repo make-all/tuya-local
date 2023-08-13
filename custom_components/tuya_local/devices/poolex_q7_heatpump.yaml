@@ -51,6 +51,22 @@ primary_entity:
           conditions:
             - dps_val: f
               value_redirect: temp_current_f
+    - id: 4
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: Boost_Heat
+          value: quick_heat
+        - dps_val: Silent_Heat
+          value: quiet_heat
+        - dps_val: ECO_Heat
+          value: smart_heat
+        - dps_val: ECO_Cool
+          value: smart_cool
+        - dps_val: Silent_Cool
+          value: quiet_cool
+        - dps_val: Boost_Cool
+          value: quick_cool
     - id: 11
       type: string
       name: hvac_action
@@ -86,22 +102,6 @@ primary_entity:
       name: temp_current_f
       hidden: true
       optional: true
-    - id: 4
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: Boost_Heat
-          value: quick_heat
-        - dps_val: Silent_Heat
-          value: quiet_heat
-        - dps_val: ECO_Heat
-          value: smart_heat
-        - dps_val: ECO_Cool
-          value: smart_cool
-        - dps_val: Silent_Cool
-          value: quiet_cool
-        - dps_val: Boost_Cool
-          value: quick_cool
     - id: 21
       type: integer
       name: unknown_21
