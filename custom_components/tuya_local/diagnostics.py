@@ -75,7 +75,11 @@ def _async_device_as_dict(
     data = {
         "name": device.name,
         "api_version_set": device._api.version,
-        "api_version_used": API_PROTOCOL_VERSIONS[device._api_protocol_version_index],
+        "api_version_used": (
+            "none"
+            if device._api_protocol_version_index is None
+            else API_PROTOCOL_VERSIONS[device._api_protocol_version_index]
+        ),
         "api_working": device._api_protocol_working,
         "status": device._api.dps_cache,
         "cached_state": device._cached_state,
