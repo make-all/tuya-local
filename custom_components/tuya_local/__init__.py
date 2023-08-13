@@ -285,7 +285,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
                                     break
                         if e.entity == platform and not e.name:
                             new_id = e.unique_id(device_id)
-                            if new_id.endsWith(new_suffix):
+                            if new_id.endswith(new_suffix):
                                 _LOGGER.info(
                                     "Migrating %s unique_id %s to %s",
                                     e.entity,
