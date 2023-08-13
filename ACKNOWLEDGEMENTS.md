@@ -338,3 +338,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [thugseus](https://github.com/thugseus) for assistance with support for HU06 Bluetooth smart locks.
 - [jaydensmith](https://github.com/jaydensmith) for assistance with support for Cadence aroma diffusers.
 - [davidsch1992](https://github.com/davidsch1992) for contributing support for Lyfco OL-A0012 air conditioners.
+- [lhassel](https://github.com/lhassel) for assisting with support for a variant of Inkbird iBBQ-4T thermometers with measurements combined into a single dp similar to IBS-M1S.
