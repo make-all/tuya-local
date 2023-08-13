@@ -478,6 +478,7 @@ of device.
 ### Devices supported via Zigbee hubs
 
 - LoraTap SC500ZB-V2 curtain controller
+- Nedis ZBSC10WT temperature and humidity sensor
 - ZTH08ZTU temperature and humidity sensor
 
 NOTE: this project does not intend to expand the scope to support non-Tuya
