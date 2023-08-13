@@ -129,29 +129,25 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
 
     async def async_toggle(self, **kwargs):
         """Toggle the vacuum cleaner."""
-        dps = self._power_dps
-        if not dps:
-            dps = self._activate_dps
+        dps = self._power_dps or self._activate_dps
         if dps:
             switch_to = not dps.get_value(self._device)
             await dps.async_set_value(self._device, switch_to)
 
-    async def async_start(self):
-        if self._activate_dps:
+    async def async_start(self): 
+        dps = self._command_dps or self._status_dps
+        if dps and "start" in dps.values(self._device):
+            await dps.async_set_value(self._device, "start")
+        elif self._activate_dps:
             await self._activate_dps.async_set_value(self._device, True)
-        else:
-            dps = self._command_dps or self._status_dps
-            if "start" in dps.values(self._device):
-                await dps.async_set_value(self._device, "start")
 
     async def async_pause(self):
         """Pause the vacuum cleaner."""
-        if self._activate_dps:
+        dps = self._command_dps or self._status_dps
+        if dps and "pause" in dps.values(self._device):
+            await dps.async_set_value(self._device, "pause")
+        elif self._activate_dps:
             await self._activate_dps.async_set_value(self._device, False)
-        else:
-            dps = self._command_dps or self._status_dps
-            if "pause" in dps.values(self._device):
-                await dps.async_set_value(self._device, "pause")
 
     async def async_return_to_base(self, **kwargs):
         """Tell the vacuum cleaner to return to its base."""
