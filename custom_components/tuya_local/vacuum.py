@@ -134,7 +134,7 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
             switch_to = not dps.get_value(self._device)
             await dps.async_set_value(self._device, switch_to)
 
-    async def async_start(self): 
+    async def async_start(self):
         dps = self._command_dps or self._status_dps
         if dps and "start" in dps.values(self._device):
             await dps.async_set_value(self._device, "start")
