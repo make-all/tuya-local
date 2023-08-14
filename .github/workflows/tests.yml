@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.10']
+        python-version: ['3.11']
 
     steps:
       - uses: actions/checkout@v3
@@ -23,12 +23,9 @@ jobs:
           pip install -r requirements-dev.txt
       - name: Test with pytest
         run: pytest --cov=. --cov-config=.coveragerc --cov-report xml:coverage.xml
-      - name: Track master branch
-        if: github.event.sender.login == github.event.repository.owner.login
-        run: git fetch --no-tags https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY +refs/heads/main:refs/remotes/origin/main
       - name: SonarCloud scan
         uses: sonarsource/sonarcloud-github-action@master
-        if: github.event.sender.login == github.event.repository.owner.login
+        if: (github.event.sender.login == github.event.repository.owner.login) && (github.repository == 'make-all/tuya-local') && (github.ref == 'main')
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

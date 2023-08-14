@@ -21,7 +21,7 @@ primary_entity:
         - dps_val: white
           value: color_temp
         - dps_val: colour
-          value: rgbw
+          value: hs
         - dps_val: scene
           value: Scene
         - dps_val: music
@@ -35,6 +35,7 @@ primary_entity:
         max: 1000
       mapping:
         - dps_val: null
+          value: 0
         - scale: 3.92
     - id: 23
       name: color_temp
@@ -79,15 +80,15 @@ primary_entity:
       optional: true
     - id: 30
       name: rhythm_mode
-      type: hex
+      type: base64
       optional: true
     - id: 31
       name: sleep_mode
-      type: hex
+      type: base64
       optional: true
     - id: 32
       name: wakeup_mode
-      type: hex
+      type: base64
       optional: true
 secondary_entities:
   - entity: number

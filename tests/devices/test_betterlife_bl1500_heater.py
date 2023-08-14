@@ -1,9 +1,6 @@
-from homeassistant.components.climate.const import (
-    ClimateEntityFeature,
-    HVACMode,
-)
+from homeassistant.components.climate.const import ClimateEntityFeature, HVACMode
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import UnitOfTime, UnitOfTemperature
+from homeassistant.const import UnitOfTemperature, UnitOfTime
 
 from ..const import BETTERLIFE_BL1500_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -11,7 +8,6 @@ from ..mixins.climate import TargetTemperatureTests
 from ..mixins.lock import BasicLockTests
 from ..mixins.select import BasicSelectTests
 from ..mixins.sensor import BasicSensorTests
-
 from .base_device_tests import TuyaDeviceTestCase
 
 HVACMODE_DPS = "1"

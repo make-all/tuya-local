@@ -1,0 +1,202 @@
+name: BBQ thermometer
+products:
+  - id: wavwesi8clrfwx68
+    name: Inkbird IBBQ-4T v2.x
+primary_entity:
+  entity: sensor
+  name: Temperature probe 1
+  class: temperature
+  dps:
+    - id: 107
+      type: base64
+      name: sensor
+      class: measurement
+      optional: true
+      mapping:
+        - mask: FFFF000000000000
+          endianness: little
+          scale: 100
+      unit: F
+    - id: 111
+      type: bitfield
+      name: fault_code
+secondary_entities:
+  - entity: sensor
+    name: Temperature probe 2
+    class: temperature
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 100
+            mask: 0000FFFF00000000
+            endianness: little
+        unit: F
+  - entity: sensor
+    name: Temperature probe 3
+    class: temperature
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 100
+            mask: 00000000FFFF0000
+            endianness: little
+        unit: F
+  - entity: sensor
+    name: Temperature probe 4
+    class: temperature
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 100
+            mask: 000000000000FFFF
+            endianness: little
+        unit: F
+  - entity: binary_sensor
+    class: power
+    category: diagnostics
+    dps:
+      - id: 1
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 111
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: select
+    name: Display unit
+    icon: "mdi:temperature-celsius"
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: f
+            value: Fahrenheit
+          - dps_val: c
+            value: Celsius
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: number
+    name: Screen timeout
+    category: config
+    icon: "mdi:camera-timer"
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 3600
+  - entity: switch
+    name: Alarm
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Alarm state
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+  - entity: number
+    name: Preset temperature 1
+    category: config
+    icon: "mdi:thermometer-alert"
+    dps:
+      - id: 106
+        type: base64
+        name: value
+        optional: true
+        unit: F
+        range:
+          min: 0
+          max: 50000
+        mapping:
+          - mask: FFFF000000000000
+            endianness: little
+            scale: 100
+  - entity: number
+    name: Preset temperature 2
+    category: config
+    icon: "mdi:thermometer-alert"
+    dps:
+      - id: 106
+        type: base64
+        name: value
+        optional: true
+        unit: F
+        range:
+          min: 0
+          max: 50000
+        mapping:
+          - mask: 0000FFFF00000000
+            endianness: little
+            scale: 100
+  - entity: number
+    name: Preset temperature 3
+    category: config
+    icon: "mdi:thermometer-alert"
+    dps:
+      - id: 106
+        type: base64
+        name: value
+        optional: true
+        unit: F
+        range:
+          min: 0
+          max: 50000
+        mapping:
+          - mask: 00000000FFFF0000
+            endianness: little
+            scale: 100
+  - entity: number
+    name: Preset temperature 4
+    category: config
+    icon: "mdi:thermometer-alert"
+    dps:
+      - id: 106
+        type: base64
+        name: value
+        optional: true
+        unit: F
+        range:
+          min: 0
+          max: 50000
+        mapping:
+          - mask: 000000000000FFFF
+            endianness: little
+            scale: 100

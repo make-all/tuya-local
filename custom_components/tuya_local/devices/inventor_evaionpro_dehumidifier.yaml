@@ -19,13 +19,16 @@ primary_entity:
       name: mode
       mapping:
         - dps_val: manual
-          value: Manual
+          value: normal
         - dps_val: continuous
-          value: Continuous
+          value: boost
         - dps_val: smart
-          value: Smart
+          value: auto
         - dps_val: drying
-          value: Drying
+          value: laundry
+    - id: 6
+      type: integer
+      name: current_humidity
     - id: 19
       type: bitfield
       name: fault_code
@@ -83,8 +86,9 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: sensor
-    name: Humidity
     class: humidity
+    deprecated: humidifier
+    category: diagnostic
     dps:
       - id: 6
         type: integer
@@ -92,7 +96,6 @@ secondary_entities:
         unit: "%"
         class: measurement
   - entity: sensor
-    name: Temperature
     class: temperature
     dps:
       - id: 7

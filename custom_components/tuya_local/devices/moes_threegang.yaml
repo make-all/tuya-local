@@ -1,0 +1,92 @@
+name: Triple switch with timer and backlight
+products:
+  - id: m4viuhaiez8qjswh
+    name: Moes 3 Gang smart switch
+primary_entity:
+  entity: light
+  name: "Gang 1"
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+secondary_entities:
+  - entity: light
+    name: "Gang 2"
+    dps:
+      - id: 2
+        name: switch
+        type: boolean
+  - entity: light
+    name: "Gang 3"
+    dps:
+      - id: 3
+        name: switch
+        type: boolean
+  - entity: light
+    name: Backlight
+    category: config
+    dps:
+      - id: 16
+        name: switch
+        type: boolean
+  - entity: number
+    category: config
+    name: "Timer Gang 1"
+    icon: "mdi:timer"
+    dps:
+      - id: 7
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    category: config
+    name: "Timer Gang 2"
+    icon: "mdi:timer"
+    dps:
+      - id: 8
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    category: config
+    name: "Timer Gang 3"
+    icon: "mdi:timer"
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: select
+    category: config
+    name: "Initial state"
+    icon: "mdi:toggle-switch"
+    dps:
+      - id: 14
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: "On"
+          - dps_val: 1
+            value: "Off"
+          - dps_val: 2
+            value: "Last State"

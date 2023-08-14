@@ -1,4 +1,7 @@
-name: Somgoms switch
+name: Wall switch
+products:
+  - id: nqodepctqralr6su
+    name: Novadigital switch
 primary_entity:
   entity: switch
   dps:
@@ -20,6 +23,22 @@ secondary_entities:
         mapping:
           - scale: 60
         unit: min
+  - entity: select
+    name: Initial state
+    icon: "mdi:toggle-switch"
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: "On"
+          - dps_val: "2"
+            value: Last state
   - entity: light
     name: Backlight
     category: config

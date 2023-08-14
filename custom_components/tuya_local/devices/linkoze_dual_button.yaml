@@ -1,0 +1,80 @@
+name: Dual buttons
+products:
+  - id: l8yaz4um5b3pwyvf
+    name: Linkoze LKWSW201
+primary_entity:
+  entity: binary_sensor
+  name: Click 1
+  dps:
+    - id: 1
+      type: string
+      name: sensor
+      persist: false
+      mapping:
+        - dps_val: single_click
+          value: true
+        - value: false
+secondary_entities:
+  - entity: binary_sensor
+    name: Click 2
+    dps:
+      - id: 2
+        type: string
+        name: sensor
+        persist: false
+        mapping:
+          - dps_val: single_click
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Press 1
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        persist: false
+        mapping:
+          - dps_val: long_press
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Press 2
+    dps:
+      - id: 2
+        type: string
+        name: sensor
+        persist: false
+        mapping:
+          - dps_val: long_press
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Double click 1
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        persist: false
+        mapping:
+          - dps_val: double_click
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Double click 2
+    dps:
+      - id: 2
+        type: string
+        name: sensor
+        persist: false
+        mapping:
+          - dps_val: double_click
+            value: true
+          - value: false
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        unit: "%"

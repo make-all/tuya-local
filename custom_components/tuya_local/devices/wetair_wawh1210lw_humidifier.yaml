@@ -17,6 +17,9 @@ primary_entity:
       range:
         min: 30
         max: 80
+    - id: 14
+      name: current_humidity
+      type: integer
     - id: 24
       type: string
       name: mode
@@ -61,6 +64,8 @@ secondary_entities:
 
   - entity: sensor
     name: Current humidity
+    deprecated: humidifier
+    category: diagnostic
     class: humidity
     dps:
       - id: 14

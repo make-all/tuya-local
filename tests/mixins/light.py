@@ -1,7 +1,5 @@
 # Mixins for testing lights
-from homeassistant.components.light import (
-    ColorMode,
-)
+from homeassistant.components.light import ColorMode
 
 from ..helpers import assert_device_properties_set
 

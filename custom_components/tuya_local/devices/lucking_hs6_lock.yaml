@@ -1,0 +1,218 @@
+name: Door lock
+products:
+  - id: 7veecefmxfxsu0b8
+    name: Lucking HF06EM/HF06MF-W-WIFI
+primary_entity:
+  entity: lock
+  dps:
+    # dps 1 - 9 are config related and not supported
+    - id: 28
+      type: boolean
+      name: lock
+      optional: true
+      mapping:
+        - dps_val: null
+          value: false
+    - id: 40
+      type: boolean
+      # this is a guess for "lock_motor_state"
+      name: jammed
+      optional: true
+      persist: false
+      mapping:
+        - dps_val: null
+          value: false
+    - id: 10
+      type: string
+      name: unlock_fingerprint
+      optional: true
+      persist: false
+    - id: 11
+      type: string
+      name: unlock_password
+      optional: true
+      persist: false
+    - id: 12
+      type: string
+      name: unlock_card
+      optional: true
+      persist: false
+    - id: 15
+      type: string
+      # "double" in Tuya doc, but no idea what that means.  Key is unused.
+      name: unlock_key
+      optional: true
+      persist: false
+    - id: 16
+      type: string
+      name: unlock_temp_pwd
+      optional: true
+      persist: false
+    - id: 17
+      type: string
+      name: unlock_offline_pwd
+      optional: true
+      persist: false
+    - id: 22
+      type: string
+      name: unlock_app
+      optional: true
+      persist: false
+    - id: 23
+      type: string
+      name: lock_alarm_kit
+      optional: true
+    - id: 29
+      type: string
+      name: normal_open_period
+      optional: true
+    - id: 35
+      type: string
+      name: closed_open_kit
+      optional: true
+    - id: 104
+      type: string
+      name: ble_unlock_check
+      optional: true
+    - id: 105
+      type: integer
+      name: unlock_ble
+      optional: true
+    - id: 212
+      type: string
+      name: initiative_msg
+      optional: true
+secondary_entities:
+  - entity: select
+    name: Multi-factor authentication
+    icon: "mdi:two-factor-authentication"
+    category: config
+    dps:
+      - id: 25
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: single_unlock
+            value: Single factor
+          - dps_val: finger_password
+            value: Fingerprint+PIN
+          - dps_val: finger_card
+            value: Card+Fingerprint
+          - dps_val: finger_face
+            value: Fingerprint+Face
+          - dps_val: password_card
+            value: Card+PIN
+          - dps_val: card_face
+            value: Card+Face
+  - entity: select
+    name: Language
+    icon: "mdi:translate"
+    category: config
+    dps:
+      - id: 27
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: chinese_simplified
+            value: 中文简化字
+          - dps_val: english
+            value: English
+          - dps_val: japanese
+            value: 日本語
+          - dps_val: german
+            value: Deutsch
+          - dps_val: spanish
+            value: Español
+          - dps_val: latin
+            value: Latin
+          - dps_val: french
+            value: Français
+          - dps_val: russian
+            value: Русский
+          - dps_val: italian
+            value: Italiano
+          - dps_val: chinese_traditional
+            value: 中文正體字
+          - dps_val: korean
+            value: 한글
+  - entity: switch
+    name: Auto lock
+    icon: "mdi:lock-reset"
+    category: config
+    dps:
+      - id: 30
+        type: boolean
+        name: switch
+  - entity: number
+    name: Auto lock time
+    category: config
+    icon: "mdi:lock-clock"
+    dps:
+      - id: 31
+        type: integer
+        name: value
+        optional: true
+        unit: s
+        range:
+          min: 0
+          max: 1800
+  - entity: number
+    name: Alarm time
+    category: config
+    icon: "mdi:timer-music"
+    dps:
+      - id: 34
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 1800
+  - entity: select
+    name: Doorbell tune
+    icon: "mdi:bell-ring"
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: ding_0
+            value: Ding 0
+          - dps_val: ding_1
+            value: Ding 1
+          - dps_val: ding_2
+            value: Ding 2
+          - dps_val: ding_3
+            value: Ding 3
+          - dps_val: ding_4
+            value: Ding 4
+          - dps_val: ding_5
+            value: Ding 5
+          - dps_val: ding_6
+            value: Ding 6
+          - dps_val: ding_7
+            value: Ding 7
+          - dps_val: ding_8
+            value: Ding 8
+          - dps_val: ding_9
+            value: Ding 9
+      - id: 103
+        type: string
+        name: doorbell_song_kit
+        optional: true
+  - entity: binary_sensor
+    name: Doorbell
+    class: sound
+    category: diagnostic
+    dps:
+      - id: 101
+        type: boolean
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false

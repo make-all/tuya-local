@@ -102,9 +102,9 @@ primary_entity:
       name: preset_mode
       mapping:
         - dps_val: true
-          value: Eco
+          value: eco
         - dps_val: false
-          value: Normal
+          value: comfort
     - id: 16
       type: integer
       name: temperature
@@ -305,7 +305,6 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: sensor
-    name: Power
     category: config
     class: power
     dps:
@@ -360,15 +359,6 @@ secondary_entities:
       - id: 39
         type: boolean
         name: button
-  - entity: switch
-    deprecated: button
-    name: Factory reset
-    category: config
-    icon: "mdi:store-cog"
-    dps:
-      - id: 39
-        type: boolean
-        name: switch
   - entity: lock
     name: Child lock
     category: config

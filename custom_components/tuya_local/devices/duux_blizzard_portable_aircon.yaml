@@ -1,0 +1,162 @@
+name: Air conditioner
+products:
+  - id: zhmv8syot6ye4kjo
+    name: Duux Blizzard
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: auto
+              icon: "mdi:hvac"
+              value: auto
+            - dps_val: cool
+              icon: "mdi:snowflake"
+              value: cool
+            - dps_val: dry
+              icon: "mdi:water-off"
+              value: dry
+            - dps_val: fan
+              icon: "mdi:fan"
+              value: fan_only
+    - id: 2
+      type: string
+      name: mode
+    - id: 3
+      type: string
+      name: fan_mode
+      mapping:
+        - dps_val: low
+          value: low
+        - dps_val: mid
+          value: medium
+        - dps_val: high
+          value: high
+    - id: 5
+      type: integer
+      name: temperature
+      range:
+        min: 18
+        max: 32
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: true
+              value_redirect: temp_set_f
+              range:
+                min: 64
+                max: 90
+    - id: 8
+      type: integer
+      name: current_temperature
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: true
+              value_redirect: temp_current_f
+    - id: 9
+      type: bitfield
+      name: fault_code
+    - id: 10
+      type: integer
+      name: temp_set_f
+      optional: true
+      hidden: true
+      range:
+        min: 64
+        max: 90
+    - id: 11
+      type: integer
+      name: temp_current_f
+      hidden: true
+      optional: true
+    - id: 14
+      type: boolean
+      name: temperature_unit
+      mapping:
+        - dps_val: false
+          value: C
+        - dps_val: true
+          value: F
+secondary_entities:
+  - entity: number
+    name: Timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 4
+        name: value
+        type: integer
+        unit: h
+        range:
+          min: 0
+          max: 12
+  - entity: switch
+    name: Sleep
+    category: config
+    icon: "mdi:power-sleep"
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Ionizer
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: switch
+    name: Display ionizer
+    category: config
+    dps:
+      - id: 12
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Display mode
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
+  - entity: select
+    name: Temperature unit
+    icon: "mdi:temperature-celsius"
+    category: config
+    dps:
+      - id: 14
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: false
+            value: Celsius
+          - dps_val: true
+            value: Fahrenheit
+  - entity: sensor
+    name: Timer
+    class: duration
+    category: config
+    dps:
+      - id: 15
+        type: integer
+        name: sensor

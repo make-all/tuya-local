@@ -1,0 +1,253 @@
+name: Heat pump
+products:
+  - id: hqegspadimukzmll
+    name: ITS-4.5HD super
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: COOL
+              value: cool
+            - dps_val: HEAT
+              value: heat
+    - id: 2
+      type: string
+      name: mode
+      hidden: true
+    - id: 4
+      type: integer
+      name: temperature
+      range:
+        min: 15
+        max: 75
+      unit: C
+    - id: 14
+      type: integer
+      name: EEV
+    - id: 15
+      type: bitfield
+      name: fault_code
+    - id: 17
+      type: string
+      name: hvac_action
+      mapping:
+        - dps_val: normal
+          constraint: four_valve_state
+          conditions:
+            - dps_val: false
+              value: heating
+            - dps_val: true
+              value: cooling
+        - dps_val: ERR
+          value: "off"
+        - dps_val: "NO"
+          constraint: hvac_mode
+          conditions:
+            - dps_val: true
+              value: idle
+            - dps_val: false
+              value: "off"
+    - id: 18
+      type: integer
+      name: energy_today
+    - id: 20
+      type: integer
+      name: compressor_strength
+    - id: 21
+      type: integer
+      name: current_temperature
+    - id: 28
+      type: boolean
+      name: four_valve_state
+      hidden: true
+    - id: 30
+      type: boolean
+      name: chlorination
+      attribute: true
+    - id: 32
+      type: boolean
+      name: aux_heat
+      readonly: true
+    - id: 40
+      type: integer
+      name: model_code
+    - id: 101
+      type: integer
+      name: current
+      attribute: true
+    - id: 102
+      type: integer
+      name: voltage
+      attribute: true
+    - id: 103
+      type: integer
+      name: power
+      attribute: true
+    - id: 104
+      type: integer
+      name: energy
+      attribute: true
+    - id: 105
+      type: boolean
+      name: electricity_monitor
+      attribute: true
+    - id: 106
+      type: boolean
+      name: linkage
+      attribute: true
+    - id: 108
+      type: boolean
+      name: dipswitch_1
+    - id: 109
+      type: boolean
+      name: dipswitch_2
+secondary_entities:
+  - entity: switch
+    name: Defrost
+    icon: "mdi:snowflake"
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 15
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: sensor
+    name: Water flow
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 19
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "OFF"
+            value: "Off"
+          - dps_val: LOW
+            value: Low
+          - dps_val: High
+            value: High
+      - id: 107
+        type: boolean
+        name: valve
+  - entity: sensor
+    name: Suction temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Inlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Outlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Vent temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 24
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Ambient temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 26
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: binary_sensor
+    name: Compressor
+    class: running
+    category: diagnostic
+    dps:
+      - id: 27
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Low pressure valve
+    class: opening
+    icon: "mdi:valve"
+    category: diagnostic
+    dps:
+      - id: 29
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Water pump
+    class: running
+    category: diagnostic
+    dps:
+      - id: 31
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: High pressure valve
+    class: opening
+    icon: "mdi:valve"
+    category: diagnostic
+    dps:
+      - id: 33
+        type: boolean
+        name: sensor
+  - entity: sensor
+    name: Time since defrost
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 41
+        type: integer
+        name: sensor
+        unit: min

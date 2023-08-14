@@ -1,5 +1,5 @@
 name: Arlec 2200W Panel Heater
-product:
+products:
   - id: zf4japp0z9hihzsz
     name: Arlec Panel Heater PEH225HA
 primary_entity:
@@ -24,17 +24,16 @@ primary_entity:
     - id: 3
       name: current_temperature
       type: integer
-      readonly: true
     - id: 4
       name: preset_mode
       type: string
       mapping:
-        - dps_val: "eco"
-          value: "Eco"
-        - dps_val: "comfort"
-          value: "Comfort"
-        - dps_val: "af"
-          value: "Anti-frost"
+        - dps_val: ECO
+          value: eco
+        - dps_val: Comfort
+          value: comfort
+        - dps_val: Antifrost
+          value: away
 secondary_entities:
   - entity: lock
     name: Child lock

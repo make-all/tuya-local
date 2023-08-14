@@ -1,13 +1,7 @@
 from homeassistant.components.button import ButtonDeviceClass
 from homeassistant.components.fan import FanEntityFeature
-from homeassistant.components.sensor import (
-    SensorDeviceClass,
-    STATE_CLASS_MEASUREMENT,
-)
-from homeassistant.const import (
-    PERCENTAGE,
-    UnitOfTemperature,
-)
+from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT, SensorDeviceClass
+from homeassistant.const import PERCENTAGE, UnitOfTemperature
 
 from ..const import HIMOX_H05_PURIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -15,7 +9,7 @@ from ..mixins.button import BasicButtonTests
 from ..mixins.lock import BasicLockTests
 from ..mixins.select import BasicSelectTests
 from ..mixins.sensor import MultiSensorTests
-from ..mixins.switch import BasicSwitchTests, SwitchableTests
+from ..mixins.switch import SwitchableTests
 from .base_device_tests import TuyaDeviceTestCase
 
 SWITCH_DPS = "1"
@@ -31,7 +25,6 @@ AQI_DPS = "21"
 class TestHimoxH05Purifier(
     BasicButtonTests,
     BasicLockTests,
-    BasicSwitchTests,
     BasicSelectTests,
     MultiSensorTests,
     SwitchableTests,
@@ -60,12 +53,11 @@ class TestHimoxH05Purifier(
                 "8h": "8 hours",
             },
         )
-        self.setUpBasicSwitch(RESET_DPS, self.entities.get("switch_filter_reset"))
         self.setUpMultiSensors(
             [
                 {
                     "dps": TEMP_DPS,
-                    "name": "sensor_current_temperature",
+                    "name": "sensor_temperature",
                     "unit": UnitOfTemperature.CELSIUS,
                     "device_class": SensorDeviceClass.TEMPERATURE,
                     "state_class": STATE_CLASS_MEASUREMENT,
@@ -85,10 +77,9 @@ class TestHimoxH05Purifier(
             [
                 "button_filter_reset",
                 "lock_child_lock",
-                "switch_filter_reset",
                 "sensor_active_filter_life",
                 "select_timer",
-                "sensor_current_temperature",
+                "sensor_temperature",
             ]
         )
 
@@ -101,15 +92,15 @@ class TestHimoxH05Purifier(
     def test_preset_modes(self):
         self.assertCountEqual(
             self.subject.preset_modes,
-            ["auto", "low", "mid", "high"],
+            ["smart", "sleep", "fresh", "strong"],
         )
 
     def test_preset_mode(self):
         self.dps[PRESET_DPS] = "low"
-        self.assertEqual(self.subject.preset_mode, "low")
+        self.assertEqual(self.subject.preset_mode, "sleep")
 
     async def test_set_preset_mode(self):
         async with assert_device_properties_set(
             self.subject._device, {PRESET_DPS: "mid"}
         ):
-            await self.subject.async_set_preset_mode("mid")
+            await self.subject.async_set_preset_mode("fresh")

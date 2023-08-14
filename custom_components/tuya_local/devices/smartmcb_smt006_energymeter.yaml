@@ -1,36 +1,23 @@
-name: SmartMCB SMT006 energy meter
+name: SmartMCB SMT006-10 energy meter
 products:
   - id: ntwmuj82anq1l92i
 primary_entity:
   entity: switch
+  icon: "mdi:fuse"
+  name: Breaker
   dps:
     - id: 16
       type: boolean
       name: switch
+    - id: 9
+      type: bitfield
+      name: fault_code
     - id: 19
       type: string
       name: breaker_number
-    - id: 101
-      type: integer
-      name: unknown_101
-    - id: 102
-      type: integer
-      name: unknown_102
-    - id: 103
-      type: integer
-      name: unknown_103
-    - id: 104
-      type: integer
-      name: unknown_104
-    - id: 105
-      type: boolean
-      name: unknown_105
-    - id: 106
-      type: boolean
-      name: unknown_106
+      optional: true
 secondary_entities:
   - entity: sensor
-    name: Energy
     class: energy
     dps:
       - id: 1
@@ -260,18 +247,10 @@ secondary_entities:
       - id: 12
         type: boolean
         name: button
-  - entity: switch
-    deprecated: button
-    name: Energy reset
-    category: config
-    icon: "mdi:cog-refresh"
-    dps:
-      - id: 12
-        type: boolean
-        name: switch
   - entity: sensor
     name: Balance energy
     category: diagnostic
+    class: energy_storage
     icon: "mdi:home-lightning-bolt"
     dps:
       - id: 13
@@ -280,3 +259,62 @@ secondary_entities:
         unit: kWh
         mapping:
           - scale: 100
+  - entity: sensor
+    name: Voltage A
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mapping:
+          - mask: "FFFF0000000000000000"
+            scale: 10
+  - entity: sensor
+    name: Current A
+    class: current
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        mapping:
+          - mask: "0000FFFFFF0000000000"
+            scale: 1000
+  - entity: sensor
+    name: Power A
+    class: power
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: kW
+        mapping:
+          - mask: "0000000000FFFFFF0000"
+            scale: 1000
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Leakage current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        unit: mA
+        class: measurement
+        optional: true

@@ -43,7 +43,6 @@ primary_entity:
     - id: 105
       type: integer
       name: current_temperature
-      readonly: true
       mapping:
         - constraint: sensor
           conditions:
@@ -74,7 +73,6 @@ primary_entity:
     - id: 118
       type: boolean
       name: hvac_action
-      readonly: true
       mapping:
         - dps_val: true
           constraint: hvac_mode
@@ -93,19 +91,15 @@ primary_entity:
     - id: 104
       type: integer
       name: unknown_104
-      readonly: true
     - id: 109
       type: boolean
       name: unknown_109
-      readonly: true
     - id: 112
       type: integer
       name: unknown_112
-      readonly: true
     - id: 113
       type: integer
       name: unknown_113
-      readonly: true
 secondary_entities:
   - entity: lock
     name: Screen lock
@@ -122,7 +116,6 @@ secondary_entities:
   - entity: sensor
     name: Room temperature
     class: temperature
-    readonly: true
     icon: "mdi:home-thermometer"
     dps:
       - id: 105
@@ -142,7 +135,6 @@ secondary_entities:
   - entity: sensor
     name: Floor temperature
     class: temperature
-    readonly: true
     icon: "mdi:thermometer-lines"
     dps:
       - id: 106
@@ -170,8 +162,7 @@ secondary_entities:
           - scale: 10
       - id: 116
         type: integer
-        name: energy_calibration
-        readonly: true
+        name: calibration
   - entity: select
     category: config
     name: Temperature unit

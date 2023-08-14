@@ -24,14 +24,17 @@ primary_entity:
         max: 80
       mapping:
         - step: 5
+    - id: 6
+      type: integer
+      name: current_humidity
     - id: 14
       type: boolean
       name: mode
       mapping:
         - dps_val: false
-          value: Normal
+          value: normal
         - dps_val: true
-          value: Sleep
+          value: sleep
           icon: "mdi:power-sleep"
           icon_priority: 3
     - id: 19
@@ -66,6 +69,8 @@ secondary_entities:
             value: 100
   - entity: sensor
     name: Current humidity
+    deprecated: humidifier
+    category: diagnostic
     class: humidity
     dps:
       - id: 6
@@ -74,7 +79,6 @@ secondary_entities:
         unit: "%"
         class: measurement
   - entity: sensor
-    name: Current temperature
     class: temperature
     dps:
       - id: 7

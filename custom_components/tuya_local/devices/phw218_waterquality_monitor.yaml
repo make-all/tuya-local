@@ -1,10 +1,9 @@
 name:  Water quality
-product:
+products:
   - id: layxxij0sdbrfmrf
     name: pH-W218
 primary_entity:
   entity: sensor
-  name: Temperature
   class: temperature
   icon: "mdi:water-thermometer"
   dps:
@@ -36,8 +35,6 @@ secondary_entities:
         name: sensor
         class: measurement
         unit: mV
-        mapping:
-          - scale: 10
   - entity: sensor
     name: Electrical conductivity
     icon: "mdi:omega"
@@ -86,7 +83,6 @@ secondary_entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Humidity
     class: humidity
     dps:
       - id: 141

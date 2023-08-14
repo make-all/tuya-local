@@ -9,6 +9,22 @@ primary_entity:
     - id: 1
       name: switch
       type: boolean
+    - id: 2
+      name: mode
+      type: string
+      optional: true
+      mapping:
+        - dps_val: auto
+          value: auto
+        - dps_val: high
+          value: boost
+        - dps_val: low
+          value: eco
+        - dps_val: fan
+          value: purify
+    - id: 3
+      type: integer
+      name: current_humidity
     - id: 4
       type: integer
       name: humidity
@@ -19,6 +35,7 @@ primary_entity:
         - step: 5          
 secondary_entities:
   - entity: fan
+    deprecated: humidifier mode
     dps:
       - id: 1
         name: switch
@@ -28,15 +45,14 @@ secondary_entities:
         type: string
         optional: true
         mapping:
-          - dps_val: "auto"
-            value: "Auto"
-          - dps_val: "high"
-            value: "High"
-            icon_priority: 4
-          - dps_val: "low"
-            value: "Low"
-          - dps_val: "fan"
-            value: "Fan"
+          - dps_val: auto
+            value: auto
+          - dps_val: high
+            value: high
+          - dps_val: low
+            value: low
+          - dps_val: fan
+            value: Fan
       - id: 102
         name: oscillate
         type: string
@@ -66,6 +82,8 @@ secondary_entities:
             value: "90°"
   - entity: sensor
     name: Current humidity
+    deprecated: humidifier
+    category: diagnostic
     class: humidity
     dps:
       - id: 3
@@ -74,7 +92,6 @@ secondary_entities:
         class: measurement
         unit: "%"
   - entity: sensor
-    name: Current temperature
     class: temperature
     dps:
       - id: 103

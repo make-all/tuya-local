@@ -4,61 +4,37 @@ primary_entity:
   dps:
     - id: 1
       type: boolean
-      name: power
-      hidden: true
+      name: operation_mode
       mapping:
         - dps_val: false
           value: "off"
+        - dps_val: true
+          constraint: work_mode
+          conditions:
+            - dps_val: ECO
+              value: eco
+            - dps_val: STANDARD
+              value: heat_pump
+            - dps_val: HYBRID
+              value: high_demand
+            - dps_val: HYBRID1
+              value: performance
+            - dps_val: ELEMENT
+              value: electric
     - id: 2
       type: integer
       name: temperature
       range:
-        min: 60
-        max: 70
+        min: 15
+        max: 75
       readonly: true
     - id: 3
       type: integer
       name: current_temperature
     - id: 4
       type: string
-      name: operation_mode
-      mapping:
-        - dps_val: ECO
-          constraint: power
-          conditions:
-            - dps_val: false
-              value_redirect: power
-            - dps_val: true
-              value: eco
-        - dps_val: STANDARD
-          constraint: power
-          conditions:
-            - dps_val: false
-              value_redirect: power
-              value: "off"
-            - dps_val: true
-              value: heat_pump
-        - dps_val: HYBRID
-          constraint: power
-          conditions:
-            - dps_val: false
-              value_redirect: power
-            - dps_val: true
-              value: high_demand
-        - dps_val: HYBRID1
-          constraint: power
-          conditions:
-            - dps_val: false
-              value_redirect: power
-            - dps_val: true
-              value: performance
-        - dps_val: ELEMENT
-          constraint: power
-          conditions:
-            - dps_val: false
-              value_redirect: power
-            - dps_val: true
-              value: electric
+      name: work_mode
+      hidden: true
     - id: 21
       type: bitfield
       name: fault_code

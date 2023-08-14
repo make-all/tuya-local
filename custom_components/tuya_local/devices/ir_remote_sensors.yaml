@@ -5,7 +5,6 @@ products:
 # But we can support the sensors on the device.
 primary_entity:
   entity: sensor
-  name: Temperature
   class: temperature
   dps:
     - id: 101
@@ -17,7 +16,6 @@ primary_entity:
         - scale: 10
 secondary_entities:
   - entity: sensor
-    name: Humidity
     class: humidity
     dps:
       - id: 102

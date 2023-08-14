@@ -87,4 +87,17 @@ primary_entity:
     - id: 19
       type: boolean
       name: unknown_19
-
+secondary_entities:
+  - entity: select
+    category: config
+    name: Temperature unit
+    icon: "mdi:temperature-celsius"
+    dps:
+      - id: 10
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: true
+            value: "Fahrenheit"
+          - dps_val: false
+            value: "Celsius"

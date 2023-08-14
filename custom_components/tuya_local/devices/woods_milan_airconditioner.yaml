@@ -1,0 +1,62 @@
+name: Woods Milan Air Conditioner
+products:
+  - id: i5rv3ykmtfcagw1t
+    name: Wood's Milan 7K
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+          icon: "mdi:hvac-off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: auto
+              icon: mdi:thermostat-auto
+              value: heat_cool
+            - dps_val: cold
+              icon: "mdi:snowflake"
+              value: cool
+            - dps_val: wind
+              icon: "mdi:fan"
+              value: fan_only
+            - dps_val: wet
+              icon: "mdi:water"
+              value: dry
+            - dps_val: hot
+              value: heat
+              icon: "mdi:heat-wave"
+    - id: 2
+      name: temperature
+      type: integer
+      range:
+        min: 15
+        max: 31
+      unit: C
+    - id: 3
+      name: current_temperature
+      type: integer
+    - id: 4
+      name: mode
+      type: string
+      hidden: true
+    - id: 5
+      name: fan_mode
+      type: string
+      mapping:
+        - dps_val: "0"
+          value: low
+        - dps_val: "1"
+          value: high
+    - id: 104
+      name: swing_mode
+      type: boolean
+      mapping:
+        - dps_val: true
+          value: "on"
+        - dps_val: false
+          value: "off"

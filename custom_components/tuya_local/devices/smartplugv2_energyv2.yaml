@@ -1,4 +1,9 @@
 name: Energy monitoring smartplug
+products:
+  - id: jdj6ccklup7btq3a
+    name: Tongou TO-Q-SY1-JWT
+  - id: jdj6ccklup7btq3a
+    name: AT-Q-SY1-JWT DIN rail switch
 primary_entity:
   entity: switch
   class: outlet
@@ -9,15 +14,14 @@ primary_entity:
     - id: 21
       type: integer
       name: test_bit
+      optional: true
     - id: 26
       type: bitfield
       name: fault_code
-    - id: 41
-      type: boolean
-      name: unknown_41
     - id: 42
       type: string
       name: random_timer
+      optional: true
 secondary_entities:
   - entity: number
     category: config
@@ -48,7 +52,6 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     class: current
-    name: Current
     dps:
       - id: 18
         name: sensor
@@ -62,7 +65,6 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     class: power
-    name: Power
     dps:
       - id: 19
         name: sensor
@@ -78,7 +80,6 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     class: voltage
-    name: Voltage
     dps:
       - id: 20
         name: sensor
@@ -118,4 +119,44 @@ secondary_entities:
             value: "Off"
           - dps_val: memory
             value: "Last State"
-
+  - entity: lock
+    name: Child lock
+    icon: "mdi:hand-back-right-off"
+    category: config
+    dps:
+      - id: 41
+        type: boolean
+        name: lock
+  - entity: select
+    name: Light mode
+    icon: "mdi:television-ambient-light"
+    category: config
+    dps:
+      - id: 40
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: relay 
+            value: State
+          - dps_val: pos
+            value: Position
+          - dps_val: "on"
+            value: "On"
+  - entity: binary_sensor
+    name: Online
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 66
+        type: boolean
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: offline
+            value: false
+          - dps_val: online
+            value: true
+          # if missing, assume online as we can reach it
+          - dps_val: null
+            value: true

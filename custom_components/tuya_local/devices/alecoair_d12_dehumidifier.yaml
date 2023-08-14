@@ -29,17 +29,20 @@ primary_entity:
       type: string
       mapping:
         - dps_val: Continuous
-          value: Continuous
+          value: boost
           icon: mdi:tshirt-crew-outline
           icon_priority: 3
         - dps_val: Sunny_Day
-          value: Sunny_Day
+          value: eco
           icon: "mdi:weather-sunny"
           icon_priority: 3
         - dps_val: Rain_Day
-          value: Rain_Day
+          value: normal
           icon: "mdi:weather-pouring"
           icon_priority: 3
+    - id: 6
+      name: current_humidity
+      type: integer
     - id: 19
       name: error
       type: bitfield
@@ -72,6 +75,8 @@ secondary_entities:
             value: 100
   - entity: sensor
     name: Current humidity
+    deprecated: humidifier
+    category: diagnostic
     class: humidity
     dps:
       - id: 6
@@ -80,7 +85,6 @@ secondary_entities:
         unit: "%"
         class: measurement
   - entity: sensor
-    name: Current temperature
     class: temperature
     dps:
       - id: 7

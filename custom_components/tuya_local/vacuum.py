@@ -7,11 +7,14 @@ from homeassistant.components.vacuum import (
     SERVICE_STOP,
     STATE_CLEANING,
     STATE_DOCKED,
-    STATE_RETURNING,
     STATE_ERROR,
+    STATE_IDLE,
+    STATE_PAUSED,
+    STATE_RETURNING,
     StateVacuumEntity,
     VacuumEntityFeature,
 )
+
 from .device import TuyaLocalDevice
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
@@ -39,19 +42,19 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
             device (TuyaLocalDevice): the device API instance.
             config (TuyaEntityConfig): the configuration for this entity
         """
+        super().__init__()
         dps_map = self._init_begin(device, config)
         self._status_dps = dps_map.get("status")
         self._command_dps = dps_map.get("command")
         self._locate_dps = dps_map.get("locate")
         self._power_dps = dps_map.get("power")
-        self._active_dps = dps_map.get("activate")
-        self._battery_dps = dps_map.pop("battery", None)
+        self._activate_dps = dps_map.get("activate")
         self._direction_dps = dps_map.get("direction_control")
         self._error_dps = dps_map.get("error")
         self._fan_dps = dps_map.pop("fan_speed", None)
 
         if self._status_dps is None:
-            raise AttributeError(f"{config.name} is missing a status dps")
+            raise AttributeError(f"{config.config_id} is missing a status dps")
         self._init_end(dps_map)
 
     @property
@@ -62,8 +65,6 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
             | VacuumEntityFeature.STATUS
             | VacuumEntityFeature.SEND_COMMAND
         )
-        if self._battery_dps:
-            support |= VacuumEntityFeature.BATTERY
         if self._fan_dps:
             support |= VacuumEntityFeature.FAN_SPEED
         if self._power_dps:
@@ -80,7 +81,7 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
         if SERVICE_STOP in cmd_support:
             support |= VacuumEntityFeature.STOP
 
-        if self._active_dps:
+        if self._activate_dps:
             support |= VacuumEntityFeature.START | VacuumEntityFeature.PAUSE
         else:
             if "start" in cmd_support:
@@ -91,12 +92,6 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
         return support
 
     @property
-    def battery_level(self):
-        """Return the battery level of the vacuum cleaner."""
-        if self._battery_dps:
-            return self._battery_dps.get_value(self._device)
-
-    @property
     def status(self):
         """Return the status of the vacuum cleaner."""
         return self._status_dps.get_value(self._device)
@@ -105,16 +100,20 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
     def state(self):
         """Return the state of the vacuum cleaner."""
         status = self.status
-        if self._error_dps and self._error_dps.get_value(self._device) != 0:
+        if self._error_dps and self._error_dps.get_value(self._device):
             return STATE_ERROR
         elif status in [SERVICE_RETURN_TO_BASE, "returning"]:
             return STATE_RETURNING
-        elif status in ["standby", "charging"]:
+        elif status in ["standby", "sleep"]:
+            return STATE_IDLE
+        elif status == "paused":
+            return STATE_PAUSED
+        elif status in ["charging", "charged"]:
             return STATE_DOCKED
-        elif self._power_dps and not self._power_dps.get_value(self._device):
-            return STATE_DOCKED
-        elif self._active_dps and not self._active_dps.get_value(self._device):
-            return STATE_DOCKED
+        elif self._power_dps and self._power_dps.get_value(self._device) is False:
+            return STATE_IDLE
+        elif self._activate_dps and self._activate_dps.get_value(self._device) is False:
+            return STATE_PAUSED
         else:
             return STATE_CLEANING
 
@@ -130,29 +129,25 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
 
     async def async_toggle(self, **kwargs):
         """Toggle the vacuum cleaner."""
-        dps = self._power_dps
-        if not dps:
-            dps = self._activate_dps
+        dps = self._power_dps or self._activate_dps
         if dps:
             switch_to = not dps.get_value(self._device)
             await dps.async_set_value(self._device, switch_to)
 
     async def async_start(self):
-        if self._active_dps:
-            await self._active_dps.async_set_value(self._device, True)
-        else:
-            dps = self._command_dps or self._status_dps
-            if "start" in dps.values(self._device):
-                await dps.async_set_value(self._device, "start")
+        dps = self._command_dps or self._status_dps
+        if dps and "start" in dps.values(self._device):
+            await dps.async_set_value(self._device, "start")
+        elif self._activate_dps:
+            await self._activate_dps.async_set_value(self._device, True)
 
     async def async_pause(self):
         """Pause the vacuum cleaner."""
-        if self._active_dps:
-            await self._active_dps.async_set_value(self._device, False)
-        else:
-            dps = self._command_dps or self._status_dps
-            if "pause" in dps.values(self._device):
-                await dps.async_set_value(self._device, "pause")
+        dps = self._command_dps or self._status_dps
+        if dps and "pause" in dps.values(self._device):
+            await dps.async_set_value(self._device, "pause")
+        elif self._activate_dps:
+            await self._activate_dps.async_set_value(self._device, False)
 
     async def async_return_to_base(self, **kwargs):
         """Tell the vacuum cleaner to return to its base."""

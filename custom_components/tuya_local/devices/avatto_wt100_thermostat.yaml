@@ -1,6 +1,7 @@
 name: Avatto WT100-EH thermostat
 primary_entity:
   entity: climate
+  translation_key: thermostat
   dps:
     - id: 1
       name: hvac_mode
@@ -38,11 +39,12 @@ primary_entity:
       type: string
       mapping:
         - dps_val: cold
-          value: Manual
+          value: manual
         - dps_val: hot
-          value: Program
+          value: program
         - dps_val: wind
-          value: Temporary Program
+          value: temp_override
+          hidden: true
     - id: 5
       name: hvac_action
       type: string

@@ -1,12 +1,12 @@
 """Tests for the switch entity."""
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
-from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass
+from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (
     UnitOfElectricCurrent,
     UnitOfElectricPotential,
-    UnitOfTime,
     UnitOfPower,
+    UnitOfTime,
 )
 
 from ..const import KOGAN_SOCKET_PAYLOAD
@@ -35,7 +35,7 @@ class TestKoganSwitch(
 
     def setUp(self):
         self.setUpForConfig("smartplugv1.yaml", KOGAN_SOCKET_PAYLOAD)
-        self.subject = self.entities.get("switch")
+        self.subject = self.entities.get("switch_outlet")
         self.setUpSwitchable(SWITCH_DPS, self.subject)
         self.setUpBasicBinarySensor(
             OVERCURRENT_DPS,

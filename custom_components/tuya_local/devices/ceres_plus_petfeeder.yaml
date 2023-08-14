@@ -1,0 +1,205 @@
+name: Pet feeder
+products:
+  - id: 8zrzjldq07tlxnlv
+    name: Ceres Plus Momoschoice
+primary_entity:
+  entity: sensor
+  name: Status
+  icon: "mdi:paw"
+  dps:
+    - id: 234
+      type: string
+      name: sensor
+      optional: true
+    - id: 237
+      type: string
+      name: feed_plan
+      optional: true
+    - id: 242
+      name: feeding_record
+      type: string
+      optional: true
+    - id: 244
+      type: string
+      name: planned_feed_report
+      optional: true
+    - id: 246
+      type: string
+      name: feed_report
+      optional: true
+secondary_entities:
+  - entity: switch
+    name: Indicator
+    category: config
+    icon: "mdi:led-on"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Timestamp
+    icon: "mdi:clock-time-eight"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+        optional: true
+  - entity: select
+    name: Nightvision
+    icon: "mdi:weather-night"
+    category: config
+    dps:
+      - id: 108
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: Auto
+          - dps_val: "1"
+            value: "Off"
+          - dps_val: "2"
+            value: "On"
+  - entity: button
+    name: Format SD card
+    icon: "mdi:micro-sd"
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        name: button
+        optional: true
+      - id: 110
+        type: integer
+        name: status
+        optional: true
+        mapping:
+          - dps_val: "1"
+            value: "Formatted"
+          - dps_val: "4"
+            value: "Formatting"
+      - id: 109
+        type: string
+        name: capacity
+        optional: true
+      - id: 117
+        type: integer
+        name: format_state
+        optional: true
+  - entity: switch
+    name: Record
+    icon: "mdi:record-rec"
+    category: config
+    dps:
+      - id: 150
+        type: boolean
+        name: switch
+        optional: true
+  - entity: select
+    name: Recording mode
+    icon: "mdi:video"
+    category: config
+    dps:
+      - id: 151
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "1"
+            value: Event
+          - dps_val: "2"
+            value: Continuous
+  - entity: button
+    class: restart
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        name: button
+        optional: true
+  - entity: sensor
+    class: battery
+    icon: "mdi:battery"
+    category: diagnostic
+    dps:
+      - id: 238
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: high
+            value: 80
+          - dps_val: low
+            value: 20
+  - entity: sensor
+    name: Food bucket
+    icon: "mdi:fridge"
+    category: diagnostic
+    dps:
+      - id: 239
+        type: string
+        name: sensor
+        optional: true
+  - entity: binary_sensor
+    name: Food blockage
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 240
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: binary_sensor
+    name: Dispenser stuck
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 241
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: number
+    name: Manual feed
+    icon: "mdi:food-drumstick"
+    dps:
+      - id: 245
+        type: integer
+        name: value
+        unit: portions
+        optional: true
+        persist: false
+        range:
+          min: 0
+          max: 3
+        mapping:
+          - dps_val: 0
+            value: 0
+          - dps_val: 1
+            value: 1
+          - dps_val: 2
+            value: 2
+          - dps_val: 
+            value: 3
+      - id: 243
+        type: string
+        name: report
+        optional: true
+  - entity: number
+    category: config
+    class: weight
+    dps:
+      - id: 232
+        type: integer
+        name: value
+        optional: true
+        unit: g
+        range:
+          min: 1
+          max: 255

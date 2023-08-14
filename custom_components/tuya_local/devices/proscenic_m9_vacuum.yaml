@@ -1,0 +1,578 @@
+name: M9 Robot Vacuum
+products:
+  - id: ise3eub6pvacnzdw
+    name: Proscenic M9
+    # information about dpids https://developer.tuya.com/en/docs/iot/laser-sweep-robot-template?id=Kae3e76wphrun
+primary_entity:
+  entity: vacuum
+  dps:
+    - id: 1
+      type: boolean
+      name: activate
+      optional: true
+    - id: 2
+      type: boolean
+      name: pause
+      optional: true
+    - id: 3
+      name: return_to_base
+      type: boolean
+      optional: true
+    - id: 4
+      type: string
+      name: command
+      optional: true
+      mapping:
+        - dps_val: smart
+          value: Auto clean
+        - dps_val: zone
+          value: Zone cleaning
+        - dps_val: pose
+          value: pose
+        - dps_val: part
+          value: clean_spot
+        - dps_val: goto_charge
+          value: return_to_base
+        - dps_val: wallfollow
+          value: wallfollow
+        - dps_val: select_room
+          value: Select room cleaning
+    - id: 5
+      name: status
+      type: string
+      optional: true
+      mapping:
+        - dps_val: standby
+          value: standby
+        - dps_val: smart
+          value: cleaning
+        - dps_val: zone_clean
+          value: cleaning
+        - dps_val: part_clean
+          value: cleaning
+        - dps_val: cleaning
+          value: cleaning
+        - dps_val: paused
+          value: pause
+        - dps_val: goto_pos
+          value: go to target point
+        - dps_val: pos_arrived
+          value: arrived to target point
+        - dps_val: pos_unarrive
+          value: cannot arrive to target point
+        - dps_val: goto_charge
+          value: returning
+        - dps_val: charging
+          value: charging
+        - dps_val: charge_done
+          value: charged
+        - dps_val: sleep
+          value: sleep
+        - dps_val: fault
+          value: error
+        - dps_val: wall_follow
+          value: wall_follow
+        - dps_val: direction_control
+          value: direction_control
+        - dps_val: repositing
+          value: repositing
+        - dps_val: select_room
+          value: select_room
+        - dps_val: seek_dust_bucket
+          value: seek_dust_bucket
+        - dps_val: collecting_dust
+          value: collecting_dust
+    - id: 9
+      name: fan_speed
+      type: string
+      mapping:
+        - dps_val: closed
+          value: "Off"
+        - dps_val: gentle
+          value: Gentle
+        - dps_val: normal
+          value: Normal
+        - dps_val: strong
+          value: Strong
+        - dps_val: max
+          value: Max
+          hidden: true
+    - id: 11
+      name: locate
+      type: boolean
+      optional: true
+    - id: 12
+      name: direction_control
+      type: string
+      optional: true
+      mapping:
+        - dps_val: forward
+          value: forward
+        - dps_val: backward
+          value: backward
+        - dps_val: turn_left
+          value: left
+        - dps_val: turn_right
+          value: right
+        - dps_val: stop
+          value: stop
+        - dps_val: exit
+          value: exit
+    - id: 13
+      name: map_reset
+      type: boolean
+      optional: true
+      hidden: true
+    - id: 14
+      name: path_data
+      type: string
+      optional: true
+    - id: 15
+      name: command_trans
+      type: base64
+      optional: true
+    - id: 16
+      name: request
+      type: string
+      optional: true
+    - id: 25
+      name: do_not_disturb # cannot be used, set an automation to mute sound instead
+      type: boolean
+      hidden: true
+    - id: 28
+      name: error # seems to only switch between 0 and 2 when fault, dp 198 and 199 is where the messages are
+      type: integer
+    - id: 32
+      name: device_timer # cannot be used, set an automation for scheduled cleaning
+      type: string
+      optional: true
+    - id: 33
+      name: disturb_time
+      type: base64
+      optional: true
+    - id: 34
+      name: device_info
+      type: base64
+      optional: true
+    - id: 35
+      name: voice_data
+      type: base64
+      optional: true
+    - id: 36
+      name: language
+      type: string
+      optional: true
+    - id: 132
+      name: chaging_base_type
+      type: string
+      optional: true
+    - id: 133
+      name: water_tank_type
+      type: string
+      optional: true
+    - id: 134
+      name: realtime_fanspeed
+      type: string
+      optional: true
+    - id: 135
+      name: realtime_water_level
+      type: string
+      optional: true
+    - id: 137
+      name: cloud_map # moved here since it's not useful without the app
+      type: boolean
+    - id: 141
+      name: cleanspot
+      type: boolean
+      optional: true
+
+secondary_entities:
+  - entity: sensor
+    name: Cleaning time
+    category: diagnostic
+    class: duration
+    icon: "mdi:timer-star"
+    dps:
+      - id: 6
+        name: sensor
+        type: integer
+        unit: min
+        mapping:
+          - scale: 1
+            step: 1
+  - entity: sensor
+    name: Cleaned area
+    category: diagnostic
+    icon: "mdi:vector-square-close"
+    dps:
+      - id: 7
+        name: sensor
+        type: integer
+        unit: m²
+        mapping:
+          - scale: 1
+            step: 1
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: select
+    name: Water setting
+    icon: "mdi:water"
+    dps:
+      - id: 10
+        name: option
+        type: string
+        mapping:
+          - constraint: mopstate
+            conditions:
+              - dps_val: installed
+                mapping:
+                  - dps_val: closed
+                    value: "Off"
+                  - dps_val: low
+                    value: Low
+                  - dps_val: middle
+                    value: Middle
+                  - dps_val: high
+                    value: High
+              - dps_val: none
+                mapping:
+                  - dps_val: closed
+                    value: "Off"
+      - id: 40
+        name: mopstate
+        type: string
+  - entity: sensor
+    name: Side brush life
+    category: diagnostic
+    class: duration
+    icon: "mdi:timer-sand"
+    dps:
+      - id: 17
+        name: sensor
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 12000
+  - entity: button
+    name: Side brush reset
+    category: diagnostic
+    icon: "mdi:autorenew"
+    dps:
+      - id: 18
+        type: boolean
+        name: button
+        optional: true
+  - entity: sensor
+    name: Main brush life
+    category: diagnostic
+    class: duration
+    icon: "mdi:timer-sand"
+    dps:
+      - id: 19
+        name: sensor
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 18000
+  - entity: button
+    name: Main brush reset
+    category: diagnostic
+    icon: "mdi:autorenew"
+    dps:
+      - id: 20
+        type: boolean
+        name: button
+        optional: true
+  - entity: sensor
+    name: Filter life
+    category: diagnostic
+    class: duration
+    icon: "mdi:timer-sand"
+    dps:
+      - id: 21
+        name: sensor
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 9000
+  - entity: button
+    name: Filter reset
+    category: diagnostic
+    icon: "mdi:autorenew"
+    dps:
+      - id: 22
+        type: boolean
+        name: button
+        optional: true
+  - entity: sensor
+    name: Mop life
+    category: diagnostic
+    class: duration
+    icon: "mdi:timer-sand"
+    dps:
+      - id: 23
+        name: sensor
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 9000
+  - entity: button
+    name: Mop reset
+    category: diagnostic
+    icon: "mdi:autorenew"
+    dps:
+      - id: 24
+        type: boolean
+        name: button
+        optional: true
+  - entity: number
+    name: Volume
+    category: config
+    icon: "mdi:volume-high"
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 100
+  - entity: switch
+    name: Resume cleaning option
+    icon: "mdi:replay"
+    category: config
+    dps:
+      - id: 27
+        name: switch
+        type: boolean
+  - entity: sensor
+    name: Total cleaned area
+    category: diagnostic
+    icon: "mdi:archive-marker-outline"
+    dps:
+      - id: 29
+        name: sensor
+        type: integer
+        unit: m²
+        mapping:
+          - scale: 1
+            step: 1
+  - entity: sensor
+    name: Total clean count
+    category: diagnostic
+    icon: "mdi:counter"
+    dps:
+      - id: 30
+        name: sensor
+        type: integer
+        mapping:
+          - scale: 1
+            step: 1
+  - entity: sensor
+    name: Total clean time
+    category: diagnostic
+    class: duration
+    icon: "mdi:archive-clock-outline"
+    dps:
+      - id: 31
+        name: sensor
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 99999
+        mapping:
+          - scale: 1
+            step: 1
+  # - entity: select
+  #   name: Language
+  #   icon: "mdi:mouth"
+  #   dps:
+  #     - id: 36
+  #       name: option
+  #       type: string
+  #       optional: true
+  #       mapping:
+  #         - dps_val: chinese_simplified
+  #           value: chinese_simplified
+  #         - dps_val: chinese_traditional
+  #           value: chinese_traditional
+  #         - dps_val: english
+  #           value: english
+  #         - dps_val: german
+  #           value: german
+  #         - dps_val: french
+  #           value: french
+  #         - dps_val: russian
+  #           value: russian
+  #         - dps_val: spanish
+  #           value: spanish
+  #         - dps_val: korean
+  #           value: korean
+  #         - dps_val: latin
+  #           value: latin
+  #         - dps_val: portuguese
+  #           value: portuguese
+  #         - dps_val: japanese
+  #           value: japanese
+  #         - dps_val: italian
+  #           value: italian
+  - entity: select
+    name: Dust collection frequency
+    category: config
+    dps:
+      - id: 37
+        name: option
+        type: integer
+        mapping:
+          - dps_val: 0
+            value: Never
+            icon: "mdi:numeric-0"
+          - dps_val: 1
+            value: After each clean
+            icon: "mdi:numeric-1"
+          - dps_val: 2
+            value: After 2 cleans
+            icon: "mdi:numeric-2"
+          - dps_val: 3
+            value: After 3 cleans
+            icon: "mdi:numeric-3"
+  - entity: button
+    name: Empty dustbin
+    category: config
+    icon: "mdi:delete-restore"
+    dps:
+      - id: 38
+        name: button
+        type: boolean
+  - entity: switch
+    name: Customize mode
+    icon: "mdi:store-cog"
+    category: config
+    dps:
+      - id: 39
+        name: switch # required so the mop and suction options work
+        type: boolean
+  - entity: binary_sensor
+    name: Mop installed
+    category: diagnostic
+    icon: "mdi:connection"
+    dps:
+      - id: 40
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: "installed"
+            value: true
+          - dps_val: "none"
+            value: false
+  - entity: select
+    name: Working mode
+    icon: "mdi:vacuum"
+    optional: true
+    dps:
+      - id: 41
+        name: option
+        type: string
+        mapping:
+          - dps_val: both_work
+            value: Vacuum and mop
+            icon: "mdi:robot-vacuum-variant"
+          - dps_val: only_sweep
+            value: Vacuum only
+            icon: "mdi:broom"
+          - dps_val: only_mop
+            value: Mopping only
+            icon: "mdi:liquid-spot"
+  - entity: switch
+    name: LED lights
+    category: config
+    icon: "mdi:car-parking-lights"
+    dps:
+      - id: 130
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Mute sound
+    category: config
+    icon: "mdi:volume-mute"
+    dps:
+      - id: 131
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Mop rotation
+    icon: "mdi:rotate-360"
+    dps:
+      - id: 138
+        name: switch
+        type: boolean
+  - entity: sensor
+    name: Sensor life
+    category: diagnostic
+    class: duration
+    icon: "mdi:eye-circle-outline"
+    dps:
+      - id: 139
+        name: sensor
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 1800
+  - entity: button
+    name: Sensor reset
+    category: diagnostic
+    icon: "mdi:autorenew"
+    dps:
+      - id: 140
+        type: boolean
+        name: button
+        optional: true
+  - entity: sensor
+    name: Event message
+    category: diagnostic
+    icon: "mdi:eye-circle-outline"
+    dps:
+      - id: 198
+        name: sensor
+        type: integer
+        # 20001 - Start auto clean
+        # 20002 - Start mopping
+        # 20003 - Start room clean
+        # 20004 - Start area clean
+        # 20005 - Start spot clean
+        # 20006 - Start partial clean
+        # 20008 - Relocating
+        # 20019 - Job finished
+        # 20020 - Low power, return to charge
+        # 20021 - Charging
+        # 20022 - Battery low
+        # 20024 - Emptying dustbin
+        # 20025 - Dustbin empty completed
+  - entity: sensor
+    name: Error message
+    category: diagnostic
+    icon: "mdi:eye-circle-outline"
+    dps:
+      - id: 199
+        name: sensor
+        type: integer
+        # 21003 - Dustbin not installed
+        # 21004
+        # 21005 - Mopping cloth not installed
+        # 21008 - Vacuum not on floor
+        # 21012 - Dust bag full
+        # 21013 - Dust bag not installed
+        # 22001 - Check anti-collision sensor
+        # 22006 - Jammed or stuck
+        # 23011 - Dust collection error due to insufficient pressure

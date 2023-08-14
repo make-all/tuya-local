@@ -1,0 +1,53 @@
+name: Tower fan
+products:
+  - id: xonvukal96pf99s6
+    name: Goldair 101cm Tower Fan
+primary_entity:
+  entity: fan
+  translation_key: fan_with_presets
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 2
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: 1
+          value: normal
+        - dps_val: 2
+          value: nature
+        - dps_val: 3
+          value: sleep
+    - id: 3
+      type: integer
+      name: speed
+      range:
+        min: 0
+        max: 3
+      mapping:
+        - scale: 0.03
+    - id: 5
+      type: boolean
+      name: oscillate
+secondary_entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        class: measurement
+        unit: C
+  - entity: number
+    name: Timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 22
+        type: string
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 12

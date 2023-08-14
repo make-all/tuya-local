@@ -13,9 +13,6 @@ primary_entity:
     - id: 12
       type: bitfield
       name: error_code
-    - id: 104
-      type: string
-      name: cooking_report
 secondary_entities:
   - entity: switch
     name: Cooking
@@ -25,17 +22,19 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: select
-    name: Mode
-    category: config
+    name: Cooking mode
     dps:
       - id: 3
         type: string
         name: option
         mapping:
-          - dps_val: chicken
+          - dps_val: fries
+            value: French fries
+            icon: "mdi:french-fries"
+          - dps_val: wings
             value: Chicken wings
             icon: "mdi:food-drumstick"
-          - dps_val: steaks
+          - dps_val: steak
             value: Steak
             icon: "mdi:food-steak"
           - dps_val: shrimp
@@ -44,8 +43,8 @@ secondary_entities:
           - dps_val: fish
             value: Fish
             icon: "mdi:fish"
-          - dps_val: onion
-            value: Onion
+          - dps_val: onionrings
+            value: Onion Rings
             icon: "mdi:bullseye"
           - dps_val: pizza
             value: Pizza
@@ -59,7 +58,7 @@ secondary_entities:
           - dps_val: toast
             value: Toast
             icon: "mdi:bread-slice"
-          - dps_val: vegetables
+          - dps_val: vegetable
             value: Vegetables
             icon: "mdi:carrot"
           - dps_val: custom
@@ -71,7 +70,7 @@ secondary_entities:
           - dps_val: default
             value: Default
             icon: "mdi:toaster-oven"
-          - dps_val: keepwarm
+          - dps_val: warm
             value: Keep warm
             icon: "mdi:heat-wave"
           - dps_val: preheat
@@ -86,25 +85,25 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: "0"
-            value: Standby
+            value: standby
             icon: "mdi:power-standby"
           - dps_val: "1"
-            value: Preheating
+            value: preheating
             icon: "mdi:fire"
           - dps_val: "2"
-            value: Cooking
+            value: cooking
             icon: "mdi:toaster-oven"
           - dps_val: "3"
-            value: Done
+            value: done
             icon: "mdi:check"
           - dps_val: "4"
-            value: Keeping warm
+            value: keeping warm
             icon: "mdi:heat-wave"
           - dps_val: "5"
-            value: "Off"
+            value: "off"
             icon: "mdi:power-off"
           - dps_val: "8"
-            value: Scheduled
+            value: scheduled
             icon: "mdi:calendar-clock"
   - entity: number
     name: Cooking temperature
@@ -122,19 +121,18 @@ secondary_entities:
         type: string
         name: unit
         mapping:
-          - dps_val: "0"
+          - dps_val: c
             value: C
-          - dps_val: "1"
+          - dps_val: f
             value: F
   - entity: sensor
-    name: Temperature
+    name: Internal temperature
     class: temperature
     dps:
       - id: 7
         type: integer
         name: sensor
         unit: C
-        class: measurement
   - entity: number
     name: Cooking time
     icon: "mdi:timer"
@@ -172,6 +170,11 @@ secondary_entities:
       - id: 13
         type: boolean
         name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
   - entity: select
     name: Temperature unit
     icon: "mdi:temperature-celsius"
@@ -181,30 +184,47 @@ secondary_entities:
         type: string
         name: option
         mapping:
-          - dps_val: "0"
+          - dps_val: c
             value: Celsius
-          - dps_val: "1"
+          - dps_val: f
             value: Fahrenheit
   - entity: switch
     name: Preheat
     icon: "mdi:fire"
-    category: config
     dps:
       - id: 15
         type: boolean
         name: switch
   - entity: switch
     name: Keep warm
-    category: config
     icon: "mdi:heat-wave"
     dps:
       - id: 101
         type: boolean
         name: switch
+  - entity: binary_sensor
+    name: Tray status
+    class: opening
+    icon: "mdi:tray"
+    dps:
+      - id: 103
+        name: sensor
+        type: boolean
+  - entity: binary_sensor
+    name: Shake
+    icon: "mdi:car-brake-alert"
+    dps:
+      - id: 104
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: false
+          - dps_val: "1"
+            value: true
   - entity: sensor
-    name: Current mode remaining time
+    name: Current stage remaining time
     class: duration
-    category: diagnostic
     dps:
       - id: 105
         type: integer

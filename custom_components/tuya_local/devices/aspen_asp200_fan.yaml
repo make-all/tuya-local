@@ -2,6 +2,7 @@ name: Aspen fan
 legacy_type: aspen_fan
 primary_entity:
   entity: fan
+  translation_key: fan_with_presets
   dps:
     - id: 1
       type: boolean
@@ -29,9 +30,9 @@ primary_entity:
       name: preset_mode
       mapping:
         - dps_val: false
-          value: "constant"
+          value: "normal"
         - dps_val: true
-          value: "auto"
+          value: "smart"
     - id: 8
       type: integer
       name: unknown_8
@@ -58,7 +59,6 @@ secondary_entities:
         type: integer
         unit: F
         icon: "mdi:thermometer"
-        readonly: true
   - entity: light
     name: Display
     category: config

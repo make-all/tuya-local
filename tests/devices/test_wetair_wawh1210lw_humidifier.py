@@ -6,9 +6,7 @@ from homeassistant.components.humidifier.const import (
     MODE_SLEEP,
 )
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import (
-    PERCENTAGE,
-)
+from homeassistant.const import PERCENTAGE
 
 from ..const import WETAIR_WAWH1210_HUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -44,7 +42,7 @@ class TestWetairWAWH1210LWHumidifier(
         self.setUpForConfig(
             "wetair_wawh1210lw_humidifier.yaml", WETAIR_WAWH1210_HUMIDIFIER_PAYLOAD
         )
-        self.subject = self.entities.get("humidifier")
+        self.subject = self.entities.get("humidifier_humidifier")
         self.setUpSwitchable(SWITCH_DPS, self.subject)
         self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_display"))
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
@@ -80,6 +78,7 @@ class TestWetairWAWH1210LWHumidifier(
             [
                 "light_display",
                 "lock_child_lock",
+                "sensor_current_humidity",
                 "sensor_water_level",
                 "switch_sound",
             ]

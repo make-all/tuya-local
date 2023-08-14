@@ -27,9 +27,6 @@ class TestTimedSwitch(BasicNumberTests, SwitchableTests, TuyaDeviceTestCase):
         )
         self.mark_secondary(["number_timer", "select_power_on_state"])
 
-    def test_device_class_is_outlet(self):
-        self.assertEqual(self.subject.device_class, SwitchDeviceClass.OUTLET)
-
     def test_extra_state_attributes_set(self):
         self.assertDictEqual(
             self.subject.extra_state_attributes,

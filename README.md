@@ -23,7 +23,7 @@ Using this integration does not stop your devices from sending status
 to the Tuya cloud, so this should not be seen as a security measure,
 rather it improves speed and reliability by using local connections,
 and may unlock some features of your device, or even unlock whole
-devices, that are not supported by the Tuya cloud API. 
+devices, that are not supported by the Tuya cloud API.
 
 A similar but unrelated integration is
 [rospogrigio/localtuya](https://github.com/rospogrigio/localtuya/), if
@@ -35,29 +35,22 @@ easier to set up using that as an alternative.
 
 ## Device support
 
-Note that devices sometimes get firmware upgrades, or incompatible
-versions are sold under the same model name, so it is possible that
-the device will not work despite being listed. 
+Note that devices sometimes get firmware upgrades, or incompatible versions are sold under the same model name, so it is possible that the device will not work despite being listed.
 
-Battery powered devices such as door and window sensors, smoke alarms
-etc which do not use a hub will be impossible to support locally, due
-to the power management that they need to do to get acceptable battery
-life.  Currently hubs are also unsupported, but this is being worked
-on.
+Battery powered devices such as door and window sensors, smoke alarms etc which do not use a hub will be impossible to support locally, due to the power management that they need to do to get acceptable battery
+life.  Currently hubs are also unsupported, but this is being worked on.
 
 A list of currently supported devices can be found in the [DEVICES.md](https://github.com/make-all/tuya-local/blob/main/DEVICES.md) file.
 
-If your device is not listed, you can find the information required to add a
-configuration for it in the following locations:
+Documentation on building a device configuration file is in [/custom_components/tuya_local/devices/README.md](https://github.com/make-all/tuya-local/blob/main/custom_components/tuya_local/devices/README.md)
+
+If your device is not listed, you can find the information required to add a configuration for it in the following locations:
 
 1. When attempting to add the device, if it is not supported, you will either get a message saying the device cannot be recognised at all, or you will be offered a list of devices (maybe a list of length 1) that are partial matches, often simple switch is among them.  You can cancel the process at this point, and look in the Home Assistant log - there should be a message there containing the current data points (dps) returned by the device.
-
-2. If you have signed up for iot.tuya.com to get your local key, you should also have access to the API Explorer under "Cloud".  One of the functions under the "Smart Home Device System" / "Device Control" section - the last "Get Device Specification Attribute" function listed, returns the dp_id in addition to range information that is needed for integer and enum data types.
-
+2. If you have signed up for [iot.tuya.com](https://iot.tuya.com/) to get your local key, you should also have access to the API Explorer under "Cloud". Under "Device Control" there is a function called "Query Things Data Model", which returns the dp_id in addition to range information that is needed for integer and enum data types.
 3. By following the method described at the link below, you can find information for all the data points supported by your device, including those not listed by the API explorer method above and those that are only returned under specific conditions. Ignore the requirement for a Tuya Zigbee gateway, that is for Zigbee devices, and this integration does not currently support devices connected via a gateway, but the non-Zigbee/gateway specific parts of the procedure apply also to WiFi devices.
 
 https://www.zigbee2mqtt.io/advanced/support-new-devices/03_find_tuya_data_points.html
-
 
 If you file an issue to request support for a new device, please include the following information:
 
@@ -75,7 +68,7 @@ If you submit a pull request, please understand that the config file naming and 
 
 Installation is easiest via the [Home Assistant Community Store
 (HACS)](https://hacs.xyz/), which is the best place to get third-party
-integrations for Home Assistant. Once you have HACS set up, simply click the button below (requires My Homeassistant configured) or 
+integrations for Home Assistant. Once you have HACS set up, simply click the button below (requires My Homeassistant configured) or
 follow the [instructions for adding a custom
 repository](https://hacs.xyz/docs/faq/custom_repositories) and then
 the integration will be available to install like any other.
@@ -314,7 +307,7 @@ mode they are in, but are set to readonly so that you cannot accidentally
 switch the thermostat to the wrong mode from HA.
 
 
-## Finding your device ID and local key
+## Finding your device ID and local key at the Tuya Developer Portal
 
 The easiest way to find your local key is with the Tuya Developer portal.
 If you have previously configured the built in Tuya cloud integration, or
@@ -332,15 +325,59 @@ If you don't see them, check your server is set correctly at the top
 of the page.  Make a note of the Device IDs for all your devices, then
 select Cloud on the side bar again and go to the API Explorer.
 
-Under General Device Capabilities / General Devices Management, select the
-"Get Device Information" function, and enter your Device ID.  In the results
-you should see your local_key.
+Under "Devices Management", select the "Query Device Details in Bulk"
+function, and enter your Device IDs, separated by commas.
+In the results you should see your local_key.
 
 The IP address you should be able to get from your router.  Using a
 command line Tuya client like tuyaapi/cli or
 [tinytuya](https://github.com/jasonacox/tinytuya) you may also be able
 to scan your network for Tuya devices to find the IP address and also automate
 the above process of connecting to the portal and getting the local key.
+
+## Connecting to devices via hubs
+
+If your device connects via a hub (eg. battery powered water timers) you have to provide the following info when adding a new device:
+
+- Device id (uuid): this is the **hub's** device id
+- IP address or hostname: the **hub's** IP address or hostname
+- Local key: the **hub's** local key
+- Sub device id: the **acual device you want to control's** `node_id`. Note this `node_id` differs from the device id, you can find it with tinytuya as described below.
+
+## Finding device ids and local keys with tinytuya
+
+You can use this component's underlying library [tinytuya](https://github.com/jasonacox/tinytuya) to scan for devices in your network and find the required information about them. In particular, you need to use this procedure to obtain the `node_id` value required to connect to hub-dependent devices.
+
+Before running tinytuya's wizard you need to gather your API credentials so head to [Tuya's Developer Portal](https://iot.tuya.com) -> Cloud -> Development -> Open project and make a note of:
+
+- Access ID/Client ID
+- Access Secret/Client Secret
+
+Next, go to the "Devices" tab and note your device id (any of them will work). Also note your region (eg. "Central Europe Data Center") in the combobox at the top right of the page.
+
+Then, open a terminal in your HA machine and run:
+
+```sh
+python -m tinytuya wizard
+```
+
+Answer the following:
+
+- Enter API Key from tuya.com: your "Access ID/Client ID"
+- Enter API Secret from tuya.com: your "Access Secret/Client Secret"
+- Enter any Device ID currently registered in Tuya App (used to pull full list) or 'scan' to scan for one: your device id
+- Enter Your Region: your datacenter's region
+- Download DP Name mappings? (Y/n): Y
+- Poll local devices? (Y/n): Y
+
+If your device supports local connections and is in the same network as your HA instance this should find it and report its IP address.
+
+In the `devices.json` file you will everything you need to add your device:
+
+- "id": the device id
+- "key": the local key
+- "node_id": the sub-device id. You need this for hub-dependent devices
+- "mapping": in the unfortunate case your device is not [yet supported](DEVICES.md), this key contains a description of all the datapoints reported by the device, type and expected values. You are more than welcome to create a new device specification following [the guidelines](custom_components/tuya_local/devices/README.md) and submitting a PR.
 
 ## Next steps
 

@@ -1,7 +1,4 @@
-from homeassistant.components.climate.const import (
-    ClimateEntityFeature,
-    HVACMode,
-)
+from homeassistant.components.climate.const import ClimateEntityFeature, HVACMode
 from homeassistant.components.fan import (
     DIRECTION_FORWARD,
     DIRECTION_REVERSE,
@@ -122,27 +119,27 @@ class TestAspenASP200Fan(
             await self.subject.async_set_percentage(80)
 
     def test_fan_preset_modes(self):
-        self.assertCountEqual(self.subject.preset_modes, ["constant", "auto"])
+        self.assertCountEqual(self.subject.preset_modes, ["normal", "smart"])
 
     def test_fan_preset_mode(self):
         self.dps[PRESET_DPS] = False
-        self.assertEqual(self.subject.preset_mode, "constant")
+        self.assertEqual(self.subject.preset_mode, "normal")
         self.dps[PRESET_DPS] = True
-        self.assertEqual(self.subject.preset_mode, "auto")
+        self.assertEqual(self.subject.preset_mode, "smart")
 
     async def test_fan_set_preset_to_constant(self):
         async with assert_device_properties_set(
             self.subject._device,
             {PRESET_DPS: False},
         ):
-            await self.subject.async_set_preset_mode("constant")
+            await self.subject.async_set_preset_mode("normal")
 
     async def test_fan_set_preset_to_auto(self):
         async with assert_device_properties_set(
             self.subject._device,
             {PRESET_DPS: True},
         ):
-            await self.subject.async_set_preset_mode("auto")
+            await self.subject.async_set_preset_mode("smart")
 
     def test_climate_current_temperature(self):
         self.dps[CURTEMP_DPS] = 24

@@ -1,16 +1,14 @@
 """Tests for Parkside PLGS 2012 A1 Smart Charger"""
+from homeassistant.components.number.const import NumberDeviceClass
+from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT, SensorDeviceClass
 from homeassistant.const import (
+    PERCENTAGE,
     UnitOfElectricCurrent,
     UnitOfElectricPotential,
-    PERCENTAGE,
-    UnitOfTime,
     UnitOfTemperature,
+    UnitOfTime,
 )
-from homeassistant.components.number.const import NumberDeviceClass
-from homeassistant.components.sensor import (
-    SensorDeviceClass,
-    STATE_CLASS_MEASUREMENT,
-)
+
 from ..const import PARKSIDE_PLGS2012A1_PAYLOAD
 from ..mixins.binary_sensor import MultiBinarySensorTests
 from ..mixins.number import MultiNumberTests
@@ -68,9 +66,10 @@ class TestParksidePLGS2012A1Charger(
                     "name": "number_charge_current",
                     "dps": CURRENT_DPS,
                     "device_class": NumberDeviceClass.CURRENT,
-                    "max": 30000,
-                    "step": 100,
-                    "unit": UnitOfElectricCurrent.MILLIAMPERE,
+                    "max": 30.000,
+                    "step": 0.1,
+                    "scale": 1000,
+                    "unit": UnitOfElectricCurrent.AMPERE,
                 },
                 {
                     "name": "number_charge_voltage",
@@ -108,7 +107,7 @@ class TestParksidePLGS2012A1Charger(
                     "device_class": SensorDeviceClass.DURATION,
                 },
                 {
-                    "name": "sensor_current_temperature",
+                    "name": "sensor_temperature",
                     "dps": TEMPERATURE_DPS,
                     "unit": UnitOfTemperature.CELSIUS,
                     "device_class": SensorDeviceClass.TEMPERATURE,
@@ -117,8 +116,9 @@ class TestParksidePLGS2012A1Charger(
                 {
                     "name": "sensor_max_current",
                     "dps": MAXCURRENT_DPS,
-                    "unit": UnitOfElectricCurrent.MILLIAMPERE,
+                    "unit": UnitOfElectricCurrent.AMPERE,
                     "device_class": SensorDeviceClass.CURRENT,
+                    "testdata": (1234, 1.234),
                 },
                 {
                     "name": "sensor_max_temperature_count",
@@ -154,7 +154,7 @@ class TestParksidePLGS2012A1Charger(
                 "number_charge_voltage",
                 "switch_storage",
                 "switch_temperature_limiter",
-                "sensor_current_temperature",
+                "sensor_temperature",
                 "sensor_max_temperature_count",
                 "sensor_name",
                 "select_charge_type",

@@ -3,6 +3,7 @@ products:
   - id: xhx9h0duu9b9bobs
 primary_entity:
   entity: climate
+  translation_key: thermostat
   dps:
     - id: 1
       type: boolean
@@ -41,25 +42,26 @@ primary_entity:
       name: preset_mode
       mapping:
         - dps_val: Program
-          value: Program
+          value: program
         - dps_val: TempProg
-          value: Temporary Override
+          value: temp_override
+          hidden: true
         - dps_val: Manual
-          value: Manual
+          value: manual
         - dps_val: Holiday
-          value: Holiday
+          value: away
     - id: 5
       type: string
       name: fan_mode
       mapping:
         - dps_val: low
-          value: Low
+          value: low
         - dps_val: med
-          value: Medium
+          value: medium
         - dps_val: high
-          value: High
+          value: high
         - dps_val: auto
-          value: Auto
+          value: auto
           constraint: operation
           conditions:
             - dps_val: ventilate

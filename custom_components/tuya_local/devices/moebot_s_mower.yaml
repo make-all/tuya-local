@@ -1,14 +1,13 @@
-name: MoeBot S series
+name: Lawnmower
 products:
   - id: mvt4l2evgq2l3nkn
     name: MoeBot S20
+  - id: icw5sal7xfcevsve
+    name: Parkside PMRDA 20-Li A1
 primary_entity:
   entity: vacuum
   icon: "mdi:robot-mower"
   dps:
-    - id: 6
-      name: battery
-      type: integer
     - id: 101
       name: status
       type: string
@@ -51,9 +50,6 @@ primary_entity:
     - id: 102
       name: error
       type: bitfield
-      mapping:
-        - dps_val: 0
-          value: OK
       # out_of_bounds, lifted, tilted, overturned, trapped, signal lost, motor fault, overheated, battery damaged
     - id: 106
       type: integer
@@ -77,7 +73,16 @@ primary_entity:
     - id: 114
       type: string
       name: auto_mode
+      optional: true
 secondary_entities:
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
   - entity: binary_sensor
     name: Error
     class: problem
@@ -121,6 +126,12 @@ secondary_entities:
           - dps_val: BATTERY_NOT_ENOUGH
             value: Low battery
             icon: "mdi:battery-low"
+          - dps_val: CHARGING_PAUSE
+            value: Charging interrupted
+            icon: "mdi:battery-alert"
+          - dps_val: RAIN_PARK
+            value: Raining
+            icon: "mdi:weather-pouring"
   - entity: switch
     name: Rain mode
     icon: "mdi:weather-pouring"
@@ -140,7 +151,7 @@ secondary_entities:
         unit: h
         range:
           min: 1
-          max: 99
+          max: 24
   - entity: button
     name: Clear schedule
     icon: "mdi:calendar-remove"

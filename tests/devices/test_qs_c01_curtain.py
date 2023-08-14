@@ -1,8 +1,5 @@
 """Tests for the QS C01 curtain module."""
-from homeassistant.components.cover import (
-    CoverDeviceClass,
-    CoverEntityFeature,
-)
+from homeassistant.components.cover import CoverDeviceClass, CoverEntityFeature
 from homeassistant.const import UnitOfTime
 
 from ..const import QS_C01_CURTAIN_PAYLOAD
@@ -22,7 +19,7 @@ class TestQSC01Curtains(BasicNumberTests, BasicSelectTests, TuyaDeviceTestCase):
 
     def setUp(self):
         self.setUpForConfig("qs_c01_curtain.yaml", QS_C01_CURTAIN_PAYLOAD)
-        self.subject = self.entities["cover"]
+        self.subject = self.entities["cover_curtain"]
         self.setUpBasicNumber(
             TRAVELTIME_DPS,
             self.entities.get("number_travel_time"),
@@ -81,6 +78,7 @@ class TestQSC01Curtains(BasicNumberTests, BasicSelectTests, TuyaDeviceTestCase):
         self.assertFalse(self.subject.is_closing)
 
     def test_is_closed(self):
+        self.dps[COMMAND_DPS] = "close"
         self.dps[POSITION_DPS] = 100
         self.assertFalse(self.subject.is_closed)
         self.dps[POSITION_DPS] = 0

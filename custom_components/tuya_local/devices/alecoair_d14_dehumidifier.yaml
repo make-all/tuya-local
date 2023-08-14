@@ -26,19 +26,22 @@ primary_entity:
       type: string
       mapping:
         - dps_val: manual
-          value: Manual
+          value: normal
         - dps_val: laundry
-          value: Dry clothes
+          value: laundry
           icon: "mdi:tshirt-crew-outline"
           icon_priority: 3
         - dps_val: purify
-          value: Purify
+          value: purify
           icon: "mdi:air-filter"
           icon_priority: 3
         - dps_val: sleep
-          value: Sleep
+          value: sleep
           icon: "mdi:power-sleep"
           icon_priority: 3
+    - id: 16
+      type: integer
+      name: current_humidity
     - id: 19
       type: bitfield
       name: error
@@ -82,6 +85,8 @@ secondary_entities:
         name: switch
   - entity: sensor
     name: Current humidity
+    deprecated: humidifier
+    category: diagnostic
     class: humidity
     dps:
       - id: 16

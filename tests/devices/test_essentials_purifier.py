@@ -94,7 +94,7 @@ class TestEssentialsPurifier(
                 },
                 {
                     "dps": PM25_DP,
-                    "name": "sensor_pm2_5",
+                    "name": "sensor_pm25",
                     "unit": CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
                     "device_class": SensorDeviceClass.PM25,
                     "state_class": "measurement",
@@ -115,10 +115,6 @@ class TestEssentialsPurifier(
                     "dps": UV_DP,
                     "name": "switch_uv_disinfection",
                 },
-                {
-                    "dps": RESET_DP,
-                    "name": "switch_filter_reset",
-                },
             ]
         )
         self.mark_secondary(
@@ -128,7 +124,6 @@ class TestEssentialsPurifier(
                 "lock_child_lock",
                 "select_light",
                 "switch_uv_disinfection",
-                "switch_filter_reset",
                 "select_timer",
                 "sensor_timer",
             ]

@@ -3,14 +3,14 @@ Tests for translation files.
 """
 from fnmatch import fnmatch
 from os import walk
-from os.path import join, dirname
+from os.path import dirname, join
 
 from homeassistant.util.json import load_json
 
 import custom_components.tuya_local as root
 from custom_components.tuya_local.helpers.device_config import (
-    available_configs,
     TuyaDeviceConfig,
+    available_configs,
 )
 
 

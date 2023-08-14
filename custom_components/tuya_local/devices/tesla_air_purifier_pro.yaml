@@ -3,6 +3,7 @@ products:
   - id: 3hjcrjktvkoim7zu
 primary_entity:
   entity: fan
+  translation_key: fan_with_presets
   dps:
     - id: 1
       type: boolean
@@ -11,12 +12,12 @@ primary_entity:
       name: preset_mode
       type: string
       mapping:
-        - dps_val: "auto"
-          value: "auto"
-        - dps_val: "sleep"
-          value: "sleep"
-        - dps_val: "manual"
-          value: "manual"
+        - dps_val: auto
+          value: smart
+        - dps_val: sleep
+          value: sleep
+        - dps_val: manual
+          value: normal
     - id: 4
       name: speed
       type: string
@@ -61,9 +62,7 @@ secondary_entities:
         type: integer
         name: sensor
         unit: "%"
-        readonly: true
   - entity: sensor
-    name: Current temperature
     category: diagnostic
     class: temperature
     dps:
@@ -72,19 +71,15 @@ secondary_entities:
         name: sensor
         class: measurement
         unit: "°C"
-        readonly: true
   - entity: sensor
-    name: Current humidity
     category: diagnostic
     class: humidity
-    mode: box
     dps:
       - id: 13
         type: integer
         name: sensor
         class: measurement
         unit: "%"
-        readonly: true
   - entity: select
     name: Timer
     icon: "mdi:timer"
@@ -103,7 +98,6 @@ secondary_entities:
           - dps_val: "8h"
             value: "8 hours"
   - entity: sensor
-    name: PM2.5
     class: pm25
     category: diagnostic
     dps:

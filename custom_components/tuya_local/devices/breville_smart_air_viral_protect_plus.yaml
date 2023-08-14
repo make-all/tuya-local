@@ -3,6 +3,7 @@ products:
   - id: "emh1sylyfw7n2b50"
 primary_entity:
   entity: fan
+  translation_key: fan_with_presets
   dps:
     - id: 1
       name: switch
@@ -12,12 +13,12 @@ primary_entity:
       type: string
       name: preset_mode
       mapping:
-        - dps_val: "auto"
-          value: "Auto"
-        - dps_val: "manual"
-          value: "Manual"
-        - dps_val: "sleep"
-          value: "Sleep"
+        - dps_val: auto
+          value: smart
+        - dps_val: manual
+          value: normal
+        - dps_val: sleep
+          value: sleep
     - id: 4
       type: string
       name: speed
@@ -32,8 +33,6 @@ primary_entity:
           value: 100
 secondary_entities:
   - entity: sensor
-    name: PM2.5
-    icon: "mdi:air-filter"
     class: pm25
     dps:
       - id: 2

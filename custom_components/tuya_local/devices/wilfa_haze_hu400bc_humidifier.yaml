@@ -25,6 +25,9 @@ primary_entity:
           conditions:
             - dps_val: auto
               invalid: true
+    - id: 14
+      type: integer
+      name: current_humidity
     - id: 24
       type: string
       name: mode
@@ -89,7 +92,6 @@ secondary_entities:
             - dps_val: false
               icon: "mdi:volume-off"
   - entity: sensor
-    name: Current temperature
     class: temperature
     dps:
       - id: 10
@@ -106,6 +108,8 @@ secondary_entities:
             value: F
   - entity: sensor
     name: Current humidity
+    deprecated: humidifier
+    category: diagnostic
     class: humidity
     dps:
       - id: 14

@@ -1,0 +1,168 @@
+name: Heat pump
+products:
+  - id: 9xvzf8c0bg33eenj
+    name: Vivax ACP-12CH35REWI
+  - id: keycnvksyhjcrg8t
+    name: Thermor Nagano HEWRQU1
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: auto
+              value: heat_cool
+            - dps_val: cold
+              value: cool
+            - dps_val: wet
+              value: dry
+            - dps_val: hot
+              value: heat
+            - dps_val: wind
+              value: fan_only
+    - id: 2
+      type: integer
+      name: temperature
+      range:
+        min: 16
+        max: 30
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              range:
+                min: 64
+                max: 86
+              value_redirect: temp_set_f
+    - id: 3
+      type: integer
+      name: current_temperature
+      mapping:
+        - scale: 2
+          constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              scale: 1
+              value_redirect: temp_current_f
+    - id: 4
+      type: string
+      name: mode
+      hidden: true
+    - id: 5
+      type: string
+      name: fan_mode
+      mapping:
+        - dps_val: auto
+          value: auto
+        - dps_val: low
+          value: low
+        - dps_val: high
+          value: medium
+        - dps_val: strong
+          value: high
+    - id: 8
+      type: boolean
+      name: preset_mode
+      mapping:
+        - dps_val: true
+          value: eco
+        - dps_val: false
+          value: comfort
+    - id: 12
+      type: boolean
+      name: aux_heat
+    - id: 18
+      type: integer
+      name: current_humidity
+    - id: 19
+      type: string
+      name: temperature_unit
+      mapping:
+        - dps_val: c
+          value: C
+        - dps_val: f
+          value: F
+    - id: 23
+      type: integer
+      name: temp_current_f
+      optional: true
+      hidden: true
+    - id: 24
+      type: integer
+      name: temp_set_f
+      range:
+        min: 64
+        max: 86
+      optional: true
+      hidden: true
+      # Undocumented but in log
+    - id: 102
+      type: integer
+      name: unknown_102
+    - id: 105
+      type: string
+      name: unknown_105
+    - id: 106
+      type: boolean
+      name: unknown_106
+    - id: 107
+      type: boolean
+      name: unknown_107
+    - id: 111
+      type: boolean
+      name: unknown_111
+    - id: 113
+      type: string
+      name: unknown_113
+    - id: 114
+      type: boolean
+      name: unknown_114
+    - id: 116
+      type: integer
+      name: unknown_116
+      # next two look obviously swing (logged values ud_00 and lr_00),
+      # but full mappings not available to map to swing mode
+    - id: 117
+      type: string
+      name: vertical_swing
+    - id: 118
+      type: string
+      name: horizontal_swing
+secondary_entities:
+  - entity: light
+    name: Display
+    icon: "mdi:numeric"
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
+  - entity: select
+    name: Temperature unit
+    icon: "mdi:temperature-celsius"
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: Celsius
+          - dps_val: f
+            value: Fahrenheit
+  - entity: switch
+    name: Quiet
+    category: config
+    icon: "mdi:music-off"
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+
+# Boolean dps 16 = Beep and 109 = Sleep documented but missing from log

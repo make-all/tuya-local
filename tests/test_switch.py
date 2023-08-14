@@ -1,7 +1,8 @@
 """Tests for the switch entity."""
-from pytest_homeassistant_custom_component.common import MockConfigEntry
-import pytest
 from unittest.mock import AsyncMock, Mock
+
+import pytest
+from pytest_homeassistant_custom_component.common import MockConfigEntry
 
 from custom_components.tuya_local.const import (
     CONF_DEVICE_ID,
@@ -9,7 +10,7 @@ from custom_components.tuya_local.const import (
     CONF_TYPE,
     DOMAIN,
 )
-from custom_components.tuya_local.switch import async_setup_entry, TuyaLocalSwitch
+from custom_components.tuya_local.switch import TuyaLocalSwitch, async_setup_entry
 
 
 @pytest.mark.asyncio
@@ -34,7 +35,7 @@ async def test_init_entry(hass):
     hass.data[DOMAIN]["dummy"]["device"] = m_device
 
     await async_setup_entry(hass, entry, m_add_entities)
-    assert type(hass.data[DOMAIN]["dummy"]["switch"]) == TuyaLocalSwitch
+    assert type(hass.data[DOMAIN]["dummy"]["switch_outlet"]) == TuyaLocalSwitch
     m_add_entities.assert_called_once()
 
 

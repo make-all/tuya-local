@@ -1,23 +1,20 @@
 from homeassistant.components.button import ButtonDeviceClass
-from homeassistant.components.sensor import SensorDeviceClass
+from homeassistant.components.sensor import SensorDeviceClass, STATE_CLASS_MEASUREMENT
 from homeassistant.components.vacuum import (
     STATE_CLEANING,
     STATE_DOCKED,
     STATE_ERROR,
+    STATE_IDLE,
+    STATE_PAUSED,
     STATE_RETURNING,
     VacuumEntityFeature,
 )
-from homeassistant.const import (
-    AREA_SQUARE_METERS,
-    UnitOfTime,
-    PERCENTAGE,
-)
+from homeassistant.const import AREA_SQUARE_METERS, PERCENTAGE, UnitOfTime
 
 from ..const import KYVOL_E30_VACUUM_PAYLOAD
 from ..helpers import assert_device_properties_set
 from ..mixins.button import MultiButtonTests
 from ..mixins.sensor import MultiSensorTests
-from ..mixins.switch import MultiSwitchTests
 from .base_device_tests import TuyaDeviceTestCase
 
 POWER_DPS = "1"
@@ -43,9 +40,7 @@ MODE_DPS = "104"
 CARPET_DPS = "107"
 
 
-class TestKyvolE30Vacuum(
-    MultiButtonTests, MultiSensorTests, MultiSwitchTests, TuyaDeviceTestCase
-):
+class TestKyvolE30Vacuum(MultiButtonTests, MultiSensorTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
@@ -103,24 +98,16 @@ class TestKyvolE30Vacuum(
                     "dps": STATUS_DPS,
                     "name": "sensor_status",
                 },
-            ],
-        )
-        self.setUpMultiSwitch(
-            [
                 {
-                    "dps": RSTEDGE_DPS,
-                    "name": "switch_edge_brush_reset",
-                },
-                {
-                    "dps": RSTROLL_DPS,
-                    "name": "switch_roll_brush_reset",
-                },
-                {
-                    "dps": RSTFILTER_DPS,
-                    "name": "switch_filter_reset",
+                    "dps": BATTERY_DPS,
+                    "name": "sensor_battery",
+                    "unit": PERCENTAGE,
+                    "device_class": SensorDeviceClass.BATTERY,
+                    "state_class": STATE_CLASS_MEASUREMENT,
                 },
             ],
         )
+
         self.mark_secondary(
             [
                 "button_edge_brush_reset",
@@ -132,9 +119,6 @@ class TestKyvolE30Vacuum(
                 "sensor_roll_brush",
                 "sensor_filter",
                 "sensor_status",
-                "switch_edge_brush_reset",
-                "switch_roll_brush_reset",
-                "switch_filter_reset",
             ]
         )
 
@@ -145,7 +129,6 @@ class TestKyvolE30Vacuum(
                 VacuumEntityFeature.STATE
                 | VacuumEntityFeature.STATUS
                 | VacuumEntityFeature.SEND_COMMAND
-                | VacuumEntityFeature.BATTERY
                 | VacuumEntityFeature.FAN_SPEED
                 | VacuumEntityFeature.TURN_ON
                 | VacuumEntityFeature.TURN_OFF
@@ -156,10 +139,6 @@ class TestKyvolE30Vacuum(
                 | VacuumEntityFeature.CLEAN_SPOT
             ),
         )
-
-    def test_battery_level(self):
-        self.dps[BATTERY_DPS] = 50
-        self.assertEqual(self.subject.battery_level, 50)
 
     def test_status(self):
         self.dps[COMMAND_DPS] = "standby"
@@ -182,14 +161,14 @@ class TestKyvolE30Vacuum(
         self.dps[COMMAND_DPS] = "return_to_base"
         self.assertEqual(self.subject.state, STATE_RETURNING)
         self.dps[COMMAND_DPS] = "standby"
-        self.assertEqual(self.subject.state, STATE_DOCKED)
+        self.assertEqual(self.subject.state, STATE_IDLE)
         self.dps[COMMAND_DPS] = "random"
         self.assertEqual(self.subject.state, STATE_CLEANING)
         self.dps[POWER_DPS] = False
-        self.assertEqual(self.subject.state, STATE_DOCKED)
+        self.assertEqual(self.subject.state, STATE_IDLE)
         self.dps[POWER_DPS] = True
         self.dps[SWITCH_DPS] = False
-        self.assertEqual(self.subject.state, STATE_DOCKED)
+        self.assertEqual(self.subject.state, STATE_PAUSED)
         self.dps[ERROR_DPS] = 1
         self.assertEqual(self.subject.state, STATE_ERROR)
 

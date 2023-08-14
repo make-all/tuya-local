@@ -19,9 +19,16 @@ primary_entity:
       range:
         min: 0
         max: 100
-    - id: 5
-      type: boolean
-      name: reversed
+      mapping:
+        - invert: true
+    - id: 2
+      name: current_position
+      type: integer
+      range:
+        min: 0
+        max: 100
+      mapping:
+        - invert: true
 secondary_entities:
     - entity: switch
       category: config

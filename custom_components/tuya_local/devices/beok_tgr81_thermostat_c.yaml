@@ -4,6 +4,7 @@ products:
     name: Avatto WT81 thermostat
 primary_entity:
   entity: climate
+  translation_key: thermostat
   dps:
     - id: 1
       name: hvac_mode
@@ -18,9 +19,9 @@ primary_entity:
       type: string
       mapping:
         - dps_val: auto
-          value: Schedule
+          value: program
         - dps_val: manual
-          value: Manual
+          value: manual
     - id: 16
       type: integer
       name: temperature
@@ -33,7 +34,6 @@ primary_entity:
     - id: 24
       type: integer
       name: current_temperature
-      readonly: true
       mapping:
         - scale: 10
     - id: 26
@@ -43,7 +43,6 @@ primary_entity:
     - id: 36
       type: string
       name: hvac_action
-      readonly: true
       mapping:
         - dps_val: close
           icon: "mdi:radiator-disabled"

@@ -1,0 +1,90 @@
+name: Galaxy Light
+products:
+  - id: okyhahmixunjmbca
+primary_entity:
+  entity: light
+  dps:
+    - id: 20
+      type: boolean
+      name: switch
+    - id: 52
+      type: boolean
+      name: color_mode
+      mapping:
+        - dps_val: false
+          value: white
+        - dps_val: true
+          value: hs
+    - id: 24
+      name: rgbhsv
+      type: hex
+      format:
+        - name: h
+          bytes: 2
+          range:
+            min: 0
+            max: 360
+        - name: s
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+        - name: v
+          bytes: 2
+          range:
+            min: 10
+            max: 1000
+secondary_entities:
+  - entity: number
+    name: Timer
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 86400
+        unit: min
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: light
+    name: Laser
+    dps:
+      - id: 53
+        type: boolean
+        name: switch
+      - id: 54
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - scale: 3.92
+      - id: 51
+        name: effect
+        type: string
+        mapping:
+          - dps_val: manual
+            value: Manual
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 58
+        name: star_scene
+        type: string
+        optional: true
+  - entity: fan
+    name: Laser movement
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 62
+        type: integer
+        name: speed
+        range:
+          min: 0
+          max: 100

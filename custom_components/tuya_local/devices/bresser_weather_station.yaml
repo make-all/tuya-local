@@ -17,7 +17,6 @@ primary_entity:
         mapping:
           - scale: 10
         class: measurement
-        readonly: true
     - id: 22
       type: string
       name: fault_type
@@ -39,7 +38,6 @@ secondary_entities:
           name: sensor
           unit: "%"
           class: measurement
-          readonly: true
   - entity: binary_sensor
     name: Base station battery
     class: battery
@@ -128,7 +126,6 @@ secondary_entities:
           - dps_val: wm2
             value: W/m2
   - entity: binary_sensor
-    name: Battery
     class: battery
     category: diagnostic
     dps:
@@ -159,13 +156,11 @@ secondary_entities:
         optional: true
         <<: *battery
   - entity: sensor
-    name: Temperature
     class: temperature
     dps:
       - id: 38
         <<: *temperature
   - entity: sensor
-    name: Humidity
     class: humidity
     dps:
       - id: 39
@@ -213,7 +208,6 @@ secondary_entities:
         optional: true
         <<: *humidity
   - entity: sensor
-    name: Pressure
     class: pressure
     dps:
       - id: 54
@@ -223,7 +217,6 @@ secondary_entities:
         mapping:
           - scale: 10
         class: measurement
-        readonly: true
   - entity: sensor
     name: Pressure drop
     class: pressure
@@ -233,7 +226,6 @@ secondary_entities:
         name: sensor
         unit: hPa
         class: measurement
-        readonly: true
   - entity: sensor
     name: Wind speed
     icon: mdi:weather-windy
@@ -246,7 +238,6 @@ secondary_entities:
           mapping:
             - scale: 10
           class: measurement
-          readonly: true
   - entity: sensor
     name: Wind gust
     icon: mdi:weather-windy
@@ -264,7 +255,6 @@ secondary_entities:
           mapping:
             - scale: 1000
           class: measurement
-          readonly: true
         unit: mm
   - entity: sensor
     name: Rainfall rate
@@ -284,7 +274,6 @@ secondary_entities:
         mapping:
           - scale: 10
         class: measurement
-        readonly: true
   - entity: sensor
     name: Light intensity
     class: illuminance
@@ -294,7 +283,6 @@ secondary_entities:
         name: sensor
         unit: lx
         class: measurement
-        readonly: true
   - entity: sensor
     name: Dew point
     class: temperature
@@ -329,4 +317,3 @@ secondary_entities:
         name: sensor
         unit: "°"
         class: measurement
-        readonly: true

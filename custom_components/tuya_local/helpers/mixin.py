@@ -2,6 +2,7 @@
 Mixins to make writing new platforms easier
 """
 import logging
+
 from homeassistant.const import (
     AREA_SQUARE_METERS,
     CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
@@ -19,6 +20,8 @@ class TuyaLocalEntity:
         self._device = device
         self._config = config
         self._attr_dps = []
+        self._attr_translation_key = config.translation_key
+
         return {c.name: c for c in config.dps()}
 
     def _init_end(self, dps):
@@ -35,13 +38,14 @@ class TuyaLocalEntity:
         return self._device.has_returned_state
 
     @property
-    def name(self):
-        """Return the name for the UI."""
-        return self._config.name
-
-    @property
     def has_entity_name(self):
         return True
+
+    @property
+    def name(self):
+        """Return the name for the UI."""
+        super_name = getattr(super(), "name")
+        return self._config.name or super_name
 
     @property
     def unique_id(self):

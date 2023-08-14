@@ -3,6 +3,7 @@ products:
   - id: tltdxtehttjbkjni
 primary_entity:
   entity: fan
+  translation_key: fan_with_presets
   dps:
     - id: 1
       name: switch
@@ -12,10 +13,10 @@ primary_entity:
       name: preset_mode
       type: string
       mapping:
-        - dps_val: "manual"
-          value: "Manual"
-        - dps_val: "auto"
-          value: "Auto"
+        - dps_val: manual
+          value: normal
+        - dps_val: auto
+          value: smart
     - id: 4
       type: string
       name: speed
@@ -28,8 +29,6 @@ primary_entity:
           value: 100
 secondary_entities:
   - entity: sensor
-    name: PM2.5
-    icon: "mdi:air-filter"
     class: pm25
     dps:
       - id: 2

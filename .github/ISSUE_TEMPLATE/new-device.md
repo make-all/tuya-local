@@ -53,9 +53,8 @@ Please paste logs here
 
 <!--
 If you have an iot.tuya.com account, please go to "Cloud" -> "API
-Explorer".  Under "Smart Home Device System"/"Device Control", select
-the last "Get Device Specification Attribute" function, check the
-server is set correctly, and enter your device ID.
+Explorer".  Under "Device Control", select the "Query Things Data Model"
+function, check the server is set correctly, and enter your device ID.
 -->
 ```
 Please paste the output here.
@@ -85,11 +84,10 @@ values and their meanings for any input strings (enums).
 
 <!--
 If you have access to the IoT portal, please paste just the product_id
-line from API Explorer: General Device Capabilities" / "General
-Devices management" / "Get Device Information".  You will also find
-the local_key in here, please take care not to post that publicly.  If
-you do, then re-pairing the device with the mobile app will refresh
-the local key.
+line from API Explorer: "Devices Management" / "Query Device Details in Bulk".
+You will also find the local_key in here, please take care not to post that
+publicly.  If you do, then re-pairing the device with the mobile app will
+refresh the local key.
 
 Although this information is optional and not required, it will be
 used in future to identify matching devices.

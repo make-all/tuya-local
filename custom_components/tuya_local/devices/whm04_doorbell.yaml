@@ -10,88 +10,86 @@ primary_entity:
       type: integer
       name: tone
       mapping:
-        - dps_val: 0
-          value: Tone 0
         - dps_val: 1
-          value: Tone 1
+          value: dingdong
         - dps_val: 2
-          value: Tone 2
+          value: vacal
         - dps_val: 3
-          value: Tone 3
+          value: Polka Italienne
         - dps_val: 4
-          value: Tone 4
+          value: Carmen prelude
         - dps_val: 5
-          value: Tone 5
+          value: Old ringtones
         - dps_val: 6
-          value: Tone 6
+          value: Westminster Chimes
         - dps_val: 7
-          value: Tone 7
+          value: Radetzky Marsch
         - dps_val: 8
-          value: Tone 8
+          value: vocal 135i
         - dps_val: 9
-          value: Tone 9
+          value: vocal i531
         - dps_val: 10
-          value: Tone 10
+          value: DO-RE-MI
         - dps_val: 11
-          value: Tone 11
+          value: Go home
         - dps_val: 12
-          value: Tone 12
+          value: Scarborough fair
         - dps_val: 13
-          value: Tone 13
+          value: Di spagna sono la Bella
         - dps_val: 14
-          value: Tone 14
+          value: Libiamo ne
         - dps_val: 15
-          value: Tone 15
+          value: Greensleeves
         - dps_val: 16
-          value: Tone 16
+          value: Rondo Alla Turca
         - dps_val: 17
-          value: Tone 17
+          value: Oh! Friends
         - dps_val: 18
-          value: Tone 18
+          value: the golden Jubilee
         - dps_val: 19
-          value: Tone 19
+          value: Merry Christmas
         - dps_val: 20
-          value: Tone 20
+          value: Minuet
         - dps_val: 21
-          value: Tone 21
+          value: Music box dancer
         - dps_val: 22
-          value: Tone 22
+          value: Lonely Goatherd
         - dps_val: 23
-          value: Tone 23
+          value: Russe Dance
         - dps_val: 24
-          value: Tone 24
+          value: For Alice
         - dps_val: 25
-          value: Tone 25
+          value: Memory
         - dps_val: 26
-          value: Tone 26
+          value: The William tell overture
         - dps_val: 27
-          value: Tone 27
+          value: happy birthday
         - dps_val: 28
-          value: Tone 28
+          value: Mozart
         - dps_val: 29
-          value: Tone 29
+          value: Edelweiss
         - dps_val: 30
-          value: Tone 30
+          value: Red River Valley
         - dps_val: 31
-          value: Tone 31
+          value: Jingle Bells
         - dps_val: 32
-          value: Tone 32
+          value: Su San Na
         - dps_val: 33
-          value: Tone 33
+          value: Rhytm of the rain
         - dps_val: 34
-          value: Tone 34
+          value: Romance De Amour
         - dps_val: 35
-          value: Tone 35
+          value: Moscow Nights
         - dps_val: 36
-          value: Tone 36
+          value: dingdong
         - dps_val: 37
-          value: Tone 37
+          value: Telephone ringing
         - dps_val: 38
-          value: Tone 38
+          value: Yesenia
         - dps_val: 39
-          value: Tone 39
+          value: Flute dance
         - dps_val: 40
-          value: Tone 40
+          value: Alarm
     - id: 3
       type: integer
       name: volume_level
@@ -108,6 +106,10 @@ primary_entity:
       type: string
       name: undisturb_schedule
       optional: true
+    - id: 10
+      type: integer
+      name: doorbell_call
+      optional: true
 secondary_entities:
   - entity: switch
     name: Mobile notifications
@@ -121,23 +123,17 @@ secondary_entities:
     name: Button
     category: diagnostic
     dps:
-      - id: 10
-        type: integer
-        name: sensor
-        optional: true
-        persist: false
       - id: 5
         type: base64
-        name: name
+        name: sensor
         optional: true
         persist: false
   - entity: binary_sensor
     name: Ringing
     class: sound
-    category: diagnostic
     dps:
-      - id: 10
-        type: integer
+      - id: 5
+        type: base64
         name: sensor
         optional: true
         persist: false

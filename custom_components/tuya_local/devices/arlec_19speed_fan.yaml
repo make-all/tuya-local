@@ -4,6 +4,7 @@ products:
     name: Arlec 19-speed industrial wall fan
 primary_entity:
   entity: fan
+  translation_key: fan_with_presets
   dps:
     - id: 1
       name: switch
@@ -13,16 +14,16 @@ primary_entity:
       type: string
       mapping:
         - dps_val: normal
-          value: Normal
+          value: normal
         - dps_val: sleep
-          value: Sleep
+          value: sleep
         - dps_val: natural
-          value: Natural
+          value: nature
     - id: 3
       name: speed
       type: integer
       range:
-        min: 1
+        min: 0
         max: 19
       mapping:
         - scale: 0.19

@@ -1,0 +1,341 @@
+name: Doorbell
+products:
+  - id: oqn2dj8otuhqhulr
+    name: ZX-DB11
+primary_entity:
+  entity: binary_sensor
+  name: Alarm
+  class: sound
+  category: diagnostic
+  dps:
+    - id: 32
+      type: string
+      name: sensor
+      mapping:
+        - dps_val: normal
+          value: false
+        - dps_val: alarm
+          value: true
+    - id: 24
+      type: string
+      name: mode_state
+    - id: 31
+      type: string
+      name: tone_set
+    - id: 35
+      type: boolean
+      name: button
+    - id: 36
+      type: string
+      name: test4
+    - id: 37
+      type: string
+      name: test5
+    - id: 39
+      type: string
+      name: test6
+    - id: 40
+      type: string
+      name: test7
+secondary_entities:
+  - entity: alarm_control_panel
+    name: Alarm
+    dps:
+      - id: 1
+        type: string
+        name: alarm_state
+        mapping:
+          - dps_val: disarmed
+            value: disarmed
+          - dps_val: arm
+            value: armed_away
+          - dps_val: home
+            value: armed_home
+          - dps_val: sos
+            value: triggered
+  - entity: number
+    name: Exit delay
+    category: config
+    icon: "mdi:timer-lock"
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 300
+  - entity: siren
+    name: Alarm
+    dps:
+      - id: 3
+        type: integer
+        name: duration
+        unit: min
+        range:
+          min: 1
+          max: 60
+      - id: 8
+        type: string
+        name: tone
+        mapping:
+          - dps_val: "1"
+            value: Slow
+          - dps_val: "2"
+            value: Fast
+          - dps_val: "3"
+            value: Westminster quarters
+          - dps_val: "4"
+            value: Für Elise
+          - dps_val: "5"
+            value: Bird
+          - dps_val: "6"
+            value: Rooster
+          - dps_val: "7"
+            value: Phone
+          - dps_val: "8"
+            value: Wolf
+          - dps_val: "9"
+            value: Moonglow
+          - dps_val: "10"
+            value: Cannon
+          - dps_val: "11"
+            value: Yesterday once more
+          - dps_val: "12"
+            value: Cuckoo clock
+          - dps_val: "13"
+            value: Cuckoo waltz
+          - dps_val: "14"
+            value: Class ringtone
+          - dps_val: "15"
+            value: Everything is better
+          - dps_val: "16"
+            value: Dreamtable - The dawn
+          - dps_val: "17"
+            value: Turkish march
+          - dps_val: "18"
+            value: Alarm
+          - dps_val: "19"
+            value: The great mercy mantra
+          - dps_val: "20"
+            value: Overture 1812
+          - dps_val: "21"
+            value: The moon reflected in Er-quan
+          - dps_val: "22"
+            value: Little star
+          - dps_val: "23"
+            value: Waltz of the flowers
+          - dps_val: "24"
+            value: Libiamo ne lieti calici
+          - dps_val: "25"
+            value: Die Forelle
+          - dps_val: "26"
+            value: Circus
+          - dps_val: "27"
+            value: Danse des petit cygnes
+          - dps_val: "28"
+            value: Fiddler on the roof
+          - dps_val: "29"
+            value: Beautiful dreamer
+          - dps_val: "30"
+            value: Carmen overture
+          - dps_val: "31"
+            value: The fishermen - Evening song
+          - dps_val: "32"
+            value: Dog
+          - dps_val: "33"
+            value: Zhu Bajie
+          - dps_val: "34"
+            value: Paris in autumn
+          - dps_val: "35"
+            value: Nutcracker waltz
+          - dps_val: "36"
+            value: Red river valley
+          - dps_val: "37"
+            value: The four seasons
+          - dps_val: "38"
+            value: Schubert Serenade
+          - dps_val: "39"
+            value: Merry Christmas
+          - dps_val: "40"
+            value: Malta
+          - dps_val: "41"
+            value: Toy soldier
+          - dps_val: "42"
+            value: Ode an die Freude
+          - dps_val: "43"
+            value: Ievan Polkka
+          - dps_val: "44"
+            value: Rondo a capriccio
+          - dps_val: "45"
+            value: Hungarian dance
+          - dps_val: "46"
+            value: Minuet in G-major
+          - dps_val: "47"
+            value: Auld lang syne
+          - dps_val: "48"
+            value: The nutcracker
+          - dps_val: "49"
+            value: Pop dance
+          - dps_val: "50"
+            value: Toreador song
+          - dps_val: "51"
+            value: Lullaby
+          - dps_val: "52"
+            value: Greensleeves
+          - dps_val: "53"
+            value: Happy new year
+          - dps_val: "54"
+            value: The wandering songstress
+          - dps_val: "55"
+            value: Chopin Waltz
+          - dps_val: "56"
+            value: Shepherd song
+          - dps_val: "57"
+            value: Happy birthday
+          - dps_val: "58"
+            value: A hulusi flute
+  - entity: switch
+    name: Alarm sound
+    icon: "mdi:bullhorn"
+    category: config
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Alarm light
+    icon: "mdi:alarm-light"
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+  - entity: light
+    name: Status indicator
+    icon: "mdi:led-on"
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Door notify
+    icon: "mdi:door-closed"
+    category: config
+    dps:
+      - id: 12
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Open notify
+    icon: "mdi:door-open"
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    name: Mains power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 15
+        type: boolean
+        name: sensor
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 16
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: binary_sensor
+    name: Battery low
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 17
+        type: boolean
+        name: sensor
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+  - entity: binary_sensor
+    name: Ringing
+    class: sound
+    category: diagnostic
+    dps:
+      - id: 26
+        type: boolean
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: switch
+    name: Doorbell notify
+    icon: "mdi:bell-badge"
+    category: config
+    dps:
+      - id: 27
+        type: boolean
+        name: switch
+  - entity: number
+    name: Entry delay
+    category: config
+    icon: "mdi:timer-lock-open"
+    dps:
+      - id: 28
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 300
+  - entity: switch
+    name: Tick countdown
+    icon: "mdi:metronome"
+    category: config
+    dps:
+      - id: 29
+        type: boolean
+        name: switch
+  - entity: number
+    name: Doorbell volume
+    category: config
+    dps:
+      - id: 30
+        type: string
+        name: value
+        unit: "%"
+        mapping:
+          - dps_val: high
+            value: 100
+            icon: "mdi:volume-high"
+          - dps_val: upper-middle
+            value: 75
+            icon: "mdi:volume-medium"
+          - dps_val: lower-middle
+            value: 50
+            icon: "mdi:volume-medium"
+          - dps_val: low
+            value: 25
+            icon: "mdi:volume-low"
+          - dps_val: mute
+            value: 0
+            icon: "mdi:volume-mute"
+  - entity: button
+    name: Factory reset
+    category: config
+    dps:
+      - id: 34
+        type: boolean
+        name: button
+

@@ -3,6 +3,7 @@ products:
   - id: jIRwsT5yLPJO41Po
 primary_entity:
   entity: climate
+  translation_key: thermostat
   dps:
     - id: 2
       name: temperature
@@ -17,14 +18,14 @@ primary_entity:
       name: preset_mode
       type: string
       mapping:
-        - dps_val: "Smart"
-          value: "home"
+        - dps_val: Smart
+          value: program
           icon: "mdi:home-thermometer"
-        - dps_val: "Anti_frozen"
-          value: "away"
+        - dps_val: Anti_frozen
+          value: away
           icon: "mdi:snowflake-melt"
-        - dps_val: "Manual"
-          value: "manual"
+        - dps_val: Manual
+          value: manual
           icon: "mdi:cursor-pointer"
     - id: 4
       name: unknown_4

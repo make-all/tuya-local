@@ -40,7 +40,7 @@ class TestSD123HumanPresenceRadar(
         self.setUpForConfig("sd123_hpr01_presence.yaml", SD123_PRESENCE_PAYLOAD)
         self.setUpBasicBinarySensor(
             PRESENCE_DPS,
-            self.entities.get("binary_sensor"),
+            self.entities.get("binary_sensor_occupancy"),
             device_class=BinarySensorDeviceClass.OCCUPANCY,
             testdata=("presence", "none"),
         )
