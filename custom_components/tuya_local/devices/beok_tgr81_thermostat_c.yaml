@@ -34,8 +34,14 @@ primary_entity:
     - id: 24
       type: integer
       name: current_temperature
+      readonly: true
       mapping:
         - scale: 10
+      range:
+        min: 0
+        max: 900
+        scale: 2
+        step: 5
     - id: 26
       optional: true
       type: integer
@@ -43,6 +49,7 @@ primary_entity:
     - id: 36
       type: string
       name: hvac_action
+      readonly: true
       mapping:
         - dps_val: close
           icon: "mdi:radiator-disabled"
@@ -78,6 +85,8 @@ secondary_entities:
         range:
           min: -9
           max: 9
+        optional: true
+        force: true
   - entity: switch
     name: Anti-frost
     icon: "mdi:snowflake-melt"
@@ -86,6 +95,8 @@ secondary_entities:
       - id: 10
         type: boolean
         name: switch
+        optional: true
+        force: true
   - entity: lock
     name: Child lock
     category: config
@@ -99,6 +110,7 @@ secondary_entities:
             icon: "mdi:hand-back-right-off"
           - dps_val: false
             icon: "mdi:hand-back-right"
+        force: true
   - entity: select
     name: Sensor selection
     category: config
@@ -106,6 +118,8 @@ secondary_entities:
       - id: 43
         type: string
         name: option
+        optional: true
+        force: true
         mapping:
           - dps_val: in
             icon: "mdi:gauge"
@@ -123,6 +137,8 @@ secondary_entities:
     dps:
       - id: 45
         type: bitfield
+        optional: true
+        force: true
         name: sensor
         mapping:
           - dps_val: 0
@@ -141,6 +157,8 @@ secondary_entities:
         range:
           min: 30
           max: 90
+        optional: true  
+        force: true
   - entity: number
     name: Low temperature limit
     category: config
@@ -155,6 +173,7 @@ secondary_entities:
         range:
           min: 5
           max: 20
+        force: true
   - entity: button
     name: Reset
     category: config
@@ -164,6 +183,7 @@ secondary_entities:
         name: button
         type: boolean
         optional: true
+        force: true
   - entity: select
     name: Working week
     icon: "mdi:calendar-clock"
@@ -173,6 +193,7 @@ secondary_entities:
         type: string
         name: option
         optional: true
+        force: true
         mapping:
           - dps_val: "00"
             value: "Off"
@@ -188,6 +209,7 @@ secondary_entities:
         type: string
         name: alt
         optional: true
+        force: true
         mapping:
           - dps_val: "00"
             value: "Off"
@@ -208,6 +230,7 @@ secondary_entities:
         type: integer
         name: value
         optional: true
+        force: true
         unit: C
         range:
           min: 1
