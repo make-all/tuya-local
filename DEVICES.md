@@ -424,6 +424,7 @@ of device.
 
 - generic PIR motion sensor
 - generic illuminance sensor
+- ASIP-0622 indoor planter
 - Aubess Rainpoint TTP106W irrigation system
 - Brennenstuhl WFD3050P PIR motion activated CCT spotlight
 - Bresser smart 7-in-1 weather station

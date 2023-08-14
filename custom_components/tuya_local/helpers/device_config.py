@@ -4,6 +4,7 @@ Config parser for Tuya Local devices.
 import logging
 from base64 import b64decode, b64encode
 from collections.abc import Sequence
+from datetime import datetime
 from fnmatch import fnmatch
 from numbers import Number
 from os import walk
@@ -330,6 +331,7 @@ class TuyaDpsConfig:
             "json": str,
             "base64": str,
             "hex": str,
+            "unixtime": int,
         }
         return types.get(t)
 
@@ -430,6 +432,12 @@ class TuyaDpsConfig:
                     self.name,
                 )
                 return None
+        elif self.rawtype == "unixtime" and isinstance(v, int):
+            try:
+                return datetime.fromtimestamp(v)
+            except:
+                _LOGGER.warning("Invalid timestamp %d", v)
+                return None
         else:
             return v
 
@@ -438,6 +446,8 @@ class TuyaDpsConfig:
             return v.hex()
         elif self.rawtype == "base64":
             return b64encode(v).decode("utf-8")
+        elif self.rawtype == "unixtime" and v instanceof datetime:
+            return v.timestamp()
         else:
             return v
 

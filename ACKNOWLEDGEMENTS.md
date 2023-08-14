@@ -298,7 +298,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [NatMan3000](https://github.com/NatMan3000) for assisting with support for Arlec Ceiling fan/light remote control kits.
 - [TanYauRei](https://github.com/TanYauRei) for assisting with support for Daewoo Dhome air conditioners.
 - [eivindsor](https://github.com/eivindsor) for assisting with support for Lucking HS6 smart locks.
-- [epajfl00](https://github.com/epajfl00) for assisting with support for Neo Coolcam sirens and Relay switches with 433Mhz remotes.
+- [epajfl00](https://github.com/epajfl00) for assisting with support for Neo Coolcam sirens, Relay switches with 433Mhz remotes and ASIP-0622 indoor planters.
 - [jorometala](https://github.com/jorometala) for assisting with support for Iebeyond ECH RF hub doorbells.
 - [Yersi88](https://github.com/Yersi88) for contributing support for Costway portable air conditioners.
 - [bdkacz](https://github.com/bdkacz) for assisting with support for ZX-GS21 gask leak alarms.

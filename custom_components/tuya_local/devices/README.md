@@ -124,6 +124,7 @@ The type of data returned by the Tuya API. Can be one of the following:
  - **boolean** can contain the values **True** or **False**.
  - **integer** can contain only numbers. Integers can have range set on them, be scaled and steped
  - **bitfield** is a special case of integer, where the bits that make up the value each has individal meaning.
+ - **unixtime** is a special case of integer, where the device uses a unix timestamp (seconds since 1970-01-01 00:00), which is converted to a datetime for Home Assistant
  - **base64** is a special case of string, where binary data is base64 encoded.  Platforms that use this type will need special handling to make sense of the data.
  - **hex** is a special case of string, where binary data is hex encoded. Platforms that use this type will need special handling to make sense of the data.
  - **json** is a special case of string, where multiple data points are encoded in json format in the string.  Platforms that use this type will need special handling to make sense of the data.
