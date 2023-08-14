@@ -1,0 +1,36 @@
+# Based on info on the web, this is a common subset of Garage door opener dps.
+name: Simple garage-door-gate opener
+products:
+  - id: b1uk4ftduaqopxv1
+    name: Garage-door-gate opener
+primary_entity:
+  entity: cover
+  class: gate
+  dps:
+    - id: 1
+      name: control
+      type: boolean
+      force: true
+      mapping:
+        - dps_val: true
+          value: "open"
+        - dps_val: false
+          value: "close"
+    - id: 101
+      name: open
+      type: boolean
+secondary_entities:
+  - entity: number
+    name: Countdown
+    category: config
+    icon: "mdi:timer"
+    mode: box
+    dps:
+      - id: 7
+        type: integer
+        name: value
+        unit: sec
+        range:
+          min: 0
+          max: 86400
+        optional: true
