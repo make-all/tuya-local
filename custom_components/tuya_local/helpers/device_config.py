@@ -446,7 +446,7 @@ class TuyaDpsConfig:
             return v.hex()
         elif self.rawtype == "base64":
             return b64encode(v).decode("utf-8")
-        elif self.rawtype == "unixtime" and v instanceof datetime:
+        elif self.rawtype == "unixtime" and isinstance(v, datetime):
             return v.timestamp()
         else:
             return v
