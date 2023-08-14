@@ -1,0 +1,15 @@
+name: Simple (door/window) sensor
+primary_entity:
+  entity: cover
+  class: window
+  dps:
+    - id: 1
+      name: control
+      type: boolean
+      force: true
+      mapping:
+        - dps_val: true
+          value: "open"
+        - dps_val: false
+          value: "close"
+      # true when open, false when closed
