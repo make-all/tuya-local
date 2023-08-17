@@ -1,0 +1,139 @@
+name: Quad wall switch
+products:
+  - id: kopqi7ax9pwi7nr2
+    name: Briliiant Smart glass wall switch 4-gang
+primary_entity:
+  entity: switch
+  class: switch
+  name: Switch 1
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: switch
+    class: switch
+    name: Switch 2
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+  - entity: switch
+    class: switch
+    name: Switch 3
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+  - entity: switch
+    class: switch
+    name: Switch 4
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+  - entity: number
+    name: Timer 1
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 7
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    name: Timer 2
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 8
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    name: Timer 3
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    name: Timer 4
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: sensor
+    name: Energy
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: kWh
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: mA
+        class: measurement
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+
+
+
+

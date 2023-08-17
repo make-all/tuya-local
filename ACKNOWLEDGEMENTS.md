@@ -317,7 +317,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [madchuska](https://github.com/madchuska) for contributing support for Kogan air purifiers.
 - [bskjon](https://github.com/bskjon) for contributing support for Woods Milan air conditioner and Norwegian translations.
 - [jamarju](https://github.com/jamarju) for contributing support for Garza Wi-Fi garden irrigation systems.
-- [iotinkognito](https://github.com/iotinkognito) for contributing support for Makegood double power points.
+- [iotinkognito](https://github.com/iotinkognito) for contributing support for Makegood double power points and Brilliant 1/2/3/4 gang wall switches.
 - [luyzfernando08](https://github.com/luyzfernando08) for contributing support for GauTone PG-103 alarm systems.
 - [jafar-atili](https://github.com/jafar-atili) for contributing improvements to Lytmi Fantasy 3 HDMI sync backlights.
 - [samgalagher](https://github.com/samgalagher) for contributing support for Yinmik WF-3188 water quality monitors.

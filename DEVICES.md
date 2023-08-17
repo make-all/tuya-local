@@ -261,6 +261,7 @@ the best option.
 - Aubess 2-gang switch
 - Blitzwolf BW-SHP6 PRO smartplug with child lock
 - Blitzwolf BW-SHP-9 3 outlet + USB powerstrip
+- Brilliant 1/2/3/4 gang wall switches with power monitoring
 - CBI Astute smart controller
 - DIGOO DG-SP202 dual smartplug with energy monitoring and timers
 - DIGOO DG-SP01 USB smartplug with night light
