@@ -344,6 +344,7 @@ of device.
 - Marpou RGBCW ceiling light
 - Moes dimmer switch
 - Moes motion sensor lights (XZ-CGV3)
+- Moes star projector
 - MoesGo dimmer switch
 - Space Dog Music Lamp
 - Tampa Magnetic LED System CD-TY-WY05
