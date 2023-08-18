@@ -411,9 +411,14 @@ of device.
 
 ### Cameras
 
+Note that this integration does not include any support for video
+streams.  Some cameras that provide local feeds may be able to be
+configured using RTSP or ONVIF feeds if they have static IP address,
+port and password.
+
 - BCom Majic IPBox intercom camera
 - Nedis outdoor camera
-- RL video intercom
+- RL video intercom (reported unable to connect)
 
 ### Alarm control panels
 
