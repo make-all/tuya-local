@@ -50,11 +50,11 @@ secondary_entities:
         type: string
         name: option
         mapping:
-          - dps_val: "0"
+          - dps_val: "off"
             value: "Off"
-          - dps_val: "1"
+          - dps_val: "on"
             value: "On"
-          - dps_val: "2"
+          - dps_val: "memory"
             value: Last state
   - entity: select
     name: Switch type
@@ -65,11 +65,11 @@ secondary_entities:
         type: string
         name: option
         mapping:
-          - dps_val: "0"
+          - dps_val: flip
             value: flip
-          - dps_val: "1"
+          - dps_val: sync
             value: sync
-          - dps_val: "2"
+          - dps_val: button
             value: button
 
 
