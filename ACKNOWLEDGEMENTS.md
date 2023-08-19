@@ -340,3 +340,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [davidsch1992](https://github.com/davidsch1992) for contributing support for Lyfco OL-A0012 air conditioners.
 - [lhassel](https://github.com/lhassel) for assisting with support for a variant of Inkbird iBBQ-4T thermometers with measurements combined into a single dp similar to IBS-M1S.
 - [SergioFuchs](https://github.com/SergioFuchs) for assisting with support for Moes star projector.
+- [Batav93](https://github.com/Batav93) for assisting with support for Duux Whisper Flex fans.

@@ -127,6 +127,7 @@
 - Carro PN-04F02D fan with dimmable light
 - Chanfok ceiling fan with cool/warm white dimmable light
 - Deta fan controller
+- Duux Whisper Flex pedestal fan
 - Fanco Eco Silent Deluxe ceiling fan with LED light
 - Goldair GCPF315 fan
 - Goldair Platinum tower fan (2 variants)
