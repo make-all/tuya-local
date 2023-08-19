@@ -10,17 +10,21 @@ primary_entity:
       type: boolean
       optional: true
       force: true
+    - id: 134
+      type: boolean
+      name: motion_enable
+      optional: true
+      force: true
 secondary_entities:
   - entity: switch
     name: Siren
+    icon: "mdi:bullhorn"
     dps:
       - id: 159
         type: boolean
         name: switch
-        optional: true
-        force: true
-  - entity: switch
-    name: Light indicator
+  - entity: light
+    name: Indicator
     category: config
     icon: "mdi:led-on"
     dps:
@@ -30,47 +34,36 @@ secondary_entities:
         optional: true
         force: true
   - entity: sensor
-    name: Battery level
     class: battery
     dps:
       - id: 145
         type: integer
         name: sensor
         unit: "%"
-        optional: true
-        force: true
-  - entity: select
-    name: Power supply
+  - entity: binary_sensor
+    class: plug
     category: diagnostic
     dps:
       - id: 146
         type: string
-        name: option
+        name: sensor
         mapping:
           - dps_val: "0"
-            value: "Battery"
+            value: false
           - dps_val: "1"
-            value: "AC"
-        optional: true
-        force: true
-        readonly: true
-  - entity: select
-    name: Device state
+            value: true
+  - entity: binary_sensor
     category: diagnostic
+    class: running
     dps:
       - id: 149
         type: boolean
-        name: option
-        mapping:
-          - dps_val: false
-            value: "Dormant"
-          - dps_val: true
-            value: "Waking"
+        name: sensor
         optional: true
         force: true
-        readonly: true
   - entity: switch
-    name: Vision flip
+    name: Flip image
+    icon: "mdi:flip-horizontal"
     category: config
     dps:
       - id: 103
@@ -81,6 +74,7 @@ secondary_entities:
   - entity: switch
     name: OSD watermark
     category: config
+    icon: "mdi:watermark"
     dps:
       - id: 104
         type: boolean
@@ -90,6 +84,7 @@ secondary_entities:
   - entity: select
     name: Night vision
     category: config
+    icon: "mdi:theme-light-dark"
     dps:
       - id: 108
         type: string
@@ -103,18 +98,10 @@ secondary_entities:
             value: "On"
         optional: true
         force: true
-  - entity: switch
-    name: Motion detection
-    category: config
-    dps:
-      - id: 134
-        type: boolean
-        name: switch
-        optional: true
-        force: true
   - entity: select
     name: Motion sensitivity
     category: config
+    icon: "mdi:motion-sensor"
     dps:
       - id: 106
         type: string
@@ -131,6 +118,7 @@ secondary_entities:
   - entity: switch
     name: Motion Detection Timer
     category: config
+    icon: "mdi:motion-sensor"
     dps:
       - id: 135
         type: boolean
@@ -138,8 +126,9 @@ secondary_entities:
         optional: true
         force: true
   - entity: switch
-    name: Record1
+    name: Motion record
     category: config
+    icon: "mdi:record-rec"
     dps:
       - id: 137
         type: boolean
@@ -147,11 +136,18 @@ secondary_entities:
         optional: true
         force: true
   - entity: sensor
-    name: Message
+    name: SD card status
+    category: diagnostic
+    icon: "mdi:micro-sd"
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+  - entity: binary_sensor
+    name: Alarm linkage
+    class: connectivity
     category: diagnostic
     dps:
-      - id: 212
-        type: string
+      - id: 246
+        type: boolean
         name: sensor
-        optional: true
-        force: true

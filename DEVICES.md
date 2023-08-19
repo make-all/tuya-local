@@ -392,7 +392,7 @@ of device.
 - Rinkmo D2 vacuum cleaner
 
 ### Lawnmowers
-
+
 - MoeBot S-series mowers (may require protocol version set manually to 3.4)
 
 ### Locks
@@ -420,6 +420,7 @@ port and password.
 
 - BCom Majic IPBox intercom camera
 - Nedis outdoor camera
+- Pinelake BF02 birdfeeder camera
 - RL video intercom (reported unable to connect)
 
 ### Alarm control panels
