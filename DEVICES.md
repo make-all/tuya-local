@@ -144,6 +144,7 @@
 - Treatlife DS02-F fan switch
 - Treatlife DS03 fan with dimmable light
 - Windcalm ceiling fans with and without cool.warm white dimmable light
+- Yidi/NHZS fan and light wall switch
 
 ### Air Purifiers
 
