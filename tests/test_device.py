@@ -360,6 +360,27 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.subject._lock.acquire.assert_called_once()
         self.subject._lock.release.assert_called_once()
 
+    def test_pending_updates_cleared_on_receipt(self):
+        # Set up the preconditions
+        now = time()
+        self.subject._pending_updates = {
+            "1": {"value": True, "updated_at": now, "sent": True},
+            "2": {"value": True, "updated_at": now, "sent": False},  # unsent
+            "3": {"value": True, "updated_at": now, "sent": True},  # unmatched
+            "4": {"value": True, "updated_at": now, "sent": True},  # not received
+        }
+        self.subject._remove_properties_from_pending_updates(
+            {"1": True, "2": True, "3": False}
+        )
+        self.assertDictEqual(
+            self.subject._pending_updates,
+            {
+                "2": {"value": True, "updated_at": now, "sent": False},
+                "3": {"value": True, "updated_at": now, "sent": True},
+                "4": {"value": True, "updated_at": now, "sent": True},
+            },
+        )
+
     def test_actually_start(self):
         # Set up the preconditions
         self.subject.receive_loop = Mock()

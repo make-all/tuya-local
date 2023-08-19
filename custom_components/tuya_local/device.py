@@ -207,6 +207,8 @@ class TuyaLocalDevice(object):
                     full_poll = poll.pop("full_poll", False)
                     self._cached_state = self._cached_state | poll
                     self._cached_state["updated_at"] = time()
+                    self._remove_properties_from_pending_updates(poll)
+
                     for entity in self._children:
                         # clear non-persistant dps that were not in a full poll
                         if full_poll:
@@ -451,6 +453,12 @@ class TuyaLocalDevice(object):
             log_json(pending_updates),
         )
 
+    def _remove_properties_from_pending_updates(self, data):
+        self._pending_updates = {
+            key: value for key, value in self._pending_updates.items()
+            if key not in data or not value["sent"] or data[key] != value["value"]
+        }
+
     async def _debounce_sending_updates(self):
         now = time()
         since = now - self._last_connection
@@ -560,7 +568,7 @@ class TuyaLocalDevice(object):
         self._pending_updates = {
             key: value
             for key, value in self._pending_updates.items()
-            if now - value.get("updated_at", 0) < self._FAKE_IT_TIMEOUT
+            if not value["sent"] or now - value.get("updated_at", 0) < self._FAKE_IT_TIMEOUT
         }
         return self._pending_updates
 
