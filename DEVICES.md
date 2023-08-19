@@ -489,6 +489,7 @@ port and password.
 ### Devices supported via Zigbee hubs
 
 - LoraTap SC500ZB-V2 curtain controller
+- Nedis ZBSD10WT door/window sensor
 - Nedis ZBSC10WT temperature and humidity sensor
 - ZTH08ZTU temperature and humidity sensor
 
