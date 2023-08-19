@@ -3,18 +3,18 @@ products:
   - id: 66urzkokqdufersv
     name: NHZS Fan and light switch
 primary_entity:
-  - entity: fan
-    dps:
-      - id: 1
-        type: boolean
-        name: switch
-      - id: 4
-        type: integer
-        name: speed
-        range:
-          min: 0
-          max: 100
-secondary_entites:
+  entity: fan
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 4
+      type: integer
+      name: speed
+      range:
+        min: 0
+        max: 100
+secondary_entities:
   - entity: light
     dps:
       - id: 5
@@ -59,6 +59,3 @@ secondary_entites:
       - id: 13
         type: boolean
         name: switch
-
-
-            
