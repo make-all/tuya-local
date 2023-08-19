@@ -455,7 +455,8 @@ class TuyaLocalDevice(object):
 
     def _remove_properties_from_pending_updates(self, data):
         self._pending_updates = {
-            key: value for key, value in self._pending_updates.items()
+            key: value
+            for key, value in self._pending_updates.items()
             if key not in data or not value["sent"] or data[key] != value["value"]
         }
 
@@ -568,7 +569,8 @@ class TuyaLocalDevice(object):
         self._pending_updates = {
             key: value
             for key, value in self._pending_updates.items()
-            if not value["sent"] or now - value.get("updated_at", 0) < self._FAKE_IT_TIMEOUT
+            if not value["sent"]
+            or now - value.get("updated_at", 0) < self._FAKE_IT_TIMEOUT
         }
         return self._pending_updates
 
