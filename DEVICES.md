@@ -75,6 +75,7 @@
 ### Water heaters
 
 - Aquatech Rapid/X6 heat pump water heaters
+- EMS Thermal 200L domestic heat pump hot water system
 - Hydrotherm Dynamic/X8 heat pump hot water systems
 - ITS-4.5HD super water heatpump
 - Thermex IF series V pro hot water systems
