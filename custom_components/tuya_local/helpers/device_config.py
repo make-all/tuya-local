@@ -44,7 +44,7 @@ def _scale_range(r, s):
     "Scale range r by factor s"
     if s == 1:
         return r
-    return {"min": int(r["min"] / s), "max": int(r["max"] / s)}
+    return {"min": r["min"] / s, "max": r["max"] / s}
 
 
 _unsigned_fmts = {
