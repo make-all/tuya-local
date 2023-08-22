@@ -44,7 +44,7 @@ def _scale_range(r, s):
     "Scale range r by factor s"
     if s == 1:
         return r
-    return {"min": r["min"] / s, "max": r["max"] / s}
+    return {"min": int(r["min"] / s), "max": int(r["max"] / s)}
 
 
 _unsigned_fmts = {
@@ -894,7 +894,7 @@ class TuyaDpsConfig:
         if r and isinstance(result, Number):
             mn = r["min"]
             mx = r["max"]
-            if result < mn or result > mx:
+            if round(result) < mn or round(result) > mx:
                 # Output scaled values in the error message
                 r = self.range(device, scaled=True)
                 mn = r["min"]
