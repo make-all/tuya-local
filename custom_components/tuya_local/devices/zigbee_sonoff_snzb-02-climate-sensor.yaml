@@ -1,0 +1,31 @@
+name: Climate sensor
+products:
+  - id: vtA4pDd6PLUZzXgZxxx
+    name: Sonoff SNZB-02 ZigBee temperature and humidity sensor
+primary_entity:
+  entity: sensor
+  class: humidity
+  dps:
+    - id: 101
+      type: integer
+      name: sensor
+      unit: "%"
+      class: measurement
+secondary_entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement

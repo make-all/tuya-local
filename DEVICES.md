@@ -496,6 +496,7 @@ port and password.
 - Nedis ZBSC10WT temperature and humidity sensor
 - Temperature and humidity sensor with alarm feature
 - ZTH08ZTU temperature and humidity sensor
+- Sonoff SNZB-02 ZigBee temperature and humidity sensor
 
 NOTE: this project does not intend to expand the scope to support non-Tuya
 devices via Tuya hubs.  Though it may be techincally feasible to do such a
