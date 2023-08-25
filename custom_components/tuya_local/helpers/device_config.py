@@ -894,7 +894,7 @@ class TuyaDpsConfig:
         if r and isinstance(result, Number):
             mn = r["min"]
             mx = r["max"]
-            if result < mn or result > mx:
+            if round(result) < mn or round(result) > mx:
                 # Output scaled values in the error message
                 r = self.range(device, scaled=True)
                 mn = r["min"]
@@ -908,7 +908,7 @@ class TuyaDpsConfig:
             mask = int(mask, 16)
             mask_scale = mask & (1 + ~mask)
             current_value = int.from_bytes(self.decoded_value(device), endianness)
-            result = (current_value & ~mask) | (mask & (result * mask_scale))
+            result = (current_value & ~mask) | (mask & int(result * mask_scale))
             result = self.encode_value(result.to_bytes(length, endianness))
 
         dps_map[self.id] = self._correct_type(result)

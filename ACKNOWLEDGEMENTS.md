@@ -342,3 +342,5 @@ Further device support has been made with the assistance of users.  Please consi
 - [SergioFuchs](https://github.com/SergioFuchs) for assisting with support for Moes star projector.
 - [Batav93](https://github.com/Batav93) for assisting with support for Duux Whisper Flex fans.
 - [Atirion](https://github.com/Atirion) for assisting with support for Nedis Door/Window sensors.
+- [allanak](https://github.com/allanak) for assisting with support for Ovlaim ceiling fans.
+- [nk00li](https://github.com/nk00li) for assisting with support for EMS hot water systems.

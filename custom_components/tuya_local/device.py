@@ -263,6 +263,9 @@ class TuyaLocalDevice(object):
                     # the protocol version, which seems to require a fresh
                     # connection.
                     persist = not self.should_poll
+                    _LOGGER.debug(
+                        "%s persistant connection set to %s", self.name, persist
+                    )
                     self._api.set_socketPersistent(persist)
                     if self._api.parent:
                         self._api.parent.set_socketPersistent(persist)

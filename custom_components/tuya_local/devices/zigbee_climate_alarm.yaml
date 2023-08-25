@@ -1,0 +1,151 @@
+name: Climate alarm
+products:
+  - id: qaaysllp
+    name: Zigbee temperature humidity alarm sensor
+primary_entity:
+  entity: sensor
+  class: temperature
+  dps:
+    - id: 1
+      type: integer
+      name: sensor
+      class: measurement
+      mapping:
+        - scale: 10
+    - id: 9
+      type: string
+      name: unit
+      mapping:
+        - dps_val: c
+          value: C
+        - dps_val: f
+          value: F
+secondary_entities:
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: select
+    name: Temperature unit
+    icon: "mdi:temperature-celsius"
+    category: config
+    dps:
+      - id: 9
+        type: string
+        name: option
+        mapping:
+          - dps_val: c 
+            value: Celsius
+          - dps_val: f
+            value: Fahrenheit
+  - entity: number
+    name: High temperature
+    category: config
+    class: temperature
+    icon: "mdi:thermometer-alert"
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        range:
+          min: -10
+          max: 60
+  - entity: number
+    name: Low temperature
+    category: config
+    class: temperature
+    icon: "mdi:thermometer-alert"
+    dps:
+      - id: 11
+        type: integer
+        name: value
+        range:
+          min: -10
+          max: 60
+  - entity: number
+    name: High humidity
+    category: config
+    class: humidity
+    icon: "mdi:water-percent-alert"
+    dps:
+      - id: 12
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 100
+  - entity: number
+    name: Low humidity
+    category: config
+    class: humidity
+    icon: "mdi:water-percent-alert"
+    dps:
+      - id: 13
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 100
+  - entity: select
+    name: Temperature alarm
+    icon: "mdi:thermometer-alert"
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        mapping:
+          - dps_val: loweralarm
+            value: Low temperature
+          - dps_val: upperalarm
+            value: High temperature
+          - dps_val: cancel
+            value: Not set
+  - entity: select
+    name: Humidity alarm
+    icon: "mdi:water-percent-alert"
+    category: config
+    dps:
+      - id: 15
+        type: string
+        name: option
+        mapping:
+          - dps_val: loweralarm
+            value: Low humidity
+          - dps_val: upperalarm
+            value: High humidity
+          - dps_val: cancel
+            value: Not set
+  - entity: sensor
+    class: illuminance
+    category: diagnostic
+    dps:
+      - id: 16
+        type: integer
+        name: sensor
+        unit: lx
+        class: measurement
+  - entity: switch
+    name: Switch
+    category: config
+    dps:
+      - id: 21
+        type: boolean
+        name: switch
+
+

@@ -7,17 +7,18 @@ Please report any [issues](https://github.com/make-all/tuya-local/issues) and fe
 
 [![BuyMeCoffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/jasonrumney)
 
-This is a Home Assistant integration to support Wi-fi devices running Tuya
-firmware without going via the Tuya cloud.  Currently only WiFi
-devices are supported, Tuya also makes Zigbee, BLE and other devices
-that connect to WiFi using a gateway, such devices are not yet
-supported.
+This is a Home Assistant integration to support devices running Tuya
+firmware without going via the Tuya cloud.  Devices are supported
+over WiFi, other technologies need a Tuya gateway device (Zigbee
+devices will work with other Zigbee gateways, but not via this
+integration).
 
-Note that most Tuya devices seem to support only one local connection.
-If you have connection issues when using this integration, ensure that other
-integrations offering local Tuya connections are not configured to use the
-same device, mobile applications on devices on the local network are closed,
-and no other software is trying to connect locally to your Tuya devices.
+Note that many Tuya devices seem to support only one local connection.
+If you have connection issues when using this integration, ensure that
+other integrations offering local Tuya connections are not configured
+to use the same device, mobile applications on devices on the local
+network are closed, and no other software is trying to connect locally
+to your Tuya devices.
 
 Using this integration does not stop your devices from sending status
 to the Tuya cloud, so this should not be seen as a security measure,

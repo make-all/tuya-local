@@ -75,6 +75,7 @@
 ### Water heaters
 
 - Aquatech Rapid/X6 heat pump water heaters
+- EMS Thermal 200L domestic heat pump hot water system
 - Hydrotherm Dynamic/X8 heat pump hot water systems
 - ITS-4.5HD super water heatpump
 - Thermex IF series V pro hot water systems
@@ -135,6 +136,7 @@
 - Ledkia fan and light controller
 - Lexy F501 fan
 - Mantra ceiling fan with light
+- Ovlaim ceiling fan with cool/warm white dimmable light
 - Royal Clima RCB 150 ventilation system
 - Skyfan DC fan
 - Skyfan DC fan with light
@@ -492,6 +494,7 @@ port and password.
 - MultiIR MIR-TE100-TY temperature and humidity sensor
 - Nedis ZBSD10WT door/window sensor
 - Nedis ZBSC10WT temperature and humidity sensor
+- Temperature and humidity sensor with alarm feature
 - ZTH08ZTU temperature and humidity sensor
 
 NOTE: this project does not intend to expand the scope to support non-Tuya
