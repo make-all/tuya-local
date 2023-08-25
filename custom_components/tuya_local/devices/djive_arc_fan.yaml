@@ -4,6 +4,7 @@ products:
     name: djive ARC Humidifier
 primary_entity:
   entity: fan
+  name: Fan
   dps:
     - id: 1
       name: switch
@@ -35,6 +36,25 @@ primary_entity:
       type: boolean
       name: oscillate
 secondary_entities:
+  - entity: select
+    category: config
+    name: Humidifier
+    icon: "mdi:air-humidifier"
+    dps:
+      - id: 105
+        name: option
+        type: string
+        mapping:
+          - dps_val: close
+            value: "off"
+          - dps_val: 1
+            value: low
+          - dps_val: 2
+            value: medium
+          - dps_val: 3
+            value: high
+          - dps_val: auto
+            value: auto
   - entity: binary_sensor
     name: Fault
     class: problem
