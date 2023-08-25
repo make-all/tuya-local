@@ -94,7 +94,7 @@ class TestEssentialsPurifier(
                 },
                 {
                     "dps": PM25_DP,
-                    "name": "sensor_pm2_5",
+                    "name": "sensor_pm25",
                     "unit": CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
                     "device_class": SensorDeviceClass.PM25,
                     "state_class": "measurement",

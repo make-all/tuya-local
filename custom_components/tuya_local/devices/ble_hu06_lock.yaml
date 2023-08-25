@@ -1,0 +1,232 @@
+name: Smart lock
+products:
+  - id: stugc8dl
+    name: HU06
+primary_entity:
+  entity: lock
+  dps:
+    - id: 13
+      name: unlock_password
+      type: integer
+      optional: true
+      persist: false
+    - id: 16
+      name: unlock_key
+      type: integer
+      optional: true
+      persist: false
+    - id: 19
+      name: unlock_ble
+      type: integer
+      optional: true
+      persist: false
+    - id: 21
+      name: jammed
+      type: string
+      optional: true
+      persist: false
+      mapping:
+        - dps_val: tongue_bad
+          value: true
+        - value: false
+    - id: 43
+      name: unlock_fingerprint
+      type: integer
+      optional: true
+      persist: false
+    - id: 47
+      name: lock
+      type: boolean
+      readonly: true
+    - id: 62
+      name: unlock_app
+      type: integer
+      optional: true
+      persist: false
+    - id: 63
+      name: unlock_voice
+      type: integer
+      optional: true
+      persist: false
+    - id: 105
+      name: lock_record
+      type: string
+      optional: true
+secondary_entities:
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: binary_sensor
+    name: Wrong password
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 21
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: wrong_password
+            value: true
+          - dps_val: "1"
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: tamper
+    category: diagnostic
+    dps:
+      - id: 21
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: pry
+            value: true
+          - dps_val: "8"
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 21
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: low_battery
+            value: true
+          - dps_val: "10"
+            value: true
+          - dps_val: low_battery_keypad
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 21
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: defense
+            value: true
+          - dps_val: "13"
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Duress
+    class: safety
+    category: diagnostic
+    dps:
+      - id: 22 
+        type: boolean
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: binary_sensor
+    name: Doorbell
+    class: sound
+    category: diagnostic
+    dps:
+      - id: 24
+        type: boolean
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: number
+    name: Doorbell volume
+    category: config
+    dps:
+      - id: 27
+        type: string
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - dps_val: mute
+            value: 0
+            icon: "mdi:volume-mute"
+          - dps_val: voice
+            value: 100
+            icon: "mdi:volume-high"
+  - entity: switch
+    name: Auto lock
+    category: config
+    icon: "mdi:lock-reset"
+    dps:
+      - id: 33
+        type: boolean
+        name: switch
+  - entity: number
+    name: Auto lock delay
+    category: config
+    icon: "mdi:lock-clock"
+    dps:
+      - id: 36
+        name: value
+        type: integer
+        range:
+          min: 10
+          max: 180
+          mapping:
+            - step: 10
+          unit: s
+  - entity: binary_sensor
+    class: door
+    category: diagnostic
+    dps:
+      - id: 40
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: unknown
+            value: null
+          - dps_val: open
+            value: true
+          - dps_val: closed
+            value: false
+  - entity: binary_sensor
+    name: Keypad reset
+    class: running
+    category: diagnostic
+    dps:
+      - id: 102
+        type: boolean
+        name: sensor
+  - entity: sensor
+    name: Keypad battery
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: binary_sensor
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 107
+        type: boolean
+        name: sensor
+

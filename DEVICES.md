@@ -43,6 +43,7 @@
 - ElectriQ EcoSilent 14HPW
 - Fersk Vind 2
 - Kogan 2.6kW portable air conditioner
+- Lyfco OL-A012 air conditioner
 - Monzana Klimaanlage air conditioner
 - Nedis ACMB1WT12 portable air conditioner
 - Rotenso Roni R35WI
@@ -74,6 +75,7 @@
 ### Water heaters
 
 - Aquatech Rapid/X6 heat pump water heaters
+- EMS Thermal 200L domestic heat pump hot water system
 - Hydrotherm Dynamic/X8 heat pump hot water systems
 - ITS-4.5HD super water heatpump
 - Thermex IF series V pro hot water systems
@@ -126,6 +128,7 @@
 - Carro PN-04F02D fan with dimmable light
 - Chanfok ceiling fan with cool/warm white dimmable light
 - Deta fan controller
+- Duux Whisper Flex pedestal fan
 - Fanco Eco Silent Deluxe ceiling fan with LED light
 - Goldair GCPF315 fan
 - Goldair Platinum tower fan (2 variants)
@@ -133,6 +136,7 @@
 - Ledkia fan and light controller
 - Lexy F501 fan
 - Mantra ceiling fan with light
+- Ovlaim ceiling fan with cool/warm white dimmable light
 - Royal Clima RCB 150 ventilation system
 - Skyfan DC fan
 - Skyfan DC fan with light
@@ -142,6 +146,7 @@
 - Treatlife DS02-F fan switch
 - Treatlife DS03 fan with dimmable light
 - Windcalm ceiling fans with and without cool.warm white dimmable light
+- Yidi/NHZS fan and light wall switch
 
 ### Air Purifiers
 
@@ -204,6 +209,7 @@
 ### Aroma diffusers
 
 - Asakuki aroma diffuser with light
+- Cadance ultrasonic aroma diffuser with light and music playback
 - Ditua DT-1522-YN aroma diffuser
 - Etersky aroma diffuser with light
 - YYM-805SW aroma diffuser with light (also supports GX Aroma diffuser)
@@ -213,7 +219,7 @@
 - Anko 1.7L smart kettle
 - Setti+ KT950W smart kettle
 - Inkbird iBBQ-4BW cooking probe thermometer
-- Inkbird iBBQ-4T cooking probe thermometer
+- Inkbird iBBQ-4T cooking probe thermometer (separate and combined measurement variants)
 - Inkbird IBS-M1S temperature probe hub
 - Inkbird sous vide cooker (also supports Silvercrest sous vide sticks)
 - Kogan glass 1.7L smart kettle
@@ -259,6 +265,7 @@ the best option.
 - Aubess 2-gang switch
 - Blitzwolf BW-SHP6 PRO smartplug with child lock
 - Blitzwolf BW-SHP-9 3 outlet + USB powerstrip
+- Brilliant 1/2/3/4 gang wall switches with power monitoring
 - CBI Astute smart controller
 - DIGOO DG-SP202 dual smartplug with energy monitoring and timers
 - DIGOO DG-SP01 USB smartplug with night light
@@ -273,11 +280,13 @@ the best option.
 - Logicom Strippy 4 way power strip with USB
 - Loratap RR400W-V2 relay switch
 - Makegood double power point (sold under AusElectronicsDirect, Cleverlife, Kogan, Ozsmartthings and other brands)
+- MakeGood double switch with timers and power monitoring on whole device
 - Mirabella Genio smartplug with USB
 - Moes 3-gang switch
 - MoesHouse smartplug with RGBW nightlight
 - Novadigital 4-way switch with backlight, power on state and timers
 - Qnect QN-WPO3 3 outlet + USB powerstrip with individual timers
+- Relay switch with 433MHz remote (unbranded)
 - Single switch with backlight (unbranded)
 - Somgam single wall switch
 - Somgam double wall switch
@@ -334,9 +343,13 @@ of device.
 - Galaxy Projector
 - HDMI sync light
 - iHD001 LED controller
+- Loginovo TV sync backlight
 - Lytmi Fantasy/Neo 3 HDMI sync backlight
+- Marpou RGBCW ceiling light
 - Moes dimmer switch
 - Moes motion sensor lights (XZ-CGV3)
+- Moes star projector
+- MoesGo dimmer switch
 - Space Dog Music Lamp
 - Tampa Magnetic LED System CD-TY-WY05
 
@@ -370,6 +383,7 @@ of device.
 ### Vacuum Cleaners
 
 - Kabum Smart 500 vacuum cleaner
+- Kabum Smart 700 vacuum cleaner (also sold as Liectroux XR500 and maybe others)
 - Kogan LX10 vacuum cleaner with mop
 - Kyvol E30 vacuum cleaner
 - Lefant LS1 Pro vacuum cleaner
@@ -380,7 +394,7 @@ of device.
 - Rinkmo D2 vacuum cleaner
 
 ### Lawnmowers
-
+
 - MoeBot S-series mowers (may require protocol version set manually to 3.4)
 
 ### Locks
@@ -401,7 +415,15 @@ of device.
 
 ### Cameras
 
+Note that this integration does not include any support for video
+streams.  Some cameras that provide local feeds may be able to be
+configured using RTSP or ONVIF feeds if they have static IP address,
+port and password.
+
 - BCom Majic IPBox intercom camera
+- Nedis outdoor camera
+- Pinelake BF02 birdfeeder camera
+- RL video intercom (reported unable to connect)
 
 ### Alarm control panels
 
@@ -414,14 +436,17 @@ of device.
 
 - generic PIR motion sensor
 - generic illuminance sensor
+- ASIP-0622 indoor planter
 - Aubess Rainpoint TTP106W irrigation system
 - Brennenstuhl WFD3050P PIR motion activated CCT spotlight
 - Bresser smart 7-in-1 weather station
 - Catit Pixi smart fountain
 - Catit pet feeder (Pixi 2.2kg dispenser and 6 meal versions, and another non-Pixi branded single dispenser)
+- Ceres Plus pet feeder with camera
 - CO2-Box air quality monitor
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
 - Garza Wi-Fi garden irrigation system (ITV103W with 433MHz WiFi hub)
+- Holman WX1 tap timer (sprinkler controller)
 - Inkbird PTH-9CW air quality monitor
 - KKMoon 7in1 air quality monitor
 - Kogan bidet toilet seat
@@ -452,8 +477,10 @@ of device.
 - Adaprox Fingerbot plus
 - Diivoo WT05 dual water timer
 - HCT-611 water timer
+- HU06 smart lock
 - Orion DL021HA lock
 - PT216/PT19DB-2 temperature and humidity sensor
+- Smart Ape solar garden light
 - Generic water timers (confirmed with Johgee and Diivoo branded devices)
 
 ### Devices supported via IR hubs
@@ -464,6 +491,10 @@ of device.
 ### Devices supported via Zigbee hubs
 
 - LoraTap SC500ZB-V2 curtain controller
+- MultiIR MIR-TE100-TY temperature and humidity sensor
+- Nedis ZBSD10WT door/window sensor
+- Nedis ZBSC10WT temperature and humidity sensor
+- Temperature and humidity sensor with alarm feature
 - ZTH08ZTU temperature and humidity sensor
 
 NOTE: this project does not intend to expand the scope to support non-Tuya

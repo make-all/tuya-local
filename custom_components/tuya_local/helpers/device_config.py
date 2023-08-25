@@ -4,6 +4,7 @@ Config parser for Tuya Local devices.
 import logging
 from base64 import b64decode, b64encode
 from collections.abc import Sequence
+from datetime import datetime
 from fnmatch import fnmatch
 from numbers import Number
 from os import walk
@@ -231,7 +232,7 @@ class TuyaEntityConfig:
     @property
     def translation_key(self):
         """The translation key for this entity."""
-        return self._config.get("translation_key")
+        return self._config.get("translation_key", self.device_class)
 
     def unique_id(self, device_uid):
         """Return a suitable unique_id for this entity."""
@@ -330,6 +331,7 @@ class TuyaDpsConfig:
             "json": str,
             "base64": str,
             "hex": str,
+            "unixtime": int,
         }
         return types.get(t)
 
@@ -430,6 +432,12 @@ class TuyaDpsConfig:
                     self.name,
                 )
                 return None
+        elif self.rawtype == "unixtime" and isinstance(v, int):
+            try:
+                return datetime.fromtimestamp(v)
+            except:
+                _LOGGER.warning("Invalid timestamp %d", v)
+                return None
         else:
             return v
 
@@ -438,6 +446,8 @@ class TuyaDpsConfig:
             return v.hex()
         elif self.rawtype == "base64":
             return b64encode(v).decode("utf-8")
+        elif self.rawtype == "unixtime" and isinstance(v, datetime):
+            return v.timestamp()
         else:
             return v
 
@@ -801,7 +811,7 @@ class TuyaDpsConfig:
             step = mapping.get("step")
             if not isinstance(step, Number):
                 step = None
-            if "dps_val" in mapping:
+            if "dps_val" in mapping and not mapping.get("hidden", False):
                 result = mapping["dps_val"]
                 replaced = True
             # Conditions may have side effect of setting another value.
@@ -828,7 +838,7 @@ class TuyaDpsConfig:
 
                 # Allow simple conditional mapping overrides
                 for m in cond.get("mapping", {}):
-                    if m.get("value") == value:
+                    if m.get("value") == value and not m.get("hidden", False):
                         result = m.get("dps_val", result)
 
                 step = cond.get("step", step)
@@ -843,7 +853,12 @@ class TuyaDpsConfig:
                 _LOGGER.debug("Scaling %s by %s", result, scale)
                 result = result * scale
                 remap = self._find_map_for_value(result, device)
-                if remap and "dps_val" in remap and "dps_val" not in mapping:
+                if (
+                    remap
+                    and "dps_val" in remap
+                    and "dps_val" not in mapping
+                    and not remap.get("hidden", False)
+                ):
                     result = remap["dps_val"]
                 replaced = True
 
@@ -857,7 +872,12 @@ class TuyaDpsConfig:
                 _LOGGER.debug("Stepping %s to %s", result, step)
                 result = step * round(float(result) / step)
                 remap = self._find_map_for_value(result, device)
-                if remap and "dps_val" in remap and "dps_val" not in mapping:
+                if (
+                    remap
+                    and "dps_val" in remap
+                    and "dps_val" not in mapping
+                    and not remap.get("hidden", False)
+                ):
                     result = remap["dps_val"]
                 replaced = True
 
@@ -874,7 +894,7 @@ class TuyaDpsConfig:
         if r and isinstance(result, Number):
             mn = r["min"]
             mx = r["max"]
-            if result < mn or result > mx:
+            if round(result) < mn or round(result) > mx:
                 # Output scaled values in the error message
                 r = self.range(device, scaled=True)
                 mn = r["min"]
@@ -888,7 +908,7 @@ class TuyaDpsConfig:
             mask = int(mask, 16)
             mask_scale = mask & (1 + ~mask)
             current_value = int.from_bytes(self.decoded_value(device), endianness)
-            result = (current_value & ~mask) | (mask & (result * mask_scale))
+            result = (current_value & ~mask) | (mask & int(result * mask_scale))
             result = self.encode_value(result.to_bytes(length, endianness))
 
         dps_map[self.id] = self._correct_type(result)

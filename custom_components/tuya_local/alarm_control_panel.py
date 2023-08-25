@@ -53,7 +53,7 @@ class TuyaLocalAlarmControlPanel(TuyaLocalEntity, AlarmControlPanelEntity):
 
         self._init_end(dps_map)
         if not self._alarm_state_dp:
-            raise AttributeError(f"{config.name} is missing an alarm_state dp")
+            raise AttributeError(f"{config.config_id} is missing an alarm_state dp")
 
         alarm_states = self._alarm_state_dp.values(device)
         if STATE_ALARM_ARMED_HOME in alarm_states:

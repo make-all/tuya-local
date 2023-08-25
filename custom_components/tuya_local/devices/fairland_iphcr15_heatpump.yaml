@@ -22,7 +22,6 @@ primary_entity:
     - id: 102
       name: current_temperature
       type: integer
-      readonly: true
     - id: 103
       name: temperature_unit
       type: boolean
@@ -94,7 +93,6 @@ secondary_entities:
         name: sensor
         unit: "%"
         class: measurement
-        readonly: true
   - entity: binary_sensor
     name: Water flow
     class: problem

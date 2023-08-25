@@ -94,9 +94,6 @@ primary_entity:
           value: right
         - dps_val: stop
           value: stop
-    - id: 108
-      type: integer
-      name: battery
     - id: 112
       type: string
       name: activate
@@ -134,6 +131,14 @@ secondary_entities:
         type: integer
         name: sensor
         unit: min
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
   - entity: sensor
     name: Brush life
     icon: "mdi:pinwheel"

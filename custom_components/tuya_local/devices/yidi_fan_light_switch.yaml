@@ -1,0 +1,61 @@
+name: Wall switch
+products:
+  - id: 66urzkokqdufersv
+    name: NHZS Fan and light switch
+primary_entity:
+  entity: fan
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 4
+      type: integer
+      name: speed
+      range:
+        min: 0
+        max: 100
+secondary_entities:
+  - entity: light
+    dps:
+      - id: 5
+        type: boolean
+        name: switch
+  - entity: number
+    name: Fan timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: select
+    name: Initial state
+    icon: "mdi:toggle-switch"
+    category: config
+    dps:
+      - id: 11
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "Off"
+          - dps_val: "on"
+            value: "On"
+          - dps_val: "memory"
+            value: Last state
+        optional: true
+  - entity: light
+    name: Backlight
+    icon: "mdi:television-ambient-light"
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: switch

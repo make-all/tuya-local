@@ -57,7 +57,7 @@ class TestHimoxH05Purifier(
             [
                 {
                     "dps": TEMP_DPS,
-                    "name": "sensor_current_temperature",
+                    "name": "sensor_temperature",
                     "unit": UnitOfTemperature.CELSIUS,
                     "device_class": SensorDeviceClass.TEMPERATURE,
                     "state_class": STATE_CLASS_MEASUREMENT,
@@ -79,7 +79,7 @@ class TestHimoxH05Purifier(
                 "lock_child_lock",
                 "sensor_active_filter_life",
                 "select_timer",
-                "sensor_current_temperature",
+                "sensor_temperature",
             ]
         )
 

@@ -1,31 +1,47 @@
-name: Poolex Q-7 pool heatpump
+name: Pool heatpump
 products:
   - id: qhrpnqjhakrn3jvv
+    name: Poolex Qline Q-7
+    # unknown id: Poolsana InverPower
 primary_entity:
-  entity: water_heater
+  entity: climate
   icon: "mdi:pool-thermometer"
+  translation_key: pool_heatpump
   dps:
     - id: 1
       type: boolean
-      name: operation_mode
+      name: hvac_mode
       mapping:
         - dps_val: false
-          value: off
+          value: "off"
         - dps_val: true
-          value: heatpump
+          constraint: preset_mode
+          conditions:
+            - dps_val: Boost_Heat 
+              value: heat
+            - dps_val: Silent_Heat
+              value: heat
+            - dps_val: ECO_Heat
+              value: heat
+            - dps_val: Boost_Cool
+              value: cool
+            - dps_val: Silent_Cool
+              value: cool
+            - dps_val: ECO_Cool
+              value: cool
     - id: 2
       type: integer
       name: temperature
       range:
-        min: 5
-        max: 80
+        min: 20
+        max: 40
       mapping:
         - constraint: temperature_unit
           conditions:
             - dps_val: f
               range:
-                min: 41
-                max: 176
+                min: 68
+                max: 104
               value_redirect: temp_set_f
     - id: 3
       type: integer
@@ -35,6 +51,36 @@ primary_entity:
           conditions:
             - dps_val: f
               value_redirect: temp_current_f
+    - id: 4
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: Boost_Heat
+          value: quick_heat
+        - dps_val: Silent_Heat
+          value: quiet_heat
+        - dps_val: ECO_Heat
+          value: smart_heat
+        - dps_val: ECO_Cool
+          value: smart_cool
+        - dps_val: Silent_Cool
+          value: quiet_cool
+        - dps_val: Boost_Cool
+          value: quick_cool
+    - id: 11
+      type: string
+      name: hvac_action
+      mapping:
+        - dps_val: heating
+          value: heating
+        - dps_val: cooling
+          value: cooling
+        - constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: idle
     - id: 13
       type: string
       name: temperature_unit
@@ -47,8 +93,8 @@ primary_entity:
       type: integer
       name: temp_set_f
       range:
-        min: 41
-        max: 176
+        min: 68
+        max: 104
       hidden: true
       optional: true
     - id: 15
@@ -56,13 +102,66 @@ primary_entity:
       name: temp_current_f
       hidden: true
       optional: true
-    - id: 4
-      type: string
-      name: unknown_4
     - id: 21
       type: integer
       name: unknown_21
 secondary_entities:
+  - entity: water_heater
+    icon: "mdi:pool-thermometer"
+    deprecated: climate
+    category: config
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heatpump
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 5
+          max: 80
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                range:
+                  min: 41
+                  max: 176
+                value_redirect: temp_set_f
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_current_f
+      - id: 13
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 14
+        type: integer
+        name: temp_set_f
+        range:
+          min: 41
+          max: 176
+        hidden: true
+        optional: true
+      - id: 15
+        type: integer
+        name: temp_current_f
+        hidden: true
+        optional: true
   - entity: select
     name: Temperature unit
     icon: "mdi:temperature-celsius"

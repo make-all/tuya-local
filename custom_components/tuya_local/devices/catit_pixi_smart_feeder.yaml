@@ -1,4 +1,7 @@
-name: Catit Pixi Smart Feeder
+name: Pet feeder
+products:
+  - id: 8vwr6rfoaaxncjwj
+    name: Petoneer Nutri Mini
 primary_entity:
   entity: button
   name: Quick Feed
@@ -43,3 +46,29 @@ secondary_entities:
           min: 1
           max: 12
         optional: false
+  - entity: binary_sensor
+    name: Food shortage
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 14 
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 2
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Food blockage
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 14 
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 4
+            value: true
+          - value: false

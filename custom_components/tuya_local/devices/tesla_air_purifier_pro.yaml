@@ -62,9 +62,7 @@ secondary_entities:
         type: integer
         name: sensor
         unit: "%"
-        readonly: true
   - entity: sensor
-    name: Current temperature
     category: diagnostic
     class: temperature
     dps:
@@ -73,19 +71,15 @@ secondary_entities:
         name: sensor
         class: measurement
         unit: "°C"
-        readonly: true
   - entity: sensor
-    name: Current humidity
     category: diagnostic
     class: humidity
-    mode: box
     dps:
       - id: 13
         type: integer
         name: sensor
         class: measurement
         unit: "%"
-        readonly: true
   - entity: select
     name: Timer
     icon: "mdi:timer"
@@ -104,7 +98,6 @@ secondary_entities:
           - dps_val: "8h"
             value: "8 hours"
   - entity: sensor
-    name: PM2.5
     class: pm25
     category: diagnostic
     dps:
