@@ -443,7 +443,9 @@ class TuyaLocalDevice(object):
         now = time()
 
         pending_updates = self._get_pending_updates()
-        for key, value in properties.items():
+        # format properties in numeric order
+        sorted_properties = sorted(properties.items(), key=lambda x:int(x[0]))
+        for key, value in sorted_properties:
             pending_updates[key] = {
                 "value": value,
                 "updated_at": now,
