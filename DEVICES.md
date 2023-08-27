@@ -53,6 +53,7 @@
 - Tadiran Wind 65/3P
 - TroniTechnik Hellnar Klimagerät
 - Vivax Cool ACP-12CH35REWI
+- Woods Cortina portable air conditioner
 - Woods Milan portable air conditioner
 
 ### Pool heaters / heatpumps
@@ -128,6 +129,7 @@
 - Carro PN-04F02D fan with dimmable light
 - Chanfok ceiling fan with cool/warm white dimmable light
 - Deta fan controller
+- Djive ARC humidifying fan
 - Duux Whisper Flex pedestal fan
 - Fanco Eco Silent Deluxe ceiling fan with LED light
 - Goldair GCPF315 fan
@@ -466,6 +468,7 @@ port and password.
 - TH16 temperature and humidity sensor 
 - Tontine electric blanket
 - Universal remote control (supports sensors only)
+- Xiumii human presence radar
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)
 - Yinmik WF-3188 water quality monitor
 - ZN-2C09 9-in-1 air quality monitor
