@@ -6,6 +6,7 @@
 - Arlec 2200W and 2400W panel heaters
 - Atomi AT1632 ceramic heater
 - Betterlife BT1500 IR heater
+- Blumfeldt/Klarstein Cosmic Beam Smart 24 infrared radiant heater
 - BVF CP1 heater
 - Devola patio heater
 - Ecostrad Accent iQ heating panels
