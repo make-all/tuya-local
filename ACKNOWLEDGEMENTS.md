@@ -344,3 +344,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [Atirion](https://github.com/Atirion) for assisting with support for Nedis Door/Window sensors.
 - [allanak](https://github.com/allanak) for assisting with support for Ovlaim ceiling fans.
 - [nk00li](https://github.com/nk00li) for assisting with support for EMS hot water systems.
+- [andbuitra](https://github.com/andbuitra) for contributing support for Xiumii human presence mmWave radar sensors.
+- [jonpetersathan](https://github.com/jonpetersathan) for contributing support for Djive humidifying fans and Woods Cortina air conditioner.
+- [omahs](https://github.com/omahs) for contributing documentation improvements.
+- [pdecat](https://github.com/pdecat) for assisting with support for Blumfeldt Cosmic Beam radiant heaters.
