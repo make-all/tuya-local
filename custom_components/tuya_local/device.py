@@ -572,7 +572,7 @@ class TuyaLocalDevice(object):
         # sort pending updates according to their API identifier
         pending_updates_sorted = sorted(
             self._pending_updates.items(), key=lambda x: int(x[0])
-            )
+        )
         self._pending_updates = {
             key: value
             for key, value in pending_updates_sorted
