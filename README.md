@@ -147,7 +147,7 @@ the name to make it easier to distinguish them.
 #### name
 
 &nbsp;&nbsp;&nbsp;&nbsp;_(string) (Required)_ Any unique name for the
-device.  This will be used as the base for the entitiy names in Home
+device.  This will be used as the base for the entity names in Home
 Assistant.  Although Home Assistant allows you to change the name
 later, it will only change the name used in the UI, not the name of
 the entities.
@@ -234,7 +234,7 @@ behaviour, which you may need to compensate for.  From observation,
 GPPH heaters allow the temperature to reach 3 degrees higher than the
 set temperature before turning off, and 1 degree lower before turning
 on again.  Kogan Heaters on the other hand turn off when the
-temperature reaches 1 degree over the targetin LOW mode, and turn on
+temperature reaches 1 degree over the target in LOW mode, and turn on
 again 3 degrees below the target.  To make these heaters act the same
 in LOW power mode, you need to set the Kogan thermostat 2 degrees
 higher than the GPPH thermostat.  In HIGH power mode however, they
@@ -281,7 +281,7 @@ calculated in `(k/M/G/T)W*h` and will correspond to the consumed energy.
 ## Kogan Kettle gotchas
 
 Although these look like simple devices, their behaviour is not
-consistant so they are difficult to detect.  Sometimes they are
+consistent so they are difficult to detect.  Sometimes they are
 misdetected as a simple switch, other times they only output the
 temperature sensor so are not detected at all.
 
@@ -343,7 +343,7 @@ If your device connects via a hub (eg. battery powered water timers) you have to
 - Device id (uuid): this is the **hub's** device id
 - IP address or hostname: the **hub's** IP address or hostname
 - Local key: the **hub's** local key
-- Sub device id: the **acual device you want to control's** `node_id`. Note this `node_id` differs from the device id, you can find it with tinytuya as described below.
+- Sub device id: the **actual device you want to control's** `node_id`. Note this `node_id` differs from the device id, you can find it with tinytuya as described below.
 
 ## Finding device ids and local keys with tinytuya
 
@@ -382,6 +382,6 @@ In the `devices.json` file you will everything you need to add your device:
 
 ## Next steps
 
-1. This component is mosty unit-tested thanks to the upstream project, but there are a few more to complete. Feel free to use existing specs as inspiration and the Sonar Cloud analysis to see where the gaps are.
+1. This component is mostly unit-tested thanks to the upstream project, but there are a few more to complete. Feel free to use existing specs as inspiration and the Sonar Cloud analysis to see where the gaps are.
 2. Once unit tests are complete, the next task is to complete the Home Assistant quality checklist before considering submission to the HA team for inclusion in standard installations.
 3. Discovery seems possible with the new tinytuya library, though the steps to get a local key will most likely remain manual.  Discovery also returns a productKey, which might help make the device detection more reliable where different devices use the same dps mapping but different names for the presets for example.
