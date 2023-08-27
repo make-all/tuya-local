@@ -40,12 +40,12 @@ secondary_entities:
           - dps_val: "Pulsado"
             value: Pulsed
           - dps_val: "Retencao"
-            value: Retencion
+            value: Continuous
           - dps_val: "ONOFF"
             value: ON - OFF
   - entity: select
     category: config
-    name: Autoclose
+    name: Auto close
     icon: "mdi:door-closed"
     dps:
       - id: 103
@@ -58,7 +58,7 @@ secondary_entities:
             value: Disabled
   - entity: number
     category: config
-    name: During time
+    name: Duration time
     icon: "mdi:lock-clock"
     dps:
       - id: 107
