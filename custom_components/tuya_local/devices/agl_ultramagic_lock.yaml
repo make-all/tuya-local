@@ -3,54 +3,27 @@ products:
   - id: xrqkoapmq1rwjvms
     name: Ultra Magic
 primary_entity:
-  entity: button
-  name: Open
-  icon: mdi:lock-open-outline
+  entity: cover
+  class: garage
   dps:
     - id: 118
       type: boolean
-      name: button
+      name: control
       optional: true
+      mapping:
+        - dps_val: true
+          value: open
+        - dps_val: false
+          value: close
+    - id: 3
+      type: boolean
+      name: action
+      mapping:
+        - dps_val: false
+          value: opened
+        - dps_val: true
+          value: closed
 secondary_entities:
-  - entity: button
-    name: Close
-    icon: mdi:lock-outline
-    dps:
-      - id: 119
-        type: boolean
-        name: button
-        optional: true
-
-
-## Sensors
-  - entity: binary_sensor
-    name: Door Contact
-    class: door
-    dps:
-      - id: 3
-        type: boolean
-        name: sensor
-
-        mapping:
-          - dps_val: true
-            value: false
-          - dps_val: false
-            value: true
-  - entity: binary_sensor
-    name: Gate Contact
-    class: lock
-    dps:
-      - id: 117
-        type: string
-        name: sensor
-
-        mapping:
-          - dps_val: "1"
-            value: true
-          - dps_val: "2"
-            value: false
-
-## Configuration Options ##
   - entity: select
     category: config
     name: Beep
