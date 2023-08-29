@@ -2,6 +2,8 @@ name: Quad powerstrip
 products:
   - id: l5gnaxuawkjfquqo
     name: Kogan KASPS10A3P3UA 3+USB
+  - id: key5nck4tavy43jp
+    name: Pearl Xystec NX-4986-919 4xUSB
 primary_entity:
   entity: switch
   name: Outlet 1
@@ -106,6 +108,7 @@ secondary_entities:
         type: integer
         class: measurement
         force: true
+        optional: true
         unit: mA
       - id: 23
         type: integer
@@ -120,6 +123,7 @@ secondary_entities:
         type: integer
         class: measurement
         force: true
+        optional: true
         unit: W
         mapping:
           - scale: 10
@@ -136,6 +140,7 @@ secondary_entities:
         type: integer
         class: measurement
         force: true
+        optional: true
         unit: V
         mapping:
           - scale: 10
