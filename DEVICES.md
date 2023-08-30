@@ -385,6 +385,7 @@ of device.
 
 ### Vacuum Cleaners
 
+- Abir X8 vacuum cleaner
 - Kabum Smart 500 vacuum cleaner
 - Kabum Smart 700 vacuum cleaner (also sold as Liectroux XR500 and maybe others)
 - Kogan LX10 vacuum cleaner with mop

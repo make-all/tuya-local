@@ -348,3 +348,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [jonpetersathan](https://github.com/jonpetersathan) for contributing support for Djive humidifying fans and Woods Cortina air conditioner.
 - [omahs](https://github.com/omahs) for contributing documentation improvements.
 - [pdecat](https://github.com/pdecat) for assisting with support for Blumfeldt Cosmic Beam radiant heaters.
+- [andr2000](https://github.com/andr2000) for assisting with support for Abir X8 vacuums.
