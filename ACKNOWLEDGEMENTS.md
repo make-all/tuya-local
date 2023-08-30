@@ -347,5 +347,6 @@ Further device support has been made with the assistance of users.  Please consi
 - [andbuitra](https://github.com/andbuitra) for contributing support for Xiumii human presence mmWave radar sensors.
 - [jonpetersathan](https://github.com/jonpetersathan) for contributing support for Djive humidifying fans and Woods Cortina air conditioner.
 - [omahs](https://github.com/omahs) for contributing documentation improvements.
-- [pdecat](https://github.com/pdecat) for assisting with support for Blumfeldt Cosmic Beam radiant heaters.
+- [pdecat](https://github.com/pdecat) for assisting with support for Blumfeldt Cosmic Beam radiant heaters and Pearl Xystec USB hub (quad_power_timer).
 - [andr2000](https://github.com/andr2000) for assisting with support for Abir X8 vacuums.
+
