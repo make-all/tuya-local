@@ -42,6 +42,7 @@ primary_entity:
               range:
                 min: 60
                 max: 86
+      optional: true
     - id: 3
       name: current_temperature
       type: integer
@@ -80,7 +81,7 @@ primary_entity:
       name: fault_code2
       type: bitfield
       optional: true
-secondary_entitites:
+secondary_entities:
   - entity: select
     name: temperature unit
     icon: "mdi:temperature-celsius"
