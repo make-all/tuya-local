@@ -1,0 +1,72 @@
+name: Carro smart ceiling fan light
+products:
+  - id: pwn8rplbjtokxaec
+    name: Carro (Qizheng) Fan Light
+primary_entity:
+  entity: fan
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 2
+      type: string
+      name: mode
+      mapping:
+        - dps_val: sleep
+          value: sleep
+        - dps_val: normal
+          value: normal
+        - dps_val: nature
+          value: nature
+    - id: 3
+      type: integer
+      name: speed
+      range:
+        min: 1
+        max: 10
+      mapping:
+        - step: 1
+    - id: 103
+      type: string
+      name: direction
+      mapping:
+        - dps_val: forward
+          value: forward
+        - dps_val: reverse
+          value: reverse
+    - id: countdown
+      type: integer
+      range:
+        min: 0
+        max: 8
+      mapping:
+        - step: 1
+secondary_entities:
+  - entity: light
+    name: Warm ceiling light
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
+      - id: 10
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - step: 1
+  - entity: light
+    name: White ceiling light
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+      - id: 102
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - step: 1
