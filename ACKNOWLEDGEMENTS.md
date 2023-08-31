@@ -349,4 +349,6 @@ Further device support has been made with the assistance of users.  Please consi
 - [omahs](https://github.com/omahs) for contributing documentation improvements.
 - [pdecat](https://github.com/pdecat) for assisting with support for Blumfeldt Cosmic Beam radiant heaters and Pearl Xystec USB hub (quad_power_timer).
 - [andr2000](https://github.com/andr2000) for assisting with support for Abir X8 vacuums.
+- [MaximeNagel](https://github.com/MaximeNagel) for assisting with support for ZG-205W mmWave presence sensors.
+
 
