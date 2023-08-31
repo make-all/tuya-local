@@ -350,5 +350,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [pdecat](https://github.com/pdecat) for assisting with support for Blumfeldt Cosmic Beam radiant heaters and Pearl Xystec USB hub (quad_power_timer).
 - [andr2000](https://github.com/andr2000) for assisting with support for Abir X8 vacuums.
 - [MaximeNagel](https://github.com/MaximeNagel) for assisting with support for ZG-205W mmWave presence sensors.
-
-
+- [Ilyapempel](https://github.com/Ilyapempel) for assisting with support for Momland/Loycco sound machine nightlights, and Kojima motion sensor RGBCW nightlight.

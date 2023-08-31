@@ -346,6 +346,7 @@ of device.
 - Galaxy Projector
 - HDMI sync light
 - iHD001 LED controller
+- Loycco sound machine with nightlight (also sold as Momland nightlight with white noise)
 - Loginovo TV sync backlight
 - Lytmi Fantasy/Neo 3 HDMI sync backlight
 - Marpou RGBCW ceiling light
