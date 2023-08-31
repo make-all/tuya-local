@@ -129,6 +129,7 @@
 - Aspen ASP 200 fan
 - Atomi 52 inch ceiling fan
 - Carro PN-04F02D fan with dimmable light
+- Carro DC 10 speed ceiling fan with light
 - Chanfok ceiling fan with cool/warm white dimmable light
 - Deta fan controller
 - Djive ARC humidifying fan
@@ -401,7 +402,8 @@ of device.
 - Rinkmo D2 vacuum cleaner
 
 ### Lawnmowers
-
+
+
 - MoeBot S-series mowers (may require protocol version set manually to 3.4)
 
 ### Locks
@@ -470,7 +472,7 @@ port and password.
 - SD123 HPR01 human presence radar
 - SH07-8 smart sprinkler controller
 - TH08 temperature and humidity sensor
-- TH16 temperature and humidity sensor 
+- TH16 temperature and humidity sensor
 - Tontine electric blanket
 - Universal remote control (supports sensors only)
 - Xiumii human presence radar
