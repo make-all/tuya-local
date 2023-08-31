@@ -1,0 +1,140 @@
+name: Air conditioner
+products:
+  - id: 32888820e868e76dda37
+    name: Royal Sovereign RSAI-12SA mini split AC
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+          icon: "mdi:hvac-off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: auto
+              icon: mdi:thermostat-auto
+              value: heat_cool
+            - dps_val: cold
+              icon: "mdi:snowflake"
+              value: cool
+            - dps_val: wind
+              icon: "mdi:fan"
+              value: fan_only
+            - dps_val: wet
+              icon: "mdi:water"
+              value: dry
+            - dps_val: hot
+              value: heat
+              icon: "mdi:heat-wave"
+    - id: 2
+      name: temperature
+      type: integer
+      range:
+        min: 16
+        max: 31
+    - id: 3
+      name: current_temperature
+      type: integer
+    - id: 4
+      name: mode
+      type: string
+      hidden: true
+    - id: 5
+      name: fan_mode
+      type: string
+      mapping:
+        - dps_val: 0
+          value: auto
+        - dps_val: 3
+          value: low
+        - dps_val: 2
+          value: medium
+        - dps_val: 1
+          value: high
+    - id: 8
+      name: preset_mode_eco
+      type: boolean
+      hidden: true
+    - id: 20
+      name: fault_code
+      type: bitfield
+    - id: 102
+      name: preset_mode
+      type: boolean
+      mapping:
+        - dps_val: true
+          value: boost
+        - dps_val: false
+          constraint: preset_mode_eco
+          conditions:
+            - dps_val: true
+              value: eco
+            - dps_val: false
+              value: comfort
+    - id: 104
+      name: swing_mode
+      type: boolean
+      mapping:
+        - dps_val: true
+          constraint: swing_horiz
+          conditions:
+            - dps_val: true
+              value: both
+            - dps_val: false
+              value: vertical
+        - dps_val: false
+          constraint: swing_horiz
+          conditions:
+            - dps_val: true
+              value: horizontal
+            - dps_val: false
+              value: "off"
+    - id: 105
+      name: swing_horiz
+      type: boolean
+      hidden: true
+    - id: 103
+      name: temperature_unit
+      type: boolean
+      mapping:
+        - dps_val: true
+          value: "F"
+        - dps_val: false
+          value: "C"
+secondary_entities:
+  - entity: select
+    name: Temperature unit
+    icon: "mdi:temperature-celsius"
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: true 
+            value: Fahrenheit
+          - dps_val: false
+            value: Celsius
+  - entity: switch
+    name: Sleep mode
+    icon: "mdi:power-sleep"
+    dps:
+      - id: 101
+        name: switch
+        type: boolean
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 20
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true

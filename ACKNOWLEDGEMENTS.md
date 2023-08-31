@@ -351,3 +351,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [andr2000](https://github.com/andr2000) for assisting with support for Abir X8 vacuums.
 - [MaximeNagel](https://github.com/MaximeNagel) for assisting with support for ZG-205W mmWave presence sensors.
 - [Ilyapempel](https://github.com/Ilyapempel) for assisting with support for Momland/Loycco sound machine nightlights, and Kojima motion sensor RGBCW nightlight.
+- [tatopotatov](https://github.com/tatopotatov) for assisting with support for Royal Sovereign mini split air conditioners.
