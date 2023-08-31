@@ -1,4 +1,4 @@
-name: ZG-205W mmWave presence sensor
+name: mmWave presence sensor
 products:
   - id: qbapy7r4deyp6zbx
     name: ZG-205W
@@ -15,15 +15,15 @@ primary_entity:
         - dps_val: none
           value: false
 secondary_entities:
-  - entity: switch
-    name: Led Indicator
+  - entity: light
+    name: Led indicator
     category: config
     dps:
       - id: 103
         type: boolean
         name: switch
   - entity: number
-    name: Sensitivity
+    name: Motion sensitivity
     category: config
     icon: mdi:motion-sensor
     dps:
@@ -45,7 +45,7 @@ secondary_entities:
           min: 0
           max: 10
   - entity: number
-    name: Small motion detection sensitivity
+    name: Small motion sensitivity
     category: config
     icon: mdi:motion-sensor
     dps:
@@ -101,7 +101,7 @@ secondary_entities:
           - scale: 100
             step: 10
   - entity: select
-    name: Alarm Volume
+    name: Alarm volume
     class: enum
     icon: mdi:volume-high
     category: config
@@ -119,7 +119,7 @@ secondary_entities:
           - dps_val: mute
             value: Mute
   - entity: select
-    name: Alarm Mode
+    name: Alarm mode
     class: enum
     icon: mdi:shield-home
     category: config
@@ -152,7 +152,7 @@ secondary_entities:
           - dps_val: none
             value: None
   - entity: number
-    name: Presence Keep Time
+    name: Exit delay
     category: config
     icon: mdi:timer-sand
     dps:
@@ -165,9 +165,8 @@ secondary_entities:
           max: 100
         mapping:
           - scale: 10
-            step: 1
   - entity: number
-    name: Alarm Time
+    name: Alarm duration
     category: config
     icon: mdi:timer
     dps:
@@ -178,9 +177,6 @@ secondary_entities:
         range:
           min: 1
           max: 30
-        mapping:
-          - scale: 1
-            step: 1
   - entity: sensor
     class: illuminance
     dps:
