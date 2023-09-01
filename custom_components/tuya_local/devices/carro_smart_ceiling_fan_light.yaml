@@ -4,6 +4,7 @@ products:
     name: Carro (Qizheng) Fan Light
 primary_entity:
   entity: fan
+  name: Ceiling fan
   dps:
     - id: 1
       type: boolean
@@ -22,10 +23,11 @@ primary_entity:
       type: integer
       name: speed
       range:
-        min: 10
-        max: 100
+        min: 1
+        max: 10
       mapping:
-        - step: 10
+        - step: 1
+        - scale: .1
     - id: 103
       type: string
       name: direction
@@ -66,6 +68,7 @@ secondary_entities:
           max: 1000
         mapping:
           - step: 1
+          - scale: 3.92
   - entity: light
     name: White ceiling light
     dps:
@@ -80,3 +83,4 @@ secondary_entities:
           max: 1000
         mapping:
           - step: 1
+          - scale: 3.92
