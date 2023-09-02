@@ -353,3 +353,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [Ilyapempel](https://github.com/Ilyapempel) for assisting with support for Momland/Loycco sound machine nightlights, and Kojima motion sensor RGBCW nightlight.
 - [tatopotatov](https://github.com/tatopotatov) for assisting with support for Royal Sovereign mini split air conditioners.
 - [whit-tj](https://github.com/whit-tj) for contributing support for Carro ceiling fan with warm and cool lights.
+- [k-welker](https://github.com/k-welker) for contributing support for Casafan ECO Neo III ceiling fan with light.

@@ -130,6 +130,7 @@
 - Atomi 52 inch ceiling fan
 - Carro ceiling fan with cool and warm white lights
 - Carro PN-04F02D fan with dimmable light
+- Casafan ECO Neo III ceiling fan with light
 - Chanfok ceiling fan with cool/warm white dimmable light
 - Deta fan controller
 - Djive ARC humidifying fan
