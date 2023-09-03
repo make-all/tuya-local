@@ -355,3 +355,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [whit-tj](https://github.com/whit-tj) for contributing support for Carro ceiling fan with warm and cool lights.
 - [k-welker](https://github.com/k-welker) for contributing support for Casafan ECO Neo III ceiling fan with light.
 - [muneeb1990](https://github.com/muneeb1990) for contributing support for Kogan Sleep Aids.
+- [felipejfc](https://github.com/felipejfc) for contributing support for Loginovo zigbee mmwave presence sensors.

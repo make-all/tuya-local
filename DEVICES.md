@@ -502,6 +502,7 @@ port and password.
 
 ### Devices supported via Zigbee hubs
 
+- Loginovo mmWave human presence sensor
 - LoraTap SC500ZB-V2 curtain controller
 - MultiIR MIR-TE100-TY temperature and humidity sensor
 - Nedis ZBSD10WT door/window sensor
