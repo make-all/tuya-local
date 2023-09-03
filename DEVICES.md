@@ -366,6 +366,8 @@ of device.
 - Simple garage door
 - Simple blind controller (two variants - `simple_blinds` lets the position be set, but does not trust it to accurately reflect the current position always, `position_blinds` does trust the position to accurately reflect the current position)
 - Abalon BCM700D curtain motor (likely to work with other brands)
+- AGL Ultracontato r2 door controller
+- AGL Ultra Magic gate opener
 - Avatto curtain and light switch
 - Avatto curtain switch
 - Avatto roller blind controller
@@ -408,7 +410,6 @@ of device.
 
 ### Locks
 
-- AGL Ultramagic smart lock
 - Lucking HF06 smart lock
 - Orion Grid Connect smart lock
 
