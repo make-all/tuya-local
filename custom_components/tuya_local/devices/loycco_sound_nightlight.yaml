@@ -1,6 +1,6 @@
 name: Sound machine nightlight
 products:
-  - id:
+  - id: woqiobw0jfafgmar
     name: Momland nightlight with white noise
 primary_entity:
   entity: light
@@ -102,73 +102,73 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: "1"
-            value: "Track 1"
+            value: White noise
           - dps_val: "2"
-            value: "Track 2"
+            value: Pink noise
           - dps_val: "3"
-            value: "Track 3"
+            value: Brown noise
           - dps_val: "4"
-            value: "Track 4"
+            value: Wall fan
           - dps_val: "5"
-            value: "Track 5"
+            value: Fan
           - dps_val: "6"
-            value: "Track 6"
+            value: Floor fan
           - dps_val: "7"
-            value: "Track 7"
+            value: Wind
           - dps_val: "8"
-            value: "Track 8"
+            value: Rain on roof
           - dps_val: "9"
-            value: "Track 9"
+            value: Rain
           - dps_val: "10"
-            value: "Track 10"
+            value: Thunderstorm
           - dps_val: "11"
-            value: "Track 11"
+            value: Light rain
           - dps_val: "12"
-            value: "Track 12"
+            value: Ocean wave
           - dps_val: "13"
-            value: "Track 13"
+            value: Water stream
           - dps_val: "14"
-            value: "Track 14"
+            value: Birds
           - dps_val: "15"
-            value: "Track 15"
+            value: Crickets
           - dps_val: "16"
-            value: "Track 16"
+            value: Frog
           - dps_val: "17"
-            value: "Track 17"
+            value: Fireplace
           - dps_val: "18"
-            value: "Track 18"
+            value: Campfire
           - dps_val: "19"
-            value: "Track 19"
+            value: Womb
           - dps_val: "20"
-            value: "Track 20"
+            value: Shushing
           - dps_val: "21"
-            value: "Track 21"
+            value: Cafe
           - dps_val: "22"
-            value: "Track 22"
+            value: Maracas
           - dps_val: "23"
-            value: "Track 23"
+            value: Clock
           - dps_val: "24"
-            value: "Track 24"
+            value: Buddha
           - dps_val: "25"
-            value: "Track 25"
+            value: Wind chimes
           - dps_val: "26"
-            value: "Track 26"
+            value: Steamship
           - dps_val: "27"
-            value: "Track 27"
+            value: Aircraft
           - dps_val: "28"
-            value: "Track 28"
+            value: Train
           - dps_val: "29"
-            value: "Track 29"
+            value: Lullaby
           - dps_val: "30"
-            value: "Track 30"
+            value: Music box
           - dps_val: "31"
-            value: "Track 31"
+            value: Twinkle little star
           - dps_val: "32"
-            value: "Track 32"
+            value: Good morning
           - dps_val: "33"
-            value: "Track 33"
+            value: Fantasy
           - dps_val: "34"
-            value: "Track 34"
+            value: Joyful
       - id: 20
         name: duration
         type: integer
@@ -176,14 +176,9 @@ secondary_entities:
         range:
           min: 0
           max: 90
-  - entity: select
-    name: Sound type
-    icon: "mdi:music-box-multiple"
-    category: config
-    dps:
       - id: 11
         type: string
-        name: option
+        name: sound_group
         optional: true
         mapping:
           - dps_val: ringtone_1
@@ -194,9 +189,6 @@ secondary_entities:
             value: Object
           - dps_val: ringtone_4
             value: Sleep
-          - dps_val: null
-            value: Default
-            hidden: true
   - entity: select
     name: Scene
     icon: "mdi:palette"
