@@ -1,7 +1,7 @@
-name: AGL Ultra Magic Lock
+name: Gate lock
 products:
   - id: xrqkoapmq1rwjvms
-    name: Ultra Magic
+    name: AGL Ultra Magic
 primary_entity:
   entity: cover
   class: gate
@@ -32,7 +32,6 @@ secondary_entities:
       - id: 103
         name: option
         type: string
-
         mapping:
           - dps_val: Silensioso
             value: Mute
@@ -44,40 +43,36 @@ secondary_entities:
             value: High
   - entity: switch
     category: config
-    name: Allow Intercom Unlock
+    name: Allow intercom unlock
     icon: "mdi:doorbell"
     dps:
       - id: 105
         name: switch
         type: boolean
-
   - entity: switch
     category: config
-    name: Allow Inside Button Unlock
+    name: Allow inside button unlock
     icon: "mdi:gesture-tap-button"
     dps:
       - id: 104
         name: switch
         type: boolean
-
   - entity: switch
     category: config
-    name: Allow IC Card Unlock
+    name: Allow IC card unlock
     icon: "mdi:nfc-variant"
     dps:
       - id: 109
         name: switch
         type: boolean
-
   - entity: switch
     category: config
-    name: Enable Interlock
+    name: Enable interlock
     icon: "mdi:lock-pattern"
     dps:
       - id: 108
         name: switch
         type: boolean
-
   - entity: switch
     category: config
     name: Auto lock after closed
@@ -86,7 +81,6 @@ secondary_entities:
       - id: 107
         name: switch
         type: boolean
-
   - entity: number
     category: config
     name: Lock timeout
@@ -95,7 +89,6 @@ secondary_entities:
       - id: 102
         name: value
         type: integer
-
         range:
           min: 1
           max: 5
@@ -103,7 +96,7 @@ secondary_entities:
   - entity: number
     category: config
     icon: "mdi:clock-end"
-    name: Auto Lock timeout
+    name: Auto lock timeout
     dps:
       - id: 115
         name: value
@@ -115,7 +108,7 @@ secondary_entities:
   - entity: number
     category: config
     icon: "mdi:alarm"
-    name: Open Alarm time
+    name: Open alarm time
     mode: box
     dps:
       - id: 106
