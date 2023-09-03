@@ -1,4 +1,4 @@
-name: AGL ultracontato r2
+name: AGL Ultracontato R2
 primary_entity:
   entity: cover
   class: door
@@ -25,9 +25,9 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: "NA"
-            value: Normally Open
+            value: Normally open
           - dps_val: "NF"
-            value: Normally Closed
+            value: Normally closed
   - entity: select
     category: config
     name: Pulse type
@@ -42,7 +42,7 @@ secondary_entities:
           - dps_val: "Retencao"
             value: Continuous
           - dps_val: "ONOFF"
-            value: ON - OFF
+            value: On - Off
   - entity: select
     category: config
     name: Auto close
@@ -58,7 +58,7 @@ secondary_entities:
             value: Disabled
   - entity: number
     category: config
-    name: Duration time
+    name: Unlock duration
     icon: "mdi:lock-clock"
     dps:
       - id: 107
@@ -69,14 +69,14 @@ secondary_entities:
           max: 65
         unit: s
   - entity: binary_sensor
-    name: Door Opened
+    name: Door opened
     category: diagnostic
     dps:
       - id: 111
         type: boolean
         name: sensor
   - entity: binary_sensor
-    name: Door Closed
+    name: Door closed
     category: diagnostic
     dps:
       - id: 112
