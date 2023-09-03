@@ -48,6 +48,7 @@
 - Monzana Klimaanlage air conditioner
 - Nedis ACMB1WT12 portable air conditioner
 - Rotenso Roni R35WI
+- Royal Sovereign RSAI-12SA mini split air conditioner
 - Sencor MT7048C air conditioner
 - Sendo air conditioner
 - Star-Light air conditioner (also confirmed to work with Polar branded devices)
@@ -127,7 +128,9 @@
 - Arlec 6 speed floor fan
 - Aspen ASP 200 fan
 - Atomi 52 inch ceiling fan
+- Carro ceiling fan with cool and warm white lights
 - Carro PN-04F02D fan with dimmable light
+- Casafan ECO Neo III ceiling fan with light
 - Chanfok ceiling fan with cool/warm white dimmable light
 - Deta fan controller
 - Djive ARC humidifying fan
@@ -321,7 +324,7 @@ of device.
   _confirmed working as a simple switch and timer with Kashimura KJ-173_
 - Generic double switch with timers (confirmed with Living dual switch and another v2 variant with Avatto dual switch)
 - Generic triple and quad switches (confirmed with Songam wall switches)
-- Generic triple switch with timers.
+- Generic triple and quad switches with timers (confirmed with Pearl Xystec USB hub).
 - Simple switch - a switch only, can be a fallback for many other unsupported devices, to allow just power to be switched on/off.
 - Simple switch with timer - a single switch and timer, will probably work for a lot of smart switches that are not covered by the more advanced configs above.
 - Simple switch with timer v2 - the above with timer moved from dp 11 to 9, confirmed with a Nexxt 220V smart switch.
@@ -346,6 +349,8 @@ of device.
 - Galaxy Projector
 - HDMI sync light
 - iHD001 LED controller
+- Kojima motion sensor RGBCW nightlight
+- Loycco sound machine with nightlight (also sold as Momland nightlight with white noise)
 - Loginovo TV sync backlight
 - Lytmi Fantasy/Neo 3 HDMI sync backlight
 - Marpou RGBCW ceiling light
@@ -385,6 +390,7 @@ of device.
 
 ### Vacuum Cleaners
 
+- Abir X8 vacuum cleaner
 - Kabum Smart 500 vacuum cleaner
 - Kabum Smart 700 vacuum cleaner (also sold as Liectroux XR500 and maybe others)
 - Kogan LX10 vacuum cleaner with mop
@@ -453,6 +459,7 @@ port and password.
 - Inkbird PTH-9CW air quality monitor
 - KKMoon 7in1 air quality monitor
 - Kogan bidet toilet seat
+- Kogan KAWHTNOSLPA white noise sleep aid
 - Konlen/Rockson WF96L water level controller
 - Mirabella Genio motion sensor
 - Nedis pet feeder
@@ -472,6 +479,7 @@ port and password.
 - Xiumii human presence radar
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)
 - Yinmik WF-3188 water quality monitor
+- Zecamin ZG-205W mmWave human presence sensor
 - ZN-2C09 9-in-1 air quality monitor
 - ZX-GS21 gas leak alarm monitor
 - ZY-M100-WiFi mmWave human presence sensor

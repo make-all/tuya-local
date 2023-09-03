@@ -1,0 +1,77 @@
+name: Ceiling fan and light
+products:
+  - id: qx9ovwpe9isccpb6
+    name: Casafan ECO Neo III
+primary_entity:
+  entity: fan
+  translation_key: fan_with_presets
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 2
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: nature_off
+          value: normal
+        - dps_val: nature_Low
+          value: nature
+        - dps_val: nature_Hi
+          value: strong
+    - id: 3
+      type: integer
+      name: speed
+      range:
+        min: 1
+        max: 6
+      mapping:
+        - scale: 0.06
+    - id: 8
+      type: string
+      name: direction
+secondary_entities:
+  - entity: light
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+      - id: 16
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 100
+        mapping:
+          - scale: 0.392
+      - id: 17
+        # 17 is listed as color_temp, and reported by the device, but light is fixed 3000K light
+        name: reserved_color_temp
+        type: integer
+        range:
+          min: 0
+          max: 100
+  - entity: select
+    name: Timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 22
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: "Off"
+          - dps_val: "1h"
+            value: "1 hour"
+          - dps_val: "2h"
+            value: "2 hours"
+          - dps_val: "3h"
+            value: "3 hours"
+          - dps_val: "4h"
+            value: "4 hours"
+          - dps_val: "5h"
+            value: "5 hours"
+          - dps_val: "6h"
+            value: "6 hours"
+            

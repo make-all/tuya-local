@@ -347,4 +347,11 @@ Further device support has been made with the assistance of users.  Please consi
 - [andbuitra](https://github.com/andbuitra) for contributing support for Xiumii human presence mmWave radar sensors.
 - [jonpetersathan](https://github.com/jonpetersathan) for contributing support for Djive humidifying fans and Woods Cortina air conditioner.
 - [omahs](https://github.com/omahs) for contributing documentation improvements.
-- [pdecat](https://github.com/pdecat) for assisting with support for Blumfeldt Cosmic Beam radiant heaters.
+- [pdecat](https://github.com/pdecat) for assisting with support for Blumfeldt Cosmic Beam radiant heaters and Pearl Xystec USB hub (quad_power_timer).
+- [andr2000](https://github.com/andr2000) for assisting with support for Abir X8 vacuums.
+- [MaximeNagel](https://github.com/MaximeNagel) for assisting with support for ZG-205W mmWave presence sensors.
+- [Ilyapempel](https://github.com/Ilyapempel) for assisting with support for Momland/Loycco sound machine nightlights, and Kojima motion sensor RGBCW nightlight.
+- [tatopotatov](https://github.com/tatopotatov) for assisting with support for Royal Sovereign mini split air conditioners.
+- [whit-tj](https://github.com/whit-tj) for contributing support for Carro ceiling fan with warm and cool lights.
+- [k-welker](https://github.com/k-welker) for contributing support for Casafan ECO Neo III ceiling fan with light.
+- [muneeb1990](https://github.com/muneeb1990) for contributing support for Kogan Sleep Aids.
