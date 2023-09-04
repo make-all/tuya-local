@@ -494,7 +494,7 @@ port and password.
 - Orion DL021HA lock
 - PT216/PT19DB-2 temperature and humidity sensor
 - Smart Ape solar garden light
-- Generic water timers (confirmed with Johgee and Diivoo branded devices)
+- Generic water timers (confirmed with Johgee, Diivoo and Royal Gardineer branded devices)
 
 ### Devices supported via IR hubs
 
