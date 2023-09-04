@@ -6,6 +6,7 @@
 - Arlec 2200W and 2400W panel heaters
 - Atomi AT1632 ceramic heater
 - Betterlife BT1500 IR heater
+- Blumfeldt/Klarstein Cosmic Beam Smart 24 infrared radiant heater
 - BVF CP1 heater
 - Devola patio heater
 - Ecostrad Accent iQ heating panels
@@ -47,12 +48,14 @@
 - Monzana Klimaanlage air conditioner
 - Nedis ACMB1WT12 portable air conditioner
 - Rotenso Roni R35WI
+- Royal Sovereign RSAI-12SA mini split air conditioner
 - Sencor MT7048C air conditioner
 - Sendo air conditioner
 - Star-Light air conditioner (also confirmed to work with Polar branded devices)
 - Tadiran Wind 65/3P
 - TroniTechnik Hellnar Klimagerät
 - Vivax Cool ACP-12CH35REWI
+- Woods Cortina portable air conditioner
 - Woods Milan portable air conditioner
 
 ### Pool heaters / heatpumps
@@ -75,6 +78,7 @@
 ### Water heaters
 
 - Aquatech Rapid/X6 heat pump water heaters
+- EMS Thermal 200L domestic heat pump hot water system
 - Hydrotherm Dynamic/X8 heat pump hot water systems
 - ITS-4.5HD super water heatpump
 - Thermex IF series V pro hot water systems
@@ -124,9 +128,12 @@
 - Arlec 6 speed floor fan
 - Aspen ASP 200 fan
 - Atomi 52 inch ceiling fan
+- Carro ceiling fan with cool and warm white lights
 - Carro PN-04F02D fan with dimmable light
+- Casafan ECO Neo III ceiling fan with light
 - Chanfok ceiling fan with cool/warm white dimmable light
 - Deta fan controller
+- Djive ARC humidifying fan
 - Duux Whisper Flex pedestal fan
 - Fanco Eco Silent Deluxe ceiling fan with LED light
 - Goldair GCPF315 fan
@@ -135,6 +142,7 @@
 - Ledkia fan and light controller
 - Lexy F501 fan
 - Mantra ceiling fan with light
+- Ovlaim ceiling fan with cool/warm white dimmable light
 - Royal Clima RCB 150 ventilation system
 - Skyfan DC fan
 - Skyfan DC fan with light
@@ -316,7 +324,7 @@ of device.
   _confirmed working as a simple switch and timer with Kashimura KJ-173_
 - Generic double switch with timers (confirmed with Living dual switch and another v2 variant with Avatto dual switch)
 - Generic triple and quad switches (confirmed with Songam wall switches)
-- Generic triple switch with timers.
+- Generic triple and quad switches with timers (confirmed with Pearl Xystec USB hub).
 - Simple switch - a switch only, can be a fallback for many other unsupported devices, to allow just power to be switched on/off.
 - Simple switch with timer - a single switch and timer, will probably work for a lot of smart switches that are not covered by the more advanced configs above.
 - Simple switch with timer v2 - the above with timer moved from dp 11 to 9, confirmed with a Nexxt 220V smart switch.
@@ -341,6 +349,8 @@ of device.
 - Galaxy Projector
 - HDMI sync light
 - iHD001 LED controller
+- Kojima motion sensor RGBCW nightlight
+- Loycco sound machine with nightlight (also sold as Momland nightlight with white noise)
 - Loginovo TV sync backlight
 - Lytmi Fantasy/Neo 3 HDMI sync backlight
 - Marpou RGBCW ceiling light
@@ -356,6 +366,8 @@ of device.
 - Simple garage door
 - Simple blind controller (two variants - `simple_blinds` lets the position be set, but does not trust it to accurately reflect the current position always, `position_blinds` does trust the position to accurately reflect the current position)
 - Abalon BCM700D curtain motor (likely to work with other brands)
+- AGL Ultracontato r2 door controller
+- AGL Ultra Magic gate opener
 - Avatto curtain and light switch
 - Avatto curtain switch
 - Avatto roller blind controller
@@ -380,6 +392,7 @@ of device.
 
 ### Vacuum Cleaners
 
+- Abir X8 vacuum cleaner
 - Kabum Smart 500 vacuum cleaner
 - Kabum Smart 700 vacuum cleaner (also sold as Liectroux XR500 and maybe others)
 - Kogan LX10 vacuum cleaner with mop
@@ -397,7 +410,6 @@ of device.
 
 ### Locks
 
-- AGL Ultramagic smart lock
 - Lucking HF06 smart lock
 - Orion Grid Connect smart lock
 
@@ -448,6 +460,7 @@ port and password.
 - Inkbird PTH-9CW air quality monitor
 - KKMoon 7in1 air quality monitor
 - Kogan bidet toilet seat
+- Kogan KAWHTNOSLPA white noise sleep aid
 - Konlen/Rockson WF96L water level controller
 - Mirabella Genio motion sensor
 - Nedis pet feeder
@@ -464,8 +477,10 @@ port and password.
 - TH16 temperature and humidity sensor 
 - Tontine electric blanket
 - Universal remote control (supports sensors only)
+- Xiumii human presence radar
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)
 - Yinmik WF-3188 water quality monitor
+- Zecamin ZG-205W mmWave human presence sensor
 - ZN-2C09 9-in-1 air quality monitor
 - ZX-GS21 gas leak alarm monitor
 - ZY-M100-WiFi mmWave human presence sensor
@@ -488,10 +503,12 @@ port and password.
 
 ### Devices supported via Zigbee hubs
 
+- Loginovo mmWave human presence sensor
 - LoraTap SC500ZB-V2 curtain controller
 - MultiIR MIR-TE100-TY temperature and humidity sensor
 - Nedis ZBSD10WT door/window sensor
 - Nedis ZBSC10WT temperature and humidity sensor
+- Temperature and humidity sensor with alarm feature
 - ZTH08ZTU temperature and humidity sensor
 
 NOTE: this project does not intend to expand the scope to support non-Tuya

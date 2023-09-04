@@ -1,0 +1,100 @@
+name: Presence sensor
+products:
+  - id: 4ops1avp7zdwhyqu
+    name: Xiumii Smart Human Presence Sensor
+
+primary_entity:
+  entity: binary_sensor
+  class: occupancy
+  dps:
+    - id: 1
+      type: string
+      name: sensor
+      mapping:
+        - dps_val: peaceful
+          value: true
+        - dps_val: none
+          value: false
+
+secondary_entities:
+  - entity: number
+    name: Range
+    class: distance
+    dps:
+      - id: 4
+        type: integer
+        name: value
+        unit: cm
+        range:
+          min: 75
+          max: 600
+        mapping:
+          - step: 75
+  
+  - entity: sensor
+    class: distance
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: cm
+        class: measurement
+
+  - entity: sensor
+    class: illuminance
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: lx
+        class: measurement
+  
+  - entity: sensor
+    name: PIR delay
+    class: duration
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: s
+        class: measurement
+
+  - entity: switch
+    name: PIR
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  
+  - entity: light
+    name: Indicator
+    icon: "mdi:led-on"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+
+  - entity: sensor
+    class: duration
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: s
+
+  - entity: select
+    name: PIR Sensitivity
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 106
+        type: string
+        name: option
+        mapping:
+          - dps_val: low
+            value: Low
+          - dps_val: middle
+            value: Medium
+          - dps_val: high
+            value: High
