@@ -505,6 +505,7 @@ port and password.
 
 - Loginovo mmWave human presence sensor
 - LoraTap SC500ZB-V2 curtain controller
+- Loratap SS9600ZB 6 button remote control
 - MultiIR MIR-TE100-TY temperature and humidity sensor
 - Nedis ZBSD10WT door/window sensor
 - Nedis ZBSC10WT temperature and humidity sensor
