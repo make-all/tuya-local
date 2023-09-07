@@ -1,7 +1,7 @@
 name: Robot vacuum
 products:
-  - id: hslyk0g1sim9ojqu
-    name: Abir X8
+  - id: wvk5sm5nr0tkij3b
+    name: Liectroux XR500 T3
 primary_entity:
   entity: vacuum
   dps:
@@ -69,8 +69,6 @@ primary_entity:
           value: select_room
         - dps_val: repositing
           value: repositioning
-        - dps_val: charge_jack
-          value: charging
     - id: 9
       type: string
       name: fan_speed
@@ -81,6 +79,8 @@ primary_entity:
           value: Medium
         - dps_val: gentle
           value: Low
+        - dps_val: turnoff
+          value: "Off"
     - id: 11
       type: boolean
       name: locate
@@ -215,6 +215,8 @@ secondary_entities:
         type: string
         name: option
         mapping:
+          - dps_val: closed
+            value: "Off"
           - dps_val: low
             value: Low
           - dps_val: middle
@@ -256,13 +258,6 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Cliff detect
-    category: config
-    dps:
-      - id: 103
-        type: boolean
-        name: switch
-  - entity: switch
     name: Y-mopping
     category: config
     dps:
@@ -276,3 +271,72 @@ secondary_entities:
       - id: 105
         type: boolean
         name: switch
+  - entity: sensor
+    name: Edge brush remain
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        unit: h
+  - entity: button
+    name: Edge brush reset
+    category: config
+    dps:
+      - id: 18
+        type: boolean
+        name: button
+        optional: true
+  - entity: sensor
+    name: Roller brush remain
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: h
+  - entity: button
+    name: Roller brush reset
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        name: button
+        optional: true
+  - entity: sensor
+    name: Filter remain
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: h
+  - entity: button
+    name: Filter reset
+    category: config
+    dps:
+      - id: 22
+        type: boolean
+        name: button
+        optional: true
+  - entity: sensor
+    name: Dust cloth remain
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: h
+  - entity: button
+    name: Dust cloth reset
+    category: config
+    dps:
+      - id: 24
+        type: boolean
+        name: button
+        optional: true
+

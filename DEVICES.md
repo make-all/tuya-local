@@ -394,18 +394,19 @@ of device.
 
 - Abir X8 vacuum cleaner
 - Kabum Smart 500 vacuum cleaner
-- Kabum Smart 700 vacuum cleaner (also sold as Liectroux XR500 and maybe others)
+- Kabum Smart 700 vacuum cleaner (also sold as Liectroux XR500[T2] and maybe others)
 - Kogan LX10 vacuum cleaner with mop
 - Kyvol E30 vacuum cleaner
 - Lefant LS1 Pro vacuum cleaner
 - Lefant M213 vacuum cleaner (also works for Lefant M213S and APOSEN A550)
 - Lenovo E1 vacuum cleaner
+- Liectroux XR500[T3]
 - Mellerware City Move vacuum cleaner
 - Proscenic M9 vacuum cleaner
 - Rinkmo D2 vacuum cleaner
 
 ### Lawnmowers
-
+
 - MoeBot S-series mowers (may require protocol version set manually to 3.4)
 
 ### Locks
