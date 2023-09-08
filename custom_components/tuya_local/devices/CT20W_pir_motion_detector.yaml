@@ -1,0 +1,79 @@
+name: CT20W PIR Motion Detector
+products:
+  - id: 205546373333989b6bf8
+    name: CT20W PIR Motion Detector
+  - id: ejptirvg36uwwdwu
+    name: "CT20W"
+primary_entity:
+  entity: alarm_control_panel
+  dps:
+    - id: 110
+      type: string
+      name: alarm_state
+      mapping:
+        - dps_val: disarm
+          value: disarmed
+        - dps_val: away
+          value: armed_away
+        - dps_val: stay
+          value: armed_home
+secondary_entities:
+  - entity: binary_sensor
+    name: PIR State
+    class: sound
+    dps:
+      - id: 6
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: none
+            value: False
+          - dps_val: pir
+            value: True
+  - entity: sensor
+    name: Battery Percentage
+    class: battery
+    unit: "%"
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+  - entity: binary_sensor
+    name: USB Power Status
+    dps:
+      - id: 102
+        type: boolean
+        name: sensor
+        optional: true
+  - entity: number
+    name: Alarm Duration
+    category: config
+    icon: "mdi:timer"
+    mode: box
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 255
+          default: 10
+  - entity: select
+    name: Alert Option
+    icon: "mdi:settings"
+    category: config
+    dps:
+      - id: 107
+        type: string
+        name: option
+        mapping:
+          - dps_val: "OnlySound_mode"
+            value: "Sound Only"
+          - dps_val: "OnlyLight_mode"
+            value: "Light Only"
+          - dps_val: "SoundLight_mode"
+            value: "Sound and Light"
+          - dps_val: "Mute_mode"
+            value: "Mute"
+            
