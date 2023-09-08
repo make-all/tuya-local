@@ -19,8 +19,7 @@ primary_entity:
           value: armed_home
 secondary_entities:
   - entity: binary_sensor
-    name: PIR State
-    class: sound
+    class: motion
     dps:
       - id: 6
         type: string
@@ -31,7 +30,6 @@ secondary_entities:
           - dps_val: pir
             value: True
   - entity: sensor
-    name: Battery Percentage
     class: battery
     unit: "%"
     dps:
@@ -39,14 +37,13 @@ secondary_entities:
         type: integer
         name: sensor
   - entity: binary_sensor
-    name: USB Power Status
+    class: plug
     dps:
       - id: 102
         type: boolean
         name: sensor
-        optional: true
   - entity: number
-    name: Alarm Duration
+    name: Alarm duration
     category: config
     icon: "mdi:timer"
     mode: box
@@ -57,10 +54,9 @@ secondary_entities:
         unit: s
         range:
           min: 0
-          max: 255
-          default: 10
+          max: 300
   - entity: select
-    name: Alert Option
+    name: Alert option
     icon: "mdi:settings"
     category: config
     dps:
@@ -69,11 +65,11 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: "OnlySound_mode"
-            value: "Sound Only"
+            value: "Sound only"
           - dps_val: "OnlyLight_mode"
-            value: "Light Only"
+            value: "Light only"
           - dps_val: "SoundLight_mode"
-            value: "Sound and Light"
+            value: "Sound and light"
           - dps_val: "Mute_mode"
             value: "Mute"
             
