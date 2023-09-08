@@ -432,12 +432,6 @@ class TuyaDpsConfig:
                     self.name,
                 )
                 return None
-        elif self.rawtype == "unixtime" and isinstance(v, int):
-            try:
-                return datetime.fromtimestamp(v)
-            except:
-                _LOGGER.warning("Invalid timestamp %d", v)
-                return None
         else:
             return v
 
@@ -695,6 +689,13 @@ class TuyaDpsConfig:
             if scale != 1 and isinstance(result, Number):
                 result = result / scale
                 replaced = True
+
+            if self.rawtype == "unixtime" and isinstance(result, int):
+                try:
+                    result = datetime.fromtimestamp(result)
+                    replaced = true
+                except:
+                    _LOGGER.warning("Invalid timestamp %d", result)
 
             if replaced:
                 _LOGGER.debug(
