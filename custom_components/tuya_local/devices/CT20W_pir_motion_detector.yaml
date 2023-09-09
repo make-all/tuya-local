@@ -1,9 +1,7 @@
-name: CT20W PIR Motion Detector
+name: Motion detector
 products:
-  - id: 205546373333989b6bf8
-    name: CT20W PIR Motion Detector
   - id: ejptirvg36uwwdwu
-    name: "CT20W"
+    name: CT20W PIR Motion Detector
 primary_entity:
   entity: alarm_control_panel
   dps:
@@ -26,9 +24,9 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: none
-            value: False
+            value: false
           - dps_val: pir
-            value: True
+            value: true
   - entity: sensor
     class: battery
     unit: "%"
@@ -46,7 +44,6 @@ secondary_entities:
     name: Alarm duration
     category: config
     icon: "mdi:timer"
-    mode: box
     dps:
       - id: 106
         type: integer
@@ -72,4 +69,3 @@ secondary_entities:
             value: "Sound and light"
           - dps_val: "Mute_mode"
             value: "Mute"
-            
