@@ -240,6 +240,7 @@
 - Compteur digital electric (single phase)
 - DTS238-7 3 phase smart meter
 - eMylo EAI-90 smart meter
+- MatSee Plus bidirectional two channel clamp meter
 - PC311-TY 2 phase power clamp meter
 - PC321-TY 3 phase power clamp meter
 - PJ-1103 power clamp meter
