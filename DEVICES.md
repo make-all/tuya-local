@@ -361,6 +361,7 @@ of device.
 - MoesGo dimmer switch
 - Space Dog Music Lamp
 - Tampa Magnetic LED System CD-TY-WY05
+- WF520D dual dimmer touchpanel
 
 ### Covers
 
@@ -456,6 +457,7 @@ port and password.
 - Catit pet feeder (Pixi 2.2kg dispenser and 6 meal versions, and another non-Pixi branded single dispenser)
 - Ceres Plus pet feeder with camera
 - CO2-Box air quality monitor
+- CT20W PIR motion detector
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
 - Garza Wi-Fi garden irrigation system (ITV103W with 433MHz WiFi hub)
 - Holman WX1 tap timer (sprinkler controller)

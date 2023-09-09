@@ -359,3 +359,5 @@ Further device support has been made with the assistance of users.  Please consi
 - [cebik](https://github.com/cebik) for contributing support for Loratap 6 button remote controls.
 - [alexanderfschley](https://github.com/alexanderfschley) for assisting with support for Liectroux XR500[T3] vacuums.
 - [iindigoo](https://github.com/iindigoo) for assisting with support for MRC Magnum floor heating.
+- [suyashrai](https://github.com/suyashrai) for contributing support for WF520D dual dimmers.
+- [sityware](https://github.com/sitiware) for contributing support for CT20W motion detectors.
