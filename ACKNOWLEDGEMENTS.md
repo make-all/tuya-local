@@ -362,3 +362,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [suyashrai](https://github.com/suyashrai) for contributing support for WF520D dual dimmers.
 - [sityware](https://github.com/sitiware) for contributing support for CT20W motion detectors.
 - [Eduardoct](https://github.com/Eduardoct) for assisting with support for MatSee Plus bidirectional 2-channel clamp meters.
+- [McAllstar](https://github.com/McAllstar) for assisting with support for Geyserwise TSE1 geyser controller kits.
