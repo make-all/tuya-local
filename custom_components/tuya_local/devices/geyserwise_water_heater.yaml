@@ -24,9 +24,6 @@ primary_entity:
     - id: 10
       type: integer
       name: current_temperature
-    - id: 13
-      type: boolean
-      name: element
     - id: 20
       type: bitfield
       name: fault_code
@@ -55,32 +52,47 @@ primary_entity:
       range:
         min: 30
         max: 75
-      mapping:
-        - constraint: away_mode
-          conditions:
-            - dps_val: true
-              value_redirect: af_temp
-              range:
-                min: 0
-                max: 10
-    - id: 107
-      type: integer
-      name: af_temp
-      range:
-        min: 0
-        max: 10
-      hidden: true
 secondary_entities:
   - entity: binary_sensor
-    name: Pump
+    name: Element
+    class: running
+    category: diagnostic
+    dps:
+      - id: 13
+        type: string
+        name: element
+        mapping:
+          - dps_val: "Off"
+            value: false
+          - dps_val: "On"
+            value: true
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 20
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: binary_sensor
+    name: Solar
     class: running
     category: diagnostic
     dps:
       - id: 101
-        type: boolean
+        type: string
         name: sensor
+        mapping:
+          - dps_val: "Off"
+            value: false
+          - dps_val: "On"
+            value: true
   - entity: number
-    name: Solar temperature difference
+    name: Solar temperature
     category: config
     icon: "mdi:solar-power-variant"
     dps:
@@ -91,8 +103,20 @@ secondary_entities:
         range:
           min: 7
           max: 15
+        mapping:
+          # PV models use a target temp rather than a differential
+          - constraint: collector
+            conditions:
+              - dps_val: null
+                range:
+                  min: 50
+                  max: 75
+      - id: 108
+        type: integer
+        name: collector
+        optional: true
   - entity: number
-    name: Block 1 temperature
+    name: Overnight temperature
     category: config
     icon: "mdi:thermometer"
     dps:
@@ -104,7 +128,7 @@ secondary_entities:
           min: 30
           max: 75
   - entity: number
-    name: Block 2 temperature
+    name: Morning temperature
     category: config
     icon: "mdi:thermometer"
     dps:
@@ -116,7 +140,7 @@ secondary_entities:
           min: 30
           max: 75
   - entity: number
-    name: Block 3 temperature
+    name: Afternoon temperature
     category: config
     icon: "mdi:thermometer"
     dps:
@@ -128,7 +152,7 @@ secondary_entities:
           min: 30
           max: 75
   - entity: number
-    name: Block 4 temperature
+    name: Evening temperature
     category: config
     icon: "mdi:thermometer"
     dps:
@@ -148,6 +172,7 @@ secondary_entities:
         type: integer
         name: value
         unit: C
+        optional: true
         range:
           min: 0
           max: 10
@@ -159,5 +184,6 @@ secondary_entities:
       - id: 108
         type: integer
         name: sensor
+        optional: true
         unit: C
         class: measurement
