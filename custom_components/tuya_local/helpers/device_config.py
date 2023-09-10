@@ -659,6 +659,8 @@ class TuyaDpsConfig:
             mirror = mapping.get("value_mirror")
             replaced = "value" in mapping
             result = mapping.get("value", result)
+            target_range = mapping.get("target_range")
+
             cond = self._active_condition(mapping, device)
             if cond:
                 if cond.get("invalid", False):
@@ -667,6 +669,8 @@ class TuyaDpsConfig:
                 result = cond.get("value", result)
                 redirect = cond.get("value_redirect", redirect)
                 mirror = cond.get("value_mirror", mirror)
+                target_range = cond.get("target_range", target_range)
+
                 for m in cond.get("mapping", {}):
                     if str(m.get("dps_val")) == str(result):
                         replaced = "value" in m
@@ -686,6 +690,18 @@ class TuyaDpsConfig:
                     result = -1 * result + r["min"] + r["max"]
                     replaced = True
 
+            if target_range and isinstance(result, Number):
+                r = self._config.get("range")
+                if r and "max" in r and "max" in target_range:
+                    from_min = r.get("min", 0)
+                    from_max = r["max"]
+                    to_min = target_range.get("min", 0)
+                    to_max = target_range["max"]
+                    result = to_min + (
+                        (result - from_min) * (to_max - to_min) / (from_max - from_min)
+                    )
+                    replaced = True
+
             if scale != 1 and isinstance(result, Number):
                 result = result / scale
                 replaced = True
@@ -693,7 +709,7 @@ class TuyaDpsConfig:
             if self.rawtype == "unixtime" and isinstance(result, int):
                 try:
                     result = datetime.fromtimestamp(result)
-                    replaced = true
+                    replaced = True
                 except:
                     _LOGGER.warning("Invalid timestamp %d", result)
 
@@ -809,6 +825,7 @@ class TuyaDpsConfig:
             invert = mapping.get("invert", False)
             mask = mapping.get("mask")
             endianness = mapping.get("endianness", "big")
+            target_range = mapping.get("target_range")
             step = mapping.get("step")
             if not isinstance(step, Number):
                 step = None
@@ -844,6 +861,7 @@ class TuyaDpsConfig:
 
                 step = cond.get("step", step)
                 redirect = cond.get("value_redirect", redirect)
+                target_range = cond.get("target_range", target_range)
 
             if redirect:
                 _LOGGER.debug("Redirecting %s to %s", self.name, redirect)
@@ -862,6 +880,18 @@ class TuyaDpsConfig:
                 ):
                     result = remap["dps_val"]
                 replaced = True
+
+            if target_range and isinstance(result, Number):
+                r = self._config.get("range")
+                if r and "max" in r and "max" in target_range:
+                    from_min = target_range.get("min", 0)
+                    from_max = target_range["max"]
+                    to_min = r.get("min", 0)
+                    to_max = r["max"]
+                    result = to_min + (
+                        (result - from_min) * (to_max - to_min) / (from_max - from_min)
+                    )
+                    replaced = True
 
             if invert:
                 r = self._config.get("range")
