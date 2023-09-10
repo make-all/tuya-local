@@ -263,6 +263,7 @@ secondary_entities:
         name: button
   - entity: sensor
     name: Energy balance
+    class: energy_storage
     category: diagnostic
     dps:
       - id: 13
@@ -275,6 +276,7 @@ secondary_entities:
   - entity: number
     name: Charge energy
     category: config
+    class: energy_storage
     icon: "mdi:cash"
     dps:
       - id: 14
@@ -415,6 +417,7 @@ secondary_entities:
   - entity: number
     name: Overvoltage threshold
     category: config
+    class: voltage
     icon: "mdi:flash-alert"
     dps:
       - id: 101
@@ -427,6 +430,7 @@ secondary_entities:
   - entity: number
     name: Undervoltage threshold
     category: config
+    class: voltage
     icon: "mdi:flash-alert"
     dps:
       - id: 102
@@ -437,8 +441,9 @@ secondary_entities:
           min: 90
           max: 210
   - entity: number
-    name: Overcurrent alert
+    name: Overcurrent threshold
     category: config
+    class: current
     icon: "mdi:fuse-alert"
     dps:
       - id: 103
@@ -451,7 +456,7 @@ secondary_entities:
   - entity: number
     name: Leakage current
     category: config
-    icon: "mdi:"
+    class: current
     dps:
       - id: 104
         type: integer
