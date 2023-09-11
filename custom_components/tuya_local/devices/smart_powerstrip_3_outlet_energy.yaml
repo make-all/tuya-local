@@ -1,7 +1,7 @@
-name: 3 Outlet Smart Powerstrip + Energy monitor
+name: Triple monitoring powerstrip
 products:
   - id: y3vaekzobpkbcj0j
-    name: Eightree Powerstrip
+    name: Eightree ET43 powerstrip
 primary_entity:
   entity: switch
   class: outlet
@@ -85,7 +85,7 @@ secondary_entities:
       - id: 17
         name: sensor
         type: integer
-        unit: Wh
+        unit: kWh
         optional: true
       - id: 25
         type: integer
@@ -99,7 +99,6 @@ secondary_entities:
         name: sensor
         type: integer
         class: measurement
-        force: true
         unit: mA
       - id: 23
         type: integer
@@ -113,7 +112,6 @@ secondary_entities:
         name: sensor
         type: integer
         class: measurement
-        force: true
         unit: W
         mapping:
           - scale: 10
@@ -128,7 +126,6 @@ secondary_entities:
       - id: 20
         name: sensor
         type: integer
-        force: true
         class: measurement
         unit: V
         mapping:
