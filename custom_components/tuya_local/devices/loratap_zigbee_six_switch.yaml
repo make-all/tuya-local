@@ -1,0 +1,233 @@
+name: Six button remote
+products: 
+  - id: iszegwpd
+    name: 6 gang zigBee remote
+primary_entity:
+  entity: binary_sensor
+  name: Click 1
+  dps:
+    - id: 1
+      type: string
+      name: sensor
+      optional: true
+      persist: false
+      mapping:
+        - dps_val: single_click
+          value: true
+        - value: false
+secondary_entities:
+  - entity: binary_sensor
+    name: Click 2
+    dps:
+      - id: 2
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: single_click
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Click 3
+    dps:
+      - id: 3
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: single_click
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Click 4
+    dps:
+      - id: 4
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: single_click
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Click 5
+    dps:
+      - id: 5
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: single_click
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Click 6
+    dps:
+      - id: 6
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: single_click
+            value: true
+          - value: false
+
+  - entity: binary_sensor
+    name: Long click 1
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: long_press
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Long click 2
+    dps:
+      - id: 2
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: long_press
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Long click 3
+    dps:
+      - id: 3
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: long_press
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Long click 4
+    dps:
+      - id: 4
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: long_press
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Long click 5
+    dps:
+      - id: 5
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: long_press
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Long click 6
+    dps:
+      - id: 6
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: long_press
+            value: true
+          - value: false
+
+  - entity: binary_sensor
+    name: Double click 1
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: double_click
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Double click 2
+    dps:
+      - id: 2
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: double_click
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Double click 3
+    dps:
+      - id: 3
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: double_click
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Double click 4
+    dps:
+      - id: 4
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: double_click
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Double click 5
+    dps:
+      - id: 5
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: double_click
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Double click 6
+    dps:
+      - id: 6
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: double_click
+            value: true
+          - value: false
+
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        unit: "%"

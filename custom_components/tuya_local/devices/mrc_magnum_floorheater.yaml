@@ -1,0 +1,392 @@
+name: Floor heating
+products:
+  - id: fy783e8g0n38ahlt
+    name: MRC Magnum
+primary_entity:
+  entity: climate
+  dps:
+    - id: 2
+      type: string
+      name: hvac_mode
+      mapping:
+        - dps_val: AUTO
+          value: auto
+        - dps_val: MANUAL
+          value: heat
+        - value: heat
+    - id: 2
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: AUTO
+          value: home
+        - dps_val: MANUAL
+          value: none
+        - dps_val: HOLIDAY
+          value: away
+        - dps_val: FROST
+          value: sleep
+        - dps_val: SLOW
+          value: Slow start
+          hidden: true
+    - id: 3
+      type: string
+      name: hvac_action
+      mapping:
+        - dps_val: warming
+          value: idle
+        - dps_val: heating
+          value: heating
+    - id: 16
+      type: integer
+      name: temperature
+      unit: C
+      range:
+        min: 50
+        max: 400
+      mapping:
+        - scale: 10
+          constraint: temperature_unit
+          conditions:
+            - dps_val: false
+              step: 5
+            - dps_val: true
+              step: 10
+              range:
+                min: 410
+                max: 1040
+              value_redirect: temp_set_f
+    - id: 17
+      type: integer
+      name: temp_set_f
+      optional: true
+      range:
+        min: 410
+        max: 1040
+      hidden: true
+    - id: 24
+      type: integer
+      name: current_temperature
+      mapping:
+        - scale: 10
+          constraint: temperature_unit
+          conditions:
+            - dps_val: true
+              value_redirect: temp_current_f
+    - id: 29
+      type: integer
+      name: temp_current_f
+      optional: true
+      hidden: true
+    - id: 104
+      type: bitfield
+      name: fault_code
+    - id: 107
+      type: boolean
+      name: temperature_unit
+      mapping:
+        - dps_val: false
+          value: C
+        - dps_val: true
+          value: F
+secondary_entities:
+  - entity: select
+    name: Standby display
+    icon: "mdi:numeric"
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: time_date_temp 
+            value: Time, date and temperature
+          - dps_val: time_temp
+            value: Time and temperature
+          - dps_val: time_only
+            value: Time only
+  - entity: select
+    name: Precision
+    icon: "mdi:target"
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0" 
+            value: "0.1"
+          - dps_val: "1"
+            value: "0.5"
+          - dps_val: "2"
+            value: "1.0"
+  - entity: number
+    name: Setback adjustment
+    category: config
+    icon: "mdi:thermometer-chevron-down"
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        range:
+          min: 2
+          max: 8
+  - entity: binary_sensor
+    name: Room sensor error
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 104
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Floor sensor error
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 104
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 2
+            value: true
+          - value: false
+  - entity: select
+    name: Temperature unit
+    icon: "mdi:temperature-celsius"
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: false
+            value: Celsius
+          - dps_val: true
+            value: Fahrenheit
+  - entity: lock
+    name: Child lock
+    icon: "mdi:hand-back-right-off"
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: lock
+  - entity: number
+    name: Holiday days
+    category: config
+    icon: "mdi:calendar-month"
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        unit: d
+        range:
+          min: 0
+          max: 99
+  - entity: select
+    name: Weekly schedule
+    icon: "mdi:calendar-week"
+    category: config
+    dps:
+      - id: 110
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: "2 periods"
+          - dps_val: "2"
+            value: "4 periods"
+          - dps_val: "3"
+            value: "6 periods"
+      - id: 119
+        type: string
+        name: program
+        optional: true
+  - entity: select
+    name: Temperature measurement
+    icon: "mdi:thermometer-plus"
+    category: config
+    dps:
+      - id: 111
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Room
+          - dps_val: "1"
+            value: Floor
+          - dps_val: "2"
+            value: Both
+  - entity: number
+    name: Room temperature calibration
+    category: config
+    icon: "mdi:thermometer-lines"
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        range:
+          min: -90
+          max: 90
+        mapping:
+          - scale: 10
+            constraint: unit
+            conditions:
+              - dps_val: false
+                range:
+                  min: -50
+                  max: 50
+      - id: 107
+        type: boolean
+        name: unit
+        hidden: true
+  - entity: number
+    name: Floor temperature calibration
+    category: config
+    icon: "mdi:thermometer-lines"
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: -90
+          max: 90
+        mapping:
+          - scale: 10
+            constraint: unit
+            conditions:
+              - dps_val: false
+                range:
+                  min: -50
+                  max: 50
+      - id: 107
+        type: boolean
+        name: unit
+        hidden: true
+  - entity: select
+    name: Temperature hysteresis
+    icon: "mdi:arrow-collapse-horizontal"
+    category: config
+    dps:
+      - id: 114
+        type: string
+        name: option
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: false
+                mapping:
+                  - dps_val: "0_5" 
+                    value: "0.5"
+                  - dps_val: "1"
+                    value: "1.0"
+                  - dps_val: "2"
+                    value: "1.5"
+                  - dps_val: "3"
+                    value: "2.0"
+              - dps_val: true
+                mapping:
+                  - dps_val: "0_5"
+                    value: "1.0"
+                  - dps_val: "1"
+                    value: "2.0"
+                  - dps_val: "2"
+                    value: "3.0"
+                  - dps_val: "3"
+                    value: "4.0"
+      - id: 107
+        type: boolean
+        name: unit
+        hidden: true
+  - entity: light
+    name: Display
+    icon: "mdi:television-ambient-light"
+    category: config
+    dps:
+      - id: 115
+        name: brightness
+        type: integer
+        range:
+          min: 1
+          max: 10
+        mapping:
+          - scale: 0.0392
+  - entity: number
+    name: Display timeout
+    icon: "mdi:television-ambient-light"
+    category: config
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 5
+          max: 60
+        mapping:
+          - step: 5
+  - entity: sensor
+    name: Monthly consumption
+    category: diagnostic
+    dps:
+      - id: 123
+        type: integer
+        name: sensor
+        unit: "%"
+        mask: 00FF
+  - entity: sensor
+    name: Yearly consumption
+    category: diagnostic
+    dps:
+      - id: 123
+        type: integer
+        name: sensor
+        unit: "%"
+        mask: FF00
+  - entity: select
+    name: Floor covering
+    icon: "mdi:floor-plan"
+    category: config
+    dps:
+      - id: 124
+        type: string
+        name: option
+        mapping:
+          - dps_val: wood 
+            value: Wood
+          - dps_val: other
+            value: Other
+  - entity: select
+    name: Sensor type
+    icon: "mdi:thermometer-probe"
+    category: config
+    dps:
+      - id: 125
+        type: string
+        name: option
+        mapping:
+          - dps_val: "10k" 
+            value: "10k"
+          - dps_val: "12k"
+            value: "12k"
+  - entity: switch
+    name: Adaptive function
+    icon: "mdi:head-snowflake"
+    category: config
+    dps:
+      - id: 126
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Open window detect
+    category: config
+    dps:
+      - id: 127
+        type: boolean
+        name: switch

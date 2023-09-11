@@ -139,7 +139,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [filipole](https://github.com/filipole) for assistance supporting Aubess switch with energy monitoring.
 - [catdogmaus](https://github.com/catdogmaus) for assistance supporting Ryra TYTE-D1 thermostats.
 - [Kulturnilpferd](https://github.com/Kulturnilpferd) for contributing support for Hosome air purifiers.
-- [raphaeleduardo42](https://github.com/raphaeleduardo42) for assistance supporting AGL Ultramagic locks.
+- [raphaeleduardo42](https://github.com/raphaeleduardo42) for assistance supporting AGL Ultramagic gate openers and contributing improvements.
 - [EnginDzhemil](https://github.com/EnginDzhemil) for contributing support for single switches with backlight.
 - [billxinli](https://github.com/billxinli) for contributing support for Honeywell TP dehumidifiers.
 - [isarib01](https://github.com/isarib01) for assistance supporting Deta motion sensor lights.
@@ -331,7 +331,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [jaymunro](https://github.com/jaymunro) for contributing support for Makegood dual switches.
 - [oleg-d](https://github.com/oleg-d) for assistance with support for Nedis outdoor cameras.
 - [ScottWoolven5](https://github.com/ScottWoolven5) for assistance with support for MoesGo dimmer switch.
-- [robsonmantovani](https://github.com/robsonmantovani) for contributing support for Marpou ceiling lights.
+- [robsonmantovani](https://github.com/robsonmantovani) for contributing support for Marpou ceiling lights and AGL Ultracontato door controllers.
 - [Brazen00](https://github.com/Brazen00) for contributing support for Holman WX1 tap timers.
 - [nima-002](https://github.com/nima-002) for contributing improvements to Moebot S lawnmowers.
 - [maxupunk](https://github.com/maxupunk) for assistance with support for Kabum Smart 700 vacuum cleaners.
@@ -344,3 +344,24 @@ Further device support has been made with the assistance of users.  Please consi
 - [Atirion](https://github.com/Atirion) for assisting with support for Nedis Door/Window sensors.
 - [allanak](https://github.com/allanak) for assisting with support for Ovlaim ceiling fans.
 - [nk00li](https://github.com/nk00li) for assisting with support for EMS hot water systems.
+- [andbuitra](https://github.com/andbuitra) for contributing support for Xiumii human presence mmWave radar sensors.
+- [jonpetersathan](https://github.com/jonpetersathan) for contributing support for Djive humidifying fans and Woods Cortina air conditioner.
+- [omahs](https://github.com/omahs) for contributing documentation improvements.
+- [pdecat](https://github.com/pdecat) for assisting with support for Blumfeldt Cosmic Beam radiant heaters and Pearl Xystec USB hub (quad_power_timer).
+- [andr2000](https://github.com/andr2000) for assisting with support for Abir X8 vacuums.
+- [MaximeNagel](https://github.com/MaximeNagel) for assisting with support for ZG-205W mmWave presence sensors.
+- [Ilyapempel](https://github.com/Ilyapempel) for assisting with support for Momland/Loycco sound machine nightlights, and Kojima motion sensor RGBCW nightlight.
+- [tatopotatov](https://github.com/tatopotatov) for assisting with support for Royal Sovereign mini split air conditioners.
+- [whit-tj](https://github.com/whit-tj) for contributing support for Carro ceiling fan with warm and cool lights.
+- [k-welker](https://github.com/k-welker) for contributing support for Casafan ECO Neo III ceiling fan with light.
+- [muneeb1990](https://github.com/muneeb1990) for contributing support for Kogan Sleep Aids.
+- [felipejfc](https://github.com/felipejfc) for contributing support for Loginovo zigbee mmwave presence sensors.
+- [cebik](https://github.com/cebik) for contributing support for Loratap 6 button remote controls.
+- [alexanderfschley](https://github.com/alexanderfschley) for assisting with support for Liectroux XR500[T3] vacuums.
+- [iindigoo](https://github.com/iindigoo) for assisting with support for MRC Magnum floor heating and Dim2Warm G95 Gold lightbubs.
+- [suyashrai](https://github.com/suyashrai) for contributing support for WF520D dual dimmers.
+- [sityware](https://github.com/sitiware) for contributing support for CT20W motion detectors.
+- [Eduardoct](https://github.com/Eduardoct) for assisting with support for MatSee Plus bidirectional 2-channel clamp meters.
+- [McAllstar](https://github.com/McAllstar) for assisting with support for Geyserwise TSE1 geyser controller kits.
+- [Thunn-Der](https://github.com/Thunn-Der) for assisting with support for Breville AirDynamic 3d fans.
+- [dwojtas](https://github.com/dwojtas) for contributing Polish translations.

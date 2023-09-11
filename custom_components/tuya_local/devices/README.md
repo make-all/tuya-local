@@ -345,6 +345,22 @@ step.  It can also be set in a conditions block so that the steps change only
 under certain conditions.  An example is where a value has a range of 0-100, but
 only allows settings that are divisible by 10, so a step of 10 would be set.
 
+### `target_range`
+
+*Optional, has `min` and `max` child attributes, like `range`*
+
+A target range is used together with `range` on a numeric value, to
+map the value into a new range.  Unlike `scale`, this can shift the
+value as well as scale it into the new range.  Color temperature is a
+major use of this, as Tuya devices often use a range of 0 - 100, 0 -
+255 or 0 - 1000, and this needs to be mapped to the Kelvin like 2200 -
+6500.
+
+This should normally only be used on a default mapping, as the code
+that uses this feature often needs to inform HA of the min and max
+values for the UI, which may not handle multipe different mappings
+across the range.
+
 ### `icon`
 
 *Optional.*
@@ -577,8 +593,8 @@ Humidifer can also cover dehumidifiers (use class to specify which).
 ### `light`
 - **switch** (optional, boolean): a dp to control the on/off state of the light
 - **brightness** (optional, number 0-255): a dp to control the dimmer if available.
-- **color_temp** (optional, number): a dp to control the color temperature if available.
-    will be mapped so the minimum corresponds to 153 mireds (6500K), and max to 500 (2000K).
+- **color_temp** (optional, number): a dp to control the color temperature if available.  See `target_range` above for mapping Tuya's range into Kelvin.
+
 - **rgbhsv** (optional, hex): a dp to control the color of the light, using encoded RGB and HSV values.  The `format` field names recognized for decoding this field are `r`, `g`, `b`, `h`, `s`, `v`.
 - **color_mode** (optional, mapping of strings): a dp to control which mode to use if the light supports multiple modes.
     Special values: `white, color_temp, hs, xy, rgb, rgbw, rgbww`, others will be treated as effects,

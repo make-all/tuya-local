@@ -1,0 +1,278 @@
+name: Robot vacuum
+products:
+  - id: hslyk0g1sim9ojqu
+    name: Abir X8
+primary_entity:
+  entity: vacuum
+  dps:
+    - id: 1
+      type: boolean
+      name: power
+    - id: 2
+      type: boolean
+      name: activate
+    - id: 4
+      type: string
+      name: command
+      mapping:
+        - dps_val: smart
+          value: smart
+        - dps_val: zone
+          value: zone
+        - dps_val: pose
+          value: go_to_position
+        - dps_val: part
+          value: clean_spot
+        - dps_val: chargego
+          value: return_to_base
+        - dps_val: wallfollow
+          value: wall_follow
+        - dps_val: selectroom
+          value: select_room
+    - id: 5
+      type: string
+      name: status
+      mapping:
+        - dps_val: standby
+          value: standby
+        - dps_val: smart
+          value: cleaning
+        - dps_val: zone_clean
+          value: cleaning
+        - dps_val: part_clean
+          value: cleaning
+        - dps_val: cleaning
+          value: cleaning
+        - dps_val: paused
+          value: pause
+        - dps_val: goto_pos
+          value: going_to_location
+        - dps_val: pos_arrived
+          value: on_location
+        - dps_val: pos_unarrive
+          value: cannot_find_location
+        - dps_val: goto_charge
+          value: returning
+        - dps_val: charging
+          value: charging
+        - dps_val: charge_done
+          value: charged
+        - dps_val: sleep
+          value: sleep
+        - dps_val: fault
+          value: error
+        - dps_val: wall_follow
+          value: cleaning
+        - dps_val: direction_control
+          value: direction_control
+        - dps_val: select_room
+          value: select_room
+        - dps_val: repositing
+          value: repositioning
+        - dps_val: charge_jack
+          value: charging
+    - id: 9
+      type: string
+      name: fan_speed
+      mapping:
+        - dps_val: strong
+          value: High
+        - dps_val: normal
+          value: Medium
+        - dps_val: gentle
+          value: Low
+    - id: 11
+      type: boolean
+      name: locate
+      optional: true
+    - id: 12
+      type: string
+      name: direction_control
+      optional: true
+      mapping:
+        - dps_val: foward
+          value: forward
+        - dps_val: backward
+          value: reverse
+        - dps_val: turn_left
+          value: left
+        - dps_val: turn_right
+          value: right
+        - dps_val: stop
+          value: stop
+    - id: 14
+      type: string
+      name: path_data
+      optional: true
+    - id: 15
+      type: string
+      name: command_trans
+      optional: true
+    - id: 16
+      type: string
+      name: request
+      optional: true
+    - id: 28
+      type: bitfield
+      name: error
+      mapping:
+        - dps_val: 2
+          value: left_wheel_hanging
+        - dps_val: 4
+          value: main_brush_stuck
+        - dps_val: 8
+          value: right_wheel_hanging
+        - dps_val: 16
+          value: left_wheel_jammed
+        - dps_val: 32
+          value: right_wheel_jammed
+        - dps_val: 64
+          value: cliff
+        - dps_val: 128
+          value: edge_sweeper_worn
+        - dps_val: 512
+          value: collision
+        - dps_val: 1024
+          value: dust_full
+        - dps_val: 4096
+          value: land_check
+        - dps_val: 32768
+          value: motor_jammed
+        - dps_val: 65536
+          value: overcurrent
+        - dps_val: 131072
+          value: docking_failure
+        - dps_val: 524288
+          value: jammed
+        - dps_val: 1048576
+          value: trapped
+        - dps_val: 2097152
+          value: laser_cover_stuck
+        - dps_val: 4194304
+          value: laser_blocked
+        - dps_val: 8388608
+          value: wall_sensors_blocked
+        - dps_val: 16777216
+          value: exclusion_zone_invalid
+        - dps_val: 33554432
+          value: charging_failure
+        - dps_val: 67108864
+          value: picked_up
+    - id: 35
+      type: string
+      name: voice_data
+      optional: true
+    - id: 101
+      type: string
+      name: smart_rooms_unseen
+      optional: true
+    - id: 102
+      type: string
+      name: rooms_msg_unseen
+      optional: true
+secondary_entities:
+  - entity: switch
+    name: Charge
+    icon: "mdi:lightning-bolt"
+    category: config
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+        optional: true
+  - entity: sensor
+    name: Cleaning time
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: sensor
+    name: Cleaned area
+    category: diagnostic
+    icon: "mdi:floor-plan"
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: m2
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: select
+    name: Mopping
+    icon: "mdi:cup-water"
+    dps:
+      - id: 10
+        type: string
+        name: option
+        mapping:
+          - dps_val: low
+            value: Low
+          - dps_val: middle
+            value: Medium
+          - dps_val: high
+            value: High
+  - entity: button
+    name: Reset map
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: button
+        optional: true
+  - entity: switch
+    name: Do not disturb
+    category: config
+    dps:
+      - id: 25
+        type: boolean
+        name: switch
+  - entity: number
+    name: Volume
+    category: config
+    icon: "mdi:volume-high"
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: switch
+    name: Break clean
+    category: config
+    dps:
+      - id: 27
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Cliff detect
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Y-mopping
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Custom mode
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
