@@ -347,6 +347,7 @@ of device.
 - Atomi smart color string light
 - Deta/Arlec motion sensor lights (DET100HA/DET102HA/MAL315HA)
 - Deta 6910HA series2 dimmer switch
+- Dim2Warm G95 Gold 1800-2700K CCT lightbulb
 - Dual-mode magic light string controller
 - Feit dimmer (may work with other brands that just have a switch, dimmer and
   optional minimum brightness and bulb type)

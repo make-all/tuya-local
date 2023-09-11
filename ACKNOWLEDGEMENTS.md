@@ -358,7 +358,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [felipejfc](https://github.com/felipejfc) for contributing support for Loginovo zigbee mmwave presence sensors.
 - [cebik](https://github.com/cebik) for contributing support for Loratap 6 button remote controls.
 - [alexanderfschley](https://github.com/alexanderfschley) for assisting with support for Liectroux XR500[T3] vacuums.
-- [iindigoo](https://github.com/iindigoo) for assisting with support for MRC Magnum floor heating.
+- [iindigoo](https://github.com/iindigoo) for assisting with support for MRC Magnum floor heating and Dim2Warm G95 Gold lightbubs.
 - [suyashrai](https://github.com/suyashrai) for contributing support for WF520D dual dimmers.
 - [sityware](https://github.com/sitiware) for contributing support for CT20W motion detectors.
 - [Eduardoct](https://github.com/Eduardoct) for assisting with support for MatSee Plus bidirectional 2-channel clamp meters.
