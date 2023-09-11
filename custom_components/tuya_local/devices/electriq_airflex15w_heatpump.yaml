@@ -12,7 +12,7 @@ primary_entity:
           value: "off"
           icon: "mdi:hvac-off"
         - dps_val: true
-          constraint: work_mode
+          constraint: preset_mode
           conditions:
             - dps_val: "0" # auto
               value: heat_cool
@@ -62,8 +62,20 @@ primary_entity:
       name: unknown_20
     - id: 101
       type: string
-      name: work_mode
-      hidden: true
+      # at least some firmware versions of this model do not like combining
+      # dps in hvac_mode, so duplicate in presets to allow single dp commands
+      name: preset_mode
+      mapping:
+        - dps_val: "0"
+          value: Auto
+        - dps_val: "1"
+          value: Cool
+        - dps_val: "2"
+          value: Heat
+        - dps_val: "3"
+          value: Dry
+        - dps_val: "5"
+          value: Fan
     - id: 103
       type: boolean
       name: unknown_103
@@ -107,6 +119,15 @@ primary_entity:
       type: integer
       name: current_humidity
 secondary_entities:
+  # At least some firmware versions do not like combining dps into hvac_mode
+  # above, so provide a simple single dp on/off switch as an alternative
+  - entity: switch
+    name: Power
+    category: config
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: select
     name: Temperature unit
     category: config

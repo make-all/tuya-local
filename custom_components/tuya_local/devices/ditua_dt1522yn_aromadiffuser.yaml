@@ -2,6 +2,8 @@ name: Aroma diffuser
 products:
   - id: 6ASdNwe9IdaewQEl
     name: Ditua DT-1522-YN
+  - id: venoaj75waptukdf
+    name: Sierra Modern Home diffuser
 primary_entity:
   entity: fan
   icon: "mdi:scent"
@@ -12,11 +14,19 @@ primary_entity:
     - id: 103
       type: string
       name: speed
+      optional: true
       mapping:
         - dps_val: small
           value: 50
         - dps_val: large
           value: 100
+        - dps_val: null
+          value: 0
+          hidden: true
+    - id: 12
+      type: bitfield
+      name: fault_code
+      optional: true
 secondary_entities:
   - entity: light
     name: LED
@@ -38,21 +48,22 @@ secondary_entities:
           - name: h
             bytes: 2
             range:
-              min: 1
+              min: 0
               max: 360
           - name: s
             bytes: 1
             range:
-              min: 1
+              min: 0
               max: 255
           - name: v
             bytes: 1
             range:
-              min: 1
+              min: 0
               max: 255
       - id: 109
         type: string
         name: color_mode
+        optional: true
         mapping:
           - dps_val: white
             value: white
@@ -60,6 +71,9 @@ secondary_entities:
             value: rgb
           - dps_val: colourful1
             value: Mood
+          - dps_val: null
+            value: white
+            hidden: true
       - id: 111
         type: integer
         name: brightness
@@ -74,10 +88,56 @@ secondary_entities:
       - id: 110
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: "1" 
-            value: "Mood 1" 
+            value: "Cycle" 
           - dps_val: "2"
-            value: "Mood 2"
+            value: "Fixed"
           - dps_val: "3"
-            value: "Mood 3"
+            value: "Nightlight"
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 12
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: select
+    name: Timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 13
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: "1 hour"
+          - dps_val: "2"
+            value: "3 hours"
+          - dps_val: "3"
+            value: "6 hours"
+  - entity: sensor
+    name: Time remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 14
+        type: integer
+        name: sensor
+        unit: min
+        optional: true
+
+

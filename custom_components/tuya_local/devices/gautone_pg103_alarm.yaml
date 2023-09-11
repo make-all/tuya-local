@@ -19,10 +19,6 @@ primary_entity:
           value: armed_home
         - dps_val: sos
           value: triggered
-    - id: 32
-      type: string
-      name: master_state
-      optional: true
     - id: 36
       type: string
       name: sub_class
@@ -102,3 +98,21 @@ secondary_entities:
       - id: 27
         type: boolean
         name: switch
+  - entity: binary_sensor
+    class: sound
+    name: Alarm
+    category: diagnostic
+    dps:
+      - id: 32
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: normal
+            value: false
+          - dps_val: alarm
+            value: true
+      - id: 26
+        type: base64
+        name: message
+        optional: true
+        persist: false

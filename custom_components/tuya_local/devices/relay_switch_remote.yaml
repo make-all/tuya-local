@@ -1,6 +1,6 @@
 name: Relay switch
 products:
-  - id: bfab649367a583280dvytj
+  - id: 1aegphq4yfd50e6b
     name: 1-433
 primary_entity:
   entity: switch
@@ -14,9 +14,6 @@ primary_entity:
     - id: 43
       type: string
       name: cycle_time
-    - id: 44
-      type: string
-      name: inching
     - id: 49
       name: add_remote
       type: string
@@ -50,11 +47,11 @@ secondary_entities:
         type: string
         name: option
         mapping:
-          - dps_val: "0"
+          - dps_val: "off"
             value: "Off"
-          - dps_val: "1"
+          - dps_val: "on"
             value: "On"
-          - dps_val: "2"
+          - dps_val: "memory"
             value: Last state
   - entity: select
     name: Switch type
@@ -65,12 +62,40 @@ secondary_entities:
         type: string
         name: option
         mapping:
-          - dps_val: "0"
+          - dps_val: flip
             value: flip
-          - dps_val: "1"
+          - dps_val: sync
             value: sync
-          - dps_val: "2"
+          - dps_val: button
             value: button
-
-
+  - entity: switch
+    name: Inching
+    category: config
+    icon: "mdi:reload"
+    dps:
+      - id: 44
+        type: base64
+        name: switch
+        mapping:
+          - mask: FF0000
+          - dps_val: 0
+            value: false
+            mask: FF0000
+          - dps_val: 1
+            value: true
+            mask: FF0000
+  - entity: number
+    name: Inching duration
+    category: config
+    icon: "mdi:reload"
+    dps:
+      - id: 44
+        type: base64
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 3600
+        mapping:
+          - mask: 00FFFF
 

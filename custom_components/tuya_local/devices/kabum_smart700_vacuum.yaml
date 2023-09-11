@@ -83,7 +83,7 @@ primary_entity:
       optional: true
     - id: 14
       type: string
-      name: suction
+      name: fan_speed
       mapping:
         - dps_val: strong
           value: High
@@ -249,6 +249,7 @@ secondary_entities:
       - id: 111
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: cn
             value: 中文
@@ -262,6 +263,7 @@ secondary_entities:
       - id: 112
         type: integer
         name: value
+        optional: true
         range:
           min: 0
           max: 100

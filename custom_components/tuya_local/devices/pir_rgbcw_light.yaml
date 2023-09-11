@@ -1,0 +1,187 @@
+name: PIR RGBCW light
+products:
+  - id: hbmq4wdi5vyx9qgu
+    name: Kojima motion sensor nightlight 
+primary_entity:
+  entity: light
+  dps:
+    - id: 20
+      type: boolean
+      name: switch
+    - id: 21
+      type: string
+      name: color_mode
+      mapping:
+        - dps_val: white
+          value: color_temp
+        - dps_val: colour
+          value: hs
+        - dps_val: scene
+          value: Scene
+          # iot.tuya.com includes music too, but there is no music_data dp
+    - id: 22
+      name: brightness
+      type: integer
+      range:
+        min: 10
+        max: 1000
+      mapping:
+        - scale: 3.92
+    - id: 23
+      name: color_temp
+      type: integer
+      range:
+        min: 0
+        max: 1000
+      mapping:
+        - target_range:
+            min: 2700
+            max: 6500
+    - id: 24
+      name: rgbhsv
+      type: hex
+      format:
+        - name: h
+          bytes: 2
+          range:
+            min: 0
+            max: 360
+        - name: s
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+        - name: v
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+    - id: 25
+      name: scene_data
+      type: hex
+    - id: 28
+      name: control_data
+      type: string
+      optional: true
+secondary_entities:
+  - entity: number
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 26
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 86400
+        unit: min
+        mapping:
+          - scale: 60
+            step: 60
+          - dps_val: null
+  - entity: switch
+    name: Manual mode
+    category: config
+    dps:
+      - id: 51
+        type: string
+        name: switch
+        mapping:
+        - dps_val: auto
+          value: false
+        - dps_val: manual
+          value: true
+  - entity: switch
+    name: PIR enabled
+    category: config
+    dps:
+      - id: 56
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: motion
+    dps:
+      - id: 52
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "pir"
+            value: true
+          - dps_val: "none"
+            value: false
+  - entity: select
+    name: Motion distance
+    category: config
+    dps:
+      - id: 54
+        type: string
+        name: option
+        mapping:
+          - dps_val: "high"
+            value: "Far"
+          - dps_val: "low"
+            value: "Near"
+          - dps_val: "middle"
+            value: "Medium"
+  - entity: number
+    name: PIR delay
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 55
+        name: value
+        type: integer
+        range:
+          min: 5
+          max: 3600
+        unit: sec
+        mapping:
+          - scale: 1
+          - dps_val: null
+  - entity: number
+    name: Standby delay
+    category: config
+    dps:
+      - id: 58
+        name: value
+        type: integer
+        range:
+          min: 1
+          max: 480
+        unit: min
+        mapping:
+          - scale: 1
+          - dps_val: null
+  - entity: number
+    name: Standby brightness
+    category: config
+    dps:
+      - id: 59
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        unit: min
+        mapping:
+          - scale: 1
+          - dps_val: null
+  - entity: select
+    name: Ambient light sensor
+    category: config
+    dps:
+      - id: 53
+        type: string
+        name: option
+        mapping:
+          - dps_val: 2000lux
+            value: 2000lux
+          - dps_val: 300lux
+            value: 300lux
+          - dps_val: 50lux
+            value: 50lux
+          - dps_val: 10lux
+            value: 10lux
+          - dps_val: 5lux
+            value: 5lux

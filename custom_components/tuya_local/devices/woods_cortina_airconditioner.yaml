@@ -1,0 +1,95 @@
+name: Air Conditioner
+products:
+  - id: bfc0e42617f4fdfef7t6ra
+    name: Wood's Cortina Silent 12k
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - value: "off"
+          dps_val: false
+          icon: "mdi:hvac-off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - value: cool
+              dps_val: "0"
+              icon: "mdi:snowflake"
+            - value: dry
+              dps_val: "2"
+              icon: "mdi:water"
+            - value: fan_only
+              dps_val: "3"
+              icon: "mdi:fan"
+            - value: heat_cool
+              dps_val: "4" # This is Woods ECO mode
+              icon: "mdi:thermostat-auto"
+    - id: 2
+      type: integer
+      name: temperature
+      range:
+        min: 17
+        max: 30
+    - id: 3
+      type: integer
+      name: current_temperature
+      readonly: true
+    - id: 4
+      type: string
+      name: mode
+      hidden: true
+    - id: 5
+      type: string
+      name: fan_mode
+      mapping:
+        - dps_val: "low"
+          value: low
+        - dps_val: "mid"
+          value: medium
+        - dps_val: "high"
+          value: high
+    - id: 104
+      name: swing_mode
+      type: boolean
+      mapping:
+        - dps_val: true
+          value: "on"
+        - dps_val: false
+          value: "off"
+secondary_entities:
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 4
+            value: false
+          - value: true
+  - entity: binary_sensor
+    name: Water tank full
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 4
+            value: true
+          - value: false
+  - entity: switch
+    name: Sleep
+    icon: "mdi:power-sleep"
+    dps:
+      - id: 105
+        type: boolean
+        name: switch

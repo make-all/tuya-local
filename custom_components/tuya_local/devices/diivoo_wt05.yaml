@@ -87,10 +87,7 @@ secondary_entities:
         optional: true
         range:
           min: 0
-          max: 86400
-        mapping:
-          - scale: 60
-            step: 60
+          max: 1440
   - entity: number
     name: Irrigation time 2
     category: config
@@ -103,10 +100,7 @@ secondary_entities:
         optional: true
         range:
           min: 0
-          max: 86400
-        mapping:
-          - scale: 60
-            step: 60
+          max: 1440
   - entity: select
     name: Weather delay 1
     icon: "mdi:weather-cloudy-clock"

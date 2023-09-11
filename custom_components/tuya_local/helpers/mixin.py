@@ -9,6 +9,7 @@ from homeassistant.const import (
     UnitOfTemperature,
 )
 from homeassistant.helpers.entity import EntityCategory
+from homeassistant.helpers.typing import UNDEFINED
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -44,7 +45,12 @@ class TuyaLocalEntity:
     @property
     def name(self):
         """Return the name for the UI."""
+        # Super has the logic to get default names from device class.
         super_name = getattr(super(), "name")
+        # If we don't have a name, and super also doesn't, we explicitly want to use
+        # the device name - avoid the HA warning about implicitly using it.
+        if super_name is UNDEFINED:
+            super_name = None
         return self._config.name or super_name
 
     @property
