@@ -31,6 +31,8 @@ CALIBP_DPS = "24"
 CALIBE_DPS = "25"
 ERROR_DPS = "26"
 INITIAL_DPS = "38"
+LIGHT_DPS = "39"
+LOCK_DPS = "40"
 CYCLE_DPS = "41"
 RANDOM_DPS = "42"
 OVERCHARGE_DPS = "46"
@@ -118,8 +120,10 @@ class TestSwitchV2Energy(
         self.mark_secondary(
             [
                 "binary_sensor_error",
+                "lock_child_lock",
                 "number_timer",
                 "select_initial_state",
+                "select_light",
                 "sensor_current",
                 "sensor_energy",
                 "sensor_power",
