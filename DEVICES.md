@@ -180,6 +180,7 @@
 - AlecoAir D12/D16 Home dehumidifier
 - AlecoAir D14 purifying dehumidifier
 - AlecoAir D16 purifying dehumidifier
+- AlecoAit D25 Traditio dehumidifier
 - Ebac DJ4000 dehumidifier
 - ElectriQ CD12PRO-LE dehumidifier
 - ElectriQ CD12PW dehumidifier
@@ -384,7 +385,7 @@ of device.
 - Dongguan garage door
 - Dooya curtain motor
 - Etersky curtain switch with backlight and timing control
-- FS-03W curtain switch with backlight control
+- FS-03W curtain switch with backlight control
 - Kogan garage door with tilt sensor
 - Loonas smart curtain
 - LoraTap GDC100W garage door opener
