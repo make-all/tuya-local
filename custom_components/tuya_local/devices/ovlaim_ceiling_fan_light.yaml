@@ -59,7 +59,9 @@ secondary_entities:
           min: 0
           max: 100
         mapping:
-          - invert: true
+          - target_range:
+              min: 3000
+              max: 6000
   - entity: select
     name: Timer
     icon: "mdi:timer"

@@ -21,6 +21,7 @@
 - Kogan flame effect heater - KAWHMFP20BA model
 - Kogan tower heater - KASTHFP2KWA model
 - Kogan Wi-Fi convection panel heaters - KAHTP and KAWFHTP models
+- MRC Magnum floor heating 
 - Nedis convection heater - WIFIHTPL20F model
 - Orion OWH-PTC2000 heater
 - Princess 350 panel heater
@@ -79,6 +80,7 @@
 
 - Aquatech Rapid/X6 heat pump water heaters
 - EMS Thermal 200L domestic heat pump hot water system
+- Geyserwise TSE1 Geyser controller kit
 - Hydrotherm Dynamic/X8 heat pump hot water systems
 - ITS-4.5HD super water heatpump
 - Thermex IF series V pro hot water systems
@@ -128,6 +130,7 @@
 - Arlec 6 speed floor fan
 - Aspen ASP 200 fan
 - Atomi 52 inch ceiling fan
+- Breville AirDynamic 3D pedestal fan
 - Carro ceiling fan with cool and warm white lights
 - Carro PN-04F02D fan with dimmable light
 - Casafan ECO Neo III ceiling fan with light
@@ -239,6 +242,7 @@
 - Compteur digital electric (single phase)
 - DTS238-7 3 phase smart meter
 - eMylo EAI-90 smart meter
+- MatSee Plus bidirectional two channel clamp meter
 - PC311-TY 2 phase power clamp meter
 - PC321-TY 3 phase power clamp meter
 - PJ-1103 power clamp meter
@@ -340,9 +344,11 @@ of device.
 - Generic RGBCW/RGBWW lightbulb (confirmed with Lijun branded bulb, expected to match others also). Three versions - standard dps layout starting from 20, with and without scene/music modes and timer, and a non-standard layout starting from 1 but following the same pattern (tested with "A60" bulbs).
 - Generic RGBW lightbulb in the non-standard pattern above but without color temperature control.
 - Generic dimmable/color temperature adjustable desktop lamp (confirmed with Setti+ SL601)
+- A60 1800-2700K RGBWW light
 - Atomi smart color string light
 - Deta/Arlec motion sensor lights (DET100HA/DET102HA/MAL315HA)
 - Deta 6910HA series2 dimmer switch
+- Dim2Warm G95 Gold 1800-2700K CCT lightbulb
 - Dual-mode magic light string controller
 - Feit dimmer (may work with other brands that just have a switch, dimmer and
   optional minimum brightness and bulb type)
@@ -360,6 +366,7 @@ of device.
 - MoesGo dimmer switch
 - Space Dog Music Lamp
 - Tampa Magnetic LED System CD-TY-WY05
+- WF520D dual dimmer touchpanel
 
 ### Covers
 
@@ -394,18 +401,19 @@ of device.
 
 - Abir X8 vacuum cleaner
 - Kabum Smart 500 vacuum cleaner
-- Kabum Smart 700 vacuum cleaner (also sold as Liectroux XR500 and maybe others)
+- Kabum Smart 700 vacuum cleaner (also sold as Liectroux XR500[T2] and maybe others)
 - Kogan LX10 vacuum cleaner with mop
 - Kyvol E30 vacuum cleaner
 - Lefant LS1 Pro vacuum cleaner
 - Lefant M213 vacuum cleaner (also works for Lefant M213S and APOSEN A550)
 - Lenovo E1 vacuum cleaner
+- Liectroux XR500[T3]
 - Mellerware City Move vacuum cleaner
 - Proscenic M9 vacuum cleaner
 - Rinkmo D2 vacuum cleaner
 
 ### Lawnmowers
-
+
 - MoeBot S-series mowers (may require protocol version set manually to 3.4)
 
 ### Locks
@@ -454,6 +462,7 @@ port and password.
 - Catit pet feeder (Pixi 2.2kg dispenser and 6 meal versions, and another non-Pixi branded single dispenser)
 - Ceres Plus pet feeder with camera
 - CO2-Box air quality monitor
+- CT20W PIR motion detector
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
 - Garza Wi-Fi garden irrigation system (ITV103W with 433MHz WiFi hub)
 - Holman WX1 tap timer (sprinkler controller)
@@ -494,7 +503,7 @@ port and password.
 - Orion DL021HA lock
 - PT216/PT19DB-2 temperature and humidity sensor
 - Smart Ape solar garden light
-- Generic water timers (confirmed with Johgee and Diivoo branded devices)
+- Generic water timers (confirmed with Johgee, Diivoo and Royal Gardineer branded devices)
 
 ### Devices supported via IR hubs
 
@@ -505,6 +514,7 @@ port and password.
 
 - Loginovo mmWave human presence sensor
 - LoraTap SC500ZB-V2 curtain controller
+- Loratap SS9600ZB 6 button remote control
 - MultiIR MIR-TE100-TY temperature and humidity sensor
 - Nedis ZBSD10WT door/window sensor
 - Nedis ZBSC10WT temperature and humidity sensor

@@ -49,11 +49,15 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: Coolwhite
-            value: 154
+            value: 6500
           - dps_val: Naturalwhite
-            value: 250
+            value: 4200
           - dps_val: Warmwhite
-            value: 454
+            value: 3000
+          - target_range:
+              min: 3000
+              max: 6500
+            hidden: true
   - entity: select
     name: Timer
     icon: "mdi:timer"

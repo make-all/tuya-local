@@ -116,27 +116,3 @@ secondary_entities:
         name: message
         optional: true
         persist: false
-  - entity: binary_sensor
-    class: battery
-    category: diagnostic
-    dps:
-      - id: 101
-        type: string
-        name: sensor
-        mapping:
-          - dps_val: BatteryIsLow
-            value: true
-          - value: false
-  - entity: binary_sensor
-    class: plug
-    category: diagnostic
-    dps:
-      - id: 101
-        type: string
-        name: sensor
-        mapping:
-          - dps_val: powerDisconnect
-            value: false
-          - value: true
-
-

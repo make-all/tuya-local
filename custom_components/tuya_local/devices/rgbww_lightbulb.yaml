@@ -1,7 +1,7 @@
-name: RGBCW lightbulb
+name: RGB warm white light
 products:
-  - id: bqkefojbmb8ovvws
-    name: A60 RGBW smart bulb
+  - id: hpaeslvkx4znwzae
+    name: A60 RGB 1800-2700K light
 primary_entity:
   entity: light
   dps:
@@ -9,32 +9,36 @@ primary_entity:
       type: boolean
       name: switch
     - id: 2
-      name: color_mode
       type: string
+      name: color_mode
+      optional: true
       mapping:
         - dps_val: white
           value: color_temp
         - dps_val: colour
           value: hs
     - id: 3
-      name: brightness
       type: integer
+      name: brightness
+      optional: true
       range:
         min: 25
         max: 255
     - id: 4
-      name: color_temp
       type: integer
+      optional: true
+      name: color_temp
       range:
         min: 0
         max: 255
       mapping:
         - target_range:
-            min: 2700
-            max: 6500
+            min: 1800
+            max: 2700
     - id: 5
-      name: rgbhsv
       type: hex
+      name: rgbhsv
+      optional: true
       format:
         - name: r
           bytes: 1
@@ -58,17 +62,22 @@ primary_entity:
             min: 0
             max: 255
     - id: 6
-      name: scene
-      type: hex
+      type: string
+      name: scene_data
+      optional: true
     - id: 7
-      name: flash_scene1
-      type: hex
+      type: string
+      name: flash_scene_1
+      optional: true
     - id: 8
-      name: flash_scene2
-      type: hex
+      type: string
+      name: flash_scene_2
+      optional: true
     - id: 9
-      name: flash_scene3
-      type: hex
+      type: string
+      name: flash_scene_3
+      optional: true
     - id: 10
-      name: flash_scene4
-      type: hex
+      type: string
+      name: flash_scene_4
+      optional: true

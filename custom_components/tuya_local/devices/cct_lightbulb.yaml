@@ -8,6 +8,8 @@ products:
     name: Laser 10W Smart White Bulb E27
   - id: t6kkutyhtbbohacx
     name: Connect 10W Smart White Bulb E27
+  - id: owzzoxsdudnxgije
+    name: Genio CCT Downlight
 primary_entity:
   entity: light
   dps:
@@ -32,7 +34,9 @@ primary_entity:
         min: 0
         max: 1000
       mapping:
-        - invert: true
+        - target_range:
+            min: 2700
+            max: 6500
     - id: 25
       name: scene
       type: hex

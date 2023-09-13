@@ -228,6 +228,7 @@ async def test_flow_user_init(hass):
         "step_id": "user",
         "type": "form",
         "last_step": ANY,
+        "preview": ANY,
     }
     assert expected == result
     # Check the schema.  Simple comparison does not work since they are not
@@ -379,6 +380,7 @@ async def test_flow_select_type_init(mock_device, hass):
         "step_id": "select_type",
         "type": "form",
         "last_step": ANY,
+        "preview": ANY,
     }
     assert expected == result
     # Check the schema.  Simple comparison does not work since they are not
@@ -443,6 +445,7 @@ async def test_flow_choose_entities_init(hass):
         "step_id": "choose_entities",
         "type": "form",
         "last_step": ANY,
+        "preview": ANY,
     }
     assert expected == result
     # Check the schema.  Simple comparison does not work since they are not

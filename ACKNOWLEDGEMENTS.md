@@ -356,3 +356,13 @@ Further device support has been made with the assistance of users.  Please consi
 - [k-welker](https://github.com/k-welker) for contributing support for Casafan ECO Neo III ceiling fan with light.
 - [muneeb1990](https://github.com/muneeb1990) for contributing support for Kogan Sleep Aids.
 - [felipejfc](https://github.com/felipejfc) for contributing support for Loginovo zigbee mmwave presence sensors.
+- [cebik](https://github.com/cebik) for contributing support for Loratap 6 button remote controls.
+- [alexanderfschley](https://github.com/alexanderfschley) for assisting with support for Liectroux XR500[T3] vacuums.
+- [iindigoo](https://github.com/iindigoo) for assisting with support for MRC Magnum floor heating and Dim2Warm G95 Gold lightbubs.
+- [suyashrai](https://github.com/suyashrai) for contributing support for WF520D dual dimmers.
+- [sityware](https://github.com/sitiware) for contributing support for CT20W motion detectors.
+- [Eduardoct](https://github.com/Eduardoct) for assisting with support for MatSee Plus bidirectional 2-channel clamp meters.
+- [McAllstar](https://github.com/McAllstar) for assisting with support for Geyserwise TSE1 geyser controller kits.
+- [Thunn-Der](https://github.com/Thunn-Der) for assisting with support for Breville AirDynamic 3d fans.
+- [dwojtas](https://github.com/dwojtas) for contributing Polish translations.
+- [supersjimmie](https://github.com/supersjimmie) for assisting with support for A60 RGBWW lightbulbs.
