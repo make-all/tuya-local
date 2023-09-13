@@ -366,4 +366,5 @@ Further device support has been made with the assistance of users.  Please consi
 - [Thunn-Der](https://github.com/Thunn-Der) for assisting with support for Breville AirDynamic 3d fans.
 - [dwojtas](https://github.com/dwojtas) for contributing Polish translations.
 - [supersjimmie](https://github.com/supersjimmie) for assisting with support for A60 RGBWW lightbulbs.
-- [b1be](https://github.com/b1be) for assisting with support for AlecoAir D25 dehumidifiers.
+- [b1be](https://github.com/b1be) for contributing support for AlecoAir D25 dehumidifiers.
+- [jesuslobo](https://github.com/jesuslobo) for contributing support for Eightree ET43 powerstrips.
