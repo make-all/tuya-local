@@ -11,7 +11,7 @@ primary_entity:
       optional: true
     - id: 2
       type: boolean
-      name: power
+      name: pause
       optional: true
     - id: 13
       type: boolean
@@ -21,20 +21,30 @@ primary_entity:
       type: string
       name: command
       mapping:
+        - dps_val: standby
+          value: standby
+        - dps_val: random
+          value: random
         - dps_val: smart
           value: smart
-        - dps_val: zone
-          value: zone
-        - dps_val: pose
-          value: go_to_position
-        - dps_val: part
+        - dps_value: wall_follow
+          value: wall_follow
+        - dps_val: mop
+          value: mop
+        - dps_val: spiral
           value: clean_spot
+        - dps_val: left_spiral
+          value: left_spiral
+        - dps_val: right_spiral
+          value: right_spiral
+        - dps_val: left_bow
+          value: left_bow
+        - dps_val: right_bow
+          value: right_bow
+        - dps_val: partial_bow
+          value: partial_bow
         - dps_val: chargego
           value: return_to_base
-        - dps_val: selectroom
-          value: select_room
-        - dps_val: standby
-          value: stand by
     - id: 5
       type: string
       name: status
@@ -43,34 +53,24 @@ primary_entity:
           value: standby
         - dps_val: smart_clean
           value: cleaning
-        - dps_val: zone_clean
+        - dps_val: wall_clean
           value: cleaning
-        - dps_val: part_clean
+        - dps_val: spot_clean
           value: cleaning
-        - dps_val: paused
-          value: pause
-        - dps_val: goto_pos
-          value: going_to_location
-        - dps_val: pos_arrived
-          value: on_location
-        - dps_val: pos_unarrive
-          value: cannot_find_location
-        - dps_val: to_charge
+        - dps_val: mop_clean
+          value: cleaning
+        - dps_val: goto_charge
           value: returning
         - dps_val: charging
           value: charging
         - dps_val: charge_done
           value: charged
+        - dps_val: paused
+          value: pause
+        - dps_val: cleaning
+          value: cleaning
         - dps_val: sleep
           value: sleep
-        - dps_val: fault
-          value: error
-        - dps_val: wall_follow
-          value: wall_follow
-        - dps_val: direction_control
-          value: direction_control
-        - dps_val: selectroom
-          value: select_room
     - id: 14
       type: string
       name: fan_speed
