@@ -1,0 +1,93 @@
+name: Smart Weather Station
+products:
+  - id: 000001bbfd
+    name: Smart Weather Station
+primary_entity:
+  entity: sensor
+  name: local temperature
+  class: temperature
+  dps:
+    - id: 131
+      name: sensor
+      type: integer
+      unit: C
+      mapping:
+        - scale: 10
+      class: measurement
+secondary_entities:
+  - entity: sensor
+    name: local humidity
+    class: humidity
+    dps:
+      - id: 132
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        
+  - entity: sensor
+    name: sensor 1 temperature
+    class: temperature
+    dps:
+      - id: 133
+        type: integer
+        name: sensor
+        unit: C
+        mapping:
+          - scale: 10
+        class: measurement
+        
+  - entity: sensor
+    name: sensor 1 humidity
+    class: humidity
+    dps:
+      - id: 134
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        
+  - entity: sensor
+    name: sensor 2 temperature
+    class: temperature
+    dps:
+      - id: 135
+        type: integer
+        name: sensor
+        unit: C
+        mapping:
+          - scale: 10
+        class: measurement
+        
+  - entity: sensor
+    name: sensor 2 humidity
+    class: humidity
+    dps:
+      - id: 136
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        
+  - entity: sensor
+    name: sensor 3 temperature
+    class: temperature
+    dps:
+      - id: 137
+        type: integer
+        name: sensor
+        unit: C
+        mapping:
+          - scale: 10
+        class: measurement
+  - entity: sensor
+  
+    name: sensor 3 humidity
+    class: humidity
+    dps:
+      - id: 138
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        
