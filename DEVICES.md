@@ -386,7 +386,8 @@ of device.
 - Dongguan garage door
 - Dooya curtain motor
 - Etersky curtain switch with backlight and timing control
-- FS-03W curtain switch with backlight control
+- FS-03W curtain switch with backlight control
+
 - Kogan garage door with tilt sensor
 - Loonas smart curtain
 - LoraTap GDC100W garage door opener
@@ -495,6 +496,7 @@ port and password.
 - ZN-2C09 9-in-1 air quality monitor
 - ZX-GS21 gas leak alarm monitor
 - ZY-M100-WiFi mmWave human presence sensor
+- SWS-001 smart weather station
 
 ### Devices supported via Bluetooth hubs
 
