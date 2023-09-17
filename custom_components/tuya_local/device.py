@@ -161,9 +161,6 @@ class TuyaLocalDevice(object):
     async def async_stop(self, event=None):
         _LOGGER.debug("Stopping monitor loop for %s", self.name)
         self._running = False
-        if self._shutdown_listener:
-            self._shutdown_listener()
-            self._shutdown_listener = None
         self._children.clear()
         self._force_dps.clear()
         if self._refresh_task:
