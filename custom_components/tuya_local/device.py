@@ -66,7 +66,7 @@ class TuyaLocalDevice(object):
         self._api_protocol_working = False
         self._api_working_protocol_failures = 0
         try:
-            if dev_cid is not None:
+            if dev_cid:
                 self._api = tinytuya.Device(
                     dev_id,
                     cid=dev_cid,
