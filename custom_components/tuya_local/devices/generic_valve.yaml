@@ -1,16 +1,17 @@
-name: Generic Valve
+name: Valve controller
 products:
   - id: nguto5atyd2xxnap
-    name: ARD-100+ Smart valve controller
+    name: ARD-100+ smart valve controller
 primary_entity:
   entity: switch
+  icon: "mdi:valve"
   dps:
     - id: 1
       type: boolean
       name: switch
 secondary_entities:
   - entity: number
-    name: Countdown
+    name: Timer
     icon: "mdi:timer"
     category: config
     dps:
@@ -25,7 +26,7 @@ secondary_entities:
           - scale: 1
           - dps_val: null
   - entity: select
-    name: Restart status
+    name: Initial state
     category: config
     icon: "mdi:toggle-switch"
     dps:
