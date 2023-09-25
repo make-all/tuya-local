@@ -1,10 +1,10 @@
-name: Smart Weather Station
+name: Weather station
 products:
-  - id: 000001bbfd
+  - id: fpgistthfiweyaqr
     name: Smart Weather Station
 primary_entity:
   entity: sensor
-  name: local temperature
+  name: Internal temperature
   class: temperature
   dps:
     - id: 131
@@ -16,7 +16,7 @@ primary_entity:
       class: measurement
 secondary_entities:
   - entity: sensor
-    name: local humidity
+    name: Internal humidity
     class: humidity
     dps:
       - id: 132
@@ -26,7 +26,7 @@ secondary_entities:
         class: measurement
         
   - entity: sensor
-    name: sensor 1 temperature
+    name: Temperature 1
     class: temperature
     dps:
       - id: 133
@@ -38,7 +38,7 @@ secondary_entities:
         class: measurement
         
   - entity: sensor
-    name: sensor 1 humidity
+    name: Humidity 1
     class: humidity
     dps:
       - id: 134
@@ -48,7 +48,7 @@ secondary_entities:
         class: measurement
         
   - entity: sensor
-    name: sensor 2 temperature
+    name: Temperature 2
     class: temperature
     dps:
       - id: 135
@@ -60,7 +60,7 @@ secondary_entities:
         class: measurement
         
   - entity: sensor
-    name: sensor 2 humidity
+    name: Humidity 2
     class: humidity
     dps:
       - id: 136
@@ -70,7 +70,7 @@ secondary_entities:
         class: measurement
         
   - entity: sensor
-    name: sensor 3 temperature
+    name: Temperature 3
     class: temperature
     dps:
       - id: 137
@@ -82,7 +82,7 @@ secondary_entities:
         class: measurement
   - entity: sensor
   
-    name: sensor 3 humidity
+    name: Humidity 3
     class: humidity
     dps:
       - id: 138
@@ -90,4 +90,3 @@ secondary_entities:
         name: sensor
         unit: "%"
         class: measurement
-        
