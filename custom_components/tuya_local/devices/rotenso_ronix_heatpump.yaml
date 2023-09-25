@@ -1,9 +1,10 @@
-name: Rotenso Roni X
+name: Air conditioner
 products:
   - id: hw50w7qvxluhslkk
     name: Rotenso Roni X
 primary_entity:
   entity: climate
+  translation_key: aircon_extra
   dps:
     - id: 1
       type: boolean
@@ -16,14 +17,19 @@ primary_entity:
           conditions:
             - dps_val: cold
               value: cool
+              icon: "mdi:snowflake"
             - dps_val: hot
               value: heat
+              icon: "mdi:fire"
             - dps_val: wet
               value: dry
+              icon: "mdi:water"
             - dps_val: wind
               value: fan_only
+              icon: "mdi:fan"
             - dps_val: auto
               value: heat_cool
+              icon: "mdi:hvac"
     - id: 2
       type: integer
       name: temperature
@@ -49,23 +55,23 @@ primary_entity:
         - dps_val: "high"
           value: high
         - dps_val: "mid_high"
-          value: mid_high
+          value: medhigh
         - dps_val: "mid"
-          value: mid
+          value: medium
         - dps_val: "mid_low"
-          value: mid_low
+          value: medlow
         - dps_val: "low"
           value: low
         - dps_val: "mute"
-          value: mute
+          value: quiet
         - dps_val: "auto"
           value: auto
+    - id: 18
+      type: integer
+      name: current_humidity
     - id: 20
       type: integer
       name: fault_code
-    - id: 105
-      type: string
-      name: sleep_mode
     - id: 110
       type: bitfield
       name: flags
@@ -112,23 +118,6 @@ primary_entity:
       type: boolean
       name: hot_cool
 secondary_entities:
-  - entity: sensor
-    class: temperature
-    dps:
-      - id: 3
-        name: sensor
-        type: integer
-        unit: C
-        class: measurement
-  - entity: sensor
-    class: humidity
-    category: diagnostic
-    dps:
-      - id: 18
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
   - entity: select
     name: Sleep
     category: config
@@ -255,7 +244,7 @@ secondary_entities:
           - scale: 1
             mask: "0100"
   - entity: switch
-    name: Health
+    name: UV sterilization
     category: config
     icon: "mdi:heart-outline"
     dps:
