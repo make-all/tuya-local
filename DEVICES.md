@@ -241,6 +241,7 @@
 - Aulifants SMES200 energy monitoring breaker switch
 - CBI Astute smart controller breaker switch
 - Compteur digital electric (single phase)
+- Dcenta dual clamp meter
 - DTS238-7 3 phase smart meter
 - eMylo EAI-90 smart meter
 - MatSee Plus bidirectional two channel clamp meter
@@ -414,6 +415,7 @@ of device.
 - Mellerware City Move vacuum cleaner
 - Proscenic M9 vacuum cleaner
 - Rinkmo D2 vacuum cleaner
+- Ultenic T10 vacuum cleaner
 
 ### Lawnmowers
 
@@ -457,6 +459,7 @@ port and password.
 
 - generic PIR motion sensor
 - generic illuminance sensor
+- ARD-100+ valve controller
 - ASIP-0622 indoor planter
 - Aubess Rainpoint TTP106W irrigation system
 - Brennenstuhl WFD3050P PIR motion activated CCT spotlight
@@ -485,6 +488,7 @@ port and password.
 - Qoto 03 smart water valve / sprinkler controller
 - SD123 HPR01 human presence radar
 - SH07-8 smart sprinkler controller
+- SWS-001 smart weather station
 - TH08 temperature and humidity sensor
 - TH16 temperature and humidity sensor 
 - Tontine electric blanket
@@ -496,7 +500,6 @@ port and password.
 - ZN-2C09 9-in-1 air quality monitor
 - ZX-GS21 gas leak alarm monitor
 - ZY-M100-WiFi mmWave human presence sensor
-- SWS-001 smart weather station
 
 ### Devices supported via Bluetooth hubs
 
@@ -516,6 +519,7 @@ port and password.
 
 ### Devices supported via Zigbee hubs
 
+- Intelbras IFR7000 door lock
 - Loginovo mmWave human presence sensor
 - LoraTap SC500ZB-V2 curtain controller
 - Loratap SS9600ZB 6 button remote control
