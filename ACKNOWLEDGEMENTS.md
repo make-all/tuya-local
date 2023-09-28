@@ -375,3 +375,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [sebastianciupinski](https://github.com/sebastianciupinski) for contributing support for Dcenta dual clamp meters.
 - [cykus](https://github.com/cykus) for contributing support for Rotenso Roni X air conditioners.
 - [KrX3D](https://github.com/KrX3D) for assisting with support for Suntec Wellness Coolfixx air conditioners.
+- [DanielRitter75](https://github.com/DanielRitter75) for assisting with support for Teberno LED strip lights.

@@ -371,6 +371,7 @@ of device.
 - MoesGo dimmer switch
 - Space Dog Music Lamp
 - Tampa Magnetic LED System CD-TY-WY05
+- Teberno LED strip light (LGC-005 OEM3)
 - WF520D dual dimmer touchpanel
 
 ### Covers
