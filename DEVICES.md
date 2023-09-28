@@ -54,6 +54,7 @@
 - Sencor MT7048C air conditioner
 - Sendo air conditioner
 - Star-Light air conditioner (also confirmed to work with Polar branded devices)
+- Suntec Wellness Coolfixx portable air conditioner
 - Tadiran Wind 65/3P
 - TroniTechnik Hellnar Klimagerät
 - Vivax Cool ACP-12CH35REWI
