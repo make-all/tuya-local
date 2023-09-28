@@ -256,10 +256,18 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
             )
             extra.add(dp.name)
             mappings = dp._config.get("mapping", [])
-            self.assertIsInstance(mappings, list, f"mapping is not a list in {cfg}; entity {e}, dp {dp.name}")
+            self.assertIsInstance(
+                mappings,
+                list,
+                f"mapping is not a list in {cfg}; entity {e}, dp {dp.name}",
+            )
             for m in mappings:
                 conditions = m.get("conditions", [])
-                self.assertIsInstance(conditions, list, f"conditions is not a list in {cfg}; entity {e}, dp {dp.name}")
+                self.assertIsInstance(
+                    conditions,
+                    list,
+                    f"conditions is not a list in {cfg}; entity {e}, dp {dp.name}",
+                )
                 for c in conditions:
                     if c.get("value_redirect"):
                         redirects.add(c.get("value_redirect"))
@@ -274,7 +282,7 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
         for redirect in redirects:
             self.assertIn(redirect, extra, f"dp {redirect} missing from {e} in {cfg}")
 
-        # Check dps that are required for this entity type all exist 
+        # Check dps that are required for this entity type all exist
         expected = KNOWN_DPS.get(entity.entity)
         for rule in expected["required"]:
             self.assertTrue(
