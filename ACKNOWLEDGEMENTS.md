@@ -226,7 +226,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [dhuddle](https://github.com/dhuddle) for assisting with support for Chanfok ceiling fan with light, Inkbird BBQ thermometer, Lepro lights (variant of RGBCW light without timer) and Yieryi pH meter.
 - [theshop35](https://github.com/theshop35) for assisting with support for CC curtains.
 - [blakadder](https://github.com/blakadder) for contributing support for Ultonic K10 air fryer, Proscenic M9 vacuums, improvements to ZY-M100 presence sensors and documentation improvements, and many more devices requested by other users.
-- [szupi-ipuzs](https://github.com/szupi-ipuzs) for contributing support for desk lamps (Setti+ SL601), Loratap relays, Brennenstuhl WFD3050P motion spotlights, Pinelake bird feeder cameras.
+- [szupi-ipuzs](https://github.com/szupi-ipuzs) for contributing support for desk lamps (Setti+ SL601), Loratap relays, Brennenstuhl WFD3050P motion spotlights, Pinelake bird feeder cameras, generic valves.
 - [MackoMici](https://github.com/MackoMici) for contributing support for GX aroma diffuser, which was merged with the YYM config.
 - [Die-Meester](https://github.com/Die-Meester) for contributing support for CBI Astute smart switches.
 - [ResteNarquois](https://github.com/ResteNarquois) for assisting with support for Zemismart roller shades.
@@ -368,3 +368,11 @@ Further device support has been made with the assistance of users.  Please consi
 - [supersjimmie](https://github.com/supersjimmie) for assisting with support for A60 RGBWW lightbulbs.
 - [b1be](https://github.com/b1be) for contributing support for AlecoAir D25 dehumidifiers.
 - [jesuslobo](https://github.com/jesuslobo) for contributing support for Eightree ET43 powerstrips.
+- [stquinn](https://github.com/stquinn) for contributing support for Ultenic T10 vacuum cleaners.
+- [palfrey](https://github.com/palfrey) for contributing improvements to shutdown handling.
+- [dvpereira](https://github.com/dvpereira) for contributing support for Intelbras IFR7000 locks.
+- [jcastang](https://github.com/jcastang) for contributing support for Dcenta dual clamp meters.
+- [sebastianciupinski](https://github.com/sebastianciupinski) for contributing support for Dcenta dual clamp meters.
+- [cykus](https://github.com/cykus) for contributing support for Rotenso Roni X air conditioners.
+- [KrX3D](https://github.com/KrX3D) for assisting with support for Suntec Wellness Coolfixx air conditioners.
+- [DanielRitter75](https://github.com/DanielRitter75) for assisting with support for Teberno LED strip lights.

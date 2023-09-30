@@ -66,7 +66,7 @@ class TuyaLocalDevice(object):
         self._api_protocol_working = False
         self._api_working_protocol_failures = 0
         try:
-            if dev_cid is not None:
+            if dev_cid:
                 self._api = tinytuya.Device(
                     dev_id,
                     cid=dev_cid,
@@ -161,9 +161,6 @@ class TuyaLocalDevice(object):
     async def async_stop(self, event=None):
         _LOGGER.debug("Stopping monitor loop for %s", self.name)
         self._running = False
-        if self._shutdown_listener:
-            self._shutdown_listener()
-            self._shutdown_listener = None
         self._children.clear()
         self._force_dps.clear()
         if self._refresh_task:

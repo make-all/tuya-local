@@ -459,9 +459,8 @@ class TestDevice(IsolatedAsyncioTestCase):
         # Call the function under test
         await self.subject.async_stop()
 
-        # Was the shutdown listener cancelled?
-        listener.assert_called_once()
-        self.assertIsNone(self.subject._shutdown_listener)
+        # Shutdown listener doesn't get cancelled as HA does that
+        listener.assert_not_called()
         # Were the child entities cleared?
         self.assertEqual(self.subject._children, [])
         # Did it wait for the refresh task to finish then clear it?

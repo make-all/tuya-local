@@ -228,7 +228,7 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
     def check_entity(self, entity, cfg):
         """
         Check that the entity has a dps list and each dps has an id,
-        type and name.
+        type and name, and any other consistency checks.
         """
         self.assertIsNotNone(
             entity._config.get("entity"), f"entity type missing in {cfg}"
@@ -240,7 +240,10 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
         functions = set()
         extra = set()
         known = set()
+        redirects = set()
 
+        # Basic checks of dps, and initialising of redirects and extras sets
+        # for later checking
         for dp in entity.dps():
             self.assertIsNotNone(
                 dp._config.get("id"), f"dp id missing from {e} in {cfg}"
@@ -252,7 +255,34 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
                 dp._config.get("name"), f"dp name missing from {e} in {cfg}"
             )
             extra.add(dp.name)
+            mappings = dp._config.get("mapping", [])
+            self.assertIsInstance(
+                mappings,
+                list,
+                f"mapping is not a list in {cfg}; entity {e}, dp {dp.name}",
+            )
+            for m in mappings:
+                conditions = m.get("conditions", [])
+                self.assertIsInstance(
+                    conditions,
+                    list,
+                    f"conditions is not a list in {cfg}; entity {e}, dp {dp.name}",
+                )
+                for c in conditions:
+                    if c.get("value_redirect"):
+                        redirects.add(c.get("value_redirect"))
+                    if c.get("value_mirror"):
+                        redirects.add(c.get("value_mirror"))
+                if m.get("value_redirect"):
+                    redirects.add(m.get("value_redirect"))
+                if m.get("value_mirror"):
+                    redirects.add(m.get("value_mirror"))
 
+        # Check redirects all exist
+        for redirect in redirects:
+            self.assertIn(redirect, extra, f"dp {redirect} missing from {e} in {cfg}")
+
+        # Check dps that are required for this entity type all exist
         expected = KNOWN_DPS.get(entity.entity)
         for rule in expected["required"]:
             self.assertTrue(

@@ -308,7 +308,9 @@ mode they are in, but are set to readonly so that you cannot accidentally
 switch the thermostat to the wrong mode from HA.
 
 
-## Finding your device ID and local key at the Tuya Developer Portal
+## Finding your device ID and local key
+
+### Tuya IoT developer portal
 
 The easiest way to find your local key is with the Tuya Developer portal.
 If you have previously configured the built in Tuya cloud integration, or
@@ -336,16 +338,7 @@ command line Tuya client like tuyaapi/cli or
 to scan your network for Tuya devices to find the IP address and also automate
 the above process of connecting to the portal and getting the local key.
 
-## Connecting to devices via hubs
-
-If your device connects via a hub (eg. battery powered water timers) you have to provide the following info when adding a new device:
-
-- Device id (uuid): this is the **hub's** device id
-- IP address or hostname: the **hub's** IP address or hostname
-- Local key: the **hub's** local key
-- Sub device id: the **actual device you want to control's** `node_id`. Note this `node_id` differs from the device id, you can find it with tinytuya as described below.
-
-## Finding device ids and local keys with tinytuya
+### Finding device ids and local keys with tinytuya
 
 You can use this component's underlying library [tinytuya](https://github.com/jasonacox/tinytuya) to scan for devices in your network and find the required information about them. In particular, you need to use this procedure to obtain the `node_id` value required to connect to hub-dependent devices.
 
@@ -379,6 +372,15 @@ In the `devices.json` file you will everything you need to add your device:
 - "key": the local key
 - "node_id": the sub-device id. You need this for hub-dependent devices
 - "mapping": in the unfortunate case your device is not [yet supported](DEVICES.md), this key contains a description of all the datapoints reported by the device, type and expected values. You are more than welcome to create a new device specification following [the guidelines](custom_components/tuya_local/devices/README.md) and submitting a PR.
+
+## Connecting to devices via hubs
+
+If your device connects via a hub (eg. battery powered water timers) you have to provide the following info when adding a new device:
+
+- Device id (uuid): this is the **hub's** device id
+- IP address or hostname: the **hub's** IP address or hostname
+- Local key: the **hub's** local key
+- Sub device id: the **actual device you want to control's** `node_id`. Note this `node_id` differs from the device id, you can find it with tinytuya as described below.
 
 ## Next steps
 

@@ -49,10 +49,12 @@
 - Monzana Klimaanlage air conditioner
 - Nedis ACMB1WT12 portable air conditioner
 - Rotenso Roni R35WI
+- Rotenso Roni X
 - Royal Sovereign RSAI-12SA mini split air conditioner
 - Sencor MT7048C air conditioner
 - Sendo air conditioner
 - Star-Light air conditioner (also confirmed to work with Polar branded devices)
+- Suntec Wellness Coolfixx portable air conditioner
 - Tadiran Wind 65/3P
 - TroniTechnik Hellnar Klimagerät
 - Vivax Cool ACP-12CH35REWI
@@ -241,6 +243,7 @@
 - Aulifants SMES200 energy monitoring breaker switch
 - CBI Astute smart controller breaker switch
 - Compteur digital electric (single phase)
+- Dcenta dual clamp meter
 - DTS238-7 3 phase smart meter
 - eMylo EAI-90 smart meter
 - MatSee Plus bidirectional two channel clamp meter
@@ -368,6 +371,7 @@ of device.
 - MoesGo dimmer switch
 - Space Dog Music Lamp
 - Tampa Magnetic LED System CD-TY-WY05
+- Teberno LED strip light (LGC-005 OEM3)
 - WF520D dual dimmer touchpanel
 
 ### Covers
@@ -386,7 +390,8 @@ of device.
 - Dongguan garage door
 - Dooya curtain motor
 - Etersky curtain switch with backlight and timing control
-- FS-03W curtain switch with backlight control
+- FS-03W curtain switch with backlight control
+
 - Kogan garage door with tilt sensor
 - Loonas smart curtain
 - LoraTap GDC100W garage door opener
@@ -413,6 +418,7 @@ of device.
 - Mellerware City Move vacuum cleaner
 - Proscenic M9 vacuum cleaner
 - Rinkmo D2 vacuum cleaner
+- Ultenic T10 vacuum cleaner
 
 ### Lawnmowers
 
@@ -456,6 +462,7 @@ port and password.
 
 - generic PIR motion sensor
 - generic illuminance sensor
+- ARD-100+ valve controller
 - ASIP-0622 indoor planter
 - Aubess Rainpoint TTP106W irrigation system
 - Brennenstuhl WFD3050P PIR motion activated CCT spotlight
@@ -484,6 +491,7 @@ port and password.
 - Qoto 03 smart water valve / sprinkler controller
 - SD123 HPR01 human presence radar
 - SH07-8 smart sprinkler controller
+- SWS-001 smart weather station
 - TH08 temperature and humidity sensor
 - TH16 temperature and humidity sensor 
 - Tontine electric blanket
@@ -514,6 +522,7 @@ port and password.
 
 ### Devices supported via Zigbee hubs
 
+- Intelbras IFR7000 door lock
 - Loginovo mmWave human presence sensor
 - LoraTap SC500ZB-V2 curtain controller
 - Loratap SS9600ZB 6 button remote control

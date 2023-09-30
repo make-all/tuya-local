@@ -1,0 +1,287 @@
+name: Air conditioner
+products:
+  - id: hw50w7qvxluhslkk
+    name: Rotenso Roni X
+primary_entity:
+  entity: climate
+  translation_key: aircon_extra
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: cold
+              value: cool
+              icon: "mdi:snowflake"
+            - dps_val: hot
+              value: heat
+              icon: "mdi:fire"
+            - dps_val: wet
+              value: dry
+              icon: "mdi:water"
+            - dps_val: wind
+              value: fan_only
+              icon: "mdi:fan"
+            - dps_val: auto
+              value: heat_cool
+              icon: "mdi:hvac"
+    - id: 2
+      type: integer
+      name: temperature
+      range:
+        min: 160
+        max: 880
+      mapping:
+        - scale: 10
+          step: 10
+    - id: 3
+      type: integer
+      name: current_temperature
+    - id: 4
+      type: string
+      name: mode
+      hidden: true
+    - id: 5
+      type: string
+      name: fan_mode
+      mapping:
+        - dps_val: "strong"
+          value: strong
+        - dps_val: "high"
+          value: high
+        - dps_val: "mid_high"
+          value: medhigh
+        - dps_val: "mid"
+          value: medium
+        - dps_val: "mid_low"
+          value: medlow
+        - dps_val: "low"
+          value: low
+        - dps_val: "mute"
+          value: quiet
+        - dps_val: "auto"
+          value: auto
+    - id: 18
+      type: integer
+      name: current_humidity
+    - id: 20
+      type: integer
+      name: fault_code
+    - id: 110
+      type: bitfield
+      name: flags
+    - id: 113
+      type: string
+      name: swing_mode
+      mapping:
+        - dps_val: "0"
+          constraint: horizontal_swing
+          conditions:
+            - dps_val: "0"
+              value: "off"
+            - dps_val: "1"
+              value: horizontal
+            - value: horizontal
+        - dps_val: "1"
+          constraint: horizontal_swing
+          conditions:
+            - dps_val: "0"
+              value: vertical
+            - dps_val: "1"
+              value: both
+            - value: both
+        - constraint: horizontal_swing
+          conditions:
+            - dps_val: "0"
+              value: vertical
+            - value: both
+    - id: 114
+      type: string
+      name: horizontal_swing
+      hidden: true
+    - id: 120
+      type: string
+      name: energy
+    - id: 123
+      type: hex
+      name: flags_2
+    - id: 125
+      type: string
+      name: air_quality
+      optional: true
+    - id: 132
+      type: boolean
+      name: hot_cool
+secondary_entities:
+  - entity: select
+    name: Sleep
+    category: config
+    icon: "mdi:arrow-up-down-bold"
+    dps:
+      - id: 105
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "Off"
+          - dps_val: "normal"
+            value: Standard
+          - dps_val: "old"
+            value: The aged
+          - dps_val: "child"
+            value: Child
+  - entity: select
+    name: Vertical swing
+    category: config
+    icon: "mdi:arrow-up-down-bold"
+    dps:
+      - id: 113
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: Full
+          - dps_val: "2"
+            value: Upper
+          - dps_val: "3"
+            value: Lower
+  - entity: select
+    name: Vertical position
+    category: config
+    icon: "mdi:unfold-more-horizontal"
+    dps:
+      - id: 126
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Unknown
+          - dps_val: "1"
+            value: Top
+          - dps_val: "2"
+            value: Slightly up
+          - dps_val: "3"
+            value: Middle
+          - dps_val: "4"
+            value: Slightly down
+          - dps_val: "5"
+            value: Bottom
+  - entity: select
+    name: Horizontal swing
+    category: config
+    icon: "mdi:arrow-left-right-bold"
+    dps:
+      - id: 114
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: Full
+          - dps_val: "2"
+            value: Left
+          - dps_val: "3"
+            value: Center
+          - dps_val: "4"
+            value: Right
+  - entity: select
+    name: Horizontal position
+    category: config
+    icon: "mdi:unfold-more-vertical"
+    dps:
+      - id: 127
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Unknown
+          - dps_val: "1"
+            value: Leftmost
+          - dps_val: "2"
+            value: Slight Left
+          - dps_val: "3"
+            value: Center
+          - dps_val: "4"
+            value: Slight Right
+          - dps_val: "5"
+            value: Rightmost
+  - entity: light
+    name: Display
+    category: config
+    icon: "mdi:television-ambient-light"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - mask: "0008"
+  - entity: switch
+    name: Beep
+    category: config
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - mask: "0010"
+  - entity: switch
+    name: Anti-mildew
+    category: config
+    icon: "mdi:water-off-outline"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - scale: 1
+            mask: "0100"
+  - entity: switch
+    name: Eco mode
+    category: config
+    icon: "mdi:leaf"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - scale: 1
+            mask: "0001"
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 20
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: sensor
+    name:
+    class: pm25
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: ugm3
+        optional: true
+        class: measurement
+  - entity: binary_sensor
+    name: Filter
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 131
+        type: boolean
+        name: sensor
