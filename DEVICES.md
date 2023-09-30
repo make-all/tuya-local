@@ -369,7 +369,7 @@ of device.
 - Moes motion sensor lights (XZ-CGV3)
 - Moes star projector
 - MoesGo dimmer switch
-- Space Dog Music Lamp
+- Space Dog Music Lamp (works for Aurora Smart Galaxy Star from tuya)
 - Tampa Magnetic LED System CD-TY-WY05
 - Teberno LED strip light (LGC-005 OEM3)
 - WF520D dual dimmer touchpanel
