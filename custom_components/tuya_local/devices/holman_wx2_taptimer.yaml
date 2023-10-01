@@ -1,0 +1,899 @@
+name: Tap timer
+products:
+  - id: wfchjk5vc9bysjtk
+    model: WX2
+    manufacturer: Holman
+primary_entity:
+  entity: switch
+  name: Manual 1
+  icon: "mdi:watering-can"
+  dps:
+    - id: 108
+      type: boolean
+      name: switch
+      mapping:
+        - dps_val: true
+          value: false
+        - dps_val: false
+          value: true
+secondary_entities:
+  - entity: switch
+    name: Manual 2
+    icon: "mdi:watering-can"
+    dps:
+      - id: 155
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+  - entity: sensor
+    name: Soil temperature 1
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 101
+        name: sensor
+        type: integer
+        unit: C
+  - entity: sensor
+    name: Soil moisture 1
+    class: humidity
+    category: diagnostic
+    dps:
+      - id: 102
+        name: sensor
+        type: integer
+        unit: "%"
+  - entity: sensor
+    name: Last water flow 1
+    class: water
+    category: diagnostic
+    icon: "mdi:water"
+    dps:
+      - id: 103
+        name: sensor
+        type: integer
+        unit: L
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: 0
+            icon: "mdi:battery-10"
+            value: 0
+          - dps_val: 1
+            icon: "mdi:battery-60"
+            value: 50
+          - dps_val: 2
+            icon: "mdi:battery"
+            value: 100
+  - entity: sensor
+    name: Timer status 1
+    class: enum
+    icon: "mdi:list-status"
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: "Off"
+          - dps_val: 1
+            value: "Manual"
+          - dps_val: 2
+            value: "Auto"
+          - dps_val: 3
+            value: "Rain Delay"
+  - entity: number
+    name: Manual timer 1
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 60
+  - entity: number
+    name: Time left 1
+    icon: "mdi:timer"
+    category: diagnostic
+    dps:
+      - id: 109
+        optional: true
+        type: integer
+        name: value
+        unit: min
+  - entity: sensor
+    name: Start A 1 encoded # this DP shows the start time, duration and days for start A. Not controllable - use automation instead.
+    category: diagnostic
+    dps:
+      - id: 110
+        optional: true
+        name: sensor
+        type: base64
+      - id: 110
+        optional: true
+        name: days # bit string of flags for days of the week Sun-Sat, plus a bit for on/off
+        type: base64
+        mapping:
+          - mask: "FF000000"
+      - id: 110
+        optional: true
+        name: minutes_duration
+        type: base64
+        mapping:
+          - mask: "FF00000000"
+      - id: 110
+        optional: true
+        name: hours_duration
+        type: base64
+        mapping:
+          - mask: "FF0000000000"
+      - id: 110
+        optional: true
+        name: minutes_start
+        type: base64
+        mapping:
+          - mask: "FF000000000000"
+      - id: 110
+        optional: true
+        name: hours_start
+        type: base64
+        mapping:
+          - mask: "FF00000000000000"
+  - entity: sensor
+    name: Start B 1 encoded # this DP shows the start time, duration and days for start B. Not controllable - use automation instead.
+    category: diagnostic
+    dps:
+      - id: 111
+        optional: true
+        name: sensor
+        type: string
+      - id: 111
+        optional: true
+        name: days # bit string of flags for days of the week Sun-Sat, plus a bit for on/off
+        type: base64
+        mapping:
+          - mask: "FF000000"
+      - id: 111
+        optional: true
+        name: minutes_duration
+        type: base64
+        mapping:
+          - mask: "FF00000000"
+      - id: 111
+        optional: true
+        name: hours_duration
+        type: base64
+        mapping:
+          - mask: "FF0000000000"
+      - id: 111
+        optional: true
+        name: minutes_start
+        type: base64
+        mapping:
+          - mask: "FF000000000000"
+      - id: 111
+        optional: true
+        name: hours_start
+        type: base64
+        mapping:
+          - mask: "FF00000000000000"
+  - entity: sensor
+    name: Start C 1 encoded # this DP shows the start time, duration and days for start C. Not controllable - use automation instead.
+    category: diagnostic
+    dps:
+      - id: 112
+        optional: true
+        name: sensor
+        type: string
+      - id: 112
+        optional: true
+        name: days # bit string of flags for days of the week Sun-Sat, plus a bit for on/off
+        type: base64
+        mapping:
+          - mask: "FF000000"
+      - id: 112
+        optional: true
+        name: minutes_duration
+        type: base64
+        mapping:
+          - mask: "FF00000000"
+      - id: 112
+        optional: true
+        name: hours_duration
+        type: base64
+        mapping:
+          - mask: "FF0000000000"
+      - id: 112
+        optional: true
+        name: minutes_start
+        type: base64
+        mapping:
+          - mask: "FF000000000000"
+      - id: 112
+        optional: true
+        name: hours_start
+        type: base64
+        mapping:
+          - mask: "FF00000000000000"
+  - entity: select
+    name: Watering delay 1
+    category: config
+    dps:
+      - id: 113
+        name: option
+        type: string
+        mapping:
+          - dps_val: 0
+            value: 0h
+          - dps_val: 24
+            value: 24h
+          - dps_val: 48
+            value: 48h
+          - dps_val: 72
+            value: 72h
+  - entity: select
+    name: Time format
+    category: config
+    dps:
+      - id: 114
+        name: option
+        type: string
+        optional: true
+        mapping:
+          - dps_val: 12
+            value: 12H
+          - dps_val: 24
+            value: 24H
+  - entity: binary_sensor
+    name: T&H soil sensor present 1
+    category: diagnostic
+    dps:
+      - id: 115
+        name: sensor
+        type: boolean 
+  - entity: binary_sensor
+    name: Rain sensor present 1
+    category: diagnostic
+    dps:
+      - id: 116
+        optional: true
+        name: sensor
+        type: string
+  - entity: binary_sensor
+    name: T&H soil sensor power OK 1
+    category: diagnostic
+    dps:
+      - id: 117
+        name: sensor
+        type: boolean
+  - entity: select
+    name: Units
+    category: config
+    dps:
+      - id: 119
+        name: option
+        optional: true
+        type: string
+        mapping:
+          - dps_val: 1
+            value: "l/C"
+          - dps_val: 2
+            value: "gal/F"
+  - entity: sensor
+    name: Alarm status
+    category: diagnostic
+    dps:
+      - id: 120
+        name: sensor
+        type: integer
+  - entity: sensor
+    name: Flow count 1 encoded # shows the past 10 days of flow count history. xx_days_256 values need to be multiplied by 256 and added to xx_days value to get the total for that day.
+    category: diagnostic
+    dps:
+      - id: 121
+        optional: true
+        name: sensor
+        type: base64
+      - id: 121
+        optional: true
+        name: 10_days
+        type: base64
+        mapping:
+          - mask: "FF"
+      - id: 121
+        optional: true
+        name: 10_days_256
+        type: base64
+        mapping:
+          - mask: "FF00"
+      - id: 121
+        optional: true
+        name: 9_days
+        type: base64
+        mapping:
+          - mask: "FF0000"
+      - id: 121
+        optional: true
+        name: 9_days_256
+        type: base64
+        mapping:
+          - mask: "FF000000"
+      - id: 121
+        optional: true
+        name: 8_days
+        type: base64
+        mapping:
+          - mask: "FF00000000"
+      - id: 121
+        optional: true
+        name: 8_days_256
+        type: base64
+        mapping:
+          - mask: "FF0000000000"
+      - id: 121
+        optional: true
+        name: 7_days
+        type: base64
+        mapping:
+          - mask: "FF000000000000"
+      - id: 121
+        optional: true
+        name: 7_days_256
+        type: base64
+        mapping:
+          - mask: "FF00000000000000"
+      - id: 121
+        optional: true
+        name: 6_days
+        type: base64
+        mapping:
+          - mask: "FF0000000000000000"
+      - id: 121
+        optional: true
+        name: 6_days_256
+        type: base64
+        mapping:
+          - mask: "FF000000000000000000"
+      - id: 121
+        optional: true
+        name: 5_days
+        type: base64
+        mapping:
+          - mask: "FF00000000000000000000"
+      - id: 121
+        optional: true
+        name: 5_days_256
+        type: base64
+        mapping:
+          - mask: "FF0000000000000000000000"
+      - id: 121
+        optional: true
+        name: 4_days
+        type: base64
+        mapping:
+          - mask: "FF000000000000000000000000"
+      - id: 121
+        optional: true
+        name: 4_days_256
+        type: base64
+        mapping:
+          - mask: "FF00000000000000000000000000"
+      - id: 121
+        optional: true
+        name: 3_days
+        type: base64
+        mapping:
+          - mask: "FF0000000000000000000000000000"
+      - id: 121
+        optional: true
+        name: 3_days_256
+        type: base64
+        mapping:
+          - mask: "FF000000000000000000000000000000"
+      - id: 121
+        optional: true
+        name: 2_days
+        type: base64
+        mapping:
+          - mask: "FF00000000000000000000000000000000"
+      - id: 121
+        optional: true
+        name: 2_days_256
+        type: base64
+        mapping:
+          - mask: "FF0000000000000000000000000000000000"
+      - id: 121
+        optional: true
+        name: 1_day
+        type: base64
+        mapping:
+          - mask: "FF000000000000000000000000000000000000"
+      - id: 121
+        optional: true
+        name: 1_day_256
+        type: base64
+        mapping:
+          - mask: "FF00000000000000000000000000000000000000"
+  - entity: sensor
+    name: Temperature count 1 encoded
+    category: diagnostic
+    dps:
+      - id: 122
+        optional: true
+        name: sensor
+        type: base64
+  - entity: sensor
+    name: Moisture count 1 encoded
+    category: diagnostic
+    dps:
+      - id: 123
+        optional: true
+        name: sensor
+        type: base64
+  - entity: binary_sensor
+    name: Postponed due to rain 1
+    category: diagnostic
+    dps:
+      - id: 125
+        name: sensor
+        type: boolean 
+  - entity: sensor
+    name: MCU version
+    category: diagnostic
+    dps:
+      - id: 127
+        name: sensor
+        type: string 
+  - entity: sensor
+    name: Next watering 1 encoded # shows the next scheduled watering time based on starts A, B and C
+    category: diagnostic
+    dps:
+      - id: 128
+        optional: true
+        name: sensor
+        type: base64
+      - id: 128
+        optional: true
+        name: minute
+        type: base64
+        mapping:
+          - mask: "FF"
+      - id: 128
+        optional: true
+        name: hour
+        type: base64
+        mapping:
+          - mask: "FF00"
+      - id: 128
+        optional: true
+        name: day
+        type: base64
+        mapping:
+          - mask: "FF0000"
+      - id: 128
+        optional: true
+        name: month
+        type: base64
+        mapping:
+          - mask: "FF000000"
+      - id: 128
+        optional: true
+        name: year
+        type: base64
+        mapping:
+          - mask: "FF00000000"
+  - entity: sensor
+    name: Soil temperature 2
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 150
+        name: sensor
+        type: integer
+        unit: C
+  - entity: sensor
+    name: Soil moisture 2
+    class: humidity
+    category: diagnostic
+    dps:
+      - id: 151
+        name: sensor
+        type: integer
+        unit: "%"
+  - entity: sensor
+    name: Last water flow 2
+    class: water
+    category: diagnostic
+    icon: "mdi:water"
+    dps:
+      - id: 152
+        name: sensor
+        type: integer
+        unit: L
+  - entity: sensor
+    name: Timer status 2
+    class: enum
+    icon: "mdi:list-status"
+    category: diagnostic
+    dps:
+      - id: 153
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: "Off"
+          - dps_val: 1
+            value: "Manual"
+          - dps_val: 2
+            value: "Auto"
+          - dps_val: 3
+            value: "Rain Delay"
+  - entity: number
+    name: Manual timer 2
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 154
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 60
+  - entity: number
+    name: Time left 2 # This doesn't seem to get populated with manual watering
+    icon: "mdi:timer"
+    category: diagnostic
+    dps:
+      - id: 156
+        optional: true
+        type: integer
+        name: value
+        unit: min
+  - entity: sensor
+    name: Start A 2 encoded # this DP shows the start time, duration and days for start A. Not controllable - use automation instead.
+    category: diagnostic
+    dps:
+      - id: 157
+        optional: true
+        name: sensor
+        type: base64
+      - id: 157
+        optional: true
+        name: days # bit string of flags for days of the week Sun-Sat, plus a bit for on/off
+        type: base64
+        mapping:
+          - mask: "FF000000"
+      - id: 157
+        optional: true
+        name: minutes_duration
+        type: base64
+        mapping:
+          - mask: "FF00000000"
+      - id: 157
+        optional: true
+        name: hours_duration
+        type: base64
+        mapping:
+          - mask: "FF0000000000"
+      - id: 157
+        optional: true
+        name: minutes_start
+        type: base64
+        mapping:
+          - mask: "FF000000000000"
+      - id: 157
+        optional: true
+        name: hours_start
+        type: base64
+        mapping:
+          - mask: "FF00000000000000"
+  - entity: sensor
+    name: Start B 2 encoded # this DP shows the start time, duration and days for start B. Not controllable - use automation instead.
+    category: diagnostic
+    dps:
+      - id: 158
+        optional: true
+        name: sensor
+        type: string
+      - id: 158
+        optional: true
+        name: days # bit string of flags for days of the week Sun-Sat, plus a bit for on/off
+        type: base64
+        mapping:
+          - mask: "FF000000"
+      - id: 158
+        optional: true
+        name: minutes_duration
+        type: base64
+        mapping:
+          - mask: "FF00000000"
+      - id: 158
+        optional: true
+        name: hours_duration
+        type: base64
+        mapping:
+          - mask: "FF0000000000"
+      - id: 158
+        optional: true
+        name: minutes_start
+        type: base64
+        mapping:
+          - mask: "FF000000000000"
+      - id: 158
+        optional: true
+        name: hours_start
+        type: base64
+        mapping:
+          - mask: "FF00000000000000"
+  - entity: sensor
+    name: Start C 2 encoded # this DP shows the start time, duration and days for start C. Not controllable - use automation instead.
+    category: diagnostic
+    dps:
+      - id: 159
+        optional: true
+        name: sensor
+        type: string
+      - id: 159
+        optional: true
+        name: days # bit string of flags for days of the week Sun-Sat, plus a bit for on/off
+        type: base64
+        mapping:
+          - mask: "FF000000"
+      - id: 159
+        optional: true
+        name: minutes_duration
+        type: base64
+        mapping:
+          - mask: "FF00000000"
+      - id: 159
+        optional: true
+        name: hours_duration
+        type: base64
+        mapping:
+          - mask: "FF0000000000"
+      - id: 159
+        optional: true
+        name: minutes_start
+        type: base64
+        mapping:
+          - mask: "FF000000000000"
+      - id: 159
+        optional: true
+        name: hours_start
+        type: base64
+        mapping:
+          - mask: "FF00000000000000"
+  - entity: select
+    name: Watering delay 2
+    category: config
+    dps:
+      - id: 160
+        name: option
+        type: string
+        mapping:
+          - dps_val: 0
+            value: 0h
+          - dps_val: 24
+            value: 24h
+          - dps_val: 48
+            value: 48h
+          - dps_val: 72
+            value: 72h
+  - entity: binary_sensor
+    name: T&H soil sensor present 2
+    category: diagnostic
+    dps:
+      - id: 161
+        name: sensor
+        type: boolean
+  - entity: binary_sensor
+    name: Soil sensor power OK 2
+    category: diagnostic
+    dps:
+      - id: 162
+        name: sensor
+        type: boolean
+  - entity: sensor
+    name: Flow count 2 encoded # shows the past 10 days of flow count history. xx_days_256 values need to be multiplied by 256 and added to xx_days value to get the total for that day.
+    category: diagnostic
+    dps:
+      - id: 163
+        optional: true
+        name: sensor
+        type: base64
+      - id: 163
+        optional: true
+        name: 10_days
+        type: base64
+        mapping:
+          - mask: "FF"
+      - id: 163
+        optional: true
+        name: 10_days_256
+        type: base64
+        mapping:
+          - mask: "FF00"
+      - id: 163
+        optional: true
+        name: 9_days
+        type: base64
+        mapping:
+          - mask: "FF0000"
+      - id: 163
+        optional: true
+        name: 9_days_256
+        type: base64
+        mapping:
+          - mask: "FF000000"
+      - id: 163
+        optional: true
+        name: 8_days
+        type: base64
+        mapping:
+          - mask: "FF00000000"
+      - id: 163
+        optional: true
+        name: 8_days_256
+        type: base64
+        mapping:
+          - mask: "FF0000000000"
+      - id: 163
+        optional: true
+        name: 7_days
+        type: base64
+        mapping:
+          - mask: "FF000000000000"
+      - id: 163
+        optional: true
+        name: 7_days_256
+        type: base64
+        mapping:
+          - mask: "FF00000000000000"
+      - id: 163
+        optional: true
+        name: 6_days
+        type: base64
+        mapping:
+          - mask: "FF0000000000000000"
+      - id: 163
+        optional: true
+        name: 6_days_256
+        type: base64
+        mapping:
+          - mask: "FF000000000000000000"
+      - id: 163
+        optional: true
+        name: 5_days
+        type: base64
+        mapping:
+          - mask: "FF00000000000000000000"
+      - id: 163
+        optional: true
+        name: 5_days_256
+        type: base64
+        mapping:
+          - mask: "FF0000000000000000000000"
+      - id: 163
+        optional: true
+        name: 4_days
+        type: base64
+        mapping:
+          - mask: "FF000000000000000000000000"
+      - id: 163
+        optional: true
+        name: 4_days_256
+        type: base64
+        mapping:
+          - mask: "FF00000000000000000000000000"
+      - id: 163
+        optional: true
+        name: 3_days
+        type: base64
+        mapping:
+          - mask: "FF0000000000000000000000000000"
+      - id: 163
+        optional: true
+        name: 3_days_256
+        type: base64
+        mapping:
+          - mask: "FF000000000000000000000000000000"
+      - id: 163
+        optional: true
+        name: 2_days
+        type: base64
+        mapping:
+          - mask: "FF00000000000000000000000000000000"
+      - id: 163
+        optional: true        
+        name: 2_days_256
+        type: base64
+        mapping:
+          - mask: "FF0000000000000000000000000000000000"
+      - id: 163
+        optional: true
+        name: 1_day
+        type: base64
+        mapping:
+          - mask: "FF000000000000000000000000000000000000"
+      - id: 163
+        optional: true
+        name: 1_day_256
+        type: base64
+        mapping:
+          - mask: "FF00000000000000000000000000000000000000"
+  - entity: sensor
+    name: Temperature count 2 encoded
+    category: diagnostic
+    dps:
+      - id: 164
+        optional: true
+        name: sensor
+        type: base64
+  - entity: sensor
+    name: Moisture count 2 encoded
+    category: diagnostic
+    dps:
+      - id: 165
+        optional: true
+        name: sensor
+        type: base64
+  - entity: binary_sensor
+    name: Postponed due to rain 2
+    category: diagnostic
+    dps:
+      - id: 166
+        name: sensor
+        type: boolean
+  - entity: sensor
+    name: Next watering 2 encoded # shows the next scheduled watering time based on starts A, B and C
+    category: diagnostic
+    dps:
+      - id: 167
+        optional: true
+        name: sensor
+        type: base64
+      - id: 167
+        optional: true
+        name: minute
+        type: base64
+        mapping:
+          - mask: "FF"
+      - id: 167
+        optional: true
+        name: hour
+        type: base64
+        mapping:
+          - mask: "FF00"
+      - id: 167
+        optional: true
+        name: day
+        type: base64
+        mapping:
+          - mask: "FF0000"
+      - id: 167
+        optional: true
+        name: month
+        type: base64
+        mapping:
+          - mask: "FF000000"
+      - id: 167
+        optional: true
+        name: year
+        type: base64
+        mapping:
+          - mask: "FF00000000"
