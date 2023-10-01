@@ -36,10 +36,39 @@ easier to set up using that as an alternative.
 
 ## Device support
 
-Note that devices sometimes get firmware upgrades, or incompatible versions are sold under the same model name, so it is possible that the device will not work despite being listed.
+Note that devices sometimes get firmware upgrades, or incompatible
+versions are sold under the same model name, so it is possible that
+the device will not work despite being listed.
 
-Battery powered devices such as door and window sensors, smoke alarms etc which do not use a hub will be impossible to support locally, due to the power management that they need to do to get acceptable battery
-life.  Currently hubs are also unsupported, but this is being worked on.
+Battery powered devices such as door and window sensors, smoke alarms
+etc which do not use a hub will be impossible to support locally, due
+to the power management that they need to do to get acceptable battery
+life.
+
+Hubs are currently supported, but with limitations.  Each connection
+to a sub device uses a separate network connection, but like other
+Tuya devices, hubs are usually limited in the number of connections
+they can handle, with typical limits being 1 or 3, depending on the specific
+Tuya module they are using.  This severely limits the number of sub devices
+that can be connected through this integration.
+
+Tuya Zigbee devices are usually standard zigbee devices, so as an
+alternative to this integration with a Tuya hub, you can use a
+supported Zigbee USB stick or Wifi hub with
+[ZHA](https://www.home-assistant.io/integrations/zha/#compatible-hardware)
+or [Zigbee2MQTT](https://www.zigbee2mqtt.io/guide/adapters/).
+
+Tuya Bluetooth devices can be supported directly by the
+[tuya_ble](https://github.com/PlusPlus-ua/ha_tuya_ble/) integration.
+
+Tuya IR hubs that expose general IR remotes as sub devices usually
+expose them as one way devices (send only).  Due to the way this
+integration does device detection based on the dps returned by the
+device, it is not currently able to detect such devices at all.  Some
+specialised IR hubs for air conditioner remote controls do work, as
+they try to emulate a fully smart air conditioner using internal memory
+of what settings are currently set, and internal temperature and humidity
+sensors.
 
 A list of currently supported devices can be found in the [DEVICES.md](https://github.com/make-all/tuya-local/blob/main/DEVICES.md) file.
 
