@@ -34,22 +34,21 @@ primary_entity:
     - id: 6
       type: integer
       name: current_humidity
-      readonly: true
     - id: 19
       type: integer
       name: error_code
-      readonly: true
 secondary_entities:
   - entity: sensor
     class: humidity
     name: Current humidity
+    deprecated: humidifier
+    category: diagnostic
     dps:
       - id: 6
         type: integer
         name: sensor
         unit: "%"
         class: measurement
-        readonly: true
   - entity: light
     name: Display
     category: config

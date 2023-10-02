@@ -4,7 +4,6 @@ products:
     name: EAI-90
 primary_entity:
   entity: sensor
-  name: Energy
   class: energy
   dps:
     - id: 1
@@ -105,7 +104,7 @@ secondary_entities:
         optional: true
         unit: V
         mapping:
-          - mask: "FFFFFF0000000000000000"
+          - mask: "FFFF000000000000"
             scale: 10
   - entity: sensor
     name: Current A
@@ -118,7 +117,7 @@ secondary_entities:
         optional: true
         unit: A
         mapping:
-          - mask: "000000FFFFFF0000000000"
+          - mask: "0000FFFFFF000000"
             scale: 1000
   - entity: sensor
     name: Power A
@@ -131,5 +130,5 @@ secondary_entities:
         optional: true
         unit: kW
         mapping:
-          - mask: "000000000000FFFFFF0000"
+          - mask: "0000000000FFFFFF"
             scale: 1000

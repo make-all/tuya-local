@@ -12,7 +12,6 @@ primary_entity:
     - id: 1
       type: string
       name: sensor
-      readonly: true
       mapping:
         - dps_val: "level_1"
           value: "Excellent"
@@ -23,7 +22,6 @@ primary_entity:
 
 secondary_entities:
   - entity: sensor
-    name: Temperature
     class: temperature
     dps:
       - id: 2
@@ -32,7 +30,6 @@ secondary_entities:
         unit: C
         class: measurement
   - entity: sensor
-    name: Humidity
     class: humidity
     icon: "mdi:water-percent"
     dps:
@@ -42,7 +39,6 @@ secondary_entities:
         unit: "%"
         class: measurement
   - entity: sensor
-    name: CO2
     class: carbon_dioxide
     icon: "mdi:factory"
     dps:
@@ -52,7 +48,6 @@ secondary_entities:
         unit: ppm
         class: measurement
   - entity: sensor
-    name: CO
     class: carbon_monoxide
     icon: "mdi:factory"
     dps:
@@ -75,7 +70,6 @@ secondary_entities:
           - scale: 1
             step: 1
   - entity: sensor
-    name: TVOC
     class: volatile_organic_compounds
     icon: "mdi:factory"
     dps:
@@ -88,7 +82,6 @@ secondary_entities:
           - scale: 1
             step: 1
   - entity: sensor
-    name: PM 2.5
     class: pm25
     icon: "mdi:factory"
     dps:
@@ -98,7 +91,6 @@ secondary_entities:
         unit: µg/m³
         class: measurement
   - entity: sensor
-    name: PM 10
     class: pm10
     icon: "mdi:factory"
     dps:
@@ -108,7 +100,6 @@ secondary_entities:
         unit: µg/m³
         class: measurement
   - entity: sensor
-    name: Battery
     class: battery
     category: diagnostic
     dps:

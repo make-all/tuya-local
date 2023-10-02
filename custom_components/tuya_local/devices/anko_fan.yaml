@@ -1,6 +1,7 @@
 name: Anko fan
 primary_entity:
   entity: fan
+  translation_key: fan_with_presets
   dps:
     - id: 1
       type: boolean
@@ -16,13 +17,25 @@ primary_entity:
         - dps_val: sleep
           value: sleep
     - id: 3
-      type: integer
+      type: string
       name: speed
-      range:
-        min: 0
-        max: 8
       mapping:
-        - scale: 0.08
+        - dps_val: "1"
+          value: 13
+        - dps_val: "2"
+          value: 25
+        - dps_val: "3"
+          value: 37
+        - dps_val: "4"
+          value: 50
+        - dps_val: "5"
+          value: 63
+        - dps_val: "6"
+          value: 75
+        - dps_val: "7"
+          value: 87
+        - dps_val: "8"
+          value: 100
     - id: 4
       type: string
       name: oscillate

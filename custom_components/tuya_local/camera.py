@@ -2,11 +2,10 @@
 Platform for Tuya Cameras
 """
 
-from homeassistant.components.camera import (
-    Camera as CameraEntity,
-    CameraEntityFeature,
-)
 import logging
+
+from homeassistant.components.camera import Camera as CameraEntity
+from homeassistant.components.camera import CameraEntityFeature
 
 from .device import TuyaLocalDevice
 from .helpers.config import async_tuya_setup_platform

@@ -1,4 +1,4 @@
-from homeassistant.components.sensor import SensorDeviceClass
+from homeassistant.components.sensor import SensorDeviceClass, STATE_CLASS_MEASUREMENT
 from homeassistant.components.vacuum import (
     STATE_CLEANING,
     STATE_DOCKED,
@@ -8,10 +8,7 @@ from homeassistant.components.vacuum import (
     STATE_RETURNING,
     VacuumEntityFeature,
 )
-from homeassistant.const import (
-    AREA_SQUARE_METERS,
-    UnitOfTime,
-)
+from homeassistant.const import AREA_SQUARE_METERS, PERCENTAGE, UnitOfTime
 
 from ..const import LEFANT_M213_VACUUM_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -55,6 +52,13 @@ class TestLefantM213Vacuum(MultiSensorTests, TuyaDeviceTestCase):
                     "unit": UnitOfTime.MINUTES,
                     "device_class": SensorDeviceClass.DURATION,
                 },
+                {
+                    "dps": BATTERY_DPS,
+                    "name": "sensor_battery",
+                    "unit": PERCENTAGE,
+                    "device_class": SensorDeviceClass.BATTERY,
+                    "state_class": STATE_CLASS_MEASUREMENT,
+                },
             ],
         )
         self.mark_secondary(["sensor_clean_area", "sensor_clean_time"])
@@ -66,7 +70,6 @@ class TestLefantM213Vacuum(MultiSensorTests, TuyaDeviceTestCase):
                 VacuumEntityFeature.STATE
                 | VacuumEntityFeature.STATUS
                 | VacuumEntityFeature.SEND_COMMAND
-                | VacuumEntityFeature.BATTERY
                 | VacuumEntityFeature.TURN_ON
                 | VacuumEntityFeature.TURN_OFF
                 | VacuumEntityFeature.START
@@ -77,10 +80,6 @@ class TestLefantM213Vacuum(MultiSensorTests, TuyaDeviceTestCase):
                 | VacuumEntityFeature.FAN_SPEED
             ),
         )
-
-    def test_battery_level(self):
-        self.dps[BATTERY_DPS] = 50
-        self.assertEqual(self.subject.battery_level, 50)
 
     def test_fan_speed(self):
         self.dps[FAN_DPS] = "low"

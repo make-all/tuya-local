@@ -1,15 +1,12 @@
 """Tests for the MoesHouse RGB smart socket."""
-from homeassistant.components.light import (
-    ColorMode,
-    LightEntityFeature,
-)
+from homeassistant.components.light import ColorMode, LightEntityFeature
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (
     UnitOfElectricCurrent,
     UnitOfElectricPotential,
-    UnitOfTime,
     UnitOfPower,
+    UnitOfTime,
 )
 
 from ..const import MOES_RGB_SOCKET_PAYLOAD
@@ -50,7 +47,7 @@ class TestMoesRGBSocket(
 
         self.setUpBasicSwitch(
             SWITCH_DPS,
-            self.entities.get("switch"),
+            self.entities.get("switch_outlet"),
             device_class=SwitchDeviceClass.OUTLET,
             power_dps=POWER_DPS,
             power_scale=10,

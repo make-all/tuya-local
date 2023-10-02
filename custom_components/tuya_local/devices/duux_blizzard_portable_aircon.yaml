@@ -14,14 +14,18 @@ primary_entity:
         - dps_val: true
           constraint: mode
           conditions:
-            - dps_val: cold
-              value: cool
-            - dps_val: wind
-              value: fan_only
-            - dps_val: dry
-              value: dry
             - dps_val: auto
+              icon: "mdi:hvac"
               value: auto
+            - dps_val: cool
+              icon: "mdi:snowflake"
+              value: cool
+            - dps_val: dry
+              icon: "mdi:water-off"
+              value: dry
+            - dps_val: fan
+              icon: "mdi:fan"
+              value: fan_only
     - id: 2
       type: string
       name: mode
@@ -31,13 +35,10 @@ primary_entity:
       mapping:
         - dps_val: low
           value: low
-        - dps_val: middle
+        - dps_val: mid
           value: medium
         - dps_val: high
           value: high
-    - id: 4
-      type: integer
-      name: unknown_4
     - id: 5
       type: integer
       name: temperature
@@ -67,10 +68,10 @@ primary_entity:
       type: integer
       name: temp_set_f
       optional: true
+      hidden: true
       range:
         min: 64
         max: 90
-      hidden: true
     - id: 11
       type: integer
       name: temp_current_f
@@ -84,14 +85,23 @@ primary_entity:
           value: C
         - dps_val: true
           value: F
-    - id: 15
-      # Range and units unknown, so we cannot make this a timer
-      type: integer
-      name: countdown
 secondary_entities:
+  - entity: number
+    name: Timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 4
+        name: value
+        type: integer
+        unit: h
+        range:
+          min: 0
+          max: 12
   - entity: switch
     name: Sleep
-    icon: "mdi:weather-night"
+    category: config
+    icon: "mdi:power-sleep"
     dps:
       - id: 6
         type: boolean
@@ -142,3 +152,11 @@ secondary_entities:
             value: Celsius
           - dps_val: true
             value: Fahrenheit
+  - entity: sensor
+    name: Timer
+    class: duration
+    category: config
+    dps:
+      - id: 15
+        type: integer
+        name: sensor

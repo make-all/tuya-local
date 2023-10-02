@@ -54,6 +54,7 @@ secondary_entities:
   - entity: sensor
     name: Balance energy
     category: diagnostic
+    class: energy_storage
     dps:
       - id: 13
         type: integer
@@ -64,6 +65,7 @@ secondary_entities:
   - entity: number
     name: Charge energy
     category: config
+    class: energy_storage
     icon: "mdi:cash"
     dps:
       - id: 14
@@ -97,7 +99,6 @@ secondary_entities:
         name: button
         optional: true
   - entity: sensor
-    name: Energy
     class: energy
     dps:
       - id: 1
@@ -118,7 +119,7 @@ secondary_entities:
         optional: true
         unit: V
         mapping:
-          - mask: "FFFFFF0000000000000000"
+          - mask: "FFFF000000000000"
             scale: 10
   - entity: sensor
     name: Current A
@@ -131,7 +132,7 @@ secondary_entities:
         optional: true
         unit: A
         mapping:
-          - mask: "000000FFFFFF0000000000"
+          - mask: "0000FFFFFF000000"
             scale: 1000
   - entity: sensor
     name: Power A
@@ -144,5 +145,5 @@ secondary_entities:
         optional: true
         unit: kW
         mapping:
-          - mask: "000000000000FFFFFF0000"
+          - mask: "0000000000FFFFFF"
             scale: 1000

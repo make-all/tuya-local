@@ -48,8 +48,7 @@ class TestMoebot(TuyaDeviceTestCase):
         self.assertEqual(
             self.subject.supported_features,
             (
-                VacuumEntityFeature.BATTERY
-                | VacuumEntityFeature.CLEAN_SPOT
+                VacuumEntityFeature.CLEAN_SPOT
                 | VacuumEntityFeature.PAUSE
                 | VacuumEntityFeature.RETURN_HOME
                 | VacuumEntityFeature.SEND_COMMAND

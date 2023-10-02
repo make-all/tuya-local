@@ -1,15 +1,8 @@
-# Example DPS Status
-# {'dps': {'1': 226, '2': 41, '9': 'f'}}
-# from issue #608 { "1": 183, "2": 63, "9": "c", "10": 390, "11": 0, "12": 60,
-#                   "13": 20, "14": "cancel", "15": "upperalarm", "21": true,
-#                   "101": true, "102": 9, "103": 0, "104": 1, "105": 0,
-#                   "106": 0, "107": 1 }
 name: TH16 TH06WB3S Temperature and Humidity Sensor
 products:
   - id: 7akwzwfwhukkdsib
 primary_entity:
   entity: sensor
-  name: Temperature
   class: temperature
   dps:
     - id: 1
@@ -21,7 +14,6 @@ primary_entity:
       class: measurement
 secondary_entities:
   - entity: sensor
-    name: Humidity
     class: humidity
     dps:
       - id: 2
@@ -40,7 +32,8 @@ secondary_entities:
           - dps_val: "f"
             value: Fahrenheit
           - dps_val: "c"
-            value: Celcius
+            value: Celsius
+        optional: true
   - entity: light
     name: Display
     icon: "mdi:television-ambient-light"

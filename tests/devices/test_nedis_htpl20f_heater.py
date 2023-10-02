@@ -1,11 +1,11 @@
 from homeassistant.components.climate.const import (
-    ClimateEntityFeature,
-    HVACMode,
     PRESET_AWAY,
     PRESET_COMFORT,
     PRESET_ECO,
+    ClimateEntityFeature,
+    HVACMode,
 )
-from homeassistant.const import UnitOfTime, UnitOfTemperature
+from homeassistant.const import UnitOfTemperature, UnitOfTime
 
 from ..const import NEDIS_HTPL20F_PAYLOAD
 from ..helpers import assert_device_properties_set

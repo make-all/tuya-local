@@ -1,7 +1,7 @@
 name: mmWave presence sensor
 products:
   - id: k2h8vkj98fhvnpiv
-    name: ZY-M100 WiFi
+    name: ZY-M100-WIFI
 primary_entity:
   entity: binary_sensor
   class: occupancy
@@ -14,17 +14,11 @@ primary_entity:
           value: true
         - dps_val: none
           value: false
-    - id: 101
-      type: integer
-      name: detection_delay
-    - id: 102
-      type: integer
-      name: fading_time
 secondary_entities:
   - entity: number
     name: Sensitivity
     category: config
-    icon: "mdi:"
+    icon: "mdi:motion-sensor"
     dps:
       - id: 2
         type: integer
@@ -35,12 +29,12 @@ secondary_entities:
   - entity: number
     name: Minimum distance
     category: config
-    icon: "mdi:arrow-collapse"
+    icon: "mdi:arrow-collapse-left"
     dps:
       - id: 3
         type: integer
         name: value
-        unit: m 
+        unit: m
         range:
           min: 0
           max: 1000
@@ -50,12 +44,12 @@ secondary_entities:
   - entity: number
     name: Maximum distance
     category: config
-    icon: "mdi:arrow-collapse"
+    icon: "mdi:arrow-collapse-right"
     dps:
       - id: 4
         type: integer
         name: value
-        unit: m 
+        unit: m
         range:
           min: 0
           max: 1000
@@ -87,7 +81,7 @@ secondary_entities:
   - entity: sensor
     name: Target distance
     class: distance
-    category: diagnostic
+    icon: "mdi:tape-measure"
     dps:
       - id: 9
         type: integer
@@ -96,3 +90,42 @@ secondary_entities:
         class: measurement
         mapping:
           - scale: 100
+  - entity: number
+    name: Detection delay
+    category: config
+    # mode: box
+    icon: "mdi:timer-sand"
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 100
+        mapping:
+          - scale: 10
+            step: 1
+  - entity: number
+    name: Fading time
+    category: config
+    icon: "mdi:timer-sand-complete"
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 5
+          max: 15000
+        mapping:
+          - scale: 10
+            step: 5
+  - entity: sensor
+    class: illuminance
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: lx
+        class: measurement

@@ -34,7 +34,6 @@ primary_entity:
     - id: 24
       type: integer
       name: current_temperature
-      readonly: true
       mapping:
         - scale: 10
     - id: 26
@@ -44,7 +43,6 @@ primary_entity:
     - id: 36
       type: string
       name: hvac_action
-      readonly: true
       mapping:
         - dps_val: close
           icon: "mdi:radiator-disabled"
@@ -185,7 +183,7 @@ secondary_entities:
           - dps_val: "70"
             value: "7 days"
           - dps_val: null
-            value_redirect: 102
+            value_redirect: alt
       - id: 102
         type: string
         name: alt

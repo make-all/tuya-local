@@ -1,0 +1,154 @@
+name: HDMI sync backlight
+products:
+  - id: js0t2z9y1tnphvds
+    name: Lytmi Fantasy/Neo 3
+  - id: bfedc6cf9dcae291b04ecj
+    name: Lytmi Fantasy 3
+primary_entity:
+  entity: light
+  dps:
+    - id: 20
+      name: switch
+      type: boolean
+    - id: 22
+      name: brightness
+      type: integer
+      range:
+        min: 10
+        max: 1000
+      mapping:
+        - scale: 3.92
+    - id: 24
+      name: rgbhsv
+      type: hex
+      format:
+        - name: h
+          bytes: 2
+          range:
+            min: 0
+            max: 360
+        - name: s
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+        - name: v
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+    - id: 107
+      type: boolean
+      name: unknown_107
+
+secondary_entities:
+  - entity: switch
+    name: TV synchronization switch
+    category: config
+    dps:
+      - id: 109
+        name: switch
+        type: boolean
+  - entity: select
+    name: HDMI Input
+    icon: "mdi:hdmi-port"
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: option
+        mapping:
+          - dps_val: 0
+            value: HDMI 1
+          - dps_val: 1
+            value: HDMI 2
+          - dps_val: 2
+            value: HDMI 3
+          - dps_val: 3
+            value: HDMI 4
+  - entity: select
+    name: Setup side
+    icon: "mdi:arrow-collapse-horizontal"
+    category: config
+    dps:
+      - id: 101
+        type: integer
+        name: option
+        mapping:
+          - dps_val: 0
+            value: Right
+          - dps_val: 1
+            value: Left
+  - entity: number
+    category: config
+    name: Degree of diffusion
+    type: integer
+    mode: slider
+    dps:
+      - id: 108
+        name: value
+        type: integer
+        precision: 0
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - scale: 10
+            step: 10
+  - entity: select
+    name: Scene
+    format:
+      - name: scene_num
+        bytes: 2
+        range:
+          min: 1
+          max: 8
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 25
+        type: string
+        name: option
+        mapping:
+          - dps_val: "80000000000000000000000000000000"
+            value: Sync - Video
+          - dps_val: "81000000000000000000000000000000"
+            value: Sync - Recreation
+          - dps_val: "82000000000000000000000000000000"
+            value: Sync - Game
+          - dps_val: "98000000000000000000000000000000"
+            value: Music - Classic
+          - dps_val: "99000000000000000000000000000000"
+            value: Music - Pop
+          - dps_val: "9A000000000000000000000000000000"
+            value: Music - Rock
+          - dps_val: "9B000000000000000000000000000000"
+            value: Music - Absolute
+          - dps_val: "9C000000000000000000000000000000"
+            value: Music - Electror
+          - dps_val: "9D000000000000000000000000000000"
+            value: Music - Ambient
+          - dps_val: "86000000000000000000000000000000"
+            value: Scene - Rainbow
+          - dps_val: "87000000000000000000000000000000"
+            value: Scene - Fire
+          - dps_val: "88000000000000000000000000000000"
+            value: Scene - Read
+          - dps_val: "89000000000000000000000000000000"
+            value: Scene - Firework
+          - dps_val: "90000000000000000000000000000000"
+            value: Scene (Color) - Star
+          - dps_val: "91000000000000000000000000000000"
+            value: Scene (Color) - Drip
+          - dps_val: "92000000000000000000000000000000"
+            value: Scene (Color) - Practice
+          - dps_val: "93000000000000000000000000000000"
+            value: Scene (Color) - Flow
+          - dps_val: "94000000000000000000000000000000"
+            value: Scene (Color) - Ball
+          - dps_val: "95000000000000000000000000000000"
+            value: Scene (Color) - Swing
+          - dps_val: "96000000000000000000000000000000"
+            value: Scene (Color) - Breath
+          - dps_val: "97000000000000000000000000000000"
+            value: Scene (Color) - Pure     

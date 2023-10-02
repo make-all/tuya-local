@@ -3,18 +3,70 @@ products:
   - id: mw27s3tus4bb7nz3
     name: Dual-network security system
 primary_entity:
-  entity: button
-  name: Disarm
-  icon: "mdi:shield-off"
+  entity: alarm_control_panel
   dps:
     - id: 1
       type: string
-      name: button
+      name: alarm_state
       mapping:
-        - dps_val: "disarmed"
-          value: true
+        - dps_val: disarmed
+          value: disarmed
+        - dps_val: arm
+          value: armed_away
+        - dps_val: home
+          value: armed_home
+    - id: 20
+      type: boolean
+      name: unknown_20
+    - id: 21
+      type: boolean
+      name: unknown_21
+    - id: 22
+      type: integer
+      name: unknown_22
+    - id: 23
+      type: string
+      name: unknown_23
+    - id: 24
+      type: string
+      name: unknown_24
+    - id: 32
+      type: string
+      name: unknown_32
+    - id: 34
+      type: boolean
+      name: unknown_34
+    - id: 35
+      type: boolean
+      name: unknown_35
+    - id: 36
+      type: string
+      name: unknown_36
+    - id: 37
+      type: string
+      name: unknown_37
+    - id: 39
+      type: string
+      name: unknown_39
+    - id: 40
+      type: string
+      name: unknown_40
 secondary_entities:
   - entity: button
+    deprecated: alarm_control_panel
+    category: config
+    name: Disarm
+    icon: "mdi:shield-off"
+    dps:
+      - id: 1
+        type: string
+        name: button
+        mapping:
+          - dps_val: "disarmed"
+            value: true
+  - entity: button
+    deprecated: alarm_control_panel
+    category: config
     name: Away arm
     icon: "mdi:shield-lock"
     dps:
@@ -25,6 +77,8 @@ secondary_entities:
           - dps_val: "arm"
             value: true
   - entity: button
+    deprecated: alarm_control_panel
+    category: config
     name: Home arm
     icon: "mdi:shield-home"
     dps:
@@ -66,15 +120,14 @@ secondary_entities:
             value: "on"
             default: true
   - entity: binary_sensor
-    name: Tamper
     class: tamper
-    category: config
+    category: diagnostic
     dps:
       - id: 9
         type: boolean
         name: sensor
   - entity: switch
-    name: Arm/disarm voice prompt
+    name: Voice prompt
     category: config
     icon: "mdi:account-voice"
     dps:
@@ -90,9 +143,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: sensor
-    name: Battery
     class: battery
-    category: config
     dps:
       - id: 16
         type: integer
@@ -101,7 +152,7 @@ secondary_entities:
   - entity: binary_sensor
     name: Low battery alarm
     class: battery
-    category: config
+    category: diagnostic
     dps:
       - id: 17
         type: boolean
@@ -124,7 +175,7 @@ secondary_entities:
         name: value
         unit: sec
   - entity: switch
-    name: Countdown with tick tone
+    name: Tick down
     category: config
     icon: "mdi:timer"
     dps:

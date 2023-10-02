@@ -3,6 +3,7 @@ products:
   - id: rklgm99ldz4unh5s
 primary_entity:
   entity: fan
+  translation_key: fan_with_presets
   dps:
     - id: 1
       name: switch
@@ -12,11 +13,11 @@ primary_entity:
       type: string
       mapping:
         - dps_val: normal
-          value: Normal
+          value: normal
         - dps_val: nature
-          value: Natural
+          value: nature
         - dps_val: sleep
-          value: Sleep
+          value: sleep
     - id: 3
       name: speed
       type: string
@@ -133,7 +134,6 @@ secondary_entities:
             value: false
           - value: true
   - entity: sensor
-    name: Temperature
     class: temperature
     category: diagnostic
     dps:

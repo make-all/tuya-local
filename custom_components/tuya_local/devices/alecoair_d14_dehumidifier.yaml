@@ -39,6 +39,9 @@ primary_entity:
           value: sleep
           icon: "mdi:power-sleep"
           icon_priority: 3
+    - id: 16
+      type: integer
+      name: current_humidity
     - id: 19
       type: bitfield
       name: error
@@ -82,6 +85,8 @@ secondary_entities:
         name: switch
   - entity: sensor
     name: Current humidity
+    deprecated: humidifier
+    category: diagnostic
     class: humidity
     dps:
       - id: 16

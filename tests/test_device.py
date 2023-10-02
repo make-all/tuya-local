@@ -1,20 +1,15 @@
 from datetime import datetime
 from time import time
 from unittest import IsolatedAsyncioTestCase
-from unittest.mock import AsyncMock, Mock, call, patch, ANY
+from unittest.mock import ANY, AsyncMock, Mock, call, patch
 
-from homeassistant.const import (
-    EVENT_HOMEASSISTANT_STARTED,
-    EVENT_HOMEASSISTANT_STOP,
-)
+from homeassistant.const import EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP
 
 from custom_components.tuya_local.device import TuyaLocalDevice
 from custom_components.tuya_local.helpers.device_config import TuyaEntityConfig
 from custom_components.tuya_local.switch import TuyaLocalSwitch
 
-from .const import (
-    EUROM_600_HEATER_PAYLOAD,
-)
+from .const import EUROM_600_HEATER_PAYLOAD
 
 
 class TestDevice(IsolatedAsyncioTestCase):
@@ -365,6 +360,27 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.subject._lock.acquire.assert_called_once()
         self.subject._lock.release.assert_called_once()
 
+    def test_pending_updates_cleared_on_receipt(self):
+        # Set up the preconditions
+        now = time()
+        self.subject._pending_updates = {
+            "1": {"value": True, "updated_at": now, "sent": True},
+            "2": {"value": True, "updated_at": now, "sent": False},  # unsent
+            "3": {"value": True, "updated_at": now, "sent": True},  # unmatched
+            "4": {"value": True, "updated_at": now, "sent": True},  # not received
+        }
+        self.subject._remove_properties_from_pending_updates(
+            {"1": True, "2": True, "3": False}
+        )
+        self.assertDictEqual(
+            self.subject._pending_updates,
+            {
+                "2": {"value": True, "updated_at": now, "sent": False},
+                "3": {"value": True, "updated_at": now, "sent": True},
+                "4": {"value": True, "updated_at": now, "sent": True},
+            },
+        )
+
     def test_actually_start(self):
         # Set up the preconditions
         self.subject.receive_loop = Mock()
@@ -443,9 +459,8 @@ class TestDevice(IsolatedAsyncioTestCase):
         # Call the function under test
         await self.subject.async_stop()
 
-        # Was the shutdown listener cancelled?
-        listener.assert_called_once()
-        self.assertIsNone(self.subject._shutdown_listener)
+        # Shutdown listener doesn't get cancelled as HA does that
+        listener.assert_not_called()
         # Were the child entities cleared?
         self.assertEqual(self.subject._children, [])
         # Did it wait for the refresh task to finish then clear it?

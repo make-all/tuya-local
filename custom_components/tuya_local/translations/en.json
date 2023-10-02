@@ -7,7 +7,7 @@
                 "description": "[Follow these instructions to find your device id and local key.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "IP address or hostname",
-                    "device_id": "Device ID (uuid)",
+                    "device_id": "Device ID",
                     "local_key": "Local key",
                     "protocol_version": "Protocol version (try auto if not known)",
                     "poll_only": "Poll only (try this if your device does not work fully)",
@@ -159,6 +159,38 @@
                         "state": {
                             "laundry": "Dry clothes",
                             "purify": "Purify"
+                        }
+                    }
+                }
+            }
+        },
+        "fan": {
+            "fan_with_presets": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "normal": "Normal",
+                            "nature": "Natural",
+                            "sleep": "Sleep",
+                            "baby": "Baby",
+                            "fresh": "Fresh",
+                            "smart": "Smart",
+                            "strong": "Strong",
+                            "off": "Off"
+                        }
+                    }
+                }
+            },
+            "ventilation": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "fresh": "Fresh air",
+                            "circulate": "Circulate",
+                            "sleep": "Sleep",
+                            "auto": "Auto",
+                            "eco": "Eco",
+                            "anti-condensation": "Anti-condensation"
                         }
                     }
                 }

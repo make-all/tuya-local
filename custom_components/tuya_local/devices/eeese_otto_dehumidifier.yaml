@@ -35,9 +35,13 @@ primary_entity:
           value: sleep
           icon: "mdi:sleep"
           icon_priority: 3
+    - id: 6
+      type: integer
+      name: current_humidity
     - id: 19
       type: bitfield
       name: error
+      optional: true
       mapping:
         - dps_val: 1
           icon: "mdi:cup-water"
@@ -45,6 +49,8 @@ primary_entity:
 secondary_entities:
   - entity: sensor
     name: Current humidity
+    deprecated: humidifier
+    category: diagnostic
     class: humidity
     dps:
       - id: 6
@@ -60,8 +66,11 @@ secondary_entities:
       - id: 19
         type: bitfield
         name: sensor
+        optional: true
         mapping:
           - dps_val: 0
+            value: false
+          - dps_val: null
             value: false
           - value: true
   - entity: switch
@@ -72,8 +81,6 @@ secondary_entities:
       - id: 8
         type: boolean
         name: switch
-        
-
   - entity: switch
     name: Ionizer
     icon: "mdi:atom-variant"
@@ -90,6 +97,7 @@ secondary_entities:
       - id: 16
         type: boolean
         name: lock
+        optional: true
   - entity: select
     name: Timer
     icon: "mdi:timer"
@@ -149,6 +157,3 @@ secondary_entities:
             value: 23 hours
           - dps_val: 24h
             value: 24 hours
-
-
-

@@ -5,8 +5,8 @@ import logging
 
 from homeassistant.components.number import NumberEntity
 from homeassistant.components.number.const import (
-    DEFAULT_MIN_VALUE,
     DEFAULT_MAX_VALUE,
+    DEFAULT_MIN_VALUE,
     NumberDeviceClass,
 )
 
@@ -45,7 +45,7 @@ class TuyaLocalNumber(TuyaLocalEntity, NumberEntity):
         dps_map = self._init_begin(device, config)
         self._value_dps = dps_map.pop("value")
         if self._value_dps is None:
-            raise AttributeError(f"{config.name} is missing a value dps")
+            raise AttributeError(f"{config.config_id} is missing a value dps")
         self._unit_dps = dps_map.pop("unit", None)
         self._min_dps = dps_map.pop("minimum", None)
         self._max_dps = dps_map.pop("maximum", None)

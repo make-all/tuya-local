@@ -1,6 +1,4 @@
-from homeassistant.components.climate.const import (
-    HVACMode,
-)
+from homeassistant.components.climate.const import HVACMode
 
 from ..const import KOGAN_GLASS_1_7L_KETTLE_PAYLOAD
 from ..helpers import assert_device_properties_set

@@ -1,11 +1,7 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.fan import FanEntityFeature
 from homeassistant.components.humidifier import HumidifierEntityFeature
-from homeassistant.components.humidifier.const import (
-    MODE_NORMAL,
-    MODE_AUTO,
-    MODE_SLEEP,
-)
+from homeassistant.components.humidifier.const import MODE_AUTO, MODE_NORMAL, MODE_SLEEP
 from homeassistant.components.sensor import SensorDeviceClass
 
 from ..const import EANONS_HUMIDIFIER_PAYLOAD
@@ -39,7 +35,7 @@ class TestEanonsHumidifier(
 
     def setUp(self):
         self.setUpForConfig("eanons_humidifier.yaml", EANONS_HUMIDIFIER_PAYLOAD)
-        self.subject = self.entities.get("humidifier")
+        self.subject = self.entities.get("humidifier_humidifier")
         self.setUpSwitchable(HVACMODE_DPS, self.subject)
         self.fan = self.entities.get("fan_intensity")
         self.setUpBasicSwitch(SWITCH_DPS, self.entities.get("switch_uv_sterilization"))
@@ -87,6 +83,10 @@ class TestEanonsHumidifier(
 
         self.dps[HVACMODE_DPS] = False
         self.assertEqual(self.subject.icon, "mdi:air-humidifier-off")
+
+    def test_current_humidity(self):
+        self.dps[CURRENTHUMID_DPS] = 75
+        self.assertEqual(self.subject.current_humidity, 75)
 
     def test_min_target_humidity(self):
         self.assertEqual(self.subject.min_humidity, 40)
@@ -163,7 +163,6 @@ class TestEanonsHumidifier(
         self.dps[ERROR_DPS] = 0
         self.dps[TIMERHR_DPS] = "cancel"
         self.dps[TIMER_DPS] = 0
-        self.dps[CURRENTHUMID_DPS] = 50
         self.dps[FANMODE_DPS] = "middle"
 
         self.assertDictEqual(
@@ -172,7 +171,6 @@ class TestEanonsHumidifier(
                 "error": "OK",
                 "timer_hr": "cancel",
                 "timer_min": 0,
-                "current_humidity": 50,
             },
         )
 

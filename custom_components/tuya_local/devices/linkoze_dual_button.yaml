@@ -34,7 +34,7 @@ secondary_entities:
         name: sensor
         persist: false
         mapping:
-          - dps_val: press
+          - dps_val: long_press
             value: true
           - value: false
   - entity: binary_sensor
@@ -45,7 +45,7 @@ secondary_entities:
         name: sensor
         persist: false
         mapping:
-          - dps_val: press
+          - dps_val: long_press
             value: true
           - value: false
   - entity: binary_sensor
@@ -70,3 +70,11 @@ secondary_entities:
           - dps_val: double_click
             value: true
           - value: false
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        unit: "%"

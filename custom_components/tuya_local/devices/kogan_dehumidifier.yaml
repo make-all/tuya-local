@@ -33,7 +33,6 @@ primary_entity:
     - id: 11
       name: error
       type: integer
-      readonly: true
       mapping:
         - dps_val: 0
           value: OK
@@ -47,7 +46,6 @@ primary_entity:
     - id: 13
       name: timer
       type: integer
-      readonly: true
     - id: 101
       name: humidity
       type: integer
@@ -78,6 +76,8 @@ secondary_entities:
         type: boolean
   - entity: sensor
     class: humidity
+    deprecated: humidifier
+    category: diagnostic
     name: Current humidity
     dps:
       - id: 3
@@ -93,7 +93,6 @@ secondary_entities:
       - id: 11
         name: sensor
         type: integer
-        readonly: true
         mapping:
           - dps_val: 0
             value: false

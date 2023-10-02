@@ -1,13 +1,7 @@
 from homeassistant.components.button import ButtonDeviceClass
 from homeassistant.components.fan import FanEntityFeature
-from homeassistant.components.sensor import (
-    SensorDeviceClass,
-    STATE_CLASS_MEASUREMENT,
-)
-from homeassistant.const import (
-    PERCENTAGE,
-    UnitOfTemperature,
-)
+from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT, SensorDeviceClass
+from homeassistant.const import PERCENTAGE, UnitOfTemperature
 
 from ..const import HIMOX_H05_PURIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -63,7 +57,7 @@ class TestHimoxH05Purifier(
             [
                 {
                     "dps": TEMP_DPS,
-                    "name": "sensor_current_temperature",
+                    "name": "sensor_temperature",
                     "unit": UnitOfTemperature.CELSIUS,
                     "device_class": SensorDeviceClass.TEMPERATURE,
                     "state_class": STATE_CLASS_MEASUREMENT,
@@ -85,7 +79,7 @@ class TestHimoxH05Purifier(
                 "lock_child_lock",
                 "sensor_active_filter_life",
                 "select_timer",
-                "sensor_current_temperature",
+                "sensor_temperature",
             ]
         )
 
@@ -98,15 +92,15 @@ class TestHimoxH05Purifier(
     def test_preset_modes(self):
         self.assertCountEqual(
             self.subject.preset_modes,
-            ["auto", "low", "mid", "high"],
+            ["smart", "sleep", "fresh", "strong"],
         )
 
     def test_preset_mode(self):
         self.dps[PRESET_DPS] = "low"
-        self.assertEqual(self.subject.preset_mode, "low")
+        self.assertEqual(self.subject.preset_mode, "sleep")
 
     async def test_set_preset_mode(self):
         async with assert_device_properties_set(
             self.subject._device, {PRESET_DPS: "mid"}
         ):
-            await self.subject.async_set_preset_mode("mid")
+            await self.subject.async_set_preset_mode("fresh")

@@ -4,6 +4,7 @@ products:
     name: Lifubide X600
 primary_entity:
   entity: fan
+  translation_key: fan_with_presets
   dps:
     - id: 1
       type: boolean
@@ -13,17 +14,16 @@ primary_entity:
       name: preset_mode
       mapping:
         - dps_val: auto
-          value: Auto
+          value: smart
         - dps_val: sleep
-          value: Sleep
+          value: sleep
         - dps_val: manual
-          value: Manual
+          value: normal
     - id: 22
       type: bitfield
       name: fault_code
 secondary_entities:
   - entity: sensor
-    name: PM2.5
     class: pm25
     dps:
       - id: 2

@@ -2,9 +2,11 @@
 name: Aroma diffuser
 products:
   - id: c0nh3LmEk0NDebrq
-    name: YYM-805SW
+    model: YYM-805SW
   - id: 4870500398f4abbfbae4
-    name: GX
+    model: GX
+  - id: kgczidn0awas0prr
+    manufacturer: Tellur
 primary_entity:
   entity: fan
   dps:
@@ -13,11 +15,9 @@ primary_entity:
       type: boolean
       mapping:
         - dps_val: true
-          icon: mdi:scent
-          value: ON
+          icon: "mdi:scent"
         - dps_val: false
-          icon: mdi:scent-off
-          value: OFF
+          icon: "mdi:scent-off"
     - id: 2
       name: speed
       type: string

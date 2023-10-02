@@ -1,11 +1,12 @@
 """
 Setup for different kinds of Tuya Binary sensors
 """
-from homeassistant.components.binary_sensor import (
-    BinarySensorEntity,
-    BinarySensorDeviceClass,
-)
 import logging
+
+from homeassistant.components.binary_sensor import (
+    BinarySensorDeviceClass,
+    BinarySensorEntity,
+)
 
 from .device import TuyaLocalDevice
 from .helpers.config import async_tuya_setup_platform
@@ -40,7 +41,7 @@ class TuyaLocalBinarySensor(TuyaLocalEntity, BinarySensorEntity):
         dps_map = self._init_begin(device, config)
         self._sensor_dps = dps_map.pop("sensor")
         if self._sensor_dps is None:
-            raise AttributeError(f"{config.name} is missing a sensor dps")
+            raise AttributeError(f"{config.config_id} is missing a sensor dps")
         self._init_end(dps_map)
 
     @property

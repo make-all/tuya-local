@@ -1,0 +1,256 @@
+name: Dual meter 
+products:
+  - id: bfa88129148596f2f0oeht
+    name: Dcenta dual clamp meter
+primary_entity:
+  entity: sensor
+  name: Energy consumed
+  class: energy
+  dps:
+    - id: 1
+      type: integer
+      name: sensor
+      unit: kWh
+      class: total_increasing
+      mapping:
+        - scale: 100
+secondary_entities:
+  - entity: sensor
+    name: Energy produced
+    class: energy
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Energy flow A
+    category: diagnostic
+    dps:
+      - id: 102
+        type: string
+        name: sensor
+  - entity: sensor
+    name: Energy flow B
+    category: diagnostic
+    dps:
+      - id: 104
+        type: string
+        name: sensor
+  - entity: sensor
+    name: Power A
+    class: power
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 118
+        type: integer
+        name: calibration
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Power B
+    class: power
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 124
+        type: integer
+        name: calibration
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Energy consumed A
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 119
+        type: integer
+        name: calibration
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Energy produced A
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 127
+        type: integer
+        name: calibration
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Energy consumed B
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 125
+        type: integer
+        name: calibration
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Energy produced B
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 128
+        type: integer
+        name: calibration
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Power factor A
+    class: power_factor
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: Hz
+        class: measurement
+        mapping:
+          - scale: 100
+      - id: 122
+        type: integer
+        name: calibration
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 116
+        type: integer
+        name: calibration
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Current A
+    class: current
+    category: diagnostic
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+      - id: 117
+        type: integer
+        name: calibration
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Current B
+    class: current
+    category: diagnostic
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+      - id: 123
+        type: integer
+        name: calibration
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Total power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 115
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Power factor B
+    class: power_factor
+    category: diagnostic
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Reporting rate
+    category: config
+    icon: "mdi:timer-refresh"
+    dps:
+      - id: 129
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 3
+          max: 60

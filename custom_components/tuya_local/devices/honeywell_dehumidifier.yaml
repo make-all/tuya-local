@@ -44,12 +44,11 @@ primary_entity:
     - id: 18
       name: current_humidity
       type: integer
-    - id: 25
-      name: filter_cleaning_reminder
-      type: boolean
 secondary_entities:
   - entity: sensor
     name: Current humidity
+    deprecated: humidifier
+    category: diagnostic
     class: humidity
     dps:
       - id: 18
@@ -57,7 +56,6 @@ secondary_entities:
         name: sensor
         unit: "%"
         class: measurement
-
   - entity: binary_sensor
     name: Filter cleaning reminder
     class: problem

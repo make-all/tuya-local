@@ -49,6 +49,9 @@ primary_entity:
           icon_priority: 1
         - dps_val: 0
           value: OK
+    - id: 104
+      type: integer
+      name: current_humidity
     - id: 105
       type: integer
       name: model_code
@@ -101,7 +104,6 @@ secondary_entities:
         type: boolean
         name: lock
   - entity: sensor
-    name: Current temperature
     class: temperature
     dps:
       - id: 103
@@ -111,6 +113,8 @@ secondary_entities:
         class: measurement
   - entity: sensor
     name: Current humidity
+    deprecated: humidifier
+    category: diagnostic
     class: humidity
     dps:
       - id: 104

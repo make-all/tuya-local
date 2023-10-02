@@ -1,0 +1,81 @@
+name: Double power point
+primary_entity:
+  entity: switch
+  class: outlet
+  name: Outlet 1
+  dps:
+    - id: 12
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: switch
+    name: Outlet 2
+    class: outlet
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    dps:
+      - id: 6
+        name: sensor
+        type: integer
+        class: measurement
+        unit: V
+        force: true
+        mapping:
+          - scale: 10
+  - entity: sensor
+    category: diagnostic
+    class: current
+    dps:
+      - id: 4
+        name: sensor
+        type: integer
+        class: measurement
+        force: true
+        unit: mA
+  - entity: sensor
+    category: diagnostic
+    class: power
+    dps:
+      - id: 5
+        name: sensor
+        type: integer
+        class: measurement
+        force: true
+        unit: W
+        mapping:
+          - scale: 10
+  - entity: number
+    category: config
+    name: Timer 1
+    icon: "mdi:timer"
+    dps:
+      - id: 2
+        name: value
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    category: config
+    name: Timer 2
+    icon: "mdi:timer"
+    dps:
+      - id: 14
+        name: value
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60

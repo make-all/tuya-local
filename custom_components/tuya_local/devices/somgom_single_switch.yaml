@@ -2,6 +2,8 @@ name: Wall switch
 products:
   - id: nqodepctqralr6su
     name: Novadigital switch
+  - id: vxo9yezswiumvync
+    name: PST WT-E1
 primary_entity:
   entity: switch
   dps:
@@ -33,12 +35,23 @@ secondary_entities:
         name: option
         optional: true
         mapping:
-          - dps_val: "0"
-            value: "Off"
-          - dps_val: "1"
-            value: "On"
-          - dps_val: "2"
-            value: Last state
+          - conditions:
+              - dps_val: ["0", "1", "2"]
+                mapping:
+                  - dps_val: "0"
+                    value: "Off"
+                  - dps_val: "1"
+                    value: "On"
+                  - dps_val: "2"
+                    value: Last state
+              - dps_val: ["memory", "off", "on"]
+                mapping:
+                  - dps_val: "off"
+                    value: "Off"
+                  - dps_val: "on"
+                    value: "On"
+                  - dps_val: memory
+                    value: Last state
   - entity: light
     name: Backlight
     category: config

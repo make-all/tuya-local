@@ -1,9 +1,7 @@
 """Tests for the switch entity."""
+from homeassistant.components.light import ColorMode, LightEntityFeature
 from homeassistant.components.switch import SwitchDeviceClass
-from homeassistant.components.light import (
-    ColorMode,
-    LightEntityFeature,
-)
+
 from ..const import DIGOO_DGSP01_SOCKET_PAYLOAD
 from ..helpers import assert_device_properties_set
 from ..mixins.switch import BasicSwitchTests
@@ -29,7 +27,7 @@ class TestDigooNightlightSwitch(BasicSwitchTests, TuyaDeviceTestCase):
             "digoo_dgsp01_dual_nightlight_switch.yaml",
             DIGOO_DGSP01_SOCKET_PAYLOAD,
         )
-        self.subject = self.entities.get("switch")
+        self.subject = self.entities.get("switch_outlet")
         self.light = self.entities.get("light_night_light")
 
         self.setUpBasicSwitch(

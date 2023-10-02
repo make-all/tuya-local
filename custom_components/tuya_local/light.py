@@ -1,9 +1,13 @@
 """
 Setup for different kinds of Tuya light devices
 """
+import logging
+from struct import pack, unpack
+
+import homeassistant.util.color as color_util
 from homeassistant.components.light import (
     ATTR_BRIGHTNESS,
-    ATTR_COLOR_TEMP,
+    ATTR_COLOR_TEMP_KELVIN,
     ATTR_EFFECT,
     ATTR_HS_COLOR,
     ATTR_WHITE,
@@ -11,10 +15,6 @@ from homeassistant.components.light import (
     LightEntity,
     LightEntityFeature,
 )
-import homeassistant.util.color as color_util
-
-import logging
-from struct import pack, unpack
 
 from .device import TuyaLocalDevice
 from .helpers.config import async_tuya_setup_platform
@@ -54,6 +54,15 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
         self._rgbhsv_dps = dps_map.pop("rgbhsv", None)
         self._effect_dps = dps_map.pop("effect", None)
         self._init_end(dps_map)
+
+        # Set min and max color temp
+        if self._color_temp_dps:
+            m = self._color_temp_dps._find_map_for_dps(0)
+            if m:
+                tr = m.get("target_range")
+                if tr:
+                    self._attr_min_color_temp_kelvin = tr.get("min")
+                    self._attr_max_color_temp_kelvin = tr.get("max")
 
     @property
     def supported_color_modes(self):
@@ -111,17 +120,10 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                 return ColorMode(mode)
 
     @property
-    def color_temp(self):
-        """Return the color temperature in mireds"""
+    def color_temp_kelvin(self):
+        """Return the color temperature in kelvin."""
         if self._color_temp_dps:
-            unscaled = self._color_temp_dps.get_value(self._device)
-            r = self._color_temp_dps.range(self._device)
-            if r and isinstance(unscaled, (int, float)):
-                return round(
-                    unscaled * 347 / (r["max"] - r["min"]) + 153 - r["min"],
-                )
-            else:
-                return unscaled
+            return self._color_temp_dps.get_value(self._device)
 
     @property
     def is_on(self):
@@ -195,7 +197,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                 r = rgbhsv.get("r")
                 g = rgbhsv.get("g")
                 b = rgbhsv.get("b")
-                hs = color_util.color_rgb_to_hs(r, g, b)
+                hs = color_util.color_RGB_to_hs(r, g, b)
             return hs
 
     @property
@@ -240,18 +242,11 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                         bright,
                     ),
                 }
-        elif self._color_temp_dps and ATTR_COLOR_TEMP in params:
+        elif self._color_temp_dps and ATTR_COLOR_TEMP_KELVIN in params:
             if self.color_mode != ColorMode.COLOR_TEMP:
                 color_mode = ColorMode.COLOR_TEMP
 
-            color_temp = params.get(ATTR_COLOR_TEMP)
-            r = self._color_temp_dps.range(self._device)
-
-            if r and color_temp:
-                color_temp = round(
-                    (color_temp - 153 + r["min"]) * (r["max"] - r["min"]) / 347
-                )
-
+            color_temp = params.get(ATTR_COLOR_TEMP_KELVIN)
             _LOGGER.debug("Setting color temp to %d", color_temp)
             settings = {
                 **settings,

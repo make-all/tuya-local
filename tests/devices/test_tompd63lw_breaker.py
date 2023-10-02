@@ -3,8 +3,8 @@ from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     UnitOfElectricCurrent,
     UnitOfElectricPotential,
-    UnitOfTime,
     UnitOfPower,
+    UnitOfTime,
 )
 
 from ..const import TOMPD63LW_SOCKET_PAYLOAD
@@ -39,21 +39,21 @@ class TestTOMPD63lw(MultiSensorTests, TuyaDeviceTestCase):
                     "dps": PHASEA_DP,
                     "unit": UnitOfElectricPotential.VOLT,
                     "device_class": SensorDeviceClass.VOLTAGE,
-                    "testdata": ("CHoAQgQADlwAAA==", 217.0),
+                    "testdata": ("CPwAFGEAAu4=", 230.0),
                 },
                 {
                     "name": "sensor_current_a",
                     "dps": PHASEA_DP,
                     "unit": UnitOfElectricCurrent.AMPERE,
                     "device_class": SensorDeviceClass.CURRENT,
-                    "testdata": ("CHoAQgQADlwAAA==", 16.9),
+                    "testdata": ("CPwAFGEAAu4=", 5.217),
                 },
                 {
                     "name": "sensor_power_a",
                     "dps": PHASEA_DP,
                     "unit": UnitOfPower.KILO_WATT,
                     "device_class": SensorDeviceClass.POWER,
-                    "testdata": ("CHoAQgQADlwAAA==", 3.676),
+                    "testdata": ("CPwAFGEAAu4=", 0.75),
                 },
             ]
         )
@@ -72,10 +72,10 @@ class TestTOMPD63lw(MultiSensorTests, TuyaDeviceTestCase):
         )
 
     def test_phasea_encoding(self):
-        self.dps[PHASEA_DP] = "CMAAD6AAAzUAAA=="
-        self.assertEqual(self.multiSensor["sensor_voltage_a"].native_value, 224.0)
-        self.assertEqual(self.multiSensor["sensor_current_a"].native_value, 4.0)
-        self.assertEqual(self.multiSensor["sensor_power_a"].native_value, 0.821)
+        self.dps[PHASEA_DP] = "CQQAFGkAAu4="
+        self.assertEqual(self.multiSensor["sensor_voltage_a"].native_value, 230.8)
+        self.assertEqual(self.multiSensor["sensor_current_a"].native_value, 5.225)
+        self.assertEqual(self.multiSensor["sensor_power_a"].native_value, 0.75)
 
     def test_phasea_missing(self):
         self.dps[PHASEA_DP] = None

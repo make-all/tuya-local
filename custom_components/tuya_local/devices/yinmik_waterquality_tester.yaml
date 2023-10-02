@@ -1,0 +1,241 @@
+name: Water quality monitor
+products:
+  - id: u5xgcpcngk3pfxb4
+    name: Yinmik WF-3188
+primary_entity:
+  entity: sensor
+  icon: "mdi:pool-thermometer"
+  class: temperature
+  dps:
+    - id: 2
+      type: integer
+      name: sensor
+      unit: C
+      class: measurement
+      mapping:
+        - scale: 10
+secondary_entities:
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: "%"
+        optional: true
+  - entity: sensor
+    name: pH
+    icon: "mdi:ph"
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+          - dps_val: 1500
+            value: null
+  - entity: sensor
+    name: Electrical conductivity
+    icon: "mdi:omega"
+    dps:
+      - id: 11
+        type: integer
+        name: sensor
+        unit: mS/cm
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Oxidation reduction potential
+    icon: "mdi:virus-off"
+    dps:
+      - id: 12
+        type: integer
+        name: sensor
+        unit: mV
+        class: measurement
+  - entity: select
+    name: pH buffer standard
+    icon: "mdi:ph"
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: AsiaStandard
+            value: Asia
+          - dps_val: EUStandard
+            value: EU
+  - entity: switch
+    name: Hold reading
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: light
+    name: Backlight
+    category: config
+    icon: "mdi:television-ambient-light"
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: switch
+    name: EC temperature compensation
+    icon: "mdi:thermometer-check"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: number
+    name: EC temperature factor
+    category: config
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        optional: true
+        unit: "%/℃"
+        range:
+          min: 0
+          max: 30
+        mapping:
+          - scale: 10
+  - entity: switch
+    name: Warning buzzer
+    category: config
+    icon: "mdi:bullhorn"
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+  - entity: number
+    name: Maximum pH
+    category: config
+    icon: "mdi:ph"
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 1400
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Minimum pH
+    category: config
+    icon: "mdi:ph"
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 1400
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Maximum EC
+    category: config
+    icon: "mdi:omega"
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        unit: "mS/cm"
+        range:
+          min: 0
+          max: 200000
+        mapping:
+          - scale: 1000
+  - entity: number
+    name: Minimum EC
+    category: config
+    icon: "mdi:omega"
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: "mS/cm"
+        range:
+          min: 0
+          max: 200000
+        mapping:
+          - scale: 1000
+  - entity: number
+    name: Maximum ORP
+    icon: "mdi:virus-off"
+    category: config
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        unit: "mV"
+        range:
+          min: -1200
+          max: 1200
+  - entity: number
+    name: Minimum ORP
+    icon: "mdi:virus-off"
+    category: config
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        unit: "mV"
+        range:
+          min: -1200
+          max: 1200
+  - entity: sensor
+    name: CF
+    category: diagnostic
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: number
+    name: Maximum humidity
+    category: config
+    class: humidity
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: number
+    name: Minimum humidity
+    category: config
+    class: humidity
+    dps:
+      - id: 116
+        optional: true
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+

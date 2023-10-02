@@ -1,4 +1,9 @@
-name: Carson CB PA280
+name: Air conditioner
+products:
+  # original product id unknown: Carson CB PA280
+  - id: 2tgd3qnobb1mcgd9
+    name: Shinco Yoau YWD1
+    # also sold as Axelair Tempero CMM3000, Domair Callisto (product id may be same or different?)
 primary_entity:
   entity: climate
   dps:
@@ -37,6 +42,7 @@ primary_entity:
               range:
                 min: 60
                 max: 86
+      optional: true
     - id: 3
       name: current_temperature
       type: integer
@@ -57,12 +63,6 @@ primary_entity:
     - id: 19
       name: temperature_unit
       type: string
-    - id: 102
-      name: unknown_102
-      type: boolean
-    - id: 103
-      name: timer
-      type: integer
     - id: 104
       name: swing_mode
       type: boolean
@@ -71,12 +71,88 @@ primary_entity:
           value: "vertical"
         - dps_val: false
           value: "off"
-    - id: 105
-      name: countdown
-      type: integer
     - id: 106
-      name: unknown_106
-      type: integer
+      name: fault_code
+      type: bitfield
     - id: 110
-      name: unknown_110
+      name: model_code
       type: integer
+    - id: 111
+      name: fault_code2
+      type: bitfield
+      optional: true
+secondary_entities:
+  - entity: select
+    name: temperature unit
+    icon: "mdi:temperature-celsius"
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: C
+            value: Celsius
+          - dps_val: F
+            value: Fahrenheit
+  - entity: switch
+    name: Sleep
+    icon: "mdi:power-sleep"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+        optional: true
+  - entity: binary_sensor
+    name: Defrosting
+    class: cold
+    category: diagnostic
+    dps:
+      - id: 102
+        type: boolean
+        name: sensor
+  - entity: number
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+  - entity: sensor
+    name: Time remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 106
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            constraint: fault_code2
+            conditions:
+              - dps_val: 0
+                value: false
+              - dps_val: null
+                value: false
+            value: true
+          - value: true
+      - id: 111
+        type: bitfield
+        name: fault_code2
+        optional: true
+        hidden: true

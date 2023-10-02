@@ -6,17 +6,17 @@ from typing import Any
 from homeassistant.components.diagnostics import REDACTED
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, callback
-from homeassistant.helpers import device_registry as dr, entity_registry as er
+from homeassistant.helpers import device_registry as dr
+from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.device_registry import DeviceEntry
-
 from tinytuya import __version__ as tinytuya_version
 
 from .const import (
     API_PROTOCOL_VERSIONS,
+    CONF_DEVICE_CID,
     CONF_PROTOCOL_VERSION,
     CONF_TYPE,
     DOMAIN,
-    CONF_DEVICE_CID,
 )
 from .device import TuyaLocalDevice
 from .helpers.config import get_device_id
@@ -75,7 +75,11 @@ def _async_device_as_dict(
     data = {
         "name": device.name,
         "api_version_set": device._api.version,
-        "api_version_used": API_PROTOCOL_VERSIONS[device._api_protocol_version_index],
+        "api_version_used": (
+            "none"
+            if device._api_protocol_version_index is None
+            else API_PROTOCOL_VERSIONS[device._api_protocol_version_index]
+        ),
         "api_working": device._api_protocol_working,
         "status": device._api.dps_cache,
         "cached_state": device._cached_state,

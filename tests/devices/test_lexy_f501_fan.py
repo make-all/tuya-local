@@ -63,16 +63,16 @@ class TestLexyF501Fan(
 
     def test_preset_mode(self):
         self.dps[PRESET_DPS] = "forestwindhigh"
-        self.assertEqual(self.subject.preset_mode, "Forest High")
+        self.assertEqual(self.subject.preset_mode, "strong")
 
         self.dps[PRESET_DPS] = "forestwindlow"
-        self.assertEqual(self.subject.preset_mode, "Forest Low")
+        self.assertEqual(self.subject.preset_mode, "nature")
 
         self.dps[PRESET_DPS] = "sleepwindlow"
-        self.assertEqual(self.subject.preset_mode, "Sleep Low")
+        self.assertEqual(self.subject.preset_mode, "sleep")
 
         self.dps[PRESET_DPS] = "sleepwindhigh"
-        self.assertEqual(self.subject.preset_mode, "Sleep High")
+        self.assertEqual(self.subject.preset_mode, "fresh")
 
         self.dps[PRESET_DPS] = None
         self.assertIs(self.subject.preset_mode, None)
@@ -80,7 +80,7 @@ class TestLexyF501Fan(
     def test_preset_modes(self):
         self.assertCountEqual(
             self.subject.preset_modes,
-            ["Forest High", "Forest Low", "Sleep High", "Sleep Low"],
+            ["strong", "nature", "fresh", "sleep"],
         )
 
     async def test_set_preset_mode_to_foresthigh(self):
@@ -88,28 +88,28 @@ class TestLexyF501Fan(
             self.subject._device,
             {PRESET_DPS: "forestwindhigh"},
         ):
-            await self.subject.async_set_preset_mode("Forest High")
+            await self.subject.async_set_preset_mode("strong")
 
     async def test_set_preset_mode_to_forestlow(self):
         async with assert_device_properties_set(
             self.subject._device,
             {PRESET_DPS: "forestwindlow"},
         ):
-            await self.subject.async_set_preset_mode("Forest Low")
+            await self.subject.async_set_preset_mode("nature")
 
     async def test_set_preset_mode_to_sleephigh(self):
         async with assert_device_properties_set(
             self.subject._device,
             {PRESET_DPS: "sleepwindhigh"},
         ):
-            await self.subject.async_set_preset_mode("Sleep High")
+            await self.subject.async_set_preset_mode("fresh")
 
     async def test_set_preset_mode_to_sleeplow(self):
         async with assert_device_properties_set(
             self.subject._device,
             {PRESET_DPS: "sleepwindlow"},
         ):
-            await self.subject.async_set_preset_mode("Sleep Low")
+            await self.subject.async_set_preset_mode("sleep")
 
     def test_oscillating(self):
         self.dps[OSCILLATE_DPS] = "off"

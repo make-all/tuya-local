@@ -22,7 +22,7 @@ from .const import (
     CONF_TYPE,
     DOMAIN,
 )
-from .device import setup_device, get_device_id, async_delete_device
+from .device import async_delete_device, get_device_id, setup_device
 from .helpers.device_config import get_config
 
 _LOGGER = logging.getLogger(__name__)
@@ -223,6 +223,84 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
 
         await async_migrate_entries(hass, entry.entry_id, update_unique_id12)
         entry.version = 12
+
+    if entry.version <= 12:
+        # Migrate unique ids of existing entities to new format taking into
+        # account device_class if name is missing.
+        device_id = entry.unique_id
+        conf_file = get_config(entry.data[CONF_TYPE])
+        if conf_file is None:
+            _LOGGER.error(
+                NOT_FOUND,
+                entry.data[CONF_TYPE],
+            )
+            return False
+
+        @callback
+        def update_unique_id13(entity_entry):
+            """Update the unique id of an entity entry."""
+            old_id = entity_entry.unique_id
+            platform = entity_entry.entity_id.split(".", 1)[0]
+            # if unique_id ends with platform name, then this may have
+            # changed with the addition of device_class.
+            if old_id.endswith(platform):
+                e = conf_file.primary_entity
+                if e.entity != platform or e.name:
+                    for e in conf_file.secondary_entities():
+                        if e.entity == platform and not e.name:
+                            break
+                if e.entity == platform and not e.name:
+                    new_id = e.unique_id(device_id)
+                    if new_id != old_id:
+                        _LOGGER.info(
+                            "Migrating %s unique_id %s to %s",
+                            e.entity,
+                            old_id,
+                            new_id,
+                        )
+                        return {
+                            "new_unique_id": entity_entry.unique_id.replace(
+                                old_id,
+                                new_id,
+                            )
+                        }
+            else:
+                replacements = {
+                    "sensor_co2": "sensor_carbon_dioxide",
+                    "sensor_co": "sensor_carbon_monoxide",
+                    "sensor_pm2_5": "sensor_pm25",
+                    "sensor_pm_10": "sensor_pm10",
+                    "sensor_pm_1_0": "sensor_pm1",
+                    "sensor_pm_2_5": "sensor_pm25",
+                    "sensor_tvoc": "sensor_volatile_organic_compounds",
+                    "sensor_current_humidity": "sensor_humidity",
+                    "sensor_current_temperature": "sensor_temperature",
+                }
+                for suffix, new_suffix in replacements.items():
+                    if old_id.endswith(suffix):
+                        e = conf_file.primary_entity
+                        if e.entity != platform or e.name:
+                            for e in conf_file.secondary_entities():
+                                if e.entity == platform and not e.name:
+                                    break
+                        if e.entity == platform and not e.name:
+                            new_id = e.unique_id(device_id)
+                            if new_id.endswith(new_suffix):
+                                _LOGGER.info(
+                                    "Migrating %s unique_id %s to %s",
+                                    e.entity,
+                                    old_id,
+                                    new_id,
+                                )
+                                return {
+                                    "new_unique_id": entity_entry.unique_id.replace(
+                                        old_id,
+                                        new_id,
+                                    )
+                                }
+
+        await async_migrate_entries(hass, entry.entry_id, update_unique_id13)
+        entry.version = 13
 
     return True
 

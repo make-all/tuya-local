@@ -3,6 +3,7 @@ products:
   - id: sgodozglgymucvq2
 primary_entity:
   entity: fan
+  translation_key: fan_with_presets
   dps:
     - id: 1
       type: boolean
@@ -11,14 +12,14 @@ primary_entity:
       name: preset_mode
       type: string
       mapping:
-        - dps_val: "auto"
-          value: "auto"
-        - dps_val: "sleep"
-          value: "sleep"
-        - dps_val: "mid"
-          value: "mid"
-        - dps_val: "high"
-          value: "high"     
+        - dps_val: auto
+          value: smart
+        - dps_val: sleep
+          value: sleep
+        - dps_val: mid
+          value: fresh
+        - dps_val: high
+          value: strong     
 secondary_entities:
   - entity: light
     category: config
@@ -43,7 +44,6 @@ secondary_entities:
         type: integer
         name: sensor
         unit: "%"
-        readonly: true
   - entity: select
     name: Timer
     icon: "mdi:timer"

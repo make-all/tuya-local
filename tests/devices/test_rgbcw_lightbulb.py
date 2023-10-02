@@ -1,7 +1,4 @@
-from homeassistant.components.light import (
-    ColorMode,
-    LightEntityFeature,
-)
+from homeassistant.components.light import ColorMode, LightEntityFeature
 from homeassistant.const import UnitOfTime
 
 from ..const import RGBCW_LIGHTBULB_PAYLOAD
@@ -46,13 +43,17 @@ class TestRGBCWLightbulb(BasicNumberTests, TuyaDeviceTestCase):
 
     def test_color_temp(self):
         self.dps[COLORTEMP_DPS] = 500
-        self.assertAlmostEqual(self.subject.color_temp, 326, 0)
+        self.assertEqual(self.subject.color_temp_kelvin, 4600)
         self.dps[COLORTEMP_DPS] = 1000
-        self.assertAlmostEqual(self.subject.color_temp, 153, 0)
+        self.assertEqual(self.subject.color_temp_kelvin, 6500)
         self.dps[COLORTEMP_DPS] = 0
-        self.assertAlmostEqual(self.subject.color_temp, 500, 0)
+        self.assertEqual(self.subject.color_temp_kelvin, 2700)
         self.dps[COLORTEMP_DPS] = None
-        self.assertEqual(self.subject.color_temp, None)
+        self.assertEqual(self.subject.color_temp_kelvin, None)
+
+    def test_color_temp_range(self):
+        self.assertEqual(self.subject.min_color_temp_kelvin, 2700)
+        self.assertEqual(self.subject.max_color_temp_kelvin, 6500)
 
     def test_color_mode(self):
         self.dps[MODE_DPS] = "white"

@@ -1,0 +1,201 @@
+name: Alarm system
+products:
+  - id: gcymopbbssihh6h2
+    name: BlitzWolf BW-IS6
+primary_entity:
+  entity: alarm_control_panel
+  dps:
+    - id: 1
+      type: string
+      name: alarm_state
+      mapping:
+        - dps_val: disarmed
+          value: disarmed
+        - dps_val: arm
+          value: arm_away
+        - dps_val: home
+          value: arm_home
+        - dps_val: sos
+          value: triggered
+    - id: 38
+      type: string
+      name: sub_admin
+secondary_entities:
+  - entity: number
+    name: Exit delay
+    category: config
+    icon: "mdi:timer-lock"
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 300
+  - entity: siren
+    name: Alarm
+    dps:
+      - id: 3
+        type: integer
+        name: duration
+        unit: min
+        range:
+          min: 1
+          max: 60
+      - id: 4
+        type: boolean
+        name: tone
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
+  - entity: binary_sensor
+    class: tamper
+    category: diagnostic
+    dps:
+      - id: 9
+        type: boolean
+        name: sensor
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: switch
+    name: Voice prompt
+    icon: "mdi:account-voice"
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: switch
+    name: AC power
+    category: config
+    icon: "mdi:current-ac"
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 16
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: binary_sensor
+    name: Low battery
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 17
+        type: boolean
+        name: sensor
+  - entity: switch
+    name: Alarm call
+    icon: "mdi:phone-alert"
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 18
+        type: string
+        name: phone_number
+  - entity: switch
+    name: Alarm SMS
+    icon: "mdi:message-alert"
+    category: config
+    dps:
+      - id: 21
+        type: boolean
+        name: switch
+      - id: 19
+        type: string
+        name: phone_number
+  - entity: number
+    name: Call retries
+    category: config
+    icon: "mdi:phone-missed"
+    dps:
+      - id: 22
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 10
+  - entity: switch
+    name: Silent
+    icon: "mdi:volume-mute"
+    category: config
+    dps:
+      - id: 25
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Alarm notify
+    icon: "mdi:bell"
+    category: config
+    dps:
+      - id: 27
+        type: boolean
+        name: switch
+      - id: 26
+        type: string
+        name: message
+  - entity: number
+    name: Entry delay
+    category: config
+    icon: "mdi:timer-lock"
+    dps:
+      - id: 28
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 300
+  - entity: switch
+    name: Tick down
+    icon: "mdi:metronome"
+    category: config
+    dps:
+      - id: 29
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    name: Alarm
+    class: sound
+    category: diagnostic
+    dps:
+      - id: 32
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: normal
+            value: false
+          - dps_val: alarm
+            value: true
+      - id: 33
+        type: string
+        name: information
+  - entity: button
+    name: Factory reset
+    class: restart
+    category: config
+    dps:
+      - id: 34
+        type: boolean
+        name: button
+
+
+
+
+
+
+
+
+

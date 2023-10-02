@@ -1,12 +1,12 @@
 from homeassistant.components.climate.const import (
-    ClimateEntityFeature,
     FAN_AUTO,
     FAN_HIGH,
     FAN_LOW,
     FAN_MEDIUM,
-    HVACMode,
     PRESET_COMFORT,
     PRESET_ECO,
+    ClimateEntityFeature,
+    HVACMode,
 )
 from homeassistant.const import PRECISION_TENTHS, UnitOfTemperature
 

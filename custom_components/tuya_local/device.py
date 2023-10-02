@@ -4,11 +4,10 @@ API for Tuya Local devices.
 
 import asyncio
 import logging
-import tinytuya
 from threading import Lock
 from time import time
 
-
+import tinytuya
 from homeassistant.const import (
     CONF_HOST,
     CONF_NAME,
@@ -19,17 +18,16 @@ from homeassistant.core import HomeAssistant
 
 from .const import (
     API_PROTOCOL_VERSIONS,
+    CONF_DEVICE_CID,
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
     CONF_POLL_ONLY,
     CONF_PROTOCOL_VERSION,
     DOMAIN,
-    CONF_DEVICE_CID,
 )
 from .helpers.config import get_device_id
 from .helpers.device_config import possible_matches
 from .helpers.log import log_json
-
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -68,7 +66,7 @@ class TuyaLocalDevice(object):
         self._api_protocol_working = False
         self._api_working_protocol_failures = 0
         try:
-            if dev_cid is not None:
+            if dev_cid:
                 self._api = tinytuya.Device(
                     dev_id,
                     cid=dev_cid,
@@ -163,9 +161,6 @@ class TuyaLocalDevice(object):
     async def async_stop(self, event=None):
         _LOGGER.debug("Stopping monitor loop for %s", self.name)
         self._running = False
-        if self._shutdown_listener:
-            self._shutdown_listener()
-            self._shutdown_listener = None
         self._children.clear()
         self._force_dps.clear()
         if self._refresh_task:
@@ -209,6 +204,8 @@ class TuyaLocalDevice(object):
                     full_poll = poll.pop("full_poll", False)
                     self._cached_state = self._cached_state | poll
                     self._cached_state["updated_at"] = time()
+                    self._remove_properties_from_pending_updates(poll)
+
                     for entity in self._children:
                         # clear non-persistant dps that were not in a full poll
                         if full_poll:
@@ -263,6 +260,9 @@ class TuyaLocalDevice(object):
                     # the protocol version, which seems to require a fresh
                     # connection.
                     persist = not self.should_poll
+                    _LOGGER.debug(
+                        "%s persistant connection set to %s", self.name, persist
+                    )
                     self._api.set_socketPersistent(persist)
                     if self._api.parent:
                         self._api.parent.set_socketPersistent(persist)
@@ -294,7 +294,7 @@ class TuyaLocalDevice(object):
                         self._api.receive,
                     )
                 else:
-                    asyncio.sleep(5)
+                    await asyncio.sleep(5)
                     poll = None
 
                 if poll:
@@ -344,8 +344,8 @@ class TuyaLocalDevice(object):
             # that exists on the device to get anything back.  Most switch-like
             # devices have dp 1. Lights generally start from 20.  101 is where
             # vendor specific dps start.  Between them, these three should cover
-            # most devices.
-            self._api.set_dpsUsed({"1": None, "20": None, "101": None})
+            # most devices.  148 covers a doorbell device that didn't have these
+            self._api.set_dpsUsed({"1": None, "20": None, "101": None, "148": None})
             await self.async_refresh()
             cached_state = self._get_cached_state()
 
@@ -453,6 +453,13 @@ class TuyaLocalDevice(object):
             log_json(pending_updates),
         )
 
+    def _remove_properties_from_pending_updates(self, data):
+        self._pending_updates = {
+            key: value
+            for key, value in self._pending_updates.items()
+            if key not in data or not value["sent"] or data[key] != value["value"]
+        }
+
     async def _debounce_sending_updates(self):
         now = time()
         since = now - self._last_connection
@@ -559,10 +566,15 @@ class TuyaLocalDevice(object):
 
     def _get_pending_updates(self):
         now = time()
+        # sort pending updates according to their API identifier
+        pending_updates_sorted = sorted(
+            self._pending_updates.items(), key=lambda x: int(x[0])
+        )
         self._pending_updates = {
             key: value
-            for key, value in self._pending_updates.items()
-            if now - value.get("updated_at", 0) < self._FAKE_IT_TIMEOUT
+            for key, value in pending_updates_sorted
+            if not value["sent"]
+            or now - value.get("updated_at", 0) < self._FAKE_IT_TIMEOUT
         }
         return self._pending_updates
 

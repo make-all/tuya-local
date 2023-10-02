@@ -39,6 +39,9 @@ primary_entity:
           value: 70
         - dps_val: "8"
           value: 75
+    - id: 109
+      type: integer
+      name: current_humidity
 secondary_entities:
   - entity: light
     name: Nightlight
@@ -64,7 +67,8 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: sensor
-    name: Humidity
+    deprecated: humidifier
+    category: diagnostic
     class: humidity
     dps:
       - id: 109

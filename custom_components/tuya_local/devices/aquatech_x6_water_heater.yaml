@@ -1,0 +1,68 @@
+name: Aquatech RAPID/X6
+primary_entity:
+  entity: water_heater
+  dps:
+    - id: 1
+      type: boolean
+      name: operation_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: work_mode
+          conditions:
+            - dps_val: ECO
+              value: eco
+              icon: "mdi:cash"
+            - dps_val: Stand
+              value: heat_pump
+              icon: "mdi:heat-pump"
+            - dps_val: HYB
+              value: high_demand
+              icon: "mdi:sun-thermometer"
+            - dps_val: HYB1
+              value: performance
+              icon: "mdi:radiator"
+            - dps_val: ELE
+              value: electric
+              icon: "mdi:heating-coil"
+    - id: 2
+      type: string
+      name: work_mode
+      hidden: true
+    - id: 4
+      type: integer
+      name: temperature
+      range:
+        min: 15
+        max: 75
+      readonly: true
+      icon: "mdi:thermometer-lines"
+    - id: 7
+      type: boolean
+      name: defrosting
+      mapping:
+        - dps_val: true
+          icon: "mdi:snowflake-melt"
+        - dps_val: false
+          icon: "mdi:checkbox-blank-off-outline"
+    - id: 15
+      type: bitfield
+      name: fault_code
+    - id: 16
+      type: integer
+      name: current_temperature
+      icon: "mdi:thermometer-water"
+secondary_entities:
+  - entity: binary_sensor
+    class: problem
+    name: Fault
+    category: diagnostic
+    dps:
+      - id: 15
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true

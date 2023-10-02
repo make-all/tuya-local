@@ -64,10 +64,6 @@ primary_entity:
           value: right
         - dps_val: stop
           value: stop
-    - id: 6
-      name: battery
-      type: integer
-      readonly: true
     - id: 13
       type: boolean
       name: locate
@@ -88,7 +84,6 @@ primary_entity:
     - id: 15
       type: string
       name: clean_record
-      readonly: true
       optional: true
     - id: 18
       type: bitfield
@@ -121,6 +116,14 @@ primary_entity:
       type: integer
       name: carpet_adaptive
 secondary_entities:
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
   - entity: sensor
     name: Clean time
     category: diagnostic

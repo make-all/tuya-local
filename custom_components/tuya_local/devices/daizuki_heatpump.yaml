@@ -57,12 +57,8 @@ primary_entity:
         - dps_val: strong
           value: strong
     - id: 20
-      type: integer
-      name: unknown_20
-    - id: 101
-      type: integer
-      name: unknown_101
-      optional: true
+      type: bitfield
+      name: fault_code
     - id: 105
       type: string
       name: sleep_mode
@@ -100,42 +96,38 @@ primary_entity:
       hidden: true
     - id: 119
       type: string
-      name: unknown_119
+      name: electricity_management
     - id: 120
       type: string
-      name: unknown_120
+      name: gen_mode
     - id: 123
-      type: string
+      type: hex
       name: flags_2
     - id: 125
       type: string
-      name: unknown_125
+      name: air_quality
       optional: true
     - id: 128
       type: string
-      name: unknown_128
+      name: model_code
     - id: 129
       type: string
-      name: unknown_129
+      name: energy
     - id: 130
       type: integer
-      name: maybe_eco_temp
-    - id: 131
-      type: boolean
-      name: unknown_131
+      name: eco_temp
     - id: 132
       type: boolean
-      name: unknown_132
+      name: hot_cool
     - id: 133
       type: string
-      name: unknown_133
+      name: swing_action
     - id: 134
       type: json
-      name: unknown_134
+      name: statistics
 secondary_entities:
   - entity: sensor
     class: temperature
-    name: Current temperature
     dps:
       - id: 3
         name: sensor
@@ -145,7 +137,6 @@ secondary_entities:
   - entity: sensor
     class: humidity
     category: diagnostic
-    name: Current humidity
     dps:
       - id: 18
         type: integer
@@ -230,3 +221,53 @@ secondary_entities:
             value: Slight Right
           - dps_val: "5"
             value: Rightmost
+  - entity: light
+    name: Display
+    category: config
+    icon: "mdi:television-ambient-light"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - mask: "0008"
+  - entity: switch
+    name: Beep
+    category: config
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - mask: "0010"
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 20
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: sensor
+    name: 
+    class: pm25
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: ugm3
+        optional: true
+        class: measurement
+  - entity: binary_sensor
+    name: Filter
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 131
+        type: boolean
+        name: sensor

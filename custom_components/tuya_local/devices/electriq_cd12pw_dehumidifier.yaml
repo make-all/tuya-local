@@ -26,7 +26,6 @@ primary_entity:
     - id: 3
       type: integer
       name: current_humidity
-      readonly: true
     - id: 4
       type: integer
       name: humidity
@@ -38,7 +37,6 @@ primary_entity:
     - id: 103
       type: integer
       name: current_temperature
-      readonly: true
 secondary_entities:
   - entity: light
     name: Display
@@ -55,20 +53,19 @@ secondary_entities:
   - entity: sensor
     class: humidity
     name: Current humidity
+    deprecated: humidifier
+    category: diagnostic
     dps:
       - id: 3
         type: integer
         name: sensor
         unit: "%"
         class: measurement
-        readonly: true
   - entity: sensor
     class: temperature
-    name: Current temperature
     dps:
       - id: 103
         type: integer
         name: sensor
         unit: C
         class: measurement
-        readonly: true

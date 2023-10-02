@@ -1,0 +1,53 @@
+name: Video intercom
+primary_entity:
+  entity: camera
+  dps:
+    - id: 150
+      name: record
+      type: boolean
+      optional: true
+      mapping:
+        - dps_val: null
+          value: false
+    - id: 154
+      name: snapshot
+      type: base64
+      optional: true
+    - id: 191
+      name: smart_action
+      type: string
+      optional: true
+secondary_entities:
+  - entity: lock
+    name: Lock 1
+    dps:
+      - id: 148
+        type: boolean
+        name: lock
+  - entity: lock
+    name: Lock 2
+    dps:
+      - id: 232
+        type: boolean
+        name: lock
+  - entity: binary_sensor
+    name: Doorbell
+    class: sound
+    category: diagnostic
+    dps:
+      - id: 136
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: ""
+            value: false
+          - value: true
+      - id: 136
+        type: string
+        name: details
+        optional: true
+        persist: false

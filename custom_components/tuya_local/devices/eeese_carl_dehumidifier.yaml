@@ -35,6 +35,9 @@ primary_entity:
           icon_priority: 3
         - dps_val: purify
           value: purify
+    - id: 16
+      type: integer
+      name: current_humidity
     - id: 19
       type: bitfield
       name: error
@@ -45,6 +48,8 @@ primary_entity:
 secondary_entities:
   - entity: sensor
     name: Current humidity
+    deprecated: humidifier
+    category: diagnostic
     class: humidity
     dps:
       - id: 16

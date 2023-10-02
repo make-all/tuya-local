@@ -1,0 +1,59 @@
+name: Dual dimmer
+primary_entity:
+  entity: light
+  name: Dimmer 1
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 2
+      name: brightness
+      type: integer
+      range:
+        min: 10
+        max: 1000
+      mapping:
+        - scale: 3.92
+secondary_entities:
+  - entity: light
+    name: Dimmer 2
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+      - id: 8
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - scale: 3.92
+  - entity: number
+    name: Minimum brightness 1
+    category: config
+    icon: "mdi:lightbulb-on-50"
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        range:
+          min: 10
+          max: 1000
+        unit: "%"
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Minimum brightness 2
+    category: config
+    icon: "mdi:lightbulb-on-50"
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        range:
+          min: 10
+          max: 1000
+        unit: "%"
+        mapping:
+          - scale: 10

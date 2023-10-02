@@ -56,9 +56,6 @@ primary_entity:
           value: standby
         - dps_val: paused
           value: paused
-    - id: 6
-      type: integer
-      name: battery
     - id: 13
       type: boolean
       name: locate
@@ -81,3 +78,12 @@ primary_entity:
         - dps_val: 64
           value: collision
         - dps_val: 512
+secondary_entities:
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement

@@ -1,0 +1,351 @@
+name: Planter
+products:
+  - id: 
+    name: ASIP-0622 indoor planter
+primary_entity:
+  entity: switch
+  icon: "mdi:sprout"
+  name: Power
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: switch
+    name: Pump
+    icon: "mdi:water-pump"
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+  - entity: light
+    name: Power indicator
+    icon: "mdi:led-on"
+    category: config
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+      - id: 117
+        type: string
+        name: limits
+        # format: min,max
+  - entity: sensor
+    name: 
+    class: humidity
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 118
+        type: string
+        name: limits
+        # format: min,max
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: select
+    name: Watering
+    icon: "mdi:watering-can"
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Auto
+          - dps_val: "1"
+            value: Manual
+      - id: 104
+        type: integer
+        name: recently
+      - id: 111
+        type: integer
+        name: recent_love
+  - entity: sensor
+    name: Fertility
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: µg/m³
+        class: measurement
+      - id: 120
+        type: string
+        name: limits
+        # format: min,max
+  - entity: sensor
+    name: Water level
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: select
+    name: Plant type
+    icon: "mdi:sprout"
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: option
+        mapping:
+          - dps_val: -1 
+            value: Not planted
+          - dps_val: 0
+            value: Holy maiden fruit
+          - dps_val: 1
+            value: Millenium
+          - dps_val: 2
+            value: Millet spicy
+          - dps_val: 3
+            value: Chaotian pepper
+          - dps_val: 4
+            value: Line pepper
+          - dps_val: 5
+            value: Bell pepper
+          - dps_val: 6
+            value: Lettuce
+          - dps_val: 7
+            value: Lettuce 2
+          - dps_val: 8
+            value: Celery
+          - dps_val: 9
+            value: Leek
+          - dps_val: 10
+            value: Mint
+          - dps_val: 11
+            value: Radish
+          - dps_val: 12
+            value: Garlic
+          - dps_val: 13
+            value: Green onion
+          - dps_val: 14
+            value: Strawberry
+          - dps_val: 15
+            value: Green peppers
+          - dps_val: 16
+            value: Eggplant
+          - dps_val: 17
+            value: Sweet potato
+          - dps_val: 18
+            value: Potato
+          - dps_val: 19
+            value: Others
+          - dps_val: 20
+            value: Potato 2
+          - dps_val: 21
+            value: Succulent
+          - dps_val: 22
+            value: Cactus
+          - dps_val: 23
+            value: Fortune tree
+          - dps_val: 24
+            value: Sansevieria
+          - dps_val: 25
+            value: Chlorophytum
+          - dps_val: 26
+            value: Often ivy
+          - dps_val: 27
+            value: Monstera
+          - dps_val: 28
+            value: Green radish
+          - dps_val: 29
+            value: Clivia
+          - dps_val: 30
+            value: Aloe vera
+          - dps_val: 31
+            value: Silver Queen
+          - dps_val: 32
+            value: Tomato
+          - dps_val: 33
+            value: Bell pepper 2
+          - dps_val: 34
+            value: Carrot
+          - dps_val: 35
+            value: Honeysuckle
+          - dps_val: 36
+            value: Wisteria
+          - dps_val: 37
+            value: Gardenia
+          - dps_val: 38
+            value: Hyacinth
+          - dps_val: 39
+            value: Sunflower
+          - dps_val: 40
+            value: Lavender
+          - dps_val: 41
+            value: Jasmine
+          - dps_val: 42
+            value: Lucky bamboo
+          - dps_val: 43
+            value: unknown
+          - dps_val: 44
+            value: Pepper
+          - dps_val: 45
+            value: Cucumber
+          - dps_val: 46
+            value: unknown 2
+          - dps_val: 47
+            value: Cherry radish
+          - dps_val: 48
+            value: Spinach
+          - dps_val: 49
+            value: Cabbage
+          - dps_val: 50
+            value: Fennel
+          - dps_val: 51
+            value: Coriander
+          - dps_val: 52
+            value: Rapeseed
+          - dps_val: 53
+            value: Bitter chrysanthemum
+          - dps_val: 54
+            value: Icegrass
+          - dps_val: 55
+            value: Onion
+          - dps_val: 56
+            value: Ginger
+          - dps_val: 57
+            value: Sesame
+          - dps_val: 58
+            value: Rosemary
+  - entity: sensor
+    class: illuminance
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: lx
+        class: measurement
+      - id: 119
+        type: string
+        name: limits
+  - entity: sensor
+    name: Planting date
+    class: timestamp
+    category: diagnostic
+    dps:
+      - id: 109
+        type: unixtime
+        name: sensor
+  - entity: number
+    name: Matrix remaining
+    category: config
+    icon: "mdi:view-grid-plus-outline"
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 100
+  - entity: sensor
+    name: Watering times
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+  - entity: button
+    name: Watering times reset
+    class: restart
+    category: config
+    dps:
+      - id: 112
+        type: integer
+        name: button
+        mapping:
+          - dps_val: 0
+            value: true
+          - value: false
+  - entity: number
+    name: Cumulative harvests
+    category: config
+    icon: "mdi:compost"
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 32767
+  - entity: sensor
+    name: Begin date
+    class: timestamp
+    category: diagnostic
+    dps:
+      - id: 114
+        type: unixtime
+        name: sensor
+  - entity: button
+    name: Manual refresh
+    category: config
+    dps:
+      - id: 115
+        type: boolean
+        name: button
+        optional: true
+  - entity: switch
+    name: Night alarm
+    category: config
+    dps:
+      - id: 116
+        type: boolean
+        name: switch
+  - entity: number
+    name: Low light limit
+    category: config
+    icon: "mdi:weather-partly-cloudy"
+    dps:
+      - id: 121
+        type: integer
+        name: value
+        unit: lx
+        range:
+          min: -60000
+          max: 60000
+  - entity: select
+    name: Grow light mode
+    icon: "mdi:lightbulb-auto"
+    category: config
+    dps:
+      - id: 122
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0" 
+            value: Auto
+          - dps_val: "1"
+            value: Manual
+  - entity: light
+    name: Grow light
+    dps:
+      - id: 123
+        type: boolean
+        name: switch
+
+
+            

@@ -1,0 +1,94 @@
+name: Star projector
+products:
+  - id: cw7kinnselbesfp9
+    name: Moes Smart Star Projector
+primary_entity:
+  entity: light
+  name: Background
+  icon: "mdi:projector"
+  dps:
+    - id: 20
+      type: boolean
+      name: switch
+    - id: 21
+      name: color_mode
+      type: string
+      mapping:
+        - dps_val: white
+          value: white
+        - dps_val: colour
+          value: rgbw
+        - dps_val: scene
+          value: Scene
+    - id: 24
+      name: rgbhsv
+      type: hex
+      format:
+        - name: h
+          bytes: 2
+          range:
+            min: 0
+            max: 360
+        - name: s
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+        - name: v
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+    - id: 25
+      name: scene_data
+      type: hex
+secondary_entities:
+  - entity: light
+    name: Laser
+    icon: "mdi:laser-pointer"
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - scale: 3.92
+  - entity: number
+    name: Star rotation speed
+    category: config
+    icon: "mdi:rotate-orbit"
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: 
+        range:
+          min: 10
+          max: 1000
+  - entity: switch
+    name: Color
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: number
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60

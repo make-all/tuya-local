@@ -54,9 +54,6 @@ primary_entity:
           value: charged
         - dps_val: sleep
           value: sleep
-    - id: 8
-      type: integer
-      name: battery
     - id: 9
       type: string
       name: fan_speed
@@ -113,6 +110,14 @@ secondary_entities:
         unit: m2
         mapping:
           - scale: 10
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
   - entity: sensor
     name: Water tank
     category: diagnostic

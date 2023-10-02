@@ -1,6 +1,14 @@
-name: Johgee Water Timer Valve
+name: Water Timer Valve
+legacy_type: ble_johgee_water_valve
 products:
   - id: c8800fd30884068f
+    name: Johgee Water Timer Valve
+  - id: bfc513e1f9d4d259a10wzu
+    name: Diivoo Water Timer Valve WT-03
+  - id: nxquc5lb
+    model: SOP10
+  - id: so5ybnw9
+    name: BWC-495.bt Royal Gardineer
 primary_entity:
   entity: switch
   icon: "mdi:pipe-valve"
@@ -22,7 +30,6 @@ primary_entity:
       optional: true
 secondary_entities:
   - entity: sensor
-    name: Battery
     class: battery
     category: diagnostic
     dps:
@@ -38,6 +45,7 @@ secondary_entities:
       - id: 4
         type: integer
         name: sensor
+        optional: true
   - entity: binary_sensor
     name: Fault
     class: problem
@@ -46,8 +54,11 @@ secondary_entities:
       - id: 4
         type: bitfield
         name: sensor
+        optional: true
         mapping:
           - dps_val: 0
+            value: false
+          - dps_val: null
             value: false
           - value: true
   - entity: sensor
@@ -75,6 +86,7 @@ secondary_entities:
         type: integer
         name: sensor
         unit: s
+        optional: true
   - entity: select
     name: Weather delay
     icon: "mdi:weather-cloudy-clock"
@@ -101,6 +113,7 @@ secondary_entities:
         type: integer
         name: value
         unit: min
+        optional: true
         range:
           min: 0
           max: 86400
@@ -115,3 +128,4 @@ secondary_entities:
       - id: 14
         type: boolean
         name: switch
+        optional: true

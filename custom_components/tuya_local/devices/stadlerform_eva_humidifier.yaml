@@ -15,6 +15,9 @@ primary_entity:
         max: 80
       mapping:
         - step: 5
+    - id: 14
+      name: current_humidity
+      type: integer
     - id: 22
       name: fault_code
       type: integer
@@ -29,6 +32,8 @@ primary_entity:
 secondary_entities:
   - entity: sensor
     name: Current humidity
+    deprecated: humidifier
+    category: diagnostic
     class: humidity
     dps:
       - id: 14

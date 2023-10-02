@@ -12,7 +12,6 @@ primary_entity:
       name: sensor
 secondary_entities:
   - entity: sensor
-    name: PM 2.5
     class: pm25
     dps:
       - id: 2
@@ -30,7 +29,6 @@ secondary_entities:
         unit: µg/m³
         class: measurement
   - entity: sensor
-    name: Temperature
     class: temperature
     dps:
       - id: 12
@@ -41,7 +39,6 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Humidity
     class: humidity
     dps:
       - id: 13
@@ -50,7 +47,6 @@ secondary_entities:
         unit: "%"
         class: measurement
   - entity: sensor
-    name: Volatile organic compounds
     class: volatile_organic_compounds
     dps:
       - id: 14
@@ -59,7 +55,6 @@ secondary_entities:
         unit: µg/m³
         class: measurement
   - entity: sensor
-    name: CO2
     class: carbon_dioxide
     dps:
       - id: 15

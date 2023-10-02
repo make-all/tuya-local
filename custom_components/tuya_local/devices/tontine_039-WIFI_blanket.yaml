@@ -1,0 +1,49 @@
+#ConforTech Platinum Electric Blanket
+#Model No:TEB2045QB
+#Controller Unit No: 039-WIFI
+
+name: Tontine Electric Blanket
+products:
+  - id: m3kmcn9evognklsp
+primary_entity:
+  entity: switch
+  icon: "mdi:bed"
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: select
+    name: Temperature
+    icon: "mdi:thermometer"
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: low
+            value: "low"
+          - dps_val: middle
+            value: "middle"
+          - dps_val: high
+            value: "high"
+  - entity: number
+    name: Timer
+    icon: "mdi:timer"
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 1
+          max: 10
+  - entity: sensor
+    name: Countdown
+    class: duration
+    icon: "mdi:timer"
+    dps:
+      - id: 10
+        name: sensor
+        type: integer
+        unit: min

@@ -1,0 +1,118 @@
+name: Alarm security system
+products:
+  - id: eb26b0818666ecd284o4qe
+    name: GauTone PG-103
+  - id: gyitctrjj1kefxp2
+    name: "PG103/PG105/PG106/PG107/PG109"
+primary_entity:
+  entity: alarm_control_panel
+  dps:
+    - id: 1
+      type: string
+      name: alarm_state
+      mapping:
+        - dps_val: disarmed
+          value: disarmed
+        - dps_val: arm
+          value: armed_away
+        - dps_val: home
+          value: armed_home
+        - dps_val: sos
+          value: triggered
+    - id: 36
+      type: string
+      name: sub_class
+      optional: true
+    - id: 101
+      type: string
+      name: power_state
+secondary_entities:
+  - entity: number
+    name: Exit delay
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 1000
+  - entity: number
+    name: Entry delay
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 28
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 1000
+  - entity: number
+    name: Siren duration
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 1000
+  - entity: switch
+    name: Alarm sound
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Backlight
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Arm beep
+    category: config
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Mode notification
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Alarm notification
+    category: config
+    dps:
+      - id: 27
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: sound
+    name: Alarm
+    category: diagnostic
+    dps:
+      - id: 32
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: normal
+            value: false
+          - dps_val: alarm
+            value: true
+      - id: 26
+        type: base64
+        name: message
+        optional: true
+        persist: false

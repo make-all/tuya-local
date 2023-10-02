@@ -1564,7 +1564,7 @@ MOEBOT_PAYLOAD = {
 
 TOMPD63LW_SOCKET_PAYLOAD = {
     "1": 139470,
-    "6": "CHoAQgQADlwAAA==",
+    "6": "CPQAFEkAAuk=",
     "9": 0,
     "11": False,
     "12": False,
@@ -1600,4 +1600,31 @@ THERMEX_IF50V_PAYLOAD = {
     "104": 65,
     "105": "2",
     "106": 0,
+}
+
+ZXG30_ALARM_PAYLOAD = {
+    "1": "home",
+    "2": 0,
+    "3": 3,
+    "4": True,
+    "9": False,
+    "10": False,
+    "15": True,
+    "16": 100,
+    "17": True,
+    "20": False,
+    "21": False,
+    "22": 1,
+    "23": "2",
+    "24": "Normal",
+    "27": True,
+    "28": 10,
+    "29": True,
+    "32": "normal",
+    "34": False,
+    "35": False,
+    "36": "3",
+    "37": "0",
+    "39": "0",
+    "40": "1",
 }

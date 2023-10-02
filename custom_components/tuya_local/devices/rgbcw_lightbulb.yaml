@@ -8,6 +8,8 @@ products:
     name: BrilliantSmart RGB garden lights
   - id: ivxfweclfhvra3ym
     name: Lampux bedside lamp
+  - id: wufw0loegkb1y3u3
+    name: Genio Smart WIFI bulb A60 RGB+CCT
 primary_entity:
   entity: light
   dps:
@@ -35,6 +37,7 @@ primary_entity:
         max: 1000
       mapping:
         - dps_val: null
+          value: 0
         - scale: 3.92
     - id: 23
       name: color_temp
@@ -44,7 +47,9 @@ primary_entity:
         min: 0
         max: 1000
       mapping:
-        - invert: true
+        - target_range:
+            min: 2700
+            max: 6500
     - id: 24
       name: rgbhsv
       type: hex

@@ -1,6 +1,7 @@
 name: Himox H05 air purifier
 primary_entity:
   entity: fan
+  translation_key: fan_with_presets
   dps:
     - id: 1
       type: boolean
@@ -10,16 +11,15 @@ primary_entity:
       name: preset_mode
       mapping:
         - dps_val: auto
-          value: auto
+          value: smart
         - dps_val: low
-          value: low
+          value: sleep
         - dps_val: mid
-          value: mid
+          value: fresh
         - dps_val: high
-          value: high
+          value: strong
 secondary_entities:
   - entity: sensor
-    name: Current temperature
     class: temperature
     category: diagnostic
     dps:
@@ -36,7 +36,6 @@ secondary_entities:
       - id: 5
         type: integer
         name: sensor
-        readonly: true
         unit: "%"
   - entity: lock
     name: Child lock
@@ -83,4 +82,4 @@ secondary_entities:
       - id: 21
         type: string
         name: sensor
-        readonly: true
+ 

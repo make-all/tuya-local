@@ -1,0 +1,187 @@
+name: mmWave presence sensor
+products:
+  - id: qbapy7r4deyp6zbx
+    name: ZG-205W
+primary_entity:
+  entity: binary_sensor
+  class: occupancy
+  dps:
+    - id: 1
+      type: string
+      name: sensor
+      mapping:
+        - dps_val: presence
+          value: true
+        - dps_val: none
+          value: false
+secondary_entities:
+  - entity: light
+    name: Led indicator
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: number
+    name: Motion sensitivity
+    category: config
+    icon: mdi:motion-sensor
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 10
+  - entity: number
+    name: Stationary sensitivity
+    category: config
+    icon: mdi:motion-sensor
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 10
+  - entity: number
+    name: Small motion sensitivity
+    category: config
+    icon: mdi:motion-sensor
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 10
+  - entity: number
+    name: Motion detection distance
+    category: config
+    icon: mdi:signal-distance-variant
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        unit: m
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 100
+            step: 10
+  - entity: number
+    name: Stationary detection distance
+    category: config
+    icon: mdi:signal-distance-variant
+    dps:
+      - id: 4
+        type: integer
+        name: value
+        unit: m
+        range:
+          min: 0
+          max: 600
+        mapping:
+          - scale: 100
+            step: 10
+  - entity: number
+    name: Small motion detection distance
+    category: config
+    icon: mdi:signal-distance-variant
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: m
+        range:
+          min: 0
+          max: 600
+        mapping:
+          - scale: 100
+            step: 10
+  - entity: select
+    name: Alarm volume
+    class: enum
+    icon: mdi:volume-high
+    category: config
+    dps:
+      - id: 107
+        type: string
+        name: option
+        mapping:
+          - dps_val: high
+            value: High
+          - dps_val: middle
+            value: Middle
+          - dps_val: low
+            value: Low
+          - dps_val: mute
+            value: Mute
+  - entity: select
+    name: Alarm mode
+    class: enum
+    icon: mdi:shield-home
+    category: config
+    dps:
+      - id: 104
+        type: string
+        name: option
+        mapping:
+          - dps_val: armed
+            value: Armed
+          - dps_val: disarm
+            value: Disarm
+          - dps_val: sos
+            value: Alarm
+  - entity: sensor
+    name: Detection state
+    class: enum
+    icon: mdi:cursor-move
+    dps:
+      - id: 116
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: large_move
+            value: Large move
+          - dps_val: small_move
+            value: Small move
+          - dps_val: breathe
+            value: Breathe
+          - dps_val: none
+            value: None
+  - entity: number
+    name: Exit delay
+    category: config
+    icon: mdi:timer-sand
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 100
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Alarm duration
+    category: config
+    icon: mdi:timer
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 30
+  - entity: sensor
+    class: illuminance
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: lx
+        class: measurement

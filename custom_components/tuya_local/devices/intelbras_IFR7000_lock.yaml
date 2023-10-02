@@ -1,0 +1,46 @@
+name: Door lock
+products:
+  - id: a6nttc41
+    name: Intelbras IFR 7000
+primary_entity:
+  entity: lock
+  dps:
+    - id: 1
+      type: integer
+      name: unlock_fingerprint
+      optional: true
+    - id: 7
+      type: integer
+      name: unlock_key
+      optional: true
+    - id: 8
+      type: boolean
+      name: lock
+      optional: true
+      readonly: true
+      mapping:
+        - dps_val: true
+          value: False
+        - dps_val: false
+          value: True
+    - id: 9
+      type: string
+      name: alarm
+      optional: true
+    - id: 47
+      type: string
+      name: Lock raw
+    - id: 57
+      type: boolean
+      name: Lock Motor Status
+      optional: true
+secondary_entities:
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        optional: true
+        unit: "%"

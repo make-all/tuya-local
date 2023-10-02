@@ -19,7 +19,6 @@ primary_entity:
       optional: true
 secondary_entities:
   - entity: sensor
-    name: Energy
     class: energy
     dps:
       - id: 1
@@ -252,6 +251,7 @@ secondary_entities:
   - entity: sensor
     name: Balance energy
     category: diagnostic
+    class: energy_storage
     icon: "mdi:home-lightning-bolt"
     dps:
       - id: 13
@@ -300,7 +300,6 @@ secondary_entities:
           - mask: "0000000000FFFFFF"
             scale: 1000
   - entity: sensor
-    name: Temperature
     class: temperature
     category: diagnostic
     dps:

@@ -32,7 +32,6 @@ primary_entity:
     - id: 3
       type: integer
       name: current_humidity
-      readonly: true
     - id: 4
       type: integer
       name: humidity
@@ -41,15 +40,9 @@ primary_entity:
         max: 80
       mapping:
         - step: 5
-    - id: 5
-      name: anion
-      type: boolean
-    - id: 103
-      type: integer
-      name: current_temperature
-      readonly: true
 secondary_entities:
   - entity: fan
+    translation_key: fan_with_presets
     dps:
       - id: 1
         type: boolean
@@ -59,11 +52,20 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: "45"
-            value: "Half open"
+            value: sleep
           - dps_val: "90"
-            value: "Fully open"
+            value: fresh
           - dps_val: "0_90"
-            value: "Oscillate"
+            value: nature
+      - id: 102
+        name: oscillate
+        type: string
+        mapping:
+          - dps_val: "0_90"
+            value: true
+          - dps_val: "90"
+            value: false
+          - value: false
   - entity: switch
     name: "UV sterilization"
     icon: "mdi:solar-power"
@@ -93,20 +95,19 @@ secondary_entities:
   - entity: sensor
     class: humidity
     name: Current humidity
+    deprecated: humidifier
+    category: diagnostic
     dps:
       - id: 3
         type: integer
         name: sensor
         unit: "%"
         class: measurement
-        readonly: true
   - entity: sensor
     class: temperature
-    name: Current temperature
     dps:
       - id: 103
         type: integer
         name: sensor
         unit: C
         class: measurement
-        readonly: true

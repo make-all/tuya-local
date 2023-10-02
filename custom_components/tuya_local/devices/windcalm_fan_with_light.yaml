@@ -1,0 +1,49 @@
+name: Windcalm Ceiling Fan with Light
+primary_entity:
+  entity: fan
+  dps:
+    - id: 60
+      type: boolean
+      name: switch
+    - id: 62
+      type: integer
+      name: speed
+      range:
+        min: 0
+        max: 6
+      mapping:
+        - scale: 0.06
+    - id: 63
+      type: string
+      name: direction
+    - id: 64
+      type: integer
+      name: timer
+      range:
+        min: 0
+        max: 540
+      unit: min
+secondary_entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - scale: 3.92
+      - id: 23
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 3000
+              max: 6500

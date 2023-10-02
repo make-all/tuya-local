@@ -1,6 +1,6 @@
 """Find matching devices for the supplied dp list"""
-import sys
 import json
+import sys
 
 from custom_components.tuya_local.helpers.device_config import (
     TuyaDeviceConfig,

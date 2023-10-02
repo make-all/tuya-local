@@ -1,0 +1,92 @@
+name: Weather station
+products:
+  - id: fpgistthfiweyaqr
+    name: SWS-01 weather station
+primary_entity:
+  entity: sensor
+  name: Internal temperature
+  class: temperature
+  dps:
+    - id: 131
+      name: sensor
+      type: integer
+      unit: C
+      mapping:
+        - scale: 10
+      class: measurement
+secondary_entities:
+  - entity: sensor
+    name: Internal humidity
+    class: humidity
+    dps:
+      - id: 132
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        
+  - entity: sensor
+    name: Temperature 1
+    class: temperature
+    dps:
+      - id: 133
+        type: integer
+        name: sensor
+        unit: C
+        mapping:
+          - scale: 10
+        class: measurement
+        
+  - entity: sensor
+    name: Humidity 1
+    class: humidity
+    dps:
+      - id: 134
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        
+  - entity: sensor
+    name: Temperature 2
+    class: temperature
+    dps:
+      - id: 135
+        type: integer
+        name: sensor
+        unit: C
+        mapping:
+          - scale: 10
+        class: measurement
+        
+  - entity: sensor
+    name: Humidity 2
+    class: humidity
+    dps:
+      - id: 136
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        
+  - entity: sensor
+    name: Temperature 3
+    class: temperature
+    dps:
+      - id: 137
+        type: integer
+        name: sensor
+        unit: C
+        mapping:
+          - scale: 10
+        class: measurement
+  - entity: sensor
+  
+    name: Humidity 3
+    class: humidity
+    dps:
+      - id: 138
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement

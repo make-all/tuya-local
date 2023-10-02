@@ -1,7 +1,6 @@
 name: Inkbird air quality monitor
 primary_entity:
   entity: sensor
-  name: CO2
   class: carbon_dioxide
   dps:
     - id: 2
@@ -11,7 +10,6 @@ primary_entity:
       class: measurement
 secondary_entities:
   - entity: sensor
-    name: Temperature
     class: temperature
     dps:
       - id: 18
@@ -20,7 +18,6 @@ secondary_entities:
         unit: C
         class: measurement
   - entity: sensor
-    name: Humidity
     class: humidity
     dps:
       - id: 19

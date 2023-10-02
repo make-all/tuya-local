@@ -17,6 +17,9 @@ primary_entity:
           value: auto
         - dps_val: "1"
           value: boost
+    - id: 3
+      type: integer
+      name: current_humidity
     - id: 4
       type: integer
       name: humidity
@@ -41,7 +44,8 @@ secondary_entities:
         type: boolean
         name: oscillate
   - entity: sensor
-    name: Humidity
+    deprecated: humidifier
+    category: diagnostic
     class: humidity
     dps:
       - id: 3

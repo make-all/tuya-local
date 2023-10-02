@@ -1,0 +1,36 @@
+name: Gold lightbulb
+products:
+  - id: baf9tt9lb8t5uc7z
+    name: Dim2Warm G95 golden globe
+primary_entity:
+  entity: light
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 2
+      name: brightness
+      type: integer
+      range:
+        min: 25
+        max: 255
+    - id: 3
+      name: color_temp
+      type: integer
+      range:
+        min: 0
+        max: 255
+      mapping:
+        - target_range:
+            min: 1800
+            max: 2700
+secondary_entities:
+  - entity: switch
+    name: Remote switch
+    icon: "mdi:remote"
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+        optional: true

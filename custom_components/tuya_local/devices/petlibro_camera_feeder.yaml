@@ -95,12 +95,8 @@ secondary_entities:
         type: base64
         name: snapshot
         optional: true
-      - id: 150
-        type: boolean
-        name: record
-        optional: true
   - entity: switch
-    name: Motion detection
+    name: Motion notification
     icon: "mdi:motion-sensor"
     category: config
     dps:
@@ -123,7 +119,7 @@ secondary_entities:
           - dps_val: "2"
             value: High
   - entity: switch
-    name: Sound detection
+    name: Sound notification
     icon: "mdi:ear-hearing"
     category: config
     dps:
@@ -144,6 +140,14 @@ secondary_entities:
             value: Low
           - dps_val: "1"
             value: High
+  - entity: switch
+    name: Record
+    icon: "mdi:record-rec"
+    dps:
+      - id: 150
+        type: boolean
+        name: switch
+        optional: true
   - entity: select
     name: Recording mode
     icon: "mdi:video"
@@ -174,7 +178,6 @@ secondary_entities:
           - dps_val: null
             value: 0
   - entity: sensor
-    name: Battery
     class: battery
     category: diagnostic
     dps:
@@ -210,7 +213,6 @@ secondary_entities:
             value: true
           - value: false
   - entity: binary_sensor
-    name: Battery
     class: battery
     category: diagnostic
     dps:

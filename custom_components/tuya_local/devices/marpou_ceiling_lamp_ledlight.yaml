@@ -1,0 +1,142 @@
+name: RGB ceiling light
+products:
+  - id: eb93523c41813016ac6ay1
+    name: Marpou Five way ceiling lamp
+primary_entity:
+  entity: light
+  icon: "mdi:wall-sconce-flat-outline"
+  dps:
+    - id: 20
+      type: boolean
+      name: switch
+    - id: 21
+      type: string
+      name: color_mode
+      mapping:
+        - dps_val: white
+          value: color_temp
+        - dps_val: colour
+          value: hs
+        - dps_val: scene
+          value: Scene
+        - dps_val: music
+          value: Music
+    - id: 22
+      name: brightness
+      type: integer
+      optional: true
+      range:
+        min: 10
+        max: 1000
+      mapping:
+        - dps_val: null
+          value: 0
+        - scale: 3.92
+    - id: 23
+      name: color_temp
+      type: integer
+      optional: true
+      range:
+        min: 0
+        max: 1000
+      mapping:
+        - target_range:
+            min: 3000
+            max: 6500
+    - id: 24
+      name: rgbhsv
+      type: hex
+      optional: true
+      format:
+        - name: h
+          bytes: 2
+          range:
+            min: 0
+            max: 360
+        - name: s
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+        - name: v
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+    - id: 36
+      name: scene_data
+      type: base64
+      optional: true
+    - id: 27
+      name: music_data
+      type: hex
+      optional: true
+    - id: 30
+      name: rhythm_mode
+      type: base64
+      optional: true
+    - id: 31
+      name: sleep_mode
+      type: base64
+      optional: true
+    - id: 32
+      name: wakeup_mode
+      type: base64
+      optional: true
+secondary_entities:
+  - entity: number
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 26
+        name: value
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 86400
+        unit: min
+        mapping:
+          - scale: 60
+            step: 60
+          - dps_val: null
+  - entity: select
+    name: Scene
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 36
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "AAABAQIODQAAyAAAAAA="
+            value: Night
+          - dps_val: "AAEBAQIODQAD6AH0AAA="
+            value: Read
+          - dps_val: "AAIBAQIODQAD6APoAAA="
+            value: Working
+          - dps_val: "AAMBAQIODQAB9AH0AAA="
+            value: Casual
+          - dps_val: "AAQAAAECA0ZGAgB4A+gD6EZGAgB4A+gACg=="
+            value: Prairie
+          - dps_val: "AAUAAAEGA0ZGAQAAA+gD6EZGAQB4A+gD6EZGAQDwA+gD6EZGAQA9A+gD6EZGAQCuA+gD6EZGAQETA+gD6A=="
+            value: Fun
+          - dps_val: "AAYAAAEDA0ZGAQAAA+gD6EZGAQB4A+gD6EZGAQDwA+gD6A=="
+            value: Dazzle
+          - dps_val: "AAcAAAEGA0ZGAgAAA+gD6EZGAgB4A+gD6EZGAgDwA+gD6EZGAgA9A+gD6EZGAgCuA+gD6EZGAgETA+gD6A=="
+            value: Colorful
+          - dps_val: "ABQAAAEDA0ZGAgCuA+gD6EZGAgC0ASwD6EZGAgC0ADID6A=="
+            value: Blue sky
+          - dps_val: "AB0AAAEEA2RkAQAAA+gD6GRkAQDwA+gD6GRkAgB4A+gD6GRkAgA9A+gD6A=="
+            value: Mediterranean
+          - dps_val: "ACAAAAEGA2RkAQA9A+gD6GRkAQB4A+gD6FpaAQETA+gD6FpaAQCuA+gD6GRkAQAyAfQD6GRkAQAAA+gD6A=="
+            value: Birthday
+          - dps_val: "ACIAAAEGA1paAQDwA+gD6FpaAQA9A+gD6EZGAQAAA+gD6FpaAQCuA+gD6FpaAQETA+gD6EZGAQB4A+gD6A=="
+            value: Christmas
+          - dps_val: "ADIBAQIODQAAyAAAAQYDRkYCAAAD6APoRkYCAHgD6APoRkYCAPAD6APoRkYCAD0D6APoRkYCAK4D6APoRkYCARMD6APo"
+            value: Streamer
+          - dps_val: "ADMBAQIODQAB9AH0AQYDRkYBAAAD6APoRkYBAHgD6APoRkYBAPAD6APoRkYBAD0D6APoRkYBAK4D6APoRkYBARMD6APo"
+            value: Entertainment
+

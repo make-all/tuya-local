@@ -36,6 +36,9 @@ primary_entity:
         max: 75
       mapping:
         - step: 5
+    - id: 14
+      name: current_humidity
+      type: integer
     - id: 22
       name: unknown_22
       type: integer
@@ -82,8 +85,10 @@ secondary_entities:
           - dps_val: false
             icon: "mdi:led-off"
   - entity: sensor
+    deprecated: humidifier
     name: Current humidity
     class: humidity
+    category: diagnostic
     dps:
       - id: 14
         type: integer
@@ -91,7 +96,6 @@ secondary_entities:
         class: measurement
         unit: "%"
   - entity: sensor
-    name: Current temperature
     class: temperature
     dps:
       - id: 10

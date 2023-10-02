@@ -1,28 +1,29 @@
 """Test the config parser"""
-from fuzzywuzzy import fuzz
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import MagicMock
 
+from fuzzywuzzy import fuzz
 from homeassistant.components.sensor import SensorDeviceClass
 
 from custom_components.tuya_local.helpers.config import get_device_id
 from custom_components.tuya_local.helpers.device_config import (
-    available_configs,
-    get_config,
-    _bytes_to_fmt,
-    _typematch,
     TuyaDeviceConfig,
     TuyaDpsConfig,
     TuyaEntityConfig,
+    _bytes_to_fmt,
+    _typematch,
+    available_configs,
+    get_config,
 )
 from custom_components.tuya_local.sensor import TuyaLocalSensor
 
-from .const import (
-    GPPH_HEATER_PAYLOAD,
-    KOGAN_HEATER_PAYLOAD,
-)
+from .const import GPPH_HEATER_PAYLOAD, KOGAN_HEATER_PAYLOAD
 
 KNOWN_DPS = {
+    "alarm_control_panel": {
+        "required": ["alarm_state"],
+        "optional": ["trigger"],
+    },
     "binary_sensor": {"required": ["sensor"], "optional": []},
     "button": {"required": ["button"], "optional": []},
     "camera": {
@@ -80,9 +81,11 @@ KNOWN_DPS = {
             "unlock_password",
             "unlock_temp_pwd",
             "unlock_dynamic_pwd",
+            "unlock_offline_pwd",
             "unlock_card",
             "unlock_app",
             "unlock_key",
+            "unlock_ble",
             "jammed",
         ],
     },
@@ -92,7 +95,10 @@ KNOWN_DPS = {
     },
     "select": {"required": ["option"], "optional": []},
     "sensor": {"required": ["sensor"], "optional": ["unit"]},
-    "siren": {"required": [], "optional": ["tone", "volume", "duration"]},
+    "siren": {
+        "required": [],
+        "optional": ["tone", "volume", "duration", "switch"],
+    },
     "switch": {"required": ["switch"], "optional": ["current_power_w"]},
     "vacuum": {
         "required": ["status"],
@@ -222,7 +228,7 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
     def check_entity(self, entity, cfg):
         """
         Check that the entity has a dps list and each dps has an id,
-        type and name.
+        type and name, and any other consistency checks.
         """
         self.assertIsNotNone(
             entity._config.get("entity"), f"entity type missing in {cfg}"
@@ -234,7 +240,10 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
         functions = set()
         extra = set()
         known = set()
+        redirects = set()
 
+        # Basic checks of dps, and initialising of redirects and extras sets
+        # for later checking
         for dp in entity.dps():
             self.assertIsNotNone(
                 dp._config.get("id"), f"dp id missing from {e} in {cfg}"
@@ -246,7 +255,34 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
                 dp._config.get("name"), f"dp name missing from {e} in {cfg}"
             )
             extra.add(dp.name)
+            mappings = dp._config.get("mapping", [])
+            self.assertIsInstance(
+                mappings,
+                list,
+                f"mapping is not a list in {cfg}; entity {e}, dp {dp.name}",
+            )
+            for m in mappings:
+                conditions = m.get("conditions", [])
+                self.assertIsInstance(
+                    conditions,
+                    list,
+                    f"conditions is not a list in {cfg}; entity {e}, dp {dp.name}",
+                )
+                for c in conditions:
+                    if c.get("value_redirect"):
+                        redirects.add(c.get("value_redirect"))
+                    if c.get("value_mirror"):
+                        redirects.add(c.get("value_mirror"))
+                if m.get("value_redirect"):
+                    redirects.add(m.get("value_redirect"))
+                if m.get("value_mirror"):
+                    redirects.add(m.get("value_mirror"))
 
+        # Check redirects all exist
+        for redirect in redirects:
+            self.assertIn(redirect, extra, f"dp {redirect} missing from {e} in {cfg}")
+
+        # Check dps that are required for this entity type all exist
         expected = KNOWN_DPS.get(entity.entity)
         for rule in expected["required"]:
             self.assertTrue(
@@ -405,6 +441,18 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
             bytes("Test", "utf-8"),
         )
 
+    def test_decoding_hex(self):
+        """Test that decoded_value works with hex encoding."""
+        mock_entity = MagicMock()
+        mock_config = {"id": "1", "name": "test", "type": "hex"}
+        mock_device = MagicMock()
+        mock_device.get_property.return_value = "babe"
+        cfg = TuyaDpsConfig(mock_entity, mock_config)
+        self.assertEqual(
+            cfg.decoded_value(mock_device),
+            b"\xba\xbe",
+        )
+
     def test_decoding_unencoded(self):
         """Test that decoded_value returns the raw value when not encoded."""
         mock_entity = MagicMock()
@@ -423,6 +471,13 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
         mock_config = {"id": "1", "name": "test", "type": "base64"}
         cfg = TuyaDpsConfig(mock_entity, mock_config)
         self.assertEqual(cfg.encode_value(bytes("Test", "utf-8")), "VGVzdA==")
+
+    def test_encoding_hex(self):
+        """Test that encode_value works with base64."""
+        mock_entity = MagicMock()
+        mock_config = {"id": "1", "name": "test", "type": "hex"}
+        cfg = TuyaDpsConfig(mock_entity, mock_config)
+        self.assertEqual(cfg.encode_value(b"\xca\xfe"), "cafe")
 
     def test_encoding_unencoded(self):
         """Test that encode_value works with base64."""
@@ -475,6 +530,44 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
         self.assertEqual("my-device-id", get_device_id({"device_id": "my-device-id"}))
         self.assertEqual("sub-id", get_device_id({"device_cid": "sub-id"}))
         self.assertEqual("s", get_device_id({"device_id": "d", "device_cid": "s"}))
+
+    def test_getting_masked_hex(self):
+        """Test that get_value works with masked hex encoding."""
+        mock_entity = MagicMock()
+        mock_config = {
+            "id": "1",
+            "name": "test",
+            "type": "hex",
+            "mapping": [
+                {"mask": "ff00"},
+            ],
+        }
+        mock_device = MagicMock()
+        mock_device.get_property.return_value = "babe"
+        cfg = TuyaDpsConfig(mock_entity, mock_config)
+        self.assertEqual(
+            cfg.get_value(mock_device),
+            0xBA,
+        )
+
+    def test_setting_masked_hex(self):
+        """Test that get_values_to_set works with masked hex encoding."""
+        mock_entity = MagicMock()
+        mock_config = {
+            "id": "1",
+            "name": "test",
+            "type": "hex",
+            "mapping": [
+                {"mask": "ff00"},
+            ],
+        }
+        mock_device = MagicMock()
+        mock_device.get_property.return_value = "babe"
+        cfg = TuyaDpsConfig(mock_entity, mock_config)
+        self.assertEqual(
+            cfg.get_values_to_set(mock_device, 0xCA),
+            {"1": "cabe"},
+        )
 
     def test_default_without_mapping(self):
         """Test that default returns None when there is no mapping"""

@@ -53,7 +53,6 @@ secondary_entities:
           - scale: 1000
   - entity: sensor
     category: diagnostic
-    name: Voltage
     class: voltage
     dps:
       - id: 106
@@ -67,16 +66,12 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     class: frequency
-    name: Frequency
     dps:
       - id: 117
         type: integer
         name: sensor
         unit: Hz
         class: measurement
-        
-        
-        
   - entity: sensor
     category: diagnostic
     name: Energy A
@@ -100,7 +95,7 @@ secondary_entities:
         unit: kWh
         class: total_increasing
         mapping:
-          - scale: 100 
+          - scale: 100
   - entity: sensor
     category: diagnostic
     class: current
@@ -135,7 +130,7 @@ secondary_entities:
         type: integer
         class: measurement
         mapping:
-          - scale: 100         
+          - scale: 100
   - entity: sensor
     category: diagnostic
     class: reactive_power
@@ -144,12 +139,7 @@ secondary_entities:
       - id: 115
         name: sensor
         type: integer
-        unit: kVar
-        mapping:
-          - scale: 1000
-          
-          
-          
+        unit: var
   - entity: sensor
     category: diagnostic
     name: Energy B
@@ -173,7 +163,7 @@ secondary_entities:
         unit: kWh
         class: total_increasing
         mapping:
-          - scale: 100 
+          - scale: 100
   - entity: sensor
     category: diagnostic
     class: current
@@ -217,6 +207,4 @@ secondary_entities:
       - id: 116
         name: sensor
         type: integer
-        unit: kVar
-        mapping:
-          - scale: 1000
+        unit: var

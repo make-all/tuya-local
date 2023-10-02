@@ -22,6 +22,9 @@ primary_entity:
           value: eco
         - dps_val: fan
           value: purify
+    - id: 3
+      type: integer
+      name: current_humidity
     - id: 4
       type: integer
       name: humidity
@@ -79,6 +82,8 @@ secondary_entities:
             value: "90°"
   - entity: sensor
     name: Current humidity
+    deprecated: humidifier
+    category: diagnostic
     class: humidity
     dps:
       - id: 3
@@ -87,7 +92,6 @@ secondary_entities:
         class: measurement
         unit: "%"
   - entity: sensor
-    name: Current temperature
     class: temperature
     dps:
       - id: 103

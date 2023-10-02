@@ -82,46 +82,46 @@ class TestRenphoPurifier(
     def test_preset_modes(self):
         self.assertCountEqual(
             self.subject.preset_modes,
-            ["low", "mid", "high", "auto"],
+            ["sleep", "fresh", "strong", "smart"],
         )
 
     def test_preset_mode(self):
         self.dps[PRESET_DPS] = "low"
-        self.assertEqual(self.subject.preset_mode, "low")
+        self.assertEqual(self.subject.preset_mode, "sleep")
         self.dps[PRESET_DPS] = "mid"
-        self.assertEqual(self.subject.preset_mode, "mid")
+        self.assertEqual(self.subject.preset_mode, "fresh")
         self.dps[PRESET_DPS] = "high"
-        self.assertEqual(self.subject.preset_mode, "high")
+        self.assertEqual(self.subject.preset_mode, "strong")
         self.dps[PRESET_DPS] = "auto"
-        self.assertEqual(self.subject.preset_mode, "auto")
+        self.assertEqual(self.subject.preset_mode, "smart")
 
     async def test_set_preset_mode_to_low(self):
         async with assert_device_properties_set(
             self.subject._device,
             {PRESET_DPS: "low"},
         ):
-            await self.subject.async_set_preset_mode("low")
+            await self.subject.async_set_preset_mode("sleep")
 
     async def test_set_preset_mode_to_mid(self):
         async with assert_device_properties_set(
             self.subject._device,
             {PRESET_DPS: "mid"},
         ):
-            await self.subject.async_set_preset_mode("mid")
+            await self.subject.async_set_preset_mode("fresh")
 
     async def test_set_preset_mode_to_high(self):
         async with assert_device_properties_set(
             self.subject._device,
             {PRESET_DPS: "high"},
         ):
-            await self.subject.async_set_preset_mode("high")
+            await self.subject.async_set_preset_mode("strong")
 
     async def test_set_preset_mode_to_auto(self):
         async with assert_device_properties_set(
             self.subject._device,
             {PRESET_DPS: "auto"},
         ):
-            await self.subject.async_set_preset_mode("auto")
+            await self.subject.async_set_preset_mode("smart")
 
     def test_extra_state_attributes(self):
         self.dps[TIMER_DPS] = "19"

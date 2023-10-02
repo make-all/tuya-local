@@ -17,7 +17,6 @@ primary_entity:
     - id: 102
       name: current_temperature
       type: integer
-      readonly: true
     - id: 103
       name: temperature_unit
       type: boolean
@@ -29,7 +28,6 @@ primary_entity:
     - id: 105
       name: hvac_action
       type: string
-      readonly: true
       mapping:
         - dps_val: heating
           value: heating
@@ -125,7 +123,6 @@ secondary_entities:
         type: integer
         name: sensor
         unit: "%"
-        readonly: true
   - entity: sensor
     category: diagnostic
     class: temperature

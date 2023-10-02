@@ -1,14 +1,14 @@
 """
 Config parser for Tuya Local devices.
 """
-from base64 import b64decode, b64encode
-
-from collections.abc import Sequence
-from fnmatch import fnmatch
 import logging
+from base64 import b64decode, b64encode
+from collections.abc import Sequence
+from datetime import datetime
+from fnmatch import fnmatch
 from numbers import Number
 from os import walk
-from os.path import join, dirname, splitext, exists
+from os.path import dirname, exists, join, splitext
 
 from homeassistant.util import slugify
 from homeassistant.util.yaml import load_yaml
@@ -78,6 +78,15 @@ def _equal_or_in(value1, values2):
         return value1 in values2
     else:
         return value1 == values2
+
+
+def _remove_duplicates(seq):
+    """Remove dulicates from seq, maintaining order."""
+    if not seq:
+        return []
+    seen = set()
+    adder = seen.add
+    return [x for x in seq if not (x in seen or adder(x))]
 
 
 class TuyaDeviceConfig:
@@ -223,7 +232,7 @@ class TuyaEntityConfig:
     @property
     def translation_key(self):
         """The translation key for this entity."""
-        return self._config.get("translation_key")
+        return self._config.get("translation_key", self.device_class)
 
     def unique_id(self, device_uid):
         """Return a suitable unique_id for this entity."""
@@ -257,7 +266,7 @@ class TuyaEntityConfig:
     @property
     def config_id(self):
         """The identifier for this entity in the config."""
-        own_name = self.name
+        own_name = self._config.get("name", self.device_class)
         if own_name:
             return f"{self.entity}_{slugify(own_name)}"
 
@@ -322,6 +331,7 @@ class TuyaDpsConfig:
             "json": str,
             "base64": str,
             "hex": str,
+            "unixtime": int,
         }
         return types.get(t)
 
@@ -378,15 +388,22 @@ class TuyaDpsConfig:
             if mask:
                 return int(mask, 16)
 
+    def endianness(self, device):
+        mapping = self._find_map_for_dps(device.get_property(self.id))
+        if mapping:
+            endianness = mapping.get("endianness")
+            if endianness:
+                return endianness
+        return "big"
+
     def get_value(self, device):
         """Return the value of the dps from the given device."""
         mask = self.mask(device)
         bytevalue = self.decoded_value(device)
         if mask and isinstance(bytevalue, bytes):
-            value = int.from_bytes(bytevalue, "big")
+            value = int.from_bytes(bytevalue, self.endianness(device))
             scale = mask & (1 + ~mask)
-            map_scale = self.scale(device)
-            return ((value & mask) // scale) / map_scale
+            return self._map_from_dps((value & mask) // scale, device)
         else:
             return self._map_from_dps(device.get_property(self.id), device)
 
@@ -423,6 +440,8 @@ class TuyaDpsConfig:
             return v.hex()
         elif self.rawtype == "base64":
             return b64encode(v).decode("utf-8")
+        elif self.rawtype == "unixtime" and isinstance(v, datetime):
+            return v.timestamp()
         else:
             return v
 
@@ -490,7 +509,7 @@ class TuyaDpsConfig:
                     val = c_val
                     break
         _LOGGER.debug("%s values: %s", self.name, val)
-        return list(set(val)) if val else []
+        return _remove_duplicates(val)
 
     @property
     def default(self):
@@ -640,6 +659,8 @@ class TuyaDpsConfig:
             mirror = mapping.get("value_mirror")
             replaced = "value" in mapping
             result = mapping.get("value", result)
+            target_range = mapping.get("target_range")
+
             cond = self._active_condition(mapping, device)
             if cond:
                 if cond.get("invalid", False):
@@ -648,6 +669,8 @@ class TuyaDpsConfig:
                 result = cond.get("value", result)
                 redirect = cond.get("value_redirect", redirect)
                 mirror = cond.get("value_mirror", mirror)
+                target_range = cond.get("target_range", target_range)
+
                 for m in cond.get("mapping", {}):
                     if str(m.get("dps_val")) == str(result):
                         replaced = "value" in m
@@ -667,9 +690,28 @@ class TuyaDpsConfig:
                     result = -1 * result + r["min"] + r["max"]
                     replaced = True
 
+            if target_range and isinstance(result, Number):
+                r = self._config.get("range")
+                if r and "max" in r and "max" in target_range:
+                    from_min = r.get("min", 0)
+                    from_max = r["max"]
+                    to_min = target_range.get("min", 0)
+                    to_max = target_range["max"]
+                    result = to_min + (
+                        (result - from_min) * (to_max - to_min) / (from_max - from_min)
+                    )
+                    replaced = True
+
             if scale != 1 and isinstance(result, Number):
                 result = result / scale
                 replaced = True
+
+            if self.rawtype == "unixtime" and isinstance(result, int):
+                try:
+                    result = datetime.fromtimestamp(result)
+                    replaced = True
+                except:
+                    _LOGGER.warning("Invalid timestamp %d", result)
 
             if replaced:
                 _LOGGER.debug(
@@ -738,7 +780,16 @@ class TuyaDpsConfig:
         c_match = None
         if constraint and conditions:
             c_dps = self._entity.find_dps(constraint)
-            c_val = None if c_dps is None else device.get_property(c_dps.id)
+            # base64 and hex have to be decoded
+            c_val = (
+                None
+                if c_dps is None
+                else (
+                    c_dps.get_value(device)
+                    if c_dps.rawtype == "base64" or c_dps.rawtype == "hex"
+                    else device.get_property(c_dps.id)
+                )
+            )
             for cond in conditions:
                 if c_val is not None and (_equal_or_in(c_val, cond.get("dps_val"))):
                     c_match = cond
@@ -773,10 +824,12 @@ class TuyaDpsConfig:
             redirect = mapping.get("value_redirect")
             invert = mapping.get("invert", False)
             mask = mapping.get("mask")
+            endianness = mapping.get("endianness", "big")
+            target_range = mapping.get("target_range")
             step = mapping.get("step")
             if not isinstance(step, Number):
                 step = None
-            if "dps_val" in mapping:
+            if "dps_val" in mapping and not mapping.get("hidden", False):
                 result = mapping["dps_val"]
                 replaced = True
             # Conditions may have side effect of setting another value.
@@ -803,11 +856,12 @@ class TuyaDpsConfig:
 
                 # Allow simple conditional mapping overrides
                 for m in cond.get("mapping", {}):
-                    if m.get("value") == value:
+                    if m.get("value") == value and not m.get("hidden", False):
                         result = m.get("dps_val", result)
 
                 step = cond.get("step", step)
                 redirect = cond.get("value_redirect", redirect)
+                target_range = cond.get("target_range", target_range)
 
             if redirect:
                 _LOGGER.debug("Redirecting %s to %s", self.name, redirect)
@@ -818,9 +872,26 @@ class TuyaDpsConfig:
                 _LOGGER.debug("Scaling %s by %s", result, scale)
                 result = result * scale
                 remap = self._find_map_for_value(result, device)
-                if remap and "dps_val" in remap and "dps_val" not in mapping:
+                if (
+                    remap
+                    and "dps_val" in remap
+                    and "dps_val" not in mapping
+                    and not remap.get("hidden", False)
+                ):
                     result = remap["dps_val"]
                 replaced = True
+
+            if target_range and isinstance(result, Number):
+                r = self._config.get("range")
+                if r and "max" in r and "max" in target_range:
+                    from_min = target_range.get("min", 0)
+                    from_max = target_range["max"]
+                    to_min = r.get("min", 0)
+                    to_max = r["max"]
+                    result = to_min + (
+                        (result - from_min) * (to_max - to_min) / (from_max - from_min)
+                    )
+                    replaced = True
 
             if invert:
                 r = self._config.get("range")
@@ -832,7 +903,12 @@ class TuyaDpsConfig:
                 _LOGGER.debug("Stepping %s to %s", result, step)
                 result = step * round(float(result) / step)
                 remap = self._find_map_for_value(result, device)
-                if remap and "dps_val" in remap and "dps_val" not in mapping:
+                if (
+                    remap
+                    and "dps_val" in remap
+                    and "dps_val" not in mapping
+                    and not remap.get("hidden", False)
+                ):
                     result = remap["dps_val"]
                 replaced = True
 
@@ -849,7 +925,7 @@ class TuyaDpsConfig:
         if r and isinstance(result, Number):
             mn = r["min"]
             mx = r["max"]
-            if result < mn or result > mx:
+            if round(result) < mn or round(result) > mx:
                 # Output scaled values in the error message
                 r = self.range(device, scaled=True)
                 mn = r["min"]
@@ -857,13 +933,14 @@ class TuyaDpsConfig:
                 raise ValueError(f"{self.name} ({value}) must be between {mn} and {mx}")
 
         if mask and isinstance(result, Number):
+            # mask is in hex, 2 digits/characters per byte
+            length = int(len(mask) / 2)
             # Convert to int
-            length = len(mask)
             mask = int(mask, 16)
             mask_scale = mask & (1 + ~mask)
-            current_value = int.from_bytes(self.decoded_value(device), "big")
-            result = (current_value & ~mask) | (mask & (result * mask_scale))
-            result = self.encode_value(result.to_bytes(length, "big"))
+            current_value = int.from_bytes(self.decoded_value(device), endianness)
+            result = (current_value & ~mask) | (mask & int(result * mask_scale))
+            result = self.encode_value(result.to_bytes(length, endianness))
 
         dps_map[self.id] = self._correct_type(result)
         return dps_map

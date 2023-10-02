@@ -4,6 +4,7 @@ products:
 primary_entity:
   entity: fan
   icon: "mdi:air-purifier"
+  translation_key: fan_with_presets
   dps:
     - id: 1
       name: switch
@@ -12,16 +13,16 @@ primary_entity:
       type: string
       name: preset_mode
       mapping:
-        - dps_val: "low"
-          value: "Low"
-        - dps_val: "mid"
-          value: "Mid"
-        - dps_val: "high"
-          value: "High"
-        - dps_val: "auto"
-          value: "Auto"
-        - dps_val: "sleep"
-          value: "Sleep"
+        - dps_val: low
+          value: nature
+        - dps_val: mid
+          value: fresh
+        - dps_val: high
+          value: strong
+        - dps_val: auto
+          value: smart
+        - dps_val: sleep
+          value: sleep
     - id: 22
       name: error_code
       type: integer

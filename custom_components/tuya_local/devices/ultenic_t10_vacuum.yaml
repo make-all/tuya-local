@@ -1,0 +1,121 @@
+name: Robot vacuum
+products:
+  - id: skn6zhhv0uxrylrk
+    name: Ultenic T10
+primary_entity:
+  entity: vacuum
+  dps:
+    - id: 1
+      type: boolean
+      name: power
+      optional: true
+    - id: 2
+      type: boolean
+      name: activate  
+      optional: true
+    - id: 13
+      type: boolean
+      name: locate
+      optional: true
+    - id: 3
+      type: string
+      name: command
+      mapping:
+        - dps_val: standby
+          value: standby
+        - dps_val: random
+          value: random
+        - dps_val: smart
+          value: smart
+        - dps_value: wall_follow
+          value: wall_follow
+        - dps_val: mop
+          value: mop
+        - dps_val: spiral
+          value: clean_spot
+        - dps_val: left_spiral
+          value: left_spiral
+        - dps_val: right_spiral
+          value: right_spiral
+        - dps_val: left_bow
+          value: left_bow
+        - dps_val: right_bow
+          value: right_bow
+        - dps_val: partial_bow
+          value: partial_bow
+        - dps_val: chargego
+          value: return_to_base
+    - id: 5
+      type: string
+      name: status
+      mapping:
+        - dps_val: standby
+          value: standby
+        - dps_val: smart_clean
+          value: cleaning
+        - dps_val: wall_clean
+          value: cleaning
+        - dps_val: spot_clean
+          value: cleaning
+        - dps_val: mop_clean
+          value: cleaning
+        - dps_val: goto_charge
+          value: returning
+        - dps_val: charging
+          value: charging
+        - dps_val: charge_done
+          value: charged
+        - dps_val: paused
+          value: pause
+        - dps_val: cleaning
+          value: cleaning
+        - dps_val: sleep
+          value: sleep
+    - id: 14
+      type: string
+      name: fan_speed
+      #tuya constants are interpretted backwards by Ultenic
+      #Ultenic App has a 4th "Strong" suction speed but observing
+      #the DP always seems to call it gentle when selected - so dont know what custom logic they are doing
+      mapping:
+        - dps_val: strong
+          value: "Off"
+        - dps_val: normal
+          value: Gentle
+        - dps_val: gentle
+          value: Normal
+
+    - id: 110
+      type: bitfield
+      name: error
+      #have no idea what the fields are for this bit field.  The Robot upside down reports as -2601
+      optional: true
+
+    - id: 111
+      name: unknown_111
+      optional: true
+      type: bitfield
+
+secondary_entities:
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+
+
+
+
+#The following can be retrieved by using the Tuya Uncover app at https://github.com/blakadder/tuya-uncover but are never seen by tuya local
+# DP 109 is BASE 64 encoded Device ID
+# DP 108 is BASE 64 encoded UUID - reports the same value as is called UUID in the Ultenic App under Device Information
+# DP 107 is BASE 64 encoded JSON that looks like cleaning statistics - {"data":{"counts":40,"mopArea":0,"sweepArea":504,"time":27208},"infoType":21009}
+# DP 106 is BASE 64 encoded identifier LXT10033006392B
+# DP 102 is BASE 64 encode  JSON that looks like an event stream, different data everytime you look - {"dInfo":{"ts":1694541823927,"userId":"XXXXXXXXXXXX"},"data":{"battery":27208,"filter":27208,"mainBrush":27208,"sensors":27208,"sideBrush":27208},"infoType":21015,"message":"ok"}
+# DP 101 always ""
+# DP 103 always 1
+# DP 104 always 1
+# DP 105 always 1

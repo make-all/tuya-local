@@ -31,6 +31,9 @@ primary_entity:
           value: boost
           icon: "mdi:tshirt-crew-outline"
           icon_priority: 3
+    - id: 16
+      type: integer
+      name: current_humidity
     - id: 19
       type: bitfield
       name: error
@@ -63,6 +66,8 @@ secondary_entities:
             value: 100
   - entity: sensor
     name: Current humidity
+    deprecated: humidifier
+    category: diagnostic
     class: humidity
     dps:
       - id: 16

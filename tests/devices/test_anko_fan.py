@@ -107,12 +107,12 @@ class TestAnkoFan(SwitchableTests, BasicNumberTests, TuyaDeviceTestCase):
 
     async def test_set_speed_in_normal_mode(self):
         self.dps[PRESET_DPS] = "normal"
-        async with assert_device_properties_set(self.subject._device, {SPEED_DPS: 2}):
+        async with assert_device_properties_set(self.subject._device, {SPEED_DPS: "2"}):
             await self.subject.async_set_percentage(25)
 
     async def test_set_speed_in_normal_mode_snaps(self):
         self.dps[PRESET_DPS] = "normal"
-        async with assert_device_properties_set(self.subject._device, {SPEED_DPS: 6}):
+        async with assert_device_properties_set(self.subject._device, {SPEED_DPS: "6"}):
             await self.subject.async_set_percentage(80)
 
     def test_extra_state_attributes(self):

@@ -3,6 +3,7 @@ products:
   - id: sferhht3hjkc942e
 primary_entity:
   entity: fan
+  translation_key: fan_with_presets
   dps:
     - id: 1
       type: boolean
@@ -11,12 +12,12 @@ primary_entity:
       name: preset_mode
       type: string
       mapping:
-        - dps_val: "Auto"
-          value: "Auto"
-        - dps_val: "Manual"
-          value: "Manual"
-        - dps_val: "Sleep"
-          value: "Sleep"
+        - dps_val: Auto
+          value: smart
+        - dps_val: Manual
+          value: normal
+        - dps_val: Sleep
+          value: sleep
     - id: 4
       type: string
       name: speed
@@ -32,7 +33,6 @@ primary_entity:
       name: unknown_22
 secondary_entities:
   - entity: sensor
-    name: PM2.5
     class: pm25
     dps:
       - id: 2

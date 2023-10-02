@@ -18,6 +18,9 @@ primary_entity:
           value: purify
         - dps_val: "3"
           value: laundry
+    - id: 3
+      name: current_humidity
+      type: integer
     - id: 4
       name: humidity
       type: integer
@@ -66,7 +69,6 @@ secondary_entities:
         type: boolean
         name: lock
   - entity: sensor
-    name: Temperature
     class: temperature
     category: diagnostic
     dps:
@@ -76,8 +78,8 @@ secondary_entities:
         unit: C
         class: measurement
   - entity: sensor
-    name: Humidity
     class: humidity
+    deprecated: humidifier
     category: diagnostic
     dps:
       - id: 3

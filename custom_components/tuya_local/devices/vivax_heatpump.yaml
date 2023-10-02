@@ -1,7 +1,9 @@
-name: Vivax cool
+name: Heat pump
 products:
   - id: 9xvzf8c0bg33eenj
     name: Vivax ACP-12CH35REWI
+  - id: keycnvksyhjcrg8t
+    name: Thermor Nagano HEWRQU1
 primary_entity:
   entity: climate
   dps:
@@ -42,9 +44,11 @@ primary_entity:
       type: integer
       name: current_temperature
       mapping:
-        - constraint: temperature_unit
+        - scale: 2
+          constraint: temperature_unit
           conditions:
             - dps_val: f
+              scale: 1
               value_redirect: temp_current_f
     - id: 4
       type: string
@@ -110,9 +114,6 @@ primary_entity:
     - id: 107
       type: boolean
       name: unknown_107
-    - id: 108
-      type: boolean
-      name: unknown_108
     - id: 111
       type: boolean
       name: unknown_111
@@ -155,4 +156,13 @@ secondary_entities:
             value: Celsius
           - dps_val: f
             value: Fahrenheit
+  - entity: switch
+    name: Quiet
+    category: config
+    icon: "mdi:music-off"
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+
 # Boolean dps 16 = Beep and 109 = Sleep documented but missing from log

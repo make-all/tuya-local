@@ -6,27 +6,30 @@ primary_entity:
   entity: vacuum
   dps:
     - id: 101
-      name: start # clean_switch
+      name: activate # clean_switch
       type: boolean
     - id: 102
       name: pause # pause_switch
       type: boolean
+      hidden: true
     - id: 104
       name: command # clean_mode
       type: string
       mapping:
-        - value: start
-          value_redirect: start
-        - value: pause
-          value_redirect: pause
-        - dps_val: smart
-          value: smart
-        - dps_val: pose
-          value: clean_spot
-        - dps_val: zone
-          value: zone
-        - dps_val: backcharge
-          value: return_to_base
+        - constraint: pause
+          conditions:
+            - dps_val: true
+              value: pause
+            - dps_val: false
+              mapping:
+                - dps_val: smart
+                  value: smart
+                - dps_val: pose
+                  value: clean_spot
+                - dps_val: zone
+                  value: zone
+                - dps_val: backcharge
+                  value: return_to_base
     - id: 105
       name: status # robot_state
       type: string
@@ -53,9 +56,6 @@ primary_entity:
           value: charged
         - dps_val: remotectl
           value: remotectl
-    - id: 106
-      name: battery
-      type: integer
     - id: 109
       name: fan_speed # fan_mode
       type: string
@@ -89,14 +89,14 @@ primary_entity:
       name: error # robot_fault
       type: bitfield
       mapping:
-        - dps_val: 0
-          value: 0
         - dps_val: 32
           value: Drop sensor abnormal
         - dps_val: 524288
           value: Machine trapped
         - dps_val: 1048576
           value: Was picked up at work
+        - dps_val: 33554432
+          value: Recharge failed
     - id: 123
       name: path_comm
       optional: true
@@ -142,6 +142,14 @@ secondary_entities:
       - id: 103
         name: switch
         type: boolean
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
   - entity: sensor
     name: Current clean time
     category: diagnostic

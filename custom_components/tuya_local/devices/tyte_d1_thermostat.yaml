@@ -118,25 +118,24 @@ secondary_entities:
         type: integer
         name: sensor
         unit: Wh
+        optional: true
       - id: 17
         type: integer
         name: coefficient
+        optional: true
   - entity: sensor
-    name: Current
     class: current
     category: diagnostic
     dps:
       - id: 11
         type: integer
         name: sensor
-        force: true
         unit: mA
         class: measurement
       - id: 15
         type: integer
         name: coefficient
   - entity: sensor
-    name: Power
     class: power
     category: diagnostic
     dps:
@@ -145,7 +144,6 @@ secondary_entities:
         name: sensor
         unit: W
         class: measurement
-        force: true
         mapping:
           - scale: 10
       - id: 16
@@ -155,7 +153,6 @@ secondary_entities:
         type: integer
         name: limit
   - entity: sensor
-    name: Voltage
     class: voltage
     category: diagnostic
     dps:
@@ -163,7 +160,6 @@ secondary_entities:
         type: integer
         name: sensor
         unit: V
-        force: true
         class: measurement
         mapping:
           - scale: 10

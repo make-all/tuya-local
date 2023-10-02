@@ -53,11 +53,12 @@ primary_entity:
           icon_priority: 1
         - dps_val: 0
           value: "OK"
-      readonly: true
     - id: 101
       type: boolean
       name: unknown_101
-      readonly: true
+    - id: 104
+      type: integer
+      name: current_humidity
     - id: 105
       type: boolean
       name: defrosting
@@ -66,7 +67,6 @@ primary_entity:
         - dps_val: true
           icon: "mdi:snowflake-melt"
           icon_priority: 2
-      readonly: true
 secondary_entities:
   - entity: fan
     dps:
@@ -96,7 +96,6 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: sensor
-    name: Current temperature
     class: temperature
     dps:
       - id: 103
@@ -104,17 +103,17 @@ secondary_entities:
         name: sensor
         unit: C
         class: measurement
-        readonly: true
   - entity: sensor
     name: Current humidity
     class: humidity
+    deprecated: humidifier
+    category: diagnostic
     dps:
       - id: 104
         type: integer
         name: sensor
         class: measurement
         unit: "%"
-        readonly: true
   - entity: binary_sensor
     name: Tank
     class: problem

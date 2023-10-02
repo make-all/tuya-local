@@ -124,6 +124,7 @@ The type of data returned by the Tuya API. Can be one of the following:
  - **boolean** can contain the values **True** or **False**.
  - **integer** can contain only numbers. Integers can have range set on them, be scaled and steped
  - **bitfield** is a special case of integer, where the bits that make up the value each has individal meaning.
+ - **unixtime** is a special case of integer, where the device uses a unix timestamp (seconds since 1970-01-01 00:00), which is converted to a datetime for Home Assistant
  - **base64** is a special case of string, where binary data is base64 encoded.  Platforms that use this type will need special handling to make sense of the data.
  - **hex** is a special case of string, where binary data is hex encoded. Platforms that use this type will need special handling to make sense of the data.
  - **json** is a special case of string, where multiple data points are encoded in json format in the string.  Platforms that use this type will need special handling to make sense of the data.
@@ -166,7 +167,7 @@ Whether to persist the value if the device does not return it on every status
 refresh.  Some devices don't return every value on every status poll. In most
 cases, it is better to remember the previous value, but in some cases the
 dp is used to signal an event, so when it is next sent, it should trigger
-automations even if it is the same value as previously sent.  In that case 
+automations even if it is the same value as previously sent.  In that case
 the value needs to go to null in between when the device is not sending it.
 
 ### `force`
@@ -194,7 +195,7 @@ with by specifying the precision explicitly.
 
 ### `mapping`
 
-*Optional.*
+*Optional. Must be a list with each item starting with a `- ` (a dash and a space):*
 This can be used to define a list of additional rules that modify the DP
 to Home Assistant attribute mapping to something other than a one to one
 copy.
@@ -260,6 +261,12 @@ the device type.
 
 For base64 and hex types, this specifies how to extract a single numeric value from the binary data.  The value should be a hex bit mask (eg 00FF00 to extract the middle byte of a 3 byte value).  Unlike format, this does not require special handling in the entity platform, as only a single value is being extracted.
 
+### `endianness`
+
+*Optional, default="big"*
+
+For base64 and hex types, this specifies the endianess of the data and mask. Could be "big" or "little".
+
 ## Mapping Rules
 
 Mapping rules can change the behavior of attributes beyond simple
@@ -287,7 +294,7 @@ A `dps_val` of `null` can be used to specify a value to be assumed when a
 dp is not being returned by the device, to avoid None in some locations where
 that causes an issue such as entities showing as unavailable.  Such a mapping
 is one-way, the value will not be mapped back to a null when setting the dp.
-x
+
 ### `value`
 
 *Optional.*
@@ -337,6 +344,22 @@ This can be used in an `integer` dp mapping to make values jump by a specific
 step.  It can also be set in a conditions block so that the steps change only
 under certain conditions.  An example is where a value has a range of 0-100, but
 only allows settings that are divisible by 10, so a step of 10 would be set.
+
+### `target_range`
+
+*Optional, has `min` and `max` child attributes, like `range`*
+
+A target range is used together with `range` on a numeric value, to
+map the value into a new range.  Unlike `scale`, this can shift the
+value as well as scale it into the new range.  Color temperature is a
+major use of this, as Tuya devices often use a range of 0 - 100, 0 -
+255 or 0 - 1000, and this needs to be mapped to the Kelvin like 2200 -
+6500.
+
+This should normally only be used on a default mapping, as the code
+that uses this feature often needs to inform HA of the min and max
+values for the UI, which may not handle multipe different mappings
+across the range.
 
 ### `icon`
 
@@ -494,17 +517,21 @@ Note that "on" and "off" require quotes in yaml, otherwise it they are interpret
 Many entity types support a class attribute which may change the UI behaviour, icons etc.  See the
 HA documentation for the entity type to see what is valid (these may expand over time)
 
-### binary_sensor
+### `alarm_control_panel`
+- **alarm_state** (required, string) the alarm state, used to report and change the current state of the alarm. Expects values from the set `disarmed`, `armed_home`, `armed_away`, `armed_night`, `armed_vacation`, `armed_custom_bypass`, `pending`, `arming`, `disarming`, `triggered`.  Other states are allowed for read-only status, but only the armed... and disarmed states are available as commands.
+- **trigger** (optional, boolean) used to trigger the alarm remotely for test or panic button etc.
+
+### `binary_sensor`
 - **sensor** (required, boolean) the dp to attach to the sensor.
 
-### button
+### `button`
 - **button** (required, boolean) the dp to attach to the button.  Any
 read value will be ignored, but the dp is expected to be present for
 device detection unless set to optional.  A value of true will be sent
 for a button press, map this to the desired dps_val if a different
 value is required.
 
-### climate
+### `climate`
 - **aux_heat** (optional, boolean) a dp to control the aux heat switch if the device has one.
 - **current_temperature** (optional, number) a dp that reports the current temperature.
 - **current_humidity** (optional, number) a dp that reports the current humidity (%).
@@ -533,7 +560,7 @@ value is required.
 - **min_temperature** (optional, number) a dp that specifies the minimum temperature that can be set.   Some devices provide this, otherwise a fixed range on the temperature dp can be used.
 - **max_temperature** (optional, number) a dp that specifies the maximum temperature that can be set.
 
-### cover
+### `cover`
 
 Either **position** or **open** should be specified.
 
@@ -545,7 +572,7 @@ Either **position** or **open** should be specified.
    Special values are `opening, closing`
 - **open** (optional, boolean): a dp that reports if the cover is open. Only used if **position** is not available.
 
-### fan
+### `fan`
 - **switch** (optional, boolean): a dp to control the power state of the fan
 - **preset_mode** (optional, mapping of strings): a dp to control different modes of the fan.
    Values `"off", low, medium, high` used to be handled specially by HA as deprecated speed aliases.  If these are the only "presets", consider mapping them as **speed** values instead, as voice assistants will respond to phrases like "turn the fan up/down" for speed.
@@ -555,18 +582,19 @@ Either **position** or **open** should be specified.
 - **direction** (optional, string): a dp to control the spin direction of the fan.
    Valid values are `forward, reverse`.
 
-### humidifier
+### `humidifier`
 Humidifer can also cover dehumidifiers (use class to specify which).
 
 - **switch** (optional, boolean): a dp to control the power state of the fan
 - **mode** (optional, mapping of strings): a dp to control preset modes of the device
-- **humidity** (optional, number):  a dp to control the target humidity of the device
+- **humidity** (optional, number): a dp to control the target humidity of the device
+- **current_humidity** (optional, number): a dp to report the current humidity measured by the device
 
-### light
+### `light`
 - **switch** (optional, boolean): a dp to control the on/off state of the light
 - **brightness** (optional, number 0-255): a dp to control the dimmer if available.
-- **color_temp** (optional, number): a dp to control the color temperature if available.
-    will be mapped so the minimum corresponds to 153 mireds (6500K), and max to 500 (2000K).
+- **color_temp** (optional, number): a dp to control the color temperature if available.  See `target_range` above for mapping Tuya's range into Kelvin.
+
 - **rgbhsv** (optional, hex): a dp to control the color of the light, using encoded RGB and HSV values.  The `format` field names recognized for decoding this field are `r`, `g`, `b`, `h`, `s`, `v`.
 - **color_mode** (optional, mapping of strings): a dp to control which mode to use if the light supports multiple modes.
     Special values: `white, color_temp, hs, xy, rgb, rgbw, rgbww`, others will be treated as effects,
@@ -576,19 +604,29 @@ Humidifer can also cover dehumidifiers (use class to specify which).
 - **effect** (optional, mapping of strings): a dp to control effects / presets supported by the light.
    Note: If the light mixes in color modes in the same dp, `color_mode` should be used instead.  If the light contains both a separate dp for effects/scenes/presets and a mix of color_modes and effects (commonly scene and music) in the `color_mode` dp, then a separate select entity should be used for the dedicated dp to ensure the effects from `color_mode` are selectable.
 
-### lock
+### `lock`
+
+The unlock... dps below are normally integers, but can also be boolean, in which case
+no information will be available about which specific credential was used to unlock the lock.
+
 - **lock** (optional, boolean): a dp to control the lock state: true = locked, false = unlocked
 - **unlock_fingerprint** (optional, integer): a dp to identify the fingerprint used to unlock the lock.
 - **unlock_password** (optional, integer): a dp to identify the password used to unlock the lock.
 - **unlock_temp_pwd** (optional, integer): a dp to identify the temporary password used to unlock the lock.
 - **unlock_dynamic_pwd** (optional, integer): a dp to identify the dynamic password used to unlock the lock.
+- **unlock_offline_pwd** (optional, integer): a dp to identify the offline password used to unlock the lock.
 - **unlock_card** (optional, integer): a dp to identify the card used to unlock the lock.
 - **unlock_app** (optional, integer): a dp to identify the app used to unlock the lock.
+- **unlock_key** (optional, integer): a dp to identify the key used to unlock the lock.
+- **unlock_ble** (optional, integer): a dp to identify the BLE device used to unlock the lock.
+- **unlock_voice** (optional, integer): a dp to identify the voice assistant user used to unlock the lock.
 - **request_unlock** (optional, integer): a dp to signal that a request has been made to unlock, the value should indicate the time remaining for approval.
 - **approve_unlock** (optional, boolean): a dp to unlock the lock in response to a request.
+- **request_intercom** (optional, integer): a dp to signal that a request has been made via intercom to unlock, the value should indicate the time remaining for approval.
+- **approve_intercom** (optional, boolean): a dp to unlock the lock in response to an intercom request.
 - **jammed** (optional, boolean): a dp to signal that the lock is jammed.
 
-### number
+### `number`
 - **value** (required, number): a dp to control the number that is set.
 - **unit** (optional, string): a dp that reports the units returned by the number.
     This may be useful for devices that switch between C and F, otherwise a fixed unit attribute on the **value** dp can be used.
@@ -597,37 +635,36 @@ Humidifer can also cover dehumidifiers (use class to specify which).
 - **maximum** (optional, number): a dp that reports the maximum the number can be set to.
     This may be used as an alternative to a range setting on the **value** dp if the range is dynamic
 
-### select
+### `select`
 - **option** (required, mapping of strings): a dp to control the option that is selected.
 
-### sensor
+### `sensor`
 - **sensor** (required, number or string): a dp that returns the current value of the sensor.
 - **unit** (optional, string): a dp that returns the unit returned by the sensor.
     This may be useful for devices that switch between C and F, otherwise a fixed unit attribute on the **sensor** dp can be used.
 
-### switch
+### `siren`
+- **tone** (required, mapping of strings): a dp to report and control the siren tone. As this is used to turn on and off the siren, it is required. If this does not fit your siren, the underlying implementation will need to be modified.
+The value "off" will be used for turning off the siren, and will be filtered from the list of available tones. One value must be marked as `default: true` so that the `turn_on` service with no commands works.
+- **volume** (optional, float in range 0.0-1.0): a dp to control the volume of the siren (probably needs a scale and step applied, since Tuya devices will probably use an integer, or strings with fixed values).
+- **duration** (optional, integer): a dp to control how long the siren will sound for.
+
+### `switch`
 - **switch** (required, boolean): a dp to control the switch state.
 
-### vacuum
+### `vacuum`
 - **status** (required, mapping of strings): a dp to report and control the status of the vacuum.
 - **command** (optional, mapping of strings): a dp to control the statuss of the vacuum.  If supplied, the status dp is only used to report the state.
     Special values: `return_to_base, clean_spot`, others are sent as general commands
 - **locate** (optional, boolean): a dp to trigger a locator beep on the vacuum.
 - **power** (optional, boolean): a dp to switch full system power on and off
 - **activate** (optional, boolean): a dp to start and pause the vacuum
-- **battery** (optional, number 0-100): a dp that reports the current battery level (%)
 - **direction_control** (optional, mapping of strings): a dp that is used for directional commands
     These are additional commands that are not part of **status**. They can be sent as general commands from HA.
 - **error** (optional, bitfield): a dp that reports error status.
     As this is mapped to a single "fault" state, you could consider separate binary_sensors to report on individual errors
 
-### siren
-- **tone** (required, mapping of strings): a dp to report and control the siren tone. As this is used to turn on and off the siren, it is required. If this does not fit your siren, the underlying implementation will need to be modified.
-The value "off" will be used for turning off the siren, and will be filtered from the list of available tones. One value must be marked as `default: true` so that the `turn_on` service with no commands works.
-- **volume** (optional, float in range 0.0-1.0): a dp to control the volume of the siren (probably needs a scale and step applied, since Tuya devices will probably use an integer, or strings with fixed values).
-- **duration** (optional, integer): a dp to control how long the siren will sound for.
-
-### water_heater
+### `water_heater`
 - **current_temperature** (optional, number): a dp that reports the current water temperature.
 
 - **operation_mode** (optional, mapping of strings): a dp to report and control the operation mode of the water heater.  If `away` is one of the modes, another mode must be marked as `default: true` to that the `away_mode_off` service knows which mode to switch out of away mode to.
@@ -639,7 +676,7 @@ The value "off" will be used for turning off the siren, and will be filtered fro
 
 - **min_temperature** (optional, number): a dp that reports the minimum temperature the water heater can be set to, in case this is not a fixed value.
 
-- **max_temperature** (optional, number): a dp that reports the maximum temperature the water heater can be set to, in case this is not a fixed value. 
+- **max_temperature** (optional, number): a dp that reports the maximum temperature the water heater can be set to, in case this is not a fixed value.
 
 - **away_mode** (optional, boolean): a dp to control whether the water heater is in away mode.
 

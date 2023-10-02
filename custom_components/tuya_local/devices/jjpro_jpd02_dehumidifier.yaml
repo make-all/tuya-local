@@ -39,6 +39,9 @@ primary_entity:
           value: sleep
           icon: "mdi:weather-night"
           icon_priority: 4
+    - id: 6
+      type: integer
+      name: current_humidity
     - id: 19
       type: bitfield
       name: error
@@ -49,7 +52,6 @@ primary_entity:
           icon_priority: 1
         - dps_val: 0
           value: "OK"
-      readonly: true
 secondary_entities:
   - entity: fan
     dps:
@@ -66,6 +68,8 @@ secondary_entities:
             value: 100
   - entity: sensor
     name: Current humidity
+    deprecated: humidifier
+    category: diagnostic
     class: humidity
     dps:
       - id: 6
@@ -73,9 +77,7 @@ secondary_entities:
         name: sensor
         class: measurement
         unit: "%"
-        readonly: true
   - entity: sensor
-    name: Current temperature
     class: temperature
     dps:
       - id: 7
@@ -83,7 +85,6 @@ secondary_entities:
         name: sensor
         unit: C
         class: measurement
-        readonly: true
   - entity: lock
     name: Child lock
     category: config

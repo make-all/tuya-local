@@ -3,7 +3,11 @@ products:
   - id: bf819f3f0e0f958b17ufid
     name: Arlec PC191HA
   - id: 2fxr6sttw70cgbau
-    name: Antella ZY-OYD-Y
+    name: Antela ZY-OYD-Y
+  - id: qiv5hllylfebpl4g
+    name: Eightree ET20
+  - id: 7k5zwdhwlnrtsuhu
+    name: SWE SAGEWE F2s501-GB
 primary_entity:
   entity: switch
   class: outlet
@@ -59,13 +63,11 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     class: current
-    name: Current
     dps:
       - id: 18
         name: sensor
         type: integer
         class: measurement
-        force: true
         unit: mA
       - id: 23
         type: integer
@@ -74,13 +76,11 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     class: power
-    name: Power
     dps:
       - id: 19
         name: sensor
         type: integer
         class: measurement
-        force: true
         unit: W
         mapping:
           - scale: 10
@@ -91,12 +91,10 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     class: voltage
-    name: Voltage
     dps:
       - id: 20
         name: sensor
         type: integer
-        force: true
         class: measurement
         unit: V
         mapping:
@@ -129,6 +127,7 @@ secondary_entities:
       - id: 38
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: "on"
             value: "On"
@@ -148,3 +147,30 @@ secondary_entities:
         mapping:
           - dps_val: null
             invalid: true
+  - entity: select
+    name: Light
+    icon: "mdi:circle-double"
+    category: config
+    dps:
+      - id: 39
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: relay
+            value: State
+          - dps_val: pos
+            value: Position
+          - dps_val: none
+            value: "Off"
+          - dps_val: "on"
+            value: "On"
+  - entity: lock
+    name: Child lock
+    icon: "mdi:hand-back-right-off"
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        name: lock
+        optional: true

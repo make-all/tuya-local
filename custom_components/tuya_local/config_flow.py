@@ -7,16 +7,16 @@ from homeassistant.const import CONF_HOST, CONF_NAME
 from homeassistant.core import HomeAssistant, callback
 
 from . import DOMAIN
-from .device import TuyaLocalDevice
 from .const import (
     API_PROTOCOL_VERSIONS,
+    CONF_DEVICE_CID,
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
     CONF_POLL_ONLY,
-    CONF_DEVICE_CID,
     CONF_PROTOCOL_VERSION,
     CONF_TYPE,
 )
+from .device import TuyaLocalDevice
 from .helpers.config import get_device_id
 from .helpers.device_config import get_config
 from .helpers.log import log_json
@@ -25,7 +25,7 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
-    VERSION = 12
+    VERSION = 13
     CONNECTION_CLASS = config_entries.CONN_CLASS_LOCAL_PUSH
     device = None
     data = {}
@@ -194,6 +194,7 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
     domain_data = hass.data.get(DOMAIN)
     existing = domain_data.get(get_device_id(config)) if domain_data else None
     if existing:
+        _LOGGER.info("Pausing existing device to test new connection parameters")
         existing["device"].pause()
         await asyncio.sleep(5)
 
@@ -216,6 +217,7 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
         retval = None
 
     if existing:
+        _LOGGER.info("Restarting device after test")
         existing["device"].resume()
 
     return retval
