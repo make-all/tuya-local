@@ -60,7 +60,10 @@ class TuyaLocalNumber(TuyaLocalEntity, NumberEntity):
                 return NumberDeviceClass(dclass)
             except ValueError:
                 _LOGGER.warning(
-                    "Unrecognized number device class of %s ignored", dclass
+                    "%s/%s: Unrecognized number device class of %s ignored",
+                    self._config._device.config,
+                    self.name or "number",
+                    dclass,
                 )
 
     @property

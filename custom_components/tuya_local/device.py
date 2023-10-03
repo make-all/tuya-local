@@ -48,6 +48,7 @@ class TuyaLocalDevice(object):
         Represents a Tuya-based device.
 
         Args:
+            name (str): The device name.
             dev_id (str): The device id.
             address (str): The network address.
             local_key (str): The encryption key.

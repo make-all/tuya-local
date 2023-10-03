@@ -56,7 +56,10 @@ class TuyaLocalSensor(TuyaLocalEntity, SensorEntity):
                 return SensorDeviceClass(dclass)
             except ValueError:
                 _LOGGER.warning(
-                    "Unrecognized sensor device class of %s ignored", dclass
+                    "%s/%s: Unrecognized sensor device class of %s ignored",
+                    self._config._device.config,
+                    self.name or "sensor",
+                    dclass,
                 )
 
     @property
