@@ -37,23 +37,23 @@ primary_entity:
               value: auto
             - dps_val: false
               value_redirect: power
-            - dps_val: "Manual"
-              icon: "mdi:fire"
-              constraint: power
-              conditions:
-                - dps_val: true
-                  value: heat
-                - dps_val: false
-                  value_redirect: power
-                  value: "off"
-            - dps_val: "Anti_frozen"
-              icon: "mdi:snowflake"
-              constraint: power
-              conditions:
-                - dps_val: true
-                  value: cool
-                - dps_val: false
-                  value_redirect: power
+        - dps_val: "Manual"
+          icon: "mdi:fire"
+          constraint: power
+          conditions:
+            - dps_val: true
+              value: heat
+            - dps_val: false
+              value_redirect: power
+              value: "off"
+        - dps_val: "Anti_frozen"
+          icon: "mdi:snowflake"
+          constraint: power
+          conditions:
+            - dps_val: true
+              value: cool
+            - dps_val: false
+              value_redirect: power
     - id: 105
       type: integer
       name: current_temperature
@@ -94,6 +94,7 @@ primary_entity:
             - dps_val: true
               value: heating
             - dps_val: false
+              value_redirect: power
               value: "off"
         - dps_val: false
           constraint: power
