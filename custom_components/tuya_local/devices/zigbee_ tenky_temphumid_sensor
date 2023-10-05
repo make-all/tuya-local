@@ -1,0 +1,38 @@
+name: Climate sensor
+products:
+  - id: fie1dpkm
+    name: Tenky DC3V LR03 - Tuya temperature and Humidity Sensor
+#check model details here https://www.aliexpress.com/item/1005004854419532.html?spm=a2g0o.order_detail.order_detail_item.3.241ef19cMZPgZH#nav-specification on zigbee version
+primary_entity:
+  entity: sensor
+  class: temperature
+  dps:
+    - id: 1
+      type: integer
+      name: sensor
+      unit: C
+      class: measurement
+      mapping:
+        - scale: 10
+secondary_entities:
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 1
