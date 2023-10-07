@@ -25,7 +25,6 @@ secondary_entities:
         mapping:
           - scale: 60
             step: 60
-          - scale: 1000
   - entity: sensor
     class: current
     name: Current
@@ -72,7 +71,6 @@ secondary_entities:
           max: 99999
         mapping:
           - scale: 100
-            step: 1
   - entity: sensor
     name: Total Cost
     dps:
@@ -95,7 +93,6 @@ secondary_entities:
           max: 2750
         mapping:
           - scale: 10
-            step: 1
   - entity: number
     category: config
     name: Overcurrent value
@@ -110,7 +107,6 @@ secondary_entities:
           max: 2000
         mapping:
           - scale: 100
-            step: 1
   - entity: number
     category: config
     name: Overpower value
@@ -123,9 +119,6 @@ secondary_entities:
         range:
           min: 1
           max: 4500
-        mapping:
-          - scale: 1
-            step: 1
   - entity: select
     category: config
     icon: "mdi:web-box"
@@ -150,9 +143,6 @@ secondary_entities:
         range:
           min: 1
           max: 9
-        mapping:
-          - scale: 1
-            step: 1
   - entity: number
     category: config
     name: Standby brightness
@@ -164,9 +154,6 @@ secondary_entities:
         range:
           min: 1
           max: 9
-        mapping:
-          - scale: 1
-            step: 1
   - entity: number
     category: config
     name: Standby time
@@ -179,9 +166,6 @@ secondary_entities:
         range:
           min: 3
           max: 99
-        mapping:
-          - scale: 1
-            step: 1
   - entity: switch
     name: Beep
     category: config
@@ -284,9 +268,6 @@ secondary_entities:
         range:
           min: 1
           max: 999
-        mapping:
-          - scale: 1
-            step: 1
   - entity: number
     category: config
     name: (A) Duration
@@ -299,9 +280,6 @@ secondary_entities:
         range:
           min: 1
           max: 99
-        mapping:
-          - scale: 1
-            step: 1
   - entity: number
     category: config
     name: (B) Power lower than
@@ -314,9 +292,6 @@ secondary_entities:
         range:
           min: 1
           max: 999
-        mapping:
-          - scale: 1
-            step: 1
   - entity: number
     category: config
     name: (B) Duration
@@ -329,9 +304,6 @@ secondary_entities:
         range:
           min: 1
           max: 99
-        mapping:
-          - scale: 1
-            step: 1
   - entity: sensor
     name: Total Electricity
     class: energy
@@ -353,9 +325,6 @@ secondary_entities:
         name: sensor
         type: integer
         unit: s
-        mapping:
-          - scale: 1
-            step: 1
   - entity: number
     category: config
     name: Timing off time
@@ -371,7 +340,6 @@ secondary_entities:
           max: 360000
         mapping:
           - scale: 60
-            step: 1
   - entity: number
     category: config
     name: Timing on time
@@ -387,7 +355,6 @@ secondary_entities:
           max: 359940
         mapping:
           - scale: 60
-            step: 1
   - entity: number
     category: config
     name: Timing loop on time
@@ -403,7 +370,6 @@ secondary_entities:
           max: 359940
         mapping:
           - scale: 60
-            step: 1
   - entity: number
     category: config
     name: Timing loop off time
@@ -419,7 +385,6 @@ secondary_entities:
           max: 359940
         mapping:
           - scale: 60
-            step: 1
   - entity: number
     category: config
     name: Timing countdown on time
@@ -435,7 +400,6 @@ secondary_entities:
           max: 359940
         mapping:
           - scale: 60
-            step: 1
   - entity: number
     category: config
     name: Timing countdown off time
@@ -451,7 +415,6 @@ secondary_entities:
           max: 359940
         mapping:
           - scale: 60
-            step: 1
   - entity: select
     category: config
     name: Switch state
@@ -527,8 +490,6 @@ secondary_entities:
         type: integer
         class: measurement
         unit: C
-        mapping:
-          - scale: 1
   - entity: select
     category: config
     name: Energy tariff
@@ -556,9 +517,6 @@ secondary_entities:
         range:
           min: 0
           max: 99
-        mapping:
-          - scale: 1
-            step: 1
   - entity: select
     category: config
     name: Poweron status
