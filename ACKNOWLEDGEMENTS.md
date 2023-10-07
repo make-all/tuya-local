@@ -331,7 +331,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [jaymunro](https://github.com/jaymunro) for contributing support for Makegood dual switches.
 - [oleg-d](https://github.com/oleg-d) for assistance with support for Nedis outdoor cameras.
 - [ScottWoolven5](https://github.com/ScottWoolven5) for assistance with support for MoesGo dimmer switch.
-- [robsonmantovani](https://github.com/robsonmantovani) for contributing support for Marpou ceiling lights and AGL Ultracontato door controllers.
+- [robsonmantovani](https://github.com/robsonmantovani) for contributing support for Marpou ceiling lights, AGL Ultracontato door controllers and MAMNV BR151 vacuums.
 - [Brazen00](https://github.com/Brazen00) for contributing support for Holman WX1 tap timers.
 - [nima-002](https://github.com/nima-002) for contributing improvements to Moebot S lawnmowers.
 - [maxupunk](https://github.com/maxupunk) for assistance with support for Kabum Smart 700 vacuum cleaners.
