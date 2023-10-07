@@ -112,15 +112,6 @@ primary_entity:
       mapping:
         - scale: 10
       hidden: true
-    - id: 117
-      type: boolean
-      name: unknown_117
-    - id: 118
-      type: boolean
-      name: unknown_118
-    - id: 119
-      type: boolean
-      name: unknown_119
     - id: 120
       type: boolean
       name: heat_time_alarm
@@ -265,5 +256,29 @@ secondary_entities:
     icon: "mdi:scale-unbalanced"
     dps:
       - id: 113
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    name: Probe 1 fault
+    dps:
+      - id: 117
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    name: Probe 2 fault
+    dps:
+      - id: 118
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    name: Heating fault
+    dps:
+      - id: 119
         type: boolean
         name: sensor
