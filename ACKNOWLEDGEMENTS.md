@@ -355,7 +355,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [whit-tj](https://github.com/whit-tj) for contributing support for Carro ceiling fan with warm and cool lights.
 - [k-welker](https://github.com/k-welker) for contributing support for Casafan ECO Neo III ceiling fan with light.
 - [muneeb1990](https://github.com/muneeb1990) for contributing support for Kogan Sleep Aids.
-- [felipejfc](https://github.com/felipejfc) for contributing support for Loginovo zigbee mmwave presence sensors.
+- [felipejfc](https://github.com/felipejfc) for contributing support for Loginovo zigbee mmwave presence sensors, Moes RGBCW zigbee lightbulbs, Aubess zigbee temperature and humidity sensors.
 - [cebik](https://github.com/cebik) for contributing support for Loratap 6 button remote controls.
 - [alexanderfschley](https://github.com/alexanderfschley) for assisting with support for Liectroux XR500[T3] vacuums.
 - [iindigoo](https://github.com/iindigoo) for assisting with support for MRC Magnum floor heating and Dim2Warm G95 Gold lightbubs.
@@ -377,3 +377,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [KrX3D](https://github.com/KrX3D) for assisting with support for Suntec Wellness Coolfixx air conditioners.
 - [DanielRitter75](https://github.com/DanielRitter75) for assisting with support for Teberno LED strip lights.
 - [christhehoff](https://github.com/christhehoff) for contributing support for Holman WX2 dual tap timers.
+- [alexkn](https://github.com/alexkn) for contributing support for Trotec PAC-W 2600 SH heatpumps.

@@ -57,6 +57,7 @@
 - Suntec Wellness Coolfixx portable air conditioner
 - Tadiran Wind 65/3P
 - TroniTechnik Hellnar Klimagerät
+- Trotec PAC-W 2600 SH heatpump
 - Vivax Cool ACP-12CH35REWI
 - Woods Cortina portable air conditioner
 - Woods Milan portable air conditioner
@@ -240,6 +241,7 @@
 
 ### Smart Meter/Circuit Breaker
 
+- Atorch S1WP energy monitoring switch with display
 - Aulifants SMES200 energy monitoring breaker switch
 - CBI Astute smart controller breaker switch
 - Compteur digital electric (single phase)
@@ -524,10 +526,12 @@ port and password.
 
 ### Devices supported via Zigbee hubs
 
+- Aubess temperature and humidity sensor 
 - Intelbras IFR7000 door lock
 - Loginovo mmWave human presence sensor
 - LoraTap SC500ZB-V2 curtain controller
 - Loratap SS9600ZB 6 button remote control
+- Moes RGBCW lightbulb
 - MultiIR MIR-TE100-TY temperature and humidity sensor
 - Nedis ZBSD10WT door/window sensor
 - Nedis ZBSC10WT temperature and humidity sensor
