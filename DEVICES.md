@@ -2,6 +2,7 @@
 
 ### Heaters
 
+- Advanced Fires 1500 electric fireplace
 - Andersson GSH heater
 - Arlec 2200W and 2400W panel heaters
 - Atomi AT1632 ceramic heater
