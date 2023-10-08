@@ -102,6 +102,7 @@
 - Beok TR8B thermostat
 - Beok TR9B thermostat _(rebadged as Vancoo and perhaps others)_
 - BHT-002-GALW thermostat _(rebadged as many different brands)_
+- Brade MC6 thermostat _(rebadged as many different brands)_
 - ETOP-HP thermostat (CH7100)
 - ETOP-HT thermostat
 - Hysen HY08ACF thermostat
