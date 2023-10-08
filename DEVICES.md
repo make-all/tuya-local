@@ -418,6 +418,7 @@ of device.
 - Lenovo E1 vacuum cleaner
 - Liectroux XR500[T3]
 - MAMNV BR151 vacuum cleaner with mop
+- Medion S20 SW vacuum cleaner with mop
 - Mellerware City Move vacuum cleaner
 - Proscenic M9 vacuum cleaner
 - Rinkmo D2 vacuum cleaner

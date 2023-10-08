@@ -1,0 +1,186 @@
+name: Robot vacuum
+products:
+  - id: ltp2oxcyx2l80unp
+    name: Medion S20-SW
+primary_entity:
+  entity: vacuum
+  dps:
+    - id: 1
+      type: boolean
+      name: power
+    - id: 2
+      type: boolean
+      optional: true
+      name: activate
+    - id: 3
+      type: string
+      name: mode
+      mapping:
+        - dps_val: standby
+          value: standby
+        - dps_val: random
+          value: random
+        - dps_val: spiral
+          value: clean_spot
+        - dps_val: smart
+          value: smart
+        - dps_val: chargego
+          value: return_to_base
+        - dps_val: wall_follow
+          value: wall_follow
+    - id: 4
+      type: string
+      name: direction_control
+      mapping:
+        - dps_val: forward
+          value: forward
+        - dps_val: backward
+          value: reverse
+        - dps_val: turn_left
+          value: left
+        - dps_val: turn_right
+          value: right
+        - dps_val: stop
+          value: stop
+    - id: 5
+      type: string
+      name: status
+      mapping:
+        - dps_val: standby
+          value: standby
+        - dps_val: random_clean
+          value: random
+        - dps_val: spot_clean
+          value: clean_spot
+        - dps_val: smart_clean
+          value: smart
+        - dps_val: goto_charge
+          value: returning_to_base
+        - dps_val: wall_clean
+          value: wall_follow
+        - dps_val: sleep
+          value: sleep
+        - dps_val: remote
+          value:
+        - dps_val: charging_line
+          value: charging
+        - dps_val: charging_base
+          value: charging
+        - dps_val: low_power
+          value: low_power
+        - dps_val: charging
+          value: charging
+        - dps_val: charge_done
+          value: charged
+        - dps_val: paused
+          value: paused
+        - dps_val: cleaning
+          value: cleaning
+        - dps_val: mop_clean
+          value: mopping
+        - dps_val: in_trouble
+          value: error
+    - id: 13
+      type: boolean
+      name: locate
+    - id: 14
+      type: string
+      name: fan_speed
+      mapping:
+        - dps_val: normal
+          value: normal
+        - dps_val: strong
+          value: strong
+    - id: 18
+      type: bitfield
+      name: error
+secondary_entities:
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: "%" 
+        class: measurement
+        optional: true
+  - entity: sensor
+    name: Edge brush
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: "%" 
+        class: measurement
+  - entity: sensor
+    name: Filter
+    category: diagnostic
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: button
+    name: Reset edge brush
+    class: restart
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: button
+  - entity: button
+    name: Reset filter
+    class: restart
+    category: config
+    dps:
+      - id: 12
+        type: boolean
+        name: button
+  - entity: sensor
+    name: Clean area
+    category: diagnostic
+    dps:
+      - id: 16
+        type: integer
+        name: sensor
+        unit: m2
+        class: measurement
+      - id: 15
+        type: string
+        optional: true
+        name: clean_record
+  - entity: sensor
+    name: Clean time
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: select
+    name: Mop control
+    icon: "mdi:format-color-fill"
+    category: config
+    dps:
+      - id: 20
+        type: string
+        name: option
+        mapping:
+          - dps_val: low
+            value: Low
+          - dps_val: middle
+            value: Medium
+          - dps_val: high
+            value: High
+  - entity: button
+    name: Factory reset
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: button
+
