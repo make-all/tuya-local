@@ -434,6 +434,7 @@ of device.
 
 ### Locks
 
+- BSTUOKEY access control keypad
 - Lucking HF06 smart lock
 - Orion Grid Connect smart lock
 
