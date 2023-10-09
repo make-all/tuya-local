@@ -12,6 +12,7 @@
 - Devola patio heater
 - Ecostrad Accent iQ heating panels
 - Ecostrad iQ ceramic radiators
+- Eurom Alutherm 1000,1500,2000,2500 heaters
 - Eurom Mon Soleil 300,600,800, 350,601,720 and 300,450,720 Verre heaters
 - Eurom Sani Wall Heat 2000 heater
 - Eurom Wall Designheat 2000 heater
