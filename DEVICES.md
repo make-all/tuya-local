@@ -500,6 +500,7 @@ port and password.
 - Qoto 03 smart water valve / sprinkler controller
 - SD123 HPR01 human presence radar
 - SH07-8 smart sprinkler controller
+- Sunbeam dual heated mattress pad 
 - SWS-001 smart weather station
 - TH08 temperature and humidity sensor
 - TH16 temperature and humidity sensor 

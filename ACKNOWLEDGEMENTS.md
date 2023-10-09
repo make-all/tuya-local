@@ -382,3 +382,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [mastermind85](https://github.com/mastermind85) for assisting with support for MC6 thermostats.
 - [BettySwallocks](https://github.com/BettySwallocks) for assisting with support for Advanced Fires 1500 electric fireplaces.
 - [Striiter](https://github.com/Stritter) for assisting with support for Feyree EV chargers.
+- [mprobber](https://github.com/mprobber) for assisting with support for Sunbeam dual heated matress pads.
