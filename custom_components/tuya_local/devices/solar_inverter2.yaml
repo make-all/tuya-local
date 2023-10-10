@@ -1,10 +1,10 @@
-name: Parkside Inverter
+name: Solar inverter
 products:
   - id: ayg4cocdsg1mkchp
-    name: PG-300
+    name: Parkside PG-300
 primary_entity:
   entity: sensor
-  name: Energy Out
+  name: Energy out
   class: energy
   dps:
     - id: 2
@@ -22,7 +22,7 @@ primary_entity:
       type: string
 secondary_entities:
   - entity: sensor
-    name: Energy In
+    name: Energy in
     class: energy
     category: diagnostic
     dps:
@@ -35,7 +35,6 @@ secondary_entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Power
     class: power
     category: diagnostic
     dps:
@@ -47,7 +46,7 @@ secondary_entities:
         class: measurement
 
   - entity: sensor
-    name: DC Voltage
+    name: DC voltage
     class: voltage
     category: diagnostic
     dps:
@@ -60,7 +59,7 @@ secondary_entities:
           - mask: "FFFF00000000"
             scale: 10
   - entity: sensor
-    name: DC Current
+    name: DC current
     class: current
     category: diagnostic
     dps:
@@ -73,7 +72,7 @@ secondary_entities:
           - mask: "0000FFFF0000"
             scale: 10
   - entity: sensor
-    name: AC Voltage
+    name: AC voltage
     class: voltage
     category: diagnostic
     dps:
