@@ -16,6 +16,7 @@ primary_entity:
     - id: 101
       type: string
       name: schedule
+      optional: true
     - id: 104
       type: string
       name: confirmation
@@ -63,7 +64,7 @@ secondary_entities:
     category: diagnostic
     dps:
       - id: 13
-        type: boolean
+        type: bitfield
         name: sensor
         mapping:
           - dps_val: 0
