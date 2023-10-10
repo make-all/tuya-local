@@ -1,5 +1,8 @@
 name: Inkbird ITC-306A thermostat
 legacy_type: inkbird_thermostat
+products:
+  - id: wynvjn0ztufzrd0p
+    name: Inkbird ITC-306A V3.0
 primary_entity:
   entity: climate
   translation_key: thermo_switch
@@ -15,14 +18,14 @@ primary_entity:
       name: temperature_unit
     - id: 103
       type: string
-      name: preset_mode
+      name: hvac_mode
       mapping:
-        - dps_val: 'on'
-          value: 'on'
-        - dps_val: 'pause'
-          value: 'pause'
-        - dps_val: 'off'
-          value: 'off'
+        - dps_val: "on"
+          value: heat
+        - dps_val: pause
+          value: fan_only
+        - dps_val: "off"
+          value: "off"
     - id: 104
       type: integer
       name: current_temperature
@@ -88,29 +91,27 @@ primary_entity:
       type: boolean
       name: hvac_action
       mapping:
-        - dps_val: true
-          icon: "mdi:thermometer"
-          icon_priority: 6
-          value: heating
-        - dps_val: false
-          icon: "mdi:thermometer-off"
-          icon_priority: 5
-          value: idle
+        - constraint: hvac_mode
+          conditions:
+            - dps_val: "on"
+              mapping:
+                - dps_val: true
+                  icon: "mdi:thermometer"
+                  icon_priority: 6
+                  value: heating
+                - dps_val: false
+                  icon: "mdi:thermometer-off"
+                  icon_priority: 5
+                  value: idle
+            - icon: "mdi:thermometer-off"
+              icon_priority: 5
+              value: "off"
     - id: 116
       type: integer
       name: current_temperature_f
       mapping:
         - scale: 10
       hidden: true
-    - id: 117
-      type: boolean
-      name: unknown_117
-    - id: 118
-      type: boolean
-      name: unknown_118
-    - id: 119
-      type: boolean
-      name: unknown_119
     - id: 120
       type: boolean
       name: heat_time_alarm
@@ -255,5 +256,29 @@ secondary_entities:
     icon: "mdi:scale-unbalanced"
     dps:
       - id: 113
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    name: Probe 1 fault
+    dps:
+      - id: 117
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    name: Probe 2 fault
+    dps:
+      - id: 118
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    name: Heating fault
+    dps:
+      - id: 119
         type: boolean
         name: sensor

@@ -270,7 +270,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [LesTR](https://github.com/LesTR) for contributing support for Immax neo light vento, early assistance with the subdevice support, and contribution of test improvements for subdevices.
 - [JonF-49](https://github.com/JonF-49) for contributing support for RGBW lightbulbs, Carro fan with light, and improvements to color light entities that lack color temperature control.
 - [charliesjc](https://github.com/charliesjc) for contributing support for CBI Astute smart controller breaker switches.
-- [stijnb1234](https://github.com/stijnb1234) for assisting with support for CCT lightbulbs.
+- [stijnb1234](https://github.com/stijnb1234) for assisting with support for CCT lightbulbs and Eurom Alutherm heaters.
 - [YodaDaCoda](https://github.com/YodaDaCoda) for contributing support for Kogan LX10 vacuum cleaners and improvements to device detection debug feedback.
 - [itn3rd77](https://github.com/itn3rd77) for contributing support for Stadler Form Karl/Karl Big humidifiers.
 - [Mikey887](https://github.com/Mikey887) for contributing support for Catit Pixi Smart feeder.
@@ -331,7 +331,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [jaymunro](https://github.com/jaymunro) for contributing support for Makegood dual switches.
 - [oleg-d](https://github.com/oleg-d) for assistance with support for Nedis outdoor cameras.
 - [ScottWoolven5](https://github.com/ScottWoolven5) for assistance with support for MoesGo dimmer switch.
-- [robsonmantovani](https://github.com/robsonmantovani) for contributing support for Marpou ceiling lights and AGL Ultracontato door controllers.
+- [robsonmantovani](https://github.com/robsonmantovani) for contributing support for Marpou ceiling lights, AGL Ultracontato door controllers and MAMNV BR151 vacuums.
 - [Brazen00](https://github.com/Brazen00) for contributing support for Holman WX1 tap timers.
 - [nima-002](https://github.com/nima-002) for contributing improvements to Moebot S lawnmowers.
 - [maxupunk](https://github.com/maxupunk) for assistance with support for Kabum Smart 700 vacuum cleaners.
@@ -355,7 +355,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [whit-tj](https://github.com/whit-tj) for contributing support for Carro ceiling fan with warm and cool lights.
 - [k-welker](https://github.com/k-welker) for contributing support for Casafan ECO Neo III ceiling fan with light.
 - [muneeb1990](https://github.com/muneeb1990) for contributing support for Kogan Sleep Aids.
-- [felipejfc](https://github.com/felipejfc) for contributing support for Loginovo zigbee mmwave presence sensors.
+- [felipejfc](https://github.com/felipejfc) for contributing support for Loginovo zigbee mmwave presence sensors, Moes RGBCW zigbee lightbulbs, Aubess zigbee temperature and humidity sensors.
 - [cebik](https://github.com/cebik) for contributing support for Loratap 6 button remote controls.
 - [alexanderfschley](https://github.com/alexanderfschley) for assisting with support for Liectroux XR500[T3] vacuums.
 - [iindigoo](https://github.com/iindigoo) for assisting with support for MRC Magnum floor heating and Dim2Warm G95 Gold lightbubs.
@@ -377,3 +377,9 @@ Further device support has been made with the assistance of users.  Please consi
 - [KrX3D](https://github.com/KrX3D) for assisting with support for Suntec Wellness Coolfixx air conditioners.
 - [DanielRitter75](https://github.com/DanielRitter75) for assisting with support for Teberno LED strip lights.
 - [christhehoff](https://github.com/christhehoff) for contributing support for Holman WX2 dual tap timers.
+- [alexkn](https://github.com/alexkn) for contributing support for Trotec PAC-W 2600 SH heatpumps.
+- [bkbartk](https://github.com/bkbartk) for assisting with support for Medion S20 vacuums.
+- [mastermind85](https://github.com/mastermind85) for assisting with support for MC6 thermostats.
+- [BettySwallocks](https://github.com/BettySwallocks) for assisting with support for Advanced Fires 1500 electric fireplaces.
+- [Striiter](https://github.com/Stritter) for assisting with support for Feyree EV chargers.
+- [mprobber](https://github.com/mprobber) for assisting with support for Sunbeam dual heated matress pads and BSTUOKEY access control keypads.

@@ -1,0 +1,35 @@
+name: Climate sensor
+products:
+  - id: xr3htd96
+    name: Aubess temperature humidity sensor (zn373186_01)
+primary_entity:
+  entity: sensor
+  class: temperature
+  dps:
+    - id: 1
+      type: integer
+      name: sensor
+      unit: C
+      class: measurement
+      mapping:
+        - scale: 10
+secondary_entities:
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement

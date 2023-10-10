@@ -1,0 +1,142 @@
+name: Access control keypad
+products:
+  - id: 5k8h97qska6pf5cm
+    name: BSTUOKEY keypad
+primary_entity:
+  entity: lock
+  dps:
+    - id: 104
+      type: boolean
+      name: lock
+      mapping:
+        - dps_val: true
+          value: false
+        - dps_val: false
+          value: true
+    - id: 10
+      type: string
+      optional: true
+      persist: false
+      name: unlock_fingerprint
+    - id: 11
+      type: string
+      optional: true
+      persist: false
+      name: unlock_password
+    - id: 12
+      type: string
+      optional: true
+      persist: false
+      name: unlock_card
+    - id: 16
+      type: string
+      optional: true
+      persist: false
+      name: unlock_temp_pwd
+    - id: 17
+      type: string
+      optional: true
+      persist: false
+      name: unlock_offline_pwd
+    - id: 23
+      type: string
+      optional: true
+      name: alarm_record
+secondary_entities:
+  - entity: number
+    name: Doorbell volume
+    icon: "mdi:bell"
+    category: config
+    dps:
+      - id: 26
+        type: string
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - dps_val: mute
+            value: 0
+            step: 33
+          - dps_val: low
+            value: 33
+            step: 33
+          - dps_val: middle
+            value: 67
+            step: 33
+          - dps_val: high
+            value: 100
+            step: 33
+      - id: 24
+        type: string
+        optional: true
+        name: tune
+  - entity: switch
+    name: Auto lock
+    icon: "mdi:lock-reset"
+    category: config
+    dps:
+      - id: 30
+        type: boolean
+        name: switch
+  - entity: number
+    name: Auto lock time
+    category: config
+    icon: "mdi:lock-reset"
+    dps:
+      - id: 31
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 99
+  - entity: number
+    name: Alarm timeout
+    category: config
+    icon: "mdi:alarm"
+    dps:
+      - id: 34
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 180
+        mapping:
+          - step: 10
+  - entity: binary_sensor
+    name: Doorbell
+    class: sound
+    dps:
+      - id: 101
+        type: boolean
+        name: sensor
+  - entity: switch
+    name: Beep on error
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: tamper
+    category: diagnostic
+    dps:
+      - id: 103
+        type: boolean
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: binary_sensor
+    class: door
+    category: diagnostic
+    dps:
+      - id: 105
+        type: boolean
+        optional: true
+        name: sensor
+

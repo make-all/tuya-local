@@ -312,7 +312,7 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
     def hvac_mode(self):
         """Return current HVAC mode."""
         if self._hvac_mode_dps is None:
-            return HVACMode.AUTO
+            return None
         hvac_mode = self._hvac_mode_dps.get_value(self._device)
         try:
             return HVACMode(hvac_mode) if hvac_mode else None

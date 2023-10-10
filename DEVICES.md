@@ -2,6 +2,7 @@
 
 ### Heaters
 
+- Advanced Fires 1500 electric fireplace
 - Andersson GSH heater
 - Arlec 2200W and 2400W panel heaters
 - Atomi AT1632 ceramic heater
@@ -11,6 +12,7 @@
 - Devola patio heater
 - Ecostrad Accent iQ heating panels
 - Ecostrad iQ ceramic radiators
+- Eurom Alutherm 1000,1500,2000,2500 heaters
 - Eurom Mon Soleil 300,600,800, 350,601,720 and 300,450,720 Verre heaters
 - Eurom Sani Wall Heat 2000 heater
 - Eurom Wall Designheat 2000 heater
@@ -57,6 +59,7 @@
 - Suntec Wellness Coolfixx portable air conditioner
 - Tadiran Wind 65/3P
 - TroniTechnik Hellnar Klimagerät
+- Trotec PAC-W 2600 SH heatpump
 - Vivax Cool ACP-12CH35REWI
 - Woods Cortina portable air conditioner
 - Woods Milan portable air conditioner
@@ -101,6 +104,7 @@
 - Beok TR8B thermostat
 - Beok TR9B thermostat _(rebadged as Vancoo and perhaps others)_
 - BHT-002-GALW thermostat _(rebadged as many different brands)_
+- Brade MC6 thermostat _(rebadged as many different brands)_
 - ETOP-HP thermostat (CH7100)
 - ETOP-HT thermostat
 - Hysen HY08ACF thermostat
@@ -240,6 +244,7 @@
 
 ### Smart Meter/Circuit Breaker
 
+- Atorch S1WP energy monitoring switch with display
 - Aulifants SMES200 energy monitoring breaker switch
 - CBI Astute smart controller breaker switch
 - Compteur digital electric (single phase)
@@ -259,6 +264,7 @@
 
 ### Battery Charger
 
+- Feyree home EV charger
 - Parkside PLGS 2012 A1 smart charger for powertools
 
 ### SmartPlugs/Wall sockets/Wall switches
@@ -369,7 +375,7 @@ of device.
 - Moes motion sensor lights (XZ-CGV3)
 - Moes star projector
 - MoesGo dimmer switch
-- Space Dog Music Lamp
+- Space Dog Music Lamp (works for Aurora Smart Galaxy Star)
 - Tampa Magnetic LED System CD-TY-WY05
 - Teberno LED strip light (LGC-005 OEM3)
 - WF520D dual dimmer touchpanel
@@ -415,6 +421,8 @@ of device.
 - Lefant M213 vacuum cleaner (also works for Lefant M213S and APOSEN A550)
 - Lenovo E1 vacuum cleaner
 - Liectroux XR500[T3]
+- MAMNV BR151 vacuum cleaner with mop
+- Medion S20 SW vacuum cleaner with mop
 - Mellerware City Move vacuum cleaner
 - Proscenic M9 vacuum cleaner
 - Rinkmo D2 vacuum cleaner
@@ -426,6 +434,7 @@ of device.
 
 ### Locks
 
+- BSTUOKEY access control keypad
 - Lucking HF06 smart lock
 - Orion Grid Connect smart lock
 
@@ -492,6 +501,7 @@ port and password.
 - Qoto 03 smart water valve / sprinkler controller
 - SD123 HPR01 human presence radar
 - SH07-8 smart sprinkler controller
+- Sunbeam dual heated mattress pad 
 - SWS-001 smart weather station
 - TH08 temperature and humidity sensor
 - TH16 temperature and humidity sensor 
@@ -523,10 +533,12 @@ port and password.
 
 ### Devices supported via Zigbee hubs
 
+- Aubess temperature and humidity sensor 
 - Intelbras IFR7000 door lock
 - Loginovo mmWave human presence sensor
 - LoraTap SC500ZB-V2 curtain controller
 - Loratap SS9600ZB 6 button remote control
+- Moes RGBCW lightbulb
 - MultiIR MIR-TE100-TY temperature and humidity sensor
 - Nedis ZBSD10WT door/window sensor
 - Nedis ZBSC10WT temperature and humidity sensor

@@ -27,6 +27,9 @@ secondary_entities:
         name: sensor
         type: integer
         unit: C
+      - id: 115
+        name: sensor_present
+        type: boolean 
   - entity: sensor
     name: Soil moisture
     class: humidity
@@ -248,21 +251,6 @@ secondary_entities:
           - dps_val: 24
             value: 24H
   - entity: binary_sensor
-    name: Soil sensor present
-    category: diagnostic
-    dps:
-      - id: 115
-        name: sensor
-        type: boolean 
-  - entity: binary_sensor
-    name: Rain sensor present
-    category: diagnostic
-    dps:
-      - id: 116
-        optional: true
-        name: sensor
-        type: string
-  - entity: binary_sensor
     name: Soil sensor power OK
     category: diagnostic
     dps:
@@ -439,6 +427,10 @@ secondary_entities:
     dps:
       - id: 125
         name: sensor
+        type: boolean
+      - id: 116
+        optional: true
+        name: sensor_present
         type: boolean
   - entity: sensor
     name: Next watering encoded # shows the next scheduled watering time based on starts A, B and C
