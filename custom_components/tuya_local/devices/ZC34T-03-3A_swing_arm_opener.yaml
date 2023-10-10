@@ -1,0 +1,105 @@
+name: ZC34T-03-3A Swing Arm Opener
+products:
+  - id: ozttm5n6okadq7tq
+    name: ZC34T-03-3A Swing Arm Opener
+    model: ZC34T-03-3A
+primary_entity:
+  entity: cover
+  class: window
+  dps:
+    - id: 101
+      type: string
+      name: control
+      mapping:
+        - dps_val: open
+          value: open
+        - dps_val: close
+          value: close
+        - dps_val: "stop"
+          value: stop
+secondary_entities:
+  - entity: switch
+    name: Lock
+    dps:
+      - id: 102
+        type: string
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: lock
+            value: lock
+            icon: "mdi:lock"
+          - dps_val: unlock
+            value: unlock
+            icon: "mdi:lock-open-variant"
+  - entity: sensor
+    name: Status
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: "open"
+            value: open
+            icon: "mdi:window-open-variant"
+          - dps_val: "closed"
+            value: closed
+            icon: "mdi:window-closed-variant"  
+                     
+  - entity: sensor
+    name: Wind and Rain Feedback
+    dps:
+      - id: 104
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: "rain"
+            value: rain
+          - dps_val: "fine"
+            value: fine            
+  - entity: sensor
+    name: Fault
+    dps:
+      - id: 105
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "motor_fault"
+            value: motor_fault        
+  - entity: switch
+    name: Sensor Reminder
+    dps:
+      - id: 106
+        type: string
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: "open"
+            value: open
+          - dps_val: "close"
+            value: close
+
+  - entity: switch
+    name: Sensor On/Off
+    dps:
+      - id: 107
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "on"
+            value: on
+          - dps_val: "off"
+            value: off
+  - entity: switch
+    name: On/Off
+    dps:
+      - id: 108
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "on"
+            value: on
+          - dps_val: "off"
+            value: off
