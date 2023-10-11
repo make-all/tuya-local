@@ -383,3 +383,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [BettySwallocks](https://github.com/BettySwallocks) for assisting with support for Advanced Fires 1500 electric fireplaces.
 - [Striiter](https://github.com/Stritter) for assisting with support for Feyree EV chargers.
 - [mprobber](https://github.com/mprobber) for assisting with support for Sunbeam dual heated matress pads and BSTUOKEY access control keypads.
+- [gtawelt](https:github.com/gtawelt) for contributing support for Parkside PMW-300 solar inverters.
