@@ -224,7 +224,7 @@
 
 ### Aroma diffusers
 
-- Asakuki aroma diffuser with light
+- Asakuki aroma diffuser with light (newer devices seem to require the Ditua config below)
 - Cadance ultrasonic aroma diffuser with light and music playback
 - Ditua DT-1522-YN aroma diffuser
 - Etersky aroma diffuser with light
