@@ -384,3 +384,5 @@ Further device support has been made with the assistance of users.  Please consi
 - [Striiter](https://github.com/Stritter) for assisting with support for Feyree EV chargers.
 - [mprobber](https://github.com/mprobber) for assisting with support for Sunbeam dual heated matress pads and BSTUOKEY access control keypads.
 - [gtawelt](https:github.com/gtawelt) for contributing support for Parkside PMW-300 solar inverters.
+- [DocDrydenn](https://github.com/DocDrydenn) for assisting with support for Treatlife dual dimmer smartplugs.
+

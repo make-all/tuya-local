@@ -379,6 +379,7 @@ of device.
 - Space Dog Music Lamp (works for Aurora Smart Galaxy Star)
 - Tampa Magnetic LED System CD-TY-WY05
 - Teberno LED strip light (LGC-005 OEM3)
+- Treatlife outdoor dimmer with dual outlets
 - WF520D dual dimmer touchpanel
 
 ### Covers
