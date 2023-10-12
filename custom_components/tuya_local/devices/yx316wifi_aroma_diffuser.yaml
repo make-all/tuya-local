@@ -5,6 +5,7 @@ products:
     model: YX316WIFI
 primary_entity:
   entity: fan
+  icon: "mdi:scent"
   dps:
     - id: 2
       name: switch
@@ -32,14 +33,13 @@ primary_entity:
       optional: true
 secondary_entities:
   # "master" switch - turns on and off both light and diffuser
-  - entity: light
-    name: Switch
+  - entity: switch
+    name: Power
     dps:
       - id: 1
         name: switch
         type: boolean
   - entity: light
-    name: Lamp
     icon: "mdi:light-recessed"
     dps:
       - id: 7
@@ -95,3 +95,8 @@ secondary_entities:
       - id: 6
         type: boolean
         name: switch
+        mapping:
+          - dps_val: true
+            icon: "mdi:speaker"
+          - dps_val: false
+            icon: "mdi:speaker-off"        
