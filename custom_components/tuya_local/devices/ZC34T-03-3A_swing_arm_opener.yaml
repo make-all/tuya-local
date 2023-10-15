@@ -23,15 +23,16 @@ primary_entity:
       type: string
       name: control
       mapping:
-        - dps_val: "open"
+        - dps_val: open
           value: open
-        - dps_val: "close"
+        - dps_val: close
           value: close
-        - dps_val: "stop"
+        - dps_val: stop
           value: stop
 secondary_entities:
   - entity: switch
     name: Lock
+    class: enum
     dps:
       - id: 102
         type: string
@@ -47,6 +48,7 @@ secondary_entities:
             icon: "mdi:lock-open-variant"
   - entity: sensor
     name: Status
+    class: enum
     dps:
       - id: 1
         type: string
@@ -76,15 +78,17 @@ secondary_entities:
             value: fine            
   - entity: sensor
     name: Fault
+    class: enum
     dps:
       - id: 105
         type: string
         name: sensor
-        # mapping:
-        #   - dps_val: "motor_fault"
-        #     value: motor_fault        
+        mapping:
+          - dps_val: "motor_fault"
+            value: motor_fault        
   - entity: switch
     name: Send Wind/Rain Push Messages
+    class: enum
     dps:
       - id: 106
         type: string
@@ -98,6 +102,7 @@ secondary_entities:
 
   - entity: switch
     name: Window switch message Push Messages
+    class: enum
     dps:
       - id: 107
         type: string
@@ -110,6 +115,7 @@ secondary_entities:
             value: off
   - entity: switch
     name: Wind and rain sensor detection switch
+    class: enum
     dps:
       - id: 108
         type: string
