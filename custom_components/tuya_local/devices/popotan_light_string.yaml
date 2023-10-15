@@ -1,0 +1,135 @@
+name: Fairy lights
+products:
+  - id: rqsvgaquywwekm6x
+    name: Popotan Smart Fairy String Lights
+primary_entity:
+  entity: light
+  dps:
+    - id: 20
+      name: switch
+      type: boolean
+    - id: 21
+      name: color_mode
+      type: string
+      mapping:
+        - dps_val: colour
+          value: hs
+        - dps_val: scene
+          value: Scene
+        - dps_val: music
+          value: Music
+    - id: 24
+      name: rgbhsv
+      type: hex
+      format:
+        - name: h
+          bytes: 2
+          range:
+            min: 0
+            max: 360
+        - name: s
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+        - name: v
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+secondary_entities:
+  - entity: select
+    name: Scene
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 25
+        type: hex
+        name: option
+        mapping:
+          - dps_val: "0103e8"
+            value: Palm 1
+          - dps_val: "0503e8"
+            value: Palm 2
+          - dps_val: "1003e8"
+            value: Palm 3
+          - dps_val: "1103e8"
+            value: Palm 4
+
+          - dps_val: "0203e8"
+            value: Christmas tree 1
+          - dps_val: "0303e8"
+            value: Christmas tree 2
+          - dps_val: "0603e8"
+            value: Christmas tree 3
+          - dps_val: "0703e8"
+            value: Christmas tree 4
+          - dps_val: "1403e8"
+            value: Christmas tree 5
+          - dps_val: "1603e8"
+            value: Christmas tree 6
+
+          - dps_val: "1203e8"
+            value: Television 1
+          - dps_val: "1903e8"
+            value: Television 2
+          - dps_val: "1303e8"
+            value: Television 3
+          - dps_val: "1703e8"
+            value: Television 4
+
+          - dps_val: "0803e8"
+            value: Photos 1
+          - dps_val: "0403e8"
+            value: Photos 2
+          - dps_val: "0903e8"
+            value: Photos 3
+          - dps_val: "1503e8"
+            value: Photos 4
+          - dps_val: "1803e8"
+            value: Photos 4
+
+          - dps_val: "01000A"
+            value: "Mode 1"
+          - dps_val: "02000A"
+            value: "Mode 2"
+          - dps_val: "03000A"
+            value: "Mode 3"
+          - dps_val: "04000A"
+            value: "Mode 4"
+          - dps_val: "05000A"
+            value: "Mode 5"
+
+  - entity: select
+    name: Music mode
+    category: config
+    icon: "mdi:music"
+    dps:
+      - id: 101
+        type: hex
+        name: option
+        mapping:
+          - dps_val: 16401bb1006e03e801f4
+            value: Energy
+          - dps_val: 26401bb1006e03e801f4
+            value: Rhythm
+          - dps_val: 36401bb1006e03e801f4
+            value: Spectrum
+          - dps_val: 46401bb1006e03e801f4
+            value: Rolling
+  - entity: number
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+        unit: min
