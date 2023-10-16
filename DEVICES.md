@@ -152,6 +152,7 @@
 - Lexy F501 fan
 - Mantra ceiling fan with light
 - Ovlaim ceiling fan with cool/warm white dimmable light
+- Reiga 52 ceiling fan with light
 - Royal Clima RCB 150 ventilation system
 - Skyfan DC fan
 - Skyfan DC fan with light
@@ -228,6 +229,7 @@
 - Cadance ultrasonic aroma diffuser with light and music playback
 - Ditua DT-1522-YN aroma diffuser
 - Etersky aroma diffuser with light
+- YX316WIFI aroma diffuser
 - YYM-805SW aroma diffuser with light (also supports GX Aroma diffuser)
 
 ### Kitchen Appliances
