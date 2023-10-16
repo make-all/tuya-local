@@ -1,0 +1,81 @@
+name: Pet feeder
+products:
+  - id: pxwlmmdodfppms3a
+    name: GiotoHun Pet feeder
+primary_entity:
+  entity: number
+  name: Feed
+  icon: "mdi:bowl"
+  dps:
+    - id: 3
+      name: value
+      type: integer
+      range:
+        min: 1
+        max: 12
+      optional: false
+    - id: 1
+      name: meal_plan
+      type: string
+      optional: true
+secondary_entities:
+  - entity: sensor
+    icon: "mdi:counter"
+    name: Last amount
+    category: diagnostic
+    dps:
+      - id: 15
+        name: sensor
+        type: integer
+        optional: false
+  - entity: button
+    icon: "mdi:reload-alert"
+    class: restart
+    name: Factory reset
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: button
+        optional: false
+  - entity: binary_sensor
+    icon: "mdi:information"
+    name: Feeding
+    category: diagnostic
+    dps:
+      - id: 4
+        name: sensor
+        type: string
+        optional: false
+        mapping:
+          - dps_val: feeding
+            value: true
+          - value: false
+  - entity: binary_sensor
+    icon: "mdi:gauge-empty"
+    name: Food shortage
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 14 
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 2
+            value: true
+          - value: false
+  - entity: binary_sensor
+    icon: "mdi:block-helper"
+    name: Food blockage
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 14 
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 4
+            value: true
+          - value: false
