@@ -1,7 +1,9 @@
 name: Beok TGR81 thermostat
 products:
   - id: gogb05wrtredz3bs
-    name: Avatto WT81 thermostat
+    name: Avatto WT81 thermostat, ME81
+  - id: gw173aldekvpzalg
+
 primary_entity:
   entity: climate
   translation_key: thermostat
@@ -31,6 +33,9 @@ primary_entity:
     - id: 19
       type: integer
       name: max_temperature
+      range:
+        min: 30
+        max: 90
     - id: 24
       type: integer
       name: current_temperature
@@ -46,10 +51,13 @@ primary_entity:
       optional: true
       type: integer
       name: min_temperature
+      range:
+        min: 5
+        max: 20
     - id: 36
       type: string
       name: hvac_action
-      readonly: true
+      optional: true
       mapping:
         - dps_val: close
           icon: "mdi:radiator-disabled"
@@ -95,7 +103,6 @@ secondary_entities:
       - id: 10
         type: boolean
         name: switch
-        optional: true
         force: true
   - entity: lock
     name: Child lock

@@ -11,6 +11,7 @@ primary_entity:
       type: string
       name: option
       force: true
+      persist: true
       mapping:
         - dps_val: "Disarm_"
           value: "Disarmed"
@@ -48,6 +49,7 @@ secondary_entities:
         type: boolean
         name: switch
         force: true
+        persist: true
   - entity: binary_sensor
     name: Learning Mode
     icon: "mdi:crosshairs-question"
@@ -146,6 +148,7 @@ secondary_entities:
         type: boolean
         name: switch
         force: true
+        persist: true
   - entity: binary_sensor
     name: Alarm message push
     category: diagnostic
