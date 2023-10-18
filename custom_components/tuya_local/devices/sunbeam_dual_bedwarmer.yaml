@@ -1,0 +1,313 @@
+name: Bed warmer
+products:
+  - id: pjvxl1wsyqxivsaf
+    name: Sunbeam dual heated mattress pad
+primary_entity:
+  entity: switch
+  name: Combined switch
+  icon: "mdi:bed"
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 13
+      type: bitfield
+      name: fault_code
+    - id: 101
+      type: string
+      name: schedule
+      optional: true
+    - id: 104
+      type: string
+      name: confirmation
+secondary_entities:
+  - entity: select
+    name: Combined level
+    category: config
+    icon: "mdi:thermometer"
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: level_1
+            value: "1"
+          - dps_val: level_2
+            value: "2"
+          - dps_val: level_3
+            value: "3"
+          - dps_val: level_4
+            value: "4"
+          - dps_val: level_5
+            value: "5"
+          - dps_val: level_6
+            value: "6"
+          - dps_val: level_7
+            value: "7"
+          - dps_val: level_8
+            value: "8"
+          - dps_val: level_9
+            value: "9"
+          - dps_val: level_10
+            value: "10"
+  - entity: switch
+    name: Combined preheat
+    icon: "mdi:heatwave"
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 13
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: select
+    name: Zone
+    icon: "mdi:format-page-split"
+    category: config
+    dps:
+      - id: 105
+        type: string
+        name: option
+        mapping:
+          - dps_val: NO_ZONE
+            value: Combined
+          - dps_val: ZONE_A
+            value: Zone A
+          - dps_val: ZONE_B
+            value: Zone B
+          - dps_val: DUAL_ZONE
+            value: Dual zone
+  - entity: switch
+    name: Switch A
+    icon: "mdi:bed"
+    dps:
+      - id: 14
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Switch B
+    icon: "mdi:bed"
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+  - entity: select
+    name: Level A
+    category: config
+    icon: "mdi:thermometer"
+    dps:
+      - id: 20
+        type: string
+        name: option
+        mapping:
+          - dps_val: level_1
+            value: "1"
+          - dps_val: level_2
+            value: "2"
+          - dps_val: level_3
+            value: "3"
+          - dps_val: level_4
+            value: "4"
+          - dps_val: level_5
+            value: "5"
+          - dps_val: level_6
+            value: "6"
+          - dps_val: level_7
+            value: "7"
+          - dps_val: level_8
+            value: "8"
+          - dps_val: level_9
+            value: "9"
+          - dps_val: level_10
+            value: "10"
+  - entity: select
+    name: Level B
+    category: config
+    icon: "mdi:thermometer"
+    dps:
+      - id: 21
+        type: string
+        name: option
+        mapping:
+          - dps_val: level_1
+            value: "1"
+          - dps_val: level_2
+            value: "2"
+          - dps_val: level_3
+            value: "3"
+          - dps_val: level_4
+            value: "4"
+          - dps_val: level_5
+            value: "5"
+          - dps_val: level_6
+            value: "6"
+          - dps_val: level_7
+            value: "7"
+          - dps_val: level_8
+            value: "8"
+          - dps_val: level_9
+            value: "9"
+          - dps_val: level_10
+            value: "10"
+  - entity: switch
+    name: Preheat A
+    icon: "mdi:heatwave"
+    category: config
+    dps:
+      - id: 24
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Preheat B
+    icon: "mdi:heatwave"
+    category: config
+    dps:
+      - id: 25
+        type: boolean
+        name: switch
+  - entity: select
+    name: Auto-off A
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 26
+        type: string
+        name: option
+        mapping:
+          - dps_val: "30m" 
+            value: "30 min"
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "1h30m"
+            value: "1.5h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "2h30m"
+            value: "2.5h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "3h30m"
+            value: "3.5h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "4h30m"
+            value: "4.5h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "5h30m"
+            value: "5.5h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: "6h30m"
+            value: "6.5h"
+          - dps_val: "7h"
+            value: "7h"
+          - dps_val: "7h30m"
+            value: "7.5h"
+          - dps_val: "8h"
+            value: "8h"
+          - dps_val: "8h30m"
+            value: "8.5h"
+          - dps_val: "9h"
+            value: "9h"
+          - dps_val: "9h30m"
+            value: "9.5h"
+          - dps_val: "10h"
+            value: "10h"            
+  - entity: select
+    name: Auto-off B
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 27
+        type: string
+        name: option
+        mapping:
+          - dps_val: "30m" 
+            value: "30 min"
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "1h30m"
+            value: "1.5h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "2h30m"
+            value: "2.5h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "3h30m"
+            value: "3.5h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "4h30m"
+            value: "4.5h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "5h30m"
+            value: "5.5h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: "6h30m"
+            value: "6.5h"
+          - dps_val: "7h"
+            value: "7h"
+          - dps_val: "7h30m"
+            value: "7.5h"
+          - dps_val: "8h"
+            value: "8h"
+          - dps_val: "8h30m"
+            value: "8.5h"
+          - dps_val: "9h"
+            value: "9h"
+          - dps_val: "9h30m"
+            value: "9.5h"
+          - dps_val: "10h"
+            value: "10h"
+          - dps_val: "Stay_On"
+            value: 
+  - entity: sensor
+    name: Time remaining A
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 28
+        type: integer
+        name: sensor
+        unit: s
+  - entity: sensor
+    name: Time remaining B
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 29
+        type: integer
+        name: sensor
+        unit: s
+  - entity: sensor
+    name: Preheat remaining A
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: s
+  - entity: sensor
+    name: Preheat remaining B
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: s

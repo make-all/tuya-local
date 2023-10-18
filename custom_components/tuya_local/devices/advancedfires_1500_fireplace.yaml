@@ -1,0 +1,243 @@
+name: Fireplace
+products:
+  - id: bf773f569661709b88gzbb
+    name: Advanced Fires 1500 electric fireplace
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          value: heat
+    - id: 2
+      name: temperature
+      type: integer
+      range:
+        min: 16
+        max: 30
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: temp_set_f
+              range:
+                min: 32
+                max: 104
+    - id: 3
+      name: current_temperature
+      type: integer
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: temp_current_f
+    - id: 5
+      name: fan_mode
+      type: string
+      mapping:
+        - dps_val: "OFF"
+          value: "off"
+        - dps_val: LOW
+          value: low
+        - dps_val: HIGH
+          value: high
+    - id: 19
+      name: temperature_unit
+      type: string
+      mapping:
+        - dps_val: c
+          value: C
+        - dps_val: f
+          value: F
+    - id: 20
+      name: temp_set_f
+      type: integer
+      hidden: true
+      range:
+        min: 32
+        max: 104
+    - id: 21
+      name: temp_current_f
+      type: integer
+      hidden: true
+    - id: 108
+      name: weekly_schedule
+      type: string
+      optional: true
+secondary_entities:
+  - entity: select
+    name: Temperature unit
+    icon: "mdi:temperature-celsius"
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: Celsius
+          - dps_val: f
+            value: Fahrenheit
+  - entity: light
+    name: Flame
+    dps:
+      - id: 115
+        type: boolean
+        name: switch
+      - id: 114
+        name: color_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: white
+          - dps_val: true
+            value: hs
+      - id: 106
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - scale: 0.392
+      - id: 109
+        name: rgbhsv
+        type: base64
+        optional: true
+        format:
+          - name: r
+            bytes: 1
+            range:
+              min: 0
+              max: 255
+          - name: g
+            bytes: 1
+            range:
+              min: 0
+              max: 255
+          - name: b
+            bytes: 1
+            range:
+              min: 0
+              max: 255
+      - id: 105
+        name: effect
+        type: string
+        mapping:
+          - dps_val: mode1
+            value: M
+          - dps_val: mode2
+            value: A
+          - dps_val: mode3
+            value: G
+          - dps_val: mode4
+            value: I
+          - dps_val: mode5
+            value: C
+      - id: 112
+        name: effects_disabled
+        type: boolean
+  - entity: switch
+    name: Adaptive
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+  - entity: light
+    name: Ember
+    category: config
+    dps:
+      - id: 116
+        type: boolean
+        name: switch
+      - id: 117
+        name: color_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: white
+          - dps_val: true
+            value: hs
+      - id: 120
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - scale: 0.392
+      - id: 110
+        name: rgbhsv
+        type: base64
+        optional: true
+        format:
+          - name: r
+            bytes: 1
+            range:
+              min: 0
+              max: 255
+          - name: g
+            bytes: 1
+            range:
+              min: 0
+              max: 255
+          - name: b
+            bytes: 1
+            range:
+              min: 0
+              max: 255
+      - id: 122
+        name: orange_disabled
+        type: boolean
+  - entity: light
+    name: Logs
+    category: config
+    dps:
+      - id: 118
+        type: boolean
+        name: switch
+      - id: 119
+        name: color_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: white
+          - dps_val: true
+            value: hs
+      - id: 121
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - scale: 0.392
+      - id: 111
+        name: rgbhsv
+        type: base64
+        optional: true
+        format:
+          - name: r
+            bytes: 1
+            range:
+              min: 0
+              max: 255
+          - name: g
+            bytes: 1
+            range:
+              min: 0
+              max: 255
+          - name: b
+            bytes: 1
+            range:
+              min: 0
+              max: 255
+      - id: 113
+        name: color_disabled
+        type: boolean
+

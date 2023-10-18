@@ -91,6 +91,11 @@ class TuyaLocalEntity:
                 attr[a.name] = value
         return attr
 
+    @property
+    def entity_registry_enabled_default(self):
+        """Disable deprecated entities on new installations"""
+        return not self._config.deprecated
+
     async def async_update(self):
         await self._device.async_refresh()
 

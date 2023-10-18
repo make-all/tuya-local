@@ -22,9 +22,7 @@ async def async_tuya_setup_platform(
     if cfg is None:
         raise ValueError(f"No device config found for {discovery_info}")
     ecfg = cfg.primary_entity
-    if ecfg.entity == platform and (
-        discovery_info.get(ecfg.config_id, False) or not ecfg.deprecated
-    ):
+    if ecfg.entity == platform:
         data[ecfg.config_id] = entity_class(device, ecfg)
         entities.append(data[ecfg.config_id])
         if ecfg.deprecated:
@@ -32,9 +30,7 @@ async def async_tuya_setup_platform(
         _LOGGER.debug(f"Adding {platform} for {ecfg.config_id}")
 
     for ecfg in cfg.secondary_entities():
-        if ecfg.entity == platform and (
-            discovery_info.get(ecfg.config_id, False) or not ecfg.deprecated
-        ):
+        if ecfg.entity == platform:
             data[ecfg.config_id] = entity_class(device, ecfg)
             entities.append(data[ecfg.config_id])
             if ecfg.deprecated:

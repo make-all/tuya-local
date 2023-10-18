@@ -1,131 +1,1 @@
-name: mmWave presence sensor
-products:
-  - id: k2h8vkj98fhvnpiv
-    name: ZY-M100-WIFI
-primary_entity:
-  entity: binary_sensor
-  class: occupancy
-  dps:
-    - id: 1
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: presence
-          value: true
-        - dps_val: none
-          value: false
-secondary_entities:
-  - entity: number
-    name: Sensitivity
-    category: config
-    icon: "mdi:motion-sensor"
-    dps:
-      - id: 2
-        type: integer
-        name: value
-        range:
-          min: 0
-          max: 9
-  - entity: number
-    name: Minimum distance
-    category: config
-    icon: "mdi:arrow-collapse-left"
-    dps:
-      - id: 3
-        type: integer
-        name: value
-        unit: m
-        range:
-          min: 0
-          max: 1000
-        mapping:
-          - scale: 100
-            step: 10
-  - entity: number
-    name: Maximum distance
-    category: config
-    icon: "mdi:arrow-collapse-right"
-    dps:
-      - id: 4
-        type: integer
-        name: value
-        unit: m
-        range:
-          min: 0
-          max: 1000
-        mapping:
-          - scale: 100
-            step: 10
-  - entity: sensor
-    name: Status
-    class: enum
-    icon: "mdi:list-status"
-    category: diagnostic
-    dps:
-      - id: 6
-        type: string
-        name: sensor
-        mapping:
-          - dps_val: check_failure
-            value: Fault
-          - dps_val: check_success
-            value: OK
-          - dps_val: checking
-            value: Checking
-          - dps_val: comm_fault
-            value: Communication fault
-          - dps_val: others
-            value: Timeout
-          - dps_val: radar_fault
-            value: Radar fault
-  - entity: sensor
-    name: Target distance
-    class: distance
-    icon: "mdi:tape-measure"
-    dps:
-      - id: 9
-        type: integer
-        name: sensor
-        unit: m
-        class: measurement
-        mapping:
-          - scale: 100
-  - entity: number
-    name: Detection delay
-    category: config
-    # mode: box
-    icon: "mdi:timer-sand"
-    dps:
-      - id: 101
-        type: integer
-        name: value
-        unit: s
-        range:
-          min: 1
-          max: 100
-        mapping:
-          - scale: 10
-            step: 1
-  - entity: number
-    name: Fading time
-    category: config
-    icon: "mdi:timer-sand-complete"
-    dps:
-      - id: 102
-        type: integer
-        name: value
-        unit: s
-        range:
-          min: 5
-          max: 15000
-        mapping:
-          - scale: 10
-            step: 5
-  - entity: sensor
-    class: illuminance
-    dps:
-      - id: 104
-        type: integer
-        name: sensor
-        unit: lx
-        class: measurement
+name: mmWave presence sensorproducts:  - id: k2h8vkj98fhvnpiv    name: ZY-M100-WIFI  - id: yroelksjtb4ehda8    name: WZ-M100-Wprimary_entity:  entity: binary_sensor  class: occupancy  dps:    - id: 1      type: string      name: sensor      mapping:        - dps_val: presence          value: true        - dps_val: none          value: falsesecondary_entities:  - entity: number    name: Sensitivity    category: config    icon: "mdi:motion-sensor"    dps:      - id: 2        type: integer        name: value        range:          min: 0          max: 9  - entity: number    name: Minimum distance    category: config    icon: "mdi:arrow-collapse-left"    dps:      - id: 3        type: integer        name: value        unit: m        range:          min: 0          max: 1000        mapping:          - scale: 100            step: 10  - entity: number    name: Maximum distance    category: config    icon: "mdi:arrow-collapse-right"    dps:      - id: 4        type: integer        name: value        unit: m        range:          min: 0          max: 1000        mapping:          - scale: 100            step: 10  - entity: sensor    name: Status    class: enum    icon: "mdi:list-status"    category: diagnostic    dps:      - id: 6        type: string        name: sensor        optional: true        mapping:          - dps_val: check_failure            value: Fault          - dps_val: check_success            value: OK          - dps_val: checking            value: Checking          - dps_val: comm_fault            value: Communication fault          - dps_val: others            value: Timeout          - dps_val: radar_fault            value: Radar fault  - entity: sensor    name: Target distance    class: distance    icon: "mdi:tape-measure"    dps:      - id: 9        type: integer        name: sensor        unit: m        class: measurement        mapping:          - scale: 100  - entity: number    name: Detection delay    category: config    # mode: box    icon: "mdi:timer-sand"    dps:      - id: 101        type: integer        name: value        unit: s        range:          min: 0          max: 100        mapping:          - scale: 10  - entity: number    name: Fading time    category: config    icon: "mdi:timer-sand-complete"    dps:      - id: 102        type: integer        name: value        unit: s        range:          min: 0          max: 15000        mapping:          - scale: 10            step: 50  - entity: sensor    class: illuminance    dps:      - id: 104        type: integer        name: sensor        unit: lx        class: measurement

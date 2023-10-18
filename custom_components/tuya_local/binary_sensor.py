@@ -53,7 +53,9 @@ class TuyaLocalBinarySensor(TuyaLocalEntity, BinarySensorEntity):
         except ValueError:
             if dclass:
                 _LOGGER.warning(
-                    "Unrecognised binary_sensor device class of %s ignored",
+                    "%s/%s: Unrecognised binary_sensor device class of %s ignored",
+                    self._config._device.config,
+                    self.name or "binary_sensor",
                     dclass,
                 )
             return None

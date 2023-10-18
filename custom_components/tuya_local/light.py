@@ -80,7 +80,9 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                     return [mode]
             except ValueError:
                 _LOGGER.warning(
-                    "Unrecognised color mode %s ignored",
+                    "%s/%s: Unrecognised color mode %s ignored",
+                    self._config._device.config,
+                    self.name or "light",
                     self.color_mode,
                 )
         return []
@@ -298,7 +300,9 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                     val = round(rgbhsv[n] * scale)
                     if val < r["min"]:
                         _LOGGER.warning(
-                            "Color data %s=%d constrained to be above %d",
+                            "%s/%s: Color data %s=%d constrained to be above %d",
+                            self._config._device.config,
+                            self.name or "light",
                             n,
                             val,
                             r["min"],

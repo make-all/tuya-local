@@ -106,6 +106,11 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
         }.items():
             by = self.unlocker_id(dp, desc)
             if by:
+                # clear non-persistent dps immediately on reporting, instead
+                # of waiting for the next poll, to make the lock more responsive
+                # to multiple attempts
+                if not dp.persist:
+                    self._device._cached_state.pop(dp.id, None)
                 return by
 
     async def async_lock(self, **kwargs):

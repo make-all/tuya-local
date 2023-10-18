@@ -68,7 +68,9 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
         except ValueError:
             if dclass:
                 _LOGGER.warning(
-                    "Unrecognised cover device class of %s ignored",
+                    "%s/%s: Unrecognised cover device class of %s ignored",
+                    self._config._device.config,
+                    self.name or "cover",
                     dclass,
                 )
             return None

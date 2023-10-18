@@ -1,0 +1,278 @@
+name: HVAC thermostat
+products:
+  - id: jnchsgfzhp5wytun
+    name: Brade MC6
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: Cool
+              value: cool
+            - dps_val: Heat
+              value: heat
+            - dps_val: Vent
+              value: fan_only
+            - dps_val: Dehumid
+              value: dry
+            - dps_val: Auto
+              value: heat_cool
+    - id: 2
+      type: string
+      name: fan_mode
+      mapping:
+        - dps_val: low
+          value: low
+        - dps_val: med
+          value: medium
+        - dps_val: high
+          value: high
+        - dps_val: auto
+          value: auto
+    - id: 3
+      type: string
+      name: hvac_action
+      mapping:
+        - constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+    - id: 16
+      type: integer
+      name: temperature
+      range:
+        min: 50
+        max: 990
+      mapping:
+        - scale: 10
+          constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: temp_set_f
+              range:
+                min: 410
+                max: 1220
+    - id: 17
+      type: integer
+      name: temp_set_f
+      range:
+        min: 410
+        max: 1220
+      mapping:
+        - scale: 10
+      hidden: true
+    - id: 18
+      type: integer
+      name: max_temp_f
+      hidden: true
+      mapping:
+        - scale: 10
+    - id: 19
+      type: integer
+      name: max_temperature
+      mapping:
+        - scale: 10
+          constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: max_temp_f
+    - id: 20
+      type: integer
+      name: min_temp_f
+      hidden: true
+      mapping:
+        - scale: 10
+    - id: 23
+      type: string
+      name: temperature_unit
+      mapping:
+        - dps_val: f
+          value: F
+        - dps_val: c
+          value: C
+    - id: 24
+      type: integer
+      name: current_temperature
+      mapping:
+        - scale: 10
+          constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: temp_current_f
+    - id: 25
+      type: integer
+      name: current_humidity
+    - id: 26
+      type: integer
+      name: min_temperature
+      mapping:
+        - scale: 10
+          constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: min_temp_f
+    - id: 29
+      type: integer
+      name: temp_current_f
+      hidden: true
+      mapping:
+        - scale: 10
+    - id: 64
+      type: string
+      name: mode
+      hidden: true
+    - id: 69
+      type: string
+      name: program
+      optional: true
+secondary_entities:
+  - entity: number
+    name: Maximum temperature
+    category: config
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 19 
+        type: integer
+        name: value
+        range:
+          min: 50
+          max: 500
+        mapping:
+          - scale: 10
+            constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: max_temp_f
+                range:
+                  min: 410
+                  max: 1220
+      - id: 18
+        type: integer
+        name: max_temp_f
+        hidden: true
+        range:
+          min: 410
+          max: 1220
+        mapping:
+          - scale: 10
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+  - entity: number
+    name: Minimum temperature
+    category: config
+    icon: "mdi:thermometer-chevron-down"
+    dps:
+      - id: 26 
+        type: integer
+        name: value
+        range:
+          min: 50
+          max: 550
+        mapping:
+          - scale: 10
+            constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: min_temp_f
+                range:
+                  min: 410
+                  max: 1220
+      - id: 20
+        type: integer
+        name: min_temp_f
+        hidden: true
+        range:
+          min: 410
+          max: 1220
+        mapping:
+          - scale: 10
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+  - entity: select
+    name: Temperature unit
+    icon: "mdi:temperature-celsius"
+    category: config
+    dps:
+      - id: 23
+        type: string
+        name: option
+        mapping:
+          - dps_val: c 
+            value: Celsius
+          - dps_val: f
+            value: Fahrenheit
+  - entity: number
+    name: Holiday days
+    category: config
+    icon: "mdi:calendar-month"
+    dps:
+      - id: 33
+        type: integer
+        name: value
+        unit: d
+        range:
+          min: 0
+          max: 99
+  - entity: lock
+    name: Child lock
+    icon: "mdi:hand-back-right-off"
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        name: lock
+  - entity: select
+    name: Program type
+    icon: "mdi:calendar-week"
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: offf
+            value: "Off"
+          - dps_val: 5_2
+            value: Weekday+Weekend
+          - dps_val: 7day
+            value: "7 days"
+          - dps_val: 24hour
+            value: "24 hours"
+  - entity: select
+    name: Temperature hysteresis
+    icon: "mdi:arrow-collapse-vertical"
+    category: config
+    dps:
+      - id: 103 
+        type: string
+        name: option
+        mapping:
+          - dps_val: 0_5
+            value: "0.5"
+          - dps_val: "1"
+            value: "1"
+          - dps_val: "2"
+            value: "2"
+          - dps_val: "3"
+            value: "3"
+            
+

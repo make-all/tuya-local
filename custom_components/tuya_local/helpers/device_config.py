@@ -244,7 +244,7 @@ class TuyaEntityConfig:
 
     @property
     def deprecated(self):
-        """Return whether this entitiy is deprecated."""
+        """Return whether this entity is deprecated."""
         return "deprecated" in self._config.keys()
 
     @property

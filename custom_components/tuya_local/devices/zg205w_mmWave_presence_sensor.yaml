@@ -2,6 +2,9 @@ name: mmWave presence sensor
 products:
   - id: qbapy7r4deyp6zbx
     name: ZG-205W
+  - id: uykwakpl6rbxvjdd
+    name: ZG-205W/A
+
 primary_entity:
   entity: binary_sensor
   class: occupancy
@@ -14,42 +17,15 @@ primary_entity:
           value: true
         - dps_val: none
           value: false
+    # - id: 111
+    #   name: breathingselftest
 secondary_entities:
-  - entity: light
-    name: Led indicator
-    category: config
-    dps:
-      - id: 103
-        type: boolean
-        name: switch
   - entity: number
     name: Motion sensitivity
     category: config
     icon: mdi:motion-sensor
     dps:
       - id: 2
-        type: integer
-        name: value
-        range:
-          min: 0
-          max: 10
-  - entity: number
-    name: Stationary sensitivity
-    category: config
-    icon: mdi:motion-sensor
-    dps:
-      - id: 102
-        type: integer
-        name: value
-        range:
-          min: 0
-          max: 10
-  - entity: number
-    name: Small motion sensitivity
-    category: config
-    icon: mdi:motion-sensor
-    dps:
-      - id: 106
         type: integer
         name: value
         range:
@@ -85,6 +61,48 @@ secondary_entities:
         mapping:
           - scale: 100
             step: 10
+  - entity: sensor
+    class: illuminance
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: lx
+        class: measurement
+  - entity: number
+    name: Stationary sensitivity
+    category: config
+    icon: mdi:motion-sensor
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 10
+  - entity: light
+    name: Led indicator
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: select
+    name: Alarm mode
+    class: enum
+    icon: mdi:shield-home
+    category: config
+    dps:
+      - id: 104
+        type: string
+        name: option
+        mapping:
+          - dps_val: armed
+            value: Armed
+          - dps_val: disarm
+            value: Disarm
+          - dps_val: sos
+            value: Alarm
   - entity: number
     name: Small motion detection distance
     category: config
@@ -100,6 +118,17 @@ secondary_entities:
         mapping:
           - scale: 100
             step: 10
+  - entity: number
+    name: Small motion sensitivity
+    category: config
+    icon: mdi:motion-sensor
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 10
   - entity: select
     name: Alarm volume
     class: enum
@@ -118,39 +147,6 @@ secondary_entities:
             value: Low
           - dps_val: mute
             value: Mute
-  - entity: select
-    name: Alarm mode
-    class: enum
-    icon: mdi:shield-home
-    category: config
-    dps:
-      - id: 104
-        type: string
-        name: option
-        mapping:
-          - dps_val: armed
-            value: Armed
-          - dps_val: disarm
-            value: Disarm
-          - dps_val: sos
-            value: Alarm
-  - entity: sensor
-    name: Detection state
-    class: enum
-    icon: mdi:cursor-move
-    dps:
-      - id: 116
-        type: string
-        name: sensor
-        mapping:
-          - dps_val: large_move
-            value: Large move
-          - dps_val: small_move
-            value: Small move
-          - dps_val: breathe
-            value: Breathe
-          - dps_val: none
-            value: None
   - entity: number
     name: Exit delay
     category: config
@@ -161,10 +157,8 @@ secondary_entities:
         name: value
         unit: s
         range:
-          min: 1
-          max: 100
-        mapping:
-          - scale: 10
+          min: 0
+          max: 28800
   - entity: number
     name: Alarm duration
     category: config
@@ -177,11 +171,133 @@ secondary_entities:
         range:
           min: 1
           max: 30
-  - entity: sensor
-    class: illuminance
+  - entity: number
+    name: Motion minimum detection distance
+    category: config
+    icon: mdi:signal-distance-variant
+    hidden: true
     dps:
-      - id: 101
+      - id: 110
         type: integer
+        name: value
+        unit: m
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 100
+            step: 10
+  - entity: number
+    name: Small motion minimum detection distance
+    category: config
+    icon: mdi:signal-distance-variant
+    hidden: true
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        unit: m
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 100
+            step: 10
+  - entity: number
+    name: Breathing minimum detection distance
+    category: config
+    icon: mdi:signal-distance-variant
+    hidden: true
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        unit: m
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 100
+            step: 10
+  - entity: number
+    name: Adaptive testing time
+    category: config
+    icon: mdi:timer
+    hidden: true
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 300
+  - entity: switch
+    name: Adaptive test
+    category: config
+    icon: mdi:test-tube
+    dps:
+      - id: 114
+        name: switch
+        type: boolean
+  - entity: button
+    name: Factory reset
+    category: config
+    icon: mdi:restore-alert
+    dps:
+      - id: 115
+        type: boolean
+        name: button
+        optional: true
+  - entity: sensor
+    name: Movement state
+    class: enum
+    icon: mdi:cursor-move
+    dps:
+      - id: 116
+        type: string
         name: sensor
-        unit: lx
-        class: measurement
+        mapping:
+          - dps_val: large_move
+            value: Large
+          - dps_val: small_move
+            value: Small
+          - dps_val: breathe
+            value: Breathe
+          - dps_val: none
+            value: None
+  - entity: switch
+    name: Small motion self-test
+    category: config
+    icon: "mdi:test-tube"
+    dps:
+      - id: 117
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Breathing self-test
+    category: config
+    icon: "mdi:test-tube"
+    dps:
+      - id: 118
+        name: switch
+        type: boolean
+  - entity: number
+    name: Motion false detection
+    category: config
+    icon: mdi:alpha-x-circle
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 10
+  - entity: switch
+    name: Breathing false detection
+    category: config
+    icon: mdi:lungs
+    dps:
+      - id: 120
+        name: switch
+        type: boolean

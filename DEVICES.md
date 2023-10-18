@@ -2,6 +2,7 @@
 
 ### Heaters
 
+- Advanced Fires 1500 electric fireplace
 - Andersson GSH heater
 - Arlec 2200W and 2400W panel heaters
 - Atomi AT1632 ceramic heater
@@ -11,6 +12,7 @@
 - Devola patio heater
 - Ecostrad Accent iQ heating panels
 - Ecostrad iQ ceramic radiators
+- Eurom Alutherm 1000,1500,2000,2500 heaters
 - Eurom Mon Soleil 300,600,800, 350,601,720 and 300,450,720 Verre heaters
 - Eurom Sani Wall Heat 2000 heater
 - Eurom Wall Designheat 2000 heater
@@ -49,12 +51,15 @@
 - Monzana Klimaanlage air conditioner
 - Nedis ACMB1WT12 portable air conditioner
 - Rotenso Roni R35WI
+- Rotenso Roni X
 - Royal Sovereign RSAI-12SA mini split air conditioner
 - Sencor MT7048C air conditioner
 - Sendo air conditioner
 - Star-Light air conditioner (also confirmed to work with Polar branded devices)
+- Suntec Wellness Coolfixx portable air conditioner
 - Tadiran Wind 65/3P
 - TroniTechnik Hellnar Klimagerät
+- Trotec PAC-W 2600 SH heatpump
 - Vivax Cool ACP-12CH35REWI
 - Woods Cortina portable air conditioner
 - Woods Milan portable air conditioner
@@ -99,6 +104,7 @@
 - Beok TR8B thermostat
 - Beok TR9B thermostat _(rebadged as Vancoo and perhaps others)_
 - BHT-002-GALW thermostat _(rebadged as many different brands)_
+- Brade MC6 thermostat _(rebadged as many different brands)_
 - ETOP-HP thermostat (CH7100)
 - ETOP-HT thermostat
 - Hysen HY08ACF thermostat
@@ -146,6 +152,7 @@
 - Lexy F501 fan
 - Mantra ceiling fan with light
 - Ovlaim ceiling fan with cool/warm white dimmable light
+- Reiga 52 ceiling fan with light
 - Royal Clima RCB 150 ventilation system
 - Skyfan DC fan
 - Skyfan DC fan with light
@@ -180,6 +187,7 @@
 - AlecoAir D12/D16 Home dehumidifier
 - AlecoAir D14 purifying dehumidifier
 - AlecoAir D16 purifying dehumidifier
+- AlecoAir D25 Traditio dehumidifier
 - Ebac DJ4000 dehumidifier
 - ElectriQ CD12PRO-LE dehumidifier
 - ElectriQ CD12PW dehumidifier
@@ -217,10 +225,11 @@
 
 ### Aroma diffusers
 
-- Asakuki aroma diffuser with light
+- Asakuki aroma diffuser with light (newer devices seem to require the Ditua config below)
 - Cadance ultrasonic aroma diffuser with light and music playback
 - Ditua DT-1522-YN aroma diffuser
 - Etersky aroma diffuser with light
+- YX316WIFI aroma diffuser
 - YYM-805SW aroma diffuser with light (also supports GX Aroma diffuser)
 
 ### Kitchen Appliances
@@ -237,12 +246,15 @@
 
 ### Smart Meter/Circuit Breaker
 
+- Atorch S1WP energy monitoring switch with display
 - Aulifants SMES200 energy monitoring breaker switch
 - CBI Astute smart controller breaker switch
 - Compteur digital electric (single phase)
+- Dcenta dual clamp meter
 - DTS238-7 3 phase smart meter
 - eMylo EAI-90 smart meter
 - MatSee Plus bidirectional two channel clamp meter
+- Parkside PG/PMW-300 solar inverter
 - PC311-TY 2 phase power clamp meter
 - PC321-TY 3 phase power clamp meter
 - PJ-1103 power clamp meter
@@ -255,6 +267,7 @@
 
 ### Battery Charger
 
+- Feyree home EV charger
 - Parkside PLGS 2012 A1 smart charger for powertools
 
 ### SmartPlugs/Wall sockets/Wall switches
@@ -281,6 +294,7 @@ the best option.
 - DIGOO DG-SP01 USB smartplug with night light
 - Dual power monitoring smartplug (Geex)
 - Dual power monitoring smartplug v2 (Smatrul, Deltaco)
+- Eightree ET43 3-outlet powerstrip with energy monitoring
 - ES01 3 outlet + USB powerstrip with individual timers
 - Gosund P1 3 outlet + USB powerstrip with power monitoring
 - Grid Connect double outlet wall socket
@@ -344,9 +358,11 @@ of device.
 - Generic RGBCW/RGBWW lightbulb (confirmed with Lijun branded bulb, expected to match others also). Three versions - standard dps layout starting from 20, with and without scene/music modes and timer, and a non-standard layout starting from 1 but following the same pattern (tested with "A60" bulbs).
 - Generic RGBW lightbulb in the non-standard pattern above but without color temperature control.
 - Generic dimmable/color temperature adjustable desktop lamp (confirmed with Setti+ SL601)
+- A60 1800-2700K RGBWW light
 - Atomi smart color string light
 - Deta/Arlec motion sensor lights (DET100HA/DET102HA/MAL315HA)
 - Deta 6910HA series2 dimmer switch
+- Dim2Warm G95 Gold 1800-2700K CCT lightbulb
 - Dual-mode magic light string controller
 - Feit dimmer (may work with other brands that just have a switch, dimmer and
   optional minimum brightness and bulb type)
@@ -362,8 +378,10 @@ of device.
 - Moes motion sensor lights (XZ-CGV3)
 - Moes star projector
 - MoesGo dimmer switch
-- Space Dog Music Lamp
+- Space Dog Music Lamp (works for Aurora Smart Galaxy Star)
 - Tampa Magnetic LED System CD-TY-WY05
+- Teberno LED strip light (LGC-005 OEM3)
+- Treatlife outdoor dimmer with dual outlets
 - WF520D dual dimmer touchpanel
 
 ### Covers
@@ -383,6 +401,7 @@ of device.
 - Dooya curtain motor
 - Etersky curtain switch with backlight and timing control
 - FS-03W curtain switch with backlight control
+
 - Kogan garage door with tilt sensor
 - Loonas smart curtain
 - LoraTap GDC100W garage door opener
@@ -406,9 +425,12 @@ of device.
 - Lefant M213 vacuum cleaner (also works for Lefant M213S and APOSEN A550)
 - Lenovo E1 vacuum cleaner
 - Liectroux XR500[T3]
+- MAMNV BR151 vacuum cleaner with mop
+- Medion S20 SW vacuum cleaner with mop
 - Mellerware City Move vacuum cleaner
 - Proscenic M9 vacuum cleaner
 - Rinkmo D2 vacuum cleaner
+- Ultenic T10 vacuum cleaner
 
 ### Lawnmowers
 
@@ -416,6 +438,7 @@ of device.
 
 ### Locks
 
+- BSTUOKEY access control keypad
 - Lucking HF06 smart lock
 - Orion Grid Connect smart lock
 
@@ -452,6 +475,7 @@ port and password.
 
 - generic PIR motion sensor
 - generic illuminance sensor
+- ARD-100+ valve controller
 - ASIP-0622 indoor planter
 - Aubess Rainpoint TTP106W irrigation system
 - Brennenstuhl WFD3050P PIR motion activated CCT spotlight
@@ -464,6 +488,7 @@ port and password.
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
 - Garza Wi-Fi garden irrigation system (ITV103W with 433MHz WiFi hub)
 - Holman WX1 tap timer (sprinkler controller)
+- Holman WX2 dual tap timer
 - Inkbird PTH-9CW air quality monitor
 - KKMoon 7in1 air quality monitor
 - Kogan bidet toilet seat
@@ -480,6 +505,8 @@ port and password.
 - Qoto 03 smart water valve / sprinkler controller
 - SD123 HPR01 human presence radar
 - SH07-8 smart sprinkler controller
+- Sunbeam dual heated mattress pad 
+- SWS-001 smart weather station
 - TH08 temperature and humidity sensor
 - TH16 temperature and humidity sensor 
 - Tontine electric blanket
@@ -510,9 +537,12 @@ port and password.
 
 ### Devices supported via Zigbee hubs
 
+- Aubess temperature and humidity sensor 
+- Intelbras IFR7000 door lock
 - Loginovo mmWave human presence sensor
 - LoraTap SC500ZB-V2 curtain controller
 - Loratap SS9600ZB 6 button remote control
+- Moes RGBCW lightbulb
 - MultiIR MIR-TE100-TY temperature and humidity sensor
 - Nedis ZBSD10WT door/window sensor
 - Nedis ZBSC10WT temperature and humidity sensor

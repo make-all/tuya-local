@@ -300,19 +300,29 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         try:
             return HVACAction(action) if action else None
         except ValueError:
-            _LOGGER.warning("Unrecognised HVAC Action %s ignored", action)
+            _LOGGER.warning(
+                "%s/%s: Unrecognised HVAC Action %s ignored",
+                self._config._device.config,
+                self.name or "climate",
+                action,
+            )
             return None
 
     @property
     def hvac_mode(self):
         """Return current HVAC mode."""
         if self._hvac_mode_dps is None:
-            return HVACMode.AUTO
+            return None
         hvac_mode = self._hvac_mode_dps.get_value(self._device)
         try:
             return HVACMode(hvac_mode) if hvac_mode else None
         except ValueError:
-            _LOGGER.warning("Unrecognised HVAC Mode of %s ignored", hvac_mode)
+            _LOGGER.warning(
+                "%s/%s: Unrecognised HVAC Mode of %s ignored",
+                self._config._device.config,
+                self.name or "climate",
+                hvac_mode,
+            )
             return None
 
     @property

@@ -36,10 +36,39 @@ easier to set up using that as an alternative.
 
 ## Device support
 
-Note that devices sometimes get firmware upgrades, or incompatible versions are sold under the same model name, so it is possible that the device will not work despite being listed.
+Note that devices sometimes get firmware upgrades, or incompatible
+versions are sold under the same model name, so it is possible that
+the device will not work despite being listed.
 
-Battery powered devices such as door and window sensors, smoke alarms etc which do not use a hub will be impossible to support locally, due to the power management that they need to do to get acceptable battery
-life.  Currently hubs are also unsupported, but this is being worked on.
+Battery powered devices such as door and window sensors, smoke alarms
+etc which do not use a hub will be impossible to support locally, due
+to the power management that they need to do to get acceptable battery
+life.
+
+Hubs are currently supported, but with limitations.  Each connection
+to a sub device uses a separate network connection, but like other
+Tuya devices, hubs are usually limited in the number of connections
+they can handle, with typical limits being 1 or 3, depending on the specific
+Tuya module they are using.  This severely limits the number of sub devices
+that can be connected through this integration.
+
+Tuya Zigbee devices are usually standard zigbee devices, so as an
+alternative to this integration with a Tuya hub, you can use a
+supported Zigbee USB stick or Wifi hub with
+[ZHA](https://www.home-assistant.io/integrations/zha/#compatible-hardware)
+or [Zigbee2MQTT](https://www.zigbee2mqtt.io/guide/adapters/).
+
+Tuya Bluetooth devices can be supported directly by the
+[tuya_ble](https://github.com/PlusPlus-ua/ha_tuya_ble/) integration.
+
+Tuya IR hubs that expose general IR remotes as sub devices usually
+expose them as one way devices (send only).  Due to the way this
+integration does device detection based on the dps returned by the
+device, it is not currently able to detect such devices at all.  Some
+specialised IR hubs for air conditioner remote controls do work, as
+they try to emulate a fully smart air conditioner using internal memory
+of what settings are currently set, and internal temperature and humidity
+sensors.
 
 A list of currently supported devices can be found in the [DEVICES.md](https://github.com/make-all/tuya-local/blob/main/DEVICES.md) file.
 
@@ -308,7 +337,9 @@ mode they are in, but are set to readonly so that you cannot accidentally
 switch the thermostat to the wrong mode from HA.
 
 
-## Finding your device ID and local key at the Tuya Developer Portal
+## Finding your device ID and local key
+
+### Tuya IoT developer portal
 
 The easiest way to find your local key is with the Tuya Developer portal.
 If you have previously configured the built in Tuya cloud integration, or
@@ -336,16 +367,7 @@ command line Tuya client like tuyaapi/cli or
 to scan your network for Tuya devices to find the IP address and also automate
 the above process of connecting to the portal and getting the local key.
 
-## Connecting to devices via hubs
-
-If your device connects via a hub (eg. battery powered water timers) you have to provide the following info when adding a new device:
-
-- Device id (uuid): this is the **hub's** device id
-- IP address or hostname: the **hub's** IP address or hostname
-- Local key: the **hub's** local key
-- Sub device id: the **actual device you want to control's** `node_id`. Note this `node_id` differs from the device id, you can find it with tinytuya as described below.
-
-## Finding device ids and local keys with tinytuya
+### Finding device ids and local keys with tinytuya
 
 You can use this component's underlying library [tinytuya](https://github.com/jasonacox/tinytuya) to scan for devices in your network and find the required information about them. In particular, you need to use this procedure to obtain the `node_id` value required to connect to hub-dependent devices.
 
@@ -379,6 +401,15 @@ In the `devices.json` file you will everything you need to add your device:
 - "key": the local key
 - "node_id": the sub-device id. You need this for hub-dependent devices
 - "mapping": in the unfortunate case your device is not [yet supported](DEVICES.md), this key contains a description of all the datapoints reported by the device, type and expected values. You are more than welcome to create a new device specification following [the guidelines](custom_components/tuya_local/devices/README.md) and submitting a PR.
+
+## Connecting to devices via hubs
+
+If your device connects via a hub (eg. battery powered water timers) you have to provide the following info when adding a new device:
+
+- Device id (uuid): this is the **hub's** device id
+- IP address or hostname: the **hub's** IP address or hostname
+- Local key: the **hub's** local key
+- Sub device id: the **actual device you want to control's** `node_id`. Note this `node_id` differs from the device id, you can find it with tinytuya as described below.
 
 ## Next steps
 

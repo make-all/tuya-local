@@ -8,21 +8,20 @@ primary_entity:
     - id: 26
       type: bitfield
       name: fault_code
-    - id: 104
-      type: integer
-      name: unknown_104
     - id: 115
       type: string
       name: serial_number
     - id: 118
       type: integer
-      name: unknown_118
+      name: RkWh
     - id: 119
       type: base64
       name: historical_voltage
+      optional: true
     - id: 120
       type: base64
       name: historical_current
+      optional: true
 secondary_entities:
   - entity: number
     name: Timer
@@ -84,6 +83,8 @@ secondary_entities:
         name: sensor
         unit: V
         class: measurement
+        optional: true
+        force: true
         mapping:
           - scale: 10
             mask: "FFFF00000000"
@@ -97,6 +98,8 @@ secondary_entities:
         name: sensor
         unit: V
         class: measurement
+        optional: true
+        force: true
         mapping:
           - scale: 10
             mask: "0000FFFF0000"
@@ -110,6 +113,8 @@ secondary_entities:
         name: sensor
         unit: V
         class: measurement
+        optional: true
+        force: true
         mapping:
           - scale: 10
             mask: "00000000FFFF"
@@ -123,6 +128,8 @@ secondary_entities:
         name: sensor
         unit: A
         class: measurement
+        optional: true
+        force: true
         mapping:
           - mask: "FFFFFF000000000000"
             scale: 1000
@@ -136,6 +143,8 @@ secondary_entities:
         name: sensor
         unit: A
         class: measurement
+        optional: true
+        force: true
         mapping:
           - mask: "000000FFFFFF000000"
             scale: 1000
@@ -149,6 +158,8 @@ secondary_entities:
         name: sensor
         unit: A
         class: measurement
+        optional: true
+        force: true
         mapping:
           - mask: "000000000000FFFFFF"
             scale: 1000
@@ -162,6 +173,8 @@ secondary_entities:
         name: sensor
         unit: kW
         class: measurement
+        optional: true
+        force: true
         mapping:
           - scale: 10000
             mask: "FFFFFF000000000000000000"
@@ -175,6 +188,8 @@ secondary_entities:
         name: sensor
         unit: kW
         class: measurement
+        optional: true
+        force: true
         mapping:
           - scale: 10000
             mask: "000000FFFFFF000000000000"
@@ -188,6 +203,8 @@ secondary_entities:
         name: sensor
         unit: kW
         class: measurement
+        optional: true
+        force: true
         mapping:
           - scale: 10000
             mask: "000000000000FFFFFF000000"
@@ -201,9 +218,21 @@ secondary_entities:
         name: sensor
         unit: kW
         class: measurement
+        optional: true
+        force: true
         mapping:
           - scale: 10000
             mask: "000000000000000000FFFFFF"
+  - entity: sensor
+    name: Leakage current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: mA
+        class: measurement
   - entity: sensor
     class: temperature
     category: diagnostic

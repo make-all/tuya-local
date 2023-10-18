@@ -1,0 +1,89 @@
+name: Zigbee light bulb
+products:
+  - id: mja6r5ix
+    name: MOES zigbee smart bulb
+  - id: it1u8ahz
+    name: MOES smart bulb RGBCW zigbee
+primary_entity:
+  entity: light
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 3
+      name: brightness
+      type: integer
+      optional: true
+      range:
+        min: 0
+        max: 1000
+      mapping:
+        - scale: 3.92
+    - id: 4
+      name: color_temp
+      optional: true
+      type: integer
+      range:
+        min: 0
+        max: 1000
+      mapping:
+        - scale: 3.92
+          invert: true
+    - id: 2
+      name: color_mode
+      type: string
+      optional: true
+      mapping:
+        - dps_val: white
+          value: color_temp
+        - dps_val: colour
+          value: hs
+        - dps_val: scene
+          value: scene
+        - dps_val: music
+          value: music
+    - id: 5
+      name: rgbhsv
+      type: hex
+      format:
+        - name: h
+          bytes: 2
+          range:
+            min: 0
+            max: 360
+        - name: s
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+        - name: v
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+secondary_entities:
+  - entity: select
+    name: Scene
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 6
+        type: string
+        name: option
+        mapping:
+          - dps_val: 00282800012e0081015c00000000
+            value: Night
+          - dps_val: 010e0d0000000000000003e801f4
+            value: Read
+          - dps_val: 020e0d0000000000000003e803e8
+            value: Working
+          - dps_val: 030e0d0000000000000001f401f4
+            value: Leisure
+          - dps_val: 04464602007803e803e800000000464602007803e8000a00000000
+            value: Soft
+          - dps_val: 05464601000003e803e800000000464601007803e803e80000000046460100f003e803e800000000464601003d03e803e80000000046460100ae03e803e800000000464601011303e803e800000000
+            value: Colorful
+          - dps_val: 06464601000003e803e800000000464601007803e803e80000000046460100f003e803e800000000
+            value: Dazzling
+          - dps_val: 07464602000003e803e800000000464602007803e803e80000000046460200f003e803e800000000464602003d03e803e80000000046460200ae03e803e800000000464602011303e803e800000000
+            value: Gorgeous
