@@ -3,13 +3,25 @@ products:
   - id: sqrf2g1amfutn4co
     name: Atorch S1WP
 primary_entity:
-  entity: switch
-  class: outlet
+  entity: sensor
+  class: voltage
   dps:
-    - id: 1
-      type: boolean
-      name: switch
+    - id: 20
+      type: integer
+      name: sensor
+      unit: V
+      class: measurement
+      mapping:
+        - scale: 100
 secondary_entities:
+  - entity: switch
+    class: outlet
+    name: Switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+        optional: true
   - entity: number
     category: config
     name: Countdown
@@ -45,17 +57,6 @@ secondary_entities:
         type: integer
         class: measurement
         unit: W
-        mapping:
-          - scale: 100
-  - entity: sensor
-    class: voltage
-    name: Voltage
-    dps:
-      - id: 20
-        name: sensor
-        type: integer
-        class: measurement
-        unit: V
         mapping:
           - scale: 100
   - entity: number
