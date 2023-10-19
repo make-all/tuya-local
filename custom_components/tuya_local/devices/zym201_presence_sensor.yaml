@@ -26,14 +26,17 @@ secondary_entities:
         mapping:
           - dps_val: none
             value: "None"
+            icon: "mdi:motion-sensor-off"
           - dps_val: presence
-            value: "Presence"
+            value: "Still"
+            icon: "mdi:human-handsdown"
           - dps_val: move
-            value: "Move"
+            value: "Moving"
+            icon: "mdi:walk"
   - entity: number
     name: Sensitivity
     category: config
-    icon: "mdi:motion-sensor"
+    icon: "mdi:human-greeting-proximity"
     dps:
       - id: 2
         type: integer
@@ -94,7 +97,7 @@ secondary_entities:
   - entity: number
     name: Static sensitivity
     category: config
-    icon: "mdi:motion-sensor"
+    icon: "mdi:human-greeting-proximity"
     dps:
       - id: 111
         type: integer
