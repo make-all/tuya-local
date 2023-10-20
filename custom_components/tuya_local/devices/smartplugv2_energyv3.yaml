@@ -86,6 +86,13 @@ secondary_entities:
         unit: W
         mapping:
           - scale: 10
+            constraint: switch
+            conditions:
+              - dps_val: false
+                value: 0
+      - id: 1
+        type: boolean
+        name: switch
       - id: 24
         type: integer
         name: calibration
