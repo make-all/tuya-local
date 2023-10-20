@@ -12,6 +12,9 @@ class FakeDevice:
     def get_property(self, id):
         return self._dps.get(id)
 
+    @property
+    def name(self):
+        return "cmdline"
 
 def main() -> int:
     dps = json.loads(" ".join(sys.argv[1:]))
