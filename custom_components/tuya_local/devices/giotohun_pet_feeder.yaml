@@ -13,7 +13,6 @@ primary_entity:
       range:
         min: 1
         max: 12
-      optional: false
     - id: 1
       name: meal_plan
       type: string
@@ -27,7 +26,6 @@ secondary_entities:
       - id: 15
         name: sensor
         type: integer
-        optional: false
   - entity: button
     icon: "mdi:reload-alert"
     class: restart
@@ -37,7 +35,6 @@ secondary_entities:
       - id: 9
         type: boolean
         name: button
-        optional: false
   - entity: binary_sensor
     icon: "mdi:information"
     name: Feeding
@@ -46,7 +43,6 @@ secondary_entities:
       - id: 4
         name: sensor
         type: string
-        optional: false
         mapping:
           - dps_val: feeding
             value: true
