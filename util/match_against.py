@@ -19,6 +19,7 @@ class FakeDevice:
     def name(self):
         return "cmdline"
 
+
 def main() -> int:
     dps = json.loads(" ".join(sys.argv[2:]))
     device = FakeDevice(dps)
