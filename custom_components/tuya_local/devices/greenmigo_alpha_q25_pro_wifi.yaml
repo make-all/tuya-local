@@ -46,8 +46,14 @@ primary_entity:
       name: error
       optional: true
       mapping:
+        - dps_val: 4
+          icon: "mdi:cup-off"
+          icon_priority: 1
         - dps_val: tankfull
           icon: "mdi:cup-water"
+          icon_priority: 1
+        - dps_val: defrost
+          icon: "mdi:snowflake-melt"
           icon_priority: 1
 secondary_entities:
   - entity: sensor
