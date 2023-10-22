@@ -60,7 +60,7 @@ secondary_entities:
         unit: "%"
         class: measurement
   - entity: binary_sensor
-    name: Error
+    name: Status
     class: problem
     category: diagnostic
     dps:
@@ -75,6 +75,9 @@ secondary_entities:
           - dps_val: null
             value: false
             icon: "mdi:check-circle-outline"
+          - dps_val: 4
+            value: Tank removed
+            icon: "mdi:cup-off"
           - dps_val: tankfull
             value: Tank full
             icon: "mdi:cup-water"
@@ -88,7 +91,7 @@ secondary_entities:
             icon: "mdi:alert-circle-outline"
           - dps_val: E2
             value: E2
-            icon: "mdi:alert-circle-outline"          
+            icon: "mdi:alert-circle-outline"
   - entity: switch
     name: Swing
     icon: "mdi:cached"
