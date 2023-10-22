@@ -24,23 +24,23 @@ primary_entity:
       type: string
       mapping:
         - dps_val: Manual
-          value: Manual
+          value: manual
           icon: "mdi:hand-back-right-outline"
           icon_priority: 3
         - dps_val: Auto
-          value: Auto
+          value: auto
           icon: "mdi:auto-mode"
           icon_priority: 3
         - dps_val: Laundrydrying
-          value: Laundrydrying
+          value: laundry
           icon: "mdi:tshirt-crew-outline"
           icon_priority: 3
         - dps_val: Sleeping
-          value: Sleeping
-          icon: "mdi:sleep"
+          value: sleep
+          icon: "mdi:power-sleep"
           icon_priority: 3
         - dps_val: Purifying
-          value: Purifying
+          value: purify
           icon: "mdi:air-purifier"
           icon_priority: 3
     - id: 6
@@ -116,7 +116,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: select
-    name: Fan (Purifying / Manual only)
+    name: Fan (Purify / Manual only)
     icon: "mdi:fan"
     category: config
     dps:
