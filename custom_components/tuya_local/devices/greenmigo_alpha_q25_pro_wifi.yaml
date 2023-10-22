@@ -75,34 +75,9 @@ secondary_entities:
         name: sensor
         unit: "%"
         class: measurement
-  - entity: binary_sensor
-    name: Status
-    class: problem
-    category: diagnostic
-    dps:
-      - id: 19
-        type: bitfield
-        name: sensor
-        optional: true
-        mapping:
-          - dps_val: 0
-            value: false
-            icon: "mdi:check-circle-outline"
-          - dps_val: 1
-            value: E1
-            icon: "mdi:alert-circle-outline"
-          - dps_val: 2
-            value: E2
-            icon: "mdi:alert-circle-outline"
-          - dps_val: 4
-            value: Tank full
-            icon: "mdi:cup-water"
-          - dps_val: 8
-            value: Defrost
-            icon: "mdi:snowflake-melt"
   - entity: sensor
     name: Status
-    class: problem
+    class: enum
     category: diagnostic
     dps:
       - id: 19
@@ -110,7 +85,7 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: 0
-            value: false
+            value: Ok
             icon: "mdi:check-circle-outline"
           - dps_val: 1
             value: E1
