@@ -1,12 +1,10 @@
-name: ZC34T-03-3A Swing Arm Opener
+name: Window opener
 products:
   - id: ozttm5n6okadq7tq
-    name: ZC34T-03-3A Swing Arm Opener
-    model: ZC34T-03-3A
+    name: ZC34T-03-3A swing arm opener
 primary_entity:
   entity: cover
   class: window
-  name: Control
   dps:
     - id: 101
       type: string
@@ -18,26 +16,23 @@ primary_entity:
           value: close
         - dps_val: stop
           value: stop
+    - id: 105
+      type: string
+      name: fault
 secondary_entities:
-  - entity: switch
-    name: Lock
-    class: enum
+  - entity: lock
     dps:
       - id: 102
         type: string
-        name: switch
+        name: lock
         optional: true
         mapping:
           - dps_val: lock
-            value: lock
-            default: true
-            icon: "mdi:lock"
+            value: true
           - dps_val: unlock
-            value: unlock
-            icon: "mdi:lock-open-variant"
-  - entity: sensor
-    name: Window Current Status
-    class: enum
+            value: false
+  - entity: binary_sensor
+    class: window
     dps:
       - id: 1
         type: string
@@ -45,16 +40,13 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: open
-            value: open
-            default: true
-            icon: "mdi:window-open-variant"
+            value: true
           - dps_val: closed
-            value: closed
-            icon: "mdi:window-closed-variant"  
-                     
-  - entity: sensor
-    name: Wind and Rain Sensor
-    class: enum
+            value: false
+
+  - entity: binary_sensor
+    name: Wind and rain
+    class: moisture
     dps:
       - id: 104
         type: string
@@ -62,25 +54,23 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: rain
-            value: rain
-            icon: "mdi:weather-pouring"
-            default: true
+            value: true
           - dps_val: fine
-            icon: "mdi:weather-sunny"
-            value: fine            
-  - entity: sensor
+            value: false
+  - entity: binary_sensor
     name: Fault
-    class: enum
+    class: problem
     dps:
       - id: 105
         type: string
         name: sensor
         mapping:
-          - dps_val: "motor_fault"
-            value: motor_fault        
+          - dps_val: ""
+            value: false
+          - value: true
   - entity: switch
-    name: Send Wind/Rain Push Messages
-    class: enum
+    name: Push notifications
+    icon:"mdi:message-alert-outline"
     dps:
       - id: 106
         type: string
@@ -88,27 +78,14 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: open
-            value: "on"
+            value: true
           - dps_val: close
-            value: "off"
-  - entity: sensor
-    name: Window Status
-    class: enum
-    dps:
+            value: false
       - id: 107
         type: string
-        name: sensor
-        mapping:
-          - dps_val: "on"
-            value: true
-            icon: "mdi:window-open-variant"
-            default: true
-          - dps_val: "off"
-            value: false
-            icon: "mdi:window-closed-variant"  
+        name: notification
   - entity: switch
-    name: Wind and rain sensor detection switch
-    class: enum
+    name: Wind and rain detection
     icon: "mdi:weather-sunny-alert"
     dps:
       - id: 108
@@ -116,10 +93,6 @@ secondary_entities:
         name: switch
         mapping:
           - dps_val: "on"
-            value: on
-            icon: "mdi:weather-sunny-alert"
-            default: true
+            value: true
           - dps_val: "off"
-            value: off
-            icon: "mdi:weather-sunny-off"
-
+            value: false
