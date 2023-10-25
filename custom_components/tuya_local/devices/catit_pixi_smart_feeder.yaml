@@ -2,6 +2,8 @@ name: Pet feeder
 products:
   - id: 8vwr6rfoaaxncjwj
     name: Petoneer Nutri Mini
+  - id: pxwlmmdodfppms3a
+    name: GiotoHun Pet feeder
 primary_entity:
   entity: button
   name: Quick Feed
@@ -24,7 +26,6 @@ secondary_entities:
       - id: 15
         name: sensor
         type: integer
-        optional: false
   - entity: button
     class: restart
     name: Factory reset
@@ -45,7 +46,6 @@ secondary_entities:
         range:
           min: 1
           max: 12
-        optional: false
   - entity: binary_sensor
     name: Food shortage
     class: problem
@@ -71,4 +71,20 @@ secondary_entities:
         mapping:
           - dps_val: 4
             value: true
+          - value: false
+  - entity: binary_sensor
+    name: Feeding
+    class: running
+    icon: "mdi:paw"
+    category: diagnostic
+    dps:
+      - id: 4
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: feeding
+            value: true
+          - dps_val: null
+            value: null
           - value: false
