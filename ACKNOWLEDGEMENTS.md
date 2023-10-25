@@ -388,3 +388,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [kbirger](https://github.com/kbirger) for contributing support for Reiga 52 ceiling fan with light.
 - [scottfridwin](https://github.com/scottfridwin) for contributing compatibility improvements to RGB LED strip for Novostella branded LED strips.
 - [lnx85](https://github.com/lnx85) for contributing support for GiotoHun pet feeder (merged with Catit Pixi Smart feeder).
+- [dmitriy5181](https://github.com/dmitriy5181) for contributing support for Pro Breeze 30L dehumidifiers.
