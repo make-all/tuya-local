@@ -411,6 +411,7 @@ of device.
 - QS-WIFI-C01(BK) curtain module
 - SHerko curtain motor
 - Wistar roller blind controller
+- ZC34T-03-3A swing arm window opener
 - Zemismart curtain rail
 - Zemismart roller shade
 
