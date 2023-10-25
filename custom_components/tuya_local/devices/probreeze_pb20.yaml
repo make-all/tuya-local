@@ -1,4 +1,4 @@
-name: Pro Breeze Dehumidifier
+name: Dehumidifier
 products:
   - id: bfaa8cc446a9c7a142bp7o
     name: Pro Breeze PB-20
@@ -9,11 +9,6 @@ primary_entity:
     - id: 1
       name: switch
       type: boolean
-      mapping:
-        - dps_val: false
-          icon: "mdi:air-humidifier-off"
-        - dps_val: true
-          icon: "mdi:air-humidifier"
     - id: 2
       name: work_mode
       type: string
@@ -136,7 +131,7 @@ secondary_entities:
           - dps_val: "24"
             value: "24 hours"
   - entity: sensor
-    name: Remaining Time
+    name: Remaining time
     class: duration
     dps:
       - id: 13
