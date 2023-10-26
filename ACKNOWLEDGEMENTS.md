@@ -390,3 +390,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [lnx85](https://github.com/lnx85) for contributing support for GiotoHun pet feeder (merged with Catit Pixi Smart feeder).
 - [dmitriy5181](https://github.com/dmitriy5181) for contributing support for Pro Breeze 30L dehumidifiers.
 - [wrmacj](https://github.com/wrmacj) for assisting with support for Kennedy electric fireplaces.
+- [KTibow](https://github.com/KTibow) for assisting with support for RGBW lights using the modern standard dps layout.
