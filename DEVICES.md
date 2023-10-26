@@ -20,6 +20,7 @@
 - Heatstorm HS-6000-GC heavy duty heater
 - HJZ oil column radiator
 - INOW Wi-Fi heating element (single and dual air/water temperature control variants)
+- Kennedy II/JR electric fireplace
 - Kogan flame effect heater - KAWHMFP20BA model
 - Kogan tower heater - KASTHFP2KWA model
 - Kogan Wi-Fi convection panel heaters - KAHTP and KAWFHTP models
