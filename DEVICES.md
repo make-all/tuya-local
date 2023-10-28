@@ -10,8 +10,9 @@
 - Blumfeldt/Klarstein Cosmic Beam Smart 24 infrared radiant heater
 - BVF CP1 heater
 - Devola patio heater
-- Ecostrad Accent iQ heating panels
-- Ecostrad iQ ceramic radiators
+- Ecostrad Accent iQ heating panel
+- Ecostrad iQ ceramic radiator
+- Ecostrad iQ heating element
 - Eurom Alutherm 1000,1500,2000,2500 heaters
 - Eurom Mon Soleil 300,600,800, 350,601,720 and 300,450,720 Verre heaters
 - Eurom Sani Wall Heat 2000 heater
@@ -84,7 +85,7 @@
 
 ### Water heaters
 
-- Aquatech Rapid/X6 heat pump water heaters
+- Aquatech Rapid/X6 heat pump water heater
 - EMS Thermal 200L domestic heat pump hot water system
 - Geyserwise TSE1 Geyser controller kit
 - Hydrotherm Dynamic/X8 heat pump hot water systems
