@@ -99,7 +99,7 @@ class TuyaLocalSiren(TuyaLocalEntity, SirenEntity):
             # In tuya it is likely an integer or a fixed list of values.
             # For integer, expect scale and step to do the conversion,
             # for fixed values, we need to snap to closest value.
-            if self._volume_dp.values(self._device) is not None:
+            if self._volume_dp.values(self._device):
                 volume = min(
                     self._volume_dp.values(self._device),
                     key=lambda x: abs(x - volume),
