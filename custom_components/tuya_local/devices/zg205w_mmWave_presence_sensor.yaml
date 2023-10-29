@@ -28,6 +28,7 @@ secondary_entities:
       - id: 2
         type: integer
         name: value
+        optional: true
         range:
           min: 0
           max: 10
@@ -39,6 +40,7 @@ secondary_entities:
       - id: 3
         type: integer
         name: value
+        optional: true
         unit: m
         range:
           min: 0
@@ -55,6 +57,7 @@ secondary_entities:
         type: integer
         name: value
         unit: m
+        optional: true
         range:
           min: 0
           max: 600
@@ -77,6 +80,7 @@ secondary_entities:
       - id: 102
         type: integer
         name: value
+        optional: true
         range:
           min: 0
           max: 10
@@ -87,6 +91,7 @@ secondary_entities:
       - id: 103
         type: boolean
         name: switch
+        optional: true
   - entity: select
     name: Alarm mode
     class: enum
@@ -96,6 +101,7 @@ secondary_entities:
       - id: 104
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: armed
             value: Armed
@@ -111,6 +117,7 @@ secondary_entities:
       - id: 105
         type: integer
         name: value
+        optional: true
         unit: m
         range:
           min: 0
@@ -126,6 +133,7 @@ secondary_entities:
       - id: 106
         type: integer
         name: value
+        optional: true
         range:
           min: 0
           max: 10
@@ -138,6 +146,7 @@ secondary_entities:
       - id: 107
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: high
             value: High
@@ -155,6 +164,7 @@ secondary_entities:
       - id: 108
         type: integer
         name: value
+        optional: true
         unit: s
         range:
           min: 0
@@ -168,6 +178,7 @@ secondary_entities:
         type: integer
         name: value
         unit: min
+        optional: true
         range:
           min: 1
           max: 30
@@ -181,6 +192,7 @@ secondary_entities:
         type: integer
         name: value
         unit: m
+        optional: true
         range:
           min: 0
           max: 1000
@@ -197,6 +209,7 @@ secondary_entities:
         type: integer
         name: value
         unit: m
+        optional: true
         range:
           min: 0
           max: 1000
@@ -212,6 +225,7 @@ secondary_entities:
       - id: 112
         type: integer
         name: value
+        optional: true
         unit: m
         range:
           min: 0
@@ -228,6 +242,7 @@ secondary_entities:
       - id: 113
         type: integer
         name: value
+        optional: true
         unit: s
         range:
           min: 0
@@ -240,6 +255,7 @@ secondary_entities:
       - id: 114
         name: switch
         type: boolean
+        optional: true
   - entity: button
     name: Factory reset
     category: config
@@ -274,6 +290,7 @@ secondary_entities:
       - id: 117
         name: switch
         type: boolean
+        optional: true
   - entity: switch
     name: Breathing self-test
     category: config
@@ -282,6 +299,7 @@ secondary_entities:
       - id: 118
         name: switch
         type: boolean
+        optional: true
   - entity: number
     name: Motion false detection
     category: config
@@ -290,6 +308,7 @@ secondary_entities:
       - id: 119
         type: integer
         name: value
+        optional: true
         range:
           min: 0
           max: 10
@@ -301,3 +320,4 @@ secondary_entities:
       - id: 120
         name: switch
         type: boolean
+        optional: true
