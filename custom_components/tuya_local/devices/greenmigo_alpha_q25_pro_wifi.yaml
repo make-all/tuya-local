@@ -1,4 +1,7 @@
-name: Greenmigo Alpha Q25 Pro WiFi Dehumidifier
+name: Dehumidifier
+products:
+  - id: b9oyi2yofflroq1g
+    name: Alpha Q25 Pro WiFi Dehumidifier
 primary_entity:
   entity: humidifier
   class: dehumidifier
@@ -9,8 +12,10 @@ primary_entity:
       mapping:
         - dps_val: false
           icon: "mdi:air-humidifier-off"
+          icon_priority: 1
         - dps_val: true
           icon: "mdi:air-humidifier"
+          icon_priority: 3
     - id: 2
       name: humidity
       type: integer
@@ -53,20 +58,19 @@ primary_entity:
       mapping:
         - dps_val: 1
           icon: "mdi:alert-circle-outline"
-          icon_priority: 1
+          icon_priority: 2
         - dps_val: 2
           icon: "mdi:alert-circle-outline"
-          icon_priority: 1
+          icon_priority: 2
         - dps_val: 4
           icon: "mdi:cup-water"
-          icon_priority: 1
+          icon_priority: 2
         - dps_val: 8
           icon: "mdi:snowflake-melt"
-          icon_priority: 1
+          icon_priority: 2
 secondary_entities:
-  - entity: sensor
+  - entity: current_humidity
     name: Current humidity
-    deprecated: humidifier
     category: diagnostic
     class: humidity
     dps:
@@ -77,7 +81,6 @@ secondary_entities:
         class: measurement
   - entity: sensor
     name: Status
-    deprecated: humidifier
     class: enum
     category: diagnostic
     dps:
@@ -88,18 +91,23 @@ secondary_entities:
           - dps_val: 0
             value: Ok
             icon: "mdi:check-circle-outline"
+            icon_priority: 2
           - dps_val: 1
             value: E1
             icon: "mdi:alert-circle-outline"
+            icon_priority: 2
           - dps_val: 2
             value: E2
             icon: "mdi:alert-circle-outline"
+            icon_priority: 2
           - dps_val: 4
             value: Tank full
             icon: "mdi:cup-water"
+            icon_priority: 2
           - dps_val: 8
             value: Defrost
             icon: "mdi:snowflake-melt"
+            icon_priority: 2
   - entity: switch
     name: Swing
     icon: "mdi:cached"
