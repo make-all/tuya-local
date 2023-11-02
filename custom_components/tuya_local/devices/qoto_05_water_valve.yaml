@@ -1,4 +1,7 @@
-name: QOTO 05 Water Valve
+name: Water Valve
+products:
+  - id: arge1ptm
+    name: 
 primary_entity:
   entity: number
   icon: "mdi:pipe-valve"
@@ -25,7 +28,7 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     name: Auto Shutoff Time Remaining
-    icon: "mdi:timer"
+    class: duration
     dps:
       - id: 101
         name: sensor
@@ -34,26 +37,25 @@ secondary_entities:
   - entity: number
     category: config
     name: Auto Shutoff Timer
-    icon: "mdi:timer"
+    class: duration
     dps:
       - id: 11
         type: integer
         name: value
-        unit: s
+        unit: min
         range:
           min: 0
           max: 86399
   - entity: sensor
     category: diagnostic
-    name: Battery Life
-    icon: "mdi:battery"
+    class: battery
     dps:
       - id: 110
         name: sensor
         type: integer
         unit: "%"
   - entity: binary_sensor
-    name: Error
+    name: Fault
     category: diagnostic
     class: problem
     dps:
