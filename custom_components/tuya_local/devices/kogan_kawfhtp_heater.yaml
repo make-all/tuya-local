@@ -1,4 +1,7 @@
-name: Kogan glass panel heater
+name: Panel heater
+products:
+  - id: ynjanlglr4qa6dxf 
+    name: Kogan NPH-2000G-WIFI glass panel heater 
 primary_entity:
   entity: climate
   dps:
@@ -17,13 +20,10 @@ primary_entity:
       range:
         min: 5
         max: 40
-      name: temperature
+      name: target_temperature
     - id: 4
       type: integer
       name: current_temperature
-    - id: 5
-      type: integer
-      name: timer
     - id: 7
       type: string
       mapping:
@@ -47,8 +47,8 @@ secondary_entities:
             icon: "mdi:hand-back-right"
   - entity: number
     name: Timer
-    icon: "mdi:timer"
     category: config
+    class: duration
     dps:
       - id: 5
         type: integer
