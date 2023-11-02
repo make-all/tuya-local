@@ -1,4 +1,7 @@
-name: Kogan tower heater
+name: Tower heater
+products:
+  - id: jyota3jcxuelyf9t
+    name: Kogan tower heater
 primary_entity:
   entity: climate
   dps:
@@ -17,7 +20,7 @@ primary_entity:
       range:
         min: 10
         max: 35
-      name: temperature
+      name: target_temperature
     - id: 3
       type: integer
       name: current_temperature
@@ -99,7 +102,7 @@ secondary_entities:
           - dps_val: 12h
             value: "12 hours"
   - entity: binary_sensor
-    name: Error
+    name: Fault
     class: problem
     category: diagnostic
     dps:
