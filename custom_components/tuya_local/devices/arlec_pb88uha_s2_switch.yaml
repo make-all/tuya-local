@@ -1,4 +1,7 @@
-name: Arlec PB88UHA Series 2 Powerboard
+name: 4 Gang Powerboard
+products:
+  - id: vcbjjhz6pwwwkyek
+    name: Arlec PB88UHA Series 2 
 primary_entity:
   entity: switch
   name: Outlet 1
@@ -32,7 +35,7 @@ secondary_entities:
   - entity: number
     category: config
     name: Timer switch 1
-    icon: "mdi:timer"
+    class: duration
     dps:
       - id: 9
         name: value
@@ -47,7 +50,7 @@ secondary_entities:
   - entity: number
     category: config
     name: Timer switch 2
-    icon: "mdi:timer"
+    class: duration
     dps:
       - id: 10
         name: value
@@ -62,7 +65,7 @@ secondary_entities:
   - entity: number
     category: config
     name: Timer switch 3
-    icon: "mdi:timer"
+    class: duration
     dps:
       - id: 11
         name: value
@@ -77,7 +80,7 @@ secondary_entities:
   - entity: number
     category: config
     name: Timer switch 4
-    icon: "mdi:timer"
+    class: duration
     dps:
       - id: 12
         name: value
