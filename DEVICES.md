@@ -25,7 +25,7 @@
 - Kogan flame effect heater - KAWHMFP20BA model
 - Kogan tower heater - KASTHFP2KWA model
 - Kogan Wi-Fi convection panel heaters - KAHTP and KAWFHTP models
-- MRC Magnum floor heating 
+- MRC Magnum floor heating
 - Nedis convection heater - WIFIHTPL20F model
 - Orion OWH-PTC2000 heater
 - Princess 350 panel heater
@@ -412,6 +412,7 @@ of device.
 - LoraTap QCSC420W double curtain switch
 - LoraTap SC500W-V1 curtain switch (supports many other simple curtain/blind controllers)
 - M027 curtain module (sold under several brands, including zemismart, meterk and others)
+- Moes SCS80 Touch curtain swich with backlight and timing control
 - QS-WIFI-C01(BK) curtain module
 - SHerko curtain motor
 - Wistar roller blind controller
@@ -510,10 +511,10 @@ port and password.
 - Qoto 03 smart water valve / sprinkler controller
 - SD123 HPR01 human presence radar
 - SH07-8 smart sprinkler controller
-- Sunbeam dual heated mattress pad 
+- Sunbeam dual heated mattress pad
 - SWS-001 smart weather station
 - TH08 temperature and humidity sensor
-- TH16 temperature and humidity sensor 
+- TH16 temperature and humidity sensor
 - Tontine electric blanket
 - Universal remote control (supports sensors only)
 - Xiumii human presence radar
@@ -543,7 +544,7 @@ port and password.
 
 ### Devices supported via Zigbee hubs
 
-- Aubess temperature and humidity sensor 
+- Aubess temperature and humidity sensor
 - Intelbras IFR7000 door lock
 - Loginovo mmWave human presence sensor
 - LoraTap SC500ZB-V2 curtain controller
