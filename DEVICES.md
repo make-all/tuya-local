@@ -9,6 +9,7 @@
 - Betterlife BT1500 IR heater
 - Blumfeldt/Klarstein Cosmic Beam Smart 24 infrared radiant heater
 - BVF CP1 heater
+- Calex Smart Convector Heater
 - Devola patio heater
 - Ecostrad Accent iQ heating panel
 - Ecostrad iQ ceramic radiator
