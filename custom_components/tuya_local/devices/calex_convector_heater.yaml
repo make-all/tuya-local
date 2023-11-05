@@ -30,6 +30,23 @@ primary_entity:
       range:
         min: -20
         max: 50
+    - id: 11
+      name: hvac_action
+      type: string
+      mapping:
+        - dps_val: standby
+          constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: idle
+        - dps_val: working
+          value: heating
+    - id: 26
+      name: week_program
+      type: string
+      optional: true
     - id: 101
       name: preset_mode
       type: string
@@ -55,21 +72,6 @@ secondary_entities:
             icon: "mdi:hand-back-right-off"
           - dps_val: false
             icon: "mdi:hand-back-right"
-  - entity: sensor
-    name: Status
-    class: enum
-    category: diagnostic
-    dps:
-      - id: 11
-        name: sensor
-        type: string
-        mapping:
-          - dps_val: standby
-            value: standby
-            icon: "mdi:fire-off"
-          - dps_val: working
-            value: working
-            icon: "mdi:fire"
   - entity: select
     name: Timer
     icon: "mdi:timer"
@@ -130,14 +132,14 @@ secondary_entities:
           - dps_val: 24h
             value: 24 hours
   - entity: sensor
-    name: Timer left, min
+    name: Time remaining
     icon: "mdi:timer"
-    sensor: number
     category: diagnostic
     dps:
       - id: 20
         name: sensor
         type: integer
+        unit: min
   - entity: switch
     name: Night mode
     category: config
