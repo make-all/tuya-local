@@ -36,5 +36,6 @@ def main() -> int:
         for dp in dps_seen:
             print(f"  Missing {dp}: {dps[dp]}")
 
+
 if __name__ == "__main__":
     sys.exit(main())
