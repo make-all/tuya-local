@@ -91,19 +91,6 @@ secondary_entities:
             step: 60
   - entity: sensor
     category: diagnostic
-    name: Energy
-    dps:
-      - id: 17
-        name: sensor
-        type: integer
-        unit: Wh
-        readonly: true
-      - id: 25
-        type: integer
-        name: calibration
-        readonly: true
-  - entity: sensor
-    category: diagnostic
     class: current
     dps:
       - id: 18
@@ -159,19 +146,6 @@ secondary_entities:
       - id: 21
         type: bitfield
         name: factory_test
-        readonly: true
-        mapping:
-          - dps_val: 0
-            value: false
-          - value: true
-  - entity: binary_sensor
-    class: problem
-    category: diagnostic
-    name: Error
-    dps:
-      - id: 26
-        type: bitfield
-        name: sensor
         readonly: true
         mapping:
           - dps_val: 0
