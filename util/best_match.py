@@ -20,15 +20,25 @@ class FakeDevice:
 def main() -> int:
     dps = json.loads(" ".join(sys.argv[1:]))
     device = FakeDevice(dps)
+    best = 0
+    best_matches = set()
 
-    for match in possible_matches(dps):
+    for m in possible_matches(dps):
+        if m.match_quality(dps) > best:
+            best_matches.clear()
+            best = m.match_quality(dps)
+
+        if m.match_quality(dps) == best:
+            best_matches.add(m)
+
+    for m in best_matches:
         dps_seen = set(dps.keys())
-        print(f"{match.config_type} matched {match.match_quality(dps)}%")
-        print(f"  {match.primary_entity.config_id}:")
-        for dp in match.primary_entity.dps():
+        print(f"{m.config_type} matched {m.match_quality(dps)}%")
+        print(f"  {m.primary_entity.config_id}:")
+        for dp in m.primary_entity.dps():
             dps_seen.discard(dp.id)
             print(f"   {dp.name}: {dp.get_value(device)}")
-        for entity in match.secondary_entities():
+        for entity in m.secondary_entities():
             print(f"  {entity.config_id}:")
             for dp in entity.dps():
                 dps_seen.discard(dp.id)
