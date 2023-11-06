@@ -249,6 +249,13 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                 color_mode = ColorMode.COLOR_TEMP
 
             color_temp = params.get(ATTR_COLOR_TEMP_KELVIN)
+            # Light groups use the widest range from the lights in the
+            # group, so we are expected to silently handle out of range values
+            if color_temp < self.min_color_temp_kelvin:
+                color_temp = self.min_color_temp_kelvin
+            if color_temp > self.max_color_temp_kelvin:
+                color_temp = self.max_color_temp_kelvin
+
             _LOGGER.debug("Setting color temp to %d", color_temp)
             settings = {
                 **settings,
