@@ -176,20 +176,7 @@ secondary_entities:
   - entity: binary_sensor
     class: problem
     category: diagnostic
-    name: Test Bit
-    dps:
-      - id: 21
-        type: bitfield
-        name: factory_test
-        readonly: true
-        mapping:
-          - dps_val: 0
-            value: false
-          - value: true
-  - entity: binary_sensor
-    class: problem
-    category: diagnostic
-    name: Error
+    name: Fault
     dps:
       - id: 26
         type: bitfield
