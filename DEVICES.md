@@ -278,13 +278,13 @@
 ### SmartPlugs/Wall sockets/Wall switches
 
 Most smartplugs follow a fairly standard template from Tuya, so many
-will work with other brands configs.  However there are many
+will work with other brands configs. However there are many
 permutations of features enabled, and some manufacturers move
 datapoints around so smartplugs take up a lot more configurations than
-such simple devices should.  A future release will look at
-consolidating these into a smaller number of configs.  When you add a device,
+such simple devices should. A future release will look at
+consolidating these into a smaller number of configs. When you add a device,
 the default selected option for the device type has the most matching
-datapoints, so provided it looks like the same  type of device, it is probably
+datapoints, so provided it looks like the same type of device, it is probably
 the best option.
 
 - Acme SH3305 powerstrip (2 x 3 outlet switch + USB switch)
@@ -383,6 +383,7 @@ of device.
 - Moes motion sensor lights (XZ-CGV3)
 - Moes star projector
 - MoesGo dimmer switch
+- Nedis Smart LED Strip
 - Space Dog Music Lamp (works for Aurora Smart Galaxy Star)
 - Tampa Magnetic LED System CD-TY-WY05
 - Teberno LED strip light (LGC-005 OEM3)
@@ -462,7 +463,7 @@ of device.
 ### Cameras
 
 Note that this integration does not include any support for video
-streams.  Some cameras that provide local feeds may be able to be
+streams. Some cameras that provide local feeds may be able to be
 configured using RTSP or ONVIF feeds if they have static IP address,
 port and password.
 
@@ -558,8 +559,8 @@ port and password.
 - ZTH08ZTU temperature and humidity sensor
 
 NOTE: this project does not intend to expand the scope to support non-Tuya
-devices via Tuya hubs.  Though it may be techincally feasible to do such a
+devices via Tuya hubs. Though it may be techincally feasible to do such a
 thing, it expands the support requirements beyond the capacity of the
-volunteer manpower of this project.  The community would be better served by
+volunteer manpower of this project. The community would be better served by
 making Tuya devices work with the standard BLE and Zigbee support in
 Home Assistant rather than the other way around.
