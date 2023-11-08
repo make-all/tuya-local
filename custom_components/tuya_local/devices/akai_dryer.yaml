@@ -1,0 +1,118 @@
+name: Akai Heat Pump Dryer
+products:
+  - id: do3cbzmmdqfdpqxw
+    name: Akai Heat Pump Dryer
+primary_entity:
+  entity: sensor
+  class: enum
+  dps:
+    - id: 107
+      name: sensor # state
+      type: string
+      mapping:
+        - dps_val: "off"
+          value: "off"
+        - dps_val: "set"
+          value: "set"
+        - dps_val: "run"
+          value: "run"
+        - dps_val: "pause"
+          value: "pause"
+        - dps_val: "delay"
+          value: "delay"
+        - dps_val: "end"
+          value: "end"
+        - dps_val: "err"
+          value: "error"
+    - id: 7
+      name: error # fault
+      type: integer
+secondary_entities:
+  - entity: button
+    name: Start
+    dps:
+      - id: 105
+        name: button # start
+        type: boolean
+  - entity: select
+    class: enum
+    name: Drying Mode
+    dps:
+      - id: 5
+        name: option # drying_mode
+        type: string
+        mapping:
+          - dps_val: "OFF"
+            value: "Off"
+          - dps_val: "Standard"
+            value: "Standard"
+          - dps_val: "Cotton"
+            value: "Cotton"
+          - dps_val: "Synthetic"
+            value: "Synthetic"
+          - dps_val: "Bulky_Ttem"
+            value: "Bulky Item"
+          - dps_val: "Towel"
+            value: "Towel"
+          - dps_val: "Wool"
+            value: "Wool"
+          - dps_val: "Duvet"
+            value: "Duvet"
+          - dps_val: "Baby_Care"
+            value: "Baby Care"
+          - dps_val: "Warm_Air"
+            value: "Warm Air"
+          - dps_val: "Refresh"
+            value: "Refresh"
+          - dps_val: "Time"
+            value: "Time"
+          - dps_val: "Underwear"
+            value: "Underwear"
+          - dps_val: "Denim"
+            value: "Denim"
+          - dps_val: "Shirts"
+            value: "Shirts"
+          - dps_val: "Sportswear"
+            value: "Sportswear"
+  - entity: select
+    class: enum
+    name: Drying Level
+    dps:
+      - id: 101
+        name: option # drying_level
+        type: integer
+        mapping:
+          - dps_val: 0
+            value: "Auto"
+          - dps_val: 1
+            value: "Low"
+          - dps_val: 2
+            value: "Medium"
+          - dps_val: 3
+            value: "High"
+  - entity: switch
+    name: Anti Crease
+    dps:
+      - id: 103
+        name: switch # anti_crease
+        type: boolean
+  - entity: switch
+    name: Lock
+    dps:
+      - id: 106
+        name: switch # lock
+        type: boolean
+  - entity: sensor
+    name: Drying Time
+    dps:
+      - id: 3
+        name: sensor # drying_time
+        type: integer
+        unit: min
+  - entity: sensor
+    name: Drying Time Left
+    dps:
+      - id: 4
+        name: sensor # drying_time_left
+        type: integer
+        unit: min
