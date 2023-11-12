@@ -9,7 +9,7 @@
 - Betterlife BT1500 IR heater
 - Blumfeldt/Klarstein Cosmic Beam Smart 24 infrared radiant heater
 - BVF CP1 heater
-- Calex Smart Convector Heater
+- Calex Smart Convector heater
 - Devola patio heater
 - Ecostrad Accent iQ heating panel
 - Ecostrad iQ ceramic radiator
@@ -150,6 +150,7 @@
 - Fanco Eco Silent Deluxe ceiling fan with LED light
 - Goldair GCPF315 fan
 - Goldair Platinum tower fan (2 variants)
+- HYD WeAir Plus bladeless fan with heating function
 - Immax Neo Lite Vento ceiling fan with light
 - Ledkia fan and light controller
 - Lexy F501 fan
@@ -215,6 +216,7 @@
 - Kogan SmarterHome 7L desiccant dehumidifier
 - Pro Breeze 30L dehumidifier
 - Shinco 30D dehumidifier (also matches Klarstein DryFy Connect)
+- VacPlus dehumidifier
 
 ### Humidifiers
 
@@ -348,6 +350,7 @@ of device.
 - Generic double switch with timers (confirmed with Living dual switch and another v2 variant with Avatto dual switch)
 - Generic triple and quad switches (confirmed with Songam wall switches)
 - Generic triple and quad switches with timers (confirmed with Pearl Xystec USB hub).
+- Generic quad powerstrip with uSB and power monitoring (confirmed with EKF Connect Pro)
 - Simple switch - a switch only, can be a fallback for many other unsupported devices, to allow just power to be switched on/off.
 - Simple switch with timer - a single switch and timer, will probably work for a lot of smart switches that are not covered by the more advanced configs above.
 - Simple switch with timer v2 - the above with timer moved from dp 11 to 9, confirmed with a Nexxt 220V smart switch.
@@ -509,8 +512,9 @@ port and password.
 - PGST PA-010 indoor temperature and humidity sensor
 - PH-W218 water quality monitor
 - PV28-CW 8 in 1 air quality monitor
-- Rojeco PTM-001 pet feeder
+- Rojeco PTM-001 pet feeder (two versions)
 - Qoto 03 smart water valve / sprinkler controller
+- Qoto 05 smart water valve / sprinkler controller
 - SD123 HPR01 human presence radar
 - SH07-8 smart sprinkler controller
 - Sunbeam dual heated mattress pad
