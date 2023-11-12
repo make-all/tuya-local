@@ -12,14 +12,7 @@ primary_entity:
         - dps_val: false
           value: "off"
         - dps_val: true
-          constraint: work_mode
-          conditions:
-            - dps_val: level1
-              value: fan_only
-            - dps_val: level2
-              value: heat
-            - dps_val: level3
-              value: heat
+          value: heat
     - id: 2
       type: integer
       name: temperature
@@ -40,6 +33,8 @@ primary_entity:
         - dps_val: false
           constraint: work_mode
           conditions:
+            - dps_val: "level1"
+              value: Fan only
             - dps_val: "level2"
               value: comfort
             - dps_val: "level3"
@@ -56,8 +51,8 @@ primary_entity:
           value: "on"
 secondary_entities:
   - entity: switch
-    name: Light
-    category: diagnostic
+    name: Mode indicator
+    category: config
     dps:
       - id: 10
         type: boolean
