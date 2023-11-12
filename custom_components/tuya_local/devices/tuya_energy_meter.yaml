@@ -1,11 +1,11 @@
-name: Tuya Wifi Energy Consumption Meter
+name: Energy meter
 products:
   - id: 79a7z01v3n35kytb
     name: V-WIFI-DL02-ES
 primary_entity:
   entity: sensor
   category: diagnostic
-  name: Total Energy
+  name: Total energy
   class: energy
   dps:
     - id: 123
@@ -16,7 +16,7 @@ primary_entity:
       mapping:
         - scale: 1000
     - id: 103
-      name: Device State
+      name: Device state
       type: string
       mapping:
         - dps_val: close
@@ -70,7 +70,7 @@ secondary_entities:
           - scale: 10
   - entity: sensor
     category: diagnostic
-    name: Total Energy A
+    name: Total energy A
     class: energy
     dps:
       - id: 108
@@ -82,7 +82,7 @@ secondary_entities:
           - scale: 1000
   - entity: sensor
     category: diagnostic
-    name: Today Energy A
+    name: Today energy A
     class: energy
     dps:
       - id: 109
@@ -133,7 +133,7 @@ secondary_entities:
           - scale: 10
   - entity: sensor
     category: diagnostic
-    name: Total Energy B
+    name: Total energy B
     class: energy
     dps:
       - id: 118
@@ -145,7 +145,7 @@ secondary_entities:
           - scale: 1000
   - entity: sensor
     category: diagnostic
-    name: Today Energy B
+    name: Today energy B
     class: energy
     dps:
       - id: 119
