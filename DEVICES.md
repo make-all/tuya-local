@@ -269,6 +269,7 @@
 - SmartMCB SMT006 energy meter (10 byte and 8 byte phase info variants)
 - Taxnele circuit breaker and energy meter
 - TOMPD-63LW energy meter circuit breaker
+- V-WIFI-DL02-ES energy consumption clamp meter
 - WDYK 2P63A energy meter
 - WDYK 3 phase 4 pole 400V energy meter circuit breaker
 
@@ -506,6 +507,7 @@ port and password.
 - Kogan KAWHTNOSLPA white noise sleep aid
 - Konlen/Rockson WF96L water level controller
 - Mirabella Genio motion sensor
+- Momcozy white noise machine (2 variants)
 - Nedis pet feeder
 - Nedis WIFISA10CWT air quality monitor
 - Petlibro PLAF203 camera pet feeder

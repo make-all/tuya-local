@@ -393,9 +393,9 @@ Further device support has been made with the assistance of users.  Please consi
 - [KTibow](https://github.com/KTibow) for assisting with support for RGBW lights using the modern standard dps layout.
 - [jacobpennington821](https://github.com/jacobpennington821) for contributing support for Ecostrad iQ heating elements.
 - [Privatecoder](https://github.com/Privatecoder) for contributing support for Greenmigo Alpha Q25 dehumidifiers.
-- [bdf0506](https://github.com/bdf0506) for contributing support for VacPlus dehumidifiers.
+- [bdf0506](https://github.com/bdf0506) for contributing support for VacPlus dehumidifiers and Momcozy white noise machines.
 - [bullmastiffo](https://github.com/bullmastiffo) for contributing support for Moes curtain switches and Calex heaters.
 - [Strixx76](https://github.com/Strixx76) for contributing support for Nedis LED strips.
 - [ciaranj](https://github.com/ciaranj) for contributing support for a second variant of Rojeco PTM-100 pet feeder.
-- [xzeertacat](https://github.com/xzeertacat) for contributing support for HYD WeAir Plus fans.
+- [xzeertacat](https://github.com/xzeertacat) for contributing support for HYD WeAir Plus fans and V-WIFI-DL02-ES energy meters.
 - [ahydrax](https://github.com/ahydrax) for contributing support for EKF powerstrips (rolled into a generic quad powerstrip with USB).
