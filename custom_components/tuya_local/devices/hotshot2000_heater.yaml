@@ -12,7 +12,14 @@ primary_entity:
         - dps_val: false
           value: "off"
         - dps_val: true
-          value: heat
+          constraint: work_mode
+          conditions:
+            - dps_val: level1
+              value: fan_only
+            - dps_val: level2
+              value: heat
+            - dps_val: level3
+              value: heat
     - id: 2
       type: integer
       name: temperature
@@ -34,7 +41,8 @@ primary_entity:
           constraint: work_mode
           conditions:
             - dps_val: "level1"
-              value: Fan only
+              value: none
+              hidden: true
             - dps_val: "level2"
               value: comfort
             - dps_val: "level3"
