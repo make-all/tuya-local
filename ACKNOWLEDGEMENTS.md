@@ -399,3 +399,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [ciaranj](https://github.com/ciaranj) for contributing support for a second variant of Rojeco PTM-100 pet feeder.
 - [xzeertacat](https://github.com/xzeertacat) for contributing support for HYD WeAir Plus fans and V-WIFI-DL02-ES energy meters.
 - [ahydrax](https://github.com/ahydrax) for contributing support for EKF powerstrips (rolled into a generic quad powerstrip with USB).
+- [cenkalti](https://github.com/cenkalti) for assisting with support for Petlibro PLAF103 feeders.

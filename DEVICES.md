@@ -483,6 +483,16 @@ port and password.
 - ZX-DB11 doorbell and alarm system
 - ZX-G30 alarm system
 
+### Pet feeders
+
+- Catit Pixi smart fountain
+- Catit pet feeder (Pixi 2.2kg dispenser and 6 meal versions, and another non-Pixi branded single dispenser)
+- Ceres Plus pet feeder with camera
+- Nedis pet feeder
+- Petlibro PLAF103 pet feeder
+- Petlibro PLAF203 pet feeder with camera
+- Rojeco PTM-001 pet feeder (two versions)
+
 ### Miscellaneous
 
 - generic PIR motion sensor
@@ -492,9 +502,6 @@ port and password.
 - Aubess Rainpoint TTP106W irrigation system
 - Brennenstuhl WFD3050P PIR motion activated CCT spotlight
 - Bresser smart 7-in-1 weather station
-- Catit Pixi smart fountain
-- Catit pet feeder (Pixi 2.2kg dispenser and 6 meal versions, and another non-Pixi branded single dispenser)
-- Ceres Plus pet feeder with camera
 - CO2-Box air quality monitor
 - CT20W PIR motion detector
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
@@ -508,13 +515,10 @@ port and password.
 - Konlen/Rockson WF96L water level controller
 - Mirabella Genio motion sensor
 - Momcozy white noise machine (2 variants)
-- Nedis pet feeder
 - Nedis WIFISA10CWT air quality monitor
-- Petlibro PLAF203 camera pet feeder
 - PGST PA-010 indoor temperature and humidity sensor
 - PH-W218 water quality monitor
 - PV28-CW 8 in 1 air quality monitor
-- Rojeco PTM-001 pet feeder (two versions)
 - Qoto 03 smart water valve / sprinkler controller
 - Qoto 05 smart water valve / sprinkler controller
 - SD123 HPR01 human presence radar
