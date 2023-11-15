@@ -43,9 +43,6 @@ primary_entity:
       optional: true
       type: integer
       name: min_temperature
-      range:
-        min: 5
-        max: 20
     - id: 36
       type: string
       name: hvac_action
@@ -85,8 +82,6 @@ secondary_entities:
         range:
           min: -9
           max: 9
-        optional: true
-        force: true
   - entity: switch
     name: Anti-frost
     icon: "mdi:snowflake-melt"
