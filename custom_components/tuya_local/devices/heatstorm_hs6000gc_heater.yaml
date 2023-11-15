@@ -39,11 +39,11 @@ primary_entity:
       type: string
       name: preset_mode
       mapping:
-        - dps_val: auto
+        - dps_val: Auto
           value: comfort
-        - dps_val: low
+        - dps_val: Low
           value: eco
-        - dps_val: high
+        - dps_val: High
           value: boost
     - id: 13
       type: bitfield
@@ -58,7 +58,11 @@ primary_entity:
     - id: 19
       type: string
       name: temperature_unit
-      hidden: true
+      mapping:
+        - dps_val: c
+          value: C
+        - dps_val: f
+          value: F
     - id: 20
       type: integer
       name: set_temp_f

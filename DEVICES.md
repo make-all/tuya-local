@@ -9,9 +9,11 @@
 - Betterlife BT1500 IR heater
 - Blumfeldt/Klarstein Cosmic Beam Smart 24 infrared radiant heater
 - BVF CP1 heater
+- Calex Smart Convector heater
 - Devola patio heater
-- Ecostrad Accent iQ heating panels
-- Ecostrad iQ ceramic radiators
+- Ecostrad Accent iQ heating panel
+- Ecostrad iQ ceramic radiator
+- Ecostrad iQ heating element
 - Eurom Alutherm 1000,1500,2000,2500 heaters
 - Eurom Mon Soleil 300,600,800, 350,601,720 and 300,450,720 Verre heaters
 - Eurom Sani Wall Heat 2000 heater
@@ -20,10 +22,11 @@
 - Heatstorm HS-6000-GC heavy duty heater
 - HJZ oil column radiator
 - INOW Wi-Fi heating element (single and dual air/water temperature control variants)
+- Kennedy II/JR electric fireplace
 - Kogan flame effect heater - KAWHMFP20BA model
 - Kogan tower heater - KASTHFP2KWA model
 - Kogan Wi-Fi convection panel heaters - KAHTP and KAWFHTP models
-- MRC Magnum floor heating 
+- MRC Magnum floor heating
 - Nedis convection heater - WIFIHTPL20F model
 - Orion OWH-PTC2000 heater
 - Princess 350 panel heater
@@ -83,7 +86,7 @@
 
 ### Water heaters
 
-- Aquatech Rapid/X6 heat pump water heaters
+- Aquatech Rapid/X6 heat pump water heater
 - EMS Thermal 200L domestic heat pump hot water system
 - Geyserwise TSE1 Geyser controller kit
 - Hydrotherm Dynamic/X8 heat pump hot water systems
@@ -147,6 +150,7 @@
 - Fanco Eco Silent Deluxe ceiling fan with LED light
 - Goldair GCPF315 fan
 - Goldair Platinum tower fan (2 variants)
+- HYD WeAir Plus bladeless fan with heating function
 - Immax Neo Lite Vento ceiling fan with light
 - Ledkia fan and light controller
 - Lexy F501 fan
@@ -201,6 +205,7 @@
 - Eeese Otto dehumidifier
 - Goldair GPDH340 dehumidifier
 - Goldair GPDH420 dehumidifier
+- Greenmigo Alpha Q25 dehumidifier
 - Honeywell TP(30/50/70) dehumidifiers
 - Hyundai Sahara dehumidifier
 - Inventor Atmosphere XL dehumidifier
@@ -209,7 +214,9 @@
 - JJPro JPD02 dehumidifier
 - Klarstein DryFy Pro Connect dehumidifier
 - Kogan SmarterHome 7L desiccant dehumidifier
+- Pro Breeze 30L dehumidifier
 - Shinco 30D dehumidifier (also matches Klarstein DryFy Connect)
+- VacPlus dehumidifier
 
 ### Humidifiers
 
@@ -262,6 +269,7 @@
 - SmartMCB SMT006 energy meter (10 byte and 8 byte phase info variants)
 - Taxnele circuit breaker and energy meter
 - TOMPD-63LW energy meter circuit breaker
+- V-WIFI-DL02-ES energy consumption clamp meter
 - WDYK 2P63A energy meter
 - WDYK 3 phase 4 pole 400V energy meter circuit breaker
 
@@ -273,13 +281,13 @@
 ### SmartPlugs/Wall sockets/Wall switches
 
 Most smartplugs follow a fairly standard template from Tuya, so many
-will work with other brands configs.  However there are many
+will work with other brands configs. However there are many
 permutations of features enabled, and some manufacturers move
 datapoints around so smartplugs take up a lot more configurations than
-such simple devices should.  A future release will look at
-consolidating these into a smaller number of configs.  When you add a device,
+such simple devices should. A future release will look at
+consolidating these into a smaller number of configs. When you add a device,
 the default selected option for the device type has the most matching
-datapoints, so provided it looks like the same  type of device, it is probably
+datapoints, so provided it looks like the same type of device, it is probably
 the best option.
 
 - Acme SH3305 powerstrip (2 x 3 outlet switch + USB switch)
@@ -343,6 +351,7 @@ of device.
 - Generic double switch with timers (confirmed with Living dual switch and another v2 variant with Avatto dual switch)
 - Generic triple and quad switches (confirmed with Songam wall switches)
 - Generic triple and quad switches with timers (confirmed with Pearl Xystec USB hub).
+- Generic quad powerstrip with uSB and power monitoring (confirmed with EKF Connect Pro)
 - Simple switch - a switch only, can be a fallback for many other unsupported devices, to allow just power to be switched on/off.
 - Simple switch with timer - a single switch and timer, will probably work for a lot of smart switches that are not covered by the more advanced configs above.
 - Simple switch with timer v2 - the above with timer moved from dp 11 to 9, confirmed with a Nexxt 220V smart switch.
@@ -356,7 +365,7 @@ of device.
 - Generic CCT lightbulb (supporting color temperature and brightness)
 - Generic dimmable light (2 types, using dp 1,2 and 20,22)
 - Generic RGBCW/RGBWW lightbulb (confirmed with Lijun branded bulb, expected to match others also). Three versions - standard dps layout starting from 20, with and without scene/music modes and timer, and a non-standard layout starting from 1 but following the same pattern (tested with "A60" bulbs).
-- Generic RGBW lightbulb in the non-standard pattern above but without color temperature control.
+- Generic RGBW lightbulb in the standard and non-standard patterns above but without color temperature control.
 - Generic dimmable/color temperature adjustable desktop lamp (confirmed with Setti+ SL601)
 - A60 1800-2700K RGBWW light
 - Atomi smart color string light
@@ -378,6 +387,7 @@ of device.
 - Moes motion sensor lights (XZ-CGV3)
 - Moes star projector
 - MoesGo dimmer switch
+- Nedis Smart LED Strip
 - Space Dog Music Lamp (works for Aurora Smart Galaxy Star)
 - Tampa Magnetic LED System CD-TY-WY05
 - Teberno LED strip light (LGC-005 OEM3)
@@ -408,9 +418,11 @@ of device.
 - LoraTap QCSC420W double curtain switch
 - LoraTap SC500W-V1 curtain switch (supports many other simple curtain/blind controllers)
 - M027 curtain module (sold under several brands, including zemismart, meterk and others)
+- Moes SCS80 Touch curtain swich with backlight and timing control
 - QS-WIFI-C01(BK) curtain module
 - SHerko curtain motor
 - Wistar roller blind controller
+- ZC34T-03-3A swing arm window opener
 - Zemismart curtain rail
 - Zemismart roller shade
 
@@ -455,7 +467,7 @@ of device.
 ### Cameras
 
 Note that this integration does not include any support for video
-streams.  Some cameras that provide local feeds may be able to be
+streams. Some cameras that provide local feeds may be able to be
 configured using RTSP or ONVIF feeds if they have static IP address,
 port and password.
 
@@ -471,6 +483,16 @@ port and password.
 - ZX-DB11 doorbell and alarm system
 - ZX-G30 alarm system
 
+### Pet feeders
+
+- Catit Pixi smart fountain
+- Catit pet feeder (Pixi 2.2kg dispenser and 6 meal versions, and another non-Pixi branded single dispenser)
+- Ceres Plus pet feeder with camera
+- Nedis pet feeder
+- Petlibro PLAF103 pet feeder
+- Petlibro PLAF203 pet feeder with camera
+- Rojeco PTM-001 pet feeder (two versions)
+
 ### Miscellaneous
 
 - generic PIR motion sensor
@@ -480,9 +502,6 @@ port and password.
 - Aubess Rainpoint TTP106W irrigation system
 - Brennenstuhl WFD3050P PIR motion activated CCT spotlight
 - Bresser smart 7-in-1 weather station
-- Catit Pixi smart fountain
-- Catit pet feeder (Pixi 2.2kg dispenser and 6 meal versions, and another non-Pixi branded single dispenser)
-- Ceres Plus pet feeder with camera
 - CO2-Box air quality monitor
 - CT20W PIR motion detector
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
@@ -495,20 +514,19 @@ port and password.
 - Kogan KAWHTNOSLPA white noise sleep aid
 - Konlen/Rockson WF96L water level controller
 - Mirabella Genio motion sensor
-- Nedis pet feeder
+- Momcozy white noise machine (2 variants)
 - Nedis WIFISA10CWT air quality monitor
-- Petlibro PLAF203 camera pet feeder
 - PGST PA-010 indoor temperature and humidity sensor
 - PH-W218 water quality monitor
 - PV28-CW 8 in 1 air quality monitor
-- Rojeco PTM-001 pet feeder
 - Qoto 03 smart water valve / sprinkler controller
+- Qoto 05 smart water valve / sprinkler controller
 - SD123 HPR01 human presence radar
 - SH07-8 smart sprinkler controller
-- Sunbeam dual heated mattress pad 
+- Sunbeam dual heated mattress pad
 - SWS-001 smart weather station
 - TH08 temperature and humidity sensor
-- TH16 temperature and humidity sensor 
+- TH16 temperature and humidity sensor
 - Tontine electric blanket
 - Universal remote control (supports sensors only)
 - Xiumii human presence radar
@@ -518,6 +536,7 @@ port and password.
 - ZN-2C09 9-in-1 air quality monitor
 - ZX-GS21 gas leak alarm monitor
 - ZY-M100-WiFi mmWave human presence sensor
+- ZY-M201-WiFi mmWave human presence sensor
 
 ### Devices supported via Bluetooth hubs
 
@@ -537,7 +556,7 @@ port and password.
 
 ### Devices supported via Zigbee hubs
 
-- Aubess temperature and humidity sensor 
+- Aubess temperature and humidity sensor
 - Intelbras IFR7000 door lock
 - Loginovo mmWave human presence sensor
 - LoraTap SC500ZB-V2 curtain controller
@@ -550,8 +569,8 @@ port and password.
 - ZTH08ZTU temperature and humidity sensor
 
 NOTE: this project does not intend to expand the scope to support non-Tuya
-devices via Tuya hubs.  Though it may be techincally feasible to do such a
+devices via Tuya hubs. Though it may be techincally feasible to do such a
 thing, it expands the support requirements beyond the capacity of the
-volunteer manpower of this project.  The community would be better served by
+volunteer manpower of this project. The community would be better served by
 making Tuya devices work with the standard BLE and Zigbee support in
 Home Assistant rather than the other way around.

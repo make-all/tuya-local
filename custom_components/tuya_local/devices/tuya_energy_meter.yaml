@@ -1,0 +1,157 @@
+name: Energy meter
+products:
+  - id: 79a7z01v3n35kytb
+    name: V-WIFI-DL02-ES
+primary_entity:
+  entity: sensor
+  category: diagnostic
+  name: Total energy
+  class: energy
+  dps:
+    - id: 123
+      name: sensor
+      type: integer
+      unit: kWh
+      class: total_increasing
+      mapping:
+        - scale: 1000
+    - id: 103
+      name: Device state
+      type: string
+      mapping:
+        - dps_val: close
+          value: close
+          default: true
+        - dps_val: monitor
+          value: monitor
+        - dps_val: working
+          value: working
+        - dps_val: warning
+          value: warning
+secondary_entities:
+  - entity: sensor
+    name: Power A
+    category: diagnostic
+    class: power
+    dps:
+      - id: 105
+        name: sensor
+        type: integer
+        unit: W
+        force: true
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Current A
+    category: diagnostic
+    class: current
+    dps:
+      - id: 106
+        name: sensor
+        type: integer
+        unit: A
+        class: measurement
+        force: true
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Voltage A
+    category: diagnostic
+    class: voltage
+    dps:
+      - id: 107
+        name: sensor
+        type: integer
+        unit: V
+        class: measurement
+        force: true
+        mapping:
+          - scale: 10
+  - entity: sensor
+    category: diagnostic
+    name: Total energy A
+    class: energy
+    dps:
+      - id: 108
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    name: Today energy A
+    class: energy
+    dps:
+      - id: 109
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Power B
+    category: diagnostic
+    class: power
+    dps:
+      - id: 115
+        name: sensor
+        type: integer
+        unit: W
+        force: true
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Current B
+    category: diagnostic
+    class: current
+    dps:
+      - id: 116
+        name: sensor
+        type: integer
+        unit: A
+        class: measurement
+        force: true
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Voltage B
+    category: diagnostic
+    class: voltage
+    dps:
+      - id: 117
+        name: sensor
+        type: integer
+        unit: V
+        class: measurement
+        force: true
+        mapping:
+          - scale: 10
+  - entity: sensor
+    category: diagnostic
+    name: Total energy B
+    class: energy
+    dps:
+      - id: 118
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    name: Today energy B
+    class: energy
+    dps:
+      - id: 119
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 1000
