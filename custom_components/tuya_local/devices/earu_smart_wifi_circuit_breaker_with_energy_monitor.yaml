@@ -1,7 +1,7 @@
-name: EARU SW RCB
 products:
   - id: ine4hhapkgxonij1
-# https://www.aliexpress.com/item/1005004894566311.html
+    name: EARU smart breaker
+    # https://www.aliexpress.com/item/1005004894566311.html
   
 primary_entity:
   entity: switch
@@ -26,8 +26,6 @@ secondary_entities:
     dps:
       - id: 1
         type: integer
-        readonly: true
-        persist: true
         unit: kWh
         class: total_increasing
         name: sensor
