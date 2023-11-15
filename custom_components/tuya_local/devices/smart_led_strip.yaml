@@ -1,0 +1,157 @@
+name: Smart LED Strip
+products:
+  - id: oblx20mxzsclpahi
+    name: Nedis Smart LED Strip
+primary_entity:
+  entity: light
+  dps:
+    - id: 20
+      type: boolean
+      name: switch
+    - id: 21
+      type: string
+      name: color_mode
+      mapping:
+        - dps_val: white
+          value: color_temp
+        - dps_val: colour
+          value: hs
+        - dps_val: scene
+          value: Scene
+        - dps_val: music
+          value: Music
+    - id: 22
+      name: brightness
+      type: integer
+      optional: true
+      range:
+        min: 10
+        max: 1000
+      mapping:
+        - dps_val: null
+          value: 0
+        - scale: 3.92
+    - id: 23
+      name: color_temp
+      type: integer
+      optional: true
+      range:
+        min: 0
+        max: 1000
+      invert: true
+      mapping:
+        - target_range:
+            min: 2700
+            max: 6500
+    - id: 24
+      name: rgbhsv
+      type: hex
+      optional: true
+      format:
+        - name: h
+          bytes: 2
+          range:
+            min: 0
+            max: 360
+        - name: s
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+        - name: v
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+secondary_entities:
+  - entity: number
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 26
+        name: value
+        type: integer
+        unit: min
+        optional: true
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+          - dps_val: null
+  - entity: select
+    name: Scene
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 25
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "000e0d0000000000000000c80000"
+            value: "Good Night"
+          - dps_val: "010e0d0000000000000003e801f4"
+            value: "Reading"
+          - dps_val: "020e0d0000000000000003e803e8"
+            value: "Working"
+          - dps_val: "030e0d0000000000000001f401f4"
+            value: "Leisure"
+          - dps_val: "04464602007803e803e800000000464602007803e8000a00000000"
+            value: "Grassland"
+          - dps_val: "05464601000003e803e800000000464601007803e803e80000000046460100f003e803e800000000464601003d03e803e80000000046460100ae03e803e800000000464601011303e803e800000000"
+            value: "Colorful"
+          - dps_val: "06464601000003e803e800000000464601007803e803e80000000046460100f003e803e800000000"
+            value: "Dazzling"
+          - dps_val: "07464602000003e803e800000000464602007803e803e80000000046460200f003e803e800000000464602003d03e803e80000000046460200ae03e803e800000000464602011303e803e800000000"
+            value: "Gorgeous"
+          - dps_val: "2946460200000000000003e800d246460200000000000000c800d2"
+            value: "Soft"
+          - dps_val: "2a23230100000000000003e800d223230100000000000000c800d2"
+            value: "Dynamic"
+          - dps_val: "08000000001e0320012c00000000"
+            value: "Night Light"
+          - dps_val: "1446460200ae03e803e80000000046460200b4012c03e80000000046460200b4003203e800000000"
+            value: "Blue Sky"
+          - dps_val: "1532320200f003e800640000000032320200f003e803e800000000464602012703e802ee00000000555502000003e803e800000000464602001302ee03e8000000004646020032025803e800000000323202005a038403e800000000"
+            value: "Sunrise"
+          - dps_val: "16323202005a0384006400000000323202005a038403e8000000004646020032025803e800000000505002001e02ee03e800000000323202000003e803e800000000"
+            value: "Sunset glow"
+          - dps_val: "1746460200f003e803e80000000046460200dc02bc03e800000000"
+            value: "Ocean"
+          - dps_val: "184646020028032003e800000000464602001e038403e8000000004646020014038403e800000000"
+            value: "Sunflower"
+          - dps_val: "19464601007803e803e800000000464602006e0320025800000000464602005a038403e800000000"
+            value: "Forest"
+          - dps_val: "1a464602000a038403e800000000464602000003e803e800000000"
+            value: "Kung Fu"
+          - dps_val: "1b464603001803e803e800000000"
+            value: "Candlelight"
+          - dps_val: "1c4646020104032003e800000000464602011802bc03e800000000464602011303e803e800000000"
+            value: "Dream"
+          - dps_val: "1d646401000003e803e80000000064640100f003e803e800000000646402007803e803e800000000646402003d03e803e800000000"
+            value: "Mediterranean"
+          - dps_val: "1e323201015e01f403e800000000323202003201f403e80000000032320200a001f403e800000000"
+            value: "French Street"
+          - dps_val: "1f46460100dc02bc03e800000000464602006e03200258000000004646020014038403e800000000464601012703e802ee0000000046460100000384028a00000000"
+            value: "American"
+          - dps_val: "20646401003d03e803e800000000646401007803e803e8000000005a5a01011303e803e8000000005a5a0100ae03e803e800000000646401003201f403e800000000646401000003e803e800000000"
+            value: "Birthday"
+          - dps_val: "21323202015e01f403e800000000323202011303e803e800000000"
+            value: "Wedding day"
+          - dps_val: "225a5a0100f003e803e8000000005a5a01003d03e803e800000000464601000003e803e8000000005a5a0100ae03e803e8000000005a5a01011303e803e800000000464601007803e803e800000000"
+            value: "Christmas"
+          - dps_val: "23505002000003e803e80000000046460200f003e803e800000000"
+            value: "Independence day"
+          - dps_val: "24464602000003e803e800000000464602003d03e803e800000000464602011303e803e80000000046460200f003e803e800000000464602007803e803e800000000"
+            value: "Diwali"
+          - dps_val: "25464601011303e803e800000000464602000003e803e800000000464602003d03e803e8000000004646010154032003e8000000004646010140032003e800000000464601001e02ee03e800000000"
+            value: "Holi"
+          - dps_val: "265a5a020014006403e800000000464602000003e803e800000000"
+            value: "Victory Day"
+          - dps_val: "275a5a020014006403e800000000464602000003e803e800000000323202015e01f403e800000000464602011303e803e800000000"
+            value: "Easter"
+          - dps_val: "28464601011303e803e800000000464601001e03e803e800000000"
+            value: "Halloween"

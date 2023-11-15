@@ -1,0 +1,128 @@
+name: Dehumidifier
+products:
+  - id: yttlroi7nr18vqbo
+    name: Vacplus Dehumidifier
+primary_entity:
+  entity: humidifier
+  class: dehumidifier
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 2
+      name: humidity
+      type: integer
+      range:
+        min: 35
+        max: 80
+      mapping:
+        - step: 5
+    - id: 6
+      name: current_humidity
+      type: integer
+    - id: 5
+      name: mode
+      type: string
+      mapping:
+        - dps_val: dehumidify
+          value: Dehumidify
+        - dps_val: rainy
+          value: Rainy
+        - dps_val: dry
+          value: Dry
+        - dps_val: sleep
+          value: Sleep
+secondary_entities:
+  - entity: switch
+    name: Ionizer
+    dps:
+      - id: 12
+        type: boolean
+        name: switch
+        optional: true
+  - entity: sensor
+    class: temperature
+    dps:    
+      - id: 7
+        name: sensor
+        type: integer
+        unit: "°F"
+        class: measurement
+  - entity: sensor
+    name: Fault
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 101
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: Tank Full
+            icon: "mdi:cup-water"
+            icon_priority: 2
+          - dps_val: 2
+            value: Fault
+          - dps_val: 3
+            value: Fault
+  - entity: select
+    name: Timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 8
+        name: option
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: Cancel
+          - dps_val: "1"
+            value: "1 hour"
+          - dps_val: "2"
+            value: "2 hours"
+          - dps_val: "3"
+            value: "3 hours"
+          - dps_val: "4"
+            value: "4 hours"
+          - dps_val: "5"
+            value: "5 hours"
+          - dps_val: "6"
+            value: "6 hours"
+          - dps_val: "7"
+            value: "7 hours"
+          - dps_val: "8"
+            value: "8 hours"
+          - dps_val: "9"
+            value: "9 hours"
+          - dps_val: "10"
+            value: "10 hours"
+          - dps_val: "11"
+            value: "11 hours"
+          - dps_val: "12"
+            value: "12 hours"
+          - dps_val: "13"
+            value: "13 hours"
+          - dps_val: "14"
+            value: "14 hours"
+          - dps_val: "15"
+            value: "15 hours"
+          - dps_val: "16"
+            value: "16 hours"
+          - dps_val: "17"
+            value: "17 hours"
+          - dps_val: "18"
+            value: "18 hours"
+          - dps_val: "19"
+            value: "19 hours"
+          - dps_val: "20"
+            value: "20 hours"
+          - dps_val: "21"
+            value: "21 hours"
+          - dps_val: "22"
+            value: "22 hours"
+          - dps_val: "23"
+            value: "23 hours"
+          - dps_val: "24"
+            value: "24 hours"

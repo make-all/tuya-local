@@ -188,7 +188,7 @@ class TestInkbirdITC308Thermostat(
         self.assertEqual(self.subject.icon, "mdi:thermometer-alert")
 
     def test_climate_hvac_modes(self):
-        self.assertEqual(self.subject.hvac_modes, [])
+        self.assertEqual(self.subject.hvac_modes, ["auto"])
 
     def test_current_temperature(self):
         self.dps[UNIT_DPS] = "C"

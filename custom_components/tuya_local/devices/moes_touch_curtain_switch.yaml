@@ -1,0 +1,48 @@
+name: Curtain switch
+products:
+  - id: 6tb9dko4t15optxz
+    name: Moes SCS80 Touch Curtain Swich
+primary_entity:
+  entity: cover
+  class: curtain
+  dps:
+    - id: 1
+      name: control
+      type: string
+      mapping:
+        - dps_val: open
+          value: open
+        - dps_val: close
+          value: close
+        - dps_val: continue
+          value: stop
+secondary_entities:
+  - entity: light
+    name: Backlight
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+  - entity: number
+    name: Time control
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 10
+          max: 120
+  - entity: button
+    name: Stop button
+    category: config
+    icon: "mdi:stop"
+    dps:
+      - id: 101
+        type: boolean
+        name: button
+        optional: true
+        persist: false

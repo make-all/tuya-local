@@ -10,9 +10,15 @@ primary_entity:
     - id: 1
       type: boolean
       name: switch
+      optional: true
+      mapping:
+        - dps_val: null
+          value: false
+          hidden: true
     - id: 13
       type: bitfield
       name: fault_code
+      optional: true
     - id: 101
       type: string
       name: schedule
@@ -20,6 +26,7 @@ primary_entity:
     - id: 104
       type: string
       name: confirmation
+      optional: true
 secondary_entities:
   - entity: select
     name: Combined level
@@ -29,6 +36,7 @@ secondary_entities:
       - id: 4
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: level_1
             value: "1"
@@ -66,8 +74,11 @@ secondary_entities:
       - id: 13
         type: bitfield
         name: sensor
+        optional: true
         mapping:
           - dps_val: 0
+            value: false
+          - dps_val: null
             value: false
           - value: true
   - entity: select
@@ -109,6 +120,7 @@ secondary_entities:
       - id: 20
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: level_1
             value: "1"
@@ -138,6 +150,7 @@ secondary_entities:
       - id: 21
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: level_1
             value: "1"
@@ -183,6 +196,7 @@ secondary_entities:
       - id: 26
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: "30m" 
             value: "30 min"
@@ -232,6 +246,7 @@ secondary_entities:
       - id: 27
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: "30m" 
             value: "30 min"
@@ -283,6 +298,7 @@ secondary_entities:
       - id: 28
         type: integer
         name: sensor
+        optional: true
         unit: s
   - entity: sensor
     name: Time remaining B
@@ -292,6 +308,7 @@ secondary_entities:
       - id: 29
         type: integer
         name: sensor
+        optional: true
         unit: s
   - entity: sensor
     name: Preheat remaining A
@@ -301,6 +318,7 @@ secondary_entities:
       - id: 102
         type: integer
         name: sensor
+        optional: true
         unit: s
   - entity: sensor
     name: Preheat remaining B
@@ -310,4 +328,5 @@ secondary_entities:
       - id: 103
         type: integer
         name: sensor
+        optional: true
         unit: s

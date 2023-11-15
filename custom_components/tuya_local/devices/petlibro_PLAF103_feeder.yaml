@@ -1,0 +1,219 @@
+name: Pet feeder
+products:
+  - id: tyjxq8vanjxpn7kb
+    name: Petlibro PLAF103
+primary_entity:
+  entity: sensor
+  name: Status
+  class: enum
+  icon: "mdi:paw"
+  dps:
+    - id: 4
+      type: string
+      name: sensor
+      mapping:
+        - dps_val: standby
+          value: Idle
+        - dps_val: no_food
+          value: Empty
+        - dps_val: error_ir
+          value: Fault
+        - dps_val: feed_timeout
+          value: Blockage
+        - dps_val: feeding
+          value: Feeding
+        - dps_val: feed_end
+          value: Feeding complete
+    - id: 1
+      name: meal_plan
+      type: string
+      optional: true
+    - id: 14
+      name: fault_code
+      type: bitfield
+secondary_entities:
+  - entity: number
+    name: Manual feed
+    icon: "mdi:food-drumstick"
+    dps:
+      - id: 3
+        type: integer
+        name: value 
+        range:
+          min: 1
+          max: 50
+  - entity: button
+    name: Factory reset
+    class: restart
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: button
+        optional: true
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 11
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 14
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: sensor
+    name: Last amount
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        unit: portions
+        optional: true
+      - id: 115
+        type: integer
+        name: manual
+        optional: true
+      - id: 118
+        name: offline
+        type: string
+        optional: true
+  - entity: number
+    name: Recording playback
+    category: config
+    icon: "mdi:account-voice"
+    dps:
+      - id: 18
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 10
+      - id: 116
+        name: filename
+        type: string
+  - entity: binary_sensor
+    class: plug
+    category: diagnostic
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: strong_power
+            value: true
+          - dps_val: battery_power
+            value: false
+  - entity: select
+    name: Recording operation
+    icon: "mdi:cassette"
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: player 
+            value: Play
+          - dps_val: del
+            value: Erase
+          - dps_val: record_start
+            value: Record
+          - dps_val: record_stop
+            value: Stop
+  - entity: binary_sensor
+    name: Recordings available
+    class: sound
+    category: diagnostic
+    dps:
+      - id: 103
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: no_voice
+            value: false
+          - dps_val: have_voice
+            value: true
+  - entity: binary_sensor
+    name: Food level
+    class: battery
+    icon: "mdi:drumstick"
+    category: diagnostic
+    dps:
+      - id: 108
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: full
+            value: false
+          - dps_val: lack
+            value: true
+  - entity: binary_sensor
+    name: Recording
+    class: running
+    category: diagnostic
+    dps:
+      - id: 109
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: record_start
+            value: true
+          - dps_val: record_end
+            value: false
+  - entity: sensor
+    name: Recordings
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        optional: true
+  - entity: switch
+    name: Logging
+    icon: "mdi:script"
+    category: config
+    dps:
+      - id: 112
+        type: boolean
+        name: switch
+  - entity: light
+    name: Indicator
+    category: config
+    dps:
+      - id: 113
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    name: WiFi
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 117
+        type: boolean
+        name: sensor
+        # this is documented as "wifi_off", so assume values are inverted
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+      - id: 114
+        type: integer
+        name: signal_strength
+        optional: true
+      - id: 119
+        type: integer
+        name: reconnects
+        optional: true

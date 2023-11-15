@@ -1,4 +1,7 @@
-name: Avatto WT100-EH thermostat
+name: Thermostat
+products:
+  - id: gw173aldekvpzalg
+    name: Avatto WT200W-EH
 primary_entity:
   entity: climate
   translation_key: thermostat
@@ -24,8 +27,10 @@ primary_entity:
     - id: 2
       name: temperature
       type: integer
+      unit: C
+      optional: true
       range:
-        min: 0
+        min: 50
         max: 700
       mapping:
         - scale: 10
@@ -64,9 +69,9 @@ primary_entity:
     - id: 16
       name: fault_code
       type: bitfield
-    - id: 31
-      name: unknown_31
-      type: boolean
+    - id: 21
+      name: max_temperature
+      type: integer
 secondary_entities:
   - entity: lock
     name: Child lock
@@ -114,7 +119,7 @@ secondary_entities:
           max: 90
         mapping:
           - scale: 10
-        unit: C
+        unit: °
   - entity: number
     name: Maximum temperature
     category: config
@@ -151,6 +156,13 @@ secondary_entities:
       - id: 26
         type: boolean
         name: switch
+  - entity: button
+    name: Reset
+    category: config
+    dps:
+      - id: 31
+        type: boolean
+        name: button
   - entity: select
     name: Backlight brightness
     category: config
@@ -179,6 +191,7 @@ secondary_entities:
       - id: 42
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: "1"
             value: "Weekday+Weekend"
@@ -207,7 +220,7 @@ secondary_entities:
           max: 95
         mapping:
           - scale: 10
-        unit: C
+        unit: °
   - entity: number
     name: External temperature limit
     category: config

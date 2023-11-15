@@ -1,0 +1,98 @@
+name: Window opener
+products:
+  - id: ozttm5n6okadq7tq
+    name: ZC34T-03-3A swing arm opener
+primary_entity:
+  entity: cover
+  class: window
+  dps:
+    - id: 101
+      type: string
+      name: control
+      mapping:
+        - dps_val: open
+          value: open
+        - dps_val: close
+          value: close
+        - dps_val: stop
+          value: stop
+    - id: 105
+      type: string
+      name: fault
+secondary_entities:
+  - entity: lock
+    dps:
+      - id: 102
+        type: string
+        name: lock
+        optional: true
+        mapping:
+          - dps_val: lock
+            value: true
+          - dps_val: unlock
+            value: false
+  - entity: binary_sensor
+    class: window
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: open
+            value: true
+          - dps_val: closed
+            value: false
+
+  - entity: binary_sensor
+    name: Wind and rain
+    class: moisture
+    dps:
+      - id: 104
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: rain
+            value: true
+          - dps_val: fine
+            value: false
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    dps:
+      - id: 105
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: ""
+            value: false
+          - value: true
+  - entity: switch
+    name: Push notifications
+    icon: "mdi:message-alert-outline"
+    dps:
+      - id: 106
+        type: string
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: open
+            value: true
+          - dps_val: close
+            value: false
+      - id: 107
+        type: string
+        name: notification
+  - entity: switch
+    name: Wind and rain detection
+    icon: "mdi:weather-sunny-alert"
+    dps:
+      - id: 108
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "on"
+            value: true
+          - dps_val: "off"
+            value: false
