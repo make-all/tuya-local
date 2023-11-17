@@ -1,0 +1,64 @@
+name: Ferroli Titano Twin
+products:
+  - id: lci0ebsz7ftaruaf
+    name: DT EWH
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: preset_mode
+          conditions:
+            - dps_val: manual
+              value: heat_cool
+            - dps_val: eco
+              value: heat
+    - id: 2
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: eco
+          value: "eco"
+    - id: 4
+      name: disinfection
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          value: "on"
+    - id: 9
+      type: integer
+      name: temperature
+      range:
+        min: 40
+        max: 80
+      mapping:
+        - step: 5
+      unit: C
+      step: 5
+    - id: 10
+      type: integer
+      name: current_temperature
+    - id: 101
+      type: integer
+      name: fault_code
+    - id: 102
+      type: string
+      name: workstate
+    - id: 103
+      type: boolean
+      name: antifreeze
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          value: "on"
+    - id: 104
+      type: integer
+      name: target_temperature
