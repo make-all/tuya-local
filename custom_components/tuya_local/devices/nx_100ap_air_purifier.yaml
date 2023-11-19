@@ -1,6 +1,7 @@
-name: NX-100AP Rapid Air Purifier
+name: Air purifier
 products:
   - id: xhrfqobcbyk2br0z
+    name: NX-100AP Rapid
 primary_entity:
   entity: fan
   translation_key: fan_with_presets
@@ -13,14 +14,14 @@ primary_entity:
       name: preset_mode
       type: string
       mapping:
-        - dps_val: "Sleep"
-          value: "Sleep"
-        - dps_val: "M"
-          value: "Medium"
-        - dps_val: "H"
-          value: "High"
-        - dps_val: "Auto"
-          value: "Auto"
+        - dps_val: Sleep
+          value: sleep
+        - dps_val: M
+          value: normal
+        - dps_val: H
+          value: strong
+        - dps_val: Auto
+          value: smart
 secondary_entities:
   - entity: sensor
     name: Timer remaining
@@ -47,7 +48,6 @@ secondary_entities:
           - dps_val: "severe"
             value: "Severe"
   - entity: sensor
-    name: PM2.5
     class: pm25
     dps:
       - id: 2
@@ -81,7 +81,7 @@ secondary_entities:
           - dps_val: "24H"
             value: "24 hours"
   - entity: button
-    name: Filter cartright reset
+    name: Filter reset
     category: config
     class: restart
     dps:
@@ -105,7 +105,7 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: sensor
-    name: Filter utilization
+    name: Filter used
     category: diagnostic
     icon: "mdi:ticket-percent-outline"
     dps:
@@ -114,7 +114,7 @@ secondary_entities:
         type: integer
         unit: "%"
   - entity: binary_sensor
-    name: Error
+    name: Fault
     category: diagnostic
     class: problem
     dps:
