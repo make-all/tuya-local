@@ -1,0 +1,96 @@
+name: Soleusair Air Purifier
+products:
+  - id: kik7qavg2baebtk9
+    name: Soleusair Air Purifier KJ1000F A10
+  - id: 5xrkvysk7z6xrjum
+    name: Soleusair Air Purifier KJ760F A02
+
+primary_entity:
+  entity: switch
+  name: power
+  icon: "mdi:power"
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+
+secondary_entities:
+  - entity: select
+    name: mode
+    category: config
+    dps:
+      - id: 3
+        type: string
+        name: option
+  - entity: sensor
+    name: mode
+    class: duration
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: switch
+    name: anion
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+  - entity: switch
+    name: child_lock
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+  - entity: switch
+    name: uv
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
+        optional: true
+  - entity: sensor
+    name: temp
+    dps:
+      - id: 12
+        type: integer
+        name: sensor
+        unit: "℃"
+  - entity: sensor
+    name: humidity
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    name: tvoc
+    dps:
+      - id: 14
+        type: integer
+        name: sensor
+        optional: true
+        unit: ppb
+        range:
+          min: 0
+          max: 6000
+  - entity: sensor
+    name: air_quality
+    class: enum
+    dps:
+      - id: 21
+        type: string
+        name: sensor
+  - entity: sensor
+    name: ch2o_value
+    dps:
+      - id: 27
+        type: integer
+        name: sensor
+        unit: "mg/m\u00b3"
+        scale: 2
