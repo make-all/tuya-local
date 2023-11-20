@@ -1,0 +1,84 @@
+name: VALEHAUS Towel Warmer
+products:
+  - id: 1dxb14emvqzxzc5q
+    name: VALEHAUS SYZN119
+
+primary_entity:
+  entity: switch
+  name: power
+  icon: "mdi:power"
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+
+secondary_entities:
+  - entity: number
+    name: temp_set
+    category: config
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        range:
+          min: 35
+          max: 60
+        unit: "℃"
+        mapping:
+          - step: 5
+  - entity: sensor
+    name: temp_current
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        range:
+          min: 0
+          max: 99
+        unit: "℃"
+  - entity: select
+    name: countdown_set
+    category: config
+    dps:
+      - id: 12
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
+  - entity: sensor
+    name: countdown_left
+    class: duration
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: "min"
+        range:
+          min: 0
+          max: 1440
+  - entity: sensor
+    name: work_state
+    class: enum
+    dps:
+      - id: 14
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "heating"
+            value: "standby"
+          - dps_val: "standby"
+            value: "heating"
