@@ -3,35 +3,26 @@ products:
   - id: lci0ebsz7ftaruaf
     name: DT EWH
 primary_entity:
-  entity: climate
+  entity: water_heater
   dps:
     - id: 1
-      name: hvac_mode
+      name: operation_mode
       type: boolean
       mapping:
         - dps_val: false
           value: "off"
         - dps_val: true
-          constraint: preset_mode
+          constraint: work_mode
           conditions:
             - dps_val: manual
-              value: heat_cool
+              value: Electric
             - dps_val: eco
-              value: heat
+              value: eco
+              icon: "mdi:leaf"
     - id: 2
-      name: preset_mode
       type: string
-      mapping:
-        - dps_val: eco
-          value: "eco"
-    - id: 4
-      name: disinfection
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: "on"
+      name: work_mode
+      hidden: true
     - id: 9
       type: integer
       name: temperature
@@ -41,24 +32,68 @@ primary_entity:
       mapping:
         - step: 5
       unit: C
-      step: 5
     - id: 10
       type: integer
       name: current_temperature
-    - id: 101
-      type: integer
-      name: fault_code
-    - id: 102
-      type: string
-      name: workstate
-    - id: 103
-      type: boolean
-      name: antifreeze
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: "on"
-    - id: 104
-      type: integer
-      name: target_temperature
+secondary_entities:
+  - entity: binary_sensor
+    name: Anti-Legionella
+    category: diagnostic
+    dps:
+      - id: 4
+        name: sensor
+        type: boolean
+        mapping:
+          - dps_val: true
+            icon: "mdi:shield-cross-outline"
+          - dps_val: false
+            icon: "mdi:shield-remove-outline"
+  - entity: binary_sensor
+    class: problem
+    name: Fault
+    category: diagnostic
+    dps:
+      - id: 101
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+            icon: "mdi:water-boiler-alert"
+  - entity: sensor
+    name: Working status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 102
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "Heating"
+            icon: "mdi:water-boiler"
+          - dps_val: "Standby"
+            icon: "mdi:water-boiler-off"            
+  - entity: binary_sensor
+    name: Antifreeze
+    class: cold
+    category: diagnostic
+    dps:
+      - id: 103
+        type: boolean
+        name: sensor
+        mapping:
+          - dps_val: true
+            icon: "mdi:snowflake-alert"
+          - dps_val: false
+            icon: "mdi:snowflake-off"
+  - entity: sensor
+    name: Target temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
