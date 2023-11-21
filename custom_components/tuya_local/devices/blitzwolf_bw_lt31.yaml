@@ -1,7 +1,7 @@
-name: Blitzwolf BW-LT31 LED Strip
+name: Smart LED Strip
 products:
-  - id: 66072501f4cfa2fe2887
-    name: Blitzwolf BW-LT31 LED Strip
+  - id: khu3zzkkjemj6oat
+    name: Blitzwolf BW-LT31
 primary_entity:
   entity: light
   icon: "mdi:led-strip-variant"
@@ -15,7 +15,7 @@ primary_entity:
       mapping:
         - dps_val: dynamic_mod
           value: Dynamic
-        - dps_val: colour
+        - dps_val: color
           value: hs
         - dps_val: scene_mod
           value: Scene
@@ -24,16 +24,16 @@ primary_entity:
     - id: 22
       name: brightness
       type: integer
+      optional: true
       range:
         min: 10
         max: 1000
       mapping:
-        - dps_val: null
-          value: 0
         - scale: 3.92
     - id: 24
       name: rgbhsv
       type: hex
+      optional: true
       format:
         - name: h
           bytes: 2
@@ -50,25 +50,12 @@ primary_entity:
           range:
             min: 0
             max: 1000
-    - id: 102
-      name: music_data
-      type: integer
     - id: 103
       name: line_sequence_adjustment
-      # 线序调整
       type: integer
-      hidden: true
     - id: 104
       name: strip_points
-      # 灯带点数
       type: integer
-      hidden: true
-    - id: 106
-      name: dynamic_data
-      type: hex
-    - id: 108
-      name: scene_data
-      type: base64
 secondary_entities:
   - entity: select
     name: Music
@@ -76,18 +63,42 @@ secondary_entities:
     category: config
     dps:
       - id: 102
-        type: string
+        type: hex
         name: option
         optional: true
         mapping:
+          - dps_val: 119
+            value: "Classic 25%"
+          - dps_val: 132
+            value: "Classic 50%"
+          - dps_val: 14b
+            value: "Classic 75%"
           - dps_val: 164
-            value: "Classic"
+            value: "Classic 100%"
+          - dps_val: 219
+            value: "Soft 25%"
+          - dps_val: 232
+            value: "Soft 50%"
+          - dps_val: 24b
+            value: "Soft 75%"
           - dps_val: 264
-            value: "Soft"
+            value: "Soft 100%"
+          - dps_val: 319
+            value: "Dynamic 25%"
+          - dps_val: 332
+            value: "Dynamic 50%"
+          - dps_val: 34b
+            value: "Dynamic 75%"
           - dps_val: 364
-            value: "Dynamic"
-          - dps_val: 414
-            value: "Disco"
+            value: "Dynamic 100%"
+          - dps_val: 419
+            value: "Disco 25%"
+          - dps_val: 432
+            value: "Disco 50%"
+          - dps_val: 44b
+            value: "Disco 75%"
+          - dps_val: 464
+            value: "Disco 100%"
   - entity: select
     name: Dynamic
     icon: "mdi:palette"
@@ -98,33 +109,33 @@ secondary_entities:
         name: option
         optional: true
         mapping:
-          - dps_val: "010148000003e803e8008d03e803e800ee03e803e8003803e803e8012a03e803e8011a03e803e8"
+          - dps_val: "013264000003e803e8"
             value: "Breath"
-            # color* R+G+B+Y+C+P, breath, Low speed
-          - dps_val: "02321e003503e803e8001a03e803e8"
+            # color+ R, speed 50, bright 100
+          - dps_val: "023264000003e803e8"
             value: "Flash"
-            # color* Y+O, Flash, Mid speed
-          - dps_val: "03281e000003e803e8007803e803e800f003e803e8003b03e803e8013603e803e8010e03e803e8"
+            # color+ R, speed 50, bright 100
+          - dps_val: "033264000003e803e8007803e803e800f003e803e8003b03e803e8013603e803e8010e03e803e8"
             value: "Jump"
-            # color* R+G+B+Y+C+P, jump, Mid speed
-          - dps_val: "041e3c002303e803e8003a03e803e8"
+            # color+ R+G+B+Y+C+P, speed 50, bright 100
+          - dps_val: "043264000003e803e8007803e803e800f003e803e8"
             value: "Gradient"
-            # color* O+Y, flash, Low speed
+            # color+ R+G+B, speed 50, bright 100
           - dps_val: "053264"
             value: "Symphony"
-            # color* All, wave, Mid speed
+            # color All, speed 50, bright 100
           - dps_val: "063264000003e803e8"
             value: "Chasing"
-            # color* R, chasing, Mid speed
+            # color1 R, speed 50, bright 100
           - dps_val: "073264000003e803e8"
             value: "Meteor"
-            # color* R, wave, Mid speed
-          - dps_val: "083228003203e803e8"
+            # color1 R, speed 50, bright 100
+          - dps_val: "083264000003e803e8"
             value: "Stacking"
-            # color* Y, wave, Mid speed
-          - dps_val: "093264003603e803e8"
+            # color1 R, speed 50, bright 100
+          - dps_val: "0932640000000003e8"
             value: "Adjoint"
-            # color* Y, wave, Mid speed
+            # color1 W, speed 50, bright 100
   - entity: select
     name: Scene
     icon: "mdi:palette"
@@ -153,3 +164,14 @@ secondary_entities:
           - dps_val: "CJ_YS"
             value: "Film"
             # color: lightblue, static
+  - entity: number
+    name: Strip Points
+    category: config
+    dps:
+      - id: 104
+        name: value
+        type: integer
+        optional: true
+        range:
+          min: 10
+          max: 200
