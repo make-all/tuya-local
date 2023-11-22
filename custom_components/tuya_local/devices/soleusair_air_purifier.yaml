@@ -22,6 +22,17 @@ secondary_entities:
       - id: 3
         type: string
         name: option
+  - entity: select
+    name: windspeed
+    category: config
+    dps:
+      - id: 101
+        type: integer
+        name: option
+        unit: "gear"
+        range:
+          min: 1
+          max: 5
   - entity: sensor
     name: filter_life
     class: duration
