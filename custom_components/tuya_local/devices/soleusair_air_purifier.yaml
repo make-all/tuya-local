@@ -22,17 +22,26 @@ secondary_entities:
       - id: 3
         type: string
         name: option
-  - entity: select
+        mapping:
+          - dps_val: manual
+            value: manual
+          - dps_val: auto
+            value: auto
+          - dps_val: sleep
+            value: sleep
+          - dps_val: displayoff
+            value: displayoff
+  - entity: number
     name: windspeed
     category: config
     dps:
       - id: 101
         type: integer
-        name: option
-        unit: "gear"
+        name: value
         range:
           min: 1
           max: 5
+        unit: gear
   - entity: sensor
     name: filter_life
     class: duration
@@ -41,7 +50,7 @@ secondary_entities:
       - id: 5
         type: integer
         name: sensor
-        unit: "%"
+        # unit: "%"
         range:
           min: 0
           max: 100
