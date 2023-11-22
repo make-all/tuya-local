@@ -36,18 +36,30 @@ primary_entity:
       type: integer
       name: current_temperature
 secondary_entities:
-  - entity: binary_sensor
+  - entity: switch
     name: Anti-Legionella
-    category: diagnostic
+    category: config
     dps:
       - id: 4
-        name: sensor
         type: boolean
+        name: switch
         mapping:
           - dps_val: true
             icon: "mdi:shield-cross-outline"
           - dps_val: false
             icon: "mdi:shield-remove-outline"
+#  - entity: binary_sensor
+#    name: Anti-Legionella
+#    category: diagnostic
+#    dps:
+#      - id: 4
+#        name: sensor
+#        type: boolean
+#        mapping:
+#          - dps_val: true
+#            icon: "mdi:shield-cross-outline"
+#          - dps_val: false
+#            icon: "mdi:shield-remove-outline"
   - entity: binary_sensor
     class: problem
     name: Fault
@@ -61,6 +73,14 @@ secondary_entities:
             value: false
           - value: true
             icon: "mdi:water-boiler-alert"
+          - dps_val: 1
+            value: E2 Operating without water
+          - dps_val: 2
+            value: E3 NTC temperature sensor
+          - dps_val: 4
+            value: E4 Water overheating 
+          - dps_val: 16
+            value: E6 clock RTC failure
   - entity: sensor
     name: Working status
     class: enum
@@ -97,3 +117,5 @@ secondary_entities:
         name: sensor
         unit: C
         class: measurement
+
+            
