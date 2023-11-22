@@ -1,0 +1,111 @@
+name: Fan with light
+products:
+  - id: 9uydeea5iojq3msy
+    name: Cecotec AQUA CONNECTED
+primary_entity:
+  entity: fan
+  translation_key: fan_with_presets
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 2
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: nature
+          value: nature
+        - dps_val: sleep
+          value: sleep
+        - dps_val: fresh
+          value: fresh
+        - dps_val: smart
+          value: smart
+        - dps_val: custom
+          value: custom
+    - id: 3
+      name: speed
+      type: string
+      range:
+        min: 1
+        max: 6
+      mapping:
+        - dps_val: "1"
+          value: 17
+        - dps_val: "2"
+          value: 33
+        - dps_val: "3"
+          value: 50
+        - dps_val: "4"
+          value: 67
+        - dps_val: "5"
+          value: 83
+        - dps_val: "6"
+          value: 100
+    - id: 8
+      name: direction
+      type: string
+secondary_entities:
+  - entity: light
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+# I comment this features because that are reported by device but does nothing with it.
+#
+# {"abilityId":16,"accessMode":"rw","code":"bright_value","description":"","name":"灯光亮度","typeSpec":{"max":100,"min":1,"scale":0,"step":1,"type":"value","typeDefaultValue":1,"unit":""}},
+# {"abilityId":17,"accessMode":"rw","code":"temp_value","description":"","name":"灯光色温","typeSpec":{"max":100,"min":0,"scale":0,"step":1,"type":"value","typeDefaultValue":0,"unit":""}},
+# {"abilityId":19,"accessMode":"rw","code":"work_mode","description":"","name":"灯光模式","typeSpec":{"range":["white","warm","cold","night"],"type":"enum","typeDefaultValue":"white"}},
+#
+#
+#      - id: 16
+#        type: integer
+#        name: brightness
+#        range:
+#          min: 25
+#          max: 255
+#      - id: 17
+#        type: integer
+#        name: color_temp
+#        range:
+#          min: 0
+#          max: 255
+#      - id: 19
+#        type: string
+#        name: color_mode
+#        optional: true
+#        mapping:
+#          - dps_val: white
+#            value: white
+#          - dps_val: warm
+#            value: warm
+#          - dps_val: cold
+#            value: cold
+#          - dps_val: night
+#            value: night
+  - entity: select
+    name: timer
+    icon: "mdi:timer"
+    dps:
+      - id: 22
+        name: option
+        type: string
+        mapping:
+          - dps_val: "cancel"
+            value: "cancel"
+          - dps_val: "1h"
+            value: "1 hours"
+          - dps_val: "2h"
+            value: "2 hours"
+          - dps_val: "3h"
+            value: "3 hours"
+          - dps_val: "4h"
+            value: "4 hours"
+          - dps_val: "5h"
+            value: "5 hours"
+          - dps_val: "6h"
+            value: "6 hours"
+          - dps_val: "7h"
+            value: "7 hours"
+          - dps_val: "8h"
+            value: "8 hours"

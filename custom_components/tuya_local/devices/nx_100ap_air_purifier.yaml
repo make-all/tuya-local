@@ -1,0 +1,127 @@
+name: Air purifier
+products:
+  - id: xhrfqobcbyk2br0z
+    name: NX-100AP Rapid
+primary_entity:
+  entity: fan
+  translation_key: fan_with_presets
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+      icon: "mdi:air-purifier"
+    - id: 3
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: Sleep
+          value: sleep
+        - dps_val: M
+          value: normal
+        - dps_val: H
+          value: strong
+        - dps_val: Auto
+          value: smart
+secondary_entities:
+  - entity: sensor
+    name: Timer remaining
+    class: duration
+    icon: "mdi:timer"
+    dps:
+      - id: 19
+        name: sensor
+        type: integer
+        unit: min
+  - entity: sensor
+    name: Air quality
+    class: enum
+    icon: "mdi:air-filter"
+    dps:
+      - id: 21
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: "good"
+            value: "Good"
+          - dps_val: "medium"
+            value: "Medium"
+          - dps_val: "severe"
+            value: "Severe"
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        name: sensor
+        type: integer
+        class: measurement
+        unit: ugm3
+  - entity: select
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 18
+        type: string
+        name: option
+        mapping:
+          - dps_val: "Cancel"
+            value: "Cancel"
+          - dps_val: "2H"
+            value: "2 hours"
+          - dps_val: "4H"
+            value: "4 hours"
+          - dps_val: "6H"
+            value: "6 hours"
+          - dps_val: "8H"
+            value: "8 hours"
+          - dps_val: "10H"
+            value: "10 hours"
+          - dps_val: "12H"
+            value: "12 hours"
+          - dps_val: "24H"
+            value: "24 hours"
+  - entity: button
+    name: Filter reset
+    category: config
+    class: restart
+    dps:
+      - id: 11
+        type: boolean
+        name: button
+  - entity: switch
+    name: Ionizer
+    category: config
+    icon: "mdi:dots-hexagon"
+    dps:
+      - id: 6
+        name: switch
+        type: boolean
+  - entity: switch
+    name: UV sterilization
+    category: config
+    icon: "mdi:sun-wireless"
+    dps:
+      - id: 9
+        name: switch
+        type: boolean
+  - entity: sensor
+    name: Filter used
+    category: diagnostic
+    icon: "mdi:ticket-percent-outline"
+    dps:
+      - id: 5
+        name: sensor
+        type: integer
+        unit: "%"
+  - entity: binary_sensor
+    name: Fault
+    category: diagnostic
+    class: problem
+    dps:
+      - id: 22
+        name: sensor
+        type: bitfield
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
