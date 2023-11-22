@@ -1,4 +1,4 @@
-name: Della Air Conditioner
+name: Della air conditioner
 primary_entity:
   entity: climate
   dps:
@@ -69,6 +69,9 @@ primary_entity:
           value: eco
         - dps_val: false
           value: comfort
+    - id: 12
+      name: aux_heat
+      type: boolean
     - id: 19
       name: temperature_unit
       type: string
@@ -83,7 +86,7 @@ primary_entity:
 
 secondary_entities:
   - entity: switch
-    name: Aux Heat
+    name: Aux heat
     dps:
       - id: 12
         name: switch
@@ -105,7 +108,7 @@ secondary_entities:
         name: lock
         type: boolean
   - entity: select
-    name: Temperature Unit
+    name: Temperature unit
     icon: "mdi:temperature-celsius"
     category: config
     dps:
@@ -118,13 +121,14 @@ secondary_entities:
           - dps_val: F
             value: Fahrenheit
   - entity: sensor
-    name: Power consumption
+    class: energy
     category: diagnostic
     dps:
       - id: 28
         name: sensor
         type: integer
         unit: kWh
+        class: total_increasing
   - entity: switch
     name: Sleep
     category: config
@@ -140,7 +144,7 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: switch
-    name: Anti F
+    name: Anti-frost
     category: config
     dps:
       - id: 104
@@ -154,7 +158,7 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: sensor
-    name: Fault Code
+    name: Fault code
     category: diagnostic
     dps:
       - id: 107
