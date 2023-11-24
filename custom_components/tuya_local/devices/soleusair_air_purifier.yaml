@@ -7,7 +7,7 @@ products:
 
 primary_entity:
   entity: switch
-  name: power
+  name: Power
   icon: "mdi:power"
   dps:
     - id: 1
@@ -16,7 +16,7 @@ primary_entity:
 
 secondary_entities:
   - entity: select
-    name: mode
+    name: Mode
     category: config
     dps:
       - id: 3
@@ -32,7 +32,7 @@ secondary_entities:
           - dps_val: displayoff
             value: displayoff
   - entity: number
-    name: windspeed
+    name: Wind speed
     category: config
     dps:
       - id: 101
@@ -43,7 +43,7 @@ secondary_entities:
           max: 5
         unit: gear
   - entity: sensor
-    name: filter_life
+    name: Filter life
     category: diagnostic
     dps:
       - id: 5
@@ -54,7 +54,7 @@ secondary_entities:
           min: 0
           max: 100
   - entity: switch
-    name: ionizer
+    name: Ionizer
     category: config
     dps:
       - id: 6
@@ -73,7 +73,7 @@ secondary_entities:
           - dps_val: true
             icon: "mdi:hand-back-right-off"
   - entity: switch
-    name: uv
+    name: UV
     category: config
     dps:
       - id: 9
@@ -81,21 +81,21 @@ secondary_entities:
         name: switch
         optional: true
   - entity: sensor
-    name: temp
+    name: Temperature
     dps:
       - id: 12
         type: integer
         name: sensor
         unit: "℃"
   - entity: sensor
-    name: humidity
+    name: Humidity
     dps:
       - id: 13
         type: integer
         name: sensor
         unit: "%"
   - entity: sensor
-    name: tvoc
+    name: TVOC
     dps:
       - id: 14
         type: integer
@@ -106,7 +106,7 @@ secondary_entities:
           min: 0
           max: 6000
   - entity: sensor
-    name: air_quality
+    name: Air quality
     class: enum
     dps:
       - id: 21
@@ -122,7 +122,7 @@ secondary_entities:
           - dps_val: severe
             value: severe
   - entity: sensor
-    name: ch2o_value
+    name: CH2O value
     dps:
       - id: 27
         type: integer
