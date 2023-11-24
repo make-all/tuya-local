@@ -6,22 +6,22 @@ products:
     name: Soleusair Air Purifier KJ760F A02
 
 primary_entity:
-  entity: switch
-  name: Power
-  icon: "mdi:power"
+  entity: fan
+  translation_key: fan_with_presets
+  icon: "mdi:air-purifier"
   dps:
     - id: 1
-      type: boolean
       name: switch
-
-secondary_entities:
-  - entity: select
-    name: Mode
-    category: config
-    dps:
-      - id: 3
+      type: boolean
+    - id: 101
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 5
+    - id: 3
+        name: preset_mode
         type: string
-        name: option
         mapping:
           - dps_val: manual
             value: manual
@@ -31,17 +31,8 @@ secondary_entities:
             value: sleep
           - dps_val: displayoff
             value: displayoff
-  - entity: number
-    name: Wind speed
-    category: config
-    dps:
-      - id: 101
-        type: integer
-        name: value
-        range:
-          min: 1
-          max: 5
-        unit: gear
+
+secondary_entities:
   - entity: sensor
     name: Filter life
     category: diagnostic
