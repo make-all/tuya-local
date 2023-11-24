@@ -14,23 +14,23 @@ primary_entity:
       name: switch
       type: boolean
     - id: 101
-        type: integer
-        name: speed
-        range:
-          min: 1
-          max: 5
+      type: integer
+      name: speed
+      range:
+        min: 1
+        max: 5
     - id: 3
-        name: preset_mode
-        type: string
-        mapping:
-          - dps_val: manual
-            value: manual
-          - dps_val: auto
-            value: auto
-          - dps_val: sleep
-            value: sleep
-          - dps_val: displayoff
-            value: displayoff
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: manual
+          value: manual
+        - dps_val: auto
+          value: auto
+        - dps_val: sleep
+          value: sleep
+        - dps_val: displayoff
+          value: displayoff
 
 secondary_entities:
   - entity: sensor
