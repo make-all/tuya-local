@@ -35,6 +35,18 @@ primary_entity:
     - id: 10
       type: integer
       name: current_temperature
+    - id: 101
+      type: bitfield
+      name: fault_code
+      mapping:
+        - dps_val: 1
+          value: E2 Operating without water
+        - dps_val: 2
+          value: E3 NTC temperature sensor
+        - dps_val: 4
+          value: E4 Water overheating 
+        - dps_val: 16
+          value: E6 clock RTC failure
 secondary_entities:
   - entity: switch
     name: Anti-Legionella
@@ -60,40 +72,22 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
-            icon: "mdi:water-boiler-alert"
-          - dps_val: 1
-            value: E2 Operating without water
-          - dps_val: 2
-            value: E3 NTC temperature sensor
-          - dps_val: 4
-            value: E4 Water overheating 
-          - dps_val: 16
-            value: E6 clock RTC failure
-  - entity: sensor
+  - entity: binary_sensor
     name: Working status
+    class: running
     category: diagnostic
     dps:
       - id: 102
         type: string
         name: sensor
-        mapping:
-          - dps_val: "Heating"
-            icon: "mdi:water-boiler"
-          - dps_val: "Standby"
-            icon: "mdi:water-boiler-off"            
   - entity: binary_sensor
-    name: Antifreeze
+    name: Anti-frost
     class: cold
     category: diagnostic
     dps:
       - id: 103
         type: boolean
         name: sensor
-        mapping:
-          - dps_val: true
-            icon: "mdi:snowflake-alert"
-          - dps_val: false
-            icon: "mdi:snowflake-off"
   - entity: sensor
     name: Target temperature
     class: temperature
@@ -104,4 +98,3 @@ secondary_entities:
         name: sensor
         unit: C
         class: measurement
-        
