@@ -64,9 +64,9 @@ secondary_entities:
         name: lock
         mapping:
           - dps_val: false
-            icon: "mdi:hand-back-right"
+            icon: "mdi:shield-lock-open-outline"
           - dps_val: true
-            icon: "mdi:hand-back-right-off"
+            icon: "mdi:shield-lock-outline"
   - entity: switch
     name: UV sterilization
     category: config
@@ -104,6 +104,7 @@ secondary_entities:
           max: 6000
   - entity: sensor
     name: Air quality
+    icon: "mdi:approximately-equal"
     class: enum
     dps:
       - id: 21
