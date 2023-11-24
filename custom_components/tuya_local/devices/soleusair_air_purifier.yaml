@@ -21,17 +21,6 @@ primary_entity:
         max: 5
       mapping:
         - scale: 0.05
-      # mapping:
-      #   - dps_val: 1
-      #     value: 20
-      #   - dps_val: 2
-      #     value: 40
-      #   - dps_val: 3
-      #     value: 60
-      #   - dps_val: 4
-      #     value: 80
-      #   - dps_val: 5
-      #     value: 100
     - id: 3
       name: preset_mode
       type: string
@@ -49,6 +38,7 @@ secondary_entities:
   - entity: sensor
     name: Filter life
     category: diagnostic
+    icon: "mdi:time"
     dps:
       - id: 5
         type: integer
