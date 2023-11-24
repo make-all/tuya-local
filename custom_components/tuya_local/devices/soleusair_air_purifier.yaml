@@ -60,13 +60,18 @@ secondary_entities:
       - id: 6
         type: boolean
         name: switch
-  - entity: switch
-    name: child_lock
+  - entity: lock
+    name: Child lock
     category: config
     dps:
       - id: 7
         type: boolean
-        name: switch
+        name: lock
+        mapping:
+          - dps_val: false
+            icon: "mdi:hand-back-right"
+          - dps_val: true
+            icon: "mdi:hand-back-right-off"
   - entity: switch
     name: uv
     category: config
