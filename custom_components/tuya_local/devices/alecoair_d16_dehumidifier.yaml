@@ -12,7 +12,7 @@ primary_entity:
       mapping:
         - dps_val: false
           icon: "mdi:air-humidifier-off"
-          icon_priority: 1
+          icon_priority: 2
         - dps_val: true
           icon: "mdi:air-humidifier"
           icon_priority: 4
@@ -52,7 +52,6 @@ primary_entity:
       mapping:
         - dps_val: 0
           value: OK
-          icon: "mdi:cup-outline"
         - dps_val: 1
           value: "Water Tank Full or Removed"
           icon: "mdi:cup-water"
@@ -111,7 +110,6 @@ secondary_entities:
     class: problem
     name: Tank full
     icon: "mdi:cup-water"
-    optional: true
     dps:
       - id: 19
         type: bitfield
@@ -123,8 +121,6 @@ secondary_entities:
   - entity: binary_sensor
     class: problem
     name: Fault
-    icon: "mdi:engine-off-outline"
-    optional: true
     dps:
       - id: 19
         type: bitfield
