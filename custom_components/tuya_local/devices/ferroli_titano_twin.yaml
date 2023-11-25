@@ -1,7 +1,7 @@
-name: Ferroli Titano Twin
+name: Water heater
 products:
   - id: lci0ebsz7ftaruaf
-    name: DT EWH
+    name: Ferroli Titano Twin DT EWH
 primary_entity:
   entity: water_heater
   dps:
@@ -49,7 +49,7 @@ primary_entity:
           value: E6 clock RTC failure
 secondary_entities:
   - entity: switch
-    name: Anti-Legionella
+    name: Anti-legionella
     category: config
     dps:
       - id: 4
@@ -73,13 +73,17 @@ secondary_entities:
             value: false
           - value: true
   - entity: binary_sensor
-    name: Working status
+    name: Heating status
     class: running
     category: diagnostic
     dps:
       - id: 102
         type: string
         name: sensor
+        mapping:
+          - dps_val: Heating
+            value: true
+          - value: false
   - entity: binary_sensor
     name: Anti-frost
     class: cold
@@ -97,4 +101,3 @@ secondary_entities:
         type: integer
         name: sensor
         unit: C
-        class: measurement
