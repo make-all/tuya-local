@@ -1,10 +1,9 @@
-name: Soleusair Air Purifier
+name: Air purifier
 products:
   - id: kik7qavg2baebtk9
-    name: Soleusair Air Purifier KJ1000F A10
+    name: Soleusair KJ1000F A10
   - id: 5xrkvysk7z6xrjum
-    name: Soleusair Air Purifier KJ760F A02
-
+    name: Soleusair KJ760F A02
 primary_entity:
   entity: fan
   translation_key: fan_with_presets
@@ -26,27 +25,23 @@ primary_entity:
       type: string
       mapping:
         - dps_val: manual
-          value: manual
+          value: normal
         - dps_val: auto
-          value: auto
+          value: smart
         - dps_val: sleep
           value: sleep
         - dps_val: displayoff
           value: displayoff
-
 secondary_entities:
   - entity: sensor
     name: Filter life
     category: diagnostic
-    icon: "mdi:timelapse"
+    icon: "mdi:timelapse
     dps:
       - id: 5
         type: integer
         name: sensor
-        # unit: "%"
-        range:
-          min: 0
-          max: 100
+        unit: "%"
   - entity: switch
     name: Ionizer
     icon: "mdi:creation"
@@ -64,9 +59,9 @@ secondary_entities:
         name: lock
         mapping:
           - dps_val: false
-            icon: "mdi:shield-lock-open-outline"
+            icon: "mdi:hand-back-right"
           - dps_val: true
-            icon: "mdi:shield-lock-outline"
+            icon: "mdi:hand-back-right-off"
   - entity: switch
     name: UV sterilization
     category: config
@@ -82,7 +77,7 @@ secondary_entities:
       - id: 12
         name: sensor
         type: integer
-        unit: "°C"
+        unit: C
   - entity: sensor
     class: humidity
     dps:
@@ -98,9 +93,6 @@ secondary_entities:
         name: sensor
         optional: true
         unit: ppb
-        range:
-          min: 0
-          max: 6000
   - entity: sensor
     name: Air quality
     icon: "mdi:approximately-equal"
@@ -125,5 +117,6 @@ secondary_entities:
       - id: 27
         type: integer
         name: sensor
-        unit: "mg/m\u00b3"
-        scale: 2
+        unit: ugm3
+        mapping:
+         - scale: 0.1
