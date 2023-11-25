@@ -1,7 +1,7 @@
-name: Ceramic PTC Fan Heater
+name: Fan heater
 products:
   - id: gzmby6hypv4daebf
-    name: Nedis Ceramic PTC Fan Heater HTFA22WTW
+    name: Nedis Ceramic PTC HTFA22WTW
 primary_entity:
   entity: climate
   dps:
@@ -49,9 +49,10 @@ primary_entity:
         - dps_val: true
           value: "on"
 secondary_entities:
-  - entity: switch
+  - entity: light
     name: Indicator
     category: config
+    icon: "mdi:led-on"
     dps:
       - id: 10
         type: boolean
@@ -80,7 +81,7 @@ secondary_entities:
           - dps_val: "5h"
             value: "6 hours"
   - entity: sensor
-    name: Remaining Time
+    name: Remaining time
     class: duration
     dps:
       - id: 20
