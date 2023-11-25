@@ -1,4 +1,4 @@
-name: Lubluelu SL60D
+name: Robot vacuum
 products:
   - id: tdxitkhbixikp8eh
     name: Lubluelu SL60D
@@ -17,7 +17,6 @@ primary_entity:
     - id: 4
       type: string
       name: command
-      icon: "mdi:layers-outline"
       mapping:
         - dps_val: smart
           value: smart
@@ -83,26 +82,6 @@ primary_entity:
           value: right
         - dps_val: stop
           value: stop
-    - id: 13
-      type: boolean
-      name: reset_map
-      icon: "mdi:map-marker-remove"
-    - id: 18
-      type: boolean
-      name: reset_edge_brush
-      icon: "mdi:restart"
-    - id: 20
-      type: boolean
-      name: reset_roll_brush
-      icon: "mdi:restart"
-    - id: 22
-      type: boolean
-      name: reset_filter
-      icon: "mdi:air-filter"
-    - id: 25
-      type: boolean
-      name: do_not_disturb
-      icon: "mdi:minus-circle"
     - id: 27
       type: boolean
       name: break_clean
@@ -131,7 +110,6 @@ secondary_entities:
         name: sensor
         unit: m2
   - entity: sensor
-    name: Battery
     class: battery
     dps:
       - id: 8
@@ -148,7 +126,6 @@ secondary_entities:
       - id: 10
         type: string
         name: sensor
-        icon: "mdi:water-opacity"
         mapping:
           - dps_val: closed
             value: Closed
@@ -162,37 +139,33 @@ secondary_entities:
     name: Side brush lifetime
     category: diagnostic
     class: duration
-    icon: "mdi:ticket-percent-outline"
     dps:
       - id: 17
         type: integer
         name: sensor
-        unit: hour
+        unit: h
   - entity: sensor
     name: Rolling brush lifetime
     category: diagnostic
     class: duration
-    icon: "mdi:ticket-percent-outline"
     dps:
       - id: 19
         type: integer
         name: sensor
-        unit: hour
+        unit: h
   - entity: sensor
     name: Filter lifetime
     category: diagnostic
     class: duration
-    icon: "mdi:ticket-percent-outline"
     dps:
       - id: 21
         type: integer
         name: sensor
-        unit: hour
+        unit: h
   - entity: sensor
     name: Duster cloth lifetime
     category: diagnostic
     class: duration
-    icon: "mdi:ticket-percent-outline"
     dps:
       - id: 23
         type: integer
@@ -225,3 +198,43 @@ secondary_entities:
         type: integer
         name: sensor
         unit: min
+  - entity: button
+    name: Reset map
+    icon: "mdi:map-marker-remove"
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: button
+  - entity: button
+    name: Reset edge brush
+    class: restart
+    category: config
+    dps:
+      - id: 18
+        type: boolean
+        name: button
+  - entity: button
+    name: Reset roll brush
+    class: restart
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        name: button
+  - entity: button
+    name: Reset filter
+    icon: "mdi:air-filter"
+    category: config
+    dps:
+      - id: 22
+        type: boolean
+        name: button
+  - entity: switch
+    name: Do not disturb
+    icon: "mdi:minus-circle"
+    category: config
+    dps:
+      - id: 25
+        type: boolean
+        name: switch
