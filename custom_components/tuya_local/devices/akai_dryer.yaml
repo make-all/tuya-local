@@ -1,10 +1,11 @@
-name: Akai Heat Pump Dryer
+name: Dryer
 products:
   - id: do3cbzmmdqfdpqxw
-    name: Akai Heat Pump Dryer
+    name: Akai heat pump dryer
 primary_entity:
   entity: sensor
   class: enum
+  icon: "mdi:tumble-dryer"
   dps:
     - id: 107
       name: sensor # state
@@ -25,18 +26,19 @@ primary_entity:
         - dps_val: "err"
           value: "error"
     - id: 7
-      name: error # fault
+      name: fault_code
       type: integer
 secondary_entities:
   - entity: button
     name: Start
+    icon: "mdi:play"
     dps:
       - id: 105
         name: button # start
         type: boolean
   - entity: select
-    class: enum
-    name: Drying Mode
+    name: Drying mode
+    icon: "mdi:tumble-dryer"
     dps:
       - id: 5
         name: option # drying_mode
@@ -75,8 +77,8 @@ secondary_entities:
           - dps_val: "Sportswear"
             value: "Sportswear"
   - entity: select
-    class: enum
-    name: Drying Level
+    name: Drying level
+    icon: "mdi:signal"
     dps:
       - id: 101
         name: option # drying_level
@@ -91,26 +93,29 @@ secondary_entities:
           - dps_val: 3
             value: "High"
   - entity: switch
-    name: Anti Crease
+    name: Anti crease
+    icon: "mdi:iron"
     dps:
       - id: 103
-        name: switch # anti_crease
+        name: switch
         type: boolean
-  - entity: switch
+  - entity: lock
     name: Lock
     dps:
       - id: 106
-        name: switch # lock
+        name: lock
         type: boolean
   - entity: sensor
-    name: Drying Time
+    name: Drying time
+    class: duration
     dps:
       - id: 3
-        name: sensor # drying_time
+        name: sensor
         type: integer
         unit: min
   - entity: sensor
-    name: Drying Time Left
+    name: Drying time remaining
+    class: duration
     dps:
       - id: 4
         name: sensor # drying_time_left
