@@ -20,22 +20,19 @@ primary_entity:
             - dps_val: wind
               value: fan_only
             - dps_val: auto
-              value: auto
+              value: heat_cool
     - id: 2
       name: temperature
       type: integer
+      range:
+        min: 160
+        max: 320
       mapping:
-        - constraint: temperature_unit
+        - scale: 10
+          step: 10
+          constraint: temperature_unit
           conditions:
-            - dps_val: C
-              scale: 10
-              step: 10
-              range:
-                min: 160
-                max: 320
             - dps_val: F
-              scale: 10
-              step: 10
               range:
                 min: 600
                 max: 900
@@ -83,14 +80,10 @@ primary_entity:
           value: vertical
         - dps_val: false
           value: "off"
-
+    - id: 107
+      type: bitfield
+      name: fault_code
 secondary_entities:
-  - entity: switch
-    name: Aux heat
-    dps:
-      - id: 12
-        name: switch
-        type: boolean
   - entity: light
     name: Backlight
     category: config
@@ -157,10 +150,15 @@ secondary_entities:
       - id: 106
         name: switch
         type: boolean
-  - entity: sensor
-    name: Fault code
+  - entity: binary_sensor
+    name: Fault
+    class: problem
     category: diagnostic
     dps:
       - id: 107
         name: sensor
-        type: integer
+        type: bitfield
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
