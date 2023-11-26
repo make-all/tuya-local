@@ -5,6 +5,7 @@ products:
 primary_entity:
   entity: climate
   icon: "mdi:air-conditioner"
+  translation_key: aircon_extra
   dps:
     - id: 1
       name: hvac_mode
@@ -44,7 +45,6 @@ primary_entity:
     - id: 3
       name: current_temperature
       type: integer
-      readonly: true
     - id: 4
       name: mode
       type: string
@@ -53,111 +53,60 @@ primary_entity:
       type: string
       mapping:
         - dps_val: auto
-          value: Auto
+          value: auto
         - dps_val: mute
-          value: Quiet
+          value: quiet
         - dps_val: low
-          value: Low
+          value: low
         - dps_val: mid_low
-          value: Medium Low
+          value: medlow
         - dps_val: mid
-          value: Medium
+          value: medium
         - dps_val: mid_high
-          value: Medium High
+          value: medhigh
         - dps_val: high
-          value: High
+          value: high
         - dps_val: strong
-          value: Strong
+          value: strong
+    - id: 18
+      name: current_humidity
+      type: integer
+      optional: true
+    - id: 20
+      name: fault_code
+      type: bitfield
+    - id: 110
+      name: functions_available
+      type: bitfield
+      # Used to indicate whether this function is available. 
+      #   0. Whether the temperature is adjustable in dehumidification mode
+      #   1. Whether the temperature is adjustable in air supply mode
+      #   2. Whether the temperature is adjustable in automatic mode
+      #   3. Fresh air volume mark
+      #   4. Vector air supply
+      #   5. Left and right sweeping air
+      #   6. Photosensitive
+      #   7. Intelligent dehumidification and anti-mildew
+      #   8. Humidity sensor
+      #   9. Evaporator cleaning
+      #   10. Save money and see it
+      #   11. Power statistics
+      #   12. Generator mode
+      #   13. High temperature wind/cool wind 
+      #   14. Air quality detection function
+      #   15. Set to empty (original: humidity function)
+      #   16. Set to empty (original: equipment operation saves money and visible temperature curve display)
+      #   17. 8℃ heating
+      #   18. Filter dirty and clogged function
+      #   ??? - 19 is missing in Tuya json
+      #   20. presence or absence of PM2.5
+      #   21. temperature scale switching, 1 is Fahrenheit, 0 is Celsius
+      #   22. soft wind
+      #   23. left and right wide-angle air supply
+    - id: 123
+      name: options
+      type: string
 secondary_entities:
-  - entity: switch
-    name: Power
-    category: config
-    icon: "mdi:power"
-    dps:
-      - id: 1
-        name: switch
-        type: boolean
-  - entity: number
-    name: Target Temperature
-    category: config
-    class: temperature
-    dps:
-      - id: 2
-        name: value
-        type: integer
-        unit: C
-        range:
-          min: 160
-          max: 310
-        mapping:
-          - scale: 10
-            step: 5
-  - entity: sensor
-    name: Current Temperature
-    class: temperature
-    dps:
-      - id: 3
-        name: sensor
-        type: integer
-        unit: C
-        readonly: true
-  - entity: select
-    name: Mode
-    category: config
-    dps:
-      - id: 4
-        name: option
-        type: string
-        mapping:
-          - dps_val: auto
-            icon: mdi:thermostat-auto
-            value: heat_cool
-          - dps_val: cold
-            icon: "mdi:snowflake"
-            value: cool
-          - dps_val: wind
-            icon: "mdi:fan"
-            value: fan_only
-          - dps_val: wet
-            icon: "mdi:water"
-            value: dry
-          - dps_val: hot
-            value: heat
-            icon: "mdi:heat-wave"
-  - entity: select
-    name: Fan Mode
-    category: config
-    dps:
-      - id: 5
-        name: option
-        type: string
-        mapping:
-        - dps_val: auto
-          value: Auto
-        - dps_val: mute
-          value: Quiet
-        - dps_val: low
-          value: Low
-        - dps_val: mid_low
-          value: Medium Low
-        - dps_val: mid
-          value: Medium
-        - dps_val: mid_high
-          value: Medium High
-        - dps_val: high
-          value: High
-        - dps_val: strong
-          value: Strong
-  - entity: sensor  # no sensor in Fisher Summer AC, returns 0
-    name: Current Humidity
-    class: humidity
-    dps:
-      - id: 18
-        name: sensor
-        type: integer
-        unit: "%"
-        readonly: true
-        optional: true
   - entity: binary_sensor
     name: Fault
     class: problem
@@ -171,16 +120,11 @@ secondary_entities:
             value: false
           - value: true
   - entity: sensor  # no sensor in Fisher Summer AC, returns 0
-    name: PM 2.5
     class: pm25
     dps:
       - id: 101
         name: sensor
         type: integer
-        range:
-          min: 0
-          max: 3000
-        readonly: true
         optional: true
   - entity: select
     name: Sleep
@@ -196,42 +140,10 @@ secondary_entities:
           - dps_val: normal
             value: Normal
           - dps_val: old
-            value: Old
+            value: Elderly
           - dps_val: child
             value: Child
         optional: true
-  - entity: sensor
-    name: Function Markbit
-    dps:
-      - id: 110
-        name: sensor
-        type: bitfield
-        # Used to indicate whether this function is available. 
-        #   0. Whether the temperature is adjustable in dehumidification mode
-        #   1. Whether the temperature is adjustable in air supply mode
-        #   2. Whether the temperature is adjustable in automatic mode
-        #   3. Fresh air volume mark
-        #   4. Vector air supply
-        #   5. Left and right sweeping air
-        #   6. Photosensitive
-        #   7. Intelligent dehumidification and anti-mildew
-        #   8. Humidity sensor
-        #   9. Evaporator cleaning
-        #   10. Save money and see it
-        #   11. Power statistics
-        #   12. Generator mode
-        #   13. High temperature wind/cool wind 
-        #   14. Air quality detection function
-        #   15. Set to empty (original: humidity function)
-        #   16. Set to empty (original: equipment operation saves money and visible temperature curve display)
-        #   17. 8℃ heating
-        #   18. Filter dirty and clogged function
-        #   ??? - 19 is missing in Tuya json
-        #   20. presence or absence of PM2.5
-        #   21. temperature scale switching, 1 is Fahrenheit, 0 is Celsius
-        #   22. soft wind
-        #   23. left and right wide-angle air supply
-        readonly: true
   - entity: select
     name: Vertical Sweep
     category: config
@@ -310,12 +222,6 @@ secondary_entities:
           - dps_val: L3
             value: L3
         optional: true
-  - entity: sensor 
-    name: Boolcode Options
-    dps:
-      - id: 123
-        name: sensor
-        type: string
   - entity: sensor
     name: Air Quality
     dps:
@@ -449,7 +355,6 @@ secondary_entities:
       - id: 134
         name: sensor
         type: string
-        readonly: true 
         optional: true
   - entity: sensor
     name: Running Time
@@ -459,5 +364,4 @@ secondary_entities:
         name: sensor
         type: integer
         unit: s
-        readonly: true
         optional: true 
