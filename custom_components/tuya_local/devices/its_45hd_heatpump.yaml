@@ -234,6 +234,17 @@ secondary_entities:
         type: boolean
         name: sensor
   - entity: binary_sensor
+    name: Aux heat
+    class: running
+    category: diagnostic
+    dps:
+      - id: 32
+        type: boolean
+        name: sensor
+        mapping:
+          - dps_val: true
+            icon: "mdi:fire"
+  - entity: binary_sensor
     name: High pressure valve
     class: opening
     icon: "mdi:valve"

@@ -66,9 +66,6 @@ primary_entity:
           value: eco
         - dps_val: false
           value: comfort
-    - id: 12
-      name: aux_heat
-      type: boolean
     - id: 19
       name: temperature_unit
       type: string
@@ -84,6 +81,13 @@ primary_entity:
       type: bitfield
       name: fault_code
 secondary_entities:
+  - entity: switch
+    name: Emergency heat
+    icon: "mdi:fire"
+    dps:
+      - id: 12
+        name: switch
+        type: boolean
   - entity: light
     name: Backlight
     category: config
