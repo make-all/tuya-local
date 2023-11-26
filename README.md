@@ -357,9 +357,9 @@ If you don't see them, check your server is set correctly at the top
 of the page.  Make a note of the Device IDs for all your devices, then
 select Cloud on the side bar again and go to the API Explorer.
 
-Under "Devices Management", select the "Query Device Details in Bulk"
+Under "Cloud" -> "API Explorer" -> "Devices Management", select the "Query Device Details in Bulk"
 function, and enter your Device IDs, separated by commas.
-In the results you should see your local_key.
+In the results you should see your `local_key`.
 
 The IP address you should be able to get from your router.  Using a
 command line Tuya client like tuyaapi/cli or
