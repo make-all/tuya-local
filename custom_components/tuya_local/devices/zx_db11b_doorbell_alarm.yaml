@@ -247,7 +247,6 @@ secondary_entities:
         unit: "%"
         class: measurement
   - entity: binary_sensor
-    name: Battery low
     class: battery
     category: diagnostic
     dps:
@@ -327,6 +326,7 @@ secondary_entities:
             icon: "mdi:volume-mute"
   - entity: button
     name: Factory reset
+    class: restart
     category: config
     dps:
       - id: 34
