@@ -43,6 +43,7 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
         self._unlock_key_dp = dps_map.pop("unlock_key", None)
         self._unlock_ble_dp = dps_map.pop("unlock_ble", None)
         self._unlock_voice_dp = dps_map.pop("unlock_voice", None)
+        self._unlock_multi_dp = dps_map.pop("unlock_multi", None)
         self._req_unlock_dp = dps_map.pop("request_unlock", None)
         self._approve_unlock_dp = dps_map.pop("approve_unlock", None)
         self._req_intercom_dp = dps_map.pop("request_intercom", None)
@@ -68,6 +69,7 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
                 self._unlock_key_dp,
                 self._unlock_ble_dp,
                 self._unlock_voice_dp,
+                self._unlock_multi_dp,
             ):
                 if d:
                     if d.get_value(self._device):
@@ -103,6 +105,7 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
             self._unlock_pw_dp: "Password",
             self._unlock_tmppw_dp: "Temporary Password",
             self._unlock_voice_dp: "Voice",
+            self._unlock_multi_dp: "Multifactor",
         }.items():
             by = self.unlocker_id(dp, desc)
             if by:
