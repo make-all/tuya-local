@@ -1,0 +1,30 @@
+name: Water heater
+primary_entity:
+  entity: water_heater
+  dps:
+    - id: 1
+      type: boolean
+      name: operation_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          value: electric
+    - id: 9
+      type: integer
+      name: temperature
+      range:
+        min: 35
+        max: 75
+    - id: 13
+      type: string
+      name: work_mode # to observe for potential expansion of operation_mode
+    - id: 20
+      type: integer
+      name: attr1 # maybe fault_code?
+    - id: 101
+      name: away_mode
+      type: boolean
+    - id: 102
+      type: integer
+      name: current_temperature
