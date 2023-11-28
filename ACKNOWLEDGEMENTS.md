@@ -409,3 +409,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [lyatam](https://github.com/lyatam) for contributing support for ZX-DB11B doorbell alarms.
 - [urgelaszlo](https://github.com/urgelaszlo) for contributing support for Fisher Summer air conditioners.
 - [felipecrs](https://github.com/felipecrs) for assisting with support for SmarDeer smart locks.
+- [rbalaev](https://github.com/rbalaev) for assisting with support for Thermex Lima 80V water heaters.

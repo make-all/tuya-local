@@ -98,6 +98,7 @@
 - Hydrotherm Dynamic/X8 heat pump hot water systems
 - ITS-4.5HD super water heatpump
 - Thermex IF series V pro hot water systems
+- Thermex Lima 80V
 
 ### Thermostats
 
