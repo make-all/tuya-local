@@ -89,8 +89,12 @@ primary_entity:
       name: error # robot_fault
       type: bitfield
       mapping:
+        - dps_val: 2
+          value: Battery low
         - dps_val: 32
           value: Drop sensor abnormal
+        - dps_val: 4096
+          value: Abnormal main brush
         - dps_val: 524288
           value: Machine trapped
         - dps_val: 1048576
