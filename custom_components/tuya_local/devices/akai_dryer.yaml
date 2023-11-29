@@ -36,6 +36,16 @@ secondary_entities:
       - id: 105
         name: button # start
         type: boolean
+  - entity: button
+    name: Pause
+    icon: "mdi:pause"
+    dps:
+      - id: 105
+        name: button # start
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: true
   - entity: select
     name: Drying mode
     icon: "mdi:tumble-dryer"
