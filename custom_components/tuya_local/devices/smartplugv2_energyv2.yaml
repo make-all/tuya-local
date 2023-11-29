@@ -41,10 +41,12 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     name: Energy
+    class: energy
     dps:
       - id: 17
         name: sensor
         type: integer
+        class: total_increasing
         unit: Wh
       - id: 25
         type: integer
@@ -137,7 +139,7 @@ secondary_entities:
         name: option
         optional: true
         mapping:
-          - dps_val: relay 
+          - dps_val: relay
             value: State
           - dps_val: pos
             value: Position

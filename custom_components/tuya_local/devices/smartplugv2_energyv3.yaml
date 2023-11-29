@@ -50,11 +50,13 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     name: Energy
+    class: energy
     dps:
       - id: 17
         name: sensor
         type: integer
         unit: Wh
+        class: total_increasing
         optional: true
       - id: 25
         type: integer
