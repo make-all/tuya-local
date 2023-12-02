@@ -1,6 +1,7 @@
-name: BlitzWolf BWSH5 humidifier
+name: Humidifier
 products: 
   - id: lqzme7o0kzhumdxr
+    name: BlitzWolf BWSH5
 primary_entity:
   entity: humidifier
   class: humidifier
@@ -82,30 +83,33 @@ secondary_entities:
             icon: "mdi:led-on"
           - dps_val: false
             icon: "mdi:led-off"
-  - entity: select
+  - entity: fan
     name: Spray level
     icon: "mdi:heat-wave"
     category: config
     dps:
+      - id: 1
+        name: switch
+        type: boolean
       - id: 23  
-        name: option  
+        name: speed 
         type: string
         optional: true
         mapping:
           - dps_val: "level_1"
-            value: "Level 1 "
+            value: 15
           - dps_val: "level_2"
-            value: "Level 2"
+            value: 30
           - dps_val: "level_3"
-            value: "Level 3"
+            value: 45
           - dps_val: "level_4"
-            value: "Level 4"
+            value: 55
           - dps_val: "level_5"    
-            value: "Level 5"           
+            value: 70
           - dps_val: "level_6"
-            value: "Level 6"
+            value: 85
           - dps_val: "level_7" 
-            value: "Level 7"
+            value: 100
   - entity: sensor
     class: temperature
     dps:
