@@ -74,7 +74,7 @@ def _bytes_to_fmt(bytes, signed=False):
 
 def _equal_or_in(value1, values2):
     """Return true if value1 is the same as values2, or appears in values2."""
-    if type(values2) is not str and isinstance(values2, Sequence):
+    if not isinstance(values2, str) and isinstance(values2, Sequence):
         return value1 in values2
     else:
         return value1 == values2
