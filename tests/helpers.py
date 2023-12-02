@@ -28,7 +28,9 @@ async def assert_device_properties_set(
     try:
         yield
     finally:
-        assert len(provided) == len(properties.keys())
+        if not msg:
+            msg = f"Expected {properties}, got {provided}"
+        assert len(provided) == len(properties.keys()), msg
         for p in properties:
             assert p in provided, msg
             assert properties[p] == provided[p], msg
