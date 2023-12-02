@@ -1,7 +1,7 @@
-name: Beok TGM50-WIFI-WP thermostat
+name: Thermostat
 products:
   - id: m3j5wouhgsvjlma9
-    name: Beok TGM50-WIFI-WP thermostat 
+    name: Beok TGM50-WIFI-WP
 primary_entity:
   entity: climate
   translation_key: thermostat
@@ -11,7 +11,17 @@ primary_entity:
       type: boolean
       mapping:
         - dps_val: true
-          value: heat
+          constraint: preset_mode
+          conditions:
+            - dps_val: auto
+              value: auto
+            - dps_val: temporary
+              value: auto
+              hidden: true
+            - dps_val: home
+              value: heat
+            - value: heat
+              hidden: true
         - dps_val: false
           value: "off"
     - id: 2
@@ -33,13 +43,13 @@ primary_entity:
       name: preset_mode
       mapping:
         - dps_val: leave
-          value: Leave
+          value: away
         - dps_val: home
-          value: Manual
+          value: manual
         - dps_val: auto
-          value: Prog
+          value: program
         - dps_val: temporary
-          value: Prog. Temp.
+          value: temp_override
     - id: 5
       type: string
       name: hvac_action
@@ -56,6 +66,12 @@ primary_entity:
         - dps_val: "1"
           value: heating
           icon: "mdi:radiator"
+    - id: 11
+      name: fault_code
+      type: bitfield
+    - id: 15
+      name: max_temperature
+      type: integer      
 secondary_entities:
   - entity: lock
     name: Child lock
@@ -70,7 +86,7 @@ secondary_entities:
           - dps_val: false
             icon: "mdi:hand-back-right"
   - entity: binary_sensor
-    name: Fault alarm
+    name: Fault
     category: diagnostic
     class: problem
     dps:
@@ -79,25 +95,24 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: 0
-            value: False
-          - dps_val: 1
-            value: True
+            value: false
+          - value: true
   - entity: number
-    name: Temperature control hysteresis
+    name: Temperature hysteresis
     category: config
     icon: "mdi:thermometer-plus"
     dps:
       - id: 101
         type: integer
         name: value
-        unit: C
+        unit: °
         range:
           min: 5
           max: 95
         mapping:
           - scale: 10
   - entity: number
-    name: Highest set temperature
+    name: Maximum temperature
     category: config
     class: temperature
     icon: "mdi:thermometer-chevron-up"
@@ -117,14 +132,14 @@ secondary_entities:
       - id: 19
         type: integer
         name: value
-        unit: C
+        unit: °
         range:
           min: -90
           max: 90
         mapping:
           - scale: 10
   - entity: number
-    name: External sensor temperature limit
+    name: External temperature limit
     category: config
     class: temperature
     icon: "mdi:arrow-collapse-up"
@@ -145,32 +160,32 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: button
-    name: Reset factory settings
-    icon: "mdi:backup-restore"
+    name: Factory reset
+    class: restart
     dps:
       - id: 104
         name: button
         type: boolean
-  - entity: select
-    name: Backlight brightness
+  - entity: light
+    name: Backlight
     category: config
     dps:
       - id: 106
         type: string
-        name: option
+        name: brightness
         mapping:
           - dps_val: "0"
             icon: "mdi:lightbulb-on-10"
-            value: None
+            value: 0
           - dps_val: "1"
             icon: "mdi:lightbulb-on-40"
-            value: Low
+            value: 100
           - dps_val: "2"
             icon: "mdi:lightbulb-on-70"
-            value: Middle
+            value: 180
           - dps_val: "3"
             icon: "mdi:lightbulb-on"
-            value: High
+            value: 255
   - entity: select
     name: Schedule
     category: config
