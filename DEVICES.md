@@ -283,6 +283,7 @@
 - V-WIFI-DL02-ES energy consumption clamp meter
 - WDYK 2P63A energy meter
 - WDYK 3 phase 4 pole 400V energy meter circuit breaker
+- ZM-Wi-Fi smart meter
 
 ### Battery Charger
 

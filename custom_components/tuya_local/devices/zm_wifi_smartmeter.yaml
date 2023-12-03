@@ -1,0 +1,82 @@
+name: Energy meter
+products:
+  - id: nzexeqam9qulajbf
+    name: ZM-wi-Fi
+primary_entity:
+  entity: sensor
+  class: energy
+  dps:
+    - id: 1
+      type: integer
+      name: sensor
+      unit: kWh
+      class: total_increasing
+      mapping:
+        - scale: 100
+    - id: 10
+      name: fault_code
+      type: bitfield
+    - id: 17
+      name: alarm_setting
+      type: string
+    - id: 18
+      name: meter_id
+      type: string
+secondary_entities:
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        class: measurement
+        mapping:
+          - mask: "FFFF000000000000"
+            scale: 10
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        class: measurement
+        mapping:
+          - mask: "0000FFFFFF000000"
+            scale: 1000
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: kW
+        class: measurement
+        mapping:
+          - mask: "0000000000FFFFFF"
+            scale: 1000
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: switch
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+        

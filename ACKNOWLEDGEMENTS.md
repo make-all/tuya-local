@@ -413,3 +413,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [cart3a](https://github.com/cart3a) for contributing support for Beok TGM50 thermostats.
 - [patoh](https://github.com/patoh) for contributing support for Breville Smart Dry Connect dehumidifiers.
 - [Cadish](https://github.com/Cadish) for assisting with support for Qlima D820A dehumidifiers.
+- [mellow8](https://github.com/mellow8) for assisting with support for ZM-Wi-Fi smart meters.
