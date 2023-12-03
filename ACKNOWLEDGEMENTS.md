@@ -414,3 +414,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [patoh](https://github.com/patoh) for contributing support for Breville Smart Dry Connect dehumidifiers.
 - [Cadish](https://github.com/Cadish) for assisting with support for Qlima D820A dehumidifiers.
 - [mellow8](https://github.com/mellow8) for assisting with support for ZM-Wi-Fi smart meters.
+- [KodzghlyCZ](https://github.com/KodzghlyCZ) for assisting with support for Tesla Smart humidifiers.
