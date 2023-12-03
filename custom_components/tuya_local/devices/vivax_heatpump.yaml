@@ -1,7 +1,7 @@
 name: Heat pump
 products:
   - id: 9xvzf8c0bg33eenj
-    name: Vivax ACP-12CH35REWI
+    name: Vivax ACP-12CH35REWI / Tadiran Apollo
   - id: keycnvksyhjcrg8t
     name: Thermor Nagano HEWRQU1
 primary_entity:
@@ -104,37 +104,89 @@ primary_entity:
       # Undocumented but in log
     - id: 102
       type: integer
-      name: unknown_102
+      name: pm25
     - id: 105
       type: string
-      name: unknown_105
-    - id: 106
-      type: boolean
-      name: unknown_106
+      name: air_quality
     - id: 107
       type: boolean
-      name: unknown_107
+      name: strong
     - id: 111
       type: boolean
-      name: unknown_111
+      name: new_style
     - id: 113
       type: string
-      name: unknown_113
+      name: sense
     - id: 114
       type: boolean
-      name: unknown_114
+      name: self_cleaning
     - id: 116
       type: integer
-      name: unknown_116
+      name: fault_code
       # next two look obviously swing (logged values ud_00 and lr_00),
       # but full mappings not available to map to swing mode
+      # from #1183, seems to be ud_00, ud_01, ud_02, ud_03, ud_04, ud_0c (last one is swing, others are pos) 
     - id: 117
       type: string
-      name: vertical_swing
+      name: swing_mode
+      mapping:
+        - dps_val: ud_0c
+          constraint: horizontal_swing
+          conditions:
+            - dps_val: lr_0c
+              value: both
+            - dps_val: lr_00
+              value: vertical
+            - value: vertical
+        - dps_val: ud_00
+          constraint: horizontal_swing
+          conditions:
+            - dps_val: lr_0c
+              value: horizontal
+            - dps_val: lr_00
+              value: "off"
+            - value: "off"
+        - constraint: horizontal_swing
+          conditions:
+            - dps_val: lr_0c
+              value: horizontal
+            - value: "off"
     - id: 118
       type: string
       name: horizontal_swing
+      # From Tadiran Apollo
+    - id: 101
+      type: boolean
+      name: mood_lighting
+      optional: true
+    - id: 103
+      type: integer
+      name: co2
+      optional: true
+    - id: 104
+      type: integer
+      name: volatile_organic_compounds
+      optional: true
+    - id: 110
+      type: boolean
+      name: heating_10c
+      optional: true
+    - id: 112
+      type: integer
+      name: power
+      optional: true
+    - id: 119
+      type: boolean
+      name: cleaning_56c
+      optional: true
 secondary_entities:
+  - entity: switch
+    name: Emergency heat
+    icon: "mdi:fire"
+    dps:
+      - id: 12
+        type: boolean
+        name: switch
   - entity: light
     name: Display
     icon: "mdi:numeric"
@@ -164,5 +216,76 @@ secondary_entities:
       - id: 108
         type: boolean
         name: switch
-
 # Boolean dps 16 = Beep and 109 = Sleep documented but missing from log
+  - entity: switch
+    name: Sleep
+    category: config
+    icon: "mdi:power-sleep"
+    dps:
+      - id: 109
+        type: boolean
+        name: switch
+        optional: true
+  - entity: switch
+    name: Health
+    category: config
+    icon: "mdi:shield-bug"
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+        optional: true
+  - entity: select
+    name: Vertical swing
+    category: config
+    icon: "mdi:arrow-up-down-bold"
+    dps:
+      - id: 117
+        type: string
+        name: option
+        mapping:
+          - dps_val: ud_00
+            value: Top
+          - dps_val: ud_01
+            value: Upper
+          - dps_val: ud_02
+            value: Middle
+          - dps_val: ud_03
+            value: Lower
+          - dps_val: ud_04
+            value: Bottom
+          - dps_val: ud_0c
+            value: Swing
+  - entity: select
+    name: Horizontal swing
+    category: config
+    icon: "mdi:arrow-up-down-bold"
+    dps:
+      - id: 117
+        type: string
+        name: option
+        mapping:
+          - dps_val: lr_00
+            value: Leftmost
+          - dps_val: lr_01
+            value: Left
+          - dps_val: lr_02
+            value: Middle
+          - dps_val: lr_03
+            value: Right
+          - dps_val: lr_04
+            value: Rightmost
+          - dps_val: lr_0c
+            value: Swing
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 116
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true

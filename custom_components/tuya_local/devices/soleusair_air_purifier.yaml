@@ -1,0 +1,122 @@
+name: Air purifier
+products:
+  - id: kik7qavg2baebtk9
+    name: Soleusair KJ1000F A10
+  - id: 5xrkvysk7z6xrjum
+    name: Soleusair KJ760F A02
+primary_entity:
+  entity: fan
+  translation_key: fan_with_presets
+  icon: "mdi:air-purifier"
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 101
+      type: integer
+      name: speed
+      range:
+        min: 1
+        max: 5
+      mapping:
+        - scale: 0.05
+    - id: 3
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: manual
+          value: normal
+        - dps_val: auto
+          value: smart
+        - dps_val: sleep
+          value: sleep
+        - dps_val: displayoff
+          value: displayoff
+secondary_entities:
+  - entity: sensor
+    name: Filter life
+    category: diagnostic
+    icon: "mdi:timelapse"
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: switch
+    name: Ionizer
+    icon: "mdi:creation"
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+  - entity: lock
+    name: Child lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+        mapping:
+          - dps_val: false
+            icon: "mdi:hand-back-right"
+          - dps_val: true
+            icon: "mdi:hand-back-right-off"
+  - entity: switch
+    name: UV sterilization
+    category: config
+    icon: "mdi:solar-power"
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
+        optional: true
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 12
+        name: sensor
+        type: integer
+        unit: C
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    class: volatile_organic_compounds_parts
+    dps:
+      - id: 14
+        type: integer
+        name: sensor
+        optional: true
+        unit: ppb
+  - entity: sensor
+    name: Air quality
+    icon: "mdi:approximately-equal"
+    class: enum
+    dps:
+      - id: 21
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: great
+            value: great
+          - dps_val: good
+            value: good
+          - dps_val: medium
+            value: medium
+          - dps_val: severe
+            value: severe
+  - entity: sensor
+    name: Formaldehyde
+    icon: "mdi:chemical-weapon"
+    dps:
+      - id: 27
+        type: integer
+        name: sensor
+        unit: ugm3
+        mapping:
+         - scale: 0.1

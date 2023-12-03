@@ -532,7 +532,7 @@ for a button press, map this to the desired dps_val if a different
 value is required.
 
 ### `climate`
-- **aux_heat** (optional, boolean) a dp to control the aux heat switch if the device has one.
+- **aux_heat** (optional, boolean, DEPRECATED) a dp to control the aux heat switch if the device has one. Note this is being deprecated by HA and no longer accessible from the UI since HA 2023.9, though the deprecation announcement is yet to be made as of 2023.11.  It is recommended not to use this, and instead use an separate switch entity.
 - **current_temperature** (optional, number) a dp that reports the current temperature.
 - **current_humidity** (optional, number) a dp that reports the current humidity (%).
 - **fan_mode** (optional, mapping of strings) a dp to control the fan mode if available.

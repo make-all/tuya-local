@@ -1,0 +1,367 @@
+name: Air conditioner
+products:
+  - id: bf8705744de2dd5ab4ogqj
+    name: Fisher Summer Air Conditioner
+primary_entity:
+  entity: climate
+  icon: "mdi:air-conditioner"
+  translation_key: aircon_extra
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+          icon: "mdi:hvac-off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: auto
+              icon: mdi:thermostat-auto
+              value: heat_cool
+            - dps_val: cold
+              icon: "mdi:snowflake"
+              value: cool
+            - dps_val: wind
+              icon: "mdi:fan"
+              value: fan_only
+            - dps_val: wet
+              icon: "mdi:water"
+              value: dry
+            - dps_val: hot
+              value: heat
+              icon: "mdi:heat-wave"
+    - id: 2
+      name: temperature
+      type: integer
+      range:
+        min: 160
+        max: 310
+      mapping:
+        - scale: 10  
+          step: 5 
+      unit: C
+    - id: 3
+      name: current_temperature
+      type: integer
+    - id: 4
+      name: mode
+      type: string
+    - id: 5
+      name: fan_mode
+      type: string
+      mapping:
+        - dps_val: auto
+          value: auto
+        - dps_val: mute
+          value: quiet
+        - dps_val: low
+          value: low
+        - dps_val: mid_low
+          value: medlow
+        - dps_val: mid
+          value: medium
+        - dps_val: mid_high
+          value: medhigh
+        - dps_val: high
+          value: high
+        - dps_val: strong
+          value: strong
+    - id: 18
+      name: current_humidity
+      type: integer
+      optional: true
+    - id: 20
+      name: fault_code
+      type: bitfield
+    - id: 110
+      name: functions_available
+      type: bitfield
+      # Used to indicate whether this function is available. 
+      #   0. Whether the temperature is adjustable in dehumidification mode
+      #   1. Whether the temperature is adjustable in air supply mode
+      #   2. Whether the temperature is adjustable in automatic mode
+      #   3. Fresh air volume mark
+      #   4. Vector air supply
+      #   5. Left and right sweeping air
+      #   6. Photosensitive
+      #   7. Intelligent dehumidification and anti-mildew
+      #   8. Humidity sensor
+      #   9. Evaporator cleaning
+      #   10. Save money and see it
+      #   11. Power statistics
+      #   12. Generator mode
+      #   13. High temperature wind/cool wind 
+      #   14. Air quality detection function
+      #   15. Set to empty (original: humidity function)
+      #   16. Set to empty (original: equipment operation saves money and visible temperature curve display)
+      #   17. 8℃ heating
+      #   18. Filter dirty and clogged function
+      #   ??? - 19 is missing in Tuya json
+      #   20. presence or absence of PM2.5
+      #   21. temperature scale switching, 1 is Fahrenheit, 0 is Celsius
+      #   22. soft wind
+      #   23. left and right wide-angle air supply
+    - id: 123
+      name: options
+      type: string
+secondary_entities:
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 20
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: sensor  # no sensor in Fisher Summer AC, returns 0
+    class: pm25
+    dps:
+      - id: 101
+        name: sensor
+        type: integer
+        optional: true
+  - entity: select
+    name: Sleep
+    category: config
+    dps:
+      - id: 105
+        name: option
+        type: string
+        mapping:
+          - dps_val: off
+            value: Off
+            default: true
+          - dps_val: normal
+            value: Normal
+          - dps_val: old
+            value: Elderly
+          - dps_val: child
+            value: Child
+        optional: true
+  - entity: select
+    name: Vertical Sweep
+    category: config
+    dps:
+      - id: 113
+        name: option
+        type: string
+        mapping:
+          - dps_val: 0
+            value: None
+            default: true
+          - dps_val: 1
+            value: Upper and lower
+          - dps_val: 2
+            value: Upper
+          - dps_val: 3
+            value: Lower
+  - entity: select
+    name: Horizontal Sweep
+    category: config
+    dps:
+      - id: 114
+        name: option
+        type: string
+        mapping:
+          - dps_val: 0
+            value: None
+            default: true
+          - dps_val: 1
+            value: Left and Right
+          - dps_val: 2
+            value: Left
+          - dps_val: 3
+            value: Middle
+          - dps_val: 4
+            value: Right
+          - dps_val: 5
+            value: Partial Left
+          - dps_val: 6
+            value: Partial Right
+          - dps_val: 7
+            value: Wide Angle
+  - entity: select
+    name: Energy Saving
+    category: config
+    dps:
+      - id: 119
+        name: option
+        type: string
+        mapping:
+          - dps_val: 0
+            value: None
+            default: true
+          - dps_val: 1
+            value: Default Power Saving
+          - dps_val: 2
+            value: Quota Power Saving
+          - dps_val: 3
+            value: Fixed Temperature Power Saving
+        optional: true
+  - entity: select
+    name: Generator Mode
+    category: config
+    dps:
+      - id: 120
+        name: option
+        type: string
+        mapping:
+          - dps_val: off
+            value: None
+            default: true
+          - dps_val: L1
+            value: L1
+          - dps_val: L2
+            value: L2
+          - dps_val: L3
+            value: L3
+        optional: true
+  - entity: sensor
+    name: Air Quality
+    dps:
+      - id: 125
+        name: sensor
+        type: string
+        optional: true
+  - entity: select
+    name: Set Vertical Direction # Tuya JSON phrasing: Freeze Vertical
+    category: config
+    dps:
+      - id: 126
+        name: option
+        type: string
+        mapping:
+          - dps_val: 0
+            value: Freeze Current Position
+            default: true
+          - dps_val: 1
+            value: Top
+          - dps_val: 2
+            value: Slightly Up
+          - dps_val: 3
+            value: Middle
+          - dps_val: 4
+            value: Slightly Down
+          - dps_val: 5
+            value: Down  
+  - entity: select
+    name: Set Horizontal Direction # Tuya JSON phrasing: Freeze Horizontal
+    category: config
+    dps:
+      - id: 127
+        name: option
+        type: string
+        mapping:
+          - dps_val: 0
+            value: Freeze Current Position
+            default: true
+          - dps_val: 1
+            value: Left
+          - dps_val: 2
+            value: Slightly Left
+          - dps_val: 3
+            value: Middle
+          - dps_val: 4
+            value: Slightly Right
+          - dps_val: 5
+            value: Right  
+          - dps_val: 6
+            value: Wide Angle Left
+          - dps_val: 7
+            value: Wide Angle Right
+          - dps_val: 8
+            value: Wide Angle
+  - entity: select
+    name: Power
+    category: config
+    dps:
+      - id: 129
+        name: option
+        type: string
+        mapping:
+          - dps_val: 1
+            value: 1 kWh
+          - dps_val: 2
+            value: 2 kWh
+          - dps_val: 3
+            value: 3 kWh
+          - dps_val: 4
+            value: 4 kWh
+          - dps_val: 5
+            value: 5 kWh
+        optional: true
+  - entity: number
+    name: Power Saving Temperature
+    category: config
+    class: temperature
+    dps:
+      - id: 130
+        name: value
+        type: integer
+        unit: C
+        range:
+          min: 26
+          max: 31
+        optional: true
+  - entity: binary_sensor
+    name: Dirty Filter
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 131
+        type: boolean
+        name: sensor
+        readonly: true
+        optional: true
+  - entity: select
+    name: Hot Cold Wind
+    category: config
+    dps:
+      - id: 132
+        name: option
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: Cold Wind
+          - dps_val: false
+            value: Hot wind
+        optional: true
+  - entity: select
+    name: Swing Direction
+    category: config
+    dps:
+      - id: 133
+        name: option
+        type: string
+        mapping:
+          - dps_val: 0
+            value: None
+            default: true
+          - dps_val: 1
+            value: Horizontal Only
+          - dps_val: 2
+            value: Vertical Only
+          - dps_val: 3
+            value: Horizontal and Vertical
+  - entity: sensor
+    name: Work Time
+    dps:
+      - id: 134
+        name: sensor
+        type: string
+        optional: true
+  - entity: sensor
+    name: Running Time
+    class: duration
+    dps:
+      - id: 135
+        name: sensor
+        type: integer
+        unit: s
+        optional: true 

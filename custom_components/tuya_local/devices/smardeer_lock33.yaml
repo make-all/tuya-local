@@ -1,0 +1,96 @@
+name: Door lock
+products:
+  - id: oufbykkic2alxcjw
+    name: SmarDeer Lock33
+primary_entity:
+  entity: lock
+  dps:
+    - id: 1
+      type: integer
+      name: unlock_fingerprint
+      optional: true
+      persist: false
+    - id: 2
+      type: integer
+      name: unlock_password
+      optional: true
+      persist: false
+    - id: 3
+      type: integer
+      name: unlock_temp_pwd
+      optional: true
+      persist: false
+    - id: 5
+      type: integer
+      name: unlock_card
+      optional: true
+      persist: false
+    - id: 9
+      type: integer
+      name: unlock_request
+    - id: 15
+      name: unlock_app
+      type: integer
+      optional: true
+      persist: false
+    - id: 44
+      name: unlock_multi
+      type: string
+      optional: true
+      persist: false
+    - id: 212
+      name: push_message
+      type: string
+      optional: true
+secondary_entities:
+  - entity: sensor
+    name: Error
+    category: diagnostic
+    dps:
+      - id: 8
+        type: string
+        name: sensor
+        optional: true
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 11
+        type: string
+        name: sensor
+        unit: "%"
+        optional: true
+        mapping:
+          - dps_val: null
+            value_redirect: percent
+          - dps_val: poweroff
+            value: 0
+          - dps_val: low
+            value: 30
+          - dps_val: medium
+            value: 60
+          - dps_val: high
+            value: 90
+      - id: 12
+        type: integer
+        name: percent
+        optional: true
+  - entity: binary_sensor
+    name: Hijack
+    class: safety
+    category: diagnostic
+    dps:
+      - id: 16
+        type: boolean
+        name: sensor
+        optional: true
+  - entity: binary_sensor
+    name: Doorbell
+    class: sound
+    category: diagnostic
+    dps:
+      - id: 19
+        type: boolean
+        name: sensor
+        optional: true
+

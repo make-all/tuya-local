@@ -9,12 +9,14 @@
 - Betterlife BT1500 IR heater
 - Blumfeldt/Klarstein Cosmic Beam Smart 24 infrared radiant heater
 - BVF CP1 heater
+- Caldo Up T fan heater
 - Calex Smart Convector heater
 - Devola patio heater
 - Ecostrad Accent iQ heating panel
 - Ecostrad iQ ceramic radiator
 - Ecostrad iQ heating element
 - Eurom Alutherm 1000,1500,2000,2500 heaters
+- Eurom Hot-Shot 2000 heaters
 - Eurom Mon Soleil 300,600,800, 350,601,720 and 300,450,720 Verre heaters
 - Eurom Sani Wall Heat 2000 heater
 - Eurom Wall Designheat 2000 heater
@@ -27,6 +29,7 @@
 - Kogan tower heater - KASTHFP2KWA model
 - Kogan Wi-Fi convection panel heaters - KAHTP and KAWFHTP models
 - MRC Magnum floor heating
+- Nedis ceramic PTC fan heater
 - Nedis convection heater - WIFIHTPL20F model
 - Orion OWH-PTC2000 heater
 - Princess 350 panel heater
@@ -42,6 +45,7 @@
 - Costway portable air conditioner
 - Daewoo Dhome OL-A011 air conditioner (DA9KWE)
 - Daizuki heat pump
+- Della air conditioner
 - Duux Blizzard portable air conditioner
 - Eberg Cooly C35HD
 - Eberg Qubo Q40HD
@@ -49,6 +53,7 @@
 - ElectriQ Airflex 15W
 - ElectriQ EcoSilent 14HPW
 - Fersk Vind 2
+- Fisher Summer air conditioner
 - Kogan 2.6kW portable air conditioner
 - Lyfco OL-A012 air conditioner
 - Monzana Klimaanlage air conditioner
@@ -88,10 +93,12 @@
 
 - Aquatech Rapid/X6 heat pump water heater
 - EMS Thermal 200L domestic heat pump hot water system
+- Ferroli Titano Twin water heater
 - Geyserwise TSE1 Geyser controller kit
 - Hydrotherm Dynamic/X8 heat pump hot water systems
 - ITS-4.5HD super water heatpump
 - Thermex IF series V pro hot water systems
+- Thermex Lima 80V
 
 ### Thermostats
 
@@ -102,6 +109,7 @@
 - Beca BHT-002/3000 floor heating thermostat (with external temp sensor)
 - Beca BHP-6000 room heat pump control thermostat
 - Beca BHT-6000/8000 floor heating thermostat
+- Beok TGM50 thermostat
 - Beok TGR81 thermostat (also reported working with Myuet ME98, Avatto WT81/ME81)
 - Beok TOL47 thermostat
 - Beok TR8B thermostat
@@ -143,6 +151,7 @@
 - Carro ceiling fan with cool and warm white lights
 - Carro PN-04F02D fan with dimmable light
 - Casafan ECO Neo III ceiling fan with light
+- Cecotec ceiling fan with light
 - Chanfok ceiling fan with cool/warm white dimmable light
 - Deta fan controller
 - Djive ARC humidifying fan
@@ -178,9 +187,11 @@
 - Hosome air purifier
 - Kogan air purifier
 - Lifubide X600 air purifier
+- NX-100AP Rapid air purifier
 - Poiema One air purifier
 - Proscenic A8 air purifier
 - Renpho RP-AP001S air purifier
+- Soleusair A02 and A10 air purifiers
 - Stadler Form Roger air purifier
 - Tesla Pro and Mini air purifiers
 - Vork VK6067AW air purifier
@@ -369,6 +380,7 @@ of device.
 - Generic dimmable/color temperature adjustable desktop lamp (confirmed with Setti+ SL601)
 - A60 1800-2700K RGBWW light
 - Atomi smart color string light
+- Blitzwolf BW-LT31 LED strip
 - Deta/Arlec motion sensor lights (DET100HA/DET102HA/MAL315HA)
 - Deta 6910HA series2 dimmer switch
 - Dim2Warm G95 Gold 1800-2700K CCT lightbulb
@@ -437,6 +449,7 @@ of device.
 - Lefant M213 vacuum cleaner (also works for Lefant M213S and APOSEN A550)
 - Lenovo E1 vacuum cleaner
 - Liectroux XR500[T3]
+- Lubluelu SL60D vacuum cleaner with mop
 - MAMNV BR151 vacuum cleaner with mop
 - Medion S20 SW vacuum cleaner with mop
 - Mellerware City Move vacuum cleaner
@@ -453,6 +466,7 @@ of device.
 - BSTUOKEY access control keypad
 - Lucking HF06 smart lock
 - Orion Grid Connect smart lock
+- SmarDeer Lock33 smart lock
 
 ### Sirens
 
@@ -481,6 +495,7 @@ port and password.
 - BlitzWolf BW-IS6 security alarm system
 - GauTone PG-103 security alarm system
 - ZX-DB11 doorbell and alarm system
+- ZX-DB11B doorbell and alarm system
 - ZX-G30 alarm system
 
 ### Pet feeders
@@ -497,6 +512,7 @@ port and password.
 
 - generic PIR motion sensor
 - generic illuminance sensor
+- Akai heat pump clothes dryer
 - ARD-100+ valve controller
 - ASIP-0622 indoor planter
 - Aubess Rainpoint TTP106W irrigation system
@@ -529,6 +545,7 @@ port and password.
 - TH16 temperature and humidity sensor
 - Tontine electric blanket
 - Universal remote control (supports sensors only)
+- Valehaus SYZN119 towel warmer
 - Xiumii human presence radar
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)
 - Yinmik WF-3188 water quality monitor

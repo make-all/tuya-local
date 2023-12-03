@@ -1,0 +1,188 @@
+name: Dehumidifier
+products:
+  - id: bfba28a17b4fe4e87aljv2
+    name: Qlima D820A
+primary_entity:
+  entity: humidifier
+  class: dehumidifier
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 3
+      type: integer
+      name: humidity
+      range:
+        min: 35
+        max: 80
+      mapping:
+        - step: 5
+    - id: 5
+      type: string
+      name: mode
+      mapping:
+        - dps_val: dry_clothes
+          value: laundry
+        - dps_val: sleep_mode
+          value: sleep
+        - dps_val: manual_dehumidify
+          value: normal
+        - dps_val: auto
+          value: auto
+    - id: 6
+      type: integer
+      name: current_humidity
+    - id: 19
+      type: bitfield
+      name: fault_code
+secondary_entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - constraint: mode
+            conditions:
+              - dps_val: airpurify
+                value_redirect: purify_speed
+              - mapping:
+                  - dps_val: low
+                    value: 33
+                  - dps_val: mid
+                    value: 67
+                  - dps_val: high
+                    value: 100
+      - id: 8
+        type: boolean
+        name: oscillate
+      - id: 103
+        type: string
+        name: purify_speed
+        mapping:
+          - dps_val: high
+            value: 100
+          - dps_val: mid
+            value: 67
+          - dps_val: low
+            value: 33
+      - id: 105
+        type: string
+        name: mode
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: select
+    name: Indicators
+    icon: "mdi:led-on"
+    category: config
+    dps:
+      - id: 104
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: "Humidity off"
+          - dps_val: "2"
+            value: "All off"
+          - dps_val: "3"
+            value: "All on"
+  - entity: select
+    name: Operating mode
+    dps:
+      - id: 105
+        type: string
+        name: option
+        mapping:
+          - dps_val: dehum_air
+            value: Dehumidify only
+            icon: "mdi:water-percent"
+          - dps_val: airpurify
+            value: Purify only
+            icon: "mdi:air-filter"
+          - dps_val: dehum30_air
+            value: Both
+            icon: "mdi:air-humidifier"
+  - entity: switch
+    name: Internal dry
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Silent
+    icon: "mdi:volume-mute"
+    category: config
+    dps:
+      - id: 109
+        type: boolean
+        name: switch
+  - entity: lock
+    name: Child lock
+    icon: "mdi:hand-back-right-off"
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: lock
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: C 
+        class: measurement
+  - entity: select
+    name: Timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 17
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: "Off"
+          - dps_val: "1h"
+            value: "1 hour"
+          - dps_val: "2h"
+            value: "2 hours"
+          - dps_val: "3h"
+            value: "3 hours"
+  - entity: sensor
+    name: Time remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: min
+  - entity: switch
+    name: Sleep
+    icon: "mdi:power-sleep"
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: switch
+        mapping:
+          - dps_val: manual
+            value: false
+          - dps_val: night
+            value: true

@@ -1,7 +1,9 @@
 name: Heater
 products:
   - id: 20qAGCEd0AxowwTA
-    name: Eurom Alutherm heater
+    name: Eurom Alutherm 2000
+  - id: awnds45afwineiul
+    name: Eurom Alutherm 2500
 primary_entity:
   entity: climate
   dps:
@@ -77,6 +79,7 @@ secondary_entities:
       - id: 104
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: holiday
             value: Holiday
@@ -85,3 +88,4 @@ secondary_entities:
       - id: 103
         type: string
         name: schedule_data
+        optional: true

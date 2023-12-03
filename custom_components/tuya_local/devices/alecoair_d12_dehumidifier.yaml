@@ -12,7 +12,7 @@ primary_entity:
       mapping:
         - dps_val: false
           icon: "mdi:air-humidifier-off"
-          icon_priority: 1
+          icon_priority: 2
         - dps_val: true
           icon: "mdi:air-humidifier"
           icon_priority: 4
@@ -46,19 +46,18 @@ primary_entity:
     - id: 19
       name: error
       type: bitfield
-      # Docs mention E1 and E2, it isn't clear which is tank full, so for now
-      # treat both as that.
+      # E2 might be a compressor fault.
       mapping:
         - dps_val: 0
           value: OK
         - dps_val: 1
-          value: E1
+          value: "Water Tank Full or Removed"
           icon: "mdi:cup-water"
-          icon_priority: 2
+          icon_priority: 1
         - dps_val: 2
-          value: E2
-          icon: "mdi:cup-water"
-          icon_priority: 2
+          value: "E2 Compressor Fault"
+          icon: "mdi:engine-off-outline"
+          icon_priority: 1
 secondary_entities:
   - entity: fan
     dps:
@@ -117,14 +116,29 @@ secondary_entities:
           - dps_val: true
             icon: "mdi:hand-back-right-off"
   - entity: binary_sensor
-    name: Tank
     class: problem
-    category: diagnostic
+    name: Tank full
+    icon: "mdi:cup-water"
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    name: Fault
     dps:
       - id: 19
         type: bitfield
         name: sensor
         mapping:
           - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: false
+          - dps_val: null
             value: false
           - value: true
