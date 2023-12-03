@@ -18,22 +18,22 @@ import custom_components.tuya_local.devices as config_dir
 _LOGGER = logging.getLogger(__name__)
 
 
-def _typematch(type, value):
+def _typematch(vtype, value):
     # Workaround annoying legacy of bool being a subclass of int in Python
-    if type is int and isinstance(value, bool):
+    if vtype is int and isinstance(value, bool):
         return False
 
     # Allow integers to pass as floats.
-    if type is float and isinstance(value, Number):
+    if vtype is float and isinstance(value, Number):
         return True
 
-    if isinstance(value, type):
+    if isinstance(value, vtype):
         return True
     # Allow values embedded in strings if they can be converted
     # But not for bool, as everything can be converted to bool
-    elif isinstance(value, str) and type is not bool:
+    elif isinstance(value, str) and vtype is not bool:
         try:
-            type(value)
+            vtype(value)
             return True
         except ValueError:
             return False
@@ -74,7 +74,7 @@ def _bytes_to_fmt(bytes, signed=False):
 
 def _equal_or_in(value1, values2):
     """Return true if value1 is the same as values2, or appears in values2."""
-    if type(values2) is not str and isinstance(values2, Sequence):
+    if not isinstance(values2, str) and isinstance(values2, Sequence):
         return value1 in values2
     else:
         return value1 == values2
@@ -844,7 +844,7 @@ class TuyaDpsConfig:
                 if cval == value:
                     c_dps = self._entity.find_dps(mapping.get("constraint", self.name))
                     cond_dpsval = cond.get("dps_val")
-                    single_match = type(cond_dpsval) == str or (
+                    single_match = isinstance(cond_dpsval, str) or (
                         not isinstance(cond_dpsval, Sequence)
                     )
                     if c_dps.id != self.id and single_match:

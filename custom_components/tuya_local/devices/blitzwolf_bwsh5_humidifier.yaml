@@ -1,7 +1,7 @@
-# sample DPS {'1': True, '4': 'health', '5': True, '10': 24, '12': 75, '13': 55, '14': 77, '18': 'c', '19': 'cancel', '20': 0, '21': True, '22': 0, '23': 'level_1', '26': True, '35': True} 
-name: BlitzWolf BWSH5 humidifier
+name: Humidifier
 products: 
   - id: lqzme7o0kzhumdxr
+    name: BlitzWolf BWSH5
 primary_entity:
   entity: humidifier
   class: humidifier
@@ -40,12 +40,8 @@ primary_entity:
       name: current_humidity
       type: integer
     - id: 22
-      name: unknown_22
+      name: fault_code
       type: integer
-      optional: true
-    - id: 23
-      name: unknown_23
-      type: string
       optional: true
 secondary_entities:
   - entity: switch
@@ -56,6 +52,7 @@ secondary_entities:
       - id: 21
         name: switch
         type: boolean
+        #optional: true
   - entity: switch
     name: Warm mist
     icon: "mdi:fire"
@@ -64,6 +61,7 @@ secondary_entities:
       - id: 26
         name: switch
         type: boolean
+        optional: true
   - entity: switch
     name: Plasma
     icon: "mdi:dots-circle"
@@ -71,7 +69,8 @@ secondary_entities:
     dps:
       - id: 35
         name: switch
-        type: boolean        
+        type: boolean
+        optional: true
   - entity: light
     name: LED
     category: config
@@ -84,17 +83,33 @@ secondary_entities:
             icon: "mdi:led-on"
           - dps_val: false
             icon: "mdi:led-off"
-  - entity: sensor
-    deprecated: humidifier
-    name: Current humidity
-    class: humidity
-    category: diagnostic
+  - entity: fan
+    name: Spray level
+    icon: "mdi:heat-wave"
+    category: config
     dps:
-      - id: 14
-        type: integer
-        name: sensor
-        class: measurement
-        unit: "%"
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 23  
+        name: speed 
+        type: string
+        optional: true
+        mapping:
+          - dps_val: "level_1"
+            value: 15
+          - dps_val: "level_2"
+            value: 30
+          - dps_val: "level_3"
+            value: 45
+          - dps_val: "level_4"
+            value: 55
+          - dps_val: "level_5"    
+            value: 70
+          - dps_val: "level_6"
+            value: 85
+          - dps_val: "level_7" 
+            value: 100
   - entity: sensor
     class: temperature
     dps:
@@ -107,6 +122,7 @@ secondary_entities:
         name: temperature_f
         type: integer
         unit: F
+        optional: true
   - entity: select
     name: Timer
     icon: "mdi:timer"
@@ -115,6 +131,7 @@ secondary_entities:
       - id: 19
         name: option  
         type: string
+        optional: true
         mapping:
           - dps_val: "cancel"
             value: "Off"
@@ -154,6 +171,7 @@ secondary_entities:
       - id: 18
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: c
             value: Celsius
@@ -161,3 +179,14 @@ secondary_entities:
           - dps_val: f
             value: Fahrenheit  
             icon: "mdi:temperature-fahrenheit"
+  - entity: binary_sensor
+    name: Low water
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: true

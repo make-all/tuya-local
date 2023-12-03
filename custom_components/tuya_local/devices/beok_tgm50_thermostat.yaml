@@ -1,0 +1,234 @@
+name: Thermostat
+products:
+  - id: m3j5wouhgsvjlma9
+    name: Beok TGM50-WIFI-WP
+primary_entity:
+  entity: climate
+  translation_key: thermostat
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: true
+          constraint: preset_mode
+          conditions:
+            - dps_val: auto
+              value: auto
+            - dps_val: temporary
+              value: auto
+              hidden: true
+            - dps_val: home
+              value: heat
+            - value: heat
+              hidden: true
+        - dps_val: false
+          value: "off"
+    - id: 2
+      name: temperature
+      type: integer
+      range:
+        min: 50
+        max: 300
+      mapping:
+        - scale: 10
+          step: 5
+    - id: 3
+      type: integer
+      name: current_temperature
+      mapping:
+        - scale: 10
+    - id: 4
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: leave
+          value: away
+        - dps_val: home
+          value: manual
+        - dps_val: auto
+          value: program
+        - dps_val: temporary
+          value: temp_override
+    - id: 5
+      type: string
+      name: hvac_action
+      mapping:
+        - dps_val: "0"
+          constraint: hvac_mode
+          conditions:
+            - dps_val: true
+              value: idle
+              icon: "mdi:radiator-disabled"
+            - dps_val: false
+              value: "off"
+              icon: "mdi:radiator-off"
+        - dps_val: "1"
+          value: heating
+          icon: "mdi:radiator"
+    - id: 11
+      name: fault_code
+      type: bitfield
+    - id: 15
+      name: max_temperature
+      type: integer      
+secondary_entities:
+  - entity: lock
+    name: Child lock
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: lock
+        mapping:
+          - dps_val: true
+            icon: "mdi:hand-back-right-off"
+          - dps_val: false
+            icon: "mdi:hand-back-right"
+  - entity: binary_sensor
+    name: Fault
+    category: diagnostic
+    class: problem
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: number
+    name: Temperature hysteresis
+    category: config
+    icon: "mdi:thermometer-plus"
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: 5
+          max: 95
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Maximum temperature
+    category: config
+    class: temperature
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 15
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 15
+          max: 95
+  - entity: number
+    name: Calibration offset
+    category: config
+    icon: "mdi:arrow-collapse-up"
+    dps:
+      - id: 19
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: -90
+          max: 90
+        mapping:
+          - scale: 10
+  - entity: number
+    name: External temperature limit
+    category: config
+    class: temperature
+    icon: "mdi:arrow-collapse-up"
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 5
+          max: 60
+  - entity: switch
+    name: Anti-frost
+    category: config
+    icon: "mdi:snowflake-melt"
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: button
+    name: Factory reset
+    class: restart
+    dps:
+      - id: 104
+        name: button
+        type: boolean
+  - entity: light
+    name: Backlight
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: brightness
+        mapping:
+          - dps_val: "0"
+            icon: "mdi:lightbulb-on-10"
+            value: 0
+          - dps_val: "1"
+            icon: "mdi:lightbulb-on-40"
+            value: 100
+          - dps_val: "2"
+            icon: "mdi:lightbulb-on-70"
+            value: 180
+          - dps_val: "3"
+            icon: "mdi:lightbulb-on"
+            value: 255
+  - entity: select
+    name: Schedule
+    category: config
+    icon: "mdi:calendar-clock"
+    dps:
+      - id: 107
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: "Weekday+Weekend"
+          - dps_val: "2" 
+            value: "Mon-Sat+Sun"
+          - dps_val: "3"
+            value: "Daily"          
+  - entity: switch
+    name: Invert output
+    category: config
+    icon: "mdi:swap-horizontal"   
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+  - entity: select
+    name: Sensor selection
+    category: config
+    icon: "mdi:home-thermometer"
+    dps:
+      - id: 110
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: Internal
+          - dps_val: "2"
+            value: External
+          - dps_val: "3"
+            value: Both
+  - entity: switch 
+    name: Sound
+    category: config
+    icon: "mdi:music-note"
+    dps:
+      - id: 109
+        type: boolean
+        name: switch
