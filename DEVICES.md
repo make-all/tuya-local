@@ -28,6 +28,7 @@
 - Kogan flame effect heater - KAWHMFP20BA model
 - Kogan tower heater - KASTHFP2KWA model
 - Kogan Wi-Fi convection panel heaters - KAHTP and KAWFHTP models
+- Modern Flames Orion fireplace
 - MRC Magnum floor heating
 - Nedis ceramic PTC fan heater
 - Nedis convection heater - WIFIHTPL20F model
