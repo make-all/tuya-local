@@ -73,11 +73,27 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
         preset_mode: str | None = None,
         **kwargs: Any,
     ):
-        """Turn the switch on"""
+        """Turn the fan on, setting any other parameters given"""
+        settings = {}
         if self._switch_dps:
-            await self._switch_dps.async_set_value(self._device, True)
-        # TODO: handle percentage and preset_mode parameters, and potentially
-        # other kwargs.
+            settings = {
+                **settings,
+                **self._switch_dps.get_values_to_set(self._device, True),
+            }
+
+        if percentage is not None and self._speed_dps:
+            settings = {
+                **settings,
+                **self._speed_dps.get_values_to_set(self._device, percentage),
+            }
+        if preset_mode and self._preset_dps:
+            settings = {
+                **settings,
+                **self._preset_dps.get_values_to_set(self._device, preset_mode),
+            }
+        # TODO: potentially handle other kwargs.
+        if settings:
+            await self._device.async_set_properties(settings)
 
     async def async_turn_off(self, **kwargs):
         """Turn the switch off"""
