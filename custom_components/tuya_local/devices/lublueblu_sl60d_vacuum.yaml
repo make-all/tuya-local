@@ -68,6 +68,7 @@ primary_entity:
     - id: 11
       type: boolean
       name: locate
+      optional: true
     - id: 12
       type: string
       name: direction_control
@@ -171,6 +172,7 @@ secondary_entities:
         type: integer
         name: sensor
         unit: min
+        optional: true
   - entity: sensor
     name: Total cleaning area
     icon: "mdi:texture-box"
@@ -206,6 +208,7 @@ secondary_entities:
       - id: 13
         type: boolean
         name: button
+        optional: true
   - entity: button
     name: Reset edge brush
     class: restart
@@ -214,6 +217,7 @@ secondary_entities:
       - id: 18
         type: boolean
         name: button
+        optional: true
   - entity: button
     name: Reset roll brush
     class: restart
@@ -222,6 +226,7 @@ secondary_entities:
       - id: 20
         type: boolean
         name: button
+        optional: true
   - entity: button
     name: Reset filter
     icon: "mdi:air-filter"
@@ -230,6 +235,7 @@ secondary_entities:
       - id: 22
         type: boolean
         name: button
+        optional: true
   - entity: switch
     name: Do not disturb
     icon: "mdi:minus-circle"
