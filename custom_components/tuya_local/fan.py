@@ -68,10 +68,10 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
         return self._switch_dps.get_value(self._device)
 
     async def async_turn_on(
-            self,
-            percentage: int | None = None,
-            preset_mode: str | None = None,
-            **kwargs: Any,
+        self,
+        percentage: int | None = None,
+        preset_mode: str | None = None,
+        **kwargs: Any,
     ):
         """Turn the switch on"""
         if self._switch_dps:
