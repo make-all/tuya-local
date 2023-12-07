@@ -2,6 +2,7 @@
 Setup for different kinds of Tuya fan devices
 """
 import logging
+from typing import Any
 
 from homeassistant.components.fan import FanEntity, FanEntityFeature
 
@@ -66,11 +67,17 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
             return self.available
         return self._switch_dps.get_value(self._device)
 
-    async def async_turn_on(self, **kwargs):
+    async def async_turn_on(
+            self,
+            percentage: int | None = None,
+            preset_mode: str | None = None,
+            **kwargs: Any,
+    ):
         """Turn the switch on"""
-        if self._switch_dps is None:
-            raise NotImplementedError()
-        await self._switch_dps.async_set_value(self._device, True)
+        if self._switch_dps:
+            await self._switch_dps.async_set_value(self._device, True)
+        # TODO: handle percentage and preset_mode parameters, and potentially
+        # other kwargs.
 
     async def async_turn_off(self, **kwargs):
         """Turn the switch off"""
