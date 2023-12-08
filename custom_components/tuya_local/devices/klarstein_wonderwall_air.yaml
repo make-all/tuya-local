@@ -1,0 +1,118 @@
+name: Klarstein Wonderwall Air
+products:
+  - id: cl2wgyhohpjjjuzu
+    name: Wonderwall Art Smart
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: true
+          value: "heat"
+          icon: "mdi:radiator"
+        - dps_val: false
+          value: "off"
+          icon: "mdi:radiator-disabled"
+    - id: 2
+      name: temperature
+      type: integer
+      mapping:
+        - scale: 10
+          step: 10
+      range:
+        min: 0
+        max: 370
+      unit: "\u00b0C"
+    - id: 3
+      name: current_temperature
+      type: integer
+      mapping:
+        - scale: 10
+          step: 10
+      range:
+        min: 0
+        max: 500
+      unit: "\u00b0C"
+    - id: 4
+      type: string
+      mapping:
+        - dps_val: manual
+          value: Manual
+        - dps_val: holiday
+          value: Holiday
+        - dps_val: auto
+          value: Auto
+      name: preset_mode
+secondary_entities:
+  - entity: number
+    name: Timer
+    icon: "mdi:timer-sand"
+    category: config
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        unit: hour
+        range:
+          min: 0
+          max: 24
+  - entity: number
+    name: Countdown
+    icon: "mdi:timer-sand-complete"
+    category: diagnostic
+    dps:
+      - id: 11
+        name: value
+        readonly: true
+        type: integer
+        unit: min
+  - entity: number
+    name: Holiday
+    icon: "mdi:island"
+    category: config
+    dps:
+      - id: 101
+        name: value
+        type: integer
+        unit: day
+        range:
+          min: 0
+          max: 99
+  - entity: select
+    name: "Window Open"
+    icon: "mdi:window-open"
+    category: config
+    dps:
+      - id: 103
+        name: option
+        type: string
+        mapping:
+          - dps_val: continue
+            value: continue
+          - dps_val: close
+            value: close
+  - entity: select
+    name: Scale
+    icon: "mdi:thermometer"
+    category: config
+    dps:
+      - id: 104
+        name: option
+        type: string
+        mapping:
+          - dps_val: c
+            value: c
+          - dps_val: f
+            value: f
+  - entity: number
+    name: Worktime
+    icon: "mdi:briefcase-clock"
+    category: diagnostic
+    dps:
+      - id: 105
+        name: value
+        readonly: true
+        type: integer
+        unit: min
