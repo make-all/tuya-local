@@ -1,0 +1,65 @@
+name: Garage door
+products:
+  - id: keyftvxappyrem5a
+    name: WiFi Smart Garage Door 
+primary_entity:
+  entity: cover
+  class: garage
+  dps:
+    - id: 1
+      type: boolean
+      name: control
+      optional: true
+      mapping:
+        - dps_val: true
+          value: open
+        - dps_val: false
+          value: close
+    - id: 101
+      name: open
+      type: boolean
+secondary_entities:
+  - entity: number
+    name: Travel Time
+    icon: mdi:timer
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: s
+        range:
+            min: 10
+            max: 120
+        mapping:
+          - step: 1
+  - entity: number
+    name: Timer
+    hidden: true
+    icon: mdi:timer
+    category: config
+    dps:
+      - id: 7
+        name: value
+        type: integer
+        unit: s
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - step: 1
+  - entity: number
+    name: Alarm Timer
+    icon: mdi:timer
+    category: config
+    dps:
+      - id: 103
+        name: value
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 1440
+        mapping:
+          - scale: 60
+            step: 60
