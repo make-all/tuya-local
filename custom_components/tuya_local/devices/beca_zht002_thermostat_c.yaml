@@ -1,6 +1,6 @@
-name: Zigbee Thermostat
+name: Thermostat
 products:
-  - id: bf63833d92f517329fqkhz
+  - id: aoclfnxz
     name: MOES Zigbee Thermostat
 primary_entity:
   entity: climate
@@ -13,7 +13,7 @@ primary_entity:
         - dps_val: false
           value: "off"
         - dps_val: true
-          value: "heat_cool"
+          value: "heat"
     - id: 16
       name: temperature
       type: integer
@@ -47,12 +47,12 @@ secondary_entities:
       - id: 40
         type: boolean
         name: lock
-  - entity: climate
+  - entity: select
     name: Sensor selection
     category: config
     dps:
       - id: 43
-        name: preset_mode
+        name: option
         type: string
         mapping:
           - dps_val: in
