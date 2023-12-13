@@ -1,0 +1,32 @@
+name: Hama Radiator Controller
+products:
+  - id: 176592/176593
+    name: Hama Radiator Controller
+primary_entity:
+  entity: climate
+  dps:
+    - id: 101
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: true
+          value: "heat"
+          icon: "mdi:radiator"
+        - dps_val: false
+          value: "off"
+          icon: "mdi:radiator-disabled"
+    - id: 102
+      name: current_temperature
+      type: integer
+      mapping:
+        - scale: 10
+          step: 1
+    - id: 103
+      name: temperature
+      type: integer
+      range:
+        min: 50
+        max: 300
+      mapping:
+        - scale: 10
+          step: 5
