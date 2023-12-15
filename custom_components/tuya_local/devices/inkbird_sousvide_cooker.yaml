@@ -39,6 +39,7 @@ primary_entity:
         max: 960
       mapping:
         - scale: 10
+      unit: C
     - id: 104
       type: integer
       name: current_temperature
@@ -52,14 +53,6 @@ primary_entity:
           value: 0
         - icon: "mdi:alert"
           icon_priority: 1
-    - id: 108
-      type: boolean
-      name: temperature_unit
-      mapping:
-        - dps_val: true
-          value: C
-        - dps_val: false
-          value: F
 secondary_entities:
   - entity: number
     name: Cooking time
@@ -96,7 +89,7 @@ secondary_entities:
             value: false
           - value: true
   - entity: select
-    name: Temperature unit
+    name: Temperature display unit
     category: config
     icon: "mdi:temperature-celsius"
     dps:
