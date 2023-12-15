@@ -122,7 +122,7 @@ class TestInkbirdSousVideCooker(
         self.assertEqual(self.subject.icon, "mdi:alert")
 
     def test_temperature_unit(self):
-         self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
+        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
  
     def test_current_temperature(self):
         self.dps[CURRENTTEMP_DPS] = 522
