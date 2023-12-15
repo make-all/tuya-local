@@ -79,7 +79,7 @@ class TestInkbirdSousVideCooker(
         )
         self.setUpBasicSelect(
             UNIT_DPS,
-            self.entities.get("select_temperature_unit"),
+            self.entities.get("select_temperature_display_unit"),
             {
                 False: "Fahrenheit",
                 True: "Celsius",
@@ -97,7 +97,7 @@ class TestInkbirdSousVideCooker(
                 "number_recipe",
                 "number_temperature_calibration",
                 "binary_sensor_fault",
-                "select_temperature_unit",
+                "select_temperature_display_unit",
                 "sensor_remaining_time",
             ]
         )
@@ -122,11 +122,8 @@ class TestInkbirdSousVideCooker(
         self.assertEqual(self.subject.icon, "mdi:alert")
 
     def test_temperature_unit(self):
-        self.dps[UNIT_DPS] = True
-        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
-        self.dps[UNIT_DPS] = False
-        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.FAHRENHEIT)
-
+         self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
+ 
     def test_current_temperature(self):
         self.dps[CURRENTTEMP_DPS] = 522
         self.assertEqual(self.subject.current_temperature, 52.2)
