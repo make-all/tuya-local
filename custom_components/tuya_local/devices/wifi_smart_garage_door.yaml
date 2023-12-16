@@ -21,7 +21,7 @@ primary_entity:
 secondary_entities:
   - entity: number
     name: Travel time
-    icon: mdi:timer
+    icon: "mdi:timer"
     category: config
     dps:
       - id: 102
@@ -36,7 +36,7 @@ secondary_entities:
   - entity: number
     name: Timer
     hidden: true
-    icon: mdi:timer
+    icon: "mdi:timer"
     category: config
     dps:
       - id: 7
@@ -47,10 +47,11 @@ secondary_entities:
           min: 0
           max: 86400
         mapping:
-          - step: 1
+          - scale: 60
+          - step: 60
   - entity: number
     name: Alarm timer
-    icon: mdi:timer
+    icon: "mdi:timer"
     category: config
     dps:
       - id: 103
@@ -59,7 +60,7 @@ secondary_entities:
         unit: min
         range:
           min: 0
-          max: 1440
+          max: 86400
         mapping:
           - scale: 60
             step: 60
