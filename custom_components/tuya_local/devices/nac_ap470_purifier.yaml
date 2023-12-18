@@ -4,7 +4,6 @@ products:
     name: "NAC AP470 Air Purifier"
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
   icon: "mdi:air-purifier"
   dps:
     - id: 1
@@ -42,6 +41,7 @@ secondary_entities:
     name: Filter left days
     icon: "mdi:air-filter"
     category: diagnostic
+    class: duration
     dps:
       - id: 16
         type: integer
@@ -51,6 +51,7 @@ secondary_entities:
     name: Total time
     icon: "mdi:air-filter"
     category: diagnostic
+    class: duration
     dps:
       - id: 17
         type: integer
@@ -64,9 +65,6 @@ secondary_entities:
       - id: 6
         type: boolean
         name: switch
-        mapping:
-          - dps_val: true
-          - dps_val: false
   - entity: lock
     name: Child lock
     category: config
@@ -83,9 +81,6 @@ secondary_entities:
       - id: 8
         type: boolean
         name: switch
-        mapping:
-          - dps_val: true
-          - dps_val: false
   - entity: switch
     name: UV lamp
     category: config
@@ -94,9 +89,6 @@ secondary_entities:
       - id: 9
         type: boolean
         name: switch
-        mapping:
-          - dps_val: true
-          - dps_val: false
   - entity: switch
     name: Filter clean
     category: config
@@ -105,9 +97,6 @@ secondary_entities:
       - id: 101
         type: boolean
         name: switch
-        mapping:
-          - dps_val: true
-          - dps_val: false
   - entity: button
     name: Filter reset
     class: restart
@@ -143,4 +132,4 @@ secondary_entities:
       - id: 20
         type: integer
         name: sensor
-        unit: "m"
+        unit: "min"
