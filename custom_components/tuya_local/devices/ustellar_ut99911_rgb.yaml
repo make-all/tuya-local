@@ -1,10 +1,10 @@
-name: Smart Monitor Light Bar
+name: Monitor light bar
 products:
   - id: oqtk22eg6jxorl78
     name: Ustellar UT99911-RGB
 primary_entity:
   entity: light
-  name: Front LED (White)
+  name: Front White LED
   icon: "mdi:wall-sconce-flat-outline"
   dps:
     - id: 101
@@ -30,7 +30,7 @@ primary_entity:
         max: 1000
 secondary_entities:
   - entity: light
-    name: Rear LED (RGB)
+    name: Rear RGB LED
     icon: "mdi:wall-sconce-flat-variant-outline"
     dps:
       - id: 20
@@ -70,9 +70,6 @@ secondary_entities:
       - id: 103
         name: line_sequence_adjustment
         type: integer
-      - id: 104
-        name: strip_points
-        type: integer
   - entity: select
     name: Music
     icon: "mdi:playlist-music"
@@ -81,6 +78,7 @@ secondary_entities:
       - id: 102
         type: hex
         name: option
+        optional: true
         mapping:
           - dps_val: 119
             value: "Classic 25%"
@@ -122,6 +120,7 @@ secondary_entities:
       - id: 106
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: "013264000003e803e8"
             value: "Breath"
@@ -149,6 +148,7 @@ secondary_entities:
       - id: 108
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: "CJ_YD"
             value: "Read"
