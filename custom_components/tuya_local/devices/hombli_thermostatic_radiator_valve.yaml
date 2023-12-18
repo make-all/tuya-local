@@ -1,0 +1,58 @@
+name: Hombli Thermostatic Radiator Valve
+products:
+  - id: ngxyxyc8
+    name: Hombli HBRT-0109
+primary_entity:
+  entity: climate
+  dps:
+    - id: 8
+      type: boolean
+      name: window_check
+      icon: "mdi:window-open"
+    - id: 10
+      type: boolean
+      name: frost
+      mapping:
+        - dps_val: true
+          value: "On"
+        - dps_val: false
+          value: "Off"
+    - id: 27
+      type: integer
+      name: temp_correction
+      mapping:
+        - scale: 10
+    - id: 40
+      type: boolean
+      name: child_lock
+    - id: 101
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          value: "auto"
+    - id: 102
+      type: integer
+      name: current_temperature
+      readonly: true
+      mapping:
+        - scale: 10
+    - id: 103
+      type: integer
+      name: temperature
+      mapping:
+        - scale: 10
+    - id: 105
+      type: integer
+      name: battery
+    - id: 106
+      type: boolean
+      name: away
+    - id: 108
+      type: boolean
+      name: program
+    - id: 130
+      type: boolean
+      name: antiscale
