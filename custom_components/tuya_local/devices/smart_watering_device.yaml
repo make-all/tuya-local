@@ -1,0 +1,44 @@
+name: Smart watering device
+products:
+  - id: abzzvtulukkwzynv
+primary_entity:
+  entity: switch
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+      mapping:
+        - dps_val: true
+          icon: mdi:scent
+          value: ON
+        - dps_val: false
+          icon: mdi:scent-off
+          value: OFF
+secondary_entities:
+  - entity: number
+    name: Timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 56
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 360
+  - entity: select
+    name: Pump
+    icon: "mdi:pump"
+    category: config
+    dps:
+      - id: 28
+        type: string
+        name: option
+        mapping:
+          - dps_val: "PumpA"
+            value: "A"
+          - dps_val: "PumpB"
+            value: "B"
+          - dps_val: "PumpAB"
+            value: "AB"
