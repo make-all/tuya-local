@@ -1,4 +1,4 @@
-name: Argo DRY PURY EVO WF dehumidifier
+name: Dehumidifier
 products:
   - id: oya6k3fqen43zyi7
     name: Argo DRY PURY EVO WF 21
@@ -25,15 +25,14 @@ primary_entity:
           value: comfort
         - dps_val: drying
           value: laundry
-          icon: "mdi:tshirt-crew-outline"
-          icon_priority: 3
         - dps_val: sleep
           value: sleep
-          icon: "mdi:power-sleep"
-          icon_priority: 3
     - id: 6
       name: current_humidity
       type: integer
+    - id: 19
+      type: bitfield
+      name: fault_code
 secondary_entities:
   - entity: fan
     dps:
@@ -61,18 +60,6 @@ secondary_entities:
               - dps_val: sleep
                 invalid: true
   - entity: sensor
-    name: Current humidity
-    # deprecated: humidifier      # without that I see humidity values and it's history
-    # category: diagnostic        # without that I see humidity values and it's history
-    class: humidity
-    dps:
-      - id: 6
-        name: sensor
-        type: integer
-        precision: 0
-        unit: "%"
-        class: measurement
-  - entity: sensor
     class: temperature
     dps:
       - id: 7
@@ -83,7 +70,7 @@ secondary_entities:
   - entity: switch
     name: Ionizer
     icon: "mdi:creation"
-    optional: true
+    category: config
     dps:
       - id: 10
         type: boolean
@@ -100,61 +87,32 @@ secondary_entities:
             icon: "mdi:hand-back-right"
           - dps_val: true
             icon: "mdi:hand-back-right-off"
-  - entity: select
-    name: Timer
-    category: config
-    dps:
-      - id: 17
-        type: string
-        name: option
-        mapping:
-          - dps_val: "cancel"
-            value: Continuous
-          - dps_val: 1h
-            value: 1 hour
-          - dps_val: 2h
-            value: 2 hours
-          - dps_val: 3h
-            value: 3 hours
-  - entity: binary_sensor # based on API doc. I don't know how to test
-    name: Fault
+  - entity: binary_sensor
     class: problem
+    name: Tank full
+    category: diagnostic
+    icon: "mdi:cup-water"
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 16
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    name: Fault
     category: diagnostic
     dps:
       - id: 19
-        name: sensor
         type: bitfield
+        name: sensor
         mapping:
           - dps_val: 0
-            value: E1
-          - dps_val: 1
-            value: CL
-          - dps_val: 2
-            value: CH
-          - dps_val: 3
-            value: LO
-          - dps_val: 4
-            value: FL
-          - dps_val: 5
-            value: Cleaning
-  - entity: button # based on API doc. Nothing happened when I run on my device
-    name: Filter reset
-    category: config
-    optional: true
-    dps:
-      - id: 20
-        type: boolean
-        name: button
-  - entity: select # based on API doc. Nothing happened when I run on my device
-    name: Temperature unit
-    category: config
-    optional: true
-    dps:
-      - id: 24
-        type: string
-        name: option
-        mapping:
-          - dps_val: "c"
-            value: Celsius
-          - dps_val: "f"
-            value: Fahrenheit
+            value: false
+          - dps_val: 16
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
