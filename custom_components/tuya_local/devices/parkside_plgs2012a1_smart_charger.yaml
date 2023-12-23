@@ -8,9 +8,13 @@ primary_entity:
     - id: 1
       type: boolean
       name: switch
-    - id: 11
+      optional: true
+    - id: 2
       type: string
-      name: unknown_11
+      name: model
+    - id: 11
+      type: bitfield
+      name: fault_code
 secondary_entities:
   - entity: number
     name: Charge current
@@ -88,14 +92,6 @@ secondary_entities:
       - id: 10
         type: integer
         name: sensor
-  - entity: sensor
-    name: Name
-    icon: "mdi:form-textbox"
-    category: diagnostic
-    dps:
-      - id: 2
-        type: string
-        name: sensor
   - entity: select
     name: Charge type
     icon: "mdi:battery-unknown"
@@ -149,3 +145,15 @@ secondary_entities:
       - id: 104
         type: boolean
         name: sensor
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true

@@ -28,6 +28,7 @@
 - Kogan flame effect heater - KAWHMFP20BA model
 - Kogan tower heater - KASTHFP2KWA model
 - Kogan Wi-Fi convection panel heaters - KAHTP and KAWFHTP models
+- Modern Flames Orion fireplace
 - MRC Magnum floor heating
 - Nedis ceramic PTC fan heater
 - Nedis convection heater - WIFIHTPL20F model
@@ -238,6 +239,7 @@
 - Kyvol EA200 humidifier
 - Stadler Eva humidifier
 - Stadler Form Karl/Karl Big humidifier
+- Tesla Smart humidifier
 - Wetair WAW-H1210LW humidifier
 - Wilfa Haze HU400BC humidifier
 
@@ -283,6 +285,7 @@
 - V-WIFI-DL02-ES energy consumption clamp meter
 - WDYK 2P63A energy meter
 - WDYK 3 phase 4 pole 400V energy meter circuit breaker
+- ZM-Wi-Fi smart meter
 
 ### Battery Charger
 

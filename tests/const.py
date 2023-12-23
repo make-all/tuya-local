@@ -1112,7 +1112,7 @@ PARKSIDE_PLGS2012A1_PAYLOAD = {
     "8": False,
     "9": True,
     "10": 5,
-    "11": "unknown",
+    "11": 0,
     "101": 2500,
     "102": 11,
     "103": False,

@@ -118,3 +118,13 @@ class TestAnkoFan(SwitchableTests, BasicNumberTests, TuyaDeviceTestCase):
     def test_extra_state_attributes(self):
         self.dps[TIMER_DPS] = "5"
         self.assertEqual(self.subject.extra_state_attributes, {"timer": 5})
+
+    async def test_turn_on_with_params(self):
+        self.dps[SWITCH_DPS] = False
+        self.dps[SPEED_DPS] = "1"
+        self.dps[PRESET_DPS] = "normal"
+        async with assert_device_properties_set(
+            self.subject._device,
+            {SWITCH_DPS: True, SPEED_DPS: "6", PRESET_DPS: "nature"},
+        ):
+            await self.subject.async_turn_on(80, "nature")

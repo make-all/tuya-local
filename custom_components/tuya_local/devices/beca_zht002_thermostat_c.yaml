@@ -1,0 +1,94 @@
+name: Thermostat
+products:
+  - id: aoclfnxz
+    name: MOES Zigbee Thermostat
+primary_entity:
+  entity: climate
+  icon: "mdi:thermostat"
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          value: "heat"
+    - id: 16
+      name: temperature
+      type: integer
+      unit: C
+      range:
+        min: 1
+        max: 45
+    - id: 24
+      name: current_temperature
+      type: integer
+      mapping:
+        - scale: 10
+    - id: 36
+      name: hvac_action
+      type: string
+      mapping:
+        - dps_val: open
+          value: heating
+        - dps_val: close
+          value: idle
+
+secondary_entities:
+  - entity: lock
+    name: Child lock
+    icon: "mdi:hand-back-right-off"
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        name: lock
+  - entity: select
+    name: Sensor selection
+    icon: "mdi:thermometer-check"
+    category: config
+    dps:
+      - id: 43
+        name: option
+        type: string
+        mapping:
+          - dps_val: in
+            value: internal
+          - dps_val: ou
+            value: external
+          - dps_val: al
+            value: both
+  - entity: number
+    name: Temperature correction
+    icon: "mdi:thermometer-plus"
+    category: config
+    dps:
+      - id: 27
+        name: value
+        type: integer
+        range:
+          min: -9
+          max: 9
+  - entity: number
+    name: DeadZone temp
+    icon: "mdi:thermometer-alert"
+    category: config
+    dps:
+      - id: 26
+        name: value
+        type: integer
+        range:
+          min: 1
+          max: 5
+  - entity: number
+    name: High limit temperature ceiling
+    category: config
+    dps:
+      - id: 19
+        name: value
+        type: integer
+        icon: "mdi:thermometer-alert"
+        range:
+          min: 45
+          max: 70

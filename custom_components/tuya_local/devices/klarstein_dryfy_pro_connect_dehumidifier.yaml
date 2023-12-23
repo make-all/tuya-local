@@ -3,6 +3,8 @@ name: Dehumidifier
 products:
   - id: 6cguug02fnygou5c
     name: Klarstein Dryfy Pro Connect
+  - id: m0wtqltrepknlpdj
+    name: Morris Premier plus
 primary_entity:
   entity: humidifier
   class: dehumidifier
@@ -115,11 +117,6 @@ secondary_entities:
         name: switch 
         type: boolean
         optional: true
-        mapping:
-          - dps_val: false
-            value: true
-          - dps_val: true
-            value: false  
   - entity: switch
     name: "Humidity indicator"
     category: config
