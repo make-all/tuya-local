@@ -44,6 +44,11 @@ primary_entity:
     - id: 6
       type: integer
       name: current_humidity
+    # This doesn't actually have an ionizer, but having the dp
+    # will aid in detection
+    - id: 10
+      type: boolean
+      name: ionizer
     - id: 19
       name: error
       type: bitfield
