@@ -213,6 +213,7 @@
 - ElectriQ DESD9LW dehumidifier
 - Electriq PD45E dehumidifier
 - Eeese Adam dehumidifier
+- Eeese Anna dehumidifier
 - Eeese Carl dehumidifier
 - Eeese Otto dehumidifier
 - Goldair GPDH340 dehumidifier
