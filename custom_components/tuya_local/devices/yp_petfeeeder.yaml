@@ -1,0 +1,45 @@
+name: Pet feeder
+products:
+  - id: wfnmgiqqch80sg1w
+    name: YP PAF-40PCS-WBR3
+primary_entity:
+  entity: number
+  icon: "mdi:paw"
+  name: Manual feed
+  dps:
+    - id: 3
+      name: value
+      type: integer
+      range:
+        min: 1
+        max: 40
+    - id: 1
+      name: meal_plan
+      type: string
+secondary_entities:
+  - entity: sensor
+    icon: "mdi:paw"
+    name: Feed report
+    category: diagnostic
+    dps:
+      - id: 15
+        name: sensor
+        type: integer
+    type: integer
+  - entity: button
+    class: restart
+    name: Factory reset
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: button
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 14
+        type: boolean
+        name: sensor
+

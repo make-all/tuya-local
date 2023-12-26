@@ -103,7 +103,7 @@ Further device support has been made with the assistance of users.  Please consi
 - [JanekSMC](https://github.com/JanekSMC) for assistance supporting Orion Smart Locks.
 - [RichardMawdsley](https://github.com/RichardMawdsley) for assistance supporting ElectriQ Airflex 15W heatpumps.
 - [fwelvering](https://github.com/fwelvering) for assistance supporting a second variant of W'eau pool heatpumps.
-- [illuzn](https://github.com/illuzn) for contributing support for Kogan Tower Heaters, Arlec PB88UHA power strips and Qoto water valves.
+- [illuzn](https://github.com/illuzn) for contributing support for Kogan Tower Heaters, Arlec PB88UHA and Brilliant quad power strips and Qoto water valves.
 - [vnkorol](https://github.com/vnkorol) for assistance supporting 4-way power monitoring strip and Avatto roller blinds.
 - [OmegaKill](https://github.com/OmegaKill) for assistance supporting Be Cool heatpumps.
 - [djusHa](https://github.com/djusHa) for contributing support for essentials portable air purifier.
@@ -416,3 +416,16 @@ Further device support has been made with the assistance of users.  Please consi
 - [mellow8](https://github.com/mellow8) for assisting with support for ZM-Wi-Fi smart meters.
 - [KodzghlyCZ](https://github.com/KodzghlyCZ) for assisting with support for Tesla Smart humidifiers.
 - [simplelnx](https://github.com/simplelnx) for assisting with support for Modern Flames Orion fireplaces.
+- [DevilRange](https://github.com/DevilRange) for contributing improvements to TOMPD 61LW circuit breakers.
+- [pandatautau](https://github.com/pandatautau) for contributing support for Moes ZHT-002 zigbee thermostats.
+- [kamilosxd678](https://github.com/kamilosxd678) for contributing support for Klatra Stor2 air purifiers.
+- [InfectedSoap](https://github.com/InfectedSoap) for contributing support for Cleverio AR10/20 panel heaters.
+- [ChriZathens](https://github.com/ChriZathens) for contributing improvements to Klarstein DryFy Pro Connect dehumidifiers.
+- [neilflatley](https://github.com/neilflatley) for contributing support for simple eight bank switches.
+- [alirow](https://github.com/alirow) for contributing support for Argo Dry Pury Evo WF dehumidifiers.
+- [andrei-cerbulescu](https://github.com/andrei-cerbulescu) for contributing support for Hama radiator controllers.
+- [mariuszpass](https://github.com/mariuszpass) for contributing support for NAC AP470 air purifiers.
+- [neilmartin83](https://github.com/neilmartin83) for contributing support for Ustellar UT99911 RGB monitor light bars.
+- [evanfoster](https://github.com/evanfoster) for contributing support for Vivosun DE0003 dehumidifiers.
+- [sayaivan](https://github.com/sayaivan) for contributing Indonesian translations.
+- [mhackdo18](https://github.com/mhackdo18) for assisting with support for YP Pet feeder.
