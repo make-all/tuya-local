@@ -11,6 +11,7 @@
 - BVF CP1 heater
 - Caldo Up T fan heater
 - Calex Smart Convector heater
+- Cleverio AR10/AR20 panel heaters
 - Devola patio heater
 - Ecostrad Accent iQ heating panel
 - Ecostrad iQ ceramic radiator
@@ -22,6 +23,7 @@
 - Eurom Wall Designheat 2000 heater
 - Goldair heater models beginning with the code GPPH, GCPV, GECO
 - Heatstorm HS-6000-GC heavy duty heater
+- Hama radiator controller
 - HJZ oil column radiator
 - INOW Wi-Fi heating element (single and dual air/water temperature control variants)
 - Kennedy II/JR electric fireplace
@@ -70,6 +72,7 @@
 - TroniTechnik Hellnar Klimagerät
 - Trotec PAC-W 2600 SH heatpump
 - Vivax Cool ACP-12CH35REWI
+- Vivion 300123/4/5 air conditioners
 - Woods Cortina portable air conditioner
 - Woods Milan portable air conditioner
 
@@ -186,8 +189,10 @@
 - essentials portable air purifier
 - Himox H05 and H06 air purifiers
 - Hosome air purifier
+- Klatra Stor2 air purifier
 - Kogan air purifier
 - Lifubide X600 air purifier
+- NAC AP470 air purifier
 - NX-100AP Rapid air purifier
 - Poiema One air purifier
 - Proscenic A8 air purifier
@@ -204,6 +209,7 @@
 - AlecoAir D14 purifying dehumidifier
 - AlecoAir D16 purifying dehumidifier
 - AlecoAir D25 Traditio dehumidifier
+- Argo Dry Pury Evo WF dehumidifier
 - Ebac DJ4000 dehumidifier
 - ElectriQ CD12PRO-LE dehumidifier
 - ElectriQ CD12PW dehumidifier
@@ -230,6 +236,7 @@
 - Pro Breeze 30L dehumidifier
 - Shinco 30D dehumidifier (also matches Klarstein DryFy Connect)
 - VacPlus dehumidifier
+- Vivosun DE0003 dehumidifier
 
 ### Humidifiers
 
@@ -312,6 +319,7 @@ the best option.
 - Blitzwolf BW-SHP6 PRO smartplug with child lock
 - Blitzwolf BW-SHP-9 3 outlet + USB powerstrip
 - Brilliant 1/2/3/4 gang wall switches with power monitoring
+- Brilliant quad powerstrip with USB
 - CBI Astute smart controller
 - DIGOO DG-SP202 dual smartplug with energy monitoring and timers
 - DIGOO DG-SP01 USB smartplug with night light
@@ -373,6 +381,7 @@ of device.
 - Simple triple switch - three switches in a single device, tested with Somgam 3 gang wall switches.
 - Simple quad switch - four switches in a single device, tested with Somgam 4 gang wall switches.
 - Simple 6-way switch - six switches in a single device
+- Simple 8 switch - eight switches in a single device 
 - RGB Nightlight outlet - one smartplug with a small built-in RGB light.
 
 ### Lights
@@ -408,6 +417,7 @@ of device.
 - Tampa Magnetic LED System CD-TY-WY05
 - Teberno LED strip light (LGC-005 OEM3)
 - Treatlife outdoor dimmer with dual outlets
+- Ustellar UT99911 RGB monitor light bar
 - WF520D dual dimmer touchpanel
 
 ### Covers
@@ -511,6 +521,7 @@ port and password.
 - Petlibro PLAF103 pet feeder
 - Petlibro PLAF203 pet feeder with camera
 - Rojeco PTM-001 pet feeder (two versions)
+- YP pet feeder
 
 ### Miscellaneous
 
@@ -583,6 +594,7 @@ port and password.
 - LoraTap SC500ZB-V2 curtain controller
 - Loratap SS9600ZB 6 button remote control
 - Moes RGBCW lightbulb
+- Moes ZHT-002 thermostat
 - MultiIR MIR-TE100-TY temperature and humidity sensor
 - Nedis ZBSD10WT door/window sensor
 - Nedis ZBSC10WT temperature and humidity sensor

@@ -1,0 +1,190 @@
+name: Air conditioner
+products:
+  - id: orgvakh0qub0hjx8
+    name: Vivion 30012x
+primary_entity:
+  entity: climate
+  translation_key: aircon_extra
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: auto
+              value: heat_cool
+            - dps_val: cold
+              value: cool
+            - dps_val: hot
+              value: heat
+            - dps_val: wet
+              value: dry
+            - dps_val: wind
+              value: fan_only
+    - id: 2
+      type: integer
+      name: temperature
+      range:
+        min: 16
+        max: 32
+      unit: C
+    - id: 3
+      type: integer
+      name: current_temperature
+    - id: 4
+      type: string
+      name: mode
+      hidden: true
+    - id: 5
+      type: string
+      name: fan_mode
+      mapping:
+        - dps_val: strong
+          value: strong
+        - dps_val: auto
+          value: auto
+        - dps_val: low
+          value: low
+        - dps_val: middle
+          value: medium
+        - dps_val: high
+          value: high
+        - dps_val: mute
+          value: quiet
+    - id: 22
+      type: bitfield
+      name: fault_code
+      optional: true
+    - id: 25
+      name: preset_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: comfort
+        - dps_val: true
+          value: sleep
+    - id: 31
+      type: string
+      name: vertical
+      hidden: true
+    - id: 33
+      type: boolean
+      name: swing_mode
+      mapping:
+        - dps_val: false
+          constraint: vertical
+          conditions:
+            - dps_val: "off"
+              value: "off"
+            - dps_val: same
+              value: vertical
+            - value: "off"
+        - dps_val: true
+          constraint: vertical
+          conditions:
+            - dps_val: "off"
+              value: horizontal
+            - dps_val: same
+              value: both
+            - value: horizontal
+    - id: 103
+      type: string
+      name: unknown_103
+    - id: 104
+      type: string
+      name: unknown_104
+    - id: 105
+      type: boolean
+      name: unknown_105
+    - id: 106
+      type: boolean
+      name: unknown_106
+    - id: 107
+      type: boolean
+      name: unknown_107
+    - id: 108
+      type: integer
+      name: unknown_108
+secondary_entities:
+  - entity: switch
+    name: Ionizer
+    icon: "mdi:creation"
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Emergency heat
+    icon: "mdi:fire"
+    category: config
+    dps:
+      - id: 12
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: select
+    name: Vertical swing
+    icon: "mdi:angle-acute"
+    category: config
+    dps:
+      - id: 31
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "Off"
+          - dps_val: same
+            value: Swing
+          - dps_val: vane_1
+            value: Position 1 
+          - dps_val: vane_2
+            value: Position 2 
+          - dps_val: vane_3
+            value: Position 3 
+          - dps_val: vane_4
+            value: Position 4 
+          - dps_val: vane_5
+            value: Position 5
+  - entity: light
+    name: Display
+    icon: "mdi:television-ambient-light"
+    category: config
+    dps:
+      - id: 36
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Timer on
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Timer off
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
