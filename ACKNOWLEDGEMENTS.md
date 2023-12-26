@@ -430,3 +430,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [sayaivan](https://github.com/sayaivan) for contributing Indonesian translations.
 - [mhackdo18](https://github.com/mhackdo18) for assisting with support for YP Pet feeder.
 - [magomao](https://github.com/magomao) for assisting with support for Vivion air conditioners.
+- [palkoarpad85](https://github.com/palkoarpad85) for assisting with support for Klarstein Wonderwall heaters.
