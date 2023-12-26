@@ -429,3 +429,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [evanfoster](https://github.com/evanfoster) for contributing support for Vivosun DE0003 dehumidifiers.
 - [sayaivan](https://github.com/sayaivan) for contributing Indonesian translations.
 - [mhackdo18](https://github.com/mhackdo18) for assisting with support for YP Pet feeder.
+- [magomao](https://github.com/magomao) for assisting with support for Vivion air conditioners.
