@@ -432,6 +432,7 @@ of device.
 - LoraTap GDC100W garage door opener
 - LoraTap QCSC420W double curtain switch
 - LoraTap SC500W-V1 curtain switch (supports many other simple curtain/blind controllers)
+- LoraTap QCSC400ZB-V2 curtain switch
 - M027 curtain module (sold under several brands, including zemismart, meterk and others)
 - Moes SCS80 Touch curtain swich with backlight and timing control
 - QS-WIFI-C01(BK) curtain module
