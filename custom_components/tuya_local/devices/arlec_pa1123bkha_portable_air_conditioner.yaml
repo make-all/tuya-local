@@ -9,10 +9,10 @@ primary_entity:
       name: hvac_mode
       type: boolean
       mapping:
-        - dps_val: false
+        - dps_val: False
           value: "off"
           icon: "mdi:hvac-off"
-        - dps_val: true
+        - dps_val: True
           constraint: mode
           conditions:
             - dps_val: 1
@@ -36,7 +36,7 @@ primary_entity:
       mapping:
         - constraint: temperature_unit
           conditions:
-            - dps_val: true
+            - dps_val: True
               value_redirect: temp_set_f
               range:
                 min: 62
@@ -48,7 +48,7 @@ primary_entity:
       mapping:
         - constraint: temperature_unit
           conditions:
-            - dps_val: true
+            - dps_val: True
               value_redirect: temp_current_f
     - id: 20
       name: error
@@ -64,9 +64,9 @@ primary_entity:
       name: preset_mode
       type: boolean
       mapping:
-        - dps_val: false
+        - dps_val: False
           value: none
-        - dps_val: true
+        - dps_val: True
           value: sleep
     - id: 104
       type: string
@@ -82,15 +82,15 @@ primary_entity:
       name: swing_mode
       type: boolean
       mapping:
-        - dps_val: false
+        - dps_val: False
           value: "off"
-        - dps_val: true
+        - dps_val: True
           value: vertical
     - id: 109
       type: boolean
       name: temperature_unit
       mapping:
-        - dps_val: true
+        - dps_val: True
           value: F
         - value: C
     - id: 110
@@ -128,7 +128,7 @@ secondary_entities:
         type: boolean
         name: option
         mapping:
-          - dps_val: false
+          - dps_val: False
             value: Celsius
-          - dps_val: true
+          - dps_val: True
             value: Fahrenheit
