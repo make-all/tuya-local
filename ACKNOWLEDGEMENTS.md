@@ -193,7 +193,7 @@ Further device support has been made with the assistance of users. Please consid
 - [drudgebg](https://github.com/drudgebg) for contributing support for Teckin SS42 outdoor double smartplug.
 - [saotthon](https://github.com/saotthon) for assisting with support for BVF CP1 heaters.
 - [MarciPain](https://github.com/MarciPain) for contributing support for PGST temperature and humidity sensors, Orion OWH-PTC2000 heaters and BlitzWolf SHP6 smartplugs.
-- [fischrobi](https://github.com/fischrobi) for assisting with support for Blitzwolf BW-SH2 humidifiers and MultiIR zigbee temperature/humidity sensors.
+- [fischrobi](https://github.com/fischrobi) for assisting with support for Blitzwolf BW-SH2 humidifiers, MultiIR zigbee temperature/humidity sensors and RGB-only light bars.
 - [elninosi](https://github.com/elninosi) for assisting with support for LoraTap curtain switches.
 - [mrulke](https://github.com/mrulke) for assisting with support for CCB-11 blind controllers.
 - [Codeazure](https://github.com/Codeazure) for assisting with support for 4-way power monitoring powerstrips (via Kogan 3-way + USB powerstrip).
@@ -432,4 +432,7 @@ Further device support has been made with the assistance of users. Please consid
 - [magomao](https://github.com/magomao) for assisting with support for Vivion air conditioners.
 - [palkoarpad85](https://github.com/palkoarpad85) for assisting with support for Klarstein Wonderwall heaters.
 - [MJW911](https://github.com/MJW911) for assisting with support for SX1 smartplugs.
+- [ops244](https://github.com/ops244) for assisting with support for Hiper T3 bladeless fans.
+- [sevimuelli](https://github.com/sevimuelli) for contributing support for Eeese Anna dehumidifiers.
 - [tataihono](https://github.com/tataihono) for contributing support for Arlec Portable Air Conditioner.
+- 
