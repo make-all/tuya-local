@@ -27,6 +27,7 @@
 - HJZ oil column radiator
 - INOW Wi-Fi heating element (single and dual air/water temperature control variants)
 - Kennedy II/JR electric fireplace
+- Klarstein Wonderwall IR heater
 - Kogan flame effect heater - KAWHMFP20BA model
 - Kogan tower heater - KASTHFP2KWA model
 - Kogan Wi-Fi convection panel heaters - KAHTP and KAWFHTP models
@@ -371,6 +372,8 @@ of device.
   _confirmed working with CBE smartplugs, another variant with child lock, backlight and inching switch confirmed with Aubess and Elivco, and another variant with Gosund UP111-RTL_
 - Generic smartplug with some additional encoded schedule info.
   _confirmed working as a simple switch and timer with Kashimura KJ-173_
+- Generic smartplug without power monitoring but with most other features (initial state setting, light options, child lock)
+  _confirmed working with SX1 relay socket_
 - Generic double switch with timers (confirmed with Living dual switch and another v2 variant with Avatto dual switch)
 - Generic triple and quad switches (confirmed with Songam wall switches)
 - Generic triple and quad switches with timers (confirmed with Pearl Xystec USB hub).
