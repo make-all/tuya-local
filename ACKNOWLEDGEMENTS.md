@@ -432,3 +432,4 @@ Further device support has been made with the assistance of users.  Please consi
 - [magomao](https://github.com/magomao) for assisting with support for Vivion air conditioners.
 - [palkoarpad85](https://github.com/palkoarpad85) for assisting with support for Klarstein Wonderwall heaters.
 - [MJW911](https://github.com/MJW911) for assisting with support for SX1 smartplugs.
+- [ops244](https://github.com/ops244) for assisting with support for Hiper T3 bladeless fans.
