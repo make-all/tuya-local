@@ -43,6 +43,7 @@
 
 ### Air Conditioners / Heatpumps
 
+- Arlec PA1123BKHA portable air conditioner
 - Be Cool BC14KL2101F
 - Carson CB PA280
 - Cooper&Hunter Nordic Evo Ng
@@ -385,7 +386,7 @@ of device.
 - Simple triple switch - three switches in a single device, tested with Somgam 3 gang wall switches.
 - Simple quad switch - four switches in a single device, tested with Somgam 4 gang wall switches.
 - Simple 6-way switch - six switches in a single device
-- Simple 8 switch - eight switches in a single device 
+- Simple 8 switch - eight switches in a single device
 - RGB Nightlight outlet - one smartplug with a small built-in RGB light.
 
 ### Lights
