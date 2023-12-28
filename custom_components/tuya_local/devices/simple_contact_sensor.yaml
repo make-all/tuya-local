@@ -1,18 +1,11 @@
-name: Simple (door/window) sensor
+name: Window sensor
 products:
   - id: 0mjj67aaztcfmc3i
     name: AW201_XR3
 primary_entity:
-  entity: cover
+  entity: binary_sensor
   class: window
   dps:
     - id: 1
-      name: control
+      name: sensor
       type: boolean
-      force: true
-      mapping:
-        - dps_val: true
-          value: "open"
-        - dps_val: false
-          value: "close"
-      # true when open, false when closed
