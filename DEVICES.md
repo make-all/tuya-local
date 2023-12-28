@@ -475,6 +475,7 @@ of device.
 - Mellerware City Move vacuum cleaner
 - Proscenic M9 vacuum cleaner
 - Rinkmo D2 vacuum cleaner
+- TTEC Robi Pro vacuum cleaner
 - Ultenic T10 vacuum cleaner
 
 ### Lawnmowers
