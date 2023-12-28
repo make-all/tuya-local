@@ -285,6 +285,7 @@
 - Compteur digital electric (single phase)
 - Dcenta dual clamp meter
 - DTS238-7 3 phase smart meter
+- EARU SW RCB breaker
 - eMylo EAI-90 smart meter
 - MatSee Plus bidirectional two channel clamp meter
 - Parkside PG/PMW-300 solar inverter
@@ -432,6 +433,7 @@ of device.
 
 - Simple garage door
 - Simple blind controller (two variants - `simple_blinds` lets the position be set, but does not trust it to accurately reflect the current position always, `position_blinds` does trust the position to accurately reflect the current position)
+- Simple gate opener (simple garage door with timer)
 - Abalon BCM700D curtain motor (likely to work with other brands)
 - AGL Ultracontato r2 door controller
 - AGL Ultra Magic gate opener
@@ -445,7 +447,6 @@ of device.
 - Dooya curtain motor
 - Etersky curtain switch with backlight and timing control
 - FS-03W curtain switch with backlight control
-
 - Kogan garage door with tilt sensor
 - Loonas smart curtain
 - LoraTap GDC100W garage door opener
@@ -518,6 +519,7 @@ port and password.
 
 - BlitzWolf BW-IS6 security alarm system
 - GauTone PG-103 security alarm system
+- Smart alarm siren (unbranded)
 - ZX-DB11 doorbell and alarm system
 - ZX-DB11B doorbell and alarm system
 - ZX-G30 alarm system
