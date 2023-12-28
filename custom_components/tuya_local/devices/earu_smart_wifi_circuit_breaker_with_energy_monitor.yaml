@@ -1,4 +1,4 @@
-name: EARU smart breaker
+name: Circuit breaker
 products:
   - id: ine4hhapkgxonij1
     name: EARU SW RCB
@@ -12,6 +12,9 @@ primary_entity:
     - id: 16
       name: switch
       type: boolean     
+    - id: 19
+      type: string
+      name: breaker_id
 secondary_entities:
   - entity: sensor
     name: Total energy
@@ -25,17 +28,6 @@ secondary_entities:
         name: sensor
         mapping:
           - scale: 100
-  - entity: sensor
-    name: 'Breaker ID'
-    category: diagnostic
-    icon: "mdi:crosshairs-question"
-    dps:
-      - id: 19
-        type: string
-        readonly: true
-        persist: true
-        name: sensor
-
   - entity: sensor
     class: voltage
     category: diagnostic
@@ -79,10 +71,7 @@ secondary_entities:
         mapping:
           - mask: "0000000000FFFFFF"
             scale: 1000	 
-            
-# This dp-s are unavaiable in local, only on api :(
-#
-#   - entity: sensor
+
 #     name: 'Alarm set 1'
 #     category: diagnostic
 #     dps:
