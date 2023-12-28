@@ -279,6 +279,7 @@
 ### Smart Meter/Circuit Breaker
 
 - Atorch S1WP energy monitoring switch with display
+- Atorch AT2PL energy monitoring breaker switch
 - Aulifants SMES200 energy monitoring breaker switch
 - CBI Astute smart controller breaker switch
 - Compteur digital electric (single phase)
