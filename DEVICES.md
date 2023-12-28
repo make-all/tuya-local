@@ -450,6 +450,7 @@ of device.
 - LoraTap QCSC420W double curtain switch
 - LoraTap SC500W-V1 curtain switch (supports many other simple curtain/blind controllers)
 - M027 curtain module (sold under several brands, including zemismart, meterk and others)
+- M515 curtain motor
 - Moes SCS80 Touch curtain swich with backlight and timing control
 - QS-WIFI-C01(BK) curtain module
 - SHerko curtain motor
