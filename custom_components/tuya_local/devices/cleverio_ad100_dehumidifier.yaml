@@ -3,8 +3,9 @@ products:
   - id: jkscqnjueuczotho
     name: Cleverio AD100
 primary_entity:
-  entity: humidifier
-  class: dehumidifier
+  entity: fan
+  name: Dehumidifier
+  translation_key: fan_with_presets
   dps:
     - id: 102
       type: boolean
@@ -16,7 +17,7 @@ primary_entity:
         - dps_val: sleep
           value: sleep
         - dps_val: High
-          value: boost
+          value: strong
     - id: 12
       type: integer
       name: fault_code
