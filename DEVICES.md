@@ -422,6 +422,7 @@ of device.
 - Moes star projector
 - MoesGo dimmer switch
 - Nedis Smart LED Strip
+- Newone WF39M dimmer smartplug
 - Space Dog Music Lamp (works for Aurora Smart Galaxy Star)
 - Tampa Magnetic LED System CD-TY-WY05
 - Teberno LED strip light (LGC-005 OEM3)

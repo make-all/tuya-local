@@ -437,3 +437,4 @@ Further device support has been made with the assistance of users. Please consid
 - [tataihono](https://github.com/tataihono) for contributing support for Arlec portable air conditioners.
 - [longer83](https://github.com/longer83) for assisting with support for Cleverio AD100 dehumidifiers.
 - [mykm203](https://github.com/mykm203) for assisting with support for Atorch AT2PL smart meters.
+- [fireheadman](https://github.com/fireheadman) for assisting with support for WF39M dimmer smartplugs.
