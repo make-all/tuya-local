@@ -11,6 +11,7 @@ HUMID_DP = "102"
 IRSEND_DP = "201"
 IRRECV_DP = "202"
 
+
 class TestIRRemoteSensors(MultiSensorTests, TuyaDeviceTestCase):
     __test__ = True
 

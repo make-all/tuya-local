@@ -191,7 +191,7 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
                         "control": CMD_SEND,
                         "head": "",
                         # leading zero means use head, any other leeading character is discarded.
-                        "key1": '1' + code,
+                        "key1": "1" + code,
                         "type": 0,
                         "delay": 300,
                     }
