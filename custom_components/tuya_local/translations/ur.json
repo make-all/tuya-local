@@ -1,0 +1,199 @@
+{
+    "title": "ٹویا لوکل",
+    "config": {
+        "step": {
+            "user": {
+                "title": "اپنے ٹویا لوکل ڈیوائس کو ترتیب دیں۔",
+                "description": "[اپنی ڈیوائس آئی ڈی اور لوکل کلید تلاش کرنے کے لیے ان ہدایات پر عمل کریں۔](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "IP ایڈریس یا میزبان نام",
+                    "device_id": "ڈیوائس کی شناخت",
+                    "local_key": "مقامی کلید",
+                    "protocol_version": "پروٹوکول ورژن (اگر معلوم نہ ہو تو خود کار طریقے سے آزمائیں)",
+                    "poll_only": "صرف پول کریں (اگر آپ کا آلہ مکمل طور پر کام نہیں کرتا ہے تو اسے آزمائیں)",
+                    "device_cid": "سب ڈیوائس آئی ڈی (گیٹ وے کے ذریعے منسلک آلات کے لیے)"
+                }
+            },
+            "select_type": {
+                "title": "آلہ کی قسم کا انتخاب کریں۔",
+                "description": "اس قسم کا انتخاب کریں جو آپ کے آلے سے مماثل ہو۔",
+                "data": {
+                    "type": "آلہ کی قسم"
+                }
+            },
+            "choose_entities": {
+                "title": "آلہ کی تفصیلات",
+                "description": "اس آلہ کے لیے ایک نام منتخب کریں، اور کون سی ہستیوں کو فعال کیا جائے گا۔",
+                "data": {
+                    "name": "نام ۔"
+                }
+            }
+        },
+        "abort": {
+            "already_configured": "اس ID کے ساتھ ایک آلہ پہلے ہی شامل کیا جا چکا ہے۔",
+            "not_supported": "معذرت، اس آلہ کے لیے کوئی تعاون نہیں ہے۔"
+        },
+        "error": {
+            "connection": "ان تفصیلات کے ساتھ آپ کے آلے سے منسلک ہونے سے قاصر ہے۔ یہ ایک وقفے وقفے سے جاری مسئلہ ہو سکتا ہے، یا وہ غلط ہو سکتے ہیں۔"
+        }
+    },
+    "options": {
+        "step": {
+            "user": {
+                "title": "اپنے ٹویا لوکل ڈیوائس کو ترتیب دیں",
+                "description": "[اپنی مقامی کلید تلاش کرنے کے لیے ان ہدایات پر عمل کریں۔](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "IP پتہ یا میزبان نام",
+                    "local_key": "مقامی کلید",
+                    "protocol_version": "پروٹوکول ورژن (اگر معلوم نہ ہو تو خود کار طریقے سے آزمائیں)",
+                    "poll_only": "صرف پول (اگر آپ کا آلہ پوری طرح کام نہیں کرتا ہے تو اسے آزمائیں)",
+                    "device_cid": "سب ڈیوائس آئی ڈی (گیٹ وے کے ذریعے منسلک آلات کے لیے)"
+                }
+            }
+        },
+        "error": {
+            "connection": "ان تفصیلات کے ساتھ آپ کے آلے سے منسلک ہونے سے قاصر ہے۔ یہ ایک وقفے وقفے سے مسئلہ ہوسکتا ہے، یا وہ غلط ہوسکتے ہیں۔."
+        },
+        "abort": {
+            "not_supported": "معذرت، اس آلہ کے لیے کوئی تعاون نہیں ہے۔."
+        }
+    },
+    "entity": {
+        "climate": {
+            "aircon_extra": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "health": "صحت مند",
+                            "medhigh": "متوسط اعلیٰ",
+                            "medlow": "درمیانہ کم",
+                            "natural": "قدرتی",
+                            "quiet": "چپ چاپ",
+                            "sleep": "سونا",
+                            "strong": "مضبوط ۔"
+                        }
+                    },
+                    "swing_mode": {
+                        "state": {
+                            "topmost": "سب سے اوپر ۔",
+                            "top": "اوپر",
+                            "middle": "درمیانی",
+                            "down": "نیچے",
+                            "downmost": "سب سے نیچے"
+                        }
+                    }
+                }
+            },
+            "thermostat": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "cycle": "سائیکل"
+                        }
+                    },
+                    "preset_mode": {
+                        "state": {
+                            "manual": "دستی",
+                            "program": "پروگرام",
+                            "temp_override": "عارضی اوور رائیڈ",
+                            "perm_override": "مستقل اوور رائڈ"
+                        }
+                    }
+                }
+            },
+            "combo_floor": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "cool": "ٹھنڈی ہوا",
+                            "fan_only": "پنکھا",
+                            "heat": "گرم ہوا",
+                            "floor_cool": "ٹھنڈا فرش",
+                            "floor_heat": "گرم فرش"
+                        }
+                    }
+                }
+            },
+            "swing_as_powerlevel": {
+                "state_attributes": {
+                    "swing_mode": {
+                        "name": "حرارت کی سطح",
+                        "state": {
+                            "stop": "روکو",
+                            "auto": "خود مختار"
+                        }
+                    }
+                }
+            },
+            "pool_heatpump": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "smart_heat": "اسمارٹ حرارت",
+                            "quick_heat": "فوری حرارتی",
+                            "quiet_heat": "پرسکون گرمی",
+                            "smart_cool": "ہوشیار ٹھنڈا",
+                            "quick_cool": "فوری ٹھنڈا ۔",
+                            "quiet_cool": "پرسکون ٹھنڈا ۔",
+                            "auto": "خود مختار"
+                        }
+                    }
+                }
+            },
+            "thermo_switch": {
+                "state_attributes": {
+                    "hvac_mode": {
+                        "state": {
+                            "fan_only": "توقف"
+                        }
+                    }
+                }
+            }
+        },
+        "humidifier": {
+            "dehumidifier": {
+                "state_attributes": {
+                    "mode": {
+                        "state": {
+                            "laundry": "خشک کپڑے",
+                            "purify": "پاک کریں۔"
+                        }
+                    }
+                }
+            }
+        },
+        "fan": {
+            "fan_with_presets": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "normal": "عام",
+                            "nature": "قدرتی",
+                            "sleep": "سونا",
+                            "baby": "بچه",
+                            "fresh": "تازه",
+                            "smart": "سمارٹ",
+                            "strong": "مضبوط",
+                            "displayoff": "ڈسپلے آف",
+                            "off": "آف"
+                        }
+                    }
+                }
+            },
+            "ventilation": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "fresh": "تازہ ہوا",
+                            "circulate": "گردش کریں۔",
+                            "sleep": "سونا",
+                            "auto": "خود مختار",
+                            "eco": "ایکو",
+                            "anti-condensation": "اینٹی کنڈینسیشن"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
