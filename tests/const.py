@@ -1628,3 +1628,8 @@ ZXG30_ALARM_PAYLOAD = {
     "39": "0",
     "40": "1",
 }
+
+IR_REMOTE_SENSORS_PAYLOAD = {
+    "101": 200,
+    "102": 80,
+}

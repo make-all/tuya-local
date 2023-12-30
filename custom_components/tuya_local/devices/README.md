@@ -635,6 +635,11 @@ no information will be available about which specific credential was used to unl
 - **maximum** (optional, number): a dp that reports the maximum the number can be set to.
     This may be used as an alternative to a range setting on the **value** dp if the range is dynamic
 
+### `remote`
+- **send** (required, accepts a string): a dp to send remote codes.
+- **control** (optional, accepts strings `"send_ir"`, `"study"`, `"study_exit"`): a dp to send commands seperately from ir codes.  If not supplied, commands will be JSON formatted and sent through the **send** dp.
+- **receive** (optional, returns strings): a dp to receive learned commands on.  If not supplied, the `remote.learn_command` service call will not be available. 
+
 ### `select`
 - **option** (required, mapping of strings): a dp to control the option that is selected.
 

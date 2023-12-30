@@ -536,6 +536,10 @@ port and password.
 - Rojeco PTM-001 pet feeder (two versions)
 - YP pet feeder
 
+### Remote controllers
+
+- Universal remote control with temperature and humidity sensors
+
 ### Miscellaneous
 
 - generic PIR motion sensor
@@ -572,7 +576,6 @@ port and password.
 - TH08 temperature and humidity sensor
 - TH16 temperature and humidity sensor
 - Tontine electric blanket
-- Universal remote control (supports sensors only)
 - Valehaus SYZN119 towel warmer
 - Xiumii human presence radar
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)

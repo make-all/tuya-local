@@ -93,6 +93,10 @@ KNOWN_DPS = {
         "required": ["value"],
         "optional": ["unit", "minimum", "maximum"],
     },
+    "remote": {
+        "required": ["send"],
+        "optional": ["receive"],
+    },
     "select": {"required": ["option"], "optional": []},
     "sensor": {"required": ["sensor"], "optional": ["unit"]},
     "siren": {
