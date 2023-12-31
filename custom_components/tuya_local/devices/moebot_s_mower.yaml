@@ -122,6 +122,28 @@ secondary_entities:
             value: stop
           - dps_val: StartReturnStation
             value: return_to_base
+  - entity: button
+    name: Start fixed mowing
+    icon: "mdi:mower-on"
+    dps: 
+      - id: 115
+        type: boolean
+        name: button
+        optional: true
+        mapping:
+          - dps_val: StartFixedMowing
+            value: true
+  - entity: button
+    name: Cancel mowing
+    icon: "mdi:mower"
+    dps: 
+      - id: 115
+        type: boolean
+        name: button
+        optional: true
+        mapping:
+          - dps_val: CancelWork
+            value: true
   - entity: sensor
     class: battery
     dps:
