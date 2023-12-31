@@ -438,3 +438,5 @@ Further device support has been made with the assistance of users. Please consid
 - [longer83](https://github.com/longer83) for assisting with support for Cleverio AD100 dehumidifiers.
 - [mykm203](https://github.com/mykm203) for assisting with support for Atorch AT2PL smart meters.
 - [fireheadman](https://github.com/fireheadman) for assisting with support for WF39M dimmer smartplugs.
+- [yousaf465](https://github.com/yousaf465) for contributing Urdu translations.
+- [wisemanny](https://github.com/wisemanny) for contributing support for Zigbee Door/Window sensors and Loratap QCSC400ZB Zigbee curtain switches.

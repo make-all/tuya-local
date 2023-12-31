@@ -453,7 +453,6 @@ of device.
 - LoraTap GDC100W garage door opener
 - LoraTap QCSC420W double curtain switch
 - LoraTap SC500W-V1 curtain switch (supports many other simple curtain/blind controllers)
-- LoraTap QCSC400ZB-V2 curtain switch
 - M027 curtain module (sold under several brands, including zemismart, meterk and others)
 - M515 curtain motor
 - Moes SCS80 Touch curtain swich with backlight and timing control
@@ -606,8 +605,10 @@ port and password.
 ### Devices supported via Zigbee hubs
 
 - Aubess temperature and humidity sensor
+- Generic Zigbee Door Sensor
 - Intelbras IFR7000 door lock
 - Loginovo mmWave human presence sensor
+- LoraTap QCSC400ZB-V2 curtain switch
 - LoraTap SC500ZB-V2 curtain controller
 - Loratap SS9600ZB 6 button remote control
 - Moes RGBCW lightbulb
@@ -617,7 +618,6 @@ port and password.
 - Nedis ZBSC10WT temperature and humidity sensor
 - Temperature and humidity sensor with alarm feature
 - ZTH08ZTU temperature and humidity sensor
-- Tuya Smart Zigbee Door Sensor
 
 NOTE: this project does not intend to expand the scope to support non-Tuya
 devices via Tuya hubs. Though it may be techincally feasible to do such a
