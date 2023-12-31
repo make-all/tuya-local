@@ -81,55 +81,25 @@ class TestMoebot(TuyaDeviceTestCase):
 
     def test_lawnmower_activity(self):
         self.dps[STATUS_DP] = "ERROR"
-        self.assertEqual(
-            self.mower.activity,
-            LawnMowerActivity.ERROR
-        )
+        self.assertEqual(self.mower.activity, LawnMowerActivity.ERROR)
         self.dps[STATUS_DP] = "EMERGENCY"
-        self.assertEqual(
-            self.mower.activity,
-            LawnMowerActivity.ERROR
-        )
+        self.assertEqual(self.mower.activity, LawnMowerActivity.ERROR)
         self.dps[STATUS_DP] = "PAUSED"
-        self.assertEqual(
-            self.mower.activity,
-            LawnMowerActivity.PAUSED
-        )
+        self.assertEqual(self.mower.activity, LawnMowerActivity.PAUSED)
         self.dps[STATUS_DP] = "PARK"
-        self.assertEqual(
-            self.mower.activity,
-            LawnMowerActivity.PAUSED
-        )
+        self.assertEqual(self.mower.activity, LawnMowerActivity.PAUSED)
         self.dps[STATUS_DP] = "MOWING"
-        self.assertEqual(
-            self.mower.activity,
-            LawnMowerActivity.MOWING
-        )
+        self.assertEqual(self.mower.activity, LawnMowerActivity.MOWING)
         self.dps[STATUS_DP] = "FIXED_MOWING"
-        self.assertEqual(
-            self.mower.activity,
-            LawnMowerActivity.MOWING
-        )
+        self.assertEqual(self.mower.activity, LawnMowerActivity.MOWING)
         self.dps[STATUS_DP] = "STANDBY"
-        self.assertEqual(
-            self.mower.activity,
-            LawnMowerActivity.DOCKED
-        )
+        self.assertEqual(self.mower.activity, LawnMowerActivity.DOCKED)
         self.dps[STATUS_DP] = "CHARGING"
-        self.assertEqual(
-            self.mower.activity,
-            LawnMowerActivity.DOCKED
-        )
+        self.assertEqual(self.mower.activity, LawnMowerActivity.DOCKED)
         self.dps[STATUS_DP] = "LOCKED"
-        self.assertEqual(
-            self.mower.activity,
-            LawnMowerActivity.DOCKED
-        )
+        self.assertEqual(self.mower.activity, LawnMowerActivity.DOCKED)
         self.dps[STATUS_DP] = "CHARGING_WITH_TASK_SUSPEND"
-        self.assertEqual(
-            self.mower.activity,
-            LawnMowerActivity.DOCKED
-        )
+        self.assertEqual(self.mower.activity, LawnMowerActivity.DOCKED)
 
     async def test_async_start_mowing(self):
         async with assert_device_properties_set(

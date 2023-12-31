@@ -10,7 +10,10 @@ from custom_components.tuya_local.const import (
     CONF_TYPE,
     DOMAIN,
 )
-from custom_components.tuya_local.lawn_mower import TuyaLocalLawnMower, async_setup_entry
+from custom_components.tuya_local.lawn_mower import (
+    TuyaLocalLawnMower,
+    async_setup_entry,
+)
 
 
 @pytest.mark.asyncio
