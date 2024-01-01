@@ -110,8 +110,23 @@ secondary_entities:
             value: Auto
           - dps_val: manual
             value: Manual
+  - entity: event
+    class: motion
+    category: diagnostic
+    dps:
+      - id: 52
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: pir
+            value: detected
+          - dps_val: none
+            value: clear
+          - value: null
   - entity: binary_sensor
     class: motion
+    deprecated: event_motion
     category: diagnostic
     dps:
       - id: 52
