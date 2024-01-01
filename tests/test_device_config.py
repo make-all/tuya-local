@@ -62,6 +62,7 @@ KNOWN_DPS = {
             "reversed",
         ],
     },
+    "event": {"required": ["event"], "optional": []},
     "fan": {
         "required": [{"or": ["preset_mode", "speed"]}],
         "optional": ["switch", "oscillate", "direction"],

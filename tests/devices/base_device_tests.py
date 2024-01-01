@@ -10,6 +10,7 @@ from custom_components.tuya_local.button import TuyaLocalButton
 from custom_components.tuya_local.camera import TuyaLocalCamera
 from custom_components.tuya_local.climate import TuyaLocalClimate
 from custom_components.tuya_local.cover import TuyaLocalCover
+from custom_components.tuya_local.event import TuyaLocalEvent
 from custom_components.tuya_local.fan import TuyaLocalFan
 from custom_components.tuya_local.helpers.device_config import (
     TuyaDeviceConfig,
@@ -35,6 +36,7 @@ DEVICE_TYPES = {
     "camera": TuyaLocalCamera,
     "climate": TuyaLocalClimate,
     "cover": TuyaLocalCover,
+    "event": TuyaLocalEvent,
     "fan": TuyaLocalFan,
     "humidifier": TuyaLocalHumidifier,
     "lawn_mower": TuyaLocalLawnMower,

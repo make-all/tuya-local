@@ -35,7 +35,7 @@ class TuyaLocalEvent(TuyaLocalEntity, EventEntity):
         self._event_dp = dps_map.pop("event")
         self._init_end(dps_map)
 
-        # Set up device_class via parent class attribute 
+        # Set up device_class via parent class attribute
         try:
             self._attr_device_class = EventDeviceClass(self._config.device_class)
         except ValueError:

@@ -109,6 +109,7 @@ class TuyaLocalEntity:
         """Override to process dps directly as they are received"""
         pass
 
+
 UNIT_ASCII_MAP = {
     "C": UnitOfTemperature.CELSIUS,
     "F": UnitOfTemperature.FAHRENHEIT,
