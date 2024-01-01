@@ -225,9 +225,22 @@ secondary_entities:
       - id: 127
         type: boolean
         name: switch
-        optional: true          
+        optional: true
+  - entity: event
+    class: doorbell
+    category: diagnostic
+    dps:
+      - id: 128
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: "ACA="
+            value: ring
+          - value: null
   - entity: binary_sensor
     name: Doorbell push
+    deprecated: event_doorbell
     category: diagnostic
     icon: "mdi:crosshairs-question"
     dps:
@@ -235,7 +248,6 @@ secondary_entities:
         type: string
         name: sensor
         optional: true
-        readonly: true
         mapping:
           - dps_val: "ACA="
             value: true

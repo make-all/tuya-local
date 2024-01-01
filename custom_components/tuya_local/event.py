@@ -52,7 +52,9 @@ class TuyaLocalEvent(TuyaLocalEntity, EventEntity):
     def on_receive(self, dps):
         """Trigger the event when dp is received"""
         if self._event_dp.id in dps:
-            self._trigger_event(
-                self._event_dp.get_value(self._device),
-                self.extra_state_attributes(),
-            )
+            value = self._event_dp.get_value(self._device)
+            if value is not None:
+                self._trigger_event(
+                    value,
+                    self.extra_state_attributes(),
+                )

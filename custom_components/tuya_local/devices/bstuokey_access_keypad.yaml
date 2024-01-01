@@ -106,8 +106,20 @@ secondary_entities:
           max: 180
         mapping:
           - step: 10
+  - entity: event
+    class: doorbell
+    dps:
+      - id: 101
+        type: boolean
+        name: event
+        mapping:
+          - dps_val: true
+            value: ring
+          - dps_val: false
+            value: null
   - entity: binary_sensor
     name: Doorbell
+    deprecated: event_doorbell
     class: sound
     dps:
       - id: 101
