@@ -208,6 +208,8 @@ class TuyaLocalDevice(object):
                     self._remove_properties_from_pending_updates(poll)
 
                     for entity in self._children:
+                        # let entities trigger off poll contents directly
+                        entity.on_receive(poll)
                         # clear non-persistant dps that were not in a full poll
                         if full_poll:
                             for dp in entity._config.dps():
