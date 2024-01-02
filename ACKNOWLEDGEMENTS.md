@@ -440,3 +440,4 @@ Further device support has been made with the assistance of users. Please consid
 - [fireheadman](https://github.com/fireheadman) for assisting with support for WF39M dimmer smartplugs.
 - [yousaf465](https://github.com/yousaf465) for contributing Urdu translations.
 - [wisemanny](https://github.com/wisemanny) for contributing support for Zigbee Door/Window sensors and Loratap QCSC400ZB Zigbee curtain switches.
+- [erwin-faceit](https://github.com/erwin-faceit) for assisting with support for Dreamlight LED strips.
