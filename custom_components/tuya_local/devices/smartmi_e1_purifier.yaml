@@ -1,0 +1,61 @@
+name: Smartmi Air Purifier E1
+products:
+  - id: pwrmggdhwkz1lnvh
+    name: Smartmi Air Purifier E1
+primary_entity:
+  entity: fan
+  translation_key: fan_with_presets
+  name: Air Purifier
+  icon: "mdi:air-purifier"
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+      mapping:
+        - dps_val: true
+          icon: "mdi:air-purifier"
+        - dps_val: false
+          icon: "mdi:air-purifier-off"
+    - id: 3
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: sleep
+          value: Silent
+          icon: "mdi:sleep"
+        - dps_val: auto
+          value: Normal
+          icon: "mdi:air-purifier"
+        - dps_val: manual
+          value: Turbo
+          icon: "mdi:wind-power-outline"
+    - id: 22
+      type: bitfield
+      name: fault_code
+secondary_entities:
+  - entity: light
+    name: LED lights
+    category: config
+    dps:
+      - id: 8
+        name: switch
+        type: boolean
+        mapping:
+          - dps_val: true
+            icon: "mdi:led-on"
+          - dps_val: false
+            icon: "mdi:led-off"
+  - entity: sensor
+    name: Filter usage
+    category: diagnostic
+    icon: "mdi:shield-bug"
+    dps:
+      - id: 101
+        name: sensor
+        type: integer
+        range:
+          min: 0
+          max: 4320
+        mapping:
+          - step: 1
+        unit: hours
