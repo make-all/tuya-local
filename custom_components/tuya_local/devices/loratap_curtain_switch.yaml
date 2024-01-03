@@ -21,7 +21,7 @@ primary_entity:
                   value: close
                 - dps_val: "3"
                   value: stop
-            - dps_val: [ "open", "close", "stop", "continue", null ]
+            - dps_val: [ "open", "close", "stop", "continue"]
               mapping:
                 - dps_val: open
                   value: open
@@ -36,4 +36,12 @@ primary_entity:
                 - dps_val: FZ
                   value: close
                 - dps_val: STOP
+                  value: stop
+            - dps_val: null
+              mapping:
+                - dps_val: open
+                  value: open
+                - dps_val: close
+                  value: close
+                - dps_val: stop
                   value: stop

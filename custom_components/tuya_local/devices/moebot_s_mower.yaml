@@ -5,31 +5,30 @@ products:
   - id: icw5sal7xfcevsve
     name: Parkside PMRDA 20-Li A1
 primary_entity:
-  entity: vacuum
-  icon: "mdi:robot-mower"
+  entity: lawn_mower
   dps:
     - id: 101
-      name: status
+      name: activity
       type: string
       mapping:
         - dps_val: STANDBY
-          value: standby
+          value: docked
         - dps_val: MOWING
           value: mowing
         - dps_val: CHARGING
-          value: charging
+          value: docked
         - dps_val: EMERGENCY
-          value: manually stopped
+          value: error
         - dps_val: LOCKED
-          value: locked
+          value: docked
         - dps_val: PAUSED
           value: paused
         - dps_val: PARK
-          value: returning
+          value: paused
         - dps_val: CHARGING_WITH_TASK_SUSPEND
-          value: charging
+          value: docked
         - dps_val: FIXED_MOWING
-          value: spot mowing
+          value: mowing
         - dps_val: ERROR
           value: error
     - id: 115
@@ -38,15 +37,20 @@ primary_entity:
       optional: true
       mapping:
         - dps_val: StartMowing
-          value: start
+          value: start_mowing
         - dps_val: StartFixedMowing
-          value: clean_spot
+          value: start_mowing
+          hidden: true
         - dps_val: PauseWork
           value: pause
         - dps_val: CancelWork
-          value: stop
+          value: pause
+          hidden: true
         - dps_val: StartReturnStation
-          value: return_to_base
+          value: dock
+    - id: 101
+      name: raw_activity
+      type: string
     - id: 102
       name: error
       type: bitfield
@@ -75,6 +79,71 @@ primary_entity:
       name: auto_mode
       optional: true
 secondary_entities:
+  - entity: vacuum
+    icon: "mdi:robot-mower"
+    deprecated: lawn_mower
+    dps:
+      - id: 101
+        name: status
+        type: string
+        mapping:
+          - dps_val: STANDBY
+            value: standby
+          - dps_val: MOWING
+            value: mowing
+          - dps_val: CHARGING
+            value: charging
+          - dps_val: EMERGENCY
+            value: manually stopped
+          - dps_val: LOCKED
+            value: locked
+          - dps_val: PAUSED
+            value: paused
+          - dps_val: PARK
+            value: returning
+          - dps_val: CHARGING_WITH_TASK_SUSPEND
+            value: charging
+          - dps_val: FIXED_MOWING
+            value: spot mowing
+          - dps_val: ERROR
+            value: error
+      - id: 115
+        name: command
+        type: string
+        optional: true
+        mapping:
+          - dps_val: StartMowing
+            value: start
+          - dps_val: StartFixedMowing
+            value: clean_spot
+          - dps_val: PauseWork
+            value: pause
+          - dps_val: CancelWork
+            value: stop
+          - dps_val: StartReturnStation
+            value: return_to_base
+  - entity: button
+    name: Start fixed mowing
+    icon: "mdi:mower-on"
+    dps: 
+      - id: 115
+        type: boolean
+        name: button
+        optional: true
+        mapping:
+          - dps_val: StartFixedMowing
+            value: true
+  - entity: button
+    name: Cancel mowing
+    icon: "mdi:mower"
+    dps: 
+      - id: 115
+        type: boolean
+        name: button
+        optional: true
+        mapping:
+          - dps_val: CancelWork
+            value: true
   - entity: sensor
     class: battery
     dps:

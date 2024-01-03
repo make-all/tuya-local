@@ -13,7 +13,7 @@ primary_entity:
       class: measurement
       optional: true
       mapping:
-        - mask: FFFF000000000000
+        - mask: FFFFFF
           endianness: little
           scale: 100
       unit: F
@@ -26,13 +26,13 @@ secondary_entities:
     class: temperature
     dps:
       - id: 107
-        type: integer
+        type: base64
         name: sensor
         class: measurement
         optional: true
         mapping:
           - scale: 100
-            mask: 0000FFFF00000000
+            mask: FFFFFF00000000
             endianness: little
         unit: F
   - entity: sensor
@@ -40,13 +40,13 @@ secondary_entities:
     class: temperature
     dps:
       - id: 107
-        type: integer
+        type: base64
         name: sensor
         class: measurement
         optional: true
         mapping:
           - scale: 100
-            mask: 00000000FFFF0000
+            mask: FFFFFF0000000000000000
             endianness: little
         unit: F
   - entity: sensor
@@ -54,13 +54,13 @@ secondary_entities:
     class: temperature
     dps:
       - id: 107
-        type: integer
+        type: base64
         name: sensor
         class: measurement
         optional: true
         mapping:
           - scale: 100
-            mask: 000000000000FFFF
+            mask: FFFFFF000000000000000000000000
             endianness: little
         unit: F
   - entity: binary_sensor
@@ -146,6 +146,10 @@ secondary_entities:
           min: 0
           max: 50000
         mapping:
+          # mask seems to be wrong, only data available has 40 A characters,
+          # presumably base64 encoded 28 bytes of 00, but could also be
+          # 20 hex bytes. Not sure of the meaning, whether it is 7 (or 5)
+          # bytes per probe or some of the bytes are general settings.
           - mask: FFFF000000000000
             endianness: little
             scale: 100

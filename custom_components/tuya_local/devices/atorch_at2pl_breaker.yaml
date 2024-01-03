@@ -1,0 +1,480 @@
+name: Energy meter
+products:
+  - id: seqzqh45b0ggn9so
+    name: Atorch AT2PL
+primary_entity:
+  entity: switch
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 17
+      type: integer
+      optional: true
+      name: add_ele
+secondary_entities:
+  - entity: number
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 360000
+        unit: min
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Price
+    category: config
+    class: monetary
+    dps:
+      - id: 101
+        type: integer
+        name: value 
+        range:
+          min: 0
+          max: 99999
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Cost
+    class: monetary
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+      - id: 103
+        type: integer
+        name: add_cost
+  - entity: number
+    name: Overvoltage threshold
+    category: config
+    class: voltage
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 1
+          max: 2650
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Overcurrent threshold
+    class: current
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 1
+          max: 1000
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Over power threshold
+    class: power
+    category: config
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        unit: W
+        range:
+          min: 1
+          max: 27500
+  - entity: select
+    name: Language
+    icon: "mdi:translate"
+    category: config
+    dps:
+      - id: 107
+        type: string
+        name: option
+        mapping:
+          - dps_val: chinese
+            value: 中文
+          - dps_val: english
+            value: English
+  - entity: light
+    name: Display active
+    category: config
+    dps:
+      - id: 108
+        name: brightness
+        type: integer
+        range:
+          min: 1
+          max: 9
+        mapping:
+          - scale: 0.0353
+  - entity: light
+    name: Display standby
+    category: config
+    dps:
+      - id: 109
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 9
+        mapping:
+          - scale: 0.0353
+  - entity: number
+    name: Standby delay
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 3
+          max: 99
+  - entity: switch
+    name: Beep
+    icon: "mdi:bell"
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
+  - entity: select
+    name: Switch type
+    icon: "mdi:toggle-switch"
+    category: config
+    dps:
+      - id: 112
+        type: string
+        name: option
+        mapping:
+          - dps_val: controlled
+            value: Controlled
+          - dps_val: normally_open
+            value: Normally open
+  - entity: button
+    name: Data reset
+    class: restart
+    category: config
+    dps:
+      - id: 113
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Wifi reset
+    class: restart
+    category: config
+    dps:
+      - id: 114
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Factory reset
+    class: restart
+    category: config
+    dps:
+      - id: 115
+        type: boolean
+        name: button
+        optional: true
+  - entity: switch
+    name: Rotate screen
+    category: config
+    dps:
+      - id: 116
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: select
+    name: Standby screen
+    icon: "mdi:television"
+    category: config
+    dps:
+      - id: 117
+        type: string
+        name: option
+        mapping:
+          - dps_val: original
+            value: Standard
+          - dps_val: measurement
+            value: Measurement
+  - entity: select
+    name: Display control
+    icon: "mdi:menu"
+    category: config
+    dps:
+      - id: 118
+        type: string
+        name: option
+        mapping:
+          - dps_val: front
+            value: Next
+          - dps_val: back
+            value: Previous
+          - dps_val: display_off
+            value: Display off
+  - entity: number
+    name: Undervoltage threshold
+    category: config
+    class: voltage
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 1
+          max: 2750
+        mapping:
+          - scale: 10
+  - entity: switch
+    name: Override enable
+    category: config
+    dps:
+      - id: 120
+        type: boolean
+        name: switch
+  - entity: number
+    name: Leakage threshold
+    category: config
+    class: current
+    dps:
+      - id: 121
+        type: integer
+        name: value
+        unit: mA
+        range:
+          min: 10
+          max: 100
+  - entity: sensor
+    name: Leakage energy
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 122
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 123
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 1000
+  - entity: number
+    name: Leakage current
+    category: config
+    icon: "mdi:"
+    dps:
+      - id: 124
+        type: integer
+        name: value
+        unit: mA
+        range:
+          min: 0
+          max: 120000
+  - entity: select
+    name: Alarm
+    icon: "mdi:alert"
+    category: config
+    dps:
+      - id: 132
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: None
+          - dps_val: ovp
+            value: Overvoltage
+          - dps_val: ocp
+            value: Overcurrent
+          - dps_val: opp
+            value: Overpower
+          - dps_val: lvp
+            value: Undervoltage
+          - dps_val: le
+            value: Energy leakage
+          - dps_val: olcp
+            value: Earth leakage
+  - entity: sensor
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 133
+        type: integer
+        name: sensor
+        unit: Hz
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: power_factor
+    category: diagnostic
+    dps:
+      - id: 134
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: CPU temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 135
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: select
+    name: Price mode
+    icon: "mdi:cash"
+    category: config
+    dps:
+      - id: 136
+        type: string
+        name: option
+        mapping:
+          - dps_val: single_rate
+            value: Fixed rate
+          - dps_val: stair
+            value: Tiered
+          - dps_val: peak_valley_stair
+            value: Peak/off-peak tiered
+  - entity: number
+    name: Overvoltage recovery delay
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 137
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 99
+  - entity: select
+    name: Initial state
+    icon: "mdi:toggle-switch"
+    category: config
+    dps:
+      - id: 138
+        type: string
+        name: option
+        mapping:
+          - dps_val: open
+            value: "Off"
+          - dps_val: close
+            value: "On"
+  - entity: switch
+    name: Prepaid
+    icon: "mdi:hand-coin"
+    category: config
+    dps:
+      - id: 139
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Balance
+    class: energy_storage
+    category: diagnostic
+    dps:
+      - id: 140
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: button
+    name: Clear eneregy
+    class: restart
+    category: config
+    dps:
+      - id: 141
+        type: boolean
+        name: button
+        optional: true
+  - entity: number
+    name: Charge energy
+    category: config
+    class: energy
+    dps:
+      - id: 142
+        type: integer
+        name: value
+        unit: kWh
+        optional: true
+        range:
+          min: 0
+          max: 500000
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Credit
+    category: config
+    class: energy
+    dps:
+      - id: 143
+        type: integer
+        name: value
+        unit: kWh
+        range:
+          min: 10
+          max: 500

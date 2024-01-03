@@ -1,0 +1,31 @@
+name: Radiator controller
+products:
+  - id: yw7cahqs
+    name: Hama radiator controller
+primary_entity:
+  entity: climate
+  dps:
+    - id: 101
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: true
+          value: "heat"
+          icon: "mdi:radiator"
+        - dps_val: false
+          value: "off"
+          icon: "mdi:radiator-disabled"
+    - id: 102
+      name: current_temperature
+      type: integer
+      mapping:
+        - scale: 10
+    - id: 103
+      name: temperature
+      type: integer
+      range:
+        min: 50
+        max: 300
+      mapping:
+        - scale: 10
+          step: 5

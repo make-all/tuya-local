@@ -1,0 +1,174 @@
+name: Monitor light bar
+products:
+  - id: oqtk22eg6jxorl78
+    name: Ustellar UT99911-RGB
+primary_entity:
+  entity: light
+  name: Front White LED
+  icon: "mdi:wall-sconce-flat-outline"
+  dps:
+    - id: 101
+      type: boolean
+      name: switch
+    - id: 22
+      name: brightness
+      type: integer
+      range:
+        min: 10
+        max: 1000
+      mapping:
+        - scale: 3.92
+    - id: 23
+      type: integer
+      name: color_temp
+      mapping:
+        - target_range:
+            min: 2700
+            max: 6500
+      range:
+        min: 0
+        max: 1000
+secondary_entities:
+  - entity: light
+    name: Rear RGB LED
+    icon: "mdi:wall-sconce-flat-variant-outline"
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: dynamic_mod
+            value: Dynamic
+          - dps_val: color
+            value: hs
+          - dps_val: scene_mod
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 24
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 103
+        name: line_sequence_adjustment
+        type: integer
+  - entity: select
+    name: Music
+    icon: "mdi:playlist-music"
+    category: config
+    dps:
+      - id: 102
+        type: hex
+        name: option
+        optional: true
+        mapping:
+          - dps_val: 119
+            value: "Classic 25%"
+          - dps_val: 132
+            value: "Classic 50%"
+          - dps_val: 14b
+            value: "Classic 75%"
+          - dps_val: 164
+            value: "Classic 100%"
+          - dps_val: 219
+            value: "Soft 25%"
+          - dps_val: 232
+            value: "Soft 50%"
+          - dps_val: 24b
+            value: "Soft 75%"
+          - dps_val: 264
+            value: "Soft 100%"
+          - dps_val: 319
+            value: "Dynamic 25%"
+          - dps_val: 332
+            value: "Dynamic 50%"
+          - dps_val: 34b
+            value: "Dynamic 75%"
+          - dps_val: 364
+            value: "Dynamic 100%"
+          - dps_val: 419
+            value: "Disco 25%"
+          - dps_val: 432
+            value: "Disco 50%"
+          - dps_val: 44b
+            value: "Disco 75%"
+          - dps_val: 464
+            value: "Disco 100%"
+  - entity: select
+    name: Mode
+    icon: "mdi:playlist-edit"
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "013264000003e803e8"
+            value: "Breath"
+          - dps_val: "023264000003e803e8"
+            value: "Flash"
+          - dps_val: "033264000003e803e8007803e803e800f003e803e8003b03e803e8013603e803e8010e03e803e8"
+            value: "Jump"
+          - dps_val: "043264000003e803e8007803e803e800f003e803e8"
+            value: "Gradient"
+          - dps_val: "053264"
+            value: "Symphony"
+          - dps_val: "063264000003e803e8"
+            value: "Trail"
+          - dps_val: "073264000003e803e8"
+            value: "Popular"
+          - dps_val: "083264000003e803e8"
+            value: "Stacking"
+          - dps_val: "0932640000000003e8"
+            value: "Adjoint"
+  - entity: select
+    name: Scene
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 108
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "CJ_YD"
+            value: "Read"
+          - dps_val: "CJ_QC"
+            value: "Get Up"
+          - dps_val: "CJ_WA"
+            value: "Night"
+          - dps_val: "CJ_XK"
+            value: "Starry"
+          - dps_val: "CJ_JH"
+            value: "Party"
+          - dps_val: "CJ_YS"
+            value: "Film"
+  - entity: number
+    name: Strip Points
+    category: config
+    dps:
+      - id: 104
+        name: value
+        type: integer
+        range:
+          min: 10
+          max: 42
