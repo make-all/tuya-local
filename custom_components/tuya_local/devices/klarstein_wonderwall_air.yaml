@@ -1,9 +1,10 @@
-name: Klarstein Wonderwall Air
+name: IR Heater
 products:
   - id: cl2wgyhohpjjjuzu
-    name: Wonderwall Art Smart
+    name: Klarstein Wonderwall Air Art Smart
 primary_entity:
   entity: climate
+  translation_key: thermostat
   dps:
     - id: 1
       name: hvac_mode
@@ -24,50 +25,94 @@ primary_entity:
       range:
         min: 0
         max: 370
-      unit: "\u00b0C"
+      unit: "C"
     - id: 3
       name: current_temperature
       type: integer
       mapping:
         - scale: 10
           step: 10
-      range:
-        min: 0
-        max: 500
-      unit: "\u00b0C"
     - id: 4
       type: string
       mapping:
         - dps_val: manual
-          value: Manual
+          value: manual
         - dps_val: holiday
-          value: Holiday
+          value: away
         - dps_val: auto
-          value: Auto
+          value: program
       name: preset_mode
 secondary_entities:
-  - entity: number
+  - entity: select
     name: Timer
-    icon: "mdi:timer-sand"
+    icon: "mdi:timer"
     category: config
     dps:
       - id: 10
-        type: integer
-        name: value
-        unit: hour
-        range:
-          min: 0
-          max: 24
-  - entity: number
-    name: Countdown
-    icon: "mdi:timer-sand-complete"
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: "1 hour"
+          - dps_val: "2"
+            value: "2 hours"
+          - dps_val: "3"
+            value: "3 hours"
+          - dps_val: "4"
+            value: "4 hours"
+          - dps_val: "5"
+            value: "5 hours"
+          - dps_val: "6"
+            value: "6 hours"
+          - dps_val: "7"
+            value: "7 hours"
+          - dps_val: "8"
+            value: "8 hours"
+          - dps_val: "9"
+            value: "9 hours"
+          - dps_val: "10"
+            value: "10 hours"
+          - dps_val: "11"
+            value: "11 hours"
+          - dps_val: "12"
+            value: "12 hours"
+          - dps_val: "13"
+            value: "13 hours"
+          - dps_val: "14"
+            value: "14 hours"
+          - dps_val: "15"
+            value: "15 hours"
+          - dps_val: "16"
+            value: "16 hours"
+          - dps_val: "17"
+            value: "17 hours"
+          - dps_val: "18"
+            value: "18 hours"
+          - dps_val: "19"
+            value: "19 hours"
+          - dps_val: "20"
+            value: "20 hours"
+          - dps_val: "21"
+            value: "21 hours"
+          - dps_val: "22"
+            value: "22 hours"
+          - dps_val: "23"
+            value: "23 hours"
+          - dps_val: "24"
+            value: "24 hours"
+  - entity: sensor
+    name: Time remaining
+    class: duration
     category: diagnostic
     dps:
       - id: 11
-        name: value
-        readonly: true
         type: integer
+        name: sensor
         unit: min
+        optional: true
   - entity: number
     name: Holiday
     icon: "mdi:island"
@@ -76,43 +121,32 @@ secondary_entities:
       - id: 101
         name: value
         type: integer
-        unit: day
+        unit: d
+        optional: true
         range:
           min: 0
           max: 99
   - entity: select
-    name: "Window Open"
+    name: Open window detection
     icon: "mdi:window-open"
     category: config
     dps:
       - id: 103
         name: option
         type: string
+        optional: true
         mapping:
           - dps_val: continue
-            value: continue
+            value: "On"
           - dps_val: close
-            value: close
-  - entity: select
-    name: Scale
-    icon: "mdi:thermometer"
-    category: config
-    dps:
-      - id: 104
-        name: option
-        type: string
-        mapping:
-          - dps_val: c
-            value: c
-          - dps_val: f
-            value: f
-  - entity: number
-    name: Worktime
-    icon: "mdi:briefcase-clock"
+            value: "Off"
+  - entity: sensor
+    name: Up time
+    class: duration
     category: diagnostic
     dps:
       - id: 105
-        name: value
-        readonly: true
         type: integer
+        name: sensor
         unit: min
+        optional: true
