@@ -527,6 +527,15 @@ device detection unless set to optional. A value of true will be sent
 for a button press, map this to the desired dps_val if a different
 value is required.
 
+### `camera`
+- **motion_enable** (optional, boolean) a dp that enables and disables motion detection features built into the camera.
+- **record** (optional, boolean) a dp that turns reecording on and off.
+- **snapshot** (optional, base64 string) a dp that returns a snapshot image.
+from the camera.
+- **switch** (optional, boolean) a dp to turn the camera on and off.
+
+**NOTE**: tuya-local does not directly support video streaming from cameras.  Some cameras provide ONVIF or WebRTC compliant streams locally which you can use the relevant integrations to capture, others may be cloud-only.
+
 ### `climate`
 - **aux_heat** (optional, boolean, DEPRECATED) a dp to control the aux heat switch if the device has one. Note this is being deprecated by HA and no longer accessible from the UI since HA 2023.9, though the deprecation announcement is yet to be made as of 2023.11. It is recommended not to use this, and instead use an separate switch entity.
 - **current_temperature** (optional, number) a dp that reports the current temperature.
