@@ -7,7 +7,7 @@ primary_entity:
   name: Background
   icon: "mdi:projector"
   dps:
-    - id: 20
+    - id: 103
       type: boolean
       name: switch
     - id: 21
@@ -17,7 +17,7 @@ primary_entity:
         - dps_val: white
           value: white
         - dps_val: colour
-          value: rgbw
+          value: hs
         - dps_val: scene
           value: Scene
     - id: 24
@@ -71,10 +71,10 @@ secondary_entities:
           min: 10
           max: 1000
   - entity: switch
-    name: Color
+    name: Master
     category: config
     dps:
-      - id: 103
+      - id: 20
         type: boolean
         name: switch
   - entity: number
