@@ -107,6 +107,8 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
         self._receive_dp = dps_map.pop("receive", None)
         # Some remotes split out the control (command) into its own dp and just send raw codes in send
         self._control_dp = dps_map.pop("control", None)
+        self._delay_dp = dps_map.pop("delay", None)
+        self._type_dp = dps_map.pop("code_type", None)
         self._init_end(dps_map)
         self._attr_supported_features = 0
         if self._receive_dp:
@@ -170,7 +172,7 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
             code_list.append(codes)
         return code_list
 
-    def _encode_send_code(self, code):
+    def _encode_send_code(self, code, delay):
         """Encode a remote command into dps values to send."""
         # Based on https://github.com/jasonacox/tinytuya/issues/74 and
         # the docs it references, there are two kinds of IR devices.
@@ -183,6 +185,10 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
             # control and code are sent in seperate dps.
             dps = dps | self._control_dp.get_values_to_set(self._device, CMD_SEND)
             dps = dps | self._send_dp.get_values_to_set(self._device, code)
+            if self._delay_dp:
+                dps = dps | self._delay_dp.get_values_to_set(self._device, delay)
+            if self._type_dp:
+                dps = dps | self._type_dp.get_values_to_seet(self._device, 0)
         else:
             dps = dps | self._send_dp.get_values_to_set(
                 self._device,
@@ -193,7 +199,7 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
                         # leading zero means use head, any other leeading character is discarded.
                         "key1": "1" + code,
                         "type": 0,
-                        "delay": 300,
+                        "delay": int(delay),
                     }
                 ),
             )
@@ -207,7 +213,7 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
         commands = kwargs[ATTR_COMMAND]
         subdevice = kwargs.get(ATTR_DEVICE)
         repeat = kwargs.get(ATTR_NUM_REPEATS)
-        delay = kwargs.get(ATTR_DELAY_SECS)
+        delay = kwargs.get(ATTR_DELAY_SECS, DEFAULT_DELAY_SECS) * 1000
         service = f"{RM_DOMAIN}.{SERVICE_SEND_COMMAND}"
         if not self._storage_loaded:
             await self._async_load_storage()
@@ -228,7 +234,7 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
             else:
                 code = codes[0]
 
-            dps_to_set = self._encode_send_code(code)
+            dps_to_set = self._encode_send_code(code, delay)
             await self._device.async_set_properties(dps_to_set)
 
             if len(codes) > 1:
