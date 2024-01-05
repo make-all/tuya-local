@@ -27,6 +27,7 @@
 - HJZ oil column radiator
 - INOW Wi-Fi heating element (single and dual air/water temperature control variants)
 - Kennedy II/JR electric fireplace
+- Klarstein Wonderwall Air Art IR heater
 - Klarstein Wonderwall IR heater
 - Kogan flame effect heater - KAWHMFP20BA model
 - Kogan tower heater - KASTHFP2KWA model
@@ -199,7 +200,9 @@
 - NX-100AP Rapid air purifier
 - Poiema One air purifier
 - Proscenic A8 air purifier
+- Proscenic A9 air purifier
 - Renpho RP-AP001S air purifier
+- Smartmi E1 air purifier
 - Soleusair A02 and A10 air purifiers
 - Stadler Form Roger air purifier
 - Tesla Pro and Mini air purifiers
@@ -306,7 +309,7 @@
 - Feyree home EV charger
 - Parkside PLGS 2012 A1 smart charger for powertools
 
-### SmartPlugs/Wall sockets/Wall switches
+### SmartPlugs/Wall sockets/Wall switches/Inline switches
 
 Most smartplugs follow a fairly standard template from Tuya, so many
 will work with other brands configs. However there are many
@@ -337,6 +340,7 @@ the best option.
 - Grid Connect double outlet wall socket
 - Grid Connect double outlet with Energy Monitoring, Master and Individual switches and Child Lock
 - Grid Connect USB charger with power socket
+- Inna/Automat-ON AUTO000014 7 channel underfloor heating controller
 - Linkoze LKWSW201 dual button
 - Logicom Strippy 4 way power strip with USB
 - Loratap RR400W-V2 relay switch
