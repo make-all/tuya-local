@@ -83,6 +83,7 @@
 ### Pool heaters / heatpumps
 
 - BWT FI 45 heatpump
+- Evotherm ETI series heeatpump
 - Fairland IPHCR15 pool heatpump (matches others above, but allows control of heat/cool modes while others seem to be fixed to auto only)
 - Garden PAC pool heatpump (also works with Summerwave Si Series)
 - IPS Pro pool-systems heatpump (seems to match Fairland Inver-X as well)
