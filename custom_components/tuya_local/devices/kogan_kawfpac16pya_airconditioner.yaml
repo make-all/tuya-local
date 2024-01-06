@@ -24,7 +24,7 @@ primary_entity:
             - dps_val: DRY
               icon: "mdi:water"
               value: dry
-            - dps_val: HEAT
+            - dps_val: Heat
               icon: "mdi:heat-wave"
               value: heat
     - id: 2
@@ -53,16 +53,17 @@ primary_entity:
           # conditions:
           #   - dps_val: COOL
           #     icon: "mdi:snowflake"
-          #     value: cool
+          #     value: cold
           #   - dps_val: FAN
           #     icon: "mdi:fan"
-          #     value: fan
+          #     value: wind
           #   - dps_val: DRY
           #     icon: "mdi:water"
-          #     value: dry
+          #     value: wet
           #   - dps_val: HEAT
           #     icon: "mdi:fire"
-          #     value: heat
+          #     value: hot
+
 
 
     - id: 5
@@ -100,13 +101,12 @@ primary_entity:
           value: "vertical"
         - dps_val: false
           value: "off"
-secondary_entities:
     - id: 105
       name: countdown
       type: integer
     - id: 106
-      name: fault_code
-      type: bitfield
+      name: unknown_106
+      type: integer
     - id: 109
       name: unknown_109
       type: boolean
