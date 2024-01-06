@@ -130,6 +130,18 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
             unit = validate_temp_unit(self._temperature_dps.unit)
             if unit is not None:
                 return unit
+        if self._temp_high_dps:
+            unit = validate_temp_unit(self._temp_high_dps.unit)
+            if unit is not None:
+                return unit
+        if self._temp_low_dps:
+            unit = validate_temp_unit(self._temp_low_dps.unit)
+            if unit is not None:
+                return unit
+        if self._current_temperature_dps:
+            unit = validate_temp_unit(self._current_temperature_dps.unit)
+            if unit is not None:
+                return unit
         # Return the default unit
         return UnitOfTemperature.CELSIUS
 
