@@ -39,6 +39,7 @@
 - Orion OWH-PTC2000 heater
 - Princess 350 panel heater
 - Purline Hoti M100 heater
+- Quality Heating QH-GD Elegant Series IR panel heaters
 - Rumba bathroom heater
 - Wetair WCH-750 heater
 
