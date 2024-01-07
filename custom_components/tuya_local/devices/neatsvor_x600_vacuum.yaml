@@ -1,7 +1,7 @@
-name: Neatsvor X600
+name: Robot vacuum
 products:
   - id: lb3jihr6cvumqomi
-    name: Robot vacuum
+    name: Neatsvor X600
 primary_entity:
   entity: vacuum
   dps:
@@ -85,7 +85,6 @@ primary_entity:
           value: Strong
         - dps_val: max
           value: Max
-          hidden: true
     - id: 11
       name: locate
       type: boolean
@@ -105,11 +104,6 @@ primary_entity:
           value: right
         - dps_val: stop
           value: stop
-    - id: 13
-      name: map_reset
-      type: boolean
-      optional: true
-      hidden: true
     - id: 14
       name: path_data
       type: string
@@ -121,10 +115,6 @@ primary_entity:
     - id: 16
       name: request
       type: string
-      optional: true
-    - id: 25
-      name: do_not_disturb
-      type: boolean
       optional: true
     - id: 28
       name: error
@@ -321,3 +311,24 @@ secondary_entities:
         name: button
         type: boolean
         optional: true
+  - entity: button
+    name: Map reset
+    category: config
+    icon: "mdi:map"
+    dps:
+      - id: 13
+        name: button
+        type: boolean
+        optional: true
+  - entity: switch
+    name: Do not disturb
+    category: config
+    icon: "mdi:sleep"
+    dps:
+      - id: 25
+        name: switch
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
