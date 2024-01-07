@@ -17,6 +17,7 @@ primary_entity:
               value: heat
             - dps_val: level_2
               value: heat
+              hidden: true
     - id: 2
       type: integer
       name: temperature
@@ -31,20 +32,11 @@ primary_entity:
       type: string
       mapping:
         - dps_val: "level_0"
-          value: fan
+          value: none
         - dps_val: "level_1"
           value: comfort
         - dps_val: "level_2"
           value: boost
-    - id: 4
-      type: string
-      name: level
-      mapping:
-        - dps_val: "normal"
-          value: Full
-        - dps_val: "auto"
-          value: Auto
-
     - id: 8
       type: boolean
       name: swing_mode
@@ -54,6 +46,18 @@ primary_entity:
         - dps_val: true
           value: "on"
 secondary_entities:
+   - entity: select
+     name: Level
+     icon: "mdi:signal"
+     dps:
+       - id: 4
+         type: string
+         name: level
+         mapping:
+           - dps_val: "normal"
+             value: Full
+           - dps_val: "auto"
+             value: Auto
    - entity: select
      name: Timer
      icon: "mdi:timer"
