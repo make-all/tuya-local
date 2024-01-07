@@ -63,7 +63,7 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
         self._operation_mode_dps = dps_map.pop(ATTR_OPERATION_MODE, None)
         self._away_mode_dps = dps_map.pop(ATTR_AWAY_MODE, None)
         self._init_end(dps_map)
-        self._support_flags = 0
+        self._support_flags = WaterHeaterEntityFeature(0)
 
         if self._operation_mode_dps:
             self._support_flags |= WaterHeaterEntityFeature.OPERATION_MODE

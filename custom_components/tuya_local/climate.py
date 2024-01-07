@@ -93,7 +93,7 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         self._maxtemp_dps = dps_map.pop("max_temperature", None)
 
         self._init_end(dps_map)
-        self._support_flags = 0
+        self._support_flags = ClimateEntityFeature(0)
 
         if self._aux_heat_dps:
             self._support_flags |= ClimateEntityFeature.AUX_HEAT

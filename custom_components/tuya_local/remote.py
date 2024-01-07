@@ -110,7 +110,6 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
         self._delay_dp = dps_map.pop("delay", None)
         self._type_dp = dps_map.pop("code_type", None)
         self._init_end(dps_map)
-        self._attr_supported_features = 0
         if self._receive_dp:
             self._attr_supported_features |= (
                 RemoteEntityFeature.LEARN_COMMAND | RemoteEntityFeature.DELETE_COMMAND

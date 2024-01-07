@@ -93,7 +93,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
         if self.effect_list:
             return LightEntityFeature.EFFECT
         else:
-            return 0
+            return LightEntityFeature(0)
 
     @property
     def color_mode(self):

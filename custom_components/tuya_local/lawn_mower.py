@@ -43,7 +43,6 @@ class TuyaLocalLawnMower(TuyaLocalEntity, LawnMowerEntity):
         self._command_dp = dps_map.pop("command", None)
         self._init_end(dps_map)
 
-        self._attr_supported_features = 0
         if self._command_dp:
             available_commands = self._command_dp.values(self._device)
             if SERVICE_START_MOWING in available_commands:
