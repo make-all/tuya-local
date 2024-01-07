@@ -44,6 +44,7 @@
 - Purline Hoti M100 heater
 - Quality Heating QH-GD Elegant Series IR panel heaters
 - Rumba bathroom heater
+- Touchstone Sideline electric fireplace
 - Wetair WCH-750 heater
 
 ### Air Conditioners / Heatpumps
