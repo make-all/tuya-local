@@ -1,0 +1,45 @@
+name: Temperature and humidity Sensor
+products:
+  - id: vyfoip9h
+    name: TH05-BLE
+primary_entity:
+  entity: sensor
+  class: temperature
+  dps:
+    - id: 1
+      name: sensor
+      type: integer
+      unit: C
+      mapping:
+        - scale: 10
+      class: measurement
+secondary_entities:
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: select
+    name: Display Units
+    category: config
+    dps:
+      - id: 9
+        name: option
+        type: string
+        mapping:
+          - dps_val: "f"
+            value: Fahrenheit
+          - dps_val: "c"
+            value: Celsius
+        optional: true
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: "%"

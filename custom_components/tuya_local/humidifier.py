@@ -50,7 +50,7 @@ class TuyaLocalHumidifier(TuyaLocalEntity, HumidifierEntity):
         self._switch_dp = dps_map.pop("switch", None)
         self._init_end(dps_map)
 
-        self._support_flags = 0
+        self._support_flags = HumidifierEntityFeature(0)
         if self._mode_dp:
             self._support_flags |= HumidifierEntityFeature.MODES
 

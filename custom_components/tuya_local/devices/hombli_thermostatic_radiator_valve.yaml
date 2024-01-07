@@ -1,0 +1,118 @@
+name: Radiator Thermostat
+products:
+  - id: ngxyxyc8
+    name: Hombli HBRT-0109
+primary_entity:
+  entity: climate
+  dps:
+    - id: 101
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          value: heat
+    - id: 102
+      type: integer
+      name: current_temperature
+      mapping:
+        - scale: 10
+    - id: 103
+      type: integer
+      name: temperature
+      mapping:
+        - scale: 10
+      range:
+          max: 70
+          min: 0
+    - id: 106
+      type: boolean
+      name: preset_mode
+      mapping:
+        - dps_val: true
+          value: "away"
+        - dps_val: false
+          value: "home"
+secondary_entities:
+  - entity: switch
+    name: Window check
+    icon: "mdi:window-open-variant"
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Anti frost
+    icon: "mdi:snowflake"
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: select
+    name: Temperature unit
+    icon: "mdi:temperature-celsius"
+    category: config
+    dps:
+      - id: 23
+        type: string
+        name: option
+        mapping:
+          - dps_val: "c"
+            value: Celsius
+            icon: "mdi:temperature-celsius"
+          - dps_val: "f"
+            value: Fahrenheit
+            icon: "mdi:temperature-fahrenheit"
+  - entity: number
+    name: Temperature calibration
+    category: config
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 27
+        type: integer
+        name: value
+        mapping:
+          - scale: 10
+        range:
+            min: -60
+            max: 60
+            step: 5
+  - entity: lock
+    name: Child lock
+    icon: "mdi:hand-back-right-off"
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        name: lock
+  - entity: binary_sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 105
+        type: bitfield
+        name: sensor
+        class: measurement
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: switch
+    name: Schedule
+    icon: "mdi:calendar-clock"
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Antiscale
+    category: config
+    icon: "mdi:shimmer"
+    dps:
+      - id: 130
+        type: boolean
+        name: switch

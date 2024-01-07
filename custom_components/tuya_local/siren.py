@@ -44,7 +44,7 @@ class TuyaLocalSiren(TuyaLocalEntity, SirenEntity):
         self._init_end(dps_map)
         # All control of features is through the turn_on service, so we need to
         # support that, even if the siren does not support direct control
-        support = 0
+        support = SirenEntityFeature(0)
         if self._tone_dp:
             support |= (
                 SirenEntityFeature.TONES

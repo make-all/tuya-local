@@ -13,10 +13,9 @@ The top level of the device configuration defines the following:
 
 ### `name`
 
-The device should be named descriptively with a name the user would recognize,
-the brand and model of the device is a good choice. If a whole family of
-devices is supported, a generalization of the model type can be used.
-The name should also indicate to the user what type of device it is.
+The device should be named descriptively with a name the user would recognize.
+In general, the brand and model of the device should go under products, and a
+generic name for the type of device should go in the top level name.
 
 ### `products`
 
@@ -29,10 +28,12 @@ from the Tuya developer web portal listing for your device, or when using
 UDP discovery (via tinytuya). In future it is intended that UDP discovery
 will be used to more precisely match devices to configs, so it is recommended
 to report these if you can find them when requesting a new device. Each
-listing can also have an optional `name`, which is intended to override the
-top level `name` when full support for this field is added.
-Probably other info will be added in future to provide better reporting of
-device manufacturer and model etc.
+listing can also have an optional `name`, which is intended to specify the
+specific brand and model name or number of the matching device.  In future
+when local discovery is implemented to discover products by id, this name will
+be displayed on discovery, and be available as manufacturer and model info
+in device settings (so probably in future name will be split into manufacturer
+and model, but for now, putting them together as name is OK).
 
 ### `primary_entity`
 
