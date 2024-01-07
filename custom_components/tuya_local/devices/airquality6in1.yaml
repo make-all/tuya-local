@@ -1,20 +1,16 @@
-name: Air quality monitor 6 in 1
+name: Air quality monitor
 products:
   - id: ugjbnqj2mffaexp5
-    name: Air Housekeeper
+    name: Air Housekeeper 6-in-1
 primary_entity:
   entity: sensor
-  name: PM2.5
-  class: volatile_organic_compounds
-  icon: "mdi:factory"
+  class: pm25
   dps:
     - id: 2
       type: integer
       name: sensor
       unit: µg/m³
       class: measurement
-      mapping:
-        - scale: 1
 secondary_entities:
   - entity: sensor
     class: temperature
@@ -43,20 +39,16 @@ secondary_entities:
       - id: 20
         type: integer
         name: sensor
-        unit: mg/m³
+        unit: ugm3
         class: measurement
-        mapping:
-          - scale: 1000
   - entity: sensor
     class: volatile_organic_compounds
     dps:
       - id: 21
         type: integer
         name: sensor
-        unit: mg/m³
+        unit: ugm3
         class: measurement
-        mapping:
-          - scale: 1000
   - entity: sensor
     class: carbon_dioxide
     dps:
@@ -65,6 +57,3 @@ secondary_entities:
         name: sensor
         unit: ppm
         class: measurement
-
-
-
