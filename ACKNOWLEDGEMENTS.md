@@ -452,3 +452,5 @@ Further device support has been made with the assistance of users. Please consid
 - [MarkPaxton](https://github.com/MarkPaxton) for contributing support for Hombli radiator controllers.
 - [mmib](https://github.com/mmib) for contributing support for Becasmart irrigation systems.
 - [kkot86](https://github.com/kkot86) for contributing support for Air Housekeeper air quality monitors.
+- [NoXPhasma](https://github.com/NoXPhasma) for assisting with support for Juskys oil radiators.
+

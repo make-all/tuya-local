@@ -27,6 +27,7 @@
 - HJZ oil column radiator
 - Hombli radiator controller
 - INOW Wi-Fi heating element (single and dual air/water temperature control variants)
+- Juskys OH125BW2 oil radiator
 - Kennedy II/JR electric fireplace
 - Klarstein Wonderwall Air Art IR heater
 - Klarstein Wonderwall IR heater
