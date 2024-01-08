@@ -570,6 +570,7 @@ port and password.
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
 - Garza Wi-Fi garden irrigation system (ITV103W with 433MHz WiFi hub)
 - GratKit filament dryer
+- Haier Nayun NY-GS-04 combustible gas alarm
 - Holman WX1 tap timer (sprinkler controller)
 - Holman WX2 dual tap timer
 - Inkbird PTH-9CW air quality monitor
