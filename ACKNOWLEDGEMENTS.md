@@ -454,3 +454,4 @@ Further device support has been made with the assistance of users. Please consid
 - [kkot86](https://github.com/kkot86) for contributing support for Air Housekeeper air quality monitors.
 - [NoXPhasma](https://github.com/NoXPhasma) for assisting with support for Juskys oil radiators.
 - [lundyfpv](https://github.com/lundyfpv) for assisting with support for Touchstone Sideline electric fireplaces.
+- [tsaouste](https://github.com/tsaouste) for assisting with support for CNC YCB9ZF-100W circuit breakers.

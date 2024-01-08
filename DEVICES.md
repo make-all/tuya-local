@@ -291,6 +291,7 @@
 - Atorch AT2PL energy monitoring breaker switch
 - Aulifants SMES200 energy monitoring breaker switch
 - CBI Astute smart controller breaker switch
+- CNC YCB9ZF-100W 1P circuit breaker
 - Compteur digital electric (single phase)
 - Dcenta dual clamp meter
 - DTS238-7 3 phase smart meter
