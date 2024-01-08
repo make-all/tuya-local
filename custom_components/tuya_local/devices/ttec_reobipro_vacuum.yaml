@@ -8,6 +8,11 @@ primary_entity:
     - id: 1
       type: boolean
       name: power
+      optional: true
+      mapping:
+        - dps_val: null
+          value: false
+          hidden: true
     - id: 2
       type: boolean
       optional: true
@@ -147,6 +152,11 @@ secondary_entities:
       - id: 3
         type: boolean
         name: switch
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
   - entity: sensor
     name: Cleaning time
     class: duration
