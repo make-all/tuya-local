@@ -8,6 +8,13 @@ primary_entity:
     - id: 1
       name: switch
       type: boolean
+      mapping:
+        - dps_val: true
+          icon: mdi:water-pump
+          value: ON
+        - dps_val: false
+          icon: mdi:water-pump-off
+          value: OFF
     - id: 48
       type: string
       optional: true
@@ -33,7 +40,7 @@ secondary_entities:
       - id: 56
         type: integer
         name: value
-        unit: min
+        unit: s
         range:
           min: 0
           max: 360
@@ -65,12 +72,18 @@ secondary_entities:
           min: 0
           max: 60
   - entity: sensor
-    name: Runtime
-    class: duration
-    category: diagnostic
+    name: "Run time remaining"
+    icon: "mdi:timer-sand"
     dps:
-      - id: 10
+      - id: 102
         type: integer
         name: sensor
-        unit: min
+        unit: s
+        range:
+          min: 0
+          max: 360
+      - id: 10
+        type: integer
+        name: runtime
+        unit: s
         optional: true
