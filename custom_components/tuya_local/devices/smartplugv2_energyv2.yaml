@@ -45,10 +45,12 @@ secondary_entities:
       - id: 17
         name: sensor
         type: integer
+        optional: true
         unit: Wh
       - id: 25
         type: integer
         name: calibration
+        optional: true
   - entity: sensor
     category: diagnostic
     class: current
@@ -62,6 +64,7 @@ secondary_entities:
       - id: 23
         type: integer
         name: calibration
+        optional: true
   - entity: sensor
     category: diagnostic
     class: power
@@ -77,6 +80,7 @@ secondary_entities:
       - id: 24
         type: integer
         name: calibration
+        optional: true
   - entity: sensor
     category: diagnostic
     class: voltage
@@ -92,6 +96,7 @@ secondary_entities:
       - id: 22
         type: integer
         name: calibration
+        optional: true
   - entity: binary_sensor
     class: problem
     category: diagnostic
