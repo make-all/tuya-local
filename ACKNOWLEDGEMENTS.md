@@ -455,3 +455,4 @@ Further device support has been made with the assistance of users. Please consid
 - [NoXPhasma](https://github.com/NoXPhasma) for assisting with support for Juskys oil radiators.
 - [lundyfpv](https://github.com/lundyfpv) for assisting with support for Touchstone Sideline electric fireplaces.
 - [tsaouste](https://github.com/tsaouste) for assisting with support for CNC YCB9ZF-100W circuit breakers.
+- [MakeItBetterSAGL](https://github.com/MakeItBetterSAGL) for assisting with support for Sonnenkonig ECO 700 heaters.
