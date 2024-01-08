@@ -47,7 +47,12 @@ primary_entity:
         - scale: 2
     - id: 104
       type: boolean
-      name: unknown_104
+      name: temperature_switch
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          value: "on"
 secondary_entities:
   - entity: lock
     name: Child lock
