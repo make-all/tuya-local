@@ -131,6 +131,31 @@ secondary_entities:
     category: config
     icon: "mdi:campfire"
     dps:
+      - id: 109
+        name: brightness
+        type: string
+        optional: true
+        mapping:
+          - dps_val: L0
+            value: 0
+          - dps_val: L1
+            value: 51
+          - dps_val: L2
+            value: 102
+          - dps_val: L3
+            value: 153
+          - dps_val: L4
+            value: 204
+          - dps_val: L5
+            value: 255
+          - dps_val: null
+            value: 0
+            hidden: true
+  - entity: light
+    name: Coal bed
+    category: config
+    icon: "mdi:dots-triangle"
+    dps:
       - id: 105
         name: brightness
         type: string
@@ -187,10 +212,6 @@ secondary_entities:
             value: "Cycle"
           - dps_val: "12"
             value: "Mystery"
-      - id: 109
-        type: string
-        optional: true
-        name: ember_bed_brightness
   - entity: select
     name: Flame speed
     icon: "mdi:fire"
