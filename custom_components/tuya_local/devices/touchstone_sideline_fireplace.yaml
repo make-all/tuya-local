@@ -132,8 +132,9 @@ secondary_entities:
     icon: "mdi:campfire"
     dps:
       - id: 105
-        name: brightness
+        name: ceiling_brightness
         type: string
+        optional: true
         mapping:
           - dps_val: "1"
             value: 21
@@ -189,8 +190,20 @@ secondary_entities:
             value: "Mystery"
       - id: 109
         type: string
-        optional: true
-        name: ember_bed_brightness
+        name: brightness
+        mapping:
+          - dps_val: "L0"
+            value: 0
+          - dps_val: "L1"
+            value: 51
+          - dps_val: "L2"
+            value: 102
+          - dps_val: "L3"
+            value: 153
+          - dps_val: "L4"
+            value: 204
+          - dps_val: "L5"
+            value: 255
   - entity: select
     name: Flame speed
     icon: "mdi:fire"
