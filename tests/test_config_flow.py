@@ -4,6 +4,7 @@ from unittest.mock import ANY, AsyncMock, MagicMock, patch
 import pytest
 import voluptuous as vol
 from homeassistant.const import CONF_HOST, CONF_NAME
+from homeassistant.data_entry_flow import FlowResultType
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
 from custom_components.tuya_local import (
@@ -252,6 +253,8 @@ async def test_async_test_connection_valid(mock_device, hass):
     """Test that device is returned when connection is valid."""
     mock_instance = AsyncMock()
     mock_instance.has_returned_state = True
+    mock_instance.pause = MagicMock()
+    mock_instance.resume = MagicMock()
     mock_device.return_value = mock_instance
     hass.data[DOMAIN] = {"deviceid": {"device": mock_instance}}
 
@@ -275,6 +278,8 @@ async def test_async_test_connection_for_subdevice_valid(mock_device, hass):
     """Test that subdevice is returned when connection is valid."""
     mock_instance = AsyncMock()
     mock_instance.has_returned_state = True
+    mock_instance.pause = MagicMock()
+    mock_instance.resume = MagicMock()
     mock_device.return_value = mock_instance
     hass.data[DOMAIN] = {"subdeviceid": {"device": mock_instance}}
 
@@ -488,8 +493,9 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
         )
         expected = {
             "version": 13,
+            "minor_version": ANY,
             "context": {"source": "choose_entities"},
-            "type": "create_entry",
+            "type": FlowResultType.CREATE_ENTRY,
             "flow_id": ANY,
             "handler": DOMAIN,
             "title": "test",
