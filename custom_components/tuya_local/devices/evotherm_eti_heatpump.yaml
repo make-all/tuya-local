@@ -13,16 +13,19 @@ primary_entity:
         - dps_val: false
           value: "off"
         - dps_val: true
-          constraint: work_mode
+          constraint: preset_mode
           conditions:
-            - dps_val: Cool_mode
+            - dps_val: Cooling_Smart
               value: cool
-            - dps_val: Heat_mode
+            - dps_val: Heating_Smart
               value: heat
-            - dps_val: Auto_mode
+            - dps_val: Auto
               value: heat_cool
-            - dps_val: null
-              value: heat_cool
+            - dps_val: ["Heating_Powerful", "Heating_Silent"]
+              value: heat
+              hidden: true
+            - dps_val: ["Cooling_Powerful", "Cooling_Silent"]
+              value: cool
               hidden: true
     - id: 2
       name: preset_mode
@@ -46,7 +49,6 @@ primary_entity:
       name: work_mode
       type: string
       optional: true
-      hidden: true
     - id: 15
       name: fault_code
       type: bitfield
@@ -60,9 +62,9 @@ primary_entity:
       type: string
       mapping:
         - dps_val: Running
-          constraint: work_mode
+          constraint: preset_mode
           conditions:
-            - dps_val: Cool_mode
+            - dps_val: ["Cooling_Powerful", "Cooling_Smart", "Cooling_Silent"]
               value: cooling
             - value: heating
         - dps_val: Defrosting
@@ -81,11 +83,11 @@ primary_entity:
         max: 550
       mapping:
         - scale: 10
-          constraint: work_mode
+          constraint: preset_mode
           conditions:
-            - dps_val: Cool_mode
+            - dps_val: ["Cooling_Powerful", "Cooling_Smart", "Cooling_Silent"]
               value_redirect: cold_temp
-            - dps_val: Auto_mode
+            - dps_val: Auto
               value_redirect: auto_temp
     - id: 102
       name: cold_temp
@@ -94,6 +96,8 @@ primary_entity:
       range:
         min: 50
         max: 350
+      mapping:
+        - scale: 10
       hidden: true
     - id: 103
       name: new_fault_1
@@ -105,6 +109,8 @@ primary_entity:
       range:
         min: 50
         max: 400
+      mapping:
+        - scale: 10
       hidden: true
     - id: 107
       name: new_fault_2
