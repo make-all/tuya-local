@@ -16,28 +16,49 @@ primary_entity:
     - id: 2
       type: boolean
       optional: true
-      name: pause
-    - id: 4
-      type: string
       name: command
       mapping:
-        - constraint: pause
+        - dps_val: true
+          value: pause
+        - dps_val: false
+          constraint: mode
           conditions:
-            - dps_val: true
-              value: pause
-            - mapping:
-                - dps_val: smart
-                  value: smart
-                - dps_val: chargego
-                  value: return_to_base
-                - dps_val: zone
-                  value: zone
-                - dps_val: pose
-                  value: clean_spot
-                - dps_val: part
-                  value: partial
-                - dps_val: selectroom
-                  value: room
+            - dps_val: smart
+              value: smart
+            - dps_val: chargego
+              value: return_to_base
+            - dps_val: zone
+              value: zone
+            - dps_val: pose
+              value: clean_spot
+            - dps_val: part
+              value: partial
+            - dps_val: selectroom
+              value: room
+        - dps_val: null
+          constraint: mode
+          conditions:
+            - dps_val: smart
+              value: smart
+              hidden: true
+            - dps_val: chargego
+              value: return_to_base
+              hidden: true
+            - dps_val: zone
+              value: zone
+              hidden: true
+            - dps_val: pose
+              value: clean_spot
+              hidden: true
+            - dps_val: part
+              value: partial
+              hidden: true
+            - dps_val: selectroom
+              value: room
+              hidden: true
+    - id: 4
+      type: string
+      name: mode
     - id: 5
       type: string
       name: status
