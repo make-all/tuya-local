@@ -4,7 +4,7 @@ from homeassistant.const import UnitOfTemperature
 
 from ..const import POOLEX_QLINE_HEATPUMP_PAYLOAD
 from ..helpers import assert_device_properties_set
-from ..mixins.binary_sensor import BasicBinarySensorTests
+from ..mixins.binary_sensor import MultiBinarySensorTests
 from ..mixins.climate import TargetTemperatureTests
 from .base_device_tests import TuyaDeviceTestCase
 
@@ -16,7 +16,7 @@ ERROR_DPS = "15"
 
 
 class TestPoolexSilverlineHeatpump(
-    BasicBinarySensorTests,
+    MultiBinarySensorTests,
     TargetTemperatureTests,
     TuyaDeviceTestCase,
 ):
@@ -31,13 +31,28 @@ class TestPoolexSilverlineHeatpump(
             min=8,
             max=40,
         )
-        self.setUpBasicBinarySensor(
-            ERROR_DPS,
-            self.entities.get("binary_sensor_water_flow"),
-            device_class=BinarySensorDeviceClass.PROBLEM,
-            testdata=(1, 0),
+        self.setUpMultiBinarySensors(
+            [
+                {
+                    "dps": ERROR_DPS,
+                    "name": "binary_sensor_water_flow",
+                    "device_class": BinarySensorDeviceClass.PROBLEM,
+                    "testdata": (1, 0),
+                },
+                {
+                    "dps": ERROR_DPS,
+                    "name": "binary_sensor_anti_freeze",
+                    "device_class": BinarySensorDeviceClass.COLD,
+                    "testdata": (2, 0),
+                },
+            ],
         )
-        self.mark_secondary(["binary_sensor_water_flow"])
+        self.mark_secondary(
+            [
+                "binary_sensor_water_flow",
+                "binary_sensor_anti_freeze",
+            ]
+        )
 
     def test_supported_features(self):
         self.assertEqual(
@@ -116,10 +131,15 @@ class TestPoolexSilverlineHeatpump(
         self.dps[ERROR_DPS] = 1
         self.assertEqual(
             self.subject.extra_state_attributes,
-            {"error": "Water Flow Protection"},
+            {"error": "Water flow protection"},
         )
         self.dps[ERROR_DPS] = 2
         self.assertEqual(
             self.subject.extra_state_attributes,
-            {"error": 2},
+            {"error": "Anti-freeze protection"},
+        )
+        self.dps[ERROR_DPS] = 4
+        self.assertEqual(
+            self.subject.extra_state_attributes,
+            {"error": 4},
         )
