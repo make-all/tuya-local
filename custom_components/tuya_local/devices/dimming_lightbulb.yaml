@@ -4,6 +4,8 @@ products:
     name: Deta Grid Connect Smart 18W 1900lm Daylight T8 Tube DET018HA
   - id: vjapigi170njdq09
     name: Arlec Smart 4W 380lm Candle Dimmable Bulb GLD060HA
+  - id: aok3caeleulg1neh
+    name: S10 wireless dimmer
 primary_entity:
   entity: light
   dps:
@@ -18,3 +20,20 @@ primary_entity:
         max: 1000
       mapping:
         - scale: 3.92
+secondary_entities:
+  - entity: number
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        unit: min
+        optional: true
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
