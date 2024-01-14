@@ -1,0 +1,143 @@
+name: ETOP-FCU(CF) thermostat
+products:
+  - id: psetc59fvtm5gexl
+    name: Jaga JRT-100TW
+primary_entity:
+  entity: climate
+  name: Thermostat
+  dps:
+    ############################################################
+    # Setpoint and current temperature
+    ############################################################
+    # Using DPs for current temperature and setpoint in °C
+    # if you want to control in °F instead, comment these DPs
+    # and uncomment the DPs for °F below
+    - id: 2
+      name: temperature
+      type: integer
+      unit: C
+      range:
+        min: 50
+        max: 350
+      mapping:
+        - scale: 10
+          step: 5
+    - id: 3
+      name: current_temperature
+      type: integer
+      unit: C
+      mapping:
+        - scale: 10
+          step: 5
+    # Available DPs for current temperature and setpoint in °F
+    # if you want to control in °F, uncomment these DPs
+    # and comment the DP for °C above
+    # - id: 20
+    #   name: temperature
+    #   hidden: true
+    #   type: integer
+    #   unit: F
+    #   range:
+    #     min: 41
+    #     max: 95
+    #   mapping:
+    #     - scale: 1
+    #       step: 1
+    # - id: 21
+    #   name: current_temperature
+    #   hidden: true
+    #   type: integer
+    #   unit: F
+    #   range:
+    #     min: 32
+    #     max: 122
+    #   mapping:
+    #     - scale: 1
+    #       step: 1
+    ############################################################
+    # Thermostat modes
+    #
+    # Depending on your actual heating/cooling installation
+    # you can disable the unnecessary entries
+    - id: 4
+      name: hvac_mode
+      type: string
+      mapping:
+        - dps_val: fan
+          value: fan_only
+        - dps_val: heat
+          value: heat
+        - dps_val: cold
+          value: cool
+          hidden: true
+        - dps_val: auto
+          value: auto
+          hidden: true
+    - id: 5
+      name: fan_mode
+      type: string
+      mapping:
+        - dps_val: low
+          value: low
+        - dps_val: middle
+          value: medium
+        - dps_val: high
+          value: high
+        - dps_val: auto
+          value: auto
+secondary_entities:
+  # Overall On/Off switch
+  - entity: switch
+    name: "On/Off"
+    category: config
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+  # Temperature display unit
+  - entity: select
+    name: "Display unit"
+    category: config
+    icon: "mdi:temperature-celsius"
+    dps:
+      - id: 19
+        name: option
+        type: string
+        mapping:
+          - dps_val: c
+            value: Celsius
+          - dps_val: f
+            value: Fahrenheit
+  # The following DPs are available but don't seem to 
+  # actually do anything
+  # - entity: switch
+  #   name: "Child Lock"
+  #   category: config
+  #   dps:
+  #     - id: 7
+  #       name: switch
+  #       type: boolean
+  # - entity: switch
+  #   name: "Countdown"
+  #   category: config
+  #   dps:
+  #     - id: 11
+  #       name: switch
+  #       type: string
+  #       mapping:
+  #         - dps_val: Disable
+  #           value: off
+  #         - dps_val: Enable
+  #           value: on
+  # - entity: switch
+  #   name: "Work State"
+  #   category: config
+  #   dps:
+  #     - id: 14
+  #       name: switch
+  #       type: string
+  #       mapping:
+  #         - dps_val: no_working
+  #           value: off
+  #         - dps_val: working
+  #           value: on
