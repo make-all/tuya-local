@@ -1,4 +1,7 @@
-name: Clean Air 605B humidifier
+name: Humidifier
+products:
+  - id: 7mijurr4i9e0ewat
+    name: Clean Air 605B Smart
 primary_entity:
   entity: humidifier
   dps:
@@ -11,14 +14,10 @@ primary_entity:
       range:
         min: 30
         max: 75
-        scale: 1
         step: 5
-      unit: "%"
     - id: 14
       name: current_humidity
       type: integer
-      readonly: true
-      unit: "%"
     - id: 23
       name: mode
       type: string
@@ -39,7 +38,6 @@ secondary_entities:
       - id: 10
         type: integer
         name: sensor
-        readonly: true
         unit: C
   - entity: switch
     name: Sleep mode
@@ -87,7 +85,6 @@ secondary_entities:
       - id: 20
         type: integer
         name: sensor
-        readonly: true
         unit: "min"
   - entity: binary_sensor
     name: Water tank empty
@@ -97,7 +94,6 @@ secondary_entities:
       - id: 22
         type: bitfield
         name: sensor
-        readonly: true
         mapping:
           - dps_val: 0
             value: false
@@ -108,22 +104,18 @@ secondary_entities:
       - id: 25
         type: boolean
         name: switch
-  - entity: binary_sensor
-    name: Filter reset 
-    class: problem
-    category: diagnostic
+  - entity: button
+    name: Filter reset
     dps:
       - id: 28
         type: boolean
-        name: sensor
-        readonly: true
+        name: button
   - entity: sensor
     name: Filter life
     dps:
       - id: 33
         type: integer
         name: sensor
-        readonly: true
         unit: "%"
   - entity: switch
     name: UV light
