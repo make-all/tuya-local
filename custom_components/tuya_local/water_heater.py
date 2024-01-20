@@ -104,7 +104,7 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
         # represented, not a number of decimal places.
         return 1.0 / max(
             self._temperature_dps.scale(self._device),
-            self._current_temperature_dps.scale(self._device) if self_current_tempereature_dps else 1.0,
+            self._current_temperature_dps.scale(self._device) if self.current_temperature_dps else 1.0,
         )
 
     @property
