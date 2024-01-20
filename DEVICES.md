@@ -242,6 +242,7 @@
 - Greenmigo Alpha Q25 dehumidifier
 - Honeywell TP(30/50/70) dehumidifiers
 - Hyundai Sahara dehumidifier
+- Inkbird IHC-200 humidity controller
 - Inventor Atmosphere XL dehumidifier
 - Inventor Eva Ion Pro dehumidifier
 - JJPro JPD01 dehumidifer
@@ -258,6 +259,7 @@
 - BlitzWolf BW-SH2 humidifier
 - BlitzWolf BW-SH5 humidifier
 - Eanons QT-JS2014 purifying humidifier
+- Inkbird IHC-200 humidity controller
 - Klarta Humea humidifier
 - Kyvol EA200 humidifier
 - Stadler Eva humidifier
