@@ -5,7 +5,7 @@ products:
 primary_entity:
   entity: vacuum
   dps:
-    - id: 1
+    - id: 3
       type: boolean
       name: power
       optional: true
@@ -13,18 +13,33 @@ primary_entity:
         - dps_val: null
           value: false
           hidden: true
+    - id: 1
+      type: boolean
+      name: activate
+      optional: true
+      mapping:
+        - dps_val: false
+          constraint: pause
+          conditions:
+            - dps_val: true
+              value: false
+            - value: false
+              hidden: true
+        - dps_val: true
+          constraint: pause
+          conditions:
+            - dps_val: false
+              value: true
+            - value: true
+              hidden: true
+        - dps_val: null
+          value: false
+          hidden: true
     - id: 2
       type: boolean
       optional: true
-      name: activate
-      mapping:
-        - dps_val: true
-          value: false
-        - dps_val: false
-          value: true
-        - dps_val: null
-          value: true
-          hidden: true
+      name: pause
+      hidden: true
     - id: 4
       type: string
       name: command
@@ -147,19 +162,6 @@ primary_entity:
       optional: true
       name: voice_data
 secondary_entities:
-  - entity: switch
-    name: Charge
-    icon: "mdi:lightning-bolt"
-    category: config
-    dps:
-      - id: 3
-        type: boolean
-        name: switch
-        optional: true
-        mapping:
-          - dps_val: null
-            value: false
-            hidden: true
   - entity: sensor
     name: Cleaning time
     class: duration
