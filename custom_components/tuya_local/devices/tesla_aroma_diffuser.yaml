@@ -1,0 +1,127 @@
+name: Aroma diffuser
+products:
+  - id: izm17rnzcc2akjis
+    name: Tesla TSL-AC-JS01W
+primary_entity:
+  entity: switch
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: fan
+    icon: "mdi:scent"
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: "1"
+            value: Continuous
+          - dps_val: "2"
+            value: Intermittent
+  - entity: light
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
+      - id: 102
+        name: color_mode
+        type: string
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: Scene
+          - dps_val: scene_1
+            value: Scene 1
+          - dps_val: scene_2
+            value: Scene 2
+          - dps_val: scene_3
+            value: Scene 3
+          - dps_val: scene_4
+            value: Scene 4
+      - id: 103
+        name: rgbhsv
+        type: hex
+        format:
+          - name: r
+            bytes: 1
+          - name: g
+            bytes: 1
+          - name: b
+            bytes: 1
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 1
+            range:
+              min: 0
+              max: 255
+          - name: v
+            bytes: 1
+            range:
+              min: 0
+              max: 255
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 12
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 12
+        type: bitfield
+        name: fault_code
+  - entity: select
+    name: Timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 13
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: "1 hour"
+          - dps_val: "2"
+            value: "3 hours"
+          - dps_val: "3"
+            value: "5 hours"
+  - entity: sensor
+    name: Time remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 14
+        type: integer
+        name: sensor
+        unit: min
+  - entity: select
+    name: Light mode
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: Multicolor
+          - dps_val: "2"
+            value: Chosen color
