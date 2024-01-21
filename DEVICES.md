@@ -554,6 +554,7 @@ port and password.
 - Nedis pet feeder
 - Petlibro PLAF103 pet feeder
 - Petlibro PLAF203 pet feeder with camera
+- PNI water feeder
 - Rojeco PTM-001 pet feeder (two versions)
 - YP pet feeder
 
