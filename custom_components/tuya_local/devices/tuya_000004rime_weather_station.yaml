@@ -1,22 +1,69 @@
-name: WeatherStation Pro™
+name: Weather station
 products:
   - id: nghjvn2pcjllwska
     name: WeatherStation Pro™
 primary_entity:
   entity: sensor
-  name: Local Temperature
+  name: Local temperature
   class: temperature
   dps:
     - id: 131
       type: integer
       name: sensor
       unit: C
-      persist: true
       mapping:
         - scale: 10
 secondary_entities:
   - entity: sensor
-    name: Local Humidity
+    name: Weather icon
+    class: enum
+    icon: "mdi:weather-partly-snowy-rainy"
+    dps:
+      - id: 103
+        optional: true
+        type: base64
+        name: sensor
+        mapping:
+          - mask: "000000FF00000000000000000000000000"
+          - dps_val: 0
+            value: None
+            mask: 000000FF00000000000000000000000000
+          - dps_val: 1
+            value: Sunny
+            mask: 000000FF00000000000000000000000000
+          - dps_val: 2
+            value: Cloudy
+            mask: 000000FF00000000000000000000000000
+          - dps_val: 3
+            value: Sunny and cloudy
+            mask: 000000FF00000000000000000000000000
+          - dps_val: 4
+            value: Cloudy and light rain
+            mask: 000000FF00000000000000000000000000
+          - dps_val: 5
+            value: Cloudy and moderate rain
+            mask: 000000FF00000000000000000000000000
+          - dps_val: 6
+            value: Cloudy and heavy rain
+            mask: 000000FF00000000000000000000000000
+          - dps_val: 7
+            value: Cloudy, rain and thunder
+            mask: 000000FF00000000000000000000000000
+          - dps_val: 8
+            value: Snowy
+            mask: 000000FF00000000000000000000000000
+          - dps_val: 9
+            value: Cloudy and snowy
+            mask: 000000FF00000000000000000000000000
+          - dps_val: 10
+            value: Cloudy, rainy and snowy
+            mask: 000000FF00000000000000000000000000
+      - id: 103
+        optional: true
+        type: base64
+        name: Payload
+  - entity: sensor
+    name: Local humidity
     class: humidity
     dps:
       - id: 132
@@ -24,9 +71,8 @@ secondary_entities:
         name: sensor
         unit: "%"
         class: measurement
-        persist: true
   - entity: sensor
-    name: Sensor 1 Temperature
+    name: Sensor 1 temperature
     class: temperature
     dps:
       - id: 133
@@ -34,11 +80,10 @@ secondary_entities:
         type: integer
         name: sensor
         unit: C
-        persist: true
         mapping:
           - scale: 10
   - entity: sensor
-    name: Sensor 1 Humidity
+    name: Sensor 1 humidity
     class: humidity
     dps:
       - id: 134
@@ -47,9 +92,8 @@ secondary_entities:
         name: sensor
         unit: "%"
         class: measurement
-        persist: true
   - entity: sensor
-    name: Sensor 2 Temperature
+    name: Sensor 2 temperature
     class: temperature
     dps:
       - id: 135
@@ -57,11 +101,10 @@ secondary_entities:
         type: integer
         name: sensor
         unit: C
-        persist: true
         mapping:
           - scale: 10
   - entity: sensor
-    name: Sensor 2 Humidity
+    name: Sensor 2 humidity
     class: humidity
     dps:
       - id: 136
@@ -70,9 +113,8 @@ secondary_entities:
         name: sensor
         unit: "%"
         class: measurement
-        persist: true
   - entity: sensor
-    name: Sensor 3 Temperature
+    name: Sensor 3 temperature
     class: temperature
     dps:
       - id: 137
@@ -80,11 +122,10 @@ secondary_entities:
         type: integer
         name: sensor
         unit: C
-        persist: true
         mapping:
           - scale: 10
   - entity: sensor
-    name: Sensor 3 Humidity
+    name: Sensor 3 humidity
     class: humidity
     dps:
       - id: 138
@@ -93,7 +134,6 @@ secondary_entities:
         name: sensor
         unit: "%"
         class: measurement
-        persist: true
   - entity: select
     name: Time mode
     icon: "mdi:clock-edit"
@@ -115,44 +155,9 @@ secondary_entities:
       - id: 104
         type: boolean
         name: switch
-  - entity: select
-    name: Temperature Unit
-    icon: "mdi:temperature-celsius"
-    category: config
-    dps:
-      - id: 105
-        type: string
-        name: option
-        mapping:
-          - dps_val: c
-            value: Celsius
-          - dps_val: f
-            value: Fahrenheit
-  - entity: select
-    name: LCD Brightness
-    icon: "mdi:brightness-7"
-    category: config
-    dps:
-      - id: 106
-        type: string
-        name: option
-        mapping:
-          - dps_val: 0
-            value: 0%
-          - dps_val: 1
-            value: 30%
-          - dps_val: 2
-            value: 60%
-          - dps_val: 3
-            value: 100%
-  - entity: select
-    name: Alarm State
-    icon: "mdi:alarm"
-    category: config
-    dps:
       - id: 110
         type: string
-        name: option
+        name: Alarm state
         mapping:
           - dps_val: 0
             value: Alarm
@@ -162,31 +167,52 @@ secondary_entities:
             value: Enabled
           - dps_val: 3
             value: Disabled
+      - id: 109
+        optional: true
+        type: base64
+        name: Settings payload
+      - id: 117
+        optional: true
+        type: bitfield
+        name: Notifications payload
+  - entity: select
+    name: Display units
+    icon: "mdi:temperature-celsius"
+    category: config
+    dps:
+      - id: 105
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+  - entity: light
+    name: LCD brightness
+    icon: "mdi:brightness-7"
+    category: config
+    dps:
+      - id: 106
+        type: integer
+        name: brightness
+        mapping:
+          - dps_val: 0
+            value: 0
+          - dps_val: 1
+            value: 85
+          - dps_val: 2
+            value: 170
+          - dps_val: 3
+            value: 255
   - entity: switch
-    name: Network Time
+    name: Network time
     icon: "mdi:timer-cog-outline"
     category: config
     dps:
       - id: 111
         type: boolean
         name: switch
-  - entity: switch
-    name: LCD Night Mode
-    icon: "mdi:weather-night"
-    category: config
-    dps:
-      - id: 129
-        type: boolean
-        name: switch
-        ## diagnostic section, base64 dps
-  - entity: sensor
-    category: diagnostic
-    name: Current Time
-    dps:
-      - id: 101
-        optional: true
-        type: boolean
-        name: sensor
       - id: 101
         optional: true
         type: base64
@@ -195,14 +221,12 @@ secondary_entities:
         optional: true
         type: base64
         name: Year
-        persist: true
         mapping:
           - mask: "FF000000000000"
       - id: 101
         optional: true
         type: base64
         name: Month
-        persist: true
         mapping:
           - mask: 00FF0000000000
           - dps_val: 1
@@ -245,35 +269,30 @@ secondary_entities:
         optional: true
         type: base64
         name: Day
-        persist: true
         mapping:
           - mask: "0000FF00000000"
       - id: 101
         optional: true
         type: base64
         name: Hour
-        persist: true
         mapping:
           - mask: "000000FF000000"
       - id: 101
         optional: true
         type: base64
         name: Minute
-        persist: true
         mapping:
           - mask: "00000000FF0000"
       - id: 101
         optional: true
         type: base64
         name: Second
-        persist: true
         mapping:
           - mask: "0000000000FF00"
       - id: 101
         optional: true
         type: base64
         name: Weekday
-        persist: true
         mapping:
           - mask: "000000000000FF"
           - dps_val: 1
@@ -297,78 +316,58 @@ secondary_entities:
           - dps_val: 7
             value: Sunday
             mask: 00FF0000000000
-  - entity: sensor
-    category: diagnostic
-    name: Weather
+  - entity: switch
+    name: LCD night mode
+    icon: "mdi:weather-night"
+    category: config
     dps:
-      - id: 103
-        optional: true
+      - id: 129
         type: boolean
-        name: sensor
-      - id: 103
+        name: switch
+      - id: 130
         optional: true
         type: base64
         name: Payload
-      - id: 103
+      - id: 130
         optional: true
         type: base64
-        name: Weather Icon
-        persist: true
+        name: Start hour
         mapping:
-          - mask: "000000FF00000000000000000000000000"
-          - dps_val: 0
-            value: None
-            mask: 000000FF00000000000000000000000000
-          - dps_val: 1
-            value: Sunny
-            mask: 000000FF00000000000000000000000000
-          - dps_val: 2
-            value: Cloudy
-            mask: 000000FF00000000000000000000000000
-          - dps_val: 3
-            value: Sunny and Cloudy
-            mask: 000000FF00000000000000000000000000
-          - dps_val: 4
-            value: Cloudy and Light Rain
-            mask: 000000FF00000000000000000000000000
-          - dps_val: 5
-            value: Cloudy and Moderate Rain
-            mask: 000000FF00000000000000000000000000
-          - dps_val: 6
-            value: Cloudy and Heavy Rain
-            mask: 000000FF00000000000000000000000000
-          - dps_val: 7
-            value: Cloudy, Rain and Thunder
-            mask: 000000FF00000000000000000000000000
-          - dps_val: 8
-            value: Snowy
-            mask: 000000FF00000000000000000000000000
-          - dps_val: 9
-            value: Cloudy and Snowy
-            mask: 000000FF00000000000000000000000000
-          - dps_val: 10
-            value: Cloudy, Rainy and Snowy
-            mask: 000000FF00000000000000000000000000
-  - entity: sensor
-    category: diagnostic
-    name: Remote State
-    dps:
-      - id: 107
-        optional: true
-        type: boolean
-        name: sensor
-      - id: 107
+          - mask: "FF000000"
+      - id: 130
         optional: true
         type: base64
-        name: Payload
+        name: Start minute
+        mapping:
+          - mask: "00FF0000"
+      - id: 130
+        optional: true
+        type: base64
+        name: End hour
+        mapping:
+          - mask: "0000FF00"
+      - id: 130
+        optional: true
+        type: base64
+        name: End minute
+        mapping:
+          - mask: "000000FF"
+## diagnostic section, base64 dps
   - entity: sensor
     category: diagnostic
-    name: Display Settings
+    name: Display settings
+    class: enum
     dps:
       - id: 108
         optional: true
-        type: boolean
+        type: base64
         name: sensor
+        mapping:
+          - mask: 0000000000000000000000
+          - dps_val: null
+            value: Unknown
+            mask: 0000000000000000000000
+          - value: OK
       - id: 108
         optional: true
         type: base64
@@ -376,8 +375,7 @@ secondary_entities:
       - id: 108
         optional: true
         type: base64
-        name: UV Index
-        persist: true
+        name: UV index
         mapping:
           - mask: FF00000000000000000000
           - dps_val: 1
@@ -389,8 +387,7 @@ secondary_entities:
       - id: 108
         optional: true
         type: base64
-        name: Sunrise&Sunset
-        persist: true
+        name: Sunrise & sunset
         mapping:
           - mask: 00FF000000000000000000
           - dps_val: 1
@@ -402,8 +399,7 @@ secondary_entities:
       - id: 108
         optional: true
         type: base64
-        name: 3-day Forecast Temperature
-        persist: true
+        name: 3-day forecast temperature
         mapping:
           - mask: 0000FF0000000000000000
           - dps_val: 1
@@ -415,8 +411,7 @@ secondary_entities:
       - id: 108
         optional: true
         type: base64
-        name: Hourly Forecast
-        persist: true
+        name: Hourly forecast
         mapping:
           - mask: 000000FF00000000000000
           - dps_val: 1
@@ -428,8 +423,7 @@ secondary_entities:
       - id: 108
         optional: true
         type: base64
-        name: 3-day Forecast Weather
-        persist: true
+        name: 3-day forecast weather
         mapping:
           - mask: 00000000FF000000000000
           - dps_val: 1
@@ -441,8 +435,7 @@ secondary_entities:
       - id: 108
         optional: true
         type: base64
-        name: Local Temperature&Humidity
-        persist: true
+        name: Local temperature & humidity
         mapping:
           - mask: 0000000000FF0000000000
           - dps_val: 1
@@ -455,7 +448,6 @@ secondary_entities:
         optional: true
         type: base64
         name: Date
-        persist: true
         mapping:
           - mask: 000000000000FF00000000
           - dps_val: 1
@@ -468,7 +460,6 @@ secondary_entities:
         optional: true
         type: base64
         name: Week
-        persist: true
         mapping:
           - mask: 00000000000000FF000000
           - dps_val: 1
@@ -480,8 +471,7 @@ secondary_entities:
       - id: 108
         optional: true
         type: base64
-        name: Hourly Forecast Weather
-        persist: true
+        name: Hourly forecast weather
         mapping:
           - mask: 0000000000000000FF0000
           - dps_val: 1
@@ -493,8 +483,7 @@ secondary_entities:
       - id: 108
         optional: true
         type: base64
-        name: Sensor 1 Temperature&Humidity
-        persist: true
+        name: Sensor 1 temperature & humidity
         mapping:
           - mask: 000000000000000000FF00
           - dps_val: 1
@@ -506,8 +495,7 @@ secondary_entities:
       - id: 108
         optional: true
         type: base64
-        name: Sensor 2 Temperature&Humidity
-        persist: true
+        name: Sensor 2 temperature & humidity
         mapping:
           - mask: 00000000000000000000FF
           - dps_val: 1
@@ -518,69 +506,169 @@ secondary_entities:
             mask: 00000000000000000000FF
   - entity: sensor
     category: diagnostic
-    name: Alarm Settings
+    name: Device status
+    class: enum
     dps:
-      - id: 109
-        optional: true
-        type: boolean
-        name: sensor
-      - id: 109
+      - id: 107
         optional: true
         type: base64
-        name: Payload
+        name: sensor
+        mapping:
+          - mask: FF000000000000
+          - dps_val: 0
+            value: Offline
+            mask: FF000000000000
+          - dps_val: 1
+            value: Online
+            mask: FF000000000000
   - entity: sensor
     category: diagnostic
+    name: Sensor 1 status
+    class: enum
+    dps:
+      - id: 107
+        optional: true
+        type: base64
+        name: sensor
+        mapping:
+          - mask: 00FF0000000000
+          - dps_val: 0
+            value: Offline
+            mask: 00FF0000000000
+          - dps_val: 1
+            value: Online
+            mask: 00FF0000000000
+          - dps_val: 2
+            value: Unpaired
+            mask: 00FF0000000000
+          - dps_val: 3
+            value: None
+            mask: 00FF0000000000
+  - entity: sensor
+    category: diagnostic
+    name: Sensor 2 status
+    class: enum
+    dps:
+      - id: 107
+        optional: true
+        type: base64
+        name: sensor
+        mapping:
+          - mask: 0000FF00000000
+          - dps_val: 0
+            value: Offline
+            mask: 0000FF00000000
+          - dps_val: 1
+            value: Online
+            mask: 0000FF00000000
+          - dps_val: 2
+            value: Unpaired
+            mask: 0000FF00000000
+          - dps_val: 3
+            value: None
+            mask: 0000FF00000000
+  - entity: sensor
+    category: diagnostic
+    name: Sensor 3 status
+    class: enum
+    dps:
+      - id: 107
+        optional: true
+        type: base64
+        name: sensor
+        mapping:
+          - mask: 000000FF000000
+          - dps_val: 0
+            value: Offline
+            mask: 000000FF000000
+          - dps_val: 1
+            value: Online
+            mask: 000000FF000000
+          - dps_val: 2
+            value: Unpaired
+            mask: 000000FF000000
+          - dps_val: 3
+            value: None
+            mask: 000000FF000000
+  - entity: sensor
+    category: diagnostic
+    name: Sensor 1 batery status
+    class: enum
+    dps:
+      - id: 107
+        optional: true
+        type: base64
+        name: sensor
+        mapping:
+          - mask: 00000000FF0000
+          - dps_val: 0
+            value: Low
+            mask: 00000000FF0000
+          - dps_val: 1
+            value: Normal
+            mask: 00000000FF0000
+          - dps_val: 2
+            value: None
+            mask: 00000000FF0000
+  - entity: sensor
+    category: diagnostic
+    name: Sensor 2 batery status
+    class: enum
+    dps:
+      - id: 107
+        optional: true
+        type: base64
+        name: sensor
+        mapping:
+          - mask: 0000000000FF00
+          - dps_val: 0
+            value: Low
+            mask: 0000000000FF00
+          - dps_val: 1
+            value: Normal
+            mask: 0000000000FF00
+          - dps_val: 2
+            value: None
+            mask: 0000000000FF00
+  - entity: sensor
+    category: diagnostic
+    name: Sensor 3 batery status
+    class: enum
+    dps:
+      - id: 107
+        optional: true
+        type: base64
+        name: sensor
+        mapping:
+          - mask: 000000000000FF
+          - dps_val: 0
+            value: Low
+            mask: 000000000000FF
+          - dps_val: 1
+            value: Normal
+            mask: 000000000000FF
+          - dps_val: 2
+            value: None
+            mask: 000000000000FF
+  - entity: binary_sensor
+    category: diagnostic
     name: Errors
+    class: problem
     dps:
       - id: 113
         optional: true
         type: bitfield
         name: sensor
-  - entity: sensor
-    category: diagnostic
-    name: Notifications
-    dps:
-      - id: 117
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: true
+          - dps_val: 2
+            value: true
+          - dps_val: 3
+            value: true
+      - id: 113
         optional: true
         type: bitfield
-        name: sensor
-  - entity: sensor
-    category: diagnostic
-    name: LCD Night Time
-    dps:
-      - id: 130
-        optional: true
-        type: boolean
-        name: sensor
-      - id: 130
-        optional: true
-        type: base64
         name: Payload
-      - id: 130
-        optional: true
-        type: base64
-        name: start_hour
-        persist: true
-        mapping:
-          - mask: "FF000000"
-      - id: 130
-        optional: true
-        type: base64
-        name: start_minute
-        persist: true
-        mapping:
-          - mask: "00FF0000"
-      - id: 130
-        optional: true
-        type: base64
-        name: end_hour
-        persist: true
-        mapping:
-          - mask: "0000FF00"
-      - id: 130
-        optional: true
-        type: base64
-        name: end_minute
-        persist: true
-        mapping:
-          - mask: "000000FF"
