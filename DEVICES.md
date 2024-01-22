@@ -45,6 +45,7 @@
 - Quality Heating QH-GD Elegant Series IR panel heaters
 - Rumba bathroom heater
 - Sonnenkonig Eco 700 IR panel heater (probably also other Eco/Elegance series heaters)
+- Taurus Agadir Connect oil column heaters
 - Touchstone Sideline electric fireplace
 - Wetair WCH-750 heater
 
@@ -92,6 +93,7 @@
 - Fairland IPHCR15 pool heatpump (matches others above, but allows control of heat/cool modes while others seem to be fixed to auto only)
 - Garden PAC pool heatpump (also works with Summerwave Si Series)
 - IPS Pro pool-systems heatpump (seems to match Fairland Inver-X as well)
+- Madimack Eco pool heatpump
 - Madimack Elite V3 pool heatpump
 - Madimack(model unknown) pool heatpump (seems to match Fairland IPH45 as well)
 - Poolex Silverline, Q-7, Q-line and Vertigo heatpumps
@@ -241,6 +243,7 @@
 - Greenmigo Alpha Q25 dehumidifier
 - Honeywell TP(30/50/70) dehumidifiers
 - Hyundai Sahara dehumidifier
+- Inkbird IHC-200 humidity controller
 - Inventor Atmosphere XL dehumidifier
 - Inventor Eva Ion Pro dehumidifier
 - JJPro JPD01 dehumidifer
@@ -256,7 +259,9 @@
 
 - BlitzWolf BW-SH2 humidifier
 - BlitzWolf BW-SH5 humidifier
+- CleanAir 605B humidifier
 - Eanons QT-JS2014 purifying humidifier
+- Inkbird IHC-200 humidity controller
 - Klarta Humea humidifier
 - Kyvol EA200 humidifier
 - Stadler Eva humidifier
@@ -271,6 +276,7 @@
 - Cadance ultrasonic aroma diffuser with light and music playback
 - Ditua DT-1522-YN aroma diffuser
 - Etersky aroma diffuser with light
+- Tesla aroma diffuser with light
 - YX316WIFI aroma diffuser
 - YYM-805SW aroma diffuser with light (also supports GX Aroma diffuser)
 
@@ -285,6 +291,7 @@
 - Kogan glass 1.7L smart kettle
 - Silvercrest 1.7L smart kettle
 - Ultenic K10 air fryer
+- Weekett smart kettle
 
 ### Smart Meter/Circuit Breaker
 
@@ -307,9 +314,11 @@
 - SmartMCB SMT006 energy meter (10 byte and 8 byte phase info variants)
 - Taxnele circuit breaker and energy meter
 - TOMPD-63LW energy meter circuit breaker
+- Tongou QCB2-WB WiFi 4P circuit breaker
 - V-WIFI-DL02-ES energy consumption clamp meter
 - WDYK 2P63A energy meter
 - WDYK 3 phase 4 pole 400V energy meter circuit breaker
+- Yagusmart 3PN 63A 3-phase eneregy meter 
 - ZM-Wi-Fi smart meter
 
 ### Battery Charger
@@ -494,6 +503,7 @@ of device.
 - Neatsvor X600 vacuum cleaner
 - Proscenic M9 vacuum cleaner
 - Rinkmo D2 vacuum cleaner
+- Tesvor S6 vacuum cleaner with mop
 - TTEC Robi Pro vacuum cleaner
 - Ultenic T10 vacuum cleaner
 
@@ -547,6 +557,7 @@ port and password.
 - Nedis pet feeder
 - Petlibro PLAF103 pet feeder
 - Petlibro PLAF203 pet feeder with camera
+- PNI water feeder
 - Rojeco PTM-001 pet feeder (two versions)
 - YP pet feeder
 
