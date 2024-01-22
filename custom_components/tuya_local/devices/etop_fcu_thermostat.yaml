@@ -1,6 +1,7 @@
-name: ETOP-FCU(CF) thermostat
+name: FCU thermostat
 products:
   - id: psetc59fvtm5gexl
+    name: ETOP-FCU(CF)
     name: Jaga JRT-100TW
 primary_entity:
   entity: climate
@@ -25,16 +26,13 @@ primary_entity:
     - id: 3
       name: current_temperature
       type: integer
-      unit: C
       mapping:
         - scale: 10
-          step: 5
     # Available DPs for current temperature and setpoint in °F
     # if you want to control in °F, uncomment these DPs
     # and comment the DP for °C above
     # - id: 20
     #   name: temperature
-    #   hidden: true
     #   type: integer
     #   unit: F
     #   range:
@@ -45,15 +43,9 @@ primary_entity:
     #       step: 1
     # - id: 21
     #   name: current_temperature
-    #   hidden: true
     #   type: integer
-    #   unit: F
-    #   range:
-    #     min: 32
-    #     max: 122
     #   mapping:
     #     - scale: 1
-    #       step: 1
     ############################################################
     # Thermostat modes
     #
@@ -70,7 +62,7 @@ primary_entity:
         - dps_val: cold
           value: cool
         - dps_val: auto
-          value: auto
+          value: heat_cool
     - id: 5
       name: fan_mode
       type: string
