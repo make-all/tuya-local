@@ -291,6 +291,7 @@
 - Kogan glass 1.7L smart kettle
 - Silvercrest 1.7L smart kettle
 - Ultenic K10 air fryer
+- Weekett smart kettle
 
 ### Smart Meter/Circuit Breaker
 
