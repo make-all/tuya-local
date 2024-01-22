@@ -45,6 +45,7 @@
 - Quality Heating QH-GD Elegant Series IR panel heaters
 - Rumba bathroom heater
 - Sonnenkonig Eco 700 IR panel heater (probably also other Eco/Elegance series heaters)
+- Taurus Agadir Connect oil column heaters
 - Touchstone Sideline electric fireplace
 - Wetair WCH-750 heater
 

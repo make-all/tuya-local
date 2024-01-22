@@ -464,3 +464,4 @@ Further device support has been made with the assistance of users. Please consid
 - [vojeroen](https://github.com/vojeroen) for contributing support for CleanAir 605B humidifiers.
 - [fantnhu](https://github.com/fantnhu) for assisting with support for Tesla aroma diffusers and PNI water feeders.
 - [sudo-nitz](https://github.com/sudo-nitz) for assisting with support for Yagusmart 3PN 63A energy meter.
+- [jedubois](https://github.com/jedubois) for assisting with support for Taurus Agadir oil column heaters.
