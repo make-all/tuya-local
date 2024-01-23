@@ -1,18 +1,18 @@
 name: FCU thermostat
 products:
   - id: psetc59fvtm5gexl
-    name: ETOP-FCU(CF)
-    name: Jaga JRT-100TW
+    name: ETOP-FCU(CF) | Jaga JRT-100TW
 primary_entity:
   entity: climate
   name: Thermostat
   dps:
     ############################################################
     # Setpoint and current temperature
-    ############################################################
+    #
     # Using DPs for current temperature and setpoint in °C
     # if you want to control in °F instead, comment these DPs
     # and uncomment the DPs for °F below
+    ############################################################
     - id: 2
       name: temperature
       type: integer
@@ -33,6 +33,7 @@ primary_entity:
     # and comment the DP for °C above
     # - id: 20
     #   name: temperature
+    #   hidden: true
     #   type: integer
     #   unit: F
     #   range:
@@ -43,26 +44,45 @@ primary_entity:
     #       step: 1
     # - id: 21
     #   name: current_temperature
+    #   hidden: true
     #   type: integer
+    #   unit: F
+    #   range:
+    #     min: 32
+    #     max: 122
     #   mapping:
     #     - scale: 1
+    #       step: 1
     ############################################################
     # Thermostat modes
     #
     # Depending on your actual heating/cooling installation
-    # you can hide the unnecessary entries
-    - id: 4
+    # you can disable the unnecessary entries
+    ############################################################
+    - id: 1
       name: hvac_mode
-      type: string
+      type: boolean
       mapping:
-        - dps_val: fan
-          value: fan_only
-        - dps_val: heat
-          value: heat
-        - dps_val: cold
-          value: cool
-        - dps_val: auto
-          value: heat_cool
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: work_mode
+          conditions:
+            - dps_val: fan
+              value: fan_only
+            - dps_val: heat
+              value: heat
+            - dps_val: cold
+              value: cool
+            - dps_val: auto
+              value: heat_cool
+    - id: 4
+      name: work_mode
+      type: string
+      hidden: true
+    ############################################################
+    # Fan speed
+    ############################################################
     - id: 5
       name: fan_mode
       type: string
@@ -76,15 +96,9 @@ primary_entity:
         - dps_val: auto
           value: auto
 secondary_entities:
-  # Overall On/Off switch
-  - entity: switch
-    name: "On/Off"
-    category: config
-    dps:
-      - id: 1
-        name: switch
-        type: boolean
+  ############################################################
   # Temperature display unit
+  ############################################################
   - entity: select
     name: "Display unit"
     category: config
@@ -98,36 +112,47 @@ secondary_entities:
             value: Celsius
           - dps_val: f
             value: Fahrenheit
+  ############################################################
+  # Programming mode
+  #
+  # Enable/disable the weekly program
+  ############################################################
+  - entity: select
+    name: "Programming mode"
+    category: config
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 11
+        name: option
+        type: string
+        mapping:
+          - dps_val: Disable
+            value: Manual
+          - dps_val: Enable
+            value: Automatic
+  ############################################################
   # The following DPs are available but don't seem to 
   # actually do anything
-  # - entity: switch
-  #   name: "Child Lock"
-  #   category: config
-  #   dps:
-  #     - id: 7
-  #       name: switch
-  #       type: boolean
-  # - entity: switch
-  #   name: "Countdown"
-  #   category: config
-  #   dps:
-  #     - id: 11
-  #       name: switch
-  #       type: string
-  #       mapping:
-  #         - dps_val: Disable
-  #           value: off
-  #         - dps_val: Enable
-  #           value: on
-  # - entity: switch
-  #   name: "Work State"
-  #   category: config
-  #   dps:
-  #     - id: 14
-  #       name: switch
-  #       type: string
-  #       mapping:
-  #         - dps_val: no_working
-  #           value: off
-  #         - dps_val: working
-  #           value: on
+  ############################################################
+  - entity: switch
+    name: "Child Lock"
+    category: config
+    icon: "mdi:lock"
+    dps:
+      - id: 7
+        name: switch
+        type: boolean
+  - entity: binary_sensor
+    name: "Work State"
+    category: config
+    dps:
+      - id: 14
+        name: sensor
+        type: string
+        readonly: true
+        mapping:
+          - dps_val: no_working
+            value: false
+          - dps_val: working
+            value: true
+
