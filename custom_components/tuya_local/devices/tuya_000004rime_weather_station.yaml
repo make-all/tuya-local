@@ -24,7 +24,11 @@ secondary_entities:
         type: base64
         name: sensor
         mapping:
-          - mask: "000000FF00000000000000000000000000"
+          - mask: 000000FF00000000000000000000000000
+          - dps_val: unknown
+            value: Unknown
+          - dps_val: null
+            value: Unknown
           - dps_val: 0
             value: None
             mask: 000000FF00000000000000000000000000
@@ -61,7 +65,7 @@ secondary_entities:
       - id: 103
         optional: true
         type: base64
-        name: Payload
+        name: payload
   - entity: sensor
     name: Local humidity
     class: humidity
@@ -157,7 +161,7 @@ secondary_entities:
         name: switch
       - id: 110
         type: string
-        name: Alarm state
+        name: alarm_state
         mapping:
           - dps_val: 0
             value: Alarm
@@ -170,11 +174,11 @@ secondary_entities:
       - id: 109
         optional: true
         type: base64
-        name: Settings payload
+        name: settings_payload
       - id: 117
         optional: true
         type: bitfield
-        name: Notifications payload
+        name: notifications_payload
   - entity: select
     name: Display units
     icon: "mdi:temperature-celsius"
@@ -185,12 +189,12 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: c
-            value: C
+            value: Celsius
           - dps_val: f
-            value: F
+            value: Fahrenheit
   - entity: light
     name: LCD brightness
-    icon: "mdi:brightness-7"
+    icon: "mdi:television-ambient-light"
     category: config
     dps:
       - id: 106
@@ -216,17 +220,17 @@ secondary_entities:
       - id: 101
         optional: true
         type: base64
-        name: Payload
+        name: payload
       - id: 101
         optional: true
         type: base64
-        name: Year
+        name: year
         mapping:
           - mask: "FF000000000000"
       - id: 101
         optional: true
         type: base64
-        name: Month
+        name: month
         mapping:
           - mask: 00FF0000000000
           - dps_val: 1
@@ -268,31 +272,31 @@ secondary_entities:
       - id: 101
         optional: true
         type: base64
-        name: Day
+        name: day
         mapping:
           - mask: "0000FF00000000"
       - id: 101
         optional: true
         type: base64
-        name: Hour
+        name: hour
         mapping:
           - mask: "000000FF000000"
       - id: 101
         optional: true
         type: base64
-        name: Minute
+        name: minute
         mapping:
           - mask: "00000000FF0000"
       - id: 101
         optional: true
         type: base64
-        name: Second
+        name: second
         mapping:
           - mask: "0000000000FF00"
       - id: 101
         optional: true
         type: base64
-        name: Weekday
+        name: weekday
         mapping:
           - mask: "000000000000FF"
           - dps_val: 1
@@ -327,55 +331,53 @@ secondary_entities:
       - id: 130
         optional: true
         type: base64
-        name: Payload
+        name: payload
       - id: 130
         optional: true
         type: base64
-        name: Start hour
+        name: start_hour
         mapping:
           - mask: "FF000000"
       - id: 130
         optional: true
         type: base64
-        name: Start minute
+        name: start_minute
         mapping:
           - mask: "00FF0000"
       - id: 130
         optional: true
         type: base64
-        name: End hour
+        name: end_hour
         mapping:
           - mask: "0000FF00"
       - id: 130
         optional: true
         type: base64
-        name: End minute
+        name: end_minute
         mapping:
           - mask: "000000FF"
 ## diagnostic section, base64 dps
-  - entity: sensor
+  - entity: binary_sensor
     category: diagnostic
     name: Display settings
-    class: enum
+    class: problem
     dps:
       - id: 108
         optional: true
         type: base64
         name: sensor
         mapping:
-          - mask: 0000000000000000000000
           - dps_val: null
-            value: Unknown
-            mask: 0000000000000000000000
-          - value: OK
+            value: true
+          - value: false
       - id: 108
         optional: true
         type: base64
-        name: Payload
+        name: payload
       - id: 108
         optional: true
         type: base64
-        name: UV index
+        name: uv_index
         mapping:
           - mask: FF00000000000000000000
           - dps_val: 1
@@ -387,7 +389,7 @@ secondary_entities:
       - id: 108
         optional: true
         type: base64
-        name: Sunrise & sunset
+        name: sunrise_sunset
         mapping:
           - mask: 00FF000000000000000000
           - dps_val: 1
@@ -399,7 +401,7 @@ secondary_entities:
       - id: 108
         optional: true
         type: base64
-        name: 3-day forecast temperature
+        name: three_day_forecast_temperature
         mapping:
           - mask: 0000FF0000000000000000
           - dps_val: 1
@@ -411,7 +413,7 @@ secondary_entities:
       - id: 108
         optional: true
         type: base64
-        name: Hourly forecast
+        name: hourly_forecast
         mapping:
           - mask: 000000FF00000000000000
           - dps_val: 1
@@ -423,7 +425,7 @@ secondary_entities:
       - id: 108
         optional: true
         type: base64
-        name: 3-day forecast weather
+        name: three_day_forecast_weather
         mapping:
           - mask: 00000000FF000000000000
           - dps_val: 1
@@ -435,7 +437,7 @@ secondary_entities:
       - id: 108
         optional: true
         type: base64
-        name: Local temperature & humidity
+        name: local_temperature_humidity
         mapping:
           - mask: 0000000000FF0000000000
           - dps_val: 1
@@ -447,7 +449,7 @@ secondary_entities:
       - id: 108
         optional: true
         type: base64
-        name: Date
+        name: date
         mapping:
           - mask: 000000000000FF00000000
           - dps_val: 1
@@ -459,7 +461,7 @@ secondary_entities:
       - id: 108
         optional: true
         type: base64
-        name: Week
+        name: week
         mapping:
           - mask: 00000000000000FF000000
           - dps_val: 1
@@ -471,7 +473,7 @@ secondary_entities:
       - id: 108
         optional: true
         type: base64
-        name: Hourly forecast weather
+        name: hourly_forecast_weather
         mapping:
           - mask: 0000000000000000FF0000
           - dps_val: 1
@@ -483,7 +485,7 @@ secondary_entities:
       - id: 108
         optional: true
         type: base64
-        name: Sensor 1 temperature & humidity
+        name: sensor_1_temperature_humidity
         mapping:
           - mask: 000000000000000000FF00
           - dps_val: 1
@@ -495,7 +497,7 @@ secondary_entities:
       - id: 108
         optional: true
         type: base64
-        name: Sensor 2 temperature & humidity
+        name: sensor_2_temperature_humidity
         mapping:
           - mask: 00000000000000000000FF
           - dps_val: 1
@@ -671,4 +673,4 @@ secondary_entities:
       - id: 113
         optional: true
         type: bitfield
-        name: Payload
+        name: payload
