@@ -1,0 +1,166 @@
+name: Humidity controller
+products:
+  - id: hsstqaa2hn73auhj
+    name: Inkbird IHC-200
+primary_entity:
+  entity: humidifier
+  dps:
+    - id: 12
+      type: bitfield
+      name: fault_code
+    - id: 104
+      type: integer
+      name: current_humidity
+      mapping:
+        - scale: 10
+    - id: 106
+      type: integer
+      name: humidity
+      range:
+        min: 50
+        max: 990
+      mapping:
+        - scale: 10
+secondary_entities:
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 12
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: number
+    name: Calibration
+    category: config
+    icon: "mdi:format-vertical-align-center"
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: -200
+          max: 200
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Compressor delay
+    category: config
+    icon: "mdi:camera-timer"
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 10
+  - entity: number
+    name: Low humidity threshold
+    category: config
+    icon: "mdi:format-vertical-align-bottom"
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 50
+          max: 990
+        mapping:
+          - scale: 10
+  - entity: switch
+    name: High humidity alarm
+    icon: "mdi:water-percent-alert"
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Low humidity alarm
+    icon: "mdi:water-percent-alert"
+    category: config
+    dps:
+      - id: 112
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    name: Probe error
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 113
+        type: boolean
+        name: sensor
+  - entity: sensor
+    name: Output
+    class: enum
+    icon: "mdi:air-humidifier"
+    category: diagnostic
+    dps:
+      - id: 115
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: Dehumidifier idle
+          - dps_val: "1"
+            value: Dehumidifying
+          - dps_val: "2"
+            value: Humidifier idle
+          - dps_val: "3"
+            value: Humidifying
+  - entity: number
+    name: Humidify when below by
+    category: config
+    icon: "mdi:arrow-expand-up"
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 10
+          max: 200
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Dehumidify when above by
+    category: config
+    icon: "mdi:arrow-expand-down"
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 10
+          max: 200
+        mapping:
+          - scale: 10
+  - entity: binary_sensor
+    name: Alarm
+    class: sound
+    category: diagnostic
+    dps:
+      - id: 119
+        type: boolean
+        name: sensor
+  - entity: button
+    name: Alarm cancel
+    category: config
+    dps:
+      - id: 119
+        type: boolean
+        name: button
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
