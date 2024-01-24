@@ -1,4 +1,4 @@
-name: FCU thermostat
+name: Thermostat
 products:
   - id: psetc59fvtm5gexl
     name: ETOP-FCU(CF) | Jaga JRT-100TW
@@ -39,9 +39,6 @@ primary_entity:
     #   range:
     #     min: 41
     #     max: 95
-    #   mapping:
-    #     - scale: 1
-    #       step: 1
     # - id: 21
     #   name: current_temperature
     #   hidden: true
@@ -50,9 +47,6 @@ primary_entity:
     #   range:
     #     min: 32
     #     max: 122
-    #   mapping:
-    #     - scale: 1
-    #       step: 1
     ############################################################
     # Thermostat modes
     #
@@ -95,6 +89,11 @@ primary_entity:
           value: high
         - dps_val: auto
           value: auto
+    - id: 14
+      name: work_state
+      type: string
+      # has values no_working and working defined in docs, and appears to be useful for hvac_action,
+      # but in practice does not seem to change.
 secondary_entities:
   ############################################################
   # Temperature display unit
@@ -142,17 +141,3 @@ secondary_entities:
       - id: 7
         name: switch
         type: boolean
-  - entity: binary_sensor
-    name: "Work State"
-    category: config
-    dps:
-      - id: 14
-        name: sensor
-        type: string
-        readonly: true
-        mapping:
-          - dps_val: no_working
-            value: false
-          - dps_val: working
-            value: true
-
