@@ -1,0 +1,39 @@
+name: Hitachi ERV
+products:
+  - id: md40ysxp
+    name: Hitachi Air Renewal Ventilation
+primary_entity:
+  entity: fan
+  translation_key: fan_with_presets
+  icon: "mdi:air-purifier"
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 12
+      type: string
+      name: speed
+      mapping:
+        - dps_val: low
+          value: 50
+        - dps_val: high
+          value: 100
+secondary_entities:
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        readonly: true
+        class: measurement
+        unit: ugm3
+  - entity: sensor
+    class: co2
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        readonly: true
+        class: measurement
+        unit: ppm

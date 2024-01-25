@@ -1,0 +1,53 @@
+name: Hitachi VRF
+products:
+  - id: mxhghqho
+    name: Hitachi Variable Refrigerant Flow
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+          icon: "mdi:hvac-off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: cold
+              value: cool
+              icon: "mdi:snowflake"
+            - dps_val: hot
+              value: heat
+              icon: "mdi:white-balance-sunny"
+            - dps_val: wet
+              value: dry
+              icon: "mdi:water-off"
+            - dps_val: wind
+              value: fan_only
+              icon: "mdi:fan"
+    - id: 2
+      type: integer
+      name: temperature
+      range:
+        min: 16
+        max: 32
+      unit: C
+    - id: 4
+      type: string
+      name: mode
+      hidden: true
+    - id: 5
+      type: string
+      name: fan_mode
+      optional: true
+      mapping:
+        - dps_val: low
+          value: low
+        - dps_val: mid
+          value: medium
+        - dps_val: high
+          value: high
+        - dps_val: auto
+          value: auto

@@ -1,0 +1,33 @@
+name: Vaillant Boiler
+products:
+  - id: zggrbq6s
+    name: Vaillant Radiant Floor Heating
+primary_entity:
+  entity: water_heater
+  icon: "mdi:radiator-disabled"
+  dps:
+    - id: 1
+      type: boolean
+      name: operation_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+          icon: "mdi:radiator-off"
+        - dps_val: true
+          value: gas
+          icon: "mdi:radiator"
+    - id: 2
+      type: integer
+      name: temperature
+      range:
+        min: 5
+        max: 35
+      unit: C
+    - id: 3
+      type: integer
+      name: current_temperature
+      readonly: true
+      range:
+        min: -20
+        max: 50
+      unit: C
