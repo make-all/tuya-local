@@ -132,6 +132,7 @@
 - Beok TR9B thermostat _(rebadged as Vancoo and perhaps others)_
 - BHT-002-GALW thermostat _(rebadged as many different brands)_
 - Brade MC6 thermostat _(rebadged as many different brands)_
+- ETOP-FCU thermostat (Jaga JRT-100TW)
 - ETOP-HP thermostat (CH7100)
 - ETOP-HT thermostat
 - Hysen HY08ACF thermostat
@@ -606,6 +607,7 @@ port and password.
 - TH16 temperature and humidity sensor
 - Tontine electric blanket
 - Valehaus SYZN119 towel warmer
+- WeatherStation Pro
 - Xiumii human presence radar
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)
 - Yinmik WF-3188 water quality monitor
