@@ -173,6 +173,7 @@
 - Deta fan controller
 - Djive ARC humidifying fan
 - Duux Whisper Flex pedestal fan
+- Eglo 5 speed + sleep ceiling fan 
 - Fanco Eco Silent Deluxe ceiling fan with LED light
 - Goldair GCPF315 fan
 - Goldair Platinum tower fan (2 variants)
@@ -192,7 +193,7 @@
 - TMWF02 fan controller
 - Treatlife DS02-F fan switch
 - Treatlife DS03 fan with dimmable light
-- Windcalm ceiling fans with and without cool.warm white dimmable light
+- Windcalm ceiling fans with and without cool/warm white dimmable light
 - Yidi/NHZS fan and light wall switch
 
 ### Air Purifiers
