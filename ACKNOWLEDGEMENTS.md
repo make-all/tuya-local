@@ -468,3 +468,4 @@ Further device support has been made with the assistance of users. Please consid
 - [debdalerichard](https://github.com/debdalerichard) for assisting with support for Weekett kettles.
 - [GreenSkol](https://github.com/GreenSkol) for contributing support for ETOP FCU thermostats.
 - [drewpo28](https://github.com/drewpo28) for contributing support for WeatheerStation Pro
+- [ninjajim17](https://github.com/ninjajim17) for assisting with support for Carro humidifiers.

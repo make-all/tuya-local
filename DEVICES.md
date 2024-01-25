@@ -260,6 +260,7 @@
 
 - BlitzWolf BW-SH2 humidifier
 - BlitzWolf BW-SH5 humidifier
+- Carro VES1011 humidifier
 - CleanAir 605B humidifier
 - Eanons QT-JS2014 purifying humidifier
 - Inkbird IHC-200 humidity controller
