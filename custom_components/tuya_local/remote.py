@@ -3,15 +3,15 @@ Implementation of Tuya remote control devices
 Based on broadlink integration for code saving under HA storage
 """
 import asyncio
+import json
+import logging
 from collections import defaultdict
 from collections.abc import Iterable
 from datetime import timedelta
 from itertools import product
-import json
-import logging
 from typing import Any
-import voluptuous as vol
 
+import voluptuous as vol
 from homeassistant.components import persistent_notification
 from homeassistant.components.remote import (
     ATTR_ALTERNATIVE,
@@ -19,17 +19,24 @@ from homeassistant.components.remote import (
     ATTR_DEVICE,
     ATTR_NUM_REPEATS,
     DEFAULT_DELAY_SECS,
-    DOMAIN as RM_DOMAIN,
-    RemoteEntity,
-    RemoteEntityFeature,
     SERVICE_DELETE_COMMAND,
     SERVICE_LEARN_COMMAND,
     SERVICE_SEND_COMMAND,
+    RemoteEntity,
+    RemoteEntityFeature,
+)
+from homeassistant.components.remote import (
+    DOMAIN as RM_DOMAIN,
 )
 from homeassistant.const import ATTR_COMMAND
 from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers.storage import Store
 from homeassistant.util import dt as dt_util
+# from tinytuya.Contrib.IRRemoteControlDevice import (
+#     base64_to_pulses,
+#     pulses_to_pronto,
+#     pulses_to_width_encoded,
+# )
 
 from .device import TuyaLocalDevice
 from .helpers.config import async_tuya_setup_platform
@@ -259,6 +266,10 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
 
             for command in commands:
                 code = await self._async_learn_command(command)
+                _LOGGER.info("Learning %s for %s: %s", command, subdevice, code)
+                # pulses = base64_to_pulses(code)
+                # _LOGGER.debug("= pronto code: %s", pulses_to_pronto(pulses))
+                # _LOGGER.debug("= width encoded: %s", pulses_to_width_encoded(pulses))
                 if toggle:
                     code = [code, await self._async_learn_command(command)]
                 self._codes.setdefault(subdevice, {}).update({command: code})

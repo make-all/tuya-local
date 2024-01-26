@@ -34,7 +34,7 @@ class TestQSC01Curtains(BasicNumberTests, BasicSelectTests, TuyaDeviceTestCase):
                 "forward": "Forward",
                 "back": "Back",
             },
-        ),
+        )
         self.mark_secondary(["number_travel_time", "select_motor_reverse_mode"])
 
     def test_device_class_is_curtain(self):

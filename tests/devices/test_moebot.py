@@ -3,11 +3,12 @@ Test MoeBot S mower.
 Primarily for testing the STOP command which this device is the first to use,
 and the lawn_mower platform.
 """
-from homeassistant.components.vacuum import VacuumEntityFeature
 from homeassistant.components.lawn_mower.const import (
     LawnMowerActivity,
     LawnMowerEntityFeature,
 )
+from homeassistant.components.vacuum import VacuumEntityFeature
+
 from ..const import MOEBOT_PAYLOAD
 from ..helpers import assert_device_properties_set
 from .base_device_tests import TuyaDeviceTestCase
