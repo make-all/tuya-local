@@ -34,6 +34,7 @@
 - Kogan flame effect heater - KAWHMFP20BA model
 - Kogan tower heater - KASTHFP2KWA model
 - Kogan Wi-Fi convection panel heaters - KAHTP and KAWFHTP models
+- Mellerware Comfy electric radiator (tested with Medium 1200W)
 - Modern Flames Orion fireplace
 - MRC Magnum floor heating
 - Nedis ceramic PTC fan heater
@@ -326,6 +327,7 @@
 
 ### Battery Charger
 
+- EVSun EV charger
 - Feyree home EV charger
 - Parkside PLGS 2012 A1 smart charger for powertools
 

@@ -470,3 +470,5 @@ Further device support has been made with the assistance of users. Please consid
 - [drewpo28](https://github.com/drewpo28) for contributing support for WeatheerStation Pro
 - [ninjajim17](https://github.com/ninjajim17) for assisting with support for Carro humidifiers.
 - [AnthonyBe](https://github.com/AnthonyBe) for assisting with support for Eglo ceiling fans.
+- [spawnax](https://github.com/spawnax) for assisting with support for EVSun EV chargers.
+- [madmalkav](https://github.com/madmalkav) for assisting with support for Mellerware Comfy electric radiators.
