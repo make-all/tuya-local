@@ -4,85 +4,102 @@ products:
     model: WX8
     manufacturer: Holman
 primary_entity:
-  entity: sensor
-  name: Watering
+  entity: binary_sensor
+  name: Irrigation Controller
+  class: running
+  icon: mdi:sprinkler-variant
   dps:
     - id: 123
+      name: sensor
       type: boolean
+    - id: 116
+      name: Firmware Version
+      type: integer
 secondary_entities:
+# ----- Value is encoded string, Value in Home assistant is unkown
+  # - entity: sensor
+    # name: Programming
+    # dps:
+      # - id: 101
+        # name: sensor
+        # type: string
   - entity: switch
     name: Zone 1
+    icon: mdi:sprinkler-variant
     dps:
       - id: 102
         type: boolean
         name: switch
   - entity: switch
     name: Zone 2
+    icon: mdi:sprinkler-variant
     dps:
       - id: 103
         type: boolean
         name: switch
   - entity: switch
     name: Zone 3
+    icon: mdi:sprinkler-variant
     dps:
       - id: 104
         type: boolean
         name: switch  
   - entity: switch
     name: Zone 4
+    icon: mdi:sprinkler-variant
     dps:
       - id: 104
         type: boolean
         name: switch
   - entity: switch
     name: Zone 5
+    icon: mdi:sprinkler-variant
     dps:
       - id: 106
         type: boolean
         name: switch         
   - entity: switch
     name: Zone 6
+    icon: mdi:sprinkler-variant
     dps:
       - id: 107
         type: boolean
         name: switch       
   - entity: switch
     name: Zone 7
+    icon: mdi:sprinkler-variant
     dps:
       - id: 108
         type: boolean
         name: switch
   - entity: switch
     name: Zone 8
+    icon: mdi:sprinkler-variant
     dps:
       - id: 112
         type: boolean
         name: switch
   - entity: switch
-    name: Start A
+    name: Start A # This is actually prgram A but Stat is the vendor terminology, stays on while programming is running can be stoped mid way.
+    icon: mdi:timetable
     dps:
       - id: 113
         type: boolean
         name: switch
   - entity: switch
     name: Start B
+    icon: mdi:timetable
     dps:
       - id: 114
         type: boolean
         name: switch
   - entity: switch
     name: Start C
+    icon: mdi:timetable
     dps:
       - id: 115
         type: boolean
         name: switch 
-  - entity: sensor
-    name: Firmware Version
-    category: diagnostic
-    dps:
-      - id: 116
-        name: sensor
-        type: integer     
   - entity: sensor
     name: Power Supply Voltage
     category: diagnostic
@@ -113,48 +130,65 @@ secondary_entities:
         unit: "V"
         mapping:
           - scale: 10
-  - entity: sensor
-    name: Device Flag
-    category: diagnostic
+  # - entity: binary_sensor            ----- I can't work this one out, value shows as int in Home assistant, some work but with inverted value
+    # name: 9V Battery OK
+    # class: battery
     # dps:
       # - id: 120
-        # type: bitfield
         # name: sensor
-    dps:
-      - id: 120
-        optional: true
-        name: 9V Battery Good
-        type: bitfield
-        mapping:
-          - mask: "F0000000"
+        # type: base64
+        # mapping:
+          # - mask: "F0000000"
+          # - dps_val: 1
+            # value: 0
+          # - dps_val: 0
+            # value: 1
+  # - entity: binary_sensor
+    # name: Watering
+    # dps:
       # - id: 120
-        # optional: true
-        # name: Watering
-        # type: boolean
+        # name: sensor
+        # type: base64
         # mapping:
           # - mask: "00F00000"
+  # - entity: binary_sensor
+    # name: Rain Sensor Wet
+    # class: moisture
+    # dps:
       # - id: 120
-        # optional: true
-        # name: Rain Sensor Wet
-        # type: boolean
+        # name: sensor
+        # type: base64
         # mapping:
           # - mask: "000F0000"
+  # - entity: binary_sensor
+    # name: Evie Connected
+    # category: diagnostic
+    # class: connectivity
+    # dps:
       # - id: 120
         # optional: true
-        # name: Evie Connected
-        # type: boolean
+        # name: sensor
+        # type: base64
         # mapping:
           # - mask: "00000F00"
-       # - id: 120
+  # - entity: binary_sensor
+    # name: Evie Battery OK
+    # class: battery
+    # dps:
+      # - id: 120
         # optional: true
         # name: Evie Battery Good 
-        # type: boolean
+        # type: base64
         # mapping:
           # - mask: "000000F0"
-       # - id: 120
+  # - entity: binary_sensor
+    # name: Evie Sensor Wet
+    # class: moisture
+    # dps:
+      # - id: 120
         # optional: true
         # name: Evie Wet
-        # type: boolean
+        # type: base64
         # mapping:
           # - mask: "0000000F"        
   - entity: sensor
@@ -169,7 +203,6 @@ secondary_entities:
     name: Dial Position
     class: enum
     icon: "mdi:knob"
-    category: diagnostic
     dps:
       - id: 122
         type: integer
@@ -201,7 +234,6 @@ secondary_entities:
             value: "Test"
   - entity: binary_sensor
     name: Master Valve
-    category: diagnostic
     dps:
       - id: 123
         type: boolean
