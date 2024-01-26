@@ -32,12 +32,12 @@ from homeassistant.const import ATTR_COMMAND
 from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers.storage import Store
 from homeassistant.util import dt as dt_util
+
 # from tinytuya.Contrib.IRRemoteControlDevice import (
 #     base64_to_pulses,
 #     pulses_to_pronto,
 #     pulses_to_width_encoded,
 # )
-
 from .device import TuyaLocalDevice
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
