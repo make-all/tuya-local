@@ -156,25 +156,31 @@ primary_entity:
 secondary_entities:
   - entity: button
     name: Start
+    icon: "mdi:play"
     category: config
     dps:
       - id: 1
         type: boolean
         name: button
+        optional: true
   - entity: button
     name: Pause
     category: config
+    icon: "mdi:pause"
     dps:
       - id: 2
         type: boolean
         name: button
+        optional: true
   - entity: button
     name: Dock
     category: config
+    icon: "mdi:lightning-bolt"
     dps:
       - id: 3
         type: boolean
         name: button
+        optional: true
   - entity: sensor
     name: Cleaning time
     class: duration
