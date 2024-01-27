@@ -86,7 +86,7 @@ secondary_entities:
             icon: "mdi:hand-back-right-off"
           - dps_val: false
             icon: "mdi:hand-back-right"
-  - entity: switch 
+  - entity: switch
     name: Sound
     category: config
     icon: "mdi:music-note"
@@ -104,8 +104,8 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: 0
-            value: False
-          - value: True
+            value: false
+          - value: true
   - entity: number
     name: Temperature calibration
     category: config
@@ -195,14 +195,14 @@ secondary_entities:
         mapping:
           - dps_val: "1"
             value: "Weekday+Weekend"
-          - dps_val: "2" 
+          - dps_val: "2"
             value: "Mon-Sat+Sun"
           - dps_val: "3"
             value: "Daily"
   - entity: switch
     name: Output reverse
     category: config
-    icon: "mdi:swap-horizontal"   
+    icon: "mdi:swap-horizontal"
     dps:
       - id: 101
         type: boolean

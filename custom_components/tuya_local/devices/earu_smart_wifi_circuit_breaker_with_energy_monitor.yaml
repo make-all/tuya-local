@@ -2,8 +2,6 @@ name: Circuit breaker
 products:
   - id: ine4hhapkgxonij1
     name: EARU SW RCB
-    # https://www.aliexpress.com/item/1005004894566311.html
-  
 primary_entity:
   entity: switch
   icon: "mdi:fuse"
@@ -11,7 +9,7 @@ primary_entity:
   dps:
     - id: 16
       name: switch
-      type: boolean     
+      type: boolean
     - id: 19
       type: string
       name: breaker_id
@@ -70,23 +68,4 @@ secondary_entities:
         name: sensor
         mapping:
           - mask: "0000000000FFFFFF"
-            scale: 1000	 
-
-#     name: 'Alarm set 1'
-#     category: diagnostic
-#     dps:
-#       - id: 17
-#         type: base64
-#         name: sensor
-#         optional: true
-#         force: true
-#   - entity: sensor
-#     name: 'Alarm set 2'
-#     category: diagnostic
-#     dps:
-#       - id: 18
-#         type: base64
-#         name: sensor        
-#         optional: true
-#         force: true
-            
+            scale: 1000

@@ -61,20 +61,16 @@ primary_entity:
       type: boolean
       name: hvac_action
       mapping:
-        - dps_val: true
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: off
-            - dps_val: true
-              value: heating
-        - dps_val: false
-          constraint: hvac_mode
+        - constraint: hvac_mode
           conditions:
             - dps_val: false
               value: "off"
             - dps_val: true
-              value: idle
+              mapping:
+                - dps_val: true
+                  value: heating
+                - dps_val: false
+                  value: idle
     - id: 106
       type: boolean
       name: unknown_106
@@ -104,9 +100,9 @@ secondary_entities:
         type: boolean
         name: lock
         mapping:
-          - dps_val: True
+          - dps_val: true
             icon: "mdi:hand-back-right-off"
-          - dps_val: False
+          - dps_val: false
             icon: "mdi:hand-back-right"
   - entity: sensor
     name: External temperature

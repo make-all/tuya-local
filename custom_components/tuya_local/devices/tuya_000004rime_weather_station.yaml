@@ -354,7 +354,7 @@ secondary_entities:
         name: end_minute
         mapping:
           - mask: "000000FF"
-## diagnostic section, base64 dps
+  # diagnostic section, base64 dps
   - entity: binary_sensor
     category: diagnostic
     name: Display settings
@@ -379,10 +379,10 @@ secondary_entities:
         mapping:
           - mask: FF00000000000000000000
           - dps_val: 1
-            value: On
+            value: true
             mask: FF00000000000000000000
           - dps_val: 0
-            value: Off
+            value: false
             mask: FF00000000000000000000
       - id: 108
         optional: true
@@ -391,10 +391,10 @@ secondary_entities:
         mapping:
           - mask: 00FF000000000000000000
           - dps_val: 1
-            value: On
+            value: true
             mask: 00FF000000000000000000
           - dps_val: 0
-            value: Off
+            value: false
             mask: 00FF000000000000000000
       - id: 108
         optional: true
@@ -403,10 +403,10 @@ secondary_entities:
         mapping:
           - mask: 0000FF0000000000000000
           - dps_val: 1
-            value: On
+            value: true
             mask: 0000FF0000000000000000
           - dps_val: 0
-            value: Off
+            value: false
             mask: 0000FF0000000000000000
       - id: 108
         optional: true
@@ -415,10 +415,10 @@ secondary_entities:
         mapping:
           - mask: 000000FF00000000000000
           - dps_val: 1
-            value: On
+            value: true
             mask: 000000FF00000000000000
           - dps_val: 0
-            value: Off
+            value: false
             mask: 000000FF00000000000000
       - id: 108
         optional: true
@@ -427,10 +427,10 @@ secondary_entities:
         mapping:
           - mask: 00000000FF000000000000
           - dps_val: 1
-            value: On
+            value: true
             mask: 00000000FF000000000000
           - dps_val: 0
-            value: Off
+            value: false
             mask: 00000000FF000000000000
       - id: 108
         optional: true
@@ -439,10 +439,10 @@ secondary_entities:
         mapping:
           - mask: 0000000000FF0000000000
           - dps_val: 1
-            value: On
+            value: true
             mask: 0000000000FF0000000000
           - dps_val: 0
-            value: Off
+            value: false
             mask: 0000000000FF0000000000
       - id: 108
         optional: true
@@ -451,10 +451,10 @@ secondary_entities:
         mapping:
           - mask: 000000000000FF00000000
           - dps_val: 1
-            value: On
+            value: true
             mask: 000000000000FF00000000
           - dps_val: 0
-            value: Off
+            value: false
             mask: 000000000000FF00000000
       - id: 108
         optional: true
@@ -463,10 +463,10 @@ secondary_entities:
         mapping:
           - mask: 00000000000000FF000000
           - dps_val: 1
-            value: On
+            value: true
             mask: 00000000000000FF000000
           - dps_val: 0
-            value: Off
+            value: false
             mask: 00000000000000FF000000
       - id: 108
         optional: true
@@ -475,10 +475,10 @@ secondary_entities:
         mapping:
           - mask: 0000000000000000FF0000
           - dps_val: 1
-            value: On
+            value: true
             mask: 0000000000000000FF0000
           - dps_val: 0
-            value: Off
+            value: false
             mask: 0000000000000000FF0000
       - id: 108
         optional: true
@@ -487,10 +487,10 @@ secondary_entities:
         mapping:
           - mask: 000000000000000000FF00
           - dps_val: 1
-            value: On
+            value: true
             mask: 000000000000000000FF00
           - dps_val: 0
-            value: Off
+            value: false
             mask: 000000000000000000FF00
       - id: 108
         optional: true
@@ -499,10 +499,10 @@ secondary_entities:
         mapping:
           - mask: 00000000000000000000FF
           - dps_val: 1
-            value: On
+            value: true
             mask: 00000000000000000000FF
           - dps_val: 0
-            value: Off
+            value: false
             mask: 00000000000000000000FF
   - entity: sensor
     category: diagnostic

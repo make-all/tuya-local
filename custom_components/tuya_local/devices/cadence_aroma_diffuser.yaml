@@ -43,7 +43,8 @@ secondary_entities:
           max: 1000
         mapping:
           - scale: 3.92
-      # 10: rgbhsv, but not present in log and no color_mode to select it, so probably a doc error
+      # 10: rgbhsv, but not present in log and no color_mode to select it,
+      #     so probably a doc error
       - id: 105
         name: effect
         type: boolean
@@ -61,11 +62,11 @@ secondary_entities:
     icon: "mdi:music"
     category: config
     dps:
-      - id: 101 
+      - id: 101
         type: string
         name: option
         mapping:
-          - dps_val: "0" 
+          - dps_val: "0"
             value: Track 1
           - dps_val: "1"
             value: Track 2
@@ -112,7 +113,7 @@ secondary_entities:
     dps:
       - id: 107
         type: boolean
-        name: button 
+        name: button
         optional: true
   - entity: button
     name: Play music

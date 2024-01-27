@@ -10,12 +10,12 @@ primary_entity:
       name: switch
       type: boolean
       mapping:
-      - dps_val: false
-        icon: "mdi:ait-humidifier-off"
-        icon_priority: 1
-      - dps_val: true
-        icon: "mdi:air-humidifier"
-        icon_priority: 3
+        - dps_val: false
+          icon: "mdi:ait-humidifier-off"
+          icon_priority: 1
+        - dps_val: true
+          icon: "mdi:air-humidifier"
+          icon_priority: 3
     - id: 2
       name: humidity
       type: integer
@@ -134,29 +134,6 @@ secondary_entities:
           - dps_val: Bucket_Full
             value: true
             icon: "mdi:pail-remove"
-# Runtime Total does not update
-# uncomment the next two sensor blocks if you want to use them
-#   - entity: sensor
-#     name: Runtime total
-#     category: diagnostic
-#     icon: "mdi:timelapse"
-#     class: duration
-#     dps:
-#       - id: 27
-#         type: integer
-#         range:
-#         min: 0
-#         max: 1000
-#         name: sensor
-#         unit: min
-#   - entity: button
-#     name: Runtime total reset
-#     category: config
-#     icon: "mdi:timelapse"
-#     dps:
-#       - id: 28
-#         type: boolean
-#         name: button
   - entity: switch
     name: Night mode
     category: config
