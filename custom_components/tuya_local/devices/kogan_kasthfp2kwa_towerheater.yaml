@@ -25,10 +25,10 @@ primary_entity:
       type: integer
       name: current_temperature
       mapping:
-      - constraint: hvac_mode
-        conditions:
-          - dps_val: false
-            invalid: true
+        - constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              invalid: true
     - id: 4
       name: preset_mode
       type: string

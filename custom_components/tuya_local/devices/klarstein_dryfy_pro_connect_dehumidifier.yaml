@@ -1,5 +1,6 @@
 name: Dehumidifier
-# {'updated_at': 1674605185.2896934, '1': True, '2': 'auto', '3': 57, '4': 55, '10': True, '101': True, '102': '0_90', '103': 24}
+# {'updated_at': 1674605185.2896934, '1': True, '2': 'auto', '3': 57, '4': 55,
+#  '10': True, '101': True, '102': '0_90', '103': 24}
 products:
   - id: 6cguug02fnygou5c
     name: Klarstein Dryfy Pro Connect
@@ -35,7 +36,7 @@ primary_entity:
         min: 35
         max: 80
       mapping:
-        - step: 5          
+        - step: 5
 secondary_entities:
   - entity: fan
     deprecated: humidifier mode
@@ -78,7 +79,7 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: "0_90"
-            value:  "45°-90°"
+            value: "45°-90°"
           - dps_val: "45"
             value: "45°"
           - dps_val: "90"
@@ -114,7 +115,7 @@ secondary_entities:
     icon: "mdi:creation"
     dps:
       - id: 5
-        name: switch 
+        name: switch
         type: boolean
         optional: true
   - entity: switch
@@ -124,5 +125,4 @@ secondary_entities:
     dps:
       - id: 101
         name: switch
-        type: boolean 
-
+        type: boolean

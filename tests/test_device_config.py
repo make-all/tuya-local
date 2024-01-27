@@ -67,7 +67,10 @@ KNOWN_DPS = {
         "required": [{"or": ["preset_mode", "speed"]}],
         "optional": ["switch", "oscillate", "direction"],
     },
-    "humidifier": {"required": ["switch", "humidity"], "optional": ["mode"]},
+    "humidifier": {
+        "required": ["humidity"],
+        "optional": ["switch", "mode", "current_humidity"],
+    },
     "lawn_mower": {"required": ["activity", "command"], "optional": []},
     "light": {
         "required": [{"or": ["switch", "brightness", "effect"]}],

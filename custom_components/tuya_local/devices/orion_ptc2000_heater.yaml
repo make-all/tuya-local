@@ -40,38 +40,38 @@ primary_entity:
         - dps_val: true
           value: "on"
 secondary_entities:
-   - entity: select
-     name: Timer
-     icon: "mdi:timer"
-     category: config
-     dps:
-       - id: 19
-         type: string
-         name: option
-         mapping:
-           - dps_val: "cancel"
-             value: "none"
-           - dps_val: "1h"
-             value: "1 Hour"
-           - dps_val: "2h"
-             value: "2 Hours"
-           - dps_val: "3h"
-             value: "3 Hours"
-           - dps_val: "4h"
-             value: "4 Hours"
-           - dps_val: "5h"
-             value: "5 Hours"
-           - dps_val: "6h"
-             value: "6 Hours"
-           - dps_val: "7h"
-             value: "7 Hours"
-           - dps_val: "8h"
-             value: "8 Hours"
-   - entity: switch
-     name: Window detection
-     icon: "mdi:window-open-variant"
-     category: config
-     dps:
-       - id: 101
-         type: boolean
-         name: switch
+  - entity: select
+    name: Timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: "cancel"
+            value: "none"
+          - dps_val: "1h"
+            value: "1 Hour"
+          - dps_val: "2h"
+            value: "2 Hours"
+          - dps_val: "3h"
+            value: "3 Hours"
+          - dps_val: "4h"
+            value: "4 Hours"
+          - dps_val: "5h"
+            value: "5 Hours"
+          - dps_val: "6h"
+            value: "6 Hours"
+          - dps_val: "7h"
+            value: "7 Hours"
+          - dps_val: "8h"
+            value: "8 Hours"
+  - entity: switch
+    name: Window detection
+    icon: "mdi:window-open-variant"
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch

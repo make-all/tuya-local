@@ -30,7 +30,9 @@ primary_entity:
       type: bitfield
       name: fault_code
       optional: true
-      # ov_cr, unbalance_alarm, ov_vol, undervoltage_alarm, miss_phase_alarm, outage_alarm, magnetism_alarm, terminal_alarm, cover_alarm, credit_alarm, no_balance_alarm, battery_alarm, meter_hardware_alarm
+      # ov_cr, unbalance_alarm, ov_vol, undervoltage_alarm, miss_phase_alarm,
+      # outage_alarm, magnetism_alarm, terminal_alarm, cover_alarm,
+      # credit_alarm, no_balance_alarm, battery_alarm, meter_hardware_alarm
     - id: 17
       name: alarm_set
       type: string
@@ -116,6 +118,3 @@ secondary_entities:
       - id: 16
         type: boolean
         name: switch
-
-
-

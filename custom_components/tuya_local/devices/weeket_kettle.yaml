@@ -1,0 +1,143 @@
+name: Kettle
+products:
+  - id: 01rtpfyd3amxdsps
+    name: Weekett KE4071TF
+primary_entity:
+  entity: water_heater
+  icon: "mdi:kettle"
+  dps:
+    - id: 2
+      type: integer
+      name: current_temperature
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: temp_current_f
+    - id: 3
+      type: integer
+      name: temp_current_f
+      hidden: true
+    - id: 8
+      type: integer
+      name: temperature
+      range:
+        min: 40
+        max: 100
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              range:
+                min: 104
+                max: 212
+              value_redirect: temp_set_f
+    - id: 9
+      type: integer
+      name: temp_set_f
+      range:
+        min: 104
+        max: 212
+      hidden: true
+    - id: 12
+      type: string
+      name: temperature_unit
+      mapping:
+        - dps_val: f
+          value: F
+        - dps_val: c
+          value: C
+    - id: 16
+      type: string
+      name: operation_mode
+      mapping:
+        - dps_val: setting_quick
+          value: Quick heat
+        - dps_val: boiling_quick
+          value: Quick boil
+        - dps_val: temp_setting
+          value: Heat
+        - dps_val: temp_boiling
+          value: Boil
+secondary_entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: false
+            icon: "mdi:kettle-off"
+          - dps_val: true
+            icon: "mdi:kettle-steam"
+  - entity: select
+    name: Temperature unit
+    icon: "mdi:temperature-celsius"
+    category: config
+    dps:
+      - id: 12
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: Celsius
+          - dps_val: f
+            value: Fahrenheit
+  - entity: switch
+    name: Keep warm
+    icon: "mdi:heat-wave"
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 15
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: Standby
+          - dps_val: heating
+            value: Heating
+          - dps_val: cooling
+            value: Cooling
+          - dps_val: warm
+            value: Keeping warm
+          - dps_val: heating_temp
+            value: Hot
+          - dps_val: boiling_temp
+            value: Boiling
+          - dps_val: reserve_1
+            value: Reserved 1
+          - dps_val: reserve_2
+            value: Reserved 2
+          - dps_val: reserve_3
+            value: Reserved 3
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code
+  - entity: switch
+    name: Bottle warming
+    icon: "mdi:baby-bottle"
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch

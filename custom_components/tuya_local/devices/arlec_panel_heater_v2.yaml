@@ -27,6 +27,7 @@ primary_entity:
     - id: 4
       name: preset_mode
       type: string
+      optional: true
       mapping:
         - dps_val: ECO
           value: eco
@@ -34,6 +35,8 @@ primary_entity:
           value: comfort
         - dps_val: Antifrost
           value: away
+        - dps_val: null
+          value: unknown
 secondary_entities:
   - entity: lock
     name: Child lock

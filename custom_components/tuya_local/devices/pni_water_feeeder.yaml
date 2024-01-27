@@ -1,0 +1,35 @@
+name: Water feeder
+products:
+  - id: ajkayo9kucq6vttv
+    name: PNI TA-WF-SMART(UV)
+primary_entity:
+  entity: switch
+  icon: "mdi:paw"
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: light
+    name: UV sterilisation
+    icon: "mdi:wall-sconce-flat"
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 13
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 13
+        type: bitfield
+        name: fault_code

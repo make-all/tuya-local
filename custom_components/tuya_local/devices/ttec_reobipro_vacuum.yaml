@@ -5,7 +5,7 @@ products:
 primary_entity:
   entity: vacuum
   dps:
-    - id: 1
+    - id: 3
       type: boolean
       name: power
       optional: true
@@ -13,52 +13,49 @@ primary_entity:
         - dps_val: null
           value: false
           hidden: true
+    - id: 1
+      type: boolean
+      name: activate
+      optional: true
+      mapping:
+        - dps_val: false
+          constraint: pause
+          conditions:
+            - dps_val: true
+              value: false
+            - value: false
+              hidden: true
+        - dps_val: true
+          constraint: pause
+          conditions:
+            - dps_val: false
+              value: true
+            - value: true
+              hidden: true
+        - dps_val: null
+          value: false
+          hidden: true
     - id: 2
       type: boolean
       optional: true
-      name: command
-      mapping:
-        - dps_val: true
-          value: pause
-        - dps_val: false
-          constraint: mode
-          conditions:
-            - dps_val: smart
-              value: smart
-            - dps_val: chargego
-              value: return_to_base
-            - dps_val: zone
-              value: zone
-            - dps_val: pose
-              value: clean_spot
-            - dps_val: part
-              value: partial
-            - dps_val: selectroom
-              value: room
-        - dps_val: null
-          constraint: mode
-          conditions:
-            - dps_val: smart
-              value: smart
-              hidden: true
-            - dps_val: chargego
-              value: return_to_base
-              hidden: true
-            - dps_val: zone
-              value: zone
-              hidden: true
-            - dps_val: pose
-              value: clean_spot
-              hidden: true
-            - dps_val: part
-              value: partial
-              hidden: true
-            - dps_val: selectroom
-              value: room
-              hidden: true
+      name: pause
+      hidden: true
     - id: 4
       type: string
-      name: mode
+      name: command
+      mapping:
+        - dps_val: smart
+          value: smart
+        - dps_val: chargego
+          value: return_to_base
+        - dps_val: zone
+          value: zone
+        - dps_val: pose
+          value: clean_spot
+        - dps_val: part
+          value: partial
+        - dps_val: selectroom
+          value: room
     - id: 5
       type: string
       name: status
@@ -120,7 +117,7 @@ primary_entity:
           value: forward
         - dps_val: backward
           value: reverse
-        - dps_val: turn_left]
+        - dps_val: turn_left
           value: left
         - dps_val: turn_right
           value: right
@@ -165,19 +162,6 @@ primary_entity:
       optional: true
       name: voice_data
 secondary_entities:
-  - entity: switch
-    name: Charge
-    icon: "mdi:lightning-bolt"
-    category: config
-    dps:
-      - id: 3
-        type: boolean
-        name: switch
-        optional: true
-        mapping:
-          - dps_val: null
-            value: false
-            hidden: true
   - entity: sensor
     name: Cleaning time
     class: duration

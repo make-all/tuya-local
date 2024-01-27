@@ -34,6 +34,7 @@
 - Kogan flame effect heater - KAWHMFP20BA model
 - Kogan tower heater - KASTHFP2KWA model
 - Kogan Wi-Fi convection panel heaters - KAHTP and KAWFHTP models
+- Mellerware Comfy electric radiator (tested with Medium 1200W)
 - Modern Flames Orion fireplace
 - MRC Magnum floor heating
 - Nedis ceramic PTC fan heater
@@ -45,6 +46,7 @@
 - Quality Heating QH-GD Elegant Series IR panel heaters
 - Rumba bathroom heater
 - Sonnenkonig Eco 700 IR panel heater (probably also other Eco/Elegance series heaters)
+- Taurus Agadir Connect oil column heaters
 - Touchstone Sideline electric fireplace
 - Wetair WCH-750 heater
 
@@ -66,6 +68,7 @@
 - ElectriQ EcoSilent 14HPW
 - Fersk Vind 2
 - Fisher Summer air conditioner
+- Inventor Leon (Tokens Legend series) air conditioner
 - Kogan 2.6kW portable air conditioner
 - Lyfco OL-A012 air conditioner
 - Monzana Klimaanlage air conditioner
@@ -92,6 +95,7 @@
 - Fairland IPHCR15 pool heatpump (matches others above, but allows control of heat/cool modes while others seem to be fixed to auto only)
 - Garden PAC pool heatpump (also works with Summerwave Si Series)
 - IPS Pro pool-systems heatpump (seems to match Fairland Inver-X as well)
+- Madimack Eco pool heatpump
 - Madimack Elite V3 pool heatpump
 - Madimack(model unknown) pool heatpump (seems to match Fairland IPH45 as well)
 - Poolex Silverline, Q-7, Q-line and Vertigo heatpumps
@@ -130,6 +134,7 @@
 - Beok TR9B thermostat _(rebadged as Vancoo and perhaps others)_
 - BHT-002-GALW thermostat _(rebadged as many different brands)_
 - Brade MC6 thermostat _(rebadged as many different brands)_
+- ETOP-FCU thermostat (Jaga JRT-100TW)
 - ETOP-HP thermostat (CH7100)
 - ETOP-HT thermostat
 - Hysen HY08ACF thermostat
@@ -170,6 +175,7 @@
 - Deta fan controller
 - Djive ARC humidifying fan
 - Duux Whisper Flex pedestal fan
+- Eglo 5 speed + sleep ceiling fan 
 - Fanco Eco Silent Deluxe ceiling fan with LED light
 - Goldair GCPF315 fan
 - Goldair Platinum tower fan (2 variants)
@@ -189,7 +195,7 @@
 - TMWF02 fan controller
 - Treatlife DS02-F fan switch
 - Treatlife DS03 fan with dimmable light
-- Windcalm ceiling fans with and without cool.warm white dimmable light
+- Windcalm ceiling fans with and without cool/warm white dimmable light
 - Yidi/NHZS fan and light wall switch
 
 ### Air Purifiers
@@ -241,6 +247,7 @@
 - Greenmigo Alpha Q25 dehumidifier
 - Honeywell TP(30/50/70) dehumidifiers
 - Hyundai Sahara dehumidifier
+- Inkbird IHC-200 humidity controller
 - Inventor Atmosphere XL dehumidifier
 - Inventor Eva Ion Pro dehumidifier
 - JJPro JPD01 dehumidifer
@@ -256,7 +263,10 @@
 
 - BlitzWolf BW-SH2 humidifier
 - BlitzWolf BW-SH5 humidifier
+- Carro VES1011 humidifier
+- CleanAir 605B humidifier
 - Eanons QT-JS2014 purifying humidifier
+- Inkbird IHC-200 humidity controller
 - Klarta Humea humidifier
 - Kyvol EA200 humidifier
 - Stadler Eva humidifier
@@ -271,6 +281,7 @@
 - Cadance ultrasonic aroma diffuser with light and music playback
 - Ditua DT-1522-YN aroma diffuser
 - Etersky aroma diffuser with light
+- Tesla aroma diffuser with light
 - YX316WIFI aroma diffuser
 - YYM-805SW aroma diffuser with light (also supports GX Aroma diffuser)
 
@@ -285,6 +296,7 @@
 - Kogan glass 1.7L smart kettle
 - Silvercrest 1.7L smart kettle
 - Ultenic K10 air fryer
+- Weekett smart kettle
 
 ### Smart Meter/Circuit Breaker
 
@@ -311,10 +323,12 @@
 - V-WIFI-DL02-ES energy consumption clamp meter
 - WDYK 2P63A energy meter
 - WDYK 3 phase 4 pole 400V energy meter circuit breaker
+- Yagusmart 3PN 63A 3-phase eneregy meter 
 - ZM-Wi-Fi smart meter
 
 ### Battery Charger
 
+- EVSun EV charger
 - Feyree home EV charger
 - Parkside PLGS 2012 A1 smart charger for powertools
 
@@ -495,6 +509,7 @@ of device.
 - Neatsvor X600 vacuum cleaner
 - Proscenic M9 vacuum cleaner
 - Rinkmo D2 vacuum cleaner
+- Tesvor S6 vacuum cleaner with mop
 - TTEC Robi Pro vacuum cleaner
 - Ultenic T10 vacuum cleaner
 
@@ -548,6 +563,7 @@ port and password.
 - Nedis pet feeder
 - Petlibro PLAF103 pet feeder
 - Petlibro PLAF203 pet feeder with camera
+- PNI water feeder
 - Rojeco PTM-001 pet feeder (two versions)
 - YP pet feeder
 
@@ -596,6 +612,7 @@ port and password.
 - TH16 temperature and humidity sensor
 - Tontine electric blanket
 - Valehaus SYZN119 towel warmer
+- WeatherStation Pro
 - Xiumii human presence radar
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)
 - Yinmik WF-3188 water quality monitor
