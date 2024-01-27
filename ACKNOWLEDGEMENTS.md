@@ -472,3 +472,4 @@ Further device support has been made with the assistance of users. Please consid
 - [AnthonyBe](https://github.com/AnthonyBe) for assisting with support for Eglo ceiling fans.
 - [spawnax](https://github.com/spawnax) for assisting with support for EVSun EV chargers.
 - [madmalkav](https://github.com/madmalkav) for assisting with support for Mellerware Comfy electric radiators.
+- [arhimidis64](https://github.com/arhimidis64) for assisting with support for Inventor Leon air conditioners.
