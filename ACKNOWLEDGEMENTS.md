@@ -231,7 +231,7 @@ Further device support has been made with the assistance of users. Please consid
 - [Die-Meester](https://github.com/Die-Meester) for contributing support for CBI Astute smart switches.
 - [ResteNarquois](https://github.com/ResteNarquois) for assisting with support for Zemismart roller shades.
 - [grangoni](https://github.com/grangoni) for contributing support for PH-W218 water quality monitors.
-- [antonio1475](https://github.com/antonio1475) for contributing support for Rojeco pet feeders and assisting with support for Mellerware vacuums.
+- [antonio1475](https://github.com/antonio1475) for contributing support for Rojeco pet feeders and assisting with support for Mellerware and Lefant N3 vacuums.
 - [erelke](https://github.com/erelke) for contributing Hungarian translations and support for EARU breakers, simple contact sensor, simple gate opener, and smart siren alarms.
 - [p-owerscripter](https://github.com/p-owerscripter) for contributing support for KKMoon air quality monitors.
 - [cataseven](https://github.com/cataseven) for contributing support for SM07-8 sprinkler controllers.
@@ -305,7 +305,7 @@ Further device support has been made with the assistance of users. Please consid
 - [mild-delirium](https://github.com/mild-delirium) for contributing a bugfix for polling devices.
 - [jorgejavier2321](https://github.com/jorgejavier2321) for assisting with support for Mantra ceiling fans.
 - [diystu](https://github.com/diystu) for assisting with support for Aulifants SMES200 breaker switch.
-- [mariustt](https://github.com/mariustt) for assisting with support for Tampa LED lighting system.
+- [mariustt](https://github.com/mariustt) for assisting with support for Tampa LED lighting system and Lefant N3 vacuum.
 - [prunes-git](https://github.com/prunes-git) for contributing support for Tontine electric blankets.
 - [jrotenstein](https://github.com/jrotenstein) for contributing support for Aquatech Rapid X6 water heaters.
 - [hanzwo](https://github.com/hanzwo) for contributing support for Windcalm ceiling fans.
