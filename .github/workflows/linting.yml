@@ -18,10 +18,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements-dev.txt
       - name: Python lint
-        run: ruff check custom_components/tuya_local
+        run: ruff check --output-format=github custom_components/tuya_local
       - name: Python include order
         run: ruff check --select I --diff .
       - name: Python coding style
         run: ruff format --check --diff .
       - name: YAML lint
-        run: yamllint -f parsable custom_components/tuya_local/devices
+        run: yamllint --format github custom_components/tuya_local/devices
