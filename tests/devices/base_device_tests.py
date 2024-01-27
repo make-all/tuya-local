@@ -10,15 +10,18 @@ from custom_components.tuya_local.button import TuyaLocalButton
 from custom_components.tuya_local.camera import TuyaLocalCamera
 from custom_components.tuya_local.climate import TuyaLocalClimate
 from custom_components.tuya_local.cover import TuyaLocalCover
+from custom_components.tuya_local.event import TuyaLocalEvent
 from custom_components.tuya_local.fan import TuyaLocalFan
 from custom_components.tuya_local.helpers.device_config import (
     TuyaDeviceConfig,
     possible_matches,
 )
 from custom_components.tuya_local.humidifier import TuyaLocalHumidifier
+from custom_components.tuya_local.lawn_mower import TuyaLocalLawnMower
 from custom_components.tuya_local.light import TuyaLocalLight
 from custom_components.tuya_local.lock import TuyaLocalLock
 from custom_components.tuya_local.number import TuyaLocalNumber
+from custom_components.tuya_local.remote import TuyaLocalRemote
 from custom_components.tuya_local.select import TuyaLocalSelect
 from custom_components.tuya_local.sensor import TuyaLocalSensor
 from custom_components.tuya_local.siren import TuyaLocalSiren
@@ -33,11 +36,14 @@ DEVICE_TYPES = {
     "camera": TuyaLocalCamera,
     "climate": TuyaLocalClimate,
     "cover": TuyaLocalCover,
+    "event": TuyaLocalEvent,
     "fan": TuyaLocalFan,
     "humidifier": TuyaLocalHumidifier,
+    "lawn_mower": TuyaLocalLawnMower,
     "light": TuyaLocalLight,
     "lock": TuyaLocalLock,
     "number": TuyaLocalNumber,
+    "remote": TuyaLocalRemote,
     "switch": TuyaLocalSwitch,
     "select": TuyaLocalSelect,
     "sensor": TuyaLocalSensor,

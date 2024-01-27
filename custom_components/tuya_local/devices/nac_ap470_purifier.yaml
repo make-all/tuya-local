@@ -1,0 +1,135 @@
+name: Air purifier
+products:
+  - id: y7iiubdc5sufjvo3
+    name: "NAC AP470 Air Purifier"
+primary_entity:
+  entity: fan
+  icon: "mdi:air-purifier"
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 4
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: 1
+          value: Auto
+        - dps_val: 2
+          value: Sleep
+        - dps_val: 3
+          value: Level 1
+        - dps_val: 4
+          value: Level 2
+        - dps_val: 4
+          value: Level 3
+        - dps_val: 6
+          value: Level 4
+    - id: 21
+      name: fault_code
+      type: bitfield
+secondary_entities:
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        class: measurement
+        unit: ugm3
+  - entity: sensor
+    name: Filter left days
+    icon: "mdi:air-filter"
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 16
+        type: integer
+        name: sensor
+        unit: "d"
+  - entity: sensor
+    name: Total time
+    icon: "mdi:air-filter"
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        unit: "h"
+  - entity: switch
+    name: Ionizer
+    icon: "mdi:atom-variant"
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+  - entity: lock
+    name: Child lock
+    category: config
+    icon: "mdi:hand-back-right-off"
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: switch
+    name: Disable light
+    category: config
+    icon: "mdi:lightbulb"
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  - entity: switch
+    name: UV lamp
+    category: config
+    icon: "mdi:shield-bug"
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Filter clean
+    category: config
+    icon: "mdi:air-filter"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: button
+    name: Filter reset
+    class: restart
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: button
+  - entity: select
+    name: Timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 19
+        name: option
+        type: string
+        mapping:
+          - dps_val: cancle
+            value: "Off"
+          - dps_val: 2
+            value: "2 hours"
+          - dps_val: 4
+            value: "4 hours"
+          - dps_val: 6
+            value: "6 hours"
+          - dps_val: 8
+            value: "8 hours"
+  - entity: sensor
+    name: Timer time left
+    icon: "mdi:timer"
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: "min"

@@ -16,13 +16,6 @@ primary_entity:
     - id: 63
       type: string
       name: direction
-    - id: 64
-      type: integer
-      name: timer
-      range:
-        min: 0
-        max: 540
-      unit: min
 secondary_entities:
   - entity: light
     dps:
@@ -47,3 +40,15 @@ secondary_entities:
           - target_range:
               min: 3000
               max: 6500
+  - entity: number
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 64
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 540

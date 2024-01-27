@@ -44,7 +44,7 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
         self._direction_dps = dps_map.pop("direction", None)
         self._init_end(dps_map)
 
-        self._support_flags = 0
+        self._support_flags = FanEntityFeature(0)
         if self._preset_dps:
             self._support_flags |= FanEntityFeature.PRESET_MODE
         if self._speed_dps:

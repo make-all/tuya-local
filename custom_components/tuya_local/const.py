@@ -1,5 +1,3 @@
-from datetime import timedelta
-
 DOMAIN = "tuya_local"
 
 CONF_DEVICE_ID = "device_id"

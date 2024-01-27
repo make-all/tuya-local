@@ -2,6 +2,8 @@ name: Beok TGR81 thermostat
 products:
   - id: gogb05wrtredz3bs
     name: Avatto WT81 thermostat
+  - id: gw173aldekvpzalg
+    name: Avatto ME81 thermostat
 primary_entity:
   entity: climate
   translation_key: thermostat
@@ -43,6 +45,7 @@ primary_entity:
     - id: 36
       type: string
       name: hvac_action
+      optional: true
       mapping:
         - dps_val: close
           icon: "mdi:radiator-disabled"
@@ -64,7 +67,6 @@ primary_entity:
     - id: 45
       name: fault_code
       type: bitfield
-      
 secondary_entities:
   - entity: number
     name: Calibration offset
@@ -106,6 +108,7 @@ secondary_entities:
       - id: 43
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: in
             icon: "mdi:gauge"
@@ -124,10 +127,11 @@ secondary_entities:
       - id: 45
         type: bitfield
         name: sensor
+        optional: true
         mapping:
           - dps_val: 0
-            value: False
-          - value: True
+            value: false
+          - value: true
   - entity: number
     name: High temperature limit
     category: config
@@ -138,6 +142,7 @@ secondary_entities:
         type: integer
         name: value
         unit: C
+        optional: true
         range:
           min: 30
           max: 90

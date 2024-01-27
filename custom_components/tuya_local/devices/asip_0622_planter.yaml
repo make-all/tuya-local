@@ -1,7 +1,7 @@
 name: Planter
 products:
-  - id: 
-    name: ASIP-0622 indoor planter
+#  - id:
+#    name: ASIP-0622 indoor planter
 primary_entity:
   entity: switch
   icon: "mdi:sprout"
@@ -39,7 +39,6 @@ secondary_entities:
         name: limits
         # format: min,max
   - entity: sensor
-    name: 
     class: humidity
     dps:
       - id: 7
@@ -111,7 +110,7 @@ secondary_entities:
         type: integer
         name: option
         mapping:
-          - dps_val: -1 
+          - dps_val: -1
             value: Not planted
           - dps_val: 0
             value: Holy maiden fruit
@@ -336,7 +335,7 @@ secondary_entities:
         type: string
         name: option
         mapping:
-          - dps_val: "0" 
+          - dps_val: "0"
             value: Auto
           - dps_val: "1"
             value: Manual
@@ -346,6 +345,3 @@ secondary_entities:
       - id: 123
         type: boolean
         name: switch
-
-
-            

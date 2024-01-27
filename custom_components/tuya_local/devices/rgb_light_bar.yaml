@@ -1,0 +1,71 @@
+name: RGB light
+products:
+  - id: kteusapswadn9pf5
+    name: Ambient light bar
+primary_entity:
+  entity: light
+  dps:
+    - id: 20
+      type: boolean
+      name: switch
+    - id: 21
+      name: effect
+      type: string
+      mapping:
+        - dps_val: colour
+          value: RGB
+        - dps_val: scene
+          value: Scene
+        - dps_val: music
+          value: Music
+    - id: 24
+      name: rgbhsv
+      type: hex
+      format:
+        - name: h
+          bytes: 2
+          range:
+            min: 0
+            max: 360
+        - name: s
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+        - name: v
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+    - id: 27
+      type: string
+      name: music_data
+      optional: true
+    - id: 51
+      type: string
+      name: dreamlight_scene
+      optional: true
+    - id: 52
+      type: string
+      name: dreamlight_music_data
+      optional: true
+    - id: 101
+      type: string
+      name: dreeamscene_data
+      optional: true
+secondary_entities:
+  - entity: number
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            steep: 60

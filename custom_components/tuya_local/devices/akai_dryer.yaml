@@ -8,7 +8,7 @@ primary_entity:
   icon: "mdi:tumble-dryer"
   dps:
     - id: 107
-      name: sensor # state
+      name: sensor
       type: string
       mapping:
         - dps_val: "off"
@@ -34,14 +34,14 @@ secondary_entities:
     icon: "mdi:play"
     dps:
       - id: 105
-        name: button # start
+        name: button
         type: boolean
   - entity: button
     name: Pause
     icon: "mdi:pause"
     dps:
       - id: 105
-        name: button # start
+        name: button
         type: boolean
         mapping:
           - dps_val: false
@@ -51,7 +51,7 @@ secondary_entities:
     icon: "mdi:tumble-dryer"
     dps:
       - id: 5
-        name: option # drying_mode
+        name: option
         type: string
         mapping:
           - dps_val: "OFF"
@@ -91,7 +91,7 @@ secondary_entities:
     icon: "mdi:signal"
     dps:
       - id: 101
-        name: option # drying_level
+        name: option
         type: integer
         mapping:
           - dps_val: 0
@@ -128,6 +128,6 @@ secondary_entities:
     class: duration
     dps:
       - id: 4
-        name: sensor # drying_time_left
+        name: sensor
         type: integer
         unit: min

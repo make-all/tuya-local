@@ -63,41 +63,41 @@ secondary_entities:
     category: config
     dps:
       - id: 102
-        type: hex
+        type: string
         name: option
         optional: true
         mapping:
-          - dps_val: 119
+          - dps_val: "119"
             value: "Classic 25%"
-          - dps_val: 132
+          - dps_val: "132"
             value: "Classic 50%"
-          - dps_val: 14b
+          - dps_val: "14b"
             value: "Classic 75%"
-          - dps_val: 164
+          - dps_val: "164"
             value: "Classic 100%"
-          - dps_val: 219
+          - dps_val: "219"
             value: "Soft 25%"
-          - dps_val: 232
+          - dps_val: "232"
             value: "Soft 50%"
-          - dps_val: 24b
+          - dps_val: "24b"
             value: "Soft 75%"
-          - dps_val: 264
+          - dps_val: "264"
             value: "Soft 100%"
-          - dps_val: 319
+          - dps_val: "319"
             value: "Dynamic 25%"
-          - dps_val: 332
+          - dps_val: "332"
             value: "Dynamic 50%"
-          - dps_val: 34b
+          - dps_val: "34b"
             value: "Dynamic 75%"
-          - dps_val: 364
+          - dps_val: "364"
             value: "Dynamic 100%"
-          - dps_val: 419
+          - dps_val: "419"
             value: "Disco 25%"
-          - dps_val: 432
+          - dps_val: "432"
             value: "Disco 50%"
-          - dps_val: 44b
+          - dps_val: "44b"
             value: "Disco 75%"
-          - dps_val: 464
+          - dps_val: "464"
             value: "Disco 100%"
   - entity: select
     name: Dynamic
@@ -115,7 +115,8 @@ secondary_entities:
           - dps_val: "023264000003e803e8"
             value: "Flash"
             # color+ R, speed 50, bright 100
-          - dps_val: "033264000003e803e8007803e803e800f003e803e8003b03e803e8013603e803e8010e03e803e8"
+          - dps_val: "033264000003e803e8007803e803e800f003e80\
+              3e8003b03e803e8013603e803e8010e03e803e8"
             value: "Jump"
             # color+ R+G+B+Y+C+P, speed 50, bright 100
           - dps_val: "043264000003e803e8007803e803e800f003e803e8"

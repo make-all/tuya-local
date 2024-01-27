@@ -91,9 +91,9 @@ primary_entity:
         - dps_val: open
           constraint: preset_mode
           conditions:
-            - dps_val: [ cool, floor ]
+            - dps_val: [cool, floor]
               value: cooling
-            - dps_val: [ heat, floor_heat ]
+            - dps_val: [heat, floor_heat]
               value: heating
             - value: idle
         - dps_val: close
@@ -141,7 +141,7 @@ secondary_entities:
         type: string
         name: option
         mapping:
-          - dps_val: c 
+          - dps_val: c
             value: Celsius
           - dps_val: f
             value: Fahrenheit

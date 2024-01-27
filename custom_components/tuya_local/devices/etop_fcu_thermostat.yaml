@@ -1,0 +1,143 @@
+name: Thermostat
+products:
+  - id: psetc59fvtm5gexl
+    name: ETOP-FCU(CF) | Jaga JRT-100TW
+primary_entity:
+  entity: climate
+  name: Thermostat
+  dps:
+    ############################################################
+    # Setpoint and current temperature
+    #
+    # Using DPs for current temperature and setpoint in °C
+    # if you want to control in °F instead, comment these DPs
+    # and uncomment the DPs for °F below
+    ############################################################
+    - id: 2
+      name: temperature
+      type: integer
+      unit: C
+      range:
+        min: 50
+        max: 350
+      mapping:
+        - scale: 10
+          step: 5
+    - id: 3
+      name: current_temperature
+      type: integer
+      mapping:
+        - scale: 10
+    # Available DPs for current temperature and setpoint in °F
+    # if you want to control in °F, uncomment these DPs
+    # and comment the DP for °C above
+    # - id: 20
+    #   name: temperature
+    #   hidden: true
+    #   type: integer
+    #   unit: F
+    #   range:
+    #     min: 41
+    #     max: 95
+    # - id: 21
+    #   name: current_temperature
+    #   hidden: true
+    #   type: integer
+    #   unit: F
+    #   range:
+    #     min: 32
+    #     max: 122
+    ############################################################
+    # Thermostat modes
+    #
+    # Depending on your actual heating/cooling installation
+    # you can disable the unnecessary entries
+    ############################################################
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: work_mode
+          conditions:
+            - dps_val: fan
+              value: fan_only
+            - dps_val: heat
+              value: heat
+            - dps_val: cold
+              value: cool
+            - dps_val: auto
+              value: heat_cool
+    - id: 4
+      name: work_mode
+      type: string
+      hidden: true
+    ############################################################
+    # Fan speed
+    ############################################################
+    - id: 5
+      name: fan_mode
+      type: string
+      mapping:
+        - dps_val: low
+          value: low
+        - dps_val: middle
+          value: medium
+        - dps_val: high
+          value: high
+        - dps_val: auto
+          value: auto
+    - id: 14
+      name: work_state
+      type: string
+      # has values no_working and working defined in docs, and appears to be
+      # useful for hvac_action, but in practice does not seem to change.
+secondary_entities:
+  ############################################################
+  # Temperature display unit
+  ############################################################
+  - entity: select
+    name: "Display unit"
+    category: config
+    icon: "mdi:temperature-celsius"
+    dps:
+      - id: 19
+        name: option
+        type: string
+        mapping:
+          - dps_val: c
+            value: Celsius
+          - dps_val: f
+            value: Fahrenheit
+  ############################################################
+  # Programming mode
+  #
+  # Enable/disable the weekly program
+  ############################################################
+  - entity: select
+    name: "Programming mode"
+    category: config
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 11
+        name: option
+        type: string
+        mapping:
+          - dps_val: Disable
+            value: Manual
+          - dps_val: Enable
+            value: Automatic
+  ############################################################
+  # The following DPs are available but don't seem to
+  # actually do anything
+  ############################################################
+  - entity: switch
+    name: "Child Lock"
+    category: config
+    icon: "mdi:lock"
+    dps:
+      - id: 7
+        name: switch
+        type: boolean

@@ -33,7 +33,7 @@ secondary_entities:
         name: switch
         mapping:
           - dps_val: mode_auto
-            value: on
+            value: true
           - dps_val: mode_on
             constraint: relay
             conditions:
@@ -61,7 +61,7 @@ secondary_entities:
           min: 0
           max: 4
         mapping:
-          - invert: true 
+          - invert: true
   - entity: number
     name: Duration
     icon: "mdi:camera-timer"

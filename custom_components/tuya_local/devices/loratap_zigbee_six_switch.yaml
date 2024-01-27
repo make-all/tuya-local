@@ -1,23 +1,115 @@
 name: Six button remote
-products: 
+products:
   - id: iszegwpd
-    name: 6 gang zigBee remote
+    name: Six gang Zigbee remote
 primary_entity:
-  entity: binary_sensor
-  name: Click 1
+  entity: event
+  name: Button 1
+  class: button
   dps:
     - id: 1
       type: string
-      name: sensor
+      name: event
       optional: true
-      persist: false
       mapping:
         - dps_val: single_click
-          value: true
-        - value: false
+          value: single_click
+        - dps_val: long_press
+          value: long_press
+        - dps_val: double_click
+          value: double_click
 secondary_entities:
+  - entity: event
+    name: Button 2
+    class: button
+    dps:
+      - id: 2
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: single_click
+            value: single_click
+          - dps_val: long_press
+            value: long_press
+          - dps_val: double_click
+            value: double_click
+  - entity: event
+    name: Button 3
+    class: button
+    dps:
+      - id: 3
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: single_click
+            value: single_click
+          - dps_val: long_press
+            value: long_press
+          - dps_val: double_click
+            value: double_click
+  - entity: event
+    name: Button 4
+    class: button
+    dps:
+      - id: 4
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: single_click
+            value: single_click
+          - dps_val: long_press
+            value: long_press
+          - dps_val: double_click
+            value: double_click
+  - entity: event
+    name: Button 5
+    class: button
+    dps:
+      - id: 5
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: single_click
+            value: single_click
+          - dps_val: long_press
+            value: long_press
+          - dps_val: double_click
+            value: double_click
+  - entity: event
+    name: Button 6
+    class: button
+    dps:
+      - id: 6
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: single_click
+            value: single_click
+          - dps_val: long_press
+            value: long_press
+          - dps_val: double_click
+            value: double_click
+  - entity: binary_sensor
+    name: Click 1
+    deprecated: event_button_1
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: single_click
+            value: true
+          - value: false
   - entity: binary_sensor
     name: Click 2
+    deprecated: event_button_2
     dps:
       - id: 2
         type: string
@@ -30,6 +122,7 @@ secondary_entities:
           - value: false
   - entity: binary_sensor
     name: Click 3
+    deprecated: event_button_3
     dps:
       - id: 3
         type: string
@@ -42,6 +135,7 @@ secondary_entities:
           - value: false
   - entity: binary_sensor
     name: Click 4
+    deprecated: event_button_4
     dps:
       - id: 4
         type: string
@@ -54,6 +148,7 @@ secondary_entities:
           - value: false
   - entity: binary_sensor
     name: Click 5
+    deprecated: event_button_5
     dps:
       - id: 5
         type: string
@@ -66,6 +161,7 @@ secondary_entities:
           - value: false
   - entity: binary_sensor
     name: Click 6
+    deprecated: event_button_6
     dps:
       - id: 6
         type: string
@@ -79,6 +175,7 @@ secondary_entities:
 
   - entity: binary_sensor
     name: Long click 1
+    deprecated: event_button_1
     dps:
       - id: 1
         type: string
@@ -91,6 +188,7 @@ secondary_entities:
           - value: false
   - entity: binary_sensor
     name: Long click 2
+    deprecated: event_button_2
     dps:
       - id: 2
         type: string
@@ -103,6 +201,7 @@ secondary_entities:
           - value: false
   - entity: binary_sensor
     name: Long click 3
+    deprecated: event_button_3
     dps:
       - id: 3
         type: string
@@ -115,6 +214,7 @@ secondary_entities:
           - value: false
   - entity: binary_sensor
     name: Long click 4
+    deprecated: event_button_4
     dps:
       - id: 4
         type: string
@@ -127,6 +227,7 @@ secondary_entities:
           - value: false
   - entity: binary_sensor
     name: Long click 5
+    deprecated: event_button_5
     dps:
       - id: 5
         type: string
@@ -139,6 +240,7 @@ secondary_entities:
           - value: false
   - entity: binary_sensor
     name: Long click 6
+    deprecated: event_button_6
     dps:
       - id: 6
         type: string
@@ -152,6 +254,7 @@ secondary_entities:
 
   - entity: binary_sensor
     name: Double click 1
+    deprecated: event_button_1
     dps:
       - id: 1
         type: string
@@ -164,6 +267,7 @@ secondary_entities:
           - value: false
   - entity: binary_sensor
     name: Double click 2
+    deprecated: event_button_2
     dps:
       - id: 2
         type: string
@@ -176,6 +280,7 @@ secondary_entities:
           - value: false
   - entity: binary_sensor
     name: Double click 3
+    deprecated: event_button_3
     dps:
       - id: 3
         type: string
@@ -188,6 +293,7 @@ secondary_entities:
           - value: false
   - entity: binary_sensor
     name: Double click 4
+    deprecated: event_button_4
     dps:
       - id: 4
         type: string
@@ -200,6 +306,7 @@ secondary_entities:
           - value: false
   - entity: binary_sensor
     name: Double click 5
+    deprecated: event_button_5
     dps:
       - id: 5
         type: string
@@ -212,6 +319,7 @@ secondary_entities:
           - value: false
   - entity: binary_sensor
     name: Double click 6
+    deprecated: event_button_6
     dps:
       - id: 6
         type: string

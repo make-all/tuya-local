@@ -93,7 +93,7 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         self._maxtemp_dps = dps_map.pop("max_temperature", None)
 
         self._init_end(dps_map)
-        self._support_flags = 0
+        self._support_flags = ClimateEntityFeature(0)
 
         if self._aux_heat_dps:
             self._support_flags |= ClimateEntityFeature.AUX_HEAT
@@ -128,6 +128,18 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         # If there unit attribute configured in the temperature dps, use that
         if self._temperature_dps:
             unit = validate_temp_unit(self._temperature_dps.unit)
+            if unit is not None:
+                return unit
+        if self._temp_high_dps:
+            unit = validate_temp_unit(self._temp_high_dps.unit)
+            if unit is not None:
+                return unit
+        if self._temp_low_dps:
+            unit = validate_temp_unit(self._temp_low_dps.unit)
+            if unit is not None:
+                return unit
+        if self._current_temperature_dps:
+            unit = validate_temp_unit(self._current_temperature_dps.unit)
             if unit is not None:
                 return unit
         # Return the default unit

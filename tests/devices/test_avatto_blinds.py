@@ -54,7 +54,7 @@ class TestAvattoBlinds(MultiSensorTests, BasicSelectTests, TuyaDeviceTestCase):
                 "3": "3 hours",
                 "4": "4 hours",
             },
-        ),
+        )
         self.mark_secondary(["sensor_travel_time", "sensor_timer", "select_timer"])
 
     def test_device_class_is_blind(self):

@@ -47,7 +47,7 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
         self._open_dp = dps_map.pop("open", None)
         self._init_end(dps_map)
 
-        self._support_flags = 0
+        self._support_flags = CoverEntityFeature(0)
         if self._position_dp:
             self._support_flags |= CoverEntityFeature.SET_POSITION
         if self._control_dp:

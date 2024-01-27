@@ -1,5 +1,5 @@
 name: Humidifier
-products: 
+products:
   - id: lqzme7o0kzhumdxr
     name: BlitzWolf BWSH5
 primary_entity:
@@ -7,7 +7,7 @@ primary_entity:
   class: humidifier
   dps:
     - id: 1
-      name: switch   
+      name: switch
       type: boolean
     - id: 4
       name: mode
@@ -27,7 +27,7 @@ primary_entity:
           value: boost
         - dps_val: manual
           value: normal
-    - id: 13             
+    - id: 13
       name: humidity
       type: integer
       optional: true
@@ -52,7 +52,6 @@ secondary_entities:
       - id: 21
         name: switch
         type: boolean
-        #optional: true
   - entity: switch
     name: Warm mist
     icon: "mdi:fire"
@@ -91,8 +90,8 @@ secondary_entities:
       - id: 1
         name: switch
         type: boolean
-      - id: 23  
-        name: speed 
+      - id: 23
+        name: speed
         type: string
         optional: true
         mapping:
@@ -104,11 +103,11 @@ secondary_entities:
             value: 45
           - dps_val: "level_4"
             value: 55
-          - dps_val: "level_5"    
+          - dps_val: "level_5"
             value: 70
           - dps_val: "level_6"
             value: 85
-          - dps_val: "level_7" 
+          - dps_val: "level_7"
             value: 100
   - entity: sensor
     class: temperature
@@ -129,7 +128,7 @@ secondary_entities:
     category: config
     dps:
       - id: 19
-        name: option  
+        name: option
         type: string
         optional: true
         mapping:
@@ -164,7 +163,6 @@ secondary_entities:
         type: integer
         optional: true
   - entity: select
-    # note: this is used only for device display. To adjust temperature sensor unit change it in entity settings
     name: Display temperature unit
     category: config
     dps:
@@ -177,7 +175,7 @@ secondary_entities:
             value: Celsius
             icon: "mdi:temperature-celsius"
           - dps_val: f
-            value: Fahrenheit  
+            value: Fahrenheit
             icon: "mdi:temperature-fahrenheit"
   - entity: binary_sensor
     name: Low water

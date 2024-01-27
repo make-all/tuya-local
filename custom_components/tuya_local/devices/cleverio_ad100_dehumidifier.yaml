@@ -1,0 +1,51 @@
+name: Dehumidifier
+products:
+  - id: jkscqnjueuczotho
+    name: Cleverio AD100
+primary_entity:
+  entity: fan
+  name: Dehumidifier
+  translation_key: fan_with_presets
+  dps:
+    - id: 102
+      type: boolean
+      name: switch
+    - id: 2
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: sleep
+          value: sleep
+        - dps_val: High
+          value: strong
+    - id: 12
+      type: integer
+      name: fault_code
+secondary_entities:
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 12
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: switch
+    name: Air purifier
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    name: Replace filter
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 103
+        type: boolean
+        name: sensor

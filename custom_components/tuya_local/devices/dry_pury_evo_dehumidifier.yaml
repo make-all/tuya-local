@@ -1,0 +1,118 @@
+name: Dehumidifier
+products:
+  - id: oya6k3fqen43zyi7
+    name: Argo DRY PURY EVO WF 21
+primary_entity:
+  entity: humidifier
+  class: dehumidifier
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 2
+      name: humidity
+      type: integer
+      range:
+        min: 30
+        max: 80
+      mapping:
+        - step: 5
+    - id: 5
+      name: mode
+      type: string
+      mapping:
+        - dps_val: dehumidify
+          value: comfort
+        - dps_val: drying
+          value: laundry
+        - dps_val: sleep
+          value: sleep
+    - id: 6
+      name: current_humidity
+      type: integer
+    - id: 19
+      type: bitfield
+      name: fault_code
+secondary_entities:
+  - entity: fan
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 5
+        name: dehumidifier_mode
+        type: string
+        hidden: true
+      - id: 4
+        name: speed
+        type: string
+        mapping:
+          - dps_val: low
+            value: 50
+            constraint: dehumidifier_mode
+            conditions:
+              - dps_val: drying
+                invalid: true
+          - dps_val: high
+            value: 100
+            constraint: dehumidifier_mode
+            conditions:
+              - dps_val: sleep
+                invalid: true
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 7
+        name: sensor
+        type: integer
+        unit: C
+        class: measurement
+  - entity: switch
+    name: Ionizer
+    icon: "mdi:creation"
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: lock
+    name: Child lock
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: lock
+        mapping:
+          - dps_val: false
+            icon: "mdi:hand-back-right"
+          - dps_val: true
+            icon: "mdi:hand-back-right-off"
+  - entity: binary_sensor
+    class: problem
+    name: Tank full
+    category: diagnostic
+    icon: "mdi:cup-water"
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 16
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    name: Fault
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 16
+            value: false
+          - dps_val: null
+            value: false
+          - value: true

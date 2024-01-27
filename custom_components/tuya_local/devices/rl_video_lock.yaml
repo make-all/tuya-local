@@ -30,8 +30,21 @@ secondary_entities:
       - id: 232
         type: boolean
         name: lock
+  - entity: event
+    class: doorbell
+    category: diagnostic
+    dps:
+      - id: 136
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: ""
+            value: null
+          - value: ring
   - entity: binary_sensor
     name: Doorbell
+    deprecated: event_doorbell
     class: sound
     category: diagnostic
     dps:

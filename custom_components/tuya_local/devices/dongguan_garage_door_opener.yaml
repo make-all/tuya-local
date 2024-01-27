@@ -1,5 +1,6 @@
 # Dongguan Pinjia Technology Co., Door Controller, PJ-WGDOOR01
-# Tuya Smart Life WiFi Motorized Swing Gate Sliding Gate Opener Dry Contact 110V 240V Voice Control with Alexa Google Home
+# Tuya Smart Life WiFi Motorized Swing Gate Sliding Gate Opener Dry Contact
+# 110V 240V Voice Control with Alexa Google Home
 # https://www.aliexpress.com/item/1005003913566298.html
 name: WiFi garage opener
 products:
@@ -13,7 +14,7 @@ primary_entity:
     - id: 1
       type: boolean
       name: control
-      optional: true #BUGBUG Sometimes after power off this DP doesn't report state but will be available later
+      optional: true  # Sometimes this DP doesn't report state
       mapping:
         - dps_val: true
           value: open
@@ -67,4 +68,4 @@ secondary_entities:
       - id: 12
         type: string
         name: sensor
-        optional: true #BUGBUG Sometimes after power off this DP doesn't report state but will be available later
+        optional: true  # Sometimes doesn't report state

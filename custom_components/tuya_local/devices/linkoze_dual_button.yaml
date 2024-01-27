@@ -3,20 +3,50 @@ products:
   - id: l8yaz4um5b3pwyvf
     name: Linkoze LKWSW201
 primary_entity:
-  entity: binary_sensor
-  name: Click 1
+  entity: event
+  name: Button 1
+  class: button
   dps:
     - id: 1
       type: string
-      name: sensor
-      persist: false
+      name: event
       mapping:
         - dps_val: single_click
-          value: true
-        - value: false
+          value: single_click
+        - dps_val: long_press
+          value: long_press
+        - dps_val: double_click
+          value: double_click
 secondary_entities:
+  - entity: event
+    name: Button 2
+    class: button
+    dps:
+      - id: 2
+        type: string
+        name: event
+        mapping:
+          - dps_val: single_click
+            value: single_click
+          - dps_val: long_press
+            value: long_press
+          - dps_val: double_click
+            value: double_click
+  - entity: binary_sensor
+    name: Click 1
+    deprecated: event_button_1
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        persist: false
+        mapping:
+          - dps_val: single_click
+            value: true
+          - value: false
   - entity: binary_sensor
     name: Click 2
+    deprecated: event_button_2
     dps:
       - id: 2
         type: string
@@ -28,6 +58,7 @@ secondary_entities:
           - value: false
   - entity: binary_sensor
     name: Press 1
+    deprecated: event_button_1
     dps:
       - id: 1
         type: string
@@ -39,6 +70,7 @@ secondary_entities:
           - value: false
   - entity: binary_sensor
     name: Press 2
+    deprecated: event_button_2
     dps:
       - id: 2
         type: string
@@ -50,6 +82,7 @@ secondary_entities:
           - value: false
   - entity: binary_sensor
     name: Double click 1
+    deprecated: event_button_1
     dps:
       - id: 1
         type: string
@@ -61,6 +94,7 @@ secondary_entities:
           - value: false
   - entity: binary_sensor
     name: Double click 2
+    deprecated: event_button_2
     dps:
       - id: 2
         type: string
@@ -78,3 +112,4 @@ secondary_entities:
         type: integer
         name: sensor
         unit: "%"
+        optional: true

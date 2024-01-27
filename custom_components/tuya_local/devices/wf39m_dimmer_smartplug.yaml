@@ -1,0 +1,108 @@
+name: Dimmer smartplug
+products:
+  - id: zbisbtukzuiifmp6
+    name: Newone WF39M
+primary_entity:
+  entity: light
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 2
+      type: integer
+      name: brightness
+      range:
+        min: 10
+        max: 1000
+      mapping:
+        - scale: 3.92
+secondary_entities:
+  - entity: select
+    name: Light type
+    icon: "mdi:lightbulb"
+    category: config
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: led
+            value: LED
+          - dps_val: incandescent
+            value: Incandescent
+          - dps_val: halogen
+            value: Halogen
+  - entity: number
+    name: Minimum brightneess
+    category: config
+    icon: "mdi:lightbulb-on-20"
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Maximum brightness
+    category: config
+    icon: "mdi:lightbulb-on-90"
+    dps:
+      - id: 5
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 6
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: select
+    name: Initial state
+    icon: "mdi:toggle-switch"
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "Off"
+          - dps_val: "on"
+            value: "On"
+          - dps_val: "memory"
+            value: "Last state"
+  - entity: select
+    name: Indicator light
+    icon: "mdi:power"
+    category: config
+    dps:
+      - id: 21
+        type: string
+        name: option
+        mapping:
+          - dps_val: none
+            value: "Off"
+          - dps_val: relay
+            value: State
+          - dps_val: pos
+            value: Position

@@ -52,6 +52,15 @@ secondary_entities:
                     value: "On"
                   - dps_val: memory
                     value: Last state
+              # during startup there may be no value, but we need the options
+              - dps_val: null
+                mapping:
+                  - dps_val: "off"
+                    value: "Off"
+                  - dps_val: "on"
+                    value: "On"
+                  - dps_val: memory
+                    value: "Last state"
   - entity: light
     name: Backlight
     category: config

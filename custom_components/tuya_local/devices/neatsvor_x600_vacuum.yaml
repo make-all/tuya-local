@@ -1,0 +1,334 @@
+name: Robot vacuum
+products:
+  - id: lb3jihr6cvumqomi
+    name: Neatsvor X600
+primary_entity:
+  entity: vacuum
+  dps:
+    - id: 1
+      type: boolean
+      name: activate
+      optional: true
+    - id: 2
+      type: boolean
+      name: pause
+      optional: true
+    - id: 3
+      name: return_to_base
+      type: boolean
+      optional: true
+    - id: 4
+      type: string
+      name: command
+      optional: true
+      mapping:
+        - dps_val: smart
+          value: Auto clean
+        - dps_val: zone
+          value: Zone cleaning
+        - dps_val: pose
+          value: pose
+        - dps_val: part
+          value: clean_spot
+        - dps_val: chargego
+          value: return_to_base
+        - dps_val: selectroom
+          value: Select room cleaning
+    - id: 5
+      name: status
+      type: string
+      optional: true
+      mapping:
+        - dps_val: standby
+          value: standby
+        - dps_val: smart
+          value: cleaning
+        - dps_val: zone_clean
+          value: cleaning
+        - dps_val: part_clean
+          value: cleaning
+        - dps_val: cleaning
+          value: cleaning
+        - dps_val: paused
+          value: pause
+        - dps_val: goto_pos
+          value: go to target point
+        - dps_val: pos_arrived
+          value: arrived to target point
+        - dps_val: pos_unarrive
+          value: cannot arrive to target point
+        - dps_val: goto_charge
+          value: returning
+        - dps_val: charging
+          value: charging
+        - dps_val: charge_done
+          value: charged
+        - dps_val: sleep
+          value: sleep
+        - dps_val: mop_clean
+          value: mop_clean
+        - dps_val: manual_control
+          value: manual_control
+        - dps_val: select_room
+          value: select_room
+    - id: 9
+      name: fan_speed
+      type: string
+      mapping:
+        - dps_val: closed
+          value: "Off"
+        - dps_val: gentle
+          value: Gentle
+        - dps_val: normal
+          value: Normal
+        - dps_val: strong
+          value: Strong
+        - dps_val: max
+          value: Max
+    - id: 11
+      name: locate
+      type: boolean
+      optional: true
+    - id: 12
+      name: direction_control
+      type: string
+      optional: true
+      mapping:
+        - dps_val: forward
+          value: forward
+        - dps_val: backward
+          value: backward
+        - dps_val: turn_left
+          value: left
+        - dps_val: turn_right
+          value: right
+        - dps_val: stop
+          value: stop
+    - id: 14
+      name: path_data
+      type: string
+      optional: true
+    - id: 15
+      name: command_trans
+      type: base64
+      optional: true
+    - id: 16
+      name: request
+      type: string
+      optional: true
+    - id: 28
+      name: error
+      type: bitfield
+    - id: 32
+      name: device_timer
+      type: string
+      optional: true
+    - id: 33
+      name: disturb_time
+      type: base64
+      optional: true
+    - id: 34
+      name: device_info
+      type: base64
+      optional: true
+    - id: 35
+      name: voice_data
+      type: base64
+      optional: true
+    - id: 36
+      name: language
+      type: string
+      optional: true
+secondary_entities:
+  - entity: sensor
+    name: Cleaning time
+    category: diagnostic
+    class: duration
+    icon: "mdi:timer-star"
+    dps:
+      - id: 6
+        name: sensor
+        type: integer
+        unit: min
+  - entity: sensor
+    name: Cleaned area
+    category: diagnostic
+    icon: "mdi:vector-square-close"
+    dps:
+      - id: 7
+        name: sensor
+        type: integer
+        unit: m²
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: select
+    name: Water setting
+    icon: "mdi:water"
+    dps:
+      - id: 10
+        name: option
+        type: string
+        mapping:
+          - dps_val: closed
+            value: "Off"
+          - dps_val: low
+            value: Low
+          - dps_val: medium
+            value: Medium
+          - dps_val: high
+            value: High
+  - entity: sensor
+    name: Side brush life
+    category: diagnostic
+    class: duration
+    icon: "mdi:timer-sand"
+    dps:
+      - id: 17
+        name: sensor
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 12000
+  - entity: button
+    name: Side brush reset
+    category: diagnostic
+    icon: "mdi:autorenew"
+    dps:
+      - id: 18
+        type: boolean
+        name: button
+        optional: true
+  - entity: sensor
+    name: Main brush life
+    category: diagnostic
+    class: duration
+    icon: "mdi:timer-sand"
+    dps:
+      - id: 19
+        name: sensor
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 18000
+  - entity: button
+    name: Main brush reset
+    category: diagnostic
+    icon: "mdi:autorenew"
+    dps:
+      - id: 20
+        type: boolean
+        name: button
+        optional: true
+  - entity: sensor
+    name: Filter life
+    category: diagnostic
+    class: duration
+    icon: "mdi:timer-sand"
+    dps:
+      - id: 21
+        name: sensor
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 9000
+  - entity: button
+    name: Filter reset
+    category: diagnostic
+    icon: "mdi:autorenew"
+    dps:
+      - id: 22
+        type: boolean
+        name: button
+        optional: true
+  - entity: sensor
+    name: Mop life
+    category: diagnostic
+    class: duration
+    icon: "mdi:timer-sand"
+    dps:
+      - id: 23
+        name: sensor
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 9000
+  - entity: button
+    name: Mop reset
+    category: diagnostic
+    icon: "mdi:autorenew"
+    dps:
+      - id: 24
+        type: boolean
+        name: button
+        optional: true
+  - entity: number
+    name: Volume
+    category: config
+    icon: "mdi:volume-high"
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 10
+  - entity: select
+    name: Dust collection frequency
+    category: config
+    dps:
+      - id: 37
+        name: option
+        type: string
+        mapping:
+          - dps_val: 0
+            value: Never
+            icon: "mdi:numeric-0"
+          - dps_val: 1
+            value: After each clean
+            icon: "mdi:numeric-1"
+          - dps_val: 2
+            value: After 2 cleans
+            icon: "mdi:numeric-2"
+          - dps_val: 3
+            value: After 3 cleans
+            icon: "mdi:numeric-3"
+  - entity: button
+    name: Empty dustbin
+    category: config
+    icon: "mdi:delete-restore"
+    dps:
+      - id: 38
+        name: button
+        type: boolean
+        optional: true
+  - entity: button
+    name: Map reset
+    category: config
+    icon: "mdi:map"
+    dps:
+      - id: 13
+        name: button
+        type: boolean
+        optional: true
+  - entity: switch
+    name: Do not disturb
+    category: config
+    icon: "mdi:sleep"
+    dps:
+      - id: 25
+        name: switch
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false

@@ -84,8 +84,22 @@ secondary_entities:
         type: boolean
         name: sensor
         optional: true
+  - entity: event
+    class: doorbell
+    category: diagnostic
+    dps:
+      - id: 19
+        type: boolean
+        optional: true
+        name: event
+        mapping:
+          - dps_val: true
+            value: ring
+          - dps_val: false
+            value: null
   - entity: binary_sensor
     name: Doorbell
+    deprecated: event_doorbell
     class: sound
     category: diagnostic
     dps:
@@ -93,4 +107,3 @@ secondary_entities:
         type: boolean
         name: sensor
         optional: true
-

@@ -1,0 +1,87 @@
+name: Smart watering device
+products:
+  - id: abzzvtulukkwzynv
+    name: Becasmart BAF-908
+primary_entity:
+  entity: switch
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+      mapping:
+        - dps_val: true
+          icon: mdi:water-pump
+        - dps_val: false
+          icon: mdi:water-pump-off
+    - id: 48
+      type: string
+      optional: true
+      name: schedule
+secondary_entities:
+  - entity: select
+    name: Mode
+    icon: "mdi:auto-mode"
+    dps:
+      - id: 2
+        type: string
+        name: option
+        mapping:
+          - dps_val: auto
+            value: Auto
+          - dps_val: manual
+            value: Manual
+  - entity: number
+    name: Timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 56
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 360
+  - entity: select
+    name: Pump
+    icon: "mdi:pump"
+    category: config
+    dps:
+      - id: 28
+        type: string
+        name: option
+        mapping:
+          - dps_val: "PumpA"
+            value: "Pump A"
+          - dps_val: "PumpB"
+            value: "Pump B"
+          - dps_val: "PumpAB"
+            value: "Both pumps"
+  - entity: number
+    name: Repeat interval
+    icon: "mdi:repeat"
+    category: config
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 60
+  - entity: sensor
+    name: "Run time remaining"
+    icon: "mdi:timer-sand"
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: s
+        range:
+          min: 0
+          max: 360
+      - id: 10
+        type: integer
+        name: runtime
+        unit: s
+        optional: true

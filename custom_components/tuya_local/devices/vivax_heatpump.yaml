@@ -125,7 +125,8 @@ primary_entity:
       name: fault_code
       # next two look obviously swing (logged values ud_00 and lr_00),
       # but full mappings not available to map to swing mode
-      # from #1183, seems to be ud_00, ud_01, ud_02, ud_03, ud_04, ud_0c (last one is swing, others are pos) 
+      # from #1183, seems to be ud_00, ud_01, ud_02, ud_03, ud_04, ud_0c
+      # (last one is swing, others are pos)
     - id: 117
       type: string
       name: swing_mode
@@ -216,7 +217,7 @@ secondary_entities:
       - id: 108
         type: boolean
         name: switch
-# Boolean dps 16 = Beep and 109 = Sleep documented but missing from log
+  # Boolean dps 16 = Beep and 109 = Sleep documented but missing from log
   - entity: switch
     name: Sleep
     category: config

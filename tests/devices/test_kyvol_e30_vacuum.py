@@ -1,5 +1,5 @@
 from homeassistant.components.button import ButtonDeviceClass
-from homeassistant.components.sensor import SensorDeviceClass, STATE_CLASS_MEASUREMENT
+from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT, SensorDeviceClass
 from homeassistant.components.vacuum import (
     STATE_CLEANING,
     STATE_DOCKED,

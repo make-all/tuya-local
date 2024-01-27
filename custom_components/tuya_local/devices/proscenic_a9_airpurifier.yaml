@@ -1,0 +1,149 @@
+name: Air Purifier
+products:
+  - id: giwqfeiezesbkkbe
+    name: Proscenic A9
+primary_entity:
+  entity: fan
+  icon: "mdi:air-purifier"
+  translation_key: fan_with_presets
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 4
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: "Sleep"
+          value: sleep
+        - dps_val: "1"
+          value: low
+        - dps_val: "2"
+          value: medium
+        - dps_val: "3"
+          value: high
+        - dps_val: "4"
+          value: turbo
+        - dps_val: "Auto"
+          value: auto
+    - id: 4
+      name: speed
+      type: string
+      mapping:
+        - dps_val: "Sleep"
+          value: 20
+        - dps_val: "1"
+          value: 40
+        - dps_val: "2"
+          value: 60
+        - dps_val: "3"
+          value: 80
+        - dps_val: "4"
+          value: 100
+        - dps_val: "Auto"
+          value: 0
+    - id: 102
+      name: unknown_102
+      type: string
+secondary_entities:
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        name: sensor
+        class: measurement
+        type: integer
+        unit: ugm3
+  - entity: light  # this is inverted (false = light on)
+    category: config
+    name: Display
+    icon: "mdi:lightbulb-night"
+    dps:
+      - id: 8
+        name: switch
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+  - entity: sensor
+    name: Filter usage
+    category: diagnostic
+    icon: "mdi:shield-bug"
+    dps:
+      - id: 5
+        name: sensor
+        type: integer
+        unit: "%"
+  - entity: button
+    name: Reset Filter
+    category: config
+    icon: "mdi:air-filter"
+    dps:
+      - id: 11
+        name: button
+        type: boolean
+  - entity: sensor
+    name: Filter hours left
+    category: diagnostic
+    icon: "mdi:air-filter"
+    dps:
+      - id: 16
+        name: sensor
+        type: integer
+        unit: h
+  - entity: lock
+    name: Child lock
+    icon: "mdi:hand-back-right-off"
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: sensor
+    name: Filtered Air
+    category: diagnostic
+    icon: "mdi:air-filter"
+    dps:
+      - id: 104
+        name: sensor
+        type: integer
+        optional: true
+        unit: m³
+  - entity: sensor
+    name: Air quality
+    class: enum
+    icon: "mdi:air-filter"
+    dps:
+      - id: 21
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: "mild"
+            value: "Great"
+          - dps_val: "good"
+            value: "Good"
+          - dps_val: "medium"
+            value: "Medium"
+          - dps_val: "severe"
+            value: "Severe"
+  - entity: select
+    name: Timer
+    icon: "mdi:fan-clock"
+    category: config
+    dps:
+      - id: 101
+        type: integer
+        name: option
+        mapping:
+          - dps_val: 0
+            value: "Off"
+          - dps_val: 1
+            value: "1 hour"
+          - dps_val: 2
+            value: "2 hour"
+          - dps_val: 4
+            value: "4 hours"
+          - dps_val: 8
+            value: "8 hours"
