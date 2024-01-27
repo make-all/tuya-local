@@ -58,6 +58,8 @@ class TuyaLocalDevice(object):
             poll_only (bool): True if the device should be polled only
         """
         self._name = name
+        self._dev_id = dev_id
+        self._dev_cid = dev_cid
         self._address = address
         self._local_key = local_key
         self._children = []
@@ -66,6 +68,8 @@ class TuyaLocalDevice(object):
         self._shutdown_listener = None
         self._startup_listener = None
         self._hub_device = None
+        self._hass = hass
+
         self._api_protocol_version_index = None
         self._api_protocol_working = False
         self._api_working_protocol_failures = 0
@@ -79,7 +83,6 @@ class TuyaLocalDevice(object):
                 )
             else:
                 self._api = tinytuya.Device(dev_id, address, local_key)
-            self.dev_cid = dev_cid
         except Exception as e:
             _LOGGER.error(
                 "%s: %s while initialising device %s",
@@ -97,8 +100,6 @@ class TuyaLocalDevice(object):
         self._poll_only = poll_only
         self._temporary_poll = False
         self._reset_cached_state()
-
-        self._hass = hass
 
         # API calls to update Tuya devices are asynchronous and non-blocking.
         # This means you can send a change and immediately request an updated
@@ -131,12 +132,16 @@ class TuyaLocalDevice(object):
 
     @property
     def dev_id(self):
-        return self._api.id
+        return self._dev_id
+
+    @property
+    def dev_cid(self):
+        return self._dev_cid
 
     @property
     def unique_id(self):
         """Return the unique id for this device (the dev_id or dev_cid)."""
-        return self.dev_cid or self._api.id
+        return self._dev_cid or self._dev_id
 
     @property
     def device_info(self):
