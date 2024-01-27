@@ -570,6 +570,7 @@ port and password.
 
 ### Remote controllers
 
+- Arlec HUBRF06HA RF 8x8 learning remote transmitter
 - Universal remote control with temperature and humidity sensors
 
 ### Miscellaneous
