@@ -13,7 +13,7 @@ primary_entity:
       type: string
       mapping:
         - conditions:
-            - dps_val: [ "1", "2", "3" ]
+            - dps_val: ["1", "2", "3"]
               mapping:
                 - dps_val: "1"
                   value: open
@@ -21,7 +21,7 @@ primary_entity:
                   value: close
                 - dps_val: "3"
                   value: stop
-            - dps_val: [ "open", "close", "stop", "continue"]
+            - dps_val: ["open", "close", "stop", "continue"]
               mapping:
                 - dps_val: open
                   value: open
@@ -29,7 +29,7 @@ primary_entity:
                   value: close
                 - dps_val: stop
                   value: stop
-            - dps_val: [ "ZZ", "FZ", "STOP" ]
+            - dps_val: ["ZZ", "FZ", "STOP"]
               mapping:
                 - dps_val: ZZ
                   value: open

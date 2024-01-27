@@ -50,7 +50,7 @@ class TestM027Curtains(MultiSensorTests, BasicSelectTests, TuyaDeviceTestCase):
                 "morning": "Morning",
                 "night": "Night",
             },
-        ),
+        )
         self.mark_secondary(
             [
                 "binary_sensor_fault",

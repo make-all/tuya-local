@@ -1,6 +1,5 @@
 name: Dimmable light
 products:
-  # https://www.feit.com/collections/smart-controls/products/smart-wi-fi-dimmer-dim-wifi
   - id: tebc75erlgslgpn5
     name: Feit Dimmer
 primary_entity:
@@ -20,10 +19,10 @@ primary_entity:
         min: 10
         max: 1000
       mapping:
-        - scale: 3.92 # this is important for that device, else lights are too dim
+        - scale: 3.92
+    - id: 3
       # advisory only, the integration does not actually use this, setting it
       # does not seem to work, so probably determined by bulb type
-    - id: 3
       type: integer
       name: minimum_brightness
       optional: true

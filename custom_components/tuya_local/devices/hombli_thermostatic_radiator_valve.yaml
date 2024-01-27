@@ -23,9 +23,10 @@ primary_entity:
       name: temperature
       mapping:
         - scale: 10
+          step: 5
       range:
-          max: 300
-          min: 50
+        max: 300
+        min: 50
     - id: 106
       type: boolean
       name: preset_mode
@@ -76,10 +77,10 @@ secondary_entities:
         name: value
         mapping:
           - scale: 10
-        range:
-            min: -60
-            max: 60
             step: 5
+        range:
+          min: -60
+          max: 60
   - entity: lock
     name: Child lock
     icon: "mdi:hand-back-right-off"

@@ -1,12 +1,16 @@
 """
 Implementation of Tuya events
 """
+import logging
+
 from homeassistant.components.event import EventDeviceClass, EventEntity
 
 from .device import TuyaLocalDevice
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
 from .helpers.mixin import TuyaLocalEntity
+
+_LOGGER = logging.getLogger(__name__)
 
 
 async def async_setup_entry(hass, config_entry, async_add_entities):

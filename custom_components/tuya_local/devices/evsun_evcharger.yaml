@@ -1,0 +1,278 @@
+name: EV charger
+primary_entity:
+  entity: sensor
+  class: energy
+  dps:
+    - id: 1
+      optional: true
+      type: integer
+      name: sensor
+      unit: kWh
+      mapping:
+        - scale: 100
+      class: total_increasing
+secondary_entities:
+  - entity: sensor
+    name: Status
+    icon: "mdi:ev-station"
+    class: enum
+    dps:
+      - id: 3
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: charger_free
+            value: Available
+          - dps_val: charger_insert
+            value: Plugged in
+          - dps_val: charger_free_fault
+            value: Fault (unplugged)
+          - dps_val: charger_wait
+            value: Waiting
+          - dps_val: charger_charging
+            value: Charging
+          - dps_val: charger_pause
+            value: Paused
+          - dps_val: charger_end
+            value: Finished
+          - dps_val: charger_fault
+            value: Error
+      - id: 11
+        optional: true
+        type: string
+        name: alarm_set_1
+      - id: 12
+        optional: true
+        type: string
+        name: alarm_set_2
+      - id: 19
+        optional: true
+        type: string
+        name: local_timer
+      - id: 23
+        type: string
+        name: system_version
+      - id: 33
+        optional: true
+        type: string
+        name: mode_set
+  - entity: number
+    name: Charging current
+    class: current
+    category: config
+    dps:
+      - id: 4
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 1
+          max: 255
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 5
+        optional: true
+        type: integer
+        name: sensor
+        unit: kW
+        mapping:
+          - scale: 1000
+        class: measurement
+  - entity: sensor
+    name: Phase A voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - mask: "FFFF000000000000"
+            scale: 10
+  - entity: sensor
+    name: Phase A current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - mask: "0000FFFFFF000000"
+            scale: 1000
+  - entity: sensor
+    name: Phase A power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        optional: true
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - mask: "0000000000FFFFFF"
+            scale: 1000
+  - entity: sensor
+    name: Total power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    name: Connection
+    icon: "mdi:ev-plug-type2"
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 13
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: controlpi_12v
+            value: Standby
+          - dps_val: controlpi_12v_pwm
+            value: Communication initialising
+          - dps_val: controlpi_9v
+            value: Vehicle detected
+          - dps_val: controlpi_9v_pwm
+            value: Vehicle connected
+          - dps_val: controlpi_6v
+            value: Ready to charge
+          - dps_val: controlpi_6v_pwm
+            value: Charging
+          - dps_val: controlpi_error
+            value: Error
+  - entity: select
+    name: Charging mode
+    icon: "mdi:ev-station"
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        mapping:
+          - dps_val: charge_now
+            value: Immediate
+          - dps_val: charge_pct
+            value: Charge to percent
+          - dps_val: charge_energy
+            value: Fixed charge
+          - dps_val: charge_schedule
+            value: Scheduled charge
+          - dps_val: charge_delay
+            value: Delayed charge
+  - entity: sensor
+    name: Remaining
+    class: energy_storage
+    category: diagnostic
+    dps:
+      - id: 15
+        optional: true
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: button
+    name: Clear energy
+    class: reestart
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: button
+  - entity: number
+    name: Fixed charge
+    class: energy_storage
+    category: config
+    dps:
+      - id: 17
+        type: integer
+        name: value
+        unit: kWh
+        mapping:
+          - scale: 100
+        range:
+          min: 1
+          max: 2000000
+  - entity: switch
+    icon: "mdi:ev-station"
+    dps:
+      - id: 18
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 24
+        type: integer
+        name: sensor
+        unit: C
+  - entity: sensor
+    name: Charge
+    class: energy_storage
+    dps:
+      - id: 25
+        type: integer
+        name: sensor
+        unit: kWh
+        mapping:
+          - scale: 100
+  - entity: binary_sensor
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 27
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: online
+            value: true
+          - dps_val: offline
+            value: false
+  - entity: number
+    name: Delayed charge timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 28
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 12

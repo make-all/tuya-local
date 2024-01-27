@@ -48,9 +48,18 @@ secondary_entities:
     icon: "mdi:hand-back-right-off"
     category: config
     dps:
-      - id: 6 # can be 7
+      - id: 6
         type: boolean
         name: lock
+        # can be 7
+        optional: true
+        mapping:
+          - dps_val: null
+            value_redirect: alternate
+      - id: 7
+        type: boolean
+        optional: true
+        name: alternate
   - entity: number
     name: Timer
     category: config

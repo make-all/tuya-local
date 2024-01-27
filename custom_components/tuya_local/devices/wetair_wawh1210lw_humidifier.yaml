@@ -44,11 +44,11 @@ secondary_entities:
         type: boolean
         name: switch
         mapping:
-            - dps_val: true
-              icon: "mdi:led-on"
-            - dps_val: false
-              icon: "mdi:led-off"
-              
+          - dps_val: true
+            icon: "mdi:led-on"
+          - dps_val: false
+            icon: "mdi:led-off"
+
   - entity: switch
     name: Sound
     category: config
@@ -57,10 +57,10 @@ secondary_entities:
         name: "switch"
         type: boolean
         mapping:
-            - dps_val: true
-              icon: "mdi:volume-high"
-            - dps_val: false
-              icon: "mdi:volume-off"
+          - dps_val: true
+            icon: "mdi:volume-high"
+          - dps_val: false
+            icon: "mdi:volume-off"
 
   - entity: sensor
     name: Current humidity
@@ -70,7 +70,7 @@ secondary_entities:
     dps:
       - id: 14
         name: sensor
-        type: integer 
+        type: integer
         class: measurement
         unit: "%"
 

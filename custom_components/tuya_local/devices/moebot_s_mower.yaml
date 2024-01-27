@@ -54,7 +54,8 @@ primary_entity:
     - id: 102
       name: error
       type: bitfield
-      # out_of_bounds, lifted, tilted, overturned, trapped, signal lost, motor fault, overheated, battery damaged
+      # out_of_bounds, lifted, tilted, overturned, trapped, signal lost,
+      # motor fault, overheated, battery damaged
     - id: 106
       type: integer
       name: password
@@ -125,7 +126,7 @@ secondary_entities:
   - entity: button
     name: Start fixed mowing
     icon: "mdi:mower-on"
-    dps: 
+    dps:
       - id: 115
         type: boolean
         name: button
@@ -136,7 +137,7 @@ secondary_entities:
   - entity: button
     name: Cancel mowing
     icon: "mdi:mower"
-    dps: 
+    dps:
       - id: 115
         type: boolean
         name: button

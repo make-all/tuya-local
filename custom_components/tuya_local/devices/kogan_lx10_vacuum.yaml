@@ -6,14 +6,14 @@ primary_entity:
   entity: vacuum
   dps:
     - id: 101
-      name: activate # clean_switch
+      name: activate  # clean_switch
       type: boolean
     - id: 102
-      name: pause # pause_switch
+      name: pause  # pause_switch
       type: boolean
       hidden: true
     - id: 104
-      name: command # clean_mode
+      name: command  # clean_mode
       type: string
       mapping:
         - constraint: pause
@@ -31,7 +31,7 @@ primary_entity:
                 - dps_val: backcharge
                   value: return_to_base
     - id: 105
-      name: status # robot_state
+      name: status  # robot_state
       type: string
       mapping:
         - dps_val: idle
@@ -57,7 +57,7 @@ primary_entity:
         - dps_val: remotectl
           value: remotectl
     - id: 109
-      name: fan_speed # fan_mode
+      name: fan_speed  # fan_mode
       type: string
       mapping:
         - dps_val: quiet
@@ -67,7 +67,7 @@ primary_entity:
         - dps_val: auto
           value: auto
     - id: 111
-      name: direction_control # remote_ctrl
+      name: direction_control  # remote_ctrl
       optional: true
       type: string
       mapping:
@@ -82,11 +82,11 @@ primary_entity:
         - dps_val: stop
           value: stop
     - id: 112
-      name: locate # seek_robot
+      name: locate  # seek_robot
       optional: true
       type: boolean
     - id: 122
-      name: error # robot_fault
+      name: error  # robot_fault
       type: bitfield
       mapping:
         - dps_val: 2
