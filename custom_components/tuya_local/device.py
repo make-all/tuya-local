@@ -58,20 +58,24 @@ class TuyaLocalDevice(object):
             poll_only (bool): True if the device should be polled only
         """
         self._name = name
+        self._address = address
+        self._local_key = local_key
         self._children = []
         self._force_dps = []
         self._running = False
         self._shutdown_listener = None
         self._startup_listener = None
+        self._hub_device = None
         self._api_protocol_version_index = None
         self._api_protocol_working = False
         self._api_working_protocol_failures = 0
         try:
             if dev_cid:
+                self._hub_device = TuyaLocalHubDeviceRegistry.get_hub_device(self)
                 self._api = tinytuya.Device(
                     dev_id,
                     cid=dev_cid,
-                    parent=tinytuya.Device(dev_id, address, local_key),
+                    parent=self._hub_device.api,
                 )
             else:
                 self._api = tinytuya.Device(dev_id, address, local_key)
@@ -87,11 +91,9 @@ class TuyaLocalDevice(object):
 
         # we handle retries at a higher level so we can rotate protocol version
         self._api.set_socketRetryLimit(1)
-        if self._api.parent:
-            self._api.parent.set_socketRetryLimit(1)
 
         self._refresh_task = None
-        self._protocol_configured = protocol_version
+        self._protocol_configured = self._hub_device.api_protocol_version if self._hub_device.api_protocol_version else protocol_version
         self._poll_only = poll_only
         self._temporary_poll = False
         self._reset_cached_state()
@@ -118,6 +120,18 @@ class TuyaLocalDevice(object):
     @property
     def name(self):
         return self._name
+
+    @property
+    def address(self):
+        return self._address
+
+    @property
+    def local_key(self):
+        return self._local_key
+
+    @property
+    def dev_id(self):
+        return self._api.id
 
     @property
     def unique_id(self):
@@ -241,6 +255,9 @@ class TuyaLocalDevice(object):
 
     async def async_receive(self):
         """Receive messages from a persistent connection asynchronously."""
+        if self._hub_device:
+            self._hub_device.register_monitoring_subdevice(self)
+
         # If we didn't yet get any state from the device, we may need to
         # negotiate the protocol before making the connection persistent
         persist = not self.should_poll
@@ -249,8 +266,8 @@ class TuyaLocalDevice(object):
         dps_updated = False
 
         self._api.set_socketPersistent(persist)
-        if self._api.parent:
-            self._api.parent.set_socketPersistent(persist)
+        if self._hub_device:
+            self._hub_device.set_api_socket_persistent(persist)
 
         while self._running:
             try:
@@ -267,8 +284,8 @@ class TuyaLocalDevice(object):
                         "%s persistant connection set to %s", self.name, persist
                     )
                     self._api.set_socketPersistent(persist)
-                    if self._api.parent:
-                        self._api.parent.set_socketPersistent(persist)
+                    if self._hub_device:
+                        self._hub_device.set_api_socket_persistent(persist)
 
                 if now - last_cache > self._CACHE_TIMEOUT:
                     if (
@@ -323,8 +340,8 @@ class TuyaLocalDevice(object):
                 self._running = False
                 # Close the persistent connection when exiting the loop
                 self._api.set_socketPersistent(False)
-                if self._api.parent:
-                    self._api.parent.set_socketPersistent(False)
+                if self._hub_device:
+                    self._hub_device.unregister_monitoring_subdevice(self)
                 raise
             except Exception as t:
                 _LOGGER.exception(
@@ -337,8 +354,8 @@ class TuyaLocalDevice(object):
 
         # Close the persistent connection when exiting the loop
         self._api.set_socketPersistent(False)
-        if self._api.parent:
-            self._api.parent.set_socketPersistent(False)
+        if self._hub_device:
+            self._hub_device.unregister_monitoring_subdevice(self)
 
     async def async_possible_types(self):
         cached_state = self._get_cached_state()
@@ -524,6 +541,8 @@ class TuyaLocalDevice(object):
                     if type(retval) is dict and "Error" in retval:
                         raise AttributeError(retval["Error"])
                     self._api_protocol_working = True
+                    if self._hub_device:
+                        self._hub_device.confirm_protocol_version()
                     self._api_working_protocol_failures = 0
                     return retval
             except Exception as e:
@@ -607,17 +626,98 @@ class TuyaLocalDevice(object):
             self._api.set_version,
             new_version,
         )
-        if self._api.parent:
-            await self._hass.async_add_executor_job(
-                self._api.parent.set_version,
-                new_version,
-            )
+        if self._hub_device:
+            await self._hub_device.set_api_protocol_version(new_version)
 
     @staticmethod
     def get_key_for_value(obj, value, fallback=None):
         keys = list(obj.keys())
         values = list(obj.values())
         return keys[values.index(value)] if value in values else fallback
+
+
+class TuyaLocalHubDevice(object):
+    def __init__(
+        self,
+        dev_id,
+        address,
+        local_key,
+        hass: HomeAssistant
+    ):
+        self._dev_id = dev_id
+        self._hass = hass
+        self._subdevices = {}
+        self._api = tinytuya.Device(dev_id, address, local_key)
+        self._api.set_socketRetryLimit(1)
+        self._api_protocol_version_index = None
+        self._api_protocol_working = False
+        self._api_socket_persistent = False
+
+    async def set_api_protocol_version(self, protocol_version):
+        if not self._api_protocol_working:
+            await self._hass.async_add_executor_job(
+                self._api.set_version,
+                protocol_version,
+            )
+            self._api_protocol_version_index = API_PROTOCOL_VERSIONS.index(protocol_version)
+            _LOGGER.debug("Hub %s has swithed protocol version: %s", self._dev_id, self.api_protocol_version)
+
+
+    def confirm_protocol_version(self):
+        _LOGGER.info("Hub %s protocol version negociation completed: %s", self._dev_id, self.api_protocol_version)
+        self._api_protocol_working = True
+
+    @property
+    def api_protocol_version(self):
+        return API_PROTOCOL_VERSIONS[self._api_protocol_version_index] if self._api_protocol_working else None
+
+    def set_api_socket_persistent(self, socket_persistent):
+        if socket_persistent and self._subdevices:
+            _LOGGER.debug("Hub %s has socket persistence enabled: %s", self._dev_id)
+            self._api_socket_persistent = True
+            self._api.set_socketPersistent(True)
+        elif (not socket_persistent) and (not [subdevice for subdevice in self._subdevices.values() if not subdevice.should_poll]):
+            _LOGGER.debug("Hub %s has socket persistence disabled: %s", self._dev_id)
+            self._api_socket_persistent = False
+            self._api.set_socketPersistent(False)
+
+    @property
+    def api_socket_persistent(self):
+        return self._api_socket_persistent
+
+    def register_monitoring_subdevice(self, subdevice: TuyaLocalDevice):
+        self._subdevices.setdefault(subdevice.dev_cid, subdevice)
+
+    def unregister_monitoring_subdevice(self, subdevice: TuyaLocalDevice):
+        del self._subdevices[subdevice.dev_cid]
+        if not self._subdevices:
+            _LOGGER.debug("Hub %s closing the underlying connection: %s", self._dev_id)
+            self._api_socket_persistent = False
+            self._api.set_socketPersistent(False)
+
+    @property
+    def api(self):
+        return self._api
+
+
+class TuyaLocalHubDeviceRegistry(object):
+    _hub_devices = {}
+
+    @staticmethod
+    def get_hub_device(device: TuyaLocalDevice) -> TuyaLocalHubDevice:
+        key = TuyaLocalHubDeviceRegistry._get_key(device.dev_id, device.local_key)
+        hub_device = TuyaLocalHubDeviceRegistry._hub_devices.get(key, None)
+        if not hub_device:
+            _LOGGER.debug("Creating hub device: %s", device.dev_id)
+            hub_device = TuyaLocalHubDevice(device.dev_id, device.address, device.local_key, device._hass)
+            TuyaLocalHubDeviceRegistry._hub_devices[key] = hub_device
+
+        _LOGGER.info("Subdevice %s uses hub device: %s", device.dev_cid, device.dev_id)
+        return hub_device
+
+    @staticmethod
+    def _get_key(dev_id, local_key):
+        "#dev_id:{}|local_key:{}".format(dev_id, local_key)
 
 
 def setup_device(hass: HomeAssistant, config: dict):
