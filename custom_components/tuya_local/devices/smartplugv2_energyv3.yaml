@@ -54,8 +54,12 @@ secondary_entities:
       - id: 17
         name: sensor
         type: integer
-        unit: Wh
+        mapping:
+          - scale: 1000
+        unit: kWh
         optional: true
+        class: total_increasing
+
       - id: 25
         type: integer
         name: calibration
