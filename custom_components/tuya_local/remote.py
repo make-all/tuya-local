@@ -165,7 +165,7 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
                         f"Command {repr(cmd)} not found for {subdevice}"
                     ) from err
                 if isinstance(codes, list):
-                    codes = code[:]
+                    codes = codes[:]
                 else:
                     codes = [codes]
 
@@ -216,7 +216,6 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
         """Send remote commands"""
         kwargs[ATTR_COMMAND] = command
         kwargs = SERVICE_SEND_SCHEMA(kwargs)
-        commands = kwargs[ATTR_COMMAND]
         subdevice = kwargs.get(ATTR_DEVICE)
         repeat = kwargs.get(ATTR_NUM_REPEATS)
         delay = kwargs.get(ATTR_DELAY_SECS, DEFAULT_DELAY_SECS) * 1000
@@ -256,7 +255,6 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
         commands = kwargs[ATTR_COMMAND]
         subdevice = kwargs[ATTR_DEVICE]
         toggle = kwargs[ATTR_ALTERNATIVE]
-        service = f"{RM_DOMAIN}.{SERVICE_LEARN_COMMAND}"
 
         if not self._storage_loaded:
             await self._async_load_storage()
@@ -280,6 +278,7 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
 
     async def _async_learn_command(self, command):
         """Learn a single command"""
+        service = f"{RM_DOMAIN}.{SERVICE_LEARN_COMMAND}"
         if self._control_dp:
             await self._control_dp.async_set_value(self._device, CMD_LEARN)
         else:
@@ -301,7 +300,7 @@ class TuyaLocalRemote(TuyaLocalEntity, RemoteEntity):
                 code = self._receive_dp.get_value(self._device)
                 if code is not None:
                     return code
-
+            _LOGGER.warning("Timed out without receiving code in %s", service)
             raise TimeoutError(
                 f"No remote code received within {LEARNING_TIMEOUT.total_seconds()} seconds",
             )

@@ -20,7 +20,7 @@ primary_entity:
               value: heat
             - dps_val: dehumidify
               icon: "mdi:water-percent"
-              value: dry              
+              value: dry
     - id: 2
       name: temperature
       type: integer
@@ -110,9 +110,9 @@ primary_entity:
         - dps_val: "off"
           constraint: hvac_mode
           conditions:
-            - dps_val: False
+            - dps_val: false
               value: "off"
-            - dps_val: True
+            - dps_val: true
               value: idle
 secondary_entities:
   - entity: number

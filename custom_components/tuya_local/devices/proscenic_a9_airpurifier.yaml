@@ -46,7 +46,7 @@ primary_entity:
       name: unknown_102
       type: string
 secondary_entities:
-  - entity: sensor 
+  - entity: sensor
     class: pm25
     dps:
       - id: 2
@@ -54,7 +54,7 @@ secondary_entities:
         class: measurement
         type: integer
         unit: ugm3
-  - entity: light # this is inverted to what actually happens (false = light on)
+  - entity: light  # this is inverted (false = light on)
     category: config
     name: Display
     icon: "mdi:lightbulb-night"
@@ -144,6 +144,6 @@ secondary_entities:
           - dps_val: 2
             value: "2 hour"
           - dps_val: 4
-            value: "4 hours" 
+            value: "4 hours"
           - dps_val: 8
-            value: "8 hours" 
+            value: "8 hours"

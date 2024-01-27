@@ -25,7 +25,7 @@ primary_entity:
       name: fault
       type: bitfield
       optional: true
-      # we need to know the full range of values to expose this as a light control
+      # we need the full range of values to expose this as a light control
     - id: 118
       name: backlight_brightness
       type: string
@@ -141,7 +141,7 @@ secondary_entities:
     class: atmospheric_pressure
     category: diagnostic
     dps:
-      - id: 110 
+      - id: 110
         type: integer
         name: sensor
         class: measurement
@@ -201,7 +201,7 @@ secondary_entities:
         type: string
         name: option
         mapping:
-          - dps_val: true 
+          - dps_val: true
             value: 24h
           - dps_val: false
             value: 12h

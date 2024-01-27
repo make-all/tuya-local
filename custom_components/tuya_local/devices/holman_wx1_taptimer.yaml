@@ -3,7 +3,7 @@ products:
   - id: zrsgzc8jktsricjj
     model: WX1
     manufacturer: Holman
-    # DP decoding thanks to funtastix https://github.com/funtastix/localtuya/blob/dbcc6dcd8340cd3e8b7ae91cda379ab68dfcac22/HOLMAN_TAP_TIMER.md
+    # DP decoding thanks to funtastix
 primary_entity:
   entity: switch
   name: Manual
@@ -29,7 +29,7 @@ secondary_entities:
         unit: C
       - id: 115
         name: sensor_present
-        type: boolean 
+        type: boolean
   - entity: sensor
     name: Soil moisture
     class: humidity
@@ -108,7 +108,9 @@ secondary_entities:
         name: value
         unit: min
   - entity: sensor
-    name: Start A encoded # this DP shows the start time, duration and days for start A. Not controllable - use automation instead.
+    name: Start A encoded
+    # this DP shows the start time, duration and days
+    # for start A. Not controllable - use automation instead.
     category: diagnostic
     dps:
       - id: 110
@@ -117,7 +119,7 @@ secondary_entities:
         type: base64
       - id: 110
         optional: true
-        name: days # bit string of flags for days of the week Sun-Sat, plus a bit for on/off
+        name: days  # flags for days of the week Sun-Sat, plus a bit for on/off
         type: base64
         mapping:
           - mask: "FF000000"
@@ -146,7 +148,7 @@ secondary_entities:
         mapping:
           - mask: "FF00000000000000"
   - entity: sensor
-    name: Start B encoded # this DP shows the start time, duration and days for start B. Not controllable - use automation instead.
+    name: Start B encoded  # start time, duration and days for start B
     category: diagnostic
     dps:
       - id: 111
@@ -155,7 +157,7 @@ secondary_entities:
         type: string
       - id: 111
         optional: true
-        name: days # bit string of flags for days of the week Sun-Sat, plus a bit for on/off
+        name: days  # flags for days of the week Sun-Sat, plus a bit for on/off
         type: base64
         mapping:
           - mask: "FF000000"
@@ -184,7 +186,7 @@ secondary_entities:
         mapping:
           - mask: "FF00000000000000"
   - entity: sensor
-    name: Start C encoded # this DP shows the start time, duration and days for start C. Not controllable - use automation instead.
+    name: Start C encoded  # start time, duration and days for start C
     category: diagnostic
     dps:
       - id: 112
@@ -193,7 +195,7 @@ secondary_entities:
         type: string
       - id: 112
         optional: true
-        name: days # bit string of flags for days of the week Sun-Sat, plus a bit for on/off
+        name: days  # flags for days of the week Sun-Sat, plus a bit for on/off
         type: base64
         mapping:
           - mask: "FF000000"
@@ -278,7 +280,7 @@ secondary_entities:
         name: sensor
         type: integer
   - entity: sensor
-    name: Flow count encoded # shows the past 10 days of flow count history. xx_days_256 values need to be multiplied by 256 and added to xx_days value to get the total for that day.
+    name: Flow count encoded  # past 10 days of flow count history.
     category: diagnostic
     dps:
       - id: 121
@@ -433,7 +435,7 @@ secondary_entities:
         name: sensor_present
         type: boolean
   - entity: sensor
-    name: Next watering encoded # shows the next scheduled watering time based on starts A, B and C
+    name: Next watering encoded  # based on starts A, B and C
     category: diagnostic
     dps:
       - id: 128

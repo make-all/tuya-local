@@ -1,0 +1,221 @@
+name: Air conditioner
+products:
+  - id: gvraxduhxaxalell
+    name: Inventor Leon LEUVI-09WIFI
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: auto
+              value: heat_cool
+            - dps_val: cold
+              value: cool
+            - dps_val: wet
+              value: dry
+            - dps_val: wind
+              value: fan_only
+            - dps_val: hot
+              value: heat
+            - dps_val: pre_dehumidify
+              value: dry
+              hidden: true
+    - id: 2
+      type: integer
+      name: temperature
+      unit: C
+      range:
+        min: 160
+        max: 300
+      mapping:
+        - scale: 10
+          step: 5
+    - id: 3
+      type: integer
+      name: current_temperature
+      mapping:
+        - scale: 10
+    - id: 4
+      type: string
+      name: mode
+      hidden: true
+    - id: 18
+      type: integer
+      optional: true
+      name: current_humidity
+    - id: 23
+      type: integer
+      optional: true
+      name: temp_current_f
+    - id: 24
+      type: integer
+      optional: true
+      name: temp_set_f
+      range:
+        min: 60
+        max: 86
+    - id: 30
+      type: boolean
+      name: swing_mode
+      mapping:
+        - dps_val: false
+          constraint: swing_horiz
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: horizontal
+        - dps_val: true
+          constraint: swing_horiz
+          conditions:
+            - dps_val: false
+              value: vertical
+            - dps_val: true
+              value: both
+    - id: 33
+      type: boolean
+      name: swing_horiz
+      hidden: true
+    - id: 101
+      type: boolean
+      name: preset_mode
+      mapping:
+        - dps_val: true
+          value: away
+        - dps_val: false
+          constraint: strong
+          conditions:
+            - dps_val: false
+              value: comfort
+            - dps_val: true
+              value: boost
+    - id: 109
+      type: boolean
+      name: strong
+      hidden: true
+    - id: 107
+      type: string
+      name: humidity
+      range:
+        min: 35
+        max: 85
+      mapping:
+        - dps_val: cancel
+          value: null
+          hidden: true
+        - dps_val: "35"
+          value: 35
+        - dps_val: "40"
+          value: 40
+        - dps_val: "45"
+          value: 45
+        - dps_val: "50"
+          value: 50
+        - dps_val: "55"
+          value: 55
+        - dps_val: "60"
+          value: 60
+        - dps_val: "65"
+          value: 65
+        - dps_val: "70"
+          value: 70
+        - dps_val: "75"
+          value: 75
+        - dps_val: "80"
+          value: 80
+        - dps_val: "85"
+          value: 85
+secondary_entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 108
+        type: integer
+        name: speed
+        range:
+          min: 0
+          max: 100
+  - entity: select
+    name: Display units
+    icon: "mdi:temperature-celsius"
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: Celsius
+          - dps_val: f
+            value: Fahrenheit
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
+  - entity: switch
+    name: Self clean
+    icon: "mdi:shimmer"
+    category: config
+    dps:
+      - id: 27
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Follow me
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 37
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Outdoor temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 103
+        type: integer
+        optional: true
+        name: fahrenheit
+  - entity: switch
+    name: Fresh
+    icon: "mdi:leaf"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Breeze away
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
