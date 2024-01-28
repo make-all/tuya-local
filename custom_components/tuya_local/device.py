@@ -30,7 +30,7 @@ from .helpers.device_config import possible_matches
 from .helpers.log import log_json
 
 _LOGGER = logging.getLogger(__name__)
-
+tinytuya.set_debug()
 
 class TuyaLocalDevice(object):
     def __init__(
@@ -665,12 +665,13 @@ class TuyaLocalHubDevice(object):
                 protocol_version,
             )
             self._api_protocol_version_index = API_PROTOCOL_VERSIONS.index(protocol_version)
-            _LOGGER.debug("Hub %s has swithed protocol version: %s", self._dev_id, self.api_protocol_version)
+            _LOGGER.debug("Hub %s has swithed protocol version: %s", self._dev_id, protocol_version)
 
 
     def confirm_protocol_version(self):
-        _LOGGER.info("Hub %s protocol version negociation completed: %s", self._dev_id, self.api_protocol_version)
         self._api_protocol_working = True
+        _LOGGER.info("Hub %s protocol version negociation completed: %s", self._dev_id, self.api_protocol_version)
+
 
     @property
     def api_protocol_version(self):
@@ -713,11 +714,11 @@ class TuyaLocalHubDeviceRegistry(object):
         key = TuyaLocalHubDeviceRegistry._get_key(device.dev_id, device.local_key)
         hub_device = TuyaLocalHubDeviceRegistry._hub_devices.get(key, None)
         if not hub_device:
-            _LOGGER.debug("Creating hub device: %s", device.dev_id)
+            _LOGGER.debug("Creating hub device: %s(%s)", device.name, device.dev_id)
             hub_device = TuyaLocalHubDevice(device.dev_id, device.address, device.local_key, device._hass)
             TuyaLocalHubDeviceRegistry._hub_devices[key] = hub_device
 
-        _LOGGER.info("Subdevice %s uses hub device: %s", device.dev_cid, device.dev_id)
+        _LOGGER.info("Subdevice %s(%s) uses hub device: %s", device.name, device.dev_cid, device.dev_id)
         return hub_device
 
     @staticmethod
