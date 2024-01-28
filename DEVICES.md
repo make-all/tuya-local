@@ -68,6 +68,7 @@
 - ElectriQ EcoSilent 14HPW
 - Fersk Vind 2
 - Fisher Summer air conditioner
+- Idea Heating Belt (with CS1 USB dongle)
 - Inventor Leon (Tokens Legend series) air conditioner
 - Kogan 2.6kW portable air conditioner
 - Lyfco OL-A012 air conditioner

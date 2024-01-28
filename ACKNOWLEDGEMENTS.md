@@ -474,3 +474,4 @@ Further device support has been made with the assistance of users. Please consid
 - [madmalkav](https://github.com/madmalkav) for assisting with support for Mellerware Comfy electric radiators.
 - [arhimidis64](https://github.com/arhimidis64) for assisting with support for Inventor Leon air conditioners.
 - [ceinmart](https://github.com/ceinmart) for assisting with support for Moes 4-gang switches.
+- [mihasybn](https://github.com/mihasybn) for assisting with support for Idea Heating Belt air conditioners.
