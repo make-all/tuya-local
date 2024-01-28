@@ -475,3 +475,4 @@ Further device support has been made with the assistance of users. Please consid
 - [arhimidis64](https://github.com/arhimidis64) for assisting with support for Inventor Leon air conditioners.
 - [ceinmart](https://github.com/ceinmart) for assisting with support for Moes 4-gang switches.
 - [mihasybn](https://github.com/mihasybn) for assisting with support for Idea Heating Belt air conditioners.
+- [feeling001](https://github.com/feeeling001) for contributing support for EcoPoint EV chargers.

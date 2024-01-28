@@ -329,6 +329,7 @@
 
 ### Battery Charger
 
+- EcoPoint EV charger
 - EVSun EV charger
 - Feyree home EV charger
 - Parkside PLGS 2012 A1 smart charger for powertools
