@@ -20,6 +20,7 @@ from .const import (
     API_PROTOCOL_VERSIONS,
     CONF_DEVICE_CID,
     CONF_DEVICE_ID,
+    CONF_DEVICE_PARENT,
     CONF_LOCAL_KEY,
     CONF_POLL_ONLY,
     CONF_PROTOCOL_VERSION,
@@ -41,6 +42,7 @@ class TuyaLocalDevice(object):
         local_key,
         protocol_version,
         dev_cid,
+        parent_dev_id,
         hass: HomeAssistant,
         poll_only=False,
     ):
@@ -60,6 +62,7 @@ class TuyaLocalDevice(object):
         self._name = name
         self._dev_id = dev_id
         self._dev_cid = dev_cid
+        self._parent_dev_id = parent_dev_id
         self._address = address
         self._local_key = local_key
         self._children = []
@@ -137,6 +140,10 @@ class TuyaLocalDevice(object):
     @property
     def dev_cid(self):
         return self._dev_cid
+
+    @property
+    def parent_dev_id(self):
+        return self._parent_dev_id
 
     @property
     def unique_id(self):
@@ -711,14 +718,14 @@ class TuyaLocalHubDeviceRegistry(object):
 
     @staticmethod
     def get_hub_device(device: TuyaLocalDevice) -> TuyaLocalHubDevice:
-        key = TuyaLocalHubDeviceRegistry._get_key(device.dev_id, device.local_key)
+        key = TuyaLocalHubDeviceRegistry._get_key(device.parent_dev_id, device.local_key)
         hub_device = TuyaLocalHubDeviceRegistry._hub_devices.get(key, None)
         if not hub_device:
-            _LOGGER.debug("Creating hub device: %s(%s)", device.name, device.dev_id)
-            hub_device = TuyaLocalHubDevice(device.dev_id, device.address, device.local_key, device._hass)
+            _LOGGER.debug("Creating hub device: %s", device.parent_dev_id)
+            hub_device = TuyaLocalHubDevice(device.parent_dev_id, device.address, device.local_key, device._hass)
             TuyaLocalHubDeviceRegistry._hub_devices[key] = hub_device
 
-        _LOGGER.info("Subdevice %s(%s) uses hub device: %s", device.name, device.dev_cid, device.dev_id)
+        _LOGGER.info("Subdevice %s(%s) uses hub device: %s", device.name, device.dev_cid, device.parent_dev_id)
         return hub_device
 
     @staticmethod
@@ -738,6 +745,7 @@ def setup_device(hass: HomeAssistant, config: dict):
         config[CONF_LOCAL_KEY],
         config[CONF_PROTOCOL_VERSION],
         config.get(CONF_DEVICE_CID),
+        config.get(CONF_DEVICE_PARENT),
         hass,
         config[CONF_POLL_ONLY],
     )

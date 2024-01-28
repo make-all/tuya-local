@@ -10,6 +10,7 @@ from . import DOMAIN
 from .const import (
     API_PROTOCOL_VERSIONS,
     CONF_DEVICE_CID,
+    CONF_DEVICE_PARENT,
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
     CONF_POLL_ONLY,
@@ -38,6 +39,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         proto_opts = {"default": 3.3}
         polling_opts = {"default": False}
         devcid_opts = {}
+        devparent_opts = {}
 
         if user_input is not None:
             await self.async_set_unique_id(get_device_id(user_input))
@@ -54,6 +56,8 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                 key_opts["default"] = user_input[CONF_LOCAL_KEY]
                 if CONF_DEVICE_CID in user_input:
                     devcid_opts["default"] = user_input[CONF_DEVICE_CID]
+                if CONF_DEVICE_PARENT in user_input:
+                    devparent_opts["default"] = user_input[CONF_DEVICE_PARENT]
                 proto_opts["default"] = user_input[CONF_PROTOCOL_VERSION]
                 polling_opts["default"] = user_input[CONF_POLL_ONLY]
 
@@ -70,6 +74,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                     ): vol.In(["auto"] + API_PROTOCOL_VERSIONS),
                     vol.Required(CONF_POLL_ONLY, **polling_opts): bool,
                     vol.Optional(CONF_DEVICE_CID, **devcid_opts): str,
+                    vol.Optional(CONF_DEVICE_PARENT, **devparent_opts): str,
                 }
             ),
             errors=errors,
@@ -178,6 +183,10 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
                 CONF_DEVICE_CID,
                 default=config.get(CONF_DEVICE_CID, ""),
             ): str,
+            vol.Optional(
+                CONF_DEVICE_PARENT,
+                default=config.get(CONF_DEVICE_PARENT, ""),
+            ): str,
         }
         cfg = get_config(config[CONF_TYPE])
         if cfg is None:
@@ -200,6 +209,7 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
 
     try:
         subdevice_id = config.get(CONF_DEVICE_CID)
+        parent = config.get(CONF_DEVICE_PARENT)
         device = TuyaLocalDevice(
             "Test",
             config[CONF_DEVICE_ID],
@@ -207,6 +217,7 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
             config[CONF_LOCAL_KEY],
             config[CONF_PROTOCOL_VERSION],
             subdevice_id,
+            parent,
             hass,
             True,
         )
