@@ -9,6 +9,7 @@ primary_entity:
     - id: 2
       type: string
       name: work_mode
+      category: config
       mapping:
         - dps_val: auto_clean
           value: Auto Clean
@@ -17,6 +18,7 @@ primary_entity:
 secondary_entities:
   - entity: switch
     name: Power
+    category: config
     dps:
       - id: 1
         name: switch
@@ -36,25 +38,26 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     name: Last Weight
+    icon: "mdi:scale"
     class: weight
     dps:
       - id: 6
         type: integer
         name: cat_weight
         unit: kg
-        class: measurement
         mapping:
           - scale: 0.1
   - entity: sensor
     category: diagnostic
     name: Time Used (Today)
+    icon: "mdi:counter"
     dps:
       - id: 7
         type: integer
         name: excretion_times_day
-        class: measurement
   - entity: button
     category: config
+    icon: "mdi:heat-pump-outline"
     name: Manual Clean
     dps:
       - id: 9
