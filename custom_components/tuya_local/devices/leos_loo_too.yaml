@@ -9,6 +9,7 @@ primary_entity:
     - id: 2
       type: string
       name: work_mode
+      icon: "mdi:refresh-auto"
       category: config
       mapping:
         - dps_val: auto_clean
@@ -19,8 +20,28 @@ secondary_entities:
   - entity: switch
     name: Power
     category: config
+    icon: "mdi:power"
+    class: switch
     dps:
       - id: 1
+        name: switch
+        type: boolean
+  - entity: switch
+    name: UV
+    category: config
+    icon: "mdi:alarm-light"
+    class: switch
+    dps:
+      - id: 13
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Light
+    category: config
+    icon: "mdi:lightbulb-outline"
+    class: switch
+    dps:
+      - id: 16
         name: switch
         type: boolean
   - entity: number
@@ -29,7 +50,7 @@ secondary_entities:
     dps:
       - id: 5
         type: integer
-        name: delay_clean_time
+        name: value
         range:
           min: 6
           max: 1200
