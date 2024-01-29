@@ -661,6 +661,7 @@ class TuyaLocalGatewayDevice(object):
         self._subdevices = {}
         self._api = tinytuya.Device(dev_id, address, local_key)
         self._api.set_socketRetryLimit(1)
+        self._api.set_socketTimeout(10)
         self._api_protocol_version_index = None
         self._api_protocol_working = False
         self._api_socket_persistent = False
