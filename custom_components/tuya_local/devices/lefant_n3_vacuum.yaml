@@ -8,22 +8,51 @@ primary_entity:
   entity: vacuum
   dps:
     - id: 1
+      name: power
+      type: boolean
+    - id: 2
       name: activate
       type: boolean
+      mapping:
+        - dps_val: true
+          value: false
+        - dps_val: false
+          value: true
+    - id: 3
+      name: switch_charge
+      type: boolean
+      optional: true
+      hidden: true
     - id: 4
-      name: command
+      name: work_mode
       type: string
+      optional: true
       mapping:
         - dps_val: smart
-          value: clean
+          conditions: power
+          constraint:
+            - dps_val: true
+              value: smart
         - dps_val: chargego
-          value: return_to_base
+          constraint: switch_charge
+          conditions:
+            - dps_val: true
+              value: return_to_base
         - dps_val: zone
-          value: clean_zone
+          constraint: power
+          conditions:
+            - dps_val: true
+              value: clean_zone
         - dps_val: pose
-          value: clean_spot
+          constraint: power
+          conditions:
+            - dps_val: true
+              value: clean_spot
         - dps_val: part
-          value: clean_partial
+          constraint: power
+          conditions:
+            - dps_val: true
+              value: clean_partial
         - dps_val: fastmapping
           value: map
         - dps_val: CleanModeSectorbased
@@ -190,6 +219,7 @@ primary_entity:
       name: scheduled_clean
     - id: 126
       type: boolean
+      optional: true
       name: map_saved
 secondary_entities:
   - entity: button
@@ -224,6 +254,7 @@ secondary_entities:
     dps:
       - id: 6
         type: integer
+        optional: true
         name: sensor
         unit: min
         class: measurement
@@ -234,6 +265,7 @@ secondary_entities:
     dps:
       - id: 7
         type: integer
+        optional: true
         name: sensor
         unit: m2
         class: measurement
