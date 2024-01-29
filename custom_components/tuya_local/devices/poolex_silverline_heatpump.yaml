@@ -1,6 +1,7 @@
 name: Poolex Silverline FI heatpump
 primary_entity:
   entity: climate
+  translation_key: pool_heatpump
   dps:
     - id: 1
       name: hvac_mode
@@ -27,16 +28,16 @@ primary_entity:
       name: preset_mode
       type: string
       mapping:
-        - dps_val: "Auto"
-          value: "Auto"
-        - dps_val: "Cool"
-          value: "Cool"
-        - dps_val: "Heat"
-          value: "Heat"
-        - dps_val: "BoostHeat"
-          value: "Boost Heat"
-        - dps_val: "SilentHeat"
-          value: "Silent Heat"
+        - dps_val: Auto
+          value: auto
+        - dps_val: Cool
+          value: smart_cool
+        - dps_val: Heat
+          value: smart_heat
+        - dps_val: BoostHeat
+          value: quick_heat
+        - dps_val: SilentHeat
+          value: quiet_heat
     - id: 13
       type: integer
       name: error

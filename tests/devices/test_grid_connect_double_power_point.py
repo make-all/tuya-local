@@ -4,9 +4,9 @@ from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (
     UnitOfElectricCurrent,
     UnitOfElectricPotential,
-    UnitOfTime,
     UnitOfEnergy,
     UnitOfPower,
+    UnitOfTime,
 )
 
 from ..const import GRIDCONNECT_2SOCKET_PAYLOAD

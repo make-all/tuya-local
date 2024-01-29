@@ -1,0 +1,61 @@
+{
+    "title": "Tuya Local",
+    "config": {
+        "step": {
+            "user": {
+                "title": "Nastavte sve lokální zařízení",
+                "description": "[Postupujte podle tohoto návodu pro získaní identifikátoru zařízení (device_id) a lokálního klíče (local_key).](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "IP adresa nebo název hostitele (hostname)",
+                    "device_id": "identifikátor zařízení (device_id)",
+                    "local_key": "lokální klíč (local_key)",
+                    "protocol_version": "Verze protokolu (zkuste auto pokud ji neznáte)",
+                    "poll_only": "Poll only (vyzkoušejte pokud zařízení úplně nefunguje)",
+                    "device_cid": "Sub device ID (pro zařízení připojená pomocí brány)"
+                }
+            },
+            "select_type": {
+                "title": "Vyberte typ zařízení",
+                "description": "vyberte typ odpovídající vašemu zařízení",
+                "data": {
+                    "type": "Typ zařízení"
+                }
+            },
+            "choose_entities": {
+                "title": "Podrobnosti o zařízení",
+                "description": "Vyberte jméno pro toto zařízení a jeho entity které budou zapnuty",
+                "data": {
+                    "name": "Jméno"
+                }
+            }
+        },
+        "abort": {
+            "already_configured": "Zařízení s identifikátorem, který již byl přidán.",
+            "not_supported": "Omlouváme se, toto zažízení není podporováno."
+        },
+        "error": {
+            "connection": "Není možné připojit se k zařízené s těmito údaji. Může se jednat o dočasný problém, nebo zadané údaje nejsou správné."
+        }
+    },
+    "options": {
+        "step": {
+            "user": {
+                "title": "Nastavte sve lokální zařízení Tuya",
+                "description": "Postupujte podle tohoto návodu pro získaní lokálního klíče (local_key) zařízení.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "IP adresa nebo název hostitele (hostname)",
+                    "local_key": "lokální klíč (local_key)",
+                    "protocol_version": "Verze protokolu (zkuste auto pokud ji neznáte)",
+                    "poll_only": "Poll only (try this if your device does not work fully)",
+                    "device_cid": "Sub device ID (for devices connected via gateway)"
+                }
+            }
+        },
+        "error": {
+            "connection": "Není možné připojit se k zařízené s těmito údaji. Může se jednat o dočasný problém, nebo zadané údaje nejsou správné."
+        },
+        "abort": {
+            "not_supported": "Omlouváme se, toto zažízení není podporováno."
+        }
+    }
+}

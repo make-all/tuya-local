@@ -1,0 +1,210 @@
+name: PC311-TY power clamp
+products:
+  - id: vfwxetkavqrvg02u
+primary_entity:
+  entity: sensor
+  category: diagnostic
+  name: Total Energy
+  class: energy
+  dps:
+    - id: 1
+      name: sensor
+      type: integer
+      unit: kWh
+      class: total_increasing
+      mapping:
+        - scale: 100
+secondary_entities:
+  - entity: sensor
+    category: diagnostic
+    name: Total Generation
+    class: energy
+    dps:
+      - id: 2
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    class: power
+    name: Total active power
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: W
+        force: true
+        class: measurement
+  - entity: sensor
+    category: diagnostic
+    class: current
+    name: Total current
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        force: true
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    dps:
+      - id: 106
+        name: sensor
+        type: integer
+        unit: V
+        class: measurement
+        force: true
+        mapping:
+          - scale: 10
+  - entity: sensor
+    category: diagnostic
+    class: frequency
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        unit: Hz
+        class: measurement
+  - entity: sensor
+    category: diagnostic
+    name: Energy A
+    class: energy
+    dps:
+      - id: 101
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    name: Generation A
+    class: energy
+    dps:
+      - id: 102
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    class: current
+    name: Current A
+    dps:
+      - id: 107
+        name: sensor
+        type: integer
+        unit: A
+        class: measurement
+        force: true
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    class: power
+    name: Power A
+    dps:
+      - id: 108
+        name: sensor
+        type: integer
+        unit: W
+        force: true
+        class: measurement
+  - entity: sensor
+    category: diagnostic
+    class: power_factor
+    name: Power factor A
+    dps:
+      - id: 109
+        name: sensor
+        type: integer
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    class: reactive_power
+    name: Reactive Power A
+    dps:
+      - id: 115
+        name: sensor
+        type: integer
+        unit: var
+  - entity: sensor
+    category: diagnostic
+    name: Energy B
+    class: energy
+    dps:
+      - id: 103
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    name: Generation B
+    class: energy
+    dps:
+      - id: 104
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    class: current
+    name: Current B
+    dps:
+      - id: 110
+        name: sensor
+        type: integer
+        unit: A
+        class: measurement
+        force: true
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    class: power
+    name: Power B
+    dps:
+      - id: 111
+        name: sensor
+        type: integer
+        force: true
+        unit: W
+        class: measurement
+  - entity: sensor
+    category: diagnostic
+    class: power_factor
+    name: Power factor B
+    dps:
+      - id: 112
+        name: sensor
+        type: integer
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    class: reactive_power
+    name: Reactive Power B
+    dps:
+      - id: 116
+        name: sensor
+        type: integer
+        unit: var

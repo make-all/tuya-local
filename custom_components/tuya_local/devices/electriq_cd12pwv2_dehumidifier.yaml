@@ -26,30 +26,29 @@ primary_entity:
       type: string
       mapping:
         - dps_val: "Smart"
-          value: "Smart"
+          value: auto
         - dps_val: "Air_purifier"
-          value: "Air Purifier"
+          value: purify
           icon: "mdi:air-purifier"
           icon_priority: 2
     - id: 6
       type: integer
       name: current_humidity
-      readonly: true
     - id: 19
       type: integer
       name: error_code
-      readonly: true
 secondary_entities:
   - entity: sensor
     class: humidity
     name: Current humidity
+    deprecated: humidifier
+    category: diagnostic
     dps:
       - id: 6
         type: integer
         name: sensor
         unit: "%"
         class: measurement
-        readonly: true
   - entity: light
     name: Display
     category: config

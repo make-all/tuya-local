@@ -1,0 +1,286 @@
+name: 8 in 1 air quality
+products:
+  - id: yrr3eiyiacm31ski
+    name: PV28-CW
+primary_entity:
+  entity: sensor
+  class: carbon_dioxide
+  dps:
+    - id: 2
+      type: integer
+      name: sensor
+      unit: ppm
+      class: measurement
+    - id: 103
+      name: current_humidity
+      type: integer
+      hidden: true
+secondary_entities:
+  - entity: binary_sensor
+    name: CO2 levels
+    class: safety
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "alarm"
+            value: true
+          - dps_val: "normal"
+            value: false
+  # - entity: select
+  #   name: Alarm Volume
+  #   category: config
+  #   dps:
+  #     - id: 5
+  #       type: string
+  #       name: option
+  #       optional: true
+  #       mapping:
+  #         - dps_val: low
+  #           value: "low"
+  #         - dps_val: middle
+  #           value: "middle"
+  #         - dps_val: high
+  #           value: "high"
+  #         - dps_val: mute
+  #           value: "mute"
+  # - entity: select
+  #   name: Alarm Melody
+  #   category: config
+  #   dps:
+  #     - id: 6
+  #       type: string
+  #       name: option
+  #       optional: true
+  #       mapping:
+  #         - dps_val: "ringtone_1"
+  #           value: "ringtone_1"
+  #         - dps_val: "ringtone_2"
+  #           value: "ringtone_2"
+  #         - dps_val: "ringtone_3"
+  #           value: "ringtone_3"
+  #         - dps_val: "ringtone_4"
+  #           value: "ringtone_4"
+  #         - dps_val: "ringtone_5"
+  #           value: "ringtone_5"
+  # - entity: number
+  #   name: Alarm Duration
+  #   category: config
+  #   dps:
+  #     - id: 7
+  #       type: integer
+  #       name: value
+  #       optional: true
+  #       unit: s
+  #       range:
+  #         min: 1
+  #         max: 60
+  #       mapping:
+  #         - step: 1
+  - entity: switch
+    name: Alarm switch
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            icon: "mdi:bell"
+          - dps_val: false
+            icon: "mdi:bell-off"
+  - entity: sensor
+    name: Power state
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 14
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: normal
+            value: battery
+          - dps_val: charge
+            value: charging
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  # - entity: number
+  #   name: Screen Brightness
+  #   category: config
+  #   dps:
+  #     - id: 17
+  #       type: integer
+  #       name: value
+  #       unit: "%"
+  #       range:
+  #         min: 0
+  #         max: 100
+  #       mapping:
+  #         - step: 1
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: µg/m³
+        class: measurement
+  - entity: sensor
+    name: TVOC
+    class: volatile_organic_compounds
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: µg/m³
+        class: measurement
+        mapping:
+          - scale: 1
+            step: 1
+  - entity: sensor
+    name: HCHO
+    class: volatile_organic_compounds
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: µg/m³
+        class: measurement
+        mapping:
+          - scale: 1
+            step: 1
+  - entity: number
+    name: CO2 alarm threshold
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        unit: "ppm"
+        range:
+          min: 800
+          max: 2000
+        mapping:
+          - step: 1
+  - entity: select
+    name: Unit displayed
+    category: config
+    dps:
+      - id: 31
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: "°C"
+          - dps_val: f
+            value: "°F"
+  - entity: sensor
+    class: pm10
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: µg/m³
+        class: measurement
+  - entity: sensor
+    class: pm1
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: µg/m³
+        class: measurement
+  # - entity: sensor
+  #   name: Air Quality
+  #   class: enum
+  #   dps:
+  #     - id: 104
+  #       type: string
+  #       name: sensor
+  #       optional: true
+  #       mapping:
+  #         - dps_val: "great"
+  #           value: "Great"
+  #         - dps_val: "mild"
+  #           value: "Mild"
+  #         - dps_val: "good"
+  #           value: "Good"
+  #         - dps_val: "medium"
+  #           value: "Medium"
+  #         - dps_val: "severe"
+  #           value: "Severe"
+  - entity: number
+    name: PM2.5 alarm threshold
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: "μg/m3"
+        range:
+          min: 15
+          max: 75
+        mapping:
+          - step: 1
+  - entity: binary_sensor
+    name: PM2.5 levels
+    class: safety
+    dps:
+      - id: 106
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "alarm"
+            value: true
+          - dps_val: "normal"
+            value: false
+  - entity: switch
+    name: Screen timeout
+    category: config
+    icon: "mdi:sleep"
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            icon: "mdi:sleep"
+          - dps_val: false
+            icon: "mdi:sleep-off"
+  - entity: number
+    name: Tiemout period
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: "s"
+        range:
+          min: 10
+          max: 300
+        mapping:
+          - step: 10

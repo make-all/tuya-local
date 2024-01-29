@@ -1,12 +1,16 @@
 """
 Setup for different kinds of Tuya button devices
 """
-from homeassistant.components.button import ButtonEntity, ButtonDeviceClass
+import logging
+
+from homeassistant.components.button import ButtonDeviceClass, ButtonEntity
 
 from .device import TuyaLocalDevice
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
 from .helpers.mixin import TuyaLocalEntity
+
+_LOGGER = logging.getLogger(__name__)
 
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
@@ -30,6 +34,7 @@ class TuyaLocalButton(TuyaLocalEntity, ButtonEntity):
             device (TuyaLocalDevice): The device API instance.
             config (TuyaEntityConfig): The config portion for this entity.
         """
+        super().__init__()
         dps_map = self._init_begin(device, config)
         self._button_dp = dps_map.pop("button")
         self._init_end(dps_map)
@@ -42,7 +47,12 @@ class TuyaLocalButton(TuyaLocalEntity, ButtonEntity):
             return ButtonDeviceClass(dclass)
         except ValueError:
             if dclass:
-                _LOGGER.warning(f"Unrecognized button device class of {dclass} ignored")
+                _LOGGER.warning(
+                    "%s/%s: Unrecognized button device class of %s ignored",
+                    self._config._device.config,
+                    self.name or "button",
+                    dclass,
+                )
 
     async def async_press(self):
         """Press the button"""

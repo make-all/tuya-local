@@ -1,7 +1,7 @@
 """
 Setup for different kinds of Tuya switch devices
 """
-from homeassistant.components.switch import SwitchEntity, SwitchDeviceClass
+from homeassistant.components.switch import SwitchDeviceClass, SwitchEntity
 
 from .device import TuyaLocalDevice
 from .helpers.config import async_tuya_setup_platform
@@ -29,6 +29,7 @@ class TuyaLocalSwitch(TuyaLocalEntity, SwitchEntity):
         Args:
             device (TuyaLocalDevice): The device API instance.
         """
+        super().__init__()
         dps_map = self._init_begin(device, config)
         self._switch_dps = dps_map.pop("switch")
         self._init_end(dps_map)

@@ -1,15 +1,17 @@
 """Tests for the light entity."""
-from pytest_homeassistant_custom_component.common import MockConfigEntry
-import pytest
 from unittest.mock import AsyncMock, Mock
+
+import pytest
+from pytest_homeassistant_custom_component.common import MockConfigEntry
 
 from custom_components.tuya_local.const import (
     CONF_DEVICE_ID,
-    CONF_TYPE,
     CONF_PROTOCOL_VERSION,
+    CONF_TYPE,
     DOMAIN,
 )
-from custom_components.tuya_local.light import async_setup_entry, TuyaLocalLight
+from custom_components.tuya_local.helpers.device_config import TuyaEntityConfig
+from custom_components.tuya_local.light import TuyaLocalLight, async_setup_entry
 
 
 @pytest.mark.asyncio
@@ -92,3 +94,61 @@ async def test_init_entry_fails_if_config_is_missing(hass):
     except ValueError:
         pass
     m_add_entities.assert_not_called()
+
+
+@pytest.mark.asyncio
+async def test_async_turn_on_with_white_param():
+    """Test using WHITE param for async_turn_on."""
+    mock_device = AsyncMock()
+    mock_device.get_property = Mock()
+    dps = {"1": True, "2": "colour", "3": 1000, "4": "ABCDEFFF"}
+    mock_device.get_property.side_effect = lambda arg: dps[arg]
+    mock_config = Mock()
+    config = TuyaEntityConfig(
+        mock_config,
+        {
+            "entity": "light",
+            "dps": [
+                {
+                    "id": "1",
+                    "name": "switch",
+                    "type": "boolean",
+                },
+                {
+                    "id": "2",
+                    "name": "color_mode",
+                    "type": "string",
+                    "mapping": [
+                        {
+                            "dps_val": "white",
+                            "value": "white",
+                        },
+                        {
+                            "dps_val": "colour",
+                            "value": "hs",
+                        },
+                    ],
+                },
+                {
+                    "id": "3",
+                    "name": "brightness",
+                    "type": "integer",
+                    "range": {
+                        "min": 10,
+                        "max": 1000,
+                    },
+                    "mapping": [
+                        {"scale": 3.92},
+                    ],
+                },
+                {
+                    "id": "4",
+                    "name": "hs",
+                    "type": "hex",
+                },
+            ],
+        },
+    )
+    light = TuyaLocalLight(mock_device, config)
+    await light.async_turn_on(white=128)
+    mock_device.async_set_properties.assert_called_once_with({"2": "white", "3": 502})

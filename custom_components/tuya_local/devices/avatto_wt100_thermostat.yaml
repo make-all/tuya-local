@@ -1,6 +1,10 @@
-name: Avatto WT100-EH thermostat
+name: Thermostat
+products:
+  - id: gw173aldekvpzalg
+    name: Avatto WT200W-EH
 primary_entity:
   entity: climate
+  translation_key: thermostat
   dps:
     - id: 1
       name: hvac_mode
@@ -23,8 +27,10 @@ primary_entity:
     - id: 2
       name: temperature
       type: integer
+      unit: C
+      optional: true
       range:
-        min: 0
+        min: 50
         max: 700
       mapping:
         - scale: 10
@@ -38,11 +44,12 @@ primary_entity:
       type: string
       mapping:
         - dps_val: cold
-          value: Manual
+          value: manual
         - dps_val: hot
-          value: Program
+          value: program
         - dps_val: wind
-          value: Temporary Program
+          value: temp_override
+          hidden: true
     - id: 5
       name: hvac_action
       type: string
@@ -62,9 +69,9 @@ primary_entity:
     - id: 16
       name: fault_code
       type: bitfield
-    - id: 31
-      name: unknown_31
-      type: boolean
+    - id: 21
+      name: max_temperature
+      type: integer
 secondary_entities:
   - entity: lock
     name: Child lock
@@ -79,7 +86,7 @@ secondary_entities:
             icon: "mdi:hand-back-right-off"
           - dps_val: false
             icon: "mdi:hand-back-right"
-  - entity: switch 
+  - entity: switch
     name: Sound
     category: config
     icon: "mdi:music-note"
@@ -97,8 +104,8 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: 0
-            value: False
-          - value: True
+            value: false
+          - value: true
   - entity: number
     name: Temperature calibration
     category: config
@@ -112,7 +119,7 @@ secondary_entities:
           max: 90
         mapping:
           - scale: 10
-        unit: C
+        unit: °
   - entity: number
     name: Maximum temperature
     category: config
@@ -149,6 +156,13 @@ secondary_entities:
       - id: 26
         type: boolean
         name: switch
+  - entity: button
+    name: Reset
+    category: config
+    dps:
+      - id: 31
+        type: boolean
+        name: button
   - entity: select
     name: Backlight brightness
     category: config
@@ -177,17 +191,18 @@ secondary_entities:
       - id: 42
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: "1"
             value: "Weekday+Weekend"
-          - dps_val: "2" 
+          - dps_val: "2"
             value: "Mon-Sat+Sun"
           - dps_val: "3"
             value: "Daily"
   - entity: switch
     name: Output reverse
     category: config
-    icon: "mdi:swap-horizontal"   
+    icon: "mdi:swap-horizontal"
     dps:
       - id: 101
         type: boolean
@@ -205,7 +220,7 @@ secondary_entities:
           max: 95
         mapping:
           - scale: 10
-        unit: C
+        unit: °
   - entity: number
     name: External temperature limit
     category: config

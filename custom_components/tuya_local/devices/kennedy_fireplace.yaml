@@ -1,0 +1,221 @@
+name: Fireplace
+products:
+  - id: x6yepotm52a8pfbv
+    name: Kennedy JR without top light
+primary_entity:
+  entity: climate
+  icon: "mdi:fireplace"
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          value: heat
+    - id: 3
+      name: current_temperature
+      type: integer
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: temp_current_f
+    - id: 5
+      name: temperature
+      type: string
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: c
+              range:
+                min: 16
+                max: 30
+              mapping:
+                - dps_val: "1"
+                  value: 16
+                - dps_val: "2"
+                  value: 19
+                - dps_val: "3"
+                  value: 21
+                - dps_val: "4"
+                  value: 23
+                - dps_val: "5"
+                  value: 25
+                - dps_val: "6"
+                  value: 27
+                - dps_val: "7"
+                  value: 30
+            - dps_val: f
+              range:
+                min: 61
+                max: 86
+              mapping:
+                - dps_val: "1"
+                  value: 61
+                - dps_val: "2"
+                  value: 66
+                - dps_val: "3"
+                  value: 70
+                - dps_val: "4"
+                  value: 73
+                - dps_val: "5"
+                  value: 77
+                - dps_val: "6"
+                  value: 80
+                - dps_val: "7"
+                  value: 86
+    - id: 13
+      name: temperature_unit
+      type: string
+      mapping:
+        - dps_val: f
+          value: F
+        - dps_val: c
+          value: C
+    - id: 15
+      name: temp_current_f
+      type: integer
+      hidden: true
+    - id: 107
+      name: fan_mode
+      type: string
+      mapping:
+        - dps_val: "0"
+          value: "off"
+        - dps_val: "1"
+          value: low
+        - dps_val: "2"
+          value: high
+secondary_entities:
+  - entity: select
+    name: Timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: "1 hour"
+          - dps_val: "2"
+            value: "2 hours"
+          - dps_val: "3"
+            value: "3 hours"
+          - dps_val: "4"
+            value: "4 hours"
+          - dps_val: "5"
+            value: "5 hours"
+          - dps_val: "6"
+            value: "6 hours"
+          - dps_val: "7"
+            value: "7 hours"
+          - dps_val: "8"
+            value: "8 hours"
+          - dps_val: "9"
+            value: "9 hours"
+  - entity: sensor
+    name: Time remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: min
+  - entity: light
+    name: Flame
+    icon: "mdi:fire"
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: select
+    name: Flame red
+    icon: "mdi:fire"
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: Low
+          - dps_val: "2"
+            value: Medium
+          - dps_val: "3"
+            value: High
+          - dps_val: "4"
+            value: Full
+  - entity: select
+    name: Flame blue
+    icon: "mdi:fire"
+    category: config
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: Low
+          - dps_val: "2"
+            value: Medium
+          - dps_val: "3"
+            value: High
+          - dps_val: "4"
+            value: Full
+  - entity: select
+    name: Flame yellow
+    icon: "mdi:fire"
+    category: config
+    dps:
+      - id: 104
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: Low
+          - dps_val: "2"
+            value: Medium
+          - dps_val: "3"
+            value: High
+          - dps_val: "4"
+            value: Full
+  - entity: select
+    name: Embers
+    icon: "mdi:campfire"
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: Red
+          - dps_val: "2"
+            value: Pink
+          - dps_val: "3"
+            value: Snow white
+          - dps_val: "4"
+            value: Cool blue
+          - dps_val: "5"
+            value: Dark blue
+          - dps_val: "6"
+            value: Green
+          - dps_val: "7"
+            value: Lake green
+          - dps_val: "8"
+            value: Colorful

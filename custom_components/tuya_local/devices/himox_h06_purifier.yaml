@@ -24,7 +24,6 @@ secondary_entities:
       - id: 5
         type: integer
         name: sensor
-        readonly: true
         unit: "%"
   - entity: light
     name: AQ indicator
@@ -41,14 +40,6 @@ secondary_entities:
       - id: 11
         type: boolean
         name: button
-  - entity: switch
-    deprecated: button
-    name: Filter reset
-    category: config
-    dps:
-      - id: 11
-        type: boolean
-        name: switch
   - entity: select
     name: Timer
     icon: "mdi:timer"
@@ -73,7 +64,6 @@ secondary_entities:
       - id: 19
         type: integer
         name: sensor
-        readonly: true
         unit: "min"
   - entity: sensor
     name: Air quality
@@ -81,7 +71,6 @@ secondary_entities:
       - id: 22
         type: string
         name: sensor
-        readonly: true
   - entity: select
     name: Configuration
     dps:

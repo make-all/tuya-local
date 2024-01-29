@@ -1,11 +1,11 @@
 name: Arlec thermostat smartplug
-product:
+products:
   - id: 1z2w76xtiawhxleg
     name: Arlec PCTH01HA
 primary_entity:
   entity: climate
   dps:
-    - id: 2
+    - id: 9
       type: boolean
       name: hvac_mode
       icon: "mdi:thermostat-box"
@@ -98,6 +98,13 @@ primary_entity:
       type: bitfield
       name: fault_code
 secondary_entities:
+  - entity: switch
+    name: Manual Switch
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+        icon: mdi:light-switch
   - entity: number
     name: Timer
     category: config
@@ -113,25 +120,7 @@ secondary_entities:
         mapping:
           - scale: 60
             step: 60
-  - entity: switch
-    name: Climate mode
-    category: config
-    dps:
-      - id: 9
-        type: boolean
-        name: switch
-        mapping:
-          - dps_val: true
-            icon: "mdi:thermostat-auto"
-          - dps_val: false
-            icon: "mdi:toggle-switch"
-  - entity: switch
-    dps:
-      - id: 2
-        type: boolean
-        name: switch
   - entity: sensor
-    name: Current
     class: current
     category: diagnostic
     dps:
@@ -145,7 +134,6 @@ secondary_entities:
         name: calibration
         optional: true
   - entity: sensor
-    name: Power
     class: power
     category: diagnostic
     dps:
@@ -174,7 +162,6 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Voltage
     class: voltage
     category: diagnostic
     dps:
@@ -209,7 +196,7 @@ secondary_entities:
     dps:
       - id: 29
         type: integer
-        name: value 
+        name: value
         range:
           min: 10
           max: 90
@@ -305,5 +292,5 @@ secondary_entities:
           - dps_val: 0
             value: false
           - dps_val: null
-            value:: false
+            value: false
           - value: true

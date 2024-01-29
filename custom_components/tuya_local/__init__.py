@@ -22,10 +22,11 @@ from .const import (
     CONF_TYPE,
     DOMAIN,
 )
-from .device import setup_device, async_delete_device
+from .device import async_delete_device, get_device_id, setup_device
 from .helpers.device_config import get_config
 
 _LOGGER = logging.getLogger(__name__)
+NOT_FOUND = "Configuration file for %s not found"
 
 
 async def async_migrate_entry(hass, entry: ConfigEntry):
@@ -105,10 +106,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         old_id = entry.unique_id
         conf_file = get_config(entry.data[CONF_TYPE])
         if conf_file is None:
-            _LOGGER.error(
-                "Configuration file for %s not found",
-                entry.data[CONF_TYPE],
-            )
+            _LOGGER.error(NOT_FOUND, entry.data[CONF_TYPE])
             return False
 
         @callback
@@ -183,7 +181,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         conf_file = get_config(entry.data[CONF_TYPE])
         if conf_file is None:
             _LOGGER.error(
-                "Configuration file for %s not found",
+                NOT_FOUND,
                 entry.data[CONF_TYPE],
             )
             return False
@@ -226,19 +224,97 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         await async_migrate_entries(hass, entry.entry_id, update_unique_id12)
         entry.version = 12
 
+    if entry.version <= 12:
+        # Migrate unique ids of existing entities to new format taking into
+        # account device_class if name is missing.
+        device_id = entry.unique_id
+        conf_file = get_config(entry.data[CONF_TYPE])
+        if conf_file is None:
+            _LOGGER.error(
+                NOT_FOUND,
+                entry.data[CONF_TYPE],
+            )
+            return False
+
+        @callback
+        def update_unique_id13(entity_entry):
+            """Update the unique id of an entity entry."""
+            old_id = entity_entry.unique_id
+            platform = entity_entry.entity_id.split(".", 1)[0]
+            # if unique_id ends with platform name, then this may have
+            # changed with the addition of device_class.
+            if old_id.endswith(platform):
+                e = conf_file.primary_entity
+                if e.entity != platform or e.name:
+                    for e in conf_file.secondary_entities():
+                        if e.entity == platform and not e.name:
+                            break
+                if e.entity == platform and not e.name:
+                    new_id = e.unique_id(device_id)
+                    if new_id != old_id:
+                        _LOGGER.info(
+                            "Migrating %s unique_id %s to %s",
+                            e.entity,
+                            old_id,
+                            new_id,
+                        )
+                        return {
+                            "new_unique_id": entity_entry.unique_id.replace(
+                                old_id,
+                                new_id,
+                            )
+                        }
+            else:
+                replacements = {
+                    "sensor_co2": "sensor_carbon_dioxide",
+                    "sensor_co": "sensor_carbon_monoxide",
+                    "sensor_pm2_5": "sensor_pm25",
+                    "sensor_pm_10": "sensor_pm10",
+                    "sensor_pm_1_0": "sensor_pm1",
+                    "sensor_pm_2_5": "sensor_pm25",
+                    "sensor_tvoc": "sensor_volatile_organic_compounds",
+                    "sensor_current_humidity": "sensor_humidity",
+                    "sensor_current_temperature": "sensor_temperature",
+                }
+                for suffix, new_suffix in replacements.items():
+                    if old_id.endswith(suffix):
+                        e = conf_file.primary_entity
+                        if e.entity != platform or e.name:
+                            for e in conf_file.secondary_entities():
+                                if e.entity == platform and not e.name:
+                                    break
+                        if e.entity == platform and not e.name:
+                            new_id = e.unique_id(device_id)
+                            if new_id.endswith(new_suffix):
+                                _LOGGER.info(
+                                    "Migrating %s unique_id %s to %s",
+                                    e.entity,
+                                    old_id,
+                                    new_id,
+                                )
+                                return {
+                                    "new_unique_id": entity_entry.unique_id.replace(
+                                        old_id,
+                                        new_id,
+                                    )
+                                }
+
+        await async_migrate_entries(hass, entry.entry_id, update_unique_id13)
+        entry.version = 13
+
     return True
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     _LOGGER.debug(
         "Setting up entry for device: %s",
-        entry.data[CONF_DEVICE_ID],
+        get_device_id(entry.data),
     )
     config = {**entry.data, **entry.options, "name": entry.title}
     setup_device(hass, config)
     device_conf = get_config(entry.data[CONF_TYPE])
     if device_conf is None:
-        _LOGGER.error("Configuration file for %s not found", config[CONF_TYPE])
+        _LOGGER.error(NOT_FOUND, config[CONF_TYPE])
         return False
 
     entities = set()
@@ -255,12 +331,12 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
 
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
-    _LOGGER.debug("Unloading entry for device: %s", entry.data[CONF_DEVICE_ID])
+    _LOGGER.debug("Unloading entry for device: %s", get_device_id(entry.data))
     config = entry.data
-    data = hass.data[DOMAIN][config[CONF_DEVICE_ID]]
+    data = hass.data[DOMAIN][get_device_id(config)]
     device_conf = get_config(config[CONF_TYPE])
     if device_conf is None:
-        _LOGGER.error("Configuration file for %s not found", config[CONF_TYPE])
+        _LOGGER.error(NOT_FOUND, config[CONF_TYPE])
         return False
 
     entities = {}
@@ -275,12 +351,12 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
         await hass.config_entries.async_forward_entry_unload(entry, e)
 
     await async_delete_device(hass, config)
-    del hass.data[DOMAIN][config[CONF_DEVICE_ID]]
+    del hass.data[DOMAIN][get_device_id(config)]
 
     return True
 
 
 async def async_update_entry(hass: HomeAssistant, entry: ConfigEntry):
-    _LOGGER.debug("Updating entry for device: %s", entry.data[CONF_DEVICE_ID])
+    _LOGGER.debug("Updating entry for device: %s", get_device_id(entry.data))
     await async_unload_entry(hass, entry)
     await async_setup_entry(hass, entry)

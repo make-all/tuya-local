@@ -4,6 +4,7 @@ products:
 primary_entity:
   entity: fan
   icon: "mdi:air-purifier"
+  translation_key: fan_with_presets
   dps:
     - id: 1
       name: switch
@@ -12,16 +13,16 @@ primary_entity:
       type: string
       name: preset_mode
       mapping:
-        - dps_val: "low"
-          value: "Low"
-        - dps_val: "mid"
-          value: "Mid"
-        - dps_val: "high"
-          value: "High"
-        - dps_val: "auto"
-          value: "Auto"
-        - dps_val: "sleep"
-          value: "Sleep"
+        - dps_val: low
+          value: nature
+        - dps_val: mid
+          value: fresh
+        - dps_val: high
+          value: strong
+        - dps_val: auto
+          value: smart
+        - dps_val: sleep
+          value: sleep
     - id: 22
       name: error_code
       type: integer
@@ -42,10 +43,10 @@ secondary_entities:
         type: boolean
         name: switch
         mapping:
-            - dps_val: true
-              icon: "mdi:led-on"
-            - dps_val: false
-              icon: "mdi:led-off"
+          - dps_val: true
+            icon: "mdi:led-on"
+          - dps_val: false
+            icon: "mdi:led-off"
   - entity: button
     name: Filter reset
     category: config
@@ -54,15 +55,6 @@ secondary_entities:
       - id: 11
         type: boolean
         name: button
-  - entity: switch
-    deprecated: button
-    name: Filter reset
-    category: config
-    icon: "mdi:refresh"
-    dps:
-      - id: 11
-        type: boolean
-        name: switch
   - entity: select
     name: Timer
     category: config
@@ -77,7 +69,7 @@ secondary_entities:
           - dps_val: "1h"
             value: "1 hour"
           - dps_val: "2h"
-            value: "2 hours" 
+            value: "2 hours"
   - entity: sensor
     name: Timer
     class: duration
@@ -103,9 +95,9 @@ secondary_entities:
           - dps_val: "good"
             value: "Good"
           - dps_val: "medium"
-            value: "Medium" 
+            value: "Medium"
           - dps_val: "severe"
-            value: "Severe" 
+            value: "Severe"
   - entity: binary_sensor
     name: Error
     category: diagnostic

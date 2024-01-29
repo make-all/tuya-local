@@ -1,0 +1,268 @@
+name: RF transmitter
+products:
+  - id: lclekupkvteemsym
+    name: Arlec HUBRF06HA 8x8 function 433MHz
+primary_entity:
+  entity: select
+  name: Remote 1
+  dps:
+    - id: 101
+      type: string
+      name: option
+      mapping:
+        - dps_val: Button1
+          value: Button 1
+        - dps_val: Button2
+          value: Button 2
+        - dps_val: Button3
+          value: Button 3
+        - dps_val: Button4
+          value: Button 4
+        - dps_val: Button5
+          value: Button 5
+        - dps_val: Button6
+          value: Button 6
+        - dps_val: Button7
+          value: Button 7
+        - dps_val: Button8
+          value: Button 8
+          # Apart from 101 and 113, all dps are write only.
+          # 113 is read only, but usually does not appear, 101 is read/write.
+          # The following are some write only dps that are not documented
+          # well enough to usefully expose them.
+    - id: 109
+      type: string
+      optional: true
+      name: button_operations
+      # Documented as raw format: 0x01 learn, 0x02 test 0x03 delete 0x04 save
+      # The following are undocumented, but names suggest they are for
+      # relabelling remotes and buttons.  But since they are write only
+      # it is not clear what point there is to that for remote names.
+      # For buttons, they might change the return code though, which will
+      # mess up the select entities, because we don't know what to send if
+      # they are renamed.
+    - id: 110
+      type: string
+      optional: true
+      name: button_list
+    - id: 111
+      type: string
+      optional: true
+      name: remote_list
+    - id: 112
+      type: string
+      optional: true
+      name: remote_name_store
+secondary_entities:
+  - entity: select
+    name: Remote 2
+    dps:
+      - id: 102
+        type: string
+        name: option
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: Button1
+            value: Button 1
+          - dps_val: Button2
+            value: Button 2
+          - dps_val: Button3
+            value: Button 3
+          - dps_val: Button4
+            value: Button 4
+          - dps_val: Button5
+            value: Button 5
+          - dps_val: Button6
+            value: Button 6
+          - dps_val: Button7
+            value: Button 7
+          - dps_val: Button8
+            value: Button 8
+          - dps_val: null
+            value: "No button"
+            hidden: true
+  - entity: select
+    name: Remote 3
+    dps:
+      - id: 103
+        type: string
+        name: option
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: Button1
+            value: Button 1
+          - dps_val: Button2
+            value: Button 2
+          - dps_val: Button3
+            value: Button 3
+          - dps_val: Button4
+            value: Button 4
+          - dps_val: Button5
+            value: Button 5
+          - dps_val: Button6
+            value: Button 6
+          - dps_val: Button7
+            value: Button 7
+          - dps_val: Button8
+            value: Button 8
+          - dps_val: null
+            value: "No button"
+            hidden: true
+  - entity: select
+    name: Remote 4
+    dps:
+      - id: 104
+        type: string
+        name: option
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: Button1
+            value: Button 1
+          - dps_val: Button2
+            value: Button 2
+          - dps_val: Button3
+            value: Button 3
+          - dps_val: Button4
+            value: Button 4
+          - dps_val: Button5
+            value: Button 5
+          - dps_val: Button6
+            value: Button 6
+          - dps_val: Button7
+            value: Button 7
+          - dps_val: Button8
+            value: Button 8
+          - dps_val: null
+            value: "No button"
+            hidden: true
+  - entity: select
+    name: Remote 5
+    dps:
+      - id: 105
+        type: string
+        name: option
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: Button1
+            value: Button 1
+          - dps_val: Button2
+            value: Button 2
+          - dps_val: Button3
+            value: Button 3
+          - dps_val: Button4
+            value: Button 4
+          - dps_val: Button5
+            value: Button 5
+          - dps_val: Button6
+            value: Button 6
+          - dps_val: Button7
+            value: Button 7
+          - dps_val: Button8
+            value: Button 8
+          - dps_val: null
+            value: "No button"
+            hidden: true
+  - entity: select
+    name: Remote 6
+    dps:
+      - id: 106
+        type: string
+        name: option
+        persist: false
+        optional: true
+        mapping:
+          - dps_val: Button1
+            value: Button 1
+          - dps_val: Button2
+            value: Button 2
+          - dps_val: Button3
+            value: Button 3
+          - dps_val: Button4
+            value: Button 4
+          - dps_val: Button5
+            value: Button 5
+          - dps_val: Button6
+            value: Button 6
+          - dps_val: Button7
+            value: Button 7
+          - dps_val: Button8
+            value: Button 8
+          - dps_val: null
+            value: "No button"
+            hidden: true
+  - entity: select
+    name: Remote 7
+    dps:
+      - id: 107
+        type: string
+        name: option
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: Button1
+            value: Button 1
+          - dps_val: Button2
+            value: Button 2
+          - dps_val: Button3
+            value: Button 3
+          - dps_val: Button4
+            value: Button 4
+          - dps_val: Button5
+            value: Button 5
+          - dps_val: Button6
+            value: Button 6
+          - dps_val: Button7
+            value: Button 7
+          - dps_val: Button8
+            value: Button 8
+          - dps_val: null
+            value: "No button"
+            hidden: true
+  - entity: select
+    name: Remote 8
+    dps:
+      - id: 108
+        type: string
+        name: option
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: Button1
+            value: Button 1
+          - dps_val: Button2
+            value: Button 2
+          - dps_val: Button3
+            value: Button 3
+          - dps_val: Button4
+            value: Button 4
+          - dps_val: Button5
+            value: Button 5
+          - dps_val: Button6
+            value: Button 6
+          - dps_val: Button7
+            value: Button 7
+          - dps_val: Button8
+            value: Button 8
+          - dps_val: null
+            value: "No button"
+            hidden: true
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 113
+        type: bitfield
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true

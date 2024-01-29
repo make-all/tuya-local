@@ -4,7 +4,6 @@ products:
     name: EAI-90
 primary_entity:
   entity: sensor
-  name: Energy
   class: energy
   dps:
     - id: 1
@@ -18,6 +17,7 @@ primary_entity:
       type: string
       name: phase_a
       optional: true
+      force: true
     - id: 10
       type: bitfield
       name: fault_code
@@ -59,7 +59,7 @@ secondary_entities:
           - scale: 100
   - entity: button
     name: Clear energy
-    class: reset
+    class: restart
     category: config
     dps:
       - id: 14
@@ -86,10 +86,49 @@ secondary_entities:
         name: switch
   - entity: button
     name: Clear event
-    class: reset
+    class: restart
     category: config
     dps:
       - id: 20
         type: boolean
         name: button
         optional: true
+  - entity: sensor
+    name: Voltage A
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mapping:
+          - mask: "FFFF000000000000"
+            scale: 10
+  - entity: sensor
+    name: Current A
+    class: current
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        mapping:
+          - mask: "0000FFFFFF000000"
+            scale: 1000
+  - entity: sensor
+    name: Power A
+    class: power
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: kW
+        mapping:
+          - mask: "0000000000FFFFFF"
+            scale: 1000

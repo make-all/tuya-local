@@ -4,8 +4,8 @@ from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (
     UnitOfElectricCurrent,
     UnitOfElectricPotential,
-    UnitOfTime,
     UnitOfPower,
+    UnitOfTime,
 )
 
 from ..const import KOGAN_SOCKET_PAYLOAD2
@@ -28,7 +28,7 @@ class TestSwitchV2(
 
     def setUp(self):
         self.setUpForConfig("smartplugv2.yaml", KOGAN_SOCKET_PAYLOAD2)
-        self.subject = self.entities.get("switch")
+        self.subject = self.entities.get("switch_outlet")
         self.setUpSwitchable(SWITCH_DPS, self.subject)
         self.setUpBasicNumber(
             TIMER_DPS,

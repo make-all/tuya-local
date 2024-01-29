@@ -1,6 +1,7 @@
 name: W'Eau pool heatpump
 primary_entity:
   entity: climate
+  translation_key: pool_heatpump
   dps:
     - id: 1
       type: boolean
@@ -35,13 +36,13 @@ primary_entity:
       name: preset_mode
       mapping:
         - dps_val: hot
-          value: Boost Heat
+          value: quick_heat
         - dps_val: eco
-          value: Eco Heat
+          value: quiet_heat
         - dps_val: cold
-          value: Cool
+          value: quiet_cool
         - dps_val: auto
-          value: Auto
+          value: auto
     - id: 6
       name: fault
       type: bitfield

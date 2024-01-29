@@ -10,10 +10,8 @@ primary_entity:
       mapping:
         - dps_val: true
           icon: mdi:scent
-          value: ON
         - dps_val: false
           icon: mdi:scent-off
-          value: OFF
     - id: 3
       name: speed
       type: string
@@ -44,6 +42,9 @@ secondary_entities:
         name: brightness
         type: integer
         optional: true
+        range:
+          min: 3
+          max: 255
       - id: 9
         name: color_mode
         type: string
@@ -51,7 +52,7 @@ secondary_entities:
           - dps_val: white
             value: white
           - dps_val: colour
-            value: rgbw
+            value: hs
       - id: 10
         name: rgbhsv
         type: hex
@@ -117,4 +118,3 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
-

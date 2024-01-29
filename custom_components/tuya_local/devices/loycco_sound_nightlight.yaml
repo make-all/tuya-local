@@ -1,0 +1,243 @@
+name: Sound machine nightlight
+products:
+  - id: woqiobw0jfafgmar
+    name: Momland nightlight with white noise
+primary_entity:
+  entity: light
+  dps:
+    - id: 3
+      type: boolean
+      name: switch
+    - id: 2
+      name: color_mode
+      type: string
+      mapping:
+        - dps_val: white
+          value: white
+        - dps_val: colour
+          value: hs
+        - dps_val: scene
+          value: Scene
+        - dps_val: customize_scene
+          value: Custom Scene
+        - dps_val: null
+          value: white
+          hidden: true
+      optional: true
+    - id: 6
+      name: brightness
+      type: integer
+      optional: true
+      range:
+        min: 10
+        max: 1000
+      mapping:
+        - scale: 3.92
+    - id: 5
+      name: rgbhsv
+      type: hex
+      format:
+        - name: h
+          bytes: 2
+          range:
+            min: 0
+            max: 360
+        - name: s
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+        - name: v
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+    - id: 1
+      type: boolean
+      name: power
+      optional: true
+secondary_entities:
+  - entity: select
+    name: Light mode
+    icon: "mdi:lightbulb-question"
+    category: config
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: breath
+            value: Breathing
+          - dps_val: light_on
+            value: Steady On
+          - dps_val: light_off
+            value: "Off"
+          - dps_val: change
+            value: Random
+  - entity: siren
+    name: Sound
+    icon: "mdi:music"
+    dps:
+      - id: 8
+        name: switch
+        type: boolean
+      - id: 9
+        name: volume_level
+        type: integer
+        range:
+          min: 10
+          max: 100
+        mapping:
+          - scale: 100
+      - id: 10
+        name: tone
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: White noise
+          - dps_val: "2"
+            value: Pink noise
+          - dps_val: "3"
+            value: Brown noise
+          - dps_val: "4"
+            value: Wall fan
+          - dps_val: "5"
+            value: Fan
+          - dps_val: "6"
+            value: Floor fan
+          - dps_val: "7"
+            value: Wind
+          - dps_val: "8"
+            value: Rain on roof
+          - dps_val: "9"
+            value: Rain
+          - dps_val: "10"
+            value: Thunderstorm
+          - dps_val: "11"
+            value: Light rain
+          - dps_val: "12"
+            value: Ocean wave
+          - dps_val: "13"
+            value: Water stream
+          - dps_val: "14"
+            value: Birds
+          - dps_val: "15"
+            value: Crickets
+          - dps_val: "16"
+            value: Frog
+          - dps_val: "17"
+            value: Fireplace
+          - dps_val: "18"
+            value: Campfire
+          - dps_val: "19"
+            value: Womb
+          - dps_val: "20"
+            value: Shushing
+          - dps_val: "21"
+            value: Cafe
+          - dps_val: "22"
+            value: Maracas
+          - dps_val: "23"
+            value: Clock
+          - dps_val: "24"
+            value: Buddha
+          - dps_val: "25"
+            value: Wind chimes
+          - dps_val: "26"
+            value: Steamship
+          - dps_val: "27"
+            value: Aircraft
+          - dps_val: "28"
+            value: Train
+          - dps_val: "29"
+            value: Lullaby
+          - dps_val: "30"
+            value: Music box
+          - dps_val: "31"
+            value: Twinkle little star
+          - dps_val: "32"
+            value: Good morning
+          - dps_val: "33"
+            value: Fantasy
+          - dps_val: "34"
+            value: Joyful
+      - id: 20
+        name: duration
+        type: integer
+        unit: "min"
+        range:
+          min: 0
+          max: 90
+      - id: 11
+        type: string
+        name: sound_group
+        optional: true
+        mapping:
+          - dps_val: ringtone_1
+            value: Nature 1
+          - dps_val: ringtone_2
+            value: Nature 2
+          - dps_val: ringtone_3
+            value: Object
+          - dps_val: ringtone_4
+            value: Sleep
+  - entity: select
+    name: Scene
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 12
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: wake_up
+            value: Wake up
+          - dps_val: help_sleep
+            value: Help sleep
+          - dps_val: breath
+            value: Breathing
+          - dps_val: colourful
+            value: Colourful
+          - dps_val: play
+            value: Play
+          - dps_val: reading
+            value: Reading
+          - dps_val: night
+            value: Nightlight
+          - dps_val: null
+            value: None
+            hidden: true
+  - entity: select
+    name: Custom scene
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 13
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: mode_1
+            value: Scene 1
+          - dps_val: mode_2
+            value: Scene 2
+          - dps_val: mode_3
+            value: Scene 3
+          - dps_val: mode_4
+            value: Scene 4
+          - dps_val: mode_5
+            value: Scene 5
+          - dps_val: mode_6
+            value: Scene 6
+          - dps_val: mode_7
+            value: Scene 7
+          - dps_val: mode_8
+            value: Scene 8
+          - dps_val: null
+            value: None
+            hidden: true
+      - id: 14
+        name: setting_data
+        type: string
+        optional: true

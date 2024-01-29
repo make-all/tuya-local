@@ -2,8 +2,8 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.water_heater import (
     STATE_ECO,
     STATE_ELECTRIC,
-    STATE_HIGH_DEMAND,
     STATE_HEAT_PUMP,
+    STATE_HIGH_DEMAND,
     STATE_OFF,
     STATE_PERFORMANCE,
     WaterHeaterEntityFeature,
@@ -58,10 +58,10 @@ class TestHydrothermDynamicX8(
         self.assertEqual(self.subject.current_temperature, 55)
 
     def test_min_temp(self):
-        self.assertEqual(self.subject.min_temp, 60)
+        self.assertEqual(self.subject.min_temp, 15)
 
     def test_max_temp(self):
-        self.assertEqual(self.subject.max_temp, 70)
+        self.assertEqual(self.subject.max_temp, 75)
 
     def test_target_temperature(self):
         self.dps[TEMPERATURE_DP] = 61
@@ -97,6 +97,9 @@ class TestHydrothermDynamicX8(
         self.assertEqual(self.subject.current_operation, STATE_ELECTRIC)
         self.dps[POWER_DP] = False
         self.assertEqual(self.subject.current_operation, STATE_OFF)
+
+    def test_is_away_mode_is_none_when_unsupported(self):
+        self.assertIsNone(self.subject.is_away_mode_on)
 
     async def test_set_temperature_fails(self):
         with self.assertRaises(TypeError):
@@ -150,3 +153,25 @@ class TestHydrothermDynamicX8(
             {POWER_DP: False},
         ):
             await self.subject.async_set_operation_mode(STATE_OFF)
+
+    async def test_turn_on(self):
+        async with assert_device_properties_set(
+            self.subject._device,
+            {POWER_DP: True},
+        ):
+            await self.subject.async_turn_on()
+
+    async def test_turn_off(self):
+        async with assert_device_properties_set(
+            self.subject._device,
+            {POWER_DP: False},
+        ):
+            await self.subject.async_turn_off()
+
+    async def test_turn_away_mode_on_fails(self):
+        with self.assertRaises(NotImplementedError):
+            await self.subject.async_turn_away_mode_on()
+
+    async def test_turn_away_mode_off_fails(self):
+        with self.assertRaises(NotImplementedError):
+            await self.subject.async_turn_away_mode_off()

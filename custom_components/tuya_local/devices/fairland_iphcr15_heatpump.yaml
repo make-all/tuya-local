@@ -22,7 +22,6 @@ primary_entity:
     - id: 102
       name: current_temperature
       type: integer
-      readonly: true
     - id: 103
       name: temperature_unit
       type: boolean
@@ -50,10 +49,10 @@ primary_entity:
           conditions:
             - dps_val: false
               range:
-                min: 60
+                min: 55
                 max: 115
       range:
-        min: 18
+        min: 12
         max: 45
     - id: 107
       type: integer
@@ -79,9 +78,9 @@ primary_entity:
       type: boolean
       mapping:
         - dps_val: false
-          value: Silent
+          value: sleep
         - dps_val: true
-          value: Boost
+          value: boost
 secondary_entities:
   - entity: sensor
     category: diagnostic
@@ -94,7 +93,6 @@ secondary_entities:
         name: sensor
         unit: "%"
         class: measurement
-        readonly: true
   - entity: binary_sensor
     name: Water flow
     class: problem

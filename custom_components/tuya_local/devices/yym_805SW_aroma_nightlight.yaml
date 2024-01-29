@@ -1,7 +1,13 @@
-# DPS sample: {'updated_at': 1674433099.9169242, '1': True, '2': 'large', '3': '1', '5': True, '6': 'colourful1', '8': '001fff00e8ffff'}
-name: YYM-805SW Aroma diffuser
+# DPS sample: {'updated_at': 1674433099.9169242, '1': True, '2': 'large',
+#              '3': '1', '5': True, '6': 'colourful1', '8': '001fff00e8ffff'}
+name: Aroma diffuser
 products:
   - id: c0nh3LmEk0NDebrq
+    model: YYM-805SW
+  - id: 4870500398f4abbfbae4
+    model: GX
+  - id: kgczidn0awas0prr
+    manufacturer: Tellur
 primary_entity:
   entity: fan
   dps:
@@ -10,19 +16,34 @@ primary_entity:
       type: boolean
       mapping:
         - dps_val: true
-          icon: mdi:scent
-          value: ON
+          icon: "mdi:scent"
         - dps_val: false
-          icon: mdi:scent-off
-          value: OFF
+          icon: "mdi:scent-off"
     - id: 2
       name: speed
       type: string
       mapping:
-        - dps_val: large
-          value: 100
-        - dps_val: small
-          value: 50
+        - conditions:
+            - dps_val:
+                - large
+                - small
+              mapping:
+                - dps_val: large
+                  value: 100
+                - dps_val: small
+                  value: 50
+            - dps_val:
+                - high
+                - low
+              mapping:
+                - dps_val: high
+                  value: 100
+                - dps_val: low
+                  value: 50
+    - id: 9
+      name: fault_code
+      type: bitfield
+      optional: true
 secondary_entities:
   - entity: light
     name: Nightlight
@@ -36,7 +57,7 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: colour
-            value: rgbw
+            value: hs
           - dps_val: colourful1
             value: Colorful
       - id: 8

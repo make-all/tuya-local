@@ -1,0 +1,246 @@
+name: Robot vacuum
+products:
+  - id: tdxitkhbixikp8eh
+    name: Lubluelu SL60D
+primary_entity:
+  entity: vacuum
+  dps:
+    - id: 1
+      type: boolean
+      name: power
+    - id: 2
+      type: boolean
+      name: activate
+    - id: 3
+      type: boolean
+      name: charge
+    - id: 4
+      type: string
+      name: command
+      mapping:
+        - dps_val: smart
+          value: smart
+        - dps_val: chargego
+          value: return_to_base
+        - dps_val: zone
+          value: zone
+        - dps_val: pose
+          value: clean_spot
+        - dps_val: part
+          value: partial
+    - id: 5
+      type: string
+      name: status
+      mapping:
+        - dps_val: standby
+          value: standby
+        - dps_val: zone_clean
+          value: zone
+        - dps_val: part_clean
+          value: partial
+        - dps_val: cleaning
+          value: cleaning
+        - dps_val: paused
+          value: paused
+        - dps_val: goto_pos
+          value: seeking_spot
+        - dps_val: pos_arrived
+          value: located spot
+        - dps_val: pos_unarrive
+          value: left_spot
+        - dps_val: goto_charge
+          value: returning
+        - dps_val: charging
+          value: charging
+        - dps_val: charge_done
+          value: sleep
+        - dps_val: sleep
+    - id: 9
+      type: string
+      name: fan_speed
+      mapping:
+        - dps_val: gentle
+          value: Low
+        - dps_val: normal
+          value: Medium
+        - dps_val: strong
+          value: High
+    - id: 11
+      type: boolean
+      name: locate
+      optional: true
+    - id: 12
+      type: string
+      name: direction_control
+      mapping:
+        - dps_val: forward
+          value: forward
+        - dps_val: backward
+          value: reverse
+        - dps_val: turn_left
+          value: left
+        - dps_val: turn_right
+          value: right
+        - dps_val: stop
+          value: stop
+    - id: 27
+      type: boolean
+      name: break_clean
+    - id: 28
+      type: bitfield
+      name: error
+
+secondary_entities:
+  - entity: sensor
+    name: Cleaning time
+    icon: "mdi:progress-clock"
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: min
+  - entity: sensor
+    name: Cleaning area
+    category: diagnostic
+    icon: "mdi:floor-plan"
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: m2
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Water tank
+    category: diagnostic
+    class: enum
+    icon: "mdi:cup-water"
+    dps:
+      - id: 10
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: closed
+            value: Closed
+          - dps_val: low
+            value: Low
+          - dps_val: middle
+            value: Medium
+          - dps_val: high
+            value: High
+  - entity: sensor
+    name: Side brush lifetime
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        unit: h
+  - entity: sensor
+    name: Rolling brush lifetime
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: h
+  - entity: sensor
+    name: Filter lifetime
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: h
+  - entity: sensor
+    name: Duster cloth lifetime
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: min
+        optional: true
+  - entity: sensor
+    name: Total cleaning area
+    icon: "mdi:texture-box"
+    category: diagnostic
+    dps:
+      - id: 29
+        type: integer
+        name: sensor
+        unit: m2
+  - entity: sensor
+    name: Total cleaning times
+    icon: "mdi:counter"
+    category: diagnostic
+    dps:
+      - id: 30
+        type: integer
+        name: sensor
+  - entity: sensor
+    name: Total cleaning time
+    class: duration
+    icon: "mdi:history"
+    category: diagnostic
+    dps:
+      - id: 31
+        type: integer
+        name: sensor
+        unit: min
+  - entity: button
+    name: Reset map
+    icon: "mdi:map-marker-remove"
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Reset edge brush
+    class: restart
+    category: config
+    dps:
+      - id: 18
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Reset roll brush
+    class: restart
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Reset filter
+    icon: "mdi:air-filter"
+    category: config
+    dps:
+      - id: 22
+        type: boolean
+        name: button
+        optional: true
+  - entity: switch
+    name: Do not disturb
+    icon: "mdi:minus-circle"
+    category: config
+    dps:
+      - id: 25
+        type: boolean
+        name: switch

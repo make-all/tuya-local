@@ -1,6 +1,7 @@
 name: W'Eau pool heatpump 13kW
 primary_entity:
   entity: climate
+  translation_key: pool_heatpump
   dps:
     - id: 1
       type: boolean
@@ -33,36 +34,31 @@ primary_entity:
       name: preset_mode
       mapping:
         - dps_val: hot
-          value: Boost Heat
+          value: quick_heat
         - dps_val: eco
-          value: Eco Heat
+          value: quiet_heat
         - dps_val: cold
-          value: Cool
+          value: quiet_cool
         - dps_val: auto
-          value: Auto
+          value: auto
     - id: 6
       name: fault
       type: bitfield
     - id: 101
       name: unknown_101
       type: integer
-      class: measurement
     - id: 103
       name: unknown_103
       type: integer
-      class: measurement
     - id: 106
       name: unknown_106
       type: integer
-      class: measurement
     - id: 110
       name: unknown_110
       type: integer
-      class: measurement
     - id: 111
       name: unknown_111
       type: integer
-      class: measurement
     - id: 113
       name: unknown_113
       type: boolean

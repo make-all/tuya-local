@@ -1,0 +1,95 @@
+name: Air conditioner
+products:
+  - id: ypgwqvhjrl5chq6h
+    model: SAC MT7048C Air Conditioner
+    manufacturer: Sencor
+primary_entity:
+  entity: climate
+  translation_key: aircon_extra
+  icon: "mdi:air-conditioner"
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+          icon: "mdi:hvac-off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: "0"
+              icon: "mdi:snowflake"
+              value: cool
+            - dps_val: "3"
+              icon: "mdi:fan"
+              value: fan_only
+            - dps_val: "2"
+              icon: "mdi:water"
+              value: dry
+    - id: 2
+      name: temperature
+      type: integer
+      range:
+        min: 17
+        max: 30
+      unit: C
+    - id: 3
+      name: current_temperature
+      type: integer
+    - id: 4
+      name: mode
+      type: string
+      hidden: true
+    - id: 5
+      name: fan_mode
+      type: string
+      mapping:
+        - dps_val: low
+          value: low
+        - dps_val: high
+          value: high
+          constraint: preset_mode
+          conditions:
+            - dps_val: true
+              invalid: true
+    - id: 22
+      type: bitfield
+      name: fault_code
+    - id: 25
+      name: preset_mode
+      type: boolean
+      mapping:
+        - dps_val: true
+          value: sleep
+        - dps_val: false
+          value: comfort
+    - id: 103
+      name: type
+      type: string
+secondary_entities:
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: select
+    name: Display temperature unit
+    category: config
+    icon: "mdi:temperature-celsius"
+    dps:
+      - id: 19
+        name: option
+        type: string
+        mapping:
+          - dps_val: C
+            value: Celsius
+          - dps_val: F
+            value: Fahrenheit

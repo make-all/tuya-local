@@ -1,0 +1,66 @@
+name: Ceiling fan
+products:
+  - id: ea6vpac5hfe5rqw4
+    name: Immax NEO LITE VENTO Smart
+primary_entity:
+  entity: fan
+  translation_key: fan_with_presets
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 2
+      type: string
+      name: preset_mode
+      category: config
+      mapping:
+        - dps_val: normal
+          value: normal
+        - dps_val: sleep
+          value: sleep
+        - dps_val: nature
+          value: nature
+    - id: 3
+      name: speed
+      type: integer
+      category: config
+      range:
+        min: 0
+        max: 6
+      mapping:
+        - scale: 0.06
+          constraint: preset_mode
+          conditions:
+            - dps_val: nature
+              step: 5
+            - dps_val: sleep
+              step: 5
+    - id: 8
+      name: direction
+      type: string
+      category: config
+secondary_entities:
+  - entity: light
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+  - entity: select
+    name: timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 22
+        name: option
+        type: string
+        mapping:
+          - dps_val: "off"
+            value: "Off"
+          - dps_val: 1hour
+            value: "1 hour"
+          - dps_val: 2hour
+            value: "2 hours"
+          - dps_val: 4hour
+            value: "4 hours"
+          - dps_val: 8hour
+            value: "8 hours"

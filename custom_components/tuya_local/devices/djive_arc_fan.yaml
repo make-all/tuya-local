@@ -1,0 +1,101 @@
+name: Humidifying fan
+products:
+  - id: bf5fd02f13d3f6d92exy2t
+    name: djive Flowmate ARC Humidifier
+primary_entity:
+  entity: fan
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 2
+      name: preset_mode
+      type: string
+      optional: true
+      mapping:
+        - dps_val: close
+          value: normal
+        - dps_val: auto
+          value: smart
+        - dps_val: strong
+          value: strong
+        - dps_val: fresh
+          value: fresh
+        - dps_val: sleep
+          value: sleep
+    - id: 3
+      name: speed
+      type: integer
+      range:
+        min: 0
+        max: 9
+      mapping:
+        - scale: 0.09
+    - id: 5
+      type: boolean
+      name: oscillate
+    - id: 24
+      type: bitfield
+      name: fault_code
+secondary_entities:
+  - entity: select
+    category: config
+    name: Humidifier
+    icon: "mdi:air-humidifier"
+    dps:
+      - id: 105
+        name: option
+        type: string
+        mapping:
+          - dps_val: close
+            value: "off"
+          - dps_val: 1
+            value: low
+          - dps_val: 2
+            value: medium
+          - dps_val: 3
+            value: high
+          - dps_val: auto
+            value: auto
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 24
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: switch
+    name: UV sterilization
+    icon: "mdi:asterisk"
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Sound
+    icon: "mdi:volume-high"
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        class: measurement
+        unit: "%"
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        class: measurement
+        unit: "μg/m³"

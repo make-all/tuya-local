@@ -1,0 +1,78 @@
+name: Ceiling fan with light
+products:
+  - id: g0ewlb1vmwqljzji
+    name: Reiga 52 ceiling fan with light
+primary_entity:
+  entity: fan
+  translation_key: fan_with_presets
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 2
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: normal
+          value: normal
+        - dps_val: nature
+          value: nature
+        - dps_val: sleep
+          value: sleep
+    - id: 3
+      type: integer
+      name: speed
+      range:
+        min: 1
+        max: 6
+      mapping:
+        - scale: 0.06
+    - id: 8
+      type: string
+      name: direction
+secondary_entities:
+  - entity: select
+    name: Timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 22
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "Off"
+          - dps_val: "1hour"
+            value: "1 hour"
+          - dps_val: "2hour"
+            value: "2 hours"
+          - dps_val: "4hour"
+            value: "4 hours"
+          - dps_val: "8hour"
+            value: "8 hours"
+  - entity: light
+    name: Light
+    icon: "mdi:lightbulb"
+    category: config
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+      - id: 16
+        type: integer
+        name: brightness
+        range:
+          min: 0
+          max: 255
+        mapping:
+          - scale: 0.392156862745098
+      - id: 17
+        type: integer
+        name: color_temp
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+        range:
+          min: 0
+          max: 100

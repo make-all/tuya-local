@@ -2,12 +2,14 @@
 Mixins to make writing new platforms easier
 """
 import logging
+
 from homeassistant.const import (
     AREA_SQUARE_METERS,
     CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
     UnitOfTemperature,
 )
 from homeassistant.helpers.entity import EntityCategory
+from homeassistant.helpers.typing import UNDEFINED
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -19,6 +21,8 @@ class TuyaLocalEntity:
         self._device = device
         self._config = config
         self._attr_dps = []
+        self._attr_translation_key = config.translation_key
+
         return {c.name: c for c in config.dps()}
 
     def _init_end(self, dps):
@@ -35,13 +39,19 @@ class TuyaLocalEntity:
         return self._device.has_returned_state
 
     @property
-    def name(self):
-        """Return the name for the UI."""
-        return self._config.name
-
-    @property
     def has_entity_name(self):
         return True
+
+    @property
+    def name(self):
+        """Return the name for the UI."""
+        # Super has the logic to get default names from device class.
+        super_name = getattr(super(), "name")
+        # If we don't have a name, and super also doesn't, we explicitly want to use
+        # the device name - avoid the HA warning about implicitly using it.
+        if super_name is UNDEFINED:
+            super_name = None
+        return self._config.name or super_name
 
     @property
     def unique_id(self):
@@ -81,6 +91,11 @@ class TuyaLocalEntity:
                 attr[a.name] = value
         return attr
 
+    @property
+    def entity_registry_enabled_default(self):
+        """Disable deprecated entities on new installations"""
+        return not self._config.deprecated
+
     async def async_update(self):
         await self._device.async_refresh()
 
@@ -89,6 +104,10 @@ class TuyaLocalEntity:
 
     async def async_will_remove_from_hass(self):
         await self._device.async_unregister_entity(self)
+
+    def on_receive(self, dps):
+        """Override to process dps directly as they are received"""
+        pass
 
 
 UNIT_ASCII_MAP = {

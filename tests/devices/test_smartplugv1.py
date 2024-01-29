@@ -1,14 +1,16 @@
 """Tests for the switch entity."""
-from homeassistant.components.switch import SwitchDeviceClass
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass
+from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (
     UnitOfElectricCurrent,
     UnitOfElectricPotential,
-    UnitOfTime,
     UnitOfPower,
+    UnitOfTime,
 )
 
 from ..const import KOGAN_SOCKET_PAYLOAD
+from ..mixins.binary_sensor import BasicBinarySensorTests
 from ..mixins.number import BasicNumberTests
 from ..mixins.sensor import MultiSensorTests
 from ..mixins.switch import SwitchableTests
@@ -19,17 +21,27 @@ TIMER_DPS = "2"
 CURRENT_DPS = "4"
 POWER_DPS = "5"
 VOLTAGE_DPS = "6"
+OVERCURRENT_DPS = "7"
 
 
 class TestKoganSwitch(
-    BasicNumberTests, MultiSensorTests, SwitchableTests, TuyaDeviceTestCase
+    BasicBinarySensorTests,
+    BasicNumberTests,
+    MultiSensorTests,
+    SwitchableTests,
+    TuyaDeviceTestCase,
 ):
     __test__ = True
 
     def setUp(self):
         self.setUpForConfig("smartplugv1.yaml", KOGAN_SOCKET_PAYLOAD)
-        self.subject = self.entities.get("switch")
+        self.subject = self.entities.get("switch_outlet")
         self.setUpSwitchable(SWITCH_DPS, self.subject)
+        self.setUpBasicBinarySensor(
+            OVERCURRENT_DPS,
+            self.entities.get("binary_sensor_overcurrent_alarm"),
+            device_class=BinarySensorDeviceClass.PROBLEM,
+        )
         self.setUpBasicNumber(
             TIMER_DPS,
             self.entities.get("number_timer"),
@@ -66,6 +78,7 @@ class TestKoganSwitch(
         )
         self.mark_secondary(
             [
+                "binary_sensor_overcurrent_alarm",
                 "number_timer",
                 "sensor_current",
                 "sensor_power",

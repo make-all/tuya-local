@@ -1,0 +1,108 @@
+name: Irrigation system
+products:
+  - id: 2ak7r2culspkc7hx
+    model: RainPoint TTP106W
+    manufacturer: Aubess
+primary_entity:
+  entity: switch
+  icon: "mdi:pipe-valve"
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+secondary_entities:
+  - entity: sensor
+    name: Status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 106
+        name: sensor
+        type: string
+        icon_priority: 1
+        mapping:
+          - dps_val: "0"
+            value: Unknown
+          - dps_val: "1"
+            value: Idle
+          - dps_val: "2"
+            value: Auto running
+          - dps_val: "3"
+            value: Manually running
+  - entity: switch
+    name: Auto run
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 109
+        name: switch
+        type: boolean
+        optional: true
+  - entity: number
+    name: Duration
+    icon: "mdi:timer"
+    category: config
+    mode: box
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 6
+          max: 1440
+  - entity: number
+    name: Interval
+    icon: "mdi:clock-outline"
+    category: config
+    mode: box
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 1
+          max: 720
+  - entity: sensor
+    name: Next irrigation
+    icon: "mdi:clock-outline"
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: s
+  - entity: sensor
+    category: diagnostic
+    class: duration
+    name: Remaining time
+    icon: "mdi:timer"
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: s
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: "%"
+        mapping:
+          - scale: 0.04
+  - entity: binary_sensor
+    name: Error
+    category: diagnostic
+    class: problem
+    dps:
+      - id: 105
+        name: sensor
+        type: integer
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true

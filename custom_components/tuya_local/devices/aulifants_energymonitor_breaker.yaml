@@ -1,0 +1,120 @@
+name: Circuit breaker
+products:
+  - id: qndxewijhpsz3ixr
+    name: Aulifants SMES200
+primary_entity:
+  entity: sensor
+  name: Total energy
+  class: energy
+  dps:
+    - id: 1
+      type: integer
+      name: sensor
+      unit: kWh
+      class: total_increasing
+      mapping:
+        - scale: 100
+secondary_entities:
+  - entity: sensor
+    class: voltage
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - mask: "FFFF000000000000"
+            scale: 10
+  - entity: sensor
+    class: current
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        unit: A
+        mapping:
+          - mask: "0000FFFFFF000000"
+            scale: 1000
+  - entity: sensor
+    class: power
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        unit: kW
+        mapping:
+          - mask: "0000000000FFFFFF"
+            scale: 1000
+  - entity: button
+    name: Clear energy
+    category: config
+    dps:
+      - id: 12
+        type: boolean
+        name: button
+        optional: true
+  - entity: switch
+    name: Breaker
+    icon: "mdi:fuse"
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+  - entity: number
+    name: Voltage protection
+    category: config
+    icon: "mdi:flash-triangle"
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 230
+          max: 240
+      - id: 103
+        type: integer
+        name: trigger_count
+  - entity: number
+    name: Current protection
+    category: config
+    icon: "mdi:flash-triangle"
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 0
+          max: 60
+      - id: 104
+        type: integer
+        name: trigger_count
+  - entity: switch
+    name: Current protection
+    icon: "mdi:flash-triangle"
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+  - entity: switch
+    name: Voltage protection
+    icon: "mdi:flash-triangle"
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false

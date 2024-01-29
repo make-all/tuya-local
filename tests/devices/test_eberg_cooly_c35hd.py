@@ -1,8 +1,8 @@
 from homeassistant.components.climate.const import (
-    ClimateEntityFeature,
-    HVACMode,
     SWING_OFF,
     SWING_VERTICAL,
+    ClimateEntityFeature,
+    HVACMode,
 )
 from homeassistant.const import UnitOfTemperature
 

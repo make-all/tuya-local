@@ -27,16 +27,15 @@ primary_entity:
       type: string
       name: preset_mode
       mapping:
-        - dps_val: "mod_free"
-          value: "comfort"
-        - dps_val: "mod_max12h"
-          value: "boost"
-        - dps_val: "mod_antiforst"
-          value: "away"
+        - dps_val: mod_free
+          value: comfort
+        - dps_val: mod_max12h
+          value: boost
+        - dps_val: mod_antiforst
+          value: away
     - id: 11
       type: string
       name: hvac_action
-      readonly: true
       mapping:
         - dps_val: heating
           constraint: hvac_mode
@@ -72,17 +71,12 @@ secondary_entities:
         mapping:
           - dps_val: level0
             value: 0
-            step: 85
           - dps_val: level1
             value: 85
-            step: 85
           - dps_val: level2
             value: 170
-            step: 85
           - dps_val: level3
             value: 255
-            step: 85
-          - step: 85
   - entity: select
     name: Timer
     icon: "mdi:timer"
@@ -141,7 +135,7 @@ secondary_entities:
           - dps_val: "23h"
             value: "23 hours"
           - dps_val: "24h"
-            value: "24 hours"          
+            value: "24 hours"
   - entity: sensor
     category: diagnostic
     class: duration

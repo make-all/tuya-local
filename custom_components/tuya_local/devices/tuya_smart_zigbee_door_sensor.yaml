@@ -1,0 +1,22 @@
+name: Tuya Smart Zigbee Door Sensor
+products:
+  - id: 7jIGJAymiH8OsFFb
+    name: Tuya Smart Zigbee Door Sensor
+primary_entity:
+  entity: binary_sensor
+  class: door
+  dps:
+    - id: 101
+      type: boolean
+      name: sensor
+secondary_entities:
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        optional: true
+        unit: "%"
+        class: measurement

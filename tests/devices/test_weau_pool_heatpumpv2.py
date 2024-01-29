@@ -1,8 +1,5 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
-from homeassistant.components.climate.const import (
-    ClimateEntityFeature,
-    HVACMode,
-)
+from homeassistant.components.climate.const import ClimateEntityFeature, HVACMode
 
 from ..const import WEAU_POOL_HEATPUMPV2_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -47,7 +44,8 @@ class TestWeauPoolHeatpumpV2(
 
     def test_supported_features(self):
         self.assertEqual(
-            self.subject.supported_features, ClimateEntityFeature.TARGET_TEMPERATURE
+            self.subject.supported_features,
+            ClimateEntityFeature.TARGET_TEMPERATURE | ClimateEntityFeature.PRESET_MODE,
         )
 
     def test_current_temperature(self):
@@ -60,13 +58,23 @@ class TestWeauPoolHeatpumpV2(
         self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT)
         self.dps[MODE_DPS] = "ecool"
         self.assertEqual(self.subject.hvac_mode, HVACMode.COOL)
+        self.dps[MODE_DPS] = "sheat"
+        self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT)
+        self.dps[MODE_DPS] = "scool"
+        self.assertEqual(self.subject.hvac_mode, HVACMode.COOL)
+        self.dps[MODE_DPS] = "bheat"
+        self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT)
+        self.dps[MODE_DPS] = "bcool"
+        self.assertEqual(self.subject.hvac_mode, HVACMode.COOL)
+        self.dps[MODE_DPS] = "auto"
+        self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT_COOL)
         self.dps[POWER_DPS] = False
         self.assertEqual(self.subject.hvac_mode, HVACMode.OFF)
 
     def test_hvac_modes(self):
         self.assertCountEqual(
             self.subject.hvac_modes,
-            [HVACMode.OFF, HVACMode.COOL, HVACMode.HEAT],
+            [HVACMode.OFF, HVACMode.COOL, HVACMode.HEAT, HVACMode.HEAT_COOL],
         )
 
     async def test_turn_off(self):

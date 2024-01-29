@@ -985,26 +985,6 @@ NASHONE_MTS700WB_THERMOSTAT_PAYLOAD = {
     "42": 0,
 }
 
-SMARTMCB_SMT006_METER_PAYLOAD = {
-    "1": 141630,
-    #    "6": "CHoAQgQADlwAAA==",
-    #    "7": "AAAAAAAAAAAAAA==",
-    #    "8": "AAAAAAAAAAAAAA==",
-    "9": 0,
-    "11": False,
-    "12": False,
-    "13": 0,
-    #    "14": 0,
-    "16": True,
-    "19": "FSE-F723C46A04FC6C",
-    "101": 275,
-    "102": 170,
-    "103": 40,
-    "104": 30,
-    "105": False,
-    "106": False,
-}
-
 LEFANT_M213_VACUUM_PAYLOAD = {
     "1": True,
     "2": False,
@@ -1132,7 +1112,7 @@ PARKSIDE_PLGS2012A1_PAYLOAD = {
     "8": False,
     "9": True,
     "10": 5,
-    "11": "unknown",
+    "11": 0,
     "101": 2500,
     "102": 11,
     "103": False,
@@ -1558,4 +1538,102 @@ BCOM_CAMERA_PAYLOAD = {
     "162": False,
     "231": "",
     "232": False,
+}
+
+GX_AROMA_PAYLOAD = {
+    "1": True,
+    "2": "high",
+    "3": "cancel",
+    "4": 0,
+    "5": True,
+    "6": "colour",
+    "8": "b9fff500ab46ff",
+    "9": 0,
+}
+
+MOEBOT_PAYLOAD = {
+    "6": 41,
+    "101": "MOWING",
+    "102": 0,
+    "103": "MOWER_LEAN",
+    "104": True,
+    "105": 8,
+    "106": 1343,
+    "114": "AutoMode",
+}
+
+TOMPD63LW_SOCKET_PAYLOAD = {
+    "1": 139470,
+    "6": "CPQAFEkAAuk=",
+    "9": 0,
+    "11": False,
+    "12": False,
+    "13": 0,
+    "16": True,
+    "19": "FSE-F723C46A04FC6C",
+    # "101": 275,
+    # "102": 170,
+    # "103": 40,
+    # "104": 30,
+    # "105": False,
+    # "106": False,
+}
+
+GOLDAIR_GPDH340_PAYLOAD = {
+    "1": True,
+    "2": "2",
+    "4": 60,
+    "6": "2",
+    "11": 0,
+    "103": 20,
+    "104": 72,
+    "105": 40,
+    "106": False,
+    "107": True,
+    "108": False,
+    "109": False,
+}
+
+THERMEX_IF50V_PAYLOAD = {
+    "101": False,
+    "102": 37,
+    "104": 65,
+    "105": "2",
+    "106": 0,
+}
+
+ZXG30_ALARM_PAYLOAD = {
+    "1": "home",
+    "2": 0,
+    "3": 3,
+    "4": True,
+    "9": False,
+    "10": False,
+    "15": True,
+    "16": 100,
+    "17": True,
+    "20": False,
+    "21": False,
+    "22": 1,
+    "23": "2",
+    "24": "Normal",
+    "27": True,
+    "28": 10,
+    "29": True,
+    "32": "normal",
+    "34": False,
+    "35": False,
+    "36": "3",
+    "37": "0",
+    "39": "0",
+    "40": "1",
+}
+
+IR_REMOTE_SENSORS_PAYLOAD = {
+    "101": 200,
+    "102": 80,
+}
+
+LORATAP_CURTAINSWITCH_PAYLOAD = {
+    "1": "3",
 }

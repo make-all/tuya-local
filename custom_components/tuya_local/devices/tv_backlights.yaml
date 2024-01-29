@@ -1,0 +1,211 @@
+name: TV Sync Backlights
+products:
+  - id: gaobbrxqiblcng2p
+    name: Loginovo Ambient TV Sync Light
+primary_entity:
+  entity: light
+  name: Backlight
+  icon: mdi:television-shimmer
+  dps:
+    - id: 102
+      type: boolean
+      name: switch
+    - id: 104
+      name: brightness
+      type: integer
+      range:
+        min: 0
+        max: 100
+      mapping:
+        - scale: 0.392
+          constraint: video_mode
+          conditions:
+            - dps_val: ambi_mode
+              value_redirect: scene_brightness
+            - dps_val: color_mode
+              value_redirect: color_brightness
+    - id: 114
+      hidden: true
+      name: scene_brightness
+      type: integer
+      range:
+        min: 0
+        max: 100
+      mapping:
+        - scale: 0.392
+    - id: 112
+      hidden: true
+      name: color_brightness
+      type: integer
+      range:
+        min: 0
+        max: 100
+      mapping:
+        - scale: 0.392
+    - id: 111
+      name: rgbhsv
+      type: hex
+      format:
+        - name: r
+          bytes: 1
+        - name: g
+          bytes: 1
+        - name: b
+          bytes: 1
+    - id: 101
+      name: video_mode
+      type: string
+      hidden: true
+    - id: 101
+      name: effect
+      type: string
+      mapping:
+        - dps_val: video_mode
+          value: Video
+        - dps_val: music_mode
+          value: Music
+        - dps_val: film_mode
+          value: Wide film
+        - dps_val: color_mode
+          value: Static color
+        - dps_val: ambi_mode
+          value: Ambient scene
+secondary_entities:
+  - entity: number
+    name: Backlight intensity
+    type: integer
+    mode: slider
+    icon: mdi:speedometer-medium
+    dps:
+      - id: 103
+        name: value
+        type: integer
+        range:
+          min: 1
+          max: 3
+  - entity: select
+    icon: mdi:shimmer
+    name: Scene select
+    dps:
+      - id: 113
+        name: option
+        type: integer
+        mapping:
+          - dps_val: 1
+            icon: mdi:book-open-page-variant
+            value: Read
+          - dps_val: 2
+            icon: mdi:weather-sunny
+            value: Get up
+          - dps_val: 3
+            icon: mdi:weather-night
+            value: Good night
+          - dps_val: 4
+            icon: mdi:image-filter-drama-outline
+            value: Sky
+          - dps_val: 5
+            icon: mdi:clover
+            value: Romantic
+          - dps_val: 6
+            icon: mdi:palette
+            value: Colorful
+          - dps_val: 7
+            icon: mdi:music-note
+            value: Dreamy
+          - dps_val: 8
+            icon: mdi:pulse
+            value: Dynamic
+          - dps_val: 9
+            icon: mdi:shimmer
+            value: Loop
+          - dps_val: 10
+            icon: mdi:water-opacity
+            value: Gorgeous
+          - dps_val: 11
+            icon: mdi:flower-outline
+            value: Sunflower
+          - dps_val: 12
+            icon: mdi:looks
+            value: Rainbow
+  - entity: sensor
+    category: diagnostic
+    icon: mdi:information-outline
+    name: Video output
+    dps:
+      - id: 127
+        name: sensor
+        type: string
+  - entity: sensor
+    category: diagnostic
+    icon: mdi:palette
+    name: RGB sequence
+    dps:
+      - id: 125
+        name: sensor
+        type: string
+  - entity: sensor
+    category: diagnostic
+    icon: mdi:palette
+    name: RGB color
+    dps:
+      - id: 111
+        name: sensor
+        type: string
+  - entity: sensor
+    category: diagnostic
+    icon: mdi:power
+    name: Sync TV power
+    dps:
+      - id: 126
+        name: sensor
+        type: boolean
+  - entity: sensor
+    category: diagnostic
+    icon: mdi:palette
+    name: Color compensation
+    dps:
+      - id: 122
+        name: sensor
+        type: string
+  - entity: sensor
+    category: diagnostic
+    name: Cap height
+    icon: mdi:arrow-expand-vertical
+    dps:
+      - id: 118
+        name: sensor
+        type: integer
+  - entity: sensor
+    category: diagnostic
+    icon: mdi:arrow-expand-horizontal
+    name: Cap width
+    dps:
+      - id: 119
+        name: sensor
+        type: integer
+  - entity: sensor
+    category: diagnostic
+    icon: mdi:arrow-expand-horizontal
+    name: Horizontal LED length
+    unit: dm
+    dps:
+      - id: 116
+        name: sensor
+        type: integer
+  - entity: sensor
+    category: diagnostic
+    icon: mdi:arrow-expand-vertical
+    name: Vertical LED length
+    unit: dm
+    dps:
+      - id: 117
+        name: sensor
+        type: integer
+  - entity: sensor
+    category: diagnostic
+    icon: mdi:speedometer-slow
+    name: Frame delay
+    dps:
+      - id: 120
+        name: sensor
+        type: integer

@@ -1,0 +1,128 @@
+name: Dual dimmer
+products:
+  - id: qga0e955v5hmg21x
+    name: Treatlife smart dimmer with two sockets
+primary_entity:
+  entity: light
+  name: Light 1
+  category: config
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 2
+      name: brightness
+      type: integer
+      range:
+        min: 10
+        max: 1000
+      mapping:
+        - scale: 3.92
+    - id: 3
+      name: min_brightness
+      type: integer
+    - id: 101
+      name: away_program
+      type: string
+      optional: true
+    - id: 102
+      name: sleep_program
+      type: string
+      optional: true
+    - id: 103
+      name: awake_program
+      type: string
+      optional: true
+secondary_entities:
+  - entity: light
+    name: Light 2
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+      - id: 8
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 3.92
+      - id: 9
+        name: min_brightness
+        type: integer
+  - entity: select
+    name: Light 1 type
+    icon: "mdi:lightbulb"
+    category: config
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: led
+            value: LED
+          - dps_val: incandescent
+            value: Incandescent
+          - dps_val: halogen
+            value: Halogen
+  - entity: select
+    name: Light 2 type
+    icon: "mdi:lightbulb"
+    category: config
+    dps:
+      - id: 10
+        type: string
+        name: option
+        mapping:
+          - dps_val: led
+            value: LED
+          - dps_val: incandescent
+            value: Incandescent
+          - dps_val: halogen
+            value: Halogen
+  - entity: number
+    name: Timer 1
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 6
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    name: Timer 2
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 12
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: select
+    name: Indicator
+    icon: "mdi:led-on"
+    category: config
+    dps:
+      - id: 21
+        type: string
+        name: option
+        mapping:
+          - dps_val: none
+            value: "Off"
+          - dps_val: relay
+            value: Status
+          - dps_val: pos
+            value: "On"

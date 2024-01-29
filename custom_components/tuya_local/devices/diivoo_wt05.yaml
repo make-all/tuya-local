@@ -1,0 +1,153 @@
+# "11": 100,     battery
+# "103": 0,      countdown (m)
+# "104": false,  switch
+# "105": false,  switch
+# "106": 0,      countdown (m)
+
+# "110": 44,     last run time (s)
+# "111": 60,     last run time (s)
+
+# "112": "idle", status
+# "113": "idle", status
+# "114": "OFF",  rain (d)
+# "117": "OFF"   rain (d)
+
+name: Dual water timer
+products:
+  - id: fdrbxxbg
+    manufacturer: Diivoo
+    model: WT-05
+primary_entity:
+  entity: switch
+  icon: "mdi:pipe-valve"
+  name: Switch 1
+  dps:
+    - id: 105
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: switch
+    name: Switch 2
+    icon: "mdi:pipe-valve"
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 11
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    name: Operation 1
+    category: diagnostic
+    dps:
+      - id: 113
+        type: string
+        name: sensor
+  - entity: sensor
+    name: Operation 2
+    category: diagnostic
+    dps:
+      - id: 112
+        type: string
+        name: sensor
+  - entity: sensor
+    name: Last use time 1
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: s
+        optional: true
+  - entity: sensor
+    name: Last use time 2
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: s
+        optional: true
+  - entity: number
+    name: Irrigation time 1
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        unit: min
+        optional: true
+        range:
+          min: 0
+          max: 1440
+  - entity: number
+    name: Irrigation time 2
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: min
+        optional: true
+        range:
+          min: 0
+          max: 1440
+  - entity: select
+    name: Weather delay 1
+    icon: "mdi:weather-cloudy-clock"
+    category: config
+    dps:
+      - id: 117
+        type: string
+        name: option
+        mapping:
+          - dps_val: "OFF"
+            value: "Off"
+          - dps_val: "1"
+            value: "1 day"
+          - dps_val: "2"
+            value: "2 days"
+          - dps_val: "3"
+            value: "3 days"
+          - dps_val: "3"
+            value: "4 days"
+          - dps_val: "5"
+            value: "5 days"
+          - dps_val: "6"
+            value: "6 days"
+          - dps_val: "7"
+            value: "7 days"
+  - entity: select
+    name: Weather delay 2
+    icon: "mdi:weather-cloudy-clock"
+    category: config
+    dps:
+      - id: 114
+        type: string
+        name: option
+        mapping:
+          - dps_val: "OFF"
+            value: "Off"
+          - dps_val: "1"
+            value: "1 day"
+          - dps_val: "2"
+            value: "2 days"
+          - dps_val: "3"
+            value: "3 days"
+          - dps_val: "3"
+            value: "4 days"
+          - dps_val: "5"
+            value: "5 days"
+          - dps_val: "6"
+            value: "6 days"
+          - dps_val: "7"
+            value: "7 days"

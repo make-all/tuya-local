@@ -1,9 +1,6 @@
 """Tests for the simple garage door opener."""
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
-from homeassistant.components.cover import (
-    CoverDeviceClass,
-    CoverEntityFeature,
-)
+from homeassistant.components.cover import CoverDeviceClass, CoverEntityFeature
 from homeassistant.components.sensor import SensorDeviceClass
 
 from ..const import KOGAN_GARAGE_DOOR_PAYLOAD
@@ -27,7 +24,7 @@ class TestKoganGarageOpener(
 
     def setUp(self):
         self.setUpForConfig("kogan_garage_opener.yaml", KOGAN_GARAGE_DOOR_PAYLOAD)
-        self.subject = self.entities["cover"]
+        self.subject = self.entities["cover_garage"]
         self.setUpBasicBinarySensor(
             LEFTOPEN_DPS,
             self.entities.get("binary_sensor_door_open"),

@@ -7,15 +7,17 @@ from homeassistant.const import CONF_HOST, CONF_NAME
 from homeassistant.core import HomeAssistant, callback
 
 from . import DOMAIN
-from .device import TuyaLocalDevice
 from .const import (
     API_PROTOCOL_VERSIONS,
+    CONF_DEVICE_CID,
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
     CONF_POLL_ONLY,
     CONF_PROTOCOL_VERSION,
     CONF_TYPE,
 )
+from .device import TuyaLocalDevice
+from .helpers.config import get_device_id
 from .helpers.device_config import get_config
 from .helpers.log import log_json
 
@@ -23,7 +25,7 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
-    VERSION = 12
+    VERSION = 13
     CONNECTION_CLASS = config_entries.CONN_CLASS_LOCAL_PUSH
     device = None
     data = {}
@@ -33,11 +35,12 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         devid_opts = {}
         host_opts = {"default": "Auto"}
         key_opts = {}
-        proto_opts = {"default": "auto"}
+        proto_opts = {"default": 3.3}
         polling_opts = {"default": False}
+        devcid_opts = {}
 
         if user_input is not None:
-            await self.async_set_unique_id(user_input[CONF_DEVICE_ID])
+            await self.async_set_unique_id(get_device_id(user_input))
             self._abort_if_unique_id_configured()
 
             self.device = await async_test_connection(user_input, self.hass)
@@ -49,6 +52,8 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                 devid_opts["default"] = user_input[CONF_DEVICE_ID]
                 host_opts["default"] = user_input[CONF_HOST]
                 key_opts["default"] = user_input[CONF_LOCAL_KEY]
+                if CONF_DEVICE_CID in user_input:
+                    devcid_opts["default"] = user_input[CONF_DEVICE_CID]
                 proto_opts["default"] = user_input[CONF_PROTOCOL_VERSION]
                 polling_opts["default"] = user_input[CONF_POLL_ONLY]
 
@@ -64,6 +69,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                         **proto_opts,
                     ): vol.In(["auto"] + API_PROTOCOL_VERSIONS),
                     vol.Required(CONF_POLL_ONLY, **polling_opts): bool,
+                    vol.Optional(CONF_DEVICE_CID, **devcid_opts): str,
                 }
             ),
             errors=errors,
@@ -168,6 +174,10 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
             vol.Required(
                 CONF_POLL_ONLY, default=config.get(CONF_POLL_ONLY, False)
             ): bool,
+            vol.Optional(
+                CONF_DEVICE_CID,
+                default=config.get(CONF_DEVICE_CID, ""),
+            ): str,
         }
         cfg = get_config(config[CONF_TYPE])
         if cfg is None:
@@ -182,18 +192,21 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
 
 async def async_test_connection(config: dict, hass: HomeAssistant):
     domain_data = hass.data.get(DOMAIN)
-    existing = domain_data.get(config[CONF_DEVICE_ID]) if domain_data else None
+    existing = domain_data.get(get_device_id(config)) if domain_data else None
     if existing:
+        _LOGGER.info("Pausing existing device to test new connection parameters")
         existing["device"].pause()
         await asyncio.sleep(5)
 
     try:
+        subdevice_id = config.get(CONF_DEVICE_CID)
         device = TuyaLocalDevice(
             "Test",
             config[CONF_DEVICE_ID],
             config[CONF_HOST],
             config[CONF_LOCAL_KEY],
             config[CONF_PROTOCOL_VERSION],
+            subdevice_id,
             hass,
             True,
         )
@@ -204,6 +217,7 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
         retval = None
 
     if existing:
+        _LOGGER.info("Restarting device after test")
         existing["device"].resume()
 
     return retval

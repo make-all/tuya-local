@@ -1,0 +1,321 @@
+name: SmartMCB SMT006-8 energy meter
+products:
+  - id: 3xhdofmeo6lgpvd5
+  - id: i5mqmxkho1vahdt2
+primary_entity:
+  entity: switch
+  icon: "mdi:fuse"
+  name: Breaker
+  dps:
+    - id: 16
+      type: boolean
+      name: switch
+    - id: 9
+      type: bitfield
+      name: fault_code
+    - id: 19
+      type: string
+      name: breaker_number
+      optional: true
+secondary_entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        class: total_increasing
+        unit: kWh
+        mapping:
+          - scale: 100
+  - entity: binary_sensor
+    name: Short circuit
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - value: false
+          - dps_val: 1
+            value: true
+  - entity: binary_sensor
+    name: Surge
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - value: false
+          - dps_val: 2
+            value: true
+  - entity: binary_sensor
+    name: Overload
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - value: false
+          - dps_val: 4
+            value: true
+  - entity: binary_sensor
+    name: Leakage current
+    class: safety
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - value: false
+          - dps_val: 8
+            value: true
+  - entity: binary_sensor
+    name: High temperature
+    class: heat
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - value: false
+          - dps_val: 16
+            value: true
+  - entity: binary_sensor
+    name: Fire
+    class: smoke
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - value: false
+          - dps_val: 32
+            value: true
+  - entity: binary_sensor
+    name: High power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - value: false
+          - dps_val: 64
+            value: true
+  - entity: binary_sensor
+    name: Self test
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - value: false
+          - dps_val: 128
+            value: true
+  - entity: binary_sensor
+    name: Overcurrent
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - value: false
+          - dps_val: 256
+            value: true
+  - entity: binary_sensor
+    name: Unbalanced
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - value: false
+          - dps_val: 512
+            value: true
+  - entity: binary_sensor
+    name: Overvoltage
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - value: false
+          - dps_val: 1024
+            value: true
+  - entity: binary_sensor
+    name: Undervoltage
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - value: false
+          - dps_val: 2048
+            value: true
+  - entity: binary_sensor
+    name: Phase fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - value: false
+          - dps_val: 4096
+            value: true
+  - entity: binary_sensor
+    name: Outage
+    class: power
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - value: true
+          - dps_val: 8192
+            value: false
+  - entity: binary_sensor
+    name: Magnetism
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - value: false
+          - dps_val: 16384
+            value: true
+  - entity: binary_sensor
+    name: Low credit
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - value: false
+          - dps_val: 32768
+            value: true
+  - entity: binary_sensor
+    name: Credit
+    class: plug
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - value: true
+          - dps_val: 65536
+            value: false
+  - entity: switch
+    name: Prepay
+    category: config
+    icon: "mdi:hand-coin"
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
+  - entity: button
+    name: Energy reset
+    category: config
+    class: restart
+    dps:
+      - id: 12
+        type: boolean
+        name: button
+  - entity: sensor
+    name: Balance energy
+    category: diagnostic
+    class: energy_storage
+    icon: "mdi:home-lightning-bolt"
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: kWh
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Voltage A
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mapping:
+          - mask: "FFFF000000000000"
+            scale: 10
+  - entity: sensor
+    name: Current A
+    class: current
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        mapping:
+          - mask: "0000FFFFFF000000"
+            scale: 1000
+  - entity: sensor
+    name: Power A
+    class: power
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: kW
+        mapping:
+          - mask: "0000000000FFFFFF"
+            scale: 1000
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Leakage current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        unit: mA
+        class: measurement
+        optional: true

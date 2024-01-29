@@ -1,0 +1,183 @@
+name: Filament dryer
+products:
+  - id: mxct11k2jqpak13a
+    name: GratKit Firefly Smart Dryer Box
+primary_entity:
+  entity: switch
+  icon: "mdi:heat-pump"
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+secondary_entities:
+  - entity: number
+    name: Drying temperature
+    category: config
+    icon: "mdi:thermometer-lines"
+    mode: box
+    dps:
+      - id: 20
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 40
+          max: 70
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Time remaining
+    icon: "mdi:timer-sand"
+    class: duration
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: min
+  - entity: number
+    name: Drying time
+    icon: "mdi:fan-clock"
+    category: config
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 1440
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: select
+    name: Light
+    icon: "mdi:led-strip-variant"
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: Red
+          - dps_val: 2
+            value: Green
+          - dps_val: 3
+            value: Blue
+          - dps_val: 4
+            value: White
+          - dps_val: 5
+            value: Yellow
+          - dps_val: 6
+            value: Cyan
+          - dps_val: 7
+            value: Purple
+          - dps_val: 8
+            value: Orange
+          - dps_val: 9
+            value: Pink
+          - dps_val: 10
+            value: Rainbow fade
+          - dps_val: 11
+            value: Rainbow blink
+          - dps_val: 12
+            value: Rainbow smooth
+  - entity: sensor
+    class: temperature
+    name: Heating plate temperature
+    category: diagnostic
+    icon: "mdi:heating-coil"
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: select
+    name: Filament type
+    icon: "mdi:movie-roll"
+    category: config
+    dps:
+      - id: 105
+        type: string
+        name: option
+        mapping:
+          - dps_val: PLA
+            value: "PLA"
+          - dps_val: PLA_J
+            value: "PLA+"
+          - dps_val: PETG
+            value: "PETG"
+          - dps_val: ABS
+            value: "ABS"
+          - dps_val: Nylon
+            value: "Nylon"
+          - dps_val: PC
+            value: "PC"
+          - dps_val: HIPS
+            value: "HIPS"
+          - dps_val: TPU
+            value: "TPU"
+          - dps_val: DIY1
+            value: "DIY1"
+          - dps_val: DIY2
+            value: "DIY2"
+  - entity: sensor
+    name: Error
+    category: diagnostic
+    class: enum
+    icon: "mdi:alert-circle-outline"
+    dps:
+      - id: 106
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: 0
+            value: "Normal"
+          - dps_val: 1
+            value: "Dryer box tilted"
+          - dps_val: 2
+            value: "Heat plate overheated"
+          - dps_val: 3
+            value: "Dryer box overheated"
+          - dps_val: 4
+            value: "Fan RPM too low"
+          - dps_val: 5
+            value: 5
+          - dps_val: 6
+            value: 6
+          - dps_val: 7
+            value: 7
+          - dps_val: 8
+            value: 8
+          - dps_val: 9
+            value: 9
+  - entity: sensor
+    name: Fan speed
+    category: diagnostic
+    icon: "mdi:fan"
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: "rpm"
+  - entity: binary_sensor
+    name: USB
+    icon: "mdi:usb-port"
+    category: diagnostic
+    dps:
+      - id: 108
+        type: boolean
+        name: sensor

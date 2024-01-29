@@ -1,6 +1,9 @@
-name: PC321-TY power clamp
+name: Power clamp meter
 products:
   - id: r64livttuufctble
+    name: PC321-TY
+  - id: 9rjjf6rdkca9woju
+    name: PC321-TY 80A
 primary_entity:
   entity: sensor
   class: energy
@@ -214,7 +217,6 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     class: frequency
-    name: Frequency
     dps:
       - id: 135
         type: integer
@@ -224,7 +226,6 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     class: temperature
-    name: Temperature
     dps:
       - id: 136
         type: integer

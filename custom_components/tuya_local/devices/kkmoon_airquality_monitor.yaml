@@ -1,0 +1,63 @@
+name: Air quality
+products:
+  - id: ezovdhzaxsovyzf0
+    name: 7in1 air quality meter
+primary_entity:
+  entity: sensor
+  name: Air quality
+  icon: "mdi:factory"
+  dps:
+    - id: 21
+      type: string
+      name: sensor
+secondary_entities:
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: µg/m³
+        class: measurement
+  - entity: sensor
+    name: Formaldehyde
+    class: volatile_organic_compounds
+    dps:
+      - id: 27
+        type: integer
+        name: sensor
+        unit: µg/m³
+        class: measurement
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 12
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: volatile_organic_compounds
+    dps:
+      - id: 14
+        type: integer
+        name: sensor
+        unit: µg/m³
+        class: measurement
+  - entity: sensor
+    class: carbon_dioxide
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        unit: ppm

@@ -1,7 +1,11 @@
-name: Tadiran Wind 65/3P air conditioner
-legacy_type: tadiran_heatpump
+name: Tadiran air conditioner
+products:
+  - id: pdwzhqdjh6ppnjpb
+    name: Tadiran Wind 40A
+    # original model: 65/3P (product id unknown)
 primary_entity:
   entity: climate
+  translation_key: aircon_extra
   dps:
     - id: 1
       name: hvac_mode
@@ -49,33 +53,31 @@ primary_entity:
       mapping:
         - dps_val: auto
           value: auto
+        - dps_val: sleep
+          value: sleep
+        - dps_val: mute
+          value: quiet
         - dps_val: low
           value: low
+        - dps_val: health
+          value: health
         - dps_val: middle
           value: medium
+        - dps_val: natural
+          value: natural
+        - dps_val: strong
+          value: strong
         - dps_val: high
           value: high
     - id: 101
       type: integer
-      name: unknown_101
+      name: idu_coil_in_th4
     - id: 102
       type: integer
-      name: unknown_102
+      name: idu_coil_mid_th3
     - id: 103
       type: integer
-      name: unknown_103
-    - id: 104
-      type: string
-      name: unknown_104
+      name: idu_coil_mid_th2
     - id: 105
       type: string
-      name: unknown_105
-    - id: 106
-      type: integer
-      name: unknown_106
-    - id: 107
-      type: boolean
-      name: unknown_107
-    - id: 108
-      type: boolean
-      name: unknown_108
+      name: idu_fan_speed_fb

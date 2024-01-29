@@ -1,4 +1,7 @@
-name: Inkbird sous vide
+name: Sous vide
+products:
+  - id: ljrmmds82n6kln4u
+    name: Silvercrest SSVSS 1200 A1
 primary_entity:
   entity: climate
   dps:
@@ -14,6 +17,7 @@ primary_entity:
       type: string
       name: hvac_action
       icon_priority: 2
+      optional: true
       mapping:
         - dps_val: stop
           value: "off"
@@ -24,6 +28,9 @@ primary_entity:
         - dps_val: complete
           value: idle
           icon: "mdi:pot"
+        - dps_val: null
+          value: "off"
+          icon: "mdi:pot-outline"
     - id: 103
       type: integer
       name: temperature
@@ -32,6 +39,7 @@ primary_entity:
         max: 960
       mapping:
         - scale: 10
+      unit: C
     - id: 104
       type: integer
       name: current_temperature
@@ -45,14 +53,6 @@ primary_entity:
           value: 0
         - icon: "mdi:alert"
           icon_priority: 1
-    - id: 108
-      type: boolean
-      name: temperature_unit
-      mapping:
-        - dps_val: true
-          value: C
-        - dps_val: false
-          value: F
 secondary_entities:
   - entity: number
     name: Cooking time
@@ -89,7 +89,7 @@ secondary_entities:
             value: false
           - value: true
   - entity: select
-    name: Temperature unit
+    name: Temperature display unit
     category: config
     icon: "mdi:temperature-celsius"
     dps:
@@ -120,6 +120,7 @@ secondary_entities:
       - id: 110
         type: integer
         name: value
+        optional: true
         range:
           min: -99
           max: 99

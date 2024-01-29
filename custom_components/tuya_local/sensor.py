@@ -1,12 +1,13 @@
 """
 Setup for different kinds of Tuya sensors
 """
+import logging
+
 from homeassistant.components.sensor import (
+    STATE_CLASSES,
     SensorDeviceClass,
     SensorEntity,
-    STATE_CLASSES,
 )
-import logging
 
 from .device import TuyaLocalDevice
 from .helpers.config import async_tuya_setup_platform
@@ -37,10 +38,11 @@ class TuyaLocalSensor(TuyaLocalEntity, SensorEntity):
             device (TuyaLocalDevice): the device API instance.
             config (TuyaEntityConfig): the configuration for this entity
         """
+        super().__init__()
         dps_map = self._init_begin(device, config)
         self._sensor_dps = dps_map.pop("sensor", None)
         if self._sensor_dps is None:
-            raise AttributeError(f"{config.name} is missing a sensor dps")
+            raise AttributeError(f"{config.config_id} is missing a sensor dps")
         self._unit_dps = dps_map.pop("unit", None)
 
         self._init_end(dps_map)
@@ -54,7 +56,10 @@ class TuyaLocalSensor(TuyaLocalEntity, SensorEntity):
                 return SensorDeviceClass(dclass)
             except ValueError:
                 _LOGGER.warning(
-                    "Unrecognized sensor device class of %s ignored", dclass
+                    "%s/%s: Unrecognized sensor device class of %s ignored",
+                    self._config._device.config,
+                    self.name or "sensor",
+                    dclass,
                 )
 
     @property

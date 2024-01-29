@@ -19,29 +19,24 @@ primary_entity:
     - id: 3
       name: current_temperature
       type: integer
-      readonly: true
     - id: 4
       name: preset_mode
       type: integer
       mapping:
         - dps_val: 1
-          value: "Home"
+          value: home
         - dps_val: 2
-          value: "Away"
+          value: away
         - dps_val: 3
-          value: "Smart"
+          value: activity
         - dps_val: 4
-          value: "Sleep"
+          value: sleep
     - id: 12
       type: bitfield
       name: error
       mapping:
         - dps_val: 0
           value: OK
-    - id: 101
-      type: integer
-      name: external_temperature
-      readonly: true
     - id: 102
       type: integer
       name: sensor
@@ -79,7 +74,6 @@ primary_entity:
               value: idle
             - dps_val: false
               value: "off"
-      readonly: true
     - id: 107
       type: boolean
       name: unknown_107
@@ -111,7 +105,6 @@ secondary_entities:
         name: sensor
         class: measurement
         unit: C
-        readonly: true
   - entity: select
     name: Temperature sensor
     icon: "mdi:thermometer"

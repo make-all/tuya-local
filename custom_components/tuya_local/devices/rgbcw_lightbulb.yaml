@@ -8,6 +8,8 @@ products:
     name: BrilliantSmart RGB garden lights
   - id: ivxfweclfhvra3ym
     name: Lampux bedside lamp
+  - id: wufw0loegkb1y3u3
+    name: Genio Smart WIFI bulb A60 RGB+CCT
 primary_entity:
   entity: light
   dps:
@@ -21,7 +23,7 @@ primary_entity:
         - dps_val: white
           value: color_temp
         - dps_val: colour
-          value: rgbw
+          value: hs
         - dps_val: scene
           value: Scene
         - dps_val: music
@@ -35,6 +37,7 @@ primary_entity:
         max: 1000
       mapping:
         - dps_val: null
+          value: 0
         - scale: 3.92
     - id: 23
       name: color_temp
@@ -44,7 +47,9 @@ primary_entity:
         min: 0
         max: 1000
       mapping:
-        - invert: true
+        - target_range:
+            min: 2700
+            max: 6500
     - id: 24
       name: rgbhsv
       type: hex
@@ -79,15 +84,15 @@ primary_entity:
       optional: true
     - id: 30
       name: rhythm_mode
-      type: hex
+      type: base64
       optional: true
     - id: 31
       name: sleep_mode
-      type: hex
+      type: base64
       optional: true
     - id: 32
       name: wakeup_mode
-      type: hex
+      type: base64
       optional: true
 secondary_entities:
   - entity: number
@@ -132,12 +137,17 @@ secondary_entities:
           - dps_val: "04464602007803e803e800000000464602007803e8000a00000000"
             # color: G+DkG, Breath, Mid speed
             value: Soft
-          - dps_val: "05464601000003e803e800000000464601007803e803e80000000046460100f003e803e800000000464601003d03e803e80000000046460100ae03e803e800000000464601011303e803e800000000"
+          - dps_val: "05464601000003e803e800000000464601007803e803e800000000\
+              46460100f003e803e800000000464601003d03e803e80000000046460100ae\
+              03e803e800000000464601011303e803e800000000"
             # color* R+G+B+Y+C+V, Flash, Mid speed
             value: Colorful
-          - dps_val: "06464601000003e803e800000000464601007803e803e80000000046460100f003e803e800000000"
+          - dps_val: "06464601000003e803e800000000464601007803e803e800000000\
+              46460100f003e803e800000000"
             # color* R+G+B, Flash, Mid speed
             value: Dazzling
-          - dps_val: "07464602000003e803e800000000464602007803e803e80000000046460200f003e803e800000000464602003d03e803e80000000046460200ae03e803e800000000464602011303e803e800000000"
+          - dps_val: "07464602000003e803e800000000464602007803e803e800000000\
+              46460200f003e803e800000000464602003d03e803e80000000046460200ae\
+              03e803e800000000464602011303e803e800000000"
             # color* R+G+B+Y+C+V, Breath, Mid speed
             value: Gorgeous

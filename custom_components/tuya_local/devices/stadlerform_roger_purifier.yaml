@@ -11,7 +11,8 @@ primary_entity:
       name: speed
       type: string
       mapping:
-        # According to original reporter these are all progressivly faster speeds, even though auto suggests something else.
+        # According to original reporter these are all progressivly faster
+        # speeds, even though auto suggests something else.
         - dps_val: "sleep"
           value: 20
         - dps_val: "low"
@@ -38,7 +39,6 @@ secondary_entities:
         type: integer
         name: sensor
         unit: "%"
-        readonly: true
   - entity: sensor
     name: Filter (Days)
     category: diagnostic
@@ -48,16 +48,13 @@ secondary_entities:
         type: integer
         name: sensor
         unit: "d"
-        readonly: true
   - entity: sensor
-    name: PM2.5
     icon: "mdi:air-filter"
     dps:
       - id: 2
         type: integer
         name: sensor
         unit: "ugm3"
-        readonly: true
   - entity: sensor
     name: Total Volatile Organic Compunds
     icon: "mdi:air-filter"
@@ -65,7 +62,6 @@ secondary_entities:
       - id: 14
         type: integer
         name: sensor
-        readonly: true
   - entity: sensor
     name: Air Quality
     icon: "mdi:air-filter"
@@ -73,7 +69,6 @@ secondary_entities:
       - id: 21
         type: string
         name: sensor
-        readonly: true
   - entity: select
     name: Timer
     icon: "mdi:timer"

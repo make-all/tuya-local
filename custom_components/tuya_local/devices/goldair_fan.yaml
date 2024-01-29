@@ -2,6 +2,7 @@ name: Goldair fan
 legacy_type: fan
 primary_entity:
   entity: fan
+  translation_key: fan_with_presets
   dps:
     - id: 1
       type: boolean
@@ -10,7 +11,7 @@ primary_entity:
       type: integer
       name: speed
       range:
-        min: 1
+        min: 0
         max: 12
       mapping:
         - scale: 0.12

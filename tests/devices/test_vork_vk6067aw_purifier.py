@@ -2,10 +2,7 @@ from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.button import ButtonDeviceClass
 from homeassistant.components.fan import FanEntityFeature
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import (
-    PERCENTAGE,
-    UnitOfTime,
-)
+from homeassistant.const import PERCENTAGE, UnitOfTime
 
 from ..const import VORK_VK6067_PURIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -14,7 +11,7 @@ from ..mixins.button import BasicButtonTests
 from ..mixins.light import BasicLightTests
 from ..mixins.select import BasicSelectTests
 from ..mixins.sensor import MultiSensorTests
-from ..mixins.switch import BasicSwitchTests, SwitchableTests
+from ..mixins.switch import SwitchableTests
 from .base_device_tests import TuyaDeviceTestCase
 
 SWITCH_DPS = "1"
@@ -33,7 +30,6 @@ class TestVorkVK6267AWPurifier(
     BasicButtonTests,
     BasicLightTests,
     BasicSelectTests,
-    BasicSwitchTests,
     MultiSensorTests,
     SwitchableTests,
     TuyaDeviceTestCase,
@@ -60,7 +56,6 @@ class TestVorkVK6267AWPurifier(
                 "2h": "2 hours",
             },
         )
-        self.setUpBasicSwitch(RESET_DPS, self.entities.get("switch_filter_reset"))
         self.setUpBasicButton(
             RESET_DPS,
             self.entities.get("button_filter_reset"),
@@ -97,7 +92,6 @@ class TestVorkVK6267AWPurifier(
                 "sensor_air_quality",
                 "sensor_filter",
                 "sensor_timer",
-                "switch_filter_reset",
             ]
         )
 
@@ -110,38 +104,38 @@ class TestVorkVK6267AWPurifier(
     def test_preset_modes(self):
         self.assertCountEqual(
             self.subject.preset_modes,
-            ["Low", "Mid", "High", "Auto", "Sleep"],
+            ["nature", "fresh", "strong", "smart", "sleep"],
         )
 
     def test_preset_mode(self):
         self.dps[MODE_DPS] = "low"
-        self.assertEqual(self.subject.preset_mode, "Low")
+        self.assertEqual(self.subject.preset_mode, "nature")
         self.dps[MODE_DPS] = "mid"
-        self.assertEqual(self.subject.preset_mode, "Mid")
+        self.assertEqual(self.subject.preset_mode, "fresh")
         self.dps[MODE_DPS] = "high"
-        self.assertEqual(self.subject.preset_mode, "High")
+        self.assertEqual(self.subject.preset_mode, "strong")
         self.dps[MODE_DPS] = "auto"
-        self.assertEqual(self.subject.preset_mode, "Auto")
+        self.assertEqual(self.subject.preset_mode, "smart")
         self.dps[MODE_DPS] = "sleep"
-        self.assertEqual(self.subject.preset_mode, "Sleep")
+        self.assertEqual(self.subject.preset_mode, "sleep")
 
     async def test_set_preset_to_low(self):
         async with assert_device_properties_set(
             self.subject._device,
             {MODE_DPS: "low"},
         ):
-            await self.subject.async_set_preset_mode("Low")
+            await self.subject.async_set_preset_mode("nature")
 
     async def test_set_preset_to_auto(self):
         async with assert_device_properties_set(
             self.subject._device,
             {MODE_DPS: "auto"},
         ):
-            await self.subject.async_set_preset_mode("Auto")
+            await self.subject.async_set_preset_mode("smart")
 
     async def test_set_preset_to_sleep(self):
         async with assert_device_properties_set(
             self.subject._device,
             {MODE_DPS: "sleep"},
         ):
-            await self.subject.async_set_preset_mode("Sleep")
+            await self.subject.async_set_preset_mode("sleep")

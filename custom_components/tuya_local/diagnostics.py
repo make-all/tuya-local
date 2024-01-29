@@ -6,16 +6,20 @@ from typing import Any
 from homeassistant.components.diagnostics import REDACTED
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, callback
-from homeassistant.helpers import device_registry as dr, entity_registry as er
+from homeassistant.helpers import device_registry as dr
+from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.device_registry import DeviceEntry
+from tinytuya import __version__ as tinytuya_version
 
 from .const import (
     API_PROTOCOL_VERSIONS,
+    CONF_DEVICE_CID,
     CONF_PROTOCOL_VERSION,
     CONF_TYPE,
     DOMAIN,
 )
 from .device import TuyaLocalDevice
+from .helpers.config import get_device_id
 
 
 async def async_get_config_entry_diagnostics(
@@ -39,15 +43,17 @@ def _async_get_diagnostics(
     device: DeviceEntry | None = None,
 ) -> dict[str, Any]:
     """Return diagnostics for a tuya-local config entry."""
-    hass_data = hass.data[DOMAIN][entry.data["device_id"]]
+    hass_data = hass.data[DOMAIN][get_device_id(entry.data)]
 
     data = {
         "name": entry.title,
         "type": entry.data[CONF_TYPE],
         "device_id": REDACTED,
+        "device_cid": REDACTED if entry.data.get(CONF_DEVICE_CID, "") != "" else "",
         "local_key": REDACTED,
         "host": REDACTED,
         "protocol_version": entry.data[CONF_PROTOCOL_VERSION],
+        "tinytuya_version": tinytuya_version,
     }
 
     # The DeviceEntry also has interesting looking data, but this
@@ -63,13 +69,17 @@ def _async_get_diagnostics(
 def _async_device_as_dict(
     hass: HomeAssistant, device: TuyaLocalDevice
 ) -> dict[str, Any]:
-    """Represent a Tuya Local devcie as a dictionary."""
+    """Represent a Tuya Local device as a dictionary."""
 
     # Base device information, without sensitive information
     data = {
         "name": device.name,
         "api_version_set": device._api.version,
-        "api_version_used": API_PROTOCOL_VERSIONS[device._api_protocol_version_index],
+        "api_version_used": (
+            "none"
+            if device._api_protocol_version_index is None
+            else API_PROTOCOL_VERSIONS[device._api_protocol_version_index]
+        ),
         "api_working": device._api_protocol_working,
         "status": device._api.dps_cache,
         "cached_state": device._cached_state,

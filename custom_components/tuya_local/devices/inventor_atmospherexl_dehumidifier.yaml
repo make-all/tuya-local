@@ -57,19 +57,22 @@ primary_entity:
       name: mode
       mapping:
         - dps_val: auto
-          value: Auto
+          value: auto
         - dps_val: manual
-          value: Manual
+          value: normal
         - dps_val: drying
-          value: Clothes
+          value: laundry
         - dps_val: night
-          value: Sleep
+          value: sleep
+    - id: 6
+      type: integer
+      name: current_humidity
     - id: 19
       type: bitfield
       name: error_code
-# The following do not have descriptions in iot.tuya.com, the names
-# though can be obtained from the debugger.  But functionality needs
-# to be confirmed before making them separate entities
+      # The following do not have descriptions in iot.tuya.com, the names
+      # though can be obtained from the debugger.  But functionality needs
+      # to be confirmed before making them separate entities
     - id: 105
       type: string
       name: air_purifier
@@ -115,6 +118,8 @@ secondary_entities:
             value: 100
   - entity: sensor
     class: humidity
+    deprecated: humidifier
+    category: diagnostic
     name: Room humidity
     dps:
       - id: 6
@@ -149,7 +154,6 @@ secondary_entities:
         type: boolean
   - entity: sensor
     class: pm25
-    name: PM2.5
     dps:
       - id: 15
         type: integer
@@ -304,12 +308,12 @@ secondary_entities:
         type: string
         name: option
         mapping:
-        - dps_val: auto
-          value: Auto
-        - dps_val: manual
-          value: Manual
-        - dps_val: night
-          value: Sleep
+          - dps_val: auto
+            value: Auto
+          - dps_val: manual
+            value: Manual
+          - dps_val: night
+            value: Sleep
   - entity: select
     category: config
     name: Lighting

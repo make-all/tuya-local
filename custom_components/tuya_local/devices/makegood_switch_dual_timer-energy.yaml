@@ -1,0 +1,84 @@
+name: Dual switch
+products:
+  - id: XdGCESvXTI5Mvfx2
+    name: MakeGood 2 Gang Switch (MG-MD04W)
+primary_entity:
+  entity: switch
+  name: Switch 1
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: switch
+    name: Switch 2
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+  - entity: number
+    name: Timer 1
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 7
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+        unit: min
+  - entity: number
+    name: Timer 2
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 8
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+        unit: min
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        force: true
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        force: true
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        force: true
+        mapping:
+          - scale: 10

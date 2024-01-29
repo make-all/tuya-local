@@ -1,11 +1,5 @@
-from homeassistant.components.climate.const import (
-    ClimateEntityFeature,
-    HVACMode,
-)
-from homeassistant.const import (
-    UnitOfTime,
-    UnitOfTemperature,
-)
+from homeassistant.components.climate.const import ClimateEntityFeature, HVACMode
+from homeassistant.const import UnitOfTemperature, UnitOfTime
 
 from ..const import ECOSTRAD_ACCENTIQ_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set

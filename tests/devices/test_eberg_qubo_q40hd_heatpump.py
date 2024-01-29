@@ -1,16 +1,13 @@
 from homeassistant.components.climate.const import (
+    PRESET_COMFORT,
+    PRESET_SLEEP,
+    SWING_OFF,
+    SWING_VERTICAL,
     ClimateEntityFeature,
     HVACAction,
     HVACMode,
-    PRESET_SLEEP,
-    PRESET_COMFORT,
-    SWING_OFF,
-    SWING_VERTICAL,
 )
-from homeassistant.const import (
-    UnitOfTime,
-    UnitOfTemperature,
-)
+from homeassistant.const import UnitOfTemperature, UnitOfTime
 
 from ..const import EBERG_QUBO_Q40HD_PAYLOAD
 from ..helpers import assert_device_properties_set

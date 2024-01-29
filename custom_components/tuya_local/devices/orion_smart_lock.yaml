@@ -5,18 +5,28 @@ primary_entity:
     - id: 1
       type: integer
       name: unlock_fingerprint
+      optional: true
+      persist: false
     - id: 2
       type: integer
       name: unlock_password
+      optional: true
+      persist: false
     - id: 3
       type: integer
       name: unlock_temp_pwd
+      optional: true
+      persist: false
     - id: 4
       type: integer
       name: unlock_dynamic_pwd
+      optional: true
+      persist: false
     - id: 5
       type: integer
       name: unlock_card
+      optional: true
+      persist: false
     - id: 8
       type: bitfield
       name: jammed
@@ -86,7 +96,6 @@ secondary_entities:
             value: shock
   - entity: sensor
     class: battery
-    name: Battery
     dps:
       - id: 12
         type: integer

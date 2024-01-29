@@ -1,0 +1,157 @@
+name: Air conditioner
+products:
+  - id: 1dxlcglzadb1wwax
+    name: Idea CS1 ISP-D114 TYWE 1S
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: cold
+              value: cool
+            - dps_val: hot
+              value: heat
+            - dps_val: wet
+              value: dry
+            - dps_val: wind
+              value: fan_only
+            - dps_val: auto
+              value: heat_cool
+    - id: 2
+      type: integer
+      name: temperature
+      unit: C
+      range:
+        min: 16
+        max: 32
+    - id: 3
+      type: integer
+      name: current_temperature
+    - id: 4
+      type: string
+      name: mode
+      hidden: true
+    - id: 5
+      type: string
+      name: fan_mode
+      mapping:
+        - dps_val: low
+          value: low
+        - dps_val: mid
+          value: medium
+        - dps_val: high
+          value: high
+        - dps_val: auto
+          value: auto
+    - id: 8
+      type: boolean
+      optional: true
+      name: preset_mode
+      mapping:
+        - dps_val: true
+          value: eco
+        - dps_val: false
+          value: comfort
+        - dps_val: null
+          value: comfort
+          hidden: true
+    - id: 18
+      type: integer
+      optional: true
+      name: current_humidity
+    - id: 30
+      type: boolean
+      optional: true
+      name: swing_mode
+      mapping:
+        - dps_val: false
+          constraint: swing_horiz
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: horizontal
+            - value: "off"
+              hidden: true
+        - dps_val: true
+          constraint: swing_horiz
+          conditions:
+            - dps_val: false
+              value: vertical
+            - dps_val: true
+              value: both
+            - value: vertical
+              hidden: true
+        - constraint: swing_horiz
+          conditions:
+            - dps_val: true
+              value: horizontal
+              hidden: true
+            - value: "off"
+              hidden: true
+    - id: 33
+      type: boolean
+      optional: true
+      name: swing_horiz
+      hidden: true
+secondary_entities:
+  - entity: switch
+    name: Aux heat
+    icon: "mdi:fire"
+    category: config
+    dps:
+      - id: 12
+        type: boolean
+        name: switch
+        optional: true
+  - entity: switch
+    name: Sleep
+    icon: "mdi:power-sleep"
+    category: config
+    dps:
+      - id: 25
+        type: boolean
+        name: switch
+        optional: true
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            constraint: fault_code_2
+            conditions:
+              - dps_val: null
+                value: false
+              - dps_val: 0
+                value: false
+              - value: true
+          - dps_val: null
+            constraint: fault_code_2
+            conditions:
+              - dps_val: null
+                value: false
+              - dps_val: 0
+                value: false
+              - value: true
+          - value: true
+      - id: 22
+        type: bitfield
+        optional: true
+        name: fault_code
+      - id: 101
+        type: bitfield
+        optional: true
+        name: fault_code_2

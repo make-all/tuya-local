@@ -1,0 +1,82 @@
+name: Relay switch
+products:
+  - id: owzofmjyg7foteb6
+    name: Loratap RR500W
+primary_entity:
+  entity: switch
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 42
+      type: string
+      name: cycle_time
+      optional: true
+    - id: 43
+      type: string
+      name: random_time
+      optional: true
+    - id: 44
+      type: string
+      name: inching
+      optional: true
+secondary_entities:
+  - entity: number
+    name: Countdown
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 0
+            step: 1
+        unit: s
+  - entity: select
+    name: Restart Status
+    category: config
+    icon: "mdi:toggle-switch"
+    dps:
+      - id: 39
+        type: string
+        name: option
+        mapping:
+          - dps_val: 0
+            value: "Off"
+          - dps_val: 1
+            value: "On"
+          - dps_val: 2
+            value: Keep state
+      - id: 42
+        type: string
+        name: cycle_time
+      - id: 43
+        type: string
+        name: random_time
+  - entity: select
+    name: Light Mode
+    category: config
+    icon: "mdi:toggle-switch"
+    dps:
+      - id: 40
+        type: string
+        name: option
+        mapping:
+          - dps_val: relay
+            value: "Indicate switch on/off"
+          - dps_val: pos
+            value: "Indicate switch location"
+          - dps_val: none
+            value: Indicator LED off
+  - entity: lock
+    name: Child lock
+    category: config
+    icon: "mdi:hand-back-right-off"
+    dps:
+      - id: 41
+        type: boolean
+        name: lock

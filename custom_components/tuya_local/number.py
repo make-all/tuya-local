@@ -1,10 +1,12 @@
 """
 Setup for different kinds of Tuya numbers
 """
+import logging
+
 from homeassistant.components.number import NumberEntity
 from homeassistant.components.number.const import (
-    DEFAULT_MIN_VALUE,
     DEFAULT_MAX_VALUE,
+    DEFAULT_MIN_VALUE,
     NumberDeviceClass,
 )
 
@@ -12,6 +14,8 @@ from .device import TuyaLocalDevice
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
 from .helpers.mixin import TuyaLocalEntity, unit_from_ascii
+
+_LOGGER = logging.getLogger(__name__)
 
 MODE_AUTO = "auto"
 
@@ -37,10 +41,11 @@ class TuyaLocalNumber(TuyaLocalEntity, NumberEntity):
             device (TuyaLocalDevice): the device API instance
             config (TuyaEntityConfig): the configuration for this entity
         """
+        super().__init__()
         dps_map = self._init_begin(device, config)
         self._value_dps = dps_map.pop("value")
         if self._value_dps is None:
-            raise AttributeError(f"{config.name} is missing a value dps")
+            raise AttributeError(f"{config.config_id} is missing a value dps")
         self._unit_dps = dps_map.pop("unit", None)
         self._min_dps = dps_map.pop("minimum", None)
         self._max_dps = dps_map.pop("maximum", None)
@@ -55,7 +60,10 @@ class TuyaLocalNumber(TuyaLocalEntity, NumberEntity):
                 return NumberDeviceClass(dclass)
             except ValueError:
                 _LOGGER.warning(
-                    "Unrecognized number device class of %s ignored", dclass
+                    "%s/%s: Unrecognized number device class of %s ignored",
+                    self._config._device.config,
+                    self.name or "number",
+                    dclass,
                 )
 
     @property

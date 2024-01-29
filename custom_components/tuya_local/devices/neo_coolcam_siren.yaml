@@ -1,0 +1,211 @@
+name: Neo Coolcam siren
+primary_entity:
+  entity: siren
+  dps:
+    - id: 104
+      type: boolean
+      name: switch
+    - id: 102
+      type: string
+      name: tone
+      mapping:
+        - dps_val: "1"
+          value: Doorbell
+        - dps_val: "2"
+          value: Für Elise
+        - dps_val: "3"
+          value: Big Ben
+        - dps_val: "4"
+          value: Ring ring
+        - dps_val: "5"
+          value: Lone Ranger
+        - dps_val: "6"
+          value: Turkish march
+        - dps_val: "7"
+          value: High pitched
+        - dps_val: "8"
+          value: Red alert
+        - dps_val: "9"
+          value: Crickets
+        - dps_val: "10"
+          value: Beep
+        - dps_val: "11"
+          value: Dog bark
+        - dps_val: "12"
+          value: Police siren
+        - dps_val: "13"
+          value: Grandfather clock
+        - dps_val: "14"
+          value: Phone ring
+        - dps_val: "15"
+          value: Fire truck
+        - dps_val: "16"
+          value: Clock chime
+        - dps_val: "17"
+          value: Alarm clock
+        - dps_val: "18"
+          value: School bell
+    - id: 103
+      type: integer
+      name: duration
+      unit: s
+      range:
+        min: 0
+        max: 1800
+    - id: 116
+      type: string
+      name: volume_level
+      mapping:
+        - dps_val: "0"
+          value: 1.0
+        - dps_val: "1"
+          value: 0.7
+        - dps_val: "2"
+          value: 0.3
+secondary_entities:
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: "0"
+            value: 100
+          - dps_val: "1"
+            value: 80
+          - dps_val: "2"
+            value: 50
+          - dps_val: "3"
+            value: 20
+          - dps_val: "4"
+            value: 100
+  - entity: binary_sensor
+    name: Charging
+    class: battery_charging
+    category: diagnostic
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "4"
+            value: true
+          - value: false
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: number
+    name: Low temperature threshold
+    category: config
+    icon: "mdi:thermometer-chevron-down"
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -20
+          max: 50
+  - entity: number
+    name: High temperature threshold
+    category: config
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -20
+          max: 50
+  - entity: number
+    name: Low humidity threshold
+    category: config
+    icon: "mdi:water-percent-alert"
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: number
+    name: High humidity threshold
+    category: config
+    icon: "mdi:water-percent-alert"
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: select
+    name: Temperature display units
+    icon: "mdi:temperature-celsius"
+    category: config
+    dps:
+      - id: 112
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: true
+            value: Celsius
+          - dps_val: false
+            value: Fahrenheit
+  - entity: switch
+    name: Temperature alarm
+    icon: "mdi:thermometer-alert"
+    category: config
+    dps:
+      - id: 113
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Humidity alarm
+    icon: "mdi:water-percent-alert"
+    category: config
+    dps:
+      - id: 114
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Alarm status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 115
+        type: string
+        name: sensor
+        class: enum
+        mapping:
+          - dps_val: "0"
+            value: High temperature
+          - dps_val: "1"
+            value: High humidity
+          - dps_val: "2"
+            value: Low temperature
+          - dps_val: "3"
+            value: Low humidity
+          - dps_val: "4"
+            value: OK

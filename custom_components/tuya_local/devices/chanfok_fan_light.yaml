@@ -4,6 +4,7 @@ products:
     name: JST-DC-WYfen
 primary_entity:
   entity: fan
+  translation_key: fan_with_presets
   dps:
     - id: 60
       type: boolean
@@ -13,14 +14,14 @@ primary_entity:
       name: preset_mode
       mapping:
         - dps_val: fresh
-          value: Fresh
+          value: fresh
         - dps_val: nature
-          value: Natural
+          value: nature
     - id: 62
       type: integer
       name: speed
       range:
-        min: 1
+        min: 0
         max: 6
       mapping:
         - scale: 0.06
@@ -42,6 +43,8 @@ secondary_entities:
         range:
           min: 10
           max: 1000
+        mapping:
+          - scale: 3.92
       - id: 23
         name: color_temp
         type: integer
@@ -49,7 +52,9 @@ secondary_entities:
           min: 0
           max: 1000
         mapping:
-          - invert: true
+          - target_range:
+              min: 2700
+              max: 6500
       - id: 28
         name: control_data
         type: hex
@@ -62,6 +67,3 @@ secondary_entities:
       - id: 66
         type: boolean
         name: switch
-
-
-

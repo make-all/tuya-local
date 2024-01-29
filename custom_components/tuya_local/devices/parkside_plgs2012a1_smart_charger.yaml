@@ -8,9 +8,13 @@ primary_entity:
     - id: 1
       type: boolean
       name: switch
-    - id: 11
+      optional: true
+    - id: 2
       type: string
-      name: unknown_11
+      name: model
+    - id: 11
+      type: bitfield
+      name: fault_code
 secondary_entities:
   - entity: number
     name: Charge current
@@ -26,7 +30,8 @@ secondary_entities:
           max: 30000
         mapping:
           - step: 100
-        unit: mA
+            scale: 1000
+        unit: A
   - entity: number
     name: Charge voltage
     icon: "mdi:battery-charging"
@@ -64,7 +69,6 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: sensor
-    name: Battery
     class: battery
     dps:
       - id: 5
@@ -72,7 +76,6 @@ secondary_entities:
         name: sensor
         unit: "%"
   - entity: sensor
-    name: Current temperature
     class: temperature
     category: diagnostic
     dps:
@@ -88,14 +91,6 @@ secondary_entities:
     dps:
       - id: 10
         type: integer
-        name: sensor
-  - entity: sensor
-    name: Name
-    icon: "mdi:form-textbox"
-    category: diagnostic
-    dps:
-      - id: 2
-        type: string
         name: sensor
   - entity: select
     name: Charge type
@@ -122,7 +117,9 @@ secondary_entities:
       - id: 101
         type: integer
         name: sensor
-        unit: mA
+        unit: A
+        mapping:
+          - scale: 1000
   - entity: sensor
     name: Time remaining
     class: duration
@@ -148,3 +145,15 @@ secondary_entities:
       - id: 104
         type: boolean
         name: sensor
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true

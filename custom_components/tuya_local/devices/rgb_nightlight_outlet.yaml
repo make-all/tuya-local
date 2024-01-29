@@ -18,7 +18,7 @@ secondary_entities:
         name: color_mode
         mapping:
           - dps_val: colour
-            value: rgbw
+            value: hs
           - dps_val: scene
             value: Scene
           - dps_val: music
@@ -59,7 +59,6 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: sensor
-    name: Current
     class: current
     category: diagnostic
     dps:
@@ -70,7 +69,6 @@ secondary_entities:
         unit: mA
         class: measurement
   - entity: sensor
-    name: Voltage
     class: voltage
     category: diagnostic
     dps:
@@ -83,7 +81,6 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Power
     class: power
     category: diagnostic
     dps:
@@ -119,16 +116,17 @@ secondary_entities:
           - dps_val: "04464602007803e803e800000000464602007803e8000a00000000"
             # color: G+DkG, Breath, Mid speed
             value: Soft
-          - dps_val: "05464601000003e803e800000000464601007803e803e80000000046460100f003e803e800000000464601003d03e803e80000000046460100ae03e803e800000000464601011303e803e800000000"
+          - dps_val: "05464601000003e803e800000000464601007803e803e800000000\
+              46460100f003e803e800000000464601003d03e803e80000000046460100ae\
+              03e803e800000000464601011303e803e800000000"
             # color* R+G+B+Y+C+V, Flash, Mid speed
             value: Colorful
-          - dps_val: "06464601000003e803e800000000464601007803e803e80000000046460100f003e803e800000000"
+          - dps_val: "06464601000003e803e800000000464601007803e803e800000000\
+              46460100f003e803e800000000"
             # color* R+G+B, Flash, Mid speed
             value: Dazzling
-          - dps_val: "07464602000003e803e800000000464602007803e803e80000000046460200f003e803e800000000464602003d03e803e80000000046460200ae03e803e800000000464602011303e803e800000000"
+          - dps_val: "07464602000003e803e800000000464602007803e803e800000000\
+              46460200f003e803e800000000464602003d03e803e80000000046460200ae\
+              03e803e800000000464602011303e803e800000000"
             # color* R+G+B+Y+C+V, Breath, Mid speed
             value: Gorgeous
-
-
-
-

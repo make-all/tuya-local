@@ -1,7 +1,8 @@
 """Tests for the water heater entity."""
-from pytest_homeassistant_custom_component.common import MockConfigEntry
-import pytest
 from unittest.mock import AsyncMock, Mock
+
+import pytest
+from pytest_homeassistant_custom_component.common import MockConfigEntry
 
 from custom_components.tuya_local.const import (
     CONF_DEVICE_ID,
@@ -10,8 +11,8 @@ from custom_components.tuya_local.const import (
     DOMAIN,
 )
 from custom_components.tuya_local.water_heater import (
-    async_setup_entry,
     TuyaLocalWaterHeater,
+    async_setup_entry,
 )
 
 

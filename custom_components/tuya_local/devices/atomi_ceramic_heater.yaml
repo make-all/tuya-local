@@ -1,7 +1,9 @@
-name: Atomi ceramic heater
-product:
+name: Heater
+products:
   - id: ojvja3vyqchxrfhk
-    name: AT1632
+    name: Atomi AT1632
+  - id: tos0dbspyikjzcxe
+    name: Atomi AT1635
 primary_entity:
   entity: climate
   dps:
@@ -28,14 +30,16 @@ primary_entity:
       name: preset_mode
       mapping:
         - dps_val: auto
-          value: Eco
+          value: eco
         - dps_val: low
-          value: Low
+          value: comfort
         - dps_val: high
-          value: High
+          value: boost
     - id: 8
       type: boolean
       name: swing_mode
+      # not available on AT1635
+      optional: true
       mapping:
         - dps_val: false
           value: "off"
@@ -112,5 +116,3 @@ secondary_entities:
       - id: 103
         type: boolean
         name: sensor
-
-

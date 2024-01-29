@@ -1,0 +1,140 @@
+name: Air purifier
+products:
+  - id: ku6ae3y8ad6tbx3b
+    name: "Klarta Stor 2 "
+primary_entity:
+  entity: fan
+  translation_key: fan_with_presets
+  icon: "mdi:air-purifier"
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 3
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: auto
+          value: smart
+        - dps_val: manual
+          value: normal
+        - dps_val: sleep
+          value: sleep
+        - dps_val: screenoff
+          value: displayoff
+    - id: 4
+      type: string
+      name: speed
+      mapping:
+        - dps_val: speedmode1
+          value: 17
+        - dps_val: speedmode2
+          value: 33
+        - dps_val: speedmode3
+          value: 50
+        - dps_val: speedmode4
+          value: 67
+        - dps_val: speedmode5
+          value: 83
+        - dps_val: speedmode6
+          value: 100
+secondary_entities:
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        class: measurement
+        unit: ugm3
+  - entity: sensor
+    name: Active filter life
+    icon: "mdi:air-filter"
+    category: diagnostic
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: select
+    name: Auto mode
+    icon: "mdi:auto-mode"
+    dps:
+      - id: 101
+        name: option
+        type: string
+        mapping:
+          - dps_val: AutoSleep
+            value: Sleep
+          - dps_val: AutoNormal
+            value: Normal
+          - dps_val: AutoTurbo
+            value: Turbo
+  - entity: switch
+    name: Ionizer
+    icon: "mdi:atom-variant"
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+          - dps_val: false
+  - entity: lock
+    name: Child lock
+    category: config
+    icon: "mdi:hand-back-right-off"
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: button
+    name: Filter reset
+    class: restart
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: button
+  - entity: select
+    name: Timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 18
+        name: option
+        type: string
+        mapping:
+          - dps_val: cancel
+            value: "Off"
+          - dps_val: 1h
+            value: "1 hours"
+          - dps_val: 2h
+            value: "2 hours"
+          - dps_val: 4h
+            value: "4 hours"
+          - dps_val: 8h
+            value: "8 hours"
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 12
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Air quality
+    dps:
+      - id: 21
+        type: string
+        name: sensor

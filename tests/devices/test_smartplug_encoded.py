@@ -1,8 +1,6 @@
 """Tests for the switch entity."""
 from homeassistant.components.switch import SwitchDeviceClass
-from homeassistant.const import (
-    UnitOfTime,
-)
+from homeassistant.const import UnitOfTime
 
 from ..const import SMARTPLUG_ENCODED_PAYLOAD
 from ..mixins.number import BasicNumberTests
@@ -21,7 +19,7 @@ class TestSwitchEncoded(BasicNumberTests, SwitchableTests, TuyaDeviceTestCase):
 
     def setUp(self):
         self.setUpForConfig("smartplug_encoded.yaml", SMARTPLUG_ENCODED_PAYLOAD)
-        self.subject = self.entities.get("switch")
+        self.subject = self.entities.get("switch_outlet")
         self.setUpSwitchable(SWITCH_DPS, self.subject)
         self.setUpBasicNumber(
             TIMER_DPS,

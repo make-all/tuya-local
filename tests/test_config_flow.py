@@ -1,18 +1,19 @@
 """Tests for the config flow."""
 from unittest.mock import ANY, AsyncMock, MagicMock, patch
 
-from homeassistant.const import CONF_HOST, CONF_NAME
 import pytest
+import voluptuous as vol
+from homeassistant.const import CONF_HOST, CONF_NAME
+from homeassistant.data_entry_flow import FlowResultType
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
-import voluptuous as vol
-
 from custom_components.tuya_local import (
-    config_flow,
     async_migrate_entry,
     async_setup_entry,
+    config_flow,
 )
 from custom_components.tuya_local.const import (
+    CONF_DEVICE_CID,
     CONF_DEVICE_ID,
     CONF_LOCAL_KEY,
     CONF_POLL_ONLY,
@@ -59,6 +60,7 @@ async def test_init_entry(hass):
             CONF_POLL_ONLY: False,
             CONF_PROTOCOL_VERSION: "auto",
             CONF_TYPE: "kogan_kahtp_heater",
+            CONF_DEVICE_CID: None,
         },
         options={},
     )
@@ -227,6 +229,7 @@ async def test_flow_user_init(hass):
         "step_id": "user",
         "type": "form",
         "last_step": ANY,
+        "preview": ANY,
     }
     assert expected == result
     # Check the schema.  Simple comparison does not work since they are not
@@ -250,6 +253,8 @@ async def test_async_test_connection_valid(mock_device, hass):
     """Test that device is returned when connection is valid."""
     mock_instance = AsyncMock()
     mock_instance.has_returned_state = True
+    mock_instance.pause = MagicMock()
+    mock_instance.resume = MagicMock()
     mock_device.return_value = mock_instance
     hass.data[DOMAIN] = {"deviceid": {"device": mock_instance}}
 
@@ -259,6 +264,32 @@ async def test_async_test_connection_valid(mock_device, hass):
             CONF_LOCAL_KEY: "localkey",
             CONF_HOST: "hostname",
             CONF_PROTOCOL_VERSION: "auto",
+        },
+        hass,
+    )
+    assert device == mock_instance
+    mock_instance.pause.assert_called_once()
+    mock_instance.resume.assert_called_once()
+
+
+@pytest.mark.asyncio
+@patch("custom_components.tuya_local.config_flow.TuyaLocalDevice")
+async def test_async_test_connection_for_subdevice_valid(mock_device, hass):
+    """Test that subdevice is returned when connection is valid."""
+    mock_instance = AsyncMock()
+    mock_instance.has_returned_state = True
+    mock_instance.pause = MagicMock()
+    mock_instance.resume = MagicMock()
+    mock_device.return_value = mock_instance
+    hass.data[DOMAIN] = {"subdeviceid": {"device": mock_instance}}
+
+    device = await config_flow.async_test_connection(
+        {
+            CONF_DEVICE_ID: "deviceid",
+            CONF_LOCAL_KEY: "localkey",
+            CONF_HOST: "hostname",
+            CONF_PROTOCOL_VERSION: "auto",
+            CONF_DEVICE_CID: "subdeviceid",
         },
         hass,
     )
@@ -354,6 +385,7 @@ async def test_flow_select_type_init(mock_device, hass):
         "step_id": "select_type",
         "type": "form",
         "last_step": ANY,
+        "preview": ANY,
     }
     assert expected == result
     # Check the schema.  Simple comparison does not work since they are not
@@ -418,6 +450,7 @@ async def test_flow_choose_entities_init(hass):
         "step_id": "choose_entities",
         "type": "form",
         "last_step": ANY,
+        "preview": ANY,
     }
     assert expected == result
     # Check the schema.  Simple comparison does not work since they are not
@@ -446,6 +479,7 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
             CONF_POLL_ONLY: False,
             CONF_PROTOCOL_VERSION: "auto",
             CONF_TYPE: "kogan_kahtp_heater",
+            CONF_DEVICE_CID: None,
         },
     ):
         flow = await hass.config_entries.flow.async_init(
@@ -458,9 +492,10 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
             },
         )
         expected = {
-            "version": 12,
+            "version": 13,
+            "minor_version": ANY,
             "context": {"source": "choose_entities"},
-            "type": "create_entry",
+            "type": FlowResultType.CREATE_ENTRY,
             "flow_id": ANY,
             "handler": DOMAIN,
             "title": "test",
@@ -475,6 +510,7 @@ async def test_flow_choose_entities_creates_config_entry(hass, bypass_setup):
                 CONF_POLL_ONLY: False,
                 CONF_PROTOCOL_VERSION: "auto",
                 CONF_TYPE: "kogan_kahtp_heater",
+                CONF_DEVICE_CID: None,
             },
         }
         assert expected == result
@@ -485,7 +521,7 @@ async def test_options_flow_init(hass):
     """Test config flow options."""
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=12,
+        version=13,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
@@ -495,6 +531,7 @@ async def test_options_flow_init(hass):
             CONF_POLL_ONLY: False,
             CONF_PROTOCOL_VERSION: "auto",
             CONF_TYPE: "smartplugv1",
+            CONF_DEVICE_CID: "",
         },
     )
     config_entry.add_to_hass(hass)
@@ -523,7 +560,7 @@ async def test_options_flow_modifies_config(mock_test, hass):
 
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=12,
+        version=13,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
@@ -532,7 +569,8 @@ async def test_options_flow_modifies_config(mock_test, hass):
             CONF_NAME: "test",
             CONF_POLL_ONLY: False,
             CONF_PROTOCOL_VERSION: "auto",
-            CONF_TYPE: "kogan_kahtp_heater",
+            CONF_TYPE: "ble_pt216_temp_humidity",
+            CONF_DEVICE_CID: "subdeviceid",
         },
     )
     config_entry.add_to_hass(hass)
@@ -549,6 +587,7 @@ async def test_options_flow_modifies_config(mock_test, hass):
             CONF_LOCAL_KEY: "new_key",
             CONF_POLL_ONLY: False,
             CONF_PROTOCOL_VERSION: 3.3,
+            CONF_DEVICE_CID: "subdeviceid",
         },
     )
     expected = {
@@ -556,6 +595,7 @@ async def test_options_flow_modifies_config(mock_test, hass):
         CONF_LOCAL_KEY: "new_key",
         CONF_POLL_ONLY: False,
         CONF_PROTOCOL_VERSION: 3.3,
+        CONF_DEVICE_CID: "subdeviceid",
     }
     assert "create_entry" == result["type"]
     assert "" == result["title"]
@@ -570,7 +610,7 @@ async def test_options_flow_fails_when_connection_fails(mock_test, hass):
 
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=12,
+        version=13,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
@@ -580,6 +620,7 @@ async def test_options_flow_fails_when_connection_fails(mock_test, hass):
             CONF_POLL_ONLY: False,
             CONF_PROTOCOL_VERSION: "auto",
             CONF_TYPE: "smartplugv1",
+            CONF_DEVICE_CID: "",
         },
     )
     config_entry.add_to_hass(hass)
@@ -609,7 +650,7 @@ async def test_options_flow_fails_when_config_is_missing(mock_test, hass):
 
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=12,
+        version=13,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
@@ -637,7 +678,7 @@ async def test_async_setup_entry_for_switch(mock_device, hass):
     """Test setting up based on a config entry.  Repeats test_init_entry."""
     config_entry = MockConfigEntry(
         domain=DOMAIN,
-        version=12,
+        version=13,
         unique_id="uniqueid",
         data={
             CONF_DEVICE_ID: "deviceid",
@@ -645,7 +686,7 @@ async def test_async_setup_entry_for_switch(mock_device, hass):
             CONF_LOCAL_KEY: "localkey",
             CONF_NAME: "test",
             CONF_POLL_ONLY: False,
-            CONF_PROTOCOL_VERSION: "auto",
+            CONF_PROTOCOL_VERSION: 3.3,
             CONF_TYPE: "smartplugv2",
         },
     )

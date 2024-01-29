@@ -14,9 +14,9 @@ primary_entity:
       name: mode
       mapping:
         - dps_val: true
-          value: Auto
+          value: auto
         - dps_val: false
-          value: Manual
+          value: normal
     - id: 105
       type: string
       name: humidity
@@ -39,6 +39,9 @@ primary_entity:
           value: 70
         - dps_val: "8"
           value: 75
+    - id: 109
+      type: integer
+      name: current_humidity
 secondary_entities:
   - entity: light
     name: Nightlight
@@ -64,7 +67,8 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: sensor
-    name: Humidity
+    deprecated: humidifier
+    category: diagnostic
     class: humidity
     dps:
       - id: 109
@@ -104,7 +108,7 @@ secondary_entities:
     icon: "mdi:filter"
     category: diagnostic
     dps:
-      - id: 107 
+      - id: 107
         type: string
         name: sensor
   - entity: select
@@ -117,7 +121,7 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: "0"
-            value: Off
+            value: "Off"
           - dps_val: "1"
             value: "1 hour"
           - dps_val: "2"

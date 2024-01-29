@@ -25,6 +25,9 @@ primary_entity:
           conditions:
             - dps_val: auto
               invalid: true
+    - id: 14
+      type: integer
+      name: current_humidity
     - id: 24
       type: string
       name: mode
@@ -72,10 +75,10 @@ secondary_entities:
         type: boolean
         name: switch
         mapping:
-            - dps_val: true
-              icon: "mdi:led-on"
-            - dps_val: false
-              icon: "mdi:led-off"
+          - dps_val: true
+            icon: "mdi:led-on"
+          - dps_val: false
+            icon: "mdi:led-off"
   - entity: switch
     name: Sound
     category: config
@@ -84,17 +87,16 @@ secondary_entities:
         name: switch
         type: boolean
         mapping:
-            - dps_val: true
-              icon: "mdi:volume-high"
-            - dps_val: false
-              icon: "mdi:volume-off"
+          - dps_val: true
+            icon: "mdi:volume-high"
+          - dps_val: false
+            icon: "mdi:volume-off"
   - entity: sensor
-    name: Current temperature
     class: temperature
     dps:
       - id: 10
         name: sensor
-        type: integer 
+        type: integer
         class: measurement
       - id: 18
         name: unit
@@ -106,11 +108,13 @@ secondary_entities:
             value: F
   - entity: sensor
     name: Current humidity
+    deprecated: humidifier
+    category: diagnostic
     class: humidity
     dps:
       - id: 14
         name: sensor
-        type: integer 
+        type: integer
         class: measurement
         unit: "%"
   - entity: light
@@ -121,12 +125,12 @@ secondary_entities:
         type: boolean
         name: switch
         mapping:
-            - dps_val: true
-              value: false
-              icon: "mdi:led-off"
-            - dps_val: false
-              value: true
-              icon: "mdi:led-on"
+          - dps_val: true
+            value: false
+            icon: "mdi:led-off"
+          - dps_val: false
+            value: true
+            icon: "mdi:led-on"
   - entity: select
     category: config
     name: Temperature unit

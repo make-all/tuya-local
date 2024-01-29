@@ -1,0 +1,71 @@
+name: Temperature and humidity sensor
+products:
+  - id: 04nb6kdt
+    name: PT216 / PT19DB-2
+primary_entity:
+  entity: sensor
+  class: temperature
+  dps:
+    - id: 1
+      type: integer
+      name: sensor
+      unit: C
+      class: measurement
+      mapping:
+        - scale: 10
+secondary_entities:
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: number
+    name: Report interval
+    category: config
+    icon: "mdi:clock"
+    dps:
+      - id: 17
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 5
+          max: 60
+  - entity: number
+    name: Temperature sensitivity
+    category: config
+    icon: "mdi:thermometer"
+    dps:
+      - id: 19
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 1
+          max: 10
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Humidity sensitivity
+    category: config
+    icon: "mdi:water-percent"
+    dps:
+      - id: 20
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 3
+          max: 10

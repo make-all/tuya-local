@@ -1,9 +1,9 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.climate.const import (
-    ClimateEntityFeature,
-    HVACMode,
     PRESET_COMFORT,
     PRESET_ECO,
+    ClimateEntityFeature,
+    HVACMode,
 )
 from homeassistant.const import UnitOfTemperature
 

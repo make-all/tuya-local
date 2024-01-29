@@ -4,6 +4,10 @@ products:
     name: Aubess 20A
   - id: wrz6vzch8htux2zp
     name: Elivco CB2S-16DL
+  - id: 3lbgj7cu27nsmh0w
+    name: AT-Q-SY2-JWT
+  - id: cipuwutzfuqk3iru
+    name: UNSH SMKG-KNL
 primary_entity:
   entity: switch
   class: outlet
@@ -62,7 +66,6 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     class: current
-    name: Current
     dps:
       - id: 18
         name: sensor
@@ -76,7 +79,6 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     class: power
-    name: Power
     dps:
       - id: 19
         name: sensor
@@ -86,13 +88,19 @@ secondary_entities:
         unit: W
         mapping:
           - scale: 10
+            constraint: switch
+            conditions:
+              - dps_val: false
+                value: 0
+      - id: 1
+        type: boolean
+        name: switch
       - id: 24
         type: integer
         name: calibration
   - entity: sensor
     category: diagnostic
     class: voltage
-    name: Voltage
     dps:
       - id: 20
         name: sensor
@@ -140,6 +148,7 @@ secondary_entities:
       - id: 41
         type: boolean
         name: lock
+        optional: true
   - entity: select
     name: Light mode
     category: config
@@ -165,3 +174,13 @@ secondary_entities:
         type: boolean
         name: switch
         optional: true
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 47
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement

@@ -1,0 +1,60 @@
+name: Portable air conditioner
+products:
+  - id: 86sjxqebxymrjt3z
+    name: COSTWAY
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+          icon: "mdi:hvac-off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: cold
+              icon: "mdi:snowflake"
+              value: cool
+            - dps_val: wind
+              icon: "mdi:fan"
+              value: fan_only
+            - dps_val: wet
+              icon: "mdi:water"
+              value: dry
+    - id: 2
+      type: integer
+      name: temperature
+      range:
+        min: 16
+        max: 30
+      unit: C
+    - id: 3
+      type: integer
+      name: current_temperature
+    - id: 4
+      type: string
+      name: mode
+      hidden: true
+    - id: 5
+      type: string
+      name: fan_mode
+      mapping:
+        - dps_val: low
+          value: low
+        - dps_val: high
+          value: high
+    - id: 20
+      type: integer
+      name: unknown_20
+    - id: 103
+      type: boolean
+      name: unknown_103
+    - id: 107
+      type: integer
+      name: unknown_106
+    - id: 109
+      type: integer
+      name: unknown_107

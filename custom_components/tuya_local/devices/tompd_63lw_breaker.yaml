@@ -1,7 +1,9 @@
 name: Circuit breaker energy meter
-product:
+products:
   - id: rrmpzckqm5pfd642
     name: TOMPD-63LW
+  - id: psjg8ldomxnelfp5
+    name: TOMZN-63A
 primary_entity:
   entity: switch
   dps:
@@ -18,8 +20,9 @@ primary_entity:
       type: string
     - id: 6
       name: phase_a
-      type: string
+      type: base64
       optional: true
+      force: true
     - id: 9
       name: fault
       type: bitfield
@@ -45,15 +48,22 @@ secondary_entities:
     category: config
     dps:
       - id: 12
-        type: string
+        type: boolean
         name: button
         optional: true
-        mapping:
-          - dps_val: empty
-            value: true
+  - entity: button
+    name: Refresh sensors
+    class: restart
+    category: config
+    dps:
+      - id: 106
+        type: boolean
+        name: button
+        optional: true
   - entity: sensor
     name: Balance energy
     category: diagnostic
+    class: energy_storage
     dps:
       - id: 13
         type: integer
@@ -64,6 +74,7 @@ secondary_entities:
   - entity: number
     name: Charge energy
     category: config
+    class: energy_storage
     icon: "mdi:cash"
     dps:
       - id: 14
@@ -86,6 +97,7 @@ secondary_entities:
         name: sensor
         unit: mA
         class: measurement
+        optional: true
   - entity: button
     name: Earth leak test
     icon: "mdi:current-ac"
@@ -96,7 +108,6 @@ secondary_entities:
         name: button
         optional: true
   - entity: sensor
-    name: Energy
     class: energy
     dps:
       - id: 1
@@ -106,3 +117,42 @@ secondary_entities:
         class: total_increasing
         mapping:
           - scale: 100
+  - entity: sensor
+    name: Voltage A
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mapping:
+          - mask: "FFFF000000000000"
+            scale: 10
+  - entity: sensor
+    name: Current A
+    class: current
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        mapping:
+          - mask: "0000FFFFFF000000"
+            scale: 1000
+  - entity: sensor
+    name: Power A
+    class: power
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: kW
+        mapping:
+          - mask: "0000000000FFFFFF"
+            scale: 1000

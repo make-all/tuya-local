@@ -1,99 +1,29 @@
-name: AGL Ultra Magic lock
+name: Gate lock
+products:
+  - id: xrqkoapmq1rwjvms
+    name: AGL Ultra Magic
 primary_entity:
-  entity: lock
+  entity: cover
+  class: gate
   dps:
-    - id: 1
+    - id: 118
       type: boolean
-      name: lock
+      name: control
+      optional: true
+      mapping:
+        - dps_val: true
+          value: open
+        - dps_val: false
+          value: close
     - id: 3
       type: boolean
-      name: door_contact
-    - id: 5
-      name: num_tags
-      type: integer
-    - id: 101
-      name: write_tag
-      type: integer
-    - id: 104
-      name: approve_unlock
-      type: boolean
-    - id: 105
-      name: approve_intercom
-      type: boolean
-    - id: 106
-      name: open_alarm
-      type: boolean
-      optional: true
-    - id: 108
-      name: interlock
-      type: boolean
-    - id: 109
-      name: unlock_card
-      type: boolean
-    - id: 110
-      name: tag_last_added
-      type: integer
-    - id: 111
-      name: alarm
-      type: boolean
-    - id: 112
-      name: open_notification
-      type: boolean
-    - id: 113
-      name: closed_notification
-      type: boolean
-    - id: 114
-      name: backup
-      type: string
-    - id: 116
-      name: powered
-      type: boolean
-    - id: 117
-      name: gate_contact
-      type: string
-    - id: 120
-      name: request_intercom
-      type: boolean
-    - id: 121
-      name: request_unlock
-      type: boolean
-    - id: 122
-      name: notify_app
-      type: boolean
-    - id: 123
-      name: delete_control
-      type: boolean
-    - id: 124
-      name: door_contact_open
-      type: boolean
-    - id: 125
-      name: door_alarm_trigger
-      type: boolean
-    - id: 126
-      name: backup_saved
-      type: boolean
-    - id: 127
-      name: backup_recovered
-      type: boolean
-    - id: 128
-      name: backup_error
-      type: boolean
-    - id: 129
-      name: unlock_key
-      type: boolean
+      name: action
+      mapping:
+        - dps_val: false
+          value: opened
+        - dps_val: true
+          value: closed
 secondary_entities:
-  - entity: number
-    category: config
-    name: Lock timeout
-    icon: "mdi:lock-clock"
-    dps:
-      - id: 102
-        name: value
-        type: integer
-        range:
-          min: 1
-          max: 5
-        unit: s
   - entity: select
     category: config
     name: Beep
@@ -113,15 +43,60 @@ secondary_entities:
             value: High
   - entity: switch
     category: config
-    name: Auto close
+    name: Allow intercom unlock
+    icon: "mdi:doorbell"
+    dps:
+      - id: 105
+        name: switch
+        type: boolean
+  - entity: switch
+    category: config
+    name: Allow inside button unlock
+    icon: "mdi:gesture-tap-button"
+    dps:
+      - id: 104
+        name: switch
+        type: boolean
+  - entity: switch
+    category: config
+    name: Allow IC card unlock
+    icon: "mdi:nfc-variant"
+    dps:
+      - id: 109
+        name: switch
+        type: boolean
+  - entity: switch
+    category: config
+    name: Enable interlock
+    icon: "mdi:lock-pattern"
+    dps:
+      - id: 108
+        name: switch
+        type: boolean
+  - entity: switch
+    category: config
+    name: Auto lock after closed
+    icon: "mdi:lock-check-outline"
     dps:
       - id: 107
         name: switch
         type: boolean
   - entity: number
     category: config
+    name: Lock timeout
+    icon: "mdi:lock-clock"
+    dps:
+      - id: 102
+        name: value
+        type: integer
+        range:
+          min: 1
+          max: 5
+        unit: s
+  - entity: number
+    category: config
     icon: "mdi:clock-end"
-    name: Auto close timeout
+    name: Auto lock timeout
     dps:
       - id: 115
         name: value
@@ -129,4 +104,17 @@ secondary_entities:
         range:
           min: 1
           max: 1200
+          unit: s
+  - entity: number
+    category: config
+    icon: "mdi:alarm"
+    name: Open alarm time
+    mode: box
+    dps:
+      - id: 106
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 100
           unit: s

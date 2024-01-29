@@ -95,9 +95,9 @@ primary_entity:
       type: string
       mapping:
         - dps_val: auto
-          value: Auto
+          value: auto
         - dps_val: "on"
-          value: "On"
+          value: "on"
     - id: 29
       name: current_temp_f
       type: integer
@@ -160,13 +160,12 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: c
-            value: Celsius 
+            value: Celsius
             icon: "mdi:temperature-celsius"
           - dps_val: f
             value: Fahrenheit
             icon: "mdi:temperature-fahrenheit"
   - entity: sensor
-    name: Current humidity
     class: humidity
     dps:
       - id: 34
