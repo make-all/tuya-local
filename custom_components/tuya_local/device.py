@@ -648,6 +648,19 @@ class TuyaLocalDevice(object):
         return keys[values.index(value)] if value in values else fallback
 
 
+class SingletonDevice(tinytuya.Device):
+    def __init__(self, dev_id, address=None, local_key="", dev_type="default", connection_timeout=5, version=3.1, persist=False, cid=None, node_id=None, parent=None, connection_retry_limit=5, connection_retry_delay=5):
+        self._lock = Lock()
+        super().__init__(dev_id, address, local_key, dev_type, connection_timeout, version, persist, cid, node_id, parent, connection_retry_limit, connection_retry_delay)
+
+    def _send_receive(self, payload, minresponse=28, getresponse=True, decode_response=True, from_child=None):
+        try:
+            self._lock.acquire()
+            return super()._send_receive(payload, minresponse, getresponse, decode_response, from_child)
+        finally:
+            self._lock.release()
+
+
 class TuyaLocalGatewayDevice(object):
     def __init__(
         self,
@@ -659,7 +672,7 @@ class TuyaLocalGatewayDevice(object):
         self._dev_id = dev_id
         self._hass = hass
         self._subdevices = {}
-        self._api = tinytuya.Device(dev_id, address, local_key)
+        self._api = SingletonDevice(dev_id, address, local_key)
         self._api.set_socketRetryLimit(1)
         self._api.set_socketTimeout(10)
         self._api_protocol_version_index = None
