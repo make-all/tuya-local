@@ -1,0 +1,356 @@
+name: EV charger
+products:
+  - id: jui3mys5c9rfdju2
+    name: Ecopoint 32A EV charger
+primary_entity:
+  entity: sensor
+  name: Charger State
+  icon: "mdi:ev-station"
+  class: enum
+  dps:
+    - id: 3  # work_state
+      type: string
+      name: sensor
+      mapping:
+        - dps_val: charger_charging
+          value: Charging
+        - dps_val: charger_free
+          value: Available
+        - dps_val: charger_insert
+          value: Plugged in
+        - dps_val: charger_free_fault
+          value: Fault
+        - dps_val: charger_wait
+          value: Delaying
+        - dps_val: charger_pause
+          value: Paused
+        - dps_val: charger_end
+          value: Charged
+        - dps_val: charger_fault
+          value: Fault (plugged in)
+    - id: 21
+      type: string
+      optional: true
+      name: card_binding
+    - id: 22  # meter_id
+      type: string
+      name: meter_id
+    - id: 23  # system_version
+      type: string
+      name: system_version
+secondary_entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 1  # forward_energy_total
+        type: integer
+        name: sensor
+        class: total_increasing
+        unit: kWh
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 2
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+  - entity: number
+    name: Charging current
+    category: config
+    class: current
+    icon: "mdi:ev-plug-type2"
+    dps:
+      - id: 4  # charge_cur_set
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 6
+          max: 80
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 9
+        type: integer
+        optional: true
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10  # fault
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    name: Connection
+    icon: "mdi:ev-plug-type2"
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 13  # connection_state
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: controlpi_12v
+            value: Standby
+          - dps_val: controlpi_12v_pwm
+            value: Communication initialising
+          - dps_val: controlpi_9v
+            value: Vehicle detected
+          - dps_val: controlpi_9v_pwm
+            value: Veehicle connected
+          - dps_val: controlpi_6v
+            value: Ready to charge
+          - dps_val: controlpi_6v_pwm
+            value: Charging
+          - dps_val: controlpi_error
+            value: Error
+  - entity: select
+    name: Charging mode
+    icon: "mdi:ev-station"
+    category: config
+    dps:
+      - id: 14  # work_mode
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: charge_now
+            value: Immediate
+          - dps_val: charge_energy
+            value: Fixed charge
+          - dps_val: charge_schedule
+            value: Scheduled charge
+  - entity: sensor
+    name: Voltage A
+    class: voltage
+    dps:
+      - id: 6  # phase_1
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mapping:
+          - mask: "FFFF000000000000"
+            scale: 10
+  - entity: sensor
+    name: Current A
+    class: current
+    dps:
+      - id: 6  # phase_1
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        mapping:
+          - mask: "0000FFFFFF000000"
+            scale: 1000
+  - entity: sensor
+    name: Power A
+    class: power
+    dps:
+      - id: 6  # phase_1
+        type: base64
+        name: sensor
+        optional: true
+        unit: kW
+        mapping:
+          - mask: "0000000000FFFFFF"
+            scale: 1000
+  - entity: sensor
+    name: Voltage B
+    class: voltage
+    dps:
+      - id: 7  # phase_1
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mapping:
+          - mask: "FFFF000000000000"
+            scale: 10
+  - entity: sensor
+    name: Current B
+    class: current
+    dps:
+      - id: 7  # phase_1
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        mapping:
+          - mask: "0000FFFFFF000000"
+            scale: 1000
+  - entity: sensor
+    name: Power B
+    class: power
+    dps:
+      - id: 7  # phase_1
+        type: base64
+        name: sensor
+        optional: true
+        unit: kW
+        mapping:
+          - mask: "0000000000FFFFFF"
+            scale: 1000
+  - entity: sensor
+    name: Voltage C
+    class: voltage
+    dps:
+      - id: 8  # phase_1
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mapping:
+          - mask: "FFFF000000000000"
+            scale: 10
+  - entity: sensor
+    name: Current C
+    class: current
+    dps:
+      - id: 8  # phase_1
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        mapping:
+          - mask: "0000FFFFFF000000"
+            scale: 1000
+  - entity: sensor
+    name: Power C
+    class: power
+    dps:
+      - id: 8  # phase_1
+        type: base64
+        name: sensor
+        optional: true
+        unit: kW
+        mapping:
+          - mask: "0000000000FFFFFF"
+            scale: 1000
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 24
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: number
+    name: Charge energy
+    category: config
+    class: energy_storage
+    dps:
+      - id: 17
+        type: integer
+        optional: true
+        name: value
+        unit: kWh
+        range:
+          min: 1
+          max: 20000000
+        mapping:
+          - scale: 1000
+  - entity: number
+    name: Charge time
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 19
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 1
+          max: 1440
+  - entity: sensor
+    name: Charge energy
+    class: energy_storage
+    dps:
+      - id: 25  # charge_energy_once
+        type: integer
+        name: sensor
+        optional: true
+        class: measurement
+  - entity: switch
+    icon: "mdi:ev-station"
+    dps:
+      - id: 18  # switch
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Charging time
+    class: duration
+    dps:
+      - id: 101
+        type: base64
+        name: sensor
+        optional: true
+        unit: s
+        mapping:
+          - mask: "0000FFFF"
+  - entity: select
+    name: Mode
+    icon: "mdi:cogs"
+    category: config
+    dps:
+      - id: 102
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: home
+            value: Home
+          - dps_val: mode
+            value: Mode
+          - dps_val: recode
+            value: recode
+          - dps_val: setting
+            value: setting
+  - entity: sensor
+    name: Minimum current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 103
+        type: base64
+        optional: true
+        name: sensor
+        unit: A
+        mapping:
+          - mask: "FFFF0000"
+            scale: 10
+  - entity: sensor
+    name: Maximum current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 103
+        type: base64
+        optional: true
+        name: sensor
+        unit: A
+        mapping:
+          - mask: "0000FFFF"
+            scale: 10

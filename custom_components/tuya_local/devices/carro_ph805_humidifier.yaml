@@ -1,7 +1,7 @@
 name: Humidifier
 products:
   - id: g5wedazavod2wg3h
-    name: Carro VES1011
+    name: Carro PH-805-24
 primary_entity:
   entity: humidifier
   class: humidifier
@@ -9,6 +9,14 @@ primary_entity:
     - id: 1
       name: switch
       type: boolean
+    - id: 2
+      name: mode
+      type: boolean
+      mapping:
+        - dps_val: true
+          value: auto
+        - dps_val: false
+          value: normal
     - id: 13
       name: humidity
       type: integer
@@ -20,8 +28,10 @@ primary_entity:
       type: integer
 secondary_entities:
   - entity: fan
+    icon: "mdi:sprinkler-variant"
+    name: Spray
     dps:
-      - id: 2
+      - id: 1
         type: boolean
         name: switch
       - id: 23
@@ -35,11 +45,18 @@ secondary_entities:
           - dps_val: level_3
             value: 100
   - entity: light
+    name: Display
+    icon: "mdi:television-ambient-light"
     category: config
     dps:
       - id: 5
         name: switch
         type: boolean
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
   - entity: switch
     name: Sleep
     icon: "mdi:power-sleep"

@@ -5,7 +5,7 @@
 - Advanced Fires 1500 electric fireplace
 - Andersson GSH heater
 - Arlec 2200W and 2400W panel heaters
-- Atomi AT1632 ceramic heater
+- Atomi AT1632/AT1635 ceramic heaters
 - Betterlife BT1500 IR heater
 - Blumfeldt/Klarstein Cosmic Beam Smart 24 infrared radiant heater
 - BVF CP1 heater
@@ -68,6 +68,7 @@
 - ElectriQ EcoSilent 14HPW
 - Fersk Vind 2
 - Fisher Summer air conditioner
+- Idea Heating Belt (with CS1 USB dongle)
 - Inventor Leon (Tokens Legend series) air conditioner
 - Kogan 2.6kW portable air conditioner
 - Lyfco OL-A012 air conditioner
@@ -328,6 +329,7 @@
 
 ### Battery Charger
 
+- EcoPoint EV charger
 - EVSun EV charger
 - Feyree home EV charger
 - Parkside PLGS 2012 A1 smart charger for powertools
@@ -371,6 +373,7 @@ the best option.
 - MakeGood double switch with timers and power monitoring on whole device
 - Mirabella Genio smartplug with USB
 - Moes 3-gang switch
+- Moes 4-gang (quad) switch
 - MoesHouse smartplug with RGBW nightlight
 - Novadigital 4-way switch with backlight, power on state and timers
 - Qnect QN-WPO3 3 outlet + USB powerstrip with individual timers
@@ -500,6 +503,7 @@ of device.
 - Kyvol E30 vacuum cleaner
 - Lefant LS1 Pro vacuum cleaner
 - Lefant M213 vacuum cleaner (also works for Lefant M213S and APOSEN A550)
+- Lefant N33 vacuum cleaner
 - Lenovo E1 vacuum cleaner
 - Liectroux XR500[T3]
 - Lubluelu SL60D vacuum cleaner with mop
@@ -569,6 +573,7 @@ port and password.
 
 ### Remote controllers
 
+- Arlec HUBRF06HA RF 8x8 learning remote transmitter
 - Universal remote control with temperature and humidity sensors
 
 ### Miscellaneous
