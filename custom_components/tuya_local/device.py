@@ -31,8 +31,6 @@ from .helpers.device_config import possible_matches
 from .helpers.log import log_json
 
 _LOGGER = logging.getLogger(__name__)
-tinytuya.set_debug()
-
 
 class TinyTuyaDeviceWrapper(tinytuya.Device):
     def __init__(self, local_device, dev_id, address=None, local_key="", dev_type="default", connection_timeout=5, version=3.1, persist=False, cid=None, node_id=None, parent=None, connection_retry_limit=5, connection_retry_delay=5):
@@ -728,6 +726,7 @@ class TuyaLocalGatewayDevice(object):
                 else:
                     try:
                         subdevice = target["subdevice"]
+                        update_required = target["update_required"]
                         _LOGGER.debug("Gateway %s poll status for subdevice: %s",self._dev_id, subdevice.name)
 
                         target["update_required"] = False
@@ -790,10 +789,12 @@ class TuyaLocalGatewayDevice(object):
                                 poll["full_poll"] = full_poll
                                 target["queue"].put_nowait(poll)
 
+                        # Receive update quick if has pending updates not received or
+                        # triggered by for quick path update as more updates may pending here.
                         pending_updates = [ value for
                                            key, value in subdevice._get_pending_updates()
                                            if key not in poll or not value["sent"] or poll[key] != value["value"]]
-                        target["next_check"] = time() + (0.1 if pending_updates else 5)
+                        target["next_check"] = time() + (0.1 if pending_updates or update_required else 5)
                     except asyncio.CancelledError:
                         raise
                     except Exception as t:
@@ -890,7 +891,7 @@ class TuyaLocalGatewayDevice(object):
         as the ack for multiple subdevices. Thus, we increase the retry time here to move multiple null response and get
         the actual response.
         """
-        self._api.set_socketRetryLimit(len(self._subdevices) + 1)
+        self._api.set_socketRetryLimit(len(self._subdevices) * 2 + 1)
 
     def disable_connection_test_mode(self):
         self._api.set_socketRetryLimit(1)
