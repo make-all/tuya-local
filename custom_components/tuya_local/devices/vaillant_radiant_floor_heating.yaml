@@ -3,19 +3,17 @@ products:
   - id: zggrbq6s
     name: Vaillant Radiant Floor Heating
 primary_entity:
-  entity: water_heater
-  icon: "mdi:radiator-disabled"
+  entity: climate
+  icon: "mdi:heating-coil"
   dps:
     - id: 1
       type: boolean
-      name: operation_mode
+      name: hvac_mode
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:radiator-off"
         - dps_val: true
-          value: gas
-          icon: "mdi:radiator"
+          value: heat
     - id: 2
       type: integer
       name: temperature
