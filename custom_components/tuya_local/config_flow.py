@@ -221,12 +221,14 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
             hass,
             True,
         )
+        device.enable_connection_test_mode()
         await device.async_refresh()
         retval = device if device.has_returned_state else None
     except Exception as e:
         _LOGGER.warning("Connection test failed with %s %s", type(e), e)
         retval = None
 
+    device.disable_connection_test_mode()
     if existing:
         _LOGGER.info("Restarting device after test")
         existing["device"].resume()

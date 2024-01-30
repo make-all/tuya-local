@@ -278,6 +278,14 @@ class TuyaLocalDevice(object):
     def resume(self):
         self._temporary_poll = False
 
+    def enable_connection_test_mode(self):
+        if self._gateway_device:
+            self._gateway_device.enable_connection_test_mode()
+
+    def disable_connection_test_mode(self):
+        if self._gateway_device:
+            self._gateway_device.disable_connection_test_mode()
+
     async def async_receive(self):
         """Receive messages from a persistent connection asynchronously."""
         if self._gateway_device:
@@ -872,6 +880,20 @@ class TuyaLocalGatewayDevice(object):
             _LOGGER.debug("Trigger gateway %s quick update on subdevice: %s", self._dev_id, data["subdevice"].name)
             data["update_required"] = True
             self._subdevice_update_required.set()
+
+    def enable_connection_test_mode(self):
+        """
+        Increase socket retry limit according to number of subdevices behind the gateway.
+        The tuya device may return null response acting as ack of the request. The default retry limit = 1 handle
+        such ack response to get the real response by retry once.
+        However, in the case of one gateway service, it is observed that it may emit multiple null response which seems
+        as the ack for multiple subdevices. Thus, we increase the retry time here to move multiple null response and get
+        the actual response.
+        """
+        self._api.set_socketRetryLimit(len(self._subdevices) + 1)
+
+    def disable_connection_test_mode(self):
+        self._api.set_socketRetryLimit(1)
 
     @property
     def api(self):
