@@ -268,7 +268,7 @@ class TuyaLocalDevice(object):
     async def async_receive(self):
         """Receive messages from a persistent connection asynchronously."""
         if self._gateway_device:
-            result_queue = await self._gateway_device.start_monitoring_subdevice(self)
+            result_queue = self._gateway_device.start_monitoring_subdevice(self)
 
             while self._running:
                 try:
@@ -280,10 +280,10 @@ class TuyaLocalDevice(object):
                         yield result
                 except asyncio.CancelledError:
                     self._running = False
-                    self._gateway_device.stop_monitoring_subdevice(self)
+                    await self._gateway_device.async_stop_monitoring_subdevice(self)
                     raise
 
-            self._gateway_device.stop_monitoring_subdevice(self)
+            await self._gateway_device.async_stop_monitoring_subdevice(self)
         else:
             # If we didn't yet get any state from the device, we may need to
             # negotiate the protocol before making the connection persistent
@@ -681,7 +681,7 @@ class TuyaLocalGatewayDevice(object):
 
         while self._running:
             try:
-                target = min(self._subdevices.items(), key=lambda d: d["next_check"], default=None)
+                target = min(self._subdevices.values(), key=lambda d: d["next_check"], default=None)
                 _LOGGER.debug("Gateway %s next poll subdevice: %s", self._dev_id, target["subdevice"].name if target else None)
                 if not target:
                     # No subdevice under monitoring, yield control back to event loop to wait stopping of the loop
@@ -689,7 +689,7 @@ class TuyaLocalGatewayDevice(object):
                 elif time() < target["next_check"]:
                     # Wait to poll the subdevice which is earlist for status polling
                     timediff = target["next_check"] - time()
-                    _LOGGER.debug("Gateway %s sleep until next subdevice %s poll: %s", self._dev_id, target["subdevice"].name, timediff)
+                    _LOGGER.debug("Gateway %s sleep %s before poll next subdevice %s", self._dev_id, timediff, target["subdevice"].name)
                     await asyncio.sleep(timediff)
                 else:
                     try:
@@ -808,7 +808,7 @@ class TuyaLocalGatewayDevice(object):
         return self._api_socket_persistent
 
 
-    async def start_monitoring_subdevice(self, subdevice: TuyaLocalDevice):
+    def start_monitoring_subdevice(self, subdevice: TuyaLocalDevice):
         if not subdevice.dev_cid in self._subdevices:
             data = {
                 "subdevice": subdevice,
@@ -826,7 +826,7 @@ class TuyaLocalGatewayDevice(object):
         return self._subdevices[subdevice.dev_cid]["queue"]
 
 
-    async def stop_monitoring_subdevice(self, subdevice: TuyaLocalDevice):
+    async def async_stop_monitoring_subdevice(self, subdevice: TuyaLocalDevice):
         del self._subdevices[subdevice.dev_cid]
 
         if not self._subdevices:
