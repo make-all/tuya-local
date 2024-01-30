@@ -682,16 +682,20 @@ class TuyaLocalGatewayDevice(object):
         while self._running:
             try:
                 target = min(self._subdevices.items(), key=lambda d: d["next_check"], default=None)
+                _LOGGER.debug("Gateway %s next poll subdevice: %s", self._dev_id, target["subdevice"].name if target else None)
                 if not target:
                     # No subdevice under monitoring, yield control back to event loop to wait stopping of the loop
                     await asyncio.sleep(0)
                 elif time() < target["next_check"]:
                     # Wait to poll the subdevice which is earlist for status polling
                     timediff = target["next_check"] - time()
+                    _LOGGER.debug("Gateway %s sleep until next subdevice %s poll: %s", self._dev_id, target["subdevice"].name, timediff)
                     await asyncio.sleep(timediff)
                 else:
                     try:
                         subdevice = target["subdevice"]
+                        _LOGGER.debug("Gateway %s poll status for subdevice: %s",self._dev_id, subdevice.name)
+
                         should_poll = subdevice.should_poll
                         full_poll = False
 
