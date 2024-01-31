@@ -704,32 +704,31 @@ class TuyaLocalGatewayDevice(object):
         while self._running:
             try:
                 self._subdevice_update_required.clear()
-                require_updates = [ value for value in self._subdevices.values() if value["update_required"] ]
-                target = min(require_updates, key=lambda d: d["next_check"]) if require_updates \
-                    else min(self._subdevices.values(), key=lambda d: d["next_check"], default=None)
 
-                _LOGGER.debug("Gateway %s begin new poll iteration: %s(next_check=%s, update_required=%s)", self._dev_id,
+                target = max(self._subdevices.values(), key=lambda d: d["pending_update_count"], default=None)
+                if (not target) or (target["pending_update_count"] <= 0):
+                    target = min(self._subdevices.values(), key=lambda d: d["next_check"], default=None)
+                _LOGGER.debug("Gateway %s begin new poll iteration: %s(next_check=%s, pending_update_count=%s)", self._dev_id,
                               target["subdevice"].name if target else None,
                               target["next_check"] if target else None,
-                              target["update_required"] if target else None
+                              target["pending_update_count"] if target else None
                 )
                 if not target:
                     # No subdevice under monitoring, yield control back to event loop to wait stopping of the loop
                     await asyncio.sleep(0)
-                elif not target["update_required"] and time() < target["next_check"]:
+                elif not target["pending_update_count"] > 0 and time() < target["next_check"]:
                     # Wait to poll the subdevice which is earlist for status polling
                     timediff = target["next_check"] - time()
-                    _LOGGER.debug("Gateway %s sleep %s before poll next subdevice %s", self._dev_id, timediff, target["subdevice"].name)
+                    _LOGGER.debug("Gateway %s wait %s before poll next subdevice %s", self._dev_id, timediff, target["subdevice"].name)
                     done, _ = await asyncio.wait([asyncio.create_task(self._subdevice_update_required.wait())], timeout=timediff)
                     if done:
                         _LOGGER.debug("Gateway %s woke up earlier since update required", self._dev_id)
                 else:
                     try:
                         subdevice = target["subdevice"]
-                        update_required = target["update_required"]
                         _LOGGER.debug("Gateway %s poll status for subdevice: %s",self._dev_id, subdevice.name)
 
-                        target["update_required"] = False
+                        receive_required = target["pending_update_count"] > 0
                         should_poll = subdevice.should_poll
                         full_poll = False
 
@@ -743,7 +742,7 @@ class TuyaLocalGatewayDevice(object):
 
                         now = time()
                         last_cache = subdevice._cached_state.get("updated_at", 0)
-                        if now - last_cache > subdevice._CACHE_TIMEOUT:
+                        if (not receive_required) and (now - last_cache > subdevice._CACHE_TIMEOUT):
                             if (
                                 subdevice._force_dps
                                 and not target["dps_updated"]
@@ -761,13 +760,14 @@ class TuyaLocalGatewayDevice(object):
                                 )
                                 target["dps_updated"] = False
                                 full_poll = True
-                        elif not should_poll:
+                        elif (not should_poll) or receive_required:
                             await subdevice._hass.async_add_executor_job(
                                 subdevice._api.heartbeat,
                                 True,
                             )
                             poll = await subdevice._hass.async_add_executor_job(
-                                subdevice._api.receive,
+                                self.receive_subdevice_update,
+                                subdevice.dev_cid
                             )
                         else:
                             poll = None
@@ -789,12 +789,10 @@ class TuyaLocalGatewayDevice(object):
                                 poll["full_poll"] = full_poll
                                 target["queue"].put_nowait(poll)
 
-                        # Receive update quick if has pending updates not received or
-                        # triggered by for quick path update as more updates may pending here.
                         pending_updates = [ value for
                                            key, value in subdevice._get_pending_updates()
                                            if key not in poll or not value["sent"] or poll[key] != value["value"]]
-                        target["next_check"] = time() + (0.1 if pending_updates or update_required else 5)
+                        target["next_check"] = time() + (0.1 if pending_updates or target["pending_update_count"] > 0 else 5)
                     except asyncio.CancelledError:
                         raise
                     except Exception as t:
@@ -851,7 +849,8 @@ class TuyaLocalGatewayDevice(object):
                 "queue": asyncio.Queue(),
                 "dps_updated": False,
                 "next_check": 0,
-                "update_required": False
+                "pending_update_count": 0,
+                "pending_update_lock": Lock()
             }
             self._subdevices.setdefault(subdevice.dev_cid, data)
 
@@ -875,12 +874,30 @@ class TuyaLocalGatewayDevice(object):
                 await self._monitoring_task
                 self._monitoring_task = None
 
+
     def trigger_subdevice_update(self, dev_cid):
+        # blocking code shoule be executed only inside one executor
         data = self._subdevices.get(dev_cid, None)
         if data:
             _LOGGER.debug("Trigger gateway %s quick update on subdevice: %s", self._dev_id, data["subdevice"].name)
-            data["update_required"] = True
+            try:
+                data["pending_update_lock"].acquire()
+                data["pending_update_count"] = data["pending_update_count"] + 1
+            finally:
+                data["pending_update_lock"].release()
             self._subdevice_update_required.set()
+
+    def receive_subdevice_update(self, dev_cid):
+        data = self._subdevices.get(dev_cid, None)
+        if data:
+            try:
+                data["pending_update_lock"].acquire()
+                data["pending_update_count"] = data["pending_update_count"] - 1 if data["pending_update_count"] > 0 else 0
+            finally:
+                data["pending_update_lock"].release()
+            return data["subdevice"]._api.receive()
+        return None
+
 
     def enable_connection_test_mode(self):
         """
