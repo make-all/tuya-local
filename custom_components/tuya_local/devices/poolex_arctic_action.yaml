@@ -1,7 +1,6 @@
-name: Pool heatpump
+name: Poolex Arctic Action
 products:
-  - id: ea8w1w
-    name: Poolex Arctic Action
+  - id: pzp8owd7lhtpssgj
 primary_entity:
   entity: climate
   icon: "mdi:hot-tub"
@@ -19,15 +18,15 @@ primary_entity:
             - dps_val: Heat_Intelligent
               value: heat
             - dps_val: Heat_Powerful
-              value: h_powerful
+              value: heat
             - dps_val: Heat_Energy_Saving
-              value: h_silent
+              value: heat
             - dps_val: Cool_Intelligent
               value: cool
             - dps_val: Cool_Powerful
-              value: c_powerful
+              value: cool
             - dps_val: Cool_Silent
-              value: c_silent
+              value: cool
     - id: 2
       type: integer
       name: temperature
@@ -56,22 +55,22 @@ primary_entity:
       mapping:
         - dps_val: Heat_Intelligent
           icon: "mdi:hot-tub"
-          value: heat
+          value: smart_heat
         - dps_val: Heat_Powerful
           icon: "mdi:hot-tub"
-          value: h_powerful
+          value: quick_heat
         - dps_val: Heat_Energy_Saving
           icon: "mdi:hot-tub"
-          value: h_silent
+          value: quiet_heat
         - dps_val: Cool_Intelligent
-          value: cool
           icon: "mdi:snowflake"
+          value: smart_cool
         - dps_val: Cool_Powerful
-          value: c_powerful
           icon: "mdi:snowflake"
+          value: quick_cool
         - dps_val: Cool_Silent
-          value: c_silent
           icon: "mdi:snowflake"
+          value: quiet_cool
     - id: 13
       type: string
       name: temperature_unit
@@ -139,7 +138,8 @@ primary_entity:
           value: "Inlet Water Temperature Fault"
           icon: "mdi:water-boiler-alert"
           icon_priority: 2
-        - dps_val: 16 External Coil Temperature Fault"
+        - dps_val: 16
+          value: "External Coil Temperature Fault"
           icon: "mdi:water-boiler-alert"
           icon_priority: 2
         - dps_val: 18
@@ -183,9 +183,8 @@ primary_entity:
           icon: "mdi:water-boiler-alert"
           icon_priority: 2
 
-
 secondary_entities:
-  - entity: water_heater
+  - entity: climate
     icon: "mdi:hot-tub"
     deprecated: climate
     category: config
