@@ -1,0 +1,90 @@
+name: Smart Surge Protector Plug 2x2
+products:
+  - id: cianx1tz1ifyvyqm
+    name: Smart Surge Protector Plug 2x2
+primary_entity:
+  entity: switch
+  name: switch_1
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+secondary_entities:
+  - entity: switch
+    name: switch_2
+    dps:
+      - id: 2
+        name: switch
+        type: boolean
+  - entity: switch
+    name: switch_usb1
+    dps:
+      - id: 7
+        name: switch
+        type: boolean
+  - entity: switch
+    name: switch_usb2
+    dps:
+      - id: 8
+        name: switch
+        type: boolean
+  - entity: number
+    name: countdown_1
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 9
+        name: value
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    name: countdown_2
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 10
+        name: value
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    name: countdown_usb1
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 15
+        name: value
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    name: countdown_usb2
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 16
+        name: value
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
