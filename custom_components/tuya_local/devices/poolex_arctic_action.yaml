@@ -1,6 +1,7 @@
-name: Poolex Arctic Action
+name: Spa Heat Pump
 products:
   - id: pzp8owd7lhtpssgj
+    name: Poolex Arctic Action
 primary_entity:
   entity: climate
   icon: "mdi:hot-tub"
@@ -13,20 +14,7 @@ primary_entity:
         - dps_val: false
           value: "off"
         - dps_val: true
-          constraint: preset_mode
-          conditions:
-            - dps_val: Heat_Intelligent
-              value: heat
-            - dps_val: Heat_Powerful
-              value: heat
-            - dps_val: Heat_Energy_Saving
-              value: heat
-            - dps_val: Cool_Intelligent
-              value: cool
-            - dps_val: Cool_Powerful
-              value: cool
-            - dps_val: Cool_Silent
-              value: cool
+          value: "auto"
     - id: 2
       type: integer
       name: temperature
@@ -53,22 +41,22 @@ primary_entity:
       type: string
       name: preset_mode
       mapping:
-        - dps_val: Heat_Intelligent
+        - dps_val: heat
           icon: "mdi:hot-tub"
           value: smart_heat
-        - dps_val: Heat_Powerful
+        - dps_val: h_powerful
           icon: "mdi:hot-tub"
           value: quick_heat
-        - dps_val: Heat_Energy_Saving
+        - dps_val: h_silent
           icon: "mdi:hot-tub"
           value: quiet_heat
-        - dps_val: Cool_Intelligent
+        - dps_val: cool
           icon: "mdi:snowflake"
           value: smart_cool
-        - dps_val: Cool_Powerful
+        - dps_val: c_powerful
           icon: "mdi:snowflake"
           value: quick_cool
-        - dps_val: Cool_Silent
+        - dps_val: c_silent
           icon: "mdi:snowflake"
           value: quiet_cool
     - id: 13
@@ -93,7 +81,7 @@ primary_entity:
       hidden: true
       optional: true
     - id: 21
-      type: integer
+      type: bitfield
       name: error
       mapping:
         - dps_val: 0
@@ -184,62 +172,6 @@ primary_entity:
           icon_priority: 2
 
 secondary_entities:
-  - entity: climate
-    icon: "mdi:hot-tub"
-    deprecated: climate
-    category: config
-    dps:
-      - id: 1
-        type: boolean
-        name: operation_mode
-        mapping:
-          - dps_val: false
-            value: "off"
-          - dps_val: true
-            value: heatpump
-      - id: 2
-        type: integer
-        name: temperature
-        range:
-          min: 5
-          max: 40
-        mapping:
-          - constraint: temperature_unit
-            conditions:
-              - dps_val: f
-                range:
-                  min: 41
-                  max: 104
-                value_redirect: temp_set_f
-      - id: 3
-        type: integer
-        name: current_temperature
-        mapping:
-          - constraint: temperature_unit
-            conditions:
-              - dps_val: f
-                value_redirect: temp_current_f
-      - id: 13
-        type: string
-        name: temperature_unit
-        mapping:
-          - dps_val: c
-            value: C
-          - dps_val: f
-            value: F
-      - id: 14
-        type: integer
-        name: temp_set_f
-        range:
-          min: 41
-          max: 104
-        hidden: true
-        optional: true
-      - id: 15
-        type: integer
-        name: temp_current_f
-        hidden: true
-        optional: true
   - entity: select
     name: Temperature unit
     icon: "mdi:temperature-celsius"
@@ -254,14 +186,14 @@ secondary_entities:
           - dps_val: f
             value: Fahrenheit
   - entity: binary_sensor
-    name: Status
-    class: running
+    class: problem
+    name: Fault
     category: diagnostic
     dps:
-      - id: 1
-        type: string
+      - id: 21
+        type: bitfield
         name: sensor
         mapping:
+          - dps_val: 0
+            value: false
           - value: true
-            dps_val: heating
-          - value: false
