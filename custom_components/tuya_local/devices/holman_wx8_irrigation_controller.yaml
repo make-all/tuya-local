@@ -39,7 +39,7 @@ secondary_entities:
     dps:
       - id: 104
         type: boolean
-        name: switch  
+        name: switch
   - entity: switch
     name: Zone 4
     icon: mdi:sprinkler-variant
@@ -53,14 +53,14 @@ secondary_entities:
     dps:
       - id: 106
         type: boolean
-        name: switch         
+        name: switch
   - entity: switch
     name: Zone 6
     icon: mdi:sprinkler-variant
     dps:
       - id: 107
         type: boolean
-        name: switch       
+        name: switch
   - entity: switch
     name: Zone 7
     icon: mdi:sprinkler-variant
@@ -76,7 +76,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Program A  # This is actually prgram A but Stat is the vendor terminology, stays on while programming is running can be stoped mid way.
+    name: Program A
     icon: mdi:timetable
     dps:
       - id: 113
@@ -95,7 +95,7 @@ secondary_entities:
     dps:
       - id: 115
         type: boolean
-        name: switch 
+        name: switch
   - entity: sensor
     class: voltage
     name: Power supply voltage
@@ -108,7 +108,7 @@ secondary_entities:
         mapping:
           - scale: 10
       - id: 119
-        name: catchup_voltage  # not sure what this is exactly, and it does not show in the manual, so made an attribute
+        name: catchup_voltage  # not sure what this is, so made an attribute
         type: integer
         mapping:
           - scale: 10
@@ -175,7 +175,7 @@ secondary_entities:
     class: battery
     dps:
       - id: 120
-        name: sensor 
+        name: sensor
         type: base64
         mapping:
           - mask: "000000F0"
