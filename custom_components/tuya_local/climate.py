@@ -199,7 +199,9 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         """Return the minimum supported target temperature."""
         # if a separate min_temperature dps is specified, the device tells us.
         if self._mintemp_dps is not None:
-            return self._mintemp_dps.get_value(self._device)
+            min = self._mintemp_dps.get_value(self._device)
+            if min is not None:
+                return min
 
         if self._temperature_dps is None:
             if self._temp_low_dps is None:
@@ -214,7 +216,9 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         """Return the maximum supported target temperature."""
         # if a separate max_temperature dps is specified, the device tells us.
         if self._maxtemp_dps is not None:
-            return self._maxtemp_dps.get_value(self._device)
+            max = self._maxtemp_dps.get_value(self._device)
+            if max is not None:
+                return max
 
         if self._temperature_dps is None:
             if self._temp_high_dps is None:
