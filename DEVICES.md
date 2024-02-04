@@ -635,6 +635,7 @@ port and password.
 - Diivoo WT05 dual water timer
 - HCT-611 water timer
 - HU06 smart lock
+- Ironzon fingerprint lock
 - Orion DL021HA lock
 - PT216/PT19DB-2 temperature and humidity sensor
 - Smart Ape solar garden light
