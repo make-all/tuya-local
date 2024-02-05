@@ -1,7 +1,7 @@
 name: Humidifier
 products:
   - id: cqoisddoci9i3yer
-    name: Clean Air Optima CA-604B Smart Top Filling
+    name: Clean Air 604B Smart
 primary_entity:
   entity: humidifier
   dps:
@@ -10,7 +10,6 @@ primary_entity:
       type: boolean
       mapping:
         - dps_val: false
-          icon: mdi:air-humidifier-off
           icon_priority: 2
     - id: 13
       name: humidity
@@ -18,7 +17,6 @@ primary_entity:
       range:
         min: 30
         max: 75
-        step: 5
     - id: 14
       name: current_humidity
       type: integer
@@ -28,38 +26,28 @@ primary_entity:
       mapping:
         - dps_val: auto
           value: auto
-          icon: mdi:refresh-auto
           icon_priority: 3
         - dps_val: level1
           value: low
-          icon: mdi:speedometer-slow
           icon_priority: 3
         - dps_val: level2
           value: middle
-          icon: mdi:speedometer-medium
           icon_priority: 3
         - dps_val: level3
           value: high
-          icon: mdi:speedometer
           icon_priority: 3
         - dps_val: sleep
           value: sleep
-          icon: mdi:sleep
           icon_priority: 3
 secondary_entities:
   - entity: switch
     name: Sound
+    icon: mdi:volume-high
     dps:
       - id: 8
         name: switch
         type: boolean
-        mapping:
-          - dps_val: true
-            icon: mdi:volume-high
-          - dps_val: false
-            icon: mdi:volume-off
   - entity: sensor
-    name: Current Temperature
     class: temperature
     dps:
       - id: 10
@@ -100,12 +88,17 @@ secondary_entities:
             value: 11 hours
           - dps_val: 12h
             value: 12 hours
+  - entity: sensor
+    name: Time remaining
+    class: duration
+    dps:
       - id: 20
-        name: remaining
+        name: sensor
         type: integer
-        optional: true
+        unit: min
   - entity: binary_sensor
-    name: Watertank Empty
+    name: Watertank empty
+    icon: mdi:water-remove
     class: problem
     category: diagnostic
     dps:
@@ -115,11 +108,10 @@ secondary_entities:
         mapping:
           - dps_val: 1
             value: true
-            icon: mdi:water-remove
           - value: false
-            icon: mdi:water
   - entity: binary_sensor
-    name: Watertank Overfilled
+    name: Watertank overflow
+    icon: mdi:liquid-spot
     class: problem
     category: diagnostic
     dps:
@@ -129,9 +121,7 @@ secondary_entities:
         mapping:
           - dps_val: 2
             value: true
-            icon: mdi:liquid-spot
           - value: false
-            icon: mdi:water
   - entity: switch
     name: Ionizer
     icon: mdi:creation
