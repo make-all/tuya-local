@@ -8,9 +8,6 @@ primary_entity:
     - id: 1
       name: switch
       type: boolean
-      mapping:
-        - dps_val: false
-          icon_priority: 2
     - id: 13
       name: humidity
       type: integer
@@ -26,19 +23,14 @@ primary_entity:
       mapping:
         - dps_val: auto
           value: auto
-          icon_priority: 3
         - dps_val: level1
           value: low
-          icon_priority: 3
         - dps_val: level2
           value: middle
-          icon_priority: 3
         - dps_val: level3
           value: high
-          icon_priority: 3
         - dps_val: sleep
           value: sleep
-          icon_priority: 3
 secondary_entities:
   - entity: switch
     name: Sound
@@ -97,7 +89,7 @@ secondary_entities:
         type: integer
         unit: min
   - entity: binary_sensor
-    name: Watertank empty
+    name: Water tank empty
     icon: mdi:water-remove
     class: problem
     category: diagnostic
@@ -110,7 +102,7 @@ secondary_entities:
             value: true
           - value: false
   - entity: binary_sensor
-    name: Watertank overflow
+    name: Water tank overflow
     icon: mdi:liquid-spot
     class: problem
     category: diagnostic
