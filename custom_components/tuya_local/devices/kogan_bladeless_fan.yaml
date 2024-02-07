@@ -1,8 +1,12 @@
-name: Kogan Smart Bladeless Turbo Fan (Silver)
+name: Bladeless fan
 products:
+  - id: kablfan1csa
+    name: Kogan KABLFAN1CSA
   - id: kasblstfansa
+    name: Kogan KASBKSTFANSA
 primary_entity:
   entity: fan
+  translation_key: fan_with_presets
   dps:
     - id: 1
       type: boolean
@@ -45,11 +49,11 @@ primary_entity:
         - dps_val: close
           value: "off"
         - dps_val: sleep
-          value: Sleep
+          value: sleep
         - dps_val: fresh
-          value: Nature
+          value: nature
         - dps_val: heavy
-          value: Boost
+          value: strong
     - id: 8
       type: boolean
       name: oscillate
@@ -62,9 +66,17 @@ secondary_entities:
     icon: "mdi:volume-high"
     category: config
     dps:
+      - id: 102
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value_redirect: alternate
       - id: 101
         type: boolean
-        name: switch
+        optional: true
+        name: alternate
   - entity: binary_sensor
     name: Fault
     class: problem
@@ -110,6 +122,6 @@ secondary_entities:
     dps:
       - id: 12
         type: string
+        optional: true
         name: sensor
         unit: mins
-            
