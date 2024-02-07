@@ -1,0 +1,38 @@
+name: Warme GSH heater
+products:
+  - id: 8UGflCDtNYJw1dZs
+    name: Warme GSH heater
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: true
+          value: "heat"
+          icon: "mdi:radiator"
+        - dps_val: false
+          value: "off"
+          icon: "mdi:radiator-disabled"
+    - id: 2
+      name: temperature
+      type: integer
+      precision: 0
+      unit: "C"
+      range:
+        min: 12
+        max: 50
+    - id: 3
+      name: current_temperature
+      type: integer
+      readonly: true
+      unit: "C"
+    - id: 101
+      name: turn_off_screen
+      type: boolean
+      typeDefaultValue: false
+    - id: 102
+      name: heat_mode
+      type: string
+      readonly: true
