@@ -483,4 +483,5 @@ Further device support has been made with the assistance of users. Please consid
 - [sergeymatsay](https://github.com/sergeymatsay) for assisting with support for Avatto ME81 thermostats.
 - [hrenki](https://github.com/hrenki) for assisting with support for Tesla TAF series air conditioners.
 - [FSJHecker](https://github.com/FSJHecker) for contributing support for CleanAir 604B humidifiers.
-- [sambarlick](https://github.com/sambarlick) for contributing support for Kogan bladeless fans and Y12 and Y16 air conditioners. 
+- [sambarlick](https://github.com/sambarlick) for contributing support for Kogan bladeless fans and Y12 and Y16 air conditioners.
+- [AproveIPD](https://github.com/AproveIPD) for assisting with support for Tonepie T1PRO cat litter box.
