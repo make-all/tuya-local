@@ -1,4 +1,4 @@
-name: Warme GSH heater
+name: Heater
 products:
   - id: 8UGflCDtNYJw1dZs
     name: Warme GSH heater
@@ -28,11 +28,21 @@ primary_entity:
       type: integer
       readonly: true
       unit: "C"
-    - id: 101
-      name: turn_off_screen
-      type: boolean
-      typeDefaultValue: false
     - id: 102
-      name: heat_mode
+      name: preset_mode
       type: string
-      readonly: true
+      mapping:
+        - dps_val: Comfort
+          value: Comfort
+        - dps_val: ECO
+          value: ECO
+        - dps_val: Frost
+          value: Frost
+# Configuration as secondary_entity does not work
+#secondary_entities:
+#  - entity: switch
+#    name: Turn Off Screen
+#    dps:
+#      - id: 101
+#        name: turn_off_screen
+#        type: boolean
