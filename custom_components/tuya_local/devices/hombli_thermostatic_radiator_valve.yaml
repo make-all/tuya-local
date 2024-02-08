@@ -35,19 +35,6 @@ primary_entity:
           value: "away"
         - dps_val: false
           value: "home"
-    - id: 104
-      type: integer
-      name: hvac_action
-      mapping:
-        - constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              mapping:
-                - dps_val: 0
-                  value: idle
-                - value: heating
 secondary_entities:
   - entity: switch
     name: Window check
@@ -73,6 +60,7 @@ secondary_entities:
       - id: 23
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: "c"
             value: Celsius
@@ -136,5 +124,6 @@ secondary_entities:
     dps:
       - id: 104
         type: integer
+        optional: true
         name: sensor
         unit: "%"
