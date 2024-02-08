@@ -82,6 +82,7 @@
 - Star-Light air conditioner (also confirmed to work with Polar branded devices)
 - Suntec Wellness Coolfixx portable air conditioner
 - Tadiran Wind 65/3P
+- Tesla TAF series air conditioner
 - TroniTechnik Hellnar Klimagerät
 - Trotec PAC-W 2600 SH heatpump
 - Vivax Cool ACP-12CH35REWI
@@ -174,6 +175,7 @@
 - Casafan ECO Neo III ceiling fan with light
 - Cecotec ceiling fan with light
 - Chanfok ceiling fan with cool/warm white dimmable light
+- CleanAir 604B humidifier
 - Deta fan controller
 - Djive ARC humidifying fan
 - Duux Whisper Flex pedestal fan

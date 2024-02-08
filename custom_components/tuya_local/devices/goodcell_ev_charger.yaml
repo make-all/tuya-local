@@ -1,7 +1,7 @@
 name: EV charger
 products:
-  - id: hytatexziwaifxj1
-    name: Feyree 32A 85-264V EV charger
+  - id: j6bzjwhiv2cljjcy
+    name: Goodcell 32A 85-264V 3 phase EV charger
 primary_entity:
   entity: sensor
   class: enum
@@ -12,7 +12,7 @@ primary_entity:
       type: string
       name: sensor
       mapping:
-        - dps_val: no_connect
+        - dps_val: no_connet
           value: Disconnected
         - dps_val: connect
           value: Connected
@@ -30,6 +30,23 @@ primary_entity:
       type: string
       optional: true
       name: charger_status
+      mapping:
+        - dps_val: charger_free
+          value: Standby
+        - dps_val: charger_insert
+          value: Cable connected
+        - dps_val: charger_free_fault
+          value: Charger fault
+        - dps_val: charger_wait
+          value: Charger ready
+        - dps_val: charger_charging
+          value: Charging
+        - dps_val: charger_pause
+          value: Charging paused
+        - dps_val: charger_end
+          value: Charging ended
+        - dps_val: charger_fault
+          value: Charger fault
     - id: 10
       type: bitfield
       name: fault_code
@@ -72,15 +89,12 @@ primary_entity:
       type: string
       optional: true
       name: online_state
-    - id: 105
-      type: boolean
-      optional: true
-      name: require_authorization
 secondary_entities:
   - entity: button
     name: Clear energy
     class: restart
     category: config
+    hidden: true
     dps:
       - id: 16
         type: boolean
@@ -91,43 +105,42 @@ secondary_entities:
     category: config
     icon: "mdi:ev-plug-type2"
     dps:
-      - id: 102
+      - id: 115
         type: integer
         name: value
         unit: A
         range:
-          min: 8
+          min: 6
           max: 32
         mapping:
           - constraint: max_current
             conditions:
-              - dps_val: false
-                value_redirect: current_16_limit
+              - dps_val: Max16A
+                value_redirect: value_alt
                 range:
-                  min: 8
+                  min: 6
                   max: 16
-      - id: 103
-        type: boolean
-        optional: true
+      - id: 114
+        type: integer
+        name: value_alt
+        unit: A
+        range:
+          min: 6
+          max: 16
+      - id: 113
+        type: string
         name: max_current
         mapping:
-          - dps_val: false
-            value: 16
-          - value: 32
-      - id: 111
-        type: integer
-        optional: true
-        name: current_16_limit
-        hidden: true
-        range:
-          min: 8
-          max: 16
+          - dps_val: Max16A
+            value: Max16A
+          - dps_val: Max32A
+            value: Max32A
   - entity: number
     name: Charge delay
     category: config
     icon: "mdi:car-clock"
     dps:
-      - id: 104
+      - id: 118
         type: integer
         name: value
         unit: h
@@ -137,7 +150,7 @@ secondary_entities:
   - entity: sensor
     class: energy
     dps:
-      - id: 106
+      - id: 112
         type: integer
         name: sensor
         unit: kWh
@@ -145,18 +158,67 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
+    name: Voltage L1
     class: voltage
     category: diagnostic
     dps:
-      - id: 107
+      - id: 102
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Voltage L2
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 103
         type: integer
         name: sensor
         unit: V
         class: measurement
   - entity: sensor
-    class: current
+    name: Voltage L3
+    class: voltage
+    category: diagnostic
     dps:
-      - id: 108
+      - id: 104
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+  - entity: sensor
+    name: Current L1
+    class: current
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Current L2
+    class: current
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Current L3
+    class: current
+    category: diagnostic
+    dps:
+      - id: 107
         type: integer
         name: sensor
         unit: A
@@ -182,23 +244,6 @@ secondary_entities:
         name: sensor
         unit: C
         class: measurement
-  - entity: button
-    name: Toggle charging
-    category: config
-    dps:
-      - id: 112
-        type: boolean
-        name: button
-  - entity: sensor
-    name: Time remaining
-    class: duration
-    category: diagnostic
-    dps:
-      - id: 113
-        type: integer
-        name: sensor
-        unit: h
-        class: measurement
         mapping:
           - scale: 10
   - entity: number
@@ -206,10 +251,25 @@ secondary_entities:
     category: config
     icon: "mdi:car-clock"
     dps:
-      - id: 114
+      - id: 119
         type: integer
         name: value
         unit: h
         range:
           min: 0
           max: 15
+  - entity: select
+    name: Toggle charging
+    icon: "mdi:ev-plug-type2"
+    category: config
+    dps:
+      - id: 124
+        type: string
+        name: option
+        mapping:
+          - dps_val: "OpenCharging"
+            value: Start charging
+          - dps_val: "CloseCharging"
+            value: Stop charging
+          - dps_val: "WaitOperation"
+            value: Waiting for command

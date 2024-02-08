@@ -481,3 +481,5 @@ Further device support has been made with the assistance of users. Please consid
 - [TwoWheelPro](https://github.com/TwoWheelPro) for contributing support for Holman WX8 irrigation controllers.
 - [scrampker](https://github.com/scrampker) for assisting with support for Ironzon fingerprint locks.
 - [sergeymatsay](https://github.com/sergeymatsay) for assisting with support for Avatto ME81 thermostats.
+- [hrenki](https://github.com/hrenki) for assisting with support for Tesla TAF series air conditioners.
+- [FSJHecker](https://github.com/FSJHecker) for contributing support for CleanAir 604B humidifiers.

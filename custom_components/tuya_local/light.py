@@ -352,7 +352,10 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
 
         if (
             ATTR_BRIGHTNESS in params
-            and self.raw_color_mode != ColorMode.HS
+            and (
+                (self.raw_color_mode != ColorMode.HS and color_mode is None)
+                or (color_mode != ColorMode.HS and color_mode is not None)
+            )
             and self._brightness_dps
         ):
             bright = params.get(ATTR_BRIGHTNESS)
