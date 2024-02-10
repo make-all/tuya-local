@@ -38,11 +38,15 @@ primary_entity:
           value: ECO
         - dps_val: Frost
           value: Frost
-# Configuration as secondary_entity does not work
-#secondary_entities:
-#  - entity: switch
-#    name: Turn Off Screen
-#    dps:
-#      - id: 101
-#        name: turn_off_screen
-#        type: boolean
+secondary_entities:
+  - entity: light
+    name: Display
+    dps:
+      - id: 101
+        name: switch
+        type: boolean
+        mapping:
+        - dps_val: true
+          value: false
+        - dps_val: false
+          value: true
