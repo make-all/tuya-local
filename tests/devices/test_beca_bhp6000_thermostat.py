@@ -34,8 +34,8 @@ class TestBecaBHP6000Thermostat(
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,
             self.subject,
-            min=40,
-            max=95,
+            min=40.0,
+            max=95.0,
         )
         self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_display"))
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))

@@ -36,8 +36,8 @@ class TestFerskVind2Climate(TargetTemperatureTests, TuyaDeviceTestCase):
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,
             self.subject,
-            min=16,
-            max=32,
+            min=16.0,
+            max=32.0,
         )
 
     def test_supported_features(self):

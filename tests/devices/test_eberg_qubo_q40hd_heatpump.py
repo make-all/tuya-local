@@ -41,8 +41,8 @@ class TestEbergQuboQ40HDHeatpump(
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,
             self.subject,
-            min=17,
-            max=30,
+            min=17.0,
+            max=30.0,
         )
         self.setUpBasicNumber(
             TIMER_DPS,

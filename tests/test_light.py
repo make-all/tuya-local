@@ -137,9 +137,6 @@ async def test_async_turn_on_with_white_param():
                         "min": 10,
                         "max": 1000,
                     },
-                    "mapping": [
-                        {"scale": 3.92},
-                    ],
                 },
                 {
                     "id": "4",
@@ -151,4 +148,4 @@ async def test_async_turn_on_with_white_param():
     )
     light = TuyaLocalLight(mock_device, config)
     await light.async_turn_on(white=128)
-    mock_device.async_set_properties.assert_called_once_with({"2": "white", "3": 502})
+    mock_device.async_set_properties.assert_called_once_with({"2": "white", "3": 506})

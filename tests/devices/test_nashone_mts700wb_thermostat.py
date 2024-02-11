@@ -45,8 +45,8 @@ class TestNashoneMTS700WBThermostat(
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,
             self.subject,
-            min=-20,
-            max=105,
+            min=-20.0,
+            max=105.0,
         )
         self.setUpBasicButton(
             RESET_DPS,

@@ -96,7 +96,7 @@ class TestStirlingFS1Fan(SwitchableTests, TuyaDeviceTestCase):
 
     def test_speed(self):
         self.dps[SPEED_DPS] = "4"
-        self.assertAlmostEqual(self.subject.percentage, 26.67, 2)
+        self.assertAlmostEqual(self.subject.percentage, 26, 0)
 
     def test_speed_step(self):
         self.assertAlmostEqual(self.subject.percentage_step, 6.67, 2)

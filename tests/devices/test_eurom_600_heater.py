@@ -25,8 +25,8 @@ class TestEurom600Heater(
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,
             self.subject,
-            min=0,
-            max=37,
+            min=0.0,
+            max=37.0,
         )
         self.setUpBasicBinarySensor(
             ERROR_DPS,

@@ -47,8 +47,8 @@ class TestAspenASP200Fan(
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,
             self.climate,
-            min=40,
-            max=95,
+            min=40.0,
+            max=95.0,
         )
         self.mark_secondary(["light_display"])
 
@@ -94,9 +94,9 @@ class TestAspenASP200Fan(
 
     def test_fan_speed(self):
         self.dps[SPEED_DPS] = "1"
-        self.assertAlmostEqual(self.subject.percentage, 33.3, 1)
+        self.assertAlmostEqual(self.subject.percentage, 33, 0)
         self.dps[SPEED_DPS] = "2"
-        self.assertAlmostEqual(self.subject.percentage, 66.7, 1)
+        self.assertAlmostEqual(self.subject.percentage, 66, 0)
         self.dps[SPEED_DPS] = "3"
         self.assertEqual(self.subject.percentage, 100)
 
