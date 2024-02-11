@@ -488,3 +488,4 @@ Further device support has been made with the assistance of users. Please consid
 - [hyperb1iss](https://github.com/hyperb1iss) for contributing a fix for lights in HA 2024.2
 - [mikekornikh](https://github.com/mikekornikh) for assisting with support for Moes IR/RF remote controllers.
 - [lowebb](https://github.com/lowebb) for contributing support for Wärme Designer wall panel heaters.
+- [mmorenocab](https://github.com/mmorenocab) for assisting with support for Meterk single phase clamp meters.

@@ -317,6 +317,7 @@
 - EARU SW RCB breaker
 - eMylo EAI-90 smart meter
 - MatSee Plus bidirectional two channel clamp meter
+- Meterk single phase clamp meter
 - Parkside PG/PMW-300 solar inverter
 - PC311-TY 2 phase power clamp meter
 - PC321-TY 3 phase power clamp meter

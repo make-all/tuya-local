@@ -1,0 +1,139 @@
+name: Clamp meter
+products:
+  - id: gk3jvsduy5ixzff3
+    name: Meterk QS-WIFI-CT01
+primary_entity:
+  entity: sensor
+  class: energy
+  dps:
+    - id: 108
+      type: integer
+      name: sensor
+      unit: kWh
+      class: total_increasing
+      mapping:
+        - scale: 1000
+    - id: 109
+      type: integer
+      name: today
+      mapping:
+        - scale: 1000
+    - id: 104
+      type: integer
+      name: add_ele
+      mapping:
+        - scale: 100
+    - id: 112
+      type: integer
+      name: add_today
+      mapping:
+        - scale: 100
+secondary_entities:
+  - entity: event
+    name: Real time
+    dps:
+      - id: 101
+        type: string
+        name: event
+  - entity: select
+    name: Real time
+    icon: "mdi:connection"
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: ok
+            value: OK
+          - dps_val: clear
+            value: Clear
+          - dps_val: idle
+            value: Idle
+  - entity: sensor
+    name: Status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 103
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: close
+            value: close
+          - dps_val: monitor
+            value: monitor
+          - dps_val: working
+            value: working
+          - dps_val: warning
+            value: warning
+  - entity: sensor
+    class: power
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: voltage
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: binary_sensor
+    name: Power warning
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 110
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: normal
+            value: false
+          - dps_val: warn
+            value: true
+  - entity: number
+    name: Warning power level
+    category: config
+    class: power
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        unit: W
+        range:
+          min: 200
+          max: 50000
+  - entity: sensor
+    name: Network status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 113
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: cloud_net
+            value: Cloud
+          - dps_val: local_net
+            value: Local
+          - dps_val: no_net
+            value: Disconnected
