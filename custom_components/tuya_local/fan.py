@@ -9,6 +9,7 @@ from homeassistant.util.percentage import (
     percentage_to_ranged_value,
     ranged_value_to_percentage,
 )
+
 from .device import TuyaLocalDevice
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig

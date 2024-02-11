@@ -484,6 +484,7 @@ Further device support has been made with the assistance of users. Please consid
 - [hrenki](https://github.com/hrenki) for assisting with support for Tesla TAF series air conditioners.
 - [FSJHecker](https://github.com/FSJHecker) for contributing support for CleanAir 604B humidifiers.
 - [sambarlick](https://github.com/sambarlick) for contributing support for Kogan bladeless fans and Y12 and Y16 air conditioners.
-- [AproveIPD](https://github.com/AproveIPD) for assisting with support for Tonepie T1PRO cat litter box.
+- [AproveIPD](https://github.com/AproveIPD) for assisting with support for Tonepie T1PRO cat litter boxes.
 - [hyperb1iss](https://github.com/hyperb1iss) for contributing a fix for lights in HA 2024.2
-- [mikekornikh](https://github.com/mikekornikh) for assisting with support for Moes IR/RF remote controller.
+- [mikekornikh](https://github.com/mikekornikh) for assisting with support for Moes IR/RF remote controllers.
+- [lowebb](https://github.com/lowebb) for contributing support for Wärme Designer wall panel heaters.

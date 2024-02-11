@@ -48,6 +48,7 @@
 - Sonnenkonig Eco 700 IR panel heater (probably also other Eco/Elegance series heaters)
 - Taurus Agadir Connect oil column heaters
 - Touchstone Sideline electric fireplace
+- Wärme Designer wall panel heater
 - Wetair WCH-750 heater
 
 ### Air Conditioners / Heatpumps
@@ -126,7 +127,7 @@
 - Avatto ME81 thermostat
 - Avatto WT100 thermostat
 - Awow/Mi-heat TH213 thermostat (two variants)
-- Beca BAC-002 thermostat
+- Beca BAC-002 thermostat (confirmed on BAC-005 also, likely works with other BAC-00x models)
 - Beca BHT-002/3000 floor heating thermostat (with external temp sensor)
 - Beca BHP-6000 room heat pump control thermostat
 - Beca BHT-6000/8000 floor heating thermostat
