@@ -83,7 +83,7 @@
 - Star-Light air conditioner (also confirmed to work with Polar branded devices)
 - Suntec Wellness Coolfixx portable air conditioner
 - Tadiran Wind 65/3P
-- Tesla TAF series air conditioner
+- Tesla Smart TAF series air conditioner
 - TroniTechnik Hellnar Klimagerät
 - Trotec PAC-W 2600 SH heatpump
 - Vivax Cool ACP-12CH35REWI
@@ -224,7 +224,7 @@
 - Smartmi E1 air purifier
 - Soleusair A02 and A10 air purifiers
 - Stadler Form Roger air purifier
-- Tesla Pro and Mini air purifiers
+- Tesla Smart Pro and Mini air purifiers
 - Vork VK6067AW air purifier
 
 ### Dehumidifiers
@@ -262,6 +262,7 @@
 - Kogan SmarterHome 7L desiccant dehumidifier
 - Pro Breeze 30L dehumidifier
 - Shinco 30D dehumidifier (also matches Klarstein DryFy Connect)
+- Tesla Smart XL dehumidifier
 - VacPlus dehumidifier
 - Vivosun DE0003 dehumidifier
 
@@ -287,7 +288,7 @@
 - Cadance ultrasonic aroma diffuser with light and music playback
 - Ditua DT-1522-YN aroma diffuser
 - Etersky aroma diffuser with light
-- Tesla aroma diffuser with light
+- Tesla Smart aroma diffuser with light
 - YX316WIFI aroma diffuser
 - YYM-805SW aroma diffuser with light (also supports GX Aroma diffuser)
 

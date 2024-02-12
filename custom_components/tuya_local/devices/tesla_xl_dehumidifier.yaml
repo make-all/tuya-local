@@ -1,0 +1,87 @@
+name: Dehumidifier
+products:
+  - id: 4o6u7vjbiqm9byms
+    name: Tesla Smart XL
+primary_entity:
+  entity: humidifier
+  class: dehumidifier
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 2
+      type: integer
+      name: humidity
+      range:
+        min: 20
+        max: 80
+      mapping:
+        - step: 20
+    - id: 6
+      type: integer
+      name: current_humidity
+secondary_entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: Sleep
+            value: 33
+          - dps_val: Low
+            value: 66
+          - dps_val: High
+            value: 100
+  - entity: lock
+    name: Child lock
+    icon: "mdi:hand-back-right-off"
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: lock
+  - entity: select
+    name: Timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 17
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: "Off"
+          - dps_val: "2h"
+            value: "2 hours"
+          - dps_val: "4h"
+            value: "4 hours"
+          - dps_val: "8h"
+            value: "8 hours"
+  - entity: sensor
+    name: Time remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: min
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code

@@ -1,0 +1,81 @@
+name: Pet toilet
+products:
+  - id: 1badzyvwh1e1hrog
+    name: "Leo's Loo Too"
+primary_entity:
+  entity: sensor
+  name: Times used today
+  icon: "mdi:counter"
+  dps:
+    - id: 7
+      type: integer
+      name: sensor
+secondary_entities:
+  - entity: switch
+    name: Power
+    category: config
+    icon: "mdi:power"
+    class: switch
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+  - entity: select
+    category: config
+    name: Cleaning mode
+    icon: "mdi:refresh-auto"
+    dps:
+      - id: 2
+        type: string
+        name: option
+        category: config
+        mapping:
+          - dps_val: auto_clean
+            value: Auto clean
+          - dps_val: manual_clean
+            value: Manual clean
+  - entity: switch
+    name: UV sterilization
+    category: config
+    icon: "mdi:alarm-light"
+    class: switch
+    dps:
+      - id: 13
+        name: switch
+        type: boolean
+  - entity: light
+    category: config
+    dps:
+      - id: 16
+        name: switch
+        type: boolean
+  - entity: number
+    category: config
+    name: Cleaning delay
+    icon: "mdi:camera-timer"
+    dps:
+      - id: 5
+        type: integer
+        name: value
+        range:
+          min: 6
+          max: 1200
+        unit: s
+        mapping:
+          - step: 3
+  - entity: sensor
+    class: weight
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: kg
+        mapping:
+          - scale: 0.1
+  - entity: button
+    icon: "mdi:heat-pump-outline"
+    name: Manual clean
+    dps:
+      - id: 9
+        type: boolean
+        name: button
