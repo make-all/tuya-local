@@ -1,6 +1,7 @@
-name: Leo's Loo Too
+name: Pet toilet
 products:
   - id: 1badzyvwh1e1hrog
+    name: "Leo's Loo Too"
 primary_entity:
   entity: select
   category: config
@@ -8,7 +9,7 @@ primary_entity:
   dps:
     - id: 2
       type: string
-      name: work_mode
+      name: option
       icon: "mdi:refresh-auto"
       category: config
       mapping:
@@ -35,11 +36,8 @@ secondary_entities:
       - id: 13
         name: switch
         type: boolean
-  - entity: switch
-    name: Light
+  - entity: light
     category: config
-    icon: "mdi:lightbulb-outline"
-    class: switch
     dps:
       - id: 16
         name: switch
@@ -55,27 +53,28 @@ secondary_entities:
           min: 6
           max: 1200
         unit: s
-        step: 3
+        mapping:
+          - step: 3
   - entity: sensor
     category: diagnostic
-    name: Last Weight
+    name: Last weight
     icon: "mdi:scale"
     class: weight
     dps:
       - id: 6
         type: integer
-        name: cat_weight
+        name: sensor
         unit: kg
         mapping:
           - scale: 0.1
   - entity: sensor
     category: diagnostic
-    name: Time Used (Today)
+    name: Times used today
     icon: "mdi:counter"
     dps:
       - id: 7
         type: integer
-        name: excretion_times_day
+        name: sensor
   - entity: button
     category: config
     icon: "mdi:heat-pump-outline"
@@ -83,4 +82,4 @@ secondary_entities:
     dps:
       - id: 9
         type: boolean
-        name: manual_clean
+        name: button
