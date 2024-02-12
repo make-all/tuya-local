@@ -1,0 +1,69 @@
+name: Dimmer
+products:
+  - id: 5zsarybcltypoeaa
+    name: Single channel module
+primary_entity:
+  entity: light
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 2
+      name: brightness
+      type: integer
+      range:
+        min: 10
+        max: 1000
+    - id: 3
+      type: integer
+      name: min_brightness
+    - id: 5
+      type: integer
+      name: max_brightness
+secondary_entities:
+  - entity: select
+    name: LED type
+    icon: "mdi:led-on"
+    category: config
+    dps:
+      - id: 4
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: kickback
+            value: Kickback
+          - dps_val: seesaw_toggle
+            value: Seesaw toggle
+          - dps_val: seesaw_sync
+            value: Seesaw sync
+  - entity: number
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 6
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: select
+    name: Initial state
+    icon: "mdi:toggle-switch"
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        mapping:
+          - dps_val: "on"
+            value: "On"
+          - dps_val: "off"
+            value: "Off"
+          - dps_val: memory
+            value: Last state
