@@ -3,20 +3,13 @@ products:
   - id: 1badzyvwh1e1hrog
     name: "Leo's Loo Too"
 primary_entity:
-  entity: select
-  category: config
-  name: Cleaning mode
-  icon: "mdi:refresh-auto"
+  entity: sensor
+  name: Times used today
+  icon: "mdi:counter"
   dps:
-    - id: 2
-      type: string
-      name: option
-      category: config
-      mapping:
-        - dps_val: auto_clean
-          value: Auto clean
-        - dps_val: manual_clean
-          value: Manual clean
+    - id: 7
+      type: integer
+      name: sensor
 secondary_entities:
   - entity: switch
     name: Power
@@ -27,6 +20,20 @@ secondary_entities:
       - id: 1
         name: switch
         type: boolean
+  - entity: select
+    category: config
+    name: Cleaning mode
+    icon: "mdi:refresh-auto"
+    dps:
+      - id: 2
+        type: string
+        name: option
+        category: config
+        mapping:
+          - dps_val: auto_clean
+            value: Auto clean
+          - dps_val: manual_clean
+            value: Manual clean
   - entity: switch
     name: UV sterilization
     category: config
@@ -57,9 +64,6 @@ secondary_entities:
         mapping:
           - step: 3
   - entity: sensor
-    category: diagnostic
-    name: Last weight
-    icon: "mdi:scale"
     class: weight
     dps:
       - id: 6
@@ -68,16 +72,7 @@ secondary_entities:
         unit: kg
         mapping:
           - scale: 0.1
-  - entity: sensor
-    category: diagnostic
-    name: Times used today
-    icon: "mdi:counter"
-    dps:
-      - id: 7
-        type: integer
-        name: sensor
   - entity: button
-    category: config
     icon: "mdi:heat-pump-outline"
     name: Manual clean
     dps:
