@@ -1,4 +1,4 @@
-name: Energy meter
+name: Dual energy meter
 products:
   - id: 79a7z01v3n35kytb
     name: V-WIFI-DL02-ES
@@ -141,6 +141,7 @@ secondary_entities:
         type: integer
         unit: kWh
         class: total_increasing
+        optional: true
         mapping:
           - scale: 1000
   - entity: sensor

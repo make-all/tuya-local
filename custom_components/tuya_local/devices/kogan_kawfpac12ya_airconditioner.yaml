@@ -1,0 +1,108 @@
+name: Air conditioner
+products:
+  - id: kawfpac12ya
+    name: Kogan PAC_Y12
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+          icon: "mdi:hvac-off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: COOL
+              icon: "mdi:snowflake"
+              value: cool
+            - dps_val: FAN
+              icon: "mdi:fan"
+              value: fan_only
+            - dps_val: DRY
+              icon: "mdi:water"
+              value: dry
+    - id: 2
+      name: temperature
+      type: integer
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: C
+              range:
+                min: 16
+                max: 32
+            - dps_val: F
+              range:
+                min: 60
+                max: 90
+    - id: 3
+      name: current_temperature
+      type: integer
+    - id: 4
+      name: mode
+      type: string
+      hidden: true
+    - id: 5
+      name: fan_mode
+      type: string
+      mapping:
+        - dps_val: "1"
+          value: low
+        - dps_val: "2"
+          value: medium
+        - dps_val: "3"
+          value: high
+    - id: 19
+      name: temperature_unit
+      type: string
+    - id: 101
+      type: boolean
+      name: preset_mode
+      mapping:
+        - dps_val: true
+          value: sleep
+        - dps_val: false
+          value: comfort
+    - id: 102
+      name: unknown_102
+      type: boolean
+    - id: 103
+      name: timer
+      type: integer
+    - id: 104
+      name: swing_mode
+      type: boolean
+      mapping:
+        - dps_val: true
+          value: "vertical"
+        - dps_val: false
+          value: "off"
+    - id: 105
+      name: countdown
+      type: integer
+    - id: 106
+      name: unknown_106
+      type: integer
+    - id: 109
+      name: unknown_109
+      type: boolean
+    - id: 110
+      name: unknown_110
+      type: integer
+secondary_entities:
+  - entity: select
+    name: Temperature unit
+    icon: "mdi:temperature_celsius"
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: C
+            value: Celsius
+          - dps_val: F
+            value: Fahrenheit

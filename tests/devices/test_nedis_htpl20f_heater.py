@@ -35,8 +35,8 @@ class TestNedisHtpl20fHeater(
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,
             self.subject,
-            min=15,
-            max=35,
+            min=15.0,
+            max=35.0,
         )
         self.setUpBasicLock(
             LOCK_DPS,

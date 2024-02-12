@@ -60,6 +60,7 @@ secondary_entities:
       - id: 23
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: "c"
             value: Celsius
@@ -117,3 +118,12 @@ secondary_entities:
       - id: 130
         type: boolean
         name: switch
+  - entity: sensor
+    name: Valve
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"

@@ -17,8 +17,7 @@ primary_entity:
         min: 0
         max: 100
       mapping:
-        - scale: 0.392
-          constraint: video_mode
+        - constraint: video_mode
           conditions:
             - dps_val: ambi_mode
               value_redirect: scene_brightness
@@ -31,8 +30,6 @@ primary_entity:
       range:
         min: 0
         max: 100
-      mapping:
-        - scale: 0.392
     - id: 112
       hidden: true
       name: color_brightness
@@ -40,8 +37,6 @@ primary_entity:
       range:
         min: 0
         max: 100
-      mapping:
-        - scale: 0.392
     - id: 111
       name: rgbhsv
       type: hex

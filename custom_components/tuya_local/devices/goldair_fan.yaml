@@ -11,11 +11,10 @@ primary_entity:
       type: integer
       name: speed
       range:
-        min: 0
+        min: 1
         max: 12
       mapping:
-        - scale: 0.12
-          constraint: preset_mode
+        - constraint: preset_mode
           conditions:
             - dps_val: nature
               step: 4

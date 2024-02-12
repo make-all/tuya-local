@@ -41,8 +41,8 @@ class TestEbergCoolyC35HDHeatpump(
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,
             self.subject,
-            min=13,
-            max=32,
+            min=13.0,
+            max=32.0,
         )
         self.setUpBasicSelect(
             UNIT_DPS,

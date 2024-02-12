@@ -29,8 +29,8 @@ class TestKoganKAWFPAC09YA(TargetTemperatureTests, TuyaDeviceTestCase):
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,
             self.subject,
-            min=16,
-            max=30,
+            min=16.0,
+            max=30.0,
         )
 
     def test_supported_features(self):

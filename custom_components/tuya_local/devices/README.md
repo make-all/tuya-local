@@ -582,8 +582,9 @@ Either **position** or **open** should be specified.
 - **switch** (optional, boolean): a dp to control the power state of the fan
 - **preset_mode** (optional, mapping of strings): a dp to control different modes of the fan.
    Values `"off", low, medium, high` used to be handled specially by HA as deprecated speed aliases. If these are the only "presets", consider mapping them as **speed** values instead, as voice assistants will respond to phrases like "turn the fan up/down" for speed.
-- **speed** (optional, number 0-100): a dp to control the speed of the fan (%).
-    scale and step can be used to convert smaller ranges to percentages, or a mapping for discrete values.
+- **speed** (optional, number): a dp to control the speed of the fan (%).
+    if a range is supplied, it will be automatically scaled to the 0-100 range.
+    if a mapping is used for dicrete steps, the values must be mapped within that range.
 - **oscillate** (optional, boolean): a dp to control whether the fan will oscillate or not.
 - **direction** (optional, string): a dp to control the spin direction of the fan.
    Valid values are `forward, reverse`.
@@ -603,7 +604,7 @@ Humidifer can also cover dehumidifiers (use class to specify which).
 
 ### `light`
 - **switch** (optional, boolean): a dp to control the on/off state of the light
-- **brightness** (optional, number 0-255): a dp to control the dimmer if available.
+- **brightness** (optional, number): a dp to control the dimmer if available.  If a range is provided, the value will be automatically scaled into the 0-255 range for HA, so there is no need to provide a scale. If there is a fixed list of mappings, the values should be between 0 (off) and 255 (full brightness). If there is no switch dp, a brightness of 0 will be sent to turn the light off.
 - **color_temp** (optional, number): a dp to control the color temperature if available. See `target_range` above for mapping Tuya's range into Kelvin.
 
 - **rgbhsv** (optional, hex): a dp to control the color of the light, using encoded RGB and HSV values. The `format` field names recognized for decoding this field are `r`, `g`, `b`, `h`, `s`, `v`.

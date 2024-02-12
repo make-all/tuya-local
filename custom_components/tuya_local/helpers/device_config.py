@@ -42,9 +42,7 @@ def _typematch(vtype, value):
 
 def _scale_range(r, s):
     "Scale range r by factor s"
-    if s == 1:
-        return r
-    return {"min": r["min"] / s, "max": r["max"] / s}
+    return (r["min"] / s, r["max"] / s)
 
 
 _unsigned_fmts = {
@@ -923,13 +921,13 @@ class TuyaDpsConfig:
 
         r = self.range(device, scaled=False)
         if r and isinstance(result, Number):
-            mn = r["min"]
-            mx = r["max"]
+            mn = r[0]
+            mx = r[1]
             if round(result) < mn or round(result) > mx:
                 # Output scaled values in the error message
                 r = self.range(device, scaled=True)
-                mn = r["min"]
-                mx = r["max"]
+                mn = r[0]
+                mx = r[1]
                 raise ValueError(f"{self.name} ({value}) must be between {mn} and {mx}")
 
         if mask and isinstance(result, Number):

@@ -1,0 +1,142 @@
+name: Genio Smart Power Board 2Gnd
+products:
+  - id: 5dvqb3eeuhhnjnlr
+    name: Genio Smart Power Board 2Gnd
+primary_entity:
+  entity: switch
+  name: Outlet 1
+  class: outlet
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: switch
+    name: Outlet 2
+    class: outlet
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Outlet 3
+    class: outlet
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Outlet 4
+    class: outlet
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Outlet 5
+    class: outlet
+    dps:
+      - id: 5
+        type: boolean
+        name: switch
+  - entity: number
+    category: config
+    name: Timer switch 1
+    icon: "mdi:timer"
+    dps:
+      - id: 9
+        name: value
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    category: config
+    name: Timer switch 2
+    icon: "mdi:timer"
+    dps:
+      - id: 10
+        name: value
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    category: config
+    name: Timer switch 3
+    icon: "mdi:timer"
+    dps:
+      - id: 11
+        name: value
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    category: config
+    name: Timer switch 4
+    icon: "mdi:timer"
+    dps:
+      - id: 12
+        name: value
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    category: config
+    name: Timer switch 5
+    icon: "mdi:timer"
+    dps:
+      - id: 13
+        name: value
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: select
+    category: config
+    name: Restore power state
+    dps:
+      - id: 38
+        name: option
+        type: string
+        mapping:
+          - dps_val: memory
+            value: Remember Last Status
+          - dps_val: "on"
+            value: "On"
+          - dps_val: "off"
+            value: "Off"
+  - entity: lock
+    category: config
+    name: Child lock
+    dps:
+      - id: 41
+        name: lock
+        type: boolean
+        mapping:
+          - dps_val: true
+            icon: "mdi:lock"
+          - dps_val: false
+            icon: "mdi:lock-open"

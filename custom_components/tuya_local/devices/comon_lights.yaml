@@ -1,0 +1,117 @@
+name: String light controller
+products:
+  - id: swzi5fagtytgxe0f
+    name: Lexi Lighting LLXAPT01
+primary_entity:
+  entity: light
+  dps:
+    - id: 20
+      type: boolean
+      name: switch
+    - id: 21
+      type: string
+      name: effect
+      mapping:
+        - dps_val: scene
+          value: Scene
+        - dps_val: music
+          value: Music
+    - id: 22
+      name: brightness
+      type: integer
+      range:
+        min: 10
+        max: 1000
+    - id: 25
+      name: scene_data
+      type: hex
+      optional: true
+    - id: 27
+      name: music_data
+      type: hex
+      optional: true
+    - id: 28
+      name: control_data
+      type: hex
+      optional: true
+    - id: 101
+      name: scene_list
+      # scene_configuration
+      type: string
+    - id: 103
+      name: scene_combine
+      type: string
+      # sets what 6 scenes get used
+      optional: true
+    - id: 102
+      name: scene
+      type: string
+      optional: true
+secondary_entities:
+  - entity: select
+    name: Scene
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1e03e801f40000000"
+            value: Combination - All
+          - dps_val: "0c03e801f43000000"
+            value: "In Waves - Slow"
+          - dps_val: "0c03e801f41000000"
+            value: "In Waves - Fast"
+          - dps_val: "0c03e801f40100000"
+            value: "In Waves - Cycle"
+          - dps_val: "1603e801f43000000"
+            value: "Sequential - Slow"
+          - dps_val: "1603e801f41000000"
+            value: "Sequential - Fast"
+          - dps_val: "1603e801f40100000"
+            value: "Sequential - Cycle"
+          - dps_val: "0601e401f43000000"
+            value: "Slo-Glo - Slow"
+          - dps_val: "0601e401f41000000"
+            value: "Slo-Glo - Fast"
+          - dps_val: "0601e401f40100000"
+            value: "Slo-Glo - Cycle"
+          - dps_val: "1d03e801f43000000"
+            value: "Chasing - Slow"
+          - dps_val: "1d03e801f41000000"
+            value: "Chasing - Fast"
+          - dps_val: "1d03e801f40100000"
+            value: "Chasing - Cycle"
+          - dps_val: "0503e801f43000000"
+            value: "Slow Fade - Slow"
+          - dps_val: "0503e801f41000000"
+            value: "Slow Fade - Fast"
+          - dps_val: "0503e801f40100000"
+            value: "Slow Fade - Cycle"
+          - dps_val: "1903e801f43000000"
+            value: "Twinkle - Slow"
+          - dps_val: "1903e801f41000000"
+            value: "Twinkle - Fast"
+          - dps_val: "1903e801f40100000"
+            value: "Twinkle - Cycle"
+          - dps_val: "0003e801f40000000"
+            value: "Steady On"
+            default: true
+  - entity: number
+    name: Timer
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 26
+        name: value
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 86400
+        unit: min
+        mapping:
+          - scale: 60
+            step: 60
+          - dps_val: null

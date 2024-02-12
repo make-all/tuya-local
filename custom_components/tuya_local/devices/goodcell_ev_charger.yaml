@@ -1,0 +1,275 @@
+name: EV charger
+products:
+  - id: j6bzjwhiv2cljjcy
+    name: Goodcell 32A 85-264V 3 phase EV charger
+primary_entity:
+  entity: sensor
+  class: enum
+  name: Status
+  icon: "mdi:ev-station"
+  dps:
+    - id: 101
+      type: string
+      name: sensor
+      mapping:
+        - dps_val: no_connet
+          value: Disconnected
+        - dps_val: connect
+          value: Connected
+        - dps_val: charing
+          value: Charging
+        - dps_val: wait_rfid
+          value: Waiting for authorization
+        - dps_val: finish
+          value: Charged
+        - dps_val: wait_charing
+          value: Delaying charge
+        - dps_val: error
+          value: Error
+    - id: 3
+      type: string
+      optional: true
+      name: charger_status
+      mapping:
+        - dps_val: charger_free
+          value: Standby
+        - dps_val: charger_insert
+          value: Cable connected
+        - dps_val: charger_free_fault
+          value: Charger fault
+        - dps_val: charger_wait
+          value: Charger ready
+        - dps_val: charger_charging
+          value: Charging
+        - dps_val: charger_pause
+          value: Charging paused
+        - dps_val: charger_end
+          value: Charging ended
+        - dps_val: charger_fault
+          value: Charger fault
+    - id: 10
+      type: bitfield
+      name: fault_code
+    - id: 11
+      type: string
+      optional: true
+      name: alarm_set_1
+    - id: 12
+      type: string
+      optional: true
+      name: alarm_set_2
+    - id: 14
+      type: string
+      optional: true
+      name: mode
+      mapping:
+        - dps_val: charge_now
+        - dps_val: charge_pct
+        - dps_val: charge_energy
+        - dps_val: charge_schedule
+    - id: 15
+      type: integer
+      optional: true
+      name: balance_energy
+      unit: kWh
+    - id: 18
+      type: boolean
+      optional: true
+      name: switch
+    - id: 23
+      type: string
+      optional: true
+      name: system_version
+    - id: 25
+      type: integer
+      optional: true
+      name: charge_energy_once
+      unit: kWh
+    - id: 27
+      type: string
+      optional: true
+      name: online_state
+secondary_entities:
+  - entity: button
+    name: Clear energy
+    class: restart
+    category: config
+    hidden: true
+    dps:
+      - id: 16
+        type: boolean
+        name: button
+        optional: true
+  - entity: number
+    name: Set charge current
+    category: config
+    icon: "mdi:ev-plug-type2"
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 6
+          max: 32
+        mapping:
+          - constraint: max_current
+            conditions:
+              - dps_val: Max16A
+                value_redirect: value_alt
+                range:
+                  min: 6
+                  max: 16
+      - id: 114
+        type: integer
+        name: value_alt
+        unit: A
+        range:
+          min: 6
+          max: 16
+      - id: 113
+        type: string
+        name: max_current
+        mapping:
+          - dps_val: Max16A
+            value: Max16A
+          - dps_val: Max32A
+            value: Max32A
+  - entity: number
+    name: Charge delay
+    category: config
+    icon: "mdi:car-clock"
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 15
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Voltage L1
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Voltage L2
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+  - entity: sensor
+    name: Voltage L3
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+  - entity: sensor
+    name: Current L1
+    class: current
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Current L2
+    class: current
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Current L3
+    class: current
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: power
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Charging duration
+    category: config
+    icon: "mdi:car-clock"
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 15
+  - entity: select
+    name: Toggle charging
+    icon: "mdi:ev-plug-type2"
+    category: config
+    dps:
+      - id: 124
+        type: string
+        name: option
+        mapping:
+          - dps_val: "OpenCharging"
+            value: Start charging
+          - dps_val: "CloseCharging"
+            value: Stop charging
+          - dps_val: "WaitOperation"
+            value: Waiting for command

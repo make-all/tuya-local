@@ -25,11 +25,10 @@ primary_entity:
       type: integer
       category: config
       range:
-        min: 0
+        min: 1
         max: 6
       mapping:
-        - scale: 0.06
-          constraint: preset_mode
+        - constraint: preset_mode
           conditions:
             - dps_val: nature
               step: 5

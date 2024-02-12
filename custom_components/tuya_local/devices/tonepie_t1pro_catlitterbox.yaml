@@ -1,0 +1,246 @@
+name: Cat litter box
+products:
+  - id: 5t7esmqqh92ssbe5
+    name: Tonepie T1Pro
+primary_entity:
+  entity: sensor
+  name: Cat weight
+  icon: "mdi:cat"
+  class: weight
+  dps:
+    - id: 6
+      type: integer
+      name: sensor
+      unit: kg
+      class: measurement
+      mapping:
+        - scale: 1000
+    - id: 128
+      type: integer
+      name: number
+secondary_entities:
+  - entity: sensor
+    name: Times per day
+    icon: "mdi:emoticon-poop"
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: visits
+  - entity: sensor
+    name: Time spent today
+    mdi: "mdi:emoticon-poop"
+    class: duration
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: s
+        class: measurement
+  - entity: switch
+    name: Deodorize
+    icon: "mdi:scent"
+    category: config
+    dps:
+      - id: 17
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
+  - entity: button
+    name: Clean
+    icon: "mdi:shimmer"
+    dps:
+      - id: 101
+        type: boolean
+        name: button
+  - entity: button
+    name: Empty
+    icon: "mdi:delete-empty"
+    dps:
+      - id: 102
+        type: boolean
+        name: button
+  - entity: event
+    name: Bin full
+    dps:
+      - id: 103
+        type: boolean
+        name: event
+        optional: true
+        persist: false
+  - entity: binary_sensor
+    class: occupancy
+    icon: "mdi:cat"
+    dps:
+      - id: 104
+        type: boolean
+        name: sensor
+  - entity: switch
+    name: Auto clean
+    category: config
+    icon: "mdi:shimmer"
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+      - id: 106
+        type: string
+        optional: true
+        name: schedule
+      - id: 107
+        type: boolean
+        optional: true
+        name: scheduled_clean
+      - id: 108
+        type: string
+        optional: true
+        name: cleantaste_schedule
+      - id: 109
+        type: boolean
+        name: cleantaste_switch
+      - id: 110
+        type: string
+        optional: true
+        name: do_not_disturb_schedule
+  - entity: switch
+    name: Infrared detection
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+  - entity: lock
+    name: Child lock
+    icon: "mdi:hand-back-right-off"
+    category: config
+    dps:
+      - id: 114
+        type: boolean
+        name: lock
+  - entity: number
+    name: Clean wait time
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 60
+  - entity: number
+    name: Clean interval
+    category: config
+    icon: "mdi:update"
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 120
+  - entity: switch
+    name: Bin full notification
+    category: config
+    icon: "mdi:message-alert"
+    dps:
+      - id: 119
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Odourless
+    category: config
+    icon: "mdi:flower"
+    dps:
+      - id: 120
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Smart clean
+    icon: "mdi:shimmer"
+    category: config
+    dps:
+      - id: 121
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Do not disturb
+    icon: "mdi:power-sleep"
+    category: config
+    dps:
+      - id: 122
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Number of times used
+    category: diagnostic
+    dps:
+      - id: 123
+        type: integer
+        name: sensor
+        unit: times
+  - entity: number
+    name: Bin capacity calibration
+    category: config
+    icon: "mdi:trash-can"
+    dps:
+      - id: 124
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 15
+  - entity: number
+    name: Litter calibration
+    category: config
+    icon: "mdi:grain"
+    dps:
+      - id: 125
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 6
+  - entity: switch
+    name: Auto deodorize
+    category: config
+    icon: "mdi:flower"
+    dps:
+      - id: 126
+        type: boolean
+        name: switch
+  - entity: number
+    name: Detection sensitivity
+    category: config
+    icon: "mdi:scale"
+    dps:
+      - id: 127
+        type: integer
+        name: value
+        unit: g
+        range:
+          min: 600
+          max: 1500
+        mapping:
+          - step: 100

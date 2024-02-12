@@ -10,10 +10,8 @@ primary_entity:
       name: speed
       type: integer
       range:
-        min: 0
+        min: 1
         max: 6
-      mapping:
-        - scale: 0.06
     - id: 4
       name: direction
       type: string
@@ -39,7 +37,6 @@ secondary_entities:
           max: 100
         mapping:
           - step: 2
-            scale: 0.392
       - id: 11
         type: integer
         name: color_temp

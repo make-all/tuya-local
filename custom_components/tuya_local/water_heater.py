@@ -214,7 +214,7 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
 
         if self._temperature_dps:
             r = self._temperature_dps.range(self._device)
-            return r.get("min")
+            return r[0]
 
     @property
     def max_temp(self):
@@ -225,7 +225,7 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
 
         if self._temperature_dps:
             r = self._temperature_dps.range(self._device)
-            return r.get("max")
+            return r[1]
 
     async def async_turn_on(self):
         """
