@@ -452,6 +452,7 @@ of device.
 - HDMI sync light
 - iHD001 LED controller
 - Kojima motion sensor RGBCW nightlight
+- Lexi Lighting string light Wifi adapter
 - Loycco sound machine with nightlight (also sold as Momland nightlight with white noise)
 - Loginovo TV sync backlight
 - Lytmi Fantasy/Neo 3 HDMI sync backlight
@@ -611,6 +612,7 @@ port and password.
 - Kogan bidet toilet seat
 - Kogan KAWHTNOSLPA white noise sleep aid
 - Konlen/Rockson WF96L water level controller
+- Leo's Loo Too pet toilet
 - Mirabella Genio motion sensor
 - Momcozy white noise machine (2 variants)
 - Nedis WIFISA10CWT air quality monitor
