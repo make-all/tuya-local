@@ -629,6 +629,7 @@ port and password.
 - SWS-001 smart weather station
 - TH08 temperature and humidity sensor
 - TH16 temperature and humidity sensor
+- Timeguard WFPIR motion light controller
 - Tonepie T1PRO automatic cat litter box
 - Tontine electric blanket
 - Valehaus SYZN119 towel warmer

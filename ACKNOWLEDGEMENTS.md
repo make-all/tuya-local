@@ -494,3 +494,4 @@ Further device support has been made with the assistance of users. Please consid
 - [LordPsycho202](https://github.com/LordPsycho202) for contributing support for Leo's Loo Too pet toilets.
 - [RoelDU](https://github.com/RoelDU) for assisting with support for Mirabella Genio Pixel oval lights.
 - [toposilva](https://github.com/toposilva) for assisting with support for 1CH dimmer modules.
+- [Pel1can111](https://github.com/Pel1can111) for assisting with support for Timeguard WFPIR motion light controller.
