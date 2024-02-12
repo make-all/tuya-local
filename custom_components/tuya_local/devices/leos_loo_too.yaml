@@ -5,18 +5,18 @@ products:
 primary_entity:
   entity: select
   category: config
-  name: Cleaning Mode
+  name: Cleaning mode
+  icon: "mdi:refresh-auto"
   dps:
     - id: 2
       type: string
       name: option
-      icon: "mdi:refresh-auto"
       category: config
       mapping:
         - dps_val: auto_clean
-          value: Auto Clean
+          value: Auto clean
         - dps_val: manual_clean
-          value: Manual Clean
+          value: Manual clean
 secondary_entities:
   - entity: switch
     name: Power
@@ -28,7 +28,7 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: switch
-    name: UV
+    name: UV sterilization
     category: config
     icon: "mdi:alarm-light"
     class: switch
@@ -44,7 +44,8 @@ secondary_entities:
         type: boolean
   - entity: number
     category: config
-    name: Cleaning Delay
+    name: Cleaning delay
+    icon: "mdi:camera-timer"
     dps:
       - id: 5
         type: integer
@@ -78,7 +79,7 @@ secondary_entities:
   - entity: button
     category: config
     icon: "mdi:heat-pump-outline"
-    name: Manual Clean
+    name: Manual clean
     dps:
       - id: 9
         type: boolean
