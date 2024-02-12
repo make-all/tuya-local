@@ -489,3 +489,4 @@ Further device support has been made with the assistance of users. Please consid
 - [mikekornikh](https://github.com/mikekornikh) for assisting with support for Moes IR/RF remote controllers.
 - [lowebb](https://github.com/lowebb) for contributing support for Wärme Designer wall panel heaters.
 - [mmorenocab](https://github.com/mmorenocab) for assisting with support for Meterk single phase clamp meters.
+- [KoKolaj](https://github.com/KoKolaj) for assisting with support for Tesla Smart XL dehumidifiers.
