@@ -130,7 +130,7 @@ secondary_entities:
         name: sensor
         type: base64
         mapping:
-          - mask: "F0000000"
+          - mask: "10000000"
             dps_val: 0
             value: true
           - value: false
@@ -141,10 +141,10 @@ secondary_entities:
         name: sensor
         type: base64
         mapping:
-          - mask: "00F00000"
+          - mask: "00100000"
             dps_val: 0
-            value: false
-          - value: true
+            value: true
+          - value: false
   - entity: binary_sensor
     name: Rain sensor
     class: moisture
@@ -153,10 +153,10 @@ secondary_entities:
         name: sensor
         type: base64
         mapping:
-          - mask: "000F0000"
+          - mask: "00010000"
             dps_val: 0
-            value: false
-          - value: true
+            value: true
+          - value: false
   - entity: binary_sensor
     name: Evie connected
     category: diagnostic
@@ -166,10 +166,10 @@ secondary_entities:
         name: sensor
         type: base64
         mapping:
-          - mask: "00000F00"
+          - mask: "00000100"
             dps_val: 0
-            value: false
-          - value: true
+            value: true
+          - value: false
   - entity: binary_sensor
     name: Evie battery
     class: battery
@@ -178,7 +178,7 @@ secondary_entities:
         name: sensor
         type: base64
         mapping:
-          - mask: "000000F0"
+          - mask: "00000010"
             dps_val: 0
             value: true
           - value: false
@@ -190,10 +190,10 @@ secondary_entities:
         name: sensor
         type: base64
         mapping:
-          - mask: "0000000F"
+          - mask: "00000001"
             dps_val: 0
-            value: false
-          - value: true
+            value: true
+          - value: false
   - entity: sensor
     name: Time remaining
     class: duration
