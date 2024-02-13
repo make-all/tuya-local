@@ -116,7 +116,7 @@
 - EMS Thermal 200L domestic heat pump hot water system
 - Ferroli Titano Twin water heater
 - Geyserwise TSE1 Geyser controller kit
-- Hydrotherm Dynamic/X8 heat pump hot water systems
+- Hydrotherm Dynamic/X8 heat pump hot water systems (Gen 5 and 6)
 - ITS-4.5HD super water heatpump
 - Thermex IF series V pro hot water systems
 - Thermex Lima 80V
