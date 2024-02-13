@@ -4,6 +4,8 @@ products:
     name: Tongou TO-Q-SY1-JWT
   - id: jdj6ccklup7btq3a
     name: AT-Q-SY1-JWT DIN rail switch
+  - id: w906qkrrhd3otiwd
+    name: Moes ME322
 primary_entity:
   entity: switch
   class: outlet
@@ -20,7 +22,15 @@ primary_entity:
       name: fault_code
     - id: 42
       type: string
+      name: cycle_timer
+      optional: true
+    - id: 43
+      type: string
       name: random_timer
+      optional: true
+    - id: 44
+      type: string
+      name: inching
       optional: true
 secondary_entities:
   - entity: number
@@ -124,6 +134,14 @@ secondary_entities:
             value: "Off"
           - dps_val: memory
             value: "Last State"
+  - entity: switch
+    name: Overcharge protection
+    category: config
+    dps:
+      - id: 39
+        type: boolean
+        name: switch
+        optional: true
   - entity: lock
     name: Child lock
     icon: "mdi:hand-back-right-off"
