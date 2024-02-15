@@ -16,7 +16,7 @@ primary_entity:
       type: integer
     - id: 101
       name: programming
-      type: raw
+      type: string
       optional: true
 secondary_entities:
   - entity: switch
@@ -138,8 +138,7 @@ secondary_entities:
         name: sensor
         type: bitfield
         mapping:
-          - mask: "10000000"
-            dps_val: 0
+          - dps_val: 128
             value: true
           - value: false
   - entity: binary_sensor
@@ -151,8 +150,7 @@ secondary_entities:
         name: sensor
         type: bitfield
         mapping:
-          - mask: "01000000"
-            dps_val: 0
+          - dps_val: 64
             value: true
           - value: false
   - entity: binary_sensor
@@ -162,8 +160,7 @@ secondary_entities:
         name: sensor
         type: bitfield
         mapping:
-          - mask: "00100000"
-            dps_val: 0
+          - dps_val: 32
             value: true
           - value: false
   - entity: binary_sensor
@@ -174,8 +171,7 @@ secondary_entities:
         name: sensor
         type: bitfield
         mapping:
-          - mask: "00010000"
-            dps_val: 0
+          - dps_val: 16
             value: true
           - value: false
   - entity: binary_sensor
@@ -187,8 +183,7 @@ secondary_entities:
         name: sensor
         type: bitfield
         mapping:
-          - mask: "00000100"
-            dps_val: 0
+          - dps_val: 4
             value: true
           - value: false
   - entity: binary_sensor
@@ -200,8 +195,7 @@ secondary_entities:
         name: sensor
         type: bitfield
         mapping:
-          - mask: "00000010"
-            dps_val: 0
+          - dps_val: 2
             value: true
           - value: false
   - entity: binary_sensor
@@ -212,8 +206,7 @@ secondary_entities:
         name: sensor
         type: bitfield
         mapping:
-          - mask: "00000001"
-            dps_val: 0
+          - dps_val: 1
             value: true
           - value: false
   - entity: sensor
