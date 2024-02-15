@@ -1,7 +1,7 @@
-name: Wifi Dimmer 2 CH LG921
+name: Dual dimmer
 products:
   - id: 3ovuf2vazfsz2hfd
-    name: WIFI Dimmer Module-2
+    name: LG921
 primary_entity:
   entity: light
   name: Light 1
@@ -15,9 +15,6 @@ primary_entity:
       range:
         min: 25
         max: 255
-      mapping:
-        - scale: 1
-          step: 1
 secondary_entities:
   - entity: light
     name: Light 2
@@ -31,12 +28,9 @@ secondary_entities:
         range:
           min: 25
           max: 255
-        mapping:
-          - scale: 1
-            step: 1
   - entity: number
     category: config
-    name: Minimum Brightness
+    name: Minimum brightness
     dps:
       - id: 104
         type: integer
@@ -44,7 +38,4 @@ secondary_entities:
         range:
           min: 0
           max: 255
-        mapping:
-          - scale: 1
-            step: 1  
         optional: true
