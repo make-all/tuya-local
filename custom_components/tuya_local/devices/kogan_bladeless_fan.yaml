@@ -118,10 +118,12 @@ secondary_entities:
             value: "8 hours"
   - entity: sensor
     name: Time Remaining
+    class: duration
     icon: "mdi:timer"
+    category: diagnostic
     dps:
       - id: 12
         type: string
         optional: true
         name: sensor
-        unit: mins
+        unit: min

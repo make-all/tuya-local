@@ -116,7 +116,7 @@
 - EMS Thermal 200L domestic heat pump hot water system
 - Ferroli Titano Twin water heater
 - Geyserwise TSE1 Geyser controller kit
-- Hydrotherm Dynamic/X8 heat pump hot water systems
+- Hydrotherm Dynamic/X8 heat pump hot water systems (Gen 5 and 6)
 - ITS-4.5HD super water heatpump
 - Thermex IF series V pro hot water systems
 - Thermex Lima 80V
@@ -189,6 +189,7 @@
 - Immax Neo Lite Vento ceiling fan with light
 - Ledkia fan and light controller
 - Lexy F501 fan
+- Keyun MKCFE002 RGB chandelier fan
 - Kogan bladeless fans
 - Mantra ceiling fan with light
 - Ovlaim ceiling fan with cool/warm white dimmable light
@@ -439,6 +440,7 @@ of device.
 - Generic dimmable/color temperature adjustable desktop lamp (confirmed with Setti+ SL601)
 - Generic "Dreamlight" RGBCW LED strips (tested with LSC RGBIC+CCT 2x5m LED strip)
 - Generic RGB only light bar - like the lights above, but no white light controls supported.
+- Unbranded 1CH dimmer module
 - A60 1800-2700K RGBWW light
 - Atomi smart color string light
 - Blitzwolf BW-LT31 LED strip
@@ -628,6 +630,7 @@ port and password.
 - SWS-001 smart weather station
 - TH08 temperature and humidity sensor
 - TH16 temperature and humidity sensor
+- Timeguard WFPIR motion light controller
 - Tonepie T1PRO automatic cat litter box
 - Tontine electric blanket
 - Valehaus SYZN119 towel warmer

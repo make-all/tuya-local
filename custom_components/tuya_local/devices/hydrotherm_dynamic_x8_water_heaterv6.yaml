@@ -1,0 +1,293 @@
+name: Hot water
+products:
+  - id: p2gjmmancu4t4ceg
+    name: Hydrotherm Dynamic X8 gen 6
+primary_entity:
+  entity: water_heater
+  dps:
+    - id: 1
+      type: boolean
+      name: operation_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: Stand
+              value: heat_pump
+            - dps_val: ECO
+              value: eco
+            - dps_val: HYB
+              value: high_demand
+            - dps_val: HYB1
+              value: performance
+            - dps_val: ELE
+              value: electric
+    - id: 2
+      type: string
+      name: mode
+      hidden: true
+    - id: 4
+      type: integer
+      name: temperature
+      range:
+        min: 15
+        max: 75
+      unit: C
+    - id: 7
+      type: boolean
+      name: away_mode
+    - id: 14
+      type: integer
+      name: eev
+    - id: 40
+      type: integer
+      name: model_number
+    - id: 108
+      type: boolean
+      name: dip_switch_1
+    - id: 109
+      type: boolean
+      name: dip_switch_2
+secondary_entities:
+  - entity: binary_sensor
+    name: Fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 15
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 15
+        type: bitfield
+        name: fault_code
+  - entity: binary_sensor
+    class: running
+    category: diagnostic
+    dps:
+      - id: 17
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: normal
+            value: true
+          - value: false
+      - id: 17
+        type: string
+        name: work_state
+  - entity: sensor
+    name: Energy today
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Flow
+    class: enum
+    icon: "mdi:waves-arrow-right"
+    category: diagnostic
+    dps:
+      - id: 19
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "OFF"
+            value: "Off"
+          - dps_val: LOW
+            value: Low
+          - dps_val: High
+            value: High
+  - entity: sensor
+    name: Return air temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Inlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Outlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Exhaust temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 24
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 26
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: binary_sensor
+    name: Compressor
+    class: running
+    category: diagnostic
+    dps:
+      - id: 27
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Four-way valve
+    class: opening
+    category: diagnostic
+    dps:
+      - id: 28
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Low pressure valve
+    class: opening
+    category: diagnostic
+    dps:
+      - id: 29
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Fluoride cycle
+    class: running
+    category: diagnostic
+    dps:
+      - id: 30
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Pump
+    class: running
+    category: diagnostic
+    dps:
+      - id: 31
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Element
+    class: running
+    category: diagnostic
+    dps:
+      - id: 32
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Defrosting
+    class: running
+    category: diagnostic
+    dps:
+      - id: 33
+        type: boolean
+        name: sensor
+      - id: 41
+        type: integer
+        name: minutes_until
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: binary_sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 105
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 106
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Water flow
+    class: moving
+    category: diagnostic
+    dps:
+      - id: 107
+        type: boolean
+        name: sensor
