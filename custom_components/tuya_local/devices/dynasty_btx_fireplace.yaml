@@ -20,6 +20,10 @@ primary_entity:
     - id: 5
       name: temperature
       type: string
+      unit: C
+      range:
+        min: 16
+        max: 30
       mapping:
         - dps_val: "0"
           value: 16
@@ -36,7 +40,7 @@ primary_entity:
         - dps_val: "6"
           value: 30
     - id: 13
-      name: temperature_unit
+      name: temperature_unit_setting
       type: string
       mapping:
         - dps_val: "c"
