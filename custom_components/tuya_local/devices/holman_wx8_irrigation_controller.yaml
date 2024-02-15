@@ -16,7 +16,7 @@ primary_entity:
       type: integer
     - id: 101
       name: programming
-      type: string
+      type: raw
       optional: true
 secondary_entities:
   - entity: switch
@@ -107,9 +107,15 @@ secondary_entities:
         unit: "V"
         mapping:
           - scale: 10
+  - entity: sensor
+    name: Evie battery voltage
+    class: voltage
+    category: diagnostic
+    dps:
       - id: 119
-        name: catchup_voltage  # not sure what this is, so made an attribute
+        name: sensor
         type: integer
+        unit: "V"
         mapping:
           - scale: 10
   - entity: sensor
@@ -124,13 +130,28 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: binary_sensor
+    name: Battery voltage
     class: battery
+    category: diagnostic
     dps:
       - id: 120
         name: sensor
-        type: base64
+        type: bitfield
         mapping:
           - mask: "10000000"
+            dps_val: 0
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Power supply
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 120
+        name: sensor
+        type: bitfield
+        mapping:
+          - mask: "01000000"
             dps_val: 0
             value: true
           - value: false
@@ -139,7 +160,7 @@ secondary_entities:
     dps:
       - id: 120
         name: sensor
-        type: base64
+        type: bitfield
         mapping:
           - mask: "00100000"
             dps_val: 0
@@ -151,20 +172,20 @@ secondary_entities:
     dps:
       - id: 120
         name: sensor
-        type: base64
+        type: bitfield
         mapping:
           - mask: "00010000"
             dps_val: 0
             value: true
           - value: false
   - entity: binary_sensor
-    name: Evie connected
+    name: Evie
     category: diagnostic
     class: connectivity
     dps:
       - id: 120
         name: sensor
-        type: base64
+        type: bitfield
         mapping:
           - mask: "00000100"
             dps_val: 0
@@ -173,10 +194,11 @@ secondary_entities:
   - entity: binary_sensor
     name: Evie battery
     class: battery
+    category: diagnostic
     dps:
       - id: 120
         name: sensor
-        type: base64
+        type: bitfield
         mapping:
           - mask: "00000010"
             dps_val: 0
@@ -188,7 +210,7 @@ secondary_entities:
     dps:
       - id: 120
         name: sensor
-        type: base64
+        type: bitfield
         mapping:
           - mask: "00000001"
             dps_val: 0
