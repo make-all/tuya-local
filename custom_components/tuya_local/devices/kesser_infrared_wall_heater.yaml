@@ -1,10 +1,9 @@
-name: Kesser Infrared Wall Heater 400W
+name: Infrared wall heater
 products:
   - id: ajlnotpa7oymbbte
-    name: Kesser Infrared Wall Heater 400W
+    name: Kesser 400W
 primary_entity:
   entity: climate
-  translation_key: thermostat
   dps:
     - id: 1
       name: hvac_mode
@@ -20,14 +19,9 @@ primary_entity:
       range:
         min: 10
         max: 30
-      mapping:
-        - scale: 1
-          step: 1
     - id: 3
       type: integer
       name: current_temperature
-      mapping:
-        - scale: 1
     - id: 11
       type: string
       name: hvac_action
@@ -73,10 +67,11 @@ secondary_entities:
           - scale: 1
   - entity: switch
     name: Window Check
-    category: config    
+    category: config
+    icon: "mdi:window-open-variant"
     dps:
       - id: 101
-        type: boolean      
+        type: boolean
         name: switch
   - entity: switch
     name: Sound
