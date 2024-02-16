@@ -503,3 +503,4 @@ Further device support has been made with the assistance of users. Please consid
 - [xlemassacre](https://github.com/xlemassacre) for contributing support for Kesser infrared 400W wall and 3000W heaters.
 - [dannygreg](https://github.com/dannygreg)for contributing support for Graywind window shades.
 - [xeroski](https://github.com/xeroski) for assisting with support for Kerui 200W and JS-P162 300W cameras.
+- [dakker78](https://github.com/dakker78) for contributing support for Herschel IR heaters.

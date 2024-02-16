@@ -23,8 +23,9 @@
 - Eurom Sani Wall Heat 2000 heater
 - Eurom Wall Designheat 2000 heater
 - Goldair heater models beginning with the code GPPH, GCPV, GECO
-- Heatstorm HS-6000-GC heavy duty heater
 - Hama radiator controller
+- Heatstorm HS-6000-GC heavy duty heater
+- Herschel infrared heater 
 - HJZ oil column radiator
 - Hombli radiator controller
 - INOW Wi-Fi heating element (single and dual air/water temperature control variants)
