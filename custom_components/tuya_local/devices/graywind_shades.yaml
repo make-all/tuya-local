@@ -1,9 +1,10 @@
-name: Graywind Shades
+name: Window shade
 products:
   - id: hldq12vsaqalcfer
+    name: Graywind hardwired blackout
 primary_entity:
   entity: cover
-  class: curtain
+  class: shade
   dps:
     - id: 1
       name: control
@@ -18,13 +19,12 @@ primary_entity:
     - id: 2
       name: position
       type: integer
-      unit: "%"
       range:
         min: 0
         max: 100
 secondary_entities:
   - entity: select
-    name: Motor reverse mode
+    name: Motor direction
     category: config
     icon: "mdi:sign-direction"
     dps:
