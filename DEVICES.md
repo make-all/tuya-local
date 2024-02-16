@@ -13,6 +13,7 @@
 - Calex Smart Convector heater
 - Cleverio AR10/AR20 panel heaters
 - Devola patio heater
+- Dynasty BTX fireplace
 - Ecostrad Accent iQ heating panel
 - Ecostrad iQ ceramic radiator
 - Ecostrad iQ heating element
@@ -29,6 +30,7 @@
 - INOW Wi-Fi heating element (single and dual air/water temperature control variants)
 - Juskys OH125BW2 oil radiator
 - Kennedy II/JR electric fireplace
+- Kesser Infrared 400W wall and 3000W heaters.
 - Klarstein Wonderwall Air Art IR heater
 - Klarstein Wonderwall IR heater
 - Kogan flame effect heater - KAWHMFP20BA model
@@ -492,6 +494,7 @@ of device.
 - Dooya curtain motor
 - Etersky curtain switch with backlight and timing control
 - FS-03W curtain switch with backlight control
+- Graywind window shades
 - Kogan garage door with tilt sensor
 - Loonas smart curtain
 - LoraTap GDC100W garage door opener
