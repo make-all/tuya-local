@@ -502,4 +502,4 @@ Further device support has been made with the assistance of users. Please consid
 - [MatthewBCooke](https://github.com/MatthewBCooke) for contributing support for Dynasty BTX fireplace.
 - [xlemassacre](https://github.com/xlemassacre) for contributing support for Kesser infrared 400W wall and 3000W heaters.
 - [dannygreg](https://github.com/dannygreg)for contributing support for Graywind window shades.
-- [xeroski](https://github.com/xeroski) for assisting with support for Kerui JS-P162 300W cameras.
+- [xeroski](https://github.com/xeroski) for assisting with support for Kerui 200W and JS-P162 300W cameras.
