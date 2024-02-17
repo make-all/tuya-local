@@ -506,3 +506,4 @@ Further device support has been made with the assistance of users. Please consid
 - [dakker78](https://github.com/dakker78) for contributing support for Herschel IR heaters.
 - [liamlain](https://github.com/liamlain) for assisting with support for SmartCurtain curtains.
 - [legantois](https://github.com/legantois) for assisting with support for EPT tank level sensors.
+- [osaczony](https://github.com/oscazony) for assisting with support for Tongou QCB2 single phase breakers.
