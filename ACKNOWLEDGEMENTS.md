@@ -505,3 +505,4 @@ Further device support has been made with the assistance of users. Please consid
 - [xeroski](https://github.com/xeroski) for assisting with support for Kerui 200W and JS-P162 300W cameras.
 - [dakker78](https://github.com/dakker78) for contributing support for Herschel IR heaters.
 - [liamlain](https://github.com/liamlain) for assisting with support for SmartCurtain curtains.
+- [legantois](https://github.com/legantois) for assisting with support for EPT tank level sensors.

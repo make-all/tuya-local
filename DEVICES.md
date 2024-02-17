@@ -612,6 +612,7 @@ port and password.
 - CO2-Box air quality monitor
 - CT20W PIR motion detector
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
+- EPT ultrasonic 3m tank level sensor
 - Garza Wi-Fi garden irrigation system (ITV103W with 433MHz WiFi hub)
 - GratKit filament dryer
 - Haier Nayun NY-GS-04 combustible gas alarm
