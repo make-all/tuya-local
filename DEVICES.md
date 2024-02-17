@@ -515,6 +515,7 @@ of device.
 - Abir X8 vacuum cleaner
 - Kabum Smart 500 vacuum cleaner
 - Kabum Smart 700 vacuum cleaner (also sold as Liectroux XR500[T2] and maybe others)
+- Kabum Smart 700 vacuum cleaner 2023 model (not quite compatible with Liectroux XR500 T3, but similar revision)
 - Kogan LX10 vacuum cleaner with mop
 - Kyvol E30 vacuum cleaner
 - Lefant LS1 Pro vacuum cleaner
