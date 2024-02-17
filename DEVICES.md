@@ -505,6 +505,7 @@ of device.
 - Moes SCS80 Touch curtain swich with backlight and timing control
 - QS-WIFI-C01(BK) curtain module
 - SHerko curtain motor
+- SmartCurtains A-series ACS-WT curtain motor (may work for other models)
 - Wistar roller blind controller
 - ZC34T-03-3A swing arm window opener
 - Zemismart curtain rail
