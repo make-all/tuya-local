@@ -174,6 +174,17 @@ entities:
             value: true
           - value: false
   - entity: binary_sensor
+    name: reserved
+    category: diagnostic
+    dps:
+      - id: 120
+        name: sensor
+        type: bitfield
+        mapping:
+          - dps_val: 16
+            value: true
+          - value: false          
+  - entity: binary_sensor
     name: Evie
     category: diagnostic
     class: connectivity
