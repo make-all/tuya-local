@@ -94,15 +94,15 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         if best_match < 100:
             best_match = int(best_match)
             dps = self.device._get_cached_state()
-            _LOGGER.warning(
-                "Device matches %s with quality of %d%%. DPS: %s",
-                best_matching_type,
-                best_match,
-                log_json(dps),
-            )
-            _LOGGER.warning(
-                "Report this to https://github.com/make-all/tuya-local/issues/"
-            )
+        _LOGGER.warning(
+            "Device matches %s with quality of %d%%. DPS: %s",
+            best_matching_type,
+            best_match,
+            log_json(dps),
+        )
+        _LOGGER.warning(
+            "Report this to https://github.com/make-all/tuya-local/issues/",
+        )
         if types:
             return self.async_show_form(
                 step_id="select_type",
