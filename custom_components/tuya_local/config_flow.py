@@ -91,9 +91,8 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                 best_match = q
                 best_matching_type = type.config_type
 
-        if best_match < 100:
-            best_match = int(best_match)
-            dps = self.device._get_cached_state()
+        best_match = int(best_match)
+        dps = self.device._get_cached_state()
         _LOGGER.warning(
             "Device matches %s with quality of %d%%. DPS: %s",
             best_matching_type,
