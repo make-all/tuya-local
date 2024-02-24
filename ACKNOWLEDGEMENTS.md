@@ -507,3 +507,4 @@ Further device support has been made with the assistance of users. Please consid
 - [liamlain](https://github.com/liamlain) for assisting with support for SmartCurtain curtains.
 - [legantois](https://github.com/legantois) for assisting with support for EPT tank level sensors.
 - [osaczony](https://github.com/oscazony) for assisting with support for Tongou QCB2 single phase breakers.
+- [realdimik](https://github.com/realdimik) for assisting with support for Tongou ST463JWT three phase breakers.

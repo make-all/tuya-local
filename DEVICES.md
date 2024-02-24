@@ -331,6 +331,7 @@
 - Taxnele circuit breaker and energy meter
 - TOMPD-63LW energy meter circuit breaker
 - Tongou QCB2-WB WiFi 4P circuit breaker (3-phase and single phase variants)
+- Tongou ST463JWT 4P 3-phase circuit breaker
 - V-WIFI-DL02-ES energy consumption clamp meter
 - WDYK 2P63A energy meter
 - WDYK 3 phase 4 pole 400V energy meter circuit breaker
