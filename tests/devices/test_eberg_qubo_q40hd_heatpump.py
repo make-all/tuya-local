@@ -60,6 +60,8 @@ class TestEbergQuboQ40HDHeatpump(
                 | ClimateEntityFeature.FAN_MODE
                 | ClimateEntityFeature.PRESET_MODE
                 | ClimateEntityFeature.SWING_MODE
+                | ClimateEntityFeature.TURN_OFF
+                | ClimateEntityFeature.TURN_ON
             ),
         )
 

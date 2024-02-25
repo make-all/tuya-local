@@ -56,6 +56,8 @@ class TestStarLightHeatpump(
                 ClimateEntityFeature.TARGET_TEMPERATURE
                 | ClimateEntityFeature.FAN_MODE
                 | ClimateEntityFeature.SWING_MODE
+                | ClimateEntityFeature.TURN_OFF
+                | ClimateEntityFeature.TURN_ON
             ),
         )
 

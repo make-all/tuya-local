@@ -36,7 +36,10 @@ class TestKoganKAWFPAC09YA(TargetTemperatureTests, TuyaDeviceTestCase):
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            (ClimateEntityFeature.TARGET_TEMPERATURE | ClimateEntityFeature.FAN_MODE),
+            ClimateEntityFeature.TARGET_TEMPERATURE
+            | ClimateEntityFeature.FAN_MODE
+            | ClimateEntityFeature.TURN_OFF
+            | ClimateEntityFeature.TURN_ON,
         )
 
     def test_icon(self):

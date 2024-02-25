@@ -93,28 +93,28 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         self._maxtemp_dps = dps_map.pop("max_temperature", None)
 
         self._init_end(dps_map)
-        self._support_flags = ClimateEntityFeature(0)
 
         if self._aux_heat_dps:
-            self._support_flags |= ClimateEntityFeature.AUX_HEAT
+            self._attr_supported_features |= ClimateEntityFeature.AUX_HEAT
         if self._fan_mode_dps:
-            self._support_flags |= ClimateEntityFeature.FAN_MODE
+            self._attr_supported_features |= ClimateEntityFeature.FAN_MODE
         if self._humidity_dps:
-            self._support_flags |= ClimateEntityFeature.TARGET_HUMIDITY
+            self._attr_supported_features |= ClimateEntityFeature.TARGET_HUMIDITY
         if self._preset_mode_dps:
-            self._support_flags |= ClimateEntityFeature.PRESET_MODE
+            self._attr_supported_features |= ClimateEntityFeature.PRESET_MODE
         if self._swing_mode_dps:
-            self._support_flags |= ClimateEntityFeature.SWING_MODE
+            self._attr_supported_features |= ClimateEntityFeature.SWING_MODE
 
         if self._temp_high_dps and self._temp_low_dps:
-            self._support_flags |= ClimateEntityFeature.TARGET_TEMPERATURE_RANGE
+            self._attr_supported_features |= (
+                ClimateEntityFeature.TARGET_TEMPERATURE_RANGE
+            )
         elif self._temperature_dps is not None:
-            self._support_flags |= ClimateEntityFeature.TARGET_TEMPERATURE
-
-    @property
-    def supported_features(self):
-        """Return the features supported by this climate device."""
-        return self._support_flags
+            self._attr_supported_features |= ClimateEntityFeature.TARGET_TEMPERATURE
+        if HVACMode.OFF in self.hvac_modes:
+            self._attr_supported_features |= ClimateEntityFeature.TURN_OFF
+        if self._hvac_mode_dps and self._hvac_mode_dps.type is bool:
+            self._attr_supported_features |= ClimateEntityFeature.TURN_ON
 
     @property
     def temperature_unit(self):

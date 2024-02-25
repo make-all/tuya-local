@@ -63,7 +63,9 @@ class TestAspenASP200Fan(
         )
         self.assertEqual(
             self.climate.supported_features,
-            ClimateEntityFeature.TARGET_TEMPERATURE,
+            ClimateEntityFeature.TARGET_TEMPERATURE
+            | ClimateEntityFeature.TURN_OFF
+            | ClimateEntityFeature.TURN_ON,
         )
 
     def test_fan_direction(self):

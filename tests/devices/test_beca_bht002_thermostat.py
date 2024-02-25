@@ -62,6 +62,8 @@ class TestBecaBHT002Thermostat(
             (
                 ClimateEntityFeature.PRESET_MODE
                 | ClimateEntityFeature.TARGET_TEMPERATURE
+                | ClimateEntityFeature.TURN_OFF
+                | ClimateEntityFeature.TURN_ON
             ),
         )
 
