@@ -202,9 +202,7 @@ to Home Assistant attribute mapping to something other than a one to one
 copy.
 
 The rules can range from simple value substitution to complex
-relationships involving other attributes. It can also be used to change
-the icon of the entity based on the attribute value. Mapping rules are
-defined in their own section below.
+relationships involving other attributes.
 
 ### `hidden`
 
@@ -287,10 +285,7 @@ rule in the list applies to. This can be used to map specific values from the
 Tuya protocol into attribute values that have specific meaning in Home
 Assistant. For example, climate entities in Home Assistant define modes
 "off", "heat", "cool", "heat_cool", "auto" and "dry". But in the Tuya protocol,
-a simple heater just has a boolean off/on switch. It can also be used to
-change the icon when a specific mode is operational. For example if
-a heater device has a fan-only mode, you could change the icon to "mdi:fan"
-instead of "mdi:radiator" when in that mode.
+a simple heater just has a boolean off/on switch.
 A `dps_val` of `null` can be used to specify a value to be assumed when a
 dp is not being returned by the device, to avoid None in some locations where
 that causes an issue such as entities showing as unavailable. Such a mapping
@@ -364,7 +359,7 @@ across the range.
 
 ### `icon`
 
-*Optional.*
+*Optional. Deprecated since HA 2024.2 (use translation_key and icons.json to define icons)*
 
 This can be used to override the icon. Most useful with a `dps_val` which
 indicates a change from normal operating mode, such as "fan-only",
@@ -372,7 +367,7 @@ indicates a change from normal operating mode, such as "fan-only",
 
 ### `icon_priority`
 
-*Optional. Default 10. Lower numbers mean higher priorities.*
+*Optional. Default 10. Lower numbers mean higher priorities. Deprecated, icons should be defined using icons.json and translation_key since HA 2024.2*
 
 When a number of rules on different attributes define `icon` changes, you
 may need to control which have priority over the others. For example,

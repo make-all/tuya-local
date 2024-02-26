@@ -44,7 +44,6 @@ primary_entity:
 secondary_entities:
   - entity: fan
     name: Fan
-    icon: "mdi:fan"
     category: config
     dps:
       - id: 1
@@ -184,13 +183,6 @@ secondary_entities:
       - id: 105
         type: boolean
         name: sensor
-        mapping:
-          - dps_val: false
-            icon: "mdi:snowflake"
-            value: false
-          - dps_val: true
-            icon: "mdi:snowflake-melt"
-            value: true
   - entity: binary_sensor
     class: problem
     name: Fault

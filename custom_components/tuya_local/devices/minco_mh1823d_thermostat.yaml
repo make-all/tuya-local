@@ -33,26 +33,19 @@ primary_entity:
       name: hvac_action
       mapping:
         - dps_val: stop
-          icon: "mdi:thermometer-off"
           constraint: hvac_mode
           conditions:
             - dps_val: false
               value: "off"
-              icon_priority: 1
             - dps_val: true
               value: idle
-              icon_priority: 3
         - dps_val: start
           constraint: hvac_mode
           conditions:
             - dps_val: false
               value: "off"
-              icon: "mdi:thermometer-off"
-              icon_priority: 1
             - dps_val: true
               value: heating
-              icon: "mdi:thermometer"
-              icon_priority: 3
     - id: 12
       type: boolean
       name: unknown_12
@@ -125,7 +118,6 @@ secondary_entities:
             value: External
   - entity: select
     name: Temperature unit
-    icon: "mdi:temperature-celsius"
     category: config
     dps:
       - id: 19

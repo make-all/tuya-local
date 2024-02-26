@@ -6,7 +6,6 @@ products:
 primary_entity:
   entity: climate
   translation_key: aircon_extra
-  icon: "mdi:air-conditioner"
   dps:
     - id: 1
       name: hvac_mode
@@ -14,18 +13,14 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:hvac-off"
         - dps_val: true
           constraint: mode
           conditions:
             - dps_val: "0"
-              icon: "mdi:snowflake"
               value: cool
             - dps_val: "3"
-              icon: "mdi:fan"
               value: fan_only
             - dps_val: "2"
-              icon: "mdi:water"
               value: dry
     - id: 2
       name: temperature
