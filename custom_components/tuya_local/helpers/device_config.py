@@ -267,7 +267,8 @@ class TuyaEntityConfig:
         own_name = self._config.get("name", self.device_class)
         if own_name:
             return f"{self.entity}_{slugify(own_name)}"
-
+        if self.translation_key:
+            return f"{self.entity}_{self.translation_key}"
         return self.entity
 
     @property
