@@ -133,11 +133,10 @@ secondary_entities:
   # The following DPs are available but don't seem to
   # actually do anything
   ############################################################
-  - entity: switch
-    name: "Child Lock"
+  - entity: lock
+    translation_key: child_lock
     category: config
-    icon: "mdi:hand-back-right-off"
     dps:
       - id: 7
-        name: switch
+        name: lock
         type: boolean

@@ -13,17 +13,12 @@ primary_entity:
       type: integer
 secondary_entities:
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 40
         name: lock
         type: boolean
-        mapping:
-          - dps_val: true
-            icon: "mdi:account-lock"
-          - dps_val: false
-            icon: "mdi:account"
   - entity: switch
     class: outlet
     name: Outlet 1

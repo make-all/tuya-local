@@ -77,6 +77,19 @@ behaviour.
 For most entities, it will alter the default icon, and for binary sensors
 also the state that off and on values translate to in the UI.
 
+### `translation_key` / `translation_only_key`
+
+*Optional*
+
+A key used to define strings and icons for this entity. If this is used,
+the name can be omited and instead defined in the translations files.
+
+`translation_key` will be used to generate IDs when there is no name defined.
+If the intention is to have an unnamed entity, or to inherit from class, then
+use `translation_only_key` instead (this is mostly useful to retain
+backward compatibility where `translation_key` is used to define icons and
+attribute strings but not the entity name.
+
 ### `category`
 
 *Optional.*

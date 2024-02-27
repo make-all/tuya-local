@@ -21,8 +21,9 @@ class TuyaLocalEntity:
         self._device = device
         self._config = config
         self._attr_dps = []
-        self._attr_translation_key = config.translation_key
-
+        self._attr_translation_key = (
+            config.translation_key or config.translation_only_key
+        )
         return {c.name: c for c in config.dps()}
 
     def _init_end(self, dps):

@@ -4,7 +4,7 @@ products:
     name: Smart Boiler
 primary_entity:
   entity: climate
-  translation_key: thermostat
+  translation_only_key: thermostat
   dps:
     - id: 1
       name: hvac_mode
@@ -79,8 +79,7 @@ primary_entity:
       name: min_temperature
 secondary_entities:
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right"
+    translation_key: child_lock
     category: config
     dps:
       - id: 6

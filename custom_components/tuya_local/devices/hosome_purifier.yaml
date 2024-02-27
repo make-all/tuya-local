@@ -3,7 +3,7 @@ products:
   - id: sferhht3hjkc942e
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   dps:
     - id: 1
       type: boolean
@@ -50,9 +50,8 @@ secondary_entities:
         name: sensor
         unit: "%"
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
-    icon: "mdi:hand-back-right-off"
     dps:
       - id: 7
         type: boolean
