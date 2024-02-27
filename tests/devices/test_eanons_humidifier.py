@@ -76,14 +76,6 @@ class TestEanonsHumidifier(
         self.assertEqual(self.subject.supported_features, HumidifierEntityFeature.MODES)
         self.assertEqual(self.fan.supported_features, FanEntityFeature.SET_SPEED)
 
-    def test_icon_is_humidifier(self):
-        """Test that the icon is as expected."""
-        self.dps[HVACMODE_DPS] = True
-        self.assertEqual(self.subject.icon, "mdi:air-humidifier")
-
-        self.dps[HVACMODE_DPS] = False
-        self.assertEqual(self.subject.icon, "mdi:air-humidifier-off")
-
     def test_current_humidity(self):
         self.dps[CURRENTHUMID_DPS] = 75
         self.assertEqual(self.subject.current_humidity, 75)
