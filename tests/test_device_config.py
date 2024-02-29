@@ -1,8 +1,8 @@
 """Test the config parser"""
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import MagicMock
-import voluptuous as vol
 
+import voluptuous as vol
 from fuzzywuzzy import fuzz
 from homeassistant.components.sensor import SensorDeviceClass
 
