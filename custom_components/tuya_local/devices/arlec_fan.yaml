@@ -1,7 +1,7 @@
 name: ARLEC Grid Connect Fan
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   dps:
     - id: 1
       name: switch
@@ -30,8 +30,7 @@ primary_entity:
       type: string
 secondary_entities:
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 103

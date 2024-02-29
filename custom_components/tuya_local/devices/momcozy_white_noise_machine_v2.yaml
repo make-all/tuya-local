@@ -171,21 +171,15 @@ secondary_entities:
           - dps_val: null
             value: None
   - entity: lock
-    name: Child Lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 101
         name: lock
         type: boolean
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: sensor
     name: Timer Remaining
     class: duration
-    readonly: true
     dps:
       - id: 104
         name: sensor

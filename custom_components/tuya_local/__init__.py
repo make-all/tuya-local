@@ -11,6 +11,7 @@ import logging
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_HOST
 from homeassistant.core import HomeAssistant, callback
+from homeassistant.exceptions import ConfigEntryNotReady
 from homeassistant.helpers.entity_registry import async_migrate_entries
 from homeassistant.util import slugify
 
@@ -311,7 +312,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
         get_device_id(entry.data),
     )
     config = {**entry.data, **entry.options, "name": entry.title}
-    setup_device(hass, config)
+    try:
+        setup_device(hass, config)
+    except Exception as e:
+        raise ConfigEntryNotReady("tuya-local device not ready") from e
+
     device_conf = get_config(entry.data[CONF_TYPE])
     if device_conf is None:
         _LOGGER.error(NOT_FOUND, config[CONF_TYPE])

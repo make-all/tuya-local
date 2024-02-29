@@ -4,7 +4,7 @@ products:
     name: Avatto WT200W-EH
 primary_entity:
   entity: climate
-  translation_key: thermostat
+  translation_only_key: thermostat
   dps:
     - id: 1
       name: hvac_mode
@@ -74,18 +74,12 @@ primary_entity:
       type: integer
 secondary_entities:
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 8
         name: lock
         type: boolean
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: switch
     name: Sound
     category: config

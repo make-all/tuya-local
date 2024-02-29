@@ -4,7 +4,7 @@ products:
     name: Sulion Crixus L
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   dps:
     - id: 53
       type: integer
@@ -42,8 +42,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 104

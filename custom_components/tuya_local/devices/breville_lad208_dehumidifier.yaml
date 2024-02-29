@@ -58,9 +58,7 @@ secondary_entities:
           - dps_val: "3"
             value: 100
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
-    class: duration
+    translation_key: timer
     category: config
     dps:
       - id: 12
@@ -147,22 +145,17 @@ secondary_entities:
           - dps_val: true
             icon: "mdi:sleep"
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 7
         type: boolean
         name: lock
-        mapping:
-          - dps_val: false
-            icon: "mdi:hand-back-right"
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
   - entity: binary_sensor
     class: problem
     name: Tank full
     icon: "mdi:cup-outline"
-    icon-priority: 2
+    icon_priority: 2
     dps:
       - id: 11
         type: bitfield
@@ -172,7 +165,7 @@ secondary_entities:
           - dps_val: 8
             value: true
             icon: "mdi:cup-water"
-            icon-priority: 1
+            icon_priority: 1
           - value: false
   - entity: binary_sensor
     name: Defrost

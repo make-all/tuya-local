@@ -4,7 +4,7 @@ products:
     name: Keyun MKCFE002
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   dps:
     - id: 60
       type: boolean
@@ -144,9 +144,8 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: number
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 112
         type: integer

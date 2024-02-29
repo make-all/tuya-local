@@ -3,7 +3,7 @@ products:
   - id: 3hjcrjktvkoim7zu
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   dps:
     - id: 1
       type: boolean
@@ -81,8 +81,7 @@ secondary_entities:
         class: measurement
         unit: "%"
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 18

@@ -68,7 +68,6 @@ primary_entity:
 secondary_entities:
   - entity: number
     name: Backlight intensity
-    type: integer
     mode: slider
     icon: mdi:speedometer-medium
     dps:
@@ -180,22 +179,26 @@ secondary_entities:
         type: integer
   - entity: sensor
     category: diagnostic
-    icon: mdi:arrow-expand-horizontal
+    class: distance
     name: Horizontal LED length
-    unit: dm
     dps:
       - id: 116
         name: sensor
         type: integer
+        unit: m
+        mapping:
+          - scale: 10
   - entity: sensor
     category: diagnostic
-    icon: mdi:arrow-expand-vertical
+    class: distance
     name: Vertical LED length
-    unit: dm
     dps:
       - id: 117
         name: sensor
         type: integer
+        unit: m
+        mapping:
+          - scale: 10
   - entity: sensor
     category: diagnostic
     icon: mdi:speedometer-slow

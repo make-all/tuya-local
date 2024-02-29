@@ -152,5 +152,3 @@ class TestNashoneMTS700WBThermostat(
 
     def test_icons(self):
         self.assertEqual(self.basicNumber.icon, "mdi:arrow-collapse-up")
-        self.assertEqual(self.basicSelect.icon, "mdi:timer")
-        self.assertEqual(self.basicSensor.icon, "mdi:timer")

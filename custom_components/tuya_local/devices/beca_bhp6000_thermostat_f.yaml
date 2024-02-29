@@ -4,7 +4,7 @@ products:
 legacy_type: beca_bhp6000_thermostat
 primary_entity:
   entity: climate
-  translation_key: thermostat
+  translation_only_key: thermostat
   dps:
     - id: 2
       name: temperature
@@ -52,17 +52,12 @@ primary_entity:
           value: "on"
 secondary_entities:
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 7
         name: lock
         type: boolean
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: light
     name: Display
     category: config

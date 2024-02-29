@@ -1,7 +1,7 @@
 name: Minco MH-1823D thermostat
 primary_entity:
   entity: climate
-  translation_key: thermostat
+  translation_only_key: thermostat
   dps:
     - id: 1
       type: boolean
@@ -223,13 +223,14 @@ secondary_entities:
         range:
           min: 5
           max: 65
-        constraint: unit
-        conditions:
-          - dps_val: f
-            value_redirect: max_temp_f
-            range:
-              min: 41
-              max: 150
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: max_temp_f
+                range:
+                  min: 41
+                  max: 150
       - id: 107
         type: integer
         name: max_temp_f
@@ -290,17 +291,12 @@ secondary_entities:
           - dps_val: f
             value: F
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 5
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: switch
     category: config
     name: Anti-frost

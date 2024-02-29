@@ -18,9 +18,8 @@ primary_entity:
       name: inching
 secondary_entities:
   - entity: number
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 9
         type: integer
@@ -103,8 +102,7 @@ secondary_entities:
           - dps_val: none
             value: "Off"
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 40

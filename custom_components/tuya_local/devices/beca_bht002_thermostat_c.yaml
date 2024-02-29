@@ -1,4 +1,7 @@
-name: BHT-002 thermostat external C
+name: Thermostat
+products:
+  - id: IAYz2WK1th0cMLmL
+    name: Beca BHT-002
 primary_entity:
   entity: climate
   dps:
@@ -15,6 +18,9 @@ primary_entity:
               value: auto
             - dps_val: "1"
               value: heat
+            - dps_val: null
+              value: heat
+              hidden: true
     - id: 2
       type: integer
       name: temperature
@@ -31,6 +37,7 @@ primary_entity:
     - id: 4
       type: string
       name: mode
+      optional: true
       hidden: true
     - id: 5
       type: boolean
@@ -50,17 +57,12 @@ primary_entity:
       name: unknown_104
 secondary_entities:
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 6
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: sensor
     name: External temperature
     class: temperature

@@ -66,19 +66,6 @@ class TestEbergCoolyC35HDHeatpump(
             ),
         )
 
-    def test_icon(self):
-        self.dps[POWER_DPS] = True
-        self.dps[HVACMODE_DPS] = "1"
-        self.assertEqual(self.subject.icon, "mdi:fire")
-        self.dps[HVACMODE_DPS] = "2"
-        self.assertEqual(self.subject.icon, "mdi:water")
-        self.dps[HVACMODE_DPS] = "3"
-        self.assertEqual(self.subject.icon, "mdi:snowflake")
-        self.dps[HVACMODE_DPS] = "4"
-        self.assertEqual(self.subject.icon, "mdi:fan")
-        self.dps[POWER_DPS] = False
-        self.assertEqual(self.subject.icon, "mdi:hvac-off")
-
     def test_temperature_unit(self):
         self.dps[UNIT_DPS] = False
         self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)

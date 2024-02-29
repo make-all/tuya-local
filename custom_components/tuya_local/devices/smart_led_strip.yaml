@@ -37,11 +37,11 @@ primary_entity:
       range:
         min: 0
         max: 1000
-      invert: true
       mapping:
         - target_range:
             min: 2700
             max: 6500
+          invert: true
     - id: 24
       name: rgbhsv
       type: hex
@@ -64,9 +64,8 @@ primary_entity:
             max: 1000
 secondary_entities:
   - entity: number
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 26
         name: value

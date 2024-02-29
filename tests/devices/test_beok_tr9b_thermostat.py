@@ -207,9 +207,3 @@ class TestBeokTR9BThermostat(
             self.subject.extra_state_attributes,
             {"Error Code": 8, "unknown_101": 101, "unknown_102": 102},
         )
-
-    def test_icons(self):
-        self.dps[LOCK_DPS] = True
-        self.assertEqual(self.basicLock.icon, "mdi:hand-back-right-off")
-        self.dps[LOCK_DPS] = False
-        self.assertEqual(self.basicLock.icon, "mdi:hand-back-right")

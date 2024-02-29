@@ -106,9 +106,3 @@ class TestMoesBHT002Thermostat(
             self.subject.extra_state_attributes,
             {"unknown_104": False},
         )
-
-    def test_icons(self):
-        self.dps[LOCK_DPS] = True
-        self.assertEqual(self.basicLock.icon, "mdi:hand-back-right-off")
-        self.dps[LOCK_DPS] = False
-        self.assertEqual(self.basicLock.icon, "mdi:hand-back-right")

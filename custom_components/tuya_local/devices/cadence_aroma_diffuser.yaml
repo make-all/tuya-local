@@ -4,7 +4,7 @@ products:
     name: Cadence ultrasonic aroma diffuser
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   dps:
     - id: 2
       name: switch
@@ -122,9 +122,8 @@ secondary_entities:
         name: button
         optional: true
   - entity: number
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 109
         type: integer

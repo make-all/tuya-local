@@ -1,8 +1,7 @@
 name: Garden irrigation system
 products:
   - id: xnajzurgqo1ugohn
-    model: ITV103W
-    manufacturer: Garza
+    name: Garza ITV103W
 primary_entity:
   entity: switch
   icon: "mdi:watering-can"
@@ -42,8 +41,7 @@ secondary_entities:
         type: integer
         unit: L
   - entity: number
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 107

@@ -4,7 +4,7 @@ products:
     name: Duux Whisper Flex
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   dps:
     - id: 1
       type: boolean
@@ -97,8 +97,7 @@ secondary_entities:
           - dps_val: "1"
             value: true
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 6

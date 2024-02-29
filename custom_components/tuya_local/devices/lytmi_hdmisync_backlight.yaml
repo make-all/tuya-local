@@ -80,7 +80,6 @@ secondary_entities:
   - entity: number
     category: config
     name: Degree of diffusion
-    type: integer
     mode: slider
     dps:
       - id: 108
@@ -95,12 +94,6 @@ secondary_entities:
             step: 10
   - entity: select
     name: Scene
-    format:
-      - name: scene_num
-        bytes: 2
-        range:
-          min: 1
-          max: 8
     icon: "mdi:palette"
     category: config
     dps:

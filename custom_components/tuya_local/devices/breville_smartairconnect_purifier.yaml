@@ -3,12 +3,12 @@ products:
   - id: tltdxtehttjbkjni
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
+  icon: "mdi:air-purifier"
   dps:
     - id: 1
       name: switch
       type: boolean
-      icon: "mdi:air-purifier"
     - id: 3
       name: preset_mode
       type: string
@@ -63,8 +63,7 @@ secondary_entities:
         type: integer
         unit: d
   - entity: select
-    name: Timer
-    icon: "mdi:fan-clock"
+    translation_key: timer
     category: config
     dps:
       - id: 19

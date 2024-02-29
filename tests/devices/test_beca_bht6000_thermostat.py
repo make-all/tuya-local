@@ -121,9 +121,3 @@ class TestBecaBHT6000Thermostat(
             self.subject.extra_state_attributes,
             {"floor_temperature": 22.5, "unknown_103": "103", "unknown_104": False},
         )
-
-    def test_icons(self):
-        self.dps[LOCK_DPS] = True
-        self.assertEqual(self.basicLock.icon, "mdi:hand-back-right-off")
-        self.dps[LOCK_DPS] = False
-        self.assertEqual(self.basicLock.icon, "mdi:hand-back-right")

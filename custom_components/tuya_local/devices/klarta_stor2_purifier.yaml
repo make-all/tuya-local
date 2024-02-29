@@ -4,7 +4,7 @@ products:
     name: "Klarta Stor 2 "
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   icon: "mdi:air-purifier"
   dps:
     - id: 1
@@ -82,9 +82,8 @@ secondary_entities:
           - dps_val: true
           - dps_val: false
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
-    icon: "mdi:hand-back-right-off"
     dps:
       - id: 7
         type: boolean
@@ -98,8 +97,7 @@ secondary_entities:
         type: boolean
         name: button
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 18

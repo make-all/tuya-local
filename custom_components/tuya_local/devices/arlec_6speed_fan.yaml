@@ -4,7 +4,7 @@ products:
     name: Arlec 45cm black floor fan
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   dps:
     - id: 1
       name: switch
@@ -66,8 +66,7 @@ secondary_entities:
             value: false
           - value: true
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 6

@@ -51,7 +51,8 @@ secondary_entities:
         name: sensor
         unit: kW
         class: measurement
-        scale: 10000
+        mapping:
+          - scale: 10000
   - entity: binary_sensor
     name: Fault
     class: problem

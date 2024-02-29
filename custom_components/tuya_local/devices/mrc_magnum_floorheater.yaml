@@ -174,8 +174,7 @@ secondary_entities:
           - dps_val: true
             value: Fahrenheit
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 108
@@ -342,7 +341,8 @@ secondary_entities:
         type: integer
         name: sensor
         unit: "%"
-        mask: 00FF
+        mapping:
+          - mask: 00FF
   - entity: sensor
     name: Yearly consumption
     category: diagnostic
@@ -351,7 +351,8 @@ secondary_entities:
         type: integer
         name: sensor
         unit: "%"
-        mask: FF00
+        mapping:
+          - mask: FF00
   - entity: select
     name: Floor covering
     icon: "mdi:floor-plan"

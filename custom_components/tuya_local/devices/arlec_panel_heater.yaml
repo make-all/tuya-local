@@ -44,8 +44,7 @@ primary_entity:
 
 secondary_entities:
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 6
@@ -61,9 +60,8 @@ secondary_entities:
         optional: true
         name: alternate
   - entity: number
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 10
         type: integer
