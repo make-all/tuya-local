@@ -20,7 +20,6 @@ from custom_components.tuya_local.sensor import TuyaLocalSensor
 
 from .const import GPPH_HEATER_PAYLOAD, KOGAN_HEATER_PAYLOAD
 
-
 PRODUCT_SCHEMA = vol.Schema(
     {
         vol.Required("id"): str,
