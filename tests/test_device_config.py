@@ -1,10 +1,10 @@
 """Test the config parser"""
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import MagicMock
+import voluptuous as vol
 
 from fuzzywuzzy import fuzz
 from homeassistant.components.sensor import SensorDeviceClass
-import voluptuous as vol
 
 from custom_components.tuya_local.helpers.config import get_device_id
 from custom_components.tuya_local.helpers.device_config import (
