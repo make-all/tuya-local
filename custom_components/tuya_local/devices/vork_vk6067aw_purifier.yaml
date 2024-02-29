@@ -4,7 +4,7 @@ products:
 primary_entity:
   entity: fan
   icon: "mdi:air-purifier"
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   dps:
     - id: 1
       name: switch
@@ -56,9 +56,8 @@ secondary_entities:
         type: boolean
         name: button
   - entity: select
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 18
         type: string
@@ -74,7 +73,6 @@ secondary_entities:
     name: Timer
     class: duration
     category: diagnostic
-    icon: "mdi:timer"
     dps:
       - id: 19
         name: sensor

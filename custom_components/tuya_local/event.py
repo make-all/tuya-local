@@ -60,5 +60,5 @@ class TuyaLocalEvent(TuyaLocalEntity, EventEntity):
             if value is not None:
                 self._trigger_event(
                     value,
-                    self.extra_state_attributes(),
+                    self.extra_state_attributes,
                 )

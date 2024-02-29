@@ -40,11 +40,14 @@ class TestZXG30Alarm(TuyaDeviceTestCase):
                 "number_exit_delay",
                 "binary_sensor_tamper",
                 "switch_voice_prompt",
-                "switch_ac_power",
-                "binary_sensor_low_battery_alarm",
+                "binary_sensor_plug",
+                "binary_sensor_battery",
+                "switch_alarm_call",
+                "switch_alarm_sms",
                 "switch_alarm_notification",
                 "number_entry_delay",
                 "switch_tick_down",
+                "button_factory_reset",
             ]
         )
 

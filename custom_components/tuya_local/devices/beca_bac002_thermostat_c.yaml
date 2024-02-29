@@ -1,4 +1,9 @@
-name: BAC-002 thermostat external C
+name: Thermostat
+# this config is for external probe, deg C
+# if you have a different setup, file a new device report
+products:
+  - id: N8bUqOZ8HBQjU0K0
+    name: Becasmart BAC005
 primary_entity:
   entity: climate
   dps:
@@ -57,17 +62,12 @@ primary_entity:
           value: low
 secondary_entities:
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 6
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: select
     name: Schedule
     icon: "mdi:calendar-clock"

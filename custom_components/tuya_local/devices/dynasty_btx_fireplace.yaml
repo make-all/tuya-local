@@ -1,0 +1,193 @@
+name: Fireplace
+products:
+  - id: 6lmohn7hdu9uh78r
+    name: Dynasty BTX Fireplace
+primary_entity:
+  entity: climate
+  icon: "mdi:fireplace"
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          value: heat
+    - id: 3
+      name: current_temperature
+      type: integer
+    - id: 5
+      name: temperature
+      type: string
+      unit: C
+      range:
+        min: 16
+        max: 30
+      mapping:
+        - dps_val: "0"
+          value: 16
+        - dps_val: "1"
+          value: 19
+        - dps_val: "2"
+          value: 21
+        - dps_val: "3"
+          value: 23
+        - dps_val: "4"
+          value: 25
+        - dps_val: "5"
+          value: 27
+        - dps_val: "6"
+          value: 30
+    - id: 13
+      name: temperature_unit_setting
+      type: string
+      mapping:
+        - dps_val: "c"
+          value: C
+        - dps_val: "f"
+          value: F
+    - id: 107
+      name: fan_mode
+      type: string
+      mapping:
+        - dps_val: "0"
+          value: "off"
+        - dps_val: "1"
+          value: high
+        - dps_val: "2"
+          value: low
+secondary_entities:
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 108
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: "1 hour"
+          - dps_val: "2"
+            value: "2 hours"
+          - dps_val: "3"
+            value: "3 hours"
+          - dps_val: "4"
+            value: "4 hours"
+          - dps_val: "5"
+            value: "5 hours"
+          - dps_val: "6"
+            value: "6 hours"
+          - dps_val: "7"
+            value: "7 hours"
+          - dps_val: "8"
+            value: "8 hours"
+          - dps_val: "9"
+            value: "9 hours"
+  - entity: sensor
+    name: Time remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: min
+  - entity: light
+    name: Flame
+    icon: "mdi:fire"
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: select
+    name: Flame red
+    icon: "mdi:fire"
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: Low
+          - dps_val: "2"
+            value: Medium
+          - dps_val: "3"
+            value: High
+  - entity: select
+    name: Flame blue
+    icon: "mdi:fire"
+    category: config
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: Low
+          - dps_val: "2"
+            value: Medium
+          - dps_val: "3"
+            value: High
+  - entity: select
+    name: Flame yellow
+    icon: "mdi:fire"
+    category: config
+    dps:
+      - id: 104
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: Low
+          - dps_val: "2"
+            value: Medium
+          - dps_val: "3"
+            value: High
+  - entity: select
+    name: Embers
+    icon: "mdi:campfire"
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: Red
+          - dps_val: "2"
+            value: Orange
+          - dps_val: "3"
+            value: Yellow
+          - dps_val: "4"
+            value: Green
+          - dps_val: "5"
+            value: Teal
+          - dps_val: "6"
+            value: Blue
+          - dps_val: "7"
+            value: Light Blue
+          - dps_val: "8"
+            value: Dark Blue
+          - dps_val: "9"
+            value: Snow Blue
+          - dps_val: "10"
+            value: Purple
+          - dps_val: "11"
+            value: Pink
+          - dps_val: "12"
+            value: Violet
+          - dps_val: "13"
+            value: Colourful

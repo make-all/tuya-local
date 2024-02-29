@@ -1,0 +1,99 @@
+name: Level sensor
+products:
+  - id: npfinze0zsvta7aj
+    name: EPT 3m ultrasonic
+primary_entity:
+  entity: sensor
+  name: Status
+  class: enum
+  dps:
+    - id: 1
+      type: string
+      name: sensor
+      mapping:
+        - dps_val: normal
+          value: normal
+        - dps_val: lower_alarm
+          value: low
+        - dps_val: upper_alarm
+          value: high
+secondary_entities:
+  - entity: sensor
+    name: Depth
+    class: distance
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: m
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: number
+    name: High level
+    category: config
+    icon: "mdi:arrow-collapse-up"
+    dps:
+      - id: 7
+        type: integer
+        optional: true
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: number
+    name: Low level
+    category: config
+    icon: "mdi:arrow-collapse-down"
+    dps:
+      - id: 8
+        type: integer
+        optional: true
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: number
+    name: Installation height
+    category: config
+    class: distance
+    icon: "mdi:human-male-height"
+    dps:
+      - id: 19
+        type: integer
+        optional: true
+        name: value
+        unit: m
+        range:
+          min: 100
+          max: 3000
+        mapping:
+          - scale: 1000
+  - entity: number
+    name: Maximum depth
+    category: config
+    class: distance
+    icon: "mdi:wave-arrow-up"
+    dps:
+      - id: 21
+        type: integer
+        optional: true
+        name: value
+        unit: m
+        range:
+          min: 100
+          max: 2900
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Level
+    category: diagnostic
+    icon: "mdi:water-percent"
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement

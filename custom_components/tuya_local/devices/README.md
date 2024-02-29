@@ -32,8 +32,7 @@ listing can also have an optional `name`, which is intended to specify the
 specific brand and model name or number of the matching device.  In future
 when local discovery is implemented to discover products by id, this name will
 be displayed on discovery, and be available as manufacturer and model info
-in device settings (so probably in future name will be split into manufacturer
-and model, but for now, putting them together as name is OK).
+in device settings.
 
 ### `primary_entity`
 
@@ -76,6 +75,19 @@ entities can have a class of `outlet`. This may slightly alter the UI
 behaviour.
 For most entities, it will alter the default icon, and for binary sensors
 also the state that off and on values translate to in the UI.
+
+### `translation_key` / `translation_only_key`
+
+*Optional*
+
+A key used to define strings and icons for this entity. If this is used,
+the name can be omited and instead defined in the translations files.
+
+`translation_key` will be used to generate IDs when there is no name defined.
+If the intention is to have an unnamed entity, or to inherit from class, then
+use `translation_only_key` instead (this is mostly useful to retain
+backward compatibility where `translation_key` is used to define icons and
+attribute strings but not the entity name.
 
 ### `category`
 
@@ -202,9 +214,7 @@ to Home Assistant attribute mapping to something other than a one to one
 copy.
 
 The rules can range from simple value substitution to complex
-relationships involving other attributes. It can also be used to change
-the icon of the entity based on the attribute value. Mapping rules are
-defined in their own section below.
+relationships involving other attributes.
 
 ### `hidden`
 
@@ -287,10 +297,7 @@ rule in the list applies to. This can be used to map specific values from the
 Tuya protocol into attribute values that have specific meaning in Home
 Assistant. For example, climate entities in Home Assistant define modes
 "off", "heat", "cool", "heat_cool", "auto" and "dry". But in the Tuya protocol,
-a simple heater just has a boolean off/on switch. It can also be used to
-change the icon when a specific mode is operational. For example if
-a heater device has a fan-only mode, you could change the icon to "mdi:fan"
-instead of "mdi:radiator" when in that mode.
+a simple heater just has a boolean off/on switch.
 A `dps_val` of `null` can be used to specify a value to be assumed when a
 dp is not being returned by the device, to avoid None in some locations where
 that causes an issue such as entities showing as unavailable. Such a mapping
@@ -364,7 +371,7 @@ across the range.
 
 ### `icon`
 
-*Optional.*
+*Optional. Deprecated since HA 2024.2 (use translation_key and icons.json to define icons)*
 
 This can be used to override the icon. Most useful with a `dps_val` which
 indicates a change from normal operating mode, such as "fan-only",
@@ -372,7 +379,7 @@ indicates a change from normal operating mode, such as "fan-only",
 
 ### `icon_priority`
 
-*Optional. Default 10. Lower numbers mean higher priorities.*
+*Optional. Default 10. Lower numbers mean higher priorities. Deprecated, icons should be defined using icons.json and translation_key since HA 2024.2*
 
 When a number of rules on different attributes define `icon` changes, you
 may need to control which have priority over the others. For example,
@@ -582,8 +589,9 @@ Either **position** or **open** should be specified.
 - **switch** (optional, boolean): a dp to control the power state of the fan
 - **preset_mode** (optional, mapping of strings): a dp to control different modes of the fan.
    Values `"off", low, medium, high` used to be handled specially by HA as deprecated speed aliases. If these are the only "presets", consider mapping them as **speed** values instead, as voice assistants will respond to phrases like "turn the fan up/down" for speed.
-- **speed** (optional, number 0-100): a dp to control the speed of the fan (%).
-    scale and step can be used to convert smaller ranges to percentages, or a mapping for discrete values.
+- **speed** (optional, number): a dp to control the speed of the fan (%).
+    if a range is supplied, it will be automatically scaled to the 0-100 range.
+    if a mapping is used for dicrete steps, the values must be mapped within that range.
 - **oscillate** (optional, boolean): a dp to control whether the fan will oscillate or not.
 - **direction** (optional, string): a dp to control the spin direction of the fan.
    Valid values are `forward, reverse`.
@@ -603,7 +611,7 @@ Humidifer can also cover dehumidifiers (use class to specify which).
 
 ### `light`
 - **switch** (optional, boolean): a dp to control the on/off state of the light
-- **brightness** (optional, number 0-255): a dp to control the dimmer if available.
+- **brightness** (optional, number): a dp to control the dimmer if available.  If a range is provided, the value will be automatically scaled into the 0-255 range for HA, so there is no need to provide a scale. If there is a fixed list of mappings, the values should be between 0 (off) and 255 (full brightness). If there is no switch dp, a brightness of 0 will be sent to turn the light off.
 - **color_temp** (optional, number): a dp to control the color temperature if available. See `target_range` above for mapping Tuya's range into Kelvin.
 
 - **rgbhsv** (optional, hex): a dp to control the color of the light, using encoded RGB and HSV values. The `format` field names recognized for decoding this field are `r`, `g`, `b`, `h`, `s`, `v`.

@@ -4,17 +4,12 @@ products:
     name: Smartmi E1
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   icon: "mdi:air-purifier"
   dps:
     - id: 1
       name: switch
       type: boolean
-      mapping:
-        - dps_val: true
-          icon: "mdi:air-purifier"
-        - dps_val: false
-          icon: "mdi:air-purifier-off"
     - id: 3
       name: preset_mode
       type: string

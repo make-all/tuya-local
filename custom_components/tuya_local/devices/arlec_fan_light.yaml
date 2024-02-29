@@ -1,7 +1,7 @@
 name: ARLEC fan with light
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   dps:
     - id: 1
       name: switch
@@ -10,10 +10,8 @@ primary_entity:
       name: speed
       type: integer
       range:
-        min: 0
+        min: 1
         max: 6
-      mapping:
-        - scale: 0.06
     - id: 4
       name: direction
       type: string
@@ -39,7 +37,6 @@ secondary_entities:
           max: 100
         mapping:
           - step: 2
-            scale: 0.392
       - id: 11
         type: integer
         name: color_temp
@@ -53,8 +50,7 @@ secondary_entities:
               min: 2700
               max: 6500
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 103

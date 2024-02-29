@@ -3,11 +3,11 @@
 name: Aroma diffuser
 products:
   - id: c0nh3LmEk0NDebrq
-    model: YYM-805SW
+    name: YYM-805SW
   - id: 4870500398f4abbfbae4
-    model: GX
+    name: GX
   - id: kgczidn0awas0prr
-    manufacturer: Tellur
+    name: Tellur
 primary_entity:
   entity: fan
   dps:
@@ -86,8 +86,7 @@ secondary_entities:
               min: 0
               max: 255
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 3
@@ -104,7 +103,6 @@ secondary_entities:
             value: "6 hours"
       - id: 4
         name: remaining
-        readolny: true
         optional: true
         type: integer
         range:

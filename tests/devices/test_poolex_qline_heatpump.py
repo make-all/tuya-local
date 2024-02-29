@@ -15,7 +15,7 @@ CURRENTTEMP_DPS = "16"
 ERROR_DPS = "15"
 
 
-class TestPoolexSilverlineHeatpump(
+class TestPoolexQlineHeatpump(
     MultiBinarySensorTests,
     TargetTemperatureTests,
     TuyaDeviceTestCase,
@@ -28,8 +28,8 @@ class TestPoolexSilverlineHeatpump(
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,
             self.subject,
-            min=8,
-            max=40,
+            min=8.0,
+            max=40.0,
         )
         self.setUpMultiBinarySensors(
             [
@@ -57,7 +57,9 @@ class TestPoolexSilverlineHeatpump(
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            ClimateEntityFeature.TARGET_TEMPERATURE,
+            ClimateEntityFeature.TARGET_TEMPERATURE
+            | ClimateEntityFeature.TURN_OFF
+            | ClimateEntityFeature.TURN_ON,
         )
 
     def test_icon(self):

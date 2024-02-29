@@ -8,7 +8,6 @@ primary_entity:
     - id: 9
       type: boolean
       name: hvac_mode
-      icon: "mdi:thermostat-box"
       mapping:
         - dps_val: false
           value: "off"
@@ -99,16 +98,15 @@ primary_entity:
       name: fault_code
 secondary_entities:
   - entity: switch
+    class: switch
     name: Manual Switch
     dps:
       - id: 2
         type: boolean
         name: switch
-        icon: mdi:light-switch
   - entity: number
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 4
         type: integer

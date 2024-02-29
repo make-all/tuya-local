@@ -58,6 +58,7 @@ class TestQotoSprinkler(
                 {
                     "name": "sensor_timer",
                     "dps": COUNTDOWN_DPS,
+                    "device_class": "duration",
                     "unit": "s",
                 },
             ]

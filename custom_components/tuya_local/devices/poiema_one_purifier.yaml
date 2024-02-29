@@ -4,7 +4,7 @@ products:
 primary_entity:
   entity: fan
   icon: "mdi:air-purifier"
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   dps:
     - id: 1
       type: boolean
@@ -41,17 +41,12 @@ secondary_entities:
         class: measurement
         unit: ugm3
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 7
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: button
     name: Filter reset
     category: config
@@ -61,9 +56,8 @@ secondary_entities:
         type: boolean
         name: button
   - entity: select
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 18
         type: string
@@ -85,7 +79,6 @@ secondary_entities:
     name: Timer
     category: diagnostic
     class: duration
-    icon: "mdi:timer"
     dps:
       - id: 19
         type: integer

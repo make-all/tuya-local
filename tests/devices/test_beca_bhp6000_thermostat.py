@@ -34,8 +34,8 @@ class TestBecaBHP6000Thermostat(
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,
             self.subject,
-            min=40,
-            max=95,
+            min=40.0,
+            max=95.0,
         )
         self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_display"))
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
@@ -48,6 +48,7 @@ class TestBecaBHP6000Thermostat(
                 ClimateEntityFeature.FAN_MODE
                 | ClimateEntityFeature.PRESET_MODE
                 | ClimateEntityFeature.TARGET_TEMPERATURE
+                | ClimateEntityFeature.TURN_OFF
             ),
         )
 
@@ -140,23 +141,6 @@ class TestBecaBHP6000Thermostat(
 
     def test_extra_state_attributes(self):
         self.assertEqual(self.subject.extra_state_attributes, {})
-
-    def test_icons(self):
-        self.dps[HVACMODE_DPS] = 1
-        self.assertEqual(self.subject.icon, "mdi:snowflake")
-        self.dps[HVACMODE_DPS] = 2
-        self.assertEqual(self.subject.icon, "mdi:fire")
-        self.dps[HVACMODE_DPS] = 3
-        self.assertEqual(self.subject.icon, "mdi:hvac-off")
-        self.dps[HVACMODE_DPS] = 4
-        self.assertEqual(self.subject.icon, "mdi:fire-alert")
-        self.dps[HVACMODE_DPS] = 5
-        self.assertEqual(self.subject.icon, "mdi:hvac")
-
-        self.dps[LIGHT_DPS] = True
-        self.assertEqual(self.basicLight.icon, "mdi:led-on")
-        self.dps[LIGHT_DPS] = False
-        self.assertEqual(self.basicLight.icon, "mdi:led-off")
 
 
 class TestBecaBHP6000ThermostatC(TuyaDeviceTestCase):

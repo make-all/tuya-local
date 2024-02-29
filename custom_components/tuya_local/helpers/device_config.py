@@ -42,9 +42,7 @@ def _typematch(vtype, value):
 
 def _scale_range(r, s):
     "Scale range r by factor s"
-    if s == 1:
-        return r
-    return {"min": r["min"] / s, "max": r["max"] / s}
+    return (r["min"] / s, r["max"] / s)
 
 
 _unsigned_fmts = {
@@ -234,6 +232,11 @@ class TuyaEntityConfig:
         """The translation key for this entity."""
         return self._config.get("translation_key", self.device_class)
 
+    @property
+    def translation_only_key(self):
+        """The translation key for this entity, not used for unique_id"""
+        return self._config.get("translation_only_key")
+
     def unique_id(self, device_uid):
         """Return a suitable unique_id for this entity."""
         return f"{device_uid}-{slugify(self.config_id)}"
@@ -266,10 +269,11 @@ class TuyaEntityConfig:
     @property
     def config_id(self):
         """The identifier for this entity in the config."""
-        own_name = self._config.get("name", self.device_class)
+        own_name = self._config.get("name")
         if own_name:
             return f"{self.entity}_{slugify(own_name)}"
-
+        if self.translation_key:
+            return f"{self.entity}_{self.translation_key}"
         return self.entity
 
     @property
@@ -506,6 +510,7 @@ class TuyaDpsConfig:
                         val,
                         c_val,
                     )
+
                     val = c_val
                     break
         _LOGGER.debug("%s values: %s", self.name, val)
@@ -923,13 +928,13 @@ class TuyaDpsConfig:
 
         r = self.range(device, scaled=False)
         if r and isinstance(result, Number):
-            mn = r["min"]
-            mx = r["max"]
+            mn = r[0]
+            mx = r[1]
             if round(result) < mn or round(result) > mx:
                 # Output scaled values in the error message
                 r = self.range(device, scaled=True)
-                mn = r["min"]
-                mx = r["max"]
+                mn = r[0]
+                mx = r[1]
                 raise ValueError(f"{self.name} ({value}) must be between {mn} and {mx}")
 
         if mask and isinstance(result, Number):

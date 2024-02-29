@@ -4,7 +4,7 @@ products:
     name: Cadence ultrasonic aroma diffuser
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   dps:
     - id: 2
       name: switch
@@ -41,8 +41,6 @@ secondary_entities:
         range:
           min: 10
           max: 1000
-        mapping:
-          - scale: 3.92
       # 10: rgbhsv, but not present in log and no color_mode to select it,
       #     so probably a doc error
       - id: 105
@@ -124,9 +122,8 @@ secondary_entities:
         name: button
         optional: true
   - entity: number
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 109
         type: integer

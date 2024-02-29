@@ -3,12 +3,12 @@ products:
   - id: "emh1sylyfw7n2b50"
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
+  icon: "mdi:air-purifier"
   dps:
     - id: 1
       name: switch
       type: boolean
-      icon: "mdi:air-purifier"
     - id: 3
       type: string
       name: preset_mode
@@ -61,9 +61,8 @@ secondary_entities:
         type: integer
         unit: d
   - entity: select
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:fan-clock"
     dps:
       - id: 18
         type: string
@@ -80,7 +79,6 @@ secondary_entities:
   - entity: sensor
     name: Timer remaining
     category: diagnostic
-    icon: "mdi:timer-sand"
     class: duration
     dps:
       - id: 19

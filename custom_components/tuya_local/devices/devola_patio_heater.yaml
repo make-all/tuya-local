@@ -8,10 +8,8 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:fire-off"
         - dps_val: true
           value: heat
-          icon: "mdi:fire"
     - id: 2
       type: integer
       name: temperature
@@ -71,17 +69,12 @@ primary_entity:
       hidden: true
 secondary_entities:
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 7
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: sensor
     name: Power level
     category: diagnostic
@@ -108,9 +101,8 @@ secondary_entities:
         type: string
         name: sensor
   - entity: number
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 12
         type: integer

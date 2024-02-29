@@ -3,7 +3,7 @@ products:
   - id: vzj97d3m05yjhchn
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   dps:
     - id: 1
       type: boolean
@@ -22,17 +22,14 @@ primary_entity:
       type: integer
       name: speed
       range:
-        min: 0
+        min: 1
         max: 5
-      mapping:
-        - scale: 0.05
     - id: 8
       type: string
       name: direction
 secondary_entities:
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 22

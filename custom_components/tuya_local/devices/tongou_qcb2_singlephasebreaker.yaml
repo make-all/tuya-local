@@ -1,0 +1,322 @@
+name: Circuit breaker
+products:
+  - id: l1t5oophgyzpdrag
+    name: Tongou QCB2-WB single-phase
+primary_entity:
+  entity: switch
+  icon: "mdi:fuse"
+  dps:
+    - id: 16
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Voltage A
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        unit: V
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 10
+            mask: "FFFF000000000000"
+  - entity: sensor
+    name: Current A
+    class: current
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        unit: A
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 1000
+            mask: "0000FFFFFF000000"
+  - entity: sensor
+    name: Power A
+    class: power
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        unit: kW
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 1000
+            mask: "0000000000FFFFFF"
+  - entity: select
+    name: Overvoltage action
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: Closed
+            value: Remain closed
+            icon: "mdi:electric-switch-closed"
+          - dps_val: Alarm
+            value: Alarm
+            icon: "mdi:bell-alert"
+          - dps_val: Trip
+            value: Trip
+            icon: "mdi:electric-switch"
+  - entity: select
+    name: Undervoltage action
+    category: config
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: Closed
+            value: Remain closed
+            icon: "mdi:electric-switch-closed"
+          - dps_val: Alarm
+            value: Alarm
+            icon: "mdi:bell-alert"
+          - dps_val: Trip
+            value: Trip
+            icon: "mdi:electric-switch"
+  - entity: select
+    name: Overcurrent action
+    category: config
+    dps:
+      - id: 104
+        type: string
+        name: option
+        mapping:
+          - dps_val: Closed
+            value: Remain closed
+            icon: "mdi:electric-switch-closed"
+          - dps_val: Alarm
+            value: Alarm
+            icon: "mdi:bell-alert"
+          - dps_val: Trip
+            value: Trip
+            icon: "mdi:electric-switch"
+  - entity: select
+    name: Overpower action
+    category: config
+    dps:
+      - id: 105
+        type: string
+        name: option
+        mapping:
+          - dps_val: Closed
+            value: Remain closed
+            icon: "mdi:electric-switch-closed"
+          - dps_val: Alarm
+            value: Alarm
+            icon: "mdi:bell-alert"
+          - dps_val: Trip
+            value: Trip
+            icon: "mdi:electric-switch"
+  - entity: select
+    name: Temperature action
+    category: config
+    dps:
+      - id: 107
+        type: string
+        name: option
+        mapping:
+          - dps_val: Closed
+            value: Remain closed
+            icon: "mdi:electric-switch-closed"
+          - dps_val: Alarm
+            value: Alarm
+            icon: "mdi:bell-alert"
+          - dps_val: Trip
+            value: Trip
+            icon: "mdi:electric-switch"
+  - entity: switch
+    category: config
+    name: Live updates
+    icon: "mdi:chart-bar"
+    dps:
+      - id: 109
+        type: string
+        name: switch
+        mapping:
+          - dps_val: online
+            value: true
+          - dps_val: offline
+            value: false
+          - value: false
+            hidden: true
+  - entity: event
+    dps:
+      - id: 110
+        name: event
+        type: string
+        mapping:
+          - dps_val: Normal
+            value: Normal
+          - dps_val: Over_Current_Trip
+            value: Over_Current_Trip
+          - dps_val: Over_Power_Trip
+            value: Over_Power_Trip
+          - dps_val: High_Temp_Trip
+            value: High_Temp_Trip
+          - dps_val: Over_Voltage_Trip
+            value: Over_Voltage_Trip
+          - dps_val: Under_Voltage_Trip
+            value: Under_Voltage_Trip
+          - dps_val: Over_Current_Alarm
+            value: Over_Current_Alarm
+          - dps_val: Over_Power_Alarm
+            value: Over_Power_Alarm
+          - dps_val: High_Temp_Alarm
+            value: High_Temp_Alarm
+          - dps_val: Over_Voltage_Alarm
+            value: Over_Voltage_Alarm
+          - dps_val: Under_Voltage_Alarm
+            value: Under_Voltage_Alarm
+          - dps_val: Remote_ON
+            value: Remote_ON
+          - dps_val: Remote_OFF
+            value: Remote_OFF
+          - dps_val: Manual_ON
+            value: Manual_ON
+          - dps_val: Manual_OFF
+            value: Manual_OFF
+          - dps_val: Leakage_Trip
+            value: Leakage_Trip
+          - dps_val: Leakage_Alarm
+            value: Leakage_Alarm
+          - dps_val: Restore_Default
+            value: Restore_Default
+          - dps_val: Automatic_Closing
+            value: Automatic_Closing
+          - dps_val: Electricity_Shortage
+            value: Electricity_Shortage
+          - dps_val: Electricity_Shortage_Alarm
+            value: Electricity_Shortage_Alarm
+  - entity: switch
+    name: Auto reset
+    icon: "mdi:refresh-auto"
+    category: config
+    dps:
+      - id: 112
+        type: boolean
+        name: switch
+  - entity: button
+    name: Factory reset
+    class: restart
+    category: config
+    dps:
+      - id: 113
+        type: boolean
+        name: button
+        optional: true
+  - entity: number
+    name: Overcurrent threshold
+    class: current
+    category: config
+    icon: "mdi:arrow-collapse-up"
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 1
+          max: 63
+  - entity: number
+    name: Overvoltage threshold
+    class: voltage
+    category: config
+    icon: "mdi:arrow-collapse-up"
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 245
+          max: 295
+  - entity: number
+    name: Undervoltage threshold
+    class: voltage
+    category: config
+    icon: "mdi:arrow-collapse-down"
+    dps:
+      - id: 116
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 145
+          max: 220
+  - entity: number
+    name: Temperature threshold
+    class: temperature
+    category: config
+    icon: "mdi:thermometer-alert"
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -250
+          max: 1000
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Over power threshold
+    class: power
+    category: config
+    icon: "mdi:arrow-collapse-up"
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        unit: W
+        range:
+          min: 10
+          max: 25000
+        mapping:
+          - step: 10
+  - entity: sensor
+    name: Energy A
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 125
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Temperature A
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 131
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10

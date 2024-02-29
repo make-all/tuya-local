@@ -4,7 +4,7 @@ products:
     name: Cooper and Hunter Nordic Evo NG
 primary_entity:
   entity: climate
-  translation_key: aircon_extra
+  translation_only_key: aircon_extra
   dps:
     - id: 1
       name: hvac_mode
@@ -12,24 +12,18 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:hvac-off"
         - dps_val: true
           constraint: mode
           conditions:
             - dps_val: auto
-              icon: "mdi:hvac"
               value: heat_cool
             - dps_val: cold
-              icon: "mdi:snowflake"
               value: cool
             - dps_val: hot
-              icon: "mdi:fire"
               value: heat
             - dps_val: wet
-              icon: "mdi:water-off"
               value: dry
             - dps_val: wind
-              icon: "mdi:fan"
               value: fan_only
 
     - id: 2
@@ -151,14 +145,19 @@ secondary_entities:
       - id: 9
         name: switch
         type: boolean
-        constraint: mode
-        conditions:
-          - dps_val: auto
-            invalid: true
-          - dps_val: wind
-            invalid: true
-          - dps_val: hot
-            invalid: true
+        mapping:
+          - constraint: mode
+            conditions:
+              - dps_val: auto
+                invalid: true
+              - dps_val: wind
+                invalid: true
+              - dps_val: hot
+                invalid: true
+      - id: 4
+        name: mode
+        type: string
+        hidden: true
   - entity: switch
     name: Ioniser
     category: config
@@ -176,9 +175,8 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
-    icon: "mdi:lock"
     dps:
       - id: 14
         name: lock
@@ -225,7 +223,7 @@ secondary_entities:
   - entity: binary_sensor
     name: Defrosting
     category: diagnostic
-    icon: "mdi:snowflake"
+    class: cold
     dps:
       - id: 181
         name: sensor

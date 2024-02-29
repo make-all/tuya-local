@@ -4,7 +4,7 @@ products:
     name: Cecotec AQUA CONNECTED
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   dps:
     - id: 1
       type: boolean
@@ -26,9 +26,6 @@ primary_entity:
     - id: 3
       name: speed
       type: string
-      range:
-        min: 1
-        max: 6
       mapping:
         - dps_val: "1"
           value: 17

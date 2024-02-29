@@ -1,8 +1,7 @@
 name: Tap timer
 products:
   - id: zrsgzc8jktsricjj
-    model: WX1
-    manufacturer: Holman
+    name: Holman WX1
     # DP decoding thanks to funtastix
 primary_entity:
   entity: switch
@@ -59,13 +58,10 @@ secondary_entities:
         unit: "%"
         mapping:
           - dps_val: 0
-            icon: "mdi:battery-10"
-            value: 0
+            value: 10
           - dps_val: 1
-            icon: "mdi:battery-60"
             value: 50
           - dps_val: 2
-            icon: "mdi:battery"
             value: 100
   - entity: sensor
     name: Status
@@ -86,8 +82,7 @@ secondary_entities:
           - dps_val: 3
             value: "Rain Delay"
   - entity: number
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 107

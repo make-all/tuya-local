@@ -1,7 +1,7 @@
 name: Beok TR8B thermostat
 primary_entity:
   entity: climate
-  translation_key: combo_floor
+  translation_only_key: combo_floor
   dps:
     - id: 1
       type: boolean
@@ -211,8 +211,7 @@ secondary_entities:
         type: string
         name: schedule
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 40

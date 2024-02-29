@@ -14,7 +14,8 @@ primary_entity:
       range:
         min: 30
         max: 75
-        step: 5
+      mapping:
+        - step: 5
     - id: 14
       name: current_humidity
       type: integer
@@ -46,7 +47,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: select
-    name: Timer
+    translation_key: timer
     dps:
       - id: 19
         type: string

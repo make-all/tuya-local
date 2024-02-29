@@ -17,8 +17,6 @@ primary_entity:
       range:
         min: 0
         max: 1000
-      mapping:
-        - scale: 3.92
     - id: 4
       name: color_temp
       type: integer
@@ -37,9 +35,8 @@ primary_entity:
       name: power_off_memory
 secondary_entities:
   - entity: number
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 7
         type: integer
