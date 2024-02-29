@@ -32,8 +32,7 @@ listing can also have an optional `name`, which is intended to specify the
 specific brand and model name or number of the matching device.  In future
 when local discovery is implemented to discover products by id, this name will
 be displayed on discovery, and be available as manufacturer and model info
-in device settings (so probably in future name will be split into manufacturer
-and model, but for now, putting them together as name is OK).
+in device settings.
 
 ### `primary_entity`
 

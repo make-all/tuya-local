@@ -223,13 +223,14 @@ secondary_entities:
         range:
           min: 5
           max: 65
-        constraint: unit
-        conditions:
-          - dps_val: f
-            value_redirect: max_temp_f
-            range:
-              min: 41
-              max: 150
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: max_temp_f
+                range:
+                  min: 41
+                  max: 150
       - id: 107
         type: integer
         name: max_temp_f

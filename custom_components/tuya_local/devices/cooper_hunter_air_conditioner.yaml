@@ -145,14 +145,19 @@ secondary_entities:
       - id: 9
         name: switch
         type: boolean
-        constraint: mode
-        conditions:
-          - dps_val: auto
-            invalid: true
-          - dps_val: wind
-            invalid: true
-          - dps_val: hot
-            invalid: true
+        mapping:
+          - constraint: mode
+            conditions:
+              - dps_val: auto
+                invalid: true
+              - dps_val: wind
+                invalid: true
+              - dps_val: hot
+                invalid: true
+      - id: 4
+        name: mode
+        type: string
+        hidden: true
   - entity: switch
     name: Ioniser
     category: config
