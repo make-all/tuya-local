@@ -9,7 +9,6 @@ from homeassistant.const import (
     UnitOfTemperature,
 )
 from homeassistant.helpers.entity import EntityCategory
-from homeassistant.helpers.typing import UNDEFINED
 
 _LOGGER = logging.getLogger(__name__)
 
