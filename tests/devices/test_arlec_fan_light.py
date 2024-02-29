@@ -132,7 +132,7 @@ class TestArlecFan(SwitchableTests, BasicSelectTests, TuyaDeviceTestCase):
 
     def test_light_brightness(self):
         self.dps[BRIGHTNESS_DPS] = 50
-        self.assertAlmostEqual(self.light.brightness, 128, 0)
+        self.assertAlmostEqual(self.light.brightness, 129, 0)
 
     def test_light_color_temp(self):
         self.dps[COLORTEMP_DPS] = 70

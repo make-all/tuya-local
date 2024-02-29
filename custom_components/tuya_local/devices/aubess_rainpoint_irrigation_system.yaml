@@ -1,8 +1,7 @@
 name: Irrigation system
 products:
   - id: 2ak7r2culspkc7hx
-    model: RainPoint TTP106W
-    manufacturer: Aubess
+    name: Aubess RainPoint TTP106W
 primary_entity:
   entity: switch
   icon: "mdi:pipe-valve"
@@ -19,7 +18,6 @@ secondary_entities:
       - id: 106
         name: sensor
         type: string
-        icon_priority: 1
         mapping:
           - dps_val: "0"
             value: Unknown

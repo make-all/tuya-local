@@ -55,9 +55,8 @@ primary_entity:
       optional: true
 secondary_entities:
   - entity: number
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 26
         type: integer
@@ -68,4 +67,4 @@ secondary_entities:
           max: 86400
         mapping:
           - scale: 60
-            steep: 60
+            step: 60

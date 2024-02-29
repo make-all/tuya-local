@@ -103,7 +103,7 @@ class TuyaLocalHumidifier(TuyaLocalEntity, HumidifierEntity):
         if self._humidity_dp is None:
             return None
         r = self._humidity_dp.range(self._device)
-        return DEFAULT_MIN_HUMIDITY if r is None else r["min"]
+        return DEFAULT_MIN_HUMIDITY if r is None else r[0]
 
     @property
     def max_humidity(self):
@@ -111,7 +111,7 @@ class TuyaLocalHumidifier(TuyaLocalEntity, HumidifierEntity):
         if self._humidity_dp is None:
             return None
         r = self._humidity_dp.range(self._device)
-        return DEFAULT_MAX_HUMIDITY if r is None else r["max"]
+        return DEFAULT_MAX_HUMIDITY if r is None else r[1]
 
     async def async_set_humidity(self, humidity):
         if self._humidity_dp is None:

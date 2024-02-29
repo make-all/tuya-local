@@ -11,25 +11,19 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:hvac-off"
         - dps_val: true
           constraint: mode
           conditions:
             - dps_val: auto
-              icon: mdi:thermostat-auto
               value: heat_cool
             - dps_val: cold
-              icon: "mdi:snowflake"
               value: cool
             - dps_val: wind
-              icon: "mdi:fan"
               value: fan_only
             - dps_val: wet
-              icon: "mdi:water"
               value: dry
             - dps_val: hot
               value: heat
-              icon: "mdi:heat-wave"
     - id: 2
       name: temperature
       type: integer

@@ -1,4 +1,7 @@
-from homeassistant.components.climate.const import HVACMode
+from homeassistant.components.climate.const import (
+    ClimateEntityFeature,
+    HVACMode,
+)
 
 from ..const import KOGAN_GLASS_1_7L_KETTLE_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -20,7 +23,10 @@ class TestKoganGlass1_7LKettle(TuyaDeviceTestCase):
         self.subject = self.entities.get("climate")
 
     def test_supported_features(self):
-        self.assertEqual(self.subject.supported_features, 0)
+        self.assertEqual(
+            self.subject.supported_features,
+            ClimateEntityFeature.TURN_OFF | ClimateEntityFeature.TURN_ON,
+        )
 
     def test_icon(self):
         self.dps[HVACMODE_DPS] = True

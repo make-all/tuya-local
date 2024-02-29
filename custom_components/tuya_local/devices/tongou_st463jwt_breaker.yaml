@@ -1,0 +1,235 @@
+name: Circuit breaker energy meter
+products:
+  - id: jexpyxmyl0gubapl
+    name: Tongou TO-Q-ST463JWT 4P
+primary_entity:
+  entity: switch
+  dps:
+    - id: 16
+      name: switch
+      type: boolean
+    - id: 17
+      name: alarm_set_1
+      optional: true
+      type: string
+    - id: 18
+      name: alarm_set_2
+      optional: true
+      type: string
+    - id: 6
+      name: phase_a
+      type: base64
+      optional: true
+      force: true
+    - id: 7
+      name: phase_b
+      type: base64
+      optional: true
+      force: true
+    - id: 8
+      name: phase_c
+      type: base64
+      optional: true
+      force: true
+    - id: 9
+      name: fault
+      type: bitfield
+      optional: true
+      mapping:
+        - dps_val: 0
+          value: OK
+    - id: 19
+      name: breaker_number
+      type: string
+secondary_entities:
+  - entity: switch
+    name: Prepayment
+    icon: "mdi:cash-multiple"
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
+  - entity: button
+    name: Energy reset
+    class: restart
+    category: config
+    dps:
+      - id: 12
+        type: boolean
+        name: button
+        optional: true
+  - entity: sensor
+    name: Balance energy
+    category: diagnostic
+    class: energy_storage
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: kWh
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Charge energy
+    category: config
+    class: energy_storage
+    icon: "mdi:cash"
+    dps:
+      - id: 14
+        type: integer
+        name: value
+        optional: true
+        unit: kWh
+        range:
+          min: 0
+          max: 99999
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Leakage current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        unit: mA
+        class: measurement
+        optional: true
+  - entity: button
+    name: Earth leak test
+    icon: "mdi:current-ac"
+    category: config
+    dps:
+      - id: 21
+        type: boolean
+        name: button
+        optional: true
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Voltage A
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mapping:
+          - mask: "FFFF000000000000"
+            scale: 10
+  - entity: sensor
+    name: Current A
+    class: current
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        mapping:
+          - mask: "0000FFFFFF000000"
+            scale: 1000
+  - entity: sensor
+    name: Power A
+    class: power
+    category: diagnostic
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: kW
+        mapping:
+          - mask: "0000000000FFFFFF"
+            scale: 1000
+  - entity: sensor
+    name: Voltage B
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 7
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mapping:
+          - mask: "FFFF000000000000"
+            scale: 10
+  - entity: sensor
+    name: Current B
+    class: current
+    category: diagnostic
+    dps:
+      - id: 7
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        mapping:
+          - mask: "0000FFFFFF000000"
+            scale: 1000
+  - entity: sensor
+    name: Power B
+    class: power
+    category: diagnostic
+    dps:
+      - id: 7
+        type: base64
+        name: sensor
+        optional: true
+        unit: kW
+        mapping:
+          - mask: "0000000000FFFFFF"
+            scale: 1000
+  - entity: sensor
+    name: Voltage C
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 8
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mapping:
+          - mask: "FFFF000000000000"
+            scale: 10
+  - entity: sensor
+    name: Current C
+    class: current
+    category: diagnostic
+    dps:
+      - id: 8
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        mapping:
+          - mask: "0000FFFFFF000000"
+            scale: 1000
+  - entity: sensor
+    name: Power C
+    class: power
+    category: diagnostic
+    dps:
+      - id: 8
+        type: base64
+        name: sensor
+        optional: true
+        unit: kW
+        mapping:
+          - mask: "0000000000FFFFFF"
+            scale: 1000

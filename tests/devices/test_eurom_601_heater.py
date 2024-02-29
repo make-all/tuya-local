@@ -31,8 +31,8 @@ class TestEurom601Heater(
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,
             self.subject,
-            min=0,
-            max=37,
+            min=0.0,
+            max=37.0,
         )
         self.setUpBasicBinarySensor(
             ERROR_DPS,
@@ -48,6 +48,8 @@ class TestEurom601Heater(
             (
                 ClimateEntityFeature.TARGET_TEMPERATURE
                 | ClimateEntityFeature.PRESET_MODE
+                | ClimateEntityFeature.TURN_OFF
+                | ClimateEntityFeature.TURN_ON
             ),
         )
 

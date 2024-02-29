@@ -30,7 +30,6 @@ primary_entity:
       mapping:
         - dps_val: null
           value: 0
-        - scale: 3.92
     - id: 23
       name: color_temp
       type: integer
@@ -86,9 +85,8 @@ primary_entity:
       optional: true
 secondary_entities:
   - entity: number
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 26
         name: value

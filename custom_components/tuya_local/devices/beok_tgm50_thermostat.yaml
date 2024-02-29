@@ -4,7 +4,7 @@ products:
     name: Beok TGM50-WIFI-WP
 primary_entity:
   entity: climate
-  translation_key: thermostat
+  translation_only_key: thermostat
   dps:
     - id: 1
       name: hvac_mode
@@ -74,17 +74,12 @@ primary_entity:
       type: integer
 secondary_entities:
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 9
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: binary_sensor
     name: Fault
     category: diagnostic

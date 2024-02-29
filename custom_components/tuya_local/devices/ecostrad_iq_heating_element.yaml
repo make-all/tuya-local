@@ -1,7 +1,7 @@
 name: Ecostrad iQ heating element
 primary_entity:
   entity: climate
-  translation_key: thermostat
+  translation_only_key: thermostat
   icon: "mdi:radiator"
   dps:
     - id: 1
@@ -61,17 +61,12 @@ primary_entity:
 
 secondary_entities:
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 40
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: select
     name: Open window detection
     category: config

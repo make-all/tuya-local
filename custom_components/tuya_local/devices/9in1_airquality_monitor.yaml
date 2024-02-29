@@ -31,7 +31,6 @@ secondary_entities:
         class: measurement
   - entity: sensor
     class: humidity
-    icon: "mdi:water-percent"
     dps:
       - id: 3
         type: integer
@@ -40,7 +39,6 @@ secondary_entities:
         class: measurement
   - entity: sensor
     class: carbon_dioxide
-    icon: "mdi:factory"
     dps:
       - id: 4
         type: integer
@@ -49,7 +47,6 @@ secondary_entities:
         class: measurement
   - entity: sensor
     class: carbon_monoxide
-    icon: "mdi:factory"
     dps:
       - id: 102
         type: integer
@@ -59,7 +56,6 @@ secondary_entities:
   - entity: sensor
     name: HCHO
     class: volatile_organic_compounds
-    icon: "mdi:factory"
     dps:
       - id: 5
         type: integer
@@ -71,7 +67,6 @@ secondary_entities:
             step: 1
   - entity: sensor
     class: volatile_organic_compounds
-    icon: "mdi:factory"
     dps:
       - id: 6
         type: integer
@@ -83,7 +78,6 @@ secondary_entities:
             step: 1
   - entity: sensor
     class: pm25
-    icon: "mdi:factory"
     dps:
       - id: 7
         type: integer
@@ -92,7 +86,6 @@ secondary_entities:
         class: measurement
   - entity: sensor
     class: pm10
-    icon: "mdi:factory"
     dps:
       - id: 9
         type: integer
@@ -112,6 +105,7 @@ secondary_entities:
     name: Charge State
     class: enum
     category: diagnostic
+    deprecated: binary_sensor_plug
     dps:
       - id: 23
         type: boolean
@@ -123,6 +117,13 @@ secondary_entities:
           - dps_val: true
             value: "Charging"
             icon: "mdi:battery-charging"
+  - entity: binary_sensor
+    class: plug
+    category: diagnostic
+    dps:
+      - id: 23
+        type: boolean
+        name: sensor
   - entity: sensor
     name: Alarm Volume
     category: diagnostic

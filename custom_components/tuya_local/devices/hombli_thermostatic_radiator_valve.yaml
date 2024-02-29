@@ -60,6 +60,7 @@ secondary_entities:
       - id: 23
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: "c"
             value: Celsius
@@ -82,8 +83,7 @@ secondary_entities:
           min: -60
           max: 60
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 40
@@ -117,3 +117,12 @@ secondary_entities:
       - id: 130
         type: boolean
         name: switch
+  - entity: sensor
+    name: Valve
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"

@@ -4,7 +4,7 @@ products:
     name: Ovlaim FP9805_TAIDE
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   dps:
     - id: 1
       name: switch
@@ -50,8 +50,6 @@ secondary_entities:
         range:
           min: 0
           max: 100
-        mapping:
-          - scale: 0.392
       - id: 17
         name: color_temp
         type: integer
@@ -63,8 +61,7 @@ secondary_entities:
               min: 3000
               max: 6000
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 22

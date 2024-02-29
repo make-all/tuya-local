@@ -65,13 +65,13 @@ class TestImmaxNeoLightVento(
 
     def test_speed(self):
         self.dps[SPEED_DPS] = 2
-        self.assertAlmostEqual(33.3, self.fan.percentage, 1)
+        self.assertAlmostEqual(33, self.fan.percentage, 0)
         self.dps[SPEED_DPS] = 3
         self.assertEqual(50, self.fan.percentage)
         self.dps[SPEED_DPS] = 4
-        self.assertAlmostEqual(66.7, self.fan.percentage, 1)
+        self.assertAlmostEqual(66, self.fan.percentage, 0)
         self.dps[SPEED_DPS] = 5
-        self.assertAlmostEqual(83.3, self.fan.percentage, 1)
+        self.assertAlmostEqual(83, self.fan.percentage, 0)
         self.dps[SPEED_DPS] = 6
         self.assertEqual(100, self.fan.percentage)
         self.dps[SPEED_DPS] = 0

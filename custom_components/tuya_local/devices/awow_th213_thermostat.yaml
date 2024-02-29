@@ -65,9 +65,7 @@ primary_entity:
       mapping:
         - dps_val: true
           value: heating
-          icon: "mdi:thermometer"
         - dps_val: false
-          icon: "mdi:thermometer-off"
           constraint: hvac_mode
           conditions:
             - dps_val: true
@@ -85,17 +83,12 @@ primary_entity:
       name: unknown_110
 secondary_entities:
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 6
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: sensor
     name: External temperature
     class: temperature

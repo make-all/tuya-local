@@ -1,7 +1,7 @@
 name: Beok TOL47 thermostat
 primary_entity:
   entity: climate
-  translation_key: thermostat
+  translation_only_key: thermostat
   dps:
     - id: 1
       type: boolean
@@ -64,17 +64,12 @@ primary_entity:
       name: fault_code
 secondary_entities:
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 8
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: switch
     name: Sound
     category: config

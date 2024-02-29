@@ -16,8 +16,6 @@ primary_entity:
       range:
         min: 10
         max: 1000
-      mapping:
-        - scale: 3.92
     - id: 3
       name: min_brightness
       type: integer
@@ -46,8 +44,6 @@ secondary_entities:
         range:
           min: 0
           max: 1000
-        mapping:
-          - scale: 3.92
       - id: 9
         name: min_brightness
         type: integer
@@ -84,7 +80,7 @@ secondary_entities:
   - entity: number
     name: Timer 1
     category: config
-    icon: "mdi:timer"
+    translation_key: timer
     dps:
       - id: 6
         type: integer
@@ -99,7 +95,7 @@ secondary_entities:
   - entity: number
     name: Timer 2
     category: config
-    icon: "mdi:timer"
+    translation_key: timer
     dps:
       - id: 12
         type: integer

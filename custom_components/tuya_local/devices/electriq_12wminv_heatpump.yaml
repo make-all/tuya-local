@@ -8,24 +8,18 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:hvac-off"
         - dps_val: true
           constraint: mode
           conditions:
             - dps_val: cold
-              icon: "mdi:snowflake"
               value: cool
             - dps_val: wind
-              icon: "mdi:fan"
               value: fan_only
             - dps_val: wet
-              icon: "mdi:water"
               value: dry
             - dps_val: hot
-              icon: "mdi:fire"
               value: heat
             - dps_val: auto
-              icon: "mdi:hvac"
               value: heat_cool
     - id: 2
       name: temperature

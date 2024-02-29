@@ -5,7 +5,7 @@
 - Advanced Fires 1500 electric fireplace
 - Andersson GSH heater
 - Arlec 2200W and 2400W panel heaters
-- Atomi AT1632 ceramic heater
+- Atomi AT1632/AT1635 ceramic heaters
 - Betterlife BT1500 IR heater
 - Blumfeldt/Klarstein Cosmic Beam Smart 24 infrared radiant heater
 - BVF CP1 heater
@@ -13,6 +13,7 @@
 - Calex Smart Convector heater
 - Cleverio AR10/AR20 panel heaters
 - Devola patio heater
+- Dynasty BTX fireplace
 - Ecostrad Accent iQ heating panel
 - Ecostrad iQ ceramic radiator
 - Ecostrad iQ heating element
@@ -22,13 +23,15 @@
 - Eurom Sani Wall Heat 2000 heater
 - Eurom Wall Designheat 2000 heater
 - Goldair heater models beginning with the code GPPH, GCPV, GECO
-- Heatstorm HS-6000-GC heavy duty heater
 - Hama radiator controller
+- Heatstorm HS-6000-GC heavy duty heater
+- Herschel infrared heater 
 - HJZ oil column radiator
 - Hombli radiator controller
 - INOW Wi-Fi heating element (single and dual air/water temperature control variants)
 - Juskys OH125BW2 oil radiator
 - Kennedy II/JR electric fireplace
+- Kesser Infrared 400W wall and 3000W heaters.
 - Klarstein Wonderwall Air Art IR heater
 - Klarstein Wonderwall IR heater
 - Kogan flame effect heater - KAWHMFP20BA model
@@ -48,6 +51,7 @@
 - Sonnenkonig Eco 700 IR panel heater (probably also other Eco/Elegance series heaters)
 - Taurus Agadir Connect oil column heaters
 - Touchstone Sideline electric fireplace
+- Wärme Designer wall panel heater
 - Wetair WCH-750 heater
 
 ### Air Conditioners / Heatpumps
@@ -68,8 +72,9 @@
 - ElectriQ EcoSilent 14HPW
 - Fersk Vind 2
 - Fisher Summer air conditioner
+- Idea Heating Belt (with CS1 USB dongle)
 - Inventor Leon (Tokens Legend series) air conditioner
-- Kogan 2.6kW portable air conditioner
+- Kogan portable air conditioners (Y09, Y12, Y16)
 - Lyfco OL-A012 air conditioner
 - Monzana Klimaanlage air conditioner
 - Nedis ACMB1WT12 portable air conditioner
@@ -80,7 +85,7 @@
 - Sendo air conditioner
 - Star-Light air conditioner (also confirmed to work with Polar branded devices)
 - Suntec Wellness Coolfixx portable air conditioner
-- Tadiran Wind 65/3P
+- Tesla Smart TAF series air conditioner
 - TroniTechnik Hellnar Klimagerät
 - Trotec PAC-W 2600 SH heatpump
 - Vivax Cool ACP-12CH35REWI
@@ -98,7 +103,7 @@
 - Madimack Eco pool heatpump
 - Madimack Elite V3 pool heatpump
 - Madimack(model unknown) pool heatpump (seems to match Fairland IPH45 as well)
-- Poolex Silverline, Q-7, Q-line and Vertigo heatpumps
+- Poolex Silverline, Q-7, Q-line, Arctic and Vertigo heatpumps
 - Remora pool heatpump
 - W'eau pool heatpump (simple model and a more complex 13kW model)
 
@@ -113,7 +118,7 @@
 - EMS Thermal 200L domestic heat pump hot water system
 - Ferroli Titano Twin water heater
 - Geyserwise TSE1 Geyser controller kit
-- Hydrotherm Dynamic/X8 heat pump hot water systems
+- Hydrotherm Dynamic/X8 heat pump hot water systems (Gen 5 and 6)
 - ITS-4.5HD super water heatpump
 - Thermex IF series V pro hot water systems
 - Thermex Lima 80V
@@ -121,9 +126,10 @@
 ### Thermostats
 
 - Arlec PCTH01HA temperature/humidity smart switch
+- Avatto ME81 thermostat
 - Avatto WT100 thermostat
 - Awow/Mi-heat TH213 thermostat (two variants)
-- Beca BAC-002 thermostat
+- Beca BAC-002 thermostat (confirmed on BAC-005 also, likely works with other BAC-00x models)
 - Beca BHT-002/3000 floor heating thermostat (with external temp sensor)
 - Beca BHP-6000 room heat pump control thermostat
 - Beca BHT-6000/8000 floor heating thermostat
@@ -172,6 +178,7 @@
 - Casafan ECO Neo III ceiling fan with light
 - Cecotec ceiling fan with light
 - Chanfok ceiling fan with cool/warm white dimmable light
+- CleanAir 604B humidifier
 - Deta fan controller
 - Djive ARC humidifying fan
 - Duux Whisper Flex pedestal fan
@@ -184,6 +191,8 @@
 - Immax Neo Lite Vento ceiling fan with light
 - Ledkia fan and light controller
 - Lexy F501 fan
+- Keyun MKCFE002 RGB chandelier fan
+- Kogan bladeless fans
 - Mantra ceiling fan with light
 - Ovlaim ceiling fan with cool/warm white dimmable light
 - Reiga 52 ceiling fan with light
@@ -218,7 +227,7 @@
 - Smartmi E1 air purifier
 - Soleusair A02 and A10 air purifiers
 - Stadler Form Roger air purifier
-- Tesla Pro and Mini air purifiers
+- Tesla Smart Pro and Mini air purifiers
 - Vork VK6067AW air purifier
 
 ### Dehumidifiers
@@ -256,6 +265,7 @@
 - Kogan SmarterHome 7L desiccant dehumidifier
 - Pro Breeze 30L dehumidifier
 - Shinco 30D dehumidifier (also matches Klarstein DryFy Connect)
+- Tesla Smart XL dehumidifier
 - VacPlus dehumidifier
 - Vivosun DE0003 dehumidifier
 
@@ -281,7 +291,7 @@
 - Cadance ultrasonic aroma diffuser with light and music playback
 - Ditua DT-1522-YN aroma diffuser
 - Etersky aroma diffuser with light
-- Tesla aroma diffuser with light
+- Tesla Smart aroma diffuser with light
 - YX316WIFI aroma diffuser
 - YYM-805SW aroma diffuser with light (also supports GX Aroma diffuser)
 
@@ -311,6 +321,7 @@
 - EARU SW RCB breaker
 - eMylo EAI-90 smart meter
 - MatSee Plus bidirectional two channel clamp meter
+- Meterk single phase clamp meter
 - Parkside PG/PMW-300 solar inverter
 - PC311-TY 2 phase power clamp meter
 - PC321-TY 3 phase power clamp meter
@@ -319,7 +330,8 @@
 - SmartMCB SMT006 energy meter (10 byte and 8 byte phase info variants)
 - Taxnele circuit breaker and energy meter
 - TOMPD-63LW energy meter circuit breaker
-- Tongou QCB2-WB WiFi 4P circuit breaker
+- Tongou QCB2-WB WiFi 4P circuit breaker (3-phase and single phase variants)
+- Tongou ST463JWT 4P 3-phase circuit breaker
 - V-WIFI-DL02-ES energy consumption clamp meter
 - WDYK 2P63A energy meter
 - WDYK 3 phase 4 pole 400V energy meter circuit breaker
@@ -328,6 +340,7 @@
 
 ### Battery Charger
 
+- EcoPoint EV charger
 - EVSun EV charger
 - Feyree home EV charger
 - Parkside PLGS 2012 A1 smart charger for powertools
@@ -371,6 +384,7 @@ the best option.
 - MakeGood double switch with timers and power monitoring on whole device
 - Mirabella Genio smartplug with USB
 - Moes 3-gang switch
+- Moes 4-gang (quad) switch
 - MoesHouse smartplug with RGBW nightlight
 - Novadigital 4-way switch with backlight, power on state and timers
 - Qnect QN-WPO3 3 outlet + USB powerstrip with individual timers
@@ -387,6 +401,7 @@ generic configurations that basically follow Tuya's templates with
 different features enabled, so are known to work with multiple brands
 of device.
 
+- 2 outlet plus 2 USB smartplug with individual timers
 - 4 way power monitoring strip (2 types)
   _confirmed as working with Kogan KASPS10A3P3UA 3 socket + USB powerstrip_
 - 4 way powerstrip with USB
@@ -428,6 +443,8 @@ of device.
 - Generic dimmable/color temperature adjustable desktop lamp (confirmed with Setti+ SL601)
 - Generic "Dreamlight" RGBCW LED strips (tested with LSC RGBIC+CCT 2x5m LED strip)
 - Generic RGB only light bar - like the lights above, but no white light controls supported.
+- Unbranded 1CH dimmer module
+- Unbranded dual dimmer module
 - A60 1800-2700K RGBWW light
 - Atomi smart color string light
 - Blitzwolf BW-LT31 LED strip
@@ -441,10 +458,12 @@ of device.
 - HDMI sync light
 - iHD001 LED controller
 - Kojima motion sensor RGBCW nightlight
+- Lexi Lighting string light Wifi adapter
 - Loycco sound machine with nightlight (also sold as Momland nightlight with white noise)
 - Loginovo TV sync backlight
 - Lytmi Fantasy/Neo 3 HDMI sync backlight
 - Marpou RGBCW ceiling light
+- Mirabella Genio Pixel LED oval light
 - Moes dimmer switch
 - Moes motion sensor lights (XZ-CGV3)
 - Moes star projector
@@ -463,6 +482,7 @@ of device.
 - Simple garage door
 - Simple blind controller (two variants - `simple_blinds` lets the position be set, but does not trust it to accurately reflect the current position always, `position_blinds` does trust the position to accurately reflect the current position)
 - Simple gate opener (simple garage door with timer)
+- Curtain with feedback (same DP layout as QS C01 curtains, but reads back the current_position from the position as some of these seem to accuraately report position as well)
 - Abalon BCM700D curtain motor (likely to work with other brands)
 - AGL Ultracontato r2 door controller
 - AGL Ultra Magic gate opener
@@ -476,6 +496,7 @@ of device.
 - Dooya curtain motor
 - Etersky curtain switch with backlight and timing control
 - FS-03W curtain switch with backlight control
+- Graywind window shades
 - Kogan garage door with tilt sensor
 - Loonas smart curtain
 - LoraTap GDC100W garage door opener
@@ -486,6 +507,7 @@ of device.
 - Moes SCS80 Touch curtain swich with backlight and timing control
 - QS-WIFI-C01(BK) curtain module
 - SHerko curtain motor
+- SmartCurtains A-series ACS-WT curtain motor (may work for other models)
 - Wistar roller blind controller
 - ZC34T-03-3A swing arm window opener
 - Zemismart curtain rail
@@ -496,10 +518,12 @@ of device.
 - Abir X8 vacuum cleaner
 - Kabum Smart 500 vacuum cleaner
 - Kabum Smart 700 vacuum cleaner (also sold as Liectroux XR500[T2] and maybe others)
+- Kabum Smart 700 vacuum cleaner 2023 model (not quite compatible with Liectroux XR500 T3, but similar revision)
 - Kogan LX10 vacuum cleaner with mop
 - Kyvol E30 vacuum cleaner
 - Lefant LS1 Pro vacuum cleaner
 - Lefant M213 vacuum cleaner (also works for Lefant M213S and APOSEN A550)
+- Lefant N33 vacuum cleaner
 - Lenovo E1 vacuum cleaner
 - Liectroux XR500[T3]
 - Lubluelu SL60D vacuum cleaner with mop
@@ -542,6 +566,8 @@ configured using RTSP or ONVIF feeds if they have static IP address,
 port and password.
 
 - BCom Majic IPBox intercom camera
+- Kerui 200W camera
+- Kerui JS-P162 300W camera
 - Nedis outdoor camera
 - Pinelake BF02 birdfeeder camera
 - RL video intercom (reported unable to connect)
@@ -569,6 +595,8 @@ port and password.
 
 ### Remote controllers
 
+- Arlec HUBRF06HA RF 8x8 learning remote transmitter
+- Moes IR/RF remote controller (also IR controller pro, may work only for IR)
 - Universal remote control with temperature and humidity sensors
 
 ### Miscellaneous
@@ -586,16 +614,19 @@ port and password.
 - CO2-Box air quality monitor
 - CT20W PIR motion detector
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
+- EPT ultrasonic 3m tank level sensor
 - Garza Wi-Fi garden irrigation system (ITV103W with 433MHz WiFi hub)
 - GratKit filament dryer
 - Haier Nayun NY-GS-04 combustible gas alarm
 - Holman WX1 tap timer (sprinkler controller)
 - Holman WX2 dual tap timer
+- Holman WX8 8 sprinkler irrigation controller
 - Inkbird PTH-9CW air quality monitor
 - KKMoon 7in1 air quality monitor
 - Kogan bidet toilet seat
 - Kogan KAWHTNOSLPA white noise sleep aid
 - Konlen/Rockson WF96L water level controller
+- Leo's Loo Too pet toilet
 - Mirabella Genio motion sensor
 - Momcozy white noise machine (2 variants)
 - Nedis WIFISA10CWT air quality monitor
@@ -610,6 +641,8 @@ port and password.
 - SWS-001 smart weather station
 - TH08 temperature and humidity sensor
 - TH16 temperature and humidity sensor
+- Timeguard WFPIR motion light controller
+- Tonepie T1PRO automatic cat litter box
 - Tontine electric blanket
 - Valehaus SYZN119 towel warmer
 - WeatherStation Pro
@@ -628,6 +661,7 @@ port and password.
 - Diivoo WT05 dual water timer
 - HCT-611 water timer
 - HU06 smart lock
+- Ironzon fingerprint lock
 - Orion DL021HA lock
 - PT216/PT19DB-2 temperature and humidity sensor
 - Smart Ape solar garden light

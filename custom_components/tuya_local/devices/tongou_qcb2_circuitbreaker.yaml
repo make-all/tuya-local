@@ -231,18 +231,21 @@ secondary_entities:
           - dps_val: Trip
             value: Trip
             icon: "mdi:electric-switch"
-  - entity: binary_sensor
-    class: connectivity
-    category: diagnostic
+  - entity: switch
+    category: config
+    name: Live updates
+    icon: "mdi:chart-bar"
     dps:
       - id: 109
         type: string
-        name: sensor
+        name: switch
         mapping:
           - dps_val: online
             value: true
           - dps_val: offline
             value: false
+          - value: false
+            hidden: true
   - entity: event
     dps:
       - id: 110

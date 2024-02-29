@@ -15,7 +15,7 @@ primary_entity:
           icon_priority: 1
         - dps_val: true
           icon: "mdi:air-humidifier"
-          icon_priority: 3
+          icon_priority: 4
     - id: 2
       name: humidity
       type: integer
@@ -35,13 +35,13 @@ primary_entity:
         - dps_val: Laundrydrying
           value: laundry
           icon: "mdi:tshirt-crew-outline"
-          icon_priority: 1
+          icon_priority: 3
         - dps_val: Sleeping
           value: sleep
         - dps_val: Purifying
           value: purify
           icon: "mdi:air-purifier"
-          icon_priority: 1
+          icon_priority: 3
     - id: 6
       type: integer
       name: current_humidity
@@ -135,8 +135,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 16
@@ -144,8 +143,7 @@ secondary_entities:
         name: lock
         optional: true
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 17

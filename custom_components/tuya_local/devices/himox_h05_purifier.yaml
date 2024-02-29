@@ -1,7 +1,7 @@
 name: Himox H05 air purifier
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   dps:
     - id: 1
       type: boolean
@@ -38,17 +38,12 @@ secondary_entities:
         name: sensor
         unit: "%"
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 7
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: button
     name: Filter reset
     class: restart
@@ -58,8 +53,7 @@ secondary_entities:
         type: boolean
         name: button
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 18

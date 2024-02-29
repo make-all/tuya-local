@@ -8,6 +8,7 @@ primary_entity:
     - id: 104
       type: boolean
       name: lock
+      optional: true
       mapping:
         - dps_val: true
           value: false
@@ -88,6 +89,7 @@ secondary_entities:
       - id: 31
         type: integer
         name: value
+        optional: true
         unit: s
         range:
           min: 1
@@ -133,6 +135,7 @@ secondary_entities:
     dps:
       - id: 102
         type: boolean
+        optional: true
         name: switch
   - entity: binary_sensor
     class: tamper

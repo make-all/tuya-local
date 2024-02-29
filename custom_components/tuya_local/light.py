@@ -68,16 +68,16 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
     def supported_color_modes(self):
         """Return the supported color modes for this light."""
         if self._color_mode_dps:
-            return [
+            return {
                 ColorMode(mode)
                 for mode in self._color_mode_dps.values(self._device)
                 if mode and hasattr(ColorMode, mode.upper())
-            ]
+            }
         else:
             try:
                 mode = ColorMode(self.color_mode)
                 if mode and mode != ColorMode.UNKNOWN:
-                    return [mode]
+                    return {mode}
             except ValueError:
                 _LOGGER.warning(
                     "%s/%s: Unrecognised color mode %s ignored",
@@ -85,7 +85,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                     self.name or "light",
                     self.color_mode,
                 )
-        return []
+        return set()
 
     @property
     def supported_features(self):
@@ -150,7 +150,11 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
     @property
     def _white_brightness(self):
         if self._brightness_dps:
-            return self._brightness_dps.get_value(self._device)
+            r = self._brightness_dps.range(self._device)
+            val = self._brightness_dps.get_value(self._device)
+            if r:
+                val = color_util.value_to_brightness(r, val)
+            return val
 
     @property
     def _unpacked_rgbhsv(self):
@@ -237,6 +241,10 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                     "Setting brightness via WHITE parameter to %d",
                     bright,
                 )
+                r = self._brightness_dps.range(self._device)
+                if r:
+                    bright = color_util.brightness_to_value(r, bright)
+
                 settings = {
                     **settings,
                     **self._brightness_dps.get_values_to_set(
@@ -352,11 +360,18 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
 
         if (
             ATTR_BRIGHTNESS in params
-            and self.raw_color_mode != ColorMode.HS
+            and (
+                (self.raw_color_mode != ColorMode.HS and color_mode is None)
+                or (color_mode != ColorMode.HS and color_mode is not None)
+            )
             and self._brightness_dps
         ):
             bright = params.get(ATTR_BRIGHTNESS)
             _LOGGER.debug("Setting brightness to %s", bright)
+            r = self._brightness_dps.range(self._device)
+            if r:
+                bright = color_util.brightness_to_value(r, bright)
+
             settings = {
                 **settings,
                 **self._brightness_dps.get_values_to_set(
@@ -394,8 +409,13 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                     self._device, True
                 )
         elif self._brightness_dps and not self.is_on:
+            bright = 255
+            r = self._brightness_dps.range(self._device)
+            if r:
+                bright = color_util.brightness_to_value(r, bright)
+
             settings = settings | self._brightness_dps.get_values_to_set(
-                self._device, 255
+                self._device, bright
             )
 
         if settings:
