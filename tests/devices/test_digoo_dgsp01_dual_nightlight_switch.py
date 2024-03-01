@@ -1,4 +1,5 @@
 """Tests for the switch entity."""
+
 from homeassistant.components.light import ColorMode, LightEntityFeature
 from homeassistant.components.switch import SwitchDeviceClass
 

@@ -1,6 +1,7 @@
 """
 Setup for different kinds of Tuya water heater devices
 """
+
 import logging
 
 from homeassistant.components.water_heater import (

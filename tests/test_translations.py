@@ -1,6 +1,7 @@
 """
 Tests for translation files.
 """
+
 from fnmatch import fnmatch
 from os import walk
 from os.path import dirname, join

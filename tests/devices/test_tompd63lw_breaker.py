@@ -1,4 +1,5 @@
 """Tests for the switch entity."""
+
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     UnitOfElectricCurrent,

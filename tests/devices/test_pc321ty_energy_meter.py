@@ -1,4 +1,5 @@
 """Tests for the PC321-TY Power Clamp Energy meter"""
+
 from homeassistant.components.sensor import (
     STATE_CLASS_MEASUREMENT,
     STATE_CLASS_TOTAL_INCREASING,

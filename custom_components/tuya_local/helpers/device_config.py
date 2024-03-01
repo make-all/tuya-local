@@ -1,6 +1,7 @@
 """
 Config parser for Tuya Local devices.
 """
+
 import logging
 from base64 import b64decode, b64encode
 from collections.abc import Sequence

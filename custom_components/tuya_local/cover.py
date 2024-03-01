@@ -1,6 +1,7 @@
 """
 Setup for different kinds of Tuya cover devices
 """
+
 import logging
 
 from homeassistant.components.cover import (

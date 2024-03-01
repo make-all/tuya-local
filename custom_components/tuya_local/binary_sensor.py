@@ -1,6 +1,7 @@
 """
 Setup for different kinds of Tuya Binary sensors
 """
+
 import logging
 
 from homeassistant.components.binary_sensor import (

@@ -1,4 +1,5 @@
 """Tests for the Quto 03 Sprinkler."""
+
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.const import PERCENTAGE, UnitOfTime
 

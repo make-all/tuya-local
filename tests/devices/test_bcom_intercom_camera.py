@@ -1,4 +1,5 @@
 """Tests for the bcom intercom camera"""
+
 from ..const import BCOM_CAMERA_PAYLOAD
 from .base_device_tests import TuyaDeviceTestCase
 

@@ -1,6 +1,7 @@
 """
 Setup for different kinds of Tuya alarm control panels.
 """
+
 import logging
 
 from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity
