@@ -1,4 +1,5 @@
 """Tests for diagnostics platform"""
+
 from unittest.mock import AsyncMock
 
 import pytest

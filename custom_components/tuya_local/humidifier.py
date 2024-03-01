@@ -1,6 +1,7 @@
 """
 Setup for different kinds of Tuya humidifier devices
 """
+
 import logging
 
 from homeassistant.components.humidifier import (

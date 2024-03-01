@@ -1,4 +1,5 @@
 """Tests for the switch entity."""
+
 from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import UnitOfTime
 

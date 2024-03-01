@@ -1,6 +1,7 @@
 """
 Setup for different kinds of Tuya numbers
 """
+
 import logging
 
 from homeassistant.components.number import NumberEntity

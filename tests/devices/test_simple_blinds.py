@@ -1,4 +1,5 @@
 """Tests for the simple blinds controller."""
+
 from homeassistant.components.cover import CoverDeviceClass, CoverEntityFeature
 
 from ..const import SIMPLE_BLINDS_PAYLOAD

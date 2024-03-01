@@ -1,6 +1,7 @@
 """
 Setup for different kinds of Tuya light devices
 """
+
 import logging
 from struct import pack, unpack
 

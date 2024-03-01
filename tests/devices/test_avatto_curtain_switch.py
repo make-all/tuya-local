@@ -1,4 +1,5 @@
 """Tests for the Avatto roller blinds controller."""
+
 from homeassistant.components.cover import CoverDeviceClass, CoverEntityFeature
 
 from ..const import AVATTO_CURTAIN_PAYLOAD

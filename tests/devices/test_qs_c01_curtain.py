@@ -1,4 +1,5 @@
 """Tests for the QS C01 curtain module."""
+
 from homeassistant.components.cover import CoverDeviceClass, CoverEntityFeature
 from homeassistant.const import UnitOfTime
 

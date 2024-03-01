@@ -1,6 +1,7 @@
 """
 Setup for different kinds of Tuya sensors
 """
+
 import logging
 
 from homeassistant.components.sensor import (

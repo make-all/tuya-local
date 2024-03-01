@@ -1,6 +1,7 @@
 """
 Setup for different kinds of Tuya fan devices
 """
+
 import logging
 from typing import Any
 

@@ -1,6 +1,7 @@
 """
 Mixins to make writing new platforms easier
 """
+
 import logging
 
 from homeassistant.const import (

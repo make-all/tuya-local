@@ -1,6 +1,7 @@
 """
 Setup for different kinds of Tuya climate devices
 """
+
 import logging
 
 from homeassistant.components.climate import (

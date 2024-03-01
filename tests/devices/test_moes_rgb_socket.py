@@ -1,4 +1,5 @@
 """Tests for the MoesHouse RGB smart socket."""
+
 from homeassistant.components.light import ColorMode, LightEntityFeature
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.components.switch import SwitchDeviceClass

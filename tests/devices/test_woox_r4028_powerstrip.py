@@ -1,4 +1,5 @@
 """Tests for the Woox R4028 powerstrip."""
+
 from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import UnitOfTime
 
