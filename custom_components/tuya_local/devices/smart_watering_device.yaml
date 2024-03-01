@@ -70,15 +70,12 @@ secondary_entities:
           max: 60
   - entity: sensor
     name: "Run time remaining"
-    icon: "mdi:timer-sand"
+    class: duration
     dps:
       - id: 102
         type: integer
         name: sensor
         unit: s
-        range:
-          min: 0
-          max: 360
       - id: 10
         type: integer
         name: runtime

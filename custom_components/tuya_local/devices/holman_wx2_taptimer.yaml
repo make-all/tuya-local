@@ -91,7 +91,7 @@ secondary_entities:
             value: "Rain Delay"
   - entity: number
     name: Manual timer 1
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 107
@@ -101,9 +101,9 @@ secondary_entities:
         range:
           min: 0
           max: 60
-  - entity: number
+  - entity: sensor
     name: Time left 1
-    icon: "mdi:timer"
+    class: duration
     category: diagnostic
     dps:
       - id: 109
@@ -540,7 +540,7 @@ secondary_entities:
             value: "Rain Delay"
   - entity: number
     name: Manual timer 2
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 154
@@ -550,9 +550,9 @@ secondary_entities:
         range:
           min: 0
           max: 60
-  - entity: number
+  - entity: sensor
     name: Time left 2  # doesn't seem to get populated with manual watering
-    icon: "mdi:timer"
+    class: duration
     category: diagnostic
     dps:
       - id: 156
