@@ -1,4 +1,5 @@
 """Tests for SD123 Human Presence Radar HPR01"""
+
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 
 from ..const import SD123_PRESENCE_PAYLOAD

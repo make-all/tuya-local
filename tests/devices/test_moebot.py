@@ -3,6 +3,7 @@ Test MoeBot S mower.
 Primarily for testing the STOP command which this device is the first to use,
 and the lawn_mower platform.
 """
+
 from homeassistant.components.lawn_mower.const import (
     LawnMowerActivity,
     LawnMowerEntityFeature,

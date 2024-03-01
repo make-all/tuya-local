@@ -1,4 +1,5 @@
 """Tests for the essentials air purifier."""
+
 from homeassistant.components.button import ButtonDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (

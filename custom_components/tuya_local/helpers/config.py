@@ -1,6 +1,7 @@
 """
 Helper for general config
 """
+
 import logging
 
 from .. import DOMAIN

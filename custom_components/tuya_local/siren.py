@@ -1,6 +1,7 @@
 """
 Setup for Tuya siren devices
 """
+
 from homeassistant.components.siren import SirenEntity, SirenEntityFeature
 from homeassistant.components.siren.const import (
     ATTR_DURATION,

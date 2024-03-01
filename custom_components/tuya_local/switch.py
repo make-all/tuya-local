@@ -1,6 +1,7 @@
 """
 Setup for different kinds of Tuya switch devices
 """
+
 from homeassistant.components.switch import SwitchDeviceClass, SwitchEntity
 
 from .device import TuyaLocalDevice

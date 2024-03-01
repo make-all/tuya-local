@@ -6,6 +6,7 @@ Based on sean6541/tuya-homeassistant for service call logic, and TarxBoy's
 investigation into Goldair's tuyapi statuses
 https://github.com/codetheweb/tuyapi/issues/31.
 """
+
 import logging
 
 from homeassistant.config_entries import ConfigEntry

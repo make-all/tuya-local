@@ -1,6 +1,7 @@
 """
 Implementation of Tuya events
 """
+
 import logging
 
 from homeassistant.components.event import EventDeviceClass, EventEntity

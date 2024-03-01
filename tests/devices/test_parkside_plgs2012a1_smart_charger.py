@@ -1,4 +1,5 @@
 """Tests for Parkside PLGS 2012 A1 Smart Charger"""
+
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.number.const import NumberDeviceClass
 from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT, SensorDeviceClass

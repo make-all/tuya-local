@@ -1,4 +1,5 @@
 """Test the config parser"""
+
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import MagicMock
 
