@@ -157,7 +157,7 @@ secondary_entities:
         name: calibration
   - entity: select
     category: config
-    name: Temperature unit
+    translation_key: temperature_unit
     dps:
       - id: 107
         name: option
@@ -165,7 +165,6 @@ secondary_entities:
         mapping:
           - dps_val: false
             value: Celsius
-            icon: "mdi:temperature-celsius"
           - dps_val: true
             value: Fahrenheit
             icon: "mdi:temperature-fahrenheit"

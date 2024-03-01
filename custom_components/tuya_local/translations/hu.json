@@ -10,7 +10,9 @@
                     "device_id": "Eszköz azonosító (device_id)",
                     "local_key": "Helyi kulcs (local_key)",
                     "protocol_version": "Protokol verzió (hagyd auto-n, ha nem tudod)",
-                    "poll_only": "Csak olvasás (próbáld ki ezt, ha az eszköz nem működik rendesen)"
+                    "poll_only": "Csak olvasás (próbáld ki ezt, ha az eszköz nem működik rendesen)",
+                    "device_cid": "[hu] Sub device ID (for devices connected via gateway)"
+                    
                 }
             },
             "select_type": {
@@ -45,7 +47,8 @@
                     "host": "IP cím vagy állomásnév",
                     "local_key": "Helyi kulcs (local_key)",
                     "protocol_version": "Protokol verzió (hagyd auto-n, ha nem tudod)",
-                    "poll_only": "Csak olvasás (próbáld ki ezt, ha az eszköz nem működik rendesen)"
+                    "poll_only": "Csak olvasás (próbáld ki ezt, ha az eszköz nem működik rendesen)",
+                    "device_cid": "[hu] Sub device ID (for devices connected via gateway)"
                 }
             }
         },
@@ -205,6 +208,13 @@
         "select": {
             "timer": {
                 "name": "Időzítő"
+            },
+            "temperature_unit": {
+                "name": "Hőmérséklet mértékegysége",
+                "state": {
+                    "Celsius": "Celsius",
+                    "Fahrenheit": "Fahrenheit"
+                }
             }
         }
    }

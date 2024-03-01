@@ -79,7 +79,7 @@ class TestInkbirdSousVideCooker(
         )
         self.setUpBasicSelect(
             UNIT_DPS,
-            self.entities.get("select_temperature_display_unit"),
+            self.entities.get("select_temperature_unit"),
             {
                 False: "Fahrenheit",
                 True: "Celsius",
@@ -97,7 +97,7 @@ class TestInkbirdSousVideCooker(
                 "number_recipe",
                 "number_temperature_calibration",
                 "binary_sensor_fault",
-                "select_temperature_display_unit",
+                "select_temperature_unit",
                 "sensor_remaining_time",
             ]
         )

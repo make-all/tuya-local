@@ -53,8 +53,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: select
-    name: Temperature unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 23
@@ -64,10 +63,8 @@ secondary_entities:
         mapping:
           - dps_val: "c"
             value: Celsius
-            icon: "mdi:temperature-celsius"
           - dps_val: "f"
             value: Fahrenheit
-            icon: "mdi:temperature-fahrenheit"
   - entity: number
     name: Temperature calibration
     category: config

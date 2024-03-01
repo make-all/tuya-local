@@ -162,7 +162,7 @@ secondary_entities:
         type: integer
         optional: true
   - entity: select
-    name: Display temperature unit
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 18
@@ -172,7 +172,6 @@ secondary_entities:
         mapping:
           - dps_val: c
             value: Celsius
-            icon: "mdi:temperature-celsius"
           - dps_val: f
             value: Fahrenheit
             icon: "mdi:temperature-fahrenheit"

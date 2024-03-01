@@ -117,7 +117,7 @@ secondary_entities:
           - dps_val: out
             value: External
   - entity: select
-    name: Temperature unit
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 19
@@ -126,10 +126,8 @@ secondary_entities:
         mapping:
           - dps_val: c
             value: Celsius
-            icon: "mdi:temperature-celsius"
           - dps_val: f
             value: Fahrenheit
-            icon: "mdi:temperature-fahrenheit"
   - entity: number
     name: Calibration offset internal
     category: config
