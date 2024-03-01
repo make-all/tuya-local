@@ -5,7 +5,6 @@ from homeassistant.const import (
     UnitOfElectricCurrent,
     UnitOfElectricPotential,
     UnitOfPower,
-    UnitOfTime,
 )
 
 from ..const import TOMPD63LW_SOCKET_PAYLOAD

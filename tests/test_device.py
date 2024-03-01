@@ -6,8 +6,6 @@ from unittest.mock import ANY, AsyncMock, Mock, call, patch
 from homeassistant.const import EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP
 
 from custom_components.tuya_local.device import TuyaLocalDevice
-from custom_components.tuya_local.helpers.device_config import TuyaEntityConfig
-from custom_components.tuya_local.switch import TuyaLocalSwitch
 
 from .const import EUROM_600_HEATER_PAYLOAD
 

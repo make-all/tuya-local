@@ -190,12 +190,12 @@ class TestBeokTR9BThermostat(
     async def test_set_target_temperature_fails_outside_valid_range(self):
         with self.assertRaisesRegex(
             ValueError,
-            f"temperature \\(4.5\\) must be between 5.0 and 1000.0",
+            "temperature \\(4.5\\) must be between 5.0 and 1000.0",
         ):
             await self.subject.async_set_target_temperature(4.5)
         with self.assertRaisesRegex(
             ValueError,
-            f"temperature \\(1001\\) must be between 5.0 and 1000.0",
+            "temperature \\(1001\\) must be between 5.0 and 1000.0",
         ):
             await self.subject.async_set_target_temperature(1001)
 

@@ -285,7 +285,7 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
         self.assertTrue(found)
 
     def dp_match(self, condition, accounted, unaccounted, known, required=False):
-        if type(condition) is str:
+        if isinstance(condition, str):
             known.add(condition)
             if condition in unaccounted:
                 unaccounted.remove(condition)
@@ -340,18 +340,18 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
 
         if prior_match:
             for c in conditions:
-                if type(c) is str:
+                if isinstance(c, str):
                     accounted.add(c)
                 elif "and" in c:
                     for c2 in c["and"]:
-                        if type(c2) is str:
+                        if isinstance(c2, str):
                             accounted.add(c2)
 
         return prior_match or not required
 
     def rule_broken_msg(self, rule):
         msg = ""
-        if type(rule) is str:
+        if isinstance(rule, str):
             return f"{msg} {rule}"
         elif "and" in rule:
             msg = f"{msg} all of ["

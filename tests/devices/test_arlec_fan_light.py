@@ -3,7 +3,7 @@ from homeassistant.components.fan import (
     DIRECTION_REVERSE,
     FanEntityFeature,
 )
-from homeassistant.components.light import ATTR_BRIGHTNESS, ATTR_COLOR_TEMP, ColorMode
+from homeassistant.components.light import ColorMode
 
 from ..const import ARLEC_FAN_LIGHT_PAYLOAD
 from ..helpers import assert_device_properties_set

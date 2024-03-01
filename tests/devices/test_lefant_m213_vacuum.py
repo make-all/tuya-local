@@ -1,7 +1,6 @@
 from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT, SensorDeviceClass
 from homeassistant.components.vacuum import (
     STATE_CLEANING,
-    STATE_DOCKED,
     STATE_ERROR,
     STATE_IDLE,
     STATE_PAUSED,

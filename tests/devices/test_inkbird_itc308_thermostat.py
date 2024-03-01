@@ -4,7 +4,6 @@ from homeassistant.components.number.const import NumberDeviceClass
 from homeassistant.const import UnitOfTemperature, UnitOfTime
 
 from ..const import INKBIRD_ITC308_THERMOSTAT_PAYLOAD
-from ..helpers import assert_device_properties_set
 from ..mixins.binary_sensor import MultiBinarySensorTests
 from ..mixins.climate import TargetTemperatureTests
 from ..mixins.number import MultiNumberTests

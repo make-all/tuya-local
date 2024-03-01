@@ -4,7 +4,6 @@ from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT, SensorDevic
 from homeassistant.const import UnitOfEnergy, UnitOfTemperature
 
 from ..const import JIAHONG_ET72W_PAYLOAD
-from ..helpers import assert_device_properties_set
 from ..mixins.climate import TargetTemperatureTests
 from ..mixins.lock import BasicLockTests
 from ..mixins.number import BasicNumberTests
@@ -202,12 +201,12 @@ class TestJiahongEt72wThermostat(
     async def test_set_target_temperature_fails_outside_valid_range(self):
         with self.assertRaisesRegex(
             ValueError,
-            f"temperature \\(4.5\\) must be between 5.0 and 40.0",
+            "temperature \\(4.5\\) must be between 5.0 and 40.0",
         ):
             await self.subject.async_set_target_temperature(4.5)
         with self.assertRaisesRegex(
             ValueError,
-            f"temperature \\(41\\) must be between 5.0 and 40.0",
+            "temperature \\(41\\) must be between 5.0 and 40.0",
         ):
             await self.subject.async_set_target_temperature(41)
 
