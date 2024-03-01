@@ -5,6 +5,7 @@ This script was created to check for entity ids that change between versions.
 The script needs to be run on the version before a potential id changing
 modification, then again after to compare the two outputs.
 """
+
 import sys
 
 from custom_components.tuya_local.helpers.device_config import (

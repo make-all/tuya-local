@@ -1,4 +1,5 @@
 """Tests for the energy monitoring powerstrip."""
+
 from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT, SensorDeviceClass
 from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (

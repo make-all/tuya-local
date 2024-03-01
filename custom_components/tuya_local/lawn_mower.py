@@ -1,6 +1,7 @@
 """
 Setup for different kinds of Tuya lawn mowers
 """
+
 from homeassistant.components.lawn_mower import LawnMowerEntity
 from homeassistant.components.lawn_mower.const import (
     SERVICE_DOCK,

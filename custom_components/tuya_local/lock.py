@@ -1,6 +1,7 @@
 """
 Setup for different kinds of Tuya lock devices
 """
+
 from homeassistant.components.lock import LockEntity
 
 from .device import TuyaLocalDevice

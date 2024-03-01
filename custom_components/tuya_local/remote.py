@@ -2,6 +2,7 @@
 Implementation of Tuya remote control devices
 Based on broadlink integration for code saving under HA storage
 """
+
 import asyncio
 import json
 import logging

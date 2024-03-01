@@ -1,4 +1,5 @@
 """Tests for the ZX G30 Alarm Control Panel."""
+
 from homeassistant.components.alarm_control_panel import (
     AlarmControlPanelEntityFeature as Feature,
 )

@@ -1,6 +1,7 @@
 """
 Setup for different kinds of Tuya selects
 """
+
 from homeassistant.components.select import SelectEntity
 
 from .device import TuyaLocalDevice

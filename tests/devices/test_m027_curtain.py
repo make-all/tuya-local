@@ -1,4 +1,5 @@
 """Tests for the M027 curtain module."""
+
 from homeassistant.components.cover import CoverDeviceClass, CoverEntityFeature
 from homeassistant.const import UnitOfTime
 

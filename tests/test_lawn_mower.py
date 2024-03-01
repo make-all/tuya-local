@@ -1,4 +1,5 @@
 """Tests for the lawn_mower entity."""
+
 from unittest.mock import AsyncMock, Mock
 
 import pytest
