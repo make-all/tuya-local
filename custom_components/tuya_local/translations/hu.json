@@ -59,7 +59,16 @@
             "not_supported": "Sajnálom, ez az eszköz nem támogatott."
         }
     },
-   "entity": {
+    "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "Leolvasztani",
+                "state": {
+                    "off": "Normál",
+                    "on": "Leolvasztás"
+                }
+            }
+        },
         "climate": {
             "aircon_extra": {
                 "state_attributes": {
@@ -216,6 +225,11 @@
                     "fahrenheit": "Fahrenheit"
                 }
             }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "Fagyálló"
+            }
         }
-   }
+    }
 }

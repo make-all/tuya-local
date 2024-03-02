@@ -59,6 +59,15 @@
         }
     },
     "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "Rozmrażać",
+                "state": {
+                    "off": "Normalna",
+                    "on": "Rozmrażanie"
+                }
+            }
+        },
         "climate": {
             "aircon_extra": {
                 "state_attributes": {
@@ -214,6 +223,11 @@
                     "celsius": "Celsjusz",
                     "fahrenheit": "Fahrenheita"
                 }
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "Ochrona przed zamarzaniem"
             }
         }
     }

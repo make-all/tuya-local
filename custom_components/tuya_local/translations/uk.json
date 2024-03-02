@@ -59,6 +59,15 @@
 		}
 	},
     "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "Розморожування",
+                "state": {
+                    "off": "Нормальний",
+                    "on": "Розморожування"
+                }
+            }
+        },
         "climate": {
             "aircon_extra": {
                 "state_attributes": {
@@ -215,6 +224,11 @@
                     "celsius": "Цельсія",
                     "fahrenheit": "Фаренгейт"
                 }
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "Протиморозний"
             }
         }
     }

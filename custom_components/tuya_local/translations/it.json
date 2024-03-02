@@ -59,6 +59,15 @@
         }
     },
     "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "Scongelare",
+                "state": {
+                    "off": "Normale",
+                    "on": "Scongelamento"
+                }
+            }
+        },
         "climate": {
             "aircon_extra": {
                 "state_attributes": {
@@ -215,6 +224,11 @@
                     "celsius": "Centigrado",
                     "fahrenheit": "Fahrenheit"
                 }
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "Antigelo"
             }
         }
     }
