@@ -66,11 +66,12 @@ class TestEanonsHumidifier(
         )
         self.setUpBasicBinarySensor(
             ERROR_DPS,
-            self.entities.get("binary_sensor_tank"),
-            device_class=BinarySensorDeviceClass.PROBLEM,
+            self.entities.get("binary_sensor_tank_empty"),
             testdata=(1, 0),
         )
-        self.mark_secondary(["select_timer", "sensor_timer", "binary_sensor_tank"])
+        self.mark_secondary(
+            ["select_timer", "sensor_timer", "binary_sensor_tank_empty"]
+        )
 
     def test_supported_features(self):
         self.assertEqual(self.subject.supported_features, HumidifierEntityFeature.MODES)

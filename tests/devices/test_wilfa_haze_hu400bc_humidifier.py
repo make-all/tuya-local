@@ -50,9 +50,8 @@ class TestWilfaHazeHumidifier(
         self.setUpSwitchable(SWITCH_DPS, self.subject)
         self.setUpBasicBinarySensor(
             ERROR_DPS,
-            self.entities.get("binary_sensor_tank"),
+            self.entities.get("binary_sensor_tank_empty"),
             testdata=(1, 0),
-            device_class=BinarySensorDeviceClass.PROBLEM,
         )
         self.setUpMultiLights(
             [
@@ -134,7 +133,7 @@ class TestWilfaHazeHumidifier(
         )
         self.mark_secondary(
             [
-                "binary_sensor_tank",
+                "binary_sensor_tank_empty",
                 "light_display",
                 "light_mood",
                 "select_temperature_unit",

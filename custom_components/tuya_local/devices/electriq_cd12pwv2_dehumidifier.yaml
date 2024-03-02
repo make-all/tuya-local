@@ -74,7 +74,7 @@ secondary_entities:
           - dps_val: false
             icon: "mdi:sleep-off"
   - entity: binary_sensor
-    name: Tank
+    translation_key: tank_full
     category: diagnostic
     dps:
       - id: 19
@@ -83,7 +83,5 @@ secondary_entities:
         mapping:
           - dps_val: 1
             value: true
-            icon: "mdi:flask-empty"
           - dps_val: 0
             value: false
-            icon: "mdi:flask-empty-outline"
