@@ -83,7 +83,7 @@ class TestBeokTR9BThermostat(
             [
                 {
                     "dps": ERROR_DPS,
-                    "name": "binary_sensor_error",
+                    "name": "binary_sensor_problem",
                     "device_class": BinarySensorDeviceClass.PROBLEM,
                     "testdata": (1, 0),
                 },
@@ -121,7 +121,7 @@ class TestBeokTR9BThermostat(
         )
         self.mark_secondary(
             [
-                "binary_sensor_error",
+                "binary_sensor_problem",
                 "binary_sensor_valve",
                 "lock_child_lock",
                 "number_low_temperature_limit",
@@ -200,10 +200,16 @@ class TestBeokTR9BThermostat(
             await self.subject.async_set_target_temperature(1001)
 
     def test_extra_state_attributes(self):
-        self.dps[ERROR_DPS] = 8
         self.dps[UNKNOWN101_DPS] = 101
         self.dps[UNKNOWN102_DPS] = 102
         self.assertDictEqual(
             self.subject.extra_state_attributes,
-            {"Error Code": 8, "unknown_101": 101, "unknown_102": 102},
+            {"unknown_101": 101, "unknown_102": 102},
+        )
+
+    def test_multi_bsensor_extra_state_attributes(self):
+        self.dps[ERROR_DPS] = 8
+        self.assertDictEqual(
+            self.multiBSensor["binary_sensor_problem"].extra_state_attributes,
+            {"fault_code": 8},
         )

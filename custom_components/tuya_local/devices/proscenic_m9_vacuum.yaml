@@ -551,13 +551,19 @@ secondary_entities:
         # 20022 - Battery low
         # 20024 - Emptying dustbin
         # 20025 - Dustbin empty completed
-  - entity: sensor
-    name: Error message
+  - entity: binary_sensor
+    class: problem
     category: diagnostic
-    icon: "mdi:eye-circle-outline"
     dps:
       - id: 199
         name: sensor
+        type: integer
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 199
+        name: fault_code
         type: integer
         # 21003 - Dustbin not installed
         # 21004

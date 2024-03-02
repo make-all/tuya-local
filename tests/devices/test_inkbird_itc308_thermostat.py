@@ -74,7 +74,7 @@ class TestInkbirdITC308Thermostat(
                     "device_class": BinarySensorDeviceClass.PROBLEM,
                 },
                 {
-                    "name": "binary_sensor_error",
+                    "name": "binary_sensor_problem",
                     "dps": ERROR_DPS,
                     "device_class": BinarySensorDeviceClass.PROBLEM,
                     "testdata": (1, 0),
@@ -143,7 +143,7 @@ class TestInkbirdITC308Thermostat(
                 "binary_sensor_high_temperature",
                 "binary_sensor_low_temperature",
                 "binary_sensor_sensor_fault",
-                "binary_sensor_error",
+                "binary_sensor_problem",
                 "number_calibration_offset",
                 "number_compressor_delay",
                 "number_high_temperature_limit",

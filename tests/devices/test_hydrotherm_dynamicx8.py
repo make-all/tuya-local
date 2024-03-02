@@ -35,11 +35,11 @@ class TestHydrothermDynamicX8(
         self.subject = self.entities.get("water_heater")
         self.setUpBasicBinarySensor(
             ERROR_DP,
-            self.entities.get("binary_sensor_fault"),
+            self.entities.get("binary_sensor_problem"),
             device_class=BinarySensorDeviceClass.PROBLEM,
             testdata=(1, 0),
         )
-        self.mark_secondary(["binary_sensor_fault"])
+        self.mark_secondary(["binary_sensor_problem"])
 
     def test_supported_features(self):
         self.assertEqual(

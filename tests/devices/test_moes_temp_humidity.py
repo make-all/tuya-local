@@ -126,7 +126,7 @@ class TestMoesTempHumidity(
                 "number_low_temperature_switch_level",
                 "switch_low_temperature_switch",
                 "number_low_temperature_alarm_level",
-                "binary_sensor_fault",
+                "binary_sensor_problem",
             ]
         )
 
