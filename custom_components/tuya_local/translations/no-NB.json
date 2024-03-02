@@ -59,6 +59,15 @@
         }
     },
     "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "Tine",
+                "state": {
+                    "off": "Normal",
+                    "on": "Tining"
+                }
+            }
+        },
         "climate": {
             "aircon_extra": {
                 "state_attributes": {
@@ -196,9 +205,14 @@
             "temperature_unit": {
                 "name": "Temperaturenhet",
                 "state": {
-                    "Celsius": "Celsius",
-                    "Fahrenheit": "Fahrenheit"
+                    "celsius": "Celsius",
+                    "fahrenheit": "Fahrenheit"
                 }
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "Anti-frost"
             }
         }
     }

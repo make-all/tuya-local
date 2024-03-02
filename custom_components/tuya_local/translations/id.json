@@ -59,6 +59,15 @@
         }
     },
     "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "Mencairkan beku",
+                "state": {
+                    "off": "Normal",
+                    "on": "Pencairan bunga es"
+                }
+            }
+        },
         "climate": {
             "aircon_extra": {
                 "state_attributes": {
@@ -212,8 +221,14 @@
             "temperature_unit": {
                 "name": "Satuan suhu",
                 "state": {
-                    "Celsius": "Celsius",
-                    "Fahrenheit": "Fahrenheit"
+                    "celsius": "Celsius",
+                    "fahrenheit": "Fahrenheit"
+                }
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "Anti beku"
             }
         }
     }

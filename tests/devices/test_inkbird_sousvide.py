@@ -81,8 +81,8 @@ class TestInkbirdSousVideCooker(
             UNIT_DPS,
             self.entities.get("select_temperature_unit"),
             {
-                False: "Fahrenheit",
-                True: "Celsius",
+                False: "fahrenheit",
+                True: "celsius",
             },
         )
         self.setUpBasicSensor(

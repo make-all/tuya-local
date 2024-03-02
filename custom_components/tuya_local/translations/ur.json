@@ -59,6 +59,15 @@
         }
     },
     "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "ڈیفروسٹ",
+                "state": {
+                    "off": "نارمل",
+                    "on": "ڈیفروسٹنگ"
+                }
+            }
+        },
         "climate": {
             "aircon_extra": {
                 "state_attributes": {
@@ -212,9 +221,14 @@
             "temperature_unit": {
                 "name": "درجہ حرارت یونٹ",
                 "state": {
-                    "Celsius": "سیلسیس",
-                    "Fahrenheit": "فارن ہائیٹ"
+                    "celsius": "سیلسیس",
+                    "fahrenheit": "فارن ہائیٹ"
                 }
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "اینٹی فراسٹ"
             }
         }
     }

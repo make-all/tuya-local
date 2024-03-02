@@ -1,5 +1,13 @@
 {
     "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "default": "mdi:circle-outline",
+                "state": {
+                    "on": "mdi:snowflake-melt"
+                }
+            }
+        },
         "lock": {
             "child_lock": {
                 "default": "mdi:hand-back-right",
@@ -20,8 +28,13 @@
             "temperature_unit": {
                 "default": "mdi:temperature-celsius",
                 "state": {
-                    "Fahrenheit": "mdi:temperature-fahrenheit"
+                    "fahrenheit": "mdi:temperature-fahrenheit"
                 }
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "default": "mdi:snowflake-melt"
             }
         }
     }

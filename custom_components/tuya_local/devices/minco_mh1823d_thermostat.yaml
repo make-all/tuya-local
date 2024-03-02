@@ -125,9 +125,9 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: c
-            value: Celsius
+            value: celsius
           - dps_val: f
-            value: Fahrenheit
+            value: fahrenheit
   - entity: number
     name: Calibration offset internal
     category: config
@@ -297,8 +297,7 @@ secondary_entities:
         name: lock
   - entity: switch
     category: config
-    name: Anti-frost
-    icon: "mdi:snowflake-melt"
+    translation_key: anti_frost
     dps:
       - id: 9
         type: boolean

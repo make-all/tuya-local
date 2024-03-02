@@ -112,9 +112,9 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: C
-            value: Celsius
+            value: celsius
           - dps_val: F
-            value: Fahrenheit
+            value: fahrenheit
   - entity: sensor
     class: energy
     category: diagnostic
@@ -139,7 +139,7 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: switch
-    name: Anti-frost
+    translation_key: anti_frost
     category: config
     dps:
       - id: 104

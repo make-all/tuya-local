@@ -221,18 +221,16 @@ secondary_entities:
           - dps_val: "off"
             value: false
   - entity: binary_sensor
-    name: Defrosting
+    translation_key: defrost
     category: diagnostic
-    class: cold
     dps:
       - id: 181
         name: sensor
         type: boolean
         optional: true
   - entity: switch
-    name: Anti-frost
+    translation_key: anti_frost
     category: config
-    icon: "mdi:snowflake"
     dps:
       - id: 180
         name: switch

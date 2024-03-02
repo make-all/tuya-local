@@ -92,8 +92,8 @@ class TestWilfaHazeHumidifier(
                     "dps": UNIT_DPS,
                     "name": "select_temperature_unit",
                     "options": {
-                        "c": "Celsius",
-                        "f": "Fahrenheit",
+                        "c": "celsius",
+                        "f": "fahrenheit",
                     },
                 },
             ],

@@ -59,6 +59,15 @@
         }
     },
     "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "Rozmrazovat",
+                "state": {
+                    "off": "Normální",
+                    "on": "Rozmrazování"
+                }
+            }
+        },
         "climate": {
             "aircon_extra": {
                 "state_attributes": {
@@ -212,9 +221,14 @@
             "temperature_unit": {
                 "name": "Jednotka teploty",
                 "state": {
-                    "Celsius": "Celsia",
-                    "Fahrenheit": "Fahrenheita"
+                    "celsius": "Celsia",
+                    "fahrenheit": "Fahrenheita"
                 }
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "Proti mrazu"
             }
         }
     }

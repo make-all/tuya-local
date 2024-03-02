@@ -41,8 +41,7 @@ class TestPoolexQlineHeatpump(
                 },
                 {
                     "dps": ERROR_DPS,
-                    "name": "binary_sensor_anti_freeze",
-                    "device_class": BinarySensorDeviceClass.COLD,
+                    "name": "binary_sensor_defrost",
                     "testdata": (2, 0),
                 },
             ],
@@ -50,7 +49,7 @@ class TestPoolexQlineHeatpump(
         self.mark_secondary(
             [
                 "binary_sensor_water_flow",
-                "binary_sensor_anti_freeze",
+                "binary_sensor_defrost",
             ]
         )
 
