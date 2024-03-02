@@ -71,8 +71,8 @@ class TestJiahongEt72wThermostat(
                     "dps": UNIT_DPS,
                     "name": "select_temperature_unit",
                     "options": {
-                        False: "Celsius",
-                        True: "Fahrenheit",
+                        False: "celsius",
+                        True: "fahrenheit",
                     },
                 },
                 {

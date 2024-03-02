@@ -48,8 +48,8 @@ class TestEbergCoolyC35HDHeatpump(
             UNIT_DPS,
             self.entities.get("select_temperature_unit"),
             {
-                True: "Fahrenheit",
-                False: "Celsius",
+                True: "fahrenheit",
+                False: "celsius",
             },
         )
         self.mark_secondary(["select_temperature_unit"])

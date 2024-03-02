@@ -52,8 +52,8 @@ class TestInkbirdITC308Thermostat(
             UNIT_DPS,
             self.entities.get("select_temperature_unit"),
             {
-                "C": "Celsius",
-                "F": "Fahrenheit",
+                "C": "celsius",
+                "F": "fahrenheit",
             },
         )
         self.setUpMultiBinarySensors(
