@@ -42,7 +42,6 @@ class TestPoolexQlineHeatpump(
                 {
                     "dps": ERROR_DPS,
                     "name": "binary_sensor_defrost",
-                    "device_class": BinarySensorDeviceClass.COLD,
                     "testdata": (2, 0),
                 },
             ],
