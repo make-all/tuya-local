@@ -1,4 +1,3 @@
-from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.humidifier import HumidifierEntityFeature
 from homeassistant.components.humidifier.const import MODE_AUTO, MODE_NORMAL
 from homeassistant.components.sensor import SensorDeviceClass
