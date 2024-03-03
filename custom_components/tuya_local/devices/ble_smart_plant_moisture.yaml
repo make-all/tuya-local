@@ -25,17 +25,11 @@ secondary_entities:
           - scale: 10
         unit: C
   - entity: sensor
-    translation_key: temperature_unit
+    name: Temperature unit
     category: diagnostic
     dps:
       - id: 9
-        name: option
         type: string
-        mapping:
-          - dps_val: "f"
-            value: fahrenheit
-          - dps_val: "c"
-            value: celsius
   - entity: sensor
     class: battery
     category: diagnostic
