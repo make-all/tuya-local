@@ -20,21 +20,10 @@ secondary_entities:
       - id: 5
         name: sensor
         type: integer
+        class: measurement
         mapping:
           - scale: 10
         unit: C
-  - entity: select
-    translation_key: temperature_unit
-    category: config
-    dps:
-      - id: 9
-        name: option
-        type: string
-        mapping:
-          - dps_val: "c"
-            value: "C"
-          - dps_val: "f"
-            value: "F"
   - entity: sensor
     class: battery
     category: diagnostic
