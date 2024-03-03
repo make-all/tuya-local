@@ -152,10 +152,7 @@ secondary_entities:
         type: boolean
         name: lock
   - entity: binary_sensor
-    class: problem
-    name: Tank full
-    icon: "mdi:cup-outline"
-    icon_priority: 2
+    translation_key: tank_full
     dps:
       - id: 11
         type: bitfield
@@ -164,8 +161,6 @@ secondary_entities:
         mapping:
           - dps_val: 8
             value: true
-            icon: "mdi:cup-water"
-            icon_priority: 1
           - value: false
   - entity: binary_sensor
     translation_key: defrost
@@ -176,7 +171,6 @@ secondary_entities:
         name: sensor
   - entity: binary_sensor
     class: problem
-    name: Fault
     category: diagnostic
     dps:
       - id: 11

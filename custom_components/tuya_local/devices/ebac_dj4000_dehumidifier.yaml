@@ -119,8 +119,7 @@ secondary_entities:
         name: sensor
         unit: min
   - entity: binary_sensor
-    name: Tank
-    class: problem
+    translation_key: tank_full
     category: diagnostic
     dps:
       - id: 102
@@ -129,10 +128,8 @@ secondary_entities:
         mapping:
           - dps_val: Bucket_OK
             value: false
-            icon: "mdi:pail-outline"
           - dps_val: Bucket_Full
             value: true
-            icon: "mdi:pail-remove"
   - entity: switch
     name: Night mode
     category: config

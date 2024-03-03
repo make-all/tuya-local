@@ -1,70 +1,84 @@
 {
-	"title": "Tuya Local",
-	"config": {
-		"step": {
-			"user": {
-				"title": "Налаштуйте свій пристрій Tuya Local",
-				"description": "[Дотримуйтеся цих інструкцій, щоб знайти ідентифікатор пристрою та локальний ключ.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
-				"data": {
-					"host": "IP-адреса або ім'я хоста",
-					"device_id": "Ідентифікатор пристрою",
-					"local_key": "Локальний ключ (local_key)",
-					"protocol_version": "Версія протоколу (якщо не знаєте, спробуйте 'auto')",
-					"poll_only": "Виключно опитування (спробуйте це, якщо ваш пристрій не зовсім працює)",
-					"device_cid": "[uk] Sub device ID (for devices connected via gateway)"
-				}
-			},
-			"select_type": {
-				"title": "Оберіть тип пристрою",
-				"description": "Виберіть тип, що відповідає вашому пристрою",
-				"data": {
-					"type": "Тип пристрою"
-				}
-			},
-			"choose_entities": {
-				"title": "Налаштування пристрою",
-				"description": "Оберіть назву для цього пристрою та ті сутності, що будуть використовуватися",
-				"data": {
-					"name": "Назва"
-				}
-			}
-		},
-		"abort": {
-			"already_configured": "Пристрій з таким ідентифікатором уже додано.",
-			"not_supported": "На жаль, цей пристрій не підтримується."
-		},
-		"error": {
-			"connection": "Неможливо підключитися до пристрою з вказаними налаштуваннями. Це може бути випадковий збій або, можливо, в налаштуваннях є помилки."
+    "title": "Tuya Local",
+    "config": {
+	"step": {
+	    "user": {
+		"title": "Налаштуйте свій пристрій Tuya Local",
+		"description": "[Дотримуйтеся цих інструкцій, щоб знайти ідентифікатор пристрою та локальний ключ.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+		"data": {
+		    "host": "IP-адреса або ім'я хоста",
+		    "device_id": "Ідентифікатор пристрою",
+		    "local_key": "Локальний ключ (local_key)",
+		    "protocol_version": "Версія протоколу (якщо не знаєте, спробуйте 'auto')",
+		    "poll_only": "Виключно опитування (спробуйте це, якщо ваш пристрій не зовсім працює)",
+		    "device_cid": "[uk] Sub device ID (for devices connected via gateway)"
 		}
-	},
-	"options": {
-		"step": {
-			"user": {
-				"title": "Налаштуйте свій пристрій Tuya Local",
-				"description": "[Дотримуйтеся цих інструкцій, щоб знайти локальний ключ.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
-				"data": {
-					"host": "IP-адреса або ім'я хоста",
-					"local_key": "Локальний ключ (local_key)",
-					"protocol_version": "Версія протоколу (якщо не знаєте, спробуйте 'auto')",
-					"poll_only": "Виключно опитування (спробуйте це, якщо ваш пристрій не зовсім працює)",
-					"device_cid": "[uk] Sub device ID (for devices connected via gateway)"
-				}
-			}
-		},
-		"error": {
-			"connection": "Неможливо підключитися до пристрою з вказаними налаштуваннями. Це може бути випадковий збій або, можливо, в налаштуваннях є помилки."
-		},
-		"abort": {
-			"not_supported": "На жаль, цей пристрій не підтримується."
+	    },
+	    "select_type": {
+		"title": "Оберіть тип пристрою",
+		"description": "Виберіть тип, що відповідає вашому пристрою",
+		"data": {
+		    "type": "Тип пристрою"
 		}
+	    },
+	    "choose_entities": {
+		"title": "Налаштування пристрою",
+		"description": "Оберіть назву для цього пристрою",
+		"data": {
+		    "name": "Назва"
+		}
+	    }
 	},
+	"abort": {
+	    "already_configured": "Пристрій з таким ідентифікатором уже додано.",
+	    "not_supported": "На жаль, цей пристрій не підтримується."
+	},
+	"error": {
+	    "connection": "Неможливо підключитися до пристрою з вказаними налаштуваннями. Це може бути випадковий збій або, можливо, в налаштуваннях є помилки."
+	}
+    },
+    "options": {
+	"step": {
+	    "user": {
+		"title": "Налаштуйте свій пристрій Tuya Local",
+		"description": "[Дотримуйтеся цих інструкцій, щоб знайти локальний ключ.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+		"data": {
+		    "host": "IP-адреса або ім'я хоста",
+		    "local_key": "Локальний ключ (local_key)",
+		    "protocol_version": "Версія протоколу (якщо не знаєте, спробуйте 'auto')",
+		    "poll_only": "Виключно опитування (спробуйте це, якщо ваш пристрій не зовсім працює)",
+		    "device_cid": "[uk] Sub device ID (for devices connected via gateway)"
+		}
+	    }
+	},
+	"error": {
+	    "connection": "Неможливо підключитися до пристрою з вказаними налаштуваннями. Це може бути випадковий збій або, можливо, в налаштуваннях є помилки."
+	},
+	"abort": {
+	    "not_supported": "На жаль, цей пристрій не підтримується."
+	}
+    },
     "entity": {
         "binary_sensor": {
             "defrost": {
                 "name": "Розморожування",
                 "state": {
-                    "off": "Нормальний",
+                    "off": "Нормально",
                     "on": "Розморожування"
+                }
+            },
+            "tank_empty": {
+                "name": "Танк",
+                "state": {
+                    "off": "OK",
+                    "on": "Низький"
+                }
+            },
+            "tank_full": {
+                "name": "Танк",
+                "state": {
+                    "off": "OK",
+                    "on": "Повний"
                 }
             }
         },
@@ -176,7 +190,7 @@
                 "state_attributes": {
                     "preset_mode": {
                         "state": {
-                            "normal": "Нормальний",
+                            "normal": "Нормально",
                             "nature": "Природні",
                             "sleep": "Сон",
                             "baby": "Дитина",

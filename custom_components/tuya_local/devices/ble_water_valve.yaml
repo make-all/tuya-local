@@ -37,17 +37,7 @@ secondary_entities:
         type: integer
         name: sensor
         unit: "%"
-  - entity: sensor
-    name: Fault code
-    category: diagnostic
-    icon: "mdi:alert"
-    dps:
-      - id: 4
-        type: integer
-        name: sensor
-        optional: true
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -61,6 +51,9 @@ secondary_entities:
           - dps_val: null
             value: false
           - value: true
+      - id: 4
+        type: bitfield
+        name: fault_code
   - entity: sensor
     name: Operation
     category: diagnostic

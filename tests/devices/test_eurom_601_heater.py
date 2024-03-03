@@ -36,11 +36,11 @@ class TestEurom601Heater(
         )
         self.setUpBasicBinarySensor(
             ERROR_DPS,
-            self.entities.get("binary_sensor_error"),
+            self.entities.get("binary_sensor_problem"),
             device_class=BinarySensorDeviceClass.PROBLEM,
             testdata=(1, 0),
         )
-        self.mark_secondary(["binary_sensor_error"])
+        self.mark_secondary(["binary_sensor_problem"])
 
     def test_supported_features(self):
         self.assertEqual(

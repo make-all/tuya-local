@@ -56,7 +56,7 @@ class TestM027Curtains(MultiSensorTests, BasicSelectTests, TuyaDeviceTestCase):
         )
         self.mark_secondary(
             [
-                "binary_sensor_fault",
+                "binary_sensor_problem",
                 "select_mode",
                 "sensor_time_remaining",
                 "sensor_travel_time",

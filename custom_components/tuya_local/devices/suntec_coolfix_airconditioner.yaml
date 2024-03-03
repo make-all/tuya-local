@@ -106,7 +106,6 @@ primary_entity:
           value: Cool+Heat
 secondary_entities:
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -120,8 +119,7 @@ secondary_entities:
             value: false
           - value: true
   - entity: binary_sensor
-    name: Tank full
-    class: problem
+    translation_key: tank_full
     category: diagnostic
     dps:
       - id: 22

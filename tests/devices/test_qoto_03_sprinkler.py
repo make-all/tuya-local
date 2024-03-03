@@ -28,7 +28,7 @@ class TestQotoSprinkler(
         self.setUpForConfig("qoto_03_sprinkler.yaml", QOTO_SPRINKLER_PAYLOAD)
         self.setUpBasicBinarySensor(
             ERROR_DPS,
-            self.entities.get("binary_sensor_error"),
+            self.entities.get("binary_sensor_problem"),
             device_class=BinarySensorDeviceClass.PROBLEM,
             testdata=(1, 0),
         )
@@ -66,7 +66,7 @@ class TestQotoSprinkler(
         )
         self.mark_secondary(
             [
-                "binary_sensor_error",
+                "binary_sensor_problem",
                 "number_timer",
                 "sensor_open",
                 "sensor_timer",

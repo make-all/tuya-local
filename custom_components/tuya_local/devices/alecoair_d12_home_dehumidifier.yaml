@@ -151,9 +151,7 @@ secondary_entities:
         name: sensor
         unit: min
   - entity: binary_sensor
-    name: Tank
-    class: problem
-    icon: "mdi:cup-water"
+    translation_key: tank_full
     category: diagnostic
     dps:
       - id: 11
@@ -164,7 +162,6 @@ secondary_entities:
             value: true
           - value: false
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:

@@ -54,8 +54,7 @@ primary_entity:
           icon_priority: 1
 secondary_entities:
   - entity: binary_sensor
-    name: Tank
-    class: problem
+    translation_key: tank_full
     category: diagnostic
     dps:
       - id: 19
@@ -79,7 +78,6 @@ secondary_entities:
             value: true
           - value: false
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:

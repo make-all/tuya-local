@@ -66,7 +66,7 @@ class TestSwitchV2Energy(
         )
         self.setUpBasicBinarySensor(
             ERROR_DPS,
-            self.entities.get("binary_sensor_error"),
+            self.entities.get("binary_sensor_problem"),
             device_class=BinarySensorDeviceClass.PROBLEM,
             testdata=(1, 0),
         )
@@ -120,7 +120,7 @@ class TestSwitchV2Energy(
         )
         self.mark_secondary(
             [
-                "binary_sensor_error",
+                "binary_sensor_problem",
                 "lock_child_lock",
                 "number_timer",
                 "select_initial_state",
