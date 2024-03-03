@@ -1,4 +1,7 @@
-name: Madimack Elite V3 pool heatpump
+name: Pool heatpump
+products:
+  - id: kwrvh8zwvbbyp086
+    name: Madimack Elite V3 40kW
 primary_entity:
   entity: climate
   dps:
@@ -8,18 +11,14 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:hvac-off"
         - dps_val: true
           constraint: mode
           conditions:
             - dps_val: auto
-              icon: "mdi:refresh-auto"
               value: auto
             - dps_val: cold
-              icon: "mdi:snowflake"
               value: cool
             - dps_val: heating
-              icon: "mdi:hot-tub"
               value: heat
     - id: 102
       name: mode
@@ -33,25 +32,22 @@ primary_entity:
           conditions:
             - dps_val: f
               range:
-                min: 60
+                min: 54
                 max: 104
       range:
-        min: 18
+        min: 12
         max: 40
-    # ^ in reality, the range is different for cool and auto
     - id: 105
       name: preset_mode
       type: string
+      translation_key: madimack_presets
       mapping:
         - dps_val: silence
-          icon: "mdi:weather-night"
-          value: sleep
+          value: Silence
         - dps_val: perfect
-          icon: "mdi:weather-sunny"
-          value: comfort
+          value: Perfect
         - dps_val: power
-          icon: "mdi:sun-thermometer"
-          value: boost
+          value: Power
     - id: 106
       name: temperature_unit
       type: string
@@ -198,3 +194,10 @@ secondary_entities:
       - id: 121
         name: sensor
         type: integer
+  - entity: sensor
+    category: diagnostic
+    name: Fault code
+    dps:
+      - id: 107
+        name: sensor
+        type: bitfield
