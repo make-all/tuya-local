@@ -102,7 +102,7 @@ secondary_entities:
           min: 0
           max: 60
   - entity: sensor
-    name: Time left 1
+    name: Time remaining 1
     class: duration
     category: diagnostic
     dps:
@@ -112,7 +112,7 @@ secondary_entities:
         name: sensor
         unit: min
   - entity: sensor
-    name: Start A 1 encoded  # start time, duration and days for start A
+    name: Start A 1 encoded
     category: diagnostic
     dps:
       - id: 110
@@ -121,7 +121,8 @@ secondary_entities:
         type: base64
       - id: 110
         optional: true
-        name: days  # flags for days of the week Sun-Sat, plus a bit for on/off
+        # flags for days of the week Sun-Sat, plus a bit for on/off
+        name: days
         type: base64
         mapping:
           - mask: "FF000000"
@@ -150,7 +151,7 @@ secondary_entities:
         mapping:
           - mask: "FF00000000000000"
   - entity: sensor
-    name: Start B 1 encoded  # start time, duration and days for start B
+    name: Start B 1 encoded
     category: diagnostic
     dps:
       - id: 111
@@ -159,7 +160,7 @@ secondary_entities:
         type: string
       - id: 111
         optional: true
-        name: days  # flags for days of the week Sun-Sat, plus a bit for on/off
+        name: days
         type: base64
         mapping:
           - mask: "FF000000"
@@ -188,7 +189,7 @@ secondary_entities:
         mapping:
           - mask: "FF00000000000000"
   - entity: sensor
-    name: Start C 1 encoded  # start time, duration and days for start C
+    name: Start C 1 encoded
     category: diagnostic
     dps:
       - id: 112
@@ -197,7 +198,7 @@ secondary_entities:
         type: string
       - id: 112
         optional: true
-        name: days  # flags for days of the week Sun-Sat, plus a bit for on/off
+        name: days
         type: base64
         mapping:
           - mask: "FF000000"
@@ -297,7 +298,7 @@ secondary_entities:
         name: sensor
         type: integer
   - entity: sensor
-    name: Flow count 1 encoded  # past 10 days of flow count history
+    name: Flow count 1 encoded
     category: diagnostic
     dps:
       - id: 121
@@ -455,7 +456,8 @@ secondary_entities:
         name: sensor
         type: string
   - entity: sensor
-    name: Next watering 1 encoded  # based on starts A, B and C
+    name: Next watering 1 encoded
+    # based on starts A, B and C
     category: diagnostic
     dps:
       - id: 128
@@ -551,9 +553,10 @@ secondary_entities:
           min: 0
           max: 60
   - entity: sensor
-    name: Time left 2  # doesn't seem to get populated with manual watering
+    name: Time remaining 2
     class: duration
     category: diagnostic
+    # doesn't seem to get populated with manual watering
     dps:
       - id: 156
         optional: true
@@ -561,7 +564,7 @@ secondary_entities:
         name: sensor
         unit: min
   - entity: sensor
-    name: Start A 2 encoded  # start time, duration and days for start A
+    name: Start A 2 encoded
     category: diagnostic
     dps:
       - id: 157
@@ -569,8 +572,9 @@ secondary_entities:
         name: sensor
         type: base64
       - id: 157
+        # flags for days of the week Sun-Sat, plus a bit for on/off
         optional: true
-        name: days  # flags for days of the week Sun-Sat, plus a bit for on/off
+        name: days
         type: base64
         mapping:
           - mask: "FF000000"
@@ -599,7 +603,7 @@ secondary_entities:
         mapping:
           - mask: "FF00000000000000"
   - entity: sensor
-    name: Start B 2 encoded  # start time, duration and days for start B
+    name: Start B 2 encoded
     category: diagnostic
     dps:
       - id: 158
@@ -608,7 +612,7 @@ secondary_entities:
         type: string
       - id: 158
         optional: true
-        name: days  # flags for days of the week Sun-Sat, plus a bit for on/off
+        name: days
         type: base64
         mapping:
           - mask: "FF000000"
@@ -637,7 +641,7 @@ secondary_entities:
         mapping:
           - mask: "FF00000000000000"
   - entity: sensor
-    name: Start C 2 encoded  # start time, duration and days for start C
+    name: Start C 2 encoded
     category: diagnostic
     dps:
       - id: 159
@@ -646,7 +650,7 @@ secondary_entities:
         type: string
       - id: 159
         optional: true
-        name: days  # flags for days of the week Sun-Sat, plus a bit for on/off
+        name: days
         type: base64
         mapping:
           - mask: "FF000000"
@@ -705,7 +709,8 @@ secondary_entities:
         name: sensor
         type: boolean
   - entity: sensor
-    name: Flow count 2 encoded  # past 10 days of flow count history
+    name: Flow count 2 encoded
+    # past 10 days of flow count history
     category: diagnostic
     dps:
       - id: 163
@@ -856,7 +861,7 @@ secondary_entities:
         name: sensor
         type: boolean
   - entity: sensor
-    name: Next watering 2 encoded  # based on starts A, B and C
+    name: Next watering 2 encoded
     category: diagnostic
     dps:
       - id: 167

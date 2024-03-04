@@ -93,7 +93,7 @@ secondary_entities:
           min: 0
           max: 60
   - entity: sensor
-    name: Time left
+    name: Time remaining
     class: duration
     category: diagnostic
     dps:
@@ -114,7 +114,8 @@ secondary_entities:
         type: base64
       - id: 110
         optional: true
-        name: days  # flags for days of the week Sun-Sat, plus a bit for on/off
+        # flags for days of the week Sun-Sat, plus a bit for on/off
+        name: days
         type: base64
         mapping:
           - mask: "FF000000"
@@ -143,7 +144,7 @@ secondary_entities:
         mapping:
           - mask: "FF00000000000000"
   - entity: sensor
-    name: Start B encoded  # start time, duration and days for start B
+    name: Start B encoded
     category: diagnostic
     dps:
       - id: 111
@@ -152,7 +153,7 @@ secondary_entities:
         type: string
       - id: 111
         optional: true
-        name: days  # flags for days of the week Sun-Sat, plus a bit for on/off
+        name: days
         type: base64
         mapping:
           - mask: "FF000000"
@@ -181,7 +182,7 @@ secondary_entities:
         mapping:
           - mask: "FF00000000000000"
   - entity: sensor
-    name: Start C encoded  # start time, duration and days for start C
+    name: Start C encoded
     category: diagnostic
     dps:
       - id: 112
@@ -190,7 +191,7 @@ secondary_entities:
         type: string
       - id: 112
         optional: true
-        name: days  # flags for days of the week Sun-Sat, plus a bit for on/off
+        name: days
         type: base64
         mapping:
           - mask: "FF000000"
@@ -275,7 +276,8 @@ secondary_entities:
         name: sensor
         type: integer
   - entity: sensor
-    name: Flow count encoded  # past 10 days of flow count history.
+    # past 10 days of flow count history.
+    name: Flow count encoded
     category: diagnostic
     dps:
       - id: 121
@@ -430,7 +432,8 @@ secondary_entities:
         name: sensor_present
         type: boolean
   - entity: sensor
-    name: Next watering encoded  # based on starts A, B and C
+    # based on starts A, B and C
+    name: Next watering encoded
     category: diagnostic
     dps:
       - id: 128
