@@ -1,6 +1,7 @@
-name: SNT957W-DE CBU Temperature and humidity external sensor
+name: Temperature and humidity sensor
 products:
   - id: dnoq3j5m9nhxw9a1
+    name: SNT957W-DE CBU
 primary_entity:
   entity: sensor
   class: temperature
@@ -23,9 +24,8 @@ secondary_entities:
         mapping:
           - scale: 10
         class: measurement
-        
   - entity: select
-    name: Display Units
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 9
@@ -33,13 +33,12 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: "f"
-            value: Fahrenheit
+            value: fahrenheit
           - dps_val: "c"
-            value: Celsius
+            value: celsius
         optional: true
-        
   - entity: number
-    name: Maximum temperature
+    name: High temperature limit
     category: config
     class: temperature
     icon: "mdi:thermometer-chevron-up"
@@ -52,7 +51,7 @@ secondary_entities:
           min: -400
           max: 1200
   - entity: number
-    name: Minimum temperature
+    name: Low temperature limit
     category: config
     class: temperature
     icon: "mdi:thermometer-chevron-down"
@@ -65,7 +64,7 @@ secondary_entities:
           min: -400
           max: 1200
   - entity: number
-    name: Maximum humidity
+    name: High humidity limit
     category: config
     class: humidity
     dps:
@@ -77,7 +76,7 @@ secondary_entities:
           min: 0
           max: 100
   - entity: number
-    name: Minimum humidity
+    name: Low humidity limit
     category: config
     class: humidity
     dps:
@@ -140,4 +139,3 @@ secondary_entities:
         range:
           min: -10
           max: 10
-        
