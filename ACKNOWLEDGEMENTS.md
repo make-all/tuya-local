@@ -510,3 +510,4 @@ Further device support has been made with the assistance of users. Please consid
 - [realdimik](https://github.com/realdimik) for assisting with support for Tongou ST463JWT three phase breakers and contributing support for SNT957W-DE temperature and humidity sensors.
 - [jameskoziol](https://github.com/jameskoziol) for contributing support for second variant of Madimack Elite V3.
 - [halmaizsolt92](https://github.com/halmaizsolt92) for assisting with support for SNT857W-TDE temperature sensors.
+- [nk00li](https://github.com/nk00li) for assisting with support for BHT-002 GBLW thermometers that differ slightly from GALW in how they report the heating state.

@@ -139,6 +139,7 @@
 - Beok TR8B thermostat
 - Beok TR9B thermostat _(rebadged as Vancoo and perhaps others)_
 - BHT-002-GALW thermostat _(rebadged as many different brands)_
+- BHT-002-GABW thermostat _(some compatible with GALW, others subtly different)_
 - Brade MC6 thermostat _(rebadged as many different brands)_
 - ETOP-FCU thermostat (Jaga JRT-100TW)
 - ETOP-HP thermostat (CH7100)

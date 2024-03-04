@@ -1,4 +1,7 @@
 name: Thermostat
+products:
+  - id: v5214objiaepcaer
+    name: BHT-002 GBLW
 primary_entity:
   entity: climate
   dps:
@@ -20,7 +23,7 @@ primary_entity:
       type: string
     - id: 3
       name: hvac_action
-      type: boolean
+      type: string
       optional: true
       mapping:
         - constraint: hvac_mode
@@ -29,12 +32,9 @@ primary_entity:
               value: "off"
             - dps_val: true
               mapping:
-                - dps_val: false
-                  value: idle
-                - dps_val: true
+                - dps_val: Warming
                   value: heating
-                - dps_val: null
-                  value: idle
+                - value: idle
     - id: 16
       name: temperature
       type: integer
