@@ -459,6 +459,7 @@ of device.
 - iHD001 LED controller
 - Kojima motion sensor RGBCW nightlight
 - Lexi Lighting string light Wifi adapter
+- LightStar CCT track light
 - Loycco sound machine with nightlight (also sold as Momland nightlight with white noise)
 - Loginovo TV sync backlight
 - Lytmi Fantasy/Neo 3 HDMI sync backlight
@@ -638,6 +639,8 @@ port and password.
 - Qoto 05 smart water valve / sprinkler controller
 - SD123 HPR01 human presence radar
 - SH07-8 smart sprinkler controller
+- SNT957W-TDE temperature sensor
+- SNT957W-DE CBU temperature and humidity sensor
 - Sunbeam dual heated mattress pad
 - SWS-001 smart weather station
 - TH08 temperature and humidity sensor
@@ -665,6 +668,7 @@ port and password.
 - Ironzon fingerprint lock
 - Orion DL021HA lock
 - PT216/PT19DB-2 temperature and humidity sensor
+- SGS01 plant sensor
 - Smart Ape solar garden light
 - TH05 temperature and humidity sensor
 - Generic water timers (confirmed with Johgee, Diivoo and Royal Gardineer branded devices)

@@ -447,7 +447,7 @@ Further device support has been made with the assistance of users. Please consid
 - [convicte](https://github.com/convicte) for assisting with support for Inna 7 channel underfloor heating controllers.
 - [mrtn1988](https://github.com/mrtn1988) for assisting with support for QH-GD Elegant IR heaters.
 - [uandco](https://github.com/uandco) for assisting with support for Evotherm ETI pool heatpumps.
-- [almirus](https://github.com/almirus) for contributing support for Neatsvor X500 vacuums, TH05-BLE temperature/humidity sensors, Donguan curtain robots.
+- [almirus](https://github.com/almirus) for contributing support for Neatsvor X500 vacuums, TH05-BLE temperature/humidity sensors, SGS01 soil moisture BLE sensors, Donguan curtain robots, LightStar track lights.
 - [kinkamez](https://github.com/kinkamez) for contributing support for Prosto PRC 2000 heaters.
 - [MarkPaxton](https://github.com/MarkPaxton) for contributing support for Hombli radiator controllers.
 - [mmib](https://github.com/mmib) for contributing support for Becasmart irrigation systems.
@@ -507,5 +507,6 @@ Further device support has been made with the assistance of users. Please consid
 - [liamlain](https://github.com/liamlain) for assisting with support for SmartCurtain curtains.
 - [legantois](https://github.com/legantois) for assisting with support for EPT tank level sensors.
 - [osaczony](https://github.com/oscazony) for assisting with support for Tongou QCB2 single phase breakers.
-- [realdimik](https://github.com/realdimik) for assisting with support for Tongou ST463JWT three phase breakers.
-- [jameskoziol](https://github.com/jameskoziol) for comtributing support for second variant of Madimack Elite V3.
+- [realdimik](https://github.com/realdimik) for assisting with support for Tongou ST463JWT three phase breakers and contributing support for SNT957W-DE temperature and humidity sensors.
+- [jameskoziol](https://github.com/jameskoziol) for contributing support for second variant of Madimack Elite V3.
+- [halmaizsolt92](https://github.com/halmaizsolt92) for assisting with support for SNT857W-TDE temperature sensors.
