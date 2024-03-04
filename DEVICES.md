@@ -101,7 +101,7 @@
 - Garden PAC pool heatpump (also works with Summerwave Si Series)
 - IPS Pro pool-systems heatpump (seems to match Fairland Inver-X as well)
 - Madimack Eco pool heatpump
-- Madimack Elite V3 pool heatpump
+- Madimack Elite V3 pool heatpump (two versions)
 - Madimack(model unknown) pool heatpump (seems to match Fairland IPH45 as well)
 - Poolex Silverline, Q-7, Q-line, Arctic and Vertigo heatpumps
 - Remora pool heatpump
@@ -493,6 +493,7 @@ of device.
 - CCB-11 blind controller
 - CC curtain controller 1
 - Dongguan garage door
+- Dongguan LY1678-2 curtain robot
 - Dooya curtain motor
 - Etersky curtain switch with backlight and timing control
 - FS-03W curtain switch with backlight control
