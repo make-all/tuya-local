@@ -1,0 +1,43 @@
+name: USB smart adapter
+products:
+  - id: flcvzjtnkhsreazp
+    name: GIRIER USB adaptor
+primary_entity:
+  entity: switch
+  icon: "mdi:usb"
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 24
+      type: bitfield
+      name: factory_test
+      optional: true
+secondary_entities:
+  - entity: number
+    category: config
+    name: Timer
+    translation_key: timer
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        unit: sec
+        range:
+          min: 0
+          max: 86400
+  - entity: select
+    name: Initial state
+    icon: "mdi:toggle-switch"
+    category: config
+    dps:
+      - id: 38
+        type: string
+        name: option
+        mapping:
+          - dps_val: "on"
+            value: "On"
+          - dps_val: "off"
+            value: "Off"
+          - dps_val: memory
+            value: Last state
