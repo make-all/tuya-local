@@ -35,21 +35,21 @@ primary_entity:
       name: action
       mapping:
         - dps_val: opening
+          value: opening
           constraint: current_position
           conditions:
             - dps_val: 100
               value: opened
             - dps_val: null
               value: opened
-            - value: opening
         - dps_val: closing
+          value: closing
           constraint: current_position
           conditions:
             - dps_val: 0
               value: closed
             - dps_val: null
               value: closed
-            - value: closing
 secondary_entities:
   - entity: switch
     category: config

@@ -84,7 +84,9 @@ primary_entity:
               value: "off"
             - dps_val: "1"
               value: horizontal
-            - value: horizontal
+            - dps_val: ["2", "3", "4"]
+              value: horizontal
+              hidden: true
         - dps_val: "1"
           constraint: horizontal_swing
           conditions:
@@ -92,19 +94,15 @@ primary_entity:
               value: vertical
             - dps_val: "1"
               value: both
-            - value: both
-        - dps_val: "2"
+            - dps_val: ["2", "3", "4"]
+              value: both
+              hidden: true
+        - value: both
+          hidden: true
           constraint: horizontal_swing
           conditions:
             - dps_val: "0"
               value: vertical
-            - value: both
-        - dps_val: "3"
-          constraint: horizontal_swing
-          conditions:
-            - dps_val: "0"
-              value: vertical
-            - value: both
     - id: 114
       name: horizontal_swing
       type: string

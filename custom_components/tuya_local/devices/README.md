@@ -511,6 +511,17 @@ If `constraint_dp` is readonly:
 | c | y | target_dp: 2 |
 | c | z | target_dp: 1 |
 
+Note that each condition must specify a `dps_val` to match againt. If you want to specify a default match, do it outside the conditions.
+
+```
+    mapping:
+      - dps_val: some_value
+        value: defaulted
+        constraint: other_dp
+        conditions:
+          - dps_val: other_value
+            value: overridden
+```
 
 
 ## Entity types

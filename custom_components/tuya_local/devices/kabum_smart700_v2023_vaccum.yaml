@@ -15,14 +15,22 @@ primary_entity:
           conditions:
             - dps_val: true
               value: false
-            - value: false
+            - dps_val: false
+              value: false
+              hidden: true
+            - dps_val: null
+              value: false
               hidden: true
         - dps_val: true
           constraint: pause
           conditions:
             - dps_val: false
               value: true
-            - value: true
+            - dps_val: true
+              value: true
+              hidden: true
+            - dps_val: null
+              value: true
               hidden: true
         - dps_val: null
           value: false
