@@ -387,6 +387,8 @@ the best option.
 - Moes 3-gang switch
 - Moes 4-gang (quad) switch
 - MoesHouse smartplug with RGBW nightlight
+- Noiee NSP21 smartplug
+- Noiee PU13 smartplug
 - Novadigital 4-way switch with backlight, power on state and timers
 - Qnect QN-WPO3 3 outlet + USB powerstrip with individual timers
 - Relay switch with 433MHz remote (unbranded)
