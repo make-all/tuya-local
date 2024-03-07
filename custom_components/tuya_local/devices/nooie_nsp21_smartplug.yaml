@@ -1,7 +1,7 @@
-name: Nooie NSP21 SmartPlug
+name: SmartPlug
 products:
   - id: e8dqdqxjgmilloml
-    name: NSP21
+    name: Nooie NSP21
 primary_entity:
   entity: switch
   class: outlet
@@ -11,13 +11,13 @@ primary_entity:
       type: boolean
 secondary_entities:
   - entity: number
-    name: Countdown
+    translation_key: timer
     category: config
     dps:
       - id: 9
         type: integer
         name: value
-        unit: mins
+        unit: min
         range:
           min: 0
           max: 86400
@@ -40,7 +40,7 @@ secondary_entities:
           - dps_val: "none"
             value: "Off"
   - entity: lock
-    name: "Child Lock"
+    translation_key: child_lock
     category: config
     dps:
       - id: 41
