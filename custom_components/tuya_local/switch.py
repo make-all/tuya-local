@@ -45,7 +45,7 @@ class TuyaLocalSwitch(TuyaLocalEntity, SwitchEntity):
         dclass = self._config.device_class
         try:
             return SwitchDeviceClass(dclass)
-        except:
+        except ValueError:
             if dclass:
                 _LOGGER.warning(
                     "%s/%s: Unrecognised switch device class of %s ignored",
