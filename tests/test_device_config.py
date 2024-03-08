@@ -132,6 +132,7 @@ ENTITY_SCHEMA = vol.Schema(
                 "siren",
                 "switch",
                 "vacuum",
+                "valve",
                 "water_heater",
             ]
         ),
@@ -258,6 +259,10 @@ KNOWN_DPS = {
             "error",
             "fan_speed",
         ],
+    },
+    "valve": {
+        "required": ["valve"],
+        "optional": [],
     },
     "water_heater": {
         "required": [],
