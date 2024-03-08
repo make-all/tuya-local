@@ -1,4 +1,4 @@
-""" Tests for the valve entity"""
+"""Tests for the valve entity"""
 
 from unittest.mock import AsyncMock, Mock
 
