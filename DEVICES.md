@@ -604,28 +604,34 @@ port and password.
 - Moes IR/RF remote controller (also IR controller pro, may work only for IR)
 - Universal remote control with temperature and humidity sensors
 
+### Valves
+
+- ARD-100+ valve controller
+- Aubess Rainpoint TTP106W irrigation system
+- Becasmart BAF-908 irrigation system
+- Garza Wi-Fi garden irrigation system (ITV103W with 433MHz WiFi hub)
+- Holman WX1 tap timer (sprinkler controller)
+- Holman WX2 dual tap timer
+- Holman WX8 8 sprinkler irrigation controller
+- Qoto 03 smart water valve / sprinkler controller
+- Qoto 05 smart water valve / sprinkler controller
+- SH07-8 smart sprinkler controller
+
 ### Miscellaneous
 
 - generic PIR motion sensor
 - generic illuminance sensor
 - Air Housekeeper 6-in-1 air quality monitor
 - Akai heat pump clothes dryer
-- ARD-100+ valve controller
 - ASIP-0622 indoor planter
-- Aubess Rainpoint TTP106W irrigation system
-- Becasmart BAF-908 irrigation system
 - Brennenstuhl WFD3050P PIR motion activated CCT spotlight
 - Bresser smart 7-in-1 weather station
 - CO2-Box air quality monitor
 - CT20W PIR motion detector
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
 - EPT ultrasonic 3m tank level sensor
-- Garza Wi-Fi garden irrigation system (ITV103W with 433MHz WiFi hub)
 - GratKit filament dryer
 - Haier Nayun NY-GS-04 combustible gas alarm
-- Holman WX1 tap timer (sprinkler controller)
-- Holman WX2 dual tap timer
-- Holman WX8 8 sprinkler irrigation controller
 - Inkbird PTH-9CW air quality monitor
 - KKMoon 7in1 air quality monitor
 - Kogan bidet toilet seat
@@ -638,10 +644,7 @@ port and password.
 - PGST PA-010 indoor temperature and humidity sensor
 - PH-W218 water quality monitor
 - PV28-CW 8 in 1 air quality monitor
-- Qoto 03 smart water valve / sprinkler controller
-- Qoto 05 smart water valve / sprinkler controller
 - SD123 HPR01 human presence radar
-- SH07-8 smart sprinkler controller
 - SNT957W-TDE temperature sensor
 - SNT957W-DE CBU temperature and humidity sensor
 - Sunbeam dual heated mattress pad
