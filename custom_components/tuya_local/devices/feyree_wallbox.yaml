@@ -16,13 +16,13 @@ primary_entity:
           value: Disconnected
         - dps_val: connect
           value: Connected
-        - dps_val: charing #typo from tuya
+        - dps_val: charing            # typo from tuya
           value: Charging
         - dps_val: wait_rfid
           value: Waiting for authorization
         - dps_val: finish
           value: Charged
-        - dps_val: wait_charing #typo from tuya
+        - dps_val: wait_charing       # typo from tuya
           value: Delaying charge
         - dps_val: error
           value: Error
@@ -61,9 +61,12 @@ primary_entity:
       # 3, unit precision
       # 4, message format
       # 5, communication logic
-      # A, report three times during network configuration to ensure successful reporting.
-      #    If the pairing is successful, the device number will be displayed on the panel.
-      # B, if the pairing is successful and the device number is not displayed on the panel, you need to remove the device and configure it again.
+      # A, report three times during network configuration to
+      #    ensure successful reporting. If the pairing is successful,
+      #    the device number will be displayed on the panel.
+      # B, if the pairing is successful and the device number is not
+      #    displayed on the panel, you need to remove the device and
+      #    configure it again.
       # C, every time the meter is powered on, it is also reported.
     - id: 23
       type: string
@@ -260,7 +263,7 @@ secondary_entities:
             default: true
 
   - entity: button
-    name: Toggle charging #Rfid Switch
+    name: Toggle charging       # Rfid Switch
     dps:
       - id: 112
         type: boolean
