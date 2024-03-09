@@ -321,6 +321,7 @@
 - DTS238-7 3 phase smart meter
 - EARU SW RCB breaker
 - eMylo EAI-90 smart meter
+- ERZ04C smart meter
 - MatSee Plus bidirectional two channel clamp meter
 - Meterk single phase clamp meter
 - Parkside PG/PMW-300 solar inverter
