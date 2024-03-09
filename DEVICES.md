@@ -457,6 +457,7 @@ of device.
 - Dual-mode magic light string controller
 - Feit dimmer (may work with other brands that just have a switch, dimmer and
   optional minimum brightness and bulb type)
+- Feit RGBWW light bulb (like generic RGBWW, but without scene support)
 - Galaxy Projector
 - HDMI sync light
 - iHD001 LED controller
@@ -474,6 +475,7 @@ of device.
 - MoesGo dimmer switch
 - Nedis Smart LED Strip
 - Newone WF39M dimmer smartplug
+- Peteme recessed lighting
 - Space Dog Music Lamp (works for Aurora Smart Galaxy Star)
 - Tampa Magnetic LED System CD-TY-WY05
 - Teberno LED strip light (LGC-005 OEM3)
