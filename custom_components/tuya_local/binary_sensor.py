@@ -59,7 +59,6 @@ class TuyaLocalBinarySensor(TuyaLocalEntity, BinarySensorEntity):
                     self.name or "binary_sensor",
                     dclass,
                 )
-            return None
 
     @property
     def is_on(self):

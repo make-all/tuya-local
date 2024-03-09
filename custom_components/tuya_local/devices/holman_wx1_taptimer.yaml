@@ -4,19 +4,33 @@ products:
     name: Holman WX1
     # DP decoding thanks to funtastix
 primary_entity:
-  entity: switch
+  entity: valve
   name: Manual
-  icon: "mdi:watering-can"
+  class: water
   dps:
     - id: 108
       type: boolean
-      name: switch
+      name: valve
       mapping:
         - dps_val: true
           value: false
         - dps_val: false
           value: true
 secondary_entities:
+  - entity: switch
+    name: Manual
+    category: config
+    deprecated: valve
+    icon: "mdi:watering-can"
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
   - entity: sensor
     name: Soil temperature
     class: temperature
