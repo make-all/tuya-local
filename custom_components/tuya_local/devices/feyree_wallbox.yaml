@@ -16,16 +16,42 @@ primary_entity:
           value: Disconnected
         - dps_val: connect
           value: Connected
-        - dps_val: charing
+        - dps_val: charing #typo from tuya
           value: Charging
         - dps_val: wait_rfid
           value: Waiting for authorization
         - dps_val: finish
           value: Charged
-        - dps_val: wait_charing
+        - dps_val: wait_charing #typo from tuya
           value: Delaying charge
         - dps_val: error
           value: Error
+    - id: 3
+      type: string
+      optional: true
+      name: charger_status
+    - id: 11
+      type: string
+      optional: true
+      name: alarm_set_1
+    - id: 12
+      type: string
+      optional: true
+      name: alarm_set_2
+    - id: 14
+      type: string
+      optional: true
+      name: mode
+      mapping:
+        - dps_val: charge_now
+        - dps_val: charge_pct
+        - dps_val: charge_energy
+        - dps_val: charge_schedule
+    - id: 15
+      type: integer
+      optional: true
+      name: balance_energy
+      unit: kWh
     - id: 18
       type: string
       optional: true
@@ -39,17 +65,23 @@ primary_entity:
       #    If the pairing is successful, the device number will be displayed on the panel.
       # B, if the pairing is successful and the device number is not displayed on the panel, you need to remove the device and configure it again.
       # C, every time the meter is powered on, it is also reported.
+    - id: 23
+      type: string
+      optional: true
+      name: system_version
+    - id: 25
+      type: integer
+      optional: true
+      name: charge_energy_once
+      unit: kWh
+    - id: 27
+      type: string
+      optional: true
+      name: online_state
 secondary_entities:
-  - entity: switch
-    name: Power switch
-    dps:
-      - id: 105
-        type: boolean
-        optional: true
-        name: switch
-
   - entity: sensor
     name: Alarm event
+    icon: 'mdi:alert-outline'
     class: enum
     dps:
       - id: 10
@@ -57,25 +89,25 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: 0
-            value: "No alarm"
+            value: "Ready"
           - dps_val: 1
-            value: "UVP"
+            value: "Under voltage protection"
           - dps_val: 2
-            value: "OVP"
+            value: "Over voltage protection"
           - dps_val: 3
-            value: "OCP"
+            value: "Over current protection"
           - dps_val: 4
             value: "Protective earth error"
           - dps_val: 5
-            value: "Temp"
+            value: "Temperature is to high"
           - dps_val: 6
-            value: "CP"
+            value: "Control pilot line error"
           - dps_val: 7
             value: "Leak"
           - dps_val: 8
             value: "Relay socket"
           - dps_val: 9
-            value: "protective earth error 2"
+            value: "Protective earth error 2"
           - dps_val: 10
             value: "Plug temperature is to high."
           - dps_val: 11
@@ -91,8 +123,19 @@ secondary_entities:
           - dps_val: 16
             value: "Socket temperature is to high."
   - entity: button
+    name: Clear energy
+    class: restart
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: button
+        optional: true
+
+  - entity: button
     name: Clear event
     class: restart
+    category: config
     dps:
       - id: 20
         type: boolean
@@ -137,6 +180,18 @@ secondary_entities:
         range:
           min: 0
           max: 15
+
+  - entity: switch
+    name: Power switch
+    icon: "mdi:power"
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        optional: true
+        force: true
+        name: switch
+
   - entity: sensor
     class: energy
     dps:
@@ -205,7 +260,7 @@ secondary_entities:
             default: true
 
   - entity: button
-    name: Toggle charging
+    name: Toggle charging #Rfid Switch
     dps:
       - id: 112
         type: boolean
