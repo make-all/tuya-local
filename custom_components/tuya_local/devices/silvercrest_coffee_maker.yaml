@@ -14,7 +14,8 @@ primary_entity:
           value: "Off"
         - dps_val: true
           value: "On"
-    # Dummy dps, water_heater requires a temperature but the coffee maker has no sensor for this so we put in a fake dps for it.
+    # Dummy dps, water_heater requires a temperature.
+    # The coffee maker has no sensor for this so we put in a fake dps for it.
     - id: 8000
       type: integer
       name: temperature
