@@ -524,6 +524,7 @@ of device.
 ### Vacuum Cleaners
 
 - Abir X8 vacuum cleaner
+- iHome Autoac Nova vacuum cleaner
 - Kabum Smart 500 vacuum cleaner
 - Kabum Smart 700 vacuum cleaner (also sold as Liectroux XR500[T2] and maybe others)
 - Kabum Smart 700 vacuum cleaner 2023 model (not quite compatible with Liectroux XR500 T3, but similar revision)
@@ -675,6 +676,7 @@ port and password.
 - HCT-611 water timer
 - HU06 smart lock
 - Ironzon fingerprint lock
+- MoistenLand water timer
 - Orion DL021HA lock
 - PT216/PT19DB-2 temperature and humidity sensor
 - SGS01 plant sensor
