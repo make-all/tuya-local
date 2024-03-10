@@ -514,3 +514,4 @@ Further device support has been made with the assistance of users. Please consid
 - [peteS-UK](https://github.com/peteS-UK) for contributing support for Noiee NSP21 and PU13 smart plugs.
 - [zeosson](https://github.com/zeosson) for contributing support for Feit RGBWW lights and Peteme recessed lighting.
 - [backcountrymountains](https://github.com/backcountrymountains) for contributing support for iHome AutoVac Nova vacuum cleaners.
+- [afallows](https://github.com/afallows) for contributing support for MoistenLand water timers.

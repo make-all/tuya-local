@@ -676,6 +676,7 @@ port and password.
 - HCT-611 water timer
 - HU06 smart lock
 - Ironzon fingerprint lock
+- MoistenLand water timer
 - Orion DL021HA lock
 - PT216/PT19DB-2 temperature and humidity sensor
 - SGS01 plant sensor
