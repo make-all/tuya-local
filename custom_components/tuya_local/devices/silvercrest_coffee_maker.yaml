@@ -11,9 +11,9 @@ primary_entity:
       name: operation_mode
       mapping:
         - dps_val: false
-          value: "OFF"
+          value: "Off"
         - dps_val: true
-          value: "ON"
+          value: "On"
     # Dummy dps, water_heater requires a temperature but the coffee maker has no sensor for this so we put in a fake dps for it.
     - id: 8000
       type: integer
@@ -23,3 +23,19 @@ primary_entity:
       range:
         min: 0
         max: 0
+secondary_entities:
+  - entity: select
+    name: Aroma
+    icon: "mdi:coffee"
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: normal
+            value: Normal
+          - dps_val: strong
+            value: Strong
+          - dps_val: extra_strong
+            value: Extra Strong
