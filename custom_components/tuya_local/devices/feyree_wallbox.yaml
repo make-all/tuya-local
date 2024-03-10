@@ -134,7 +134,6 @@ secondary_entities:
         type: boolean
         name: button
         optional: true
-
   - entity: button
     name: Clear event
     class: restart
@@ -170,7 +169,6 @@ secondary_entities:
             default: true
           - dps_val: true
             value: true
-
   - entity: number
     name: Charge delay
     category: config
@@ -183,7 +181,6 @@ secondary_entities:
         range:
           min: 0
           max: 15
-
   - entity: switch
     name: Power switch
     icon: "mdi:power"
@@ -194,7 +191,6 @@ secondary_entities:
         optional: true
         force: true
         name: switch
-
   - entity: sensor
     class: energy
     dps:
@@ -261,14 +257,12 @@ secondary_entities:
           - dps_val: 20
             value: 20
             default: true
-
   - entity: button
     name: Toggle charging       # Rfid Switch
     dps:
       - id: 112
         type: boolean
         name: button
-
   - entity: sensor
     name: Charging time
     class: duration
