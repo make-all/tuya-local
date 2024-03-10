@@ -1,0 +1,25 @@
+name: Silvercrest Coffee Maker
+products:
+  - id: iegq4tjqeuiew5cl
+    name: Coffee Maker
+primary_entity:
+  entity: water_heater
+  icon: "mdi:coffee-maker"
+  dps:
+    - id: 1
+      type: boolean
+      name: operation_mode
+      mapping:
+        - dps_val: false
+          value: "OFF"
+        - dps_val: true
+          value: "ON"
+    # Dummy dps, water_heater requires a temperature but the coffee maker has no sensor for this so we put in a fake dps for it.
+    - id: 8000
+      type: integer
+      name: temperature
+      unit: C
+      optional: true
+      range:
+        min: 0
+        max: 0
