@@ -10,12 +10,12 @@ products:
   - id: so5ybnw9
     name: BWC-495.bt Royal Gardineer
 primary_entity:
-  entity: switch
-  icon: "mdi:pipe-valve"
+  entity: valve
+  class: water
   dps:
     - id: 1
       type: boolean
-      name: switch
+      name: valve
     - id: 13
       type: string
       name: weather
@@ -29,6 +29,14 @@ primary_entity:
       name: irrigation_schedule
       optional: true
 secondary_entities:
+  - entity: switch
+    icon: "mdi:pipe-valve"
+    deprecated: valve
+    category: config
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: sensor
     class: battery
     category: diagnostic

@@ -3,13 +3,21 @@ products:
   - id: 2ak7r2culspkc7hx
     name: Aubess RainPoint TTP106W
 primary_entity:
-  entity: switch
-  icon: "mdi:pipe-valve"
+  entity: valve
+  class: water
   dps:
     - id: 1
-      name: switch
+      name: valve
       type: boolean
 secondary_entities:
+  - entity: switch
+    icon: "mdi:pipe-valve"
+    deprecated: valve
+    category: config
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
   - entity: sensor
     name: Status
     class: enum

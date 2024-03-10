@@ -49,7 +49,8 @@ secondary_entities:
             conditions:
               - dps_val: airpurify
                 value_redirect: purify_speed
-              - mapping:
+              - dps_val: [dehum_air, dehum30_air]
+                mapping:
                   - dps_val: low
                     value: 33
                   - dps_val: mid

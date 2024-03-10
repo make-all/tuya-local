@@ -62,18 +62,18 @@ primary_entity:
       type: string
       mapping:
         - dps_val: Running
+          value: heating
           constraint: preset_mode
           conditions:
             - dps_val: ["Cooling_Powerful", "Cooling_Smart", "Cooling_Silent"]
               value: cooling
-            - value: heating
         - dps_val: Defrosting
           value: preheating
-        - constraint: hvac_mode
+        - value: idle
+          constraint: hvac_mode
           conditions:
             - dps_val: false
               value: "off"
-            - value: idle
     - id: 101
       name: temperature
       type: integer

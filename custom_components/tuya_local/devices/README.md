@@ -511,6 +511,17 @@ If `constraint_dp` is readonly:
 | c | y | target_dp: 2 |
 | c | z | target_dp: 1 |
 
+Note that each condition must specify a `dps_val` to match againt. If you want to specify a default match, do it outside the conditions.
+
+```
+    mapping:
+      - dps_val: some_value
+        value: defaulted
+        constraint: other_dp
+        conditions:
+          - dps_val: other_value
+            value: overridden
+```
 
 
 ## Entity types
@@ -688,6 +699,9 @@ The value "off" will be used for turning off the siren, and will be filtered fro
     These are additional commands that are not part of **status**. They can be sent as general commands from HA.
 - **error** (optional, bitfield): a dp that reports error status.
     As this is mapped to a single "fault" state, you could consider separate binary_sensors to report on individual errors
+
+### `valve`
+- **valve** (required, boolean or integer): a dp that reports the current state of the valve, and if not readonly, can also be used to set the state.  If a number, it should be a percentage between 0 and 100 indicating how far open the valve is.  If a boolean, it should indicate open (true) or closed (false).
 
 ### `water_heater`
 - **current_temperature** (optional, number): a dp that reports the current water temperature.

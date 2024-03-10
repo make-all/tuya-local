@@ -168,9 +168,8 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
     @property
     def preset_mode(self):
         """Return the current preset mode."""
-        if self._preset_dps is None:
-            return None
-        return self._preset_dps.get_value(self._device)
+        if self._preset_dps:
+            return self._preset_dps.get_value(self._device)
 
     @property
     def preset_modes(self):
@@ -188,9 +187,8 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
     @property
     def current_direction(self):
         """Return the current direction [forward or reverse]."""
-        if self._direction_dps is None:
-            return None
-        return self._direction_dps.get_value(self._device)
+        if self._direction_dps:
+            return self._direction_dps.get_value(self._device)
 
     async def async_set_direction(self, direction):
         """Set the direction of the fan."""
@@ -201,9 +199,8 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
     @property
     def oscillating(self):
         """Return whether or not the fan is oscillating."""
-        if self._oscillate_dps is None:
-            return None
-        return self._oscillate_dps.get_value(self._device)
+        if self._oscillate_dps:
+            return self._oscillate_dps.get_value(self._device)
 
     async def async_oscillate(self, oscillating):
         """Oscillate the fan."""

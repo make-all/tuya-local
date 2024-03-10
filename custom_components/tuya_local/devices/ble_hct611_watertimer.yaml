@@ -3,12 +3,12 @@ products:
   - id: tqzkwarw
     name: HCT-611
 primary_entity:
-  entity: switch
-  icon: "mdi:pipe-valve"
+  entity: valve
+  class: water
   dps:
     - id: 1
       type: boolean
-      name: switch
+      name: valve
     - id: 12
       type: string
       name: state
@@ -49,6 +49,14 @@ primary_entity:
       name: program_8
       optional: true
 secondary_entities:
+  - entity: switch
+    icon: "mdi:pipe-valve"
+    deprecated: valve
+    category: config
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: sensor
     class: battery
     category: diagnostic
