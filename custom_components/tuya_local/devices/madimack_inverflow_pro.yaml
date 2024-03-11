@@ -3,18 +3,11 @@ products:
   - id: ircs2n82vgrozoew
     name: Madimack Inverflow Pro P300i
 primary_entity:
-  entity: fan
+  entity: valve
   dps:
     - id: 105
       type: boolean
-      name: switch
-    - id: 102
-      type: integer
-      name: speed
-      range:
-        min: 30
-        max: 120
-      readonly: true
+      name: valve
     - id: 116
       name: unknown_116
       type: string
@@ -56,9 +49,10 @@ secondary_entities:
           - dps_val: "us_gpm"
             value: "US gpm"
           - dps_val: "ipm_gpm"
-            value: "International gpm"
+            value: "Imperial gpm"
   - entity: number
-    name: Boost timer set
+    name: Boost timer
+    translation_key: timer
     category: config
     mode: box
     dps:
@@ -68,9 +62,9 @@ secondary_entities:
         range:
           min: 0
           max: 1500
-        unit: sec
+        unit: s
   - entity: number
-    name: AI flow rate set
+    name: AI flow rate
     category: config
     mode: slider
     dps:
@@ -99,7 +93,7 @@ secondary_entities:
           - dps_val: "ipm_gpm"
             value: "gal/min"
   - entity: number
-    name: Manual percentage power set
+    name: Manual percentage power
     category: config
     mode: slider
     dps:
@@ -109,7 +103,6 @@ secondary_entities:
         range:
           min: 30
           max: 120
-        step: 5
         unit: "%"
   - entity: sensor
     name: Boost time remaining
@@ -119,9 +112,8 @@ secondary_entities:
       - id: 108
         type: integer
         name: sensor
-        unit: sec
+        unit: s
   - entity: sensor
-    name: Current power
     class: power
     category: diagnostic
     dps:
@@ -130,7 +122,6 @@ secondary_entities:
         name: sensor
         unit: W
   - entity: sensor
-    name: Flow rate
     class: volume_flow_rate
     category: diagnostic
     dps:
@@ -162,15 +153,35 @@ secondary_entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Fault code
+    name: Actual pump speed
     category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: "%"
+        range:
+          min: 30
+          max: 120
+  - entity: binary_sensor
+    name: Fault warning
+    category: diagnostic
+    class: problem
     dps:
       - id: 2
         type: bitfield
         name: sensor
-  - entity: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - default: true
+      - id: 2
+        type: bitfield
+        name: Fault code
+  - entity: binary_sensor
     name: Flow pressure warning
     category: diagnostic
+    class: problem
     dps:
       - id: 114
         type: boolean
