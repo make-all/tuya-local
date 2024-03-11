@@ -1,0 +1,177 @@
+name: Pool pump
+products:
+  - id: ircs2n82vgrozoew
+    name: Madimack Inverflow Pro P300i
+primary_entity:
+  entity: fan
+  dps:
+    - id: 105
+      type: boolean
+      name: switch
+    - id: 102
+      type: integer
+      name: speed
+      range:
+        min: 30
+        max: 120
+      readonly: true
+    - id: 116
+      name: unknown_116
+      type: string
+    - id: 117
+      name: unknown_117
+      type: string
+    - id: 115
+      name: unknown_115
+      type: boolean
+secondary_entities:
+  - entity: select
+    name: Pump mode
+    translation_key: mode
+    category: config
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: "MI"
+            value: "Manual"
+          - dps_val: "AI"
+            value: "AI Flow set"
+          - dps_val: "backwash"
+            value: "Boost"
+  - entity: select
+    name: Pump flow units
+    translation_key: units
+    category: config
+    dps:
+      - id: 110
+        type: string
+        name: option
+        mapping:
+          - dps_val: "m3_h"
+            value: "m³/h"
+          - dps_val: "l_min"
+            value: "L/min"
+          - dps_val: "us_gpm"
+            value: "US gpm"
+          - dps_val: "ipm_gpm"
+            value: "International gpm"
+  - entity: number
+    name: Boost timer set
+    category: config
+    mode: box
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 1500
+        unit: sec
+  - entity: number
+    name: AI flow rate set
+    category: config
+    mode: slider
+    dps:
+      - id: 106
+        type: integer
+        name: value
+      - id: 101
+        type: integer
+        name: maximum
+      - id: 107
+        type: integer
+        name: minimum
+      - id: 113
+        type: integer
+        name: step
+      - id: 110
+        type: string
+        name: unit
+        mapping:
+          - dps_val: "m3_h"
+            value: "m³/h"
+          - dps_val: "l_min"
+            value: "L/min"
+          - dps_val: "us_gpm"
+            value: "gal/min"
+          - dps_val: "ipm_gpm"
+            value: "gal/min"
+  - entity: number
+    name: Manual percentage power set
+    category: config
+    mode: slider
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        range:
+          min: 30
+          max: 120
+        step: 5
+        unit: "%"
+  - entity: sensor
+    name: Boost time remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: sec
+  - entity: sensor
+    name: Current power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: W
+  - entity: sensor
+    name: Flow rate
+    class: volume_flow_rate
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+      - id: 110
+        type: string
+        name: unit
+        mapping:
+          - dps_val: "m3_h"
+            value: "m³/h"
+          - dps_val: "l_min"
+            value: "L/min"
+          - dps_val: "us_gpm"
+            value: "gal/min"
+          - dps_val: "ipm_gpm"
+            value: "gal/min"
+  - entity: sensor
+    name: Hourly energy usage
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        class: measurement
+        unit: kWh
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Fault code
+    category: diagnostic
+    dps:
+      - id: 2
+        type: bitfield
+        name: sensor
+  - entity: sensor
+    name: Flow pressure warning
+    category: diagnostic
+    dps:
+      - id: 114
+        type: boolean
+        name: sensor
