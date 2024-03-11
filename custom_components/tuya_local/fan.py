@@ -117,7 +117,7 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
             return None
         r = self._speed_dps.range(self._device)
         val = self._speed_dps.get_value(self._device)
-        if r:
+        if r and val is not None:
             val = ranged_value_to_percentage(r, val)
         return val
 
