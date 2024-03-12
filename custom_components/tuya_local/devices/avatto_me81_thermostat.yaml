@@ -46,15 +46,23 @@ primary_entity:
       type: string
       name: hvac_action
       mapping:
-        - constraint: hvac_mode
+        - dps_val: close
+          icon: "mdi:radiator-disabled"
+          constraint: hvac_mode
           conditions:
             - dps_val: false
               value: "off"
             - dps_val: true
-              mapping:
-                - dps_val: open
-                  value: heating
-                - value: idle
+              value: idle
+        - dps_val: open
+          constraint: hvac_mode
+          conditions:
+            - dps_val: true
+              icon: "mdi:radiator"
+              value: heating
+            - dps_val: false
+              icon: "mdi:radiator-disabled"
+              value: "off"
     - id: 38
       type: string
       optional: true
