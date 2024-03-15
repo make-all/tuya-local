@@ -515,3 +515,4 @@ Further device support has been made with the assistance of users. Please consid
 - [zeosson](https://github.com/zeosson) for contributing support for Feit RGBWW lights and Peteme recessed lighting.
 - [backcountrymountains](https://github.com/backcountrymountains) for contributing support for iHome AutoVac Nova vacuum cleaners.
 - [afallows](https://github.com/afallows) for contributing support for MoistenLand water timers.
+- [popokio](https://github.com/popokio) for assisting with support for Plikc Neve X RFW thermostats.
