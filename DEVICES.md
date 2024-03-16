@@ -650,6 +650,7 @@ port and password.
 - PH-W218 water quality monitor
 - PV28-CW 8 in 1 air quality monitor
 - SD123 HPR01 human presence radar
+- Silvercrest coffee maker
 - SNT957W-TDE temperature sensor
 - SNT957W-DE CBU temperature and humidity sensor
 - Sunbeam dual heated mattress pad
