@@ -1,7 +1,7 @@
 name: Coffee maker
 products:
   - id: iegq4tjqeuiew5cl
-    name: Coffee Maker
+    name: Silvercrest SKMS 900 A1
 primary_entity:
   entity: switch
   icon: "mdi:coffee-maker"
@@ -34,19 +34,22 @@ secondary_entities:
         type: string
         name: sensor
   - entity: sensor
-    name: Warm left
-    icon: "mdi:clock"
+    name: Warm time remaining
+    class: duration
     category: diagnostic
     dps:
       - id: 12
         type: integer
         name: sensor
         unit: min
-  - entity: sensor
-    name: Lack water
-    icon: "mdi:water"
+  - entity: binary_sensor
+    translation_key: tank_empty
     category: diagnostic
     dps:
       - id: 105
         type: bitfield
         name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
