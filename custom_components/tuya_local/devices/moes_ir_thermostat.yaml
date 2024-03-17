@@ -1,4 +1,4 @@
-name: Thermostat
+name: IR Thermostat
 products:
   - id: aqlyorlybbtn6ox7
     name: Moes IR Thermostat
@@ -68,6 +68,78 @@ primary_entity:
     - id: 12
       name: current_humidity
       type: integer
+      unit: "%"
       range:
         max: 100
         min: 0
+secondary_entities:
+  - entity: switch
+    name: power
+    dps:
+      - id: 1
+        type: boolean
+        name: infared_switch
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: binary_sensor
+    name: fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 6
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: serious_fault
+          - dps_val: 1
+            value: sensor_fault
+  - entity: switch
+    name: Filter reset
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: filter_reset
+  - entity: sensor
+    name: filter life
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: h
+        class: measurement
+        range:
+          max: 720
+          min: 0
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 12
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        range:
+          max: 100
+          min: 0
+  - entity: sensor
+    name: runtime
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: h
+        class: measurement
+        range:
+          max: 999999
+          min: 0
