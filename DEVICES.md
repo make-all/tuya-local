@@ -157,6 +157,7 @@
 - Nashone MTS-700-WB thermostat smartplug
 - Netmostat N-1 (RTAFN1) thermostat
 - Owon PCT513 thermostat
+- Plikc Neve X RFW thermostat
 - RYRA TYTE-D1 thermostat with energy monitoring
 - Salcar T9W thermostat _(likely also Tellur TSH02)_
 - Saswell C16 thermostat _(rebadged as Warmme, Klima and others)_
@@ -595,6 +596,7 @@ port and password.
 - Catit Pixi smart fountain
 - Catit pet feeder (Pixi 2.2kg dispenser and 6 meal versions, and another non-Pixi branded single dispenser)
 - Ceres Plus pet feeder with camera
+- HoneyGuardian S56 pet feeder
 - Nedis pet feeder
 - Petlibro PLAF103 pet feeder
 - Petlibro PLAF203 pet feeder with camera
@@ -649,6 +651,7 @@ port and password.
 - PH-W218 water quality monitor
 - PV28-CW 8 in 1 air quality monitor
 - SD123 HPR01 human presence radar
+- Silvercrest coffee maker
 - SNT957W-TDE temperature sensor
 - SNT957W-DE CBU temperature and humidity sensor
 - Sunbeam dual heated mattress pad
