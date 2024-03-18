@@ -517,3 +517,4 @@ Further device support has been made with the assistance of users. Please consid
 - [afallows](https://github.com/afallows) for contributing support for MoistenLand water timers.
 - [popokio](https://github.com/popokio) for assisting with support for Plikc Neve X RFW thermostats.
 - [popeen](https://github.com/popeen) for contributing support for Silvercrest Coffee makers.
+- [ciotorcristian](https://github.com/ciotorcristian) for contributing support for HoneyGuardian S56 pet feeder.
