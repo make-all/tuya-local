@@ -706,6 +706,7 @@ port and password.
 - MultiIR MIR-TE100-TY temperature and humidity sensor
 - Nedis ZBSD10WT door/window sensor
 - Nedis ZBSC10WT temperature and humidity sensor
+- PY321-Z-TY energy meter
 - Temperature and humidity sensor with alarm feature
 - ZTH08ZTU temperature and humidity sensor
 
