@@ -522,3 +522,4 @@ Further device support has been made with the assistance of users. Please consid
 - [teeodor](https://github.com/teeodor) for assisting with support for Maxico aroma diffusers.
 - [gvermaat](https://github.com/gvermaat) for assisting with support for Hysen HY02TP thermostats.
 - [korzeniewski36](https://github.com/korzeniewski36) for assisting with support for KKMoon knob thermostats.
+- [ItsMe00007](https://github.com/ItsMe00007) for contributing support for Lehmann LHOHC-2013C radiators.
