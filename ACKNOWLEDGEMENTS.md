@@ -519,3 +519,4 @@ Further device support has been made with the assistance of users. Please consid
 - [popeen](https://github.com/popeen) for contributing support for Silvercrest Coffee makers.
 - [ciotorcristian](https://github.com/ciotorcristian) for contributing support for HoneyGuardian S56 pet feeder.
 - [Dexter-Lucky](https://github.com/Dexter-Lucky) for assisting with support for Zigbee PY321-Z-TY energy meters.
+- [teeodor](https://github.com/teeodor) for assisting with support for Maxico aroma diffusers.
