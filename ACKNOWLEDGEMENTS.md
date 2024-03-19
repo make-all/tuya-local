@@ -521,3 +521,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Dexter-Lucky](https://github.com/Dexter-Lucky) for assisting with support for Zigbee PY321-Z-TY energy meters.
 - [teeodor](https://github.com/teeodor) for assisting with support for Maxico aroma diffusers.
 - [gvermaat](https://github.com/gvermaat) for assisting with support for Hysen HY02TP thermostats.
+- [korzeniewski36](https://github.com/korzeniewski36) for assisting with support for KKMoon knob thermostats.
