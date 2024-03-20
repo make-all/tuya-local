@@ -626,6 +626,7 @@ port and password.
 - Qoto 03 smart water valve / sprinkler controller
 - Qoto 05 smart water valve / sprinkler controller
 - SH07-8 smart sprinkler controller
+- Zemismart DP-WBS01 8-zone sprinkler controller (also sold as Benexmart and other brands)
 
 ### Miscellaneous
 
@@ -648,6 +649,7 @@ port and password.
 - Kogan KAWHTNOSLPA white noise sleep aid
 - Konlen/Rockson WF96L water level controller
 - Leo's Loo Too pet toilet
+- Madimack Inverflow Pro pool pump
 - Mirabella Genio motion sensor
 - Momcozy white noise machine (2 variants)
 - Nedis WIFISA10CWT air quality monitor

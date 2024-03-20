@@ -508,7 +508,7 @@ Further device support has been made with the assistance of users. Please consid
 - [legantois](https://github.com/legantois) for assisting with support for EPT tank level sensors.
 - [osaczony](https://github.com/oscazony) for assisting with support for Tongou QCB2 single phase breakers.
 - [realdimik](https://github.com/realdimik) for assisting with support for Tongou ST463JWT three phase breakers and contributing support for SNT957W-DE temperature and humidity sensors.
-- [jameskoziol](https://github.com/jameskoziol) for contributing support for second variant of Madimack Elite V3.
+- [jameskoziol](https://github.com/jameskoziol) for contributing support for second variant of Madimack Elite V3 and Madimack Inverflow Pro pump.
 - [halmaizsolt92](https://github.com/halmaizsolt92) for assisting with support for SNT857W-TDE temperature sensors.
 - [nk00li](https://github.com/nk00li) for assisting with support for BHT-002 GBLW thermometers that differ slightly from GALW in how they report the heating state.
 - [peteS-UK](https://github.com/peteS-UK) for contributing support for Noiee NSP21 and PU13 smart plugs.
@@ -523,3 +523,4 @@ Further device support has been made with the assistance of users. Please consid
 - [gvermaat](https://github.com/gvermaat) for assisting with support for Hysen HY02TP thermostats.
 - [korzeniewski36](https://github.com/korzeniewski36) for assisting with support for KKMoon knob thermostats.
 - [ItsMe00007](https://github.com/ItsMe00007) for contributing support for Lehmann LHOHC-2013C radiators.
+- [bonius1](https://github.com/bonius1) for assisting with support for Zemismart DP-WBS01 8 zone irrigation controllers.
