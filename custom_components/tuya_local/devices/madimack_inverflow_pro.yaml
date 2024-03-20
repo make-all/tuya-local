@@ -4,6 +4,7 @@ products:
     name: Madimack Inverflow Pro P300i
 primary_entity:
   entity: valve
+  class: water
   dps:
     - id: 105
       type: boolean
@@ -23,7 +24,7 @@ primary_entity:
 secondary_entities:
   - entity: select
     name: Pump mode
-    translation_key: mode
+    icon: "mdi:pump"
     category: config
     dps:
       - id: 103
@@ -38,7 +39,6 @@ secondary_entities:
             value: "Boost"
   - entity: select
     name: Pump flow units
-    translation_key: units
     category: config
     dps:
       - id: 110
@@ -68,6 +68,7 @@ secondary_entities:
         unit: s
   - entity: number
     name: AI flow rate
+    class: volume_flow_rate
     category: config
     mode: slider
     dps:
@@ -166,7 +167,6 @@ secondary_entities:
           min: 30
           max: 120
   - entity: binary_sensor
-    name: Fault warning
     category: diagnostic
     class: problem
     dps:
@@ -179,7 +179,7 @@ secondary_entities:
           - default: true
       - id: 2
         type: bitfield
-        name: "Fault:"
+        name: fault
         mapping:
           - dps_val: 0
             value: "None"
