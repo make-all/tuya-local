@@ -1,7 +1,7 @@
 name: Pool heat pump
 products:
   - id: k5vqutj2llzox1gg
-    name: Evotherm ETI series
+    name: Evotherm ETI series / AquaForte
 primary_entity:
   entity: climate
   translation_only_key: pool_heatpump
@@ -127,6 +127,7 @@ primary_entity:
     - id: 117
       name: frequency
       type: string
+      optional: true
     - id: 118
       name: fault_2
       type: bitfield
@@ -174,7 +175,7 @@ secondary_entities:
           - scale: 10
   - entity: sensor
     name: Exhaust temperature
-    class: temperaturee
+    class: temperature
     category: diagnostic
     dps:
       - id: 24
