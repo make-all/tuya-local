@@ -1,7 +1,7 @@
 name: Doorbell
 products:
   - id: 4kfqpaat5buefsv0
-    name: Alarm Hub with Melodies Pro
+    name: Calling Bell with 433MHz
 primary_entity:
   entity: binary_sensor
   name: Alarm
@@ -32,6 +32,15 @@ primary_entity:
       type: string
       name: master_language
 secondary_entities:
+  - entity: sensor
+    name: alarm_msg
+    category: diagnostic
+    dps:
+      - id: 26
+        type: base64
+        name: alarm_msg
+        optional: true
+        persist: false
   - entity: alarm_control_panel
     name: Alarm
     dps:
