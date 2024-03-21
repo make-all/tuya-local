@@ -27,6 +27,9 @@ primary_entity:
     - id: 3
       type: integer
       name: current_position
+      range:
+        min: 0
+        max: 100
       mapping:
         - invert: true
     - id: 7
@@ -35,21 +38,20 @@ primary_entity:
       mapping:
         - dps_val: opening
           value: opening
-          constraint: situation_set
+          constraint: current_position
           conditions:
-            - dps_val: fully_open
+            - dps_val: 0
               value: opened
         - dps_val: closing
           value: closing
-          constraint: situation_set
+          constraint: current_position
           conditions:
-            - dps_val: fully_close
+            - dps_val: 100
               value: closed
     - id: 11
       type: string
       name: situation_set
       optional: true
-      persist: false
 secondary_entities:
   - entity: select
     name: Direction
