@@ -508,6 +508,7 @@ of device.
 - Dongguan garage door
 - Dongguan LY1678-2 curtain robot
 - Dooya curtain motor
+- Eruiklink curtain motor
 - Etersky curtain switch with backlight and timing control
 - FS-03W curtain switch with backlight control
 - Graywind window shades
