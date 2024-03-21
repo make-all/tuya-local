@@ -495,7 +495,7 @@ Further device support has been made with the assistance of users. Please consid
 - [RoelDU](https://github.com/RoelDU) for assisting with support for Mirabella Genio Pixel oval lights.
 - [toposilva](https://github.com/toposilva) for assisting with support for 1CH dimmer modules.
 - [Pel1can111](https://github.com/Pel1can111) for assisting with support for Timeguard WFPIR motion light controller.
-- [ShiGhost](https://github.com/ShiGhost) for assisting with support for Keyun RGB chandelier fans.
+- [ShiGhost](https://github.com/ShiGhost) for assisting with support for Keyun RGB chandelier fans and LS830-TY curtains.
 - [knowc](https://github.com/knowc) for assisting with support for Hydrotherm Dynamic/X8 Gen 6 water heaters.
 - [Waz-Cpt](https://github.com/Waz-Cpt) for contributing support for a dual dimmer module.
 - [wizu](https://gitub.com/wizu) for contributing improvements to NAC AP470 purifier.
