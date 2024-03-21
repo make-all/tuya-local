@@ -34,17 +34,17 @@ primary_entity:
       name: action
       mapping:
         - dps_val: opening
+          value: opening
           constraint: situation_set
           conditions:
             - dps_val: fully_open
               value: opened
-            - value: opening
         - dps_val: closing
+          value: closing
           constraint: situation_set
           conditions:
             - dps_val: fully_close
               value: closed
-            - value: closing
     - id: 11
       type: string
       name: situation_set
