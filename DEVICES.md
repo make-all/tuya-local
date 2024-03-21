@@ -520,7 +520,8 @@ of device.
 - LS830-TY curtain
 - M027 curtain module (sold under several brands, including zemismart, meterk and others)
 - M515 curtain motor
-- Moes SCS80 Touch curtain swich with backlight and timing control
+- Moes SCS80 Touch curtain switch with backlight and timing control
+- Moes WS-Y-EUC curtain switch with backlight and timing control
 - QS-WIFI-C01(BK) curtain module
 - SHerko curtain motor
 - SmartCurtains A-series ACS-WT curtain motor (may work for other models)
