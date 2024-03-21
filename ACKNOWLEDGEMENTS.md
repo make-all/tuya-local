@@ -524,3 +524,4 @@ Further device support has been made with the assistance of users. Please consid
 - [korzeniewski36](https://github.com/korzeniewski36) for assisting with support for KKMoon knob thermostats.
 - [ItsMe00007](https://github.com/ItsMe00007) for contributing support for Lehmann LHOHC-2013C radiators.
 - [bonius1](https://github.com/bonius1) for assisting with support for Zemismart DP-WBS01 8 zone irrigation controllers.
+- [airwebber](https://github.com/airwebber) for assisting with support for Orison ceiling fans with RGB lights.
