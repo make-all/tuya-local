@@ -119,6 +119,8 @@ secondary_entities:
             value: "Socket leakage"
           - dps_val: 16
             value: "Socket temperature is to high."
+          - dps_val: 32
+            value: "Unknown error!"
   - entity: button
     name: Clear energy
     class: restart
@@ -192,7 +194,7 @@ secondary_entities:
         type: integer
         name: sensor
         unit: kWh
-        class: measurement
+        class: total_increasing
         mapping:
           - scale: 10
   - entity: sensor
