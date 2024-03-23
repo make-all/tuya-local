@@ -1,0 +1,39 @@
+name: Sol*Aire Vitra WiFi Electric Panel Heater
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: true
+          value: "heat"
+          icon: "mdi:radiator"
+        - dps_val: false
+          value: "off"
+          icon: "mdi:radiator-disabled"
+    - id: 2
+      name: temperature
+      type: integer
+      range:
+        min: 7
+        max: 30
+    - id: 3
+      name: current_temperature
+      type: integer
+    - id: 4
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: low
+          value: eco
+        - dps_val: comfort
+          value: boost
+        - dps_val: antifreezen
+          value: away
+    - id: 12
+      name: error
+      type: bitfield
+      mapping:
+        - dps_val: 0
+          value: "OK"
