@@ -585,6 +585,7 @@ configured using RTSP or ONVIF feeds if they have static IP address,
 port and password.
 
 - BCom Majic IPBox intercom camera
+- Camnsmart E27-TY camera
 - Kerui 200W camera
 - Kerui JS-P162 300W camera
 - Nedis outdoor camera
