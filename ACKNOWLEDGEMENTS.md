@@ -527,3 +527,5 @@ Further device support has been made with the assistance of users. Please consid
 - [airwebber](https://github.com/airwebber) for assisting with support for Orison ceiling fans with RGB lights.
 ^ [cherokee13](https://github.com/cherokee13) for assisting with support for Eruiklink curtain motors.
 - [Szenky](https://github.com/Szensky) for assisting with support for Moes WS-Y-EUC curtain switches.
+- [Aironside](https://github.com/Aironside) for assisting with support for WF-WS02 RJ dual switches.
+- [phatrickk](https://github.com/phatrickk) for assisting with support for Camnsmart E27 cameras.
