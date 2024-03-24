@@ -25,7 +25,7 @@ primary_entity:
       name: preset_mode
       type: string
       mapping:
-        - dps_val: low
+        - dps_val: eco
           value: eco
         - dps_val: comfort
           value: comfort
@@ -37,3 +37,29 @@ primary_entity:
       mapping:
         - dps_val: 0
           value: "OK"
+secondary_entities:
+  - entity: number
+    name: Temperature calibration
+    category: config
+    icon: "mdi:arrow-collapse-up"
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        range:
+          min: -15
+          max: 15
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:    
+      - id: 6
+        type: boolean
+        name: lock
+  - entity: light
+    name: Display
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
