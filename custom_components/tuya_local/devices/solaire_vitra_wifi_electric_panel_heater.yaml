@@ -56,13 +56,6 @@ secondary_entities:
       - id: 6
         type: boolean
         name: lock
-  - entity: light
-    name: Display
-    category: config
-    dps:
-      - id: 9
-        type: boolean
-        name: switch
         mapping:
           - dps_val: true
             value: true
@@ -70,3 +63,10 @@ secondary_entities:
           - dps_val: false
             value: false
             icon: "mdi:account-lock"
+  - entity: light
+    name: Display
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
