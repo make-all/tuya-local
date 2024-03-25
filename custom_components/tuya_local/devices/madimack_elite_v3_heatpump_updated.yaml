@@ -1,7 +1,7 @@
 name: Pool heatpump
 products:
   - id: kwrvh8zwvbbyp086
-    name: Madimack Elite V3 40kW
+    name: Madimack Elite V3 11-40kW
 primary_entity:
   entity: climate
   dps:
@@ -193,6 +193,8 @@ secondary_entities:
       - id: 121
         name: sensor
         type: integer
+        unit: P
+        class: measurement
   - entity: sensor
     category: diagnostic
     name: Fault code
@@ -200,3 +202,15 @@ secondary_entities:
       - id: 107
         name: sensor
         type: bitfield
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 125
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 1000
