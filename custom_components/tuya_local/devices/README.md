@@ -647,6 +647,7 @@ no information will be available about which specific credential was used to unl
 - **unlock_offline_pwd** (optional, integer): a dp to identify the offline password used to unlock the lock.
 - **unlock_card** (optional, integer): a dp to identify the card used to unlock the lock.
 - **unlock_app** (optional, integer): a dp to identify the app used to unlock the lock.
+- **unlock_face** (optional, integer): a dp to identify the face used to unlock the lock.
 - **unlock_key** (optional, integer): a dp to identify the key used to unlock the lock.
 - **unlock_ble** (optional, integer): a dp to identify the BLE device used to unlock the lock.
 - **unlock_voice** (optional, integer): a dp to identify the voice assistant user used to unlock the lock.

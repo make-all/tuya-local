@@ -34,20 +34,7 @@ primary_entity:
         - invert: true
     - id: 7
       type: string
-      name: action
-      mapping:
-        - dps_val: opening
-          value: opening
-          constraint: current_position
-          conditions:
-            - dps_val: 0
-              value: opened
-        - dps_val: closing
-          value: closing
-          constraint: current_position
-          conditions:
-            - dps_val: 100
-              value: closed
+      name: unreliable_action
     - id: 11
       type: string
       name: situation_set

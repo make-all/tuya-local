@@ -562,10 +562,14 @@ of device.
 
 ### Locks
 
+Note: Locks that are battery powered and do not use a hub are unlikely to
+work reliably, even if listed below.
+
 - BSTUOKEY access control keypad
 - Lucking HF06 smart lock
 - Orion Grid Connect smart lock
 - SmarDeer Lock33 smart lock
+- Tediton K7 smart lock
 
 ### Sirens
 
