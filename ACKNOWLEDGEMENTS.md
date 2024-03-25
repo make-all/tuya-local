@@ -530,3 +530,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Aironside](https://github.com/Aironside) for assisting with support for WF-WS02 RJ dual switches.
 - [phatrickk](https://github.com/phatrickk) for assisting with support for Camnsmart E27 cameras.
 - [phid78](https://github.com/phid78) for assisting with support for Tediton K7 door locks.
+- [jwGeorge](https://github.com/jwGeorge) for contributing improvements to Madimack Elite V3 heatpumps.
