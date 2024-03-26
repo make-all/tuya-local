@@ -532,3 +532,4 @@ Further device support has been made with the assistance of users. Please consid
 - [phid78](https://github.com/phid78) for assisting with support for Tediton K7 door locks.
 - [jwGeorge](https://github.com/jwGeorge) for contributing improvements to Madimack Elite V3 heatpumps.
 - [luis-guilherme](https://github.com/luis-guilherme) for contributing support  for simple dual switches (eMylo dual RF/Wifi switches).
+- [tiernan1979](https://github.com/tiernan1979) for contributing support for YSG BS01 bluetooth locks.

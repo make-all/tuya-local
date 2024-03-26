@@ -702,6 +702,7 @@ port and password.
 - SGS01 plant sensor
 - Smart Ape solar garden light
 - TH05 temperature and humidity sensor
+- YSG BS01 lock
 - Generic water timers (confirmed with Johgee, Diivoo and Royal Gardineer branded devices)
 
 ### Devices supported via IR hubs
