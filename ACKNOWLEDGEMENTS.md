@@ -531,3 +531,4 @@ Further device support has been made with the assistance of users. Please consid
 - [phatrickk](https://github.com/phatrickk) for assisting with support for Camnsmart E27 cameras.
 - [phid78](https://github.com/phid78) for assisting with support for Tediton K7 door locks.
 - [jwGeorge](https://github.com/jwGeorge) for contributing improvements to Madimack Elite V3 heatpumps.
+- [luis-guilherme](https://github.com/luis-guilherme) for contributing support  for simple dual switches (eMylo dual RF/Wifi switches).
