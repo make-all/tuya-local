@@ -1,0 +1,192 @@
+name: Door lock
+products:
+  - id: umca8uiv2203ua3k
+    name: Tediton K7 WBR3
+primary_entity:
+  entity: lock
+  dps:
+    - id: 1
+      type: integer
+      name: unlock_fingerprint
+      optional: true
+      persist: false
+    - id: 2
+      type: integer
+      name: unlock_password
+      optional: true
+      persist: false
+    - id: 3
+      type: integer
+      name: unlock_temp_pwd
+      optional: true
+      persist: false
+    - id: 5
+      type: integer
+      name: unlock_card
+      optional: true
+      persist: false
+    - id: 6
+      type: integer
+      name: unlock_face
+      optional: true
+      persist: false
+    - id: 7
+      type: integer
+      name: unlock_key
+      optional: true
+      persist: false
+    - id: 8
+      type: string
+      optional: true
+      persist: false
+      name: jammed
+      mapping:
+        - dps_val: tongue_bad
+          value: true
+        - dps_val: tongue_not_out
+          value: true
+        - value: false
+    - id: 9
+      type: integer
+      name: unlock_request
+    - id: 15
+      type: integer
+      name: unlock_app
+      optional: true
+      persist: false
+    - id: 25
+      type: string
+      optional: true
+      name: update_all_finger
+    - id: 26
+      type: string
+      optional: true
+      name: update_all_password
+    - id: 27
+      type: string
+      optional: true
+      name: update_all_card
+    - id: 28
+      type: string
+      optional: true
+      name: update_all_face
+    - id: 31
+      type: string
+      optional: true
+      name: update_all_fin_vein
+    - id: 32
+      type: string
+      name: offline_pd
+      optional: true
+    - id: 33
+      type: string
+      name: offline_clear
+      optional: true
+    - id: 49
+      type: string
+      name: remote_no_pd_setkey
+      optional: true
+    - id: 50
+      type: string
+      name: remote_no_pd_key
+      optional: true
+    - id: 57
+      type: string
+      name: lock_record
+      optional: true
+    - id: 60
+      type: string
+      name: local_capacity_link
+      optional: true
+    - id: 70
+      type: string
+      name: lock_local_record
+      optional: true
+secondary_entities:
+  - entity: sensor
+    name: Alert
+    class: enum
+    icon: "mdi:alert"
+    category: diagnostic
+    dps:
+      - id: 8
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: null
+            value: ok
+          - dps_val: wrong_finger
+            value: wrong_finger
+          - dps_val: wrong_password
+            value: wrong_password
+          - dps_val: wrong_card
+            value: wrong_card
+          - dps_val: wrong_face
+            value: wrong_face
+          - dps_val: tongue_bad
+            value: tongue_bad
+          - dps_val: too_hot
+            value: too_hot
+          - dps_val: unclosed_time
+            value: unclosed_time
+          - dps_val: tongue_not_out
+            value: tomgue_not_out
+          - dps_val: pry
+            value: pry
+          - dps_val: key_in
+            value: key_in
+          - dps_val: low_battery
+            value: low_battery
+          - dps_val: power_off
+            value: power_off
+          - dps_val: shock
+            value: shock
+          - dps_val: defense
+            value: defense
+          - dps_val: stay_alarm
+            value: stay_alarm
+          - dps_val: doorbell
+            value: doorbell
+  - entity: alarm_control_panel
+    dps:
+      - id: 10
+        type: boolean
+        optional: true
+        name: alarm_state
+        mapping:
+          - dps_val: false
+            value: disarmed
+          - dps_val: true
+            value: armed_away
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 12
+        type: integer
+        name: sensor
+        optional: true
+        unit: "%"
+  - entity: binary_sensor
+    name: Duress
+    class: safety
+    category: diagnostic
+    dps:
+      - id: 16
+        type: boolean
+        name: sensor
+        optional: true
+  - entity: event
+    class: doorbell
+    dps:
+      - id: 19
+        type: boolean
+        optional: true
+        name: event
+        mapping:
+          - dps_val: true
+            value: ring
+          - dps_val: false
+            value: null

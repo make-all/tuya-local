@@ -70,26 +70,26 @@ primary_entity:
       name: swing_mode
       mapping:
         - dps_val: "0"
+          value: horizontal
           constraint: horizontal_swing
           conditions:
             - dps_val: "0"
               value: "off"
             - dps_val: "1"
               value: horizontal
-            - value: horizontal
         - dps_val: "1"
+          value: both
           constraint: horizontal_swing
           conditions:
             - dps_val: "0"
               value: vertical
             - dps_val: "1"
               value: both
-            - value: both
-        - constraint: horizontal_swing
+        - value: both
+          constraint: horizontal_swing
           conditions:
             - dps_val: "0"
               value: vertical
-            - value: both
     - id: 114
       type: string
       name: horizontal_swing

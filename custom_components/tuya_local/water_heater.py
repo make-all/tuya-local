@@ -37,7 +37,7 @@ def validate_temp_unit(unit):
     try:
         return UnitOfTemperature(unit)
     except ValueError:
-        return None
+        _LOGGER.warning("%s is not a valid temperature unit", unit)
 
 
 class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
@@ -137,9 +137,8 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
     @property
     def current_temperature(self):
         """Return the current temperature."""
-        if self._current_temperature_dps is None:
-            return None
-        return self._current_temperature_dps.get_value(self._device)
+        if self._current_temperature_dps:
+            return self._current_temperature_dps.get_value(self._device)
 
     @property
     def target_temperature(self):

@@ -138,7 +138,9 @@ primary_entity:
               value: both
             - dps_val: lr_00
               value: vertical
-            - value: vertical
+            - dps_val: [lr_01, lr_02, lr_03, lr_04]
+              value: vertical
+              hidden: true
         - dps_val: ud_00
           constraint: horizontal_swing
           conditions:
@@ -146,16 +148,18 @@ primary_entity:
               value: horizontal
             - dps_val: lr_00
               value: "off"
-            - value: "off"
-        - constraint: horizontal_swing
+            - dps_val: [lr_01, lr_02, lr_03, lr_04]
+              value: "off"
+              hidden: true
+        - value: "off"
+          hidden: true
+          constraint: horizontal_swing
           conditions:
             - dps_val: lr_0c
               value: horizontal
-            - value: "off"
     - id: 118
       type: string
       name: horizontal_swing
-      # From Tadiran Apollo
     - id: 101
       type: boolean
       name: mood_lighting

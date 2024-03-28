@@ -58,7 +58,8 @@ def validate_temp_unit(unit):
     try:
         return UnitOfTemperature(unit)
     except ValueError:
-        return None
+        if unit:
+            _LOGGER.warning("%s is not a valid temperature unit", unit)
 
 
 class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
@@ -94,6 +95,12 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         self._maxtemp_dps = dps_map.pop("max_temperature", None)
 
         self._init_end(dps_map)
+
+        # Disable HA's backwards compatibility auto creation of turn_on/off
+        # we explicitly define our own so this should have no effect, but
+        # the deprecation notices in HA use this flag rather than properly
+        # checking whether we are falling back on the auto-generation.
+        self._enable_turn_on_off_backwards_compatibility = False
 
         if self._aux_heat_dps:
             self._attr_supported_features |= ClimateEntityFeature.AUX_HEAT
@@ -268,9 +275,8 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
     @property
     def current_temperature(self):
         """Return the current measured temperature."""
-        if self._current_temperature_dps is None:
-            return None
-        return self._current_temperature_dps.get_value(self._device)
+        if self._current_temperature_dps:
+            return self._current_temperature_dps.get_value(self._device)
 
     @property
     def target_humidity(self):
@@ -304,9 +310,8 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
     @property
     def current_humidity(self):
         """Return the current measured humidity."""
-        if self._current_humidity_dps is None:
-            return None
-        return self._current_humidity_dps.get_value(self._device)
+        if self._current_humidity_dps:
+            return self._current_humidity_dps.get_value(self._device)
 
     @property
     def hvac_action(self):
@@ -323,7 +328,6 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
                 self.name or "climate",
                 action,
             )
-            return None
 
     @property
     def hvac_mode(self):
@@ -340,7 +344,6 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
                 self.name or "climate",
                 hvac_mode,
             )
-            return None
 
     @property
     def hvac_modes(self):
@@ -380,9 +383,7 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
     @property
     def is_aux_heat(self):
         """Return state of aux heater"""
-        if self._aux_heat_dps is None:
-            return None
-        else:
+        if self._aux_heat_dps:
             return self._aux_heat_dps.get_value(self._device)
 
     async def async_turn_aux_heat_on(self):
@@ -407,9 +408,8 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
     @property
     def preset_modes(self):
         """Return the list of presets that this device supports."""
-        if self._preset_mode_dps is None:
-            return None
-        return self._preset_mode_dps.values(self._device)
+        if self._preset_mode_dps:
+            return self._preset_mode_dps.values(self._device)
 
     async def async_set_preset_mode(self, preset_mode):
         """Set the preset mode."""
@@ -427,9 +427,8 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
     @property
     def swing_modes(self):
         """Return the list of swing modes that this device supports."""
-        if self._swing_mode_dps is None:
-            return None
-        return self._swing_mode_dps.values(self._device)
+        if self._swing_mode_dps:
+            return self._swing_mode_dps.values(self._device)
 
     async def async_set_swing_mode(self, swing_mode):
         """Set the preset mode."""
@@ -447,9 +446,8 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
     @property
     def fan_modes(self):
         """Return the list of fan modes that this device supports."""
-        if self._fan_mode_dps is None:
-            return None
-        return self._fan_mode_dps.values(self._device)
+        if self._fan_mode_dps:
+            return self._fan_mode_dps.values(self._device)
 
     async def async_set_fan_mode(self, fan_mode):
         """Set the fan mode."""

@@ -3,21 +3,49 @@ products:
   - id: wfchjk5vc9bysjtk
     name: Holman WX2
 primary_entity:
-  entity: switch
+  entity: valve
   name: Manual 1
-  icon: "mdi:watering-can"
+  class: water
   dps:
     - id: 108
       type: boolean
-      name: switch
+      name: valve
       mapping:
         - dps_val: true
           value: false
         - dps_val: false
           value: true
 secondary_entities:
+  - entity: valve
+    name: Manual 2
+    class: water
+    dps:
+      - id: 155
+        type: boolean
+        name: valve
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+  - entity: switch
+    name: Manual 1
+    category: config
+    deprecated: valve
+    icon: "mdi:watering-can"
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
   - entity: switch
     name: Manual 2
+    category: config
+    deprecated: valve
     icon: "mdi:watering-can"
     dps:
       - id: 155

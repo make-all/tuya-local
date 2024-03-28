@@ -42,6 +42,7 @@ class TestMoebot(TuyaDeviceTestCase):
         self.mark_secondary(
             [
                 "binary_sensor_problem",
+                "select_mowing_mode",
                 "sensor_problem",
                 "switch_rain_mode",
                 "number_running_time",

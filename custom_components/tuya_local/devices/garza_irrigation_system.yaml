@@ -3,18 +3,31 @@ products:
   - id: xnajzurgqo1ugohn
     name: Garza ITV103W
 primary_entity:
-  entity: switch
-  icon: "mdi:watering-can"
+  entity: valve
+  class: water
   dps:
     - id: 108
       type: boolean
-      name: switch
+      name: valve
       mapping:
         - dps_val: true
           value: false
         - dps_val: false
           value: true
 secondary_entities:
+  - entity: switch
+    icon: "mdi:watering-can"
+    category: config
+    deprecated: valve
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
   - entity: sensor
     class: battery
     category: diagnostic
