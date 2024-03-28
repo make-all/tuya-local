@@ -79,8 +79,7 @@ primary_entity:
       optional: true
 secondary_entities:
   - entity: select
-    name: temperature unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 19
@@ -88,9 +87,9 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: C
-            value: Celsius
+            value: celsius
           - dps_val: F
-            value: Fahrenheit
+            value: fahrenheit
   - entity: switch
     name: Sleep
     icon: "mdi:power-sleep"
@@ -100,8 +99,7 @@ secondary_entities:
         name: switch
         optional: true
   - entity: binary_sensor
-    name: Defrosting
-    class: cold
+    translation_key: defrost
     category: diagnostic
     dps:
       - id: 102
@@ -129,7 +127,6 @@ secondary_entities:
         unit: min
         class: measurement
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:

@@ -23,7 +23,7 @@
             },
             "choose_entities": {
                 "title": "Detail perangkat",
-                "description": "Buat nama untuk perangkat ini dan entitas yang akan diaktifkan",
+                "description": "Buat nama untuk perangkat ini",
                 "data": {
                     "name": "Nama"
                 }
@@ -59,6 +59,29 @@
         }
     },
     "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "Mencairkan beku",
+                "state": {
+                    "off": "Normal",
+                    "on": "Pencairan bunga es"
+                }
+            },
+            "tank_empty": {
+                "name": "Tangki",
+                "state": {
+                    "off": "Oke",
+                    "on": "Rendah"
+                }
+            },
+            "tank_full": {
+                "name": "Tangki",
+                "state": {
+                    "off": "Oke",
+                    "on": "Penuh"
+                }
+            }
+        },
         "climate": {
             "aircon_extra": {
                 "state_attributes": {
@@ -208,6 +231,18 @@
         "select": {
             "timer": {
                 "name": "Pengatur waktu"
+            },
+            "temperature_unit": {
+                "name": "Satuan suhu",
+                "state": {
+                    "celsius": "Celsius",
+                    "fahrenheit": "Fahrenheit"
+                }
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "Anti beku"
             }
         }
     }

@@ -111,9 +111,7 @@ secondary_entities:
         type: boolean
         name: lock
   - entity: binary_sensor
-    class: problem
-    name: Tank full
-    icon: "mdi:cup-water"
+    translation_key: tank_full
     dps:
       - id: 19
         type: bitfield
@@ -124,7 +122,6 @@ secondary_entities:
           - value: false
   - entity: binary_sensor
     class: problem
-    name: Fault
     dps:
       - id: 19
         type: bitfield

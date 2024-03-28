@@ -82,7 +82,9 @@ primary_entity:
               value: "off"
             - dps_val: same
               value: vertical
-            - value: "off"
+            - dps_val: [vane_1, vane_2, vane_3, vane_4, vane_5]
+              value: "off"
+              hidden: true
         - dps_val: true
           constraint: vertical
           conditions:
@@ -90,7 +92,9 @@ primary_entity:
               value: horizontal
             - dps_val: same
               value: both
-            - value: horizontal
+            - dps_val: [vane_1, vane_2, vane_3, vane_4, vane_5]
+              value: horizontal
+              hidden: true
     - id: 103
       type: string
       name: unknown_103
@@ -127,7 +131,6 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -174,7 +177,7 @@ secondary_entities:
         name: switch
   - entity: switch
     name: Timer on
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 101
@@ -182,7 +185,7 @@ secondary_entities:
         name: switch
   - entity: switch
     name: Timer off
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 102

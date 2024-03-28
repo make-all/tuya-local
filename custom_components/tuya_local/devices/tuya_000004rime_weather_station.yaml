@@ -178,8 +178,7 @@ secondary_entities:
         type: bitfield
         name: notifications_payload
   - entity: select
-    name: Display units
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 105
@@ -187,9 +186,9 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: c
-            value: Celsius
+            value: celsius
           - dps_val: f
-            value: Fahrenheit
+            value: fahrenheit
   - entity: light
     name: LCD brightness
     icon: "mdi:television-ambient-light"
@@ -652,7 +651,6 @@ secondary_entities:
             mask: 000000000000FF
   - entity: binary_sensor
     category: diagnostic
-    name: Errors
     class: problem
     dps:
       - id: 113

@@ -133,17 +133,16 @@ secondary_entities:
             icon: "mdi:led-on"
   - entity: select
     category: config
-    name: Temperature unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     dps:
       - id: 18
         name: option
         type: string
         mapping:
           - dps_val: c
-            value: Celsius
+            value: celsius
           - dps_val: f
-            value: Fahrenheit
+            value: fahrenheit
   - entity: select
     translation_key: timer
     category: config
@@ -195,10 +194,8 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: binary_sensor
-    class: problem
-    name: Tank
+    translation_key: tank_empty
     category: diagnostic
-    icon: "mdi:cup-outline"
     dps:
       - id: 22
         type: bitfield

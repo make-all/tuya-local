@@ -1,0 +1,101 @@
+name: Pet feeder
+products:
+  - id: wa8pwmxwnhpujmdq
+    name: HoneyGuardian S56
+primary_entity:
+  entity: number
+  category: config
+  icon: "mdi:food-drumstick"
+  name: Manual feed
+  dps:
+    - id: 3
+      type: integer
+      name: value
+      range:
+        min: 1
+        max: 6
+    - id: 1
+      type: string
+      name: plan
+      optional: true
+secondary_entities:
+  - entity: switch
+    category: config
+    name: Slow feeding
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: false
+            icon: "mdi:play"
+          - dps_val: true
+            icon: "mdi:fast-forward"
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 14
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 14
+        type: bitfield
+        name: fault_code
+        optional: true
+  - entity: number
+    category: config
+    icon: "mdi:account-voice"
+    name: Voice activations
+    dps:
+      - id: 18
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 10
+  - entity: sensor
+    category: diagnostic
+    icon: "mdi:record-rec"
+    name: Meal log
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+  - entity: select
+    category: config
+    name: Clock
+    dps:
+      - id: 102
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: false
+            value: 12 hour
+            icon: "mdi:hours-12"
+          - dps_val: true
+            value: 24 hour
+            icon: "mdi:hours-24"
+  - entity: sensor
+    category: diagnostic
+    class: battery
+    dps:
+      - id: 103
+        type: string
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: empty
+            value: 10
+          - dps_val: low
+            value: 40
+          - dps_val: high
+            value: 70
+          - dps_val: full
+            value: 100

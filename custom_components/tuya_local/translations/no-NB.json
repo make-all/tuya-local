@@ -23,7 +23,7 @@
             },
             "choose_entities": {
                 "title": "Enhetsdetaljer",
-                "description": "Angi et navn for din enhet, og hvilke entiteter som skal aktiveres",
+                "description": "Angi et navn for din enhet",
                 "data": {
                     "name": "Navn"
                 }
@@ -59,6 +59,29 @@
         }
     },
     "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "Tine",
+                "state": {
+                    "off": "Normal",
+                    "on": "Tining"
+                }
+            },
+            "tank_empty": {
+                "name": "Tank",
+                "state": {
+                    "off": "OK",
+                    "on": "Lav"
+                }
+            },
+            "tank_full": {
+                "name": "Tank",
+                "state": {
+                    "off": "OK",
+                    "on": "Full"
+                }
+            }
+        },
         "climate": {
             "aircon_extra": {
                 "state_attributes": {
@@ -192,6 +215,18 @@
         "select": {
             "timer": {
                 "name": "Timer"
+            },
+            "temperature_unit": {
+                "name": "Temperaturenhet",
+                "state": {
+                    "celsius": "Celsius",
+                    "fahrenheit": "Fahrenheit"
+                }
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "Anti-frost"
             }
         }
     }

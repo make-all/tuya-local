@@ -89,13 +89,13 @@ primary_entity:
       name: hvac_action
       mapping:
         - dps_val: open
+          value: idle
           constraint: preset_mode
           conditions:
             - dps_val: [cool, floor]
               value: cooling
             - dps_val: [heat, floor_heat]
               value: heating
-            - value: idle
         - dps_val: close
           constraint: hvac_mode
           conditions:
@@ -125,16 +125,14 @@ primary_entity:
       name: light_mode
 secondary_entities:
   - entity: switch
-    name: Anti-frost
-    icon: "mdi:snowflake"
+    translation_key: anti_frost
     category: config
     dps:
       - id: 10
         type: boolean
         name: switch
   - entity: select
-    name: Temperature units
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 23
@@ -142,9 +140,9 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: c
-            value: Celsius
+            value: celsius
           - dps_val: f
-            value: Fahrenheit
+            value: fahrenheit
   - entity: number
     name: Maximum temperature
     category: config
@@ -218,7 +216,6 @@ secondary_entities:
         type: boolean
         name: lock
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:

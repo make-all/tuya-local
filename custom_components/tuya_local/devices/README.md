@@ -511,6 +511,17 @@ If `constraint_dp` is readonly:
 | c | y | target_dp: 2 |
 | c | z | target_dp: 1 |
 
+Note that each condition must specify a `dps_val` to match againt. If you want to specify a default match, do it outside the conditions.
+
+```
+    mapping:
+      - dps_val: some_value
+        value: defaulted
+        constraint: other_dp
+        conditions:
+          - dps_val: other_value
+            value: overridden
+```
 
 
 ## Entity types
@@ -636,6 +647,7 @@ no information will be available about which specific credential was used to unl
 - **unlock_offline_pwd** (optional, integer): a dp to identify the offline password used to unlock the lock.
 - **unlock_card** (optional, integer): a dp to identify the card used to unlock the lock.
 - **unlock_app** (optional, integer): a dp to identify the app used to unlock the lock.
+- **unlock_face** (optional, integer): a dp to identify the face used to unlock the lock.
 - **unlock_key** (optional, integer): a dp to identify the key used to unlock the lock.
 - **unlock_ble** (optional, integer): a dp to identify the BLE device used to unlock the lock.
 - **unlock_voice** (optional, integer): a dp to identify the voice assistant user used to unlock the lock.
@@ -688,6 +700,9 @@ The value "off" will be used for turning off the siren, and will be filtered fro
     These are additional commands that are not part of **status**. They can be sent as general commands from HA.
 - **error** (optional, bitfield): a dp that reports error status.
     As this is mapped to a single "fault" state, you could consider separate binary_sensors to report on individual errors
+
+### `valve`
+- **valve** (required, boolean or integer): a dp that reports the current state of the valve, and if not readonly, can also be used to set the state.  If a number, it should be a percentage between 0 and 100 indicating how far open the valve is.  If a boolean, it should indicate open (true) or closed (false).
 
 ### `water_heater`
 - **current_temperature** (optional, number): a dp that reports the current water temperature.

@@ -135,7 +135,6 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -267,7 +266,7 @@ secondary_entities:
   - entity: number
     name: Delayed charge timer
     category: config
-    icon: "mdi:timer"
+    translation_key: timer
     dps:
       - id: 28
         type: integer

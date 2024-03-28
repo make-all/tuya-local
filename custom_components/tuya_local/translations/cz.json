@@ -23,7 +23,7 @@
             },
             "choose_entities": {
                 "title": "Podrobnosti o zařízení",
-                "description": "Vyberte jméno pro toto zařízení a jeho entity které budou zapnuty",
+                "description": "Vyberte jméno pro toto zařízení",
                 "data": {
                     "name": "Jméno"
                 }
@@ -56,6 +56,194 @@
         },
         "abort": {
             "not_supported": "Omlouváme se, toto zažízení není podporováno."
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "Rozmrazovat",
+                "state": {
+                    "off": "Normální",
+                    "on": "Rozmrazování"
+                }
+            },
+            "tank_empty": {
+                "name": "Nádrž",
+                "state": {
+                    "off": "OK",
+                    "on": "Nízká"
+                }
+            },
+            "tank_full": {
+                "name": "Nádrž",
+                "state": {
+                    "off": "OK",
+                    "on": "Plná"
+                }
+            }
+        },
+        "climate": {
+            "aircon_extra": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "health": "Zdravý",
+                            "medhigh": "Středně vysoký",
+                            "medlow": "Středně nízký",
+                            "natural": "Přírodní",
+                            "quiet": "Klid",
+                            "sleep": "Spát",
+                            "strong": "Silný"
+                        }
+                    },
+                    "swing_mode": {
+                        "state": {
+                            "topmost": "Nejvyšší",
+                            "top": "Horní",
+                            "middle": "Střední",
+                            "down": "Dolů",
+                            "downmost": "Nejspodnější"
+                        }
+                    }
+                }
+            },
+            "thermostat": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "cycle": "Cyklus"
+                        }
+                    },
+                    "preset_mode": {
+                        "state": {
+                            "manual": "Manuál",
+                            "program": "Program",
+                            "temp_override": "Dočasné přepsání",
+                            "perm_override": "Trvalé přepsání"
+                        }
+                    }
+                }
+            },
+            "combo_floor": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "cool": "Chladný vzduch",
+                            "fan_only": "Ventilátor",
+                            "heat": "Ohřejte vzduch",
+                            "floor_cool": "Chladná podlaha",
+                            "floor_heat": "Tepelná podlaha"
+                        }
+                    }
+                }
+            },
+            "swing_as_powerlevel": {
+                "state_attributes": {
+                    "swing_mode": {
+                        "name": "Úroveň vytápění",
+                        "state": {
+                            "stop": "Stop",
+                            "auto": "Auto"
+                        }
+                    }
+                }
+            },
+            "pool_heatpump": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "smart_heat": "Chytré teplo",
+                            "quick_heat": "Rychlé teplo",
+                            "quiet_heat": "Tiché teplo",
+                            "smart_cool": "Chytré chlazení",
+                            "quick_cool": "Rychlé chlazení",
+                            "quiet_cool": "Tiché chlazení",
+                            "auto": "Auto"
+                        }
+                    }
+                }
+            },
+            "thermo_switch": {
+                "state_attributes": {
+                    "hvac_mode": {
+                        "state": {
+                            "fan_only": "Pauza"
+                        }
+                    }
+                }
+            }
+        },
+        "humidifier": {
+            "dehumidifier": {
+                "state_attributes": {
+                    "mode": {
+                        "state": {
+                            "laundry": "Suché prádlo",
+                            "purify": "Očistit"
+                        }
+                    }
+                }
+            }
+        },
+        "fan": {
+            "fan_with_presets": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "normal": "Normální",
+                            "nature": "Přírodní",
+                            "sleep": "Spát",
+                            "baby": "Dítě",
+                            "fresh": "Svěží",
+                            "smart": "Chytrý",
+                            "strong": "Silný",
+                            "displayoff": "Vypněte displej",
+                            "off": "Vypnuto"
+                        }
+                    }
+                }
+            },
+            "ventilation": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "fresh": "Čerstvý vzduch",
+                            "circulate": "Obíhat",
+                            "sleep": "Spát",
+                            "auto": "Auto",
+                            "eco": "Eco",
+                            "anti-condensation": "Proti kondenzaci"
+                        }
+                    }
+                }
+            }
+        },
+        "lock": {
+            "child_lock": {
+                "name": "Dětská pojistka"
+            }
+        },
+        "number": {
+            "timer": {
+                "name": "Časovač"
+            }
+        },
+        "select": {
+            "timer": {
+                "name": "Časovač"
+            },
+            "temperature_unit": {
+                "name": "Jednotka teploty",
+                "state": {
+                    "celsius": "Celsia",
+                    "fahrenheit": "Fahrenheita"
+                }
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "Proti mrazu"
+            }
         }
     }
 }

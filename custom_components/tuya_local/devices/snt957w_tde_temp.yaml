@@ -1,0 +1,81 @@
+name: Temperature sensor
+products:
+  - id: fqs8czlq3m0seqyp
+    name: SNT957W-TDE
+primary_entity:
+  entity: sensor
+  class: temperature
+  dps:
+    - id: 1
+      name: sensor
+      type: integer
+      unit: C
+      mapping:
+        - scale: 10
+      class: measurement
+secondary_entities:
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 9
+        name: option
+        type: string
+        mapping:
+          - dps_val: "f"
+            value: fahrenheit
+          - dps_val: "c"
+            value: celsius
+        optional: true
+  - entity: number
+    name: High temperature limit
+    category: config
+    class: temperature
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -400
+          max: 1200
+  - entity: number
+    name: Low temperature limit
+    category: config
+    class: temperature
+    icon: "mdi:thermometer-chevron-down"
+    dps:
+      - id: 11
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -400
+          max: 1200
+  - entity: select
+    name: Temperature alarm
+    icon: "mdi:thermometer-alert"
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        mapping:
+          - dps_val: loweralarm
+            value: Low temperature
+          - dps_val: upperalarm
+            value: High temperature
+          - dps_val: cancel
+            value: Not set
+  - entity: number
+    name: Temperature calibration
+    category: config
+    icon: "mdi:arrow-collapse-up"
+    dps:
+      - id: 23
+        type: integer
+        name: value
+        range:
+          min: -100
+          max: 100

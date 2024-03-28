@@ -1,0 +1,110 @@
+name: Irrigation timer
+products:
+  - id: 8t5hebn0
+    name: MoistenLand BLE
+primary_entity:
+  entity: valve
+  class: water
+  dps:
+    - id: 1
+      name: valve
+      type: boolean
+secondary_entities:
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 4
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 4
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    icon: mdi:battery
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    name: Battery status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 8
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "low"
+            value: "Replace Battery"
+          - dps_val: "middle"
+            value: "Battery Ok"
+          - dps_val: "high"
+            value: "Fully Charged"
+  - entity: select
+    name: Weather delay
+    icon: "mdi:weather-cloudy-clock"
+    category: config
+    dps:
+      - id: 10
+        type: string
+        name: option
+        mapping:
+          - dps_val: "cancel"
+            value: "Off"
+          - dps_val: "24h"
+            value: "1 day"
+          - dps_val: "48h"
+            value: "2 days"
+          - dps_val: "72h"
+            value: "3 days"
+  - entity: number
+    category: config
+    translation_key: timer
+    dps:
+      - id: 11
+        name: value
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: sensor
+    name: Work Mode
+    class: enum
+    category: diagnostic
+    icon: mdi:auto-mode
+    dps:
+      - id: 12
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "manual"
+            value: "Manual"
+          - dps_val: "auto"
+            value: "Auto"
+          - dps_val: "idle"
+            value: "Idle"
+  - entity: sensor
+    name: Watering time
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        optional: true
+        range:
+          min: 0
+          max: 86400
+        unit: s

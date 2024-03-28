@@ -10,7 +10,8 @@
                     "device_id": "Device ID",
                     "local_key": "Chave Local",
                     "protocol_version": "Versão do protocolo (tente auto se não souber)",
-                    "poll_only": "Pesquisar (tente isto se o seu dispositivo não funcionar totalmente)"
+                    "poll_only": "Pesquisar (tente isto se o seu dispositivo não funcionar totalmente)",
+                    "device_cid": "[pt-BR] Sub device ID (for devices connected via gateway)"
                 }
             },
             "select_type": {
@@ -22,7 +23,7 @@
             },
             "choose_entities": {
                 "title": "Detalhes do dispositivo",
-                "description": "Escolha um nome para este dispositivo e quais entidades serão habilitadas",
+                "description": "Escolha um nome para este dispositivo",
                 "data": {
                     "name": "Nome"
                 }
@@ -45,7 +46,8 @@
                     "host": "Endereço IP ou nome do host",
                     "local_key": "Chave Local",
                     "protocol_version": "Versão do protocolo (tente auto se não souber)",
-                    "poll_only": "Pesquisar (tente isto se o seu dispositivo não funcionar totalmente)"
+                    "poll_only": "Pesquisar (tente isto se o seu dispositivo não funcionar totalmente)",
+                    "device_cid": "[pt-BR] Sub device ID (for devices connected via gateway)"
                 }
             }
         },
@@ -54,6 +56,194 @@
         },
         "abort": {
             "not_supported": "Desculpe, não há suporte para este dispositivo."
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "Descongelar",
+                "state": {
+                    "off": "Normal",
+                    "on": "Descongelar"
+                }
+            },
+            "tank_empty": {
+                "name": "Tanque",
+                "state": {
+                    "off": "OK",
+                    "on": "Baixo"
+                }
+            },
+            "tank_full": {
+                "name": "Tanque",
+                "state": {
+                    "off": "OK",
+                    "on": "Cheio"
+                }
+            }
+        },
+        "climate": {
+            "aircon_extra": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "health": "Saudável",
+                            "medhigh": "Médio-alto",
+                            "medlow": "Médio-baixo",
+                            "natural": "Natural",
+                            "quiet": "Quieto",
+                            "sleep": "Dormir",
+                            "strong": "Forte"
+                        }
+                    },
+                    "swing_mode": {
+                        "state": {
+                            "topmost": "Mais alto",
+                            "top": "Alto",
+                            "middle": "Meio",
+                            "down": "Abaixo",
+                            "downmost": "Mais abaixo"
+                        }
+                    }
+                }
+            },
+            "thermostat": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "cycle": "Ciclo"
+                        }
+                    },
+                    "preset_mode": {
+                        "state": {
+                            "manual": "Manual",
+                            "program": "Programa",
+                            "temp_override": "Substituição temporária",
+                            "perm_override": "Substituição permanente"
+                        }
+                    }
+                }
+            },
+            "combo_floor": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "cool": "Ar fresco",
+                            "fan_only": "Ventilador",
+                            "heat": "Ar aquecido",
+                            "floor_cool": "Chão fresco",
+                            "floor_heat": "Chão aquecido"
+                        }
+                    }
+                }
+            },
+            "swing_as_powerlevel": {
+                "state_attributes": {
+                    "swing_mode": {
+                        "name": "Nível de calor",
+                        "state": {
+                            "stop": "Parar",
+                            "auto": "Auto"
+                        }
+                    }
+                }
+            },
+            "pool_heatpump": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "smart_heat": "Calor inteligente",
+                            "quick_heat": "Calor rápido",
+                            "quiet_heat": "Calor silencioso",
+                            "smart_cool": "Resfriamento inteligente",
+                            "quick_cool": "Resfriamento rápido",
+                            "quiet_cool": "Resfriamento silencioso",
+                            "auto": "Auto"
+                        }
+                    }
+                }
+            },
+            "thermo_switch": {
+                "state_attributes": {
+                    "hvac_mode": {
+                        "state": {
+                            "fan_only": "Pausa"
+                        }
+                    }
+                }
+            }
+        },
+        "humidifier": {
+            "dehumidifier": {
+                "state_attributes": {
+                    "mode": {
+                        "state": {
+                            "laundry": "Roupa seca",
+                            "purify": "Purificar"
+                        }
+                    }
+                }
+            }
+        },
+        "fan": {
+            "fan_with_presets": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "normal": "Normal",
+                            "nature": "Natural",
+                            "sleep": "Dormir",
+                            "baby": "Bebê",
+                            "fresh": "Fresco",
+                            "smart": "Inteligente",
+                            "strong": "Forte",
+                            "displayoff": "Exibição desligada",
+                            "off": "Desligado"
+                        }
+                    }
+                }
+            },
+            "ventilation": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "fresh": "Ar fresco",
+                            "circulate": "Circular",
+                            "sleep": "Dormir",
+                            "auto": "Auto",
+                            "eco": "Ecológico",
+                            "anti-condensation": "Anti-condensação"
+                        }
+                    }
+                }
+            }
+        },
+        "lock": {
+            "child_lock": {
+                "name": "Bloqueio infantil"
+            }
+        },
+        "number": {
+            "timer": {
+                "name": "Cronômetro"
+            }
+        },
+        "select": {
+            "timer": {
+                "name": "Cronômetro"
+            },
+            "temperature_unit": {
+                "name": "Unidade de temperatura",
+                "state": {
+                    "celsius": "Celsius",
+                    "fahrenheit": "Fahrenheit"
+                }
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "Antigelo"
+            }
         }
     }
 }

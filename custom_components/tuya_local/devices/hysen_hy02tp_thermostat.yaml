@@ -1,0 +1,298 @@
+name: Thermostat
+products:
+  - id: 4oeq3v7rua8c4ton
+    name: Hysen HY02TP
+primary_entity:
+  entity: climate
+  translation_key: thermostat
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: work_type
+          conditions:
+            - dps_val: "0cool"
+              value: cool
+            - dps_val: "1heat"
+              value: heat
+    - id: 2
+      type: integer
+      name: temperature
+      unit: C
+      range:
+        min: 10
+        max: 700
+      mapping:
+        - scale: 10
+          step: 5
+    - id: 3
+      type: integer
+      name: current_temperature
+      mapping:
+        - scale: 10
+    - id: 4
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: Manual
+          value: manual
+        - dps_val: Program
+          value: program
+        - dps_val: Holiday
+          value: away
+        - dps_val: TempProg
+          value: temp_override
+    - id: 114
+      type: integer
+      name: max_temperature
+    - id: 115
+      type: integer
+      name: min_temperature
+    - id: 123
+      type: string
+      name: work_type
+      hidden: true
+    - id: 127
+      type: string
+      name: hvac_action
+      mapping:
+        - constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              mapping:
+                - dps_val: "0allclose"
+                  value: idle
+                - dps_val: "1heaton"
+                  value: heating
+                - dps_val: "2coolon"
+                  value: cooling
+secondary_entities:
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: lock
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 12
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 12
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    class: temperature
+    name: External temperature
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: number
+    name: Days away
+    category: config
+    icon: "mdi:calendar-week"
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: d
+        range:
+          min: 1
+          max: 30
+  - entity: number
+    name: Away temperature
+    category: config
+    class: temperature
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 1
+          max: 70
+  - entity: switch
+    translation_key: anti_frost
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+  - entity: select
+    name: Display temperature
+    icon: "mdi:home-thermometer"
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: false
+            value: Internal
+          - dps_val: true
+            value: External
+  - entity: number
+    name: Room temperature compensation
+    category: config
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: -9
+          max: 9
+  - entity: number
+    name: Temperature hysterisis
+    category: config
+    icon: "mdi:thermometer-plus"
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: 5
+          max: 25
+        mapping:
+          - scale: 10
+            step: 5
+  - entity: number
+    name: Anti-frost temperature
+    category: config
+    class: temperature
+    icon: "mdi:snowflake-thermometer"
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 1
+          max: 10
+  - entity: number
+    name: Maximum temperature
+    category: config
+    class: temperature
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 20
+          max: 70
+  - entity: number
+    name: Minimum temperature
+    category: config
+    class: temperature
+    icon: "mdi:thermometer-chevron-down"
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 1
+          max: 10
+  - entity: select
+    name: Initial state
+    icon: "mdi:toggle-switch"
+    category: config
+    dps:
+      - id: 117
+        type: string
+        name: option
+        mapping:
+          - dps_val: keep
+            value: Last state
+          - dps_val: "off"
+            value: "Off"
+          - dps_val: "on"
+            value: "On"
+  - entity: select
+    name: Schedule
+    icon: "mdi:calendar-weekend"
+    category: config
+    dps:
+      - id: 118
+        type: string
+        name: option
+        mapping:
+          - dps_val: "2days"
+            value: Weekday+Weekend
+          - dps_val: "1days"
+            value: Mon-Sat+Sun
+          - dps_val: "0days"
+            value: Daily
+      - id: 119
+        type: string
+        optional: true
+        name: workday_1
+      - id: 120
+        type: string
+        optional: true
+        name: workday_2
+      - id: 121
+        type: string
+        optional: true
+        name: restday_1
+      - id: 122
+        type: string
+        optional: true
+        name: restday_2
+  - entity: switch
+    name: Window open detection
+    icon: "mdi:window-open-variant"
+    category: config
+    dps:
+      - id: 124
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "0close"
+            value: false
+          - dps_val: "1open"
+            value: true
+  - entity: number
+    name: WIndow open temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 125
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 5
+          max: 25
+  - entity: number
+    name: Window open time
+    category: config
+    icon: "mdi:clock"
+    dps:
+      - id: 126
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 5
+          max: 60

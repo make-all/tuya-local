@@ -1,5 +1,4 @@
 # Mixins for testing locks
-from homeassistant.components.lock import STATE_LOCKED, STATE_UNLOCKED
 
 from ..helpers import assert_device_properties_set
 

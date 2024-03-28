@@ -104,7 +104,7 @@ primary_entity:
       hidden: true
 secondary_entities:
   - entity: select
-    name: Temperature unit
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 103
@@ -112,9 +112,9 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: true
-            value: Fahrenheit
+            value: fahrenheit
           - dps_val: false
-            value: Celsius
+            value: celsius
   - entity: switch
     category: config
     name: Sleep
@@ -124,7 +124,6 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:

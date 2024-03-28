@@ -1,0 +1,116 @@
+name: Light and fan
+products:
+  - id: 8k3ss1tcresem1bh
+    name: Orison RGB ambient light bladeless ceiling fan
+primary_entity:
+  entity: fan
+  dps:
+    - id: 60
+      type: boolean
+      name: switch
+    - id: 61
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: fresh
+          value: fresh
+        - dps_val: nature
+          value: nature
+    - id: 62
+      type: integer
+      name: speed
+      optional: true
+      range:
+        min: 1
+        max: 100
+    - id: 63
+      type: string
+      name: direction
+    - id: 103
+      type: boolean
+      name: unknown_103
+secondary_entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 22
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        type: integer
+        name: color_temp
+        range:
+          min: 0
+          max: 1000
+        optional: true
+        mapping:
+          - step: 500
+            target_range:
+              min: 2700
+              max: 6500
+      - id: 24
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 25
+        type: hex
+        name: scene_data
+  - entity: number
+    name: Light timer
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+        unit: min
+  - entity: number
+    name: Fan timer
+    translation_key: timer
+    category: config
+    dps:
+      - id: 64
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 540
+        unit: min

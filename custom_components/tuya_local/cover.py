@@ -74,7 +74,6 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
                     self.name or "cover",
                     dclass,
                 )
-            return None
 
     @property
     def supported_features(self):

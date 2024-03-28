@@ -122,8 +122,7 @@ secondary_entities:
         unit: "%"
         class: measurement
   - entity: binary_sensor
-    name: Tank
-    class: problem
+    translation_key: tank_full
     category: diagnostic
     dps:
       - id: 11
@@ -134,7 +133,6 @@ secondary_entities:
             value: true
           - value: false
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:

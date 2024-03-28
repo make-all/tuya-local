@@ -1,0 +1,382 @@
+name: Sprinkler controller
+products:
+  - id: e1epsoiywcirul2u
+    name: Zemismart DP-WBS01
+primary_entity:
+  entity: valve
+  class: water
+  name: Main
+  dps:
+    - id: 40
+      type: string
+      name: valve
+      optional: true
+      mapping:
+        - dps_val: "on"
+          value: true
+        - dps_val: "off"
+          value: false
+        - dps_val: null
+          value: false
+    - id: 38
+      type: string
+      name: schedule
+secondary_entities:
+  - entity: valve
+    class: water
+    name: Sprinkler 1
+    dps:
+      - id: 1
+        type: boolean
+        name: valve
+  - entity: valve
+    class: water
+    name: Sprinkler 2
+    dps:
+      - id: 2
+        type: boolean
+        name: valve
+  - entity: valve
+    class: water
+    name: Sprinkler 3
+    dps:
+      - id: 3
+        type: boolean
+        name: valve
+  - entity: valve
+    class: water
+    name: Sprinkler 4
+    dps:
+      - id: 4
+        type: boolean
+        name: valve
+  - entity: valve
+    class: water
+    name: Sprinkler 5
+    dps:
+      - id: 5
+        type: boolean
+        name: valve
+  - entity: valve
+    class: water
+    name: Sprinkler 6
+    dps:
+      - id: 6
+        type: boolean
+        name: valve
+  - entity: valve
+    class: water
+    name: Sprinkler 7
+    dps:
+      - id: 7
+        type: boolean
+        name: valve
+  - entity: valve
+    class: water
+    name: Sprinkler 8
+    dps:
+      - id: 8
+        type: boolean
+        name: valve
+  - entity: number
+    name: Timer 1
+    category: config
+    translation_key: timer
+    dps:
+      - id: 13
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    name: Timer 2
+    category: config
+    translation_key: timer
+    dps:
+      - id: 14
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    name: Timer 3
+    category: config
+    translation_key: timer
+    dps:
+      - id: 15
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    name: Timer 4
+    category: config
+    translation_key: timer
+    dps:
+      - id: 16
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    name: Timer 5
+    category: config
+    translation_key: timer
+    dps:
+      - id: 17
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    name: Timer 6
+    category: config
+    translation_key: timer
+    dps:
+      - id: 18
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    name: Timer 7
+    category: config
+    translation_key: timer
+    dps:
+      - id: 19
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    name: Timer 8
+    category: config
+    translation_key: timer
+    dps:
+      - id: 20
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: sensor
+    name: Time used 1
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 25
+        type: integer
+        name: sensor
+        unit: s
+  - entity: sensor
+    name: Time used 2
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 26
+        type: integer
+        name: sensor
+        unit: s
+  - entity: sensor
+    name: Time used 3
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 27
+        type: integer
+        name: sensor
+        unit: s
+  - entity: sensor
+    name: Time used 4
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 28
+        type: integer
+        name: sensor
+        unit: s
+  - entity: sensor
+    name: Time used 5
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 29
+        type: integer
+        name: sensor
+        unit: s
+  - entity: sensor
+    name: Time used 6
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 30
+        type: integer
+        name: sensor
+        unit: s
+  - entity: sensor
+    name: Time used 7
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 31
+        type: integer
+        name: sensor
+        unit: s
+  - entity: sensor
+    name: Time used 8
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 32
+        type: integer
+        name: sensor
+        unit: s
+  - entity: select
+    name: Weather delay
+    icon: "mdi:weather-cloudy-clock"
+    category: config
+    dps:
+      - id: 37
+        type: string
+        name: option
+        mapping:
+          - dps_val: "24h"
+            value: "1 day"
+          - dps_val: "48h"
+            value: "2 days"
+          - dps_val: "72h"
+            value: "3 days"
+          - dps_val: cancel
+            value: "Off"
+  - entity: sensor
+    name: Status
+    icon: "mdi:sprinkler"
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 39
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: manual
+            value: Manual
+          - dps_val: auto
+            value: Auto
+          - dps_val: idle
+            value: Idle
+  - entity: sensor
+    name: Smart weather
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 41
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: sunny
+            value: sunny
+            icon: "mdi:weather-sunny"
+          - dps_val: cloudy
+            value: cloudy
+            icon: "mdi:weather-cloudy"
+          - dps_val: rainy
+            value: rainy
+            icon: "mdi:weather-rainy"
+          - dps_val: snowy
+            value: snowy
+            icon: "mdi:weather-snowy"
+          - dps_val: null
+            value: unavailable
+            icon: "mdi:weather-sunny-off"
+  - entity: switch
+    name: Weather
+    category: config
+    dps:
+      - id: 42
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            icon: "mdi:weather-sunny"
+          - dps_val: false
+            icon: "mdi:weather-sunny-off"
+  - entity: switch
+    name: Skip
+    category: config
+    dps:
+      - id: 43
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: true
+            icon: "mdi:debug-step-over"
+          - dps_val: false
+            icon: "mdi:play"
+          - dps_val: false
+            icon: "mdi:play"
+            hidden: true
+  - entity: select
+    name: Irrigation mode
+    icon: "mdi:sprinkler-variant"
+    category: config
+    dps:
+      - id: 44
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: order
+            value: Sequential
+          - dps_val: together
+            value: Together
+          - dps_val: null
+            value: Sequential
+            hidden: true
+      - id: 45
+        type: string
+        name: schedule
+        optional: true
+      - id: 46
+        type: string
+        name: timing

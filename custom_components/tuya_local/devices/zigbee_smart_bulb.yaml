@@ -1,9 +1,11 @@
-name: Zigbee light bulb
+name: Zigbee light
 products:
   - id: mja6r5ix
-    name: MOES zigbee smart bulb
+    name: MOES zigbee lightbulb
   - id: it1u8ahz
-    name: MOES smart bulb RGBCW zigbee
+    name: MOES zigbee RGBCW
+  - id: rcggc0ys
+    name: MOES ZC-TD SW zigbee GU10
 primary_entity:
   entity: light
   dps:
@@ -68,6 +70,7 @@ secondary_entities:
       - id: 6
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: 00282800012e0081015c00000000
             value: Night

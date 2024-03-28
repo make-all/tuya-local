@@ -164,8 +164,7 @@ secondary_entities:
           - dps_val: inHg
             value: inches of mercury
   - entity: select
-    name: Temperature unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 112
@@ -173,11 +172,10 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: false
-            value: Celsius
+            value: celsius
           - dps_val: true
-            value: Fahrenheit
+            value: fahrenheit
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:

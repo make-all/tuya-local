@@ -11,18 +11,14 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:hvac-off"
         - dps_val: true
           constraint: mode
           conditions:
             - dps_val: COOL
-              icon: "mdi:snowflake"
               value: cool
             - dps_val: FAN
-              icon: "mdi:fan"
               value: fan_only
             - dps_val: DRY
-              icon: "mdi:water"
               value: dry
     - id: 2
       name: temperature
@@ -94,8 +90,7 @@ primary_entity:
       type: integer
 secondary_entities:
   - entity: select
-    name: Temperature unit
-    icon: "mdi:temperature_celsius"
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 19
@@ -103,6 +98,6 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: C
-            value: Celsius
+            value: celsius
           - dps_val: F
-            value: Fahrenheit
+            value: fahrenheit

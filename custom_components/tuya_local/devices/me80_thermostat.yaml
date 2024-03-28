@@ -14,8 +14,6 @@ primary_entity:
               value: auto
             - dps_val: manual
               value: heat
-              # in case of unknown presets
-            - value: heat
         - dps_val: false
           value: "off"
     - id: 2
@@ -192,18 +190,17 @@ secondary_entities:
                   min: 41
                   max: 68
   - entity: select
-    name: Temperature unit
+    translation_key: temperature_unit
     category: config
-    icon: "mdi:temperature-celsius"
     dps:
       - id: 23
         type: string
         name: option
         mapping:
           - dps_val: c
-            value: Celsius
+            value: celsius
           - dps_val: f
-            value: Fahrenheit
+            value: fahrenheit
   - entity: number
     name: Temperature calibration
     category: config
@@ -258,7 +255,6 @@ secondary_entities:
           - dps_val: both
             value: Both
   - entity: binary_sensor
-    name: Fault
     category: diagnostic
     class: problem
     dps:
@@ -296,9 +292,8 @@ secondary_entities:
           - dps_val: f
             value: F
   - entity: switch
-    name: Anti-frost
+    translation_key: anti_frost
     category: config
-    icon: "mdi:snowflake"
     dps:
       - id: 103
         type: boolean

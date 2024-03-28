@@ -67,7 +67,6 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -190,7 +189,7 @@ secondary_entities:
         name: switch
   - entity: select
     name: Auto-off A
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 26
@@ -240,7 +239,7 @@ secondary_entities:
             value: "10h"
   - entity: select
     name: Auto-off B
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 27

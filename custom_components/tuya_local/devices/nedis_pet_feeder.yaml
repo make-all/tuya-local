@@ -34,6 +34,7 @@ secondary_entities:
         type: integer
         name: value
         unit: portions
+        optional: true
         range:
           min: 0
           max: 12
@@ -70,7 +71,6 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -96,6 +96,7 @@ secondary_entities:
     icon: "mdi:clock-fast"
     dps:
       - id: 107
+        optional: true
         type: integer
         name: sensor
         unit: portions

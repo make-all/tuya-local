@@ -1637,3 +1637,13 @@ IR_REMOTE_SENSORS_PAYLOAD = {
 LORATAP_CURTAINSWITCH_PAYLOAD = {
     "1": "3",
 }
+
+BLE_WATERVALVE_PAYLOAD = {
+    "1": True,
+    "4": 0,
+    "7": 50,
+    "9": 3600,
+    "10": "cancel",
+    "12": "unknown",
+    "15": 60,
+}

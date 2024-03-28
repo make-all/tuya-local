@@ -371,15 +371,14 @@ class TuyaLocalDevice(object):
                 best_quality = quality
                 best_match = config
 
-        if best_match is None:
-            _LOGGER.warning(
-                "Detection for %s with dps %s failed",
-                self.name,
-                log_json(cached_state),
-            )
-            return None
+        if best_match:
+            return best_match.config_type
 
-        return best_match.config_type
+        _LOGGER.warning(
+            "Detection for %s with dps %s failed",
+            self.name,
+            log_json(cached_state),
+        )
 
     async def async_refresh(self):
         _LOGGER.debug("Refreshing device state for %s", self.name)

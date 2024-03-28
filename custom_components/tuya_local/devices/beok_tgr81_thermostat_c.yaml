@@ -1,9 +1,7 @@
 name: Beok TGR81 thermostat
 products:
-  - id: gogb05wrtredz3bs
-    name: Avatto WT81 thermostat
   - id: gw173aldekvpzalg
-    name: Avatto ME81 thermostat
+    name: Avatto WT200W-EH
 primary_entity:
   entity: climate
   translation_only_key: thermostat
@@ -81,8 +79,7 @@ secondary_entities:
           min: -9
           max: 9
   - entity: switch
-    name: Anti-frost
-    icon: "mdi:snowflake-melt"
+    translation_key: anti_frost
     category: config
     dps:
       - id: 10
@@ -115,7 +112,6 @@ secondary_entities:
             icon: "mdi:thermometer"
             value: Both
   - entity: binary_sensor
-    name: Error
     category: diagnostic
     class: problem
     dps:
