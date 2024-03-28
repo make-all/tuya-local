@@ -50,7 +50,8 @@ primary_entity:
           conditions:
             - dps_val: false
               value: "off"
-            - mapping:
+            - dps_val: true
+              mapping:
                 - dps_val: open
                   value: heating
                 - value: idle
@@ -60,8 +61,7 @@ primary_entity:
       name: week_program
 secondary_entities:
   - entity: switch
-    name: Anti-frost
-    icon: "mdi:snowflake"
+    translation_key: anti_frost
     category: config
     dps:
       - id: 10
@@ -153,7 +153,6 @@ secondary_entities:
             value: Internal
             hidden: true
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:

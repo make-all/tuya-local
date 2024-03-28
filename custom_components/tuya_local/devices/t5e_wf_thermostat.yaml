@@ -259,18 +259,17 @@ secondary_entities:
           - dps_val: f
             value: F
   - entity: select
-    name: Temperature unit
+    translation_key: temperature_unit
     category: config
-    icon: "mdi:temperature-celsius"
     dps:
       - id: 43
         type: string
         name: option
         mapping:
           - dps_val: c
-            value: Celsius
+            value: celsius
           - dps_val: f
-            value: Fahrenheit
+            value: fahrenheit
   - entity: sensor
     name: Working status
     category: diagnostic
@@ -288,9 +287,8 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Frost protection
+    translation_key: anti_frost
     category: config
-    icon: "mdi:snowflake"
     dps:
       - id: 10
         type: boolean
@@ -371,7 +369,6 @@ secondary_entities:
         mapping:
           - step: 10
   - entity: binary_sensor
-    name: Fault
     category: diagnostic
     class: problem
     dps:

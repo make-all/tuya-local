@@ -2,7 +2,6 @@ from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import PERCENTAGE, UnitOfTemperature
 
 from ..const import IR_REMOTE_SENSORS_PAYLOAD
-from ..helpers import assert_device_properties_set
 from ..mixins.sensor import MultiSensorTests
 from .base_device_tests import TuyaDeviceTestCase
 

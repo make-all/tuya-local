@@ -61,7 +61,7 @@ class TestParksidePLGS2012A1Charger(
                     "dps": FULLYCHARGED_DPS,
                 },
                 {
-                    "name": "binary_sensor_fault",
+                    "name": "binary_sensor_problem",
                     "dps": FAULT_DPS,
                     "device_class": BinarySensorDeviceClass.PROBLEM,
                     "testdata": (32, 0),
@@ -163,7 +163,7 @@ class TestParksidePLGS2012A1Charger(
                 "sensor_max_current",
                 "binary_sensor_almost_charged",
                 "binary_sensor_fully_charged",
-                "binary_sensor_fault",
+                "binary_sensor_problem",
             ]
         )
 

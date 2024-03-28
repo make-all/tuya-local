@@ -9,6 +9,7 @@ primary_entity:
         - dps_val: false
           value: "off"
         - dps_val: true
+          value: fan_only
           constraint: mode
           conditions:
             - dps_val: "0"
@@ -21,7 +22,6 @@ primary_entity:
               value: cool
             - dps_val: "5"
               value: heat
-            - value: fan_only
     - id: 4
       type: integer
       name: unknown_4
@@ -90,14 +90,13 @@ primary_entity:
 secondary_entities:
   - entity: select
     category: config
-    name: Temperature unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     dps:
       - id: 10
         type: boolean
         name: option
         mapping:
           - dps_val: true
-            value: "Fahrenheit"
+            value: fahrenheit
           - dps_val: false
-            value: "Celsius"
+            value: celsius

@@ -151,10 +151,8 @@ secondary_entities:
           - dps_val: 24h
             value: 24 hours
   - entity: binary_sensor
-    class: problem
-    name: Tank full
+    translation_key: tank_full
     category: diagnostic
-    icon: "mdi:cup-water"
     dps:
       - id: 19
         type: bitfield
@@ -165,7 +163,6 @@ secondary_entities:
           - value: false
   - entity: binary_sensor
     class: problem
-    name: Fault
     category: diagnostic
     dps:
       - id: 19

@@ -23,7 +23,7 @@
             },
             "choose_entities": {
                 "title": "Details appareil",
-                "description": "Choisissez un nom pour cet appareil et quelles entités seront activées",
+                "description": "Choisissez un nom pour cet appareil",
                 "data": {
                     "name": "Nom"
                 }
@@ -59,6 +59,29 @@
         }
     },
     "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "Dégivrer",
+                "state": {
+                    "off": "Normale",
+                    "on": "Dégivrage"
+                }
+            },
+            "tank_empty": {
+                "name": "Réservoir",
+                "state": {
+                    "off": "OK",
+                    "on": "Faible"
+                }
+            },
+            "tank_full": {
+                "name": "Réservoir",
+                "state": {
+                    "off": "OK",
+                    "on": "Pleine"
+                }
+            }
+        },
         "climate": {
             "aircon_extra": {
                 "state_attributes": {
@@ -175,6 +198,18 @@
         "select": {
             "timer": {
                 "name": "Minuteur"
+            },
+            "temperature_unit": {
+                "name": "Unité de température",
+                "state": {
+                    "celsius": "Celsius",
+                    "fahrenheit": "Fahrenheit"
+                }
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "Anti-gel"
             }
         }
     }

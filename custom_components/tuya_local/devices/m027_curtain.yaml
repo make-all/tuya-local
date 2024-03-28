@@ -32,21 +32,21 @@ primary_entity:
       persist: false
       mapping:
         - dps_val: opening
+          value: opening
           constraint: current_position
           conditions:
             - dps_val: 100
               value: opened
             - dps_val: null
               value: opened
-            - value: opening
         - dps_val: closing
+          value: closing
           constraint: current_position
           conditions:
             - dps_val: 0
               value: closed
             - dps_val: null
               value: closed
-            - value: closing
     - id: 12
       name: fault_code
       type: bitfield
@@ -69,7 +69,7 @@ secondary_entities:
             value: Night
   - entity: sensor
     name: Time remaining
-    icon: "mdi:timer"
+    class: duration
     category: diagnostic
     dps:
       - id: 9
@@ -87,7 +87,6 @@ secondary_entities:
         type: integer
         unit: ms
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:

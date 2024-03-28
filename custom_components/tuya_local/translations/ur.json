@@ -23,7 +23,7 @@
             },
             "choose_entities": {
                 "title": "آلہ کی تفصیلات",
-                "description": "اس آلہ کے لیے ایک نام منتخب کریں، اور کون سی ہستیوں کو فعال کیا جائے گا۔",
+                "description": "اس آلہ کے لیے ایک نام منتخب کریں",
                 "data": {
                     "name": "نام ۔"
                 }
@@ -59,6 +59,29 @@
         }
     },
     "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "ڈیفروسٹ",
+                "state": {
+                    "off": "نارمل",
+                    "on": "ڈیفروسٹنگ"
+                }
+            },
+            "tank_empty": {
+                "name": "ٹینک",
+                "state": {
+                    "off": "اوکے",
+                    "on": "کم"
+                }
+            },
+            "tank_full": {
+                "name": "ٹینک",
+                "state": {
+                    "off": "اوکے",
+                    "on": "مکمل"
+                }
+            }
+        },
         "climate": {
             "aircon_extra": {
                 "state_attributes": {
@@ -208,6 +231,18 @@
         "select": {
             "timer": {
                 "name": "ٹائمر"
+            },
+            "temperature_unit": {
+                "name": "درجہ حرارت یونٹ",
+                "state": {
+                    "celsius": "سیلسیس",
+                    "fahrenheit": "فارن ہائیٹ"
+                }
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "اینٹی فراسٹ"
             }
         }
     }

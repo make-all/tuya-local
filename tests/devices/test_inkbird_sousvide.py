@@ -73,16 +73,16 @@ class TestInkbirdSousVideCooker(
         )
         self.setUpBasicBinarySensor(
             ERROR_DPS,
-            self.entities.get("binary_sensor_fault"),
+            self.entities.get("binary_sensor_problem"),
             device_class=BinarySensorDeviceClass.PROBLEM,
             testdata=(1, 0),
         )
         self.setUpBasicSelect(
             UNIT_DPS,
-            self.entities.get("select_temperature_display_unit"),
+            self.entities.get("select_temperature_unit"),
             {
-                False: "Fahrenheit",
-                True: "Celsius",
+                False: "fahrenheit",
+                True: "celsius",
             },
         )
         self.setUpBasicSensor(
@@ -96,8 +96,8 @@ class TestInkbirdSousVideCooker(
                 "number_cooking_time",
                 "number_recipe",
                 "number_temperature_calibration",
-                "binary_sensor_fault",
-                "select_temperature_display_unit",
+                "binary_sensor_problem",
+                "select_temperature_unit",
                 "sensor_remaining_time",
             ]
         )

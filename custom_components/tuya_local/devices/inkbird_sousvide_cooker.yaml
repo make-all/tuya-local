@@ -70,14 +70,12 @@ secondary_entities:
     name: Remaining time
     category: diagnostic
     class: duration
-    icon: "mdi:timer"
     dps:
       - id: 106
         type: integer
         name: sensor
         unit: min
   - entity: binary_sensor
-    name: Fault
     category: diagnostic
     class: problem
     dps:
@@ -89,18 +87,17 @@ secondary_entities:
             value: false
           - value: true
   - entity: select
-    name: Temperature display unit
+    translation_key: temperature_unit
     category: config
-    icon: "mdi:temperature-celsius"
     dps:
       - id: 108
         type: boolean
         name: option
         mapping:
           - dps_val: true
-            value: Celsius
+            value: celsius
           - dps_val: false
-            value: Fahrenheit
+            value: fahrenheit
   - entity: number
     name: Recipe
     category: config

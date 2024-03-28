@@ -1,0 +1,249 @@
+{
+    "title": "Tuya Local",
+    "config": {
+        "step": {
+            "user": {
+                "title": "Tuya Localのデバイスを設定する",
+                "description": "[ja] [Follow these instructions to find your device id and local key.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "IPアドレスまたはホスト名",
+                    "device_id": "デバイスID",
+                    "local_key": "ローカルキー",
+                    "protocol_version": "プロトコルのバージョン (不明な場合はAutoを試してください)",
+                    "poll_only": "投票のみ (デバイスが動作しない場合)",
+                    "device_cid": "サブデバイスID (デバイスがハブ経由で接続されている場合)"
+                }
+            },
+            "select_type": {
+                "title": "デバイスの種類を選択してください",
+                "description": "デバイスに合ったタイプを選択してください",
+                "data": {
+                    "type": "デバイスタイプ"
+                }
+            },
+            "choose_entities": {
+                "title": "デバイスの詳細",
+                "description": "このデバイスの名前を選択してください",
+                "data": {
+                    "name": "名"
+                }
+            }
+        },
+        "abort": {
+            "already_configured": "その ID を持つデバイスはすでに構成されています。",
+            "not_supported": "申し訳ございませんが、このデバイスはサポートされていません。"
+        },
+        "error": {
+            "connection": "このような詳細ではデバイスに接続できません。 断続的な問題である可能性もありますし、間違っている可能性もあります。"
+        }
+    },
+    "options": {
+        "step": {
+            "user": {
+                "title": "Tuya Localのデバイスを設定する",
+                "description": "[ja] [Follow these instructions to find your local key.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "IPアドレスまたはホスト名",
+                    "local_key": "ローカルキー",
+                    "protocol_version": "プロトコルのバージョン (不明な場合はAutoを試してください)",
+                    "poll_only": "投票のみ (デバイスが動作しない場合)",
+                    "device_cid": "サブデバイスID (デバイスがハブ経由で接続されている場合)"
+                }
+            }
+        },
+        "error": {
+            "connection": "このような詳細ではデバイスに接続できません。 断続的な問題である可能性もありますし、間違っている可能性もあります。"
+        },
+        "abort": {
+            "not_supported": "申し訳ございませんが、このデバイスはサポートされていません。"
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "デフロスト",
+                "state": {
+                    "off": "普通",
+                    "on": "霜取り"
+                }
+            },
+            "tank_empty": {
+                "name": "水槽",
+                "state": {
+                    "off": "OK",
+                    "on": "低い"
+                }
+            },
+            "tank_full": {
+                "name": "水槽",
+                "state": {
+                    "off": "OK",
+                    "on": "満杯"
+                }
+            }
+        },
+        "climate": {
+            "aircon_extra": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "health": "ヘルシー",
+                            "medhigh": "中強",
+                            "medlow": "中低",
+                            "natural": "ナチュラル",
+                            "quiet": "静粛",
+                            "sleep": "睡眠",
+                            "strong": "強い"
+                        }
+                    },
+                    "swing_mode": {
+                        "state": {
+                            "topmost": "最上",
+                            "top": "上",
+                            "middle": "中",
+                            "down": "下",
+                            "downmost": "最下"
+                        }
+                    }
+                }
+            },
+            "thermostat": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "cycle": "循環"
+                        }
+                    },
+                    "preset_mode": {
+                        "state": {
+                            "manual": "マニュアル",
+                            "program": "プログラム",
+                            "temp_override": "一時的なオーバーライド",
+                            "perm_override": "永続的なオーバーライド"
+                        }
+                    }
+                }
+            },
+            "combo_floor": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "cool": "冷気",
+                            "fan_only": "ファン",
+                            "heat": "温風",
+                            "floor_cool": "冷却床",
+                            "floor_heat": "床暖房"
+                        }
+                    }
+                }
+            },
+            "swing_as_powerlevel": {
+                "state_attributes": {
+                    "swing_mode": {
+                        "name": "加熱レベル",
+                        "state": {
+                            "stop": "停止",
+                            "auto": "自動"
+                        }
+                    }
+                }
+            },
+            "pool_heatpump": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "smart_heat": "スマート加熱",
+                            "quick_heat": "急速加熱",
+                            "quiet_heat": "静粛加熱",
+                            "smart_cool": "スマート冷却",
+                            "quick_cool": "急速冷却",
+                            "quiet_cool": "静粛冷却",
+                            "auto": "自動"
+                        }
+                    }
+                }
+            },
+            "thermo_switch": {
+                "state_attributes": {
+                    "hvac_mode": {
+                        "state": {
+                            "fan_only": "一時停止"
+                        }
+                    }
+                }
+            }
+        },
+        "humidifier": {
+            "dehumidifier": {
+                "state_attributes": {
+                    "mode": {
+                        "state": {
+                            "laundry": "洗濯乾燥",
+                            "purify": "浄化"
+                        }
+                    }
+                }
+            }
+        },
+        "fan": {
+            "fan_with_presets": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "normal": "普通",
+                            "nature": "ナチュラル",
+                            "sleep": "睡眠",
+                            "baby": "幼児",
+                            "fresh": "新鮮",
+                            "smart": "スマート",
+                            "strong": "強い",
+                            "displayoff": "ディスプレイオフ",
+                            "off": "オフ"
+                        }
+                    }
+                }
+            },
+            "ventilation": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "fresh": "新鮮な空気",
+                            "circulate": "循環",
+                            "sleep": "スリープ",
+                            "auto": "自動",
+                            "eco": "エコ",
+                            "anti-condensation": "結露防止"
+                        }
+                    }
+                }
+            }
+        },
+        "lock": {
+            "child_lock": {
+                "name": "チャイルドロック"
+            }
+        },
+        "number": {
+            "timer": {
+                "name": "タイマー"
+            }
+        },
+        "select": {
+            "timer": {
+                "name": "タイマー"
+            },
+            "temperature_unit": {
+                "name": "温度単位",
+                "state": {
+                    "celsius": "摂氏",
+                    "fahrenheit": "華氏"
+                }
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "霜防止"
+            }
+        }
+    }
+}

@@ -50,7 +50,7 @@ class BasicSwitchTests:
         self,
         dps,
         subject,
-        device_class="switch",
+        device_class=None,
         power_dps=None,
         power_scale=1,
         testdata=(True, False),
@@ -126,7 +126,7 @@ class MultiSwitchTests:
             self.multiSwitchDps[name] = s.get("dps")
             try:
                 self.multiSwitchDevClass[name] = SwitchDeviceClass(
-                    s.get("device_class", "switch")
+                    s.get("device_class")
                 )
             except ValueError:
                 self.multiSwitchDevClass[name] = None

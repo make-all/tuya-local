@@ -18,7 +18,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements-dev.txt
       - name: Python lint
-        run: ruff check --output-format=github custom_components/tuya_local
+        run: ruff check --output-format=github .
       - name: Python include order
         run: ruff check --select I --diff .
       - name: Python coding style

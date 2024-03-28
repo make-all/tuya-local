@@ -162,7 +162,7 @@ secondary_entities:
         type: integer
         optional: true
   - entity: select
-    name: Display temperature unit
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 18
@@ -171,14 +171,11 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: c
-            value: Celsius
-            icon: "mdi:temperature-celsius"
+            value: celsius
           - dps_val: f
-            value: Fahrenheit
-            icon: "mdi:temperature-fahrenheit"
+            value: fahrenheit
   - entity: binary_sensor
-    name: Low water
-    class: problem
+    translation_key: tank_empty
     category: diagnostic
     dps:
       - id: 22

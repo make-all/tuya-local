@@ -109,7 +109,6 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -135,8 +134,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: select
-    name: Temperature unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 14
@@ -144,9 +142,9 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: false
-            value: Celsius
+            value: celsius
           - dps_val: true
-            value: Fahrenheit
+            value: fahrenheit
   - entity: sensor
     name: Timer
     class: duration

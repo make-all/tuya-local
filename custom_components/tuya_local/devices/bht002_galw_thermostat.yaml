@@ -1,7 +1,4 @@
 name: Thermostat
-products:
-  - id: v5214objiaepcaer
-    name: BHT-002 GBLW
 primary_entity:
   entity: climate
   dps:
@@ -84,9 +81,8 @@ secondary_entities:
         type: boolean
         name: lock
   - entity: switch
-    name: Anti-frost
+    translation_key: anti_frost
     category: config
-    icon: "mdi:snowflake"
     dps:
       - id: 10
         type: boolean

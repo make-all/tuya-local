@@ -27,10 +27,14 @@ primary_entity:
             - dps_val: pre_dehumidify
               value: dry
               hidden: true
+            - dps_val: null
+              value: "off"
+              hidden: true
     - id: 2
       type: integer
       name: temperature
       unit: C
+      optional: true
       range:
         min: 160
         max: 300
@@ -40,12 +44,14 @@ primary_entity:
     - id: 3
       type: integer
       name: current_temperature
+      optional: true
       mapping:
         - scale: 10
     - id: 4
       type: string
       name: mode
       hidden: true
+      optional: true
     - id: 18
       type: integer
       optional: true
@@ -72,6 +78,9 @@ primary_entity:
               value: "off"
             - dps_val: true
               value: horizontal
+            - dps_val: null
+              value: "off"
+              hidden: true
         - dps_val: true
           constraint: swing_horiz
           conditions:
@@ -79,10 +88,14 @@ primary_entity:
               value: vertical
             - dps_val: true
               value: both
+            - dps_val: null
+              value: vertical
+              hidden: true
     - id: 33
       type: boolean
       name: swing_horiz
       hidden: true
+      optional: true
     - id: 101
       type: boolean
       name: preset_mode
@@ -145,20 +158,19 @@ secondary_entities:
           min: 0
           max: 100
   - entity: select
-    name: Display units
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 19
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: c
-            value: Celsius
+            value: celsius
           - dps_val: f
-            value: Fahrenheit
+            value: fahrenheit
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -188,6 +200,7 @@ secondary_entities:
       - id: 37
         type: boolean
         name: switch
+        optional: true
   - entity: sensor
     name: Outdoor temperature
     class: temperature

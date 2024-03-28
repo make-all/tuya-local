@@ -1,0 +1,141 @@
+name: Door lock
+products:
+  - id: isk2p555
+    name: YSG BS01 BLE lock
+primary_entity:
+  entity: lock
+  dps:
+    - id: 1
+      type: string
+      name: create_unlock_method
+      optional: true
+    - id: 2
+      type: string
+      name: delete_unlock_method
+      optional: true
+    - id: 3
+      type: string
+      name: modify_unlock_method
+      optional: true
+    - id: 6
+      type: string
+      name: bluetooth_unlock
+      optional: true
+    - id: 12
+      type: integer
+      name: unlock_fingerprint
+      optional: true
+      persist: false
+    - id: 13
+      type: integer
+      name: unlock_password
+      optional: true
+      persist: false
+    - id: 14
+      type: integer
+      name: unlock_dynamic_pwd
+      optional: true
+      persist: false
+    - id: 19
+      type: integer
+      name: unlock_ble
+      optional: true
+      persist: false
+    - id: 47
+      type: boolean
+      name: lock
+      optional: true
+      readonly: true
+    - id: 55
+      type: integer
+      name: unlock_temp_pwd
+      optional: true
+      persist: false
+    - id: 62
+      type: integer
+      name: unlock_app
+      optional: true
+      persist: false
+    - id: 63
+      type: integer
+      name: unlock_voice
+      optional: true
+      persist: false
+secondary_entities:
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Alert
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 21
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: null
+            value: ok
+          - dps_val: wrong_finger
+            value: wrong_finger
+          - dps_val: wrong_password
+            value: wrong_password
+          - dps_val: low_battery
+            value: low_battery
+  - entity: binary_sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 21
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: low_battery
+            value: true
+          - value: false
+  - entity: select
+    name: Language
+    icon: "mdi:translate"
+    category: config
+    dps:
+      - id: 28
+        type: string
+        name: option
+        mapping:
+          - dps_val: chinese_simplified
+            value: 中文
+          - dps_val: english
+            value: English
+  - entity: number
+    name: Beep volume
+    category: config
+    icon: "mdi:volume-high"
+    dps:
+      - id: 31
+        type: string
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - dps_val: mute
+            step: 33
+            value: 0
+          - dps_val: low
+            step: 33
+            value: 33
+          - dps_val: normal
+            step: 33
+            value: 66
+          - dps_val: high
+            step: 33
+            value: 100

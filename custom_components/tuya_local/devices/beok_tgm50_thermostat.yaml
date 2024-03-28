@@ -20,7 +20,8 @@ primary_entity:
               hidden: true
             - dps_val: home
               value: heat
-            - value: heat
+            - dps_val: leave
+              value: heat
               hidden: true
         - dps_val: false
           value: "off"
@@ -81,7 +82,6 @@ secondary_entities:
         type: boolean
         name: lock
   - entity: binary_sensor
-    name: Fault
     category: diagnostic
     class: problem
     dps:
@@ -147,9 +147,8 @@ secondary_entities:
           min: 5
           max: 60
   - entity: switch
-    name: Anti-frost
+    translation_key: anti_frost
     category: config
-    icon: "mdi:snowflake-melt"
     dps:
       - id: 103
         type: boolean

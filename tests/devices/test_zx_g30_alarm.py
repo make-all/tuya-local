@@ -4,8 +4,6 @@ from homeassistant.components.alarm_control_panel import (
     AlarmControlPanelEntityFeature as Feature,
 )
 from homeassistant.const import (
-    STATE_ALARM_ARMED_AWAY,
-    STATE_ALARM_ARMED_HOME,
     STATE_ALARM_DISARMED,
 )
 

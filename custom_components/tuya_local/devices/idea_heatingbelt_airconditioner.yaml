@@ -78,7 +78,8 @@ primary_entity:
               value: "off"
             - dps_val: true
               value: horizontal
-            - value: "off"
+            - dps_val: null
+              value: "off"
               hidden: true
         - dps_val: true
           constraint: swing_horiz
@@ -87,14 +88,16 @@ primary_entity:
               value: vertical
             - dps_val: true
               value: both
-            - value: vertical
+            - dps_val: null
+              value: vertical
               hidden: true
         - constraint: swing_horiz
           conditions:
             - dps_val: true
               value: horizontal
               hidden: true
-            - value: "off"
+            - dps_val: null
+              value: "off"
               hidden: true
     - id: 33
       type: boolean
@@ -121,7 +124,6 @@ secondary_entities:
         name: switch
         optional: true
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -131,21 +133,21 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: 0
+            value: true
             constraint: fault_code_2
             conditions:
               - dps_val: null
                 value: false
               - dps_val: 0
                 value: false
-              - value: true
           - dps_val: null
+            value: true
             constraint: fault_code_2
             conditions:
               - dps_val: null
                 value: false
               - dps_val: 0
                 value: false
-              - value: true
           - value: true
       - id: 22
         type: bitfield

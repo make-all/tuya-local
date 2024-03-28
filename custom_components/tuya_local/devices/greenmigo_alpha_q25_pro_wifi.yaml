@@ -108,9 +108,8 @@ secondary_entities:
         mapping:
           - constraint: dehumidifier_mode
             conditions:
-              - dps_val: Manual
-              - dps_val: Purifier
-              - invalid: true
+              - dps_val: [Auto, Laundrydrying, Sleeping]
+                invalid: true
       - id: 4
         name: speed
         type: string

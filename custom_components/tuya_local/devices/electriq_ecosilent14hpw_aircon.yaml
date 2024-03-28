@@ -119,17 +119,16 @@ primary_entity:
 secondary_entities:
   - entity: select
     category: config
-    name: Temperature Unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     dps:
       - id: 19
         name: option
         type: string
         mapping:
           - dps_val: "c"
-            value: Celsius
+            value: celsius
           - dps_val: "f"
-            value: Fahrenheit
+            value: fahrenheit
   - entity: switch
     name: Sleep Mode
     category: config
