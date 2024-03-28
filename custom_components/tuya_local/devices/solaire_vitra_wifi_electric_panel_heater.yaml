@@ -1,4 +1,7 @@
-name: Sol*Aire Vitra WiFi Electric Panel Heater
+name: Smart Heater S2
+products:
+  - id: 8fczfuyd5dknvltq
+    name: Solaire Vitra smart heater S2
 primary_entity:
   entity: climate
   dps:
@@ -21,6 +24,9 @@ primary_entity:
     - id: 3
       name: current_temperature
       type: integer
+      range:
+        min: 0
+        max: 50
     - id: 4
       name: preset_mode
       type: string
@@ -41,7 +47,6 @@ secondary_entities:
   - entity: number
     name: Temperature calibration
     category: config
-    icon: "mdi:thermometer-lines"
     dps:
       - id: 103
         type: integer
@@ -56,13 +61,6 @@ secondary_entities:
       - id: 6
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            value: true
-            icon: "mdi:account-lock"
-          - dps_val: false
-            value: false
-            icon: "mdi:account-lock-open"
   - entity: light
     name: Display
     category: config
