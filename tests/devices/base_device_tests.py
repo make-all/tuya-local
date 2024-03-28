@@ -27,6 +27,7 @@ from custom_components.tuya_local.sensor import TuyaLocalSensor
 from custom_components.tuya_local.siren import TuyaLocalSiren
 from custom_components.tuya_local.switch import TuyaLocalSwitch
 from custom_components.tuya_local.vacuum import TuyaLocalVacuum
+from custom_components.tuya_local.valve import TuyaLocalValve
 from custom_components.tuya_local.water_heater import TuyaLocalWaterHeater
 
 DEVICE_TYPES = {
@@ -49,6 +50,7 @@ DEVICE_TYPES = {
     "sensor": TuyaLocalSensor,
     "siren": TuyaLocalSiren,
     "vacuum": TuyaLocalVacuum,
+    "valve": TuyaLocalValve,
     "water_heater": TuyaLocalWaterHeater,
 }
 

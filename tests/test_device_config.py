@@ -56,6 +56,7 @@ CONDMAP_SCHEMA = vol.Schema(
 )
 COND_SCHEMA = CONDMAP_SCHEMA.extend(
     {
+        vol.Required("dps_val"): vol.Maybe(vol.Any(str, int, bool, list)),
         vol.Optional("mapping"): [CONDMAP_SCHEMA],
     }
 )
@@ -131,6 +132,7 @@ ENTITY_SCHEMA = vol.Schema(
                 "siren",
                 "switch",
                 "vacuum",
+                "valve",
                 "water_heater",
             ]
         ),
@@ -257,6 +259,10 @@ KNOWN_DPS = {
             "error",
             "fan_speed",
         ],
+    },
+    "valve": {
+        "required": ["valve"],
+        "optional": [],
     },
     "water_heater": {
         "required": [],

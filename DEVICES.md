@@ -37,6 +37,7 @@
 - Kogan flame effect heater - KAWHMFP20BA model
 - Kogan tower heater - KASTHFP2KWA model
 - Kogan Wi-Fi convection panel heaters - KAHTP and KAWFHTP models
+- Lehmann LHOHC-2013C electric radiator
 - Mellerware Comfy electric radiator (tested with Medium 1200W)
 - Modern Flames Orion fireplace
 - MRC Magnum floor heating
@@ -139,15 +140,18 @@
 - Beok TR8B thermostat
 - Beok TR9B thermostat _(rebadged as Vancoo and perhaps others)_
 - BHT-002-GALW thermostat _(rebadged as many different brands)_
+- BHT-002-GABW thermostat _(some compatible with GALW, others subtly different)_
 - Brade MC6 thermostat _(rebadged as many different brands)_
 - ETOP-FCU thermostat (Jaga JRT-100TW)
 - ETOP-HP thermostat (CH7100)
 - ETOP-HT thermostat
+- Hysen HY02TP thermostat
 - Hysen HY08ACF thermostat
 - Hysen HY08WE-2 thermostat
 - Inkbird ITC306A thermostat smartplug
 - Inkbird ITC308 thermostat smartplug
 - Jiahong ET-72W thermostat
+- KKMoon knob thermostat
 - Ledlux thermostat
 - ME80 touchscreen thermostat
 - Minco MH-1823D thermostat
@@ -156,6 +160,7 @@
 - Nashone MTS-700-WB thermostat smartplug
 - Netmostat N-1 (RTAFN1) thermostat
 - Owon PCT513 thermostat
+- Plikc Neve X RFW thermostat
 - RYRA TYTE-D1 thermostat with energy monitoring
 - Salcar T9W thermostat _(likely also Tellur TSH02)_
 - Saswell C16 thermostat _(rebadged as Warmme, Klima and others)_
@@ -194,6 +199,7 @@
 - Keyun MKCFE002 RGB chandelier fan
 - Kogan bladeless fans
 - Mantra ceiling fan with light
+- Orison RGB ambient bladeless ceiling fan
 - Ovlaim ceiling fan with cool/warm white dimmable light
 - Reiga 52 ceiling fan with light
 - Royal Clima RCB 150 ventilation system
@@ -291,6 +297,7 @@
 - Cadance ultrasonic aroma diffuser with light and music playback
 - Ditua DT-1522-YN aroma diffuser
 - Etersky aroma diffuser with light
+- Maxico aroma diffuser with light (cannot be differentiated automatically from Ditua above)
 - Tesla Smart aroma diffuser with light
 - YX316WIFI aroma diffuser
 - YYM-805SW aroma diffuser with light (also supports GX Aroma diffuser)
@@ -320,6 +327,7 @@
 - DTS238-7 3 phase smart meter
 - EARU SW RCB breaker
 - eMylo EAI-90 smart meter
+- ERZ04C smart meter
 - MatSee Plus bidirectional two channel clamp meter
 - Meterk single phase clamp meter
 - Parkside PG/PMW-300 solar inverter
@@ -386,6 +394,8 @@ the best option.
 - Moes 3-gang switch
 - Moes 4-gang (quad) switch
 - MoesHouse smartplug with RGBW nightlight
+- Noiee NSP21 smartplug
+- Noiee PU13 smartplug
 - Novadigital 4-way switch with backlight, power on state and timers
 - Qnect QN-WPO3 3 outlet + USB powerstrip with individual timers
 - Relay switch with 433MHz remote (unbranded)
@@ -394,6 +404,7 @@ the best option.
 - Somgam double wall switch
 - Teckin SS42 outdoor double smartplug
 - Tellur 3 outlet + USB power strip with individual timers
+- WF-WS02 RJ dual switch with master
 - Woox R4028/DIGOO DG-PS01 3 outlet + USB powerstrip with individual timers
 
 Other brands may work with the above configurations, or the below are
@@ -428,6 +439,7 @@ of device.
 - Simple switch - a switch only, can be a fallback for many other unsupported devices, to allow just power to be switched on/off.
 - Simple switch with timer - a single switch and timer, will probably work for a lot of smart switches that are not covered by the more advanced configs above.
 - Simple switch with timer v2 - the above with timer moved from dp 11 to 9, confirmed with a Nexxt 220V smart switch.
+- Simple dual switch (confirmed with eMylo dual RF/WiFi switches)
 - Simple triple switch - three switches in a single device, tested with Somgam 3 gang wall switches.
 - Simple quad switch - four switches in a single device, tested with Somgam 4 gang wall switches.
 - Simple 6-way switch - six switches in a single device
@@ -454,11 +466,13 @@ of device.
 - Dual-mode magic light string controller
 - Feit dimmer (may work with other brands that just have a switch, dimmer and
   optional minimum brightness and bulb type)
+- Feit RGBWW light bulb (like generic RGBWW, but without scene support)
 - Galaxy Projector
 - HDMI sync light
 - iHD001 LED controller
 - Kojima motion sensor RGBCW nightlight
 - Lexi Lighting string light Wifi adapter
+- LightStar CCT track light
 - Loycco sound machine with nightlight (also sold as Momland nightlight with white noise)
 - Loginovo TV sync backlight
 - Lytmi Fantasy/Neo 3 HDMI sync backlight
@@ -470,6 +484,7 @@ of device.
 - MoesGo dimmer switch
 - Nedis Smart LED Strip
 - Newone WF39M dimmer smartplug
+- Peteme recessed lighting
 - Space Dog Music Lamp (works for Aurora Smart Galaxy Star)
 - Tampa Magnetic LED System CD-TY-WY05
 - Teberno LED strip light (LGC-005 OEM3)
@@ -495,6 +510,7 @@ of device.
 - Dongguan garage door
 - Dongguan LY1678-2 curtain robot
 - Dooya curtain motor
+- Eruiklink curtain motor
 - Etersky curtain switch with backlight and timing control
 - FS-03W curtain switch with backlight control
 - Graywind window shades
@@ -503,9 +519,11 @@ of device.
 - LoraTap GDC100W garage door opener
 - LoraTap QCSC420W double curtain switch
 - LoraTap SC500W-V1 curtain switch (supports many other simple curtain/blind controllers)
+- LS830-TY curtain
 - M027 curtain module (sold under several brands, including zemismart, meterk and others)
 - M515 curtain motor
-- Moes SCS80 Touch curtain swich with backlight and timing control
+- Moes SCS80 Touch curtain switch with backlight and timing control
+- Moes WS-Y-EUC curtain switch with backlight and timing control
 - QS-WIFI-C01(BK) curtain module
 - SHerko curtain motor
 - SmartCurtains A-series ACS-WT curtain motor (may work for other models)
@@ -517,6 +535,7 @@ of device.
 ### Vacuum Cleaners
 
 - Abir X8 vacuum cleaner
+- iHome Autoac Nova vacuum cleaner
 - Kabum Smart 500 vacuum cleaner
 - Kabum Smart 700 vacuum cleaner (also sold as Liectroux XR500[T2] and maybe others)
 - Kabum Smart 700 vacuum cleaner 2023 model (not quite compatible with Liectroux XR500 T3, but similar revision)
@@ -544,10 +563,14 @@ of device.
 
 ### Locks
 
+Note: Locks that are battery powered and do not use a hub are unlikely to
+work reliably, even if listed below.
+
 - BSTUOKEY access control keypad
 - Lucking HF06 smart lock
 - Orion Grid Connect smart lock
 - SmarDeer Lock33 smart lock
+- Tediton K7 smart lock
 
 ### Sirens
 
@@ -567,6 +590,7 @@ configured using RTSP or ONVIF feeds if they have static IP address,
 port and password.
 
 - BCom Majic IPBox intercom camera
+- Camnsmart E27-TY camera
 - Kerui 200W camera
 - Kerui JS-P162 300W camera
 - Nedis outdoor camera
@@ -587,6 +611,7 @@ port and password.
 - Catit Pixi smart fountain
 - Catit pet feeder (Pixi 2.2kg dispenser and 6 meal versions, and another non-Pixi branded single dispenser)
 - Ceres Plus pet feeder with camera
+- HoneyGuardian S56 pet feeder
 - Nedis pet feeder
 - Petlibro PLAF103 pet feeder
 - Petlibro PLAF203 pet feeder with camera
@@ -600,44 +625,52 @@ port and password.
 - Moes IR/RF remote controller (also IR controller pro, may work only for IR)
 - Universal remote control with temperature and humidity sensors
 
+### Valves
+
+- ARD-100+ valve controller
+- Aubess Rainpoint TTP106W irrigation system
+- Becasmart BAF-908 irrigation system
+- Garza Wi-Fi garden irrigation system (ITV103W with 433MHz WiFi hub)
+- Holman WX1 tap timer (sprinkler controller)
+- Holman WX2 dual tap timer
+- Holman WX8 8 sprinkler irrigation controller
+- Qoto 03 smart water valve / sprinkler controller
+- Qoto 05 smart water valve / sprinkler controller
+- SH07-8 smart sprinkler controller
+- Zemismart DP-WBS01 8-zone sprinkler controller (also sold as Benexmart and other brands)
+
 ### Miscellaneous
 
 - generic PIR motion sensor
 - generic illuminance sensor
 - Air Housekeeper 6-in-1 air quality monitor
 - Akai heat pump clothes dryer
-- ARD-100+ valve controller
 - ASIP-0622 indoor planter
-- Aubess Rainpoint TTP106W irrigation system
-- Becasmart BAF-908 irrigation system
 - Brennenstuhl WFD3050P PIR motion activated CCT spotlight
 - Bresser smart 7-in-1 weather station
 - CO2-Box air quality monitor
 - CT20W PIR motion detector
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
 - EPT ultrasonic 3m tank level sensor
-- Garza Wi-Fi garden irrigation system (ITV103W with 433MHz WiFi hub)
 - GratKit filament dryer
 - Haier Nayun NY-GS-04 combustible gas alarm
-- Holman WX1 tap timer (sprinkler controller)
-- Holman WX2 dual tap timer
-- Holman WX8 8 sprinkler irrigation controller
 - Inkbird PTH-9CW air quality monitor
 - KKMoon 7in1 air quality monitor
 - Kogan bidet toilet seat
 - Kogan KAWHTNOSLPA white noise sleep aid
 - Konlen/Rockson WF96L water level controller
 - Leo's Loo Too pet toilet
+- Madimack Inverflow Pro pool pump
 - Mirabella Genio motion sensor
 - Momcozy white noise machine (2 variants)
 - Nedis WIFISA10CWT air quality monitor
 - PGST PA-010 indoor temperature and humidity sensor
 - PH-W218 water quality monitor
 - PV28-CW 8 in 1 air quality monitor
-- Qoto 03 smart water valve / sprinkler controller
-- Qoto 05 smart water valve / sprinkler controller
 - SD123 HPR01 human presence radar
-- SH07-8 smart sprinkler controller
+- Silvercrest coffee maker
+- SNT957W-TDE temperature sensor
+- SNT957W-DE CBU temperature and humidity sensor
 - Sunbeam dual heated mattress pad
 - SWS-001 smart weather station
 - TH08 temperature and humidity sensor
@@ -663,10 +696,13 @@ port and password.
 - HCT-611 water timer
 - HU06 smart lock
 - Ironzon fingerprint lock
+- MoistenLand water timer
 - Orion DL021HA lock
 - PT216/PT19DB-2 temperature and humidity sensor
+- SGS01 plant sensor
 - Smart Ape solar garden light
 - TH05 temperature and humidity sensor
+- YSG BS01 lock
 - Generic water timers (confirmed with Johgee, Diivoo and Royal Gardineer branded devices)
 
 ### Devices supported via IR hubs
@@ -688,6 +724,7 @@ port and password.
 - MultiIR MIR-TE100-TY temperature and humidity sensor
 - Nedis ZBSD10WT door/window sensor
 - Nedis ZBSC10WT temperature and humidity sensor
+- PY321-Z-TY energy meter
 - Temperature and humidity sensor with alarm feature
 - ZTH08ZTU temperature and humidity sensor
 
