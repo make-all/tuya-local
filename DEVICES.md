@@ -49,6 +49,7 @@
 - Purline Hoti M100 heater
 - Quality Heating QH-GD Elegant Series IR panel heaters
 - Rumba bathroom heater
+- SolAire Vitra S2 panel heater
 - Sonnenkonig Eco 700 IR panel heater (probably also other Eco/Elegance series heaters)
 - Taurus Agadir Connect oil column heaters
 - Touchstone Sideline electric fireplace
@@ -81,6 +82,7 @@
 - Nedis ACMB1WT12 portable air conditioner
 - Rotenso Roni R35WI
 - Rotenso Roni X
+- Royal Clima Fresh air conditioner
 - Royal Sovereign RSAI-12SA mini split air conditioner
 - Sencor MT7048C air conditioner
 - Sendo air conditioner
@@ -350,7 +352,7 @@
 
 - EcoPoint EV charger
 - EVSun EV charger
-- Feyree home EV charger
+- Feyree home EV charger (2 models)
 - Parkside PLGS 2012 A1 smart charger for powertools
 
 ### SmartPlugs/Wall sockets/Wall switches/Inline switches

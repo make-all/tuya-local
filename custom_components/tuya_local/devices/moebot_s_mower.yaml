@@ -321,8 +321,17 @@ secondary_entities:
       - id: 114
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: AutoMode
             value: Auto
           - dps_val: GardenMode
             value: Garden
+  - entity: binary_sensor
+    name: Cover
+    category: diagnostic
+    dps:
+      - id: 116
+        type: boolean
+        name: sensor
+        optional: true
