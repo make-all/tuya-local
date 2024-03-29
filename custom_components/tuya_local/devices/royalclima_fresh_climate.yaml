@@ -38,7 +38,6 @@ primary_entity:
     - id: 3
       name: current_temperature
       type: integer
-      unit: C
     - id: 4
       type: string
       name: mode
@@ -63,21 +62,6 @@ primary_entity:
           value: high
         - dps_val: strong
           value: strong
-    - id: 102
-      name: preset_mode
-      type: string
-      translation_key: recirculate
-      mapping:
-        - dps_val: "off"
-          value: "Off"
-        - dps_val: low
-          value: Fresh Air Low
-        - dps_val: mid
-          value: Fresh Air Medium
-        - dps_val: strong
-          value: Fresh Air High
-        - dps_val: auto
-          value: Fresh Air Auto
     - id: 20
       type: bitfield
       name: fault_code
@@ -95,7 +79,9 @@ primary_entity:
               value: "off"
             - dps_val: "1"
               value: horizontal
-            - value: horizontal
+            - dps_val: ["2", "3", "4"]
+              value: horizontal
+              hidden: true
         - dps_val: "1"
           constraint: horizontal_swing
           conditions:
@@ -103,12 +89,17 @@ primary_entity:
               value: vertical
             - dps_val: "1"
               value: both
-            - value: both
+            - dps_val: ["2", "3", "4"]
+              value: both
+              hidden: true
         - constraint: horizontal_swing
           conditions:
             - dps_val: "0"
               value: vertical
-            - value: both
+              hidden: true
+            - dps_val: ["1", "2", "3", "4"]
+              value: both
+              hidden: true
     - id: 114
       type: string
       name: horizontal_swing
@@ -146,7 +137,7 @@ primary_entity:
       name: statistics
 secondary_entities:
   - entity: select
-    name: Fresh mode
+    name: Ventilation
     dps:
       - id: 102
         name: preset_mode
@@ -155,13 +146,13 @@ secondary_entities:
           - dps_val: "off"
             value: "Off"
           - dps_val: low
-            value: Fresh Air Low
+            value: Low
           - dps_val: mid
-            value: Fresh Air Medium
+            value: Medium
           - dps_val: strong
-            value: Fresh Air High
+            value: High
           - dps_val: auto
-            value: Fresh Air Auto
+            value: Auto
   - entity: select
     name: Vertical swing
     category: config
@@ -298,9 +289,8 @@ secondary_entities:
         mapping:
           mask: "0001"
   - entity: switch
-    name: anti_frost
+    translation_key: anti_frost
     category: config
-    icon: "mdi:radiator"
     dps:
       - id: 123
         type: hex
@@ -327,15 +317,6 @@ secondary_entities:
         name: switch
         mapping:
           mask: "8000"
-  - entity: switch
-    name: Beep
-    category: config
-    dps:
-      - id: 123
-        type: hex
-        name: switch
-        mapping:
-          - mask: "0010"
   - entity: binary_sensor
     class: problem
     category: diagnostic
