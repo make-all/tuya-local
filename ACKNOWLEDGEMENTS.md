@@ -536,3 +536,4 @@ Further device support has been made with the assistance of users. Please consid
 - [benzoid](https://github.com/benzoid) for contributing support for SolAire Vitra S2 heaters.
 - [bigheadsmith](https://github.com/bigheadsmith) for contributing improvements to SolAire Vitra S2 heaters.
 - [nec-k](https://github.com/nec-k) for contributing improvements to PJ1103 clamp meters.
+- [dieu](https://github.com/dieu) for assisting with support for Nice Digi locks.

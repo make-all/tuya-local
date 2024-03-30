@@ -699,6 +699,7 @@ port and password.
 - HU06 smart lock
 - Ironzon fingerprint lock
 - MoistenLand water timer
+- Nice Digi door lock
 - Orion DL021HA lock
 - PT216/PT19DB-2 temperature and humidity sensor
 - SGS01 plant sensor
