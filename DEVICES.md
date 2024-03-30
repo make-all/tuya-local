@@ -354,6 +354,7 @@
 - EVSun EV charger
 - Feyree home EV charger (2 models)
 - Parkside PLGS 2012 A1 smart charger for powertools
+- Vivor portable EV charger
 
 ### SmartPlugs/Wall sockets/Wall switches/Inline switches
 
