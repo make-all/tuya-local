@@ -4,16 +4,15 @@ products:
     name: Kogan NPH-2000G-WIFI glass panel heater
 primary_entity:
   entity: climate
+  translation_only_key: heater
   dps:
     - id: 1
       type: boolean
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:radiator-disabled"
         - dps_val: true
           value: "heat"
-          icon: "mdi:radiator"
       name: hvac_mode
     - id: 3
       type: integer

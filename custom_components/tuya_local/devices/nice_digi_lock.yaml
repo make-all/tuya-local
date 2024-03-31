@@ -1,0 +1,138 @@
+name: Door lock
+products:
+  - id: ofwvna43
+    name: Nice Digi
+primary_entity:
+  entity: lock
+  dps:
+    - id: 1
+      type: string
+      name: unlock_method_create
+      optional: true
+    - id: 2
+      type: string
+      name: unlock_method_delete
+      optional: true
+    - id: 3
+      type: string
+      name: unlock_method_modify
+      optional: true
+    - id: 12
+      type: integer
+      name: unlock_fingerprint
+      optional: true
+      persist: false
+    - id: 19
+      type: integer
+      name: unlock_ble
+      optional: true
+      persist: false
+    - id: 20
+      type: string
+      name: lock_record
+      optional: true
+    - id: 46
+      type: boolean
+      name: lock
+      optional: true
+      mapping:
+        - dps_val: null
+          value_mirror: lock_motor_state
+    - id: 47
+      type: boolean
+      name: lock_motor_state
+      optional: true
+    - id: 54
+      type: string
+      name: sync_method
+      optional: true
+    - id: 61
+      type: string
+      name: remote_no_dp_key
+      optional: true
+    - id: 62
+      type: integer
+      name: unlock_app
+      optional: true
+      persist: false
+    - id: 70
+      type: string
+      name: check_code_set
+      optional: true
+    - id: 71
+      type: string
+      name: ble_unlock_check
+      optional: true
+    - id: 73
+      type: string
+      name: remote_pd_setkey_check
+      optional: true
+secondary_entities:
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: event
+    name: Alert
+    category: diagnostic
+    dps:
+      - id: 21
+        type: string
+        name: event
+        optional: true
+  - entity: binary_sensor
+    name: Snib
+    class: lock
+    category: diagnostic
+    dps:
+      - id: 32
+        type: boolean
+        name: sensor
+        mapping:
+          - dps_val: true
+            icon: "mdi:lock-remove"
+  - entity: switch
+    name: Auto lock
+    icon: "mdi:lock-reset"
+    category: config
+    dps:
+      - id: 33
+        type: boolean
+        name: switch
+  - entity: number
+    name: Auto lock delay
+    category: config
+    icon: "mdi:lock-clock"
+    dps:
+      - id: 36
+        type: integer
+        name: value
+        optional: true
+        unit: s
+        range:
+          min: 5
+          max: 60
+  - entity: select
+    name: Special function
+    category: config
+    dps:
+      - id: 68
+        type: string
+        name: option
+        mapping:
+          - dps_val: function1
+            value: Function 1
+          - dps_val: function2
+            value: Function 2
+  - entity: switch
+    name: Special control
+    category: config
+    dps:
+      - id: 78
+        type: boolean
+        name: switch

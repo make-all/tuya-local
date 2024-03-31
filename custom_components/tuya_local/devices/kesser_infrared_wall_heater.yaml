@@ -4,6 +4,7 @@ products:
     name: Kesser 400W
 primary_entity:
   entity: climate
+  translation_only_key: heater
   dps:
     - id: 1
       name: hvac_mode
@@ -31,13 +32,10 @@ primary_entity:
           conditions:
             - dps_val: true
               value: idle
-              icon: "mdi:radiator-disabled"
             - dps_val: false
               value: "off"
-              icon: "mdi:radiator-off"
         - dps_val: "standby"
           value: heating
-          icon: "mdi:radiator"
 secondary_entities:
   - entity: lock
     translation_key: child_lock
