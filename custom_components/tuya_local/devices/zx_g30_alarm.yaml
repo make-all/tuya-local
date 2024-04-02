@@ -53,42 +53,6 @@ secondary_entities:
             value: false
           - dps_val: alarm
             value: true
-  - entity: button
-    deprecated: alarm_control_panel
-    category: config
-    name: Disarm
-    icon: "mdi:shield-off"
-    dps:
-      - id: 1
-        type: string
-        name: button
-        mapping:
-          - dps_val: "disarmed"
-            value: true
-  - entity: button
-    deprecated: alarm_control_panel
-    category: config
-    name: Away arm
-    icon: "mdi:shield-lock"
-    dps:
-      - id: 1
-        type: string
-        name: button
-        mapping:
-          - dps_val: "arm"
-            value: true
-  - entity: button
-    deprecated: alarm_control_panel
-    category: config
-    name: Home arm
-    icon: "mdi:shield-home"
-    dps:
-      - id: 1
-        type: string
-        name: button
-        mapping:
-          - dps_val: "home"
-            value: true
   - entity: number
     name: Exit delay
     category: config
