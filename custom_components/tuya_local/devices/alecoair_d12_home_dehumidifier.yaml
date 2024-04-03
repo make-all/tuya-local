@@ -37,17 +37,6 @@ primary_entity:
         - dps_val: 8
           value: tank
 secondary_entities:
-  - entity: sensor
-    name: Current humidity
-    deprecated: humidifier
-    category: diagnostic
-    class: humidity
-    dps:
-      - id: 3
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
   - entity: switch
     translation_key: ionizer
     category: config
@@ -174,8 +163,7 @@ secondary_entities:
             value: false
           - value: true
   - entity: switch
-    name: Inside Drying
-    icon: "mdi:tshirt-crew"
+    name: Inside drying
     dps:
       - id: 101
         name: switch
