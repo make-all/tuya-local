@@ -18,13 +18,13 @@ primary_entity:
           value: Disconnected
         - dps_val: connect
           value: Connected
-        - dps_val: charing            # typo from tuya
+        - dps_val: charing
           value: Charging
         - dps_val: wait_rfid
           value: Waiting for authorization
         - dps_val: finish
           value: Charged
-        - dps_val: wait_charing       # typo from tuya
+        - dps_val: wait_charing
           value: Delaying charge
         - dps_val: error
           value: Error
@@ -251,12 +251,13 @@ secondary_entities:
           - dps_val: 20
             value: 20
             default: true
-  - entity: button
-    name: Toggle charging       # Rfid Switch
+  - entity: switch
+    name: Charging enable
+    icon: "mdi:ev-station"
     dps:
       - id: 112
         type: boolean
-        name: button
+        name: switch
   - entity: sensor
     name: Charging time
     class: duration
