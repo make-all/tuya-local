@@ -105,13 +105,6 @@ class TestWilfaHazeHumidifier(
                     "state_class": "measurement",
                     "unit": UnitOfTemperature.CELSIUS,
                 },
-                {
-                    "dps": CURRENTHUMID_DPS,
-                    "name": "sensor_current_humidity",
-                    "device_class": SensorDeviceClass.HUMIDITY,
-                    "state_class": "measurement",
-                    "unit": PERCENTAGE,
-                },
             ]
         )
         self.setUpMultiSwitch(
@@ -137,7 +130,6 @@ class TestWilfaHazeHumidifier(
                 "light_mood",
                 "select_temperature_unit",
                 "select_timer",
-                "sensor_current_humidity",
                 "switch_air_clean",
                 "switch_ionizer",
                 "switch_sound",

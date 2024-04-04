@@ -60,7 +60,7 @@ class TestQotoSprinkler(
                     "unit": "%",
                 },
                 {
-                    "name": "sensor_timer",
+                    "name": "sensor_time_remaining",
                     "dps": COUNTDOWN_DPS,
                     "device_class": "duration",
                     "unit": "s",
@@ -73,7 +73,7 @@ class TestQotoSprinkler(
                 "binary_sensor_problem",
                 "number_timer",
                 "sensor_open",
-                "sensor_timer",
+                "sensor_time_remaining",
             ]
         )
 

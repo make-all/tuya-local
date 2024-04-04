@@ -49,13 +49,6 @@ class TestWetairWAWH1210LWHumidifier(
         self.setUpMultiSensors(
             [
                 {
-                    "dps": CURRENTHUMID_DPS,
-                    "name": "sensor_current_humidity",
-                    "device_class": SensorDeviceClass.HUMIDITY,
-                    "state_class": "measurement",
-                    "unit": PERCENTAGE,
-                },
-                {
                     "dps": LEVEL_DPS,
                     "name": "sensor_water_level",
                     "unit": PERCENTAGE,
@@ -78,7 +71,6 @@ class TestWetairWAWH1210LWHumidifier(
             [
                 "light_display",
                 "lock_child_lock",
-                "sensor_current_humidity",
                 "sensor_water_level",
                 "switch_sound",
             ]
@@ -86,12 +78,6 @@ class TestWetairWAWH1210LWHumidifier(
 
     def test_supported_features(self):
         self.assertEqual(self.subject.supported_features, HumidifierEntityFeature.MODES)
-
-    def test_icons(self):
-        self.dps[SWITCH_DPS] = True
-        self.assertEqual(self.subject.icon, "mdi:air-humidifier")
-        self.dps[SWITCH_DPS] = False
-        self.assertEqual(self.subject.icon, "mdi:air-humidifier-off")
 
     def test_min_target_humidity(self):
         self.assertEqual(self.subject.min_humidity, 30)

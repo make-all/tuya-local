@@ -50,12 +50,6 @@ primary_entity:
               value: "off"
             - dps_val: true
               value: idle
-    - id: 19
-      type: string
-      name: timer
-    - id: 20
-      type: integer
-      name: countdown
     - id: 21
       type: integer
       name: unknown_21
@@ -137,7 +131,7 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     class: duration
-    name: Timer
+    translation_key: time_remaining
     dps:
       - id: 20
         type: integer

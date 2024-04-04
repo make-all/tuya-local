@@ -44,7 +44,7 @@ class TestStarLightHeatpump(
                 "switch_soft_wind",
                 "switch_anti_mildew",
                 "switch_health",
-                "switch_anti_freeze",
+                "switch_anti_frost",
                 "switch_eco_mode",
             ]
         )
