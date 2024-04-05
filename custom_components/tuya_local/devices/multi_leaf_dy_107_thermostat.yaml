@@ -1,7 +1,7 @@
-name: Multi-leaf DY-107 thermostat
+name: Thermostat
 products:
   - id: gdusjavy8i4dpjlt
-    name: Multi-leaf DY-107 thermostat
+    name: Multi-leaf DY-107
 primary_entity:
   entity: climate
   translation_key: thermostat
@@ -76,26 +76,20 @@ secondary_entities:
           min: -9
           max: 9
   - entity: switch
-    name: Anti-frost
-    icon: "mdi:snowflake-melt"
+    translation_key: anti_frost
     category: config
     dps:
       - id: 10
         type: boolean
         name: switch
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 40
         optional: true
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: select
     name: Sensor selection
     category: config
@@ -114,7 +108,6 @@ secondary_entities:
             icon: "mdi:thermometer"
             value: Both
   - entity: binary_sensor
-    name: Error
     category: diagnostic
     class: problem
     dps:
@@ -126,7 +119,7 @@ secondary_entities:
             value: false
           - value: true
   - entity: number
-    name: High temperature limit
+    name: Maximum temperature
     category: config
     class: temperature
     icon: "mdi:thermometer-chevron-up"
@@ -139,7 +132,7 @@ secondary_entities:
           min: 30
           max: 90
   - entity: number
-    name: Low temperature limit
+    name: Minimum temperature
     category: config
     class: temperature
     icon: "mdi:thermometer-chevron-down"
@@ -181,16 +174,14 @@ secondary_entities:
             value: "7 days"
           - dps_val: null
             value_redirect: alt
-  - entity: number
+  - entity: light
     name: Backlight
     category: config
-    icon: "mdi:lightbulb-on"
     dps:
       - id: 44
         type: integer
-        name: value
+        name: brightness
         optional: true
-        unit: "%"
         range:
           min: 0
           max: 100
