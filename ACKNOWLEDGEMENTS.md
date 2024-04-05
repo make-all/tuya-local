@@ -539,3 +539,4 @@ Further device support has been made with the assistance of users. Please consid
 - [dieu](https://github.com/dieu) for assisting with support for Nice Digi locks.
 - [Klaus3d3](https://github.com/Klaus3d3) for assisting with support for Vevor portable EV chaargers.
 - [spunky3378](https://github.com/spunky3378) for contrributing German language translations.
+- [n4rrOx](https://github.com/n4rrOx) for contributing support for Multi Leaf DY-107 thermostats.
