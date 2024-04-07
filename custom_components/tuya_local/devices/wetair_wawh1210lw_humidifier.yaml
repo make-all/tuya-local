@@ -37,18 +37,12 @@ primary_entity:
       name: unknown_22
 secondary_entities:
   - entity: light
-    name: Display
+    translation_key: display
     category: config
     dps:
       - id: 5
         type: boolean
         name: switch
-        mapping:
-          - dps_val: true
-            icon: "mdi:led-on"
-          - dps_val: false
-            icon: "mdi:led-off"
-
   - entity: switch
     name: Sound
     category: config

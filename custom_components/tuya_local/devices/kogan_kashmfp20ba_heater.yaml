@@ -1,6 +1,7 @@
-name: Kogan SmarterHome™ 2000W flame heater
+name: Electric fireplace
 products:
   - id: eqyne046pnqkysqh
+    name: Kogan SmarterHome™ 2000W flame heater
 primary_entity:
   entity: climate
   translation_only_key: heater
@@ -32,8 +33,7 @@ primary_entity:
       name: current_temperature
 secondary_entities:
   - entity: light
-    name: Backlight
-    icon: "mdi:television-ambient-light"
+    translation_key: backlight
     dps:
       - id: 5
         type: string
@@ -52,8 +52,7 @@ secondary_entities:
           - dps_val: "blueorange"
             value: "blueorange"
   - entity: light
-    name: Flame
-    icon: "mdi:fireplace"
+    translation_key: flame
     dps:
       - id: 6
         type: string

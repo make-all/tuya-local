@@ -107,7 +107,7 @@ secondary_entities:
           - dps_val: f
             value: F
   - entity: light
-    name: Display
+    translation_key: display
     category: config
     dps:
       - id: 16
@@ -116,10 +116,8 @@ secondary_entities:
         mapping:
           - dps_val: true
             value: false
-            icon: "mdi:led-off"
           - dps_val: false
             value: true
-            icon: "mdi:led-on"
   - entity: select
     category: config
     translation_key: temperature_unit

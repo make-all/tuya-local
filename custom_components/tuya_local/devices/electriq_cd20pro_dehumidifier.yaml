@@ -73,17 +73,12 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: light
-    name: Display
+    translation_key: display
     category: config
     dps:
       - id: 101
         type: boolean
         name: switch
-        mapping:
-          - dps_val: true
-            icon: "mdi:led-on"
-          - dps_val: false
-            icon: "mdi:led-off"
   - entity: switch
     translation_key: ionizer
     dps:
