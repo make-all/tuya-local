@@ -31,6 +31,9 @@ primary_entity:
           conditions:
             - dps_val: f
               value_redirect: temperature_f
+              range:
+                min: 62
+                max: 86
     - id: 3
       name: current_temperature
       type: integer
@@ -104,6 +107,9 @@ primary_entity:
       type: integer
       hidden: true
       optional: true
+      range:
+        min: 62
+        max: 86
     - id: 101
       name: swing_mode
       type: boolean
