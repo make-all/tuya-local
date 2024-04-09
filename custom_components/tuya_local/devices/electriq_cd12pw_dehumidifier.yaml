@@ -39,28 +39,12 @@ primary_entity:
       name: current_temperature
 secondary_entities:
   - entity: light
-    name: Display
+    translation_key: display
     category: config
     dps:
       - id: 101
         type: boolean
         name: switch
-        mapping:
-          - dps_val: true
-            icon: "mdi:led-on"
-          - dps_val: false
-            icon: "mdi:led-off"
-  - entity: sensor
-    class: humidity
-    name: Current humidity
-    deprecated: humidifier
-    category: diagnostic
-    dps:
-      - id: 3
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
   - entity: sensor
     class: temperature
     dps:

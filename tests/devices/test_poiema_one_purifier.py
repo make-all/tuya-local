@@ -65,7 +65,7 @@ class TestPoeimaOnePurifier(
                 },
                 {
                     "dps": COUNTDOWN_DPS,
-                    "name": "sensor_timer",
+                    "name": "sensor_time_remaining",
                     "unit": UnitOfTime.MINUTES,
                     "device_class": SensorDeviceClass.DURATION,
                 },
@@ -76,7 +76,7 @@ class TestPoeimaOnePurifier(
                 "button_filter_reset",
                 "lock_child_lock",
                 "select_timer",
-                "sensor_timer",
+                "sensor_time_remaining",
             ]
         )
 

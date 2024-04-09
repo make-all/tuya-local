@@ -38,29 +38,13 @@ primary_entity:
       type: integer
       name: error_code
 secondary_entities:
-  - entity: sensor
-    class: humidity
-    name: Current humidity
-    deprecated: humidifier
-    category: diagnostic
-    dps:
-      - id: 6
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
   - entity: light
-    name: Display
+    translation_key: display
     category: config
     dps:
       - id: 101
         type: boolean
         name: switch
-        mapping:
-          - dps_val: true
-            icon: "mdi:led-on"
-          - dps_val: false
-            icon: "mdi:led-off"
   - entity: switch
     name: Sleep
     category: config

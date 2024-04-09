@@ -30,17 +30,6 @@ primary_entity:
         - dps_val: false
           value: boost
 secondary_entities:
-  - entity: sensor
-    name: Current humidity
-    deprecated: humidifier
-    category: diagnostic
-    class: humidity
-    dps:
-      - id: 14
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -87,7 +76,7 @@ secondary_entities:
         type: boolean
         name: lock
   - entity: light
-    name: Display
+    translation_key: display
     category: config
     dps:
       - id: 103
