@@ -32,7 +32,9 @@ primary_entity:
                 min: 40
                 max: 70
     - id: 333
-      # dummy variable for current temperature of current mode (room / towel) while keeping both measured values available
+      # dummy variable for current temperature of 
+      # current mode (room / towel) while keeping
+      # both measured values available
       type: integer
       name: current_temperature
       optional: true
@@ -60,10 +62,10 @@ primary_entity:
         - dps_val: true
           constraint: mode
           conditions:
-          - dps_val: "r"
-            value: heating
-          - dps_val: "t"
-            value: drying
+            - dps_val: "r"
+              value: heating
+            - dps_val: "t"
+              value: drying
         - dps_val: false
           value: idle
           constraint: hvac_mode
