@@ -8,14 +8,14 @@ primary_entity:
       name: hvac_mode
       mapping:
         - dps_val: false
-          value: "off"
+          value: off
         - dps_val: true
           constraint: mode
           conditions:
-            - dps_val: "r"
-              value: "heat"
-            - dps_val: "t"
-              value: "dry"
+            - dps_val: r
+              value: heat
+            - dps_val: t
+              value: dry
               icon: "mdi:hanger"
     - id: 2
       type: integer
@@ -26,7 +26,7 @@ primary_entity:
       mapping:
         - constraint: mode
           conditions:
-            - dps_val: "t"
+            - dps_val: t
               value_redirect: towel_dry_temperature
               range:
                 min: 40
@@ -42,9 +42,9 @@ primary_entity:
       mapping:
         - constraint: mode
           conditions:
-            - dps_val: "t"
+            - dps_val: t
               value_mirror: heater_temperature
-            - dps_val: "r"
+            - dps_val: r
               value_mirror: room_temperature
     - id: 3
       type: integer
@@ -54,7 +54,7 @@ primary_entity:
       type: bitfield
       mapping:
         - dps_val: 0
-          value: "OK"
+          value: OK
     - id: 101
       type: string
       name: hvac_action
@@ -62,16 +62,17 @@ primary_entity:
         - dps_val: true
           constraint: mode
           conditions:
-            - dps_val: "r"
+            - dps_val: r
               value: heating
-            - dps_val: "t"
-              value: drying
+            - dps_val: t
+              value: heating
+              #value: drying
         - dps_val: false
           value: idle
           constraint: hvac_mode
           conditions:
             - dps_val: false
-              value: "off"
+              value: off
     - id: 4
       name: mode
       type: string
@@ -96,17 +97,23 @@ primary_entity:
       name: preset_mode
       type: boolean
       mapping:
-        - dps_val: false
-          constraint: frost_mode
+        - dps_val: true
+          constraint: anti_frost_mode
           conditions:
             - dps_val: false
-              value: "none"
+              value: eco
             - dps_val: true
-              # todo; icon
-              value: "Anti-frost"
-        - dps_val: true
-          value: "eco"
+              hidden: true
+              value: invalid
+        - dps_val: false
+          constraint: anti_frost_mode
+          conditions:
+            - dps_val: false
+              value: none
+            - dps_val: true
+              # todo: icon for preset
+              value: Anti-frost
     - id: 103
-      name: frost_mode
+      name: anti_frost_mode
       type: boolean
       hidden: true
