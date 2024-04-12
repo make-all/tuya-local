@@ -39,6 +39,7 @@ class TuyaLocalEvent(TuyaLocalEntity, EventEntity):
         dps_map = self._init_begin(device, config)
         self._event_dp = dps_map.pop("event")
         self._init_end(dps_map)
+        self._last_value = None
 
         # Set up device_class via parent class attribute
         try:
@@ -59,7 +60,16 @@ class TuyaLocalEvent(TuyaLocalEntity, EventEntity):
         if self._event_dp.id in dps:
             value = self._event_dp.get_value(self._device)
             if value is not None:
+                # filter out full polls pulling the current ongoing value,
+                # but limit this to allow repeats to come through on non-full polls
+                if value == self.last_value and dps["full_poll"]:
+                    return
+                self._last_value = value
                 self._trigger_event(
                     value,
                     self.extra_state_attributes,
                 )
+            # clear out the remembered value when a full poll comes through
+            # with nothing
+            elif value is None and dps["full_poll"]:
+                self._last_value = None

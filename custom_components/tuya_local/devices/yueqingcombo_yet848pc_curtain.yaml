@@ -1,0 +1,64 @@
+name: Curtain
+products:
+  - id: wraaecjqfiirj8go
+    name: Yueing Combo YET848PC
+primary_entity:
+  entity: cover
+  class: curtain
+  dps:
+    - id: 1
+      type: string
+      optional: true
+      name: control
+      mapping:
+        - dps_val: open
+          value: open
+        - dps_val: stop
+          value: stop
+        - dps_val: close
+          value: close
+    - id: 2
+      name: position
+      type: integer
+      range:
+        min: 0
+        max: 100
+    - id: 3
+      name: current_position
+      type: integer
+secondary_entities:
+  - entity: select
+    name: Motor direction
+    icon: "mdi:sign-direction"
+    category: config
+    dps:
+      - id: 5
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: forward
+            value: Clockwise
+          - dps_val: back
+            value: Anti-clockwise
+          - dps_val: null
+            value: Clockwise
+            hidden: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 12
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 12
+        type: bitfield
+        optional: true
+        name: fault_code
