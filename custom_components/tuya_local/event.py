@@ -63,7 +63,19 @@ class TuyaLocalEvent(TuyaLocalEntity, EventEntity):
                 # filter out full polls pulling the current ongoing value,
                 # but limit this to allow repeats to come through on non-full polls
                 if value == self.last_value and dps["full_poll"]:
+                    _LOGGER.debug(
+                        "%s/%s value %s is the same as last value, ignoring",
+                        self._config._device.config,
+                        self.name or "event",
+                        value,
+                    )
                     return
+                _LOGGER.debug(
+                    "%s/%s triggering event for value %s",
+                    self._config._device.config,
+                    self.name or "event",
+                    value,
+                )
                 self._last_value = value
                 self._trigger_event(
                     value,
@@ -72,4 +84,9 @@ class TuyaLocalEvent(TuyaLocalEntity, EventEntity):
             # clear out the remembered value when a full poll comes through
             # with nothing
             elif value is None and dps["full_poll"]:
+                _LOGGER.debug(
+                    "%s/%s clearing last value due to no value in full poll",
+                    self._config._device.config,
+                    self.name or "event",
+                )
                 self._last_value = None
