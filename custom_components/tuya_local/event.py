@@ -62,7 +62,7 @@ class TuyaLocalEvent(TuyaLocalEntity, EventEntity):
             if value is not None:
                 # filter out full polls pulling the current ongoing value,
                 # but limit this to allow repeats to come through on non-full polls
-                if value == self.last_value and dps["full_poll"]:
+                if value == self._last_value and dps["full_poll"]:
                     _LOGGER.debug(
                         "%s/%s value %s is the same as last value, ignoring",
                         self._config._device.config,
