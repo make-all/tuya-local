@@ -55,14 +55,14 @@ class TuyaLocalEvent(TuyaLocalEntity, EventEntity):
         # Set up event_types via parent class attribute
         self._attr_event_types = self._event_dp.values(device)
 
-    def on_receive(self, dps):
+    def on_receive(self, dps, full_poll):
         """Trigger the event when dp is received"""
         if self._event_dp.id in dps:
             value = self._event_dp.get_value(self._device)
             if value is not None:
                 # filter out full polls pulling the current ongoing value,
                 # but limit this to allow repeats to come through on non-full polls
-                if value == self._last_value and dps["full_poll"]:
+                if value == self._last_value and full_poll:
                     _LOGGER.debug(
                         "%s/%s value %s is the same as last value, ignoring",
                         self._config._device.config,
@@ -83,7 +83,7 @@ class TuyaLocalEvent(TuyaLocalEntity, EventEntity):
                 )
             # clear out the remembered value when a full poll comes through
             # with nothing
-            elif value is None and dps["full_poll"]:
+            elif value is None and full_poll:
                 _LOGGER.debug(
                     "%s/%s clearing last value due to no value in full poll",
                     self._config._device.config,

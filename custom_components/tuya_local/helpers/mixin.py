@@ -110,7 +110,7 @@ class TuyaLocalEntity:
     async def async_will_remove_from_hass(self):
         await self._device.async_unregister_entity(self)
 
-    def on_receive(self, dps):
+    def on_receive(self, dps, full_poll):
         """Override to process dps directly as they are received"""
         pass
 
