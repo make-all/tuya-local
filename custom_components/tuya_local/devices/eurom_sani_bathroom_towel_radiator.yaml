@@ -8,7 +8,7 @@ primary_entity:
       name: hvac_mode
       mapping:
         - dps_val: false
-          value: off
+          value: "off"
         - dps_val: true
           constraint: mode
           conditions:
@@ -65,14 +65,14 @@ primary_entity:
             - dps_val: r
               value: heating
             - dps_val: t
-              value: heating
-              #value: drying
+              #value: heating
+              value: drying
         - dps_val: false
           value: idle
           constraint: hvac_mode
           conditions:
             - dps_val: false
-              value: off
+              value: "off"
     - id: 4
       name: mode
       type: string
