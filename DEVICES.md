@@ -571,6 +571,7 @@ work reliably, even if listed below.
 - Orion Grid Connect smart lock
 - SmarDeer Lock33 smart lock
 - Tediton K7 smart lock
+- NovaDigital SL-06 smart lock
 
 ### Sirens
 
