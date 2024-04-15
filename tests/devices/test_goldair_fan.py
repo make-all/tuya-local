@@ -146,10 +146,3 @@ class TestGoldairFan(BasicLightTests, SwitchableTests, TuyaDeviceTestCase):
     def test_extra_state_attributes(self):
         self.dps[TIMER_DPS] = "5"
         self.assertEqual(self.subject.extra_state_attributes, {"timer": "5"})
-
-    def test_light_icon(self):
-        self.dps[LIGHT_DPS] = True
-        self.assertEqual(self.basicLight.icon, "mdi:led-on")
-
-        self.dps[LIGHT_DPS] = False
-        self.assertEqual(self.basicLight.icon, "mdi:led-off")

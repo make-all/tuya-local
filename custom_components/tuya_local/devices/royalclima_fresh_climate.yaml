@@ -1,0 +1,354 @@
+name: Air conditioner
+products:
+  - id: mcnywzjlugvvvnjj
+    name: Royal fresh full inverter
+primary_entity:
+  entity: climate
+  translation_key: aircon_extra
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: cold
+              value: cool
+            - dps_val: hot
+              value: heat
+            - dps_val: wet
+              value: dry
+            - dps_val: wind
+              value: fan_only
+            - dps_val: auto
+              value: heat_cool
+    - id: 2
+      type: integer
+      name: temperature
+      range:
+        min: 160
+        max: 880
+      mapping:
+        - scale: 10
+          step: 5
+      unit: C
+    - id: 3
+      name: current_temperature
+      type: integer
+    - id: 4
+      type: string
+      name: mode
+      hidden: true
+    - id: 5
+      type: string
+      name: fan_mode
+      mapping:
+        - dps_val: auto
+          value: auto
+        - dps_val: mute
+          value: quiet
+        - dps_val: low
+          value: low
+        - dps_val: mid_low
+          value: medlow
+        - dps_val: mid
+          value: medium
+        - dps_val: mid_high
+          value: medhigh
+        - dps_val: high
+          value: high
+        - dps_val: strong
+          value: strong
+    - id: 20
+      type: bitfield
+      name: fault_code
+    - id: 110
+      type: bitfield
+      name: flags
+    - id: 113
+      type: string
+      name: swing_mode
+      mapping:
+        - dps_val: "0"
+          constraint: horizontal_swing
+          conditions:
+            - dps_val: "0"
+              value: "off"
+            - dps_val: "1"
+              value: horizontal
+            - dps_val: ["2", "3", "4"]
+              value: horizontal
+              hidden: true
+        - dps_val: "1"
+          constraint: horizontal_swing
+          conditions:
+            - dps_val: "0"
+              value: vertical
+            - dps_val: "1"
+              value: both
+            - dps_val: ["2", "3", "4"]
+              value: both
+              hidden: true
+        - constraint: horizontal_swing
+          conditions:
+            - dps_val: "0"
+              value: vertical
+              hidden: true
+            - dps_val: ["1", "2", "3", "4"]
+              value: both
+              hidden: true
+    - id: 114
+      type: string
+      name: horizontal_swing
+      hidden: true
+    - id: 119
+      type: string
+      name: electricity_management
+    - id: 120
+      type: string
+      name: gen_mode
+    - id: 123
+      type: hex
+      name: flags_2
+    - id: 125
+      type: string
+      name: air_quality
+      optional: true
+    - id: 128
+      type: string
+      name: model_code
+    - id: 129
+      type: string
+      name: energy
+    - id: 130
+      type: integer
+      name: eco_temp
+    - id: 132
+      type: boolean
+      name: hot_cool
+    - id: 133
+      type: string
+      name: swing_action
+    - id: 134
+      type: json
+      name: statistics
+secondary_entities:
+  - entity: select
+    name: Ventilation
+    dps:
+      - id: 102
+        name: option
+        type: string
+        mapping:
+          - dps_val: "off"
+            value: "Off"
+          - dps_val: low
+            value: Low
+          - dps_val: mid
+            value: Medium
+          - dps_val: strong
+            value: High
+          - dps_val: auto
+            value: Auto
+  - entity: select
+    name: Vertical swing
+    category: config
+    icon: "mdi:arrow-up-down-bold"
+    dps:
+      - id: 113
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: Full
+          - dps_val: "2"
+            value: Upper
+          - dps_val: "3"
+            value: Lower
+  - entity: select
+    name: Vertical position
+    category: config
+    icon: "mdi:unfold-more-horizontal"
+    dps:
+      - id: 126
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Disabled
+          - dps_val: "1"
+            value: Top
+          - dps_val: "2"
+            value: Slightly up
+          - dps_val: "3"
+            value: Middle
+          - dps_val: "4"
+            value: Slightly down
+          - dps_val: "5"
+            value: Bottom
+  - entity: select
+    name: Horizontal swing
+    category: config
+    icon: "mdi:arrow-left-right-bold"
+    dps:
+      - id: 114
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: Full
+          - dps_val: "2"
+            value: Left
+          - dps_val: "3"
+            value: Center
+          - dps_val: "4"
+            value: Right
+  - entity: select
+    name: Horizontal position
+    category: config
+    icon: "mdi:unfold-more-vertical"
+    dps:
+      - id: 127
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Disabled
+          - dps_val: "1"
+            value: Leftmost
+          - dps_val: "2"
+            value: Slight Left
+          - dps_val: "3"
+            value: Center
+          - dps_val: "4"
+            value: Slight Right
+          - dps_val: "5"
+            value: Rightmost
+  - entity: select
+    name: Sleep mode
+    category: config
+    icon: "mdi:weather-night"
+    dps:
+      - id: 105
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "Off"
+          - dps_val: "normal"
+            value: Standard
+          - dps_val: "old"
+            value: "Elderly"
+          - dps_val: "child"
+            value: "Child"
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - mask: "0008"
+  - entity: switch
+    name: Beep
+    category: config
+    icon: "mdi:access-point"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - mask: "0010"
+  - entity: switch
+    translation_key: uv_sterilization
+    category: config
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - mask: "0020"
+  - entity: switch
+    name: Eco mode
+    category: config
+    icon: "mdi:leaf"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - mask: "0001"
+  - entity: switch
+    translation_key: anti_frost
+    category: config
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - mask: "1000"
+  - entity: switch
+    name: Anti-mildew
+    category: config
+    icon: "mdi:water-off-outline"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - mask: "0100"
+  - entity: switch
+    name: Soft wind
+    category: config
+    icon: "mdi:weather-windy"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - mask: "8000"
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 20
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: sensor
+    class: pm25
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: ugm3
+        optional: true
+        class: measurement
+  - entity: binary_sensor
+    name: Filter
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 131
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Fresh air filter
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 103
+        type: boolean
+        name: sensor

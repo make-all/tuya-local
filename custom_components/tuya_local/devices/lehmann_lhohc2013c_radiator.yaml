@@ -4,6 +4,7 @@ products:
     name: Lehmann LHOHC-2013C
 primary_entity:
   entity: climate
+  translation_only_key: heater
   dps:
     - id: 1
       type: boolean
@@ -115,7 +116,7 @@ secondary_entities:
             value: "24 hours"
   - entity: sensor
     class: duration
-    name: Time remaining
+    translation_key: time_remaining
     category: diagnostic
     dps:
       - id: 12

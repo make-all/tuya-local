@@ -49,9 +49,6 @@ primary_entity:
           value: eco
         - dps_val: false
           value: comfort
-    - id: 12
-      name: aux_heat
-      type: boolean
     - id: 33
       name: swing_mode
       type: boolean
@@ -69,9 +66,8 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: light
-    name: Backlight
+    translation_key: backlight
     category: config
-    icon: "mdi:television-ambient-light"
     dps:
       - id: 13
         name: switch
@@ -100,9 +96,8 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: switch
-    name: Ionizer
+    translation_key: ionizer
     category: config
-    icon: "mdi:creation"
     dps:
       - id: 106
         name: switch

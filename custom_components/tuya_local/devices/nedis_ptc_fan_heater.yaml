@@ -4,6 +4,7 @@ products:
     name: Nedis Ceramic PTC HTFA22WTW
 primary_entity:
   entity: climate
+  translation_only_key: heater
   dps:
     - id: 1
       type: boolean
@@ -50,9 +51,8 @@ primary_entity:
           value: "on"
 secondary_entities:
   - entity: light
-    name: Indicator
+    translation_key: indicator
     category: config
-    icon: "mdi:led-on"
     dps:
       - id: 10
         type: boolean
@@ -80,7 +80,7 @@ secondary_entities:
           - dps_val: "5h"
             value: "6 hours"
   - entity: sensor
-    name: Remaining time
+    translation_key: time_remaining
     class: duration
     dps:
       - id: 20

@@ -85,17 +85,6 @@ secondary_entities:
           - dps_val: "90"
             value: "90°"
   - entity: sensor
-    name: Current humidity
-    deprecated: humidifier
-    category: diagnostic
-    class: humidity
-    dps:
-      - id: 3
-        type: integer
-        name: sensor
-        class: measurement
-        unit: "%"
-  - entity: sensor
     class: temperature
     dps:
       - id: 103
@@ -104,15 +93,13 @@ secondary_entities:
         unit: C
         class: measurement
   - entity: switch
-    name: UV sterilization
-    icon: "mdi:shield-half-full"
+    translation_key: uv_sterilization
     dps:
       - id: 10
         name: switch
         type: boolean
   - entity: switch
-    name: Ionizer
-    icon: "mdi:creation"
+    translation_key: ionizer
     dps:
       - id: 5
         name: switch

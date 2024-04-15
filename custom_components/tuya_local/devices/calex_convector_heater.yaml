@@ -4,6 +4,7 @@ products:
     name: Calex Smart Heater
 primary_entity:
   entity: climate
+  translation_only_key: heater
   dps:
     - id: 1
       name: hvac_mode
@@ -11,10 +12,8 @@ primary_entity:
       mapping:
         - dps_val: true
           value: "heat"
-          icon: "mdi:radiator"
         - dps_val: false
           value: "off"
-          icon: "mdi:radiator-disabled"
     - id: 2
       name: temperature
       type: integer
@@ -126,7 +125,7 @@ secondary_entities:
           - dps_val: 24h
             value: 24 hours
   - entity: sensor
-    name: Time remaining
+    translation_key: time_remaining
     class: duration
     category: diagnostic
     dps:

@@ -49,6 +49,7 @@
 - Purline Hoti M100 heater
 - Quality Heating QH-GD Elegant Series IR panel heaters
 - Rumba bathroom heater
+- SolAire Vitra S2 panel heater
 - Sonnenkonig Eco 700 IR panel heater (probably also other Eco/Elegance series heaters)
 - Taurus Agadir Connect oil column heaters
 - Touchstone Sideline electric fireplace
@@ -81,6 +82,7 @@
 - Nedis ACMB1WT12 portable air conditioner
 - Rotenso Roni R35WI
 - Rotenso Roni X
+- Royal Clima Fresh air conditioner
 - Royal Sovereign RSAI-12SA mini split air conditioner
 - Sencor MT7048C air conditioner
 - Sendo air conditioner
@@ -157,6 +159,7 @@
 - Minco MH-1823D thermostat
 - Moes BHT-002 thermostat (without external temp sensor)
 - Moes MS-103 temperature and humidity switch (partial functions, temperature only)
+- Multi Leaf DY-107 thermostat
 - Nashone MTS-700-WB thermostat smartplug
 - Netmostat N-1 (RTAFN1) thermostat
 - Owon PCT513 thermostat
@@ -350,8 +353,9 @@
 
 - EcoPoint EV charger
 - EVSun EV charger
-- Feyree home EV charger
+- Feyree home EV charger (2 models)
 - Parkside PLGS 2012 A1 smart charger for powertools
+- Vivor portable EV charger
 
 ### SmartPlugs/Wall sockets/Wall switches/Inline switches
 
@@ -528,6 +532,7 @@ of device.
 - SHerko curtain motor
 - SmartCurtains A-series ACS-WT curtain motor (may work for other models)
 - Wistar roller blind controller
+- Yueqing Combo YET848PC curtain motor
 - ZC34T-03-3A swing arm window opener
 - Zemismart curtain rail
 - Zemismart roller shade
@@ -698,6 +703,7 @@ port and password.
 - HU06 smart lock
 - Ironzon fingerprint lock
 - MoistenLand water timer
+- Nice Digi door lock
 - Orion DL021HA lock
 - PT216/PT19DB-2 temperature and humidity sensor
 - SGS01 plant sensor
@@ -720,6 +726,7 @@ port and password.
 - LoraTap QCSC400ZB-V2 curtain switch
 - LoraTap SC500ZB-V2 curtain controller
 - Loratap SS9600ZB 6 button remote control
+- Moes BRT-100-TRV radiator valve
 - Moes RGBCW lightbulb
 - Moes ZHT-002 thermostat
 - MultiIR MIR-TE100-TY temperature and humidity sensor

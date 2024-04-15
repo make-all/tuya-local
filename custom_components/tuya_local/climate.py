@@ -11,7 +11,6 @@ from homeassistant.components.climate import (
     HVACMode,
 )
 from homeassistant.components.climate.const import (
-    ATTR_AUX_HEAT,
     ATTR_CURRENT_HUMIDITY,
     ATTR_CURRENT_TEMPERATURE,
     ATTR_FAN_MODE,
@@ -75,7 +74,6 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         super().__init__()
         dps_map = self._init_begin(device, config)
 
-        self._aux_heat_dps = dps_map.pop(ATTR_AUX_HEAT, None)
         self._current_temperature_dps = dps_map.pop(
             ATTR_CURRENT_TEMPERATURE,
             None,
@@ -96,8 +94,12 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
 
         self._init_end(dps_map)
 
-        if self._aux_heat_dps:
-            self._attr_supported_features |= ClimateEntityFeature.AUX_HEAT
+        # Disable HA's backwards compatibility auto creation of turn_on/off
+        # we explicitly define our own so this should have no effect, but
+        # the deprecation notices in HA use this flag rather than properly
+        # checking whether we are falling back on the auto-generation.
+        self._enable_turn_on_off_backwards_compatibility = False
+
         if self._fan_mode_dps:
             self._attr_supported_features |= ClimateEntityFeature.FAN_MODE
         if self._humidity_dps:
@@ -373,24 +375,6 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
             )
         else:
             await super().async_turn_off()
-
-    @property
-    def is_aux_heat(self):
-        """Return state of aux heater"""
-        if self._aux_heat_dps:
-            return self._aux_heat_dps.get_value(self._device)
-
-    async def async_turn_aux_heat_on(self):
-        """Turn on aux heater."""
-        if self._aux_heat_dps is None:
-            raise NotImplementedError()
-        await self._aux_heat_dps.async_set_value(self._device, True)
-
-    async def async_turn_aux_heat_off(self):
-        """Turn off aux heater."""
-        if self._aux_heat_dps is None:
-            raise NotImplementedError()
-        await self._aux_heat_dps.async_set_value(self._device, False)
 
     @property
     def preset_mode(self):

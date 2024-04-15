@@ -74,17 +74,6 @@ secondary_entities:
           - dps_val: high
             value: 100
   - entity: sensor
-    name: Current humidity
-    deprecated: humidifier
-    category: diagnostic
-    class: humidity
-    dps:
-      - id: 6
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
-  - entity: sensor
     class: temperature
     dps:
       - id: 7
@@ -110,7 +99,7 @@ secondary_entities:
         type: boolean
         name: button
   - entity: sensor
-    name: Time left
+    translation_key: time_remaining
     category: diagnostic
     class: duration
     dps:

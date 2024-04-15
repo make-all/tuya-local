@@ -4,6 +4,7 @@ products:
     name: Cleverio AR10 / AR20
 primary_entity:
   entity: climate
+  translation_only_key: heater
   dps:
     - id: 1
       name: hvac_mode
@@ -124,7 +125,7 @@ secondary_entities:
           - dps_val: "24"
             value: "24 hours"
   - entity: sensor
-    name: Time remaining
+    translation_key: time_remaining
     class: duration
     category: diagnostic
     dps:

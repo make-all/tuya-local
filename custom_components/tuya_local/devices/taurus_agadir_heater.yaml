@@ -4,7 +4,7 @@ products:
     name: Taurus Agadir Connect 2000
 primary_entity:
   entity: climate
-  icon: "mdi:radiator"
+  translation_only_key: heater
   dps:
     - id: 1
       type: boolean
@@ -120,7 +120,7 @@ secondary_entities:
           - dps_val: 24h
             value: 24 hours
   - entity: sensor
-    name: Time remaining
+    translation_key: time_remaining
     class: duration
     category: diagnostic
     dps:
@@ -143,7 +143,7 @@ secondary_entities:
         type: bitfield
         name: fault_code
   - entity: light
-    name: Display
+    translation_key: display
     category: config
     dps:
       - id: 103

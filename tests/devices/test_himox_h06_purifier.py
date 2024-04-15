@@ -74,7 +74,7 @@ class TestHimoxH06Purifier(
                 },
                 {
                     "dps": COUNTDOWN_DPS,
-                    "name": "sensor_timer",
+                    "name": "sensor_time_remaining",
                     "unit": UnitOfTime.MINUTES,
                     "device_class": SensorDeviceClass.DURATION,
                 },
@@ -90,7 +90,7 @@ class TestHimoxH06Purifier(
                 "light_aq_indicator",
                 "sensor_active_filter_life",
                 "select_timer",
-                "sensor_timer",
+                "sensor_time_remaining",
             ]
         )
 

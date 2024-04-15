@@ -33,6 +33,9 @@ primary_entity:
           conditions:
             - dps_val: f
               value_redirect: temperature_f
+              range:
+                min: 62
+                max: 86
     - id: 3
       name: current_temperature
       type: integer
@@ -51,40 +54,15 @@ primary_entity:
       type: string
       mapping:
         - dps_val: "f1"
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: low
+          value: low
         - dps_val: "f2"
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: diffuse
+          value: diffuse
         - dps_val: "f3"
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: medium
+          value: medium
         - dps_val: "f4"
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: high
+          value: high
         - dps_val: "f5"
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: top
+          value: top
     - id: 19
       name: temperature_unit
       type: string
@@ -99,11 +77,16 @@ primary_entity:
     - id: 23
       name: current_temperature_f
       type: integer
+      optional: true
       hidden: true
     - id: 24
       name: temperature_f
       type: integer
+      optional: true
       hidden: true
+      range:
+        min: 62
+        max: 86
     - id: 101
       name: swing_mode
       type: boolean

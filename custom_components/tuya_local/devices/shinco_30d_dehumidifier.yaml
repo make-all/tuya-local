@@ -43,19 +43,9 @@ secondary_entities:
       - id: 8
         type: boolean
         name: oscillate
-  - entity: sensor
-    deprecated: humidifier
-    category: diagnostic
-    class: humidity
-    dps:
-      - id: 3
-        type: integer
-        name: sensor
-        unit: "%"
   - entity: switch
-    name: Ionizer
+    translation_key: ionizer
     category: config
-    icon: "mdi:creation"
     dps:
       - id: 5
         type: boolean
@@ -170,7 +160,7 @@ secondary_entities:
           - dps_val: "24"
             value: "24 hours"
   - entity: sensor
-    name: Time remaining
+    translation_key: time_remaining
     class: duration
     category: diagnostic
     dps:
