@@ -12,10 +12,10 @@ primary_entity:
         - dps_val: true
           constraint: mode
           conditions:
-            - dps_val: r
-              value: heat
-            - dps_val: t
-              value: dry
+            - dps_val: "r"
+              value: "heat"
+            - dps_val: "t"
+              value: "dry"
               icon: "mdi:hanger"
     - id: 2
       type: integer
@@ -26,7 +26,7 @@ primary_entity:
       mapping:
         - constraint: mode
           conditions:
-            - dps_val: t
+            - dps_val: "t"
               value_redirect: towel_dry_temperature
               range:
                 min: 40
@@ -42,9 +42,9 @@ primary_entity:
       mapping:
         - constraint: mode
           conditions:
-            - dps_val: t
+            - dps_val: "t"
               value_mirror: heater_temperature
-            - dps_val: r
+            - dps_val: "r"
               value_mirror: room_temperature
     - id: 3
       type: integer
@@ -54,7 +54,7 @@ primary_entity:
       type: bitfield
       mapping:
         - dps_val: 0
-          value: OK
+          value: "OK"
     - id: 101
       type: string
       name: hvac_action
@@ -62,11 +62,11 @@ primary_entity:
         - dps_val: true
           constraint: mode
           conditions:
-            - dps_val: r
-              value: heating
-            - dps_val: t
-              #value: heating
-              value: drying
+            - dps_val: "r"
+              value: "heating"
+            - dps_val: "t"
+              #value: "heating"
+              value: "drying"
         - dps_val: false
           value: idle
           constraint: hvac_mode
@@ -77,10 +77,10 @@ primary_entity:
       name: mode
       type: string
       mapping:
-        - dps_val: r
-          value: room
-        - dps_val: t
-          value: towel
+        - dps_val: "r"
+          value: "room"
+        - dps_val: "t"
+          value: "towel"
     - id: 105
       name: heater_temperature
       type: integer
@@ -93,27 +93,20 @@ primary_entity:
       range:
         min: 40
         max: 70
-    - id: 102
+    - id: 103
       name: preset_mode
       type: boolean
       mapping:
-        - dps_val: true
-          constraint: anti_frost_mode
-          conditions:
-            - dps_val: false
-              value: eco
-            - dps_val: true
-              hidden: true
-              value: invalid
         - dps_val: false
-          constraint: anti_frost_mode
-          conditions:
-            - dps_val: false
-              value: none
-            - dps_val: true
-              # todo: icon for preset
-              value: Anti-frost
-    - id: 103
-      name: anti_frost_mode
-      type: boolean
-      hidden: true
+          value: "none"
+        - dps_val: true
+          value: "Anti-frost"
+secondary_entities:
+  - entity: switch
+    name: "Eco-mode"
+    icon: "mdi:leaf"
+    category: config
+    dps:
+      - id: 102
+        name: value
+        type: boolean
