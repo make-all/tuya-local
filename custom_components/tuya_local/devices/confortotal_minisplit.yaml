@@ -31,8 +31,6 @@ primary_entity:
         min: 16
         max: 32
       unit: C
-      mapping:
-        - step: 1
     - id: 3
       type: integer
       name: current_temperature
@@ -68,16 +66,6 @@ primary_entity:
           value: sleep
         - dps_val: false
           value: comfort
-    - id: 31
-      type: string
-      name: vertical
-      hidden: true
-    - id: 33
-      type: boolean
-      name: swing_horiz
-    - id: 36
-      type: boolean
-      name: display
 secondary_entities:
   - entity: switch
     name: Ionizer
@@ -129,6 +117,14 @@ secondary_entities:
             value: Position 4
           - dps_val: vane_5
             value: Position 5
+  - entity: switch
+    name: Swing Horizontal
+    icon: "mdi:arrow-oscillating"
+    category: config
+    dps:
+      - id: 33
+        type: boolean
+        name: switch
   - entity: light
     name: Display
     icon: "mdi:television-ambient-light"
@@ -138,23 +134,23 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Timer on
-    translation_key: timer
+    name: On Timer
+    icon: "mdi:timer"
     category: config
     dps:
       - id: 101
         type: boolean
         name: switch
   - entity: switch
-    name: Timer off
-    translation_key: timer
+    name: Off Timer
+    icon: "mdi:timer"
     category: config
     dps:
       - id: 102
         type: boolean
         name: switch
   - entity: number
-    name: Timer on time
+    name: On Timer time
     category: config
     dps:
       - id: 103
@@ -164,7 +160,7 @@ secondary_entities:
           min: 0
           max: 2359
   - entity: number
-    name: Timer off time
+    name: Off Timer Time
     category: config
     dps:
       - id: 104
