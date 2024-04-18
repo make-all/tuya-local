@@ -14,7 +14,7 @@ primary_entity:
       class: total_increasing
       force: true
       mapping:
-        scale: 100
+        - scale: 100
 secondary_entities:
   - entity: sensor
     name: PV power
@@ -28,7 +28,7 @@ secondary_entities:
         force: true
         class: measurement
         mapping:
-          scale: 100
+          - scale: 100
   - entity: sensor
     name: PV voltage
     class: voltage
@@ -40,7 +40,7 @@ secondary_entities:
         unit: V
         force: true
         mapping:
-          scale: 100
+          - scale: 100
   - entity: sensor
     class: temperature
     dps:
@@ -51,7 +51,7 @@ secondary_entities:
         force: true
         class: measurement
         mapping:
-          scale: 10
+          - scale: 10
   - entity: sensor
     name: AC current
     class: current
@@ -63,7 +63,7 @@ secondary_entities:
         unit: A
         force: true
         mapping:
-          scale: 100
+          - scale: 100
   - entity: switch
     name: Inverter switch
     category: config
@@ -84,7 +84,7 @@ secondary_entities:
         force: true
         class: measurement
         mapping:
-          scale: 100
+          - scale: 100
   - entity: sensor
     name: power adjust
     class: power
@@ -97,7 +97,7 @@ secondary_entities:
         optional: true
         class: measurement
         mapping:
-          scale: 1
+          - scale: 1
   - entity: sensor
     name: PV current
     class: current
@@ -109,7 +109,7 @@ secondary_entities:
         unit: A
         force: true
         mapping:
-          scale: 100
+          - scale: 100
   - entity: sensor
     name: total energy
     class: energy
@@ -122,7 +122,7 @@ secondary_entities:
         force: true
         class: total_increasing
         mapping:
-          scale: 100
+          - scale: 100
   - entity: sensor
     name: AC voltage
     class: voltage
@@ -134,4 +134,4 @@ secondary_entities:
         unit: V
         force: true
         mapping:
-          scale: 100
+          - scale: 100
