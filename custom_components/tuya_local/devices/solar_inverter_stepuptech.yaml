@@ -10,7 +10,6 @@ primary_entity:
   name: Daily energy out
   class: energy
   dps:
-    # 107 day_energy  max\":2147483647,\"min\":0,\"scale\":2,\"step\":1,\"unit\":\"kWh
     - id: 107
       type: integer
       name: sensor
@@ -20,7 +19,6 @@ primary_entity:
       force: true
       mapping:
         - scale: 100
-
 secondary_entities:
   - entity: sensor
     name: PV power
@@ -35,7 +33,6 @@ secondary_entities:
         class: measurement
         mapping:
             - scale: 100
-
   - entity: sensor
     name: PV voltage
     class: voltage
@@ -48,7 +45,6 @@ secondary_entities:
         force: true
         mapping:
             - scale: 100
-
   - entity: sensor
     class: temperature
     dps:
@@ -60,17 +56,6 @@ secondary_entities:
         class: measurement
         mapping:
           - scale: 10
-
-  # # 105 clear_energy bool
-  # - entity: switch
-  #   name: clear energy
-  #   category: config
-  #   dps:
-  #     - id: 105
-  #       type: boolean
-  #       name: switch
-  #       optional: true
-
   - entity: sensor
     name: AC current
     class: current
@@ -83,7 +68,6 @@ secondary_entities:
         force: true
         mapping:
             - scale: 100
-
   - entity: switch
     name: Inverter switch
     category: config
@@ -92,7 +76,6 @@ secondary_entities:
         type: boolean
         name: switch
         optional: true
-
   - entity: sensor
     name: power adjust
     class: power
@@ -106,7 +89,6 @@ secondary_entities:
         class: measurement
         mapping:
             scale: 1
-
   - entity: sensor
     name: PV current
     class: current
@@ -119,7 +101,6 @@ secondary_entities:
         force: true
         mapping:
             scale: 100
-
   - entity: sensor
     name: total energy
     class: energy
@@ -134,8 +115,6 @@ secondary_entities:
         class: total_increasing
         mapping:
           - scale: 100
-
-  # 114 ac_volt max\":500000,\"min\":0,\"scale\":2,\"step\":1,\"unit\":\"V\
   - entity: sensor
     name: AC voltage
     class: voltage
