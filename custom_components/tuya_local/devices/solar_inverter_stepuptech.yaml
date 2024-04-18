@@ -1,0 +1,150 @@
+# https://eu.iot.tuya.com/cloud/explorer
+# https://github.com/make-all/tuya-local/blob/main/custom_components/tuya_local/devices/README.md
+# https://developers.home-assistant.io/docs/core/entity/number
+name: Micro Inverter Stepuptech SP800
+products:
+  - id: r73jxzrtcda4uwwb
+    name: SP800
+primary_entity:
+  entity: sensor
+  name: Daily energy out
+  class: energy
+  dps:
+    # 107 day_energy  max\":2147483647,\"min\":0,\"scale\":2,\"step\":1,\"unit\":\"kWh
+    - id: 107
+      type: integer
+      name: sensor
+      unit: kWh
+      class: total_increasing
+      persist: true
+      force: true
+      mapping:
+        - scale: 100
+
+secondary_entities:
+  - entity: sensor
+    name: PV power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: W
+        force: true
+        class: measurement
+        mapping:
+            - scale: 100
+
+  - entity: sensor
+    name: PV voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: V
+        force: true
+        mapping:
+            - scale: 100
+
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: C
+        force: true
+        class: measurement
+        mapping:
+          - scale: 10
+
+  # # 105 clear_energy bool
+  # - entity: switch
+  #   name: clear energy
+  #   category: config
+  #   dps:
+  #     - id: 105
+  #       type: boolean
+  #       name: switch
+  #       optional: true
+
+  - entity: sensor
+    name: AC current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: A
+        force: true
+        mapping:
+            - scale: 100
+
+  - entity: switch
+    name: Inverter switch
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+        optional: true
+
+  - entity: sensor
+    name: power adjust
+    class: power
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: "%"
+        optional: true
+        class: measurement
+        mapping:
+            scale: 1
+
+  - entity: sensor
+    name: PV current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: A
+        force: true
+        mapping:
+            scale: 100
+
+  - entity: sensor
+    name: total energy
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        unit: kWh
+        force: true
+        persist: true
+        class: total_increasing
+        mapping:
+          - scale: 100
+
+  # 114 ac_volt max\":500000,\"min\":0,\"scale\":2,\"step\":1,\"unit\":\"V\
+  - entity: sensor
+    name: AC voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        unit: V
+        force: true
+        mapping:
+            - scale: 100
