@@ -30,11 +30,9 @@ primary_entity:
       range:
         min: 16
         max: 32
-      unit: C
     - id: 3
       type: integer
       name: current_temperature
-      unit: F
     - id: 4
       type: string
       name: mode
@@ -68,8 +66,7 @@ primary_entity:
           value: comfort
 secondary_entities:
   - entity: switch
-    name: Ionizer
-    icon: "mdi:atom"
+    translation_key: ionizer
     category: config
     dps:
       - id: 11
@@ -126,8 +123,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: light
-    name: Display
-    icon: "mdi:television-ambient-light"
+    translation_key: display
     category: config
     dps:
       - id: 36
