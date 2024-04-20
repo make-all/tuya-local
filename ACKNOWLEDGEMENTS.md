@@ -540,3 +540,7 @@ Further device support has been made with the assistance of users. Please consid
 - [Klaus3d3](https://github.com/Klaus3d3) for assisting with support for Vevor portable EV chaargers.
 - [spunky3378](https://github.com/spunky3378) for contrributing German language translations.
 - [n4rrOx](https://github.com/n4rrOx) for contributing support for Multi Leaf DY-107 thermostats.
+- [awensaunders](https://github.com/awensaunders) for contributing support for ElectriQ Eco Silent 12WAP air conditioners.
+- [pabsi](https://github.com/pabsi) for contributing support for Beca BAC-006 thermostats.
+- [gravy6](https://github.com/gravy6) for contributing support for Arlec smart buttons.
+- [rudironsonijr](https://github.com/rudironsonijr) for contributing support for NovaDigital SL-06 door locks.
