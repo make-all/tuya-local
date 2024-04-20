@@ -117,7 +117,7 @@ secondary_entities:
       - id: 5
         type: integer
         optional: true
-        name: value
+        name: rapid_countdown
         unit: min
         range:
           min: 0
@@ -131,7 +131,11 @@ secondary_entities:
       - id: 103
         type: integer
         optional: true
-        name: boost_time
+        name: value
+        unit: s
+        range:
+          min: 100
+          max: 900
   - entity: switch
     name: Window open detection
     category: config
