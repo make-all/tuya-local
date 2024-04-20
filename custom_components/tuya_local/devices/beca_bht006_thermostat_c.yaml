@@ -1,7 +1,7 @@
-name: Beca BAC-006 Fancoil Thermostat C
+name: Thermostat
 products:
   - id: 7jzdtn4pwujmtskd
-    name: Beca BAC-006
+    name: Beca BAC-006 fancoil
 primary_entity:
   entity: climate
   dps:
@@ -46,42 +46,34 @@ primary_entity:
     - id: 19
       type: integer
       name: max_temperature
-      range:
-        min: 150
-        max: 350
       mapping:
         - scale: 10
-          step: 10
     - id: 26
       type: integer
       name: min_temperature
-      range:
-        min: 150
-        max: 350
       mapping:
         - scale: 10
-          step: 10
     - id: 24
       type: integer
       name: current_temperature
-      unit: C
-      range:
-        min: 0
-        max: 900
       mapping:
         - scale: 10
-          step: 5
     - id: 36
       type: string
       name: hvac_action
       readonly: true
       mapping:
         - dps_val: close
-          value: "off"
+          constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: idle
         - dps_val: open
           constraint: mode
           conditions:
-            - dps_val: heat
+            - dps_val: hot
               value: heating
             - dps_val: cold
               value: cooling
@@ -102,16 +94,14 @@ primary_entity:
 secondary_entities:
   - entity: lock
     translation_key: child_lock
-    name: Child lock
-    icon: "mdi:account-lock"
     category: config
     dps:
       - id: 40
         type: boolean
         name: lock
   - entity: number
-    name: Temperature correction
-    icon: "mdi:thermometer-minus"
+    name: Temperature calibration
+    icon: "mdi:thermometer-check"
     category: config
     dps:
       - id: 27
@@ -121,8 +111,8 @@ secondary_entities:
           min: -9
           max: 9
   - entity: number
-    name: Deadzone temp
-    icon: "mdi:thermometer-alert"
+    name: Temperature hysteresis
+    icon: "mdi:thermometer-plus"
     category: config
     dps:
       - id: 103
