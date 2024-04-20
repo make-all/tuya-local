@@ -36,6 +36,10 @@ primary_entity:
       name: current_temperature
       mapping:
         - scale: 10
+    - id: 4
+      type: boolean
+      name: boost_mode
+      hidden: true
     - id: 7
       type: string
       optional: true
@@ -45,10 +49,6 @@ primary_entity:
           value: heating
         - dps_val: closed
           value: idle
-    - id: 105
-      type: integer
-      optional: true
-      name: fill_temp
     - id: 106
       type: boolean
       optional: true
@@ -175,6 +175,18 @@ secondary_entities:
         optional: true
         name: valve
         readonly: true
+  - entity: number
+    name: Temperature calibration
+    icon: "mdi: thermometer-check"
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: -9
+          max: 9
   - entity: number
     name: Maximum temperature
     category: config
