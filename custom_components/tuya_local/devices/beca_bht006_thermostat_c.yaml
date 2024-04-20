@@ -1,0 +1,169 @@
+name: Thermostat
+products:
+  - id: 7jzdtn4pwujmtskd
+    name: Beca BAC-006 fancoil
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: "cold"
+              value: cool
+            - dps_val: "hot"
+              value: heat
+            - dps_val: "wind"
+              value: fan_only
+    - id: 2
+      type: string
+      name: mode
+      optional: true
+      hidden: true
+    - id: 4
+      type: boolean
+      name: preset_mode
+      mapping:
+        - dps_val: true
+          value: "eco"
+        - dps_val: false
+          value: "none"
+    - id: 16
+      type: integer
+      name: temperature
+      unit: C
+      range:
+        min: 50
+        max: 350
+      mapping:
+        - scale: 10
+          step: 5
+    - id: 19
+      type: integer
+      name: max_temperature
+      mapping:
+        - scale: 10
+    - id: 26
+      type: integer
+      name: min_temperature
+      mapping:
+        - scale: 10
+    - id: 24
+      type: integer
+      name: current_temperature
+      mapping:
+        - scale: 10
+    - id: 36
+      type: string
+      name: hvac_action
+      readonly: true
+      mapping:
+        - dps_val: close
+          constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: idle
+        - dps_val: open
+          constraint: mode
+          conditions:
+            - dps_val: hot
+              value: heating
+            - dps_val: cold
+              value: cooling
+            - dps_val: wind
+              value: fan
+    - id: 28
+      type: string
+      name: fan_mode
+      mapping:
+        - dps_val: auto
+          value: auto
+        - dps_val: low
+          value: low
+        - dps_val: middle
+          value: medium
+        - dps_val: high
+          value: high
+secondary_entities:
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        name: lock
+  - entity: number
+    name: Temperature calibration
+    icon: "mdi:thermometer-check"
+    category: config
+    dps:
+      - id: 27
+        name: value
+        type: integer
+        range:
+          min: -9
+          max: 9
+  - entity: number
+    name: Temperature hysteresis
+    icon: "mdi:thermometer-plus"
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 5
+  - entity: number
+    name: ECO cool temperature
+    category: config
+    class: temperature
+    icon: "mdi:thermometer-chevron-down"
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        range:
+          min: 100
+          max: 300
+        mapping:
+          - scale: 10
+            step: 10
+  - entity: number
+    name: ECO heat temperature
+    category: config
+    class: temperature
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        range:
+          min: 100
+          max: 300
+        mapping:
+          - scale: 10
+            step: 10
+  - entity: binary_sensor
+    name: Schedule/Manual
+    icon: "mdi:home-clock-outline"
+    category: diagnostic
+    dps:
+      - id: 101
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Fan control
+    icon: "mdi:fan"
+    category: diagnostic
+    dps:
+      - id: 102
+        type: boolean
+        name: sensor

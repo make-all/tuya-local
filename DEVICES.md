@@ -133,6 +133,7 @@
 - Avatto WT100 thermostat
 - Awow/Mi-heat TH213 thermostat (two variants)
 - Beca BAC-002 thermostat (confirmed on BAC-005 also, likely works with other BAC-00x models)
+- Beca BAC-006 thermostat (it's a fancoil thermostat with fan/cold/heat modes; sometimes known as BHT-006)
 - Beca BHT-002/3000 floor heating thermostat (with external temp sensor)
 - Beca BHP-6000 room heat pump control thermostat
 - Beca BHT-6000/8000 floor heating thermostat
@@ -576,6 +577,7 @@ work reliably, even if listed below.
 - Orion Grid Connect smart lock
 - SmarDeer Lock33 smart lock
 - Tediton K7 smart lock
+- NovaDigital SL-06 smart lock
 
 ### Sirens
 
