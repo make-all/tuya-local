@@ -1,0 +1,104 @@
+name: Sobralik Pet Water Fountain
+products:
+  - id: hpa87ady0hndivqn
+primary_entity:
+  entity: switch
+  icon: "mdi:water-pump"
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 23
+      name: fault
+      type: bitfield
+      mapping:
+        - dps_val: 0
+          value: lack_water
+        - dps_val: 1
+          value: filter_replace
+        - dps_val: 2
+          value: clean_reminder
+secondary_entities:
+  - entity: button
+    name: Filter Reset
+    icon: "mdi:air-filter"
+    category: config
+    dps:
+      - id: 5
+        type: boolean
+        name: button
+  - entity: button
+    name: Clean Reset
+    icon: "mdi:pump"
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: button
+  - entity: sensor
+    name: Filter Left
+    icon: "mdi:air-filter"
+    category: diagnostic
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        precision: 0
+        range:
+          min: 0
+          max: 90
+        unit: Days
+  - entity: sensor
+    name: Clean Left
+    icon: "mdi:pump"
+    category: diagnostic
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        precision: 0
+        range:
+          min: 0
+          max: 31
+        unit: Days
+  - entity: number
+    name: Filter Life
+    icon: "mdi:air-filter"
+    category: config
+    dps:
+      - id: 7
+        type: integer
+        name: value
+        precision: 0
+        range:
+          min: 0
+          max: 90
+        unit: Days
+  - entity: number
+    name: Clean Life
+    icon: "mdi:pump"
+    category: config
+    dps:
+      - id: 8
+        type: integer
+        name: value
+        precision: 0
+        range:
+          min: 0
+          max: 31
+        unit: Days
+  - entity: sensor
+    name: Water level
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 9
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: level_1
+            icon: "mdi:cup-outline"
+            value: low
+          - dps_val: level_2
+            icon: "mdi:cup"
+            value: high
