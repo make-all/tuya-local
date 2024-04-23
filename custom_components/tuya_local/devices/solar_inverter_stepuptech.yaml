@@ -1,7 +1,7 @@
-name: Micro Inverter Stepuptech SP800
+name: Solar inverter
 products:
   - id: r73jxzrtcda4uwwb
-    name: SP800
+    name: Stepuptech SP800
 primary_entity:
   entity: sensor
   name: Daily energy out
@@ -12,7 +12,6 @@ primary_entity:
       name: sensor
       unit: kWh
       class: total_increasing
-      force: true
       mapping:
         - scale: 100
 secondary_entities:
@@ -25,7 +24,6 @@ secondary_entities:
         type: integer
         name: sensor
         unit: W
-        force: true
         class: measurement
         mapping:
           - scale: 100
@@ -38,7 +36,6 @@ secondary_entities:
         type: integer
         name: sensor
         unit: V
-        force: true
         mapping:
           - scale: 100
   - entity: sensor
@@ -48,7 +45,6 @@ secondary_entities:
         type: integer
         name: sensor
         unit: C
-        force: true
         class: measurement
         mapping:
           - scale: 10
@@ -61,7 +57,6 @@ secondary_entities:
         type: integer
         name: sensor
         unit: A
-        force: true
         mapping:
           - scale: 100
   - entity: switch
@@ -81,21 +76,20 @@ secondary_entities:
         type: integer
         name: sensor
         unit: W
-        force: true
         class: measurement
         mapping:
           - scale: 100
-  - entity: sensor
-    name: power adjust
-    class: power
+  - entity: number
+    name: Power adjust
     category: config
     dps:
       - id: 110
         type: integer
-        name: sensor
+        name: value
         unit: "%"
-        optional: true
-        class: measurement
+        range:
+          min: 0
+          max: 100
   - entity: sensor
     name: PV current
     class: current
@@ -105,11 +99,10 @@ secondary_entities:
         type: integer
         name: sensor
         unit: A
-        force: true
         mapping:
           - scale: 100
   - entity: sensor
-    name: total energy
+    name: Total energy
     class: energy
     category: diagnostic
     dps:
@@ -117,7 +110,6 @@ secondary_entities:
         type: integer
         name: sensor
         unit: kWh
-        force: true
         class: total_increasing
         mapping:
           - scale: 100
@@ -130,6 +122,5 @@ secondary_entities:
         type: integer
         name: sensor
         unit: V
-        force: true
         mapping:
           - scale: 100
