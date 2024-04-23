@@ -1,4 +1,7 @@
-name: Eurom Sani-Bathroom-Radiator Towel Wifi heater
+name: Sani Bathroom Radiator
+products:
+  - id: bc6gdgt0cpq1jmjz
+    name: LBH-63 TOWEL RAIL EUROM
 primary_entity:
   entity: climate
   translation_key: heater
@@ -28,7 +31,7 @@ primary_entity:
         - constraint: mode
           conditions:
             - dps_val: "t"
-              value_redirect: towel_dry_temperature
+              value_redirect: surface_temperature_setpoint
               range:
                 min: 40
                 max: 70
@@ -41,26 +44,6 @@ primary_entity:
           conditions:
             - dps_val: "t"
               value_mirror: surface_temperature_internal
-#    - id: 333
-#      # dummy variable for current temperature of
-#      # current mode (room / towel) while keeping
-#      # both measured values available
-#      type: integer
-#      name: current_temperature
-#      optional: true
-#      # read_only: true
-#      unit: C
-#      mapping:
-#        - constraint: mode
-#          conditions:
-#            - dps_val: "t"
-#              value_mirror: surface_temperature_internal
-#            - dps_val: "r"
-#              value_mirror: room_temperature_internal
-#    - id: 3
-#      type: integer
-#      name: room_temperature_internal
-#      hidden: true
     - id: 105
       name: surface_temperature_internal
       type: integer
@@ -99,7 +82,7 @@ primary_entity:
         - dps_val: "t"
           value: "towel"
     - id: 106
-      name: towel_dry_temperature
+      name: surface_temperature_setpoint
       type: integer
       hidden: true
       optional: true
@@ -108,13 +91,14 @@ primary_entity:
         min: 40
         max: 70
     - id: 103
+      # anti-frost mode
       name: preset_mode
       type: boolean
       mapping:
         - dps_val: false
-          value: "none"
+          value: "home"
         - dps_val: true
-          value: "Anti-frost"
+          value: "away"
 secondary_entities:
   - entity: switch
     name: "Eco-mode"
@@ -142,11 +126,3 @@ secondary_entities:
         type: integer
         name: sensor
         unit: C
-#  - entity: switch
-#    NOT WORKING: duplicate dps id's not functioning
-#    name: "Anti-frost mode"
-#    icon: "mdi:snowflake-melt"
-#    dps:
-#      - id: 103
-#        name: anti_frost
-#        type: boolean
