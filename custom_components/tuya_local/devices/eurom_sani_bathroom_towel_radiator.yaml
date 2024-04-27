@@ -1,7 +1,7 @@
-name: Sani Bathroom Radiator
+name: Bathroom radiator
 products:
   - id: bc6gdgt0cpq1jmjz
-    name: LBH-63 TOWEL RAIL EUROM
+    name: Eurom Sani LBH-63
 primary_entity:
   entity: climate
   translation_key: heater
@@ -15,10 +15,10 @@ primary_entity:
         - dps_val: true
           constraint: mode
           conditions:
-            - dps_val: "r"
-              value: "heat"
-            - dps_val: "t"
-              value: "dry"
+            - dps_val: r
+              value: heat
+            - dps_val: t
+              value: dry
               icon: "mdi:hanger"
     - id: 2
       type: integer
@@ -30,7 +30,7 @@ primary_entity:
       mapping:
         - constraint: mode
           conditions:
-            - dps_val: "t"
+            - dps_val: t
               value_redirect: surface_temperature_setpoint
               range:
                 min: 40
@@ -42,7 +42,7 @@ primary_entity:
       mapping:
         - constraint: mode
           conditions:
-            - dps_val: "t"
+            - dps_val: t
               value_mirror: surface_temperature_internal
     - id: 105
       name: surface_temperature_internal
@@ -54,7 +54,7 @@ primary_entity:
       type: bitfield
       mapping:
         - dps_val: 0
-          value: "OK"
+          value: OK
     - id: 101
       type: string
       name: hvac_action
@@ -62,11 +62,10 @@ primary_entity:
         - dps_val: true
           constraint: mode
           conditions:
-            - dps_val: "r"
-              value: "heating"
-            - dps_val: "t"
-              #value: "heating"
-              value: "drying"
+            - dps_val: r
+              value: heating
+            - dps_val: t
+              value: drying
         - dps_val: false
           value: idle
           constraint: hvac_mode
@@ -77,10 +76,10 @@ primary_entity:
       name: mode
       type: string
       mapping:
-        - dps_val: "r"
-          value: "room"
-        - dps_val: "t"
-          value: "towel"
+        - dps_val: r
+          value: room
+        - dps_val: t
+          value: towel
     - id: 106
       name: surface_temperature_setpoint
       type: integer
@@ -96,12 +95,12 @@ primary_entity:
       type: boolean
       mapping:
         - dps_val: false
-          value: "home"
+          value: home
         - dps_val: true
-          value: "away"
+          value: away
 secondary_entities:
   - entity: switch
-    name: "Eco-mode"
+    name: Eco-mode
     icon: "mdi:leaf"
     category: config
     dps:
@@ -109,7 +108,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: sensor
-    name: "Surface temperature"
+    name: Surface temperature
     class: temperature
     category: diagnostic
     icon: "mdi:thermometer-lines"
@@ -119,7 +118,7 @@ secondary_entities:
         name: sensor
         unit: C
   - entity: sensor
-    name: "Room temperature"
+    name: Room temperature
     class: temperature
     category: diagnostic
     icon: "mdi:home-thermometer-outline"
