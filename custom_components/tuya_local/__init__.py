@@ -374,6 +374,79 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         await async_migrate_entries(hass, entry.entry_id, update_unique_id13_2)
         entry.minor_version = 2
 
+    if entry.version == 13 and entry.minor_version < 3:
+        # Migrate unique ids of existing entities to new id taking into
+        # account translation_key, and standardising naming
+        device_id = entry.unique_id
+        conf_file = get_config(entry.data[CONF_TYPE])
+        if conf_file is None:
+            _LOGGER.error(
+                NOT_FOUND,
+                entry.data[CONF_TYPE],
+            )
+            return False
+
+        @callback
+        def update_unique_id13_3(entity_entry):
+            """Update the unique id of an entity entry."""
+            old_id = entity_entry.unique_id
+            platform = entity_entry.entity_id.split(".", 1)[0]
+            # Standardistion of entity naming to use translation_key
+            replacements = {
+                "light_front_display": "light_display",
+                "light_lcd_brightness": "light_display",
+                "light_coal_bed": "light_logs",
+                "light_ember": "light_embers",
+                "light_led_indicator": "light_indicator",
+                "light_status_indicator": "light_indicator",
+                "light_indicator_light": "light_indicator",
+                "light_indicators": "light_indicator",
+                "light_night_light": "light_nightlight",
+                "number_tiemout_period": "number_timeout_period",
+                "sensor_remaining_time": "sensor_time_remaining",
+                "sensor_timer_remain": "sensor_time_remaining",
+                "sensor_timer": "sensor_time_remaining",
+                "sensor_timer_countdown": "sensor_time_remaining",
+                "sensor_timer_remaining": "sensor_time_remaining",
+                "sensor_time_left": "sensor_time_remaining",
+                "sensor_timer_minutes_left": "sensor_time_remaining",
+                "sensor_timer_time_left": "sensor_time_remaining",
+                "sensor_auto_shutoff_time_remaining": "sensor_time_remaining",
+                "sensor_warm_time_remaining": "sensor_time_remaining",
+                "sensor_run_time_remaining": "sensor_time_remaining",
+                "switch_ioniser": "switch_ionizer",
+                "switch_run_uv_cycle": "switch_uv_sterilization",
+                "switch_uv_light": "switch_uv_sterilization",
+                "switch_ihealth": "switch_uv_sterilization",
+                "switch_uv_lamp": "switch_uv_sterilization",
+                "switch_anti_freeze": "switch_anti_frost",
+            }
+            for suffix, new_suffix in replacements.items():
+                if old_id.endswith(suffix):
+                    e = conf_file.primary_entity
+                    if e.entity != platform or e.name:
+                        for e in conf_file.secondary_entities():
+                            if e.entity == platform and not e.name:
+                                break
+                    if e.entity == platform and not e.name:
+                        new_id = e.unique_id(device_id)
+                        if new_suffix and new_id.endswith(new_suffix):
+                            _LOGGER.info(
+                                "Migrating %s unique_id %s to %s",
+                                e.entity,
+                                old_id,
+                                new_id,
+                            )
+                            return {
+                                "new_unique_id": entity_entry.unique_id.replace(
+                                    old_id,
+                                    new_id,
+                                )
+                            }
+
+        await async_migrate_entries(hass, entry.entry_id, update_unique_id13_3)
+        entry.minor_version = 3
+
     return True
 
 
