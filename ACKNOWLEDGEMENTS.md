@@ -544,3 +544,6 @@ Further device support has been made with the assistance of users. Please consid
 - [pabsi](https://github.com/pabsi) for contributing support for Beca BAC-006 thermostats.
 - [gravy6](https://github.com/gravy6) for contributing support for Arlec smart buttons.
 - [rudironsonijr](https://github.com/rudironsonijr) for contributing support for NovaDigital SL-06 door locks.
+- [jan-gerard](https://github.com/jan-gerard) for contributing support for Eurom Sani towel rails.
+- [gkwok1](https://github.com/gkwok1) for contributing support for Confortotal mini split air conditioners.
+- [hroussez](https://github.com/hroussez) for contributing ANWIO lightbulb compatibility info.

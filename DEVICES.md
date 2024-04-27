@@ -20,6 +20,7 @@
 - Eurom Alutherm 1000,1500,2000,2500 heaters
 - Eurom Hot-Shot 2000 heaters
 - Eurom Mon Soleil 300,600,800, 350,601,720 and 300,450,720 Verre heaters
+- Eurom Sani heated towel rail
 - Eurom Sani Wall Heat 2000 heater
 - Eurom Wall Designheat 2000 heater
 - Goldair heater models beginning with the code GPPH, GCPV, GECO
@@ -61,6 +62,7 @@
 - Arlec PA1123BKHA portable air conditioner
 - Be Cool BC14KL2101F
 - Carson CB PA280
+- Confortotal CICON242 mini split air conditioner
 - Cooper&Hunter Nordic Evo Ng
 - Costway portable air conditioner
 - Daewoo Dhome OL-A011 air conditioner (DA9KWE)
