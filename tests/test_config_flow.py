@@ -94,6 +94,7 @@ async def test_migrate_entry(mock_setup, hass):
             "display_light": True,
         },
     )
+    entry.add_to_hass(hass)
     assert await async_migrate_entry(hass, entry)
 
     mock_device.async_inferred_type = AsyncMock(return_value=None)
@@ -111,6 +112,7 @@ async def test_migrate_entry(mock_setup, hass):
             "climate": False,
         },
     )
+    entry.add_to_hass(hass)
     assert not await async_migrate_entry(hass, entry)
     mock_device.reset_mock()
 
@@ -128,6 +130,7 @@ async def test_migrate_entry(mock_setup, hass):
             "climate": False,
         },
     )
+    entry.add_to_hass(hass)
     assert not await async_migrate_entry(hass, entry)
 
     mock_device.async_inferred_type = AsyncMock(return_value="smartplugv1")
@@ -147,6 +150,7 @@ async def test_migrate_entry(mock_setup, hass):
             "switch": True,
         },
     )
+    entry.add_to_hass(hass)
     assert await async_migrate_entry(hass, entry)
 
     mock_device.async_inferred_type = AsyncMock(return_value="smartplugv2")
@@ -166,6 +170,7 @@ async def test_migrate_entry(mock_setup, hass):
             "switch": True,
         },
     )
+    entry.add_to_hass(hass)
     assert await async_migrate_entry(hass, entry)
 
     mock_device.async_inferred_type = AsyncMock(return_value="goldair_dehumidifier")
@@ -189,6 +194,7 @@ async def test_migrate_entry(mock_setup, hass):
             "switch": True,
         },
     )
+    entry.add_to_hass(hass)
     assert await async_migrate_entry(hass, entry)
 
     mock_device.async_inferred_type = AsyncMock(
@@ -212,6 +218,7 @@ async def test_migrate_entry(mock_setup, hass):
             "switch_right_outlet": True,
         },
     )
+    entry.add_to_hass(hass)
     assert await async_migrate_entry(hass, entry)
 
 
@@ -691,4 +698,5 @@ async def test_async_setup_entry_for_switch(mock_device, hass):
             CONF_TYPE: "smartplugv2",
         },
     )
+    config_entry.add_to_hass(hass)
     assert await async_setup_entry(hass, config_entry)

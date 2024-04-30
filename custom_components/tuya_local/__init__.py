@@ -385,7 +385,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
                                     old_id,
                                     new_id,
                                 )
-                            }
+                            }
 
         await async_migrate_entries(hass, entry.entry_id, update_unique_id13_2)
         hass.config_entries.async_update_entry(entry, minor_version=2)
