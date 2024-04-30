@@ -48,13 +48,15 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
                     config[CONF_DEVICE_ID],
                 )
                 return False
-
-        entry.data = {
-            CONF_DEVICE_ID: config[CONF_DEVICE_ID],
-            CONF_LOCAL_KEY: config[CONF_LOCAL_KEY],
-            CONF_HOST: config[CONF_HOST],
-        }
-        entry.version = 2
+        hass.config_entries.async_update_entry(
+            entry,
+            data={
+                CONF_DEVICE_ID: config[CONF_DEVICE_ID],
+                CONF_LOCAL_KEY: config[CONF_LOCAL_KEY],
+                CONF_HOST: config[CONF_HOST],
+            },
+            version=2,
+        )
 
     if entry.version == 2:
         # CONF_TYPE is not configurable, move from options to main config.
@@ -72,15 +74,18 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
                     config[CONF_DEVICE_ID],
                 )
                 return False
-        entry.data = {
-            CONF_DEVICE_ID: config[CONF_DEVICE_ID],
-            CONF_LOCAL_KEY: config[CONF_LOCAL_KEY],
-            CONF_HOST: config[CONF_HOST],
-            CONF_TYPE: config[CONF_TYPE],
-        }
         opts.pop(CONF_TYPE, None)
-        entry.options = {**opts}
-        entry.version = 3
+        hass.config_entries.async_update_entry(
+            entry,
+            data={
+                CONF_DEVICE_ID: config[CONF_DEVICE_ID],
+                CONF_LOCAL_KEY: config[CONF_LOCAL_KEY],
+                CONF_HOST: config[CONF_HOST],
+                CONF_TYPE: config[CONF_TYPE],
+            },
+            options={**opts},
+            version=3,
+        )
 
     if entry.version == 3:
         # Migrate to filename based config_type, to avoid needing to
@@ -94,14 +99,16 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
             config_type = await device.async_inferred_type()
             if config_type != "smartplugv2":
                 config_type = "smartplugv1"
-
-        entry.data = {
-            CONF_DEVICE_ID: config[CONF_DEVICE_ID],
-            CONF_LOCAL_KEY: config[CONF_LOCAL_KEY],
-            CONF_HOST: config[CONF_HOST],
-            CONF_TYPE: config_type,
-        }
-        entry.version = 4
+        hass.config_entries.async_update_entry(
+            entry,
+            data={
+                CONF_DEVICE_ID: config[CONF_DEVICE_ID],
+                CONF_LOCAL_KEY: config[CONF_LOCAL_KEY],
+                CONF_HOST: config[CONF_HOST],
+                CONF_TYPE: config_type,
+            },
+            version=4,
+        )
 
     if entry.version <= 5:
         # Migrate unique ids of existing entities to new format
@@ -136,46 +143,55 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
                     }
 
         await async_migrate_entries(hass, entry.entry_id, update_unique_id)
-        entry.version = 6
+        hass.config_entries.async_update_entry(entry, version=6)
 
     if entry.version <= 8:
         # Deprecated entities are removed, trim the config back to required
         # config only
         conf = {**entry.data, **entry.options}
-        entry.data = {
-            CONF_DEVICE_ID: conf[CONF_DEVICE_ID],
-            CONF_LOCAL_KEY: conf[CONF_LOCAL_KEY],
-            CONF_HOST: conf[CONF_HOST],
-            CONF_TYPE: conf[CONF_TYPE],
-        }
-        entry.options = {}
-        entry.version = 9
+        hass.config_entries.async_update_entry(
+            entry,
+            data={
+                CONF_DEVICE_ID: conf[CONF_DEVICE_ID],
+                CONF_LOCAL_KEY: conf[CONF_LOCAL_KEY],
+                CONF_HOST: conf[CONF_HOST],
+                CONF_TYPE: conf[CONF_TYPE],
+            },
+            options={},
+            version=9,
+        )
 
     if entry.version <= 9:
         # Added protocol_version, default to auto
         conf = {**entry.data, **entry.options}
-        entry.data = {
-            CONF_DEVICE_ID: conf[CONF_DEVICE_ID],
-            CONF_LOCAL_KEY: conf[CONF_LOCAL_KEY],
-            CONF_HOST: conf[CONF_HOST],
-            CONF_TYPE: conf[CONF_TYPE],
-            CONF_PROTOCOL_VERSION: "auto",
-        }
-        entry.options = {}
-        entry.version = 10
+        hass.config_entries.async_update_entry(
+            entry,
+            data={
+                CONF_DEVICE_ID: conf[CONF_DEVICE_ID],
+                CONF_LOCAL_KEY: conf[CONF_LOCAL_KEY],
+                CONF_HOST: conf[CONF_HOST],
+                CONF_TYPE: conf[CONF_TYPE],
+                CONF_PROTOCOL_VERSION: "auto",
+            },
+            options={},
+            version=10,
+        )
 
     if entry.version <= 10:
         conf = entry.data | entry.options
-        entry.data = {
-            CONF_DEVICE_ID: conf[CONF_DEVICE_ID],
-            CONF_LOCAL_KEY: conf[CONF_LOCAL_KEY],
-            CONF_HOST: conf[CONF_HOST],
-            CONF_TYPE: conf[CONF_TYPE],
-            CONF_PROTOCOL_VERSION: "auto",
-            CONF_POLL_ONLY: False,
-        }
-        entry.options = {}
-        entry.version = 11
+        hass.config_entries.async_update_entry(
+            entry,
+            data={
+                CONF_DEVICE_ID: conf[CONF_DEVICE_ID],
+                CONF_LOCAL_KEY: conf[CONF_LOCAL_KEY],
+                CONF_HOST: conf[CONF_HOST],
+                CONF_TYPE: conf[CONF_TYPE],
+                CONF_PROTOCOL_VERSION: conf[CONF_PROTOCOL_VERSION],
+                CONF_POLL_ONLY: False,
+            },
+            options={},
+            version=11,
+        )
 
     if entry.version <= 11:
         # Migrate unique ids of existing entities to new format
@@ -224,7 +240,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
                     }
 
         await async_migrate_entries(hass, entry.entry_id, update_unique_id12)
-        entry.version = 12
+        hass.config_entries.async_update_entry(entry, version=12)
 
     if entry.version <= 12:
         # Migrate unique ids of existing entities to new format taking into
@@ -302,7 +318,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
                                 }
 
         await async_migrate_entries(hass, entry.entry_id, update_unique_id13)
-        entry.version = 13
+        hass.config_entries.async_update_entry(entry, version=13)
 
     if entry.version == 13 and entry.minor_version < 2:
         # Migrate unique ids of existing entities to new id taking into
@@ -369,10 +385,10 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
                                     old_id,
                                     new_id,
                                 )
-                            }
+                            }
 
         await async_migrate_entries(hass, entry.entry_id, update_unique_id13_2)
-        entry.minor_version = 2
+        hass.config_entries.async_update_entry(entry, minor_version=2)
 
     if entry.version == 13 and entry.minor_version < 3:
         # Migrate unique ids of existing entities to new id taking into
@@ -445,8 +461,7 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
                             }
 
         await async_migrate_entries(hass, entry.entry_id, update_unique_id13_3)
-        entry.minor_version = 3
-
+        hass.config_entries.async_update_entry(entry, minor_version=3)
     return True
 
 
