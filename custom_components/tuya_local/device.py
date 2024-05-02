@@ -144,7 +144,9 @@ class TuyaLocalDevice(object):
         self._shutdown_listener = self._hass.bus.async_listen_once(
             EVENT_HOMEASSISTANT_STOP, self.async_stop
         )
-        self._refresh_task = self._hass.async_create_task(self.receive_loop())
+        self._refresh_task = asyncio.run_coroutine_threadsafe(
+            self.receive_loop(), self._hass.loop
+        )
 
     def start(self):
         if self._hass.is_stopping:
@@ -215,7 +217,7 @@ class TuyaLocalDevice(object):
                             for dp in entity._config.dps():
                                 if not dp.persist and dp.id not in poll:
                                     self._cached_state.pop(dp.id, None)
-                        entity.async_write_ha_state()
+                        entity.schedule_update_ha_state()
                 else:
                     _LOGGER.debug(
                         "%s received non data %s",
@@ -421,7 +423,7 @@ class TuyaLocalDevice(object):
                     # Clear non-persistant dps that were not in the poll
                     if not dp.persist and dp.id not in new_state.get("dps", {}):
                         self._cached_state.pop(dp.id, None)
-                entity.async_write_ha_state()
+                entity.schedule_update_ha_state()
         _LOGGER.debug(
             "%s refreshed device state: %s",
             self.name,
