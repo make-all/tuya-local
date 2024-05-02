@@ -134,7 +134,6 @@ primary_entity:
       type: string
     - id: 127
       name: comm_raw
-#  if we make the parameter mandatory and select cleaning a room or several rooms, then we will see among the parameters a jwt-token that will be required for the room selection functionality.
       optional: true
       type: string
     - id: 128
@@ -294,25 +293,3 @@ secondary_entities:
         optional: true
         type: integer
         unit: s
-#  An example of how you can add a combobox with a selection of rooms
-#  - entity: select
-#    name: Room
-#    category: config
-#    dps:
-#      - id: 127
-#        name: option
-#        optional: true
-#        type: string
-#        mapping:
-#          - dps_val: ""
-#            value: Auto
-#          - dps_val: eyJkSW5mbyI6eyJ0cyI6IjE3MTM3MDExMDA0NjUiLCJ1c2VySWQiOiIwIn0sImRhdGEiOnsiY21kcyI6W3siZGF0YSI6eyJjbGVhbklkIjpbLTNdLCJleHRyYUFyZWFzIjpbXSwibWFwSWQiOjE3MDU5Mzg0NDAsInNlZ21lbnRJZCI6WzFdfSwiaW5mb1R5cGUiOjIxMDIzfSx7ImRhdGEiOnsibW9kZSI6InJlQXBwb2ludENsZWFuIn0sImluZm9UeXBlIjoyMTAwNX1dLCJtYWluQ21kcyI6WzIxMDA1XX0sImluZm9UeXBlIjozMDAwMCwibWVzc2FnZSI6Im9rIn0=
-#            value: Children's room
-#          - dps_val: eyJkSW5mbyI6eyJ0cyI6IjE3MTM2OTQ3Njk2NDIiLCJ1c2VySWQiOiIwIn0sImRhdGEiOnsiY21kcyI6W3siZGF0YSI6eyJjbGVhbklkIjpbLTNdLCJleHRyYUFyZWFzIjpbXSwibWFwSWQiOjE3MDU5Mzg0NDAsInNlZ21lbnRJZCI6WzVdfSwiaW5mb1R5cGUiOjIxMDIzfSx7ImRhdGEiOnsibW9kZSI6InJlQXBwb2ludENsZWFuIn0sImluZm9UeXBlIjoyMTAwNX1dLCJtYWluQ21kcyI6WzIxMDA1XX0sImluZm9UeXBlIjozMDAwMCwibWVzc2FnZSI6Im9rIn0=
-#            value: Bedroom
-#          - dps_val: eyJkSW5mbyI6eyJ0cyI6IjE3MTM2OTQ3MDA0OTUiLCJ1c2VySWQiOiIwIn0sImRhdGEiOnsiY21kcyI6W3siZGF0YSI6eyJjbGVhbklkIjpbLTNdLCJleHRyYUFyZWFzIjpbXSwibWFwSWQiOjE3MDU5Mzg0NDAsInNlZ21lbnRJZCI6WzZdfSwiaW5mb1R5cGUiOjIxMDIzfSx7ImRhdGEiOnsibW9kZSI6InJlQXBwb2ludENsZWFuIn0sImluZm9UeXBlIjoyMTAwNX1dLCJtYWluQ21kcyI6WzIxMDA1XX0sImluZm9UeXBlIjozMDAwMCwibWVzc2FnZSI6Im9rIn0=
-#            value: Living room
-#          - dps_val: eyJkSW5mbyI6eyJ0cyI6IjE3MTM3MDEwMTY2MTAiLCJ1c2VySWQiOiIwIn0sImRhdGEiOnsiY21kcyI6W3siZGF0YSI6eyJjbGVhbklkIjpbLTNdLCJleHRyYUFyZWFzIjpbXSwibWFwSWQiOjE3MDU5Mzg0NDAsInNlZ21lbnRJZCI6WzhdfSwiaW5mb1R5cGUiOjIxMDIzfSx7ImRhdGEiOnsibW9kZSI6InJlQXBwb2ludENsZWFuIn0sImluZm9UeXBlIjoyMTAwNX1dLCJtYWluQ21kcyI6WzIxMDA1XX0sImluZm9UeXBlIjozMDAwMCwibWVzc2FnZSI6Im9rIn0=
-#            value: Kitchen
-#          - dps_val: eyJkSW5mbyI6eyJ0cyI6IjE3MTM2OTQ1OTU5OTUiLCJ1c2VySWQiOiIwIn0sImRhdGEiOnsiY21kcyI6W3siZGF0YSI6eyJjbGVhbklkIjpbLTNdLCJleHRyYUFyZWFzIjpbXSwibWFwSWQiOjE3MDU5Mzg0NDAsInNlZ21lbnRJZCI6WzJdfSwiaW5mb1R5cGUiOjIxMDIzfSx7ImRhdGEiOnsibW9kZSI6InJlQXBwb2ludENsZWFuIn0sImluZm9UeXBlIjoyMTAwNX1dLCJtYWluQ21kcyI6WzIxMDA1XX0sImluZm9UeXBlIjozMDAwMCwibWVzc2FnZSI6Im9rIn0=
-#            value: Hall
