@@ -8,6 +8,7 @@ primary_entity:
     - id: 115
       name: snapshot
       type: base64
+      optional: true
     - id: 134
       name: motion_enable
       type: boolean
@@ -181,7 +182,7 @@ secondary_entities:
         type: string
         name: option
         mapping:
-          - dps_val: 0 
+          - dps_val: 0
             value: Low
           - dps_val: 1
             value: High
@@ -198,7 +199,7 @@ secondary_entities:
         name: option
         optional: true
         mapping:
-          - dps_val: "1" 
+          - dps_val: "1"
             value: Event
           - dps_val: "2"
             value: Continuous
@@ -239,5 +240,3 @@ secondary_entities:
       - id: 253
         type: string
         name: password_change
-
-

@@ -8,11 +8,9 @@ primary_entity:
         - dps_val: false
           value: "off"
           icon: "mdi:radiator-disabled"
-          icon_priority: 1
         - dps_val: true
           value: "heat"
           icon: "mdi:radiator"
-          icon_priority: 3
       name: hvac_mode
     - id: 2
       type: integer
@@ -31,7 +29,6 @@ primary_entity:
       name: error
 secondary_entities:
   - entity: binary_sensor
-    name: Error
     category: diagnostic
     class: problem
     dps:

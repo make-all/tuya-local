@@ -1,10 +1,10 @@
 name: Beok TGR81 thermostat
 products:
-  - id: gogb05wrtredz3bs
-    name: Avatto WT81 thermostat
+  - id: gw173aldekvpzalg
+    name: Avatto WT200W-EH
 primary_entity:
   entity: climate
-  translation_key: thermostat
+  translation_only_key: thermostat
   dps:
     - id: 1
       name: hvac_mode
@@ -43,6 +43,7 @@ primary_entity:
     - id: 36
       type: string
       name: hvac_action
+      optional: true
       mapping:
         - dps_val: close
           icon: "mdi:radiator-disabled"
@@ -64,7 +65,6 @@ primary_entity:
     - id: 45
       name: fault_code
       type: bitfield
-      
 secondary_entities:
   - entity: number
     name: Calibration offset
@@ -79,26 +79,20 @@ secondary_entities:
           min: -9
           max: 9
   - entity: switch
-    name: Anti-frost
-    icon: "mdi:snowflake-melt"
+    translation_key: anti_frost
     category: config
     dps:
       - id: 10
         type: boolean
         name: switch
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 40
         optional: true
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: select
     name: Sensor selection
     category: config
@@ -106,6 +100,7 @@ secondary_entities:
       - id: 43
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: in
             icon: "mdi:gauge"
@@ -117,17 +112,17 @@ secondary_entities:
             icon: "mdi:thermometer"
             value: Both
   - entity: binary_sensor
-    name: Error
     category: diagnostic
     class: problem
     dps:
       - id: 45
         type: bitfield
         name: sensor
+        optional: true
         mapping:
           - dps_val: 0
-            value: False
-          - value: True
+            value: false
+          - value: true
   - entity: number
     name: High temperature limit
     category: config
@@ -138,6 +133,7 @@ secondary_entities:
         type: integer
         name: value
         unit: C
+        optional: true
         range:
           min: 30
           max: 90

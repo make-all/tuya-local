@@ -1,6 +1,7 @@
 """
 Setup for different kinds of Tuya climate devices
 """
+
 import logging
 
 from homeassistant.components.climate import (
@@ -57,7 +58,8 @@ def validate_temp_unit(unit):
     try:
         return UnitOfTemperature(unit)
     except ValueError:
-        return None
+        if unit:
+            _LOGGER.warning("%s is not a valid temperature unit", unit)
 
 
 class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
@@ -93,28 +95,28 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         self._maxtemp_dps = dps_map.pop("max_temperature", None)
 
         self._init_end(dps_map)
-        self._support_flags = 0
 
         if self._aux_heat_dps:
-            self._support_flags |= ClimateEntityFeature.AUX_HEAT
+            self._attr_supported_features |= ClimateEntityFeature.AUX_HEAT
         if self._fan_mode_dps:
-            self._support_flags |= ClimateEntityFeature.FAN_MODE
+            self._attr_supported_features |= ClimateEntityFeature.FAN_MODE
         if self._humidity_dps:
-            self._support_flags |= ClimateEntityFeature.TARGET_HUMIDITY
+            self._attr_supported_features |= ClimateEntityFeature.TARGET_HUMIDITY
         if self._preset_mode_dps:
-            self._support_flags |= ClimateEntityFeature.PRESET_MODE
+            self._attr_supported_features |= ClimateEntityFeature.PRESET_MODE
         if self._swing_mode_dps:
-            self._support_flags |= ClimateEntityFeature.SWING_MODE
+            self._attr_supported_features |= ClimateEntityFeature.SWING_MODE
 
         if self._temp_high_dps and self._temp_low_dps:
-            self._support_flags |= ClimateEntityFeature.TARGET_TEMPERATURE_RANGE
+            self._attr_supported_features |= (
+                ClimateEntityFeature.TARGET_TEMPERATURE_RANGE
+            )
         elif self._temperature_dps is not None:
-            self._support_flags |= ClimateEntityFeature.TARGET_TEMPERATURE
-
-    @property
-    def supported_features(self):
-        """Return the features supported by this climate device."""
-        return self._support_flags
+            self._attr_supported_features |= ClimateEntityFeature.TARGET_TEMPERATURE
+        if HVACMode.OFF in self.hvac_modes:
+            self._attr_supported_features |= ClimateEntityFeature.TURN_OFF
+        if self._hvac_mode_dps and self._hvac_mode_dps.type is bool:
+            self._attr_supported_features |= ClimateEntityFeature.TURN_ON
 
     @property
     def temperature_unit(self):
@@ -128,6 +130,18 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         # If there unit attribute configured in the temperature dps, use that
         if self._temperature_dps:
             unit = validate_temp_unit(self._temperature_dps.unit)
+            if unit is not None:
+                return unit
+        if self._temp_high_dps:
+            unit = validate_temp_unit(self._temp_high_dps.unit)
+            if unit is not None:
+                return unit
+        if self._temp_low_dps:
+            unit = validate_temp_unit(self._temp_low_dps.unit)
+            if unit is not None:
+                return unit
+        if self._current_temperature_dps:
+            unit = validate_temp_unit(self._current_temperature_dps.unit)
             if unit is not None:
                 return unit
         # Return the default unit
@@ -187,7 +201,9 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         """Return the minimum supported target temperature."""
         # if a separate min_temperature dps is specified, the device tells us.
         if self._mintemp_dps is not None:
-            return self._mintemp_dps.get_value(self._device)
+            min = self._mintemp_dps.get_value(self._device)
+            if min is not None:
+                return min
 
         if self._temperature_dps is None:
             if self._temp_low_dps is None:
@@ -195,14 +211,16 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
             r = self._temp_low_dps.range(self._device)
         else:
             r = self._temperature_dps.range(self._device)
-        return DEFAULT_MIN_TEMP if r is None else r["min"]
+        return DEFAULT_MIN_TEMP if r is None else r[0]
 
     @property
     def max_temp(self):
         """Return the maximum supported target temperature."""
         # if a separate max_temperature dps is specified, the device tells us.
         if self._maxtemp_dps is not None:
-            return self._maxtemp_dps.get_value(self._device)
+            max = self._maxtemp_dps.get_value(self._device)
+            if max is not None:
+                return max
 
         if self._temperature_dps is None:
             if self._temp_high_dps is None:
@@ -210,7 +228,7 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
             r = self._temp_high_dps.range(self._device)
         else:
             r = self._temperature_dps.range(self._device)
-        return DEFAULT_MAX_TEMP if r is None else r["max"]
+        return DEFAULT_MAX_TEMP if r is None else r[1]
 
     async def async_set_temperature(self, **kwargs):
         """Set new target temperature."""
@@ -251,9 +269,8 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
     @property
     def current_temperature(self):
         """Return the current measured temperature."""
-        if self._current_temperature_dps is None:
-            return None
-        return self._current_temperature_dps.get_value(self._device)
+        if self._current_temperature_dps:
+            return self._current_temperature_dps.get_value(self._device)
 
     @property
     def target_humidity(self):
@@ -268,7 +285,7 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         if self._humidity_dps is None:
             return None
         r = self._humidity_dps.range(self._device)
-        return DEFAULT_MIN_HUMIDITY if r is None else r["min"]
+        return DEFAULT_MIN_HUMIDITY if r is None else r[0]
 
     @property
     def max_humidity(self):
@@ -276,7 +293,7 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         if self._humidity_dps is None:
             return None
         r = self._humidity_dps.range(self._device)
-        return DEFAULT_MAX_HUMIDITY if r is None else r["max"]
+        return DEFAULT_MAX_HUMIDITY if r is None else r[1]
 
     async def async_set_humidity(self, humidity: int):
         if self._humidity_dps is None:
@@ -287,9 +304,8 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
     @property
     def current_humidity(self):
         """Return the current measured humidity."""
-        if self._current_humidity_dps is None:
-            return None
-        return self._current_humidity_dps.get_value(self._device)
+        if self._current_humidity_dps:
+            return self._current_humidity_dps.get_value(self._device)
 
     @property
     def hvac_action(self):
@@ -306,7 +322,6 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
                 self.name or "climate",
                 action,
             )
-            return None
 
     @property
     def hvac_mode(self):
@@ -323,13 +338,12 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
                 self.name or "climate",
                 hvac_mode,
             )
-            return None
 
     @property
     def hvac_modes(self):
         """Return available HVAC modes."""
         if self._hvac_mode_dps is None:
-            return []
+            return [HVACMode.AUTO]
         else:
             return self._hvac_mode_dps.values(self._device)
 
@@ -363,9 +377,7 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
     @property
     def is_aux_heat(self):
         """Return state of aux heater"""
-        if self._aux_heat_dps is None:
-            return None
-        else:
+        if self._aux_heat_dps:
             return self._aux_heat_dps.get_value(self._device)
 
     async def async_turn_aux_heat_on(self):
@@ -390,9 +402,8 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
     @property
     def preset_modes(self):
         """Return the list of presets that this device supports."""
-        if self._preset_mode_dps is None:
-            return None
-        return self._preset_mode_dps.values(self._device)
+        if self._preset_mode_dps:
+            return self._preset_mode_dps.values(self._device)
 
     async def async_set_preset_mode(self, preset_mode):
         """Set the preset mode."""
@@ -410,9 +421,8 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
     @property
     def swing_modes(self):
         """Return the list of swing modes that this device supports."""
-        if self._swing_mode_dps is None:
-            return None
-        return self._swing_mode_dps.values(self._device)
+        if self._swing_mode_dps:
+            return self._swing_mode_dps.values(self._device)
 
     async def async_set_swing_mode(self, swing_mode):
         """Set the preset mode."""
@@ -430,9 +440,8 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
     @property
     def fan_modes(self):
         """Return the list of fan modes that this device supports."""
-        if self._fan_mode_dps is None:
-            return None
-        return self._fan_mode_dps.values(self._device)
+        if self._fan_mode_dps:
+            return self._fan_mode_dps.values(self._device)
 
     async def async_set_fan_mode(self, fan_mode):
         """Set the fan mode."""

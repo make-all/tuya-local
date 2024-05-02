@@ -1,4 +1,3 @@
-from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.humidifier import HumidifierEntityFeature
 from homeassistant.components.humidifier.const import MODE_AUTO, MODE_NORMAL
 from homeassistant.components.sensor import SensorDeviceClass
@@ -50,9 +49,8 @@ class TestWilfaHazeHumidifier(
         self.setUpSwitchable(SWITCH_DPS, self.subject)
         self.setUpBasicBinarySensor(
             ERROR_DPS,
-            self.entities.get("binary_sensor_tank"),
+            self.entities.get("binary_sensor_tank_empty"),
             testdata=(1, 0),
-            device_class=BinarySensorDeviceClass.PROBLEM,
         )
         self.setUpMultiLights(
             [
@@ -92,8 +90,8 @@ class TestWilfaHazeHumidifier(
                     "dps": UNIT_DPS,
                     "name": "select_temperature_unit",
                     "options": {
-                        "c": "Celsius",
-                        "f": "Fahrenheit",
+                        "c": "celsius",
+                        "f": "fahrenheit",
                     },
                 },
             ],
@@ -134,7 +132,7 @@ class TestWilfaHazeHumidifier(
         )
         self.mark_secondary(
             [
-                "binary_sensor_tank",
+                "binary_sensor_tank_empty",
                 "light_display",
                 "light_mood",
                 "select_temperature_unit",

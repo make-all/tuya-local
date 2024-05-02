@@ -6,7 +6,7 @@ products:
     name: MoesGo PCT513-WB-TY
 primary_entity:
   entity: climate
-  translation_key: thermostat
+  translation_only_key: thermostat
   dps:
     - id: 2
       type: string
@@ -173,7 +173,6 @@ secondary_entities:
         mapping:
           - step: 5
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:

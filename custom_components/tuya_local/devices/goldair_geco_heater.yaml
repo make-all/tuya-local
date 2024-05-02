@@ -33,21 +33,15 @@ primary_entity:
       name: error
 secondary_entities:
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 2
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: number
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 5
         type: integer
@@ -57,7 +51,6 @@ secondary_entities:
           min: 0
           max: 24
   - entity: binary_sensor
-    name: Error
     class: problem
     category: diagnostic
     dps:

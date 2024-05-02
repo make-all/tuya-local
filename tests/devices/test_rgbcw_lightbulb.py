@@ -39,7 +39,7 @@ class TestRGBCWLightbulb(BasicNumberTests, TuyaDeviceTestCase):
 
     def test_brightness(self):
         self.dps[BRIGHTNESS_DPS] = 500
-        self.assertAlmostEqual(self.subject.brightness, 128, 0)
+        self.assertAlmostEqual(self.subject.brightness, 126, 0)
 
     def test_color_temp(self):
         self.dps[COLORTEMP_DPS] = 500
@@ -125,7 +125,7 @@ class TestRGBCWLightbulb(BasicNumberTests, TuyaDeviceTestCase):
         async with assert_device_properties_set(
             self.subject._device,
             {
-                BRIGHTNESS_DPS: 502,
+                BRIGHTNESS_DPS: 506,
             },
         ):
             await self.subject.async_turn_on(brightness=128)

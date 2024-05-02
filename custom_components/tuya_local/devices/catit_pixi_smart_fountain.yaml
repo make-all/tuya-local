@@ -38,7 +38,7 @@ secondary_entities:
           min: 0
           max: 43200
         mapping:
-          - scale: 1440 # minutes => days
+          - scale: 1440  # minutes => days
             invert: true
         unit: d
   - entity: sensor
@@ -86,7 +86,6 @@ secondary_entities:
   - entity: sensor
     name: UV runtime
     class: duration
-    icon: "mdi:timer-outline"
     category: diagnostic
     dps:
       - id: 11

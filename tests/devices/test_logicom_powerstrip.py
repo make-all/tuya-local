@@ -1,4 +1,5 @@
 """Tests for the Logicom Strippy 4-way+USB powerstrip."""
+
 from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import UnitOfTime
 
@@ -50,7 +51,11 @@ class TestLogicomPowerstrip(
                     "name": "switch_outlet_4",
                     "device_class": SwitchDeviceClass.OUTLET,
                 },
-                {"dps": SWITCHUSB_DPS, "name": "switch_usb_switch"},
+                {
+                    "dps": SWITCHUSB_DPS,
+                    "name": "switch_usb_switch",
+                    "device_class": SwitchDeviceClass.SWITCH,
+                },
             ]
         )
         self.setUpMultiNumber(

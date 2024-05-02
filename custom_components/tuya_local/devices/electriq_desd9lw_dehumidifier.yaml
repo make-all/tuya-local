@@ -7,23 +7,18 @@ primary_entity:
       type: boolean
       mapping:
         - dps_val: false
-          icon: "mdi:air-humidifier-off"
           value: "off"
         - dps_val: true
           constraint: mode
           conditions:
             - dps_val: "Auto"
               value: "auto"
-              icon: "mdi:air-humidifier"
             - dps_val: "Heater"
               value: "heat"
-              icon: "mdi:fire"
             - dps_val: "Dehumidity"
               value: "dry"
-              icon: "mdi:water"
             - dps_val: "Fan"
               value: "fan_only"
-              icon: "mdi:fan"
     - id: 2
       type: integer
       name: humidity

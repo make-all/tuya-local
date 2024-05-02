@@ -1,0 +1,120 @@
+name: PIR relay
+products:
+  - id: i0lqhz9ejwtuykz5
+    name: Timeguard WFPIR
+primary_entity:
+  entity: switch
+  name: Relay
+  class: switch
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 107
+      type: integer
+      name: rd_test
+secondary_entities:
+  - entity: binary_sensor
+    class: motion
+    dps:
+      - id: 101
+        type: boolean
+        name: sensor
+  - entity: button
+    name: Factory reset
+    class: restart
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: button
+  - entity: select
+    name: Function
+    icon: "mdi:refresh-auto"
+    category: config
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: Auto
+            value: Auto
+          - dps_val: SemiAuto
+            value: Semi-auto
+          - dps_val: Test
+            value: Test
+  - entity: number
+    name: Duration
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: s
+        optional: true
+        range:
+          min: 30
+          max: 1800
+        mapping:
+          - step: 30
+  - entity: number
+    class: illuminance
+    category: config
+    icon: "mdi:theme-light-dark"
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: lx
+        range:
+          min: 5
+          max: 2000
+        mapping:
+          - step: 5
+  - entity: select
+    name: Sensitivity
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        mapping:
+          - dps_val: Level1
+            value: "25%"
+          - dps_val: Level2
+            value: "50%"
+          - dps_val: Level3
+            value: "75%"
+          - dps_val: Level4
+            value: "100%"
+  - entity: light
+    name: Indicator
+    icon: "mdi:led-on"
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Learn light level
+    category: config
+    dps:
+      - id: 109
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Ignore light level
+    category: config
+    dps:
+      - id: 110
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Temporary disable
+    category: config
+    dps:
+      - id: 117
+        type: boolean
+        name: switch

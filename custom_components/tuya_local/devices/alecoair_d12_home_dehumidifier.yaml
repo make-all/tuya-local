@@ -77,20 +77,15 @@ secondary_entities:
           - dps_val: null
             invalid: true
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 7
         type: boolean
         name: lock
-        mapping:
-          - dps_val: false
-            icon: "mdi:hand-back-right"
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
   - entity: select
     name: Countdown
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 12
@@ -156,10 +151,7 @@ secondary_entities:
         name: sensor
         unit: min
   - entity: binary_sensor
-    name: Tank
-    class: problem
-    icon: "mdi:cup-outline"
-    icon-priority: 2
+    translation_key: tank_full
     category: diagnostic
     dps:
       - id: 11
@@ -168,11 +160,8 @@ secondary_entities:
         mapping:
           - dps_val: 8
             value: true
-            icon: "mdi:cup-water"
-            icon-priority: 1
           - value: false
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:

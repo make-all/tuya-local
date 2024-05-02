@@ -1,5 +1,6 @@
 from homeassistant.components.fan import FanEntityFeature
 from homeassistant.components.sensor import SensorDeviceClass
+from homeassistant.components.switch import SwitchDeviceClass
 
 from ..const import RENPHO_PURIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -38,7 +39,11 @@ class TestRenphoPurifier(
         self.setUpSwitchable(SWITCH_DPS, self.subject)
         self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_aq_indicator"))
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
-        self.setUpBasicSwitch(SLEEP_DPS, self.entities.get("switch_sleep"))
+        self.setUpBasicSwitch(
+            SLEEP_DPS,
+            self.entities.get("switch_sleep"),
+            device_class=SwitchDeviceClass.SWITCH,
+        )
         self.setUpMultiSensors(
             [
                 {

@@ -15,43 +15,44 @@ primary_entity:
           value: armed_away
         - dps_val: home
           value: armed_home
-    - id: 20
-      type: boolean
-      name: unknown_20
-    - id: 21
-      type: boolean
-      name: unknown_21
     - id: 22
       type: integer
-      name: unknown_22
+      name: call_looptimes
     - id: 23
       type: string
-      name: unknown_23
+      name: telnet_state
     - id: 24
       type: string
-      name: unknown_24
-    - id: 32
-      type: string
-      name: unknown_32
-    - id: 34
-      type: boolean
-      name: unknown_34
+      name: zone_attribute
     - id: 35
       type: boolean
-      name: unknown_35
+      name: sub_add
     - id: 36
       type: string
-      name: unknown_36
+      name: sub_class
     - id: 37
       type: string
-      name: unknown_37
+      name: sub_type
     - id: 39
       type: string
-      name: unknown_39
+      name: sub_state
     - id: 40
       type: string
-      name: unknown_40
+      name: master_language
 secondary_entities:
+  - entity: binary_sensor
+    name: Alarm
+    class: sound
+    icon: "mdi:alarm-bell"
+    dps:
+      - id: 32
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: normal
+            value: false
+          - dps_val: alarm
+            value: true
   - entity: button
     deprecated: alarm_control_panel
     category: config
@@ -134,14 +135,13 @@ secondary_entities:
       - id: 10
         type: boolean
         name: switch
-  - entity: switch
-    name: AC power
-    category: config
-    icon: "mdi:current-ac"
+  - entity: binary_sensor
+    class: plug
+    category: diagnostic
     dps:
       - id: 15
         type: boolean
-        name: switch
+        name: sensor
   - entity: sensor
     class: battery
     dps:
@@ -150,13 +150,28 @@ secondary_entities:
         name: sensor
         unit: "%"
   - entity: binary_sensor
-    name: Low battery alarm
     class: battery
     category: diagnostic
     dps:
       - id: 17
         type: boolean
         name: sensor
+  - entity: switch
+    name: Alarm call
+    category: config
+    icon: "mdi:phone-alert"
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Alarm SMS
+    category: config
+    icon: "mdi:message-alert"
+    dps:
+      - id: 21
+        type: boolean
+        name: switch
   - entity: switch
     name: Alarm notification
     category: config
@@ -177,8 +192,16 @@ secondary_entities:
   - entity: switch
     name: Tick down
     category: config
-    icon: "mdi:timer"
+    icon: "mdi:metronome"
     dps:
       - id: 29
         type: boolean
         name: switch
+  - entity: button
+    name: Factory reset
+    class: restart
+    category: config
+    dps:
+      - id: 34
+        type: boolean
+        name: button

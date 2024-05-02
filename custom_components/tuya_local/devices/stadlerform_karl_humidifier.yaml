@@ -41,8 +41,7 @@ secondary_entities:
         unit: "%"
         class: measurement
   - entity: binary_sensor
-    name: Low water
-    class: problem
+    translation_key: tank_empty
     category: diagnostic
     dps:
       - id: 22
@@ -53,23 +52,18 @@ secondary_entities:
             value: false
           - value: true
   - entity: lock
-    name: Child lock   
+    translation_key: child_lock
     category: config
     dps:
       - id: 29
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: sensor
     name: Filter
     icon: "mdi:filter"
     category: diagnostic
     dps:
-      - id: 33 
+      - id: 33
         type: integer
         name: sensor
         unit: "%"

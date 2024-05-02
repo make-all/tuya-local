@@ -1,59 +1,249 @@
 {
-	"title": "Tuya Local",
-	"config": {
-		"step": {
-			"user": {
-				"title": "Налаштуйте свій пристрій Tuya Local",
-				"description": "[Дотримуйтеся цих інструкцій, щоб знайти ідентифікатор пристрою та локальний ключ.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
-				"data": {
-					"host": "IP-адреса або ім'я хоста",
-					"device_id": "Ідентифікатор пристрою",
-					"local_key": "Локальний ключ (local_key)",
-					"protocol_version": "Версія протоколу (якщо не знаєте, спробуйте 'auto')",
-					"poll_only": "Виключно опитування (спробуйте це, якщо ваш пристрій не зовсім працює)"
-				}
-			},
-			"select_type": {
-				"title": "Оберіть тип пристрою",
-				"description": "Виберіть тип, що відповідає вашому пристрою",
-				"data": {
-					"type": "Тип пристрою"
-				}
-			},
-			"choose_entities": {
-				"title": "Налаштування пристрою",
-				"description": "Оберіть назву для цього пристрою та ті сутності, що будуть використовуватися",
-				"data": {
-					"name": "Назва"
-				}
-			}
-		},
-		"abort": {
-			"already_configured": "Пристрій з таким ідентифікатором уже додано.",
-			"not_supported": "На жаль, цей пристрій не підтримується."
-		},
-		"error": {
-			"connection": "Неможливо підключитися до пристрою з вказаними налаштуваннями. Це може бути випадковий збій або, можливо, в налаштуваннях є помилки."
+    "title": "Tuya Local",
+    "config": {
+	"step": {
+	    "user": {
+		"title": "Налаштуйте свій пристрій Tuya Local",
+		"description": "[Дотримуйтеся цих інструкцій, щоб знайти ідентифікатор пристрою та локальний ключ.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+		"data": {
+		    "host": "IP-адреса або ім'я хоста",
+		    "device_id": "Ідентифікатор пристрою",
+		    "local_key": "Локальний ключ (local_key)",
+		    "protocol_version": "Версія протоколу (якщо не знаєте, спробуйте 'auto')",
+		    "poll_only": "Виключно опитування (спробуйте це, якщо ваш пристрій не зовсім працює)",
+		    "device_cid": "[uk] Sub device ID (for devices connected via gateway)"
 		}
+	    },
+	    "select_type": {
+		"title": "Оберіть тип пристрою",
+		"description": "Виберіть тип, що відповідає вашому пристрою",
+		"data": {
+		    "type": "Тип пристрою"
+		}
+	    },
+	    "choose_entities": {
+		"title": "Налаштування пристрою",
+		"description": "Оберіть назву для цього пристрою",
+		"data": {
+		    "name": "Назва"
+		}
+	    }
 	},
-	"options": {
-		"step": {
-			"user": {
-				"title": "Налаштуйте свій пристрій Tuya Local",
-				"description": "[Дотримуйтеся цих інструкцій, щоб знайти локальний ключ.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
-				"data": {
-					"host": "IP-адреса або ім'я хоста",
-					"local_key": "Локальний ключ (local_key)",
-					"protocol_version": "Версія протоколу (якщо не знаєте, спробуйте 'auto')",
-					"poll_only": "Виключно опитування (спробуйте це, якщо ваш пристрій не зовсім працює)"
-				}
-			}
-		},
-		"error": {
-			"connection": "Неможливо підключитися до пристрою з вказаними налаштуваннями. Це може бути випадковий збій або, можливо, в налаштуваннях є помилки."
-		},
-		"abort": {
-			"not_supported": "На жаль, цей пристрій не підтримується."
-		}
+	"abort": {
+	    "already_configured": "Пристрій з таким ідентифікатором уже додано.",
+	    "not_supported": "На жаль, цей пристрій не підтримується."
+	},
+	"error": {
+	    "connection": "Неможливо підключитися до пристрою з вказаними налаштуваннями. Це може бути випадковий збій або, можливо, в налаштуваннях є помилки."
 	}
+    },
+    "options": {
+	"step": {
+	    "user": {
+		"title": "Налаштуйте свій пристрій Tuya Local",
+		"description": "[Дотримуйтеся цих інструкцій, щоб знайти локальний ключ.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+		"data": {
+		    "host": "IP-адреса або ім'я хоста",
+		    "local_key": "Локальний ключ (local_key)",
+		    "protocol_version": "Версія протоколу (якщо не знаєте, спробуйте 'auto')",
+		    "poll_only": "Виключно опитування (спробуйте це, якщо ваш пристрій не зовсім працює)",
+		    "device_cid": "[uk] Sub device ID (for devices connected via gateway)"
+		}
+	    }
+	},
+	"error": {
+	    "connection": "Неможливо підключитися до пристрою з вказаними налаштуваннями. Це може бути випадковий збій або, можливо, в налаштуваннях є помилки."
+	},
+	"abort": {
+	    "not_supported": "На жаль, цей пристрій не підтримується."
+	}
+    },
+    "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "Розморожування",
+                "state": {
+                    "off": "Нормально",
+                    "on": "Розморожування"
+                }
+            },
+            "tank_empty": {
+                "name": "Танк",
+                "state": {
+                    "off": "OK",
+                    "on": "Низький"
+                }
+            },
+            "tank_full": {
+                "name": "Танк",
+                "state": {
+                    "off": "OK",
+                    "on": "Повний"
+                }
+            }
+        },
+        "climate": {
+            "aircon_extra": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "health": "Здоровий",
+                            "medhigh": "Середньо-високий",
+                            "medlow": "Середньо-низький",
+                            "natural": "Природні",
+                            "quiet": "Спокійно",
+                            "sleep": "Сон",
+                            "strong": "Сильний"
+                        }
+                    },
+                    "swing_mode": {
+                        "state": {
+                            "topmost": "Самий верхній",
+                            "top": "Верхній",
+                            "middle": "Середній",
+                            "down": "Низький",
+                            "downmost": "Самий низький"
+                        }
+                    }
+                }
+            },
+            "thermostat": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "cycle": "Цикл"
+                        }
+                    },
+                    "preset_mode": {
+                        "state": {
+                            "manual": "Інструкція",
+                            "program": "Програма",
+                            "temp_override": "Тимчасове перевизначення",
+                            "perm_override": "Постійне перевизначення"
+                        }
+                    }
+                }
+            },
+            "combo_floor": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "cool": "Прохолодне повітря",
+                            "fan_only": "Вентилятор",
+                            "heat": "Підігріте повітря",
+                            "floor_cool": "Прохолодна підлога",
+                            "floor_heat": "Тепла підлога"
+                        }
+                    }
+                }
+            },
+            "swing_as_powerlevel": {
+                "state_attributes": {
+                    "swing_mode": {
+                        "name": "Рівень нагріву",
+                        "state": {
+                            "stop": "Стій",
+                            "auto": "Авто"
+                        }
+                    }
+                }
+            },
+            "pool_heatpump": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "smart_heat": "Розумне тепло",
+                            "quick_heat": "Швидке тепло",
+                            "quiet_heat": "Тихе тепло",
+                            "smart_cool": "Розумне холонути",
+                            "quick_cool": "Швидке холонути",
+                            "quiet_cool": "Тихе холонути",
+                            "auto": "Авто"
+                        }
+                    }
+                }
+            },
+            "thermo_switch": {
+                "state_attributes": {
+                    "hvac_mode": {
+                        "state": {
+                            "fan_only": "Пауза"
+                        }
+                    }
+                }
+            }
+        },
+        "humidifier": {
+            "dehumidifier": {
+                "state_attributes": {
+                    "mode": {
+                        "state": {
+                            "laundry": "Висушити білизну",
+                            "purify": "Очистити"
+                        }
+                    }
+                }
+            }
+        },
+        "fan": {
+            "fan_with_presets": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "normal": "Нормально",
+                            "nature": "Природні",
+                            "sleep": "Сон",
+                            "baby": "Дитина",
+                            "fresh": "Свіжий",
+                            "smart": "Розумний",
+                            "strong": "Сильний",
+                            "displayoff": "Дисплей вимк",
+                            "off": "Вимк"
+                        }
+                    }
+                }
+            },
+            "ventilation": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "fresh": "Свіже повітря",
+                            "circulate": "Циркулювати",
+                            "sleep": "Сон",
+                            "auto": "Авто",
+                            "eco": "Еко",
+                            "anti-condensation": "Антиконденсат"
+                        }
+                    }
+                }
+            }
+        },
+        "lock": {
+            "child_lock": {
+                "name": "Блокування від дітей"
+            }
+        },
+        "number": {
+            "timer": {
+                "name": "Таймер"
+            }
+        },
+        "select": {
+            "timer": {
+                "name": "Таймер"
+            },
+            "temperature_unit": {
+                "name": "Температурна одиниця",
+                "state": {
+                    "celsius": "Цельсія",
+                    "fahrenheit": "Фаренгейт"
+                }
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "Протиморозний"
+            }
+        }
+    }
 }

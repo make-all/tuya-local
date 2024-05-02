@@ -41,8 +41,8 @@ class TestWetairWCH750Heater(
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,
             self.subject,
-            min=10,
-            max=35,
+            min=10.0,
+            max=35.0,
         )
         self.setUpDimmableLight(
             BRIGHTNESS_DPS,
@@ -105,6 +105,8 @@ class TestWetairWCH750Heater(
             (
                 ClimateEntityFeature.TARGET_TEMPERATURE
                 | ClimateEntityFeature.PRESET_MODE
+                | ClimateEntityFeature.TURN_OFF
+                | ClimateEntityFeature.TURN_ON
             ),
         )
 

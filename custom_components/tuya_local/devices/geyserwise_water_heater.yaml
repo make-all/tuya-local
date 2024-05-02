@@ -67,7 +67,6 @@ secondary_entities:
           - dps_val: "On"
             value: true
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -118,7 +117,7 @@ secondary_entities:
   - entity: number
     name: Overnight temperature
     category: config
-    icon: "mdi:thermometer"
+    class: temperature
     dps:
       - id: 103
         type: integer
@@ -130,7 +129,7 @@ secondary_entities:
   - entity: number
     name: Morning temperature
     category: config
-    icon: "mdi:thermometer"
+    class: temperature
     dps:
       - id: 104
         type: integer
@@ -142,7 +141,7 @@ secondary_entities:
   - entity: number
     name: Afternoon temperature
     category: config
-    icon: "mdi:thermometer"
+    class: temperature
     dps:
       - id: 105
         type: integer
@@ -154,7 +153,7 @@ secondary_entities:
   - entity: number
     name: Evening temperature
     category: config
-    icon: "mdi:thermometer"
+    class: temperature
     dps:
       - id: 106
         type: integer
@@ -166,6 +165,7 @@ secondary_entities:
   - entity: number
     name: Anti-freeze temperature
     category: config
+    class: temperature
     icon: "mdi:snowflake-thermometer"
     dps:
       - id: 107

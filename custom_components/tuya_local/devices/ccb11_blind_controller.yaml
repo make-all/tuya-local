@@ -32,17 +32,17 @@ primary_entity:
       name: action
       mapping:
         - dps_val: opening
+          value: opening
           constraint: current_position
           conditions:
             - dps_val: 100
               value: opened
-            - value: opening
         - dps_val: closing
+          value: closing
           constraint: current_position
           conditions:
             - dps_val: 0
               value: closed
-            - value: closing
     - id: 11
       type: string
       name: unknown_11
@@ -71,8 +71,7 @@ secondary_entities:
         type: string
         name: option
         mapping:
-          - dps_val: forward 
+          - dps_val: forward
             value: Forward
           - dps_val: back
             value: Reverse
-

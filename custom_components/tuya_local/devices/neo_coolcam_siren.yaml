@@ -161,8 +161,7 @@ secondary_entities:
           min: 0
           max: 100
   - entity: select
-    name: Temperature display units
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 112
@@ -170,9 +169,9 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: true
-            value: Celsius
+            value: celsius
           - dps_val: false
-            value: Fahrenheit
+            value: fahrenheit
   - entity: switch
     name: Temperature alarm
     icon: "mdi:thermometer-alert"

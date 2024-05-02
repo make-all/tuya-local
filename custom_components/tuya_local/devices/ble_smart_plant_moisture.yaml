@@ -1,0 +1,42 @@
+name: Moisture sensor
+products:
+  - id: gvygg3m8
+    name: SGS01
+primary_entity:
+  entity: sensor
+  name: Soil Moisture
+  class: humidity
+  dps:
+    - id: 3
+      name: sensor
+      type: integer
+      unit: "%"
+secondary_entities:
+  - entity: sensor
+    name: Soil Temperature
+    class: temperature
+    dps:
+      - id: 5
+        name: sensor
+        type: integer
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 9
+        name: unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 14
+        type: string
+        name: state
+      - id: 15
+        type: integer
+        name: sensor
+        unit: "%"

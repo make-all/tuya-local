@@ -1,18 +1,28 @@
 name: QOTO 03 sprinkler controller
 primary_entity:
-  entity: number
-  icon: "mdi:pipe-valve"
+  entity: valve
+  class: water
   dps:
     - id: 102
       type: integer
-      name: value
-      unit: "%"
-      range:
-        min: 0
-        max: 100
+      name: valve
       mapping:
         - step: 5
 secondary_entities:
+  - entity: number
+    icon: "mdi:pipe-valve"
+    category: config
+    deprecated: valve
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - step: 5
   - entity: sensor
     category: diagnostic
     icon: "mdi:valve"
@@ -25,7 +35,7 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     name: Timer
-    icon: "mdi:timer"
+    class: duration
     dps:
       - id: 104
         name: sensor
@@ -33,8 +43,7 @@ secondary_entities:
         unit: s
   - entity: number
     category: config
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     dps:
       - id: 105
         type: integer
@@ -44,7 +53,6 @@ secondary_entities:
           min: 0
           max: 86399
   - entity: binary_sensor
-    name: Error
     category: diagnostic
     class: problem
     dps:

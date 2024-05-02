@@ -1,0 +1,207 @@
+name: Camera
+products:
+  - id: rahgfyryabpbyrql
+    name: Kerui 200W
+primary_entity:
+  entity: camera
+  dps:
+    - id: 115
+      name: snapshot
+      type: base64
+      optional: true
+    - id: 134
+      name: motion_enable
+      type: boolean
+    - id: 150
+      name: record
+      type: boolean
+secondary_entities:
+  - entity: light
+    name: Indicator
+    category: config
+    icon: "mdi:led-on"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Flip image
+    icon: "mdi:flip-horizontal"
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: switch
+    name: Watermark
+    category: config
+    icon: "mdi:watermark"
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: switch
+    name: Privacy
+    icon: "mdi:incognito"
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+  - entity: select
+    name: Motion sensitivity
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Low
+          - dps_val: "1"
+            value: Medium
+          - dps_val: "2"
+            value: High
+          - dps_val: null
+            value: Unknown
+            hidden: true
+  - entity: select
+    name: Night vision
+    icon: "mdi:weather-night"
+    category: config
+    dps:
+      - id: 108
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Auto
+          - dps_val: "1"
+            value: "Off"
+          - dps_val: "2"
+            value: "On"
+          - dps_val: null
+            value: Unknown
+            hidden: true
+  - entity: sensor
+    name: SD status
+    class: enum
+    category: diagnostic
+    icon: "mdi:micro-sd"
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: Normal
+          - dps_val: 2
+            value: Corrupt
+          - dps_val: 3
+            value: Full
+          - dps_val: 4
+            value: Formatting
+          - dps_val: 5
+            value: Missing
+          - dps_val: null
+            value: Normal
+      - id: 109
+        type: string
+        name: capacity
+  - entity: button
+    name: SD format
+    category: config
+    icon: "mdi:micro-sd"
+    dps:
+      - id: 111
+        type: boolean
+        name: button
+        optional: true
+        persist: false
+      - id: 117
+        type: integer
+        name: state
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: 2000
+            value: Formatting
+          - dps_val: 2001
+            value: Format failed
+          - dps_val: 2002
+            value: Card missing
+          - dps_val: 2003
+            value: Card error
+          - dps_val: null
+            value: Formatted
+          - dps_val: 0
+            value: Formatted
+  - entity: button
+    name: PTZ stop
+    icon: "mdi:stop"
+    category: config
+    dps:
+      - id: 116
+        type: boolean
+        name: button
+        optional: true
+        persist: false
+  - entity: select
+    name: PTZ control
+    icon: "mdi:camera-control"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: option
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: "0"
+            value: up
+          - dps_val: "1"
+            value: right-up
+          - dps_val: "2"
+            value: right
+          - dps_val: "3"
+            value: right-down
+          - dps_val: "4"
+            value: down
+          - dps_val: "5"
+            value: left-down
+          - dps_val: "6"
+            value: left
+          - dps_val: "7"
+            value: left-up
+          - dps_val: null
+            value: (stopped)
+  - entity: select
+    name: Recording mode
+    icon: "mdi:file-video"
+    category: config
+    dps:
+      - id: 151
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: Event
+          - dps_val: "2"
+            value: Continuous
+  - entity: switch
+    name: Motion tracking
+    icon: "mdi:motion"
+    category: config
+    dps:
+      - id: 161
+        type: boolean
+        name: switch

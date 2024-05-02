@@ -1,0 +1,140 @@
+name: Thermostat
+products:
+  - id: v5214objiaepcaer
+    name: BHT-002 GBLW
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: manual
+              value: heat
+            - dps_val: program
+              value: auto
+    - id: 2
+      name: mode
+      type: string
+    - id: 3
+      name: hvac_action
+      type: string
+      optional: true
+      mapping:
+        - constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              mapping:
+                - dps_val: Warming
+                  value: heating
+                - value: idle
+    - id: 16
+      name: temperature
+      type: integer
+      unit: C
+      range:
+        min: 50
+        max: 950
+      mapping:
+        - scale: 10
+          step: 5
+    - id: 19
+      name: max_temperature
+      type: integer
+      mapping:
+        - scale: 10
+    - id: 24
+      name: current_temperature
+      type: integer
+      mapping:
+        - scale: 10
+secondary_entities:
+  - entity: button
+    name: Factory reset
+    class: restart
+    category: config
+    dps:
+      - id: 39
+        type: boolean
+        optional: true
+        name: button
+  - entity: switch
+    name: Window detect
+    category: config
+    icon: "mdi:window-open-variant"
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        name: lock
+  - entity: switch
+    translation_key: anti_frost
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: select
+    name: Temperature sensor
+    icon: "mdi:thermometer"
+    category: config
+    dps:
+      - id: 43
+        type: string
+        name: option
+        mapping:
+          - dps_val: in
+            value: Internal
+          - dps_val: out
+            value: External
+  - entity: number
+    name: Maximum temperature
+    category: config
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 19
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 350
+          max: 950
+        mapping:
+          - scale: 10
+            step: 5
+  - entity: binary_sensor
+    class: window
+    category: diagnostic
+    dps:
+      - id: 25
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "close"
+            value: false
+          - dps_val: "open"
+            value: true
+  - entity: number
+    name: Temperature correction
+    category: config
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 27
+        type: integer
+        name: value
+        range:
+          min: -9
+          max: 9

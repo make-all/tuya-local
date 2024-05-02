@@ -20,11 +20,6 @@ primary_entity:
     - id: 10
       name: switch
       type: boolean
-      mapping:
-        - dps_val: true
-          icon: "mdi:air-humidifier"
-        - dps_val: false
-          icon: "mdi:air-humidifier-off"
     - id: 12
       name: mode
       type: string
@@ -69,8 +64,7 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 3
@@ -106,7 +100,6 @@ secondary_entities:
   - entity: sensor
     name: Timer
     class: duration
-    icon: "mdi:timer"
     category: diagnostic
     dps:
       - id: 4
@@ -114,8 +107,7 @@ secondary_entities:
         type: integer
         unit: min
   - entity: binary_sensor
-    name: Tank
-    class: problem
+    translation_key: tank_empty
     category: diagnostic
     dps:
       - id: 9

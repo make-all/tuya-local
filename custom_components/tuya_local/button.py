@@ -1,6 +1,7 @@
 """
 Setup for different kinds of Tuya button devices
 """
+
 import logging
 
 from homeassistant.components.button import ButtonDeviceClass, ButtonEntity

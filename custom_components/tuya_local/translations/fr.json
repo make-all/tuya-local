@@ -23,7 +23,7 @@
             },
             "choose_entities": {
                 "title": "Details appareil",
-                "description": "Choisissez un nom pour cet appareil et quelles entités seront activées",
+                "description": "Choisissez un nom pour cet appareil",
                 "data": {
                     "name": "Nom"
                 }
@@ -59,6 +59,29 @@
         }
     },
     "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "Dégivrer",
+                "state": {
+                    "off": "Normale",
+                    "on": "Dégivrage"
+                }
+            },
+            "tank_empty": {
+                "name": "Réservoir",
+                "state": {
+                    "off": "OK",
+                    "on": "Faible"
+                }
+            },
+            "tank_full": {
+                "name": "Réservoir",
+                "state": {
+                    "off": "OK",
+                    "on": "Pleine"
+                }
+            }
+        },
         "climate": {
             "aircon_extra": {
                 "state_attributes": {
@@ -142,11 +165,9 @@
             },
             "thermo_switch": {
                 "state_attributes": {
-                    "preset_mode": {
+                    "hvac_mode": {
                         "state": {
-                            "on": "Marche",
-                            "off": "Arrêt",
-                            "pause": "Pause"
+                            "fan_only": "Pause"
                         }
                     }
                 }
@@ -162,6 +183,33 @@
                         }
                     }
                 }
+            }
+        },
+        "lock": {
+            "child_lock": {
+                "name": "Sécurité enfant"
+            }
+        },
+        "number": {
+            "timer": {
+                "name": "Minuteur"
+            }
+        },
+        "select": {
+            "timer": {
+                "name": "Minuteur"
+            },
+            "temperature_unit": {
+                "name": "Unité de température",
+                "state": {
+                    "celsius": "Celsius",
+                    "fahrenheit": "Fahrenheit"
+                }
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "Anti-gel"
             }
         }
     }

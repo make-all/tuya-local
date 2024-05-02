@@ -68,7 +68,6 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -89,7 +88,7 @@ secondary_entities:
   - entity: number
     name: "On timer"
     category: config
-    icon: "mdi:timer"
+    translation_key: timer
     dps:
       - id: 104
         type: integer
@@ -104,7 +103,7 @@ secondary_entities:
   - entity: number
     name: "Off timer"
     category: config
-    icon: "mdi:timer"
+    translation_key: timer
     dps:
       - id: 105
         type: integer

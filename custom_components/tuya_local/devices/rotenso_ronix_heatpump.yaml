@@ -4,7 +4,7 @@ products:
     name: Rotenso Roni X
 primary_entity:
   entity: climate
-  translation_key: aircon_extra
+  translation_only_key: aircon_extra
   dps:
     - id: 1
       type: boolean
@@ -17,19 +17,14 @@ primary_entity:
           conditions:
             - dps_val: cold
               value: cool
-              icon: "mdi:snowflake"
             - dps_val: hot
               value: heat
-              icon: "mdi:fire"
             - dps_val: wet
               value: dry
-              icon: "mdi:water"
             - dps_val: wind
               value: fan_only
-              icon: "mdi:fan"
             - dps_val: auto
               value: heat_cool
-              icon: "mdi:hvac"
     - id: 2
       type: integer
       name: temperature
@@ -86,7 +81,9 @@ primary_entity:
               value: "off"
             - dps_val: "1"
               value: horizontal
-            - value: horizontal
+            - dps_val: ["2", "3", "4"]
+              value: horizontal
+              hidden: true
         - dps_val: "1"
           constraint: horizontal_swing
           conditions:
@@ -94,12 +91,15 @@ primary_entity:
               value: vertical
             - dps_val: "1"
               value: both
-            - value: both
-        - constraint: horizontal_swing
+            - dps_val: ["2", "3", "4"]
+              value: both
+              hidden: true
+        - hidden: true
+          value: both
+          constraint: horizontal_swing
           conditions:
             - dps_val: "0"
               value: vertical
-            - value: both
     - id: 114
       type: string
       name: horizontal_swing
@@ -255,7 +255,6 @@ secondary_entities:
           - scale: 1
             mask: "0001"
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -267,7 +266,6 @@ secondary_entities:
             value: false
           - value: true
   - entity: sensor
-    name:
     class: pm25
     category: diagnostic
     dps:

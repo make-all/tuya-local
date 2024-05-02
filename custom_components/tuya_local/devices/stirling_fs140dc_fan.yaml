@@ -1,7 +1,7 @@
 name: Stirling FS1-40DC pedestal fan
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   dps:
     - id: 1
       name: switch
@@ -20,17 +20,14 @@ primary_entity:
       name: speed
       type: integer
       range:
-        min: 0
+        min: 1
         max: 15
-      mapping:
-        - scale: 0.15
     - id: 5
       name: oscillate
       type: boolean
 secondary_entities:
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 22

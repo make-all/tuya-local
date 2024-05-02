@@ -96,8 +96,7 @@ secondary_entities:
           - dps_val: false
             icon: "mdi:numeric-off"
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 106
@@ -123,8 +122,7 @@ secondary_entities:
         unit: "%"
         class: measurement
   - entity: binary_sensor
-    name: Tank
-    class: problem
+    translation_key: tank_full
     category: diagnostic
     dps:
       - id: 11
@@ -135,7 +133,6 @@ secondary_entities:
             value: true
           - value: false
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -156,7 +153,3 @@ secondary_entities:
       - id: 108
         type: boolean
         name: sensor
-
-
-
-

@@ -27,8 +27,7 @@ primary_entity:
         min: 10
         max: 1000
       mapping:
-        - scale: 3.92
-          constraint: standby
+        - constraint: standby
           conditions:
             - dps_val: true
               value_redirect: standby_brightness
@@ -83,9 +82,8 @@ primary_entity:
       optional: true
 secondary_entities:
   - entity: number
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 7
         type: integer
@@ -110,8 +108,23 @@ secondary_entities:
             value: Auto
           - dps_val: manual
             value: Manual
+  - entity: event
+    class: motion
+    category: diagnostic
+    dps:
+      - id: 52
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: pir
+            value: detected
+          - dps_val: none
+            value: clear
+          - value: null
   - entity: binary_sensor
     class: motion
+    deprecated: event_motion
     category: diagnostic
     dps:
       - id: 52
@@ -226,4 +239,3 @@ secondary_entities:
             value: 50
           - dps_val: high
             value: 80
-            

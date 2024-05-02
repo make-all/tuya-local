@@ -1,7 +1,9 @@
 """Test the config parser"""
+
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import MagicMock
 
+import voluptuous as vol
 from fuzzywuzzy import fuzz
 from homeassistant.components.sensor import SensorDeviceClass
 
@@ -18,6 +20,142 @@ from custom_components.tuya_local.helpers.device_config import (
 from custom_components.tuya_local.sensor import TuyaLocalSensor
 
 from .const import GPPH_HEATER_PAYLOAD, KOGAN_HEATER_PAYLOAD
+
+PRODUCT_SCHEMA = vol.Schema(
+    {
+        vol.Required("id"): str,
+        vol.Optional("name"): str,
+    }
+)
+CONDMAP_SCHEMA = vol.Schema(
+    {
+        vol.Optional("dps_val"): vol.Maybe(vol.Any(str, int, bool, list)),
+        vol.Optional("value"): vol.Maybe(vol.Any(str, int, bool, float)),
+        vol.Optional("value_redirect"): str,
+        vol.Optional("value_mirror"): str,
+        vol.Optional("range"): {
+            vol.Required("min"): int,
+            vol.Required("max"): int,
+        },
+        vol.Optional("target_range"): {
+            vol.Required("min"): int,
+            vol.Required("max"): int,
+        },
+        vol.Optional("scale"): vol.Any(int, float),
+        vol.Optional("step"): vol.Any(int, float),
+        vol.Optional("mask"): str,
+        vol.Optional("endianness"): str,
+        vol.Optional("invert"): True,
+        vol.Optional("unit"): str,
+        vol.Optional("icon"): vol.Match(r"^mdi:"),
+        vol.Optional("icon_priority"): int,
+        vol.Optional("hidden"): True,
+        vol.Optional("invalid"): True,
+        vol.Optional("default"): True,
+    }
+)
+COND_SCHEMA = CONDMAP_SCHEMA.extend(
+    {
+        vol.Required("dps_val"): vol.Maybe(vol.Any(str, int, bool, list)),
+        vol.Optional("mapping"): [CONDMAP_SCHEMA],
+    }
+)
+MAPPING_SCHEMA = CONDMAP_SCHEMA.extend(
+    {
+        vol.Optional("constraint"): str,
+        vol.Optional("conditions"): [COND_SCHEMA],
+    }
+)
+FORMAT_SCHEMA = vol.Schema(
+    {
+        vol.Required("name"): str,
+        vol.Required("bytes"): int,
+        vol.Optional("range"): {
+            vol.Required("min"): int,
+            vol.Required("max"): int,
+        },
+    }
+)
+DP_SCHEMA = vol.Schema(
+    {
+        vol.Required("id"): int,
+        vol.Required("type"): vol.In(
+            [
+                "string",
+                "integer",
+                "boolean",
+                "hex",
+                "base64",
+                "bitfield",
+                "unixtime",
+                "json",
+            ]
+        ),
+        vol.Required("name"): str,
+        vol.Optional("range"): {
+            vol.Required("min"): int,
+            vol.Required("max"): int,
+        },
+        vol.Optional("unit"): str,
+        vol.Optional("precision"): vol.Any(int, float),
+        vol.Optional("class"): str,
+        vol.Optional("optional"): True,
+        vol.Optional("persist"): False,
+        vol.Optional("hidden"): True,
+        vol.Optional("readonly"): True,
+        vol.Optional("force"): True,
+        vol.Optional("icon_priority"): int,
+        vol.Optional("mapping"): [MAPPING_SCHEMA],
+        vol.Optional("format"): [FORMAT_SCHEMA],
+    }
+)
+ENTITY_SCHEMA = vol.Schema(
+    {
+        vol.Required("entity"): vol.In(
+            [
+                "alarm_control_panel",
+                "binary_sensor",
+                "button",
+                "camera",
+                "climate",
+                "cover",
+                "event",
+                "fan",
+                "humidifier",
+                "lawn_mower",
+                "light",
+                "lock",
+                "number",
+                "remote",
+                "select",
+                "sensor",
+                "siren",
+                "switch",
+                "vacuum",
+                "valve",
+                "water_heater",
+            ]
+        ),
+        vol.Optional("name"): str,
+        vol.Optional("class"): str,
+        vol.Optional(vol.Or("translation_key", "translation_only_key")): str,
+        vol.Optional("category"): vol.In(["config", "diagnostic"]),
+        vol.Optional("icon"): vol.Match(r"^mdi:"),
+        vol.Optional("icon_priority"): int,
+        vol.Optional("deprecated"): str,
+        vol.Optional("mode"): vol.In(["box", "slider"]),
+        vol.Required("dps"): [DP_SCHEMA],
+    }
+)
+YAML_SCHEMA = vol.Schema(
+    {
+        vol.Required("name"): str,
+        vol.Optional("legacy_type"): str,
+        vol.Optional("products"): [PRODUCT_SCHEMA],
+        vol.Required("primary_entity"): ENTITY_SCHEMA,
+        vol.Optional("secondary_entities"): [ENTITY_SCHEMA],
+    }
+)
 
 KNOWN_DPS = {
     "alarm_control_panel": {
@@ -62,11 +200,16 @@ KNOWN_DPS = {
             "reversed",
         ],
     },
+    "event": {"required": ["event"], "optional": []},
     "fan": {
         "required": [{"or": ["preset_mode", "speed"]}],
         "optional": ["switch", "oscillate", "direction"],
     },
-    "humidifier": {"required": ["switch", "humidity"], "optional": ["mode"]},
+    "humidifier": {
+        "required": ["humidity"],
+        "optional": ["switch", "mode", "current_humidity"],
+    },
+    "lawn_mower": {"required": ["activity", "command"], "optional": []},
     "light": {
         "required": [{"or": ["switch", "brightness", "effect"]}],
         "optional": ["color_mode", "color_temp", "rgbhsv"],
@@ -93,6 +236,10 @@ KNOWN_DPS = {
         "required": ["value"],
         "optional": ["unit", "minimum", "maximum"],
     },
+    "remote": {
+        "required": ["send"],
+        "optional": ["receive"],
+    },
     "select": {"required": ["option"], "optional": []},
     "sensor": {"required": ["sensor"], "optional": ["unit"]},
     "siren": {
@@ -112,6 +259,10 @@ KNOWN_DPS = {
             "error",
             "fan_speed",
         ],
+    },
+    "valve": {
+        "required": ["valve"],
+        "optional": [],
     },
     "water_heater": {
         "required": [],
@@ -140,7 +291,7 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
         self.assertTrue(found)
 
     def dp_match(self, condition, accounted, unaccounted, known, required=False):
-        if type(condition) is str:
+        if isinstance(condition, str):
             known.add(condition)
             if condition in unaccounted:
                 unaccounted.remove(condition)
@@ -195,18 +346,18 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
 
         if prior_match:
             for c in conditions:
-                if type(c) is str:
+                if isinstance(c, str):
                     accounted.add(c)
                 elif "and" in c:
                     for c2 in c["and"]:
-                        if type(c2) is str:
+                        if isinstance(c2, str):
                             accounted.add(c2)
 
         return prior_match or not required
 
     def rule_broken_msg(self, rule):
         msg = ""
-        if type(rule) is str:
+        if isinstance(rule, str):
             return f"{msg} {rule}"
         elif "and" in rule:
             msg = f"{msg} all of ["
@@ -333,6 +484,11 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
             if isinstance(parsed, str) or isinstance(parsed._config, str):
                 self.fail(f"unparsable yaml in {cfg}")
 
+            try:
+                YAML_SCHEMA(parsed._config)
+            except vol.MultipleInvalid as e:
+                self.fail(f"Validation error in {cfg}: {e}")
+
             self.assertIsNotNone(
                 parsed._config.get("name"),
                 f"name missing from {cfg}",
@@ -364,8 +520,10 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
 
     def test_match_quality(self):
         """Test the match_quality function."""
+
         cfg = get_config("deta_fan")
         q = cfg.match_quality({**KOGAN_HEATER_PAYLOAD, "updated_at": 0})
+
         self.assertEqual(q, 0)
         q = cfg.match_quality({**GPPH_HEATER_PAYLOAD})
         self.assertEqual(q, 0)

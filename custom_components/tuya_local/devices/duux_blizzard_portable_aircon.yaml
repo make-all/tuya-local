@@ -15,16 +15,12 @@ primary_entity:
           constraint: mode
           conditions:
             - dps_val: auto
-              icon: "mdi:hvac"
               value: auto
             - dps_val: cool
-              icon: "mdi:snowflake"
               value: cool
             - dps_val: dry
-              icon: "mdi:water-off"
               value: dry
             - dps_val: fan
-              icon: "mdi:fan"
               value: fan_only
     - id: 2
       type: string
@@ -87,8 +83,7 @@ primary_entity:
           value: F
 secondary_entities:
   - entity: number
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 4
@@ -114,7 +109,6 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -140,8 +134,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: select
-    name: Temperature unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 14
@@ -149,9 +142,9 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: false
-            value: Celsius
+            value: celsius
           - dps_val: true
-            value: Fahrenheit
+            value: fahrenheit
   - entity: sensor
     name: Timer
     class: duration

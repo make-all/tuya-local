@@ -76,14 +76,14 @@ class MultiLightTests:
         self.multiLightDps = {}
         self.multiLightOn = {}
         self.multiLightOff = {}
-        for l in lights:
-            name = l["name"]
+        for light in lights:
+            name = light["name"]
             subject = self.entities.get(name)
-            testdata = l.get("testdata", (True, False))
+            testdata = light.get("testdata", (True, False))
             if subject is None:
                 raise AttributeError(f"No light for {name} found.")
             self.multiLight[name] = subject
-            self.multiLightDps[name] = l.get("dps")
+            self.multiLightDps[name] = light.get("dps")
             self.multiLightOn[name] = testdata[0]
             self.multiLightOff[name] = testdata[1]
 

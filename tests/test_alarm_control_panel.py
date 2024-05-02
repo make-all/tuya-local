@@ -1,4 +1,5 @@
 """Tests for the alarm_control_panel entity."""
+
 from unittest.mock import AsyncMock, Mock
 
 import pytest

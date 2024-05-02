@@ -2,7 +2,7 @@ name: Goldair GPPH heater
 legacy_type: heater
 primary_entity:
   entity: climate
-  translation_key: swing_as_powerlevel
+  translation_only_key: swing_as_powerlevel
   dps:
     - id: 1
       type: boolean
@@ -137,20 +137,14 @@ secondary_entities:
             icon: "mdi:led-on"
         name: switch
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 6
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: number
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 102
@@ -188,7 +182,6 @@ secondary_entities:
           - dps_val: "5"
             value: 100
   - entity: binary_sensor
-    name: Error
     class: problem
     category: diagnostic
     dps:

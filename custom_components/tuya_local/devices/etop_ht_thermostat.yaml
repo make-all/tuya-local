@@ -33,7 +33,12 @@ primary_entity:
       name: hvac_action
       mapping:
         - dps_val: no_heating
-          value: "off"
+          constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: idle
         - dps_val: heating
           value: heating
     - id: 24
@@ -77,35 +82,29 @@ primary_entity:
       name: fault_code
 secondary_entities:
   - entity: switch
-    name: "Anti-frost"
-    icon: "mdi:snowflake-melt"
+    translation_key: anti_frost
     category: config
     dps:
       - id: 10
         type: boolean
         name: switch
   - entity: lock
-    name: "Child lock"
+    translation_key: child_lock
     category: config
     dps:
       - id: 40
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: number
-    name: "Setpoint min."
+    name: "Setpoint min"
     category: config
+    icon: "mdi:thermometer-low"
     class: temperature
     mode: slider
     dps:
       - id: 26
         name: value
         type: integer
-        icon: "mdi:thermometer-low"
         unit: C
         range:
           min: 0
@@ -114,7 +113,8 @@ secondary_entities:
           - scale: 10
             step: 5
   - entity: number
-    name: "Setpoint max."
+    name: "Setpoint max"
+    icon: "mdi:thermometer-high"
     category: config
     class: temperature
     mode: slider
@@ -122,7 +122,6 @@ secondary_entities:
       - id: 19
         type: integer
         name: value
-        icon: "mdi:thermometer-high"
         unit: C
         range:
           min: 50
@@ -133,13 +132,13 @@ secondary_entities:
   - entity: number
     name: Temperature correction
     category: config
+    icon: "mdi:wrench-clock"
     mode: slider
     dps:
       - id: 27
         name: value
         type: integer
         unit: C
-        icon: "mdi:wrench-clock"
         range:
           min: -100
           max: 100
@@ -147,7 +146,6 @@ secondary_entities:
           - scale: 10
             step: 5
   - entity: binary_sensor
-    name: Error
     category: diagnostic
     class: problem
     dps:

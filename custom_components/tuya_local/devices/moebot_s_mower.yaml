@@ -5,52 +5,64 @@ products:
   - id: icw5sal7xfcevsve
     name: Parkside PMRDA 20-Li A1
 primary_entity:
-  entity: vacuum
-  icon: "mdi:robot-mower"
+  entity: lawn_mower
   dps:
     - id: 101
-      name: status
+      name: activity
       type: string
       mapping:
         - dps_val: STANDBY
-          value: standby
+          value: docked
         - dps_val: MOWING
           value: mowing
         - dps_val: CHARGING
-          value: charging
+          value: docked
         - dps_val: EMERGENCY
-          value: manually stopped
+          value: error
         - dps_val: LOCKED
-          value: locked
+          value: docked
         - dps_val: PAUSED
           value: paused
         - dps_val: PARK
-          value: returning
+          value: paused
         - dps_val: CHARGING_WITH_TASK_SUSPEND
-          value: charging
+          value: docked
         - dps_val: FIXED_MOWING
-          value: spot mowing
+          value: mowing
         - dps_val: ERROR
           value: error
+        - dps_val: UPDATA
+          value: docked
+        - dps_val: SELF_TEST
+          value: docked
     - id: 115
       name: command
       type: string
       optional: true
       mapping:
         - dps_val: StartMowing
-          value: start
+          value: start_mowing
         - dps_val: StartFixedMowing
-          value: clean_spot
+          value: start_mowing
+          hidden: true
         - dps_val: PauseWork
           value: pause
         - dps_val: CancelWork
-          value: stop
+          value: pause
+          hidden: true
+        - dps_val: ContinueWork
+          value: start_mowing
+          hidden: true
         - dps_val: StartReturnStation
-          value: return_to_base
+          value: dock
+    - id: 101
+      name: raw_activity
+      type: string
     - id: 102
       name: error
       type: bitfield
-      # out_of_bounds, lifted, tilted, overturned, trapped, signal lost, motor fault, overheated, battery damaged
+      # out_of_bounds, lifted, tilted, overturned, trapped, signal lost,
+      # motor fault, overheated, battery damaged
     - id: 106
       type: integer
       name: password
@@ -70,11 +82,83 @@ primary_entity:
       type: string
       name: zones
       optional: true
-    - id: 114
-      type: string
-      name: auto_mode
-      optional: true
 secondary_entities:
+  - entity: vacuum
+    icon: "mdi:robot-mower"
+    deprecated: lawn_mower
+    dps:
+      - id: 101
+        name: status
+        type: string
+        mapping:
+          - dps_val: STANDBY
+            value: standby
+          - dps_val: MOWING
+            value: mowing
+          - dps_val: CHARGING
+            value: charging
+          - dps_val: EMERGENCY
+            value: manually stopped
+          - dps_val: LOCKED
+            value: locked
+          - dps_val: PAUSED
+            value: paused
+          - dps_val: PARK
+            value: returning
+          - dps_val: CHARGING_WITH_TASK_SUSPEND
+            value: charging
+          - dps_val: FIXED_MOWING
+            value: spot mowing
+          - dps_val: ERROR
+            value: error
+      - id: 115
+        name: command
+        type: string
+        optional: true
+        mapping:
+          - dps_val: StartMowing
+            value: start
+          - dps_val: StartFixedMowing
+            value: clean_spot
+          - dps_val: PauseWork
+            value: pause
+          - dps_val: CancelWork
+            value: stop
+          - dps_val: StartReturnStation
+            value: return_to_base
+  - entity: button
+    name: Start fixed mowing
+    icon: "mdi:mower-on"
+    dps:
+      - id: 115
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: StartFixedMowing
+            value: true
+  - entity: button
+    name: Cancel mowing
+    icon: "mdi:mower"
+    dps:
+      - id: 115
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: CancelWork
+            value: true
+  - entity: button
+    name: Continue mowing
+    icon: "mdi:mower-on"
+    dps:
+      - id: 115
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: ContinueWork
+            value: true
   - entity: sensor
     class: battery
     dps:
@@ -84,7 +168,6 @@ secondary_entities:
         unit: "%"
         class: measurement
   - entity: binary_sensor
-    name: Error
     class: problem
     category: diagnostic
     dps:
@@ -114,24 +197,75 @@ secondary_entities:
           - dps_val: MOWER_LEAN
             value: Tilted
             icon: "mdi:angle-acute"
+          - dps_val: MOWER_STEEP
+            value: Steep
+            icon: "mdi:slope-uphill"
+          - dps_val: RAIN_PARK
+            value: Raining
+            icon: "mdi:weather-pouring"
+          - dps_val: BATTERY_NOT_ENOUGH
+            value: Low battery
+            icon: "mdi:battery-low"
+          - dps_val: NO_LOOP_SIGNAL
+            value: Weak signal
+            icon: "mdi:signal-cellular-1"
+          - dps_val: CLOSE_TOPCOVER
+            value: Close top cover
+            icon: "mdi:door-open"
+          - dps_val: MOWER_IN_STATION
+            value: Docked
+            icon: "mdi:mower"
+          - dps_val: MOWER_OUT_STATION
+            value: Undocked
+            icon: "mdi:mower-on"
+          - dps_val: PLACE_INSIDE_STATION
+            value: Manually dock
+            icon: "mdi:home-alert"
+          - dps_val: FIXED_END
+            value: Finished fixed mowing
+            icon: "mdi:mower"
+          - dps_val: CHARGING_DISCONNECT
+            value: Disconnected
+            icon: "mdi:power-plug-battery"
+          - dps_val: CHARGING_PAUSE
+            value: Paused charging
+            icon: "mdi:battery-clock"
+          - dps_val: WORK_INTERRUPT
+            value: Interrupted
+            icon: "mdi:alert-octogon"
+          - dps_val: FIXED_MOWING_INTERRUPT
+            value: Interrupted fixed mowing
+            icon: "mdi:alert-octogon"
+          - dps_val: TURN_ON_BUTTON
+            value: Turn on button
+            icon: "mdi:button-pointer"
+          - dps_val: PRESS_START_KEY
+            value: Press start
+            icon: "mdi:play"
+          - dps_val: TIMESET_30MIN
+            value: Set 30 minute timer
+            icon: "mdi:fast-forward-30"
+          - dps_val: TIMESET_UNLEGAL
+            value: Invalid timer
+            icon: "mdi:timer-alert"
+          - dps_val: CHARGR_CURRENT_LOW
+            value: Charging current low
+            icon: "mdi:flash-alert"
+          - dps_val: RAIN_OUT_STATION
+            value: Caught in rain
+            icon: "mdi:weather-pouring"
+          - dps_val: UPDATA_FAIL
+            value: Data upload failure
+            icon: "mdi:cloud-alert"
+          - dps_val: CONTINUE_TOOLTIP
+            value: Continue
+            icon: "mdi:step-forward"
           - dps_val: MOWER_EMERGENCY
             value: Stopped
             icon: "mdi:octagon"
           - dps_val: MOWER_UI_LOCKED
             value: UI locked
             icon: "mdi:hand-back-right-off"
-          - dps_val: NO_LOOP_SIGNAL
-            value: Weak signal
-            icon: "mdi:signal-cellular-1"
-          - dps_val: BATTERY_NOT_ENOUGH
-            value: Low battery
-            icon: "mdi:battery-low"
-          - dps_val: CHARGING_PAUSE
-            value: Charging interrupted
-            icon: "mdi:battery-alert"
-          - dps_val: RAIN_PARK
-            value: Raining
-            icon: "mdi:weather-pouring"
   - entity: switch
     name: Rain mode
     icon: "mdi:weather-pouring"
@@ -179,3 +313,16 @@ secondary_entities:
         type: boolean
         name: button
         optional: true
+  - entity: select
+    name: Mowing mode
+    icon: "mdi:mower"
+    category: config
+    dps:
+      - id: 114
+        type: string
+        name: option
+        mapping:
+          - dps_val: AutoMode
+            value: Auto
+          - dps_val: GardenMode
+            value: Garden

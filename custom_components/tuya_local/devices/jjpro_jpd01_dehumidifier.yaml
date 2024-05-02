@@ -115,8 +115,7 @@ secondary_entities:
         class: measurement
         unit: "%"
   - entity: binary_sensor
-    name: Tank
-    class: problem
+    translation_key: tank_full
     category: diagnostic
     dps:
       - id: 11
@@ -127,17 +126,14 @@ secondary_entities:
             value: false
           - value: true
   - entity: binary_sensor
-    name: Defrost
-    class: cold
-    icon: "mdi:snowflake-melt"
+    translation_key: defrost
     category: diagnostic
     dps:
       - id: 105
         type: boolean
         name: sensor
   - entity: number
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 12

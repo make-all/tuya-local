@@ -23,7 +23,7 @@
             },
             "choose_entities": {
                 "title": "Szczegóły urządzenia",
-                "description": "Wybierz nazwę dla urządzenia, oraz które jednostki będą dostępne",
+                "description": "Wybierz nazwę dla urządzenia",
                 "data": {
                     "name": "Nazwa"
                 }
@@ -59,6 +59,29 @@
         }
     },
     "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "Rozmrażać",
+                "state": {
+                    "off": "Naladowana",
+                    "on": "Rozmrażanie"
+                }
+            },
+            "tank_empty": {
+                "name": "Zbiornik",
+                "state": {
+                    "off": "OK",
+                    "on": "Niski"
+                }
+            },
+            "tank_full": {
+                "name": "Zbiornik",
+                "state": {
+                    "off": "OK",
+                    "on": "Pełny"
+                }
+            }
+        },
         "climate": {
             "aircon_extra": {
                 "state_attributes": {
@@ -142,11 +165,9 @@
             },
             "thermo_switch": {
                 "state_attributes": {
-                    "preset_mode": {
+                    "hvac_mode": {
                         "state": {
-                            "on": "Włączony",
-                            "off": "Wyłączony",
-                            "pause": "Pauza"
+                            "fan_only": "Pauza"
                         }
                     }
                 }
@@ -169,7 +190,7 @@
                 "state_attributes": {
                     "preset_mode": {
                         "state": {
-                            "normal": "Normalny",
+                            "normal": "Naladowana",
                             "nature": "Naturalny",
                             "sleep": "Uśpiony",
                             "baby": "Dziecko",
@@ -194,6 +215,33 @@
                         }
                     }
                 }
+            }
+        },
+        "lock": {
+            "child_lock": {
+                "name": "Zabezpieczenie przed dziećmi"
+            }
+        },
+        "number": {
+            "timer": {
+                "name": "Regulator czasowy"
+            }
+        },
+        "select": {
+            "timer": {
+                "name": "Regulator czasowy"
+            },
+            "temperature_unit": {
+                "name": "Jednostka temperatury",
+                "state": {
+                    "celsius": "Celsjusz",
+                    "fahrenheit": "Fahrenheita"
+                }
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "Ochrona przed zamarzaniem"
             }
         }
     }

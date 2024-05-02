@@ -1,6 +1,7 @@
 """
 Setup for different kinds of Tuya lock devices
 """
+
 from homeassistant.components.lock import LockEntity
 
 from .device import TuyaLocalDevice
@@ -43,6 +44,8 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
         self._unlock_key_dp = dps_map.pop("unlock_key", None)
         self._unlock_ble_dp = dps_map.pop("unlock_ble", None)
         self._unlock_voice_dp = dps_map.pop("unlock_voice", None)
+        self._unlock_face_dp = dps_map.pop("unlock_face", None)
+        self._unlock_multi_dp = dps_map.pop("unlock_multi", None)
         self._req_unlock_dp = dps_map.pop("request_unlock", None)
         self._approve_unlock_dp = dps_map.pop("approve_unlock", None)
         self._req_intercom_dp = dps_map.pop("request_intercom", None)
@@ -68,6 +71,8 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
                 self._unlock_key_dp,
                 self._unlock_ble_dp,
                 self._unlock_voice_dp,
+                self._unlock_face_dp,
+                self._unlock_multi_dp,
             ):
                 if d:
                     if d.get_value(self._device):
@@ -103,9 +108,16 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
             self._unlock_pw_dp: "Password",
             self._unlock_tmppw_dp: "Temporary Password",
             self._unlock_voice_dp: "Voice",
+            self._unlock_face_dp: "Face",
+            self._unlock_multi_dp: "Multifactor",
         }.items():
             by = self.unlocker_id(dp, desc)
             if by:
+                # clear non-persistent dps immediately on reporting, instead
+                # of waiting for the next poll, to make the lock more responsive
+                # to multiple attempts
+                if not dp.persist:
+                    self._device._cached_state.pop(dp.id, None)
                 return by
 
     async def async_lock(self, **kwargs):

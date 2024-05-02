@@ -3,7 +3,7 @@ products:
   - id: xhx9h0duu9b9bobs
 primary_entity:
   entity: climate
-  translation_key: thermostat
+  translation_only_key: thermostat
   dps:
     - id: 1
       type: boolean
@@ -107,8 +107,7 @@ primary_entity:
       optional: true
 secondary_entities:
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 7
@@ -118,7 +117,6 @@ secondary_entities:
         type: string
         name: lock_type
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -166,7 +164,7 @@ secondary_entities:
     name: Maximum temperature
     category: config
     class: temperature
-    icon: "mdi:temperature-chevron-up"
+    icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 103
         type: integer
@@ -179,7 +177,7 @@ secondary_entities:
     name: Minimum temperature
     category: config
     class: temperature
-    icon: "mdi:temperature-chevron-down"
+    icon: "mdi:thermometer-chevron-down"
     dps:
       - id: 104
         type: integer

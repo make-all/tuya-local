@@ -26,6 +26,7 @@ _LOGGER = logging.getLogger(__name__)
 
 class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION = 13
+    MINOR_VERSION = 2
     CONNECTION_CLASS = config_entries.CONN_CLASS_LOCAL_PUSH
     device = None
     data = {}
@@ -91,18 +92,17 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                 best_match = q
                 best_matching_type = type.config_type
 
-        if best_match < 100:
-            best_match = int(best_match)
-            dps = self.device._get_cached_state()
-            _LOGGER.warning(
-                "Device matches %s with quality of %d%%. DPS: %s",
-                best_matching_type,
-                best_match,
-                log_json(dps),
-            )
-            _LOGGER.warning(
-                "Report this to https://github.com/make-all/tuya-local/issues/"
-            )
+        best_match = int(best_match)
+        dps = self.device._get_cached_state()
+        _LOGGER.warning(
+            "Device matches %s with quality of %d%%. DPS: %s",
+            best_matching_type,
+            best_match,
+            log_json(dps),
+        )
+        _LOGGER.warning(
+            "Report this to https://github.com/make-all/tuya-local/issues/",
+        )
         if types:
             return self.async_show_form(
                 step_id="select_type",

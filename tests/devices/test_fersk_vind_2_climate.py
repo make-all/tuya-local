@@ -36,8 +36,8 @@ class TestFerskVind2Climate(TargetTemperatureTests, TuyaDeviceTestCase):
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,
             self.subject,
-            min=16,
-            max=32,
+            min=16.0,
+            max=32.0,
         )
 
     def test_supported_features(self):
@@ -47,21 +47,10 @@ class TestFerskVind2Climate(TargetTemperatureTests, TuyaDeviceTestCase):
                 ClimateEntityFeature.TARGET_TEMPERATURE
                 | ClimateEntityFeature.FAN_MODE
                 | ClimateEntityFeature.SWING_MODE
+                | ClimateEntityFeature.TURN_OFF
+                | ClimateEntityFeature.TURN_ON
             ),
         )
-
-    def test_icon(self):
-        self.dps[POWER_DPS] = True
-        self.dps[HVACMODE_DPS] = "COOL"
-        self.assertEqual(self.subject.icon, "mdi:snowflake")
-        self.dps[HVACMODE_DPS] = "FAN"
-        self.assertEqual(self.subject.icon, "mdi:fan")
-        self.dps[HVACMODE_DPS] = "DRY"
-        self.assertEqual(self.subject.icon, "mdi:water")
-        self.dps[HVACMODE_DPS] = "HEAT"
-        self.assertEqual(self.subject.icon, "mdi:fire")
-        self.dps[POWER_DPS] = False
-        self.assertEqual(self.subject.icon, "mdi:hvac-off")
 
     def test_temperature_unit(self):
         self.dps[UNIT_DPS] = "C"

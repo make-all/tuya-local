@@ -91,7 +91,7 @@ secondary_entities:
               - dps_val: "2"
                 invalid: true
               - dps_val: "3"
-                invalid: true              
+                invalid: true
           - dps_val: "3"
             value: 100
             constraint: dehumidifier_mode
@@ -113,17 +113,12 @@ secondary_entities:
             value: false
             icon: "mdi:led-off"
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 7
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: switch
     name: Air clean
     icon: "mdi:air-purifier"
@@ -151,8 +146,7 @@ secondary_entities:
         class: measurement
         unit: "%"
   - entity: binary_sensor
-    name: Tank
-    class: problem
+    translation_key: tank_full
     category: diagnostic
     dps:
       - id: 11
@@ -163,17 +157,14 @@ secondary_entities:
             value: false
           - value: true
   - entity: binary_sensor
-    name: Defrost
-    class: cold
-    icon: "mdi:snowflake-melt"
+    translation_key: defrost
     category: diagnostic
     dps:
       - id: 105
         type: boolean
         name: sensor
   - entity: number
-    name: Timer
-    icon: "msi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 12

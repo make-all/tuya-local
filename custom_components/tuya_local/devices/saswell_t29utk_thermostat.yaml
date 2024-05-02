@@ -1,7 +1,7 @@
 name: Saswell T29UTK-7-S-(TY) thermostat
 primary_entity:
   entity: climate
-  translation_key: thermostat
+  translation_only_key: thermostat
   dps:
     - id: 1
       name: power
@@ -128,8 +128,7 @@ primary_entity:
       type: integer
 secondary_entities:
   - entity: select
-    name: Temperature unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 19
@@ -137,9 +136,9 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: F
-            value: Fahrenheit
+            value: fahrenheit
           - dps_val: C
-            value: Celsius
+            value: celsius
   - entity: select
     name: Configuration
     icon: "mdi:tune"

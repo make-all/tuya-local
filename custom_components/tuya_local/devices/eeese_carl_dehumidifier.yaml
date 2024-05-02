@@ -58,8 +58,7 @@ secondary_entities:
         unit: "%"
         class: measurement
   - entity: binary_sensor
-    name: Tank
-    class: problem
+    translation_key: tank_full
     category: diagnostic
     dps:
       - id: 19
@@ -68,18 +67,16 @@ secondary_entities:
         mapping:
           - dps_val: 0
             value: false
-          - value: true 
+          - value: true
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 14
         type: boolean
         name: lock
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 17

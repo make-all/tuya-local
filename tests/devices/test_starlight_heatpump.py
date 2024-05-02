@@ -31,7 +31,7 @@ class TestStarLightHeatpump(
         )
         self.mark_secondary(
             [
-                "binary_sensor_fault",
+                "binary_sensor_problem",
                 "binary_sensor_filter",
                 "sensor_humidity",
                 "select_vertical_swing",
@@ -56,6 +56,8 @@ class TestStarLightHeatpump(
                 ClimateEntityFeature.TARGET_TEMPERATURE
                 | ClimateEntityFeature.FAN_MODE
                 | ClimateEntityFeature.SWING_MODE
+                | ClimateEntityFeature.TURN_OFF
+                | ClimateEntityFeature.TURN_ON
             ),
         )
 

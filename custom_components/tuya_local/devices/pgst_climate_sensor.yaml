@@ -40,8 +40,7 @@ secondary_entities:
           - dps_val: high
             value: 80
   - entity: select
-    name: Display unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 9
@@ -49,9 +48,9 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: f
-            value: Fahrenheit
+            value: fahrenheit
           - dps_val: c
-            value: Celsius
+            value: celsius
   - entity: number
     name: Maximum temperature
     category: config

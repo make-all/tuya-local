@@ -1,0 +1,53 @@
+{
+    "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "default": "mdi:circle-outline",
+                "state": {
+                    "on": "mdi:snowflake-melt"
+                }
+            },
+            "tank_empty": {
+                "default": "mdi:water",
+                "state": {
+                    "on": "mdi:water-alert-outline"
+                }
+            },
+            "tank_full": {
+                "default": "mdi:water-outline",
+                "state": {
+                    "on": "mdi:water-alert"
+                }
+            }
+        },
+        "lock": {
+            "child_lock": {
+                "default": "mdi:hand-back-right",
+                "state": {
+                    "on": "mdi:hand-back-right-off"
+                }
+            }
+        },
+        "number": {
+            "timer": {
+                "default": "mdi:timer"
+            }
+        },
+        "select": {
+            "timer": {
+                "default": "mdi:timer"
+            },
+            "temperature_unit": {
+                "default": "mdi:temperature-celsius",
+                "state": {
+                    "fahrenheit": "mdi:temperature-fahrenheit"
+                }
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "default": "mdi:snowflake-melt"
+            }
+        }
+    }
+}

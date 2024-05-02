@@ -1,4 +1,5 @@
 """Tests for the button entity."""
+
 from unittest.mock import AsyncMock, Mock
 
 import pytest

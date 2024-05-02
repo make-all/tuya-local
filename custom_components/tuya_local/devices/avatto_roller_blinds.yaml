@@ -35,25 +35,24 @@ primary_entity:
       type: string
       mapping:
         - dps_val: opening
+          value: opening
           constraint: current_position
           conditions:
             - dps_val: 100
               value: opened
             - dps_val: null
               value: opened
-            - value: opening
         - dps_val: closing
+          value: closing
           constraint: current_position
           conditions:
             - dps_val: 0
               value: closed
             - dps_val: null
               value: closed
-            - value: closing
 secondary_entities:
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 8
@@ -72,7 +71,6 @@ secondary_entities:
             value: "4 hours"
   - entity: sensor
     name: Timer
-    icon: "mdi:timer"
     class: duration
     category: diagnostic
     dps:

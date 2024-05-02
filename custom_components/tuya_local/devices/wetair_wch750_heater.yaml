@@ -78,8 +78,7 @@ secondary_entities:
           - dps_val: level3
             value: 255
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 19
@@ -135,12 +134,11 @@ secondary_entities:
           - dps_val: "23h"
             value: "23 hours"
           - dps_val: "24h"
-            value: "24 hours"          
+            value: "24 hours"
   - entity: sensor
     category: diagnostic
     class: duration
     name: Timer
-    icon: "mdi:timer"
     dps:
       - id: 20
         type: integer

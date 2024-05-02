@@ -4,7 +4,7 @@ products:
     name: Royal Clima RCB 150
 primary_entity:
   entity: fan
-  translation_key: ventilation
+  translation_only_key: ventilation
   dps:
     - id: 1
       name: switch
@@ -48,7 +48,7 @@ secondary_entities:
       - id: 3
         type: integer
         name: sensor
-        unit: ugm3 
+        unit: ugm3
         class: measurement
   - entity: switch
     name: Ionizer
@@ -76,7 +76,7 @@ secondary_entities:
         name: button
   - entity: select
     name: "On timer"
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 16
@@ -133,7 +133,8 @@ secondary_entities:
             conditions:
               - dps_val: true
                 value: heat
-              - value: "off"
+              - dps_val: false
+                value: "off"
       - id: 102
         name: temperature
         type: integer
@@ -146,7 +147,7 @@ secondary_entities:
         hidden: true
   - entity: select
     name: "Off timer"
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 101

@@ -2,6 +2,8 @@ name: mmWave presence sensor
 products:
   - id: k2h8vkj98fhvnpiv
     name: ZY-M100-WIFI
+  - id: yroelksjtb4ehda8
+    name: WZ-M100-W
 primary_entity:
   entity: binary_sensor
   class: occupancy
@@ -65,6 +67,7 @@ secondary_entities:
       - id: 6
         type: string
         name: sensor
+        optional: true
         mapping:
           - dps_val: check_failure
             value: Fault
@@ -101,11 +104,10 @@ secondary_entities:
         name: value
         unit: s
         range:
-          min: 1
+          min: 0
           max: 100
         mapping:
           - scale: 10
-            step: 1
   - entity: number
     name: Fading time
     category: config
@@ -116,11 +118,11 @@ secondary_entities:
         name: value
         unit: s
         range:
-          min: 5
+          min: 0
           max: 15000
         mapping:
           - scale: 10
-            step: 5
+            step: 50
   - entity: sensor
     class: illuminance
     dps:

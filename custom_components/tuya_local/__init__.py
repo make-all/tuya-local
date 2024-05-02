@@ -6,11 +6,13 @@ Based on sean6541/tuya-homeassistant for service call logic, and TarxBoy's
 investigation into Goldair's tuyapi statuses
 https://github.com/codetheweb/tuyapi/issues/31.
 """
+
 import logging
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_HOST
 from homeassistant.core import HomeAssistant, callback
+from homeassistant.exceptions import ConfigEntryNotReady
 from homeassistant.helpers.entity_registry import async_migrate_entries
 from homeassistant.util import slugify
 
@@ -302,6 +304,76 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         await async_migrate_entries(hass, entry.entry_id, update_unique_id13)
         entry.version = 13
 
+    if entry.version == 13 and entry.minor_version < 2:
+        # Migrate unique ids of existing entities to new id taking into
+        # account translation_key, and standardising naming
+        device_id = entry.unique_id
+        conf_file = get_config(entry.data[CONF_TYPE])
+        if conf_file is None:
+            _LOGGER.error(
+                NOT_FOUND,
+                entry.data[CONF_TYPE],
+            )
+            return False
+
+        @callback
+        def update_unique_id13_2(entity_entry):
+            """Update the unique id of an entity entry."""
+            old_id = entity_entry.unique_id
+            platform = entity_entry.entity_id.split(".", 1)[0]
+            # Standardistion of entity naming to use translation_key
+            replacements = {
+                # special meaning of None to handle _full and _empty variants
+                "binary_sensor_tank": None,
+                "binary_sensor_tank_full_or_missing": "binary_sensor_tank_full",
+                "binary_sensor_water_tank_full": "binary_sensor_tank_full",
+                "binary_sensor_low_water": "binary_sensor_tank_empty",
+                "binary_sensor_water_tank_empty": "binary_sensor_tank_empty",
+                "binary_sensor_fault": "binary_sensor_problem",
+                "binary_sensor_error": "binary_sensor_problem",
+                "binary_sensor_fault_alarm": "binary_sensor_problem",
+                "binary_sensor_errors": "binary_sensor_problem",
+                "binary_sensor_defrosting": "binary_sensor_defrost",
+                "binary_sensor_anti_frost": "binary_sensor_defrost",
+                "binary_sensor_anti_freeze": "binary_sensor_defrost",
+                "binary_sensor_low_battery": "binary_sensor_battery",
+                "binary_sensor_low_battery_alarm": "binary_sensor_battery",
+                "select_temperature_units": "select_temperature_unit",
+                "select_display_temperature_unit": "select_temperature_unit",
+                "select_display_unit": "select_temperature_unit",
+                "select_display_units": "select_temperature_unit",
+                "select_temperature_display_units": "select_temperature_unit",
+                "switch_defrost": "switch_anti_frost",
+                "switch_frost_protection": "switch_anti_frost",
+            }
+            for suffix, new_suffix in replacements.items():
+                if old_id.endswith(suffix):
+                    e = conf_file.primary_entity
+                    if e.entity != platform or e.name:
+                        for e in conf_file.secondary_entities():
+                            if e.entity == platform and not e.name:
+                                break
+                    if e.entity == platform and not e.name:
+                        new_id = e.unique_id(device_id)
+                        if (new_suffix and new_id.endswith(new_suffix)) or (
+                            new_suffix is None and suffix in new_id
+                        ):
+                            _LOGGER.info(
+                                "Migrating %s unique_id %s to %s",
+                                e.entity,
+                                old_id,
+                                new_id,
+                            )
+                            return {
+                                "new_unique_id": entity_entry.unique_id.replace(
+                                    old_id,
+                                    new_id,
+                                )
+                            }
+
+        await async_migrate_entries(hass, entry.entry_id, update_unique_id13_2)
+        entry.minor_version = 2
+
     return True
 
 
@@ -311,7 +383,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
         get_device_id(entry.data),
     )
     config = {**entry.data, **entry.options, "name": entry.title}
-    setup_device(hass, config)
+    try:
+        setup_device(hass, config)
+    except Exception as e:
+        raise ConfigEntryNotReady("tuya-local device not ready") from e
+
     device_conf = get_config(entry.data[CONF_TYPE])
     if device_conf is None:
         _LOGGER.error(NOT_FOUND, config[CONF_TYPE])

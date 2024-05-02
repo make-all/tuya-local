@@ -90,14 +90,13 @@ secondary_entities:
         name: option
         optional: true
         mapping:
-          - dps_val: "1" 
-            value: "Cycle" 
+          - dps_val: "1"
+            value: "Cycle"
           - dps_val: "2"
             value: "Fixed"
           - dps_val: "3"
             value: "Nightlight"
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -112,8 +111,7 @@ secondary_entities:
             value: false
           - value: true
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 13
@@ -139,5 +137,3 @@ secondary_entities:
         name: sensor
         unit: min
         optional: true
-
-

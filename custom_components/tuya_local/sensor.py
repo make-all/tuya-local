@@ -1,6 +1,7 @@
 """
 Setup for different kinds of Tuya sensors
 """
+
 import logging
 
 from homeassistant.components.sensor import (
@@ -68,8 +69,6 @@ class TuyaLocalSensor(TuyaLocalEntity, SensorEntity):
         sclass = self._sensor_dps.state_class
         if sclass in STATE_CLASSES:
             return sclass
-        else:
-            return None
 
     @property
     def native_value(self):

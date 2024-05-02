@@ -1,6 +1,7 @@
 """
 Setup for Tuya siren devices
 """
+
 from homeassistant.components.siren import SirenEntity, SirenEntityFeature
 from homeassistant.components.siren.const import (
     ATTR_DURATION,
@@ -44,7 +45,7 @@ class TuyaLocalSiren(TuyaLocalEntity, SirenEntity):
         self._init_end(dps_map)
         # All control of features is through the turn_on service, so we need to
         # support that, even if the siren does not support direct control
-        support = 0
+        support = SirenEntityFeature(0)
         if self._tone_dp:
             support |= (
                 SirenEntityFeature.TONES
@@ -99,7 +100,7 @@ class TuyaLocalSiren(TuyaLocalEntity, SirenEntity):
             # In tuya it is likely an integer or a fixed list of values.
             # For integer, expect scale and step to do the conversion,
             # for fixed values, we need to snap to closest value.
-            if self._volume_dp.values(self._device) is not None:
+            if self._volume_dp.values(self._device):
                 volume = min(
                     self._volume_dp.values(self._device),
                     key=lambda x: abs(x - volume),

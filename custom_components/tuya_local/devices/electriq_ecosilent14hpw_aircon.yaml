@@ -11,22 +11,16 @@ primary_entity:
           conditions:
             - dps_val: "cool"
               value: cool
-              icon: "mdi:snowflake"
             - dps_val: "fan"
               value: fan_only
-              icon: "mdi:fan"
             - dps_val: "heat"
               value: heat
-              icon: "mdi:fire"
             - dps_val: "smart_cool"
               value: auto
-              icon: "mdi:hvac"
             - dps_val: "dry"
               value: dry
-              icon: "mdi:water"
         - dps_val: false
           value: "off"
-          icon: "mdi:hvac-off"
     - id: 2
       name: temperature
       type: integer
@@ -125,17 +119,16 @@ primary_entity:
 secondary_entities:
   - entity: select
     category: config
-    name: Temperature Unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     dps:
       - id: 19
         name: option
         type: string
         mapping:
           - dps_val: "c"
-            value: Celsius
+            value: celsius
           - dps_val: "f"
-            value: Fahrenheit
+            value: fahrenheit
   - entity: switch
     name: Sleep Mode
     category: config
@@ -145,9 +138,8 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: number
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:timer-cog"
     dps:
       - id: 22
         type: integer

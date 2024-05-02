@@ -10,8 +10,8 @@ primary_entity:
       name: switch
     - id: 21
       type: string
-      # Shows in the instruction set with standard white/colour/scene/music properties
-      # but this is a dimming switch and doesn't have color/scene dps
+      # Shows in the instruction set with standard white/colour/scene/music
+      # properties but this is a dimming switch and doesn't have color/scene dps
       name: work_mode
       optional: true
     - id: 22
@@ -20,8 +20,6 @@ primary_entity:
       range:
         min: 10
         max: 1000
-      mapping:
-        - scale: 3.92
     - id: 28
       type: string
       name: control_data
@@ -33,12 +31,8 @@ secondary_entities:
         type: boolean
         name: switch
       - id: 62
-        type: integer 
+        type: integer
         name: speed
-        mapping:
-          - dps_val: 1
-            value: 33 
-          - dps_val: 2
-            value: 66 
-          - dps_val: 3
-            value: 100 
+        range:
+          min: 1
+          max: 3

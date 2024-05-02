@@ -39,17 +39,17 @@ primary_entity:
       type: string
       mapping:
         - dps_val: opening
+          value: opening
           constraint: current_position
           conditions:
             - dps_val: 0
               value: opened
-            - value: opening
         - dps_val: closing
+          value: closing
           constraint: current_position
           conditions:
             - dps_val: 100
               value: closed
-            - value: closing
     - id: 12
       name: fault_code
       type: bitfield
@@ -81,7 +81,6 @@ secondary_entities:
           - dps_val: fully_close
             value: Fully closed
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -140,11 +139,10 @@ secondary_entities:
         optional: true
   - entity: button
     name: All limits reset
-    icon: "mdi:refresh"
+    class: restart
     category: config
     dps:
       - id: 102
         type: boolean
         name: button
         optional: true
-            

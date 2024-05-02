@@ -1,4 +1,7 @@
-name: Inkbird ITC-308 thermostat
+name: Thermostat switch
+products:
+  - id: B0eP8qYAdpUo4yR9
+    name: Inkbird ITC-308
 primary_entity:
   entity: climate
   dps:
@@ -63,8 +66,8 @@ primary_entity:
       name: hvac_action
       mapping:
         - dps_val: "0"
-          icon: "mdi-thermometer-off"
-          icon-priority: 5
+          icon: "mdi:thermometer-off"
+          icon_priority: 5
           value: idle
         - dps_val: "1"
           icon: "mdi:snowflake"
@@ -166,17 +169,16 @@ secondary_entities:
         hidden: true
   - entity: select
     category: config
-    name: Temperature unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     dps:
       - id: 101
         name: option
         type: string
         mapping:
           - dps_val: C
-            value: Celsius
+            value: celsius
           - dps_val: F
-            value: Fahrenheit
+            value: fahrenheit
   - entity: binary_sensor
     class: heat
     category: diagnostic
@@ -194,7 +196,6 @@ secondary_entities:
         type: boolean
         name: sensor
   - entity: binary_sensor
-    name: Error
     class: problem
     category: diagnostic
     dps:
@@ -217,7 +218,7 @@ secondary_entities:
   - entity: number
     category: config
     name: Heating hysteresis
-    icon: "mdi: thermometer-chevron-up"
+    icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 117
         name: value
@@ -236,7 +237,7 @@ secondary_entities:
       - id: 101
         name: unit
         type: string
-        hidden: true            
+        hidden: true
   - entity: number
     category: config
     name: Cooling hysteresis

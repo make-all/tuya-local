@@ -60,16 +60,15 @@ secondary_entities:
       - id: 5
         type: boolean
         name: switch
+        optional: true
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 7
         type: boolean
         name: lock
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -86,9 +85,11 @@ secondary_entities:
           - dps_val: 32
             value: true
           - value: false
+      - id: 11
+        type: bitfield
+        name: fault_code
   - entity: binary_sensor
-    name: Tank
-    class: problem
+    translation_key: tank_full
     category: diagnostic
     dps:
       - id: 11
@@ -99,9 +100,7 @@ secondary_entities:
             value: true
           - value: false
   - entity: binary_sensor
-    name: Defrost
-    class: cold
-    icon: "mdi:snowflake-melt"
+    translation_key: defrost
     category: diagnostic
     dps:
       - id: 11
@@ -111,32 +110,8 @@ secondary_entities:
           - dps_val: 4
             value: true
           - value: false
-  - entity: sensor
-    name: Fault code
-    class: enum
-    category: diagnostic
-    dps:
-      - id: 11
-        type: bitfield
-        name: sensor
-        mapping:
-          - dps_val: 0
-            value: OK
-          - dps_val: 1
-            value: Temperature sensor fault
-          - dps_val: 2
-            value: Coil sensor fault
-          - dps_val: 4
-            value: Defrosting
-          - dps_val: 8
-            value: Tank full
-          - dps_val: 16
-            value: Low temperature
-          - dps_val: 32
-            value: High temperature
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 12

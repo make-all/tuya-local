@@ -1,7 +1,7 @@
 name: StarLight heatpump
 primary_entity:
   entity: climate
-  translation_key: aircon_extra
+  translation_only_key: aircon_extra
   dps:
     - id: 1
       name: hvac_mode
@@ -9,25 +9,19 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:hvac-off"
         - dps_val: true
           constraint: mode
           conditions:
             - dps_val: auto
-              icon: "mdi:hvac"
               value: heat_cool
             - dps_val: cold
-              icon: "mdi:snowflake"
               value: cool
             - dps_val: hot
-              icon: "mdi:fire"
               value: heat
             - dps_val: wind
-              icon: "mdi:fan"
               value: fan_only
             - dps_val: wet
-              icon: "mdi:water"
-              value: dry            
+              value: dry
     - id: 2
       name: temperature
       type: integer
@@ -90,7 +84,9 @@ primary_entity:
               value: "off"
             - dps_val: "1"
               value: horizontal
-            - value: horizontal
+            - dps_val: ["2", "3", "4"]
+              value: horizontal
+              hidden: true
         - dps_val: "1"
           constraint: horizontal_swing
           conditions:
@@ -98,19 +94,15 @@ primary_entity:
               value: vertical
             - dps_val: "1"
               value: both
-            - value: both
-        - dps_val: "2"
+            - dps_val: ["2", "3", "4"]
+              value: both
+              hidden: true
+        - value: both
+          hidden: true
           constraint: horizontal_swing
           conditions:
             - dps_val: "0"
               value: vertical
-            - value: both
-        - dps_val: "3"
-          constraint: horizontal_swing
-          conditions:
-            - dps_val: "0"
-              value: vertical
-            - value: both
     - id: 114
       name: horizontal_swing
       type: string
@@ -331,7 +323,6 @@ secondary_entities:
           - scale: 1
             mask: "0001"
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:

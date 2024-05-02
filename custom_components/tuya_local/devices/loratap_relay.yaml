@@ -23,7 +23,7 @@ primary_entity:
 secondary_entities:
   - entity: number
     name: Countdown
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 9
@@ -73,9 +73,8 @@ secondary_entities:
           - dps_val: none
             value: Indicator LED off
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
-    icon: "mdi:hand-back-right-off"
     dps:
       - id: 41
         type: boolean

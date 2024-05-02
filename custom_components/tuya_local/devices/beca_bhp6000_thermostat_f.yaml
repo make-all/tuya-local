@@ -4,7 +4,7 @@ products:
 legacy_type: beca_bhp6000_thermostat
 primary_entity:
   entity: climate
-  translation_key: thermostat
+  translation_only_key: thermostat
   dps:
     - id: 2
       name: temperature
@@ -34,19 +34,14 @@ primary_entity:
       mapping:
         - dps_val: 1
           value: cool
-          icon: "mdi:snowflake"
         - dps_val: 2
           value: heat
-          icon: "mdi:fire"
         - dps_val: 3
           value: "off"
-          icon: "mdi:hvac-off"
         - dps_val: 4
           value: heat_cool
-          icon: "mdi:fire-alert"
         - dps_val: 5
           value: auto
-          icon: "mdi:hvac"
     - id: 6
       name: fan_mode
       type: boolean
@@ -57,17 +52,12 @@ primary_entity:
           value: "on"
 secondary_entities:
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 7
         name: lock
         type: boolean
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: light
     name: Display
     category: config

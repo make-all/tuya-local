@@ -15,7 +15,7 @@ secondary_entities:
         name: switch
   - entity: number
     name: Outlet timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 9
@@ -30,7 +30,7 @@ secondary_entities:
         unit: mi
   - entity: number
     name: USB timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 10
@@ -59,9 +59,8 @@ secondary_entities:
           - dps_val: last
             value: Keep state
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
-    icon: "mdi:hand-back-right-off"
     dps:
       - id: 41
         type: boolean

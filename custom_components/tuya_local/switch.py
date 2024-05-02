@@ -1,12 +1,17 @@
 """
 Setup for different kinds of Tuya switch devices
 """
+
+import logging
+
 from homeassistant.components.switch import SwitchDeviceClass, SwitchEntity
 
 from .device import TuyaLocalDevice
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
 from .helpers.mixin import TuyaLocalEntity
+
+_LOGGER = logging.getLogger(__name__)
 
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
@@ -37,11 +42,17 @@ class TuyaLocalSwitch(TuyaLocalEntity, SwitchEntity):
     @property
     def device_class(self):
         """Return the class of this device"""
-        return (
-            SwitchDeviceClass.OUTLET
-            if self._config.device_class == "outlet"
-            else SwitchDeviceClass.SWITCH
-        )
+        dclass = self._config.device_class
+        try:
+            return SwitchDeviceClass(dclass)
+        except ValueError:
+            if dclass:
+                _LOGGER.warning(
+                    "%s/%s: Unrecognised switch device class of %s ignored",
+                    self._config._device.config,
+                    self.name or "switch",
+                    dclass,
+                )
 
     @property
     def is_on(self):

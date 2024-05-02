@@ -1,6 +1,7 @@
 """
 Mixins to make writing new platforms easier
 """
+
 import logging
 
 from homeassistant.const import (
@@ -9,7 +10,6 @@ from homeassistant.const import (
     UnitOfTemperature,
 )
 from homeassistant.helpers.entity import EntityCategory
-from homeassistant.helpers.typing import UNDEFINED
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -21,8 +21,9 @@ class TuyaLocalEntity:
         self._device = device
         self._config = config
         self._attr_dps = []
-        self._attr_translation_key = config.translation_key
-
+        self._attr_translation_key = (
+            config.translation_key or config.translation_only_key
+        )
         return {c.name: c for c in config.dps()}
 
     def _init_end(self, dps):
@@ -45,13 +46,17 @@ class TuyaLocalEntity:
     @property
     def name(self):
         """Return the name for the UI."""
-        # Super has the logic to get default names from device class.
-        super_name = getattr(super(), "name")
-        # If we don't have a name, and super also doesn't, we explicitly want to use
-        # the device name - avoid the HA warning about implicitly using it.
-        if super_name is UNDEFINED:
-            super_name = None
-        return self._config.name or super_name
+        own_name = self._config.name
+        if not own_name and not self.use_device_name:
+            # super has the translation logic
+            own_name = getattr(super(), "name")
+        return own_name
+
+    @property
+    def use_device_name(self):
+        """Return whether to use the device name for the entity name"""
+        own_name = self._config.name or self._attr_translation_key
+        return not own_name
 
     @property
     def unique_id(self):
@@ -104,6 +109,10 @@ class TuyaLocalEntity:
 
     async def async_will_remove_from_hass(self):
         await self._device.async_unregister_entity(self)
+
+    def on_receive(self, dps):
+        """Override to process dps directly as they are received"""
+        pass
 
 
 UNIT_ASCII_MAP = {

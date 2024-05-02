@@ -7,12 +7,12 @@ primary_entity:
       name: switch
       type: boolean
       mapping:
-      - dps_val: false
-        icon: "mdi:air-humidifier-off"
-        icon_priority: 1
-      - dps_val: true
-        icon: "mdi:air-humidifier"
-        icon_priority: 4
+        - dps_val: false
+          icon: "mdi:air-humidifier-off"
+          icon_priority: 1
+        - dps_val: true
+          icon: "mdi:air-humidifier"
+          icon_priority: 4
     - id: 2
       name: humidity
       type: integer
@@ -95,8 +95,7 @@ secondary_entities:
         unit: "%"
         class: measurement
   - entity: binary_sensor
-    name: Tank
-    class: problem
+    translation_key: tank_full
     category: diagnostic
     dps:
       - id: 19
@@ -107,20 +106,14 @@ secondary_entities:
             value: false
           - value: true
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 14
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 17

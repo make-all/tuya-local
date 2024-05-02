@@ -1,21 +1,33 @@
 name: Garden irrigation system
 products:
   - id: xnajzurgqo1ugohn
-    model: ITV103W
-    manufacturer: Garza
+    name: Garza ITV103W
 primary_entity:
-  entity: switch
-  icon: "mdi:watering-can"
+  entity: valve
+  class: water
   dps:
     - id: 108
       type: boolean
-      name: switch
+      name: valve
       mapping:
         - dps_val: true
           value: false
         - dps_val: false
           value: true
 secondary_entities:
+  - entity: switch
+    icon: "mdi:watering-can"
+    category: config
+    deprecated: valve
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
   - entity: sensor
     class: battery
     category: diagnostic
@@ -26,13 +38,10 @@ secondary_entities:
         unit: "%"
         mapping:
           - dps_val: 0
-            icon: "mdi:battery-10"
-            value: 0
+            value: 10
           - dps_val: 1
-            icon: "mdi:battery-60"
             value: 50
           - dps_val: 2
-            icon: "mdi:battery"
             value: 100
   - entity: sensor
     name: Water flow
@@ -45,8 +54,7 @@ secondary_entities:
         type: integer
         unit: L
   - entity: number
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 107
@@ -73,7 +81,6 @@ secondary_entities:
           - dps_val: 2
             value: "Auto"
   - entity: binary_sensor
-    name: Alarm
     category: diagnostic
     class: problem
     dps:

@@ -1,0 +1,78 @@
+name: Infrared wall heater
+products:
+  - id: ajlnotpa7oymbbte
+    name: Kesser 400W
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: true
+          value: heat
+        - dps_val: false
+          value: "off"
+    - id: 2
+      name: temperature
+      type: integer
+      range:
+        min: 10
+        max: 30
+    - id: 3
+      type: integer
+      name: current_temperature
+    - id: 11
+      type: string
+      name: hvac_action
+      mapping:
+        - dps_val: "heating"
+          constraint: hvac_mode
+          conditions:
+            - dps_val: true
+              value: idle
+              icon: "mdi:radiator-disabled"
+            - dps_val: false
+              value: "off"
+              icon: "mdi:radiator-off"
+        - dps_val: "standby"
+          value: heating
+          icon: "mdi:radiator"
+secondary_entities:
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: number
+    name: Calibration offset
+    category: config
+    icon: "mdi:arrow-collapse-up"
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: -9
+          max: 9
+        mapping:
+          - scale: 1
+  - entity: switch
+    name: Window Check
+    category: config
+    icon: "mdi:window-open-variant"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Sound
+    category: config
+    icon: "mdi:music-note"
+    dps:
+      - id: 103
+        type: boolean
+        name: switch

@@ -1,0 +1,89 @@
+name: Air conditioner
+products:
+  - id: 6r9as02gkiaaxelt
+    name: Trotec PAC-W 2600 SH
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: COOL
+              value: cool
+            - dps_val: DRY
+              value: dry
+            - dps_val: FAN
+              value: fan_only
+            - dps_val: HEAT
+              value: heat
+    - id: 2
+      type: integer
+      name: temperature
+      range:
+        min: 16
+        max: 30
+      unit: C
+    - id: 3
+      type: integer
+      name: current_temperature
+    - id: 4
+      type: string
+      name: mode
+      hidden: true
+    - id: 5
+      name: fan_mode
+      type: string
+      mapping:
+        - dps_val: "1"
+          value: low
+        - dps_val: "2"
+          value: medium
+        - dps_val: "3"
+          value: high
+    - id: 19
+      name: temperature_unit
+      type: string
+    - id: 101
+      name: sleep
+      type: boolean
+    - id: 102
+      name: defrost
+      type: boolean
+    - id: 103
+      name: timer
+      type: integer
+    - id: 104
+      name: swing_mode
+      type: boolean
+      mapping:
+        - dps_val: true
+          value: "vertical"
+        - dps_val: false
+          value: "off"
+    - id: 105
+      name: countdown
+      type: integer
+    - id: 106
+      name: fault_code
+      type: bitfield
+    - id: 110
+      name: model
+      type: string
+    - id: 111
+      name: fault_code2
+      type: bitfield
+secondary_entities:
+  - entity: switch
+    name: Sleep
+    category: config
+    icon: "mdi:power-sleep"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
