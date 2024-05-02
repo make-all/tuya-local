@@ -215,7 +215,7 @@ class TuyaLocalDevice(object):
                             for dp in entity._config.dps():
                                 if not dp.persist and dp.id not in poll:
                                     self._cached_state.pop(dp.id, None)
-                        entity.schedule_update_ha_state()
+                        entity.async_write_ha_state()
                 else:
                     _LOGGER.debug(
                         "%s received non data %s",
