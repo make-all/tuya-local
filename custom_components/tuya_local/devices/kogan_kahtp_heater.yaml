@@ -2,6 +2,7 @@ name: Kogan panel heater
 legacy_type: kogan_heater
 primary_entity:
   entity: climate
+  translation_only_key: heater
   dps:
     - id: 2
       type: integer
@@ -9,6 +10,7 @@ primary_entity:
         min: 15
         max: 35
       name: temperature
+      unit: C
     - id: 3
       type: integer
       name: current_temperature
@@ -25,10 +27,8 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:radiator-disabled"
         - dps_val: true
           value: "heat"
-          icon: "mdi:radiator"
       name: hvac_mode
     - id: 8
       type: integer

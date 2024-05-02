@@ -26,7 +26,7 @@ _LOGGER = logging.getLogger(__name__)
 
 class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION = 13
-    MINOR_VERSION = 2
+    MINOR_VERSION = 3
     CONNECTION_CLASS = config_entries.CONN_CLASS_LOCAL_PUSH
     device = None
     data = {}
@@ -34,7 +34,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     async def async_step_user(self, user_input=None):
         errors = {}
         devid_opts = {}
-        host_opts = {"default": "Auto"}
+        host_opts = {"default": ""}
         key_opts = {}
         proto_opts = {"default": 3.3}
         polling_opts = {"default": False}

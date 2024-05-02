@@ -29,7 +29,7 @@ class TestDigooNightlightSwitch(BasicSwitchTests, TuyaDeviceTestCase):
             DIGOO_DGSP01_SOCKET_PAYLOAD,
         )
         self.subject = self.entities.get("switch_outlet")
-        self.light = self.entities.get("light_night_light")
+        self.light = self.entities.get("light_nightlight")
 
         self.setUpBasicSwitch(
             SWITCH_DPS, self.subject, device_class=SwitchDeviceClass.OUTLET

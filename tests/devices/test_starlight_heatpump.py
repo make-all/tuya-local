@@ -18,7 +18,7 @@ class TestStarLightHeatpump(
     def setUp(self):
         self.setUpForConfig("starlight_heatpump.yaml", STARLIGHT_HEATPUMP_PAYLOAD)
         self.subject = self.entities["climate"]
-        self.display_switch = self.entities.get("switch_display")
+        self.display_switch = self.entities.get("light_display")
         self.buzzer_switch = self.entities.get("switch_buzzer")
         self.soft_wind_switch = self.entities.get("switch_soft_wind")
         self.setUpTargetTemperature(
@@ -33,18 +33,18 @@ class TestStarLightHeatpump(
             [
                 "binary_sensor_problem",
                 "binary_sensor_filter",
+                "light_display",
                 "sensor_humidity",
                 "select_vertical_swing",
                 "select_vertical_position",
                 "select_horizontal_swing",
                 "select_horizontal_position",
                 "select_sleep_mode",
-                "switch_display",
                 "switch_buzzer",
                 "switch_soft_wind",
                 "switch_anti_mildew",
                 "switch_health",
-                "switch_anti_freeze",
+                "switch_anti_frost",
                 "switch_eco_mode",
             ]
         )

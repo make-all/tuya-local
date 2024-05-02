@@ -1,22 +1,22 @@
 name: Wetair WCH-750 AL heater
 primary_entity:
   entity: climate
+  translation_only_key: heater
   dps:
     - id: 1
       type: boolean
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:radiator-disabled"
         - dps_val: true
           value: heat
-          icon: "mdi:radiator"
       name: hvac_mode
     - id: 2
       type: integer
       range:
         min: 10
         max: 35
+      unit: C
       mapping:
         - constraint: preset_mode
           conditions:
@@ -51,19 +51,13 @@ primary_entity:
               value: "off"
             - dps_val: true
               value: idle
-    - id: 19
-      type: string
-      name: timer
-    - id: 20
-      type: integer
-      name: countdown
     - id: 21
       type: integer
       name: unknown_21
 secondary_entities:
   - entity: light
     category: config
-    name: Display
+    translation_key: display
     dps:
       - id: 101
         type: string
@@ -138,7 +132,7 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     class: duration
-    name: Timer
+    translation_key: time_remaining
     dps:
       - id: 20
         type: integer

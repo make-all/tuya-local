@@ -61,6 +61,7 @@ primary_entity:
       name: pump
     - id: 104
       type: integer
+      optional: true
       name: water_level
 secondary_entities:
   - entity: fan
@@ -79,22 +80,12 @@ secondary_entities:
           - dps_val: high
             value: 100
   - entity: switch
-    name: Ionizer
+    translation_key: ionizer
     category: config
     dps:
       - id: 10
         type: boolean
         name: switch
-  - entity: sensor
-    class: humidity
-    deprecated: humidifier
-    category: diagnostic
-    dps:
-      - id: 6
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
   - entity: sensor
     class: temperature
     dps:

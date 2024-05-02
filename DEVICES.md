@@ -20,6 +20,7 @@
 - Eurom Alutherm 1000,1500,2000,2500 heaters
 - Eurom Hot-Shot 2000 heaters
 - Eurom Mon Soleil 300,600,800, 350,601,720 and 300,450,720 Verre heaters
+- Eurom Sani heated towel rail
 - Eurom Sani Wall Heat 2000 heater
 - Eurom Wall Designheat 2000 heater
 - Goldair heater models beginning with the code GPPH, GCPV, GECO
@@ -49,6 +50,7 @@
 - Purline Hoti M100 heater
 - Quality Heating QH-GD Elegant Series IR panel heaters
 - Rumba bathroom heater
+- SolAire Vitra S2 panel heater
 - Sonnenkonig Eco 700 IR panel heater (probably also other Eco/Elegance series heaters)
 - Taurus Agadir Connect oil column heaters
 - Touchstone Sideline electric fireplace
@@ -60,6 +62,7 @@
 - Arlec PA1123BKHA portable air conditioner
 - Be Cool BC14KL2101F
 - Carson CB PA280
+- Confortotal CICON242 mini split air conditioner
 - Cooper&Hunter Nordic Evo Ng
 - Costway portable air conditioner
 - Daewoo Dhome OL-A011 air conditioner (DA9KWE)
@@ -71,6 +74,7 @@
 - ElectriQ 12WMINV
 - ElectriQ Airflex 15W
 - ElectriQ EcoSilent 14HPW
+- ElectriQ EcoSilent 12WAP
 - Fersk Vind 2
 - Fisher Summer air conditioner
 - Idea Heating Belt (with CS1 USB dongle)
@@ -81,6 +85,7 @@
 - Nedis ACMB1WT12 portable air conditioner
 - Rotenso Roni R35WI
 - Rotenso Roni X
+- Royal Clima Fresh air conditioner
 - Royal Sovereign RSAI-12SA mini split air conditioner
 - Sencor MT7048C air conditioner
 - Sendo air conditioner
@@ -131,6 +136,7 @@
 - Avatto WT100 thermostat
 - Awow/Mi-heat TH213 thermostat (two variants)
 - Beca BAC-002 thermostat (confirmed on BAC-005 also, likely works with other BAC-00x models)
+- Beca BAC-006 thermostat (sometimes known as BHT-006)
 - Beca BHT-002/3000 floor heating thermostat (with external temp sensor)
 - Beca BHP-6000 room heat pump control thermostat
 - Beca BHT-6000/8000 floor heating thermostat
@@ -157,6 +163,7 @@
 - Minco MH-1823D thermostat
 - Moes BHT-002 thermostat (without external temp sensor)
 - Moes MS-103 temperature and humidity switch (partial functions, temperature only)
+- Multi Leaf DY-107 thermostat
 - Nashone MTS-700-WB thermostat smartplug
 - Netmostat N-1 (RTAFN1) thermostat
 - Owon PCT513 thermostat
@@ -350,8 +357,9 @@
 
 - EcoPoint EV charger
 - EVSun EV charger
-- Feyree home EV charger
+- Feyree home EV charger (2 models)
 - Parkside PLGS 2012 A1 smart charger for powertools
+- Vivor portable EV charger
 
 ### SmartPlugs/Wall sockets/Wall switches/Inline switches
 
@@ -528,6 +536,7 @@ of device.
 - SHerko curtain motor
 - SmartCurtains A-series ACS-WT curtain motor (may work for other models)
 - Wistar roller blind controller
+- Yueqing Combo YET848PC curtain motor
 - ZC34T-03-3A swing arm window opener
 - Zemismart curtain rail
 - Zemismart roller shade
@@ -571,6 +580,7 @@ work reliably, even if listed below.
 - Orion Grid Connect smart lock
 - SmarDeer Lock33 smart lock
 - Tediton K7 smart lock
+- NovaDigital SL-06 smart lock
 
 ### Sirens
 
@@ -692,11 +702,13 @@ port and password.
 ### Devices supported via Bluetooth hubs
 
 - Adaprox Fingerbot plus
+- Arlec smart button
 - Diivoo WT05 dual water timer
 - HCT-611 water timer
 - HU06 smart lock
 - Ironzon fingerprint lock
 - MoistenLand water timer
+- Nice Digi door lock
 - Orion DL021HA lock
 - PT216/PT19DB-2 temperature and humidity sensor
 - SGS01 plant sensor
@@ -719,6 +731,7 @@ port and password.
 - LoraTap QCSC400ZB-V2 curtain switch
 - LoraTap SC500ZB-V2 curtain controller
 - Loratap SS9600ZB 6 button remote control
+- Moes BRT-100-TRV radiator valve
 - Moes RGBCW lightbulb
 - Moes ZHT-002 thermostat
 - MultiIR MIR-TE100-TY temperature and humidity sensor

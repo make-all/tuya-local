@@ -28,6 +28,7 @@ primary_entity:
     - id: 2
       name: temperature
       type: integer
+      unit: C
       range:
         min: 50
         max: 300
@@ -60,13 +61,10 @@ primary_entity:
           conditions:
             - dps_val: true
               value: idle
-              icon: "mdi:radiator-disabled"
             - dps_val: false
               value: "off"
-              icon: "mdi:radiator-off"
         - dps_val: "1"
           value: heating
-          icon: "mdi:radiator"
     - id: 11
       name: fault_code
       type: bitfield
@@ -161,7 +159,7 @@ secondary_entities:
         name: button
         type: boolean
   - entity: light
-    name: Backlight
+    translation_key: backlight
     category: config
     dps:
       - id: 106
@@ -169,16 +167,12 @@ secondary_entities:
         name: brightness
         mapping:
           - dps_val: "0"
-            icon: "mdi:lightbulb-on-10"
             value: 0
           - dps_val: "1"
-            icon: "mdi:lightbulb-on-40"
             value: 100
           - dps_val: "2"
-            icon: "mdi:lightbulb-on-70"
             value: 180
           - dps_val: "3"
-            icon: "mdi:lightbulb-on"
             value: 255
   - entity: select
     name: Schedule

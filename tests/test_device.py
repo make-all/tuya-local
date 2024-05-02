@@ -1,4 +1,3 @@
-from datetime import datetime
 from time import time
 from unittest import IsolatedAsyncioTestCase
 from unittest.mock import ANY, AsyncMock, Mock, call, patch
@@ -92,7 +91,7 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.subject.async_refresh.assert_awaited()
 
     async def test_detection_returns_none_when_device_type_not_detected(self):
-        self.subject._cached_state = {"2": False, "updated_at": datetime.now()}
+        self.subject._cached_state = {"2": False, "updated_at": time()}
         self.assertEqual(await self.subject.async_inferred_type(), None)
 
     async def test_refreshes_when_there_is_no_pending_reset(self):
@@ -137,7 +136,7 @@ class TestDevice(IsolatedAsyncioTestCase):
     async def test_refresh_clears_cache_after_allowed_failures(self):
         self.subject._cached_state = {"1": True}
         self.subject._pending_updates = {
-            "1": {"value": False, "updated_at": datetime.now(), "sent": True}
+            "1": {"value": False, "updated_at": time(), "sent": True}
         }
         self.mock_api().status.side_effect = [
             Exception("Error"),
@@ -234,7 +233,7 @@ class TestDevice(IsolatedAsyncioTestCase):
     def test_reset_cached_state_clears_cached_state_and_pending_updates(self):
         self.subject._cached_state = {"1": True, "updated_at": time()}
         self.subject._pending_updates = {
-            "1": {"value": False, "updated_at": datetime.now(), "sent": True}
+            "1": {"value": False, "updated_at": time(), "sent": True}
         }
 
         self.subject._reset_cached_state()

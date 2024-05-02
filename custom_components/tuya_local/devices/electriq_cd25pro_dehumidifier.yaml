@@ -67,16 +67,14 @@ secondary_entities:
           - dps_val: "90"
             value: false
           - value: false
-  - entity: light
-    name: "UV sterilization"
-    icon: "mdi:solar-power"
+  - entity: switch
+    translation_key: uv_sterilization
     dps:
       - id: 10
         name: switch
         type: boolean
   - entity: switch
-    name: "Ionizer"
-    icon: "mdi:creation"
+    translation_key: "ionizer"
     dps:
       - id: 104
         name: switch
@@ -88,17 +86,6 @@ secondary_entities:
       - id: 7
         type: boolean
         name: lock
-  - entity: sensor
-    class: humidity
-    name: Current humidity
-    deprecated: humidifier
-    category: diagnostic
-    dps:
-      - id: 3
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
   - entity: sensor
     class: temperature
     dps:

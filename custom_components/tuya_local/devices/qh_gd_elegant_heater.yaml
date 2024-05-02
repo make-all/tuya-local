@@ -4,6 +4,7 @@ products:
     name: QH-GD Elegant Series
 primary_entity:
   entity: climate
+  translation_only_key: heater
   dps:
     - id: 1
       type: boolean
@@ -16,10 +17,10 @@ primary_entity:
     - id: 2
       type: integer
       name: temperature
+      unit: C
       range:
         min: 10
         max: 45
-      unit: C
     - id: 3
       type: integer
       name: current_temperature
@@ -39,15 +40,12 @@ primary_entity:
           conditions:
             - dps_val: false
               value: "off"
-              icon: "mdi:radiator-off"
             - dps_val: true
               mapping:
                 - dps_val: heating
                   value: heating
-                  icon: "mdi:radiator"
                 - dps_val: standby
                   value: idle
-                  icon: "mdi:radiator-disabled"
     - id: 21
       name: fault_code
       type: bitfield
@@ -118,7 +116,7 @@ secondary_entities:
           - dps_val: "24h"
             value: "24 hours"
   - entity: sensor
-    name: Time remaining
+    translation_key: time_remaining
     class: duration
     category: diagnostic
     dps:

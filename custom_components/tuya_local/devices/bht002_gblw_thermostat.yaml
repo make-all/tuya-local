@@ -34,7 +34,12 @@ primary_entity:
               mapping:
                 - dps_val: Warming
                   value: heating
-                - value: idle
+                - dps_val: "Off"
+                  value: idle
+                - dps_val: Closed
+                  value: idle
+                - dps_val: null
+                  value: idle
     - id: 16
       name: temperature
       type: integer

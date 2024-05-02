@@ -4,6 +4,7 @@ products:
     name: Kogan KASTHFP2KWA
 primary_entity:
   entity: climate
+  translation_only_key: heater
   dps:
     - id: 1
       type: boolean
@@ -11,8 +12,6 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:power"
-          icon_priority: 1
         - dps_val: true
           value: heat
     - id: 2
@@ -21,6 +20,7 @@ primary_entity:
         min: 10
         max: 35
       name: temperature
+      unit: C
     - id: 3
       type: integer
       name: current_temperature
@@ -35,16 +35,11 @@ primary_entity:
       mapping:
         - dps_val: LOW
           value: eco
-          icon: "mdi:radiator"
-          icon_priority: 2
         - dps_val: FAN
           value: none
           icon: "mdi:fan"
-          icon_priority: 2
         - dps_val: HIGH
           value: boost
-          icon: "mdi:fire"
-          icon_priority: 2
     - id: 8
       type: boolean
       mapping:

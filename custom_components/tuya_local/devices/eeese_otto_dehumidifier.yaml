@@ -47,17 +47,6 @@ primary_entity:
           icon: "mdi:cup-water"
           icon_priority: 1
 secondary_entities:
-  - entity: sensor
-    name: Current humidity
-    deprecated: humidifier
-    category: diagnostic
-    class: humidity
-    dps:
-      - id: 6
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
   - entity: binary_sensor
     translation_key: tank_full
     category: diagnostic
@@ -81,8 +70,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Ionizer
-    icon: "mdi:atom-variant"
+    translation_key: ionizer
     category: config
     dps:
       - id: 10

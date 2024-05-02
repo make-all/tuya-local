@@ -4,6 +4,7 @@ products:
     name: Juskys OH125BW2
 primary_entity:
   entity: climate
+  translation_only_key: heater
   dps:
     - id: 1
       type: boolean
@@ -42,8 +43,7 @@ secondary_entities:
         type: boolean
         name: lock
   - entity: light
-    name: Indicators
-    icon: "mdi:led-on"
+    translation_key: indicator
     category: config
     dps:
       - id: 10

@@ -36,6 +36,7 @@ primary_entity:
                 min: 5
                 max: 5
       name: temperature
+      unit: C
     - id: 3
       type: integer
       name: current_temperature
@@ -125,16 +126,11 @@ primary_entity:
       name: eco_temperature
 secondary_entities:
   - entity: light
-    name: Display
+    translation_key: display
     category: config
     dps:
       - id: 104
         type: boolean
-        mapping:
-          - dps_val: false
-            icon: "mdi:led-off"
-          - dps_val: true
-            icon: "mdi:led-on"
         name: switch
   - entity: lock
     translation_key: child_lock

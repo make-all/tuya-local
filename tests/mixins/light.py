@@ -194,11 +194,12 @@ class DimmableLightTests:
         self.assertEqual(self.dimmableLight.extra_state_attributes, {})
 
     async def test_dimmable_light_turn_off(self):
-        async with assert_device_properties_set(
-            self.dimmableLight._device,
-            {self.dimmableLightDps: self.dimmableLightOff},
-        ):
-            await self.dimmableLight.async_turn_off()
+        if not self.dimmableLightNoOff:
+            async with assert_device_properties_set(
+                self.dimmableLight._device,
+                {self.dimmableLightDps: self.dimmableLightOff},
+            ):
+                await self.dimmableLight.async_turn_off()
 
     async def test_dimmable_light_set_brightness(self):
         for dps, val in self.dimmableLightTest:
@@ -209,16 +210,18 @@ class DimmableLightTests:
                 await self.dimmableLight.async_turn_on(brightness=val)
 
     async def test_dimmable_light_set_brightness_to_off(self):
-        async with assert_device_properties_set(
-            self.dimmableLight._device,
-            {self.dimmableLightDps: self.dimmableLightOff},
-        ):
-            await self.dimmableLight.async_turn_on(brightness=0)
+        if not self.dimmableLightNoOff:
+            async with assert_device_properties_set(
+                self.dimmableLight._device,
+                {self.dimmableLightDps: self.dimmableLightOff},
+            ):
+                await self.dimmableLight.async_turn_on(brightness=0)
 
     async def test_dimmable_light_toggle_turns_off_when_it_was_on(self):
-        self.dps[self.dimmableLightDps] = self.dimmableLightTest[0][0]
-        async with assert_device_properties_set(
-            self.dimmableLight._device,
-            {self.dimmableLightDps: self.dimmableLightOff},
-        ):
-            await self.dimmableLight.async_toggle()
+        if not self.dimmableLightNoOff:
+            self.dps[self.dimmableLightDps] = self.dimmableLightTest[0][0]
+            async with assert_device_properties_set(
+                self.dimmableLight._device,
+                {self.dimmableLightDps: self.dimmableLightOff},
+            ):
+                await self.dimmableLight.async_toggle()

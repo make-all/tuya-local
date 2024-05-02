@@ -25,6 +25,7 @@ primary_entity:
     - id: 16
       type: integer
       name: temperature
+      unit: C
       range:
         min: 5
         max: 90
@@ -46,7 +47,6 @@ primary_entity:
       optional: true
       mapping:
         - dps_val: close
-          icon: "mdi:radiator-disabled"
           constraint: hvac_mode
           conditions:
             - dps_val: true
@@ -57,10 +57,8 @@ primary_entity:
           constraint: hvac_mode
           conditions:
             - dps_val: true
-              icon: "mdi:radiator"
               value: heating
             - dps_val: false
-              icon: "mdi:radiator-disabled"
               value: "off"
     - id: 45
       name: fault_code

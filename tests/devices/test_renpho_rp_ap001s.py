@@ -49,7 +49,8 @@ class TestRenphoPurifier(
                 {
                     "name": "sensor_air_quality",
                     "dps": QUALITY_DPS,
-                    "device_class": SensorDeviceClass.AQI,
+                    "device_class": SensorDeviceClass.ENUM,
+                    "options": ["Bad", "Fair", "Good"],
                 },
                 {
                     "name": "sensor_prefilter_life",

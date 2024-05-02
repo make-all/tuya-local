@@ -58,8 +58,7 @@ secondary_entities:
         name: sensor
         unit: "h"
   - entity: switch
-    name: Ionizer
-    icon: "mdi:atom-variant"
+    translation_key: ionizer
     category: config
     dps:
       - id: 6
@@ -81,9 +80,8 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: switch
-    name: UV lamp
+    translation_key: uv_sterilization
     category: config
-    icon: "mdi:shield-bug"
     dps:
       - id: 9
         type: boolean
@@ -124,7 +122,7 @@ secondary_entities:
           - dps_val: 8
             value: "8 hours"
   - entity: sensor
-    name: Timer time left
+    translation_key: time_remaining
     class: duration
     category: diagnostic
     dps:

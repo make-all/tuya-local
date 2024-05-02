@@ -1,0 +1,219 @@
+name: Radiator valve
+products:
+  - id: b6wax7g0
+    name: Moes Zigbee BRT-100-TRV
+primary_entity:
+  entity: climate
+  translation_key: thermostat
+  dps:
+    - id: 1
+      type: string
+      optional: true
+      name: hvac_mode
+      mapping:
+        - dps_val: auto
+          value: auto
+        - dps_val: manual
+          value: heat
+        - value: heat
+          hidden: true
+    - id: 2
+      type: integer
+      optional: true
+      name: temperature
+      unit: C
+      range:
+        min: 0
+        max: 45
+      mapping:
+        - constraint: preset_mode
+          conditions:
+            - dps_val: true
+              value_redirect: eco_temp
+    - id: 3
+      type: integer
+      optional: true
+      name: current_temperature
+      mapping:
+        - scale: 10
+    - id: 4
+      type: boolean
+      name: boost_mode
+      hidden: true
+    - id: 7
+      type: string
+      optional: true
+      name: hvac_action
+      mapping:
+        - dps_val: opened
+          value: heating
+        - dps_val: closed
+          value: idle
+    - id: 106
+      type: boolean
+      optional: true
+      name: preset_mode
+      mapping:
+        - dps_val: true
+          value: eco
+        - dps_val: false
+          constraint: boost_mode
+          conditions:
+            - dps_val: true
+              value: boost
+            - dps_val: false
+              value: comfort
+            - dps_val: null
+              value: comfort
+              hidden: true
+        - dps_val: null
+          constraint: boost_mode
+          conditions:
+            - dps_val: true
+              value: boost
+              hidden: true
+            - dps_val: false
+              value: comfort
+              hidden: true
+            - dps_val: null
+              value: comfort
+              hidden: true
+    - id: 107
+      type: integer
+      optional: true
+      name: eco_temp
+      range:
+        min: 5
+        max: 35
+    - id: 108
+      type: integer
+      optional: true
+      name: max_temperature
+    - id: 109
+      type: integer
+      optional: true
+      name: min_temperature
+secondary_entities:
+  - entity: switch
+    name: Holiday mode
+    icon: "mdi:caravan"
+    category: config
+    dps:
+      - id: 1
+        type: string
+        name: switch
+        mapping:
+          - dps_val: holidays
+            value: true
+          - dps_val: auto
+            value: false
+          - value: false
+            hidden: true
+  - entity: number
+    name: Boost timer
+    icon: "mdi:timer"
+    category: config
+    dps:
+      - id: 5
+        type: integer
+        optional: true
+        name: rapid_countdown
+        unit: min
+        range:
+          min: 0
+          max: 720
+        mapping:
+          - step: 15
+      - id: 101
+        type: base64
+        optional: true
+        name: schedule
+      - id: 103
+        type: integer
+        optional: true
+        name: value
+        unit: s
+        range:
+          min: 100
+          max: 900
+  - entity: switch
+    name: Window open detection
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        optional: true
+        name: switch
+  - entity: binary_sensor
+    class: window
+    category: diagnostic
+    dps:
+      - id: 9
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: opened
+            value: true
+          - dps_val: closed
+            value: false
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        optional: true
+        name: lock
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 14
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: valve
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: valve
+        readonly: true
+  - entity: number
+    name: Temperature calibration
+    icon: "mdi: thermometer-check"
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: -9
+          max: 9
+  - entity: number
+    name: Maximum temperature
+    category: config
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 108
+        type: integer
+        optional: true
+        name: value
+        unit: C
+        range:
+          min: 15
+          max: 45
+  - entity: number
+    name: Minimum temperature
+    category: config
+    icon: "mdi:thermometer-chevron-down"
+    dps:
+      - id: 109
+        type: integer
+        optional: true
+        name: value
+        unit: C
+        range:
+          min: 0
+          max: 15

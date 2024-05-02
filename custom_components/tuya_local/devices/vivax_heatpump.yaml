@@ -74,9 +74,6 @@ primary_entity:
           value: eco
         - dps_val: false
           value: comfort
-    - id: 12
-      type: boolean
-      name: aux_heat
     - id: 18
       type: integer
       name: current_humidity
@@ -193,8 +190,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: light
-    name: Display
-    icon: "mdi:numeric"
+    translation_key: display
     category: config
     dps:
       - id: 13

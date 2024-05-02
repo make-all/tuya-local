@@ -4,6 +4,7 @@ products:
     name: Warme GSH heater
 primary_entity:
   entity: climate
+  translation_only_key: heater
   dps:
     - id: 1
       type: boolean
@@ -11,10 +12,8 @@ primary_entity:
       mapping:
         - dps_val: true
           value: "heat"
-          icon: "mdi:radiator"
         - dps_val: false
           value: "off"
-          icon: "mdi:radiator-disabled"
     - id: 2
       name: temperature
       type: integer
@@ -40,7 +39,7 @@ primary_entity:
           value: Frost
 secondary_entities:
   - entity: light
-    name: Display
+    translation_key: display
     dps:
       - id: 101
         name: switch
