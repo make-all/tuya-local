@@ -37,14 +37,14 @@ primary_entity:
       type: integer
       optional: true
       persist: false
-    - id: 47 #Lock motor state
+    - id: 47  #Lock motor state
       name: lock
       type: boolean
       readonly: true
       mapping:
-        - dps_val: true #Unlocked
+        - dps_val: true  #Unlocked
           value: false
-        - dps_val: false #Locked
+        - dps_val: false  #Locked
           value: true
     - id: 55
       type: integer
@@ -152,15 +152,15 @@ secondary_entities:
           - dps_val: mute
             step: 33
             value: 0
-            icon: "mdi:volume-mute"            
+            icon: "mdi:volume-mute"
           - dps_val: low
             step: 33
             value: 33
-            icon: "mdi:volume-low"           
+            icon: "mdi:volume-low"
           - dps_val: normal
             step: 33
             value: 66
-            icon: "mdi:volume-medium"           
+            icon: "mdi:volume-medium"
           - dps_val: high
             step: 33
             value: 100
