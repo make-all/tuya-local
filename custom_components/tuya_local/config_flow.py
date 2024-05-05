@@ -85,14 +85,15 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         self.__login_control = LoginControl()
         self.__cloud_devices = {}
         self.__cloud_device = None
+
+    async def async_step_user(self, user_input=None):
+        errors = {}
+
         if self.hass.data.get(DOMAIN) is None:
             self.hass.data[DOMAIN] = {}
             self.hass.data[DOMAIN][DATA_STORE] = {}
         self.__authentication = self.hass.data[DOMAIN][DATA_STORE].get('authentication', None)
         _LOGGER.debug(f"domain_data = {self.hass.data[DOMAIN]}")
-
-    async def async_step_user(self, user_input=None):
-        errors = {}
 
         if user_input is not None:
             if user_input['data_mode'] == "cloud":
