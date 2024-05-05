@@ -4,6 +4,28 @@
         "step": {
             "user": {
                 "title": "Configure your Tuya Local device",
+                "description": "You can connect the integration to the Cloud using the SmartLife app. This will allow the integration to directly receive the information needed to connect locally to your devices. Or you can provide that information manually by logging into your Tuya account and locating it.",
+                "data": {
+                    "data_mode": "Cloud or manual:"
+                }
+            },
+            "cloud": {
+                "description": "Enter your Smart Life or Tuya Smart user code.\n\nYou can find this code in the Smart Life app or Tuya Smart app in **Settings** > **Account and Security** screen, and enter the code shown on the **User Code** field. The user code is case sensitive, please be sure to enter it exactly as shown in the app.",
+                "data": {
+                    "user_code": "User code"
+                }
+            },
+            "choose_device": {
+                "description": "Please choose from the detected devices. If the device needs a hub, you will then be asked to choose the correct hub in the next step.",
+                "data": {
+                    "device_id": "Choose device"
+                }
+            },
+            "scan": {
+                "description": "Use Smart Life app or Tuya Smart app to scan the following QR-code to complete the login.\n\nContinue to the next step once you have completed this step in the app."
+            },
+            "local": {
+                "title": "Configure your Tuya Local device",
                 "description": "[Follow these instructions to find your device id and local key.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "IP address or hostname",
@@ -34,7 +56,8 @@
             "not_supported": "Sorry, there is no support for this device."
         },
         "error": {
-            "connection": "Unable to connect to your device with those details. It could be an intermittent issue, or they may be incorrect."
+            "connection": "Unable to connect to your device with those details. It could be an intermittent issue, or they may be incorrect.",
+            "no_devices": "Unable to find any devices for the account."
         }
     },
     "options": {
