@@ -75,8 +75,12 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
     __user_code: str
     __qr_code: str
+    __logged_in = False
+    __token_info = {}
+    __terminal_id: str = ''
+    __endpoint: str = ''
     __cloud_devices = {}
-    __cloud_device: None
+    __cloud_device = None
 
     def __init__(self) -> None:
         """Initialize the config flow."""
@@ -87,7 +91,11 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
         if user_input is not None:
             if user_input['data_mode'] == "cloud":
-                return await self.async_step_cloud(None)
+                if self.__logged_in:
+                    await self.load_device_info()
+                    return await self.async_step_choose_device(None)
+                else:
+                    return await self.async_step_cloud(None)
             if user_input['data_mode'] == "manual":
                 return await self.async_step_local(None)
 
@@ -187,21 +195,29 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             )
 
         # Now that we have successfully logged in we can query for devices for the account.
-        token_info = {
+        self.__token_info = {
             "t": info["t"],
             "uid": info["uid"],
             "expire_time": info["expire_time"],
             "access_token": info["access_token"],
             "refresh_token": info["refresh_token"],
         }
+        self.__terminal_id = info[CONF_TERMINAL_ID]
+        self.__endpoint = info[CONF_ENDPOINT]
+        self.__logged_in = True
 
+        await self.load_device_info()
+
+        return await self.async_step_choose_device(None)
+
+    async def load_device_info(self):
         token_listener = TokenListener(self.hass)
         manager = Manager(
             TUYA_CLIENT_ID,
             self.__user_code,
-            info[CONF_TERMINAL_ID],
-            info[CONF_ENDPOINT],
-            token_info,
+            self.__terminal_id,
+            self.__endpoint,
+            self.__token_info,
             token_listener,
         )
 
@@ -212,6 +228,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         await self.hass.async_add_executor_job(manager.update_device_cache)
 
         # Register known device IDs
+        self.__cloud_devices = {}
         domain_data = self.hass.data.get(DOMAIN)
         for device in manager.device_map.values():
             device = {
@@ -242,7 +259,6 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
             self.__cloud_devices[device['id']] = device
 
-        return await self.async_step_choose_device(None)
 
     async def async_step_choose_device(self, user_input=None):
         errors = {}
