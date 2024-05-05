@@ -224,11 +224,13 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         await self.hass.async_add_executor_job(manager.update_device_cache)
 
         # Register known device IDs
+        domain_data = self.hass.data.get(DOMAIN)
         for device in manager.device_map.values():
-            customer_device = {
+            device = {
+                # TODO - Use constants throughout
                 "category": device.category,
                 "id": device.id,
-                "ip": device.ip,
+                "ip": device.ip, # This will be the WAN IP address so not usable.
                 "local_key": device.local_key if hasattr(device, 'local_key') else '',
                 "model": device.model,
                 "name": device.name,
@@ -238,10 +240,18 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                 "product_name": device.product_name,
                 "uid": device.uid,
                 "uuid": device.uuid,
-                "support_local": device.support_local
+                "support_local": device.support_local, # What does this mean?
+                CONF_DEVICE_CID: None,
             }
-            _LOGGER.debug(f"Found device: {customer_device}")
-            self.__cloud_devices[customer_device['id']] = customer_device
+            _LOGGER.debug(f"Found device: {device}")
+
+            existing_id = domain_data.get(device['id']) if domain_data else None
+            existing_uuid = domain_data.get(device['uuid']) if domain_data else None
+            if existing_id or existing_uuid:
+                _LOGGER.debug("Device is already registered.")
+                continue
+
+            self.__cloud_devices[device['id']] = device
 
         return await self.async_step_choose_device(None)
 
@@ -250,12 +260,14 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         if user_input is not None:
             device_id = user_input['device_id']
             device = self.__cloud_devices[device_id]
-            self.__cloud_device = device
             if device['ip'] != '':
                 # This is a directly addable device.
+                device['ip'] = '' # TODO - Find the real IP
+                self.__cloud_device = device
                 return await self.async_step_local(None)
             else:
                 # This is an indirectly addable device. Need to know which hub it is connected to.
+                self.__cloud_device = device
                 return await self.async_step_choose_hub(None)
 
         device_list = []
@@ -264,6 +276,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             if device['local_key'] != '':
                 device_list.append(SelectOptionDict(value = key, label = f"{device['name']} ({device['product_name']})"))
 
+        _LOGGER.debug(f"Device count: {len(device_list)}")
         if len(device_list) == 0:
             return self.async_abort(reason="no_devices")
 
@@ -290,7 +303,8 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             device_id = user_input['device_id']
             device = self.__cloud_devices[device_id]
             # Populate uuid and local_key from the child device to pass on complete information to the local step.
-            device['uuid'] = self.__cloud_device['uuid']
+            device['ip'] = '' # TODO - Find the real IP
+            device['child_id'] = self.__cloud_device['uuid']
             device['local_key'] = self.__cloud_device['local_key']
             self.__cloud_device = device
             return await self.async_step_local(None)
@@ -335,12 +349,10 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             devid_opts = { "default": self.__cloud_device['id'] }
             host_opts = { "default": self.__cloud_device['ip'] }
             key_opts = { "default": self.__cloud_device['local_key'] }
-            devcid_opts = { "default": self.__cloud_device['uuid'] }
+            if self.__cloud_device['child_id'] != None:
+                devcid_opts = { "default": self.__cloud_device['child_id'] }
 
         if user_input is not None:
-            await self.async_set_unique_id(get_device_id(user_input))
-            self._abort_if_unique_id_configured()
-
             self.device = await async_test_connection(user_input, self.hass)
             if self.device:
                 self.data = user_input
