@@ -112,10 +112,21 @@ After installing, you can easily configure your devices using the Integrations c
 [![Add Integration to your Home Assistant
 instance.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=tuya_local)
 
+### Choose your configuration path
+
+There are two options for configuring a device:
+- You can login to Tuya cloud with the Smart Life app and retrieve a list of devices and the necessary local connection data.
+- You can provide all the necessary information manually [as per the instructions below](#finding-your-device-id-and-local-key).
+
+The first choice essentially automates all the manual steps of the second and without needing to create a Tuya IOT developer account. This is especially important now that Tuya has started time limiting access to a key data access capability in the IOT developer portal to only a month with the ability to refresh the trial of that only every 6 months.
+
+The cloud assisted choice will guide you through authenticating, choosing a device to add from the list of devices associated with your Smart Life account, locate the device on your local subnet and then drop you into [Stage One](#stage-one) with fully populated data necessary to move forward to [Stage Two](#stage-two).
+
+Then Smart Life authentication token expires after a small number of hours and so is not saved by the integration. But, as long as you don't restart Home Assistant, this allows you to add multiple devices one after another only needing to authenticate once for the first one.
+
 ### Stage One
 
-The first stage of configuration is to provide the information needed to
-connect to the device.
+The first stage of configuration is to provide the information needed to connect to the device.
 
 You will need to provide your device's IP address or hostname, device
 ID and local key; the last two can be found using [the instructions
