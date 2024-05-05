@@ -29,6 +29,7 @@ from tuya_sharing import (
 
 from . import DOMAIN
 from .const import (
+    DATA_STORE,
     API_PROTOCOL_VERSIONS,
     CONF_DEVICE_CID,
     CONF_DEVICE_ID,
@@ -38,7 +39,6 @@ from .const import (
     CONF_TYPE,
     CONF_ENDPOINT,
     CONF_TERMINAL_ID,
-    CONF_USER_CODE,
     CONF_USER_CODE,
     TUYA_CLIENT_ID,
     TUYA_RESPONSE_CODE,
@@ -66,6 +66,7 @@ MODE_SELECTOR = SelectSelector(
     )
 )
 
+
 class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION = 13
     MINOR_VERSION = 3
@@ -75,23 +76,27 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
     __user_code: str
     __qr_code: str
-    __logged_in = False
-    __token_info = {}
-    __terminal_id: str = ''
-    __endpoint: str = ''
-    __cloud_devices = {}
-    __cloud_device = None
+    __authentication: dict
+    __cloud_devices: dict
+    __cloud_device: dict
 
     def __init__(self) -> None:
         """Initialize the config flow."""
         self.__login_control = LoginControl()
+        self.__cloud_devices = {}
+        self.__cloud_device = None
+        if self.hass.data.get(DOMAIN) is None:
+            self.hass.data[DOMAIN] = {}
+            self.hass.data[DOMAIN][DATA_STORE] = {}
+        self.__authentication = self.hass.data[DOMAIN][DATA_STORE].get('authentication', None)
+        _LOGGER.debug(f"domain_data = {self.hass.data[DOMAIN]}")
 
     async def async_step_user(self, user_input=None):
         errors = {}
 
         if user_input is not None:
             if user_input['data_mode'] == "cloud":
-                if self.__logged_in:
+                if self.__authentication is not None:
                     await self.load_device_info()
                     return await self.async_step_choose_device(None)
                 else:
@@ -195,16 +200,20 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             )
 
         # Now that we have successfully logged in we can query for devices for the account.
-        self.__token_info = {
-            "t": info["t"],
-            "uid": info["uid"],
-            "expire_time": info["expire_time"],
-            "access_token": info["access_token"],
-            "refresh_token": info["refresh_token"],
+        self.__authentication = {
+            'user_code': info[CONF_TERMINAL_ID],
+            'terminal_id': info[CONF_TERMINAL_ID],
+            'endpoint': info[CONF_ENDPOINT],
+            'token_info': {
+                "t": info["t"],
+                "uid": info["uid"],
+                "expire_time": info["expire_time"],
+                "access_token": info["access_token"],
+                "refresh_token": info["refresh_token"],
+            }
         }
-        self.__terminal_id = info[CONF_TERMINAL_ID]
-        self.__endpoint = info[CONF_ENDPOINT]
-        self.__logged_in = True
+        self.hass.data[DOMAIN][DATA_STORE]['authentication']= self.__authentication
+        _LOGGER.debug(f"domain_data is {self.hass.data[DOMAIN]}")
 
         await self.load_device_info()
 
@@ -214,10 +223,10 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         token_listener = TokenListener(self.hass)
         manager = Manager(
             TUYA_CLIENT_ID,
-            self.__user_code,
-            self.__terminal_id,
-            self.__endpoint,
-            self.__token_info,
+            self.__authentication['user_code'],
+            self.__authentication['terminal_id'],
+            self.__authentication['endpoint'],
+            self.__authentication['token_info'],
             token_listener,
         )
 
@@ -231,7 +240,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         self.__cloud_devices = {}
         domain_data = self.hass.data.get(DOMAIN)
         for device in manager.device_map.values():
-            device = {
+            cloud_device = {
                 # TODO - Use constants throughout
                 "category": device.category,
                 "id": device.id,
@@ -249,15 +258,16 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                 CONF_DEVICE_CID: None,
                 "version": None
             }
-            _LOGGER.debug(f"Found device: {device}")
+            _LOGGER.debug(f"Found device: {cloud_device}")
 
-            existing_id = domain_data.get(device['id']) if domain_data else None
-            existing_uuid = domain_data.get(device['uuid']) if domain_data else None
+            existing_id = domain_data.get(cloud_device['id']) if domain_data else None
+            existing_uuid = domain_data.get(cloud_device['uuid']) if domain_data else None
             if existing_id or existing_uuid:
                 _LOGGER.debug("Device is already registered.")
                 continue
 
-            self.__cloud_devices[device['id']] = device
+            _LOGGER.debug(f"Adding device: {cloud_device['id']}")
+            self.__cloud_devices[cloud_device['id']] = cloud_device
 
 
     async def async_step_choose_device(self, user_input=None):
@@ -279,7 +289,10 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         for key in self.__cloud_devices.keys():
             device = self.__cloud_devices[key]
             if device[CONF_LOCAL_KEY] != '':
-                device_list.append(SelectOptionDict(value = key, label = f"{device['name']} ({device['product_name']})"))
+                if device['online'] == True:
+                    device_list.append(SelectOptionDict(value = key, label = f"{device['name']} ({device['product_name']})"))
+                else:
+                    device_list.append(SelectOptionDict(value = key, label = f"{device['name']} ({device['product_name']}) OFFLINE"))
 
         _LOGGER.debug(f"Device count: {len(device_list)}")
         if len(device_list) == 0:
@@ -353,7 +366,8 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             _LOGGER.debug(f"Found: {discovered_devices}")
             device = discovered_devices.get(self.__cloud_device['id'])
             if device is not None:
-                _LOGGER.debug(f"Found device {device['id']} at IP {device['ip']}")
+                _LOGGER.debug(f"Found device {device['id']} at IP {device['ip']} and version {device['version']}")
+                _LOGGER.debug(f"Device: {device}")
                 self.__cloud_device['ip'] = device['ip']
                 self.__cloud_device['version'] = device['version']
             return await self.async_step_local(None)
@@ -375,12 +389,12 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         devcid_opts = {}
 
         if self.__cloud_device is not None:
-            # Do already have some or all of the device settings from the cloud flow. Set them into the
+            # We already have some or all of the device settings from the cloud flow. Set them into the defaults.
             devid_opts = { "default": self.__cloud_device['id'] }
             host_opts = { "default": self.__cloud_device['ip'] }
             key_opts = { "default": self.__cloud_device[CONF_LOCAL_KEY] }
             if self.__cloud_device['version'] is not None:
-                proto_opts = {"default": self.__cloud_device['version']}
+                proto_opts = {"default": float(self.__cloud_device['version'])}
             if self.__cloud_device[CONF_DEVICE_CID] is not None:
                 devcid_opts = { "default": self.__cloud_device[CONF_DEVICE_CID] }
 
