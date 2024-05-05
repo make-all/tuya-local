@@ -91,6 +91,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
         if self.hass.data.get(DOMAIN) is None:
             self.hass.data[DOMAIN] = {}
+        if self.hass.data[DOMAIN].get(DATA_STORE) is None:
             self.hass.data[DOMAIN][DATA_STORE] = {}
         self.__authentication = self.hass.data[DOMAIN][DATA_STORE].get('authentication', None)
         _LOGGER.debug(f"domain_data = {self.hass.data[DOMAIN]}")
