@@ -4,25 +4,39 @@
         "step": {
             "user": {
                 "title": "Configure your Tuya Local device",
-                "description": "You can connect the integration to the Cloud using the SmartLife app. This will allow the integration to directly receive the information needed to connect locally to your devices. Or you can provide that information manually by logging into your Tuya account and locating it.",
+                "description": "Devices can either be added manually or cloud-assisted with the help of the Smart Life app.",
                 "data": {
-                    "data_mode": "Cloud or manual:"
+                    "data_mode": "Cloud-assisted or manual:"
                 }
             },
             "cloud": {
+                "title": "Login to Tuya",
                 "description": "Enter your Smart Life or Tuya Smart user code.\n\nYou can find this code in the Smart Life app or Tuya Smart app in **Settings** > **Account and Security** screen, and enter the code shown on the **User Code** field. The user code is case sensitive, please be sure to enter it exactly as shown in the app.",
                 "data": {
-                    "user_code": "User code"
-                }
-            },
-            "choose_device": {
-                "description": "Please choose from the detected devices. If the device needs a hub, you will then be asked to choose the correct hub in the next step.",
-                "data": {
-                    "device_id": "Choose device"
+                    "user_code": "User code:"
                 }
             },
             "scan": {
+                "title": "Complete the login",
                 "description": "Use Smart Life app or Tuya Smart app to scan the following QR-code to complete the login.\n\nContinue to the next step once you have completed this step in the app."
+            },
+            "choose_device": {
+                "title": "Choose the device to add",
+                "description": "Please pick the device to add from the drop-down list.\n\nHubs are excluded and will be selected in the next step if necessary.",
+                "data": {
+                    "device_id": "Choose device:"
+                }
+            },
+            "choose_hub": {
+                "title": "Choose the hub for the device",
+                "description": "This device connects via a hub. Please choose the correct hub.",
+                "data": {
+                    "device_id": "Choose hub:"
+                }
+            },
+            "search": {
+                "title": "Locate the device IP address",
+                "description": "Tuya cloud does not provide local IP addresses so we must now search your local network to find the device. This takes about 20 seconds.\n\nIf unsuccessful you will need to provide the IP address yourself some other way such as from router DHCP assignment."
             },
             "local": {
                 "title": "Configure your Tuya Local device",

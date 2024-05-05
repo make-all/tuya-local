@@ -1,5 +1,6 @@
 import asyncio
 import logging
+import tinytuya
 
 import voluptuous as vol
 from homeassistant import config_entries
@@ -55,8 +56,8 @@ from .helpers.log import log_json
 _LOGGER = logging.getLogger(__name__)
 
 SUPPORTED_MODES = [
-    SelectOptionDict(value="cloud", label="Retrieve device list from cloud"),
-    SelectOptionDict(value="manual", label="Provide device connection information manually")
+    SelectOptionDict(value="cloud", label="Smart Life cloud-assisted device setup."),
+    SelectOptionDict(value="manual", label="Provide device connection information manually.")
 ]
 MODE_SELECTOR = SelectSelector(
     SelectSelectorConfig(
@@ -97,19 +98,6 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         return self.async_show_form(
             step_id="user",
             data_schema=vol.Schema(fields),
-            errors=errors or {},
-            last_step=False,
-        )
-
-    async def async_step_cloud(self, user_input=None):
-        errors = {}
-
-        return self.async_show_form(
-            step_id="cloud",
-            data_schema=vol.Schema(
-                {
-                }
-            ),
             errors=errors or {},
             last_step=False,
         )
@@ -231,7 +219,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                 "category": device.category,
                 "id": device.id,
                 "ip": device.ip, # This will be the WAN IP address so not usable.
-                "local_key": device.local_key if hasattr(device, 'local_key') else '',
+                CONF_LOCAL_KEY: device.local_key if hasattr(device, CONF_LOCAL_KEY) else '',
                 "model": device.model,
                 "name": device.name,
                 "node_id": device.node_id if hasattr(device, 'node_id') else '',
@@ -242,6 +230,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                 "uuid": device.uuid,
                 "support_local": device.support_local, # What does this mean?
                 CONF_DEVICE_CID: None,
+                "version": None
             }
             _LOGGER.debug(f"Found device: {device}")
 
@@ -262,9 +251,9 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             device = self.__cloud_devices[device_id]
             if device['ip'] != '':
                 # This is a directly addable device.
-                device['ip'] = '' # TODO - Find the real IP
+                device['ip'] = ''
                 self.__cloud_device = device
-                return await self.async_step_local(None)
+                return await self.async_step_search(None)
             else:
                 # This is an indirectly addable device. Need to know which hub it is connected to.
                 self.__cloud_device = device
@@ -273,7 +262,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         device_list = []
         for key in self.__cloud_devices.keys():
             device = self.__cloud_devices[key]
-            if device['local_key'] != '':
+            if device[CONF_LOCAL_KEY] != '':
                 device_list.append(SelectOptionDict(value = key, label = f"{device['name']} ({device['product_name']})"))
 
         _LOGGER.debug(f"Device count: {len(device_list)}")
@@ -303,16 +292,16 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             device_id = user_input['device_id']
             device = self.__cloud_devices[device_id]
             # Populate uuid and local_key from the child device to pass on complete information to the local step.
-            device['ip'] = '' # TODO - Find the real IP
-            device['child_id'] = self.__cloud_device['uuid']
-            device['local_key'] = self.__cloud_device['local_key']
+            device['ip'] = ''
+            device[CONF_DEVICE_CID] = self.__cloud_device['uuid']
+            device[CONF_LOCAL_KEY] = self.__cloud_device[CONF_LOCAL_KEY]
             self.__cloud_device = device
-            return await self.async_step_local(None)
+            return await self.async_step_search(None)
 
         device_list = []
         for key in self.__cloud_devices.keys():
             device = self.__cloud_devices[key]
-            if device['local_key'] == '':
+            if device[CONF_LOCAL_KEY] == '':
                 device_list.append(SelectOptionDict(value = key, label = f"{device['name']} ({device['product_name']})"))
 
         if len(device_list) == 0:
@@ -335,6 +324,31 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             last_step=False
         )
 
+    async def async_step_search(self, user_input=None):
+
+        if user_input is not None:
+            # Current IP is the WAN IP which is of no use. Need to try and discover to the local IP.
+            # This scan will take 18s with the default settings. If we cannot find the device we
+            # will just leave the IP address blank and hope the user can discover the IP by other
+            # means such as router device IP assignments.
+            _LOGGER.debug("Scanning network for devices to get IP addresses.")
+            self.__cloud_device['ip'] = ''
+            discovered_devices = await self.hass.async_add_executor_job(scan_for_devices)
+            _LOGGER.debug(f"Found: {discovered_devices}")
+            device = discovered_devices.get(self.__cloud_device['id'])
+            if device is not None:
+                _LOGGER.debug(f"Found device {device['id']} at IP {device['ip']}")
+                self.__cloud_device['ip'] = device['ip']
+                self.__cloud_device['version'] = device['version']
+            return await self.async_step_local(None)
+
+        return self.async_show_form(
+            step_id="search",
+            data_schema=vol.Schema({}),
+            errors={},
+            last_step=False
+        )
+
     async def async_step_local(self, user_input=None):
         errors = {}
         devid_opts = {}
@@ -344,13 +358,15 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         polling_opts = {"default": False}
         devcid_opts = {}
 
-        # Do we have a chosen device from the cloud flow?
         if self.__cloud_device is not None:
+            # Do already have some or all of the device settings from the cloud flow. Set them into the
             devid_opts = { "default": self.__cloud_device['id'] }
             host_opts = { "default": self.__cloud_device['ip'] }
-            key_opts = { "default": self.__cloud_device['local_key'] }
-            if self.__cloud_device['child_id'] != None:
-                devcid_opts = { "default": self.__cloud_device['child_id'] }
+            key_opts = { "default": self.__cloud_device[CONF_LOCAL_KEY] }
+            if self.__cloud_device['version'] is not None:
+                proto_opts = {"default": self.__cloud_device['version']}
+            if self.__cloud_device[CONF_DEVICE_CID] is not None:
+                devcid_opts = { "default": self.__cloud_device[CONF_DEVICE_CID] }
 
         if user_input is not None:
             self.device = await async_test_connection(user_input, self.hass)
@@ -543,6 +559,11 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
         existing["device"].resume()
 
     return retval
+
+
+def scan_for_devices():
+    return tinytuya.deviceScan(verbose=False, byID = True)
+
 
 class DeviceListener(SharingDeviceListener):
     """Device Update Listener."""
