@@ -1,10 +1,31 @@
 import asyncio
 import logging
+import tinytuya
 
 import voluptuous as vol
 from homeassistant import config_entries
 from homeassistant.const import CONF_HOST, CONF_NAME
 from homeassistant.core import HomeAssistant, callback
+from homeassistant.config_entries import ConfigEntry, ConfigFlow, ConfigFlowResult
+from homeassistant.helpers.selector import (
+    SelectOptionDict,
+    SelectSelector,
+    SelectSelectorConfig,
+    SelectSelectorMode,
+    QrCodeSelector,
+    QrCodeSelectorConfig,
+    QrErrorCorrectionLevel,
+)
+
+from typing import Any
+from collections import OrderedDict
+from tuya_sharing import (
+    LoginControl,
+    CustomerDevice,
+    Manager,
+    SharingDeviceListener,
+    SharingTokenListener,
+)
 
 from . import DOMAIN
 from .const import (
@@ -15,6 +36,17 @@ from .const import (
     CONF_POLL_ONLY,
     CONF_PROTOCOL_VERSION,
     CONF_TYPE,
+    CONF_ENDPOINT,
+    CONF_TERMINAL_ID,
+    CONF_USER_CODE,
+    CONF_USER_CODE,
+    TUYA_CLIENT_ID,
+    TUYA_RESPONSE_CODE,
+    TUYA_RESPONSE_MSG,
+    TUYA_RESPONSE_QR_CODE,
+    TUYA_RESPONSE_RESULT,
+    TUYA_RESPONSE_SUCCESS,
+    TUYA_SCHEMA,
 )
 from .device import TuyaLocalDevice
 from .helpers.config import get_device_id
@@ -23,6 +55,16 @@ from .helpers.log import log_json
 
 _LOGGER = logging.getLogger(__name__)
 
+SUPPORTED_MODES = [
+    SelectOptionDict(value="cloud", label="Smart Life cloud-assisted device setup."),
+    SelectOptionDict(value="manual", label="Provide device connection information manually.")
+]
+MODE_SELECTOR = SelectSelector(
+    SelectSelectorConfig(
+        options=SUPPORTED_MODES,
+        mode=SelectSelectorMode.LIST,
+    )
+)
 
 class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION = 13
@@ -31,7 +73,283 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     device = None
     data = {}
 
+    __user_code: str
+    __qr_code: str
+    __cloud_devices = {}
+    __cloud_device: None
+
+    def __init__(self) -> None:
+        """Initialize the config flow."""
+        self.__login_control = LoginControl()
+
     async def async_step_user(self, user_input=None):
+        errors = {}
+
+        if user_input is not None:
+            if user_input['data_mode'] == "cloud":
+                return await self.async_step_cloud(None)
+            if user_input['data_mode'] == "manual":
+                return await self.async_step_local(None)
+
+        # Build form
+        fields: OrderedDict[vol.Marker, Any] = OrderedDict()
+        fields[vol.Required('data_mode')] = MODE_SELECTOR
+
+        return self.async_show_form(
+            step_id="user",
+            data_schema=vol.Schema(fields),
+            errors=errors or {},
+            last_step=False,
+        )
+
+    async def async_step_cloud(
+        self, user_input: dict[str, Any] | None = None
+    ) -> ConfigFlowResult:
+        """Step user."""
+        errors = {}
+        placeholders = {}
+
+        if user_input is not None:
+            success, response = await self.__async_get_qr_code(
+                user_input[CONF_USER_CODE]
+            )
+            if success:
+                return await self.async_step_scan(None)
+
+            errors["base"] = "login_error"
+            placeholders = {
+                TUYA_RESPONSE_MSG: response.get(TUYA_RESPONSE_MSG, "Unknown error"),
+                TUYA_RESPONSE_CODE: response.get(TUYA_RESPONSE_CODE, "0"),
+            }
+        else:
+            user_input = {}
+
+        return self.async_show_form(
+            step_id="cloud",
+            data_schema=vol.Schema(
+                {
+                    vol.Required(
+                        CONF_USER_CODE, default=user_input.get(CONF_USER_CODE, "")
+                    ): str,
+                }
+            ),
+            errors=errors,
+            description_placeholders=placeholders,
+        )
+
+    async def async_step_scan(
+        self, user_input: dict[str, Any] | None = None
+    ) -> ConfigFlowResult:
+        """Step scan."""
+        if user_input is None:
+            return self.async_show_form(
+                step_id="scan",
+                data_schema=vol.Schema(
+                    {
+                        vol.Optional("QR"): QrCodeSelector(
+                            config=QrCodeSelectorConfig(
+                                data=f"tuyaSmart--qrLogin?token={self.__qr_code}",
+                                scale=5,
+                                error_correction_level=QrErrorCorrectionLevel.QUARTILE,
+                            )
+                        )
+                    }
+                ),
+            )
+
+        ret, info = await self.hass.async_add_executor_job(
+            self.__login_control.login_result,
+            self.__qr_code,
+            TUYA_CLIENT_ID,
+            self.__user_code,
+        )
+        if not ret:
+            # Try to get a new QR code on failure
+            await self.__async_get_qr_code(self.__user_code)
+            return self.async_show_form(
+                step_id="scan",
+                errors={"base": "login_error"},
+                data_schema=vol.Schema(
+                    {
+                        vol.Optional("QR"): QrCodeSelector(
+                            config=QrCodeSelectorConfig(
+                                data=f"tuyaSmart--qrLogin?token={self.__qr_code}",
+                                scale=5,
+                                error_correction_level=QrErrorCorrectionLevel.QUARTILE,
+                            )
+                        )
+                    }
+                ),
+                description_placeholders={
+                    TUYA_RESPONSE_MSG: info.get(TUYA_RESPONSE_MSG, "Unknown error"),
+                    TUYA_RESPONSE_CODE: info.get(TUYA_RESPONSE_CODE, 0),
+                },
+            )
+
+        # Now that we have successfully logged in we can query for devices for the account.
+        token_info = {
+            "t": info["t"],
+            "uid": info["uid"],
+            "expire_time": info["expire_time"],
+            "access_token": info["access_token"],
+            "refresh_token": info["refresh_token"],
+        }
+
+        token_listener = TokenListener(self.hass)
+        manager = Manager(
+            TUYA_CLIENT_ID,
+            self.__user_code,
+            info[CONF_TERMINAL_ID],
+            info[CONF_ENDPOINT],
+            token_info,
+            token_listener,
+        )
+
+        listener = DeviceListener(self.hass, manager)
+        manager.add_device_listener(listener)
+
+        # Get all devices from Tuya
+        await self.hass.async_add_executor_job(manager.update_device_cache)
+
+        # Register known device IDs
+        domain_data = self.hass.data.get(DOMAIN)
+        for device in manager.device_map.values():
+            device = {
+                # TODO - Use constants throughout
+                "category": device.category,
+                "id": device.id,
+                "ip": device.ip, # This will be the WAN IP address so not usable.
+                CONF_LOCAL_KEY: device.local_key if hasattr(device, CONF_LOCAL_KEY) else '',
+                "model": device.model,
+                "name": device.name,
+                "node_id": device.node_id if hasattr(device, 'node_id') else '',
+                "online": device.online,
+                "product_id": device.product_id,
+                "product_name": device.product_name,
+                "uid": device.uid,
+                "uuid": device.uuid,
+                "support_local": device.support_local, # What does this mean?
+                CONF_DEVICE_CID: None,
+                "version": None
+            }
+            _LOGGER.debug(f"Found device: {device}")
+
+            existing_id = domain_data.get(device['id']) if domain_data else None
+            existing_uuid = domain_data.get(device['uuid']) if domain_data else None
+            if existing_id or existing_uuid:
+                _LOGGER.debug("Device is already registered.")
+                continue
+
+            self.__cloud_devices[device['id']] = device
+
+        return await self.async_step_choose_device(None)
+
+    async def async_step_choose_device(self, user_input=None):
+        errors = {}
+        if user_input is not None:
+            device_id = user_input['device_id']
+            device = self.__cloud_devices[device_id]
+            if device['ip'] != '':
+                # This is a directly addable device.
+                device['ip'] = ''
+                self.__cloud_device = device
+                return await self.async_step_search(None)
+            else:
+                # This is an indirectly addable device. Need to know which hub it is connected to.
+                self.__cloud_device = device
+                return await self.async_step_choose_hub(None)
+
+        device_list = []
+        for key in self.__cloud_devices.keys():
+            device = self.__cloud_devices[key]
+            if device[CONF_LOCAL_KEY] != '':
+                device_list.append(SelectOptionDict(value = key, label = f"{device['name']} ({device['product_name']})"))
+
+        _LOGGER.debug(f"Device count: {len(device_list)}")
+        if len(device_list) == 0:
+            return self.async_abort(reason="no_devices")
+
+        device_selector = SelectSelector(
+            SelectSelectorConfig(
+                options=device_list,
+                mode=SelectSelectorMode.DROPDOWN)
+        )
+
+        # Build form
+        fields: OrderedDict[vol.Marker, Any] = OrderedDict()
+        fields[vol.Required('device_id')] = device_selector
+
+        return self.async_show_form(
+            step_id="choose_device",
+            data_schema=vol.Schema(fields),
+            errors=errors or {},
+            last_step=False
+        )
+
+    async def async_step_choose_hub(self, user_input=None):
+        errors = {}
+        if user_input is not None:
+            device_id = user_input['device_id']
+            device = self.__cloud_devices[device_id]
+            # Populate uuid and local_key from the child device to pass on complete information to the local step.
+            device['ip'] = ''
+            device[CONF_DEVICE_CID] = self.__cloud_device['uuid']
+            device[CONF_LOCAL_KEY] = self.__cloud_device[CONF_LOCAL_KEY]
+            self.__cloud_device = device
+            return await self.async_step_search(None)
+
+        device_list = []
+        for key in self.__cloud_devices.keys():
+            device = self.__cloud_devices[key]
+            if device[CONF_LOCAL_KEY] == '':
+                device_list.append(SelectOptionDict(value = key, label = f"{device['name']} ({device['product_name']})"))
+
+        if len(device_list) == 0:
+            return self.async_abort(reason="no_devices")
+
+        device_selector = SelectSelector(
+            SelectSelectorConfig(
+                options=device_list,
+                mode=SelectSelectorMode.DROPDOWN)
+        )
+
+        # Build form
+        fields: OrderedDict[vol.Marker, Any] = OrderedDict()
+        fields[vol.Required('device_id')] = device_selector
+
+        return self.async_show_form(
+            step_id="choose_hub",
+            data_schema=vol.Schema(fields),
+            errors=errors or {},
+            last_step=False
+        )
+
+    async def async_step_search(self, user_input=None):
+
+        if user_input is not None:
+            # Current IP is the WAN IP which is of no use. Need to try and discover to the local IP.
+            # This scan will take 18s with the default settings. If we cannot find the device we
+            # will just leave the IP address blank and hope the user can discover the IP by other
+            # means such as router device IP assignments.
+            _LOGGER.debug("Scanning network for devices to get IP addresses.")
+            self.__cloud_device['ip'] = ''
+            discovered_devices = await self.hass.async_add_executor_job(scan_for_devices)
+            _LOGGER.debug(f"Found: {discovered_devices}")
+            device = discovered_devices.get(self.__cloud_device['id'])
+            if device is not None:
+                _LOGGER.debug(f"Found device {device['id']} at IP {device['ip']}")
+                self.__cloud_device['ip'] = device['ip']
+                self.__cloud_device['version'] = device['version']
+            return await self.async_step_local(None)
+
+        return self.async_show_form(
+            step_id="search",
+            data_schema=vol.Schema({}),
+            errors={},
+            last_step=False
+        )
+
+    async def async_step_local(self, user_input=None):
         errors = {}
         devid_opts = {}
         host_opts = {"default": ""}
@@ -40,10 +358,17 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         polling_opts = {"default": False}
         devcid_opts = {}
 
-        if user_input is not None:
-            await self.async_set_unique_id(get_device_id(user_input))
-            self._abort_if_unique_id_configured()
+        if self.__cloud_device is not None:
+            # Do already have some or all of the device settings from the cloud flow. Set them into the
+            devid_opts = { "default": self.__cloud_device['id'] }
+            host_opts = { "default": self.__cloud_device['ip'] }
+            key_opts = { "default": self.__cloud_device[CONF_LOCAL_KEY] }
+            if self.__cloud_device['version'] is not None:
+                proto_opts = {"default": self.__cloud_device['version']}
+            if self.__cloud_device[CONF_DEVICE_CID] is not None:
+                devcid_opts = { "default": self.__cloud_device[CONF_DEVICE_CID] }
 
+        if user_input is not None:
             self.device = await async_test_connection(user_input, self.hass)
             if self.device:
                 self.data = user_input
@@ -59,7 +384,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                 polling_opts["default"] = user_input[CONF_POLL_ONLY]
 
         return self.async_show_form(
-            step_id="user",
+            step_id="local",
             data_schema=vol.Schema(
                 {
                     vol.Required(CONF_DEVICE_ID, **devid_opts): str,
@@ -138,6 +463,19 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     @callback
     def async_get_options_flow(config_entry):
         return OptionsFlowHandler(config_entry)
+
+    async def __async_get_qr_code(self, user_code: str) -> tuple[bool, dict[str, Any]]:
+        """Get the QR code."""
+        response = await self.hass.async_add_executor_job(
+            self.__login_control.qr_code,
+            TUYA_CLIENT_ID,
+            TUYA_SCHEMA,
+            user_code,
+        )
+        if success := response.get(TUYA_RESPONSE_SUCCESS, False):
+            self.__user_code = user_code
+            self.__qr_code = response[TUYA_RESPONSE_RESULT][TUYA_RESPONSE_QR_CODE]
+        return success, response
 
 
 class OptionsFlowHandler(config_entries.OptionsFlow):
@@ -221,3 +559,58 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
         existing["device"].resume()
 
     return retval
+
+
+def scan_for_devices():
+    return tinytuya.deviceScan(verbose=False, byID = True)
+
+
+class DeviceListener(SharingDeviceListener):
+    """Device Update Listener."""
+
+    def __init__(
+        self,
+        hass: HomeAssistant,
+        manager: Manager,
+    ) -> None:
+        """Init DeviceListener."""
+        self.hass = hass
+        self.manager = manager
+
+    def update_device(self, device: CustomerDevice) -> None:
+        """Update device status."""
+        _LOGGER.debug(
+            "Received update for device %s: %s",
+            device.id,
+            self.manager.device_map[device.id].status,
+        )
+
+    def add_device(self, device: CustomerDevice) -> None:
+        """Add device added listener."""
+        _LOGGER.debug(
+            "Received add device %s: %s",
+            device.id,
+            self.manager.device_map[device.id].status,
+        )
+
+    def remove_device(self, device_id: str) -> None:
+        """Add device removed listener."""
+        _LOGGER.debug(
+            "Received remove device %s: %s",
+            device_id,
+            self.manager.device_map[device_id].status,
+        )
+
+class TokenListener(SharingTokenListener):
+    """Token listener for upstream token updates."""
+
+    def __init__(
+        self,
+        hass: HomeAssistant,
+    ) -> None:
+        """Init TokenListener."""
+        self.hass = hass
+
+    def update_token(self, token_info: dict[str, Any]) -> None:
+        """Update token info in config entry."""
+        _LOGGER.debug("update_token")

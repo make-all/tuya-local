@@ -4,6 +4,42 @@
         "step": {
             "user": {
                 "title": "Configure your Tuya Local device",
+                "description": "Devices can either be added manually or cloud-assisted with the help of the Smart Life app.",
+                "data": {
+                    "data_mode": "Cloud-assisted or manual:"
+                }
+            },
+            "cloud": {
+                "title": "Login to Tuya",
+                "description": "Enter your Smart Life or Tuya Smart user code.\n\nYou can find this code in the Smart Life app or Tuya Smart app in **Settings** > **Account and Security** screen, and enter the code shown on the **User Code** field. The user code is case sensitive, please be sure to enter it exactly as shown in the app.",
+                "data": {
+                    "user_code": "User code:"
+                }
+            },
+            "scan": {
+                "title": "Complete the login",
+                "description": "Use Smart Life app or Tuya Smart app to scan the following QR-code to complete the login.\n\nContinue to the next step once you have completed this step in the app."
+            },
+            "choose_device": {
+                "title": "Choose the device to add",
+                "description": "Please pick the device to add from the drop-down list.\n\nHubs are excluded and will be selected in the next step if necessary.",
+                "data": {
+                    "device_id": "Choose device:"
+                }
+            },
+            "choose_hub": {
+                "title": "Choose the hub for the device",
+                "description": "This device connects via a hub. Please choose the correct hub.",
+                "data": {
+                    "device_id": "Choose hub:"
+                }
+            },
+            "search": {
+                "title": "Locate the device IP address",
+                "description": "Tuya cloud does not provide local IP addresses so we must now search your local network to find the device. This takes about 20 seconds.\n\nIf unsuccessful you will need to provide the IP address yourself some other way such as from router DHCP assignment."
+            },
+            "local": {
+                "title": "Configure your Tuya Local device",
                 "description": "[Follow these instructions to find your device id and local key.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "IP address or hostname",
@@ -31,7 +67,8 @@
         },
         "abort": {
             "already_configured": "A device with that ID has already been added.",
-            "not_supported": "Sorry, there is no support for this device."
+            "not_supported": "Sorry, there is no support for this device.",
+            "no_devices": "Unable to find any unregistered devices for the account."
         },
         "error": {
             "connection": "Unable to connect to your device with those details. It could be an intermittent issue, or they may be incorrect."
