@@ -98,11 +98,14 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
         if user_input is not None:
             if user_input['data_mode'] == "cloud":
-                if self.__authentication is not None:
-                    await self.load_device_info()
-                    return await self.async_step_choose_device(None)
-                else:
-                    return await self.async_step_cloud(None)
+                try:
+                    if self.__authentication is not None:
+                        await self.load_device_info()
+                        return await self.async_step_choose_device(None)
+                except Exception as e:
+                    # Re-authentication is needed.
+                    _LOGGER.warning("Re-authentication is required.")
+                return await self.async_step_cloud(None)
             if user_input['data_mode'] == "manual":
                 return await self.async_step_local(None)
 
