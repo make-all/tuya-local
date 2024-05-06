@@ -657,6 +657,7 @@ port and password.
 - Qoto 05 smart water valve / sprinkler controller
 - SH07-8 / SH07S-TY smart sprinkler controller (sold as Aquarobo and other brands)
 - Zemismart DP-WBS01 8-zone sprinkler controller (also sold as Benexmart and other brands)
+- Zefinot dual water timer (also sold Dewenwils, Diivoo, Lingusta, Soguyi and other brands)
 
 ### Miscellaneous
 
