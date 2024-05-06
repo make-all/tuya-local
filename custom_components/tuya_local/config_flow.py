@@ -91,17 +91,21 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
         if self.hass.data.get(DOMAIN) is None:
             self.hass.data[DOMAIN] = {}
+        if self.hass.data[DOMAIN].get(DATA_STORE) is None:
             self.hass.data[DOMAIN][DATA_STORE] = {}
         self.__authentication = self.hass.data[DOMAIN][DATA_STORE].get('authentication', None)
         _LOGGER.debug(f"domain_data = {self.hass.data[DOMAIN]}")
 
         if user_input is not None:
             if user_input['data_mode'] == "cloud":
-                if self.__authentication is not None:
-                    await self.load_device_info()
-                    return await self.async_step_choose_device(None)
-                else:
-                    return await self.async_step_cloud(None)
+                try:
+                    if self.__authentication is not None:
+                        await self.load_device_info()
+                        return await self.async_step_choose_device(None)
+                except Exception as e:
+                    # Re-authentication is needed.
+                    _LOGGER.warning("Re-authentication is required.")
+                return await self.async_step_cloud(None)
             if user_input['data_mode'] == "manual":
                 return await self.async_step_local(None)
 
@@ -361,16 +365,15 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             # This scan will take 18s with the default settings. If we cannot find the device we
             # will just leave the IP address blank and hope the user can discover the IP by other
             # means such as router device IP assignments.
-            _LOGGER.debug("Scanning network for devices to get IP addresses.")
+            _LOGGER.debug("Scanning network to get IP address for {self.__cloud_device['id']}.")
             self.__cloud_device['ip'] = ''
-            discovered_devices = await self.hass.async_add_executor_job(scan_for_devices)
-            _LOGGER.debug(f"Found: {discovered_devices}")
-            device = discovered_devices.get(self.__cloud_device['id'])
-            if device is not None:
-                _LOGGER.debug(f"Found device {device['id']} at IP {device['ip']} and version {device['version']}")
-                _LOGGER.debug(f"Device: {device}")
+            device = await self.hass.async_add_executor_job(scan_for_device, self.__cloud_device['id'])
+            if device['ip'] is not None:
+                _LOGGER.debug(f"Found: {device}")
                 self.__cloud_device['ip'] = device['ip']
                 self.__cloud_device['version'] = device['version']
+            else:
+                _LOGGER.warn("Could not find device: {self.__cloud_device['id']}")
             return await self.async_step_local(None)
 
         return self.async_show_form(
@@ -592,8 +595,8 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
     return retval
 
 
-def scan_for_devices():
-    return tinytuya.deviceScan(verbose=False, byID = True)
+def scan_for_device(id):
+    return tinytuya.find_device(dev_id = id)
 
 
 class DeviceListener(SharingDeviceListener):
