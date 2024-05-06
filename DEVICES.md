@@ -26,7 +26,7 @@
 - Goldair heater models beginning with the code GPPH, GCPV, GECO
 - Hama radiator controller
 - Heatstorm HS-6000-GC heavy duty heater
-- Herschel infrared heater 
+- Herschel infrared heater
 - HJZ oil column radiator
 - Hombli radiator controller
 - INOW Wi-Fi heating element (single and dual air/water temperature control variants)
@@ -194,7 +194,7 @@
 - Deta fan controller
 - Djive ARC humidifying fan
 - Duux Whisper Flex pedestal fan
-- Eglo 5 speed + sleep ceiling fan 
+- Eglo 5 speed + sleep ceiling fan
 - Fanco Eco Silent Deluxe ceiling fan with LED light
 - Goldair GCPF315 fan
 - Goldair Platinum tower fan (2 variants)
@@ -350,7 +350,7 @@
 - V-WIFI-DL02-ES energy consumption clamp meter
 - WDYK 2P63A energy meter
 - WDYK 3 phase 4 pole 400V energy meter circuit breaker
-- Yagusmart 3PN 63A 3-phase eneregy meter 
+- Yagusmart 3PN 63A 3-phase eneregy meter
 - ZM-Wi-Fi smart meter
 
 ### Battery Charger
@@ -648,6 +648,7 @@ port and password.
 - Qoto 05 smart water valve / sprinkler controller
 - SH07-8 smart sprinkler controller
 - Zemismart DP-WBS01 8-zone sprinkler controller (also sold as Benexmart and other brands)
+- Zefinot dual water timer (also sold Dewenwils, Diivoo, Lingusta, Soguyi and other brands)
 
 ### Miscellaneous
 
