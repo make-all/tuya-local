@@ -641,6 +641,7 @@ port and password.
 - Aubess Rainpoint TTP106W irrigation system
 - Becasmart BAF-908 irrigation system
 - Garza Wi-Fi garden irrigation system (ITV103W with 433MHz WiFi hub)
+- HCT-626 bluetooth dual water timer (sold as Zefinot, Dewenwils, Diivoo, Lingusta, Soguyi and other brands)
 - Holman WX1 tap timer (sprinkler controller)
 - Holman WX2 dual tap timer
 - Holman WX8 8 sprinkler irrigation controller
@@ -648,7 +649,6 @@ port and password.
 - Qoto 05 smart water valve / sprinkler controller
 - SH07-8 smart sprinkler controller
 - Zemismart DP-WBS01 8-zone sprinkler controller (also sold as Benexmart and other brands)
-- Zefinot dual water timer (also sold Dewenwils, Diivoo, Lingusta, Soguyi and other brands)
 
 ### Miscellaneous
 

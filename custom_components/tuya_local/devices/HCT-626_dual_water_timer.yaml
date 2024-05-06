@@ -34,7 +34,7 @@ secondary_entities:
         mapping:
           - scale: 60
             step: 60
-        unit: sec
+        unit: min
   - entity: number
     name: Timer 2
     translation_key: timer
@@ -50,15 +50,15 @@ secondary_entities:
         mapping:
           - scale: 60
             step: 60
-        unit: sec
+        unit: min
   - entity: number
-    name: DPS 42
+    name: Weather delay remaining
     category: diagnostic
     dps:
       - id: 42
         type: integer
         name: value
-        optional: true
+        unit: hours
   - entity: switch
     name: Smart weather delay
     category: config
