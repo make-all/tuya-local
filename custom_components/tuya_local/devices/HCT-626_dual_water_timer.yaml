@@ -29,11 +29,11 @@ secondary_entities:
         type: integer
         name: value
         range:
-          min: 60
+          min: 30
           max: 3600
         mapping:
           - scale: 60
-            step: 60
+            step: 30
         unit: min
   - entity: number
     name: Timer 2
@@ -45,20 +45,30 @@ secondary_entities:
         type: integer
         name: value
         range:
-          min: 60
+          min: 30
           max: 3600
         mapping:
           - scale: 60
-            step: 60
+            step: 30
         unit: min
-  - entity: number
+  - entity: sensor
+    name: Schedule
+    category: diagnostic
+    dps:
+      - id: 38
+        type: string
+        name: sensor
+        hidden: true
+        optional: true
+  - entity: sensor
     name: Weather delay remaining
     category: diagnostic
     dps:
       - id: 42
         type: integer
-        name: value
-        unit: hours
+        name: sensor
+        unit: hour
+        readonly: true
   - entity: switch
     name: Smart weather delay
     category: config
@@ -101,7 +111,7 @@ secondary_entities:
         type: string
         name: option
         mapping:
-          - dps_val: cancel
+          - dps_val: "cancel"
             value: "Off"
           - dps_val: "1"
             value: "1 day"
@@ -158,11 +168,11 @@ secondary_entities:
         type: integer
         name: value
         range:
-          min: 0
+          min: 30
           max: 3600
         mapping:
           - scale: 60
-            step: 60
+            step: 30
         unit: sec
   - entity: number
     name: DPS 104
@@ -173,25 +183,34 @@ secondary_entities:
         type: integer
         name: value
         range:
-          min: 0
+          min: 30
           max: 3600
         mapping:
           - scale: 60
-            step: 60
+            step: 30
         unit: sec
   - entity: sensor
-    name: DPS 105
+    name: Valve 1 state
     category: diagnostic
     dps:
       - id: 105
         type: string
         name: sensor
-        optional: true
+        readonly: true
   - entity: sensor
-    name: DPS 106
+    name: Valve 2 state
     category: diagnostic
     dps:
       - id: 106
         type: string
         name: sensor
+        readonly: true
+  - entity: sensor
+    name: Spray Schedule
+    category: diagnostic
+    dps:
+      - id: 108
+        type: string
+        name: sensor
+        hidden: true
         optional: true
