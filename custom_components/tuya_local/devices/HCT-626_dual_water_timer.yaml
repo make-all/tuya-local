@@ -1,8 +1,6 @@
 name: Dual water timer
 products:
-  - id: key9nfnyp89j4esc
-  - id: ebb777wq1zxgr5og
-  - id: 8c63534780ffa00f
+  - id: smd9kj1n
 primary_entity:
   entity: valve
   name: Valve 1
@@ -21,9 +19,9 @@ secondary_entities:
         name: valve
   - entity: number
     name: Timer 1
-    translation_key: timer
     category: config
     class: duration
+    mode: box
     dps:
       - id: 17
         type: integer
@@ -37,9 +35,9 @@ secondary_entities:
         unit: min
   - entity: number
     name: Timer 2
-    translation_key: timer
     category: config
     class: duration
+    mode: box
     dps:
       - id: 18
         type: integer
@@ -134,14 +132,14 @@ secondary_entities:
         type: string
         name: sensor
         optional: true
-  - entity: number
-    name: DPS 53
+  - entity: sensor
+    name: Battery level
     category: diagnostic
     dps:
       - id: 53
         type: integer
-        name: value
-        optional: true
+        name: sensor
+        readonly: true
   - entity: sensor
     name: Valve 1 last runtime
     class: duration
@@ -166,36 +164,30 @@ secondary_entities:
           - scale: 60
         unit: min
         readonly: true
-  - entity: number
-    name: DPS 103
+  - entity: sensor
+    name: Valve 1 spray time
     category: diagnostic
     class: duration
     dps:
       - id: 103
         type: integer
-        name: value
-        range:
-          min: 30
-          max: 3600
+        name: sensor
         mapping:
           - scale: 60
-            step: 30
-        unit: sec
-  - entity: number
-    name: DPS 104
+        unit: min
+        readonly: true
+  - entity: sensor
+    name: Valve 2 spray time
     category: diagnostic
     class: duration
     dps:
       - id: 104
         type: integer
-        name: value
-        range:
-          min: 30
-          max: 3600
+        name: sensor
         mapping:
           - scale: 60
-            step: 30
-        unit: sec
+        unit: min
+        readonly: true
   - entity: sensor
     name: Valve 1 state
     category: diagnostic
@@ -210,6 +202,8 @@ secondary_entities:
             value: "Idle"
           - dps_val: "manual"
             value: "Manual"
+          - dps_val: "spray"
+            value: "Spray"
           - dps_val: "timing"
             value: "Scheduled"
   - entity: sensor
@@ -226,6 +220,8 @@ secondary_entities:
             value: "Idle"
           - dps_val: "manual"
             value: "Manual"
+          - dps_val: "spray"
+            value: "Spray"
           - dps_val: "timing"
             value: "Scheduled"
   - entity: sensor
