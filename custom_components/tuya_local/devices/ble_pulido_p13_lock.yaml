@@ -37,14 +37,14 @@ primary_entity:
       type: integer
       optional: true
       persist: false
-    - id: 47  #Lock motor state
+    - id: 47  # Lock motor state
       name: lock
       type: boolean
       readonly: true
       mapping:
-        - dps_val: true  #Unlocked
+        - dps_val: true  # Unlocked
           value: false
-        - dps_val: false  #Locked
+        - dps_val: false  # Locked
           value: true
     - id: 55
       type: integer
@@ -53,7 +53,7 @@ primary_entity:
       persist: false
     - id: 62
       type: integer
-      name: unlock_phone
+      name: unlock_app
       optional: true
       persist: false
     - id: 63
