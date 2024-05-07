@@ -27,11 +27,11 @@ secondary_entities:
         type: integer
         name: value
         range:
-          min: 30
+          min: 60
           max: 3600
         mapping:
           - scale: 60
-            step: 30
+            step: 60
         unit: min
   - entity: number
     name: Timer 2
@@ -43,11 +43,11 @@ secondary_entities:
         type: integer
         name: value
         range:
-          min: 30
+          min: 60
           max: 3600
         mapping:
           - scale: 60
-            step: 30
+            step: 60
         unit: min
   - entity: sensor
     name: Schedule
@@ -125,19 +125,22 @@ secondary_entities:
           - dps_val: "7"
             value: "7 days"
   - entity: sensor
-    name: DPS 47
+    name: Battery meter level
     category: diagnostic
     dps:
       - id: 47
         type: string
         name: sensor
         optional: true
-  - entity: sensor
-    name: Battery level
+        range:
+          min: 0
+          max: 5
+  - entity: binary_sensor
+    name: Battery low
     category: diagnostic
     dps:
       - id: 53
-        type: integer
+        type: boolean
         name: sensor
         readonly: true
   - entity: sensor
