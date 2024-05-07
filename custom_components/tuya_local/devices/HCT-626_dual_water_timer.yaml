@@ -72,7 +72,6 @@ secondary_entities:
   - entity: switch
     name: Smart weather delay
     category: config
-    class: duration
     dps:
       - id: 43
         type: boolean
@@ -88,19 +87,19 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: sunny
-            value: sunny
+            value: Sunny
             icon: "mdi:weather-sunny"
           - dps_val: cloudy
-            value: cloudy
+            value: Cloudy
             icon: "mdi:weather-cloudy"
           - dps_val: rainy
-            value: rainy
+            value: Rainy
             icon: "mdi:weather-rainy"
           - dps_val: snowy
-            value: snowy
+            value: Snowy
             icon: "mdi:weather-snowy"
           - dps_val: null
-            value: unavailable
+            value: Unavailable
             icon: "mdi:weather-sunny-off"
   - entity: select
     name: Weather delay
@@ -143,22 +142,30 @@ secondary_entities:
         type: integer
         name: value
         optional: true
-  - entity: number
-    name: DPS 101
+  - entity: sensor
+    name: Valve 1 last runtime
+    class: duration
     category: diagnostic
     dps:
       - id: 101
         type: integer
-        name: value
-        optional: true
-  - entity: number
-    name: DPS 102
+        name: sensor
+        mapping:
+          - scale: 60
+        unit: min
+        readonly: true
+  - entity: sensor
+    name: Valve 2 last runtime
+    class: duration
     category: diagnostic
     dps:
       - id: 102
         type: integer
-        name: value
-        optional: true
+        name: sensor
+        mapping:
+          - scale: 60
+        unit: min
+        readonly: true
   - entity: number
     name: DPS 103
     category: diagnostic
@@ -192,19 +199,35 @@ secondary_entities:
   - entity: sensor
     name: Valve 1 state
     category: diagnostic
+    class: enum
     dps:
       - id: 105
         type: string
         name: sensor
         readonly: true
+        mapping:
+          - dps_val: "idle"
+            value: "Idle"
+          - dps_val: "manual"
+            value: "Manual"
+          - dps_val: "timing"
+            value: "Scheduled"
   - entity: sensor
     name: Valve 2 state
     category: diagnostic
+    class: enum
     dps:
       - id: 106
         type: string
         name: sensor
         readonly: true
+        mapping:
+          - dps_val: "idle"
+            value: "Idle"
+          - dps_val: "manual"
+            value: "Manual"
+          - dps_val: "timing"
+            value: "Scheduled"
   - entity: sensor
     name: Spray Schedule
     category: diagnostic
