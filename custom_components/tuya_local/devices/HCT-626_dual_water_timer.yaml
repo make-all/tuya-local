@@ -50,15 +50,6 @@ secondary_entities:
             step: 60
         unit: min
   - entity: sensor
-    name: Schedule
-    category: diagnostic
-    dps:
-      - id: 38
-        type: string
-        name: sensor
-        hidden: true
-        optional: true
-  - entity: sensor
     name: Weather delay remaining
     category: diagnostic
     dps:
@@ -127,7 +118,7 @@ secondary_entities:
   - entity: sensor
     name: Battery meter level
     category: diagnostic
-    class: battery
+    icon: "mdi:battery"
     dps:
       - id: 47
         type: string
@@ -210,6 +201,10 @@ secondary_entities:
             value: "Spray"
           - dps_val: "timing"
             value: "Scheduled"
+      - id: 38
+        type: string
+        name: Schedule
+        optional: true
   - entity: sensor
     name: Valve 2 state
     category: diagnostic
@@ -228,12 +223,7 @@ secondary_entities:
             value: "Spray"
           - dps_val: "timing"
             value: "Scheduled"
-  - entity: sensor
-    name: Spray Schedule
-    category: diagnostic
-    dps:
       - id: 108
         type: string
-        name: sensor
-        hidden: true
+        name: Schedule
         optional: true
