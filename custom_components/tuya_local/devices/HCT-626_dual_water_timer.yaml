@@ -116,20 +116,19 @@ secondary_entities:
           - dps_val: "7"
             value: "7 days"
   - entity: sensor
-    name: Battery meter level
     category: diagnostic
-    icon: "mdi:battery"
+    class: battery
     dps:
       - id: 47
-        type: string
+        type: integer
         name: sensor
-        optional: true
-        range:
-          min: 0
-          max: 5
+        mapping:
+          - scale: 0.05
+        unit: '%'
+        precision: 0
   - entity: binary_sensor
-    name: Battery low
     category: diagnostic
+    class: battery
     dps:
       - id: 53
         type: boolean
