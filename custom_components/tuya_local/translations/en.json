@@ -22,16 +22,10 @@
             },
             "choose_device": {
                 "title": "Choose the device to add",
-                "description": "Please pick the device to add from the drop-down list. Already added devices are not shown.\n\nHubs are excluded and will be selected in the next step if necessary.",
+                "description": "Please pick the device to add from the first drop-down list. Already added devices are not shown.\n\nIf the device connects through a gateway, select that from the gateway list otherwise choose None.",
                 "data": {
-                    "device_id": "Choose device:"
-                }
-            },
-            "choose_hub": {
-                "title": "Choose the hub for the device",
-                "description": "This device connects via a hub. Please choose the correct hub.",
-                "data": {
-                    "device_id": "Choose hub:"
+                    "device_id": "Choose device:",
+                    "hub_id": "Choose gateway:"
                 }
             },
             "search": {
@@ -71,7 +65,9 @@
             "no_devices": "Unable to find any unregistered devices for the account."
         },
         "error": {
-            "connection": "Unable to connect to your device with those details. It could be an intermittent issue, or they may be incorrect."
+            "connection": "Unable to connect to your device with those details. It could be an intermittent issue, or they may be incorrect.",
+            "does_not_need_hub": "Device does not need a gateway and one was selected. Please review your choices.",
+            "needs_hub": "Device needs a gateway and none was selected."
         }
     },
     "options": {

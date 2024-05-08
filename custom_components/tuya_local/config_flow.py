@@ -100,7 +100,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             if user_input['data_mode'] == "cloud":
                 try:
                     if self.__authentication is not None:
-                        await self.load_device_info()
+                        self.__cloud_devices = await self.load_device_info()
                         return await self.async_step_choose_device(None)
                 except Exception as e:
                     # Re-authentication is needed.
@@ -221,11 +221,11 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         self.hass.data[DOMAIN][DATA_STORE]['authentication']= self.__authentication
         _LOGGER.debug(f"domain_data is {self.hass.data[DOMAIN]}")
 
-        await self.load_device_info()
+        self.__cloud_devices = await self.load_device_info()
 
         return await self.async_step_choose_device(None)
 
-    async def load_device_info(self):
+    async def load_device_info(self) -> dict:
         token_listener = TokenListener(self.hass)
         manager = Manager(
             TUYA_CLIENT_ID,
@@ -243,7 +243,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         await self.hass.async_add_executor_job(manager.update_device_cache)
 
         # Register known device IDs
-        self.__cloud_devices = {}
+        cloud_devices = {}
         domain_data = self.hass.data.get(DOMAIN)
         for device in manager.device_map.values():
             cloud_device = {
@@ -273,23 +273,40 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                 continue
 
             _LOGGER.debug(f"Adding device: {cloud_device['id']}")
-            self.__cloud_devices[cloud_device['id']] = cloud_device
+            cloud_devices[cloud_device['id']] = cloud_device
+
+        return cloud_devices
 
 
     async def async_step_choose_device(self, user_input=None):
         errors = {}
         if user_input is not None:
-            device_id = user_input['device_id']
-            device = self.__cloud_devices[device_id]
+            device = self.__cloud_devices[user_input['device_id']]
+
             if device['ip'] != '':
                 # This is a directly addable device.
-                device['ip'] = ''
-                self.__cloud_device = device
-                return await self.async_step_search(None)
+                if user_input['hub_id'] == 'None':
+                    device['ip'] = ''
+                    self.__cloud_device = device
+                    return await self.async_step_search(None)
+                else:
+                    # Show error if user selected a hub.
+                    errors["base"] = "does_not_need_hub"
+                    # Fall through to reshow the form.
             else:
-                # This is an indirectly addable device. Need to know which hub it is connected to.
-                self.__cloud_device = device
-                return await self.async_step_choose_hub(None)
+                # This is an indirectly addressable device. Need to know which hub it is connected to.
+                if user_input['hub_id'] != 'None':
+                    hub_device = self.__cloud_devices[user_input['hub_id']]
+                    # Populate uuid and local_key from the child device to pass on complete information to the local step.
+                    hub_device['ip'] = ''
+                    hub_device[CONF_DEVICE_CID] = device['uuid']
+                    hub_device[CONF_LOCAL_KEY] = device[CONF_LOCAL_KEY]
+                    self.__cloud_device = hub_device
+                    return await self.async_step_search(None)
+                else:
+                    # Show error if user did not select a hub.
+                    errors["base"] = "needs_hub"
+                    # Fall through to reshow the form.
 
         device_list = []
         for key in self.__cloud_devices.keys():
@@ -310,50 +327,29 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                 mode=SelectSelectorMode.DROPDOWN)
         )
 
-        # Build form
-        fields: OrderedDict[vol.Marker, Any] = OrderedDict()
-        fields[vol.Required('device_id')] = device_selector
-
-        return self.async_show_form(
-            step_id="choose_device",
-            data_schema=vol.Schema(fields),
-            errors=errors or {},
-            last_step=False
-        )
-
-    async def async_step_choose_hub(self, user_input=None):
-        errors = {}
-        if user_input is not None:
-            device_id = user_input['device_id']
-            device = self.__cloud_devices[device_id]
-            # Populate uuid and local_key from the child device to pass on complete information to the local step.
-            device['ip'] = ''
-            device[CONF_DEVICE_CID] = self.__cloud_device['uuid']
-            device[CONF_LOCAL_KEY] = self.__cloud_device[CONF_LOCAL_KEY]
-            self.__cloud_device = device
-            return await self.async_step_search(None)
-
-        device_list = []
+        hub_list = []
+        hub_list.append(SelectOptionDict(value = 'None', label = 'None'))
         for key in self.__cloud_devices.keys():
             device = self.__cloud_devices[key]
             if device[CONF_LOCAL_KEY] == '':
-                device_list.append(SelectOptionDict(value = key, label = f"{device['name']} ({device['product_name']})"))
+                hub_list.append(SelectOptionDict(value = key, label = f"{device['name']} ({device['product_name']})"))
 
-        if len(device_list) == 0:
-            return self.async_abort(reason="no_devices")
+        _LOGGER.debug(f"Hub count: {len(hub_list) - 1}")
 
-        device_selector = SelectSelector(
+        hub_selector = SelectSelector(
             SelectSelectorConfig(
-                options=device_list,
+                options=hub_list,
                 mode=SelectSelectorMode.DROPDOWN)
         )
+
 
         # Build form
         fields: OrderedDict[vol.Marker, Any] = OrderedDict()
         fields[vol.Required('device_id')] = device_selector
+        fields[vol.Required('hub_id')] = hub_selector
 
         return self.async_show_form(
-            step_id="choose_hub",
+            step_id="choose_device",
             data_schema=vol.Schema(fields),
             errors=errors or {},
             last_step=False
@@ -366,7 +362,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             # This scan will take 18s with the default settings. If we cannot find the device we
             # will just leave the IP address blank and hope the user can discover the IP by other
             # means such as router device IP assignments.
-            _LOGGER.debug("Scanning network to get IP address for {self.__cloud_device['id']}.")
+            _LOGGER.debug(f"Scanning network to get IP address for {self.__cloud_device['id']}.")
             self.__cloud_device['ip'] = ''
             device = await self.hass.async_add_executor_job(scan_for_device, self.__cloud_device['id'])
             if device['ip'] is not None:
