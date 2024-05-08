@@ -104,6 +104,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                         return await self.async_step_choose_device(None)
                 except Exception as e:
                     # Re-authentication is needed.
+                    _LOGGER.warning("Connection test failed with %s %s", type(e), e)
                     _LOGGER.warning("Re-authentication is required.")
                 return await self.async_step_cloud(None)
             if user_input['data_mode'] == "manual":
@@ -294,7 +295,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         for key in self.__cloud_devices.keys():
             device = self.__cloud_devices[key]
             if device[CONF_LOCAL_KEY] != '':
-                if device['online'] == True:
+                if device['online']:
                     device_list.append(SelectOptionDict(value = key, label = f"{device['name']} ({device['product_name']})"))
                 else:
                     device_list.append(SelectOptionDict(value = key, label = f"{device['name']} ({device['product_name']}) OFFLINE"))
