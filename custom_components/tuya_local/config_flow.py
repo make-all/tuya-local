@@ -273,13 +273,13 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     async def async_step_choose_device(self, user_input=None):
         errors = {}
         if user_input is not None:
-            device = self.__cloud_devices[user_input['device_id']]
+            device_choice = self.__cloud_devices[user_input['device_id']]
 
-            if device['ip'] != '':
+            if device_choice['ip'] != '':
                 # This is a directly addable device.
                 if user_input['hub_id'] == 'None':
-                    device['ip'] = ''
-                    self.__cloud_device = device
+                    device_choice['ip'] = ''
+                    self.__cloud_device = device_choice
                     return await self.async_step_search(None)
                 else:
                     # Show error if user selected a hub.
@@ -288,12 +288,12 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             else:
                 # This is an indirectly addressable device. Need to know which hub it is connected to.
                 if user_input['hub_id'] != 'None':
-                    hub_device = self.__cloud_devices[user_input['hub_id']]
+                    hub_choice = self.__cloud_devices[user_input['hub_id']]
                     # Populate uuid and local_key from the child device to pass on complete information to the local step.
-                    hub_device['ip'] = ''
-                    hub_device[CONF_DEVICE_CID] = device['uuid']
-                    hub_device[CONF_LOCAL_KEY] = device[CONF_LOCAL_KEY]
-                    self.__cloud_device = hub_device
+                    hub_choice['ip'] = ''
+                    hub_choice[CONF_DEVICE_CID] = device_choice['uuid']
+                    hub_choice[CONF_LOCAL_KEY] = device_choice[CONF_LOCAL_KEY]
+                    self.__cloud_device = hub_choice
                     return await self.async_step_search(None)
                 else:
                     # Show error if user did not select a hub.
@@ -302,12 +302,12 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
         device_list = []
         for key in self.__cloud_devices.keys():
-            device = self.__cloud_devices[key]
-            if device[CONF_LOCAL_KEY] != '':
-                if device['online']:
-                    device_list.append(SelectOptionDict(value = key, label = f"{device['name']} ({device['product_name']})"))
+            device_entry = self.__cloud_devices[key]
+            if device_entry[CONF_LOCAL_KEY] != '':
+                if device_entry['online']:
+                    device_list.append(SelectOptionDict(value = key, label = f"{device_entry['name']} ({device_entry['product_name']})"))
                 else:
-                    device_list.append(SelectOptionDict(value = key, label = f"{device['name']} ({device['product_name']}) OFFLINE"))
+                    device_list.append(SelectOptionDict(value = key, label = f"{device_entry['name']} ({device_entry['product_name']}) OFFLINE"))
 
         _LOGGER.debug(f"Device count: {len(device_list)}")
         if len(device_list) == 0:
@@ -322,9 +322,9 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         hub_list = []
         hub_list.append(SelectOptionDict(value = 'None', label = 'None'))
         for key in self.__cloud_devices.keys():
-            device = self.__cloud_devices[key]
-            if device[CONF_LOCAL_KEY] == '':
-                hub_list.append(SelectOptionDict(value = key, label = f"{device['name']} ({device['product_name']})"))
+            hub_entry = self.__cloud_devices[key]
+            if hub_entry[CONF_LOCAL_KEY] == '':
+                hub_list.append(SelectOptionDict(value = key, label = f"{hub_entry['name']} ({hub_entry['product_name']})"))
 
         _LOGGER.debug(f"Hub count: {len(hub_list) - 1}")
 
@@ -356,13 +356,13 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             # means such as router device IP assignments.
             _LOGGER.debug(f"Scanning network to get IP address for {self.__cloud_device['id']}.")
             self.__cloud_device['ip'] = ''
-            device = await self.hass.async_add_executor_job(scan_for_device, self.__cloud_device['id'])
-            if device['ip'] is not None:
-                _LOGGER.debug(f"Found: {device}")
-                self.__cloud_device['ip'] = device['ip']
-                self.__cloud_device['version'] = device['version']
+            local_device = await self.hass.async_add_executor_job(scan_for_device, self.__cloud_device['id'])
+            if local_device['ip'] is not None:
+                _LOGGER.debug(f"Found: {local_device}")
+                self.__cloud_device['ip'] = local_device['ip']
+                self.__cloud_device['version'] = local_device['version']
             else:
-                _LOGGER.warn("Could not find device: {self.__cloud_device['id']}")
+                _LOGGER.warn(f"Could not find device: {self.__cloud_device['id']}")
             return await self.async_step_local(None)
 
         return self.async_show_form(
