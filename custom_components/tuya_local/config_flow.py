@@ -55,17 +55,6 @@ from .helpers.log import log_json
 
 _LOGGER = logging.getLogger(__name__)
 
-SUPPORTED_MODES = [
-    SelectOptionDict(value="cloud", label="Smart Life cloud-assisted device setup."),
-    SelectOptionDict(value="manual", label="Provide device connection information manually.")
-]
-MODE_SELECTOR = SelectSelector(
-    SelectSelectorConfig(
-        options=SUPPORTED_MODES,
-        mode=SelectSelectorMode.LIST,
-    )
-)
-
 
 class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION = 13
@@ -94,10 +83,9 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         if self.hass.data[DOMAIN].get(DATA_STORE) is None:
             self.hass.data[DOMAIN][DATA_STORE] = {}
         self.__authentication = self.hass.data[DOMAIN][DATA_STORE].get('authentication', None)
-        _LOGGER.debug(f"domain_data = {self.hass.data[DOMAIN]}")
 
         if user_input is not None:
-            if user_input['data_mode'] == "cloud":
+            if user_input['setup_mode'] == "cloud":
                 try:
                     if self.__authentication is not None:
                         self.__cloud_devices = await self.load_device_info()
@@ -107,12 +95,16 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                     _LOGGER.warning("Connection test failed with %s %s", type(e), e)
                     _LOGGER.warning("Re-authentication is required.")
                 return await self.async_step_cloud(None)
-            if user_input['data_mode'] == "manual":
+            if user_input['setup_mode'] == "manual":
                 return await self.async_step_local(None)
 
         # Build form
         fields: OrderedDict[vol.Marker, Any] = OrderedDict()
-        fields[vol.Required('data_mode')] = MODE_SELECTOR
+        fields[vol.Required("setup_mode")] = SelectSelector(
+            SelectSelectorConfig(
+                options = ["cloud", "manual"],
+                mode=SelectSelectorMode.LIST,
+                translation_key="setup_mode"))
 
         return self.async_show_form(
             step_id="user",
