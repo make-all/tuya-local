@@ -131,7 +131,7 @@ secondary_entities:
     class: battery
     dps:
       - id: 53
-        type: boolean
+        type: integer
         name: sensor
         readonly: true
   - entity: sensor
@@ -142,11 +142,8 @@ secondary_entities:
       - id: 101
         type: integer
         name: sensor
-        mapping:
-          - scale: 60
-        unit: min
+        unit: s
         readonly: true
-        precision: 2
   - entity: sensor
     name: Valve 2 last runtime
     class: duration
@@ -155,11 +152,8 @@ secondary_entities:
       - id: 102
         type: integer
         name: sensor
-        mapping:
-          - scale: 60
-        unit: min
+        unit: s
         readonly: true
-        precision: 2
   - entity: sensor
     name: Valve 1 spray time
     category: diagnostic
@@ -168,11 +162,8 @@ secondary_entities:
       - id: 103
         type: integer
         name: sensor
-        mapping:
-          - scale: 60
-        unit: min
+        unit: s
         readonly: true
-        precision: 0
   - entity: sensor
     name: Valve 2 spray time
     category: diagnostic
@@ -181,11 +172,8 @@ secondary_entities:
       - id: 104
         type: integer
         name: sensor
-        mapping:
-          - scale: 60
-        unit: min
+        unit: s
         readonly: true
-        precision: 0
   - entity: sensor
     name: Valve 1 state
     category: diagnostic
