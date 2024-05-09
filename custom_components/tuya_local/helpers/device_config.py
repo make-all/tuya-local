@@ -11,9 +11,10 @@ from numbers import Number
 from os import walk
 from os.path import dirname, exists, join, splitext
 
-import custom_components.tuya_local.devices as config_dir
 from homeassistant.util import slugify
 from homeassistant.util.yaml import load_yaml
+
+import custom_components.tuya_local.devices as config_dir
 
 _LOGGER = logging.getLogger(__name__)
 
