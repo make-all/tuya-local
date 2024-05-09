@@ -66,9 +66,6 @@ primary_entity:
           value: curpointing
         - dps_val: selectroom
           value: selectroom
-    - id: 106
-      name: battery_level
-      type: integer
     - id: 109
       name: fan_speed
       type: string
@@ -200,6 +197,7 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: sensor
+    name: battery_level
     class: battery
     dps:
       - id: 106
