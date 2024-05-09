@@ -1,7 +1,7 @@
 import asyncio
 import logging
-from typing import Any
 from collections import OrderedDict
+from typing import Any
 
 import tinytuya
 import voluptuous as vol
@@ -18,8 +18,6 @@ from homeassistant.helpers.selector import (
     SelectSelectorConfig,
     SelectSelectorMode,
 )
-
-
 from tuya_sharing import (
     CustomerDevice,
     LoginControl,
