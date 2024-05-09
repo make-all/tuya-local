@@ -1,36 +1,9 @@
-﻿{
+{
     "title": "Tuya Local",
     "config": {
         "step": {
             "user": {
-                "title": "Konfigurieren Sie Ihr Tuya Local-Gerät",
-                "description": "Geräte können entweder manuell oder cloudgestützt mit Hilfe der Smart Life App hinzugefügt werden.",
-                "data": {
-                    "setup_mode": "Setup-Auswahl:"
-                }
-            },
-            "cloud": {
-                "title": "Melden Sie sich bei Tuya an",
-                "description": "Geben Sie Ihren Smart Life- oder Tuya Smart-Benutzercode ein.\\n\\nSie finden diesen Code in der Smart Life-App oder Tuya Smart-App im Bildschirm **Einstellungen** \u003e **Konto und Sicherheit** und geben Sie den dort angezeigten Code ein ",
-                "data": {
-                    "user_code": "Benutzercode:"
-                }
-            },
-            "scan": {
-                "title": "Schließen Sie die Anmeldung ab",
-                "description": "Verwenden Sie die Smart Life-App oder die Tuya Smart-App"
-            },
-            "choose_device": {
-                "title": "Wählen Sie das hinzuzufügende Gerät aus",
-                "description": "Bitte wählen Sie das hinzuzufügende Gerät aus der ersten Dropdown-Liste aus. ",
-                "data": {
-                    "device_id": "Gerät auswählen:",
-                    "hub_id": "Gateway wählen:"
-                }
-            },
-            "search": {
-                "title": "Suchen Sie die IP-Adresse des Geräts",
-                "description": "Die Tuya-Cloud stellt keine lokalen IP-Adressen bereit"
+                "title": "Konfigurieren Sie Ihr Tuya Local-Gerät"
             },
             "local": {
                 "title": "Konfigurieren Sie Ihr Tuya Local-Gerät",
@@ -61,21 +34,10 @@
         },
         "abort": {
             "already_configured": "Es wurde bereits ein Gerät mit dieser ID hinzugefügt.",
-            "not_supported": "Dieses Gerät wird leider nicht unterstützt.",
-            "no_devices": "Für das Konto konnten keine nicht registrierten Geräte gefunden werden."
+            "not_supported": "Dieses Gerät wird leider nicht unterstützt."
         },
         "error": {
-            "connection": "Mit diesen Angaben kann keine Verbindung zu Ihrem Gerät hergestellt werden. Es könnte sich um ein intermittierendes Problem handeln, oder die Angaben sind falsch.",
-            "does_not_need_hub": "Das Gerät benötigt kein Gateway und es wurde eines ausgewählt. ",
-            "needs_hub": "Das Gerät benötigt ein Gateway und es wurde keines ausgewählt."
-        }
-    },
-    "selector": {
-        "setup_mode": {
-            "options": {
-                "cloud": "Cloud-gestützte Geräteeinrichtung von Smart Life.",
-                "manual": "Geben Sie manuell Informationen zur Geräteverbindung an."
-            }
+            "connection": "Mit diesen Angaben kann keine Verbindung zu Ihrem Gerät hergestellt werden. Es könnte sich um ein intermittierendes Problem handeln, oder die Angaben sind falsch."
         }
     },
     "options": {
@@ -308,11 +270,6 @@
                     "celsius": "Celsius",
                     "fahrenheit": "Fahrenheit"
                 }
-            }
-        },
-        "sensor": {
-            "time_remaining": {
-                "name": "Verbleibende Zeit"
             }
         },
         "switch": {
