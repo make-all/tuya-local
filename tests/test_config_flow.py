@@ -224,9 +224,9 @@ async def test_migrate_entry(mock_setup, hass):
 
 @pytest.mark.asyncio
 async def test_flow_user_init(hass):
-    """Test the initialisation of the form in the first step of the config flow."""
+    """Test the initialisation of the form in the first page of the manual config flow path."""
     result = await hass.config_entries.flow.async_init(
-        DOMAIN, context={"source": "user"}
+        DOMAIN, context={"source": "local"}
     )
     expected = {
         "data_schema": ANY,
