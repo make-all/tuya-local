@@ -81,10 +81,12 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             self.hass.data[DOMAIN] = {}
         if self.hass.data[DOMAIN].get(DATA_STORE) is None:
             self.hass.data[DOMAIN][DATA_STORE] = {}
-        self.__authentication = self.hass.data[DOMAIN][DATA_STORE].get('authentication', None)
+        self.__authentication = self.hass.data[DOMAIN][DATA_STORE].get(
+            "authentication", None
+        )
 
         if user_input is not None:
-            if user_input['setup_mode'] == "cloud":
+            if user_input["setup_mode"] == "cloud":
                 try:
                     if self.__authentication is not None:
                         self.__cloud_devices = await self.load_device_info()
@@ -94,16 +96,18 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                     _LOGGER.warning("Connection test failed with %s %s", type(e), e)
                     _LOGGER.warning("Re-authentication is required.")
                 return await self.async_step_cloud(None)
-            if user_input['setup_mode'] == "manual":
+            if user_input["setup_mode"] == "manual":
                 return await self.async_step_local(None)
 
         # Build form
         fields: OrderedDict[vol.Marker, Any] = OrderedDict()
         fields[vol.Required("setup_mode")] = SelectSelector(
             SelectSelectorConfig(
-                options = ["cloud", "manual"],
+                options=["cloud", "manual"],
                 mode=SelectSelectorMode.LIST,
-                translation_key="setup_mode"))
+                translation_key="setup_mode",
+            )
+        )
 
         return self.async_show_form(
             step_id="user",
@@ -198,18 +202,18 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
         # Now that we have successfully logged in we can query for devices for the account.
         self.__authentication = {
-            'user_code': info[CONF_TERMINAL_ID],
-            'terminal_id': info[CONF_TERMINAL_ID],
-            'endpoint': info[CONF_ENDPOINT],
-            'token_info': {
+            "user_code": info[CONF_TERMINAL_ID],
+            "terminal_id": info[CONF_TERMINAL_ID],
+            "endpoint": info[CONF_ENDPOINT],
+            "token_info": {
                 "t": info["t"],
                 "uid": info["uid"],
                 "expire_time": info["expire_time"],
                 "access_token": info["access_token"],
                 "refresh_token": info["refresh_token"],
-            }
+            },
         }
-        self.hass.data[DOMAIN][DATA_STORE]['authentication']= self.__authentication
+        self.hass.data[DOMAIN][DATA_STORE]["authentication"] = self.__authentication
         _LOGGER.debug(f"domain_data is {self.hass.data[DOMAIN]}")
 
         self.__cloud_devices = await self.load_device_info()
@@ -220,10 +224,10 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         token_listener = TokenListener(self.hass)
         manager = Manager(
             TUYA_CLIENT_ID,
-            self.__authentication['user_code'],
-            self.__authentication['terminal_id'],
-            self.__authentication['endpoint'],
-            self.__authentication['token_info'],
+            self.__authentication["user_code"],
+            self.__authentication["terminal_id"],
+            self.__authentication["endpoint"],
+            self.__authentication["token_info"],
             token_listener,
         )
 
@@ -241,43 +245,46 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                 # TODO - Use constants throughout
                 "category": device.category,
                 "id": device.id,
-                "ip": device.ip, # This will be the WAN IP address so not usable.
-                CONF_LOCAL_KEY: device.local_key if hasattr(device, CONF_LOCAL_KEY) else '',
+                "ip": device.ip,  # This will be the WAN IP address so not usable.
+                CONF_LOCAL_KEY: device.local_key
+                if hasattr(device, CONF_LOCAL_KEY)
+                else "",
                 "model": device.model,
                 "name": device.name,
-                "node_id": device.node_id if hasattr(device, 'node_id') else '',
+                "node_id": device.node_id if hasattr(device, "node_id") else "",
                 "online": device.online,
                 "product_id": device.product_id,
                 "product_name": device.product_name,
                 "uid": device.uid,
                 "uuid": device.uuid,
-                "support_local": device.support_local, # What does this mean?
+                "support_local": device.support_local,  # What does this mean?
                 CONF_DEVICE_CID: None,
-                "version": None
+                "version": None,
             }
             _LOGGER.debug(f"Found device: {cloud_device}")
 
-            existing_id = domain_data.get(cloud_device['id']) if domain_data else None
-            existing_uuid = domain_data.get(cloud_device['uuid']) if domain_data else None
+            existing_id = domain_data.get(cloud_device["id"]) if domain_data else None
+            existing_uuid = (
+                domain_data.get(cloud_device["uuid"]) if domain_data else None
+            )
             if existing_id or existing_uuid:
                 _LOGGER.debug("Device is already registered.")
                 continue
 
             _LOGGER.debug(f"Adding device: {cloud_device['id']}")
-            cloud_devices[cloud_device['id']] = cloud_device
+            cloud_devices[cloud_device["id"]] = cloud_device
 
         return cloud_devices
-
 
     async def async_step_choose_device(self, user_input=None):
         errors = {}
         if user_input is not None:
-            device_choice = self.__cloud_devices[user_input['device_id']]
+            device_choice = self.__cloud_devices[user_input["device_id"]]
 
-            if device_choice['ip'] != '':
+            if device_choice["ip"] != "":
                 # This is a directly addable device.
-                if user_input['hub_id'] == 'None':
-                    device_choice['ip'] = ''
+                if user_input["hub_id"] == "None":
+                    device_choice["ip"] = ""
                     self.__cloud_device = device_choice
                     return await self.async_step_search(None)
                 else:
@@ -286,11 +293,11 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                     # Fall through to reshow the form.
             else:
                 # This is an indirectly addressable device. Need to know which hub it is connected to.
-                if user_input['hub_id'] != 'None':
-                    hub_choice = self.__cloud_devices[user_input['hub_id']]
+                if user_input["hub_id"] != "None":
+                    hub_choice = self.__cloud_devices[user_input["hub_id"]]
                     # Populate uuid and local_key from the child device to pass on complete information to the local step.
-                    hub_choice['ip'] = ''
-                    hub_choice[CONF_DEVICE_CID] = device_choice['uuid']
+                    hub_choice["ip"] = ""
+                    hub_choice[CONF_DEVICE_CID] = device_choice["uuid"]
                     hub_choice[CONF_LOCAL_KEY] = device_choice[CONF_LOCAL_KEY]
                     self.__cloud_device = hub_choice
                     return await self.async_step_search(None)
@@ -302,73 +309,83 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         device_list = []
         for key in self.__cloud_devices.keys():
             device_entry = self.__cloud_devices[key]
-            if device_entry[CONF_LOCAL_KEY] != '':
-                if device_entry['online']:
-                    device_list.append(SelectOptionDict(value = key, label = f"{device_entry['name']} ({device_entry['product_name']})"))
+            if device_entry[CONF_LOCAL_KEY] != "":
+                if device_entry["online"]:
+                    device_list.append(
+                        SelectOptionDict(
+                            value=key,
+                            label=f"{device_entry['name']} ({device_entry['product_name']})",
+                        )
+                    )
                 else:
-                    device_list.append(SelectOptionDict(value = key, label = f"{device_entry['name']} ({device_entry['product_name']}) OFFLINE"))
+                    device_list.append(
+                        SelectOptionDict(
+                            value=key,
+                            label=f"{device_entry['name']} ({device_entry['product_name']}) OFFLINE",
+                        )
+                    )
 
         _LOGGER.debug(f"Device count: {len(device_list)}")
         if len(device_list) == 0:
             return self.async_abort(reason="no_devices")
 
         device_selector = SelectSelector(
-            SelectSelectorConfig(
-                options=device_list,
-                mode=SelectSelectorMode.DROPDOWN)
+            SelectSelectorConfig(options=device_list, mode=SelectSelectorMode.DROPDOWN)
         )
 
         hub_list = []
-        hub_list.append(SelectOptionDict(value = 'None', label = 'None'))
+        hub_list.append(SelectOptionDict(value="None", label="None"))
         for key in self.__cloud_devices.keys():
             hub_entry = self.__cloud_devices[key]
-            if hub_entry[CONF_LOCAL_KEY] == '':
-                hub_list.append(SelectOptionDict(value = key, label = f"{hub_entry['name']} ({hub_entry['product_name']})"))
+            if hub_entry[CONF_LOCAL_KEY] == "":
+                hub_list.append(
+                    SelectOptionDict(
+                        value=key,
+                        label=f"{hub_entry['name']} ({hub_entry['product_name']})",
+                    )
+                )
 
         _LOGGER.debug(f"Hub count: {len(hub_list) - 1}")
 
         hub_selector = SelectSelector(
-            SelectSelectorConfig(
-                options=hub_list,
-                mode=SelectSelectorMode.DROPDOWN)
+            SelectSelectorConfig(options=hub_list, mode=SelectSelectorMode.DROPDOWN)
         )
-
 
         # Build form
         fields: OrderedDict[vol.Marker, Any] = OrderedDict()
-        fields[vol.Required('device_id')] = device_selector
-        fields[vol.Required('hub_id')] = hub_selector
+        fields[vol.Required("device_id")] = device_selector
+        fields[vol.Required("hub_id")] = hub_selector
 
         return self.async_show_form(
             step_id="choose_device",
             data_schema=vol.Schema(fields),
             errors=errors or {},
-            last_step=False
+            last_step=False,
         )
 
     async def async_step_search(self, user_input=None):
-
         if user_input is not None:
             # Current IP is the WAN IP which is of no use. Need to try and discover to the local IP.
             # This scan will take 18s with the default settings. If we cannot find the device we
             # will just leave the IP address blank and hope the user can discover the IP by other
             # means such as router device IP assignments.
-            _LOGGER.debug(f"Scanning network to get IP address for {self.__cloud_device['id']}.")
-            self.__cloud_device['ip'] = ''
-            local_device = await self.hass.async_add_executor_job(scan_for_device, self.__cloud_device['id'])
-            if local_device['ip'] is not None:
+            _LOGGER.debug(
+                f"Scanning network to get IP address for {self.__cloud_device['id']}."
+            )
+            self.__cloud_device["ip"] = ""
+            local_device = await self.hass.async_add_executor_job(
+                scan_for_device, self.__cloud_device["id"]
+            )
+            if local_device["ip"] is not None:
                 _LOGGER.debug(f"Found: {local_device}")
-                self.__cloud_device['ip'] = local_device['ip']
-                self.__cloud_device['version'] = local_device['version']
+                self.__cloud_device["ip"] = local_device["ip"]
+                self.__cloud_device["version"] = local_device["version"]
             else:
                 _LOGGER.warn(f"Could not find device: {self.__cloud_device['id']}")
             return await self.async_step_local(None)
 
         return self.async_show_form(
-            step_id="search",
-            data_schema=vol.Schema({}),
-            errors={},
-            last_step=False
+            step_id="search", data_schema=vol.Schema({}), errors={}, last_step=False
         )
 
     async def async_step_local(self, user_input=None):
@@ -382,13 +399,13 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
         if self.__cloud_device is not None:
             # We already have some or all of the device settings from the cloud flow. Set them into the defaults.
-            devid_opts = { "default": self.__cloud_device['id'] }
-            host_opts = { "default": self.__cloud_device['ip'] }
-            key_opts = { "default": self.__cloud_device[CONF_LOCAL_KEY] }
-            if self.__cloud_device['version'] is not None:
-                proto_opts = {"default": float(self.__cloud_device['version'])}
+            devid_opts = {"default": self.__cloud_device["id"]}
+            host_opts = {"default": self.__cloud_device["ip"]}
+            key_opts = {"default": self.__cloud_device[CONF_LOCAL_KEY]}
+            if self.__cloud_device["version"] is not None:
+                proto_opts = {"default": float(self.__cloud_device["version"])}
             if self.__cloud_device[CONF_DEVICE_CID] is not None:
-                devcid_opts = { "default": self.__cloud_device[CONF_DEVICE_CID] }
+                devcid_opts = {"default": self.__cloud_device[CONF_DEVICE_CID]}
 
         if user_input is not None:
             self.device = await async_test_connection(user_input, self.hass)
@@ -584,7 +601,7 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
 
 
 def scan_for_device(id):
-    return tinytuya.find_device(dev_id = id)
+    return tinytuya.find_device(dev_id=id)
 
 
 class DeviceListener(SharingDeviceListener):
@@ -622,6 +639,7 @@ class DeviceListener(SharingDeviceListener):
             device_id,
             self.manager.device_map[device_id].status,
         )
+
 
 class TokenListener(SharingTokenListener):
     """Token listener for upstream token updates."""
