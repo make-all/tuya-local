@@ -1,0 +1,176 @@
+name: Positivo Smart KeyPad
+products:
+  - id: bb0nmoax
+    name: Positivo Smart KeyPad
+primary_entity:
+  entity: lock
+  dps:
+    - id: 1
+      type: string
+      name: unlock_method_create
+      optional: true
+    - id: 2
+      type: string
+      name: unlock_method_delete
+      optional: true
+    - id: 3
+      type: string
+      name: unlock_method_modify
+      optional: true
+    - id: 4
+      type: string
+      name: temporary_password_creat
+      optional: true
+    - id: 5
+      type: string
+      name: temporary_password_delete
+      optional: true
+    - id: 6
+      type: string
+      name: temporary_password_modify
+      optional: true
+    - id: 7
+      type: base64
+      name: synch_method
+      optional: true
+    - id: 73
+      type: string
+      name: unlock_password
+      optional: true
+      persist: false
+    - id: 74
+      type: integer
+      name: unlock_dynamic_pwd
+      optional: true
+      persist: false
+secondary_entities:
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 40
+        optional: true
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: unlock_password_kit
+    category: diagnostic
+    dps:
+      - id: 51
+        type: string
+        name: sensor
+        unit: ""
+        optional: true
+  - entity: sensor
+    name: unlock_temporary_kit
+    category: diagnostic
+    dps:
+      - id: 58
+        type: string
+        name: sensor
+        unit: ""
+        optional: true
+  - entity: sensor
+    name: unlock_offline_clear_single
+    category: diagnostic
+    dps:
+      - id: 71
+        type: string
+        name: sensor
+        unit: ""
+        optional: true
+  - entity: sensor
+    name: unlock_offline_clear
+    category: diagnostic
+    dps:
+      - id: 72
+        type: string
+        name: sensor
+        unit: ""
+        optional: true
+  - entity: sensor
+  - entity: sensor
+    name: unlock_offline_pd
+    category: diagnostic
+    dps:
+      - id: 73
+        type: string
+        name: sensor
+        unit: ""
+        optional: true
+  - entity: sensor
+    name: unlock_dynamic
+    category: diagnostic
+    dps:
+      - id: 74
+        type: integer
+        name: sensor
+        unit: ""
+        optional: true
+  - entity: string
+    category: config
+    name: password_offline_time
+    icon: "mdi:lock-clock"
+    dps:
+      - id: 70
+        type: string
+        name: sensor
+        unit: ""
+  - entity: select
+    category: config
+    name: Key Tone
+    icon: "mdi:volume-high"
+    dps:
+      - id: 22
+        name: option
+        type: string
+        optional: true
+        mapping:
+          - dps_val: mute
+            value: mute
+            icon: "mdi:volume-mute"
+          - dps_val: normal
+            value: normal
+            icon: mdi:volume-medium
+  - entity: switch
+    category: config
+    name: Switch Verify Lock
+    dps:
+      - id: 27
+        type: boolean
+        name: switch
+        optional: true
+  - entity: select
+    category: config
+    name: Unlock multiple doors
+    icon: "mdi:volume-high"
+    dps:
+      - id: 28
+        name: option
+        type: string
+        optional: true
+        mapping:
+          - dps_val: single
+            value: single
+          - dps_val: multiple
+            value: multiple
+  - entity: sensor
+    name: Batery State
+    class: enum
+    icon: "mdi:alert"
+    category: diagnostic
+    dps:
+      - id: 41
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: high
+            value: high
+          - dps_val: medium
+            value: medium
+          - dps_val: low
+            value: low
+          - dps_val: power_off
+            value: power_off
