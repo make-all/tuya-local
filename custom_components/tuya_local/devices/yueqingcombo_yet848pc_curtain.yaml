@@ -23,9 +23,16 @@ primary_entity:
       range:
         min: 0
         max: 100
+      mapping:
+        - invert: true
     - id: 3
       name: current_position
       type: integer
+      range:
+        min: 0
+        max: 100
+      mapping:
+        - invert: true
 secondary_entities:
   - entity: select
     name: Motor direction
