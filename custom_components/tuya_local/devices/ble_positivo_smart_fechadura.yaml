@@ -34,9 +34,11 @@ primary_entity:
       persist: false
     - id: 46
       type: boolean
-      name: manual_lock
+      name: lock
       optional: true
-      persist: false
+      mapping:
+        - dps_val: null
+          value_mirror: lock_motor_state
     - id: 47
       type: boolean
       name: lock_motor_state
