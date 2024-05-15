@@ -548,4 +548,5 @@ Further device support has been made with the assistance of users. Please consid
 - [gkwok1](https://github.com/gkwok1) for contributing support for Confortotal mini split air conditioners.
 - [hroussez](https://github.com/hroussez) for contributing ANWIO lightbulb compatibility info.
 - [bdraco](https://github.com/bdraco) for advice on correct use of HA threading/task functions.
-- [sj29fr](https://github.com/sj29fr) for contributing support for Stepuptech SG800 solar inverter
+- [sj29fr](https://github.com/sj29fr) for contributing support for Stepuptech SG800 solar inverter.
+- [wbln](https://github.com/wbln) for contributing support for Tefal X-plorer animal vacuum.
