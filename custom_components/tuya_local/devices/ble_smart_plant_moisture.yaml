@@ -40,3 +40,15 @@ secondary_entities:
         type: integer
         name: sensor
         unit: "%"
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 9
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
