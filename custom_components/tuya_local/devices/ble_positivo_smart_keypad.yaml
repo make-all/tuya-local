@@ -41,6 +41,16 @@ primary_entity:
       type: string
       name: unlock_temporary_kit
       optional: true
+    - id: 60
+      type: string
+      name: alarm_lock
+      readonly: true
+      optional: true
+      mapping:
+        - dps_val: low_battery
+          value: low_battery
+        - dps_val: power_off
+          value: power_off
     - id: 70
       type: string
       name: password_offline_time
@@ -54,7 +64,7 @@ primary_entity:
       optional: true
     - id: 73
       type: string
-      name: unlock_password
+      name: unlock_offline_pwd
       optional: true
       persist: false
     - id: 74
@@ -62,6 +72,10 @@ primary_entity:
       name: unlock_dynamic_pwd
       optional: true
       persist: false
+    - id: 91
+      type: boolean
+      name: message
+      optional: true
 secondary_entities:
   - entity: select
     category: config
