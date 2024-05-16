@@ -34,20 +34,12 @@ primary_entity:
       persist: false
     - id: 46
       type: boolean
-      name: lock
+      name: manual_lock
       optional: true
-      mapping:
-        - dps_val: null
-          value_mirror: lock_motor_state
     - id: 47
       type: boolean
       name: lock_motor_state
       readonly: true
-      mapping:
-        - dps_val: true  # Unlocked
-          value: false
-        - dps_val: false  # Locked
-          value: true
     - id: 54
       type: base64
       name: sync_method

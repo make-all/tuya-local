@@ -33,6 +33,25 @@ primary_entity:
       type: base64
       name: synch_method
       optional: true
+    - id: 51
+      type: string
+      name: unlock_password_kit
+      optional: true
+    - id: 58
+      type: string
+      name: unlock_temporary_kit
+      optional: true
+    - id: 70
+      type: string
+      name: password_offline_time
+    - id: 71
+      type: string
+      name: unlock_offline_clear_single
+      optional: true
+    - id: 72
+      type: string
+      name: unlock_offline_clear
+      optional: true
     - id: 73
       type: string
       name: unlock_password
@@ -44,80 +63,6 @@ primary_entity:
       optional: true
       persist: false
 secondary_entities:
-  - entity: sensor
-    class: battery
-    category: diagnostic
-    dps:
-      - id: 40
-        optional: true
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
-  - entity: sensor
-    name: unlock_password_kit
-    category: diagnostic
-    dps:
-      - id: 51
-        type: string
-        name: sensor
-        unit: ""
-        optional: true
-  - entity: sensor
-    name: unlock_temporary_kit
-    category: diagnostic
-    dps:
-      - id: 58
-        type: string
-        name: sensor
-        unit: ""
-        optional: true
-  - entity: sensor
-    name: unlock_offline_clear_single
-    category: diagnostic
-    dps:
-      - id: 71
-        type: string
-        name: sensor
-        unit: ""
-        optional: true
-  - entity: sensor
-    name: unlock_offline_clear
-    category: diagnostic
-    dps:
-      - id: 72
-        type: string
-        name: sensor
-        unit: ""
-        optional: true
-  - entity: sensor
-  - entity: sensor
-    name: unlock_offline_pd
-    category: diagnostic
-    dps:
-      - id: 73
-        type: string
-        name: sensor
-        unit: ""
-        optional: true
-  - entity: sensor
-    name: unlock_dynamic
-    category: diagnostic
-    dps:
-      - id: 74
-        type: integer
-        name: sensor
-        unit: ""
-        optional: true
-  - entity: string
-    category: config
-    name: password_offline_time
-    icon: "mdi:lock-clock"
-    dps:
-      - id: 70
-        type: string
-        name: sensor
-        unit: ""
   - entity: select
     category: config
     name: Key Tone
@@ -156,6 +101,16 @@ secondary_entities:
             value: single
           - dps_val: multiple
             value: multiple
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 40
+        optional: true
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
   - entity: sensor
     name: Batery State
     class: enum
