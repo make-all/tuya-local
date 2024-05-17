@@ -258,6 +258,16 @@ secondary_entities:
         mapping:
           - mask: "0008"
   - entity: switch
+    name: Adaptive display brightness
+    category: config
+    icon: "mdi:brightness-auto"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - mask: "0080"
+  - entity: switch
     name: Beep
     category: config
     icon: "mdi:access-point"
@@ -276,6 +286,15 @@ secondary_entities:
         name: switch
         mapping:
           - mask: "0020"
+  - entity: switch
+    translation_key: evaporator_cleaning
+    category: config
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mapping:
+          - mask: "0004"
   - entity: switch
     name: Eco mode
     category: config
