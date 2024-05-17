@@ -40,6 +40,8 @@ secondary_entities:
         range:
           min: -400
           max: 1200
+        mapping:
+          - scale: 10
   - entity: number
     name: Low temperature limit
     category: config
@@ -53,6 +55,8 @@ secondary_entities:
         range:
           min: -400
           max: 1200
+        mapping:
+          - scale: 10
   - entity: select
     name: Temperature alarm
     icon: "mdi:thermometer-alert"
@@ -76,6 +80,9 @@ secondary_entities:
       - id: 23
         type: integer
         name: value
+        unit: °
         range:
           min: -100
           max: 100
+        mapping:
+          - scale: 10
