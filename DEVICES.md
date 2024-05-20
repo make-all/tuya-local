@@ -50,6 +50,7 @@
 - Purline Hoti M100 heater
 - Quality Heating QH-GD Elegant Series IR panel heaters
 - Rumba bathroom heater
+- Semptec ZX7007 infrared heater
 - SolAire Vitra S2 panel heater
 - Sonnenkonig Eco 700 IR panel heater (probably also other Eco/Elegance series heaters)
 - Taurus Agadir Connect oil column heaters

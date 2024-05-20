@@ -552,3 +552,4 @@ Further device support has been made with the assistance of users. Please consid
 - [wbln](https://github.com/wbln) for contributing support for Tefal X-plorer animal vacuums.
 - [TroLoos](https://github.com/TroLoos) for contributing support for Pro-Energy PE08 pool heatpumps.
 - [simplelnx](https://github.com/simplelnx) for contributing support for OPK K2 vacuums.
+- [kimhartlev](https://github.com/kimhartlev) for contributing support for Semptec ZX7007 infrared heaters.
