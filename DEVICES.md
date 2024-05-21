@@ -606,6 +606,7 @@ port and password.
 
 - BCom Majic IPBox intercom camera
 - Camnsmart E27-TY camera
+- Door peephole camera
 - Kerui 200W camera
 - Kerui JS-P162 300W camera
 - LSC PTZ camera
