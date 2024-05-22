@@ -50,6 +50,7 @@
 - Purline Hoti M100 heater
 - Quality Heating QH-GD Elegant Series IR panel heaters
 - Rumba bathroom heater
+- Semptec ZX7007 infrared heater
 - SolAire Vitra S2 panel heater
 - Sonnenkonig Eco 700 IR panel heater (probably also other Eco/Elegance series heaters)
 - Taurus Agadir Connect oil column heaters
@@ -110,6 +111,7 @@
 - Madimack Elite V3 pool heatpump (two versions)
 - Madimack(model unknown) pool heatpump (seems to match Fairland IPH45 as well)
 - Poolex Silverline, Q-7, Q-line, Arctic and Vertigo heatpumps
+- Pro-Energy PE08 pool heatpump
 - Remora pool heatpump
 - W'eau pool heatpump (simple model and a more complex 13kW model)
 
@@ -561,6 +563,7 @@ of device.
 - Medion S20 SW vacuum cleaner with mop
 - Mellerware City Move vacuum cleaner
 - Neatsvor X600 vacuum cleaner
+- OPK K2 vacuum cleaner
 - Proscenic M9 vacuum cleaner
 - Rinkmo D2 vacuum cleaner
 - Tefal X-plorer serie 75 animal vacuum 
@@ -603,8 +606,10 @@ port and password.
 
 - BCom Majic IPBox intercom camera
 - Camnsmart E27-TY camera
+- Door peephole camera
 - Kerui 200W camera
 - Kerui JS-P162 300W camera
+- LSC PTZ camera
 - Nedis outdoor camera
 - Pinelake BF02 birdfeeder camera
 - RL video intercom (reported unable to connect)
