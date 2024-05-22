@@ -11,9 +11,9 @@ primary_entity:
       type: string
       mapping:
         - dps_val: auto
-          value: auto
+          value: smart
         - dps_val: manual
-          value: manual
+          value: normal
         - dps_val: sleep
           value: sleep
     - id: 4
@@ -41,14 +41,14 @@ secondary_entities:
       - id: 9
         type: boolean
         name: switch
-  - entity: switch
+  - entity: lock
     translation_key: child_lock
     category: config
     dps:
      - id: 7
        type: boolean
-       name: switch
-  - entity: switch
+       name: lock
+  - entity: light
     translation_key: backlight
     category: config
     dps:
@@ -63,8 +63,7 @@ secondary_entities:
        type: boolean
        name: switch
   - entity: select
-    name: Timer
-    icon: mdi:timer
+    translation_key: timer
     category: config
     dps:
       - id: 18
@@ -113,7 +112,6 @@ secondary_entities:
         - dps_val: difference
           value: Bad
   - entity: sensor
-    transation_key: pm25
     class: pm25
     dps:
      - id: 2
