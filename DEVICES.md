@@ -710,6 +710,7 @@ port and password.
 ### Devices supported via Bluetooth hubs
 
 - Adaprox Fingerbot plus
+- Ailrinni fingerprint door lock
 - Arlec smart button
 - Diivoo WT05 dual water timer
 - Gainsborough Liberty entrance lock
