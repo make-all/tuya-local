@@ -26,7 +26,7 @@
 - Goldair heater models beginning with the code GPPH, GCPV, GECO
 - Hama radiator controller
 - Heatstorm HS-6000-GC heavy duty heater
-- Herschel infrared heater 
+- Herschel infrared heater
 - HJZ oil column radiator
 - Hombli radiator controller
 - INOW Wi-Fi heating element (single and dual air/water temperature control variants)
@@ -196,7 +196,7 @@
 - Deta fan controller
 - Djive ARC humidifying fan
 - Duux Whisper Flex pedestal fan
-- Eglo 5 speed + sleep ceiling fan 
+- Eglo 5 speed + sleep ceiling fan
 - Fanco Eco Silent Deluxe ceiling fan with LED light
 - Goldair GCPF315 fan
 - Goldair Platinum tower fan (2 variants)
@@ -240,6 +240,7 @@
 - Proscenic A9 air purifier
 - Renpho RP-AP001S air purifier
 - Smartmi E1 air purifier
+- Soho SO-350WUI Air Purifier
 - Soleusair A02 and A10 air purifiers
 - Stadler Form Roger air purifier
 - Tesla Smart Pro and Mini air purifiers
@@ -353,7 +354,7 @@
 - V-WIFI-DL02-ES energy consumption clamp meter
 - WDYK 2P63A energy meter
 - WDYK 3 phase 4 pole 400V energy meter circuit breaker
-- Yagusmart 3PN 63A 3-phase eneregy meter 
+- Yagusmart 3PN 63A 3-phase eneregy meter
 - ZM-Wi-Fi smart meter
 
 ### Battery Charger
@@ -566,7 +567,7 @@ of device.
 - OPK K2 vacuum cleaner
 - Proscenic M9 vacuum cleaner
 - Rinkmo D2 vacuum cleaner
-- Tefal X-plorer serie 75 animal vacuum 
+- Tefal X-plorer serie 75 animal vacuum
 - Tesvor S6 vacuum cleaner with mop
 - TTEC Robi Pro vacuum cleaner
 - Ultenic T10 vacuum cleaner
