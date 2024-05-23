@@ -554,3 +554,5 @@ Further device support has been made with the assistance of users. Please consid
 - [simplelnx](https://github.com/simplelnx) for contributing support for OPK K2 vacuums.
 - [kimhartlev](https://github.com/kimhartlev) for contributing support for Semptec ZX7007 infrared heaters.
 - [ebarriosjr](https://github.com/ebarriosjr) for assisting with support for LSC PTZ cameras.
+- [AdrianGarside](https://github.com/AdrianGarside) for contributing support for cloud account linking and device detail lookup.
+- [Netjuggernaut](https://github.com/Netjuggernaut) for assisting with support for Gainsborough Liberty entrance locks.
