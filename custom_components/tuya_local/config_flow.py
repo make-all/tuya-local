@@ -249,7 +249,6 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                 CONF_LOCAL_KEY: device.local_key
                 if hasattr(device, CONF_LOCAL_KEY)
                 else "",
-                "model": device.model,
                 "name": device.name,
                 "node_id": device.node_id if hasattr(device, "node_id") else "",
                 "online": device.online,
