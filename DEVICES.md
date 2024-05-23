@@ -711,6 +711,7 @@ port and password.
 - Adaprox Fingerbot plus
 - Arlec smart button
 - Diivoo WT05 dual water timer
+- Gainsborough Liberty entrance lock
 - HCT-611 water timer
 - HU06 smart lock
 - Ironzon fingerprint lock
