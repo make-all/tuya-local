@@ -558,3 +558,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Netjuggernaut](https://github.com/Netjuggernaut) for assisting with support for Gainsborough Liberty entrance locks.
 - [Onvisoc](https://github.com/Onvisoc) for contributing support for Soho air purifiers.
 - [wlfc2031](https://github.com/wlfc2031) for assisting with support for Ailrinni BLE fingerprint locks.
+- [MerzkayaGnida](https://github.com/MerzkayaGnida) for assisting with support for Koi Duo water heaters.
