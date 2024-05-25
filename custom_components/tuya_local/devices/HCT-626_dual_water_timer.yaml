@@ -1,6 +1,7 @@
 name: Dual water timer
 products:
   - id: smd9kj1n
+    name: HCT-626
 primary_entity:
   entity: valve
   name: Valve 1
@@ -19,9 +20,8 @@ secondary_entities:
         name: valve
   - entity: number
     name: Timer 1
+    translation_key: timer
     category: config
-    class: duration
-    mode: box
     dps:
       - id: 17
         type: integer
@@ -35,9 +35,8 @@ secondary_entities:
         unit: min
   - entity: number
     name: Timer 2
+    translation_key: timer
     category: config
-    class: duration
-    mode: box
     dps:
       - id: 18
         type: integer
@@ -52,14 +51,16 @@ secondary_entities:
   - entity: sensor
     name: Weather delay remaining
     category: diagnostic
+    icon: "mdi:weather-cloudy-clock"
+    class: duration
     dps:
       - id: 42
         type: integer
         name: sensor
-        unit: hour
-        readonly: true
+        unit: h
   - entity: switch
     name: Smart weather delay
+    icon: "mdi:weather-cloudy-clock"
     category: config
     dps:
       - id: 43
@@ -133,7 +134,10 @@ secondary_entities:
       - id: 53
         type: integer
         name: sensor
-        readonly: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
   - entity: sensor
     name: Valve 1 last runtime
     class: duration
@@ -143,7 +147,6 @@ secondary_entities:
         type: integer
         name: sensor
         unit: s
-        readonly: true
   - entity: sensor
     name: Valve 2 last runtime
     class: duration
@@ -153,7 +156,6 @@ secondary_entities:
         type: integer
         name: sensor
         unit: s
-        readonly: true
   - entity: sensor
     name: Valve 1 spray time
     category: diagnostic
@@ -163,7 +165,6 @@ secondary_entities:
         type: integer
         name: sensor
         unit: s
-        readonly: true
   - entity: sensor
     name: Valve 2 spray time
     category: diagnostic
@@ -173,7 +174,6 @@ secondary_entities:
         type: integer
         name: sensor
         unit: s
-        readonly: true
   - entity: sensor
     name: Valve 1 state
     category: diagnostic
@@ -182,7 +182,6 @@ secondary_entities:
       - id: 105
         type: string
         name: sensor
-        readonly: true
         mapping:
           - dps_val: "idle"
             value: "Idle"
@@ -204,7 +203,6 @@ secondary_entities:
       - id: 106
         type: string
         name: sensor
-        readonly: true
         mapping:
           - dps_val: "idle"
             value: "Idle"
