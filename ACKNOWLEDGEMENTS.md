@@ -554,7 +554,7 @@ Further device support has been made with the assistance of users. Please consid
 - [simplelnx](https://github.com/simplelnx) for contributing support for OPK K2 vacuums.
 - [kimhartlev](https://github.com/kimhartlev) for contributing support for Semptec ZX7007 infrared heaters.
 - [ebarriosjr](https://github.com/ebarriosjr) for assisting with support for LSC PTZ cameras.
-- [AdrianGarside](https://github.com/AdrianGarside) for contributing support for cloud account linking and device detail lookup.
+- [AdrianGarside](https://github.com/AdrianGarside) for contributing support for cloud account linking and device detail lookup, and support for HCT-636 dual water timers.
 - [Netjuggernaut](https://github.com/Netjuggernaut) for assisting with support for Gainsborough Liberty entrance locks.
 - [Onvisoc](https://github.com/Onvisoc) for contributing support for Soho air purifiers.
 - [wlfc2031](https://github.com/wlfc2031) for assisting with support for Ailrinni BLE fingerprint locks.
