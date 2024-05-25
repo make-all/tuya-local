@@ -1,4 +1,4 @@
-name: Termostato
+name: Thermostat
 products:
   - id: 5kwgvcaqzzkzrftu
     name: Plikc Neve X W
@@ -13,23 +13,25 @@ primary_entity:
         - dps_val: false
           value: "off"
         - dps_val: true
-          value: heat
+          value: heat_cool
     - id: 2
       type: string
       name: preset_mode
       mapping:
         - dps_val: auto
-          value: home
+          value: program
         - dps_val: manual
-          value: boost
+          value: manual
         - dps_val: temporary
-          value: boost
+          value: temp_override
           hidden: true
         - dps_val: holiday
           value: away
-          constraint: Durata vacanza
+          constraint: holiday_duration
           conditions:
-            - dps_val: 1
+            - dps_val: 0
+              value: "Set holiday duration!"
+              hidden: true
     - id: 3
       type: string
       name: hvac_action
@@ -70,27 +72,27 @@ primary_entity:
         max: 350
       mapping:
         - scale: 10
+    - id: 33
+      type: integer
+      name: holiday_duration
+      hidden: true
 secondary_entities:
   - entity: number
-    name: Calibrazione
-    mode: box
+    name: Temperature calibration
     category: config
     icon: "mdi:thermometer-check"
     dps:
       - id: 27
         type: integer
         name: value
-        unit: °C
+        unit: °
         range:
           min: -30
           max: 30
         mapping:
           - scale: 10
-            step: 1
   - entity: number
-    name: Durata vacanza
-    mode: box
-    force: true
+    name: Holiday duration
     category: config
     icon: "mdi:calendar-range"
     dps:
@@ -110,7 +112,6 @@ secondary_entities:
         type: boolean
         name: button
         optional: true
-        persist: false
   - entity: lock
     translation_key: child_lock
     category: config
@@ -123,7 +124,7 @@ secondary_entities:
           - dps_val: null
             value: false
   - entity: sensor
-    name: Tempo rimanente
+    translation_key: time_remaining
     class: duration
     category: diagnostic
     dps:
