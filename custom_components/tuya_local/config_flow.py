@@ -372,9 +372,13 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                 f"Scanning network to get IP address for {self.__cloud_device['id']}."
             )
             self.__cloud_device["ip"] = ""
-            local_device = await self.hass.async_add_executor_job(
-                scan_for_device, self.__cloud_device["id"]
-            )
+            try:
+                local_device = await self.hass.async_add_executor_job(
+                    scan_for_device, self.__cloud_device["id"]
+                )
+            except OSError:
+                local_device = {"ip": None, "version": ""}
+
             if local_device["ip"] is not None:
                 _LOGGER.debug(f"Found: {local_device}")
                 self.__cloud_device["ip"] = local_device["ip"]
