@@ -1,9 +1,9 @@
-name: IPS heatpump
+name: IPS Inverter Heatpump
 primary_entity:
   entity: climate
   dps:
     - id: 1
-      name: hvac_mode
+      name: power
       type: boolean
       mapping:
         - dps_val: false
@@ -11,9 +11,44 @@ primary_entity:
           icon: "mdi:hvac-off"
           icon_priority: 1
         - dps_val: true
-          value: "heat"
+          value: "on"
+          icon: "mdi:hvac-on"
+          icon_priority: 1
+      hidden: true
+    - id: 105
+      name: hvac_mode
+      type: string
+      mapping:
+        - dps_val: smart
+          icon: "mdi:refresh-auto"
+          icon_priority: 1
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+              value: "off"
+            - dps_val: true
+              value: heat_cool
+        - dps_val: cool
+          icon: "mdi:snowflake"
+          icon_priority: 2
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+              value: "off"
+            - dps_val: true
+              value: cool
+        - dps_val: warm
           icon: "mdi:hot-tub"
           icon_priority: 3
+          constraint: power
+          conditions:
+            - dps_val: false
+              value_redirect: power
+              value: "off"
+            - dps_val: true
+              value: heat
     - id: 2
       name: preset_mode
       type: string
@@ -22,7 +57,7 @@ primary_entity:
           value: sleep
         - dps_val: "smart"
           value: comfort
-        - dps_val: "turbo"
+        - dps_val: "booster"
           value: boost
     - id: 102
       name: current_temperature
@@ -49,26 +84,14 @@ primary_entity:
     - id: 106
       name: temperature
       type: integer
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: false
-              range:
-                min: 60
-                max: 115
-            - dps_val: true
-              range:
-                min: 18
-                max: 40
-      range:
-        min: 18
-        max: 45
     - id: 107
       type: integer
       name: min_temperature
+      readonly: true
     - id: 108
       type: integer
       name: max_temperature
+      readonly: true
     - id: 115
       type: bitfield
       name: error
@@ -97,6 +120,7 @@ secondary_entities:
         type: integer
         unit: "%"
         class: measurement
+        readonly: true
   - entity: sensor
     class: power
     category: diagnostic
