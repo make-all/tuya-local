@@ -1,4 +1,4 @@
-name: IPS Inverter Heatpump
+name: IPS Heatpump
 primary_entity:
   entity: climate
   dps:
@@ -87,11 +87,9 @@ primary_entity:
     - id: 107
       type: integer
       name: min_temperature
-      readonly: true
     - id: 108
       type: integer
       name: max_temperature
-      readonly: true
     - id: 115
       type: bitfield
       name: error
@@ -120,7 +118,6 @@ secondary_entities:
         type: integer
         unit: "%"
         class: measurement
-        readonly: true
   - entity: sensor
     class: power
     category: diagnostic
