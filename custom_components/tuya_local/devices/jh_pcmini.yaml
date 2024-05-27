@@ -10,17 +10,23 @@ primary_entity:
       type: boolean
       name: switch
 secondary_entities:
-  - entity: select
+  - entity: button
     name: Reset
-    icon: "mdi:restart"
+    icon: mdi:restart
     dps:
       - id: 101
+        name: button
         type: string
-        name: option
         mapping:
-          - dps_val: "0"
-            value: "-"
-          - dps_val: "Reset"
-            value: "Reset"
-          - dps_val: "forceReset"
-            value: "Force Reset"
+          - dps_val: Reset
+            value: true
+  - entity: button
+    name: Force reset
+    icon: mdi:restart-alert
+    dps:
+      - id: 101
+        name: button
+        type: string
+        mapping:
+          - dps_val: forceReset
+            value: true
