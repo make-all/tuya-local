@@ -42,17 +42,6 @@ primary_entity:
           value: F
         - dps_val: true
           value: C
-    - id: 105
-      name: hvac_action
-      type: string
-      mapping:
-        - dps_val: warm
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: idle
     - id: 106
       name: temperature
       type: integer
@@ -71,7 +60,6 @@ primary_entity:
         - dps_val: 4
           value: Water Flow Protection
           icon: "mdi:water-pump-off"
-          icon_priority: 2
     - id: 116
       type: bitfield
       name: error_2
