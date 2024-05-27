@@ -4,6 +4,36 @@
         "step": {
             "user": {
                 "title": "Configura il tuo dispositivo Tuya Local",
+                "description": "I dispositivi possono essere aggiunti manualmente o tramite cloud con l'aiuto dell'app Smart Life.",
+                "data": {
+                    "setup_mode": "Scelta dell'impostazione:"
+                }
+            },
+            "cloud": {
+                "title": "Accedi a Tuya",
+                "description": "Inserisci il tuo codice utente Smart Life o Tuya Smart.\n\nPuoi trovare questo codice nell'app Smart Life o nell'app Tuya Smart nella schermata **Impostazioni** > **Account e sicurezza** e inserisci il codice mostrato nella schermata ",
+                "data": {
+                    "user_code": "Codice utente:"
+                }
+            },
+            "scan": {
+                "title": "Completa il login",
+                "description": "Utilizza l'app Smart Life o l'app Tuya Smart per scansionare il seguente codice QR per completare l'accesso.\n\nContinua al passaggio successivo una volta completato questo passaggio nell'app."
+            },
+            "choose_device": {
+                "title": "Scegli il dispositivo da aggiungere",
+                "description": "Scegli il dispositivo da aggiungere dal primo elenco a discesa. ",
+                "data": {
+                    "device_id": "Scegli dispositivo:",
+                    "hub_id": "Scegli gateway:"
+                }
+            },
+            "search": {
+                "title": "Individuare l'indirizzo IP del dispositivo",
+                "description": "Tuya cloud non fornisce indirizzi IP locali quindi ora dobbiamo cercare nella rete locale per trovare il dispositivo. "
+            },
+            "local": {
+                "title": "Configura il tuo dispositivo Tuya Local",
                 "description": "[Segui queste istruzioni per trovare 'device id' e 'local key'.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "Indirizzo IP o nome host",
@@ -31,10 +61,21 @@
         },
         "abort": {
             "already_configured": "E' già presente un dispositivo con l'ID inserito.",
-            "not_supported": "Spiacente, il dispositivo non è supportato."
+            "not_supported": "Spiacente, il dispositivo non è supportato.",
+            "no_devices": "Impossibile trovare dispositivi non registrati per l'account."
         },
         "error": {
-            "connection": "Impossibile connettersi al dispositivo. Può trattarsi di un problema temporaneo, oppure le informazioni fornite potrebbero non essere corrette."
+            "connection": "Impossibile connettersi al dispositivo. Può trattarsi di un problema temporaneo, oppure le informazioni fornite potrebbero non essere corrette.",
+            "does_not_need_hub": "Il dispositivo non necessita di un gateway e ne è stato selezionato uno. ",
+            "needs_hub": "Il dispositivo necessita di un gateway e non ne è stato selezionato nessuno."
+        }
+    },
+    "selector": {
+        "setup_mode": {
+            "options": {
+                "cloud": "Configurazione del dispositivo Smart Life assistita da cloud.",
+                "manual": "Fornire manualmente le informazioni sulla connessione del dispositivo."
+            }
         }
     },
     "options": {
@@ -278,8 +319,14 @@
             "anti_frost": {
                 "name": "Antigelo"
             },
+            "evaporator_cleaning": {
+                "name": "Pulizia evaporatore"
+            },
             "ionizer": {
                 "name": "Ionizzatore"
+            },
+            "keytone": {
+                "name": "tono dei tasti"
             },
             "uv_sterilization": {
                 "name": "Sterilizzazione UV"

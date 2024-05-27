@@ -4,6 +4,36 @@
         "step": {
             "user": {
                 "title": "Konfigurasikan perangkat Tuya Local Anda",
+                "description": "Perangkat dapat ditambahkan secara manual atau dibantu cloud dengan bantuan aplikasi Smart Life.",
+                "data": {
+                    "setup_mode": "Pilihan pengaturan:"
+                }
+            },
+            "cloud": {
+                "title": "Masuk ke Tuya",
+                "description": "Masukkan kode pengguna Smart Life atau Tuya Smart Anda.\n\nAnda dapat menemukan kode ini di aplikasi Smart Life atau aplikasi Tuya Smart di layar **Setelan** > **Akun dan Keamanan**",
+                "data": {
+                    "user_code": "Kode pengguna:"
+                }
+            },
+            "scan": {
+                "title": "Selesaikan login",
+                "description": "Gunakan aplikasi Smart Life atau aplikasi Tuya Smart untuk memindai kode QR berikut untuk menyelesaikan login.\n\nLanjutkan ke langkah berikutnya setelah Anda menyelesaikan langkah ini di aplikasi."
+            },
+            "choose_device": {
+                "title": "Pilih perangkat yang akan ditambahkan",
+                "description": "Silakan pilih perangkat yang akan ditambahkan dari daftar drop-down pertama. ",
+                "data": {
+                    "device_id": "Pilih perangkat:",
+                    "hub_id": "Pilih gerbang:"
+                }
+            },
+            "search": {
+                "title": "Temukan alamat IP perangkat",
+                "description": "Tuya cloud tidak menyediakan alamat IP lokal jadi sekarang kami harus mencari di jaringan lokal Anda untuk menemukan perangkat. "
+            },
+            "local": {
+                "title": "Konfigurasikan perangkat Tuya Local Anda",
                 "description": "[Ikuti petunjuk ini untuk menemukan ID perangkat dan kunci lokal.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "Alamat IP atau nama hos",
@@ -31,10 +61,21 @@
         },
         "abort": {
             "already_configured": "Perangkat dengan ID tersebut pernah ditambahkan.",
-            "not_supported": "Maaf, perangkat ini belum didukung."
+            "not_supported": "Maaf, perangkat ini belum didukung.",
+            "no_devices": "Tidak dapat menemukan perangkat yang tidak terdaftar untuk akun tersebut."
         },
         "error": {
-            "connection": "Tidak dapat terkoneksi ke perangkat tersebut. Bisa jadi sementara, atau ada kesalahan."
+            "connection": "Tidak dapat terkoneksi ke perangkat tersebut. Bisa jadi sementara, atau ada kesalahan.",
+            "does_not_need_hub": "Perangkat tidak memerlukan gateway dan satu telah dipilih. ",
+            "needs_hub": "Perangkat memerlukan gateway dan tidak ada yang dipilih."
+        }
+    },
+    "selector": {
+        "setup_mode": {
+            "options": {
+                "cloud": "Penyiapan perangkat berbantuan cloud Smart Life.",
+                "manual": "Berikan informasi koneksi perangkat secara manual."
+            }
         }
     },
     "options": {
@@ -278,8 +319,14 @@
             "anti_frost": {
                 "name": "Anti beku"
             },
+            "evaporator_cleaning": {
+                "name": "Pembersihan evaporator"
+            },
             "ionizer": {
                 "name": "Pengion"
+            },
+            "keytone": {
+                "name": "Nada tombol"
             },
             "uv_sterilization": {
                 "name": "Sterilisasi UV"

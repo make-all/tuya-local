@@ -14,7 +14,7 @@ from homeassistant.const import (
     EVENT_HOMEASSISTANT_STARTED,
     EVENT_HOMEASSISTANT_STOP,
 )
-from homeassistant.core import HomeAssistant
+from homeassistant.core import HomeAssistant, callback
 
 from .const import (
     API_PROTOCOL_VERSIONS,
@@ -138,15 +138,14 @@ class TuyaLocalDevice(object):
         """Return True if the device has returned some state."""
         return len(self._get_cached_state()) > 1
 
+    @callback
     def actually_start(self, event=None):
         _LOGGER.debug("Starting monitor loop for %s", self.name)
         self._running = True
         self._shutdown_listener = self._hass.bus.async_listen_once(
             EVENT_HOMEASSISTANT_STOP, self.async_stop
         )
-        self._refresh_task = asyncio.run_coroutine_threadsafe(
-            self.receive_loop(), self._hass.loop
-        )
+        self._refresh_task = self._hass.async_create_task(self.receive_loop())
 
     def start(self):
         if self._hass.is_stopping:

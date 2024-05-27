@@ -4,6 +4,36 @@
         "step": {
             "user": {
                 "title": "Configure your Tuya Local device",
+                "description": "Devices can either be added manually or cloud-assisted with the help of the Smart Life app.",
+                "data": {
+                    "setup_mode": "Setup choice:"
+                }
+            },
+            "cloud": {
+                "title": "Login to Tuya",
+                "description": "Enter your Smart Life or Tuya Smart user code.\n\nYou can find this code in the Smart Life app or Tuya Smart app in **Settings** > **Account and Security** screen, and enter the code shown on the **User Code** field. The user code is case sensitive, please be sure to enter it exactly as shown in the app.",
+                "data": {
+                    "user_code": "User code:"
+                }
+            },
+            "scan": {
+                "title": "Complete the login",
+                "description": "Use Smart Life app or Tuya Smart app to scan the following QR-code to complete the login.\n\nContinue to the next step once you have completed this step in the app."
+            },
+            "choose_device": {
+                "title": "Choose the device to add",
+                "description": "Please pick the device to add from the first drop-down list. Already added devices are not shown.\n\nIf the device connects through a gateway, select that from the gateway list otherwise choose None.",
+                "data": {
+                    "device_id": "Choose device:",
+                    "hub_id": "Choose gateway:"
+                }
+            },
+            "search": {
+                "title": "Locate the device IP address",
+                "description": "Tuya cloud does not provide local IP addresses so we must now search your local network to find the device. This takes up to 20 seconds.\n\nIf unsuccessful you will need to provide the IP address yourself some other way such as from router DHCP assignment.\n\nFor this step and the following device addition to succeed you must shut down the mobile app or its connections to the device will often block Tuya Local communication with them."
+            },
+            "local": {
+                "title": "Configure your Tuya Local device",
                 "description": "[Follow these instructions to find your device id and local key.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "IP address or hostname",
@@ -31,10 +61,21 @@
         },
         "abort": {
             "already_configured": "A device with that ID has already been added.",
-            "not_supported": "Sorry, there is no support for this device."
+            "not_supported": "Sorry, there is no support for this device.",
+            "no_devices": "Unable to find any unregistered devices for the account."
         },
         "error": {
-            "connection": "Unable to connect to your device with those details. It could be an intermittent issue, or they may be incorrect."
+            "connection": "Unable to connect to your device with those details. It could be an intermittent issue, or they may be incorrect.",
+            "does_not_need_hub": "Device does not need a gateway and one was selected. Please review your choices.",
+            "needs_hub": "Device needs a gateway and none was selected."
+        }
+    },
+    "selector": {
+        "setup_mode": {
+            "options": {
+                "cloud": "Smart Life cloud-assisted device setup.",
+                "manual": "Manually provide device connection information."
+            }
         }
     },
     "options": {
@@ -193,11 +234,11 @@
                 "state_attributes": {
                     "preset_mode": {
                         "state": {
-                            "normal": "Normal",
-                            "nature": "Natural",
-                            "sleep": "Sleep",
                             "baby": "Baby",
                             "fresh": "Fresh",
+                            "nature": "Natural",
+                            "normal": "Normal",
+                            "sleep": "Sleep",
                             "smart": "Smart",
                             "strong": "Strong",
                             "displayoff": "Display off",
@@ -278,8 +319,14 @@
             "anti_frost": {
                 "name": "Anti-frost"
             },
+            "evaporator_cleaning": {
+                "name": "Evaporator cleaning"
+            },
             "ionizer": {
                 "name": "Ionizer"
+            },
+            "keytone": {
+                "name": "Keytone"
             },
             "uv_sterilization": {
                 "name": "UV sterilization"

@@ -4,6 +4,36 @@
         "step": {
             "user": {
                 "title": "Állítsd be a helyi Tuya eszközöd",
+                "description": "Az eszközök manuálisan vagy felhőben is hozzáadhatók a Smart Life alkalmazás segítségével.",
+                "data": {
+                    "setup_mode": "Beállítás választás:"
+                }
+            },
+            "cloud": {
+                "title": "Jelentkezzen be Tuyába",
+                "description": "Adja meg Smart Life vagy Tuya Smart felhasználói kódját.\n\nEzt a kódot a Smart Life alkalmazásban vagy a Tuya Smart alkalmazásban találja meg a **Beállítások** > **Fiók és biztonság** képernyőn",
+                "data": {
+                    "user_code": "Felhasználói kód:"
+                }
+            },
+            "scan": {
+                "title": "Töltse ki a bejelentkezést",
+                "description": "Használja a Smart Life alkalmazást vagy a Tuya Smart alkalmazást a következő QR-kód beolvasásához a bejelentkezés befejezéséhez.\n\nHa befejezte ezt a lépést az alkalmazásban"
+            },
+            "choose_device": {
+                "title": "Válassza ki a hozzáadni kívánt eszközt",
+                "description": "Kérjük",
+                "data": {
+                    "device_id": "Válasszon eszközt:",
+                    "hub_id": "Válasszon átjárót:"
+                }
+            },
+            "search": {
+                "title": "Keresse meg az eszköz IP-címét",
+                "description": "A Tuya felhő nem biztosít helyi IP-címeket"
+            },
+            "local": {
+                "title": "Állítsd be a helyi Tuya eszközöd",
                 "description": "[Kövesd ezeket az utasításokat, hogy megtaláld az eszköz azonosítóját (device_id) és a helyi kulcsot (local_key).](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "IP cím vagy állomásnév",
@@ -12,7 +42,6 @@
                     "protocol_version": "Protokol verzió (hagyd auto-n, ha nem tudod)",
                     "poll_only": "Csak olvasás (próbáld ki ezt, ha az eszköz nem működik rendesen)",
                     "device_cid": "Aleszköz azonosító (átjárón keresztül használt eszközök esetén)"
-                    
                 }
             },
             "select_type": {
@@ -32,10 +61,21 @@
         },
         "abort": {
             "already_configured": "Ezzel az azonosítóval már lett hozzáadva eszköz.",
-            "not_supported": "Sajnálom, ez az eszköz nem támogatott."
+            "not_supported": "Sajnálom, ez az eszköz nem támogatott.",
+            "no_devices": "Nem található a fiókhoz nem regisztrált eszköz."
         },
         "error": {
-            "connection": "A megadott adatokkal nem sikerült kapcsolódni az eszközhöz. Lehet ideiglenes a probléma, vagy nem megfelelőek a megadott adatok."
+            "connection": "A megadott adatokkal nem sikerült kapcsolódni az eszközhöz. Lehet ideiglenes a probléma, vagy nem megfelelőek a megadott adatok.",
+            "does_not_need_hub": "Az eszköznek nincs szüksége átjáróra",
+            "needs_hub": "Az eszköznek átjáróra van szüksége"
+        }
+    },
+    "selector": {
+        "setup_mode": {
+            "options": {
+                "cloud": "Smart Life felhő által támogatott eszközbeállítás.",
+                "manual": "Adja meg manuálisan az eszköz csatlakozási adatait."
+            }
         }
     },
     "options": {
@@ -201,6 +241,7 @@
                             "fresh": "Friss",
                             "smart": "Okos",
                             "strong": "Erős",
+                            "displayoff": "Kijelző kikapcsolva",
                             "off": "Ki"
                         }
                     }
@@ -278,8 +319,14 @@
             "anti_frost": {
                 "name": "Fagyálló"
             },
+            "evaporator_cleaning": {
+                "name": "Elpárologtató tisztítása"
+            },
             "ionizer": {
                 "name": "Ionizáló"
+            },
+            "keytone": {
+                "name": "Billentyűhang"
             },
             "uv_sterilization": {
                 "name": "UV sterilizálás"

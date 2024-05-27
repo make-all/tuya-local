@@ -4,6 +4,36 @@
         "step": {
             "user": {
                 "title": "Nastavte sve lokální zařízení",
+                "description": "Zařízení lze přidávat ručně nebo pomocí cloudové podpory pomocí aplikace Smart Life.",
+                "data": {
+                    "setup_mode": "Možnost nastavení:"
+                }
+            },
+            "cloud": {
+                "title": "Přihlaste se do Tuya",
+                "description": "Zadejte svůj uživatelský kód Smart Life nebo Tuya Smart.\n\nTento kód najdete v aplikaci Smart Life nebo Tuya Smart na obrazovce **Nastavení** > **Účet a zabezpečení** a zadejte kód zobrazený na ",
+                "data": {
+                    "user_code": "Uživatelský kód:"
+                }
+            },
+            "scan": {
+                "title": "Dokončete přihlášení",
+                "description": "Pomocí aplikace Smart Life nebo Tuya Smart naskenujte následující QR kód a dokončete přihlášení.\n\nPo dokončení tohoto kroku v aplikaci pokračujte k dalšímu kroku."
+            },
+            "choose_device": {
+                "title": "Vyberte zařízení",
+                "description": "Vyberte zařízení",
+                "data": {
+                    "device_id": "Vyberte zařízení:",
+                    "hub_id": "Vyberte bránu:"
+                }
+            },
+            "search": {
+                "title": "Najděte IP adresu zařízení",
+                "description": "Cloud Tuya neposkytuje místní IP adresy"
+            },
+            "local": {
+                "title": "Nastavte sve lokální zařízení",
                 "description": "[Postupujte podle tohoto návodu pro získaní identifikátoru zařízení (device_id) a lokálního klíče (local_key).](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "IP adresa nebo název hostitele (hostname)",
@@ -31,10 +61,21 @@
         },
         "abort": {
             "already_configured": "Zařízení s identifikátorem, který již byl přidán.",
-            "not_supported": "Omlouváme se, toto zažízení není podporováno."
+            "not_supported": "Omlouváme se, toto zažízení není podporováno.",
+            "no_devices": "Nelze najít žádná neregistrovaná zařízení pro účet."
         },
         "error": {
-            "connection": "Není možné připojit se k zařízené s těmito údaji. Může se jednat o dočasný problém, nebo zadané údaje nejsou správné."
+            "connection": "Není možné připojit se k zařízené s těmito údaji. Může se jednat o dočasný problém, nebo zadané údaje nejsou správné.",
+            "does_not_need_hub": "Zařízení nepotřebuje bránu a byla vybrána. ",
+            "needs_hub": "Zařízení potřebuje bránu a žádná nebyla vybrána."
+        }
+    },
+    "selector": {
+        "setup_mode": {
+            "options": {
+                "cloud": "Nastavení zařízení pomocí cloudu Smart Life.",
+                "manual": "Ručně zadejte informace o připojení zařízení."
+            }
         }
     },
     "options": {
@@ -278,8 +319,14 @@
             "anti_frost": {
                 "name": "Proti mrazu"
             },
+            "evaporator_cleaning": {
+                "name": "Čištění výparníku"
+            },
             "ionizer": {
                 "name": "Ionizátor"
+            },
+            "keytone": {
+                "name": "Tón kláves"
             },
             "uv_sterilization": {
                 "name": "UV sterilizace"

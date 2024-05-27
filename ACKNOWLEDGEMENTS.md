@@ -462,7 +462,7 @@ Further device support has been made with the assistance of users. Please consid
 - [wholly1971](https://github.com/wholly1971) for assisting with support for Madimack Eco pool heatpumps.
 - [rbrtwillis](https://github.com/rbrtwillis) for assisting with support for Inkbird IHC-200 humidity controllers.
 - [vojeroen](https://github.com/vojeroen) for contributing support for CleanAir 605B humidifiers.
-- [fantnhu](https://github.com/fantnhu) for assisting with support for Tesla aroma diffusers and PNI water feeders.
+- [fantnhu](https://github.com/fantnhu) for assisting with support for Tesla aroma diffusers, PNI water feeders and door peephole cameras.
 - [sudo-nitz](https://github.com/sudo-nitz) for assisting with support for Yagusmart 3PN 63A energy meter.
 - [jedubois](https://github.com/jedubois) for assisting with support for Taurus Agadir oil column heaters.
 - [debdalerichard](https://github.com/debdalerichard) for assisting with support for Weekett kettles.
@@ -547,3 +547,15 @@ Further device support has been made with the assistance of users. Please consid
 - [jan-gerard](https://github.com/jan-gerard) for contributing support for Eurom Sani towel rails.
 - [gkwok1](https://github.com/gkwok1) for contributing support for Confortotal mini split air conditioners.
 - [hroussez](https://github.com/hroussez) for contributing ANWIO lightbulb compatibility info.
+- [bdraco](https://github.com/bdraco) for advice on correct use of HA threading/task functions.
+- [sj29fr](https://github.com/sj29fr) for contributing support for Stepuptech SG800 solar inverters.
+- [wbln](https://github.com/wbln) for contributing support for Tefal X-plorer animal vacuums.
+- [TroLoos](https://github.com/TroLoos) for contributing support for Pro-Energy PE08 pool heatpumps.
+- [simplelnx](https://github.com/simplelnx) for contributing support for OPK K2 vacuums.
+- [kimhartlev](https://github.com/kimhartlev) for contributing support for Semptec ZX7007 infrared heaters.
+- [ebarriosjr](https://github.com/ebarriosjr) for assisting with support for LSC PTZ cameras.
+- [AdrianGarside](https://github.com/AdrianGarside) for contributing support for cloud account linking and device detail lookup, and support for HCT-636 dual water timers.
+- [Netjuggernaut](https://github.com/Netjuggernaut) for assisting with support for Gainsborough Liberty entrance locks.
+- [Onvisoc](https://github.com/Onvisoc) for contributing support for Soho air purifiers.
+- [wlfc2031](https://github.com/wlfc2031) for assisting with support for Ailrinni BLE fingerprint locks.
+- [MerzkayaGnida](https://github.com/MerzkayaGnida) for assisting with support for Koi Duo water heaters.

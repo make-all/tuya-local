@@ -4,6 +4,36 @@
         "step": {
             "user": {
                 "title": "Konfigurer din lokale Tuya enhet",
+                "description": "Enheter kan enten legges til manuelt eller skyassistert ved hjelp av Smart Life-appen.",
+                "data": {
+                    "setup_mode": "Oppsettvalg:"
+                }
+            },
+            "cloud": {
+                "title": "Logg inn på Tuya",
+                "description": "Skriv inn Smart Life- eller Tuya Smart-brukerkoden din.\n\nDu finner denne koden i Smart Life-appen eller Tuya Smart-appen i **Innstillinger** > **Konto og sikkerhet**-skjermbildet",
+                "data": {
+                    "user_code": "Brukerkode:"
+                }
+            },
+            "scan": {
+                "title": "Fullfør påloggingen",
+                "description": "Bruk Smart Life-appen eller Tuya Smart-appen for å skanne følgende QR-kode for å fullføre påloggingen.\n\nFortsett til neste trinn når du har fullført dette trinnet i appen."
+            },
+            "choose_device": {
+                "title": "Velg enheten du vil legge til",
+                "description": "Velg enheten du vil legge til fra den første rullegardinlisten. ",
+                "data": {
+                    "device_id": "Velg enhet:",
+                    "hub_id": "Velg gateway:"
+                }
+            },
+            "search": {
+                "title": "Finn enhetens IP-adresse",
+                "description": "Tuya cloud gir ikke lokale IP-adresser"
+            },
+            "local": {
+                "title": "Konfigurer din lokale Tuya enhet",
                 "description": "[Følg instruksjonene her for å finne enhets-id og den lokale nøkkelen.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "IP addresse eller vertsnavn",
@@ -31,10 +61,21 @@
         },
         "abort": {
             "already_configured": "En enhet med denne ID-en eksisterer allerede.",
-            "not_supported": "Beklager, det er ingen støtte for denne enheten."
+            "not_supported": "Beklager, det er ingen støtte for denne enheten.",
+            "no_devices": "Kan ikke finne noen uregistrerte enheter for kontoen."
         },
         "error": {
-            "connection": "Kunne ikke koble til enheten med de angitte detaljene. Det kan være en midlertidig feil, eller feil med detaljene angitt."
+            "connection": "Kunne ikke koble til enheten med de angitte detaljene. Det kan være en midlertidig feil, eller feil med detaljene angitt.",
+            "does_not_need_hub": "Enheten trenger ikke en gateway",
+            "needs_hub": "Enheten trenger en gateway"
+        }
+    },
+    "selector": {
+        "setup_mode": {
+            "options": {
+                "cloud": "Smart Life sky-assistert enhetsoppsett.",
+                "manual": "Oppgi informasjon om enhetstilkobling manuelt."
+            }
         }
     },
     "options": {
@@ -196,10 +237,26 @@
                             "normal": "Normal",
                             "nature": "Nøytral",
                             "sleep": "Søvn",
+                            "baby": "Baby",
                             "fresh": "Fresh",
                             "smart": "Smart",
                             "strong": "Sterk",
+                            "displayoff": "Skjerm av",
                             "off": "Av"
+                        }
+                    }
+                }
+            },
+            "ventilation": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "fresh": "Frisk luft",
+                            "circulate": "Sirkulere",
+                            "sleep": "Sove",
+                            "auto": "Auto",
+                            "eco": "Øko",
+                            "anti-condensation": "Anti-kondens"
                         }
                     }
                 }
@@ -262,8 +319,14 @@
             "anti_frost": {
                 "name": "Anti-frost"
             },
+            "evaporator_cleaning": {
+                "name": "Rengjøring av fordamper"
+            },
             "ionizer": {
                 "name": "Ionisator"
+            },
+            "keytone" : {
+                "name": "Tastaturtone"
             },
             "uv_sterilization": {
                 "name": "UV-sterilisering"

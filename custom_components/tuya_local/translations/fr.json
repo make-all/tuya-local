@@ -4,6 +4,36 @@
         "step": {
             "user": {
                 "title": "Configurer votre appareil Tuya Local",
+                "description": "Les appareils peuvent être ajoutés manuellement ou assistés par le cloud à l'aide de l'application Smart Life.",
+                "data": {
+                    "setup_mode": "Choix de configuration :"
+                }
+            },
+            "cloud": {
+                "title": "Connectez-vous à Tuya",
+                "description": "Saisissez votre code utilisateur Smart Life ou Tuya Smart.\n\nVous pouvez trouver ce code dans l'application Smart Life ou Tuya Smart dans l'écran **Paramètres** > **Compte et sécurité**",
+                "data": {
+                    "user_code": "Code d'utilisateur:"
+                }
+            },
+            "scan": {
+                "title": "Complétez la connexion",
+                "description": "Utilisez l'application Smart Life ou l'application Tuya Smart pour scanner le code QR suivant afin de terminer la connexion.\n\nContinuez à l'étape suivante une fois que vous avez terminé cette étape dans l'application."
+            },
+            "choose_device": {
+                "title": "Choisissez l'appareil à ajouter",
+                "description": "Veuillez sélectionner l'appareil à ajouter dans la première liste déroulante. ",
+                "data": {
+                    "device_id": "Choisissez l'appareil :",
+                    "hub_id": "Choisissez la passerelle :"
+                }
+            },
+            "search": {
+                "title": "Localisez l'adresse IP de l'appareil",
+                "description": "Tuya cloud ne fournit pas d'adresses IP locales"
+            },
+            "local": {
+                "title": "Configurer votre appareil Tuya Local",
                 "description": "[Suivre ces instructions pour trouver le 'device id' et la 'local key'.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "Adresse IP ou Nom d'hote",
@@ -31,10 +61,21 @@
         },
         "abort": {
             "already_configured": "Un appareil avec cet ID a déjà été ajouté.",
-            "not_supported": "Désolé, il n'y a pas de support pour cet appareil."
+            "not_supported": "Désolé, il n'y a pas de support pour cet appareil.",
+            "no_devices": "Impossible de trouver des appareils non enregistrés pour le compte."
         },
         "error": {
-            "connection": "Impossible de se connecter à votre appareil avec ces réglages. Il peut s'agir d'un problème intermittent ou les réglages sont incorrects."
+            "connection": "Impossible de se connecter à votre appareil avec ces réglages. Il peut s'agir d'un problème intermittent ou les réglages sont incorrects.",
+            "does_not_need_hub": "L'appareil n'a pas besoin de passerelle et une a été sélectionnée. ",
+            "needs_hub": "L'appareil a besoin d'une passerelle et aucune n'a été sélectionnée."
+        }
+    },
+    "selector": {
+        "setup_mode": {
+            "options": {
+                "cloud": "Configuration de l'appareil assistée par le cloud Smart Life.",
+                "manual": "Fournissez manuellement les informations de connexion de l’appareil."
+            }
         }
     },
     "options": {
@@ -188,6 +229,39 @@
                 }
             }
         },
+        "fan": {
+            "fan_with_presets": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "normal": "Normale",
+                            "nature": "Naturel",
+                            "sleep": "Dormir",
+                            "baby": "Bébé",
+                            "fresh": "Frais",
+                            "smart": "Intelligent",
+                            "strong": "Fort",
+                            "displayoff": "Affichage désactivé",
+                            "off": "Désactivé"
+                        }
+                    }
+                }
+            },
+            "ventilation": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "fresh": "Air frais",
+                            "circulate": "Circuler",
+                            "sleep": "Dormir",
+                            "auto": "Auto",
+                            "eco": "Écologique",
+                            "anti-condensation": "Anti-condensation"
+                        }
+                    }
+                }
+            }
+        },
         "light": {
             "backlight": {
                 "name": "Rétroéclairage"
@@ -245,8 +319,14 @@
             "anti_frost": {
                 "name": "Anti-gel"
             },
+            "evaporator_cleaning": {
+                "name": "Nettoyage évaporateur"
+            },
             "ionizer": {
                 "name": "Ioniseur"
+            },
+            "keytone": {
+                "name": "Tonalité des touches"
             },
             "uv_sterilization": {
                 "name": "Stérilisation UV"
