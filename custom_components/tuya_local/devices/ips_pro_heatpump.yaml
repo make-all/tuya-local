@@ -46,13 +46,27 @@ primary_entity:
       name: hvac_action
       type: string
       mapping:
+        - dps_val: smart
+          constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: auto
+        - dps_val: cool
+          constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: cooling
         - dps_val: warm
           constraint: hvac_mode
           conditions:
             - dps_val: false
               value: "off"
             - dps_val: true
-              value: idle
+              value: heating
     - id: 106
       name: temperature
       type: integer
