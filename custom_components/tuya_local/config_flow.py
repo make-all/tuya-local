@@ -54,6 +54,21 @@ from .helpers.log import log_json
 
 _LOGGER = logging.getLogger(__name__)
 
+HUB_CATEGORIES = [
+    "wgsxj",
+    "lyqwg",
+    "bywg",
+    "zigbee",
+    "wg2",
+    "dgnzk",
+    "videohub",
+    "xnwg",
+    "qtyycp",
+    "alexa_yywg",
+    "gywg",
+    "cnwg",
+]
+
 
 class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION = 13
@@ -336,7 +351,10 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         hub_list.append(SelectOptionDict(value="None", label="None"))
         for key in self.__cloud_devices.keys():
             hub_entry = self.__cloud_devices[key]
-            if hub_entry[CONF_LOCAL_KEY] == "":
+            if (
+                hub_entry[CONF_LOCAL_KEY] == ""
+                or hub_entry["category"] in HUB_CATEGORIES
+            ):
                 hub_list.append(
                     SelectOptionDict(
                         value=key,
