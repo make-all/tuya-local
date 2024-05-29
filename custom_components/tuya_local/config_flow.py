@@ -55,18 +55,19 @@ from .helpers.log import log_json
 _LOGGER = logging.getLogger(__name__)
 
 HUB_CATEGORIES = [
-    "wgsxj",
-    "lyqwg",
-    "bywg",
-    "zigbee",
-    "wg2",
-    "dgnzk",
-    "videohub",
-    "xnwg",
-    "qtyycp",
-    "alexa_yywg",
-    "gywg",
-    "cnwg",
+    "wgsxj",  # Gateway camera
+    "lyqwg",  # Router
+    "bywg",  # IoT edge gateway
+    "zigbee",  # Gateway
+    "wg2",  # Gateway
+    "dgnzk",  # Multi-function controller
+    "videohub",  # Videohub
+    "xnwg",  # Virtual gateway
+    "qtyycp",  # Voice gateway composite solution
+    "alexa_yywg",  # Gateway with Alexa
+    "gywg",  # Industrial gateway
+    "cnwg",  # Energy gateway
+    "wnykq",  # Smart IR
 ]
 
 
