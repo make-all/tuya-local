@@ -562,3 +562,4 @@ Further device support has been made with the assistance of users. Please consid
 - [rostKo](https://github.com/rostKo) for contributing improvements to WDYK energy monitors.
 - [Aegeontis](https://github.com/Aegeontis) for contributing Puppy Kitty compatibility for Catit Pixi smart feeder.
 - [chris-garbas](https://github.com/chris-garbas) for contributing improvements to IPS pro heatpump.
+- [Nyotee](https://github.com/Nyotee) for assisting with support for Tesla AUX series air conditioner.
