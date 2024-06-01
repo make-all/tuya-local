@@ -727,6 +727,7 @@ port and password.
 - SGS01 plant sensor
 - Smart Ape solar garden light
 - TH05 temperature and humidity sensor
+- XCase NX-4964 lock box
 - YSG BS01 lock
 - Generic water timers (confirmed with Johgee, Diivoo and Royal Gardineer branded devices)
 
