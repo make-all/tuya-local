@@ -1,4 +1,4 @@
-name: IPS Heatpump
+name: IPS heatpump
 primary_entity:
   entity: climate
   dps:
@@ -42,31 +42,6 @@ primary_entity:
           value: F
         - dps_val: true
           value: C
-    - id: 105
-      name: hvac_action
-      type: string
-      mapping:
-        - dps_val: smart
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: auto
-        - dps_val: cool
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: cooling
-        - dps_val: warm
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: heating
     - id: 106
       name: temperature
       type: integer
