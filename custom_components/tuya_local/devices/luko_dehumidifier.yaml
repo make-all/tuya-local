@@ -34,7 +34,6 @@ primary_entity:
         - step: 5
 secondary_entities:
   - entity: fan
-    name: Fan
     dps:
       - id: 1
         name: switch
@@ -60,7 +59,7 @@ secondary_entities:
         name: sensor
         type: integer
         unit: "C"
-        class: measurement
+        class: temperature
         readonly: true
         mapping:
           - scale: 10
