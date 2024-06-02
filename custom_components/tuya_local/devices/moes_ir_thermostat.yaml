@@ -27,7 +27,6 @@ primary_entity:
     - id: 2
       name: current_temperature
       type: integer
-      unit: C
       mapping:
         - scale: 10
     - id: 3
@@ -53,18 +52,18 @@ primary_entity:
           value: high
         - dps_val: auto
           value: auto
-    # - id: 9
-    #   name: target_temperature_high
-    #   type: integer
-    #   range:
-    #     min: 16
-    #     max: 30
-    # - id: 10
-    #   name: target_temperature_low
-    #   type: integer
-    #   range:
-    #     min: 16
-    #     max: 30
+    - id: 9
+      name: max_temperature
+      type: integer
+      range:
+        min: 16
+        max: 30
+    - id: 10
+      name: min_temperature
+      type: integer
+      range:
+        min: 16
+        max: 30
     - id: 12
       name: current_humidity
       type: integer
@@ -72,14 +71,22 @@ primary_entity:
       range:
         max: 100
         min: 0
+    - id: 15
+      type: string
+      name: scene
+    - id: 16
+      type: string
+      name: status
 secondary_entities:
-  - entity: switch
-    name: power
-    dps:
-      - id: 1
-        type: boolean
-        name: infared_switch
+# Doesn't seem to be usefull on this device
+#   - entity: switch
+#     name: power
+#     dps:
+#       - id: 1
+#         type: boolean
+#         name: infared_switch
   - entity: sensor
+    name: Temperature
     class: temperature
     dps:
       - id: 2
@@ -103,15 +110,19 @@ secondary_entities:
             value: serious_fault
           - dps_val: 1
             value: sensor_fault
-  - entity: switch
+  - entity: button
     name: Filter reset
+    class: restart
     category: config
     dps:
       - id: 7
         type: boolean
-        name: filter_reset
+        optional: true
+        name: button
   - entity: sensor
-    name: filter life
+    name: Filter life
+    class: duration
+    category: diagnostic
     dps:
       - id: 8
         type: integer
@@ -121,7 +132,20 @@ secondary_entities:
         range:
           max: 720
           min: 0
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 11
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
   - entity: sensor
+    name: Humidity
     class: humidity
     dps:
       - id: 12
@@ -133,7 +157,9 @@ secondary_entities:
           max: 100
           min: 0
   - entity: sensor
-    name: runtime
+    name: Running time
+    class: duration
+    category: diagnostic
     dps:
       - id: 18
         type: integer
@@ -143,3 +169,41 @@ secondary_entities:
         range:
           max: 999999
           min: 0
+  - entity: switch
+    name: Internet connection
+    category: config
+    dps:
+      - id: 19
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: true
+            value: false
+            icon: "mdi:lan-disconnect"
+          - dps_val: false
+            value: true
+            icon: "mdi:lan-connect"
+          - dps_val: null
+            hidden: true
+            value: true
+            icon: "mdi:lan-connect"
+  - entity: button
+    name: Run time reset
+    class: restart
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        optional: true
+        name: button
+  - entity: remote
+    dps:
+      - id: 201
+        name: send
+        type: string
+      - id: 202
+        name: receive
+        type: string
+        optional: true
+        persist: false
