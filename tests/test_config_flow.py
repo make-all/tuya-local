@@ -566,7 +566,7 @@ async def test_options_flow_init(hass):
 
 @pytest.mark.asyncio
 @patch("custom_components.tuya_local.config_flow.async_test_connection")
-async def test_options_flow_modifies_config(mock_test, hass):
+async def test_options_flow_modifies_config(mock_test, hass, bypass_setup):
     mock_device = MagicMock()
     mock_test.return_value = mock_device
 
