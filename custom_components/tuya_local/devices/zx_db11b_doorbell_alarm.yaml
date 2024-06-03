@@ -206,8 +206,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: light
-    name: Status indicator
-    icon: "mdi:led-on"
+    translation_key: indicator
     category: config
     dps:
       - id: 11
@@ -264,7 +263,7 @@ secondary_entities:
     category: diagnostic
     dps:
       - id: 26
-        type: boolean
+        type: string
         name: sensor
         optional: true
         persist: false
@@ -272,6 +271,11 @@ secondary_entities:
           - dps_val: null
             value: false
           - value: true
+      - id: 26
+        type: string
+        name: alarm_msg
+        optional: true
+        persist: false
   - entity: switch
     name: Doorbell notify
     icon: "mdi:bell-badge"

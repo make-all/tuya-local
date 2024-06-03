@@ -171,7 +171,6 @@ KNOWN_DPS = {
     "climate": {
         "required": [],
         "optional": [
-            "aux_heat",
             "current_temperature",
             "current_humidity",
             "fan_mode",

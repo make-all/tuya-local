@@ -1,7 +1,7 @@
 name: Ecostrad radiator
 primary_entity:
   entity: climate
-  icon: "mdi:radiator"
+  translation_only_key: heater
   dps:
     - id: 1
       type: boolean
@@ -30,6 +30,7 @@ primary_entity:
     - id: 16
       type: integer
       name: temperature
+      unit: C
       range:
         min: 70
         max: 300
@@ -109,7 +110,7 @@ secondary_entities:
       - id: 27
         type: integer
         name: value
-        unit: C
+        unit: °
         range:
           min: -5
           max: 5

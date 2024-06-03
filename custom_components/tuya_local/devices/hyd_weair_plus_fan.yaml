@@ -63,6 +63,7 @@ primary_entity:
     - id: 9
       name: temperature
       type: integer
+      unit: C
       range:
         min: 1
         max: 30
@@ -105,7 +106,7 @@ secondary_entities:
           - dps_val: "8"
             value: "8 hours"
   - entity: sensor
-    name: Time remaining
+    translation_key: time_remaining
     class: "duration"
     dps:
       - id: 12
@@ -135,7 +136,7 @@ secondary_entities:
           - dps_val: "4"
             value: "4"
   - entity: switch
-    name: UV sterilization
+    translation_key: uv_sterilization
     dps:
       - id: 107
         type: boolean

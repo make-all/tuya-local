@@ -67,17 +67,6 @@ secondary_entities:
           - dps_val: "high"
             value: 100
   - entity: sensor
-    name: Current humidity
-    deprecated: humidifier
-    category: diagnostic
-    class: humidity
-    dps:
-      - id: 6
-        type: integer
-        name: sensor
-        class: measurement
-        unit: "%"
-  - entity: sensor
     class: temperature
     dps:
       - id: 7
@@ -104,8 +93,7 @@ secondary_entities:
             value: false
           - value: true
   - entity: switch
-    name: Ionizer
-    icon: "mdi:leaf"
+    translation_key: ionizer
     dps:
       - id: 101
         type: boolean

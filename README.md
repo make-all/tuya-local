@@ -112,10 +112,21 @@ After installing, you can easily configure your devices using the Integrations c
 [![Add Integration to your Home Assistant
 instance.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=tuya_local)
 
+### Choose your configuration path
+
+There are two options for configuring a device:
+- You can login to Tuya cloud with the Smart Life app and retrieve a list of devices and the necessary local connection data.
+- You can provide all the necessary information manually [as per the instructions below](#finding-your-device-id-and-local-key).
+
+The first choice essentially automates all the manual steps of the second and without needing to create a Tuya IOT developer account. This is especially important now that Tuya has started time limiting access to a key data access capability in the IOT developer portal to only a month with the ability to refresh the trial of that only every 6 months.
+
+The cloud assisted choice will guide you through authenticating, choosing a device to add from the list of devices associated with your Smart Life account, locate the device on your local subnet and then drop you into [Stage One](#stage-one) with fully populated data necessary to move forward to [Stage Two](#stage-two).
+
+Then Smart Life authentication token expires after a small number of hours and so is not saved by the integration. But, as long as you don't restart Home Assistant, this allows you to add multiple devices one after another only needing to authenticate once for the first one.
+
 ### Stage One
 
-The first stage of configuration is to provide the information needed to
-connect to the device.
+The first stage of configuration is to provide the information needed to connect to the device.
 
 You will need to provide your device's IP address or hostname, device
 ID and local key; the last two can be found using [the instructions
@@ -164,7 +175,9 @@ at least a partial match to the data returned by the device.
 Select from the available options.
 
 If you pick the wrong type, you will need to delete the device and set
-it up again.
+it up again. This is because different types of devices create different
+entities, so changing the device type without deleting everything is
+not easy.
 
 ### Stage Three
 
@@ -181,30 +194,13 @@ Assistant.  Although Home Assistant allows you to change the name
 later, it will only change the name used in the UI, not the name of
 the entities.
 
-#### (entities)
-
-&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Additional options
-may be available for deprecated entities exposed by the device.
-They will be named for the platform type and an optional name for
-the entity as a suffix (eg `climate`, `humidifier`, `lock_child_lock`)
-Setting them to True will expose the entity in Home Assistant.
-
-It is strongly recommended that you do not enable deprecated entities when
-setting up a new device.  They are only retained for users who set up the
-device before support was added for the actual entity matching the device,
-or when a function was misunderstood, and will not be retained forever.
-
-As of 0.18.0, there are no longer any deprecated entities, but they
-may be reintroduced in future if better representations of existing
-devices emerge again.
-
-## Offline operation gotchas
+## Offline operation issues
 
 Many Tuya devices will stop responding if unable to connect to the
 Tuya servers for an extended period.  Reportedly, some devices act
 better offline if DNS as well as TCP connections is blocked.
 
-## General gotchas
+## General issues
 
 Many Tuya devices do not handle multiple commands sent in quick
 succession.  Some will reboot, possibly changing state in the process,
@@ -230,7 +226,7 @@ time, so you may need to experiment with your automations to see
 whether a single command or multiple commands (with delays, see above)
 work best with your devices.
 
-## Heater gotchas
+## Heater issues
 
 Goldair GPPH heaters have individual target temperatures for their
 Comfort and Eco modes, whereas Home Assistant only supports a single
@@ -273,7 +269,7 @@ The Inkbird thermostat switch does not seem to work for setting
 anything.  If you can figure out how to make setting temperatures and
 presets work, please leave feedback in Issue #19.
 
-## Fan gotchas
+## Fan issues
 
 Reportedly, Goldair fans can be a bit flaky. If they become
 unresponsive, give them about 60 seconds to wake up again.
@@ -283,7 +279,7 @@ work. If you can figure out how to set the speed through the Tuya
 protocol for these devices, please leave feedback on Issue #22.
 
 
-## Smart Switch gotchas
+## Smart Switch issues
 
 It has been observed after a while that the current and
 power readings from the switch were returning 0 when there was clearly
@@ -307,14 +303,14 @@ helper - the [Riemann integral](https://www.home-assistant.io/integrations/integ
 Select `power` of switch as the sensor for it. The result of the integral will be
 calculated in `(k/M/G/T)W*h` and will correspond to the consumed energy.
 
-## Kogan Kettle gotchas
+## Kogan Kettle issues
 
 Although these look like simple devices, their behaviour is not
 consistent so they are difficult to detect.  Sometimes they are
 misdetected as a simple switch, other times they only output the
 temperature sensor so are not detected at all.
 
-## Beca thermostat gotchas
+## Beca thermostat issues
 
 Some of these devices support switching between Celcius and Fahrenheit
 on the control panel, but do not provide any information over the Tuya
@@ -329,7 +325,7 @@ config for the temperature units you use.  If you change the units on the
 device control panel, you will need to delete the device from Home Assistant
 and set it up again.
 
-## Saswell C16 thermostat gotchas
+## Saswell C16 thermostat issues
 
 These support configuration as either heating or cooling controllers, but
 only have one output.  The HVAC mode is provided as an indicator of which

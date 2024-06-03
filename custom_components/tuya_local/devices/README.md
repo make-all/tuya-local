@@ -556,7 +556,6 @@ from the camera.
 **NOTE**: tuya-local does not directly support video streaming from cameras.  Some cameras provide ONVIF or WebRTC compliant streams locally which you can use the relevant integrations to capture, others may be cloud-only.
 
 ### `climate`
-- **aux_heat** (optional, boolean, DEPRECATED) a dp to control the aux heat switch if the device has one. Note this is being deprecated by HA and no longer accessible from the UI since HA 2023.9, though the deprecation announcement is yet to be made as of 2023.11. It is recommended not to use this, and instead use an separate switch entity.
 - **current_temperature** (optional, number) a dp that reports the current temperature.
 - **current_humidity** (optional, number) a dp that reports the current humidity (%).
 - **fan_mode** (optional, mapping of strings) a dp to control the fan mode if available.
@@ -647,6 +646,7 @@ no information will be available about which specific credential was used to unl
 - **unlock_offline_pwd** (optional, integer): a dp to identify the offline password used to unlock the lock.
 - **unlock_card** (optional, integer): a dp to identify the card used to unlock the lock.
 - **unlock_app** (optional, integer): a dp to identify the app used to unlock the lock.
+- **unlock_face** (optional, integer): a dp to identify the face used to unlock the lock.
 - **unlock_key** (optional, integer): a dp to identify the key used to unlock the lock.
 - **unlock_ble** (optional, integer): a dp to identify the BLE device used to unlock the lock.
 - **unlock_voice** (optional, integer): a dp to identify the voice assistant user used to unlock the lock.

@@ -109,14 +109,9 @@ secondary_entities:
         optional: true
         force: true
   - entity: light
-    name: "Backlight"
+    translation_key: backlight
     category: config
     dps:
       - id: 16
         name: switch
         type: boolean
-        mapping:
-          - dps_val: true
-            icon: "mdi:lightbulb-on"
-          - dps_val: false
-            icon: "mdi:lightbulb-outline"

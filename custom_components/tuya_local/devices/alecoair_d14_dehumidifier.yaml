@@ -77,23 +77,11 @@ secondary_entities:
               - dps_val: sleep
                 invalid: true
   - entity: switch
-    name: Ionizer
-    icon: "mdi:creation"
+    translation_key: ionizer
     dps:
       - id: 10
         type: boolean
         name: switch
-  - entity: sensor
-    name: Current humidity
-    deprecated: humidifier
-    category: diagnostic
-    class: humidity
-    dps:
-      - id: 16
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
   - entity: binary_sensor
     translation_key: tank_full
     category: diagnostic

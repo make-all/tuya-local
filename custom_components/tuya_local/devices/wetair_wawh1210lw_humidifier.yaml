@@ -37,18 +37,12 @@ primary_entity:
       name: unknown_22
 secondary_entities:
   - entity: light
-    name: Display
+    translation_key: display
     category: config
     dps:
       - id: 5
         type: boolean
         name: switch
-        mapping:
-          - dps_val: true
-            icon: "mdi:led-on"
-          - dps_val: false
-            icon: "mdi:led-off"
-
   - entity: switch
     name: Sound
     category: config
@@ -61,18 +55,6 @@ secondary_entities:
             icon: "mdi:volume-high"
           - dps_val: false
             icon: "mdi:volume-off"
-
-  - entity: sensor
-    name: Current humidity
-    deprecated: humidifier
-    category: diagnostic
-    class: humidity
-    dps:
-      - id: 14
-        name: sensor
-        type: integer
-        class: measurement
-        unit: "%"
 
   - entity: sensor
     name: Water level
@@ -94,8 +76,7 @@ secondary_entities:
             value: 100
 
   - entity: switch
-    name: Ionizer
-    icon: "mdi:creation"
+    translation_key: ionizer
     dps:
       - id: 25
         name: switch

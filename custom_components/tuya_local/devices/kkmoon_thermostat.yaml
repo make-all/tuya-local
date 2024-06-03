@@ -1,0 +1,162 @@
+name: Thermostat
+products:
+  - id: ixmi1hbw0omzpbjy
+    name: KKMoon Knob thermostat
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: auto
+              value: auto
+            - dps_val: manual
+              value: heat
+    - id: 2
+      type: string
+      name: mode
+      hidden: true
+    - id: 3
+      type: string
+      name: hvac_action
+      mapping:
+        - constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              mapping:
+                - dps_val: open
+                  value: heating
+                - dps_val: close
+                  value: idle
+    - id: 16
+      type: integer
+      name: temperature
+      unit: C
+      range:
+        min: 50
+        max: 450
+      mapping:
+        - scale: 10
+          step: 5
+    - id: 24
+      type: integer
+      name: current_temperature
+      mapping:
+        - scale: 10
+    - id: 71
+      type: string
+      optional: true
+      name: schedule
+secondary_entities:
+  - entity: number
+    name: Temperature correction
+    category: config
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 27
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: -9
+          max: 9
+  - entity: valve
+    class: water
+    category: diagnostic
+    dps:
+      - id: 36
+        type: string
+        name: valve
+        readonly: true
+        mapping:
+          - dps_val: open
+            value: true
+          - dps_val: close
+            value: false
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 44
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 100
+  - entity: sensor
+    name: Floor temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: select
+    name: Temperature sensor
+    icon: "mdi:home-thermometer"
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: IN
+            value: Internal
+          - dps_val: OU
+            value: Floor
+          - dps_val: AL
+            value: Both
+  - entity: number
+    name: Temperature hysteresis
+    category: config
+    icon: "mdi:thermometer-plus"
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: 0
+          max: 5
+  - entity: number
+    name: Overheat protection limit
+    category: config
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 100
+          max: 700
+        mapping:
+          - scale: 10
+            step: 10
+  - entity: number
+    name: Anti-frost protection limit
+    category: config
+    icon: "mdi:snowflake-thermometer"
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - scale: 10
+            step: 10

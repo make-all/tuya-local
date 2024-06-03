@@ -50,6 +50,8 @@ secondary_entities:
         range:
           min: -400
           max: 1200
+        mapping:
+          - scale: 10
   - entity: number
     name: Low temperature limit
     category: config
@@ -63,6 +65,8 @@ secondary_entities:
         range:
           min: -400
           max: 1200
+        mapping:
+          - scale: 10
   - entity: number
     name: High humidity limit
     category: config
@@ -74,7 +78,9 @@ secondary_entities:
         unit: "%"
         range:
           min: 0
-          max: 100
+          max: 1000
+        mapping:
+          - scale: 10
   - entity: number
     name: Low humidity limit
     category: config
@@ -86,7 +92,9 @@ secondary_entities:
         unit: "%"
         range:
           min: 0
-          max: 100
+          max: 1000
+        mapping:
+          - scale: 10
   - entity: select
     name: Temperature alarm
     icon: "mdi:thermometer-alert"
@@ -125,9 +133,12 @@ secondary_entities:
       - id: 23
         type: integer
         name: value
+        unit: °
         range:
           min: -100
           max: 100
+        mapping:
+          - scale: 10
   - entity: number
     name: Humidity calibration
     category: config
@@ -136,6 +147,9 @@ secondary_entities:
       - id: 24
         type: integer
         name: value
+        unit: "%"
         range:
-          min: -10
-          max: 10
+          min: -100
+          max: 100
+        mapping:
+          - scale: 10

@@ -6,6 +6,7 @@ products:
     name: Atomi AT1635
 primary_entity:
   entity: climate
+  translation_only_key: heater
   dps:
     - id: 1
       type: boolean
@@ -47,7 +48,7 @@ primary_entity:
           value: horizontal
 secondary_entities:
   - entity: light
-    name: Display
+    translation_key: display
     category: config
     dps:
       - id: 10
@@ -88,7 +89,7 @@ secondary_entities:
           - dps_val: "12h"
             value: "12 hours"
   - entity: sensor
-    name: Timer remain
+    translation_key: time_remaining
     class: duration
     category: diagnostic
     dps:

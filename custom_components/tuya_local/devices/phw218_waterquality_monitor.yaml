@@ -35,6 +35,7 @@ secondary_entities:
         name: sensor
         class: measurement
         unit: mV
+        optional: true
   - entity: sensor
     name: Electrical conductivity
     icon: "mdi:omega"
@@ -44,6 +45,7 @@ secondary_entities:
         name: sensor
         class: measurement
         unit: µS/cm
+        optional: true
   - entity: sensor
     name: Total dissolved solids
     icon: "mdi:water-opacity"
@@ -53,6 +55,7 @@ secondary_entities:
         name: sensor
         class: measurement
         unit: ppm
+        optional: true
   - entity: sensor
     name: Salinity
     icon: "mdi:shaker"
@@ -62,6 +65,7 @@ secondary_entities:
         name: sensor
         class: measurement
         unit: ppm
+        optional: true
   - entity: sensor
     name: Specific gravity
     icon: "mdi:weight"
@@ -70,6 +74,7 @@ secondary_entities:
         type: integer
         name: sensor
         class: measurement
+        optional: true
         mapping:
           - scale: 1000
   - entity: sensor
@@ -80,6 +85,7 @@ secondary_entities:
         type: integer
         name: sensor
         class: measurement
+        optional: true
         mapping:
           - scale: 100
   - entity: sensor
@@ -99,6 +105,7 @@ secondary_entities:
         type: integer
         name: value
         unit: C
+        optional: true
         range:
           min: 0
           max: 50
@@ -111,6 +118,7 @@ secondary_entities:
         type: integer
         name: value
         unit: C
+        optional: true
         range:
           min: 0
           max: 50
@@ -122,6 +130,7 @@ secondary_entities:
       - id: 107
         type: integer
         name: value
+        optional: true
         range:
           min: 0
           max: 1500
@@ -135,6 +144,7 @@ secondary_entities:
       - id: 108
         type: integer
         name: value
+        optional: true
         range:
           min: 0
           max: 1500
@@ -149,6 +159,7 @@ secondary_entities:
         type: integer
         name: value
         unit: ppm
+        optional: true
         range:
           min: 0
           max: 199999
@@ -161,6 +172,7 @@ secondary_entities:
         type: integer
         name: value
         unit: ppm
+        optional: true
         range:
           min: 0
           max: 199999
@@ -173,6 +185,7 @@ secondary_entities:
         type: integer
         name: value
         unit: µS/cm
+        optional: true
         range:
           min: 0
           max: 199999
@@ -185,6 +198,7 @@ secondary_entities:
         type: integer
         name: value
         unit: µS/cm
+        optional: true
         range:
           min: 0
           max: 199999
@@ -197,6 +211,7 @@ secondary_entities:
         type: integer
         name: value
         unit: ppm
+        optional: true
         range:
           min: 0
           max: 199999
@@ -209,6 +224,7 @@ secondary_entities:
         type: integer
         name: value
         unit: ppm
+        optional: true
         range:
           min: 0
           max: 199999
@@ -221,6 +237,7 @@ secondary_entities:
         type: integer
         name: value
         unit: mV
+        optional: true
         range:
           min: -2000
           max: 2000
@@ -233,6 +250,7 @@ secondary_entities:
         type: integer
         name: value
         unit: mV
+        optional: true
         range:
           min: -2000
           max: 2000
@@ -244,6 +262,7 @@ secondary_entities:
       - id: 137
         type: integer
         name: value
+        optional: true
         range:
           min: 0
           max: 199999
@@ -258,6 +277,7 @@ secondary_entities:
         type: integer
         name: value
         unit: "%"
+        optional: true
         range:
           min: 0
           max: 100
@@ -270,6 +290,7 @@ secondary_entities:
         type: integer
         name: value
         unit: "%"
+        optional: true
         range:
           min: 0
           max: 100

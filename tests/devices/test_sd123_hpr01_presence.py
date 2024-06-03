@@ -47,7 +47,7 @@ class TestSD123HumanPresenceRadar(
         )
         self.setUpBasicLight(
             LIGHT_DPS,
-            self.entities.get("light_led"),
+            self.entities.get("light_indicator"),
             testdata=("normal", "slient"),
         )
         self.setUpBasicSwitch(SWITCH_DPS, self.entities.get("switch"))
@@ -144,7 +144,7 @@ class TestSD123HumanPresenceRadar(
 
         self.mark_secondary(
             [
-                "light_led",
+                "light_indicator",
                 "number_interrupt_frames",
                 "number_maintain_points",
                 "number_maintain_power",

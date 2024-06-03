@@ -4,6 +4,7 @@ products:
     name: Klarstein Wonderwall
 primary_entity:
   entity: climate
+  translation_only_key: heater
   dps:
     - id: 1
       type: boolean
@@ -16,6 +17,7 @@ primary_entity:
     - id: 2
       type: integer
       name: temperature
+      unit: C
       range:
         min: 0
         max: 37
@@ -83,7 +85,7 @@ secondary_entities:
           - dps_val: "24"
             value: "24 hours"
   - entity: sensor
-    name: Time remaining
+    translation_key: time_remaining
     class: duration
     category: diagnostic
     dps:

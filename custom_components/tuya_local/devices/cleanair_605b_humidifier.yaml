@@ -80,7 +80,7 @@ secondary_entities:
           - dps_val: 12h
             value: 12h
   - entity: sensor
-    name: Timer minutes left
+    translation_key: time_remaining
     class: duration
     dps:
       - id: 20
@@ -120,7 +120,7 @@ secondary_entities:
         name: sensor
         unit: "%"
   - entity: switch
-    name: UV light
+    translation_key: uv_sterilization
     dps:
       - id: 101
         type: boolean

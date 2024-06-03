@@ -59,7 +59,7 @@ class TestEanonsHumidifier(
         )
         self.setUpBasicSensor(
             TIMER_DPS,
-            self.entities.get("sensor_timer"),
+            self.entities.get("sensor_time_remaining"),
             unit="min",
             device_class=SensorDeviceClass.DURATION,
         )
@@ -69,7 +69,11 @@ class TestEanonsHumidifier(
             testdata=(1, 0),
         )
         self.mark_secondary(
-            ["select_timer", "sensor_timer", "binary_sensor_tank_empty"]
+            [
+                "select_timer",
+                "sensor_time_remaining",
+                "binary_sensor_tank_empty",
+            ]
         )
 
     def test_supported_features(self):

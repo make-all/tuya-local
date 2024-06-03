@@ -51,8 +51,7 @@ secondary_entities:
         unit: ugm3
         class: measurement
   - entity: switch
-    name: Ionizer
-    icon: "mdi:creation"
+    translation_key: ionizer
     category: config
     dps:
       - id: 5
@@ -119,7 +118,7 @@ secondary_entities:
         unit: C
         class: measurement
   - entity: climate
-    name: Heater
+    translation_key: heater
     icon: "mdi:heat-wave"
     dps:
       - id: 42
@@ -138,6 +137,7 @@ secondary_entities:
       - id: 102
         name: temperature
         type: integer
+        unit: C
         range:
           min: 10
           max: 30

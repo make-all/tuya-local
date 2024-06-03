@@ -106,19 +106,8 @@ secondary_entities:
             value: C
           - dps_val: f
             value: F
-  - entity: sensor
-    name: Current humidity
-    deprecated: humidifier
-    category: diagnostic
-    class: humidity
-    dps:
-      - id: 14
-        name: sensor
-        type: integer
-        class: measurement
-        unit: "%"
   - entity: light
-    name: Display
+    translation_key: display
     category: config
     dps:
       - id: 16
@@ -127,10 +116,8 @@ secondary_entities:
         mapping:
           - dps_val: true
             value: false
-            icon: "mdi:led-off"
           - dps_val: false
             value: true
-            icon: "mdi:led-on"
   - entity: select
     category: config
     translation_key: temperature_unit
@@ -186,9 +173,8 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: switch
-    name: Ionizer
+    translation_key: ionizer
     category: config
-    icon: "mdi:creation"
     dps:
       - id: 35
         name: switch

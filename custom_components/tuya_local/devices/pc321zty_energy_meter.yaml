@@ -1,0 +1,261 @@
+name: Power clamp meter
+products:
+  - id: nslr42tt
+    name: PC321-Z-TY
+primary_entity:
+  entity: sensor
+  class: energy
+  dps:
+    - id: 1
+      type: integer
+      name: sensor
+      mapping:
+        - scale: 100
+      unit: kWh
+      class: total_increasing
+    - id: 3
+      type: string
+      name: monthly
+      optional: true
+    - id: 4
+      type: string
+      name: daily
+      optional: true
+secondary_entities:
+  - entity: sensor
+    category: diagnostic
+    name: Voltage A
+    class: voltage
+    dps:
+      - id: 6
+        name: sensor
+        type: base64
+        unit: V
+        optional: true
+        mapping:
+          - scale: 10
+            mask: "FFFF000000000000"
+  - entity: sensor
+    category: diagnostic
+    name: Current A
+    class: current
+    dps:
+      - id: 6
+        name: sensor
+        type: base64
+        unit: A
+        optional: true
+        mapping:
+          - scale: 1000
+            mask: "0000FFFFFF000000"
+  - entity: sensor
+    category: diagnostic
+    name: Power A
+    class: power
+    dps:
+      - id: 6
+        name: sensor
+        type: base64
+        unit: kW
+        optional: true
+        mapping:
+          - scale: 1000
+            mask: "0000000000FFFFFF"
+  - entity: sensor
+    category: diagnostic
+    name: Voltage B
+    class: voltage
+    dps:
+      - id: 7
+        name: sensor
+        type: base64
+        unit: V
+        optional: true
+        mapping:
+          - scale: 10
+            mask: "FFFF000000000000"
+  - entity: sensor
+    category: diagnostic
+    name: Current B
+    class: current
+    dps:
+      - id: 7
+        name: sensor
+        type: base64
+        unit: A
+        optional: true
+        mapping:
+          - scale: 1000
+            mask: "0000FFFFFF000000"
+  - entity: sensor
+    category: diagnostic
+    name: Power B
+    class: power
+    dps:
+      - id: 7
+        name: sensor
+        type: base64
+        unit: kW
+        optional: true
+        mapping:
+          - scale: 1000
+            mask: "0000000000FFFFFF"
+  - entity: sensor
+    category: diagnostic
+    name: Voltage C
+    class: voltage
+    dps:
+      - id: 8
+        name: sensor
+        type: base64
+        unit: V
+        optional: true
+        mapping:
+          - scale: 10
+            mask: "FFFF000000000000"
+  - entity: sensor
+    category: diagnostic
+    name: Current C
+    class: current
+    dps:
+      - id: 8
+        name: sensor
+        type: base64
+        unit: A
+        optional: true
+        mapping:
+          - scale: 1000
+            mask: "0000FFFFFF000000"
+  - entity: sensor
+    category: diagnostic
+    name: Power C
+    class: power
+    dps:
+      - id: 8
+        name: sensor
+        type: base64
+        unit: kW
+        optional: true
+        mapping:
+          - scale: 1000
+            mask: "0000000000FFFFFF"
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    name: Energy A
+    dps:
+      - id: 101
+        name: sensor
+        type: integer
+        unit: kWh
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    class: power_factor
+    name: Power factor A
+    dps:
+      - id: 102
+        name: sensor
+        type: integer
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    name: Energy B
+    dps:
+      - id: 111
+        name: sensor
+        type: integer
+        unit: kWh
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    class: power_factor
+    name: Power factor B
+    dps:
+      - id: 112
+        name: sensor
+        type: integer
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    name: Energy C
+    dps:
+      - id: 121
+        name: sensor
+        type: integer
+        unit: kWh
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    class: power_factor
+    name: Power factor C
+    dps:
+      - id: 122
+        name: sensor
+        type: integer
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    category: diagnostic
+    class: current
+    dps:
+      - id: 131
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        force: true
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    class: frequency
+    dps:
+      - id: 132
+        type: integer
+        name: sensor
+        unit: Hz
+        class: measurement
+  - entity: sensor
+    category: diagnostic
+    class: temperature
+    dps:
+      - id: 133
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 134
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 134
+        type: bitfield
+        name: fault_code

@@ -84,17 +84,12 @@ secondary_entities:
           - dps_val: "3"
             value: 100
   - entity: light
-    name: Front display
+    translation_key: display
     category: config
     dps:
       - id: 107
         type: boolean
         name: switch
-        mapping:
-          - dps_val: true
-            icon: "mdi:numeric"
-          - dps_val: false
-            icon: "mdi:numeric-off"
   - entity: lock
     translation_key: child_lock
     category: config
@@ -109,17 +104,6 @@ secondary_entities:
         type: integer
         name: sensor
         unit: C
-        class: measurement
-  - entity: sensor
-    name: Current humidity
-    deprecated: humidifier
-    category: diagnostic
-    class: humidity
-    dps:
-      - id: 104
-        type: integer
-        name: sensor
-        unit: "%"
         class: measurement
   - entity: binary_sensor
     translation_key: tank_full

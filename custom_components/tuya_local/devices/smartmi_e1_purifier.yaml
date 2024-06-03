@@ -25,17 +25,12 @@ primary_entity:
       name: fault_code
 secondary_entities:
   - entity: light
-    name: Indicators
+    translation_key: indicator
     category: config
     dps:
       - id: 8
         name: switch
         type: boolean
-        mapping:
-          - dps_val: true
-            icon: "mdi:led-on"
-          - dps_val: false
-            icon: "mdi:led-off"
   - entity: sensor
     name: Filter usage
     category: diagnostic
