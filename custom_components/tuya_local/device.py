@@ -3,8 +3,8 @@ API for Tuya Local devices.
 """
 
 import asyncio
-from asyncio.exceptions import CancelledError
 import logging
+from asyncio.exceptions import CancelledError
 from threading import Lock
 from time import time
 

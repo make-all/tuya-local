@@ -1,6 +1,7 @@
-name: BVF CP-1 heater
+name: Heater
 products:
   - id: t2htqaryl4gymeuv
+    name: BVP CP-1
 primary_entity:
   entity: climate
   translation_only_key: heater
@@ -25,6 +26,21 @@ primary_entity:
           value: away
         - dps_val: auto
           value: home
+    - id: 3
+      type: string
+      optional: true
+      name: hvac_action
+      mapping:
+        - constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              mapping:
+                - dps_val: heating
+                  value: heating
+                - dps_val: standby
+                  value: idle
     - id: 16
       type: integer
       name: temperature
