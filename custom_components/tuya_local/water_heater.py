@@ -33,9 +33,9 @@ async def async_setup_entry(hass, config_entry, async_add_entities):
 
 
 def validate_temp_unit(unit):
-    unit = unit_from_ascii(unit)
+    translated_unit = unit_from_ascii(unit)
     try:
-        return UnitOfTemperature(unit)
+        return UnitOfTemperature(translated_unit)
     except ValueError:
         _LOGGER.warning("%s is not a valid temperature unit", unit)
 
@@ -95,7 +95,7 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
             unit = validate_temp_unit(self._temperature_dps.unit)
             if unit is not None:
                 return unit
-        # Return the default unit from the device
+        # Return the default unit
         return UnitOfTemperature.CELSIUS
 
     @property
