@@ -113,7 +113,7 @@ secondary_entities:
             value: Purify only
             icon: "mdi:air-filter"
           - dps_val: dehum30_air
-            value: Both
+            value: Dehumidify and Purify
             icon: "mdi:air-humidifier"
   - entity: switch
     name: Internal dry
@@ -145,6 +145,15 @@ secondary_entities:
         type: integer
         name: sensor
         unit: C
+        class: measurement
+  - entity: sensor
+    class: humidity
+    category: diagnostic
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: "%"
         class: measurement
   - entity: select
     translation_key: timer
