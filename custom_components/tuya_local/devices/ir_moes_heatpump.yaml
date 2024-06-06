@@ -134,6 +134,30 @@ secondary_entities:
         range:
           max: 720
           min: 0
+  - entity: number
+    name: Maximum temperature
+    category: config
+    class: temperature
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 16
+          max: 30
+  - entity: number
+    name: Minimum temperature
+    category: config
+    icon: "mdi:"
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 16
+          max: 30
   - entity: select
     translation_key: temperature_unit
     category: config
