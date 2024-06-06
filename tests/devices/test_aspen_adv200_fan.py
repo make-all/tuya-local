@@ -37,8 +37,8 @@ class TestAspenASP200Fan(
             self.entities.get("light_display"),
             offval=1,
             tests=[
-                (1, 51),
-                (2, 128),
+                (1, 85),
+                (2, 170),
                 (3, 255),
             ],
             no_off=True,

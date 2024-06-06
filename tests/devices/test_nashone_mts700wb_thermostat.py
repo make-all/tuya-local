@@ -69,7 +69,7 @@ class TestNashoneMTS700WBThermostat(
         )
         self.setUpBasicSensor(
             COUNTDOWN_DPS,
-            self.entities.get("sensor_timer"),
+            self.entities.get("sensor_time_remaining"),
             unit=UnitOfTime.SECONDS,
             device_class=SensorDeviceClass.DURATION,
         )
@@ -78,7 +78,7 @@ class TestNashoneMTS700WBThermostat(
                 "button_factory_reset",
                 "number_calibration_offset",
                 "select_timer",
-                "sensor_timer",
+                "sensor_time_remaining",
             ],
         )
 

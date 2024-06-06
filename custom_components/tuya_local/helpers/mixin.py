@@ -55,7 +55,10 @@ class TuyaLocalEntity:
     @property
     def use_device_name(self):
         """Return whether to use the device name for the entity name"""
-        own_name = self._config.name or self._attr_translation_key
+        alt_name = self._config.translation_key
+        if self._config.translation_key is self._config.device_class:
+            alt_name = None
+        own_name = self._config.name or alt_name
         return not own_name
 
     @property
@@ -106,18 +109,20 @@ class TuyaLocalEntity:
 
     async def async_added_to_hass(self):
         self._device.register_entity(self)
+        if self._config.deprecated:
+            _LOGGER.warning(self._config.deprecation_message)
 
     async def async_will_remove_from_hass(self):
         await self._device.async_unregister_entity(self)
 
-    def on_receive(self, dps):
+    def on_receive(self, dps, full_poll):
         """Override to process dps directly as they are received"""
         pass
 
 
 UNIT_ASCII_MAP = {
-    "C": UnitOfTemperature.CELSIUS,
-    "F": UnitOfTemperature.FAHRENHEIT,
+    "C": UnitOfTemperature.CELSIUS.value,
+    "F": UnitOfTemperature.FAHRENHEIT.value,
     "ugm3": CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
     "m2": AREA_SQUARE_METERS,
 }

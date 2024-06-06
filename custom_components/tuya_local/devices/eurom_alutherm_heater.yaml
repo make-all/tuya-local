@@ -6,13 +6,13 @@ products:
     name: Eurom Alutherm 2500
 primary_entity:
   entity: climate
+  translation_only_key: heater
   dps:
     - id: 1
       name: hvac_mode
       type: boolean
       mapping:
         - dps_val: true
-          icon: "mdi:radiator"
           constraint: mode
           conditions:
             - dps_val: m
@@ -21,10 +21,10 @@ primary_entity:
               value: auto
         - dps_val: false
           value: "off"
-          icon: "mdi:radiator-disabled"
     - id: 2
       name: temperature
       type: integer
+      unit: C
       range:
         min: 0
         max: 37

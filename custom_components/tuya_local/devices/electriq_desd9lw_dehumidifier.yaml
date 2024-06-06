@@ -70,20 +70,19 @@ primary_entity:
     - id: 101
       type: integer
       name: temperature
+      unit: C
       range:
         min: 16
         max: 30
 secondary_entities:
   - entity: light
-    name: "UV sterilization"
-    icon: "mdi:solar-power"
+    translation_key: uv_sterilization
     dps:
       - id: 15
         name: switch
         type: boolean
   - entity: switch
-    name: "Ionizer"
-    icon: "mdi:creation"
+    translation_key: "ionizer"
     dps:
       - id: 12
         name: switch

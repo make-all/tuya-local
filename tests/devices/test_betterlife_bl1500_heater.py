@@ -58,12 +58,12 @@ class TestBetterlifeBL1500Heater(
         )
         self.setUpBasicSensor(
             COUNTDOWN_DPS,
-            self.entities.get("sensor_timer_countdown"),
+            self.entities.get("sensor_time_remaining"),
             unit=UnitOfTime.MINUTES,
             device_class=SensorDeviceClass.DURATION,
         )
         self.mark_secondary(
-            ["lock_child_lock", "select_timer", "sensor_timer_countdown"]
+            ["lock_child_lock", "select_timer", "sensor_time_remaining"]
         )
 
     def test_supported_features(self):
@@ -76,13 +76,6 @@ class TestBetterlifeBL1500Heater(
                 | ClimateEntityFeature.TURN_ON
             ),
         )
-
-    def test_icon(self):
-        self.dps[HVACMODE_DPS] = True
-        self.assertEqual(self.subject.icon, "mdi:radiator")
-
-        self.dps[HVACMODE_DPS] = False
-        self.assertEqual(self.subject.icon, "mdi:radiator-disabled")
 
     def test_temperature_unit_returns_celsius(self):
         self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)

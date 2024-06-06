@@ -87,7 +87,7 @@ class TestInkbirdSousVideCooker(
         )
         self.setUpBasicSensor(
             REMAIN_DPS,
-            self.entities.get("sensor_remaining_time"),
+            self.entities.get("sensor_time_remaining"),
             unit=UnitOfTime.MINUTES,
             device_class=SensorDeviceClass.DURATION,
         )
@@ -98,7 +98,7 @@ class TestInkbirdSousVideCooker(
                 "number_temperature_calibration",
                 "binary_sensor_problem",
                 "select_temperature_unit",
-                "sensor_remaining_time",
+                "sensor_time_remaining",
             ]
         )
 

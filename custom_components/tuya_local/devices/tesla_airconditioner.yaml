@@ -110,8 +110,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: light
-    name: Backlight
-    icon: "mdi:television-ambient-light"
+    translation_key: backlight
     category: config
     dps:
       - id: 13
@@ -170,8 +169,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: switch
-    name: iHealth
-    icon: "mdi:creation"
+    translation_key: uv_sterilization
     category: config
     dps:
       - id: 106
@@ -233,7 +231,7 @@ secondary_entities:
     icon: "mdi:meter-electric-outline"
     category: diagnostic
     dps:
-      - id: 103
+      - id: 113
         type: integer
         name: value
         optional: true
@@ -250,6 +248,6 @@ secondary_entities:
     icon: "mdi:meter-electric-outline"
     category: config
     dps:
-      - id: 104
+      - id: 114
         type: boolean
         name: switch

@@ -38,17 +38,6 @@ primary_entity:
       name: current_humidity
       type: integer
 secondary_entities:
-  - entity: sensor
-    name: Current humidity
-    deprecated: humidifier
-    category: diagnostic
-    class: humidity
-    dps:
-      - id: 18
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
   - entity: binary_sensor
     name: Filter cleaning reminder
     class: problem

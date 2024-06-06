@@ -1,0 +1,78 @@
+name: Panel heater
+products:
+  - id: 8fczfuyd5dknvltq
+    name: Solaire Vitra S2
+primary_entity:
+  entity: climate
+  translation_only_key: heater
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: true
+          value: "heat"
+        - dps_val: false
+          value: "off"
+    - id: 2
+      name: temperature
+      type: integer
+      unit: C
+      range:
+        min: 7
+        max: 30
+      mapping:
+        - constraint: preset_mode
+          conditions:
+            - dps_val: "antifreezen"
+              value: 7
+              range:
+                min: 7
+                max: 7
+    - id: 3
+      name: current_temperature
+      type: integer
+      range:
+        min: 0
+        max: 50
+    - id: 4
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: comfort
+          value: comfort
+        - dps_val: eco
+          value: eco
+        - dps_val: antifreezen
+          value: away
+    - id: 12
+      name: error
+      type: bitfield
+      mapping:
+        - dps_val: 0
+          value: "OK"
+secondary_entities:
+  - entity: number
+    name: Temperature calibration
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        range:
+          min: -15
+          max: 15
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: lock
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: switch

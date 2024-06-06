@@ -1,0 +1,291 @@
+name: Tefal vacuum
+products:
+  - id: gahugwuufkhzie7v
+    name: Tefal X-plorer Serie 75 Animal
+primary_entity:
+  entity: vacuum
+  dps:
+    - id: 101
+      name: activate
+      type: boolean
+    - id: 102
+      name: pause
+      type: boolean
+      hidden: true
+    - id: 104
+      name: command
+      type: string
+      mapping:
+        - constraint: pause
+          conditions:
+            - dps_val: true
+              value: pause
+            - dps_val: false
+              mapping:
+                - dps_val: smart
+                  value: smart
+                - dps_val: pose
+                  value: clean_spot
+                - dps_val: zone
+                  value: zone
+                - dps_val: backcharge
+                  value: return_to_base
+                - dps_val: curpointing
+                  value: curpointing
+                - dps_val: selectroom
+                  value: selectroom
+    - id: 105
+      name: status
+      type: string
+      mapping:
+        - dps_val: idle
+          value: standby
+        - dps_val: pointing\areaing
+          value: pointing_areaing
+        - dps_val: totaling
+          value: cleaning
+        - dps_val: sweep
+          value: sweep
+        - dps_val: mop
+          value: mop
+        - dps_val: fault
+          value: error
+        - dps_val: pause
+          value: paused
+        - dps_val: chargring
+          value: charging
+        - dps_val: tocharge
+          value: returning
+        - dps_val: fullcharge
+          value: charged
+        - dps_val: remotectl
+          value: remotectl
+        - dps_val: dormant
+          value: dormant
+        - dps_val: curpointing
+          value: curpointing
+        - dps_val: selectroom
+          value: selectroom
+    - id: 109
+      name: fan_speed
+      type: string
+      mapping:
+        - dps_val: quiet
+          value: quiet
+        - dps_val: strong
+          value: strong
+        - dps_val: auto
+          value: auto
+        - dps_val: max
+          value: max
+    - id: 111
+      name: direction_control
+      optional: true
+      type: string
+      mapping:
+        - dps_val: forward
+          value: forward
+        - dps_val: backward
+          value: backward
+        - dps_val: left
+          value: left
+        - dps_val: right
+          value: right
+        - dps_val: stop
+          value: stop
+    - id: 112
+      name: locate
+      optional: true
+      type: boolean
+    - id: 122
+      name: error
+      type: bitfield
+      mapping:
+        - dps_val: 2
+          value: Battery low
+        - dps_val: 32
+          value: Drop sensor abnormal
+        - dps_val: 4096
+          value: Abnormal main brush
+        - dps_val: 524288
+          value: Machine trapped
+        - dps_val: 1048576
+          value: Was picked up at work
+        - dps_val: 33554432
+          value: Recharge failed
+    - id: 123
+      name: path_comm
+      optional: true
+      type: string
+    - id: 124
+      name: cmd_comm
+      optional: true
+      type: string
+    - id: 125
+      name: request_data
+      optional: true
+      type: string
+    - id: 126
+      name: comm_flag
+      optional: true
+      type: string
+    - id: 127
+      name: comm_raw
+      optional: true
+      type: string
+    - id: 128
+      name: message_report
+      type: string
+    - id: 130
+      name: sn
+      optional: true
+      type: string
+    - id: 131
+      name: uuid
+      optional: true
+      type: string
+    - id: 132
+      name: device_info
+      optional: true
+      type: string
+    - id: 137
+      name: auto_boost
+      type: boolean
+    - id: 139
+      name: room_mode_switch
+      type: boolean
+secondary_entities:
+  - entity: select
+    name: Mode
+    category: config
+    dps:
+      - id: 3
+        optional: true
+        name: option
+        type: string
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: random
+            value: random
+          - dps_val: smart
+            value: smart
+          - dps_val: wall_flow
+            value: wall_flow
+          - dps_val: mop
+            value: mop
+          - dps_val: spiral
+            value: spiral
+          - dps_val: left_spiral
+            value: left_spiral
+          - dps_val: right_spiral
+            value: right_spiral
+          - dps_val: right_bow
+            value: right_bow
+          - dps_val: left_bow
+            value: left_bow
+          - dps_val: partial_bow
+            value: partial_bow
+          - dps_val: chargego
+            value: chargego
+  - entity: switch
+    name: Charge switch
+    category: config
+    icon: "mdi:power-plug"
+    dps:
+      - id: 103
+        name: switch
+        type: boolean
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    name: Current clean time
+    category: diagnostic
+    class: duration
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 107
+        name: sensor
+        type: integer
+        unit: s
+  - entity: sensor
+    name: Current clean area
+    category: diagnostic
+    icon: "mdi:map-marker-distance"
+    dps:
+      - id: 108
+        name: sensor
+        type: integer
+        unit: m²
+  - entity: switch
+    name: Disturb switch
+    category: config
+    icon: "mdi:bell-ring"
+    dps:
+      - id: 113
+        name: switch
+        type: boolean
+  - entity: sensor
+    name: Total clean time
+    category: diagnostic
+    class: duration
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 116
+        name: sensor
+        type: integer
+        unit: s
+  - entity: sensor
+    name: Total clean area
+    category: diagnostic
+    icon: "mdi:map-marker-distance"
+    dps:
+      - id: 117
+        name: sensor
+        type: integer
+        unit: m²
+  - entity: sensor
+    name: Total clean count
+    category: diagnostic
+    icon: "mdi:counter"
+    dps:
+      - id: 118
+        name: sensor
+        type: integer
+  - entity: sensor
+    name: Side brush time
+    category: diagnostic
+    class: duration
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 119
+        name: sensor
+        optional: true
+        type: integer
+        unit: s
+  - entity: sensor
+    name: Main brush time
+    category: diagnostic
+    class: duration
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 120
+        name: sensor
+        type: integer
+        unit: s
+  - entity: sensor
+    name: Filter time
+    category: diagnostic
+    class: duration
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 121
+        name: sensor
+        optional: true
+        type: integer
+        unit: s

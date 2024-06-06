@@ -2,6 +2,8 @@ name: EV charger
 products:
   - id: hytatexziwaifxj1
     name: Feyree 32A 85-264V EV charger
+  - id: emvuyyax4lekiooj
+    name: Feyree A_32A_1L ChargePoint
 primary_entity:
   entity: sensor
   class: enum
@@ -30,9 +32,6 @@ primary_entity:
       type: string
       optional: true
       name: charger_status
-    - id: 10
-      type: bitfield
-      name: fault_code
     - id: 11
       type: string
       optional: true
@@ -77,6 +76,49 @@ primary_entity:
       optional: true
       name: require_authorization
 secondary_entities:
+  - entity: sensor
+    name: Alarm event
+    icon: 'mdi:alert-outline'
+    class: enum
+    dps:
+      - id: 10
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: "Ready"
+          - dps_val: 1
+            value: "Under voltage protection"
+          - dps_val: 2
+            value: "Over voltage protection"
+          - dps_val: 4
+            value: "Over current protection"
+          - dps_val: 8
+            value: "Protective earth error"
+          - dps_val: 16
+            value: "Temperature is to high"
+          - dps_val: 32
+            value: "Control pilot line error"
+          - dps_val: 64
+            value: "Leak"
+          - dps_val: 128
+            value: "Relay socket"
+          - dps_val: 256
+            value: "Protective earth error 2"
+          - dps_val: 512
+            value: "Plug temperature is to high."
+          - dps_val: 1024
+            value: "PCB temperature is to high."
+          - dps_val: 2048
+            value: "Core temperature is to high."
+          - dps_val: 4096
+            value: "ESB"
+          - dps_val: 8192
+            value: "Socket protective earth error"
+          - dps_val: 16384
+            value: "Socket leakage"
+          - dps_val: 32768
+            value: "Socket temperature is to high."
   - entity: button
     name: Clear energy
     class: restart
@@ -86,9 +128,17 @@ secondary_entities:
         type: boolean
         name: button
         optional: true
+  - entity: button
+    name: Clear event
+    class: restart
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        name: button
+        optional: true
   - entity: number
     name: Set charge current
-    category: config
     icon: "mdi:ev-plug-type2"
     dps:
       - id: 102
@@ -98,30 +148,21 @@ secondary_entities:
         range:
           min: 8
           max: 32
-        mapping:
-          - constraint: max_current
-            conditions:
-              - dps_val: false
-                value_redirect: current_16_limit
-                range:
-                  min: 8
-                  max: 16
+  - entity: switch
+    name: Leak enable
+    category: config
+    dps:
       - id: 103
         type: boolean
         optional: true
-        name: max_current
+        force: true
+        name: switch
         mapping:
           - dps_val: false
-            value: 16
-          - value: 32
-      - id: 111
-        type: integer
-        optional: true
-        name: current_16_limit
-        hidden: true
-        range:
-          min: 8
-          max: 16
+            value: false
+            default: true
+          - dps_val: true
+            value: true
   - entity: number
     name: Charge delay
     category: config
@@ -134,6 +175,16 @@ secondary_entities:
         range:
           min: 0
           max: 15
+  - entity: switch
+    name: Power switch
+    icon: "mdi:power"
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        optional: true
+        force: true
+        name: switch
   - entity: sensor
     class: energy
     dps:
@@ -141,7 +192,7 @@ secondary_entities:
         type: integer
         name: sensor
         unit: kWh
-        class: measurement
+        class: total_increasing
         mapping:
           - scale: 10
   - entity: sensor
@@ -182,15 +233,33 @@ secondary_entities:
         name: sensor
         unit: C
         class: measurement
-  - entity: button
-    name: Toggle charging
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Leakage calibration
     category: config
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        optional: true
+        force: true
+        range:
+          min: 20
+          max: 250
+        mapping:
+          - dps_val: 20
+            value: 20
+            default: true
+  - entity: switch
+    name: Charging enable
+    icon: "mdi:ev-station"
     dps:
       - id: 112
         type: boolean
-        name: button
+        name: switch
   - entity: sensor
-    name: Time remaining
+    name: Charging time
     class: duration
     category: diagnostic
     dps:

@@ -339,10 +339,3 @@ class TestGoldairHeater(
                 "power_level": "4",
             },
         )
-
-    def test_light_icon(self):
-        self.dps[LIGHT_DPS] = True
-        self.assertEqual(self.basicLight.icon, "mdi:led-on")
-
-        self.dps[LIGHT_DPS] = False
-        self.assertEqual(self.basicLight.icon, "mdi:led-off")

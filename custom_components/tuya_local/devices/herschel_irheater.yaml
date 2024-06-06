@@ -4,7 +4,7 @@ products:
     name: Herschel Infrared Heater
 primary_entity:
   entity: climate
-  icon: "mdi:radiator"
+  translation_only_key: heater
   dps:
     - id: 1
       type: boolean
@@ -17,6 +17,7 @@ primary_entity:
     - id: 2
       type: integer
       name: temperature
+      unit: C
       mapping:
         - scale: 10
           step: 10
@@ -89,7 +90,7 @@ secondary_entities:
           - dps_val: "24"
             value: "24 hours"
   - entity: sensor
-    name: Time remaining
+    translation_key: time_remaining
     class: duration
     category: diagnostic
     dps:

@@ -80,7 +80,7 @@ secondary_entities:
           - dps_val: 12h
             value: 12 hours
   - entity: sensor
-    name: Time remaining
+    translation_key: time_remaining
     class: duration
     dps:
       - id: 20
@@ -112,8 +112,7 @@ secondary_entities:
             value: true
           - value: false
   - entity: switch
-    name: Ionizer
-    icon: mdi:creation
+    translation_key: ionizer
     dps:
       - id: 25
         type: boolean
@@ -136,8 +135,7 @@ secondary_entities:
         name: sensor
         unit: "%"
   - entity: switch
-    name: UV light
-    icon: mdi:sun-wireless
+    translation_key: uv_sterilization
     dps:
       - id: 101
         type: boolean

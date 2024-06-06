@@ -2,6 +2,8 @@ name: Window shade
 products:
   - id: hldq12vsaqalcfer
     name: Graywind hardwired blackout
+  - id: f6jujmx0is5td50x
+    name: Zemismart BCM500DS-TYW
 primary_entity:
   entity: cover
   class: shade
@@ -36,3 +38,21 @@ secondary_entities:
             value: Forward
           - dps_val: back
             value: Back
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 12
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 12
+        type: bitfield
+        optional: true
+        name: fault_code

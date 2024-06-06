@@ -1,0 +1,217 @@
+name: Smart Lock
+products:
+  - id: kdq0tdbz
+    name: Pulido ‎P13
+primary_entity:
+  entity: lock
+  dps:
+    - id: 1
+      type: string
+      name: create_unlock_method
+      optional: true
+    - id: 2
+      type: string
+      name: delete_unlock_method
+      optional: true
+    - id: 3
+      type: string
+      name: modify_unlock_method
+      optional: true
+    - id: 12
+      type: integer
+      name: unlock_fingerprint
+      optional: true
+      persist: false
+    - id: 13
+      name: unlock_password
+      type: integer
+      optional: true
+      persist: false
+    - id: 15
+      name: unlock_card
+      type: integer
+      optional: true
+      persist: false
+    - id: 19
+      name: unlock_ble
+      type: integer
+      optional: true
+      persist: false
+    - id: 47  # Lock motor state
+      name: lock
+      type: boolean
+      readonly: true
+      mapping:
+        - dps_val: true  # Unlocked
+          value: false
+        - dps_val: false  # Locked
+          value: true
+    - id: 55
+      type: integer
+      name: unlock_temp_pwd
+      optional: true
+      persist: false
+    - id: 62
+      type: integer
+      name: unlock_app
+      optional: true
+      persist: false
+    - id: 63
+      name: unlock_voice
+      type: integer
+      optional: true
+      persist: false
+secondary_entities:
+  - entity: sensor
+    name: Alert
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 21
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: null
+            value: ok
+          - dps_val: wrong_finger
+            value: Wrong Finger
+          - dps_val: wrong_password
+            value: Wrong Password
+          - dps_val: wrong_card
+            value: Wrong Card
+          - dps_val: wrong_face
+            value: Wrong Face
+          - dps_val: tongue_bad
+            value: Tongue Bad
+          - dps_val: too_hot
+            value: Too Hot
+          - dps_val: unclosed_time
+            value: Unclosed Time
+          - dps_val: tongue_not_out
+            value: Tongue Not Out
+          - dps_val: pry
+            value: Pry
+          - dps_val: key_in
+            value: Key In
+          - dps_val: low_battery
+            value: Low Battery
+          - dps_val: power_off
+            value: Power Off
+          - dps_val: shock
+            value: Shock
+          - dps_val: defense
+            value: Defense
+          - dps_val: wrong_unlock
+            value: Wrong Unlock
+  - entity: switch
+    name: Auto lock
+    category: config
+    icon: "mdi:lock-reset"
+    dps:
+      - id: 33
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+  - entity: select
+    name: Auto lock delay
+    icon: "mdi:lock-clock"
+    category: config
+    dps:
+      - id: 26
+        type: string
+        name: option
+        mapping:
+          - dps_val: 5s
+            value: 5s
+          - dps_val: 10s
+            value: 10s
+          - dps_val: 15s
+            value: 15s
+          - dps_val: 30s
+            value: 30s
+          - dps_val: 60s
+            value: 60s
+  - entity: number
+    name: Lock volume
+    category: config
+    dps:
+      - id: 31
+        type: string
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - dps_val: mute
+            step: 33
+            value: 0
+            icon: "mdi:volume-mute"
+          - dps_val: low
+            step: 33
+            value: 33
+            icon: "mdi:volume-low"
+          - dps_val: normal
+            step: 33
+            value: 66
+            icon: "mdi:volume-medium"
+          - dps_val: high
+            step: 33
+            value: 100
+            icon: "mdi:volume-high"
+  - entity: switch
+    name: Double verification unlocking
+    category: config
+    icon: "mdi:gesture-two-double-tap"
+    dps:
+      - id: 68
+        type: string
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: function1
+            value: false
+          - dps_val: function2
+            value: true
+          - value: false
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 9
+        type: string
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - dps_val: high
+            value: 100
+          - dps_val: medium
+            value: 66
+          - dps_val: low
+            value: 33
+          - dps_val: poweroff
+            value: 0
+  - entity: select
+    name: Language
+    icon: "mdi:translate"
+    category: config
+    dps:
+      - id: 28
+        type: string
+        name: option
+        mapping:
+          - dps_val: chinese_simplified
+            value: 中文
+          - dps_val: english
+            value: English
+          - dps_val: spanish
+            value: español
+          - dps_val: Portuguese
+            value: Português

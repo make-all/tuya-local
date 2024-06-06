@@ -1,6 +1,7 @@
 name: Nedis smart convection heater
 primary_entity:
   entity: climate
+  translation_only_key: heater
   dps:
     - id: 1
       type: boolean
@@ -8,13 +9,12 @@ primary_entity:
       mapping:
         - dps_val: true
           value: heat
-          icon: "mdi:radiator"
         - dps_val: false
           value: "off"
-          icon: "mdi:radiator-disabled"
     - id: 2
       type: integer
       name: temperature
+      unit: C
       range:
         min: 15
         max: 35

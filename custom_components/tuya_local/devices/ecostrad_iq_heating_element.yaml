@@ -2,7 +2,6 @@ name: Ecostrad iQ heating element
 primary_entity:
   entity: climate
   translation_only_key: thermostat
-  icon: "mdi:radiator"
   dps:
     - id: 1
       type: boolean
@@ -27,6 +26,7 @@ primary_entity:
     - id: 16
       type: integer
       name: temperature
+      unit: C
       range:
         min: 70
         max: 300

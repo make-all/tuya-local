@@ -23,6 +23,7 @@ primary_entity:
     - id: 2
       type: integer
       name: temperature
+      unit: C
       range:
         min: 5
         max: 37
@@ -66,7 +67,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: sensor
-    name: Remaining Time
+    translation_key: time_remaining
     class: duration
     dps:
       - id: 12

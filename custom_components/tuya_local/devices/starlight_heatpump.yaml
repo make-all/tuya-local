@@ -25,6 +25,7 @@ primary_entity:
     - id: 2
       name: temperature
       type: integer
+      unit: C
       range:
         min: 160
         max: 310
@@ -245,17 +246,15 @@ secondary_entities:
             value: "Elderly"
           - dps_val: "child"
             value: "Child"
-  - entity: switch
-    name: Display
+  - entity: light
+    translation_key: display
     category: config
-    icon: "mdi:lightbulb-on-outline"
     dps:
       - id: 123
         type: hex
         name: switch
         mapping:
-          - scale: 1
-            mask: "0008"
+          - mask: "0008"
   - entity: switch
     name: Buzzer
     category: config
@@ -265,8 +264,7 @@ secondary_entities:
         type: hex
         name: switch
         mapping:
-          - scale: 1
-            mask: "0010"
+          - mask: "0010"
   - entity: switch
     name: Soft wind
     category: config
@@ -276,8 +274,7 @@ secondary_entities:
         type: hex
         name: switch
         mapping:
-          - scale: 1
-            mask: "8000"
+          - mask: "8000"
   - entity: switch
     name: Anti-mildew
     category: config
@@ -287,8 +284,7 @@ secondary_entities:
         type: hex
         name: switch
         mapping:
-          - scale: 1
-            mask: "0100"
+          - mask: "0100"
   - entity: switch
     name: Health
     category: config
@@ -298,19 +294,16 @@ secondary_entities:
         type: hex
         name: switch
         mapping:
-          - scale: 1
-            mask: "0020"
+          - mask: "0020"
   - entity: switch
-    name: Anti-freeze
+    translation_key: anti_frost
     category: config
-    icon: "mdi:radiator"
     dps:
       - id: 123
         type: hex
         name: switch
         mapping:
-          - scale: 1
-            mask: "1000"
+          - mask: "1000"
   - entity: switch
     name: Eco mode
     category: config
@@ -320,8 +313,7 @@ secondary_entities:
         type: hex
         name: switch
         mapping:
-          - scale: 1
-            mask: "0001"
+          - mask: "0001"
   - entity: binary_sensor
     class: problem
     category: diagnostic

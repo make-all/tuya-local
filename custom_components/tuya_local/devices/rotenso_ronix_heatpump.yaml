@@ -28,6 +28,7 @@ primary_entity:
     - id: 2
       type: integer
       name: temperature
+      unit: C
       range:
         min: 160
         max: 880
@@ -214,9 +215,8 @@ secondary_entities:
           - dps_val: "5"
             value: Rightmost
   - entity: light
-    name: Display
+    translation_key: display
     category: config
-    icon: "mdi:television-ambient-light"
     dps:
       - id: 123
         type: hex

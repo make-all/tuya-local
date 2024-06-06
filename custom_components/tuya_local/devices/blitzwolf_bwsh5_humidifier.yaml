@@ -45,8 +45,7 @@ primary_entity:
       optional: true
 secondary_entities:
   - entity: switch
-    name: UV sterilization
-    icon: "mdi:sun-wireless"
+    translation_key: uv_sterilization
     category: config
     dps:
       - id: 21
@@ -71,17 +70,12 @@ secondary_entities:
         type: boolean
         optional: true
   - entity: light
-    name: LED
+    translation_key: indicator
     category: config
     dps:
       - id: 5
         name: switch
         type: boolean
-        mapping:
-          - dps_val: true
-            icon: "mdi:led-on"
-          - dps_val: false
-            icon: "mdi:led-off"
   - entity: fan
     name: Spray level
     icon: "mdi:heat-wave"

@@ -2,16 +2,15 @@ name: Goldair GECO heater
 legacy_type: geco_heater
 primary_entity:
   entity: climate
+  translation_only_key: heater
   dps:
     - id: 1
       type: boolean
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:radiator-disabled"
         - dps_val: true
           value: "heat"
-          icon: "mdi:radiator"
       name: hvac_mode
     - id: 3
       type: integer
@@ -19,6 +18,7 @@ primary_entity:
         min: 15
         max: 35
       name: temperature
+      unit: C
     - id: 4
       type: integer
       name: current_temperature

@@ -110,17 +110,6 @@ secondary_entities:
           - dps_val: high
             value: 100
   - entity: sensor
-    class: humidity
-    deprecated: humidifier
-    category: diagnostic
-    name: Room humidity
-    dps:
-      - id: 6
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
-  - entity: sensor
     class: temperature
     name: Room temperature
     dps:
@@ -131,16 +120,14 @@ secondary_entities:
         class: measurement
   - entity: switch
     category: config
-    name: Ionizer
-    icon: "mdi:creation"
+    translation_key: ionizer
     dps:
       - id: 10
         name: switch
         type: boolean
   - entity: switch
     category: config
-    name: UV sterilization
-    icon: "mdi:solar-power"
+    translation_key: uv_sterilization
     dps:
       - id: 13
         name: switch
@@ -188,7 +175,7 @@ secondary_entities:
           - dps_val: 9h
             value: 9 hours
   - entity: sensor
-    name: Timer
+    translation_key: time_remaining
     class: duration
     category: diagnostic
     dps:

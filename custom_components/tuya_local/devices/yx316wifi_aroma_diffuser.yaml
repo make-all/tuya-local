@@ -94,8 +94,13 @@ secondary_entities:
       - id: 6
         type: boolean
         name: switch
+        optional: true
         mapping:
           - dps_val: true
             icon: "mdi:speaker"
           - dps_val: false
             icon: "mdi:speaker-off"
+          - dps_val: null
+            icon: "mdi:speaker-off"
+            value: false
+            hidden: true
