@@ -6,8 +6,8 @@ primary_entity:
   entity: climate
   dps:
     - id: 1
-      name: hvac_mode
       type: boolean
+      name: hvac_mode
       mapping:
         - dps_val: false
           value: "off"
@@ -25,48 +25,51 @@ primary_entity:
             - dps_val: dehumidify
               value: dry
     - id: 2
-      name: current_temperature
       type: integer
+      name: current_temperature
       mapping:
         - scale: 10
     - id: 3
-      name: temperature
       type: integer
+      name: temperature
       unit: C
       range:
         min: 16
         max: 30
     - id: 4
-      name: mode
       type: string
+      name: mode
       hidden: true
     - id: 5
-      name: fan_mode
       type: string
+      name: fan_mode
       mapping:
+        - dps_val: auto
+          value: auto
         - dps_val: low
           value: low
         - dps_val: middle
           value: medium
         - dps_val: high
           value: high
-        - dps_val: auto
-          value: auto
     - id: 9
-      name: max_temperature
       type: integer
+      name: max_temperature
       range:
         min: 16
         max: 30
     - id: 10
-      name: min_temperature
       type: integer
+      name: min_temperature
       range:
         min: 16
         max: 30
+    - id: 11
+      type: string
+      name: display_unit
     - id: 12
-      name: current_humidity
       type: integer
+      name: current_humidity
       unit: "%"
       range:
         max: 100
@@ -78,13 +81,12 @@ primary_entity:
       type: string
       name: status
 secondary_entities:
-# Doesn't seem to be usefull on this device
-#   - entity: switch
-#     name: power
-#     dps:
-#       - id: 1
-#         type: boolean
-#         name: infared_switch
+  # - entity: switch
+  #   name: power
+  #   dps:
+  #     - id: 1
+  #       type: boolean
+  #       name: infared_switch
   - entity: sensor
     name: Temperature
     class: temperature
@@ -103,8 +105,8 @@ secondary_entities:
     dps:
       - id: 6
         type: bitfield
-        name: sensor
         optional: true
+        name: sensor
         mapping:
           - dps_val: 0
             value: serious_fault
@@ -132,6 +134,30 @@ secondary_entities:
         range:
           max: 720
           min: 0
+  - entity: number
+    name: Maximum temperature
+    category: config
+    class: temperature
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 16
+          max: 30
+  - entity: number
+    name: Minimum temperature
+    category: config
+    icon: "mdi:"
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 16
+          max: 30
   - entity: select
     translation_key: temperature_unit
     category: config
