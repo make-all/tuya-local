@@ -1,0 +1,25 @@
+name: Valve timer
+products:
+  - id: gbm9ata1zrzaez4a
+    name: Hoenyzi DN15/20/25
+primary_entity:
+  entity: valve
+  dps:
+    - id: 1
+      type: boolean
+      name: valve
+secondary_entities:
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60

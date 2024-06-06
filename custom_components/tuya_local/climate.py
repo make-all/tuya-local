@@ -124,27 +124,27 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
     def temperature_unit(self):
         """Return the unit of measurement."""
         # If there is a separate DPS that returns the units, use that
-        if self._unit_dps is not None:
+        if self._unit_dps:
             unit = validate_temp_unit(self._unit_dps.get_value(self._device))
             # Only return valid units
-            if unit is not None:
+            if unit:
                 return unit
         # If there unit attribute configured in the temperature dps, use that
-        if self._temperature_dps:
+        if self._temperature_dps and self._temperature_dps.unit:
             unit = validate_temp_unit(self._temperature_dps.unit)
-            if unit is not None:
+            if unit:
                 return unit
-        if self._temp_high_dps:
+        if self._temp_high_dps and self._temp_high_dps.unit:
             unit = validate_temp_unit(self._temp_high_dps.unit)
-            if unit is not None:
+            if unit:
                 return unit
-        if self._temp_low_dps:
+        if self._temp_low_dps and self._temp_low_dps.unit:
             unit = validate_temp_unit(self._temp_low_dps.unit)
             if unit is not None:
                 return unit
-        if self._current_temperature_dps:
+        if self._current_temperature_dps and self._current_temperature_dps.unit:
             unit = validate_temp_unit(self._current_temperature_dps.unit)
-            if unit is not None:
+            if unit:
                 return unit
         # Return the default unit
         return UnitOfTemperature.CELSIUS
