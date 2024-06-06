@@ -1,7 +1,7 @@
-name: IR heatpump
+name: IR Thermostat
 products:
-  - id: hwktwkq
-    name: Moes SD16Pro
+  - id: aqlyorlybbtn6ox7
+    name: Moes IR Thermostat
 primary_entity:
   entity: climate
   dps:
@@ -19,7 +19,7 @@ primary_entity:
             - dps_val: warm
               value: heat
             - dps_val: auto
-              value: heatcool
+              value: auto
             - dps_val: air
               value: fan_only
             - dps_val: dehumidify
@@ -55,12 +55,25 @@ primary_entity:
     - id: 9
       type: integer
       name: max_temperature
+      range:
+        min: 16
+        max: 30
     - id: 10
       type: integer
       name: min_temperature
+      range:
+        min: 16
+        max: 30
+    - id: 11
+      type: string
+      name: display_unit
     - id: 12
       type: integer
       name: current_humidity
+      unit: "%"
+      range:
+        max: 100
+        min: 0
     - id: 15
       type: string
       name: scene
@@ -68,7 +81,25 @@ primary_entity:
       type: string
       name: status
 secondary_entities:
+  # - entity: switch
+  #   name: power
+  #   dps:
+  #     - id: 1
+  #       type: boolean
+  #       name: infared_switch
+  - entity: sensor
+    name: Temperature
+    class: temperature
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
   - entity: binary_sensor
+    name: fault
     class: problem
     category: diagnostic
     dps:
@@ -78,10 +109,9 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: 0
-            value: false
-          - dps_val: null
-            value: false
-          - value: true
+            value: serious_fault
+          - dps_val: 1
+            value: sensor_fault
   - entity: button
     name: Filter reset
     class: restart
@@ -100,31 +130,10 @@ secondary_entities:
         type: integer
         name: sensor
         unit: h
-        optional: true
-  - entity: number
-    name: Maximum temperature
-    category: config
-    class: temperature
-    dps:
-      - id: 9
-        type: integer
-        name: value
-        unit: C
+        class: measurement
         range:
-          min: 16
-          max: 30
-  - entity: number
-    name: Minimum temperature
-    category: config
-    icon: "mdi:"
-    dps:
-      - id: 10
-        type: integer
-        name: value
-        unit: C
-        range:
-          min: 16
-          max: 30
+          max: 720
+          min: 0
   - entity: select
     translation_key: temperature_unit
     category: config
@@ -138,6 +147,18 @@ secondary_entities:
           - dps_val: f
             value: fahrenheit
   - entity: sensor
+    name: Humidity
+    class: humidity
+    dps:
+      - id: 12
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        range:
+          max: 100
+          min: 0
+  - entity: sensor
     name: Running time
     class: duration
     category: diagnostic
@@ -146,6 +167,10 @@ secondary_entities:
         type: integer
         name: sensor
         unit: h
+        class: measurement
+        range:
+          max: 999999
+          min: 0
   - entity: switch
     name: Internet connection
     category: config
@@ -179,7 +204,6 @@ secondary_entities:
       - id: 201
         name: send
         type: string
-        optional: true
       - id: 202
         name: receive
         type: string
