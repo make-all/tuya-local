@@ -193,7 +193,11 @@ secondary_entities:
         name: sensor
         type: string
         icon_priority: 1
+        optional: true
+        persist: false
         mapping:
+          - dps_val: null
+            value: OK
           - dps_val: MOWER_LEAN
             value: Tilted
             icon: "mdi:angle-acute"
