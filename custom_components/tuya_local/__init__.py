@@ -40,7 +40,11 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         # Removal of Auto detection.
         config = {**entry.data, **entry.options, "name": entry.title}
         if config[CONF_TYPE] == CONF_TYPE_AUTO:
-            device = setup_device(hass, config)
+            device = await hass.async_add_executor_job(
+                setup_device,
+                hass,
+                config,
+            )
             config[CONF_TYPE] = await device.async_inferred_type()
             if config[CONF_TYPE] is None:
                 _LOGGER.error(
@@ -66,7 +70,11 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         # suggest it was removed completely.  But that is probably due to
         # overwriting options without CONF_TYPE.
         if config.get(CONF_TYPE, CONF_TYPE_AUTO) == CONF_TYPE_AUTO:
-            device = setup_device(hass, config)
+            device = await hass.async_add_executor_job(
+                setup_device,
+                hass,
+                config,
+            )
             config[CONF_TYPE] = await device.async_inferred_type()
             if config[CONF_TYPE] is None:
                 _LOGGER.error(
@@ -99,7 +107,11 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
 
         # Special case for kogan_switch.  Consider also v2.
         if config_type == "smartplugv1":
-            device = setup_device(hass, config)
+            device = await hass.async_add_executor_job(
+                setup_device,
+                hass,
+                config,
+            )
             config_type = await device.async_inferred_type()
             if config_type != "smartplugv2":
                 config_type = "smartplugv1"
@@ -491,7 +503,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     )
     config = {**entry.data, **entry.options, "name": entry.title}
     try:
-        setup_device(hass, config)
+        await hass.async_add_executor_job(setup_device, hass, config)
     except Exception as e:
         raise ConfigEntryNotReady("tuya-local device not ready") from e
 
