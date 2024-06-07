@@ -4,6 +4,7 @@ API for Tuya Local devices.
 
 import asyncio
 import logging
+from asyncio.exceptions import CancelledError
 from threading import Lock
 from time import time
 
@@ -191,7 +192,10 @@ class TuyaLocalDevice(object):
     async def async_unregister_entity(self, entity):
         self._children.remove(entity)
         if not self._children:
-            await self.async_stop()
+            try:
+                await self.async_stop()
+            except CancelledError:
+                pass
 
     async def receive_loop(self):
         """Coroutine wrapper for async_receive generator."""
@@ -320,7 +324,7 @@ class TuyaLocalDevice(object):
 
                 await asyncio.sleep(0.1 if self.has_returned_state else 5)
 
-            except asyncio.CancelledError:
+            except CancelledError:
                 self._running = False
                 # Close the persistent connection when exiting the loop
                 self._api.set_socketPersistent(False)
