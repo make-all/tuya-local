@@ -19,7 +19,10 @@ async def async_tuya_setup_platform(
     device = data["device"]
     entities = []
 
-    cfg = get_config(discovery_info[CONF_TYPE])
+    cfg = await hass.async_add_executor_job(
+        get_config,
+        discovery_info[CONF_TYPE],
+    )
     if cfg is None:
         raise ValueError(f"No device config found for {discovery_info}")
     ecfg = cfg.primary_entity

@@ -40,7 +40,11 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         # Removal of Auto detection.
         config = {**entry.data, **entry.options, "name": entry.title}
         if config[CONF_TYPE] == CONF_TYPE_AUTO:
-            device = setup_device(hass, config)
+            device = await hass.async_add_executor_job(
+                setup_device,
+                hass,
+                config,
+            )
             config[CONF_TYPE] = await device.async_inferred_type()
             if config[CONF_TYPE] is None:
                 _LOGGER.error(
@@ -66,7 +70,11 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         # suggest it was removed completely.  But that is probably due to
         # overwriting options without CONF_TYPE.
         if config.get(CONF_TYPE, CONF_TYPE_AUTO) == CONF_TYPE_AUTO:
-            device = setup_device(hass, config)
+            device = await hass.async_add_executor_job(
+                setup_device,
+                hass,
+                config,
+            )
             config[CONF_TYPE] = await device.async_inferred_type()
             if config[CONF_TYPE] is None:
                 _LOGGER.error(
@@ -91,11 +99,19 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         # Migrate to filename based config_type, to avoid needing to
         # parse config files to find the right one.
         config = {**entry.data, **entry.options, "name": entry.title}
-        config_type = get_config(config[CONF_TYPE]).config_type
+        config_yaml = await hass.async_add_executor_job(
+            get_config,
+            config[CONF_TYPE],
+        )
+        config_type = config_yaml.config_type
 
         # Special case for kogan_switch.  Consider also v2.
         if config_type == "smartplugv1":
-            device = setup_device(hass, config)
+            device = await hass.async_add_executor_job(
+                setup_device,
+                hass,
+                config,
+            )
             config_type = await device.async_inferred_type()
             if config_type != "smartplugv2":
                 config_type = "smartplugv1"
@@ -113,7 +129,10 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
     if entry.version <= 5:
         # Migrate unique ids of existing entities to new format
         old_id = entry.unique_id
-        conf_file = get_config(entry.data[CONF_TYPE])
+        conf_file = await hass.async_add_executor_job(
+            get_config,
+            entry.data[CONF_TYPE],
+        )
         if conf_file is None:
             _LOGGER.error(NOT_FOUND, entry.data[CONF_TYPE])
             return False
@@ -196,7 +215,10 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
     if entry.version <= 11:
         # Migrate unique ids of existing entities to new format
         device_id = entry.unique_id
-        conf_file = get_config(entry.data[CONF_TYPE])
+        conf_file = await hass.async_add_executor_job(
+            get_config,
+            entry.data[CONF_TYPE],
+        )
         if conf_file is None:
             _LOGGER.error(
                 NOT_FOUND,
@@ -246,7 +268,10 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         # Migrate unique ids of existing entities to new format taking into
         # account device_class if name is missing.
         device_id = entry.unique_id
-        conf_file = get_config(entry.data[CONF_TYPE])
+        conf_file = await hass.async_add_executor_job(
+            get_config,
+            entry.data[CONF_TYPE],
+        )
         if conf_file is None:
             _LOGGER.error(
                 NOT_FOUND,
@@ -324,7 +349,10 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         # Migrate unique ids of existing entities to new id taking into
         # account translation_key, and standardising naming
         device_id = entry.unique_id
-        conf_file = get_config(entry.data[CONF_TYPE])
+        conf_file = await hass.async_add_executor_job(
+            get_config,
+            entry.data[CONF_TYPE],
+        )
         if conf_file is None:
             _LOGGER.error(
                 NOT_FOUND,
@@ -394,7 +422,10 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         # Migrate unique ids of existing entities to new id taking into
         # account translation_key, and standardising naming
         device_id = entry.unique_id
-        conf_file = get_config(entry.data[CONF_TYPE])
+        conf_file = await hass.async_add_executor_job(
+            get_config,
+            entry.data[CONF_TYPE],
+        )
         if conf_file is None:
             _LOGGER.error(
                 NOT_FOUND,
@@ -472,11 +503,14 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     )
     config = {**entry.data, **entry.options, "name": entry.title}
     try:
-        setup_device(hass, config)
+        await hass.async_add_executor_job(setup_device, hass, config)
     except Exception as e:
         raise ConfigEntryNotReady("tuya-local device not ready") from e
 
-    device_conf = get_config(entry.data[CONF_TYPE])
+    device_conf = await hass.async_add_executor_job(
+        get_config,
+        entry.data[CONF_TYPE],
+    )
     if device_conf is None:
         _LOGGER.error(NOT_FOUND, config[CONF_TYPE])
         return False
@@ -498,7 +532,10 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
     _LOGGER.debug("Unloading entry for device: %s", get_device_id(entry.data))
     config = entry.data
     data = hass.data[DOMAIN][get_device_id(config)]
-    device_conf = get_config(config[CONF_TYPE])
+    device_conf = await hass.async_add_executor_job(
+        get_config,
+        config[CONF_TYPE],
+    )
     if device_conf is None:
         _LOGGER.error(NOT_FOUND, config[CONF_TYPE])
         return False
