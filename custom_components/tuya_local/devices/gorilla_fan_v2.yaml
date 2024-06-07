@@ -1,0 +1,58 @@
+name: Gorilla Fan V2
+primary_entity:
+  entity: fan
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+      icon: mdi:ceiling-fan
+    - id: 2
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_value: normal
+          value: Normal
+        - dps_value: boost
+          value: Boost
+    - id: 3
+      type: integer
+      name: speed
+      range:
+        min: 1
+        max: 5
+
+secondary_entities:
+  - entity: light
+    name: Night Light
+    icon: mdi:ceiling-fan-light
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Boost
+    icon: mdi:car-turbocharger
+    dps:
+      - id: 115
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Sleep
+    icon: mdi:sleep
+    dps:
+      - id: 113
+        type: boolean
+        name: switch
+  - entity: number
+    name: Timer
+    icon: mdi:timer-edit
+    translation_key: timer
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 360
