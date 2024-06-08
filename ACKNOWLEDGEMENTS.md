@@ -568,3 +568,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Zelaf](https://github.com/Zelaf) for contributing improvements to Nedis portable air conditioner.
 - [hwhesselink](https://github.com/hwhesselink) for contributing support for Amico ceiling fans.
 - [JohnyDNU](https://github.com/JohnyDNU) for contributing support for Sensei Air Conditioner.
+- [christiaanderidder](https://github.com/christiaanderidder) for contributing improvements to windcalm fans to also support lights without brightness control
