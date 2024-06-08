@@ -180,6 +180,7 @@
 
 ### Fans
 
+- Amico 52" ceiling fan with light
 - Anko HEGSM40 fan
 - Arlec ceiling fan and light remote control kit (CFR225HA)
 - Arlec Grid Connect smart ceiling fan (with and without light)

@@ -566,4 +566,5 @@ Further device support has been made with the assistance of users. Please consid
 - [psuet](https://github.com/psuet) for assisting with support for XCase lock boxes.
 - [Zylazy](https://github.com/Zylazy) for assisting with support for Hoenyzy valve timers.
 - [Zelaf](https://github.com/Zelaf) for contributing improvements to Nedis portable air conditioner.
-- [JohnyDNU](https://github.com/JohnyDNU) for assistance in support for Sensei Air Conditioner.
+- [hwhesselink](https://github.com/hwhesselink) for contributing support for Amico ceiling fans.
+- [JohnyDNU](https://github.com/JohnyDNU) for contributing support for Sensei Air Conditioner.
