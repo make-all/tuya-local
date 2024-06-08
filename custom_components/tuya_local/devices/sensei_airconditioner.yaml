@@ -31,7 +31,6 @@ primary_entity:
     - id: 2
       type: integer
       name: temperature
-      unit: c
       range:
         min: 160
         max: 320
@@ -98,14 +97,22 @@ primary_entity:
           value: both
         - dps_val: "off"
           value: "off"
-    - id: 20
-      type: bitfield
-      name: fault_code
     - id: 105
       name: temperature_unit
       type: string
       optional: true
-
+      mapping:
+        - dps_val: c
+          value: C
+        - dps_val: f
+          value: F
+    - id: 112
+      name: model
+      type: string
+    - id: 114
+      name: current_mode
+      type: string
+      optional: true
 secondary_entities:
   - entity: switch
     name: Wet
@@ -122,36 +129,82 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: light
-    name: Backlight
+    translation_key: backlight
     category: config
-    icon: "mdi:television-ambient-light"
     dps:
       - id: 13
         name: switch
         type: boolean
-  - entity: number
-    name: "Countdown"
+  - entity: select
     category: config
     translation_key: timer
     dps:
       - id: 21
         type: string
         optional: true
-        name: value
-        unit: h
-        range:
-          min: 0
-          max: 24
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: "1 hour"
+          - dps_val: "2"
+            value: "2 hours"
+          - dps_val: "3"
+            value: "3 hours"
+          - dps_val: "4"
+            value: "4 hours"
+          - dps_val: "5"
+            value: "5 hours"
+          - dps_val: "6"
+            value: "6 hours"
+          - dps_val: "7"
+            value: "7 hours"
+          - dps_val: "8"
+            value: "8 hours"
+          - dps_val: "9"
+            value: "9 hours"
+          - dps_val: "10"
+            value: "10 hours"
+          - dps_val: "11"
+            value: "11 hours"
+          - dps_val: "12"
+            value: "12 hours"
+          - dps_val: "13"
+            value: "13 hours"
+          - dps_val: "14"
+            value: "14 hours"
+          - dps_val: "15"
+            value: "15 hours"
+          - dps_val: "16"
+            value: "16 hours"
+          - dps_val: "17"
+            value: "17 hours"
+          - dps_val: "18"
+            value: "18 hours"
+          - dps_val: "19"
+            value: "19 hours"
+          - dps_val: "20"
+            value: "20 hours"
+          - dps_val: "21"
+            value: "21 hours"
+          - dps_val: "22"
+            value: "22 hours"
+          - dps_val: "23"
+            value: "23 hours"
+          - dps_val: "24"
+            value: "24 hours"
   - entity: sensor
-    name: Countdown left
+    class: duration
+    translation_key: time_remaining
     category: diagnostic
-    icon: "mdi:counter"
     dps:
       - id: 22
         name: sensor
         type: integer
+        unit: min
   - entity: sensor
-    name: Usages counter
+    name: Usage counter
     category: diagnostic
     icon: "mdi:counter"
     dps:
@@ -159,6 +212,7 @@ secondary_entities:
         name: sensor
         type: integer
   - entity: sensor
+    class: duration
     name: Total time
     category: diagnostic
     icon: "mdi:timer"
@@ -166,6 +220,7 @@ secondary_entities:
       - id: 102
         name: sensor
         type: integer
+        unit: h
   - entity: sensor
     name: Electricity
     category: diagnostic
@@ -174,14 +229,12 @@ secondary_entities:
       - id: 103
         name: sensor
         type: integer
-  - entity: sensor
-    name: Electricity counter
-    category: diagnostic
-    icon: "mdi:counter"
-    dps:
+        unit: kWh
+        mapping:
+          - scale: 10
       - id: 104
-        name: sensor
         type: integer
+        name: report_number
         optional: true
   - entity: select
     translation_key: temperature_unit
@@ -250,27 +303,17 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: switch
-    name: Health
-    icon: "mdi:sprout-outline"
+    translation_key: uv_sterilization
     dps:
       - id: 110
         name: switch
         type: boolean
   - entity: switch
-    name: Clean
-    icon: "mdi:vacuum"
+    translation_key: ionizer
     dps:
       - id: 111
         name: switch
         type: boolean
-  - entity: sensor
-    name: Model
-    category: diagnostic
-    icon: "mdi:auto-mode"
-    dps:
-      - id: 112
-        name: sensor
-        type: string
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -279,21 +322,22 @@ secondary_entities:
       - id: 20
         type: bitfield
         name: sensor
+        mapping:
+          - dps_val: 0
+            value: true
+            constraint: fault_code2
+            conditions:
+              - dps_val: 0
+                value: false
+          - value: true
+      - id: 20
+        type: bitfield
+        name: fault_code
       - id: 113
         type: bitfield
-        name: sensor
-  - entity: sensor
-    name: Current mode
-    category: diagnostic
-    icon: "mdi:auto-mode"
-    dps:
-      - id: 114
-        name: sensor
-        type: string
-        optional: true
+        name: fault_code2
   - entity: switch
-    name: 8 degrees of heating
-    icon: "mdi:dice-d8-outline"
+    translation_key: anti_frost
     dps:
       - id: 115
         name: switch
