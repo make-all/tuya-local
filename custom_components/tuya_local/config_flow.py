@@ -54,6 +54,22 @@ from .helpers.log import log_json
 
 _LOGGER = logging.getLogger(__name__)
 
+HUB_CATEGORIES = [
+    "wgsxj",  # Gateway camera
+    "lyqwg",  # Router
+    "bywg",  # IoT edge gateway
+    "zigbee",  # Gateway
+    "wg2",  # Gateway
+    "dgnzk",  # Multi-function controller
+    "videohub",  # Videohub
+    "xnwg",  # Virtual gateway
+    "qtyycp",  # Voice gateway composite solution
+    "alexa_yywg",  # Gateway with Alexa
+    "gywg",  # Industrial gateway
+    "cnwg",  # Energy gateway
+    "wnykq",  # Smart IR
+]
+
 
 class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION = 13
@@ -336,7 +352,10 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         hub_list.append(SelectOptionDict(value="None", label="None"))
         for key in self.__cloud_devices.keys():
             hub_entry = self.__cloud_devices[key]
-            if hub_entry[CONF_LOCAL_KEY] == "":
+            if (
+                hub_entry[CONF_LOCAL_KEY] == ""
+                or hub_entry["category"] in HUB_CATEGORIES
+            ):
                 hub_list.append(
                     SelectOptionDict(
                         value=key,

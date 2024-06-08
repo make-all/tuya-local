@@ -2,6 +2,8 @@ name: IR heatpump
 products:
   - id: hwktwkq
     name: Moes SD16Pro
+  - id: aqlyorlybbtn6ox7
+    name: Moes IR thermostat
 primary_entity:
   entity: climate
   dps:
@@ -19,7 +21,7 @@ primary_entity:
             - dps_val: warm
               value: heat
             - dps_val: auto
-              value: heatcool
+              value: heat_cool
             - dps_val: air
               value: fan_only
             - dps_val: dehumidify
@@ -146,25 +148,21 @@ secondary_entities:
         type: integer
         name: sensor
         unit: h
-  - entity: switch
-    name: Internet connection
+  - entity: binary_sensor
+    class: connectivity
     category: config
     dps:
       - id: 19
         type: boolean
-        name: switch
+        name: sensor
         optional: true
         mapping:
           - dps_val: true
             value: false
-            icon: "mdi:lan-disconnect"
           - dps_val: false
             value: true
-            icon: "mdi:lan-connect"
           - dps_val: null
-            hidden: true
             value: true
-            icon: "mdi:lan-connect"
   - entity: button
     name: Run time reset
     class: restart
