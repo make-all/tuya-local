@@ -21,9 +21,6 @@ primary_entity:
       type: string
       name: fault_type
       optional: true
-    - id: 58
-      type: string
-      name: wind_direct
     - id: 68
       type: string
       name: com_index
@@ -53,8 +50,7 @@ secondary_entities:
             - dps_val: high
               value: false
   - entity: select
-    name: Temperature unit
-    icon: mdi:thermometer
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 9
@@ -62,9 +58,9 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: c
-            value: "°C"
+            value: celsius
           - dps_val: f
-            value: "°F"
+            value: fahrenheit
   - entity: select
     name: Wind speed unit
     icon: mdi:weather-windy
@@ -82,6 +78,9 @@ secondary_entities:
             value: knots
           - dps_val: mph
             value: mph
+      - id: 58
+        type: string
+        name: wind_direct
   - entity: select
     name: Pressure unit
     icon: mdi:gauge
@@ -130,6 +129,7 @@ secondary_entities:
     category: diagnostic
     dps:
       - id: 30
+        optional: true
         <<: *battery
   - entity: binary_sensor
     name: Battery ch1
@@ -159,11 +159,13 @@ secondary_entities:
     class: temperature
     dps:
       - id: 38
+        optional: true
         <<: *temperature
   - entity: sensor
     class: humidity
     dps:
       - id: 39
+        optional: true
         <<: *humidity
   - entity: sensor
     name: Temperature ch1
@@ -231,6 +233,7 @@ secondary_entities:
     icon: mdi:weather-windy
     dps:
       - id: 56
+        optional: true
         <<: &wind_speed
           type: integer
           name: sensor
@@ -243,6 +246,7 @@ secondary_entities:
     icon: mdi:weather-windy
     dps:
       - id: 57
+        optional: true
         <<: *wind_speed
   - entity: sensor
     name: Rain
@@ -261,6 +265,7 @@ secondary_entities:
     icon: mdi:weather-pouring
     dps:
       - id: 61
+        optional: true
         <<: *rain
         unit: mm/h
   - entity: sensor
@@ -269,6 +274,7 @@ secondary_entities:
     dps:
       - id: 62
         type: integer
+        optional: true
         name: sensor
         unit: UV Index
         mapping:
@@ -280,6 +286,7 @@ secondary_entities:
     dps:
       - id: 63
         type: integer
+        optional: true
         name: sensor
         unit: lx
         class: measurement
@@ -288,12 +295,14 @@ secondary_entities:
     class: temperature
     dps:
       - id: 64
+        optional: true
         <<: *temperature
   - entity: sensor
     name: Feels like temperature
     class: temperature
     dps:
       - id: 65
+        optional: true
         <<: *temperature
   - entity: sensor
     name: Heat index
@@ -307,6 +316,7 @@ secondary_entities:
     class: temperature
     dps:
       - id: 67
+        optional: true
         <<: *temperature
   - entity: sensor
     name: Wind bearing
