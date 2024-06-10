@@ -26,21 +26,23 @@ primary_entity:
       type: integer
       name: temperature
       range:
-        min: 1500
+        min: 41
         max: 4500
       mapping:
-        - scale: 100
-          step: 50
-          constraint: temperature_unit
+        - constraint: temperature_unit
           conditions:
             - dps_val: f
               value_redirect: temp_f
-              mapping:
-                - scale: 1
-                  step: 1
               range:
                 min: 41
                 max: 90
+            - dps_val: c
+              range:
+                min: 1500
+                max: 4500
+              mapping:
+                - scale: 100
+                  step: 50
     - id: 17
       type: integer
       name: temp_f
