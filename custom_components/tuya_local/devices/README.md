@@ -152,6 +152,14 @@ attribute will be returned as a readonly custom attribute on the entity.
 If you need non-standard attributes to be able to be set, you will need
 to use a secondary entity for that.
 
+### `sensitive`
+
+*Optional, default false.*
+
+A boolean setting yo mark attributes as containing potentially sensitive
+data.  Setting this to true will result in the data being redacted in
+device diagnostics output.
+
 ### `readonly`
 
 *Optional, default false.*

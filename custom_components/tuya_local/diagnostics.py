@@ -6,6 +6,7 @@ from typing import Any
 
 from homeassistant.components.diagnostics import REDACTED
 from homeassistant.config_entries import ConfigEntry
+from homeassistant.const import CONF_HOST
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers import entity_registry as er
@@ -45,6 +46,7 @@ def _async_get_diagnostics(
 ) -> dict[str, Any]:
     """Return diagnostics for a tuya-local config entry."""
     hass_data = hass.data[DOMAIN][get_device_id(entry.data)]
+    hostname = entry.data.get(CONF_HOST, "")
 
     data = {
         "name": entry.title,
@@ -52,7 +54,9 @@ def _async_get_diagnostics(
         "device_id": REDACTED,
         "device_cid": REDACTED if entry.data.get(CONF_DEVICE_CID, "") != "" else "",
         "local_key": REDACTED,
-        "host": REDACTED,
+        "host": REDACTED
+        if hostname != "" and hostname.casefold() != "auto"
+        else hostname,
         "protocol_version": entry.data[CONF_PROTOCOL_VERSION],
         "tinytuya_version": tinytuya_version,
     }
@@ -64,6 +68,30 @@ def _async_get_diagnostics(
     data |= _async_device_as_dict(hass, hass_data["device"])
 
     return data
+
+
+def redact_dps(device: TuyaLocalDevice, dps: dict[str, Any]) -> dict[str, Any]:
+    """Redact any sensitive data from a list of dps"""
+    sensitive = []
+    for entity in device._children:
+        for dp in entity._config.dps():
+            if dp.sensitive:
+                sensitive += dp.id
+    return {k: (REDACTED if k in sensitive else v) for (k, v) in dps.items()}
+
+
+def redact_entity(
+    device: TuyaLocalDevice,
+    entity_id: str,
+    state_dict: dict[str, Any],
+) -> dict[str, Any]:
+    sensitive = []
+    for entity in device._children:
+        if entity._config.config_id == entity_id:
+            for dp in entity._config.dps():
+                if dp.sensitive:
+                    sensitive += dp.name
+    return {k: (REDACTED if k in sensitive else v) for (k, v) in state_dict.items()}
 
 
 @callback
@@ -83,8 +111,8 @@ def _async_device_as_dict(
         ),
         "api_working": device._api_protocol_working,
         "status": device._api.dps_cache,
-        "cached_state": device._cached_state,
-        "pending_state": device._pending_updates,
+        "cached_state": redact_dps(device, device._cached_state),
+        "pending_state": redact_dps(device, device._pending_updates),
         "connected": device._running,
         "force_dps": device._force_dps,
     }
@@ -112,7 +140,11 @@ def _async_device_as_dict(
             state = hass.states.get(entity_entry.entity_id)
             state_dict = None
             if state:
-                state_dict = dict(state.as_dict())
+                state_dict = redact_entity(
+                    device,
+                    entity_entry.entity_id,
+                    state.as_dict(),
+                )
 
                 # Redact entity_picture in case it is sensitive
                 if "entity_picture" in state_dict["attributes"]:

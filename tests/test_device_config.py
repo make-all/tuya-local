@@ -103,6 +103,7 @@ DP_SCHEMA = vol.Schema(
         vol.Optional("persist"): False,
         vol.Optional("hidden"): True,
         vol.Optional("readonly"): True,
+        vol.Optional("sensitive"): True,
         vol.Optional("force"): True,
         vol.Optional("icon_priority"): int,
         vol.Optional("mapping"): [MAPPING_SCHEMA],
