@@ -1,6 +1,6 @@
 name: Hydrate Ultra
 products:
-  - id: cuw2k3ho3e25fade  
+  - id: cuw2k3ho3e25fade  # Your device ID
     name: Hydrate Ultra
 
 primary_entity:
@@ -9,7 +9,7 @@ primary_entity:
   dps:
       - id: 101
         type: boolean
-        name: switch  
+        name: switch  # Controls the on/off state of the light
       - id: 102
         name: brightness
         type: integer
@@ -24,7 +24,7 @@ secondary_entities:
     category: config
     dps:
       - id: 104
-        type: integer  
+        type: integer  # Assuming the reset value might be an integer operation
         name: button
   - entity: sensor
     name: Filter life
@@ -39,7 +39,7 @@ secondary_entities:
           min: 0
           max: 43200
         mapping:
-          - scale: 1440  
+          - scale: 1440  # minutes => days
             invert: true
         unit: d
   - entity: button
@@ -48,7 +48,7 @@ secondary_entities:
     category: config
     dps:
       - id: 105
-        type: integer  
+        type: integer  # Assuming the reset value might be an integer operation
         name: button
   - entity: sensor
     name: Pump maintenance
@@ -93,13 +93,13 @@ secondary_entities:
         name: water_level_raw
         mapping:
           - dps_val: 1
-            value: "Low"
+            value: 1
           - dps_val: 2
-            value: "Medium"
+            value: 2
           - dps_val: 3
-            value: "High"
+            value: 3
           - dps_val: 4
-            value: "Full"
+            value: 4
   - entity: sensor
     name: UV runtime
     icon: "mdi:timer-outline"
