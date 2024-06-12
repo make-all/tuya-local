@@ -1,0 +1,138 @@
+#right valve working mode: 128
+#zone left:1
+#right valve next start time : 129
+#right vlv irrigation residual flow: 130
+#total irrigation time of right vlv on time: 131
+#failure to report: 4
+#right vlv irr amount: 132
+#water once: 5
+#single water consumption and usage time of right vlv: 133
+#total daily water consumption: 6
+#battery: 7
+#weather delay: 10
+#irrigation time: 11
+#work state: 12
+#once using time: 15
+#cycle irrigation: 16
+#normal timer: 17
+#no-irrigation duration: 28
+#left vlv working mode: 101
+#next start time of left vlv: 102
+#left vlv quantitative irrigation residual flow: 103
+#total irrigation time of left vlv on time: 104
+#the left vlv is used for irrigation: 105
+#single water consumtion and usage time of left vlv: 106
+#flow unit selection: 110
+#temperature unit selection: 111
+#cumulative water consumtion: 112
+#current device time: 113
+#time format selection: 115
+#zone right: 121
+#right vlv single water volume: 122
+#total water consumption of right vlv on the day: 123
+#right vlv weather delay: 124
+#remaining irrigation time of right vlv: 125
+#right vlv working status: 126
+#right vlv single use time: 127
+
+
+name: Dual water timer
+products:
+  - id: r6ya07uz
+    name: Diivoo DWV010
+primary_entity:
+  entity: valve
+  class: water
+  name: Valve 1
+  dps:
+    - id: 1
+      type: boolean
+      name: valve
+secondary_entities:
+  - entity: valve
+    class: water
+    name: Valve 2
+    dps:
+      - id: 121
+        type: boolean
+        name: valve
+  - entity: sensor
+    name: cumulative water consumtion
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: "l"
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    name: Operation 1
+    category: diagnostic
+    dps:
+      - id: 12
+        type: string
+        name: sensor
+  - entity: sensor
+    name: Operation 2
+    category: diagnostic
+    dps:
+      - id: 126
+        type: string
+        name: sensor
+  - entity: select
+    name: Weather delay 1
+    icon: "mdi:weather-cloudy-clock"
+    category: config
+    dps:
+      - id: 10
+        type: string
+        name: option
+        mapping:
+          - dps_val: "OFF"
+            value: "Off"
+          - dps_val: "1"
+            value: "1 day"
+          - dps_val: "2"
+            value: "2 days"
+          - dps_val: "3"
+            value: "3 days"
+          - dps_val: "3"
+            value: "4 days"
+          - dps_val: "5"
+            value: "5 days"
+          - dps_val: "6"
+            value: "6 days"
+          - dps_val: "7"
+            value: "7 days"
+  - entity: select
+    name: Weather delay 2
+    icon: "mdi:weather-cloudy-clock"
+    category: config
+    dps:
+      - id: 124
+        type: string
+        name: option
+        mapping:
+          - dps_val: "OFF"
+            value: "Off"
+          - dps_val: "1"
+            value: "1 day"
+          - dps_val: "2"
+            value: "2 days"
+          - dps_val: "3"
+            value: "3 days"
+          - dps_val: "3"
+            value: "4 days"
+          - dps_val: "5"
+            value: "5 days"
+          - dps_val: "6"
+            value: "6 days"
+          - dps_val: "7"
+            value: "7 days"
