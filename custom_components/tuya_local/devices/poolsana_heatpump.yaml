@@ -1,0 +1,113 @@
+name: PoolSana InverPower Next
+primary_entity:
+  entity: climate
+  translation_key: pool_heatpump
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: Cooling
+              value: cool
+            - dps_val: Heating
+              value: heat
+            - dps_val: Auto
+              value: auto
+    - id: 2
+      type: string
+      name: mode
+      hidden: true
+    - id: 4
+      type: integer
+      name: temperature
+      range:
+        min: 70
+        max: 400
+      mapping:
+        - scale: 10
+          step: 10
+    - id: 16
+      type: integer
+      name: current_temperature
+      range:
+        min: -300
+        max: 1000
+      mapping:
+        - scale: 10
+          step: 1
+    - id: 5
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: Boost
+          value: boost
+        - dps_val: Silence
+          value: eco
+        - dps_val: Smart
+          value: comfort
+secondary_entities:
+  - entity: sensor
+    class: temperature
+    name: Effluent Temperature
+    category: diagnostic
+    dps:
+      - id: 25
+        type: integer
+        name: sensor
+        range:
+          min: 0
+          max: 100
+        unit: "°C"
+        mapping:
+          - scale: 1
+            step: 1
+  - entity: sensor
+    class: temperature
+    name: Current Temperature
+    category: diagnostic
+    dps:
+      - id: 16
+        type: integer
+        name: sensor
+        range:
+          min: -300
+          max: 1000
+        mapping:
+          - scale: 10
+            step: 1
+        unit: "°C"
+  - entity: sensor
+    class: temperature
+    name: Target Temperature
+    category: diagnostic
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        range:
+          min: 70
+          max: 400
+        mapping:
+          - scale: 10
+            step: 10
+        unit: "°C"
+  - entity: sensor
+    category: diagnostic
+    class: problem
+    name: Fault
+    dps:
+      - id: 15
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 15
+        type: bitfield
+        name: fault_code
