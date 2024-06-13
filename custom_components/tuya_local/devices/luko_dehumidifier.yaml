@@ -1,6 +1,7 @@
-name: Luko Dehumidifier
+name: Dehumidifier
 products:
   - id: 4w2fzgr62c1oyjsx
+    name: Luko dehumidifier
 primary_entity:
   entity: humidifier
   class: dehumidifier
@@ -11,12 +12,6 @@ primary_entity:
     - id: 8
       name: current_humidity
       type: integer
-      unit: "%"
-      class: measurement
-      readonly: true
-      range:
-        min: 15
-        max: 100
     - id: 2
       name: mode
       type: string
@@ -26,7 +21,6 @@ primary_entity:
     - id: 46
       name: humidity
       type: integer
-      unit: "%"
       range:
         min: 40
         max: 80
@@ -53,13 +47,12 @@ secondary_entities:
           - dps_val: "5speed"
             value: 100
   - entity: sensor
-    name: Temperature
+    class: temperature
     dps:
       - id: 9
         name: sensor
         type: integer
         unit: "C"
-        class: temperature
-        readonly: true
+        class: measurement
         mapping:
           - scale: 10
