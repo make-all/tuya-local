@@ -1,20 +1,19 @@
-name: Pcie computer power pro
+name: PC power switch
 products:
   - id: rtbhfbuii82scjrp
-    name: pcie pc pro power switch
+    name: PCIe PC Pro
 primary_entity:
   entity: switch
   class: outlet
   dps:
     - id: 1
       type: boolean
-      name: switch
-      
- 
+      name: switch/
+
 secondary_entities:
   - entity: button
     name: Reset
-    icon: mdi:restart
+    class: restart
     dps:
       - id: 101
         name: button
@@ -33,7 +32,7 @@ secondary_entities:
           - dps_val: forceReset
             value: true
   - entity: switch
-    name: Rf pairing
+    name: RF pairing
     category: config
     dps:
       - id: 7
@@ -47,7 +46,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: select
-    name: Power on behavior
+    name: Initial state
     icon: mdi:power-settings
     category: config
     dps:
@@ -67,7 +66,7 @@ secondary_entities:
         type: boolean
         name: lock
   - entity: switch
-    name: Rf remote control
+    name: RF remote control
     icon: mdi:remote
     category: config
     dps:
@@ -79,4 +78,3 @@ secondary_entities:
             value: true
           - dps_val: "off"
             value: false
-     
