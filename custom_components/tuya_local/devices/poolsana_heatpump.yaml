@@ -1,5 +1,8 @@
-name: PoolSana InverPower Next
+name: Pool heat pump
 primary_entity:
+  products:
+  - id: abb8kaxcphfzkwsg
+    name: PoolSana InverPower Next
   entity: climate
   translation_key: pool_heatpump
   dps:
@@ -66,40 +69,9 @@ secondary_entities:
         mapping:
           - scale: 1
             step: 1
-  - entity: sensor
-    class: temperature
-    name: Current Temperature
-    category: diagnostic
-    dps:
-      - id: 16
-        type: integer
-        name: sensor
-        range:
-          min: -300
-          max: 1000
-        mapping:
-          - scale: 10
-            step: 1
-        unit: "°C"
-  - entity: sensor
-    class: temperature
-    name: Target Temperature
-    category: diagnostic
-    dps:
-      - id: 4
-        type: integer
-        name: sensor
-        range:
-          min: 70
-          max: 400
-        mapping:
-          - scale: 10
-            step: 10
-        unit: "°C"
-  - entity: sensor
+  - entity: binary_sensor
     category: diagnostic
     class: problem
-    name: Fault
     dps:
       - id: 15
         type: bitfield
