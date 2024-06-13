@@ -1,7 +1,7 @@
-name: Ceiling Fan Light
+name: Ceiling fan light
 products:
   - id: czvfkmtazfs0ohaq
-    name: Depuley - WS-FPZ37-18I-EU
+    name: Depuley WS-FPZ37-18I-EU
 primary_entity:
   entity: light
   dps:
@@ -40,24 +40,8 @@ primary_entity:
             max: 6500
     - id: 24
       name: ignored_rgbhsv
-      type: hex
+      type: string
       optional: true
-      format:
-        - name: h
-          bytes: 2
-          range:
-            min: 0
-            max: 360
-        - name: s
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-        - name: v
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
     - id: 36
       name: mix_light_scene
       type: base64
@@ -144,6 +128,7 @@ secondary_entities:
           - dps_val: "1746460200f003e803e80000000046460200dc02bc03e800000000"
             value: Ocean
   - entity: fan
+    translation_key: fan_with_presets
     dps:
       - id: 60
         name: switch
@@ -189,7 +174,7 @@ secondary_entities:
             value: 0
   - entity: number
     translation_key: timer
-    name: Light Timer
+    name: Light timer
     category: config
     dps:
       - id: 26
@@ -204,6 +189,7 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
+    translation_key: timer
     name: Fan Timer
     category: config
     dps:
@@ -220,8 +206,6 @@ secondary_entities:
             value: 0
   - entity: binary_sensor
     class: problem
-    category: diagnostic
-    name: Fault
     dps:
       - id: 56
         type: bitfield
