@@ -20,7 +20,7 @@ primary_entity:
             - dps_val: Heating
               value: heat
             - dps_val: Auto
-              value: auto
+              value: heat_cool
     - id: 2
       type: string
       name: mode
@@ -37,12 +37,8 @@ primary_entity:
     - id: 16
       type: integer
       name: current_temperature
-      range:
-        min: -300
-        max: 1000
       mapping:
         - scale: 10
-          step: 1
     - id: 5
       type: string
       name: preset_mode
@@ -62,13 +58,7 @@ secondary_entities:
       - id: 25
         type: integer
         name: sensor
-        range:
-          min: 0
-          max: 100
         unit: "°C"
-        mapping:
-          - scale: 1
-            step: 1
   - entity: binary_sensor
     category: diagnostic
     class: problem
