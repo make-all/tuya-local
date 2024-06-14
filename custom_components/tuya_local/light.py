@@ -12,6 +12,7 @@ from homeassistant.components.light import (
     ATTR_EFFECT,
     ATTR_HS_COLOR,
     ATTR_WHITE,
+    EFFECT_OFF,
     ColorMode,
     LightEntity,
     LightEntityFeature,
@@ -213,11 +214,13 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
         if self._effect_dps:
             return self._effect_dps.values(self._device)
         elif self._color_mode_dps:
-            return [
+            effects = [
                 effect
                 for effect in self._color_mode_dps.values(self._device)
                 if effect and not hasattr(ColorMode, effect.upper())
             ]
+            effects.append(EFFECT_OFF)
+            return effects
 
     @property
     def effect(self):
@@ -228,6 +231,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             mode = self._color_mode_dps.get_value(self._device)
             if mode and not hasattr(ColorMode, mode.upper()):
                 return mode
+            return EFFECT_OFF
 
     async def async_turn_on(self, **params):
         settings = {}
@@ -347,6 +351,14 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             elif not self._effect_dps:
                 effect = params.get(ATTR_EFFECT)
                 if effect:
+                    if effect == EFFECT_OFF:
+                        # Turn off the effect. Ideally this should keep the
+                        # previous mode, but since the mode is shared with
+                        # effect, use the default, or first in the list
+                        effect = (
+                            self._color_mode_dps.default
+                            or self._color_mode_dps.values(self.device)[0]
+                        )
                     _LOGGER.debug(
                         "Emulating effect using color mode of %s",
                         effect,
