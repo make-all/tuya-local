@@ -1,7 +1,7 @@
 from homeassistant.components.light import (
+    EFFECT_OFF,
     ColorMode,
     LightEntityFeature,
-    EFFECT_OFF,
 )
 from homeassistant.const import UnitOfTime
 
