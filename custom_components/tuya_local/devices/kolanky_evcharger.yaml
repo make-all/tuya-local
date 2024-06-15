@@ -1,0 +1,160 @@
+name: EV charger
+products:
+  - id: 7bvgooyjhiua1yyq
+    name: Kolanky 3.6kW
+primary_entity:
+  entity: sensor
+  name: Status
+  class: enum
+  icon: "mdi:ev-station"
+  dps:
+    - id: 101
+      type: string
+      name: sensor
+      mapping:
+        - dps_val: no_connect
+          value: Disconnected
+        - dps_val: connect
+          value: Connected
+        - dps_val: charing
+          value: Charging
+        - dps_val: wait_rfid
+          value: Waiting for authorization
+        - dps_val: finish
+          value: Charged
+        - dps_val: wait_charing
+          value: Delaying charge
+        - dps_val: error
+          value: Error
+    - id: 3
+      type: string
+      optional: true
+      name: work_state
+secondary_entities:
+  - entity: select
+    name: Charging operation
+    icon: "mdi:ev-station"
+    category: config
+    dps:
+      - id: 124
+        type: string
+        name: option
+        mapping:
+          - dps_val: OpenCharging
+            value: Start charging
+          - dps_val: CloseCharging
+            value: Stop charging
+          - dps_val: WaitOperation
+            value: "No operation"
+  - entity: number
+    name: Charge current
+    category: config
+    class: current
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 6
+          max: 16
+  - entity: number
+    name: Delay time
+    category: config
+    icon: "mdi:car-clock"
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 15
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Charging duration
+    category: config
+    icon: "mdi:car-clock"
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 15
+  - entity: sensor
+    name: Charging time
+    class: duration
+    dps:
+      - id: 120
+        type: integer
+        name: sensor
+        unit: min
+        mapping:
+          - scale: 10
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        name: fault_code

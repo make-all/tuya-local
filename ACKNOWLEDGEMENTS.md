@@ -571,3 +571,4 @@ Further device support has been made with the assistance of users. Please consid
 - [christiaanderidder](https://github.com/christiaanderidder) for contributing improvements to windcalm fans to also support lights without brightness control
 - [cemilbrowne](https://github.com/cemilbrowne) for contributing support for Luko dehumidifier.
 - [malosaa](https://github.com/malosaa) for contributing support for LSC RGB-CCT lightbulbs.
+- [liouma](https://github.com/liouma) for assisting with support for Kolanky EV chargers.
