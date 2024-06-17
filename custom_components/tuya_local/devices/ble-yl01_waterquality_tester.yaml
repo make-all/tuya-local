@@ -186,22 +186,11 @@ secondary_entities:
         range:
           min: -1200
           max: 1200
-  - entity: number
-    name: Minimum humidity
-    category: config
-    class: humidity
-    dps:
-      - id: 116
-        type: integer
-        name: value
-        unit: "%"
-        range:
-          min: 0
-          max: 100
   - entity: sensor
-    name: SALT TDS
+    name: Salt
     dps:
-      - id: 116
+      - id: 117
         type: integer
-        name: value
+        name: sensor
+        class: measurement
         unit: "ppm"
