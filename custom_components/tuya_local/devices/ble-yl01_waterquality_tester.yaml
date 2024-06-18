@@ -5,7 +5,6 @@ products:
 primary_entity:
   entity: sensor
   icon: "mdi:pool-thermometer"
-  name: Temperature
   class: temperature
   dps:
     - id: 2
@@ -27,15 +26,13 @@ secondary_entities:
   - entity: sensor
     class: battery
     category: diagnostic
-    name: Battery
     dps:
       - id: 7
         type: integer
         name: sensor
         unit: "%"
   - entity: sensor
-    name: pH
-    icon: "mdi:ph"
+    class: ph
     dps:
       - id: 10
         type: integer
@@ -92,8 +89,8 @@ secondary_entities:
         name: switch
   - entity: number
     name: Maximum pH
+    class: ph
     category: config
-    icon: "mdi:ph"
     dps:
       - id: 106
         type: integer
@@ -106,7 +103,7 @@ secondary_entities:
   - entity: number
     name: Minimum pH
     category: config
-    icon: "mdi:ph"
+    class: ph
     dps:
       - id: 107
         type: integer
@@ -187,7 +184,7 @@ secondary_entities:
           min: -1200
           max: 1200
   - entity: sensor
-    name: Salt
+    name: Salinity
     dps:
       - id: 117
         type: integer
