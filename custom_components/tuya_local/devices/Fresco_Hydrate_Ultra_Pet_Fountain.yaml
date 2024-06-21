@@ -16,16 +16,42 @@ primary_entity:
       range:
         min: 1
         max: 10
+        step: 1
 
 secondary_entities:
   - entity: button
-    name: Reset Filter Alarm
+    name: Reset Water
+    icon: "mdi:water-circle"
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: button
+
+  - entity: sensor
+    name: Water life
+    icon: "mdi:water-circle"
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        range:
+          min: 0
+          max: 7200
+          step: 60
+        unit: min
+        class: duration
+
+  - entity: button
+    name: Reset Filter
     icon: "mdi:air-filter"
     category: config
     dps:
       - id: 104
         type: integer
         name: button
+
   - entity: sensor
     name: Filter life
     icon: "mdi:air-filter"
@@ -34,22 +60,22 @@ secondary_entities:
       - id: 104
         type: integer
         name: sensor
-        precision: 0
         range:
           min: 0
           max: 43200
-        mapping:
-          - scale: 1440
-            invert: true
-        unit: d
+          step: 60
+        unit: min
+        class: duration
+
   - entity: button
-    name: Reset Pump Alarm
+    name: Reset Pump
     icon: "mdi:pump"
     category: config
     dps:
       - id: 105
         type: integer
         name: button
+
   - entity: sensor
     name: Pump maintenance
     icon: "mdi:pump"
@@ -58,14 +84,12 @@ secondary_entities:
       - id: 105
         type: integer
         name: sensor
-        precision: 0
         range:
           min: 0
           max: 86400
-        mapping:
-          - scale: 1440
-            invert: true
-        unit: d
+        unit: min
+        class: duration
+
   - entity: sensor
     name: Water quality
     icon: "mdi:water"
@@ -75,14 +99,17 @@ secondary_entities:
         type: integer
         name: sensor
         unit: TDS
+
   - entity: switch
-    name: UV sterilization
-    icon: "mdi:flash"
+    translation_key: uv_sterilization
     category: config
+    name: UV Light
     dps:
       - id: 107
         type: boolean
         name: switch
+        optional: true
+
   - entity: sensor
     name: Water level
     icon: "mdi:water"
@@ -100,6 +127,7 @@ secondary_entities:
             value: 3
           - dps_val: "4"
             value: 4
+
   - entity: sensor
     name: UV runtime
     icon: "mdi:timer-outline"
@@ -109,3 +137,4 @@ secondary_entities:
         type: integer
         name: sensor
         unit: s
+        class: duration
