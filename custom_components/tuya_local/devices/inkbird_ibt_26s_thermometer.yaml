@@ -85,7 +85,6 @@ secondary_entities:
         name: sensor
         unit: C
         class: measurement
-
   - entity: select
     translation_key: temperature_unit
     category: config
@@ -99,6 +98,7 @@ secondary_entities:
           - dps_val: C
             value: celsius
   - entity: sensor
+    name: Battery level
     class: battery
     category: diagnostic
     dps:
@@ -106,6 +106,41 @@ secondary_entities:
         type: integer
         name: sensor
         unit: "%"
+  - entity: binary_sensor
+    name: Battery state
+    category: diagnostic
+    class: battery_charging
+    dps:
+      - id: 128
+        type: boolean
+        name: sensor
+        mapping:
+          - dps_val: 4624
+            value: 0
+          - dps_val: 4628
+            value: 1
+          - dps_val: 2576
+            value: 0
+          - dps_val: 2580
+            value: 1
+  - entity: binary_sensor
+    name: Bluetooth
+    icon: mdi:bluetooth
+    category: diagnostic
+    class: connectivity
+    dps:
+      - id: 128
+        type: boolean
+        name: sensor
+        mapping:
+          - dps_val: 4624
+            value: false
+          - dps_val: 4628
+            value: false
+          - dps_val: 2576
+            value: true
+          - dps_val: 2580
+            value: true
   - entity: number
     name: Screen Brightness
     category: config
@@ -116,7 +151,7 @@ secondary_entities:
         name: value
         unit: '%'
         range:
-          min: 0
+          min: 5
           max: 100
   - entity: switch
     name: Alarm Sound
@@ -125,14 +160,6 @@ secondary_entities:
       - id: 104
         type: boolean
         name: switch
-  - entity: sensor
-    name: Status Code
-    category: diagnostic
-    dps:
-      - id: 128
-        type: integer
-        name: sensor
-
   - entity: number
     name: Calibration Probe 1
     category: config
@@ -205,7 +232,6 @@ secondary_entities:
         range:
           min: -126
           max: 126
-
   - entity: select
     name: Alarm Probe 1
     category: diagnostic
@@ -219,6 +245,8 @@ secondary_entities:
           - dps_val: "EAAAAAAKBw=="
             value: "On"
           - dps_val: "AKoFAAAKBw=="
+            value: "Off"
+          - dps_val: null
             value: "Off"
   - entity: select
     name: Alarm Probe 2
@@ -234,6 +262,8 @@ secondary_entities:
             value: "On"
           - dps_val: "AKoFAAAKBw=="
             value: "Off"
+          - dps_val: null
+            value: "Off"
   - entity: select
     name: Alarm Probe 3
     category: diagnostic
@@ -247,6 +277,8 @@ secondary_entities:
           - dps_val: "EAAAAAAKBw=="
             value: "On"
           - dps_val: "AKoFAAAKBw=="
+            value: "Off"
+          - dps_val: null
             value: "Off"
   - entity: select
     name: Alarm Probe 4
@@ -262,6 +294,8 @@ secondary_entities:
             value: "On"
           - dps_val: "AKoFAAAKBw=="
             value: "Off"
+          - dps_val: null
+            value: "Off"
   - entity: select
     name: Alarm Probe 5
     category: diagnostic
@@ -276,6 +310,8 @@ secondary_entities:
             value: "On"
           - dps_val: "AKoFAAAKBw=="
             value: "Off"
+          - dps_val: null
+            value: "Off"
   - entity: select
     name: Alarm Probe Oven
     category: diagnostic
@@ -289,4 +325,6 @@ secondary_entities:
           - dps_val: "EAAAAAAKBw=="
             value: "On"
           - dps_val: "AKoFAAAKBw=="
+            value: "Off"
+          - dps_val: null
             value: "Off"
