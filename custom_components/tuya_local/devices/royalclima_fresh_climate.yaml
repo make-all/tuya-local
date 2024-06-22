@@ -371,19 +371,14 @@ secondary_entities:
       - id: 103
         type: boolean
   - entity: sensor
-    name: Power
     class: power
     category: diagnostic
     dps:
       - id: 116
         type: integer
         name: sensor
-        precision: 0
         unit: W
+        precision: 0
         class: measurement    
         mapping:
           - scale: 30
-        range:
-          min: 0
-          max: 1000000     
-        name: sensor
