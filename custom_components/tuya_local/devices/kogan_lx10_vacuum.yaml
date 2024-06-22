@@ -9,27 +9,26 @@ primary_entity:
       name: activate  # clean_switch
       type: boolean
     - id: 102
-      name: pause  # pause_switch
+      name: command  # pause_switch
       type: boolean
-      hidden: true
-    - id: 104
-      name: command  # clean_mode
-      type: string
       mapping:
-        - constraint: pause
+        - dps_val: true
+          value: pause
+        - dps_val: false
+          constraint: actual_command
           conditions:
-            - dps_val: true
-              value: pause
-            - dps_val: false
-              mapping:
-                - dps_val: smart
-                  value: smart
-                - dps_val: pose
-                  value: clean_spot
-                - dps_val: zone
-                  value: zone
-                - dps_val: backcharge
-                  value: return_to_base
+            - dps_val: smart
+              value: smart
+            - dps_val: pose
+              value: clean_spot
+            - dps_val: zone
+              value: zone
+            - dps_val: backcharge
+              value: return_to_base
+    - id: 104
+      name: actual_command  # clean_mode
+      type: string
+      hidden: true
     - id: 105
       name: status  # robot_state
       type: string
