@@ -1,23 +1,28 @@
-name: Hydrate Ultra
+name: Pet fountain
 products:
   - id: cuw2k3ho3e25fade
-    name: Hydrate Ultra
+    name: Petoneer Fresco Hydrate Ultra
 
 primary_entity:
-  entity: light
+  entity: switch
   icon: "mdi:water-pump"
   dps:
     - id: 101
       type: boolean
       name: switch
-    - id: 102
-      name: brightness
-      type: integer
-      range:
-        min: 1
-        max: 10
 
 secondary_entities:
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 102
+        name: brightness
+        type: integer
+        range:
+          min: 1
+          max: 10
+
   - entity: button
     name: Reset Water
     icon: "mdi:water-circle"
@@ -26,18 +31,18 @@ secondary_entities:
       - id: 103
         type: integer
         name: button
-
+        mapping:
+          - dps_val: 0
+            value: true
   - entity: sensor
-    name: Water life
+    name: Water age
     icon: "mdi:water-circle"
+    class: duration
     category: diagnostic
     dps:
       - id: 103
         type: integer
         name: sensor
-        range:
-          min: 0
-          max: 7200
         unit: min
 
   - entity: button
@@ -56,6 +61,7 @@ secondary_entities:
     name: Filter life
     icon: "mdi:air-filter"
     category: diagnostic
+    class: duration
     dps:
       - id: 104
         type: integer
@@ -80,6 +86,7 @@ secondary_entities:
   - entity: sensor
     name: Pump maintenance
     icon: "mdi:pump"
+    class: duration
     category: diagnostic
     dps:
       - id: 105
@@ -103,7 +110,6 @@ secondary_entities:
   - entity: switch
     translation_key: uv_sterilization
     category: config
-    name: UV Light
     dps:
       - id: 107
         type: boolean
@@ -116,7 +122,7 @@ secondary_entities:
     category: diagnostic
     dps:
       - id: 108
-        type: integer
+        type: string
         name: sensor
         mapping:
           - dps_val: "1"
@@ -130,11 +136,10 @@ secondary_entities:
 
   - entity: sensor
     name: UV runtime
-    icon: "mdi:timer-outline"
+    class: duration
     category: diagnostic
     dps:
       - id: 109
         type: integer
         name: sensor
         unit: s
-        class: duration
