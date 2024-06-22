@@ -1,0 +1,124 @@
+name: Pet feeder
+products:
+  - id: ibnk6keua0zzc2gr
+    name: V330 Petfeeder
+primary_entity:
+  entity: number
+  name: Manual feed
+  icon: "mdi:food-drumstick"
+  dps:
+    - id: 201
+      type: integer
+      name: value
+      unit: portions
+      optional: true
+      persist: false
+      range:
+        min: 0
+        max: 10
+secondary_entities:
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Flip
+    icon: "mdi:flip-horizontal"
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+        optional: true
+  - entity: switch
+    name: Timestamp
+    icon: "mdi:clock-time-eight"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+        optional: true
+  - entity: switch
+    name: Motion notification
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 134
+        type: boolean
+        name: switch
+        optional: true
+  - entity: select
+    name: Motion sensitivity
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: Low
+          - dps_val: "1"
+            value: Medium
+          - dps_val: "2"
+            value: High
+  - entity: select
+    name: Nightvision
+    icon: "mdi:weather-night"
+    category: config
+    dps:
+      - id: 108
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: Auto
+          - dps_val: "1"
+            value: "Off"
+          - dps_val: "2"
+            value: "On"
+  - entity: binary_sensor
+    name: Food empty
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 206
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Not enough food
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 206
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 2
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Blocked
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 206
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 3
+            value: true
+          - value: false
