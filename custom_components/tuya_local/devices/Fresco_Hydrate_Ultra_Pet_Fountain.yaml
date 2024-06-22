@@ -39,7 +39,6 @@ secondary_entities:
           min: 0
           max: 7200
         unit: min
-        class: duration
 
   - entity: button
     name: Reset Filter
@@ -49,6 +48,9 @@ secondary_entities:
       - id: 104
         type: integer
         name: button
+        mapping:
+          - dps_val: 0
+            value: true
 
   - entity: sensor
     name: Filter life
@@ -62,7 +64,6 @@ secondary_entities:
           min: 0
           max: 43200
         unit: min
-        class: duration
 
   - entity: button
     name: Reset Pump
@@ -72,6 +73,9 @@ secondary_entities:
       - id: 105
         type: integer
         name: button
+        mapping:
+          - dps_val: 0
+            value: true
 
   - entity: sensor
     name: Pump maintenance
@@ -85,7 +89,6 @@ secondary_entities:
           min: 0
           max: 86400
         unit: min
-        class: duration
 
   - entity: sensor
     name: Water quality
