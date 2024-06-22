@@ -537,6 +537,7 @@ of device.
 - FS-03W curtain switch with backlight control
 - Graywind window shades
 - Kogan garage door with tilt sensor
+- KY motor 35W-10 shutter controller
 - Loonas smart curtain
 - LoraTap GDC100W garage door opener
 - LoraTap QCSC420W double curtain switch

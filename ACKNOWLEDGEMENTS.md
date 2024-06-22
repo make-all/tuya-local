@@ -572,3 +572,5 @@ Further device support has been made with the assistance of users. Please consid
 - [cemilbrowne](https://github.com/cemilbrowne) for contributing support for Luko dehumidifier.
 - [malosaa](https://github.com/malosaa) for contributing support for LSC RGB-CCT lightbulbs.
 - [liouma](https://github.com/liouma) for assisting with support for Kolanky EV chargers.
+- [gy6221](https://github.com/gy6221) for contributing improvements to Atorch SW1P switches.
+- [opolczer](https://github.com/opolczer) for assisting with support for KY 35W-10 shutter controllers.
