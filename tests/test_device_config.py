@@ -98,7 +98,13 @@ DP_SCHEMA = vol.Schema(
         },
         vol.Optional("unit"): str,
         vol.Optional("precision"): vol.Any(int, float),
-        vol.Optional("class"): str,
+        vol.Optional("class"): vol.In(
+            [
+                "measurement",
+                "total",
+                "total_increasing",
+            ]
+        ),
         vol.Optional("optional"): True,
         vol.Optional("persist"): False,
         vol.Optional("hidden"): True,
