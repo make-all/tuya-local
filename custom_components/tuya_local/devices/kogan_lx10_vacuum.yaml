@@ -162,6 +162,7 @@ secondary_entities:
       - id: 107
         name: sensor
         type: integer
+        optional: true
         unit: s
   - entity: sensor
     name: Current clean area
@@ -171,6 +172,7 @@ secondary_entities:
       - id: 108
         name: sensor
         type: integer
+        optional: true
         unit: m²
   - entity: select
     name: Water mode
@@ -180,6 +182,7 @@ secondary_entities:
       - id: 110
         name: option
         type: string
+        optional: true
         mapping:
           - dps_val: 'off'
             value: 'off'
@@ -197,6 +200,7 @@ secondary_entities:
       - id: 113
         name: switch
         type: boolean
+        optional: true
   - entity: number
     name: Volume
     category: config
@@ -274,6 +278,7 @@ secondary_entities:
       - id: 117
         name: sensor
         type: integer
+        optional: true
         unit: m²
   - entity: sensor
     name: Total clean count
@@ -283,6 +288,7 @@ secondary_entities:
       - id: 118
         name: sensor
         type: integer
+        optional: true
   - entity: sensor
     name: Side brush time
     category: diagnostic
