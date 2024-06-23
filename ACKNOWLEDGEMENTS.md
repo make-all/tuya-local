@@ -577,3 +577,4 @@ Further device support has been made with the assistance of users. Please consid
 - [jannisan](https://github.com/jannisan) for contributing support for Divoo DWV010 dual water timers.
 - [pergolafabio](https://github.com/pergolafabio) for contributing support for V330 pet feeders.
 - [contactnat](https://github.com/contactnat) for assistance with Goldair PH-ET07EA heaters.
+- [JackJackattack4](https://github.com/JackJackattack4) for assistance with Deakon EVI air to water heatpumps.

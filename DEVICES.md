@@ -125,6 +125,7 @@
 ### Water heaters
 
 - Aquatech Rapid/X6 heat pump water heater
+- Deakon EVI DC inverter heat pump
 - EMS Thermal 200L domestic heat pump hot water system
 - Ferroli Titano Twin water heater
 - Fisher air to water heatpump
