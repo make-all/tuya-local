@@ -127,6 +127,7 @@
 - Aquatech Rapid/X6 heat pump water heater
 - EMS Thermal 200L domestic heat pump hot water system
 - Ferroli Titano Twin water heater
+- Fisher air to water heatpump
 - Geyserwise TSE1 Geyser controller kit
 - Hydrotherm Dynamic/X8 heat pump hot water systems (Gen 5 and 6)
 - ITS-4.5HD super water heatpump
@@ -644,6 +645,7 @@ port and password.
 - Nedis pet feeder
 - Petlibro PLAF103 pet feeder
 - Petlibro PLAF203 pet feeder with camera
+- Petoneer Fresco Hydrate Ultra pet fountain/
 - PNI water feeder
 - Rojeco PTM-001 pet feeder (two versions)
 - YP pet feeder
@@ -724,6 +726,7 @@ port and password.
 - Adaprox Fingerbot plus
 - Ailrinni fingerprint door lock
 - Arlec smart button
+- Diivoo DWV010 dual water timer
 - Diivoo WT05 dual water timer
 - Gainsborough Liberty entrance lock
 - HCT-611 water timer
@@ -738,6 +741,7 @@ port and password.
 - Smart Ape solar garden light
 - TH05 temperature and humidity sensor
 - XCase NX-4964 lock box
+- YL01 water quality tester
 - YSG BS01 lock
 - Generic water timers (confirmed with Johgee, Diivoo and Royal Gardineer branded devices)
 

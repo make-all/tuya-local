@@ -243,7 +243,7 @@ Further device support has been made with the assistance of users. Please consid
 - [pnm1977](https://github.com/pnm1977) for assisting with support for Gosund UP111_RTL smartplugs.
 - [jprasm](https://github.com/jprasm) for assisting with support for Inkbird air quality monitors.
 - [Muelner](https://github.com/Muelner) for assisting with support for WDYK 3-phase energy meter circuit breakers.
-- [Cyrelion](https://github.com/Cyrelion) for assisting with support for Lifubide X600 air purifiers and contributing support for Poolsana heat pump.
+- [Cyrelion](https://github.com/Cyrelion) for assisting with support for Lifubide X600 air purifiers and contributing support for Poolsana heat pump, BLE-YL01 water quality testers.
 - [mwkchan](https://github.com/mwkchan) for assisting with support for Princess 350 panel heaters.
 - [aletsweb](https://github.com/aletsweb) for assisting with support for A60 rgbcw lightbubs and Rinkmo D2 vacuums.
 - [FaboThePlayer](https://github.com/FaboThePlayer) for assisting with support for a whitelabel PIR motion sensors.
@@ -570,7 +570,8 @@ Further device support has been made with the assistance of users. Please consid
 - [JohnyDNU](https://github.com/JohnyDNU) for contributing support for Sensei Air Conditioner.
 - [christiaanderidder](https://github.com/christiaanderidder) for contributing improvements to windcalm fans to also support lights without brightness control
 - [cemilbrowne](https://github.com/cemilbrowne) for contributing support for Luko dehumidifier.
-- [malosaa](https://github.com/malosaa) for contributing support for LSC RGB-CCT lightbulbs.
+- [malosaa](https://github.com/malosaa) for contributing support for LSC RGB-CCT lightbulbs and Fresco Hydrate Ultra pet fountains.
 - [liouma](https://github.com/liouma) for assisting with support for Kolanky EV chargers.
 - [gy6221](https://github.com/gy6221) for contributing improvements to Atorch SW1P switches.
-- [opolczer](https://github.com/opolczer) for assisting with support for KY 35W-10 shutter controllers.
+- [opolczer](https://github.com/opolczer) for assisting with support for KY 35W-10 shutter controllers and Fisher air to water heat pump.
+- [jannisan](https://github.com/jannisan) for contributing support for Divoo DWV010 dual water timers.
