@@ -37,9 +37,12 @@ primary_entity:
         min: 5
         max: 65
       unit: C
-    - id: 107
+    - id: 10
       type: integer
       name: current_temperature
+    - id: 26
+      type: integer
+      name: temp_current_f
 secondary_entities:
   - entity: water_heater
     dps:
@@ -58,16 +61,13 @@ secondary_entities:
           min: 40
           max: 60
         unit: C
-      - id: 10
+      - id: 107
         type: integer
         name: current_temperature
       - id: 16
         type: string
         name: schedule
         optional: true
-      - id: 26
-        type: integer
-        name: temp_current_f
       - id: 102
         type: boolean
         name: away_mode
@@ -77,6 +77,14 @@ secondary_entities:
       - id: 109
         type: integer
         name: pump_speed
+  - entity: switch
+    name: Power
+    icon: "mdi:heat-pump"
+    category: config
+    dps:
+      - id: 1
+        type: boolean
+        name: switch        
   - entity: select
     name: Combined mode
     icon: "mdi:heat-pump"
