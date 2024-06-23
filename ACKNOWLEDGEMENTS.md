@@ -575,3 +575,4 @@ Further device support has been made with the assistance of users. Please consid
 - [gy6221](https://github.com/gy6221) for contributing improvements to Atorch SW1P switches.
 - [opolczer](https://github.com/opolczer) for assisting with support for KY 35W-10 shutter controllers and Fisher air to water heat pump.
 - [jannisan](https://github.com/jannisan) for contributing support for Divoo DWV010 dual water timers.
+- [pergolafabio](https://github.com/pergolafabio) for contributing support for V330 pet feeders.

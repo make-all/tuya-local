@@ -17,6 +17,32 @@ primary_entity:
       range:
         min: 0
         max: 10
+    - id: 202
+      type: integer
+      name: food_weight
+      optional: true
+      mapping:
+        - scale: 10
+    - id: 203
+      type: integer
+      name: control
+      optional: true
+    - id: 204
+      type: integer
+      name: realtime_data
+      optional: true
+    - id: 205
+      type: integer
+      name: weight
+      optional: true
+    - id: 207
+      type: string
+      name: schedule
+      optional: true
+    - id: 208
+      type: string
+      name: voice_record
+      optional: true
 secondary_entities:
   - entity: light
     translation_key: indicator
@@ -120,6 +146,21 @@ secondary_entities:
         name: sensor
         optional: true
         mapping:
-          - dps_val: 3
+          - dps_val: 4
             value: true
           - value: false
+  - entity: camera
+    dps:
+      - id: 113
+        type: boolean
+        optional: true
+        name: record
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+      - id: 115
+        type: base64
+        name: snapshot
+        optional: true
+        sensitive: true

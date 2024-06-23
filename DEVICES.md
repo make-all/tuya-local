@@ -648,6 +648,7 @@ port and password.
 - Petoneer Fresco Hydrate Ultra pet fountain/
 - PNI water feeder
 - Rojeco PTM-001 pet feeder (two versions)
+- V330L pet feeder
 - YP pet feeder
 
 ### Remote controllers
