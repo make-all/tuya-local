@@ -23,15 +23,15 @@ secondary_entities:
     name: Status
     dps:
       - id: 1
-        type: boolean
+        type: string
         name: sensor
         mapping:
           - dps_val: presence
             value: Still
           - dps_val: move
             value: Moving
-          - dps_val: Empty
-            value: false
+          - dps_val: none
+            value: Empty
   - entity: number
     name: Sensitivity
     category: config
