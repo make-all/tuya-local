@@ -23,7 +23,7 @@
 - Eurom Sani heated towel rail
 - Eurom Sani Wall Heat 2000 heater
 - Eurom Wall Designheat 2000 heater
-- Goldair heater models beginning with the code GPPH, GCPV, GECO
+- Goldair heater models beginning with the code GPPH, GCPV, GECO, PH-ET
 - Hama radiator controller
 - Heatstorm HS-6000-GC heavy duty heater
 - Herschel infrared heater
