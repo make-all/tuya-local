@@ -141,21 +141,21 @@ secondary_entities:
             value: true
           - dps_val: 2580
             value: true
-  - entity: number
-    name: Screen Brightness
+  - entity: light
+    translation_key: backlight
     category: config
     icon: "mdi:brightness-percent"
     dps:
       - id: 102
         type: integer
-        name: value
-        unit: '%'
+        name: brightness
         range:
           min: 5
           max: 100
   - entity: switch
     name: Alarm Sound
     category: config
+    icon: "mdi:bullhorn"
     dps:
       - id: 104
         type: boolean
@@ -232,99 +232,111 @@ secondary_entities:
         range:
           min: -126
           max: 126
-  - entity: select
+  - entity: switch
     name: Alarm Probe 1
     category: diagnostic
     icon: "mdi:alarm-light"
     dps:
       - id: 120
         type: string
-        name: option
+        name: switch
         optional: true
         mapping:
           - dps_val: "EAAAAAAKBw=="
-            value: "On"
+            value: true
           - dps_val: "AKoFAAAKBw=="
-            value: "Off"
+            value: false
+          - dps_val: "AAAAAAAKBw=="
+            value: false
           - dps_val: null
-            value: "Off"
-  - entity: select
+            value: false
+  - entity: switch
     name: Alarm Probe 2
     category: diagnostic
     icon: "mdi:alarm-light"
     dps:
       - id: 121
         type: string
-        name: option
+        name: switch
         optional: true
         mapping:
           - dps_val: "EAAAAAAKBw=="
-            value: "On"
+            value: true
           - dps_val: "AKoFAAAKBw=="
-            value: "Off"
+            value: false
+          - dps_val: "AAAAAAAKBw=="
+            value: false
           - dps_val: null
-            value: "Off"
-  - entity: select
+            value: false
+  - entity: switch
     name: Alarm Probe 3
     category: diagnostic
     icon: "mdi:alarm-light"
     dps:
       - id: 122
         type: string
-        name: option
+        name: switch
         optional: true
         mapping:
           - dps_val: "EAAAAAAKBw=="
-            value: "On"
+            value: true
           - dps_val: "AKoFAAAKBw=="
-            value: "Off"
+            value: false
+          - dps_val: "AAAAAAAKBw=="
+            value: false
           - dps_val: null
-            value: "Off"
-  - entity: select
+            value: false
+  - entity: switch
     name: Alarm Probe 4
     category: diagnostic
     icon: "mdi:alarm-light"
     dps:
       - id: 123
         type: string
-        name: option
+        name: switch
         optional: true
         mapping:
           - dps_val: "EAAAAAAKBw=="
-            value: "On"
+            value: true
           - dps_val: "AKoFAAAKBw=="
-            value: "Off"
+            value: false
+          - dps_val: "AAAAAAAKBw=="
+            value: false
           - dps_val: null
-            value: "Off"
-  - entity: select
+            value: false
+  - entity: switch
     name: Alarm Probe 5
     category: diagnostic
     icon: "mdi:alarm-light"
     dps:
       - id: 126
         type: string
-        name: option
+        name: switch
         optional: true
         mapping:
           - dps_val: "EAAAAAAKBw=="
-            value: "On"
+            value: true
           - dps_val: "AKoFAAAKBw=="
-            value: "Off"
+            value: false
+          - dps_val: "AAAAAAAKBw=="
+            value: false
           - dps_val: null
-            value: "Off"
-  - entity: select
+            value: false
+  - entity: switch
     name: Alarm Probe Oven
     category: diagnostic
     icon: "mdi:alarm-light"
     dps:
       - id: 127
         type: string
-        name: option
+        name: switch
         optional: true
         mapping:
           - dps_val: "EAAAAAAKBw=="
-            value: "On"
+            value: true
           - dps_val: "AKoFAAAKBw=="
-            value: "Off"
+            value: false
+          - dps_val: "AAAAAAAKBw=="
+            value: false
           - dps_val: null
-            value: "Off"
+            value: false
