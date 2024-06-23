@@ -606,6 +606,7 @@ work reliably, even if listed below.
 - Iebeyond ECH doorbell with 433MHz RF hub
 - Neo Coolcam Siren with temperature and humidity alert (NAS-AB02W)
 - Orion Grid Connect outdoor siren (also Elesion NX-4980)
+- Sirena WS-902 Plus outdoor strobe siren
 
 ### Doorbells
 

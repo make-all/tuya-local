@@ -580,3 +580,4 @@ Further device support has been made with the assistance of users. Please consid
 - [JackJackattack4](https://github.com/JackJackattack4) for assistance with Deakon EVI air to water heatpumps.
 - [dimasibs92](https://github.com/dimasibs92) for assistance with WL-898WZ water leak sensors.
 - [Motya-HA](https://github.com/Motya-HA) for assistance with a second variant of ZY-M100-Wifi presence sensor.
+- [Drummingman](https://github.com/Drummingman) for assistance with Sirena WS902 plus siren.
