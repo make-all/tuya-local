@@ -4,7 +4,7 @@ products:
     name: Inkbird IBT-26S
 primary_entity:
   entity: sensor
-  name: Temperature Probe 1
+  name: Temperature probe 1
   class: temperature
   dps:
     - id: 107
@@ -16,7 +16,7 @@ primary_entity:
       unit: F
 secondary_entities:
   - entity: sensor
-    name: Temperature Probe 2
+    name: Temperature probe 2
     class: temperature
     dps:
       - id: 108
@@ -28,7 +28,7 @@ secondary_entities:
           - scale: 100
         unit: F
   - entity: sensor
-    name: Temperature Probe 3
+    name: Temperature probe 3
     class: temperature
     dps:
       - id: 109
@@ -40,7 +40,7 @@ secondary_entities:
           - scale: 100
         unit: F
   - entity: sensor
-    name: Temperature Probe 4
+    name: Temperature probe 4
     class: temperature
     dps:
       - id: 110
@@ -52,7 +52,7 @@ secondary_entities:
           - scale: 100
         unit: F
   - entity: sensor
-    name: Temperature Probe 5
+    name: Temperature probe 5
     class: temperature
     dps:
       - id: 124
@@ -64,7 +64,7 @@ secondary_entities:
           - scale: 100
         unit: F
   - entity: sensor
-    name: Temperature Probe Oven
+    name: Temperature probe oven
     class: temperature
     dps:
       - id: 125
@@ -110,17 +110,12 @@ secondary_entities:
     class: battery_charging
     dps:
       - id: 128
-        type: boolean
+        type: bitfield
         name: sensor
         mapping:
-          - dps_val: 4624
-            value: 0
-          - dps_val: 4628
-            value: 1
-          - dps_val: 2576
-            value: 0
-          - dps_val: 2580
-            value: 1
+          - dps_val: 4
+            value: true
+          - value: false
   - entity: binary_sensor
     name: Bluetooth
     icon: mdi:bluetooth
@@ -128,17 +123,12 @@ secondary_entities:
     class: connectivity
     dps:
       - id: 128
-        type: boolean
+        type: bitfield
         name: sensor
         mapping:
-          - dps_val: 4624
-            value: false
-          - dps_val: 4628
-            value: false
-          - dps_val: 2576
+          - dps_val: 2048
             value: true
-          - dps_val: 2580
-            value: true
+          - value: false
   - entity: light
     translation_key: backlight
     category: config
@@ -150,7 +140,7 @@ secondary_entities:
           min: 5
           max: 100
   - entity: switch
-    name: Alarm Sound
+    name: Alarm sound
     category: config
     icon: "mdi:bullhorn"
     dps:
@@ -158,7 +148,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: number
-    name: Calibration Probe 1
+    name: Calibration probe 1
     category: config
     icon: "mdi:thermometer-check"
     dps:
@@ -170,7 +160,7 @@ secondary_entities:
           min: -126
           max: 126
   - entity: number
-    name: Calibration Probe 2
+    name: Calibration probe 2
     category: config
     icon: "mdi:thermometer-check"
     dps:
@@ -182,7 +172,7 @@ secondary_entities:
           min: -126
           max: 126
   - entity: number
-    name: Calibration Probe 3
+    name: Calibration probe 3
     category: config
     icon: "mdi:thermometer-check"
     dps:
@@ -194,7 +184,7 @@ secondary_entities:
           min: -126
           max: 126
   - entity: number
-    name: Calibration Probe 4
+    name: Calibration probe 4
     category: config
     icon: "mdi:thermometer-check"
     dps:
@@ -206,7 +196,7 @@ secondary_entities:
           min: -126
           max: 126
   - entity: number
-    name: Calibration Probe 5
+    name: Calibration probe 5
     category: config
     icon: "mdi:thermometer-check"
     dps:
@@ -218,7 +208,7 @@ secondary_entities:
           min: -126
           max: 126
   - entity: number
-    name: Calibration Probe Oven
+    name: Calibration probe oven
     category: config
     icon: "mdi:thermometer-check"
     dps:
