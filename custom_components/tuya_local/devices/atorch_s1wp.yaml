@@ -531,3 +531,14 @@ secondary_entities:
             value: "Off"
           - dps_val: memory
             value: Memory
+  - entity: number
+    category: config
+    name: Update interval
+    icon: "mdi:update"
+    dps:
+      - id: 139
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 90
