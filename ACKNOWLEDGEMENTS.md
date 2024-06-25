@@ -333,7 +333,7 @@ Further device support has been made with the assistance of users. Please consid
 - [ScottWoolven5](https://github.com/ScottWoolven5) for assistance with support for MoesGo dimmer switch.
 - [robsonmantovani](https://github.com/robsonmantovani) for contributing support for Marpou ceiling lights, AGL Ultracontato door controllers and MAMNV BR151 vacuums.
 - [Brazen00](https://github.com/Brazen00) for contributing support for Holman WX1 tap timers.
-- [nima-002](https://github.com/nima-002) for contributing improvements to Moebot S lawnmowers.
+- [nima-1102](https://github.com/nima-1102) for contributing improvements to Moebot S lawnmowers, and support for Inkbird IBT-26S BBQ thermometers.
 - [maxupunk](https://github.com/maxupunk) for assistance with support for Kabum Smart 700 vacuum cleaners.
 - [thugseus](https://github.com/thugseus) for assistance with support for HU06 Bluetooth smart locks.
 - [jaydensmith](https://github.com/jaydensmith) for assistance with support for Cadence aroma diffusers.
