@@ -30,7 +30,6 @@ secondary_entities:
       - id: 101
         type: boolean
         name: switch
-        # force: true
   - entity: number
     name: Power Adjustement
     category: config
@@ -63,7 +62,7 @@ secondary_entities:
         type: integer
         name: sensor
         unit: W
-        force: true
+        #force: true
         class: measurement
         mapping:
           - scale: 10
@@ -76,7 +75,7 @@ secondary_entities:
         type: integer
         name: sensor
         unit: W
-        force: true
+        #force: true
         class: measurement
         mapping:
           - scale: 1000
@@ -89,7 +88,7 @@ secondary_entities:
         type: integer
         name: sensor
         unit: W
-        force: true
+        #force: true
         class: measurement
         mapping:
           - scale: 10
@@ -172,7 +171,6 @@ secondary_entities:
           - mask: "0000000000FFFFFF0000"
             scale: 1000
   - entity: sensor
-    name: Temperature
     class: temperature
     category: diagnostic
     dps:
