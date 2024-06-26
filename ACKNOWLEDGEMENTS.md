@@ -243,7 +243,7 @@ Further device support has been made with the assistance of users. Please consid
 - [pnm1977](https://github.com/pnm1977) for assisting with support for Gosund UP111_RTL smartplugs.
 - [jprasm](https://github.com/jprasm) for assisting with support for Inkbird air quality monitors.
 - [Muelner](https://github.com/Muelner) for assisting with support for WDYK 3-phase energy meter circuit breakers.
-- [Cyrelion](https://github.com/Cyrelion) for assisting with support for Lifubide X600 air purifiers and contributing support for Poolsana heat pump.
+- [Cyrelion](https://github.com/Cyrelion) for assisting with support for Lifubide X600 air purifiers and contributing support for Poolsana heat pump, BLE-YL01 water quality testers.
 - [mwkchan](https://github.com/mwkchan) for assisting with support for Princess 350 panel heaters.
 - [aletsweb](https://github.com/aletsweb) for assisting with support for A60 rgbcw lightbubs and Rinkmo D2 vacuums.
 - [FaboThePlayer](https://github.com/FaboThePlayer) for assisting with support for a whitelabel PIR motion sensors.
@@ -333,7 +333,7 @@ Further device support has been made with the assistance of users. Please consid
 - [ScottWoolven5](https://github.com/ScottWoolven5) for assistance with support for MoesGo dimmer switch.
 - [robsonmantovani](https://github.com/robsonmantovani) for contributing support for Marpou ceiling lights, AGL Ultracontato door controllers and MAMNV BR151 vacuums.
 - [Brazen00](https://github.com/Brazen00) for contributing support for Holman WX1 tap timers.
-- [nima-002](https://github.com/nima-002) for contributing improvements to Moebot S lawnmowers.
+- [nima-1102](https://github.com/nima-1102) for contributing improvements to Moebot S lawnmowers, and support for Inkbird IBT-26S BBQ thermometers.
 - [maxupunk](https://github.com/maxupunk) for assistance with support for Kabum Smart 700 vacuum cleaners.
 - [thugseus](https://github.com/thugseus) for assistance with support for HU06 Bluetooth smart locks.
 - [jaydensmith](https://github.com/jaydensmith) for assistance with support for Cadence aroma diffusers.
@@ -570,5 +570,14 @@ Further device support has been made with the assistance of users. Please consid
 - [JohnyDNU](https://github.com/JohnyDNU) for contributing support for Sensei Air Conditioner.
 - [christiaanderidder](https://github.com/christiaanderidder) for contributing improvements to windcalm fans to also support lights without brightness control
 - [cemilbrowne](https://github.com/cemilbrowne) for contributing support for Luko dehumidifier.
-- [malosaa](https://github.com/malosaa) for contributing support for LSC RGB-CCT lightbulbs.
+- [malosaa](https://github.com/malosaa) for contributing support for LSC RGB-CCT lightbulbs and Fresco Hydrate Ultra pet fountains.
 - [liouma](https://github.com/liouma) for assisting with support for Kolanky EV chargers.
+- [gy6221](https://github.com/gy6221) for contributing improvements to Atorch SW1P switches.
+- [opolczer](https://github.com/opolczer) for assisting with support for KY 35W-10 shutter controllers and Fisher air to water heat pump.
+- [jannisan](https://github.com/jannisan) for contributing support for Divoo DWV010 dual water timers.
+- [pergolafabio](https://github.com/pergolafabio) for contributing support for V330 pet feeders.
+- [contactnat](https://github.com/contactnat) for assistance with Goldair PH-ET07EA heaters.
+- [JackJackattack4](https://github.com/JackJackattack4) for assistance with Deakon EVI air to water heatpumps.
+- [dimasibs92](https://github.com/dimasibs92) for assistance with WL-898WZ water leak sensors.
+- [Motya-HA](https://github.com/Motya-HA) for assistance with a second variant of ZY-M100-Wifi presence sensor.
+- [Drummingman](https://github.com/Drummingman) for assistance with Sirena WS902 plus siren.
