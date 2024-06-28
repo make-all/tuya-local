@@ -100,6 +100,7 @@ secondary_entities:
       - id: 10
         name: sensor
         type: integer
+        optional: true
         unit: ms
   - entity: select
     name: Click Control
@@ -109,9 +110,10 @@ secondary_entities:
       - id: 20
         name: option
         type: string
+        optional: true
         mapping:
           - dps_val: continuous
-            value: continuous
+            value: Continuous
           - dps_val: Intermittently
             value: Intermittently
   - entity: button
