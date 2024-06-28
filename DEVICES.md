@@ -374,6 +374,7 @@
 - Kolanky 3.6kW EV charger
 - Parkside PLGS 2012 A1 smart charger for powertools
 - Vivor portable EV charger
+- WOUEJ 22kW EV charger
 
 ### SmartPlugs/Wall sockets/Wall switches/Inline switches
 

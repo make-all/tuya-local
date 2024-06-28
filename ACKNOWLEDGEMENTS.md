@@ -381,7 +381,7 @@ Further device support has been made with the assistance of users. Please consid
 - [bkbartk](https://github.com/bkbartk) for assisting with support for Medion S20 vacuums and contributing improvements after initial implementation.
 - [mastermind85](https://github.com/mastermind85) for assisting with support for MC6 thermostats.
 - [BettySwallocks](https://github.com/BettySwallocks) for assisting with support for Advanced Fires 1500 electric fireplaces.
-- [Striiter](https://github.com/Stritter) for assisting with support for Feyree EV chargers.
+- [Striiter](https://github.com/Stritter) for assisting with support for Feyree and WOUEJ EV chargers.
 - [mprobber](https://github.com/mprobber) for assisting with support for Sunbeam dual heated matress pads and BSTUOKEY access control keypads.
 - [gtawelt](https:github.com/gtawelt) for contributing support for Parkside PMW-300 solar inverters.
 - [DocDrydenn](https://github.com/DocDrydenn) for assisting with support for Treatlife dual dimmer smartplugs.

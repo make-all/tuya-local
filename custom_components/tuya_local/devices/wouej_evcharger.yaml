@@ -1,0 +1,327 @@
+name: EV charger
+# products:
+#   - id: UNKNOWN
+#     name: WOUEJ 22kW wallbox
+primary_entity:
+  entity: sensor
+  name: State
+  icon: "mdi:ev-station"
+  class: enum
+  dps:
+    - id: 3
+      type: string
+      name: sensor
+      mapping:
+        - dps_val: charger_free
+          value: Available
+        - dps_val: charger_insert
+          value: Plugged in
+        - dps_val: charger_free_fault
+          value: Fault (unplugged)
+        - dps_val: charger_wait
+          value: Waiting
+        - dps_val: charger_charging
+          value: Charging
+        - dps_val: charger_pause
+          value: Paused
+        - dps_val: charger_end
+          value: Finished
+        - dps_val: charger_fault
+          value: Fault
+    - id: 22
+      type: string
+      name: charger_id
+    - id: 23
+      type: string
+      name: firmware_version
+    - id: 101
+      type: string
+      name: available_options
+    - id: 119
+      type: string
+      name: charger_status
+      # A slightly different list than above:
+      #  available, charging, reserved, unavailable, faulted, preparing,
+      #  finishing
+    - id: 127
+      type: boolean
+      name: schedule_tx
+secondary_entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        name: fault_code
+  - entity: select
+    name: Mode
+    icon: "mdi:evstation"
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        mapping:
+          - dps_val: charge_now
+            value: Immediate
+          - dps_val: charge_pct
+            value: Charge to percent
+          - dps_val: charge_energy
+            value: Fixed charge
+          - dps_val: charage_schedule
+            value: Scheduled charge
+  - entity: switch
+    name: Power
+    icon: "mdi:ev-station"
+    dps:
+      - id: 18
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 27
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: online
+            value: true
+          - dps_val: offline
+            value: false
+  - entity: switch
+    name: Plug and charge
+    category: config
+    icon: "mdi:ev-plug-type2"
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Charger temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        mapping:
+          - dps_val: C
+            value: celsius
+          - dps_val: F
+            value: fahrenheit
+  - entity: sensor
+    name: L1 voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: L1 current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: L2 voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: L2 current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: L3 current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: select
+    name: Currency
+    category: config
+    dps:
+      - id: 116
+        type: string
+        name: option
+        mapping:
+          - dps_val: USD
+            value: USD
+            icon: "mdi:currency-usd"
+          - dps_val: CAD
+            value: CAD
+            icon: "mdi:currency-usd"
+          - dps_val: EUR
+            value: EUR
+            icon: "mdi:currency-eur"
+          - dps_val: GBP
+            value: GBP
+            icon: "mdi:currency-gbp"
+          - dps_val: CNY
+            value: CNY
+            icon: "mdi:currency-cny"
+  - entity: number
+    name: Unit cost
+    category: config
+    icon: "mdi:cash-sync"
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        unit: per kWh
+        range:
+          min: 0
+          max: 100000
+        mapping:
+          - scale: 100
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 118
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Scheduled charging
+    icon: "mdi:calendar-clock"
+    category: config
+    dps:
+      - id: 120
+        type: boolean
+        name: switch
+  - entity: number
+    name: Current limit
+    class: current
+    category: config
+    dps:
+      - id: 121
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 0
+          max: 100
+  - entity: sensor
+    name: Vehicle
+    icon: "mdi:car-electric"
+    category: diagnostic
+    dps:
+      - id: 122
+        type: string
+        name: sensor
+  - entity: sensor
+    name: Vehicle battery
+    category: diagnostic
+    dps:
+      - id: 123
+        type: integer
+        name: sensor
+        unit: kWh
+  - entity: sensor
+    name: Vehicle range
+    class: distance
+    category: diagnostic
+    dps:
+      - id: 124
+        type: integer
+        name: sensor
+        unit: km
+        class: measurement
+  - entity: select
+    name: Range unit
+    icon: "mdi:road-variant"
+    category: config
+    dps:
+      - id: 125
+        type: string
+        name: option
+        mapping:
+          - dps_val: km
+            value: km
+          - dps_val: mile
+            value: mile
+  - entity: sensor
+    name: L3 voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 126
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
