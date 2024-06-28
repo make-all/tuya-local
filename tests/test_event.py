@@ -36,7 +36,7 @@ async def test_init_entry(hass):
     }
 
     await async_setup_entry(hass, entry, m_add_entities)
-    assert type(hass.data[DOMAIN]["dummy"]["event_button_1"]) == TuyaLocalEvent
+    assert type(hass.data[DOMAIN]["dummy"]["event_button_1"]) is TuyaLocalEvent
     m_add_entities.assert_called_once()
 
 
