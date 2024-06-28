@@ -581,3 +581,6 @@ Further device support has been made with the assistance of users. Please consid
 - [dimasibs92](https://github.com/dimasibs92) for assistance with WL-898WZ water leak sensors.
 - [Motya-HA](https://github.com/Motya-HA) for assistance with a second variant of ZY-M100-Wifi presence sensor.
 - [Drummingman](https://github.com/Drummingman) for assistance with Sirena WS902 plus siren.
+- [Lxeon](https://github.com/Lxeon) for contributing improvements to Atorch S1WP switch.
+- [Moutmout31](https://github.com/Moutmout31) for contributing support for Avidsen Soria solar inverter.
+- [aravindjaimon](https://github.com/aravindjaimon) for contributing support for Atomberg Gorilla fan V2.
