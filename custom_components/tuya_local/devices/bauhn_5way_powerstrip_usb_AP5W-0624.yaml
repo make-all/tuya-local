@@ -1,4 +1,4 @@
-name: BAUHN 5-way powerstrip with USB
+name: 5-way powerstrip
 products:
   - id: bf152cecbcf4180771k2lq
     name: BAUHN AP5W-0624
@@ -105,7 +105,7 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    name: Timer 4
+    name: Timer 5
     category: config
     translation_key: timer
     dps:
@@ -120,7 +120,6 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: sensor
-    name: Current
     category: diagnostic
     class: current
     dps:
@@ -135,7 +134,6 @@ secondary_entities:
         name: calibration
         optional: true
   - entity: sensor
-    name: Power
     category: diagnostic
     class: power
     dps:
@@ -152,7 +150,6 @@ secondary_entities:
         name: calibration
         optional: true
   - entity: sensor
-    name: Voltage
     category: diagnostic
     class: voltage
     dps:
