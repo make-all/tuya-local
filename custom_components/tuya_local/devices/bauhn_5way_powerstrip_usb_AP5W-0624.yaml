@@ -59,6 +59,15 @@ secondary_entities:
         mapping:
           - scale: 60
             step: 60
+      - id: 42
+        type: string
+        name: "Cycle Time"
+      - id: 43
+        type: string
+        name: "Random Time"
+      - id: 44
+        type: string
+        name: "Switch Inching"
   - entity: number
     name: Timer 2
     category: config
@@ -188,24 +197,3 @@ secondary_entities:
         type: boolean
         name: lock
         optional: true
-  - entity: sensor
-    name: "Cycle Time"
-    category: diagnostic
-    dps:
-      - id: 42
-        type: string
-        name: sensor
-  - entity: sensor
-    name: "Random Time"
-    category: diagnostic
-    dps:
-      - id: 43
-        type: string
-        name: sensor
-  - entity: sensor
-    name: "Switch Inching"
-    category: diagnostic
-    dps:
-      - id: 44
-        type: string
-        name: sensor
