@@ -705,6 +705,7 @@ port and password.
 - Nedis WIFISA10CWT air quality monitor
 - PGST PA-010 indoor temperature and humidity sensor
 - PH-W218 water quality monitor
+- PlantsIO Ivy smart planter
 - PV28-CW 8 in 1 air quality monitor
 - SD123 HPR01 human presence radar
 - Silvercrest coffee maker
