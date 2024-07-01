@@ -1,0 +1,67 @@
+name: Chanfok ceiling fan and light
+products:
+  - id: bf5a94f7d856e8f1e61lov
+    name: CHANFOK smart ceiling fan and light
+primary_entity:
+  entity: light
+  dps:
+    - id: 20
+      type: boolean
+      name: switch
+    - id: 21
+      type: string
+      # Shows in the instruction set with standard white/colour/scene/music
+      # properties but this is a dimming switch and doesn't have color/scene dps
+      name: work_mode
+      optional: true
+    - id: 22
+      name: brightness
+      type: integer
+      range:
+        min: 10
+        max: 1000
+    - id: 23
+      name: color_temp
+      type: integer
+      range:
+        min: 0
+        max: 1000
+      mapping:
+        - target_range:
+            min: 2700
+            max: 6500
+    - id: 28
+      type: string
+      name: control_data
+      optional: true
+secondary_entities:
+  - entity: fan
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 61
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: fresh
+            value: fresh
+          - dps_val: nature
+            value: nature
+      - id: 62
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 6
+      - id: 63
+        type: string
+        name: direction
+  - entity: switch
+    name: Beep
+    icon: "mdi:bell"
+    category: config
+    dps:
+      - id: 66
+        type: boolean
+        name: switch
