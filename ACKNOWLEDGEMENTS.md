@@ -584,3 +584,5 @@ Further device support has been made with the assistance of users. Please consid
 - [Lxeon](https://github.com/Lxeon) for contributing improvements to Atorch S1WP switch.
 - [Moutmout31](https://github.com/Moutmout31) for contributing support for Avidsen Soria solar inverter.
 - [aravindjaimon](https://github.com/aravindjaimon) for contributing support for Atomberg Gorilla fan V2.
+- [krie](https://github.com/krie) for contributing support for Klarstein Iceblock air conditioner.
+- [lukegackle](https://github.com/lukegackle) for contributing support for Bauhn 5 way powerstrips.
