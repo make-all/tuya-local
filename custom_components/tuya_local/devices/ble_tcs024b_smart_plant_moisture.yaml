@@ -1,10 +1,9 @@
-name: Bluetooth Soil Moisture Sensor
+name: Soil moisture sensor
 products:
   - id: j5mynqs3
     name: TCS024B
 primary_entity:
   entity: sensor
-  name: Soil Moisture
   class: moisture
   dps:
     - id: 2
@@ -13,7 +12,6 @@ primary_entity:
       unit: "%"
 secondary_entities:
   - entity: sensor
-    name: Soil Temperature
     class: temperature
     dps:
       - id: 1
