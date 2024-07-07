@@ -682,25 +682,3 @@ async def test_options_flow_fails_when_config_is_missing(mock_test, hass):
     result = await hass.config_entries.options.async_init(config_entry.entry_id)
     assert result["type"] == "abort"
     assert result["reason"] == "not_supported"
-
-
-@pytest.mark.asyncio
-@patch("custom_components.tuya_local.setup_device")
-async def test_async_setup_entry_for_switch(mock_device, hass):
-    """Test setting up based on a config entry.  Repeats test_init_entry."""
-    config_entry = MockConfigEntry(
-        domain=DOMAIN,
-        version=13,
-        unique_id="uniqueid",
-        data={
-            CONF_DEVICE_ID: "deviceid",
-            CONF_HOST: "hostname",
-            CONF_LOCAL_KEY: "localkey",
-            CONF_NAME: "test",
-            CONF_POLL_ONLY: False,
-            CONF_PROTOCOL_VERSION: 3.3,
-            CONF_TYPE: "smartplugv2",
-        },
-    )
-    config_entry.add_to_hass(hass)
-    assert await async_setup_entry(hass, config_entry)
