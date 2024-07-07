@@ -661,6 +661,7 @@ class TuyaDpsConfig:
 
         result = val
         scale = self.scale(device)
+        replaced = False
 
         mapping = self._find_map_for_dps(val)
         if mapping:
