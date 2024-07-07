@@ -512,7 +512,10 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             return self.async_create_entry(
                 title=title, data={**self.data, **user_input}
             )
-        config = get_config(self.data[CONF_TYPE])
+        config = await self.hass.async_add_executor_job(
+            get_config,
+            self.data[CONF_TYPE],
+        )
         schema = {vol.Required(CONF_NAME, default=config.name): str}
 
         return self.async_show_form(
@@ -578,7 +581,10 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
                 default=config.get(CONF_DEVICE_CID, ""),
             ): str,
         }
-        cfg = get_config(config[CONF_TYPE])
+        cfg = await self.hass.async_add_executor_job(
+            get_config,
+            config[CONF_TYPE],
+        )
         if cfg is None:
             return self.async_abort(reason="not_supported")
 
