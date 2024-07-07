@@ -10,7 +10,6 @@ from pytest_homeassistant_custom_component.common import MockConfigEntry
 
 from custom_components.tuya_local import (
     async_migrate_entry,
-    async_setup_entry,
     config_flow,
 )
 from custom_components.tuya_local.const import (
