@@ -572,6 +572,7 @@ of device.
 - Kabum Smart 700 vacuum cleaner (also sold as Liectroux XR500[T2] and maybe others)
 - Kabum Smart 700 vacuum cleaner 2023 model (not quite compatible with Liectroux XR500 T3, but similar revision)
 - Kogan LX10 vacuum cleaner with mop
+- Kogan LX8 vacuum cleaner
 - Kyvol E30 vacuum cleaner
 - Lefant LS1 Pro vacuum cleaner
 - Lefant M213 vacuum cleaner (also works for Lefant M213S and APOSEN A550)
@@ -748,6 +749,7 @@ port and password.
 - PT216/PT19DB-2 temperature and humidity sensor
 - SGS01 plant sensor
 - Smart Ape solar garden light
+- TCS024B plant moisture sensor 
 - TH05 temperature and humidity sensor
 - XCase NX-4964 lock box
 - YL01 water quality tester

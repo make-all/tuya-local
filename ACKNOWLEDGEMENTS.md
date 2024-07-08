@@ -447,7 +447,7 @@ Further device support has been made with the assistance of users. Please consid
 - [convicte](https://github.com/convicte) for assisting with support for Inna 7 channel underfloor heating controllers.
 - [mrtn1988](https://github.com/mrtn1988) for assisting with support for QH-GD Elegant IR heaters.
 - [uandco](https://github.com/uandco) for assisting with support for Evotherm ETI pool heatpumps.
-- [almirus](https://github.com/almirus) for contributing support for Neatsvor X500 vacuums, TH05-BLE temperature/humidity sensors, SGS01 soil moisture BLE sensors, Donguan curtain robots, LightStar track lights, Royal Clima Fresh heatpumps.
+- [almirus](https://github.com/almirus) for contributing support for Neatsvor X500 vacuums, TH05-BLE temperature/humidity sensors, SGS01 and TCS024B soil moisture BLE sensors, Donguan curtain robots, LightStar track lights, Royal Clima Fresh heatpumps.
 - [kinkamez](https://github.com/kinkamez) for contributing support for Prosto PRC 2000 heaters.
 - [MarkPaxton](https://github.com/MarkPaxton) for contributing support for Hombli radiator controllers.
 - [mmib](https://github.com/mmib) for contributing support for Becasmart irrigation systems.
@@ -586,3 +586,6 @@ Further device support has been made with the assistance of users. Please consid
 - [aravindjaimon](https://github.com/aravindjaimon) for contributing support for Atomberg Gorilla fan V2.
 - [krie](https://github.com/krie) for contributing support for Klarstein Iceblock air conditioner.
 - [lukegackle](https://github.com/lukegackle) for contributing support for Bauhn 5 way powerstrips.
+- [ewandank](https://github.com/ewandank) for contributing support for Kogan LX-8 vacuum robots.
+- [rac146](https://github.com/rac146) for contributing support for Zemismart ZM25R2 roller shades.
+- [Nuwisam](https://github.com/Nuwisam) for contributing doc fixes.
