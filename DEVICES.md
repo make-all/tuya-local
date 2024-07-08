@@ -594,6 +594,7 @@ of device.
 - Tesvor S6 vacuum cleaner with mop
 - TTEC Robi Pro vacuum cleaner
 - Ultenic T10 vacuum cleaner
+- Zedar R600
 
 ### Lawnmowers
 
