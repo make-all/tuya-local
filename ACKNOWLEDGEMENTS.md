@@ -589,3 +589,4 @@ Further device support has been made with the assistance of users. Please consid
 - [ewandank](https://github.com/ewandank) for contributing support for Kogan LX-8 vacuum robots.
 - [rac146](https://github.com/rac146) for contributing support for Zemismart ZM25R2 roller shades.
 - [Nuwisam](https://github.com/Nuwisam) for contributing doc fixes.
+- [jorgeal94](https://github.com/jorgeal94) for assisting with support for another Tongou QCB2 circuit breaker variant.
