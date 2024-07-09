@@ -5,6 +5,7 @@ products:
 primary_entity:
   entity: climate
   dps:
+    # FIXME: combination of power and mode won't work (see https://github.com/make-all/tuya-local/pull/2001#discussion_r1638187842)
     - id: 1
       name: hvac_mode
       type: boolean
