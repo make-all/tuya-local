@@ -1,7 +1,7 @@
 name: Air conditioner
-# products:
-#   - id: UNKNOWN
-#     name: Klarstein Iceblock Ecosmart
+products:
+  - id: hmwftdaaxejmjtfe
+    name: Klarstein Iceblock Ecosmart
 primary_entity:
   entity: climate
   dps:
@@ -37,12 +37,13 @@ primary_entity:
     - id: 101
       name: hvac_mode
       type: string
-      - dps_val: "1"
-        value: cool
-      - dps_val: "3"
-        value: dry
-      - dps_val: "5"
-        value: fan_only
+      mapping:
+        - dps_val: "1"
+          value: cool
+        - dps_val: "3"
+          value: dry
+        - dps_val: "5"
+          value: fan_only
     - id: 103
       name: preset_mode
       type: boolean
