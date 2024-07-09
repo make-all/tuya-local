@@ -50,16 +50,14 @@ primary_entity:
           value: F
 secondary_entities:
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 6
         type: boolean
         name: lock
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 10
@@ -117,7 +115,6 @@ secondary_entities:
           - dps_val: "24"
             value: "24 hours"
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -129,8 +126,7 @@ secondary_entities:
             value: false
           - value: true
   - entity: select
-    name: Temperature unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 101
@@ -138,6 +134,6 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: false
-            value: Celsius
+            value: celsius
           - dps_val: true
-            value: Fahrenheit
+            value: fahrenheit

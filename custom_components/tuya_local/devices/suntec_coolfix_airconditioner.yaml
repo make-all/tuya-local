@@ -22,12 +22,6 @@ primary_entity:
               value: fan_only
             - dps_val: Heat
               value: heat
-              mapping:
-                - constraint: model_id
-                  conditions:
-                    - dps_val: C
-                      hidden: true
-                      invalid: true
     - id: 2
       type: integer
       name: temperature
@@ -112,7 +106,6 @@ primary_entity:
           value: Cool+Heat
 secondary_entities:
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -126,8 +119,7 @@ secondary_entities:
             value: false
           - value: true
   - entity: binary_sensor
-    name: Tank full
-    class: problem
+    translation_key: tank_full
     category: diagnostic
     dps:
       - id: 22
@@ -138,8 +130,7 @@ secondary_entities:
             value: true
           - value: false
   - entity: select
-    name: Temperature unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 19
@@ -147,8 +138,6 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: c
-            value: Celsius
+            value: celsius
           - dps_val: f
-            value: Fahrenheit
-            
-
+            value: fahrenheit

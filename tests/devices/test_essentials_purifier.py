@@ -1,4 +1,5 @@
 """Tests for the essentials air purifier."""
+
 from homeassistant.components.button import ButtonDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
@@ -88,7 +89,7 @@ class TestEssentialsPurifier(
                 },
                 {
                     "dps": COUNTDOWN_DP,
-                    "name": "sensor_timer",
+                    "name": "sensor_time_remaining",
                     "unit": UnitOfTime.MINUTES,
                     "device_class": SensorDeviceClass.DURATION,
                 },
@@ -125,6 +126,6 @@ class TestEssentialsPurifier(
                 "select_light",
                 "switch_uv_sterilization",
                 "select_timer",
-                "sensor_timer",
+                "sensor_time_remaining",
             ]
         )

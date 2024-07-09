@@ -1,18 +1,15 @@
 name: Eurom Mon Soleil heater
 primary_entity:
   entity: climate
+  translation_only_key: heater
   dps:
     - id: 1
       type: boolean
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:radiator-disabled"
-          icon_priority: 1
         - dps_val: true
           value: "heat"
-          icon: "mdi:radiator"
-          icon_priority: 3
       name: hvac_mode
     - id: 2
       type: integer
@@ -20,6 +17,7 @@ primary_entity:
         min: 0
         max: 37
       name: temperature
+      unit: C
     - id: 5
       type: integer
       name: current_temperature
@@ -31,7 +29,6 @@ primary_entity:
       name: error
 secondary_entities:
   - entity: binary_sensor
-    name: Error
     category: diagnostic
     class: problem
     dps:

@@ -1,4 +1,5 @@
 """Tests for the simple garage door opener."""
+
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.cover import CoverDeviceClass, CoverEntityFeature
 from homeassistant.components.sensor import SensorDeviceClass

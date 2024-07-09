@@ -1,4 +1,5 @@
 """Tests for the alarm_control_panel entity."""
+
 from unittest.mock import AsyncMock, Mock
 
 import pytest
@@ -35,7 +36,7 @@ async def test_init_entry(hass):
     await async_setup_entry(hass, entry, m_add_entities)
     assert (
         type(hass.data[DOMAIN]["dummy"]["alarm_control_panel"])
-        == TuyaLocalAlarmControlPanel
+        is TuyaLocalAlarmControlPanel
     )
     m_add_entities.assert_called_once()
 
@@ -59,7 +60,7 @@ async def test_init_entry_as_secondary(hass):
     await async_setup_entry(hass, entry, m_add_entities)
     assert (
         type(hass.data[DOMAIN]["dummy"]["alarm_control_panel_alarm"])
-        == TuyaLocalAlarmControlPanel
+        is TuyaLocalAlarmControlPanel
     )
     m_add_entities.assert_called_once()
 

@@ -1,0 +1,166 @@
+name: Pet feeder
+products:
+  - id: ibnk6keua0zzc2gr
+    name: V330 Petfeeder
+    # Needs to be added using the 3.2 protocol
+primary_entity:
+  entity: number
+  name: Manual feed
+  icon: "mdi:food-drumstick"
+  dps:
+    - id: 201
+      type: integer
+      name: value
+      unit: portions
+      optional: true
+      persist: false
+      range:
+        min: 0
+        max: 10
+    - id: 202
+      type: integer
+      name: food_weight
+      optional: true
+      mapping:
+        - scale: 10
+    - id: 203
+      type: integer
+      name: control
+      optional: true
+    - id: 204
+      type: integer
+      name: realtime_data
+      optional: true
+    - id: 205
+      type: integer
+      name: weight
+      optional: true
+    - id: 207
+      type: string
+      name: schedule
+      optional: true
+    - id: 208
+      type: string
+      name: voice_record
+      optional: true
+secondary_entities:
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Flip
+    icon: "mdi:flip-horizontal"
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+        optional: true
+  - entity: switch
+    name: Timestamp
+    icon: "mdi:clock-time-eight"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+        optional: true
+  - entity: switch
+    name: Motion notification
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 134
+        type: boolean
+        name: switch
+        optional: true
+  - entity: select
+    name: Motion sensitivity
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: Low
+          - dps_val: "1"
+            value: Medium
+          - dps_val: "2"
+            value: High
+  - entity: select
+    name: Nightvision
+    icon: "mdi:weather-night"
+    category: config
+    dps:
+      - id: 108
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: Auto
+          - dps_val: "1"
+            value: "Off"
+          - dps_val: "2"
+            value: "On"
+  - entity: binary_sensor
+    name: Food empty
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 206
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Not enough food
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 206
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 2
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Blocked
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 206
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 4
+            value: true
+          - value: false
+  - entity: camera
+    dps:
+      - id: 113
+        type: boolean
+        optional: true
+        name: record
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+      - id: 115
+        type: base64
+        name: snapshot
+        optional: true
+        sensitive: true

@@ -1,0 +1,38 @@
+name: Curtain switch
+products:
+  - id: 1qhlrytqcpnqmzj7
+    name: Moes WS-Y-EUC
+primary_entity:
+  entity: cover
+  class: curtain
+  dps:
+    - id: 1
+      name: control
+      type: string
+      mapping:
+        - dps_val: "on"
+          value: open
+        - dps_val: "off"
+          value: close
+        - dps_val: stop
+          value: stop
+secondary_entities:
+  - entity: light
+    category: config
+    translation_key: backlight
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: number
+    name: Travel time
+    category: config
+    icon: "mdi:clock-end"
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 10
+          max: 120

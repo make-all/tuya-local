@@ -1,8 +1,9 @@
-# DPS sample:  { "1": true, "2": true, "3": "MID", "7": true, "8": 1000, "9": "colourful1", "10": "", "11": 0 }
-name: Aroma Diffuser With Lamp
+# DPS sample:  { "1": true, "2": true, "3": "MID", "7": true, "8": 1000,
+#                "9": "colourful1", "10": "", "11": 0 }
+name: Aroma diffuser with lamp
 products:
   - id: arkdxfhlkpdyof9x
-    model: YX316WIFI
+    name: YX316WIFI
 primary_entity:
   entity: fan
   icon: "mdi:scent"
@@ -61,8 +62,6 @@ secondary_entities:
         range:
           min: 10
           max: 1000
-        mapping:
-          - scale: 3.92        
       - id: 10
         name: rgbhsv
         type: hex
@@ -95,8 +94,13 @@ secondary_entities:
       - id: 6
         type: boolean
         name: switch
+        optional: true
         mapping:
           - dps_val: true
             icon: "mdi:speaker"
           - dps_val: false
-            icon: "mdi:speaker-off"        
+            icon: "mdi:speaker-off"
+          - dps_val: null
+            icon: "mdi:speaker-off"
+            value: false
+            hidden: true

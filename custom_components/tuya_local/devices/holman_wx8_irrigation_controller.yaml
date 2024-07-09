@@ -1,0 +1,323 @@
+name: Irrigation Controller
+products:
+  - id: 3c8bxnseywh7radc
+    name: Holman WX8
+primary_entity:
+  entity: binary_sensor
+  class: running
+  icon: mdi:sprinkler-variant
+  dps:
+    - id: 123
+      name: sensor
+      type: boolean
+    - id: 116
+      name: firmware_version
+      type: integer
+    - id: 101
+      name: programming
+      type: string
+      optional: true
+secondary_entities:
+  - entity: valve
+    name: Zone 1
+    class: water
+    dps:
+      - id: 102
+        type: boolean
+        name: valve
+  - entity: valve
+    name: Zone 2
+    class: water
+    dps:
+      - id: 103
+        type: boolean
+        name: valve
+  - entity: valve
+    name: Zone 3
+    class: water
+    dps:
+      - id: 104
+        type: boolean
+        name: valve
+  - entity: valve
+    name: Zone 4
+    class: water
+    dps:
+      - id: 105
+        type: boolean
+        name: valve
+  - entity: valve
+    name: Zone 5
+    class: water
+    dps:
+      - id: 106
+        type: boolean
+        name: valve
+  - entity: valve
+    name: Zone 6
+    class: water
+    dps:
+      - id: 107
+        type: boolean
+        name: valve
+  - entity: valve
+    name: Zone 7
+    class: water
+    dps:
+      - id: 108
+        type: boolean
+        name: valve
+  - entity: valve
+    name: Zone 8
+    class: water
+    dps:
+      - id: 112
+        type: boolean
+        name: valve
+  - entity: switch
+    name: Zone 1
+    category: config
+    deprecated: valve
+    icon: mdi:sprinkler-variant
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Zone 2
+    category: config
+    deprecated: valve
+    icon: mdi:sprinkler-variant
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Zone 3
+    category: config
+    deprecated: valve
+    icon: mdi:sprinkler-variant
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Zone 4
+    category: config
+    deprecated: valve
+    icon: mdi:sprinkler-variant
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Zone 5
+    category: config
+    deprecated: valve
+    icon: mdi:sprinkler-variant
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Zone 6
+    category: config
+    deprecated: valve
+    icon: mdi:sprinkler-variant
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Zone 7
+    category: config
+    deprecated: valve
+    icon: mdi:sprinkler-variant
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Zone 8
+    category: config
+    deprecated: valve
+    icon: mdi:sprinkler-variant
+    dps:
+      - id: 112
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Program A
+    icon: mdi:timetable
+    dps:
+      - id: 113
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Program B
+    icon: mdi:timetable
+    dps:
+      - id: 114
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Program C
+    icon: mdi:timetable
+    dps:
+      - id: 115
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: voltage
+    name: Power supply voltage
+    category: diagnostic
+    dps:
+      - id: 117
+        name: sensor
+        type: integer
+        unit: "V"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Evie battery voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 119
+        name: sensor
+        type: integer
+        unit: "V"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Battery voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 118
+        type: integer
+        name: sensor
+        unit: "V"
+        mapping:
+          - scale: 10
+  - entity: binary_sensor
+    name: Battery voltage
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 120
+        name: sensor
+        type: bitfield
+        mapping:
+          - dps_val: 1
+            value: false
+          - value: true
+  - entity: binary_sensor
+    name: Power supply
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 120
+        name: sensor
+        type: bitfield
+        mapping:
+          - dps_val: 2
+            value: false
+          - value: true
+  - entity: binary_sensor
+    name: Watering
+    dps:
+      - id: 120
+        name: sensor
+        type: bitfield
+        mapping:
+          - dps_val: 4
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Rain sensor
+    class: moisture
+    dps:
+      - id: 120
+        name: sensor
+        type: bitfield
+        mapping:
+          - dps_val: 8
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Evie
+    category: diagnostic
+    class: connectivity
+    dps:
+      - id: 120
+        name: sensor
+        type: bitfield
+        mapping:
+          - dps_val: 32
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Evie battery
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 120
+        name: sensor
+        type: bitfield
+        mapping:
+          - dps_val: 64
+            value: false
+          - value: true
+  - entity: binary_sensor
+    name: Evie sensor
+    class: moisture
+    dps:
+      - id: 120
+        name: sensor
+        type: bitfield
+        mapping:
+          - dps_val: 128
+            value: true
+          - value: false
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        unit: min
+  - entity: sensor
+    name: Dial position
+    class: enum
+    icon: "mdi:knob"
+    dps:
+      - id: 122
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: "Zone 1"
+          - dps_val: 2
+            value: "Zone 2"
+          - dps_val: 3
+            value: "Zone 3"
+          - dps_val: 4
+            value: "Zone 4"
+          - dps_val: 5
+            value: "Zone 5"
+          - dps_val: 6
+            value: "Zone 6"
+          - dps_val: 7
+            value: "Zone 7"
+          - dps_val: 8
+            value: "Zone 8"
+          - dps_val: 9
+            value: "AP"
+          - dps_val: 10
+            value: "Off"
+          - dps_val: 11
+            value: "Run"
+          - dps_val: 12
+            value: "Test"

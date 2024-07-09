@@ -41,8 +41,8 @@ class TestWetairWCH750Heater(
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,
             self.subject,
-            min=10,
-            max=35,
+            min=10.0,
+            max=35.0,
         )
         self.setUpDimmableLight(
             BRIGHTNESS_DPS,
@@ -87,7 +87,7 @@ class TestWetairWCH750Heater(
         )
         self.setUpBasicSensor(
             COUNTDOWN_DPS,
-            self.entities.get("sensor_timer"),
+            self.entities.get("sensor_time_remaining"),
             unit=UnitOfTime.MINUTES,
             device_class=SensorDeviceClass.DURATION,
         )
@@ -95,7 +95,7 @@ class TestWetairWCH750Heater(
             [
                 "light_display",
                 "select_timer",
-                "sensor_timer",
+                "sensor_time_remaining",
             ]
         )
 
@@ -105,15 +105,10 @@ class TestWetairWCH750Heater(
             (
                 ClimateEntityFeature.TARGET_TEMPERATURE
                 | ClimateEntityFeature.PRESET_MODE
+                | ClimateEntityFeature.TURN_OFF
+                | ClimateEntityFeature.TURN_ON
             ),
         )
-
-    def test_icon(self):
-        self.dps[HVACMODE_DPS] = True
-        self.assertEqual(self.subject.icon, "mdi:radiator")
-
-        self.dps[HVACMODE_DPS] = False
-        self.assertEqual(self.subject.icon, "mdi:radiator-disabled")
 
     def test_temperatre_unit_retrns_device_temperatre_unit(self):
         self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
@@ -208,15 +203,11 @@ class TestWetairWCH750Heater(
             await self.subject.async_set_preset_mode(PRESET_AWAY)
 
     def test_extra_state_attributes(self):
-        self.dps[TIMER_DPS] = "1h"
-        self.dps[COUNTDOWN_DPS] = 20
         self.dps[UNKNOWN21_DPS] = 21
 
         self.assertDictEqual(
             self.subject.extra_state_attributes,
             {
-                "timer": "1h",
-                "countdown": 20,
                 "unknown_21": 21,
             },
         )

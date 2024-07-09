@@ -1,4 +1,3 @@
-from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.fan import FanEntityFeature
 from homeassistant.components.humidifier import HumidifierEntityFeature
 from homeassistant.components.humidifier.const import MODE_AUTO, MODE_NORMAL, MODE_SLEEP
@@ -60,29 +59,26 @@ class TestEanonsHumidifier(
         )
         self.setUpBasicSensor(
             TIMER_DPS,
-            self.entities.get("sensor_timer"),
+            self.entities.get("sensor_time_remaining"),
             unit="min",
             device_class=SensorDeviceClass.DURATION,
         )
         self.setUpBasicBinarySensor(
             ERROR_DPS,
-            self.entities.get("binary_sensor_tank"),
-            device_class=BinarySensorDeviceClass.PROBLEM,
+            self.entities.get("binary_sensor_tank_empty"),
             testdata=(1, 0),
         )
-        self.mark_secondary(["select_timer", "sensor_timer", "binary_sensor_tank"])
+        self.mark_secondary(
+            [
+                "select_timer",
+                "sensor_time_remaining",
+                "binary_sensor_tank_empty",
+            ]
+        )
 
     def test_supported_features(self):
         self.assertEqual(self.subject.supported_features, HumidifierEntityFeature.MODES)
         self.assertEqual(self.fan.supported_features, FanEntityFeature.SET_SPEED)
-
-    def test_icon_is_humidifier(self):
-        """Test that the icon is as expected."""
-        self.dps[HVACMODE_DPS] = True
-        self.assertEqual(self.subject.icon, "mdi:air-humidifier")
-
-        self.dps[HVACMODE_DPS] = False
-        self.assertEqual(self.subject.icon, "mdi:air-humidifier-off")
 
     def test_current_humidity(self):
         self.dps[CURRENTHUMID_DPS] = 75

@@ -1,4 +1,5 @@
 """Tests for the cover entity."""
+
 from unittest.mock import AsyncMock, Mock
 
 import pytest
@@ -33,7 +34,7 @@ async def test_init_entry(hass):
         },
     }
     await async_setup_entry(hass, entry, m_add_entities)
-    assert type(hass.data[DOMAIN]["dummy"]["cover_garage"]) == TuyaLocalCover
+    assert type(hass.data[DOMAIN]["dummy"]["cover_garage"]) is TuyaLocalCover
     m_add_entities.assert_called_once()
 
 

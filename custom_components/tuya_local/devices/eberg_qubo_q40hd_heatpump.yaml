@@ -8,19 +8,15 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:hvac-off"
         - dps_val: true
           constraint: mode
           conditions:
             - dps_val: cold
-              icon: "mdi:snowflake"
               value: cool
             - dps_val: hot
-              icon: "mdi:fire"
               value: heat
             - dps_val: dehumidify
-              icon: "mdi:water-percent"
-              value: dry              
+              value: dry
     - id: 2
       name: temperature
       type: integer
@@ -110,14 +106,13 @@ primary_entity:
         - dps_val: "off"
           constraint: hvac_mode
           conditions:
-            - dps_val: False
+            - dps_val: false
               value: "off"
-            - dps_val: True
+            - dps_val: true
               value: idle
 secondary_entities:
   - entity: number
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 22

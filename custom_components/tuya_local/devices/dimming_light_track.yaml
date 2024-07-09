@@ -1,0 +1,30 @@
+name: Dimming CCT light
+products:
+  - id: fkxcslivaluonzdp
+    name: LightStar track light
+primary_entity:
+  entity: light
+  dps:
+    - id: 20
+      type: boolean
+      name: switch
+    - id: 22
+      name: brightness
+      type: integer
+      range:
+        min: 5
+        max: 1000
+    - id: 23
+      name: color_temp
+      type: integer
+      range:
+        min: 0
+        max: 1000
+      mapping:
+        - invert: true
+          target_range:
+            min: 2700
+            max: 6500
+    - id: 106
+      name: identity
+      type: string

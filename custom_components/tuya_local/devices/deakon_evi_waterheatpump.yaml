@@ -1,0 +1,165 @@
+name: Radiator heatpump
+products:
+  - id: 02ek8thasvo40fmd
+    name: Deakon EVI A2pro
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+          hidden: true
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: hot
+              value: heat
+              hidden: true
+            - dps_val: cold
+              value: cool
+              hidden: true
+            - dps_val: hotwater
+              value: "off"
+            - dps_val: hot_hotwater
+              value: heat
+            - dps_val: cold_hotwater
+              value: cool
+    - id: 2
+      type: integer
+      name: temperature
+      unit: C
+      range:
+        min: 5
+        max: 60
+    - id: 3
+      type: integer
+      name: current_temperature
+    - id: 4
+      type: string
+      name: mode
+      hidden: true
+    - id: 103
+      type: string
+      name: hvac_action
+      mapping:
+        - dps_val: "off"
+          value: idle
+        - dps_val: "on"
+          value: heating
+          constraint: mode
+          conditions:
+            - dps_val: cold
+              value: cooling
+        - dps_val: defrost
+          value: heating
+        - dps_val: antifrozen
+          value: heating
+    - id: 104
+      type: string
+      name: inquire_id
+    - id: 105
+      type: integer
+      name: inquire_value
+    - id: 106
+      type: string
+      name: set_id
+    - id: 107
+      type: integer
+      name: set_value
+      range:
+        min: -100
+        max: 999
+    - id: 109
+      type: string
+      name: error_code_table
+    - id: 110
+      type: string
+      name: error_code_table2
+    - id: 111
+      type: string
+      name: driver_error_code1
+    - id: 112
+      type: string
+      name: driver_error_code2
+    - id: 113
+      type: string
+      name: sen_sys_error_code1
+    - id: 114
+      type: string
+      name: sen_sys_error_code2
+secondary_entities:
+  - entity: select
+    name: Combined mode
+    icon: "mdi:heat-pump"
+    category: config
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: hot
+            value: Heating only
+          - dps_val: cold
+            value: Cooling only
+          - dps_val: hotwater
+            value: Hot water only
+          - dps_val: hot_hotwater
+            value: Hot water + heating
+          - dps_val: cold_hotwater
+            value: Hot water + cooling
+  - entity: select
+    name: Temperature target
+    category: config
+    dps:
+      - id: 5
+        type: string
+        name: option
+        mapping:
+          - dps_val: HotWater
+            value: Hot water
+            icon: "mdi:water-thermometer"
+          - dps_val: Hot
+            value: Heating
+            icon: "mdi:home-thermometer"
+          - dps_val: Cooling
+            icon: "mdi:snowflake-thermometer"
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 13
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 13
+        type: bitfield
+        name: fault_code
+  - entity: binary_sensor
+    translation_key: defrost
+    category: diagnostic
+    dps:
+      - id: 103
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: defrost
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Anti-freeze
+    class: cold
+    category: diagnostic
+    dps:
+      - id: 103
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: antifrozen
+            value: true
+          - value: false

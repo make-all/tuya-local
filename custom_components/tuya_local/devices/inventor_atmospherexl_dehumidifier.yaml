@@ -18,13 +18,6 @@ primary_entity:
     - id: 1
       name: main_switch
       type: boolean
-      mapping:
-        - dps_val: false
-          icon: "mdi:air-humidifier-off"
-          icon_priority: 1
-        - dps_val: true
-          icon: "mdi:air-humidifier"
-          icon_priority: 3
     - id: 3
       type: string
       name: humidity
@@ -70,9 +63,9 @@ primary_entity:
     - id: 19
       type: bitfield
       name: error_code
-# The following do not have descriptions in iot.tuya.com, the names
-# though can be obtained from the debugger.  But functionality needs
-# to be confirmed before making them separate entities
+      # The following do not have descriptions in iot.tuya.com, the names
+      # though can be obtained from the debugger.  But functionality needs
+      # to be confirmed before making them separate entities
     - id: 105
       type: string
       name: air_purifier
@@ -117,17 +110,6 @@ secondary_entities:
           - dps_val: high
             value: 100
   - entity: sensor
-    class: humidity
-    deprecated: humidifier
-    category: diagnostic
-    name: Room humidity
-    dps:
-      - id: 6
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
-  - entity: sensor
     class: temperature
     name: Room temperature
     dps:
@@ -138,16 +120,14 @@ secondary_entities:
         class: measurement
   - entity: switch
     category: config
-    name: Ionizer
-    icon: "mdi:creation"
+    translation_key: ionizer
     dps:
       - id: 10
         name: switch
         type: boolean
   - entity: switch
     category: config
-    name: UV sterilization
-    icon: "mdi:solar-power"
+    translation_key: uv_sterilization
     dps:
       - id: 13
         name: switch
@@ -160,21 +140,15 @@ secondary_entities:
         name: sensor
         unit: ugm3
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 16
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: select
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 17
         type: string
@@ -201,18 +175,16 @@ secondary_entities:
           - dps_val: 9h
             value: 9 hours
   - entity: sensor
-    name: Timer
+    translation_key: time_remaining
     class: duration
     category: diagnostic
-    icon: "mdi:timer"
     dps:
       - id: 18
         type: integer
         name: sensor
         unit: min
   - entity: binary_sensor
-    class: cold
-    name: Defrost
+    translation_key: defrost
     category: diagnostic
     dps:
       - id: 19
@@ -223,8 +195,7 @@ secondary_entities:
             value: true
           - value: false
   - entity: binary_sensor
-    class: problem
-    name: Tank full or missing
+    translation_key: tank_full
     category: diagnostic
     dps:
       - id: 19
@@ -236,7 +207,6 @@ secondary_entities:
           - value: false
   - entity: binary_sensor
     class: problem
-    name: Error
     category: diagnostic
     # Several errors are bundled here since they are actual faults and the
     # recommended action is turn off for 10 minutes for all and get it serviced
@@ -308,12 +278,12 @@ secondary_entities:
         type: string
         name: option
         mapping:
-        - dps_val: auto
-          value: Auto
-        - dps_val: manual
-          value: Manual
-        - dps_val: night
-          value: Sleep
+          - dps_val: auto
+            value: Auto
+          - dps_val: manual
+            value: Manual
+          - dps_val: night
+            value: Sleep
   - entity: select
     category: config
     name: Lighting

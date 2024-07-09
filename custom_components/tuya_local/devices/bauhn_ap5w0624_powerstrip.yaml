@@ -1,0 +1,199 @@
+name: 5-way powerstrip
+products:
+  - id: bf152cecbcf4180771k2lq
+    name: BAUHN AP5W-0624
+primary_entity:
+  entity: switch
+  name: Outlet 1
+  icon: mdi:power-socket-au
+  class: outlet
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: switch
+    name: Outlet 2
+    icon: mdi:power-socket-au
+    class: outlet
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Outlet 3
+    icon: mdi:power-socket-au
+    class: outlet
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Outlet 4
+    icon: mdi:power-socket-au
+    class: outlet
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Outlet 5
+    icon: mdi:power-socket-au
+    class: outlet
+    dps:
+      - id: 5
+        type: boolean
+        name: switch
+  - entity: number
+    name: Timer 1
+    category: config
+    translation_key: timer
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+      - id: 42
+        type: string
+        name: cycle_time
+      - id: 43
+        type: string
+        name: random_time
+      - id: 44
+        type: string
+        name: switch_inching
+  - entity: number
+    name: Timer 2
+    category: config
+    translation_key: timer
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    name: Timer 3
+    category: config
+    translation_key: timer
+    dps:
+      - id: 11
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    name: Timer 4
+    category: config
+    translation_key: timer
+    dps:
+      - id: 12
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    name: Timer 5
+    category: config
+    translation_key: timer
+    dps:
+      - id: 13
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: sensor
+    category: diagnostic
+    class: current
+    dps:
+      - id: 18
+        name: sensor
+        type: integer
+        class: measurement
+        force: true
+        unit: mA
+      - id: 23
+        type: integer
+        name: calibration
+        optional: true
+  - entity: sensor
+    category: diagnostic
+    class: power
+    dps:
+      - id: 19
+        name: sensor
+        type: integer
+        class: measurement
+        force: true
+        unit: W
+        mapping:
+          - scale: 10
+      - id: 24
+        type: integer
+        name: calibration
+        optional: true
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    dps:
+      - id: 20
+        name: sensor
+        type: integer
+        class: measurement
+        force: true
+        unit: V
+        mapping:
+          - scale: 10
+      - id: 22
+        type: integer
+        name: calibration
+        optional: true
+  - entity: select
+    name: Initial state
+    icon: "mdi:toggle-switch"
+    category: config
+    dps:
+      - id: 38
+        type: string
+        name: option
+        mapping:
+          - dps_val: "on"
+            value: "on"
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "memory"
+            value: Last state
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 41
+        type: boolean
+        name: lock
+        optional: true

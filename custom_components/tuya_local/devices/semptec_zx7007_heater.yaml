@@ -1,0 +1,75 @@
+name: IR heater
+products:
+  - id: 34fyo4xuj16fzaqq
+    name: Semptec ZX7007
+primary_entity:
+  entity: climate
+  translation_key: heater
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          value: heat
+    - id: 5
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: "1"
+          value: eco
+        - dps_val: "2"
+          value: comfort
+        - dps_val: "3"
+          value: boost
+    - id: 14
+      type: string
+      name: hvac_action
+      mapping:
+        - constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              mapping:
+                - dps_val: stop
+                  value: idle
+                - dps_val: heating
+                  value: heating
+secondary_entities:
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 11
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: "1 hour"
+          - dps_val: "2"
+            value: "2 hours"
+          - dps_val: "3"
+            value: "3 hours"
+          - dps_val: "4"
+            value: "4 hours"
+          - dps_val: "5"
+            value: "5 hours"
+          - dps_val: "6"
+            value: "6 hours"
+          - dps_val: "7"
+            value: "7 hours"
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 12
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement

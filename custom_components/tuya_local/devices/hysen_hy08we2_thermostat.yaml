@@ -4,7 +4,7 @@ products:
     name: HY08WE-4
 primary_entity:
   entity: climate
-  translation_key: thermostat
+  translation_only_key: thermostat
   dps:
     - id: 1
       type: boolean
@@ -61,20 +61,16 @@ primary_entity:
       type: boolean
       name: hvac_action
       mapping:
-        - dps_val: true
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: off
-            - dps_val: true
-              value: heating
-        - dps_val: false
-          constraint: hvac_mode
+        - constraint: hvac_mode
           conditions:
             - dps_val: false
               value: "off"
             - dps_val: true
-              value: idle
+              mapping:
+                - dps_val: true
+                  value: heating
+                - dps_val: false
+                  value: idle
     - id: 106
       type: boolean
       name: unknown_106
@@ -97,17 +93,12 @@ primary_entity:
       name: min_temperature
 secondary_entities:
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 6
         type: boolean
         name: lock
-        mapping:
-          - dps_val: True
-            icon: "mdi:hand-back-right-off"
-          - dps_val: False
-            icon: "mdi:hand-back-right"
   - entity: sensor
     name: External temperature
     class: temperature
@@ -228,12 +219,13 @@ secondary_entities:
         range:
           min: 35
           max: 70
-        constraint: unit
-        conditions:
-          - dps_val: true
-            range:
-              min: 95
-              max: 158
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: true
+                range:
+                  min: 95
+                  max: 158
       - id: 101
         type: boolean
         name: unit
@@ -253,12 +245,13 @@ secondary_entities:
         range:
           min: 1
           max: 10
-        constraint: unit
-        conditions:
-          - dps_val: true
-            range:
-              min: 34
-              max: 50
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: true
+                range:
+                  min: 34
+                  max: 50
       - id: 101
         type: boolean
         name: unit
@@ -278,12 +271,13 @@ secondary_entities:
         range:
           min: 2
           max: 70
-        constraint: unit
-        conditions:
-          - dps_val: true
-            range:
-              min: 36
-              max: 158
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: true
+                range:
+                  min: 36
+                  max: 158
       - id: 101
         type: boolean
         name: unit
@@ -303,12 +297,13 @@ secondary_entities:
         range:
           min: 1
           max: 10
-        constraint: unit
-        conditions:
-          - dps_val: true
-            range:
-              min: 34
-              max: 50
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: true
+                range:
+                  min: 34
+                  max: 50
       - id: 101
         type: boolean
         name: unit
@@ -360,20 +355,18 @@ secondary_entities:
           - dps_val: 2days
             value: 5 + 2 day
   - entity: select
-    name: Temperature unit
+    translation_key: temperature_unit
     category: config
-    icon: "mdi:temperature-celsius"
     dps:
       - id: 101
         type: boolean
         name: option
         mapping:
           - dps_val: false
-            value: Celsius
+            value: celsius
           - dps_val: true
-            value: Fahrenheit
+            value: fahrenheit
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:

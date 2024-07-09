@@ -4,7 +4,7 @@ products:
     name: Duux Whisper Flex
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   dps:
     - id: 1
       type: boolean
@@ -97,15 +97,14 @@ secondary_entities:
           - dps_val: "1"
             value: true
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 6
         type: string
         name: option
         mapping:
-          - dps_val: "0" 
+          - dps_val: "0"
             value: "Off"
           - dps_val: "1"
             value: "1 hour"
@@ -132,7 +131,7 @@ secondary_entities:
           - dps_val: "12"
             value: "12 hours"
   - entity: sensor
-    name: Time remaining
+    translation_key: time_remaining
     class: duration
     category: diagnostic
     dps:
@@ -141,4 +140,3 @@ secondary_entities:
         name: sensor
         unit: h
         optional: true
-

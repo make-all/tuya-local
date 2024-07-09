@@ -1,6 +1,7 @@
 """
 Setup for different kinds of Tuya Binary sensors
 """
+
 import logging
 
 from homeassistant.components.binary_sensor import (
@@ -58,7 +59,6 @@ class TuyaLocalBinarySensor(TuyaLocalEntity, BinarySensorEntity):
                     self.name or "binary_sensor",
                     dclass,
                 )
-            return None
 
     @property
     def is_on(self):

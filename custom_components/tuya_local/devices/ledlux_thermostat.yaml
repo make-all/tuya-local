@@ -4,7 +4,7 @@ products:
     name: Smart Boiler
 primary_entity:
   entity: climate
-  translation_key: thermostat
+  translation_only_key: thermostat
   dps:
     - id: 1
       name: hvac_mode
@@ -12,13 +12,12 @@ primary_entity:
       mapping:
         - dps_val: true
           value: "heat"
-          icon: "mdi:radiator"
         - dps_val: false
           value: "off"
-          icon: "mdi:radiator-disabled"
     - id: 2
       name: temperature
       type: integer
+      unit: C
       range:
         min: 5
         max: 1220
@@ -52,7 +51,7 @@ primary_entity:
           constraint: hvac_mode
           conditions:
             - dps_val: false
-              value: off
+              value: "off"
             - dps_val: true
               value: heating
         - dps_val: false
@@ -79,8 +78,7 @@ primary_entity:
       name: min_temperature
 secondary_entities:
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right"
+    translation_key: child_lock
     category: config
     dps:
       - id: 6
@@ -146,12 +144,6 @@ secondary_entities:
         range:
           min: 1
           max: 10
-        constraint: unit
-        conditions:
-          - dps_val: true
-            range:
-              min: 34
-              max: 50
         unit: C
   - entity: number
     name: High temperature limit
@@ -164,12 +156,6 @@ secondary_entities:
         range:
           min: 2
           max: 70
-        constraint: unit
-        conditions:
-          - dps_val: true
-            range:
-              min: 36
-              max: 158
         unit: C
   - entity: number
     name: Low temperature limit
@@ -182,12 +168,6 @@ secondary_entities:
         range:
           min: 1
           max: 10
-        constraint: unit
-        conditions:
-          - dps_val: true
-            range:
-              min: 34
-              max: 50
         unit: C
   - entity: select
     name: Initial state
@@ -218,7 +198,6 @@ secondary_entities:
           - dps_val: 2days
             value: 5 + 2 day
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:

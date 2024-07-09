@@ -11,25 +11,19 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:hvac-off"
         - dps_val: true
           constraint: mode
           conditions:
             - dps_val: auto
-              icon: mdi:thermostat-auto
               value: heat_cool
             - dps_val: cold
-              icon: "mdi:snowflake"
               value: cool
             - dps_val: wind
-              icon: "mdi:fan"
               value: fan_only
             - dps_val: wet
-              icon: "mdi:water"
               value: dry
             - dps_val: hot
               value: heat
-              icon: "mdi:heat-wave"
     - id: 2
       name: temperature
       type: integer
@@ -107,18 +101,17 @@ primary_entity:
           value: "C"
 secondary_entities:
   - entity: select
-    name: Temperature unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 103
         type: boolean
         name: option
         mapping:
-          - dps_val: true 
-            value: Fahrenheit
+          - dps_val: true
+            value: fahrenheit
           - dps_val: false
-            value: Celsius
+            value: celsius
   - entity: switch
     name: Sleep mode
     icon: "mdi:power-sleep"
@@ -127,7 +120,6 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:

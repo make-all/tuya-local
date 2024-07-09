@@ -73,7 +73,7 @@ class TestInkbirdSousVideCooker(
         )
         self.setUpBasicBinarySensor(
             ERROR_DPS,
-            self.entities.get("binary_sensor_fault"),
+            self.entities.get("binary_sensor_problem"),
             device_class=BinarySensorDeviceClass.PROBLEM,
             testdata=(1, 0),
         )
@@ -81,13 +81,13 @@ class TestInkbirdSousVideCooker(
             UNIT_DPS,
             self.entities.get("select_temperature_unit"),
             {
-                False: "Fahrenheit",
-                True: "Celsius",
+                False: "fahrenheit",
+                True: "celsius",
             },
         )
         self.setUpBasicSensor(
             REMAIN_DPS,
-            self.entities.get("sensor_remaining_time"),
+            self.entities.get("sensor_time_remaining"),
             unit=UnitOfTime.MINUTES,
             device_class=SensorDeviceClass.DURATION,
         )
@@ -96,16 +96,18 @@ class TestInkbirdSousVideCooker(
                 "number_cooking_time",
                 "number_recipe",
                 "number_temperature_calibration",
-                "binary_sensor_fault",
+                "binary_sensor_problem",
                 "select_temperature_unit",
-                "sensor_remaining_time",
+                "sensor_time_remaining",
             ]
         )
 
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            ClimateEntityFeature.TARGET_TEMPERATURE,
+            ClimateEntityFeature.TARGET_TEMPERATURE
+            | ClimateEntityFeature.TURN_OFF
+            | ClimateEntityFeature.TURN_ON,
         )
 
     def test_icon(self):
@@ -122,10 +124,7 @@ class TestInkbirdSousVideCooker(
         self.assertEqual(self.subject.icon, "mdi:alert")
 
     def test_temperature_unit(self):
-        self.dps[UNIT_DPS] = True
         self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
-        self.dps[UNIT_DPS] = False
-        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.FAHRENHEIT)
 
     def test_current_temperature(self):
         self.dps[CURRENTTEMP_DPS] = 522

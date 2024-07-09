@@ -7,7 +7,7 @@ primary_entity:
   name: Background
   icon: "mdi:projector"
   dps:
-    - id: 20
+    - id: 103
       type: boolean
       name: switch
     - id: 21
@@ -17,7 +17,7 @@ primary_entity:
         - dps_val: white
           value: white
         - dps_val: colour
-          value: rgbw
+          value: hs
         - dps_val: scene
           value: Scene
     - id: 24
@@ -44,8 +44,7 @@ primary_entity:
       type: hex
 secondary_entities:
   - entity: light
-    name: Laser
-    icon: "mdi:laser-pointer"
+    translation_key: laser
     dps:
       - id: 102
         type: boolean
@@ -56,8 +55,6 @@ secondary_entities:
         range:
           min: 10
           max: 1000
-        mapping:
-          - scale: 3.92
   - entity: number
     name: Star rotation speed
     category: config
@@ -66,21 +63,19 @@ secondary_entities:
       - id: 101
         type: integer
         name: value
-        unit: 
         range:
           min: 10
           max: 1000
   - entity: switch
-    name: Color
+    name: Master
     category: config
     dps:
-      - id: 103
+      - id: 20
         type: boolean
         name: switch
   - entity: number
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 26
         type: integer

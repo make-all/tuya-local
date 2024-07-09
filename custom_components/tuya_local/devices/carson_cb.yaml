@@ -3,7 +3,8 @@ products:
   # original product id unknown: Carson CB PA280
   - id: 2tgd3qnobb1mcgd9
     name: Shinco Yoau YWD1
-    # also sold as Axelair Tempero CMM3000, Domair Callisto (product id may be same or different?)
+    # also sold as Axelair Tempero CMM3000, Domair Callisto
+    # (product id may be same or different?)
 primary_entity:
   entity: climate
   dps:
@@ -13,22 +14,17 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:hvac-off"
         - dps_val: true
           constraint: mode
           conditions:
             - dps_val: COOL
-              icon: "mdi:snowflake"
               value: cool
             - dps_val: FAN
-              icon: "mdi:fan"
               value: fan_only
             - dps_val: DRY
-              icon: "mdi:water"
               value: dry
             - dps_val: HEAT
-              icon: "mdi:fire"
-              value: heat   
+              value: heat
     - id: 2
       name: temperature
       type: integer
@@ -83,8 +79,7 @@ primary_entity:
       optional: true
 secondary_entities:
   - entity: select
-    name: temperature unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 19
@@ -92,9 +87,9 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: C
-            value: Celsius
+            value: celsius
           - dps_val: F
-            value: Fahrenheit
+            value: fahrenheit
   - entity: switch
     name: Sleep
     icon: "mdi:power-sleep"
@@ -104,17 +99,15 @@ secondary_entities:
         name: switch
         optional: true
   - entity: binary_sensor
-    name: Defrosting
-    class: cold
+    translation_key: defrost
     category: diagnostic
     dps:
       - id: 102
         type: boolean
         name: sensor
   - entity: number
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 103
         type: integer
@@ -124,7 +117,7 @@ secondary_entities:
           min: 0
           max: 24
   - entity: sensor
-    name: Time remaining
+    translation_key: time_remaining
     class: duration
     category: diagnostic
     dps:
@@ -134,7 +127,6 @@ secondary_entities:
         unit: min
         class: measurement
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:

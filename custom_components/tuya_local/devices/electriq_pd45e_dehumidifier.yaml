@@ -39,7 +39,7 @@ primary_entity:
     - id: 107
       type: boolean
       name: unknown_107
-      # Probably one of these booleans is defrost indicator, the other may be tank?
+      # Probably one boolean is defrost indicator, the other may be tank?
     - id: 108
       type: boolean
       name: unknown_108
@@ -61,8 +61,7 @@ secondary_entities:
         type: boolean
         name: oscillate
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 7
@@ -77,16 +76,3 @@ secondary_entities:
         name: sensor
         unit: C
         class: measurement
-  - entity: sensor
-    class: humidity
-    deprecated: humidifier
-    category: diagnostic
-    dps:
-      - id: 3
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
-
-
-

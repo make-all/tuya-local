@@ -10,6 +10,8 @@ products:
     name: Lampux bedside lamp
   - id: wufw0loegkb1y3u3
     name: Genio Smart WIFI bulb A60 RGB+CCT
+  - id: gshkqhi4fx9qqwrr
+    name: ANWIO BR30 WiFi Smart LED Bulb RGB+CCT 13W
 primary_entity:
   entity: light
   dps:
@@ -38,7 +40,6 @@ primary_entity:
       mapping:
         - dps_val: null
           value: 0
-        - scale: 3.92
     - id: 23
       name: color_temp
       type: integer
@@ -96,9 +97,8 @@ primary_entity:
       optional: true
 secondary_entities:
   - entity: number
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 26
         name: value
@@ -137,12 +137,17 @@ secondary_entities:
           - dps_val: "04464602007803e803e800000000464602007803e8000a00000000"
             # color: G+DkG, Breath, Mid speed
             value: Soft
-          - dps_val: "05464601000003e803e800000000464601007803e803e80000000046460100f003e803e800000000464601003d03e803e80000000046460100ae03e803e800000000464601011303e803e800000000"
+          - dps_val: "05464601000003e803e800000000464601007803e803e800000000\
+              46460100f003e803e800000000464601003d03e803e80000000046460100ae\
+              03e803e800000000464601011303e803e800000000"
             # color* R+G+B+Y+C+V, Flash, Mid speed
             value: Colorful
-          - dps_val: "06464601000003e803e800000000464601007803e803e80000000046460100f003e803e800000000"
+          - dps_val: "06464601000003e803e800000000464601007803e803e800000000\
+              46460100f003e803e800000000"
             # color* R+G+B, Flash, Mid speed
             value: Dazzling
-          - dps_val: "07464602000003e803e800000000464602007803e803e80000000046460200f003e803e800000000464602003d03e803e80000000046460200ae03e803e800000000464602011303e803e800000000"
+          - dps_val: "07464602000003e803e800000000464602007803e803e800000000\
+              46460200f003e803e800000000464602003d03e803e80000000046460200ae\
+              03e803e800000000464602011303e803e800000000"
             # color* R+G+B+Y+C+V, Breath, Mid speed
             value: Gorgeous

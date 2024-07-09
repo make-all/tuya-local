@@ -1,0 +1,104 @@
+name: Air conditioner
+# products:
+#   - id: UNKNOWN
+#     name: Klarstein Iceblock Ecosmart
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: work_mode
+          conditions:
+            - dps_val: "1"
+              value: cool
+            - dps_val: "3"
+              value: dry
+            - dps_val: "5"
+              value: fan_only
+      hidden: true
+    - id: 2
+      type: integer
+      name: temperature
+      range:
+        min: 16
+        max: 31
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: true
+              value_redirect: temp_set_f
+              range:
+                min: 62
+                max: 90
+    - id: 3
+      type: integer
+      name: current_temperature
+      readonly: true
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: true
+              value_redirect: temp_current_f
+    - id: 20
+      name: error
+      type: bitfield
+      mapping:
+        - dps_val: 0
+          value: "OK"
+    - id: 101
+      name: work_mode
+      type: string
+      hidden: true
+    - id: 103
+      name: preset_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: none
+        - dps_val: true
+          value: sleep
+    - id: 104
+      type: string
+      name: fan_mode
+      mapping:
+        - dps_val: "1"
+          value: high
+        - dps_val: "3"
+          value: low
+    - id: 109
+      type: boolean
+      name: temperature_unit
+      mapping:
+        - dps_val: true
+          value: F
+        - value: C
+    - id: 110
+      type: integer
+      name: temp_set_f
+      range:
+        min: 62
+        max: 90
+      hidden: true
+      optional: true
+    - id: 111
+      type: integer
+      name: temp_current_f
+      hidden: true
+      optional: true
+secondary_entities:
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24

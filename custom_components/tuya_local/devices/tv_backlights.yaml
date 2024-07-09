@@ -4,8 +4,7 @@ products:
     name: Loginovo Ambient TV Sync Light
 primary_entity:
   entity: light
-  name: Backlight
-  icon: mdi:television-shimmer
+  translation_key: backlight
   dps:
     - id: 102
       type: boolean
@@ -17,8 +16,7 @@ primary_entity:
         min: 0
         max: 100
       mapping:
-        - scale: 0.392
-          constraint: video_mode
+        - constraint: video_mode
           conditions:
             - dps_val: ambi_mode
               value_redirect: scene_brightness
@@ -31,8 +29,6 @@ primary_entity:
       range:
         min: 0
         max: 100
-      mapping:
-        - scale: 0.392
     - id: 112
       hidden: true
       name: color_brightness
@@ -40,8 +36,6 @@ primary_entity:
       range:
         min: 0
         max: 100
-      mapping:
-        - scale: 0.392
     - id: 111
       name: rgbhsv
       type: hex
@@ -73,7 +67,6 @@ primary_entity:
 secondary_entities:
   - entity: number
     name: Backlight intensity
-    type: integer
     mode: slider
     icon: mdi:speedometer-medium
     dps:
@@ -185,22 +178,26 @@ secondary_entities:
         type: integer
   - entity: sensor
     category: diagnostic
-    icon: mdi:arrow-expand-horizontal
+    class: distance
     name: Horizontal LED length
-    unit: dm
     dps:
       - id: 116
         name: sensor
         type: integer
+        unit: m
+        mapping:
+          - scale: 10
   - entity: sensor
     category: diagnostic
-    icon: mdi:arrow-expand-vertical
+    class: distance
     name: Vertical LED length
-    unit: dm
     dps:
       - id: 117
         name: sensor
         type: integer
+        unit: m
+        mapping:
+          - scale: 10
   - entity: sensor
     category: diagnostic
     icon: mdi:speedometer-slow

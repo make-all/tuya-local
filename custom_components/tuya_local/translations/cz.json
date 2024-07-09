@@ -4,6 +4,36 @@
         "step": {
             "user": {
                 "title": "Nastavte sve lokální zařízení",
+                "description": "Zařízení lze přidávat ručně nebo pomocí cloudové podpory pomocí aplikace Smart Life.",
+                "data": {
+                    "setup_mode": "Možnost nastavení:"
+                }
+            },
+            "cloud": {
+                "title": "Přihlaste se do Tuya",
+                "description": "Zadejte svůj uživatelský kód Smart Life nebo Tuya Smart.\n\nTento kód najdete v aplikaci Smart Life nebo Tuya Smart na obrazovce **Nastavení** > **Účet a zabezpečení** a zadejte kód zobrazený na ",
+                "data": {
+                    "user_code": "Uživatelský kód:"
+                }
+            },
+            "scan": {
+                "title": "Dokončete přihlášení",
+                "description": "Pomocí aplikace Smart Life nebo Tuya Smart naskenujte následující QR kód a dokončete přihlášení.\n\nPo dokončení tohoto kroku v aplikaci pokračujte k dalšímu kroku."
+            },
+            "choose_device": {
+                "title": "Vyberte zařízení",
+                "description": "Vyberte zařízení",
+                "data": {
+                    "device_id": "Vyberte zařízení:",
+                    "hub_id": "Vyberte bránu:"
+                }
+            },
+            "search": {
+                "title": "Najděte IP adresu zařízení",
+                "description": "Cloud Tuya neposkytuje místní IP adresy"
+            },
+            "local": {
+                "title": "Nastavte sve lokální zařízení",
                 "description": "[Postupujte podle tohoto návodu pro získaní identifikátoru zařízení (device_id) a lokálního klíče (local_key).](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "IP adresa nebo název hostitele (hostname)",
@@ -23,7 +53,7 @@
             },
             "choose_entities": {
                 "title": "Podrobnosti o zařízení",
-                "description": "Vyberte jméno pro toto zařízení a jeho entity které budou zapnuty",
+                "description": "Vyberte jméno pro toto zařízení",
                 "data": {
                     "name": "Jméno"
                 }
@@ -31,10 +61,21 @@
         },
         "abort": {
             "already_configured": "Zařízení s identifikátorem, který již byl přidán.",
-            "not_supported": "Omlouváme se, toto zažízení není podporováno."
+            "not_supported": "Omlouváme se, toto zažízení není podporováno.",
+            "no_devices": "Nelze najít žádná neregistrovaná zařízení pro účet."
         },
         "error": {
-            "connection": "Není možné připojit se k zařízené s těmito údaji. Může se jednat o dočasný problém, nebo zadané údaje nejsou správné."
+            "connection": "Není možné připojit se k zařízené s těmito údaji. Může se jednat o dočasný problém, nebo zadané údaje nejsou správné.",
+            "does_not_need_hub": "Zařízení nepotřebuje bránu a byla vybrána. ",
+            "needs_hub": "Zařízení potřebuje bránu a žádná nebyla vybrána."
+        }
+    },
+    "selector": {
+        "setup_mode": {
+            "options": {
+                "cloud": "Nastavení zařízení pomocí cloudu Smart Life.",
+                "manual": "Ručně zadejte informace o připojení zařízení."
+            }
         }
     },
     "options": {
@@ -56,6 +97,240 @@
         },
         "abort": {
             "not_supported": "Omlouváme se, toto zažízení není podporováno."
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "Rozmrazovat",
+                "state": {
+                    "off": "Normální",
+                    "on": "Rozmrazování"
+                }
+            },
+            "tank_empty": {
+                "name": "Nádrž",
+                "state": {
+                    "off": "OK",
+                    "on": "Nízká"
+                }
+            },
+            "tank_full": {
+                "name": "Nádrž",
+                "state": {
+                    "off": "OK",
+                    "on": "Plná"
+                }
+            }
+        },
+        "climate": {
+            "aircon_extra": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "health": "Zdravý",
+                            "medhigh": "Středně vysoký",
+                            "medlow": "Středně nízký",
+                            "natural": "Přírodní",
+                            "quiet": "Klid",
+                            "sleep": "Spát",
+                            "strong": "Silný"
+                        }
+                    },
+                    "swing_mode": {
+                        "state": {
+                            "topmost": "Nejvyšší",
+                            "top": "Horní",
+                            "middle": "Střední",
+                            "down": "Dolů",
+                            "downmost": "Nejspodnější"
+                        }
+                    }
+                }
+            },
+            "thermostat": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "cycle": "Cyklus"
+                        }
+                    },
+                    "preset_mode": {
+                        "state": {
+                            "manual": "Manuál",
+                            "program": "Program",
+                            "temp_override": "Dočasné přepsání",
+                            "perm_override": "Trvalé přepsání"
+                        }
+                    }
+                }
+            },
+            "combo_floor": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "cool": "Chladný vzduch",
+                            "fan_only": "Ventilátor",
+                            "heat": "Ohřejte vzduch",
+                            "floor_cool": "Chladná podlaha",
+                            "floor_heat": "Tepelná podlaha"
+                        }
+                    }
+                }
+            },
+            "swing_as_powerlevel": {
+                "state_attributes": {
+                    "swing_mode": {
+                        "name": "Úroveň vytápění",
+                        "state": {
+                            "stop": "Stop",
+                            "auto": "Auto"
+                        }
+                    }
+                }
+            },
+            "pool_heatpump": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "smart_heat": "Chytré teplo",
+                            "quick_heat": "Rychlé teplo",
+                            "quiet_heat": "Tiché teplo",
+                            "smart_cool": "Chytré chlazení",
+                            "quick_cool": "Rychlé chlazení",
+                            "quiet_cool": "Tiché chlazení",
+                            "auto": "Auto"
+                        }
+                    }
+                }
+            },
+            "heater": {
+                "name": "Ohřívač"
+            },
+            "thermo_switch": {
+                "state_attributes": {
+                    "hvac_mode": {
+                        "state": {
+                            "fan_only": "Pauza"
+                        }
+                    }
+                }
+            }
+        },
+        "humidifier": {
+            "dehumidifier": {
+                "state_attributes": {
+                    "mode": {
+                        "state": {
+                            "laundry": "Suché prádlo",
+                            "purify": "Očistit"
+                        }
+                    }
+                }
+            }
+        },
+        "fan": {
+            "fan_with_presets": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "normal": "Normální",
+                            "nature": "Přírodní",
+                            "sleep": "Spát",
+                            "baby": "Dítě",
+                            "fresh": "Svěží",
+                            "smart": "Chytrý",
+                            "strong": "Silný",
+                            "displayoff": "Vypněte displej",
+                            "off": "Vypnuto"
+                        }
+                    }
+                }
+            },
+            "ventilation": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "fresh": "Čerstvý vzduch",
+                            "circulate": "Obíhat",
+                            "sleep": "Spát",
+                            "auto": "Auto",
+                            "eco": "Eco",
+                            "anti-condensation": "Proti kondenzaci"
+                        }
+                    }
+                }
+            }
+        },
+        "light": {
+            "backlight": {
+                "name": "Podsvícení"
+            },
+            "display": {
+                "name": "Zobrazit"
+            },
+            "embers": {
+                "name": "Žhavé uhlíky"
+            },
+            "flame": {
+                "name": "Plamen"
+            },
+            "indicator": {
+                "name": "Indikátor"
+            },
+            "laser": {
+                "name": "Laser"
+            },
+            "logs": {
+                "name": "Polena"
+            },
+            "nightlight": {
+                "name": "Noční světlo"
+            }
+        },
+        "lock": {
+            "child_lock": {
+                "name": "Dětská pojistka"
+            }
+        },
+        "number": {
+            "timer": {
+                "name": "Časovač"
+            }
+        },
+        "select": {
+            "timer": {
+                "name": "Časovač"
+            },
+            "temperature_unit": {
+                "name": "Jednotka teploty",
+                "state": {
+                    "celsius": "Celsia",
+                    "fahrenheit": "Fahrenheita"
+                }
+            }
+        },
+        "sensor": {
+            "time_remaining": {
+                "name": "Zbývající čas"
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "Proti mrazu"
+            },
+            "evaporator_cleaning": {
+                "name": "Čištění výparníku"
+            },
+            "ionizer": {
+                "name": "Ionizátor"
+            },
+            "keytone": {
+                "name": "Tón kláves"
+            },
+            "uv_sterilization": {
+                "name": "UV sterilizace"
+            }
         }
     }
 }

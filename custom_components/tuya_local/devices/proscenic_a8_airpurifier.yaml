@@ -5,7 +5,7 @@ products:
 primary_entity:
   entity: fan
   icon: "mdi:air-purifier"
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   dps:
     - id: 1
       name: switch
@@ -71,8 +71,7 @@ secondary_entities:
         type: integer
         unit: d
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 7

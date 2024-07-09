@@ -1,0 +1,126 @@
+name: Radiator Thermostat
+products:
+  - id: ngxyxyc8
+    name: Hombli HBRT-0109
+primary_entity:
+  entity: climate
+  translation_only_key: heater
+  dps:
+    - id: 101
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          value: heat
+    - id: 102
+      type: integer
+      name: current_temperature
+      mapping:
+        - scale: 10
+    - id: 103
+      type: integer
+      name: temperature
+      unit: C
+      mapping:
+        - scale: 10
+          step: 5
+      range:
+        max: 300
+        min: 50
+    - id: 106
+      type: boolean
+      name: preset_mode
+      mapping:
+        - dps_val: true
+          value: "away"
+        - dps_val: false
+          value: "home"
+secondary_entities:
+  - entity: switch
+    name: Window check
+    icon: "mdi:window-open-variant"
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: anti_frost
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 23
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: number
+    name: Temperature calibration
+    category: config
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 27
+        type: integer
+        name: value
+        mapping:
+          - scale: 10
+            step: 5
+        range:
+          min: -60
+          max: 60
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        name: lock
+  - entity: binary_sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 105
+        type: bitfield
+        name: sensor
+        class: measurement
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: switch
+    name: Schedule
+    icon: "mdi:calendar-clock"
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Antiscale
+    category: config
+    icon: "mdi:shimmer"
+    dps:
+      - id: 130
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Valve
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"

@@ -5,7 +5,7 @@ products:
     name: Inkbird ITC-306A V3.0
 primary_entity:
   entity: climate
-  translation_key: thermo_switch
+  translation_only_key: thermo_switch
   dps:
     - id: 12
       type: bitfield
@@ -91,7 +91,10 @@ primary_entity:
       type: boolean
       name: hvac_action
       mapping:
-        - constraint: hvac_mode
+        - icon: "mdi:thermometer-off"
+          icon_priority: 5
+          value: "off"
+          constraint: hvac_mode
           conditions:
             - dps_val: "on"
               mapping:
@@ -100,12 +103,7 @@ primary_entity:
                   icon_priority: 6
                   value: heating
                 - dps_val: false
-                  icon: "mdi:thermometer-off"
-                  icon_priority: 5
                   value: idle
-            - icon: "mdi:thermometer-off"
-              icon_priority: 5
-              value: "off"
     - id: 116
       type: integer
       name: current_temperature_f
@@ -202,17 +200,16 @@ secondary_entities:
         hidden: true
   - entity: select
     category: config
-    name: Temperature unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     dps:
       - id: 101
         name: option
         type: string
         mapping:
           - dps_val: C
-            value: Celsius
+            value: celsius
           - dps_val: F
-            value: Fahrenheit
+            value: fahrenheit
   - entity: binary_sensor
     class: heat
     category: diagnostic
@@ -238,7 +235,6 @@ secondary_entities:
         type: boolean
         name: sensor
   - entity: binary_sensor
-    name: Error
     class: problem
     category: diagnostic
     dps:

@@ -4,7 +4,7 @@ products:
     name: Atomi 52 inch ceiling fan
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   dps:
     - id: 60
       type: boolean
@@ -21,10 +21,8 @@ primary_entity:
       type: integer
       name: speed
       range:
-        min: 0
+        min: 1
         max: 3
-      mapping:
-        - scale: 0.03
     - id: 71
       type: string
       name: unknown_71
@@ -37,7 +35,8 @@ secondary_entities:
         name: switch
       - id: 21
         # docs give the standard white, colour, scene, music values, but this
-        # device does not have color or scene dps, so just leave it for monitoring
+        # device does not have color or scene dps, so just leave it for
+        # monitoring
         name: work_mode
         type: string
       - id: 22
@@ -46,8 +45,6 @@ secondary_entities:
         range:
           min: 10
           max: 1000
-        mapping:
-          - scale: 3.92
       - id: 23
         name: color_temp
         type: integer
@@ -61,7 +58,7 @@ secondary_entities:
   - entity: number
     name: Light timer
     category: config
-    icon: "mdi:timer"
+    translation_key: timer
     dps:
       - id: 26
         type: integer
@@ -80,6 +77,3 @@ secondary_entities:
       - id: 34
         type: boolean
         name: switch
-
-
-

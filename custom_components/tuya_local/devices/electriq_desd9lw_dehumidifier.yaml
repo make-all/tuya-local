@@ -7,23 +7,18 @@ primary_entity:
       type: boolean
       mapping:
         - dps_val: false
-          icon: "mdi:air-humidifier-off"
           value: "off"
         - dps_val: true
           constraint: mode
           conditions:
             - dps_val: "Auto"
               value: "auto"
-              icon: "mdi:air-humidifier"
             - dps_val: "Heater"
               value: "heat"
-              icon: "mdi:fire"
             - dps_val: "Dehumidity"
               value: "dry"
-              icon: "mdi:water"
             - dps_val: "Fan"
               value: "fan_only"
-              icon: "mdi:fan"
     - id: 2
       type: integer
       name: humidity
@@ -75,20 +70,19 @@ primary_entity:
     - id: 101
       type: integer
       name: temperature
+      unit: C
       range:
         min: 16
         max: 30
 secondary_entities:
   - entity: light
-    name: "UV sterilization"
-    icon: "mdi:solar-power"
+    translation_key: uv_sterilization
     dps:
       - id: 15
         name: switch
         type: boolean
   - entity: switch
-    name: "Ionizer"
-    icon: "mdi:creation"
+    translation_key: "ionizer"
     dps:
       - id: 12
         name: switch

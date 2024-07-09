@@ -1,5 +1,5 @@
 """Tests for a simple switch with timer"""
-from homeassistant.components.switch import SwitchDeviceClass
+
 from homeassistant.const import UnitOfTime
 
 from ..const import TIMED_SOCKET_PAYLOAD

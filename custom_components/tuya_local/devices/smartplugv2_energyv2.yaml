@@ -2,8 +2,8 @@ name: Energy monitoring smartplug
 products:
   - id: jdj6ccklup7btq3a
     name: Tongou TO-Q-SY1-JWT
-  - id: jdj6ccklup7btq3a
-    name: AT-Q-SY1-JWT DIN rail switch
+  - id: w906qkrrhd3otiwd
+    name: Moes ME322
 primary_entity:
   entity: switch
   class: outlet
@@ -20,13 +20,20 @@ primary_entity:
       name: fault_code
     - id: 42
       type: string
+      name: cycle_timer
+      optional: true
+    - id: 43
+      type: string
       name: random_timer
+      optional: true
+    - id: 44
+      type: string
+      name: inching
       optional: true
 secondary_entities:
   - entity: number
     category: config
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     dps:
       - id: 9
         type: integer
@@ -45,10 +52,12 @@ secondary_entities:
       - id: 17
         name: sensor
         type: integer
+        optional: true
         unit: Wh
       - id: 25
         type: integer
         name: calibration
+        optional: true
   - entity: sensor
     category: diagnostic
     class: current
@@ -62,6 +71,7 @@ secondary_entities:
       - id: 23
         type: integer
         name: calibration
+        optional: true
   - entity: sensor
     category: diagnostic
     class: power
@@ -77,6 +87,7 @@ secondary_entities:
       - id: 24
         type: integer
         name: calibration
+        optional: true
   - entity: sensor
     category: diagnostic
     class: voltage
@@ -92,10 +103,10 @@ secondary_entities:
       - id: 22
         type: integer
         name: calibration
+        optional: true
   - entity: binary_sensor
     class: problem
     category: diagnostic
-    name: Error
     dps:
       - id: 26
         type: bitfield
@@ -119,9 +130,16 @@ secondary_entities:
             value: "Off"
           - dps_val: memory
             value: "Last State"
+  - entity: switch
+    name: Overcharge protection
+    category: config
+    dps:
+      - id: 39
+        type: boolean
+        name: switch
+        optional: true
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 41
@@ -137,7 +155,7 @@ secondary_entities:
         name: option
         optional: true
         mapping:
-          - dps_val: relay 
+          - dps_val: relay
             value: State
           - dps_val: pos
             value: Position

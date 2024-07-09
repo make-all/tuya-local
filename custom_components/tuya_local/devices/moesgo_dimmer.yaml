@@ -14,8 +14,6 @@ primary_entity:
       range:
         min: 10
         max: 1000
-      mapping:
-        - scale: 3.92
 secondary_entities:
   - entity: number
     name: Minimum brightness
@@ -47,9 +45,8 @@ secondary_entities:
           - dps_val: halogen
             value: Halogen
   - entity: number
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 6
         type: integer
@@ -78,7 +75,7 @@ secondary_entities:
           - dps_val: "memory"
             value: "Last state"
   - entity: light
-    name: Backlight
+    translation_key: backlight
     category: config
     dps:
       - id: 26

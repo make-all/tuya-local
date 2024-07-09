@@ -1,8 +1,7 @@
-name: M9 Robot Vacuum
+name: Robot Vacuum
 products:
   - id: ise3eub6pvacnzdw
     name: Proscenic M9
-    # information about dpids https://developer.tuya.com/en/docs/iot/laser-sweep-robot-template?id=Kae3e76wphrun
 primary_entity:
   entity: vacuum
   dps:
@@ -136,14 +135,13 @@ primary_entity:
       type: string
       optional: true
     - id: 25
-      name: do_not_disturb # cannot be used, set an automation to mute sound instead
+      name: do_not_disturb  # cannot be used, set an automation instead
       type: boolean
-      hidden: true
     - id: 28
-      name: error # seems to only switch between 0 and 2 when fault, dp 198 and 199 is where the messages are
+      name: error  # switchs between 0 and 2 when fault, see dp 198 and 199
       type: integer
     - id: 32
-      name: device_timer # cannot be used, set an automation for scheduled cleaning
+      name: device_timer  # set an automation for scheduled cleaning
       type: string
       optional: true
     - id: 33
@@ -179,7 +177,7 @@ primary_entity:
       type: string
       optional: true
     - id: 137
-      name: cloud_map # moved here since it's not useful without the app
+      name: cloud_map  # not useful without the app
       type: boolean
     - id: 141
       name: cleanspot
@@ -191,7 +189,6 @@ secondary_entities:
     name: Cleaning time
     category: diagnostic
     class: duration
-    icon: "mdi:timer-star"
     dps:
       - id: 6
         name: sensor
@@ -251,7 +248,6 @@ secondary_entities:
     name: Side brush life
     category: diagnostic
     class: duration
-    icon: "mdi:timer-sand"
     dps:
       - id: 17
         name: sensor
@@ -263,7 +259,7 @@ secondary_entities:
   - entity: button
     name: Side brush reset
     category: diagnostic
-    icon: "mdi:autorenew"
+    class: restart
     dps:
       - id: 18
         type: boolean
@@ -273,7 +269,6 @@ secondary_entities:
     name: Main brush life
     category: diagnostic
     class: duration
-    icon: "mdi:timer-sand"
     dps:
       - id: 19
         name: sensor
@@ -285,7 +280,7 @@ secondary_entities:
   - entity: button
     name: Main brush reset
     category: diagnostic
-    icon: "mdi:autorenew"
+    class: restart
     dps:
       - id: 20
         type: boolean
@@ -295,7 +290,6 @@ secondary_entities:
     name: Filter life
     category: diagnostic
     class: duration
-    icon: "mdi:timer-sand"
     dps:
       - id: 21
         name: sensor
@@ -307,7 +301,7 @@ secondary_entities:
   - entity: button
     name: Filter reset
     category: diagnostic
-    icon: "mdi:autorenew"
+    class: restart
     dps:
       - id: 22
         type: boolean
@@ -317,7 +311,6 @@ secondary_entities:
     name: Mop life
     category: diagnostic
     class: duration
-    icon: "mdi:timer-sand"
     dps:
       - id: 23
         name: sensor
@@ -329,7 +322,7 @@ secondary_entities:
   - entity: button
     name: Mop reset
     category: diagnostic
-    icon: "mdi:autorenew"
+    class: restart
     dps:
       - id: 24
         type: boolean
@@ -460,7 +453,7 @@ secondary_entities:
     category: config
     dps:
       - id: 39
-        name: switch # required so the mop and suction options work
+        name: switch  # required so the mop and suction options work
         type: boolean
   - entity: binary_sensor
     name: Mop installed
@@ -478,7 +471,6 @@ secondary_entities:
   - entity: select
     name: Working mode
     icon: "mdi:vacuum"
-    optional: true
     dps:
       - id: 41
         name: option
@@ -532,7 +524,7 @@ secondary_entities:
   - entity: button
     name: Sensor reset
     category: diagnostic
-    icon: "mdi:autorenew"
+    class: restart
     dps:
       - id: 140
         type: boolean
@@ -559,13 +551,19 @@ secondary_entities:
         # 20022 - Battery low
         # 20024 - Emptying dustbin
         # 20025 - Dustbin empty completed
-  - entity: sensor
-    name: Error message
+  - entity: binary_sensor
+    class: problem
     category: diagnostic
-    icon: "mdi:eye-circle-outline"
     dps:
       - id: 199
         name: sensor
+        type: integer
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 199
+        name: fault_code
         type: integer
         # 21003 - Dustbin not installed
         # 21004

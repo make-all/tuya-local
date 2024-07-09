@@ -1,6 +1,7 @@
 name: Purline Hoti M100 heater
 primary_entity:
   entity: climate
+  translation_only_key: heater
   dps:
     - id: 1
       name: hvac_mode
@@ -8,21 +9,17 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:radiator-disabled"
-          icon_priority: 1
         - dps_val: true
           constraint: preset_mode
           conditions:
             - dps_val: "off"
               value: fan_only
               icon: "mdi:fan"
-              icon_priority: 2
           value: "heat"
-          icon: "mdi:radiator"
-          icon_priority: 3
     - id: 2
       name: temperature
       type: integer
+      unit: C
       range:
         min: 15
         max: 35
@@ -63,18 +60,11 @@ primary_entity:
           value: "vertical"
 secondary_entities:
   - entity: light
-    name: Display
+    translation_key: display
     category: config
     dps:
       - id: 10
         type: boolean
-        mapping:
-          - dps_val: true
-            value: false
-            icon: "mdi:led-off"
-          - dps_val: false
-            value: true
-            icon: "mdi:led-on"
         name: switch
   - entity: switch
     name: Open window detector

@@ -1,4 +1,5 @@
 """Tests for the light entity."""
+
 from unittest.mock import AsyncMock, Mock
 
 import pytest
@@ -36,7 +37,7 @@ async def test_init_entry(hass):
     hass.data[DOMAIN]["dummy"]["device"] = m_device
 
     await async_setup_entry(hass, entry, m_add_entities)
-    assert type(hass.data[DOMAIN]["dummy"]["light_display"]) == TuyaLocalLight
+    assert type(hass.data[DOMAIN]["dummy"]["light_display"]) is TuyaLocalLight
     m_add_entities.assert_called_once()
 
 
@@ -137,9 +138,6 @@ async def test_async_turn_on_with_white_param():
                         "min": 10,
                         "max": 1000,
                     },
-                    "mapping": [
-                        {"scale": 3.92},
-                    ],
                 },
                 {
                     "id": "4",
@@ -151,4 +149,4 @@ async def test_async_turn_on_with_white_param():
     )
     light = TuyaLocalLight(mock_device, config)
     await light.async_turn_on(white=128)
-    mock_device.async_set_properties.assert_called_once_with({"2": "white", "3": 502})
+    mock_device.async_set_properties.assert_called_once_with({"2": "white", "3": 506})

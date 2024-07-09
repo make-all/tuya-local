@@ -3,11 +3,11 @@ products:
   - id: 3hjcrjktvkoim7zu
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   dps:
     - id: 1
       type: boolean
-      name: switch        
+      name: switch
     - id: 3
       name: preset_mode
       type: string
@@ -23,13 +23,13 @@ primary_entity:
       type: string
       mapping:
         - dps_val: "sleep"
-          value: "sleep"
+          value: 25
         - dps_val: "low"
-          value: "low"
+          value: 50
         - dps_val: "mid"
-          value: "mid"
+          value: 75
         - dps_val: "high"
-          value: "high"     
+          value: 100
 secondary_entities:
   - entity: light
     category: config
@@ -38,17 +38,15 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: switch
-    name: Ionizer
+    translation_key: ionizer
     category: config
-    icon: "mdi:dots-hexagon"
     dps:
       - id: 6
         name: switch
-        type: boolean        
+        type: boolean
   - entity: switch
-    name: UV sterilization
+    translation_key: uv_sterilization
     category: config
-    icon: "mdi:sun-wireless"
     dps:
       - id: 9
         name: switch
@@ -81,8 +79,7 @@ secondary_entities:
         class: measurement
         unit: "%"
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 18
@@ -105,4 +102,4 @@ secondary_entities:
         type: integer
         name: sensor
         class: measurement
-        unit: ugm3                
+        unit: ugm3

@@ -1,4 +1,5 @@
 """Tests for the vacuum entity."""
+
 from unittest.mock import AsyncMock, Mock
 
 import pytest
@@ -34,7 +35,7 @@ async def test_init_entry(hass):
     }
 
     await async_setup_entry(hass, entry, m_add_entities)
-    assert type(hass.data[DOMAIN]["dummy"]["vacuum"]) == TuyaLocalVacuum
+    assert type(hass.data[DOMAIN]["dummy"]["vacuum"]) is TuyaLocalVacuum
     m_add_entities.assert_called_once()
 
 

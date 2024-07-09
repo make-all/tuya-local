@@ -6,32 +6,31 @@ primary_entity:
   entity: vacuum
   dps:
     - id: 101
-      name: activate # clean_switch
+      name: activate  # clean_switch
       type: boolean
     - id: 102
-      name: pause # pause_switch
+      name: command  # pause_switch
       type: boolean
-      hidden: true
-    - id: 104
-      name: command # clean_mode
-      type: string
       mapping:
-        - constraint: pause
+        - dps_val: true
+          value: pause
+        - dps_val: false
+          constraint: actual_command
           conditions:
-            - dps_val: true
-              value: pause
-            - dps_val: false
-              mapping:
-                - dps_val: smart
-                  value: smart
-                - dps_val: pose
-                  value: clean_spot
-                - dps_val: zone
-                  value: zone
-                - dps_val: backcharge
-                  value: return_to_base
+            - dps_val: smart
+              value: smart
+            - dps_val: pose
+              value: clean_spot
+            - dps_val: zone
+              value: zone
+            - dps_val: backcharge
+              value: return_to_base
+    - id: 104
+      name: actual_command  # clean_mode
+      type: string
+      hidden: true
     - id: 105
-      name: status # robot_state
+      name: status  # robot_state
       type: string
       mapping:
         - dps_val: idle
@@ -57,7 +56,7 @@ primary_entity:
         - dps_val: remotectl
           value: remotectl
     - id: 109
-      name: fan_speed # fan_mode
+      name: fan_speed  # fan_mode
       type: string
       mapping:
         - dps_val: quiet
@@ -67,7 +66,7 @@ primary_entity:
         - dps_val: auto
           value: auto
     - id: 111
-      name: direction_control # remote_ctrl
+      name: direction_control  # remote_ctrl
       optional: true
       type: string
       mapping:
@@ -82,15 +81,19 @@ primary_entity:
         - dps_val: stop
           value: stop
     - id: 112
-      name: locate # seek_robot
+      name: locate  # seek_robot
       optional: true
       type: boolean
     - id: 122
-      name: error # robot_fault
+      name: error  # robot_fault
       type: bitfield
       mapping:
+        - dps_val: 2
+          value: Battery low
         - dps_val: 32
           value: Drop sensor abnormal
+        - dps_val: 4096
+          value: Abnormal main brush
         - dps_val: 524288
           value: Machine trapped
         - dps_val: 1048576
@@ -159,6 +162,7 @@ secondary_entities:
       - id: 107
         name: sensor
         type: integer
+        optional: true
         unit: s
   - entity: sensor
     name: Current clean area
@@ -168,6 +172,7 @@ secondary_entities:
       - id: 108
         name: sensor
         type: integer
+        optional: true
         unit: m²
   - entity: select
     name: Water mode
@@ -177,6 +182,7 @@ secondary_entities:
       - id: 110
         name: option
         type: string
+        optional: true
         mapping:
           - dps_val: 'off'
             value: 'off'
@@ -194,6 +200,7 @@ secondary_entities:
       - id: 113
         name: switch
         type: boolean
+        optional: true
   - entity: number
     name: Volume
     category: config
@@ -271,6 +278,7 @@ secondary_entities:
       - id: 117
         name: sensor
         type: integer
+        optional: true
         unit: m²
   - entity: sensor
     name: Total clean count
@@ -280,6 +288,7 @@ secondary_entities:
       - id: 118
         name: sensor
         type: integer
+        optional: true
   - entity: sensor
     name: Side brush time
     category: diagnostic

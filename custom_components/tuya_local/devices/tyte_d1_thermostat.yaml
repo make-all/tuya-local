@@ -97,9 +97,8 @@ primary_entity:
           value: LS Power
 secondary_entities:
   - entity: number
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 4
         type: integer
@@ -167,18 +166,17 @@ secondary_entities:
         type: integer
         name: coefficient
   - entity: select
-    name: Temperature unit
+    translation_key: temperature_unit
     category: config
-    icon: "mdi:temperature-celsius"
     dps:
       - id: 20
         type: string
         name: option
         mapping:
           - dps_val: c
-            value: Celsius
+            value: celsius
           - dps_val: f
-            value: Fahrenheit
+            value: fahrenheit
   - entity: number
     name: Vibration
     category: config
@@ -205,7 +203,6 @@ secondary_entities:
           min: -9
           max: 9
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:

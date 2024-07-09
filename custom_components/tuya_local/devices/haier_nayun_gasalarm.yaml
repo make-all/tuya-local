@@ -1,0 +1,122 @@
+name: Gas alarm
+products:
+  - id: we7hw8nxeqvbd6g8
+    name: Haier Nayun NY-GS-04
+primary_entity:
+  entity: binary_sensor
+  class: gas
+  dps:
+    - id: 1
+      type: string
+      name: sensor
+      mapping:
+        - dps_val: normal
+          value: false
+        - dps_val: alarm
+          value: true
+secondary_entities:
+  - entity: sensor
+    name: Gas level
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: "% LEL"
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: select
+    name: Alarm tone
+    icon: "mdi:siren"
+    category: config
+    dps:
+      - id: 6
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: Alarm 1
+          - dps_val: "2"
+            value: Alarm 2
+          - dps_val: "3"
+            value: Alarm 3
+          - dps_val: "4"
+            value: Alarm 4
+          - dps_val: "5"
+            value: Alarm 5
+  - entity: number
+    name: Alarm duration
+    category: config
+    icon: "mdi:camera-timer"
+    dps:
+      - id: 7
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 180
+  - entity: button
+    name: Self check
+    icon: "mdi:alert-circle-check"
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: button
+  - entity: sensor
+    name: Self-check result
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 9
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: checking
+            value: In progress
+          - dps_val: check_success
+            value: OK
+          - dps_val: check_failure
+            value: Fail!
+          - value: Unknown
+      - id: 101
+        type: string
+        name: test_data
+        optional: true
+      - id: 102
+        type: integer
+        optional: true
+        name: test_2
+      - id: 103
+        type: integer
+        optional: true
+        name: test_3
+      - id: 104
+        type: integer
+        optional: true
+        name: test_4
+  - entity: binary_sensor
+    name: Warm up
+    class: cold
+    category: diagnostic
+    dps:
+      - id: 10
+        type: boolean
+        name: sensor
+  - entity: switch
+    name: Alarm enable
+    icon: "mdi:siren"
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Mute
+    icon: "mdi:volume-mute"
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: switch

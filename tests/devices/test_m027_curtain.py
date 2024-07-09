@@ -1,5 +1,7 @@
 """Tests for the M027 curtain module."""
+
 from homeassistant.components.cover import CoverDeviceClass, CoverEntityFeature
+from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import UnitOfTime
 
 from ..const import M027_CURTAIN_PAYLOAD
@@ -37,6 +39,7 @@ class TestM027Curtains(MultiSensorTests, BasicSelectTests, TuyaDeviceTestCase):
                 {
                     "dps": TIMER_DPS,
                     "name": "sensor_time_remaining",
+                    "device_class": SensorDeviceClass.DURATION,
                     "min": 0,
                     "max": 86400,
                     "unit": UnitOfTime.SECONDS,
@@ -50,10 +53,10 @@ class TestM027Curtains(MultiSensorTests, BasicSelectTests, TuyaDeviceTestCase):
                 "morning": "Morning",
                 "night": "Night",
             },
-        ),
+        )
         self.mark_secondary(
             [
-                "binary_sensor_fault",
+                "binary_sensor_problem",
                 "select_mode",
                 "sensor_time_remaining",
                 "sensor_travel_time",

@@ -44,7 +44,7 @@ primary_entity:
       name: current_humidity
 secondary_entities:
   - entity: light
-    name: Nightlight
+    translation_key: nightlight
     category: config
     dps:
       - id: 102
@@ -66,16 +66,6 @@ secondary_entities:
       - id: 103
         type: boolean
         name: switch
-  - entity: sensor
-    deprecated: humidifier
-    category: diagnostic
-    class: humidity
-    dps:
-      - id: 109
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
   - entity: number
     name: Spray level
     icon: "mdi:spray"
@@ -108,12 +98,11 @@ secondary_entities:
     icon: "mdi:filter"
     category: diagnostic
     dps:
-      - id: 107 
+      - id: 107
         type: string
         name: sensor
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 108
@@ -121,7 +110,7 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: "0"
-            value: Off
+            value: "Off"
           - dps_val: "1"
             value: "1 hour"
           - dps_val: "2"

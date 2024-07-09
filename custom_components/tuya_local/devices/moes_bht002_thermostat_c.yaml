@@ -18,6 +18,7 @@ primary_entity:
     - id: 2
       type: integer
       name: temperature
+      unit: C
       range:
         min: 10
         max: 70
@@ -37,7 +38,7 @@ primary_entity:
       name: preset_mode
       mapping:
         - dps_val: true
-          value: eco 
+          value: eco
         - dps_val: false
           value: comfort
     - id: 104
@@ -45,14 +46,9 @@ primary_entity:
       name: unknown_104
 secondary_entities:
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 6
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"

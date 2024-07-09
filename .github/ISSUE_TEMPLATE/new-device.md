@@ -17,6 +17,8 @@ If you are not getting any log messages when trying to add the device, then
 you probably want help, which you can get by posting in
 [Discussions](https://github.com/make-all/tuya-local/discussions).
 
+Requests for new devices without logs from this integration containing
+dps information are not actionable, and will be closed without further action.
 
 
 Thank you for reporting a new device to add support for.  Please provide as much of the information requested below as you can.
@@ -25,14 +27,10 @@ New device requests will be processed with the following priority:
 
 1. Pull requests
 2. Issues containing logs, iot portal info with dp_ids and links that explain the usage.
-3. Issues containing partial info, but probably enough to make a good guess at the likely config
-4. Issues containing partial info, but some additional info needs to be requested
-5. Low effort issues with virtually no useful information
+3. Issues containing logs and information about the main dps required to make the device function, including range of any settable integer dps, and all possible values for any settable string dps.
 
-Due to increasing volume of requests, it is likely that those in
-category 5 will be closed without further discussion.  Those in
-category 4 are likely to take some time to make it to the top of the
-priority stack. 
+Due to increasing volume of requests, those not meeting the above
+requirements will be closed without further discussion.
 
 -->
 
@@ -61,17 +59,6 @@ Please paste the output here.
 ```
 
 <!--
-If DPS are missing from the output above, go back to the IoT Platform
-"Cloud" main page and select your project.  Go to the "Devices" tab
-and select "Debug Device" next to your device.  Select "Device Logs"
-and open your browser's Developer Tools window on the Network tab.
-For each function that has not yet been linked to a DPS, select the
-function from the "Select DP ID" dropdown and press "Search".  In the
-Developer Tools window, find the "list" request that was issued, and
-look in the Request Payload for a "code" parameter.  This is the DP id
-linked to that function, please add the remaining code and function
-name here.  If the function name is in Chinese, just paste it.
-
 If you do not have access to iot.tuya.com, please try to identify as
 many DPs as possible, by experimenting with your device.  Please also
 note any ranges and scale factors for input numbers, and possible
@@ -89,6 +76,9 @@ You will also find the local_key in here, please take care not to post that
 publicly.  If you do, then re-pairing the device with the mobile app will
 refresh the local key.
 
+Alternatively, tools that do local discovery, such as tinytuya, may be able
+to show the product id without needing access to the developer portal.
+
 Although this information is optional and not required, it will be
 used in future to identify matching devices.
 -->
@@ -101,4 +91,3 @@ If there is a manual or other explanation available online, please
 link to it (even if not in English) Otherwise if it is not obvious
 what all the functions do, please give a brief description.
 -->
-

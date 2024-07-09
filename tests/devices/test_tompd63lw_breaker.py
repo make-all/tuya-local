@@ -1,10 +1,10 @@
 """Tests for the switch entity."""
+
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     UnitOfElectricCurrent,
     UnitOfElectricPotential,
     UnitOfPower,
-    UnitOfTime,
 )
 
 from ..const import TOMPD63LW_SOCKET_PAYLOAD
@@ -61,6 +61,7 @@ class TestTOMPD63lw(MultiSensorTests, TuyaDeviceTestCase):
             [
                 "button_earth_leak_test",
                 "button_energy_reset",
+                "button_refresh_sensors",
                 "number_charge_energy",
                 "sensor_balance_energy",
                 "sensor_current_a",

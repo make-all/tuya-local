@@ -9,13 +9,6 @@ primary_entity:
     - id: 1
       name: switch
       type: boolean
-      mapping:
-        - dps_val: false
-          icon: "mdi:air-humidifier-off"
-          icon_priority: 1
-        - dps_val: true
-          icon: "mdi:air-humidifier"
-          icon_priority: 4
     - id: 2
       name: humidity
       type: integer
@@ -30,35 +23,25 @@ primary_entity:
       mapping:
         - dps_val: Continuous
           value: boost
-          icon: mdi:tshirt-crew-outline
-          icon_priority: 3
         - dps_val: Sunny_Day
           value: eco
-          icon: "mdi:weather-sunny"
-          icon_priority: 3
         - dps_val: Rain_Day
           value: normal
-          icon: "mdi:weather-pouring"
-          icon_priority: 3
+
     - id: 6
       name: current_humidity
       type: integer
     - id: 19
       name: error
       type: bitfield
-      # Docs mention E1 and E2, it isn't clear which is tank full, so for now
-      # treat both as that.
+      # E2 might be a compressor fault.
       mapping:
         - dps_val: 0
           value: OK
         - dps_val: 1
-          value: E1
-          icon: "mdi:cup-water"
-          icon_priority: 2
+          value: "Water Tank Full or Removed"
         - dps_val: 2
-          value: E2
-          icon: "mdi:cup-water"
-          icon_priority: 2
+          value: "E2 Compressor Fault"
 secondary_entities:
   - entity: fan
     dps:
@@ -73,17 +56,6 @@ secondary_entities:
             value: 50
           - dps_val: high
             value: 100
-  - entity: sensor
-    name: Current humidity
-    deprecated: humidifier
-    category: diagnostic
-    class: humidity
-    dps:
-      - id: 6
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
   - entity: sensor
     class: temperature
     dps:
@@ -105,26 +77,33 @@ secondary_entities:
           - dps_val: true
             icon: "mdi:sleep"
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 16
         type: boolean
         name: lock
-        mapping:
-          - dps_val: false
-            icon: "mdi:hand-back-right"
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
   - entity: binary_sensor
-    name: Tank
+    translation_key: tank_full
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+  - entity: binary_sensor
     class: problem
-    category: diagnostic
     dps:
       - id: 19
         type: bitfield
         name: sensor
         mapping:
           - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: false
+          - dps_val: null
             value: false
           - value: true

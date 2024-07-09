@@ -1,0 +1,138 @@
+name: Circuit breaker
+products:
+  - id: bryydwbntbjkq8pk
+    name: Faens FSZN03-100AP 2P
+primary_entity:
+  entity: switch
+  icon: "mdi:fuse"
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 101
+      type: string
+      name: event
+    - id: 110
+      type: string
+      optional: true
+      name: version
+secondary_entities:
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 25
+        type: integer
+        name: calibration
+  - entity: number
+    name: Overvoltage threshold
+    category: config
+    icon: "mdi:arrow-collapse-up"
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 110
+          max: 200
+  - entity: number
+    name: Undervoltage threshold
+    category: config
+    icon: "mdi:arrow-collapse-down"
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 50
+          max: 90
+  - entity: number
+    name: Rated voltage
+    class: voltage
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 150
+          max: 300
+  - entity: select
+    name: Overvoltage action
+    category: config
+    dps:
+      - id: 105
+        type: string
+        name: option
+        mapping:
+          - dps_val: Shut
+            value: Remain closed
+            icon: "mdi:electric-switch-closed"
+          - dps_val: Alarm
+            value: Alarm
+            icon: "mdi:bell-alert"
+          - dps_val: Trip
+            value: Trip
+            icon: "mdi:electric-switch"
+  - entity: select
+    name: Undervoltage action
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        mapping:
+          - dps_val: Shut
+            value: Remain closed
+            icon: "mdi:electric-switch-closed"
+          - dps_val: Alarm
+            value: Alarm
+            icon: "mdi:bell-alert"
+          - dps_val: Trip
+            value: Trip
+            icon: "mdi:electric-switch"
+  - entity: number
+    name: Overvoltage delay
+    category: config
+    icon: "mdi:camera-timer"
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 100
+          max: 10000
+        mapping:
+          - step: 100
+            scale: 1000
+  - entity: number
+    name: Undervoltage delay
+    category: config
+    icon: "mdi:camera-timer"
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 10
+  - entity: switch
+    name: Auto reset
+    category: config
+    icon: "mdi:refresh-auto"
+    dps:
+      - id: 109
+        type: boolean
+        name: switch

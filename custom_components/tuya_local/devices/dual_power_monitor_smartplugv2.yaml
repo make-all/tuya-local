@@ -43,7 +43,7 @@ secondary_entities:
   - entity: number
     name: Timer 1
     category: config
-    icon: "mdi:timer"
+    translation_key: timer
     dps:
       - id: 9
         type: integer
@@ -58,7 +58,7 @@ secondary_entities:
   - entity: number
     name: Timer 2
     category: config
-    icon: "mdi:timer"
+    translation_key: timer
     dps:
       - id: 10
         type: integer
@@ -114,7 +114,6 @@ secondary_entities:
         name: calibration
         optional: true
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -148,8 +147,7 @@ secondary_entities:
           - dps_val: null
             invalid: true
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 41

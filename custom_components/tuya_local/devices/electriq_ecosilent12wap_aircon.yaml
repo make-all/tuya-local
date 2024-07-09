@@ -1,0 +1,156 @@
+name: ElectriQ EcoSilent12WAP
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: "cool"
+              value: cool
+            - dps_val: "fan"
+              value: fan_only
+            - dps_val: "smartcool"
+              value: auto
+            - dps_val: "dry"
+              value: dry
+        - dps_val: false
+          value: "off"
+    - id: 2
+      name: temperature
+      type: integer
+      range:
+        min: 17
+        max: 30
+      mapping:
+        - scale: 1
+          constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: temperature_f
+              range:
+                min: 62
+                max: 86
+    - id: 3
+      name: current_temperature
+      type: integer
+      mapping:
+        - scale: 1
+          constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: current_temperature_f
+    - id: 4
+      name: mode
+      type: string
+      hidden: true
+    - id: 5
+      name: fan_mode
+      type: string
+      mapping:
+        - dps_val: "f1"
+          constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: low
+        - dps_val: "f2"
+          constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: diffuse
+        - dps_val: "f3"
+          constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: medium
+        - dps_val: "f4"
+          constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: high
+        - dps_val: "f5"
+          constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+            - dps_val: true
+              value: top
+    - id: 19
+      name: temperature_unit
+      type: string
+      mapping:
+        - dps_val: f
+          value: F
+        - dps_val: c
+          value: C
+    - id: 22
+      name: timer
+      type: integer
+    - id: 23
+      name: current_temperature_f
+      type: integer
+      hidden: true
+      optional: true
+    - id: 24
+      name: temperature_f
+      type: integer
+      hidden: true
+      optional: true
+      range:
+        min: 62
+        max: 86
+    - id: 101
+      name: swing_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          constraint: hvac_mode
+          value: "off"
+        - dps_val: true
+          value: vertical
+    - id: 102
+      name: sleep_mode
+      type: boolean
+secondary_entities:
+  - entity: select
+    category: config
+    translation_key: temperature_unit
+    dps:
+      - id: 19
+        name: option
+        type: string
+        mapping:
+          - dps_val: "c"
+            value: celsius
+          - dps_val: "f"
+            value: fahrenheit
+  - entity: switch
+    name: Sleep Mode
+    category: config
+    icon: "mdi:power-sleep"
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 22
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 23

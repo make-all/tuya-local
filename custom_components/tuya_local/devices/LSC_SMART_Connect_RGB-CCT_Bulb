@@ -1,0 +1,106 @@
+name: LSC RGB-CCT
+products:
+  - id: hpaeslvkx4znwzae 
+    name: LSC SMART Connect A60 RGB-CCT
+
+primary_entity:
+  entity: light
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 2
+      name: color_mode
+      type: string
+      mapping:
+        - dps_val: white
+          value: color_temp
+        - dps_val: colour
+          value: hs
+    - id: 3
+      name: brightness
+      type: integer
+      range:
+        min: 25
+        max: 255
+    - id: 4
+      name: color_temp
+      type: integer
+      range:
+        min: 0
+        max: 255
+      mapping:
+        - target_range:
+            min: 2700
+            max: 6500
+    - id: 5
+      name: rgbhsv
+      type: hex
+      format:
+        - name: r
+          bytes: 1
+        - name: g
+          bytes: 1
+        - name: b
+          bytes: 1
+        - name: h
+          bytes: 2
+          range:
+            min: 0
+            max: 360
+        - name: s
+          bytes: 1
+          range:
+            min: 0
+            max: 255
+        - name: v
+          bytes: 1
+          range:
+            min: 0
+            max: 255
+
+secondary_entities:
+  - entity: select
+    name: Scene
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 6
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "ffff2801005766"
+            value: Scene 1
+          - dps_val: "ffff3d0266000003660000ff48000000000000000000"
+            value: Scene 2
+          - dps_val: "ffff2301096600"
+            value: Scene 3
+          - dps_val: "ffff0505ff000000ff00ffff00ff00ff0000ff000000"
+            value: Scene 4
+
+  - entity: select
+    name: Work Mode
+    icon: "mdi:lightbulb"
+    category: config
+    dps:
+      - id: 2
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "colour"
+            value: Color
+          - dps_val: "white"
+            value: White
+          - dps_val: "scene"
+            value: Scene
+
+  - entity: sensor
+    name: Current Work Mode
+    icon: "mdi:lightbulb"
+    category: diagnostic
+    dps:
+      - id: 2
+        type: string
+        name: sensor

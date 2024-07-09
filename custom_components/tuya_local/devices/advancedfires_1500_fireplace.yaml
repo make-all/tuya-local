@@ -72,8 +72,7 @@ primary_entity:
       optional: true
 secondary_entities:
   - entity: select
-    name: Temperature unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 19
@@ -81,11 +80,11 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: c
-            value: Celsius
+            value: celsius
           - dps_val: f
-            value: Fahrenheit
+            value: fahrenheit
   - entity: light
-    name: Flame
+    translation_key: flame
     dps:
       - id: 115
         type: boolean
@@ -105,8 +104,6 @@ secondary_entities:
           min: 0
           max: 100
         optional: true
-        mapping:
-          - scale: 0.392
       - id: 109
         name: rgbhsv
         type: base64
@@ -153,7 +150,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: light
-    name: Ember
+    translation_key: embers
     category: config
     dps:
       - id: 116
@@ -173,8 +170,6 @@ secondary_entities:
         range:
           min: 0
           max: 100
-        mapping:
-          - scale: 0.392
       - id: 110
         name: rgbhsv
         type: base64
@@ -199,7 +194,7 @@ secondary_entities:
         name: orange_disabled
         type: boolean
   - entity: light
-    name: Logs
+    translation_key: logs
     category: config
     dps:
       - id: 118
@@ -219,8 +214,6 @@ secondary_entities:
         range:
           min: 0
           max: 100
-        mapping:
-          - scale: 0.392
       - id: 111
         name: rgbhsv
         type: base64
@@ -244,4 +237,3 @@ secondary_entities:
       - id: 113
         name: color_disabled
         type: boolean
-

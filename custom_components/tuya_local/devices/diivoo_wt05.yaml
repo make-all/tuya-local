@@ -15,19 +15,36 @@
 name: Dual water timer
 products:
   - id: fdrbxxbg
-    manufacturer: Diivoo
-    model: WT-05
+    name: Diivoo WT-05
 primary_entity:
-  entity: switch
-  icon: "mdi:pipe-valve"
-  name: Switch 1
+  entity: valve
+  class: water
+  name: Valve 1
   dps:
     - id: 105
       type: boolean
-      name: switch
+      name: valve
 secondary_entities:
+  - entity: valve
+    class: water
+    name: Valve 2
+    dps:
+      - id: 104
+        type: boolean
+        name: valve
+  - entity: switch
+    name: Switch 1
+    category: config
+    deprecated: valve
+    icon: "mdi:pipe-valve"
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
   - entity: switch
     name: Switch 2
+    category: config
+    deprecated: valve
     icon: "mdi:pipe-valve"
     dps:
       - id: 104
