@@ -590,3 +590,4 @@ Further device support has been made with the assistance of users. Please consid
 - [rac146](https://github.com/rac146) for contributing support for Zemismart ZM25R2 roller shades.
 - [Nuwisam](https://github.com/Nuwisam) for contributing doc fixes.
 - [jorgeal94](https://github.com/jorgeal94) for assisting with support for another Tongou QCB2 circuit breaker variant and compatible Tongou SMR1 circuit breaker.
+- [ifumadjiev](https:github.com/ifumadjiev) for assisting with support for Gosund SP112 USB smartplug.

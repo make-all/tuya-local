@@ -409,6 +409,7 @@ the best option.
 - Eightree ET43 3-outlet powerstrip with energy monitoring
 - ES01 3 outlet + USB powerstrip with individual timers
 - Gosund P1 3 outlet + USB powerstrip with power monitoring
+- Gosund SP112 RTL energy monitoring smartplug with USB
 - Grid Connect double outlet wall socket
 - Grid Connect double outlet with Energy Monitoring, Master and Individual switches and Child Lock
 - Grid Connect USB charger with power socket
