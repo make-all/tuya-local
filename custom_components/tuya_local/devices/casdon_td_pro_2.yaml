@@ -1,0 +1,193 @@
+name: Casdon TD Pro 2
+products:
+  - id: wab6oustdukujpkn
+    name: 蒸烤箱TD-pro二代
+primary_entity:
+  entity: switch
+  icon: "mdi:power"
+  name: Switch
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+
+secondary_entities:
+  - entity: switch
+    name: Start
+    icon: "mdi:play-pause"
+    dps:
+      - id: 2
+        name: switch
+        type: boolean
+  - entity: number
+    name: cook_temperature
+    dps:
+      - id: 7
+        name: value
+        type: integer
+        unit: C
+        range:
+          min: 0
+          max: 500
+  - entity: sensor
+    name: temp_current
+    class: temperature
+    dps:
+      - id: 8
+        name: sensor
+        type: integer
+        unit: C
+        readonly: true
+        range:
+          min: 0
+          max: 500
+  - entity: number
+    name: appointment_time
+    dps:
+      - id: 9
+        name: value
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 1440
+        unit: min
+        class: measurement
+  - entity: number
+    icon: "mdi:timer-edit"
+    name: cook_time
+    dps:
+      - id: 10
+        name: value
+        type: integer
+        range:
+          min: 0
+          max: 1440
+        unit: min
+        class: measurement
+  - entity: sensor
+    icon: "mdi:timer"
+    name: remain_time
+    dps:
+      - id: 11
+        name: sensor
+        type: integer
+        readonly: true
+        range:
+          min: 0
+          max: 1440
+        unit: min
+        class: measurement
+  - entity: binary_sensor
+    name: fault
+    category: diagnostic
+    dps:
+      - id: 13
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: "er1：腔体高温保护(腔体传感器温度高于290°C)"
+          - dps_val: 2
+            value: "er2：蒸发盘高温保护(蒸发盘传感器温度高于200°C)"
+          - dps_val: 4
+            value: "er3：腔体低温保护(连续工作5分钟温度低于35°C)"
+          - dps_val: 8
+            value: "er4：蒸发盘低温保护(连续工作5分钟温度低于35°C)"
+          - dps_val: 16
+            value: "er5：传感器连接出故障(腔体或蒸发盘传感器开路)"
+          - dps_val: 32
+            value: "er6：传感器感应出故障(腔体或蒸发盘传感器短路)"
+          - dps_val: 64
+            value: "er7：显示板通信故障"
+          - dps_val: 128
+            value: "er8：水箱开关（CN7）未闭合或者蒸发盘NTC（CN3）温度高于125℃并持续时间达25s后，缺水提示，并停止工作。"
+  - entity: sensor
+    name: cook_status
+    class: enum
+    dps:
+      - id: 102
+        name: sensor
+        type: string
+        readonly: true
+        mapping:
+          - dps_val: wait
+            value: 烹饪等待
+          - dps_val: reservation
+            icon: "mdi:cup-water"
+            value: 预约中
+          - dps_val: cooking
+            icon: "mdi:cup"
+            value: 烹饪中
+          - dps_val: cancel
+            icon: "mdi:cup"
+            value: 烹饪取消
+          - dps_val: done
+            icon: "mdi:cup"
+            value: 烹饪完成
+          - dps_val: pause
+            icon: "mdi:cup"
+            value: 烹饪暂停
+  - entity: switch
+    name: Lamp
+    icon: "mdi:lightbulb-on"
+    dps:
+      - id: 103
+        name: switch
+        type: boolean
+  - entity: select
+    name: all_mode
+    category: config
+    dps:
+      - id: 105
+        name: option
+        type: string
+        mapping:
+        - dps_val: "1"
+          value: 健康蒸
+        - dps_val: "2"
+          value: 鲜嫩蒸
+        - dps_val: "3"
+          value: 高温蒸
+        - dps_val: "4"
+          value: 养生炖
+        - dps_val: "5"
+          value: 上下烤
+        - dps_val: "6"
+          value: 立体烧烤
+        - dps_val: "7"
+          value: 底部热风
+        - dps_val: "8"
+          value: 上强烤
+        - dps_val: "9"
+          value: 3D热风
+        - dps_val: "10"
+          value: 空气炸
+        - dps_val: "11"
+          value: 蒸汽炸
+        - dps_val: "12"
+          value: 一键面包
+        - dps_val: "13"
+          value: 速热
+        - dps_val: "14"
+          value: 保温
+        - dps_val: "15"
+          value: 解冻
+        - dps_val: "16"
+          value: 发酵
+        - dps_val: "17"
+          value: 除垢
+        - dps_val: "18"
+          value: 菜谱模式
+        - dps_val: "19"
+          value: 内腔烘干
+        - dps_val: "20"
+          value: 自定义模式
+        - dps_val: "21"
+          value: 低湿蒸烤
+        - dps_val: "22"
+          value: 中湿蒸烤
+        - dps_val: "23"
+          value: 高湿蒸烤
