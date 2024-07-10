@@ -78,8 +78,8 @@ secondary_entities:
           max: 1440
         unit: min
         class: measurement
-  - entity: binary_sensor
-    name: fault
+  - entity: sensor
+    name: fault_message
     category: diagnostic
     dps:
       - id: 13
@@ -104,6 +104,17 @@ secondary_entities:
             value: "er7：显示板通信故障"
           - dps_val: 128
             value: "er8：水箱开关（CN7）未闭合或者蒸发盘NTC（CN3）温度高于125℃并持续时间达25s后，缺水提示，并停止工作。"
+  - entity: binary_sensor
+    name: fault
+    category: diagnostic
+    dps:
+      - id: 13
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
   - entity: sensor
     name: cook_status
     class: enum
