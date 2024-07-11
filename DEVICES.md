@@ -252,7 +252,7 @@
 - Soho SO-350WUI Air Purifier
 - Soleusair A02 and A10 air purifiers
 - Stadler Form Roger air purifier
-- Tesla Smart Pro and Mini air purifiers
+- Tesla S300, Smart Pro and Mini air purifiers
 - Vork VK6067AW air purifier
 
 ### Dehumidifiers
