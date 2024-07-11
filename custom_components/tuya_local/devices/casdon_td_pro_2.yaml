@@ -81,11 +81,13 @@ secondary_entities:
   - entity: sensor
     name: fault_message
     category: diagnostic
+    class: enum
     dps:
       - id: 13
         type: bitfield
         name: sensor
         mapping:
+          - value: OK
           - dps_val: 0
             value: OK
           - dps_val: 1
