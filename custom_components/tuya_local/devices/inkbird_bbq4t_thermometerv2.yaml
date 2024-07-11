@@ -65,13 +65,12 @@ secondary_entities:
         unit: F
   - entity: binary_sensor
     class: power
-    category: diagnostics
+    category: diagnostic
     dps:
       - id: 1
         type: boolean
         name: sensor
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -86,8 +85,7 @@ secondary_entities:
             value: false
           - value: true
   - entity: select
-    name: Display unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 19
@@ -95,9 +93,9 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: f
-            value: Fahrenheit
+            value: fahrenheit
           - dps_val: c
-            value: Celsius
+            value: celsius
   - entity: sensor
     class: battery
     category: diagnostic

@@ -13,6 +13,7 @@ primary_entity:
     - id: 2
       type: integer
       name: temperature
+      unit: C
       range:
         min: 50
         max: 350
@@ -34,16 +35,14 @@ primary_entity:
           value: away
 secondary_entities:
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 7
         type: boolean
         name: lock
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 19

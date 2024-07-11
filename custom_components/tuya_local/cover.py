@@ -1,6 +1,7 @@
 """
 Setup for different kinds of Tuya cover devices
 """
+
 import logging
 
 from homeassistant.components.cover import (
@@ -73,7 +74,6 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
                     self.name or "cover",
                     dclass,
                 )
-            return None
 
     @property
     def supported_features(self):

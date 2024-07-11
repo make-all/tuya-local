@@ -4,6 +4,7 @@ products:
     name: HS-6000-GC
 primary_entity:
   entity: climate
+  translation_only_key: heater
   dps:
     - id: 1
       type: boolean
@@ -76,7 +77,7 @@ primary_entity:
       hidden: true
 secondary_entities:
   - entity: light
-    name: Display
+    translation_key: display
     category: config
     dps:
       - id: 5
@@ -92,8 +93,7 @@ secondary_entities:
           - dps_val: "100"
             value: 255
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 7
@@ -105,7 +105,6 @@ secondary_entities:
           - dps_val: false
             value: true
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -117,8 +116,7 @@ secondary_entities:
             value: false
           - value: true
   - entity: select
-    name: Temperature unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 19
@@ -126,7 +124,6 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: c
-            value: Celsius
+            value: celsius
           - dps_val: f
-            value: Fahrenheit
-
+            value: fahrenheit

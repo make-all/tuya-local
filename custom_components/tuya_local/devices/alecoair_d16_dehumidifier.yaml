@@ -89,27 +89,13 @@ secondary_entities:
               - dps_val: purify
                 invalid: true
   - entity: switch
-    name: Ionizer
-    icon: "mdi:creation"
+    translation_key: ionizer
     dps:
       - id: 10
         type: boolean
         name: switch
-  - entity: sensor
-    name: Current humidity
-    deprecated: humidifier
-    category: diagnostic
-    class: humidity
-    dps:
-      - id: 16
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
   - entity: binary_sensor
-    class: problem
-    name: Tank full
-    icon: "mdi:cup-water"
+    translation_key: tank_full
     dps:
       - id: 19
         type: bitfield
@@ -120,7 +106,6 @@ secondary_entities:
           - value: false
   - entity: binary_sensor
     class: problem
-    name: Fault
     dps:
       - id: 19
         type: bitfield
@@ -134,20 +119,14 @@ secondary_entities:
             value: false
           - value: true
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 14
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 17

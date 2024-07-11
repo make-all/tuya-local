@@ -28,6 +28,7 @@ primary_entity:
     - id: 4
       type: integer
       name: temperature
+      unit: C
       range:
         min: 15
         max: 75
@@ -44,7 +45,6 @@ primary_entity:
 secondary_entities:
   - entity: binary_sensor
     class: problem
-    name: Fault
     category: diagnostic
     dps:
       - id: 15

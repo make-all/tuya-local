@@ -4,7 +4,7 @@ products:
     name: Vivion 30012x
 primary_entity:
   entity: climate
-  translation_key: aircon_extra
+  translation_only_key: aircon_extra
   dps:
     - id: 1
       type: boolean
@@ -82,7 +82,9 @@ primary_entity:
               value: "off"
             - dps_val: same
               value: vertical
-            - value: "off"
+            - dps_val: [vane_1, vane_2, vane_3, vane_4, vane_5]
+              value: "off"
+              hidden: true
         - dps_val: true
           constraint: vertical
           conditions:
@@ -90,7 +92,9 @@ primary_entity:
               value: horizontal
             - dps_val: same
               value: both
-            - value: horizontal
+            - dps_val: [vane_1, vane_2, vane_3, vane_4, vane_5]
+              value: horizontal
+              hidden: true
     - id: 103
       type: string
       name: unknown_103
@@ -111,8 +115,7 @@ primary_entity:
       name: unknown_108
 secondary_entities:
   - entity: switch
-    name: Ionizer
-    icon: "mdi:creation"
+    translation_key: ionizer
     category: config
     dps:
       - id: 11
@@ -127,7 +130,6 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -155,18 +157,17 @@ secondary_entities:
           - dps_val: same
             value: Swing
           - dps_val: vane_1
-            value: Position 1 
+            value: Position 1
           - dps_val: vane_2
-            value: Position 2 
+            value: Position 2
           - dps_val: vane_3
-            value: Position 3 
+            value: Position 3
           - dps_val: vane_4
-            value: Position 4 
+            value: Position 4
           - dps_val: vane_5
             value: Position 5
   - entity: light
-    name: Display
-    icon: "mdi:television-ambient-light"
+    translation_key: display
     category: config
     dps:
       - id: 36
@@ -174,7 +175,7 @@ secondary_entities:
         name: switch
   - entity: switch
     name: Timer on
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 101
@@ -182,7 +183,7 @@ secondary_entities:
         name: switch
   - entity: switch
     name: Timer off
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 102

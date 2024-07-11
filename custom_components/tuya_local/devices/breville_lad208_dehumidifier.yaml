@@ -44,7 +44,6 @@ primary_entity:
 secondary_entities:
   - entity: fan
     name: Fan
-    icon: "mdi:fan"
     category: config
     dps:
       - id: 1
@@ -59,9 +58,7 @@ secondary_entities:
           - dps_val: "3"
             value: 100
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
-    class: duration
+    translation_key: timer
     category: config
     dps:
       - id: 12
@@ -148,22 +145,14 @@ secondary_entities:
           - dps_val: true
             icon: "mdi:sleep"
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 7
         type: boolean
         name: lock
-        mapping:
-          - dps_val: false
-            icon: "mdi:hand-back-right"
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
   - entity: binary_sensor
-    class: problem
-    name: Tank full
-    icon: "mdi:cup-outline"
-    icon-priority: 2
+    translation_key: tank_full
     dps:
       - id: 11
         type: bitfield
@@ -172,28 +161,16 @@ secondary_entities:
         mapping:
           - dps_val: 8
             value: true
-            icon: "mdi:cup-water"
-            icon-priority: 1
           - value: false
   - entity: binary_sensor
-    name: Defrost
-    class: cold
-    icon: "mdi:snowflake-melt"
+    translation_key: defrost
     category: diagnostic
     dps:
       - id: 105
         type: boolean
         name: sensor
-        mapping:
-          - dps_val: false
-            icon: "mdi:snowflake"
-            value: false
-          - dps_val: true
-            icon: "mdi:snowflake-melt"
-            value: true
   - entity: binary_sensor
     class: problem
-    name: Fault
     category: diagnostic
     dps:
       - id: 11

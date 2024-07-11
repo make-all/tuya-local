@@ -14,7 +14,7 @@ secondary_entities:
   - entity: number
     category: config
     name: Countdown
-    icon: "mdi:timer"
+    translation_key: timer
     dps:
       - id: 9
         type: integer
@@ -34,7 +34,7 @@ secondary_entities:
         name: sensor
         type: integer
         class: measurement
-        unit: mA
+        unit: A
         mapping:
           - scale: 1000
   - entity: sensor
@@ -189,7 +189,7 @@ secondary_entities:
   - entity: button
     name: Reset data
     category: diagnostic
-    icon: "mdi:autorenew"
+    class: restart
     dps:
       - id: 113
         type: boolean
@@ -198,7 +198,7 @@ secondary_entities:
   - entity: button
     name: Reset Wi-Fi
     category: diagnostic
-    icon: "mdi:autorenew"
+    class: restart
     dps:
       - id: 114
         type: boolean
@@ -207,7 +207,7 @@ secondary_entities:
   - entity: button
     name: Factory reset
     category: diagnostic
-    icon: "mdi:autorenew"
+    class: restart
     dps:
       - id: 115
         type: boolean
@@ -321,7 +321,6 @@ secondary_entities:
     name: Countdown timer
     category: diagnostic
     class: duration
-    icon: "mdi:timer-star"
     dps:
       - id: 124
         name: sensor
@@ -330,7 +329,7 @@ secondary_entities:
   - entity: number
     category: config
     name: Timing off time
-    icon: "mdi:timer"
+    translation_key: timer
     mode: slider
     dps:
       - id: 125
@@ -345,7 +344,7 @@ secondary_entities:
   - entity: number
     category: config
     name: Timing on time
-    icon: "mdi:timer"
+    translation_key: timer
     mode: slider
     dps:
       - id: 126
@@ -360,7 +359,7 @@ secondary_entities:
   - entity: number
     category: config
     name: Timing loop on time
-    icon: "mdi:timer"
+    translation_key: timer
     mode: slider
     dps:
       - id: 127
@@ -375,7 +374,7 @@ secondary_entities:
   - entity: number
     category: config
     name: Timing loop off time
-    icon: "mdi:timer"
+    translation_key: timer
     mode: slider
     dps:
       - id: 128
@@ -390,7 +389,7 @@ secondary_entities:
   - entity: number
     category: config
     name: Timing countdown on time
-    icon: "mdi:timer"
+    translation_key: timer
     mode: slider
     dps:
       - id: 129
@@ -405,7 +404,7 @@ secondary_entities:
   - entity: number
     category: config
     name: Timing countdown off time
-    icon: "mdi:timer"
+    translation_key: timer
     mode: slider
     dps:
       - id: 130
@@ -514,7 +513,6 @@ secondary_entities:
       - id: 137
         type: integer
         name: value
-        mode: box
         unit: min
         range:
           min: 0
@@ -533,3 +531,16 @@ secondary_entities:
             value: "Off"
           - dps_val: memory
             value: Memory
+  - entity: number
+    category: config
+    name: Update interval
+    icon: "mdi:update"
+    dps:
+      - id: 139
+        type: integer
+        name: value
+        optional: true
+        unit: s
+        range:
+          min: 1
+          max: 90

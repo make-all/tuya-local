@@ -16,8 +16,6 @@ primary_entity:
       range:
         min: 10
         max: 1000
-      mapping:
-        - scale: 3.92
     - id: 23
       type: integer
       name: color_temp
@@ -76,7 +74,7 @@ secondary_entities:
     category: config
     dps:
       - id: 102
-        type: hex
+        type: string
         name: option
         optional: true
         mapping:
@@ -126,7 +124,8 @@ secondary_entities:
             value: "Breath"
           - dps_val: "023264000003e803e8"
             value: "Flash"
-          - dps_val: "033264000003e803e8007803e803e800f003e803e8003b03e803e8013603e803e8010e03e803e8"
+          - dps_val: "033264000003e803e8007803e803e800f003e803e8003b03e803e8\
+              013603e803e8010e03e803e8"
             value: "Jump"
           - dps_val: "043264000003e803e8007803e803e800f003e803e8"
             value: "Gradient"

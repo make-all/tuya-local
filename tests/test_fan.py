@@ -1,4 +1,5 @@
 """Tests for the fan entity."""
+
 from unittest.mock import AsyncMock, Mock
 
 import pytest
@@ -35,7 +36,7 @@ async def test_init_entry(hass):
     hass.data[DOMAIN]["dummy"]["device"] = m_device
 
     await async_setup_entry(hass, entry, m_add_entities)
-    assert type(hass.data[DOMAIN]["dummy"]["fan"]) == TuyaLocalFan
+    assert type(hass.data[DOMAIN]["dummy"]["fan"]) is TuyaLocalFan
     m_add_entities.assert_called_once()
 
 
@@ -61,7 +62,7 @@ async def test_init_entry_as_secondary(hass):
     hass.data[DOMAIN]["dummy"]["device"] = m_device
 
     await async_setup_entry(hass, entry, m_add_entities)
-    assert type(hass.data[DOMAIN]["dummy"]["fan"]) == TuyaLocalFan
+    assert type(hass.data[DOMAIN]["dummy"]["fan"]) is TuyaLocalFan
     m_add_entities.assert_called_once()
 
 

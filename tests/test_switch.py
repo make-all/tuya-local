@@ -1,4 +1,5 @@
 """Tests for the switch entity."""
+
 from unittest.mock import AsyncMock, Mock
 
 import pytest
@@ -35,7 +36,7 @@ async def test_init_entry(hass):
     hass.data[DOMAIN]["dummy"]["device"] = m_device
 
     await async_setup_entry(hass, entry, m_add_entities)
-    assert type(hass.data[DOMAIN]["dummy"]["switch_outlet"]) == TuyaLocalSwitch
+    assert type(hass.data[DOMAIN]["dummy"]["switch_outlet"]) is TuyaLocalSwitch
     m_add_entities.assert_called_once()
 
 
@@ -61,7 +62,7 @@ async def test_init_entry_as_secondary(hass):
     hass.data[DOMAIN]["dummy"]["device"] = m_device
 
     await async_setup_entry(hass, entry, m_add_entities)
-    assert type(hass.data[DOMAIN]["dummy"]["switch_master"]) == TuyaLocalSwitch
+    assert type(hass.data[DOMAIN]["dummy"]["switch_master"]) is TuyaLocalSwitch
     m_add_entities.assert_called_once()
 
 

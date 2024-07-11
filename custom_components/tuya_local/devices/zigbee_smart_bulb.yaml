@@ -1,9 +1,11 @@
-name: Zigbee light bulb
+name: Zigbee light
 products:
   - id: mja6r5ix
-    name: MOES zigbee smart bulb
+    name: MOES zigbee lightbulb
   - id: it1u8ahz
-    name: MOES smart bulb RGBCW zigbee
+    name: MOES zigbee RGBCW
+  - id: rcggc0ys
+    name: MOES ZC-TD SW zigbee GU10
 primary_entity:
   entity: light
   dps:
@@ -17,8 +19,6 @@ primary_entity:
       range:
         min: 0
         max: 1000
-      mapping:
-        - scale: 3.92
     - id: 4
       name: color_temp
       optional: true
@@ -70,6 +70,7 @@ secondary_entities:
       - id: 6
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: 00282800012e0081015c00000000
             value: Night
@@ -81,9 +82,14 @@ secondary_entities:
             value: Leisure
           - dps_val: 04464602007803e803e800000000464602007803e8000a00000000
             value: Soft
-          - dps_val: 05464601000003e803e800000000464601007803e803e80000000046460100f003e803e800000000464601003d03e803e80000000046460100ae03e803e800000000464601011303e803e800000000
+          - dps_val: "05464601000003e803e800000000464601007803e803e800000000\
+              46460100f003e803e800000000464601003d03e803e80000000046460100ae\
+              03e803e800000000464601011303e803e800000000"
             value: Colorful
-          - dps_val: 06464601000003e803e800000000464601007803e803e80000000046460100f003e803e800000000
+          - dps_val: "06464601000003e803e800000000464601007803e803e800000000\
+              46460100f003e803e800000000"
             value: Dazzling
-          - dps_val: 07464602000003e803e800000000464602007803e803e80000000046460200f003e803e800000000464602003d03e803e80000000046460200ae03e803e800000000464602011303e803e800000000
+          - dps_val: "07464602000003e803e800000000464602007803e803e800000000\
+              46460200f003e803e800000000464602003d03e803e80000000046460200ae\
+              03e803e800000000464602011303e803e800000000"
             value: Gorgeous

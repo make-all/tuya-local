@@ -1,0 +1,49 @@
+name: Soil moisture sensor
+products:
+  - id: j5mynqs3
+    name: TCS024B
+primary_entity:
+  entity: sensor
+  class: moisture
+  dps:
+    - id: 2
+      name: sensor
+      type: integer
+      unit: "%"
+secondary_entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 1
+        name: sensor
+        type: integer
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 9
+        name: unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 9
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit

@@ -1,8 +1,7 @@
 name: Dehumidifier
 products:
   - id: qrjffdu2bjrd7v42
-    name: DE0003 10L Smart Dehumidifier
-    manufacturer: Vivosun
+    name: Vivosun DE0003 10L
 primary_entity:
   entity: humidifier
   class: dehumidifier
@@ -87,20 +86,14 @@ secondary_entities:
         unit: F
         class: measurement
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 16
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 17
@@ -158,10 +151,8 @@ secondary_entities:
           - dps_val: 24h
             value: 24 hours
   - entity: binary_sensor
-    class: problem
-    name: Tank full
+    translation_key: tank_full
     category: diagnostic
-    icon: "mdi:cup-water"
     dps:
       - id: 19
         type: bitfield
@@ -172,7 +163,6 @@ secondary_entities:
           - value: false
   - entity: binary_sensor
     class: problem
-    name: Fault
     category: diagnostic
     dps:
       - id: 19

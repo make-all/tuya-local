@@ -19,7 +19,6 @@ primary_entity:
               value: heat
             - dps_val: mute
               value: heat_cool
-            - value: heat_cool
     - id: 2
       name: heating_mode
       hidden: true
@@ -35,6 +34,7 @@ primary_entity:
     - id: 4
       name: temperature
       type: integer
+      unit: C
       range:
         min: 8
         max: 40
@@ -69,8 +69,7 @@ secondary_entities:
             value: true
           - value: false
   - entity: binary_sensor
-    name: Anti-freeze
-    class: cold
+    translation_key: defrost
     category: diagnostic
     dps:
       - id: 15

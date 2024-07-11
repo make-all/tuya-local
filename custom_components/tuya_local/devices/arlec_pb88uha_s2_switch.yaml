@@ -34,8 +34,8 @@ secondary_entities:
         name: switch
   - entity: number
     category: config
+    translation_key: timer
     name: Timer switch 1
-    icon: "mdi:timer"
     dps:
       - id: 9
         name: value
@@ -50,7 +50,7 @@ secondary_entities:
   - entity: number
     category: config
     name: Timer switch 2
-    icon: "mdi:timer"
+    translation_key: timer
     dps:
       - id: 10
         name: value
@@ -65,7 +65,7 @@ secondary_entities:
   - entity: number
     category: config
     name: Timer switch 3
-    icon: "mdi:timer"
+    translation_key: timer
     dps:
       - id: 11
         name: value
@@ -80,7 +80,7 @@ secondary_entities:
   - entity: number
     category: config
     name: Timer switch 4
-    icon: "mdi:timer"
+    translation_key: timer
     dps:
       - id: 12
         name: value
@@ -108,13 +108,8 @@ secondary_entities:
             value: "Off"
   - entity: lock
     category: config
-    name: Child lock
+    translation_key: child_lock
     dps:
       - id: 41
         name: lock
         type: boolean
-        mapping:
-          - dps_val: true
-            icon: "mdi:lock"
-          - dps_val: false
-            icon: "mdi:lock-open"

@@ -58,17 +58,15 @@ secondary_entities:
         name: sensor
         unit: "h"
   - entity: switch
-    name: Ionizer
-    icon: "mdi:atom-variant"
+    translation_key: ionizer
     category: config
     dps:
       - id: 6
         type: boolean
         name: switch
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
-    icon: "mdi:hand-back-right-off"
     dps:
       - id: 7
         type: boolean
@@ -82,9 +80,8 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: switch
-    name: UV lamp
+    translation_key: uv_sterilization
     category: config
-    icon: "mdi:shield-bug"
     dps:
       - id: 9
         type: boolean
@@ -106,13 +103,13 @@ secondary_entities:
         type: boolean
         name: button
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 19
         name: option
         type: string
+        optional: true
         mapping:
           - dps_val: cancle
             value: "Off"
@@ -125,11 +122,12 @@ secondary_entities:
           - dps_val: 8
             value: "8 hours"
   - entity: sensor
-    name: Timer time left
-    icon: "mdi:timer"
+    translation_key: time_remaining
+    class: duration
     category: diagnostic
     dps:
       - id: 20
         type: integer
         name: sensor
         unit: "min"
+        optional: true

@@ -1,0 +1,230 @@
+name: Ceiling fan light
+products:
+  - id: czvfkmtazfs0ohaq
+    name: Depuley WS-FPZ37-18I-EU
+primary_entity:
+  entity: light
+  dps:
+    - id: 20
+      name: switch
+      type: boolean
+    - id: 21
+      name: color_mode
+      type: string
+      mapping:
+        - dps_val: white
+          value: color_temp
+        - dps_val: colour
+          value: Color
+        - dps_val: scene
+          value: Scene
+        - dps_val: music
+          value: Music
+    - id: 22
+      name: brightness
+      type: integer
+      optional: true
+      range:
+        min: 10
+        max: 1000
+    - id: 23
+      name: color_temp
+      type: integer
+      optional: true
+      range:
+        min: 0
+        max: 1000
+      mapping:
+        - target_range:
+            min: 2700
+            max: 6500
+    - id: 24
+      name: ignored_rgbhsv
+      type: string
+      optional: true
+    - id: 36
+      name: mix_light_scene
+      type: base64
+      optional: true
+    - id: 51
+      name: mix_rgbcw
+      type: base64
+      optional: true
+    - id: 58
+      type: integer
+      name: brightness_min_1
+      optional: true
+      range:
+        min: 10
+        max: 1000
+    - id: 59
+      name: led_type_1
+      type: string
+      optional: true
+      mapping:
+        - dps_val: led
+          value: led
+        - dps_val: incandescent
+          value: incandescent
+        - dps_val: halogen
+          value: halogen
+    - id: 28
+      name: control_data
+      type: hex
+      optional: true
+
+secondary_entities:
+  - entity: select
+    name: Scene
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 25
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "1f46460100dc02bc03e800000000464602006e032002580000000046\
+              46020014038403e800000000464601012703e802ee0000000046460100000384\
+              028a00000000"
+            value: American Style
+          - dps_val: "15323202015e01f403e800000000323202011303e803e800000000"
+            value: Anniversary
+          - dps_val: "20646401003d03e803e800000000646401007803e803e8000000005a\
+              5a01011303e803e8000000005a5a0100ae03e803e800000000646401003201f4\
+              03e800000000646401000003e803e800000000"
+            value: Birthday
+          - dps_val: "1446460200ae03e803e80000000046460200b4012c03e80000000046\
+              460200b4003203e800000000"
+            value: Blue Sky
+          - dps_val: "225a5a0100f003e803e8000000005a5a01003d03e803e80000000046\
+              4601000003e803e8000000005a5a0100ae03e803e8000000005a5a01011303e8\
+              03e800000000464601007803e803e800000000"
+            value: Christmas
+          - dps_val: "05464601000003e803e800000000464601007803e803e80000000046\
+              460100f003e803e800000000464601003d03e803e80000000046460100ae03e8\
+              03e800000000464601011303e803e800000000"
+            value: Colorful
+          - dps_val: "06464601000003e803e800000000464601007803e803e80000000046\
+              460100f003e803e800000000"
+            value: Dazzling
+          - dps_val: "1c4646020104032003e800000000464602011802bc03e80000000046\
+              4602011303e803e800000000"
+            value: Dream
+          - dps_val: "1e323201015e01f403e800000000323202003201f403e80000000032\
+              320200a001f403e800000000"
+            value: French Style
+          - dps_val: "07464602000003e803e800000000464602007803e803e80000000046\
+              460200f003e803e800000000464602003d03e803e80000000046460200ae03e8\
+              03e800000000464602011303e803e800000000"
+            value: Gorgeous
+          - dps_val: "04464602007803e803e800000000464602007803e8000a00000000"
+            value: Grassland
+          - dps_val: "28464601011303e803e800000000464601001e03e803e800000000"
+            value: Halloween
+          - dps_val: "1d646401000003e803e80000000064640100f003e803e80000000064\
+              6402007803e803e800000000646402003d03e803e800000000"
+            value: Mediterranean Style
+          - dps_val: "1746460200f003e803e80000000046460200dc02bc03e800000000"
+            value: Ocean
+  - entity: fan
+    translation_key: fan_with_presets
+    dps:
+      - id: 60
+        name: switch
+        type: boolean
+      - id: 52
+        name: preset_mode
+        type: string
+        optional: true
+        mapping:
+          - dps_val: nature
+            value: nature
+          - dps_val: sleep
+            value: sleep
+          - dps_val: fresh
+            value: fresh
+          - dps_val: smart
+            value: smart
+      - id: 53
+        name: speed
+        type: integer
+        range:
+          min: 1
+          max: 100
+      - id: 54
+        name: direction
+        type: string
+        optional: true
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: reverse
+            value: reverse
+      - id: 55
+        name: ignored_timer
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 540
+        unit: min
+        mapping:
+          - dps_val: null
+            value: 0
+  - entity: number
+    translation_key: timer
+    name: Light timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        optional: true
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    translation_key: timer
+    name: Fan Timer
+    category: config
+    dps:
+      - id: 64
+        name: value
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 540
+        unit: min
+        mapping:
+          - dps_val: null
+            value: 0
+  - entity: binary_sensor
+    class: problem
+    dps:
+      - id: 56
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: switch
+    category: config
+    name: Beep
+    dps:
+      - id: 57
+        name: switch
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false

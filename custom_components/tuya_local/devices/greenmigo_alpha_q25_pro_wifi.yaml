@@ -15,7 +15,7 @@ primary_entity:
           icon_priority: 1
         - dps_val: true
           icon: "mdi:air-humidifier"
-          icon_priority: 3
+          icon_priority: 4
     - id: 2
       name: humidity
       type: integer
@@ -35,13 +35,13 @@ primary_entity:
         - dps_val: Laundrydrying
           value: laundry
           icon: "mdi:tshirt-crew-outline"
-          icon_priority: 1
+          icon_priority: 3
         - dps_val: Sleeping
           value: sleep
         - dps_val: Purifying
           value: purify
           icon: "mdi:air-purifier"
-          icon_priority: 1
+          icon_priority: 3
     - id: 6
       type: integer
       name: current_humidity
@@ -93,8 +93,7 @@ secondary_entities:
             icon: "mdi:snowflake-melt"
             icon_priority: 2
   - entity: switch
-    name: Ionizer
-    icon: "mdi:atom-variant"
+    translation_key: ionizer
     category: config
     dps:
       - id: 10
@@ -108,9 +107,8 @@ secondary_entities:
         mapping:
           - constraint: dehumidifier_mode
             conditions:
-              - dps_val: Manual
-              - dps_val: Purifier
-              - invalid: true
+              - dps_val: [Auto, Laundrydrying, Sleeping]
+                invalid: true
       - id: 4
         name: speed
         type: string
@@ -127,16 +125,14 @@ secondary_entities:
         type: string
         hidden: true
   - entity: switch
-    name: UV sterilization
-    icon: "mdi:lightbulb-fluorescent-tube"
+    translation_key: uv_sterilization
     category: config
     dps:
       - id: 13
         type: boolean
         name: switch
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 16
@@ -144,8 +140,7 @@ secondary_entities:
         name: lock
         optional: true
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 17

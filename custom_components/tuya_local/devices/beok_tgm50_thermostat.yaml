@@ -4,7 +4,7 @@ products:
     name: Beok TGM50-WIFI-WP
 primary_entity:
   entity: climate
-  translation_key: thermostat
+  translation_only_key: thermostat
   dps:
     - id: 1
       name: hvac_mode
@@ -20,13 +20,15 @@ primary_entity:
               hidden: true
             - dps_val: home
               value: heat
-            - value: heat
+            - dps_val: leave
+              value: heat
               hidden: true
         - dps_val: false
           value: "off"
     - id: 2
       name: temperature
       type: integer
+      unit: C
       range:
         min: 50
         max: 300
@@ -59,34 +61,25 @@ primary_entity:
           conditions:
             - dps_val: true
               value: idle
-              icon: "mdi:radiator-disabled"
             - dps_val: false
               value: "off"
-              icon: "mdi:radiator-off"
         - dps_val: "1"
           value: heating
-          icon: "mdi:radiator"
     - id: 11
       name: fault_code
       type: bitfield
     - id: 15
       name: max_temperature
-      type: integer      
+      type: integer
 secondary_entities:
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 9
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: binary_sensor
-    name: Fault
     category: diagnostic
     class: problem
     dps:
@@ -152,9 +145,8 @@ secondary_entities:
           min: 5
           max: 60
   - entity: switch
-    name: Anti-frost
+    translation_key: anti_frost
     category: config
-    icon: "mdi:snowflake-melt"
     dps:
       - id: 103
         type: boolean
@@ -167,7 +159,7 @@ secondary_entities:
         name: button
         type: boolean
   - entity: light
-    name: Backlight
+    translation_key: backlight
     category: config
     dps:
       - id: 106
@@ -175,16 +167,12 @@ secondary_entities:
         name: brightness
         mapping:
           - dps_val: "0"
-            icon: "mdi:lightbulb-on-10"
             value: 0
           - dps_val: "1"
-            icon: "mdi:lightbulb-on-40"
             value: 100
           - dps_val: "2"
-            icon: "mdi:lightbulb-on-70"
             value: 180
           - dps_val: "3"
-            icon: "mdi:lightbulb-on"
             value: 255
   - entity: select
     name: Schedule
@@ -197,14 +185,14 @@ secondary_entities:
         mapping:
           - dps_val: "1"
             value: "Weekday+Weekend"
-          - dps_val: "2" 
+          - dps_val: "2"
             value: "Mon-Sat+Sun"
           - dps_val: "3"
-            value: "Daily"          
+            value: "Daily"
   - entity: switch
     name: Invert output
     category: config
-    icon: "mdi:swap-horizontal"   
+    icon: "mdi:swap-horizontal"
     dps:
       - id: 108
         type: boolean
@@ -217,6 +205,7 @@ secondary_entities:
       - id: 110
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: "1"
             value: Internal
@@ -224,7 +213,7 @@ secondary_entities:
             value: External
           - dps_val: "3"
             value: Both
-  - entity: switch 
+  - entity: switch
     name: Sound
     category: config
     icon: "mdi:music-note"

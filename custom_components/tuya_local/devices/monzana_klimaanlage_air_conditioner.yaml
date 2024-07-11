@@ -49,18 +49,12 @@ primary_entity:
       name: fault_code
 secondary_entities:
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     dps:
       - id: 14
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:

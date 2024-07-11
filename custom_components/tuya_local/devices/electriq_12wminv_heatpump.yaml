@@ -8,28 +8,23 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:hvac-off"
         - dps_val: true
           constraint: mode
           conditions:
             - dps_val: cold
-              icon: "mdi:snowflake"
               value: cool
             - dps_val: wind
-              icon: "mdi:fan"
               value: fan_only
             - dps_val: wet
-              icon: "mdi:water"
               value: dry
             - dps_val: hot
-              icon: "mdi:fire"
               value: heat
             - dps_val: auto
-              icon: "mdi:hvac"
               value: heat_cool
     - id: 2
       name: temperature
       type: integer
+      unit: C
       range:
         min: 16
         max: 32
@@ -126,14 +121,9 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: light
-    name: Display
+    translation_key: display
     category: config
     dps:
       - id: 104
         name: switch
         type: boolean
-        mapping:
-          - dps_val: true
-            icon: "mdi:led-on"
-          - dps_val: false
-            icon: "mdi:led-off"

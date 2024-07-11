@@ -1,5 +1,10 @@
 """Tests for the MoesHouse RGB smart socket."""
-from homeassistant.components.light import ColorMode, LightEntityFeature
+
+from homeassistant.components.light import (
+    EFFECT_OFF,
+    ColorMode,
+    LightEntityFeature,
+)
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (
@@ -43,7 +48,7 @@ class TestMoesRGBSocket(
 
     def setUp(self):
         self.setUpForConfig("moes_rgb_socket.yaml", MOES_RGB_SOCKET_PAYLOAD)
-        self.light = self.entities.get("light_night_light")
+        self.light = self.entities.get("light_nightlight")
 
         self.setUpBasicSwitch(
             SWITCH_DPS,
@@ -104,7 +109,7 @@ class TestMoesRGBSocket(
     def test_light_brightness(self):
         self.dps[BRIGHTNESS_DPS] = 45
         self.dps[MODE_DPS] = "white"
-        self.assertEqual(self.light.brightness, 45)
+        self.assertEqual(self.light.brightness, 23)
         self.dps[RGB_DPS] = "808000003cff80"
         self.dps[MODE_DPS] = "colour"
         self.assertEqual(self.light.brightness, 128)
@@ -142,6 +147,7 @@ class TestMoesRGBSocket(
                 "Scene 2",
                 "Scene 3",
                 "Scene 4",
+                EFFECT_OFF,
             ],
         )
 
@@ -181,7 +187,7 @@ class TestMoesRGBSocket(
         async with assert_device_properties_set(
             self.light._device,
             {
-                BRIGHTNESS_DPS: 128,
+                BRIGHTNESS_DPS: 140,
             },
         ):
             await self.light.async_turn_on(brightness=128)

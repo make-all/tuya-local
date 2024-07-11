@@ -1,0 +1,126 @@
+{
+    "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "default": "mdi:circle-outline",
+                "state": {
+                    "on": "mdi:snowflake-melt"
+                }
+            },
+            "tank_empty": {
+                "default": "mdi:water",
+                "state": {
+                    "on": "mdi:water-alert-outline"
+                }
+            },
+            "tank_full": {
+                "default": "mdi:water-outline",
+                "state": {
+                    "on": "mdi:water-alert"
+                }
+            }
+        },
+        "climate": {
+            "heater": {
+                "default": "mdi:radiator",
+                "state": {
+                    "off": "mdi:radiator-off"
+                }
+            }
+        },
+        "fan": {
+            "fan_with_presets": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "baby": "mdi:baby-carriage",
+                            "fresh": "mdi:weather-windy",
+                            "nature": "mdi:palm-tree",
+                            "normal": "mdi:fan",
+                            "sleep": "mdi:sleep",
+                            "smart": "mdi:auto-mode",
+                            "strong": "mdi:weather-hurricane",
+                            "displayoff": "mdi:monitor-off",
+                            "off": "mdi:fan-off"
+                        }
+                    }
+                }
+            }
+        },
+        "light": {
+            "backlight": {
+                "default": "mdi:television-ambient-light"
+            },
+            "display": {
+                "default": "mdi:clock-digital"
+            },
+            "embers": {
+                "default": "mdi:campfire"
+            },
+            "flame": {
+                "default": "mdi:fire"
+            },
+            "indicator": {
+                "default": "mdi:led-on",
+                "state": {
+                    "off": "mdi:led-off"
+                }
+            },
+            "laser": {
+                "default": "mdi:laser-pointer"
+            },
+            "logs": {
+                "default": "mdi:campfire"
+            },
+            "nightlight": {
+                "default": "mdi:lightbulb-night"
+            }
+        },
+        "lock": {
+            "child_lock": {
+                "default": "mdi:hand-back-right",
+                "state": {
+                    "on": "mdi:hand-back-right-off"
+                }
+            }
+        },
+        "number": {
+            "timer": {
+                "default": "mdi:timer"
+            }
+        },
+        "select": {
+            "timer": {
+                "default": "mdi:timer"
+            },
+            "temperature_unit": {
+                "default": "mdi:temperature-celsius",
+                "state": {
+                    "fahrenheit": "mdi:temperature-fahrenheit"
+                }
+            }
+        },
+        "sensor": {
+            "time_remaining": {
+                "default": "mdi:timer"
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "default": "mdi:snowflake-melt"
+            },
+            "evaporator_cleaning": {
+                "default": "mdi:shimmer"
+            },
+            "ionizer": {
+                "default": "mdi:creation"
+            },
+            "keytone": {
+                "default": "mdi:bell-ring"
+            },
+            "uv_sterilization": {
+                "default": "mdi:solar-power"
+            }
+        }
+    }
+}

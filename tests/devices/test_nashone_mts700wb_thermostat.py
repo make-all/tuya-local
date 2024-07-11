@@ -45,8 +45,8 @@ class TestNashoneMTS700WBThermostat(
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,
             self.subject,
-            min=-20,
-            max=105,
+            min=-20.0,
+            max=105.0,
         )
         self.setUpBasicButton(
             RESET_DPS,
@@ -69,7 +69,7 @@ class TestNashoneMTS700WBThermostat(
         )
         self.setUpBasicSensor(
             COUNTDOWN_DPS,
-            self.entities.get("sensor_timer"),
+            self.entities.get("sensor_time_remaining"),
             unit=UnitOfTime.SECONDS,
             device_class=SensorDeviceClass.DURATION,
         )
@@ -78,14 +78,16 @@ class TestNashoneMTS700WBThermostat(
                 "button_factory_reset",
                 "number_calibration_offset",
                 "select_timer",
-                "sensor_timer",
+                "sensor_time_remaining",
             ],
         )
 
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            ClimateEntityFeature.TARGET_TEMPERATURE,
+            ClimateEntityFeature.TARGET_TEMPERATURE
+            | ClimateEntityFeature.TURN_OFF
+            | ClimateEntityFeature.TURN_ON,
         )
 
     def test_current_temperature(self):
@@ -150,5 +152,3 @@ class TestNashoneMTS700WBThermostat(
 
     def test_icons(self):
         self.assertEqual(self.basicNumber.icon, "mdi:arrow-collapse-up")
-        self.assertEqual(self.basicSelect.icon, "mdi:timer")
-        self.assertEqual(self.basicSensor.icon, "mdi:timer")

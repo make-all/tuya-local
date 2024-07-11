@@ -6,7 +6,7 @@ products:
     name: Soleusair KJ760F A02
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   icon: "mdi:air-purifier"
   dps:
     - id: 1
@@ -18,8 +18,6 @@ primary_entity:
       range:
         min: 1
         max: 5
-      mapping:
-        - scale: 0.05
     - id: 3
       name: preset_mode
       type: string
@@ -43,29 +41,22 @@ secondary_entities:
         name: sensor
         unit: "%"
   - entity: switch
-    name: Ionizer
-    icon: "mdi:creation"
+    translation_key: ionizer
     category: config
     dps:
       - id: 6
         type: boolean
         name: switch
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 7
         type: boolean
         name: lock
-        mapping:
-          - dps_val: false
-            icon: "mdi:hand-back-right"
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
   - entity: switch
-    name: UV sterilization
+    translation_key: uv_sterilization
     category: config
-    icon: "mdi:solar-power"
     dps:
       - id: 9
         type: boolean
@@ -119,4 +110,4 @@ secondary_entities:
         name: sensor
         unit: ugm3
         mapping:
-         - scale: 0.1
+          - scale: 0.1

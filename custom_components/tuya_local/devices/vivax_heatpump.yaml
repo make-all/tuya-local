@@ -74,9 +74,6 @@ primary_entity:
           value: eco
         - dps_val: false
           value: comfort
-    - id: 12
-      type: boolean
-      name: aux_heat
     - id: 18
       type: integer
       name: current_humidity
@@ -125,7 +122,8 @@ primary_entity:
       name: fault_code
       # next two look obviously swing (logged values ud_00 and lr_00),
       # but full mappings not available to map to swing mode
-      # from #1183, seems to be ud_00, ud_01, ud_02, ud_03, ud_04, ud_0c (last one is swing, others are pos) 
+      # from #1183, seems to be ud_00, ud_01, ud_02, ud_03, ud_04, ud_0c
+      # (last one is swing, others are pos)
     - id: 117
       type: string
       name: swing_mode
@@ -137,7 +135,9 @@ primary_entity:
               value: both
             - dps_val: lr_00
               value: vertical
-            - value: vertical
+            - dps_val: [lr_01, lr_02, lr_03, lr_04]
+              value: vertical
+              hidden: true
         - dps_val: ud_00
           constraint: horizontal_swing
           conditions:
@@ -145,16 +145,18 @@ primary_entity:
               value: horizontal
             - dps_val: lr_00
               value: "off"
-            - value: "off"
-        - constraint: horizontal_swing
+            - dps_val: [lr_01, lr_02, lr_03, lr_04]
+              value: "off"
+              hidden: true
+        - value: "off"
+          hidden: true
+          constraint: horizontal_swing
           conditions:
             - dps_val: lr_0c
               value: horizontal
-            - value: "off"
     - id: 118
       type: string
       name: horizontal_swing
-      # From Tadiran Apollo
     - id: 101
       type: boolean
       name: mood_lighting
@@ -188,16 +190,14 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: light
-    name: Display
-    icon: "mdi:numeric"
+    translation_key: display
     category: config
     dps:
       - id: 13
         type: boolean
         name: switch
   - entity: select
-    name: Temperature unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 19
@@ -205,9 +205,9 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: c
-            value: Celsius
+            value: celsius
           - dps_val: f
-            value: Fahrenheit
+            value: fahrenheit
   - entity: switch
     name: Quiet
     category: config
@@ -216,7 +216,7 @@ secondary_entities:
       - id: 108
         type: boolean
         name: switch
-# Boolean dps 16 = Beep and 109 = Sleep documented but missing from log
+  # Boolean dps 16 = Beep and 109 = Sleep documented but missing from log
   - entity: switch
     name: Sleep
     category: config
@@ -278,7 +278,6 @@ secondary_entities:
           - dps_val: lr_0c
             value: Swing
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:

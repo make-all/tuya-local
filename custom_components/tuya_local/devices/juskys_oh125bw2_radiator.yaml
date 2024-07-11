@@ -4,6 +4,7 @@ products:
     name: Juskys OH125BW2
 primary_entity:
   entity: climate
+  translation_only_key: heater
   dps:
     - id: 1
       type: boolean
@@ -35,24 +36,21 @@ primary_entity:
       name: fault_code
 secondary_entities:
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 7
         type: boolean
         name: lock
   - entity: light
-    name: Indicators
-    icon: "mdi:led-on"
+    translation_key: indicator
     category: config
     dps:
       - id: 10
         type: boolean
         name: switch
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 19
@@ -110,7 +108,6 @@ secondary_entities:
           - dps_val: "24h"
             value: "24 hours"
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -121,5 +118,3 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
-
-

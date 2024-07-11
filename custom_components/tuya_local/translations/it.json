@@ -4,13 +4,44 @@
         "step": {
             "user": {
                 "title": "Configura il tuo dispositivo Tuya Local",
+                "description": "I dispositivi possono essere aggiunti manualmente o tramite cloud con l'aiuto dell'app Smart Life.",
+                "data": {
+                    "setup_mode": "Scelta dell'impostazione:"
+                }
+            },
+            "cloud": {
+                "title": "Accedi a Tuya",
+                "description": "Inserisci il tuo codice utente Smart Life o Tuya Smart.\n\nPuoi trovare questo codice nell'app Smart Life o nell'app Tuya Smart nella schermata **Impostazioni** > **Account e sicurezza** e inserisci il codice mostrato nella schermata ",
+                "data": {
+                    "user_code": "Codice utente:"
+                }
+            },
+            "scan": {
+                "title": "Completa il login",
+                "description": "Utilizza l'app Smart Life o l'app Tuya Smart per scansionare il seguente codice QR per completare l'accesso.\n\nContinua al passaggio successivo una volta completato questo passaggio nell'app."
+            },
+            "choose_device": {
+                "title": "Scegli il dispositivo da aggiungere",
+                "description": "Scegli il dispositivo da aggiungere dal primo elenco a discesa. ",
+                "data": {
+                    "device_id": "Scegli dispositivo:",
+                    "hub_id": "Scegli gateway:"
+                }
+            },
+            "search": {
+                "title": "Individuare l'indirizzo IP del dispositivo",
+                "description": "Tuya cloud non fornisce indirizzi IP locali quindi ora dobbiamo cercare nella rete locale per trovare il dispositivo. "
+            },
+            "local": {
+                "title": "Configura il tuo dispositivo Tuya Local",
                 "description": "[Segui queste istruzioni per trovare 'device id' e 'local key'.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "Indirizzo IP o nome host",
                     "device_id": "Device ID",
                     "local_key": "Local key",
                     "protocol_version": "Versione protocollo (prova 'auto' in caso di dubbi)",
-                    "poll_only": "Poll only (prova questa opzione se il dispositivo non funziona correttamente)"
+                    "poll_only": "Poll only (prova questa opzione se il dispositivo non funziona correttamente)",
+                    "device_cid": "[it] Sub device ID (for devices connected via gateway)"
                 }
             },
             "select_type": {
@@ -22,7 +53,7 @@
             },
             "choose_entities": {
                 "title": "Dettagli dispositivo",
-                "description": "Inserisci il nome del dispositivo, e seleziona le entità da abilitare",
+                "description": "Inserisci il nome del dispositivo",
                 "data": {
                     "name": "Nome dispositivo"
                 }
@@ -30,10 +61,21 @@
         },
         "abort": {
             "already_configured": "E' già presente un dispositivo con l'ID inserito.",
-            "not_supported": "Spiacente, il dispositivo non è supportato."
+            "not_supported": "Spiacente, il dispositivo non è supportato.",
+            "no_devices": "Impossibile trovare dispositivi non registrati per l'account."
         },
         "error": {
-            "connection": "Impossibile connettersi al dispositivo. Può trattarsi di un problema temporaneo, oppure le informazioni fornite potrebbero non essere corrette."
+            "connection": "Impossibile connettersi al dispositivo. Può trattarsi di un problema temporaneo, oppure le informazioni fornite potrebbero non essere corrette.",
+            "does_not_need_hub": "Il dispositivo non necessita di un gateway e ne è stato selezionato uno. ",
+            "needs_hub": "Il dispositivo necessita di un gateway e non ne è stato selezionato nessuno."
+        }
+    },
+    "selector": {
+        "setup_mode": {
+            "options": {
+                "cloud": "Configurazione del dispositivo Smart Life assistita da cloud.",
+                "manual": "Fornire manualmente le informazioni sulla connessione del dispositivo."
+            }
         }
     },
     "options": {
@@ -45,7 +87,8 @@
                     "host": "Indirizzo IP o nome host",
                     "local_key": "Local key",
                     "protocol_version": "Versione protocollo (prova 'auto' in caso di dubbi)",
-                    "poll_only": "Poll only (prova questa opzione se il dispositivo non funziona correttamente)"
+                    "poll_only": "Poll only (prova questa opzione se il dispositivo non funziona correttamente)",
+                    "device_cid": "[it] Sub device ID (for devices connected via gateway)"
                 }
             }
         },
@@ -54,6 +97,240 @@
         },
         "abort": {
             "not_supported": "Spiacente, il dispositivo non è supportato."
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "Scongelare",
+                "state": {
+                    "off": "Normale",
+                    "on": "Scongelamento"
+                }
+            },
+            "tank_empty": {
+                "name": "Cisterna",
+                "state": {
+                    "off": "OK",
+                    "on": "Bassa"
+                }
+            },
+            "tank_full": {
+                "name": "Cisterna",
+                "state": {
+                    "off": "OK",
+                    "on": "Piena"
+                }
+            }
+        },
+        "climate": {
+            "aircon_extra": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "health": "Salutare",
+                            "medhigh": "Media altezza",
+                            "medlow": "Medio basso",
+                            "natural": "Naturale",
+                            "quiet": "Tranquillo",
+                            "sleep": "Sonno",
+                            "strong": "Forte"
+                        }
+                    },
+                    "swing_mode": {
+                        "state": {
+                            "topmost": "Più in alto",
+                            "top": "In alto",
+                            "middle": "Mezzo",
+                            "down": "In basso",
+                            "downmost": "Il più basso"
+                        }
+                    }
+                }
+            },
+            "thermostat": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "cycle": "Ciclo"
+                        }
+                    },
+                    "preset_mode": {
+                        "state": {
+                            "manual": "Manuale",
+                            "program": "Programma",
+                            "temp_override": "Override temporaneo",
+                            "perm_override": "Override permanente"
+                        }
+                    }
+                }
+            },
+            "combo_floor": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "cool": "Aria fresca",
+                            "fan_only": "Fan",
+                            "heat": "Aria riscaldata",
+                            "floor_cool": "Pavimento fresco",
+                            "floor_heat": "Pavimento riscaldato"
+                        }
+                    }
+                }
+            },
+            "swing_as_powerlevel": {
+                "state_attributes": {
+                    "swing_mode": {
+                        "name": "Livello di riscaldamento",
+                        "state": {
+                            "stop": "Fermare",
+                            "auto": "Auto"
+                        }
+                    }
+                }
+            },
+            "pool_heatpump": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "smart_heat": "Calore intelligente",
+                            "quick_heat": "Calore rapido",
+                            "quiet_heat": "Caldo tranquillo",
+                            "smart_cool": "Raffreddamento intelligente",
+                            "quick_cool": "Raffreddamento rapido",
+                            "quiet_cool": "Raffreddamento tranquillo",
+                            "auto": "Auto"
+                        }
+                    }
+                }
+            },
+            "heater": {
+                "name": "Stufa"
+            },
+            "thermo_switch": {
+                "state_attributes": {
+                    "hvac_mode": {
+                        "state": {
+                            "fan_only": "Pausa"
+                        }
+                    }
+                }
+            }
+        },
+        "humidifier": {
+            "dehumidifier": {
+                "state_attributes": {
+                    "mode": {
+                        "state": {
+                            "laundry": "Biancheria asciutta",
+                            "purify": "Puricare"
+                        }
+                    }
+                }
+            }
+        },
+        "fan": {
+            "fan_with_presets": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "normal": "Normale",
+                            "nature": "Naturale",
+                            "sleep": "Sonno",
+                            "baby": "Bambino",
+                            "fresh": "Fresco",
+                            "smart": "Inteligente",
+                            "strong": "Forte",
+                            "displayoff": "Display spento",
+                            "off": "Spento"
+                        }
+                    }
+                }
+            },
+            "ventilation": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "fresh": "Aria fresca",
+                            "circulate": "Circolare",
+                            "sleep": "Sonno",
+                            "auto": "Auto",
+                            "eco": "Eco",
+                            "anti-condensation": "Anticondensa"
+                        }
+                    }
+                }
+            }
+        },
+        "light": {
+            "backlight": {
+                "name": "Retroilluminazione"
+            },
+            "display": {
+                "name": "Schermo"
+            },
+            "embers": {
+                "name": "Brace"
+            },
+            "flame": {
+                "name": "Fiamma"
+            },
+            "indicator": {
+                "name": "Indicatore"
+            },
+            "laser": {
+                "name": "Laser"
+            },
+            "logs": {
+                "name": "Ceppo"
+            },
+            "nightlight": {
+                "name": "Luce notturna"
+            }
+        },
+        "lock": {
+            "child_lock": {
+                "name": "Blocco bambini"
+            }
+        },
+        "number": {
+            "timer": {
+                "name": "Timer"
+            }
+        },
+        "select": {
+            "timer": {
+                "name": "Timer"
+            },
+            "temperature_unit": {
+                "name": "Unità di temperatura",
+                "state": {
+                    "celsius": "Centigrado",
+                    "fahrenheit": "Fahrenheit"
+                }
+            }
+        },
+        "sensor": {
+            "time_remaining": {
+                "name": "Tempo rimanente"
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "Antigelo"
+            },
+            "evaporator_cleaning": {
+                "name": "Pulizia evaporatore"
+            },
+            "ionizer": {
+                "name": "Ionizzatore"
+            },
+            "keytone": {
+                "name": "tono dei tasti"
+            },
+            "uv_sterilization": {
+                "name": "Sterilizzazione UV"
+            }
         }
     }
 }

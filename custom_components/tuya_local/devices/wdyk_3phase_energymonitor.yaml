@@ -24,9 +24,8 @@ primary_entity:
       optional: true
 secondary_entities:
   - entity: number
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 9
         type: integer
@@ -39,7 +38,6 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -66,8 +64,7 @@ secondary_entities:
           - dps_val: "2"
             value: Last state
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 40
@@ -252,7 +249,7 @@ secondary_entities:
         unit: kWh
         class: measurement
         mapping:
-          - scale: 1000
+          - scale: 100
   - entity: sensor
     class: energy
     dps:

@@ -8,22 +8,13 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
-          constraint: temp_mode
-          conditions:
-            - dps_val: cold
-              icon: "mdi:snowflake-off"
-            - dps_val: hot
-              icon: "mdi:fire-off"
-          icon_priority: 1
         - dps_val: true
           constraint: temp_mode
           conditions:
             - dps_val: cold
               value: cool
-              icon: "mdi:snowflake"
             - dps_val: hot
               value: heat
-              icon: "mdi:fire"
     - id: 2
       type: string
       name: temp_mode
@@ -40,7 +31,7 @@ primary_entity:
             - dps_val: hot
               value: heating
         - dps_val: auxiliary_heat
-          value: heating
+          value: preheating
         - dps_val: cold
           value: cooling
         - dps_val: comfortable
@@ -268,18 +259,17 @@ secondary_entities:
           - dps_val: f
             value: F
   - entity: select
-    name: Temperature unit
+    translation_key: temperature_unit
     category: config
-    icon: "mdi:temperature-celsius"
     dps:
       - id: 43
         type: string
         name: option
         mapping:
           - dps_val: c
-            value: Celsius
+            value: celsius
           - dps_val: f
-            value: Fahrenheit
+            value: fahrenheit
   - entity: sensor
     name: Working status
     category: diagnostic
@@ -297,9 +287,8 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Frost protection
+    translation_key: anti_frost
     category: config
-    icon: "mdi:snowflake"
     dps:
       - id: 10
         type: boolean
@@ -360,17 +349,15 @@ secondary_entities:
         type: boolean
         name: button
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
-    icon: "mdi:hand-back-right-off"
     dps:
       - id: 40
         type: boolean
         name: lock
   - entity: light
-    name: Backlight
+    translation_key: backlight
     category: config
-    icon: "mdi:television-ambient-light"
     dps:
       - id: 44
         type: integer
@@ -380,9 +367,7 @@ secondary_entities:
           max: 100
         mapping:
           - step: 10
-            scale: 0.392
   - entity: binary_sensor
-    name: Fault
     category: diagnostic
     class: problem
     dps:

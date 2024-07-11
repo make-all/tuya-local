@@ -54,8 +54,7 @@ primary_entity:
           icon_priority: 1
 secondary_entities:
   - entity: binary_sensor
-    name: Tank
-    class: problem
+    translation_key: tank_full
     category: diagnostic
     dps:
       - id: 19
@@ -67,8 +66,7 @@ secondary_entities:
             value: true
           - value: false
   - entity: binary_sensor
-    name: Defrost
-    class: problem
+    translation_key: defrost
     category: diagnostic
     dps:
       - id: 19
@@ -80,7 +78,6 @@ secondary_entities:
             value: true
           - value: false
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -99,16 +96,14 @@ secondary_entities:
             value: false
           - value: true
   - entity: switch
-    name: Ionizer
-    icon: "mdi:atom-variant"
+    translation_key: ionizer
     category: config
     dps:
       - id: 10
         type: boolean
         name: switch
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 16
@@ -129,8 +124,7 @@ secondary_entities:
           - dps_val: high
             value: High
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 17

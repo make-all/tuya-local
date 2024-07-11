@@ -14,7 +14,8 @@ primary_entity:
       range:
         min: 30
         max: 75
-        step: 5
+      mapping:
+        - step: 5
     - id: 14
       name: current_humidity
       type: integer
@@ -46,7 +47,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: select
-    name: Timer
+    translation_key: timer
     dps:
       - id: 19
         type: string
@@ -79,7 +80,7 @@ secondary_entities:
           - dps_val: 12h
             value: 12h
   - entity: sensor
-    name: Timer minutes left
+    translation_key: time_remaining
     class: duration
     dps:
       - id: 20
@@ -87,8 +88,7 @@ secondary_entities:
         name: sensor
         unit: "min"
   - entity: binary_sensor
-    name: Water tank empty
-    class: problem
+    translation_key: tank_empty
     category: diagnostic
     dps:
       - id: 22
@@ -120,7 +120,7 @@ secondary_entities:
         name: sensor
         unit: "%"
   - entity: switch
-    name: UV light
+    translation_key: uv_sterilization
     dps:
       - id: 101
         type: boolean

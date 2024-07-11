@@ -6,7 +6,7 @@ products:
 primary_entity:
   entity: climate
   icon: "mdi:pool-thermometer"
-  translation_key: pool_heatpump
+  translation_only_key: pool_heatpump
   dps:
     - id: 1
       type: boolean
@@ -17,7 +17,7 @@ primary_entity:
         - dps_val: true
           constraint: preset_mode
           conditions:
-            - dps_val: Boost_Heat 
+            - dps_val: Boost_Heat
               value: heat
             - dps_val: Silent_Heat
               value: heat
@@ -163,8 +163,7 @@ secondary_entities:
         hidden: true
         optional: true
   - entity: select
-    name: Temperature unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 13
@@ -172,9 +171,9 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: c
-            value: Celsius
+            value: celsius
           - dps_val: f
-            value: Fahrenheit
+            value: fahrenheit
   - entity: binary_sensor
     name: Status
     class: running
@@ -187,4 +186,3 @@ secondary_entities:
           - dps_val: heating
             value: true
           - value: false
-

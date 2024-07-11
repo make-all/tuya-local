@@ -55,9 +55,6 @@ primary_entity:
       name: min_temperature
       mapping:
         - scale: 10
-    - id: 45
-      type: integer
-      name: Error Code
     - id: 101
       type: integer
       name: unknown_101
@@ -66,26 +63,24 @@ primary_entity:
       name: unknown_102
 secondary_entities:
   - entity: switch
-    name: Anti-frost
-    icon: "mdi:snowflake-melt"
+    translation_key: anti_frost
     category: config
     dps:
       - id: 10
         type: boolean
         name: switch
   - entity: select
-    name: Temperature unit
+    translation_key: temperature_unit
     category: config
-    icon: "mdi:temperature-celsius"
     dps:
       - id: 23
         type: string
         name: option
         mapping:
           - dps_val: c
-            value: Celsius
+            value: celsius
           - dps_val: f
-            value: Fahrenheit
+            value: fahrenheit
   - entity: select
     name: Schedule
     category: config
@@ -111,23 +106,17 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: open
-            value: True
+            value: true
           - dps_val: close
-            value: False
+            value: false
   - entity: lock
-    name: "Child lock"
+    translation_key: "child_lock"
     category: config
     dps:
       - id: 40
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: binary_sensor
-    name: Error
     category: diagnostic
     class: problem
     dps:
@@ -136,13 +125,15 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: 0
-            value: False
-          - value: True
+            value: false
+          - value: true
+      - id: 45
+        type: bitfield
+        name: fault_code
   - entity: number
     name: High temperature limit
     category: config
     class: temperature
-    icon: "mdi:thermometer"
     dps:
       - id: 19
         type: integer
@@ -163,7 +154,6 @@ secondary_entities:
         name: value
         type: integer
         unit: C
-        icon: "mdi:thermometer"
         range:
           min: 50
           max: 10000

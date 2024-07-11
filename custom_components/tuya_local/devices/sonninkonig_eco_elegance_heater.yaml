@@ -4,6 +4,7 @@ products:
     name: Sonnenkonig ECO 700
 primary_entity:
   entity: climate
+  translation_only_key: heater
   dps:
     - id: 1
       name: hvac_mode
@@ -25,16 +26,14 @@ primary_entity:
       type: integer
 secondary_entities:
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 7
         type: boolean
         name: lock
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 19
@@ -92,7 +91,7 @@ secondary_entities:
           - dps_val: "24h"
             value: "24 hours"
   - entity: sensor
-    name: Time remaining
+    translation_key: time_remaining
     class: duration
     category: diagnostic
     dps:
@@ -128,6 +127,3 @@ secondary_entities:
       - id: 103
         type: boolean
         name: switch
-
-
-

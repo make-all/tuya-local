@@ -4,7 +4,7 @@ products:
     name: Hiper T3
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   dps:
     - id: 1
       name: switch
@@ -51,8 +51,7 @@ primary_entity:
       type: bitfield
 secondary_entities:
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 11
@@ -78,7 +77,7 @@ secondary_entities:
           - dps_val: "8"
             value: "8 hours"
   - entity: sensor
-    name: Time remaining
+    translation_key: time_remaining
     class: duration
     category: diagnostic
     dps:
@@ -87,7 +86,6 @@ secondary_entities:
         name: sensor
         unit: min
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:

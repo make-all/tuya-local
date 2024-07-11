@@ -1,0 +1,55 @@
+name: Coffee maker
+products:
+  - id: iegq4tjqeuiew5cl
+    name: Silvercrest SKMS 900 A1
+primary_entity:
+  entity: switch
+  icon: "mdi:coffee-maker"
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: select
+    name: Aroma
+    icon: "mdi:coffee"
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: normal
+            value: Normal
+          - dps_val: strong
+            value: Strong
+          - dps_val: extra_strong
+            value: Extra Strong
+  - entity: sensor
+    name: Work state
+    icon: "mdi:briefcase"
+    category: diagnostic
+    dps:
+      - id: 4
+        type: string
+        name: sensor
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 12
+        type: integer
+        name: sensor
+        unit: min
+  - entity: binary_sensor
+    translation_key: tank_empty
+    category: diagnostic
+    dps:
+      - id: 105
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true

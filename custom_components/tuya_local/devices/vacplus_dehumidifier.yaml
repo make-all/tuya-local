@@ -34,7 +34,7 @@ primary_entity:
           value: Sleep
 secondary_entities:
   - entity: switch
-    name: Ionizer
+    translation_key: ionizer
     dps:
       - id: 12
         type: boolean
@@ -42,15 +42,14 @@ secondary_entities:
         optional: true
   - entity: sensor
     class: temperature
-    dps:    
+    dps:
       - id: 7
         name: sensor
         type: integer
         unit: "°F"
         class: measurement
-  - entity: sensor
-    name: Fault
-    class: enum
+  - entity: binary_sensor
+    class: problem
     category: diagnostic
     dps:
       - id: 101
@@ -58,18 +57,26 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: 0
-            value: OK
+            value: false
           - dps_val: 1
-            value: Tank Full
-            icon: "mdi:cup-water"
-            icon_priority: 2
-          - dps_val: 2
-            value: Fault
-          - dps_val: 3
-            value: Fault
+            value: false
+          - value: true
+      - id: 101
+        type: bitfield
+        name: fault_code
+  - entity: binary_sensor
+    translation_key: tank_full
+    category: diagnostic
+    dps:
+      - id: 101
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 8

@@ -29,26 +29,18 @@ class TestKoganKAWFPAC09YA(TargetTemperatureTests, TuyaDeviceTestCase):
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,
             self.subject,
-            min=16,
-            max=30,
+            min=16.0,
+            max=30.0,
         )
 
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            (ClimateEntityFeature.TARGET_TEMPERATURE | ClimateEntityFeature.FAN_MODE),
+            ClimateEntityFeature.TARGET_TEMPERATURE
+            | ClimateEntityFeature.FAN_MODE
+            | ClimateEntityFeature.TURN_OFF
+            | ClimateEntityFeature.TURN_ON,
         )
-
-    def test_icon(self):
-        self.dps[POWER_DPS] = True
-        self.dps[HVACMODE_DPS] = "COOL"
-        self.assertEqual(self.subject.icon, "mdi:snowflake")
-        self.dps[HVACMODE_DPS] = "DRY"
-        self.assertEqual(self.subject.icon, "mdi:water")
-        self.dps[HVACMODE_DPS] = "FAN"
-        self.assertEqual(self.subject.icon, "mdi:fan")
-        self.dps[POWER_DPS] = False
-        self.assertEqual(self.subject.icon, "mdi:hvac-off")
 
     def test_temperature_unit(self):
         self.dps[UNIT_DPS] = "C"

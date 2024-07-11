@@ -1,4 +1,5 @@
 """Tests for the Woox R4028 powerstrip."""
+
 from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import UnitOfTime
 
@@ -43,7 +44,11 @@ class TestWooxR4028Powerstrip(
                     "name": "switch_outlet_3",
                     "device_class": SwitchDeviceClass.OUTLET,
                 },
-                {"dps": SWITCHUSB_DPS, "name": "switch_usb_switch"},
+                {
+                    "dps": SWITCHUSB_DPS,
+                    "name": "switch_usb_switch",
+                    "device_class": SwitchDeviceClass.SWITCH,
+                },
             ]
         )
         self.setUpMultiNumber(

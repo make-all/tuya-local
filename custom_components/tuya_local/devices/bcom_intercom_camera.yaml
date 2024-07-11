@@ -14,6 +14,7 @@ primary_entity:
       type: base64
       persist: false
       optional: true
+      sensitive: true
       mapping:
         - dps_val: ""
           value_redirect: motion_detected
@@ -22,6 +23,7 @@ primary_entity:
     - id: 115
       name: motion_detected
       type: base64
+      sensitive: true
 secondary_entities:
   - entity: lock
     name: Door lock
@@ -30,9 +32,8 @@ secondary_entities:
         type: boolean
         name: lock
   - entity: light
-    name: Indicator
+    translation_key: indicator
     category: config
-    icon: "mdi:led-on"
     dps:
       - id: 101
         type: boolean
@@ -121,7 +122,7 @@ secondary_entities:
         type: string
         name: option
         mapping:
-          - dps_val: "1" 
+          - dps_val: "1"
             value: Event
           - dps_val: "2"
             value: Continuous
@@ -139,6 +140,4 @@ secondary_entities:
     dps:
       - id: 231
         type: string
-        name: sensor          
-
-
+        name: sensor

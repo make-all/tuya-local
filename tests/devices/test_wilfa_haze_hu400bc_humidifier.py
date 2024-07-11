@@ -1,8 +1,7 @@
-from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.humidifier import HumidifierEntityFeature
 from homeassistant.components.humidifier.const import MODE_AUTO, MODE_NORMAL
 from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import PERCENTAGE, UnitOfTemperature
+from homeassistant.const import UnitOfTemperature
 
 from ..const import WILFA_HAZE_HUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -50,9 +49,8 @@ class TestWilfaHazeHumidifier(
         self.setUpSwitchable(SWITCH_DPS, self.subject)
         self.setUpBasicBinarySensor(
             ERROR_DPS,
-            self.entities.get("binary_sensor_tank"),
+            self.entities.get("binary_sensor_tank_empty"),
             testdata=(1, 0),
-            device_class=BinarySensorDeviceClass.PROBLEM,
         )
         self.setUpMultiLights(
             [
@@ -92,8 +90,8 @@ class TestWilfaHazeHumidifier(
                     "dps": UNIT_DPS,
                     "name": "select_temperature_unit",
                     "options": {
-                        "c": "Celsius",
-                        "f": "Fahrenheit",
+                        "c": "celsius",
+                        "f": "fahrenheit",
                     },
                 },
             ],
@@ -106,13 +104,6 @@ class TestWilfaHazeHumidifier(
                     "device_class": SensorDeviceClass.TEMPERATURE,
                     "state_class": "measurement",
                     "unit": UnitOfTemperature.CELSIUS,
-                },
-                {
-                    "dps": CURRENTHUMID_DPS,
-                    "name": "sensor_current_humidity",
-                    "device_class": SensorDeviceClass.HUMIDITY,
-                    "state_class": "measurement",
-                    "unit": PERCENTAGE,
                 },
             ]
         )
@@ -134,12 +125,11 @@ class TestWilfaHazeHumidifier(
         )
         self.mark_secondary(
             [
-                "binary_sensor_tank",
+                "binary_sensor_tank_empty",
                 "light_display",
                 "light_mood",
                 "select_temperature_unit",
                 "select_timer",
-                "sensor_current_humidity",
                 "switch_air_clean",
                 "switch_ionizer",
                 "switch_sound",

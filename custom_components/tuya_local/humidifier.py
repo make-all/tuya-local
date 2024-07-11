@@ -1,6 +1,7 @@
 """
 Setup for different kinds of Tuya humidifier devices
 """
+
 import logging
 
 from homeassistant.components.humidifier import (
@@ -103,7 +104,7 @@ class TuyaLocalHumidifier(TuyaLocalEntity, HumidifierEntity):
         if self._humidity_dp is None:
             return None
         r = self._humidity_dp.range(self._device)
-        return DEFAULT_MIN_HUMIDITY if r is None else r["min"]
+        return DEFAULT_MIN_HUMIDITY if r is None else r[0]
 
     @property
     def max_humidity(self):
@@ -111,7 +112,7 @@ class TuyaLocalHumidifier(TuyaLocalEntity, HumidifierEntity):
         if self._humidity_dp is None:
             return None
         r = self._humidity_dp.range(self._device)
-        return DEFAULT_MAX_HUMIDITY if r is None else r["max"]
+        return DEFAULT_MAX_HUMIDITY if r is None else r[1]
 
     async def async_set_humidity(self, humidity):
         if self._humidity_dp is None:
@@ -129,9 +130,8 @@ class TuyaLocalHumidifier(TuyaLocalEntity, HumidifierEntity):
     @property
     def available_modes(self):
         """Return the list of presets that this device supports."""
-        if self._mode_dp is None:
-            return None
-        return self._mode_dp.values(self._device)
+        if self._mode_dp:
+            return self._mode_dp.values(self._device)
 
     async def async_set_mode(self, mode):
         """Set the preset mode."""

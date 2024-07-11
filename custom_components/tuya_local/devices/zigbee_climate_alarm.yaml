@@ -41,18 +41,17 @@ secondary_entities:
         unit: "%"
         class: measurement
   - entity: select
-    name: Temperature unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 9
         type: string
         name: option
         mapping:
-          - dps_val: c 
-            value: Celsius
+          - dps_val: c
+            value: celsius
           - dps_val: f
-            value: Fahrenheit
+            value: fahrenheit
   - entity: number
     name: High temperature
     category: config
@@ -147,5 +146,3 @@ secondary_entities:
       - id: 21
         type: boolean
         name: switch
-
-

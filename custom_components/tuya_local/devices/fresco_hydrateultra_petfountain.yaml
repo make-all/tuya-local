@@ -1,0 +1,145 @@
+name: Pet fountain
+products:
+  - id: cuw2k3ho3e25fade
+    name: Petoneer Fresco Hydrate Ultra
+
+primary_entity:
+  entity: switch
+  icon: "mdi:water-pump"
+  dps:
+    - id: 101
+      type: boolean
+      name: switch
+
+secondary_entities:
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 102
+        name: brightness
+        type: integer
+        range:
+          min: 1
+          max: 10
+
+  - entity: button
+    name: Reset Water
+    icon: "mdi:water-circle"
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: button
+        mapping:
+          - dps_val: 0
+            value: true
+  - entity: sensor
+    name: Water age
+    icon: "mdi:water-circle"
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: min
+
+  - entity: button
+    name: Reset Filter
+    icon: "mdi:air-filter"
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        name: button
+        mapping:
+          - dps_val: 0
+            value: true
+
+  - entity: sensor
+    name: Filter life
+    icon: "mdi:air-filter"
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        range:
+          min: 0
+          max: 43200
+        unit: min
+
+  - entity: button
+    name: Reset Pump
+    icon: "mdi:pump"
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: button
+        mapping:
+          - dps_val: 0
+            value: true
+
+  - entity: sensor
+    name: Pump maintenance
+    icon: "mdi:pump"
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        range:
+          min: 0
+          max: 86400
+        unit: min
+
+  - entity: sensor
+    name: Water quality
+    icon: "mdi:water"
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: TDS
+
+  - entity: switch
+    translation_key: uv_sterilization
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: switch
+        optional: true
+
+  - entity: sensor
+    name: Water level
+    icon: "mdi:water"
+    category: diagnostic
+    dps:
+      - id: 108
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "1"
+            value: 1
+          - dps_val: "2"
+            value: 2
+          - dps_val: "3"
+            value: 3
+          - dps_val: "4"
+            value: 4
+
+  - entity: sensor
+    name: UV runtime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: s

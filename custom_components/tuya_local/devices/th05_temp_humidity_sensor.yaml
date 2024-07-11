@@ -23,7 +23,7 @@ secondary_entities:
         unit: "%"
         class: measurement
   - entity: select
-    name: Display Units
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 9
@@ -31,9 +31,9 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: "f"
-            value: Fahrenheit
+            value: fahrenheit
           - dps_val: "c"
-            value: Celsius
+            value: celsius
         optional: true
   - entity: sensor
     class: battery

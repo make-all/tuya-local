@@ -6,16 +6,16 @@ products:
   - id: bfc513e1f9d4d259a10wzu
     name: Diivoo Water Timer Valve WT-03
   - id: nxquc5lb
-    model: SOP10
+    name: SOP10
   - id: so5ybnw9
     name: BWC-495.bt Royal Gardineer
 primary_entity:
-  entity: switch
-  icon: "mdi:pipe-valve"
+  entity: valve
+  class: water
   dps:
     - id: 1
       type: boolean
-      name: switch
+      name: valve
     - id: 13
       type: string
       name: weather
@@ -29,6 +29,14 @@ primary_entity:
       name: irrigation_schedule
       optional: true
 secondary_entities:
+  - entity: switch
+    icon: "mdi:pipe-valve"
+    deprecated: valve
+    category: config
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: sensor
     class: battery
     category: diagnostic
@@ -37,17 +45,7 @@ secondary_entities:
         type: integer
         name: sensor
         unit: "%"
-  - entity: sensor
-    name: Fault code
-    category: diagnostic
-    icon: "mdi:alert"
-    dps:
-      - id: 4
-        type: integer
-        name: sensor
-        optional: true
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -61,6 +59,9 @@ secondary_entities:
           - dps_val: null
             value: false
           - value: true
+      - id: 4
+        type: bitfield
+        name: fault_code
   - entity: sensor
     name: Operation
     category: diagnostic
@@ -107,7 +108,7 @@ secondary_entities:
   - entity: number
     name: Irrigation time
     category: config
-    icon: "mdi:timer"
+    translation_key: timer
     dps:
       - id: 11
         type: integer

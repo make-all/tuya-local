@@ -2,6 +2,7 @@ name: Eurom wall Designheat 2000 heater
 legacy_type: eurom_saniwall2000_heater
 primary_entity:
   entity: climate
+  translation_only_key: heater
   dps:
     - id: 1
       type: boolean
@@ -9,7 +10,6 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:radiator-disabled"
         - dps_val: true
           constraint: preset_mode
           conditions:
@@ -18,16 +18,14 @@ primary_entity:
               icon: "mdi:fan"
             - dps_val: auto
               value: heat
-              icon: "mdi:radiator"
             - dps_val: "50_perc"
               value: heat
-              icon: "mdi:radiator"
             - dps_val: "100_perc"
               value: heat
-              icon: "mdi:radiator"
     - id: 2
       type: integer
       name: temperature
+      unit: C
       range:
         min: 10
         max: 35

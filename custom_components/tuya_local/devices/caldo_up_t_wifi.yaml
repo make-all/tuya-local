@@ -4,24 +4,20 @@ products:
     name: Olimpia Splendid Caldo Up T
 primary_entity:
   entity: climate
+  translation_only_key: heater
   dps:
     - id: 1
       type: boolean
       name: hvac_mode
       mapping:
         - dps_val: true
-          constraint: preset_mode
-          conditions:
-            - dps_val: "0"
-              value: fan_only
-            - dps_val: "1"
-              value: heat
-            - value: heat
+          value: heat
         - dps_val: false
           value: "off"
     - id: 2
       type: integer
       name: temperature
+      unit: C
       range:
         min: 18
         max: 45
@@ -47,11 +43,11 @@ primary_entity:
         - dps_val: true
           value: "on"
 secondary_entities:
-   - entity: switch
-     name: Window detection
-     icon: "mdi:window-open-variant"
-     category: config
-     dps:
-       - id: 101
-         type: boolean
-         name: switch
+  - entity: switch
+    name: Window detection
+    icon: "mdi:window-open-variant"
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch

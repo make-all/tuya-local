@@ -1,6 +1,7 @@
 name: HJZ radiator
 primary_entity:
   entity: climate
+  translation_only_key: heater
   dps:
     - id: 1
       type: boolean
@@ -8,13 +9,12 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:radiator-disabled"
         - dps_val: true
           value: heat
-          icon: "mdi:radiator"
     - id: 2
       type: integer
       name: temperature
+      unit: C
       range:
         min: 15
         max: 50
@@ -34,24 +34,21 @@ primary_entity:
 secondary_entities:
   - entity: lock
     category: config
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     dps:
       - id: 7
         type: boolean
         name: lock
   - entity: light
     category: config
-    name: Display
-    icon: "mdi:television-ambient-light"
+    translation_key: display
     dps:
       - id: 10
         type: boolean
         name: switch
   - entity: select
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 19
         type: string
@@ -73,7 +70,6 @@ secondary_entities:
             value: "6 hour"
   - entity: binary_sensor
     category: diagnostic
-    name: Fault
     class: problem
     dps:
       - id: 21

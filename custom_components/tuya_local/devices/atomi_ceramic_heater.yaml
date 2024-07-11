@@ -1,9 +1,12 @@
-name: Atomi ceramic heater
+name: Heater
 products:
   - id: ojvja3vyqchxrfhk
-    name: AT1632
+    name: Atomi AT1632
+  - id: tos0dbspyikjzcxe
+    name: Atomi AT1635
 primary_entity:
   entity: climate
+  translation_only_key: heater
   dps:
     - id: 1
       type: boolean
@@ -36,6 +39,8 @@ primary_entity:
     - id: 8
       type: boolean
       name: swing_mode
+      # not available on AT1635
+      optional: true
       mapping:
         - dps_val: false
           value: "off"
@@ -43,15 +48,14 @@ primary_entity:
           value: horizontal
 secondary_entities:
   - entity: light
-    name: Display
+    translation_key: display
     category: config
     dps:
       - id: 10
         type: boolean
         name: switch
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 11
@@ -85,8 +89,7 @@ secondary_entities:
           - dps_val: "12h"
             value: "12 hours"
   - entity: sensor
-    name: Timer remain
-    icon: "mdi:timer"
+    translation_key: time_remaining
     class: duration
     category: diagnostic
     dps:
@@ -112,5 +115,3 @@ secondary_entities:
       - id: 103
         type: boolean
         name: sensor
-
-

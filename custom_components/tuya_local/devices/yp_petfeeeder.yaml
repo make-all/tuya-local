@@ -25,7 +25,6 @@ secondary_entities:
       - id: 15
         name: sensor
         type: integer
-    type: integer
   - entity: button
     class: restart
     name: Factory reset
@@ -35,11 +34,9 @@ secondary_entities:
         type: boolean
         name: button
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
       - id: 14
         type: boolean
         name: sensor
-

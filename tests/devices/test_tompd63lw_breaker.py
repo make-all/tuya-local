@@ -1,10 +1,10 @@
 """Tests for the switch entity."""
+
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     UnitOfElectricCurrent,
     UnitOfElectricPotential,
     UnitOfPower,
-    UnitOfTime,
 )
 
 from ..const import TOMPD63LW_SOCKET_PAYLOAD

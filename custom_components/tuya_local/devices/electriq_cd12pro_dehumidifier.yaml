@@ -82,44 +82,26 @@ secondary_entities:
           - dps_val: "45_90"
             value: "Oscillate"
   - entity: switch
-    name: "UV sterilization"
-    icon: "mdi:solar-power"
+    translation_key: uv_sterilization
     category: config
     dps:
       - id: 13
         name: switch
         type: boolean
   - entity: light
-    name: Indicator light
+    translation_key: indicator
     category: config
     dps:
       - id: 101
         type: boolean
         name: switch
-        mapping:
-          - dps_val: true
-            icon: "mdi:led-on"
-          - dps_val: false
-            icon: "mdi:led-off"
   - entity: switch
-    name: Ionizer
+    translation_key: ionizer
     category: config
-    icon: "mdi:creation"
     dps:
       - id: 10
         name: switch
         type: boolean
-  - entity: sensor
-    class: humidity
-    name: "Current humidity"
-    deprecated: humidifier
-    category: diagnostic
-    dps:
-      - id: 6
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
   - entity: switch
     name: Sleep
     category: config
@@ -133,8 +115,7 @@ secondary_entities:
           - dps_val: false
             icon: "mdi:sleep-off"
   - entity: binary_sensor
-    name: Tank
-    class: problem
+    translation_key: tank_full
     category: diagnostic
     dps:
       - id: 19
@@ -143,7 +124,5 @@ secondary_entities:
         mapping:
           - dps_val: 1
             value: true
-            icon: "mdi:flask-empty"
           - dps_val: 0
             value: false
-            icon: "mdi:flask-empty-outline"

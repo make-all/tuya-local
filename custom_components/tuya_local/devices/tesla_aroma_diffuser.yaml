@@ -72,7 +72,6 @@ secondary_entities:
               min: 0
               max: 255
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -87,8 +86,7 @@ secondary_entities:
         type: bitfield
         name: fault_code
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 13
@@ -104,7 +102,7 @@ secondary_entities:
           - dps_val: "3"
             value: "5 hours"
   - entity: sensor
-    name: Time remaining
+    translation_key: time_remaining
     class: duration
     category: diagnostic
     dps:

@@ -17,8 +17,8 @@ primary_entity:
           value: true
         - dps_val: none
           value: false
-    # - id: 111
-    #   name: breathingselftest
+          # - id: 111
+          #   name: breathingselftest
 secondary_entities:
   - entity: number
     name: Motion sensitivity
@@ -85,7 +85,7 @@ secondary_entities:
           min: 0
           max: 10
   - entity: light
-    name: Led indicator
+    translation_key: indicator
     category: config
     dps:
       - id: 103
@@ -186,7 +186,6 @@ secondary_entities:
     name: Motion minimum detection distance
     category: config
     icon: mdi:signal-distance-variant
-    hidden: true
     dps:
       - id: 110
         type: integer
@@ -203,7 +202,6 @@ secondary_entities:
     name: Small motion minimum detection distance
     category: config
     icon: mdi:signal-distance-variant
-    hidden: true
     dps:
       - id: 111
         type: integer
@@ -220,7 +218,6 @@ secondary_entities:
     name: Breathing minimum detection distance
     category: config
     icon: mdi:signal-distance-variant
-    hidden: true
     dps:
       - id: 112
         type: integer
@@ -237,7 +234,6 @@ secondary_entities:
     name: Adaptive testing time
     category: config
     icon: mdi:timer
-    hidden: true
     dps:
       - id: 113
         type: integer

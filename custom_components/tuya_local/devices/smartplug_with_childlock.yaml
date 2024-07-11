@@ -21,8 +21,7 @@ primary_entity:
 secondary_entities:
   - entity: number
     category: config
-    icon: "mdi:timer"
-    name: Timer
+    translation_key: timer
     dps:
       - id: 9
         type: integer
@@ -58,15 +57,14 @@ secondary_entities:
         type: string
         name: option
         mapping:
-          - dps_val: relay 
+          - dps_val: relay
             value: State
           - dps_val: pos
             value: Position
           - dps_val: none
             value: "Off"
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 41

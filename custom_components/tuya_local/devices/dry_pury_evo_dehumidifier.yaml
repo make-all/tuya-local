@@ -68,30 +68,22 @@ secondary_entities:
         unit: C
         class: measurement
   - entity: switch
-    name: Ionizer
-    icon: "mdi:creation"
+    translation_key: ionizer
     category: config
     dps:
       - id: 10
         type: boolean
         name: switch
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 16
         type: boolean
         name: lock
-        mapping:
-          - dps_val: false
-            icon: "mdi:hand-back-right"
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
   - entity: binary_sensor
-    class: problem
-    name: Tank full
+    translation_key: tank_full
     category: diagnostic
-    icon: "mdi:cup-water"
     dps:
       - id: 19
         type: bitfield
@@ -102,7 +94,6 @@ secondary_entities:
           - value: false
   - entity: binary_sensor
     class: problem
-    name: Fault
     category: diagnostic
     dps:
       - id: 19

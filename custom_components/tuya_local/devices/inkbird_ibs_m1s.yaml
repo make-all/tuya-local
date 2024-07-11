@@ -32,7 +32,6 @@ primary_entity:
           endianness: little
           mask: "FFFF00"
           constraint: type
-          constraint_decode: true
           conditions:
             - dps_val: 0
               invalid: true
@@ -59,7 +58,6 @@ secondary_entities:
           - endianness: little
             mask: "FF000000000000000000"
             constraint: type
-            constraint_decode: true
             conditions:
               - dps_val: 0
                 invalid: true
@@ -86,7 +84,6 @@ secondary_entities:
             endianness: little
             mask: "FFFF0000000000000000000000"
             constraint: type
-            constraint_decode: true
             conditions:
               - dps_val: 0
                 invalid: true
@@ -112,7 +109,6 @@ secondary_entities:
           - endianness: little
             mask: "FF00000000000000000000000000000000000000"
             constraint: type
-            constraint_decode: true
             conditions:
               - dps_val: 0
                 invalid: true
@@ -139,7 +135,6 @@ secondary_entities:
             endianness: little
             mask: "FFFF000000000000000000000000000000000000000000"
             constraint: type
-            constraint_decode: true
             conditions:
               - dps_val: 0
                 invalid: true
@@ -165,7 +160,6 @@ secondary_entities:
           - endianness: little
             mask: "FF0000000000000000000000000000000000000000000000000000000000"
             constraint: type
-            constraint_decode: true
             conditions:
               - dps_val: 0
                 invalid: true
@@ -180,7 +174,8 @@ secondary_entities:
         persist: false
         mapping:
           - endianness: little
-            mask: "FF000000000000000000000000000000000000000000000000000000000000"
+            mask: >-
+              FF000000000000000000000000000000000000000000000000000000000000
       - id: 114
         optional: true
         type: base64
@@ -190,9 +185,9 @@ secondary_entities:
         mapping:
           - scale: 10
             endianness: little
-            mask: "FFFF00000000000000000000000000000000000000000000000000000000000000"
+            mask: >-
+              FFFF00000000000000000000000000000000000000000000000000000000000000
             constraint: type
-            constraint_decode: true
             conditions:
               - dps_val: 0
                 invalid: true
@@ -208,7 +203,8 @@ secondary_entities:
         persist: false
         mapping:
           - endianness: little
-            mask: "FF000000000000000000000000000000000000000000000000000000000000"
+            mask: >-
+              FF000000000000000000000000000000000000000000000000000000000000
       - id: 114
         optional: true
         type: base64
@@ -216,9 +212,9 @@ secondary_entities:
         unit: "%"
         mapping:
           - endianness: little
-            mask: "FF000000000000000000000000000000000000000000000000000000000000000000000000000000"
+            mask: "FF000000000000000000000000000000000000000\
+              000000000000000000000000000000000000000"
             constraint: type
-            constraint_decode: true
             conditions:
               - dps_val: 0
                 invalid: true
@@ -233,7 +229,8 @@ secondary_entities:
         persist: false
         mapping:
           - endianness: little
-            mask: "FF00000000000000000000000000000000000000000000000000000000000000000000000000000000"
+            mask: "FF00000000000000000000000000000000000000000000\
+              000000000000000000000000000000000000"
       - id: 114
         optional: true
         type: base64
@@ -243,9 +240,9 @@ secondary_entities:
         mapping:
           - scale: 10
             endianness: little
-            mask: "FFFF0000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+            mask: "FFFF00000000000000000000000000000000000000\
+              00000000000000000000000000000000000000000000"
             constraint: type
-            constraint_decode: true
             conditions:
               - dps_val: 0
                 invalid: true
@@ -261,7 +258,8 @@ secondary_entities:
         persist: false
         mapping:
           - endianness: little
-            mask: "FF00000000000000000000000000000000000000000000000000000000000000000000000000000000"
+            mask: "FF000000000000000000000000000000000000000000000\
+              00000000000000000000000000000000000"
       - id: 114
         optional: true
         type: base64
@@ -269,9 +267,9 @@ secondary_entities:
         unit: "%"
         mapping:
           - endianness: little
-            mask: "FF00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+            mask: "FF000000000000000000000000000000000000000000000\
+              00000000000000000000000000000000000000000000000000000"
             constraint: type
-            constraint_decode: true
             conditions:
               - dps_val: 0
                 invalid: true
@@ -286,7 +284,8 @@ secondary_entities:
         persist: false
         mapping:
           - endianness: little
-            mask: "FF0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+            mask: "FF000000000000000000000000000000000000000000\
+              0000000000000000000000000000000000000000000000000000000000"
       - id: 114
         optional: true
         type: base64
@@ -296,9 +295,9 @@ secondary_entities:
         mapping:
           - scale: 10
             endianness: little
-            mask: "FFFF000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+            mask: "FFFF00000000000000000000000000000000000000000000000\
+              0000000000000000000000000000000000000000000000000000000"
             constraint: type
-            constraint_decode: true
             conditions:
               - dps_val: 0
                 invalid: true
@@ -314,7 +313,8 @@ secondary_entities:
         persist: false
         mapping:
           - endianness: little
-            mask: "FF0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+            mask: "FF00000000000000000000000000000000000000000000000\
+              00000000000000000000000000000000000000000000000000000"
       - id: 114
         optional: true
         type: base64
@@ -322,9 +322,9 @@ secondary_entities:
         unit: "%"
         mapping:
           - endianness: little
-            mask: "FF0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+            mask: "FF00000000000000000000000000000000000000000000000000000000\
+              00000000000000000000000000000000000000000000000000000000000000"
             constraint: type
-            constraint_decode: true
             conditions:
               - dps_val: 0
                 invalid: true

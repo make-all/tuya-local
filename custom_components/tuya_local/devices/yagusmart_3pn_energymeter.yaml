@@ -1,7 +1,7 @@
 name: Energy meter
 products:
   - id: fygozcnralhwbauo
-    name: Yagusmart 3PN 63A
+    name: Yagusmart/Zemismart 3PN 63A
 primary_entity:
   entity: sensor
   class: energy
@@ -24,6 +24,7 @@ primary_entity:
     - id: 19
       type: string
       name: breaker_id
+      optional: true
 secondary_entities:
   - entity: sensor
     name: Reverse energy
@@ -33,12 +34,11 @@ secondary_entities:
       - id: 2
         type: integer
         name: sensor
-        unit: kWh 
+        unit: kWh
         class: measurement
         mapping:
           - scale: 100
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:

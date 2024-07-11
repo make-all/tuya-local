@@ -1,4 +1,5 @@
 """Tests for the Avatto roller blinds controller."""
+
 from homeassistant.components.cover import CoverDeviceClass, CoverEntityFeature
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import UnitOfTime
@@ -36,7 +37,7 @@ class TestAvattoBlinds(MultiSensorTests, BasicSelectTests, TuyaDeviceTestCase):
                 },
                 {
                     "dps": COUNTDOWN_DP,
-                    "name": "sensor_timer",
+                    "name": "sensor_time_remaining",
                     "device_class": SensorDeviceClass.DURATION,
                     "min": 0,
                     "max": 86400,
@@ -54,8 +55,10 @@ class TestAvattoBlinds(MultiSensorTests, BasicSelectTests, TuyaDeviceTestCase):
                 "3": "3 hours",
                 "4": "4 hours",
             },
-        ),
-        self.mark_secondary(["sensor_travel_time", "sensor_timer", "select_timer"])
+        )
+        self.mark_secondary(
+            ["sensor_travel_time", "sensor_time_remaining", "select_timer"]
+        )
 
     def test_device_class_is_blind(self):
         self.assertEqual(self.subject.device_class, CoverDeviceClass.BLIND)

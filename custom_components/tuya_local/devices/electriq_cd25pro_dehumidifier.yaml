@@ -43,7 +43,7 @@ primary_entity:
         - step: 5
 secondary_entities:
   - entity: fan
-    translation_key: fan_with_presets
+    translation_only_key: fan_with_presets
     dps:
       - id: 1
         type: boolean
@@ -67,43 +67,25 @@ secondary_entities:
           - dps_val: "90"
             value: false
           - value: false
-  - entity: light
-    name: "UV sterilization"
-    icon: "mdi:solar-power"    
+  - entity: switch
+    translation_key: uv_sterilization
     dps:
       - id: 10
         name: switch
         type: boolean
   - entity: switch
-    name: "Ionizer"
-    icon: "mdi:creation"
+    translation_key: "ionizer"
     dps:
       - id: 104
         name: switch
         type: boolean
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 7
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
-  - entity: sensor
-    class: humidity
-    name: Current humidity
-    deprecated: humidifier
-    category: diagnostic
-    dps:
-      - id: 3
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
   - entity: sensor
     class: temperature
     dps:

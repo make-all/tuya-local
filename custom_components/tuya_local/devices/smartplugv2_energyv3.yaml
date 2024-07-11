@@ -6,6 +6,8 @@ products:
     name: Elivco CB2S-16DL
   - id: 3lbgj7cu27nsmh0w
     name: AT-Q-SY2-JWT
+  - id: cipuwutzfuqk3iru
+    name: UNSH SMKG-KNL
 primary_entity:
   entity: switch
   class: outlet
@@ -34,8 +36,7 @@ primary_entity:
 secondary_entities:
   - entity: number
     category: config
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     dps:
       - id: 9
         type: integer
@@ -114,7 +115,6 @@ secondary_entities:
   - entity: binary_sensor
     class: problem
     category: diagnostic
-    name: Error
     dps:
       - id: 26
         type: bitfield
@@ -139,13 +139,13 @@ secondary_entities:
           - dps_val: memory
             value: "Last State"
   - entity: lock
-    name: Child Lock
+    translation_key: child_lock
     category: config
-    icon: "mdi:hand-back-right-off"
     dps:
       - id: 41
         type: boolean
         name: lock
+        optional: true
   - entity: select
     name: Light mode
     category: config
@@ -171,3 +171,13 @@ secondary_entities:
         type: boolean
         name: switch
         optional: true
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 47
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement

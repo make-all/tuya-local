@@ -75,8 +75,7 @@ primary_entity:
       name: overclock_mode
 secondary_entities:
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 103
@@ -88,8 +87,7 @@ secondary_entities:
             value: false
             hidden: true
   - entity: select
-    name: Temperature unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 106
@@ -97,11 +95,10 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: f
-            value: Fahrenheit
+            value: fahrenheit
           - dps_val: c
-            value: Celsius
+            value: celsius
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -110,11 +107,11 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: 0
+            value: true
             constraint: fault_2
             conditions:
               - dps_val: 0
                 value: false
-              - value: true
           - value: true
   - entity: sensor
     name: Compressor strength

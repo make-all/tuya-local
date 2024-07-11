@@ -75,10 +75,10 @@ secondary_entities:
         type: boolean
         name: switch
         mapping:
-            - dps_val: true
-              icon: "mdi:led-on"
-            - dps_val: false
-              icon: "mdi:led-off"
+          - dps_val: true
+            icon: "mdi:led-on"
+          - dps_val: false
+            icon: "mdi:led-off"
   - entity: switch
     name: Sound
     category: config
@@ -87,16 +87,16 @@ secondary_entities:
         name: switch
         type: boolean
         mapping:
-            - dps_val: true
-              icon: "mdi:volume-high"
-            - dps_val: false
-              icon: "mdi:volume-off"
+          - dps_val: true
+            icon: "mdi:volume-high"
+          - dps_val: false
+            icon: "mdi:volume-off"
   - entity: sensor
     class: temperature
     dps:
       - id: 10
         name: sensor
-        type: integer 
+        type: integer
         class: measurement
       - id: 18
         name: unit
@@ -106,47 +106,32 @@ secondary_entities:
             value: C
           - dps_val: f
             value: F
-  - entity: sensor
-    name: Current humidity
-    deprecated: humidifier
-    category: diagnostic
-    class: humidity
-    dps:
-      - id: 14
-        name: sensor
-        type: integer 
-        class: measurement
-        unit: "%"
   - entity: light
-    name: Display
+    translation_key: display
     category: config
     dps:
       - id: 16
         type: boolean
         name: switch
         mapping:
-            - dps_val: true
-              value: false
-              icon: "mdi:led-off"
-            - dps_val: false
-              value: true
-              icon: "mdi:led-on"
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
   - entity: select
     category: config
-    name: Temperature unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     dps:
       - id: 18
         name: option
         type: string
         mapping:
           - dps_val: c
-            value: Celsius
+            value: celsius
           - dps_val: f
-            value: Fahrenheit
+            value: fahrenheit
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 19
@@ -188,18 +173,15 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: switch
-    name: Ionizer
+    translation_key: ionizer
     category: config
-    icon: "mdi:creation"
     dps:
       - id: 35
         name: switch
         type: boolean
   - entity: binary_sensor
-    class: problem
-    name: Tank
+    translation_key: tank_empty
     category: diagnostic
-    icon: "mdi:cup-outline"
     dps:
       - id: 22
         type: bitfield

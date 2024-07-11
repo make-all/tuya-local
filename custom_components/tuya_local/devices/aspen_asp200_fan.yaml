@@ -2,7 +2,7 @@ name: Aspen fan
 legacy_type: aspen_fan
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   dps:
     - id: 1
       type: boolean
@@ -21,10 +21,8 @@ primary_entity:
       type: integer
       name: speed
       range:
-        min: 0
+        min: 1
         max: 3
-      mapping:
-        - scale: 0.03
     - id: 101
       type: boolean
       name: preset_mode
@@ -58,18 +56,13 @@ secondary_entities:
         name: current_temperature
         type: integer
         unit: F
-        icon: "mdi:thermometer"
   - entity: light
-    name: Display
+    translation_key: display
     category: config
     dps:
       - id: 102
         type: integer
         name: brightness
-        mapping:
-          - dps_val: 1
-            value: 51
-          - dps_val: 2
-            value: 128
-          - dps_val: 3
-            value: 255
+        range:
+          min: 1
+          max: 3

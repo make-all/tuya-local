@@ -17,17 +17,12 @@ secondary_entities:
         name: sensor
         unit: "%"
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 7
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: select
     name: Light
     category: config
@@ -46,17 +41,12 @@ secondary_entities:
             value: "Off"
             icon: "mdi:lightbulb-outline"
   - entity: switch
-    name: UV sterilization
+    translation_key: uv_sterilization
     category: config
     dps:
       - id: 9
         type: boolean
         name: switch
-        mapping:
-          - dps_val: true
-            icon: "mdi:lightbulb"
-          - dps_val: false
-            icon: "mdi:lightbulb-outline"
   - entity: button
     name: Filter reset
     class: restart
@@ -66,8 +56,7 @@ secondary_entities:
         type: boolean
         name: button
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 18
@@ -83,8 +72,7 @@ secondary_entities:
           - dps_val: 8h
             value: "8 hours"
   - entity: sensor
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: time_remaining
     class: duration
     category: diagnostic
     dps:

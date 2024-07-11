@@ -3,11 +3,11 @@ products:
   - id: sgodozglgymucvq2
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   dps:
     - id: 1
       type: boolean
-      name: switch        
+      name: switch
     - id: 4
       name: preset_mode
       type: string
@@ -19,7 +19,7 @@ primary_entity:
         - dps_val: mid
           value: fresh
         - dps_val: high
-          value: strong     
+          value: strong
 secondary_entities:
   - entity: light
     category: config
@@ -28,13 +28,12 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: switch
-    name: Ionizer
+    translation_key: ionizer
     category: config
-    icon: "mdi:dots-hexagon"
     dps:
       - id: 6
         name: switch
-        type: boolean        
+        type: boolean
   - entity: sensor
     name: Filter
     category: diagnostic
@@ -45,8 +44,7 @@ secondary_entities:
         name: sensor
         unit: "%"
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 18
@@ -60,4 +58,4 @@ secondary_entities:
           - dps_val: "2h"
             value: "2 hours"
           - dps_val: "4h"
-            value: "4 hours"                
+            value: "4 hours"

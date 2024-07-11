@@ -4,7 +4,6 @@ products:
     name: MOES Zigbee Thermostat
 primary_entity:
   entity: climate
-  icon: "mdi:thermostat"
   dps:
     - id: 1
       name: hvac_mode
@@ -37,8 +36,7 @@ primary_entity:
 
 secondary_entities:
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 40
@@ -83,12 +81,12 @@ secondary_entities:
           max: 5
   - entity: number
     name: High limit temperature ceiling
+    icon: "mdi:thermometer-alert"
     category: config
     dps:
       - id: 19
         name: value
         type: integer
-        icon: "mdi:thermometer-alert"
         range:
           min: 45
           max: 70

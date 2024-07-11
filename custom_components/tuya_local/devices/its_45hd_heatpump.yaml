@@ -71,38 +71,27 @@ primary_entity:
     - id: 30
       type: boolean
       name: chlorination
-      attribute: true
-    - id: 32
-      type: boolean
-      name: aux_heat
-      readonly: true
     - id: 40
       type: integer
       name: model_code
     - id: 101
       type: integer
       name: current
-      attribute: true
     - id: 102
       type: integer
       name: voltage
-      attribute: true
     - id: 103
       type: integer
       name: power
-      attribute: true
     - id: 104
       type: integer
       name: energy
-      attribute: true
     - id: 105
       type: boolean
       name: electricity_monitor
-      attribute: true
     - id: 106
       type: boolean
       name: linkage
-      attribute: true
     - id: 108
       type: boolean
       name: dipswitch_1
@@ -111,15 +100,13 @@ primary_entity:
       name: dipswitch_2
 secondary_entities:
   - entity: switch
-    name: Defrost
-    icon: "mdi:snowflake"
+    translation_key: anti_frost
     category: config
     dps:
       - id: 7
         type: boolean
         name: switch
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:

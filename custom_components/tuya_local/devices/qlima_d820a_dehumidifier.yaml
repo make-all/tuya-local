@@ -49,7 +49,8 @@ secondary_entities:
             conditions:
               - dps_val: airpurify
                 value_redirect: purify_speed
-              - mapping:
+              - dps_val: [dehum_air, dehum30_air]
+                mapping:
                   - dps_val: low
                     value: 33
                   - dps_val: mid
@@ -73,7 +74,6 @@ secondary_entities:
         type: string
         name: mode
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -131,8 +131,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 16
@@ -145,11 +144,10 @@ secondary_entities:
       - id: 7
         type: integer
         name: sensor
-        unit: C 
+        unit: C
         class: measurement
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 17
@@ -165,7 +163,7 @@ secondary_entities:
           - dps_val: "3h"
             value: "3 hours"
   - entity: sensor
-    name: Time remaining
+    translation_key: time_remaining
     class: duration
     category: diagnostic
     dps:

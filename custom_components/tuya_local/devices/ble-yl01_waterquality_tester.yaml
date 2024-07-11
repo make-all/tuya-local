@@ -1,0 +1,241 @@
+name: Water quality monitor
+products:
+  - id: v1jqz5cy
+    name: BLE-YL01 Waterquality tester
+primary_entity:
+  entity: sensor
+  icon: "mdi:pool-thermometer"
+  class: temperature
+  dps:
+    - id: 2
+      type: integer
+      name: sensor
+      unit: "°C"
+      class: measurement
+      mapping:
+        - scale: 10
+secondary_entities:
+  - entity: sensor
+    name: TDS
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        class: measurement
+        unit: "ppm"
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    class: ph
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: EC
+    icon: "mdi:omega"
+    dps:
+      - id: 11
+        type: integer
+        name: sensor
+        unit: uS/cm
+        class: measurement
+  - entity: sensor
+    name: ORP
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: mV
+        class: measurement
+  - entity: sensor
+    name: CL
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: mg/L
+        class: measurement
+  - entity: select
+    name: pH buffer standard
+    icon: "mdi:ph"
+    category: config
+    dps:
+      - id: 103
+        type: string
+        name: option
+        mapping:
+          - dps_val: AsiaStandard
+            value: Asia
+          - dps_val: EUStandard
+            value: EU
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+      - id: 105
+        type: integer
+        name: backlight_value
+        # may be brightness, but only log we have has 0 value and range
+        # is unusally high - up to 16M
+  - entity: number
+    name: Maximum pH
+    class: ph
+    category: config
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 140
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Minimum pH
+    category: config
+    class: ph
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 140
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Maximum EC
+    category: config
+    icon: "mdi:omega"
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        unit: "uS/cm"
+        range:
+          min: 0
+          max: 20000
+  - entity: number
+    name: Minimum EC
+    category: config
+    icon: "mdi:omega"
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        unit: "uS/cm"
+        range:
+          min: 0
+          max: 20000
+  - entity: number
+    name: Maximum ORP
+    icon: "mdi:virus-off"
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: "mV"
+        range:
+          min: -1200
+          max: 1200
+  - entity: number
+    name: Minimum ORP
+    icon: "mdi:virus-off"
+    category: config
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        unit: "mV"
+        range:
+          min: -1200
+          max: 1200
+  - entity: number
+    name: Maximum CL
+    category: config
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        unit: "mg/L"
+        range:
+          min: 0
+          max: 40
+  - entity: number
+    name: Minimum CL
+    category: config
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        unit: "mg/L"
+        range:
+          min: 0
+          max: 40
+  - entity: number
+    name: pH calibration
+    category: config
+    icon: "mdi:ph"
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 1400
+        mapping:
+          - scale: 100
+  - entity: number
+    name: EC calibration
+    category: config
+    icon: "mdi:omega"
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: uS/cm
+        range:
+          min: 0
+          max: 20000
+  - entity: number
+    name: ORP calibration
+    category: config
+    icon: "mdi:virus-off"
+    dps:
+      - id: 116
+        type: integer
+        name: value
+        unit: mV
+        range:
+          min: -1200
+          max: 1200
+  - entity: sensor
+    name: Salinity
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        class: measurement
+        unit: "ppm"
+  - entity: button
+    name: pH reset
+    class: restart
+    category: config
+    dps:
+      - id: 118
+        type: boolean
+        name: button

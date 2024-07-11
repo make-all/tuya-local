@@ -44,7 +44,7 @@ primary_entity:
         - dps_val: 2
           value: E3 NTC temperature sensor
         - dps_val: 4
-          value: E4 Water overheating 
+          value: E4 Water overheating
         - dps_val: 16
           value: E6 clock RTC failure
 secondary_entities:
@@ -62,7 +62,6 @@ secondary_entities:
             icon: "mdi:shield-remove-outline"
   - entity: binary_sensor
     class: problem
-    name: Fault
     category: diagnostic
     dps:
       - id: 101
@@ -85,8 +84,7 @@ secondary_entities:
             value: true
           - value: false
   - entity: binary_sensor
-    name: Anti-frost
-    class: cold
+    translation_key: defrost
     category: diagnostic
     dps:
       - id: 103

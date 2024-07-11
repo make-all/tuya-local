@@ -1,4 +1,5 @@
 """Tests for the water heater entity."""
+
 from unittest.mock import AsyncMock, Mock
 
 import pytest
@@ -22,7 +23,7 @@ async def test_init_entry(hass):
     entry = MockConfigEntry(
         domain=DOMAIN,
         data={
-            CONF_TYPE: "hydrotherm_dynamic_x8_water_heater",
+            CONF_TYPE: "geyserwise_water_heater",
             CONF_DEVICE_ID: "dummy",
             CONF_PROTOCOL_VERSION: "auto",
         },
@@ -38,7 +39,7 @@ async def test_init_entry(hass):
     hass.data[DOMAIN]["dummy"]["device"] = m_device
 
     await async_setup_entry(hass, entry, m_add_entities)
-    assert type(hass.data[DOMAIN]["dummy"]["water_heater"]) == TuyaLocalWaterHeater
+    assert type(hass.data[DOMAIN]["dummy"]["water_heater"]) is TuyaLocalWaterHeater
     m_add_entities.assert_called_once()
 
 

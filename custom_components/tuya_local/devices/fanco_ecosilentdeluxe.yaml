@@ -12,10 +12,8 @@ primary_entity:
       name: speed
       type: integer
       range:
-        min: 0
+        min: 1
         max: 6
-      mapping:
-        - scale: 0.06
     - id: 8
       name: direction
       type: string
@@ -31,8 +29,6 @@ secondary_entities:
         range:
           min: 10
           max: 1000
-        mapping:
-          - scale: 3.92
       - id: 17
         name: color_temp
         type: integer
@@ -45,8 +41,7 @@ secondary_entities:
               min: 3000
               max: 5000
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 22
@@ -64,7 +59,7 @@ secondary_entities:
           - dps_val: "4"
             value: "4 hours"
   - entity: sensor
-    name: Timer
+    translation_key: time_remaining
     category: diagnostic
     class: duration
     dps:

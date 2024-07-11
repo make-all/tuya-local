@@ -43,8 +43,7 @@ primary_entity:
               value: "off"
 secondary_entities:
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 12
@@ -67,7 +66,7 @@ secondary_entities:
           - dps_val: "6h"
             value: "6h"
   - entity: sensor
-    name: Time remaining
+    translation_key: time_remaining
     class: duration
     dps:
       - id: 13

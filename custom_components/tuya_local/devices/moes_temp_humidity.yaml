@@ -37,7 +37,7 @@ secondary_entities:
       - id: 2
         type: boolean
         name: switch
-        # Auto rules are in an undocumented encoding, so just added as an attribute
+        # Auto rules are in an undocumented encoding, so added as an attribute
       - id: 101
         type: hex
         name: auto_rules
@@ -47,7 +47,7 @@ secondary_entities:
       - id: 3
         type: boolean
         name: switch
-        # Auto rules are in an undocumented encoding, so just added as an attribute
+        # Auto rules are in an undocumented encoding, so added as an attribute
       - id: 102
         type: hex
         name: auto_rules
@@ -125,6 +125,7 @@ secondary_entities:
           - scale: 10
   - entity: number
     name: Timer 1
+    translation_key: timer
     category: config
     dps:
       - id: 103
@@ -136,6 +137,7 @@ secondary_entities:
           max: 86400
   - entity: number
     name: Timer 2
+    translation_key: timer
     category: config
     dps:
       - id: 104
@@ -191,7 +193,7 @@ secondary_entities:
       - id: 9
         type: integer
         name: value
-        unit: C 
+        unit: C
         range:
           min: -500
           max: 1100
@@ -229,14 +231,13 @@ secondary_entities:
       - id: 12
         type: integer
         name: value
-        unit: C 
+        unit: C
         range:
           min: -500
           max: 1100
         mapping:
           - scale: 10
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:

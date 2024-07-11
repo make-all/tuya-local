@@ -25,29 +25,24 @@ class TestEurom600Heater(
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,
             self.subject,
-            min=0,
-            max=37,
+            min=0.0,
+            max=37.0,
         )
         self.setUpBasicBinarySensor(
             ERROR_DPS,
-            self.entities.get("binary_sensor_error"),
+            self.entities.get("binary_sensor_problem"),
             device_class=BinarySensorDeviceClass.PROBLEM,
             testdata=(1, 0),
         )
-        self.mark_secondary(["binary_sensor_error"])
+        self.mark_secondary(["binary_sensor_problem"])
 
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            ClimateEntityFeature.TARGET_TEMPERATURE,
+            ClimateEntityFeature.TARGET_TEMPERATURE
+            | ClimateEntityFeature.TURN_OFF
+            | ClimateEntityFeature.TURN_ON,
         )
-
-    def test_icon(self):
-        self.dps[HVACMODE_DPS] = True
-        self.assertEqual(self.subject.icon, "mdi:radiator")
-
-        self.dps[HVACMODE_DPS] = False
-        self.assertEqual(self.subject.icon, "mdi:radiator-disabled")
 
     def test_temperature_unit_returns_celsius(self):
         self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)

@@ -1,6 +1,7 @@
-name: Stadler Form Roger
+name: Air purifier
 products:
   - id: bff126249136f505
+    name: Stadler Form Roger
 primary_entity:
   entity: fan
   dps:
@@ -11,16 +12,17 @@ primary_entity:
       name: speed
       type: string
       mapping:
-        # According to original reporter these are all progressivly faster speeds, even though auto suggests something else.
-        - dps_val: "sleep"
+        # According to original reporter these are all progressivly faster
+        # speeds, even though auto suggests something else.
+        - dps_val: sleep
           value: 20
-        - dps_val: "low"
+        - dps_val: low
           value: 40
-        - dps_val: "mid"
+        - dps_val: mid
           value: 60
-        - dps_val: "high"
+        - dps_val: high
           value: 80
-        - dps_val: "auto"
+        - dps_val: auto
           value: 100
 secondary_entities:
   - entity: light
@@ -41,44 +43,43 @@ secondary_entities:
   - entity: sensor
     name: Filter (Days)
     category: diagnostic
-    icon: "mdi:air-filter"
+    class: duration
     dps:
       - id: 16
         type: integer
         name: sensor
         unit: "d"
   - entity: sensor
-    icon: "mdi:air-filter"
+    class: pm25
     dps:
       - id: 2
         type: integer
         name: sensor
         unit: "ugm3"
   - entity: sensor
-    name: Total Volatile Organic Compunds
+    name: Total volatile organic compunds
     icon: "mdi:air-filter"
     dps:
       - id: 14
         type: integer
         name: sensor
   - entity: sensor
-    name: Air Quality
+    name: Air quality
     icon: "mdi:air-filter"
     dps:
       - id: 21
         type: string
         name: sensor
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 18
         type: string
         name: option
         mapping:
-          - dps_val: "cancel"
-            value: "cancel"
+          - dps_val: cancel
+            value: cancel
           - dps_val: "1h"
             value: "1 hour"
           - dps_val: "2h"

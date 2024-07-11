@@ -12,8 +12,7 @@ primary_entity:
       type: boolean
 secondary_entities:
   - entity: number
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 7
@@ -52,7 +51,7 @@ secondary_entities:
                     value: "On"
                   - dps_val: memory
                     value: Last state
-              # during startup there may be no value, but we need to know the options
+              # during startup there may be no value, but we need the options
               - dps_val: null
                 mapping:
                   - dps_val: "off"
@@ -62,7 +61,7 @@ secondary_entities:
                   - dps_val: memory
                     value: "Last state"
   - entity: light
-    name: Backlight
+    translation_key: backlight
     category: config
     dps:
       - id: 16

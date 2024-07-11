@@ -11,21 +11,16 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:hvac-off"
         - dps_val: true
           constraint: mode
           conditions:
             - dps_val: "1"
-              icon: "mdi:snowflake"
               value: cool
             - dps_val: "2"
-              icon: "mdi:fire"
               value: heat
             - dps_val: "3"
-              icon: "mdi:water"
               value: dry
             - dps_val: "4"
-              icon: "mdi:fan"
               value: fan_only
     - id: 2
       type: integer
@@ -108,9 +103,8 @@ primary_entity:
       optional: true
 secondary_entities:
   - entity: number
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 105
         type: integer
@@ -120,8 +114,7 @@ secondary_entities:
           min: 0
           max: 24
   - entity: select
-    name: Temperature unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 109
@@ -129,6 +122,6 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: false
-            value: Celsius
+            value: celsius
           - dps_val: true
-            value: Fahrenheit
+            value: fahrenheit

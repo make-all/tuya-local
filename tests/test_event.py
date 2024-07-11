@@ -1,18 +1,19 @@
 """Tests for the event entity."""
+
 from unittest.mock import AsyncMock, Mock
 
 import pytest
 from pytest_homeassistant_custom_component.common import MockConfigEntry
 
-from custom_components.tuya_local.event import (
-    TuyaLocalEvent,
-    async_setup_entry,
-)
 from custom_components.tuya_local.const import (
     CONF_DEVICE_ID,
     CONF_PROTOCOL_VERSION,
     CONF_TYPE,
     DOMAIN,
+)
+from custom_components.tuya_local.event import (
+    TuyaLocalEvent,
+    async_setup_entry,
 )
 
 
@@ -35,7 +36,7 @@ async def test_init_entry(hass):
     }
 
     await async_setup_entry(hass, entry, m_add_entities)
-    assert type(hass.data[DOMAIN]["dummy"]["event_button_1"]) == TuyaLocalEvent
+    assert type(hass.data[DOMAIN]["dummy"]["event_button_1"]) is TuyaLocalEvent
     m_add_entities.assert_called_once()
 
 

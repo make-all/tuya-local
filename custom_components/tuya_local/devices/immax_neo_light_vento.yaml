@@ -4,7 +4,7 @@ products:
     name: Immax NEO LITE VENTO Smart
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   dps:
     - id: 1
       type: boolean
@@ -12,7 +12,6 @@ primary_entity:
     - id: 2
       type: string
       name: preset_mode
-      category: config
       mapping:
         - dps_val: normal
           value: normal
@@ -23,13 +22,11 @@ primary_entity:
     - id: 3
       name: speed
       type: integer
-      category: config
       range:
-        min: 0
+        min: 1
         max: 6
       mapping:
-        - scale: 0.06
-          constraint: preset_mode
+        - constraint: preset_mode
           conditions:
             - dps_val: nature
               step: 5
@@ -38,7 +35,6 @@ primary_entity:
     - id: 8
       name: direction
       type: string
-      category: config
 secondary_entities:
   - entity: light
     dps:
@@ -46,8 +42,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: select
-    name: timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 22

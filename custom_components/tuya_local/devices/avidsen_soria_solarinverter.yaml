@@ -1,0 +1,178 @@
+name: Solar inverter
+products:
+  - id: 0kllybtbzftaee7y
+    name: Avidsen Soria Karst-400
+primary_entity:
+  entity: sensor
+  class: energy
+  dps:
+    - id: 2
+      type: integer
+      name: sensor
+      unit: kWh
+      class: total_increasing
+      mapping:
+        - scale: 100
+    - id: 15
+      name: inverter_type
+      type: string
+    - id: 16
+      name: inverter_id
+      type: string
+    - id: 17
+      name: imei_imsi
+      type: string
+secondary_entities:
+  - entity: switch
+    name: Inverter switch
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: number
+    name: Power Adjustement
+    category: config
+    class: power_factor
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 100
+        unit: "%"
+  - entity: button
+    name: Reset energy
+    category: config
+    class: restart
+    dps:
+      - id: 104
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "1"
+            value: true
+  - entity: sensor
+    name: AC Power
+    class: power
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: power
+    name: Total Power
+    category: diagnostic
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: PV Power
+    category: diagnostic
+    class: power
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: PV DC Voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 3
+        type: base64
+        name: sensor
+        unit: V
+        optional: true
+        mapping:
+          - mask: "FFFF00000000"
+            scale: 10
+  - entity: sensor
+    name: PV DC Current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 3
+        type: base64
+        name: sensor
+        unit: A
+        optional: true
+        mapping:
+          - mask: "0000FFFF0000"
+            scale: 10
+  - entity: sensor
+    name: PV DC Power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 3
+        type: base64
+        name: sensor
+        unit: W
+        optional: true
+        mapping:
+          - mask: "00000000FFFF"
+            scale: 10
+  - entity: sensor
+    name: AC Voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 7
+        type: base64
+        name: sensor
+        unit: V
+        optional: true
+        mapping:
+          - mask: "FFFF0000000000000000"
+            scale: 10
+  - entity: sensor
+    name: AC Current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 7
+        type: base64
+        name: sensor
+        unit: A
+        optional: true
+        mapping:
+          - mask: "0000FFFFFF0000000000"
+            scale: 1000
+  - entity: sensor
+    name: AC active power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 7
+        type: base64
+        name: sensor
+        unit: W
+        optional: true
+        mapping:
+          - mask: "0000000000FFFFFF0000"
+            scale: 1000
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 18
+        name: sensor
+        type: integer
+        class: measurement
+        unit: °C

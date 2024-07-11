@@ -1,4 +1,8 @@
-from homeassistant.components.light import ColorMode, LightEntityFeature
+from homeassistant.components.light import (
+    EFFECT_OFF,
+    ColorMode,
+    LightEntityFeature,
+)
 from homeassistant.const import UnitOfTime
 
 from ..const import RGBCW_LIGHTBULB_PAYLOAD
@@ -39,7 +43,7 @@ class TestRGBCWLightbulb(BasicNumberTests, TuyaDeviceTestCase):
 
     def test_brightness(self):
         self.dps[BRIGHTNESS_DPS] = 500
-        self.assertAlmostEqual(self.subject.brightness, 128, 0)
+        self.assertAlmostEqual(self.subject.brightness, 126, 0)
 
     def test_color_temp(self):
         self.dps[COLORTEMP_DPS] = 500
@@ -81,7 +85,7 @@ class TestRGBCWLightbulb(BasicNumberTests, TuyaDeviceTestCase):
     def test_effect_list(self):
         self.assertCountEqual(
             self.subject.effect_list,
-            ["Scene", "Music"],
+            ["Scene", "Music", EFFECT_OFF],
         )
 
     def test_effect(self):
@@ -90,9 +94,9 @@ class TestRGBCWLightbulb(BasicNumberTests, TuyaDeviceTestCase):
         self.dps[MODE_DPS] = "music"
         self.assertEqual(self.subject.effect, "Music")
         self.dps[MODE_DPS] = "white"
-        self.assertIsNone(self.subject.effect)
+        self.assertEqual(self.subject.effect, EFFECT_OFF)
         self.dps[MODE_DPS] = "colour"
-        self.assertIsNone(self.subject.effect)
+        self.assertEqual(self.subject.effect, EFFECT_OFF)
 
     def test_supported_color_modes(self):
         self.assertCountEqual(
@@ -125,7 +129,7 @@ class TestRGBCWLightbulb(BasicNumberTests, TuyaDeviceTestCase):
         async with assert_device_properties_set(
             self.subject._device,
             {
-                BRIGHTNESS_DPS: 502,
+                BRIGHTNESS_DPS: 506,
             },
         ):
             await self.subject.async_turn_on(brightness=128)

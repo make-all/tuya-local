@@ -74,20 +74,8 @@ secondary_entities:
       - id: 8
         name: oscillate
         type: boolean
-  - entity: sensor
-    class: humidity
-    deprecated: humidifier
-    category: diagnostic
-    name: Current humidity
-    dps:
-      - id: 3
-        type: integer
-        name: sensor
-        class: measurement
-        unit: "%"
   - entity: binary_sensor
-    class: problem
-    name: Tank
+    translation_key: tank_full
     category: diagnostic
     dps:
       - id: 11
@@ -97,4 +85,3 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
-     

@@ -144,7 +144,6 @@ secondary_entities:
     name: Cleaning time
     category: diagnostic
     class: duration
-    icon: "mdi:timer-star"
     dps:
       - id: 6
         name: sensor
@@ -187,7 +186,6 @@ secondary_entities:
     name: Side brush life
     category: diagnostic
     class: duration
-    icon: "mdi:timer-sand"
     dps:
       - id: 17
         name: sensor
@@ -199,7 +197,7 @@ secondary_entities:
   - entity: button
     name: Side brush reset
     category: diagnostic
-    icon: "mdi:autorenew"
+    class: restart
     dps:
       - id: 18
         type: boolean
@@ -209,7 +207,6 @@ secondary_entities:
     name: Main brush life
     category: diagnostic
     class: duration
-    icon: "mdi:timer-sand"
     dps:
       - id: 19
         name: sensor
@@ -221,7 +218,7 @@ secondary_entities:
   - entity: button
     name: Main brush reset
     category: diagnostic
-    icon: "mdi:autorenew"
+    class: restart
     dps:
       - id: 20
         type: boolean
@@ -231,7 +228,6 @@ secondary_entities:
     name: Filter life
     category: diagnostic
     class: duration
-    icon: "mdi:timer-sand"
     dps:
       - id: 21
         name: sensor
@@ -243,7 +239,7 @@ secondary_entities:
   - entity: button
     name: Filter reset
     category: diagnostic
-    icon: "mdi:autorenew"
+    class: restart
     dps:
       - id: 22
         type: boolean
@@ -253,7 +249,6 @@ secondary_entities:
     name: Mop life
     category: diagnostic
     class: duration
-    icon: "mdi:timer-sand"
     dps:
       - id: 23
         name: sensor
@@ -265,7 +260,7 @@ secondary_entities:
   - entity: button
     name: Mop reset
     category: diagnostic
-    icon: "mdi:autorenew"
+    class: restart
     dps:
       - id: 24
         type: boolean

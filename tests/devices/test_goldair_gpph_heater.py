@@ -49,8 +49,8 @@ class TestGoldairHeater(
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,
             self.subject,
-            min=5,
-            max=35,
+            min=5.0,
+            max=35.0,
         )
         self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_display"))
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
@@ -70,7 +70,7 @@ class TestGoldairHeater(
         )
         self.setUpBasicBinarySensor(
             ERROR_DPS,
-            self.entities.get("binary_sensor_error"),
+            self.entities.get("binary_sensor_problem"),
             device_class=BinarySensorDeviceClass.PROBLEM,
             testdata=(1, 0),
         )
@@ -80,7 +80,7 @@ class TestGoldairHeater(
                 "lock_child_lock",
                 "number_timer",
                 "sensor_power_level",
-                "binary_sensor_error",
+                "binary_sensor_problem",
             ]
         )
 
@@ -91,6 +91,8 @@ class TestGoldairHeater(
                 ClimateEntityFeature.TARGET_TEMPERATURE
                 | ClimateEntityFeature.PRESET_MODE
                 | ClimateEntityFeature.SWING_MODE
+                | ClimateEntityFeature.TURN_OFF
+                | ClimateEntityFeature.TURN_ON
             ),
         )
 
@@ -129,23 +131,23 @@ class TestGoldairHeater(
 
     def test_minimum_temperature(self):
         self.dps[PRESET_DPS] = "C"
-        self.assertEqual(self.subject.min_temp, 5)
+        self.assertEqual(self.subject.min_temp, 5.0)
 
         self.dps[PRESET_DPS] = "ECO"
-        self.assertEqual(self.subject.min_temp, 5)
+        self.assertEqual(self.subject.min_temp, 5.0)
 
         self.dps[PRESET_DPS] = "AF"
-        self.assertIs(self.subject.min_temp, 5)
+        self.assertEqual(self.subject.min_temp, 5.0)
 
     def test_maximum_target_temperature(self):
         self.dps[PRESET_DPS] = "C"
-        self.assertEqual(self.subject.max_temp, 35)
+        self.assertEqual(self.subject.max_temp, 35.0)
 
         self.dps[PRESET_DPS] = "ECO"
-        self.assertEqual(self.subject.max_temp, 21)
+        self.assertEqual(self.subject.max_temp, 21.0)
 
         self.dps[PRESET_DPS] = "AF"
-        self.assertIs(self.subject.max_temp, 5)
+        self.assertEqual(self.subject.max_temp, 5.0)
 
     async def test_legacy_set_temperature_with_preset_mode(self):
         async with assert_device_properties_set(
@@ -179,12 +181,12 @@ class TestGoldairHeater(
         self.dps[PRESET_DPS] = "ECO"
 
         with self.assertRaisesRegex(
-            ValueError, "eco_temperature \\(4\\) must be between 5 and 21"
+            ValueError, "eco_temperature \\(4\\) must be between 5.0 and 21.0"
         ):
             await self.subject.async_set_target_temperature(4)
 
         with self.assertRaisesRegex(
-            ValueError, "eco_temperature \\(22\\) must be between 5 and 21"
+            ValueError, "eco_temperature \\(22\\) must be between 5.0 and 21.0"
         ):
             await self.subject.async_set_target_temperature(22)
 
@@ -337,10 +339,3 @@ class TestGoldairHeater(
                 "power_level": "4",
             },
         )
-
-    def test_light_icon(self):
-        self.dps[LIGHT_DPS] = True
-        self.assertEqual(self.basicLight.icon, "mdi:led-on")
-
-        self.dps[LIGHT_DPS] = False
-        self.assertEqual(self.basicLight.icon, "mdi:led-off")

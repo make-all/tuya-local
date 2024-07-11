@@ -4,12 +4,12 @@ products:
     name: NX-100AP Rapid
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
+  icon: "mdi:air-purifier"
   dps:
     - id: 1
       name: switch
       type: boolean
-      icon: "mdi:air-purifier"
     - id: 3
       name: preset_mode
       type: string
@@ -24,9 +24,8 @@ primary_entity:
           value: smart
 secondary_entities:
   - entity: sensor
-    name: Timer remaining
+    translation_key: time_remaining
     class: duration
-    icon: "mdi:timer"
     dps:
       - id: 19
         name: sensor
@@ -56,9 +55,8 @@ secondary_entities:
         class: measurement
         unit: ugm3
   - entity: select
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 18
         type: string
@@ -89,17 +87,15 @@ secondary_entities:
         type: boolean
         name: button
   - entity: switch
-    name: Ionizer
+    translation_key: ionizer
     category: config
-    icon: "mdi:dots-hexagon"
     dps:
       - id: 6
         name: switch
         type: boolean
   - entity: switch
-    name: UV sterilization
+    translation_key: uv_sterilization
     category: config
-    icon: "mdi:sun-wireless"
     dps:
       - id: 9
         name: switch
@@ -114,7 +110,6 @@ secondary_entities:
         type: integer
         unit: "%"
   - entity: binary_sensor
-    name: Fault
     category: diagnostic
     class: problem
     dps:

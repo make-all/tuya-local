@@ -37,21 +37,9 @@ primary_entity:
         - dps_val: 8
           value: tank
 secondary_entities:
-  - entity: sensor
-    name: Current humidity
-    deprecated: humidifier
-    category: diagnostic
-    class: humidity
-    dps:
-      - id: 3
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
   - entity: switch
-    name: Ionizer
+    translation_key: ionizer
     category: config
-    icon: "mdi:creation"
     dps:
       - id: 5
         type: boolean
@@ -77,20 +65,15 @@ secondary_entities:
           - dps_val: null
             invalid: true
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 7
         type: boolean
         name: lock
-        mapping:
-          - dps_val: false
-            icon: "mdi:hand-back-right"
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
   - entity: select
     name: Countdown
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 12
@@ -148,7 +131,7 @@ secondary_entities:
           - dps_val: "24"
             value: "24 hours"
   - entity: sensor
-    name: Remaining Time
+    translation_key: time_remaining
     class: duration
     dps:
       - id: 13
@@ -156,10 +139,7 @@ secondary_entities:
         name: sensor
         unit: min
   - entity: binary_sensor
-    name: Tank
-    class: problem
-    icon: "mdi:cup-outline"
-    icon-priority: 2
+    translation_key: tank_full
     category: diagnostic
     dps:
       - id: 11
@@ -168,11 +148,8 @@ secondary_entities:
         mapping:
           - dps_val: 8
             value: true
-            icon: "mdi:cup-water"
-            icon-priority: 1
           - value: false
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -186,8 +163,7 @@ secondary_entities:
             value: false
           - value: true
   - entity: switch
-    name: Inside Drying
-    icon: "mdi:tshirt-crew"
+    name: Inside drying
     dps:
       - id: 101
         name: switch

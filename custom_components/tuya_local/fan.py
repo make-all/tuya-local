@@ -1,10 +1,15 @@
 """
 Setup for different kinds of Tuya fan devices
 """
+
 import logging
 from typing import Any
 
 from homeassistant.components.fan import FanEntity, FanEntityFeature
+from homeassistant.util.percentage import (
+    percentage_to_ranged_value,
+    ranged_value_to_percentage,
+)
 
 from .device import TuyaLocalDevice
 from .helpers.config import async_tuya_setup_platform
@@ -82,6 +87,10 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
             }
 
         if percentage is not None and self._speed_dps:
+            r = self._speed_dps.range(self._device)
+            if r:
+                percentage = percentage_to_ranged_value(r, percentage)
+
             settings = {
                 **settings,
                 **self._speed_dps.get_values_to_set(self._device, percentage),
@@ -106,7 +115,11 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
         """Return the currently set percentage."""
         if self._speed_dps is None:
             return None
-        return self._speed_dps.get_value(self._device)
+        r = self._speed_dps.range(self._device)
+        val = self._speed_dps.get_value(self._device)
+        if r and val is not None:
+            val = ranged_value_to_percentage(r, val)
+        return val
 
     @property
     def percentage_step(self):
@@ -115,7 +128,9 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
             return None
         if self._speed_dps.values(self._device):
             return 100 / len(self._speed_dps.values(self._device))
-        return self._speed_dps.step(self._device)
+        r = self._speed_dps.range(self._device)
+        scale = 100 / r[1] if r else 1.0
+        return self._speed_dps.step(self._device) * scale
 
     @property
     def speed_count(self):
@@ -140,6 +155,9 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
                 self._speed_dps.values(self._device),
                 key=lambda x: abs(x - percentage),
             )
+        elif self._speed_dps.range(self._device):
+            r = self._speed_dps.range(self._device)
+            percentage = percentage_to_ranged_value(r, percentage)
 
         values_to_set = self._speed_dps.get_values_to_set(self._device, percentage)
         if not self.is_on and self._switch_dps:
@@ -150,9 +168,8 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
     @property
     def preset_mode(self):
         """Return the current preset mode."""
-        if self._preset_dps is None:
-            return None
-        return self._preset_dps.get_value(self._device)
+        if self._preset_dps:
+            return self._preset_dps.get_value(self._device)
 
     @property
     def preset_modes(self):
@@ -170,9 +187,8 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
     @property
     def current_direction(self):
         """Return the current direction [forward or reverse]."""
-        if self._direction_dps is None:
-            return None
-        return self._direction_dps.get_value(self._device)
+        if self._direction_dps:
+            return self._direction_dps.get_value(self._device)
 
     async def async_set_direction(self, direction):
         """Set the direction of the fan."""
@@ -183,9 +199,8 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
     @property
     def oscillating(self):
         """Return whether or not the fan is oscillating."""
-        if self._oscillate_dps is None:
-            return None
-        return self._oscillate_dps.get_value(self._device)
+        if self._oscillate_dps:
+            return self._oscillate_dps.get_value(self._device)
 
     async def async_oscillate(self, oscillating):
         """Oscillate the fan."""

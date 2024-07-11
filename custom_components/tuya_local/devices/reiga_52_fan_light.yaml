@@ -4,7 +4,7 @@ products:
     name: Reiga 52 ceiling fan with light
 primary_entity:
   entity: fan
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   dps:
     - id: 1
       type: boolean
@@ -25,15 +25,12 @@ primary_entity:
       range:
         min: 1
         max: 6
-      mapping:
-        - scale: 0.06
     - id: 8
       type: string
       name: direction
 secondary_entities:
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 22

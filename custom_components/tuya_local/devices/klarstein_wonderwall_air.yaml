@@ -4,7 +4,7 @@ products:
     name: Klarstein Wonderwall Air Art Smart
 primary_entity:
   entity: climate
-  translation_key: thermostat
+  translation_only_key: thermostat
   dps:
     - id: 1
       name: hvac_mode
@@ -44,8 +44,7 @@ primary_entity:
       name: preset_mode
 secondary_entities:
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 10
@@ -104,7 +103,7 @@ secondary_entities:
           - dps_val: "24"
             value: "24 hours"
   - entity: sensor
-    name: Time remaining
+    translation_key: time_remaining
     class: duration
     category: diagnostic
     dps:

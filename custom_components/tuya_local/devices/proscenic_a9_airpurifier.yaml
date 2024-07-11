@@ -5,7 +5,7 @@ products:
 primary_entity:
   entity: fan
   icon: "mdi:air-purifier"
-  translation_key: fan_with_presets
+  translation_only_key: fan_with_presets
   dps:
     - id: 1
       name: switch
@@ -46,7 +46,7 @@ primary_entity:
       name: unknown_102
       type: string
 secondary_entities:
-  - entity: sensor 
+  - entity: sensor
     class: pm25
     dps:
       - id: 2
@@ -54,10 +54,9 @@ secondary_entities:
         class: measurement
         type: integer
         unit: ugm3
-  - entity: light # this is inverted to what actually happens (false = light on)
+  - entity: light  # this is inverted (false = light on)
     category: config
-    name: Display
-    icon: "mdi:lightbulb-night"
+    translation_key: display
     dps:
       - id: 8
         name: switch
@@ -94,8 +93,7 @@ secondary_entities:
         type: integer
         unit: h
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 7
@@ -129,8 +127,7 @@ secondary_entities:
           - dps_val: "severe"
             value: "Severe"
   - entity: select
-    name: Timer
-    icon: "mdi:fan-clock"
+    translation_key: timer
     category: config
     dps:
       - id: 101
@@ -144,6 +141,6 @@ secondary_entities:
           - dps_val: 2
             value: "2 hour"
           - dps_val: 4
-            value: "4 hours" 
+            value: "4 hours"
           - dps_val: 8
-            value: "8 hours" 
+            value: "8 hours"

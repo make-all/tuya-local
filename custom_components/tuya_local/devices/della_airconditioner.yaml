@@ -89,24 +89,21 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: light
-    name: Backlight
+    translation_key: backlight
     category: config
-    icon: "mdi:television-ambient-light"
     dps:
       - id: 13
         name: switch
         type: boolean
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
-    icon: "mdi:hand-right-back-off"
     dps:
       - id: 14
         name: lock
         type: boolean
   - entity: select
-    name: Temperature unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 19
@@ -114,9 +111,9 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: C
-            value: Celsius
+            value: celsius
           - dps_val: F
-            value: Fahrenheit
+            value: fahrenheit
   - entity: sensor
     class: energy
     category: diagnostic
@@ -141,21 +138,19 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: switch
-    name: Anti-frost
+    translation_key: anti_frost
     category: config
     dps:
       - id: 104
         name: switch
         type: boolean
   - entity: switch
-    name: iHealth
-    icon: "mdi:creation"
+    translation_key: uv_sterilization
     dps:
       - id: 106
         name: switch
         type: boolean
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:

@@ -1,0 +1,325 @@
+name: Circuit breaker
+products:
+  - id: 58bfahc5yvdpvpwd
+    name: Tongou AT-QCB2-JWT
+  - id: vhnq3ezhphqggwqt
+    name: Tongou AT-Q-SMR1-40-JWT
+primary_entity:
+  entity: sensor
+  class: energy
+  dps:
+    - id: 1
+      type: integer
+      name: sensor
+      unit: kWh
+      class: total_increasing
+      mapping:
+        - scale: 100
+secondary_entities:
+  - entity: sensor
+    name: Leakage current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        unit: mA
+        class: measurement
+  - entity: switch
+    name: Breaker
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+      - id: 124
+        type: integer
+        optional: true
+        name: signal
+      - id: 125
+        type: string
+        optional: true
+        name: firmware_version
+  - entity: button
+    name: Leakage test
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: button
+        optional: true
+  - entity: number
+    name: Current limit
+    class: current
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 1
+          max: 100
+  - entity: number
+    name: Overvoltage limit
+    class: voltage
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 245
+          max: 295
+  - entity: number
+    name: Undervoltage limit
+    class: voltage
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: V
+        range:
+          min: 145
+          max: 220
+  - entity: number
+    name: Leakage current limit
+    class: current
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: mA
+        range:
+          min: 10
+          max: 100
+        mapping:
+          - step: 10
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 108
+        type: integer
+        optional: true
+        name: rated_voltage
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: number
+    class: temperature
+    name: Temperature limit
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+        range:
+          min: -400
+          max: 1000
+  - entity: select
+    name: Overvoltage action
+    icon: "mdi:fuse-alert"
+    category: config
+    dps:
+      - id: 111
+        type: string
+        name: option
+        mapping:
+          - dps_val: Close
+            value: Ignore
+          - dps_val: Alarm
+            value: Alarm
+          - dps_val: Trip
+            value: Trip
+  - entity: select
+    name: Undervoltage action
+    icon: "mdi:fuse-alert"
+    category: config
+    dps:
+      - id: 112
+        type: string
+        name: option
+        mapping:
+          - dps_val: Close
+            value: Ignore
+          - dps_val: Alarm
+            value: Alarm
+          - dps_val: Trip
+            value: Trip
+  - entity: select
+    name: Over current action
+    icon: "mdi:fuse-alert"
+    category: config
+    dps:
+      - id: 113
+        type: string
+        name: option
+        mapping:
+          - dps_val: Close
+            value: Ignore
+          - dps_val: Alarm
+            value: Alarm
+          - dps_val: Trip
+            value: Trip
+  - entity: select
+    name: Over power action
+    icon: "mdi:fuse-alert"
+    category: config
+    dps:
+      - id: 114
+        type: string
+        name: option
+        mapping:
+          - dps_val: Close
+            value: Ignore
+          - dps_val: Alarm
+            value: Alarm
+          - dps_val: Trip
+            value: Trip
+  - entity: select
+    name: Over temperature action
+    icon: "mdi:fuse-alert"
+    category: config
+    dps:
+      - id: 115
+        type: string
+        name: option
+        mapping:
+          - dps_val: Close
+            value: Ignore
+          - dps_val: Alarm
+            value: Alarm
+          - dps_val: Trip
+            value: Trip
+  - entity: select
+    name: Earth leakage action
+    icon: "mdi:fuse-alert"
+    category: config
+    dps:
+      - id: 116
+        type: string
+        name: option
+        mapping:
+          - dps_val: Close
+            value: Ignore
+          - dps_val: Alarm
+            value: Alarm
+          - dps_val: Trip
+            value: Trip
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+  - entity: number
+    name: Power limit
+    class: power
+    category: config
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        unit: W
+        range:
+          min: 5
+          max: 25000
+        mapping:
+          - step: 10
+  - entity: sensor
+    name: Event
+    category: diagnostic
+    dps:
+      - id: 119
+        type: string
+        name: sensor
+  - entity: button
+    name: Self check
+    icon: "mdi:check-circle"
+    category: config
+    dps:
+      - id: 120
+        type: boolean
+        name: button
+        optional: true
+  - entity: number
+    name: Self check frequency
+    category: config
+    icon: "mdi:check-circle"
+    dps:
+      - id: 121
+        type: integer
+        name: value
+        optional: true
+        unit: d
+        range:
+          min: 1
+          max: 100
+        mapping:
+          - dps_val: null
+            value: 0
+            hidden: true
+  - entity: sensor
+    name: Self check due
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 122
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: switch
+    name: Auto reset
+    category: config
+    dps:
+      - id: 123
+        type: boolean
+        name: switch
+  - entity: button
+    name: Factory reset
+    class: restart
+    category: config
+    dps:
+      - id: 126
+        type: boolean
+        optional: true
+        name: button
