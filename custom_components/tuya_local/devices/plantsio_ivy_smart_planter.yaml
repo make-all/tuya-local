@@ -25,7 +25,6 @@ primary_entity:
 secondary_entities:
   # Sensor entities raw
   - entity: sensor
-    name: Ambient light
     class: illuminance
     dps:
       - id: 103
@@ -34,7 +33,6 @@ secondary_entities:
         unit: lx
         class: measurement
   - entity: sensor
-    name: Temperature
     class: temperature
     dps:
       - id: 104
@@ -45,7 +43,6 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Humidity
     class: humidity
     dps:
       - id: 105
@@ -54,7 +51,6 @@ secondary_entities:
         unit: "%"
         class: measurement
   - entity: sensor
-    name: Soil moisture
     class: moisture
     dps:
       - id: 122
@@ -137,7 +133,6 @@ secondary_entities:
           - value: "Unknown state"
   # Diagnostic entities
   - entity: sensor
-    name: Battery
     class: battery
     category: diagnostic
     dps:
@@ -146,30 +141,19 @@ secondary_entities:
         name: sensor
         unit: "%"
   - entity: binary_sensor
-    name: Charge state
     class: battery_charging
     category: diagnostic
     dps:
       - id: 109
         type: boolean
         name: sensor
-  - entity: sensor
+  - entity: binary_sensor
     name: Plant in pot
-    class: problem
     category: diagnostic
     dps:
       - id: 102
         type: boolean
         name: sensor
-  - entity: sensor
-    name: Touching
-    icon: "mdi:gesture-tap"
-    category: diagnostic
-    dps:
-      - id: 111
-        type: string
-        name: sensor
-        optional: true
   # Config entities
   - entity: select
     translation_key: temperature_unit
@@ -311,6 +295,10 @@ secondary_entities:
       - id: 110
         type: boolean
         name: switch
+      - id: 111
+        type: string
+        name: touching
+        optional: true
   - entity: switch
     name: Auto brightness
     category: config
@@ -319,14 +307,13 @@ secondary_entities:
       - id: 135
         type: boolean
         name: switch
-  - entity: number
-    name: Brightness
+  - entity: light
+    translation_key: display
     category: config
-    icon: "mdi:brightness-percent"
     dps:
       - id: 101
         type: integer
-        name: value
+        name: brightness
         range:
           min: 0
           max: 100
@@ -421,13 +408,13 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: 0
-            value: "Chinese"
+            value: "中文"
           - dps_val: 1
             value: "English"
           - dps_val: 2
-            value: "Japanese"
+            value: "日本語"
           - dps_val: 3
-            value: "French"
+            value: "Français"
   - entity: switch
     name: Location weather
     icon: "mdi:weather-pouring"
