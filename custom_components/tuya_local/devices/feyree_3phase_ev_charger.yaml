@@ -47,9 +47,6 @@ primary_entity:
           value: Charging ended
         - dps_val: charger_fault
           value: Charger fault
-    - id: 10
-      type: bitfield
-      name: fault_code
     - id: 11
       type: string
       optional: true
@@ -90,6 +87,49 @@ primary_entity:
       optional: true
       name: online_state
 secondary_entities:
+  - entity: sensor
+    name: EV Wallbox Alarm event
+    icon: 'mdi:alert-outline'
+    class: enum
+    dps:
+      - id: 10
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: "Ready"
+          - dps_val: 1
+            value: "Under voltage protection"
+          - dps_val: 2
+            value: "Over voltage protection"
+          - dps_val: 4
+            value: "Over current protection"
+          - dps_val: 8
+            value: "Protective earth error"
+          - dps_val: 16
+            value: "Temperature is to high"
+          - dps_val: 32
+            value: "Control pilot line error"
+          - dps_val: 64
+            value: "Leak"
+          - dps_val: 128
+            value: "Relay socket"
+          - dps_val: 256
+            value: "Protective earth error 2"
+          - dps_val: 512
+            value: "Plug temperature is to high."
+          - dps_val: 1024
+            value: "PCB temperature is to high."
+          - dps_val: 2048
+            value: "Core temperature is to high."
+          - dps_val: 4096
+            value: "ESB"
+          - dps_val: 8192
+            value: "Socket protective earth error"
+          - dps_val: 16384
+            value: "Socket leakage"
+          - dps_val: 32768
+            value: "Socket temperature is to high."
   - entity: button
     name: EV Wallbox Clear energy
     class: restart
