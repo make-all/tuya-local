@@ -1,15 +1,101 @@
-name: Casdon TD Pro 2
+name: Oven
 products:
   - id: wab6oustdukujpkn
-    name: 蒸烤箱TD-pro二代
+    name: Casdon TD Pro 2
 primary_entity:
-  entity: switch
-  icon: "mdi:power"
-  name: Switch
+  entity: climate
   dps:
     - id: 1
+      name: hvac_mode
       type: boolean
-      name: switch
+      mapping:
+        - dps_val: true
+          value: "heat"
+        - dps_val: false
+          value: "off"
+    - id: 7
+      name: temperature
+      type: integer
+      unit: C
+      range:
+        min: 0
+        max: 500
+      mapping:
+        - step: 5
+    - id: 8
+      name: current_temperature
+      type: integer
+    - id: 105
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: "1"
+          value: 健康蒸
+        - dps_val: "2"
+          value: 鲜嫩蒸
+        - dps_val: "3"
+          value: 高温蒸
+        - dps_val: "4"
+          value: 养生炖
+        - dps_val: "5"
+          value: 上下烤
+        - dps_val: "6"
+          value: 立体烧烤
+        - dps_val: "7"
+          value: 底部热风
+        - dps_val: "8"
+          value: 上强烤
+        - dps_val: "9"
+          value: 3D热风
+        - dps_val: "10"
+          value: 空气炸
+        - dps_val: "11"
+          value: 蒸汽炸
+        - dps_val: "12"
+          value: 一键面包
+        - dps_val: "13"
+          value: 速热
+        - dps_val: "14"
+          value: 保温
+        - dps_val: "15"
+          value: 解冻
+        - dps_val: "16"
+          value: 发酵
+        - dps_val: "17"
+          value: 除垢
+        - dps_val: "18"
+          value: 菜谱模式
+        - dps_val: "19"
+          value: 内腔烘干
+        - dps_val: "20"
+          value: 自定义模式
+        - dps_val: "21"
+          value: 低湿蒸烤
+        - dps_val: "22"
+          value: 中湿蒸烤
+        - dps_val: "23"
+          value: 高湿蒸烤
+    - id: 102
+      type: string
+      name: hvac_action
+      mapping:
+        - dps_val: cooking
+          value: heating
+        - dps_val: reservation
+          value: idle
+        - dps_val: cancel
+          value: idle
+        - dps_val: done
+          value: idle
+        - dps_val: pause
+          value: idle
+        - dps_val: "wait"
+          constraint: hvac_mode
+          conditions:
+            - dps_val: true
+              value: idle
+            - dps_val: false
+              value: "off"
 
 secondary_entities:
   - entity: switch
@@ -20,54 +106,33 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: number
-    name: cook_temperature
-    dps:
-      - id: 7
-        name: value
-        type: integer
-        unit: C
-        range:
-          min: 0
-          max: 500
-  - entity: sensor
-    name: temp_current
-    class: temperature
-    dps:
-      - id: 8
-        name: sensor
-        type: integer
-        unit: C
-        readonly: true
-        range:
-          min: 0
-          max: 500
-  - entity: number
-    name: appointment_time
+    name: Start time
+    translation_key: timer
     dps:
       - id: 9
         name: value
         type: integer
         optional: true
         range:
-          min: 0
+          min: 1
           max: 1440
         unit: min
         class: measurement
   - entity: number
     icon: "mdi:timer-edit"
-    name: cook_time
+    name: Cooking time
     dps:
       - id: 10
         name: value
         type: integer
         range:
-          min: 0
+          min: 1
           max: 1440
         unit: min
         class: measurement
   - entity: sensor
-    icon: "mdi:timer"
-    name: remain_time
+    translation_key: time_remaining
+    class: duration
     dps:
       - id: 11
         name: sensor
@@ -78,14 +143,20 @@ secondary_entities:
           max: 1440
         unit: min
         class: measurement
-  - entity: sensor
-    name: fault_message
+  - entity: binary_sensor
     category: diagnostic
-    class: enum
+    class: problem
     dps:
       - id: 13
         type: bitfield
         name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 13
+        type: bitfield
+        name: fault_message
         mapping:
           - value: OK
           - dps_val: 0
@@ -106,19 +177,9 @@ secondary_entities:
             value: "er7：显示板通信故障"
           - dps_val: 128
             value: "er8：水箱开关（CN7）未闭合或者蒸发盘NTC（CN3）温度高于125℃并持续时间达25s后，缺水提示，并停止工作。"
-  - entity: binary_sensor
-    name: fault
-    category: diagnostic
-    dps:
-      - id: 13
-        type: bitfield
-        name: sensor
-        mapping:
-          - dps_val: 0
-            value: false
-          - value: true
+
   - entity: sensor
-    name: cook_status
+    name: Status
     class: enum
     dps:
       - id: 102
@@ -129,78 +190,19 @@ secondary_entities:
           - dps_val: wait
             value: 烹饪等待
           - dps_val: reservation
-            icon: "mdi:cup-water"
             value: 预约中
           - dps_val: cooking
-            icon: "mdi:cup"
             value: 烹饪中
           - dps_val: cancel
-            icon: "mdi:cup"
             value: 烹饪取消
           - dps_val: done
-            icon: "mdi:cup"
             value: 烹饪完成
           - dps_val: pause
-            icon: "mdi:cup"
             value: 烹饪暂停
-  - entity: switch
-    name: Lamp
+  - entity: light
     icon: "mdi:lightbulb-on"
     dps:
       - id: 103
         name: switch
         type: boolean
-  - entity: select
-    name: all_mode
-    category: config
-    dps:
-      - id: 105
-        name: option
-        type: string
-        mapping:
-          - dps_val: "1"
-            value: 健康蒸
-          - dps_val: "2"
-            value: 鲜嫩蒸
-          - dps_val: "3"
-            value: 高温蒸
-          - dps_val: "4"
-            value: 养生炖
-          - dps_val: "5"
-            value: 上下烤
-          - dps_val: "6"
-            value: 立体烧烤
-          - dps_val: "7"
-            value: 底部热风
-          - dps_val: "8"
-            value: 上强烤
-          - dps_val: "9"
-            value: 3D热风
-          - dps_val: "10"
-            value: 空气炸
-          - dps_val: "11"
-            value: 蒸汽炸
-          - dps_val: "12"
-            value: 一键面包
-          - dps_val: "13"
-            value: 速热
-          - dps_val: "14"
-            value: 保温
-          - dps_val: "15"
-            value: 解冻
-          - dps_val: "16"
-            value: 发酵
-          - dps_val: "17"
-            value: 除垢
-          - dps_val: "18"
-            value: 菜谱模式
-          - dps_val: "19"
-            value: 内腔烘干
-          - dps_val: "20"
-            value: 自定义模式
-          - dps_val: "21"
-            value: 低湿蒸烤
-          - dps_val: "22"
-            value: 中湿蒸烤
-          - dps_val: "23"
-            value: 高湿蒸烤
+
