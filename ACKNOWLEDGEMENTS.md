@@ -594,3 +594,6 @@ Further device support has been made with the assistance of users. Please consid
 - [Trychlik](https://github.com/Trychlik) for assisting with support for Tesla S300 air purifier.
 - [thewade](https://github.com/thewade) for contributing support for PlantsIO Ivy smart planter.
 - [bjeanes](https://github.com/bjeanes) for contributing support for Bonaire HPC5200020 heater.
+- [Jame](https://github.com/Jame) for contributing support for Arlec APR005HA air purifier.
+- [jianyun8023](https://github.com/jianyun8023) for contributing Chinese (Simplified) translations, and support for Casdon TD Pro oven.
+- [lankhaar](https://github.com/lankhaar) for contributing support for Zedar R600 vacuum.
