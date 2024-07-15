@@ -4,6 +4,7 @@ products:
     name: Casdon TD Pro 2
 primary_entity:
   entity: climate
+  translation_only_key: casdon_oven
   dps:
     - id: 1
       name: hvac_mode
@@ -146,6 +147,7 @@ secondary_entities:
   - entity: binary_sensor
     category: diagnostic
     class: problem
+    translation_key: casdon_oven_fault
     dps:
       - id: 13
         type: bitfield
@@ -158,29 +160,29 @@ secondary_entities:
         type: bitfield
         name: fault_message
         mapping:
-          - value: OK
+          - value: "OK"
           - dps_val: 0
-            value: OK
+            value: "OK"
           - dps_val: 1
-            value: "E1: Chamber overheat protection (exceeds 290°C)"
+            value: "E1"
           - dps_val: 2
-            value: "E2: Evaporation tray overheat protection (exceeds 200°C)"
+            value: "E2"
           - dps_val: 4
-            value: "E3: Chamber low temperature protection (below 35°C)"
+            value: "E3"
           - dps_val: 8
-            value: "E4: Evaporation tray low temp protection (below 35°C)"
+            value: "E4"
           - dps_val: 16
-            value: "E5: Sensor connection error (Open circuit)"
+            value: "E5"
           - dps_val: 32
-            value: "E6: Sensor malfunction (Short circuit)"
+            value: "E6"
           - dps_val: 64
-            value: "E7: Display board communication error"
+            value: "E7"
           - dps_val: 128
-            value: "E8: Water tank open (CN7) or Evaporation tray dry (CN3)"
+            value: "E8"
 
   - entity: sensor
-    name: Status
     class: enum
+    translation_key: cooking_status
     dps:
       - id: 102
         name: sensor
@@ -188,17 +190,17 @@ secondary_entities:
         readonly: true
         mapping:
           - dps_val: wait
-            value: Waiting for Cooking
+            value: wait
           - dps_val: reservation
-            value: In Reservation
+            value: reservation
           - dps_val: cooking
-            value: In Progress
+            value: cooking
           - dps_val: cancel
-            value: Cooking Canceled
+            value: cancel
           - dps_val: done
-            value: Cooking Completed
+            value: done
           - dps_val: pause
-            value: Cooking Paused
+            value: pause
   - entity: light
     dps:
       - id: 103
