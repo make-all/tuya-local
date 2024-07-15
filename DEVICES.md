@@ -8,6 +8,7 @@
 - Atomi AT1632/AT1635 ceramic heaters
 - Betterlife BT1500 IR heater
 - Blumfeldt/Klarstein Cosmic Beam Smart 24 infrared radiant heater
+- Bonaire HPC5200020 electric heater
 - BVF CP1 heater
 - Caldo Up T fan heater
 - Calex Smart Convector heater
@@ -593,6 +594,7 @@ of device.
 - Tesvor S6 vacuum cleaner with mop
 - TTEC Robi Pro vacuum cleaner
 - Ultenic T10 vacuum cleaner
+- Zedar R600
 
 ### Lawnmowers
 

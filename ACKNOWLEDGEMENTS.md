@@ -592,3 +592,5 @@ Further device support has been made with the assistance of users. Please consid
 - [jorgeal94](https://github.com/jorgeal94) for assisting with support for another Tongou QCB2 circuit breaker variant and compatible Tongou SMR1 circuit breaker.
 - [ifumadjiev](https://github.com/ifumadjiev) for assisting with support for Gosund SP112 USB smartplug.
 - [Trychlik](https://github.com/Trychlik) for assisting with support for Tesla S300 air purifier.
+- [thewade](https://github.com/thewade) for contributing support for PlantsIO Ivy smart planter.
+- [bjeanes](https://github.com/bjeanes) for contributing support for Bonaire HPC5200020 heater.

@@ -55,10 +55,7 @@ class TuyaLocalEntity:
     @property
     def use_device_name(self):
         """Return whether to use the device name for the entity name"""
-        alt_name = self._config.translation_key
-        if self._config.translation_key is self._config.device_class:
-            alt_name = None
-        own_name = self._config.name or alt_name
+        own_name = self._config.name or self._config.translation_key
         return not own_name
 
     @property
