@@ -234,6 +234,7 @@
 
 ### Air Purifiers
 
+- Arlec APR005HA air purifier
 - Breville Easy Air purifier
 - Breville Smart Air Connect purifier
 - Breville Smart Air Viral Protect Plus purifier
@@ -326,13 +327,14 @@
 ### Kitchen Appliances
 
 - Anko 1.7L smart kettle
-- Setti+ KT950W smart kettle
+- Casdon TD Pro 2 oven
 - Inkbird iBBQ-4BW cooking probe thermometer
 - Inkbird iBBQ-4T cooking probe thermometer (separate and combined measurement variants)
 - Inkbird IBS-M1S temperature probe hub
 - Inkbird IBT-26S BBQ thermometer
 - Inkbird sous vide cooker (also supports Silvercrest sous vide sticks)
 - Kogan glass 1.7L smart kettle
+- Setti+ KT950W smart kettle
 - Silvercrest 1.7L smart kettle
 - Ultenic K10 air fryer
 - Weekett smart kettle
@@ -594,7 +596,7 @@ of device.
 - Tesvor S6 vacuum cleaner with mop
 - TTEC Robi Pro vacuum cleaner
 - Ultenic T10 vacuum cleaner
-- Zedar R600
+- Zedar R600 vacuum cleaner
 
 ### Lawnmowers
 
