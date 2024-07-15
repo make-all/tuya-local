@@ -149,18 +149,12 @@ secondary_entities:
           - dps_val: 4
             value: true
           - value: false
-  - entity: camera
+  - entity: sensor
+    name: Snapshot data
+    category: diagnostic
     dps:
-      - id: 113
-        type: boolean
-        optional: true
-        name: record
-        mapping:
-          - dps_val: null
-            value: false
-            hidden: true
       - id: 115
         type: base64
-        name: snapshot
+        name: sensor
         optional: true
         sensitive: true
