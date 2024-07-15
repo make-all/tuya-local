@@ -162,21 +162,21 @@ secondary_entities:
           - dps_val: 0
             value: OK
           - dps_val: 1
-            value: "er1: Chamber Overheat Protection (Sensor temperature exceeds 290°C)"
+            value: "E1: Chamber overheat protection (exceeds 290°C)"
           - dps_val: 2
-            value: "er2: Evaporation Tray Overheat Protection (Sensor temperature exceeds 200°C)"
+            value: "E2: Evaporation tray overheat protection (exceeds 200°C)"
           - dps_val: 4
-            value: "er3: Chamber Low Temperature Protection (Temperature remains below 35°C for 5 minutes)"
+            value: "E3: Chamber low temperature protection (below 35°C for 5 minutes)"
           - dps_val: 8
-            value: "er4: Evaporation Tray Low Temperature Protection (Temperature remains below 35°C for 5 minutes)"
+            value: "E4: Evaporation tray low temperature protection (below 35°C for 5 minutes)"
           - dps_val: 16
-            value: "er5: Sensor Connection Error (Open circuit in chamber or evaporation tray sensor)"
+            value: "E5: Sensor connection error (Open circuit)"
           - dps_val: 32
-            value: "er6: Sensor Malfunction (Short circuit in chamber or evaporation tray sensor)"
+            value: "E6: Sensor malfunction (Short circuit)"
           - dps_val: 64
-            value: "er7: Display Board Communication Error"
+            value: "E7: Display board communication error"
           - dps_val: 128
-            value: "er8: Water Tank Switch (CN7) Not Closed or Evaporation Tray NTC (CN3) Exceeds 125°C for 25 Seconds, Triggering Water Shortage Alert and Stopping Operation"
+            value: "E8: Water tank open (CN7) or Evaporation tray dry (CN3)"
 
   - entity: sensor
     name: Status
