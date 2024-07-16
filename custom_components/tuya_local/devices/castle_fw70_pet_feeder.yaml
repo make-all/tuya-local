@@ -1,0 +1,119 @@
+name: Pet feeder
+products:
+  - id: 1bnq0dygljpp6dpy
+    name: Castle FW70
+  - id: 1bnq0dygljpp6dpy
+    name: WOPET FW70Plus
+primary_entity:
+  entity: sensor
+  name: Status
+  icon: "mdi:paw"
+  dps:
+    - id: 4
+      type: string
+      name: feed_state
+    - id: 6
+      type: string
+      name: status
+    - id: 118
+      type: feeding record
+      name: status
+secondary_entities:
+  - entity: ligt
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 19
+        type: boolean
+        name: switch
+  - entity: button
+    class: restart
+    category: config
+    dps:
+      - id: 24
+        type: boolean
+        name: factory_reset
+        optional: true
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 10
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: high
+            value: 80
+          - dps_val: low
+            value: 20
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 11
+        type: string
+        name: charge_state
+        optional: true
+  # - entity: sensor
+  #   name: Food bucket
+  #   icon: "mdi:fridge"
+  #   category: diagnostic
+  #   dps:
+  #     - id: 239
+  #       type: string
+  #       name: sensor
+  #       optional: true
+  - entity: binary_sensor
+    name: Food blockage
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 105
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: binary_sensor
+    name: fault
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 13
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: binary_sensor
+    name: CancelException
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 109
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: number
+    name: Manual feed
+    icon: "mdi:food-drumstick"
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        unit: portions
+        optional: true
+        persist: false
+        range:
+          min: 1
+          max: 20
+      - id: 103
+        type: string
+        name: report
+        optional: true
