@@ -19,6 +19,7 @@ primary_entity:
     - id: 118
       type: string
       name: feeding record
+      optional: true
 secondary_entities:
   - entity: light
     translation_key: indicator
@@ -27,6 +28,7 @@ secondary_entities:
       - id: 19
         type: boolean
         name: switch
+        optional: true
   - entity: button
     name: factory_reset
     class: restart
@@ -42,7 +44,7 @@ secondary_entities:
     category: diagnostic
     dps:
       - id: 10
-        type: string
+        type: integer
         name: sensor
         optional: true
         mapping:
@@ -56,7 +58,7 @@ secondary_entities:
     category: diagnostic
     dps:
       - id: 11
-        type: string
+        type: boolean
         name: sensor
         optional: true
   # - entity: sensor
@@ -74,7 +76,7 @@ secondary_entities:
     category: diagnostic
     dps:
       - id: 105
-        type: string
+        type: boolean
         name: sensor
         optional: true
         mapping:
@@ -86,7 +88,7 @@ secondary_entities:
     category: diagnostic
     dps:
       - id: 13
-        type: string
+        type: integer
         name: sensor
         optional: true
         mapping:
@@ -118,6 +120,6 @@ secondary_entities:
           min: 1
           max: 20
       - id: 103
-        type: string
+        type: integer
         name: report
         optional: true
