@@ -28,6 +28,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: button
+    name: factory_reset
     class: restart
     category: config
     dps:
@@ -50,12 +51,13 @@ secondary_entities:
           - dps_val: low
             value: 20
   - entity: sensor
+    name: charge_state
     class: battery
     category: diagnostic
     dps:
       - id: 11
         type: string
-        name: charge_state
+        name: sensor
         optional: true
   # - entity: sensor
   #   name: Food bucket
