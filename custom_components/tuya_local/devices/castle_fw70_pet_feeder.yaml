@@ -13,32 +13,44 @@ primary_entity:
       type: string
       # feed_state
       name: sensor
-    - id: 6
-      type: string
-      name: status
-    - id: 118
-      type: string
-      name: feeding record
-      optional: true
+    # - id: 6
+    #   type: string
+    #   name: food status
+    # - id: 118
+    #   type: string
+    #   name: feeding record
+    #   optional: true
 secondary_entities:
-  - entity: light
-    translation_key: indicator
-    category: config
+  - entity: sensor
+    name: food status
+    class: problem
+    category: diagnostic
     dps:
-      - id: 19
-        type: boolean
-        name: switch
+      - id: 105
+        type: integer
+        name: sensor
         optional: true
-  - entity: button
-    name: factory_reset
-    class: restart
-    category: config
-    dps:
-      - id: 24
-        type: boolean
-        # factory_reset
-        name: button
-        optional: true
+        mapping:
+          - dps_val: enough
+            value: false
+  # - entity: light
+  #   translation_key: indicator
+  #   category: config
+  #   dps:
+  #     - id: 19
+  #       type: boolean
+  #       name: switch
+  #       optional: true
+  # - entity: button
+  #   name: factory_reset
+  #   class: restart
+  #   category: config
+  #   dps:
+  #     - id: 24
+  #       type: boolean
+  #       # factory_reset
+  #       name: button
+  #       optional: true
   - entity: sensor
     class: battery
     category: diagnostic
@@ -61,6 +73,9 @@ secondary_entities:
         type: boolean
         name: sensor
         optional: true
+        mapping:
+          - dps_val: null
+            value: false
   # - entity: sensor
   #   name: Food bucket
   #   icon: "mdi:fridge"
@@ -70,7 +85,7 @@ secondary_entities:
   #       type: string
   #       name: sensor
   #       optional: true
-  - entity: binary_sensor
+  - entity: sensor
     name: Food blockage
     class: problem
     category: diagnostic
@@ -82,7 +97,7 @@ secondary_entities:
         # mapping:
         #   - dps_val: null
         #     value: false
-  - entity: binary_sensor
+  - entity: sensor
     name: fault
     class: problem
     category: diagnostic
@@ -94,7 +109,7 @@ secondary_entities:
         mapping:
           - dps_val: null
             value: false
-  - entity: binary_sensor
+  - entity: sensor
     name: CancelException
     class: problem
     category: diagnostic
