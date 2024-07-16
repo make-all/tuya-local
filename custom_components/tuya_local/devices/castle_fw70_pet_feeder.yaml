@@ -76,12 +76,12 @@ secondary_entities:
     category: diagnostic
     dps:
       - id: 105
-        type: boolean
+        type: integer
         name: sensor
         optional: true
-        mapping:
-          - dps_val: null
-            value: false
+        # mapping:
+        #   - dps_val: null
+        #     value: false
   - entity: binary_sensor
     name: fault
     class: problem
