@@ -51,31 +51,31 @@ secondary_entities:
   #       # factory_reset
   #       name: button
   #       optional: true
-  - entity: sensor
-    class: battery
-    category: diagnostic
-    dps:
-      - id: 10
-        type: integer
-        name: sensor
-        optional: true
-        mapping:
-          - dps_val: high
-            value: 80
-          - dps_val: low
-            value: 20
-  - entity: sensor
-    name: charge_state
-    class: battery
-    category: diagnostic
-    dps:
-      - id: 11
-        type: boolean
-        name: sensor
-        optional: true
-        mapping:
-          - dps_val: null
-            value: false
+  ## - entity: sensor
+  #   class: battery
+  #   category: diagnostic
+  #   dps:
+  #     - id: 10
+  #       type: integer
+  #       name: sensor
+  #       optional: true
+  #       mapping:
+  #         - dps_val: high
+  #           value: 80
+  #         - dps_val: low
+  #           value: 20
+  ## - entity: sensor
+  #   name: charge_state
+  #   class: battery
+  #   category: diagnostic
+  #   dps:
+  #     - id: 11
+  #       type: boolean
+  #       name: sensor
+  #       optional: true
+  #       mapping:
+  #         - dps_val: null
+  #           value: false
   # - entity: sensor
   #   name: Food bucket
   #   icon: "mdi:fridge"
@@ -87,7 +87,7 @@ secondary_entities:
   #       optional: true
   - entity: sensor
     name: Food blockage
-    class: problem
+    # class: problem
     category: diagnostic
     dps:
       - id: 105
@@ -99,7 +99,7 @@ secondary_entities:
         #     value: false
   - entity: sensor
     name: fault
-    class: problem
+    # class: problem
     category: diagnostic
     dps:
       - id: 13
@@ -111,7 +111,7 @@ secondary_entities:
             value: false
   - entity: sensor
     name: CancelException
-    class: problem
+    # class: problem
     category: diagnostic
     dps:
       - id: 109
@@ -130,11 +130,20 @@ secondary_entities:
         name: value
         unit: portions
         optional: true
-        persist: false
+        # persist: false
         range:
           min: 1
           max: 20
+  - entity: number
+    name: feed report
+    icon: "mdi:food-drumstick"
+    dps:
       - id: 103
         type: integer
-        name: report
+        name: value
+        unit: portions
         optional: true
+        # persist: false
+        range:
+          min: 1
+          max: 20
