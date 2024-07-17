@@ -1,0 +1,28 @@
+name: CCT Light
+products:
+  - id: xhkuywg6rwwqocl6
+    name: Connect White GU10
+primary_entity:
+  entity: light
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 2
+      type: integer
+      name: brightness
+      optional: true
+      range:
+        min: 25
+        max: 255
+    - id: 3
+      type: integer
+      optional: true
+      name: color_temp
+      range:
+        min: 0
+        max: 255
+      mapping:
+        - target_range:
+            min: 2700
+            max: 6500
