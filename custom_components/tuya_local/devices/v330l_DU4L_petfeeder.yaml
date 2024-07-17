@@ -149,12 +149,19 @@ secondary_entities:
           - dps_val: 4
             value: true
           - value: false
-  - entity: sensor
-    name: Snapshot data
-    category: diagnostic
+  - entity: switch
+    name: Record
+    icon: "mdi:record-rec"
+    category: config
     dps:
+      - id: 113
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
       - id: 115
         type: base64
-        name: sensor
+        name: snapshot_data
         optional: true
-        sensitive: true
