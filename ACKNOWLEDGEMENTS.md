@@ -447,7 +447,7 @@ Further device support has been made with the assistance of users. Please consid
 - [convicte](https://github.com/convicte) for assisting with support for Inna 7 channel underfloor heating controllers.
 - [mrtn1988](https://github.com/mrtn1988) for assisting with support for QH-GD Elegant IR heaters.
 - [uandco](https://github.com/uandco) for assisting with support for Evotherm ETI pool heatpumps.
-- [almirus](https://github.com/almirus) for contributing support for Neatsvor X500 vacuums, TH05-BLE temperature/humidity sensors, SGS01 and TCS024B soil moisture BLE sensors, Donguan curtain robots, LightStar track lights, Royal Clima Fresh heatpumps.
+- [almirus](https://github.com/almirus) for contributing support for Neatsvor X500 vacuums, TH05-BLE temperature/humidity sensors, SGS01 and TCS024B soil moisture BLE sensors, Dongguan curtain robots, LightStar track lights, Royal Clima Fresh heatpumps.
 - [kinkamez](https://github.com/kinkamez) for contributing support for Prosto PRC 2000 heaters.
 - [MarkPaxton](https://github.com/MarkPaxton) for contributing support for Hombli radiator controllers.
 - [mmib](https://github.com/mmib) for contributing support for Becasmart irrigation systems.
@@ -596,3 +596,6 @@ Further device support has been made with the assistance of users. Please consid
 - [bjeanes](https://github.com/bjeanes) for contributing support for Bonaire HPC5200020 heater.
 - [jianyun8023](https://github.com/jianyun8023) for contributing Chinese (Simplified) translations, and support for Casdon TD Pro oven.
 - [lankhaar](https://github.com/lankhaar) for contributing support for Zedar R600 vacuum.
+- [swonge](https://github.com/swonge) for contributing Chinese (Traditional) translations.
+- [joe-sydney](https://github.com/joe-sydney) for contributing support for old style generic CCT lightbulbs (tested with Connect Smart GU10 downlight).
+- [e2equiel](https://github.com/e2equiel) for contributing improvements to V330L pet feeder (for DU4L-VS model).
