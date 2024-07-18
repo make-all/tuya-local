@@ -10,16 +10,15 @@ assignees: ''
 <!--
 This form is for reporting a new device.
 
+Requests for new devices without logs from this integration containing
+dps information are not actionable, and will be closed without further action.
+
 When adding information, be sure to place it outside the comment blocks which
 contain instructions, as these will be hidden in the submitted report.
 
 If you are not getting any log messages when trying to add the device, then
 you probably want help, which you can get by posting in
 [Discussions](https://github.com/make-all/tuya-local/discussions).
-
-Requests for new devices without logs from this integration containing
-dps information are not actionable, and will be closed without further action.
-
 
 Thank you for reporting a new device to add support for.  Please provide as much of the information requested below as you can.
 
