@@ -2,6 +2,8 @@ name: Pet feeder
 products:
   - id: ibnk6keua0zzc2gr
     name: V330 Petfeeder
+  - id: cjrm04np59ut4pwb
+    name: V330L-DU4L-VS Petfeeder
     # Needs to be added using the 3.2 protocol
 primary_entity:
   entity: number
@@ -149,12 +151,15 @@ secondary_entities:
           - dps_val: 4
             value: true
           - value: false
-  - entity: camera
+  - entity: switch
+    name: Record
+    icon: "mdi:record-rec"
+    category: config
     dps:
       - id: 113
         type: boolean
         optional: true
-        name: record
+        name: switch
         mapping:
           - dps_val: null
             value: false
