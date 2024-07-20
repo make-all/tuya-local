@@ -1,0 +1,99 @@
+name: Klarstein Skyscraper Ice Smart
+products:
+  - id: vklyfhpnd7a47iym
+primary_entity:
+  entity: fan
+  translation_only_key: fan_with_presets
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 12
+      name: countdown_left
+      type: integer
+secondary_entities:
+  - entity: select
+    name: speed
+    icon: "mdi:speedometer"
+    category: config
+    dps:
+      - id: 2
+        type: string
+        name: option
+        mapping:
+          - dps_val: "low"
+            value: "Niedrig"
+          - dps_val: "middle"
+            value: "Mittel"
+          - dps_val: "high"
+            value: "Hoch"
+  - entity: select
+    name: preset
+    category: config
+    dps:
+      - id: 3
+        type: string
+        name: option
+        mapping:
+          - dps_val: "normal"
+            value: "Normal"
+          - dps_val: "nature"
+            value: "Natur"
+          - dps_val: "sleep"
+            value: "Schlaf"
+  - entity: switch
+    name: schwenken
+    icon: "mdi:arrow-oscillating"
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 11
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: "Aus"
+          - dps_val: "0_5h"
+            value: "0,5 Stunden"
+          - dps_val: "1h"
+            value: "1 Stunde"
+          - dps_val: "1_5h"
+            value: "1,5 Stunden"
+          - dps_val: "2h"
+            value: "2 Stunden"
+          - dps_val: "2_5h"
+            value: "2,5 Stunden"
+          - dps_val: "3h"
+            value: "3 Stunden"
+          - dps_val: "3_5h"
+            value: "3,5 Stunden"
+          - dps_val: "4h"
+            value: "4 Stunden"
+          - dps_val: "4_5h"
+            value: "4,5 Stunden"
+          - dps_val: "5h"
+            value: "5 Stunden"
+          - dps_val: "5_5h"
+            value: "5,5 Stunden"
+          - dps_val: "6h"
+            value: "6 Stunden"
+          - dps_val: "6_5h"
+            value: "6,5 Stunden"
+          - dps_val: "7h"
+            value: "7 Stunden"
+          - dps_val: "7_5h"
+            value: "7,5 Stunden"
+  - entity: switch
+    name: luftbefeuchter
+    icon: "mdi:air-humidifier"
+    category: config
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
