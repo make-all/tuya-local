@@ -357,7 +357,11 @@ class TuyaLocalDevice(object):
             await self.async_refresh()
             cached_state = self._get_cached_state()
 
-        for match in possible_matches(cached_state):
+        possible = await self._hass.async_add_executor_job(
+            possible_matches,
+            cached_state,
+        )
+        for match in possible:
             yield match
 
     async def async_inferred_type(self):
