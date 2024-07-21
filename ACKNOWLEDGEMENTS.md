@@ -545,7 +545,7 @@ Further device support has been made with the assistance of users. Please consid
 - [gravy6](https://github.com/gravy6) for contributing support for Arlec smart buttons.
 - [rudironsonijr](https://github.com/rudironsonijr) for contributing support for NovaDigital SL-06 door locks.
 - [jan-gerard](https://github.com/jan-gerard) for contributing support for Eurom Sani towel rails.
-- [gkwok1](https://github.com/gkwok1) for contributing support for Confortotal mini split air conditioners.
+- [gkwok1](https://github.com/gkwok1) for contributing support for Confortotal mini split air conditioners and BLE Pulido P13 locks.
 - [hroussez](https://github.com/hroussez) for contributing ANWIO lightbulb compatibility info.
 - [bdraco](https://github.com/bdraco) for advice on correct use of HA threading/task functions.
 - [sj29fr](https://github.com/sj29fr) for contributing support for Stepuptech SG800 solar inverters.
