@@ -122,11 +122,13 @@ secondary_entities:
     dps:
       - id: 105
         type: integer
+        optional: true
         name: sensor
         unit: C
         class: measurement
         mapping:
           - scale: 10
+          - dps_val: null
   - entity: select
     translation_key: temperature_unit
     category: config

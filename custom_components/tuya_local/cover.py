@@ -97,10 +97,6 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
             if pos is not None:
                 return pos
 
-        if self._position_dp:
-            pos = self._position_dp.get_value(self._device)
-            return pos
-
         if self._open_dp:
             state = self._open_dp.get_value(self._device)
             if state is not None:
@@ -109,6 +105,10 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
         if self._action_dp:
             state = self._action_dp.get_value(self._device)
             return self._state_to_percent(state)
+
+        if self._position_dp:
+            pos = self._position_dp.get_value(self._device)
+            return pos
 
     @property
     def _current_state(self):
@@ -120,37 +120,28 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
             if action in ["opening", "closing", "opened", "closed"]:
                 return action
 
-        if self._currentpos_dp:
-            pos = self._currentpos_dp.get_value(self._device)
-            # we have a current pos dp, but it isn't telling us where the
-            # curtain is... we can't tell the state.
-            if pos is None:
-                return None
-            if pos < 5:
-                return "closed"
-            elif pos > 95:
+        pos = self.current_cover_position
+        if pos is None:
+            return None
+        if pos < 5:
+            return "closed"
+        elif pos > 95:
+            return "opened"
+
+        if self._currentpos_dp and self._position_dp:
+            setpos = self._position_dp.get_value(self._device)
+            if setpos == pos:
+                # if the current position is around the set position,
+                # which is not closed, then we want is_closed to return
+                # false, so HA gets the full state from position.
                 return "opened"
-            if self._position_dp:
-                setpos = self._position_dp.get_value(self._device)
-                if setpos == pos:
-                    # if the current position is around the set position,
-                    # which is not closed, then we want is_closed to return
-                    # false, so HA gets the full state from position.
-                    return "opened"
-        if self._control_dp:
-            cmd = self._control_dp.get_value(self._device)
-            pos = self.current_cover_position
-            if pos is not None:
+
+            if self._control_dp:
+                cmd = self._control_dp.get_value(self._device)
                 if cmd == "open":
-                    if pos > 95:
-                        return "opened"
-                    else:
-                        return "opening"
+                    return "opening"
                 elif cmd == "close":
-                    if pos < 5:
-                        return "closed"
-                    else:
-                        return "closing"
+                    return "closing"
 
     @property
     def is_opening(self):

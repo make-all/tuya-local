@@ -65,6 +65,8 @@ secondary_entities:
         name: sensor
         unit: mg/L
         class: measurement
+        mapping:
+          - scale: 10
   - entity: select
     name: pH buffer standard
     icon: "mdi:ph"
@@ -85,6 +87,11 @@ secondary_entities:
       - id: 104
         type: boolean
         name: switch
+      - id: 105
+        type: integer
+        name: backlight_value
+        # may be brightness, but only log we have has 0 value and range
+        # is unusally high - up to 16M
   - entity: number
     name: Maximum pH
     class: ph
@@ -148,6 +155,18 @@ secondary_entities:
           min: -1200
           max: 1200
   - entity: number
+    name: Minimum ORP
+    icon: "mdi:virus-off"
+    category: config
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        unit: "mV"
+        range:
+          min: -1200
+          max: 1200
+  - entity: number
     name: Maximum CL
     category: config
     dps:
@@ -170,14 +189,39 @@ secondary_entities:
           min: 0
           max: 40
   - entity: number
-    name: Minimum ORP
-    icon: "mdi:virus-off"
+    name: pH calibration
     category: config
+    icon: "mdi:ph"
     dps:
-      - id: 111
+      - id: 114
         type: integer
         name: value
-        unit: "mV"
+        range:
+          min: 0
+          max: 1400
+        mapping:
+          - scale: 100
+  - entity: number
+    name: EC calibration
+    category: config
+    icon: "mdi:omega"
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: uS/cm
+        range:
+          min: 0
+          max: 20000
+  - entity: number
+    name: ORP calibration
+    category: config
+    icon: "mdi:virus-off"
+    dps:
+      - id: 116
+        type: integer
+        name: value
+        unit: mV
         range:
           min: -1200
           max: 1200
@@ -189,3 +233,11 @@ secondary_entities:
         name: sensor
         class: measurement
         unit: "ppm"
+  - entity: button
+    name: pH reset
+    class: restart
+    category: config
+    dps:
+      - id: 118
+        type: boolean
+        name: button

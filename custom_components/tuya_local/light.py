@@ -357,7 +357,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                         # effect, use the default, or first in the list
                         effect = (
                             self._color_mode_dps.default
-                            or self._color_mode_dps.values(self.device)[0]
+                            or self._color_mode_dps.values(self._device)[0]
                         )
                     _LOGGER.debug(
                         "Emulating effect using color mode of %s",

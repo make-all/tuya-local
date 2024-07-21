@@ -8,7 +8,6 @@ from homeassistant.components.lawn_mower.const import (
     LawnMowerActivity,
     LawnMowerEntityFeature,
 )
-from homeassistant.components.vacuum import VacuumEntityFeature
 
 from ..const import MOEBOT_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -37,7 +36,6 @@ class TestMoebot(TuyaDeviceTestCase):
 
     def setUp(self):
         self.setUpForConfig("moebot_s_mower.yaml", MOEBOT_PAYLOAD)
-        self.subject = self.entities.get("vacuum")
         self.mower = self.entities.get("lawn_mower")
         self.mark_secondary(
             [
@@ -55,19 +53,6 @@ class TestMoebot(TuyaDeviceTestCase):
 
     def test_supported_features(self):
         self.assertEqual(
-            self.subject.supported_features,
-            (
-                VacuumEntityFeature.CLEAN_SPOT
-                | VacuumEntityFeature.PAUSE
-                | VacuumEntityFeature.RETURN_HOME
-                | VacuumEntityFeature.SEND_COMMAND
-                | VacuumEntityFeature.START
-                | VacuumEntityFeature.STATE
-                | VacuumEntityFeature.STATUS
-                | VacuumEntityFeature.STOP
-            ),
-        )
-        self.assertEqual(
             self.mower.supported_features,
             (
                 LawnMowerEntityFeature.START_MOWING
@@ -75,13 +60,6 @@ class TestMoebot(TuyaDeviceTestCase):
                 | LawnMowerEntityFeature.DOCK
             ),
         )
-
-    async def test_async_stop(self):
-        async with assert_device_properties_set(
-            self.subject._device,
-            {COMMAND_DP: "CancelWork"},
-        ):
-            await self.subject.async_stop()
 
     def test_lawnmower_activity(self):
         self.dps[STATUS_DP] = "ERROR"
