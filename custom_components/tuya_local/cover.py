@@ -97,14 +97,14 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
             if pos is not None:
                 return pos
 
-        if self._position_dp:
-            pos = self._position_dp.get_value(self._device)
-            return pos
-
         if self._open_dp:
             state = self._open_dp.get_value(self._device)
             if state is not None:
                 return 100 if state else 0
+
+        if self._position_dp:
+            pos = self._position_dp.get_value(self._device)
+            return pos
 
         if self._action_dp:
             state = self._action_dp.get_value(self._device)
