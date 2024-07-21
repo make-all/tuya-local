@@ -137,11 +137,11 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
                 return "opened"
 
             if self._control_dp:
-            cmd = self._control_dp.get_value(self._device)
-            if cmd == "open":
-                return "opening"
-            elif cmd == "close":
-                return "closing"
+                cmd = self._control_dp.get_value(self._device)
+                if cmd == "open":
+                    return "opening"
+                elif cmd == "close":
+                    return "closing"
 
     @property
     def is_opening(self):
