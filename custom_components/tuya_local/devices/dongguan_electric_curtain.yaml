@@ -28,23 +28,8 @@ primary_entity:
       optional: true
       persist: false
     - id: 7
-      name: action
+      name: learning_state
       type: string
-      mapping:
-        - dps_val: opening
-          value: opening
-          constraint: current_position
-          conditions:
-            - dps_val: 0
-              value: opened
-        - dps_val: closing
-          value: closing
-          constraint: current_position
-          conditions:
-            - dps_val: 100
-              value: closed
-            - dps_val: null
-              value: closed
     - id: 12
       name: fault_code
       type: bitfield

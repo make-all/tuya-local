@@ -71,6 +71,7 @@ class TuyaLocalAlarmControlPanel(TuyaLocalEntity, AlarmControlPanelEntity):
             self._attr_supported_features |= Feature.TRIGGER
         # Code support not implemented
         self._attr_code_format = None
+        self._attr_code_arm_required = False
 
     @property
     def state(self):

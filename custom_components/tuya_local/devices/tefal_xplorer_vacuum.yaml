@@ -15,6 +15,7 @@ primary_entity:
     - id: 104
       name: command
       type: string
+      optional: true
       mapping:
         - constraint: pause
           conditions:
@@ -34,6 +35,9 @@ primary_entity:
                   value: curpointing
                 - dps_val: selectroom
                   value: selectroom
+                - dps_val: null
+                  value: pause
+                  hidden: true
     - id: 105
       name: status
       type: string
@@ -135,6 +139,7 @@ primary_entity:
       type: string
     - id: 128
       name: message_report
+      optional: true
       type: string
     - id: 130
       name: sn

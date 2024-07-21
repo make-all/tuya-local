@@ -4,6 +4,36 @@
         "step": {
             "user": {
                 "title": "Configura tu dispositivo Tuya Local",
+                "description": "Los dispositivos se pueden agregar manualmente o con la ayuda de la nube con la ayuda de la aplicación Smart Life.",
+                "data": {
+                    "setup_mode": "Elección de configuración:"
+                }
+            },
+            "cloud": {
+                "title": "Iniciar sesión en Tuya",
+                "description": "Ingresa tu código de usuario de Smart Life o Tuya Smart.\n\nPuedes encontrar este código en la aplicación Smart Life o Tuya Smart en la pantalla **Configuración** > **Cuenta y seguridad** e ingresa el código que se muestra en el ",
+                "data": {
+                    "user_code": "Codigo de usuario:"
+                }
+            },
+            "scan": {
+                "title": "Completa el inicio de sesión",
+                "description": "Utilice la aplicación Smart Life o la aplicación Tuya Smart para escanear el siguiente código QR y completar el inicio de sesión.\n\nContinúe con el siguiente paso una vez que haya completado este paso en la aplicación."
+            },
+            "choose_device": {
+                "title": "Elija el dispositivo para agregar",
+                "description": "Elija el dispositivo que desea agregar de la primera lista desplegable. ",
+                "data": {
+                    "device_id": "Elija dispositivo:",
+                    "hub_id": "Elija puerta de enlace:"
+                }
+            },
+            "search": {
+                "title": "Localice la dirección IP del dispositivo",
+                "description": "Tuya Cloud no proporciona direcciones IP locales por lo que ahora debemos buscar en su red local para encontrar el dispositivo. "
+            },
+            "local": {
+                "title": "Configura tu dispositivo Tuya Local",
                 "description": "[Siga estas instrucciones para encontrar la identificación de su dispositivo y la clave local.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "Dirección IP o nombre de host",
@@ -31,10 +61,21 @@
         },
         "abort": {
             "already_configured": "Ya se ha agregado un dispositivo con esa ID.",
-            "not_supported": "Lo sentimos, no hay soporte para este dispositivo."
+            "not_supported": "Lo sentimos, no hay soporte para este dispositivo.",
+            "no_devices": "No se puede encontrar ningún dispositivo no registrado para la cuenta."
         },
         "error": {
-            "connection": "No se puede conectar a su dispositivo con esos detalles. Podría ser un problema intermitente, o pueden ser incorrectos."
+            "connection": "No se puede conectar a su dispositivo con esos detalles. Podría ser un problema intermitente, o pueden ser incorrectos.",
+            "does_not_need_hub": "El dispositivo no necesita una puerta de enlace y se seleccionó una. ",
+            "needs_hub": "El dispositivo necesita una puerta de enlace y no se seleccionó ninguna."
+        }
+    },
+    "selector": {
+        "setup_mode": {
+            "options": {
+                "cloud": "Configuración del dispositivo asistida por la nube Smart Life.",
+                "manual": "Proporcione manualmente información de conexión del dispositivo."
+            }
         }
     },
     "options": {
@@ -47,7 +88,7 @@
                     "local_key": "Clave local (Local key)",
                     "protocol_version": "Versión del protocolo (pruebe automático si no lo sabe)",
                     "poll_only": "[es] Poll only (try this if your device does not work fully)",
-                    "device_cid": "[es] Sub device ID (for devices connected via gateway)"                    
+                    "device_cid": "[es] Sub device ID (for devices connected via gateway)"
                 }
             }
         },
@@ -278,8 +319,14 @@
             "anti_frost": {
                 "name": "Antihielo"
             },
+            "evaporator_cleaning": {
+                "name": "Limpieza del evaporador"
+            },
             "ionizer": {
                 "name": "Ionizador"
+            },
+            "keytone": {
+                "name": "Tono del teclado"
             },
             "uv_sterilization": {
                 "name": "Esterilización UV"

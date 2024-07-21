@@ -1,6 +1,10 @@
 """Tests for the MoesHouse RGB smart socket."""
 
-from homeassistant.components.light import ColorMode, LightEntityFeature
+from homeassistant.components.light import (
+    EFFECT_OFF,
+    ColorMode,
+    LightEntityFeature,
+)
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (
@@ -143,6 +147,7 @@ class TestMoesRGBSocket(
                 "Scene 2",
                 "Scene 3",
                 "Scene 4",
+                EFFECT_OFF,
             ],
         )
 

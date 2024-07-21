@@ -1,62 +1,103 @@
 {
     "title": "Tuya Local",
     "config": {
-	"step": {
-	    "user": {
-		"title": "Налаштуйте свій пристрій Tuya Local",
-		"description": "[Дотримуйтеся цих інструкцій, щоб знайти ідентифікатор пристрою та локальний ключ.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
-		"data": {
-		    "host": "IP-адреса або ім'я хоста",
-		    "device_id": "Ідентифікатор пристрою",
-		    "local_key": "Локальний ключ (local_key)",
-		    "protocol_version": "Версія протоколу (якщо не знаєте, спробуйте 'auto')",
-		    "poll_only": "Виключно опитування (спробуйте це, якщо ваш пристрій не зовсім працює)",
-		    "device_cid": "[uk] Sub device ID (for devices connected via gateway)"
-		}
-	    },
-	    "select_type": {
-		"title": "Оберіть тип пристрою",
-		"description": "Виберіть тип, що відповідає вашому пристрою",
-		"data": {
-		    "type": "Тип пристрою"
-		}
-	    },
-	    "choose_entities": {
-		"title": "Налаштування пристрою",
-		"description": "Оберіть назву для цього пристрою",
-		"data": {
-		    "name": "Назва"
-		}
-	    }
-	},
-	"abort": {
-	    "already_configured": "Пристрій з таким ідентифікатором уже додано.",
-	    "not_supported": "На жаль, цей пристрій не підтримується."
-	},
-	"error": {
-	    "connection": "Неможливо підключитися до пристрою з вказаними налаштуваннями. Це може бути випадковий збій або, можливо, в налаштуваннях є помилки."
-	}
+        "step": {
+            "user": {
+                "title": "Налаштуйте свій пристрій Tuya Local",
+                "description": "Пристрої можна додавати вручну або за допомогою хмари за допомогою програми Smart Life.",
+                "data": {
+                    "setup_mode": "Вибір налаштування:"
+                }
+            },
+            "cloud": {
+                "title": "Увійти в Tuya",
+                "description": "Введіть свій код користувача Smart Life або Tuya Smart.\n\nЦей код можна знайти в програмі Smart Life або Tuya Smart у меню **Налаштування** > екран **Обліковий запис і безпека** та введіть код",
+                "data": {
+                    "user_code": "Код користувача:"
+                }
+            },
+            "scan": {
+                "title": "Завершіть вхід",
+                "description": "Скористайтеся додатком Smart Life або Tuya Smart"
+            },
+            "choose_device": {
+                "title": "Виберіть пристрій для додавання",
+                "description": "Будь ласка",
+                "data": {
+                    "device_id": "Виберіть пристрій:",
+                    "hub_id": "Виберіть шлюз:"
+                }
+            },
+            "search": {
+                "title": "Знайдіть IP-адресу пристрою",
+                "description": "Хмара Tuya не надає локальних IP-адрес"
+            },
+            "local": {
+                "title": "Налаштуйте свій пристрій Tuya Local",
+                "description": "[Дотримуйтеся цих інструкцій, щоб знайти ідентифікатор пристрою та локальний ключ.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "IP-адреса або ім'я хоста",
+                    "device_id": "Ідентифікатор пристрою",
+                    "local_key": "Локальний ключ (local_key)",
+                    "protocol_version": "Версія протоколу (якщо не знаєте, спробуйте 'auto')",
+                    "poll_only": "Виключно опитування (спробуйте це, якщо ваш пристрій не зовсім працює)",
+                    "device_cid": "[uk] Sub device ID (for devices connected via gateway)"
+                }
+            },
+            "select_type": {
+                "title": "Оберіть тип пристрою",
+                "description": "Виберіть тип, що відповідає вашому пристрою",
+                "data": {
+                    "type": "Тип пристрою"
+                }
+            },
+            "choose_entities": {
+                "title": "Налаштування пристрою",
+                "description": "Оберіть назву для цього пристрою",
+                "data": {
+                    "name": "Назва"
+                }
+            }
+        },
+        "abort": {
+            "already_configured": "Пристрій з таким ідентифікатором уже додано.",
+            "not_supported": "На жаль, цей пристрій не підтримується.",
+            "no_devices": "Не вдалося знайти незареєстровані пристрої для облікового запису."
+        },
+        "error": {
+            "connection": "Неможливо підключитися до пристрою з вказаними налаштуваннями. Це може бути випадковий збій або, можливо, в налаштуваннях є помилки.",
+            "does_not_need_hub": "Пристрою не потрібен шлюз",
+            "needs_hub": "Для пристрою потрібен шлюз"
+        }
+    },
+    "selector": {
+        "setup_mode": {
+            "options": {
+                "cloud": "Хмарне налаштування пристрою Smart Life.",
+                "manual": "Вручну надайте інформацію про підключення пристрою."
+            }
+        }
     },
     "options": {
-	"step": {
-	    "user": {
-		"title": "Налаштуйте свій пристрій Tuya Local",
-		"description": "[Дотримуйтеся цих інструкцій, щоб знайти локальний ключ.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
-		"data": {
-		    "host": "IP-адреса або ім'я хоста",
-		    "local_key": "Локальний ключ (local_key)",
-		    "protocol_version": "Версія протоколу (якщо не знаєте, спробуйте 'auto')",
-		    "poll_only": "Виключно опитування (спробуйте це, якщо ваш пристрій не зовсім працює)",
-		    "device_cid": "[uk] Sub device ID (for devices connected via gateway)"
-		}
-	    }
-	},
-	"error": {
-	    "connection": "Неможливо підключитися до пристрою з вказаними налаштуваннями. Це може бути випадковий збій або, можливо, в налаштуваннях є помилки."
-	},
-	"abort": {
-	    "not_supported": "На жаль, цей пристрій не підтримується."
-	}
+        "step": {
+            "user": {
+                "title": "Налаштуйте свій пристрій Tuya Local",
+                "description": "[Дотримуйтеся цих інструкцій, щоб знайти локальний ключ.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "IP-адреса або ім'я хоста",
+                    "local_key": "Локальний ключ (local_key)",
+                    "protocol_version": "Версія протоколу (якщо не знаєте, спробуйте 'auto')",
+                    "poll_only": "Виключно опитування (спробуйте це, якщо ваш пристрій не зовсім працює)",
+                    "device_cid": "[uk] Sub device ID (for devices connected via gateway)"
+                }
+            }
+        },
+        "error": {
+            "connection": "Неможливо підключитися до пристрою з вказаними налаштуваннями. Це може бути випадковий збій або, можливо, в налаштуваннях є помилки."
+        },
+        "abort": {
+            "not_supported": "На жаль, цей пристрій не підтримується."
+        }
     },
     "entity": {
         "binary_sensor": {
@@ -278,8 +319,14 @@
             "anti_frost": {
                 "name": "Протиморозний"
             },
+            "evaporator_cleaning": {
+                "name": "Очищення випарника"
+            },
             "ionizer": {
                 "name": "Іонізатор"
+            },
+            "keytone": {
+                "name": "Тон клавіш"
             },
             "uv_sterilization": {
                 "name": "УФ стерилізація"

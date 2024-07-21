@@ -1,0 +1,80 @@
+name: Ceiling fan
+products:
+  - id: eb208a14315d7cb2bd6txt
+    name: Amico 52 inch ceiling fan
+primary_entity:
+  entity: fan
+  translation_only_key: fan_with_presets
+  dps:
+    - id: 60
+      type: boolean
+      name: switch
+    - id: 61
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: fresh
+          value: fresh
+        - dps_val: nature
+          value: nature
+    - id: 62
+      type: integer
+      name: speed
+      range:
+        min: 1
+        max: 6
+    - id: 63
+      type: string
+      name: direction
+      mapping:
+        - dps_val: forward
+          value: forward
+        - dps_val: reverse
+          value: reverse
+secondary_entities:
+  - entity: light
+    name: Light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 22
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 100
+      - id: 23
+        type: integer
+        name: color_temp
+        range:
+          min: 1
+          max: 3
+        mapping:
+          - dps_val: 1
+            value: 3000
+          - dps_val: 2
+            value: 4000
+          - dps_val: 3
+            value: 6000
+          - target_range:
+              min: 3000
+              max: 6000
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: "cancel"
+            value: "off"
+          - dps_val: "1h"
+            value: "1 hour"
+          - dps_val: "2h"
+            value: "2 hours"
+          - dps_val: "4h"
+            value: "4 hours"
+          - dps_val: "8h"
+            value: "8 hours"

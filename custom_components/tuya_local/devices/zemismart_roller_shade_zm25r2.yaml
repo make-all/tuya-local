@@ -1,0 +1,126 @@
+name: Roller shade
+products:
+  - id: 8nuvcigdwbth6dj7
+    name: Zemismart ZM25R2
+primary_entity:
+  entity: cover
+  class: shade
+  dps:
+    - id: 1
+      name: control
+      type: string
+      mapping:
+        - dps_val: open
+          value: open
+        - dps_val: close
+          value: close
+        - dps_val: stop
+          value: stop
+        - dps_val: continue
+          value: continue
+    - id: 2
+      name: position
+      type: integer
+      optional: true
+      range:
+        min: 0
+        max: 100
+      mapping:
+        - invert: true
+    - id: 3
+      name: current_position
+      type: integer
+      range:
+        min: 0
+        max: 100
+      mapping:
+        - invert: true
+    - id: 5
+      name: control_back
+      type: string
+      mapping:
+        - dps_val: forward
+          value: forward
+        - dps_val: back
+          value: back
+    - id: 7
+      name: unreliable_action
+      type: string
+      mapping:
+        - dps_val: opening
+          value: opening
+          constraint: current_position
+          conditions:
+            - dps_val: 0
+              value: opened
+        - dps_val: closing
+          value: closing
+          constraint: current_position
+          conditions:
+            - dps_val: 100
+              value: closed
+    - id: 12
+      name: fault
+      type: bitfield
+      optional: true
+secondary_entities:
+  - entity: select
+    name: Mode
+    icon: "mdi:theme-light-dark"
+    category: config
+    dps:
+      - id: 4
+        name: option
+        type: string
+        optional: true
+        mapping:
+          - dps_val: morning
+            value: Morning
+          - dps_val: night
+            value: Night
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 12
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: sensor
+    name: Travel time
+    icon: "mdi:hourglass"
+    category: diagnostic
+    dps:
+      - id: 10
+        name: sensor
+        type: integer
+        optional: true
+        unit: ms
+  - entity: select
+    name: Click control
+    icon: "mdi:theme-light-dark"
+    category: config
+    dps:
+      - id: 20
+        name: option
+        type: string
+        optional: true
+        mapping:
+          - dps_val: continuous
+            value: Continuous
+          - dps_val: Intermittently
+            value: Intermittent
+  - entity: button
+    name: Remote pairing
+    icon: "mdi:remote"
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: button

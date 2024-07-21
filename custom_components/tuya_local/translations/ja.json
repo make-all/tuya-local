@@ -4,6 +4,36 @@
         "step": {
             "user": {
                 "title": "Tuya Localのデバイスを設定する",
+                "description": "デバイスは手動で追加することも、Smart Life アプリを使用してクラウド支援で追加することもできます。",
+                "data": {
+                    "setup_mode": "セットアップの選択:"
+                }
+            },
+            "cloud": {
+                "title": "Tuyaにログイン",
+                "description": "Smart Life または Tuya Smart のユーザー コードを入力してください。\n\nこのコードは、Smart Life アプリまたは Tuya Smart アプリの [*設定**] > [**アカウントとセキュリティ**] 画面で見つけて、画面に表示されているコードを入力してください。 ",
+                "data": {
+                    "user_code": "ユーザーコード:"
+                }
+            },
+            "scan": {
+                "title": "ログインを完了する",
+                "description": "Smart Life アプリまたは Tuya Smart アプリを使用して次の QR コードをスキャンし、ログインを完了します。\n\nアプリでこの手順を完了したら、次の手順に進みます。"
+            },
+            "choose_device": {
+                "title": "追加するデバイスを選択してください",
+                "description": "最初のドロップダウン リストから追加するデバイスを選択してください。",
+                "data": {
+                    "device_id": "デバイスを選択してください:",
+                    "hub_id": "ゲートウェイを選択します:"
+                }
+            },
+            "search": {
+                "title": "デバイスのIPアドレスを特定する",
+                "description": "Tuya クラウドはローカル IP アドレスを提供しないため、ローカル ネットワークを検索してデバイスを見つける必要があります。"
+            },
+            "local": {
+                "title": "Tuya Localのデバイスを設定する",
                 "description": "[ja] [Follow these instructions to find your device id and local key.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "IPアドレスまたはホスト名",
@@ -31,10 +61,21 @@
         },
         "abort": {
             "already_configured": "その ID を持つデバイスはすでに構成されています。",
-            "not_supported": "申し訳ございませんが、このデバイスはサポートされていません。"
+            "not_supported": "申し訳ございませんが、このデバイスはサポートされていません。",
+            "no_devices": "アカウントに未登録のデバイスが見つかりません。"
         },
         "error": {
-            "connection": "このような詳細ではデバイスに接続できません。 断続的な問題である可能性もありますし、間違っている可能性もあります。"
+            "connection": "このような詳細ではデバイスに接続できません。 断続的な問題である可能性もありますし、間違っている可能性もあります。",
+            "does_not_need_hub": "デバイスにはゲートウェイが必要なく、ゲートウェイが選択されました。",
+            "needs_hub": "デバイスにはゲートウェイが必要ですが、ゲートウェイが選択されていません。"
+        }
+    },
+    "selector": {
+        "setup_mode": {
+            "options": {
+                "cloud": "Smart Life クラウド支援デバイスのセットアップ。",
+                "manual": "デバイスの接続情報を手動で提供します。"
+            }
         }
     },
     "options": {
@@ -278,8 +319,14 @@
             "anti_frost": {
                 "name": "霜防止"
             },
+            "evaporator_cleaning": {
+                "name": "エバポレーターの掃除"
+            },
             "ionizer": {
                 "name": "イオナイザー"
+            },
+            "keytone": {
+                "name": "キートーン"
             },
             "uv_sterilization": {
                 "name": "紫外線殺菌"

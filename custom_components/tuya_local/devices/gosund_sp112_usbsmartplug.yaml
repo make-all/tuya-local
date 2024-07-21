@@ -1,0 +1,159 @@
+name: Smartplug
+products:
+  - id: zmql6aexy8ua5rox
+    name: Gosund SP112-RTL
+primary_entity:
+  entity: switch
+  class: outlet
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 21
+      name: factory_test
+      type: bitfield
+    - id: 41
+      name: cycle_time
+      type: base64
+    - id: 42
+      name: random_time
+      type: base64
+    - id: 43
+      name: inching
+      type: base64
+    - id: 101
+      name: unknown_101
+      type: boolean
+      optional: true
+secondary_entities:
+  - entity: switch
+    name: USB
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Energy
+    category: diagnostic
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        unit: Wh
+        optional: true
+      - id: 25
+        type: integer
+        name: calibration
+        optional: true
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: mA
+        class: measurement
+        force: true
+      - id: 23
+        type: integer
+        name: calibration
+        optional: true
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        force: true
+        mapping:
+          - scale: 10
+      - id: 24
+        type: integer
+        name: calibration
+        optional: true
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        force: true
+        mapping:
+          - scale: 10
+      - id: 22
+        type: integer
+        name: calibration
+        optional: true
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    name: USB timer
+    category: config
+    translation_key: timer
+    dps:
+      - id: 15
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: select
+    name: Initial state
+    icon: "mdi:toggle-switch"
+    category: config
+    dps:
+      - id: 38
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: "On"
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "2"
+            value: Last state
+  - entity: select
+    name: Light mode
+    icon: "mdi:lightbulb"
+    category: config
+    dps:
+      - id: 39
+        type: string
+        name: option
+        mapping:
+          - dps_val: relay
+            value: State
+          - dps_val: pos
+            value: Position
+          - dps_val: none
+            value: "Off"
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        name: lock

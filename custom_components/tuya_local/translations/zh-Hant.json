@@ -1,0 +1,336 @@
+{
+    "title": "Tuya Local",
+    "config": {
+        "step": {
+            "user": {
+                "title": "配置您的Tuya Local設備",
+                "description": "您可以手動新增設備，或透過Smart Life應用的雲端服務輔助添加。",
+                "data": {
+                    "setup_mode": "設定選項:"
+                }
+            },
+            "cloud": {
+                "title": "登入Tuya",
+                "description": "輸入您的Smart Life或Tuya Smart使用者代碼。 \n\n您可以在Smart Life或Tuya Smart應用的**設定** > **帳戶和安全性**頁面找到此代碼，並在**使用者代碼**欄位中輸入。使用者程式碼區分大小寫，請確保準確輸入。",
+                "data": {
+                    "user_code": "使用者程式碼:"
+                }
+            },
+            "scan": {
+                "title": "完成登入",
+                "description": "使用Smart Life或Tuya Smart應用程式掃描以下二維碼以完成登入。 \n\n完成此步驟後，繼續下一步。"
+            },
+            "choose_device": {
+                "title": "選擇要新增的設備",
+                "description": "請從下拉清單中選擇要新增的設備。已新增的設備不會顯示。 \n\n如果裝置透過網關連接，請從網關清單中選擇，否則選擇無。",
+                "data": {
+                    "device_id": "選擇設備:",
+                    "hub_id": "選擇網關:"
+                }
+            },
+            "search": {
+                "title": "定位設備IP位址",
+                "description": "Tuya雲端不提供本地IP位址，因此我們現在必須搜尋您的本地網路以找到裝置。這需要最多20秒。 \n\n如果搜尋不成功，您需要透過其他方式提供IP位址，例如從路由器的DHCP分配中取得。 \n\n為了使此步驟和後續的裝置新增成功，您必須關閉行動應用，否則其連線會阻止Tuya Local與裝置的通訊。"
+            },
+            "local": {
+                "title": "配置您的Tuya Local設備",
+                "description": "[請按照這些說明找到您的裝置ID和 Local key](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "IP位址或主機名",
+                    "device_id": "設備ID",
+                    "local_key": "Local key",
+                    "protocol_version": "協議版本（如果不清楚，請選擇自動）",
+                    "poll_only": "僅輪詢（如果設備無法正常運作，請選擇此項）",
+                    "device_cid": "子設備ID（對於透過網關連接的設備）"
+                }
+            },
+            "select_type": {
+                "title": "選擇設備類型",
+                "description": "選擇與您的裝置相符的類型",
+                "data": {
+                    "type": "設備類型"
+                }
+            },
+            "choose_entities": {
+                "title": "設備詳情",
+                "description": "為此設備選擇一個名稱",
+                "data": {
+                    "name": "名稱"
+                }
+            }
+        },
+        "abort": {
+            "already_configured": "該ID的設備已新增。",
+            "not_supported": "抱歉，不支援此設備。",
+            "no_devices": "無法找到該帳戶的任何未註冊設備。"
+        },
+        "error": {
+            "connection": "無法使用這些詳細資訊連接到您的裝置。這可能是間歇性問題，或資訊不正確。",
+            "does_not_need_hub": "設備不需要網關，但選擇了一個。請檢查您的選擇。",
+            "needs_hub": "設備需要網關，但未選擇。"
+        }
+    },
+    "selector": {
+        "setup_mode": {
+            "options": {
+                "cloud": "Smart Life雲端輔助設備設定。",
+                "manual": "手動提供設備連接資訊。"
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "user": {
+                "title": "配置您的Tuya Local設備",
+                "description": "[請按照這些說明找到您的 Local key](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "IP位址或主機名",
+                    "local_key": "Local key",
+                    "protocol_version": "協議版本（如果不清楚，請選擇自動）",
+                    "poll_only": "僅輪詢（如果設備無法正常運作，請選擇此項）",
+                    "device_cid": "子設備ID（對於透過網關連接的設備）"
+                }
+            }
+        },
+        "error": {
+            "connection": "無法使用這些詳細資訊連接到您的裝置。這可能是間歇性問題，或資訊不正確。"
+        },
+        "abort": {
+            "not_supported": "抱歉，不支援此設備。"
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "除霜",
+                "state": {
+                    "off": "正常",
+                    "on": "除霜中"
+                }
+            },
+            "tank_empty": {
+                "name": "水箱",
+                "state": {
+                    "off": "正常",
+                    "on": "缺水"
+                }
+            },
+            "tank_full": {
+                "name": "水箱",
+                "state": {
+                    "off": "正常",
+                    "on": "滿水"
+                }
+            }
+        },
+        "climate": {
+            "aircon_extra": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "health": "健康",
+                            "medhigh": "中高",
+                            "medlow": "中低",
+                            "natural": "自然",
+                            "quiet": "安靜",
+                            "sleep": "睡眠",
+                            "strong": "強力"
+                        }
+                    },
+                    "swing_mode": {
+                        "state": {
+                            "topmost": "最高",
+                            "top": "高",
+                            "middle": "中",
+                            "down": "低",
+                            "downmost": "最低"
+                        }
+                    }
+                }
+            },
+            "thermostat": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "cycle": "循環"
+                        }
+                    },
+                    "preset_mode": {
+                        "state": {
+                            "manual": "手動",
+                            "program": "程式",
+                            "temp_override": "臨時覆蓋",
+                            "perm_override": "永久覆蓋"
+                        }
+                    }
+                }
+            },
+            "combo_floor": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "cool": "冷風",
+                            "fan_only": "風扇",
+                            "heat": "熱風",
+                            "floor_cool": "冷地板",
+                            "floor_heat": "熱地板"
+                        }
+                    }
+                }
+            },
+            "swing_as_powerlevel": {
+                "state_attributes": {
+                    "swing_mode": {
+                        "name": "加熱水平",
+                        "state": {
+                            "stop": "停止",
+                            "auto": "自動"
+                        }
+                    }
+                }
+            },
+            "pool_heatpump": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "smart_heat": "智能加熱",
+                            "quick_heat": "快速加熱",
+                            "quiet_heat": "安靜加熱",
+                            "smart_cool": "智能冷卻",
+                            "quick_cool": "快速冷卻",
+                            "quiet_cool": "安靜冷卻",
+                            "auto": "自動"
+                        }
+                    }
+                }
+            },
+            "heater": {
+                "name": "加热器"
+            },
+            "thermo_switch": {
+                "state_attributes": {
+                    "hvac_mode": {
+                        "state": {
+                            "fan_only": "暫停"
+                        }
+                    }
+                }
+            }
+        },
+        "humidifier": {
+            "dehumidifier": {
+                "state_attributes": {
+                    "mode": {
+                        "state": {
+                            "laundry": "烘乾衣物",
+                            "purify": "淨化"
+                        }
+                    }
+                }
+            }
+        },
+        "fan": {
+            "fan_with_presets": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "baby": "嬰兒",
+                            "fresh": "清新",
+                            "nature": "自然",
+                            "normal": "正常",
+                            "sleep": "睡眠",
+                            "smart": "智能",
+                            "strong": "強勁",
+                            "displayoff": "關閉顯示",
+                            "off": "關閉"
+                        }
+                    }
+                }
+            },
+            "ventilation": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "fresh": "新風",
+                            "circulate": "循環",
+                            "sleep": "睡眠",
+                            "auto": "自動",
+                            "eco": "節能",
+                            "anti-condensation": "防凝結"
+                        }
+                    }
+                }
+            }
+        },
+        "light": {
+            "backlight": {
+                "name": "背光"
+            },
+            "display": {
+                "name": "顯示"
+            },
+            "embers": {
+                "name": "餘燼"
+            },
+            "flame": {
+                "name": "火焰"
+            },
+            "indicator": {
+                "name": "指示燈"
+            },
+            "laser": {
+                "name": "雷射"
+            },
+            "logs": {
+                "name": "紀錄"
+            },
+            "nightlight": {
+                "name": "夜燈"
+            }
+        },
+        "lock": {
+            "child_lock": {
+                "name": "兒童鎖"
+            }
+        },
+        "number": {
+            "timer": {
+                "name": "計時器"
+            }
+        },
+        "select": {
+            "timer": {
+                "name": "計時器"
+            },
+            "temperature_unit": {
+                "name": "溫度單位",
+                "state": {
+                    "celsius": "攝氏度",
+                    "fahrenheit": "華氏度"
+                }
+            }
+        },
+        "sensor": {
+            "time_remaining": {
+                "name": "剩餘時間"
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "防凍"
+            },
+            "evaporator_cleaning": {
+                "name": "蒸發器清潔"
+            },
+            "ionizer": {
+                "name": "離子產生器"
+            },
+            "keytone": {
+                "name": "按鍵音"
+            },
+            "uv_sterilization": {
+                "name": "紫外線消毒"
+            }
+        }
+    }
+}
