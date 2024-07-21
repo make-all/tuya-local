@@ -1,0 +1,130 @@
+name: Air Purifier
+primary_entity:
+  entity: fan
+  translation_only_key: fan_with_presets
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 3
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: auto
+          value: smart
+        - dps_val: manual
+          value: normal
+        - dps_val: sleep
+          value: sleep
+    - id: 4
+      name: speed
+      type: string
+      mapping:
+        - dps_val: low
+          value: 33
+        - dps_val: mid
+          value: 66
+        - dps_val: high
+          value: 100
+secondary_entities:
+  - entity: switch
+    translation_key: ionizer
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: uv_sterilization
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: keytone
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 18
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: "Off"
+          - dps_val: 1h
+            value: 1 hour
+          - dps_val: 2h
+            value: 2 hours
+          - dps_val: 3h
+            value: 3 hours
+          - dps_val: 4h
+            value: 4 hours
+          - dps_val: 5h
+            value: 5 hours
+          - dps_val: 6h
+            value: 6 hours
+          - dps_val: 7h
+            value: 7 hours
+          - dps_val: 8h
+            value: 8 hours
+          - dps_val: 9h
+            value: 9 hours
+          - dps_val: 10h
+            value: 10 hours
+          - dps_val: 11h
+            value: 11 hours
+          - dps_val: 12h
+            value: 12 hours
+  - entity: sensor
+    name: Air Quality
+    class: enum
+    icon: mdi:air-filter
+    dps:
+      - id: 21
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: excellent
+            value: Excellent
+          - dps_val: good
+            value: Good
+          - dps_val: difference
+            value: Bad
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: µg/m³
+  - entity: sensor
+    name: Filter days left
+    class: duration
+    category: diagnostic
+    icon: "mdi:air-filter"
+    dps:
+      - id: 16
+        name: sensor
+        type: integer
+        unit: d

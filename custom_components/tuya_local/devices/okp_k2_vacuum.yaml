@@ -1,0 +1,149 @@
+name: Robot vacuum
+products:
+  - id: 6k8pca2ywenbry2l
+    name: OKP K2
+primary_entity:
+  entity: vacuum
+  dps:
+    - id: 1
+      type: boolean
+      name: power
+    - id: 2
+      type: boolean
+      name: activate
+    - id: 3
+      type: string
+      name: command
+      mapping:
+        - dps_val: standby
+          value: standby
+        - dps_val: smart
+          value: smart
+        - dps_val: random
+          value: random
+        - dps_val: chargego
+          value: return_to_base
+        - dps_val: right_bow
+          value: right_bow
+        - dps_val: wall_follow
+          value: wall_follow
+        - dps_val: spiral
+          value: spiral
+    - id: 4
+      type: string
+      optional: true
+      name: direction_control
+      mapping:
+        - dps_val: forward
+          value: forward
+        - dps_val: backward
+          value: reverse
+        - dps_val: turn_left
+          value: left
+        - dps_val: turn_right
+          value: right
+        - dps_val: stop
+          value: stop
+    - id: 5
+      type: string
+      name: status
+      mapping:
+        - dps_val: standby
+          value: standby
+        - dps_val: smart_clean
+          value: smart_clean
+        - dps_val: wall_clean
+          value: wall_clean
+        - dps_val: cleaning
+          value: cleaning
+        - dps_val: paused
+          value: pause
+        - dps_val: spot_clean
+          value: spot_clean
+        - dps_val: goto_charge
+          value: returning
+        - dps_val: charging
+          value: charging
+        - dps_val: charge_done
+          value: charged
+    - id: 13
+      type: boolean
+      name: locate
+      optional: true
+    - id: 15
+      type: string
+      optional: true
+      name: clean_record
+    - id: 18
+      type: bitfield
+      name: error
+    - id: 19
+      type: string
+      optional: true
+      name: map_config
+    - id: 101
+      type: string
+      name: fan_speed
+      mapping:
+        - dps_val: low
+          value: Low
+        - dps_val: nar
+          value: Medium
+        - dps_val: high
+          value: High
+    - id: 103
+      type: integer
+      name: heading
+      optional: true
+    - id: 105
+      type: string
+      name: wheel_status
+      optional: true
+    - id: 106
+      type: string
+      name: charging_status
+      optional: true
+    - id: 107
+      type: string
+      name: robot_status
+      optional: true
+    - id: 108
+      type: string
+      name: log
+      optional: true
+secondary_entities:
+  - entity: sensor
+    name: Clean area
+    category: diagnostic
+    dps:
+      - id: 16
+        type: integer
+        name: sensor
+        unit: m2
+  - entity: sensor
+    name: Clean time
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        unit: min
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    name: Motor temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement

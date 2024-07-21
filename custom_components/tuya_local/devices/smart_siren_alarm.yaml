@@ -237,17 +237,3 @@ secondary_entities:
           - dps_val: "ACA="
             value: ring
           - value: null
-  - entity: binary_sensor
-    name: Doorbell push
-    deprecated: event_doorbell
-    category: diagnostic
-    icon: "mdi:crosshairs-question"
-    dps:
-      - id: 128
-        type: string
-        name: sensor
-        optional: true
-        mapping:
-          - dps_val: "ACA="
-            value: true
-          - value: false

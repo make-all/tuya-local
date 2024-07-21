@@ -1,0 +1,155 @@
+name: Lockbox
+products:
+  - id: qicggi0m
+    name: XCase NX-4964 BLE
+primary_entity:
+  entity: lock
+  dps:
+    - id: 1
+      type: string
+      optional: true
+      name: unlock_method_create
+    - id: 2
+      type: string
+      optional: true
+      name: unlock_method_delete
+    - id: 3
+      type: string
+      optional: true
+      name: unlock_method_modify
+    - id: 13
+      type: integer
+      optional: true
+      persist: false
+      name: unlock_password
+    - id: 14
+      type: integer
+      optional: true
+      persist: false
+      name: unlock_dynamic_pwd
+    - id: 19
+      type: integer
+      optional: true
+      persist: false
+      name: unlock_ble
+    - id: 51
+      type: string
+      optional: true
+      name: temp_pwd_create
+    - id: 52
+      type: string
+      optional: true
+      name: temp_pwd_delete
+    - id: 53
+      type: string
+      optional: true
+      name: temp_pwd_modify
+    - id: 54
+      type: string
+      optional: true
+      name: sync_method
+    - id: 55
+      type: integer
+      optional: true
+      persist: false
+      name: unlock_temp_pwd
+    - id: 61
+      type: string
+      optional: true
+      name: remote_no_dp_key
+    - id: 62
+      type: integer
+      optional: true
+      persist: false
+      name: unlock_app
+    - id: 63
+      type: integer
+      optional: true
+      persist: false
+      name: unlock_voice
+    - id: 64
+      type: string
+      name: password_offline_time
+    - id: 65
+      type: string
+      optional: true
+      name: offline_clear_single
+    - id: 66
+      type: string
+      optional: true
+      name: offline_clear
+    - id: 67
+      type: string
+      optional: true
+      name: offline_pd
+    - id: 69
+      type: string
+      optional: true
+      name: record
+    - id: 70
+      type: string
+      optional: true
+      name: check_code_set
+    - id: 71
+      type: string
+      optional: true
+      name: ble_unlock_check
+    - id: 72
+      type: string
+      optional: true
+      name: general_unlock_check
+    - id: 73
+      type: string
+      optional: true
+      name: remote_pd_setkeey_check
+secondary_entities:
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+      - id: 9
+        type: string
+        name: state
+  - entity: sensor
+    name: Alarm
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 21
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: null
+            value: ok
+          - dps_val: wrong_finger
+            value: wrong_finger
+          - dps_val: wrong_password
+            value: wrong_password
+          - dps_val: wrong_card
+            value: wrong_card
+          - dps_val: wrong_face
+            value: wrong_face
+          - dps_val: tongue_bad
+            value: tongue_bad
+          - dps_val: too_hot
+            value: too_hot
+          - dps_val: unclosed_time
+            value: unclosed_time
+          - dps_val: tongue_not_out
+            value: tongue_not_out
+          - dps_val: pry
+            value: pry
+          - dps_val: key_in
+            value: key_in
+          - dps_val: low_battery
+            value: low_battery
+          - dps_val: power_off
+            value: power_off
+          - dps_val: shock
+            value: shock
+          - dps_val: defense
+            value: defense

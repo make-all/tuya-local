@@ -28,35 +28,33 @@ secondary_entities:
   - entity: sensor
     name: Filter life
     icon: "mdi:air-filter"
+    class: duration
     category: diagnostic
     dps:
       - id: 4
         type: integer
         name: sensor
-        precision: 0
         range:
           min: 0
           max: 43200
         mapping:
-          - scale: 1440  # minutes => days
-            invert: true
-        unit: d
+          - invert: true
+        unit: min
   - entity: sensor
     name: Pump maintenance
     icon: "mdi:pump"
+    class: duration
     category: diagnostic
     dps:
       - id: 5
         type: integer
         name: sensor
-        precision: 0
         range:
           min: 0
           max: 86400
         mapping:
-          - scale: 1440
-            invert: true
-        unit: d
+          - invert: true
+        unit: min
   - entity: switch
     translation_key: uv_sterilization
     category: config

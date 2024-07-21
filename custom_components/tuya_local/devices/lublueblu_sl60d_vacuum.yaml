@@ -8,6 +8,11 @@ primary_entity:
     - id: 1
       type: boolean
       name: power
+      optional: true
+      mapping:
+        - dps_val: null
+          value: false
+          hidden: true
     - id: 2
       type: boolean
       name: activate
@@ -19,6 +24,7 @@ primary_entity:
     - id: 4
       type: string
       name: command
+      optional: true
       mapping:
         - dps_val: smart
           value: smart
@@ -121,15 +127,15 @@ secondary_entities:
         name: sensor
         unit: "%"
         class: measurement
-  - entity: sensor
+  - entity: select
     name: Water tank
-    category: diagnostic
+    category: config
     class: enum
     icon: "mdi:cup-water"
     dps:
       - id: 10
         type: string
-        name: sensor
+        name: option
         mapping:
           - dps_val: closed
             value: Closed
@@ -176,6 +182,19 @@ secondary_entities:
         name: sensor
         unit: min
         optional: true
+  - entity: number
+    name: Volume
+    category: config
+    icon: "mdi:volume-high"
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        optional: true
+        unit: "%"
+        range:
+          min: 0
+          max: 100
   - entity: sensor
     name: Total cleaning area
     icon: "mdi:texture-box"

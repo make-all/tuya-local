@@ -122,19 +122,6 @@ secondary_entities:
           - dps_val: none
             value: clear
           - value: null
-  - entity: binary_sensor
-    class: motion
-    deprecated: event_motion
-    category: diagnostic
-    dps:
-      - id: 52
-        type: string
-        name: sensor
-        optional: true
-        mapping:
-          - dps_val: pir
-            value: true
-          - value: false
   - entity: select
     name: Daylight cutoff
     icon: "mdi:contrast-box"

@@ -18,6 +18,7 @@ primary_entity:
     - id: 128
       type: integer
       name: number
+      optional: true
 secondary_entities:
   - entity: sensor
     name: Times per day
@@ -81,6 +82,11 @@ secondary_entities:
         name: event
         optional: true
         persist: false
+        mapping:
+          - dps_val: true
+            value: full
+          - dps_val: false
+            value: null
   - entity: binary_sensor
     class: occupancy
     icon: "mdi:cat"

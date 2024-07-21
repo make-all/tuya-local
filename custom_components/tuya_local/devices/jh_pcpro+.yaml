@@ -1,0 +1,80 @@
+name: PC power switch
+products:
+  - id: rtbhfbuii82scjrp
+    name: PCIe PC Pro
+primary_entity:
+  entity: switch
+  class: outlet
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+
+secondary_entities:
+  - entity: button
+    name: Reset
+    class: restart
+    dps:
+      - id: 101
+        name: button
+        type: string
+        mapping:
+          - dps_val: Reset
+            value: true
+  - entity: button
+    name: Force reset
+    icon: mdi:restart-alert
+    dps:
+      - id: 101
+        name: button
+        type: string
+        mapping:
+          - dps_val: forceReset
+            value: true
+  - entity: switch
+    name: RF pairing
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Buzzer
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  - entity: select
+    name: Initial state
+    icon: mdi:power-settings
+    category: config
+    dps:
+      - id: 38
+        type: string
+        name: option
+        mapping:
+          - dps_val: "on"
+            value: "on"
+          - dps_val: "off"
+            value: "off"
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        name: lock
+  - entity: switch
+    name: RF remote control
+    icon: mdi:remote
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "on"
+            value: true
+          - dps_val: "off"
+            value: false

@@ -29,12 +29,17 @@ primary_entity:
     - id: 101
       type: boolean
       name: unknown_101
+      optional: true
 secondary_entities:
   - entity: light
     dps:
       - id: 20
         type: boolean
         name: switch
+      - id: 21
+        name: work_mode
+        type: string
+        optional: true
       - id: 22
         name: brightness
         type: integer
@@ -53,7 +58,7 @@ secondary_entities:
               max: 6500
       - id: 28
         name: control_data
-        type: hex
+        type: string
         optional: true
   - entity: switch
     name: Beep

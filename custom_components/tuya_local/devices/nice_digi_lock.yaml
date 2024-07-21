@@ -85,6 +85,21 @@ secondary_entities:
         type: string
         name: event
         optional: true
+        mapping:
+          - dps_val: wrong_finger
+            value: wrong_finger
+          - dps_val: wrong_password
+            value: wrong_password
+          - dps_val: wrong_card
+            value: wrong_card
+          - dps_val: low_battery
+            value: low_battery
+          - dps_val: power_off
+            value: power_off
+          - dps_val: tongue_bad
+            value: tongue_bad
+          - dps_val: unclosed_time
+            value: unclosed_time
   - entity: binary_sensor
     name: Snib
     class: lock

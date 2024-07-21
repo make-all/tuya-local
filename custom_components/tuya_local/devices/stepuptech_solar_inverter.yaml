@@ -1,0 +1,126 @@
+name: Solar inverter
+products:
+  - id: r73jxzrtcda4uwwb
+    name: Stepuptech SP800
+primary_entity:
+  entity: sensor
+  name: Daily energy out
+  class: energy
+  dps:
+    - id: 107
+      type: integer
+      name: sensor
+      unit: kWh
+      class: total_increasing
+      mapping:
+        - scale: 100
+secondary_entities:
+  - entity: sensor
+    name: PV power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: PV voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: V
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: AC current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: A
+        mapping:
+          - scale: 100
+  - entity: switch
+    name: Inverter switch
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+        optional: true
+  - entity: sensor
+    name: AC power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Power adjust
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: sensor
+    name: PV current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: A
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Total energy
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: AC voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        unit: V
+        mapping:
+          - scale: 100

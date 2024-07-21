@@ -58,7 +58,12 @@ primary_entity:
       name: feature_flags
     - id: 110
       type: boolean
-      name: swing_2
+      name: swing_mode
+      mapping:
+        - dps_val: true
+          value: "vertical"
+        - dps_val: false
+          value: "off"
 secondary_entities:
   - entity: switch
     translation_key: ionizer

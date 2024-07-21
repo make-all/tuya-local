@@ -34,7 +34,7 @@ secondary_entities:
         name: sensor
         type: integer
         class: measurement
-        unit: mA
+        unit: A
         mapping:
           - scale: 1000
   - entity: sensor
@@ -531,3 +531,16 @@ secondary_entities:
             value: "Off"
           - dps_val: memory
             value: Memory
+  - entity: number
+    category: config
+    name: Update interval
+    icon: "mdi:update"
+    dps:
+      - id: 139
+        type: integer
+        name: value
+        optional: true
+        unit: s
+        range:
+          min: 1
+          max: 90

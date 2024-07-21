@@ -101,22 +101,6 @@ secondary_entities:
         name: sensor
         unit: "%"
         class: measurement
-  - entity: sensor
-    name: Charge State
-    class: enum
-    category: diagnostic
-    deprecated: binary_sensor_plug
-    dps:
-      - id: 23
-        type: boolean
-        name: sensor
-        mapping:
-          - dps_val: false
-            value: "Battery"
-            icon: "mdi:battery"
-          - dps_val: true
-            value: "Charging"
-            icon: "mdi:battery-charging"
   - entity: binary_sensor
     class: plug
     category: diagnostic

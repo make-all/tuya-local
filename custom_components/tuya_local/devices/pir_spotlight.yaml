@@ -81,18 +81,6 @@ secondary_entities:
             value: detected
           - dps_val: none
             value: clear
-  - entity: binary_sensor
-    class: motion
-    deprecated: event_motion
-    dps:
-      - id: 52
-        type: string
-        name: sensor
-        mapping:
-          - dps_val: "pir"
-            value: true
-          - value: false
-        optional: true
   - entity: select
     name: Motion distance
     category: config

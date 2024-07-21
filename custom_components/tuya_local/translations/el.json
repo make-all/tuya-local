@@ -1,0 +1,336 @@
+{
+    "title": "Tuya Local",
+    "config": {
+        "step": {
+            "user": {
+                "title": "Ρυθμίστε τη συσκευή σας Tuya Local",
+                "description": "Συσκευές μπορούν να προστεθούν είτε χειροκίνητα, είτε υποβοηθούμενα από το cloud με τη βοήθεια της εφαρμογής Smart Life.",
+                "data": {
+                    "setup_mode": "Επιλογή εγκατάστασης:"
+                }
+            },
+            "cloud": {
+                "title": "Σύνδεση στο Tuya",
+                "description": "Εισάγετε τον κωδικό χρήστη του Smart Life ή του Tuya Smart.\n\nΜπορείτε να βρείτε αυτόν τον κωδικό στην εφαρμογή Smart Life ή στην εφαρμογή Tuya Smart στην οθόνη **Settings** > **Account and Security**, και θα εισάγετε τον κωδικό που φαίνεται στο πεδίο **User Code**. Ο κωδικός χρήστη χρησιμοποιεί διαχωρισμό κεφαλαίων/πεζών, παρακαλώ σιγουρευτείτε ότι τον εισάγατε ακριβώς όπως φαίνεται στην εφαρμογή.",
+                "data": {
+                    "user_code": "Κωδικός Χρήστη:"
+                }
+            },
+            "scan": {
+                "title": "Ολοκλήρωση της σύνδεσης",
+                "description": "Χρησιμοποιήστε τις εφαρμογές Smart Life ή Tuya Smart για να σαρώσετε τον ακόλουθο κωδικό QR και να ολοκληρώσετε τη σύνδεση.\n\nΣυνεχίστε στο επόμενο βήμα μόλις έχετε ολοκληρώσει αυτό το βήμα στην εφαρμογή."
+            },
+            "choose_device": {
+                "title": "Επιλέξτε τη συσκευή για προσθήκη",
+                "description": "Παρακαλώ επιλέξτε τη συσκευή για προσθήκη από την πρώτη λίστα επιλογής. Συσκευές που έχουν ήδη προστεθεί δεν εμφανίζονται.\n\nΑν η συσκευή συνδέεται μέσω κάποιου gateway, επιλέξτε το από τη λίστα gateway, αλλιώς επιλέξτε Κανένα (None).",
+                "data": {
+                    "device_id": "Επιλέξτε συσκευή:",
+                    "hub_id": "Επιλέξτε gateway:"
+                }
+            },
+            "search": {
+                "title": "Βρείτε τη διεύθυνση IP της συσκευής",
+                "description": "Το Tuya cloud δεν παρέχει τοπικές διευθύνσεις IP, οπότε τώρα πρέπει να ψάξουμε στο τοπικό σας δίκτυο για να βρούμε τη συσκευή. Αυτό μπορεί να διαρκέσει μέχρι και 20 δευτερόλεπτα.\n\nΑν αποτύχει θα πρέπει να παρέχετε εσείς τη διεύθυνση IP με κάποιο άλλο τρόπο, όπως για παράδειγμα από το DHCP assignment του ρούτερ σας.\n\nΓια αυτό το βήμα και την προσθήκη συσκευής που ακολουθεί πρέπει να κλείσετε την εφαρμογή του κινητού σας, αλλιώς οι συνδέσεις του προς τις συσκευές συχνά εμποδίζουν το Tuya Local να επικοινωνήσει μαζί τους."
+            },
+            "local": {
+                "title": "Ρυθμίστε τη συσκευή σας Tuya Local",
+                "description": "[Ακολουθήστε αυτές τις οδηγίες για να βρείτε το device id και το local key.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "Διεύθυνση IP ή όνομα",
+                    "device_id": "Device ID",
+                    "local_key": "Local key",
+                    "protocol_version": "Έκδοση Πρωτοκόλλου (δοκιμάστε αυτόματο (auto) αν δεν το γνωρίζετε)",
+                    "poll_only": "Ανίχνευση μόνο (δοκιμάστε αυτό αν η συσκευή δε λειτουργεί πλήρως)",
+                    "device_cid": "Sub device ID (για συσκευές συνδεμένες μέσω gateway)"
+                }
+            },
+            "select_type": {
+                "title": "Επιλέξτε τον τύπο της συσκευής",
+                "description": "Επιλέξτε τον τύπο που ταιριάζει στη συσκευή σας",
+                "data": {
+                    "type": "Τύπος συσκευής"
+                }
+            },
+            "choose_entities": {
+                "title": "Λεπτομέρειες συσκευής",
+                "description": "Επιλέξτε ένα όνομα για αυτή τη συσκευή",
+                "data": {
+                    "name": "Όνομα"
+                }
+            }
+        },
+        "abort": {
+            "already_configured": "Έχει ήδη προστεθεί μια συσκευή με αυτό το ID.",
+            "not_supported": "Λυπούμαστε, αυτή η συσκευή δεν υποστηρίζεται.",
+            "no_devices": "Αδυναμία εύρεσης μη εγγεγραμμένων συσκευών για αυτό το λογαριασμό."
+        },
+        "error": {
+            "connection": "Αδυναμία σύνδεσης στη συσκευή σας με αυτά τα στοιχεία. Ίσως είναι προσωρινό πρόβλημα, ή τα στοιχεία που καταχωρίσατε είναι λάθος.",
+            "does_not_need_hub": "Η συσκευή δεν χρειάζεται κάποιο gateway και επιλέχτηκε ένα. Παρακαλώ ελέγξτε τις επιλογές.",
+            "needs_hub": "Η συσκευή χρειάζεται gateway και δεν επιλέχτηκε κάποιο."
+        }
+    },
+    "selector": {
+        "setup_mode": {
+            "options": {
+                "cloud": "Εγκατάσταση συσκευής υποβοηθούμενη απο το Smart Life cloud.",
+                "manual": "Εισάγετε χειροκίνητα τις πληροφορίες για τη σύνδεση της συσκευής."
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "user": {
+                "title": "Ρυθμίστε τη συσκευή σας Tuya Local",
+                "description": "[Ακολουθήστε αυτές τις οδηγίες για να βρείτε το local key.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "Διεύθυνση IP ή όνομα",
+                    "local_key": "Local key",
+                    "protocol_version": "Έκδοση Πρωτοκόλλου (δοκιμάστε αυτόματο (auto) αν δεν το γνωρίζετε)",
+                    "poll_only": "Ανίχνευση μόνο (δοκιμάστε αυτό αν η συσκευή δε λειτουργεί πλήρως)",
+                    "device_cid": "Sub device ID (για συσκευές συνδεμένες μέσω gateway)"
+                }
+            }
+        },
+        "error": {
+            "connection": "Αδυναμία σύνδεσης στη συσκευή σας με αυτές τα στοιχεία. Ίσως είναι προσωρινό πρόβλημα, ή τα στοιxεία που καταχωρίσατε είναι λάθος."
+        },
+        "abort": {
+            "not_supported": "Λυπούμαστε, αυτή η συσκευή δεν υποστηρίζεται."
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "Απόψυξη",
+                "state": {
+                    "off": "Νορμάλ",
+                    "on": "Γίνεται απόψυξη"
+                }
+            },
+            "tank_empty": {
+                "name": "Δοχείο",
+                "state": {
+                    "off": "OK",
+                    "on": "Χαμηλή στάθμη"
+                }
+            },
+            "tank_full": {
+                "name": "Δοχείο",
+                "state": {
+                    "off": "OK",
+                    "on": "Γεμάτο"
+                }
+            }
+        },
+        "climate": {
+            "aircon_extra": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "health": "Υγιεινό",
+                            "medhigh": "Μεσαίο-Υψηλό",
+                            "medlow": "Μεσαίο-Χαμηλό",
+                            "natural": "Φυσικό",
+                            "quiet": "Ήσυχο",
+                            "sleep": "Αναμονή",
+                            "strong": "Δυνατό"
+                        }
+                    },
+                    "swing_mode": {
+                        "state": {
+                            "topmost": "Υψηλότερο δυνατόν",
+                            "top": "Υψηλό",
+                            "middle": "Μεσαίο",
+                            "down": "Χαμηλό",
+                            "downmost": "Χαμηλότερο δυνατόν"
+                        }
+                    }
+                }
+            },
+            "thermostat": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "cycle": "Κύκλος"
+                        }
+                    },
+                    "preset_mode": {
+                        "state": {
+                            "manual": "Χειροκίνητα",
+                            "program": "Προγραμματισμός",
+                            "temp_override": "Προσωρινή Παράκαμψη",
+                            "perm_override": "Μόνιμη Παράκαμψη"
+                        }
+                    }
+                }
+            },
+            "combo_floor": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "cool": "Ψύξη αέρα",
+                            "fan_only": "Ανεμιστήρας",
+                            "heat": "Θέρμανση αέρα",
+                            "floor_cool": "Ψύξη πατώματος",
+                            "floor_heat": "Θέρμανση πατώματος"
+                        }
+                    }
+                }
+            },
+            "swing_as_powerlevel": {
+                "state_attributes": {
+                    "swing_mode": {
+                        "name": "Επίπεδο θέρμανσης",
+                        "state": {
+                            "stop": "Διακοπή",
+                            "auto": "Αυτόματο"
+                        }
+                    }
+                }
+            },
+            "pool_heatpump": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "smart_heat": "Έξυπνη θέρμανση",
+                            "quick_heat": "Γρήγορη θέρμανση",
+                            "quiet_heat": "Ήσυχη θέρμανση",
+                            "smart_cool": "Έξυπνη ψύξη",
+                            "quick_cool": "Γρήγορη ψύξη",
+                            "quiet_cool": "Ήσυχη ψύξη",
+                            "auto": "Αυτόματο"
+                        }
+                    }
+                }
+            },
+            "heater": {
+                "name": "Θέρμανση"
+            },
+            "thermo_switch": {
+                "state_attributes": {
+                    "hvac_mode": {
+                        "state": {
+                            "fan_only": "Παύση"
+                        }
+                    }
+                }
+            }
+        },
+        "humidifier": {
+            "dehumidifier": {
+                "state_attributes": {
+                    "mode": {
+                        "state": {
+                            "laundry": "Στέγνωμα ρούχων",
+                            "purify": "Καθαρισμός"
+                        }
+                    }
+                }
+            }
+        },
+        "fan": {
+            "fan_with_presets": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "baby": "Μωρό",
+                            "fresh": "Φρέσκο",
+                            "nature": "Φυσικό",
+                            "normal": "Νορμάλ",
+                            "sleep": "Αναμονή",
+                            "smart": "Έξυπνο",
+                            "strong": "Δυνατό",
+                            "displayoff": "Σβήσιμο οθόνης",
+                            "off": "Ανενεργό"
+                        }
+                    }
+                }
+            },
+            "ventilation": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "fresh": "Καθαρός αέρας",
+                            "circulate": "Κυκλοφορία αέρα",
+                            "sleep": "Αναμονή",
+                            "auto": "Αυτόματο",
+                            "eco": "Οικονομικό",
+                            "anti-condensation": "Αποφυγή υγρασίας"
+                        }
+                    }
+                }
+            }
+        },
+        "light": {
+            "backlight": {
+                "name": "Οπίσθιος φωτισμός"
+            },
+            "display": {
+                "name": "Οθόνη"
+            },
+            "embers": {
+                "name": "Χόβολη"
+            },
+            "flame": {
+                "name": "Φωτιά"
+            },
+            "indicator": {
+                "name": "Ένδειξη"
+            },
+            "laser": {
+                "name": "Λέιζερ"
+            },
+            "logs": {
+                "name": "Κούτσουρα"
+            },
+            "nightlight": {
+                "name": "Νυχτερινός φωτισμός"
+            }
+        },
+        "lock": {
+            "child_lock": {
+                "name": "Παιδικό κλείδωμα"
+            }
+        },
+        "number": {
+            "timer": {
+                "name": "Χρονοδιακόπτης"
+            }
+        },
+        "select": {
+            "timer": {
+                "name": "Χρονοδιακόπτης"
+            },
+            "temperature_unit": {
+                "name": "Μονάδα μέτρησης θερμοκρασίας",
+                "state": {
+                    "celsius": "Κελσίου",
+                    "fahrenheit": "Φαρενάιτ"
+                }
+            }
+        },
+        "sensor": {
+            "time_remaining": {
+                "name": "Χρόνος που απομένει"
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "Απόψυξη"
+            },
+            "evaporator_cleaning": {
+                "name": "Καθαρισμός αποστακτήρα"
+            },
+            "ionizer": {
+                "name": "Ιονιστής"
+            },
+            "keytone": {
+                "name": "Ήχος κουμπιών"
+            },
+            "uv_sterilization": {
+                "name": "Αποστείρωση UV"
+            }
+        }
+    }
+}

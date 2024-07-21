@@ -38,36 +38,6 @@ primary_entity:
       mapping:
         - step: 5
 secondary_entities:
-  - entity: fan
-    deprecated: humidifier mode
-    dps:
-      - id: 1
-        name: switch
-        type: boolean
-      - id: 2
-        name: preset_mode
-        type: string
-        optional: true
-        mapping:
-          - dps_val: auto
-            value: auto
-          - dps_val: high
-            value: high
-          - dps_val: low
-            value: low
-          - dps_val: fan
-            value: Fan
-      - id: 102
-        name: oscillate
-        type: string
-        optional: true
-        mapping:
-          - dps_val: "0_90"
-            value: true
-          - dps_val: "45"
-            value: false
-          - dps_val: "90"
-            value: false
   - entity: select
     name: Direction
     category: config

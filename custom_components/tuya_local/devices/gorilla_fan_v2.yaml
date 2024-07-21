@@ -1,0 +1,49 @@
+name: Ceiling fan
+# products:
+#   - id: UNKNOWN
+#     name: Atomberg Gorilla Fan V2
+primary_entity:
+  entity: fan
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 3
+      type: integer
+      name: speed
+      range:
+        min: 1
+        max: 5
+
+secondary_entities:
+  - entity: light
+    translation_key: nightlight
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Boost
+    icon: mdi:car-turbocharger
+    dps:
+      - id: 115
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Sleep
+    icon: mdi:sleep
+    dps:
+      - id: 113
+        type: boolean
+        name: switch
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 360

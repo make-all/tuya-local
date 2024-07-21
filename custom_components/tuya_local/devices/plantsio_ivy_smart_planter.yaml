@@ -1,0 +1,451 @@
+# Datapoints documented at:
+# https://gist.github.com/thewade/ef9f6014f13932bd2e77d43331e2027d
+
+name: Smart Planter
+products:
+  - id: 8n3q0y4cwov8ifxt
+    name: PlantsIO Ivy Smart Planter
+primary_entity:
+  entity: sensor
+  name: Water level
+  class: volume_storage
+  dps:
+    - id: 108
+      type: integer
+      name: sensor
+      unit: mL
+      class: measurement
+      mapping:
+        - dps_val: 0
+          icon: "mdi:cup-outline"
+        - icon: "mdi:cup"
+    - id: 107
+      type: string
+      name: version
+secondary_entities:
+  # Sensor entities raw
+  - entity: sensor
+    class: illuminance
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: lx
+        class: measurement
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: moisture
+    dps:
+      - id: 122
+        name: sensor
+        type: integer
+        optional: true
+        unit: "%"
+  # Sensor entities intelligent
+  - entity: sensor
+    name: Water status
+    icon: "mdi:watering-can"
+    class: enum
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: "Initializing"
+          - dps_val: 2
+            value: "Drinking"
+          - dps_val: 3
+            value: "Absorbing from soil"
+          - value: "Unknown state"
+  - entity: sensor
+    name: Light status
+    icon: "mdi:brightness-5"
+    class: enum
+    dps:
+      - id: 138
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: "Initializing"
+          - dps_val: 1
+            value: "Acceptable"
+          - dps_val: 2
+            value: "Good"
+          - dps_val: 3
+            value: "Exceptional"
+          - dps_val: 4
+            value: "Too Much"
+          - dps_val: 5
+            value: "Insufficient"
+          - value: "Unknown state"
+  - entity: sensor
+    name: Temperature status
+    icon: "mdi:thermometer"
+    class: enum
+    dps:
+      - id: 139
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: "Initializing"
+          - dps_val: 1
+            value: "Good"
+          - dps_val: 2
+            value: "Hot"
+            icon: "mdi:thermometer-high"
+          - dps_val: 3
+            value: "Cold"
+            icon: "mdi:thermometer-low"
+          - value: "Unknown state"
+  - entity: sensor
+    name: Humidity status
+    icon: "mdi:water-percent"
+    class: enum
+    dps:
+      - id: 140
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: "Initializing"
+          - dps_val: 1
+            value: "Good"
+          - value: "Unknown state"
+  # Diagnostic entities
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: binary_sensor
+    class: battery_charging
+    category: diagnostic
+    dps:
+      - id: 109
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Plant in pot
+    category: diagnostic
+    dps:
+      - id: 102
+        type: boolean
+        name: sensor
+  # Config entities
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 130
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: false
+            value: celsius
+          - dps_val: true
+            value: fahrenheit
+  - entity: select
+    name: Color
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 113
+        type: integer
+        name: option
+        mapping:
+          - dps_val: 0
+            value: "White"
+          - dps_val: 1
+            value: "Yellow"
+          - dps_val: 2
+            value: "Green"
+          - dps_val: 3
+            value: "Pink"
+          - dps_val: 4
+            value: "Purple"
+  - entity: select
+    name: Plant type
+    icon: "mdi:sprout"
+    category: config
+    dps:
+      - id: 119
+        type: integer
+        name: option
+        mapping:
+          - dps_val: 0
+            value: "Not selected"
+          - dps_val: 1
+            value: "Devil's Ivy"
+          - dps_val: 2
+            value: "Dwarf Umbrella Tree"
+          - dps_val: 3
+            value: "Spider Plant"
+          - dps_val: 4
+            value: "Parlor Palm"
+          - dps_val: 5
+            value: "Buddist Pine"
+          - dps_val: 6
+            value: "Arrowhead Plant (Pink)"
+          - dps_val: 7
+            value: "Arrowhead Plant (Green)"
+          - dps_val: 8
+            value: "Arrowhead Plant (Marble)"
+          - dps_val: 9
+            value: "Philidendron Congo"
+          - dps_val: 10
+            value: "Orange Jasmine"
+          - dps_val: 11
+            value: "Perls and Jade"
+          - dps_val: 12
+            value: "Rubber Tree"
+          - dps_val: 13
+            value: "Baby Rubber Plant"
+          - dps_val: 14
+            value: "Silver Goosefoot"
+          - dps_val: 15
+            value: "Swiss Cheese"
+          - dps_val: 16
+            value: "Dumb Cane"
+          - dps_val: 17
+            value: "Common Ivy"
+          - dps_val: 18
+            value: "Aluminum Plant"
+          - dps_val: 19
+            value: "Bird of Paradise"
+          - dps_val: 20
+            value: "Asian Bell Tree"
+          - dps_val: 21
+            value: "Satin Pothos"
+          - dps_val: 22
+            value: "Heartleaf Philodendron"
+          - dps_val: 23
+            value: "Raindrop Peperomia"
+          - dps_val: 24
+            value: "Parallel Peperomia"
+          - dps_val: 25
+            value: "Watermelon Peperomia"
+          - dps_val: 26
+            value: "Nerve Plant"
+          - dps_val: 27
+            value: "Peacock Plant"
+          - dps_val: 28
+            value: "Calathea Freddie"
+          - dps_val: 29
+            value: "Orbifolia Prayer Plant"
+          - dps_val: 30
+            value: "Bird's Nest Fern"
+          - dps_val: 31
+            value: "Squirrel's Foot Fern"
+          - dps_val: 32
+            value: "Heart Leaf Fern"
+          - dps_val: 33
+            value: "Cretan Brake"
+          - dps_val: 34
+            value: "Florist Kalanchoe"
+          - dps_val: 35
+            value: "Ruby Glow"
+          - dps_val: 36
+            value: "Succulents"
+          - dps_val: 37
+            value: "Marjoram"
+          - dps_val: 38
+            value: "Rosemary"
+          - dps_val: 39
+            value: "Basil"
+          - dps_val: 40
+            value: "Mint"
+          - dps_val: 41
+            value: "Parsley"
+          - dps_val: 42
+            value: "Catnip"
+          - dps_val: 43
+            value: "Avocado"
+          - dps_val: 44
+            value: "Tiger Lily"
+          - dps_val: 45
+            value: "Cilantro"
+  - entity: switch
+    name: Touch perception
+    category: config
+    icon: "mdi:gesture-tap"
+    dps:
+      - id: 110
+        type: boolean
+        name: switch
+      - id: 111
+        type: string
+        name: touching
+        optional: true
+  - entity: switch
+    name: Auto brightness
+    category: config
+    icon: "mdi:brightness-auto"
+    dps:
+      - id: 135
+        type: boolean
+        name: switch
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 101
+        type: integer
+        name: brightness
+        range:
+          min: 0
+          max: 100
+  - entity: switch
+    name: Sound perception
+    category: config
+    icon: "mdi:ear-hearing"
+    dps:
+      - id: 125
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: false
+            icon: "mdi:ear-hearing-off"
+  - entity: number
+    name: Sound sensitivity
+    category: config
+    icon: "mdi:ear-hearing"
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 100
+  - entity: switch
+    name: Plant detection
+    category: config
+    icon: "mdi:radar"
+    dps:
+      - id: 123
+        type: boolean
+        name: switch
+  - entity: number
+    name: Plant detection sensitivity
+    category: config
+    icon: "mdi:radar"
+    dps:
+      - id: 116
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 100
+  - entity: switch
+    name: Night sleep
+    icon: "mdi:moon-waning-crescent"
+    category: config
+    dps:
+      - id: 131
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Smart sleep
+    icon: "mdi:sleep"
+    category: config
+    dps:
+      - id: 132
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: false
+            icon: "mdi:sleep-off"
+  - entity: button
+    name: Manual calibration
+    category: config
+    icon: "mdi:scale-balance"
+    dps:
+      - id: 124
+        type: boolean
+        name: button
+  - entity: select
+    name: Time format
+    icon: "mdi:clock"
+    category: config
+    dps:
+      - id: 136
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: false
+            value: "12 Hour Clock"
+          - dps_val: true
+            value: "24 Hour Clock"
+  - entity: select
+    name: Language
+    icon: "mdi:translate"
+    category: config
+    dps:
+      - id: 144
+        type: integer
+        name: option
+        mapping:
+          - dps_val: 0
+            value: "中文"
+          - dps_val: 1
+            value: "English"
+          - dps_val: 2
+            value: "日本語"
+          - dps_val: 3
+            value: "Français"
+  - entity: switch
+    name: Location weather
+    icon: "mdi:weather-pouring"
+    category: config
+    dps:
+      - id: 141
+        type: boolean
+        name: switch
+  - entity: number
+    name: Latitude
+    category: config
+    icon: "mdi:latitude"
+    dps:
+      - id: 143
+        type: integer
+        name: value
+        range:
+          min: -900000
+          max: 900000
+        mapping:
+          - scale: 10000
+  - entity: number
+    name: Longitude
+    category: config
+    icon: "mdi:longitude"
+    dps:
+      - id: 142
+        type: integer
+        name: value
+        range:
+          min: -1800000
+          max: 1800000
+        mapping:
+          - scale: 10000

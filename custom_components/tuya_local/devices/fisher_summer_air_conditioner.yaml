@@ -1,7 +1,9 @@
 name: Air conditioner
 products:
   - id: bf8705744de2dd5ab4ogqj
-    name: Fisher Summer Air Conditioner
+    name: Fisher Summer
+  - id: u9jjsaluqe1trtxv
+    name: Daitsu DS-9KTP
 primary_entity:
   entity: climate
   translation_only_key: aircon_extra
@@ -97,9 +99,42 @@ primary_entity:
       #   21. temperature scale switching, 1 is Fahrenheit, 0 is Celsius
       #   22. soft wind
       #   23. left and right wide-angle air supply
+    - id: 115
+      type: integer
+      name: total_n
+      optional: true
+    - id: 116
+      type: integer
+      name: total_p
+      optional: true
     - id: 123
       name: options
       type: string
+    - id: 128
+      name: style
+      type: string
+      optional: true
+      mapping:
+        - dps_val: "0"
+          value: wall
+        - dps_val: "1"
+          value: floor
+    - id: 133
+      name: swing_mode
+      type: string
+      mapping:
+        - dps_val: "0"
+          value: "off"
+        - dps_val: "1"
+          value: horizontal
+        - dps_val: "2"
+          value: vertical
+        - dps_val: "3"
+          value: both
+    - id: 134
+      name: work_time
+      type: string
+      optional: true
 secondary_entities:
   - entity: binary_sensor
     class: problem
@@ -145,14 +180,14 @@ secondary_entities:
         name: option
         type: string
         mapping:
-          - dps_val: 0
+          - dps_val: "0"
             value: None
             default: true
-          - dps_val: 1
+          - dps_val: "1"
             value: Upper and lower
-          - dps_val: 2
+          - dps_val: "2"
             value: Upper
-          - dps_val: 3
+          - dps_val: "3"
             value: Lower
   - entity: select
     name: Horizontal Sweep
@@ -162,22 +197,22 @@ secondary_entities:
         name: option
         type: string
         mapping:
-          - dps_val: 0
+          - dps_val: "0"
             value: "Off"
             default: true
-          - dps_val: 1
+          - dps_val: "1"
             value: Left and Right
-          - dps_val: 2
+          - dps_val: "2"
             value: Left
-          - dps_val: 3
+          - dps_val: "3"
             value: Middle
-          - dps_val: 4
+          - dps_val: "4"
             value: Right
-          - dps_val: 5
+          - dps_val: "5"
             value: Partial Left
-          - dps_val: 6
+          - dps_val: "6"
             value: Partial Right
-          - dps_val: 7
+          - dps_val: "7"
             value: Wide Angle
   - entity: select
     name: Energy Saving
@@ -187,14 +222,14 @@ secondary_entities:
         name: option
         type: string
         mapping:
-          - dps_val: 0
+          - dps_val: "0"
             value: None
             default: true
-          - dps_val: 1
+          - dps_val: "1"
             value: Default Power Saving
-          - dps_val: 2
+          - dps_val: "2"
             value: Quota Power Saving
-          - dps_val: 3
+          - dps_val: "3"
             value: Fixed Temperature Power Saving
         optional: true
   - entity: select
@@ -230,18 +265,18 @@ secondary_entities:
         name: option
         type: string
         mapping:
-          - dps_val: 0
+          - dps_val: "0"
             value: Freeze Current Position
             default: true
-          - dps_val: 1
+          - dps_val: "1"
             value: Top
-          - dps_val: 2
+          - dps_val: "2"
             value: Slightly Up
-          - dps_val: 3
+          - dps_val: "3"
             value: Middle
-          - dps_val: 4
+          - dps_val: "4"
             value: Slightly Down
-          - dps_val: 5
+          - dps_val: "5"
             value: Down
   - entity: select
     name: Set Horizontal Direction  # Tuya JSON phrasing: Freeze Horizontal
@@ -251,24 +286,24 @@ secondary_entities:
         name: option
         type: string
         mapping:
-          - dps_val: 0
+          - dps_val: "0"
             value: Freeze Current Position
             default: true
-          - dps_val: 1
+          - dps_val: "1"
             value: Left
-          - dps_val: 2
+          - dps_val: "2"
             value: Slightly Left
-          - dps_val: 3
+          - dps_val: "3"
             value: Middle
-          - dps_val: 4
+          - dps_val: "4"
             value: Slightly Right
-          - dps_val: 5
+          - dps_val: "5"
             value: Right
-          - dps_val: 6
+          - dps_val: "6"
             value: Wide Angle Left
-          - dps_val: 7
+          - dps_val: "7"
             value: Wide Angle Right
-          - dps_val: 8
+          - dps_val: "8"
             value: Wide Angle
   - entity: select
     name: Power
@@ -324,30 +359,6 @@ secondary_entities:
             value: Cold Wind
           - dps_val: false
             value: Hot wind
-        optional: true
-  - entity: select
-    name: Swing Direction
-    category: config
-    dps:
-      - id: 133
-        name: option
-        type: string
-        mapping:
-          - dps_val: 0
-            value: None
-            default: true
-          - dps_val: 1
-            value: Horizontal Only
-          - dps_val: 2
-            value: Vertical Only
-          - dps_val: 3
-            value: Horizontal and Vertical
-  - entity: sensor
-    name: Work Time
-    dps:
-      - id: 134
-        name: sensor
-        type: string
         optional: true
   - entity: sensor
     name: Running Time

@@ -1,0 +1,129 @@
+name: Bathroom radiator
+products:
+  - id: bc6gdgt0cpq1jmjz
+    name: Eurom Sani LBH-63
+primary_entity:
+  entity: climate
+  translation_key: heater
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: r
+              value: heat
+            - dps_val: t
+              value: dry
+              icon: "mdi:hanger"
+    - id: 2
+      type: integer
+      name: temperature
+      range:
+        min: 0
+        max: 37
+      unit: C
+      mapping:
+        - constraint: mode
+          conditions:
+            - dps_val: t
+              value_redirect: surface_temperature_setpoint
+              range:
+                min: 40
+                max: 70
+    - id: 3
+      type: integer
+      name: current_temperature
+      unit: C
+      mapping:
+        - constraint: mode
+          conditions:
+            - dps_val: t
+              value_mirror: surface_temperature_internal
+    - id: 105
+      name: surface_temperature_internal
+      type: integer
+      optional: true
+      hidden: true
+    - id: 12
+      name: error
+      type: bitfield
+      mapping:
+        - dps_val: 0
+          value: OK
+    - id: 101
+      type: string
+      name: hvac_action
+      mapping:
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: r
+              value: heating
+            - dps_val: t
+              value: drying
+        - dps_val: false
+          value: idle
+          constraint: hvac_mode
+          conditions:
+            - dps_val: false
+              value: "off"
+    - id: 4
+      name: mode
+      type: string
+      mapping:
+        - dps_val: r
+          value: room
+        - dps_val: t
+          value: towel
+    - id: 106
+      name: surface_temperature_setpoint
+      type: integer
+      hidden: true
+      optional: true
+      unit: C
+      range:
+        min: 40
+        max: 70
+    - id: 103
+      # anti-frost mode
+      name: preset_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: home
+        - dps_val: true
+          value: away
+secondary_entities:
+  - entity: switch
+    name: Eco-mode
+    icon: "mdi:leaf"
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Surface temperature
+    class: temperature
+    category: diagnostic
+    icon: "mdi:thermometer-lines"
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: C
+  - entity: sensor
+    name: Room temperature
+    class: temperature
+    category: diagnostic
+    icon: "mdi:home-thermometer-outline"
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        unit: C

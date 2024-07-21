@@ -106,6 +106,8 @@ class TuyaLocalEntity:
 
     async def async_added_to_hass(self):
         self._device.register_entity(self)
+        if self._config.deprecated:
+            _LOGGER.warning(self._config.deprecation_message)
 
     async def async_will_remove_from_hass(self):
         await self._device.async_unregister_entity(self)
@@ -116,8 +118,8 @@ class TuyaLocalEntity:
 
 
 UNIT_ASCII_MAP = {
-    "C": UnitOfTemperature.CELSIUS,
-    "F": UnitOfTemperature.FAHRENHEIT,
+    "C": UnitOfTemperature.CELSIUS.value,
+    "F": UnitOfTemperature.FAHRENHEIT.value,
     "ugm3": CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
     "m2": AREA_SQUARE_METERS,
 }
