@@ -14,6 +14,7 @@ primary_entity:
       type: base64
       persist: false
       optional: true
+      sensitive: true
       mapping:
         - dps_val: ""
           value_redirect: motion_detected
@@ -22,6 +23,7 @@ primary_entity:
     - id: 115
       name: motion_detected
       type: base64
+      sensitive: true
 secondary_entities:
   - entity: lock
     name: Door lock

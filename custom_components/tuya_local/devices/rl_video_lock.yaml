@@ -13,6 +13,7 @@ primary_entity:
       name: snapshot
       type: base64
       optional: true
+      sensitive: true
     - id: 191
       name: smart_action
       type: string
@@ -42,25 +43,3 @@ secondary_entities:
           - dps_val: ""
             value: null
           - value: ring
-  - entity: binary_sensor
-    name: Doorbell
-    deprecated: event_doorbell
-    class: sound
-    category: diagnostic
-    dps:
-      - id: 136
-        type: string
-        name: sensor
-        optional: true
-        persist: false
-        mapping:
-          - dps_val: null
-            value: false
-          - dps_val: ""
-            value: false
-          - value: true
-      - id: 136
-        type: string
-        name: details
-        optional: true
-        persist: false

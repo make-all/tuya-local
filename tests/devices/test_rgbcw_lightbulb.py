@@ -1,4 +1,8 @@
-from homeassistant.components.light import ColorMode, LightEntityFeature
+from homeassistant.components.light import (
+    EFFECT_OFF,
+    ColorMode,
+    LightEntityFeature,
+)
 from homeassistant.const import UnitOfTime
 
 from ..const import RGBCW_LIGHTBULB_PAYLOAD
@@ -81,7 +85,7 @@ class TestRGBCWLightbulb(BasicNumberTests, TuyaDeviceTestCase):
     def test_effect_list(self):
         self.assertCountEqual(
             self.subject.effect_list,
-            ["Scene", "Music"],
+            ["Scene", "Music", EFFECT_OFF],
         )
 
     def test_effect(self):
@@ -90,9 +94,9 @@ class TestRGBCWLightbulb(BasicNumberTests, TuyaDeviceTestCase):
         self.dps[MODE_DPS] = "music"
         self.assertEqual(self.subject.effect, "Music")
         self.dps[MODE_DPS] = "white"
-        self.assertIsNone(self.subject.effect)
+        self.assertEqual(self.subject.effect, EFFECT_OFF)
         self.dps[MODE_DPS] = "colour"
-        self.assertIsNone(self.subject.effect)
+        self.assertEqual(self.subject.effect, EFFECT_OFF)
 
     def test_supported_color_modes(self):
         self.assertCountEqual(

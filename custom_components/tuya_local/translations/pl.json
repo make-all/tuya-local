@@ -4,6 +4,36 @@
         "step": {
             "user": {
                 "title": "Skonfiguruj swoje urządzenie Tuya Local",
+                "description": "Urządzenia można dodawać ręcznie lub przy pomocy chmury za pomocą aplikacji Smart Life.",
+                "data": {
+                    "setup_mode": "Wybór konfiguracji:"
+                }
+            },
+            "cloud": {
+                "title": "Zaloguj się do Tuyi",
+                "description": "Wprowadź swój kod użytkownika Smart Life lub Tuya Smart.\n\nKod ten znajdziesz w aplikacji Smart Life lub Tuya Smart na ekranie **Ustawienia** > **Konto i bezpieczeństwo** i wprowadź kod widoczny na ekranie ",
+                "data": {
+                    "user_code": "Kod użytkownika:"
+                }
+            },
+            "scan": {
+                "title": "Dokończ logowanie",
+                "description": "Użyj aplikacji Smart Life lub aplikacji Tuya Smart"
+            },
+            "choose_device": {
+                "title": "Wybierz urządzenie",
+                "description": "Wybierz urządzenie do dodania z pierwszej listy rozwijanej. ",
+                "data": {
+                    "device_id": "Wybierz urządzenie:",
+                    "hub_id": "Wybierz bramkę:"
+                }
+            },
+            "search": {
+                "title": "Znajdź adres IP urządzenia",
+                "description": "Chmura Tuya nie udostępnia lokalnych adresów IP"
+            },
+            "local": {
+                "title": "Skonfiguruj swoje urządzenie Tuya Local",
                 "description": "[Postępuj zgodnie z instrukcjami by znaleźć swoje Device ID oraz Local key.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "Adres IP lub nazwa hosta",
@@ -31,10 +61,21 @@
         },
         "abort": {
             "already_configured": "Urządzenie z takim ID już istnieje.",
-            "not_supported": "Przepraszam, to urządzenie nie jest wspierane."
+            "not_supported": "Przepraszam, to urządzenie nie jest wspierane.",
+            "no_devices": "Nie udało się znaleźć żadnych niezarejestrowanych urządzeń dla konta."
         },
         "error": {
-            "connection": "Nie można podłączyć się do urządzenia z tymi danymi. To może być tymczasowy problem lub dane mogą być niewłaściwe."
+            "connection": "Nie można podłączyć się do urządzenia z tymi danymi. To może być tymczasowy problem lub dane mogą być niewłaściwe.",
+            "does_not_need_hub": "Urządzenie nie potrzebuje bramy i taką wybrano. ",
+            "needs_hub": "Urządzenie wymaga bramy"
+        }
+    },
+    "selector": {
+        "setup_mode": {
+            "options": {
+                "cloud": "Konfiguracja urządzenia Smart Life wspomagana chmurą.",
+                "manual": "Ręcznie podaj informacje o połączeniu urządzenia."
+            }
         }
     },
     "options": {
@@ -200,6 +241,7 @@
                             "fresh": "Świeży",
                             "smart": "Inteligentny",
                             "strong": "Silny",
+                            "displayoff": "Wyświetlacz wyłączony",
                             "off": "Wyłączony"
                         }
                     }
@@ -277,8 +319,14 @@
             "anti_frost": {
                 "name": "Ochrona przed zamarzaniem"
             },
+            "evaporator_cleaning": {
+                "name": "Czyszczenie parownika"
+            },
             "ionizer": {
                 "name": "Jonizator"
+            },
+            "keytone": {
+                "name": "Dzwięk klawiszy"
             },
             "uv_sterilization": {
                 "name": "Sterylizacja UV"

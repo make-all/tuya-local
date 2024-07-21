@@ -35,9 +35,16 @@ primary_entity:
         min: 15
         max: 75
       unit: C
+    - id: 16
+      type: integer
+      optional: true
+      name: current_temperature
+      mapping:
+        - dps_val: null
+          value_redirect: inlet_temp
     - id: 21
       type: integer
-      name: current_temperature
+      name: inlet_temp
     - id: 7
       type: boolean
       name: away_mode

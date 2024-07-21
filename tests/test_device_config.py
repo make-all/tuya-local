@@ -98,11 +98,18 @@ DP_SCHEMA = vol.Schema(
         },
         vol.Optional("unit"): str,
         vol.Optional("precision"): vol.Any(int, float),
-        vol.Optional("class"): str,
+        vol.Optional("class"): vol.In(
+            [
+                "measurement",
+                "total",
+                "total_increasing",
+            ]
+        ),
         vol.Optional("optional"): True,
         vol.Optional("persist"): False,
         vol.Optional("hidden"): True,
         vol.Optional("readonly"): True,
+        vol.Optional("sensitive"): True,
         vol.Optional("force"): True,
         vol.Optional("icon_priority"): int,
         vol.Optional("mapping"): [MAPPING_SCHEMA],

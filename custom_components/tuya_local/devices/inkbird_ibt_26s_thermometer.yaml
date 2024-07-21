@@ -1,0 +1,221 @@
+name: BBQ thermometer
+products:
+  - id: h8qbni4ouwn5gjh0
+    name: Inkbird IBT-26S
+primary_entity:
+  entity: sensor
+  name: Temperature probe 1
+  class: temperature
+  dps:
+    - id: 107
+      type: integer
+      name: sensor
+      class: measurement
+      mapping:
+        - scale: 100
+      unit: F
+secondary_entities:
+  - entity: sensor
+    name: Temperature probe 2
+    class: temperature
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 100
+        unit: F
+  - entity: sensor
+    name: Temperature probe 3
+    class: temperature
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 100
+        unit: F
+  - entity: sensor
+    name: Temperature probe 4
+    class: temperature
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 100
+        unit: F
+  - entity: sensor
+    name: Temperature probe 5
+    class: temperature
+    dps:
+      - id: 124
+        type: integer
+        name: sensor
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 100
+        unit: F
+  - entity: sensor
+    name: Temperature probe oven
+    class: temperature
+    dps:
+      - id: 125
+        type: integer
+        name: sensor
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 100
+        unit: F
+  - entity: sensor
+    name: Internal temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: F
+            value: fahrenheit
+          - dps_val: C
+            value: celsius
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: binary_sensor
+    category: diagnostic
+    class: battery_charging
+    dps:
+      - id: 128
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 4
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Bluetooth
+    icon: mdi:bluetooth
+    category: diagnostic
+    class: connectivity
+    dps:
+      - id: 128
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 2048
+            value: true
+          - value: false
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: brightness
+        range:
+          min: 5
+          max: 100
+  - entity: switch
+    name: Alarm sound
+    category: config
+    icon: "mdi:bullhorn"
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: number
+    name: Calibration probe 1
+    category: config
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 116
+        type: integer
+        name: value
+        unit: F
+        range:
+          min: -126
+          max: 126
+  - entity: number
+    name: Calibration probe 2
+    category: config
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        unit: F
+        range:
+          min: -126
+          max: 126
+  - entity: number
+    name: Calibration probe 3
+    category: config
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        unit: F
+        range:
+          min: -126
+          max: 126
+  - entity: number
+    name: Calibration probe 4
+    category: config
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        unit: F
+        range:
+          min: -126
+          max: 126
+  - entity: number
+    name: Calibration probe 5
+    category: config
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        unit: F
+        range:
+          min: -126
+          max: 126
+  - entity: number
+    name: Calibration probe oven
+    category: config
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: F
+        range:
+          min: -126
+          max: 126

@@ -26,21 +26,22 @@ primary_entity:
       type: integer
       name: temperature
       range:
-        min: 1500
+        min: 41
         max: 4500
       mapping:
-        - scale: 100
-          step: 50
-          constraint: temperature_unit
+        - constraint: temperature_unit
           conditions:
             - dps_val: f
               value_redirect: temp_f
-              mapping:
-                - scale: 1
-                  step: 1
               range:
                 min: 41
                 max: 90
+            - dps_val: c
+              range:
+                min: 1500
+                max: 4500
+              scale: 100
+              step: 50
     - id: 17
       type: integer
       name: temp_f
@@ -64,8 +65,7 @@ primary_entity:
           constraint: temperature_unit
           conditions:
             - dps_val: f
-              mapping:
-                - scale: 1
+              scale: 1
               value_redirect: curtemp_f
     - id: 29
       type: integer
@@ -157,7 +157,7 @@ primary_entity:
         - dps_val: heatfanon
           value: heating
         - dps_val: "1"
-          value: heating
+          value: preheating
 secondary_entities:
   - entity: number
     name: Fan runtime

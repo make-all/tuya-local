@@ -1,0 +1,172 @@
+name: Door lock
+products:
+  - id: okkyfgfs
+    name: Ailrinni BLE fingerprint lock
+primary_entity:
+  entity: lock
+  dps:
+    - id: 1
+      type: string
+      name: create_unlock_method
+      optional: true
+    - id: 2
+      type: string
+      name: delete_unlock_method
+      optional: true
+    - id: 3
+      type: string
+      name: modify_unlock_method
+      optional: true
+    - id: 6
+      type: string
+      optional: true
+      name: bluetooth_unlock
+    - id: 12
+      type: integer
+      name: unlock_fingerprint
+      optional: true
+      persist: false
+    - id: 13
+      name: unlock_password
+      type: integer
+      optional: true
+      persist: false
+    - id: 14
+      name: unlock_dynamic_pwd
+      type: integer
+      optional: true
+      persist: false
+    - id: 19
+      name: unlock_ble
+      type: integer
+      optional: true
+      persist: false
+    - id: 47  # Lock motor state
+      name: lock
+      type: boolean
+      readonly: true
+      optional: true
+      mapping:
+        - dps_val: true  # Unlocked
+          value: false
+        - dps_val: false  # Locked
+          value: true
+    - id: 51
+      type: string
+      optional: true
+      name: temp_pwd_create
+    - id: 52
+      type: string
+      optional: true
+      name: temp_pwd_delete
+    - id: 53
+      type: string
+      optional: true
+      name: temp_pwd_modify
+    - id: 54
+      type: string
+      optional: true
+      name: sync_method
+    - id: 55
+      type: integer
+      name: unlock_temp_pwd
+      optional: true
+      persist: false
+    - id: 60
+      type: string
+      optional: true
+      name: remote_no_pd_setkey
+    - id: 61
+      type: string
+      optional: true
+      name: remote_no_dp_key
+    - id: 62
+      type: integer
+      name: unlock_app
+      optional: true
+      persist: false
+    - id: 63
+      name: unlock_voice
+      type: integer
+      optional: true
+      persist: false
+    - id: 64
+      type: string
+      optional: true
+      name: pwd_offline_time
+    - id: 65
+      type: string
+      optional: true
+      name: offline_pwd_cleared
+    - id: 66
+      type: string
+      optional: true
+      name: offline_pwd_clear_all
+    - id: 67
+      type: string
+      optional: true
+      persist: false
+      name: unlock_offline_pwd
+      mapping:
+        - dps_val: null
+          value: null
+        - value: 1
+    - id: 67
+      type: string
+      optional: true
+      name: offline_pwd_details
+secondary_entities:
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    name: Alert
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 21
+        type: string
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: null
+            value: ok
+          - dps_val: wrong_finger
+            value: Wrong Finger
+          - dps_val: wrong_password
+            value: Wrong Password
+          - dps_val: low_battery
+            value: Low Battery
+  - entity: number
+    name: Lock volume
+    category: config
+    dps:
+      - id: 31
+        type: string
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - dps_val: mute
+            step: 33
+            value: 0
+            icon: "mdi:volume-mute"
+          - dps_val: low
+            step: 33
+            value: 33
+            icon: "mdi:volume-low"
+          - dps_val: normal
+            step: 33
+            value: 66
+            icon: "mdi:volume-medium"
+          - dps_val: high
+            step: 33
+            value: 100
+            icon: "mdi:volume-high"

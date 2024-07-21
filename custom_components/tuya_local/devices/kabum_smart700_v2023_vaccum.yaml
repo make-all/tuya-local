@@ -253,6 +253,7 @@ secondary_entities:
       - id: 10
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: closed
             value: "Off"
@@ -262,6 +263,9 @@ secondary_entities:
             value: Medium
           - dps_val: high
             value: High
+          - dps_val: null
+            value: "Off"
+            hidden: true
   - entity: button
     name: Reset map
     category: config
