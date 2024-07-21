@@ -661,6 +661,7 @@ class TuyaDpsConfig:
 
         result = val
         scale = self.scale(device)
+        replaced = False
 
         mapping = self._find_map_for_dps(val)
         if mapping:
@@ -716,21 +717,21 @@ class TuyaDpsConfig:
                 result = result / scale
                 replaced = True
 
-            if self.rawtype == "unixtime" and isinstance(result, int):
-                try:
-                    result = datetime.fromtimestamp(result)
-                    replaced = True
-                except Exception:
-                    _LOGGER.warning("Invalid timestamp %d", result)
+        if self.rawtype == "unixtime" and isinstance(result, int):
+            try:
+                result = datetime.fromtimestamp(result)
+                replaced = True
+            except Exception:
+                _LOGGER.warning("Invalid timestamp %d", result)
 
-            if replaced:
-                _LOGGER.debug(
-                    "%s: Mapped dps %s value from %s to %s",
-                    self._entity._device.name,
-                    self.id,
-                    val,
-                    result,
-                )
+        if replaced:
+            _LOGGER.debug(
+                "%s: Mapped dps %s value from %s to %s",
+                self._entity._device.name,
+                self.id,
+                val,
+                result,
+            )
 
         return result
 

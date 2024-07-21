@@ -493,6 +493,20 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
 
         await async_migrate_entries(hass, entry.entry_id, update_unique_id13_3)
         hass.config_entries.async_update_entry(entry, minor_version=3)
+
+    if entry.version == 13 and entry.minor_version < 4:
+        conf = entry.data | entry.options
+        conf_type = conf[CONF_TYPE]
+        # Duolicate config removal - make sure the correct one is used
+        if conf_type == "ble-yl01_waterquality_tester":
+            conf_type = "ble_yl01_watertester"
+
+        hass.config_entries.async_update_entry(
+            entry,
+            data={**entry.data, CONF_TYPE: conf_type},
+            options={**entry.options},
+            minor_version=4,
+        )
     return True
 
 

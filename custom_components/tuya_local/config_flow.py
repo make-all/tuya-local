@@ -73,7 +73,7 @@ HUB_CATEGORIES = [
 
 class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION = 13
-    MINOR_VERSION = 3
+    MINOR_VERSION = 4
     CONNECTION_CLASS = config_entries.CONN_CLASS_LOCAL_PUSH
     device = None
     data = {}
@@ -403,7 +403,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                 self.__cloud_device["ip"] = local_device["ip"]
                 self.__cloud_device["version"] = local_device["version"]
             else:
-                _LOGGER.warn(f"Could not find device: {self.__cloud_device['id']}")
+                _LOGGER.warning(f"Could not find device: {self.__cloud_device['id']}")
             return await self.async_step_local(None)
 
         return self.async_show_form(
@@ -487,7 +487,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             log_json(dps),
         )
         _LOGGER.warning(
-            "Report this to https://github.com/make-all/tuya-local/issues/",
+            "Include the previous log message with any new device request to https://github.com/make-all/tuya-local/issues/",
         )
         if types:
             return self.async_show_form(
@@ -512,7 +512,10 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             return self.async_create_entry(
                 title=title, data={**self.data, **user_input}
             )
-        config = get_config(self.data[CONF_TYPE])
+        config = await self.hass.async_add_executor_job(
+            get_config,
+            self.data[CONF_TYPE],
+        )
         schema = {vol.Required(CONF_NAME, default=config.name): str}
 
         return self.async_show_form(
@@ -578,7 +581,10 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
                 default=config.get(CONF_DEVICE_CID, ""),
             ): str,
         }
-        cfg = get_config(config[CONF_TYPE])
+        cfg = await self.hass.async_add_executor_job(
+            get_config,
+            config[CONF_TYPE],
+        )
         if cfg is None:
             return self.async_abort(reason="not_supported")
 

@@ -121,6 +121,22 @@
                     "off": "OK",
                     "on": "Full"
                 }
+            },
+            "casdon_oven_fault": {
+                "state_attributes": {
+                    "fault_message": {
+                        "state": {
+                            "e1": "E1: Chamber overheat protection (exceeds 290°C)",
+                            "e2": "E2: Evaporation tray overheat protection (exceeds 200°C)",
+                            "e3": "E3: Chamber low temperature protection (below 35°C)",
+                            "e4": "E4: Evaporation tray low temperature protection (below 35°C)",
+                            "e5": "E5: Sensor connection error (Open circuit)",
+                            "e6": "E6: Sensor malfunction (Short circuit)",
+                            "e7": "E7: Display board communication error",
+                            "e8": "E8: Water tank open (CN7) or Evaporation tray dry (CN3)"
+                        }
+                    }
+                }
             }
         },
         "climate": {
@@ -212,6 +228,37 @@
                     "hvac_mode": {
                         "state": {
                             "fan_only": "Pause"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "healthy_steam": "Healthy Steam",
+                            "fresh_steam": "Fresh Steam",
+                            "high_temp_steam": "High Temp Steam",
+                            "stew": "Stew",
+                            "bake_up_and_down": "Bake up and down",
+                            "bbq": "BBQ",
+                            "bottom_hot_air": "Bottom Hot Air",
+                            "on_strong_roast": "On Strong Roast",
+                            "3d_hot_air": "3D Hot Air",
+                            "air_fry": "Air Fry",
+                            "steam_frying": "Steam Frying",
+                            "one_click_bread": "One-click Bread",
+                            "quick_heat": "Quick Heat",
+                            "keep_warm": "Keep Warm",
+                            "unfreeze": "Unfreeze",
+                            "fermentation": "Fermentation",
+                            "descale": "Descale",
+                            "local_recipes": "Local Recipes",
+                            "drying": "Drying",
+                            "custom": "Custom",
+                            "low_steaming": "Low Steaming",
+                            "medium_steaming": "Medium Steaming",
+                            "high_steaming": "High Steaming"
                         }
                     }
                 }
@@ -313,6 +360,17 @@
         "sensor": {
             "time_remaining": {
                 "name": "Time remaining"
+            },
+            "cooking_status": {
+                "name": "Status",
+                "state": {
+                    "wait": "Waiting for Cooking",
+                    "reservation": "In Reservation",
+                    "cooking": "In Progress",
+                    "cancel": "Cooking Canceled",
+                    "done": "Cooking Completed",
+                    "pause": "Cooking Paused"
+                }
             }
         },
         "switch": {

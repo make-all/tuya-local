@@ -12,7 +12,7 @@ primary_entity:
       type: string
       name: sensor
       mapping:
-        - dps_val: no_connect
+        - dps_val: no_connet
           value: Disconnected
         - dps_val: connect
           value: Connected
@@ -140,6 +140,7 @@ secondary_entities:
     dps:
       - id: 120
         type: integer
+        optional: true
         name: sensor
         unit: min
         mapping:

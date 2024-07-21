@@ -1,0 +1,67 @@
+name: New Device
+description: Report an unsupported device
+title: Request support for <productname>
+labels: ["new device"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This form is for reporting a **New Device**.  If you are looking for
+        general help, including cases where you do not see anything in the log,
+        see [Discussions](https://github.com/make-all/tuya-local/discussions).
+
+        Thank you for reporting your unsupported device. Please provide as
+        much information as you can. Because the developers are busy, new
+        device requests will be prioritised as follows:
+
+          1. Pull requests
+          2. Issues with logs and QueryThingsDataModel API results or equivalent
+          3. Issues with logs and enough dps info to make a useful config.
+          4. Issues with logs and a tested config
+
+  - type: textarea
+    id: log
+    attributes:
+      label: Log message
+      description: |
+        Please paste the Warning level log message containing a dps list
+        which is output when you attempt to add the device and are presented
+        with a list of non-matching devices.
+      placeholder: Reports without logs will be immediately closed
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: data_model
+    attributes:
+      label: DPS information
+      description: |
+        Preferred data is QueryThingsDataModel API result from iot.tuya.com
+        If you do not have access to iot.tuya.com, but have other ways of
+        obtaining dps information, the minimum info required is the numeric
+        dp id, name/description, data type, and for settable dps, the range
+        for numeric dps, and the list of possible values for enum dps.
+      render: text
+    validations:
+      required: true
+  - type: input
+    id: productid
+    attributes:
+      label: Product ID
+      description: |
+        The product ID or productKey for the device. You can get this
+        from the same iot.tuya.com API functions that provide the local key
+        or from `tinytuya scan` or other tools doing local discovery
+  - type: input
+    id: productname
+    attributes:
+      label: Product Name
+      description: The product name (usually brand and model name/number)
+  - type: textarea
+    id: info
+    attributes:
+      label: Information about how the device functions
+      description: |
+        Put any additional information here.  Remember the developers are not
+        familiar with your device, so any explanations of how it functions,
+        links to manuals or even marketing webpages are useful.

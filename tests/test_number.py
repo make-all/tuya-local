@@ -33,7 +33,7 @@ async def test_init_entry(hass):
     }
 
     await async_setup_entry(hass, entry, m_add_entities)
-    assert type(hass.data[DOMAIN]["dummy"]["number_timer"]) == TuyaLocalNumber
+    assert type(hass.data[DOMAIN]["dummy"]["number_timer"]) is TuyaLocalNumber
     m_add_entities.assert_called_once()
 
 

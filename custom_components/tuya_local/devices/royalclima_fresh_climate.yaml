@@ -371,3 +371,15 @@ secondary_entities:
       - id: 103
         type: boolean
         name: sensor
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 116
+        type: integer
+        name: sensor
+        unit: W
+        precision: 1
+        class: measurement
+        mapping:
+          - scale: 30

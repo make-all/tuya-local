@@ -84,49 +84,6 @@ primary_entity:
       name: zones
       optional: true
 secondary_entities:
-  - entity: vacuum
-    icon: "mdi:robot-mower"
-    deprecated: lawn_mower
-    dps:
-      - id: 101
-        name: status
-        type: string
-        mapping:
-          - dps_val: STANDBY
-            value: standby
-          - dps_val: MOWING
-            value: mowing
-          - dps_val: CHARGING
-            value: charging
-          - dps_val: EMERGENCY
-            value: manually stopped
-          - dps_val: LOCKED
-            value: locked
-          - dps_val: PAUSED
-            value: paused
-          - dps_val: PARK
-            value: returning
-          - dps_val: CHARGING_WITH_TASK_SUSPEND
-            value: charging
-          - dps_val: FIXED_MOWING
-            value: spot mowing
-          - dps_val: ERROR
-            value: error
-      - id: 115
-        name: command
-        type: string
-        optional: true
-        mapping:
-          - dps_val: StartMowing
-            value: start
-          - dps_val: StartFixedMowing
-            value: clean_spot
-          - dps_val: PauseWork
-            value: pause
-          - dps_val: CancelWork
-            value: stop
-          - dps_val: StartReturnStation
-            value: return_to_base
   - entity: button
     name: Start fixed mowing
     icon: "mdi:mower-on"
