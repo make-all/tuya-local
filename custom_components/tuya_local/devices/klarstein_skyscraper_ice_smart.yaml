@@ -8,47 +8,33 @@ primary_entity:
     - id: 1
       name: switch
       type: boolean
+    - id: 2
+      type: string
+      name: speed
+      mapping:
+        - dps_val: "low"
+          value: 33
+        - dps_val: "middle"
+          value: 66
+        - dps_val: "high"
+          value: 100
+    - id: 3
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: normal
+          value: normal
+        - dps_val: nature
+          value: nature
+        - dps_val: sleep
+          value: sleep
+    - id: 10
+      type: boolean
+      name: oscillate
     - id: 12
       name: countdown_left
       type: integer
 secondary_entities:
-  - entity: select
-    name: speed
-    icon: "mdi:speedometer"
-    category: config
-    dps:
-      - id: 2
-        type: string
-        name: option
-        mapping:
-          - dps_val: "low"
-            value: "Niedrig"
-          - dps_val: "middle"
-            value: "Mittel"
-          - dps_val: "high"
-            value: "Hoch"
-  - entity: select
-    name: preset
-    category: config
-    dps:
-      - id: 3
-        type: string
-        name: option
-        mapping:
-          - dps_val: "normal"
-            value: "Normal"
-          - dps_val: "nature"
-            value: "Natur"
-          - dps_val: "sleep"
-            value: "Schlaf"
-  - entity: switch
-    name: schwenken
-    icon: "mdi:arrow-oscillating"
-    category: config
-    dps:
-      - id: 10
-        type: boolean
-        name: switch
   - entity: select
     translation_key: timer
     category: config
@@ -58,39 +44,39 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: cancel
-            value: "Aus"
+            value: "off"
           - dps_val: "0_5h"
-            value: "0,5 Stunden"
+            value: "0.5 hours"
           - dps_val: "1h"
-            value: "1 Stunde"
+            value: "1 hour"
           - dps_val: "1_5h"
-            value: "1,5 Stunden"
+            value: "1.5 hours"
           - dps_val: "2h"
-            value: "2 Stunden"
+            value: "2 hours"
           - dps_val: "2_5h"
-            value: "2,5 Stunden"
+            value: "2.5 hours"
           - dps_val: "3h"
-            value: "3 Stunden"
+            value: "3 hours"
           - dps_val: "3_5h"
-            value: "3,5 Stunden"
+            value: "3.5 hours"
           - dps_val: "4h"
-            value: "4 Stunden"
+            value: "4 hours"
           - dps_val: "4_5h"
-            value: "4,5 Stunden"
+            value: "4.5 hours"
           - dps_val: "5h"
-            value: "5 Stunden"
+            value: "5 hours"
           - dps_val: "5_5h"
-            value: "5,5 Stunden"
+            value: "5.5 hours"
           - dps_val: "6h"
-            value: "6 Stunden"
+            value: "6 hours"
           - dps_val: "6_5h"
-            value: "6,5 Stunden"
+            value: "6.5 hours"
           - dps_val: "7h"
-            value: "7 Stunden"
+            value: "7 hours"
           - dps_val: "7_5h"
-            value: "7,5 Stunden"
+            value: "7.5 hours"
   - entity: switch
-    name: luftbefeuchter
+    name: humidifier
     icon: "mdi:air-humidifier"
     category: config
     dps:
