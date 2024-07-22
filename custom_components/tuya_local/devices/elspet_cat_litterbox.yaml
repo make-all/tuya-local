@@ -20,6 +20,25 @@ secondary_entities:
       - id: 114
         type: string
         name: sensor
+        mapping:
+          - dps_val: power_off
+            icon: "mdi:power-off"
+            value: "Off"
+          - dps_val: standby
+            icon: "mdi:power-standby"
+            value: Standby
+          - dps_val: caking
+            icon: "mdi:biohazard"
+            value: Caking
+          - dps_val: cleaning
+            icon: "mdi:spray-bottle"
+            value: Cleaning
+          - dps_val: sleeping
+            icon: "mdi:sleep"
+            value: Sleeping
+          - dps_val: UV
+            icon: "mdi:sun-wireless"
+            value: UV Light On
   - entity: button
     name: Manual Clean
     category: config
@@ -134,18 +153,30 @@ secondary_entities:
       - id: 118
         type: bitfield
         name: fault_code
+        mapping:
+          - dps_val: 0
+            value: "None"
+            icon: "mdi:check-circle"
+          - dps_val: 1
+            value: "Stuck"
+            icon: "mdi:alert"
+          - dps_val: 2
+            value: "Dislocation"
+            icon: "mdi:alert"
+          - dps_val: 3
+            value: "Both"
+            icon: "mdi:alert"
   - entity: sensor
-    name: Defecation Distribution
-    icon: "mdi:emoticon-poop"
+    name: Clean Count
+    icon: "mdi:counter"
     category: diagnostic
     dps:
       - id: 112
         type: integer
         name: sensor
-        unit: Visits
   - entity: sensor
     name: Average Time Spent Today
-    icon: "mdi:emoticon-poop"
+    icon: "mdi:clock-time-three-outline"
     category: diagnostic
     class: duration
     dps:
@@ -179,6 +210,16 @@ secondary_entities:
       - id: 117
         type: string
         name: sensor
+        mapping:
+          - dps_val: full
+            icon: "mdi:tray-full"
+            value: Full
+          - dps_val: half
+            icon: "mdi:tray-minus"
+            value: Half
+          - dps_val: empty
+            icon: "mdi:tray"
+            value: Empty
   - entity: button
     name: Reset Litter
     icon: "mdi:delete-empty"
