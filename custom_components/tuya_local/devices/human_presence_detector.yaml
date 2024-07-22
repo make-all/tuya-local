@@ -1,0 +1,139 @@
+name: human presence detector
+products:
+  - id: 02a339dfa475cd37
+    name: RTCZ-03 human presence sensor
+primary_entity:
+  entity: binary_sensor
+  class: occupancy
+  dps:
+    - id: 1
+      type: boolean
+      name: sensor
+      mapping:
+        - dps_val: peaceful
+          value: false
+        - dps_val: presence
+          value: true
+        - dps_val: small_move
+          value: true
+        - dps_val: large_move
+          value: true
+        - dps_val: none
+          value: false
+    - id: 1
+      type: string
+      name: raw_state
+secondary_entities:
+  - entity: binary_sensor
+    class: motion
+    dps:
+      - id: 1
+        type: boolean
+        name: sensor
+        mapping:
+          - dps_val: peaceful
+            value: false
+          - dps_val: presence
+            value: false
+          - dps_val: small_move
+            value: true
+          - dps_val: large_move
+            value: true
+          - dps_val: none
+            value: false
+  - entity: sensor
+    class: distance
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: cm
+  - entity: sensor
+    class: illuminance
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: lx
+  - entity: number
+    name: clear delay
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 28799
+        unit: s
+  - entity: light
+    category: config
+    name: indicator light
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: number
+    category: config
+    name: Maximum detection distance
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 840
+        unit: cm
+  - entity: number
+    category: config
+    name: Minimum detection distance
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 840
+        unit: cm
+  - entity: number
+    category: config
+    name: Detection Sensitivity
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 10
+  - entity: number
+    category: config
+    name: Hold Sensitivity
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 10
+  - entity: sensor
+    category: diagnostic
+    name: hold (min)
+    dps:
+      - id: 105
+        type: integer
+        unit: min
+        name: sensor
+  - entity: sensor
+    category: diagnostic
+    name: hold (sec)
+    dps:
+      - id: 106
+        type: integer
+        unit: s
+        name: sensor
+  - entity: sensor
+    category: diagnostic
+    name: debug
+    dps:
+      - id: 120
+        type: string
+        name: sensor
