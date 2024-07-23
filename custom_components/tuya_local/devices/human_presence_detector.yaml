@@ -1,4 +1,4 @@
-name: human presence detector
+name: Human presence detector
 products:
   - id: e833v6jexwfkjrij
     name: RTCZ-03 human presence sensor
@@ -7,7 +7,7 @@ primary_entity:
   class: occupancy
   dps:
     - id: 1
-      type: boolean
+      type: string
       name: sensor
       mapping:
         - dps_val: peaceful
@@ -28,7 +28,7 @@ secondary_entities:
     class: motion
     dps:
       - id: 1
-        type: boolean
+        type: string
         name: sensor
         mapping:
           - dps_val: peaceful
@@ -56,7 +56,7 @@ secondary_entities:
         name: sensor
         unit: lx
   - entity: number
-    name: clear delay
+    name: Clear delay
     dps:
       - id: 103
         type: integer
@@ -65,9 +65,18 @@ secondary_entities:
           min: 0
           max: 28799
         unit: s
+          - entity: sensor
+      - id: 105
+        type: integer
+        unit: min
+        name: minutes
+      - id: 106
+        type: integer
+        unit: s
+        name: seconds
   - entity: light
     category: config
-    name: indicator light
+    translation_key: indicator
     dps:
       - id: 104
         type: boolean
@@ -96,7 +105,7 @@ secondary_entities:
         unit: cm
   - entity: number
     category: config
-    name: Detection Sensitivity
+    name: Detection sensitivity
     dps:
       - id: 111
         type: integer
@@ -106,7 +115,7 @@ secondary_entities:
           max: 10
   - entity: number
     category: config
-    name: Hold Sensitivity
+    name: Hold sensitivity
     dps:
       - id: 112
         type: integer
@@ -114,22 +123,6 @@ secondary_entities:
         range:
           min: 0
           max: 10
-  - entity: sensor
-    category: diagnostic
-    name: hold (min)
-    dps:
-      - id: 105
-        type: integer
-        unit: min
-        name: sensor
-  - entity: sensor
-    category: diagnostic
-    name: hold (sec)
-    dps:
-      - id: 106
-        type: integer
-        unit: s
-        name: sensor
   - entity: sensor
     category: diagnostic
     name: debug
