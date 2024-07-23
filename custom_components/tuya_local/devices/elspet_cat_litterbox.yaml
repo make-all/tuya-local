@@ -60,6 +60,54 @@ secondary_entities:
           min: 60
           max: 1800
   - entity: switch
+    name: UV
+    category: config
+    icon: "mdi:flower"
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: number
+    name: UV Time
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 120
+          max: 1800
+  - entity: switch
+    name: Auto Deodorize
+    category: config
+    icon: "mdi:flower"
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+  - entity: number
+    name: Deodorizer Switch
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 120
+          max: 1800
+  - entity: switch
+    name: Light Ring
+    icon: "mdi:globe-light-outline"
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+  - entity: switch
     name: Sleep Mode
     icon: "mdi:power-sleep"
     category: config
@@ -91,54 +139,6 @@ secondary_entities:
         range:
           min: 0
           max: 1440
-  - entity: switch
-    name: Auto Deodorize
-    category: config
-    icon: "mdi:flower"
-    dps:
-      - id: 106
-        type: boolean
-        name: switch
-  - entity: number
-    name: Deodorize Time
-    category: config
-    icon: "mdi:timer"
-    dps:
-      - id: 107
-        type: integer
-        name: value
-        unit: s
-        range:
-          min: 120
-          max: 1800
-  - entity: switch
-    name: UV
-    category: config
-    icon: "mdi:flower"
-    dps:
-      - id: 104
-        type: boolean
-        name: switch
-  - entity: number
-    name: Deodorize Time
-    category: config
-    icon: "mdi:timer"
-    dps:
-      - id: 105
-        type: integer
-        name: value
-        unit: s
-        range:
-          min: 120
-          max: 1800
-  - entity: switch
-    name: Light Ring
-    icon: "mdi:globe-light-outline"
-    category: config
-    dps:
-      - id: 108
-        type: boolean
-        name: switch
   - entity: binary_sensor
     class: problem
     category: diagnostic
