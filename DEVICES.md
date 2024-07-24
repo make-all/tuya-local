@@ -509,7 +509,7 @@ of device.
 - LightStar CCT track light
 - Loycco sound machine with nightlight (also sold as Momland nightlight with white noise)
 - Loginovo TV sync backlight
-- LSC smart connect RGB CCT lightbulb (similar to older generic bulbs, so may work for others) 
+- LSC smart connect RGB CCT lightbulb (similar to older generic bulbs, so may work for others)
 - Lytmi Fantasy/Neo 3 HDMI sync backlight
 - Marpou RGBCW ceiling light
 - Mirabella Genio Pixel LED oval light
@@ -664,6 +664,7 @@ port and password.
 - PNI water feeder
 - Rojeco PTM-001 pet feeder (two versions)
 - V330L pet feeder
+- WellToBe Automatic Pet Feeder (WB S36D)
 - YP pet feeder
 
 ### Remote controllers
@@ -756,7 +757,7 @@ port and password.
 - PT216/PT19DB-2 temperature and humidity sensor
 - SGS01 plant sensor
 - Smart Ape solar garden light
-- TCS024B plant moisture sensor 
+- TCS024B plant moisture sensor
 - TH05 temperature and humidity sensor
 - XCase NX-4964 lock box
 - YL01 water quality tester
