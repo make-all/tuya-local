@@ -78,6 +78,13 @@ primary_entity:
 secondary_entities:
   - entity: sensor
     category: diagnostic
+    name: Fault code
+    dps:
+      - id: 15
+        name: sensor
+        type: integer
+  - entity: sensor
+    category: diagnostic
     name: Power level
     class: power_factor
     dps:
@@ -107,6 +114,22 @@ secondary_entities:
     class: temperature
     dps:
       - id: 24
+        name: sensor
+        type: integer
+      - id: 6
+        name: unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+  - entity: sensor
+    category: diagnostic
+    name: Inlet water temperature
+    class: temperature
+    dps:
+      - id: 102
         name: sensor
         type: integer
       - id: 6
