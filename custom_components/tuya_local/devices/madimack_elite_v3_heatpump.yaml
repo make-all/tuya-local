@@ -76,13 +76,20 @@ primary_entity:
       name: unknown_107
       type: boolean
 secondary_entities:
-  - entity: sensor
+  - entity: binary_sensor
+    class: problem
     category: diagnostic
-    name: Fault code
     dps:
       - id: 15
+        type: bitfield
         name: sensor
-        type: integer
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 15
+        type: bitfield
+        name: fault_code
   - entity: sensor
     category: diagnostic
     name: Power level
