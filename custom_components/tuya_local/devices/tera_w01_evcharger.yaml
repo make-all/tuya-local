@@ -34,7 +34,6 @@ primary_entity:
 secondary_entities:
   - entity: sensor
     class: energy
-    name: Current session
     dps:
       - id: 1  # forward_energy_total
         type: integer
@@ -174,7 +173,6 @@ secondary_entities:
           - mask: "0000000000FFFFFF"
             scale: 1000
   - entity: sensor
-    name: Power
     class: power
     dps:
       - id: 9  # power_total
@@ -185,7 +183,6 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: binary_sensor
-    name: Error
     class: problem
     category: diagnostic
     dps:
@@ -248,7 +245,6 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: sensor
-    name: Temperature
     class: temperature
     dps:
       - id: 24  # temp_current
