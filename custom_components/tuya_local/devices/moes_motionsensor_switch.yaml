@@ -18,32 +18,39 @@
 #                   0 for always
 # Target Time: Time of day in minutes when motion switch can activate, 0 for
 #              always
-name: MOES Motion Sensor Smart Switch
+name: Motion sensor switch
 products:
   - id: vd5jgg8vgdbaqerq
+    name: Moes Smart PIR switch
 primary_entity:
   entity: switch
   dps:
     - id: 1
       name: switch
       type: boolean
+    - id: 44 
+      type: string
+      name: illuminance_state
+    - id: 47
+      type: string
+      name: motion_state
 secondary_entities:
   - entity: select
     category: config
-    name: Restore power state
+    name: Initial state
     dps:
       - id: 14
         name: option
         type: string
         mapping:
           - dps_val: memory
-            value: Remember Last Status
+            value: Last state
           - dps_val: "on"
             value: "On"
           - dps_val: "off"
             value: "Off"
   - entity: select
-    name: Indicator Light
+    name: Indicator light
     category: config
     dps:
       - id: 15
@@ -51,17 +58,17 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: none
-            value: Indicator LED off
+            value: "Off"
           - dps_val: relay
-            value: Indicate switch on/off
+            value: "Status"
   - entity: switch
-    name: Illuminance Switch
+    name: Illuminance enable
     dps:
       - id: 43
         name: switch
         type: boolean
   - entity: select
-    name: Illuminance Threshold
+    name: Illuminance threshold
     category: config
     dps:
       - id: 45
@@ -69,17 +76,17 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: default
-            value: Default Threshold
+            value: Default
           - dps_val: now
-            value: Current Illuminance
+            value: Set current
   - entity: switch
-    name: Motion Switch
+    name: Motion enable
     dps:
       - id: 46
         name: switch
         type: boolean
   - entity: select
-    name: Motion Sensitivity
+    name: Motion sensitivity
     category: config
     dps:
       - id: 48
@@ -93,7 +100,7 @@ secondary_entities:
           - dps_val: "high"
             value: "High"
   - entity: number
-    name: Motion Auto-Off Delay
+    name: Motion auto-off delay
     category: config
     dps:
       - id: 49
@@ -104,24 +111,28 @@ secondary_entities:
           min: 5
           max: 3600
   - entity: number
-    name: Appointment Time
+    name: Disable time
     category: config
     dps:
       - id: 101
         name: value
         type: integer
-        unit: min
+        unit: h
         range:
           min: 0
           max: 1440
+        mapping:
+          - scale: 60
   - entity: number
-    name: Target Time
+    name: Enable time
     category: config
     dps:
       - id: 102
         name: value
         type: integer
-        unit: min
+        unit: h
         range:
           min: 0
           max: 1440
+        mapping:
+          - scale: 60
