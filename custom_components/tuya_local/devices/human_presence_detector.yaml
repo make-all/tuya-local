@@ -23,6 +23,9 @@ primary_entity:
     - id: 1
       type: string
       name: raw_state
+    - id: 120
+      type: string
+      name: debug
 secondary_entities:
   - entity: binary_sensor
     class: motion
@@ -122,10 +125,3 @@ secondary_entities:
         range:
           min: 0
           max: 10
-  - entity: sensor
-    category: diagnostic
-    name: debug
-    dps:
-      - id: 120
-        type: string
-        name: sensor
