@@ -606,3 +606,4 @@ Further device support has been made with the assistance of users. Please consid
 - [levineds](https://github.com/levineds) for contributing support for Moes motion sensor smart switch.
 - [tomassanjuann](https://github.com/tomassanjuann) for contributing support for Tera W01 EV charger.
 - [rorydcampbell](https://github.com/rorydcampbell) for comtributing support for WellToBe WB S36D pet feeder.
+- [FreemanJD](https://github.com/FreemanJD) for assisting with support for SOP10 water sprinkler.

@@ -763,6 +763,7 @@ port and password.
 - PT216/PT19DB-2 temperature and humidity sensor
 - SGS01 plant sensor
 - Smart Ape solar garden light
+- SOP10 water sprinkler
 - TCS024B plant moisture sensor
 - TH05 temperature and humidity sensor
 - XCase NX-4964 lock box
@@ -771,6 +772,10 @@ port and password.
 - Generic water timers (confirmed with Johgee, Diivoo and Royal Gardineer branded devices)
 
 ### Devices supported via IR hubs
+
+In general IR hubs are supported as generic IR remote controllers.
+Some specialised devices have built-in sensors to also present other
+entity types as sub devices.
 
 - Air conditioner / heatpump via Moes IR hub
 - Neo IR Air Conditioner controller
