@@ -103,7 +103,7 @@ Further device support has been made with the assistance of users. Please consid
 - [JanekSMC](https://github.com/JanekSMC) for assistance supporting Orion Smart Locks.
 - [RichardMawdsley](https://github.com/RichardMawdsley) for assistance supporting ElectriQ Airflex 15W heatpumps.
 - [fwelvering](https://github.com/fwelvering) for assistance supporting a second variant of W'eau pool heatpumps.
-- [illuzn](https://github.com/illuzn) for contributing support for Kogan Tower Heaters, Arlec PB88UHA and Brilliant quad power strips and Qoto water valves.
+- [illuzn](https://github.com/illuzn) for contributing support for Kogan Tower Heaters, Arlec PB88UHA, Brilliant quad power strips, Qoto water valves, RTCZ-03 human presence sensor.
 - [vnkorol](https://github.com/vnkorol) for assistance supporting 4-way power monitoring strip and Avatto roller blinds.
 - [OmegaKill](https://github.com/OmegaKill) for assistance supporting Be Cool heatpumps.
 - [djusHa](https://github.com/djusHa) for contributing support for essentials portable air purifier.
@@ -425,7 +425,7 @@ Further device support has been made with the assistance of users. Please consid
 - [alirow](https://github.com/alirow) for contributing support for Argo Dry Pury Evo WF dehumidifiers.
 - [andrei-cerbulescu](https://github.com/andrei-cerbulescu) for contributing support for Hama radiator controllers.
 - [mariuszpass](https://github.com/mariuszpass) for contributing support for NAC AP470 air purifiers.
-- [neilmartin83](https://github.com/neilmartin83) for contributing support for Ustellar UT99911 RGB monitor light bars.
+- [neilmartin83](https://github.com/neilmartin83) for contributing support for Ustellar UT99911 RGB monitor light bar and DH-CSK03W dehumidifer.
 - [evanfoster](https://github.com/evanfoster) for contributing support for Vivosun DE0003 dehumidifiers.
 - [sayaivan](https://github.com/sayaivan) for contributing Indonesian translations.
 - [mhackdo18](https://github.com/mhackdo18) for assisting with support for YP Pet feeder.
@@ -599,3 +599,10 @@ Further device support has been made with the assistance of users. Please consid
 - [swonge](https://github.com/swonge) for contributing Chinese (Traditional) translations.
 - [joe-sydney](https://github.com/joe-sydney) for contributing support for old style generic CCT lightbulbs (tested with Connect Smart GU10 downlight).
 - [e2equiel](https://github.com/e2equiel) for contributing improvements to V330L pet feeder (for DU4L-VS model).
+- [piotrek2555](https://github.com/piotrek) for contributing improvements to Rotenso Ronix heat pump.
+- [zalatnaisongor](https://github.com/zalatnaisongor) for contributing improvements to SH07 sprinkler controller to support Leictory LK06.
+- [Ryoga85](https://github.com/Ryoga85) for contributing support for Klarstein Skyscraper Ice cooling fan.
+- [sikkek](https://github.com/sikkek) for contributing improvements to Madimack Elite V3 heat pump.
+- [levineds](https://github.com/levineds) for contributing support for Moes motion sensor smart switch.
+- [tomassanjuann](https://github.com/tomassanjuann) for contributing support for Tera W01 EV charger.
+- [rorydcampbell](https://github.com/rorydcampbell) for comtributing support for WellToBe WB S36D pet feeder.

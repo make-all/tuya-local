@@ -213,6 +213,7 @@
 - Hiper T3 bladeless fan
 - HYD WeAir Plus bladeless fan with heating function
 - Immax Neo Lite Vento ceiling fan with light
+- Klarstein Skyscaper Ice cooling fan
 - Ledkia fan and light controller
 - Lexy F501 fan
 - Keyun MKCFE002 RGB chandelier fan
@@ -266,6 +267,7 @@
 - AlecoAir D25 Traditio dehumidifier
 - Argo Dry Pury Evo WF dehumidifier
 - Cleverio AD100 dehumidifier
+- DH-CSK03W dehumidifier
 - Ebac DJ4000 dehumidifier
 - ElectriQ CD12PRO-LE dehumidifier
 - ElectriQ CD12PW dehumidifier
@@ -380,6 +382,7 @@
 - Feyree home EV charger (2 models)
 - Kolanky 3.6kW EV charger
 - Parkside PLGS 2012 A1 smart charger for powertools
+- Tera W01 EV charger
 - Vivor portable EV charger
 - WOUEJ 22kW EV charger
 
@@ -427,6 +430,7 @@ the best option.
 - Mirabella Genio smartplug with USB
 - Moes 3-gang switch
 - Moes 4-gang (quad) switch
+- Moes motion sensor smart switch
 - MoesHouse smartplug with RGBW nightlight
 - Noiee NSP21 smartplug
 - Noiee PU13 smartplug
@@ -685,7 +689,7 @@ port and password.
 - Holman WX8 8 sprinkler irrigation controller
 - Qoto 03 smart water valve / sprinkler controller
 - Qoto 05 smart water valve / sprinkler controller
-- SH07-8 / SH07S-TY smart sprinkler controller (sold as Aquarobo and other brands)
+- SH07-8 / SH07S-TY smart sprinkler controller (sold as Aquarobo, Leictory LK06 and other brands)
 - Zemismart DP-WBS01 8-zone sprinkler controller (also sold as Benexmart and other brands)
 
 ### Miscellaneous
@@ -717,6 +721,7 @@ port and password.
 - PH-W218 water quality monitor
 - PlantsIO Ivy smart planter
 - PV28-CW 8 in 1 air quality monitor
+- RTCZ-03 human presence sensor
 - SD123 HPR01 human presence radar
 - Silvercrest coffee maker
 - SNT957W-TDE temperature sensor
