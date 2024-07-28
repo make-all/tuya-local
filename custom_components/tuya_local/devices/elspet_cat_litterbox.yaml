@@ -1,7 +1,7 @@
-name: Cat Litter Box
+name: Cat litter box
 products:
   - id: asx54fyagpyhxtej
-    name: elspet smart litter box
+    name: Elspet Spaceship
 primary_entity:
   entity: switch
   name: Power
@@ -40,7 +40,7 @@ secondary_entities:
             icon: "mdi:sun-wireless"
             value: UV Light On
   - entity: button
-    name: Manual Clean
+    name: Manual clean
     category: config
     icon: "mdi:shimmer"
     dps:
@@ -48,9 +48,9 @@ secondary_entities:
         type: boolean
         name: button
   - entity: number
-    name: Clean Wait Time
+    name: Clean wait time
     category: config
-    icon: "mdi:timer"
+    translation_key: timer
     dps:
       - id: 103
         type: integer
@@ -60,15 +60,14 @@ secondary_entities:
           min: 60
           max: 1800
   - entity: switch
-    name: UV
+    translation_key: uv_sterilization
     category: config
-    icon: "mdi:flower"
     dps:
       - id: 104
         type: boolean
         name: switch
   - entity: number
-    name: UV Time
+    name: UV time
     category: config
     icon: "mdi:timer"
     dps:
@@ -80,7 +79,7 @@ secondary_entities:
           min: 120
           max: 1800
   - entity: switch
-    name: Auto Deodorize
+    name: Auto deodorize
     category: config
     icon: "mdi:flower"
     dps:
@@ -88,7 +87,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: number
-    name: Deodorizer Switch
+    name: Deodorize time
     category: config
     icon: "mdi:timer"
     dps:
@@ -99,16 +98,14 @@ secondary_entities:
         range:
           min: 120
           max: 1800
-  - entity: switch
-    name: Light Ring
-    icon: "mdi:globe-light-outline"
+  - entity: light
     category: config
     dps:
       - id: 108
         type: boolean
         name: switch
   - entity: switch
-    name: Sleep Mode
+    name: Sleep mode
     icon: "mdi:power-sleep"
     category: config
     dps:
@@ -116,29 +113,33 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: number
-    name: Sleep Begin
+    name: Sleep start
     category: config
     icon: "mdi:timer"
     dps:
       - id: 110
         type: integer
         name: value
-        unit: s
+        unit: h
         range:
           min: 0
           max: 1440
+        mapping:
+          - scale: 60
   - entity: number
-    name: Sleep End
+    name: Sleep end
     category: config
     icon: "mdi:timer"
     dps:
       - id: 111
         type: integer
         name: value
-        unit: s
+        unit: h
         range:
           min: 0
           max: 1440
+        mapping:
+          - scale: 60
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -151,7 +152,7 @@ secondary_entities:
             value: false
           - value: true
       - id: 118
-        type: bitfield
+        type: integer
         name: fault_code
         mapping:
           - dps_val: 0
@@ -167,7 +168,7 @@ secondary_entities:
             value: "Both"
             icon: "mdi:alert"
   - entity: sensor
-    name: Clean Count
+    name: Clean count
     icon: "mdi:counter"
     category: diagnostic
     dps:
@@ -175,7 +176,7 @@ secondary_entities:
         type: integer
         name: sensor
   - entity: sensor
-    name: Average Time Spent Today
+    name: Average time today
     icon: "mdi:clock-time-three-outline"
     category: diagnostic
     class: duration
@@ -186,23 +187,25 @@ secondary_entities:
         unit: s
         class: measurement
   - entity: binary_sensor
-    name: UV State
+    name: UV sterilization
     icon: mdi:sun-wireless
+    class: running
     category: diagnostic
     dps:
       - id: 115
         type: boolean
         name: sensor
   - entity: binary_sensor
-    name: Deodorant State
+    name: Deodorizing
     icon: mdi:spray
+    class: running
     category: diagnostic
     dps:
       - id: 116
         type: boolean
         name: sensor
   - entity: sensor
-    name: Sand Reminder
+    name: Litter
     icon: mdi:tray
     category: diagnostic
     class: enum
@@ -229,8 +232,8 @@ secondary_entities:
         type: boolean
         name: button
   - entity: button
-    name: Full Reset
-    icon: "mdi:delete-empty"
+    name: Full reset
+    class: restart
     category: config
     dps:
       - id: 120
