@@ -25,20 +25,10 @@ primary_entity:
           value: custom
     - id: 3
       name: speed
-      type: string
-      mapping:
-        - dps_val: "1"
-          value: 17
-        - dps_val: "2"
-          value: 33
-        - dps_val: "3"
-          value: 50
-        - dps_val: "4"
-          value: 67
-        - dps_val: "5"
-          value: 83
-        - dps_val: "6"
-          value: 100
+      type: integer
+      range:
+        min: 1
+        max: 6
     - id: 8
       name: direction
       type: string
