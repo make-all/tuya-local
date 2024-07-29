@@ -87,11 +87,16 @@ secondary_entities:
       - id: 104
         type: boolean
         name: switch
+  - entity: button
+    name: Update
+    category: config
+    dps:
       - id: 105
         type: integer
-        name: backlight_value
-        # may be brightness, but only log we have has 0 value and range
-        # is unusally high - up to 16M
+        name: button
+        mapping:
+          - dps_val: 1
+            value: true
   - entity: number
     name: Maximum pH
     class: ph
