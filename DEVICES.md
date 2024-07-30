@@ -26,6 +26,7 @@
 - Eurom Wall Designheat 2000 heater
 - Goldair heater models beginning with the code GPPH, GCPV, GECO, PH-ET
 - Hama radiator controller
+- Heatstorm HS-1500 heater
 - Heatstorm HS-6000-GC heavy duty heater
 - Herschel infrared heater
 - HJZ oil column radiator
