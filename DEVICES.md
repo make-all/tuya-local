@@ -652,6 +652,7 @@ port and password.
 - BlitzWolf BW-IS6 security alarm system
 - GauTone PG-103 security alarm system
 - Smart alarm siren (unbranded)
+- Wolf Guard WT2R alarm system
 - ZX-DB11 doorbell and alarm system
 - ZX-DB11B doorbell and alarm system
 - ZX-G30 alarm system

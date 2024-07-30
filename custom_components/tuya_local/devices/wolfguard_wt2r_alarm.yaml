@@ -1,0 +1,257 @@
+name: Alarm system
+products:
+  - id: dscqpiq1gdfltjt3
+    name: Wolf Guard WT2R
+primary_entity:
+  entity: alarm_control_panel
+  dps:
+    - id: 1
+      type: string
+      name: alarm_state
+      mapping:
+        - dps_val: disarmed
+          value: disarmed
+        - dps_val: arm
+          value: armed_away
+        - dps_val: home
+          value: armed_home
+    - id: 44
+      type: boolean
+      optional: true
+      name: trigger
+      mapping:
+        - dps_val: null
+          constraint: master_state
+          conditions:
+            - dps_val: normal
+              value: false
+              hidden: true
+            - dps_val: alarm
+              value: true
+              hidden: true
+    - id: 32
+      type: string
+      name: master_state
+    - id: 24
+      type: string
+      optional: true
+      name: zone_attribute
+    - id: 33
+      type: string
+      name: master_information
+    - id: 36
+      type: string
+      optional: true
+      name: sub_class
+    - id: 37
+      type: string
+      optional: true
+      name: sub_type
+    - id: 38
+      type: string
+      optional: true
+      name: sub_admin
+    - id: 39
+      type: string
+      optional: true
+      name: sub_state
+    - id: 101
+      type: string
+      optional: true
+      name: child_device_action
+
+secondary_entities:
+  - entity: number
+    name: Arm delay
+    category: config
+    icon: "mdi:camera-timer"
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 99
+  - entity: siren
+    category: config
+    dps:
+      - id: 3
+        type: integer
+        name: duration
+        unit: min
+        range:
+          min: 1
+          max: 5
+      - id: 4
+        type: boolean
+        name: tone
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
+      - id: 25
+        type: boolean
+        name: volume_level
+        mapping:
+          - dps_val: false
+            value: 1.0
+          - dps_val: true
+            value: 0.1
+  - entity: binary_sensor
+    class: tamper
+    category: diagnostic
+    dps:
+      - id: 9
+        type: boolean
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: switch
+    translation_key: keytone
+    category: config
+    dps:
+      - id: 12
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: battery_charging
+    category: diagnostic
+    dps:
+      - id: 15
+        type: boolean
+        name: sensor
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 16
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: switch
+    name: Low battery alarm
+    category: config
+    dps:
+      - id: 17
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Mobile network status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 23
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: normal
+            value: Normal
+            icon: "mdi:phone-classic"
+          - dps_val: network_no
+            value: "No signal"
+            icon: "mdi:signal-off"
+          - dps_val: phone_no
+            value: "No phone service"
+            icon: "mdi:phone-off"
+          - dps_val: sim_card_no
+            value: "No SIM card"
+            icon: "mdi:sim-off"
+          - dps_val: network_search
+            value: Searching for network
+            icon: "mdi:signal-cellular-outline"
+          - dps_val: signal_level_1
+            value: Signal level 1
+            icon: "mdi:signal-cellular-1"
+          - dps_val: signal_level_2
+            value: Signal level 2
+            icon: "mdi:signal-cellular-1"
+          - dps_val: signal_level_3
+            value: Signal level 3
+            icon: "mdi:signal-cellular-2"
+          - dps_val: signal_level_4
+            value: Signal level 4
+            icon: "mdi:signal-cellular-2"
+          - dps_val: signal_level_5
+            value: Signal level 5
+            icon: "mdi:signal-cellular-3"
+      - id: 18
+        type: string
+        optional: true
+        name: alarm_call_number
+      - id: 19
+        type: string
+        optional: true
+        name: alarm_sms_number
+  - entity: switch
+    name: Push notifications
+    category: config
+    dps:
+      - id: 27
+        type: boolean
+        name: switch
+      - id: 26
+        type: string
+        optional: true
+        name: alarm_msg
+  - entity: number
+    name: Alarm delay
+    category: config
+    icon: "mdi:camera-timer"
+    dps:
+      - id: 28
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 99
+  - entity: switch
+    name: Doorbell
+    icon: "mdi:doorbell"
+    category: config
+    dps:
+      - id: 29
+        type: boolean
+        name: switch
+
+  - entity: button
+    name: Factory reset
+    class: restart
+    category: config
+    dps:
+      - id: 34
+        type: boolean
+        optional: true
+        name: button
+  - entity: select
+    name: Language
+    icon: "mdi:translate"
+    category: config
+    dps:
+      - id: 40
+        type: string
+        name: option
+        mapping:
+          - dps_val: chinese_simplified
+            value: 中文简化字
+          - dps_val: english
+            value: English
+          - dps_val: french
+            value: Français
+          - dps_val: italian
+            value: Italiano
+          - dps_val: german
+            value: Deutsch
+          - dps_val: spanish
+            value: Español
+          - dps_val: portuguese
+            value: Português
+          - dps_val: russian
+            value: Русский
+          - dps_val: japanese
+            value: 日本語

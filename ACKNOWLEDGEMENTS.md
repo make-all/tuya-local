@@ -607,3 +607,4 @@ Further device support has been made with the assistance of users. Please consid
 - [tomassanjuann](https://github.com/tomassanjuann) for contributing support for Tera W01 EV charger.
 - [rorydcampbell](https://github.com/rorydcampbell) for comtributing support for WellToBe WB S36D pet feeder.
 - [FreemanJD](https://github.com/FreemanJD) for assisting with support for SOP10 water sprinkler.
+- [liquidand](https://github.com/liquidand) for assisting with support for Wolf Guard WTR alarm.
