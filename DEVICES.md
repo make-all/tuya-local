@@ -340,6 +340,7 @@
 - Kogan glass 1.7L smart kettle
 - Setti+ KT950W smart kettle
 - Silvercrest 1.7L smart kettle
+- Silvercrest coffee maker
 - Ultenic K10 air fryer
 - Weekett smart kettle
 
@@ -658,18 +659,21 @@ port and password.
 - ZX-DB11B doorbell and alarm system
 - ZX-G30 alarm system
 
-### Pet feeders
+### Pet care
 
 - Catit Pixi smart fountain
 - Catit pet feeder (Pixi 2.2kg dispenser and 6 meal versions, and another non-Pixi branded single dispenser)
 - Ceres Plus pet feeder with camera
+- Els Pet Spaceship pet litter box
 - HoneyGuardian S56 pet feeder
+- Leo's Loo Too pet toilet
 - Nedis pet feeder
 - Petlibro PLAF103 pet feeder
 - Petlibro PLAF203 pet feeder with camera
 - Petoneer Fresco Hydrate Ultra pet fountain/
 - PNI water feeder
 - Rojeco PTM-001 pet feeder (two versions)
+- Tonepie T1PRO automatic cat litter box
 - V330L pet feeder
 - WellToBe Automatic Pet Feeder (WB S36D)
 - YP pet feeder
@@ -715,7 +719,6 @@ port and password.
 - Kogan bidet toilet seat
 - Kogan KAWHTNOSLPA white noise sleep aid
 - Konlen/Rockson WF96L water level controller
-- Leo's Loo Too pet toilet
 - Madimack Inverflow Pro pool pump
 - Mirabella Genio motion sensor
 - Momcozy white noise machine (2 variants)
@@ -726,7 +729,6 @@ port and password.
 - PV28-CW 8 in 1 air quality monitor
 - RTCZ-03 human presence sensor
 - SD123 HPR01 human presence radar
-- Silvercrest coffee maker
 - SNT957W-TDE temperature sensor
 - SNT957W-DE CBU temperature and humidity sensor
 - Sunbeam dual heated mattress pad
@@ -734,7 +736,6 @@ port and password.
 - TH08 temperature and humidity sensor
 - TH16 temperature and humidity sensor
 - Timeguard WFPIR motion light controller
-- Tonepie T1PRO automatic cat litter box
 - Tontine electric blanket
 - Valehaus SYZN119 towel warmer
 - WeatherStation Pro
