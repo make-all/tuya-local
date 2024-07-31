@@ -275,7 +275,7 @@
 - ElectriQ CD12PWv2 dehumidifier
 - ElectriQ CD20PRO-LE-V2 dehumidifier
 - ElectriQ CD25PRO-LE-V2 dehumidifier
-- ElectriQ DESD9LW dehumidifier
+- ElectriQ DESD9LW dehumidifier (two variants)
 - Electriq PD45E dehumidifier
 - Eeese Adam dehumidifier
 - Eeese Anna dehumidifier
