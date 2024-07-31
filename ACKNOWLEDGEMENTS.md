@@ -609,3 +609,4 @@ Further device support has been made with the assistance of users. Please consid
 - [FreemanJD](https://github.com/FreemanJD) for assisting with support for SOP10 water sprinkler.
 - [liquidand](https://github.com/liquidand) for assisting with support for Wolf Guard WTR alarm.
 - [cw-cdz](https://github.com/cw-cdz) for contributing support for Heatstorm HS-1500 heater.
+- [sveos](https://github.com/sveos) for assisting with support for Nedis ZBRC10WT remote contol.

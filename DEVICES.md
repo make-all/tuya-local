@@ -795,6 +795,7 @@ entity types as sub devices.
 - Moes RGBCW lightbulb
 - Moes ZHT-002 thermostat
 - MultiIR MIR-TE100-TY temperature and humidity sensor
+- Nedis ZBRC10WT 4 button remote control
 - Nedis ZBSD10WT door/window sensor
 - Nedis ZBSC10WT temperature and humidity sensor
 - PY321-Z-TY energy meter
