@@ -612,3 +612,4 @@ Further device support has been made with the assistance of users. Please consid
 - [sveos](https://github.com/sveos) for assisting with support for Nedis ZBRC10WT remote contol.
 - [RoadkillUK](https://github.com/RoadkillUK) for contributing support for Els Pet Spaceship litter box.
 - [dphuk](https://github.com/dphuk) for assisting with ElectriQ DESD8LW V2 dehumidifier.
+- [tk627](https://github.com/tk627) for assisting with Minoston 6-preset timer switch.

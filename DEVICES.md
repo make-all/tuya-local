@@ -430,6 +430,7 @@ the best option.
 - Loratap RR400W-V2 relay switch
 - Makegood double power point (sold under AusElectronicsDirect, Cleverlife, Kogan, Ozsmartthings and other brands)
 - MakeGood double switch with timers and power monitoring on whole device
+- Minoston 6 preset timer switch
 - Mirabella Genio smartplug with USB
 - Moes 3-gang switch
 - Moes 4-gang (quad) switch
