@@ -387,6 +387,7 @@
 - Parkside PLGS 2012 A1 smart charger for powertools
 - Tera W01 EV charger
 - Vivor portable EV charger
+- Wada Power Q8 EV charger
 - WOUEJ 22kW EV charger
 
 ### SmartPlugs/Wall sockets/Wall switches/Inline switches

@@ -613,3 +613,4 @@ Further device support has been made with the assistance of users. Please consid
 - [RoadkillUK](https://github.com/RoadkillUK) for contributing support for Els Pet Spaceship litter box.
 - [dphuk](https://github.com/dphuk) for assisting with ElectriQ DESD8LW V2 dehumidifier.
 - [tk627](https://github.com/tk627) for assisting with Minoston 6-preset timer switch.
+- [MobilettoSoft](https://github.com/MobilettoSoft) for contributing support for Wada Power Q8 EV charger.
