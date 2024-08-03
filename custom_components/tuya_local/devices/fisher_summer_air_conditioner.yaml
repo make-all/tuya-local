@@ -4,6 +4,8 @@ products:
     name: Fisher Summer
   - id: u9jjsaluqe1trtxv
     name: Daitsu DS-9KTP
+  - id: fcnlevuwfd1jgkvx
+    name: Tesla TT34TP21-1232IAWUV
 primary_entity:
   entity: climate
   translation_only_key: aircon_extra
@@ -67,9 +69,6 @@ primary_entity:
       name: current_humidity
       type: integer
       optional: true
-    - id: 20
-      name: fault_code
-      type: bitfield
     - id: 110
       name: functions_available
       type: bitfield
@@ -99,14 +98,6 @@ primary_entity:
       #   21. temperature scale switching, 1 is Fahrenheit, 0 is Celsius
       #   22. soft wind
       #   23. left and right wide-angle air supply
-    - id: 115
-      type: integer
-      name: total_n
-      optional: true
-    - id: 116
-      type: integer
-      name: total_p
-      optional: true
     - id: 123
       name: options
       type: string
@@ -147,6 +138,13 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 20
+        name: fault_code
+        type: bitfield
+      - id: 122
+        name: fault2
+        type: bitfield
+        optional: true
   - entity: sensor  # no sensor in Fisher Summer AC, returns 0
     class: pm25
     dps:
@@ -323,6 +321,14 @@ secondary_entities:
             value: 4 kWh
           - dps_val: 5
             value: 5 kWh
+        optional: true
+      - id: 115
+        type: integer
+        name: total_n
+        optional: true
+      - id: 116
+        type: integer
+        name: total_p
         optional: true
   - entity: number
     name: Power Saving Temperature
