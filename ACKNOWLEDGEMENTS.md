@@ -614,3 +614,4 @@ Further device support has been made with the assistance of users. Please consid
 - [dphuk](https://github.com/dphuk) for assisting with ElectriQ DESD8LW V2 dehumidifier.
 - [tk627](https://github.com/tk627) for assisting with Minoston 6-preset timer switch.
 - [MobilettoSoft](https://github.com/MobilettoSoft) for contributing support for Wada Power Q8 EV charger.
+- [josiasmontag](https://github.com/josiasmontag) for contributing support for RainPoint water timer.

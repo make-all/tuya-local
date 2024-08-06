@@ -730,6 +730,7 @@ port and password.
 - PlantsIO Ivy smart planter
 - PV28-CW 8 in 1 air quality monitor
 - RTCZ-03 human presence sensor
+- RainPoint TTV103FRF water timer
 - SD123 HPR01 human presence radar
 - SNT957W-TDE temperature sensor
 - SNT957W-DE CBU temperature and humidity sensor
