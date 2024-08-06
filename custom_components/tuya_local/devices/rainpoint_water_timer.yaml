@@ -1,4 +1,4 @@
-name: RainPoint Smart Water Timer
+name: Water timer
 products:
   - id: ew946yrp3pgbaziu
     name: RainPoint TTV103FRF
@@ -17,7 +17,7 @@ primary_entity:
           value: true
 secondary_entities:
   - entity: switch
-    name: Weekly Automatic Irrigation
+    name: Automatic irrigation
     category: config
     icon: "mdi:calendar-clock"
     dps:
@@ -31,7 +31,7 @@ secondary_entities:
           - dps_val: false
             value: true
   - entity: select
-    name: Weekly Irrigation Rain Delay
+    name: Rain delay
     category: config
     icon: "mdi:timer-sand"
     dps:
@@ -105,7 +105,6 @@ secondary_entities:
   - entity: binary_sensor
     category: diagnostic
     class: problem
-    icon: "mdi:alert"
     dps:
       - id: 120
         type: bitfield
