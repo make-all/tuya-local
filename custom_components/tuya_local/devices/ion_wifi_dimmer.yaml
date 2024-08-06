@@ -1,0 +1,58 @@
+name: ION WIFI DIMMER
+products:
+  - id: ceikasvm5p5ymcax
+    name: ION WIFI DIMMER
+primary_entity:
+  entity: light
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 2
+      name: brightness
+      type: integer
+      range:
+        min: 10
+        max: 1000
+secondary_entities:
+  - entity: number
+    name: Minimum brightness
+    category: config
+    icon: "mdi:brightness-percent"
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - step: 1
+  - entity: number
+    name: Maximum brightness
+    category: config
+    icon: "mdi:brightness-percent"
+    dps:
+      - id: 5
+        type: integer
+        name: value
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - step: 1
+  - entity: number
+    translation_key: timer
+    name: Timer
+    category: config
+    dps:
+      - id: 6
+        type: integer
+        name: value
+        unit: "s"
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 0
+          - step: 1
