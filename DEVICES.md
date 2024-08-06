@@ -256,7 +256,7 @@
 - Soho SO-350WUI Air Purifier
 - Soleusair A02 and A10 air purifiers
 - Stadler Form Roger air purifier
-- Tesla S300, Smart Pro and Mini air purifiers
+- Tesla Smart S300, Pro and Mini air purifiers
 - Vork VK6067AW air purifier
 
 ### Dehumidifiers
@@ -675,6 +675,7 @@ port and password.
 - Petoneer Fresco Hydrate Ultra pet fountain/
 - PNI water feeder
 - Rojeco PTM-001 pet feeder (two versions)
+- Tesla Smart pet feeder
 - Tonepie T1PRO automatic cat litter box
 - V330L pet feeder
 - WellToBe Automatic Pet Feeder (WB S36D)
