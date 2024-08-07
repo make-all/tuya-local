@@ -797,6 +797,7 @@ entity types as sub devices.
 - LoraTap SC500ZB-V2 curtain controller
 - Loratap SS9600ZB 6 button remote control
 - Moes BRT-100-TRV radiator valve
+- Moes dual dimmer module
 - Moes RGBCW lightbulb
 - Moes ZHT-002 thermostat
 - MultiIR MIR-TE100-TY temperature and humidity sensor
