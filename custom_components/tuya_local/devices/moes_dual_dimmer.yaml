@@ -1,0 +1,160 @@
+name: Dual dimmer
+products:
+  - id: bxoo2swd
+    name: Moes ZM-105B-M-MS
+primary_entity:
+  entity: light
+  name: Light 1
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 2
+      name: brightness
+      type: integer
+      range:
+        min: 10
+        max: 1000
+secondary_entities:
+  - entity: light
+    name: Light 2
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+      - id: 8
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+  - entity: number
+    name: Minimum brightness 1
+    category: config
+    icon: "mdi:lightbulb-on-30"
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 10
+          max: 1000
+  - entity: number
+    name: Maximum brightness 1
+    category: config
+    icon: "mdi:lightbulb-on-90"
+    dps:
+      - id: 5
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 10
+          max: 1000
+  - entity: number
+    name: Minimum brightness 2
+    category: config
+    icon: "mdi:lightbulb-on-30"
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 10
+          max: 1000
+  - entity: number
+    name: Maximum brightness 2
+    category: config
+    icon: "mdi:lightbulb-on-90"
+    dps:
+      - id: 11
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 10
+          max: 1000
+  - entity: select
+    name: Light type 1
+    category: config
+    icon: "mdi:lightbulb-alert"
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: led
+            value: LED
+            icon: "mdi:lightbulbon-50"
+          - dps_val: incandescent
+            value: Incandescent
+            icon: "mdi:lightbulb-variant-outline"
+          - dps_val: halogen
+            value: Halogen
+            icon: "mdi:lightbulb-spot"
+  - entity: select
+    name: Light type 2
+    category: config
+    icon: "mdi:lightbulb-alert"
+    dps:
+      - id: 10
+        type: string
+        name: option
+        mapping:
+          - dps_val: led
+            value: LED
+            icon: "mdi:lightbulbon-50"
+          - dps_val: incandescent
+            value: Incandescent
+            icon: "mdi:lightbulb-variant-outline"
+          - dps_val: halogen
+            value: Halogen
+            icon: "mdi:lightbulb-spot"
+  - entity: number
+    translation_key: timer
+    name: Timer 1
+    category: config
+    dps:
+      - id: 6
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    translation_key: timer
+    name: Timer 2
+    category: config
+    dps:
+      - id: 12
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: select
+    name: Initial state
+    icon: "mdi:toggle-switch"
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "off"
+            value: "Off"
+          - dps_val: "on"
+            value: "On"
+          - dps_val: memory
+            value: Last state

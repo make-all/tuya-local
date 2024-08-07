@@ -386,6 +386,7 @@
 - Kolanky 3.6kW EV charger
 - Parkside PLGS 2012 A1 smart charger for powertools
 - Tera W01 EV charger
+- Vevor Level 2 EV charger
 - Vivor portable EV charger
 - Wada Power Q8 EV charger
 - WOUEJ 22kW EV charger
@@ -797,6 +798,7 @@ entity types as sub devices.
 - LoraTap SC500ZB-V2 curtain controller
 - Loratap SS9600ZB 6 button remote control
 - Moes BRT-100-TRV radiator valve
+- Moes dual dimmer module
 - Moes RGBCW lightbulb
 - Moes ZHT-002 thermostat
 - MultiIR MIR-TE100-TY temperature and humidity sensor
