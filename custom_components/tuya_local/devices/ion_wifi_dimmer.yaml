@@ -1,4 +1,4 @@
-name: ION WIFI DIMMER
+name: Dimmer
 products:
   - id: ceikasvm5p5ymcax
     name: ION WIFI DIMMER
@@ -26,8 +26,6 @@ secondary_entities:
         range:
           min: 10
           max: 1000
-        mapping:
-          - step: 1
   - entity: number
     name: Maximum brightness
     category: config
@@ -39,8 +37,6 @@ secondary_entities:
         range:
           min: 10
           max: 1000
-        mapping:
-          - step: 1
   - entity: number
     translation_key: timer
     name: Timer
@@ -49,10 +45,10 @@ secondary_entities:
       - id: 6
         type: integer
         name: value
-        unit: "s"
+        unit: min
         range:
           min: 0
           max: 86400
         mapping:
-          - scale: 0
-          - step: 1
+          - scale: 60
+          - step: 60
