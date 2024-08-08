@@ -1,12 +1,32 @@
-name: Essentials air purifier
+name: Air purifier
 primary_entity:
-  entity: switch
+  entity: fan
+  translation_key: fan_with_presets
   icon: "mdi:air-purifier"
   dps:
     - id: 1
       type: boolean
       name: switch
+    - id: 3
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: auto
+          value: smart
+        - dps_val: M
+          value: normal
+        - dps_val: H
+          value: strong
+        - dps_val: sleep
+          value: sleep
 secondary_entities:
+  - entity: switch
+    deprecated: fan
+    icon: "mdi:air-purifier"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: sensor
     name: Active filter life
     icon: "mdi:air-filter"
@@ -79,7 +99,7 @@ secondary_entities:
       - id: 19
         type: integer
         name: sensor
-        unit: "min"
+        unit: min
   - entity: sensor
     class: pm25
     dps:
@@ -96,16 +116,17 @@ secondary_entities:
         name: sensor
   - entity: select
     name: Mode
+    deprecated: fan
     dps:
       - id: 3
         name: option
         type: string
         mapping:
           - dps_val: auto
-            value: "Auto"
-          - dps_val: "M"
-            value: "Medium"
-          - dps_val: "H"
-            value: "High"
-          - dps_val: "sleep"
-            value: "Sleep"
+            value: Auto
+          - dps_val: M
+            value: Medium
+          - dps_val: H
+            value: High
+          - dps_val: sleep
+            value: Sleep
