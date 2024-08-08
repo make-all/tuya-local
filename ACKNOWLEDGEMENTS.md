@@ -617,3 +617,4 @@ Further device support has been made with the assistance of users. Please consid
 - [josiasmontag](https://github.com/josiasmontag) for contributing support for RainPoint water timer.
 - [DefinitelyADev](https://github.com/DefinitelyADev) for assisting with support for Moes zigbee dual dimmer module.
 - [daubman](https://github.com/daubman) for contributing support for Vevor Level 2 EV charger.
+- [Blcktape](https://github.com/Blcktape) for contributing support for Ion LED WiFi dimmer.

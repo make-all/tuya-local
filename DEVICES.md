@@ -514,6 +514,7 @@ of device.
 - Galaxy Projector
 - HDMI sync light
 - iHD001 LED controller
+- Ion LED WiFi dimmer
 - Kojima motion sensor RGBCW nightlight
 - Lexi Lighting string light Wifi adapter
 - LightStar CCT track light
