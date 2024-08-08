@@ -1,7 +1,7 @@
 name: Dimmer
 products:
   - id: ceikasvm5p5ymcax
-    name: ION WIFI DIMMER
+    name: Ion LED WiFi 200W NF
 primary_entity:
   entity: light
   dps:
@@ -39,7 +39,6 @@ secondary_entities:
           max: 1000
   - entity: number
     translation_key: timer
-    name: Timer
     category: config
     dps:
       - id: 6
@@ -51,4 +50,4 @@ secondary_entities:
           max: 86400
         mapping:
           - scale: 60
-          - step: 60
+            step: 60
