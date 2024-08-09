@@ -109,6 +109,7 @@
 - BWT FI 45 heatpump
 - Evotherm ETI series heatpump
 - Fairland IPHCR15 pool heatpump (matches others above, but allows control of heat/cool modes while others seem to be fixed to auto only)
+- Fairland IX20 pool heatpump (New 2024 model not compatible with IPS Pro)
 - Garden PAC pool heatpump (also works with Summerwave Si Series)
 - IPS Pro pool-systems heatpump (seems to match Fairland Inver-X as well)
 - Madimack Eco pool heatpump
