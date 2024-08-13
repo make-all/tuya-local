@@ -12,7 +12,6 @@ primary_entity:
       type: integer
       name: sensor
       class: measurement
-      unit: kg
       mapping:
         - scale: 10
           constraint: unit
@@ -25,10 +24,8 @@ primary_entity:
     - id: 134
       type: integer
       name: weight_lb
-      unit: lb
       mapping:
         - scale: 10
-
 secondary_entities:
   - entity: sensor
     name: Daily visits
