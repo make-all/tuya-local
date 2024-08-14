@@ -50,6 +50,16 @@ primary_entity:
     - id: 107
       name: temperature
       type: integer
+      range:
+        min: 18
+        max: 40
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: true
+              range:
+                min: 60
+                max: 115
     - id: 108
       type: integer
       name: min_temperature
@@ -59,8 +69,6 @@ primary_entity:
 secondary_entities:
   - entity: sensor
     category: diagnostic
-    name: Power level
-    icon: "mdi:signal"
     class: power_factor
     dps:
       - id: 105
@@ -80,9 +88,21 @@ secondary_entities:
           - dps_val: 4
             value: true
           - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 110
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 4
+            value: false
+          - dps_val: 0
+            value: false
+          - value: true
   - entity: sensor
     category: diagnostic
-    name: Power
     class: power
     dps:
       - id: 112
@@ -90,3 +110,55 @@ secondary_entities:
         type: integer
         unit: W
         optional: true
+  - entity: number
+    category: config
+    name: Minimum temperature
+    class: temperature
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        range:
+          min: 18
+          max: 40
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: true
+                range:
+                  min: 60
+                  max: 115
+      - id: 104
+        name: unit
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: C
+          - dps_val: true
+            value: F
+  - entity: number
+    category: config
+    name: Maximum temperature
+    class: temperature
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        range:
+          min: 18
+          max: 40
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: true
+                range:
+                  min: 60
+                  max: 115
+      - id: 104
+        name: unit
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: C
+          - dps_val: true
+            value: F
