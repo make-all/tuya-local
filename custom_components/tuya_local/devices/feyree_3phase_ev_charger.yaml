@@ -5,7 +5,7 @@ products:
 primary_entity:
   entity: sensor
   class: enum
-  name:  Status
+  name: Status
   icon: "mdi:ev-station"
   dps:
     - id: 101
@@ -88,7 +88,7 @@ primary_entity:
       name: online_state
 secondary_entities:
   - entity: sensor
-    name:  Alarm event
+    name: Alarm event
     icon: 'mdi:alert-outline'
     class: enum
     dps:
@@ -131,7 +131,7 @@ secondary_entities:
           - dps_val: 32768
             value: "Socket temperature is to high."
   - entity: button
-    name:  Clear energy
+    name: Clear energy
     class: restart
     category: config
     dps:
@@ -140,7 +140,7 @@ secondary_entities:
         name: button
         optional: true
   - entity: number
-    name:  Charging current
+    name: Charging current
     category: config
     icon: "mdi:ev-plug-type2"
     dps:
@@ -175,7 +175,7 @@ secondary_entities:
           - dps_val: Max32A
             value: Max32A
   - entity: number
-    name:  Delay
+    name: Delay
     category: config
     icon: "mdi:car-clock"
     dps:
@@ -197,7 +197,7 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name:  Phase 1 voltage
+    name: Phase 1 voltage
     class: voltage
     category: diagnostic
     dps:
@@ -209,7 +209,7 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name:  Phase 2 voltage
+    name: Phase 2 voltage
     class: voltage
     category: diagnostic
     dps:
@@ -221,7 +221,7 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name:  Phase 3 voltage
+    name: Phase 3 voltage
     class: voltage
     category: diagnostic
     dps:
@@ -233,7 +233,7 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name:  Phase 1 current
+    name: Phase 1 current
     class: current
     category: diagnostic
     dps:
@@ -245,7 +245,7 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name:  Phase 2 current
+    name: Phase 2 current
     class: current
     category: diagnostic
     dps:
@@ -257,7 +257,7 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name:  Phase 3 current
+    name: Phase 3 current
     class: current
     category: diagnostic
     dps:
@@ -290,7 +290,7 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: number
-    name:  Charge duration
+    name: Charge duration
     category: config
     icon: "mdi:car-clock"
     dps:
@@ -302,7 +302,7 @@ secondary_entities:
           min: 0
           max: 15
   - entity: select
-    name:  Command
+    name: Command
     icon: "mdi:ev-plug-type2"
     category: config
     dps:
@@ -317,7 +317,7 @@ secondary_entities:
           - dps_val: "WaitOperation"
             value: Idle
   - entity: sensor
-    name:  Charging session duration
+    name: Charging session duration
     icon: "mdi:car-clock"
     dps:
       - id: 120
