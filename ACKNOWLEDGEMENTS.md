@@ -621,3 +621,4 @@ Further device support has been made with the assistance of users. Please consid
 - [dobriys](https://github.com/dobriys) for assisting with support for KW02 video doorbell.
 - [trasbd](https://github.com/trasbd) for contributing support for Doel cat litter box.
 - [daseth](https://github.com/daseth) for contributing support for Feyree 22kW 3 phase EV charger.
+- [nanosonde](https://github.com/nanosonde) for contributing support for Pool Systems IPS-100MAX pool heatpump.

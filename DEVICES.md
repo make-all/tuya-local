@@ -110,12 +110,13 @@
 - Evotherm ETI series heatpump
 - Fairland IPHCR15 pool heatpump (matches others above, but allows control of heat/cool modes while others seem to be fixed to auto only)
 - Garden PAC pool heatpump (also works with Summerwave Si Series)
-- IPS Pro pool-systems heatpump (seems to match Fairland Inver-X as well)
 - Madimack Eco pool heatpump
 - Madimack Elite V3 pool heatpump (two versions)
 - Madimack(model unknown) pool heatpump (seems to match Fairland IPH45 as well)
 - Poolex Silverline, Q-7, Q-line, Arctic and Vertigo heatpumps
 - Poolsana InverPower Next pool heatpump
+- Pool Systems IPS 100MAX pool heatpump
+- Pool Systems IPS Pro pool heatpump (seems to match Fairland Inver-X as well)
 - Pro-Energy PE08 pool heatpump
 - Remora pool heatpump
 - W'eau pool heatpump (simple model and a more complex 13kW model)
