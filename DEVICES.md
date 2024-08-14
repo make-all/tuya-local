@@ -382,7 +382,7 @@
 
 - EcoPoint EV charger
 - EVSun EV charger
-- Feyree home EV charger (2 models)
+- Feyree EV charger (several models)
 - Kolanky 3.6kW EV charger
 - Parkside PLGS 2012 A1 smart charger for powertools
 - Tera W01 EV charger

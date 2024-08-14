@@ -620,3 +620,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Blcktape](https://github.com/Blcktape) for contributing support for Ion LED WiFi dimmer.
 - [dobriys](https://github.com/dobriys) for assisting with support for KW02 video doorbell.
 - [trasbd](https://github.com/trasbd) for contributing support for Doel cat litter box.
+- [daseth](https://github.com/daseth) for contributing support for Feyree 22kW 3 phase EV charger.
