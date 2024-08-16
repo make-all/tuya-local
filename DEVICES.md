@@ -110,12 +110,13 @@
 - Evotherm ETI series heatpump
 - Fairland IPHCR15 pool heatpump (matches others above, but allows control of heat/cool modes while others seem to be fixed to auto only)
 - Garden PAC pool heatpump (also works with Summerwave Si Series)
-- IPS Pro pool-systems heatpump (seems to match Fairland Inver-X as well)
 - Madimack Eco pool heatpump
 - Madimack Elite V3 pool heatpump (two versions)
 - Madimack(model unknown) pool heatpump (seems to match Fairland IPH45 as well)
 - Poolex Silverline, Q-7, Q-line, Arctic and Vertigo heatpumps
 - Poolsana InverPower Next pool heatpump
+- Pool Systems IPS 100MAX pool heatpump
+- Pool Systems IPS Pro pool heatpump (seems to match Fairland Inver-X as well)
 - Pro-Energy PE08 pool heatpump
 - Remora pool heatpump
 - W'eau pool heatpump (simple model and a more complex 13kW model)
@@ -382,10 +383,11 @@
 
 - EcoPoint EV charger
 - EVSun EV charger
-- Feyree home EV charger (2 models)
+- Feyree EV charger (several models)
 - Kolanky 3.6kW EV charger
 - Parkside PLGS 2012 A1 smart charger for powertools
 - Tera W01 EV charger
+- Vevor Level 2 EV charger
 - Vivor portable EV charger
 - Wada Power Q8 EV charger
 - WOUEJ 22kW EV charger
@@ -513,6 +515,7 @@ of device.
 - Galaxy Projector
 - HDMI sync light
 - iHD001 LED controller
+- Ion LED WiFi dimmer
 - Kojima motion sensor RGBCW nightlight
 - Lexi Lighting string light Wifi adapter
 - LightStar CCT track light
@@ -625,13 +628,14 @@ work reliably, even if listed below.
 
 ### Sirens
 
-- Iebeyond ECH doorbell with 433MHz RF hub
 - Neo Coolcam Siren with temperature and humidity alert (NAS-AB02W)
 - Orion Grid Connect outdoor siren (also Elesion NX-4980)
 - Sirena WS-902 Plus outdoor strobe siren
 
 ### Doorbells
 
+- Iebeyond ECH doorbell with 433MHz RF hub
+- KW02 video doorbell
 - WHM-04 doorbell (sold under various brands)
 
 ### Cameras
@@ -666,6 +670,7 @@ port and password.
 - Catit Pixi smart fountain
 - Catit pet feeder (Pixi 2.2kg dispenser and 6 meal versions, and another non-Pixi branded single dispenser)
 - Ceres Plus pet feeder with camera
+- Doel cat litter box
 - Els Pet Spaceship pet litter box
 - HoneyGuardian S56 pet feeder
 - Leo's Loo Too pet toilet
@@ -797,6 +802,7 @@ entity types as sub devices.
 - LoraTap SC500ZB-V2 curtain controller
 - Loratap SS9600ZB 6 button remote control
 - Moes BRT-100-TRV radiator valve
+- Moes dual dimmer module
 - Moes RGBCW lightbulb
 - Moes ZHT-002 thermostat
 - MultiIR MIR-TE100-TY temperature and humidity sensor

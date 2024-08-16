@@ -1,0 +1,164 @@
+name: Pool heatpump
+products:
+  - id: 1ovawewadpk2jiaw
+    name: Pool-Systems IPS-100MAX
+primary_entity:
+  entity: climate
+  dps:
+    - id: 101
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          icon: "mdi:hvac-off"
+          icon_priority: 1
+          value: "off"
+        - dps_val: true
+          constraint: work_mode
+          conditions:
+            - dps_val: smart
+              value: heat_cool
+            - dps_val: cool
+              value: cool
+            - dps_val: warm
+              value: heat
+    - id: 102
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: "silence"
+          value: sleep
+        - dps_val: "smart"
+          value: comfort
+        - dps_val: "booster"
+          value: boost
+    - id: 103
+      name: current_temperature
+      type: integer
+    - id: 104
+      name: temperature_unit
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: C
+        - dps_val: true
+          value: F
+    - id: 106
+      type: string
+      name: work_mode
+      hidden: true
+    - id: 107
+      name: temperature
+      type: integer
+      range:
+        min: 18
+        max: 40
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: true
+              range:
+                min: 60
+                max: 115
+    - id: 108
+      type: integer
+      name: min_temperature
+    - id: 109
+      type: integer
+      name: max_temperature
+secondary_entities:
+  - entity: sensor
+    category: diagnostic
+    class: power_factor
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: binary_sensor
+    name: Water flow
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 110
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 4
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 110
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 4
+            value: false
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: sensor
+    category: diagnostic
+    class: power
+    dps:
+      - id: 112
+        name: sensor
+        type: integer
+        unit: W
+        optional: true
+  - entity: number
+    category: config
+    name: Minimum temperature
+    class: temperature
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        range:
+          min: 18
+          max: 40
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: true
+                range:
+                  min: 60
+                  max: 115
+      - id: 104
+        name: unit
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: C
+          - dps_val: true
+            value: F
+  - entity: number
+    category: config
+    name: Maximum temperature
+    class: temperature
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        range:
+          min: 18
+          max: 40
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: true
+                range:
+                  min: 60
+                  max: 115
+      - id: 104
+        name: unit
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: C
+          - dps_val: true
+            value: F

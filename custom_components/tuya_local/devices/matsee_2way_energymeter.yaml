@@ -2,6 +2,8 @@ name: Bidirectional energy meter
 products:
   - id: z95s7p3z54xbsjnl
     name: MatSee Plus bidirectional 2 channel clamp meter
+  - id: bbcg1hrkrj5rifsd
+    name: MatSee Plus bidirectional 2 channel clamp meter
 primary_entity:
   entity: sensor
   name: Energy consumed
@@ -9,9 +11,19 @@ primary_entity:
   dps:
     - id: 1
       type: integer
+      optional: true
       name: sensor
       unit: kWh
       class: total_increasing
+      mapping:
+        - dps_val: null
+          value_redirect: alternate
+        - scale: 100
+    - id: 130
+      type: integer
+      optional: true
+      name: alternate
+      hidden: true
       mapping:
         - scale: 100
 secondary_entities:
@@ -21,9 +33,19 @@ secondary_entities:
     dps:
       - id: 2
         type: integer
+        optional: true
         name: sensor
         unit: kWh
         class: total_increasing
+        mapping:
+          - dps_val: null
+            value_redirect: alternate
+          - scale: 100
+      - id: 131
+        type: integer
+        optional: true
+        name: alternate
+        hidden: true
         mapping:
           - scale: 100
   - entity: sensor
@@ -38,6 +60,10 @@ secondary_entities:
         class: measurement
         mapping:
           - scale: 10
+      - id: 102
+        type: string
+        optional: true
+        name: direction
       - id: 118
         type: integer
         name: calibration
@@ -55,6 +81,10 @@ secondary_entities:
         class: measurement
         mapping:
           - scale: 10
+      - id: 104
+        type: string
+        optional: true
+        name: direction
       - id: 124
         type: integer
         name: calibration

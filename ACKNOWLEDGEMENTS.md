@@ -615,3 +615,10 @@ Further device support has been made with the assistance of users. Please consid
 - [tk627](https://github.com/tk627) for assisting with Minoston 6-preset timer switch.
 - [MobilettoSoft](https://github.com/MobilettoSoft) for contributing support for Wada Power Q8 EV charger.
 - [josiasmontag](https://github.com/josiasmontag) for contributing support for RainPoint water timer.
+- [DefinitelyADev](https://github.com/DefinitelyADev) for assisting with support for Moes zigbee dual dimmer module.
+- [daubman](https://github.com/daubman) for contributing support for Vevor Level 2 EV charger.
+- [Blcktape](https://github.com/Blcktape) for contributing support for Ion LED WiFi dimmer.
+- [dobriys](https://github.com/dobriys) for assisting with support for KW02 video doorbell.
+- [trasbd](https://github.com/trasbd) for contributing support for Doel cat litter box.
+- [daseth](https://github.com/daseth) for contributing support for Feyree 22kW 3 phase EV charger.
+- [nanosonde](https://github.com/nanosonde) for contributing support for Pool Systems IPS-100MAX pool heatpump.
