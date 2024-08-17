@@ -1,0 +1,79 @@
+name: ForceClima Soundless
+products:
+  - id: bf122f759ba4882810sdwc
+    name: ForceClima Soundless
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: cold
+              value: cool
+            - dps_val: wind
+              value: fan_only
+            - dps_val: wet
+              value: dry
+            - dps_val: 'hot'
+              value: heat
+
+    - id: 2
+      type: integer
+      name: temperature
+      range:
+        min: 16
+        max: 30
+      unit: C
+
+    - id: 3
+      type: integer
+      name: current_temperature
+    - id: 4
+      type: string
+      name: mode
+      hidden: true
+    - id: 5
+      type: string
+      name: fan_mode
+      mapping:
+        - dps_val: low
+          value: low
+        - dps_val: med
+          value: medium
+        - dps_val: high
+          value: high
+    - id: 20 # Fault
+      type: integer
+      name: fault_code
+
+    - id: 107 # Set Temperature ºF
+      type: integer
+      name: temp_set_f
+    - id: 109
+      type: integer
+      name: unknown_107
+
+    - id: 110 # oscillation
+      name: swing_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          value: vertical
+
+secondary_entities:
+  - entity: switch
+    name: Sleep
+    category: config
+    icon: "mdi:power-sleep"
+    dps:
+      - id: 103
+        name: switch
+        type: boolean
