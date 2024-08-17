@@ -224,6 +224,10 @@ time, so you may need to experiment with your automations to see
 whether a single command or multiple commands (with delays, see above)
 work best with your devices.
 
+When adding devices, some devices that are detected as protocol version
+3.3 at first require version 3.2 to work correctly. Either they cannot be
+detected, or work as read-only if the pprotocol is set to 3.3.
+
 ## Heater issues
 
 Goldair GPPH heaters have individual target temperatures for their
