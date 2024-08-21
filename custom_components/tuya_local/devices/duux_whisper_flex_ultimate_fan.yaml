@@ -22,8 +22,9 @@ primary_entity:
     - id: 3
       type: integer
       name: speed
-      mapping:
-        - scale: 0.3
+      range:
+        min: 0
+        max: 30
 secondary_entities:
   - entity: switch
     name: Horizontal oscillation
@@ -50,7 +51,7 @@ secondary_entities:
           - dps_val: "1"
             value: true
   - entity: climate
-    name: Temperature
+    name: Desired temperature
     category: config
     dps:
       - id: 20
@@ -61,7 +62,7 @@ secondary_entities:
           min: 17
           max: 28
   - entity: select
-    name: Timer
+    translation_key: timer
     category: config
     dps:
       - id: 6
