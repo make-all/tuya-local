@@ -256,6 +256,7 @@ secondary_entities:
           - mask: "FF00000000000000"
   - entity: select
     name: Watering delay 1
+    translation_key: timer
     category: config
     dps:
       - id: 113
@@ -263,7 +264,7 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: 0
-            value: 0h
+            value: cancel
           - dps_val: 24
             value: 24h
           - dps_val: 48
@@ -708,6 +709,7 @@ secondary_entities:
           - mask: "FF00000000000000"
   - entity: select
     name: Watering delay 2
+    translation_key: timer
     category: config
     dps:
       - id: 160
@@ -715,7 +717,7 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: 0
-            value: 0h
+            value: cancel
           - dps_val: 24
             value: 24h
           - dps_val: 48

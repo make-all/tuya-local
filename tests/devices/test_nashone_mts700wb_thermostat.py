@@ -63,8 +63,8 @@ class TestNashoneMTS700WBThermostat(
             TIMER_DPS,
             self.entities.get("select_timer"),
             {
-                "cancel": "off",
-                "1h": "1 hour",
+                "cancel": "cancel",
+                "1h": "1h",
             },
         )
         self.setUpBasicSensor(

@@ -32,6 +32,7 @@ secondary_entities:
             value: true
   - entity: select
     name: Rain delay
+    translation_key: timer
     category: config
     icon: "mdi:timer-sand"
     dps:
@@ -41,7 +42,7 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: "0"
-            value: "0h"
+            value: cancel
           - dps_val: "24"
             value: "24h"
           - dps_val: "48"
