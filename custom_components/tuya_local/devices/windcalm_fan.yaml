@@ -14,10 +14,15 @@ primary_entity:
     - id: 63
       type: string
       name: direction
-    - id: 64
-      type: integer
-      name: timer
-      range:
-        min: 0
-        max: 540
-      unit: min
+secondary_entities:
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 64
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 540

@@ -62,10 +62,10 @@ class TestEssentialsPurifier(
                     "dps": TIMER_DP,
                     "name": "select_timer",
                     "options": {
-                        "cancel": "Off",
-                        "2h": "2 hours",
-                        "4h": "4 hours",
-                        "8h": "8 hours",
+                        "cancel": "cancel",
+                        "2h": "2h",
+                        "4h": "4h",
+                        "8h": "8h",
                     },
                 },
                 {

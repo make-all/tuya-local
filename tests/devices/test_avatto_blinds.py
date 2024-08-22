@@ -49,11 +49,11 @@ class TestAvattoBlinds(MultiSensorTests, BasicSelectTests, TuyaDeviceTestCase):
             TIMER_DP,
             self.entities.get("select_timer"),
             {
-                "cancel": "Off",
-                "1": "1 hour",
-                "2": "2 hours",
-                "3": "3 hours",
-                "4": "4 hours",
+                "cancel": "cancel",
+                "1": "1h",
+                "2": "2h",
+                "3": "3h",
+                "4": "4h",
             },
         )
         self.mark_secondary(

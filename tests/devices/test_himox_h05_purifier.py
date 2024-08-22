@@ -46,11 +46,11 @@ class TestHimoxH05Purifier(
             TIMER_DPS,
             self.entities.get("select_timer"),
             {
-                "cancel": "Off",
-                "1h": "1 hour",
-                "2h": "2 hours",
-                "4h": "4 hours",
-                "8h": "8 hours",
+                "cancel": "cancel",
+                "1h": "1h",
+                "2h": "2h",
+                "4h": "4h",
+                "8h": "8h",
             },
         )
         self.setUpMultiSensors(

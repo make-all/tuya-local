@@ -46,12 +46,12 @@ class TestPoeimaOnePurifier(
             TIMER_DPS,
             self.entities.get("select_timer"),
             {
-                "cancel": "off",
-                "1h": "1 hour",
-                "2h": "2 hours",
-                "3h": "3 hours",
-                "4h": "4 hours",
-                "5h": "5 hours",
+                "cancel": "cancel",
+                "1h": "1h",
+                "2h": "2h",
+                "3h": "3h",
+                "4h": "4h",
+                "5h": "5h",
             },
         )
         self.setUpMultiSensors(
