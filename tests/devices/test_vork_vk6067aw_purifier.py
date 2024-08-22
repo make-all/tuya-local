@@ -51,9 +51,9 @@ class TestVorkVK6267AWPurifier(
             TIMER_DPS,
             self.entities.get("select_timer"),
             {
-                "cancel": "off",
-                "1h": "1 hour",
-                "2h": "2 hours",
+                "cancel": "cancel",
+                "1h": "1h",
+                "2h": "2h",
             },
         )
         self.setUpBasicButton(

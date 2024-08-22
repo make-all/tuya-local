@@ -90,6 +90,7 @@ secondary_entities:
         optional: true
   - entity: select
     name: Weather delay
+    translation_key: timer
     icon: "mdi:weather-cloudy-clock"
     category: config
     dps:
@@ -98,13 +99,13 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: cancel
-            value: "Off"
+            value: cancel
           - dps_val: "24h"
-            value: "1 day"
+            value: "24h"
           - dps_val: "48h"
-            value: "2 days"
+            value: "48h"
           - dps_val: "72h"
-            value: "3 days"
+            value: "72h"
   - entity: number
     name: Irrigation time
     category: config
