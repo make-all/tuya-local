@@ -66,13 +66,14 @@ secondary_entities:
         unit: times
   - entity: sensor
     name: Last visit duration
+    class: duration
     icon: "mdi:paper-roll"
     category: diagnostic
     dps:
       - id: 8
         type: integer
         name: sensor
-        unit: seconds
+        unit: s
   - entity: sensor
     name: Status
     class: enum
