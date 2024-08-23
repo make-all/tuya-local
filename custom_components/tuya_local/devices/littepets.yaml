@@ -42,15 +42,13 @@ secondary_entities:
       - id: 3
         type: boolean
         name: switch
-
   - entity: switch
     name: "Sleep Mode"
     icon: "mdi:sleep"
     dps:
       - id: 10
         type: boolean
-        name: switch
-        
+        name: switch       
   - entity: switch
     name: Deodorise
     icon: "mdi:spray"
@@ -58,7 +56,6 @@ secondary_entities:
       - id: 17
         type: boolean
         name: switch
-        
   - entity: sensor
     name: Number of times used
     category: diagnostic
@@ -67,7 +64,6 @@ secondary_entities:
         type: integer
         name: sensor
         unit: times
-        
   - entity: sensor
     name: Last visit duration
     icon: "mdi:paper-roll"
@@ -77,7 +73,6 @@ secondary_entities:
         type: integer
         name: sensor
         unit: seconds
-        
   - entity: sensor
     name: Status
     class: enum
@@ -90,7 +85,7 @@ secondary_entities:
           - dps_val: standby
             value: Standby 
             icon: "mdi:timer"
-          - dps_val: off
+          - dps_val: "off"
             value: PowerOff
             icon: "mdi:power-sleep"
           - dps_val: waiting_cluster
