@@ -109,14 +109,14 @@
 - BWT FI 45 heatpump
 - Evotherm ETI series heatpump
 - Fairland IPHCR15 pool heatpump (matches others above, but allows control of heat/cool modes while others seem to be fixed to auto only)
+- Fairland X20 series (also sold as Pool Systems IPS 100MAX)
 - Garden PAC pool heatpump (also works with Summerwave Si Series)
 - Madimack Eco pool heatpump
 - Madimack Elite V3 pool heatpump (two versions)
 - Madimack(model unknown) pool heatpump (seems to match Fairland IPH45 as well)
 - Poolex Silverline, Q-7, Q-line, Arctic and Vertigo heatpumps
 - Poolsana InverPower Next pool heatpump
-- Pool Systems IPS 100MAX pool heatpump
-- Pool Systems IPS Pro pool heatpump (seems to match Fairland Inver-X as well)
+- Pool Systems IPS Pro pool heatpump (also Fairland Inver-X)
 - Pro-Energy PE08 pool heatpump
 - Remora pool heatpump
 - W'eau pool heatpump (simple model and a more complex 13kW model)
@@ -208,6 +208,7 @@
 - Deta fan controller
 - Djive ARC humidifying fan
 - Duux Whisper Flex pedestal fan
+- Duux Whisper Flex Ultimate
 - Eglo 5 speed + sleep ceiling fan
 - Fanco Eco Silent Deluxe ceiling fan with LED light
 - Goldair GCPF315 fan
@@ -221,6 +222,7 @@
 - Keyun MKCFE002 RGB chandelier fan
 - Kogan bladeless fans
 - Mantra ceiling fan with light
+- Orison Chanfok Neo ceiling fan with light
 - Orison RGB ambient bladeless ceiling fan
 - Ovlaim ceiling fan with cool/warm white dimmable light
 - Reiga 52 ceiling fan with light

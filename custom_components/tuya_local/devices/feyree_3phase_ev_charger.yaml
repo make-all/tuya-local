@@ -2,6 +2,8 @@ name: EV charger
 products:
   - id: j6bzjwhiv2cljjcy
     name: Feyree 32A 85-264V 3 phase
+  - id: basqjlsmzcq8ipva
+    name: Feyree 7.6kW 32A
 primary_entity:
   entity: sensor
   class: enum
@@ -186,6 +188,10 @@ secondary_entities:
         range:
           min: 0
           max: 15
+      - id: 121
+        type: string
+        optional: true
+        name: display
   - entity: sensor
     class: energy
     dps:
@@ -301,6 +307,10 @@ secondary_entities:
         range:
           min: 0
           max: 15
+      - id: 122
+        type: string
+        optional: true
+        name: display
   - entity: select
     name: Command
     icon: "mdi:ev-plug-type2"
@@ -323,3 +333,12 @@ secondary_entities:
       - id: 120
         type: string
         name: sensor
+  - entity: switch
+    name: RFID
+    icon: "mdi:credit-card-wireless"
+    category: config
+    dps:
+      - id: 123
+        type: boolean
+        name: switch
+        optional: true
