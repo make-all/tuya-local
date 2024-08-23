@@ -625,3 +625,4 @@ Further device support has been made with the assistance of users. Please consid
 - [oyvindwe](https://github.com/oyvindwe) for contributing improvements to Nedis pet feeder.
 - [juliusvaart](https://github.com/juliusvaart) for contributing support for Duux Whisper Flex Ultimate fan.
 - [abipster](https://github.com/abipster) for contributing support for Fairland X20 series (merged with Poolsystems IPS100max).
+- [lucacri](https://github.com/lucacri) for contributing support for Orison Chanfok Neo ceiling fan with light.
