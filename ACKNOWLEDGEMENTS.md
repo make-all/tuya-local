@@ -623,3 +623,4 @@ Further device support has been made with the assistance of users. Please consid
 - [daseth](https://github.com/daseth) for contributing support for Feyree 22kW 3 phase EV charger.
 - [nanosonde](https://github.com/nanosonde) for contributing support for Pool Systems IPS-100MAX pool heatpump.
 - [oyvindwe](https://github.com/oyvindwe) for contributing improvements to Nedis pet feeder.
+- [juliusvaart](https://github.com/juliusvaart) for contributing support for Duux Whisper Flex Ultimate fan.

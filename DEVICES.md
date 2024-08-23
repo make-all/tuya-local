@@ -208,6 +208,7 @@
 - Deta fan controller
 - Djive ARC humidifying fan
 - Duux Whisper Flex pedestal fan
+- Duux Whisper Flex Ultimate
 - Eglo 5 speed + sleep ceiling fan
 - Fanco Eco Silent Deluxe ceiling fan with LED light
 - Goldair GCPF315 fan
