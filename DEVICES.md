@@ -71,6 +71,7 @@
 - Daewoo Dhome OL-A011 air conditioner (DA9KWE)
 - Daizuki heat pump
 - Della air conditioner
+- De'Longhi Pinguino portable air conditioner
 - Duux Blizzard portable air conditioner
 - Eberg Cooly C35HD
 - Eberg Qubo Q40HD
@@ -676,6 +677,7 @@ port and password.
 - Els Pet Spaceship pet litter box
 - HoneyGuardian S56 pet feeder
 - Leo's Loo Too pet toilet
+- Littepets MA2 series Cute Baby cat litter box
 - Nedis pet feeder
 - Petlibro PLAF103 pet feeder
 - Petlibro PLAF203 pet feeder with camera
