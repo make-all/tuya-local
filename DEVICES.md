@@ -104,6 +104,7 @@
 - Vivion 300123/4/5 air conditioners
 - Woods Cortina portable air conditioner
 - Woods Milan portable air conditioner
+- Medion Life P1002 air conditioner
 
 ### Pool heaters / heatpumps
 
