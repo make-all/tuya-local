@@ -1,0 +1,25 @@
+name: QCSmart garage door
+products:
+  - id: bf68ea3165358a2846kahv
+    name: QCSmart garage door
+primary_entity:
+  entity: cover
+  class: garage
+  dps:
+    - id: 1
+      type: boolean
+      name: control
+      optional: true
+      mapping:
+        - dps_val: true
+          value: open
+        - dps_val: false
+          value: close
+    - id: 101
+      type: boolean
+      name: action
+      mapping:
+        - dps_val: true
+          value: opened
+        - dps_val: false
+          value: closed
