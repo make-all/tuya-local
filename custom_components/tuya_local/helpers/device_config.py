@@ -135,6 +135,12 @@ class TuyaDeviceConfig:
         for conf in self._config.get("secondary_entities", {}):
             yield TuyaEntityConfig(self, conf)
 
+    def all_entities(self):
+        """Iterate through all entities for this device."""
+        yield self.primary_entity
+        for e in self.secondary_entities():
+            yield e
+
     def matches(self, dps):
         required_dps = self._get_required_dps()
 

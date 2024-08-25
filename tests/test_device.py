@@ -91,7 +91,7 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.subject.async_refresh.assert_awaited()
 
     async def test_detection_returns_none_when_device_type_not_detected(self):
-        self.subject._cached_state = {"2": False, "updated_at": time()}
+        self.subject._cached_state = {"192": False, "updated_at": time()}
         self.assertEqual(await self.subject.async_inferred_type(), None)
 
     async def test_refreshes_when_there_is_no_pending_reset(self):

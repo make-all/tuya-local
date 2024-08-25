@@ -73,12 +73,8 @@ class TuyaDeviceTestCase(IsolatedAsyncioTestCase):
 
         self.entities = {}
         self.secondary_category = []
-        self.primary_entity = cfg.primary_entity.config_id
-        self.entities[self.primary_entity] = self.create_entity(cfg.primary_entity)
-
         self.names = {}
-        self.names[cfg.primary_entity.config_id] = cfg.primary_entity.name
-        for e in cfg.secondary_entities():
+        for e in cfg.all_entities():
             self.entities[e.config_id] = self.create_entity(e)
             self.names[e.config_id] = e.name
 

@@ -73,7 +73,7 @@ HUB_CATEGORIES = [
 
 class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION = 13
-    MINOR_VERSION = 4
+    MINOR_VERSION = 5
     CONNECTION_CLASS = config_entries.CONN_CLASS_LOCAL_PUSH
     device = None
     data = {}
