@@ -1,10 +1,10 @@
-name: Wi-Fi Pet Feeder
+name: Pet feeder
 products:
   - id: vglnuveujzyrpku9
-    name: Faroro Automatic Cat Feeder
+    name: Faroro PF50
 primary_entity:
   entity: number
-  name: Manual Feed
+  name: Manual feed
   icon: "mdi:food-drumstick"
   mode: "box"
   dps:
@@ -17,7 +17,7 @@ primary_entity:
         max: 12
 secondary_entities:
   - entity: sensor
-    name: Feed Status
+    name: Feed status
     icon: "mdi:paw"
     class: enum
     dps:
@@ -30,7 +30,7 @@ secondary_entities:
           - dps_val: feeding
             value: Feeding
   - entity: button
-    name: Factory Reset
+    name: Factory reset
     icon: "mdi:lock-reset"
     category: diagnostic
     dps:
@@ -38,7 +38,7 @@ secondary_entities:
         type: boolean
         name: button
   - entity: sensor
-    name: Last Feed Amount
+    name: Last feed amount
     icon: "mdi:food-drumstick"
     category: diagnostic
     dps:
@@ -46,7 +46,7 @@ secondary_entities:
         name: sensor
         type: integer
   - entity: sensor
-    name: Voice Times
+    name: Voice times
     icon: "mdi:account-voice"
     category: config
     dps:
@@ -54,7 +54,7 @@ secondary_entities:
         name: sensor
         type: integer
   - entity: switch
-    name: Indicator Light
+    name: Indicator light
     icon: "mdi:lightbulb"
     category: config
     dps:
@@ -65,23 +65,23 @@ secondary_entities:
           - dps_val: false
             icon: "mdi:lightbulb-outline"
   - entity: sensor
-    name: Battery Level
+    name: Battery level
     icon: "mdi:battery"
     category: diagnostic
-    class: enum
+    class: battery
     dps:
       - id: 101
         name: sensor
         type: string
         mapping:
           - dps_val: "no"
-            value: None
-          - dps_val: low
-            value: Low
-          - dps_val: high
-            value: High
+            value: 10
+          - dps_val: "low"
+            value: 30
+          - dps_val: "high"
+            value: 80
   - entity: sensor
-    name: Food Level
+    name: Food level
     icon: "mdi:food-drumstick"
     class: enum
     dps:
@@ -98,16 +98,18 @@ secondary_entities:
             value: Empty
             icon: "mdi:food-drumstick-off-outline"
   - entity: binary_sensor
-    name: Food Jam Status
+    name: Food jam status
     icon: "mdi:paw"
+    class: problem
     category: diagnostic
     dps:
       - id: 103
         name: sensor
         type: boolean
   - entity: binary_sensor
-    name: Stuck Status
+    name: Stuck status
     icon: "mdi:paw"
+    class: problem
     category: diagnostic
     dps:
       - id: 104
@@ -115,7 +117,7 @@ secondary_entities:
         type: boolean
   - entity: button
     name: Reboot
-    icon: "mdi:restart"
+    class: restart
     category: diagnostic
     dps:
       - id: 105
@@ -123,9 +125,10 @@ secondary_entities:
         name: button
         optional: true
   - entity: number
-    name: Button Portion Size
+    name: Button portion size
     icon: "mdi:food-drumstick"
     category: config
+    mode: "box"
     dps:
       - id: 106
         name: value
