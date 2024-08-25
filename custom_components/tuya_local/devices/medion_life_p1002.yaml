@@ -43,6 +43,14 @@ primary_entity:
           value: low
         - dps_val: High
           value: high
+    - id: 15
+      type: boolean
+      name: swing_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          value: "on"
 secondary_entities:
   - entity: lock
     icon: "mdi:lock"
@@ -67,12 +75,5 @@ secondary_entities:
     icon: "mdi:power-sleep"
     dps:
       - id: 101
-        type: boolean
-        name: switch
-  - entity: switch
-    icon: "mdi:arrow-oscillating"
-    name: Swing
-    dps:
-      - id: 15
         type: boolean
         name: switch
