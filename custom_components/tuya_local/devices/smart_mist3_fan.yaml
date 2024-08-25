@@ -1,11 +1,10 @@
 name: Mist Fan
 products:
   - id: xlnzyrme4ddyzqhw
-    name: Smart Mist3 Fan
+    name: Smart Mist3 TX-1602MF
 primary_entity:
   entity: fan
-  name: Fan
-  class: fan
+  translation_key: fan_with_presets
   dps:
     - id: 1
       name: switch
@@ -14,20 +13,18 @@ primary_entity:
       name: preset_mode
       type: string
       mapping:
-        - dps_val: "normal"
-          value: "Normal"
-        - dps_val: "natural"
-          value: "Natural"
-        - dps_val: "sleep"
-          value: "Sleep"
+        - dps_val: normal
+          value: normal
+        - dps_val: natural
+          value: natural
+        - dps_val: sleep
+          value: sleep
     - id: 3
       name: speed
       type: integer
       range:
         min: 1
         max: 3
-      mapping:
-        - step: 1
     - id: 7
       name: oscillate
       type: string
@@ -39,7 +36,6 @@ primary_entity:
 secondary_entities:
   - entity: fan
     name: Mist
-    class: fan
     icon: "mdi:air-humidifier"
     dps:
       - id: 10
