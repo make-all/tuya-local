@@ -634,3 +634,4 @@ Further device support has been made with the assistance of users. Please consid
 - [aheagel](https://github.com/aheagel) for conributing support for YX-025WB aroma diffuser.
 - [r3pek](https://github.com/r3pek) for contributing support for Smart Mist3 fan.
 - [reniko](https://github.com/reniko) for contributing support for TOPENS TC196 remote control.
+- [MarvinBeym](https://github.com/MarvinBeym) for contributing support for Medion Life P1002 portable air conditioner.

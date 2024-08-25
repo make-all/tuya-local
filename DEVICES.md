@@ -86,7 +86,7 @@
 - Klarstein Iceblock Ecosmart air conditioner
 - Kogan portable air conditioners (Y09, Y12, Y16)
 - Lyfco OL-A012 air conditioner
-- Medion Life P1002 air conditioner
+- Medion Life P1002 portable air conditioner
 - Monzana Klimaanlage air conditioner
 - Nedis ACMB1WT12 portable air conditioner
 - Rotenso Roni R35WI
