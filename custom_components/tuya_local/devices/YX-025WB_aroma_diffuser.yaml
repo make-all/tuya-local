@@ -1,7 +1,7 @@
 name: Aroma diffuser
 products:
   - id: yishet3p12fvohmd
-    name: Aroma YX-025WB
+    name: Liplasting YX-025WB
 primary_entity:
   entity: fan
   icon: "mdi:scent"
@@ -84,6 +84,16 @@ secondary_entities:
         type: bitfield
         name: sensor
         optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 11
+        type: bitfield
+        name: fault_code
+        optional: true
   - entity: select
     translation_key: timer
     category: config
@@ -94,11 +104,11 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: 2h
-            value: "2 hours"
+            value: "2h"
           - dps_val: 4h
-            value: "4 hours"
+            value: "4h"
           - dps_val: cancel
-            value: "None"
+            value: cancel
   - entity: sensor
     translation_key: time_remaining
     class: duration
