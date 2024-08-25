@@ -628,3 +628,9 @@ Further device support has been made with the assistance of users. Please consid
 - [lucacri](https://github.com/lucacri) for contributing support for Orison Chanfok Neo ceiling fan with light.
 - [hadicharara](https://github.com/hadicharara) for contributing support for De'Longhi Pinguino portable air conditioner.
 - [cyrano1966](https://github.com/cyrano1966) for contributing support for Littepets cat litter box.
+- [TiTaTim](https://github.com/TiTaTim) for contributing support for Liectroux G7 vacuum.
+- [baksogen](https://github.com/baksogen) for contributing support for Xinled XLD-CL002 RGBCW lightbulb.
+- [EnzoD86](https://github.com/EnzoD86) for contributing support for ZY-HPS01 human presence sensor.
+- [aheagel](https://github.com/aheagel) for conributing support for YX-025WB aroma diffuser.
+- [r3pek](https://github.com/r3pek) for contributing support for Smart Mist3 fan.
+- [reniko](https://github.com/reniko) for contributing support for TOPENS TC196 remote control.

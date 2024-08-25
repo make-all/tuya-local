@@ -230,6 +230,7 @@
 - Royal Clima RCB 150 ventilation system
 - Skyfan DC fan
 - Skyfan DC fan with light
+- Smart Mist3 TX-1602MF (ZJ-1522A-WiFi)
 - Stirling FS1-40DC pedestal fan
 - Sulion Crixus L ceiling fan with light
 - TMWF02 fan controller
@@ -329,6 +330,7 @@
 - Etersky aroma diffuser with light
 - Maxico aroma diffuser with light (cannot be differentiated automatically from Ditua above)
 - Tesla Smart aroma diffuser with light
+- YX-025 WB aroma diffuser
 - YX316WIFI aroma diffuser
 - YYM-805SW aroma diffuser with light (also supports GX Aroma diffuser)
 
@@ -540,6 +542,7 @@ of device.
 - Teberno LED strip light (LGC-005 OEM3)
 - Treatlife outdoor dimmer with dual outlets
 - Ustellar UT99911 RGB monitor light bar
+- Xinled XLD-CL002 RGBCW lightbulb
 - WF520D dual dimmer touchpanel
 
 ### Covers
@@ -598,6 +601,7 @@ of device.
 - Lefant M213 vacuum cleaner (also works for Lefant M213S and APOSEN A550)
 - Lefant N33 vacuum cleaner
 - Lenovo E1 vacuum cleaner
+- Liectroux G7 vacuum cleaner with mop
 - Liectroux XR500[T3]
 - Lubluelu SL60D vacuum cleaner with mop
 - MAMNV BR151 vacuum cleaner with mop
@@ -750,6 +754,7 @@ port and password.
 - TH16 temperature and humidity sensor
 - Timeguard WFPIR motion light controller
 - Tontine electric blanket
+- TOPENS TC196 remote control for gate openers
 - Valehaus SYZN119 towel warmer
 - WeatherStation Pro
 - Xiumii human presence radar
@@ -758,6 +763,7 @@ port and password.
 - Zecamin ZG-205W mmWave human presence sensor
 - ZN-2C09 9-in-1 air quality monitor
 - ZX-GS21 gas leak alarm monitor
+- ZY-HPS01 human presence sensor
 - ZY-M100-WiFi mmWave human presence sensor
 - ZY-M201-WiFi mmWave human presence sensor
 
