@@ -200,7 +200,7 @@ class TuyaDeviceConfig:
         if "updated_at" in keys:
             keys.remove("updated_at")
         total = len(keys)
-        if not self._entity_match_analyse(
+        if total < 1 or not self._entity_match_analyse(
             self.primary_entity,
             keys,
             matched,
