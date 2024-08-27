@@ -31,8 +31,7 @@ secondary_entities:
             value: Feeding
   - entity: button
     name: Factory reset
-    icon: "mdi:lock-reset"
-    category: diagnostic
+    class: restart
     dps:
       - id: 9
         type: boolean
@@ -65,8 +64,6 @@ secondary_entities:
           - dps_val: false
             icon: "mdi:lightbulb-outline"
   - entity: sensor
-    name: Battery level
-    icon: "mdi:battery"
     category: diagnostic
     class: battery
     dps:
@@ -98,7 +95,7 @@ secondary_entities:
             value: Empty
             icon: "mdi:food-drumstick-off-outline"
   - entity: binary_sensor
-    name: Food jam status
+    name: Food jam
     icon: "mdi:paw"
     class: problem
     category: diagnostic
@@ -107,7 +104,7 @@ secondary_entities:
         name: sensor
         type: boolean
   - entity: binary_sensor
-    name: Stuck status
+    name: Stuck
     icon: "mdi:paw"
     class: problem
     category: diagnostic
