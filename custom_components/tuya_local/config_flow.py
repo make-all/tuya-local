@@ -595,6 +595,23 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
         )
 
 
+def create_test_device(hass: HomeAssistant, config: dict):
+    """Set up a tuya device based on passed in config."""
+    subdevice_id = config.get(CONF_DEVICE_CID)
+    device = TuyaLocalDevice(
+        "Test",
+        config[CONF_DEVICE_ID],
+        config[CONF_HOST],
+        config[CONF_LOCAL_KEY],
+        config[CONF_PROTOCOL_VERSION],
+        subdevice_id,
+        hass,
+        True,
+    )
+
+    return device
+
+
 async def async_test_connection(config: dict, hass: HomeAssistant):
     domain_data = hass.data.get(DOMAIN)
     existing = domain_data.get(get_device_id(config)) if domain_data else None
@@ -605,15 +622,10 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
 
     try:
         subdevice_id = config.get(CONF_DEVICE_CID)
-        device = TuyaLocalDevice(
-            "Test",
-            config[CONF_DEVICE_ID],
-            config[CONF_HOST],
-            config[CONF_LOCAL_KEY],
-            config[CONF_PROTOCOL_VERSION],
-            subdevice_id,
+        device = await hass.async_add_executor_job(
+            create_test_device,
             hass,
-            True,
+            config,
         )
         await device.async_refresh()
         retval = device if device.has_returned_state else None
