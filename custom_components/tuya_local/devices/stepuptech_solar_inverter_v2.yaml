@@ -1,0 +1,109 @@
+name: Solar inverter
+products:
+  - id: 2zkyfrpmfxmex896
+    name: Stepuptech SPD-800
+primary_entity:
+  entity: sensor
+  name: AC power
+  class: power
+  dps:
+    - id: 108
+      type: integer
+      name: sensor
+      unit: W
+      force: true
+      class: measurement
+      mapping:
+        - scale: 100
+secondary_entities:
+  - entity: sensor
+    name: PV1 voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        unit: V
+        force: true
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: PV1 current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 115
+        type: integer
+        name: sensor
+        unit: A
+        force: true
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: PV2 voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        unit: V
+        force: true
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: PV2 current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 118
+        type: integer
+        name: sensor
+        unit: A
+        force: true
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: C
+        force: true
+        class: measurement
+        mapping:
+          - scale: 1
+  - entity: sensor
+    name: AC voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: V
+        force: true
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: AC current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: A
+        force: true
+        mapping:
+          - scale: 100
+  - entity: switch
+    name: Inverter switch
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+        optional: true
