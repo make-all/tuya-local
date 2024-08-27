@@ -548,7 +548,7 @@ Further device support has been made with the assistance of users. Please consid
 - [gkwok1](https://github.com/gkwok1) for contributing support for Confortotal mini split air conditioners and BLE Pulido P13 locks.
 - [hroussez](https://github.com/hroussez) for contributing ANWIO lightbulb compatibility info.
 - [bdraco](https://github.com/bdraco) for advice on correct use of HA threading/task functions.
-- [sj29fr](https://github.com/sj29fr) for contributing support for Stepuptech SG800 solar inverters.
+- [sj29fr](https://github.com/sj29fr) for contributing support for Stepuptech SG800 and SPD800 solar inverters.
 - [wbln](https://github.com/wbln) for contributing support for Tefal X-plorer animal vacuums.
 - [TroLoos](https://github.com/TroLoos) for contributing support for Pro-Energy PE08 pool heatpumps.
 - [simplelnx](https://github.com/simplelnx) for contributing support for OPK K2 vacuums.
@@ -635,3 +635,4 @@ Further device support has been made with the assistance of users. Please consid
 - [r3pek](https://github.com/r3pek) for contributing support for Smart Mist3 fan.
 - [reniko](https://github.com/reniko) for contributing support for TOPENS TC196 remote control.
 - [MarvinBeym](https://github.com/MarvinBeym) for contributing support for Medion Life P1002 portable air conditioner.
+- [jon-sanders](https://github.com/jon-sanders) for contributing support for Faroro pet feeder.

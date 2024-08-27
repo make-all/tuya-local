@@ -374,6 +374,7 @@
 - SG600MD solar inverter (also SG700MD, other SGxx0MD and SGxx0W models) sold under various brands
 - SmartMCB SMT006 energy meter (10 byte and 8 byte phase info variants)
 - Stepuptech SG800 solar inverter
+- Stepuptech SPD800 solar inverter
 - Taxnele circuit breaker and energy meter
 - TOMPD-63LW energy meter circuit breaker
 - Tongou QCB2-WB WiFi 4P circuit breaker (3-phase and single phase variants)
@@ -680,6 +681,7 @@ port and password.
 - Ceres Plus pet feeder with camera
 - Doel cat litter box
 - Els Pet Spaceship pet litter box
+- Faroro PF50 pet feeder
 - HoneyGuardian S56 pet feeder
 - Leo's Loo Too pet toilet
 - Littepets MA2 series Cute Baby cat litter box
