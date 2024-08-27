@@ -58,6 +58,10 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
             self._support_flags |= FanEntityFeature.OSCILLATE
         if self._direction_dps:
             self._support_flags |= FanEntityFeature.DIRECTION
+        if self._switch_dps:
+            self._support_flags |= FanEntityFeature.TURN_ON | FanEntityFeature.TURN_OFF
+        # Until the deprecation period ends (eexpected 2025.2)
+        self._enable_turn_on_off_backwards_compatibility = False
 
     @property
     def supported_features(self):
