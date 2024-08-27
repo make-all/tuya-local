@@ -621,7 +621,6 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
         await asyncio.sleep(5)
 
     try:
-        subdevice_id = config.get(CONF_DEVICE_CID)
         device = await hass.async_add_executor_job(
             create_test_device,
             hass,
