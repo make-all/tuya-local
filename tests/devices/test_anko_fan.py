@@ -34,7 +34,9 @@ class TestAnkoFan(SwitchableTests, BasicNumberTests, TuyaDeviceTestCase):
             self.subject.supported_features,
             FanEntityFeature.OSCILLATE
             | FanEntityFeature.PRESET_MODE
-            | FanEntityFeature.SET_SPEED,
+            | FanEntityFeature.SET_SPEED
+            | FanEntityFeature.TURN_ON
+            | FanEntityFeature.TURN_OFF,
         )
 
     def test_preset_mode(self):

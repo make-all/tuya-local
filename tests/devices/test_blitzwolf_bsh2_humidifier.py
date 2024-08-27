@@ -57,7 +57,9 @@ class TestBlitzwolfSH2Humidifier(MultiSelectTests, TuyaDeviceTestCase):
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            FanEntityFeature.SET_SPEED,
+            FanEntityFeature.SET_SPEED
+            | FanEntityFeature.TURN_OFF
+            | FanEntityFeature.TURN_ON,
         )
 
     def test_speed(self):

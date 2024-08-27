@@ -98,7 +98,9 @@ class TestVorkVK6267AWPurifier(
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            FanEntityFeature.PRESET_MODE,
+            FanEntityFeature.PRESET_MODE
+            | FanEntityFeature.TURN_ON
+            | FanEntityFeature.TURN_OFF,
         )
 
     def test_preset_modes(self):
