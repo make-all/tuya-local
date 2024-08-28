@@ -37,6 +37,7 @@ primary_entity:
     - id: 22  # meter_id
       type: string
       name: meter_id
+      optional: true
     - id: 23  # system_version
       type: string
       name: system_version
@@ -47,6 +48,7 @@ secondary_entities:
       - id: 1  # forward_energy_total
         type: integer
         name: sensor
+        optional: true
         class: total_increasing
         unit: kWh
         mapping:
@@ -109,6 +111,7 @@ secondary_entities:
     dps:
       - id: 13  # connection_state
         type: string
+        optional: true
         name: sensor
         mapping:
           - dps_val: controlpi_12v
@@ -255,6 +258,7 @@ secondary_entities:
     dps:
       - id: 24
         type: integer
+        optional: true
         name: sensor
         unit: C
         class: measurement
