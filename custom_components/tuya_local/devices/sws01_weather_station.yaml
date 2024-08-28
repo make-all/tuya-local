@@ -84,3 +84,19 @@ secondary_entities:
         name: sensor
         unit: "%"
         class: measurement
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 106
+        type: integer
+        name: brightness
+        mapping:
+          - dps_val: 0
+            value: 0
+          - dps_val: 1
+            value: 85
+          - dps_val: 2
+            value: 170
+          - dps_val: 3
+            value: 255
