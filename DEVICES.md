@@ -691,6 +691,7 @@ port and password.
 - Petoneer Fresco Hydrate Ultra pet fountain/
 - PNI water feeder
 - Rojeco PTM-001 pet feeder (two versions)
+- Sobralik pet fountain
 - Tesla Smart pet feeder
 - Tonepie T1PRO automatic cat litter box
 - V330L pet feeder

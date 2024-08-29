@@ -636,3 +636,4 @@ Further device support has been made with the assistance of users. Please consid
 - [reniko](https://github.com/reniko) for contributing support for TOPENS TC196 remote control.
 - [MarvinBeym](https://github.com/MarvinBeym) for contributing support for Medion Life P1002 portable air conditioner.
 - [jon-sanders](https://github.com/jon-sanders) for contributing support for Faroro pet feeder.
+- [edev-us](https://github.com/edev-us) for contributing support for Sobralik pet fountain.
