@@ -637,3 +637,4 @@ Further device support has been made with the assistance of users. Please consid
 - [MarvinBeym](https://github.com/MarvinBeym) for contributing support for Medion Life P1002 portable air conditioner.
 - [jon-sanders](https://github.com/jon-sanders) for contributing support for Faroro pet feeder.
 - [edev-us](https://github.com/edev-us) for contributing support for Sobralik pet fountain.
+- [Dedemoos](https://github.com/Dedemoos) for contributing improvements for SWS01 weather station.
