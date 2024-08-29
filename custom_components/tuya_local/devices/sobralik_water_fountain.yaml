@@ -1,6 +1,7 @@
-name: Sobralik Pet Water Fountain
+name: Pet water fountain
 products:
   - id: hpa87ady0hndivqn
+    name: Sobralik FW-W01
 primary_entity:
   entity: switch
   icon: "mdi:water-pump"
@@ -8,17 +9,40 @@ primary_entity:
     - id: 1
       type: boolean
       name: switch
-    - id: 23
-      name: fault
-      type: bitfield
-      mapping:
-        - dps_val: 0
-          value: lack_water
-        - dps_val: 1
-          value: filter_replace
-        - dps_val: 2
-          value: clean_reminder
 secondary_entities:
+  - entity: binary_sensor
+    translation_key: tank_empty
+    dps:
+      - id: 23
+        name: sensor
+        type: bitfield
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Replace filter
+    class: problem
+    dps:
+      - id: 23
+        name: sensor
+        type: bitfield
+        mapping:
+          - dps_val: 2
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Cleaning required
+    class: problem
+    dps:
+      - id: 23
+        name: sensor
+        type: bitfield
+        mapping:
+          - dps_val: 4
+            value: true
+          - value: false
+
   - entity: button
     name: Filter Reset
     icon: "mdi:air-filter"
@@ -38,6 +62,7 @@ secondary_entities:
   - entity: sensor
     name: Filter Left
     icon: "mdi:air-filter"
+    class: duration
     category: diagnostic
     dps:
       - id: 3
@@ -47,10 +72,11 @@ secondary_entities:
         range:
           min: 0
           max: 90
-        unit: Days
+        unit: d
   - entity: sensor
     name: Clean Left
     icon: "mdi:pump"
+    class: duration
     category: diagnostic
     dps:
       - id: 4
@@ -60,7 +86,7 @@ secondary_entities:
         range:
           min: 0
           max: 31
-        unit: Days
+        unit: d
   - entity: number
     name: Filter Life
     icon: "mdi:air-filter"
@@ -73,7 +99,7 @@ secondary_entities:
         range:
           min: 0
           max: 90
-        unit: Days
+        unit: d
   - entity: number
     name: Clean Life
     icon: "mdi:pump"
@@ -86,7 +112,7 @@ secondary_entities:
         range:
           min: 0
           max: 31
-        unit: Days
+        unit: d
   - entity: sensor
     name: Water level
     class: enum
