@@ -573,10 +573,11 @@ from the camera.
 - **hvac_mode** (optional, mapping of strings) a dp to control the mode of the device.
     Possible values are: `"off", cool, heat, heat_cool, auto, dry, fan_only`
 - **hvac_action** (optional, string) a dp that reports the current action of the device.
-    Possible values are: `"off", idle, cooling, heating, drying, fan`
+    Possible values are: `"off", idle, cooling, heating, drying, fan, defrosting`
 - **preset_mode** (optional, mapping of strings) a dp to control preset modes of the device.
    Any value is allowed, but HA has some standard presets:
     `none, eco, away, boost, comfort, home, sleep, activity`
+   There are also some presets defined by this integration for use with various `translation_key`s, see translations/en.json for details.
 - **swing_mode** (optional, mapping of strings) a dp to control swing modes of the device.
    Possible values are: `"off", vertical, horizontal`
 - **temperature** (optional, number) a dp to set the target temperature of the device.
