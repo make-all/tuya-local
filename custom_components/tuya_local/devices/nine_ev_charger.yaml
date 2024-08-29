@@ -21,21 +21,13 @@ primary_entity:
         - dps_val: charger_free_fault
           value: Fault
         - dps_val: charger_wait
-          value: Delaying
+          value: Plugged in, not charging
         - dps_val: charger_pause
           value: Paused
         - dps_val: charger_end
-          value: Charged
+          value: Charge finished
         - dps_val: charger_fault
           value: Fault (plugged in)
-    - id: 21
-      type: string
-      optional: true
-      name: card_binding
-    - id: 22  # meter_id
-      type: string
-      optional: true
-      name: meter_id
     - id: 23  # system_version
       type: string
       name: system_version
@@ -79,10 +71,36 @@ secondary_entities:
         mapping:
           - dps_val: 0
             value: false
-          - value: true
-      - id: 10
-        type: bitfield
-        name: fault_code
+          - dps_val: 1
+            value: "Ov2 Cr Fault"
+          - dps_val: 2
+            value: "OV Vol"
+          - dps_val: 4
+            value: "Undervoltage alarm"
+          - dps_val: 8
+            value: "Contactor adhesion"
+          - dps_val: 16
+            value: "Contactor fault"
+          - dps_val: 32
+            value: "Earth fault"
+          - dps_val: 64
+            value: "Meter Hardware alarm"
+          - dps_val: 128
+            value: "Scram fault"
+          - dps_val: 256
+            value: "CP fault"
+          - dps_val: 512
+            value: "Meter Commu fault"
+          - dps_val: 1024
+            value: "Card reader fault"
+          - dps_val: 2048
+            value: "Cir short fault"
+          - dps_val: 4096
+            value: "Adhesion fault"
+          - dps_val: 8192
+            value: "Self test alarm"
+          - dps_val: 16384
+            value: "Leakage current fault"
   - entity: select
     name: Charging mode
     icon: "mdi:ev-station"
@@ -94,11 +112,15 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: charge_now
-            value: Immediate
+            value: Always on
           - dps_val: charge_energy
-            value: Fixed charge
+            value: Charge energy limit
           - dps_val: charge_schedule
             value: Scheduled charge
+          - dps_val: charge_pct
+            value: Charge percent limt
+          - dps_val: charge_delay
+            value: Delayed charge
   - entity: sensor
     name: Voltage A
     class: voltage
@@ -228,6 +250,7 @@ secondary_entities:
         type: integer
         name: sensor
         optional: true
+        unit: kWh
         class: measurement
         mapping:
           - scale: 100
