@@ -726,6 +726,7 @@ port and password.
 - generic illuminance sensor
 - Air Housekeeper 6-in-1 air quality monitor
 - Akai heat pump clothes dryer
+- AquaForte Inverter VSP pool pump
 - ASIP-0622 indoor planter
 - Brennenstuhl WFD3050P PIR motion activated CCT spotlight
 - Bresser smart 7-in-1 weather station

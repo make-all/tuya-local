@@ -639,3 +639,4 @@ Further device support has been made with the assistance of users. Please consid
 - [edev-us](https://github.com/edev-us) for contributing support for Sobralik pet fountain.
 - [Dedemoos](https://github.com/Dedemoos) for contributing improvements for SWS01 weather station.
 - [David-Eilers](https://github.com/David-Eilers) for contributing support for Calex S45 Clear E27 lightbulb.
+- [pelle2011](https://github.com/pelle2011) for contributing support for AquaForte Inverter VSP pool pump.
