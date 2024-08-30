@@ -1,0 +1,93 @@
+name: CCT lightbulb
+products:
+  - id: q66b4arnni1rnqlk
+    name: Calex S45 Clear E27
+primary_entity:
+  entity: light
+  dps:
+    - id: 20
+      type: boolean
+      name: switch
+    - id: 21
+      type: string
+      name: color_mode
+      mapping:
+        - dps_val: white
+          value: color_temp
+        - dps_val: colour
+          value: Colour
+        - dps_val: scene
+          value: Scene
+        - dps_val: music
+          value: Music
+    - id: 22
+      name: brightness
+      type: integer
+      range:
+        min: 10
+        max: 1000
+    - id: 23
+      name: color_temp
+      type: integer
+      optional: true
+      range:
+        min: 0
+        max: 1000
+      mapping:
+        - target_range:
+            min: 2700
+            max: 6500
+    - id: 28
+      name: control_data
+      type: hex
+      optional: true
+    - id: 30
+      name: rhythm_mode
+      type: base64
+      optional: true
+    - id: 31
+      name: sleep_mode
+      type: base64
+      optional: true
+    - id: 32
+      name: wakeup_mode
+      type: base64
+      optional: true
+secondary_entities:
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+        optional: true
+  - entity: select
+    name: Scene
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 25
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "000c0d0000000000000000c80000"
+            # color: brown, static
+            value: Night
+          - dps_val: "010e0d0000840000000003e801f4"
+            # color: white, static
+            value: Read
+          - dps_val: "020e0d0000e80383000003e803e8"
+            # color: lt cyan, static
+            value: Working
+          - dps_val: "030e0d00001403e8000001f401f4"
+            # color: grey, static
+            value: Leisure

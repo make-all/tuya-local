@@ -638,3 +638,4 @@ Further device support has been made with the assistance of users. Please consid
 - [jon-sanders](https://github.com/jon-sanders) for contributing support for Faroro pet feeder.
 - [edev-us](https://github.com/edev-us) for contributing support for Sobralik pet fountain.
 - [Dedemoos](https://github.com/Dedemoos) for contributing improvements for SWS01 weather station.
+- [David-Eilers](https://github.com/David-Eilers) for contributing support for Calex S45 Clear E27 lightbulb.
