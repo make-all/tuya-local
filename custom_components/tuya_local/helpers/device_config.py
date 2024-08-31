@@ -135,6 +135,12 @@ class TuyaDeviceConfig:
         for conf in self._config.get("secondary_entities", {}):
             yield TuyaEntityConfig(self, conf)
 
+    def all_entities(self):
+        """Iterate through all entities for this device."""
+        yield self.primary_entity
+        for e in self.secondary_entities():
+            yield e
+
     def matches(self, dps):
         required_dps = self._get_required_dps()
 
@@ -200,7 +206,7 @@ class TuyaDeviceConfig:
         if "updated_at" in keys:
             keys.remove("updated_at")
         total = len(keys)
-        if not self._entity_match_analyse(
+        if total < 1 or not self._entity_match_analyse(
             self.primary_entity,
             keys,
             matched,

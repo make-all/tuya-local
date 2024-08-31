@@ -67,16 +67,25 @@ class TuyaLocalDevice(object):
         self._api_protocol_version_index = None
         self._api_protocol_working = False
         self._api_working_protocol_failures = 0
+        self.dev_cid = dev_cid
         try:
             if dev_cid:
+                if hass.data[DOMAIN].get(dev_id):
+                    parent = hass.data[DOMAIN][dev_id]["tuyadevice"]
+                else:
+                    parent = tinytuya.Device(dev_id, address, local_key)
+                    hass.data[DOMAIN][dev_id] = {"tuyadevice": parent}
                 self._api = tinytuya.Device(
                     dev_id,
                     cid=dev_cid,
-                    parent=tinytuya.Device(dev_id, address, local_key),
+                    parent=parent,
                 )
             else:
-                self._api = tinytuya.Device(dev_id, address, local_key)
-            self.dev_cid = dev_cid
+                if hass.data[DOMAIN].get(dev_id):
+                    self._api = hass.data[DOMAIN][dev_id]["tuyadevice"]
+                else:
+                    self._api = tinytuya.Device(dev_id, address, local_key)
+                    hass.data[DOMAIN][dev_id] = {"tuyadevice": self._api}
         except Exception as e:
             _LOGGER.error(
                 "%s: %s while initialising device %s",
@@ -89,7 +98,10 @@ class TuyaLocalDevice(object):
         # we handle retries at a higher level so we can rotate protocol version
         self._api.set_socketRetryLimit(1)
         if self._api.parent:
+            # Retries cause problems for other children of the parent device
+            # Currently, we only support polling for child devices
             self._api.parent.set_socketRetryLimit(1)
+            poll_only = True
 
         self._refresh_task = None
         self._protocol_configured = protocol_version
@@ -651,7 +663,10 @@ def setup_device(hass: HomeAssistant, config: dict):
         hass,
         config[CONF_POLL_ONLY],
     )
-    hass.data[DOMAIN][get_device_id(config)] = {"device": device}
+    hass.data[DOMAIN][get_device_id(config)] = {
+        "device": device,
+        "tuyadevice": device._api,
+    }
 
     return device
 

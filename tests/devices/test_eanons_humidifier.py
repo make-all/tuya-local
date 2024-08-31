@@ -77,8 +77,16 @@ class TestEanonsHumidifier(
         )
 
     def test_supported_features(self):
-        self.assertEqual(self.subject.supported_features, HumidifierEntityFeature.MODES)
-        self.assertEqual(self.fan.supported_features, FanEntityFeature.SET_SPEED)
+        self.assertEqual(
+            self.subject.supported_features,
+            HumidifierEntityFeature.MODES,
+        )
+        self.assertEqual(
+            self.fan.supported_features,
+            FanEntityFeature.SET_SPEED
+            | FanEntityFeature.TURN_OFF
+            | FanEntityFeature.TURN_ON,
+        )
 
     def test_current_humidity(self):
         self.dps[CURRENTHUMID_DPS] = 75

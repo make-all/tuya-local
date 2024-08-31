@@ -19,7 +19,7 @@ class TestAromaDiffuser(TuyaDeviceTestCase):
 
     def setUp(self):
         self.setUpForConfig("yym_805SW_aroma_nightlight.yaml", GX_AROMA_PAYLOAD)
-        self.subject = self.entities["fan"]
+        self.subject = self.entities["fan_aroma_diffuser"]
         self.mark_secondary(["select_timer"])
 
     def test_speed_step(self):

@@ -37,6 +37,7 @@ secondary_entities:
     dps:
       - id: 1  # forward_energy_total
         type: integer
+        optional: true
         name: sensor
         class: total_increasing
         unit: kWh
@@ -226,6 +227,7 @@ secondary_entities:
     dps:
       - id: 14  # work_mode
         type: string
+        optional: true
         name: option
         mapping:
           - dps_val: charge_now
@@ -260,6 +262,7 @@ secondary_entities:
       - id: 28  # timer_on
         type: integer
         name: value
+        optional: true
         unit: h
         range:
           min: 0

@@ -58,6 +58,8 @@ class TestLexyF501Fan(
                 FanEntityFeature.OSCILLATE
                 | FanEntityFeature.PRESET_MODE
                 | FanEntityFeature.SET_SPEED
+                | FanEntityFeature.TURN_OFF
+                | FanEntityFeature.TURN_ON
             ),
         )
 

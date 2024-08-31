@@ -548,7 +548,7 @@ Further device support has been made with the assistance of users. Please consid
 - [gkwok1](https://github.com/gkwok1) for contributing support for Confortotal mini split air conditioners and BLE Pulido P13 locks.
 - [hroussez](https://github.com/hroussez) for contributing ANWIO lightbulb compatibility info.
 - [bdraco](https://github.com/bdraco) for advice on correct use of HA threading/task functions.
-- [sj29fr](https://github.com/sj29fr) for contributing support for Stepuptech SG800 solar inverters.
+- [sj29fr](https://github.com/sj29fr) for contributing support for Stepuptech SG800 and SPD800 solar inverters.
 - [wbln](https://github.com/wbln) for contributing support for Tefal X-plorer animal vacuums.
 - [TroLoos](https://github.com/TroLoos) for contributing support for Pro-Energy PE08 pool heatpumps.
 - [simplelnx](https://github.com/simplelnx) for contributing support for OPK K2 vacuums.
@@ -622,3 +622,21 @@ Further device support has been made with the assistance of users. Please consid
 - [trasbd](https://github.com/trasbd) for contributing support for Doel cat litter box.
 - [daseth](https://github.com/daseth) for contributing support for Feyree 22kW 3 phase EV charger.
 - [nanosonde](https://github.com/nanosonde) for contributing support for Pool Systems IPS-100MAX pool heatpump.
+- [oyvindwe](https://github.com/oyvindwe) for contributing improvements to Nedis pet feeder.
+- [juliusvaart](https://github.com/juliusvaart) for contributing support for Duux Whisper Flex Ultimate fan.
+- [abipster](https://github.com/abipster) for contributing support for Fairland X20 series (merged with Poolsystems IPS100max).
+- [lucacri](https://github.com/lucacri) for contributing support for Orison Chanfok Neo ceiling fan with light.
+- [hadicharara](https://github.com/hadicharara) for contributing support for De'Longhi Pinguino portable air conditioner.
+- [cyrano1966](https://github.com/cyrano1966) for contributing support for Littepets cat litter box.
+- [TiTaTim](https://github.com/TiTaTim) for contributing support for Liectroux G7 vacuum.
+- [baksogen](https://github.com/baksogen) for contributing support for Xinled XLD-CL002 RGBCW lightbulb.
+- [EnzoD86](https://github.com/EnzoD86) for contributing support for ZY-HPS01 human presence sensor.
+- [aheagel](https://github.com/aheagel) for conributing support for YX-025WB aroma diffuser.
+- [r3pek](https://github.com/r3pek) for contributing support for Smart Mist3 fan.
+- [reniko](https://github.com/reniko) for contributing support for TOPENS TC196 remote control.
+- [MarvinBeym](https://github.com/MarvinBeym) for contributing support for Medion Life P1002 portable air conditioner.
+- [jon-sanders](https://github.com/jon-sanders) for contributing support for Faroro pet feeder.
+- [edev-us](https://github.com/edev-us) for contributing support for Sobralik pet fountain.
+- [Dedemoos](https://github.com/Dedemoos) for contributing improvements for SWS01 weather station.
+- [David-Eilers](https://github.com/David-Eilers) for contributing support for Calex S45 Clear E27 lightbulb.
+- [pelle2011](https://github.com/pelle2011) for contributing support for AquaForte Inverter VSP pool pump.

@@ -71,6 +71,7 @@
 - Daewoo Dhome OL-A011 air conditioner (DA9KWE)
 - Daizuki heat pump
 - Della air conditioner
+- De'Longhi Pinguino portable air conditioner
 - Duux Blizzard portable air conditioner
 - Eberg Cooly C35HD
 - Eberg Qubo Q40HD
@@ -85,6 +86,7 @@
 - Klarstein Iceblock Ecosmart air conditioner
 - Kogan portable air conditioners (Y09, Y12, Y16)
 - Lyfco OL-A012 air conditioner
+- Medion Life P1002 portable air conditioner
 - Monzana Klimaanlage air conditioner
 - Nedis ACMB1WT12 portable air conditioner
 - Rotenso Roni R35WI
@@ -109,14 +111,14 @@
 - BWT FI 45 heatpump
 - Evotherm ETI series heatpump
 - Fairland IPHCR15 pool heatpump (matches others above, but allows control of heat/cool modes while others seem to be fixed to auto only)
+- Fairland X20 series (also sold as Pool Systems IPS 100MAX)
 - Garden PAC pool heatpump (also works with Summerwave Si Series)
 - Madimack Eco pool heatpump
 - Madimack Elite V3 pool heatpump (two versions)
 - Madimack(model unknown) pool heatpump (seems to match Fairland IPH45 as well)
 - Poolex Silverline, Q-7, Q-line, Arctic and Vertigo heatpumps
 - Poolsana InverPower Next pool heatpump
-- Pool Systems IPS 100MAX pool heatpump
-- Pool Systems IPS Pro pool heatpump (seems to match Fairland Inver-X as well)
+- Pool Systems IPS Pro pool heatpump (also Fairland Inver-X)
 - Pro-Energy PE08 pool heatpump
 - Remora pool heatpump
 - W'eau pool heatpump (simple model and a more complex 13kW model)
@@ -208,6 +210,7 @@
 - Deta fan controller
 - Djive ARC humidifying fan
 - Duux Whisper Flex pedestal fan
+- Duux Whisper Flex Ultimate
 - Eglo 5 speed + sleep ceiling fan
 - Fanco Eco Silent Deluxe ceiling fan with LED light
 - Goldair GCPF315 fan
@@ -221,12 +224,14 @@
 - Keyun MKCFE002 RGB chandelier fan
 - Kogan bladeless fans
 - Mantra ceiling fan with light
+- Orison Chanfok Neo ceiling fan with light
 - Orison RGB ambient bladeless ceiling fan
 - Ovlaim ceiling fan with cool/warm white dimmable light
 - Reiga 52 ceiling fan with light
 - Royal Clima RCB 150 ventilation system
 - Skyfan DC fan
 - Skyfan DC fan with light
+- Smart Mist3 TX-1602MF (ZJ-1522A-WiFi)
 - Stirling FS1-40DC pedestal fan
 - Sulion Crixus L ceiling fan with light
 - TMWF02 fan controller
@@ -326,6 +331,7 @@
 - Etersky aroma diffuser with light
 - Maxico aroma diffuser with light (cannot be differentiated automatically from Ditua above)
 - Tesla Smart aroma diffuser with light
+- YX-025 WB aroma diffuser
 - YX316WIFI aroma diffuser
 - YYM-805SW aroma diffuser with light (also supports GX Aroma diffuser)
 
@@ -368,6 +374,7 @@
 - SG600MD solar inverter (also SG700MD, other SGxx0MD and SGxx0W models) sold under various brands
 - SmartMCB SMT006 energy meter (10 byte and 8 byte phase info variants)
 - Stepuptech SG800 solar inverter
+- Stepuptech SPD800 solar inverter
 - Taxnele circuit breaker and energy meter
 - TOMPD-63LW energy meter circuit breaker
 - Tongou QCB2-WB WiFi 4P circuit breaker (3-phase and single phase variants)
@@ -505,6 +512,7 @@ of device.
 - A60 1800-2700K RGBWW light
 - Atomi smart color string light
 - Blitzwolf BW-LT31 LED strip
+- Calex S45 Clear E27 lightbulb
 - Deta/Arlec motion sensor lights (DET100HA/DET102HA/MAL315HA)
 - Deta 6910HA series2 dimmer switch
 - Dim2Warm G95 Gold 1800-2700K CCT lightbulb
@@ -537,6 +545,7 @@ of device.
 - Teberno LED strip light (LGC-005 OEM3)
 - Treatlife outdoor dimmer with dual outlets
 - Ustellar UT99911 RGB monitor light bar
+- Xinled XLD-CL002 RGBCW lightbulb
 - WF520D dual dimmer touchpanel
 
 ### Covers
@@ -595,6 +604,7 @@ of device.
 - Lefant M213 vacuum cleaner (also works for Lefant M213S and APOSEN A550)
 - Lefant N33 vacuum cleaner
 - Lenovo E1 vacuum cleaner
+- Liectroux G7 vacuum cleaner with mop
 - Liectroux XR500[T3]
 - Lubluelu SL60D vacuum cleaner with mop
 - MAMNV BR151 vacuum cleaner with mop
@@ -672,14 +682,17 @@ port and password.
 - Ceres Plus pet feeder with camera
 - Doel cat litter box
 - Els Pet Spaceship pet litter box
+- Faroro PF50 pet feeder
 - HoneyGuardian S56 pet feeder
 - Leo's Loo Too pet toilet
+- Littepets MA2 series Cute Baby cat litter box
 - Nedis pet feeder
 - Petlibro PLAF103 pet feeder
 - Petlibro PLAF203 pet feeder with camera
 - Petoneer Fresco Hydrate Ultra pet fountain/
 - PNI water feeder
 - Rojeco PTM-001 pet feeder (two versions)
+- Sobralik pet fountain
 - Tesla Smart pet feeder
 - Tonepie T1PRO automatic cat litter box
 - V330L pet feeder
@@ -713,6 +726,7 @@ port and password.
 - generic illuminance sensor
 - Air Housekeeper 6-in-1 air quality monitor
 - Akai heat pump clothes dryer
+- AquaForte Inverter VSP pool pump
 - ASIP-0622 indoor planter
 - Brennenstuhl WFD3050P PIR motion activated CCT spotlight
 - Bresser smart 7-in-1 weather station
@@ -746,6 +760,7 @@ port and password.
 - TH16 temperature and humidity sensor
 - Timeguard WFPIR motion light controller
 - Tontine electric blanket
+- TOPENS TC196 remote control for gate openers
 - Valehaus SYZN119 towel warmer
 - WeatherStation Pro
 - Xiumii human presence radar
@@ -754,6 +769,7 @@ port and password.
 - Zecamin ZG-205W mmWave human presence sensor
 - ZN-2C09 9-in-1 air quality monitor
 - ZX-GS21 gas leak alarm monitor
+- ZY-HPS01 human presence sensor
 - ZY-M100-WiFi mmWave human presence sensor
 - ZY-M201-WiFi mmWave human presence sensor
 

@@ -14,12 +14,14 @@ class TestDevice(IsolatedAsyncioTestCase):
         device_patcher = patch("tinytuya.Device")
         self.addCleanup(device_patcher.stop)
         self.mock_api = device_patcher.start()
+        self.mock_api().parent = None
 
         hass_patcher = patch("homeassistant.core.HomeAssistant")
         self.addCleanup(hass_patcher.stop)
         self.hass = hass_patcher.start()
         self.hass().is_running = True
         self.hass().is_stopping = False
+        self.hass().data = {"tuya_local": {}}
 
         def job(func, *args):
             return func(*args)
@@ -50,7 +52,7 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.subject._protocol_configured = "auto"
 
     def test_configures_tinytuya_correctly(self):
-        self.mock_api.assert_called_once_with(
+        self.mock_api.assert_called_with(
             "some_dev_id", "some.ip.address", "some_local_key"
         )
         self.assertIs(self.subject._api, self.mock_api())
@@ -91,7 +93,7 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.subject.async_refresh.assert_awaited()
 
     async def test_detection_returns_none_when_device_type_not_detected(self):
-        self.subject._cached_state = {"2": False, "updated_at": time()}
+        self.subject._cached_state = {"192": False, "updated_at": time()}
         self.assertEqual(await self.subject.async_inferred_type(), None)
 
     async def test_refreshes_when_there_is_no_pending_reset(self):

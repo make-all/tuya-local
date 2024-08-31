@@ -21,16 +21,18 @@ primary_entity:
       type: boolean
 secondary_entities:
   - entity: number
-    name: Countdown
     category: config
     translation_key: timer
-    mode: box
     dps:
       - id: 7
         type: integer
+        optional: true
         name: value
-        unit: sec
+        unit: min
         range:
           min: 0
           max: 86400
-        optional: true
+        mapping:
+          - scale: 60
+            step: 60
+          - dps_val: null

@@ -6,7 +6,7 @@ products:
     name: Sierra Modern Home diffuser
 primary_entity:
   entity: fan
-  icon: "mdi:scent"
+  translation_key: aroma_diffuser
   dps:
     - id: 1
       type: boolean
@@ -23,10 +23,6 @@ primary_entity:
         - dps_val: null
           value: 0
           hidden: true
-    - id: 12
-      type: bitfield
-      name: fault_code
-      optional: true
 secondary_entities:
   - entity: light
     category: config
@@ -109,6 +105,10 @@ secondary_entities:
           - dps_val: null
             value: false
           - value: true
+      - id: 12
+        type: bitfield
+        name: fault_code
+        optional: true
   - entity: select
     translation_key: timer
     category: config

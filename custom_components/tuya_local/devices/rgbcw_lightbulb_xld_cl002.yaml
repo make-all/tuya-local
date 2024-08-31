@@ -1,0 +1,138 @@
+name: RGBCW Lightbulb
+products:
+  - id: bfde31c920bcaa323azft2
+    name: Xinled XLD-CL002
+primary_entity:
+  entity: light
+  dps:
+    - id: 20
+      type: boolean
+      name: switch
+    - id: 21
+      type: string
+      name: color_mode
+      mapping:
+        - dps_val: white
+          value: color_temp
+        - dps_val: colour
+          value: hs
+        - dps_val: scene
+          value: Scene
+        - dps_val: music
+          value: Music
+    - id: 22
+      name: brightness
+      type: integer
+      optional: true
+      range:
+        min: 10
+        max: 1000
+      mapping:
+        - dps_val: null
+          value: 0
+    - id: 23
+      name: color_temp
+      type: integer
+      optional: true
+      range:
+        min: 0
+        max: 1000
+      mapping:
+        - target_range:
+            min: 2700
+            max: 6500
+    - id: 24
+      name: rgbhsv
+      type: hex
+      optional: true
+      format:
+        - name: h
+          bytes: 2
+          range:
+            min: 0
+            max: 360
+        - name: s
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+        - name: v
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+    - id: 25
+      name: scene_data
+      type: hex
+      optional: true
+    - id: 27
+      name: music_data
+      type: hex
+      optional: true
+    - id: 28
+      name: control_data
+      type: hex
+      optional: true
+    - id: 30
+      name: rhythm_mode
+      type: base64
+      optional: true
+    - id: 31
+      name: sleep_mode
+      type: base64
+      optional: true
+    - id: 32
+      name: wakeup_mode
+      type: base64
+      optional: true
+secondary_entities:
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        name: value
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 86400
+        unit: min
+        mapping:
+          - scale: 60
+            step: 60
+          - dps_val: null
+  - entity: select
+    name: Scene
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 51
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "AAUA7APoA+gD6AAA"
+            value: "WW 100%"
+          - dps_val: "AAUA7APoA+gB9AAA"
+            value: "WW 50%"
+          - dps_val: "AAUA7APoA+gACgAA"
+            value: "WW 1%"
+          - dps_val: "AAUA7APoA+gD6gHg"
+            value: "WN 100%"
+          - dps_val: "AAUA7APoA+gB9gHg"
+            value: "WN 50%"
+          - dps_val: "AAUA7APoA+gACgHg"
+            value: "WN 1%"
+          - dps_val: "AAUA7APoA+gD6AAA"
+            value: "RGB RED 100%"
+          - dps_val: "AAYAAAPoA+gB9AAA"
+            value: "RGB RED 50%"
+          - dps_val: "AAYAAAPoAAoACgAA"
+            value: "RGB RED 1%"
+          - dps_val: "AAcAAAPoAAoACgAA"
+            value: "WW+RED 100%"
+          - dps_val: "AAcAAAPoAfMB8QAA"
+            value: "WW+RED 50%"
+          - dps_val: "AAcAAAPoA+gD6AAA"
+            value: "WW+RED 1%"

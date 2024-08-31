@@ -1,0 +1,37 @@
+name: Remote control
+products:
+  - id: plgiarn7jndeu6js
+    name: TOPENS TC196
+primary_entity:
+  entity: button
+  name: A
+  dps:
+    - id: 101
+      type: boolean
+      name: button
+secondary_entities:
+  - entity: button
+    name: B
+    dps:
+      - id: 102
+        type: boolean
+        name: button
+  - entity: button
+    name: C
+    dps:
+      - id: 103
+        type: boolean
+        name: button
+  - entity: button
+    name: D
+    dps:
+      - id: 104
+        type: boolean
+        name: button
+  - entity: sensor
+    name: Limit Status
+    category: diagnostic
+    dps:
+      - id: 7
+        type: string
+        name: sensor

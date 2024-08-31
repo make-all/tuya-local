@@ -1,6 +1,9 @@
-name: Loonas smart curtain
+name: Curtain
 products:
   - id: wraaecjqfiirj8go
+    name: Loonas curtain motor
+  - id: f6jujmx0is5td50x
+    name: Zemismart BCM500DS-TYW
 primary_entity:
   entity: cover
   class: curtain
@@ -27,15 +30,12 @@ primary_entity:
     - id: 3
       name: current_position
       type: integer
+      optional: true
       range:
         min: 0
         max: 100
       mapping:
         - invert: true
-    - id: 12
-      name: fault_code
-      type: bitfield
-      optional: true
 secondary_entities:
   - entity: switch
     name: Reverse
@@ -65,3 +65,7 @@ secondary_entities:
           - dps_val: null
             value: false
           - value: true
+      - id: 12
+        name: fault_code
+        type: bitfield
+        optional: true

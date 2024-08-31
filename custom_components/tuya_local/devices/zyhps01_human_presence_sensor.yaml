@@ -1,0 +1,124 @@
+name: Human presence sensor
+products:
+  - id: wzp9yjsobanavsut
+    name: ZY-HPS01-5.8G
+
+primary_entity:
+  entity: binary_sensor
+  class: motion
+  dps:
+    - id: 101
+      type: string
+      name: sensor
+      mapping:
+        - dps_val: presence
+          value: true
+        - dps_val: none
+          value: false
+
+secondary_entities:
+  - entity: sensor
+    class: illuminance
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: lx
+        class: measurement
+        range:
+          min: 0
+          max: 3000
+
+  - entity: number
+    name: Presence delay
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 180
+        mapping:
+          - step: 10
+
+  - entity: number
+    name: Motion sensitivity
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: x
+        range:
+          min: 0
+          max: 10
+
+  - entity: number
+    name: Breath sensitivity
+    category: config
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: x
+        range:
+          min: 0
+          max: 10
+
+  - entity: number
+    name: Motion maximum distance
+    category: config
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        unit: cm
+        range:
+          min: 0
+          max: 600
+        mapping:
+          - step: 10
+
+  - entity: number
+    name: Motion minimum distance
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: cm
+        range:
+          min: 0
+          max: 600
+        mapping:
+          - step: 10
+
+  - entity: number
+    name: Breath maximum distance
+    category: config
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        unit: cm
+        range:
+          min: 0
+          max: 600
+        mapping:
+          - step: 10
+
+  - entity: number
+    name: Breath minimum distance
+    category: config
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        unit: cm
+        range:
+          min: 0
+          max: 600
+        mapping:
+          - step: 10

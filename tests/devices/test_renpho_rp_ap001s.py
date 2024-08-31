@@ -83,7 +83,12 @@ class TestRenphoPurifier(
         )
 
     def test_supported_features(self):
-        self.assertEqual(self.subject.supported_features, FanEntityFeature.PRESET_MODE)
+        self.assertEqual(
+            self.subject.supported_features,
+            FanEntityFeature.PRESET_MODE
+            | FanEntityFeature.TURN_OFF
+            | FanEntityFeature.TURN_ON,
+        )
 
     def test_preset_modes(self):
         self.assertCountEqual(
