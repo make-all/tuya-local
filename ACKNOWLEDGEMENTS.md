@@ -641,3 +641,4 @@ Further device support has been made with the assistance of users. Please consid
 - [David-Eilers](https://github.com/David-Eilers) for contributing support for Calex S45 Clear E27 lightbulb.
 - [pelle2011](https://github.com/pelle2011) for contributing support for AquaForte Inverter VSP pool pump.
 - [tv4you2016](https://github.com/tv4you2016) for contributing support for Cecotec ForceClima Soundless air conditioner.
+- [danieljohngomez](https://github.com/danieljohngomez) for assisting with support for BSTUOKEY invisible door lock.
