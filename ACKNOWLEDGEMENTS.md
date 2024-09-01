@@ -643,3 +643,4 @@ Further device support has been made with the assistance of users. Please consid
 - [tv4you2016](https://github.com/tv4you2016) for contributing support for Cecotec ForceClima Soundless air conditioner.
 - [danieljohngomez](https://github.com/danieljohngomez) for assisting with support for BSTUOKEY invisible door lock.
 - [robinhood-code](https://github.com/robinhood-code) for assisting with support for Arlec USB strip lights.
+- [drcjb](https://github.com/drcjb) for assisting with support for Princess DC pedestal fan

@@ -1,0 +1,106 @@
+name: Fan
+products:
+  - id: glhx4aeaqmzmp3sb
+    name: Princess 358450 DC pedestal fan
+primary_entity:
+  entity: fan
+  translation_key: fan_with_presets
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 2
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: nature
+          value: nature
+        - dps_val: sleep
+          value: sleep
+        - dps_val: fresh
+          value: fresh
+        - dps_val: smart
+          value: smart
+    - id: 3
+      type: integer
+      range:
+        min: 1
+        max: 24
+      name: speed
+    - id: 101
+      type: boolean
+      name: oscillate
+secondary_entities:
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 6
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: cancel
+          - dps_val: "1"
+            value: "1h"
+          - dps_val: "2"
+            value: "2h"
+          - dps_val: "3"
+            value: "3h"
+          - dps_val: "4"
+            value: "4h"
+          - dps_val: "5"
+            value: "5h"
+          - dps_val: "6"
+            value: "6h"
+          - dps_val: "7"
+            value: "7h"
+          - dps_val: "8"
+            value: "8h"
+          - dps_val: "9"
+            value: "9h"
+          - dps_val: "10"
+            value: "10h"
+          - dps_val: "11"
+            value: "11h"
+          - dps_val: "12"
+            value: "12h"
+          - dps_val: "13"
+            value: "13h"
+          - dps_val: "14"
+            value: "14h"
+          - dps_val: "15"
+            value: "15h"
+          - dps_val: "16"
+            value: "16h"
+          - dps_val: "17"
+            value: "17h"
+          - dps_val: "18"
+            value: "18h"
+          - dps_val: "19"
+            value: "19h"
+          - dps_val: "20"
+            value: "20h"
+          - dps_val: "21"
+            value: "21h"
+          - dps_val: "22"
+            value: "22h"
+          - dps_val: "23"
+            value: "23h"
+          - dps_val: "24"
+            value: "24h"
+  - entity: light
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: s
+        class: measurement
