@@ -8,11 +8,9 @@ primary_entity:
   dps:
     - id: 2
       name: switch
-      optional: true
       type: boolean
     - id: 3
       type: string
-      optional: true
       name: preset_mode
       mapping:
         - dps_val: small
@@ -27,11 +25,9 @@ secondary_entities:
     dps:
       - id: 7
         name: switch
-        optional: true
         type: boolean
       - id: 9
         name: color_mode
-        optional: true
         type: string
         mapping:
           - dps_val: colour
@@ -78,17 +74,13 @@ secondary_entities:
       - id: 11
         type: bitfield
         name: sensor
-        optional: true
         mapping:
           - dps_val: 0
-            value: false
-          - dps_val: null
             value: false
           - value: true
       - id: 11
         type: bitfield
         name: fault_code
-        optional: true
   - entity: select
     translation_key: timer
     category: config
@@ -96,7 +88,6 @@ secondary_entities:
       - id: 4
         type: string
         name: option
-        optional: true
         mapping:
           - dps_val: 2h
             value: "2h"
@@ -113,7 +104,6 @@ secondary_entities:
         type: integer
         name: sensor
         unit: min
-        optional: true
         range:
           min: 0
           max: 360
