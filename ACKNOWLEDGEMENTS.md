@@ -646,3 +646,4 @@ Further device support has been made with the assistance of users. Please consid
 - [drcjb](https://github.com/drcjb) for assisting with support for Princess DC pedestal fan.
 - [azdinet](https://github.com/azdinet) for assisting with support for TS106 alarm system.
 - [deguchi-m](https://github.com/deguchi-m) for assisting with support for Dual CT clamp bidirectional energy meters.
+- [sciux2](https://github.com/sciux2) for assisting with support for RSE TY-WFH gate controller.
