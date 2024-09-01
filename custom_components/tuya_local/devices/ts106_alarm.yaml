@@ -1,0 +1,123 @@
+name: Alarm system
+products:
+  - id: htpbvowq2gkxx3bx
+    name: TS106
+primary_entity:
+  entity: alarm_control_panel
+  dps:
+    - id: 101
+      type: string
+      name: alarm_state
+      mapping:
+        - dps_val: disarm
+          value: disarmed
+        - dps_val: arm
+          value: armed_away
+        - dps_val: stay
+          value: armed_home
+        - dps_val: sos
+          value: triggered
+    - id: 101
+      type: string
+      name: trigger
+      mapping:
+        - dps_val: sos
+          value: true
+        - value_mirror: alarm_linkage
+    - id: 102
+      type: string
+      optional: true
+      name: remote
+    - id: 103
+      type: string
+      optional: true
+      name: detector
+    - id: 104
+      type: string
+      optional: true
+      name: phone_number
+    - id: 105
+      type: string
+      optional: true
+      name: sms_number
+    - id: 106
+      type: string
+      optional: true
+      name: password
+    - id: 111
+      type: string
+      optional: true
+      name: timing_arm_disarm
+    - id: 115
+      type: string
+      optional: true
+      name: detector_1
+    - id: 116
+      type: string
+      optional: true
+      name: detector_2
+    - id: 117
+      type: string
+      optional: true
+      name: alarm
+    - id: 118
+      type: string
+      optional: true
+      name: normal_push_info
+    - id: 119
+      type: string
+      optional: true
+      name: urgent_push_info
+    - id: 120
+      type: string
+      optional: true
+      name: intelligent_voice
+    - id: 121
+      type: boolean
+      name: alarm_linkage
+secondary_entities:
+  - entity: button
+    name: Factory reset
+    class: restart
+    category: config
+    dps:
+      - id: 107
+        type: boolean
+        name: button
+        optional: true
+  - entity: binary_sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 110
+        type: boolean
+        name: sensor
+  - entity: siren
+    dps:
+      - id: 112
+        type: boolean
+        name: switch
+      - id: 113
+        type: integer
+        name: duration
+        range:
+          min: 0
+          max: 20
+        unit: min
+      - id: 114
+        type: string
+        name: volume_level
+        mapping:
+          - dps_val: L
+            value: 0.33
+          - dps_val: M
+            value: 0.67
+          - dps_val: H
+            value: 1.0
+  - entity: light
+    class: indicator
+    category: config
+    dps:
+      - id: 122
+        type: boolean
+        name: switch
