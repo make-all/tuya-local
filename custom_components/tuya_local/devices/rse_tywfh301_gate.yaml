@@ -73,6 +73,9 @@ secondary_entities:
       - id: 111
         type: boolean
         name: sensor
+      - id: 105
+        type: integer
+        name: return_state
   - entity: sensor
     class: signal_strength
     category: diagnostic
@@ -82,3 +85,16 @@ secondary_entities:
         name: sensor
         unit: dBm
         class: measurement
+  - entity: event
+    name: Infrared
+    class: button
+    dps:
+      - id: 108
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: pressed
+          - dps_val: false
+            value: released
