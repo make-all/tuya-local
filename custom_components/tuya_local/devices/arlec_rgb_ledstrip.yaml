@@ -1,0 +1,78 @@
+name: RGB light
+products:
+  - id: jawcej1v
+    name: Arlec ALD261HA USB strip light
+primary_entity:
+  entity: light
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 2
+      type: string
+      name: color_mode
+      mapping:
+        - dps_val: white
+          value: white
+        - dps_val: colour
+          value: hs
+        - dps_val: scene
+          value: Scene
+        - dps_val: music
+          value: Music
+    - id: 5
+      type: hex
+      name: rgbhsv
+      format:
+        - name: h
+          bytes: 2
+          range:
+            min: 0
+            max: 360
+        - name: s
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+        - name: v
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+    - id: 5
+      type: hex
+      name: brightness
+      range:
+        min: 0
+        max: 1000
+      mapping:
+        - mask: "00000000FFFF"
+    - id: 6
+      type: hex
+      name: scene_data
+    - id: 8
+      type: string
+      optional: true
+      name: music_data
+    - id: 9
+      type: string
+      optional: true
+      name: control_data
+    - id: 42
+      type: string
+      name: mic_music_data
+secondary_entities:
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 7
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60

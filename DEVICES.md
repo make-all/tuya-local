@@ -779,6 +779,7 @@ port and password.
 - Adaprox Fingerbot plus
 - Ailrinni fingerprint door lock
 - Arlec smart button
+- Arlec usb strip light
 - BSTUOKEY Invisible induction door lock
 - Diivoo DWV010 dual water timer
 - Diivoo WT05 dual water timer
