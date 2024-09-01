@@ -86,6 +86,7 @@
 - Inventor Leon (Tokens Legend series) air conditioner
 - Klarstein Iceblock Ecosmart air conditioner
 - Kogan portable air conditioners (Y09, Y12, Y16)
+- Kogan vertical window air conditioner
 - Lyfco OL-A012 air conditioner
 - Medion Life P1002 portable air conditioner
 - Monzana Klimaanlage air conditioner

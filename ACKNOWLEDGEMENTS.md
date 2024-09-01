@@ -19,7 +19,7 @@ Further device support has been made with the assistance of users. Please consid
 - [cartman10](https://github.com/cartman10) for assistance with BWT FI 45 pool heater.
 - [superman110](https://github.com/superman110) for assistance in supporting Eanons/purenjoy humidifier and SD123 human presence radar.
 - [woolmonkey](https://github.com/woolmonkey) for assistance in supporting Inkbird ITC306A Thermostat.
-- [hazell20](https://github.com/hazell20) for assistance in supporting Anko fans.
+- [hazell20](https://github.com/hazell20) for assistance in supporting Anko fans and Kogan vertical window air conditioners.
 - [meremortals70](https://github.com/meremortals70) for assistance in supporting Deta fan controllers.
 - [mvnixon](https://github.com/mvnixon) for assistance in supporting Madimack pool heaters.
 - [Lapy](https://github.com/Lapy) for contributing support for Electriq CD25PRO dehumidifiers.
