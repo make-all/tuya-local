@@ -364,6 +364,7 @@
 - Compteur digital electric (single phase)
 - Dcenta dual clamp meter
 - DTS238-7 3 phase smart meter
+- Dual CT clamp bidirectional meter
 - EARU SW RCB breaker
 - eMylo EAI-90 smart meter
 - ERZ04C smart meter

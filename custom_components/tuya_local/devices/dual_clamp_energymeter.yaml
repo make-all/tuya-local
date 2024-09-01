@@ -1,0 +1,309 @@
+name: Dual energy meter
+products:
+  - id: jbarpbsikxovmxeg
+    name: Bidirectional 2-way CT clamp
+primary_entity:
+  entity: sensor
+  class: energy
+  name: Total active energy
+  category: diagnostic
+  dps:
+    - id: 107
+      type: integer
+      name: sensor
+      unit: kWh
+      class: total_increasing
+      mapping:
+        - scale: 100
+secondary_entities:
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 103
+        type: integer
+        name: apparent_power
+        mapping:
+          - scale: 10
+      - id: 104
+        type: integer
+        name: current_power
+        mapping:
+          - scale: 10
+      - id: 126
+        type: integer
+        name: calibration_a
+      - id: 131
+        type: integer
+        name: calibration_b
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 123
+        type: integer
+        name: calibration
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+      - id: 102
+        type: integer
+        name: maximum
+        mapping:
+          - scale: 1000
+      - id: 125
+        type: integer
+        name: calibration_a
+      - id: 130
+        type: integer
+        name: calibration_b
+  - entity: sensor
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: Hz
+        class: measurement
+        mapping:
+          - scale: 100
+      - id: 124
+        type: integer
+        name: calibration
+  - entity: sensor
+    class: energy
+    name: Total forward energy
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 115
+        type: integer
+        name: channel_a
+        mapping:
+          - scale: 100
+      - id: 117
+        type: integer
+        name: channel_b
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Forward energy A
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 115
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 127
+        type: integer
+        name: calibration
+  - entity: sensor
+    name: Reverse energy A
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 116
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 128
+        type: integer
+        name: calibration
+  - entity: sensor
+    name: Forward energy B
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 132
+        type: integer
+        name: calibration
+  - entity: sensor
+    name: Reverse energy B
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 118
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 133
+        type: integer
+        name: calibration
+  - entity: sensor
+    name: Power factor A
+    class: power_factor
+    category: diagnostic
+    dps:
+      - id: 120
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Power factor B
+    class: power_factor
+    category: diagnostic
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Reporting frequency
+    category: config
+    icon: "mdi:timer-cog"
+    dps:
+      - id: 122
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 3
+          max: 60
+  - entity: select
+    name: Channel B select
+    icon: "mdi:toggle-switch"
+    category: config
+    dps:
+      - id: 140
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "0"
+          - dps_val: "1"
+            value: "1"
+  - entity: sensor
+    name: Current direction A
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 141
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: forward
+          - dps_val: "1"
+            value: reverse
+  - entity: sensor
+    name: Current direction B
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 142
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: forward
+          - dps_val: "1"
+            value: reverse
+  - entity: number
+    name: Current overload limit A
+    category: config
+    class: current
+    dps:
+      - id: 143
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 1
+          max: 100
+  - entity: number
+    name: Current overload limit B
+    category: config
+    class: current
+    dps:
+      - id: 144
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 1
+          max: 100
+  - entity: switch
+    name: Current overload alarm A
+    category: config
+    icon: "mdi:fuse-alert"
+    dps:
+      - id: 145
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Current overload alarm B
+    category: config
+    icon: "mdi:fuse-alert"
+    dps:
+      - id: 146
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    name: Current overload A
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 147
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Current overload B
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 148
+        type: boolean
+        name: sensor
