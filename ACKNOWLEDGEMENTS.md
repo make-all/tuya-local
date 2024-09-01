@@ -647,3 +647,4 @@ Further device support has been made with the assistance of users. Please consid
 - [azdinet](https://github.com/azdinet) for assisting with support for TS106 alarm system.
 - [deguchi-m](https://github.com/deguchi-m) for assisting with support for Dual CT clamp bidirectional energy meters.
 - [sciux2](https://github.com/sciux2) for assisting with support for RSE TY-WFH gate controller.
+- [schmurgel-tg](https://github.com/schmurgel-tg) for assisting with support for Create ceiling fan with light.

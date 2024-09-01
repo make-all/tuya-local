@@ -208,6 +208,7 @@
 - Cecotec ceiling fan with light
 - Chanfok ceiling fan with cool/warm white dimmable light
 - CleanAir 604B humidifier
+- Create XW-FAN-215-D ceiling fan with light
 - Depauley WS-FPZ37-18I-EU ceiling fan with light
 - Deta fan controller
 - Djive ARC humidifying fan
