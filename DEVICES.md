@@ -797,6 +797,7 @@ port and password.
 - MoistenLand water timer
 - Nice Digi door lock
 - Orion DL021HA lock
+- O'TU R1O1 fingerprint door lock
 - PT216/PT19DB-2 temperature and humidity sensor
 - SGS01 plant sensor
 - Smart Ape solar garden light

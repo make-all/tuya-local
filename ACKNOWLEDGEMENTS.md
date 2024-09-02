@@ -648,3 +648,4 @@ Further device support has been made with the assistance of users. Please consid
 - [deguchi-m](https://github.com/deguchi-m) for assisting with support for Dual CT clamp bidirectional energy meters.
 - [sciux2](https://github.com/sciux2) for assisting with support for RSE TY-WFH gate controller.
 - [schmurgel-tg](https://github.com/schmurgel-tg) for assisting with support for Create ceiling fan with light.
+- [inode-](https://github.com/inode-) for assisting with support for O'TU R1O1 fingerprint door lock
