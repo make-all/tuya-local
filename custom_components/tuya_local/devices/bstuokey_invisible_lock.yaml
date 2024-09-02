@@ -20,14 +20,17 @@ primary_entity:
     - id: 15
       type: integer
       optional: true
+      persist: false
       name: unlock_card
     - id: 19
       type: integer
       optional: true
+      persist: false
       name: unlock_ble
     - id: 21
       type: string
       optional: true
+      persist: false
       name: jammed
       mapping:
         - dps_val: tongue_bad
@@ -77,6 +80,7 @@ secondary_entities:
       - id: 21
         type: string
         optional: true
+        persist: false
         name: sensor
         mapping:
           - dps_val: null
