@@ -188,6 +188,7 @@
 - Saswell C16 thermostat _(rebadged as Warmme, Klima and others)_
 - Saswell T29UTW thermostat
 - T5E-WF thermostat
+- Thermoval TVT40 thermostat
 
 ### Fans
 
