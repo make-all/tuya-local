@@ -9,6 +9,7 @@ primary_entity:
       type: string
       name: unlock_method_create
       optional: true
+      sensitive: true
     - id: 2
       type: string
       name: unlock_method_delete
@@ -17,6 +18,7 @@ primary_entity:
       type: string
       name: unlock_method_modify
       optional: true
+      sensitive: true
     - id: 12
       type: integer
       name: unlock_fingerprint
@@ -46,10 +48,12 @@ primary_entity:
       type: string
       name: sync_method
       optional: true
+      sensitive: true
     - id: 61
       type: string
       name: remote_no_dp_key
       optional: true
+      sensitive: true
     - id: 62
       type: integer
       name: unlock_app
@@ -59,14 +63,17 @@ primary_entity:
       type: string
       name: check_code_set
       optional: true
+      sensitive: true
     - id: 71
       type: string
       name: ble_unlock_check
       optional: true
+      sensitive: true
     - id: 73
       type: string
       name: remote_pd_setkey_check
       optional: true
+      sensitive: true
 secondary_entities:
   - entity: sensor
     class: battery
@@ -85,7 +92,10 @@ secondary_entities:
         type: string
         name: event
         optional: true
+        persist: false
         mapping:
+          - dps_val: null
+            value: ok
           - dps_val: wrong_finger
             value: wrong_finger
           - dps_val: wrong_password

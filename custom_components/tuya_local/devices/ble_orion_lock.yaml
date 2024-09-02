@@ -9,6 +9,7 @@ primary_entity:
       type: string
       name: unlock_method_register
       optional: true
+      sensitive: true
     - id: 2
       type: string
       name: unlock_method_delete
@@ -27,9 +28,10 @@ primary_entity:
       type: boolean
       name: lock
     - id: 54
-      type: base64
+      type: string
       name: sync_method
       optional: true
+      sensitive: true
 secondary_entities:
   - entity: sensor
     class: battery

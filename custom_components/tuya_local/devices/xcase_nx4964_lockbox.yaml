@@ -8,6 +8,7 @@ primary_entity:
     - id: 1
       type: string
       optional: true
+      sensitive: true
       name: unlock_method_create
     - id: 2
       type: string
@@ -16,6 +17,7 @@ primary_entity:
     - id: 3
       type: string
       optional: true
+      sensitive: true
       name: unlock_method_modify
     - id: 13
       type: integer
@@ -35,6 +37,7 @@ primary_entity:
     - id: 51
       type: string
       optional: true
+      sensitive: true
       name: temp_pwd_create
     - id: 52
       type: string
@@ -43,10 +46,12 @@ primary_entity:
     - id: 53
       type: string
       optional: true
+      sensitive: true
       name: temp_pwd_modify
     - id: 54
       type: string
       optional: true
+      sensitive: true
       name: sync_method
     - id: 55
       type: integer
@@ -56,6 +61,7 @@ primary_entity:
     - id: 61
       type: string
       optional: true
+      sensitive: true
       name: remote_no_dp_key
     - id: 62
       type: integer
@@ -89,19 +95,23 @@ primary_entity:
     - id: 70
       type: string
       optional: true
+      sensitive: true
       name: check_code_set
     - id: 71
       type: string
       optional: true
+      sensitive: true
       name: ble_unlock_check
     - id: 72
       type: string
       optional: true
+      sensitive: true
       name: general_unlock_check
     - id: 73
       type: string
       optional: true
-      name: remote_pd_setkeey_check
+      sensitive: true
+      name: remote_pd_setkey_check
 secondary_entities:
   - entity: sensor
     class: battery
