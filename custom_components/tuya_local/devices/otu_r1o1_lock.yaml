@@ -127,8 +127,12 @@ primary_entity:
     - id: 67
       type: string
       optional: true
-      sensitive: true
-      name: unlock_offline_pd
+      persist: false
+      name: unlock_offline_pwd
+      mapping:
+        - dps_val: null
+          value: null
+        - value: 1
     - id: 69
       type: string
       optional: true
