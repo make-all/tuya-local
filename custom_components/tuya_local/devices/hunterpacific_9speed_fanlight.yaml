@@ -1,0 +1,31 @@
+name: Ceiling fan with light
+products:
+  - id: agjbamgmrbcbazp7
+    name: Hunter Pacific 9 speed
+primary_entity:
+  entity: fan
+  dps:
+    - id: 60
+      type: boolean
+      name: switch
+    - id: 62
+      type: integer
+      name: speed
+      range:
+        min: 1
+        max: 9
+    - id: 63
+      type: string
+      name: direction
+secondary_entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 1
+          max: 9

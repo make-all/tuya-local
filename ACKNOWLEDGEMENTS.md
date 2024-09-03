@@ -650,3 +650,4 @@ Further device support has been made with the assistance of users. Please consid
 - [schmurgel-tg](https://github.com/schmurgel-tg) for assisting with support for Create ceiling fan with light.
 - [inode-](https://github.com/inode-) for assisting with support for O'TU R1O1 fingerprint door lock.
 - [madpeteguy](https://github.com/madpeteguy) for contributing support for Thermoval TVT40 thermostat.
+- [blackice013](https://github.com/blackice013) for contributing support for Hunter Pacific 9 speed fan with light.
