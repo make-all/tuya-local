@@ -651,3 +651,4 @@ Further device support has been made with the assistance of users. Please consid
 - [inode-](https://github.com/inode-) for assisting with support for O'TU R1O1 fingerprint door lock.
 - [madpeteguy](https://github.com/madpeteguy) for contributing support for Thermoval TVT40 thermostat.
 - [blackice013](https://github.com/blackice013) for contributing support for Hunter Pacific 9 speed fan with light.
+- [Stalex25](https://github.com/Stalex25) for assisting with support for Vaco Moby Blue and Arrifana portable heatpumps.

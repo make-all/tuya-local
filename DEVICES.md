@@ -103,6 +103,7 @@
 - Tesla Smart TAF and AUX series air conditioners
 - TroniTechnik Hellnar Klimagerät
 - Trotec PAC-W 2600 SH heatpump
+- Vaco Moby Blue 14 / Arrifana 16 portable heatpump
 - Vivax Cool ACP-12CH35REWI
 - Vivion 300123/4/5 air conditioners
 - Woods Cortina portable air conditioner
