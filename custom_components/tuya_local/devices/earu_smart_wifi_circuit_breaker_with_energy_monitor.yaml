@@ -2,6 +2,8 @@ name: Circuit breaker
 products:
   - id: ine4hhapkgxonij1
     name: EARU SW RCB
+  - id: aqktrdhlsw8q90dr
+    name: Zemismart SPM01-D2TW-ZM
 primary_entity:
   entity: switch
   icon: "mdi:fuse"
@@ -12,6 +14,7 @@ primary_entity:
       type: boolean
     - id: 19
       type: string
+      optional: true
       name: breaker_id
 secondary_entities:
   - entity: sensor
