@@ -64,17 +64,29 @@ secondary_entities:
     class: problem
     category: diagnostic
     dps:
-      - id: 10  # fault
+      - id: 10  # fault sensor
         type: bitfield
         name: sensor
         optional: true
         mapping:
           - dps_val: 0
             value: false
+          - value: true
+      - id: 10  # fault code
+        type: bitfield
+        name: fault_code
+        optional: true
+      - id: 10  # fault desc
+        type: bitfield
+        name: description
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: "Ok"
           - dps_val: 1
             value: "Ov2 Cr Fault"
           - dps_val: 2
-            value: "OV Vol"
+            value: "Overvoltage alarm"
           - dps_val: 4
             value: "Undervoltage alarm"
           - dps_val: 8
