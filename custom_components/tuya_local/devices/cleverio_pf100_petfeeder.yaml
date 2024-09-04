@@ -1,0 +1,118 @@
+name: Pet feeder
+products:
+  - id: wfkzyy0evslzsmoi
+    name: Cleverio PF100
+primary_entity:
+  entity: number
+  name: Manual feed
+  icon: "mdi:food-drumstick"
+  dps:
+    - id: 3
+      type: integer
+      name: value
+      range:
+        min: 1
+        max: 20
+    - id: 1
+      type: string
+      optional: true
+      name: meal_plan
+    - id: 103
+      type: string
+      name: mode
+secondary_entities:
+  - entity: button
+    name: Factory reset
+    class: restart
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        optional: true
+        name: button
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 11
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 116
+        type: string
+        name: capacity
+  - entity: binary_sensor
+    class: battery_charging
+    category: diagnostic
+    dps:
+      - id: 12
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 14
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 14
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    name: Last feed
+    icon: "mdi:food-drumstick"
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        unit: portions
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 19
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: plug
+    category: diagnostic
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: no_adapter
+            value: false
+          - value: true
+  - entity: binary_sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: ac_power_on
+            value: true
+          - value: false
+  - entity: number
+    name: Volume
+    category: config
+    icon: "mdi:volume-high"
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        unit: "%"
+        precision: 0
+        range:
+          min: 0
+          max: 3
+        mapping:
+          - scale: 0.03

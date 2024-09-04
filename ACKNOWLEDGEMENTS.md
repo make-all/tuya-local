@@ -653,3 +653,4 @@ Further device support has been made with the assistance of users. Please consid
 - [blackice013](https://github.com/blackice013) for contributing support for Hunter Pacific 9 speed fan with light.
 - [Stalex25](https://github.com/Stalex25) for assisting with support for Vaco Moby Blue and Arrifana portable heatpumps.
 - [flocke](https://github.com/flocke) for assisting with support for MeacoDry Arete Two dehumidifier.
+- [FrederikM97](https://github.com/FrederickM97) for assisting with Cleverio PF100 pet feeder.
