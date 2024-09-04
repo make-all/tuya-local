@@ -1647,3 +1647,11 @@ BLE_WATERVALVE_PAYLOAD = {
     "12": "unknown",
     "15": 60,
 }
+
+AM25_ROLLERBLIND_PAYLOAD = {
+    "1": "stop",
+    "2": 0,
+    "104": True,
+    "105": True,
+    "109": 4,
+}

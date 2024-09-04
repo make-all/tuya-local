@@ -596,6 +596,7 @@ of device.
 - Wistar roller blind controller
 - Yueqing Combo YET848PC curtain motor
 - ZC34T-03-3A swing arm window opener
+- Zemismart AM25 roller blinds
 - Zemismart curtain rail
 - Zemismart roller shade
 

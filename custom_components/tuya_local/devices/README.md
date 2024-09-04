@@ -603,6 +603,7 @@ Either **position** or **open** should be specified.
 - **action** (optional, string): a dp that reports the current state of the cover.
    Special values are `opening, closing`
 - **open** (optional, boolean): a dp that reports if the cover is open. Only used if **position** is not available.
+- **tilt_position** (optional, number): a dp to control the tilt opening of the cover (an example is venetian blinds that tilt as well as go up and down). The range will be auto-converted to the 0-100 expected by HA.
 
 ### `fan`
 - **switch** (optional, boolean): a dp to control the power state of the fan

@@ -9,6 +9,10 @@ from homeassistant.components.cover import (
     CoverEntity,
     CoverEntityFeature,
 )
+from homeassistant.util.percentage import (
+    percentage_to_ranged_value,
+    ranged_value_to_percentage,
+)
 
 from .device import TuyaLocalDevice
 from .helpers.config import async_tuya_setup_platform
@@ -43,6 +47,7 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
         dps_map = self._init_begin(device, config)
         self._position_dp = dps_map.pop("position", None)
         self._currentpos_dp = dps_map.pop("current_position", None)
+        self._tiltpos_dp = dps_map.pop("tilt_position", None)
         self._control_dp = dps_map.pop("control", None)
         self._action_dp = dps_map.pop("action", None)
         self._open_dp = dps_map.pop("open", None)
@@ -58,7 +63,10 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
                 self._support_flags |= CoverEntityFeature.OPEN
             if "close" in self._control_dp.values(self._device):
                 self._support_flags |= CoverEntityFeature.CLOSE
-        # Tilt not yet supported, as no test devices known
+        if self._tiltpos_dp:
+            self._support_flags |= CoverEntityFeature.SET_TILT_POSITION
+
+        # Open/close/stop tilt not yet supported, as no test devices known
 
     @property
     def device_class(self):
@@ -109,6 +117,16 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
         if self._position_dp:
             pos = self._position_dp.get_value(self._device)
             return pos
+
+    @property
+    def current_cover_tilt_position(self):
+        """Return current tilt position of cover."""
+        if self._tiltpos_dp:
+            r = self._tiltpos_dp.range(self._device)
+            val = self._tiltpos_dp.get_value(self._device)
+            if r and val is not None:
+                return ranged_value_to_percentage(r, val)
+            return val
 
     @property
     def _current_state(self):
@@ -204,6 +222,23 @@ class TuyaLocalCover(TuyaLocalEntity, CoverEntity):
             await self._position_dp.async_set_value(self._device, position)
         else:
             raise NotImplementedError()
+
+    async def async_set_cover_tilt_position(self, tilt_position, **kwargs):
+        """Set the cover tilt position."""
+        if self._tiltpos_dp:
+            # If there is a fixed list of values, snap to the closest one
+            if self._tiltpos_dp.values(self._device):
+                tilt_position = min(
+                    self._tiltpos_dp.values(self._device),
+                    key=lambda x: abs(x - tilt_position),
+                )
+            elif self._tiltpos_dp.range(self._device):
+                r = self._tiltpos_dp.range(self._device)
+                tilt_position = percentage_to_ranged_value(r, tilt_position)
+
+            await self._tiltpos_dp.async_set_value(self._device, tilt_position)
+        else:
+            raise NotImplementedError
 
     async def async_stop_cover(self, **kwargs):
         """Stop the cover."""
