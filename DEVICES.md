@@ -376,6 +376,7 @@
 - EARU SW RCB breaker
 - eMylo EAI-90 smart meter
 - ERZ04C smart meter
+- Gaqqee KWS-302-WF energy meter
 - MatSee Plus bidirectional two channel clamp meter
 - Meterk single phase clamp meter
 - Parkside PG/PMW-300 solar inverter
