@@ -45,6 +45,20 @@ primary_entity:
           value: "E3 Humidity Sensor Fault"
         - dps_val: 5
           value: "E5 MCU Communication Failure"
+    - id: 101
+      type: boolean
+      name: tank_full
+      mapping:
+        - dps_val: true
+          icon: "mdi:cup-water"
+          icon_priority: 2
+    - id: 102
+      type: boolean
+      name: defrosting
+      mapping:
+        - dps_val: true
+          icon: "mdi:snowflake-melt"
+          icon_priority: 2
 secondary_entities:
   - entity: fan
     dps:
@@ -76,15 +90,6 @@ secondary_entities:
         unit: "%"
         class: measurement
   - entity: binary_sensor
-    dps:
-      - id: 19
-        type: bitfield
-        name: sensor
-        mapping:
-          - dps_val: 1
-            value: true
-          - value: false
-  - entity: binary_sensor
     class: problem
     dps:
       - id: 19
@@ -103,29 +108,13 @@ secondary_entities:
       - id: 101
         type: boolean
         name: sensor
-        mapping:
-          - dps_val: false
-            value: OK
-          - dps_val: true
-            value: "Full"
-            icon: "mdi:cup-water"
-            icon_priority: 1
   - entity: binary_sensor
     translation_key: defrost
-    class: problem
+    category: diagnostic
     dps:
       - id: 102
         type: boolean
         name: sensor
-        mapping:
-          - dps_val: false
-            value: "Normal"
-            icon: "mdi:snowflake-off"
-            icon_priority: 1
-          - dps_val: true
-            value: "Defrosting"
-            icon: "mdi:snowflake"
-            icon_priority: 1
   - entity: select
     translation_key: timer
     category: config
