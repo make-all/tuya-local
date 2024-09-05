@@ -402,6 +402,7 @@
 - EVSun EV charger
 - Feyree EV charger (several models)
 - Kolanky 3.6kW EV charger
+- Nine 32A EV charger
 - Parkside PLGS 2012 A1 smart charger for powertools
 - Tera W01 EV charger
 - Vevor Level 2 EV charger
