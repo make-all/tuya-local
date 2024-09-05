@@ -69,7 +69,7 @@ class TestMoebot(TuyaDeviceTestCase):
         self.dps[STATUS_DP] = "PAUSED"
         self.assertEqual(self.mower.activity, LawnMowerActivity.PAUSED)
         self.dps[STATUS_DP] = "PARK"
-        self.assertEqual(self.mower.activity, LawnMowerActivity.PAUSED)
+        self.assertEqual(self.mower.activity, LawnMowerActivity.RETURNING)
         self.dps[STATUS_DP] = "MOWING"
         self.assertEqual(self.mower.activity, LawnMowerActivity.MOWING)
         self.dps[STATUS_DP] = "FIXED_MOWING"
