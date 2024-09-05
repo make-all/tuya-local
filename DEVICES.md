@@ -218,6 +218,7 @@
 - Duux Whisper Flex Ultimate
 - Eglo 5 speed + sleep ceiling fan
 - Fanco Eco Silent Deluxe ceiling fan with LED light
+- FlinQ Breeze indoor pedestal fan
 - Goldair GCPF315 fan
 - Goldair Platinum tower fan (2 variants)
 - Hiper T3 bladeless fan

@@ -657,3 +657,4 @@ Further device support has been made with the assistance of users. Please consid
 - [chadtheriault](https://github.com/chadtheriault) for assisting with Zemismart AM25 roller blinds.
 - [fmonday](https://github.com/fmonday) for assisting with Enlighten Café string lights.
 - [plopezllorca](https://github.com/plopezllorca) for assisting with support for Lefant T700 vacuum.
+- [vrolijkj2](https://github.com/vrolijkj2) for contributing support for FlinQ Breeze fan.
