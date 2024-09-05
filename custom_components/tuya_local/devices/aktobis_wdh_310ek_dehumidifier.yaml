@@ -38,13 +38,13 @@ primary_entity:
         - dps_val: 0
           value: OK
         - dps_val: 1
-          value: "Water Tank Full or Removed"
-          icon: "mdi:cup-water"
-          icon_priority: 1
+          value: "E1 Temperature Sensor Fault"
         - dps_val: 2
-          value: "E2 Compressor Fault"
-          icon: "mdi:engine-off-outline"
-          icon_priority: 1
+          value: "E2 Copper Tube Sensor Fault"
+        - dps_val: 3
+          value: "E3 Humidity Sensor Fault"
+        - dps_val: 5
+          value: "E5 MCU Communication Failure"
 secondary_entities:
   - entity: fan
     dps:
@@ -76,7 +76,6 @@ secondary_entities:
         unit: "%"
         class: measurement
   - entity: binary_sensor
-    translation_key: tank_full
     dps:
       - id: 19
         type: bitfield
@@ -94,11 +93,39 @@ secondary_entities:
         mapping:
           - dps_val: 0
             value: false
-          - dps_val: 1
-            value: false
           - dps_val: null
             value: false
           - value: true
+  - entity: binary_sensor
+    translation_key: tank_full
+    class: problem
+    dps:
+      - id: 101
+        type: boolean
+        name: sensor
+        mapping:
+          - dps_val: false
+            value: OK
+          - dps_val: true
+            value: "Full"
+            icon: "mdi:cup-water"
+            icon_priority: 1
+  - entity: binary_sensor
+    translation_key: defrost
+    class: problem
+    dps:
+      - id: 102
+        type: boolean
+        name: sensor
+        mapping:
+          - dps_val: false
+            value: "Normal"
+            icon: "mdi:snowflake-off"
+            icon_priority: 1
+          - dps_val: true
+            value: "Defrosting"
+            icon: "mdi:snowflake"
+            icon_priority: 1
   - entity: select
     translation_key: timer
     category: config
