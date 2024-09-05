@@ -113,18 +113,25 @@ secondary_entities:
         name: sensor
         unit: "%"
         class: measurement
-  - entity: select
-    name: Manual Adjustment
-    category: config
-    icon: mdi:swap-horizontal
+  - entity: button
+    name: Rotate left
+    icon: mdi:arrow-left
     dps:
       - id: 104
-        name: option
         type: string
+        name: button
+        optional: true
         mapping:
-          - dps_val: ""
-            value: "None"
           - dps_val: "LEFT"
-            value: "Turn left"
+            value: true
+  - entity: button
+    name: Rotate right
+    icon: mdi:arrow-right
+    dps:
+      - id: 104
+        type: string
+        name: button
+        optional: true
+        mapping:
           - dps_val: "RIGHT"
-            value: "Turn right"
+            value: true
