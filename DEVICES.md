@@ -614,6 +614,7 @@ of device.
 - Lefant LS1 Pro vacuum cleaner
 - Lefant M213 vacuum cleaner (also works for Lefant M213S and APOSEN A550)
 - Lefant N33 vacuum cleaner
+- Lefant T700 vacuum cleaner with mop
 - Lenovo E1 vacuum cleaner
 - Liectroux G7 vacuum cleaner with mop
 - Liectroux XR500[T3]
