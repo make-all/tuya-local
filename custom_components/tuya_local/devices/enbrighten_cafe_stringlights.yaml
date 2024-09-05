@@ -1,0 +1,267 @@
+name: String lights
+products:
+  - id: irp66izb2pbedb4o
+    name: Enbrighten Café WB-57415
+primary_entity:
+  entity: light
+  icon: "mdi:led-strip"
+  dps:
+    - id: 20
+      type: boolean
+      name: switch
+    - id: 28
+      type: string
+      optional: true
+      name: control_data
+    - id: 106
+      type: string
+      optional: true
+      name: mode
+secondary_entities:
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: select
+    name: Number of lights
+    icon: "mdi:led-strip-variant"
+    category: config
+    dps:
+      - id: 107
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "12"
+            value: "12"
+          - dps_val: "18"
+            value: "18"
+          - dps_val: "24"
+            value: "24"
+  - entity: light
+    name: LED 1
+    category: config
+    dps:
+      - id: 104
+        type: hex
+        name: switch
+        mapping:
+          - mask: "100000000000000000000000"
+  - entity: light
+    name: LED 2
+    category: config
+    dps:
+      - id: 104
+        type: hex
+        name: switch
+        mapping:
+          - mask: "010000000000000000000000"
+  - entity: light
+    name: LED 3
+    category: config
+    dps:
+      - id: 104
+        type: hex
+        name: switch
+        mapping:
+          - mask: "001000000000000000000000"
+  - entity: light
+    name: LED 4
+    category: config
+    dps:
+      - id: 104
+        type: hex
+        name: switch
+        mapping:
+          - mask: "000100000000000000000000"
+  - entity: light
+    name: LED 5
+    category: config
+    dps:
+      - id: 104
+        type: hex
+        name: switch
+        mapping:
+          - mask: "000010000000000000000000"
+  - entity: light
+    name: LED 6
+    category: config
+    dps:
+      - id: 104
+        type: hex
+        name: switch
+        mapping:
+          - mask: "000001000000000000000000"
+  - entity: light
+    name: LED 7
+    category: config
+    dps:
+      - id: 104
+        type: hex
+        name: switch
+        mapping:
+          - mask: "000000100000000000000000"
+  - entity: light
+    name: LED 8
+    category: config
+    dps:
+      - id: 104
+        type: hex
+        name: switch
+        mapping:
+          - mask: "000000010000000000000000"
+  - entity: light
+    name: LED 9
+    category: config
+    dps:
+      - id: 104
+        type: hex
+        name: switch
+        mapping:
+          - mask: "000000001000000000000000"
+  - entity: light
+    name: LED 10
+    category: config
+    dps:
+      - id: 104
+        type: hex
+        name: switch
+        mapping:
+          - mask: "000000000100000000000000"
+  - entity: light
+    name: LED 11
+    category: config
+    dps:
+      - id: 104
+        type: hex
+        name: switch
+        mapping:
+          - mask: "000000000010000000000000"
+  - entity: light
+    name: LED 12
+    category: config
+    dps:
+      - id: 104
+        type: hex
+        name: switch
+        mapping:
+          - mask: "000000000001000000000000"
+  - entity: light
+    name: LED 13
+    category: config
+    dps:
+      - id: 104
+        type: hex
+        name: switch
+        mapping:
+          - mask: "000000000000100000000000"
+  - entity: light
+    name: LED 14
+    category: config
+    dps:
+      - id: 104
+        type: hex
+        name: switch
+        mapping:
+          - mask: "000000000000010000000000"
+  - entity: light
+    name: LED 15
+    category: config
+    dps:
+      - id: 104
+        type: hex
+        name: switch
+        mapping:
+          - mask: "000000000000001000000000"
+  - entity: light
+    name: LED 16
+    category: config
+    dps:
+      - id: 104
+        type: hex
+        name: switch
+        mapping:
+          - mask: "000000000000000100000000"
+  - entity: light
+    name: LED 17
+    category: config
+    dps:
+      - id: 104
+        type: hex
+        name: switch
+        mapping:
+          - mask: "000000000000000010000000"
+  - entity: light
+    name: LED 18
+    category: config
+    dps:
+      - id: 104
+        type: hex
+        name: switch
+        mapping:
+          - mask: "000000000000000001000000"
+  - entity: light
+    name: LED 19
+    category: config
+    dps:
+      - id: 104
+        type: hex
+        name: switch
+        mapping:
+          - mask: "000000000000000000100000"
+  - entity: light
+    name: LED 20
+    category: config
+    dps:
+      - id: 104
+        type: hex
+        name: switch
+        mapping:
+          - mask: "000000000000000000010000"
+  - entity: light
+    name: LED 21
+    category: config
+    dps:
+      - id: 104
+        type: hex
+        name: switch
+        mapping:
+          - mask: "000000000000000000001000"
+  - entity: light
+    name: LED 22
+    category: config
+    dps:
+      - id: 104
+        type: hex
+        name: switch
+        mapping:
+          - mask: "000000000000000000000100"
+  - entity: light
+    name: LED 23
+    category: config
+    dps:
+      - id: 104
+        type: hex
+        name: switch
+        mapping:
+          - mask: "000000000000000000000010"
+  - entity: light
+    name: LED 24
+    category: config
+    dps:
+      - id: 104
+        type: hex
+        name: switch
+        mapping:
+          - mask: "000000000000000000000001"
