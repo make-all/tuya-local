@@ -1,0 +1,93 @@
+name: Air purifier
+products:
+  - id: go2ndjijilncwuf7
+    name: Duux Bright
+primary_entity:
+  entity: fan
+  translation_key: fan_with_presets
+  icon: "mdi:air-purifier"
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 4
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: auto
+          value: auto
+        - dps_val: "1"
+          value: low
+        - dps_val: "2"
+          value: medium
+        - dps_val: "3"
+          value: high
+        - dps_val: sleep
+          value: sleep
+secondary_entities:
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        class: measurement
+        unit: ugm3
+  - entity: sensor
+    name: Filter usage
+    icon: "mdi:air-filter"
+    category: diagnostic
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: switch
+    translation_key: ionizer
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+  - entity: button
+    name: Replace filter
+    class: restart
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: button
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 18
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: "8h"
+            value: "8h"
+  - entity: sensor
+    name: Air quality
+    icon: "mdi:air-filter"
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 21
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "great"
+            value: "Great"
+          - dps_val: "good"
+            value: "Good"
+          - dps_val: "poor"
+            value: "Poor"

@@ -660,3 +660,4 @@ Further device support has been made with the assistance of users. Please consid
 - [plopezllorca](https://github.com/plopezllorca) for assisting with support for Lefant T700 vacuum.
 - [vrolijkj2](https://github.com/vrolijkj2) for contributing support for FlinQ Breeze fan.
 - [mat1990dj](https://github.com/mat1990dj) for contributing support for Nine EV charger.
+- [bramhoosemans](https://github.com/bramhoosemans) for contributing support for Duux Bright air purifier.
