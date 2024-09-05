@@ -1,0 +1,142 @@
+name: Range hood
+products:
+  - id: aiwq2zdatwjllekd
+    name: Ciarra CBCS4850
+primary_entity:
+  entity: fan
+  dps:
+    - id: 2
+      type: integer
+      name: speed
+      range:
+        min: 0
+        max: 4
+    - id: 12
+      type: string
+      name: status
+secondary_entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: button
+    name: Clean
+    icon: "mdi:shimmer"
+    category: config
+    dps:
+      - id: 3
+        type: boolean
+        name: button
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 5
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 99
+  - entity: button
+    name: Quick timer
+    dps:
+      - id: 6
+        type: boolean
+        name: button
+  - entity: button
+    name: Time calibration
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: button
+        optional: true
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: min
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 14
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 14
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    name: Total runtime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        optional: true
+        unit: h
+  - entity: light
+    name: RGB light
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+        optional: true
+      - id: 102
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 255
+      - id: 103
+        name: rgbhsv
+        type: hex
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+  - entity: light
+    dps:
+      - id: 104
+        name: brightness
+        type: string
+        mapping:
+          - dps_val: Turn_off
+            value: 0
+          - dps_val: Level_1
+            value: 128
+          - dps_val: Level_2
+            value: 255
+  - entity: switch
+    translation_key: uv_sterilization
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        name: switch

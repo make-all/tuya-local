@@ -662,3 +662,4 @@ Further device support has been made with the assistance of users. Please consid
 - [mat1990dj](https://github.com/mat1990dj) for contributing support for Nine EV charger.
 - [bramhoosemans](https://github.com/bramhoosemans) for contributing support for Duux Bright air purifier.
 - [alexps70](https://github.com/alexps70) for assisting with support for Gaqqee KWS-302-WF energy meter.
+- [zaubara](https://github.com/zaubara) for assisting with support for Ciarra CBCS4850 range hood.
