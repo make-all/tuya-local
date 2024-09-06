@@ -4,6 +4,8 @@ products:
     name: Vevor SS EU Mode2 7kW
   - id: w7lvyyxyevpwf20e
     name: Vevor SS US 7kW
+  - id: ypdfdnwauasb8rje
+    name: Vevor SS EU Mode2 3.7kW
 primary_entity:
   entity: sensor
   name: Status
@@ -116,6 +118,7 @@ secondary_entities:
       - id: 9
         type: integer
         name: sensor
+        optional: true
         unit: kW
         class: measurement
         mapping:
@@ -185,6 +188,7 @@ secondary_entities:
     dps:
       - id: 16
         type: boolean
+        optional: true
         name: button
   - entity: switch
     icon: "mdi:power"
