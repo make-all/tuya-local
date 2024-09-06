@@ -23,59 +23,44 @@ secondary_entities:
         name: switch
   - entity: select
     name: Cooking mode
+    translation_key: recipe
     dps:
       - id: 3
         type: string
         name: option
         mapping:
           - dps_val: fries
-            value: French fries
-            icon: "mdi:french-fries"
+            value: fries
           - dps_val: wings
-            value: Chicken wings
-            icon: "mdi:food-drumstick"
+            value: chicken_wings
           - dps_val: steak
-            value: Steak
-            icon: "mdi:food-steak"
+            value: steak
           - dps_val: shrimp
-            value: Shrimp
-            icon: "mdi:sausage"
+            value: shrimp
           - dps_val: fish
-            value: Fish
-            icon: "mdi:fish"
+            value: fish
           - dps_val: onionrings
-            value: Onion Rings
-            icon: "mdi:bullseye"
+            value: onion_rings
           - dps_val: pizza
-            value: Pizza
-            icon: "mdi:pizza"
+            value: pizza
           - dps_val: bacon
-            value: Bacon
-            icon: "mdi:food-steak"
+            value: bacon
           - dps_val: cake
-            value: Baking
-            icon: "mdi:cake-variant"
+            value: cake
           - dps_val: toast
-            value: Toast
-            icon: "mdi:bread-slice"
+            value: toast
           - dps_val: vegetable
-            value: Vegetables
-            icon: "mdi:carrot"
+            value: vegetables
           - dps_val: custom
-            value: Custom
-            icon: "mdi:cogs"
+            value: custom
           - dps_val: cloud
-            value: Cloud recipe
-            icon: "mdi:cloud-print-outline"
+            value: cloud_recipe
           - dps_val: default
-            value: Default
-            icon: "mdi:toaster-oven"
+            value: default
           - dps_val: warm
-            value: Keep warm
-            icon: "mdi:heat-wave"
+            value: keep_warm
           - dps_val: preheat
-            value: Preheat
-            icon: "mdi:fire"
+            value: preheat
   - entity: sensor
     name: Status
     class: enum
