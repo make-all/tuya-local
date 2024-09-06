@@ -663,3 +663,4 @@ Further device support has been made with the assistance of users. Please consid
 - [bramhoosemans](https://github.com/bramhoosemans) for contributing support for Duux Bright air purifier.
 - [alexps70](https://github.com/alexps70) for assisting with support for Gaqqee KWS-302-WF energy meter.
 - [zaubara](https://github.com/zaubara) for assisting with support for Ciarra CBCS4850 range hood.
+- [ap20132022](https://github.com/ap20132022) for assisting with support for Cecofry 5500 air fryer.
