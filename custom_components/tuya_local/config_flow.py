@@ -282,9 +282,9 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             existing_uuid = (
                 domain_data.get(cloud_device["uuid"]) if domain_data else None
             )
-            if existing_id or existing_uuid:
-                _LOGGER.debug("Device is already registered.")
-                continue
+            existing = exisiton_id or existing_uuid
+            if existing and existing.get("device"):
+                cloud_device["exists"] = True
 
             _LOGGER.debug(f"Adding device: {cloud_device['id']}")
             cloud_devices[cloud_device["id"]] = cloud_device
@@ -324,6 +324,8 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         device_list = []
         for key in self.__cloud_devices.keys():
             device_entry = self.__cloud_devices[key]
+            if device_entry["exists"]:
+                continue
             if device_entry[CONF_LOCAL_KEY] != "":
                 if device_entry["online"]:
                     device_list.append(
