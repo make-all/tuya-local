@@ -324,7 +324,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         device_list = []
         for key in self.__cloud_devices.keys():
             device_entry = self.__cloud_devices[key]
-            if device_entry["exists"]:
+            if device_entry.get("exists"):
                 continue
             if device_entry[CONF_LOCAL_KEY] != "":
                 if device_entry["online"]:
