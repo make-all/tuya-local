@@ -282,7 +282,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             existing_uuid = (
                 domain_data.get(cloud_device["uuid"]) if domain_data else None
             )
-            existing = exisiting_id or existing_uuid
+            existing = existing_id or existing_uuid
             if existing and existing.get("device"):
                 cloud_device["exists"] = True
 
