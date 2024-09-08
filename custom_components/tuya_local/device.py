@@ -101,7 +101,6 @@ class TuyaLocalDevice(object):
             # Retries cause problems for other children of the parent device
             # Currently, we only support polling for child devices
             self._api.parent.set_socketRetryLimit(1)
-            poll_only = True
 
         self._refresh_task = None
         self._protocol_configured = protocol_version
