@@ -28,10 +28,6 @@ primary_entity:
     - id: 5
       type: boolean
       name: oscillate
-    - id: 24
-      name: fault_code
-      type: bitfield
-      optional: true
 
 secondary_entities:
   - entity: select
@@ -69,7 +65,6 @@ secondary_entities:
         name: lock
   - entity: light
     translation_key: indicator
-    name: Status lights
     category: config
     dps:
       - id: 15
@@ -90,10 +85,17 @@ secondary_entities:
       - id: 24
         type: bitfield
         name: sensor
+        optional: true
         mapping:
           - dps_val: 0
             value: false
+          - dps_val: null
+            value: false
           - value: true
+      - id: 24
+        name: fault_code
+        type: bitfield
+        optional: true
   - entity: number
     translation_key: timer
     category: config
