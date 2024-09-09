@@ -276,6 +276,7 @@
 
 ### Dehumidifiers
 
+- Aktobis WDH-310EK dehumidifier
 - AlecoAir D12 ECO dehumidifier
 - AlecoAir D12/D16 Home dehumidifier
 - AlecoAir D14 purifying dehumidifier

@@ -666,3 +666,4 @@ Further device support has been made with the assistance of users. Please consid
 - [ap20132022](https://github.com/ap20132022) for assisting with support for Cecofry 5500 air fryer.
 - [alexandrebelloni](https://github.com/alexandrebelloni) for contributing improvements to Vevor EV charger.
 - [ekalle-swe](https://github.com/ekalle-swe) for assisting with support for Loeffen LFIM6000 ice cube maker.
+- [Athemis](https://github.com/Athemis) for contributing support for Aktobis WDH-310EK dehumidifier.
