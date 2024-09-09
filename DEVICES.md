@@ -214,6 +214,7 @@
 - Depauley WS-FPZ37-18I-EU ceiling fan with light
 - Deta fan controller
 - Djive ARC humidifying fan
+- Dream Maker Feel DM01 fan
 - Duux Whisper Flex pedestal fan
 - Duux Whisper Flex Ultimate
 - Eglo 5 speed + sleep ceiling fan
