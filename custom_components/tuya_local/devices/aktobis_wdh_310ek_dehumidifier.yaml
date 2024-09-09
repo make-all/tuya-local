@@ -1,7 +1,7 @@
-name: Aktobis WDH-310EK dehumidifier
+name: Dehumidifier
 products:
-  - id: bf43c599b40eada03aivfh
-    name: WDH-310EK
+  - id: ifasqsxbghku3bwk
+    name: Aktobis WDH-310EKW dehumidifier
 primary_entity:
   entity: humidifier
   class: dehumidifier
@@ -11,11 +11,7 @@ primary_entity:
       type: boolean
       mapping:
         - dps_val: false
-          icon: "mdi:air-humidifier-off"
-          icon_priority: 2
         - dps_val: true
-          icon: "mdi:air-humidifier"
-          icon_priority: 4
     - id: 3
       name: humidity
       type: integer
@@ -27,38 +23,6 @@ primary_entity:
     - id: 6
       name: current_humidity
       type: integer
-      range:
-        min: 30
-        max: 90
-    - id: 19
-      name: error
-      type: bitfield
-      # E2 might be a compressor fault.
-      mapping:
-        - dps_val: 0
-          value: OK
-        - dps_val: 1
-          value: "E1 Temperature Sensor Fault"
-        - dps_val: 2
-          value: "E2 Copper Tube Sensor Fault"
-        - dps_val: 3
-          value: "E3 Humidity Sensor Fault"
-        - dps_val: 5
-          value: "E5 MCU Communication Failure"
-    - id: 101
-      type: boolean
-      name: tank_full
-      mapping:
-        - dps_val: true
-          icon: "mdi:cup-water"
-          icon_priority: 2
-    - id: 102
-      type: boolean
-      name: defrosting
-      mapping:
-        - dps_val: true
-          icon: "mdi:snowflake-melt"
-          icon_priority: 2
 secondary_entities:
   - entity: fan
     dps:
@@ -81,15 +45,8 @@ secondary_entities:
         name: sensor
         unit: C
         class: measurement
-  - entity: sensor
-    class: humidity
-    dps:
-      - id: 6
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
   - entity: binary_sensor
+    category: diagnostic
     class: problem
     dps:
       - id: 19
@@ -98,12 +55,28 @@ secondary_entities:
         mapping:
           - dps_val: 0
             value: false
-          - dps_val: null
-            value: false
           - value: true
+      - id: 19
+        name: description
+        type: bitfield
+        # E2 might be a compressor fault.
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: "E1 Temperature Sensor Fault"
+          - dps_val: 2
+            value: "E2 Copper Tube Sensor Fault"
+          - dps_val: 3
+            value: "E3 Humidity Sensor Fault"
+          - dps_val: 5
+            value: "E5 MCU Communication Failure"
+      - id: 19
+        type: bitfield
+        name: fault_code
   - entity: binary_sensor
     translation_key: tank_full
-    class: problem
+    category: diagnostic
     dps:
       - id: 101
         type: boolean
