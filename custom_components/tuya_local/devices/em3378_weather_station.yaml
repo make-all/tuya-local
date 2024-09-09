@@ -17,9 +17,9 @@ primary_entity:
       type: boolean
       name: unit
       mapping:
-        - dps_val: false
-          value: C
         - dps_val: true
+          value: C
+        - dps_val: false
           value: F
     - id: 117
       name: fault
@@ -61,9 +61,9 @@ secondary_entities:
         type: boolean
         name: unit
         mapping:
-          - dps_val: false
-            value: C
           - dps_val: true
+            value: C
+          - dps_val: false
             value: F
   - entity: sensor
     name: Remote humidity 1
@@ -91,9 +91,9 @@ secondary_entities:
         type: boolean
         name: unit
         mapping:
-          - dps_val: false
-            value: C
           - dps_val: true
+            value: C
+          - dps_val: false
             value: F
   - entity: sensor
     name: Remote humidity 2
@@ -122,9 +122,9 @@ secondary_entities:
         type: boolean
         name: unit
         mapping:
-          - dps_val: false
-            value: C
           - dps_val: true
+            value: C
+          - dps_val: false
             value: F
   - entity: sensor
     name: Remote humidity 3
@@ -171,9 +171,9 @@ secondary_entities:
         type: boolean
         name: option
         mapping:
-          - dps_val: false
-            value: celsius
           - dps_val: true
+            value: celsius
+          - dps_val: false
             value: fahrenheit
   - entity: binary_sensor
     class: problem
@@ -199,9 +199,9 @@ secondary_entities:
         type: boolean
         name: option
         mapping:
-          - dps_val: true
-            value: 24h
           - dps_val: false
+            value: 24h
+          - dps_val: true
             value: 12h
   - entity: switch
     name: Date
