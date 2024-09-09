@@ -28,6 +28,10 @@ primary_entity:
     - id: 5
       type: boolean
       name: oscillate
+    - id: 24
+      name: fault_code
+      type: bitfield
+      optional: true
 
 secondary_entities:
   - entity: select
@@ -50,9 +54,7 @@ secondary_entities:
           - dps_val: 140
             value: "140°"
   - entity: switch
-    translation_key: indicator
-    name: Beep
-    icon: mdi:bell
+    translation_key: keytone
     category: config
     dps:
       - id: 13
@@ -65,9 +67,9 @@ secondary_entities:
       - id: 14
         type: boolean
         name: lock
-  - entity: switch
-    name: Lights
-    icon: mdi:lightbulb
+  - entity: light
+    translation_key: indicator
+    name: Status lights
     category: config
     dps:
       - id: 15
@@ -84,7 +86,6 @@ secondary_entities:
   - entity: binary_sensor
     class: problem
     category: diagnostic
-    name: Fault Alarm
     dps:
       - id: 24
         type: bitfield
@@ -92,8 +93,7 @@ secondary_entities:
         mapping:
           - dps_val: 0
             value: false
-          - dps_val: 1
-            value: true
+          - value: true
   - entity: number
     translation_key: timer
     category: config
