@@ -11,6 +11,8 @@ primary_entity:
       name: sensor
       unit: kWh
       class: total_increasing
+      mapping:
+        - scale: 1000
     - id: 116
       type: string
       name: state_flag
@@ -60,6 +62,8 @@ secondary_entities:
         name: sensor
         unit: W
         class: measurement
+        mapping:
+          - scale: 10
   - entity: sensor
     class: duration
     category: diagnostic
