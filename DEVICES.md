@@ -60,7 +60,7 @@
 - Wärme Designer wall panel heater
 - Wetair WCH-750 heater
 
-### Air Conditioners / Heatpumps
+### Air Conditioners / Heat pumps
 
 - Arlec PA1123BKHA portable air conditioner
 - Be Cool BC14KL2101F
@@ -82,6 +82,7 @@
 - ElectriQ EcoSilent 12WAP
 - Fersk Vind 2
 - Fisher Summer air conditioner
+- Fujicool Yuzu heat pump
 - Idea Heating Belt (with CS1 USB dongle)
 - Inventor Leon (Tokens Legend series) air conditioner
 - Klarstein Iceblock Ecosmart air conditioner
@@ -102,31 +103,31 @@
 - Suntec Wellness Coolfixx portable air conditioner
 - Tesla Smart TAF and AUX series air conditioners
 - TroniTechnik Hellnar Klimagerät
-- Trotec PAC-W 2600 SH heatpump
-- Vaco Moby Blue 14 / Arrifana 16 portable heatpump
+- Trotec PAC-W 2600 SH heat pump
+- Vaco Moby Blue 14 / Arrifana 16 portable heat pump
 - Vivax Cool ACP-12CH35REWI
 - Vivion 300123/4/5 air conditioners
 - Woods Cortina portable air conditioner
 - Woods Milan portable air conditioner
 
-### Pool heaters / heatpumps
+### Pool heaters / heat pumps
 
-- BWT FI 45 heatpump
-- Evotherm ETI series heatpump
-- Fairland IPHCR15 pool heatpump (matches others above, but allows control of heat/cool modes while others seem to be fixed to auto only)
+- BWT FI 45 heat pump
+- Evotherm ETI series heat pump
+- Fairland IPHCR15 pool heat pump (matches others above, but allows control of heat/cool modes while others seem to be fixed to auto only)
 - Fairland X20 series (also sold as Pool Systems IPS 100MAX)
-- Garden PAC pool heatpump (also works with Summerwave Si Series)
-- Madimack Eco pool heatpump
-- Madimack Elite V3 pool heatpump (two versions)
-- Madimack(model unknown) pool heatpump (seems to match Fairland IPH45 as well)
-- Poolex Silverline, Q-7, Q-line, Arctic and Vertigo heatpumps
-- Poolsana InverPower Next pool heatpump
-- Pool Systems IPS Pro pool heatpump (also Fairland Inver-X)
-- Pro-Energy PE08 pool heatpump
-- Remora pool heatpump
-- W'eau pool heatpump (simple model and a more complex 13kW model)
+- Garden PAC pool heat pump (also works with Summerwave Si Series)
+- Madimack Eco pool heat pump
+- Madimack Elite V3 pool heat pump (two versions)
+- Madimack(model unknown) pool heat pump (seems to match Fairland IPH45 as well)
+- Poolex Silverline, Q-7, Q-line, Arctic and Vertigo heat pumps
+- Poolsana InverPower Next pool heat pump
+- Pool Systems IPS Pro pool heat pump (also Fairland Inver-X)
+- Pro-Energy PE08 pool heat pump
+- Remora pool heat pump
+- W'eau pool heat pump (simple model and a more complex 13kW model)
 
-- these seem to use a small number of common controllers with minor variations, and many other Pool heatpumps will work using the above configurations.
+- these seem to use a small number of common controllers with minor variations, and many other Pool heat pumps will work using the above configurations.
   Report issues if there are any differences in presets or other features,
   or if any of the "unknown" values that are returned as attributes can
   be figured out.
@@ -137,10 +138,10 @@
 - Deakon EVI DC inverter heat pump
 - EMS Thermal 200L domestic heat pump hot water system
 - Ferroli Titano Twin water heater
-- Fisher air to water heatpump
+- Fisher air to water heat pump
 - Geyserwise TSE1 Geyser controller kit
 - Hydrotherm Dynamic/X8 heat pump hot water systems (Gen 5 and 6)
-- ITS-4.5HD super water heatpump
+- ITS-4.5HD super water heat pump
 - Koi Duo HTW-TD-080KOID
 - Thermex IF series V pro hot water systems
 - Thermex Lima 80V
@@ -832,7 +833,7 @@ In general IR hubs are supported as generic IR remote controllers.
 Some specialised devices have built-in sensors to also present other
 entity types as sub devices.
 
-- Air conditioner / heatpump via Moes IR hub
+- Air conditioner / heat pump via Moes IR hub
 - Neo IR Air Conditioner controller
 
 ### Devices supported via Zigbee hubs

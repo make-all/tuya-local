@@ -667,3 +667,4 @@ Further device support has been made with the assistance of users. Please consid
 - [alexandrebelloni](https://github.com/alexandrebelloni) for contributing improvements to Vevor EV charger.
 - [ekalle-swe](https://github.com/ekalle-swe) for assisting with support for Loeffen LFIM6000 ice cube maker.
 - [Athemis](https://github.com/Athemis) for contributing support for Aktobis WDH-310EK dehumidifier.
+- [carmelo42](https://github.com/carmelo42) for contributing support for Fujicool Yuzu heat pump.
