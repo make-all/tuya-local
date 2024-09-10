@@ -617,7 +617,7 @@ def create_test_device(hass: HomeAssistant, config: dict):
 async def async_test_connection(config: dict, hass: HomeAssistant):
     domain_data = hass.data.get(DOMAIN)
     existing = domain_data.get(get_device_id(config)) if domain_data else None
-    if existing:
+    if existing and existing.get("device"):
         _LOGGER.info("Pausing existing device to test new connection parameters")
         existing["device"].pause()
         await asyncio.sleep(5)
@@ -634,7 +634,7 @@ async def async_test_connection(config: dict, hass: HomeAssistant):
         _LOGGER.warning("Connection test failed with %s %s", type(e), e)
         retval = None
 
-    if existing:
+    if existing and existing.get("device"):
         _LOGGER.info("Restarting device after test")
         existing["device"].resume()
 
