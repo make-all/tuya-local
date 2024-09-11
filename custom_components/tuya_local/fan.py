@@ -60,7 +60,12 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
             self._support_flags |= FanEntityFeature.DIRECTION
         if self._switch_dps:
             self._support_flags |= FanEntityFeature.TURN_ON | FanEntityFeature.TURN_OFF
-        # Until the deprecation period ends (eexpected 2025.2)
+        elif self._speed_dps:
+            r = self._speed_dps.range(self._device)
+            if r and r[0] == 0:
+                self._support_flags |= FanEntityFeature.TURN_OFF
+
+        # Until the deprecation period ends (expected 2025.2)
         self._enable_turn_on_off_backwards_compatibility = False
 
     @property
@@ -93,6 +98,8 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
         if percentage is not None and self._speed_dps:
             r = self._speed_dps.range(self._device)
             if r:
+                if r[0] == 0:
+                    r = (1, r[1])
                 percentage = percentage_to_ranged_value(r, percentage)
 
             settings = {
@@ -110,9 +117,15 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
 
     async def async_turn_off(self, **kwargs):
         """Turn the switch off"""
-        if self._switch_dps is None:
+        if self._switch_dps: 
+            await self._switch_dps.async_set_value(self._device, False)
+        elif (
+                self._speed_dps and self._speed_dps.range(self._device)
+                and _speed_dps.range(self._device)[0] == 0
+        ):
+            await self._speed_dps.async_set_value(self._device, 0)
+        else:
             raise NotImplementedError
-        await self._switch_dps.async_set_value(self._device, False)
 
     @property
     def percentage(self):
@@ -122,6 +135,8 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
         r = self._speed_dps.range(self._device)
         val = self._speed_dps.get_value(self._device)
         if r and val is not None:
+            if r[0] == 0:
+                r = (1, r[1])
             val = ranged_value_to_percentage(r, val)
         return val
 
@@ -161,6 +176,8 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
             )
         elif self._speed_dps.range(self._device):
             r = self._speed_dps.range(self._device)
+            if r[0] == 0:
+                r = (1, r[1])
             percentage = percentage_to_ranged_value(r, percentage)
 
         values_to_set = self._speed_dps.get_values_to_set(self._device, percentage)
