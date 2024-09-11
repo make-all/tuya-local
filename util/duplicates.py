@@ -44,7 +44,7 @@ def main():
         all_dps = config._get_all_dps()
         sample_dps = {dp.id: representation(dp) for dp in all_dps}
 
-        device = FakeDevice(sample_dps)
+        # device = FakeDevice(sample_dps)
         for m in possible_matches(sample_dps):
             if m.config_type == filename:
                 continue
