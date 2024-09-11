@@ -668,3 +668,4 @@ Further device support has been made with the assistance of users. Please consid
 - [ekalle-swe](https://github.com/ekalle-swe) for assisting with support for Loeffen LFIM6000 ice cube maker.
 - [Athemis](https://github.com/Athemis) for contributing support for Aktobis WDH-310EK dehumidifier.
 - [carmelo42](https://github.com/carmelo42) for contributing support for Fujicool Yuzu heat pump.
+- [dkvk](https://github.com/dkvk) for contributing support for Malmbergs 1-way dimmer module.
