@@ -19,6 +19,7 @@ class FakeDevice:
     def name(self):
         return "cmdline"
 
+
 def representation(dp):
     """Return a represenative value for the dp."""
     if dp.type is bool:
@@ -31,6 +32,7 @@ def representation(dp):
         return ""
     if dp.type is float:
         return 0.0
+
 
 def main():
 
@@ -49,7 +51,10 @@ def main():
             if m.config_type == filename:
                 continue
             if m.match_quality(sample_dps) > 50:
-                print(f"{m.config_type} matched {filename} {m.match_quality(sample_dps)}%")
+                print(
+                    f"{m.config_type} matched {filename} {m.match_quality(sample_dps)}%"
+                )
+
 
 if __name__ == "__main__":
     sys.exit(main())

@@ -117,11 +117,11 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
 
     async def async_turn_off(self, **kwargs):
         """Turn the switch off"""
-        if self._switch_dps: 
+        if self._switch_dps:
             await self._switch_dps.async_set_value(self._device, False)
         elif (
-                self._speed_dps and self._speed_dps.range(self._device)
-                and self._speed_dps.range(self._device)[0] == 0
+            self._speed_dps and self._speed_dps.range(self._device)
+            and self._speed_dps.range(self._device)[0] == 0
         ):
             await self._speed_dps.async_set_value(self._device, 0)
         else:
