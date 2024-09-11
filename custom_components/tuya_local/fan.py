@@ -121,7 +121,7 @@ class TuyaLocalFan(TuyaLocalEntity, FanEntity):
             await self._switch_dps.async_set_value(self._device, False)
         elif (
                 self._speed_dps and self._speed_dps.range(self._device)
-                and _speed_dps.range(self._device)[0] == 0
+                and self._speed_dps.range(self._device)[0] == 0
         ):
             await self._speed_dps.async_set_value(self._device, 0)
         else:
