@@ -551,7 +551,8 @@ of device.
 - Loginovo TV sync backlight
 - LSC smart connect RGB CCT lightbulb (similar to older generic bulbs, so may work for others)
 - Lytmi Fantasy/Neo 3 HDMI sync backlight
-- Malmbergs QS-WIFI-D02-TRIAC 1-way dimmer module
+- Malmbergs QS-WIFI-D02-TRIAC single dimmer module
+- Malmbergs QS-WIFI-D02-TRIAC-2C dual dimmer module
 - Marpou RGBCW ceiling light
 - Mirabella Genio Pixel LED oval light
 - Moes dimmer switch
