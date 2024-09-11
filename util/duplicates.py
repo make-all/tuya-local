@@ -35,7 +35,6 @@ def representation(dp):
 
 
 def main():
-
     for filename in sys.argv[1:]:
         if filename.endswith(".yaml"):
             filename = filename[:-5]
