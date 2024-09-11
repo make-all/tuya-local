@@ -1,0 +1,76 @@
+name: Aroma diffuser
+products:
+  - id: orw9vhekocfzx78l
+    name: Calex v2.0
+primary_entity:
+  entity: switch
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+secondary_entities:
+  - entity: switch
+    name: Spray
+    dps:
+      - id: 2
+        name: switch
+        type: boolean
+        mapping:
+          - dps_val: true
+            icon: "mdi:scent"
+          - dps_val: false
+            icon: mdi:scent-off"
+  - entity: light
+    dps:
+      - id: 7
+        name: switch
+        type: boolean
+      - id: 9
+        name: color_mode
+        type: string
+        mapping:
+          - dps_val: colour
+            value: hs
+          - dps_val: colourful1
+            value: Colorful
+      - id: 10
+        name: rgbhsv
+        type: hex
+        format:
+          - name: r
+            bytes: 1
+          - name: g
+            bytes: 1
+          - name: b
+            bytes: 1
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 1
+            range:
+              min: 0
+              max: 255
+          - name: v
+            bytes: 1
+            range:
+              min: 0
+              max: 255
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 4
+        name: option
+        type: string
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1"
+            value: "1h"
+          - dps_val: "3"
+            value: "3h"
+          - dps_val: "6"
+            value: "6h"

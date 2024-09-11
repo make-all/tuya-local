@@ -670,3 +670,4 @@ Further device support has been made with the assistance of users. Please consid
 - [carmelo42](https://github.com/carmelo42) for contributing support for Fujicool Yuzu heat pump.
 - [dkvk](https://github.com/dkvk) for contributing support for Malmbergs single and dual dimmer modules.
 - [guffy1234](https://github.com/guffy1234) for contributing support for Atorch AT4PW energy meter.
+- [larronni](https://github.com/larronni) for contributing support for Calex aroma diffuser.
