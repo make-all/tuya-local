@@ -669,3 +669,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Athemis](https://github.com/Athemis) for contributing support for Aktobis WDH-310EK dehumidifier.
 - [carmelo42](https://github.com/carmelo42) for contributing support for Fujicool Yuzu heat pump.
 - [dkvk](https://github.com/dkvk) for contributing support for Malmbergs single and dual dimmer modules.
+- [guffy1234](https://github.com/guffy1234) for contributing support for Atorch AT4PW energy meter.
