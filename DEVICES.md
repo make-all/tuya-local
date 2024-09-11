@@ -256,6 +256,7 @@
 - Breville Easy Air purifier
 - Breville Smart Air Connect purifier
 - Breville Smart Air Viral Protect Plus purifier
+- Cleverio AP100 air purifier
 - Duux Bright air purifier
 - essentials portable air purifier
 - Himox H05 and H06 air purifiers
