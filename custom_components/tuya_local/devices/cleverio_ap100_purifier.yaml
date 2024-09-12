@@ -25,6 +25,12 @@ secondary_entities:
         type: integer
         name: sensor
         unit: "%"
+  - entity: light
+    class: indicator
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
   - entity: select
     translation_key: timer
     category: config
@@ -54,10 +60,10 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: "1"
-            value: Poor
-          - dps_val: "2"
-            value: Fair
-          - dps_val: "3"
-            value: Good
-          - dps_val: "4"
             value: Excellent
+          - dps_val: "2"
+            value: Good
+          - dps_val: "3"
+            value: Fair
+          - dps_val: "4"
+            value: Poor
