@@ -70,8 +70,8 @@ class TuyaLocalValve(TuyaLocalEntity, ValveEntity):
     def reports_position(self):
         """If the valve is an integer, it reports position."""
         return self._valve_dp.type is int or (
-            self._valve_dp.values(device)
-            and self._valve_dp.values(device)[0] is int
+            self._valve_dp.values(self._device)
+            and self._valve_dp.values(self._device)[0] is int
         )
 
     @property
