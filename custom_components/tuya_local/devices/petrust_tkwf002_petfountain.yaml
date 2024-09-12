@@ -1,0 +1,177 @@
+name: Petrust Smart Fountain
+products:
+  - id: 5jdws4vgfzhkq7vs
+    name: Petrust TK-WF002
+primary_entity:
+  entity: switch
+  icon: "mdi:power"
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: select
+    name: Mode
+    class: enum
+    icon: "mdi:auto-mode"
+    dps:
+      - id: 2
+        type: string
+        name: option
+        mapping:
+          - dps_val: "normal"
+            value: "Normal"
+          - dps_val: "smart"
+            value: "Smart"
+  - entity: valve
+    class: water
+    dps:
+      - id: 11
+        type: string
+        name: valve
+        mapping:
+          - dps_val: "close"
+            value: 0
+          - dps_val: "low"
+            value: 25
+          - dps_val: "middle"
+            value: 50
+          - dps_val: "high"
+            value: 100
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 12
+        type: integer
+        name: brightness
+        range:
+          min: 0
+          max: 4
+  - entity: number
+    name: Filter lifetime
+    icon: "mdi:air-filter"
+    category: config
+    dps:
+      - id: 7
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 30
+  - entity: sensor
+    name: Replace filter in
+    icon: "mdi:air-filter"
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        unit: d
+  - entity: button
+    name: Replace filter
+    icon: "mdi:air-filter"
+    category: config
+    dps:
+      - id: 5
+        type: boolean
+        name: button
+  - entity: number
+    name: Clean interval
+    icon: "mdi:pump"
+    category: config
+    dps:
+      - id: 8
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 20
+  - entity: sensor
+    name: Clean in
+    icon: "mdi:pump"
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: d
+  - entity: button
+    name: Pump cleaned
+    icon: "mdi:pump"
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: button
+  - entity: sensor
+    name: Water level
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 9
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: "low"
+            icon: "mdi:cup-outline"
+            value: "Low"
+          - dps_val: "middle"
+            icon: "mdi:cup-water"
+            value: "Middle"
+          - dps_val: "high"
+            icon: "mdi:cup"
+            value: "High"
+  - entity: sensor
+    name: Water age
+    class: duration
+    icon: "mdi:water-opacity"
+    category: diagnostic
+    dps:
+      - id: 24
+        type: integer
+        name: sensor
+        unit: d
+  - entity: button
+    name: Change water
+    icon: "mdi:water-sync"
+    category: config
+    dps:
+      - id: 25
+        type: boolean
+        name: button
+  - entity: switch
+    translation_key: uv_sterilization
+    category: config
+    dps:
+      - id: 14
+        type: boolean
+        name: switch
+  - entity: number
+    name: UV runtime
+    icon: "mdi:timer-outline"
+    category: config
+    dps:
+      - id: 15
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 90
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 23
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 23
+        type: bitfield
+        name: fault_code

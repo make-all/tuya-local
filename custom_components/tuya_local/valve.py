@@ -45,7 +45,10 @@ class TuyaLocalValve(TuyaLocalEntity, ValveEntity):
         if not self._valve_dp.readonly:
             self._attr_supported_features |= ValveEntityFeature.OPEN
             self._attr_supported_features |= ValveEntityFeature.CLOSE
-            if self._valve_dp.type is int:
+            if self._valve_dp.type is int or (
+                self._valve_dp.values(device)
+                and self._valve_dp.values(device)[0] is int
+            ):
                 self._attr_supported_features |= ValveEntityFeature.SET_POSITION
 
     @property
@@ -66,7 +69,10 @@ class TuyaLocalValve(TuyaLocalEntity, ValveEntity):
     @property
     def reports_position(self):
         """If the valve is an integer, it reports position."""
-        return self._valve_dp.type is int
+        return self._valve_dp.type is int or (
+            self._valve_dp.values(device)
+            and self._valve_dp.values(device)[0] is int
+        )
 
     @property
     def current_position(self):

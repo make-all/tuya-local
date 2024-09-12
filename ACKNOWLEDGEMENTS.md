@@ -672,3 +672,4 @@ Further device support has been made with the assistance of users. Please consid
 - [guffy1234](https://github.com/guffy1234) for contributing support for Atorch AT4PW energy meter.
 - [larronni](https://github.com/larronni) for contributing support for Calex aroma diffuser.
 - [JennyIglesias](https://github.com/JennyIglesias) for assisting with support for Tongou TO-Q-SYS-WT circuit breaker
+- [pot-noble](https://github.com/pot-noble) for contributing support for Petrust TK-WF002 pet fountain

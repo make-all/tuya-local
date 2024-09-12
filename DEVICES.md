@@ -719,7 +719,8 @@ port and password.
 - Nedis pet feeder
 - Petlibro PLAF103 pet feeder
 - Petlibro PLAF203 pet feeder with camera
-- Petoneer Fresco Hydrate Ultra pet fountain/
+- Petoneer Fresco Hydrate Ultra pet fountain
+- Petrust TK-WF002 pet fountain
 - PNI water feeder
 - Rojeco PTM-001 pet feeder (two versions)
 - Sobralik pet fountain
