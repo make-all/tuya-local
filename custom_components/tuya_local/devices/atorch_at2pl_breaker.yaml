@@ -2,6 +2,8 @@ name: Energy meter
 products:
   - id: seqzqh45b0ggn9so
     name: Atorch AT2PL
+  - id: sq1ahfxhgove4kgo
+    name: Atorch GR2PWS
 primary_entity:
   entity: switch
   dps:
@@ -75,7 +77,6 @@ secondary_entities:
           - scale: 100
   - entity: sensor
     name: Cost
-    class: monetary
     category: diagnostic
     dps:
       - id: 102
@@ -324,6 +325,28 @@ secondary_entities:
         range:
           min: 0
           max: 120000
+  - entity: number
+    name: Data refresh interval
+    category: config
+    translation_key: timer
+    dps:
+      - id: 125
+        type: integer
+        optional: true
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 90
+  - entity: switch
+    name: Real time data refresh
+    icon: "mdi:restart"
+    category: config
+    dps:
+      - id: 126
+        type: boolean
+        optional: true
+        name: switch
   - entity: select
     name: Alarm
     icon: "mdi:alert"
