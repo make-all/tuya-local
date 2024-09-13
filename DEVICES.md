@@ -372,7 +372,7 @@
 ### Smart Meter/Circuit Breaker
 
 - Atorch S1WP energy monitoring switch with display
-- Atorch AT2PL energy monitoring breaker switch
+- Atorch AT2PL energy monitoring breaker switch (also working for GR2PWS)
 - Atorch AT4PW energy monitor
 - Aulifants SMES200 energy monitoring breaker switch
 - Avidsen Soria 400W solar inverter
@@ -672,6 +672,7 @@ work reliably, even if listed below.
 
 ### Doorbells
 
+- Cleverio CD200 video doorbell
 - Iebeyond ECH doorbell with 433MHz RF hub
 - KW02 video doorbell
 - WHM-04 doorbell (sold under various brands)

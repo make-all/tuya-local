@@ -665,7 +665,7 @@ Further device support has been made with the assistance of users. Please consid
 - [zaubara](https://github.com/zaubara) for assisting with support for Ciarra CBCS4850 range hood.
 - [ap20132022](https://github.com/ap20132022) for assisting with support for Cecofry 5500 air fryer.
 - [alexandrebelloni](https://github.com/alexandrebelloni) for contributing improvements to Vevor EV charger.
-- [ekalle-swe](https://github.com/ekalle-swe) for assisting with support for Loeffen LFIM6000 ice cube maker and Cleverio AP100 air purifier.
+- [ekalle-swe](https://github.com/ekalle-swe) for assisting with support for Loeffen LFIM6000 ice cube maker, Cleverio AP100 air purifier and CD200 video doorbell.
 - [Athemis](https://github.com/Athemis) for contributing support for Aktobis WDH-310EK dehumidifier.
 - [carmelo42](https://github.com/carmelo42) for contributing support for Fujicool Yuzu heat pump.
 - [dkvk](https://github.com/dkvk) for contributing support for Malmbergs single and dual dimmer modules.
