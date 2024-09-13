@@ -673,3 +673,4 @@ Further device support has been made with the assistance of users. Please consid
 - [larronni](https://github.com/larronni) for contributing support for Calex aroma diffuser.
 - [JennyIglesias](https://github.com/JennyIglesias) for assisting with support for Tongou TO-Q-SYS-WT circuit breaker
 - [pot-noble](https://github.com/pot-noble) for contributing support for Petrust TK-WF002 pet fountain
+- [nedvedhonza](https://github.com/nedvedhonza) for contributing support for Fairland RMIC06 pool heat pump.

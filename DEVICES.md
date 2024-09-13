@@ -114,7 +114,8 @@
 
 - BWT FI 45 heat pump
 - Evotherm ETI series heat pump
-- Fairland IPHCR15 pool heat pump (matches others above, but allows control of heat/cool modes while others seem to be fixed to auto only)
+- Fairland IPHCR15 pool heat pump (allows control of heat/cool modes)
+- Fairland RMIC06 pool heat pump
 - Fairland X20 series (also sold as Pool Systems IPS 100MAX)
 - Garden PAC pool heat pump (also works with Summerwave Si Series)
 - Madimack Eco pool heat pump
