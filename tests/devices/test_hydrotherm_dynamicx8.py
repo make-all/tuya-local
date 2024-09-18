@@ -44,7 +44,7 @@ class TestHydrothermDynamicX8(
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            WaterHeaterEntityFeature.OPERATION_MODE,
+            WaterHeaterEntityFeature.OPERATION_MODE | WaterHeaterEntityFeature.ON_OFF,
         )
 
     def test_temperature_unit_returns_celsius(self):

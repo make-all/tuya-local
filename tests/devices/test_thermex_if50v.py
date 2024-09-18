@@ -45,7 +45,8 @@ class TestThermexIF50V(
             self.subject.supported_features,
             WaterHeaterEntityFeature.OPERATION_MODE
             | WaterHeaterEntityFeature.TARGET_TEMPERATURE
-            | WaterHeaterEntityFeature.AWAY_MODE,
+            | WaterHeaterEntityFeature.AWAY_MODE
+            | WaterHeaterEntityFeature.ON_OFF,
         )
 
     def test_temperature_unit_returns_celsius(self):
