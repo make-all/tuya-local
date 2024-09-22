@@ -676,3 +676,4 @@ Further device support has been made with the assistance of users. Please consid
 - [nedvedhonza](https://github.com/nedvedhonza) for contributing support for Fairland RMIC06 pool heat pump.
 - [vossim](https://github.com/vossim) for contributing support for a second variant of Tonepie cat litter box.
 - [chmielowiec](https://github.com/chmielowiec) for contributing support for Moebot RETURNING state.
+- [InyoEndo](https://github.com/InyoEndo) for assistance supporting Sanden GAU-A45HPD water heat-pump controller.

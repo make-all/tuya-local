@@ -144,6 +144,7 @@
 - Hydrotherm Dynamic/X8 heat pump hot water systems (Gen 5 and 6)
 - ITS-4.5HD super water heat pump
 - Koi Duo HTW-TD-080KOID
+- Sanden GAU-A45HPD WiFi heat pump controller
 - Thermex IF series V pro hot water systems
 - Thermex Lima 80V
 
