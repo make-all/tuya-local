@@ -48,14 +48,14 @@ primary_entity:
       name: temperature_unit
       type: string
     - id: 104
-      name: swing_mode 
+      name: swing_mode
       type: boolean
       mapping:
         - dps_val: true
           value: vertical
         - dps_val: false
           value: "off"
-    
+
 secondary_entities:
   - entity: select
     translation_key: temperature_unit
@@ -73,16 +73,16 @@ secondary_entities:
     translation_key: defrost
     category: diagnostic
     dps:
-      - id: 102        
-        type: boolean 
+      - id: 102
+        type: boolean
         name: sensor
   - entity: number
     category: config
     translation_key: timer
     dps:
       - id: 105
-        name: value 
-        type: integer 
+        name: value
+        type: integer
         unit: min
         range:
           min: 0
@@ -94,7 +94,7 @@ secondary_entities:
     dps:
       - id: 106
         name: sensor
-        type: integer 
+        type: integer
   - entity: sensor
     category: diagnostic
     name: model
