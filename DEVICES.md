@@ -221,6 +221,7 @@
 - Duux Whisper Flex pedestal fan
 - Duux Whisper Flex Ultimate
 - Eglo 5 speed + sleep ceiling fan
+- eLinkSmart KH-SY2626 pedestal fan
 - Fanco Eco Silent Deluxe ceiling fan with LED light
 - FlinQ Breeze indoor pedestal fan
 - Goldair GCPF315 fan
