@@ -725,6 +725,7 @@ port and password.
 - Petoneer Fresco Hydrate Ultra pet fountain
 - Petrust TK-WF002 pet fountain
 - PNI water feeder
+- Puppy Kitty automatic pet feeder
 - Rojeco PTM-001 pet feeder (two versions)
 - Sobralik pet fountain
 - Tesla Smart pet feeder

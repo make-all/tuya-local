@@ -561,7 +561,7 @@ Further device support has been made with the assistance of users. Please consid
 - [wlfc2031](https://github.com/wlfc2031) for assisting with support for Ailrinni BLE fingerprint locks.
 - [MerzkayaGnida](https://github.com/MerzkayaGnida) for assisting with support for Koi Duo water heaters.
 - [rostKo](https://github.com/rostKo) for contributing improvements to WDYK energy monitors.
-- [Aegeontis](https://github.com/Aegeontis) for contributing Puppy Kitty compatibility for Catit Pixi smart feeder.
+- [Aegeontis](https://github.com/Aegeontis) for contributing support for Puppy Kitty pet feeder.
 - [chris-garbas](https://github.com/chris-garbas) for contributing improvements to IPS pro heatpump.
 - [Nyotee](https://github.com/Nyotee) for assisting with support for Tesla Smart AUX series air conditioner.
 - [psuet](https://github.com/psuet) for assisting with support for XCase lock boxes.
