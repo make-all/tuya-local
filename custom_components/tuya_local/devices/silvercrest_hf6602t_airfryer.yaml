@@ -1,0 +1,244 @@
+name: Air fryer
+products:
+  - id: rmywxak3angdgh0d
+    name: SilverCrest HF-6602T
+primary_entity:
+  entity: switch
+  icon: "mdi:toaster-oven"
+  category: config
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 11
+      type: string
+      optional: true
+      name: multistep
+    - id: 17
+      type: integer
+      name: cooking_history
+secondary_entities:
+  - entity: button
+    name: Start
+    icon: "mdi:play"
+    dps:
+      - id: 2
+        type: boolean
+        name: button
+  - entity: button
+    name: Pause
+    icon: "mdi:pause"
+    dps:
+      - id: 13
+        type: boolean
+        name: button
+  - entity: select
+    name: Mode
+    translation_key: recipe
+    dps:
+      - id: 3
+        type: string
+        name: option
+        mapping:
+          - dps_val: fish
+            value: fish
+          - dps_val: cake
+            value: cake
+          - dps_val: vegetable
+            value: vegetables
+          - dps_val: bacon
+            value: bacon
+          - dps_val: drumsticks
+            value: chicken_drumsticks
+          - dps_val: chips
+            value: fries
+          - dps_val: roast_chicken
+            value: chicken
+          - dps_val: steak
+            value: steak
+          - dps_val: shrimp
+            value: shrimp
+          - dps_val: bread
+            value: bread
+          - dps_val: custom
+            value: custom
+  - entity: number
+    name: Cloud recipe
+    category: config
+    icon: "mdi:cloud-print"
+    dps:
+      - id: 4
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 999999
+  - entity: sensor
+    name: Status
+    class: enum
+    dps:
+      - id: 5
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: Standby
+          - dps_val: setting
+            value: Setting
+          - dps_val: pre_heating
+            value: Pre-heating
+          - dps_val: keep_warm
+            value: Keeping warm
+          - dps_val: cooking
+            value: Cooking
+          - dps_val: scheduled
+            value: Scheduled
+          - dps_val: pausing
+            value: Paused
+          - dps_val: completed
+            value: Done
+          - dps_val: preheat_done
+            value: At temperature
+  - entity: number
+    class: temperature
+    dps:
+      - id: 6
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 60
+          max: 200
+        mapping:
+          - step: 5
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 7
+        type: integer
+        optional: true
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 8
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 180
+  - entity: number
+    name: Cooking time
+    translation_key: timer
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 60
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        unit: min
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 12
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 12
+        type: bitfield
+        name: fault_code
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 14
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+          - dps_val: null
+            value: celsius
+            hidden: true
+  - entity: switch
+    name: Preheat
+    icon: "mdi:toaster-oven"
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+  - entity: event
+    name: Reminder
+    dps:
+      - id: 101
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: null
+          - dps_val: "1"
+            value: flip
+          - dps_val: "2"
+            value: done
+  - entity: switch
+    name: Keep warm
+    icon: "mdi:heat-wave"
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Timer remaining
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: number
+    name: Shake
+    category: config
+    icon: "mdi:vibrate"
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 60
+  - entity: sensor
+    name: Cooling countdown
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: s

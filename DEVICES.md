@@ -368,6 +368,7 @@
 - Setti+ KT950W smart kettle
 - Silvercrest 1.7L smart kettle
 - Silvercrest coffee maker
+- Silvercrest HF-6602T air fryer
 - Ultenic K10 air fryer
 - Weekett smart kettle
 
