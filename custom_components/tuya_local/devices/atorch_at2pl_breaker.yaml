@@ -126,8 +126,7 @@ secondary_entities:
           min: 1
           max: 27500
   - entity: select
-    name: Language
-    icon: "mdi:translate"
+    translation_key: language
     category: config
     dps:
       - id: 107
@@ -135,9 +134,9 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: chinese
-            value: 中文
+            value: chinese
           - dps_val: english
-            value: English
+            value: english
   - entity: light
     name: Display active
     category: config

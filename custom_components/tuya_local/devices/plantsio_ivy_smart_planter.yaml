@@ -399,7 +399,7 @@ secondary_entities:
           - dps_val: true
             value: "24 Hour Clock"
   - entity: select
-    name: Language
+    translation_key: language
     icon: "mdi:translate"
     category: config
     dps:
@@ -408,13 +408,13 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: 0
-            value: "中文"
+            value: chinese
           - dps_val: 1
-            value: "English"
+            value: english
           - dps_val: 2
-            value: "日本語"
+            value: japanese
           - dps_val: 3
-            value: "Français"
+            value: french
   - entity: switch
     name: Location weather
     icon: "mdi:weather-pouring"

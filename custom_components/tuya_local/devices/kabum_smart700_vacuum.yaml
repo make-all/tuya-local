@@ -242,8 +242,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: select
-    name: Voice language
-    icon: "mdi:translate"
+    translation_key: language
     category: config
     dps:
       - id: 111
@@ -252,9 +251,9 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: cn
-            value: 中文
+            value: chinese
           - dps_val: en
-            value: English
+            value: english
   - entity: number
     name: Volume
     category: config
