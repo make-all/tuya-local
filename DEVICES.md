@@ -84,6 +84,7 @@
 - Fisher Summer air conditioner
 - Fujicool Yuzu heat pump
 - Idea Heating Belt (with CS1 USB dongle)
+- Inventor Comfort air conditioner
 - Inventor Leon (Tokens Legend series) air conditioner
 - Klarstein Iceblock Ecosmart air conditioner
 - Kogan portable air conditioners (Y09, Y12, Y16)
