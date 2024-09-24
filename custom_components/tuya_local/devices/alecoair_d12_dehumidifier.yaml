@@ -65,17 +65,12 @@ secondary_entities:
         unit: C
         class: measurement
   - entity: switch
-    name: Sleep
+    translation_key: sleep
     category: config
     dps:
       - id: 14
         type: boolean
         name: switch
-        mapping:
-          - dps_val: false
-            icon: "mdi:sleep-off"
-          - dps_val: true
-            icon: "mdi:sleep"
   - entity: lock
     translation_key: child_lock
     category: config

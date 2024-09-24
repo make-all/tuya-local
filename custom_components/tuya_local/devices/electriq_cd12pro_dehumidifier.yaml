@@ -103,17 +103,12 @@ secondary_entities:
         name: switch
         type: boolean
   - entity: switch
-    name: Sleep
+    translation_key: sleep
     category: config
     dps:
       - id: 104
         type: boolean
         name: switch
-        mapping:
-          - dps_val: true
-            icon: "mdi:sleep"
-          - dps_val: false
-            icon: "mdi:sleep-off"
   - entity: binary_sensor
     translation_key: tank_full
     category: diagnostic
