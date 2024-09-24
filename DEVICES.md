@@ -264,6 +264,7 @@
 - essentials portable air purifier
 - Himox H05 and H06 air purifiers
 - Hosome air purifier
+- iHunt 400m³/h air purifier
 - Klarta Stor 2 air purifier
 - Kogan air purifier
 - Lifubide X600 air purifier
