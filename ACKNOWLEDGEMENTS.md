@@ -678,3 +678,4 @@ Further device support has been made with the assistance of users. Please consid
 - [chmielowiec](https://github.com/chmielowiec) for contributing support for Moebot RETURNING state.
 - [InyoEndo](https://github.com/InyoEndo) for assistance supporting Sanden GAU-A45HPD water heat-pump controller.
 - [sudo-nitz](https://github.com/sudo-nitz) for assistance supporting eLinkSmart KH-SY2626 fan.
+- [andrewigali](https://github.com/andrewigali) for contributing support for HDMI TV ambient lighting 65 LED strip.

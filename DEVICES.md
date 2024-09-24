@@ -550,6 +550,7 @@ of device.
 - Feit RGBWW light bulb (like generic RGBWW, but without scene support)
 - Galaxy Projector
 - HDMI sync light
+- HDMI TV ambient lighting 65
 - iHD001 LED controller
 - Ion LED WiFi dimmer
 - Kojima motion sensor RGBCW nightlight
