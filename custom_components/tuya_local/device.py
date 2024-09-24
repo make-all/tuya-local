@@ -76,7 +76,7 @@ class TuyaLocalDevice(object):
                     parent = tinytuya.Device(dev_id, address, local_key)
                     hass.data[DOMAIN][dev_id] = {"tuyadevice": parent}
                 self._api = tinytuya.Device(
-                    dev_id,
+                    dev_cid,
                     cid=dev_cid,
                     parent=parent,
                 )
@@ -99,7 +99,6 @@ class TuyaLocalDevice(object):
         self._api.set_socketRetryLimit(1)
         if self._api.parent:
             # Retries cause problems for other children of the parent device
-            # Currently, we only support polling for child devices
             self._api.parent.set_socketRetryLimit(1)
 
         self._refresh_task = None
@@ -157,7 +156,8 @@ class TuyaLocalDevice(object):
         self._shutdown_listener = self._hass.bus.async_listen_once(
             EVENT_HOMEASSISTANT_STOP, self.async_stop
         )
-        self._refresh_task = self._hass.async_create_task(self.receive_loop())
+        if not self._refresh_task:
+            self._refresh_task = self._hass.async_create_task(self.receive_loop())
 
     def start(self):
         if self._hass.is_stopping:
@@ -675,3 +675,4 @@ async def async_delete_device(hass: HomeAssistant, config: dict):
     _LOGGER.info("Deleting device: %s", device_id)
     await hass.data[DOMAIN][device_id]["device"].async_stop()
     del hass.data[DOMAIN][device_id]["device"]
+    del hass.data[DOMAIN][device_id]["tuyadevice"]
