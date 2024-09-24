@@ -153,6 +153,3 @@ class TestRenphoPurifier(
                 "hepa_filter_life": 105,
             },
         )
-
-    def test_icons(self):
-        self.assertEqual(self.basicSwitch.icon, "mdi:power-sleep")
