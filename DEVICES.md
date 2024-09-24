@@ -720,6 +720,7 @@ port and password.
 - Els Pet Spaceship pet litter box
 - Faroro PF50 pet feeder
 - HoneyGuardian S56 pet feeder
+- iLonda L88 fish feeder
 - Leo's Loo Too pet toilet
 - Littepets MA2 series Cute Baby cat litter box
 - Nedis pet feeder
