@@ -59,8 +59,7 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: select
-    name: Power on state
-    icon: "mdi:toggle-switch"
+    translation_key: initial_state
     category: config
     dps:
       - id: 14
@@ -69,11 +68,11 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: "off"
-            value: "Off"
+            value: "off"
           - dps_val: "on"
-            value: "On"
-          - dps_val: "memory"
-            value: "Last state"
+            value: "on"
+          - dps_val: memory
+            value: memory
   - entity: light
     translation_key: backlight
     category: config

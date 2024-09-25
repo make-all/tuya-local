@@ -94,18 +94,18 @@ secondary_entities:
             step: 60
   - entity: select
     category: config
-    name: Restore power state
+    translation_key: initial_state
     dps:
       - id: 38
         name: option
         type: string
         mapping:
           - dps_val: memory
-            value: Remember Last Status
+            value: memory
           - dps_val: "on"
-            value: "On"
+            value: "on"
           - dps_val: "off"
-            value: "Off"
+            value: "off"
   - entity: lock
     category: config
     translation_key: child_lock

@@ -85,11 +85,11 @@ class TestMoesTempHumidity(
                 },
                 {
                     "dps": INIT_DPS,
-                    "name": "select_power_on_state",
+                    "name": "select_initial_state",
                     "options": {
-                        "on": "On",
-                        "off": "Off",
-                        "memory": "Last State",
+                        "on": "on",
+                        "off": "off",
+                        "memory": "memory",
                     },
                 },
             ]
@@ -119,7 +119,7 @@ class TestMoesTempHumidity(
                 "number_minimum_humidity",
                 "number_timer_1",
                 "number_timer_2",
-                "select_power_on_state",
+                "select_initial_state",
                 "number_high_temperature_switch_level",
                 "switch_high_temperature_switch",
                 "number_high_temperature_alarm_level",

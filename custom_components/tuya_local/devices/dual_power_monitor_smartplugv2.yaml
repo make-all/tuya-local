@@ -129,8 +129,7 @@ secondary_entities:
             value: false
           - value: true
   - entity: select
-    name: Initial state
-    icon: "mdi:toggle-switch"
+    translation_key: initial_state
     category: config
     dps:
       - id: 38
@@ -139,11 +138,11 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: "on"
-            value: "On"
+            value: "on"
           - dps_val: "off"
-            value: "Off"
-          - dps_val: "memory"
-            value: "Last state"
+            value: "off"
+          - dps_val: memory
+            value: memory
           - dps_val: null
             invalid: true
   - entity: lock

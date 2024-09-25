@@ -175,8 +175,7 @@ secondary_entities:
         name: calibration
         optional: true
   - entity: select
-    name: Initial state
-    icon: "mdi:toggle-switch"
+    translation_key: initial_state
     category: config
     dps:
       - id: 38
@@ -188,7 +187,7 @@ secondary_entities:
           - dps_val: "off"
             value: "off"
           - dps_val: "memory"
-            value: Last state
+            value: memory
   - entity: lock
     translation_key: child_lock
     category: config

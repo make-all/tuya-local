@@ -317,18 +317,18 @@ secondary_entities:
           max: 99
   - entity: select
     category: config
-    name: Initial state
+    translation_key: initial_state
     dps:
       - id: 138
         type: string
         name: option
         mapping:
           - dps_val: open
-            value: "On"
+            value: "on"
           - dps_val: colse
-            value: "Off"
+            value: "off"
           - dps_val: memory
-            value: Last state
+            value: memory
   - entity: switch
     name: Prepay
     category: config

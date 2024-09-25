@@ -427,8 +427,7 @@ secondary_entities:
           min: 0
           max: 99
   - entity: select
-    name: Initial state
-    icon: "mdi:toggle-switch"
+    translation_key: initial_state
     category: config
     dps:
       - id: 138
@@ -436,9 +435,9 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: open
-            value: "Off"
+            value: "off"
           - dps_val: close
-            value: "On"
+            value: "on"
   - entity: switch
     name: Prepaid
     icon: "mdi:hand-coin"

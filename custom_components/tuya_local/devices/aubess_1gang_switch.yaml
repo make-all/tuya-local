@@ -32,20 +32,19 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: select
-    name: Restore power state
+    translation_key: initial_state
     category: config
-    icon: "mdi:toggle-switch"
     dps:
       - id: 38
         type: string
         name: option
         mapping:
           - dps_val: "0"
-            value: "Off"
+            value: "off"
           - dps_val: "1"
-            value: "On"
+            value: "on"
           - dps_val: "2"
-            value: Remember last state
+            value: memory
   - entity: sensor
     name: Energy
     category: diagnostic

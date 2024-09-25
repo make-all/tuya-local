@@ -93,19 +93,18 @@ secondary_entities:
             step: 60
   - entity: select
     category: config
-    name: Restore power state
-    icon: "mdi:power-settings"
+    translation_key: initial_state
     dps:
       - id: 14
         name: option
         type: string
         mapping:
           - dps_val: 0
-            value: "Off"
+            value: "off"
           - dps_val: 1
-            value: "On"
+            value: "on"
           - dps_val: 2
-            value: Remember Last Status
+            value: memory
         optional: true
         force: true
   - entity: light

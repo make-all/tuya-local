@@ -34,8 +34,7 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: select
-    name: Initial state
-    icon: "mdi:toggle-switch"
+    translation_key: initial_state
     category: config
     dps:
       - id: 38
@@ -43,11 +42,11 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: "off"
-            value: "Off"
+            value: "off"
           - dps_val: "on"
-            value: "On"
+            value: "on"
           - dps_val: memory
-            value: Last state
+            value: memory
   - entity: select
     name: Light mode
     icon: "mdi:television-ambient-light"

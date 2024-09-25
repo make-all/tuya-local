@@ -37,17 +37,16 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: select
-    name: Restore power state
-    icon: "mdi:toggle-switch"
+    translation_key: initial_state
     category: config
     dps:
       - id: 7
         type: string
         name: option
         mapping:
-          - dps_val: 0
-            value: "OFF"
-          - dps_val: 1
-            value: "ON"
-          - dps_val: 2
-            value: Remember last state
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: "on"
+          - dps_val: "2"
+            value: memory

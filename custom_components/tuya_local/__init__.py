@@ -598,6 +598,10 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
                 "switch_sleep_mode": "switch_sleep",
                 "switch_sleep_timer": "switch_sleep",
                 "select_voice_language": "select_language",
+                "select_restore_power_state": "select_initial_state",
+                "select_power_on_state": "select_initial_state",
+                "select_restart_status": "select_initial_state",
+                "select_poweron_status": "select_initial_state",
             }
             for suffix, new_suffix in replacements.items():
                 if old_id.endswith(suffix):

@@ -92,19 +92,18 @@ secondary_entities:
           - value: true
   - entity: select
     category: config
-    name: Initial state
-    icon: "mdi:toggle-switch"
+    translation_key: initial_state
     dps:
       - id: 38
         type: string
         name: option
         mapping:
           - dps_val: "on"
-            value: "On"
+            value: "on"
           - dps_val: "off"
-            value: "Off"
+            value: "off"
           - dps_val: memory
-            value: "Last State"
+            value: memory
   - entity: switch
     name: Overcharge cutoff
     category: config

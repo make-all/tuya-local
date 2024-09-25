@@ -214,8 +214,7 @@ secondary_entities:
           min: 1
           max: 10
   - entity: select
-    name: Initial state
-    icon: "mdi:toggle-switch"
+    translation_key: initial_state
     category: config
     dps:
       - id: 117
@@ -223,11 +222,11 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: keep
-            value: Last state
+            value: memory
           - dps_val: "off"
-            value: "Off"
+            value: "off"
           - dps_val: "on"
-            value: "On"
+            value: "on"
   - entity: select
     name: Schedule
     icon: "mdi:calendar-weekend"

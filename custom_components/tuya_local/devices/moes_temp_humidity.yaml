@@ -148,7 +148,7 @@ secondary_entities:
           min: 0
           max: 86400
   - entity: select
-    name: Power on state
+    translation_key: initial_state
     category: config
     dps:
       - id: 105
@@ -156,11 +156,11 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: "on"
-            value: "On"
+            value: "on"
           - dps_val: "off"
-            value: "Off"
+            value: "off"
           - dps_val: memory
-            value: Last State
+            value: memory
   - entity: number
     name: High temperature switch level
     category: config

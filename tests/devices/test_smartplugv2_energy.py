@@ -81,9 +81,9 @@ class TestSwitchV2Energy(
             INITIAL_DPS,
             self.entities.get("select_initial_state"),
             {
-                "on": "On",
-                "off": "Off",
-                "memory": "Last State",
+                "on": "on",
+                "off": "off",
+                "memory": "memory",
             },
         )
         self.setUpMultiSensors(

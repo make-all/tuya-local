@@ -327,7 +327,7 @@ secondary_entities:
           - dps_val: all
             value: Both
   - entity: select
-    name: Initial state
+    translation_key: initial_state
     category: config
     dps:
       - id: 117
@@ -335,11 +335,11 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: keep
-            value: Previous
+            value: memory
           - dps_val: "off"
-            value: "Off"
+            value: "off"
           - dps_val: "on"
-            value: "On"
+            value: "on"
   - entity: select
     name: Schedule
     category: config

@@ -24,19 +24,18 @@ secondary_entities:
         unit: min
   - entity: select
     category: config
-    name: "Restore Power State"
-    icon: "mdi:toggle-switch"
+    translation_key: initial_state
     dps:
       - id: 14
         name: option
         type: string
         mapping:
           - dps_val: last
-            value: "Remember Last Status"
+            value: memory
           - dps_val: power_on
-            value: "On"
+            value: "on"
           - dps_val: power_off
-            value: "Off"
+            value: "off"
   - entity: select
     category: config
     name: "Backlight Mode"

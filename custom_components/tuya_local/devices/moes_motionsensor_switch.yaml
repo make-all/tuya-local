@@ -37,18 +37,18 @@ primary_entity:
 secondary_entities:
   - entity: select
     category: config
-    name: Initial state
+    translation_key: initial_state
     dps:
       - id: 14
         name: option
         type: string
         mapping:
           - dps_val: memory
-            value: Last state
+            value: memory
           - dps_val: "on"
-            value: "On"
+            value: "on"
           - dps_val: "off"
-            value: "Off"
+            value: "off"
   - entity: select
     name: Indicator light
     category: config
