@@ -162,8 +162,7 @@ secondary_entities:
         unit: min
         class: measurement
   - entity: select
-    name: Mop control
-    icon: "mdi:format-color-fill"
+    translation_key: mopping
     category: config
     dps:
       - id: 20
@@ -171,11 +170,11 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: low
-            value: Low
+            value: low
           - dps_val: middle
-            value: Medium
+            value: medium
           - dps_val: high
-            value: High
+            value: high
   - entity: button
     name: Factory reset
     category: config

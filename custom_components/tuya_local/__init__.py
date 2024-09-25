@@ -602,6 +602,14 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
                 "select_power_on_state": "select_initial_state",
                 "select_restart_status": "select_initial_state",
                 "select_poweron_status": "select_initial_state",
+                "select_mop_mode": "select_mopping",
+                "select_mop_control": "select_mopping",
+                "select_water_setting": "select_mopping",
+                "select_water_mode": "select_mopping",
+                "select_water_control": "select_mopping",
+                "select_water_tank": "select_mopping",
+                "light_light": "light",
+                "light_lights": "light",
             }
             for suffix, new_suffix in replacements.items():
                 if old_id.endswith(suffix):

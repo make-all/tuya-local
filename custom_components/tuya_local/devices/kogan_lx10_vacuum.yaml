@@ -175,9 +175,8 @@ secondary_entities:
         optional: true
         unit: m²
   - entity: select
-    name: Water mode
+    translation_key: mopping
     category: config
-    icon: "mdi:water"
     dps:
       - id: 110
         name: option
@@ -187,11 +186,11 @@ secondary_entities:
           - dps_val: 'off'
             value: 'off'
           - dps_val: quiet
-            value: quiet
+            value: low
           - dps_val: auto
             value: auto
           - dps_val: strong
-            value: strong
+            value: high
   - entity: switch
     name: Disturb switch
     category: config

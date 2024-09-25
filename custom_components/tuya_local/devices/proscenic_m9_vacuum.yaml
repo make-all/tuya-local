@@ -218,8 +218,7 @@ secondary_entities:
         unit: "%"
         class: measurement
   - entity: select
-    name: Water setting
-    icon: "mdi:water"
+    translation_key: mopping
     dps:
       - id: 10
         name: option
@@ -230,17 +229,17 @@ secondary_entities:
               - dps_val: installed
                 mapping:
                   - dps_val: closed
-                    value: "Off"
+                    value: "off"
                   - dps_val: low
-                    value: Low
+                    value: low
                   - dps_val: middle
-                    value: Middle
+                    value: medium
                   - dps_val: high
-                    value: High
+                    value: high
               - dps_val: none
                 mapping:
                   - dps_val: closed
-                    value: "Off"
+                    value: "off"
       - id: 40
         name: mopstate
         type: string

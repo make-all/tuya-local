@@ -177,9 +177,8 @@ secondary_entities:
         optional: true
         unit: m²
   - entity: select
-    name: Mopping mode
+    translation_key: mopping
     category: config
-    icon: "mdi:water"
     dps:
       - id: 110
         name: option
@@ -187,11 +186,11 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: low
-            value: Low
+            value: low
           - dps_val: mid
-            value: Medium
+            value: medium
           - dps_val: high
-            value: High
+            value: high
   - entity: switch
     name: Do not disturb
     category: config

@@ -126,7 +126,7 @@ secondary_entities:
         name: sensor
         unit: min
   - entity: select
-    name: Water control
+    translation_key: mopping
     category: config
     icon: "mdi:cup-water"
     dps:
@@ -134,9 +134,9 @@ secondary_entities:
         name: option
         type: string
         mapping:
-          - dps_val: "closed"
-            value: "Off"
-          - dps_val: "low"
-            value: Low
-          - dps_val: "high"
-            value: Strong
+          - dps_val: closed
+            value: "off"
+          - dps_val: low
+            value: low
+          - dps_val: high
+            value: high
