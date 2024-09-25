@@ -25,7 +25,16 @@ primary_entity:
         - dps_val: auto
           value: 100
 secondary_entities:
+  - entity: switch
+    name: Child lock
+    class: switch
+    icon: "mdi:lock-outline"
+    dps:
+      - id: 7
+        name: switch
+        type: boolean
   - entity: light
+    name: Light
     category: config
     dps:
       - id: 8
@@ -84,8 +93,16 @@ secondary_entities:
             value: "1h"
           - dps_val: "2h"
             value: "2h"
+          - dps_val: "3h"
+            value: "3h"
           - dps_val: "4h"
             value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: "7h"
+            value: "7h"
   - entity: switch
     name: Auto
     class: switch
