@@ -47,6 +47,7 @@
 - MRC Magnum floor heating
 - Nedis ceramic PTC fan heater
 - Nedis convection heater - WIFIHTPL20F model
+- Nybro heater
 - Orion OWH-PTC2000 heater
 - Princess 350 panel heater
 - Prosto PTC 2000 heater
