@@ -1,6 +1,9 @@
-name: Galaxy Light
+name: Star projector
 products:
   - id: okyhahmixunjmbca
+    name: Galaxy projector
+  - id: jteg9ktrhbxtiicz
+    name: BlissLights Sky Lite Evolve SKY-EVOLVE-B-RCW8
 primary_entity:
   entity: light
   dps:
@@ -48,6 +51,16 @@ secondary_entities:
         mapping:
           - scale: 60
             step: 60
+      - id: 51
+        name: effect
+        type: string
+        mapping:
+          - dps_val: scene
+            value: Scene
+          - dps_val: laser
+            value: Laser
+          - dps_val: colour
+            value: Color
   - entity: light
     translation_key: laser
     dps:
@@ -64,18 +77,15 @@ secondary_entities:
         name: effect
         type: string
         mapping:
-          - dps_val: manual
-            value: Manual
           - dps_val: scene
             value: Scene
+          - dps_val: manual
+            value: Manual
           - dps_val: music
             value: Music
-      - id: 58
-        name: star_scene
-        type: string
-        optional: true
   - entity: fan
     name: Laser movement
+    icon: "mdi:rotate-3d-variant"
     dps:
       - id: 60
         type: boolean
@@ -86,3 +96,20 @@ secondary_entities:
         range:
           min: 0
           max: 100
+  - entity: select
+    name: Theme
+    icon: "mdi:movie-open-play"
+    category: config
+    dps:
+      - id: 58
+        type: string
+        name: option
+        mapping:
+          - dps_val: "AAA="
+            value: Cosmos
+          - dps_val: "AAE="
+            value: Sky
+          - dps_val: "AAI="
+            value: Space
+          - dps_val: "AAM="
+            value: Ocean
