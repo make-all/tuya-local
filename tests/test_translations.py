@@ -2,10 +2,10 @@
 Tests for translation files.
 """
 
+import warnings
 from fnmatch import fnmatch
 from os import walk
 from os.path import dirname, join
-import warnings
 
 from homeassistant.util.json import load_json
 
