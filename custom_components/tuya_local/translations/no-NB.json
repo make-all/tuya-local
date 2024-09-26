@@ -121,6 +121,22 @@
                     "off": "OK",
                     "on": "Full"
                 }
+            },
+            "casdon_oven_fault": {
+                "state_attributes": {
+                    "fault_message": {
+                        "state": {
+                            "e1": "E1: Kammer overoppheting beskyttelse (over 290°C)",
+                            "e2": "E2: Evaporation tray overoppheting beskyttelse (over 200°C)",
+                            "e3": "E3: Kammer lav temperatur beskyttelse (under 35°C)",
+                            "e4": "E4: Evaporation tray lav temperatur beskyttelse (under 35°C)",
+                            "e5": "E5: Sensor tilkoblingsfeil (Åpen krets)",
+                            "e6": "E6: Sensor tilkoblingsfeil (Kortslutning)",
+                            "e7": "E7: Displaybrett kommunikasjonsfeil",
+                            "e8": "E8: Vanntank åpen (CN7) eller Evaporation tray tørr (CN3)"
+                        }
+                    }
+                }
             }
         },
         "climate": {
@@ -215,6 +231,37 @@
                     "hvac_mode": {
                         "state": {
                             "fan_only": "Pause"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "healthy_steam": "Sunn damp",
+                            "fresh_steam": "Fersk damp",
+                            "high_temp_steam": "Høy temp damp",
+                            "stew": "Stuing",
+                            "bake_up_and_down": "Bake opp og ned",
+                            "bbq": "BBQ",
+                            "bottom_hot_air": "Bunn varmluft",
+                            "on_strong_roast": "På sterk steking",
+                            "3d_hot_air": "3D varmluft",
+                            "air_fry": "Luftfritering",
+                            "steam_frying": "Dampsteking",
+                            "one_click_bread": "Ett-klikk brød",
+                            "quick_heat": "Kjapp varming",
+                            "keep_warm": "Hold varm",
+                            "unfreeze": "Avriming",
+                            "fermentation": "Fermentering",
+                            "descale": "Avkalkning",
+                            "local_recipes": "Lokale oppskrifter",
+                            "drying": "Tørking",
+                            "custom": "Egendefinert",
+                            "low_steaming": "Lav Steaming",
+                            "medium_steaming": "Medium Steaming",
+                            "high_steaming": "Høy Steaming"
                         }
                     }
                 }
@@ -431,11 +478,58 @@
                     "celsius": "Celsius",
                     "fahrenheit": "Fahrenheit"
                 }
+            },
+            "oven_built_in_recipe": {
+                "name": "Innebygd oppskrift",
+                "state": {
+                    "none": "Ingen",
+                    "steamed_egg_with_okra": "Dampet egg med okra",
+                    "steamed_sea_bass": "Dampet havabbor",
+                    "steamed_prawns": "Dampede reker",
+                    "handmade_steamed_bread": "Håndlaget dampet brød",
+                    "fan_steamed_baby_vegetables": "Vifte dampede babygrønnsaker",
+                    "braised_pork": "Braisert svinekjøtt",
+                    "snow_fungus_and_bird_s_nest": "Snøsopp og fuglerede",
+                    "crab_pot": "Krabbe gryte",
+                    "potato_ribs": "Potet ribber",
+                    "coconut_chicken_soup": "Kokosnøtt kyllingsuppe",
+                    "snack_platter": "Snackskål",
+                    "chicken_skewers": "Kyllingspyd",
+                    "roasted_pork_knuckle": "Stekt svineknoker",
+                    "dried_lemon": "Tørket sitron",
+                    "pork_jerky": "Svinekjøtt jerky",
+                    "crispy_hairtail": "Sprø hårhalet",
+                    "spicy_grilled_fish": "Krydret grillet fisk",
+                    "roasted_sweet_potatoes": "Stekte søtpoteter",
+                    "roasted_chicken_wings": "Stekte kyllingvinger",
+                    "cumin_lamb_chops": "Spisskummen lammekoteletter",
+                    "honey_grilled_chicken": "Honninggrillet kylling",
+                    "garlic_eggplant": "Hvitløk aubergine",
+                    "portuguese_egg_tart": "Portugisisk eggepai",
+                    "creme_brulee": "Crème brûlée",
+                    "cocoa_chips": "Kakao chips",
+                    "butter_cookies": "Smørkaker",
+                    "chiffon_cake": "Chiffonkake",
+                    "puff_pastry": "Smørdeig",
+                    "red_bean_bread": "Rød bønnebrød",
+                    "milk_toast": "Melketoast"
+                }
             }
         },
         "sensor": {
             "time_remaining": {
                 "name": "Gjenstående tid"
+            },
+            "cooking_status": {
+                "name": "Koketilstand",
+                "state": {
+                    "wait": "Venter på matlaging",
+                    "reservation": "Reservert",
+                    "cooking": "Matlaging pågår",
+                    "cancel": "Avbrutt",
+                    "done": "Ferdig",
+                    "pause": "Matlaging pause"
+                }
             }
         },
         "switch": {

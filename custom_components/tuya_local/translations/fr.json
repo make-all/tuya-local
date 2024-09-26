@@ -121,6 +121,22 @@
                     "off": "OK",
                     "on": "Pleine"
                 }
+            },
+                        "casdon_oven_fault": {
+                "state_attributes": {
+                    "fault_message": {
+                        "state": {
+                            "e1": "E1: Protection contre la surchauffe de la chambre (dépasse 290°C)",
+                            "e2": "E2: Protection contre la surchauffe du bac d'évaporation (dépasse 200°C)",
+                            "e3": "E3: Protection contre la basse température de la chambre (inférieure à 35°C)",
+                            "e4": "E4: Protection contre la basse température du bac d'évaporation (inférieure à 35°C)",
+                            "e5": "E5: Erreur de connexion du capteur (Circuit ouvert)",
+                            "e6": "E6: Erreur de connexion du capteur (Court-circuit)",
+                            "e7": "E7: Erreur de communication de la carte d'affichage",
+                            "e8": "E8: Réservoir d'eau ouvert (CN7) ou Bac d'évaporation sec (CN3)"
+                        }
+                    }
+                }
             }
         },
         "climate": {
@@ -215,6 +231,37 @@
                     "hvac_mode": {
                         "state": {
                             "fan_only": "Pause"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "healthy_steam": "Vapeur saine",
+                            "fresh_steam": "Vapeur fraîche",
+                            "high_temp_steam": "Vapeur haute température",
+                            "stew": "Ragoût",
+                            "bake_up_and_down": "Cuisson haut et bas",
+                            "bbq": "Barbecue",
+                            "bottom_hot_air": "Air chaud bas",
+                            "on_strong_roast": "Rôtissage fort",
+                            "3d_hot_air": "Air chaud 3D",
+                            "air_fry": "Friture à l'air",
+                            "steam_frying": "Friture à la vapeur",
+                            "one_click_bread": "Pain en un clic",
+                            "quick_heat": "Chauffage rapide",
+                            "keep_warm": "Garder au chaud",
+                            "unfreeze": "Décongeler",
+                            "fermentation": "Fermentation",
+                            "descale": "Détartrage",
+                            "local_recipes": "Recettes locales",
+                            "drying": "Séchage",
+                            "custom": "Personnalisé",
+                            "low_steaming": "Faible vapeur",
+                            "medium_steaming": "Vapeur moyenne",
+                            "high_steaming": "Haute vapeur"
                         }
                     }
                 }
@@ -431,11 +478,58 @@
                     "celsius": "Celsius",
                     "fahrenheit": "Fahrenheit"
                 }
+            },
+            "oven_built_in_recipe": {
+                "name": "Recette intégrée",
+                "state": {
+                    "none": "Aucun",
+                    "steamed_egg_with_okra": "Oeuf cuit à la vapeur avec okra",
+                    "steamed_sea_bass": "Bar cuit à la vapeur",
+                    "steamed_prawns": "Crevettes cuites à la vapeur",
+                    "handmade_steamed_bread": "Pain cuit à la vapeur fait main",
+                    "fan_steamed_baby_vegetables": "Légumes pour bébé cuits à la vapeur avec ventilateur",
+                    "braised_pork": "Porc braisé",
+                    "snow_fungus_and_bird_s_nest": "Fungus des neiges et nid d'oiseau",
+                    "crab_pot": "Crabe",
+                    "potato_ribs": "Côtes de porc aux pommes de terre",
+                    "coconut_chicken_soup": "Soupe de poulet à la noix de coco",
+                    "snack_platter": "Assiette de collations",
+                    "chicken_skewers": "Brochettes de poulet",
+                    "roasted_pork_knuckle": "Jarret de porc rôti",
+                    "dried_lemon": "Citron séché",
+                    "pork_jerky": "Viande de porc séchée",
+                    "crispy_hairtail": "Hairtail croustillant",
+                    "spicy_grilled_fish": "Poisson grillé épicé",
+                    "roasted_sweet_potatoes": "Patates douces rôties",
+                    "roasted_chicken_wings": "Ailes de poulet rôties",
+                    "cumin_lamb_chops": "Côtelettes d'agneau au cumin",
+                    "honey_grilled_chicken": "Poulet grillé au miel",
+                    "garlic_eggplant": "Aubergine à l'ail",
+                    "portuguese_egg_tart": "Tarte aux oeufs portugaise",
+                    "creme_brulee": "Crème brûlée",
+                    "cocoa_chips": "Chips de cacao",
+                    "butter_cookies": "Biscuits au beurre",
+                    "chiffon_cake": "Gâteau chiffon",
+                    "puff_pastry": "Pâte feuilletée",
+                    "red_bean_bread": "Pain aux haricots rouges",
+                    "milk_toast": "Pain au lait"
+                }
             }
         },
         "sensor": {
             "time_remaining": {
                 "name": "Temps restant"
+            },
+            "cooking_status": {
+                "name": "État de la cuisson",
+                "state": {
+                    "wait": "En attente de cuisson",
+                    "reservation": "En réservation",
+                    "cooking": "En cours",
+                    "cancel": "Annulation de la cuisson",
+                    "done": "Cuisson terminée",
+                    "pause": "Cuisson en pause"
+                }
             }
         },
         "switch": {

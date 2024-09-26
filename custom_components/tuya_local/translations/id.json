@@ -121,6 +121,22 @@
                     "off": "Oke",
                     "on": "Penuh"
                 }
+            },
+            "casdon_oven_fault": {
+                "state_attributes": {
+                    "fault_message": {
+                        "state": {
+                            "e1": "E1: Perlindungan kelebihan panas ruang (melebihi 290°C)",
+                            "e2": "E2: Perlindungan kelebihan panas nampan penguapan (melebihi 200°C)",
+                            "e3": "E3: Perlindungan suhu rendah ruang (di bawah 35°C)",
+                            "e4": "E4: Perlindungan suhu rendah nampan penguapan (di bawah 35°C)",
+                            "e5": "E5: Kesalahan koneksi sensor (Sirkuit terbuka)",
+                            "e6": "E6: Sensor rusak (Korsleting)",
+                            "e7": "E7: Kesalahan komunikasi papan tampilan",
+                            "e8": "E8: Tangki air terbuka (CN7) atau Nampan penguapan kering (CN3)"                            
+                        }
+                    }
+                }
             }
         },
         "climate": {
@@ -215,6 +231,37 @@
                     "hvac_mode": {
                         "state": {
                             "fan_only": "Jeda"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "healthy_steam": "Uap sehat",
+                            "fresh_steam": "Uap segar",
+                            "high_temp_steam": "Uap suhu tinggi",
+                            "stew": "Rebus",
+                            "bake_up_and_down": "Panggang atas dan bawah",
+                            "bbq": "BBQ",
+                            "bottom_hot_air": "Udara panas bawah",
+                            "on_strong_roast": "Panggang kuat",
+                            "3d_hot_air": "Udara panas 3D",
+                            "air_fry": "Panggang udara",
+                            "steam_frying": "Panggang uap",
+                            "one_click_bread": "Roti satu klik",
+                            "quick_heat": "Pemanasan cepat",
+                            "keep_warm": "Tetap hangat",
+                            "unfreeze": "Pencairan",
+                            "fermentation": "Fermentasi",
+                            "descale": "Descale",
+                            "local_recipes": "Resep lokal",
+                            "drying": "Pengeringan",
+                            "custom": "Kustom",
+                            "low_steaming": "Perebusan rendah",
+                            "medium_steaming": "Perebusan sedang",
+                            "high_steaming": "Perebusan tinggi"
                         }
                     }
                 }
@@ -431,11 +478,58 @@
                     "celsius": "Celsius",
                     "fahrenheit": "Fahrenheit"
                 }
+            },
+            "oven_built_in_recipe": {
+                "name": "Resep bawaan",
+                "state": {
+                    "none": "Tidak ada",
+                    "steamed_egg_with_okra": "Telur rebus dengan okra",
+                    "steamed_sea_bass": "Ikan laut rebus",
+                    "steamed_prawns": "Udang rebus",
+                    "handmade_steamed_bread": "Roti rebus buatan tangan",
+                    "fan_steamed_baby_vegetables": "Sayuran bayi rebus dengan kipas",
+                    "braised_pork": "Babi rebus",
+                    "snow_fungus_and_bird_s_nest": "Jamur salju dan sarang burung",
+                    "crab_pot": "Potongan kepiting",
+                    "potato_ribs": "Kentang dan tulang",
+                    "coconut_chicken_soup": "Sup ayam kelapa",
+                    "snack_platter": "Piringan makanan ringan",
+                    "chicken_skewers": "Sate ayam",
+                    "roasted_pork_knuckle": "Kaki babi panggang",
+                    "dried_lemon": "Lemon kering",
+                    "pork_jerky": "Daging babi kering",
+                    "crispy_hairtail": "Ikan ekor rambut renyah",
+                    "spicy_grilled_fish": "Ikan panggang pedas",
+                    "roasted_sweet_potatoes": "Ubi jalar panggang",
+                    "roasted_chicken_wings": "Sayap ayam panggang",
+                    "cumin_lamb_chops": "Potongan daging kambing jintan",
+                    "honey_grilled_chicken": "Ayam panggang madu",
+                    "garlic_eggplant": "Terong bawang putih",
+                    "portuguese_egg_tart": "Kue telur Portugis",
+                    "creme_brulee": "Krim brulee",
+                    "cocoa_chips": "Cokelat cokelat",
+                    "butter_cookies": "Kue kering mentega",
+                    "chiffon_cake": "Kue chiffon",
+                    "puff_pastry": "Kue puff",
+                    "red_bean_bread": "Roti kacang merah",
+                    "milk_toast": "Roti susu"
+                }
             }
         },
         "sensor": {
             "time_remaining": {
                 "name": "Waktu yang tersisa"
+            },
+            "cooking_status": {
+                "name": "Memasak",
+                "state": {
+                    "wait": "Menunggu memasak",
+                    "reservation": "Dalam pemesanan",
+                    "cooking": "Sedang berlangsung",
+                    "cancel": "Batal memasak",
+                    "done": "Memasak selesai",
+                    "pause": "Memasak dijeda"
+                }
             }
         },
         "switch": {

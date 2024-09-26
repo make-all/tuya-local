@@ -87,8 +87,8 @@
                     "host": "IP adresa nebo název hostitele (hostname)",
                     "local_key": "lokální klíč (local_key)",
                     "protocol_version": "Verze protokolu (zkuste auto pokud ji neznáte)",
-                    "poll_only": "Poll only (try this if your device does not work fully)",
-                    "device_cid": "Sub device ID (for devices connected via gateway)"
+                    "poll_only": "Poll only (vyzkoušejte pokud zařízení úplně nefunguje)",
+                    "device_cid": "Sub device ID (pro zařízení připojená pomocí brány)"
                 }
             }
         },
@@ -120,6 +120,22 @@
                 "state": {
                     "off": "OK",
                     "on": "Plná"
+                }
+            },
+            "casdon_oven_fault": {
+                "state_attributes": {
+                    "fault_message": {
+                        "state": {
+                            "e1": "E1: Ochrana před přehřátím komory (překročení 290°C)",
+                            "e2": "E2: Ochrana před přehřátím výparníku (překročení 200°C)",
+                            "e3": "E3: Ochrana před nízkou teplotou komory (pod 35°C)",
+                            "e4": "E4: Ochrana před nízkou teplotou výparníku (pod 35°C)",
+                            "e5": "E5: Chyba připojení senzoru (Otevřený obvod)",
+                            "e6": "E6: Porucha senzoru (Zkrat)",
+                            "e7": "E7: Chyba komunikace s deska",
+                            "e8": "E8: Otevřená nádrž na vodu (CN7) nebo vysušená odpařovací miska (CN3)"
+                        }
+                    }
                 }
             }
         },
@@ -215,6 +231,37 @@
                     "hvac_mode": {
                         "state": {
                             "fan_only": "Pauza"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "healthy_steam": "Zdravá pára",
+                            "fresh_steam": "Čerstvá pára",
+                            "high_temp_steam": "Vysokoteplotní pára",
+                            "stew": "Dušení",
+                            "bake_up_and_down": "Pečení nahoru a dolů",
+                            "bbq": "BBQ",
+                            "bottom_hot_air": "Dolní horký vzduch",
+                            "on_strong_roast": "Na silné pečení",
+                            "3d_hot_air": "3D horký vzduch",
+                            "air_fry": "Air Fry",
+                            "steam_frying": "Pára smažení",
+                            "one_click_bread": "Jedno kliknutí na chléb",
+                            "quick_heat": "Rychlé ohřátí",
+                            "keep_warm": "Udržování tepla",
+                            "unfreeze": "Rozmrazit",
+                            "fermentation": "Kvašení",
+                            "descale": "Odstranit vodní kámen",
+                            "local_recipes": "Místní recepty",
+                            "drying": "Sušení",
+                            "custom": "Vlastní",
+                            "low_steaming": "Nízké páření",
+                            "medium_steaming": "Střední páření",
+                            "high_steaming": "Vysoké páření"
                         }
                     }
                 }
@@ -431,11 +478,58 @@
                     "celsius": "Celsia",
                     "fahrenheit": "Fahrenheita"
                 }
+            },
+            "oven_built_in_recipe": {
+                "name": "Vestavěný recept",
+                "state": {
+                    "none": "Žádný",
+                    "steamed_egg_with_okra": "Vařené vejce s okrou",
+                    "steamed_sea_bass": "Vařený mořský vlk",
+                    "steamed_prawns": "Vařené krevety",
+                    "handmade_steamed_bread": "Domácí vařený chléb",
+                    "fan_steamed_baby_vegetables": "Ventilátor vařená zelenina",
+                    "braised_pork": "Dušené vepřové",
+                    "snow_fungus_and_bird_s_nest": "Houby a ptačí hnízdo",
+                    "crab_pot": "Krabí hrnec",
+                    "potato_ribs": "Bramborové žebírka",
+                    "coconut_chicken_soup": "Kokosová kuřecí polévka",
+                    "snack_platter": "Překrmovací talíř",
+                    "chicken_skewers": "Kuřecí špízy",
+                    "roasted_pork_knuckle": "Pečené vepřové koleno",
+                    "dried_lemon": "Sušený citrón",
+                    "pork_jerky": "Vepřové sušenky",
+                    "crispy_hairtail": "Křupavý hairt",
+                    "spicy_grilled_fish": "Pikantně grilovaná ryba",
+                    "roasted_sweet_potatoes": "Pečené sladké brambory",
+                    "roasted_chicken_wings": "Pečená kuřecí křídla",
+                    "cumin_lamb_chops": "Kmínové jehněčí kotlety",
+                    "honey_grilled_chicken": "Medem grilované kuře",
+                    "garlic_eggplant": "Česneková baklažán",
+                    "portuguese_egg_tart": "Portugalský vaječný dort",
+                    "creme_brulee": "Crème brûlée",
+                    "cocoa_chips": "Kakaové lupínky",
+                    "butter_cookies": "Máslové sušenky",
+                    "chiffon_cake": "Chiffonový dort",
+                    "puff_pastry": "Listové těsto",
+                    "red_bean_bread": "Chléb s červenými fazolemi",
+                    "milk_toast": "Mléčná topinka"
+                }
             }
         },
         "sensor": {
             "time_remaining": {
                 "name": "Zbývající čas"
+            },
+            "cooking_status": {
+                "name": "Vaření",
+                "state": {
+                    "wait": "Čekání na vaření",
+                    "reservation": "Rezervace",
+                    "cooking": "Vaření",
+                    "cancel": "Zrušení vaření",
+                    "done": "Vaření dokončeno",
+                    "pause": "Vaření pozastaveno"
+                }
             }
         },
         "switch": {

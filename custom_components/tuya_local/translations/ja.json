@@ -34,7 +34,7 @@
             },
             "local": {
                 "title": "Tuya Localのデバイスを設定する",
-                "description": "[ja] [Follow these instructions to find your device id and local key.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "description": "[これらの手順に従ってデバイスIDとローカルキーを見つけてください。](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "IPアドレスまたはホスト名",
                     "device_id": "デバイスID",
@@ -82,7 +82,7 @@
         "step": {
             "user": {
                 "title": "Tuya Localのデバイスを設定する",
-                "description": "[ja] [Follow these instructions to find your local key.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "description": "[これらの手順に従ってデバイスIDとローカルキーを見つけてください。](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "IPアドレスまたはホスト名",
                     "local_key": "ローカルキー",
@@ -120,6 +120,22 @@
                 "state": {
                     "off": "OK",
                     "on": "満杯"
+                }
+            },
+            "casdon_oven_fault": {
+                "state_attributes": {
+                    "fault_message": {
+                        "state": {
+                            "e1": "E1: 過熱保護（290°Cを超える）",
+                            "e2": "E2: 蒸発トレイ過熱保護（200°Cを超える）",
+                            "e3": "E3: 室内低温保護（35°C未満）",
+                            "e4": "E4: 蒸発トレイ低温保護（35°C未満）",
+                            "e5": "E5: センサ接続エラー（オープン回路）",
+                            "e6": "E6: センサ故障（ショート）",
+                            "e7": "E7: ディスプレイボード通信エラー",
+                            "e8": "E8: 水槽オープン（CN7）または蒸発トレイ乾燥（CN3）"
+                        }
+                    }
                 }
             }
         },
@@ -215,6 +231,37 @@
                     "hvac_mode": {
                         "state": {
                             "fan_only": "一時停止"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "healthy_steam": "ヘルシースチーム",
+                            "fresh_steam": "フレッシュスチーム",
+                            "high_temp_steam": "高温スチーム",
+                            "stew": "シチュー",
+                            "bake_up_and_down": "上下焼き",
+                            "bbq": "BBQ",
+                            "bottom_hot_air": "下熱風",
+                            "on_strong_roast": "強火で焼く",
+                            "3d_hot_air": "3Dホットエア",
+                            "air_fry": "エアフライ",
+                            "steam_frying": "スチームフライ",
+                            "one_click_bread": "ワンクリックパン",
+                            "quick_heat": "急速加熱",
+                            "keep_warm": "保温",
+                            "unfreeze": "解凍",
+                            "fermentation": "発酵",
+                            "descale": "デスケール",
+                            "local_recipes": "ローカルレシピ",
+                            "drying": "乾燥",
+                            "custom": "カスタム",
+                            "low_steaming": "低温蒸し",
+                            "medium_steaming": "中温蒸し",
+                            "high_steaming": "高温蒸し"
                         }
                     }
                 }
@@ -431,11 +478,58 @@
                     "celsius": "摂氏",
                     "fahrenheit": "華氏"
                 }
+            },
+            "oven_built_in_recipe": {
+                "name": "内蔵レシピ",
+                "state": {
+                    "none": "なし",
+                    "steamed_egg_with_okra": "茶碗蒸し",
+                    "steamed_sea_bass": "鯵の蒸し",
+                    "steamed_prawns": "蒸しエビ",
+                    "handmade_steamed_bread": "手作り蒸しパン",
+                    "fan_steamed_baby_vegetables": "ファン蒸し野菜",
+                    "braised_pork": "豚の煮込み",
+                    "snow_fungus_and_bird_s_nest": "雪耳とツバメの巣",
+                    "crab_pot": "カニ鍋",
+                    "potato_ribs": "ジャガイモの肋骨",
+                    "coconut_chicken_soup": "ココナッツチキンスープ",
+                    "snack_platter": "スナックプラッター",
+                    "chicken_skewers": "チキンスキュー",
+                    "roasted_pork_knuckle": "ローストポークの脛",
+                    "dried_lemon": "ドライレモン",
+                    "pork_jerky": "豚のジャーキー",
+                    "crispy_hairtail": "カリカリハイタイ",
+                    "spicy_grilled_fish": "辛い焼き魚",
+                    "roasted_sweet_potatoes": "焼きさつまいも",
+                    "roasted_chicken_wings": "焼きチキンウィング",
+                    "cumin_lamb_chops": "クミンラムチョップ",
+                    "honey_grilled_chicken": "ハニーグリルチキン",
+                    "garlic_eggplant": "ニンニクナス",
+                    "portuguese_egg_tart": "ポルトガルのエッグタルト",
+                    "creme_brulee": "クレームブリュレ",
+                    "cocoa_chips": "ココアチップ",
+                    "butter_cookies": "バタークッキー",
+                    "chiffon_cake": "シフォンケーキ",
+                    "puff_pastry": "パフペストリー",
+                    "red_bean_bread": "あんパン",
+                    "milk_toast": "ミルクトースト"
+                }
             }
         },
         "sensor": {
             "time_remaining": {
                 "name": "残り時間"
+            },
+            "cooking_status": {
+                "name": "調理状況",
+                "state": {
+                    "wait": "調理待ち",
+                    "reservation": "予約中",
+                    "cooking": "調理中",
+                    "cancel": "調理中止",
+                    "done": "調理完了",
+                    "pause": "調理一時停止"
+                }
             }
         },
         "switch": {

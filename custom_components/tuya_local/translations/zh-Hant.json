@@ -121,6 +121,22 @@
                     "off": "正常",
                     "on": "滿水"
                 }
+            },
+            "casdon_oven_fault": {
+                "state_attributes": {
+                    "fault_message": {
+                        "state": {
+                            "e1": "E1: 高溫保護 (超過290°C)",
+                            "e2": "E2: 蒸發盤過熱保護 (超過200°C)",
+                            "e3": "E3: 空腔低溫保護 (低於35°C)",
+                            "e4": "E4: 蒸發盤低溫保護 (低於35°C)",
+                            "e5": "E5: 传感器连接错误（开路）",
+                            "e6": "E6: 传感器故障（短路）",
+                            "e7": "E7: 顯示板通信錯誤",
+                            "e8": "E8: 水箱打開 (CN7) 或蒸發盤乾燥 (CN3)"
+                        }
+                    }
+                }
             }
         },
         "climate": {
@@ -215,6 +231,38 @@
                     "hvac_mode": {
                         "state": {
                             "fan_only": "暫停"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "off": "關",
+                            "healthy_steam": "健康蒸汽",
+                            "fresh_steam": "新鮮蒸汽",
+                            "high_temp_steam": "高溫蒸汽",
+                            "stew": "燉",
+                            "bake_up_and_down": "上下烘焙",
+                            "bbq": "燒烤",
+                            "bottom_hot_air": "底部熱風",
+                            "on_strong_roast": "強烤",
+                            "3d_hot_air": "3D熱風",
+                            "air_fry": "空氣炸",
+                            "steam_frying": "蒸炸",
+                            "one_click_bread": "一鍵麵包",
+                            "quick_heat": "快速加熱",
+                            "keep_warm": "保溫",
+                            "unfreeze": "解凍",
+                            "fermentation": "發酵",
+                            "descale": "除垢",
+                            "local_recipes": "本地食譜",
+                            "drying": "烘乾",
+                            "custom": "自訂",
+                            "low_steaming": "低蒸",
+                            "medium_steaming": "中蒸",
+                            "high_steaming": "高蒸"
                         }
                     }
                 }
@@ -431,11 +479,58 @@
                     "celsius": "攝氏度",
                     "fahrenheit": "華氏度"
                 }
+            },
+            "oven_built_in_recipe": {
+                "name": "內置食譜",
+                "state": {
+                    "none": "無",
+                    "steamed_egg_with_okra": "蛋羹秋葵",
+                    "steamed_sea_bass": "清蒸鱸魚",
+                    "steamed_prawns": "蒸蝦",
+                    "handmade_steamed_bread": "手工蒸麵包",
+                    "fan_steamed_baby_vegetables": "風焙嬰兒蔬菜",
+                    "braised_pork": "紅燒肉",
+                    "snow_fungus_and_bird_s_nest": "雪耳燕窩",
+                    "crab_pot": "蟹鍋",
+                    "potato_ribs": "土豆排骨",
+                    "coconut_chicken_soup": "椰子雞湯",
+                    "snack_platter": "點心拼盤",
+                    "chicken_skewers": "雞肉串",
+                    "roasted_pork_knuckle": "烤豬腳",
+                    "dried_lemon": "乾檸檬",
+                    "pork_jerky": "豬肉乾",
+                    "crispy_hairtail": "脆皮帶魚",
+                    "spicy_grilled_fish": "辣烤魚",
+                    "roasted_sweet_potatoes": "烤甜薯",
+                    "roasted_chicken_wings": "烤雞翅",
+                    "cumin_lamb_chops": "孜然羊排",
+                    "honey_grilled_chicken": "蜜糖烤雞",
+                    "garlic_eggplant": "蒜蓉茄子",
+                    "portuguese_egg_tart": "葡式蛋撻",
+                    "creme_brulee": "焦糖布丁",
+                    "cocoa_chips": "可可脆片",
+                    "butter_cookies": "奶油餅乾",
+                    "chiffon_cake": "戚風蛋糕",
+                    "puff_pastry": "酥皮",
+                    "red_bean_bread": "紅豆麵包",
+                    "milk_toast": "牛奶吐司"
+                }
             }
         },
         "sensor": {
             "time_remaining": {
                 "name": "剩餘時間"
+            },
+            "cooking_status": {
+                "name": "狀態",
+                "state": {
+                    "wait": "等待烹飪",
+                    "reservation": "預約中",
+                    "cooking": "烹飪中",
+                    "cancel": "取消烹飪",
+                    "done": "烹飪完成",
+                    "pause": "烹飪暫停"
+                }
             }
         },
         "switch": {

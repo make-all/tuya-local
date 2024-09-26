@@ -121,6 +121,22 @@
                     "off": "OK",
                     "on": "Полный"
                 }
+            },
+            "casdon_oven_fault": {
+                "state_attributes": {
+                    "fault_message": {
+                        "state": {
+                            "e1": "E1: Защита от перегрева камеры (превышает 290°C)",
+                            "e2": "E2: Защита от перегрева лотка для испарения (превышает 200°C)",
+                            "e3": "E3: Защита от низкой температуры камеры (ниже 35°C)",
+                            "e4": "E4: Защита от низкой температуры лотка для испарения (ниже 35°C)",
+                            "e5": "E5: Ошибка подключения датчика (разомкнутая цепь)",
+                            "e6": "E6: Ошибка датчика (короткое замыкание)",
+                            "e7": "E7: Ошибка датчика (неправильное подключение)",
+                            "e8": "E8: Бак с водой открыт (CN7) или лоток для испарения сухой (CN3)"
+                        }
+                    }
+                }
             }
         },
         "climate": {
@@ -215,6 +231,37 @@
                     "hvac_mode": {
                         "state": {
                             "fan_only": "Пауза"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "healthy_steam": "Полезный пар",
+                            "fresh_steam": "Свежий пар",
+                            "high_temp_steam": "Высокотемпературный пар",
+                            "stew": "Тушение",
+                            "bake_up_and_down": "Выпекание сверху и снизу",
+                            "bbq": "Барбекю",
+                            "bottom_hot_air": "Нижний горячий воздух",
+                            "on_strong_roast": "На сильном жаре",
+                            "3d_hot_air": "3D горячий воздух",
+                            "air_fry": "Жарка на воздухе",
+                            "steam_frying": "Паровая жарка",
+                            "one_click_bread": "Один клик хлеб",
+                            "quick_heat": "Быстрый нагрев",
+                            "keep_warm": "Поддержание тепла",
+                            "unfreeze": "Разморозка",
+                            "fermentation": "Ферментация",
+                            "descale": "Удаление накипи",
+                            "local_recipes": "Местные рецепты",
+                            "drying": "Сушка",
+                            "custom": "Пользовательский",
+                            "low_steaming": "Низкое парение",
+                            "medium_steaming": "Среднее парение",
+                            "high_steaming": "Высокое парение"
                         }
                     }
                 }
@@ -431,11 +478,58 @@
                     "celsius": "Цельсия",
                     "fahrenheit": "Фаренгейт"
                 }
+            },
+            "oven_built_in_recipe": {
+                "name": "Встроенный рецепт",
+                "state": {
+                    "none": "Нет",
+                    "steamed_egg_with_okra": "Яйца на пару с окрой",
+                    "steamed_sea_bass": "Паровой морской окунь",
+                    "steamed_prawns": "Креветки на пару",
+                    "handmade_steamed_bread": "Домашний паровой хлеб",
+                    "fan_steamed_baby_vegetables": "Вентилятор паровых овощей",
+                    "braised_pork": "Тушеная свинина",
+                    "snow_fungus_and_bird_s_nest": "Снежный гриб и птичье гнездо",
+                    "crab_pot": "Крабовый горшок",
+                    "potato_ribs": "Картофельные ребра",
+                    "coconut_chicken_soup": "Куриный кокосовый суп",
+                    "snack_platter": "Закусочная тарелка",
+                    "chicken_skewers": "Куриные шашлыки",
+                    "roasted_pork_knuckle": "Жареная свиная нога",
+                    "dried_lemon": "Сушеный лимон",
+                    "pork_jerky": "Свиной джерки",
+                    "crispy_hairtail": "Хрустящий хвост рыбы",
+                    "spicy_grilled_fish": "Острый жареный рыба",
+                    "roasted_sweet_potatoes": "Жареная сладкая картошка",
+                    "roasted_chicken_wings": "Жареные куриные крылья",
+                    "cumin_lamb_chops": "Кумин баранина",
+                    "honey_grilled_chicken": "Медовые жареные курицы",
+                    "garlic_eggplant": "Чесночный баклажан",
+                    "portuguese_egg_tart": "Португальский яичный тарт",
+                    "creme_brulee": "Крем-брюле",
+                    "cocoa_chips": "Какао-чипсы",
+                    "butter_cookies": "Печенье с маслом",
+                    "chiffon_cake": "Шифоновый торт",
+                    "puff_pastry": "Слоеное тесто",
+                    "red_bean_bread": "Хлеб с красной фасолью",
+                    "milk_toast": "Молочный тост"
+                }
             }
         },
         "sensor": {
             "time_remaining": {
                 "name": "Времени осталось"
+            },
+            "cooking_status": {
+                "name": "Статус",
+                "state": {
+                    "wait": "Ожидание приготовления",
+                    "reservation": "В резерве",
+                    "cooking": "В процессе",
+                    "cancel": "Отмена приготовления",
+                    "done": "Готово",
+                    "pause": "Приготовление приостановлено"
+                }
             }
         },
         "switch": {

@@ -121,6 +121,22 @@
                     "off": "اوکے",
                     "on": "مکمل"
                 }
+            },
+            "casdon_oven_fault": {
+                "state_attributes": {
+                    "fault_message": {
+                        "state": {
+                            "e1": "E1: Chamber overheat protection (exceeds 290°C)",
+                            "e2": "E2: Evaporation tray overheat protection (exceeds 200°C)",
+                            "e3": "E3: Chamber low temperature protection (below 35°C)",
+                            "e4": "E4: Evaporation tray low temperature protection (below 35°C)",
+                            "e5": "E5: Sensor connection error (Open circuit)",
+                            "e6": "E6: Sensor malfunction (Short circuit)",
+                            "e7": "E7: Display board communication error",
+                            "e8": "E8: Water tank open (CN7) or Evaporation tray dry (CN3)"
+                        }
+                    }
+                }
             }
         },
         "climate": {
@@ -215,6 +231,37 @@
                     "hvac_mode": {
                         "state": {
                             "fan_only": "توقف"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "healthy_steam": "صحت مند بخار",
+                            "fresh_steam": "تازہ بخار",
+                            "high_temp_steam": "زیادہ درجہ حرارت بخار",
+                            "stew": "اسٹیو",
+                            "bake_up_and_down": "اوپر اور نیچے پکانا",
+                            "bbq": "باربی کیو",
+                            "bottom_hot_air": "نیچے گرم ہوا",
+                            "on_strong_roast": "مضبوط روسٹ پر",
+                            "3d_hot_air": "3D گرم ہوا",
+                            "air_fry": "ہوا فرائی",
+                            "steam_frying": "بخاری فرائی",
+                            "one_click_bread": "ایک کلک بریڈ",
+                            "quick_heat": "فوری گرمی",
+                            "keep_warm": "گرم رکھیں",
+                            "unfreeze": "پگھلاو",
+                            "fermentation": "خمیر",
+                            "descale": "ڈی اسکیل",
+                            "local_recipes": "مقامی ریسیپیاں",
+                            "drying": "خشک کرنا",
+                            "custom": "اپنی مرضی",
+                            "low_steaming": "کم بخاری",
+                            "medium_steaming": "درمیانہ بخاری",
+                            "high_steaming": "زیادہ بخاری"
                         }
                     }
                 }
@@ -431,11 +478,58 @@
                     "celsius": "سیلسیس",
                     "fahrenheit": "فارن ہائیٹ"
                 }
+            },
+            "oven_built_in_recipe": {
+                "name": "بلٹ ان ریسیپی",
+                "state": {
+                    "none": "کوئی نہیں",
+                    "steamed_egg_with_okra": "بھنڈی میں انڈے",
+                    "steamed_sea_bass": "بھنڈی میں سی بیس",
+                    "steamed_prawns": "بھنڈی میں جھینگا",
+                    "handmade_steamed_bread": "ہاتھ سے بنی بھنڈی",
+                    "fan_steamed_baby_vegetables": "پنکھا بھنڈی میں بچوں کے سبزی",
+                    "braised_pork": "بھنڈی میں بریسڈ پورک",
+                    "snow_fungus_and_bird_s_nest": "برڈ نیسٹ اور سنو فنگس",
+                    "crab_pot": "کریب پوٹ",
+                    "potato_ribs": "آلو ربس",
+                    "coconut_chicken_soup": "ناریل چکن سوپ",
+                    "snack_platter": "اسنیک پلیٹر",
+                    "chicken_skewers": "چکن اسکیورز",
+                    "roasted_pork_knuckle": "روسٹ پورک نکل",
+                    "dried_lemon": "خشک لیموں",
+                    "pork_jerky": "پورک جرکی",
+                    "crispy_hairtail": "کرسپی ہیئر ٹیل",
+                    "spicy_grilled_fish": "تیز گرلڈ فش",
+                    "roasted_sweet_potatoes": "روسٹ سویٹ پوٹیٹوز",
+                    "roasted_chicken_wings": "روسٹ چکن ونگز",
+                    "cumin_lamb_chops": "زیرہ لیمب چاپس",
+                    "honey_grilled_chicken": "ہنی گرلڈ چکن",
+                    "garlic_eggplant": "لہسن بینگن",
+                    "portuguese_egg_tart": "پورٹگلیز انڈے کا ٹارٹ",
+                    "creme_brulee": "کریم بریولی",
+                    "cocoa_chips": "کوکو چپس",
+                    "butter_cookies": "مکھن کوکیز",
+                    "chiffon_cake": "چفن کیک",
+                    "puff_pastry": "پف پیسٹری",
+                    "red_bean_bread": "لال بین بریڈ",
+                    "milk_toast": "دودھ ٹوسٹ"
+                }
             }
         },
         "sensor": {
             "time_remaining": {
                 "name": "بقیہ وقت"
+            },
+            "cooking_status": {
+                "name": "پکانے کی حالت",
+                "state": {
+                    "wait": "انتظار میں ہے",
+                    "reservation": "پیش گوئی میں ہے",
+                    "cooking": "پکانے میں ہے",
+                    "cancel": "پکانا منسوخ کر دیا",
+                    "done": "پکانا مکمل ہوگیا",
+                    "pause": "پکانا معطل ہوگیا"
+                }
             }
         },
         "switch": {

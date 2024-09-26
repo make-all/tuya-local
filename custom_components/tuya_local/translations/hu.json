@@ -121,6 +121,22 @@
                     "off": "OK",
                     "on": "Teljes"
                 }
+            },
+            "casdon_oven_fault": {
+                "state_attributes": {
+                    "fault_message": {
+                        "state": {
+                            "e1": "E1: Kamra túlmelegedés védelem (túllépi a 290°C-ot)",
+                            "e2": "E2: Kamra túlmelegedés védelem (túllépi a 290°C-ot)",
+                            "e3": "E3: Kamra alacsony hőmérséklet védelem (35°C alatt)",
+                            "e4": "E4: Elpárologtató tálcán alacsony hőmérséklet védelem (35°C alatt)",
+                            "e5": "E5: Szenzor csatlakozási hiba (Nyitott áramkör)",
+                            "e6": "E6: Szenzor hiba (Rövidzárlat)",
+                            "e7": "E7: Kijelző panel kommunikációs hiba",
+                            "e8": "E8: Víztartály nyitva (CN7) vagy Elpárologtató tálcán száraz (CN3)"
+                        }
+                    }
+                }
             }
         },
         "climate": {
@@ -215,6 +231,37 @@
                     "hvac_mode": {
                         "state": {
                             "fan_only": "Szünet"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "healthy_steam": "Egészséges gőz",
+                            "fresh_steam": "Friss gőz",
+                            "high_temp_steam": "Magas hőmérsékletű gőz",
+                            "stew": "Párolás",
+                            "bake_up_and_down": "Sütés fel és le",
+                            "bbq": "BBQ",
+                            "bottom_hot_air": "Alsó forró levegő",
+                            "on_strong_roast": "Erős sütés",
+                            "3d_hot_air": "3D forró levegő",
+                            "air_fry": "Légfritőzés",
+                            "steam_frying": "Gőzpirítás",
+                            "one_click_bread": "Egy kattintásos kenyér",
+                            "quick_heat": "Gyors fűtés",
+                            "keep_warm": "Melegen tartás",
+                            "unfreeze": "Felolvasztás",
+                            "fermentation": "Erjesztés",
+                            "descale": "Vízkőtelenítés",
+                            "local_recipes": "Helyi receptek",
+                            "drying": "Szárítás",
+                            "custom": "Egyéni",
+                            "low_steaming": "Alacsony Steaming",
+                            "medium_steaming": "Közepes Steaming",
+                            "high_steaming": "Magas Steaming"
                         }
                     }
                 }
@@ -431,11 +478,58 @@
                     "celsius": "Celsius",
                     "fahrenheit": "Fahrenheit"
                 }
+            },
+            "oven_built_in_recipe": {
+                "name": "Beépített recept",
+                "state": {
+                    "none": "Nincs",
+                    "steamed_egg_with_okra": "Gőzölt tojás",
+                    "steamed_sea_bass": "Gőzölt tengeri sügér",
+                    "steamed_prawns": "Gőzölt garnélarák",
+                    "handmade_steamed_bread": "Kézzel készített gőzölt kenyér",
+                    "fan_steamed_baby_vegetables": "Ventilátoros gőzölt zöldségek",
+                    "braised_pork": "Párolt sertéshús",
+                    "snow_fungus_and_bird_s_nest": "Hó gomba és madárfészek",
+                    "crab_pot": "Rákfőző edény",
+                    "potato_ribs": "Krumpli bordákkal",
+                    "coconut_chicken_soup": "Kókusztyúkhús leves",
+                    "snack_platter": "Snack tál",
+                    "chicken_skewers": "Csirke nyárs",
+                    "roasted_pork_knuckle": "Sült sertésláb",
+                    "dried_lemon": "Szárított citrom",
+                    "pork_jerky": "Sertéshús rágcsálnivaló",
+                    "crispy_hairtail": "Ropogós halszálka",
+                    "spicy_grilled_fish": "Fűszeres grillezett hal",
+                    "roasted_sweet_potatoes": "Sült édesburgonya",
+                    "roasted_chicken_wings": "Sült csirkeszárnyak",
+                    "cumin_lamb_chops": "Köményes bárányborda",
+                    "honey_grilled_chicken": "Mézes grillezett csirke",
+                    "garlic_eggplant": "Fokhagymás padlizsán",
+                    "portuguese_egg_tart": "Portugál tojástorta",
+                    "creme_brulee": "Crème brûlée",
+                    "cocoa_chips": "Kakaós chips",
+                    "butter_cookies": "Vajas keksz",
+                    "chiffon_cake": "Chiffon torta",
+                    "puff_pastry": "Puff tészta",
+                    "red_bean_bread": "Vörös babos kenyér",
+                    "milk_toast": "Tejes pirítós"
+                }
             }
         },
         "sensor": {
             "time_remaining": {
                 "name": "Hátralevő idő"
+            },
+            "cooking_status": {
+                "name": "Főzési állapot",
+                "state": {
+                    "wait": "Várakozás főzésre",
+                    "reservation": "Foglalásban",
+                    "cooking": "Főzés folyamatban",
+                    "cancel": "Főzés megszakítva",
+                    "done": "Főzés befejezve",
+                    "pause": "Főzés szüneteltetve"
+                }
             }
         },
         "switch": {

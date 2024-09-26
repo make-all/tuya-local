@@ -121,6 +121,22 @@
                     "off": "OK",
                     "on": "Pełny"
                 }
+            },
+            "casdon_oven_fault": {
+                "state_attributes": {
+                    "fault_message": {
+                        "state": {
+                            "e1": "E1: Ochrona przed przegrzaniem komory (przekracza 290°C)",
+                            "e2": "E2: Ochrona przed przegrzaniem tacki parownika (przekracza 200°C)",
+                            "e3": "E3: Ochrona przed niską temperaturą komory (poniżej 35°C)",
+                            "e4": "E4: Ochrona przed niską temperaturą tacki parownika (poniżej 35°C)",
+                            "e5": "E5: Błąd połączenia czujnika (obwód otwarty)",
+                            "e6": "E6: Usterka czujnika (zwarcie)",
+                            "e7": "E7: Błąd komunikacji płyty wyświetlacza",
+                            "e8": "E8: Otwarty zbiornik wody (CN7) lub sucha tacka parownika (CN3)"
+                        }
+                    }
+                }
             }
         },
         "climate": {
@@ -215,6 +231,37 @@
                     "hvac_mode": {
                         "state": {
                             "fan_only": "Pauza"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "healthy_steam": "Zdrowa para",
+                            "fresh_steam": "Świeża para",
+                            "high_temp_steam": "Wysoka temperatura pary",
+                            "stew": "Duszenie",
+                            "bake_up_and_down": "Pieczenie góra i dół",
+                            "bbq": "BBQ",
+                            "bottom_hot_air": "Dolne gorące powietrze",
+                            "on_strong_roast": "Na silnym pieczeniu",
+                            "3d_hot_air": "3D gorące powietrze",
+                            "air_fry": "Air Fry",
+                            "steam_frying": "Parowarzenie i smażenie",
+                            "one_click_bread": "Jedno kliknięcie chleb",
+                            "quick_heat": "Szybkie ogrzewanie",
+                            "keep_warm": "Podgrzewanie",
+                            "unfreeze": "Rozmrażanie",
+                            "fermentation": "Fermentacja",
+                            "descale": "Usuwanie kamienia",
+                            "local_recipes": "Lokalne przepisy",
+                            "drying": "Suszenie",
+                            "custom": "Niestandardowy",
+                            "low_steaming": "Niskie parowanie",
+                            "medium_steaming": "Średnie parowanie",
+                            "high_steaming": "Wysokie parowanie"
                         }
                     }
                 }
@@ -431,11 +478,59 @@
                     "celsius": "Celsjusz",
                     "fahrenheit": "Fahrenheita"
                 }
+            },
+            "oven_built_in_recipe": {
+                "name": "Wbudowany przepis",
+                "state": {
+                    "none": "Brak",
+                    "steamed_bread": "Chleb parzony",
+                    "steamed_egg_with_okra": "Jajko na parze z okrą",
+                    "steamed_sea_bass": "Dorsz na parze",
+                    "steamed_prawns": "Krewetki na parze",
+                    "handmade_steamed_bread": "Chleb parzony ręcznie",
+                    "fan_steamed_baby_vegetables": "Warzywa dla dzieci na parze z wentylatorem",
+                    "braised_pork": "Duszone mięso wieprzowe",
+                    "snow_fungus_and_bird_s_nest": "Grzyby śnieżne i gniazda ptaków",
+                    "crab_pot": "Garnek kraba",
+                    "potato_ribs": "Ziemniaki z żeberkami",
+                    "coconut_chicken_soup": "Zupa z kurczaka kokosowego",
+                    "snack_platter": "Półmisek przekąsek",
+                    "chicken_skewers": "Kurczak na patyku",
+                    "roasted_pork_knuckle": "Pieczona golonka",
+                    "dried_lemon": "Cytryna suszona",
+                    "pork_jerky": "Suszona wieprzowina",
+                    "crispy_hairtail": "Chrupiący hairtail",
+                    "spicy_grilled_fish": "Pikantna ryba z grilla",
+                    "roasted_sweet_potatoes": "Pieczone bataty",
+                    "roasted_chicken_wings": "Pieczone skrzydełka z kurczaka",
+                    "cumin_lamb_chops": "Kotlety jagnięce z kminem",
+                    "honey_grilled_chicken": "Kurczak z miodem z grilla",
+                    "garlic_eggplant": "Bakłażan czosnkowy",
+                    "portuguese_egg_tart": "Portugalski placek z jajkiem",
+                    "creme_brulee": "Creme Brulee",
+                    "cocoa_chips": "Czekoladowe chipsy",
+                    "butter_cookies": "Ciasteczka maslane",
+                    "chiffon_cake": "Ciasto biszkoptowe",
+                    "puff_pastry": "Ciasto francuskie",
+                    "red_bean_bread": "Chleb z czerwoną fasolą",
+                    "milk_toast": "Mleczny tost"
+                }
             }
         },
         "sensor": {
             "time_remaining": {
                 "name": "Pozostały czas"
+            },
+            "cooking_status": {
+                "name": "Gotowanie",
+                "state": {
+                    "wait": "Oczekiwanie na gotowanie",
+                    "reservation": "Zarezerwowane",
+                    "cooking": "W trakcie",
+                    "cancel": "Anulowane gotowanie",
+                    "done": "Gotowanie zakończone",
+                    "pause": "Gotowanie wstrzymane"
+                }
             }
         },
         "switch": {

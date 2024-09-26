@@ -41,7 +41,7 @@
                     "local_key": "Local key",
                     "protocol_version": "Versione protocollo (prova 'auto' in caso di dubbi)",
                     "poll_only": "Poll only (prova questa opzione se il dispositivo non funziona correttamente)",
-                    "device_cid": "[it] Sub device ID (for devices connected via gateway)"
+                    "device_cid": "Sub device ID (per dispositivi connessi tramite gateway)"
                 }
             },
             "select_type": {
@@ -88,7 +88,7 @@
                     "local_key": "Local key",
                     "protocol_version": "Versione protocollo (prova 'auto' in caso di dubbi)",
                     "poll_only": "Poll only (prova questa opzione se il dispositivo non funziona correttamente)",
-                    "device_cid": "[it] Sub device ID (for devices connected via gateway)"
+                    "device_cid": "[it] Sub device ID (per dispositivi connessi tramite gateway)"
                 }
             }
         },
@@ -120,6 +120,22 @@
                 "state": {
                     "off": "OK",
                     "on": "Piena"
+                }
+            },
+            "casdon_oven_fault": {
+                "state_attributes": {
+                    "fault_message": {
+                        "state": {
+                            "e1": "E1: Protezione surriscaldamento camera (superiore a 290°C)",
+                            "e2": "E2: Protezione surriscaldamento vassoio di evaporazione (superiore a 200°C)",
+                            "e3": "E3: Protezione bassa temperatura camera (inferiore a 35°C)",
+                            "e4": "E4: Protezione bassa temperatura vassoio di evaporazione (inferiore a 35°C)",
+                            "e5": "E5: Errore di connessione del sensore (circuito aperto)",
+                            "e6": "E6: Malfunzionamento del sensore (circuito chiuso)",
+                            "e7": "E7: Errore di comunicazione della scheda display",
+                            "e8": "E8: Serbatoio dell'acqua aperto (CN7) o Vassoio di evaporazione asciutto (CN3)"
+                        }
+                    }
                 }
             }
         },
@@ -215,6 +231,37 @@
                     "hvac_mode": {
                         "state": {
                             "fan_only": "Pausa"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "healthy_steam": "Vapore sano",
+                            "fresh_steam": "Vapore fresco",
+                            "high_temp_steam": "Vapore ad alta temperatura",
+                            "stew": "Stufato",
+                            "bake_up_and_down": "Cuocere su e giù",
+                            "bbq": "BBQ",
+                            "bottom_hot_air": "Aria calda inferiore",
+                            "on_strong_roast": "Arrosto forte",
+                            "3d_hot_air": "Aria calda 3D",
+                            "air_fry": "Friggitrice ad aria",
+                            "steam_frying": "Frittura a vapore",
+                            "one_click_bread": "Un clic per il pane",
+                            "quick_heat": "Riscaldamento rapido",
+                            "keep_warm": "Mantenere caldo",
+                            "unfreeze": "Scongelare",
+                            "fermentation": "Fermentazione",
+                            "descale": "Decalcificazione",
+                            "local_recipes": "Ricette locali",
+                            "drying": "Asciugatura",
+                            "custom": "Personalizzato",
+                            "low_steaming": "Basso Steaming",
+                            "medium_steaming": "Steaming medio",
+                            "high_steaming": "Alto Steaming"
                         }
                     }
                 }
@@ -431,11 +478,58 @@
                     "celsius": "Centigrado",
                     "fahrenheit": "Fahrenheit"
                 }
+            },
+            "oven_built_in_recipe": {
+                "name": "Ricetta incorporata",
+                "state": {
+                    "none": "Nessuno",
+                    "steamed_egg_with_okra": "Uovo al vapore con okra",
+                    "steamed_sea_bass": "Branzino al vapore",
+                    "steamed_prawns": "Gamberi al vapore",
+                    "handmade_steamed_bread": "Pane al vapore fatto a mano",
+                    "fan_steamed_baby_vegetables": "Verdure per bambini al vapore con ventilatore",
+                    "braised_pork": "Maiale brasato",
+                    "snow_fungus_and_bird_s_nest": "Funghi della neve e nido d'uccello",
+                    "crab_pot": "Vaso di granchio",
+                    "potato_ribs": "Costine di patate",
+                    "coconut_chicken_soup": "Zuppa di pollo al cocco",
+                    "snack_platter": "Piatto di snack",
+                    "chicken_skewers": "Spiedini di pollo",
+                    "roasted_pork_knuckle": "Zampa di maiale arrosto",
+                    "dried_lemon": "Limone secco",
+                    "pork_jerky": "Carne di maiale essiccata",
+                    "crispy_hairtail": "Coda di capelli croccante",
+                    "spicy_grilled_fish": "Pesce alla griglia piccante",
+                    "roasted_sweet_potatoes": "Patate dolci arrosto",
+                    "roasted_chicken_wings": "Ali di pollo arrosto",
+                    "cumin_lamb_chops": "Costine di agnello al cumino",
+                    "honey_grilled_chicken": "Pollo alla griglia al miele",
+                    "garlic_eggplant": "Melanzane all'aglio",
+                    "portuguese_egg_tart": "Tartaruga portoghese",
+                    "creme_brulee": "Creme brulee",
+                    "cocoa_chips": "Coccoa chips",
+                    "butter_cookies": "Biscotti al burro",
+                    "chiffon_cake": "Torta chiffon",
+                    "puff_pastry": "Pasta sfoglia",
+                    "red_bean_bread": "Pane ai fagioli rossi",
+                    "milk_toast": "Pane al latte"
+                }
             }
         },
         "sensor": {
             "time_remaining": {
                 "name": "Tempo rimanente"
+            },
+            "cooking_status": {
+                "name": "Stato di cottura",
+                "state": {
+                    "wait": "In attesa di cucinare",
+                    "reservation": "In prenotazione",
+                    "cooking": "Cottura in corso",
+                    "cancel": "Cottura annullata",
+                    "done": "Cottura completata",
+                    "pause": "Cottura in pausa"
+                }
             }
         },
         "switch": {

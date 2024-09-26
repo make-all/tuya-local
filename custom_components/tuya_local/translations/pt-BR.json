@@ -41,7 +41,7 @@
                     "local_key": "Chave Local",
                     "protocol_version": "Versão do protocolo (tente auto se não souber)",
                     "poll_only": "Pesquisar (tente isto se o seu dispositivo não funcionar totalmente)",
-                    "device_cid": "[pt-BR] Sub device ID (for devices connected via gateway)"
+                    "device_cid": "Sub device ID (para dispositivos conectados via gateway)"
                 }
             },
             "select_type": {
@@ -88,7 +88,7 @@
                     "local_key": "Chave Local",
                     "protocol_version": "Versão do protocolo (tente auto se não souber)",
                     "poll_only": "Pesquisar (tente isto se o seu dispositivo não funcionar totalmente)",
-                    "device_cid": "[pt-BR] Sub device ID (for devices connected via gateway)"
+                    "device_cid": "Sub device ID (para dispositivos conectados via gateway)"
                 }
             }
         },
@@ -120,6 +120,22 @@
                 "state": {
                     "off": "OK",
                     "on": "Cheio"
+                }
+            },
+            "casdon_oven_fault": {
+                "state_attributes": {
+                    "fault_message": {
+                        "state": {
+                            "e1": "E1: Proteção contra superaquecimento da câmara (excede 290°C)",
+                            "e2": "E2: Proteção contra superaquecimento da bandeja de evaporação (excede 200°C)",
+                            "e3": "E3: Proteção contra baixa temperatura da câmara (abaixo de 35°C)",
+                            "e4": "E4: Proteção contra baixa temperatura da bandeja de evaporação (abaixo de 35°C)",
+                            "e5": "E5: Erro de conexão do sensor (Circuito aberto)",
+                            "e6": "E6: Erro de conexão do sensor (Circuito curto)",
+                            "e7": "E7: Erro de comunicação da placa de exibição",
+                            "e8": "E8: Tanque de água aberto (CN7) ou Bandeja de evaporação seca (CN3)"
+                        }
+                    }
                 }
             }
         },
@@ -215,6 +231,37 @@
                     "hvac_mode": {
                         "state": {
                             "fan_only": "Pausa"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "healthy_steam": "Vapor saudável",
+                            "fresh_steam": "Vapor fresco",
+                            "high_temp_steam": "Vapor de alta temperatura",
+                            "stew": "Cozido",
+                            "bake_up_and_down": "Assar para cima e para baixo",
+                            "bbq": "Churrasco",
+                            "bottom_hot_air": "Ar quente inferior",
+                            "on_strong_roast": "Assar forte",
+                            "3d_hot_air": "Ar quente 3D",
+                            "air_fry": "Fritar no ar",
+                            "steam_frying": "Fritura a vapor",
+                            "one_click_bread": "Pão de um clique",
+                            "quick_heat": "Aquecimento rápido",
+                            "keep_warm": "Manter quente",
+                            "unfreeze": "Descongelar",
+                            "fermentation": "Fermentação",
+                            "descale": "Descalcificar",
+                            "local_recipes": "Receitas locais",
+                            "drying": "Secagem",
+                            "custom": "Personalizado",
+                            "low_steaming": "Cozimento a vapor baixo",
+                            "medium_steaming": "Cozimento a vapor médio",
+                            "high_steaming": "Cozimento a vapor alto"
                         }
                     }
                 }
@@ -431,11 +478,58 @@
                     "celsius": "Celsius",
                     "fahrenheit": "Fahrenheit"
                 }
+            },
+            "oven_built_in_recipe": {
+                "name": "Receita embutida no forno",
+                "state": {
+                    "none": "Nenhum",
+                    "steamed_egg_with_okra": "Ovo cozido com quiabo",
+                    "steamed_sea_bass": "Robalo cozido",
+                    "steamed_prawns": "Camarões cozidos",
+                    "handmade_steamed_bread": "Pão cozido à mão",
+                    "fan_steamed_baby_vegetables": "Legumes para bebês cozidos com ventilador",
+                    "braised_pork": "Porco cozido",
+                    "snow_fungus_and_bird_s_nest": "Fungo da neve e ninho de pássaro",
+                    "crab_pot": "Panela de caranguejo",
+                    "potato_ribs": "Costelas de batata",
+                    "coconut_chicken_soup": "Sopa de frango com coco",
+                    "snack_platter": "Prato de lanche",
+                    "chicken_skewers": "Espetinhos de frango",
+                    "roasted_pork_knuckle": "Joelho de porco assado",
+                    "dried_lemon": "Limão seco",
+                    "pork_jerky": "Carne de porco seca",
+                    "crispy_hairtail": "Cauda de cabelo crocante",
+                    "spicy_grilled_fish": "Peixe grelhado picante",
+                    "roasted_sweet_potatoes": "Batatas doces assadas",
+                    "roasted_chicken_wings": "Asas de frango assadas",
+                    "cumin_lamb_chops": "Costeletas de cordeiro com cominho",
+                    "honey_grilled_chicken": "Frango grelhado com mel",
+                    "garlic_eggplant": "Beringela de alho",
+                    "portuguese_egg_tart": "Torta de ovo portuguesa",
+                    "creme_brulee": "Creme brulee",
+                    "cocoa_chips": "Cacau",
+                    "butter_cookies": "Biscoitos de manteiga",
+                    "chiffon_cake": "Bolo chiffon",
+                    "puff_pastry": "Massa folhada",
+                    "red_bean_bread": "Pão de feijão vermelho",
+                    "milk_toast": "Torrada de leite"
+                }
             }
         },
         "sensor": {
             "time_remaining": {
                 "name": "Tempo restante"
+            },
+            "cooking_status": {
+                "name": "Status de cozimento",
+                "state": {
+                    "wait": "Aguardando cozimento",
+                    "reservation": "Em reserva",
+                    "cooking": "Em andamento",
+                    "cancel": "Cancelamento de cozimento",
+                    "done": "Concluído",
+                    "pause": "Pausa no cozimento"
+                }
             }
         },
         "switch": {

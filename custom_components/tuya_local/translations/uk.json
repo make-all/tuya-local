@@ -41,7 +41,7 @@
                     "local_key": "Локальний ключ (local_key)",
                     "protocol_version": "Версія протоколу (якщо не знаєте, спробуйте 'auto')",
                     "poll_only": "Виключно опитування (спробуйте це, якщо ваш пристрій не зовсім працює)",
-                    "device_cid": "[uk] Sub device ID (for devices connected via gateway)"
+                    "device_cid": "Sub device ID (для пристроїв, підключених через шлюз)"
                 }
             },
             "select_type": {
@@ -88,7 +88,7 @@
                     "local_key": "Локальний ключ (local_key)",
                     "protocol_version": "Версія протоколу (якщо не знаєте, спробуйте 'auto')",
                     "poll_only": "Виключно опитування (спробуйте це, якщо ваш пристрій не зовсім працює)",
-                    "device_cid": "[uk] Sub device ID (for devices connected via gateway)"
+                    "device_cid": "Sub device ID (для пристроїв, підключених через шлюз)"
                 }
             }
         },
@@ -120,6 +120,22 @@
                 "state": {
                     "off": "OK",
                     "on": "Повний"
+                }
+            },
+            "casdon_oven_fault": {
+                "state_attributes": {
+                    "fault_message": {
+                        "state": {
+                            "e1": "E1: Захист від перегріву камери (перевищує 290°C)",
+                            "e2": "E2: Захист від перегріву випарника (перевищує 200°C)",
+                            "e3": "E3: Захист від низької температури камери (нижче 35°C)",
+                            "e4": "E4: Захист від низької температури випарника (нижче 35°C)",
+                            "e5": "E5: Помилка підключення датчика (відкритий коло)",
+                            "e6": "E6: Помилка датчика (коротке замикання)",
+                            "e7": "E7: Помилка зв'язку з платою дисплею",
+                            "e8": "E8: Відкритий бак з водою (CN7) або суха піддон для випарника (CN3)"
+                        }
+                    }
                 }
             }
         },
@@ -215,6 +231,38 @@
                     "hvac_mode": {
                         "state": {
                             "fan_only": "Пауза"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "off": "Вимк",
+                            "healthy_steam": "Здоровий пар",
+                            "fresh_steam": "Свіжий пар",
+                            "high_temp_steam": "Висока температура пару",
+                            "stew": "Тушення",
+                            "bake_up_and_down": "Випікання зверху і знизу",
+                            "bbq": "BBQ",
+                            "bottom_hot_air": "Нижній гарячий повітря",
+                            "on_strong_roast": "На сильному смаженні",
+                            "3d_hot_air": "3D гарячий повітря",
+                            "air_fry": "Повітряна фритюрниця",
+                            "steam_frying": "Парове смаження",
+                            "one_click_bread": "Один клік хліб",
+                            "quick_heat": "Швидке нагрівання",
+                            "keep_warm": "Підтримувати тепло",
+                            "unfreeze": "Розморожування",
+                            "fermentation": "Ферментація",
+                            "descale": "Відкальцювання",
+                            "local_recipes": "Місцеві рецепти",
+                            "drying": "Сушіння",
+                            "custom": "Користувацький",
+                            "low_steaming": "Низьке парування",
+                            "medium_steaming": "Середнє парування",
+                            "high_steaming": "Високе парування"
                         }
                     }
                 }
@@ -431,11 +479,58 @@
                     "celsius": "Цельсія",
                     "fahrenheit": "Фаренгейт"
                 }
+            },
+            "oven_built_in_recipe": {
+                "name": "Вбудований рецепт",
+                "state": {
+                    "none": "Нічого",
+                    "steamed_egg_with_okra": "Парове яйце з окрою",
+                    "steamed_sea_bass": "Паровий морський окунь",
+                    "steamed_prawns": "Парові креветки",
+                    "handmade_steamed_bread": "Ручний паровий хліб",
+                    "fan_steamed_baby_vegetables": "Вентилятор парових дитячих овочів",
+                    "braised_pork": "Тушкована свинина",
+                    "snow_fungus_and_bird_s_nest": "Снігова гриби та гнізда птахів",
+                    "crab_pot": "Крабовий горщик",
+                    "potato_ribs": "Картопляні ребра",
+                    "coconut_chicken_soup": "Кокосовий курячий суп",
+                    "snack_platter": "Снек-платтер",
+                    "chicken_skewers": "Курячі шашлики",
+                    "roasted_pork_knuckle": "Смажена свиняча копита",
+                    "dried_lemon": "Сушений лимон",
+                    "pork_jerky": "Свинячий джерки",
+                    "crispy_hairtail": "Хрустка косатка",
+                    "spicy_grilled_fish": "Гостре смажена риба",
+                    "roasted_sweet_potatoes": "Смажені солодкі картоплі",
+                    "roasted_chicken_wings": "Смажені курячі крильця",
+                    "cumin_lamb_chops": "Кумін ламб чопс",
+                    "honey_grilled_chicken": "Медовий смажений курча",
+                    "garlic_eggplant": "Часник баклажан",
+                    "portuguese_egg_tart": "Португальський яєчний тарт",
+                    "creme_brulee": "Крем-брюле",
+                    "cocoa_chips": "Какао-чіпси",
+                    "butter_cookies": "Масляні печиво",
+                    "chiffon_cake": "Шифоновий торт",
+                    "puff_pastry": "Відкритий пиріг",
+                    "red_bean_bread": "Червоний бобовий хліб",
+                    "milk_toast": "Молочний тост"
+                }
             }
         },
         "sensor": {
             "time_remaining": {
                 "name": "Залишився час"
+            },
+            "cooking_status": {
+                "name": "Статус",
+                "state": {
+                    "wait": "Очікування на приготування",
+                    "reservation": "В резерві",
+                    "cooking": "В процесі",
+                    "cancel": "Скасувати",
+                    "done": "Готово",
+                    "pause": "Приготування призупинено"
+                }
             }
         },
         "switch": {

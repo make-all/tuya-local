@@ -121,6 +121,22 @@
                     "off": "OK",
                     "on": "Γεμάτο"
                 }
+            },
+            "casdon_oven_fault": {
+                "state_attributes": {
+                    "fault_message": {
+                        "state": {
+                            "e1": "E1: Προστασία υπερθέρμανσης θαλάμου (υπερβαίνει τους 290°C)",
+                            "e2": "E2: Προστασία υπερθέρμανσης δίσκου εξάτμισης (υπερβαίνει τους 200°C)",
+                            "e3": "E3: Προστασία χαμηλής θερμοκρασίας θαλάμου (κάτω από 35°C)",
+                            "e4": "E4: Προστασία χαμηλής θερμοκρασίας δίσκου εξάτμισης (κάτω από 35°C)",
+                            "e5": "E5: Σφάλμα σύνδεσης αισθητήρα (Ανοικτό κύκλωμα)",
+                            "e6": "E6: Σφάλμα αισθητήρα (Κλειστό κύκλωμα)",
+                            "e7": "E7: Σφάλμα επικοινωνίας πίνακα εμφάνισης",
+                            "e8": "E8: Δοχείο νερού ανοιχτό (CN7) ή Ξηρό δίσκο εξάτμισης (CN3)"
+                        }
+                    }
+                }
             }
         },
         "climate": {
@@ -215,6 +231,37 @@
                     "hvac_mode": {
                         "state": {
                             "fan_only": "Παύση"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "healthy_steam": "Υγιεινή ατμός",
+                            "fresh_steam": "Φρέσκος ατμός",
+                            "high_temp_steam": "Υψηλή θερμοκρασία ατμού",
+                            "stew": "Στοιχείο",
+                            "bake_up_and_down": "Ψήσιμο πάνω και κάτω",
+                            "bbq": "Ψήσιμο στη σχάρα",
+                            "bottom_hot_air": "Κάτω ζεστός αέρας",
+                            "on_strong_roast": "Στον δυνατό ψητό",
+                            "3d_hot_air": "3D ζεστός αέρας",
+                            "air_fry": "Ψήσιμο στον αέρα",
+                            "steam_frying": "Ατμός και τηγάνισμα",
+                            "one_click_bread": "Ένα κλικ ψωμί",
+                            "quick_heat": "Γρήγορη θέρμανση",
+                            "keep_warm": "Διατήρηση θερμοκρασίας",
+                            "unfreeze": "Απόψυξη",
+                            "fermentation": "Ζύμωση",
+                            "descale": "Αφαίρεση αλάτων",
+                            "local_recipes": "Τοπικές συνταγές",
+                            "drying": "Στέγνωμα",
+                            "custom": "Προσαρμοσμένο",
+                            "low_steaming": "Χαμηλή ατμός",
+                            "medium_steaming": "Μεσαία ατμός",
+                            "high_steaming": "Υψηλή ατμός"
                         }
                     }
                 }
@@ -431,11 +478,58 @@
                     "celsius": "Κελσίου",
                     "fahrenheit": "Φαρενάιτ"
                 }
+            },
+            "oven_built_in_recipe": {
+                "name": "Ενσωματωμένη συνταγή",
+                "state": {
+                    "none": "Καμία",
+                    "steamed_egg_with_okra": "Αυγό με οκρα",
+                    "steamed_sea_bass": "Ατλαντικός λαβράκι",
+                    "steamed_prawns": "Γαρίδες",
+                    "handmade_steamed_bread": "Χειροποίητο ψωμί",
+                    "fan_steamed_baby_vegetables": "Ατμός με λαχανικά",
+                    "braised_pork": "Χοιρινό",
+                    "snow_fungus_and_bird_s_nest": "Μανιτάρια και φωλιά πουλιών",
+                    "crab_pot": "Κατσαρίδα",
+                    "potato_ribs": "Πατάτες με ριπς",
+                    "coconut_chicken_soup": "Σούπα κοτόπουλο με καρύδα",
+                    "snack_platter": "Πιάτο με σνακ",
+                    "chicken_skewers": "Κοτόπουλο σε σουβλάκι",
+                    "roasted_pork_knuckle": "Ψητό χοιρινό",
+                    "dried_lemon": "Ξερό λεμόνι",
+                    "pork_jerky": "Χοιρινό τζέρκι",
+                    "crispy_hairtail": "Τραγανό ψαρονέφρι",
+                    "spicy_grilled_fish": "Καυτερό ψάρι στη σχάρα",
+                    "roasted_sweet_potatoes": "Ψητές γλυκοπατάτες",
+                    "roasted_chicken_wings": "Ψητές φτερούγες κοτόπουλου",
+                    "cumin_lamb_chops": "Μπριζόλες αρνιού με κύμινο",
+                    "honey_grilled_chicken": "Κοτόπουλο στη σχάρα με μέλι",
+                    "garlic_eggplant": "Μελιτζάνες με σκόρδο",
+                    "portuguese_egg_tart": "Πορτογαλική τάρτα με αυγά",
+                    "creme_brulee": "Κρέμα μπριγιέ",
+                    "cocoa_chips": "Τσίπς κακάο",
+                    "butter_cookies": "Μπισκότα βουτύρου",
+                    "chiffon_cake": "Κέικ σιφόν",
+                    "puff_pastry": "Φύλλο κρούστας",
+                    "red_bean_bread": "Ψωμί με κόκκινα φασόλια",
+                    "milk_toast": "Ψωμί με γάλα"
+                }
             }
         },
         "sensor": {
             "time_remaining": {
                 "name": "Χρόνος που απομένει"
+            },
+            "cooking_status": {
+                "name": "Κατάσταση",
+                "state": {
+                    "wait": "Αναμονή για μαγείρεμα",
+                    "reservation": "Κράτηση",
+                    "cooking": "Σε εξέλιξη",
+                    "cancel": "Ακύρωση μαγειρέματος",
+                    "done": "Ολοκληρώθηκε",
+                    "pause": "Παύση μαγειρέματος"
+                }
             }
         },
         "switch": {
