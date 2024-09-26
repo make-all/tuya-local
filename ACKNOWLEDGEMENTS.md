@@ -383,7 +383,7 @@ Further device support has been made with the assistance of users. Please consid
 - [mastermind85](https://github.com/mastermind85) for assisting with support for MC6 thermostats.
 - [BettySwallocks](https://github.com/BettySwallocks) for assisting with support for Advanced Fires 1500 electric fireplaces.
 - [Striiter](https://github.com/Stritter) for assisting with support for Feyree and WOUEJ EV chargers.
-- [mprobber](https://github.com/mprobber) for assisting with support for Sunbeam dual heated matress pads and BSTUOKEY access control keypads.
+- [mprobber](https://github.com/mprobber) for assisting with support for Sunbeam dual heated matress pads, BSTUOKEY access control keypads and Heatstorm DH-100-TWI heaters.
 - [gtawelt](https:github.com/gtawelt) for contributing support for Parkside PMW-300 solar inverters.
 - [DocDrydenn](https://github.com/DocDrydenn) for assisting with support for Treatlife dual dimmer smartplugs.
 - [kbirger](https://github.com/kbirger) for contributing support for Reiga 52 ceiling fan with light.

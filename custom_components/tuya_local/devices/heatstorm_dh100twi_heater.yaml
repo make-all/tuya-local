@@ -1,0 +1,234 @@
+name: Heater
+products:
+  - id: noiczk9zcelajycz
+    name: Heatstorm DH100TWI-2003
+primary_entity:
+  entity: climate
+  translation_only_key: heater
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          value: heat
+          constraint: heating_sw
+          conditions:
+            - dps_val: Fan
+              value: fan_only
+    - id: 2
+      type: integer
+      optional: true
+      name: temperature
+      range:
+        min: 4
+        max: 37
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: set_temp_f
+              range:
+                min: 40
+                max: 99
+    - id: 3
+      type: integer
+      optional: true
+      name: current_temperature
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: cur_temp_f
+    - id: 4
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: Auto
+          value: comfort
+        - dps_val: Low
+          value: eco
+        - dps_val: High
+          value: boost
+    - id: 5
+      type: string
+      name: fan_mode
+      mapping:
+        - dps_val: Low
+          value: low
+        - dps_val: Auto
+          value: auto
+        - dps_val: High
+          value: high
+    - id: 13
+      type: string
+      name: temperature_unit
+      mapping:
+        - dps_val: c
+          value: C
+        - dps_val: f
+          value: F
+    - id: 14
+      type: integer
+      optional: true
+      name: set_temp_f
+      range:
+        min: 40
+        max: 99
+      hidden: true
+    - id: 15
+      type: integer
+      optional: true
+      name: cur_temp_f
+      hidden: true
+    - id: 101
+      type: string
+      name: heating_sw
+    - id: 106
+      type: integer
+      optional: true
+      name: current_humidity
+secondary_entities:
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+  - entity: light
+    translation_key: indicator
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 21
+        type: bitfield
+        name: fault_code
+      - id: 21
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 1
+            value: Temp sensor fault
+          - dps_val: 2
+            value: Tilt over
+          - dps_val: 4
+            value: Over-voltage
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 13
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: min
+  - entity: switch
+    translation_key: keytone
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: number
+    name: Temperature calibration
+    category: config
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: value
+        unit: ⁰
+        range:
+          min: -5
+          max: 5
+        mapping:
+          - constraint: temp_unit
+            conditions:
+              - dps_val: f
+                value_redirect: calib_f
+                range:
+                  min: -9
+                  max: 9
+      - id: 102
+        type: integer
+        optional: true
+        name: calib_f
+        hidden: true
+      - id: 13
+        type: string
+        name: temp_unit
+  - entity: select
+    name: Thermometer
+    icon: "mdi:thermometer"
+    category: config
+    dps:
+      - id: 105
+        type: string
+        name: option
+        mapping:
+          - dps_val: Internal
+            value: Internal
+          - dps_val: External
+            value: External
+      - id: 107
+        type: string
+        name: external_thermometer_status
+  - entity: sensor
+    name: External temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        optional: true
+        name: sensor
+        class: measurement
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: F
+                value_redirect: temp_external_f
+      - id: 109
+        type: string
+        optional: true
+        name: unit
+        mapping:
+          - dps_val: null
+            value: C
+      - id: 110
+        type: integer
+        optional: true
+        name: temp_external_f
