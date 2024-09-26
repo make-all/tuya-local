@@ -778,6 +778,7 @@ port and password.
 - EPT ultrasonic 3m tank level sensor
 - GratKit filament dryer
 - Haier Nayun NY-GS-04 combustible gas alarm
+- HRT AS90 temperature and humidity alarm
 - Inkbird PTH-9CW air quality monitor
 - KKMoon 7in1 air quality monitor
 - Kogan bidet toilet seat

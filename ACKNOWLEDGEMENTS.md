@@ -681,3 +681,4 @@ Further device support has been made with the assistance of users. Please consid
 - [andrewigali](https://github.com/andrewigali) for contributing support for HDMI TV ambient lighting 65 LED strip.
 - [robex2005](https://github.com/robex2005) for contributing support for iHunt 400m³/h aip purifier.
 - [PanosssD](https://github.com/PanosssD) for contributing support for Inventor Comfort air conditioner.
+- [Jabber-se](https://github.com/Jabber-se) for contributing support for HRT AS90 climate alarm.

@@ -1,0 +1,212 @@
+name: Temperature and humidity sensor
+products:
+  - id: rocfghml4gy1vvr8
+    name: HRT AS90
+primary_entity:
+  entity: sensor
+  class: temperature
+  dps:
+    - id: 1
+      type: integer
+      name: sensor
+      unit: C
+      class: measurement
+      mapping:
+        - scale: 10
+secondary_entities:
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: switch
+    name: Charger
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 9
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: number
+    name: High temperature limit
+    category: config
+    class: temperature
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -190
+          max: 1500
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Low temperature limit
+    category: config
+    icon: "mdi:thermometer^chevron-down"
+    dps:
+      - id: 11
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -190
+          max: 1500
+        mapping:
+          - scale: 10
+  - entity: number
+    name: High humidity limit
+    category: config
+    class: humidity
+    dps:
+      - id: 12
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Low humidity limit
+    category: config
+    class: humidity
+    dps:
+      - id: 13
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Temperature alarm
+    class: enum
+    icon: "mdi:thermomter-alert"
+    category: diagnostic
+    dps:
+      - id: 14
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: upperalarm
+            value: "High temperature"
+          - dps_val: loweralarm
+            value: "Low temperature"
+          - dps_val: cancel
+            value: "No alarm"
+  - entity: sensor
+    name: Humidity alarm
+    class: enum
+    icon: "mdi:water-percent-alert"
+    category: diagnostic
+    dps:
+      - id: 15
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: upperalarm
+            value: "High humidity"
+          - dps_val: loweralarm
+            value: "Low humidity"
+          - dps_val: cancel
+            value: "No alarm"
+  - entity: sensor
+    name: Illumination
+    icon: "mdi:sun-wireless"
+    dps:
+      - id: 16
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: number
+    name: Temperature report interval
+    category: config
+    icon: "mdi:clock"
+    dps:
+      - id: 17
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 3600
+  - entity: number
+    name: Humidity report interval
+    category: config
+    icon: "mdi:clock"
+    dps:
+      - id: 18
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 3600
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 21
+        type: boolean
+        name: switch
+  - entity: number
+    name: Temperature calibration
+    category: config
+    class: temperature
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 23
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: -80
+          max: 80
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Humidity calibration
+    category: config
+    class: humidity
+    dps:
+      - id: 24
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: -500
+          max: 500
+        mapping:
+          - scale: 10
