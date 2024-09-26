@@ -1,0 +1,99 @@
+name: Pet feeder
+products:
+  - id: p7it0r4vcqgluka8
+    name: iPettie W5
+primary_entity:
+  entity: number
+  name: Manual feed
+  icon: "mdi:paw"
+  dps:
+    - id: 3
+      type: integer
+      optional: true
+      name: value
+      unit: portions
+      range:
+        min: 1
+        max: 12
+    - id: 1
+      type: string
+      optional: true
+      name: meal_plan
+secondary_entities:
+  - entity: sensor
+    name: Status
+    class: enum
+    icon: "mdi:paw"
+    category: diagnostic
+    dps:
+      - id: 4
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: Standby
+          - dps_val: no_food
+            value: "No food"
+          - dps_val: error_ir
+            value: Jammed
+          - dps_val: feed_timeout
+            value: Feed timeout
+          - dps_val: feeding
+            value: Feeding
+  - entity: button
+    name: Factory reset
+    class: restart
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: button
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 14
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 8
+            value: false
+          - value: true
+      - id: 14
+        type: bitfield
+        name: fault_code
+      - id: 14
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 9
+            value: ok
+          - dps_val: 1
+            value: no_food
+          - dps_val: 2
+            value: jammed
+          - dps_val: 4
+            value: feed_timeout
+          - dps_val: 8
+            value: battery_low
+  - entity: binary_sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 14
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 8
+            value: true
+          - value: false
+  - entity: sensor
+    name: Last feed
+    icon: "mdi:paw"
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        unit: portions
