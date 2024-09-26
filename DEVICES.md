@@ -780,6 +780,7 @@ port and password.
 - GratKit filament dryer
 - Haier Nayun NY-GS-04 combustible gas alarm
 - HRT AS90 temperature and humidity alarm
+- Holman Helios weather station
 - Inkbird PTH-9CW air quality monitor
 - KKMoon 7in1 air quality monitor
 - Kogan bidet toilet seat
