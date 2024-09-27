@@ -243,7 +243,7 @@
 - Orison RGB ambient bladeless ceiling fan
 - Ovlaim ceiling fan with cool/warm white dimmable light
 - Princess DC pedestal fan
-- Reiga 52 ceiling fan with light
+- Reiga ceiling fans with and without light
 - Royal Clima RCB 150 ventilation system
 - Skyfan DC fan
 - Skyfan DC fan with light
@@ -360,7 +360,7 @@
 ### Kitchen Appliances
 
 - Anko 1.7L smart kettle
-- Ciarra CBCS4850 range hood 
+- Ciarra CBCS4850 range hood
 - Casdon TD Pro 2 oven
 - Cecofry 5500 Connected air fryer
 - Inkbird iBBQ-4BW cooking probe thermometer
@@ -795,7 +795,7 @@ port and password.
 - PH-W218 water quality monitor
 - PlantsIO Ivy smart planter
 - PV28-CW 8 in 1 air quality monitor
-- RSE TY-WFH v3.01 gate controller 
+- RSE TY-WFH v3.01 gate controller
 - RTCZ-03 human presence sensor
 - RainPoint TTV103FRF water timer
 - SD123 HPR01 human presence radar
