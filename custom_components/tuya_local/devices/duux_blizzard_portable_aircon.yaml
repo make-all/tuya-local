@@ -2,6 +2,8 @@ name: Air conditioner
 products:
   - id: zhmv8syot6ye4kjo
     name: Duux Blizzard
+  - id: 1wfuo7w1yoejmgbn
+    name: Klarstein Kraftwerk Smart
 primary_entity:
   entity: climate
   dps:
@@ -25,6 +27,7 @@ primary_entity:
     - id: 2
       type: string
       name: mode
+      hidden: true
     - id: 3
       type: string
       name: fan_mode
@@ -38,6 +41,7 @@ primary_entity:
     - id: 5
       type: integer
       name: temperature
+      optional: true
       range:
         min: 18
         max: 32
@@ -57,9 +61,6 @@ primary_entity:
           conditions:
             - dps_val: true
               value_redirect: temp_current_f
-    - id: 9
-      type: bitfield
-      name: fault_code
     - id: 10
       type: integer
       name: temp_set_f
@@ -73,6 +74,9 @@ primary_entity:
       name: temp_current_f
       hidden: true
       optional: true
+    - id: 13
+      type: boolean
+      name: heat_available
     - id: 14
       type: boolean
       name: temperature_unit
@@ -92,7 +96,7 @@ secondary_entities:
         unit: h
         range:
           min: 0
-          max: 12
+          max: 24
   - entity: switch
     translation_key: sleep
     category: config
@@ -107,6 +111,20 @@ secondary_entities:
       - id: 7
         type: boolean
         name: switch
+      - id: 12
+        type: boolean
+        name: available
+  - entity: binary_sensor
+    translation_key: tank_full
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -117,21 +135,12 @@ secondary_entities:
         mapping:
           - dps_val: 0
             value: false
+          - dps_val: 1
+            value: false
           - value: true
-  - entity: switch
-    name: Display ionizer
-    category: config
-    dps:
-      - id: 12
-        type: boolean
-        name: switch
-  - entity: switch
-    name: Display mode
-    category: config
-    dps:
-      - id: 13
-        type: boolean
-        name: switch
+      - id: 9
+        type: bitfield
+        name: fault_code
   - entity: select
     translation_key: temperature_unit
     category: config
@@ -147,8 +156,9 @@ secondary_entities:
   - entity: sensor
     translation_key: time_remaining
     class: duration
-    category: config
+    category: diagnostic
     dps:
       - id: 15
         type: integer
         name: sensor
+        unit: min
