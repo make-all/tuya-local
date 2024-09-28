@@ -412,12 +412,13 @@ secondary_entities:
     category: diagnostic
     dps:
       - id: 40
-        type: boolean
+        type: string
         optional: true
         name: sensor
         mapping:
-          - dps_val: null
-            value: false
+          - dps_val: installed
+            value: true
+          - value: false
   - entity: select
     name: Operation mode
     icon: "mdi:robot-vacuum"
