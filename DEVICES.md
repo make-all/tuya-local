@@ -767,7 +767,7 @@ port and password.
 ### Miscellaneous
 
 - generic PIR motion sensor
-- generic illuminance sensor
+- generic illuminance sensor (2 types using different dps)
 - Air Housekeeper 6-in-1 air quality monitor
 - Akai heat pump clothes dryer
 - AquaForte Inverter VSP pool pump
