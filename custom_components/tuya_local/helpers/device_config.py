@@ -289,7 +289,7 @@ class TuyaEntityConfig:
         return self._config.get("class")
 
     def icon(self, device):
-        """Return the icon for this device, with state as given."""
+        """Return the icon for this entity, with state as given."""
         icon = self._config.get("icon", None)
         priority = self._config.get("icon_priority", 100)
 
@@ -316,6 +316,13 @@ class TuyaEntityConfig:
             if d.name == name:
                 return d
         return None
+
+    def available(self, device):
+        """Return whether this entity should be available, with state as given."""
+        avail_dp = self.find_dps("available")
+        if avail_dp and device.has_returned_state:
+            return avail_dp.get_value(device)
+        return True
 
 
 class TuyaDpsConfig:
@@ -479,6 +486,13 @@ class TuyaDpsConfig:
         settings = self.get_values_to_set(device, value)
         await device.async_set_properties(settings)
 
+    def should_show_mapping(self, mapping, device):
+        """Determine if this mapping should be shown in the list of values."""
+        if "value" not in mapping or mapping.get("hidden", False):
+            return False
+        avail_dp = self._entity.find_dps(mapping.get("available"))
+        return avail_dp.get_value(device) if avail_dp else True
+
     def values(self, device):
         """Return the possible values a dps can take."""
         if "mapping" not in self._config.keys():
@@ -490,29 +504,33 @@ class TuyaDpsConfig:
             return []
         val = []
         for m in self._config["mapping"]:
-            if "value" in m and not m.get("hidden", False):
+            if self.should_show_mapping(m, device):
                 val.append(m["value"])
             # If there is mirroring without override, include mirrored values
             elif "value_mirror" in m:
                 r_dps = self._entity.find_dps(m["value_mirror"])
-                val = val + r_dps.values(device)
+                if r_dps:
+                    val = val + r_dps.values(device)
             for c in m.get("conditions", {}):
-                if "value" in c and not c.get("hidden", False):
+                if self.should_show_mapping(c, device):
                     val.append(c["value"])
                 elif "value_mirror" in c:
                     r_dps = self._entity.find_dps(c["value_mirror"])
-                    val = val + r_dps.values(device)
+                    if r_dps:
+                        val = val + r_dps.values(device)
 
             cond = self._active_condition(m, device)
             if cond and "mapping" in cond:
                 _LOGGER.debug("Considering conditional mappings")
                 c_val = []
                 for m2 in cond["mapping"]:
-                    if "value" in m2 and not m2.get("hidden", False):
+                    if self.should_show_mapping(m2, device):
                         c_val.append(m2["value"])
+
                     elif "value_mirror" in m:
                         r_dps = self._entity.find_dps(m["value_mirror"])
-                        c_val = c_val + r_dps.values(device)
+                        if r_dps:
+                            c_val = c_val + r_dps.values(device)
                 # if given, the conditional mapping is an override
                 if c_val:
                     _LOGGER.debug(
@@ -696,10 +714,12 @@ class TuyaDpsConfig:
             if redirect:
                 _LOGGER.debug("Redirecting %s to %s", self.name, redirect)
                 r_dps = self._entity.find_dps(redirect)
-                return r_dps.get_value(device)
+                if r_dps:
+                    return r_dps.get_value(device)
             if mirror:
                 r_dps = self._entity.find_dps(mirror)
-                return r_dps.get_value(device)
+                if r_dps:
+                    return r_dps.get_value(device)
 
             if invert and isinstance(result, Number):
                 r = self._config.get("range")
@@ -768,7 +788,7 @@ class TuyaDpsConfig:
 
             if "value" not in m and "value_mirror" in m:
                 r_dps = self._entity.find_dps(m["value_mirror"])
-                if str(r_dps.get_value(device)) == str(value):
+                if r_dps and str(r_dps.get_value(device)) == str(value):
                     return m
 
             for c in m.get("conditions", {}):
@@ -776,7 +796,7 @@ class TuyaDpsConfig:
                     c_dp = self._entity.find_dps(m.get("constraint", self.name))
                     # only consider the condition a match if we can change
                     # the dp to match, or it already matches
-                    if (c_dp.id != self.id and not c_dp.readonly) or (
+                    if (c_dp and c_dp.id != self.id and not c_dp.readonly) or (
                         _equal_or_in(
                             device.get_property(c_dp.id),
                             c.get("dps_val"),
@@ -785,7 +805,7 @@ class TuyaDpsConfig:
                         return m
                 if "value" not in c and "value_mirror" in c:
                     r_dps = self._entity.find_dps(c["value_mirror"])
-                    if str(r_dps.get_value(device)) == str(value):
+                    if r_dps and str(r_dps.get_value(device)) == str(value):
                         return m
         if nearest:
             return nearest
@@ -856,7 +876,9 @@ class TuyaDpsConfig:
                 if cval is None:
                     r_dps = cond.get("value_mirror")
                     if r_dps:
-                        cval = self._entity.find_dps(r_dps).get_value(device)
+                        mirror = self._entity.find_dps(r_dps)
+                        if mirror:
+                            cval = mirror.get_value(device)
 
                 if cval == value:
                     c_dps = self._entity.find_dps(mapping.get("constraint", self.name))
@@ -864,7 +886,7 @@ class TuyaDpsConfig:
                     single_match = isinstance(cond_dpsval, str) or (
                         not isinstance(cond_dpsval, Sequence)
                     )
-                    if c_dps.id != self.id and single_match:
+                    if c_dps and c_dps.id != self.id and single_match:
                         c_val = c_dps._map_from_dps(
                             cond.get("dps_val", device.get_property(c_dps.id)),
                             device,
@@ -883,7 +905,8 @@ class TuyaDpsConfig:
             if redirect:
                 _LOGGER.debug("Redirecting %s to %s", self.name, redirect)
                 r_dps = self._entity.find_dps(redirect)
-                return r_dps.get_values_to_set(device, value)
+                if r_dps:
+                    return r_dps.get_values_to_set(device, value)
 
             if scale != 1 and isinstance(result, Number):
                 _LOGGER.debug("Scaling %s by %s", result, scale)

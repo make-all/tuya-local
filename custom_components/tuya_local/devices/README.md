@@ -332,6 +332,18 @@ example, some devices have a "Manual" mode, which is automatically selected
 when adjustments are made to other settings, but should not be available as
 an explicit mode for the user to select.
 
+### `available`
+
+*Optional.*
+
+This works the similarly to `hidden` above, but instead of a boolean
+value, this should be set to the name of an attribute, which returns a
+boolean value, so that the value can be dynamically hidden or shown. A
+typical use is where variants of a device use the same config, and
+have a flag attribute that indicates whether certain features are
+available or not. The mapping will be hidden from the values list when
+the referenced attribute is showing `false`, and shown when it is `true`.
+
 ### `scale`
 
 *Optional, default=1.*
@@ -531,6 +543,18 @@ Note that each condition must specify a `dps_val` to match againt. If you want t
             value: overridden
 ```
 
+
+## Generic dps
+
+The following dps may be defined for any entity type. The names should be
+avoided for any extra attribute that is not for the listed purpose.
+
+- **available** (optional, string) a dp name that returns a boolean indicating
+whether the entity should show as available or not (even when it appears to be
+returning valid state). This may be used to disable entities that the device
+indicates it does not support, through a feature flag dp. This should only be
+used when the device is permanently indicating a missing feature, as HA may
+hide the entity if it is marked as unavailable early enough during startup.
 
 ## Entity types
 
