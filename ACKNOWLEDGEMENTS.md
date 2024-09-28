@@ -684,3 +684,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Jabber-se](https://github.com/Jabber-se) for contributing support for HRT AS90 climate alarm.
 - [Elliottmonaghan](https://github.com/Elliottmonaghan) for contributing support for Holman Helios weather station.
 - [maddijoyce](https://github.com/maddijoyce) for contributing support for a second type of illuminance sensor.
+- [rege245](https://github.com/rege245) for contributing support for WDYK 4P100A energy meter circuit breaker.
