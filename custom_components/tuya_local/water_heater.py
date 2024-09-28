@@ -108,6 +108,9 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
         """Return the precision of the temperature setting."""
         # unlike sensor, this is a decimal of the smallest unit that can be
         # represented, not a number of decimal places.
+        if self._temperature_dps is None:
+            return None
+
         return 1.0 / max(
             self._temperature_dps.scale(self._device),
             (
@@ -149,7 +152,7 @@ class TuyaLocalWaterHeater(TuyaLocalEntity, WaterHeaterEntity):
     def target_temperature(self):
         """Return the temperature we try to reach."""
         if self._temperature_dps is None:
-            raise NotImplementedError()
+            return None
         return self._temperature_dps.get_value(self._device)
 
     @property
