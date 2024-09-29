@@ -6,6 +6,7 @@ products:
     name: Fairland X20 series
 primary_entity:
   entity: climate
+  translation_only_key: pool_heatpump
   dps:
     - id: 101
       type: boolean
@@ -22,6 +23,7 @@ primary_entity:
               value: auto
             - dps_val: cool
               value: cool
+              available: cool_available
             - dps_val: warm
               value: heat
     - id: 102
@@ -29,11 +31,12 @@ primary_entity:
       type: string
       mapping:
         - dps_val: "silence"
-          value: sleep
+          value: quiet
         - dps_val: "smart"
-          value: comfort
+          value: smart
         - dps_val: "booster"
-          value: boost
+          value: quick
+          available: boost_available
     - id: 103
       name: current_temperature
       type: integer
