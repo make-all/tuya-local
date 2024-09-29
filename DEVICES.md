@@ -392,6 +392,7 @@
 - DTS238-7 3 phase smart meter
 - Dual CT clamp bidirectional meter
 - EARU SW RCB breaker
+- EARU SW DPN breaker
 - eMylo EAI-90 smart meter
 - ERZ04C smart meter
 - Gaqqee KWS-302-WF energy meter

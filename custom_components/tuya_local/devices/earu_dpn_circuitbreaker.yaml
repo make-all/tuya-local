@@ -1,0 +1,55 @@
+name: Circuit breaker
+products:
+  - id: azpywu5zfg5wyzpn
+    name: EARU SW MCB
+primary_entity:
+  entity: switch
+  icon: "mdi:fuse"
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+secondary_entities:
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 41
+        name: lock
+        type: boolean
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    dps:
+      - id: 20
+        name: sensor
+        type: integer
+        unit: V
+        class: measurement
+        force: true
+        mapping:
+          - scale: 10
+  - entity: sensor
+    category: diagnostic
+    class: current
+    dps:
+      - id: 18
+        name: sensor
+        type: integer
+        unit: A
+        class: measurement
+        force: true
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    category: diagnostic
+    class: power
+    dps:
+      - id: 19
+        name: sensor
+        type: integer
+        unit: kW
+        class: measurement
+        force: true
+        mapping:
+          - scale: 10

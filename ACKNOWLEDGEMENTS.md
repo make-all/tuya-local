@@ -689,3 +689,4 @@ Further device support has been made with the assistance of users. Please consid
 - [IATkachnko](https://github.com/IATkachenko) for contributing support for Ballu Aura air conditioner.
 - [DennisGeisse](https://github.com/DennisGeisse) for contributing support for Reiga ceiling fan without light.
 - [death-droid](https://github.com/death-droid) for contributing improvements to the water_heater platform.
+- [79chrisone](https://github.com/79chrisone) for contributing basic support for EARU DPN circuit breaker.
