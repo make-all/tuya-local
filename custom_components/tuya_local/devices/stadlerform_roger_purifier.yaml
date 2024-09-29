@@ -25,16 +25,13 @@ primary_entity:
         - dps_val: auto
           value: 100
 secondary_entities:
-  - entity: switch
-    name: Child lock
-    class: switch
-    icon: "mdi:lock-outline"
+  - entity: lock
+    translation_key: child_lock
     dps:
       - id: 7
-        name: switch
+        name: lock
         type: boolean
   - entity: light
-    name: Light
     category: config
     dps:
       - id: 8
@@ -50,7 +47,7 @@ secondary_entities:
         name: sensor
         unit: "%"
   - entity: sensor
-    name: Filter (Days)
+    name: Filter (days)
     category: diagnostic
     class: duration
     dps:
