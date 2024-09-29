@@ -685,3 +685,6 @@ Further device support has been made with the assistance of users. Please consid
 - [Elliottmonaghan](https://github.com/Elliottmonaghan) for contributing support for Holman Helios weather station.
 - [maddijoyce](https://github.com/maddijoyce) for contributing support for a second type of illuminance sensor.
 - [rege245](https://github.com/rege245) for contributing support for WDYK 4P100A energy meter circuit breaker.
+- [arnkit](https://github.com/arnkit) for contributing improvements to Stadlerform Roger purifier.
+- [IATkachnko](https://github.com/IATkachenko) for contributing support for Ballu Aura air conditioner.
+- [DennisGeisse](https://github.com/DennisGeisse) for contributing support for Reiga ceiling fan without light.
