@@ -77,27 +77,27 @@ primary_entity:
       #   1. Whether the temperature is adjustable in air supply mode
       #   2. Whether the temperature is adjustable in automatic mode
       #   3. Fresh air volume mark
-      #   4. Vector air supply
-      #   5. Left and right sweeping air
+      #   4. Vector air supply (implemented on Set vertical direction)
+      #   5. Left and right sweeping air (implemented on horizontal sweep)
       #   6. Photosensitive
       #   7. Intelligent dehumidification and anti-mildew
       #   8. Humidity sensor
       #   9. Evaporator cleaning
-      #   10. Save money and see it
+      #   10. Save money and see it (implemented on Energy saving)
       #   11. Power statistics
-      #   12. Generator mode
-      #   13. High temperature wind/cool wind
-      #   14. Air quality detection function
+      #   12. Generator mode (implemented on Generator mode)
+      #   13. High temperature wind/cool wind (implemented on Hot cold wind)
+      #   14. Air quality detection function (implemented on Air quality)
       #   15. Set to empty (original: humidity function)
       #   16. Set to empty (original: equipment operation saves money and
       #       visible temperature curve display)
       #   17. 8℃ heating
-      #   18. Filter dirty and clogged function
+      #   18. Filter dirty and clogged function (implemented on Dirty filter)
       #   ??? - 19 is missing in Tuya json
-      #   20. presence or absence of PM2.5
+      #   20. presence or absence of PM2.5 (implemented on PM25)
       #   21. temperature scale switching, 1 is Fahrenheit, 0 is Celsius
-      #   22. soft wind
-      #   23. left and right wide-angle air supply
+      #   22. soft wind (implemented on Sleep)
+      #   23. left and right wide-angle air supply (implemented on Set horizontal direction)
     - id: 123
       name: options
       type: string
@@ -118,14 +118,23 @@ primary_entity:
           value: "off"
         - dps_val: "1"
           value: horizontal
+          available: hswing_available
         - dps_val: "2"
           value: vertical
         - dps_val: "3"
           value: both
+          available: hswing_available
     - id: 134
       name: work_time
       type: string
       optional: true
+    - id: 110
+      type: bitfield
+      name: hswing_available
+      mapping:
+        - dps_val: 32
+          value: true
+        - value: false
 secondary_entities:
   - entity: binary_sensor
     class: problem
@@ -152,6 +161,13 @@ secondary_entities:
         name: sensor
         type: integer
         optional: true
+      - id: 110
+        type: bitfield
+        name: available
+        mapping:
+          - dps_val: 1048576
+            value: true
+          - value: false
   - entity: select
     name: Sleep
     category: config
@@ -170,8 +186,15 @@ secondary_entities:
           - dps_val: child
             value: Child
         optional: true
+      - id: 110
+        type: bitfield
+        name: available
+        mapping:
+          - dps_val: 4194394
+            value: true
+          - value: false
   - entity: select
-    name: Vertical Sweep
+    name: Vertical sweep
     category: config
     dps:
       - id: 113
@@ -188,7 +211,7 @@ secondary_entities:
           - dps_val: "3"
             value: Lower
   - entity: select
-    name: Horizontal Sweep
+    name: Horizontal sweep
     category: config
     dps:
       - id: 114
@@ -212,8 +235,15 @@ secondary_entities:
             value: Partial Right
           - dps_val: "7"
             value: Wide Angle
+      - id: 110
+        type: bitfield
+        name: available
+        mapping:
+          - dps_val: 32
+            value: true
+          - value: false
   - entity: select
-    name: Energy Saving
+    name: Energy saving
     category: config
     dps:
       - id: 119
@@ -230,8 +260,15 @@ secondary_entities:
           - dps_val: "3"
             value: Fixed Temperature Power Saving
         optional: true
+      - id: 110
+        type: bitfield
+        name: available
+        mapping:
+          - dps_val: 1024
+            value: true
+          - value: false
   - entity: select
-    name: Generator Mode
+    name: Generator mode
     category: config
     dps:
       - id: 120
@@ -248,15 +285,29 @@ secondary_entities:
           - dps_val: L3
             value: L3
         optional: true
+      - id: 110
+        type: bitfield
+        name: available
+        mapping:
+          - dps_val: 4096
+            value: true
+          - value: false
   - entity: sensor
-    name: Air Quality
+    name: Air quality
     dps:
       - id: 125
         name: sensor
         type: string
         optional: true
+      - id: 110
+        name: available
+        type: bitfield
+        mapping:
+          - dps_val: 16384
+            value: true
+          - value: false
   - entity: select
-    name: Set Vertical Direction
+    name: Set vertical direction
     category: config
     dps:
       - id: 126
@@ -276,8 +327,15 @@ secondary_entities:
             value: Slightly Down
           - dps_val: "5"
             value: Down
+      - id: 110
+        type: bitfield
+        name: available
+        mapping:
+          - dps_val: 16
+            value: true
+          - value: false
   - entity: select
-    name: Set Horizontal Direction  # Tuya JSON phrasing: Freeze Horizontal
+    name: Set horizontal direction  # Tuya JSON phrasing: Freeze Horizontal
     category: config
     dps:
       - id: 127
@@ -285,24 +343,31 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: "0"
-            value: Freeze Current Position
+            value: Freeze current position
             default: true
           - dps_val: "1"
             value: Left
           - dps_val: "2"
-            value: Slightly Left
+            value: Slightly left
           - dps_val: "3"
             value: Middle
           - dps_val: "4"
-            value: Slightly Right
+            value: Slightly right
           - dps_val: "5"
             value: Right
           - dps_val: "6"
-            value: Wide Angle Left
+            value: Wide angle left
           - dps_val: "7"
-            value: Wide Angle Right
+            value: Wide angle right
           - dps_val: "8"
-            value: Wide Angle
+            value: Wide angle
+      - id: 110
+        type: bitfield
+        name: available
+        mapping:
+          - dps_val: 8388608
+            value: true
+          - value: false
   - entity: select
     name: Power
     category: config
@@ -331,7 +396,7 @@ secondary_entities:
         name: total_p
         optional: true
   - entity: number
-    name: Power Saving Temperature
+    name: Power saving temperature
     category: config
     class: temperature
     dps:
@@ -344,7 +409,7 @@ secondary_entities:
           max: 31
         optional: true
   - entity: binary_sensor
-    name: Dirty Filter
+    name: Dirty filter
     class: problem
     category: diagnostic
     dps:
@@ -353,8 +418,15 @@ secondary_entities:
         name: sensor
         readonly: true
         optional: true
+      - id: 110
+        type: bitfield
+        name: available
+        mapping:
+          - dps_val: 262144
+            value: true
+          - value: false
   - entity: select
-    name: Hot Cold Wind
+    name: Hot cold wind
     category: config
     dps:
       - id: 132
@@ -366,8 +438,15 @@ secondary_entities:
           - dps_val: false
             value: Hot wind
         optional: true
+      - id: 110
+        type: bitfield
+        name: available
+        mapping:
+          - dps_val: 8192
+            value: true
+          - value: false
   - entity: sensor
-    name: Running Time
+    name: Running time
     class: duration
     dps:
       - id: 135
