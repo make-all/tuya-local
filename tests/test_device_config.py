@@ -33,6 +33,7 @@ CONDMAP_SCHEMA = vol.Schema(
         vol.Optional("value"): vol.Maybe(vol.Any(str, int, bool, float)),
         vol.Optional("value_redirect"): str,
         vol.Optional("value_mirror"): str,
+        vol.Optional("available"): str,
         vol.Optional("range"): {
             vol.Required("min"): int,
             vol.Required("max"): int,
