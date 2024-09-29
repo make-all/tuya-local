@@ -1655,3 +1655,19 @@ AM25_ROLLERBLIND_PAYLOAD = {
     "105": True,
     "109": 4,
 }
+
+DUUX_BLIZZARD_PAYLOAD = {
+    "1": False,
+    "2": "fan",
+    "3": "high",
+    "4": 0,
+    "6": False,
+    "7": False,
+    "8": 22,
+    "9": 0,
+    "11": 72,
+    "12": True,
+    "13": False,
+    "14": False,
+    "15": 0,
+}
