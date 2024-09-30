@@ -691,3 +691,4 @@ Further device support has been made with the assistance of users. Please consid
 - [death-droid](https://github.com/death-droid) for contributing improvements to the water_heater platform.
 - [79chrisone](https://github.com/79chrisone) for contributing basic support for EARU DPN circuit breaker.
 - [sorrison](https://github.com/sorrison) for contributing improvements to Sanden heat pump.
+- [OsaedYahya](https://github.com/OsaedYahya) for contributing support for MyQ TD8 vide doorbell.
