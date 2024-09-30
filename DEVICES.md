@@ -568,6 +568,7 @@ of device.
 - LightStar CCT track light
 - Loycco sound machine with nightlight (also sold as Momland nightlight with white noise)
 - Loginovo TV sync backlight
+- LSC Smart Connect Smart Ceiling Light
 - LSC smart connect RGB CCT lightbulb (similar to older generic bulbs, so may work for others)
 - Lytmi Fantasy/Neo 3 HDMI sync backlight
 - Malmbergs QS-WIFI-D02-TRIAC single dimmer module
