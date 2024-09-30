@@ -8,16 +8,16 @@ primary_entity:
   name: Main light
   icon: mdi:circle
   dps:
-    - id: 63 # White Light Control Switch
+    - id: 63 
       type: boolean
       name: switch
-    - id: 22 # Brightness
+    - id: 22
       name: brightness
       type: integer
       range:
         min: 10
         max: 1000
-    - id: 23 # Color Temperature
+    - id: 23 
       name: color_temp
       type: integer
       range:
@@ -37,10 +37,10 @@ secondary_entities:
     name: Halo
     icon: "mdi:circle-outline"
     dps:
-      - id: 54 # Color Control Switch
+      - id: 54 
         type: boolean
         name: switch
-      - id: 24 # RGB data
+      - id: 24
         name: rgbhsv
         type: hex
         format:
