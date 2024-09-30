@@ -27,9 +27,6 @@ primary_entity:
         - target_range:
             min: 2700
             max: 6500
-  supported_features:
-    - brightness
-    - color_temp
 
 secondary_entities:
   - entity: light
@@ -66,9 +63,6 @@ secondary_entities:
           max: 1000
         mapping:
           - mask: "00000000FFFF"
-    supported_features:
-      - brightness
-      - rgb
 
   - entity: switch
     name: Light off after power restore
