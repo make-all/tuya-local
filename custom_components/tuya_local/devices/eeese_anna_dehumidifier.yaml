@@ -6,13 +6,6 @@ primary_entity:
     - id: 1
       name: switch
       type: boolean
-      mapping:
-        - dps_val: false
-          icon: "mdi:air-humidifier-off"
-          icon_priority: 2
-        - dps_val: true
-          icon: "mdi:air-humidifier"
-          icon_priority: 4
     - id: 2
       name: humidity
       type: integer
@@ -31,27 +24,13 @@ primary_entity:
           value: auto
         - dps_val: Laundrydrying
           value: laundry
-          icon: "mdi:tshirt-crew"
-          icon_priority: 3
         - dps_val: Sleeping
           value: sleep
-          icon: "mdi:sleep"
-          icon_priority: 3
         - dps_val: Purifying
           value: purify
-          icon: "mdi:air-purifier"
-          icon_priority: 3
     - id: 6
       name: current_humidity
       type: integer
-    - id: 19
-      type: bitfield
-      name: fault_code
-      optional: true
-      mapping:
-        - dps_val: 4
-          icon: "mdi:cup-water"
-          icon_priority: 1
 secondary_entities:
   - entity: binary_sensor
     translation_key: tank_full
@@ -95,6 +74,21 @@ secondary_entities:
           - dps_val: 8
             value: false
           - value: true
+      - id: 19
+        type: bitfield
+        optional: true
+        name: fault_code
+      - id: 19
+        type: bitfield
+        optional: true
+        name: description
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 4
+            value: Tank full or missing
+          - dps_val: 8
+            value: Defrosting
   - entity: switch
     translation_key: ionizer
     category: config

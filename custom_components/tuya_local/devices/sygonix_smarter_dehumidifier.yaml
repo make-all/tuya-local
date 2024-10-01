@@ -1,7 +1,7 @@
 name: Dehumidifier
 products:
-  - id: qrjffdu2bjrd7v42
-    name: Vivosun DE0003 10L
+  - id: 4xcjyqplnfenhplh
+    name: Sygonix Smarter
 primary_entity:
   entity: humidifier
   class: dehumidifier
@@ -35,6 +35,27 @@ primary_entity:
     - id: 10
       type: boolean
       name: ionizer
+    - id: 19
+      name: error
+      type: bitfield
+      # E2 might be a compressor fault.
+      mapping:
+        - dps_val: 0
+          value: OK
+        - dps_val: 1
+          value: "Water Tank Full or Removed"
+          icon: "mdi:cup-water"
+          icon_priority: 1
+        - dps_val: 2
+          value: "E2 Compressor Fault"
+          icon: "mdi:engine-off-outline"
+          icon_priority: 1
+    - id: 102
+      type: integer
+      name: model_code
+    - id: 104
+      type: integer
+      name: equipment_code
 secondary_entities:
   - entity: fan
     dps:
@@ -55,8 +76,15 @@ secondary_entities:
       - id: 7
         type: integer
         name: sensor
-        unit: F
         class: measurement
+      - id: 24
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
   - entity: lock
     translation_key: child_lock
     category: config
@@ -134,6 +162,18 @@ secondary_entities:
             value: true
           - value: false
   - entity: binary_sensor
+    name: Filter
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 2
+            value: true
+          - value: false
+  - entity: binary_sensor
     class: problem
     category: diagnostic
     dps:
@@ -145,6 +185,8 @@ secondary_entities:
             value: false
           - dps_val: 1
             value: false
+          - dps_val: 2
+            value: false
           - dps_val: null
             value: false
           - value: true
@@ -153,11 +195,60 @@ secondary_entities:
         name: fault_code
       - id: 19
         type: bitfield
-        name: desciption
+        name: description
         mapping:
           - dps_val: 0
             value: OK
           - dps_val: 1
             value: Tank full or missing
           - dps_val: 2
-            value: "E2: Compressor fault"
+            value: Clean filter
+          - dps_val: 4
+            value: "E1: temperature sensor failure"
+          - dps_val: 8
+            value: "CL: temperature too low"
+          - dps_val: 16
+            value: "CH: temperature too high"
+          - dps_val: 32
+            value: "LO: humidity too low"
+          - dps_val: 64
+            value: "COIL: coil failure"
+          - dps_val: 128
+            value: "MOTOR: fan failure"
+  - entity: button
+    name: Filter reset
+    class: restart
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        name: button
+  - entity: sensor
+    category: diagnostic
+    name: Filter Lifetime
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 24
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: button
+    name: Runtime reset
+    class: restart
+    category: config
+    dps:
+      - id: 28
+        type: boolean
+        name: button

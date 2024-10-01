@@ -324,6 +324,7 @@
 - MeacoDry Arete Two 10L dehumidifier
 - Pro Breeze 30L dehumidifier
 - Shinco 30D dehumidifier (also matches Klarstein DryFy Connect)
+- Sygonix Smarter dehumidifier
 - Tesla Smart XL dehumidifier
 - VacPlus dehumidifier
 - Vivosun DE0003 dehumidifier
