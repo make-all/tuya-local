@@ -64,14 +64,18 @@ secondary_entities:
         mapping:
           - mask: "00000000FFFF"
 
-  - entity: switch
-    name: Light off after power restore
-    icon: "mdi:power-sleep"
+  - entity: select
+    translation_key: initial_state
     category: config
     dps:
       - id: 34
         type: boolean
-        name: switch
+        name: option
+        mapping:
+          - dps_val: true
+            value: "off"
+          - dps_val: false
+            value: "on"
 
   - entity: select
     name: Scene
