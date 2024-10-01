@@ -647,6 +647,7 @@ Humidifer can also cover dehumidifiers (use class to specify which).
 - **mode** (optional, mapping of strings): a dp to control preset modes of the device
 - **humidity** (optional, number): a dp to control the target humidity of the device
 - **current_humidity** (optional, number): a dp to report the current humidity measured by the device
+- **action** (optional, string): a dp to report the current action the device is performing. Valid actions are `humidifying`, `drying`, `idle` and `off`
 
 ### `lawn_mower`
 - **activity** (required, string): a dp to report the current activity of the mower. Valid activities are `mowing`, `paused`, `docked`, `error`, `returning` (from LawnMowerActivities in https://github.com/home-assistant/core/blob/dev/homeassistant/components/lawn_mower/const.py). Any additional activities should be mapped to one of those, and exposed through an extra attribute or sensor entity that shows all the statuses that the mower is reporting.
