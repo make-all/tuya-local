@@ -141,6 +141,7 @@ class TestInkbirdSousVideCooker(
         self.assertCountEqual(self.subject.hvac_modes, [HVACMode.OFF, HVACMode.HEAT])
 
     def test_hvac_action(self):
+        self.dps[HVACMODE_DPS] = True
         self.dps[HVACACTION_DPS] = "stop"
         self.assertEqual(self.subject.hvac_action, HVACAction.OFF)
 
@@ -149,6 +150,9 @@ class TestInkbirdSousVideCooker(
 
         self.dps[HVACACTION_DPS] = "complete"
         self.assertEqual(self.subject.hvac_action, HVACAction.IDLE)
+
+        self.dps[HVACMODE_DPS] = False
+        self.assertEqual(self.subject.hvac_action, HVACAction.OFF)
 
     async def test_turn_on(self):
         async with assert_device_properties_set(
