@@ -693,3 +693,4 @@ Further device support has been made with the assistance of users. Please consid
 - [sorrison](https://github.com/sorrison) for contributing improvements to Sanden heat pump.
 - [OsaedYahya](https://github.com/OsaedYahya) for contributing support for MyQ TD8 vide doorbell.
 - [holgergrote](https://github.com/holgergrote) for contributing support for Sygonix Smarter dehumidifier.
+- [rmf1995](https://github.com/rmf1995) for contributing support for Giatsu VAW 2 heat pump water heater.

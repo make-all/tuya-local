@@ -145,6 +145,7 @@
 - Ferroli Titano Twin water heater
 - Fisher air to water heat pump
 - Geyserwise TSE1 Geyser controller kit
+- Giatsu VAW 2 heat pump water heater
 - Hydrotherm Dynamic/X8 heat pump hot water systems (Gen 5 and 6)
 - ITS-4.5HD super water heat pump
 - Koi Duo HTW-TD-080KOID
