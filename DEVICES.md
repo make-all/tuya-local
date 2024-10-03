@@ -212,6 +212,7 @@
 - Atomberg Gorilla fan V2
 - Atomi 52 inch ceiling fan
 - Breville AirDynamic 3D pedestal fan
+- Brilliant Ceiling fan with light
 - Carro ceiling fan with cool and warm white lights
 - Carro PN-04F02D fan with dimmable light
 - Casafan ECO Neo III ceiling fan with light

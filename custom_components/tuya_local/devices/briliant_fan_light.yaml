@@ -1,0 +1,79 @@
+name: Ceiling Fan
+products:
+  - id: q0czoqfxdjynmkgj
+    name: Brilliant Smart Ceiling Fan
+primary_entity:
+  entity: fan
+  translation_key: fan_with_presets
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 3
+      name: speed
+      type: string
+      mapping:
+        - dps_val: "1"
+          value: 33
+        - dps_val: "2"
+          value: 66
+        - dps_val: "3"
+          value: 100
+    - id: 2
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: Normal
+          value: normal
+        - dps_val: Sleep
+          value: sleep
+        - dps_val: WakeUp
+          value: fresh
+        - dps_val: Nature
+          value: nature
+secondary_entities:
+  - entity: light
+    dps:
+      - id: 9
+        name: switch
+        type: boolean
+      - id: 10
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 100
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 6
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: cancel
+          - dps_val: null
+            value: cancel
+            hidden: true
+          - dps_val: "1"
+            value: "10m"
+          - dps_val: "2"
+            value: "30m"
+          - dps_val: "3"
+            value: "1h"
+          - dps_val: "4"
+            value: "2h"
+          - dps_val: "5"
+            value: "3h"
+          - dps_val: "6"
+            value: "4h"
+  - entity: sensor
+    translation_key: time_remaining
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: min
