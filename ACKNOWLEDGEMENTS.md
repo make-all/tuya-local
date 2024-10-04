@@ -695,3 +695,4 @@ Further device support has been made with the assistance of users. Please consid
 - [holgergrote](https://github.com/holgergrote) for contributing support for Sygonix Smarter dehumidifier.
 - [rmf1995](https://github.com/rmf1995) for contributing support for Giatsu VAW 2 heat pump water heater.
 - [murch1](https://github.com/murch1) for contributing support for Brilliant ceiling fan with light.
+- [NashHome](https://github.com/NashHome) for contributing support for Avatto curtain with double light switch.

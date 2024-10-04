@@ -600,6 +600,7 @@ of device.
 - Abalon BCM700D curtain motor (likely to work with other brands)
 - AGL Ultracontato r2 door controller
 - AGL Ultra Magic gate opener
+- Avatto curtain and double light switch
 - Avatto curtain and light switch
 - Avatto curtain switch
 - Avatto roller blind controller
