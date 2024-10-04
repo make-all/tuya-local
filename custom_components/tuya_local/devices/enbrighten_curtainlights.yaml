@@ -1,0 +1,107 @@
+name: Curtain lights
+primary_entity:
+  entity: light
+  dps:
+    - id: 20
+      type: boolean
+      name: switch
+    - id: 21
+      type: string
+      name: effect
+      mapping:
+        - dps_val: colour
+          value: "off"
+        - dps_val: scene
+          value: Scene
+    - id: 24
+      name: rgbhsv
+      type: hex
+      optional: true
+      format:
+        - name: h
+          bytes: 2
+          range:
+            min: 0
+            max: 360
+        - name: s
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+        - name: v
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+secondary_entities:
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        name: value
+        type: integer
+        unit: min
+        optional: true
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+          - dps_val: null
+  - entity: select
+    name: Scene
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 56
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "AQAKMjIAAABkAABkAAAAAGQAeGQAAAAAZAA5BwAAAAA="
+            value: "Holiday"
+          - dps_val: "AQEKMjIAAABkAABkAAAAAGQAOQcAAAAAZAEsZAAAAAA="
+            value: "Valentine's Day"
+          - dps_val: "AQIKMjIAAABkAAhkAAAAAGIBGFgAAAAAZAAPZAAAAAA="
+            value: "Halloween"
+          - dps_val: "AQMKMjIAAABkAHhkAAAAAGQAOQcAAAAAXwCIYwAAAAA="
+            value: "St. Patrick's Day"
+          - dps_val: "AQQKMjIAAABkAABkAAAAAGQAOQcAAAAAZADwZAAAAAA="
+            value: "July 4th"
+          - dps_val: "AQUKMjIAAABkAHhkAAAAAGEAO2MAAAAAYgEYWAAAAAA="
+            value: "Mardi Gras"
+          - dps_val: "AQYKMjIAAABkAHhkAAAAAF8AiGMAAAAAXQC+ZAAAAABiARJVAAAAA\
+              GQBH0UAAAAAZAEsZAAAAAA="
+            value: "Spring"
+          - dps_val: "AQcKMjIAAABkAA9kAAAAAF0AvmQAAAAAYgAuZAAAAABSAL5kAAAAA\
+              GEAO2MAAAAAXwDYYQAAAAA="
+            value: "Summer"
+          - dps_val: "AQgKMjIAAABkAABkAAAAAGQACGQAAAAAYgAuZAAAAABhADtjAAAAA\
+              GQAD2QAAAAAZAEsZAAAAAA="
+            value: "Autumn"
+          - dps_val: "AQkKMjIAAABdAL5kAAAAAFIAvmQAAAAAZADwZAAAAABiARJVAAAAA\
+              F8A2GEAAAAAZAA5BwAAAAA="
+            value: "Winter"
+          - dps_val: "AQoKMjIAAABkAABkAAAAAGQACGQAAAAAZAAPZAAAAAA="
+            value: "Fire"
+          - dps_val: "AQsKMjIAAABiARJVAAAAAGQA8GQAAAAAYgAuZAAAAABhADtjAAAAA\
+              FIAvmQAAAAAXwDYYQAAAAA="
+            value: "Storm"
+          - dps_val: "AQwKMjIAAABkAA9kAAAAAFIAvmQAAAAAYgAuZAAAAABiARhYAAAAA\
+              F0AvmQAAAAAZAEfRQAAAAA="
+            value: "Gaming"
+          - dps_val: "AQ0KMjIAAABkAPBkAAAAAGIBElUAAAAAYgEYWAAAAAA="
+            value: "Space"
+          - dps_val: "AQ4KMjIAAABkAABkAAAAAGIBGFgAAAAAZADwZAAAAAA="
+            value: "Dark"
+          - dps_val: "AQ8KMjIAAABkAHhkAAAAAGIBElUAAAAAXwCIYwAAAABSAL5kAAAAA\
+              F0AvmQAAAAAXwDYYQAAAAA="
+            value: "Aquatic"
+          - dps_val: "ARAKMjIAAABkAABkAAAAAGEAO2MAAAAAZAB4ZAAAAABfANhhAAAAA\
+              GQA8GQAAAAAZAEsZAAAAAA="
+            value: "Party"
+          - dps_val: "AREKMjIAAABkAABkAAAAAGQAD2QAAAAAYQA7YwAAAABkAHhkAAAAA\
+              GQA8GQAAAAAYgESVQAAAABkAR9FAAAAAA=="
+            value: "Rainbows"

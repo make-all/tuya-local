@@ -697,3 +697,4 @@ Further device support has been made with the assistance of users. Please consid
 - [murch1](https://github.com/murch1) for contributing support for Brilliant ceiling fan with light.
 - [NashHome](https://github.com/NashHome) for contributing support for Avatto curtain with double light switch.
 - [ciscolyon69](https://github.com/ciscolyon69) for assisting with support for another variant of MatSee Plus 2ch bidirectional clamp meter.
+- [cabmoomoo](https://github.com/cabmoomoo) for contributing support for Enbrighten curtain lights.

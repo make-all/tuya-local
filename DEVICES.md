@@ -555,7 +555,8 @@ of device.
 - Deta 6910HA series2 dimmer switch
 - Dim2Warm G95 Gold 1800-2700K CCT lightbulb
 - Dual-mode magic light string controller
-- Embrighten Café string lights
+- Enbrighten Café string lights
+- Enbrighten Curtain lights
 - Feit dimmer (may work with other brands that just have a switch, dimmer and
   optional minimum brightness and bulb type)
 - Feit RGBWW light bulb (like generic RGBWW, but without scene support)
