@@ -450,7 +450,7 @@ Further device support has been made with the assistance of users. Please consid
 - [uandco](https://github.com/uandco) for assisting with support for Evotherm ETI pool heatpumps.
 - [almirus](https://github.com/almirus) for contributing support for Neatsvor X500 vacuums, TH05-BLE temperature/humidity sensors, SGS01 and TCS024B soil moisture BLE sensors, Dongguan curtain robots, LightStar track lights, Royal Clima Fresh heatpumps.
 - [kinkamez](https://github.com/kinkamez) for contributing support for Prosto PRC 2000 heaters.
-- [MarkPaxton](https://github.com/MarkPaxton) for contributing support for Hombli radiator controllers.
+- [MarkPaxton](https://github.com/MarkPaxton) for contributing support for Hombli radiator controller and assisting with support for Klarstein Wonderwall Bornholm heater.
 - [mmib](https://github.com/mmib) for contributing support for Becasmart irrigation systems.
 - [kkot86](https://github.com/kkot86) for contributing support for Air Housekeeper air quality monitors.
 - [NoXPhasma](https://github.com/NoXPhasma) for assisting with support for Juskys oil radiators.

@@ -37,6 +37,7 @@
 - Kennedy II/JR electric fireplace
 - Kesser Infrared 400W wall and 3000W heaters.
 - Klarstein Wonderwall Air Art IR heater
+- Klarstein Wonderwall Bornholm IR heater
 - Klarstein Wonderwall IR heater
 - Kogan flame effect heater - KAWHMFP20BA model
 - Kogan tower heater - KASTHFP2KWA model
