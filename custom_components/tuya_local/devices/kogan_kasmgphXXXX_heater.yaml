@@ -1,10 +1,10 @@
-name: Kogan KASMGPH Series Heater
+name: Heater
 products:
   - id: 9l3riftrq9acjunt
     name: Kogan KASMGPH15YA Premium Glass Panel Heater
 primary_entity:
   entity: climate
-  name: "Climate"
+  translation_key: heater
   dps:
     - id: 1
       name: hvac_mode
@@ -34,19 +34,19 @@ primary_entity:
       type: integer
 secondary_entities:
   - entity: switch
-    name: "Night Mode"
+    translation_key: sleep
     dps:
       - id: 6
         type: boolean
         name: switch
   - entity: lock
-    name: "Child Lock"
+    translation_key: child_lock
     dps:
       - id: 7
         type: boolean
         name: lock
   - entity: select
-    name: "Timer"
+    translation_key: timer
     dps:
       - id: 19
         type: string
@@ -54,7 +54,7 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: cancel
-            value: "Timer Off"
+            value: cancel
           - dps_val: "1h"
             value: "1h"
           - dps_val: "2h"
@@ -68,11 +68,11 @@ secondary_entities:
           - dps_val: "6h"
             value: "6h"
   - entity: sensor
-    name: "Timer Remaining"
+    translation_key: time_remaining
     dps:
       - id: 20
         type: integer
         name: sensor
         class: measurement
         optional: true
-        unit: "minutes"
+        unit: min
