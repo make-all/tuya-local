@@ -790,6 +790,7 @@ port and password.
 - CT20W PIR motion detector
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
 - EPT ultrasonic 3m tank level sensor
+- Goldair Platinum SleepSmart electric blanket
 - GratKit filament dryer
 - Haier Nayun NY-GS-04 combustible gas alarm
 - HRT AS90 temperature and humidity alarm
