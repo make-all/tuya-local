@@ -700,3 +700,4 @@ Further device support has been made with the assistance of users. Please consid
 - [cabmoomoo](https://github.com/cabmoomoo) for contributing support for Enbrighten curtain lights.
 - [eldi0s](https://github.com/eldi0s) for contributing support for Kesser IR heater with flood lights.
 - [willieseabrook](https://github.com/willieseabrook) for contributing support for Kogan KASMGPH glass panel heater.
+- [VladimirTuzovGitHub](https://github.com/VladimirTuzovGitHub) for assisting with support for STL siren.
