@@ -41,7 +41,7 @@
 - Klarstein Wonderwall IR heater
 - Kogan flame effect heater - KAWHMFP20BA model
 - Kogan tower heater - KASTHFP2KWA model
-- Kogan Wi-Fi convection panel heaters - KAHTP and KAWFHTP models
+- Kogan panel heaters - KAHTP, KAWFHTP, KASMGPH models
 - Lehmann LHOHC-2013C electric radiator
 - Mellerware Comfy electric radiator (tested with Medium 1200W)
 - Modern Flames Orion fireplace
