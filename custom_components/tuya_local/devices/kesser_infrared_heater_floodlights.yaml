@@ -1,10 +1,9 @@
-name: Infrared heater floodlights
+name: Heater with light
 products:
   - id: trsas9jlfgcbxhq9
     name: Kesser 3000W Floodlights
 primary_entity:
   entity: switch
-  name: Power
   icon: "mdi:radiator"
   dps:
     - id: 1
@@ -28,8 +27,6 @@ secondary_entities:
           - dps_val: "F3"
             value: "3000W"
   - entity: light
-    name: floodlight
-    icon: "mdi:lightbulb"
     dps:
       - id: 10
         type: boolean
