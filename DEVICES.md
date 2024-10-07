@@ -182,6 +182,7 @@
 - Inkbird ITC306A thermostat smartplug
 - Inkbird ITC308 thermostat smartplug
 - Jiahong ET-72W thermostat
+- Kiturami NCTR-100 water and heating thermostat
 - KKMoon knob thermostat
 - Ledlux thermostat
 - ME80 touchscreen thermostat
