@@ -81,7 +81,7 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Power factor A
+    name: Power factor B
     class: power_factor
     category: diagnostic
     dps:
@@ -92,7 +92,7 @@ secondary_entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Current A
+    name: Current B
     class: current
     category: diagnostic
     dps:
@@ -110,7 +110,7 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Power A
+    name: Power B
     class: power
     category: diagnostic
     dps:
@@ -128,7 +128,7 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Energy consumption A
+    name: Energy consumption B
     class: energy
     category: diagnostic
     dps:
@@ -156,7 +156,7 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Energy produced A
+    name: Energy produced B
     class: energy
     category: diagnostic
     dps:
@@ -184,7 +184,7 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Power factor B
+    name: Power factor A
     class: power_factor
     category: diagnostic
     dps:
@@ -195,7 +195,7 @@ secondary_entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Current B
+    name: Current A
     class: current
     category: diagnostic
     dps:
@@ -213,7 +213,7 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Power B
+    name: Power A
     class: power
     category: diagnostic
     dps:
@@ -231,7 +231,7 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Energy consumption B
+    name: Energy consumption A
     class: energy
     category: diagnostic
     dps:
@@ -259,7 +259,7 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Energy produced B
+    name: Energy produced A
     class: energy
     category: diagnostic
     dps:
@@ -287,7 +287,7 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Direction A
+    name: Direction B
     class: enum
     category: diagnostic
     dps:
@@ -296,11 +296,11 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: true
-            value: out
-          - dps_val: false
             value: in
+          - dps_val: false
+            value: out
   - entity: sensor
-    name: Direction B
+    name: Direction A
     class: enum
     category: diagnostic
     dps:
@@ -309,9 +309,9 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: true
-            value: out
-          - dps_val: false
             value: in
+          - dps_val: false
+            value: out
   - entity: number
     name: Reporting rate
     category: config
