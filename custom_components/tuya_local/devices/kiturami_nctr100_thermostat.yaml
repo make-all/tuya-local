@@ -73,21 +73,20 @@ secondary_entities:
           - dps_val: false
             value: "off"
           - dps_val: true
-            mapping:
-              - constraint: mode
-                conditions:
-                  - dps_val: Interior
-                    value: Radiator
-                  - dps_val: Reservation
-                    value: Scheduled
-                  - dps_val: OutGoing
-                    value: Underfloor heating
-                  - dps_val: Bath
-                    value: Hot water
-                  - dps_val: Summer
-                    value: Quick start
-                  - dps_val: OnDol
-                    value: away
+            constraint: mode
+            conditions:
+              - dps_val: Interior
+                value: Radiator
+              - dps_val: Reservation
+                value: Scheduled
+              - dps_val: OutGoing
+                value: Underfloor heating
+              - dps_val: Bath
+                value: Hot water
+              - dps_val: Summer
+                value: Quick start
+              - dps_val: OnDol
+                value: away
       - id: 2
         type: string
         name: mode
