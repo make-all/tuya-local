@@ -25,44 +25,33 @@ primary_entity:
         - dps_val: OutGoing
           value: "off"
           hidden: true
-    - id: 5
+    - id: 103
       type: integer
       name: temperature
       range:
-        min: 10
-        max: 45
+        min: 45
+        max: 85
       unit: C
       mapping:
         - constraint: hvac_mode
           conditions:
-            - dps_val: Reservation
-              value_redirect: schedule_temperature
+            - dps_val: Interior
+              value_redirect: room_temperature
               range:
-                min: 45
-                max: 85
-            - dps_val: OnDol
-              value_redirect: water_temperature
-              range:
-                min: 35
-                max: 60
+                min: 10
+                max: 45
     - id: 6
       type: integer
       name: current_temperature
-    - id: 3
+    - id: 103
       type: integer
       name: water_temperature
       range:
-        min: 35
-        max: 60
+        min: 45
+        max: 85
     - id: 5
       type: integer
       name: room_temperature
-    - id: 103
-      type: integer
-      name: schedule_temperature
-      range:
-        min: 45
-        max: 85
 secondary_entities:
   - entity: water_heater
     dps:
@@ -76,17 +65,17 @@ secondary_entities:
             constraint: mode
             conditions:
               - dps_val: Interior
-                value: Radiator
+                value: Room
               - dps_val: Reservation
                 value: Scheduled
               - dps_val: OutGoing
-                value: Underfloor heating
+                value: away
               - dps_val: Bath
                 value: Hot water
               - dps_val: Summer
                 value: Quick start
               - dps_val: OnDol
-                value: away
+                value: Underfloor
       - id: 2
         type: string
         name: mode
@@ -98,20 +87,6 @@ secondary_entities:
           min: 35
           max: 60
         unit: C
-        mapping:
-          - constraint: mode
-            conditions:
-              - dps_val: Scheduled
-                value_redirect: schedule_temperature
-                range:
-                  min: 45
-                  max: 85
-      - id: 103
-        type: integer
-        name: schedule_temperature
-        range:
-          min: 45
-          max: 85
   - entity: binary_sensor
     class: problem
     category: diagnostic
