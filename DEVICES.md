@@ -698,6 +698,7 @@ work reliably, even if listed below.
 - Cleverio CD200 video doorbell
 - Iebeyond ECH doorbell with 433MHz RF hub
 - KW02 video doorbell
+- Linda Smart 7S video doorbell
 - MyQ TD8 video doorbell
 - WHM-04 doorbell (sold under various brands)
 
