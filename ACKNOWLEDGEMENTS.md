@@ -701,3 +701,5 @@ Further device support has been made with the assistance of users. Please consid
 - [eldi0s](https://github.com/eldi0s) for contributing support for Kesser IR heater with flood lights.
 - [willieseabrook](https://github.com/willieseabrook) for contributing support for Kogan KASMGPH glass panel heater.
 - [VladimirTuzovGitHub](https://github.com/VladimirTuzovGitHub) for assisting with support for STL siren and Kiturami thermostats.
+- [ianjsikes](https://github.com/ianjsikes) for contributing support for Windmill window air conditioner.
+

@@ -112,6 +112,7 @@
 - Vaco Moby Blue 14 / Arrifana 16 portable heat pump
 - Vivax Cool ACP-12CH35REWI
 - Vivion 300123/4/5 air conditioners
+- Windmill window air conditioner
 - Woods Cortina portable air conditioner
 - Woods Milan portable air conditioner
 
