@@ -255,6 +255,7 @@
 - Skyfan DC fan with light
 - Smart Mist3 TX-1602MF (ZJ-1522A-WiFi)
 - Stirling FS1-40DC pedestal fan
+- Sulion Cadillac ceiling fan with light (via RF hub)
 - Sulion Crixus L ceiling fan with light
 - TMWF02 fan controller
 - Treatlife DS02-F fan switch
@@ -762,6 +763,7 @@ port and password.
 - Arlec HUBRF06HA RF 8x8 learning remote transmitter
 - Moes IR/RF remote controller (also IR controller pro, may work only for IR)
 - Universal remote control with temperature and humidity sensors
+- S11+ IR/RF remote controller
 
 ### Valves
 
