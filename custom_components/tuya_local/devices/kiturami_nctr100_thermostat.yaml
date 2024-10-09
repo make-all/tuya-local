@@ -19,9 +19,9 @@ primary_entity:
           value: heat
         - dps_val: Bath
           value: "off"
+          hidden: true
         - dps_val: Summer
           value: "off"
-          hidden: true
         - dps_val: OutGoing
           value: "off"
           hidden: true
@@ -66,16 +66,16 @@ secondary_entities:
             conditions:
               - dps_val: Interior
                 value: Room
-              - dps_val: Reservation
-                value: Scheduled
-              - dps_val: OutGoing
-                value: away
-              - dps_val: Bath
-                value: Hot water
-              - dps_val: Summer
-                value: Quick start
               - dps_val: OnDol
                 value: Underfloor
+              - dps_val: Reservation
+                value: Scheduled
+              - dps_val: Summer
+                value: Hot water
+              - dps_val: Bath
+                value: Quick start
+              - dps_val: OutGoing
+                value: away
       - id: 2
         type: string
         name: mode
