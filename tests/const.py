@@ -1671,3 +1671,11 @@ DUUX_BLIZZARD_PAYLOAD = {
     "14": False,
     "15": 0,
 }
+
+BLE_SMARTPLANT_PAYLOAD = {
+    "3": 50,
+    "5": 25,
+    "9": "c",
+    "14": "Low",
+    "15": 20,
+}
