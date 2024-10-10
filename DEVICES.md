@@ -429,6 +429,7 @@
 
 ### Battery Charger
 
+- AFYEEV 32A 22kW portable EV charger
 - EcoPoint EV charger
 - EVSun EV charger
 - Feyree EV charger (several models)

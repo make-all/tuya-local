@@ -705,3 +705,4 @@ Further device support has been made with the assistance of users. Please consid
 - [luis-lain](https://github.com/luis-lain) for contributing support for S11+ RF+IR remote and Sulion Cadillac Fan via RF remote.
 - [gaspuas](https://github.com/gaspuas) for assisting with support for Linda Smart 7S video doorbell.
 - [joshuamns](https://github.com/joshuamns) for assisting with support for Vine TJ550 thermostat.
+- [jmcollin78](https://github.com/jmcollin78) for contributing support for AFYEEV EV charger.
