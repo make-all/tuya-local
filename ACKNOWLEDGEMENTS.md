@@ -704,4 +704,4 @@ Further device support has been made with the assistance of users. Please consid
 - [ianjsikes](https://github.com/ianjsikes) for contributing support for Windmill window air conditioner.
 - [luis-lain](https://github.com/luis-lain) for contributing support for S11+ RF+IR remote and Sulion Cadillac Fan via RF remote.
 - [gaspuas](https://github.com/gaspuas) for assisting with support for Linda Smart 7S video doorbell.
-
+- [joshuamns](https://github.com/joshuamns) for assisting with support for Vine TJ550 thermostat.

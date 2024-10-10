@@ -201,6 +201,7 @@
 - Saswell T29UTW thermostat
 - T5E-WF thermostat
 - Thermoval TVT40 thermostat
+- Vine TJ550 thermostat
 
 ### Fans
 
