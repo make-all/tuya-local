@@ -1,7 +1,9 @@
-name: ZigBee Curtain
+name: Curtain
 products:
   - id: 8kzqqzu4
-    name: SC500ZB-V2
+    name: Loratap SC500ZB-V2
+  - id: v7ooovn9oamttmre
+    name: Loratap WiFi curtain
 primary_entity:
   entity: cover
   class: shutter
@@ -28,7 +30,7 @@ primary_entity:
     - id: 14
       name: light_mode
       type: string
-      hidden: true
+      optional: true
 secondary_entities:
   - entity: switch
     category: config
