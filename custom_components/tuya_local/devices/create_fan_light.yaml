@@ -10,12 +10,14 @@ primary_entity:
       name: switch
     - id: 62
       type: integer
+      optional: true
       name: speed
       range:
         min: 1
         max: 6
     - id: 63
       type: string
+      optional: true
       name: direction
 secondary_entities:
   - entity: light
@@ -30,6 +32,7 @@ secondary_entities:
       - id: 23
         name: color_temp
         type: integer
+        optional: true
         range:
           min: 0
           max: 1000
