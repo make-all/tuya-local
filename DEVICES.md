@@ -195,6 +195,7 @@
 - Netmostat N-1 (RTAFN1) thermostat
 - Owon PCT513 thermostat
 - Plikc Neve X RFW thermostat
+- Psmart T436 thermostat
 - RYRA TYTE-D1 thermostat with energy monitoring
 - Salcar T9W thermostat _(likely also Tellur TSH02)_
 - Saswell C16 thermostat _(rebadged as Warmme, Klima and others)_

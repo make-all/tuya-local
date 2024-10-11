@@ -1,0 +1,204 @@
+name: Thermostat
+products:
+  - id: gogb05wrtredz3bs
+    name: Psmart T436
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: auto
+              value: auto
+            - dps_val: manual
+              value: heat
+    - id: 2
+      type: string
+      name: mode
+      hidden: true
+    - id: 16
+      type: integer
+      name: temperature
+      unit: C
+      range:
+        min: 50
+        max: 700
+      mapping:
+        - scale: 10
+          step: 5
+    - id: 19
+      type: integer
+      name: max_temperature
+      optional: true
+      mapping:
+        - scale: 10
+    - id: 26
+      type: integer
+      name: min_temperature
+      optional: true
+      mapping:
+        - scale: 10
+    - id: 24
+      type: integer
+      name: current_temperature
+      mapping:
+        - scale: 10
+    - id: 36
+      type: string
+      name: hvac_action
+      mapping:
+        - dps_val: open
+          value: heating
+        - dps_val: close
+          value: idle
+    - id: 71
+      type: string
+      optional: true
+      name: week_program
+    - id: 104
+      type: string
+      name: fan_mode
+      mapping:
+        - dps_val: low
+          value: low
+        - dps_val: mid
+          value: medium
+        - dps_val: high
+          value: high
+secondary_entities:
+  - entity: number
+    name: Maximum temperature
+    class: temperature
+    category: config
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 19
+        type: integer
+        name: value
+        optional: true
+        unit: C
+        range:
+          min: 200
+          max: 700
+        mapping:
+          - scale: 10
+            step: 10
+  - entity: number
+    name: Minimum temperature
+    class: temperature
+    category: config
+    icon: "mdi:thermometer-chevron-down"
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        optional: true
+        unit: C
+        range:
+          min: 50
+          max: 200
+        mapping:
+          - scale: 10
+            step: 10
+  - entity: number
+    name: Temperature calibration
+    category: config
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 27
+        type: integer
+        optional: true
+        name: value
+        unit: °
+        range:
+          min: -4
+          max: 4
+  - entity: button
+    name: Factory reset
+    category: config
+    dps:
+      - id: 39
+        type: boolean
+        name: button
+        optional: true
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        name: lock
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 45
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 45
+        type: bitfield
+        name: fault_code
+  - entity: number
+    name: Temperature hysteresis
+    category: config
+    icon: "mdi:thermometer-plus"
+    dps:
+      - id: 103
+        type: integer
+        optional: true
+        name: value
+        unit: °
+        range:
+          min: 1
+          max: 3
+  - entity: select
+    name: Temperature sensor
+    icon: "mdi:home-thermometer"
+    category: config
+    dps:
+      - id: 102
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: in
+            value: Internal
+          - dps_val: out
+            value: External
+          - dps_val: all
+            value: Both
+          - dps_val: null
+            value: Internal
+            hidden: true
+  - entity: number
+    name: Maximum floor temperature
+    class: temperature
+    category: config
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        optional: true
+        unit: C
+        range:
+          min: 200
+          max: 700
+        mapping:
+          - scale: 10
+            step: 10
