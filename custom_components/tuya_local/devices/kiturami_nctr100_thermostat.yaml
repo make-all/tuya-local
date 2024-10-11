@@ -2,9 +2,11 @@ name: Thermostat
 products:
   - id: 7vjtrn5888247ol8
     name: Kiturami NCTR100WR
+
 primary_entity:
   entity: climate
-  translation_key: thermostat
+  name: Thermostat boiler
+  translation_key: thermostat_boiler
   dps:
     - id: 2
       type: string
@@ -18,13 +20,12 @@ primary_entity:
         - dps_val: Interior
           value: heat
         - dps_val: Bath
-          value: "off"
-          hidden: true
+          value: "auto"
         - dps_val: Summer
-          value: "off"
+          value: "auto"
         - dps_val: OutGoing
-          value: "off"
-          hidden: true
+          value: "auto"
+
     - id: 103
       type: integer
       name: temperature
@@ -52,6 +53,7 @@ primary_entity:
     - id: 5
       type: integer
       name: room_temperature
+
 secondary_entities:
   - entity: water_heater
     dps:
@@ -62,31 +64,113 @@ secondary_entities:
           - dps_val: false
             value: "off"
           - dps_val: true
-            constraint: mode
-            conditions:
-              - dps_val: Interior
-                value: Room
-              - dps_val: OnDol
-                value: Underfloor
-              - dps_val: Reservation
-                value: Scheduled
-              - dps_val: Summer
-                value: Hot water
-              - dps_val: Bath
-                value: Quick start
-              - dps_val: OutGoing
-                value: away
+            value: "on"
+  - entity: select
+    name: Operating mode
+    category: config
+    translation_key: operating_mode
+    dps:
       - id: 2
         type: string
-        name: mode
-        hidden: true
+        name: option
+        mapping:
+          - dps_val: Interior
+            value: Room air temp
+          - dps_val: OnDol
+            value: Coolant temp
+          - dps_val: Reservation
+            value: Timer
+          - dps_val: OutGoing
+            value: Absence
+          - dps_val: Summer
+            value: DHW supply
+          - dps_val: Bath
+            value: DHW priority
+  - entity: switch
+    name: Breaker
+    translation_key: turn_on_off_boiler
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: number
+    class: temperature
+    name: DHW temp set
+    category: config
+    translation_key: dhw_temp_set
+    dps:
       - id: 3
         type: integer
-        name: temperature
+        name: value
+        unit: C
+        class: measurement
         range:
           min: 35
           max: 60
+  - entity: number
+    name: Turn-on timer
+    category: config
+    translation_key: turn_on_timer
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 20
+          max: 90
+  - entity: number
+    name: Turn-off timer
+    category: config
+    translation_key: turn_off_timer
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 1
+          max: 19
+  - entity: binary_sensor
+    class: running
+    category: diagnostic
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+  - entity: sensor
+    class: temperature
+    name: Air temp current
+    category: diagnostic
+    translation_key: actual_air_temp
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
         unit: C
+        class: measurement
+  - entity: sensor
+    class: temperature
+    name: CH temp current
+    category: diagnostic
+    translation_key: carrier_heat_temp
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    class: temperature
+    name: DHW temp current
+    category: diagnostic
+    translation_key: dhw_temp_current
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -104,27 +188,3 @@ secondary_entities:
       - id: 104
         type: integer
         name: current_error
-  - entity: number
-    name: Scheduled runtime
-    category: config
-    translation_key: timer
-    dps:
-      - id: 101
-        type: integer
-        name: value
-        unit: min
-        range:
-          min: 20
-          max: 90
-  - entity: number
-    name: Scheduled idle time
-    category: config
-    translation_key: timer
-    dps:
-      - id: 102
-        type: integer
-        name: value
-        unit: h
-        range:
-          min: 1
-          max: 19
