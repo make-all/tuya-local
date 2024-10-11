@@ -54,6 +54,8 @@ primary_entity:
       range:
         min: 420
         max: 1000
+      mapping:
+        - scale: 10
     - id: 18
       type: integer
       optional: true
@@ -231,6 +233,7 @@ secondary_entities:
   - entity: number
     name: Maximum temperature
     category: config
+    class: temperature
     icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 19
@@ -266,6 +269,7 @@ secondary_entities:
   - entity: number
     name: Minimum temperature
     category: config
+    class: temperature
     icon: "mdi:thermometer-chevron-down"
     dps:
       - id: 26
@@ -341,6 +345,7 @@ secondary_entities:
         name: lock
   - entity: sensor
     translation_key: time_remaining
+    class: duration
     category: diagnostic
     dps:
       - id: 42
@@ -378,8 +383,8 @@ secondary_entities:
             value: "3 minutes"
   - entity: number
     name: Heat temperature
+    class: temperature
     category: config
-    icon: "mdi:thermometer"
     dps:
       - id: 54
         type: integer
@@ -393,6 +398,9 @@ secondary_entities:
             conditions:
               - dps_val: f
                 value_redirect: heat_f
+                range:
+                  min: 42
+                  max: 99
       - id: 55
         type: integer
         optional: true
@@ -423,7 +431,7 @@ secondary_entities:
   - entity: number
     name: Cool temperature
     category: config
-    icon: "mdi:thermometer"
+    class: temperature
     dps:
       - id: 57
         type: integer
