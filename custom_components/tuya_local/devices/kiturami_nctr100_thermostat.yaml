@@ -46,25 +46,12 @@ primary_entity:
       name: current_temperature
     - id: 103
       type: integer
-      name: water_temperature
-      range:
-        min: 45
-        max: 85
+      name: carrier_heat_temperature
     - id: 5
       type: integer
       name: room_temperature
 
 secondary_entities:
-  - entity: water_heater
-    dps:
-      - id: 1
-        type: boolean
-        name: operation_mode
-        mapping:
-          - dps_val: false
-            value: "off"
-          - dps_val: true
-            value: "on"
   - entity: select
     name: Operating mode
     category: config
@@ -107,6 +94,20 @@ secondary_entities:
         range:
           min: 35
           max: 60
+  - entity: number
+    class: temperature
+    name: CH temp set
+    category: config
+    translation_key: carrier_heat_temp_set
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: C
+        class: measurement
+        range:
+          min: 45
+          max: 85
   - entity: number
     name: Turn-on timer
     category: config
