@@ -708,3 +708,4 @@ Further device support has been made with the assistance of users. Please consid
 - [jmcollin78](https://github.com/jmcollin78) for contributing support for AFYEEV EV charger.
 - [drbartek](https://github.com/drbartek) for assisting with support for Psmart T436 thermostat.
 - [sragas](https://github.com/sragas) for contributing support for Noeifevo Q21W EV charger.
+- [beyondgrave](https://github.com/beyondgrave) for assisting with support for Inkbird IPT-2CH v2.0 thermostat.
