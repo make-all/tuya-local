@@ -707,3 +707,4 @@ Further device support has been made with the assistance of users. Please consid
 - [joshuamns](https://github.com/joshuamns) for assisting with support for Vine TJ550 thermostat.
 - [jmcollin78](https://github.com/jmcollin78) for contributing support for AFYEEV EV charger.
 - [drbartek](https://github.com/drbartek) for assisting with support for Psmart T436 thermostat.
+- [sragas](https://github.com/sragas) for contributing support for Noeifevo Q21W EV charger.
