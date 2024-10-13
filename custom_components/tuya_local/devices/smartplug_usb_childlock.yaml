@@ -1,0 +1,95 @@
+name: Plug In WiFi Smart Socket with USB
+products:
+  - id: ynz9qmnmnsciccyc
+    name: Plug In WiFi Smart Socket with USB
+primary_entity:
+  entity: switch
+  class: outlet
+  name: USB
+  icon: "mdi:usb"
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: switch
+    name: AC Outlet
+    class: outlet
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+      - id: 42
+        type: string
+        name: cyclic_schedule
+      - id: 43
+        type: string
+        name: random_schedule
+      - id: 44
+        type: string
+        name: inching
+  - entity: number
+    category: config
+    name: USB Countdown Timer
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    category: config
+    name: AC Outlet Countdown Timer
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 38
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "on"
+            value: "on"
+          - dps_val: memory
+            value: Remember last state
+  - entity: select
+    name: Indicator light mode
+    icon: "mdi:television-ambient-light"
+    category: config
+    dps:
+      - id: 40
+        type: string
+        name: option
+        mapping:
+          - dps_val: relay
+            value: Indicate switch on/off state
+          - dps_val: pos
+            value: Indicate inverted switch state
+          - dps_val: none
+            value: "Off"
+  - entity: lock
+    translation_key: child_lock
+    icon: "mdi:account-lock"
+    category: config
+    dps:
+      - id: 41
+        type: boolean
+        name: lock
