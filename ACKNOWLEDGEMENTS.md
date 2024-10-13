@@ -710,3 +710,4 @@ Further device support has been made with the assistance of users. Please consid
 - [sragas](https://github.com/sragas) for contributing support for Noeifevo Q21W EV charger.
 - [beyondgrave](https://github.com/beyondgrave) for assisting with support for Inkbird IPT-2CH v2.0 thermostat.
 - [Tallyessin](https://github.com/Tallyessin) for contributing support for Calibo Cloudfan DC with light.
+- [nankoboerma](https://github.com/nankoboerma) for assisting with support for PowerWorld PW58410 water and climate heat pump.
