@@ -13,6 +13,7 @@
 - Caldo Up T fan heater
 - Calex Smart Convector heater
 - Cleverio AR10/AR20 panel heaters
+- Cronos GPH-D-DA heater
 - Devola patio heater
 - Dynasty BTX fireplace
 - Ecostrad Accent iQ heating panel

@@ -712,3 +712,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Tallyessin](https://github.com/Tallyessin) for contributing support for Calibo Cloudfan DC with light.
 - [nankoboerma](https://github.com/nankoboerma) for assisting with support for PowerWorld PW58410 water and climate heat pump.
 - [dslava70](https://github.com/dslava70) for contributing support for PowerWorld PW58330 water and climate heat pump.
+- [Nevynnyi](https://githuub.com/Nevynnyi) for contributing support for Cronos GPH-D-DA heater.
