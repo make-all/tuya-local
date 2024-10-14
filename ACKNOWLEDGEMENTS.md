@@ -422,7 +422,7 @@ Further device support has been made with the assistance of users. Please consid
 - [kamilosxd678](https://github.com/kamilosxd678) for contributing support for Klatra Stor2 air purifiers.
 - [InfectedSoap](https://github.com/InfectedSoap) for contributing support for Cleverio AR10/20 panel heaters.
 - [ChriZathens](https://github.com/ChriZathens) for contributing improvements to Klarstein DryFy Pro Connect dehumidifiers and Greek translations.
-- [neilflatley](https://github.com/neilflatley) for contributing support for simple eight bank switches.
+- [neilflatley](https://github.com/neilflatley) for contributing support for simple eight bank switches and Loratap dual switches.
 - [alirow](https://github.com/alirow) for contributing support for Argo Dry Pury Evo WF dehumidifiers.
 - [andrei-cerbulescu](https://github.com/andrei-cerbulescu) for contributing support for Hama radiator controllers.
 - [mariuszpass](https://github.com/mariuszpass) for contributing support for NAC AP470 air purifiers.

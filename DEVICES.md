@@ -487,6 +487,7 @@ the best option.
 - Linkoze LKWSW201 dual button
 - Logicom Strippy 4 way power strip with USB
 - Loratap RR400W-V2 relay switch
+- Loratap RR620W-JL dual relay switch
 - Makegood double power point (sold under AusElectronicsDirect, Cleverlife, Kogan, Ozsmartthings and other brands)
 - MakeGood double switch with timers and power monitoring on whole device
 - Minoston 6 preset timer switch
