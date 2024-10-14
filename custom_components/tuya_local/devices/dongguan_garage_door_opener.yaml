@@ -33,13 +33,12 @@ secondary_entities:
     category: config
     dps:
       - id: 2
-        <<: &timer
-          type: integer
-          name: value
-          unit: s
-          range:
-            min: 0
-            max: 86400
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 86400
   - entity: number
     name: Run times
     icon: mdi:timer
@@ -58,7 +57,25 @@ secondary_entities:
     category: config
     dps:
       - id: 5
-        <<: *timer
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 86400
+  - entity: switch
+    name: Voice control
+    icon: "mdi:account-voice"
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
   - entity: sensor
     name: Fault
     icon: mdi:alert
