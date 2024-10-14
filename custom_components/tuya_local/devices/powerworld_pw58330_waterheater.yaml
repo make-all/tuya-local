@@ -1,0 +1,322 @@
+name: Water heat pump
+# products:
+#   - id: UNKNOWN
+#     name: Powerworld PW58330
+primary_entity:
+  entity: water_heater
+  dps:
+    - id: 1
+      type: boolean
+      name: operation_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: work_mode
+          conditions:
+            - dps_val: wth
+              value: Hot water
+            - dps_val: heat
+              value: Heating
+            - dps_val: cool
+              value: Cooling
+            - dps_val: wth_heat
+              value: Hot water + heating
+            - dps_val: wth_cool
+              value: Hot water + cooling
+    - id: 5
+      type: string
+      name: work_mode
+      hidden: true
+    - id: 6
+      type: string
+      name: temperature_unit
+      mapping:
+        - dps_val: f
+          value: F
+        - value: C
+    - id: 108
+      type: integer
+      name: current_temperature
+    - id: 118
+      type: string
+      optional: true
+      name: parameter_group_1
+    - id: 119
+      type: string
+      optional: true
+      name: parameter_group_2
+    - id: 120
+      type: string
+      optional: true
+      name: parameter_group_3
+    - id: 121
+      type: string
+      optional: true
+      name: parameter_group_4
+    - id: 122
+      type: string
+      optional: true
+      name: parameter_group_5
+    - id: 123
+      type: string
+      optional: true
+      name: parameter_group_6
+    - id: 124
+      type: string
+      optional: true
+      name: parameter_group_7
+secondary_entities:
+  - entity: climate
+    translation_key: heater
+    dps:
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: smart
+            value: comfort
+          - dps_val: strong
+            value: boost
+          - dps_val: mute
+            value: sleep
+      - id: 5
+        type: string
+        name: hvac_mode
+        mapping:
+          - dps_val: wth
+            value: "off"
+          - dps_val: heat
+            value: heat
+            hidden: true
+          - dps_val: cool
+            value: cool
+            hidden: true
+          - dps_val: wth_heat
+            value: heat
+          - dps_val: wth_cool
+            value: cool
+      - id: 6
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+      - id: 103
+        type: integer
+        optional: true
+        name: current_temperature
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 6
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 15
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 15
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    name: Inlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        class: measurement
+      - id: 6
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Outlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        class: measurement
+      - id: 6
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Exhaust temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        class: measurement
+      - id: 6
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Air return temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        class: measurement
+      - id: 6
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Outer coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        class: measurement
+      - id: 6
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Cooling coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        class: measurement
+      - id: 6
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Main EEV opening
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: P
+        class: measurement
+  - entity: sensor
+    name: Secondary EEV opening
+    category: diagnostic
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: P
+        class: measurement
+  - entity: sensor
+    name: Compressor current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+  - entity: sensor
+    name: Heat sink temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        class: measurement
+      - id: 6
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: DC bus voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 114
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+  - entity: sensor
+    name: Compressor frequency
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 115
+        type: integer
+        name: sensor
+        unit: Hz
+        class: measurement
+  - entity: sensor
+    name: Fan 1 speed
+    category: diagnostic
+    dps:
+      - id: 116
+        type: integer
+        name: sensor
+        unit: rpm
+        class: measurement
+  - entity: sensor
+    name: Fan 2 speed
+    category: diagnostic
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        unit: rpm
+        class: measurement
+  - entity: button
+    name: Factory reset
+    class: restart
+    category: config
+    dps:
+      - id: 125
+        type: boolean
+        optional: true
+        name: button

@@ -151,6 +151,7 @@
 - Hydrotherm Dynamic/X8 heat pump hot water systems (Gen 5 and 6)
 - ITS-4.5HD super water heat pump
 - Koi Duo HTW-TD-080KOID
+- Powerworld PW58330 hot water and climate heat pump
 - Powerworld PW58410 hot water and climate heat pump
 - Sanden GAU-A45HPD WiFi heat pump controller
 - Thermex IF series V pro hot water systems
