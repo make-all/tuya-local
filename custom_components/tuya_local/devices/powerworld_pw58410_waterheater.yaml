@@ -42,6 +42,15 @@ primary_entity:
         min: 0
         max: 99
     - id: 118
+      type: base64
+      optional: true
+      name: current_temperature
+      mapping:
+        - mask: "00000000000000000000000000000000000000000000000\
+                 000000000FFFFFFFF000000000000000000000000000000\
+                 00000000000000000000000000000000000000000000000\
+                 0000000000000000000"
+    - id: 118
       type: string
       optional: true
       name: parameter_group_1
