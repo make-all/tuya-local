@@ -1,4 +1,4 @@
-name: Energy Monitor 2 Gang Switch Module
+name: Dual switch
 products:
   - id: keyjnuy4s3kre7m7
     name: LoraTap RR620W-JL
@@ -9,12 +9,6 @@ primary_entity:
     - id: 1
       name: switch
       type: boolean
-    - id: 42
-      name: random_time
-      type: string
-    - id: 43
-      name: cycle_time
-      type: string
 secondary_entities:
   - entity: switch
     name: Switch 2
@@ -30,13 +24,19 @@ secondary_entities:
       - id: 9
         name: value
         type: integer
+        unit: min
         range:
           min: 0
           max: 86400
         mapping:
           - scale: 60
             step: 60
-  - entity: number
+      - id: 42
+        name: random_time
+        type: string
+      - id: 43
+        name: cycle_time
+        type: string  - entity: number
     name: Timer 2
     translation_key: timer
     category: config
@@ -44,6 +44,7 @@ secondary_entities:
       - id: 10
         type: integer
         name: value
+        unit: min
         range:
           min: 0
           max: 86400
@@ -87,7 +88,9 @@ secondary_entities:
         name: sensor
         type: integer
         optional: true
-        unit: Wh
+        unit: kWh
+        mapping:
+          - scale: 1000
   - entity: sensor
     class: current
     category: diagnostic
@@ -96,6 +99,7 @@ secondary_entities:
         name: sensor
         type: integer
         class: measurement
+        optional: true
         force: true
         unit: mA
   - entity: sensor
@@ -106,6 +110,7 @@ secondary_entities:
         name: sensor
         type: integer
         class: measurement
+        optional: true
         force: true
         unit: W
         mapping:
@@ -117,6 +122,7 @@ secondary_entities:
       - id: 23
         name: sensor
         type: integer
+        optional: true
         force: true
         class: measurement
         unit: V
