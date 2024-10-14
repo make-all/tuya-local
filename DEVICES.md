@@ -756,6 +756,7 @@ port and password.
 - Petlibro PLAF103 pet feeder
 - Petlibro PLAF203 pet feeder with camera
 - Petoneer Fresco Hydrate Ultra pet fountain
+- Petoneer Fresco Mini pet fountain
 - Petrust TK-WF002 pet fountain
 - PNI water feeder
 - Puppy Kitty automatic pet feeder

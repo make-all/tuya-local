@@ -1,0 +1,50 @@
+name: Pet fountain
+products:
+  - id: uoihz7w5myinwrdx
+    name: Petoneer Fresco Mini
+primary_entity:
+  entity: switch
+  icon: "mdi:water-pump"
+  dps:
+    - id: 101
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: light
+    class: indicator
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: switch
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: true
+  - entity: sensor
+    name: Filter remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: min
+  - entity: sensor
+    name: Pump cleaning in
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: min
+  - entity: sensor
+    name: Water level
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        class: measurement
