@@ -6,6 +6,10 @@ labels: 'bug'
 assignees: ''
 
 ---
+Please do not request support for new devices through this bug
+reporting link. Go back and choose "New Device" from the previous
+screen.
+
 This form is for reporting bugs.  If you have encountered a bug, you should
 generally have some log messages or device diagnostics to show something is
 going wrong.  If your problem is more of a question or a request for help,
