@@ -46,10 +46,10 @@ primary_entity:
       optional: true
       name: current_temperature
       mapping:
-        - mask: "00000000000000000000000000000000000000000000000\
-                 000000000FFFFFFFF000000000000000000000000000000\
-                 00000000000000000000000000000000000000000000000\
-                 0000000000000000000"
+        - mask: "000000000000000000000000000000000000000000000000\
+                 00000000FFFFFFFF00000000000000000000000000000000\
+                 000000000000000000000000000000000000000000000000\
+                 0000000000000000"
     - id: 118
       type: string
       optional: true
@@ -182,3 +182,418 @@ secondary_entities:
         type: boolean
         optional: true
         name: button
+  - entity: sensor
+    name: Inlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 118
+        type: base64
+        optional: true
+        name: sensor
+        mapping:
+          - mask: "FFFFFFFF0000000000000000000000000000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   0000000000000000"
+      - id: 6
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Outlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 118
+        type: base64
+        optional: true
+        name: sensor
+        mapping:
+          - mask: "00000000FFFFFFFF00000000000000000000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   0000000000000000"
+      - id: 6
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Ambient temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 118
+        type: base64
+        optional: true
+        name: sensor
+        mapping:
+          - mask: "0000000000000000FFFFFFFF000000000000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   0000000000000000"
+      - id: 6
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Exhaust temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 118
+        type: base64
+        optional: true
+        name: sensor
+        mapping:
+          - mask: "000000000000000000000000FFFFFFFF0000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   0000000000000000"
+      - id: 6
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Air return temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 118
+        type: base64
+        optional: true
+        name: sensor
+        mapping:
+          - mask: "00000000000000000000000000000000FFFFFFFF00000000\
+                   000000000000000000000000000000000000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   0000000000000000"
+      - id: 6
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Evaporator coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 118
+        type: base64
+        optional: true
+        name: sensor
+        mapping:
+          - mask: "0000000000000000000000000000000000000000FFFFFFFF\
+                   000000000000000000000000000000000000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   0000000000000000"
+      - id: 6
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Cooling coil temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 118
+        type: base64
+        optional: true
+        name: sensor
+        mapping:
+          - mask: "000000000000000000000000000000000000000000000000\
+                   FFFFFFFF0000000000000000000000000000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   0000000000000000"
+      - id: 6
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Main EEV opening
+    category: diagnostic
+    dps:
+      - id: 118
+        type: base64
+        optional: true
+        name: sensor
+        mapping:
+          - mask: "000000000000000000000000000000000000000000000000\
+                   0000000000000000FFFFFFFF000000000000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   0000000000000000"
+  - entity: sensor
+    name: Secondary EEV opening
+    category: diagnostic
+    dps:
+      - id: 118
+        type: base64
+        optional: true
+        name: sensor
+        mapping:
+          - mask: "000000000000000000000000000000000000000000000000\
+                   000000000000000000000000FFFFFFFF0000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   0000000000000000"
+  - entity: sensor
+    name: Compressor current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 118
+        type: base64
+        optional: true
+        name: sensor
+        unit: A
+        mapping:
+          - mask: "000000000000000000000000000000000000000000000000\
+                   00000000000000000000000000000000FFFFFFFF00000000\
+                   000000000000000000000000000000000000000000000000\
+                   0000000000000000"
+  - entity: sensor
+    name: Heat sink temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 118
+        type: base64
+        optional: true
+        name: sensor
+        mapping:
+          - mask: "000000000000000000000000000000000000000000000000\
+                   0000000000000000000000000000000000000000FFFFFFFF\
+                   000000000000000000000000000000000000000000000000\
+                   0000000000000000"
+      - id: 6
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: DC bus voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 118
+        type: base64
+        optional: true
+        name: sensor
+        unit: V
+        mapping:
+          - mask: "000000000000000000000000000000000000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   FFFFFFFF0000000000000000000000000000000000000000\
+                   0000000000000000"
+  - entity: sensor
+    name: Compressor frequency
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 118
+        type: base64
+        optional: true
+        name: sensor
+        unit: Hz
+        mapping:
+          - mask: "000000000000000000000000000000000000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   00000000FFFFFFFF00000000000000000000000000000000\
+                   0000000000000000"
+  - entity: sensor
+    name: Fan 1 speed
+    category: diagnostic
+    dps:
+      - id: 118
+        type: base64
+        optional: true
+        name: sensor
+        unit: rpm
+        mapping:
+          - mask: "000000000000000000000000000000000000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   0000000000000000FFFFFFFF000000000000000000000000\
+                   0000000000000000"
+  - entity: sensor
+    name: Fan 2 speed
+    category: diagnostic
+    dps:
+      - id: 118
+        type: base64
+        optional: true
+        name: sensor
+        unit: rpm
+        mapping:
+          - mask: "000000000000000000000000000000000000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   000000000000000000000000FFFFFFFF0000000000000000\
+                   0000000000000000"
+  - entity: sensor
+    class: pressure
+    category: diagnostic
+    dps:
+      - id: 118
+        type: base64
+        optional: true
+        name: sensor
+        unit: bar
+        mapping:
+          - mask: "000000000000000000000000000000000000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   00000000000000000000000000000000FFFFFFFF00000000\
+                   0000000000000000"
+  - entity: sensor
+    name: Low pressure gas temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 118
+        type: base64
+        optional: true
+        name: sensor
+        mapping:
+          - mask: "000000000000000000000000000000000000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   0000000000000000000000000000000000000000FFFFFFFF\
+                   0000000000000000"
+      - id: 6
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+  - entity: sensor
+    name: Heating capacity
+    class: power
+    category: diagnostic
+    dps:
+      - id: 140
+        type: base64
+        optional: true
+        name: sensor
+        unit: kW
+        mapping:
+          - mask: "FFFFFFFF0000000000000000000000000000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   0000000000000000"
+  - entity: sensor
+    class: volume_flow_rate
+    category: diagnostic
+    dps:
+      - id: 140
+        type: base64
+        optional: true
+        name: sensor
+        unit: m³/h
+        mapping:
+          - mask: "00000000FFFFFFFF00000000000000000000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   0000000000000000"
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 140
+        type: base64
+        optional: true
+        name: sensor
+        unit: A
+        mapping:
+          - mask: "0000000000000000FFFFFFFF000000000000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   0000000000000000"
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 140
+        type: base64
+        optional: true
+        name: sensor
+        unit: V
+        mapping:
+          - mask: "000000000000000000000000FFFFFFFF0000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   0000000000000000"
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 140
+        type: base64
+        optional: true
+        name: sensor
+        unit: W
+        mapping:
+          - mask: "00000000000000000000000000000000FFFFFFFF00000000\
+                   000000000000000000000000000000000000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   0000000000000000"
+  - entity: sensor
+    class: Coefficient of performance
+    category: diagnostic
+    dps:
+      - id: 140
+        type: base64
+        optional: true
+        name: sensor
+        mapping:
+          - mask: "0000000000000000000000000000000000000000FFFFFFFF\
+                   000000000000000000000000000000000000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   0000000000000000"
+  - entity: number
+    class: Pump speed
+    category: config
+    dps:
+      - id: 140
+        type: base64
+        optional: true
+        name: value
+        mapping:
+          - mask: "000000000000000000000000000000000000000000000000\
+                   FFFFFFFF0000000000000000000000000000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   0000000000000000"
+        range:
+          min: 0
+          max: 100
+  - entity: sensor
+    class: Pump speed
+    category: diagnostic
+    dps:
+      - id: 140
+        type: base64
+        optional: true
+        name: sensor
+        mapping:
+          - mask: "000000000000000000000000000000000000000000000000\
+                   00000000FFFFFFFF00000000000000000000000000000000\
+                   000000000000000000000000000000000000000000000000\
+                   0000000000000000"
