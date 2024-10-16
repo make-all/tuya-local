@@ -29,8 +29,8 @@ body:
       label: Description
       description: |
         A clear and concise description of the bug you are experiencing.
-      validations:
-        required: true
+    validations:
+      required: true
   - type: textarea
     id: steps
     attributes:
@@ -38,8 +38,8 @@ body:
       description: |
         List any steps you need to take to reproduce this problem.
       placeholder: 1. Perform the ___ action...
-      validations:
-        required: false
+    validations:
+      required: false
   - type: textarea
     id: expected
     attributes:
@@ -47,8 +47,8 @@ body:
       description: |
         A clear and concise description of what you expected.
       placeholder: The device should...
-      validations:
-        required: false
+    validations:
+      required: false
   - type: textarea
     id: context
     attributes:
@@ -62,8 +62,8 @@ body:
         `Settings / Devices & Services / 1 device` under the relevant device
 
         If applicable, you can also add screenshots to explain your problem.
-      validations:
-        required: false
+    validations:
+      required: false
   - type: checkboxes
     id: confirm
     attributes:
@@ -79,3 +79,5 @@ body:
           required: true
         - label: This is not requesting addition of a new device
           required: true
+    validations:
+      required: true
