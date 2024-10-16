@@ -30,7 +30,27 @@ primary_entity:
           value: Fault
         - dps_val: charger_pause
           value: Pause
+    - id: 23
+      type: string
+      optional: true
+      name: system_version
+    - id: 33
+      type: string
+      optional: true
+      name: mode_set
 secondary_entities:
+  - entity: sensor
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 1
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
   - entity: number
     name: Set current
     category: config
@@ -190,3 +210,39 @@ secondary_entities:
         range:
           min: 0
           max: 15
+  - entity: sensor
+    name: Phase A voltage
+    class: voltage
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: V
+        mapping:
+          - mask: "FFFF000000000000"
+            scale: 10
+  - entity: sensor
+    name: Phase A current
+    class: current
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: A
+        mapping:
+          - mask: "000000FFFF000000"
+            scale: 1000
+  - entity: sensor
+    name: Phase A power
+    class: power
+    dps:
+      - id: 6
+        type: base64
+        name: sensor
+        optional: true
+        unit: kW
+        mapping:
+          - mask: "000000000000FFFF"
+            scale: 1000
