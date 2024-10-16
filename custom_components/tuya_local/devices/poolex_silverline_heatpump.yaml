@@ -1,4 +1,4 @@
-name: Poolex Silverline FI heatpump
+name: Pool heat pump
 primary_entity:
   entity: climate
   translation_only_key: pool_heatpump
@@ -9,12 +9,8 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:hvac-off"
-          icon_priority: 1
         - dps_val: true
           value: "heat"
-          icon: "mdi:hot-tub"
-          icon_priority: 3
     - id: 2
       name: temperature
       type: integer
@@ -37,18 +33,12 @@ primary_entity:
           value: smart_heat
         - dps_val: BoostHeat
           value: quick_heat
+        - dps_val: BoostCool
+          value: quick_cool
         - dps_val: SilentHeat
           value: quiet_heat
-    - id: 13
-      type: integer
-      name: error
-      mapping:
-        - dps_val: 0
-          value: "OK"
-        - dps_val: 256
-          value: "Water Flow Protection"
-          icon: "mdi:water-pump-off"
-          icon_priority: 2
+        - dps_val: SilentCool
+          value: quiet_cool
 secondary_entities:
   - entity: binary_sensor
     name: Water flow
@@ -59,6 +49,22 @@ secondary_entities:
         type: bitfield
         name: sensor
         mapping:
+          - dps_val: 256
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 13
+        type: bitfield
+        name: sensor
+        mapping:
           - dps_val: 0
             value: false
+          - dps_val: 256
+            value: false
           - value: true
+      - id: 13
+        type: bitfield
+        name: fault_code
