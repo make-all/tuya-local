@@ -176,13 +176,13 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    class: energy
+    name: Last charge
     dps:
       - id: 25
         type: integer
         name: sensor
         unit: kWh
-        class: total_increasing
+        class: measurement
         optional: true
         mapping:
           - scale: 100
