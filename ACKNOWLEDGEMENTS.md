@@ -712,4 +712,6 @@ Further device support has been made with the assistance of users. Please consid
 - [Tallyessin](https://github.com/Tallyessin) for contributing support for Calibo Cloudfan DC with light.
 - [nankoboerma](https://github.com/nankoboerma) for assisting with support for PowerWorld PW58410 water and climate heat pump.
 - [dslava70](https://github.com/dslava70) for contributing support for PowerWorld PW58330 water and climate heat pump.
-- [Nevynnyi](https://githuub.com/Nevynnyi) for contributing support for Cronos GPH-D-DA heater.
+- [Nevynnyi](https://github.com/Nevynnyi) for contributing support for Cronos GPH-D-DA heater.
+- [strnk](https://github.com/strnk) for contributing improvements to Shinco 30D dehumidifier.
+- [bvandenbogaard](https://github.com/bvandenbogaard) for contributing support for Medion S10 SW robot vacuum.

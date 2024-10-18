@@ -668,6 +668,7 @@ of device.
 - Liectroux XR500[T3]
 - Lubluelu SL60D vacuum cleaner with mop
 - MAMNV BR151 vacuum cleaner with mop
+- Medion S10 SW vacuum cleaner
 - Medion S20 SW vacuum cleaner with mop
 - Mellerware City Move vacuum cleaner
 - Neatsvor X600 vacuum cleaner
