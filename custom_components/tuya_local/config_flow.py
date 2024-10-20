@@ -363,6 +363,20 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
         best_match = int(best_match)
         dps = self.device._get_cached_state()
+        if self.__cloud_device:
+            _LOGGER.warning(
+                "Adding %s device with product id %s",
+                self.__cloud_device["product_name"],
+                self.__cloud_device["product_id"],
+            )
+            response = self.cloud.async_get_datamodel(self.__cloud_device["device_id"])
+            if response and response["result"] and response["result"]["model"]:
+                model = json.loads(response["result"]["model"])
+
+                _LOGGER.warning(
+                    "QueryThingsDataModel result:\n%s",
+                    json.dumps(model, indent=4),
+                )
         _LOGGER.warning(
             "Device matches %s with quality of %d%%. DPS: %s",
             best_matching_type,
@@ -370,7 +384,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             log_json(dps),
         )
         _LOGGER.warning(
-            "Include the previous log message with any new device request to https://github.com/make-all/tuya-local/issues/",
+            "Include the previous log messages with any new device request to https://github.com/make-all/tuya-local/issues/",
         )
         if types:
             return self.async_show_form(
