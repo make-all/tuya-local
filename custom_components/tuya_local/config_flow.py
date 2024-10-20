@@ -149,7 +149,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         if not await self.cloud.async_login():
             # Try to get a new QR code on failure
             response = await self.cloud.async_get_qr_code()
-            errors["base"] = "login_error"
+            errors = {"base": "login_error"}
             placeholders = self.cloud.last_error
             if response:
                 self.__qr_code = response

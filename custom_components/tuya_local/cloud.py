@@ -12,10 +12,14 @@ from tuya_sharing import (
 )
 
 from .const import (
+    CONF_DEVICE_CID,
     CONF_ENDPOINT,
+    CONF_LOCAL_KEY,
     CONF_TERMINAL_ID,
     DOMAIN,
     TUYA_CLIENT_ID,
+    TUYA_RESPONSE_CODE,
+    TUYA_RESPONSE_MSG,
     TUYA_RESPONSE_QR_CODE,
     TUYA_RESPONSE_RESULT,
     TUYA_RESPONSE_SUCCESS,
@@ -67,7 +71,7 @@ class Cloud:
             TUYA_SCHEMA,
             user_code,
         )
-        if success := response.get(TUYA_RESPONSE_SUCCESS, False):
+        if response.get(TUYA_RESPONSE_SUCCESS, False):
             self.__user_code = user_code
             self.__qr_code = response[TUYA_RESPONSE_RESULT][TUYA_RESPONSE_QR_CODE]
             return self.__qr_code
@@ -103,8 +107,8 @@ class Cloud:
                 },
             }
         else:
-            self.__error_code = response.get(TUYA_RESPONSE_CODE, {})
-            self.__error_msg = response.get(TUYA_RESPONSE_MSG, "Unknown error")
+            self.__error_code = info.get(TUYA_RESPONSE_CODE, {})
+            self.__error_msg = info.get(TUYA_RESPONSE_MSG, "Unknown error")
 
         return success
 
@@ -135,7 +139,7 @@ class Cloud:
                 "id": device.id,
                 "ip": device.ip,
                 CONF_LOCAL_KEY: device.local_key
-                if hassattr(device, CONF_LOCAL_KEY)
+                if hasattr(device, CONF_LOCAL_KEY)
                 else "",
                 "name": device.name,
                 "node_id": device.node_id if hasattr(device, "node_id") else "",
