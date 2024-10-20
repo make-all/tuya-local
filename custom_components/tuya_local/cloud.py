@@ -2,7 +2,6 @@ import logging
 from typing import Any
 
 from homeassistant.core import HomeAssistant
-
 from tuya_sharing import (
     CustomerDevice,
     LoginControl,
