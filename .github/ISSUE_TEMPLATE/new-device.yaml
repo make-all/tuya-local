@@ -20,8 +20,8 @@ body:
     attributes:
       label: Log message
       description: |
-        Please paste the Warning level log message containing a dps list which is output when you attempt to add the device and are presented with a list of non-matching devices.
-        Alternatively, if you already added the device, you can turn on debug logging for a minute or so, and find a message in the log with `full_poll: true`.
+        From the Home Assistant log (Settings / System /Log), please paste the Warning level log message containing a dps list which is output when you attempt to add the device and are presented with a list of non-matching devices.
+        Alternatively, if you already added the device, you can turn on debug logging for a minute or so, and find a message in the log from your device which has `full_poll: true` as part of the message.
       placeholder: Reports without logs will be immediately closed
       render: text
     validations:
@@ -31,8 +31,8 @@ body:
     attributes:
       label: DPS information
       description: |
-        Preferred data is QueryThingsDataModel API result from iot.tuya.com
-        If you do not have access to iot.tuya.com, but have other ways of obtaining dps information, the minimum info required is the numeric dp id, name/description, data type, and for settable dps, the range for numeric values, and the list of possible values for enum values.
+        Preferred data is QueryThingsDataModel API result from iot.tuya.com (under Cloud / API Explorer / Device Control)
+        If you do not have access to iot.tuya.com, but have other ways of obtaining dps information, the minimum info required is the numeric dp id, name/description, data type, and for settable dps, the range for numeric values, and the list of possible values for enum values. If you cannot obtain this info, there is no way for us to support you, as only owners of devices have access to the data about them.
       render: text
     validations:
       required: true
