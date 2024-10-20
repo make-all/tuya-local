@@ -162,6 +162,14 @@ primary_entity:
       name: room_mode_switch
       type: boolean
       optional: true
+      mapping:
+        - dps_val: null
+          value_redirect: room_mode_switch_alt
+    - id: 144
+      name: room_mode_switch_alt
+      type: boolean
+      optional: true
+      hidden: true
 secondary_entities:
   - entity: select
     name: Mode
