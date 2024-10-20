@@ -16,6 +16,20 @@ primary_entity:
         - scale: 10
 secondary_entities:
   - entity: sensor
+    name: Total dissolved solids
+    icon: "mdi:water-opacity"
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        class: measurement
+        unit: ppm
+        optional: true
+        mapping:
+          - range:
+            min: 0
+            max: 1000
+  - entity: sensor
     class: battery
     category: diagnostic
     dps:
