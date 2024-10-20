@@ -176,6 +176,15 @@ class TuyaLocalVacuum(TuyaLocalEntity, StateVacuumEntity):
     async def async_send_command(self, command, params=None, **kwargs):
         """Send a command to the vacuum cleaner."""
         dps = self._command_dps or self._status_dps
+        # stop command is often present in both command and direction dps
+        # in that case, prefer the direction dp as async_stop will cover
+        # the commad dp seperately.
+        if (
+            command == SERVICE_STOP
+            and self._direction_dps
+            and SERVICE_STOP in self._direction_dps.values(self._device)
+        ):
+            dps = self._direction_dps
         if command in dps.values(self._device):
             await dps.async_set_value(self._device, command)
         elif self._direction_dps and command in self._direction_dps.values(
