@@ -66,17 +66,18 @@ class TestLefantM213Vacuum(MultiSensorTests, TuyaDeviceTestCase):
         self.assertEqual(
             self.subject.supported_features,
             (
-                VacuumEntityFeature.STATE
-                | VacuumEntityFeature.STATUS
+                VacuumEntityFeature.CLEAN_SPOT
+                | VacuumEntityFeature.FAN_SPEED
+                | VacuumEntityFeature.LOCATE
+                | VacuumEntityFeature.PAUSE
+                | VacuumEntityFeature.RETURN_HOME
                 | VacuumEntityFeature.SEND_COMMAND
+                | VacuumEntityFeature.START
+                | VacuumEntityFeature.STATE
+                | VacuumEntityFeature.STATUS
+                | VacuumEntityFeature.STOP
                 | VacuumEntityFeature.TURN_ON
                 | VacuumEntityFeature.TURN_OFF
-                | VacuumEntityFeature.START
-                | VacuumEntityFeature.PAUSE
-                | VacuumEntityFeature.LOCATE
-                | VacuumEntityFeature.RETURN_HOME
-                | VacuumEntityFeature.CLEAN_SPOT
-                | VacuumEntityFeature.FAN_SPEED
             ),
         )
 
@@ -181,12 +182,12 @@ class TestLefantM213Vacuum(MultiSensorTests, TuyaDeviceTestCase):
         ):
             await self.subject.async_locate()
 
-    async def test_async_send_standby_command(self):
+    async def test_async_stop(self):
         async with assert_device_properties_set(
             self.subject._device,
             {COMMAND_DPS: "standby"},
         ):
-            await self.subject.async_send_command("standby")
+            await self.subject.async_stop()
 
     async def test_async_send_smart_command(self):
         async with assert_device_properties_set(
