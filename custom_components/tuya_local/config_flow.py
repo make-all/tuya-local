@@ -54,7 +54,11 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
     def __init__(self) -> None:
         """Initialize the config flow."""
-        self.cloud = Cloud(self.hass)
+        self.cloud = None
+
+    def init_cloud(self):
+        if self.cloud is None:
+            self.cloud = Cloud(self.hass)
 
     async def async_step_user(self, user_input=None):
         errors = {}
@@ -66,6 +70,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
         if user_input is not None:
             if user_input["setup_mode"] == "cloud":
+                self.init_cloud()
                 try:
                     if self.cloud.is_authenticated:
                         self.__cloud_devices = await self.cloud.async_get_devices()
@@ -101,6 +106,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         """Step user."""
         errors = {}
         placeholders = {}
+        self.init_cloud()
 
         if user_input is not None:
             response = await self.cloud.async_get_qr_code(user_input[CONF_USER_CODE])
@@ -146,7 +152,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                     }
                 ),
             )
-
+        self.init_cloud()
         if not await self.cloud.async_login():
             # Try to get a new QR code on failure
             response = await self.cloud.async_get_qr_code()
@@ -370,6 +376,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                 self.__cloud_device["product_name"],
                 self.__cloud_device["product_id"],
             )
+            self.init_cloud()
             response = self.cloud.async_get_datamodel(self.__cloud_device["device_id"])
             if response and response["result"] and response["result"]["model"]:
                 model = json.loads(response["result"]["model"])

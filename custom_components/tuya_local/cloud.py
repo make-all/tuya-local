@@ -55,6 +55,9 @@ class Cloud:
         self.__hass = hass
         self.__error_code = None
         self.__error_msg = None
+        # Restore cached authentication
+        if cached := self.__hass.data[DOMAIN].get("auth_cache"):
+            self.__authentication = cached
 
     async def async_get_qr_code(self, user_code: str | None = None) -> bool:
         """Get QR code from Tuya server for user code authentication."""
@@ -105,6 +108,7 @@ class Cloud:
                     "refresh_token": info["refresh_token"],
                 },
             }
+            self.__hass.data[DOMAIN]["auth_cache"] = self.__authentication
         else:
             self.__error_code = info.get(TUYA_RESPONSE_CODE, {})
             self.__error_msg = info.get(TUYA_RESPONSE_MSG, "Unknown error")
