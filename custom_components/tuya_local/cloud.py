@@ -154,7 +154,7 @@ class Cloud:
                 "support_local": device.support_local,
                 CONF_DEVICE_CID: None,
                 "version": None,
-                "is_hub": device.caetgory in HUB_CATEGORIES or device.local_key == "",
+                "is_hub": device.category in HUB_CATEGORIES or device.local_key == "",
             }
             _LOGGER.debug("Found device: {cloud_device}")
 
