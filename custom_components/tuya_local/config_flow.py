@@ -376,20 +376,18 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                 self.__cloud_device["product_name"],
                 self.__cloud_device["product_id"],
             )
-            try:
-                self.init_cloud()
-                response = await self.cloud.async_get_datamodel(
-                    self.__cloud_device["id"]
-                )
-                if response and response["result"]:
-                    model = response["result"]
-
-                    _LOGGER.warning(
-                        "Device specficication:\n%s",
-                        json.dumps(model, indent=4),
-                    )
-            except Exception as e:
-                _LOGGER.warning("Unable to fetch data model from cloud: %s", e)
+            # try:
+            #     self.init_cloud()
+            #     model = await self.cloud.async_get_datamodel(
+            #         self.__cloud_device["id"],
+            #     )
+            #     if model:
+            #         _LOGGER.warning(
+            #             "Device specficication:\n%s",
+            #             json.dumps(model, indent=4),
+            #         )
+            # except Exception as e:
+            #     _LOGGER.warning("Unable to fetch data model from cloud: %s", e)
         _LOGGER.warning(
             "Device matches %s with quality of %d%%. DPS: %s",
             best_matching_type,

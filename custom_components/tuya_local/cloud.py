@@ -1,3 +1,4 @@
+import json
 import logging
 from typing import Any
 
@@ -181,9 +182,12 @@ class Cloud:
         )
         response = await self.__hass.async_add_executor_job(
             manager.customer_api.get,
-            # f"/v2.0/cloud/things/{device_id}/model",
-            f"/v1.0/iot-03/devices/{device_id}/specification",
+            f"/v2.0/cloud/things/{device_id}/model",
         )
+        if response.get("result"):
+            response = response["result"]
+        if response.get("model"):
+            return json.loads(response["model"])
         return response
 
     @property

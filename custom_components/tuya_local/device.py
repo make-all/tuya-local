@@ -373,6 +373,7 @@ class TuyaLocalDevice(object):
             cached_state,
         )
         for match in possible:
+            await asyncio.sleep(0)
             yield match
 
     async def async_inferred_type(self):
