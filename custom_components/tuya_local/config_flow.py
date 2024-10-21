@@ -377,7 +377,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                 self.__cloud_device["product_id"],
             )
             self.init_cloud()
-            response = self.cloud.async_get_datamodel(self.__cloud_device["device_id"])
+            response = self.cloud.async_get_datamodel(self.__cloud_device["id"])
             if response and response["result"] and response["result"]["model"]:
                 model = json.loads(response["result"]["model"])
 
