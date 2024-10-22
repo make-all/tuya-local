@@ -136,3 +136,15 @@ secondary_entities:
             value: Event
           - dps_val: "2"
             value: Continuous
+  - entity: binary_sensor
+    class: motion
+    category: diagnostic
+    dps:
+      - id: 115
+        type: bitfield
+        name: sensor
+        persist: true
+        mapping:
+          - dps_val: Any
+            value: true
+
