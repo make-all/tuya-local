@@ -70,10 +70,16 @@ secondary_entities:
         mapping:
           - dps_val: 0
             value: "Initializing"
+          - dps_val: 1
+            value: "Analyzing"
           - dps_val: 2
             value: "Drinking"
           - dps_val: 3
             value: "Absorbing from soil"
+          - dps_val: 4
+            value: "Thirsty"
+          - dps_val: 5
+            value: "Dehydrated"
           - value: "Unknown state"
   - entity: sensor
     name: Light status
@@ -96,6 +102,8 @@ secondary_entities:
             value: "Too Much"
           - dps_val: 5
             value: "Insufficient"
+          - dps_val: 6
+            value: "Manual mode"
           - value: "Unknown state"
   - entity: sensor
     name: Temperature status
@@ -130,6 +138,8 @@ secondary_entities:
             value: "Initializing"
           - dps_val: 1
             value: "Good"
+          - dps_val: 2
+            value: "Too Dry"
           - value: "Unknown state"
   # Diagnostic entities
   - entity: sensor
