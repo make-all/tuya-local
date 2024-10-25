@@ -716,3 +716,4 @@ Further device support has been made with the assistance of users. Please consid
 - [strnk](https://github.com/strnk) for contributing improvements to Shinco 30D dehumidifier.
 - [bvandenbogaard](https://github.com/bvandenbogaard) for contributing support for Medion S10 SW robot vacuum.
 - [fotis3d](https://github.com/fotis3d) for assisting with support for Digoo HamB alarm.
+- [Igooris](https://github.com/Igooris) for contributing support for PZIOT E01 energy meter.
