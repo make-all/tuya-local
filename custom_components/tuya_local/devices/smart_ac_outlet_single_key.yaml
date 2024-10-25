@@ -1,0 +1,25 @@
+name: Smart AC Outlet (Single Key)
+products:
+  - id: xca2lqfaztnmk5jh
+	name: Smart AC Outlet (Single Key)
+primary_entity:
+  entity: switch
+  dps:
+    - id: 101
+      name: switch
+      type: boolean
+secondary_entities:
+   - entity: number
+     category: config
+     translation_key: timer
+     dps:
+       - id: 102
+         name: value
+         type: integer
+         unit: min
+         range:
+           min: 0
+           max: 86400
+         mapping:
+           - scale: 0
+             step: 1
