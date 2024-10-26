@@ -701,6 +701,7 @@ work reliably, even if listed below.
 ### Sirens
 
 - Neo Coolcam Siren with temperature and humidity alert (NAS-AB02W)
+- Orion Grid Connect SWS07HA indoor siren
 - Orion Grid Connect outdoor siren (also Elesion NX-4980)
 - Sirena WS-902 Plus outdoor strobe siren
 - STL siren
@@ -728,7 +729,6 @@ port and password.
 - Kerui JS-P162 300W camera
 - LSC PTZ camera
 - Nedis outdoor camera
-- Orions SC009HA cameras
 - Pinelake BF02 birdfeeder camera
 - RL video intercom (reported unable to connect)
 

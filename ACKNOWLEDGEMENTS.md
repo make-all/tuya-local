@@ -718,5 +718,5 @@ Further device support has been made with the assistance of users. Please consid
 - [fotis3d](https://github.com/fotis3d) for assisting with support for Digoo HamB alarm.
 - [Igooris](https://github.com/Igooris) for contributing support for PZIOT E01 energy meter.
 - [shadowkora](https://github.com/shadowkora) for assisting with support for Moes Smart control panel mini IR/Bluetooth hub.
-- [megarch2021](https://github.com/megarch2021) for contributing support for Orion SC009HA cameras.
+- [megarch2021](https://github.com/megarch2021) for contributing support for Orion SWS07HA indoor siren.
 - [markussiegert](https://github.com/markussiegery) for assisting with support for smoke detector.
