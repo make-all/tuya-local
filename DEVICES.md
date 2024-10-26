@@ -728,6 +728,7 @@ port and password.
 - Kerui JS-P162 300W camera
 - LSC PTZ camera
 - Nedis outdoor camera
+- Orions SC009HA cameras
 - Pinelake BF02 birdfeeder camera
 - RL video intercom (reported unable to connect)
 

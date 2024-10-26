@@ -5,6 +5,18 @@ products:
 primary_entity:
   entity: camera
   dps:
+    - id: 105
+      type: boolean
+      optional: true
+      name: switch
+      mapping:
+        - dps_val: true
+          value: false
+        - dps_val: false
+          value: true
+        - dps_val: null
+          value: true
+          hidden: true
     - id: 134
       type: boolean
       name: motion_enable
@@ -42,6 +54,7 @@ secondary_entities:
   - entity: switch
     name: Privacy
     category: config
+    deprecated: camera switch
     icon: "mdi:incognito"
     dps:
       - id: 105
