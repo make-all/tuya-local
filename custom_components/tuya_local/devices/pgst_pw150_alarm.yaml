@@ -1,0 +1,182 @@
+name: Alarm system
+products:
+  - id: bxtloihrivkxalgn
+    name: PGST PW150
+primary_entity:
+  entity: alarm_control_panel
+  dps:
+    - id: 1
+      type: string
+      name: alarm_state
+      mapping:
+        - dps_val: disarmed
+          value: disarmed
+        - dps_val: arm
+          value: armed_away
+        - dps_val: home
+          value: armed_home
+        - dps_val: sos
+          value: triggered
+    - id: 1
+      type: string
+      name: trigger
+      mapping:
+        - dps_val: sos
+          value: true
+        - value: false
+    - id: 24
+      type: string
+      name: zone_attribute
+      optional: true
+    - id: 32
+      type: string
+      name: master_state
+      optional: true
+    - id: 36
+      type: string
+      name: sub_class
+      optional: true
+    - id: 37
+      type: string
+      name: sub_type
+      optional: true
+    - id: 38
+      type: string
+      name: sub_admin
+      optional: true
+    - id: 39
+      type: string
+      name: sub_state
+      optional: true
+    - id: 101
+      type: string
+      name: power_event
+      optional: true
+    - id: 103
+      type: string
+      name: zone_number
+      optional: true
+    - id: 104
+      type: string
+      name: other_event
+      optional: true
+secondary_entities:
+  - entity: number
+    name: Exit delay
+    category: config
+    icon: "mdi:clock-end"
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 600
+  - entity: number
+    name: Siren duration
+    category: config
+    icon: "mdi:timer-settings"
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 600
+  - entity: switch
+    name: Alarm sound
+    category: config
+    icon: "mdi:bullhorn"
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+  - entity: number
+    name: Voice volume
+    category: config
+    dps:
+      - id: 5
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 14
+  - entity: switch
+    name: Doorbell mute
+    category: config
+    icon: "mdi:volume-mute"
+    dps:
+      - id: 12
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Silence siren
+    category: config
+    icon: "mdi:alarm-light-off"
+    dps:
+      - id: 25
+        type: boolean
+        name: switch
+        optional: true
+  - entity: event
+    name: Doorbell
+    class: doorbell
+    category: diagnostic
+    dps:
+      - id: 26
+        type: utf16b64
+        name: event
+        optional: true
+        mapping:
+          - dps_val: "Doorbell Trigger！\nZone:00"
+            value: ring
+          - value: null
+      - id: 26
+        type: utf16b64
+        name: message
+        optional: true
+  - entity: number
+    name: Entry delay
+    category: config
+    icon: "mdi:clock-start"
+    dps:
+      - id: 28
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 600
+  - entity: number
+    name: Doorbell volume
+    category: config
+    dps:
+      - id: 30
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 15
+  - entity: select
+    translation_key: language
+    category: config
+    dps:
+      - id: 40
+        type: string
+        name: option
+        mapping:
+          - dps_val: chinese_simplified
+            value: chinese
+          - dps_val: english
+            value: english
+  - entity: button
+    class: restart
+    name: Factory reset
+    category: config
+    dps:
+      - id: 34
+        type: boolean
+        name: button
+        optional: true
