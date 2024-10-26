@@ -1,0 +1,67 @@
+name: Smoke detector
+products:
+  - id: lsjnzox4skgduemo
+    name: Unknown
+primary_entity:
+  entity: binary_sensor
+  class: smoke
+  dps:
+    - id: 1
+      type: integer
+      name: sensor
+      mapping:
+        - dps_val: "1"
+          value: true
+        - value: false
+secondary_entities:
+  - entity: sensor
+    name: Smoke level
+    category: diagnostic
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: ppm
+        class: measurement
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 11
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 16
+        type: string
+        name: level
+  - entity: switch
+    name: Mute
+    icon: "mdi:volume-mute"
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: false
+            icon: "mdi:volume-high"
+  - entity: button
+    name: Test
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: button

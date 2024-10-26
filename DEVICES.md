@@ -801,6 +801,7 @@ port and password.
 
 - generic PIR motion sensor
 - generic illuminance sensor (2 types using different dps)
+- generic smoke detector
 - Air Housekeeper 6-in-1 air quality monitor
 - Akai heat pump clothes dryer
 - AquaForte Inverter VSP pool pump
