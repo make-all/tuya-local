@@ -90,6 +90,7 @@ DP_SCHEMA = vol.Schema(
                 "bitfield",
                 "unixtime",
                 "json",
+                "utf16b64",
             ]
         ),
         vol.Required("name"): str,
