@@ -348,6 +348,7 @@ class TuyaDpsConfig:
             "bitfield": int,
             "json": str,
             "base64": str,
+            "utf16b64": str,
             "hex": str,
             "unixtime": int,
         }
@@ -667,6 +668,8 @@ class TuyaDpsConfig:
             result = float(result)
         elif self.type is str:
             result = str(result)
+            if self.rawtype == "utf16b64":
+                result = b64encode(result.encode("utf-16-be")).decode("utf-8")
 
         if self.stringify:
             result = str(result)
@@ -682,6 +685,13 @@ class TuyaDpsConfig:
                 self.stringify = False
         else:
             self.stringify = False
+
+        # decode utf-16 base64 strings first, so normal strings can be matched
+        if self.rawtype == "utf16b64" and isinstance(val, str):
+            try:
+                val = b64decode(val).decode("utf-16-be")
+            except ValueError:
+                _LOGGER.warning("Invalid utf16b64 %s", val)
 
         result = val
         scale = self.scale(device)
