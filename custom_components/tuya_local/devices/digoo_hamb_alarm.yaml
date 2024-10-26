@@ -1,0 +1,206 @@
+name: Alarm system
+products:
+  - id: a4xyigjpkcmfafvh
+    name: Digoo DG-HAMB
+primary_entity:
+  entity: alarm_control_panel
+  dps:
+    - id: 1
+      type: string
+      name: alarm_state
+      mapping:
+        - dps_val: disarmed
+          value: disarmed
+        - dps_val: arm
+          value: armed_away
+        - dps_val: home
+          value: armed_home
+        - dps_val: sos
+          value: triggered
+    - id: 1
+      type: string
+      name: trigger
+      mapping:
+        - dps_val: sos
+          value: true
+        - value: false
+    - id: 36
+      type: string
+      optional: true
+      name: sub_class
+    - id: 37
+      type: string
+      optional: true
+      name: sub_type
+    - id: 38
+      type: string
+      optional: true
+      name: sub_admin
+    - id: 39
+      type: string
+      optional: true
+      name: sub_state
+secondary_entities:
+  - entity: number
+    name: Exit delay
+    category: config
+    icon: "mdi:clock-out"
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 300
+  - entity: number
+    name: Alarm time
+    category: config
+    icon: "mdi:alarm"
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 60
+  - entity: switch
+    name: Alarm sound
+    icon: "mdi:alarm-bell"
+    category: config
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Alarm light
+    icon: "mdi:alarm-light"
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: keytone
+    dps:
+      - id: 12
+        type: boolean
+        name: switch
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Alarm call
+    icon: "mdi:phone-alert"
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 18
+        type: string
+        optional: true
+        name: phone_number
+  - entity: switch
+    name: Alarm SMS
+    icon: "mdi:message-alert"
+    category: config
+    dps:
+      - id: 21
+        type: boolean
+        name: switch
+  - entity: select
+    name: Zone activation
+    icon: "mdi:floor-plan"
+    category: config
+    dps:
+      - id: 24
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: MODE_HOME_ARM
+            value: armed_home
+          - dps_val: MODE_ARM
+            value: armed_away
+          - dps_val: MODE_24
+            value: armed_24h
+          - dps_val: MODE_OFF
+            value: disarmed
+          - dps_val: MODE_DOORBELL
+            value: doorbell
+          - dps_val: MODE_24_SILENT
+            value: silent_24h
+          - dps_val: HOME_ARM_NO_DELAY
+            value: armed_home_immediate
+          - dps_val: ARM_NO_DELAY
+            value: armed_away_immediate
+      - id: 103
+        type: string
+        optional: true
+        name: zone
+  - entity: event
+    name: Alarm
+    dps:
+      - id: 26
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: alarm
+      - id: 26
+        type: string
+        optional: true
+        name: message
+  - entity: number
+    name: Entry delay
+    category: config
+    icon: "mdi:clock-in"
+    dps:
+      - id: 28
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 100
+  - entity: binary_sensor
+    class: plug
+    category: diagnostic
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: normal
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: BatteryIsLow
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: tamper
+    category: diagnostic
+    dps:
+      - id: 104
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: TAMPER
+            value: true
+          - value: false

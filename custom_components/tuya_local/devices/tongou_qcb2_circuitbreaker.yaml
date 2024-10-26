@@ -1,7 +1,7 @@
 name: Circuit breaker
 products:
   - id: a0k7kwt5wkqdswnm
-    name: Tongou QCB2-WB
+    name: Tongou QCB2-WB 63A
 primary_entity:
   entity: switch
   icon: "mdi:fuse"
@@ -231,6 +231,29 @@ secondary_entities:
           - dps_val: Trip
             value: Trip
             icon: "mdi:electric-switch"
+  - entity: select
+    name: Earth leakage action
+    category: config
+    dps:
+      - id: 108
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: Closed
+            value: Remain closed
+            icon: "mdi:electric-switch-closed"
+          - dps_val: Alarm
+            value: Alarm
+            icon: "mdi:bell-alert"
+          - dps_val: Trip
+            value: Trip
+            icon: "mdi:electric-switch"
+      - id: 117
+        type: integer
+        optional: true
+        name: threshold
+        # if range and scaling known, can be made a number entity
   - entity: switch
     category: config
     name: Live updates
@@ -251,6 +274,7 @@ secondary_entities:
       - id: 110
         name: event
         type: string
+        optional: true
         mapping:
           - dps_val: Normal
             value: Normal
