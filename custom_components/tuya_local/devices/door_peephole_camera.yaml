@@ -13,12 +13,6 @@ primary_entity:
       type: boolean
       name: record
       optional: true
-    - id: 115
-      type: base64
-      optional: true
-      persist: false
-      sensitive: true
-      name: snapshot
 secondary_entities:
   - entity: switch
     name: Flip image
@@ -136,15 +130,19 @@ secondary_entities:
             value: Event
           - dps_val: "2"
             value: Continuous
-  - entity: binary_sensor
+  - entity: event
     class: motion
     category: diagnostic
     dps:
       - id: 115
-        type: bitfield
-        name: sensor
-        persist: true
+        type: string
+        name: event
+        optional: true
         mapping:
-          - dps_val: Any
-            value: true
-
+          - dps_val: null
+            value: clear
+          - value: detected
+      - id: 115
+        type: string
+        name: image_details
+        optional: true
