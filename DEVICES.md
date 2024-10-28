@@ -811,8 +811,7 @@ port and password.
 - ASIP-0622 indoor planter
 - Brennenstuhl WFD3050P PIR motion activated CCT spotlight
 - Bresser Smart 7-in-1 weather station
-- Bresser Smart Thermo-hygrometer
-- Brilliant outdoor PIR motion sensor 
+^ Bresser Smart Thermo-hygrometer
 - CO2-Box air quality monitor
 - CT20W PIR motion detector
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
