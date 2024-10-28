@@ -9,17 +9,17 @@ primary_entity:
       name: switch
       type: boolean
 secondary_entities:
-   - entity: number
-     category: config
-     translation_key: timer
-     dps:
-       - id: 102
-         name: value
-         type: integer
-         unit: min
-         range:
-           min: 0
-           max: 86400
-         mapping:
-           - scale: 60
-             step: 60
+  - entity: number
+    category: config
+    translation_key: timer
+    dps:
+      - id: 102
+        name: value
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
