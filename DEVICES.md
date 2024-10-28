@@ -51,6 +51,7 @@
 - Nedis convection heater - WIFIHTPL20F model
 - Nybro heater
 - Orion OWH-PTC2000 heater
+- Point POPANW600 panel heater
 - Princess 350 panel heater
 - Prosto PTC 2000 heater
 - Purline Hoti M100 heater
@@ -427,6 +428,7 @@
 - Tongou SMR1 circuit breaker
 - Tongou ST463JWT 4P 3-phase circuit breaker
 - Tongou TO-Q-SYS-WT energy monitoring circuit breaker
+- Unknown brand dual channel smart meter
 - V-WIFI-DL02-ES energy consumption clamp meter
 - WDYK 2P63A energy meter circuit breaker
 - WDYK 3 phase 4 pole 400V energy meter circuit breaker
@@ -807,7 +809,8 @@ port and password.
 - AquaForte Inverter VSP pool pump
 - ASIP-0622 indoor planter
 - Brennenstuhl WFD3050P PIR motion activated CCT spotlight
-- Bresser smart 7-in-1 weather station
+- Bresser Smart 7-in-1 weather station
+^ Bresser Smart Thermo-hygrometer
 - CO2-Box air quality monitor
 - CT20W PIR motion detector
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)

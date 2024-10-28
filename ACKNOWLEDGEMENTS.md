@@ -720,3 +720,8 @@ Further device support has been made with the assistance of users. Please consid
 - [shadowkora](https://github.com/shadowkora) for assisting with support for Moes Smart control panel mini IR/Bluetooth hub.
 - [megarch2021](https://github.com/megarch2021) for contributing support for Orion SWS07HA indoor siren.
 - [markussiegert](https://github.com/markussiegery) for assisting with support for smoke detector.
+- [giacomitti](https://github.com/giacomitti) for contributing support for an unknown brand of energy meter.
+- [coutaq](https://github.com/coutaq) for contributing support for Point POPANW600 panel heater.
+- [vveloso](https://github.com/vveloso) for contributing support for Bresser Smart thermo-hygrometer.
+- [markxroberts](https://github.com/markxroberts) for contributing improvements to Yinmik water quality sensor.
+- [Jon811](https://github.com/Jon811) for contributing improvements to door peephole camera.
