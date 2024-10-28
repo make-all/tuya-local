@@ -1,7 +1,7 @@
 name: Doorbell
 products:
   - id: 26xtgamy3tv1awhl
-    name: WHM-04
+    name: WGH-ML-001
 primary_entity:
   entity: siren
   icon: "mdi:bell"
@@ -9,6 +9,7 @@ primary_entity:
     - id: 2
       type: integer
       name: tone
+      optional: true
       mapping:
         - dps_val: 1
           value: dingdong
@@ -121,6 +122,7 @@ secondary_entities:
         name: switch
   - entity: sensor
     name: Button
+    deprecated: event_doorbell
     category: diagnostic
     dps:
       - id: 5
@@ -131,6 +133,7 @@ secondary_entities:
   - entity: binary_sensor
     name: Ringing
     class: sound
+    deprecated: event_doorbell
     dps:
       - id: 5
         type: base64
@@ -141,3 +144,18 @@ secondary_entities:
           - dps_val: null
             value: false
           - value: true
+  - entity: event
+    class: doorbell
+    dps:
+      - id: 5
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: ring
+      - id: 5
+        type: utf16b64
+        optional: true
+        name: message
