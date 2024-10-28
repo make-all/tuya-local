@@ -1,0 +1,26 @@
+name: CCT light
+products:
+  - id: ewrj9uit2axunpyn
+    name: Connect CSH-GU53WW5W
+primary_entity:
+  entity: light
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 3
+      name: brightness
+      type: integer
+      range:
+        min: 25
+        max: 255
+    - id: 4
+      name: color_temp
+      type: integer
+      range:
+        min: 0
+        max: 255
+      mapping:
+        - target_range:
+            min: 2700
+            max: 6500
