@@ -5,6 +5,14 @@ products:
 primary_entity:
   entity: camera
   dps:
+    - id: 105
+      type: boolean
+      name: switch
+      mapping:
+        - dps_val: true
+          value: false
+        - dps_val: false
+          value: true
     - id: 115
       name: snapshot
       type: base64
@@ -16,6 +24,10 @@ primary_entity:
     - id: 150
       name: record
       type: boolean
+    - id: 212
+      type: utf16b64
+      optional: true
+      name: push_message
 secondary_entities:
   - entity: light
     translation_key: indicator
@@ -51,6 +63,7 @@ secondary_entities:
   - entity: switch
     name: Privacy
     icon: "mdi:incognito"
+    deprecated: camera switch
     category: config
     dps:
       - id: 105
@@ -205,3 +218,18 @@ secondary_entities:
       - id: 161
         type: boolean
         name: switch
+  - entity: event
+    name: Alarm
+    dps:
+      - id: 185
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: alert
+      - id: 185
+        type: utf16b64
+        name: message
+        optional: true
