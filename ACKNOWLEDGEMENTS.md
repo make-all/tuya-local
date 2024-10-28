@@ -725,3 +725,4 @@ Further device support has been made with the assistance of users. Please consid
 - [vveloso](https://github.com/vveloso) for contributing support for Bresser Smart thermo-hygrometer.
 - [markxroberts](https://github.com/markxroberts) for contributing improvements to Yinmik water quality sensor.
 - [Jon811](https://github.com/Jon811) for contributing improvements to door peephole camera.
+- [tazkirap](https://github.com/tazkirap) for assisting with support for Modena ES-15-SKY water heater.

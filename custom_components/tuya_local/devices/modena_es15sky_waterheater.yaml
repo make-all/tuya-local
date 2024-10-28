@@ -1,0 +1,212 @@
+name: Water heater
+products:
+  - id: sbno8dlqbq1kjlku
+    name: Modena ES-15-SKY
+primary_entity:
+  entity: water_heater
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 101
+      type: integer
+      name: operation_mode
+      mapping:
+        - dps_val: 0
+          value: Mode 0
+        - dps_val: 1
+          value: Mode 1
+        - dps_val: 2
+          value: Mode 2
+        - dps_val: 3
+          value: Mode 3
+        - dps_val: 4
+          value: Mode 4
+        - dps_val: 5
+          value: Mode 5
+        - dps_val: 6
+          value: Mode 6
+        - dps_val: 7
+          value: Mode 7
+        - dps_val: 8
+          value: Mode 8
+        - dps_val: 9
+          value: Mode 9
+        - dps_val: 10
+          value: Mode 10
+    - id: 103
+      type: integer
+      name: temperature
+      unit: C
+      range:
+        min: 30
+        max: 75
+    - id: 108
+      type: integer
+      name: current_temperature
+    - id: 115
+      type: integer
+      name: reserve1
+    - id: 116
+      type: integer
+      name: reserve2
+    - id: 117
+      type: integer
+      name: reserve3
+secondary_entities:
+  - entity: sensor
+    name: Energy
+    category: diagnostic
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        unit: kWh
+  - entity: number
+    name: Boost temperature
+    category: config
+    class: temperature
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 30
+          max: 75
+  - entity: number
+    name: Eco temperature
+    category: config
+    class: temperature
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 30
+          max: 75
+  - entity: number
+    name: Schedule 1 temperature
+    category: config
+    class: temperature
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 30
+          max: 75
+  - entity: number
+    name: Schedule 2 temperature
+    category: config
+    class: temperature
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        unit: C
+        range:
+          min: 30
+          max: 75
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 107
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 107
+        type: bitfield
+        name: fault_code
+  - entity: number
+    category: config
+    class: volume
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 10
+        unit: L
+        mapping:
+          - target_range:
+              min: 5
+              max: 105
+  - entity: number
+    name: Schedule 1 hour
+    category: config
+    icon: "mdi:clock"
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 23
+  - entity: number
+    name: Schedule 1 minute
+    category: config
+    icon: "mdi:clock"
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 59
+  - entity: number
+    name: Schedule 2 hour
+    category: config
+    icon: "mdi:clock"
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 23
+  - entity: number
+    name: Schedule 2 minute
+    category: config
+    icon: "mdi:clock"
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 59
+  - entity: binary_sensor
+    class: running
+    category: diagnostic
+    dps:
+      - id: 114
+        type: boolean
+        name: sensor
+  - entity: switch
+    name: Morning
+    icon: "mdi:weather-sunset-up"
+    category: config
+    dps:
+      - id: 118
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Afternoon
+    icon: "mdi:weather-sunset-down"
+    category: config
+    dps:
+      - id: 118
+        type: boolean
+        name: switch
