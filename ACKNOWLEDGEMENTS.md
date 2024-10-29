@@ -726,3 +726,4 @@ Further device support has been made with the assistance of users. Please consid
 - [markxroberts](https://github.com/markxroberts) for contributing improvements to Yinmik water quality sensor.
 - [Jon811](https://github.com/Jon811) for contributing improvements to door peephole camera.
 - [tazkirap](https://github.com/tazkirap) for assisting with support for Modena ES-15-SKY water heater.
+- [IamGimli](https://github.com/IamGimli) for contributing support for CE Smart Home LQ-2-W3 wall outlet.
