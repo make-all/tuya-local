@@ -1,0 +1,121 @@
+name: Water meter
+products:
+  - id: vuwtqx0t
+    name: ZPMeter 214C-Z
+primary_entity:
+  entity: sensor
+  class: water
+  dps:
+    - id: 1
+      type: integer
+      name: sensor
+      unit: m³
+      class: total_increasing
+      mapping:
+        - scale: 1000
+    - id: 2
+      type: string
+      optional: true
+      name: monthly
+    - id: 3
+      type: string
+      optional: true
+      name: daily
+    - id: 6
+      type: string
+      optional: true
+      name: frozen_time_set
+    - id: 16
+      type: string
+      name: meter_id
+    - id: 18
+      type: hex
+      optional: true
+      name: reverse_use
+secondary_entities:
+  - entity: select
+    name: Reporting period
+    icon: "mdi:update"
+    translation_key: timer
+    category: config
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: 1h
+            value: 1h
+          - dps_val: 2h
+            value: 2h
+          - dps_val: 3h
+            value: 3h
+          - dps_val: 4h
+            value: 4h
+          - dps_val: 6h
+            value: 6h
+          - dps_val: 8h
+            value: 8h
+          - dps_val: 12h
+            value: 12h
+          - dps_val: 24h
+            value: 24h
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 5
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 5
+        type: bitfield
+        name: fault_code
+  - entity: valve
+    class: water
+    dps:
+      - id: 13
+        type: boolean
+        name: valve
+  - entity: switch
+    name: Auto clean
+    icon: "mdi:shimmer"
+    category: config
+    dps:
+      - id: 14
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: volume_flow_rate
+    dps:
+      - id: 21
+        type: hex
+        optional: true
+        name: sensor
+        unit: m³/h
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 26
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 100
