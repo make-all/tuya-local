@@ -679,7 +679,7 @@ Further device support has been made with the assistance of users. Please consid
 - [InyoEndo](https://github.com/InyoEndo) for assistance supporting Sanden GAU-A45HPD water heat-pump controller.
 - [sudo-nitz](https://github.com/sudo-nitz) for assistance supporting eLinkSmart KH-SY2626 fan.
 - [andrewigali](https://github.com/andrewigali) for contributing support for HDMI TV ambient lighting 65 LED strip.
-- [robex2005](https://github.com/robex2005) for contributing support for iHunt 400m³/h aip purifier.
+- [robex2005](https://github.com/robex2005) for contributing support for iHunt 400m³/h and 50m³/h air purifiers.
 - [PanosssD](https://github.com/PanosssD) for contributing support for Inventor Comfort air conditioner.
 - [Jabber-se](https://github.com/Jabber-se) for contributing support for HRT AS90 climate alarm.
 - [Elliottmonaghan](https://github.com/Elliottmonaghan) for contributing support for Holman Helios weather station.

@@ -1,0 +1,57 @@
+name: Air purifier
+products:
+  - id: qjlhoysvavudtp3d
+    name: iHunt 50m³/h
+primary_entity:
+  entity: fan
+  icon: "mdi:air-purifier"
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 4
+      name: speed
+      type: string
+      mapping:
+        - dps_val: sleep
+          value: 25
+        - dps_val: low
+          value: 50
+        - dps_val: mid
+          value: 75
+        - dps_val: high
+          value: 100
+secondary_entities:
+  - entity: sensor
+    name: Filter
+    category: diagnostic
+    icon: "mdi:air-filter"
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: switch
+    translation_key: ionizer
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+  - entity: button
+    name: Filter reset
+    category: diagnostic
+    class: restart
+    dps:
+      - id: 11
+        type: boolean
+        name: button
+  - entity: sensor
+    name: Total runtime
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 17
+        name: sensor
+        type: integer
+        unit: min
