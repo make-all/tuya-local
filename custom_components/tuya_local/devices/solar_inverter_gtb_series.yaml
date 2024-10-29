@@ -1,4 +1,4 @@
-name: Smart Inverter GTB Series
+name: Solar Inverter GTB Series
 products:
   - id: czu7ynosrkxgbnsb
     name: GTB Series
@@ -30,8 +30,6 @@ secondary_entities:
         unit: W
         force: true
         class: measurement
-        mapping:
-          - scale: 1
   - entity: sensor
     class: temperature
     category: diagnostic
@@ -129,7 +127,6 @@ secondary_entities:
         class: measurement
         mapping:
           - mask: "0000000000FFFFFF0000"
-            scale: 1
   - entity: sensor
     name: AC frequency
     class: frequency
@@ -145,7 +142,6 @@ secondary_entities:
           - mask: "0000000000000000FFFF"
             scale: 10
   - entity: switch
-    name: Inverter switch
     category: config
     dps:
       - id: 101
