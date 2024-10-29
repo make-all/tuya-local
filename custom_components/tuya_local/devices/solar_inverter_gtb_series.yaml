@@ -1,6 +1,6 @@
 name: Smart Inverter GTB Series
 products:
-  - id: bf27badb1abd9bfc5beeuq
+  - id: czu7ynosrkxgbnsb
     name: GTB Series
 primary_entity:
   entity: sensor
@@ -54,7 +54,6 @@ secondary_entities:
         name: sensor
         unit: V
         optional: true
-        persist: true
         force: true
         class: measurement
         mapping:
@@ -70,7 +69,6 @@ secondary_entities:
         name: sensor
         unit: A
         optional: true
-        persist: true
         class: measurement
         mapping:
           - mask: "0000FFFF0000"
@@ -85,7 +83,6 @@ secondary_entities:
         name: sensor
         unit: W
         optional: true
-        persist: true
         class: measurement
         mapping:
           - mask: "00000000FFFF"
@@ -100,7 +97,6 @@ secondary_entities:
         name: sensor
         unit: V
         optional: true
-        persist: true
         force: true
         class: measurement
         mapping:
@@ -116,7 +112,6 @@ secondary_entities:
         name: sensor
         unit: A
         optional: true
-        persist: true
         class: measurement
         mapping:
           - mask: "0000FFFFFF0000000000"
@@ -131,7 +126,6 @@ secondary_entities:
         name: sensor
         unit: W
         optional: true
-        persist: true
         class: measurement
         mapping:
           - mask: "0000000000FFFFFF0000"
@@ -146,7 +140,6 @@ secondary_entities:
         name: sensor
         unit: Hz
         optional: true
-        persist: true
         class: measurement
         mapping:
           - mask: "0000000000000000FFFF"
