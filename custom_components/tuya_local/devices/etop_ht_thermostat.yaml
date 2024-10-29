@@ -1,11 +1,12 @@
-name: ETOP-HT thermostat
+name: Thermostat
 products:
   - id: viav1onpzcozfneb
-
+    name: ETOP HT-01AC
+  - id: zhfbsam03cs0ge5n
+    name: PNI CT-400
 primary_entity:
   entity: climate
   translation_key: thermostat
-  name: Thermostat
   dps:
     - id: 1
       type: boolean
@@ -21,24 +22,16 @@ primary_entity:
       mapping:
         - dps_val: manual
           value: manual
-          icon: "mdi:cursor-pointer"
         - dps_val: eco
           value: eco
-          icon: "mdi:sprout"
         - dps_val: auto
-          value: activity
-          icon: "mdi:thermostat-auto"
+          value: auto
     - id: 3
       type: string
       name: hvac_action
       mapping:
         - dps_val: no_heating
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: idle
+          value: idle
         - dps_val: heating
           value: heating
     - id: 24
@@ -78,9 +71,10 @@ primary_entity:
       mapping:
         - scale: 10
           step: 5
-    - id: 45
-      type: bitfield
-      name: fault_code
+    - id: 101
+      type: integer
+      optional: true
+      name: dead_zone
 secondary_entities:
   - entity: switch
     translation_key: anti_frost
@@ -88,6 +82,14 @@ secondary_entities:
     dps:
       - id: 10
         type: boolean
+        name: switch
+  - entity: switch
+    name: Window detection
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        optional: true
         name: switch
   - entity: lock
     translation_key: child_lock
@@ -157,3 +159,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 45
+        type: bitfield
+        name: fault_code
