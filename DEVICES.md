@@ -13,6 +13,7 @@
 - Caldo Up T fan heater
 - Calex Smart Convector heater
 - Cleverio AR10/AR20 panel heaters
+- Create Warm Towel Advance bathroom heater
 - Cronos GPH-D-DA heater
 - Devola patio heater
 - Dynasty BTX fireplace
