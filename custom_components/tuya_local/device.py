@@ -178,6 +178,9 @@ class TuyaLocalDevice(object):
         self._children.clear()
         self._force_dps.clear()
         if self._refresh_task:
+            self._api.set_socketPersistent(False)
+            if self._api.parent:
+                self._api.parent.set_socketPersistent(False)
             await self._refresh_task
         _LOGGER.debug("Monitor loop for %s stopped", self.name)
         self._refresh_task = None
@@ -251,6 +254,9 @@ class TuyaLocalDevice(object):
 
     def pause(self):
         self._temporary_poll = True
+        self._api.setSocketPersistent(false)
+        if self._api.parent:
+            self._api.parent.setSocketPersistent(false)
 
     def resume(self):
         self._temporary_poll = False
