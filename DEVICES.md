@@ -884,6 +884,7 @@ port and password.
 - Orion DL021HA lock
 - O'TU R1O1 fingerprint door lock
 - PT216/PT19DB-2 temperature and humidity sensor
+- Raykube A1 Pro Max clip over door lock
 - SGS01 plant sensor
 - Smart Ape solar garden light
 - SOP10 water sprinkler

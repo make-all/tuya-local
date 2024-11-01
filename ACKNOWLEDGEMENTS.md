@@ -731,3 +731,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Esp32-zapper](https://github.com/Esp32-zapper) for assisting with support for HunterTBK video doorbell.
 - [masfernandez](https://github.com/masfernandez) for assisting with support for Create Warm Towel Advance bathroom heater.
 - [Smandurlo](https://github.com/Smandurlo) for assisting with support for Klarstein Amazonia dishwasher and Weaja gas alarm.
+- [ChrisDes](https://github.com/ChrisDes) for assisting with support for Raykube A1 Pro Max clip-over door lock.
