@@ -906,6 +906,7 @@ entity types as sub devices.
 ### Devices supported via Zigbee hubs
 
 - Aubess temperature and humidity sensor
+- Avatto TRV06 radiator valve (also sold branded as Thaleos)
 - Generic Zigbee Door Sensor
 - Intelbras IFR7000 door lock
 - Loginovo mmWave human presence sensor
