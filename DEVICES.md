@@ -853,6 +853,7 @@ port and password.
 - Tontine electric blanket
 - TOPENS TC196 remote control for gate openers
 - Valehaus SYZN119 towel warmer
+- Weaja WJ-TUYA-S9 gas alarm
 - WeatherStation Pro
 - Xiumii human presence radar
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)
