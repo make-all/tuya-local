@@ -254,7 +254,7 @@ class TuyaLocalDevice(object):
 
     def pause(self):
         self._temporary_poll = True
-        self._api.setSocketPersistent(False)
+        self._api.setSocketPersistent(false)
         if self._api.parent:
             self._api.parent.setSocketPersistent(False)
 
@@ -506,7 +506,7 @@ class TuyaLocalDevice(object):
         # Only delay a second if there was recently another command.
         # Otherwise delay 1ms, to keep things simple by reusing the
         # same send mechanism.
-        waittime = 1 if since < 1.1 else 0.001
+        waittime = 1 if since < 1.1 and self.should_poll else 0.001
 
         await asyncio.sleep(waittime)
         await self._send_pending_updates()
