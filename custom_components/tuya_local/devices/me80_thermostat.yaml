@@ -109,7 +109,6 @@ primary_entity:
           conditions:
             - dps_val: false
               value: "off"
-    # 39 = factory reset (boolean but seems write only)
     - id: 45
       type: bitfield
       name: fault_code
@@ -329,3 +328,11 @@ secondary_entities:
         type: string
         name: temperature_unit
         hidden: true
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    dps:
+      - id: 39
+        type: boolean
+        optional: true
+        name: button

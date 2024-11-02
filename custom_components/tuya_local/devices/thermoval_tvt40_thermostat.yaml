@@ -55,9 +55,6 @@ primary_entity:
       type: string
       name: sensor_select
       hidden: true
-    - id: 21
-      name: factory_reset
-      type: boolean
     - id: 24
       name: hvac_action
       type: string
@@ -257,3 +254,11 @@ secondary_entities:
         type: integer
         class: measurement
         unit: h
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    dps:
+      - id: 21
+        type: boolean
+        optional: true
+        name: button
