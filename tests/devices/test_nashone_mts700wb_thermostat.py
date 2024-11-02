@@ -1,4 +1,3 @@
-from homeassistant.components.button import ButtonDeviceClass
 from homeassistant.components.climate.const import ClimateEntityFeature, HVACMode
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import UnitOfTime
