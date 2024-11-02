@@ -1,7 +1,7 @@
 name: EV charger
-products:
-  - id: "bfda6008360ed3949fleb0"
-    name: "Afyeev 16A EV Charger"
+# products:
+#   - id: UNKNOWN
+#     name: "Afyeev 16A EV Charger"
 primary_entity:
   entity: sensor
   name: Charger State
@@ -33,7 +33,6 @@ primary_entity:
       name: system_version
 secondary_entities:
   - entity: sensor
-    name: Total Forward Energy
     class: energy
     dps:
       - id: 1
@@ -58,7 +57,6 @@ secondary_entities:
           min: 6
           max: 16
   - entity: sensor
-    name: Phase A Voltage
     class: voltage
     dps:
       - id: 6
@@ -70,7 +68,6 @@ secondary_entities:
           - mask: "FFFF000000000000"
             scale: 10
   - entity: sensor
-    name: Phase A Current
     class: current
     dps:
       - id: 6
@@ -80,18 +77,6 @@ secondary_entities:
         unit: A
         mapping:
           - mask: "000000FFFF000000"
-            scale: 1000
-  - entity: sensor
-    name: Phase A Power
-    class: power
-    dps:
-      - id: 6
-        type: base64
-        name: sensor
-        optional: true
-        unit: kW
-        mapping:
-          - mask: "000000000000FFFF"
             scale: 1000
   - entity: sensor
     class: power
@@ -104,6 +89,15 @@ secondary_entities:
         optional: true
         mapping:
           - scale: 1000
+          - dps_val: null
+            value_redirect: phase_a
+      - id: 6
+        type: base64
+        name: phase_a
+        optional: true
+        mapping:
+          - mask: "000000000000FFFF"
+            scale: 1000
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -146,7 +140,6 @@ secondary_entities:
         name: switch
   - entity: sensor
     class: temperature
-    name: Temperature
     category: diagnostic
     dps:
       - id: 24
@@ -157,8 +150,7 @@ secondary_entities:
         mapping:
           - scale: 1
   - entity: sensor
-    name: Last charge energy
-    class: energy
+    name: Last charge
     dps:
       - id: 25
         type: integer
@@ -168,10 +160,8 @@ secondary_entities:
         optional: true
         mapping:
           - scale: 100
-  - entity: sensor
-    class: enum
-    name: Online state
-    icon: "mdi:wifi"
+  - entity: binary_sensor
+    class: connectivity
     category: diagnostic
     dps:
       - id: 27
@@ -180,13 +170,12 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: offline
-            value: Offline
+            value: false
           - dps_val: online
-            value: Online
+            value: true
   - entity: number
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:car-clock"
     dps:
       - id: 28
         type: integer
