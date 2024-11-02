@@ -13,15 +13,15 @@ primary_entity:
         - dps_val: false
           value: "off"
         - dps_val: true
-          value: heat
+          constraint: mode
+          conditions:
+            - dps_val: manual
+              value: heat
+            - dps_val: auto
+              value: auto
     - id: 2
-      name: preset_mode
+      name: mode
       type: string
-      mapping:
-        - dps_val: manual
-          value: manual
-        - dps_val: auto
-          value: program
     - id: 16
       name: temperature
       type: integer
