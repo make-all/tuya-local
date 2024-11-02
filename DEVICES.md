@@ -197,6 +197,7 @@
 - Minco MH-1823D thermostat
 - Moes BHT-002 thermostat (without external temp sensor)
 - Moes MS-103 temperature and humidity switch (partial functions, temperature only)
+- Moes WHT-009 thermostat
 - Multi Leaf DY-107 thermostat
 - Nashone MTS-700-WB thermostat smartplug
 - Netmostat N-1 (RTAFN1) thermostat
@@ -424,6 +425,7 @@
 - PZIOT E01 energy meter
 - SG600MD solar inverter (also SG700MD, other SGxx0MD and SGxx0W models) sold under various brands
 - SmartMCB SMT006 energy meter (10 byte and 8 byte phase info variants)
+- Solar Grid/Smart GTB series solar inverter
 - Stepuptech SG800 solar inverter
 - Stepuptech SPD800 solar inverter
 - Taxnele circuit breaker and energy meter
@@ -442,6 +444,7 @@
 
 ### Battery Charger
 
+- AFYEEV 16A portable EV charger
 - AFYEEV 32A 22kW portable EV charger
 - EcoPoint EV charger
 - EVSun EV charger
@@ -485,6 +488,7 @@ the best option.
 - Dual power monitoring smartplug v2 (Smatrul, Deltaco)
 - Eightree ET43 3-outlet powerstrip with energy monitoring
 - ES01 3 outlet + USB powerstrip with individual timers
+- ESP Fort EC-SPSP USB and mains smartplug
 - Gosund P1 3 outlet + USB powerstrip with power monitoring
 - Gosund SP112 RTL energy monitoring smartplug with USB
 - Grid Connect double outlet wall socket

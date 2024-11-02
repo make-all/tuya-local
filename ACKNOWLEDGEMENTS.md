@@ -732,3 +732,7 @@ Further device support has been made with the assistance of users. Please consid
 - [masfernandez](https://github.com/masfernandez) for assisting with support for Create Warm Towel Advance bathroom heater.
 - [Smandurlo](https://github.com/Smandurlo) for assisting with support for Klarstein Amazonia dishwasher and Weaja gas alarm.
 - [ChrisDes](https://github.com/ChrisDes) for assisting with support for Raykube A1 Pro Max clip-over door lock.
+- [pimpalaputty](https://github.com/pimpalaputty) for contributing support for AFYEEV 16A EV charger.
+- [SimonAnnetts](https://github.com/SimonAnnetts) for contributing support for Solar Grid/Smart GTB series solar inverters.
+- [yurkiv](https://github.com/yurkiv) for contributing support for Moes WHT-009 thermostat.
+- [norfolkmustard](https://github.com/norfolkmustard) for contributing support for ESP Fort EC-SPSP USB smartplug.
