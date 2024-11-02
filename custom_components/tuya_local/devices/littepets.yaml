@@ -74,7 +74,7 @@ secondary_entities:
         name: sensor
         unit: s
   - entity: sensor
-    name: Status
+    translation_key: status
     class: enum
     category: diagnostic
     dps:
@@ -83,29 +83,21 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: standby
-            value: Standby
-            icon: "mdi:timer"
+            value: standby
           - dps_val: "off"
-            value: PowerOff
-            icon: "mdi:power-sleep"
+            value: "off"
           - dps_val: waiting_cluster
-            value: Clumping
-            icon: "mdi:timer"
+            value: caking
           - dps_val: cleaning
-            value: Cleaning
-            icon: "mdi:broom"
+            value: cleaning
           - dps_val: uv
-            value: Sterilisation
-            icon: "mdi:needle"
+            value: sterilizing
           - dps_val: deodorization
-            value: Deodorisation
-            icon: "mdi:spray"
+            value: deodorizing
           - dps_val: sleep
-            value: Sleeping
-            icon: "mdi:sleep"
+            value: sleep
           - dps_val: in_toilet
-            value: Using
-            icon: "mdi:toilet"
+            value: occupied
   - entity: sensor
     class: battery
     category: diagnostic

@@ -114,7 +114,7 @@ secondary_entities:
         type: bitfield
         name: fault_code
   - entity: sensor
-    name: Status
+    translation_key: status
     class: enum
     category: diagnostic
     dps:
@@ -125,7 +125,7 @@ secondary_entities:
           - dps_val: unwash
             value: unwashed
           - dps_val: pre_wash
-            value: pre_washing
+            value: pre_rinsing
           - dps_val: wash
             value: washing
           - dps_val: rinse
@@ -133,7 +133,7 @@ secondary_entities:
           - dps_val: drying
             value: drying
           - dps_val: end
-            value: finished
+            value: done
           - dps_val: standby
             value: standby
   - entity: sensor

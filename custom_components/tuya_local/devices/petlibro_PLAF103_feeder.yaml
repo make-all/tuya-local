@@ -4,7 +4,7 @@ products:
     name: Petlibro PLAF103
 primary_entity:
   entity: sensor
-  name: Status
+  translation_key: status
   class: enum
   icon: "mdi:paw"
   dps:
@@ -13,17 +13,17 @@ primary_entity:
       name: sensor
       mapping:
         - dps_val: standby
-          value: Idle
+          value: standby
         - dps_val: no_food
-          value: Empty
+          value: no_food
         - dps_val: error_ir
-          value: Fault
+          value: jammed
         - dps_val: feed_timeout
-          value: Blockage
+          value: blocked
         - dps_val: feeding
-          value: Feeding
+          value: feeding
         - dps_val: feed_end
-          value: Feeding complete
+          value: feeding_complete
     - id: 1
       name: meal_plan
       type: string

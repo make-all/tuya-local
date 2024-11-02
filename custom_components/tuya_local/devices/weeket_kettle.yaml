@@ -92,7 +92,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: sensor
-    name: Status
+    translation_key: status
     class: enum
     category: diagnostic
     dps:
@@ -101,23 +101,23 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: standby
-            value: Standby
+            value: standby
           - dps_val: heating
-            value: Heating
+            value: heating
           - dps_val: cooling
-            value: Cooling
+            value: cooling
           - dps_val: warm
-            value: Keeping warm
+            value: keeping_warm
           - dps_val: heating_temp
-            value: Hot
+            value: no_water
           - dps_val: boiling_temp
-            value: Boiling
+            value: boiling
           - dps_val: reserve_1
-            value: Reserved 1
+            value: reserved_1
           - dps_val: reserve_2
-            value: Reserved 2
+            value: reserved_2
           - dps_val: reserve_3
-            value: Reserved 3
+            value: reserved_3
   - entity: binary_sensor
     class: problem
     category: diagnostic

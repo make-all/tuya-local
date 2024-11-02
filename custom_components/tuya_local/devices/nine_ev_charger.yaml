@@ -4,7 +4,7 @@ products:
     name: Nine 32A EV charger
 primary_entity:
   entity: sensor
-  name: Charger State
+  translation_key: status
   icon: "mdi:ev-station"
   class: enum
   dps:
@@ -13,21 +13,21 @@ primary_entity:
       name: sensor
       mapping:
         - dps_val: charger_charging
-          value: Charging
+          value: charging
         - dps_val: charger_free
-          value: Available
+          value: available
         - dps_val: charger_insert
-          value: Plugged in
+          value: plugged_in
         - dps_val: charger_free_fault
-          value: Fault
+          value: fault_unplugged
         - dps_val: charger_wait
-          value: Plugged in, not charging
+          value: waiting
         - dps_val: charger_pause
-          value: Paused
+          value: paused
         - dps_val: charger_end
-          value: Charge finished
+          value: charged
         - dps_val: charger_fault
-          value: Fault (plugged in)
+          value: fault
     - id: 23  # system_version
       type: string
       name: system_version

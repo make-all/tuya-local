@@ -48,8 +48,9 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: sensor
-    name: Status
+    translation_key: status
     class: enum
+    icon: "mdi:kettle"
     category: diagnostic
     dps:
       - id: 15
@@ -57,17 +58,12 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: standby
-            value: Standby
-            icon: "mdi:kettle-off-outline"
+            value: standby
           - dps_val: heating
-            value: Heating
-            icon: "mdi:kettle"
+            value: heating
           - dps_val: cooling
-            value: Cooling
-            icon: "mdi:kettle-outline"
+            value: cooling
           - dps_val: warm
-            value: Warm
-            icon: "mdi:kettle"
+            value: keeping_warm
           - dps_val: heating_temp
-            value: "No water"
-            icon: "mdi:kettle-alert"
+            value: no_water

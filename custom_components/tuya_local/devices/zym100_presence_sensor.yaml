@@ -59,9 +59,9 @@ secondary_entities:
           - scale: 100
             step: 10
   - entity: sensor
-    name: Status
+    deprecated: binary_sensor_problem
+    translation_key: status
     class: enum
-    icon: "mdi:list-status"
     category: diagnostic
     dps:
       - id: 6
@@ -81,6 +81,25 @@ secondary_entities:
             value: Timeout
           - dps_val: radar_fault
             value: Radar fault
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 6
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: check_success
+            value: false
+          - dps_val: checking
+            value: false
+          - value: true
+      - id: 6
+        type: string
+        name: fault_description
   - entity: sensor
     name: Target distance
     class: distance

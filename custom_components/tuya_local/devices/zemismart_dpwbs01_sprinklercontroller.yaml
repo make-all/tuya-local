@@ -289,7 +289,7 @@ secondary_entities:
           - dps_val: cancel
             value: cancel
   - entity: sensor
-    name: Status
+    translation_key: status
     icon: "mdi:sprinkler"
     class: enum
     category: diagnostic
@@ -299,11 +299,11 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: manual
-            value: Manual
+            value: manual
           - dps_val: auto
-            value: Auto
+            value: auto
           - dps_val: idle
-            value: Idle
+            value: idle
   - entity: sensor
     name: Smart weather
     class: enum

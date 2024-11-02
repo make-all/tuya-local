@@ -13,7 +13,7 @@ primary_entity:
       name: switch
 secondary_entities:
   - entity: sensor
-    name: Status
+    translation_key: status
     category: diagnostic
     class: enum
     dps:
@@ -22,23 +22,17 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: power_off
-            icon: "mdi:power-off"
-            value: "Off"
+            value: "off"
           - dps_val: standby
-            icon: "mdi:power-standby"
-            value: Standby
+            value: standby
           - dps_val: caking
-            icon: "mdi:biohazard"
-            value: Caking
+            value: caking
           - dps_val: cleaning
-            icon: "mdi:spray-bottle"
-            value: Cleaning
+            value: cleaning
           - dps_val: sleeping
-            icon: "mdi:sleep"
-            value: Sleeping
+            value: sleep
           - dps_val: UV
-            icon: "mdi:sun-wireless"
-            value: UV Light On
+            value: sterilizing
   - entity: button
     name: Manual clean
     category: config

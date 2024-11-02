@@ -13,7 +13,7 @@ primary_entity:
       class: total_increasing
 secondary_entities:
   - entity: sensor
-    name: Status
+    translation_key: status
     icon: "mdi:ev-station"
     class: enum
     dps:
@@ -22,21 +22,21 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: charger_free
-            value: Available
+            value: available
           - dps_val: charger_insert
-            value: Plugged in
+            value: plugged_in
           - dps_val: charger_free_fault
-            value: Fault (unplugged)
+            value: fault_unplugged
           - dps_val: charger_wait
-            value: Waiting
+            value: waiting
           - dps_val: charger_charging
-            value: Charging
+            value: charging
           - dps_val: charger_pause
-            value: Paused
+            value: paused
           - dps_val: charger_end
-            value: Finished
+            value: charged
           - dps_val: charger_fault
-            value: Error
+            value: fault
       - id: 11
         optional: true
         type: string

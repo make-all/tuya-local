@@ -4,7 +4,7 @@ products:
     name: VEVOR L2 48A
 primary_entity:
   entity: sensor
-  name: Status
+  translation_key: status
   class: enum
   icon: "mdi:ev-station"
   dps:
@@ -13,21 +13,21 @@ primary_entity:
       name: sensor
       mapping:
         - dps_val: charger_free
-          value: Available
+          value: available
         - dps_val: charger_insert
-          value: Plugged in
+          value: plugged_in
         - dps_val: charger_free_fault
-          value: Fault (unplugged)
+          value: fault_unplugged
         - dps_val: charger_wait
-          value: Waiting
+          value: waiting
         - dps_val: charger_charging
-          value: Charging
+          value: charging
         - dps_val: charger_pause
-          value: Paused
+          value: paused
         - dps_val: charger_end
-          value: Finished
+          value: charged
         - dps_val: charger_fault
-          value: Fault
+          value: fault
     - id: 23
       type: string
       name: system_version

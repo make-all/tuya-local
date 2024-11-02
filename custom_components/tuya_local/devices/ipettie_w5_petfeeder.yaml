@@ -21,7 +21,7 @@ primary_entity:
       name: meal_plan
 secondary_entities:
   - entity: sensor
-    name: Status
+    translation_key: status
     class: enum
     icon: "mdi:paw"
     category: diagnostic
@@ -31,15 +31,15 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: standby
-            value: Standby
+            value: standby
           - dps_val: no_food
-            value: "No food"
+            value: no_food
           - dps_val: error_ir
-            value: Jammed
+            value: jammed
           - dps_val: feed_timeout
-            value: Feed timeout
+            value: blocked
           - dps_val: feeding
-            value: Feeding
+            value: feeding
   - entity: button
     translation_key: factory_reset
     category: config
