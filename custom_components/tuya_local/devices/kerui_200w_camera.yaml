@@ -170,6 +170,7 @@ secondary_entities:
         persist: false
   - entity: select
     name: PTZ control
+    deprecated: buttons
     icon: "mdi:camera-control"
     category: config
     dps:
@@ -195,8 +196,110 @@ secondary_entities:
             value: left
           - dps_val: "7"
             value: left-up
-          - dps_val: null
-            value: (stopped)
+  - entity: button
+    name: PTZ up
+    icon: "mdi:pan-up"
+    category: config
+    dps:
+      - id: 119
+        type: boolean
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "0"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ right-up
+    icon: "mdi:top-right"
+    category: config
+    dps:
+      - id: 119
+        type: boolean
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "1"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ right
+    icon: "mdi:pan-right"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "2"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ right-down
+    icon: "mdi:pan-bottom-right"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "3"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ down
+    icon: "mdi:pan-down"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "4"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ left-down
+    icon: "mdi:pan-bottom-left"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "5"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ left
+    icon: "mdi:pan-left"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "6"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ left-up
+    icon: "mdi:pan-top-left"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "7"
+            value: true
+          - value: false
   - entity: select
     name: Recording mode
     icon: "mdi:file-video"
