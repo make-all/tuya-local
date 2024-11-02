@@ -1,7 +1,7 @@
-name: Solar Inverter GTB Series
+name: Solar inverter
 products:
   - id: czu7ynosrkxgbnsb
-    name: GTB Series
+    name: Solar Grid GTB Series
 primary_entity:
   entity: sensor
   class: energy
@@ -28,7 +28,6 @@ secondary_entities:
         type: integer
         name: sensor
         unit: W
-        force: true
         class: measurement
   - entity: sensor
     class: temperature
@@ -38,7 +37,6 @@ secondary_entities:
         type: integer
         name: sensor
         unit: C
-        force: true
         class: measurement
         mapping:
           - scale: 10
