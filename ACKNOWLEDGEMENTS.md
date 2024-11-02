@@ -736,3 +736,4 @@ Further device support has been made with the assistance of users. Please consid
 - [SimonAnnetts](https://github.com/SimonAnnetts) for contributing support for Solar Grid/Smart GTB series solar inverters.
 - [yurkiv](https://github.com/yurkiv) for contributing support for Moes WHT-009 thermostat.
 - [norfolkmustard](https://github.com/norfolkmustard) for contributing support for ESP Fort EC-SPSP USB smartplug.
+- [alexsperling](https://github.com/alexsperling) for assisting with support for Beok TCB/W38 (RT-70) thermostat.
