@@ -1,6 +1,5 @@
 """Tests for the essentials air purifier."""
 
-from homeassistant.components.button import ButtonDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
@@ -44,7 +43,6 @@ class TestEssentialsPurifier(
         self.setUpBasicButton(
             RESET_DP,
             self.entities.get("button_filter_reset"),
-            ButtonDeviceClass.RESTART,
         )
         self.setUpBasicLock(LOCK_DP, self.entities.get("lock_child_lock"))
         self.setUpMultiSelect(

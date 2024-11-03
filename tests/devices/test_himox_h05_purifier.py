@@ -1,4 +1,3 @@
-from homeassistant.components.button import ButtonDeviceClass
 from homeassistant.components.fan import FanEntityFeature
 from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT, SensorDeviceClass
 from homeassistant.const import PERCENTAGE, UnitOfTemperature
@@ -39,7 +38,6 @@ class TestHimoxH05Purifier(
         self.setUpBasicButton(
             RESET_DPS,
             self.entities.get("button_filter_reset"),
-            ButtonDeviceClass.RESTART,
         )
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
         self.setUpBasicSelect(

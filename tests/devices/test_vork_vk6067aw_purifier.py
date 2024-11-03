@@ -1,5 +1,4 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
-from homeassistant.components.button import ButtonDeviceClass
 from homeassistant.components.fan import FanEntityFeature
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import PERCENTAGE, UnitOfTime
@@ -59,7 +58,6 @@ class TestVorkVK6267AWPurifier(
         self.setUpBasicButton(
             RESET_DPS,
             self.entities.get("button_filter_reset"),
-            device_class=ButtonDeviceClass.RESTART,
         )
         self.setUpMultiSensors(
             [

@@ -60,7 +60,6 @@ class TestKyvolE30Vacuum(MultiButtonTests, MultiSensorTests, TuyaDeviceTestCase)
                 {
                     "dps": RSTFILTER_DPS,
                     "name": "button_filter_reset",
-                    "device_class": ButtonDeviceClass.RESTART,
                 },
             ]
         )
