@@ -26,6 +26,18 @@ body:
       render: text
     validations:
       required: true
+  - type: input
+    id: productid
+    attributes:
+      label: Product ID
+      description: |
+        The product ID or productKey for the device.
+        You can get this from the HA log when using tuya-local 2024.11.0 and later. Otherwise the same iot.tuya.com API functions that provide the local key or from `tinytuya scan` or other tools doing local discovery
+  - type: input
+    id: productname
+    attributes:
+      label: Product Name
+      description: The product name (usually brand and model name/number)
   - type: textarea
     id: data_model
     attributes:
@@ -36,18 +48,6 @@ body:
       render: text
     validations:
       required: true
-  - type: input
-    id: productid
-    attributes:
-      label: Product ID
-      description: |
-        The product ID or productKey for the device.
-        You can get this from the same iot.tuya.com API functions that provide the local key or from `tinytuya scan` or other tools doing local discovery
-  - type: input
-    id: productname
-    attributes:
-      label: Product Name
-      description: The product name (usually brand and model name/number)
   - type: textarea
     id: info
     attributes:
