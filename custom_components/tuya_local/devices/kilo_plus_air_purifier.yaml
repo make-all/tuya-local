@@ -1,0 +1,78 @@
+name: Kilo Plus Air purifier
+products:
+  - id: ueldkqa5dggrzrio
+    name: Kilo Plus Air purifier
+primary_entity:
+  entity: fan
+  icon: "mdi:air-purifier"
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 4
+      type: integer
+      name: speed
+      range:
+        min: 1
+        max: 3
+secondary_entities:
+  - entity: sensor
+    name: Filter
+    icon: "mdi:air-filter"
+    category: diagnostic
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: switch
+    name: Reset Filter Life
+    category: config
+    icon: "mdi:toggle-switch-variant-off"
+    dps:
+      - id: 8
+        name: switch
+        type: boolean
+  - entity: select
+    name: Timer
+    translation_key: timer
+    category: config
+    dps:
+      - id: 18
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancle
+            value: Off
+          - dps_val: "1h"
+            value: "1 Hour"
+          - dps_val: "2h"
+            value: "2 Hours"
+          - dps_val: "3h"
+            value: "3 Hours"
+          - dps_val: "4h"
+            value: "4 Hours"
+  - entity: select
+    name: Light
+    translation_key: light
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancle
+            value: Off
+          - dps_val: "1"
+            value: "Gradient"
+          - dps_val: "2"
+            value: "On"
+  - entity: sensor
+    name: Countdown Remaining
+    icon: "mdi:timer"
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: "mins"
