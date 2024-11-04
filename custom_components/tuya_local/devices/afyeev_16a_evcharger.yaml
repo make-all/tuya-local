@@ -1,7 +1,7 @@
 name: EV charger
-# products:
-#   - id: UNKNOWN
-#     name: "Afyeev 16A EV Charger"
+products:
+  - id: dsmsam7xpb3ht7rl
+    name: "Afyeev 16A EV Charger"
 primary_entity:
   entity: sensor
   translation_key: status
@@ -81,23 +81,23 @@ secondary_entities:
   - entity: sensor
     class: power
     dps:
-      - id: 9
-        type: integer
-        name: sensor
-        unit: kW
-        class: measurement
-        optional: true
-        mapping:
-          - scale: 1000
-          - dps_val: null
-            value_redirect: phase_a
       - id: 6
         type: base64
         name: phase_a
         optional: true
+        unit: kW
+        class: measurement
         mapping:
           - mask: "000000000000FFFF"
             scale: 1000
+          - dps_val: null
+            value_redirect: total_power
+      - id: 9
+        type: integer
+        name: total_power
+        optional: true
+        mapping:
+          - scale: 1000
   - entity: binary_sensor
     class: problem
     category: diagnostic
