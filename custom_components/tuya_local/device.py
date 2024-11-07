@@ -254,9 +254,9 @@ class TuyaLocalDevice(object):
 
     def pause(self):
         self._temporary_poll = True
-        self._api.setSocketPersistent(False)
+        self._api.set_socketPersistent(False)
         if self._api.parent:
-            self._api.parent.setSocketPersistent(False)
+            self._api.parent.set_socketPersistent(False)
 
     def resume(self):
         self._temporary_poll = False
