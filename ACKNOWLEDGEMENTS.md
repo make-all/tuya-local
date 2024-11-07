@@ -737,3 +737,5 @@ Further device support has been made with the assistance of users. Please consid
 - [yurkiv](https://github.com/yurkiv) for contributing support for Moes WHT-009 thermostat.
 - [norfolkmustard](https://github.com/norfolkmustard) for contributing support for ESP Fort EC-SPSP USB smartplug.
 - [alexsperling](https://github.com/alexsperling) for assisting with support for Beok TCB/W38 (RT-70) thermostat.
+- [czarau](https://github.com/czarau) for contributing bugfixes to device connection handling.
+- [broyuken](https://github.com/broyuken) for contributing support for Kilo Plus air purifier.

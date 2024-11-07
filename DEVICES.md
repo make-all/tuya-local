@@ -288,6 +288,7 @@
 - Hosome air purifier
 - iHunt 400m³/h air purifier
 - iHunt 50m³/h air purifier
+- Kilo Plus air purifier
 - Klarta Stor 2 air purifier
 - Kogan air purifier
 - Lifubide X600 air purifier
