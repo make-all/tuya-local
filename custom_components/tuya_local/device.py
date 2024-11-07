@@ -247,6 +247,9 @@ class TuyaLocalDevice(object):
             _LOGGER.exception(
                 "%s receive loop terminated by exception %s", self.name, t
             )
+            self._api.set_socketPersistent(False)
+            if self._api.parent:
+                self._api.parent.set_socketPersistent(False)
 
     @property
     def should_poll(self):
@@ -355,6 +358,9 @@ class TuyaLocalDevice(object):
                     type(t),
                     t,
                 )
+                self._api.set_socketPersistent(False)
+                if self._api.parent:
+                    self._api.parent.set_socketPersistent(False)
                 await asyncio.sleep(5)
 
         # Close the persistent connection when exiting the loop
