@@ -740,3 +740,4 @@ Further device support has been made with the assistance of users. Please consid
 - [czarau](https://github.com/czarau) for contributing bugfixes to device connection handling.
 - [broyuken](https://github.com/broyuken) for contributing support for Kilo Plus air purifier.
 - [perimos](https://gituhb.com/perimos) for contributing support for KCvents VT-501 HRV.
+- [Tbaile](https://github.com/Tbaile) for contributing support for Plikc Neve Pro W thermostat.

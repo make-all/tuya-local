@@ -203,7 +203,7 @@
 - Nashone MTS-700-WB thermostat smartplug
 - Netmostat N-1 (RTAFN1) thermostat
 - Owon PCT513 thermostat
-- Plikc Neve X RFW thermostat
+- Plikc Neve X W/RFW and Neve Pro W thermostats
 - Psmart T436 thermostat
 - RYRA TYTE-D1 thermostat with energy monitoring
 - Salcar T9W thermostat _(likely also Tellur TSH02)_
