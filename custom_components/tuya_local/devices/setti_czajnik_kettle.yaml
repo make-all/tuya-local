@@ -68,9 +68,6 @@ primary_entity:
       type: string
       name: work_type
       hidden: true
-    - id: 19
-      type: bitfield
-      name: fault_code
 secondary_entities:
   - entity: select
     name: Quick set temperature C
@@ -268,3 +265,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code

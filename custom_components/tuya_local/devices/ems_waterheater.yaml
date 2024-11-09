@@ -31,9 +31,6 @@ primary_entity:
       type: string
       name: mode
       hidden: true
-    - id: 9
-      type: bitfield
-      name: fault_code
 secondary_entities:
   - entity: sensor
     class: temperature
@@ -54,3 +51,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 9
+        type: bitfield
+        name: fault_code

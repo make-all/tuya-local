@@ -95,9 +95,6 @@ primary_entity:
       type: boolean
       name: swing_vert
       hidden: true
-    - id: 107
-      type: bitfield
-      name: fault_code
     - id: 108
       type: bitfield
       name: model
@@ -185,6 +182,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 107
+        type: bitfield
+        name: fault_code
   - entity: switch
     name: "On timer"
     translation_key: timer

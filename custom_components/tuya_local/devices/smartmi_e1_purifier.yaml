@@ -20,9 +20,6 @@ primary_entity:
           value: normal
         - dps_val: manual
           value: strong
-    - id: 22
-      type: bitfield
-      name: fault_code
 secondary_entities:
   - entity: light
     translation_key: indicator
@@ -41,3 +38,17 @@ secondary_entities:
         name: sensor
         type: integer
         unit: h
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code

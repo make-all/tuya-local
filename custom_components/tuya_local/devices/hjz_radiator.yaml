@@ -28,9 +28,6 @@ primary_entity:
           value: eco
         - dps_val: "2"
           value: away
-    - id: 21
-      type: bitfield
-      name: fault_code
 secondary_entities:
   - entity: lock
     category: config
@@ -79,3 +76,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 21
+        type: bitfield
+        name: fault_code

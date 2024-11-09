@@ -125,6 +125,7 @@ class TestWilfaHazeHumidifier(
         )
         self.mark_secondary(
             [
+                "binary_sensor_problem",
                 "binary_sensor_tank_empty",
                 "light_display",
                 "light_mood",
@@ -181,8 +182,7 @@ class TestWilfaHazeHumidifier(
 
     def test_extra_state_attributes(self):
         self.dps[UNKNOWN20_DPS] = 20
-        self.dps[ERROR_DPS] = 22
         self.assertDictEqual(
             self.subject.extra_state_attributes,
-            {"unknown_20": 20, "error": 22},
+            {"unknown_20": 20},
         )

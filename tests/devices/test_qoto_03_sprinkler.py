@@ -124,3 +124,10 @@ class TestQotoSprinkler(
             {TARGET_DPS: 50},
         ):
             await self.subject.async_set_valve_position(50)
+
+    def test_basic_bsensor_extra_state_attributes(self):
+        self.dps[ERROR_DPS] = 2
+        self.assertDictEqual(
+            self.basicBSensor.extra_state_attributes,
+            {"fault_code": 2},
+        )

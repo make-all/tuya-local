@@ -5,12 +5,6 @@ products:
 primary_entity:
   entity: climate
   dps:
-    - id: 12
-      type: bitfield
-      name: error
-      mapping:
-        - dps_val: 0
-          value: OK
     - id: 101
       type: string
       name: temperature_unit
@@ -206,6 +200,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 12
+        type: bitfield
+        name: fault_code
   - entity: binary_sensor
     class: problem
     category: diagnostic

@@ -109,9 +109,6 @@ primary_entity:
           conditions:
             - dps_val: false
               value: "off"
-    - id: 45
-      type: bitfield
-      name: fault_code
     - id: 104
       type: string
       name: program
@@ -264,6 +261,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 45
+        type: bitfield
+        name: fault_code
   - entity: sensor
     name: Floor temperature
     category: diagnostic

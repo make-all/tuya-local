@@ -66,9 +66,6 @@ primary_entity:
           conditions:
             - dps_val: ventilate
               invalid: true
-    - id: 13
-      type: bitfield
-      name: fault_code
     - id: 103
       type: integer
       name: max_temperature
@@ -128,6 +125,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 13
+        type: bitfield
+        name: fault_code
   - entity: switch
     translation_key: sleep
     category: config

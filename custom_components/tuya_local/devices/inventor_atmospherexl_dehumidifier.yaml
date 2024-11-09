@@ -60,9 +60,6 @@ primary_entity:
     - id: 6
       type: integer
       name: current_humidity
-    - id: 19
-      type: bitfield
-      name: error_code
       # The following do not have descriptions in iot.tuya.com, the names
       # though can be obtained from the debugger.  But functionality needs
       # to be confirmed before making them separate entities
@@ -233,6 +230,9 @@ secondary_entities:
             value: true
           # no error / P1/P2/Replace_Hepa (covered by individual sensors)
           - value: false
+      - id: 19
+        type: bitfield
+        name: fault_code
   - entity: binary_sensor
     class: problem
     name: HEPA filter replacement

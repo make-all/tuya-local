@@ -5,7 +5,7 @@ from homeassistant.components.sensor import SensorDeviceClass
 
 from ..const import EANONS_HUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
-from ..mixins.binary_sensor import BasicBinarySensorTests
+from ..mixins.binary_sensor import MultiBinarySensorTests
 from ..mixins.select import BasicSelectTests
 from ..mixins.sensor import BasicSensorTests
 from ..mixins.switch import BasicSwitchTests, SwitchableTests
@@ -23,10 +23,10 @@ SWITCH_DPS = "22"
 
 
 class TestEanonsHumidifier(
-    BasicBinarySensorTests,
     BasicSelectTests,
     BasicSensorTests,
     BasicSwitchTests,
+    MultiBinarySensorTests,
     SwitchableTests,
     TuyaDeviceTestCase,
 ):
@@ -63,15 +63,26 @@ class TestEanonsHumidifier(
             unit="min",
             device_class=SensorDeviceClass.DURATION,
         )
-        self.setUpBasicBinarySensor(
-            ERROR_DPS,
-            self.entities.get("binary_sensor_tank_empty"),
-            testdata=(1, 0),
+        self.setUpMultiBinarySensors(
+            [
+                {
+                    "name": "binary_sensor_tank_empty",
+                    "dps": ERROR_DPS,
+                    "testdata": (1, 0),
+                },
+                {
+                    "name": "binary_sensor_problem",
+                    "dps": ERROR_DPS,
+                    "device_class": "problem",
+                    "testdata": (2, 0),
+                },
+            ],
         )
         self.mark_secondary(
             [
                 "select_timer",
                 "sensor_time_remaining",
+                "binary_sensor_problem",
                 "binary_sensor_tank_empty",
             ]
         )
@@ -164,7 +175,6 @@ class TestEanonsHumidifier(
             self.subject._device.anticipate_property_value.assert_not_called()
 
     def test_extra_state_attributes(self):
-        self.dps[ERROR_DPS] = 0
         self.dps[TIMERHR_DPS] = "cancel"
         self.dps[TIMER_DPS] = 0
         self.dps[FANMODE_DPS] = "middle"
@@ -172,7 +182,6 @@ class TestEanonsHumidifier(
         self.assertDictEqual(
             self.subject.extra_state_attributes,
             {
-                "error": "OK",
                 "timer_hr": "cancel",
                 "timer_min": 0,
             },
@@ -207,3 +216,13 @@ class TestEanonsHumidifier(
             {FANMODE_DPS: "middle"},
         ):
             await self.fan.async_set_percentage(60)
+
+    def test_multi_bsensor_extra_state_attributes(self):
+        self.dps[ERROR_DPS] = 2
+        self.assertEqual(
+            self.multiBSensor["binary_sensor_tank_empty"].extra_state_attributes, {}
+        )
+        self.assertEqual(
+            self.multiBSensor["binary_sensor_problem"].extra_state_attributes,
+            {"fault_code": 2},
+        )

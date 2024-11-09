@@ -15,10 +15,6 @@ primary_entity:
         - dps_val: null
           value: false
           hidden: true
-    - id: 13
-      type: bitfield
-      name: fault_code
-      optional: true
     - id: 101
       type: string
       name: schedule
@@ -81,6 +77,10 @@ secondary_entities:
           - dps_val: null
             value: false
           - value: true
+      - id: 13
+        type: bitfield
+        name: fault_code
+        optional: true
   - entity: select
     name: Zone
     icon: "mdi:format-page-split"

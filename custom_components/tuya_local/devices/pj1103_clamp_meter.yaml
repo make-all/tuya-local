@@ -21,10 +21,6 @@ primary_entity:
       type: bitfield
       name: test
       optional: true
-    - id: 26
-      type: bitfield
-      name: fault_code
-      optional: true
 secondary_entities:
   - entity: sensor
     class: current
@@ -123,3 +119,7 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 26
+        type: bitfield
+        name: fault_code
+        optional: true

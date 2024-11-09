@@ -24,10 +24,6 @@ primary_entity:
       type: integer
       name: ele_calibration
       optional: true
-    - id: 26
-      type: bitfield
-      name: fault_code
-      optional: true
     - id: 42
       type: string
       name: schedule
@@ -128,6 +124,10 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 26
+        type: bitfield
+        name: fault_code
+        optional: true
   - entity: select
     translation_key: initial_state
     category: config

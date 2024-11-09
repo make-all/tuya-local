@@ -77,9 +77,6 @@ primary_entity:
           value: vertical
         - dps_val: false
           value: "off"
-    - id: 107
-      type: bitfield
-      name: fault_code
 secondary_entities:
   - entity: switch
     name: Emergency heat
@@ -160,3 +157,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 107
+        type: bitfield
+        name: fault_code

@@ -37,14 +37,6 @@ primary_entity:
         max: 80
       mapping:
         - step: 5
-    - id: 11
-      name: error
-      type: bitfield
-      mapping:
-        - dps_val: 0
-          value: OK
-        - dps_val: 8
-          value: tank
 secondary_entities:
   - entity: fan
     dps:
@@ -143,3 +135,19 @@ secondary_entities:
           - dps_val: 8
             value: true
           - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 8
+            value: false
+          - value: true
+      - id: 11
+        type: bitfield
+        name: fault_code

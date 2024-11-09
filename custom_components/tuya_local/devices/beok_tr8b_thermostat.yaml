@@ -103,9 +103,6 @@ primary_entity:
               value: "off"
             - dps_val: true
               value: idle
-    - id: 45
-      type: bitfield
-      name: fault_code
     - id: 101
       type: bitfield
       name: features
@@ -226,6 +223,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 45
+        type: bitfield
+        name: fault_code
   - entity: sensor
     class: battery
     dps:

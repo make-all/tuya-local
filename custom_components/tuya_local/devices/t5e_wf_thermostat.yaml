@@ -169,12 +169,6 @@ primary_entity:
           value: C
         - dps_val: f
           value: F
-    - id: 45
-      type: bitfield
-      name: fault_code
-      mapping:
-        - dps_val: 0
-          value: OK
     - id: 58
       type: string
       name: unknown_58
@@ -377,3 +371,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 45
+        type: bitfield
+        name: fault_code

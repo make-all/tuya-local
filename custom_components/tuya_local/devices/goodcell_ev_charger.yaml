@@ -47,9 +47,6 @@ primary_entity:
           value: Charging ended
         - dps_val: charger_fault
           value: Charger fault
-    - id: 10
-      type: bitfield
-      name: fault_code
     - id: 11
       type: string
       optional: true
@@ -90,6 +87,20 @@ primary_entity:
       optional: true
       name: online_state
 secondary_entities:
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        name: fault_code
   - entity: button
     name: Clear energy
     class: restart

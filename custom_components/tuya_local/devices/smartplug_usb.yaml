@@ -13,10 +13,6 @@ primary_entity:
       type: bitfield
       name: factory_test
       optional: true
-    - id: 26
-      type: integer
-      name: fault_code
-      optional: true
 secondary_entities:
   - entity: switch
     name: USB
@@ -135,3 +131,19 @@ secondary_entities:
             value: Position
           - dps_val: none
             value: "Off"
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 26
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 26
+        type: bitfield
+        name: fault_code
+        optional: true

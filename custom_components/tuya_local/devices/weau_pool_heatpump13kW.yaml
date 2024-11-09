@@ -42,9 +42,6 @@ primary_entity:
           value: quiet_cool
         - dps_val: auto
           value: auto
-    - id: 6
-      name: fault
-      type: bitfield
     - id: 101
       name: unknown_101
       type: integer
@@ -84,6 +81,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 6
+        name: fault_code
+        type: bitfield
   - entity: sensor
     class: temperature
     name: Air inlet temperature

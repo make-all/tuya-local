@@ -60,9 +60,6 @@ primary_entity:
             - dps_val: false
               icon: "mdi:radiator-disabled"
               value: "off"
-    - id: 45
-      name: fault_code
-      type: bitfield
 secondary_entities:
   - entity: number
     name: Calibration offset
@@ -119,6 +116,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 45
+        name: fault_code
+        type: bitfield
   - entity: number
     name: Maximum temperature
     category: config

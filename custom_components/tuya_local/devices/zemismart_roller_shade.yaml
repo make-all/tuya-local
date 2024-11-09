@@ -46,9 +46,6 @@ primary_entity:
           conditions:
             - dps_val: 100
               value: closed
-    - id: 12
-      name: fault_code
-      type: bitfield
 secondary_entities:
   - entity: select
     name: Direction
@@ -87,6 +84,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 12
+        name: fault_code
+        type: bitfield
   - entity: select
     name: Motor mode
     icon: "mdi:cog-transfer"

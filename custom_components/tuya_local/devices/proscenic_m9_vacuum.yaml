@@ -137,9 +137,6 @@ primary_entity:
     - id: 25
       name: do_not_disturb  # cannot be used, set an automation instead
       type: boolean
-    - id: 28
-      name: error  # switchs between 0 and 2 when fault, see dp 198 and 199
-      type: integer
     - id: 32
       name: device_timer  # set an automation for scheduled cleaning
       type: string
@@ -529,25 +526,44 @@ secondary_entities:
         optional: true
   - entity: sensor
     name: Event message
+    class: enum
     category: diagnostic
     icon: "mdi:eye-circle-outline"
     dps:
       - id: 198
         name: sensor
         type: integer
-        # 20001 - Start auto clean
-        # 20002 - Start mopping
-        # 20003 - Start room clean
-        # 20004 - Start area clean
-        # 20005 - Start spot clean
-        # 20006 - Start partial clean
-        # 20008 - Relocating
-        # 20019 - Job finished
-        # 20020 - Low power, return to charge
-        # 20021 - Charging
-        # 20022 - Battery low
-        # 20024 - Emptying dustbin
-        # 20025 - Dustbin empty completed
+        mapping:
+          - dps_val: 20001
+            value: Start auto clean
+          - dps_val: 20002
+            value: Start mopping
+          - dps_val: 20003
+            value: Start room clean
+          - dps_val: 20004
+            value: Start area clean
+          - dps_val: 20005
+            value: Start spot clean
+          - dps_val: 20006
+            value: Start partial clean
+          - dps_val: 20008
+            value: Relocating
+          - dps_val: 20019
+            value: Job finished
+          - dps_val: 20020
+            value: Low power, return to charge
+          - dps_val: 20021
+            value: Charging
+          - dps_val: 20022
+            value: Battery low
+          - dps_val: 20024
+            value: Emptying dustbin
+          - dps_val: 20025
+            value: Dustbin empty completed
+          - value: unknown
+      - id: 198
+        name: event_code
+        type: integer
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -562,12 +578,27 @@ secondary_entities:
       - id: 199
         name: fault_code
         type: integer
-        # 21003 - Dustbin not installed
-        # 21004
-        # 21005 - Mopping cloth not installed
-        # 21008 - Vacuum not on floor
-        # 21012 - Dust bag full
-        # 21013 - Dust bag not installed
-        # 22001 - Check anti-collision sensor
-        # 22006 - Jammed or stuck
-        # 23011 - Dust collection error due to insufficient pressure
+      - id: 28
+        name: error_flag
+        type: bitfield
+      - id: 199
+        name: description
+        type: integer
+        mapping:
+          - dps_val: 21003
+            value: Dustbin not installed
+          - dps_val: 21005
+            value: Mopping cloth not fitted
+          - dps_val: 21008
+            value: Vacuum not on floor
+          - dps_val: 21012
+            value: Dust bag full
+          - dps_val: 21013
+            value: Dust bag not installed
+          - dps_val: 22001
+            value: Check anti-collision sensor
+          - dps_val: 22006
+            value: Jammed or stuck
+          - dps_val: 23011
+            value: Dust collection error due to insufficient pressure
+          - value: unknown

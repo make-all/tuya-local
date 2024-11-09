@@ -60,7 +60,9 @@ class TestLefantM213Vacuum(MultiSensorTests, TuyaDeviceTestCase):
                 },
             ],
         )
-        self.mark_secondary(["sensor_clean_area", "sensor_clean_time"])
+        self.mark_secondary(
+            ["sensor_clean_area", "sensor_clean_time", "binary_sensor_problem"]
+        )
 
     def test_supported_features(self):
         self.assertEqual(

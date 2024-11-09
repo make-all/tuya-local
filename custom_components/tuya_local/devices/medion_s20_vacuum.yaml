@@ -91,9 +91,6 @@ primary_entity:
           value: normal
         - dps_val: strong
           value: strong
-    - id: 18
-      type: bitfield
-      name: error
 secondary_entities:
   - entity: sensor
     class: battery
@@ -161,6 +158,20 @@ secondary_entities:
         name: sensor
         unit: min
         class: measurement
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 18
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 18
+        type: bitfield
+        name: fault_code
   - entity: select
     translation_key: mopping
     category: config

@@ -25,10 +25,21 @@ primary_entity:
           value: "end"
         - dps_val: "err"
           value: "error"
-    - id: 7
-      name: fault_code
-      type: integer
 secondary_entities:
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 7
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 7
+        type: bitfield
+        name: fault_code
   - entity: button
     name: Start
     icon: "mdi:play"

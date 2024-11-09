@@ -32,9 +32,6 @@ primary_entity:
     - id: 5
       type: boolean
       name: oscillate
-    - id: 24
-      type: bitfield
-      name: fault_code
 secondary_entities:
   - entity: select
     category: config
@@ -66,6 +63,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 24
+        type: bitfield
+        name: fault_code
   - entity: switch
     translation_key: uv_sterilization
     dps:

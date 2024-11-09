@@ -73,8 +73,9 @@ primary_entity:
           value: strong
     - id: 18
       type: bitfield
-      name: error
       optional: true
+      name: error
+      hidden: true
 
 secondary_entities:
   - entity: sensor
@@ -109,3 +110,19 @@ secondary_entities:
         name: sensor
         unit: min
         class: measurement
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 18
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 18
+        type: bitfield
+        optional: true
+        name: fault_code

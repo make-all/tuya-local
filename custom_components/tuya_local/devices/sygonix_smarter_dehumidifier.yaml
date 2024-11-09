@@ -35,21 +35,6 @@ primary_entity:
     - id: 10
       type: boolean
       name: ionizer
-    - id: 19
-      name: error
-      type: bitfield
-      # E2 might be a compressor fault.
-      mapping:
-        - dps_val: 0
-          value: OK
-        - dps_val: 1
-          value: "Water Tank Full or Removed"
-          icon: "mdi:cup-water"
-          icon_priority: 1
-        - dps_val: 2
-          value: "E2 Compressor Fault"
-          icon: "mdi:engine-off-outline"
-          icon_priority: 1
     - id: 102
       type: integer
       name: model_code

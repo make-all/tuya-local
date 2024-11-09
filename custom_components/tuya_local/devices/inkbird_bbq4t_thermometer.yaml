@@ -14,10 +14,6 @@ primary_entity:
       mapping:
         - scale: 100
       unit: F
-    - id: 13
-      type: bitfield
-      name: fault_code
-      optional: true
     - id: 111
       type: integer
       name: unknown_111
@@ -79,6 +75,10 @@ secondary_entities:
           - dps_val: null
             value: false
           - value: true
+      - id: 13
+        type: bitfield
+        name: fault_code
+        optional: true
   - entity: select
     translation_key: temperature_unit
     category: config

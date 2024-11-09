@@ -117,8 +117,9 @@ primary_entity:
       type: string
       optional: true
     - id: 28
-      name: error
       type: bitfield
+      name: error
+      hidden: true
     - id: 32
       name: device_timer
       type: string
@@ -325,3 +326,17 @@ secondary_entities:
         mapping:
           - dps_val: null
             value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 28
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 28
+        type: bitfield
+        name: fault_code

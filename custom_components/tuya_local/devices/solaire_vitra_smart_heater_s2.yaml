@@ -45,12 +45,6 @@ primary_entity:
           value: eco
         - dps_val: antifreezen
           value: away
-    - id: 12
-      name: error
-      type: bitfield
-      mapping:
-        - dps_val: 0
-          value: "OK"
 secondary_entities:
   - entity: number
     name: Temperature calibration
@@ -76,3 +70,17 @@ secondary_entities:
       - id: 9
         type: boolean
         name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 12
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 12
+        type: bitfield
+        name: fault_code

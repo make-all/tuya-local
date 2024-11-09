@@ -29,9 +29,6 @@ primary_entity:
         - dps_val: true
           value: eco
       name: preset_mode
-    - id: 13
-      type: bitfield
-      name: error
 secondary_entities:
   - entity: binary_sensor
     category: diagnostic
@@ -44,3 +41,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 13
+        type: bitfield
+        name: fault_code

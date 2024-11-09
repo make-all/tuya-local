@@ -166,16 +166,9 @@ class TestInkbirdSousVideCooker(
         ):
             await self.subject.async_set_hvac_mode(HVACMode.OFF)
 
-    def test_extra_state_attributes(self):
-        # There are currently no known error states; update this as
-        # they are discovered
+    def test_basic_bsensor_extra_state_attributes(self):
         self.dps[ERROR_DPS] = 2
         self.assertDictEqual(
-            self.subject.extra_state_attributes,
-            {"fault": 2},
-        )
-        self.dps[ERROR_DPS] = "0"
-        self.assertDictEqual(
-            self.subject.extra_state_attributes,
-            {"fault": 0},
+            self.basicBSensor.extra_state_attributes,
+            {"fault_code": 2},
         )

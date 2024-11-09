@@ -59,10 +59,6 @@ primary_entity:
           conditions:
             - dps_val: 100
               value: closed
-    - id: 12
-      name: fault
-      type: bitfield
-      optional: true
 secondary_entities:
   - entity: select
     name: Mode
@@ -92,6 +88,10 @@ secondary_entities:
           - dps_val: null
             value: false
           - value: true
+      - id: 12
+        name: fault_code
+        type: bitfield
+        optional: true
   - entity: sensor
     name: Travel time
     icon: "mdi:hourglass"

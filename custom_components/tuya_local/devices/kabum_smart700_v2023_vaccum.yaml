@@ -147,33 +147,7 @@ primary_entity:
     - id: 28
       type: bitfield
       name: error
-      mapping:
-        - dps_val: 2
-          value: left_wheel_hang
-        - dps_val: 4
-          value: main_brush_stuck
-        - dps_val: 8
-          value: right_wheel_hang
-        - dps_val: 16
-          value: left_wheel_stuck
-        - dps_val: 32
-          value: right_wheel_stuck
-        - dps_val: 64
-          value: cliff
-        - dps_val: 128
-          value: side_brush_stuck
-        - dps_val: 512
-          value: collision
-        - dps_val: 1024
-          value: dust_box_stuck
-        - dps_val: 4096
-          value: ground_check_failure
-        - dps_val: 32768
-          value: vacuum_motor_stuck
-        - dps_val: 65536
-          value: high_current
-        - dps_val: 131072
-          value: charge_port_closed
+      hidden: true
     # - id: 32
     #   type: string
     #   optional: true
@@ -370,3 +344,49 @@ secondary_entities:
         unit: "%"
         mapping:
           - scale: 0.1
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 28
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 28
+        type: bitfield
+        name: fault_code
+      - id: 28
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 2
+            value: left_wheel_hang
+          - dps_val: 4
+            value: main_brush_stuck
+          - dps_val: 8
+            value: right_wheel_hang
+          - dps_val: 16
+            value: left_wheel_stuck
+          - dps_val: 32
+            value: right_wheel_stuck
+          - dps_val: 64
+            value: cliff
+          - dps_val: 128
+            value: side_brush_stuck
+          - dps_val: 512
+            value: collision
+          - dps_val: 1024
+            value: dust_box_stuck
+          - dps_val: 4096
+            value: ground_check_failure
+          - dps_val: 32768
+            value: vacuum_motor_stuck
+          - dps_val: 65536
+            value: high_current
+          - dps_val: 131072
+            value: charge_port_closed

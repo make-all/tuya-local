@@ -32,10 +32,6 @@ primary_entity:
           value: opening
         - dps_val: closing
           value: closing
-    - id: 12
-      name: fault_code
-      type: bitfield
-      optional: true
 secondary_entities:
   - entity: switch
     name: Reversed
@@ -64,6 +60,10 @@ secondary_entities:
           - dps_val: null
             value: false
           - value: true
+      - id: 12
+        name: fault_code
+        type: bitfield
+        optional: true
   - entity: select
     name: Border setting
     icon: "mdi:border-bottom-variant"

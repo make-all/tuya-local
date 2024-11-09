@@ -139,3 +139,10 @@ class TestVorkVK6267AWPurifier(
             {MODE_DPS: "sleep"},
         ):
             await self.subject.async_set_preset_mode("sleep")
+
+    def test_basic_bsensor_extra_state_attributes(self):
+        self.dps[ERROR_DPS] = 2
+        self.assertDictEqual(
+            self.basicBSensor.extra_state_attributes,
+            {"fault_code": 2},
+        )

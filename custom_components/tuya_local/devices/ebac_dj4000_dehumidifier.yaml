@@ -41,23 +41,6 @@ primary_entity:
     - id: 6
       type: integer
       name: current_humidity
-    - id: 9
-      type: boolean
-      name: defrosst
-      optional: true
-    - id: 13
-      type: boolean
-      name: uv
-      optional: true
-    - id: 19
-      type: bitfield
-      name: fault_code
-    - id: 27
-      type: integer
-      name: total_runtime
-    - id: 28
-      type: boolean
-      name: runtime_reset
 secondary_entities:
   - entity: fan
     dps:
@@ -157,3 +140,49 @@ secondary_entities:
             value: 7h
           - dps_val: 8h
             value: 8h
+  - entity: binary_sensor
+    class: defrost
+    category: diagnostic
+    dps:
+      - id: 9
+        type: boolean
+        name: sensor
+        optional: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code
+  - entity: switch
+    translation_key: uv_sterilization
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
+        optional: true
+  - entity: sensor
+    name: Runtime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 27
+        type: integer
+        name: sensor
+        unit: h
+  - entity: button
+    name: Runtime reset
+    category: config
+    dps:
+      - id: 28
+        type: boolean
+        name: button

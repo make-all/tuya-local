@@ -24,9 +24,21 @@ primary_entity:
       range:
         min: 20
         max: 80
-    - id: 15
-      name: error
-      type: integer
     - id: 18
       name: current_humidity
       type: integer
+secondary_entities:
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 15
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 15
+        type: bitfield
+        name: fault_code

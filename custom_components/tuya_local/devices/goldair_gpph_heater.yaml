@@ -9,12 +9,8 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:radiator-disabled"
-          icon_priority: 1
         - dps_val: true
           value: "heat"
-          icon: "mdi:radiator"
-          icon_priority: 3
       name: hvac_mode
     - id: 2
       type: integer
@@ -50,18 +46,17 @@ primary_entity:
         - dps_val: AF
           value: away
       name: preset_mode
-    - id: 12
-      type: bitfield
+    - id: 101
+      type: string
+      name: hvac_action
       mapping:
-        - dps_val: 0
-          value: OK
-      name: error
+        - dps_val: stop
+          value: idle
+        - value: heating
     - id: 101
       type: string
       mapping:
         - dps_val: "stop"
-          icon: "mdi:radiator-disabled"
-          icon_priority: 2
           constraint: swing_mode
           conditions:
             - dps_val: stop
@@ -188,3 +183,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 12
+        type: bitfield
+        name: fault_code

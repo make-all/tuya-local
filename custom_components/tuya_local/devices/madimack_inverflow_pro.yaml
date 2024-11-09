@@ -176,13 +176,16 @@ secondary_entities:
         mapping:
           - dps_val: 0
             value: false
-          - default: true
+          - value: true
       - id: 2
         type: bitfield
-        name: fault
+        name: fault_code
+      - id: 2
+        type: bitfield
+        name: description
         mapping:
           - dps_val: 0
-            value: "None"
+            value: ok
           - dps_val: "E001"
             value: "E001 - Abnormal input voltage"
           - dps_val: "E002"

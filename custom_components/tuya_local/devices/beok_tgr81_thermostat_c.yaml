@@ -60,9 +60,6 @@ primary_entity:
               value: heating
             - dps_val: false
               value: "off"
-    - id: 45
-      name: fault_code
-      type: bitfield
 secondary_entities:
   - entity: number
     name: Calibration offset
@@ -121,6 +118,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 45
+        name: fault_code
+        type: bitfield
   - entity: number
     name: High temperature limit
     category: config

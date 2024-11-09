@@ -139,7 +139,6 @@ class TestMoesTempHumidity(
         self.assertDictEqual(
             self.multiSwitch["switch_main_switch"].extra_state_attributes,
             {
-                "fault_code": "OK",
                 "cycle_time": "ABCDEF0123456789",
                 "unknown_106": "unknown106",
             },

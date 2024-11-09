@@ -18,9 +18,6 @@ primary_entity:
       name: phase_a
       optional: true
       force: true
-    - id: 10
-      type: bitfield
-      name: fault_code
     - id: 17
       type: string
       name: alarm
@@ -37,6 +34,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 10
+        type: bitfield
+        name: fault_code
   - entity: switch
     name: Prepayment
     category: config

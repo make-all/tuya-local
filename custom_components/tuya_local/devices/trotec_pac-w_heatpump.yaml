@@ -69,15 +69,9 @@ primary_entity:
     - id: 105
       name: countdown
       type: integer
-    - id: 106
-      name: fault_code
-      type: bitfield
     - id: 110
       name: model
       type: string
-    - id: 111
-      name: fault_code2
-      type: bitfield
 secondary_entities:
   - entity: switch
     translation_key: sleep
@@ -86,3 +80,24 @@ secondary_entities:
       - id: 101
         type: boolean
         name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 106
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: true
+            constraint: fault_code_2
+            conditions:
+              - dps_val: 0
+                value: false
+          - value: true
+      - id: 106
+        type: bitfield
+        name: fault_code
+      - id: 111
+        name: fault_code_2
+        type: bitfield

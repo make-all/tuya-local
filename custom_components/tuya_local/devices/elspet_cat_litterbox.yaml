@@ -145,21 +145,18 @@ secondary_entities:
             value: false
           - value: true
       - id: 118
-        type: integer
+        type: bitfield
         name: fault_code
+      - id: 118
+        type: bitfield
+        name: description
         mapping:
           - dps_val: 0
-            value: "None"
-            icon: "mdi:check-circle"
+            value: ok
           - dps_val: 1
-            value: "Stuck"
-            icon: "mdi:alert"
+            value: stuck
           - dps_val: 2
-            value: "Dislocation"
-            icon: "mdi:alert"
-          - dps_val: 3
-            value: "Both"
-            icon: "mdi:alert"
+            value: dislocation
   - entity: sensor
     name: Clean count
     icon: "mdi:counter"

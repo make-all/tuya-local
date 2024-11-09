@@ -115,9 +115,6 @@ primary_entity:
           value: high
         - dps_val: mute
           value: quiet
-    - id: 22
-      type: bitfield
-      name: fault_code
     - id: 25
       name: preset_mode
       type: boolean
@@ -153,6 +150,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
   - entity: select
     name: Vertical swing
     icon: "mdi:angle-acute"

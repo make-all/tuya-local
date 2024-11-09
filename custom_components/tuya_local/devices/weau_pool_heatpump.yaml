@@ -44,9 +44,6 @@ primary_entity:
           value: quiet_cool
         - dps_val: auto
           value: auto
-    - id: 6
-      name: fault
-      type: bitfield
 secondary_entities:
   - entity: binary_sensor
     class: problem
@@ -59,3 +56,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 6
+        name: fault_code
+        type: bitfield

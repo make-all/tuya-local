@@ -34,10 +34,6 @@ primary_entity:
       type: string
       optional: true
       # seems intended to match action, but doesn't change in observation
-    - id: 12
-      name: fault_code
-      type: bitfield
-      optional: true
 secondary_entities:
   - entity: switch
     name: Reverse
@@ -62,3 +58,7 @@ secondary_entities:
           - dps_val: null
             value: false
           - value: true
+      - id: 12
+        name: fault_code
+        type: bitfield
+        optional: true

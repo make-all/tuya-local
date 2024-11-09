@@ -70,27 +70,7 @@ primary_entity:
     - id: 18
       type: bitfield
       name: error
-      mapping:
-        - dps_val: 1
-          value: edge_sweep
-        - dps_val: 2
-          value: middle_sweep
-        - dps_val: 4
-          value: left_wheel
-        - dps_val: 8
-          value: right_wheel
-        - dps_val: 32
-          value: garbage_box
-        - dps_val: 64
-          value: land_check
-        - dps_val: 128
-          value: collision
-        - dps_val: 512
-          value: low_battery
-        - dps_val: 1024
-          value: stuck
-        - dps_val: 262144
-          value: switched_off
+      hidden: true
     - id: 19
       type: string
       name: map_parameter
@@ -163,3 +143,43 @@ secondary_entities:
         name: sensor
         unit: min
         optional: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 18
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 18
+        type: bitfield
+        name: fault_code
+      - id: 18
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: edge_sweep
+          - dps_val: 2
+            value: middle_sweep
+          - dps_val: 4
+            value: left_wheel
+          - dps_val: 8
+            value: right_wheel
+          - dps_val: 32
+            value: garbage_box
+          - dps_val: 64
+            value: land_check
+          - dps_val: 128
+            value: collision
+          - dps_val: 512
+            value: low_battery
+          - dps_val: 1024
+            value: stuck
+          - dps_val: 262144
+            value: switched_off

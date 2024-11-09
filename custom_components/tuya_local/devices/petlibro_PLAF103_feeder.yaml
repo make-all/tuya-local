@@ -28,9 +28,6 @@ primary_entity:
       name: meal_plan
       type: string
       optional: true
-    - id: 14
-      name: fault_code
-      type: bitfield
 secondary_entities:
   - entity: number
     name: Manual feed
@@ -70,6 +67,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 14
+        name: fault_code
+        type: bitfield
   - entity: sensor
     name: Last amount
     category: diagnostic

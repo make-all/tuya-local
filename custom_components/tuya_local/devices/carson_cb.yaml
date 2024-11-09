@@ -67,16 +67,9 @@ primary_entity:
           value: "vertical"
         - dps_val: false
           value: "off"
-    - id: 106
-      name: fault_code
-      type: bitfield
     - id: 110
       name: model_code
       type: integer
-    - id: 111
-      name: fault_code2
-      type: bitfield
-      optional: true
 secondary_entities:
   - entity: select
     translation_key: temperature_unit
@@ -134,7 +127,7 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: 0
-            constraint: fault_code2
+            constraint: fault_code_2
             conditions:
               - dps_val: 0
                 value: false
@@ -142,8 +135,11 @@ secondary_entities:
                 value: false
             value: true
           - value: true
+      - id: 106
+        name: fault_code
+        type: bitfield
       - id: 111
         type: bitfield
-        name: fault_code2
+        name: fault_code_2
         optional: true
-        hidden: true
+

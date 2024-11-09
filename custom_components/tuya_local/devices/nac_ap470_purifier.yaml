@@ -25,9 +25,6 @@ primary_entity:
           value: Level 3
         - dps_val: 6
           value: Level 4
-    - id: 21
-      name: fault_code
-      type: bitfield
 secondary_entities:
   - entity: sensor
     class: pm25
@@ -130,3 +127,17 @@ secondary_entities:
         name: sensor
         unit: "min"
         optional: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 21
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 21
+        type: bitfield
+        name: fault_code

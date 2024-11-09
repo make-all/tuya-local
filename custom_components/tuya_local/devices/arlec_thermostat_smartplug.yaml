@@ -93,9 +93,6 @@ primary_entity:
     - id: 46
       type: integer
       name: current_humidity
-    - id: 50
-      type: bitfield
-      name: fault_code
 secondary_entities:
   - entity: switch
     class: switch
@@ -290,3 +287,7 @@ secondary_entities:
           - dps_val: null
             value: false
           - value: true
+      - id: 50
+        type: bitfield
+        optional: true
+        name: fault_code

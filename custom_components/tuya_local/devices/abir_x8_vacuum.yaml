@@ -112,52 +112,6 @@ primary_entity:
       type: string
       name: request
       optional: true
-    - id: 28
-      type: bitfield
-      name: error
-      mapping:
-        - dps_val: 2
-          value: left_wheel_hanging
-        - dps_val: 4
-          value: main_brush_stuck
-        - dps_val: 8
-          value: right_wheel_hanging
-        - dps_val: 16
-          value: left_wheel_jammed
-        - dps_val: 32
-          value: right_wheel_jammed
-        - dps_val: 64
-          value: cliff
-        - dps_val: 128
-          value: edge_sweeper_worn
-        - dps_val: 512
-          value: collision
-        - dps_val: 1024
-          value: dust_full
-        - dps_val: 4096
-          value: land_check
-        - dps_val: 32768
-          value: motor_jammed
-        - dps_val: 65536
-          value: overcurrent
-        - dps_val: 131072
-          value: docking_failure
-        - dps_val: 524288
-          value: jammed
-        - dps_val: 1048576
-          value: trapped
-        - dps_val: 2097152
-          value: laser_cover_stuck
-        - dps_val: 4194304
-          value: laser_blocked
-        - dps_val: 8388608
-          value: wall_sensors_blocked
-        - dps_val: 16777216
-          value: exclusion_zone_invalid
-        - dps_val: 33554432
-          value: charging_failure
-        - dps_val: 67108864
-          value: picked_up
     - id: 35
       type: string
       name: voice_data
@@ -254,6 +208,68 @@ secondary_entities:
       - id: 27
         type: boolean
         name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 28
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 28
+        type: bitfield
+        name: fault_code
+      - id: 28
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 2
+            value: left_wheel_hanging
+          - dps_val: 4
+            value: main_brush_stuck
+          - dps_val: 8
+            value: right_wheel_hanging
+          - dps_val: 16
+            value: left_wheel_jammed
+          - dps_val: 32
+            value: right_wheel_jammed
+          - dps_val: 64
+            value: cliff
+          - dps_val: 128
+            value: edge_sweeper_worn
+          - dps_val: 512
+            value: collision
+          - dps_val: 1024
+            value: dust_full
+          - dps_val: 4096
+            value: land_check
+          - dps_val: 32768
+            value: motor_jammed
+          - dps_val: 65536
+            value: overcurrent
+          - dps_val: 131072
+            value: docking_failure
+          - dps_val: 524288
+            value: jammed
+          - dps_val: 1048576
+            value: trapped
+          - dps_val: 2097152
+            value: laser_cover_stuck
+          - dps_val: 4194304
+            value: laser_blocked
+          - dps_val: 8388608
+            value: wall_sensors_blocked
+          - dps_val: 16777216
+            value: exclusion_zone_invalid
+          - dps_val: 33554432
+            value: charging_failure
+          - dps_val: 67108864
+            value: picked_up
   - entity: switch
     name: Cliff detect
     category: config

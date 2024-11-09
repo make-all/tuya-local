@@ -57,9 +57,6 @@ primary_entity:
       type: boolean
       name: eco
       hidden: true
-    - id: 20
-      type: integer
-      name: fault_code
     - id: 102
       type: boolean
       name: preset_mode
@@ -127,9 +124,12 @@ secondary_entities:
     category: diagnostic
     dps:
       - id: 20
-        type: integer
+        type: bitfield
         name: sensor
         mapping:
           - dps_val: 0
             value: false
           - value: true
+      - id: 20
+        type: bitfield
+        name: fault_code

@@ -67,6 +67,7 @@ class TestSwitchV2(
         )
         self.mark_secondary(
             [
+                "binary_sensor_problem",
                 "number_timer",
                 "sensor_current",
                 "sensor_power",

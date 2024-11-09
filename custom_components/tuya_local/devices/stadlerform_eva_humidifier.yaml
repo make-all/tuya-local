@@ -18,9 +18,6 @@ primary_entity:
     - id: 14
       name: current_humidity
       type: integer
-    - id: 22
-      name: fault_code
-      type: integer
     - id: 102
       type: boolean
       name: mode
@@ -41,6 +38,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 22
+        name: fault_code
+        type: bitfield
   - entity: fan
     dps:
       - id: 1

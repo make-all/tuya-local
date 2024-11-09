@@ -32,12 +32,6 @@ primary_entity:
           value: activity
         - dps_val: 4
           value: sleep
-    - id: 12
-      type: bitfield
-      name: error
-      mapping:
-        - dps_val: 0
-          value: OK
     - id: 105
       type: boolean
       name: hvac_action
@@ -121,3 +115,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 12
+        type: bitfield
+        name: fault_code

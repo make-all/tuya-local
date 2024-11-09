@@ -564,10 +564,10 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
     async def test_dps_async_set_readonly_value_fails(self):
         """Test that setting a readonly dps fails."""
         mock_device = MagicMock()
-        cfg = get_config("goldair_gpph_heater")
-        error_code = cfg.primary_entity.find_dps("error")
+        cfg = get_config("aquatech_x6_water_heater")
+        temp = cfg.primary_entity.find_dps("temperature")
         with self.assertRaises(TypeError):
-            await error_code.async_set_value(mock_device, 1)
+            await temp.async_set_value(mock_device, 20)
 
     def test_dps_values_is_empty_with_no_mapping(self):
         """

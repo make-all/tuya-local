@@ -23,9 +23,6 @@ primary_entity:
           value: smart
         - dps_val: sleep
           value: sleep
-    - id: 22
-      name: error_code
-      type: integer
 secondary_entities:
   - entity: sensor
     name: Filter
@@ -106,3 +103,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 22
+        name: fault_code
+        type: bitfield

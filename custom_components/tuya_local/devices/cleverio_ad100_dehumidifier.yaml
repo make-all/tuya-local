@@ -18,9 +18,6 @@ primary_entity:
           value: sleep
         - dps_val: High
           value: strong
-    - id: 12
-      type: integer
-      name: fault_code
 secondary_entities:
   - entity: binary_sensor
     class: problem
@@ -33,6 +30,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 12
+        type: bitfield
+        name: fault_code
   - entity: switch
     name: Air purifier
     category: config

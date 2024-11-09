@@ -175,3 +175,10 @@ class TestHydrothermDynamicX8(
     async def test_turn_away_mode_off_fails(self):
         with self.assertRaises(NotImplementedError):
             await self.subject.async_turn_away_mode_off()
+
+    def test_basic_bsensor_extra_state_attributes(self):
+        self.dps[ERROR_DP] = 2
+        self.assertDictEqual(
+            self.basicBSensor.extra_state_attributes,
+            {"fault_code": 2},
+        )

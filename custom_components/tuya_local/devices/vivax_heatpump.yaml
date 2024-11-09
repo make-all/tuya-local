@@ -117,9 +117,6 @@ primary_entity:
     - id: 114
       type: boolean
       name: self_cleaning
-    - id: 116
-      type: integer
-      name: fault_code
       # next two look obviously swing (logged values ud_00 and lr_00),
       # but full mappings not available to map to swing mode
       # from #1183, seems to be ud_00, ud_01, ud_02, ud_03, ud_04, ud_0c
@@ -287,3 +284,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 116
+        type: bitfield
+        name: fault_code

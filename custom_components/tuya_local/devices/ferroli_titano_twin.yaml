@@ -35,18 +35,6 @@ primary_entity:
     - id: 10
       type: integer
       name: current_temperature
-    - id: 101
-      type: bitfield
-      name: fault_code
-      mapping:
-        - dps_val: 1
-          value: E2 Operating without water
-        - dps_val: 2
-          value: E3 NTC temperature sensor
-        - dps_val: 4
-          value: E4 Water overheating
-        - dps_val: 16
-          value: E6 clock RTC failure
 secondary_entities:
   - entity: switch
     name: Anti-legionella
@@ -71,6 +59,23 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 101
+        type: bitfield
+        name: fault_code
+      - id: 101
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: E2 Operating without water
+          - dps_val: 2
+            value: E3 NTC temperature sensor
+          - dps_val: 4
+            value: E4 Water overheating
+          - dps_val: 16
+            value: E6 clock RTC failure
   - entity: binary_sensor
     name: Heating status
     class: running

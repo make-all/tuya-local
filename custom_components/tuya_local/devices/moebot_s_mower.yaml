@@ -58,11 +58,6 @@ primary_entity:
     - id: 101
       name: raw_activity
       type: string
-    - id: 102
-      name: error
-      type: bitfield
-      # out_of_bounds, lifted, tilted, overturned, trapped, signal lost,
-      # motor fault, overheated, battery damaged
     - id: 106
       type: integer
       name: password
@@ -70,10 +65,6 @@ primary_entity:
     - id: 110
       type: string
       name: schedule
-      optional: true
-    - id: 111
-      type: string
-      name: error_log
       optional: true
     - id: 112
       type: string
@@ -140,6 +131,14 @@ secondary_entities:
           - dps_val: null
             value: false
           - value: true
+      - id: 102
+        type: bitfield
+        optional: true
+        name: fault_code
+      - id: 111
+        type: string
+        name: error_log
+        optional: true
   - entity: sensor
     name: Problem
     icon: "mdi:robot-mower-outline"

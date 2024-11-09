@@ -17,9 +17,6 @@ primary_entity:
           endianness: little
           scale: 100
       unit: F
-    - id: 111
-      type: bitfield
-      name: fault_code
 secondary_entities:
   - entity: sensor
     name: Temperature probe 2
@@ -84,6 +81,10 @@ secondary_entities:
           - dps_val: null
             value: false
           - value: true
+      - id: 111
+        type: bitfield
+        optional: true
+        name: fault_code
   - entity: select
     translation_key: temperature_unit
     category: config

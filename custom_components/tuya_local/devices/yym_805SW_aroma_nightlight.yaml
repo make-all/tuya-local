@@ -36,10 +36,6 @@ primary_entity:
                   value: 100
                 - dps_val: low
                   value: 50
-    - id: 9
-      name: fault_code
-      type: bitfield
-      optional: true
 secondary_entities:
   - entity: light
     translation_key: nightlight
@@ -103,3 +99,21 @@ secondary_entities:
         range:
           min: 0
           max: 360
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 9
+        type: bitfield
+        name: fault_code
+        optional: true

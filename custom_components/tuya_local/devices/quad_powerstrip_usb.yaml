@@ -15,10 +15,6 @@ primary_entity:
       type: integer
       name: ele_calibration
       optional: true
-    - id: 26
-      type: integer
-      name: fault_code
-      optional: true
 secondary_entities:
   - entity: switch
     name: Outlet 2
@@ -206,4 +202,22 @@ secondary_entities:
       - id: 41
         type: boolean
         name: lock
+        optional: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 26
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 26
+        type: bitfield
+        name: fault_code
         optional: true

@@ -47,9 +47,6 @@ primary_entity:
           conditions:
             - dps_val: true
               invalid: true
-    - id: 22
-      type: bitfield
-      name: fault_code
     - id: 25
       name: preset_mode
       type: boolean
@@ -73,6 +70,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
   - entity: select
     translation_key: temperature_unit
     category: config

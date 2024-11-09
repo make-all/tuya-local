@@ -24,16 +24,6 @@ primary_entity:
           value: eco
         - dps_val: 2
           value: boost
-    - id: 15
-      name: error
-      type: bitfield
-      mapping:
-        - dps_val: 0
-          value: OK
-        - dps_val: 1
-          value: Sensor fault
-        - dps_val: 2
-          value: Temperature fault
     - id: 18
       name: current_humidity
       type: integer
@@ -46,3 +36,27 @@ secondary_entities:
       - id: 25
         type: boolean
         name: sensor
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 15
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 15
+        type: bitfield
+        name: fault_code
+      - id: 15
+        name: description
+        type: bitfield
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: Sensor fault
+          - dps_val: 2
+            value: Temperature fault

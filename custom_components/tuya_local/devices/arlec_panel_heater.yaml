@@ -24,7 +24,6 @@ primary_entity:
     - id: 3
       name: current_temperature
       type: integer
-      readonly: true
     - id: 4
       name: preset_mode
       type: string
@@ -35,13 +34,6 @@ primary_entity:
           value: boost
         - dps_val: af
           value: away
-    - id: 12
-      name: error
-      type: bitfield
-      mapping:
-        - dps_val: 0
-          value: "OK"
-
 secondary_entities:
   - entity: lock
     translation_key: child_lock
@@ -70,3 +62,17 @@ secondary_entities:
         range:
           min: 0
           max: 24
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 12
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 12
+        type: bitfield
+        name: fault_code

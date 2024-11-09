@@ -145,6 +145,7 @@ primary_entity:
     - id: 28
       type: bitfield
       name: error
+      hidden: true
     - id: 32
       type: string
       optional: true
@@ -354,3 +355,17 @@ secondary_entities:
             value: russian
           - dps_val: Spanish
             value: spanish
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 28
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 28
+        type: bitfield
+        name: fault_code

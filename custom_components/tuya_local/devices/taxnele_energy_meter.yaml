@@ -12,9 +12,6 @@ primary_entity:
       class: total_increasing
       mapping:
         - scale: 100
-    - id: 9
-      type: bitfield
-      name: fault_code
 secondary_entities:
   - entity: binary_sensor
     class: problem
@@ -27,6 +24,9 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 9
+        type: bitfield
+        name: fault_code
   - entity: switch
     name: Prepay
     category: config

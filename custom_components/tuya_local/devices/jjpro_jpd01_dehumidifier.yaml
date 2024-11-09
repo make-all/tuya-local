@@ -43,16 +43,6 @@ primary_entity:
         max: 80
       mapping:
         - step: 5
-    - id: 11
-      type: bitfield
-      name: error
-      mapping:
-        - dps_val: 8
-          value: "Tank full or missing"
-          icon: "mdi:cup-water"
-          icon_priority: 1
-        - dps_val: 0
-          value: "OK"
     - id: 101
       type: boolean
       name: unknown_101
@@ -109,9 +99,25 @@ secondary_entities:
         type: bitfield
         name: sensor
         mapping:
+          - dps_val: 8
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 11
+        type: bitfield
+        name: sensor
+        mapping:
           - dps_val: 0
             value: false
+          - dps_val: 8
+            value: false
           - value: true
+      - id: 11
+        type: bitfield
+        name: fault_code
   - entity: binary_sensor
     translation_key: defrost
     category: diagnostic

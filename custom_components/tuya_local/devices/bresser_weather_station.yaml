@@ -17,10 +17,6 @@ primary_entity:
         mapping:
           - scale: 10
         class: measurement
-    - id: 22
-      type: string
-      name: fault_type
-      optional: true
     - id: 68
       type: string
       name: com_index
@@ -124,6 +120,24 @@ secondary_entities:
             value: fc
           - dps_val: wm2
             value: W/m2
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: ""
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 22
+        type: string
+        optional: true
+        name: description
   - entity: binary_sensor
     class: battery
     category: diagnostic

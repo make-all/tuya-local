@@ -53,9 +53,6 @@ primary_entity:
       name: preset_mode_eco
       type: boolean
       hidden: true
-    - id: 20
-      name: fault_code
-      type: bitfield
     - id: 102
       name: preset_mode
       type: boolean
@@ -129,3 +126,6 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 20
+        name: fault_code
+        type: bitfield
