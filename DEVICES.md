@@ -254,6 +254,7 @@
 - Klarstein Skyscaper Ice cooling fan
 - Ledkia fan and light controller
 - Lexy F501 fan
+- KCvents VT501-W heat recovery ventilation
 - Keyun MKCFE002 RGB chandelier fan
 - Kogan bladeless fans
 - Mantra ceiling fan with light

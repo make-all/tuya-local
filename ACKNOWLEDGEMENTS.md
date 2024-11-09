@@ -739,3 +739,4 @@ Further device support has been made with the assistance of users. Please consid
 - [alexsperling](https://github.com/alexsperling) for assisting with support for Beok TCB/W38 (RT-70) thermostat.
 - [czarau](https://github.com/czarau) for contributing bugfixes to device connection handling.
 - [broyuken](https://github.com/broyuken) for contributing support for Kilo Plus air purifier.
+- [perimos](https://gituhb.com/perimos) for contributing support for KCvents VT-501 HRV.
