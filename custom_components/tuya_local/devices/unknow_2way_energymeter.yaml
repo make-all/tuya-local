@@ -5,6 +5,7 @@ products:
     name: Unbranded dual channel
 primary_entity:
   entity: sensor
+  name: Energy consumed
   class: energy
   dps:
     - id: 1
@@ -23,7 +24,7 @@ primary_entity:
         - scale: 100
 secondary_entities:
   - entity: sensor
-    name: Reverse energy
+    name: Energy produced
     class: energy
     dps:
       - id: 2
@@ -79,6 +80,7 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
+    name: Total power
     class: power
     category: diagnostic
     dps:
@@ -147,20 +149,20 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Forward energy A
+    name: Energy consumed A
     class: energy
     category: diagnostic
     dps:
-      - id: 107
+      - id: 114
         type: integer
         name: sensor
         unit: kWh
         class: total_increasing
         mapping:
           - scale: 100
-      - id: 114
+      - id: 107
         type: integer
-        name: total
+        name: daily
         mapping:
           - scale: 100
       - id: 118
@@ -178,15 +180,25 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Reverse energy A
+    name: Energy produced A
     class: energy
     category: diagnostic
     dps:
-      - id: 108
+      - id: 115
         type: integer
         name: sensor
         unit: kWh
         class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 108
+        type: integer
+        name: daily
+        mapping:
+          - scale: 100
+      - id: 119
+        type: integer
+        name: hourly
         mapping:
           - scale: 100
       - id: 132
@@ -198,16 +210,6 @@ secondary_entities:
           max: 1200
         mapping:
           - scale: 1000
-      - id: 115
-        type: integer
-        name: total
-        mapping:
-          - scale: 100
-      - id: 119
-        type: integer
-        name: hourly
-        mapping:
-          - scale: 100
   - entity: sensor
     name: Power factor B
     class: power_factor
@@ -266,20 +268,20 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Forward energy B
+    name: Energy consumed B
     class: energy
     category: diagnostic
     dps:
-      - id: 112
+      - id: 116
         type: integer
         name: sensor
         unit: kWh
         class: total_increasing
         mapping:
           - scale: 100
-      - id: 116
+      - id: 112
         type: integer
-        name: total
+        name: daily
         mapping:
           - scale: 100
       - id: 120
@@ -297,15 +299,25 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Reverse energy B
+    name: Energy produced B
     class: energy
     category: diagnostic
     dps:
-      - id: 113
+      - id: 117
         type: integer
         name: sensor
         unit: kWh
         class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 113
+        type: integer
+        name: daily
+        mapping:
+          - scale: 100
+      - id: 121
+        type: integer
+        name: hourly
         mapping:
           - scale: 100
       - id: 136
@@ -317,16 +329,6 @@ secondary_entities:
           max: 1200
         mapping:
           - scale: 1000
-      - id: 117
-        type: integer
-        name: total
-        mapping:
-          - scale: 100
-      - id: 121
-        type: integer
-        name: hourly
-        mapping:
-          - scale: 100
   - entity: number
     name: Reporting rate
     category: config
