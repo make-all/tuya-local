@@ -71,11 +71,12 @@ secondary_entities:
   # Turn on the display on press for timeout time
   - entity: button
     name: Display On
+    optional: true
     dps:
       - id: 118
         name: button
         type: boolean
-        optional: true
+        
 
   # Diagnostics
   - entity: binary_sensor
@@ -107,11 +108,11 @@ secondary_entities:
     name: Display Timeout
     icon: "mdi:timer-cog-outline"
     category: config
+    optional: true
     dps:
       - id: 117
         type: string
         name: option
-        optional: true
         mapping:
           - dps_val: "15s"
             value: "15s"
@@ -136,10 +137,10 @@ secondary_entities:
     name: Alarm Maximum temperature
     category: config
     icon: "mdi:thermometer-chevron-up"
+    optional: true
     dps:
       - id: 9
         type: integer
-        optional: true
         name: value
         unit: C
         mapping:
@@ -153,6 +154,7 @@ secondary_entities:
     category: config
     name: Audio Alarm Low temperature
     icon: "mdi:thermometer-alert"
+    optional: true
     dps:
       - id: 11
         name: switch
@@ -162,10 +164,10 @@ secondary_entities:
     name: Alarm Minimum temperature
     category: config
     icon: "mdi:thermometer-chevron-down"
+    optional: true
     dps:
       - id: 12
         type: integer
-        optional: true
         name: value
         unit: C
         mapping:
@@ -180,6 +182,7 @@ secondary_entities:
     category: config
     name: Cooling Delay
     icon: "mdi:pump"
+    optional: true
     dps:
       - id: 13
         name: switch
@@ -189,10 +192,10 @@ secondary_entities:
     name: Cooling Delay time
     category: config
     icon: "mdi:pump"
+    optional: true
     dps:
       - id: 14
         type: integer
-        optional: true
         name: value
         unit: min
         range:
@@ -215,10 +218,10 @@ secondary_entities:
     category: config
     icon: "mdi:thermometer"
     mode: "box"
+    optional: true
     dps:
       - id: 111
         type: integer
-        optional: true
         name: value
         mapping:
           - scale: 10
@@ -233,10 +236,11 @@ secondary_entities:
     category: config
     icon: "mdi:thermometer"
     mode: "box"
+    optional: true
     dps:
       - id: 18
         type: integer
-        optional: true
+        
         name: value
         mapping:
           - scale: 10
@@ -250,11 +254,11 @@ secondary_entities:
     name: Brightness
     icon: "mdi:brightness-6"
     category: config
+    optional: true
     dps:
       - id: 115
         type: string
         name: option
-        optional: true
         mapping:
           - dps_val: "Low"
             value: "Low"
@@ -268,6 +272,7 @@ secondary_entities:
     category: config
     name: Restore Last State
     icon: "mdi:restore"
+    optional: true
     dps:
       - id: 116
         name: switch
