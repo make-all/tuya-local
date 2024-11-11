@@ -86,11 +86,11 @@ secondary_entities:
       - id: 114
         type: integer
         name: sensor
-        mapping:
-        - dps_val: 0
-          value: false
-        - dps_val: 1
-          value: true
+    mapping:
+      - dps_val: 0
+        value: false
+      - dps_val: 1
+        value: true
 
   # Configuration
   # Child Lock
@@ -262,8 +262,8 @@ secondary_entities:
             value: "Medium"
           - dps_val: "High"
             value: "High"
- 
- # Last State
+
+  # Last State
   - entity: switch
     category: config
     name: Restore Last State
