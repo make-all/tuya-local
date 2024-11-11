@@ -37,11 +37,12 @@
                 "description": "[Følg instruksjonene her for å finne enhets-id og den lokale nøkkelen.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "IP addresse eller vertsnavn",
-                    "device_id": "Enhets-ID (device_id)",
+                    "or device_id of gateway for devices connected via gateway": "",
+                    "device_id": "Enhets-ID (device_id, eller device_id for gateway for enheter tilkoblet via gateway)",
                     "local_key": "Lokal nøkkel",
                     "protocol_version": "Protocol versjon (prøv auto hvis du der usikker)",
                     "poll_only": "Kun poll (prøv dette hvis enhenten ikke virker ordentlig)",
-                    "device_cid": "Underenhets-id (for enheter tilkoblet via gateway)"
+                    "device_cid": "Underenhets-UUID (for enheter tilkoblet via gateway)"
                 }
             },
             "select_type": {
@@ -87,8 +88,7 @@
                     "host": "IP addresse eller vertsnavn",
                     "local_key": "Lokal nøkkel",
                     "protocol_version": "Protocol versjon (prøv auto hvis du der usikker)",
-                    "poll_only": "Kun poll (prøv dette hvis enhenten ikke virker ordentlig)",
-                    "device_cid": "Underenhets-id (for enheter tilkoblet via gateway)"
+                    "poll_only": "Kun poll (prøv dette hvis enhenten ikke virker ordentlig)"
                 }
             }
         },

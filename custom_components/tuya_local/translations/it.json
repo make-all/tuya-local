@@ -37,11 +37,12 @@
                 "description": "[Segui queste istruzioni per trovare 'device id' e 'local key'.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "Indirizzo IP o nome host",
-                    "device_id": "Device ID",
+                    "or device_id of gateway": "oppure ID dispositivo del gateway",
+                    "device_id": "Device ID (oppure device_id del gateway per dispositivi connessi tramite gateway)",
                     "local_key": "Local key",
                     "protocol_version": "Versione protocollo (prova 'auto' in caso di dubbi)",
                     "poll_only": "Poll only (prova questa opzione se il dispositivo non funziona correttamente)",
-                    "device_cid": "Sub device ID (per dispositivi connessi tramite gateway)"
+                    "device_cid": "Sub device UUID (per dispositivi connessi tramite gateway)"
                 }
             },
             "select_type": {
@@ -87,8 +88,7 @@
                     "host": "Indirizzo IP o nome host",
                     "local_key": "Local key",
                     "protocol_version": "Versione protocollo (prova 'auto' in caso di dubbi)",
-                    "poll_only": "Poll only (prova questa opzione se il dispositivo non funziona correttamente)",
-                    "device_cid": "[it] Sub device ID (per dispositivi connessi tramite gateway)"
+                    "poll_only": "Poll only (prova questa opzione se il dispositivo non funziona correttamente)"
                 }
             }
         },

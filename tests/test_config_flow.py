@@ -598,7 +598,6 @@ async def test_options_flow_modifies_config(mock_test, hass, bypass_setup):
             CONF_LOCAL_KEY: "new_key",
             CONF_POLL_ONLY: False,
             CONF_PROTOCOL_VERSION: 3.3,
-            CONF_DEVICE_CID: "subdeviceid",
         },
     )
     expected = {
@@ -606,7 +605,6 @@ async def test_options_flow_modifies_config(mock_test, hass, bypass_setup):
         CONF_LOCAL_KEY: "new_key",
         CONF_POLL_ONLY: False,
         CONF_PROTOCOL_VERSION: 3.3,
-        CONF_DEVICE_CID: "subdeviceid",
     }
     assert "create_entry" == result["type"]
     assert "" == result["title"]

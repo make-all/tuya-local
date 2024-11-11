@@ -470,10 +470,6 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
             vol.Required(
                 CONF_POLL_ONLY, default=config.get(CONF_POLL_ONLY, False)
             ): bool,
-            vol.Optional(
-                CONF_DEVICE_CID,
-                default=config.get(CONF_DEVICE_CID, ""),
-            ): str,
         }
         cfg = await self.hass.async_add_executor_job(
             get_config,

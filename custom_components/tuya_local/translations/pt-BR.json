@@ -37,11 +37,11 @@
                 "description": "[Siga estas instruções para encontrar o ID do seu dispositivo e a chave local.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "Endereço IP ou nome do host",
-                    "device_id": "Device ID",
+                    "device_id": "Device ID (ou device_id do gateway para dispositivos conectados via gateway)",
                     "local_key": "Chave Local",
                     "protocol_version": "Versão do protocolo (tente auto se não souber)",
                     "poll_only": "Pesquisar (tente isto se o seu dispositivo não funcionar totalmente)",
-                    "device_cid": "Sub device ID (para dispositivos conectados via gateway)"
+                    "device_cid": "Sub device UUID (para dispositivos conectados via gateway)"
                 }
             },
             "select_type": {
@@ -87,8 +87,7 @@
                     "host": "Endereço IP ou nome do host",
                     "local_key": "Chave Local",
                     "protocol_version": "Versão do protocolo (tente auto se não souber)",
-                    "poll_only": "Pesquisar (tente isto se o seu dispositivo não funcionar totalmente)",
-                    "device_cid": "Sub device ID (para dispositivos conectados via gateway)"
+                    "poll_only": "Pesquisar (tente isto se o seu dispositivo não funcionar totalmente)"
                 }
             }
         },

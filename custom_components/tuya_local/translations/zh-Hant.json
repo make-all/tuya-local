@@ -37,11 +37,11 @@
                 "description": "[請按照這些說明找到您的裝置ID和 Local key](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "IP位址或主機名",
-                    "device_id": "設備ID",
+                    "device_id": "設備ID(或device_id網關,對於透過網關連接的設備）",
                     "local_key": "Local key",
                     "protocol_version": "協議版本（如果不清楚，請選擇自動）",
                     "poll_only": "僅輪詢（如果設備無法正常運作，請選擇此項）",
-                    "device_cid": "子設備ID（對於透過網關連接的設備）"
+                    "device_cid": "子設備UUID（對於透過網關連接的設備）"
                 }
             },
             "select_type": {
@@ -87,8 +87,7 @@
                     "host": "IP位址或主機名",
                     "local_key": "Local key",
                     "protocol_version": "協議版本（如果不清楚，請選擇自動）",
-                    "poll_only": "僅輪詢（如果設備無法正常運作，請選擇此項）",
-                    "device_cid": "子設備ID（對於透過網關連接的設備）"
+                    "poll_only": "僅輪詢（如果設備無法正常運作，請選擇此項）"
                 }
             }
         },

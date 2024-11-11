@@ -37,11 +37,12 @@
                 "description": "[Kövesd ezeket az utasításokat, hogy megtaláld az eszköz azonosítóját (device_id) és a helyi kulcsot (local_key).](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "IP cím vagy állomásnév",
-                    "device_id": "Eszköz azonosító (device_id)",
+                    "or device_id of gateway": "Vagy átjáró eszköz azonosítója (device_id átjárón keresztül használt eszközök esetén)",
+                    "device_id": "Eszköz azonosító (device_id, vagy átjáró device_id)",
                     "local_key": "Helyi kulcs (local_key)",
                     "protocol_version": "Protokol verzió (hagyd auto-n, ha nem tudod)",
                     "poll_only": "Csak olvasás (próbáld ki ezt, ha az eszköz nem működik rendesen)",
-                    "device_cid": "Aleszköz azonosító (átjárón keresztül használt eszközök esetén)"
+                    "device_cid": "Aleszköz UUID (átjárón keresztül használt eszközök esetén)"
                 }
             },
             "select_type": {
@@ -87,8 +88,7 @@
                     "host": "IP cím vagy állomásnév",
                     "local_key": "Helyi kulcs (local_key)",
                     "protocol_version": "Protokol verzió (hagyd auto-n, ha nem tudod)",
-                    "poll_only": "Csak olvasás (próbáld ki ezt, ha az eszköz nem működik rendesen)",
-                    "device_cid": "Aleszköz azonosító (átjárón keresztül használt eszközök esetén)"
+                    "poll_only": "Csak olvasás (próbáld ki ezt, ha az eszköz nem működik rendesen)"
                 }
             }
         },

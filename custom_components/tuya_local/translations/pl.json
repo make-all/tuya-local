@@ -37,11 +37,11 @@
                 "description": "[Postępuj zgodnie z instrukcjami by znaleźć swoje Device ID oraz Local key.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "Adres IP lub nazwa hosta",
-                    "device_id": "Device ID",
+                    "device_id": "Device ID (lub device_id bramki dla urządzeń podłączonych poprzez bramkę)",
                     "local_key": "Local key",
                     "protocol_version": "Wersja protokołu (spróbuj auto jeśli nieznana)",
                     "poll_only": "Poll only (spróbuj jeśli Twoje urządzenie nie działa w pełni)",
-                    "device_cid": "Sub device ID (dla urządzeń podłączonych poprzez bramkę)"
+                    "device_cid": "Sub device UUID (dla urządzeń podłączonych poprzez bramkę)"
                 }
             },
             "select_type": {
@@ -87,8 +87,7 @@
                     "host": "Adres IP lub nazwa hosta",
                     "local_key": "Local key",
                     "protocol_version": "Wersja protokołu (spróbuj auto jeśli nieznana)",
-                    "poll_only": "Poll only (spróbuj jeśli Twoje urządzenie nie działa w pełni)",
-                    "device_cid": "Sub device ID (dla urządzeń podłączonych poprzez bramkę)"
+                    "poll_only": "Poll only (spróbuj jeśli Twoje urządzenie nie działa w pełni)"
                 }
             }
         },

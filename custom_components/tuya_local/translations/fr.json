@@ -37,11 +37,11 @@
                 "description": "[Suivre ces instructions pour trouver le 'device id' et la 'local key'.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
                 "data": {
                     "host": "Adresse IP ou Nom d'hote",
-                    "device_id": "Device ID",
+                    "device_id": "Device ID (ou device_id de la passerelle pour les appareils connectés via une passerelle)",
                     "local_key": "Local key",
                     "protocol_version": "Version du Protocole (Auto si inconnu)",
                     "poll_only": "Poll only (Essayez ceci si votre appareil ne fonctionne pas complètement)",
-                    "device_cid": "ID de sous-appareil (Pour les appareils connectés via une passerelle)"
+                    "device_cid": "UUID de sous-appareil (Pour les appareils connectés via une passerelle)"
                 }
             },
             "select_type": {
@@ -87,8 +87,7 @@
                     "host": "Adresse IP ou Nom d'hote",
                     "local_key": "Local key",
                     "protocol_version": "Version du Protocole (Auto si inconnu)",
-                    "poll_only": "Poll only (essayez ceci si votre appareil ne fonctionne pas complètement)",
-                    "device_cid": "ID de sous-appareil (pour les appareils connectés via une passerelle)"
+                    "poll_only": "Poll only (essayez ceci si votre appareil ne fonctionne pas complètement)"
                 }
             }
         },
