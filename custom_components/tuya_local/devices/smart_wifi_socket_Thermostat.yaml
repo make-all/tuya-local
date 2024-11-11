@@ -4,7 +4,6 @@
 name: Smart WiFi Oled socket Thermostat
 products:
   - id: msclnsfe0q3yd39q
-
 primary_entity:
   entity: climate
   translation_key: thermostat
@@ -60,27 +59,25 @@ primary_entity:
               value: heating
             - dps_val: cool
               value: cooling
-
-
 secondary_entities:
-#Control
-  #Control relay in plug mode
+  # Control
+  # Control relay in plug mode
   - entity: switch
     name: Relay Control
-    dps:      
+    dps:
       - id: 2
         name: switch
         type: boolean
-  #Turn on the display on press for timeout time
+  # Turn on the display on press for timeout time
   - entity: button
     name: Display On
-    dps:      
+    dps:
       - id: 118
         name: button
         type: boolean
         optional: true
 
-#Diagnostics
+  # Diagnostics
   - entity: binary_sensor
     class: power
     category: diagnostic
@@ -95,8 +92,8 @@ secondary_entities:
         - dps_val: 1
           value: true
 
-#Configuration
-  # Child Lock  
+  # Configuration
+  # Child Lock
   - entity: lock
     translation_key: child_lock
     category: config
@@ -105,7 +102,7 @@ secondary_entities:
         name: lock
         type: boolean
 
-  #Display Timeout
+  # Display Timeout
   - entity: select
     name: Display Timeout
     icon: "mdi:timer-cog-outline"
@@ -131,10 +128,10 @@ secondary_entities:
     name: Audio Alarm High temperature
     icon: "mdi:thermometer-alert"
     dps:
-    - id: 8
-      name: switch
-      type: boolean
-  # High temperature alarm setting 
+      - id: 8
+        name: switch
+        type: boolean
+  # High temperature alarm setting
   - entity: number
     name: Alarm Maximum temperature
     category: config
@@ -146,7 +143,7 @@ secondary_entities:
         name: value
         unit: C
         mapping:
-        - scale: 10
+          - scale: 10
         range:
           min: -300
           max: 1200
@@ -157,10 +154,10 @@ secondary_entities:
     name: Audio Alarm Low temperature
     icon: "mdi:thermometer-alert"
     dps:
-    - id: 11
-      name: switch
-      type: boolean
-  # Low temperature alarm setting 
+      - id: 11
+        name: switch
+        type: boolean
+  # Low temperature alarm setting
   - entity: number
     name: Alarm Minimum temperature
     category: config
@@ -172,22 +169,22 @@ secondary_entities:
         name: value
         unit: C
         mapping:
-        - scale: 10
+          - scale: 10
         range:
           min: -300
           max: 1200
 
-  #Cooling Delay
-    # Delay on
+  # Cooling Delay
+  # Delay on
   - entity: switch
     category: config
     name: Cooling Delay
     icon: "mdi:pump"
     dps:
-    - id: 13
-      name: switch
-      type: boolean
-    # Delay time (minutes)
+      - id: 13
+        name: switch
+        type: boolean
+  # Delay time (minutes)
   - entity: number
     name: Cooling Delay time
     category: config
@@ -202,19 +199,19 @@ secondary_entities:
           min: 0
           max: 1200
 
-  #Frost protection
+  # Frost protection
   - entity: switch
     category: config
     name: Frost protection
     icon: "mdi:snowflake-thermometer"
     dps:
-    - id: 113
-      name: switch
-      type: boolean
+      - id: 113
+        name: switch
+        type: boolean
 
-  # Difference Hysteris  
+  # Difference Hysteresis
   - entity: number
-    name: Hysteresis 
+    name: Hysteresis
     category: config
     icon: "mdi:thermometer"
     mode: "box"
@@ -224,14 +221,15 @@ secondary_entities:
         optional: true
         name: value
         mapping:
-        - scale: 10
+          - scale: 10
         unit: C
         range:
           min: 0
           max: 100
-  # temp correction
+
+  # Temperature correction
   - entity: number
-    name: Temp Correction 
+    name: Temp Correction
     category: config
     icon: "mdi:thermometer"
     mode: "box"
@@ -241,7 +239,7 @@ secondary_entities:
         optional: true
         name: value
         mapping:
-        - scale: 10
+          - scale: 10
         unit: C
         range:
           min: -150
@@ -264,4 +262,3 @@ secondary_entities:
             value: "Middle"
           - dps_val: "High"
             value: "High"
-
