@@ -636,6 +636,7 @@ of device.
 - Benexmart blind motor
 - CCB-11 blind controller
 - CC curtain controller 1
+- Curry Smarter 6-Gen roller shutter switch
 - Dongguan garage door
 - Dongguan LY1678-2 curtain robot
 - Dooya curtain motor
