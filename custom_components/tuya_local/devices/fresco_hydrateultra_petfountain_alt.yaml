@@ -1,7 +1,7 @@
 name: Pet fountain
 products:
   - id: avhcsv4u4nj05otr
-    name: Petoneer Fresco Hydrate Ultra alternative
+    name: Petoneer Fresco Hydrate Ultra v2
 
 primary_entity:
   entity: switch
@@ -49,3 +49,89 @@ secondary_entities:
       - id: 13
         type: integer
         name: sensor
+        unit: TDS
+
+  - entity: switch
+    translation_key: uv_sterilization
+    category: config
+    dps:
+      - id: 14
+        type: boolean
+        name: switch
+        optional: true
+
+  - entity: sensor
+    name: UV runtime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        unit: s
+
+  - entity: sensor
+    name: Water age
+    icon: "mdi:water-circle"
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        range:
+          min: 0
+          max: 7200
+        unit: min
+
+  - entity: sensor
+    name: Filter age
+    icon: "mdi:air-filter"
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        range:
+          min: 0
+          max: 43200
+        unit: min
+
+  - entity: sensor
+    name: Pump maintenance
+    icon: "mdi:pump"
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        range:
+          min: 0
+          max: 86400
+        unit: min
+
+  - entity: button
+    name: Reset Filter
+    icon: "mdi:air-filter"
+    category: config
+    dps:
+      - id: 5
+        type: integer
+        name: button
+        mapping:
+          - dps_val: 0
+            value: true
+
+  - entity: button
+    name: Reset Pump
+    icon: "mdi:pump"
+    category: config
+    dps:
+      - id: 6
+        type: integer
+        name: button
+        mapping:
+          - dps_val: 0
+            value: true
