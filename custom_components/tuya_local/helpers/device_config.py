@@ -167,8 +167,8 @@ class TuyaDeviceConfig:
         return len(missing_dps) == 0 and len(incorrect_type_dps) == 0
 
     def _get_all_dps(self):
-        all_dps_list = [d for d in self.primary_entity.dps()]
-        all_dps_list += [d for dev in self.secondary_entities() for d in dev.dps()]
+        all_dps_list = []
+        all_dps_list += [d for dev in self.all_entities() for d in dev.dps()]
         return all_dps_list
 
     def _get_required_dps(self):
@@ -206,15 +206,10 @@ class TuyaDeviceConfig:
         if "updated_at" in keys:
             keys.remove("updated_at")
         total = len(keys)
-        if total < 1 or not self._entity_match_analyse(
-            self.primary_entity,
-            keys,
-            matched,
-            dps,
-        ):
+        if total < 1:
             return 0
 
-        for e in self.secondary_entities():
+        for e in self.all_entities():
             if not self._entity_match_analyse(e, keys, matched, dps):
                 return 0
 
@@ -517,7 +512,7 @@ class TuyaDpsConfig:
         val = []
         for m in self._config["mapping"]:
             if self.should_show_mapping(m, device):
-                val.append(m["value"])
+                val.append(m["value"])
             # If there is mirroring without override, include mirrored values
             elif "value_mirror" in m:
                 r_dps = self._entity.find_dps(m["value_mirror"])

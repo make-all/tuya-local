@@ -25,21 +25,7 @@ async def async_tuya_setup_platform(
     )
     if cfg is None:
         raise ValueError(f"No device config found for {discovery_info}")
-    ecfg = cfg.primary_entity
-    if ecfg.entity == platform:
-        try:
-            data[ecfg.config_id] = entity_class(device, ecfg)
-            entities.append(data[ecfg.config_id])
-            _LOGGER.debug("Adding %s for %s", platform, ecfg.config_id)
-        except Exception as e:
-            _LOGGER.error(
-                "Error adding %s for %s: %s",
-                ecfg.config_id,
-                cfg.config,
-                e,
-            )
-
-    for ecfg in cfg.secondary_entities():
+    for ecfg in cfg.all_entities():
         if ecfg.entity == platform:
             try:
                 data[ecfg.config_id] = entity_class(device, ecfg)
