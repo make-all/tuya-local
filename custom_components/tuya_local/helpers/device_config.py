@@ -244,6 +244,11 @@ class TuyaEntityConfig:
         """The translation key for this entity, not used for unique_id"""
         return self._config.get("translation_only_key")
 
+    @property
+    def translation_placeholders(self):
+        """The translation placeholders for this entity."""
+        return self._config.get("translation_placeholders", {})
+
     def unique_id(self, device_uid):
         """Return a suitable unique_id for this entity."""
         return f"{device_uid}-{slugify(self.config_id)}"
@@ -280,7 +285,13 @@ class TuyaEntityConfig:
         if own_name:
             return f"{self.entity}_{slugify(own_name)}"
         if self.translation_key:
-            return f"{self.entity}_{self.translation_key}"
+            slug = f"{self.entity}_{self.translation_key}"
+            for key, value in self.translation_placeholders.items():
+                if key in slug:
+                    slug = slug.replace(key, str(value))
+                else:
+                    slug = f"{slug}_{value}"
+            return slug
         return self.entity
 
     @property

@@ -24,6 +24,8 @@ class TuyaLocalEntity:
         self._attr_translation_key = (
             config.translation_key or config.translation_only_key
         )
+        self._attr_translation_placeholders = config.translation_placeholders
+
         return {c.name: c for c in config.dps()}
 
     def _init_end(self, dps):
