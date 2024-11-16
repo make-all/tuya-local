@@ -595,6 +595,20 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
                 "sensor_reverse_energy_b": "sensor_energy_produced_b",
                 "sensor_energy_consumption_a": "sensor_energy_consumed_a",
                 "sensor_energy_consumption_b": "sensor_energy_consumed_b",
+                "number_timer_switch_1": "number_timer_1",
+                "number_timer_switch_2": "number_timer_2",
+                "number_timer_switch_3": "number_timer_3",
+                "number_timer_switch_4": "number_timer_4",
+                "number_timer_switch_5": "number_timer_5",
+                "number_timer_socket_1": "number_timer_1",
+                "number_timer_socket_2": "number_timer_2",
+                "number_timer_socket_3": "number_timer_3",
+                "number_timer_outlet_1": "number_timer_1",
+                "number_timer_outlet_2": "number_timer_2",
+                "number_timer_outlet_3": "number_timer_3",
+                "number_timer_gang_1": "number_timer_1",
+                "number_timer_gang_2": "number_timer_2",
+                "number_timer_gang_3": "number_timer_3",
             }
             return replace_unique_ids(entity_entry, device_id, conf_file, replacements)
 

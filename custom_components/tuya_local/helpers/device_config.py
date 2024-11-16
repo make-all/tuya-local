@@ -283,7 +283,7 @@ class TuyaEntityConfig:
             slug = f"{self.entity}_{self.translation_key}"
             for key, value in self.translation_placeholders.items():
                 if key in slug:
-                    slug = slug.replace(key, str(value))
+                    slug = slug.replace(key, slugify(value))
                 else:
                     slug = f"{slug}_{value}"
             return slug
@@ -512,7 +512,8 @@ class TuyaDpsConfig:
         val = []
         for m in self._config["mapping"]:
             if self.should_show_mapping(m, device):
-                val.append(m["value"])
+                val.append(m["value"])
+
             # If there is mirroring without override, include mirrored values
             elif "value_mirror" in m:
                 r_dps = self._entity.find_dps(m["value_mirror"])
