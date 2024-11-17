@@ -754,6 +754,7 @@ port and password.
 - BlitzWolf BW-IS6 security alarm system
 - Digoo DG-HAMB GSM security alarm system 
 - GauTone PG-103 security alarm system
+- HLG Infinity Alarm
 - Smart alarm siren (unbranded)
 - TS106 alarm system
 - Wolf Guard WT2R alarm system
