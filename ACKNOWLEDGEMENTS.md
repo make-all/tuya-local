@@ -741,3 +741,7 @@ Further device support has been made with the assistance of users. Please consid
 - [broyuken](https://github.com/broyuken) for contributing support for Kilo Plus air purifier.
 - [perimos](https://gituhb.com/perimos) for contributing support for KCvents VT-501 HRV.
 - [Tbaile](https://github.com/Tbaile) for contributing support for Plikc Neve Pro W thermostat.
+- [r08ertliu](https://github.com/r08ertliu) for contributing support for New Widetech WPF-15SW5 fan.
+- [banjohb](https://github.com/banjohb) for assisting with support for Curry Smarter 6-Gen roller shutter switch.
+- [KyleStilkey](https://github.com/KyleStilkey) for assisting with support for GHome SW19 fan and light switch.
+- [johnnyaug](https://github.com/johnnyaug) for contributing improvements to Raykube/Gimdow A1 Pro locks.
