@@ -255,17 +255,12 @@ secondary_entities:
         unit: "sensors"
   - entity: binary_sensor
     name: Power Line
-    icon: "mdi:power-plug"
+    class: plug
     category: diagnostic
     dps:
       - id: 115
         type: boolean
         name: sensor
-        mapping:
-          - dps_val: true
-            value: "Power Line"
-          - dps_val: false
-            value: "Battery"
   - entity: binary_sensor
     name: Battery Low Sector 1
     icon: "mdi:battery-alert"
