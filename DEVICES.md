@@ -233,7 +233,6 @@
 - Casafan ECO Neo III ceiling fan with light
 - Cecotec ceiling fan with light
 - Chanfok ceiling fan with cool/warm white dimmable light
-- CleanAir 604B humidifier
 - Create XW-FAN-215-D ceiling fan with light
 - Depauley WS-FPZ37-18I-EU ceiling fan with light
 - Deta fan controller
@@ -357,11 +356,13 @@
 - BlitzWolf BW-SH2 humidifier
 - BlitzWolf BW-SH5 humidifier
 - Carro VES1011 humidifier
+- CleanAir 604B humidifier
 - CleanAir 605B humidifier
 - Eanons QT-JS2014 purifying humidifier
 - Inkbird IHC-200 humidity controller
 - Klarta Humea humidifier
 - Kyvol EA200 humidifier
+- RZTK Aqua Pro humidifier
 - Stadler Eva humidifier
 - Stadler Form Karl/Karl Big humidifier
 - Tesla Smart humidifier
@@ -764,6 +765,7 @@ port and password.
 
 ### Pet care
 
+- AF3W pet feeder
 - Catit Pixi smart fountain
 - Catit pet feeder (Pixi 2.2kg dispenser and 6 meal versions, and another non-Pixi branded single dispenser)
 - Ceres Plus pet feeder with camera
