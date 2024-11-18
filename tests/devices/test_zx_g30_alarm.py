@@ -2,6 +2,8 @@
 
 from homeassistant.components.alarm_control_panel import (
     AlarmControlPanelEntityFeature as Feature,
+)
+from homeassistant.components.alarm_control_panel import (
     AlarmControlPanelState,
 )
 

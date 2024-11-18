@@ -7,6 +7,8 @@ import logging
 from homeassistant.components.alarm_control_panel import AlarmControlPanelEntity
 from homeassistant.components.alarm_control_panel.const import (
     AlarmControlPanelEntityFeature as Feature,
+)
+from homeassistant.components.alarm_control_panel.const import (
     AlarmControlPanelState,
 )
 
