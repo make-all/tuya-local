@@ -37,9 +37,10 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: number
-    name: Timer 1
     category: config
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     dps:
       - id: 9
         type: integer
@@ -52,9 +53,10 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    name: Timer 2
     category: config
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 10
         type: integer

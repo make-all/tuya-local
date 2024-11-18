@@ -4,7 +4,7 @@ products:
     name: Dcenta dual clamp meter
 primary_entity:
   entity: sensor
-  name: Energy consumed
+  translation_key: energy_consumed
   class: energy
   dps:
     - id: 1
@@ -16,7 +16,7 @@ primary_entity:
         - scale: 100
 secondary_entities:
   - entity: sensor
-    name: Energy produced
+    translation_key: energy_produced
     class: energy
     dps:
       - id: 2
@@ -75,7 +75,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Energy consumed A
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: A
     class: energy
     category: diagnostic
     dps:
@@ -92,7 +94,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Energy produced A
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: A
     class: energy
     category: diagnostic
     dps:
@@ -109,7 +113,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Energy consumed B
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: B
     class: energy
     category: diagnostic
     dps:
@@ -126,7 +132,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Energy produced B
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: B
     class: energy
     category: diagnostic
     dps:
