@@ -1,7 +1,7 @@
 # Brand name: EZAIOT
 # Product link: aliexpress.com/item/1005007122621628.html
 
-name: Smart WiFi Oled socket Thermostat
+name: EZAIoT socket thermostat
 products:
   - id: msclnsfe0q3yd39q
 primary_entity:
@@ -81,16 +81,15 @@ secondary_entities:
   - entity: binary_sensor
     class: power
     category: diagnostic
-    name: Relay status
     dps:
       - id: 114
         type: integer
         name: sensor
-    mapping:
-      - dps_val: 0
-        value: false
-      - dps_val: 1
-        value: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: true
 
   # Configuration
   # Child Lock
