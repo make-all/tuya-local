@@ -143,9 +143,27 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             return self.available
 
     @property
+    def _brightness_control_by_hsv(self):
+        """Return whether brightness is controlled by HSV."""
+        v_available = self._rgbhsv_dps and "v" in self._rgbhsv_dps.format["names"]
+        b_available = self._brightness_dps is not None
+        current_raw_mode = self.raw_color_mode
+        current_mode = self.color_mode
+
+        if current_raw_mode == ColorMode.HS and v_available:
+            return True
+        if current_raw_mode is None and current_mode == ColorMode.HS and v_available:
+            return True
+        if b_available:
+            return False
+        if v_available:
+            return True
+        return False
+
+    @property
     def brightness(self):
         """Get the current brightness of the light"""
-        if self.raw_color_mode == ColorMode.HS and self._rgbhsv_dps:
+        if self._brightness_control_by_hsv:
             return self._hsv_brightness
         return self._white_brightness
 
@@ -279,9 +297,9 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             }
         elif self._rgbhsv_dps and (
             ATTR_HS_COLOR in params
-            or (ATTR_BRIGHTNESS in params and self.raw_color_mode == ColorMode.HS)
+            or (ATTR_BRIGHTNESS in params and self._brightness_control_by_hsv)
         ):
-            if self.raw_color_mode != ColorMode.HS:
+            if self.color_mode != ColorMode.HS:
                 color_mode = ColorMode.HS
 
             hs = params.get(ATTR_HS_COLOR, self.hs_color or (0, 0))
@@ -373,10 +391,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
 
         if (
             ATTR_BRIGHTNESS in params
-            and (
-                (self.raw_color_mode != ColorMode.HS and color_mode is None)
-                or (color_mode != ColorMode.HS and color_mode is not None)
-            )
+            and not self._brightness_control_by_hsv
             and self._brightness_dps
         ):
             bright = params.get(ATTR_BRIGHTNESS)
