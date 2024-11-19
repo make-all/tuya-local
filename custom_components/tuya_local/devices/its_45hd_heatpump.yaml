@@ -46,12 +46,7 @@ primary_entity:
         - dps_val: ERR
           value: "off"
         - dps_val: "NO"
-          constraint: hvac_mode
-          conditions:
-            - dps_val: true
-              value: idle
-            - dps_val: false
-              value: "off"
+          value: idle
     - id: 18
       type: integer
       name: energy_today

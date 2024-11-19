@@ -14,6 +14,8 @@ primary_entity:
           value: heat
         - dps_val: false
           value: "off"
+          icon: "mdi:radiator-disabled"
+          icon_priority: 1
     - id: 2
       name: preset_mode
       type: string
@@ -45,21 +47,12 @@ primary_entity:
       mapping:
         - dps_val: close
           icon: "mdi:radiator-disabled"
-          constraint: hvac_mode
-          conditions:
-            - dps_val: true
-              value: idle
-            - dps_val: false
-              value: "off"
+          icon_priority: 2
+          value: idle
         - dps_val: open
-          constraint: hvac_mode
-          conditions:
-            - dps_val: true
-              icon: "mdi:radiator"
-              value: heating
-            - dps_val: false
-              icon: "mdi:radiator-disabled"
-              value: "off"
+          icon: "mdi:radiator"
+          icon_priority: 2
+          value: heating
 secondary_entities:
   - entity: number
     name: Calibration offset

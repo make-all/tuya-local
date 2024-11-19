@@ -20,6 +20,8 @@ primary_entity:
           value: fan_only
         - dps_val: "off"
           value: "off"
+          icon: "mdi:thermometer-off"
+          icon_priority: 4
     - id: 104
       type: integer
       name: current_temperature
@@ -85,19 +87,14 @@ primary_entity:
       type: boolean
       name: hvac_action
       mapping:
-        - icon: "mdi:thermometer-off"
+        - dps_val: true
+          icon: "mdi:thermometer"
+          icon_priority: 6
+          value: heating
+        - dps_val: false
+          icon: "mdi:thermometer-off"
           icon_priority: 5
-          value: "off"
-          constraint: hvac_mode
-          conditions:
-            - dps_val: "on"
-              mapping:
-                - dps_val: true
-                  icon: "mdi:thermometer"
-                  icon_priority: 6
-                  value: heating
-                - dps_val: false
-                  value: idle
+          value: idle
     - id: 116
       type: integer
       name: current_temperature_f

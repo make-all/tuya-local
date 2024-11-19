@@ -60,18 +60,12 @@ primary_entity:
       type: string
       name: hvac_action
       mapping:
-        - constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              mapping:
-                - dps_val: "0allclose"
-                  value: idle
-                - dps_val: "1heaton"
-                  value: heating
-                - dps_val: "2coolon"
-                  value: cooling
+        - dps_val: "0allclose"
+          value: idle
+        - dps_val: "1heaton"
+          value: heating
+        - dps_val: "2coolon"
+          value: cooling
 secondary_entities:
   - entity: lock
     translation_key: child_lock

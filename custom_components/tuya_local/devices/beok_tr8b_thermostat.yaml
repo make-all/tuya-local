@@ -97,12 +97,7 @@ primary_entity:
             - dps_val: [heat, floor_heat]
               value: heating
         - dps_val: close
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: idle
+          value: idle
     - id: 101
       type: bitfield
       name: features

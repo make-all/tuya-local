@@ -42,16 +42,10 @@ primary_entity:
       name: hvac_action
       type: boolean
       mapping:
-        - constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              mapping:
-                - dps_val: false
-                  value: idle
-                - dps_val: true
-                  value: heating
+        - dps_val: false
+          value: idle
+        - dps_val: true
+          value: heating
     - id: 103
       name: temperature_unit
       type: string

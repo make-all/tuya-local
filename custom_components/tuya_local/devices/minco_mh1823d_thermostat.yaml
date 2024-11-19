@@ -33,19 +33,9 @@ primary_entity:
       name: hvac_action
       mapping:
         - dps_val: stop
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: idle
+          value: idle
         - dps_val: start
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: heating
+          value: heating
     - id: 12
       type: boolean
       name: unknown_12

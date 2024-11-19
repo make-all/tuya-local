@@ -33,12 +33,7 @@ primary_entity:
       type: string
       mapping:
         - dps_val: standby
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: idle
+          value: idle
         - dps_val: working
           value: heating
     - id: 26

@@ -37,12 +37,7 @@ primary_entity:
           value: cooling
         - dps_val: "2"
           value: cooling
-        - constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: idle
+        - value: idle
     - id: 106
       name: temperature
       type: integer

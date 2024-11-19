@@ -47,19 +47,9 @@ primary_entity:
       optional: true
       mapping:
         - dps_val: close
-          constraint: hvac_mode
-          conditions:
-            - dps_val: true
-              value: idle
-            - dps_val: false
-              value: "off"
+          value: idle
         - dps_val: open
-          constraint: hvac_mode
-          conditions:
-            - dps_val: true
-              value: heating
-            - dps_val: false
-              value: "off"
+          value: heating
 secondary_entities:
   - entity: number
     name: Calibration offset

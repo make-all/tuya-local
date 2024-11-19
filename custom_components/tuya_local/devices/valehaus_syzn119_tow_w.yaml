@@ -31,16 +31,10 @@ primary_entity:
       type: string
       name: hvac_action
       mapping:
-        - constraint: hvac_mode
-          conditions:
-            - dps_val: true
-              mapping:
-                - dps_val: heating
-                  value: heating
-                - dps_val: standby
-                  value: idle
-            - dps_val: false
-              value: "off"
+        - dps_val: heating
+          value: heating
+        - dps_val: standby
+          value: idle
 secondary_entities:
   - entity: select
     translation_key: timer
