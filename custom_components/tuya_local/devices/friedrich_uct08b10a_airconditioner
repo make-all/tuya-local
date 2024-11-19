@@ -1,0 +1,520 @@
+name: Air Conditioner
+products:
+  - id: jvnwkkvvshk3go8f
+    # https://www.friedrich.com/professional/products/uni-fit
+    # NB: Tuya calls this "Friedrich Window Unit" but these are through-the-wall units
+    name: Friedrich Uni-Fit Through-the-Wall Air Conditioner (Model UCT08B10A)
+
+# Even though the latest firmware for UCT08B10A exposes tons of DPs (very similar to Fisher Summer Air Conditioner)
+# after testing vast majority of them are unsupported. This unit is much closer to the other Friedrich Air Conditioners
+# in terms of actual capabilities but it's still different enough to warrant a separate yaml.
+# Note: we are forced to add all the DPs in order for the YAML configuration to be identified even though most of them
+# need to be made invisible and are not used by the hardware of the actual air conditioner.
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: cold
+              value: cool
+            - dps_val: wet
+              value: dry
+            - dps_val: wind
+              value: fan_only
+            - dps_val: auto
+              value: auto
+            - dps_val: hot
+              value: heat
+              hidden: true
+    - id: 3
+      type: integer
+      name: current_temperature_in_c
+      optional: true
+      unit: C
+    - id: 23
+      name: current_temperature
+      type: integer
+      optional: true
+      hidden: true
+      range:
+        min: -20
+        max: 100
+    - id: 24
+      type: integer
+      name: temperature
+      optional: true
+      unit: F
+      range:
+        min: 690
+        max: 890
+      mapping:
+        - scale: 10
+          step: 10
+    - id: 2
+      name: temperature_in_c
+      type: integer
+      optional: true
+      range:
+        min: 205
+        max: 317
+      mapping:
+        - scale: 10
+          step: 5
+      unit: C
+    - id: 4
+      type: string
+      name: mode
+      hidden: true
+    - id: 5
+      name: fan_mode
+      type: string
+      mapping:
+        # the unit only truly supports 4 speeds: low, med, high, auto
+        - dps_val: auto
+          value: auto
+        - dps_val: low
+          value: low
+        - dps_val: mid
+          value: medium
+        - dps_val: high
+          value: high
+        # the below are all duplicates of some of the above and don't change air speed
+        - dps_val: mute
+          value: quiet
+          optional: true
+          hidden: true
+        - dps_val: mid_low
+          value: medlow
+          optional: true
+          hidden: true
+        - dps_val: mid_high
+          value: medhigh
+          optional: true
+          hidden: true
+        - dps_val: strong
+          value: strong
+          optional: true
+          hidden: true
+    - id: 123
+      name: preset_mode
+      # Tuya IOT dev says this is "bool" but the values aren't boolean
+      type: string
+      mapping:
+        - dps_val: "0018"
+          value: comfort
+        - dps_val: "0019"
+          value: eco
+        - dps_val: null
+          value: comfort
+          hidden: true
+    - id: 128
+      name: style
+      type: string
+      mapping:
+        - dps_val: "0"
+          value: wall
+        - dps_val: "1"
+          value: floor
+        - dps_val: "2"
+          value: missing mapping
+        - dps_val: "3"
+          value: through-the-wall
+    - id: 8
+      name: legacy_preset_mode
+      type: boolean
+      # the unit's actual hardware doesn't support this functionality even though the firmware / DP is exposed
+      # we are forced to add it so that Tuya Local gets to 100% DP match and allows us to pick this YAML for this unit
+      hidden: true
+      optional: true
+      mapping:
+        - dps_val: true
+          value: eco
+        - dps_val: false
+          value: comfort
+        - dps_val: null
+          value: comfort
+          hidden: true
+    - id: 18
+      name: unsupported_current_humidity
+      type: integer
+      # the unit's actual hardware doesn't support this functionality even though the firmware / DP is exposed
+      # we are forced to add it so that Tuya Local gets to 100% DP match and allows us to pick this YAML for this unit
+      hidden: true
+      optional: true
+    - id: 101
+      name: sleep_legacy_unreported
+      type: integer
+      # the unit's actual hardware doesn't support this functionality even though the firmware / DP is exposed
+      # we are forced to add it so that Tuya Local gets to 100% DP match and allows us to pick this YAML for this unit
+      hidden: true
+      optional: true
+    - id: 102
+      name: temp_conversion_unit_legacy
+      type: boolean
+      # the unit's actual hardware doesn't support this functionality even though the firmware / DP is exposed
+      # we are forced to add it so that Tuya Local gets to 100% DP match and allows us to pick this YAML for this unit
+      hidden: true
+      optional: true
+      mapping:
+        - dps_val: true
+          value: "°F"
+        - dps_val: false
+          value: "°C"
+    - id: 110
+      name: hswing_available
+      type: bitfield
+      # the unit's actual hardware doesn't support this functionality even though the firmware / DP is exposed
+      # we are forced to add it so that Tuya Local gets to 100% DP match and allows us to pick this YAML for this unit
+      hidden: true
+      optional: true
+      mapping:
+        - dps_val: 32
+          value: true
+        - value: false
+    - id: 113
+      name: option
+      type: string
+      # the unit's actual hardware doesn't support this functionality even though the firmware / DP is exposed
+      # we are forced to add it so that Tuya Local gets to 100% DP match and allows us to pick this YAML for this unit
+      hidden: true
+      optional: true
+      mapping:
+        - dps_val: "0"
+          value: None
+          default: true
+        - dps_val: "1"
+          value: Upper and lower
+        - dps_val: "2"
+          value: Upper
+        - dps_val: "3"
+          value: Lower
+    - id: 114
+      name: option
+      type: string
+      # the unit's actual hardware doesn't support this functionality even though the firmware / DP is exposed
+      # we are forced to add it so that Tuya Local gets to 100% DP match and allows us to pick this YAML for this unit
+      hidden: true
+      optional: true
+      mapping:
+        - dps_val: "0"
+          value: "Off"
+          default: true
+        - dps_val: "1"
+          value: Left and Right
+        - dps_val: "2"
+          value: Left
+        - dps_val: "3"
+          value: Middle
+        - dps_val: "4"
+          value: Right
+        - dps_val: "5"
+          value: Partial Left
+        - dps_val: "6"
+          value: Partial Right
+        - dps_val: "7"
+          value: Wide Angle
+    - id: 115
+      type: integer
+      name: total_n
+      # the unit's actual hardware doesn't support this functionality even though the firmware / DP is exposed
+      # we are forced to add it so that Tuya Local gets to 100% DP match and allows us to pick this YAML for this unit
+      hidden: true
+      optional: true
+    - id: 119
+      name: psaving
+      type: string
+      # the unit's actual hardware doesn't support this functionality even though the firmware / DP is exposed
+      # we are forced to add it so that Tuya Local gets to 100% DP match and allows us to pick this YAML for this unit
+      hidden: true
+      optional: true
+      mapping:
+        - dps_val: "0"
+          value: None
+          default: true
+        - dps_val: "1"
+          value: Default Power Saving
+        - dps_val: "2"
+          value: Quota Power Saving
+        - dps_val: "3"
+          value: Fixed Temperature Power Saving
+    - id: 120
+      name: llevel
+      type: string
+      # the unit's actual hardware doesn't support this functionality even though the firmware / DP is exposed
+      # we are forced to add it so that Tuya Local gets to 100% DP match and allows us to pick this YAML for this unit
+      hidden: true
+      optional: true
+      mapping:
+        - dps_val: "off"
+          value: None
+          default: true
+        - dps_val: L1
+          value: L1
+        - dps_val: L2
+          value: L2
+        - dps_val: L3
+          value: L3
+    - id: 125
+      name: air_quality
+      type: string
+      # the unit's actual hardware doesn't support this functionality even though the firmware / DP is exposed
+      # we are forced to add it so that Tuya Local gets to 100% DP match and allows us to pick this YAML for this unit
+      hidden: true
+      optional: true
+    - id: 126
+      name: vertical_direction
+      type: string
+      # the unit's actual hardware doesn't support this functionality even though the firmware / DP is exposed
+      # we are forced to add it so that Tuya Local gets to 100% DP match and allows us to pick this YAML for this unit
+      hidden: true
+      optional: true
+      mapping:
+        - dps_val: "0"
+          value: Freeze Current Position
+          default: true
+        - dps_val: "1"
+          value: Top
+        - dps_val: "2"
+          value: Slightly Up
+        - dps_val: "3"
+          value: Middle
+        - dps_val: "4"
+          value: Slightly Down
+        - dps_val: "5"
+          value: Down
+    - id: 127
+      name: fan_orientation
+      type: string
+      # the unit's actual hardware doesn't support this functionality even though the firmware / DP is exposed
+      # we are forced to add it so that Tuya Local gets to 100% DP match and allows us to pick this YAML for this unit
+      hidden: true
+      optional: true
+      mapping:
+        - dps_val: "0"
+          value: Freeze current position
+          default: true
+        - dps_val: "1"
+          value: Left
+        - dps_val: "2"
+          value: Slightly left
+        - dps_val: "3"
+          value: Middle
+        - dps_val: "4"
+          value: Slightly right
+        - dps_val: "5"
+          value: Right
+        - dps_val: "6"
+          value: Wide angle left
+        - dps_val: "7"
+          value: Wide angle right
+        - dps_val: "8"
+          value: Wide angle
+    - id: 129
+      type: string
+      name: power_picker
+      read_only: true
+      mapping:
+        - dps_val: 1
+          value: 1 kWh
+        - dps_val: 2
+          value: 2 kWh
+        - dps_val: 3
+          value: 3 kWh
+        - dps_val: 4
+          value: 4 kWh
+        - dps_val: 5
+          value: 5 kWh
+      # the unit's actual hardware doesn't support this functionality even though the firmware / DP is exposed
+      # we are forced to add it so that Tuya Local gets to 100% DP match and allows us to pick this YAML for this unit
+      hidden: true
+      optional: true
+    - id: 130
+      name: eco_mode_temperature_setting
+      type: integer
+      unit: C
+      range:
+        min: 26
+        max: 31
+      optional: true
+    - id: 131
+      type: boolean
+      name: dirty_filter
+      readonly: true
+      # the unit's actual hardware doesn't support this functionality even though the firmware / DP is exposed
+      # we are forced to add it so that Tuya Local gets to 100% DP match and allows us to pick this YAML for this unit
+      hidden: true
+      optional: true
+    - id: 132
+      name: is_fan_air_cold
+      type: boolean
+      # the unit's actual hardware doesn't support this functionality even though the firmware / DP is exposed
+      # we are forced to add it so that Tuya Local gets to 100% DP match and allows us to pick this YAML for this unit
+      hidden: true
+      optional: true
+      mapping:
+        - dps_val: true
+          value: Cold Wind
+        - dps_val: false
+          value: Hot wind
+    - id: 133
+      # the unit's actual hardware doesn't support this functionality even though the firmware / DP is exposed
+      # we are forced to add it so that Tuya Local gets to 100% DP match and allows us to pick this YAML for this unit
+      hidden: true
+      optional: true
+      name: swing_support
+      type: string
+      mapping:
+        - dps_val: "0"
+          value: "off"
+        - dps_val: "1"
+          value: horizontal
+          available: hswing_available
+        - dps_val: "2"
+          value: vertical
+        - dps_val: "3"
+          value: both
+          available: hswing_available
+    - id: 134
+      name: working_time
+      type: string
+      # the unit's actual hardware doesn't support this functionality even though the firmware / DP is exposed
+      # we are forced to add it so that Tuya Local gets to 100% DP match and allows us to pick this YAML for this unit
+      hidden: true
+      optional: true
+    - id: 135
+      name: running_time
+      type: integer
+      # the unit's actual hardware doesn't support this functionality even though the firmware / DP is exposed
+      # we are forced to add it so that Tuya Local gets to 100% DP match and allows us to pick this YAML for this unit
+      hidden: true
+      optional: true
+    - id: 136
+      name: dr_energy_function
+      type: string
+      # the unit's actual hardware doesn't support this functionality even though the firmware / DP is exposed
+      # we are forced to add it so that Tuya Local gets to 100% DP match and allows us to pick this YAML for this unit
+      hidden: true
+      optional: true
+
+secondary_entities:
+  - entity: switch
+    name: "Sleep Mode"
+    icon: "mdi:sleep"
+    translation_key: sleep
+    category: config
+    dps:
+      - id: 105
+        type: string
+        name: switch
+        mapping:
+            # IOT Tuya says these are the 4 values of the enum but only OFF and CHILD
+            # are supported by the firmware
+            # "off",
+            # "normal",
+            # "old",
+            # "child"
+          - dps_val: "normal"
+            value: true
+          - dps_val: "off"
+            value: false
+          - value: false
+  - entity: sensor
+    name: "Configured Temperature Unit"
+    category: diagnostic
+    class: enum
+    dps:
+      - id: 19
+        name: sensor
+        type: string
+        optional: true
+        mapping:
+          - dps_val: "f"
+            value: "°F"
+            icon: "mdi:temperature-fahrenheit"
+            icon_priority: 2
+          - dps_val: "c"
+            value: "°C"
+            icon: "mdi:temperature-celsius"
+            icon_priority: 2
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 20
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: Normal
+            icon: "mdi:check-circle"
+            icon_priority: 2
+          - dps_val: E1
+            value: Fault E1
+            icon: "mdi:alert-circle"
+            icon_priority: 2
+          - dps_val: E2
+            value: Fault E2
+            icon: "mdi:alert-circle"
+            icon_priority: 2
+      - id: 122
+        name: fault2
+        type: bitfield
+        optional: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 20
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: E1
+            value: false
+          - dps_val: E2
+            value: false
+          - value: true
+      - id: 20
+        type: bitfield
+        name: fault_code
+      - id: 122
+        name: fault2
+        type: bitfield
+        optional: true
+  - entity: sensor
+    # unclear what this is, seems like intended to be total power but it's unitless per IOT and doesn't exactly track
+    # what the unit is doing so leaving as a diagnostic-only sensor that should probably be disabled by the user
+    name: totalp
+    category: diagnostic
+    #class: measurement
+    dps:
+      - id: 116
+        name: sensor
+        type: integer
+        optional: true
+        # from tuya iot dev
+        range:
+          min: 0
+          max: 1000000
+  - entity: number
+    name: Eco Mode Temperature Setting
+    category: config
+    class: temperature
+    dps:
+      - id: 130
+        name: value
+        type: integer
+        unit: C
+        range:
+          min: 26
+          max: 31
+        optional: true
