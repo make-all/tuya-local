@@ -748,4 +748,4 @@ Further device support has been made with the assistance of users. Please consid
 - [akc-kyiv](https://github.com/akc-kyiv) for contributing support for RZTK Aqua Pro humidifier.
 - [Whininie](https://github.com/Whininie) for assisting with support for AF3W pet feeder.
 - [AppelBoomHD](https://github.com/AppelBoomHD) for contributing support for Nince RGB LED strip.
-- [brunohenriquy](https://github.com/brunohenriquy) for contributing support for HLG Infinity Alarm.
+- [brunohenriquy](https://github.com/brunohenriquy) for contributing support for HLG Infinity alarm.
