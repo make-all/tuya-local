@@ -1,7 +1,7 @@
-name: Alarm Central
+name: Alarm control
 products:
   - id: f4gbbzyp0e6asfnt
-    name: HLG Infinity Alarm
+    name: HLG Infinity alarm
 primary_entity:
   entity: sensor
   icon: "mdi:clipboard-text-clock"
@@ -95,7 +95,7 @@ secondary_entities:
         type: string
         name: sensor_name
   - entity: select
-    name: Turn Sector On/Off
+    name: Sector selection
     icon: "mdi:power-cycle"
     category: config
     dps:
@@ -105,7 +105,7 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: "Todos"
-            value: "All Sectors"
+            value: "All sectors"
           - dps_val: "S1"
             value: "Sector 1"
           - dps_val: "S2"
@@ -115,13 +115,13 @@ secondary_entities:
           - dps_val: "S4"
             value: "Sector 4"
           - dps_val: "S1_S2"
-            value: "Sectors: 1 and 2"
+            value: "Sectors 1 and 2"
           - dps_val: "S3_S4"
-            value: "Sectors: 3 and 4"
+            value: "Sectors 3 and 4"
           - dps_val: "S1_S2_S3"
-            value: "Sectors: 1, 2 and 3"
+            value: "Sectors 1, 2 and 3"
           - dps_val: "S2_S3_S4"
-            value: "Sectors: 2, 3 and 4"
+            value: "Sectors 2, 3 and 4"
   - entity: switch
     name: Siren
     icon: "mdi:volume-high"
@@ -179,14 +179,14 @@ secondary_entities:
           - dps_val: REINICIADO
             value: RESTARTED
   - entity: switch
-    name: Beep Siren When Sector On/Off
+    name: Arm beep
     category: config
     dps:
       - id: 110
         type: boolean
         name: switch
   - entity: select
-    name: Learn Remote Control
+    name: Learn remote control
     icon: "mdi:remote"
     category: config
     dps:
@@ -229,8 +229,11 @@ secondary_entities:
             value: "Panic"
           - dps_val: "CANCEL"
             value: "Cancel"
+      - id: 113
+        type: integer
+        name: buttons_learned
   - entity: select
-    name: Learn Sensor
+    name: Learn sensor
     icon: "mdi:motion-sensor"
     category: config
     dps:
@@ -249,27 +252,11 @@ secondary_entities:
             value: "Sector 4"
           - dps_val: "CANCEL"
             value: "Cancel"
-  - entity: sensor
-    name: Number of Buttons
-    icon: "mdi:remote"
-    category: diagnostic
-    dps:
-      - id: 113
-        type: integer
-        name: sensor
-        unit: "buttons"
-  - entity: sensor
-    name: Number of Sensors
-    icon: "mdi:motion-sensor"
-    category: diagnostic
-    dps:
       - id: 114
         type: integer
-        name: sensor
+        name: sensors_learned
         optional: true
-        unit: "sensors"
   - entity: binary_sensor
-    name: Power Line
     class: plug
     category: diagnostic
     dps:
@@ -277,7 +264,7 @@ secondary_entities:
         type: boolean
         name: sensor
   - entity: binary_sensor
-    name: Battery Low Sector 1
+    name: Sector 1 battery
     class: "battery"
     category: diagnostic
     dps:
@@ -285,7 +272,7 @@ secondary_entities:
         type: boolean
         name: sensor
   - entity: binary_sensor
-    name: Battery Low Sector 2
+    name: Sector 2 battery
     class: "battery"
     category: diagnostic
     dps:
@@ -293,7 +280,7 @@ secondary_entities:
         type: boolean
         name: sensor
   - entity: binary_sensor
-    name: Battery Low Sector 3
+    name: Sector 3 battery
     class: "battery"
     category: diagnostic
     dps:
@@ -301,7 +288,7 @@ secondary_entities:
         type: boolean
         name: sensor
   - entity: binary_sensor
-    name: Battery Low Sector 4
+    name: Sector 4 battery
     class: "battery"
     category: diagnostic
     dps:
