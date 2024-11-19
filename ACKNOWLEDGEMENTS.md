@@ -747,3 +747,4 @@ Further device support has been made with the assistance of users. Please consid
 - [johnnyaug](https://github.com/johnnyaug) for contributing improvements to Raykube/Gimdow A1 Pro locks.
 - [akc-kyiv](https://github.com/akc-kyiv) for contributing support for RZTK Aqua Pro humidifier.
 - [Whininie](https://github.com/Whininie) for assisting with support for AF3W pet feeder.
+- [AppelBoomHD](https://github.com/AppelBoomHD) for contributing support for Nince RGB LED strip.

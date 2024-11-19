@@ -613,6 +613,7 @@ of device.
 - MoesGo dimmer switch
 - Nedis Smart LED Strip
 - Newone WF39M dimmer smartplug
+- Nince RGB LED strip
 - Peteme recessed lighting
 - Space Dog Music Lamp (works for Aurora Smart Galaxy Star)
 - Tampa Magnetic LED System CD-TY-WY05
