@@ -90,6 +90,7 @@
 - ElectriQ EcoSilent 12WAP
 - Fersk Vind 2
 - Fisher Summer air conditioner
+- Friedrich Uni-Fit Air Conditioner (models: UCT14A30, UCT12A30, UCT08B10A)
 - Fujicool Yuzu heat pump
 - Idea Heating Belt (with CS1 USB dongle)
 - Inventor Comfort air conditioner
@@ -619,6 +620,7 @@ of device.
 - Newone WF39M dimmer smartplug
 - Nince RGB LED strip
 - Peteme recessed lighting
+- Richelieu Tunable White LED Puck Light (166142030)
 - Spa Electrics Iris pool light controller
 - Space Dog Music Lamp (works for Aurora Smart Galaxy Star)
 - Tampa Magnetic LED System CD-TY-WY05
@@ -760,7 +762,7 @@ port and password.
 ### Alarm control panels
 
 - BlitzWolf BW-IS6 security alarm system
-- Digoo DG-HAMB GSM security alarm system 
+- Digoo DG-HAMB GSM security alarm system
 - GauTone PG-103 security alarm system
 - HLG Infinity alarm
 - Smart alarm siren (unbranded)
@@ -835,7 +837,7 @@ port and password.
 - ASIP-0622 indoor planter
 - Brennenstuhl WFD3050P PIR motion activated CCT spotlight
 - Bresser Smart 7-in-1 weather station
-^ Bresser Smart Thermo-hygrometer
+- Bresser Smart Thermo-hygrometer
 - CO2-Box air quality monitor
 - CT20W PIR motion detector
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)

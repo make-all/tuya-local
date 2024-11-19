@@ -1,0 +1,216 @@
+name: Accent Lighting
+products:
+  - id: bau7S9LJYvPgynWc
+    name: Richelieu Tunable White LED Puck Light (166142030)
+    # https://www.richelieu.com/us/en/category/lighting-solutions-and-accessori
+    # es/led-lighting-and-profiles/led/atom-tw-led-puck-light/1211903/sku-16614
+    # 2030
+    # with wifi module driver https://www.richelieu.com/us/en/category/lighting
+    # -solutions-and-accessories/transformers-and-power-supplies/cm4-xdtw-wi-fi
+    # -module-for-tunable-white-driver/1228665/sku-1650501TW
+primary_entity:
+  entity: light
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 2
+      type: string
+      name: work_mode
+      # "current" is default or can set "scene_[1-18]" to use that scene
+      mapping:
+        - dps_val: current
+          value: current
+        - dps_val: "scene_1"
+          value: Scene 1
+        - dps_val: "scene_2"
+          value: Scene 2
+        - dps_val: "scene_3"
+          value: Scene 3
+        - dps_val: "scene_4"
+          value: Scene 4
+        - dps_val: "scene_5"
+          value: Scene 5
+        - dps_val: "scene_6"
+          value: Scene 6
+        - dps_val: "scene_7"
+          value: Scene 7
+        - dps_val: "scene_8"
+          value: Scene 8
+        - dps_val: "scene_9"
+          value: Scene 9
+        - dps_val: "scene_10"
+          value: Scene 10
+        - dps_val: "scene_11"
+          value: Scene 11
+        - dps_val: "scene_12"
+          value: Scene 12
+        - dps_val: "scene_13"
+          value: Scene 13
+        - dps_val: "scene_14"
+          value: Scene 14
+        - dps_val: "scene_15"
+          value: Scene 15
+        - dps_val: "scene_16"
+          value: Scene 16
+        - dps_val: "scene_17"
+          value: Scene 17
+        - dps_val: "scene_18"
+          value: Scene 18
+    - id: 3
+      name: brightness
+      type: integer
+      unit: "%"
+      range:
+        min: 1
+        max: 100
+    - id: 4
+      name: color_temp
+      type: integer
+      range:
+        # 3000K (per online spec) but DP takes 0 - 100 unitless
+        min: 0
+        # 5000K (per online spec) but DP takes 0 - 100 unitless
+        max: 100
+      mapping:
+        - target_range:
+            min: 2700
+            max: 6500
+
+secondary_entities:
+  - entity: select
+    name: Mode Selection
+    category: config
+    dps:
+      - id: 2
+        name: option
+        type: string
+        mapping:
+          - dps_val: current
+            value: current
+          - dps_val: "scene_1"
+            value: Scene 1
+          - dps_val: "scene_2"
+            value: Scene 2
+          - dps_val: "scene_3"
+            value: Scene 3
+          - dps_val: "scene_4"
+            value: Scene 4
+          - dps_val: "scene_5"
+            value: Scene 5
+          - dps_val: "scene_6"
+            value: Scene 6
+          - dps_val: "scene_7"
+            value: Scene 7
+          - dps_val: "scene_8"
+            value: Scene 8
+          - dps_val: "scene_9"
+            value: Scene 9
+          - dps_val: "scene_10"
+            value: Scene 10
+          - dps_val: "scene_11"
+            value: Scene 11
+          - dps_val: "scene_12"
+            value: Scene 12
+          - dps_val: "scene_13"
+            value: Scene 13
+          - dps_val: "scene_14"
+            value: Scene 14
+          - dps_val: "scene_15"
+            value: Scene 15
+          - dps_val: "scene_16"
+            value: Scene 16
+          - dps_val: "scene_17"
+            value: Scene 17
+          - dps_val: "scene_18"
+            value: Scene 18
+
+  - entity: select
+    name: Delete Scene
+    category: config
+    dps:
+      - id: 101
+        name: option
+        type: string
+        mapping:
+          - dps_val: "scene_1"
+            value: Scene 1
+          - dps_val: "scene_2"
+            value: Scene 2
+          - dps_val: "scene_3"
+            value: Scene 3
+          - dps_val: "scene_4"
+            value: Scene 4
+          - dps_val: "scene_5"
+            value: Scene 5
+          - dps_val: "scene_6"
+            value: Scene 6
+          - dps_val: "scene_7"
+            value: Scene 7
+          - dps_val: "scene_8"
+            value: Scene 8
+          - dps_val: "scene_9"
+            value: Scene 9
+          - dps_val: "scene_10"
+            value: Scene 10
+          - dps_val: "scene_11"
+            value: Scene 11
+          - dps_val: "scene_12"
+            value: Scene 12
+          - dps_val: "scene_13"
+            value: Scene 13
+          - dps_val: "scene_14"
+            value: Scene 14
+          - dps_val: "scene_15"
+            value: Scene 15
+          - dps_val: "scene_16"
+            value: Scene 16
+          - dps_val: "scene_17"
+            value: Scene 17
+          - dps_val: "scene_18"
+            value: Scene 18
+
+  - entity: select
+    name: Add Scene
+    category: config
+    dps:
+      - id: 102
+        name: option
+        type: string
+        mapping:
+          - dps_val: "scene_1"
+            value: Scene 1
+          - dps_val: "scene_2"
+            value: Scene 2
+          - dps_val: "scene_3"
+            value: Scene 3
+          - dps_val: "scene_4"
+            value: Scene 4
+          - dps_val: "scene_5"
+            value: Scene 5
+          - dps_val: "scene_6"
+            value: Scene 6
+          - dps_val: "scene_7"
+            value: Scene 7
+          - dps_val: "scene_8"
+            value: Scene 8
+          - dps_val: "scene_9"
+            value: Scene 9
+          - dps_val: "scene_10"
+            value: Scene 10
+          - dps_val: "scene_11"
+            value: Scene 11
+          - dps_val: "scene_12"
+            value: Scene 12
+          - dps_val: "scene_13"
+            value: Scene 13
+          - dps_val: "scene_14"
+            value: Scene 14
+          - dps_val: "scene_15"
+            value: Scene 15
+          - dps_val: "scene_16"
+            value: Scene 16
+          - dps_val: "scene_17"
+            value: Scene 17
+          - dps_val: "scene_18"
+            value: Scene 18
