@@ -749,3 +749,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Whininie](https://github.com/Whininie) for assisting with support for AF3W pet feeder.
 - [AppelBoomHD](https://github.com/AppelBoomHD) for contributing support for Nince RGB LED strip.
 - [brunohenriquy](https://github.com/brunohenriquy) for contributing support for HLG Infinity alarm.
+- [kcoffau](https://github.com/kcoffau) for assisting with support for Spa Electrics Iris light controller.
