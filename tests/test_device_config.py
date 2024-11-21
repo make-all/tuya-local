@@ -221,7 +221,7 @@ KNOWN_DPS = {
     "lawn_mower": {"required": ["activity", "command"], "optional": []},
     "light": {
         "required": [{"or": ["switch", "brightness", "effect"]}],
-        "optional": ["color_mode", "color_temp", "rgbhsv"],
+        "optional": ["color_mode", "color_temp", {"xor": ["rgbhsv", "named_color"]}],
     },
     "lock": {
         "required": [],

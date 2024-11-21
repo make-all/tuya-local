@@ -54,6 +54,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
         self._color_mode_dps = dps_map.pop("color_mode", None)
         self._color_temp_dps = dps_map.pop("color_temp", None)
         self._rgbhsv_dps = dps_map.pop("rgbhsv", None)
+        self._named_color_dps = dps_map.pop("named_color", None)
         self._effect_dps = dps_map.pop("effect", None)
         self._init_end(dps_map)
 
@@ -106,6 +107,8 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
 
         if self._rgbhsv_dps:
             return ColorMode.HS
+        elif self._named_color_dps:
+            return ColorMode.HS
         elif self._color_temp_dps:
             return ColorMode.COLOR_TEMP
         elif self._brightness_dps:
@@ -156,9 +159,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             return True
         if b_available:
             return False
-        if v_available:
-            return True
-        return False
+        return v_available
 
     @property
     def brightness(self):
@@ -203,6 +204,11 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                     idx += 1
 
                 return rgbhsv
+        elif self._named_color_dps:
+            colour = self._named_color_dps.get_value(self._device)
+            if colour:
+                rgb = color_util.color_name_to_rgb(colour)
+                return {"r": rgb[0], "g": rgb[1], "b": rgb[2]}
 
     @property
     def _hsv_brightness(self):
@@ -250,6 +256,25 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
             if mode and not hasattr(ColorMode, mode.upper()):
                 return mode
             return EFFECT_OFF
+
+    def named_color_from_hsv(self, hs, brightness):
+        """Get the named color from the rgb value"""
+        if self._named_color_dps:
+            palette = self._named_color_dps.values(self._device)
+            xy = color_util.color_hs_to_xy(*hs)
+            distance = float("inf")
+            best_match = None
+            for entry in palette:
+                rgb = color_util.color_name_to_rgb(entry)
+                xy_entry = color_util.color_RGB_to_xy(*rgb)
+                d = color_util.get_distance_between_two_points(
+                    color_util.XYPoint(*xy),
+                    color_util.XYPoint(*xy_entry),
+                )
+                if d < distance:
+                    distance = d
+                    best_match = entry
+            return best_match
 
     async def async_turn_on(self, **params):
         settings = {}
@@ -354,6 +379,21 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                     **self._rgbhsv_dps.get_values_to_set(
                         self._device,
                         self._rgbhsv_dps.encode_value(binary),
+                    ),
+                }
+        elif self._named_color_dps and ATTR_HS_COLOR in params:
+            if self.color_mode != ColorMode.HS:
+                color_mode = ColorMode.HS
+            hs = params.get(ATTR_HS_COLOR, self.hs_color or (0, 0))
+            brightness = params.get(ATTR_BRIGHTNESS, self.brightness or 255)
+            best_match = self.named_color_from_hsv(hs, brightness)
+            _LOGGER.debug("Setting color to %s", best_match)
+            if best_match:
+                settings = {
+                    **settings,
+                    **self._named_color_dps.get_values_to_set(
+                        self._device,
+                        best_match,
                     ),
                 }
         if self._color_mode_dps:
