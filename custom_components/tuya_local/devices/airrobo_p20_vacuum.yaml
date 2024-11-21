@@ -81,6 +81,9 @@ primary_entity:
       type: bitfield
       name: error
       optional: true
+    - id: 104
+      type: string
+      name: Serial No
 ##########################################################
 secondary_entities:
   - entity: sensor
@@ -179,7 +182,6 @@ secondary_entities:
         range:
           min: 0
           max: 100
-
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -236,7 +238,7 @@ secondary_entities:
           - dps_val: 32768
             value: Charging no contact
   - entity: select
-    name: Language
+    translation_key: language
     category: config
     dps:
       - id: 29
@@ -244,46 +246,26 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: english
-            value: English
+            value: english
           - dps_val: german
-            value: German
+            value: german
           - dps_val: french
-            value: French
+            value: french
           - dps_val: russian
-            value: Russian
+            value: russian
           - dps_val: spanish
-            value: Spanish
+            value: spanish
           - dps_val: italian
-            value: Italian
+            value: italian
   - entity: switch
     name: Speed Mode
     category: config
     dps:
       - id: 101
         type: string
+        name: switch
         mapping:
           - dps_val: careful_clean
             value: false
           - dps_val: speed_clean
             value: true
-  - entity: select
-    name: Speed change
-    category: config
-    dps:
-      - id: 101
-        type: string
-        name: option
-        mapping:
-          - dps_val: careful_clean
-            value: Careful cleaning
-          - dps_val: speed_clean
-            value: Fast cleaning
-  - entity: sensor
-    name: Serial No.
-    category: diagnostic
-    dps:
-      - id: 104
-        type: string
-        name: sensor
-
-
