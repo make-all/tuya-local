@@ -566,7 +566,7 @@ of device.
 - Simple 8 switch - eight switches in a single device
 - RGB Nightlight outlet - one smartplug with a small built-in RGB light.
 
-### Lights
+### Lighting
 
 - Generic CCT lightbulb (supporting color temperature and brightness) - old and new style
 - Generic dimmable light (2 types, using dp 1,2 and 20,22)
@@ -615,6 +615,7 @@ of device.
 - Newone WF39M dimmer smartplug
 - Nince RGB LED strip
 - Peteme recessed lighting
+- Spa Electrics Iris pool light controller
 - Space Dog Music Lamp (works for Aurora Smart Galaxy Star)
 - Tampa Magnetic LED System CD-TY-WY05
 - Teberno LED strip light (LGC-005 OEM3)
