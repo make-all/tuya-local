@@ -89,6 +89,23 @@ use `translation_only_key` instead (this is mostly useful to retain
 backward compatibility where `translation_key` is used to define icons and
 attribute strings but not the entity name.
 
+### `translation_placeholders`
+
+*Optional*
+
+A container for placeholders to be used in the translation string. Contents
+are a mapping from parameter keys used in the translation files, to actual
+values to be used for this entity. If this is specified, then either
+translation_key or translation_only_key must be specified with it.
+
+Example:
+
+```
+  translation_key: switch_x
+  translation_placeholders:
+    x: "1"
+```
+
 ### `category`
 
 *Optional.*
