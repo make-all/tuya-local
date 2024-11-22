@@ -1,7 +1,7 @@
 name: Thermostat smartplug
 products:
-# Brand name: EZAIOT
-# Product link: aliexpress.com/item/1005007122621628.html
+  # Brand name: EZAIOT
+  # Product link: aliexpress.com/item/1005007122621628.html
   - id: msclnsfe0q3yd39q
     name: EZAIoT socket thermostat
 primary_entity:
@@ -58,14 +58,14 @@ secondary_entities:
   # Control
   # Control relay in plug mode
   - entity: switch
-    name: Relay Control
+    name: Relay control
     dps:
       - id: 2
         name: switch
         type: boolean
   # Turn on the display on press for timeout time
   - entity: button
-    name: Display On
+    name: Display on
     dps:
       - id: 118
         name: button
@@ -98,7 +98,7 @@ secondary_entities:
 
   # Display Timeout
   - entity: select
-    name: Display Timeout
+    name: Display timeout
     icon: "mdi:timer-cog-outline"
     category: config
     dps:
@@ -119,7 +119,7 @@ secondary_entities:
   # High temperature alarm audio
   - entity: switch
     category: config
-    name: Audio Alarm High temperature
+    name: High temperature alarm
     icon: "mdi:thermometer-alert"
     dps:
       - id: 8
@@ -127,7 +127,7 @@ secondary_entities:
         type: boolean
   # High temperature alarm setting
   - entity: number
-    name: Alarm Maximum temperature
+    name: Alarm maximum temperature
     category: config
     icon: "mdi:thermometer-chevron-up"
     dps:
@@ -145,7 +145,7 @@ secondary_entities:
   # Low temperature alarm audio
   - entity: switch
     category: config
-    name: Audio Alarm Low temperature
+    name: Low temperature alarm
     icon: "mdi:thermometer-alert"
     dps:
       - id: 11
@@ -154,7 +154,7 @@ secondary_entities:
         type: boolean
   # Low temperature alarm setting
   - entity: number
-    name: Alarm Minimum temperature
+    name: Alarm minimum temperature
     category: config
     icon: "mdi:thermometer-chevron-down"
     dps:
@@ -173,7 +173,7 @@ secondary_entities:
   # Delay on
   - entity: switch
     category: config
-    name: Cooling Delay
+    name: Cooling delay
     icon: "mdi:pump"
     dps:
       - id: 13
@@ -182,7 +182,7 @@ secondary_entities:
         type: boolean
   # Delay time (minutes)
   - entity: number
-    name: Cooling Delay time
+    name: Cooling delay time
     category: config
     icon: "mdi:pump"
     dps:
@@ -198,8 +198,7 @@ secondary_entities:
   # Frost protection
   - entity: switch
     category: config
-    name: Frost protection
-    icon: "mdi:snowflake-thermometer"
+    translation_key: anti_frost
     dps:
       - id: 113
         name: switch
@@ -207,7 +206,7 @@ secondary_entities:
 
   # Difference Hysteresis
   - entity: number
-    name: Hysteresis
+    name: Temperature hysteresis
     category: config
     icon: "mdi:thermometer"
     mode: "box"
@@ -225,7 +224,7 @@ secondary_entities:
 
   # Temperature correction
   - entity: number
-    name: Temp Correction
+    name: Temperature calibration
     category: config
     icon: "mdi:thermometer"
     mode: "box"
@@ -262,7 +261,7 @@ secondary_entities:
   # Last State
   - entity: switch
     category: config
-    name: Restore Last State
+    name: Restore last state
     icon: "mdi:restore"
     dps:
       - id: 116
