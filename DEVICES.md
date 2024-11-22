@@ -330,6 +330,7 @@
 - Eeese Adam dehumidifier
 - Eeese Anna dehumidifier
 - Eeese Carl dehumidifier
+- Eeese Emil dehumidifier
 - Eeese Otto dehumidifier
 - Goldair GPDH340 dehumidifier
 - Goldair GPDH420 dehumidifier
