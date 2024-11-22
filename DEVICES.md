@@ -63,6 +63,7 @@
 - Sonnenkonig Eco 700 IR panel heater (probably also other Eco/Elegance series heaters)
 - Taurus Agadir Connect oil column heaters
 - Touchstone Sideline electric fireplace
+- VTA+ Axial fan heater
 - Wärme Designer wall panel heater
 - Wetair WCH-750 heater
 

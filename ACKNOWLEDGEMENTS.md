@@ -752,3 +752,4 @@ Further device support has been made with the assistance of users. Please consid
 - [kcoffau](https://github.com/kcoffau) for assisting with support for Spa Electrics Iris light controller.
 - [rale](https://github.com/rale) for contributing improvements to Ryra TYTE-D1 thermostat.
 - [marleshi](https://github.com/marleshi) for assisting with support for Zemismart SDM01 energy meter.
+- [MigSo](https://github.com/MigSo) for assisting with support for VTA+ Axial fan heater.
