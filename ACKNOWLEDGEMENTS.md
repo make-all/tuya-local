@@ -754,3 +754,4 @@ Further device support has been made with the assistance of users. Please consid
 - [marleshi](https://github.com/marleshi) for assisting with support for Zemismart SDM01 energy meter.
 - [MigSo](https://github.com/MigSo) for contributing support for VTA+ Axial fan heater.
 - [Steefph](https://github.com/Steefph) for contributing support for EZAIoT thermostat smartplug.
+- [witulu](https://github.com/witulu) for contributing support for Airrobo P20 vacuum.
