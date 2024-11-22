@@ -1,7 +1,7 @@
 name: Robot vacuum
-products:
-  - id: bfdfcf2fc7921635a7v4ko
-    name: Airrobo P20
+# products:
+#  - id: UNKNOWN
+#    name: Airrobo P20
 primary_entity:
   entity: vacuum
   dps:
@@ -83,8 +83,7 @@ primary_entity:
       optional: true
     - id: 104
       type: string
-      name: Serial No
-##########################################################
+      name: serial_number
 secondary_entities:
   - entity: sensor
     class: battery
@@ -258,7 +257,7 @@ secondary_entities:
           - dps_val: italian
             value: italian
   - entity: switch
-    name: Speed Mode
+    name: Quick clean
     category: config
     dps:
       - id: 101
