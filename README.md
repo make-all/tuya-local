@@ -50,6 +50,10 @@ they can handle, with typical limits being 1 or 3, depending on the specific
 Tuya module they are using.  This severely limits the number of sub devices
 that can be connected through this integration.
 
+Sub devices should be added using the `device_id`, `address` and `local_key`
+of the hub they are attached to, and the `node_id` of the sub-device. If there
+is no `node_id` listed, try using the `uuid` instead.
+
 Tuya Zigbee devices are usually standard zigbee devices, so as an
 alternative to this integration with a Tuya hub, you can use a
 supported Zigbee USB stick or Wifi hub with
