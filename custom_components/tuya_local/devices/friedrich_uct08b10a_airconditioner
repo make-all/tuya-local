@@ -42,7 +42,6 @@ primary_entity:
       name: current_temperature
       type: integer
       optional: true
-      hidden: true
       range:
         min: -20
         max: 100
@@ -87,32 +86,31 @@ primary_entity:
           value: high
         # the below are all duplicates of some of the above and don't change air speed
         - dps_val: mute
-          value: quiet
-          optional: true
+          value: low
           hidden: true
         - dps_val: mid_low
-          value: medlow
-          optional: true
+          value: low
           hidden: true
         - dps_val: mid_high
-          value: medhigh
-          optional: true
+          value: medium
           hidden: true
         - dps_val: strong
-          value: strong
-          optional: true
+          value: high
           hidden: true
     - id: 123
       name: preset_mode
-      # Tuya IOT dev says this is "bool" but the values aren't boolean
-      type: string
+      type: hex
       mapping:
-        - dps_val: "0018"
+        - mask: "0001"
+        - dps_val: 0
+          mask: "0001"
           value: comfort
-        - dps_val: "0019"
+        - dps_val: 1
           value: eco
+          mask: "0001"
         - dps_val: null
           value: comfort
+          mask: "0001"
           hidden: true
     - id: 128
       name: style
@@ -129,18 +127,7 @@ primary_entity:
     - id: 8
       name: legacy_preset_mode
       type: boolean
-      # the unit's actual hardware doesn't support this functionality even though the firmware / DP is exposed
-      # we are forced to add it so that Tuya Local gets to 100% DP match and allows us to pick this YAML for this unit
-      hidden: true
       optional: true
-      mapping:
-        - dps_val: true
-          value: eco
-        - dps_val: false
-          value: comfort
-        - dps_val: null
-          value: comfort
-          hidden: true
     - id: 18
       name: unsupported_current_humidity
       type: integer
@@ -227,6 +214,17 @@ primary_entity:
       # we are forced to add it so that Tuya Local gets to 100% DP match and allows us to pick this YAML for this unit
       hidden: true
       optional: true
+    - id: 116
+      name: totalp
+      type: integer
+      # unclear what this is, seems like intended to be total power but it's unitless per IOT and doesn't exactly track
+      # what the unit is doing so leaving as a diagnostic-only sensor that should probably be disabled by the user
+      hidden: true
+      optional: true
+      # from tuya iot dev
+      range:
+        min: 0
+        max: 1000000
     - id: 119
       name: psaving
       type: string
@@ -319,7 +317,6 @@ primary_entity:
     - id: 129
       type: string
       name: power_picker
-      read_only: true
       mapping:
         - dps_val: 1
           value: 1 kWh
@@ -474,37 +471,11 @@ secondary_entities:
     dps:
       - id: 20
         type: bitfield
-        name: sensor
-        mapping:
-          - dps_val: 0
-            value: false
-          - dps_val: E1
-            value: false
-          - dps_val: E2
-            value: false
-          - value: true
-      - id: 20
-        type: bitfield
         name: fault_code
       - id: 122
         name: fault2
         type: bitfield
         optional: true
-  - entity: sensor
-    # unclear what this is, seems like intended to be total power but it's unitless per IOT and doesn't exactly track
-    # what the unit is doing so leaving as a diagnostic-only sensor that should probably be disabled by the user
-    name: totalp
-    category: diagnostic
-    #class: measurement
-    dps:
-      - id: 116
-        name: sensor
-        type: integer
-        optional: true
-        # from tuya iot dev
-        range:
-          min: 0
-          max: 1000000
   - entity: number
     name: Eco Mode Temperature Setting
     category: config
