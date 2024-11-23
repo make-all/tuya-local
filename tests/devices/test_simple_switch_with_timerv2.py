@@ -9,6 +9,7 @@ from .base_device_tests import TuyaDeviceTestCase
 
 SWITCH_DPS = "1"
 TIMER_DPS = "9"
+INITIAL_STATE_DPS = "38"
 
 
 class TestTimedSwitch(BasicNumberTests, SwitchableTests, TuyaDeviceTestCase):
@@ -32,3 +33,11 @@ class TestTimedSwitch(BasicNumberTests, SwitchableTests, TuyaDeviceTestCase):
             self.subject.extra_state_attributes,
             {},
         )
+
+    def test_available(self):
+        for id, e in self.entities.items():
+            if id == "select_initial_state":
+                self.dps[INITIAL_STATE_DPS] = None
+                self.assertFalse(e.available)
+                self.dps[INITIAL_STATE_DPS] = "on"
+            self.assertTrue(e.available)
