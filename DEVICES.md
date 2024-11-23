@@ -584,6 +584,7 @@ of device.
 - Atomi smart color string light
 - Blitzwolf BW-LT31 LED strip
 - Calex S45 Clear E27 lightbulb
+- Deltaco LED Strip (SH-LW5M)
 - Deta/Arlec motion sensor lights (DET100HA/DET102HA/MAL315HA)
 - Deta 6910HA series2 dimmer switch
 - Dim2Warm G95 Gold 1800-2700K CCT lightbulb
