@@ -1,11 +1,9 @@
-name: Eeese Emil Dehumidifier
+name: Dehumidifier
 products:
-  - id: DYD-S12A431 除湿机
-    name: Eeese Emil Dehumidifier
+    name: Eeese Emil DYD-S12A431
 primary_entity:
   entity: humidifier
   class: dehumidifier
-  name: Panel
   dps:
     - id: 1
       name: switch
@@ -32,8 +30,7 @@ primary_entity:
         - dps_val: manual
           value: normal
         - dps_val: laundry
-          value: boost
-          icon: "mdi:tshirt-crew-outline"
+          value: laundry
     - id: 16
       type: integer
       name: current_humidity
@@ -55,7 +52,6 @@ secondary_entities:
         name: lock
   - entity: fan
     translation_key: fan
-    name: Fan
     category: config
     dps:
       - id: 1
@@ -80,13 +76,12 @@ secondary_entities:
   - entity: sensor
     class: duration
     category: diagnostic
-    name: Remaining duration
+    translation_key: time_remaining
     dps:
       - id: 18
         type: integer
         name: sensor
         unit: "s"
-        class: measurement
   - entity: binary_sensor
     translation_key: tank_full
     category: diagnostic
