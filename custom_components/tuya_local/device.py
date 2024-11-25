@@ -598,7 +598,7 @@ class TuyaLocalDevice(object):
                             entity.async_schedule_update_ha_state()
                     if self._api_working_protocol_failures == 1:
                         _LOGGER.error(error_message)
-                    else
+                    else:
                         _LOGGER.debug(error_message)
 
                 if not self._api_protocol_working:
