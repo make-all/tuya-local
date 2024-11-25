@@ -594,9 +594,10 @@ class TuyaLocalDevice(object):
                         > self._AUTO_FAILURE_RESET_COUNT
                     ):
                         self._api_protocol_working = False
-                    for entity in self._children:
-                        entity.async_schedule_update_ha_state()
-                    _LOGGER.error(error_message)
+                        for entity in self._children:
+                            entity.async_schedule_update_ha_state()
+                    if self._api_working_protocol_failures == 1:
+                        _LOGGER.error(error_message)
 
                 if not self._api_protocol_working:
                     await self._rotate_api_protocol_version()
