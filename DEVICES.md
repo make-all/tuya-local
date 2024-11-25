@@ -874,6 +874,7 @@ port and password.
 - Valehaus SYZN119 towel warmer
 - Weaja WJ-TUYA-S9 gas alarm
 - WeatherStation Pro
+- Wenzhi WZ35 human presence sensor
 - Xiumii human presence radar
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)
 - Yinmik WF-3188 water quality monitor

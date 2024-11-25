@@ -100,12 +100,13 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: button
-    name: Reset energy
+    name: Reset balance energy
     category: config
     class: restart
     dps:
       - id: 12
         type: boolean
+        optional: true
         name: button
   - entity: sensor
     name: Energy balance
@@ -333,15 +334,6 @@ secondary_entities:
     category: config
     dps:
       - id: 115
-        type: boolean
-        name: button
-        optional: true
-  - entity: button
-    name: Reset balance energy
-    class: restart
-    category: config
-    dps:
-      - id: 12
         type: boolean
         name: button
         optional: true

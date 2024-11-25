@@ -10,6 +10,7 @@ primary_entity:
       name: power
     - id: 17
       type: bitfield
+      optional: true
       name: error
       hidden: true
     - id: 101
@@ -127,13 +128,17 @@ secondary_entities:
     dps:
       - id: 17
         type: bitfield
+        optional: true
         name: sensor
         mapping:
           - dps_val: 0
             value: false
+          - dps_val: null
+            value: false
           - value: true
       - id: 17
         type: bitfield
+        optional: true
         name: fault_code
       - id: 17
         type: bitfield

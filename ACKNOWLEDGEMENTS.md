@@ -612,7 +612,7 @@ Further device support has been made with the assistance of users. Please consid
 - [cw-cdz](https://github.com/cw-cdz) for contributing support for Heatstorm HS-1500 heater.
 - [sveos](https://github.com/sveos) for assisting with support for Nedis ZBRC10WT remote contol.
 - [RoadkillUK](https://github.com/RoadkillUK) for contributing support for Els Pet Spaceship litter box.
-- [dphuk](https://github.com/dphuk) for assisting with ElectriQ DESD8LW V2 dehumidifier.
+- [dphuk](https://github.com/dphuk) for assisting with ElectriQ DESD8LW V2 dehumidifier and Wenzhi WZ35 human presence sensor.
 - [tk627](https://github.com/tk627) for assisting with Minoston 6-preset timer switch.
 - [MobilettoSoft](https://github.com/MobilettoSoft) for contributing support for Wada Power Q8 EV charger.
 - [josiasmontag](https://github.com/josiasmontag) for contributing support for RainPoint water timer.

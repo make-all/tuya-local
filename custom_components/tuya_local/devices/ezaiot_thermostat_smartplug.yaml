@@ -25,8 +25,8 @@ primary_entity:
         - scale: 10
     - id: 9
       type: integer
-      name: max_temperature
       optional: true
+      name: max_temperature
       mapping:
         - scale: 10
     - id: 12
@@ -41,6 +41,9 @@ primary_entity:
       unit: C
       mapping:
         - scale: 10
+      range:
+        min: -30
+        max: 110
     - id: 114
       type: integer
       name: hvac_action

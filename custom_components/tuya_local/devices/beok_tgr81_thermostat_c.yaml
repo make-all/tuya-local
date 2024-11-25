@@ -31,6 +31,7 @@ primary_entity:
         max: 90
     - id: 19
       type: integer
+      optional: true
       name: max_temperature
     - id: 24
       type: integer
@@ -110,6 +111,7 @@ secondary_entities:
           - value: true
       - id: 45
         name: fault_code
+        optional: true
         type: bitfield
   - entity: number
     name: High temperature limit

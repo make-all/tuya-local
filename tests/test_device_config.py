@@ -531,17 +531,28 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
     def test_configs_can_be_matched(self):
         """Test that the config files can be matched to a device."""
         for cfg in available_configs():
-            required_dps = 0
+            optional = set()
+            required = set()
             parsed = TuyaDeviceConfig(cfg)
             for entity in parsed.all_entities():
                 for dp in entity.dps():
-                    if not dp.optional:
-                        required_dps += 1
+                    if dp.optional:
+                        optional.add(dp.id)
+                    else:
+                        required.add(dp.id)
+
             self.assertGreater(
-                required_dps,
+                len(required),
                 0,
                 msg=f"No required dps found in {cfg}",
             )
+
+            for dp in required:
+                self.assertNotIn(
+                    dp,
+                    optional,
+                    msg=f"Optional dp {dp} is required in {cfg}",
+                )
 
     # Most of the device_config functionality is exercised during testing of
     # the various supported devices.  These tests concentrate only on the gaps.

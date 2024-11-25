@@ -376,7 +376,19 @@ class TuyaLocalDevice(object):
             # devices have dp 1. Lights generally start from 20.  101 is where
             # vendor specific dps start.  Between them, these three should cover
             # most devices.  148 covers a doorbell device that didn't have these
-            self._api.set_dpsUsed({"1": None, "20": None, "101": None, "148": None})
+            # 201 covers remote controllers and 2 and 9 cover others without 1
+            self._api.set_dpsUsed(
+                {
+                    "1": None,
+                    "2": None,
+                    "9": None,
+                    "20": None,
+                    "60": None,
+                    "101": None,
+                    "148": None,
+                    "201": None,
+                }
+            )
             await self.async_refresh()
             cached_state = self._get_cached_state()
 
@@ -582,9 +594,12 @@ class TuyaLocalDevice(object):
                         > self._AUTO_FAILURE_RESET_COUNT
                     ):
                         self._api_protocol_working = False
-                    for entity in self._children:
-                        entity.async_schedule_update_ha_state()
-                    _LOGGER.error(error_message)
+                        for entity in self._children:
+                            entity.async_schedule_update_ha_state()
+                    if self._api_working_protocol_failures == 1:
+                        _LOGGER.error(error_message)
+                    else:
+                        _LOGGER.debug(error_message)
 
                 if not self._api_protocol_working:
                     await self._rotate_api_protocol_version()

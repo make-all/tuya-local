@@ -20,7 +20,7 @@ body:
     attributes:
       label: Log message
       description: |
-        From the Home Assistant log (Settings / System /Log), please paste the Warning level log message containing a dps list which is output when you attempt to add the device and are presented with a list of non-matching devices.
+        From the Home Assistant log (Settings / System /Log), please paste the Warning level log message containing a **dps** list which is output when you attempt to add the device and are presented with a list of non-matching devices.
         Alternatively, if you already added the device, you can turn on debug logging for a minute or so, and find a message in the log from your device which has `full_poll: true` as part of the message.
       placeholder: Reports without logs will be immediately closed
       render: text
@@ -32,7 +32,7 @@ body:
       label: Product ID
       description: |
         The product ID or productKey for the device.
-        You can get this from the HA log when using tuya-local 2024.11.0 and later. Otherwise the same iot.tuya.com API functions that provide the local key or from `tinytuya scan` or other tools doing local discovery
+        You can get this from the HA log when using cloud assisted setup with tuya-local 2024.11.0 and later. Otherwise the same iot.tuya.com API functions that provide the local key or from `tinytuya scan` or other tools doing local discovery. **Do not provide your device id here, that is private info unique to your personal device.**
   - type: input
     id: productname
     attributes:
