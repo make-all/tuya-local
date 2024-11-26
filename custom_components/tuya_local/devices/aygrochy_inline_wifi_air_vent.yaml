@@ -1,0 +1,314 @@
+name: Aygrochy fan
+primary_entity:
+  entity: climate
+  dps:
+    - id: 2
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: "ON"
+          value: "ON"
+        - dps_val: "OFF"
+          value: "OFF"
+        - dps_val: "TIMER"
+          value: "TIMER"
+        - dps_val: "AUTO"
+          value: "AUTO"
+        - dps_val: "ALARM"
+          value: "ALARM"
+    - id: 8
+      readonly: true
+      name: current_humidity
+      type: integer
+      range:
+        min: 0
+        max: 255
+      unit: "%"
+    - id: 9
+      readonly: true
+      name: current_temperature
+      type: integer
+      range:
+        min: -40
+        max: 255
+      unit: "F"
+    - id: 106
+      name: target_temp_high
+      type: integer
+      range:
+        min: 32
+        max: 194
+      unit: "F"
+    - id: 107
+      name: humidity
+      type: integer
+      range:
+        min: 0
+        max: 100
+      unit: "%"
+
+secondary_entities:
+  - entity: fan
+    name: fan
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 102
+        name: speed
+        type: integer
+        range:
+          min: 0
+          max: 10
+  - entity: light
+    name: Backlight brightness
+    dps:
+      - id: 101
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 4
+  - entity: sensor
+    name: Current speed
+    dps:
+      - id: 103
+        name: sensor
+        readonly: true
+        type: number
+  - entity: number
+    name: Countdown timer
+    dps:
+      - id: 104
+        name: value
+        type: integer
+        unit: s
+        range:
+          min: 0
+          max: 36000
+  - entity: sensor
+    name: Alarm triggered
+    dps:
+      - id: 105
+        name: sensor
+        readonly: true
+        type: string
+  - entity: number
+    name: Auto-High Temp
+    dps:
+      - id: 106
+        name: value
+        class: temperature
+        type: integer
+        range:
+          min: 32
+          max: 194
+        unit: "F"
+  - entity: number
+    name: Auto-High Humid
+    dps:
+      - id: 107
+        name: value
+        class: humidity
+        type: integer
+        range:
+          min: 0
+          max: 100
+        unit: "%"
+  - entity: number
+    name: Auto-Low Temp
+    dps:
+      - id: 108
+        name: value
+        class: temperature
+        type: integer
+        range:
+          min: 32
+          max: 194
+        unit: "F"
+  - entity: number
+    name: Auto-Low Humid
+    dps:
+      - id: 109
+        name: value
+        class: humidity
+        type: integer
+        range:
+          min: 0
+          max: 100
+        unit: "%"
+  - entity: number
+    name: Alarm-High Temp
+    dps:
+      - id: 110
+        name: value
+        class: temperature
+        type: integer
+        range:
+          min: 32
+          max: 194
+        unit: "F"
+  - entity: number
+    name: Alarm-High Humid
+    dps:
+      - id: 111
+        name: value
+        class: humidity
+        type: integer
+        range:
+          min: 0
+          max: 100
+        unit: "%"
+  - entity: number
+    name: Alarm-Low Temp
+    dps:
+      - id: 112
+        name: value
+        class: temperature
+        type: integer
+        range:
+          min: 32
+          max: 194
+        unit: "F"
+  - entity: number
+    name: Alarm-Low Humid
+    dps:
+      - id: 113
+        name: value
+        class: humidity
+        type: integer
+        range:
+          min: 0
+          max: 100
+        unit: "%"
+  - entity: lock
+    name: Child lock
+    dps:
+      - id: 114
+        type: integer
+        name: lock
+  - entity: switch
+    name: Auto-High temp switch
+    dps:
+      - id: 116
+        type: integer
+        name: switch
+        mapping:
+          - dps_val: 0
+            value: true
+          - dps_val: 1
+            value: false
+  - entity: switch
+    name: Auto-High humid switch
+    dps:
+      - id: 117
+        type: integer
+        name: switch
+        mapping:
+          - dps_val: 0
+            value: true
+          - dps_val: 1
+            value: false
+  - entity: switch
+    name: Auto-Low temp switch
+    dps:
+      - id: 118
+        type: integer
+        name: switch
+        mapping:
+          - dps_val: 0
+            value: true
+          - dps_val: 1
+            value: false
+  - entity: switch
+    name: Auto-Low humid switch
+    dps:
+      - id: 119
+        type: integer
+        name: switch
+        mapping:
+          - dps_val: 0
+            value: true
+          - dps_val: 1
+            value: false
+  - entity: switch
+    name: Alarm-High temp switch
+    dps:
+      - id: 120
+        type: integer
+        name: switch
+        mapping:
+          - dps_val: 0
+            value: true
+          - dps_val: 1
+            value: false
+  - entity: switch
+    name: Alarm-High humid switch
+    dps:
+      - id: 121
+        type: integer
+        name: switch
+        mapping:
+          - dps_val: 0
+            value: true
+          - dps_val: 1
+            value: false
+  - entity: switch
+    name: Alarm-Low temp switch
+    dps:
+      - id: 122
+        type: integer
+        name: switch
+        mapping:
+          - dps_val: 0
+            value: true
+          - dps_val: 1
+            value: false
+  - entity: switch
+    name: Alarm-Low humid switch
+    dps:
+      - id: 123
+        type: integer
+        name: switch
+        mapping:
+          - dps_val: 0
+            value: true
+          - dps_val: 1
+            value: false
+  - entity: sensor
+    name: Auto triggered
+    dps:
+      - id: 126
+        name: sensor
+        readonly: true
+        type: string
+#"1":"Switch",
+#"2":"Work Mode",
+#"8":"Humidity",
+#"9":"Temperature",
+#"101":"Brightness",
+#"102":"Fan Speed Setting",
+#"103":"Running Speed",
+#"104":"Countdown",
+#"105":"Alarm triggered",
+#"106":"Auto-High Temp",
+#"107":"Auto-High Humid",
+#"108":"Auto-Low Temp",
+#"109":"Auto-Low Humid",
+#"110":"Alarm-High Temp",
+#"111":"Alarm-High Humid",
+#"112":"Alarm-Low Temp",
+#"113":"Alarm-Low Humid",
+#"114":"Child Lock",
+#"115":"Unit", (not yet implemented)
+#"116":"Auto-High temp switch",
+#"117":"Auto-High humid switch",
+#"118":"Auto-Low temp switch",
+#"119":"Auto-Low humid switch",
+#"120":"Alarm-High temp switch",
+#"121":"Alarm-High humid switch",
+#"122":"Alarm-Low temp switch",
+#"123":"Alarm-Low humid switch",
+#"124":"Temp calibration", (not yet implemented)
+#"125":"Humid calibration", (not yet implemented)
+#"126":"Auto triggered"
