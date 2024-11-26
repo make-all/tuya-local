@@ -129,7 +129,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
     @property
     def color_temp_kelvin(self):
         """Return the color temperature in kelvin."""
-        if self._color_temp_dps:
+        if self._color_temp_dps and self.color_mode != ColorMode.HS:
             return self._color_temp_dps.get_value(self._device)
 
     @property
