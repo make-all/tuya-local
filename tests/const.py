@@ -938,14 +938,6 @@ POIEMA_ONE_PURIFIER_PAYLOAD = {
     "19": 0,
 }
 
-ECOSTRAD_ACCENTIQ_HEATER_PAYLOAD = {
-    "1": True,
-    "2": 200,
-    "3": 195,
-    "10": 0,
-    "101": True,
-}
-
 ECOSTRAD_IQCERAMIC_RADIATOR_PAYLOAD = {
     "1": True,
     "2": "hot",

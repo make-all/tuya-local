@@ -599,7 +599,7 @@ class TuyaLocalDevice(object):
                     if self._api_working_protocol_failures == 1:
                         _LOGGER.error(error_message)
                     else:
-                        _LOGGER.debug(error_message)
+                        _LOGGER.info(error_message)
 
                 if not self._api_protocol_working:
                     await self._rotate_api_protocol_version()

@@ -503,11 +503,6 @@ class TuyaDpsConfig:
     def values(self, device):
         """Return the possible values a dps can take."""
         if "mapping" not in self._config.keys():
-            _LOGGER.debug(
-                "No mapping for dpid %s (%s), unable to determine valid values",
-                self.id,
-                self.name,
-            )
             return []
         val = []
         for m in self._config["mapping"]:
@@ -529,7 +524,6 @@ class TuyaDpsConfig:
 
             cond = self._active_condition(m, device)
             if cond and "mapping" in cond:
-                _LOGGER.debug("Considering conditional mappings")
                 c_val = []
                 for m2 in cond["mapping"]:
                     if self.should_show_mapping(m2, device):
@@ -541,16 +535,8 @@ class TuyaDpsConfig:
                             c_val = c_val + r_dps.values(device)
                 # if given, the conditional mapping is an override
                 if c_val:
-                    _LOGGER.debug(
-                        "Overriding %s values %s with %s",
-                        self.name,
-                        val,
-                        c_val,
-                    )
-
                     val = c_val
                     break
-        _LOGGER.debug("%s values: %s", self.name, val)
         return _remove_duplicates(val)
 
     @property
