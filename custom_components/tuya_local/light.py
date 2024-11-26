@@ -278,7 +278,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
     async def async_turn_on(self, **params):
         settings = {}
         color_mode = None
-
+        _LOGGER.debug("Light turn_on: %s", params)
         if self._color_mode_dps and ATTR_WHITE in params:
             if self.color_mode != ColorMode.WHITE:
                 color_mode = ColorMode.WHITE
