@@ -1,7 +1,7 @@
 name: Dehumidifier
-#products:
-#   - id: NONE_RETURNED
-#    name: Eeese Emil DYD-S12A431
+  # products:
+  #    - id: NONE_RETURNED
+  #     name: Eeese Emil DYD-S12A431
 primary_entity:
   entity: humidifier
   class: dehumidifier
@@ -74,15 +74,15 @@ secondary_entities:
                 invalid: true
           - dps_val: high
             value: 100
-  - entity: sensor
-    class: duration
-    category: diagnostic
-    translation_key: time_remaining
-    dps:
-      - id: 18
-        type: integer
-        name: sensor
-        unit: "s"
+  #  - entity: sensor
+  #    class: duration
+  #    category: diagnostic
+  #    translation_key: time_remaining
+  #    dps:
+  #      - id: 18
+  #        type: integer
+  #        name: sensor
+  #        unit: "s"
   - entity: binary_sensor
     translation_key: tank_full
     category: diagnostic
