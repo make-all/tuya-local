@@ -998,7 +998,7 @@ KYVOL_E30_VACUUM_PAYLOAD = {
     "10": False,
     "11": False,
     "12": False,
-    "13": False,
+    "13": False,
     "14": "3",
     "16": 0,
     "17": 0,
