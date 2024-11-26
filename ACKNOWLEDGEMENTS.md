@@ -755,3 +755,4 @@ Further device support has been made with the assistance of users. Please consid
 - [MigSo](https://github.com/MigSo) for contributing support for VTA+ Axial fan heater.
 - [Steefph](https://github.com/Steefph) for contributing support for EZAIoT thermostat smartplug.
 - [witulu](https://github.com/witulu) for contributing support for Airrobo P20 vacuum.
+- [Ladida1](https://github.com/Ladida1) for contributing support for Deltaco LED strip.
