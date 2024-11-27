@@ -261,6 +261,7 @@
 - Kogan bladeless fans
 - Mantra ceiling fan with light
 - New Widetech WPF-16SW5 7-speed pedestal fan
+- OmniBreeze DC2313R tower fan
 - Orison Chanfok Neo ceiling fan with light
 - Orison RGB ambient bladeless ceiling fan
 - Ovlaim ceiling fan with cool/warm white dimmable light
