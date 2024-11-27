@@ -95,27 +95,6 @@ secondary_entities:
             value: "°C"
             icon: "mdi:temperature-celsius"
             icon_priority: 2
-  - entity: sensor
-    translation_key: status
-    class: enum
-    category: diagnostic
-    dps:
-      - id: 20
-        type: bitfield
-        name: sensor
-        mapping:
-          - dps_val: 0
-            value: Normal
-            icon: "mdi:check-circle"
-            icon_priority: 2
-          - dps_val: E1
-            value: Fault E1
-            icon: "mdi:alert-circle"
-            icon_priority: 2
-          - dps_val: E2
-            value: Fault E2
-            icon: "mdi:alert-circle"
-            icon_priority: 2
   - entity: binary_sensor
     class: problem
     category: diagnostic
