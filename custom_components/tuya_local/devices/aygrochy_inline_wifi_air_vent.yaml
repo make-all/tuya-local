@@ -3,19 +3,21 @@ primary_entity:
   entity: climate
   dps:
     - id: 2
-      name: preset_mode
+      name: hvac_mode
       type: string
       mapping:
         - dps_val: "ON"
-          value: "ON"
+          value: "fan_only"
         - dps_val: "OFF"
-          value: "OFF"
+          value: "off"
         - dps_val: "TIMER"
-          value: "TIMER"
+          value: "auto"
+          hidden: true
         - dps_val: "AUTO"
-          value: "AUTO"
+          value: "auto"
         - dps_val: "ALARM"
-          value: "ALARM"
+          value: "fan_only"
+          hidden: true
     - id: 8
       readonly: true
       name: current_humidity
@@ -39,17 +41,16 @@ primary_entity:
         min: 32
         max: 194
       unit: "F"
-    - id: 107
-      name: humidity
+    - id: 108
+      name: target_temp_low
       type: integer
       range:
-        min: 0
-        max: 100
-      unit: "%"
+        min: 32
+        max: 194
+      unit: "F"
 
 secondary_entities:
   - entity: fan
-    name: fan
     dps:
       - id: 1
         name: switch
@@ -61,7 +62,7 @@ secondary_entities:
           min: 0
           max: 10
   - entity: light
-    name: Backlight brightness
+    translation_key: Backlight brightness
     dps:
       - id: 101
         name: brightness
@@ -82,10 +83,13 @@ secondary_entities:
       - id: 104
         name: value
         type: integer
-        unit: s
+        unit: min
         range:
           min: 0
           max: 36000
+        mapping:
+          - scale: 60
+            step: 60
   - entity: sensor
     name: Alarm triggered
     dps:
@@ -93,17 +97,7 @@ secondary_entities:
         name: sensor
         readonly: true
         type: string
-  - entity: number
-    name: Auto-High Temp
-    dps:
-      - id: 106
-        name: value
-        class: temperature
-        type: integer
-        range:
-          min: 32
-          max: 194
-        unit: "F"
+  # id 106 see primairy entity
   - entity: number
     name: Auto-High Humid
     dps:
@@ -115,17 +109,7 @@ secondary_entities:
           min: 0
           max: 100
         unit: "%"
-  - entity: number
-    name: Auto-Low Temp
-    dps:
-      - id: 108
-        name: value
-        class: temperature
-        type: integer
-        range:
-          min: 32
-          max: 194
-        unit: "F"
+  # id 108 see primairy entity
   - entity: number
     name: Auto-Low Humid
     dps:
@@ -282,33 +266,33 @@ secondary_entities:
         name: sensor
         readonly: true
         type: string
-#"1":"Switch",
-#"2":"Work Mode",
-#"8":"Humidity",
-#"9":"Temperature",
-#"101":"Brightness",
-#"102":"Fan Speed Setting",
-#"103":"Running Speed",
-#"104":"Countdown",
-#"105":"Alarm triggered",
-#"106":"Auto-High Temp",
-#"107":"Auto-High Humid",
-#"108":"Auto-Low Temp",
-#"109":"Auto-Low Humid",
-#"110":"Alarm-High Temp",
-#"111":"Alarm-High Humid",
-#"112":"Alarm-Low Temp",
-#"113":"Alarm-Low Humid",
-#"114":"Child Lock",
-#"115":"Unit", (not yet implemented)
-#"116":"Auto-High temp switch",
-#"117":"Auto-High humid switch",
-#"118":"Auto-Low temp switch",
-#"119":"Auto-Low humid switch",
-#"120":"Alarm-High temp switch",
-#"121":"Alarm-High humid switch",
-#"122":"Alarm-Low temp switch",
-#"123":"Alarm-Low humid switch",
-#"124":"Temp calibration", (not yet implemented)
-#"125":"Humid calibration", (not yet implemented)
-#"126":"Auto triggered"
+# "1":"Switch",
+# "2":"Work Mode",
+# "8":"Humidity",
+# "9":"Temperature",
+# "101":"Brightness",
+# "102":"Fan Speed Setting",
+# "103":"Running Speed",
+# "104":"Countdown",
+# "105":"Alarm triggered",
+# "106":"Auto-High Temp",
+# "107":"Auto-High Humid",
+# "108":"Auto-Low Temp",
+# "109":"Auto-Low Humid",
+# "110":"Alarm-High Temp",
+# "111":"Alarm-High Humid",
+# "112":"Alarm-Low Temp",
+# "113":"Alarm-Low Humid",
+# "114":"Child Lock",
+# "115":"Unit", (not yet implemented)
+# "116":"Auto-High temp switch",
+# "117":"Auto-High humid switch",
+# "118":"Auto-Low temp switch",
+# "119":"Auto-Low humid switch",
+# "120":"Alarm-High temp switch",
+# "121":"Alarm-High humid switch",
+# "122":"Alarm-Low temp switch",
+# "123":"Alarm-Low humid switch",
+# "124":"Temp calibration", (not yet implemented)
+# "125":"Humid calibration", (not yet implemented)
+# "126":"Auto triggered"
