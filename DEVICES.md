@@ -90,7 +90,7 @@
 - ElectriQ EcoSilent 12WAP
 - Fersk Vind 2
 - Fisher Summer air conditioner
-- Friedrich Uni-Fit Air Conditioner (models: UCT14A30, UCT12A30, UCT08B10A)
+- Friedrich Uni-Fit air conditioner (models: UCT14A30, UCT12A30, UCT08B10A)
 - Fujicool Yuzu heat pump
 - Idea Heating Belt (with CS1 USB dongle)
 - Inventor Comfort air conditioner
@@ -620,7 +620,7 @@ of device.
 - Newone WF39M dimmer smartplug
 - Nince RGB LED strip
 - Peteme recessed lighting
-- Richelieu Tunable White LED Puck Light (166142030)
+- Richelieu tunable white LED puck light (166142030)
 - Spa Electrics Iris pool light controller
 - Space Dog Music Lamp (works for Aurora Smart Galaxy Star)
 - Tampa Magnetic LED System CD-TY-WY05
