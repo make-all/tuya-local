@@ -1,10 +1,7 @@
-name: Air Conditioner
+name: Air conditioner
 products:
   - id: vfdma8hzkgpdkwlm
-    # https://www.friedrich.com/professional/products/uni-fit
-    # NB: Tuya calls this "Friedrich Window Unit" but these are
-    # through-the-wall units
-    name: Friedrich Uni-Fit Through-the-Wall AC (Models UCT14A30, UCT12A30)
+    name: Friedrich UCT14A30/UCT12A30
 primary_entity:
   entity: climate
   dps:
@@ -63,38 +60,23 @@ primary_entity:
         - dps_val: null
           value: comfort
           hidden: true
+    - id: 102
+      type: boolean
+      # not settable, and no known effect
+      name: info_temperature_unit
+      mapping:
+        - dps_val: true
+          value: °F
+        - dps_val: false
+          value: °C
 secondary_entities:
   - entity: switch
-    name: "Sleep Mode"
-    icon: "mdi:sleep"
     translation_key: sleep
     category: config
     dps:
       - id: 101
         type: boolean
         name: switch
-  - entity: sensor
-    # false is C, true is F
-    name: "Configured Temperature Unit"
-    icon: "mdi:thermometer"
-    category: diagnostic
-    class: enum
-    dps:
-      - id: 102
-        type: boolean
-        # for now a read-only diagnostic sensor as changing it is not respected
-        # by the firmware even though the DP is exposed
-        name: sensor
-        optional: true
-        mapping:
-          - dps_val: true
-            value: "°F"
-            icon: "mdi:temperature-fahrenheit"
-            icon_priority: 2
-          - dps_val: false
-            value: "°C"
-            icon: "mdi:temperature-celsius"
-            icon_priority: 2
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -104,10 +86,6 @@ secondary_entities:
         name: sensor
         mapping:
           - dps_val: 0
-            value: false
-          - dps_val: E1
-            value: false
-          - dps_val: E2
             value: false
           - value: true
       - id: 20
