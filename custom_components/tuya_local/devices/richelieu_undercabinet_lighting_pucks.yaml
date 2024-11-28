@@ -1,13 +1,7 @@
-name: Accent Lighting
+name: Accent lighting
 products:
   - id: bau7S9LJYvPgynWc
-    name: Richelieu Tunable White LED Puck Light (166142030)
-    # https://www.richelieu.com/us/en/category/lighting-solutions-and-accessori
-    # es/led-lighting-and-profiles/led/atom-tw-led-puck-light/1211903/sku-16614
-    # 2030
-    # with wifi module driver https://www.richelieu.com/us/en/category/lighting
-    # -solutions-and-accessories/transformers-and-power-supplies/cm4-xdtw-wi-fi
-    # -module-for-tunable-white-driver/1228665/sku-1650501TW
+    name: Richelieu tunable white LED puck light (166142030)
 primary_entity:
   entity: light
   dps:
@@ -68,9 +62,7 @@ primary_entity:
       name: color_temp
       type: integer
       range:
-        # 3000K (per online spec) but DP takes 0 - 100 unitless
         min: 0
-        # 5000K (per online spec) but DP takes 0 - 100 unitless
         max: 100
       mapping:
         - target_range:
