@@ -757,3 +757,4 @@ Further device support has been made with the assistance of users. Please consid
 - [witulu](https://github.com/witulu) for contributing support for Airrobo P20 vacuum.
 - [Ladida1](https://github.com/Ladida1) for contributing support for Deltaco LED strip.
 - [ncd7](https://github.com/ncd7) for contributing support for Friedrich Uni-fit air conditioners and Richelieu LED puck.
+- [blitzdose](https://github.com/blitzdose) for contributing support for Myuet ME82 thermostat.

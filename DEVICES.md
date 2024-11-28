@@ -203,6 +203,7 @@
 - Moes MS-103 temperature and humidity switch (partial functions, temperature only)
 - Moes WHT-009 thermostat
 - Multi Leaf DY-107 thermostat
+- Myuet ME82 thermostat
 - Nashone MTS-700-WB thermostat smartplug
 - Netmostat N-1 (RTAFN1) thermostat
 - Owon PCT513 thermostat
