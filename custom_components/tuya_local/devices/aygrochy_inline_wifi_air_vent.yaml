@@ -3,6 +3,20 @@ primary_entity:
   entity: climate
   dps:
     - id: 2
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: "ON"
+          value: "ON"
+        - dps_val: "OFF"
+          value: "OFF"
+        - dps_val: "TIMER"
+          value: "TIMER"
+        - dps_val: "AUTO"
+          value: "AUTO"
+        - dps_val: "ALARM"
+          value: "ALARM"
+    - id: 2
       name: hvac_mode
       type: string
       mapping:
