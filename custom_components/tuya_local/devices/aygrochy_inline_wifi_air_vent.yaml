@@ -33,7 +33,6 @@ primary_entity:
           value: "fan_only"
           hidden: true
     - id: 8
-      readonly: true
       name: current_humidity
       type: integer
       range:
@@ -41,7 +40,6 @@ primary_entity:
         max: 255
       unit: "%"
     - id: 9
-      readonly: true
       name: current_temperature
       type: integer
       range:
@@ -76,7 +74,7 @@ secondary_entities:
           min: 0
           max: 10
   - entity: light
-    translation_key: Backlight brightness
+    translation_key: backlight
     dps:
       - id: 101
         name: brightness
@@ -89,7 +87,6 @@ secondary_entities:
     dps:
       - id: 103
         name: sensor
-        readonly: true
         type: number
   - entity: number
     name: Countdown timer
@@ -109,7 +106,6 @@ secondary_entities:
     dps:
       - id: 105
         name: sensor
-        readonly: true
         type: string
   # id 106 see primairy entity
   - entity: number
@@ -278,7 +274,6 @@ secondary_entities:
     dps:
       - id: 126
         name: sensor
-        readonly: true
         type: string
 # "1":"Switch",
 # "2":"Work Mode",
