@@ -760,3 +760,4 @@ Further device support has been made with the assistance of users. Please consid
 - [blitzdose](https://github.com/blitzdose) for contributing support for Myuet ME82 thermostat.
 - [PipoCanaja](https://github.com/PipoCanaja) for contributing support for Eeese Emil dehumidifier.
 - [flapedriza](https://github.com/flapedriza) for contributing support for Viflykoo EM3390TF weather station.
+- [bwarden](https://github.com/bwarden) for contributing support for OmniBreeze tower fan.
