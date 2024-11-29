@@ -759,3 +759,4 @@ Further device support has been made with the assistance of users. Please consid
 - [ncd7](https://github.com/ncd7) for contributing support for Friedrich Uni-fit air conditioners and Richelieu LED puck.
 - [blitzdose](https://github.com/blitzdose) for contributing support for Myuet ME82 thermostat.
 - [PipoCanaja](https://github.com/PipoCanaja) for contributing support for Eeese Emil dehumidifier.
+- [flapedriza](https://github.com/flapedriza) for contributing support for Viflykoo EM3390TF weather station.
