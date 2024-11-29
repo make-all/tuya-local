@@ -294,6 +294,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                 _LOGGER.debug(f"Found: {local_device}")
                 self.__cloud_device["ip"] = local_device["ip"]
                 self.__cloud_device["version"] = local_device["version"]
+                self.__cloud_device["local_product_id"] = local_device["productKey"]
             else:
                 _LOGGER.warning(f"Could not find device: {self.__cloud_device['id']}")
             return await self.async_step_local()
@@ -378,6 +379,15 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                 self.__cloud_device["product_name"],
                 self.__cloud_device["product_id"],
             )
+            if (
+                self.__cloud_device["local_product_id"]
+                and self.__cloud_device["local_product_id"]
+                != self.__cloud_device["product_id"]
+            ):
+                _LOGGER.warning(
+                    "Local product id differs from cloud: %s",
+                    self.__cloud_device["local_product_id"],
+                )
             # try:
             #     self.init_cloud()
             #     model = await self.cloud.async_get_datamodel(
