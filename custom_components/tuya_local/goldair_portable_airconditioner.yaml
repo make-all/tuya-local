@@ -96,6 +96,13 @@ primary_entity:
         - value: false
     - id: 109
       type: bitfield
+      name: support_bothswing
+      mapping:
+        - dps_val: 3
+          value: true
+        - value: false
+    - id: 109
+      type: bitfield
       name: support_heat
       mapping:
         - dps_val: 8
@@ -126,10 +133,10 @@ primary_entity:
           conditions:
             - dps_val: "on"
               value: both
-              available: support_vswing
+              available: support_bothswing
             - dps_val: "off"
               value: horizontal
-              available: support_vswing
+              available: support_bothswing
         - dps_val: false
           value: "off"
           constraint: swing_1
