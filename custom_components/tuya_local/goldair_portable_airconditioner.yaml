@@ -1,7 +1,7 @@
-name: 4-in-1 Portable Air Conditioner
+name: Air conditioner
 products:
   - id: gylvqvz3p94i3zdn
-    name: Goldair Portable Air Conditioner
+    name: Goldair 4-in-1 portable
 primary_entity:
   entity: climate
   dps:
@@ -18,12 +18,11 @@ primary_entity:
               value: cool
             - dps_val: hot
               value: heat
+              available: support_heat
             - dps_val: wet
               value: dry
             - dps_val: wind
               value: fan_only
-            - dps_val: heat
-              value: heat
 
     - id: 2
       type: integer
@@ -31,12 +30,22 @@ primary_entity:
       range:
         min: 16
         max: 31
-      unit: C
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: 32
+              value_redirect: temp_set_f
+              range:
+                min: 60
+                max: 88
     - id: 3
       type: integer
       name: current_temperature
-      # 107, 108 listed as F temperatures in report, but not existing
-      # in log, and there is no temperature_unit dp to work with
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: 32
+              value_redirect: temp_cur_f
     - id: 4
       type: string
       name: mode
@@ -49,25 +58,88 @@ primary_entity:
           value: low
         - dps_val: med
           value: medium
+          available: support_3speed_fan
         - dps_val: high
           value: high
     - id: 15
       type: string
       name: swing_1
-    - id: 20
-      type: bitfield
-      name: fault_code
-    - id: 109
+    - id: 107
       type: integer
+      optional: true
+      name: temp_set_f
+      hidden: true
+      range:
+        min: 60
+        max: 88
+    - id: 108
+      type: integer
+      optional: true
+      name: temp_cur_f
+      hidden: true
+    - id: 109
+      type: bitfield
       name: feature_flags
+    - id: 109
+      type: bitfield
+      name: support_vswing
+      mapping:
+        - dps_val: 1
+          value: true
+        - value: false
+    - id: 109
+      type: bitfield
+      name: support_hswing
+      mapping:
+        - dps_val: 2
+          value: true
+        - value: false
+    - id: 109
+      type: bitfield
+      name: support_heat
+      mapping:
+        - dps_val: 8
+          value: true
+        - value: false
+    - id: 109
+      type: bitfield
+      name: support_3speed_fan
+      mapping:
+        - dps_val: 16
+          value: true
+        - value: false
+    - id: 109
+      type: bitfield
+      name: temperature_unit
+      mapping:
+        - dps_val: 32
+          value: F
+        - value: C
     - id: 110
       type: boolean
       name: swing_mode
       mapping:
         - dps_val: true
-          value: "vertical"
+          value: "on"
+          available: support_hswing
+          constraint: swing_1
+          conditions:
+            - dps_val: "on"
+              value: both
+              available: support_vswing
+            - dps_val: "off"
+              value: horizontal
+              available: support_vswing
         - dps_val: false
           value: "off"
+          constraint: swing_1
+          conditions:
+            - dps_val: "on"
+              value: vertical
+              available: support_vswing
+            - dps_val: "off"
+              value: "off"
+              available: support_vswing
 secondary_entities:
   - entity: switch
     translation_key: ionizer
@@ -77,6 +149,13 @@ secondary_entities:
       - id: 11
         type: boolean
         name: switch
+      - id: 109
+        type: bitfield
+        name: available
+        mapping:
+          - dps_val: 4
+            value: true
+          - value: false
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -87,7 +166,23 @@ secondary_entities:
         mapping:
           - dps_val: 0
             value: false
+          - dps_val: 4
+            value: false
           - value: true
+      - id: 20
+        type: bitfield
+        name: fault_code
+  - entity: binary_sensor
+    translation_key: tank_full
+    category: diagnostic
+    dps:
+      - id: 20
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 4
+            value: true
+          - value: false
   - entity: switch
     translation_key: sleep
     dps:
