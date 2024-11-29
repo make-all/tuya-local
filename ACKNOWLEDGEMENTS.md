@@ -761,3 +761,4 @@ Further device support has been made with the assistance of users. Please consid
 - [PipoCanaja](https://github.com/PipoCanaja) for contributing support for Eeese Emil dehumidifier.
 - [flapedriza](https://github.com/flapedriza) for contributing support for Viflykoo EM3390TF weather station.
 - [bwarden](https://github.com/bwarden) for contributing support for OmniBreeze tower fan.
+- [ASk1](https://github.com/ASk1) for assisting with support for Zemismart SPM01 zigbee energy meter.
