@@ -53,7 +53,6 @@ primary_entity:
           conditions:
             - dps_val: c
               value_redirect: temperature_in_c
-　　　　　　　 step: 5
     - id: 2
       name: temperature_in_c
       type: integer
@@ -106,15 +105,18 @@ primary_entity:
     - id: 123
       name: preset_mode
       type: hex
-      mask: "0001"
       mapping:
+        - mask: "0001"
         - dps_val: 0
           value: comfort
+          mask: "0001"
         - dps_val: 1
           value: eco
+          mask: "0001"
         - dps_val: null
           value: comfort
           hidden: true
+          mask: "0001"
     - id: 128
       name: style
       type: string
