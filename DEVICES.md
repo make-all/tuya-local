@@ -92,6 +92,7 @@
 - Fisher Summer air conditioner
 - Friedrich Uni-Fit air conditioner (models: UCT14A30, UCT12A30, UCT08B10A)
 - Fujicool Yuzu heat pump
+- Goldair GCPAC350W portable air conditioner
 - Idea Heating Belt (with CS1 USB dongle)
 - Inventor Comfort air conditioner
 - Inventor Leon (Tokens Legend series) air conditioner
