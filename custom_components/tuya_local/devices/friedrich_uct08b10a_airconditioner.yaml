@@ -53,7 +53,7 @@ primary_entity:
           conditions:
             - dps_val: c
               value_redirect: temperature_in_c
-　　　　　　　 step: 5
+              step: 5
     - id: 2
       name: temperature_in_c
       type: integer
@@ -90,7 +90,7 @@ primary_entity:
           value: medium
         - dps_val: high
           value: high
-        # the below are all duplicates of some of the above and don't change air speed
+        # the below are all duplicates of some of the above
         - dps_val: mute
           value: low
           hidden: true
@@ -135,12 +135,12 @@ secondary_entities:
         type: string
         name: switch
         mapping:
-            # IOT Tuya says these are the 4 values of the enum but only OFF and CHILD
-            # are supported by the firmware
-            # "off",
-            # "normal",
-            # "old",
-            # "child"
+          # IOT Tuya says these are the 4 values of the enum but only
+          #  OFF and CHILD are supported by the firmware
+          # "off",
+          # "normal",
+          # "old",
+          # "child"
           - dps_val: "child"
             value: true
           - dps_val: "off"
