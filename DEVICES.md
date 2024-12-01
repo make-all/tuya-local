@@ -701,6 +701,7 @@ of device.
 - MAMNV BR151 vacuum cleaner with mop
 - Medion S10 SW vacuum cleaner
 - Medion S20 SW vacuum cleaner with mop
+- Medion X10 SW vacuum cleaner with mop
 - Mellerware City Move vacuum cleaner
 - Neatsvor X600 vacuum cleaner
 - OPK K2 vacuum cleaner
