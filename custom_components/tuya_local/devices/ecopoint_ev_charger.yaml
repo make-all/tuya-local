@@ -148,9 +148,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: V
+        mask: "FFFF000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     name: Current A
     class: current
@@ -160,9 +160,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: A
+        mask: "0000FFFFFF000000"
         mapping:
-          - mask: "0000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: Power A
     class: power
@@ -172,9 +172,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: kW
+        mask: "0000000000FFFFFF"
         mapping:
-          - mask: "0000000000FFFFFF"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: Voltage B
     class: voltage
@@ -184,9 +184,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: V
+        mask: "FFFF000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     name: Current B
     class: current
@@ -196,9 +196,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: A
+        mask: "0000FFFFFF000000"
         mapping:
-          - mask: "0000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: Power B
     class: power
@@ -208,9 +208,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: kW
+        mask: "0000000000FFFFFF"
         mapping:
-          - mask: "0000000000FFFFFF"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: Voltage C
     class: voltage
@@ -220,9 +220,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: V
+        mask: "FFFF000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     name: Current C
     class: current
@@ -232,9 +232,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: A
+        mask: "0000FFFFFF000000"
         mapping:
-          - mask: "0000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: Power C
     class: power
@@ -244,9 +244,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: kW
+        mask: "0000000000FFFFFF"
         mapping:
-          - mask: "0000000000FFFFFF"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     class: temperature
     category: diagnostic
@@ -308,8 +308,7 @@ secondary_entities:
         name: sensor
         optional: true
         unit: s
-        mapping:
-          - mask: "0000FFFF"
+        mask: "0000FFFF"
   - entity: select
     name: Mode
     icon: "mdi:cogs"
@@ -338,9 +337,9 @@ secondary_entities:
         optional: true
         name: sensor
         unit: A
+        mask: "FFFF0000"
         mapping:
-          - mask: "FFFF0000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     name: Maximum current
     class: current
@@ -351,6 +350,6 @@ secondary_entities:
         optional: true
         name: sensor
         unit: A
+        mask: "0000FFFF"
         mapping:
-          - mask: "0000FFFF"
-            scale: 10
+          - scale: 10

@@ -44,8 +44,6 @@ CONDMAP_SCHEMA = vol.Schema(
         },
         vol.Optional("scale"): vol.Any(int, float),
         vol.Optional("step"): vol.Any(int, float),
-        vol.Optional("mask"): str,
-        vol.Optional("endianness"): str,
         vol.Optional("invert"): True,
         vol.Optional("unit"): str,
         vol.Optional("icon"): vol.Match(r"^mdi:"),
@@ -116,6 +114,8 @@ DP_SCHEMA = vol.Schema(
         vol.Optional("icon_priority"): int,
         vol.Optional("mapping"): [MAPPING_SCHEMA],
         vol.Optional("format"): [FORMAT_SCHEMA],
+        vol.Optional("mask"): str,
+        vol.Optional("endianness"): vol.In(["little"]),
     }
 )
 ENTITY_SCHEMA = vol.Schema(
@@ -735,9 +735,7 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
             "id": "1",
             "name": "test",
             "type": "hex",
-            "mapping": [
-                {"mask": "ff00"},
-            ],
+            "mask": "ff00",
         }
         mock_device = MagicMock()
         mock_device.get_property.return_value = "babe"
@@ -754,9 +752,7 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
             "id": "1",
             "name": "test",
             "type": "hex",
-            "mapping": [
-                {"mask": "ff00"},
-            ],
+            "mask": "ff00",
         }
         mock_device = MagicMock()
         mock_device.get_property.return_value = "babe"

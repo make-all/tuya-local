@@ -34,9 +34,9 @@ secondary_entities:
         type: base64
         unit: V
         optional: true
+        mask: "FFFF000000000000"
         mapping:
           - scale: 10
-            mask: "FFFF000000000000"
   - entity: sensor
     category: diagnostic
     name: Current A
@@ -47,9 +47,9 @@ secondary_entities:
         type: base64
         unit: A
         optional: true
+        mask: "0000FFFFFF000000"
         mapping:
           - scale: 1000
-            mask: "0000FFFFFF000000"
   - entity: sensor
     category: diagnostic
     name: Power A
@@ -60,9 +60,9 @@ secondary_entities:
         type: base64
         unit: kW
         optional: true
+        mask: "0000000000FFFFFF"
         mapping:
           - scale: 1000
-            mask: "0000000000FFFFFF"
   - entity: sensor
     category: diagnostic
     name: Voltage B
@@ -73,9 +73,9 @@ secondary_entities:
         type: base64
         unit: V
         optional: true
+        mask: "FFFF000000000000"
         mapping:
           - scale: 10
-            mask: "FFFF000000000000"
   - entity: sensor
     category: diagnostic
     name: Current B
@@ -86,9 +86,9 @@ secondary_entities:
         type: base64
         unit: A
         optional: true
+        mask: "0000FFFFFF000000"
         mapping:
           - scale: 1000
-            mask: "0000FFFFFF000000"
   - entity: sensor
     category: diagnostic
     name: Power B
@@ -99,9 +99,9 @@ secondary_entities:
         type: base64
         unit: kW
         optional: true
+        mask: "0000000000FFFFFF"
         mapping:
           - scale: 1000
-            mask: "0000000000FFFFFF"
   - entity: sensor
     category: diagnostic
     name: Voltage C
@@ -112,9 +112,9 @@ secondary_entities:
         type: base64
         unit: V
         optional: true
+        mask: "FFFF000000000000"
         mapping:
           - scale: 10
-            mask: "FFFF000000000000"
   - entity: sensor
     category: diagnostic
     name: Current C
@@ -125,9 +125,9 @@ secondary_entities:
         type: base64
         unit: A
         optional: true
+        mask: "0000FFFFFF000000"
         mapping:
           - scale: 1000
-            mask: "0000FFFFFF000000"
   - entity: sensor
     category: diagnostic
     name: Power C
@@ -138,9 +138,9 @@ secondary_entities:
         type: base64
         unit: kW
         optional: true
+        mask: "0000000000FFFFFF"
         mapping:
           - scale: 1000
-            mask: "0000000000FFFFFF"
   - entity: sensor
     class: power
     category: diagnostic

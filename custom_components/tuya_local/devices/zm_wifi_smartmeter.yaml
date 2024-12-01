@@ -30,9 +30,9 @@ secondary_entities:
         optional: true
         unit: V
         class: measurement
+        mask: "FFFF000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     class: current
     category: diagnostic
@@ -43,9 +43,9 @@ secondary_entities:
         optional: true
         unit: A
         class: measurement
+        mask: "0000FFFFFF000000"
         mapping:
-          - mask: "0000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     class: power
     category: diagnostic
@@ -56,9 +56,9 @@ secondary_entities:
         optional: true
         unit: kW
         class: measurement
+        mask: "0000000000FFFFFF"
         mapping:
-          - mask: "0000000000FFFFFF"
-            scale: 1000
+          - scale: 1000
   - entity: binary_sensor
     class: problem
     category: diagnostic

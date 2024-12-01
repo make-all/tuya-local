@@ -93,9 +93,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: V
+        mask: "FFFF0000000000"
         mapping:
-          - mask: "FFFF0000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     name: Current A
     class: current
@@ -105,9 +105,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: A
+        mask: "000000FFFF0000"
         mapping:
-          - mask: "000000FFFF0000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: Power A
     class: power
@@ -117,9 +117,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: kW
+        mask: "0000000000FFFF"
         mapping:
-          - mask: "0000000000FFFF"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: Voltage B
     class: voltage
@@ -129,9 +129,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: V
+        mask: "FFFF0000000000"
         mapping:
-          - mask: "FFFF0000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     name: Current B
     class: current
@@ -141,9 +141,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: A
+        mask: "000000FFFF0000"
         mapping:
-          - mask: "000000FFFF0000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: Power B
     class: power
@@ -153,9 +153,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: kW
+        mask: "0000000000FFFF"
         mapping:
-          - mask: "0000000000FFFF"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: Voltage C
     class: voltage
@@ -165,9 +165,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: V
+        mask: "FFFF0000000000"
         mapping:
-          - mask: "FFFF0000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     name: Current C
     class: current
@@ -177,9 +177,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: A
+        mask: "000000FFFF0000"
         mapping:
-          - mask: "000000FFFF0000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: Power C
     class: power
@@ -189,9 +189,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: kW
+        mask: "0000000000FFFF"
         mapping:
-          - mask: "0000000000FFFF"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: Schedule start
     icon: "mdi:battery-clock"
@@ -200,8 +200,7 @@ secondary_entities:
         type: base64
         name: sensor
         optional: true
-        mapping:
-          - mask: "FF00"
+        mask: "FF00"
   - entity: sensor
     name: Schedule stop
     icon: "mdi:battery-clock-outline"
@@ -210,8 +209,7 @@ secondary_entities:
         type: base64
         name: sensor
         optional: true
-        mapping:
-          - mask: "00FF"
+        mask: "00FF"
   - entity: switch
     icon: "mdi:ev-station"
     dps:

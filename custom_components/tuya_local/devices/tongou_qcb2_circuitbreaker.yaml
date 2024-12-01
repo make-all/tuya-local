@@ -31,9 +31,9 @@ secondary_entities:
         unit: V
         class: measurement
         optional: true
+        mask: "FFFF000000000000"
         mapping:
           - scale: 10
-            mask: "FFFF000000000000"
   - entity: sensor
     name: Current A
     class: current
@@ -45,9 +45,9 @@ secondary_entities:
         unit: A
         class: measurement
         optional: true
+        mask: "0000FFFFFF000000"
         mapping:
           - scale: 1000
-            mask: "0000FFFFFF000000"
   - entity: sensor
     name: Power A
     class: power
@@ -59,9 +59,9 @@ secondary_entities:
         unit: kW
         class: measurement
         optional: true
+        mask: "0000000000FFFFFF"
         mapping:
           - scale: 1000
-            mask: "0000000000FFFFFF"
   - entity: sensor
     name: Voltage B
     class: voltage
@@ -73,9 +73,9 @@ secondary_entities:
         unit: V
         class: measurement
         optional: true
+        mask: "FFFF000000000000"
         mapping:
           - scale: 10
-            mask: "FFFF000000000000"
   - entity: sensor
     name: Current B
     class: current
@@ -87,9 +87,9 @@ secondary_entities:
         unit: A
         class: measurement
         optional: true
+        mask: "0000FFFFFF000000"
         mapping:
           - scale: 1000
-            mask: "0000FFFFFF000000"
   - entity: sensor
     name: Power B
     class: power
@@ -101,9 +101,9 @@ secondary_entities:
         unit: kW
         class: measurement
         optional: true
+        mask: "0000000000FFFFFF"
         mapping:
           - scale: 1000
-            mask: "0000000000FFFFFF"
   - entity: sensor
     name: Voltage C
     class: voltage
@@ -115,9 +115,9 @@ secondary_entities:
         unit: V
         class: measurement
         optional: true
+        mask: "FFFF000000000000"
         mapping:
           - scale: 10
-            mask: "FFFF000000000000"
   - entity: sensor
     name: Current C
     class: current
@@ -129,9 +129,9 @@ secondary_entities:
         unit: A
         class: measurement
         optional: true
+        mask: "0000FFFFFF000000"
         mapping:
           - scale: 1000
-            mask: "0000FFFFFF000000"
   - entity: sensor
     name: Power C
     class: power
@@ -143,9 +143,9 @@ secondary_entities:
         unit: kW
         class: measurement
         optional: true
+        mask: "0000000000FFFFFF"
         mapping:
           - scale: 1000
-            mask: "0000000000FFFFFF"
   - entity: select
     name: Overvoltage action
     category: config

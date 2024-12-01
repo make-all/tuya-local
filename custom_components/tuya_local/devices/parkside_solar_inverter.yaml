@@ -55,9 +55,9 @@ secondary_entities:
         name: sensor
         unit: V
         force: true
+        mask: "FFFF00000000"
         mapping:
-          - mask: "FFFF00000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     name: DC current
     class: current
@@ -68,9 +68,9 @@ secondary_entities:
         name: sensor
         unit: A
         force: true
+        mask: "0000FFFF0000"
         mapping:
-          - mask: "0000FFFF0000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     name: AC voltage
     class: voltage
@@ -81,9 +81,9 @@ secondary_entities:
         name: sensor
         unit: V
         force: true
+        mask: "FFFF0000000000000000"
         mapping:
-          - mask: "FFFF0000000000000000"
-            scale: 10
+          - scale: 10
 
   - entity: switch
     name: Inverter switch

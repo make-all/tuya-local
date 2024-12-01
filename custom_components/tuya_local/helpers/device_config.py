@@ -410,27 +410,23 @@ class TuyaDpsConfig:
 
         return None
 
-    def mask(self, device):
-        mapping = self._find_map_for_dps(device.get_property(self.id))
-        if mapping:
-            mask = mapping.get("mask")
-            if mask:
-                return int(mask, 16)
+    @property
+    def mask(self):
+        mask = self._config.get("mask")
+        if mask:
+            return int(mask, 16)
 
-    def endianness(self, device):
-        mapping = self._find_map_for_dps(device.get_property(self.id))
-        if mapping:
-            endianness = mapping.get("endianness")
-            if endianness:
-                return endianness
-        return "big"
+    @property
+    def endianness(self):
+        endianness = self._config.get("endianness", "big")
+        return endianness
 
     def get_value(self, device):
         """Return the value of the dps from the given device."""
-        mask = self.mask(device)
+        mask = self.mask
         bytevalue = self.decoded_value(device)
         if mask and isinstance(bytevalue, bytes):
-            value = int.from_bytes(bytevalue, self.endianness(device))
+            value = int.from_bytes(bytevalue, self.endianness)
             scale = mask & (1 + ~mask)
             return self._map_from_dps((value & mask) // scale, device)
         else:
@@ -858,13 +854,11 @@ class TuyaDpsConfig:
 
         mapping = self._find_map_for_value(value, device)
         scale = self.scale(device)
-        mask = None
+        mask = self.mask
         if mapping:
             replaced = False
             redirect = mapping.get("value_redirect")
             invert = mapping.get("invert", False)
-            mask = mapping.get("mask")
-            endianness = mapping.get("endianness", "big")
             target_range = mapping.get("target_range")
             step = mapping.get("step")
             if not isinstance(step, Number):
@@ -974,12 +968,15 @@ class TuyaDpsConfig:
                 mn = r[0]
                 mx = r[1]
                 raise ValueError(f"{self.name} ({value}) must be between {mn} and {mx}")
+        if mask and isinstance(result, bool):
+            result = int(result)
 
         if mask and isinstance(result, Number):
             # mask is in hex, 2 digits/characters per byte
-            length = int(len(mask) / 2)
+            hex_mask = self._config.get("mask")
+            length = int(len(hex_mask) / 2)
             # Convert to int
-            mask = int(mask, 16)
+            endianness = self.endianness
             mask_scale = mask & (1 + ~mask)
             current_value = int.from_bytes(self.decoded_value(device), endianness)
             result = (current_value & ~mask) | (mask & int(result * mask_scale))

@@ -217,9 +217,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: V
+        mask: "FFFF000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     name: Phase A current
     class: current
@@ -229,9 +229,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: A
+        mask: "000000FFFF000000"
         mapping:
-          - mask: "000000FFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: Phase A power
     class: power
@@ -241,6 +241,6 @@ secondary_entities:
         name: sensor
         optional: true
         unit: kW
+        mask: "000000000000FFFF"
         mapping:
-          - mask: "000000000000FFFF"
-            scale: 1000
+          - scale: 1000
