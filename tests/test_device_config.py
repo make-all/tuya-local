@@ -534,6 +534,16 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
             optional = set()
             required = set()
             parsed = TuyaDeviceConfig(cfg)
+            products = parsed._config.get("products")
+            # Configs with a product list can be matched by product id
+            if products:
+                p_match = False
+                for p in products:
+                    if p.get("id"):
+                        p_match = True
+                if p_match:
+                    continue
+
             for entity in parsed.all_entities():
                 for dp in entity.dps():
                     if dp.optional:
