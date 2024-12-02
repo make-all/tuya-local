@@ -60,7 +60,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
 
         # Set min and max color temp
         if self._color_temp_dps:
-            m = self._color_temp_dps._find_map_for_dps(0)
+            m = self._color_temp_dps._find_map_for_dps(0, self._device)
             if m:
                 tr = m.get("target_range")
                 if tr:

@@ -509,12 +509,20 @@ class TuyaDpsConfig:
         settings = self.get_values_to_set(device, value)
         await device.async_set_properties(settings)
 
+    def mapping_available(self, mapping, device):
+        """Determine if this mapping should be available."""
+        if "available" in mapping:
+            avail_dp = self._entity.find_dps(mapping.get("available"))
+            if avail_dp:
+                return avail_dp.get_value(device)
+
+        return True
+
     def should_show_mapping(self, mapping, device):
         """Determine if this mapping should be shown in the list of values."""
         if "value" not in mapping or mapping.get("hidden", False):
             return False
-        avail_dp = self._entity.find_dps(mapping.get("available"))
-        return avail_dp.get_value(device) if avail_dp else True
+        return self.mapping_available(mapping, device)
 
     def values(self, device):
         """Return the possible values a dps can take."""
@@ -574,7 +582,7 @@ class TuyaDpsConfig:
     def range(self, device, scaled=True):
         """Return the range for this dps if configured."""
         scale = self.scale(device) if scaled else 1
-        mapping = self._find_map_for_dps(device.get_property(self.id))
+        mapping = self._find_map_for_dps(device.get_property(self.id), device)
         r = self._config.get("range")
         if mapping:
             _LOGGER.debug("Considering mapping for range of %s", self.name)
@@ -589,7 +597,7 @@ class TuyaDpsConfig:
 
     def scale(self, device):
         scale = 1
-        mapping = self._find_map_for_dps(device.get_property(self.id))
+        mapping = self._find_map_for_dps(device.get_property(self.id), device)
         if mapping:
             scale = mapping.get("scale", 1)
             cond = self._active_condition(mapping, device)
@@ -613,7 +621,7 @@ class TuyaDpsConfig:
     def step(self, device, scaled=True):
         step = 1
         scale = self.scale(device) if scaled else 1
-        mapping = self._find_map_for_dps(device.get_property(self.id))
+        mapping = self._find_map_for_dps(device.get_property(self.id), device)
         if mapping:
             _LOGGER.debug("Considering mapping for step of %s", self.name)
             step = mapping.get("step", 1)
@@ -657,9 +665,11 @@ class TuyaDpsConfig:
         """The state class of this measurement."""
         return self._config.get("class")
 
-    def _find_map_for_dps(self, value):
+    def _find_map_for_dps(self, value, device):
         default = None
         for m in self._config.get("mapping", {}):
+            if not self.mapping_available(m, device) and "conditions" not in m:
+                continue
             if "dps_val" not in m:
                 default = m
             elif self._match(m["dps_val"], value):
@@ -706,7 +716,7 @@ class TuyaDpsConfig:
         scale = self.scale(device)
         replaced = False
 
-        mapping = self._find_map_for_dps(val)
+        mapping = self._find_map_for_dps(val, device)
         if mapping:
             invert = mapping.get("invert", False)
             redirect = mapping.get("value_redirect")
@@ -847,6 +857,11 @@ class TuyaDpsConfig:
                 )
             )
             for cond in conditions:
+                avail_dp = cond.get("available")
+                if avail_dp:
+                    avail_dps = self._entity.find_dps(avail_dp)
+                    if avail_dps and not avail_dps.get_value(device):
+                        continue
                 if c_val is not None and (_equal_or_in(c_val, cond.get("dps_val"))):
                     c_match = cond
                 # Case where matching None, need extra checks to ensure we
@@ -1006,7 +1021,7 @@ class TuyaDpsConfig:
         return dps_map
 
     def icon_rule(self, device):
-        mapping = self._find_map_for_dps(device.get_property(self.id))
+        mapping = self._find_map_for_dps(device.get_property(self.id), device)
         icon = None
         priority = 100
         if mapping:
