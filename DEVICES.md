@@ -815,6 +815,7 @@ port and password.
 - Moes touchscreen control panel mini with IR remote and Bluetooth sigmesh hub
 - Universal remote control with temperature and humidity sensors
 - S11+ IR/RF remote controller
+- Universal remote controller (must match by product id - report yours if not listed and it uses dps 201 and 202 only)
 
 ### Valves
 

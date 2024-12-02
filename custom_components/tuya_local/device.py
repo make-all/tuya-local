@@ -61,6 +61,7 @@ class TuyaLocalDevice(object):
         self._name = name
         self._children = []
         self._force_dps = []
+        self._product_ids = []
         self._running = False
         self._shutdown_listener = None
         self._startup_listener = None
@@ -368,6 +369,9 @@ class TuyaLocalDevice(object):
         if self._api.parent:
             self._api.parent.set_socketPersistent(False)
 
+    def set_detected_product_id(self, product_id):
+        self._product_ids.append(product_id)
+
     async def async_possible_types(self):
         cached_state = self._get_cached_state()
         if len(cached_state) <= 1:
@@ -395,6 +399,7 @@ class TuyaLocalDevice(object):
         for matched in await self._hass.async_add_executor_job(
             possible_matches,
             cached_state,
+            self._product_ids,
         ):
             await asyncio.sleep(0)
             yield matched
@@ -404,7 +409,7 @@ class TuyaLocalDevice(object):
         best_quality = 0
         cached_state = self._get_cached_state()
         async for config in self.async_possible_types():
-            quality = config.match_quality(cached_state)
+            quality = config.match_quality(cached_state, self._product_ids)
             _LOGGER.info(
                 "%s considering %s with quality %s",
                 self.name,

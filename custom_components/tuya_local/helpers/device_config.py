@@ -141,7 +141,15 @@ class TuyaDeviceConfig:
         for e in self.secondary_entities():
             yield e
 
-    def matches(self, dps):
+    def matches(self, dps, product_ids):
+        """Determine whether this config matches the provided dps map or
+        product ids."""
+        product_match = False
+        if product_ids:
+            for p in self._config.get("products", []):
+                if p.get("id", "MISSING_ID!?!") in product_ids:
+                    product_match = True
+
         required_dps = self._get_required_dps()
 
         missing_dps = [dp for dp in required_dps if dp.id not in dps.keys()]
@@ -163,8 +171,14 @@ class TuyaDeviceConfig:
                 self.name,
                 [{dp.id: dp.type.__name__} for dp in incorrect_type_dps],
             )
+            if product_match:
+                _LOGGER.warning(
+                    "Product matches %s but dps mismatched",
+                    self.name,
+                )
+            return False
 
-        return len(missing_dps) == 0 and len(incorrect_type_dps) == 0
+        return product_match or len(missing_dps) == 0
 
     def _get_all_dps(self):
         all_dps_list = []
@@ -199,21 +213,27 @@ class TuyaDeviceConfig:
                 keys.remove(d.id)
         return True
 
-    def match_quality(self, dps):
-        """Determine the match quality for the provided dps map."""
+    def match_quality(self, dps, product_ids=None):
+        """Determine the match quality for the provided dps map and product ids."""
+        product_match = 0
+        if product_ids:
+            for p in self._config.get("products", []):
+                if p.get("id", "MISSING_ID!?!") in product_ids:
+                    product_match = 100
+
         keys = list(dps.keys())
         matched = []
         if "updated_at" in keys:
             keys.remove("updated_at")
         total = len(keys)
         if total < 1:
-            return 0
+            return product_match
 
         for e in self.all_entities():
             if not self._entity_match_analyse(e, keys, matched, dps):
                 return 0
 
-        return round((total - len(keys)) * 100 / total)
+        return product_match or round((total - len(keys)) * 100 / total)
 
 
 class TuyaEntityConfig:
@@ -1010,12 +1030,13 @@ def available_configs():
                 yield basename
 
 
-def possible_matches(dps):
-    """Return possible matching configs for a given set of dps values."""
+def possible_matches(dps, product_ids=None):
+    """Return possible matching configs for a given set of
+    dps values and product_ids."""
     for cfg in available_configs():
         parsed = TuyaDeviceConfig(cfg)
         try:
-            if parsed.matches(dps):
+            if parsed.matches(dps, product_ids):
                 yield parsed
         except TypeError:
             _LOGGER.error("Parse error in %s", cfg)
