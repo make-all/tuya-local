@@ -7,7 +7,6 @@ from homeassistant.components.climate.const import (
 )
 
 from ..const import GOLDAIR_PORTABLE_AIR_CONDITIONER_PAYLOAD
-from ..helpers import assert_device_properties_set
 from ..mixins.climate import TargetTemperatureTests
 from .base_device_tests import TuyaDeviceTestCase
 
