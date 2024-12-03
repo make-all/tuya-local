@@ -514,7 +514,7 @@ class TuyaDpsConfig:
         if "available" in mapping:
             avail_dp = self._entity.find_dps(mapping.get("available"))
             if avail_dp:
-                return avail_dp.get_value(device)
+                return avail_dp.get_value(device)
 
         return True
 
