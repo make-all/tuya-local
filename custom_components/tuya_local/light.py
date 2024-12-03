@@ -60,7 +60,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
 
         # Set min and max color temp
         if self._color_temp_dps:
-            m = self._color_temp_dps._find_map_for_dps(0)
+            m = self._color_temp_dps._find_map_for_dps(0, self._device)
             if m:
                 tr = m.get("target_range")
                 if tr:
@@ -172,7 +172,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
         if self._brightness_dps:
             r = self._brightness_dps.range(self._device)
             val = self._brightness_dps.get_value(self._device)
-            if r and val is not None:
+            if r and val:
                 val = color_util.value_to_brightness(r, val)
             return val
 

@@ -701,6 +701,7 @@ of device.
 - MAMNV BR151 vacuum cleaner with mop
 - Medion S10 SW vacuum cleaner
 - Medion S20 SW vacuum cleaner with mop
+- Medion X10 SW vacuum cleaner with mop
 - Mellerware City Move vacuum cleaner
 - Neatsvor X600 vacuum cleaner
 - OPK K2 vacuum cleaner
@@ -814,6 +815,7 @@ port and password.
 - Moes touchscreen control panel mini with IR remote and Bluetooth sigmesh hub
 - Universal remote control with temperature and humidity sensors
 - S11+ IR/RF remote controller
+- Universal remote controller (must match by product id - report yours if not listed and it uses dps 201 and 202 only)
 
 ### Valves
 
