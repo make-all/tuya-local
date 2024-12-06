@@ -1,6 +1,7 @@
 name: Moes thermostat and hydrostat
 products:
   - id: dlsdk5zvkuuhufpy
+    name: Moes MS-103
 primary_entity:
   entity: switch
   name: Main switch
@@ -14,7 +15,8 @@ primary_entity:
       name: cycle_time
     - id: 106
       type: string
-      name: unknown_106
+      # Probe type detection
+      name: sensor_dect
 secondary_entities:
   - entity: switch
     name: Switch 1
