@@ -667,9 +667,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
         if dev_id not in hass.data[DOMAIN]:
             raise HomeAssistantError("unknown device id")
 
-        device = hass.data[DOMAIN][dev_id]
-        # if not device.connected:
-        #     raise HomeAssistantError("not connected to device")
+        device = hass.data[DOMAIN][dev_id]["device"]
 
         await device.async_set_property(event.data[CONF_DP], event.data[CONF_VALUE])
 
