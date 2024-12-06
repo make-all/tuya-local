@@ -15,6 +15,10 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.exceptions import ConfigEntryNotReady
 from homeassistant.helpers.entity_registry import async_migrate_entries
 from homeassistant.util import slugify
+import homeassistant.helpers.config_validation as cv
+from homeassistant.exceptions import HomeAssistantError
+import voluptuous as vol
+
 
 from .const import (
     CONF_DEVICE_ID,
@@ -29,6 +33,18 @@ from .helpers.device_config import get_config
 
 _LOGGER = logging.getLogger(__name__)
 NOT_FOUND = "Configuration file for %s not found"
+
+CONF_DP = "dp"
+CONF_VALUE = "value"
+
+SERVICE_SET_DP = "set_dp"
+SERVICE_SET_DP_SCHEMA = vol.Schema(
+    {
+        vol.Required(CONF_DEVICE_ID): cv.string,
+        vol.Required(CONF_DP): int,
+        vol.Required(CONF_VALUE): object,
+    }
+)
 
 
 def replace_unique_ids(entity_entry, device_id, conf_file, replacements):
@@ -644,6 +660,22 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     await hass.config_entries.async_forward_entry_setups(entry, entities)
 
     entry.add_update_listener(async_update_entry)
+
+    async def _handle_set_dp(event):
+        """Handle set_dp service call."""
+        dev_id = event.data[CONF_DEVICE_ID]
+        if dev_id not in hass.data[DOMAIN]:
+            raise HomeAssistantError("unknown device id")
+
+        device = hass.data[DOMAIN][dev_id]
+        # if not device.connected:
+        #     raise HomeAssistantError("not connected to device")
+
+        await device.async_set_property(event.data[CONF_DP], event.data[CONF_VALUE])
+
+    hass.services.async_register(
+        DOMAIN, SERVICE_SET_DP, _handle_set_dp, schema=SERVICE_SET_DP_SCHEMA
+    )
 
     return True
 
