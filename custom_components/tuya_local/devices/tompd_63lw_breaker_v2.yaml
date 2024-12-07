@@ -56,9 +56,9 @@ secondary_entities:
         optional: true
         force: true
         unit: V
+        mask: "FFFF000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     name: Current
     class: current
@@ -70,9 +70,9 @@ secondary_entities:
         optional: true
         force: true
         unit: A
+        mask: "0000FFFFFF000000"
         mapping:
-          - mask: "0000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: Power
     class: power
@@ -84,9 +84,9 @@ secondary_entities:
         optional: true
         force: true
         unit: kW
+        mask: "0000000000FFFFFF"
         mapping:
-          - mask: "0000000000FFFFFF"
-            scale: 1000
+          - scale: 1000
   - entity: binary_sensor
     class: problem
     category: diagnostic
