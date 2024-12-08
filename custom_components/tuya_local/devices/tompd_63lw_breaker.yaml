@@ -4,8 +4,8 @@ products:
     name: TOMPD-63LW
   - id: psjg8ldomxnelfp5
     name: TOMZN-63A
-  - id: wcihaluccfsoayqa
-    name: TOMPD-63WIFI
+  - id: u0cxoxtfelys3ufx
+    name: TOMPD-63LW
 primary_entity:
   entity: switch
   icon: "mdi:fuse"
@@ -167,29 +167,44 @@ secondary_entities:
         type: bitfield
         name: fault_code
         optional: true
-  - entity: number
-    name: Voltage protection time
+  - entity: button
+    translation_key: factory_reset
     category: config
-    icon: "mdi:timer"
+    dps:
+      - id: 34
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Clear energy
+    class: restart
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: button
+        optional: true
+  - entity: sensor
+    class: power_factor
+    category: diagnostic
     dps:
       - id: 104
         type: integer
         optional: true
-        name: value
-        unit: s
-        range:
-          min: 1
-          max: 30
-  - entity: number
-    name: Voltage recovery time
-    category: config
-    icon: "mdi:timer"
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: frequency
+    category: diagnostic
     dps:
       - id: 105
         type: integer
         optional: true
-        name: value
-        unit: s
-        range:
-          min: 1
-          max: 500
+        name: sensor
+        unit: Hz
+        class: measurement
+        mapping:
+          - scale: 10
