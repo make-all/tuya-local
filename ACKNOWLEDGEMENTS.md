@@ -12,6 +12,7 @@ None of this would have been possible without some foundational discovery work t
 Further device support has been made with the assistance of users. Please consider contributing if you find a device that is not supported by gathering some information about the device's DPS ids and their values.
 
 - [etamtlosz](https://github.com/etamtlosz) and [KiLLeRRaT](https://github.com/KiLLeRRaT) for their support and dev work towards GECO and GPCV heaters.
+- [etamtlosz](https://github.com/etamtlosz) for contributing support for Tech Inc 3m neon strip.
 - [botts7](https://github.com/botts7) for support towards widening Kogan SmartPlug support.
 - [awaismun](https://github.com/awaismun) for assistance in supporting Andersson heaters.
 - [FeikoJoosten](https://github.com/FeikoJoosten) for development of support for Eurom Mon Soleil 600 heaters.
@@ -765,3 +766,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Nas-au](https://github.com/Nas-au) for assisting with support for Universal remote controllers.
 - [AlexK98](https://github.com/AlexK98) for contributing support for TOMPD-63-WIFI and variant of TOMPD-63LW energy meters, and improvements to Moes temperature humidity sensors.
 - [md1986](https://github.com/md1986) for contributing support for Morento HY4866-WF air purifier.
+- [TimPasquini](https://github.com/TimPasquini) for contributing support for Brizlabs string lights.

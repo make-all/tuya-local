@@ -590,6 +590,7 @@ of device.
 - A60 1800-2700K RGBWW light
 - Atomi smart color string light
 - Blitzwolf BW-LT31 LED strip
+- Brizlabs string lights
 - Calex S45 Clear E27 lightbulb
 - Deltaco LED Strip (SH-LW5M)
 - Deta/Arlec motion sensor lights (DET100HA/DET102HA/MAL315HA)
@@ -631,6 +632,7 @@ of device.
 - Space Dog Music Lamp (works for Aurora Smart Galaxy Star)
 - Tampa Magnetic LED System CD-TY-WY05
 - Teberno LED strip light (LGC-005 OEM3)
+- Tech Inc 3m neon strip
 - Treatlife outdoor dimmer with dual outlets
 - Ustellar UT99911 RGB monitor light bar
 - Xinled XLD-CL002 RGBCW lightbulb
