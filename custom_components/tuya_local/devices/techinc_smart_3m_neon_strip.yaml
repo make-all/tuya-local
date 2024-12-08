@@ -1,7 +1,7 @@
-name: Tech Inc 3m neon strip
+name: Light strip
 products:
   - id: szzsfdqcrqkczzfi
-    name: TI 3M neon light strip
+    name: Tech Inc 3m neon
 primary_entity:
   entity: light
   dps:
@@ -10,14 +10,10 @@ primary_entity:
       name: switch
     - id: 21
       type: string
-      name: color_mode
+      name: effect
       mapping:
         - dps_val: colour
-          value: hs
-        - dps_val: scene
-          value: Scene
-        - dps_val: music
-          value: Music
+          value: "off"
     - id: 22
       name: brightness
       type: integer
