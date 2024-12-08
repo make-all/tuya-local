@@ -1,4 +1,4 @@
-"""Tests for the switch entity."""
+"""Tests for multiple sensors encoded together in a single dp."""
 
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
@@ -35,21 +35,21 @@ class TestTOMPD63lw(MultiSensorTests, TuyaDeviceTestCase):
         self.setUpMultiSensors(
             [
                 {
-                    "name": "sensor_voltage_a",
+                    "name": "sensor_voltage",
                     "dps": PHASEA_DP,
                     "unit": UnitOfElectricPotential.VOLT,
                     "device_class": SensorDeviceClass.VOLTAGE,
                     "testdata": ("CPwAFGEAAu4=", 230.0),
                 },
                 {
-                    "name": "sensor_current_a",
+                    "name": "sensor_current",
                     "dps": PHASEA_DP,
                     "unit": UnitOfElectricCurrent.AMPERE,
                     "device_class": SensorDeviceClass.CURRENT,
                     "testdata": ("CPwAFGEAAu4=", 5.217),
                 },
                 {
-                    "name": "sensor_power_a",
+                    "name": "sensor_power",
                     "dps": PHASEA_DP,
                     "unit": UnitOfPower.KILO_WATT,
                     "device_class": SensorDeviceClass.POWER,
@@ -64,23 +64,25 @@ class TestTOMPD63lw(MultiSensorTests, TuyaDeviceTestCase):
                 "button_energy_reset",
                 "button_refresh_sensors",
                 "number_charge_energy",
+                "number_voltage_protection_time",
+                "number_voltage_recovery_time",
                 "sensor_balance_energy",
-                "sensor_current_a",
+                "sensor_current",
                 "sensor_leakage_current",
-                "sensor_power_a",
-                "sensor_voltage_a",
+                "sensor_power",
+                "sensor_voltage",
                 "switch_prepayment",
             ]
         )
 
     def test_phasea_encoding(self):
         self.dps[PHASEA_DP] = "CQQAFGkAAu4="
-        self.assertEqual(self.multiSensor["sensor_voltage_a"].native_value, 230.8)
-        self.assertEqual(self.multiSensor["sensor_current_a"].native_value, 5.225)
-        self.assertEqual(self.multiSensor["sensor_power_a"].native_value, 0.75)
+        self.assertEqual(self.multiSensor["sensor_voltage"].native_value, 230.8)
+        self.assertEqual(self.multiSensor["sensor_current"].native_value, 5.225)
+        self.assertEqual(self.multiSensor["sensor_power"].native_value, 0.75)
 
     def test_phasea_missing(self):
         self.dps[PHASEA_DP] = None
-        self.assertIsNone(self.multiSensor["sensor_voltage_a"].native_value)
-        self.assertIsNone(self.multiSensor["sensor_current_a"].native_value)
-        self.assertIsNone(self.multiSensor["sensor_power_a"].native_value)
+        self.assertIsNone(self.multiSensor["sensor_voltage"].native_value)
+        self.assertIsNone(self.multiSensor["sensor_current"].native_value)
+        self.assertIsNone(self.multiSensor["sensor_power"].native_value)
