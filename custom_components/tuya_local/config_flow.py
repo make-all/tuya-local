@@ -290,11 +290,11 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
             except OSError:
                 local_device = {"ip": None, "version": ""}
 
-            if local_device["ip"] is not None:
+            if local_device.get("ip"):
                 _LOGGER.debug(f"Found: {local_device}")
-                self.__cloud_device["ip"] = local_device["ip"]
-                self.__cloud_device["version"] = local_device["version"]
-                self.__cloud_device["local_product_id"] = local_device["productKey"]
+                self.__cloud_device["ip"] = local_device.get("ip")
+                self.__cloud_device["version"] = local_device.get("version")
+                self.__cloud_device["local_product_id"] = local_device.get("productKey")
             else:
                 _LOGGER.warning(f"Could not find device: {self.__cloud_device['id']}")
             return await self.async_step_local()
