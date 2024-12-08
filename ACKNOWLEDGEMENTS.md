@@ -767,3 +767,4 @@ Further device support has been made with the assistance of users. Please consid
 - [AlexK98](https://github.com/AlexK98) for contributing support for TOMPD-63-WIFI and variant of TOMPD-63LW energy meters, and improvements to Moes temperature humidity sensors.
 - [md1986](https://github.com/md1986) for contributing support for Morento HY4866-WF air purifier.
 - [TimPasquini](https://github.com/TimPasquini) for contributing support for Brizlabs string lights.
+- [darth-hp](https://github.com/darth-hp) for contributing support for Cecotec BigDry 4000 dehumidifier.
