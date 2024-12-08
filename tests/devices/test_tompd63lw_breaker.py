@@ -62,6 +62,7 @@ class TestTOMPD63lw(MultiSensorTests, TuyaDeviceTestCase):
                 "binary_sensor_problem",
                 "button_earth_leak_test",
                 "button_energy_reset",
+                "button_factory_reset",
                 "button_refresh_sensors",
                 "number_charge_energy",
                 "sensor_balance_energy",
