@@ -1,4 +1,4 @@
-name: BigDry 4000 Expert
+name: Dehumidifier
 products:
   - id: d44nan1uokr1hlwf
     name: Cecotec BigDry 4000 Expert
@@ -6,97 +6,52 @@ products:
 primary_entity:
   entity: humidifier
   class: dehumidifier
-  name: Dehumidifier
   dps:
     - id: 1
       name: switch
       type: boolean
     - id: 3
-      type: integer
+      type: string
       name: humidity
-      range:
-        min: 40
-        max: 80
+      mapping:
+        - dps_val: "40"
+          value: 40
+        - dps_val: "45"
+          value: 45
+        - dps_val: "50"
+          value: 50
+        - dps_val: "55"
+          value: 55
+        - dps_val: "60"
+          value: 60
+        - dps_val: "65"
+          value: 65
+        - dps_val: "70"
+          value: 70
+        - dps_val: "75"
+          value: 75
+        - dps_val: "80"
+          value: 80
     - id: 6
       name: current_humidity
       type: integer
-
+    - id: 4
+      type: string
+      name: mode
+      mapping:
+        - dps_val: low
+          value: eco
+        - dps_val: high
+          value: boost
 secondary_entities:
-  # This is twice to make it more prominent
-  - entity: switch
-    name: Power
-    dps:
-      - id: 1
-        type: boolean
-        name: switch
-  - entity: select
-    name: Humidity Target
-    dps:
-      - id: 3
-        type: string
-        name: option
-        mapping:
-          - dps_val: "40"
-            value: "40"
-          - dps_val: "45"
-            value: "45"
-          - dps_val: "50"
-            value: "50"
-          - dps_val: "55"
-            value: "55"
-          - dps_val: "60"
-            value: "60"
-          - dps_val: "65"
-            value: "65"
-          - dps_val: "70"
-            value: "70"
-          - dps_val: "75"
-            value: "75"
-          - dps_val: "80"
-            value: "80"
-  - entity: select
-    name: Fan Speed
-    dps:
-      - id: 4
-        type: string
-        name: option
-        mapping:
-          - dps_val: low
-            value: Low
-          - dps_val: high
-            value: High
   - entity: sensor
     class: temperature
-    name: Room Temperature
     dps:
       - id: 7
         name: sensor
         type: integer
         class: measurement
         unit: C
-      # - id: 24
-      #   name: unit
-      #   type: string
-      #   optional: true
-      #   mapping:
-      #     - dps_val: f
-      #       value: F
-      #     - value: C
-  # I was not able to get this really work
-  # - entity: select
-  #   translation_key: temperature_unit
-  #   category: config
-  #   dps:
-  #     - id: 24
-  #       type: string
-  #       name: option
-  #       optional: true
-  #       mapping:
-  #         - dps_val: c
-  #           value: celsius
-  #         - dps_val: f
-  #           value: fahrenheit
-  # The UV switch is a bit strange looking
   - entity: switch
     translation_key: uv_sterilization
     category: config
@@ -117,7 +72,6 @@ secondary_entities:
           - value: false
   - entity: binary_sensor
     class: problem
-    name: Problem Status
     dps:
       - id: 19
         type: bitfield
