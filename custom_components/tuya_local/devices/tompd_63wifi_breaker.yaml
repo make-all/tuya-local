@@ -1,9 +1,10 @@
-name: TOMPD-63WIFI
+name: Breaker energy meter
 products:
   - id: wcihaluccfsoayqa
     name: TOMPD-63WIFI
 primary_entity:
   entity: switch
+  icon: "mdi:fuse"
   dps:
     - id: 16
       name: switch
@@ -105,18 +106,8 @@ secondary_entities:
         type: bitfield
         name: fault_code
         optional: true
-  # does not work even if executed through Tuya App
-  # - entity: button
-  #   name: Factory reset
-  #   class: restart
-  #   category: config
-  #   dps:
-  #     - id: 34
-  #       type: boolean
-  #       name: button
-  #       optional: true
   - entity: number
-    name: O/U Voltage Protection Time
+    name: Voltage protection time
     category: config
     icon: "mdi:timer"
     dps:
@@ -128,7 +119,7 @@ secondary_entities:
           min: 1
           max: 30
   - entity: number
-    name: O/U Voltage Recovery Time
+    name: Voltage recovery time
     category: config
     icon: "mdi:timer"
     dps:
@@ -140,9 +131,8 @@ secondary_entities:
           min: 1
           max: 500
   - entity: sensor
-    name: Voltage
     class: voltage
-    # category: diagnostic
+    category: diagnostic
     dps:
       - id: 6
         type: base64
@@ -153,9 +143,8 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Current
     class: current
-    # category: diagnostic
+    category: diagnostic
     dps:
       - id: 6
         type: base64
@@ -166,9 +155,8 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Power
     class: power
-    # category: diagnostic
+    category: diagnostic
     dps:
       - id: 6
         type: base64
