@@ -768,3 +768,4 @@ Further device support has been made with the assistance of users. Please consid
 - [md1986](https://github.com/md1986) for contributing support for Morento HY4866-WF air purifier.
 - [TimPasquini](https://github.com/TimPasquini) for contributing support for Brizlabs string lights.
 - [darth-hp](https://github.com/darth-hp) for contributing support for Cecotec BigDry 4000 dehumidifier.
+- [circa1665](https://github.com/circa1665) for assisting with support for Mypin 6L video pet feeder.
