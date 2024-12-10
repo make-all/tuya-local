@@ -1,4 +1,4 @@
-# Home Assistant Tuya Local component - nero
+# Home Assistant Tuya Local component
 
 Please report any [issues](https://github.com/make-all/tuya-local/issues) and feel free to raise [pull requests](https://github.com/make-all/tuya-local/pulls).
 [Many others](https://github.com/make-all/tuya-local/blob/main/ACKNOWLEDGEMENTS.md) have contributed their help already.
