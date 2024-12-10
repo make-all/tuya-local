@@ -1,4 +1,11 @@
 name: Energy monitoring smartplug
+products:
+  - id: jdj6ccklup7btq3a
+    name: Tongou TO-Q-SY1-JWT
+  - id: w906qkrrhd3otiwd
+    name: Moes ME322
+  - id: ncwuazeo5y1pujun
+    name: STY-63TM
 primary_entity:
   entity: switch
   class: outlet
@@ -9,32 +16,23 @@ primary_entity:
     - id: 21
       type: integer
       name: test_bit
-    - id: 22
-      type: integer
-      name: voltage_calibration
-    - id: 23
-      type: integer
-      name: current_calibration
-    - id: 24
-      type: integer
-      name: power_calibration
-    - id: 25
-      type: integer
-      name: energy_calibration
-    - id: 26
-      type: bitfield
-      name: fault_code
-    - id: 41
-      type: boolean
-      name: unknown_41
+      optional: true
     - id: 42
       type: string
+      name: cycle_timer
+      optional: true
+    - id: 43
+      type: string
       name: random_timer
+      optional: true
+    - id: 44
+      type: string
+      name: inching
+      optional: true
 secondary_entities:
   - entity: number
     category: config
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     dps:
       - id: 9
         type: integer
@@ -48,52 +46,66 @@ secondary_entities:
             step: 60
   - entity: sensor
     category: diagnostic
-    class: energy
     name: Energy
     dps:
       - id: 17
         name: sensor
         type: integer
+        optional: true
         unit: Wh
-        class: total_increasing
+      - id: 25
+        type: integer
+        name: calibration
+        optional: true
   - entity: sensor
     category: diagnostic
     class: current
-    name: Current
     dps:
       - id: 18
         name: sensor
         type: integer
         class: measurement
+        force: true
         unit: mA
+      - id: 23
+        type: integer
+        name: calibration
+        optional: true
   - entity: sensor
     category: diagnostic
     class: power
-    name: Power
     dps:
       - id: 19
         name: sensor
         type: integer
         class: measurement
+        force: true
         unit: W
         mapping:
           - scale: 10
+      - id: 24
+        type: integer
+        name: calibration
+        optional: true
   - entity: sensor
     category: diagnostic
     class: voltage
-    name: Voltage
     dps:
       - id: 20
         name: sensor
         type: integer
         class: measurement
+        force: true
         unit: V
         mapping:
           - scale: 10
+      - id: 22
+        type: integer
+        name: calibration
+        optional: true
   - entity: binary_sensor
     class: problem
     category: diagnostic
-    name: Error
     dps:
       - id: 26
         type: bitfield
@@ -102,19 +114,68 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
+      - id: 26
+        type: bitfield
+        name: fault_code
   - entity: select
     category: config
-    name: Initial state
-    icon: "mdi:toggle-switch"
+    translation_key: initial_state
     dps:
       - id: 38
         type: string
         name: option
         mapping:
           - dps_val: "on"
-            value: "On"
+            value: "on"
           - dps_val: "off"
-            value: "Off"
+            value: "off"
           - dps_val: memory
-            value: "Last State"
-
+            value: memory
+  - entity: switch
+    name: Overcharge protection
+    category: config
+    dps:
+      - id: 39
+        type: boolean
+        name: switch
+        optional: true
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 41
+        type: boolean
+        name: lock
+  - entity: select
+    name: Light mode
+    icon: "mdi:television-ambient-light"
+    category: config
+    dps:
+      - id: 40
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: relay
+            value: State
+          - dps_val: pos
+            value: Position
+          - dps_val: "on"
+            value: "On"
+  - entity: binary_sensor
+    name: Online
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 66
+        type: boolean
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: offline
+            value: false
+          - dps_val: online
+            value: true
+          # if missing, assume online as we can reach it
+          - dps_val: null
+            value: true

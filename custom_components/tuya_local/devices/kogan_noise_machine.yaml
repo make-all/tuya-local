@@ -1,0 +1,33 @@
+name: Sleep aid
+products:
+  - id: d9tnlvjvlgwqr9ov
+    name: Kogan KAWHTNOSLPA
+primary_entity:
+  entity: switch
+  icon: "mdi:power-standby"
+  dps:
+    - id: 105
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: light
+    dps:
+      - id: 104
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 255
+  - entity: select
+    name: Volume
+    icon: "mdi:volume-high"
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: low
+            value: Low
+          - dps_val: high
+            value: High

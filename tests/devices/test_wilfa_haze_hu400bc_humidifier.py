@@ -1,12 +1,7 @@
-from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.humidifier import HumidifierEntityFeature
-from homeassistant.components.humidifier.const import (
-    MODE_AUTO,
-    MODE_NORMAL,
-)
+from homeassistant.components.humidifier.const import MODE_AUTO, MODE_NORMAL
 from homeassistant.components.sensor import SensorDeviceClass
-
-from homeassistant.const import PERCENTAGE, UnitOfTemperature
+from homeassistant.const import UnitOfTemperature
 
 from ..const import WILFA_HAZE_HUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -49,14 +44,13 @@ class TestWilfaHazeHumidifier(
         self.setUpForConfig(
             "wilfa_haze_hu400bc_humidifier.yaml", WILFA_HAZE_HUMIDIFIER_PAYLOAD
         )
-        self.subject = self.entities.get("humidifier")
+        self.subject = self.entities.get("humidifier_humidifier")
         self.fan = self.entities.get("fan")
         self.setUpSwitchable(SWITCH_DPS, self.subject)
         self.setUpBasicBinarySensor(
             ERROR_DPS,
-            self.entities.get("binary_sensor_tank"),
+            self.entities.get("binary_sensor_tank_empty"),
             testdata=(1, 0),
-            device_class=BinarySensorDeviceClass.PROBLEM,
         )
         self.setUpMultiLights(
             [
@@ -77,27 +71,27 @@ class TestWilfaHazeHumidifier(
                     "dps": TIMER_DPS,
                     "name": "select_timer",
                     "options": {
-                        "cancel": "Off",
-                        "1": "1 hour",
-                        "2": "2 hours",
-                        "3": "3 hours",
-                        "4": "4 hours",
-                        "5": "5 hours",
-                        "6": "6 hours",
-                        "7": "7 hours",
-                        "8": "8 hours",
-                        "9": "9 hours",
-                        "10": "10 hours",
-                        "11": "11 hours",
-                        "12": "12 hours",
+                        "cancel": "cancel",
+                        "1": "1h",
+                        "2": "2h",
+                        "3": "3h",
+                        "4": "4h",
+                        "5": "5h",
+                        "6": "6h",
+                        "7": "7h",
+                        "8": "8h",
+                        "9": "9h",
+                        "10": "10h",
+                        "11": "11h",
+                        "12": "12h",
                     },
                 },
                 {
                     "dps": UNIT_DPS,
                     "name": "select_temperature_unit",
                     "options": {
-                        "c": "Celsius",
-                        "f": "Fahrenheit",
+                        "c": "celsius",
+                        "f": "fahrenheit",
                     },
                 },
             ],
@@ -106,17 +100,10 @@ class TestWilfaHazeHumidifier(
             [
                 {
                     "dps": CURRENTTEMP_DPS,
-                    "name": "sensor_current_temperature",
+                    "name": "sensor_temperature",
                     "device_class": SensorDeviceClass.TEMPERATURE,
                     "state_class": "measurement",
                     "unit": UnitOfTemperature.CELSIUS,
-                },
-                {
-                    "dps": CURRENTHUMID_DPS,
-                    "name": "sensor_current_humidity",
-                    "device_class": SensorDeviceClass.HUMIDITY,
-                    "state_class": "measurement",
-                    "unit": PERCENTAGE,
                 },
             ]
         )
@@ -138,7 +125,8 @@ class TestWilfaHazeHumidifier(
         )
         self.mark_secondary(
             [
-                "binary_sensor_tank",
+                "binary_sensor_problem",
+                "binary_sensor_tank_empty",
                 "light_display",
                 "light_mood",
                 "select_temperature_unit",
@@ -194,8 +182,7 @@ class TestWilfaHazeHumidifier(
 
     def test_extra_state_attributes(self):
         self.dps[UNKNOWN20_DPS] = 20
-        self.dps[ERROR_DPS] = 22
         self.assertDictEqual(
             self.subject.extra_state_attributes,
-            {"unknown_20": 20, "error": 22},
+            {"unknown_20": 20},
         )

@@ -1,0 +1,297 @@
+name: Water quality
+products:
+  - id: layxxij0sdbrfmrf
+    name: pH-W218
+primary_entity:
+  entity: sensor
+  class: temperature
+  icon: "mdi:water-thermometer"
+  dps:
+    - id: 8
+      type: integer
+      name: sensor
+      class: measurement
+      mapping:
+        - scale: 10
+      unit: C
+secondary_entities:
+  - entity: sensor
+    name: pH
+    icon: "mdi:ph"
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+          - dps_val: 1500
+            value: null
+  - entity: sensor
+    name: Oxidation reduction potential
+    icon: "mdi:virus-off"
+    dps:
+      - id: 131
+        type: integer
+        name: sensor
+        class: measurement
+        unit: mV
+        optional: true
+  - entity: sensor
+    name: Electrical conductivity
+    icon: "mdi:omega"
+    dps:
+      - id: 116
+        type: integer
+        name: sensor
+        class: measurement
+        unit: µS/cm
+        optional: true
+  - entity: sensor
+    name: Total dissolved solids
+    icon: "mdi:water-opacity"
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        class: measurement
+        unit: ppm
+        optional: true
+  - entity: sensor
+    name: Salinity
+    icon: "mdi:shaker"
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        class: measurement
+        unit: ppm
+        optional: true
+  - entity: sensor
+    name: Specific gravity
+    icon: "mdi:weight"
+    dps:
+      - id: 126
+        type: integer
+        name: sensor
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Conductivity factor
+    icon: "mdi:omega"
+    dps:
+      - id: 136
+        type: integer
+        name: sensor
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 141
+        type: integer
+        name: sensor
+        class: measurement
+        unit: "%"
+  - entity: number
+    name: High temperature warning
+    category: config
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: C
+        optional: true
+        range:
+          min: 0
+          max: 50
+  - entity: number
+    name: Low temperature warning
+    category: config
+    icon: "mdi:thermometer-chevron-down"
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: C
+        optional: true
+        range:
+          min: 0
+          max: 50
+  - entity: number
+    name: High pH warning
+    category: config
+    icon: "mdi:ph"
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 0
+          max: 1500
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Low pH warning
+    category: config
+    icon: "mdi:ph"
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 0
+          max: 1500
+        mapping:
+          - scale: 100
+  - entity: number
+    name: High TDS warning
+    category: config
+    icon: "mdi:water-opacity"
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        unit: ppm
+        optional: true
+        range:
+          min: 0
+          max: 199999
+  - entity: number
+    name: Low TDS warning
+    category: config
+    icon: "mdi:water-opacity"
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        unit: ppm
+        optional: true
+        range:
+          min: 0
+          max: 199999
+  - entity: number
+    name: High EC warning
+    category: config
+    icon: "mdi:omega"
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        unit: µS/cm
+        optional: true
+        range:
+          min: 0
+          max: 199999
+  - entity: number
+    name: Low EC warning
+    category: config
+    icon: "mdi:omega"
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        unit: µS/cm
+        optional: true
+        range:
+          min: 0
+          max: 199999
+  - entity: number
+    name: High salinity warning
+    category: config
+    icon: "mdi:shaker"
+    dps:
+      - id: 122
+        type: integer
+        name: value
+        unit: ppm
+        optional: true
+        range:
+          min: 0
+          max: 199999
+  - entity: number
+    name: Low salinity warning
+    category: config
+    icon: "mdi:shaker"
+    dps:
+      - id: 123
+        type: integer
+        name: value
+        unit: ppm
+        optional: true
+        range:
+          min: 0
+          max: 199999
+  - entity: number
+    name: High ORP warning
+    category: config
+    icon: "mdi:virus-off"
+    dps:
+      - id: 132
+        type: integer
+        name: value
+        unit: mV
+        optional: true
+        range:
+          min: -2000
+          max: 2000
+  - entity: number
+    name: Low ORP warning
+    category: config
+    icon: "mdi:virus-off"
+    dps:
+      - id: 133
+        type: integer
+        name: value
+        unit: mV
+        optional: true
+        range:
+          min: -2000
+          max: 2000
+  - entity: number
+    name: High CF warning
+    category: config
+    icon: "mdi:omega"
+    dps:
+      - id: 137
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 0
+          max: 199999
+        mapping:
+          - scale: 100
+  - entity: number
+    name: High humidity warning
+    category: config
+    icon: "mdi:water-percent-alert"
+    dps:
+      - id: 142
+        type: integer
+        name: value
+        unit: "%"
+        optional: true
+        range:
+          min: 0
+          max: 100
+  - entity: number
+    name: Low humidity warning
+    category: config
+    icon: "mdi:water-percent-alert"
+    dps:
+      - id: 143
+        type: integer
+        name: value
+        unit: "%"
+        optional: true
+        range:
+          min: 0
+          max: 100

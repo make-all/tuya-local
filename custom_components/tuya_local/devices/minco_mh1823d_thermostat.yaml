@@ -1,6 +1,7 @@
 name: Minco MH-1823D thermostat
 primary_entity:
   entity: climate
+  translation_only_key: thermostat
   dps:
     - id: 1
       type: boolean
@@ -26,32 +27,15 @@ primary_entity:
         - dps_val: manual
           value: manual
         - dps_val: holiday
-          value: holiday
+          value: away
     - id: 3
       type: string
       name: hvac_action
       mapping:
         - dps_val: stop
-          icon: "mdi:thermometer-off"
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-              icon_priority: 1
-            - dps_val: true
-              value: idle
-              icon_priority: 3
+          value: idle
         - dps_val: start
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-              icon: "mdi:thermometer-off"
-              icon_priority: 1
-            - dps_val: true
-              value: heating
-              icon: "mdi:thermometer"
-              icon_priority: 3
+          value: heating
     - id: 12
       type: boolean
       name: unknown_12
@@ -123,8 +107,7 @@ secondary_entities:
           - dps_val: out
             value: External
   - entity: select
-    name: Temperature unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 19
@@ -132,11 +115,9 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: c
-            value: Celsius
-            icon: "mdi:temperature-celsius"
+            value: celsius
           - dps_val: f
-            value: Fahrenheit
-            icon: "mdi:temperature-fahrenheit"
+            value: fahrenheit
   - entity: number
     name: Calibration offset internal
     category: config
@@ -220,6 +201,7 @@ secondary_entities:
             value: F
   - entity: number
     category: config
+    class: temperature
     name: High temperature limit
     icon: "mdi:thermometer-alert"
     dps:
@@ -229,13 +211,14 @@ secondary_entities:
         range:
           min: 5
           max: 65
-        constraint: unit
-        conditions:
-          - dps_val: f
-            value_redirect: max_temp_f
-            range:
-              min: 41
-              max: 150
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: max_temp_f
+                range:
+                  min: 41
+                  max: 150
       - id: 107
         type: integer
         name: max_temp_f
@@ -296,21 +279,15 @@ secondary_entities:
           - dps_val: f
             value: F
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 5
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: switch
     category: config
-    name: Anti-frost
-    icon: "mdi:snowflake-melt"
+    translation_key: anti_frost
     dps:
       - id: 9
         type: boolean

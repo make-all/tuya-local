@@ -1,0 +1,71 @@
+name: Circuit breaker
+products:
+  - id: ine4hhapkgxonij1
+    name: EARU SW RCB
+  - id: aqktrdhlsw8q90dr
+    name: Zemismart SPM01-D2TW-ZM
+primary_entity:
+  entity: switch
+  icon: "mdi:fuse"
+  name: Fuse switch
+  dps:
+    - id: 16
+      name: switch
+      type: boolean
+    - id: 19
+      type: string
+      optional: true
+      name: breaker_id
+secondary_entities:
+  - entity: sensor
+    name: Total energy
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 1
+        type: integer
+        unit: kWh
+        class: total_increasing
+        name: sensor
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 6
+        optional: true
+        force: true
+        type: base64
+        unit: V
+        class: measurement
+        name: sensor
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 6
+        optional: true
+        force: true
+        type: base64
+        unit: A
+        name: sensor
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 6
+        optional: true
+        force: true
+        type: base64
+        unit: kW
+        name: sensor
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000

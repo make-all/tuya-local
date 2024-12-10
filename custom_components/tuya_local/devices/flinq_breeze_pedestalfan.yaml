@@ -1,0 +1,67 @@
+name: Pedestal fan
+# products:
+#   - id: unknown
+#     name: FlinQ Breeze
+primary_entity:
+  entity: fan
+  translation_only_key: fan_with_presets
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 2
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: normal
+          value: normal
+        - dps_val: nature
+          value: nature
+        - dps_val: sleep
+          value: sleep
+        - dps_val: eco
+          value: eco
+    - id: 3
+      name: speed
+      type: integer
+      range:
+        min: 1
+        max: 12
+    - id: 5
+      name: oscillate
+      type: boolean
+secondary_entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        class: measurement
+        unit: C
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 22
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0h"
+            value: "cancel"
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: "7h"
+            value: "7h"
+          - dps_val: "8h"
+            value: "8h"

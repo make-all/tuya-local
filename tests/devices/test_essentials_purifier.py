@@ -1,5 +1,5 @@
 """Tests for the essentials air purifier."""
-from homeassistant.components.button import ButtonDeviceClass
+
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
@@ -43,7 +43,6 @@ class TestEssentialsPurifier(
         self.setUpBasicButton(
             RESET_DP,
             self.entities.get("button_filter_reset"),
-            ButtonDeviceClass.RESTART,
         )
         self.setUpBasicLock(LOCK_DP, self.entities.get("lock_child_lock"))
         self.setUpMultiSelect(
@@ -61,10 +60,10 @@ class TestEssentialsPurifier(
                     "dps": TIMER_DP,
                     "name": "select_timer",
                     "options": {
-                        "cancel": "Off",
-                        "2h": "2 hours",
-                        "4h": "4 hours",
-                        "8h": "8 hours",
+                        "cancel": "cancel",
+                        "2h": "2h",
+                        "4h": "4h",
+                        "8h": "8h",
                     },
                 },
                 {
@@ -88,12 +87,13 @@ class TestEssentialsPurifier(
                 },
                 {
                     "dps": COUNTDOWN_DP,
-                    "name": "sensor_timer",
+                    "name": "sensor_time_remaining",
                     "unit": UnitOfTime.MINUTES,
+                    "device_class": SensorDeviceClass.DURATION,
                 },
                 {
                     "dps": PM25_DP,
-                    "name": "sensor_pm2_5",
+                    "name": "sensor_pm25",
                     "unit": CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
                     "device_class": SensorDeviceClass.PM25,
                     "state_class": "measurement",
@@ -112,11 +112,7 @@ class TestEssentialsPurifier(
                 },
                 {
                     "dps": UV_DP,
-                    "name": "switch_uv_disinfection",
-                },
-                {
-                    "dps": RESET_DP,
-                    "name": "switch_filter_reset",
+                    "name": "switch_uv_sterilization",
                 },
             ]
         )
@@ -126,9 +122,8 @@ class TestEssentialsPurifier(
                 "sensor_active_filter_life",
                 "lock_child_lock",
                 "select_light",
-                "switch_uv_disinfection",
-                "switch_filter_reset",
+                "switch_uv_sterilization",
                 "select_timer",
-                "sensor_timer",
+                "sensor_time_remaining",
             ]
         )

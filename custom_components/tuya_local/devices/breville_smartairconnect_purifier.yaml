@@ -1,0 +1,106 @@
+name: Breville Smart Air Connect Purifier
+products:
+  - id: tltdxtehttjbkjni
+primary_entity:
+  entity: fan
+  translation_only_key: fan_with_presets
+  icon: "mdi:air-purifier"
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 3
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: manual
+          value: normal
+        - dps_val: auto
+          value: smart
+    - id: 4
+      type: string
+      name: speed
+      mapping:
+        - dps_val: low
+          value: 33
+        - dps_val: mid
+          value: 66
+        - dps_val: high
+          value: 100
+secondary_entities:
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        name: sensor
+        class: measurement
+        type: integer
+        unit: ugm3
+  - entity: switch
+    name: Night mode
+    category: config
+    icon: "mdi:lightbulb-night"
+    dps:
+      - id: 8
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Micro shield
+    category: config
+    icon: "mdi:shield-bug"
+    dps:
+      - id: 9
+        name: switch
+        type: boolean
+  - entity: sensor
+    name: Filter days left
+    category: diagnostic
+    class: duration
+    icon: "mdi:air-filter"
+    dps:
+      - id: 16
+        name: sensor
+        type: integer
+        unit: d
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancle
+            value: cancel
+          - dps_val: "2"
+            value: "2h"
+          - dps_val: "4"
+            value: "4h"
+          - dps_val: "8"
+            value: "8h"
+  - entity: sensor
+    translation_key: time_remaining
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 20
+        name: sensor
+        type: integer
+        unit: min
+  - entity: sensor
+    name: Air quality
+    class: enum
+    icon: "mdi:air-filter"
+    dps:
+      - id: 22
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: "great"
+            value: "Great"
+          - dps_val: "good"
+            value: "Good"
+          - dps_val: "medium"
+            value: "Medium"
+          - dps_val: "severe"
+            value: "Severe"

@@ -1,13 +1,11 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
-from homeassistant.components.climate.const import (
-    ClimateEntityFeature,
-    HVACMode,
-)
-from homeassistant.const import UnitOfTemperature
+from homeassistant.components.climate.const import ClimateEntityFeature, HVACMode
+from homeassistant.components.number.const import NumberDeviceClass
+from homeassistant.const import PRECISION_TENTHS, UnitOfTemperature
 
 from ..const import BEOK_TR9B_PAYLOAD
-from ..mixins.climate import TargetTemperatureTests
 from ..mixins.binary_sensor import MultiBinarySensorTests
+from ..mixins.climate import TargetTemperatureTests
 from ..mixins.lock import BasicLockTests
 from ..mixins.number import MultiNumberTests
 from ..mixins.select import MultiSelectTests
@@ -71,8 +69,8 @@ class TestBeokTR9BThermostat(
                     "dps": UNIT_DPS,
                     "name": "select_temperature_unit",
                     "options": {
-                        "c": "Celsius",
-                        "f": "Fahrenheit",
+                        "c": "celsius",
+                        "f": "fahrenheit",
                     },
                 },
             ],
@@ -85,7 +83,7 @@ class TestBeokTR9BThermostat(
             [
                 {
                     "dps": ERROR_DPS,
-                    "name": "binary_sensor_error",
+                    "name": "binary_sensor_problem",
                     "device_class": BinarySensorDeviceClass.PROBLEM,
                     "testdata": (1, 0),
                 },
@@ -102,6 +100,7 @@ class TestBeokTR9BThermostat(
                 {
                     "dps": MINTEMP_DPS,
                     "name": "number_low_temperature_limit",
+                    "device_class": NumberDeviceClass.TEMPERATURE,
                     "min": 5.0,
                     "max": 1000.0,
                     "step": 1.0,
@@ -111,6 +110,7 @@ class TestBeokTR9BThermostat(
                 {
                     "dps": MAXTEMP_DPS,
                     "name": "number_high_temperature_limit",
+                    "device_class": NumberDeviceClass.TEMPERATURE,
                     "min": 5.0,
                     "max": 1000.0,
                     "step": 1.0,
@@ -121,7 +121,7 @@ class TestBeokTR9BThermostat(
         )
         self.mark_secondary(
             [
-                "binary_sensor_error",
+                "binary_sensor_problem",
                 "binary_sensor_valve",
                 "lock_child_lock",
                 "number_low_temperature_limit",
@@ -135,7 +135,9 @@ class TestBeokTR9BThermostat(
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            ClimateEntityFeature.TARGET_TEMPERATURE,
+            ClimateEntityFeature.TARGET_TEMPERATURE
+            | ClimateEntityFeature.TURN_OFF
+            | ClimateEntityFeature.TURN_ON,
         )
 
     def test_temperature_unit(self):
@@ -152,6 +154,9 @@ class TestBeokTR9BThermostat(
             UnitOfTemperature.FAHRENHEIT,
         )
         self.assertEqual(self.subject.target_temperature_step, 1.0)
+
+    def test_precision(self):
+        self.assertEqual(self.subject.precision, PRECISION_TENTHS)
 
     def test_current_temperature(self):
         self.dps[CURRENTTEMP_DPS] = 685
@@ -185,26 +190,26 @@ class TestBeokTR9BThermostat(
     async def test_set_target_temperature_fails_outside_valid_range(self):
         with self.assertRaisesRegex(
             ValueError,
-            f"temperature \\(4.5\\) must be between 5.0 and 1000.0",
+            "temperature \\(4.5\\) must be between 5.0 and 1000.0",
         ):
             await self.subject.async_set_target_temperature(4.5)
         with self.assertRaisesRegex(
             ValueError,
-            f"temperature \\(1001\\) must be between 5.0 and 1000.0",
+            "temperature \\(1001\\) must be between 5.0 and 1000.0",
         ):
             await self.subject.async_set_target_temperature(1001)
 
     def test_extra_state_attributes(self):
-        self.dps[ERROR_DPS] = 8
         self.dps[UNKNOWN101_DPS] = 101
         self.dps[UNKNOWN102_DPS] = 102
         self.assertDictEqual(
             self.subject.extra_state_attributes,
-            {"Error Code": 8, "unknown_101": 101, "unknown_102": 102},
+            {"unknown_101": 101, "unknown_102": 102},
         )
 
-    def test_icons(self):
-        self.dps[LOCK_DPS] = True
-        self.assertEqual(self.basicLock.icon, "mdi:hand-back-right-off")
-        self.dps[LOCK_DPS] = False
-        self.assertEqual(self.basicLock.icon, "mdi:hand-back-right")
+    def test_multi_bsensor_extra_state_attributes(self):
+        self.dps[ERROR_DPS] = 8
+        self.assertDictEqual(
+            self.multiBSensor["binary_sensor_problem"].extra_state_attributes,
+            {"fault_code": 8},
+        )

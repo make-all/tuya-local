@@ -1,14 +1,14 @@
 from homeassistant.components.climate.const import (
-    ClimateEntityFeature,
     FAN_AUTO,
     FAN_HIGH,
     FAN_LOW,
     FAN_MEDIUM,
-    HVACMode,
     PRESET_COMFORT,
     PRESET_ECO,
+    ClimateEntityFeature,
+    HVACMode,
 )
-from homeassistant.const import UnitOfTemperature
+from homeassistant.const import PRECISION_TENTHS, UnitOfTemperature
 
 from ..const import BECA_BAC002_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -63,11 +63,16 @@ class TestBecaBAC002Thermostat(
                 ClimateEntityFeature.FAN_MODE
                 | ClimateEntityFeature.PRESET_MODE
                 | ClimateEntityFeature.TARGET_TEMPERATURE
+                | ClimateEntityFeature.TURN_OFF
+                | ClimateEntityFeature.TURN_ON
             ),
         )
 
     def test_temperature_unit_returns_configured_temperature_unit(self):
         self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
+
+    def test_precision(self):
+        self.assertEqual(self.subject.precision, PRECISION_TENTHS)
 
     async def test_legacy_set_temperature_with_preset_mode(self):
         async with assert_device_properties_set(

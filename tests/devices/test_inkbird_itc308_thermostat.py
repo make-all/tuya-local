@@ -1,13 +1,9 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
-from homeassistant.components.climate.const import (
-    ClimateEntityFeature,
-    HVACAction,
-)
-from homeassistant.const import UnitOfTime, UnitOfTemperature
-
+from homeassistant.components.climate.const import ClimateEntityFeature, HVACAction
+from homeassistant.components.number.const import NumberDeviceClass
+from homeassistant.const import UnitOfTemperature, UnitOfTime
 
 from ..const import INKBIRD_ITC308_THERMOSTAT_PAYLOAD
-from ..helpers import assert_device_properties_set
 from ..mixins.binary_sensor import MultiBinarySensorTests
 from ..mixins.climate import TargetTemperatureTests
 from ..mixins.number import MultiNumberTests
@@ -56,8 +52,8 @@ class TestInkbirdITC308Thermostat(
             UNIT_DPS,
             self.entities.get("select_temperature_unit"),
             {
-                "C": "Celsius",
-                "F": "Fahrenheit",
+                "C": "celsius",
+                "F": "fahrenheit",
             },
         )
         self.setUpMultiBinarySensors(
@@ -78,7 +74,7 @@ class TestInkbirdITC308Thermostat(
                     "device_class": BinarySensorDeviceClass.PROBLEM,
                 },
                 {
-                    "name": "binary_sensor_error",
+                    "name": "binary_sensor_problem",
                     "dps": ERROR_DPS,
                     "device_class": BinarySensorDeviceClass.PROBLEM,
                     "testdata": (1, 0),
@@ -104,6 +100,7 @@ class TestInkbirdITC308Thermostat(
                 {
                     "name": "number_high_temperature_limit",
                     "dps": HIGH_THRES_DPS,
+                    "device_class": NumberDeviceClass.TEMPERATURE,
                     "scale": 10,
                     "step": 0.1,
                     "min": -50,
@@ -113,6 +110,7 @@ class TestInkbirdITC308Thermostat(
                 {
                     "name": "number_low_temperature_limit",
                     "dps": LOW_THRES_DPS,
+                    "device_class": NumberDeviceClass.TEMPERATURE,
                     "scale": 10,
                     "step": 0.1,
                     "min": -50,
@@ -145,7 +143,7 @@ class TestInkbirdITC308Thermostat(
                 "binary_sensor_high_temperature",
                 "binary_sensor_low_temperature",
                 "binary_sensor_sensor_fault",
-                "binary_sensor_error",
+                "binary_sensor_problem",
                 "number_calibration_offset",
                 "number_compressor_delay",
                 "number_high_temperature_limit",
@@ -189,7 +187,7 @@ class TestInkbirdITC308Thermostat(
         self.assertEqual(self.subject.icon, "mdi:thermometer-alert")
 
     def test_climate_hvac_modes(self):
-        self.assertEqual(self.subject.hvac_modes, [])
+        self.assertEqual(self.subject.hvac_modes, ["auto"])
 
     def test_current_temperature(self):
         self.dps[UNIT_DPS] = "C"
@@ -214,12 +212,9 @@ class TestInkbirdITC308Thermostat(
         self.dps[STATUS_DPS] = "3"
         self.assertEqual(self.subject.hvac_action, HVACAction.HEATING)
 
-    def test_extra_state_attributes(self):
-        self.dps[ERROR_DPS] = 12
-
+    def test_multi_bsensor_extra_state_attributes(self):
+        self.dps[ERROR_DPS] = 2
         self.assertDictEqual(
-            self.subject.extra_state_attributes,
-            {
-                "error": 12,
-            },
+            self.multiBSensor.get("binary_sensor_problem").extra_state_attributes,
+            {"fault_code": 2},
         )

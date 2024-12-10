@@ -1,0 +1,58 @@
+name: Air purifier
+products:
+  - id: t40kx2rdqjzjss4a
+    name: Lifubide X600
+primary_entity:
+  entity: fan
+  translation_only_key: fan_with_presets
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 3
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: auto
+          value: smart
+        - dps_val: sleep
+          value: sleep
+        - dps_val: manual
+          value: normal
+secondary_entities:
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code

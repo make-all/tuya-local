@@ -1,0 +1,444 @@
+name: Ambient light strip
+products:
+  - id: wwcrxa8jl4mj0jib
+    name: HDMI TV Lighting/65
+primary_entity:
+  entity: light
+  icon: "mdi:led-strip-variant"
+  dps:
+    - id: 20
+      type: boolean
+      name: switch
+    - id: 21
+      type: string
+      name: color_mode
+      mapping:
+        - dps_val: colour
+          value: hs
+        - dps_val: scene
+          value: Scene
+        - dps_val: music
+          value: Music
+    - id: 24
+      name: rgbhsv
+      type: hex
+      optional: true
+      format:
+        - name: h
+          bytes: 2
+          range:
+            min: 0
+            max: 360
+        - name: s
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+        - name: v
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+    - id: 27
+      name: music_data
+      type: hex
+      optional: true
+
+secondary_entities:
+  - entity: light
+    name: Screen sync
+    icon: "mdi:television-ambient-light"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        name: value
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 86400
+        unit: s
+
+  - entity: number
+    name: Upper lights
+    category: config
+    dps:
+      - id: 107
+        name: value
+        type: integer
+        optional: true
+        range:
+          min: 1
+          max: 8
+
+  - entity: number
+    name: Right lights
+    category: config
+    dps:
+      - id: 110
+        name: value
+        type: integer
+        optional: true
+        range:
+          min: 9
+          max: 16
+
+  - entity: number
+    name: Left lights
+    category: config
+    dps:
+      - id: 109
+        name: value
+        type: integer
+        optional: true
+        range:
+          min: 1
+          max: 8
+
+  - entity: number
+    name: Lower lights
+    category: config
+    dps:
+      - id: 108
+        name: value
+        type: integer
+        optional: true
+        range:
+          min: 9
+          max: 14
+
+  - entity: select
+    name: Screen brightness sync
+    category: config
+    dps:
+      - id: 112
+        name: option
+        type: string
+        optional: true
+        mapping:
+          - dps_val: "Strong"
+            value: Strong
+          - dps_val: "Medium"
+            value: Medium
+          - dps_val: "Weak"
+            value: Weak
+
+  - entity: select
+    name: Music brightness sync
+    category: config
+    dps:
+      - id: 111
+        name: option
+        type: string
+        optional: true
+        mapping:
+          - dps_val: "Strong"
+            value: Strong
+          - dps_val: "Medium"
+            value: Medium
+          - dps_val: "Weak"
+            value: Weak
+
+  - entity: select
+    name: Music style
+    category: config
+    dps:
+      - id: 52
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "AQEAA2QjAAAAZAAAZAB4ZADwZAA8ZAC0ZAEsZAAAAA=="
+            value: Rock
+          - dps_val: "AQEAAmQqAAAAZAAAUAB4UADwUAA8UAC0UAEsUAAAAA=="
+            value: Jazz
+          - dps_val: "AQEAEmQUAAAAZAAAZAB4ZADwZAA8ZAC0ZAEsZAAAAA=="
+            value: Classic
+          - dps_val: "AQEBAmQyAQAAZAAAZAB4ZADwZAA8ZAC0ZAEsZAAAAA=="
+            value: Scroll
+          - dps_val: "AQECAGQyAQAAZAAAZAB4ZADwZAA8ZAC0ZAEsZA=="
+            value: Energy
+          - dps_val: "AQEDEGQyAQAAZAAAZAB4ZADwZAA8ZAC0ZAEsZAAAAA=="
+            value: Spectrum
+
+  - entity: select
+    name: Paint color
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 61
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "AAIAFAAAAwCWA+g="
+            value: Color 1-1 Grullo
+          - dps_val: "AAIAFAAABQE2A+g="
+            value: Color 1-2 Burnished Brown
+          - dps_val: "AAIAFAAABQHqA+g="
+            value: Color 1-3 Middle Red Purple
+          - dps_val: "AAIAFAAABgKyA+g="
+            value: Color 1-4 Sweet Brown
+          - dps_val: "AAIAFAAACwOYA+g="
+            value: Color 1-5 Mordant Red 19
+          - dps_val: "AAIAFAAAEgCgA+g="
+            value: Color 2-1 Grullo
+          - dps_val: "AAIAFAAAEwFKA+g="
+            value: Color 2-2 Beaver
+          - dps_val: "AAIAFAAAEwH+A+g="
+            value: Color 2-3 Brown Sugar
+          - dps_val: "AAIAFAAAFALQA+g="
+            value: Color 2-4 Metallic Brown
+          - dps_val: "AAIAFAAAGQPoA+g="
+            value: Color 2-5 Brown
+          - dps_val: "AAIAFAAAIgCqA+g="
+            value: Color 3-1 Grullo
+          - dps_val: "AAIAFAAAIgFUA+g="
+            value: Color 3-2 Light Taupe
+          - dps_val: "AAIAFAAAJAISA+g="
+            value: Color 3-3 Metallic Bronze
+          - dps_val: "AAIAFAAAJQLuA+g="
+            value: Color 3-4 Gold
+          - dps_val: "AAIAFAAAKAPoA+g="
+            value: Color 3-5 Philippine Gold
+          - dps_val: "AAIAFAAAOACCA9Q="
+            value: Color 4-1 Grullo
+          - dps_val: "AAIAFAAAOQDSA9Q="
+            value: Color 4-2 Grullo
+          - dps_val: "AAIAFAAAOQGkA9Q="
+            value: Color 4-3 Olive Green
+          - dps_val: "AAIAFAAAOQJEA9Q="
+            value: Color 4-4 Brass
+          - dps_val: "AAIAFAAAOwLkA9Q="
+            value: Color 4-5 Light Gold
+          - dps_val: "AAIAFAAARAB4A9Q="
+            value: Color 5-1 Grullo
+          - dps_val: "AAIAFAAAQgEEA9Q="
+            value: Color 5-2 Artichoke
+          - dps_val: "AAIAFAAAQQGaA74="
+            value: Color 5-3 Moss Green
+          - dps_val: "AAIAFAAAQQJEA74="
+            value: Color 5-4 Citron
+          - dps_val: "AAIAFAAAQgMCA74="
+            value: Color 5-5 Apple Green
+          - dps_val: "AAIAFAAAYQBuA74="
+            value: Color 6-1 Morning Blue
+          - dps_val: "AAIAFAAAXADcA74="
+            value: Color 6-2 Artichoke
+          - dps_val: "AAIAFAAAXAFyA74="
+            value: Color 6-3 Russian Green
+          - dps_val: "AAIAFAAAXAImA74="
+            value: Color 6-4 Maximum Green
+          - dps_val: "AAIAFAAAXgKUA74="
+            value: Color 6-5 Sap Green
+          - dps_val: "AAIAFAAAxQDIA+g="
+            value: Color 7-1 Weldon Blue
+          - dps_val: "AAIAFAAAwgGkA+g="
+            value: Color 7-2 Cadet Blue
+          - dps_val: "AAIAFAAAwQKeA+g="
+            value: Color 7-3 Blue (Munsell)
+          - dps_val: "AAIAFAAAwQPoA+g="
+            value: Color 7-4 Celadon Blue
+          - dps_val: "AAIAFAAAwwPoA+g="
+            value: Color 7-5 Sea Blue
+          - dps_val: "AAIAFAAA2gCqA+g="
+            value: Color 8-1 Cool Grey
+          - dps_val: "AAIAFAAA2wFeA+g="
+            value: Color 8-2 Rackley
+          - dps_val: "AAIAFAAA2gImA+g="
+            value: Color 8-3 Blue Yonder
+          - dps_val: "AAIAFAAA2AMCA+g="
+            value: Color 8-4 Medium Persian Blue
+          - dps_val: "AAIAFAAA2QPoA+g="
+            value: Color 8-5 Cobalt Blue
+          - dps_val: "AAIAFAABAQDSA+g="
+            value: Color 9-1 Deep Amethyst
+          - dps_val: "AAIAFAABAwHCA+g="
+            value: Color 9-2 Royal Purple
+          - dps_val: "AAIAFAABAwKyA+g="
+            value: Color 9-3 Grape
+          - dps_val: "AAIAFAAA/wMgA+g="
+            value: Color 9-4 Blue (Pigment)
+          - dps_val: "AAIAFAABAgMqA+g="
+            value: Color 9-5 Persian Indigo
+          - dps_val: "AAIAFAABGwDIA+g="
+            value: Color 10-1 Deep Amethyst
+          - dps_val: "AAIAFAABHAGuA+g="
+            value: Color 10-2 Purpureus
+          - dps_val: "AAIAFAABHQKUA+g="
+            value: Color 10-3 Purpureus
+          - dps_val: "AAIAFAABGwMCA+g="
+            value: Color 10-4 Violet (RYB)
+          - dps_val: "AAIAFAABHQMMA+g="
+            value: Color 10-5 Chinese Purple
+          - dps_val: "AAIAFAABUwCWA+g="
+            value: Color 11-1 English Lavender
+          - dps_val: "AAIAFAABUwFKA+g="
+            value: Color 11-2 Turkish Rose
+          - dps_val: "AAIAFAABUgKKA+g="
+            value: Color 11-3 Maroon (X11)
+          - dps_val: "AAIAFAABUgNmA+g="
+            value: Color 11-4 Rose Garnet
+          - dps_val: "AAIAFAABUwPUA+g="
+            value: Color 11-5 Pink Raspberry
+
+  - entity: select
+    name: Combination color
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 61
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "AAMAFAABUwFIA70BUgKLA+gBUgNrA+gBUwPQA9g="
+            value: Combination Color 1
+          - dps_val: "AAMAFAABHAGpA+QBHAGpA+QA2wFZA+gAwgGhA9w="
+            value: Combination Color 2
+          - dps_val: "AAMAFAAA2QPoA+ABAgMpAroBUwPQA9gAOwLoA+Q="
+            value: Combination Color 3
+          - dps_val: "AAMAFAAABgKtA+QAJQLwA+QAQQJBA6kAwQPkA9w="
+            value: Combination Color 4
+          - dps_val: "AAMAFAAAxQDMA+gAwgGhA9wAwQKjA9wAwQPkA9w="
+            value: Combination Color 5
+          - dps_val: "AAMAFAAAXgKSAt0AXAImAzsAXAFzA2MAQgEDA8k="
+            value: Combination Color 6
+          - dps_val: "AAMAFAAAXgKSAt0AQgL/A50AKAPkA+gAGQPoA+g="
+            value: Combination Color 7
+          - dps_val: "AAMAFAAACwOWA+gAGQPoA+gAKAPkA+gAXgKSAt0="
+            value: Combination Color 8
+          - dps_val: "AAMAFAABAgMpAroA2QPoA+ABGwMCA7kAOQJEA+g="
+            value: Combination Color 9
+          - dps_val: "AAMAFAABAwHBA+QBAwKwA+AA/wMcA5oBAgMpAro="
+            value: Combination Color 10
+          - dps_val: "AAMAFAAAKAPkA+gAJQLwA+QAJAITA+QAIgFTA+Q="
+            value: Combination Color 11
+          - dps_val: "AAMAFAAAKAPkA+gAwQPkA9wA/wMcA5oACwOWA+g="
+            value: Combination Color 12
+          - dps_val: "AAMAFAAAXAFzA2MAwQKjA9wAwQPkA9wBAwKwA+A="
+            value: Combination Color 13
+          - dps_val: "AAMAFAABHQMJAuEBUgKLA+gBUwPQA9gAGQPoA+gAOwLoA+Q="
+            value: Combination Color 14
+          - dps_val: "AAMAFAABAgMpAroA/wMcA5oBAwKwA+ABAwHBA+QBAQDRA+Q="
+            value: Combination Color 15
+          - dps_val: "AAMAFAAAAAItA+gAAAKtA+QAAAMEA+QAAANLA+gAAAPoA+g="
+            value: Combination Color 16
+          - dps_val: "AAMAFAAA2QPoA+AA2gIhA+gAJAITA+QAKAPkA+gAGQPoA+g="
+            value: Combination Color 17
+          - dps_val: "AAMAFAABHAGpA+QAOQJEA+gAXAImAzsAwQKjA9wBAwHBA+Q="
+            value: Combination Color 18
+          - dps_val: "AAMAFAAA2AMDA+AA/wMcA5oBYgPQA9gAGQPoA+gAKAPkA+g="
+            value: Combination Color 19
+          - dps_val: "AAMAFAAAXgKSAt0AXAImAzsAXAFzA2MAQgL/A50AQQGZA7U="
+            value: Combination Color 20
+          - dps_val: "AAMAFAAAwQKjA9wAJQLwA+QAGQPoA+gBHQKRA+QBHQMJAuE="
+            value: Combination Color 21
+          - dps_val: "AAMAFAABVgEvA9gBTwHEA9QBUgKbA9ABXgJ3A9ABaALDA9AAAQPkA80="
+            value: Combination Color 22
+
+  - entity: select
+    name: Dreamlight scene
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 51
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "ARUKUlLgAABkAMFhALQwALVSAMRj"
+            value: Iceland blue
+          - dps_val: "ARYKZGRgAABkAJJfAMZg"
+            value: Glacier express
+          - dps_val: "ARcDXl5gAABkADgvAB5cANVFARpk"
+            value: Sea of clouds
+          - dps_val: "ARgDZGTgAABkALI5AQpkAS1kAT9k"
+            value: Fireworks at sea
+          - dps_val: "ARkKVFRgAABkALEsAMBk"
+            value: Hut in the snow
+          - dps_val: "ARoDS0vgAABkAOA5AQlT"
+            value: Firefly night
+          - dps_val: "ARsDX19gAABkAK45AMRdAPlk"
+            value: Northland
+          - dps_val: "ARwKWlrgAABSAJ1kAI5k"
+            value: Grassland
+          - dps_val: "AR0DUlLgAABkAK5kAKZkAMFkAMxk"
+            value: Northern lights
+          - dps_val: "AR4KUlLgAABkABlkACJeACxbABRkAAxk"
+            value: Late autumn
+          - dps_val: "AUcFTU0AAABkAQNFAMFD"
+            value: Dream meteor
+          - dps_val: "AUgGMjIAAABkAU5BAB9J"
+            value: Early spring
+          - dps_val: "AUkHDg4AAABkANo3AVJBAFw3"
+            value: Spring outing
+          - dps_val: "AUoIMjIAAABkAPdQAClPAQ04AKMn"
+            value: Night service
+          - dps_val: "AUsJMjIAAABkAQNFAEE6ACVLAF5C"
+            value: Wind chime
+          - dps_val: "AUwMMjIAAABkANhNAMFDAQNFAFw3"
+            value: City lights
+          - dps_val: "AU0NMjIAAABkAChkAF5CAMFkAP9Q"
+            value: Color marbles
+          - dps_val: "AU4OMjIAAABkAD5fAL5c"
+            value: Summer train
+          - dps_val: "AU8PGRkAAABkALxkAC1OAABkAGQ8"
+            value: Christmas eve
+          - dps_val: "AVAQMjIAAABkAOZHAGQ8ARlNALg5"
+            value: Dream sea
+          - dps_val: "AR8CX19gAABkARBkANJkAK1kAItk"
+            value: Game
+          - dps_val: "ASAKVVVgAABkAMJYAT4zAP9GAR1k"
+            value: Holiday
+          - dps_val: "ASEDPDxgAABkAL8YAQQX"
+            value: Work
+          - dps_val: "ASIEZGRgAABkANdcALxTADceACw/AWE/"
+            value: Party
+          - dps_val: "ASMCZGRgAABkAQhLALEvAM1X"
+            value: Trend
+          - dps_val: "ASQKS0tgAABkALwmANZVARhkAPlN"
+            value: Sport
+          - dps_val: "ASUDQ0NgAABkALc1AJtUAM1h"
+            value: Meditation
+          - dps_val: "ASYBWVngAABkARlHAUk9AM1hACZk"
+            value: Dating
+          - dps_val: "ASkCYWHgAABkAAtkANlkACtkAJFkALlk"
+            value: Christmas
+          - dps_val: "ASoBZGRgAABkARVkAQVkAUVkAS9k"
+            value: Valentine's day
+          - dps_val: "ASsDWlrgAABkAABXARZkANpkALNkAJVk"
+            value: Halloween
+          - dps_val: "ASwKSEhgAABkAD1kAQxbALpJABdh"
+            value: Thanksgiving day
+          - dps_val: "AS0CWVlgAABkAJxjALxiAHtg"
+            value: Forest day
+          - dps_val: "AS4DWlpgAABkAT42AQxWAR8j"
+            value: Mother's day
+          - dps_val: "AS8CZGTgAABkANxCALZKAOFN"
+            value: Father's day
+          - dps_val: "ATACXl5gAABkAABkAHhkALtk"
+            value: Football day
+          - dps_val: "ATMDUlJgAABkAIhQANI5APsn"
+            value: Summer idyll
+          - dps_val: "ATQDXV1gAABkAPc2ATUrAMY0AJEp"
+            value: Dream of the sea
+          - dps_val: "ATUDUlJgAABNARJiATBd"
+            value: Love and dream
+          - dps_val: "ATYCSUlgAABkAGY8ADxJAB5k"
+            value: Spring fishing
+          - dps_val: "ATcKWlpgAABkADNYABhkAQBFAONeAKww"
+            value: Neon world
+          - dps_val: "ATgCV1fgAABkAQxkARpBAUdZABVkADw4"
+            value: Dreamland
+          - dps_val: "ATkCV1fgAABkAQxkARpBAUdZABVkADw4"
+            value: Summer wind
+          - dps_val: "AToCXV3gAABNALReARxkAOhJAMZf"
+            value: Planet journey

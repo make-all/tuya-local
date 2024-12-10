@@ -3,10 +3,12 @@ products:
   - id: jIRwsT5yLPJO41Po
 primary_entity:
   entity: climate
+  translation_only_key: thermostat
   dps:
     - id: 2
       name: temperature
       type: integer
+      unit: C
       range:
         min: 50
         max: 400
@@ -17,14 +19,14 @@ primary_entity:
       name: preset_mode
       type: string
       mapping:
-        - dps_val: "Smart"
-          value: "home"
+        - dps_val: Smart
+          value: program
           icon: "mdi:home-thermometer"
-        - dps_val: "Anti_frozen"
-          value: "away"
+        - dps_val: Anti_frozen
+          value: away
           icon: "mdi:snowflake-melt"
-        - dps_val: "Manual"
-          value: "manual"
+        - dps_val: Manual
+          value: manual
           icon: "mdi:cursor-pointer"
     - id: 4
       name: unknown_4
@@ -92,20 +94,16 @@ primary_entity:
       type: integer
 secondary_entities:
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 11
         name: lock
         type: boolean
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: number
     name: Floor temperature limit
     category: config
+    class: temperature
     icon: "mdi:thermometer-alert"
     dps:
       - id: 6
@@ -217,6 +215,7 @@ secondary_entities:
   - entity: number
     name: Power rating
     category: config
+    class: power
     icon: "mdi:signal"
     dps:
       - id: 22

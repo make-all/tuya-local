@@ -1,0 +1,213 @@
+name: Door lock
+products:
+  - id: jqpmkfj7
+    name: O'TU R1O1
+primary_entity:
+  entity: lock
+  dps:
+    - id: 1
+      type: string
+      optional: true
+      sensitive: true
+      name: unlock_method_create
+    - id: 2
+      type: string
+      optional: true
+      sensitive: true
+      name: unlock_method_delete
+    - id: 3
+      type: string
+      optional: true
+      name: unlock_method_modify
+    - id: 6
+      type: string
+      optional: true
+      name: bluetooth_proximity_unlock
+    - id: 7
+      type: boolean
+      optional: true
+      name: bluetooth_proximity_feedback
+    - id: 12
+      type: integer
+      optional: true
+      persist: false
+      name: unlock_fingerprint
+    - id: 13
+      type: integer
+      optional: true
+      persist: false
+      name: unlock_password
+    - id: 14
+      type: integer
+      optional: true
+      persist: false
+      name: unlock_dynamic_pwd
+    - id: 15
+      type: integer
+      optional: true
+      persist: false
+      name: unlock_card
+    - id: 19
+      type: integer
+      optional: true
+      persist: false
+      name: unlock_ble
+    - id: 21
+      type: string
+      optional: true
+      persist: false
+      name: jammed
+      mapping:
+        - dps_val: tongue_bad
+          value: true
+        - dps_val: tongue_not_out
+          value: true
+        - value: false
+    - id: 35
+      type: string
+      optional: true
+      sensitive: true
+      name: synch_member
+    - id: 44
+      type: boolean
+      optional: true
+      name: rtc_lock
+    - id: 51
+      type: string
+      optional: true
+      sensitive: true
+      name: temporary_password_create
+    - id: 52
+      type: string
+      optional: true
+      name: temporary_password_delete
+    - id: 53
+      type: string
+      optional: true
+      sensitive: true
+      name: temporary_password_modify
+    - id: 54
+      type: string
+      optional: true
+      sensitive: true
+      name: synch_method
+    - id: 55
+      type: integer
+      optional: true
+      persist: false
+      name: unlock_temp_pwd
+    - id: 60
+      type: string
+      optional: true
+      sensitive: true
+      name: remote_no_pd_setkey
+    - id: 61
+      type: string
+      optional: true
+      sensitive: true
+      name: remote_no_dp_key
+    - id: 62
+      type: integer
+      optional: true
+      persist: false
+      name: unlock_app
+    - id: 63
+      type: integer
+      optional: true
+      persist: false
+      name: unlock_voice
+    - id: 64
+      type: string
+      optional: true
+      name: password_offline_time
+    - id: 66
+      type: string
+      optional: true
+      name: unlock_offline_clear
+    - id: 67
+      type: string
+      optional: true
+      persist: false
+      name: unlock_offline_pwd
+      mapping:
+        - dps_val: null
+          value: null
+        - value: 1
+    - id: 69
+      type: string
+      optional: true
+      name: record
+    - id: 72
+      type: string
+      optional: true
+      name: unlock_record_check
+secondary_entities:
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 9
+        type: string
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: high
+            value: 90
+          - dps_val: medium
+            value: 60
+          - dps_val: low
+            value: 30
+          - dps_val: poweroff
+            value: 0
+  - entity: sensor
+    name: Alert
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 21
+        type: string
+        optional: true
+        persist: false
+        name: sensor
+        mapping:
+          - dps_val: null
+            value: ok
+          - dps_val: wrong_finger
+            value: wrong_finger
+          - dps_val: wrong_password
+            value: wrong_password
+          - dps_val: wrong_card
+            value: wrong_card
+          - dps_val: wrong_face
+            value: wrong_face
+          - dps_val: tongue_bad
+            value: tongue_bad
+          - dps_val: too_hot
+            value: too_hot
+          - dps_val: unclosed_time
+            value: unclosed_time
+          - dps_val: tongue_not_out
+            value: tongue_not_out
+          - dps_val: pry
+            value: pry
+          - dps_val: key_in
+            value: key_in
+          - dps_val: low_battery
+            value: low_battery
+          - dps_val: power_off
+            value: power_off
+          - dps_val: shock
+            value: shock
+  - entity: binary_sensor
+    name: Duress
+    class: safety
+    category: diagnostic
+    dps:
+      - id: 22
+        type: boolean
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: null
+            value: false

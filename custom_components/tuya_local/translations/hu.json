@@ -1,0 +1,656 @@
+{
+    "title": "Tuya Local",
+    "config": {
+        "step": {
+            "user": {
+                "title": "Állítsd be a helyi Tuya eszközöd",
+                "description": "Az eszközök manuálisan vagy felhőben is hozzáadhatók a Smart Life alkalmazás segítségével.",
+                "data": {
+                    "setup_mode": "Beállítás választás:"
+                }
+            },
+            "cloud": {
+                "title": "Jelentkezzen be Tuyába",
+                "description": "Adja meg Smart Life vagy Tuya Smart felhasználói kódját.\n\nEzt a kódot a Smart Life alkalmazásban vagy a Tuya Smart alkalmazásban találja meg a **Beállítások** > **Fiók és biztonság** képernyőn",
+                "data": {
+                    "user_code": "Felhasználói kód:"
+                }
+            },
+            "scan": {
+                "title": "Töltse ki a bejelentkezést",
+                "description": "Használja a Smart Life alkalmazást vagy a Tuya Smart alkalmazást a következő QR-kód beolvasásához a bejelentkezés befejezéséhez.\n\nHa befejezte ezt a lépést az alkalmazásban"
+            },
+            "choose_device": {
+                "title": "Válassza ki a hozzáadni kívánt eszközt",
+                "description": "Kérjük",
+                "data": {
+                    "device_id": "Válasszon eszközt:",
+                    "hub_id": "Válasszon átjárót:"
+                }
+            },
+            "search": {
+                "title": "Keresse meg az eszköz IP-címét",
+                "description": "A Tuya felhő nem biztosít helyi IP-címeket"
+            },
+            "local": {
+                "title": "Állítsd be a helyi Tuya eszközöd",
+                "description": "[Kövesd ezeket az utasításokat, hogy megtaláld az eszköz azonosítóját (device_id) és a helyi kulcsot (local_key).](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "IP cím vagy állomásnév",
+                    "or device_id of gateway": "Vagy átjáró eszköz azonosítója (device_id átjárón keresztül használt eszközök esetén)",
+                    "device_id": "Eszköz azonosító (device_id, vagy átjáró device_id)",
+                    "local_key": "Helyi kulcs (local_key)",
+                    "protocol_version": "Protokol verzió (hagyd auto-n, ha nem tudod)",
+                    "poll_only": "Csak olvasás (próbáld ki ezt, ha az eszköz nem működik rendesen)",
+                    "device_cid": "Aleszköz node_id vagy uuid (átjárón keresztül használt eszközök esetén)"
+                }
+            },
+            "select_type": {
+                "title": "Válaszd ki az eszköz típusát",
+                "description": "Válaszd ki azt a típust, amelyik legjobban illik az eszközödhöz",
+                "data": {
+                    "type": "Eszköz típus"
+                }
+            },
+            "choose_entities": {
+                "title": "Eszköz részletei",
+                "description": "Válasz egy nevet az eszköznek",
+                "data": {
+                    "name": "Név"
+                }
+            }
+        },
+        "abort": {
+            "already_configured": "Ezzel az azonosítóval már lett hozzáadva eszköz.",
+            "not_supported": "Sajnálom, ez az eszköz nem támogatott.",
+            "no_devices": "Nem található a fiókhoz nem regisztrált eszköz."
+        },
+        "error": {
+            "connection": "A megadott adatokkal nem sikerült kapcsolódni az eszközhöz. Lehet ideiglenes a probléma, vagy nem megfelelőek a megadott adatok.",
+            "does_not_need_hub": "Az eszköznek nincs szüksége átjáróra",
+            "needs_hub": "Az eszköznek átjáróra van szüksége"
+        }
+    },
+    "selector": {
+        "setup_mode": {
+            "options": {
+                "cloud": "Smart Life felhő által támogatott eszközbeállítás.",
+                "manual": "Adja meg manuálisan az eszköz csatlakozási adatait."
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "user": {
+                "title": "Állítsd be a helyi Tuya eszközödet",
+                "description": "[Kövesd ezeket az utasításokat, hogy megtalált a helyi kulcsot (local_key).](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "IP cím vagy állomásnév",
+                    "local_key": "Helyi kulcs (local_key)",
+                    "protocol_version": "Protokol verzió (hagyd auto-n, ha nem tudod)",
+                    "poll_only": "Csak olvasás (próbáld ki ezt, ha az eszköz nem működik rendesen)"
+                }
+            }
+        },
+        "error": {
+            "connection": "A megadott adatokkal nem sikerült kapcsolódni az eszközhöz. Lehet ideiglenes a probléma, vagy nem megfelelőek a megadott adatok."
+        },
+        "abort": {
+            "not_supported": "Sajnálom, ez az eszköz nem támogatott."
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "Leolvasztani",
+                "state": {
+                    "off": "Normál",
+                    "on": "Leolvasztás"
+                }
+            },
+            "tank_empty": {
+                "name": "Tartály",
+                "state": {
+                    "off": "OK",
+                    "on": "Alacsony"
+                }
+            },
+            "tank_full": {
+                "name": "Tartály",
+                "state": {
+                    "off": "OK",
+                    "on": "Teljes"
+                }
+            },
+            "wake": {
+                "name": "Ébresztés",
+                "state": {
+                    "off": "Normál",
+                    "on": "Ébresztés"
+                }
+            },
+            "casdon_oven_fault": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "e1": "E1: Kamra túlmelegedés védelem (túllépi a 290°C-ot)",
+                            "e2": "E2: Kamra túlmelegedés védelem (túllépi a 290°C-ot)",
+                            "e3": "E3: Kamra alacsony hőmérséklet védelem (35°C alatt)",
+                            "e4": "E4: Elpárologtató tálcán alacsony hőmérséklet védelem (35°C alatt)",
+                            "e5": "E5: Szenzor csatlakozási hiba (Nyitott áramkör)",
+                            "e6": "E6: Szenzor hiba (Rövidzárlat)",
+                            "e7": "E7: Kijelző panel kommunikációs hiba",
+                            "e8": "E8: Víztartály nyitva (CN7) vagy Elpárologtató tálcán száraz (CN3)"
+                        }
+                    }
+                }
+            }
+        },
+        "button": {
+            "factory_reset": {
+                "name": "Gyári visszaállítás"
+            },
+            "filter_reset": {
+                "name": "Szűrő visszaállítás"
+            }
+        },
+        "climate": {
+            "aircon_extra": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "health": "Egészséges",
+                            "medhigh": "Közepesen magas",
+                            "medlow": "Közepes-alacsony",
+                            "natural": "Természetes",
+                            "quiet": "Csendes",
+                            "sleep": "Alvás",
+                            "strong": "Erős"
+                        }
+                    },
+                    "swing_mode": {
+                        "state": {
+                            "topmost": "Legmagasabb",
+                            "top": "Fent",
+                            "middle": "Középen",
+                            "down": "Lent",
+                            "downmost": "Legalacsonyabban"
+                        }
+                    }
+                }
+            },
+            "thermostat": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "cycle": "Ciklus"
+                        }
+                    },
+                    "preset_mode": {
+                        "state": {
+                            "manual": "Manuális",
+                            "program": "Programozott",
+                            "temp_override": "Ideiglenes felülbírálás",
+                            "perm_override": "Állandó felülbírálás"
+                        }
+                    }
+                }
+            },
+            "combo_floor": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "cool": "Hűvös levegő",
+                            "fan_only": "Ventilátor",
+                            "heat": "Meleg levegő",
+                            "floor_cool": "Hűvös padló",
+                            "floor_heat": "Meleg padló"
+                        }
+                    }
+                }
+            },
+            "swing_as_powerlevel": {
+                "state_attributes": {
+                    "swing_mode": {
+                        "name": "Fűtési szint",
+                        "state": {
+                            "stop": "Stop",
+                            "auto": "Auto"
+                        }
+                    }
+                }
+            },
+            "pool_heatpump": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "smart_heat": "Okos fűtés",
+                            "quick_heat": "Gyors fűtés",
+                            "quiet_heat": "Csendes fűtés",
+                            "smart_cool": "Okos hűtés",
+                            "quick_cool": "gyors hűtés",
+                            "quiet_cool": "Csendes hűtés",
+                            "auto": "Auto",
+                            "smart": "Okos",
+                            "quick": "Gyors",
+                            "quiet": "Csendes"
+                        }
+                    }
+                }
+            },
+            "heater": {
+                "name": "Fűtő"
+            },
+            "thermo_switch": {
+                "state_attributes": {
+                    "hvac_mode": {
+                        "state": {
+                            "fan_only": "Szünet"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "healthy_steam": "Egészséges gőz",
+                            "fresh_steam": "Friss gőz",
+                            "high_temp_steam": "Magas hőmérsékletű gőz",
+                            "stew": "Párolás",
+                            "bake_up_and_down": "Sütés fel és le",
+                            "bbq": "BBQ",
+                            "bottom_hot_air": "Alsó forró levegő",
+                            "on_strong_roast": "Erős sütés",
+                            "3d_hot_air": "3D forró levegő",
+                            "air_fry": "Légfritőzés",
+                            "steam_frying": "Gőzpirítás",
+                            "one_click_bread": "Egy kattintásos kenyér",
+                            "quick_heat": "Gyors fűtés",
+                            "keep_warm": "Melegen tartás",
+                            "unfreeze": "Felolvasztás",
+                            "fermentation": "Erjesztés",
+                            "descale": "Vízkőtelenítés",
+                            "local_recipes": "Helyi receptek",
+                            "drying": "Szárítás",
+                            "custom": "Egyéni",
+                            "low_steaming": "Alacsony Steaming",
+                            "medium_steaming": "Közepes Steaming",
+                            "high_steaming": "Magas Steaming"
+                        }
+                    }
+                }
+            }
+        },
+        "humidifier": {
+            "dehumidifier": {
+                "state_attributes": {
+                    "mode": {
+                        "state": {
+                            "laundry": "DSzáraz ruhák",
+                            "purify": "Tisztítás"
+                        }
+                    }
+                }
+            }
+        },
+        "fan": {
+            "aroma_diffuser": {
+                "name": "Aroma diffúzor",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "low": "Alacsony",
+                            "medium": "Közepes",
+                            "high": "Magas",
+                            "continuous": "Folyamatos",
+                            "intermittent": "Időszakos"
+                        }
+                    }
+                }
+            },
+            "fan_with_presets": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "normal": "Normál",
+                            "nature": "Természetes",
+                            "sleep": "Alvás",
+                            "baby": "Baba",
+                            "fresh": "Friss",
+                            "smart": "Okos",
+                            "strong": "Erős",
+                            "high": "Magas",
+                            "medium": "Közepes",
+                            "low": "Alacsony",
+                            "displayoff": "Kijelző kikapcsolva",
+                            "off": "Ki"
+                        }
+                    }
+                }
+            },
+            "ventilation": {
+                "name": "Szellőzés",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "fresh": "Friss levegő",
+                            "circulate": "Keringetés",
+                            "sleep": "Alvás",
+                            "auto": "Auto",
+                            "eco": "Eco",
+                            "anti-condensation": "Pára mentesítés"
+                        }
+                    }
+                }
+            }
+        },
+        "light": {
+            "backlight": {
+                "name": "Háttérvilágítás"
+            },
+            "display": {
+                "name": "Kijelző"
+            },
+            "embers": {
+                "name": "Parázs"
+            },
+            "flame": {
+                "name": "Láng"
+            },
+            "indicator": {
+                "name": "Indikátor"
+            },
+            "laser": {
+                "name": "Lézer"
+            },
+            "logs": {
+                "name": "Rönk"
+            },
+            "nightlight": {
+                "name": "Éjjeli lámpa"
+            }
+        },
+        "lock": {
+            "child_lock": {
+                "name": "Gyerekzár"
+            }
+        },
+        "number": {
+            "timer": {
+                "name": "Időzítő"
+            },
+            "timer_x": {
+                "name": "Időzítő {x}"
+            }
+        },
+        "select": {
+            "initial_state": {
+                "name": "Kezdeti állapot",
+                "state": {
+                    "off": "Ki",
+                    "on": "Be",
+                    "memory": "Memória"
+                }
+            },
+            "language": {
+                "name": "Nyelv",
+                "state": {
+                    "chinese": "中文",
+                    "chinese_traditional": "中文(繁體)",
+                    "english": "English",
+                    "french": "Français",
+                    "german": "Deutsch",
+                    "italian": "Italiano",
+                    "japanese": "日本語",
+                    "korean": "한국어",
+                    "latin": "Lingua Latina",
+                    "portuguese": "Português",
+                    "russian": "Русский",
+                    "spanish": "Español",
+                    "turkish": "Türkçe"
+                }
+            },
+            "mopping": {
+                "name": "Felmosás",
+                "state": {
+                    "off": "Ki",
+                    "auto": "Auto",
+                    "low": "Alacsony",
+                    "medium": "Közepes",
+                    "high": "Magas"
+                }
+            },
+            "recipe": {
+                "name": "Recept",
+                "state": {
+                    "pizza": "Pizza",
+                    "fries": "Sült krumpli",
+                    "chicken": "Csirke",
+                    "shrimp": "Rák",
+                    "fish": "Hal",
+                    "chicken_drumsticks": "Csirkecomb",
+                    "vegetables": "Zöldségek",
+                    "desserts": "Desszert",
+                    "none": "Nincs",
+                    "chicken_wings": "Csirkeszárnyak",
+                    "steak": "Steak",
+                    "onion_rings": "Hagymakarikák",
+                    "bacon": "Szalonna",
+                    "cake": "Sütemény",
+                    "bread": "Kenyér",
+                    "toast": "Pirítós",
+                    "custom": "Egyéni",
+                    "cloud_recipe": "Felhő recept",
+                    "default": "Alapértelmezett",
+                    "keep_warm": "Melegen tartás",
+                    "preheat": "Előmelegítés"
+                }
+            },
+            "timer": {
+                "name": "Időzítő",
+                "state": {
+                    "cancel": "Mégse",
+                    "10m": "10 perc",
+                    "30m": "30 perc",
+                    "1h": "1 óra",
+                    "1h30m": "1 óra 30 perc",
+                    "2h": "2 óra",
+                    "2h30m": "2 óra 30 perc",
+                    "3h": "3 óra",
+                    "3h30m": "3 óra 30 perc",
+                    "4h": "4 óra",
+                    "4h30m": "4 óra 30 perc",
+                    "5h": "5 óra",
+                    "5h30m": "5 óra 30 perc",
+                    "6h": "6 óra",
+                    "6h30m": "6 óra 30 perc",
+                    "7h": "7 óra",
+                    "7h30m": "7 óra 30 perc",
+                    "8h": "8 óra",
+                    "8h30m": "8 óra 30 perc",
+                    "9h": "9 óra",
+                    "9h30m": "9 óra 30 perc",
+                    "10h": "10 óra",
+                    "11h": "11 óra",
+                    "12h": "12 óra",
+                    "13h": "13 óra",
+                    "14h": "14 óra",
+                    "15h": "15 óra",
+                    "16h": "16 óra",
+                    "17h": "17 óra",
+                    "18h": "18 óra",
+                    "19h": "19 óra",
+                    "20h": "20 óra",
+                    "21h": "21 óra",
+                    "22h": "22 óra",
+                    "23h": "23 óra",
+                    "24h": "24 óra",
+                    "36h": "36 óra",
+                    "48h": "48 óra",
+                    "72h": "72 óra"
+                }
+            },
+            "temperature_unit": {
+                "name": "Hőmérséklet mértékegysége",
+                "state": {
+                    "celsius": "Celsius",
+                    "fahrenheit": "Fahrenheit"
+                }
+            },
+            "oven_built_in_recipe": {
+                "name": "Beépített recept",
+                "state": {
+                    "none": "Nincs",
+                    "steamed_egg_with_okra": "Gőzölt tojás",
+                    "steamed_sea_bass": "Gőzölt tengeri sügér",
+                    "steamed_prawns": "Gőzölt garnélarák",
+                    "handmade_steamed_bread": "Kézzel készített gőzölt kenyér",
+                    "fan_steamed_baby_vegetables": "Ventilátoros gőzölt zöldségek",
+                    "braised_pork": "Párolt sertéshús",
+                    "snow_fungus_and_bird_s_nest": "Hó gomba és madárfészek",
+                    "crab_pot": "Rákfőző edény",
+                    "potato_ribs": "Krumpli bordákkal",
+                    "coconut_chicken_soup": "Kókusztyúkhús leves",
+                    "snack_platter": "Snack tál",
+                    "chicken_skewers": "Csirke nyárs",
+                    "roasted_pork_knuckle": "Sült sertésláb",
+                    "dried_lemon": "Szárított citrom",
+                    "pork_jerky": "Sertéshús rágcsálnivaló",
+                    "crispy_hairtail": "Ropogós halszálka",
+                    "spicy_grilled_fish": "Fűszeres grillezett hal",
+                    "roasted_sweet_potatoes": "Sült édesburgonya",
+                    "roasted_chicken_wings": "Sült csirkeszárnyak",
+                    "cumin_lamb_chops": "Köményes bárányborda",
+                    "honey_grilled_chicken": "Mézes grillezett csirke",
+                    "garlic_eggplant": "Fokhagymás padlizsán",
+                    "portuguese_egg_tart": "Portugál tojástorta",
+                    "creme_brulee": "Crème brûlée",
+                    "cocoa_chips": "Kakaós chips",
+                    "butter_cookies": "Vajas keksz",
+                    "chiffon_cake": "Chiffon torta",
+                    "puff_pastry": "Puff tészta",
+                    "red_bean_bread": "Vörös babos kenyér",
+                    "milk_toast": "Tejes pirítós"
+                }
+            }
+        },
+        "sensor": {
+            "status": {
+                "name": "Állapot",
+                "state": {
+                    "available": "Elérhető",
+                    "plugged_in": "Csatlakoztatva",
+                    "fault_unplugged": "Hiba (nincs csatlakoztatva)",
+                    "charging": "Töltés",
+                    "waiting": "Várakozás",
+                    "charged": "Töltve",
+                    "fault": "Hiba",
+                    "paused": "Szüneteltetve",
+                    "waiting_for_authorization": "Várakozás az engedélyezésre",
+                    "standby": "Készenléti",
+                    "heating": "Fűtés",
+                    "cooling": "Hűtés",
+                    "keeping_warm": "Melegen tartás",
+                    "no_water": "Nincs víz",
+                    "boiling": "Forrás",
+                    "reserve_only": "Csak foglalás",
+                    "unknown": "Ismeretlen",
+                    "idle": "Tétlen",
+                    "auto": "Auto",
+                    "manual": "Manuális",
+                    "rain_delay": "Eső késleltetés",
+                    "off": "Ki",
+                    "cooking": "Főzés",
+                    "done": "Kész",
+                    "door_open": "Ajtó nyitva",
+                    "setting": "Beállítás",
+                    "pre_heating": "Előmelegítés",
+                    "scheduled": "Ütemezett",
+                    "at_temperature": "Hőmérsékleten",
+                    "done_stage_1": "Kész 1. szakasz",
+                    "done_stage_2": "Kész 2. szakasz",
+                    "done_stage_3": "Kész 3. szakasz",
+                    "done_stage_4": "Kész 4. szakasz",
+                    "done_stage_5": "Kész 5. szakasz",
+                    "done_stage_6": "Kész 6. szakasz",
+                    "done_stage_7": "Kész 7. szakasz",
+                    "done_stage_8": "Kész 8. szakasz",
+                    "done_stage_9": "Kész 9. szakasz",
+                    "done_stage_10": "Kész 10. szakasz",
+                    "no_food": "Nincs étel",
+                    "jammed": "Elakadva",
+                    "blocked": "Blokkolt",
+                    "feeding": "Etetés",
+                    "feeding_complete": "Etetés befejezve",
+                    "caking": "Tortázás",
+                    "cleaning": "Tisztítás",
+                    "sleep": "Alvás",
+                    "sterilizing": "Szterilizálás",
+                    "deodorizing": "Légfrissítés",
+                    "occupied": "Foglalt",
+                    "normal": "Normál",
+                    "low": "Alacsony",
+                    "high": "Magas",
+                    "unwashed": "Nem mosott",
+                    "pre_washing": "Előmosás",
+                    "washing": "Mosás",
+                    "rinsing": "Öblítés",
+                    "drying": "Szárítás",
+                    "air_purging": "Levegő tisztítás",
+                    "anti_freeze": "Fagyálló",
+                    "close": "Bezárás",
+                    "monitor": "Figyelés",
+                    "working": "Működés",
+                    "warning": "Figyelmeztetés"
+                }
+            },
+            "time_remaining": {
+                "name": "Hátralevő idő"
+            },
+            "cooking_status": {
+                "name": "Főzési állapot",
+                "state": {
+                    "wait": "Várakozás főzésre",
+                    "reservation": "Foglalásban",
+                    "cooking": "Főzés folyamatban",
+                    "cancel": "Főzés megszakítva",
+                    "done": "Főzés befejezve",
+                    "pause": "Főzés szüneteltetve"
+                }
+            },
+            "energy_produced": {
+                "name": "Termelt energia"
+            },
+            "energy_consumed": {
+                "name": "Fogyasztott energia"
+            },
+            "energy_produced_x": {
+                "name": "Termelt energia {x}"
+            },
+            "energy_consumed_x": {
+                "name": "Fogyasztott energia {x}"
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "Fagyálló"
+            },
+            "evaporator_cleaning": {
+                "name": "Elpárologtató tisztítása"
+            },
+            "ionizer": {
+                "name": "Ionizáló"
+            },
+            "keytone": {
+                "name": "Billentyűhang"
+            },
+            "sleep": {
+                "name": "Alvás"
+            },
+            "uv_sterilization": {
+                "name": "UV sterilizálás"
+            }
+        }
+    }
+}

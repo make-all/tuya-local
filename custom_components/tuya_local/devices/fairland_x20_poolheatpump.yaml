@@ -1,0 +1,141 @@
+name: Pool heatpump
+products:
+  - id: 1ovawewadpk2jiaw
+    name: Pool-Systems IPS-100MAX
+  - id: a4bepadftizzrd8g
+    name: Fairland X20 series
+primary_entity:
+  entity: climate
+  translation_only_key: pool_heatpump
+  dps:
+    - id: 101
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          icon: "mdi:hvac-off"
+          icon_priority: 1
+          value: "off"
+        - dps_val: true
+          constraint: work_mode
+          conditions:
+            - dps_val: smart
+              value: auto
+            - dps_val: cool
+              value: cool
+              available: cool_available
+            - dps_val: warm
+              value: heat
+    - id: 102
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: "silence"
+          value: quiet
+        - dps_val: "smart"
+          value: smart
+        - dps_val: "booster"
+          value: quick
+          available: boost_available
+    - id: 103
+      name: current_temperature
+      type: integer
+    - id: 104
+      name: temperature_unit
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: C
+        - dps_val: true
+          value: F
+    - id: 106
+      type: string
+      name: work_mode
+      hidden: true
+    - id: 107
+      name: temperature
+      type: integer
+      range:
+        min: -22
+        max: 122
+    - id: 108
+      type: integer
+      name: min_temperature
+    - id: 109
+      type: integer
+      name: max_temperature
+    - id: 114
+      type: string
+      optional: true
+      name: cool_available
+    - id: 115
+      type: string
+      optional: true
+      name: boost_available
+secondary_entities:
+  - entity: sensor
+    category: diagnostic
+    class: power_factor
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: binary_sensor
+    name: Water flow
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 110
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 4
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 110
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 4
+            value: true
+            constraint: fault_code_2
+            conditions:
+              - dps_val: 0
+                value: false
+              - dps_val: null
+                value: false
+          - dps_val: 0
+            value: true
+            constraint: fault_code_2
+            conditions:
+              - dps_val: 0
+                value: false
+              - dps_val: null
+                value: false
+          - value: true
+      - id: 110
+        type: bitfield
+        name: fault_code
+      - id: 111
+        type: bitfield
+        optional: true
+        name: fault_code_2
+  - entity: sensor
+    category: diagnostic
+    class: power
+    dps:
+      - id: 112
+        name: sensor
+        type: integer
+        unit: W
+        optional: true
+      - id: 113
+        name: available
+        type: boolean
+        optional: true

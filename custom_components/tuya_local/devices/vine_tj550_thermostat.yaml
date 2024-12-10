@@ -1,0 +1,574 @@
+name: Thermostat
+products:
+  - id: 3glq4enbzoahd41t
+    name: Vine TJ550
+primary_entity:
+  entity: climate
+  translation_key: thermostat
+  dps:
+    - id: 2
+      type: string
+      name: hvac_mode
+      mapping:
+        - dps_val: "off"
+          value: "off"
+        - dps_val: cool
+          value: cool
+        - dps_val: heat
+          value: heat
+        - dps_val: auto
+          value: heat_cool
+        - dps_val: emheat
+          value: heat
+          hidden: true
+    - id: 3
+      type: string
+      name: hvac_action
+      mapping:
+        - dps_val: aux_heating
+          value: preheating
+        - dps_val: em_heating
+          value: heating
+        - dps_val: dehumidifier
+          value: drying
+    - id: 16
+      type: integer
+      optional: true
+      name: temperature
+      range:
+        min: 50
+        max: 370
+      mapping:
+        - scale: 10
+          constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: temp_set_f
+              range:
+                min: 420
+                max: 1000
+    - id: 17
+      type: integer
+      optional: true
+      name: temp_set_f
+      range:
+        min: 420
+        max: 1000
+      mapping:
+        - scale: 10
+    - id: 18
+      type: integer
+      optional: true
+      name: max_temp_f
+    - id: 19
+      type: integer
+      optional: true
+      name: max_temperature
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: max_temp_f
+    - id: 20
+      type: integer
+      optional: true
+      name: min_temp_f
+    - id: 26
+      type: integer
+      optional: true
+      name: min_temperature
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: min_temp_f
+    - id: 23
+      type: string
+      name: temperature_unit
+      mapping:
+        - dps_val: c
+          value: C
+        - dps_val: f
+          value: F
+    - id: 24
+      type: integer
+      optional: true
+      name: current_temperature
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: temp_current_f
+    - id: 29
+      type: integer
+      optional: true
+      name: temp_current_f
+    - id: 28
+      type: string
+      name: fan_mode
+      mapping:
+        - dps_val: low
+          value: low
+        - dps_val: middle
+          value: medium
+        - dps_val: high
+          value: high
+    - id: 34
+      type: integer
+      name: current_humidity
+    - id: 67
+      type: string
+      optional: true
+      name: week_program
+    - id: 102
+      type: string
+      optional: true
+      name: circulation_set
+    - id: 103
+      type: string
+      optional: true
+      name: change_week_program
+    - id: 104
+      type: string
+      optional: true
+      name: vacation
+    - id: 105
+      type: string
+      optional: true
+      name: run_time
+    - id: 106
+      type: string
+      optional: true
+      name: energy_data
+    - id: 114
+      type: string
+      optional: true
+      name: dehumidifier
+    - id: 115
+      type: string
+      optional: true
+      name: datetime
+    - id: 116
+      type: string
+      optional: true
+      name: auto_control
+    - id: 117
+      type: string
+      optional: true
+      name: geo_location
+      sensitive: true
+secondary_entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Emergency heat
+    dps:
+      - id: 2
+        type: string
+        name: switch
+        mapping:
+          - dps_val: emheat
+            value: true
+          - dps_val: heat
+            value: false
+          - value: false
+            hidden: true
+  - entity: binary_sensor
+    name: Aux heat
+    class: running
+    category: diagnostic
+    dps:
+      - id: 3
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: aux_heating
+            value: true
+          - dps_val: em_heating
+            value: true
+          - value: false
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+      - id: 44
+        type: integer
+        name: brightness
+        range:
+          min: 0
+          max: 255
+  - entity: switch
+    translation_key: keytone
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: sleep
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: anti_frost
+    category: config
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Valve check
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
+  - entity: number
+    name: Maximum temperature
+    category: config
+    class: temperature
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 19
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 10
+          max: 40
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: max_temp_f
+                range:
+                  min: 50
+                  max: 99
+      - id: 18
+        type: integer
+        optional: true
+        name: max_temp_f
+        range:
+          min: 50
+          max: 99
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+  - entity: number
+    name: Minimum temperature
+    category: config
+    class: temperature
+    icon: "mdi:thermometer-chevron-down"
+    dps:
+      - id: 26
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 0
+          max: 30
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: min_temp_f
+                range:
+                  min: 40
+                  max: 90
+      - id: 20
+        type: integer
+        optional: true
+        name: min_temp_f
+        range:
+          min: 40
+          max: 90
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+  - entity: select
+    name: Presence set
+    icon: "mdi:account-group"
+    category: config
+    dps:
+      - id: 21
+        type: string
+        name: option
+        mapping:
+          - dps_val: enter
+            value: enter
+          - dps_val: exit
+            value: exit
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 23
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    dps:
+      - id: 39
+        type: boolean
+        optional: true
+        name: button
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        name: lock
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 42
+        type: integer
+        name: sensor
+        unit: min
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 45
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 45
+        type: bitfield
+        name: fault_code
+  - entity: select
+    name: Backlight timeout
+    icon: "mdi:clock-digital"
+    category: config
+    dps:
+      - id: 52
+        type: string
+        name: option
+        mapping:
+          - dps_val: "20s"
+            value: "20 seconds"
+          - dps_val: "1minute"
+            value: "1 minute"
+          - dps_val: "3minutes"
+            value: "3 minutes"
+  - entity: number
+    name: Heat temperature
+    class: temperature
+    category: config
+    dps:
+      - id: 54
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 5
+          max: 37
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: heat_f
+                range:
+                  min: 42
+                  max: 99
+      - id: 55
+        type: integer
+        optional: true
+        name: heat_f
+        range:
+          min: 42
+          max: 99
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+  - entity: number
+    name: Filter lifetime
+    category: config
+    translation_key: timer
+    dps:
+      - id: 56
+        type: integer
+        name: value
+        unit: d
+        range:
+          min: 15
+          max: 360
+  - entity: number
+    name: Cool temperature
+    category: config
+    class: temperature
+    dps:
+      - id: 57
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 5
+          max: 37
+        mapping:
+          - constraint: unit
+            conditions:
+              - dps_val: f
+                value_redirect: cool_f
+                range:
+                  min: 42
+                  max: 99
+      - id: 23
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 59
+        type: integer
+        optional: true
+        name: cool_f
+        range:
+          min: 42
+          max: 99
+  - entity: select
+    name: Fault handling
+    icon: "mdi:fuse"
+    category: config
+    dps:
+      - id: 58
+        type: string
+        name: option
+        mapping:
+          - dps_val: close
+            value: "Turn off"
+          - dps_val: short
+            value: "Fuse"
+          - dps_val: permanent
+            value: "Brick"
+            # Could be ignore, there is no explanation
+  - entity: select
+    name: Ventilation
+    icon: "mdi:hvac"
+    category: config
+    dps:
+      - id: 64
+        type: string
+        name: option
+        mapping:
+          - dps_val: auto
+            value: Auto
+          - dps_val: "on"
+            value: "On"
+          - dps_val: circulation
+            value: Circulate
+  - entity: switch
+    name: Alarm switch
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Average temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: F
+        class: measurement
+  - entity: sensor
+    name: Average heating
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: F
+        class: measurement
+  - entity: sensor
+    name: Average cooling
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: F
+        class: measurement
+  - entity: sensor
+    name: Heating per hour
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: sensor
+    name: Cooling per hour
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: sensor
+    name: Emergency heating per hour
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: sensor
+    name: Aux heating per hour
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 113
+        type: integer
+        optional: true
+        name: sensor
+        unit: min
+        class: measurement

@@ -1,11 +1,6 @@
-from homeassistant.components.button import ButtonDeviceClass
-from homeassistant.components.climate.const import (
-    ClimateEntityFeature,
-    HVACMode,
-)
-from homeassistant.const import (
-    UnitOfTime,
-)
+from homeassistant.components.climate.const import ClimateEntityFeature, HVACMode
+from homeassistant.components.sensor import SensorDeviceClass
+from homeassistant.const import UnitOfTime
 
 from ..const import NASHONE_MTS700WB_THERMOSTAT_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -14,7 +9,6 @@ from ..mixins.climate import TargetTemperatureTests
 from ..mixins.number import BasicNumberTests
 from ..mixins.select import BasicSelectTests
 from ..mixins.sensor import BasicSensorTests
-from ..mixins.switch import BasicSwitchTests
 from .base_device_tests import TuyaDeviceTestCase
 
 POWER_DPS = "1"
@@ -36,7 +30,6 @@ class TestNashoneMTS700WBThermostat(
     BasicNumberTests,
     BasicSelectTests,
     BasicSensorTests,
-    BasicSwitchTests,
     TargetTemperatureTests,
     TuyaDeviceTestCase,
 ):
@@ -51,13 +44,12 @@ class TestNashoneMTS700WBThermostat(
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,
             self.subject,
-            min=-20,
-            max=105,
+            min=-20.0,
+            max=105.0,
         )
         self.setUpBasicButton(
             RESET_DPS,
             self.entities.get("button_factory_reset"),
-            device_class=ButtonDeviceClass.RESTART,
         )
         self.setUpBasicNumber(
             CALIBOFFSET_DPS,
@@ -69,34 +61,31 @@ class TestNashoneMTS700WBThermostat(
             TIMER_DPS,
             self.entities.get("select_timer"),
             {
-                "cancel": "off",
-                "1h": "1 hour",
+                "cancel": "cancel",
+                "1h": "1h",
             },
         )
         self.setUpBasicSensor(
             COUNTDOWN_DPS,
-            self.entities.get("sensor_timer"),
-            unit=UnitOfTime.MINUTES,
-            testdata=(600, 10.0),
-        )
-        self.setUpBasicSwitch(
-            RESET_DPS,
-            self.entities.get("switch_factory_reset"),
+            self.entities.get("sensor_time_remaining"),
+            unit=UnitOfTime.SECONDS,
+            device_class=SensorDeviceClass.DURATION,
         )
         self.mark_secondary(
             [
                 "button_factory_reset",
                 "number_calibration_offset",
                 "select_timer",
-                "sensor_timer",
-                "switch_factory_reset",
+                "sensor_time_remaining",
             ],
         )
 
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            ClimateEntityFeature.TARGET_TEMPERATURE,
+            ClimateEntityFeature.TARGET_TEMPERATURE
+            | ClimateEntityFeature.TURN_OFF
+            | ClimateEntityFeature.TURN_ON,
         )
 
     def test_current_temperature(self):
@@ -161,6 +150,3 @@ class TestNashoneMTS700WBThermostat(
 
     def test_icons(self):
         self.assertEqual(self.basicNumber.icon, "mdi:arrow-collapse-up")
-        self.assertEqual(self.basicSelect.icon, "mdi:timer")
-        self.assertEqual(self.basicSensor.icon, "mdi:timer")
-        self.assertEqual(self.basicSwitch.icon, "mdi:cog-refresh")

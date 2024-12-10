@@ -1,6 +1,10 @@
 name: Beok TGR81 thermostat
+products:
+  - id: gw173aldekvpzalg
+    name: Avatto WT200W-EH
 primary_entity:
   entity: climate
+  translation_only_key: thermostat
   dps:
     - id: 1
       name: hvac_mode
@@ -15,22 +19,23 @@ primary_entity:
       type: string
       mapping:
         - dps_val: auto
-          value: Schedule
+          value: program
         - dps_val: manual
-          value: Manual
+          value: manual
     - id: 16
       type: integer
       name: temperature
+      unit: C
       range:
         min: 5
         max: 90
     - id: 19
       type: integer
+      optional: true
       name: max_temperature
     - id: 24
       type: integer
       name: current_temperature
-      readonly: true
       mapping:
         - scale: 10
     - id: 26
@@ -40,29 +45,12 @@ primary_entity:
     - id: 36
       type: string
       name: hvac_action
-      readonly: true
+      optional: true
       mapping:
         - dps_val: close
-          icon: "mdi:radiator-disabled"
-          constraint: hvac_mode
-          conditions:
-            - dps_val: true
-              value: idle
-            - dps_val: false
-              value: "off"
+          value: idle
         - dps_val: open
-          constraint: hvac_mode
-          conditions:
-            - dps_val: true
-              icon: "mdi:radiator"
-              value: heating
-            - dps_val: false
-              icon: "mdi:radiator-disabled"
-              value: "off"
-    - id: 38
-      type: string
-      name: week_program
-      optional: true
+          value: heating
 secondary_entities:
   - entity: number
     name: Calibration offset
@@ -77,26 +65,20 @@ secondary_entities:
           min: -9
           max: 9
   - entity: switch
-    name: Anti-frost
-    icon: "mdi:snowflake-melt"
+    translation_key: anti_frost
     category: config
     dps:
       - id: 10
         type: boolean
         name: switch
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 40
         optional: true
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: select
     name: Sensor selection
     category: config
@@ -104,6 +86,7 @@ secondary_entities:
       - id: 43
         type: string
         name: option
+        optional: true
         mapping:
           - dps_val: in
             icon: "mdi:gauge"
@@ -115,32 +98,39 @@ secondary_entities:
             icon: "mdi:thermometer"
             value: Both
   - entity: binary_sensor
-    name: Error
     category: diagnostic
     class: problem
     dps:
       - id: 45
         type: bitfield
         name: sensor
+        optional: true
         mapping:
           - dps_val: 0
-            value: False
-          - value: True
+            value: false
+          - value: true
+      - id: 45
+        name: fault_code
+        optional: true
+        type: bitfield
   - entity: number
     name: High temperature limit
     category: config
+    class: temperature
     icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 19
         type: integer
         name: value
         unit: C
+        optional: true
         range:
           min: 30
           max: 90
   - entity: number
     name: Low temperature limit
     category: config
+    class: temperature
     icon: "mdi:thermometer-chevron-down"
     dps:
       - id: 26
@@ -160,3 +150,51 @@ secondary_entities:
         name: button
         type: boolean
         optional: true
+  - entity: select
+    name: Working week
+    icon: "mdi:calendar-clock"
+    category: config
+    dps:
+      - id: 38
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "00"
+            value: "Off"
+          - dps_val: "52"
+            value: "5 days"
+          - dps_val: "61"
+            value: "6 days"
+          - dps_val: "70"
+            value: "7 days"
+          - dps_val: null
+            value_redirect: alt
+      - id: 102
+        type: string
+        name: alt
+        optional: true
+        mapping:
+          - dps_val: "00"
+            value: "Off"
+          - dps_val: "52"
+            value: "5 days"
+          - dps_val: "61"
+            value: "6 days"
+          - dps_val: "70"
+            value: "7 days"
+          - dps_val: null
+            invalid: true
+  - entity: number
+    name: Hysteresis
+    category: config
+    icon: "mdi:arrow-expand-vertical"
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        optional: true
+        unit: C
+        range:
+          min: 1
+          max: 5

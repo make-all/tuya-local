@@ -1,9 +1,9 @@
 # Bresser 7-in-1 ClimateConnect Tuya Smart Home Weather Centre
 # https://www.bresser.de/en/Weather-Time/BRESSER-7-in-1-ClimateConnect-Tuya-Smart-Home-Weather-Centre.html
-name: Bresser weather station
+name: Weather station
 products:
   - id: 8qk6p78udvbjwlof
-    model: C6085A
+    name: Bresser C6085A
 primary_entity:
   entity: sensor
   name: Indoor temperature
@@ -17,14 +17,6 @@ primary_entity:
         mapping:
           - scale: 10
         class: measurement
-        readonly: true
-    - id: 22
-      type: string
-      name: fault_type
-      optional: true
-    - id: 58
-      type: string
-      name: wind_direct
     - id: 68
       type: string
       name: com_index
@@ -39,7 +31,6 @@ secondary_entities:
           name: sensor
           unit: "%"
           class: measurement
-          readonly: true
   - entity: binary_sensor
     name: Base station battery
     class: battery
@@ -55,8 +46,7 @@ secondary_entities:
             - dps_val: high
               value: false
   - entity: select
-    name: Temperature unit
-    icon: mdi:thermometer
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 9
@@ -64,9 +54,9 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: c
-            value: "°C"
+            value: celsius
           - dps_val: f
-            value: "°F"
+            value: fahrenheit
   - entity: select
     name: Wind speed unit
     icon: mdi:weather-windy
@@ -84,6 +74,9 @@ secondary_entities:
             value: knots
           - dps_val: mph
             value: mph
+      - id: 58
+        type: string
+        name: wind_direct
   - entity: select
     name: Pressure unit
     icon: mdi:gauge
@@ -128,11 +121,29 @@ secondary_entities:
           - dps_val: wm2
             value: W/m2
   - entity: binary_sensor
-    name: Battery
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: ""
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 22
+        type: string
+        optional: true
+        name: description
+  - entity: binary_sensor
     class: battery
     category: diagnostic
     dps:
       - id: 30
+        optional: true
         <<: *battery
   - entity: binary_sensor
     name: Battery ch1
@@ -159,16 +170,16 @@ secondary_entities:
         optional: true
         <<: *battery
   - entity: sensor
-    name: Temperature
     class: temperature
     dps:
       - id: 38
+        optional: true
         <<: *temperature
   - entity: sensor
-    name: Humidity
     class: humidity
     dps:
       - id: 39
+        optional: true
         <<: *humidity
   - entity: sensor
     name: Temperature ch1
@@ -213,7 +224,6 @@ secondary_entities:
         optional: true
         <<: *humidity
   - entity: sensor
-    name: Pressure
     class: pressure
     dps:
       - id: 54
@@ -223,7 +233,6 @@ secondary_entities:
         mapping:
           - scale: 10
         class: measurement
-        readonly: true
   - entity: sensor
     name: Pressure drop
     class: pressure
@@ -233,12 +242,12 @@ secondary_entities:
         name: sensor
         unit: hPa
         class: measurement
-        readonly: true
   - entity: sensor
     name: Wind speed
     icon: mdi:weather-windy
     dps:
       - id: 56
+        optional: true
         <<: &wind_speed
           type: integer
           name: sensor
@@ -246,12 +255,12 @@ secondary_entities:
           mapping:
             - scale: 10
           class: measurement
-          readonly: true
   - entity: sensor
     name: Wind gust
     icon: mdi:weather-windy
     dps:
       - id: 57
+        optional: true
         <<: *wind_speed
   - entity: sensor
     name: Rain
@@ -264,13 +273,13 @@ secondary_entities:
           mapping:
             - scale: 1000
           class: measurement
-          readonly: true
         unit: mm
   - entity: sensor
     name: Rainfall rate
     icon: mdi:weather-pouring
     dps:
       - id: 61
+        optional: true
         <<: *rain
         unit: mm/h
   - entity: sensor
@@ -279,33 +288,35 @@ secondary_entities:
     dps:
       - id: 62
         type: integer
+        optional: true
         name: sensor
         unit: UV Index
         mapping:
           - scale: 10
         class: measurement
-        readonly: true
   - entity: sensor
     name: Light intensity
     class: illuminance
     dps:
       - id: 63
         type: integer
+        optional: true
         name: sensor
         unit: lx
         class: measurement
-        readonly: true
   - entity: sensor
     name: Dew point
     class: temperature
     dps:
       - id: 64
+        optional: true
         <<: *temperature
   - entity: sensor
     name: Feels like temperature
     class: temperature
     dps:
       - id: 65
+        optional: true
         <<: *temperature
   - entity: sensor
     name: Heat index
@@ -319,6 +330,7 @@ secondary_entities:
     class: temperature
     dps:
       - id: 67
+        optional: true
         <<: *temperature
   - entity: sensor
     name: Wind bearing
@@ -329,4 +341,3 @@ secondary_entities:
         name: sensor
         unit: "°"
         class: measurement
-        readonly: true

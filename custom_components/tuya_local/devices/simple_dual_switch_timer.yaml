@@ -16,8 +16,9 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: number
-    name: Timer 1
-    icon: "mdi:timer"
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     category: config
     dps:
       - id: 7
@@ -31,8 +32,9 @@ secondary_entities:
             step: 60
         unit: min
   - entity: number
-    name: Timer 2
-    icon: "mdi:timer"
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     category: config
     dps:
       - id: 8
@@ -45,4 +47,3 @@ secondary_entities:
           - scale: 60
             step: 60
         unit: min
-

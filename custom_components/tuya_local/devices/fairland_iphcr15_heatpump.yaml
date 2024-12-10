@@ -1,4 +1,9 @@
-name: Fairland InverterPlus pool heatpump
+name: Pool heatpump
+products:
+  - id: qrlLaHWwIsZsV31f
+    name: Phalén Calidi XP
+    # - id: UNKNOWN
+    #   name: Fairland InverterPlus
 primary_entity:
   entity: climate
   dps:
@@ -22,7 +27,6 @@ primary_entity:
     - id: 102
       name: current_temperature
       type: integer
-      readonly: true
     - id: 103
       name: temperature_unit
       type: boolean
@@ -34,7 +38,6 @@ primary_entity:
     - id: 105
       name: mode
       type: string
-      readonly: true
       icon_priority: 4
       mapping:
         - dps_val: warm
@@ -51,10 +54,10 @@ primary_entity:
           conditions:
             - dps_val: false
               range:
-                min: 60
+                min: 55
                 max: 115
       range:
-        min: 18
+        min: 12
         max: 45
     - id: 107
       type: integer
@@ -62,27 +65,14 @@ primary_entity:
     - id: 108
       type: integer
       name: max_temperature
-    - id: 115
-      type: bitfield
-      name: error
-      mapping:
-        - dps_val: 0
-          value: OK
-        - dps_val: 4
-          value: Water Flow Protection
-          icon: "mdi:water-pump-off"
-          icon_priority: 2
-    - id: 116
-      type: bitfield
-      name: error_2
     - id: 117
       name: preset_mode
       type: boolean
       mapping:
         - dps_val: false
-          value: Silent
+          value: sleep
         - dps_val: true
-          value: Boost
+          value: boost
 secondary_entities:
   - entity: sensor
     category: diagnostic
@@ -95,7 +85,6 @@ secondary_entities:
         name: sensor
         unit: "%"
         class: measurement
-        readonly: true
   - entity: binary_sensor
     name: Water flow
     class: problem
@@ -108,3 +97,24 @@ secondary_entities:
           - dps_val: 4
             value: true
           - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 116
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: true
+            constraint: fault_code
+            conditions:
+              - dps_val: [0, 4]
+                value: false
+          - value: true
+      - id: 115
+        type: bitfield
+        name: fault_code
+      - id: 116
+        type: bitfield
+        name: fault_code_2

@@ -1,0 +1,59 @@
+name: Pet feeder
+products:
+  - id: qqzpxhisd6zs8zyq
+    name: WellToBe WB S36D
+primary_entity:
+  entity: number
+  icon: "mdi:paw"
+  name: Manual feed
+  dps:
+    - id: 3
+      name: value
+      optional: true
+      type: integer
+      unit: portions
+      range:
+        min: 1
+        max: 6
+secondary_entities:
+  - entity: switch
+    name: Slow feed
+    icon: "mdi:speedometer-slow"
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 14
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 14
+        type: bitfield
+        name: fault_code
+  - entity: select
+    name: Clock type
+    icon: "mdi:clock"
+    dps:
+      - id: 102
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: false
+            value: "12 hour"
+          - dps_val: true
+            value: "24 hour"
+  - entity: sensor
+    icon: "mdi:battery"
+    name: Battery
+    category: diagnostic
+    dps:
+      - id: 103
+        name: sensor
+        type: string

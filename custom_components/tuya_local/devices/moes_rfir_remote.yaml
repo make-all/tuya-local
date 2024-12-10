@@ -1,0 +1,33 @@
+name: Remote controller
+products:
+  - id: wbaloeb3kiwwhads
+    name: Moes RF/IR remote
+  - id: 0gawnyfgyneswent
+    name: IR Controller Pro
+primary_entity:
+  entity: remote
+  dps:
+    - id: 201
+      name: send
+      type: string
+      optional: true
+    - id: 202
+      name: receive
+      type: string
+      optional: true
+      persist: false
+    - id: 1
+      type: string
+      name: scene_1
+    - id: 2
+      type: string
+      optional: true
+      name: scene_2
+    - id: 3
+      type: string
+      optional: true
+      name: scene_3
+    - id: 4
+      type: string
+      optional: true
+      name: scene_4

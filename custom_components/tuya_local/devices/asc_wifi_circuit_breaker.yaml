@@ -1,0 +1,57 @@
+name: ASC (Wi-Fi)
+products:
+  - id: yrzel5nutomegk6z
+primary_entity:
+  entity: switch
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+secondary_entities:
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 7
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+        unit: min
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: A
+        mapping:
+          - scale: 1000
+        optional: true
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: V
+        mapping:
+          - scale: 10
+        optional: true
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: W
+        optional: true
+        mapping:
+          - scale: 10

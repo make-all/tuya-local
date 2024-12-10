@@ -1,4 +1,9 @@
-name: Somgoms switch
+name: Wall switch
+products:
+  - id: nqodepctqralr6su
+    name: Novadigital switch
+  - id: vxo9yezswiumvync
+    name: PST WT-E1
 primary_entity:
   entity: switch
   dps:
@@ -7,8 +12,7 @@ primary_entity:
       type: boolean
 secondary_entities:
   - entity: number
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 7
@@ -20,8 +24,43 @@ secondary_entities:
         mapping:
           - scale: 60
         unit: min
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - conditions:
+              - dps_val: ["0", "1", "2"]
+                mapping:
+                  - dps_val: "0"
+                    value: "off"
+                  - dps_val: "1"
+                    value: "on"
+                  - dps_val: "2"
+                    value: memory
+              - dps_val: ["memory", "off", "on"]
+                mapping:
+                  - dps_val: "off"
+                    value: "off"
+                  - dps_val: "on"
+                    value: "on"
+                  - dps_val: memory
+                    value: memory
+              # during startup there may be no value, but we need the options
+              - dps_val: null
+                mapping:
+                  - dps_val: "off"
+                    value: "off"
+                  - dps_val: "on"
+                    value: "on"
+                  - dps_val: memory
+                    value: memory
   - entity: light
-    name: Backlight
+    translation_key: backlight
     category: config
     dps:
       - id: 16

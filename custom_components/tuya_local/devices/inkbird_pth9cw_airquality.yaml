@@ -1,0 +1,27 @@
+name: Inkbird air quality monitor
+primary_entity:
+  entity: sensor
+  class: carbon_dioxide
+  dps:
+    - id: 2
+      type: integer
+      name: sensor
+      unit: ppm
+      class: measurement
+secondary_entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement

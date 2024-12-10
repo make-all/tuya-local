@@ -14,6 +14,7 @@ class BasicNumberTests:
         scale=1,
         unit=None,
         testdata=None,
+        device_class=None,
     ):
         self.basicNumber = subject
         self.basicNumberDps = dps
@@ -24,6 +25,7 @@ class BasicNumberTests:
         self.basicNumberScale = scale
         self.basicNumberUnit = unit
         self.basicNumberTestData = testdata
+        self.basicNumberDevClass = device_class
 
     def test_number_min_value(self):
         self.assertEqual(self.basicNumber.native_min_value, self.basicNumberMin)
@@ -40,6 +42,12 @@ class BasicNumberTests:
     def test_number_unit_of_measurement(self):
         self.assertEqual(
             self.basicNumber.native_unit_of_measurement, self.basicNumberUnit
+        )
+
+    def test_number_device_class(self):
+        self.assertEqual(
+            self.basicNumber.device_class,
+            self.basicNumberDevClass,
         )
 
     def test_number_value(self):
@@ -86,6 +94,7 @@ class MultiNumberTests:
         self.multiNumberScale = {}
         self.multiNumberUnit = {}
         self.multiNumberTestData = {}
+        self.multiNumberDevClass = {}
 
         for n in numbers:
             name = n.get("name")
@@ -101,6 +110,7 @@ class MultiNumberTests:
             self.multiNumberScale[name] = n.get("scale", 1)
             self.multiNumberUnit[name] = n.get("unit", None)
             self.multiNumberTestData[name] = n.get("testdata", None)
+            self.multiNumberDevClass[name] = n.get("device_class", None)
 
     def test_multi_number_min_value(self):
         for key, subject in self.multiNumber.items():
@@ -140,6 +150,14 @@ class MultiNumberTests:
                 subject.native_unit_of_measurement,
                 self.multiNumberUnit[key],
                 f"{key} unit mismatch",
+            )
+
+    def test_multi_number_device_class(self):
+        for key, subject in self.multiNumber.items():
+            self.assertEqual(
+                subject.device_class,
+                self.multiNumberDevClass[key],
+                f"{key} device class mismatch",
             )
 
     def test_multi_number_value(self):

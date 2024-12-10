@@ -1,15 +1,16 @@
 """Tests for Parkside PLGS 2012 A1 Smart Charger"""
+
+from homeassistant.components.binary_sensor import BinarySensorDeviceClass
+from homeassistant.components.number.const import NumberDeviceClass
+from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT, SensorDeviceClass
 from homeassistant.const import (
+    PERCENTAGE,
     UnitOfElectricCurrent,
     UnitOfElectricPotential,
-    PERCENTAGE,
-    UnitOfTime,
     UnitOfTemperature,
+    UnitOfTime,
 )
-from homeassistant.components.sensor import (
-    SensorDeviceClass,
-    STATE_CLASS_MEASUREMENT,
-)
+
 from ..const import PARKSIDE_PLGS2012A1_PAYLOAD
 from ..mixins.binary_sensor import MultiBinarySensorTests
 from ..mixins.number import MultiNumberTests
@@ -28,7 +29,7 @@ MODE_DPS = "7"
 STORAGE_DPS = "8"
 LIMITER_DPS = "9"
 MAXTEMPCOUNT_DPS = "10"
-UNKNOWN11_DPS = "11"
+FAULT_DPS = "11"
 MAXCURRENT_DPS = "101"
 REMAIN_DPS = "102"
 ALMOSTCHARGED_DPS = "103"
@@ -59,6 +60,12 @@ class TestParksidePLGS2012A1Charger(
                     "name": "binary_sensor_fully_charged",
                     "dps": FULLYCHARGED_DPS,
                 },
+                {
+                    "name": "binary_sensor_problem",
+                    "dps": FAULT_DPS,
+                    "device_class": BinarySensorDeviceClass.PROBLEM,
+                    "testdata": (32, 0),
+                },
             ],
         )
         self.setUpMultiNumber(
@@ -66,13 +73,16 @@ class TestParksidePLGS2012A1Charger(
                 {
                     "name": "number_charge_current",
                     "dps": CURRENT_DPS,
-                    "max": 30000,
-                    "step": 100,
-                    "unit": UnitOfElectricCurrent.MILLIAMPERE,
+                    "device_class": NumberDeviceClass.CURRENT,
+                    "max": 30.000,
+                    "step": 0.1,
+                    "scale": 1000,
+                    "unit": UnitOfElectricCurrent.AMPERE,
                 },
                 {
                     "name": "number_charge_voltage",
                     "dps": VOLTAGE_DPS,
+                    "device_class": NumberDeviceClass.VOLTAGE,
                     "max": 25.0,
                     "scale": 1000,
                     "step": 0.1,
@@ -102,9 +112,10 @@ class TestParksidePLGS2012A1Charger(
                     "name": "sensor_time_remaining",
                     "dps": REMAIN_DPS,
                     "unit": UnitOfTime.MINUTES,
+                    "device_class": SensorDeviceClass.DURATION,
                 },
                 {
-                    "name": "sensor_current_temperature",
+                    "name": "sensor_temperature",
                     "dps": TEMPERATURE_DPS,
                     "unit": UnitOfTemperature.CELSIUS,
                     "device_class": SensorDeviceClass.TEMPERATURE,
@@ -113,17 +124,13 @@ class TestParksidePLGS2012A1Charger(
                 {
                     "name": "sensor_max_current",
                     "dps": MAXCURRENT_DPS,
-                    "unit": UnitOfElectricCurrent.MILLIAMPERE,
+                    "unit": UnitOfElectricCurrent.AMPERE,
                     "device_class": SensorDeviceClass.CURRENT,
+                    "testdata": (1234, 1.234),
                 },
                 {
                     "name": "sensor_max_temperature_count",
                     "dps": MAXTEMPCOUNT_DPS,
-                },
-                {
-                    "name": "sensor_name",
-                    "dps": NAME_DPS,
-                    "testdata": ("test", "test"),
                 },
             ],
         )
@@ -150,13 +157,13 @@ class TestParksidePLGS2012A1Charger(
                 "number_charge_voltage",
                 "switch_storage",
                 "switch_temperature_limiter",
-                "sensor_current_temperature",
+                "sensor_temperature",
                 "sensor_max_temperature_count",
-                "sensor_name",
                 "select_charge_type",
                 "sensor_max_current",
                 "binary_sensor_almost_charged",
                 "binary_sensor_fully_charged",
+                "binary_sensor_problem",
             ]
         )
 
@@ -166,7 +173,14 @@ class TestParksidePLGS2012A1Charger(
         temp = self.multiSwitch.get("switch_temperature_limiter")
         self.assertEqual(storage.extra_state_attributes, {})
         self.assertEqual(temp.extra_state_attributes, {})
-        self.dps[UNKNOWN11_DPS] = "unknown_11"
-        self.assertDictEqual(
-            switch.extra_state_attributes, {"unknown_11": "unknown_11"}
-        )
+        self.dps[NAME_DPS] = "test"
+        self.assertDictEqual(switch.extra_state_attributes, {"model": "test"})
+
+    def test_multi_bsensor_extra_state_attributes(self):
+        self.dps[FAULT_DPS] = 2
+        problem = self.multiBSensor.get("binary_sensor_problem")
+        almost = self.multiBSensor.get("binary_sensor_almost_charged")
+        fully = self.multiBSensor.get("binary_sensor_fully_charged")
+        self.assertEqual(almost.extra_state_attributes, {})
+        self.assertEqual(fully.extra_state_attributes, {})
+        self.assertCountEqual(problem.extra_state_attributes, {"fault_code": 2})

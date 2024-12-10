@@ -7,23 +7,18 @@ primary_entity:
       type: boolean
       mapping:
         - dps_val: false
-          icon: "mdi:air-humidifier-off"
           value: "off"
         - dps_val: true
           constraint: mode
           conditions:
             - dps_val: "Auto"
               value: "auto"
-              icon: "mdi:air-humidifier"
             - dps_val: "Heater"
               value: "heat"
-              icon: "mdi:fire"
             - dps_val: "Dehumidity"
               value: "dry"
-              icon: "mdi:water"
             - dps_val: "Fan"
               value: "fan_only"
-              icon: "mdi:fan"
     - id: 2
       type: integer
       name: humidity
@@ -36,24 +31,24 @@ primary_entity:
       type: string
       name: fan_mode
       mapping:
-        - dps_val: "Low"
+        - dps_val: Low
           constraint: mode
           conditions:
-            - dps_val: "Auto"
+            - dps_val: Auto
               invalid: true
-          value: "Low"
-        - dps_val: "Medium"
+          value: low
+        - dps_val: Medium
           constraint: mode
           conditions:
-            - dps_val: "Auto"
+            - dps_val: Auto
               invalid: true
-          value: "Medium"
-        - dps_val: "High"
+          value: medium
+        - dps_val: High
           constraint: mode
           conditions:
-            - dps_val: "Auto"
+            - dps_val: Auto
               invalid: true
-          value: "High"
+          value: high
     - id: 5
       name: mode
       type: string
@@ -61,11 +56,9 @@ primary_entity:
     - id: 6
       type: integer
       name: current_humidity
-      readonly: true
     - id: 7
       type: integer
       name: current_temperature
-      readonly: true
     - id: 10
       type: boolean
       name: swing_mode
@@ -77,31 +70,29 @@ primary_entity:
     - id: 101
       type: integer
       name: temperature
+      unit: C
       range:
         min: 16
         max: 30
 secondary_entities:
   - entity: light
-    name: "UV sterilization"
-    icon: "mdi:solar-power"
+    translation_key: uv_sterilization
     dps:
       - id: 15
         name: switch
         type: boolean
   - entity: switch
-    name: "Ionizer"
-    icon: "mdi:creation"
+    translation_key: "ionizer"
     dps:
       - id: 12
         name: switch
         type: boolean
   - entity: sensor
-    name: Current humidity
     class: humidity
+    deprecated: climate.current_humidity
     dps:
       - id: 6
         type: integer
         name: sensor
         class: measurement
         unit: "%"
-        readonly: true

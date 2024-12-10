@@ -1,0 +1,159 @@
+name: Video doorbell
+products:
+  - id: wih9ybttb42lxb1q
+    name: myQ TD8
+primary_entity:
+  entity: camera
+  dps:
+    - id: 154
+      name: snapshot
+      type: base64
+      optional: true
+      persist: false
+      sensitive: true
+      mapping:
+        - dps_val: null
+          value_redirect: movement_pic
+    - id: 115
+      name: movement_pic
+      type: base64
+      optional: true
+      sensitive: true
+    - id: 134
+      name: motion_enable
+      type: boolean
+    - id: 150
+      name: record
+      type: boolean
+    - id: 152
+      name: pir_switch
+      type: string
+      optional: true
+      # enum: ["0", "1", "2", "3"] - probably a select, but meanings unknown
+secondary_entities:
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+        optional: true
+  - entity: switch
+    name: Flip image
+    icon: "mdi:flip-horizontal"
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+        optional: true
+  - entity: sensor
+    name: SD status
+    category: diagnostic
+    icon: "mdi:micro-sd"
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        optional: true
+      - id: 109
+        type: string
+        name: storage
+        optional: true
+  - entity: button
+    name: SD format
+    category: config
+    icon: "mdi:micro-sd"
+    dps:
+      - id: 111
+        type: boolean
+        name: button
+        optional: true
+      - id: 117
+        type: integer
+        name: sd_format_state
+        optional: true
+  - entity: siren
+    category: config
+    dps:
+      - id: 159
+        type: boolean
+        name: switch
+        optional: true
+      - id: 160
+        type: integer
+        optional: true
+        name: volume_level
+        range:
+          min: 1
+          max: 10
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 145
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 126
+        type: integer
+        optional: true
+        name: capacity
+        mapping:
+          - scale: 0.15
+      - id: 146
+        type: string
+        optional: true
+        name: powermode
+  - entity: number
+    name: Low power level
+    category: config
+    icon: "mdi:battery-20"
+    dps:
+      - id: 147
+        type: integer
+        optional: true
+        name: value
+        unit: "%"
+        range:
+          min: 10
+          max: 50
+  - entity: binary_sensor
+    translation_key: wake
+    category: diagnostic
+    dps:
+      - id: 149
+        type: boolean
+        optional: true
+        name: sensor
+  - entity: switch
+    name: Human filter
+    icon: "mdi:human"
+    category: config
+    dps:
+      - id: 170
+        type: boolean
+        name: switch
+        optional: true
+  - entity: event
+    class: doorbell
+    dps:
+      - id: 185
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: ""
+            value: null
+          - dps_val: null
+            value: null
+          - value: "ring"
+      - id: 185
+        type: string
+        name: message
+        optional: true

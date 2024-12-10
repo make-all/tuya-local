@@ -1,14 +1,13 @@
+from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT, SensorDeviceClass
 from homeassistant.components.vacuum import (
     STATE_CLEANING,
-    STATE_DOCKED,
     STATE_ERROR,
+    STATE_IDLE,
+    STATE_PAUSED,
     STATE_RETURNING,
     VacuumEntityFeature,
 )
-from homeassistant.const import (
-    AREA_SQUARE_METERS,
-    UnitOfTime,
-)
+from homeassistant.const import AREA_SQUARE_METERS, PERCENTAGE, UnitOfTime
 
 from ..const import LEFANT_M213_VACUUM_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -50,33 +49,39 @@ class TestLefantM213Vacuum(MultiSensorTests, TuyaDeviceTestCase):
                     "dps": TIME_DPS,
                     "name": "sensor_clean_time",
                     "unit": UnitOfTime.MINUTES,
+                    "device_class": SensorDeviceClass.DURATION,
+                },
+                {
+                    "dps": BATTERY_DPS,
+                    "name": "sensor_battery",
+                    "unit": PERCENTAGE,
+                    "device_class": SensorDeviceClass.BATTERY,
+                    "state_class": STATE_CLASS_MEASUREMENT,
                 },
             ],
         )
-        self.mark_secondary(["sensor_clean_area", "sensor_clean_time"])
+        self.mark_secondary(
+            ["sensor_clean_area", "sensor_clean_time", "binary_sensor_problem"]
+        )
 
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
             (
-                VacuumEntityFeature.STATE
-                | VacuumEntityFeature.STATUS
+                VacuumEntityFeature.CLEAN_SPOT
+                | VacuumEntityFeature.FAN_SPEED
+                | VacuumEntityFeature.LOCATE
+                | VacuumEntityFeature.PAUSE
+                | VacuumEntityFeature.RETURN_HOME
                 | VacuumEntityFeature.SEND_COMMAND
-                | VacuumEntityFeature.BATTERY
+                | VacuumEntityFeature.START
+                | VacuumEntityFeature.STATE
+                | VacuumEntityFeature.STATUS
+                | VacuumEntityFeature.STOP
                 | VacuumEntityFeature.TURN_ON
                 | VacuumEntityFeature.TURN_OFF
-                | VacuumEntityFeature.START
-                | VacuumEntityFeature.PAUSE
-                | VacuumEntityFeature.LOCATE
-                | VacuumEntityFeature.RETURN_HOME
-                | VacuumEntityFeature.CLEAN_SPOT
-                | VacuumEntityFeature.FAN_SPEED
             ),
         )
-
-    def test_battery_level(self):
-        self.dps[BATTERY_DPS] = 50
-        self.assertEqual(self.subject.battery_level, 50)
 
     def test_fan_speed(self):
         self.dps[FAN_DPS] = "low"
@@ -111,14 +116,14 @@ class TestLefantM213Vacuum(MultiSensorTests, TuyaDeviceTestCase):
         self.dps[STATUS_DPS] = "4"
         self.assertEqual(self.subject.state, STATE_RETURNING)
         self.dps[STATUS_DPS] = "7"
-        self.assertEqual(self.subject.state, STATE_DOCKED)
+        self.assertEqual(self.subject.state, STATE_IDLE)
         self.dps[STATUS_DPS] = "6"
         self.assertEqual(self.subject.state, STATE_CLEANING)
         self.dps[POWER_DPS] = False
-        self.assertEqual(self.subject.state, STATE_DOCKED)
+        self.assertEqual(self.subject.state, STATE_IDLE)
         self.dps[POWER_DPS] = True
         self.dps[SWITCH_DPS] = False
-        self.assertEqual(self.subject.state, STATE_DOCKED)
+        self.assertEqual(self.subject.state, STATE_PAUSED)
         self.dps[ERROR_DPS] = 1
         self.assertEqual(self.subject.state, STATE_ERROR)
 
@@ -179,12 +184,12 @@ class TestLefantM213Vacuum(MultiSensorTests, TuyaDeviceTestCase):
         ):
             await self.subject.async_locate()
 
-    async def test_async_send_standby_command(self):
+    async def test_async_stop(self):
         async with assert_device_properties_set(
             self.subject._device,
             {COMMAND_DPS: "standby"},
         ):
-            await self.subject.async_send_command("standby")
+            await self.subject.async_stop()
 
     async def test_async_send_smart_command(self):
         async with assert_device_properties_set(

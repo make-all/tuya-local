@@ -1,12 +1,32 @@
-name: Essentials air purifier
+name: Air purifier
 primary_entity:
-  entity: switch
+  entity: fan
+  translation_key: fan_with_presets
   icon: "mdi:air-purifier"
   dps:
     - id: 1
       type: boolean
       name: switch
+    - id: 3
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: auto
+          value: smart
+        - dps_val: M
+          value: normal
+        - dps_val: H
+          value: strong
+        - dps_val: sleep
+          value: sleep
 secondary_entities:
+  - entity: switch
+    deprecated: fan
+    icon: "mdi:air-purifier"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: sensor
     name: Active filter life
     icon: "mdi:air-filter"
@@ -15,20 +35,14 @@ secondary_entities:
       - id: 5
         type: integer
         name: sensor
-        readonly: true
         unit: "%"
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 7
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: select
     name: Light
     category: config
@@ -47,37 +61,21 @@ secondary_entities:
             value: "Off"
             icon: "mdi:lightbulb-outline"
   - entity: switch
-    name: UV disinfection
+    translation_key: uv_sterilization
     category: config
     dps:
       - id: 9
         type: boolean
         name: switch
-        mapping:
-          - dps_val: true
-            icon: "mdi:lightbulb"
-          - dps_val: false
-            icon: "mdi:lightbulb-outline"
   - entity: button
-    name: Filter reset
-    class: restart
+    translation_key: filter_reset
     category: config
     dps:
       - id: 11
         type: boolean
         name: button
-  - entity: switch
-    deprecated: button
-    name: Filter reset
-    category: config
-    icon: "mdi:refresh"
-    dps:
-      - id: 11
-        type: boolean
-        name: switch
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 18
@@ -85,25 +83,23 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: cancel
-            value: "Off"
+            value: cancel
           - dps_val: 2h
-            value: "2 hours"
+            value: "2h"
           - dps_val: 4h
-            value: "4 hours"
+            value: "4h"
           - dps_val: 8h
-            value: "8 hours"
+            value: "8h"
   - entity: sensor
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: time_remaining
+    class: duration
     category: diagnostic
     dps:
       - id: 19
         type: integer
         name: sensor
-        readonly: true
-        unit: "min"
+        unit: min
   - entity: sensor
-    name: PM2.5
     class: pm25
     dps:
       - id: 2
@@ -117,19 +113,19 @@ secondary_entities:
       - id: 21
         type: string
         name: sensor
-        readonly: true
   - entity: select
     name: Mode
+    deprecated: fan
     dps:
       - id: 3
         name: option
         type: string
         mapping:
           - dps_val: auto
-            value: "Auto"
-          - dps_val: "M"
-            value: "Medium"
-          - dps_val: "H"
-            value: "High"
-          - dps_val: "sleep"
-            value: "Sleep"
+            value: Auto
+          - dps_val: M
+            value: Medium
+          - dps_val: H
+            value: High
+          - dps_val: sleep
+            value: Sleep

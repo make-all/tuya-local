@@ -1,7 +1,7 @@
-name: AlecoAir D12 dehumidifier
+name: AlecoAir D12 ECO dehumidifier
 products:
   - id: gcthce4ejb8nzgow
-#    name: D12 ECO 2.0
+    name: D12 ECO 2.0
 primary_entity:
   entity: humidifier
   class: dehumidifier
@@ -9,13 +9,6 @@ primary_entity:
     - id: 1
       name: switch
       type: boolean
-      mapping:
-        - dps_val: false
-          icon: "mdi:air-humidifier-off"
-          icon_priority: 1
-        - dps_val: true
-          icon: "mdi:air-humidifier"
-          icon_priority: 4
     - id: 2
       name: humidity
       type: integer
@@ -29,33 +22,15 @@ primary_entity:
       type: string
       mapping:
         - dps_val: Continuous
-          value: Continuous
-          icon: mdi:tshirt-crew-outline
-          icon_priority: 3
+          value: boost
         - dps_val: Sunny_Day
-          value: Sunny_Day
-          icon: "mdi:weather-sunny"
-          icon_priority: 3
+          value: eco
         - dps_val: Rain_Day
-          value: Rain_Day
-          icon: "mdi:weather-pouring"
-          icon_priority: 3
-    - id: 19
-      name: error
-      type: bitfield
-      # Docs mention E1 and E2, it isn't clear which is tank full, so for now
-      # treat both as that.
-      mapping:
-        - dps_val: 0
-          value: OK
-        - dps_val: 1
-          value: E1
-          icon: "mdi:cup-water"
-          icon_priority: 2
-        - dps_val: 2
-          value: E2
-          icon: "mdi:cup-water"
-          icon_priority: 2
+          value: normal
+
+    - id: 6
+      name: current_humidity
+      type: integer
 secondary_entities:
   - entity: fan
     dps:
@@ -71,16 +46,6 @@ secondary_entities:
           - dps_val: high
             value: 100
   - entity: sensor
-    name: Current humidity
-    class: humidity
-    dps:
-      - id: 6
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
-  - entity: sensor
-    name: Current temperature
     class: temperature
     dps:
       - id: 7
@@ -89,33 +54,31 @@ secondary_entities:
         unit: C
         class: measurement
   - entity: switch
-    name: Sleep
+    translation_key: sleep
     category: config
     dps:
       - id: 14
         type: boolean
         name: switch
-        mapping:
-          - dps_val: false
-            icon: "mdi:sleep-off"
-          - dps_val: true
-            icon: "mdi:sleep"
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 16
         type: boolean
         name: lock
-        mapping:
-          - dps_val: false
-            icon: "mdi:hand-back-right"
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
   - entity: binary_sensor
-    name: Tank
+    translation_key: tank_full
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+  - entity: binary_sensor
     class: problem
-    category: diagnostic
     dps:
       - id: 19
         type: bitfield
@@ -123,4 +86,22 @@ secondary_entities:
         mapping:
           - dps_val: 0
             value: false
+          - dps_val: 1
+            value: false
+          - dps_val: null
+            value: false
           - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code
+      - id: 19
+        name: description
+        type: bitfield
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: "Water Tank Full or Removed"
+          - dps_val: 2
+            # E2 might be a compressor fault.
+            value: "E2 Compressor Fault"

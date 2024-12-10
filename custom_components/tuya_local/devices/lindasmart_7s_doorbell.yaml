@@ -1,0 +1,323 @@
+name: Video doorbell
+products:
+  - id: thmj9wewi8yhouo4
+    name: Linda Smart 7S
+primary_entity:
+  entity: camera
+  dps:
+    - id: 154
+      type: base64
+      optional: true
+      sensitive: true
+      persist: false
+      name: snapshot
+      mapping:
+        - dps_val: null
+          value_redirect: movement_pic
+    - id: 115
+      type: base64
+      optional: true
+      sensitive: true
+      name: movement_pic
+    - id: 240
+      type: boolean
+      optional: true
+      name: motion_enable
+secondary_entities:
+  - entity: switch
+    name: Flip image
+    icon: "mdi:flip-horizontal"
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: switch
+    name: Watermark
+    icon: "mdi:watermark"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: select
+    name: Night vision
+    icon: "mdi:weather-night"
+    category: config
+    dps:
+      - id: 108
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Auto
+          - dps_val: "1"
+            value: "Off"
+          - dps_val: "2"
+            value: "On"
+  - entity: sensor
+    name: SD status
+    class: enum
+    category: diagnostic
+    icon: "mdi:micro-sd"
+    dps:
+      - id: 110
+        type: integer
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: Normal
+          - dps_val: 2
+            value: Corrupt
+          - dps_val: 3
+            value: Full
+          - dps_val: 4
+            value: Formatting
+          - dps_val: 5
+            value: Missing
+          - dps_val: null
+            value: Normal
+      - id: 109
+        type: string
+        optional: true
+        name: capacity
+  - entity: button
+    name: SD format
+    category: config
+    icon: "mdi:micro-sd"
+    dps:
+      - id: 111
+        type: boolean
+        name: button
+        optional: true
+        persist: false
+      - id: 117
+        type: integer
+        name: state
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: 2000
+            value: Formatting
+          - dps_val: 2001
+            value: Format failed
+          - dps_val: 2002
+            value: Card missing
+          - dps_val: 2003
+            value: Card error
+          - dps_val: null
+            value: Formatted
+          - dps_val: 0
+            value: Formatted
+  - entity: event
+    class: doorbell
+    dps:
+      - id: 136
+        type: string
+        name: event
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: ""
+            value: null
+          - dps_val: null
+            value: null
+          - value: ring
+      - id: 136
+        type: string
+        optional: true
+        name: raw_event
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 145
+        type: integer
+        optional: true
+        name: sensor
+        unit: "%"
+        class: measurement
+      - id: 126
+        type: bitfield
+        optional: true
+        name: capability
+  - entity: binary_sensor
+    class: plug
+    category: diagnostic
+    dps:
+      - id: 146
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: "1"
+            value: true
+          - value: false
+  - entity: number
+    name: Low battery alarm level
+    category: config
+    icon: "mdi:battery-20"
+    dps:
+      - id: 147
+        type: integer
+        optional: true
+        name: value
+        unit: "%"
+        range:
+          min: 10
+          max: 50
+  - entity: binary_sensor
+    class: running
+    category: diagnostic
+    dps:
+      - id: 149
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Doorbell
+    class: connectivity
+    icon: "mdi:bell"
+    category: diagnostic
+    dps:
+      - id: 155
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: "1"
+            value: true
+          - value: false
+            icon: "mdi:bell-off"
+  - entity: button
+    name: Pair doorbell
+    category: config
+    icon: "mdi:bell-check"
+    dps:
+      - id: 155
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "1"
+            value: true
+  - entity: button
+    name: Unpair doorbell
+    category: config
+    icon: "mdi:bell-cancel"
+    dps:
+      - id: 155
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "0"
+            value: true
+  - entity: switch
+    name: Human filter
+    icon: "mdi:human"
+    category: config
+    dps:
+      - id: 170
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: event
+    name: Alarm
+    dps:
+      - id: 185
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: alarm
+      - id: 185
+        type: string
+        optional: true
+        name: message
+  - entity: event
+    name: Push message
+    dps:
+      - id: 212
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: message
+      - id: 212
+        type: string
+        name: message
+        optional: true
+  - entity: number
+    name: Motion sensitivity
+    category: config
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 241
+        type: integer
+        optional: true
+        name: value
+        range:
+          min: 1
+          max: 5
+  - entity: siren
+    name: Chime
+    category: config
+    icon: "mdi:bell"
+    dps:
+      - id: 156
+        type: string
+        name: tone
+        mapping:
+          - dps_val: "1"
+            value: "Chime 1"
+          - dps_val: "2"
+            value: "Chime 2"
+          - dps_val: "3"
+            value: "Chime 3"
+          - dps_val: "4"
+            value: "Chime 4"
+      - id: 157
+        type: integer
+        name: volume_level
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - scale: 100
+  - entity: select
+    name: Chime type
+    icon: "mdi:bell-cog"
+    category: config
+    dps:
+      - id: 165
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Not set
+          - dps_val: "1"
+            value: Wired bell
+          - dps_val: "2"
+            value: Wireless bell
+          - dps_val: "3"
+            value: "No bell"

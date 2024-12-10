@@ -878,17 +878,6 @@ WOOX_R4028_SOCKET_PAYLOAD = {
     "105": 0,
 }
 
-ES01_POWERSTRIP_PAYLOAD = {
-    "1": True,
-    "2": True,
-    "3": True,
-    "4": True,
-    "5": 0,
-    "6": 0,
-    "7": 0,
-    "8": 0,
-}
-
 OWON_PCT513_THERMOSTAT_PAYLOAD = {
     "2": "cool",
     "16": 2150,
@@ -949,14 +938,6 @@ POIEMA_ONE_PURIFIER_PAYLOAD = {
     "19": 0,
 }
 
-ECOSTRAD_ACCENTIQ_HEATER_PAYLOAD = {
-    "1": True,
-    "2": 200,
-    "3": 195,
-    "10": 0,
-    "101": True,
-}
-
 ECOSTRAD_IQCERAMIC_RADIATOR_PAYLOAD = {
     "1": True,
     "2": "hot",
@@ -983,26 +964,6 @@ NASHONE_MTS700WB_THERMOSTAT_PAYLOAD = {
     "39": False,
     "41": "cancel",
     "42": 0,
-}
-
-SMARTMCB_SMT006_METER_PAYLOAD = {
-    "1": 141630,
-    #    "6": "CHoAQgQADlwAAA==",
-    #    "7": "AAAAAAAAAAAAAA==",
-    #    "8": "AAAAAAAAAAAAAA==",
-    "9": 0,
-    "11": False,
-    "12": False,
-    "13": 0,
-    #    "14": 0,
-    "16": True,
-    "19": "FSE-F723C46A04FC6C",
-    "101": 275,
-    "102": 170,
-    "103": 40,
-    "104": 30,
-    "105": False,
-    "106": False,
 }
 
 LEFANT_M213_VACUUM_PAYLOAD = {
@@ -1132,7 +1093,7 @@ PARKSIDE_PLGS2012A1_PAYLOAD = {
     "8": False,
     "9": True,
     "10": 5,
-    "11": "unknown",
+    "11": 0,
     "101": 2500,
     "102": 11,
     "103": False,
@@ -1532,4 +1493,188 @@ MOTION_LIGHT_PAYLOAD = {
     "104": 249,
     "105": 374,
     "106": False,
+}
+
+BLITZWOLF_BWSH2_PAYLOAD = {
+    "1": True,
+    "3": "grade1",
+    "6": "close",
+    "19": "cancel",
+}
+
+BCOM_CAMERA_PAYLOAD = {
+    "101": True,
+    "103": False,
+    "104": False,
+    "106": "1",
+    "108": "0",
+    "109": "64GB",
+    "110": 1,
+    "111": False,
+    "115": "",
+    "117": 0,
+    "136": "",
+    "150": True,
+    "151": "1",
+    "162": False,
+    "231": "",
+    "232": False,
+}
+
+GX_AROMA_PAYLOAD = {
+    "1": True,
+    "2": "high",
+    "3": "cancel",
+    "4": 0,
+    "5": True,
+    "6": "colour",
+    "8": "b9fff500ab46ff",
+    "9": 0,
+}
+
+MOEBOT_PAYLOAD = {
+    "6": 41,
+    "101": "MOWING",
+    "102": 0,
+    "103": "MOWER_LEAN",
+    "104": True,
+    "105": 8,
+    "106": 1343,
+    "114": "AutoMode",
+}
+
+TOMPD63LW_SOCKET_PAYLOAD = {
+    "1": 139470,
+    "6": "CPQAFEkAAuk=",
+    "9": 0,
+    "11": False,
+    "12": False,
+    "13": 0,
+    "16": True,
+    "19": "FSE-F723C46A04FC6C",
+    # "101": 275,
+    # "102": 170,
+    # "103": 40,
+    # "104": 30,
+    # "105": False,
+    # "106": False,
+}
+
+GOLDAIR_GPDH340_PAYLOAD = {
+    "1": True,
+    "2": "2",
+    "4": 60,
+    "6": "2",
+    "11": 0,
+    "103": 20,
+    "104": 72,
+    "105": 40,
+    "106": False,
+    "107": True,
+    "108": False,
+    "109": False,
+}
+
+THERMEX_IF50V_PAYLOAD = {
+    "101": False,
+    "102": 37,
+    "104": 65,
+    "105": "2",
+    "106": 0,
+}
+
+ZXG30_ALARM_PAYLOAD = {
+    "1": "home",
+    "2": 0,
+    "3": 3,
+    "4": True,
+    "9": False,
+    "10": False,
+    "15": True,
+    "16": 100,
+    "17": True,
+    "20": False,
+    "21": False,
+    "22": 1,
+    "23": "2",
+    "24": "Normal",
+    "27": True,
+    "28": 10,
+    "29": True,
+    "32": "normal",
+    "34": False,
+    "35": False,
+    "36": "3",
+    "37": "0",
+    "39": "0",
+    "40": "1",
+}
+
+IR_REMOTE_SENSORS_PAYLOAD = {
+    "101": 200,
+    "102": 80,
+}
+
+LORATAP_CURTAINSWITCH_PAYLOAD = {
+    "1": "3",
+}
+
+BLE_WATERVALVE_PAYLOAD = {
+    "1": True,
+    "4": 0,
+    "7": 50,
+    "9": 3600,
+    "10": "cancel",
+    "12": "unknown",
+    "15": 60,
+}
+
+AM25_ROLLERBLIND_PAYLOAD = {
+    "1": "stop",
+    "2": 0,
+    "104": True,
+    "105": True,
+    "109": 4,
+}
+
+DUUX_BLIZZARD_PAYLOAD = {
+    "1": False,
+    "2": "fan",
+    "3": "high",
+    "4": 0,
+    "6": False,
+    "7": False,
+    "8": 22,
+    "9": 0,
+    "11": 72,
+    "12": True,
+    "13": False,
+    "14": False,
+    "15": 0,
+}
+
+BLE_SMARTPLANT_PAYLOAD = {
+    "3": 50,
+    "5": 25,
+    "9": "c",
+    "14": "Low",
+    "15": 20,
+}
+
+GOLDAIR_PORTABLE_AIR_CONDITIONER_PAYLOAD = {
+    "1": True,
+    "2": 22,
+    "3": 30,
+    "4": "cold",
+    "5": "low",
+    "11": False,
+    "15": "off",
+    "20": 0,
+    "103": False,
+    "104": 0,
+    "105": 0,
+    "107": 72,
+    "108": 80,
+    "109": 26,
+    "110": False,
 }

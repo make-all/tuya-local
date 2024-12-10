@@ -64,10 +64,6 @@ primary_entity:
           value: right
         - dps_val: stop
           value: stop
-    - id: 6
-      name: battery
-      type: integer
-      readonly: true
     - id: 13
       type: boolean
       name: locate
@@ -88,26 +84,11 @@ primary_entity:
     - id: 15
       type: string
       name: clean_record
-      readonly: true
       optional: true
     - id: 18
       type: bitfield
       name: error
-      mapping:
-        - dps_val: 1
-          value: edge_sweep
-        - dps_val: 2
-          value: middle_sweep
-        - dps_val: 4
-          value: left_wheel
-        - dps_val: 8
-          value: right_wheel
-        - dps_val: 16
-          value: garbage_box
-        - dps_val: 32
-          value: land_check
-        - dps_val: 64
-          value: collision
+      hidden: true
     - id: 101
       type: string
       name: water_status
@@ -122,8 +103,17 @@ primary_entity:
       name: carpet_adaptive
 secondary_entities:
   - entity: sensor
+    class: battery
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
     name: Clean time
     category: diagnostic
+    class: duration
     icon: "mdi:clock-outline"
     dps:
       - id: 17
@@ -150,15 +140,6 @@ secondary_entities:
       - id: 10
         type: boolean
         name: button
-  - entity: switch
-    deprecated: button
-    name: Edge brush reset
-    category: config
-    icon: "mdi:arrow-expand-all"
-    dps:
-      - id: 10
-        type: boolean
-        name: switch
   - entity: button
     name: Roll brush reset
     class: restart
@@ -167,32 +148,13 @@ secondary_entities:
       - id: 11
         type: boolean
         name: button
-  - entity: switch
-    deprecated: button
-    name: Roll brush reset
-    icon: "mdi:refresh-circle"
-    category: config
-    dps:
-      - id: 11
-        type: boolean
-        name: switch
   - entity: button
-    name: Filter reset
+    translation_key: filter_reset
     category: config
-    class: restart
     dps:
       - id: 12
         type: boolean
         name: button
-  - entity: switch
-    deprecated: button
-    name: Filter reset
-    category: config
-    icon: "mdi:air-filter"
-    dps:
-      - id: 12
-        type: boolean
-        name: switch
   - entity: sensor
     name: Edge brush
     category: diagnostic
@@ -221,10 +183,44 @@ secondary_entities:
         name: sensor
         unit: "%"
   - entity: sensor
-    name: Status
+    translation_key: status
     category: diagnostic
     icon: "mdi:robot-vacuum"
     dps:
       - id: 5
         type: string
         name: sensor
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 18
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 18
+        type: bitfield
+        name: fault_code
+      - id: 18
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: edge_sweep
+          - dps_val: 2
+            value: middle_sweep
+          - dps_val: 4
+            value: left_wheel
+          - dps_val: 8
+            value: right_wheel
+          - dps_val: 16
+            value: garbage_box
+          - dps_val: 32
+            value: land_check
+          - dps_val: 64
+            value: collision

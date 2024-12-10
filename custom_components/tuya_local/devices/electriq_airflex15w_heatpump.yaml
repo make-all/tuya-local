@@ -10,25 +10,19 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:hvac-off"
         - dps_val: true
           constraint: preset_mode
           conditions:
-            - dps_val: "0" # auto
+            - dps_val: "0"  # auto
               value: heat_cool
-              icon: "mdi:hvac"
-            - dps_val: "1" # cold
+            - dps_val: "1"  # cold
               value: cool
-              icon: "mdi:snowflake"
-            - dps_val: "2" # hot
+            - dps_val: "2"  # hot
               value: heat
-              icon: "mdi:fire"
-            - dps_val: "3" # wet
+            - dps_val: "3"  # wet
               value: dry
-              icon: "mdi:water"
-            - dps_val: "5" # fan
+            - dps_val: "5"  # fan
               value: fan_only
-              icon: "mdi:fan"
     - id: 2
       type: integer
       name: temperature
@@ -62,17 +56,19 @@ primary_entity:
       name: unknown_20
     - id: 101
       type: string
+      # at least some firmware versions of this model do not like combining
+      # dps in hvac_mode, so duplicate in presets to allow single dp commands
       name: preset_mode
       mapping:
-        - dps_val: "0" # auto
+        - dps_val: "0"
           value: Auto
-        - dps_val: "1" # cold
+        - dps_val: "1"
           value: Cool
-        - dps_val: "2" # hot
+        - dps_val: "2"
           value: Heat
-        - dps_val: "3" # wet
+        - dps_val: "3"
           value: Dry
-        - dps_val: "5" # fan
+        - dps_val: "5"
           value: Fan
     - id: 103
       type: boolean
@@ -117,8 +113,17 @@ primary_entity:
       type: integer
       name: current_humidity
 secondary_entities:
+  # At least some firmware versions do not like combining dps into hvac_mode
+  # above, so provide a simple single dp on/off switch as an alternative
+  - entity: switch
+    name: Power
+    category: config
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: select
-    name: Temperature unit
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 109
@@ -126,6 +131,6 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: false
-            value: Celsius
+            value: celsius
           - dps_val: true
-            value: Fahrenheit
+            value: fahrenheit

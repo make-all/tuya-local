@@ -1,0 +1,115 @@
+name: Air Purifier
+products:
+  - id: jiiagi6aamtgbffk
+    name: Proscenic A8
+primary_entity:
+  entity: fan
+  icon: "mdi:air-purifier"
+  translation_only_key: fan_with_presets
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 4
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: sleep
+          value: sleep
+        - dps_val: mid
+          value: fresh
+        - dps_val: high
+          value: strong
+        - dps_val: auto
+          value: smart
+    - id: 101
+      name: unknown_101
+      type: integer
+    - id: 102
+      name: unknown_102
+      type: string
+secondary_entities:
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        name: sensor
+        class: measurement
+        type: integer
+        unit: ugm3
+  - entity: light
+    category: config
+    icon: "mdi:lightbulb-night"
+    dps:
+      - id: 8
+        name: switch
+        type: boolean
+  - entity: sensor
+    name: Filter usage
+    category: diagnostic
+    icon: "mdi:shield-bug"
+    dps:
+      - id: 5
+        name: sensor
+        type: integer
+        unit: "%"
+  - entity: switch
+    name: Reset Filter
+    category: config
+    icon: "mdi:lightbulb-night"
+    dps:
+      - id: 11
+        name: switch
+        type: boolean
+  - entity: sensor
+    name: Filter days left
+    category: diagnostic
+    icon: "mdi:air-filter"
+    dps:
+      - id: 16
+        name: sensor
+        type: integer
+        unit: d
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: sensor
+    name: Total runtime
+    category: diagnostic
+    icon: "mdi:data-matrix"
+    dps:
+      - id: 17
+        name: sensor
+        type: integer
+        unit: min
+  - entity: sensor
+    name: Total PM
+    category: diagnostic
+    icon: "mdi:data-matrix"
+    dps:
+      - id: 20
+        name: sensor
+        type: integer
+        optional: true
+        unit: ugm3
+  - entity: sensor
+    name: Air quality
+    class: enum
+    icon: "mdi:air-filter"
+    dps:
+      - id: 21
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: "great"
+            value: "Great"
+          - dps_val: "good"
+            value: "Good"
+          - dps_val: "medium"
+            value: "Mild pollution"
+          - dps_val: "severe"
+            value: "Severe"

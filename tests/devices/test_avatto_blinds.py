@@ -1,14 +1,13 @@
 """Tests for the Avatto roller blinds controller."""
-from homeassistant.components.cover import (
-    CoverDeviceClass,
-    CoverEntityFeature,
-)
+
+from homeassistant.components.cover import CoverDeviceClass, CoverEntityFeature
+from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import UnitOfTime
 
 from ..const import AVATTO_BLINDS_PAYLOAD
 from ..helpers import assert_device_properties_set
-from ..mixins.sensor import MultiSensorTests
 from ..mixins.select import BasicSelectTests
+from ..mixins.sensor import MultiSensorTests
 from .base_device_tests import TuyaDeviceTestCase
 
 COMMAND_DP = "1"
@@ -26,7 +25,7 @@ class TestAvattoBlinds(MultiSensorTests, BasicSelectTests, TuyaDeviceTestCase):
 
     def setUp(self):
         self.setUpForConfig("avatto_roller_blinds.yaml", AVATTO_BLINDS_PAYLOAD)
-        self.subject = self.entities["cover"]
+        self.subject = self.entities["cover_blind"]
         self.setUpMultiSensors(
             [
                 {
@@ -38,7 +37,8 @@ class TestAvattoBlinds(MultiSensorTests, BasicSelectTests, TuyaDeviceTestCase):
                 },
                 {
                     "dps": COUNTDOWN_DP,
-                    "name": "sensor_timer",
+                    "name": "sensor_time_remaining",
+                    "device_class": SensorDeviceClass.DURATION,
                     "min": 0,
                     "max": 86400,
                     "unit": UnitOfTime.SECONDS,
@@ -49,14 +49,16 @@ class TestAvattoBlinds(MultiSensorTests, BasicSelectTests, TuyaDeviceTestCase):
             TIMER_DP,
             self.entities.get("select_timer"),
             {
-                "cancel": "Off",
-                "1": "1 hour",
-                "2": "2 hours",
-                "3": "3 hours",
-                "4": "4 hours",
+                "cancel": "cancel",
+                "1": "1h",
+                "2": "2h",
+                "3": "3h",
+                "4": "4h",
             },
-        ),
-        self.mark_secondary(["sensor_travel_time", "sensor_timer", "select_timer"])
+        )
+        self.mark_secondary(
+            ["sensor_travel_time", "sensor_time_remaining", "select_timer"]
+        )
 
     def test_device_class_is_blind(self):
         self.assertEqual(self.subject.device_class, CoverDeviceClass.BLIND)

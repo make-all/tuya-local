@@ -1,0 +1,29 @@
+name: Illuminance sensor
+products:
+  - id: 8181077094b97e16d467
+primary_entity:
+  entity: sensor
+  name: Brightness
+  class: illuminance
+  dps:
+    - id: 2
+      type: integer
+      name: sensor
+      unit: lx
+      class: measurement
+secondary_entities:
+  - entity: sensor
+    name: Light level
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: low
+            value: Low
+          - dps_val: middle
+            value: Medium
+          - dps_val: high
+            value: High

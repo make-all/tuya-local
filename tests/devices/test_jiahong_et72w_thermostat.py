@@ -1,18 +1,9 @@
-from homeassistant.components.climate.const import (
-    ClimateEntityFeature,
-    HVACMode,
-)
-from homeassistant.components.sensor import (
-    SensorDeviceClass,
-    STATE_CLASS_MEASUREMENT,
-    STATE_CLASS_TOTAL_INCREASING,
-)
-from homeassistant.const import (
-    UnitOfEnergy,
-    UnitOfTemperature,
-)
+from homeassistant.components.climate.const import ClimateEntityFeature, HVACMode
+from homeassistant.components.number.const import NumberDeviceClass
+from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT, SensorDeviceClass
+from homeassistant.const import UnitOfEnergy, UnitOfTemperature
+
 from ..const import JIAHONG_ET72W_PAYLOAD
-from ..helpers import assert_device_properties_set
 from ..mixins.climate import TargetTemperatureTests
 from ..mixins.lock import BasicLockTests
 from ..mixins.number import BasicNumberTests
@@ -80,8 +71,8 @@ class TestJiahongEt72wThermostat(
                     "dps": UNIT_DPS,
                     "name": "select_temperature_unit",
                     "options": {
-                        False: "Celsius",
-                        True: "Fahrenheit",
+                        False: "celsius",
+                        True: "fahrenheit",
                     },
                 },
                 {
@@ -98,6 +89,7 @@ class TestJiahongEt72wThermostat(
         self.setUpBasicNumber(
             TEMPLIMIT_DPS,
             self.entities.get("number_room_temperature_limit"),
+            device_class=NumberDeviceClass.TEMPERATURE,
             min=10.0,
             max=40.0,
             step=0.5,
@@ -125,8 +117,6 @@ class TestJiahongEt72wThermostat(
                 {
                     "dps": ENERGY_DPS,
                     "name": "sensor_energy",
-                    "device_class": SensorDeviceClass.ENERGY,
-                    "state_class": STATE_CLASS_TOTAL_INCREASING,
                     "unit": UnitOfEnergy.KILO_WATT_HOUR,
                     "testdata": (1234, 123.4),
                 },
@@ -145,7 +135,9 @@ class TestJiahongEt72wThermostat(
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            ClimateEntityFeature.TARGET_TEMPERATURE,
+            ClimateEntityFeature.TARGET_TEMPERATURE
+            | ClimateEntityFeature.TURN_OFF
+            | ClimateEntityFeature.TURN_ON,
         )
 
     def test_temperature_unit(self):
@@ -209,12 +201,12 @@ class TestJiahongEt72wThermostat(
     async def test_set_target_temperature_fails_outside_valid_range(self):
         with self.assertRaisesRegex(
             ValueError,
-            f"temperature \\(4.5\\) must be between 5.0 and 40.0",
+            "temperature \\(4.5\\) must be between 5.0 and 40.0",
         ):
             await self.subject.async_set_target_temperature(4.5)
         with self.assertRaisesRegex(
             ValueError,
-            f"temperature \\(41\\) must be between 5.0 and 40.0",
+            "temperature \\(41\\) must be between 5.0 and 40.0",
         ):
             await self.subject.async_set_target_temperature(41)
 
@@ -237,7 +229,7 @@ class TestJiahongEt72wThermostat(
         self.dps[CALIB_DPS] = 321
         self.assertEqual(
             self.multiSensor["sensor_energy"].extra_state_attributes,
-            {"energy_calibration": 321},
+            {"calibration": 321},
         )
 
     def test_icons(self):

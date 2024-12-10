@@ -1,0 +1,117 @@
+name: Aroma diffuser
+products:
+  - id: 6ASdNwe9IdaewQEl
+    name: Asakuki cube light
+primary_entity:
+  entity: fan
+  translation_key: aroma_diffuser
+  dps:
+    - id: 11
+      type: boolean
+      name: switch
+    - id: 13
+      type: string
+      name: speed
+      mapping:
+        - dps_val: "0"
+          value: 50
+        - dps_val: "1"
+          value: 100
+secondary_entities:
+  - entity: light
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 109
+        name: color_mode
+        type: string
+        mapping:
+          - dps_val: white
+            value: white
+          - dps_val: colour
+            value: Color
+          - dps_val: colourfull
+            value: Mood
+      - id: 111
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 255
+      - id: 108
+        name: color_data
+        type: hex
+        format:
+          - name: r
+            bytes: 1
+            range:
+              min: 0
+              max: 255
+          - name: g
+            bytes: 1
+            range:
+              min: 0
+              max: 255
+          - name: b
+            bytes: 1
+            range:
+              min: 0
+              max: 255
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 1
+            range:
+              min: 0
+              max: 100
+          - name: v
+            bytes: 1
+            range:
+              min: 0
+              max: 255
+  - entity: select
+    name: Mood
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 110
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: Mood 1
+          - dps_val: "2"
+            value: Mood 2
+          - dps_val: "3"
+            value: Mood 3
+  - entity: select
+    name: Color
+    icon: "mdi:palette"
+    category: config
+    dps:
+      - id: 108
+        type: string
+        name: option
+        mapping:
+          - dps_val: "ff00000064ff"
+            value: Red
+          - dps_val: "ffa5002764ff"
+            value: Orange
+          - dps_val: "ffff003c64ff"
+            value: Yellow
+          - dps_val: "00ff007864ff"
+            value: Green
+          - dps_val: "0000fff064ff"
+            value: Blue
+          - dps_val: "4b008201136482"
+            value: Indigo
+          - dps_val: "7f00ff010e64ff"
+            value: Violet
+          - dps_val: "ff6ec7014391ff"
+            value: Pink
+          - dps_val: "00ffff8464ff"
+            value: Cyan

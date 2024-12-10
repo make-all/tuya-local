@@ -1,0 +1,655 @@
+{
+    "title": "Tuya Local",
+    "config": {
+        "step": {
+            "user": {
+                "title": "Настройка устройства Tuya Local",
+                "description": "Устройства можно добавлять вручную или через облако с помощью приложения Smart Life.",
+                "data": {
+                    "setup_mode": "Выбор установки:"
+                }
+            },
+            "cloud": {
+                "title": "Войти в Тую",
+                "description": "Введите свой код пользователя Smart Life или Tuya Smart.\n\nВы можете найти этот код в приложении Smart Life или Tuya Smart на экране **Настройки** > **Аккаунт и безопасность** и введите код",
+                "data": {
+                    "user_code": "Код пользователя:"
+                }
+            },
+            "scan": {
+                "title": "Завершите вход",
+                "description": "Используйте приложение Smart Life или приложение Tuya Smart"
+            },
+            "choose_device": {
+                "title": "Выберите устройство для добавления",
+                "description": "Пожалуйста",
+                "data": {
+                    "device_id": "Выберите устройство:",
+                    "hub_id": "Выберите шлюз:"
+                }
+            },
+            "search": {
+                "title": "Найдите IP-адрес устройства",
+                "description": "Облако Tuya не предоставляет локальные IP-адреса"
+            },
+            "local": {
+                "title": "Настройка устройства Tuya Local",
+                "description": "[Следуйте этим инструкциям, чтобы найти идентификатор устройства и локальный ключ.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "IP-адрес или имя хоста",
+                    "device_id": "Идентификатор устройства (device_id, или device_id шлюза для устройств, подключенных через шлюз)",
+                    "local_key": "Локальный ключ",
+                    "protocol_version": "Версия протокола (попробуйте auto, если не уверены)",
+                    "poll_only": "Только опрос (попробуйте это, если ваше устройство не работает в полной мере)",
+                    "device_cid": "node_id или uuid подустройства (для устройств, подключенных через шлюз)"
+                }
+            },
+            "select_type": {
+                "title": "Выберите тип устройства",
+                "description": "Выберите тип, соответствующий вашему устройству",
+                "data": {
+                    "type": "Тип устройства"
+                }
+            },
+            "choose_entities": {
+                "title": "Сведения об устройстве",
+                "description": "Выберите имя для этого устройства",
+                "data": {
+                    "name": "Имя"
+                }
+            }
+        },
+        "abort": {
+            "already_configured": "Устройство с этим идентификатором уже было добавлено.",
+            "not_supported": "К сожалению, это устройство не поддерживается.",
+            "no_devices": "Не удалось найти незарегистрированные устройства для учетной записи."
+        },
+        "error": {
+            "connection": "Не удается подключиться к вашему устройству с этими данными. Это может быть временная проблема, или данные могут быть неверными.",
+            "does_not_need_hub": "Устройству не нужен шлюз",
+            "needs_hub": "Устройству нужен шлюз"
+        }
+    },
+    "selector": {
+        "setup_mode": {
+            "options": {
+                "cloud": "Настройка устройства с помощью облака Smart Life.",
+                "manual": "Вручную укажите информацию о подключении устройства."
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "user": {
+                "title": "Настройка устройства Tuya Local",
+                "description": "[Следуйте этим инструкциям, чтобы найти идентификатор устройства и локальный ключ.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "IP-адрес или имя хоста",
+                    "local_key": "Локальный ключ",
+                    "protocol_version": "Версия протокола (попробуйте auto, если не уверены)",
+                    "poll_only": "Только опрос (попробуйте это, если ваше устройство не работает в полной мере)"
+                }
+            }
+        },
+        "error": {
+            "connection": "Не удается подключиться к вашему устройству с этими данными. Это может быть временная проблема, или данные могут быть неверными."
+        },
+        "abort": {
+            "not_supported": "К сожалению, это устройство не поддерживается."
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "Разморозка",
+                "state": {
+                    "off": "Нормальный",
+                    "on": "Разморозка"
+                }
+            },
+            "tank_empty": {
+                "name": "Бак",
+                "state": {
+                    "off": "OK",
+                    "on": "Низкий"
+                }
+            },
+            "tank_full": {
+                "name": "Бак",
+                "state": {
+                    "off": "OK",
+                    "on": "Полный"
+                }
+            },
+            "wake": {
+                "name": "Подъем",
+                "state": {
+                    "off": "Сон",
+                    "on": "Бодрствование"
+                }
+            },
+            "casdon_oven_fault": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "e1": "E1: Защита от перегрева камеры (превышает 290°C)",
+                            "e2": "E2: Защита от перегрева лотка для испарения (превышает 200°C)",
+                            "e3": "E3: Защита от низкой температуры камеры (ниже 35°C)",
+                            "e4": "E4: Защита от низкой температуры лотка для испарения (ниже 35°C)",
+                            "e5": "E5: Ошибка подключения датчика (разомкнутая цепь)",
+                            "e6": "E6: Ошибка датчика (короткое замыкание)",
+                            "e7": "E7: Ошибка датчика (неправильное подключение)",
+                            "e8": "E8: Бак с водой открыт (CN7) или лоток для испарения сухой (CN3)"
+                        }
+                    }
+                }
+            }
+        },
+        "button": {
+            "factory_reset": {
+                "name": "Сброс настроек"
+            },
+            "filter_reset": {
+                "name": "Сброс фильтра"
+            }
+        },
+        "climate": {
+            "aircon_extra": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "health": "Здоровый",
+                            "medhigh": "Средне-высокий",
+                            "medlow": "Средне-низкий",
+                            "natural": "Естественный",
+                            "quiet": "Тихий",
+                            "sleep": "Сон",
+                            "strong": "Сильный"
+                        }
+                    },
+                    "swing_mode": {
+                        "state": {
+                            "topmost": "Самый верхний",
+                            "top": "Верхний",
+                            "middle": "Средний",
+                            "down": "Нижний",
+                            "downmost": "Самый нижний"
+                        }
+                    }
+                }
+            },
+            "thermostat": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "cycle": "Цикл"
+                        }
+                    },
+                    "preset_mode": {
+                        "state": {
+                            "manual": "Ручной",
+                            "program": "Программа",
+                            "temp_override": "Временно перекрыт",
+                            "perm_override": "Постоянно перекрыт"
+                        }
+                    }
+                }
+            },
+            "combo_floor": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "cool": "Прохладный воздух",
+                            "fan_only": "Вентилятор",
+                            "heat": "Теплый воздух",
+                            "floor_cool": "Прохладный пол",
+                            "floor_heat": "Теплый пол"
+                        }
+                    }
+                }
+            },
+            "swing_as_powerlevel": {
+                "state_attributes": {
+                    "swing_mode": {
+                        "name": "Уровень нагрева",
+                        "state": {
+                            "stop": "Стоп",
+                            "auto": "Авто"
+                        }
+                    }
+                }
+            },
+            "pool_heatpump": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "smart_heat": "Умный нагрев",
+                            "quick_heat": "Быстрый нагрев",
+                            "quiet_heat": "Тихий нагрев",
+                            "smart_cool": "Умное охлаждение",
+                            "quick_cool": "Быстрое охлаждение",
+                            "quiet_cool": "Тихое охлаждение",
+                            "auto": "Авто",
+                            "smart": "Умный",
+                            "quiet": "Тихий",
+                            "quick": "Быстрый"
+                        }
+                    }
+                }
+            },
+            "heater": {
+                "name": "Обогреватель"
+            },
+            "thermo_switch": {
+                "state_attributes": {
+                    "hvac_mode": {
+                        "state": {
+                            "fan_only": "Пауза"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "healthy_steam": "Полезный пар",
+                            "fresh_steam": "Свежий пар",
+                            "high_temp_steam": "Высокотемпературный пар",
+                            "stew": "Тушение",
+                            "bake_up_and_down": "Выпекание сверху и снизу",
+                            "bbq": "Барбекю",
+                            "bottom_hot_air": "Нижний горячий воздух",
+                            "on_strong_roast": "На сильном жаре",
+                            "3d_hot_air": "3D горячий воздух",
+                            "air_fry": "Жарка на воздухе",
+                            "steam_frying": "Паровая жарка",
+                            "one_click_bread": "Один клик хлеб",
+                            "quick_heat": "Быстрый нагрев",
+                            "keep_warm": "Поддержание тепла",
+                            "unfreeze": "Разморозка",
+                            "fermentation": "Ферментация",
+                            "descale": "Удаление накипи",
+                            "local_recipes": "Местные рецепты",
+                            "drying": "Сушка",
+                            "custom": "Пользовательский",
+                            "low_steaming": "Низкое парение",
+                            "medium_steaming": "Среднее парение",
+                            "high_steaming": "Высокое парение"
+                        }
+                    }
+                }
+            }
+        },
+        "humidifier": {
+            "dehumidifier": {
+                "state_attributes": {
+                    "mode": {
+                        "state": {
+                            "laundry": "Сушка одежды",
+                            "purify": "Очистка"
+                        }
+                    }
+                }
+            }
+        },
+        "fan": {
+            "aroma_diffuser": {
+                "name": "Аромадиффузор",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "low": "Низкий",
+                            "medium": "Средний",
+                            "high": "Высокий",
+                            "continuous": "Непрерывный",
+                            "intermittent": "Интервальный"
+                        }
+                    }
+                }
+            },
+            "fan_with_presets": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "normal": "Нормальный",
+                            "nature": "Естественный",
+                            "sleep": "Сон",
+                            "baby": "Детская комната",
+                            "fresh": "Свежий",
+                            "smart": "Умный",
+                            "strong": "Мощный",
+                            "high": "Высокий",
+                            "medium": "Средний",
+                            "low": "Низкий",
+                            "displayoff": "Дисплей выкл",
+                            "off": "Выкл"
+                        }
+                    }
+                }
+            },
+            "ventilation": {
+                "name": "Вентиляция",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "fresh": "Свежий воздух",
+                            "circulate": "Циркуляция",
+                            "sleep": "Сон",
+                            "auto": "Авто",
+                            "eco": "Эко",
+                            "anti-condensation": "Антиконденсация"
+                        }
+                    }
+                }
+            }
+        },
+        "light": {
+            "backlight": {
+                "name": "Подсветка"
+            },
+            "display": {
+                "name": "Дисплей"
+            },
+            "embers": {
+                "name": "Угли"
+            },
+            "flame": {
+                "name": "Пламя"
+            },
+            "indicator": {
+                "name": "Индикатор"
+            },
+            "laser": {
+                "name": "Лазер"
+            },
+            "logs": {
+                "name": "Бревно"
+            },
+            "nightlight": {
+                "name": "Ночник"
+            }
+        },
+        "lock": {
+            "child_lock": {
+                "name": "Блокировка от детей"
+            }
+        },
+        "number": {
+            "timer": {
+                "name": "Таймер"
+            },
+            "timer_x": {
+                "name": "Таймер {x}"
+            }
+        },
+        "select": {
+            "initial_state": {
+                "name": "Начальное состояние",
+                "state": {
+                    "off": "Выкл",
+                    "on": "Вкл",
+                    "memory": "Память"
+                }
+            },
+            "language": {
+                "name": "Язык",
+                "state": {
+                    "chinese": "中文",
+                    "chinese_traditional": "中文(繁體)",
+                    "english": "English",
+                    "french": "Français",
+                    "german": "Deutsch",
+                    "italian": "Italiano",
+                    "japanese": "日本語",
+                    "korean": "한국어",
+                    "latin": "Lingua Latina",
+                    "portuguese": "Português",
+                    "russian": "Русский",
+                    "spanish": "Español",
+                    "turkish": "Türkçe"
+                }
+            },
+            "mopping": {
+                "name": "Мытье пола",
+                "state": {
+                    "off": "Выкл",
+                    "auto": "Авто",
+                    "low": "Низкий",
+                    "medium": "Средний",
+                    "high": "Высокий"
+                }
+            },
+            "recipe": {
+                "name": "Рецепт",
+                "state": {
+                    "pizza": "Пицца",
+                    "fries": "Картофель фри",
+                    "chicken": "Курица",
+                    "shrimp": "Креветки",
+                    "fish": "Рыба",
+                    "chicken_drumsticks": "Куриные ножки",
+                    "vegetables": "Овощи",
+                    "desserts": "Десерты",
+                    "none": "Нет",
+                    "chicken_wings": "Куриные крылья",
+                    "steak": "Стейк",
+                    "onion_rings": "Луковые кольца",
+                    "bacon": "Бекон",
+                    "cake": "Торт",
+                    "bread": "Хлеб",
+                    "toast": "Тост",
+                    "custom": "Пользовательский",
+                    "cloud_recipe": "Облако",
+                    "default": "По умолчанию",
+                    "keep_warm": "Поддержание тепла",
+                    "preheat": "Предварительный нагрев"
+                }
+            },
+            "timer": {
+                "name": "Таймер",
+                "state": {
+                    "cancel": "Отмена",
+                    "10m": "10 минут",
+                    "30m": "30 минут",
+                    "1h": "1 час",
+                    "1h30m": "1 час 30 минут",
+                    "2h": "2 часа",
+                    "2h30m": "2 часа 30 минут",
+                    "3h": "3 часа",
+                    "3h30m": "3 часа 30 минут",
+                    "4h": "4 часа",
+                    "4h30m": "4 часа 30 минут",
+                    "5h": "5 часов",
+                    "5h30m": "5 часов 30 минут",
+                    "6h": "6 часов",
+                    "6h30m": "6 часов 30 минут",
+                    "7h": "7 часов",
+                    "7h30m": "7 часов 30 минут",
+                    "8h": "8 часов",
+                    "8h30m": "8 часов 30 минут",
+                    "9h": "9 часов",
+                    "9h30m": "9 часов 30 минут",
+                    "10h": "10 часов",
+                    "11h": "11 часов",
+                    "12h": "12 часов",
+                    "13h": "13 часов",
+                    "14h": "14 часов",
+                    "15h": "15 часов",
+                    "16h": "16 часов",
+                    "17h": "17 часов",
+                    "18h": "18 часов",
+                    "19h": "19 часов",
+                    "20h": "20 часов",
+                    "21h": "21 час",
+                    "22h": "22 часа",
+                    "23h": "23 часа",
+                    "24h": "24 часа",
+                    "36h": "36 часов",
+                    "48h": "48 часов",
+                    "72h": "72 часа"
+                }
+            },
+            "temperature_unit": {
+                "name": "Единица измерения температуры",
+                "state": {
+                    "celsius": "Цельсия",
+                    "fahrenheit": "Фаренгейт"
+                }
+            },
+            "oven_built_in_recipe": {
+                "name": "Встроенный рецепт",
+                "state": {
+                    "none": "Нет",
+                    "steamed_egg_with_okra": "Яйца на пару с окрой",
+                    "steamed_sea_bass": "Паровой морской окунь",
+                    "steamed_prawns": "Креветки на пару",
+                    "handmade_steamed_bread": "Домашний паровой хлеб",
+                    "fan_steamed_baby_vegetables": "Вентилятор паровых овощей",
+                    "braised_pork": "Тушеная свинина",
+                    "snow_fungus_and_bird_s_nest": "Снежный гриб и птичье гнездо",
+                    "crab_pot": "Крабовый горшок",
+                    "potato_ribs": "Картофельные ребра",
+                    "coconut_chicken_soup": "Куриный кокосовый суп",
+                    "snack_platter": "Закусочная тарелка",
+                    "chicken_skewers": "Куриные шашлыки",
+                    "roasted_pork_knuckle": "Жареная свиная нога",
+                    "dried_lemon": "Сушеный лимон",
+                    "pork_jerky": "Свиной джерки",
+                    "crispy_hairtail": "Хрустящий хвост рыбы",
+                    "spicy_grilled_fish": "Острый жареный рыба",
+                    "roasted_sweet_potatoes": "Жареная сладкая картошка",
+                    "roasted_chicken_wings": "Жареные куриные крылья",
+                    "cumin_lamb_chops": "Кумин баранина",
+                    "honey_grilled_chicken": "Медовые жареные курицы",
+                    "garlic_eggplant": "Чесночный баклажан",
+                    "portuguese_egg_tart": "Португальский яичный тарт",
+                    "creme_brulee": "Крем-брюле",
+                    "cocoa_chips": "Какао-чипсы",
+                    "butter_cookies": "Печенье с маслом",
+                    "chiffon_cake": "Шифоновый торт",
+                    "puff_pastry": "Слоеное тесто",
+                    "red_bean_bread": "Хлеб с красной фасолью",
+                    "milk_toast": "Молочный тост"
+                }
+            }
+        },
+        "sensor": {
+            "status": {
+                "name": "Статус",
+                "state": {
+                    "available": "Доступно",
+                    "plugged_in": "Подключено",
+                    "fault_unplugged": "Ошибка (отключено)",
+                    "charging": "Зарядка",
+                    "waiting": "Ожидание",
+                    "charged": "Заряжено",
+                    "fault": "Ошибка",
+                    "paused": "Приостановлено",
+                    "waiting_for_authorization": "Ожидание авторизации",
+                    "standby": "Режим ожидания",
+                    "heating": "Нагрев",
+                    "cooling": "Охлаждение",
+                    "keeping_warm": "Поддержание тепла",
+                    "no_water": "Нет воды",
+                    "boiling": "Кипение",
+                    "reserve_only": "Только резерв",
+                    "unknown": "Неизвестно",
+                    "idle": "Простой",
+                    "auto": "Авто",
+                    "manual": "Ручной",
+                    "rain_delay": "Задержка из-за дождя",
+                    "off": "Выкл",
+                    "cooking": "Готовка",
+                    "done": "Готово",
+                    "door_open": "Дверь открыта",
+                    "setting": "Настройка",
+                    "pre_heating": "Предварительный нагрев",
+                    "scheduled": "Запланировано",
+                    "at_temperature": "По температуре",
+                    "done_stage_1": "Готово этап 1",
+                    "done_stage_2": "Готово этап 2",
+                    "done_stage_3": "Готово этап 3",
+                    "done_stage_4": "Готово этап 4",
+                    "done_stage_5": "Готово этап 5",
+                    "done_stage_6": "Готово этап 6",
+                    "done_stage_7": "Готово этап 7",
+                    "done_stage_8": "Готово этап 8",
+                    "done_stage_9": "Готово этап 9",
+                    "done_stage_10": "Готово этап 10",
+                    "no_food": "Нет еды",
+                    "jammed": "Заблокировано",
+                    "blocked": "Заблокировано",
+                    "feeding": "Кормление",
+                    "feeding_complete": "Кормление завершено",
+                    "caking": "Торт",
+                    "cleaning": "Чистка",
+                    "sleep": "Сон",
+                    "sterilizing": "Стерилизация",
+                    "deodorizing": "Дезодорация",
+                    "occupied": "Занято",
+                    "normal": "Нормально",
+                    "low": "Низкий",
+                    "high": "Высокий",
+                    "unwashed": "Не помыто",
+                    "pre_washing": "Предварительная стирка",
+                    "washing": "Мытье",
+                    "rinsing": "Ополаскивание",
+                    "drying": "Сушка",
+                    "air_purging": "Очистка воздуха",
+                    "anti_freeze": "Антифриз",
+                    "close": "Закрыто",
+                    "monitor": "Мониторинг",
+                    "working": "Работает",
+                    "warning": "Предупреждение"
+                }
+            },
+            "time_remaining": {
+                "name": "Времени осталось"
+            },
+            "cooking_status": {
+                "name": "Статус",
+                "state": {
+                    "wait": "Ожидание приготовления",
+                    "reservation": "В резерве",
+                    "cooking": "В процессе",
+                    "cancel": "Отмена приготовления",
+                    "done": "Готово",
+                    "pause": "Приготовление приостановлено"
+                }
+            },
+            "energy_produced": {
+                "name": "Производимая энергия"
+            },
+            "energy_consumed": {
+                "name": "Потребляемая энергия"
+            },
+            "energy_produced_x": {
+                "name": "Производимая энергия {x}"
+            },
+            "energy_consumed_x": {
+                "name": "Потребляемая энергия {x}"
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "Антимороз"
+            },
+            "evaporator_cleaning": {
+                "name": "Очистка испарителя"
+            },
+            "ionizer": {
+                "name": "Ионизатор"
+            },
+            "keytone": {
+                "name": "Ключевой тон"
+            },
+            "sleep": {
+                "name": "Сон"
+            },
+            "uv_sterilization": {
+                "name": "УФ-стерилизация"
+            }
+        }
+    }
+}

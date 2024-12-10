@@ -1,0 +1,656 @@
+{
+    "title": "Tuya Local",
+    "config": {
+        "step": {
+            "user": {
+                "title": "Konfigurer din lokale Tuya enhet",
+                "description": "Enheter kan enten legges til manuelt eller skyassistert ved hjelp av Smart Life-appen.",
+                "data": {
+                    "setup_mode": "Oppsettvalg:"
+                }
+            },
+            "cloud": {
+                "title": "Logg inn på Tuya",
+                "description": "Skriv inn Smart Life- eller Tuya Smart-brukerkoden din.\n\nDu finner denne koden i Smart Life-appen eller Tuya Smart-appen i **Innstillinger** > **Konto og sikkerhet**-skjermbildet",
+                "data": {
+                    "user_code": "Brukerkode:"
+                }
+            },
+            "scan": {
+                "title": "Fullfør påloggingen",
+                "description": "Bruk Smart Life-appen eller Tuya Smart-appen for å skanne følgende QR-kode for å fullføre påloggingen.\n\nFortsett til neste trinn når du har fullført dette trinnet i appen."
+            },
+            "choose_device": {
+                "title": "Velg enheten du vil legge til",
+                "description": "Velg enheten du vil legge til fra den første rullegardinlisten. ",
+                "data": {
+                    "device_id": "Velg enhet:",
+                    "hub_id": "Velg gateway:"
+                }
+            },
+            "search": {
+                "title": "Finn enhetens IP-adresse",
+                "description": "Tuya cloud gir ikke lokale IP-adresser"
+            },
+            "local": {
+                "title": "Konfigurer din lokale Tuya enhet",
+                "description": "[Følg instruksjonene her for å finne enhets-id og den lokale nøkkelen.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "IP addresse eller vertsnavn",
+                    "or device_id of gateway for devices connected via gateway": "",
+                    "device_id": "Enhets-ID (device_id, eller device_id for gateway for enheter tilkoblet via gateway)",
+                    "local_key": "Lokal nøkkel",
+                    "protocol_version": "Protocol versjon (prøv auto hvis du der usikker)",
+                    "poll_only": "Kun poll (prøv dette hvis enhenten ikke virker ordentlig)",
+                    "device_cid": "Underenhets node_id eller uuid (for enheter tilkoblet via gateway)"
+                }
+            },
+            "select_type": {
+                "title": "Velg enhetstypen",
+                "description": "Velg enhetstypen som tilsvarer din enhet",
+                "data": {
+                    "type": "Enhetstype"
+                }
+            },
+            "choose_entities": {
+                "title": "Enhetsdetaljer",
+                "description": "Angi et navn for din enhet",
+                "data": {
+                    "name": "Navn"
+                }
+            }
+        },
+        "abort": {
+            "already_configured": "En enhet med denne ID-en eksisterer allerede.",
+            "not_supported": "Beklager, det er ingen støtte for denne enheten.",
+            "no_devices": "Kan ikke finne noen uregistrerte enheter for kontoen."
+        },
+        "error": {
+            "connection": "Kunne ikke koble til enheten med de angitte detaljene. Det kan være en midlertidig feil, eller feil med detaljene angitt.",
+            "does_not_need_hub": "Enheten trenger ikke en gateway",
+            "needs_hub": "Enheten trenger en gateway"
+        }
+    },
+    "selector": {
+        "setup_mode": {
+            "options": {
+                "cloud": "Smart Life sky-assistert enhetsoppsett.",
+                "manual": "Oppgi informasjon om enhetstilkobling manuelt."
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "user": {
+                "title": "Konfigurer din lokale Tuya enhet",
+                "description": "[Følg instruksjonene her for å finne enhets-id og den lokale nøkkelen.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "IP addresse eller vertsnavn",
+                    "local_key": "Lokal nøkkel",
+                    "protocol_version": "Protocol versjon (prøv auto hvis du der usikker)",
+                    "poll_only": "Kun poll (prøv dette hvis enhenten ikke virker ordentlig)"
+                }
+            }
+        },
+        "error": {
+            "connection": "Kunne ikke koble til enheten med de angitte detaljene. Det kan være en midlertidig feil, eller feil med detaljene angitt."
+        },
+        "abort": {
+            "not_supported": "Beklager, det er ingen støtte for denne enheten"
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "Tine",
+                "state": {
+                    "off": "Normal",
+                    "on": "Tining"
+                }
+            },
+            "tank_empty": {
+                "name": "Tank",
+                "state": {
+                    "off": "OK",
+                    "on": "Lav"
+                }
+            },
+            "tank_full": {
+                "name": "Tank",
+                "state": {
+                    "off": "OK",
+                    "on": "Full"
+                }
+            },
+            "wake": {
+                "name": "Våkne",
+                "state": {
+                    "off": "Søvn",
+                    "on": "Våken"
+                }
+            },
+            "casdon_oven_fault": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "e1": "E1: Kammer overoppheting beskyttelse (over 290°C)",
+                            "e2": "E2: Evaporation tray overoppheting beskyttelse (over 200°C)",
+                            "e3": "E3: Kammer lav temperatur beskyttelse (under 35°C)",
+                            "e4": "E4: Evaporation tray lav temperatur beskyttelse (under 35°C)",
+                            "e5": "E5: Sensor tilkoblingsfeil (Åpen krets)",
+                            "e6": "E6: Sensor tilkoblingsfeil (Kortslutning)",
+                            "e7": "E7: Displaybrett kommunikasjonsfeil",
+                            "e8": "E8: Vanntank åpen (CN7) eller Evaporation tray tørr (CN3)"
+                        }
+                    }
+                }
+            }
+        },
+        "button": {
+            "factory_reset": {
+                "name": "Fabrikkinnstilling"
+            },
+            "filter_reset": {
+                "name": "Filter tilbakestilling"
+            }
+        },
+        "climate": {
+            "aircon_extra": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "health": "Healthy",
+                            "medhigh": "Medium-Høy",
+                            "medlow": "Medium-Lav",
+                            "natural": "Nøytral",
+                            "quiet": "Stille",
+                            "sleep": "Søvn",
+                            "strong": "Sterk"
+                        }
+                    },
+                    "swing_mode": {
+                        "state": {
+                            "topmost": "Høyeste",
+                            "top": "Høy",
+                            "middle": "Midterst",
+                            "down": "Nedre",
+                            "downmost": "Nederst"
+                        }
+                    }
+                }
+            },
+            "thermostat": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "cycle": "Syklus"
+                        }
+                    },
+                    "preset_mode": {
+                        "state": {
+                            "manual": "Manuell",
+                            "program": "Program",
+                            "temp_override": "Midlertidig overstyring",
+                            "perm_override": "Permanent overstyrt"
+                        }
+                    }
+                }
+            },
+            "combo_floor": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "cool": "Kjølig luft",
+                            "fan_only": "Vifte",
+                            "heat": "Varm luft",
+                            "floor_cool": "Kjøl gulv",
+                            "floor_heat": "Varm gulv"
+                        }
+                    }
+                }
+            },
+            "swing_as_powerlevel": {
+                "state_attributes": {
+                    "swing_mode": {
+                        "name": "Varme nivå",
+                        "state": {
+                            "stop": "Stopp",
+                            "auto": "Auto"
+                        }
+                    }
+                }
+            },
+            "pool_heatpump": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "smart_heat": "Smart varming",
+                            "quick_heat": "Kjapp varming",
+                            "quiet_heat": "Stille varming",
+                            "smart_cool": "Smart kjøling",
+                            "quick_cool": "Kjapp kjøling",
+                            "quiet_cool": "Stille kjøling",
+                            "auto": "Auto",
+                            "smart": "Smart",
+                            "quick": "Kjapp",
+                            "quiet": "Stille"
+                        }
+                    }
+                }
+            },
+            "heater": {
+                "name": "Varmeapparat"
+            },
+            "thermo_switch": {
+                "state_attributes": {
+                    "hvac_mode": {
+                        "state": {
+                            "fan_only": "Pause"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "healthy_steam": "Sunn damp",
+                            "fresh_steam": "Fersk damp",
+                            "high_temp_steam": "Høy temp damp",
+                            "stew": "Stuing",
+                            "bake_up_and_down": "Bake opp og ned",
+                            "bbq": "BBQ",
+                            "bottom_hot_air": "Bunn varmluft",
+                            "on_strong_roast": "På sterk steking",
+                            "3d_hot_air": "3D varmluft",
+                            "air_fry": "Luftfritering",
+                            "steam_frying": "Dampsteking",
+                            "one_click_bread": "Ett-klikk brød",
+                            "quick_heat": "Kjapp varming",
+                            "keep_warm": "Hold varm",
+                            "unfreeze": "Avriming",
+                            "fermentation": "Fermentering",
+                            "descale": "Avkalkning",
+                            "local_recipes": "Lokale oppskrifter",
+                            "drying": "Tørking",
+                            "custom": "Egendefinert",
+                            "low_steaming": "Lav Steaming",
+                            "medium_steaming": "Medium Steaming",
+                            "high_steaming": "Høy Steaming"
+                        }
+                    }
+                }
+            }
+        },
+        "humidifier": {
+            "dehumidifier": {
+                "state_attributes": {
+                    "mode": {
+                        "state": {
+                            "laundry": "Tørk klær",
+                            "purify": "Rens"
+                        }
+                    }
+                }
+            }
+        },
+        "fan": {
+            "aroma_diffuser": {
+                "name": "Aroma diffuser",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "low": "Lav",
+                            "medium": "Medium",
+                            "high": "Høy",
+                            "continuous": "Kontinuerlig",
+                            "intermittent": "Intermitterende"
+                        }
+                    }
+                }
+            },
+            "fan_with_presets": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "normal": "Normal",
+                            "nature": "Nøytral",
+                            "sleep": "Søvn",
+                            "baby": "Baby",
+                            "fresh": "Fresh",
+                            "smart": "Smart",
+                            "strong": "Sterk",
+                            "high": "Høy",
+                            "medium": "Medium",
+                            "low": "Lav",
+                            "displayoff": "Skjerm av",
+                            "off": "Av"
+                        }
+                    }
+                }
+            },
+            "ventilation": {
+                "name": "Ventilasjon",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "fresh": "Frisk luft",
+                            "circulate": "Sirkulere",
+                            "sleep": "Sove",
+                            "auto": "Auto",
+                            "eco": "Øko",
+                            "anti-condensation": "Anti-kondens"
+                        }
+                    }
+                }
+            }
+        },
+        "light": {
+            "backlight": {
+                "name": "Bakgrunnsbelysning"
+            },
+            "display": {
+                "name": "Skjerm"
+            },
+            "embers": {
+                "name": "Glør"
+            },
+            "flame": {
+                "name": "Flamme"
+            },
+            "indicator": {
+                "name": "Indikator"
+            },
+            "laser": {
+                "name": "Laser"
+            },
+            "logs": {
+                "name": "Tømmerstokk"
+            },
+            "nightlight": {
+                "name": "Nattlys"
+            }
+        },
+        "lock": {
+            "child_lock": {
+                "name": "Barnesikring"
+            }
+        },
+        "number": {
+            "timer": {
+                "name": "Timer"
+            },
+            "timer_x": {
+                "name": "Timer {x}"
+            }
+        },
+        "select": {
+            "initial_state": {
+                "name": "Starttilstand",
+                "state": {
+                    "off": "Av",
+                    "on": "På",
+                    "memory": "Minne"
+                }
+            },
+            "language": {
+                "name": "Språk",
+                "state": {
+                    "chinese": "中文",
+                    "chinese_traditional": "中文(繁體)",
+                    "english": "English",
+                    "french": "Français",
+                    "german": "Deutsch",
+                    "italian": "Italiano",
+                    "japanese": "日本語",
+                    "korean": "한국어",
+                    "latin": "Lingua Latina",
+                    "portuguese": "Português",
+                    "russian": "Русский",
+                    "spanish": "Español",
+                    "turkish": "Türkçe"
+                }
+            },
+            "mopping": {
+                "name": "Mopping",
+                "state": {
+                    "off": "Av",
+                    "auto": "Auto",
+                    "low": "Lav",
+                    "medium": "Medium",
+                    "high": "Høy"
+                }
+            },
+            "recipe": {
+                "name": "Oppskrift",
+                "state": {
+                    "pizza": "Pizza",
+                    "fries": "Pommes frites",
+                    "chicken": "Kylling",
+                    "shrimp": "Reker",
+                    "fish": "Fisk",
+                    "chicken_drumsticks": "Kyllinglår",
+                    "vegetables": "Grønnsaker",
+                    "desserts": "Desserter",
+                    "none": "Ingen",
+                    "chicken_wings": "Kyllingvinger",
+                    "steak": "Biff",
+                    "onion_rings": "Løkringer",
+                    "bacon": "Bacon",
+                    "cake": "Kake",
+                    "bread": "Brød",
+                    "toast": "Toast",
+                    "custom": "Egendefinert",
+                    "cloud_recipe": "Skyoppskrift",
+                    "default": "Standard",
+                    "keep_warm": "Hold varm",
+                    "preheat": "Forvarm"
+                }
+            },
+            "timer": {
+                "name": "Timer",
+                "state": {
+                    "cancel": "Avbryt",
+                    "10m": "10 minutter",
+                    "30m": "30 minutter",
+                    "1h": "1 time",
+                    "1h30m": "1 time 30 minutter",
+                    "2h": "2 timer",
+                    "2h30m": "2 timer 30 minutter",
+                    "3h": "3 timer",
+                    "3h30m": "3 timer 30 minutter",
+                    "4h": "4 timer",
+                    "4h30m": "4 timer 30 minutter",
+                    "5h": "5 timer",
+                    "5h30m": "5 timer 30 minutter",
+                    "6h": "6 timer",
+                    "6h30m": "6 timer 30 minutter",
+                    "7h": "7 timer",
+                    "7h30m": "7 timer 30 minutter",
+                    "8h": "8 timer",
+                    "8h30m": "8 timer 30 minutter",
+                    "9h": "9 timer",
+                    "9h30m": "9 timer 30 minutter",
+                    "10h": "10 timer",
+                    "11h": "11 timer",
+                    "12h": "12 timer",
+                    "13h": "13 timer",
+                    "14h": "14 timer",
+                    "15h": "15 timer",
+                    "16h": "16 timer",
+                    "17h": "17 timer",
+                    "18h": "18 timer",
+                    "19h": "19 timer",
+                    "20h": "20 timer",
+                    "21h": "21 timer",
+                    "22h": "22 timer",
+                    "23h": "23 timer",
+                    "24h": "24 timer",
+                    "36h": "36 timer",
+                    "48h": "48 timer",
+                    "72h": "72 timer"
+                }
+            },
+            "temperature_unit": {
+                "name": "Temperaturenhet",
+                "state": {
+                    "celsius": "Celsius",
+                    "fahrenheit": "Fahrenheit"
+                }
+            },
+            "oven_built_in_recipe": {
+                "name": "Innebygd oppskrift",
+                "state": {
+                    "none": "Ingen",
+                    "steamed_egg_with_okra": "Dampet egg med okra",
+                    "steamed_sea_bass": "Dampet havabbor",
+                    "steamed_prawns": "Dampede reker",
+                    "handmade_steamed_bread": "Håndlaget dampet brød",
+                    "fan_steamed_baby_vegetables": "Vifte dampede babygrønnsaker",
+                    "braised_pork": "Braisert svinekjøtt",
+                    "snow_fungus_and_bird_s_nest": "Snøsopp og fuglerede",
+                    "crab_pot": "Krabbe gryte",
+                    "potato_ribs": "Potet ribber",
+                    "coconut_chicken_soup": "Kokosnøtt kyllingsuppe",
+                    "snack_platter": "Snackskål",
+                    "chicken_skewers": "Kyllingspyd",
+                    "roasted_pork_knuckle": "Stekt svineknoker",
+                    "dried_lemon": "Tørket sitron",
+                    "pork_jerky": "Svinekjøtt jerky",
+                    "crispy_hairtail": "Sprø hårhalet",
+                    "spicy_grilled_fish": "Krydret grillet fisk",
+                    "roasted_sweet_potatoes": "Stekte søtpoteter",
+                    "roasted_chicken_wings": "Stekte kyllingvinger",
+                    "cumin_lamb_chops": "Spisskummen lammekoteletter",
+                    "honey_grilled_chicken": "Honninggrillet kylling",
+                    "garlic_eggplant": "Hvitløk aubergine",
+                    "portuguese_egg_tart": "Portugisisk eggepai",
+                    "creme_brulee": "Crème brûlée",
+                    "cocoa_chips": "Kakao chips",
+                    "butter_cookies": "Smørkaker",
+                    "chiffon_cake": "Chiffonkake",
+                    "puff_pastry": "Smørdeig",
+                    "red_bean_bread": "Rød bønnebrød",
+                    "milk_toast": "Melketoast"
+                }
+            }
+        },
+        "sensor": {
+            "status": {
+                "name": "Status",
+                "state": {
+                    "available": "Tilgjengelig",
+                    "plugged_in": "Tilkoblet",
+                    "fault_unplugged": "Feil (frakoblet)",
+                    "charging": "Lading",
+                    "waiting": "Venter",
+                    "charged": "Ladet",
+                    "fault": "Feil",
+                    "paused": "Pauset",
+                    "waiting_for_authorization": "Venter på autorisasjon",
+                    "standby": "Standby",
+                    "heating": "Varmes opp",
+                    "cooling": "Kjøler",
+                    "keeping_warm": "Holder varm",
+                    "no_water": "Ingen vann",
+                    "boiling": "Koker",
+                    "reserve_only": "Reservert",
+                    "unknown": "Ukjent",
+                    "idle": "Inaktiv",
+                    "auto": "Auto",
+                    "manual": "Manuell",
+                    "rain_delay": "Regn forsinkelse",
+                    "off": "Av",
+                    "cooking": "Matla",
+                    "done": "Ferdig",
+                    "door_open": "Dør åpen",
+                    "setting": "Innstilling",
+                    "pre_heating": "Forvarming",
+                    "scheduled": "Planlagt",
+                    "at_temperature": "Ved temperatur",
+                    "done_stage_1": "Ferdig trinn 1",
+                    "done_stage_2": "Ferdig trinn 2",
+                    "done_stage_3": "Ferdig trinn 3",
+                    "done_stage_4": "Ferdig trinn 4",
+                    "done_stage_5": "Ferdig trinn 5",
+                    "done_stage_6": "Ferdig trinn 6",
+                    "done_stage_7": "Ferdig trinn 7",
+                    "done_stage_8": "Ferdig trinn 8",
+                    "done_stage_9": "Ferdig trinn 9",
+                    "done_stage_10": "Ferdig trinn 10",
+                    "no_food": "Ingen mat",
+                    "jammed": "Fastkjørt",
+                    "blocked": "Blokkert",
+                    "feeding": "Fôring",
+                    "feeding_complete": "Fôring fullført",
+                    "caking": "Kaking",
+                    "cleaning": "Rengjøring",
+                    "sleep": "Søvn",
+                    "sterilizing": "Sterilisering",
+                    "deodorizing": "Deodorisering",
+                    "occupied": "Opptatt",
+                    "normal": "Normal",
+                    "low": "Lav",
+                    "high": "Høy",
+                    "unwashed": "Uvasket",
+                    "pre_washing": "Forvasking",
+                    "washing": "Vasking",
+                    "rinsing": "Skylling",
+                    "drying": "Tørking",
+                    "air_purging": "Luftrensing",
+                    "anti_freeze": "Anti-frost",
+                    "close": "Lukk",
+                    "monitor": "Overvåk",
+                    "working": "Arbeider",
+                    "warning": "Advarsel"
+                }
+            },
+            "time_remaining": {
+                "name": "Gjenstående tid"
+            },
+            "cooking_status": {
+                "name": "Koketilstand",
+                "state": {
+                    "wait": "Venter på matlaging",
+                    "reservation": "Reservert",
+                    "cooking": "Matlaging pågår",
+                    "cancel": "Avbrutt",
+                    "done": "Ferdig",
+                    "pause": "Matlaging pause"
+                }
+            },
+            "energy_produced": {
+                "name": "Energi produsert"
+            },
+            "energy_consumed": {
+                "name": "Energi forbrukt"
+            },
+            "energy_produced_x": {
+                "name": "Energi produsert {x}"
+            },
+            "energy_consumed_x": {
+                "name": "Energi forbrukt {x}"
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "Anti-frost"
+            },
+            "evaporator_cleaning": {
+                "name": "Rengjøring av fordamper"
+            },
+            "ionizer": {
+                "name": "Ionisator"
+            },
+            "keytone" : {
+                "name": "Tastaturtone"
+            },
+            "sleep": {
+                "name": "Søvnmodus"
+            },
+            "uv_sterilization": {
+                "name": "UV-sterilisering"
+            }
+        }
+    }
+}

@@ -1,0 +1,79 @@
+name: Water valve
+products:
+  - id: arge1ptm
+    name: QOTO 05 water valve
+primary_entity:
+  entity: valve
+  class: water
+  dps:
+    - id: 2
+      type: integer
+      name: valve
+secondary_entities:
+  - entity: number
+    icon: "mdi:pipe-valve"
+    category: config
+    deprecated: valve
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: sensor
+    category: diagnostic
+    icon: "mdi:valve"
+    name: Current valve position
+    dps:
+      - id: 3
+        name: sensor
+        type: integer
+        unit: "%"
+  - entity: sensor
+    category: diagnostic
+    translation_key: time_remaining
+    class: duration
+    dps:
+      - id: 101
+        name: sensor
+        type: integer
+        unit: s
+  - entity: number
+    category: config
+    name: Auto shutoff timer
+    class: duration
+    dps:
+      - id: 11
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 84960
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: sensor
+    category: diagnostic
+    class: battery
+    dps:
+      - id: 110
+        name: sensor
+        type: integer
+        unit: "%"
+  - entity: binary_sensor
+    category: diagnostic
+    class: problem
+    dps:
+      - id: 104
+        name: sensor
+        type: bitfield
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 104
+        type: bitfield
+        name: fault_code

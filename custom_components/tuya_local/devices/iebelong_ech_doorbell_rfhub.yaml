@@ -1,0 +1,38 @@
+name: Doorbell
+products:
+  - id: mu90mkl2valkaar3
+    name: Iebelong ECH-103 Doorbell and 433MHz RF hub
+primary_entity:
+  entity: siren
+  dps:
+    - id: 30
+      type: string
+      name: volume_level
+      mapping:
+        - dps_val: mute
+          value: 0.0
+        - dps_val: low
+          value: 0.33
+        - dps_val: middle
+          value: 0.67
+        - dps_val: high
+          value: 1.0
+    - id: 39
+      type: string
+      name: tone
+      optional: true
+      mapping:
+        - dps_val: "1"
+          value: Tone 1
+        - dps_val: "2"
+          value: Tone 2
+        - dps_val: "3"
+          value: Tone 3
+        - dps_val: "4"
+          value: Tone 4
+        - dps_val: "5"
+          value: Tone 5
+    - id: 26
+      type: string
+      name: alarm_msg
+      optional: true

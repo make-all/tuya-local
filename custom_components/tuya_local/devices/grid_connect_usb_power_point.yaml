@@ -15,7 +15,7 @@ secondary_entities:
         name: switch
   - entity: number
     name: Outlet timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 9
@@ -30,7 +30,7 @@ secondary_entities:
         unit: mi
   - entity: number
     name: USB timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 10
@@ -44,24 +44,22 @@ secondary_entities:
             step: 60
         unit: min
   - entity: select
-    name: Initial state
+    translation_key: initial_state
     category: config
-    icon: "mdi:toggle-switch"
     dps:
       - id: 38
         type: string
         name: option
         mapping:
           - dps_val: power_off
-            value: "Off"
+            value: "off"
           - dps_val: power_on
-            value: "On"
+            value: "on"
           - dps_val: last
-            value: Keep state
+            value: memory
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
-    icon: "mdi:hand-back-right-off"
     dps:
       - id: 41
         type: boolean

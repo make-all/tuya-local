@@ -1,0 +1,130 @@
+name: Thermostat
+products:
+  - id: 7vjtrn5888247ol8
+    name: Kiturami NCTR100WR
+primary_entity:
+  entity: climate
+  translation_key: thermostat
+  dps:
+    - id: 2
+      type: string
+      name: hvac_mode
+      mapping:
+        - dps_val: Reservation
+          value: auto
+        - dps_val: OnDol
+          value: heat
+          hidden: true
+        - dps_val: Interior
+          value: heat
+        - dps_val: Bath
+          value: "off"
+          hidden: true
+        - dps_val: Summer
+          value: "off"
+        - dps_val: OutGoing
+          value: "off"
+          hidden: true
+    - id: 103
+      type: integer
+      name: temperature
+      range:
+        min: 45
+        max: 85
+      unit: C
+      mapping:
+        - constraint: hvac_mode
+          conditions:
+            - dps_val: Interior
+              value_redirect: room_temperature
+              range:
+                min: 10
+                max: 45
+    - id: 6
+      type: integer
+      name: current_temperature
+    - id: 103
+      type: integer
+      name: water_temperature
+      range:
+        min: 45
+        max: 85
+    - id: 5
+      type: integer
+      name: room_temperature
+secondary_entities:
+  - entity: water_heater
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: Interior
+                value: Room
+              - dps_val: OnDol
+                value: Underfloor
+              - dps_val: Reservation
+                value: Scheduled
+              - dps_val: Summer
+                value: Hot water
+              - dps_val: Bath
+                value: Quick start
+              - dps_val: OutGoing
+                value: away
+      - id: 2
+        type: string
+        name: mode
+        hidden: true
+      - id: 3
+        type: integer
+        name: temperature
+        range:
+          min: 35
+          max: 60
+        unit: C
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 20
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 20
+        type: bitfield
+        name: fault_code
+      - id: 104
+        type: integer
+        name: current_error
+  - entity: number
+    name: Scheduled runtime
+    category: config
+    translation_key: timer
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 20
+          max: 90
+  - entity: number
+    name: Scheduled idle time
+    category: config
+    translation_key: timer
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 1
+          max: 19

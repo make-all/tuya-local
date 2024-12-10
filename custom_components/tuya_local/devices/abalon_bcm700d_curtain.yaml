@@ -1,0 +1,34 @@
+name: Curtain rail motor
+products:
+  - id: XS76BY5Q1uKO6gjC
+    name: Abalon BCM700D
+primary_entity:
+  entity: cover
+  class: curtain
+  dps:
+    - id: 101
+      name: position
+      type: integer
+      range:
+        min: 0
+        max: 100
+    - id: 102
+      name: control
+      type: string
+      mapping:
+        - dps_val: ZZ
+          value: open
+        - dps_val: FZ
+          value: close
+        - dps_val: STOP
+          value: stop
+secondary_entities:
+  - entity: switch
+    name: Reverse
+    category: config
+    icon: "mdi:arrow-u-down-left"
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+        optional: true

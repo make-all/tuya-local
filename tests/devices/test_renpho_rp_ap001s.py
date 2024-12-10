@@ -1,5 +1,6 @@
 from homeassistant.components.fan import FanEntityFeature
 from homeassistant.components.sensor import SensorDeviceClass
+from homeassistant.components.switch import SwitchDeviceClass
 
 from ..const import RENPHO_PURIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -38,13 +39,18 @@ class TestRenphoPurifier(
         self.setUpSwitchable(SWITCH_DPS, self.subject)
         self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_aq_indicator"))
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
-        self.setUpBasicSwitch(SLEEP_DPS, self.entities.get("switch_sleep"))
+        self.setUpBasicSwitch(
+            SLEEP_DPS,
+            self.entities.get("switch_sleep"),
+            device_class=SwitchDeviceClass.SWITCH,
+        )
         self.setUpMultiSensors(
             [
                 {
                     "name": "sensor_air_quality",
                     "dps": QUALITY_DPS,
-                    "device_class": SensorDeviceClass.AQI,
+                    "device_class": SensorDeviceClass.ENUM,
+                    "options": ["Bad", "Fair", "Good"],
                 },
                 {
                     "name": "sensor_prefilter_life",
@@ -77,51 +83,56 @@ class TestRenphoPurifier(
         )
 
     def test_supported_features(self):
-        self.assertEqual(self.subject.supported_features, FanEntityFeature.PRESET_MODE)
+        self.assertEqual(
+            self.subject.supported_features,
+            FanEntityFeature.PRESET_MODE
+            | FanEntityFeature.TURN_OFF
+            | FanEntityFeature.TURN_ON,
+        )
 
     def test_preset_modes(self):
         self.assertCountEqual(
             self.subject.preset_modes,
-            ["low", "mid", "high", "auto"],
+            ["sleep", "fresh", "strong", "smart"],
         )
 
     def test_preset_mode(self):
         self.dps[PRESET_DPS] = "low"
-        self.assertEqual(self.subject.preset_mode, "low")
+        self.assertEqual(self.subject.preset_mode, "sleep")
         self.dps[PRESET_DPS] = "mid"
-        self.assertEqual(self.subject.preset_mode, "mid")
+        self.assertEqual(self.subject.preset_mode, "fresh")
         self.dps[PRESET_DPS] = "high"
-        self.assertEqual(self.subject.preset_mode, "high")
+        self.assertEqual(self.subject.preset_mode, "strong")
         self.dps[PRESET_DPS] = "auto"
-        self.assertEqual(self.subject.preset_mode, "auto")
+        self.assertEqual(self.subject.preset_mode, "smart")
 
     async def test_set_preset_mode_to_low(self):
         async with assert_device_properties_set(
             self.subject._device,
             {PRESET_DPS: "low"},
         ):
-            await self.subject.async_set_preset_mode("low")
+            await self.subject.async_set_preset_mode("sleep")
 
     async def test_set_preset_mode_to_mid(self):
         async with assert_device_properties_set(
             self.subject._device,
             {PRESET_DPS: "mid"},
         ):
-            await self.subject.async_set_preset_mode("mid")
+            await self.subject.async_set_preset_mode("fresh")
 
     async def test_set_preset_mode_to_high(self):
         async with assert_device_properties_set(
             self.subject._device,
             {PRESET_DPS: "high"},
         ):
-            await self.subject.async_set_preset_mode("high")
+            await self.subject.async_set_preset_mode("strong")
 
     async def test_set_preset_mode_to_auto(self):
         async with assert_device_properties_set(
             self.subject._device,
             {PRESET_DPS: "auto"},
         ):
-            await self.subject.async_set_preset_mode("auto")
+            await self.subject.async_set_preset_mode("smart")
 
     def test_extra_state_attributes(self):
         self.dps[TIMER_DPS] = "19"
@@ -142,6 +153,3 @@ class TestRenphoPurifier(
                 "hepa_filter_life": 105,
             },
         )
-
-    def test_icons(self):
-        self.assertEqual(self.basicSwitch.icon, "mdi:power-sleep")

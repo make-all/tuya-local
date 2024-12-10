@@ -1,0 +1,91 @@
+name: Air purifier
+products:
+  - id: 5a4rez30alfjfmdg
+    name: Morento HY4866-WF
+primary_entity:
+  entity: fan
+  translation_only_key: fan_with_presets
+  icon: "mdi:air-purifier"
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 3
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: sleep
+          value: sleep
+        - dps_val: Auto
+          value: smart
+        - dps_val: 1F
+          value: low
+        - dps_val: 2F
+          value: medium
+        - dps_val: 3F
+          value: high
+        - dps_val: 4F
+          value: strong
+secondary_entities:
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        name: sensor
+        type: integer
+        class: measurement
+        unit: ugm3
+  - entity: sensor
+    name: Filter used
+    category: diagnostic
+    icon: "mdi:ticket-percent-outline"
+    dps:
+      - id: 5
+        name: sensor
+        type: integer
+        unit: "%"
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        name: lock
+        type: boolean
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: button
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 18
+        type: string
+        name: option
+        mapping:
+          - dps_val: Cancel
+            value: infinite
+          - dps_val: "2H"
+            value: "2h"
+          - dps_val: "5H"
+            value: "5h"
+          - dps_val: "8H"
+            value: "8h"
+  - entity: sensor
+    name: Air quality
+    class: enum
+    icon: "mdi:air-filter"
+    dps:
+      - id: 21
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: "good"
+            value: "Good"
+          - dps_val: "medium"
+            value: "Medium"
+          - dps_val: "severe"
+            value: "Severe"

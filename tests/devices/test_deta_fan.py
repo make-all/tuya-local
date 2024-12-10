@@ -30,12 +30,14 @@ class TestDetaFan(
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            FanEntityFeature.SET_SPEED,
+            FanEntityFeature.SET_SPEED
+            | FanEntityFeature.TURN_ON
+            | FanEntityFeature.TURN_OFF,
         )
 
     def test_speed(self):
         self.dps[SPEED_DPS] = "1"
-        self.assertAlmostEqual(self.subject.percentage, 33.3, 1)
+        self.assertAlmostEqual(self.subject.percentage, 33, 0)
 
     def test_speed_step(self):
         self.assertAlmostEqual(self.subject.percentage_step, 33.3, 1)
@@ -46,7 +48,7 @@ class TestDetaFan(
 
     async def test_auto_stringify_speed(self):
         self.dps[SPEED_DPS] = "1"
-        self.assertAlmostEqual(self.subject.percentage, 33.3, 1)
+        self.assertAlmostEqual(self.subject.percentage, 33, 0)
         async with assert_device_properties_set(self.subject._device, {SPEED_DPS: "2"}):
             await self.subject.async_set_percentage(66.7)
 

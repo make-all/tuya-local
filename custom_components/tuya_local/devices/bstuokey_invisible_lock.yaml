@@ -1,0 +1,162 @@
+name: Door lock
+products:
+  - id: kpn4zaf7
+    name: BSTUOKEY RX2052 invisible induction lock
+primary_entity:
+  entity: lock
+  dps:
+    - id: 1
+      type: string
+      optional: true
+      sensitive: true
+      name: unlock_method_create
+    - id: 2
+      type: string
+      optional: true
+      name: unlock_method_delete
+    - id: 3
+      type: string
+      optional: true
+      sensitive: true
+      name: unlock_method_modify
+    - id: 15
+      type: integer
+      optional: true
+      persist: false
+      name: unlock_card
+    - id: 19
+      type: integer
+      optional: true
+      persist: false
+      name: unlock_ble
+    - id: 21
+      type: string
+      optional: true
+      persist: false
+      name: jammed
+      mapping:
+        - dps_val: tongue_bad
+          value: true
+        - dps_val: tongue_not_out
+          value: true
+        - value: false
+    - id: 47
+      type: boolean
+      readonly: true
+      name: lock
+    - id: 54
+      type: string
+      optional: true
+      sensitive: true
+      name: synch_method
+    - id: 70
+      type: string
+      optional: true
+      sensitive: true
+      name: check_code_set
+    - id: 71
+      type: string
+      optional: true
+      sensitive: true
+      name: ble_unlock_check
+secondary_entities:
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 9
+        type: string
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: high
+            value: 90
+          - dps_val: medium
+            value: 60
+          - dps_val: low
+            value: 30
+          - dps_val: poweroff
+            value: 0
+  - entity: sensor
+    name: Alert
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 21
+        type: string
+        optional: true
+        persist: false
+        name: sensor
+        mapping:
+          - dps_val: null
+            value: ok
+          - dps_val: wrong_finger
+            value: wrong_finger
+          - dps_val: wrong_password
+            value: wrong_password
+          - dps_val: wrong_card
+            value: wrong_card
+          - dps_val: wrong_face
+            value: wrong_face
+          - dps_val: tongue_bad
+            value: tongue_bad
+          - dps_val: too_hot
+            value: too_hot
+          - dps_val: unclosed_time
+            value: unclosed_time
+          - dps_val: tongue_not_out
+            value: tongue_not_out
+          - dps_val: pry
+            value: pry
+          - dps_val: key_in
+            value: key_in
+          - dps_val: low_battery
+            value: low_battery
+          - dps_val: power_off
+            value: power_off
+          - dps_val: shock
+            value: shock
+          - dps_val: defense
+            value: defense
+          - dps_val: wrong_unlock
+            value: wrong_unlock
+  - entity: select
+    translation_key: language
+    category: config
+    dps:
+      - id: 28
+        type: string
+        name: option
+        mapping:
+          - dps_val: chinese_simplified
+            value: chinese
+          - dps_val: english
+            value: english
+  - entity: number
+    name: Beep volume
+    category: config
+    icon: "mdi:volume-high"
+    dps:
+      - id: 31
+        type: string
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - dps_val: mute
+            value: 0
+            step: 33
+            icon: "mdi:volume-mute"
+          - dps_val: low
+            value: 33
+            step: 33
+            icon: "mdi:volume-low"
+          - dps_val: normal
+            value: 66
+            step: 33
+            icon: "mdi:volume-medium"
+          - dps_val: high
+            value: 100
+            step: 33

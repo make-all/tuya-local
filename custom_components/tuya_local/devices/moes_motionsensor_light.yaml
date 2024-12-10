@@ -1,0 +1,65 @@
+name: Motion sensor light
+products:
+  - id: vwqnz1sn
+    name: Moes XZ-CGV3
+primary_entity:
+  entity: binary_sensor
+  name: Motion detected
+  class: motion
+  dps:
+    - id: 1
+      type: string
+      name: sensor
+      mapping:
+        - dps_val: none
+          value: false
+        - dps_val: pir
+          value: true
+secondary_entities:
+  - entity: sensor
+    name: Current luminance
+    class: illuminance
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: lx
+        class: measurement
+  - entity: sensor
+    name: Battery Level
+    class: battery
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: select
+    name: Sensitivity
+    icon: "mdi:human-greeting-proximity"
+    category: config
+    dps:
+      - id: 9
+        name: option
+        type: string
+        mapping:
+          - dps_val: "low"
+            value: "Low"
+          - dps_val: "middle"
+            value: "Medium"
+          - dps_val: "high"
+            value: "High"
+  - entity: select
+    name: Keep time
+    icon: "mdi:camera-timer"
+    category: config
+    dps:
+      - id: 10
+        name: option
+        type: string
+        mapping:
+          - dps_val: "30s"
+            value: "30"
+          - dps_val: "60s"
+            value: "60"
+          - dps_val: "120s"
+            value: "120"

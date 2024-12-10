@@ -1,7 +1,5 @@
 # Mixins for testing lights
-from homeassistant.components.light import (
-    ColorMode,
-)
+from homeassistant.components.light import ColorMode
 
 from ..helpers import assert_device_properties_set
 
@@ -78,14 +76,14 @@ class MultiLightTests:
         self.multiLightDps = {}
         self.multiLightOn = {}
         self.multiLightOff = {}
-        for l in lights:
-            name = l["name"]
+        for light in lights:
+            name = light["name"]
             subject = self.entities.get(name)
-            testdata = l.get("testdata", (True, False))
+            testdata = light.get("testdata", (True, False))
             if subject is None:
                 raise AttributeError(f"No light for {name} found.")
             self.multiLight[name] = subject
-            self.multiLightDps[name] = l.get("dps")
+            self.multiLightDps[name] = light.get("dps")
             self.multiLightOn[name] = testdata[0]
             self.multiLightOff[name] = testdata[1]
 
@@ -170,15 +168,24 @@ class MultiLightTests:
 
 
 class DimmableLightTests:
-    def setUpDimmableLight(self, dps, subject, offval=0, tests=[(100, 100)]):
+    def setUpDimmableLight(
+        self,
+        dps,
+        subject,
+        offval=0,
+        tests=[(100, 100)],
+        no_off=False,
+    ):
         self.dimmableLight = subject
         self.dimmableLightDps = dps
         self.dimmableLightOff = offval
         self.dimmableLightTest = tests
+        self.dimmableLightNoOff = no_off
 
     def test_dimmable_light_brightness(self):
         self.dps[self.dimmableLightDps] = self.dimmableLightOff
-        self.assertEqual(self.dimmableLight.brightness, 0)
+        if not self.dimmableLightNoOff:
+            self.assertEqual(self.dimmableLight.brightness, 0)
         for dps, val in self.dimmableLightTest:
             self.dps[self.dimmableLightDps] = dps
             self.assertEqual(self.dimmableLight.brightness, val)
@@ -187,11 +194,12 @@ class DimmableLightTests:
         self.assertEqual(self.dimmableLight.extra_state_attributes, {})
 
     async def test_dimmable_light_turn_off(self):
-        async with assert_device_properties_set(
-            self.dimmableLight._device,
-            {self.dimmableLightDps: self.dimmableLightOff},
-        ):
-            await self.dimmableLight.async_turn_off()
+        if not self.dimmableLightNoOff:
+            async with assert_device_properties_set(
+                self.dimmableLight._device,
+                {self.dimmableLightDps: self.dimmableLightOff},
+            ):
+                await self.dimmableLight.async_turn_off()
 
     async def test_dimmable_light_set_brightness(self):
         for dps, val in self.dimmableLightTest:
@@ -202,16 +210,18 @@ class DimmableLightTests:
                 await self.dimmableLight.async_turn_on(brightness=val)
 
     async def test_dimmable_light_set_brightness_to_off(self):
-        async with assert_device_properties_set(
-            self.dimmableLight._device,
-            {self.dimmableLightDps: self.dimmableLightOff},
-        ):
-            await self.dimmableLight.async_turn_on(brightness=0)
+        if not self.dimmableLightNoOff:
+            async with assert_device_properties_set(
+                self.dimmableLight._device,
+                {self.dimmableLightDps: self.dimmableLightOff},
+            ):
+                await self.dimmableLight.async_turn_on(brightness=0)
 
     async def test_dimmable_light_toggle_turns_off_when_it_was_on(self):
-        self.dps[self.dimmableLightDps] = self.dimmableLightTest[0][0]
-        async with assert_device_properties_set(
-            self.dimmableLight._device,
-            {self.dimmableLightDps: self.dimmableLightOff},
-        ):
-            await self.dimmableLight.async_toggle()
+        if not self.dimmableLightNoOff:
+            self.dps[self.dimmableLightDps] = self.dimmableLightTest[0][0]
+            async with assert_device_properties_set(
+                self.dimmableLight._device,
+                {self.dimmableLightDps: self.dimmableLightOff},
+            ):
+                await self.dimmableLight.async_toggle()

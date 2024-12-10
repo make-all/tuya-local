@@ -25,7 +25,7 @@ class TestAnkoFan(SwitchableTests, BasicNumberTests, TuyaDeviceTestCase):
             TIMER_DPS,
             self.entities.get("number_timer"),
             max=9,
-            unit=UnitOfTime.SECONDS,
+            unit=UnitOfTime.HOURS,
         )
         self.mark_secondary(["number_timer"])
 
@@ -34,7 +34,9 @@ class TestAnkoFan(SwitchableTests, BasicNumberTests, TuyaDeviceTestCase):
             self.subject.supported_features,
             FanEntityFeature.OSCILLATE
             | FanEntityFeature.PRESET_MODE
-            | FanEntityFeature.SET_SPEED,
+            | FanEntityFeature.SET_SPEED
+            | FanEntityFeature.TURN_ON
+            | FanEntityFeature.TURN_OFF,
         )
 
     def test_preset_mode(self):
@@ -107,14 +109,20 @@ class TestAnkoFan(SwitchableTests, BasicNumberTests, TuyaDeviceTestCase):
 
     async def test_set_speed_in_normal_mode(self):
         self.dps[PRESET_DPS] = "normal"
-        async with assert_device_properties_set(self.subject._device, {SPEED_DPS: 2}):
+        async with assert_device_properties_set(self.subject._device, {SPEED_DPS: "2"}):
             await self.subject.async_set_percentage(25)
 
     async def test_set_speed_in_normal_mode_snaps(self):
         self.dps[PRESET_DPS] = "normal"
-        async with assert_device_properties_set(self.subject._device, {SPEED_DPS: 6}):
+        async with assert_device_properties_set(self.subject._device, {SPEED_DPS: "6"}):
             await self.subject.async_set_percentage(80)
 
-    def test_extra_state_attributes(self):
-        self.dps[TIMER_DPS] = "5"
-        self.assertEqual(self.subject.extra_state_attributes, {"timer": 5})
+    async def test_turn_on_with_params(self):
+        self.dps[SWITCH_DPS] = False
+        self.dps[SPEED_DPS] = "1"
+        self.dps[PRESET_DPS] = "normal"
+        async with assert_device_properties_set(
+            self.subject._device,
+            {SWITCH_DPS: True, SPEED_DPS: "6", PRESET_DPS: "nature"},
+        ):
+            await self.subject.async_turn_on(80, "nature")

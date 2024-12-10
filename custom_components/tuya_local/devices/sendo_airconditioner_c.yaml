@@ -49,9 +49,6 @@ primary_entity:
           value: eco
         - dps_val: false
           value: comfort
-    - id: 12
-      name: aux_heat
-      type: boolean
     - id: 33
       name: swing_mode
       type: boolean
@@ -61,18 +58,23 @@ primary_entity:
         - dps_val: false
           value: "off"
 secondary_entities:
+  - entity: switch
+    name: Emergency heat
+    icon: "mdi:fire"
+    dps:
+      - id: 12
+        type: boolean
+        name: switch
   - entity: light
-    name: Backlight
+    translation_key: backlight
     category: config
-    icon: "mdi:television-ambient-light"
     dps:
       - id: 13
         name: switch
         type: boolean
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
-    icon: "mdi:hand-right-back-off"
     dps:
       - id: 14
         name: lock
@@ -80,25 +82,21 @@ secondary_entities:
   - entity: sensor
     name: Power consumption
     category: diagnostic
-    class: energy
     dps:
       - id: 28
         name: sensor
         type: integer
         unit: kWh
-        class: total_increasing
   - entity: switch
-    name: Sleep
+    translation_key: sleep
     category: config
-    icon: "mdi:power-sleep"
     dps:
       - id: 102
         name: switch
         type: boolean
   - entity: switch
-    name: Ionizer
+    translation_key: ionizer
     category: config
-    icon: "mdi:creation"
     dps:
       - id: 106
         name: switch

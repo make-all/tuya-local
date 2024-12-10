@@ -1,0 +1,198 @@
+name: Weather station
+products:
+  - id: amluiug6se4zdz1t
+    name: Helios WS5095W2
+primary_entity:
+  entity: sensor
+  class: temperature
+  name: Indoor Temperature
+  category: diagnostic
+  dps:
+    - id: 101
+      name: sensor
+      type: integer
+      unit: C
+      mapping:
+        - scale: 10
+      class: measurement
+secondary_entities:
+  - entity: sensor
+    name: Indoor humidity
+    class: humidity
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: "%"
+        mapping:
+          - scale: 10
+        class: measurement
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: C
+        mapping:
+          - scale: 10
+        class: measurement
+      - id: 126
+        type: string
+        name: rating
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: "%"
+        mapping:
+          - scale: 10
+        class: measurement
+  - entity: sensor
+    class: atmospheric_pressure
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: hPa
+        mapping:
+          - scale: 10
+        class: measurement
+  - entity: sensor
+    class: wind_speed
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: "km/h"
+        mapping:
+          - scale: 10
+        class: measurement
+      - id: 112
+        type: string
+        name: direction
+  - entity: sensor
+    name: Wind gust
+    class: wind_speed
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: km/h
+        mapping:
+          - scale: 10
+        class: measurement
+  - entity: sensor
+    class: precipitation_intensity
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        unit: mm/h
+        mapping:
+          - scale: 100
+        class: measurement
+      - id: 114
+        type: integer
+        name: mm_per_day
+        mapping:
+          - scale: 100
+        class: measurement
+  - entity: sensor
+    name: UV index
+    dps:
+      - id: 115
+        type: integer
+        name: sensor
+        mapping:
+          - scale: 10
+        class: measurement
+  - entity: sensor
+    class: illuminance
+    category: diagnostic
+    dps:
+      - id: 116
+        type: integer
+        name: sensor
+        unit: lx
+        mapping:
+          - scale: 10
+        class: measurement
+  - entity: sensor
+    name: Dewpoint
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        unit: C
+        mapping:
+          - scale: 10
+        class: measurement
+  - entity: sensor
+    name: Feels like
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 123
+        type: integer
+        name: sensor
+        unit: C
+        mapping:
+          - scale: 10
+        class: measurement
+  - entity: sensor
+    name: Heat index
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 124
+        type: integer
+        name: sensor
+        unit: C
+        mapping:
+          - scale: 10
+        class: measurement
+  - entity: sensor
+    name: Windchill
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 125
+        type: integer
+        name: sensor
+        unit: C
+        mapping:
+          - scale: 10
+        class: measurement
+  - entity: sensor
+    name: Rain
+    class: precipitation
+    category: diagnostic
+    dps:
+      - id: 134
+        type: integer
+        name: sensor
+        unit: mm
+        mapping:
+          - scale: 100
+        class: measurement
+  - entity: sensor
+    name: Tablet Battery
+    icon: mdi:battery
+    category: diagnostic
+    dps:
+      - id: 140
+        type: string
+        name: sensor
+  - entity: sensor
+    name: Outdoor Battery
+    icon: mdi:battery
+    category: diagnostic
+    dps:
+      - id: 141
+        type: string
+        name: sensor

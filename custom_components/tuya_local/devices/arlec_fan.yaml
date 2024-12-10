@@ -1,6 +1,7 @@
 name: ARLEC Grid Connect Fan
 primary_entity:
   entity: fan
+  translation_only_key: fan_with_presets
   dps:
     - id: 1
       name: switch
@@ -9,10 +10,8 @@ primary_entity:
       name: speed
       type: integer
       range:
-        min: 0
+        min: 1
         max: 6
-      mapping:
-        - scale: 0.06
     - id: 4
       name: direction
       type: string
@@ -25,14 +24,10 @@ primary_entity:
         - dps_val: sleep
           value: sleep
         - dps_val: breeze
-          value: breeze
-    - id: 103
-      name: timer
-      type: string
+          value: nature
 secondary_entities:
   - entity: select
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 103
@@ -40,10 +35,10 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: "off"
-            value: "Off"
+            value: cancel
           - dps_val: 2hour
-            value: "2 hours"
+            value: "2h"
           - dps_val: 4hour
-            value: "4 hours"
+            value: "4h"
           - dps_val: 8hour
-            value: "8 hours"
+            value: "8h"

@@ -1,0 +1,188 @@
+name: EBAC DJ4000 dehumidifier
+products:
+  - id: ehsgslj5gb0amqnx
+    name: DJ4000
+primary_entity:
+  entity: humidifier
+  class: dehumidifier
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+      mapping:
+        - dps_val: false
+          icon: "mdi:ait-humidifier-off"
+          icon_priority: 1
+        - dps_val: true
+          icon: "mdi:air-humidifier"
+          icon_priority: 3
+    - id: 2
+      name: humidity
+      type: integer
+      range:
+        min: 35
+        max: 80
+      mapping:
+        - step: 5
+    - id: 5
+      name: mode
+      type: string
+      mapping:
+        - dps_val: dehumidify
+          value: comfort
+        - dps_val: drying
+          value: laundry
+          icon: "mdi:tshirt-crew-outline"
+          icon_priority: 2
+        - dps_val: manual
+          value: normal
+        - dps_val: boost
+          value: boost
+    - id: 6
+      type: integer
+      name: current_humidity
+secondary_entities:
+  - entity: fan
+    dps:
+      - id: 103
+        name: switch
+        type: boolean
+        readonly: true
+      - id: 4
+        type: string
+        name: speed
+        mapping:
+          - dps_val: low
+            value: 50
+          - dps_val: high
+            value: 100
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Filter life
+    category: diagnostic
+    icon: "mdi:air-filter"
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        name: button
+  - entity: sensor
+    translation_key: time_remaining
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: min
+  - entity: binary_sensor
+    translation_key: tank_full
+    category: diagnostic
+    dps:
+      - id: 102
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: Bucket_OK
+            value: false
+          - dps_val: Bucket_Full
+            value: true
+  - entity: switch
+    name: Night mode
+    category: config
+    icon: "mdi:weather-night"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+      - id: 30
+        type: integer
+        name: display_brightness
+        mapping:
+          - scale: 0.05
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 17
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: 1h
+            value: 1h
+          - dps_val: 2h
+            value: 2h
+          - dps_val: 3h
+            value: 3h
+          - dps_val: 4h
+            value: 4h
+          - dps_val: 5h
+            value: 5h
+          - dps_val: 6h
+            value: 6h
+          - dps_val: 7h
+            value: 7h
+          - dps_val: 8h
+            value: 8h
+  - entity: binary_sensor
+    class: defrost
+    category: diagnostic
+    dps:
+      - id: 9
+        type: boolean
+        name: sensor
+        optional: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code
+  - entity: switch
+    translation_key: uv_sterilization
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
+        optional: true
+  - entity: sensor
+    name: Runtime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 27
+        type: integer
+        name: sensor
+        unit: h
+  - entity: button
+    name: Runtime reset
+    category: config
+    dps:
+      - id: 28
+        type: boolean
+        name: button

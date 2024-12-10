@@ -1,0 +1,85 @@
+name: Taxnele meter
+products:
+  - id: 3xhdofmeo6lgpvd5
+primary_entity:
+  entity: sensor
+  class: energy
+  dps:
+    - id: 1
+      type: integer
+      name: sensor
+      unit: kWh
+      class: total_increasing
+      mapping:
+        - scale: 100
+secondary_entities:
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 9
+        type: bitfield
+        name: fault_code
+  - entity: switch
+    name: Prepay
+    category: config
+    icon: "mdi:cash"
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
+  - entity: button
+    name: Reset energy
+    category: config
+    class: restart
+    dps:
+      - id: 12
+        type: boolean
+        name: button
+  - entity: sensor
+    name: Energy balance
+    category: diagnostic
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Leakage current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+  - entity: switch
+    name: Circuit breaker
+    icon: "mdi:fuse"
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement

@@ -1,0 +1,118 @@
+name: Water level controller
+primary_entity:
+  entity: switch
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: number
+    name: Level Off
+    category: config
+    icon: "mdi:arrow-collapse-up"
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: sensor
+    name: Level
+    icon: "mdi:waves-arrow-up"
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: number
+    name: Level on
+    category: config
+    icon: "mdi:arrow-collapse-down"
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: number
+    name: Alarm high level
+    category: config
+    icon: "mdi:water-alert"
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: number
+    name: Alarm low level
+    category: config
+    icon: "mdi:water-alert"
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: switch
+    name: Alarm
+    category: config
+    icon: "mdi:water-alert"
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+  - entity: sensor
+    translation_key: status
+    icon: "mdi:cup-water"
+    category: diagnostic
+    dps:
+      - id: 106
+        type: string
+        name: sensor
+  - entity: switch
+    name: Dry heat protect
+    category: config
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+  - entity: number
+    name: CH1 time delay
+    category: config
+    icon: "mdi:camera-timer"
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 60
+  - entity: sensor
+    name: Work mode
+    category: diagnostic
+    dps:
+      - id: 110
+        type: string
+        name: sensor
+  - entity: number
+    name: Running time
+    category: config
+    icon: "mdi:clock"
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 1440

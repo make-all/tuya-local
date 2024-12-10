@@ -6,7 +6,7 @@ primary_entity:
       type: boolean
       name: hvac_mode
       mapping:
-        - dps_val: False
+        - dps_val: false
           value: "off"
         - dps_val: true
           constraint: mode
@@ -76,43 +76,30 @@ secondary_entities:
           min: -5
           max: 5
   - entity: button
-    name: Factory reset
+    translation_key: factory_reset
     category: config
-    class: restart
     dps:
       - id: 39
         type: boolean
         name: button
-  - entity: switch
-    deprecated: button
-    category: config
-    name: Factory reset
-    icon: "mdi:cog-refresh"
-    dps:
-      - id: 39
-        type: boolean
-        name: switch
   - entity: select
-    name: Timer
+    translation_key: timer
     category: config
-    icon: "mdi:timer"
     dps:
       - id: 41
         type: string
         name: option
         mapping:
-          - dps_val: "cancel"
-            value: "off"
+          - dps_val: cancel
+            value: cancel
           - dps_val: "1h"
-            value: "1 hour"
+            value: "1h"
   - entity: sensor
     category: diagnostic
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: time_remaining
+    class: duration
     dps:
       - id: 42
         type: integer
-        unit: min
+        unit: s
         name: sensor
-        mapping:
-          - scale: 60

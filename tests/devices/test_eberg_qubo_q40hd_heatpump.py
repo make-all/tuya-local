@@ -1,16 +1,13 @@
 from homeassistant.components.climate.const import (
+    PRESET_COMFORT,
+    PRESET_SLEEP,
+    SWING_OFF,
+    SWING_VERTICAL,
     ClimateEntityFeature,
     HVACAction,
     HVACMode,
-    PRESET_SLEEP,
-    PRESET_COMFORT,
-    SWING_OFF,
-    SWING_VERTICAL,
 )
-from homeassistant.const import (
-    UnitOfTime,
-    UnitOfTemperature,
-)
+from homeassistant.const import UnitOfTemperature, UnitOfTime
 
 from ..const import EBERG_QUBO_Q40HD_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -44,8 +41,8 @@ class TestEbergQuboQ40HDHeatpump(
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,
             self.subject,
-            min=17,
-            max=30,
+            min=17.0,
+            max=30.0,
         )
         self.setUpBasicNumber(
             TIMER_DPS,
@@ -63,19 +60,10 @@ class TestEbergQuboQ40HDHeatpump(
                 | ClimateEntityFeature.FAN_MODE
                 | ClimateEntityFeature.PRESET_MODE
                 | ClimateEntityFeature.SWING_MODE
+                | ClimateEntityFeature.TURN_OFF
+                | ClimateEntityFeature.TURN_ON
             ),
         )
-
-    def test_icon(self):
-        self.dps[POWER_DPS] = True
-        self.dps[HVACMODE_DPS] = "cold"
-        self.assertEqual(self.subject.icon, "mdi:snowflake")
-        self.dps[HVACMODE_DPS] = "hot"
-        self.assertEqual(self.subject.icon, "mdi:fire")
-        self.dps[HVACMODE_DPS] = "dehumidify"
-        self.assertEqual(self.subject.icon, "mdi:water-percent")
-        self.dps[POWER_DPS] = False
-        self.assertEqual(self.subject.icon, "mdi:hvac-off")
 
     def test_temperature_unit(self):
         self.dps[UNIT_DPS] = "c"

@@ -1,0 +1,275 @@
+name: Camera
+products:
+  - id: ivdxyvyy8aqzm1ix
+    name: Camnsmart E27TY
+primary_entity:
+  entity: camera
+  dps:
+    - id: 109
+      type: string
+      name: memory_card_capacity
+    - id: 134
+      type: boolean
+      name: motion_enable
+      optional: true
+    - id: 150
+      type: boolean
+      name: record
+      optional: true
+    - id: 178
+      type: string
+      name: log_event
+      optional: true
+    - id: 185
+      type: string
+      name: log_message
+      optional: true
+secondary_entities:
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+        optional: true
+  - entity: button
+    name: PTZ up
+    icon: "mdi:pan-up"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ right-up
+    icon: "mdi:top-right"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "1"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ right
+    icon: "mdi:pan-right"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "2"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ right-down
+    icon: "mdi:pan-bottom-right"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "3"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ down
+    icon: "mdi:pan-down"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "4"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ left-down
+    icon: "mdi:pan-bottom-left"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "5"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ left
+    icon: "mdi:pan-left"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "6"
+            value: true
+          - value: false
+  - entity: button
+    name: PTZ left-up
+    icon: "mdi:pan-top-left"
+    category: config
+    dps:
+      - id: 119
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "7"
+            value: true
+          - value: false
+  - entity: switch
+    name: Auto siren
+    icon: "mdi:bullhorn"
+    category: config
+    dps:
+      - id: 120
+        type: boolean
+        name: switch
+        optional: true
+  - entity: select
+    name: Nightvision
+    icon: "mdi:weather-night"
+    category: config
+    dps:
+      - id: 124
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: auto
+            value: Auto
+          - dps_val: ir_mode
+            value: "On"
+          - dps_val: color_mode
+            value: "Off"
+  - entity: light
+    name: Floodlight
+    icon: "mdi:light-flood-down"
+    category: config
+    dps:
+      - id: 138
+        type: boolean
+        name: switch
+        optional: true
+      - id: 158
+        type: integer
+        name: brightness
+        optional: true
+        range:
+          min: 1
+          max: 100
+  - entity: select
+    name: Recording mode
+    icon: "mdi:file-video"
+    category: config
+    dps:
+      - id: 151
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "1"
+            value: Event
+          - dps_val: "2"
+            value: Continuous
+  - entity: switch
+    name: Motion tracking
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 161
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: false
+            icon: "mdi:motion-sensor-off"
+  - entity: button
+    class: restart
+    name: Restart
+    category: config
+    dps:
+      - id: 162
+        type: boolean
+        name: button
+        optional: true
+  - entity: select
+    name: Zoom
+    category: config
+    icon: "mdi:magnify"
+    dps:
+      - id: 163
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: Zoom out
+            icon: "mdi:magnify-minus"
+          - dps_val: "1"
+            value: Zoom in
+            icon: "mdi:magnify-plus"
+  - entity: button
+    name: Stop zooming
+    icon: "mdi:magnify-close"
+    category: config
+    dps:
+      - id: 164
+        type: boolean
+        name: button
+        optional: true
+  - entity: switch
+    name: Limit motion detection area
+    icon: "mdi:picture-in-picture-top-right-outline"
+    category: config
+    dps:
+      - id: 168
+        type: boolean
+        name: switch
+        optional: true
+      - id: 169
+        type: string
+        name: area
+        optional: true
+  - entity: switch
+    name: Human detection
+    icon: "mdi:human"
+    category: config
+    dps:
+      - id: 170
+        type: boolean
+        name: switch
+        optional: true
+  - entity: number
+    name: Light duration
+    category: config
+    icon: "mdi:light-flood-down"
+    dps:
+      - id: 173
+        type: integer
+        name: value
+        optional: true
+        unit: s
+        range:
+          min: 0
+          max: 3600

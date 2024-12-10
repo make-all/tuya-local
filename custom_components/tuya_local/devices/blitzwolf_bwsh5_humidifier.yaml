@@ -1,0 +1,198 @@
+name: Humidifier
+products:
+  - id: lqzme7o0kzhumdxr
+    name: BlitzWolf BWSH5
+primary_entity:
+  entity: humidifier
+  class: humidifier
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 4
+      name: mode
+      type: string
+      mapping:
+        - dps_val: auto
+          value: auto
+        - dps_val: health
+          value: comfort
+        - dps_val: baby
+          value: baby
+        - dps_val: sleep
+          value: sleep
+        - dps_val: humidity
+          value: eco
+        - dps_val: work
+          value: boost
+        - dps_val: manual
+          value: normal
+    - id: 13
+      name: humidity
+      type: integer
+      optional: true
+      range:
+        min: 35
+        max: 75
+      mapping:
+        - step: 5
+    - id: 14
+      name: current_humidity
+      type: integer
+secondary_entities:
+  - entity: switch
+    translation_key: uv_sterilization
+    category: config
+    dps:
+      - id: 21
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Warm mist
+    icon: "mdi:fire"
+    category: config
+    dps:
+      - id: 26
+        name: switch
+        type: boolean
+        optional: true
+  - entity: switch
+    name: Plasma
+    icon: "mdi:dots-circle"
+    category: config
+    dps:
+      - id: 35
+        name: switch
+        type: boolean
+        optional: true
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 5
+        name: switch
+        type: boolean
+  - entity: fan
+    name: Spray level
+    icon: "mdi:heat-wave"
+    category: config
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 23
+        name: speed
+        type: string
+        optional: true
+        mapping:
+          - dps_val: "level_1"
+            value: 15
+          - dps_val: "level_2"
+            value: 30
+          - dps_val: "level_3"
+            value: 45
+          - dps_val: "level_4"
+            value: 55
+          - dps_val: "level_5"
+            value: 70
+          - dps_val: "level_6"
+            value: 85
+          - dps_val: "level_7"
+            value: 100
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        class: measurement
+        unit: C
+      - id: 12
+        name: temperature_f
+        type: integer
+        unit: F
+        optional: true
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 19
+        name: option
+        type: string
+        optional: true
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: "7h"
+            value: "7h"
+          - dps_val: "8h"
+            value: "8h"
+          - dps_val: "9h"
+            value: "9h"
+          - dps_val: "10h"
+            value: "10h"
+          - dps_val: "11h"
+            value: "11h"
+          - dps_val: "12h"
+            value: "12h"
+      - id: 20
+        name: remaining
+        type: integer
+        optional: true
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 18
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: binary_sensor
+    translation_key: tank_empty
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - dps_val: 1
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        optional: true
+        name: fault_code

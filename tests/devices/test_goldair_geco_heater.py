@@ -1,9 +1,6 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
-from homeassistant.components.climate.const import (
-    ClimateEntityFeature,
-    HVACMode,
-)
-from homeassistant.const import UnitOfTime, UnitOfTemperature
+from homeassistant.components.climate.const import ClimateEntityFeature, HVACMode
+from homeassistant.const import UnitOfTemperature, UnitOfTime
 
 from ..const import GECO_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -36,8 +33,8 @@ class TestGoldairGECOHeater(
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,
             self.subject,
-            min=15,
-            max=35,
+            min=15.0,
+            max=35.0,
         )
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
         self.setUpBasicNumber(
@@ -48,7 +45,7 @@ class TestGoldairGECOHeater(
         )
         self.setUpBasicBinarySensor(
             ERROR_DPS,
-            self.entities.get("binary_sensor_error"),
+            self.entities.get("binary_sensor_problem"),
             device_class=BinarySensorDeviceClass.PROBLEM,
             testdata=(1, 0),
         )
@@ -56,22 +53,17 @@ class TestGoldairGECOHeater(
             [
                 "lock_child_lock",
                 "number_timer",
-                "binary_sensor_error",
+                "binary_sensor_problem",
             ]
         )
 
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            ClimateEntityFeature.TARGET_TEMPERATURE,
+            ClimateEntityFeature.TARGET_TEMPERATURE
+            | ClimateEntityFeature.TURN_OFF
+            | ClimateEntityFeature.TURN_ON,
         )
-
-    def test_icon(self):
-        self.dps[HVACMODE_DPS] = True
-        self.assertEqual(self.subject.icon, "mdi:radiator")
-
-        self.dps[HVACMODE_DPS] = False
-        self.assertEqual(self.subject.icon, "mdi:radiator-disabled")
 
     def test_temperature_unit_returns_celsius(self):
         self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
@@ -103,16 +95,17 @@ class TestGoldairGECOHeater(
             await self.subject.async_set_hvac_mode(HVACMode.OFF)
 
     def test_extra_state_attributes(self):
-        # There are currently no known error states; update this as
-        # they are discovered
-        self.dps[ERROR_DPS] = "something"
         self.dps[TIMER_DPS] = 10
         self.assertDictEqual(
             self.subject.extra_state_attributes,
-            {"error": "something", "timer": 10},
+            {"timer": 10},
         )
-        self.dps[ERROR_DPS] = "0"
         self.dps[TIMER_DPS] = 0
+        self.assertDictEqual(self.subject.extra_state_attributes, {"timer": 0})
+
+    def test_basic_bsensor_extra_state_attributes(self):
+        self.dps[ERROR_DPS] = 2
         self.assertDictEqual(
-            self.subject.extra_state_attributes, {"error": "OK", "timer": 0}
+            self.basicBSensor.extra_state_attributes,
+            {"fault_code": 2},
         )

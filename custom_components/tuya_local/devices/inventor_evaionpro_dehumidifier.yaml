@@ -19,34 +19,16 @@ primary_entity:
       name: mode
       mapping:
         - dps_val: manual
-          value: Manual
+          value: normal
         - dps_val: continuous
-          value: Continuous
+          value: boost
         - dps_val: smart
-          value: Smart
+          value: auto
         - dps_val: drying
-          value: Drying
-    - id: 19
-      type: bitfield
-      name: fault_code
-      # Mappings are a guess, as protocol doc uses numeric codes, while
-      # manual uses alphanumeric codes.  Probably only defrosting will show
-      # up with any regularity, so should be easiest to check
-      mapping:
-        - dps_val: 0
-          value: OK
-        - dps_val: 1
-          value: Humidity sensor error
-        - dps_val: 2
-          value: Temperature sensor error
-        - dps_val: 4
-          value: Tank full or removed
-        - dps_val: 8
-          value: Unit malfunction
-        - dps_val: 16
-          value: Refrigerant leak
-        - dps_val: 32
-          value: Defrosting
+          value: laundry
+    - id: 6
+      type: integer
+      name: current_humidity
     # The following two are documented in the protocol as read/write, and appear
     # in the app to be so.  But there is no mention in the manual of a pump
     # and likely this is an indicator that the compressor is operating.
@@ -58,6 +40,7 @@ primary_entity:
       name: pump
     - id: 104
       type: integer
+      optional: true
       name: water_level
 secondary_entities:
   - entity: fan
@@ -76,23 +59,13 @@ secondary_entities:
           - dps_val: high
             value: 100
   - entity: switch
-    name: Ionizer
+    translation_key: ionizer
     category: config
     dps:
       - id: 10
         type: boolean
         name: switch
   - entity: sensor
-    name: Humidity
-    class: humidity
-    dps:
-      - id: 6
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
-  - entity: sensor
-    name: Temperature
     class: temperature
     dps:
       - id: 7
@@ -101,7 +74,6 @@ secondary_entities:
         unit: C
         class: measurement
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -115,12 +87,13 @@ secondary_entities:
           - dps_val: 4
             value: false
           - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code
   - entity: binary_sensor
-    name: Tank Full
-    class: problem
+    translation_key: tank_full
     category: diagnostic
     dps:
       - id: 101
         type: boolean
         name: sensor
-

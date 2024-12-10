@@ -1,14 +1,15 @@
 """Tests for the PC321-TY Power Clamp Energy meter"""
+
 from homeassistant.components.sensor import (
-    SensorDeviceClass,
     STATE_CLASS_MEASUREMENT,
     STATE_CLASS_TOTAL_INCREASING,
+    SensorDeviceClass,
 )
 from homeassistant.const import (
     UnitOfElectricCurrent,
     UnitOfElectricPotential,
-    UnitOfFrequency,
     UnitOfEnergy,
+    UnitOfFrequency,
     UnitOfPower,
     UnitOfTemperature,
 )
@@ -51,7 +52,7 @@ class TestPC321TYPowerClamp(MultiSensorTests, TuyaDeviceTestCase):
             [
                 {
                     "dps": TOTALENERGY_DP,
-                    "name": "sensor",
+                    "name": "sensor_energy",
                     "unit": UnitOfEnergy.KILO_WATT_HOUR,
                     "device_class": SensorDeviceClass.ENERGY,
                     "state_class": STATE_CLASS_TOTAL_INCREASING,
@@ -91,8 +92,6 @@ class TestPC321TYPowerClamp(MultiSensorTests, TuyaDeviceTestCase):
                     "dps": ENERGY1_DP,
                     "name": "sensor_energy_a",
                     "unit": UnitOfEnergy.KILO_WATT_HOUR,
-                    "device_class": SensorDeviceClass.ENERGY,
-                    "state_class": STATE_CLASS_TOTAL_INCREASING,
                     "testdata": (12345, 123.45),
                 },
                 {
@@ -129,8 +128,6 @@ class TestPC321TYPowerClamp(MultiSensorTests, TuyaDeviceTestCase):
                     "dps": ENERGY2_DP,
                     "name": "sensor_energy_b",
                     "unit": UnitOfEnergy.KILO_WATT_HOUR,
-                    "device_class": SensorDeviceClass.ENERGY,
-                    "state_class": STATE_CLASS_TOTAL_INCREASING,
                     "testdata": (12345, 123.45),
                 },
                 {
@@ -167,8 +164,6 @@ class TestPC321TYPowerClamp(MultiSensorTests, TuyaDeviceTestCase):
                     "dps": ENERGY3_DP,
                     "name": "sensor_energy_c",
                     "unit": UnitOfEnergy.KILO_WATT_HOUR,
-                    "device_class": SensorDeviceClass.ENERGY,
-                    "state_class": STATE_CLASS_TOTAL_INCREASING,
                     "testdata": (12345, 123.45),
                 },
                 {

@@ -1,0 +1,94 @@
+name: Smart Inverter
+products:
+  - id: xcgsq9ggffz7lqhh
+    name: SG700MD
+primary_entity:
+  entity: sensor
+  class: energy
+  dps:
+    - id: 2
+      type: integer
+      name: sensor
+      unit: kWh
+      class: total_increasing
+      mapping:
+        - scale: 100
+    - id: 15
+      name: model
+      type: string
+    - id: 16
+      name: inverter_id
+      type: string
+secondary_entities:
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        unit: W
+        force: true
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: DC current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        force: true
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: DC voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: V
+        force: true
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: AC voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: V
+        force: true
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: AC current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        force: true
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: switch
+    name: Inverter switch
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+        optional: true

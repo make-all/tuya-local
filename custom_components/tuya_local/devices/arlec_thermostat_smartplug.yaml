@@ -1,0 +1,293 @@
+name: Arlec thermostat smartplug
+products:
+  - id: 1z2w76xtiawhxleg
+    name: Arlec PCTH01HA
+primary_entity:
+  entity: climate
+  dps:
+    - id: 9
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: work_mode
+          conditions:
+            - dps_val: "hot"
+              value: "heat"
+            - dps_val: "dehumidify"
+              value: "dry"
+            - dps_val: "colding"
+              value: "cool"
+            - dps_val: "wet"
+              # There is no humidify/wet mode in HA climate platform
+              value: "fan_only"
+    - id: 7
+      type: string
+      name: cycle_time
+      optional: true
+    - id: 8
+      type: string
+      name: work_mode
+      hidden: true
+    - id: 19
+      type: bitfield
+      name: factory_test
+      optional: true
+    - id: 20
+      type: string
+      name: temperature_unit
+      mapping:
+        - dps_val: c
+          value: C
+        - dps_val: f
+          value: F
+    - id: 21
+      name: temp_set_f
+      type: integer
+      hidden: true
+      mapping:
+        - scale: 10
+          step: 5
+      range:
+        min: -40
+        max: 2210
+    - id: 22
+      name: temperature
+      type: integer
+      range:
+        min: -200
+        max: 1050
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: temp_set_f
+              range:
+                min: -40
+                max: 2210
+          scale: 10
+          step: 5
+    - id: 27
+      type: integer
+      name: current_temperature
+      mapping:
+        - scale: 10
+          constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: cur_temp_f
+    - id: 28
+      type: integer
+      name: cur_temp_f
+      hidden: true
+      mapping:
+        - scale: 10
+    - id: 41
+      type: integer
+      name: humidity
+      range:
+        min: 1
+        max: 99
+    - id: 46
+      type: integer
+      name: current_humidity
+secondary_entities:
+  - entity: switch
+    class: switch
+    name: Manual Switch
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 4
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 11
+        type: integer
+        name: sensor
+        unit: mA
+        class: measurement
+      - id: 15
+        type: integer
+        name: calibration
+        optional: true
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 12
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 10
+        type: integer
+        name: add_ele
+        optional: true
+      - id: 17
+        type: integer
+        name: ele_calibration
+        optional: true
+      - id: 16
+        type: integer
+        name: calibration
+        optional: true
+      - id: 18
+        type: integer
+        name: limit
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 14
+        type: integer
+        name: calibration
+        optional: true
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 20
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: number
+    name: Temperature hysteresis
+    category: config
+    icon: "mdi:arrow-collapse-vertical"
+    dps:
+      - id: 29
+        type: integer
+        name: value
+        range:
+          min: 10
+          max: 90
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 20
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+  - entity: number
+    name: Temperature correction
+    category: config
+    icon: "mdi:pan-vertical"
+    dps:
+      - id: 30
+        type: integer
+        name: value
+        range:
+          min: -9
+          max: 9
+      - id: 20
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+  - entity: number
+    name: Humidity hysteresis
+    category: config
+    class: humidity
+    icon: "mdi:arrow-collapse-vertical"
+    dps:
+      - id: 42
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 2
+          max: 20
+        mapping:
+          - step: 2
+  - entity: number
+    name: Humidity correction
+    category: config
+    class: humidity
+    icon: "mdi:pan-vertical"
+    dps:
+      - id: 47
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: -9
+          max: 9
+  - entity: number
+    name: Cold delay
+    category: config
+    icon: "mdi:camera-timer"
+    dps:
+      - id: 55
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 10
+  - entity: switch
+    name: Cold delay enable
+    icon: "mdi:camera-timer"
+    category: config
+    dps:
+      - id: 56
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 50
+        type: bitfield
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 50
+        type: bitfield
+        optional: true
+        name: fault_code

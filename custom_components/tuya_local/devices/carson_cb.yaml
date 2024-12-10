@@ -1,4 +1,10 @@
-name: Carson CB PA280
+name: Air conditioner
+products:
+  # original product id unknown: Carson CB PA280
+  - id: 2tgd3qnobb1mcgd9
+    name: Shinco Yoau YWD1
+    # also sold as Axelair Tempero CMM3000, Domair Callisto
+    # (product id may be same or different?)
 primary_entity:
   entity: climate
   dps:
@@ -8,22 +14,17 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:hvac-off"
         - dps_val: true
           constraint: mode
           conditions:
             - dps_val: COOL
-              icon: "mdi:snowflake"
               value: cool
             - dps_val: FAN
-              icon: "mdi:fan"
               value: fan_only
             - dps_val: DRY
-              icon: "mdi:water"
               value: dry
             - dps_val: HEAT
-              icon: "mdi:fire"
-              value: heat   
+              value: heat
     - id: 2
       name: temperature
       type: integer
@@ -37,6 +38,7 @@ primary_entity:
               range:
                 min: 60
                 max: 86
+      optional: true
     - id: 3
       name: current_temperature
       type: integer
@@ -49,20 +51,14 @@ primary_entity:
       type: integer
       mapping:
         - dps_val: 1
-          value: "low"
+          value: low
         - dps_val: 2
-          value: "medium"
+          value: medium
         - dps_val: 3
-          value: "high"
+          value: high
     - id: 19
       name: temperature_unit
       type: string
-    - id: 102
-      name: unknown_102
-      type: boolean
-    - id: 103
-      name: timer
-      type: integer
     - id: 104
       name: swing_mode
       type: boolean
@@ -71,12 +67,78 @@ primary_entity:
           value: "vertical"
         - dps_val: false
           value: "off"
-    - id: 105
-      name: countdown
-      type: integer
-    - id: 106
-      name: unknown_106
-      type: integer
     - id: 110
-      name: unknown_110
+      name: model_code
       type: integer
+secondary_entities:
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: C
+            value: celsius
+          - dps_val: F
+            value: fahrenheit
+  - entity: switch
+    translation_key: sleep
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+        optional: true
+  - entity: binary_sensor
+    translation_key: defrost
+    category: diagnostic
+    dps:
+      - id: 102
+        type: boolean
+        name: sensor
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 103
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 24
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 106
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            constraint: fault_code_2
+            conditions:
+              - dps_val: 0
+                value: false
+              - dps_val: null
+                value: false
+            value: true
+          - value: true
+      - id: 106
+        name: fault_code
+        type: bitfield
+      - id: 111
+        type: bitfield
+        name: fault_code_2
+        optional: true

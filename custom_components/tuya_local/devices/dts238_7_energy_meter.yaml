@@ -1,0 +1,120 @@
+name: Energy meter
+products:
+  - id: 1rlikmowi2erb6qw
+    name: DTS238-7
+primary_entity:
+  entity: sensor
+  name: Total energy
+  class: energy
+  dps:
+    - id: 1
+      type: integer
+      name: sensor
+      unit: kWh
+      class: total_increasing
+      mapping:
+        - scale: 100
+    - id: 6
+      type: base64
+      name: phase_a
+      optional: true
+    - id: 7
+      type: base64
+      name: phase_b
+      optional: true
+    - id: 8
+      type: base64
+      name: phase_c
+      optional: true
+      # ov_cr, unbalance_alarm, ov_vol, undervoltage_alarm, miss_phase_alarm,
+      # outage_alarm, magnetism_alarm, terminal_alarm, cover_alarm,
+      # credit_alarm, no_balance_alarm, battery_alarm, meter_hardware_alarm
+    - id: 17
+      name: alarm_set
+      type: string
+      optional: true
+    - id: 18
+      name: meter_id
+      type: string
+secondary_entities:
+  - entity: sensor
+    name: Total power
+    class: power
+    category: diagnostic
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 10000
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        name: fault_code
+        optional: true
+  - entity: switch
+    name: Prepay
+    category: config
+    icon: "mdi:cash"
+    dps:
+      - id: 12
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Energy balance
+    class: energy_storage
+    category: diagnostic
+    dps:
+      - id: 13
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: button
+    name: Reset energy
+    category: config
+    class: restart
+    dps:
+      - id: 14
+        type: boolean
+        name: button
+        optional: true
+  - entity: number
+    name: Charge energy
+    category: config
+    class: energy_storage
+    icon: "mdi:cash"
+    dps:
+      - id: 15
+        type: integer
+        name: value
+        unit: kWh
+        optional: true
+        range:
+          min: 0
+          max: 5000
+  - entity: switch
+    name: Breaker
+    icon: "mdi:fuse"
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: switch

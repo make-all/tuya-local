@@ -1,0 +1,170 @@
+name: ZX-G30 alarm
+products:
+  - id: mw27s3tus4bb7nz3
+    name: Dual-network security system
+primary_entity:
+  entity: alarm_control_panel
+  dps:
+    - id: 1
+      type: string
+      name: alarm_state
+      mapping:
+        - dps_val: disarmed
+          value: disarmed
+        - dps_val: arm
+          value: armed_away
+        - dps_val: home
+          value: armed_home
+    - id: 22
+      type: integer
+      name: call_looptimes
+    - id: 23
+      type: string
+      name: telnet_state
+    - id: 24
+      type: string
+      name: zone_attribute
+    - id: 35
+      type: boolean
+      name: sub_add
+    - id: 36
+      type: string
+      name: sub_class
+    - id: 37
+      type: string
+      name: sub_type
+    - id: 39
+      type: string
+      name: sub_state
+    - id: 40
+      type: string
+      name: master_language
+secondary_entities:
+  - entity: binary_sensor
+    name: Alarm
+    class: sound
+    icon: "mdi:alarm-bell"
+    dps:
+      - id: 32
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: normal
+            value: false
+          - dps_val: alarm
+            value: true
+  - entity: number
+    name: Exit delay
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        unit: sec
+        range:
+          min: 0
+          max: 300
+  - entity: siren
+    name: Alarm
+    dps:
+      - id: 3
+        type: integer
+        name: duration
+        unit: min
+        range:
+          min: 1
+          max: 60
+      - id: 4
+        type: boolean
+        name: tone
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
+            default: true
+  - entity: binary_sensor
+    class: tamper
+    category: diagnostic
+    dps:
+      - id: 9
+        type: boolean
+        name: sensor
+  - entity: switch
+    name: Voice prompt
+    category: config
+    icon: "mdi:account-voice"
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: plug
+    category: diagnostic
+    dps:
+      - id: 15
+        type: boolean
+        name: sensor
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 16
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: binary_sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 17
+        type: boolean
+        name: sensor
+  - entity: switch
+    name: Alarm call
+    category: config
+    icon: "mdi:phone-alert"
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Alarm SMS
+    category: config
+    icon: "mdi:message-alert"
+    dps:
+      - id: 21
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Alarm notification
+    category: config
+    icon: "mdi:bell"
+    dps:
+      - id: 27
+        type: boolean
+        name: switch
+  - entity: number
+    name: Entry delay
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 28
+        type: integer
+        name: value
+        unit: sec
+  - entity: switch
+    name: Tick down
+    category: config
+    icon: "mdi:metronome"
+    dps:
+      - id: 29
+        type: boolean
+        name: switch
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    dps:
+      - id: 34
+        type: boolean
+        name: button

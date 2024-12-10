@@ -1,11 +1,11 @@
 # Dongguan Pinjia Technology Co., Door Controller, PJ-WGDOOR01
-# Tuya Smart Life WiFi Motorized Swing Gate Sliding Gate Opener Dry Contact 110V 240V Voice Control with Alexa Google Home
+# Tuya Smart Life WiFi Motorized Swing Gate Sliding Gate Opener Dry Contact
+# 110V 240V Voice Control with Alexa Google Home
 # https://www.aliexpress.com/item/1005003913566298.html
-name: WiFi garage opener
+name: Garage opener
 products:
   - id: 1wwbzczt9hrtwqjr
-    name: Dongguan garage door
-    model: PJ-WGDOOR01
+    name: Dongguan PJ-WGDOOR01
 primary_entity:
   entity: cover
   class: garage
@@ -13,7 +13,7 @@ primary_entity:
     - id: 1
       type: boolean
       name: control
-      optional: true #BUGBUG Sometimes after power off this DP doesn't report state but will be available later
+      optional: true  # Sometimes this DP doesn't report state
       mapping:
         - dps_val: true
           value: open
@@ -29,18 +29,16 @@ primary_entity:
           value: closed
 secondary_entities:
   - entity: number
-    name: Countdown
-    icon: mdi:timer-lock
+    translation_key: timer
     category: config
     dps:
       - id: 2
-        <<: &timer
-          type: integer
-          name: value
-          unit: s
-          range:
-            min: 0
-            max: 86400
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 86400
   - entity: number
     name: Run times
     icon: mdi:timer
@@ -59,7 +57,25 @@ secondary_entities:
     category: config
     dps:
       - id: 5
-        <<: *timer
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 86400
+  - entity: switch
+    name: Voice control
+    icon: "mdi:account-voice"
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
   - entity: sensor
     name: Fault
     icon: mdi:alert
@@ -67,4 +83,4 @@ secondary_entities:
       - id: 12
         type: string
         name: sensor
-        optional: true #BUGBUG Sometimes after power off this DP doesn't report state but will be available later
+        optional: true  # Sometimes doesn't report state

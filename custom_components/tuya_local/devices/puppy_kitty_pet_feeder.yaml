@@ -1,0 +1,64 @@
+name: Pet feeder
+products:
+  - id: iwabnqimdhmzxzvp
+    name: PUPPY KITTY Automatic Cat & Dog Feeder
+primary_entity:
+  entity: switch
+  name: Enable feeder
+  icon: "mdi:food-drumstick"
+  dps:
+    - id: 25
+      type: boolean
+      name: switch
+    - id: 1
+      name: meal_plan
+      type: string
+      optional: true
+secondary_entities:
+  - entity: sensor
+    icon: "mdi:paw"
+    name: Feed report
+    category: diagnostic
+    dps:
+      - id: 14
+        name: sensor
+        type: integer
+        optional: true
+  - entity: button
+    translation_key: factory_reset
+    category: config
+    dps:
+      - id: 24
+        type: boolean
+        name: button
+        optional: true
+  - entity: number
+    icon: "mdi:paw"
+    name: Manual feed
+    category: config
+    dps:
+      - id: 3
+        name: value
+        type: integer
+        optional: true
+        range:
+          min: 1
+          max: 20
+  - entity: binary_sensor
+    name: Feeding
+    class: running
+    icon: "mdi:paw"
+    category: diagnostic
+    dps:
+      - id: 4
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: feeding
+            value: true
+          - value: false
+      - id: 4
+        type: string
+        optional: true
+        name: raw

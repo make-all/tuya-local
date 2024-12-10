@@ -11,26 +11,24 @@ primary_entity:
 secondary_entities:
   - entity: button
     name: Filter replaced
-    class: restart
+    icon: "mdi:air-filter"
     category: config
     dps:
       - id: 7
         type: boolean
         name: button
-
-  - entity: switch
-    deprecated: button
-    name: Filter replaced
-    icon: "mdi:air-filter"
+  - entity: button
+    name: Pump cleaned
+    icon: "mdi:pump"
     category: config
     dps:
-      - id: 7
+      - id: 8
         type: boolean
-        name: switch
-
+        name: button
   - entity: sensor
     name: Filter life
     icon: "mdi:air-filter"
+    class: duration
     category: diagnostic
     dps:
       - id: 4
@@ -40,22 +38,33 @@ secondary_entities:
           min: 0
           max: 43200
         mapping:
-          - scale: 1440 # minutes => days
-            step: 1
-            invert: true
-        unit: days
-
+          - invert: true
+        unit: min
+  - entity: sensor
+    name: Pump maintenance
+    icon: "mdi:pump"
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 5
+        type: integer
+        name: sensor
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - invert: true
+        unit: min
   - entity: switch
-    name: Run UV cycle
-    icon: "mdi:bacteria"
+    translation_key: uv_sterilization
     category: config
     dps:
       - id: 10
         type: boolean
         name: switch
-
   - entity: sensor
     name: Water level
+    class: enum
     category: diagnostic
     dps:
       - id: 12
@@ -71,16 +80,12 @@ secondary_entities:
           - dps_val: level_3
             icon: "mdi:cup"
             value: Full
-
   - entity: sensor
     name: UV runtime
-    icon: "mdi:timer-outline"
+    class: duration
     category: diagnostic
     dps:
       - id: 11
         type: integer
         name: sensor
-        mapping:
-          - scale: 60
-            step: 1
-        unit: min
+        unit: s

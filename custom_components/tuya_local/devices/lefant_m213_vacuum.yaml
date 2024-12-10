@@ -13,7 +13,7 @@ primary_entity:
       name: command
       mapping:
         - dps_val: standby
-          value: standby
+          value: stop
         - dps_val: smart
           value: smart
         - dps_val: chargego
@@ -59,10 +59,6 @@ primary_entity:
           value: random
         - dps_val: "7"
           value: standby
-    - id: 6
-      name: battery
-      type: integer
-      readonly: true
     - id: 13
       type: boolean
       name: locate
@@ -70,30 +66,11 @@ primary_entity:
     - id: 15
       type: string
       name: clean_record
-      readonly: true
       optional: true
     - id: 18
       type: bitfield
       name: error
-      mapping:
-        - dps_val: 1
-          value: edge_sweep
-        - dps_val: 2
-          value: middle_sweep
-        - dps_val: 4
-          value: left_wheel
-        - dps_val: 8
-          value: right_wheel
-        - dps_val: 16
-          value: garbage_box
-        - dps_val: 32
-          value: land_check
-        - dps_val: 64
-          value: collision
-        - dps_val: 512
-          value: low_battery
-        - dps_val: 1024
-          value: stuck
+      hidden: true
     - id: 19
       type: string
       name: map_parameter
@@ -110,12 +87,15 @@ primary_entity:
           value: High
     - id: 102
       type: integer
+      optional: true
       name: chassis_temperature
     - id: 103
       type: integer
+      optional: true
       name: heading
     - id: 104
       type: integer
+      optional: true
       name: iic_error_count
     - id: 105
       type: string
@@ -135,6 +115,14 @@ primary_entity:
       optional: true
 secondary_entities:
   - entity: sensor
+    class: battery
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
     name: Clean area
     category: diagnostic
     icon: "mdi:floor-plan"
@@ -142,13 +130,56 @@ secondary_entities:
       - id: 16
         type: integer
         name: sensor
+        optional: true
         unit: m2
   - entity: sensor
     name: Clean time
     category: diagnostic
+    class: duration
     icon: "mdi:clock-outline"
     dps:
       - id: 17
         type: integer
         name: sensor
         unit: min
+        optional: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 18
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 18
+        type: bitfield
+        name: fault_code
+      - id: 18
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: edge_sweep
+          - dps_val: 2
+            value: middle_sweep
+          - dps_val: 4
+            value: left_wheel
+          - dps_val: 8
+            value: right_wheel
+          - dps_val: 32
+            value: garbage_box
+          - dps_val: 64
+            value: land_check
+          - dps_val: 128
+            value: collision
+          - dps_val: 512
+            value: low_battery
+          - dps_val: 1024
+            value: stuck
+          - dps_val: 262144
+            value: switched_off

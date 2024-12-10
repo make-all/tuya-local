@@ -1,0 +1,37 @@
+name: Dooya curtain
+products:
+  - id: spjpuwf1u2dc7tlt
+primary_entity:
+  entity: cover
+  class: curtain
+  dps:
+    - id: 101
+      type: string
+      name: control
+      mapping:
+        - dps_val: open
+          value: open
+        - dps_val: close
+          value: close
+        - dps_val: stop
+          value: stop
+    - id: 102
+      type: integer
+      name: current_position
+    - id: 104
+      type: integer
+      name: position
+secondary_entities:
+  - entity: select
+    name: Direction
+    icon: "mdi:swap-horizontal"
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: false
+            value: Forward
+          - dps_val: true
+            value: Reverse

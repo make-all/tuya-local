@@ -1,0 +1,395 @@
+# Can´t put some DPs to work (calibration and alarms)
+name: Bidirectional energy meter
+products:
+  - id: 8bjnabt4gh8tu4vr
+    name: Unbranded dual channel
+primary_entity:
+  entity: sensor
+  class: energy
+  dps:
+    - id: 1
+      type: integer
+      optional: true
+      name: sensor
+      unit: kWh
+      class: total_increasing
+      mapping:
+        - scale: 100
+    - id: 122
+      type: integer
+      optional: true
+      name: hourly
+      mapping:
+        - scale: 100
+secondary_entities:
+  - entity: sensor
+    translation_key: energy_produced
+    class: energy
+    dps:
+      - id: 2
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 123
+        type: integer
+        optional: true
+        name: hourly
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 127
+        type: integer
+        name: calibration
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: frequency
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: Hz
+        class: measurement
+        mapping:
+          - scale: 100
+      - id: 128
+        type: integer
+        name: calibration
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Power factor A
+    class: power_factor
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Current A
+    class: current
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+      - id: 129
+        type: integer
+        optional: true
+        name: calibration
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Power A
+    class: power
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 124
+        type: boolean
+        name: direction
+      - id: 130
+        type: integer
+        optional: true
+        name: calibration
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: A
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 115
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 107
+        type: integer
+        name: daily
+        mapping:
+          - scale: 100
+      - id: 118
+        type: integer
+        name: hourly
+        mapping:
+          - scale: 100
+      - id: 131
+        type: integer
+        optional: true
+        name: calibration
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: A
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 115
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 132
+        type: integer
+        optional: true
+        name: calibration
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+      - id: 108
+        type: integer
+        name: daily
+        mapping:
+          - scale: 100
+      - id: 119
+        type: integer
+        name: hourly
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Power factor B
+    class: power_factor
+    category: diagnostic
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Current B
+    class: current
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+      - id: 133
+        type: integer
+        optional: true
+        name: calibration
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Power B
+    class: power
+    category: diagnostic
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 125
+        type: boolean
+        name: direction
+      - id: 134
+        type: integer
+        optional: true
+        name: calibration
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: B
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 116
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 112
+        type: integer
+        name: daily
+        mapping:
+          - scale: 100
+      - id: 120
+        type: integer
+        name: hourly
+        mapping:
+          - scale: 100
+      - id: 135
+        type: integer
+        optional: true
+        name: calibration
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: B
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 117
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 136
+        type: integer
+        optional: true
+        name: calibration
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+      - id: 113
+        type: integer
+        name: daily
+        mapping:
+          - scale: 100
+      - id: 121
+        type: integer
+        name: hourly
+        mapping:
+          - scale: 100
+  - entity: number
+    name: Reporting rate
+    category: config
+    icon: "mdi:timer-refresh"
+    dps:
+      - id: 126
+        type: integer
+        name: value
+        unit: s
+        mapping:
+          - step: 10
+        range:
+          min: 10
+          max: 180
+  - entity: number
+    name: Power setting
+    category: config
+    dps:
+      - id: 137
+        type: integer
+        optional: true
+        name: value
+        unit: W
+        range:
+          min: 200
+          max: 20000
+        mapping:
+          - step: 100
+  - entity: switch
+    name: Power alarm
+    category: config
+    dps:
+      - id: 138
+        type: boolean
+        optional: true
+        name: switch
+  - entity: number
+    name: Power setting 2
+    category: config
+    dps:
+      - id: 139
+        type: integer
+        optional: true
+        name: value
+        unit: W
+        mapping:
+          - step: 100
+        range:
+          min: 200
+          max: 20000
+  - entity: switch
+    name: Power alarm 2
+    category: config
+    dps:
+      - id: 140
+        type: boolean
+        optional: true
+        name: switch

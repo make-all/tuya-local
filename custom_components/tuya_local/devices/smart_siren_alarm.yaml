@@ -1,0 +1,229 @@
+name: Smart Alarm Siren
+products:
+  - id: rtbaqdh2io1pmn19
+    name: Smart Siren
+primary_entity:
+  entity: alarm_control_panel
+  name: Status
+  icon: "mdi:shield-off-outline"
+  dps:
+    - id: 116
+      type: string
+      name: alarm_state
+      force: true
+      mapping:
+        - dps_val: "Disarm_"
+          value: disarmed
+          icon: "mdi:shield-off-outline"
+        - dps_val: "Arm_"
+          value: armed_away
+          icon: "mdi:shield-lock-outline"
+        - dps_val: "HomeArm_"
+          value: armed_home
+          icon: "mdi:shield-home-outline"
+        - dps_val: "SOS"
+          value: triggered
+          icon: "mdi:lifebuoy"
+secondary_entities:
+  - entity: number
+    name: Alarm Time
+    category: config
+    icon: "mdi:timer"
+    mode: box
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: sec
+        range:
+          min: 5
+          max: 180
+        force: true
+  - entity: switch
+    name: Light
+    category: config
+    icon: "mdi:alarm-light"
+    dps:
+      - id: 106
+        type: boolean
+        name: switch
+        force: true
+  - entity: binary_sensor
+    name: Learning Mode
+    icon: "mdi:crosshairs-question"
+    category: diagnostic
+    dps:
+      - id: 111
+        type: boolean
+        name: sensor
+        optional: true
+  - entity: binary_sensor
+    name: Remote Control
+    icon: "mdi:crosshairs-question"
+    category: diagnostic
+    dps:
+      - id: 112
+        type: boolean
+        name: sensor
+        optional: true
+  - entity: binary_sensor
+    name: Alarm display push
+    icon: "mdi:crosshairs-question"
+    category: diagnostic
+    dps:
+      - id: 114
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: "ACA="
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Tamper alarm
+    category: diagnostic
+    icon: "mdi:crosshairs-question"
+    dps:
+      - id: 117
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: "1"
+            value: true
+          - dps_val: "0"
+            value: false
+  - entity: binary_sensor
+    name: Power down alarm
+    category: diagnostic
+    icon: "mdi:crosshairs-question"
+    dps:
+      - id: 118
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: "1"
+            value: true
+          - dps_val: "0"
+            value: false
+  - entity: binary_sensor
+    name: Delete user data
+    icon: "mdi:crosshairs-question"
+    category: diagnostic
+    dps:
+      - id: 119
+        type: boolean
+        name: sensor
+        optional: true
+  - entity: select
+    name: Alarm Volume
+    category: config
+    icon: "mdi:account-voice"
+    dps:
+      - id: 120
+        type: string
+        name: option
+        force: true
+        mapping:
+          - dps_val: "1"
+            value: "low"
+          - dps_val: "2"
+            value: "middle"
+          - dps_val: "3"
+            value: "high"
+  - entity: switch
+    name: Sound
+    category: config
+    icon: "mdi:bullhorn-outline"
+    dps:
+      - id: 121
+        type: boolean
+        name: switch
+        force: true
+  - entity: binary_sensor
+    name: Alarm message push
+    category: diagnostic
+    icon: "mdi:crosshairs-question"
+    dps:
+      - id: 122
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: "ACA="
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Arming message push
+    category: diagnostic
+    icon: "mdi:crosshairs-question"
+    dps:
+      - id: 123
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: "ACA="
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Arming at home message push
+    category: diagnostic
+    icon: "mdi:crosshairs-question"
+    dps:
+      - id: 124
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: "ACA="
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Disarm message push
+    category: diagnostic
+    icon: "mdi:crosshairs-question"
+    dps:
+      - id: 125
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: "ACA="
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Accesories low power push
+    category: diagnostic
+    icon: "mdi:crosshairs-question"
+    dps:
+      - id: 126
+        type: string
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: "ACA="
+            value: true
+          - value: false
+  - entity: switch
+    name: Alarm
+    icon: "mdi:alarm-light-outline"
+    category: config
+    dps:
+      - id: 127
+        type: boolean
+        name: switch
+        optional: true
+  - entity: event
+    class: doorbell
+    category: diagnostic
+    dps:
+      - id: 128
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: "ACA="
+            value: ring
+          - value: null

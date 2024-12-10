@@ -1,0 +1,161 @@
+name: Doorbell
+products:
+  - id: 26xtgamy3tv1awhl
+    name: WGH-ML-001
+primary_entity:
+  entity: siren
+  icon: "mdi:bell"
+  dps:
+    - id: 2
+      type: integer
+      name: tone
+      optional: true
+      mapping:
+        - dps_val: 1
+          value: dingdong
+        - dps_val: 2
+          value: vacal
+        - dps_val: 3
+          value: Polka Italienne
+        - dps_val: 4
+          value: Carmen prelude
+        - dps_val: 5
+          value: Old ringtones
+        - dps_val: 6
+          value: Westminster Chimes
+        - dps_val: 7
+          value: Radetzky Marsch
+        - dps_val: 8
+          value: vocal 135i
+        - dps_val: 9
+          value: vocal i531
+        - dps_val: 10
+          value: DO-RE-MI
+        - dps_val: 11
+          value: Go home
+        - dps_val: 12
+          value: Scarborough fair
+        - dps_val: 13
+          value: Di spagna sono la Bella
+        - dps_val: 14
+          value: Libiamo ne
+        - dps_val: 15
+          value: Greensleeves
+        - dps_val: 16
+          value: Rondo Alla Turca
+        - dps_val: 17
+          value: Oh! Friends
+        - dps_val: 18
+          value: the golden Jubilee
+        - dps_val: 19
+          value: Merry Christmas
+        - dps_val: 20
+          value: Minuet
+        - dps_val: 21
+          value: Music box dancer
+        - dps_val: 22
+          value: Lonely Goatherd
+        - dps_val: 23
+          value: Russe Dance
+        - dps_val: 24
+          value: For Alice
+        - dps_val: 25
+          value: Memory
+        - dps_val: 26
+          value: The William tell overture
+        - dps_val: 27
+          value: happy birthday
+        - dps_val: 28
+          value: Mozart
+        - dps_val: 29
+          value: Edelweiss
+        - dps_val: 30
+          value: Red River Valley
+        - dps_val: 31
+          value: Jingle Bells
+        - dps_val: 32
+          value: Su San Na
+        - dps_val: 33
+          value: Rhytm of the rain
+        - dps_val: 34
+          value: Romance De Amour
+        - dps_val: 35
+          value: Moscow Nights
+        - dps_val: 36
+          value: dingdong
+        - dps_val: 37
+          value: Telephone ringing
+        - dps_val: 38
+          value: Yesenia
+        - dps_val: 39
+          value: Flute dance
+        - dps_val: 40
+          value: Alarm
+    - id: 3
+      type: integer
+      name: volume_level
+      range:
+        min: 0
+        max: 100
+      mapping:
+        - scale: 100
+    - id: 1
+      type: string
+      name: button_config
+      optional: true
+    - id: 7
+      type: string
+      name: undisturb_schedule
+      optional: true
+    - id: 10
+      type: integer
+      name: doorbell_call
+      optional: true
+secondary_entities:
+  - entity: switch
+    name: Mobile notifications
+    category: config
+    icon: "mdi:message-alert"
+    dps:
+      - id: 6
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Button
+    deprecated: event_doorbell
+    category: diagnostic
+    dps:
+      - id: 5
+        type: base64
+        name: sensor
+        optional: true
+        persist: false
+  - entity: binary_sensor
+    name: Ringing
+    class: sound
+    deprecated: event_doorbell
+    dps:
+      - id: 5
+        type: base64
+        name: sensor
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+  - entity: event
+    class: doorbell
+    dps:
+      - id: 5
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: ring
+      - id: 5
+        type: utf16b64
+        optional: true
+        name: message

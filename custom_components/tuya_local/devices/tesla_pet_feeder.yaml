@@ -1,0 +1,37 @@
+name: Pet feeder
+products:
+  - id: 8gdwxpoqdxdzefpe
+    name: Tesla Smart TSL-PC-BL4
+primary_entity:
+  entity: switch
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: number
+    name: Serving size
+    category: config
+    icon: "mdi:dots-hexagon"
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: portions
+        range:
+          min: 1
+          max: 10
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 102
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 102
+        type: bitfield
+        name: fault_code

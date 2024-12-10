@@ -1,0 +1,104 @@
+name: Six button remote
+products:
+  - id: iszegwpd
+    name: Six gang Zigbee remote
+primary_entity:
+  entity: event
+  name: Button 1
+  class: button
+  dps:
+    - id: 1
+      type: string
+      name: event
+      optional: true
+      mapping:
+        - dps_val: single_click
+          value: single_click
+        - dps_val: long_press
+          value: long_press
+        - dps_val: double_click
+          value: double_click
+secondary_entities:
+  - entity: event
+    name: Button 2
+    class: button
+    dps:
+      - id: 2
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: single_click
+            value: single_click
+          - dps_val: long_press
+            value: long_press
+          - dps_val: double_click
+            value: double_click
+  - entity: event
+    name: Button 3
+    class: button
+    dps:
+      - id: 3
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: single_click
+            value: single_click
+          - dps_val: long_press
+            value: long_press
+          - dps_val: double_click
+            value: double_click
+  - entity: event
+    name: Button 4
+    class: button
+    dps:
+      - id: 4
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: single_click
+            value: single_click
+          - dps_val: long_press
+            value: long_press
+          - dps_val: double_click
+            value: double_click
+  - entity: event
+    name: Button 5
+    class: button
+    dps:
+      - id: 5
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: single_click
+            value: single_click
+          - dps_val: long_press
+            value: long_press
+          - dps_val: double_click
+            value: double_click
+  - entity: event
+    name: Button 6
+    class: button
+    dps:
+      - id: 6
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: single_click
+            value: single_click
+          - dps_val: long_press
+            value: long_press
+          - dps_val: double_click
+            value: double_click
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        unit: "%"

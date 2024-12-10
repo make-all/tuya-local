@@ -1,0 +1,115 @@
+# sample DPS {'1': False, '3': 'grade1', '6': 'close', 19: 'cancel'}
+name: BlitzWolf BWSH2 humidifier
+products:
+  - id: 20268362d8bfc0080ec9
+primary_entity:
+  entity: fan
+  icon: "mdi:humidifier"
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 3
+      name: speed
+      type: string
+      mapping:
+        - dps_val: sleep
+          value: 10
+        - dps_val: grade1
+          value: 25
+        - dps_val: grade2
+          value: 40
+        - dps_val: grade3
+          value: 55
+        - dps_val: grade4
+          value: 70
+        - dps_val: grade5
+          value: 85
+        - dps_val: grade6
+          value: 100
+secondary_entities:
+  - entity: light
+    dps:
+      - id: 6
+        type: string
+        name: switch
+        mapping:
+          - dps_val: close
+            value: false
+            # We need a value to set to turn on the light with no parameters.
+          - dps_val: colour
+            value: true
+          - value: true
+            hidden: true
+      - id: 6
+        type: string
+        name: named_color
+        mapping:
+          - dps_val: purple
+            value: purple
+          - dps_val: blue
+            value: blue
+          - dps_val: cyan
+            value: cyan
+          - dps_val: green
+            value: green
+          - dps_val: yellow
+            value: yellow
+          - dps_val: orange
+            value: orange
+          - dps_val: red
+            value: red
+          - dps_val: colour
+            value: white
+          - dps_val: close
+            value: black
+  - entity: select
+    name: Light
+    deprecated: light
+    icon: "mdi:lightbulb"
+    category: config
+    dps:
+      - id: 6
+        type: string
+        name: option
+        mapping:
+          - dps_val: close
+            value: "Off"
+          - dps_val: purple
+            value: Purple
+          - dps_val: blue
+            value: Blue
+          - dps_val: cyan
+            value: Cyan
+          - dps_val: green
+            value: Green
+          - dps_val: yellow
+            value: Yellow
+          - dps_val: orange
+            value: Orange
+          - dps_val: red
+            value: Red
+          - dps_val: colour
+            value: Colorful
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 19
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: "8h"
+            value: "8h"
+          - dps_val: "10h"
+            value: "10h"
+          - dps_val: "12h"
+            value: "12h"

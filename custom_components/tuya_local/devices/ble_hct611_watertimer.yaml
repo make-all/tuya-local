@@ -1,0 +1,140 @@
+name: Water timer
+products:
+  - id: tqzkwarw
+    name: HCT-611
+primary_entity:
+  entity: valve
+  class: water
+  dps:
+    - id: 1
+      type: boolean
+      name: valve
+    - id: 12
+      type: string
+      name: state
+      optional: true
+    - id: 110
+      type: boolean
+      name: switch_record
+    - id: 101
+      type: base64
+      name: program_1
+      optional: true
+    - id: 102
+      type: base64
+      name: program_2
+      optional: true
+    - id: 103
+      type: base64
+      name: program_3
+      optional: true
+    - id: 104
+      type: base64
+      name: program_4
+      optional: true
+    - id: 105
+      type: base64
+      name: program_5
+      optional: true
+    - id: 106
+      type: base64
+      name: program_6
+      optional: true
+    - id: 107
+      type: base64
+      name: program_7
+      optional: true
+    - id: 108
+      type: base64
+      name: program_8
+      optional: true
+secondary_entities:
+  - entity: switch
+    icon: "mdi:pipe-valve"
+    deprecated: valve
+    category: config
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: "%"
+        mapping:
+          - scale: 0.05
+      - id: 8
+        type: string
+        name: state
+  - entity: select
+    name: Weather delay
+    translation_key: timer
+    icon: "mdi:weather-cloudy-clock"
+    category: config
+    dps:
+      - id: 10
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "24h"
+            value: "24h"
+          - dps_val: "48h"
+            value: "48h"
+          - dps_val: "72h"
+            value: "72h"
+          - dps_val: null
+            value: "not set"
+            hidden: true
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 11
+        type: integer
+        name: value
+        unit: min
+        optional: true
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: select
+    name: Smart weather
+    icon: "mdi:sun-wireless"
+    category: config
+    dps:
+      - id: 13
+        type: string
+        name: option
+        mapping:
+          - dps_val: sunny
+            value: sunny
+          - dps_val: clear
+            value: clear-night
+          - dps_val: cloud
+            value: partlycloudy
+          - dps_val: cloudy
+            value: cloudy
+          - dps_val: rainy
+            value: rainy
+          - dps_val: snow
+            value: snowy
+          - dps_val: fog
+            value: fog
+  - entity: switch
+    name: Smart weather switch
+    category: config
+    icon: "mdi:weather-partly-cloudy"
+    dps:
+      - id: 14
+        type: boolean
+        name: switch

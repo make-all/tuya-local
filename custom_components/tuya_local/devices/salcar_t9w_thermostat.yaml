@@ -9,13 +9,12 @@ primary_entity:
         - dps_val: false
           value: "off"
         - dps_val: true
-          mapping:
-            - constraint: mode
-              conditions:
-                - dps_val: auto
-                  value: auto
-                - dps_val: manual
-                  value: heat
+          constraint: mode
+          conditions:
+            - dps_val: auto
+              value: auto
+            - dps_val: manual
+              value: heat
     - id: 2
       name: mode
       type: string
@@ -57,35 +56,13 @@ primary_entity:
       type: string
       mapping:
         - dps_val: open
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: heating
+          value: heating
         - dps_val: close
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: idle
-    - id: 45
-      name: fault_code
-      type: bitfield
-      mapping:
-        - dps_val: 0
-          value: OK
-        - dps_val: 1
-          value: E1
-        - dps_val: 2
-          value: E2
-        - dps_val: 4
-          value: E3
+          value: idle
 secondary_entities:
   - entity: switch
-    name: Anti-frost
+    translation_key: anti_frost
     category: config
-    icon: "mdi:snowflake"
     dps:
       - id: 10
         type: boolean
@@ -93,6 +70,7 @@ secondary_entities:
   - entity: number
     name: Maximum temperature
     category: config
+    class: temperature
     icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 19
@@ -113,8 +91,7 @@ secondary_entities:
           - dps_val: f
             value: F
   - entity: select
-    name: Temperature unit
-    icon: "mdi:temperature-celsius"
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 23
@@ -122,12 +99,13 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: c
-            value: Celsius
+            value: celsius
           - dps_val: f
-            value: Fahrenheit
+            value: fahrenheit
   - entity: number
     name: Minimum temperature
     category: config
+    class: temperature
     icon: "mdi:thermometer-chevron-down"
     dps:
       - id: 26
@@ -160,15 +138,13 @@ secondary_entities:
           - dps_val: "7"
             value: Daily
   - entity: lock
-    name: Child lock
-    icon: "mdi:hand-back-right-off"
+    translation_key: child_lock
     category: config
     dps:
       - id: 40
         type: boolean
         name: lock
   - entity: binary_sensor
-    name: Fault
     class: problem
     category: diagnostic
     dps:
@@ -179,6 +155,18 @@ secondary_entities:
           - dps_val: 0
             value: false
           - value: true
-
-
-
+      - id: 45
+        type: bitfield
+        name: fault_code
+      - id: 45
+        name: description
+        type: bitfield
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: E1
+          - dps_val: 2
+            value: E2
+          - dps_val: 4
+            value: E3

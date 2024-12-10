@@ -1,4 +1,7 @@
-name: Ledkia fan and light controller
+name: Light and fan
+products:
+  - id: u5ovvhurbvynvspv
+    name: Ledkia fan and light controller
 primary_entity:
   entity: fan
   dps:
@@ -12,8 +15,6 @@ primary_entity:
       range:
         min: 1
         max: 6
-      mapping:
-        - scale: 0.06
     - id: 63
       type: string
       name: direction
@@ -35,8 +36,6 @@ secondary_entities:
         range:
           min: 10
           max: 1000
-        mapping:
-          - scale: 3.92
       - id: 23
         type: integer
         name: color_temp
@@ -45,8 +44,10 @@ secondary_entities:
           max: 1000
         optional: true
         mapping:
-          - invert: true
-            step: 500
+          - step: 500
+            target_range:
+              min: 2700
+              max: 6500
       - id: 59
         type: string
         name: light_type
@@ -59,13 +60,16 @@ secondary_entities:
       - id: 58
         type: integer
         name: value
+        unit: "%"
         optional: true
         range:
           min: 10
           max: 1000
+        mapping:
+          - scale: 10
   - entity: number
     name: Fan timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 64

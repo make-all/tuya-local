@@ -1,11 +1,12 @@
 """Tests for the switch entity."""
+
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (
     UnitOfElectricCurrent,
     UnitOfElectricPotential,
-    UnitOfTime,
     UnitOfPower,
+    UnitOfTime,
 )
 
 from ..const import KOGAN_SOCKET_PAYLOAD2
@@ -28,7 +29,7 @@ class TestSwitchV2(
 
     def setUp(self):
         self.setUpForConfig("smartplugv2.yaml", KOGAN_SOCKET_PAYLOAD2)
-        self.subject = self.entities.get("switch")
+        self.subject = self.entities.get("switch_outlet")
         self.setUpSwitchable(SWITCH_DPS, self.subject)
         self.setUpBasicNumber(
             TIMER_DPS,
@@ -66,6 +67,7 @@ class TestSwitchV2(
         )
         self.mark_secondary(
             [
+                "binary_sensor_problem",
                 "number_timer",
                 "sensor_current",
                 "sensor_power",
@@ -76,21 +78,7 @@ class TestSwitchV2(
     def test_device_class_is_outlet(self):
         self.assertEqual(self.subject.device_class, SwitchDeviceClass.OUTLET)
 
-    def test_current_power_w(self):
-        self.dps[POWER_DPS] = 1234
-        self.assertEqual(self.subject.current_power_w, 123.4)
-
-    def test_extra_state_attributes_set(self):
-        self.dps[TIMER_DPS] = 1
-        self.dps[VOLTAGE_DPS] = 2350
-        self.dps[CURRENT_DPS] = 1234
-        self.dps[POWER_DPS] = 5678
-        self.assertDictEqual(
-            self.subject.extra_state_attributes,
-            {
-                "timer": 1,
-                "current_a": 1.234,
-                "voltage_v": 235.0,
-                "current_power_w": 567.8,
-            },
-        )
+    def test_sensor_precision(self):
+        self.assertEqual(self.multiSensor["sensor_current"].native_precision, 0)
+        self.assertEqual(self.multiSensor["sensor_power"].native_precision, 1)
+        self.assertEqual(self.multiSensor["sensor_voltage"].native_precision, 1)

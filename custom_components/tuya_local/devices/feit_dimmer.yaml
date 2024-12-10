@@ -1,0 +1,41 @@
+name: Dimmable light
+products:
+  - id: tebc75erlgslgpn5
+    name: Feit Dimmer
+primary_entity:
+  entity: light
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+      optional: true
+      mapping:
+        - dps_val: null
+          value: false
+    - id: 2
+      name: brightness
+      type: integer
+      range:
+        min: 10
+        max: 1000
+    - id: 3
+      # advisory only, the integration does not actually use this, setting it
+      # does not seem to work, so probably determined by bulb type
+      type: integer
+      name: minimum_brightness
+      optional: true
+secondary_entities:
+  - entity: select
+    name: Light Type
+    icon: mdi:lightbulb-variant
+    category: config
+    dps:
+      - id: 4
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: incandescent
+            value: Incandescent
+          - dps_val: halogen
+            value: LED

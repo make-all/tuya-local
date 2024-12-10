@@ -1,0 +1,138 @@
+# Example DPS Status
+# {"dps": { "1": false, "14": "memory", "15": "relay", "43": false, "44": "on",
+# "45": "default", "46": true, "47": "on", "48": "high", "49": 3600, "101": 0,
+# "102": 0}
+# Additional DPS 44 "Illuminance State" and 47 "Motion State". I couldn't
+# figure out what those did, device debugger appears to indicate that these
+# were set exactly once (to "on") when the switch was powered on and does NOT
+# seem to trigger or respond when Illuminance or Motion trigger is met, but
+# maybe I just don't know how to check that well. A final DPS shows up only in
+# the Tuya Cloud API: 103 "Timer". There are "timers" in the Smart Life App for
+# this device but I couldn't figure out how they work.
+# Illuminance Switch: Enables/disables illuminance threshold for motion
+#                     activation
+# Motion Switch: Enables/disables motion-triggered switch
+# Motion Auto-Off Delay: Time in seconds after which to turn off light if
+#                        triggered by motion
+# Appointment Time: Time of day in minutes when motion switch stops activating,
+#                   0 for always
+# Target Time: Time of day in minutes when motion switch can activate, 0 for
+#              always
+name: Motion sensor switch
+products:
+  - id: vd5jgg8vgdbaqerq
+    name: Moes Smart PIR switch
+primary_entity:
+  entity: switch
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 44
+      type: string
+      name: illuminance_state
+    - id: 47
+      type: string
+      name: motion_state
+secondary_entities:
+  - entity: select
+    category: config
+    translation_key: initial_state
+    dps:
+      - id: 14
+        name: option
+        type: string
+        mapping:
+          - dps_val: memory
+            value: memory
+          - dps_val: "on"
+            value: "on"
+          - dps_val: "off"
+            value: "off"
+  - entity: select
+    name: Indicator light
+    category: config
+    dps:
+      - id: 15
+        name: option
+        type: string
+        mapping:
+          - dps_val: none
+            value: "Off"
+          - dps_val: relay
+            value: "Status"
+  - entity: switch
+    name: Illuminance enable
+    dps:
+      - id: 43
+        name: switch
+        type: boolean
+  - entity: select
+    name: Illuminance threshold
+    category: config
+    dps:
+      - id: 45
+        name: option
+        type: string
+        mapping:
+          - dps_val: default
+            value: Default
+          - dps_val: now
+            value: Set current
+  - entity: switch
+    name: Motion enable
+    dps:
+      - id: 46
+        name: switch
+        type: boolean
+  - entity: select
+    name: Motion sensitivity
+    category: config
+    dps:
+      - id: 48
+        name: option
+        type: string
+        mapping:
+          - dps_val: "low"
+            value: "Low"
+          - dps_val: "middle"
+            value: "Medium"
+          - dps_val: "high"
+            value: "High"
+  - entity: number
+    name: Motion auto-off delay
+    category: config
+    dps:
+      - id: 49
+        name: value
+        type: integer
+        unit: s
+        range:
+          min: 5
+          max: 3600
+  - entity: number
+    name: Disable time
+    category: config
+    dps:
+      - id: 101
+        name: value
+        type: integer
+        unit: h
+        range:
+          min: 0
+          max: 1440
+        mapping:
+          - scale: 60
+  - entity: number
+    name: Enable time
+    category: config
+    dps:
+      - id: 102
+        name: value
+        type: integer
+        unit: h
+        range:
+          min: 0
+          max: 1440
+        mapping:
+          - scale: 60

@@ -1,21 +1,27 @@
 """Diagnostics support for tuya-local."""
+
 from __future__ import annotations
 
 from typing import Any
 
 from homeassistant.components.diagnostics import REDACTED
 from homeassistant.config_entries import ConfigEntry
+from homeassistant.const import CONF_HOST
 from homeassistant.core import HomeAssistant, callback
-from homeassistant.helpers import device_registry as dr, entity_registry as er
+from homeassistant.helpers import device_registry as dr
+from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.device_registry import DeviceEntry
+from tinytuya import __version__ as tinytuya_version
 
 from .const import (
     API_PROTOCOL_VERSIONS,
+    CONF_DEVICE_CID,
     CONF_PROTOCOL_VERSION,
     CONF_TYPE,
     DOMAIN,
 )
 from .device import TuyaLocalDevice
+from .helpers.config import get_device_id
 
 
 async def async_get_config_entry_diagnostics(
@@ -39,15 +45,20 @@ def _async_get_diagnostics(
     device: DeviceEntry | None = None,
 ) -> dict[str, Any]:
     """Return diagnostics for a tuya-local config entry."""
-    hass_data = hass.data[DOMAIN][entry.data["device_id"]]
+    hass_data = hass.data[DOMAIN][get_device_id(entry.data)]
+    hostname = entry.data.get(CONF_HOST, "")
 
     data = {
         "name": entry.title,
         "type": entry.data[CONF_TYPE],
         "device_id": REDACTED,
+        "device_cid": REDACTED if entry.data.get(CONF_DEVICE_CID, "") != "" else "",
         "local_key": REDACTED,
-        "host": REDACTED,
+        "host": REDACTED
+        if hostname != "" and hostname.casefold() != "auto"
+        else hostname,
         "protocol_version": entry.data[CONF_PROTOCOL_VERSION],
+        "tinytuya_version": tinytuya_version,
     }
 
     # The DeviceEntry also has interesting looking data, but this
@@ -59,22 +70,51 @@ def _async_get_diagnostics(
     return data
 
 
+def redact_dps(device: TuyaLocalDevice, dps: dict[str, Any]) -> dict[str, Any]:
+    """Redact any sensitive data from a list of dps"""
+    sensitive = []
+    for entity in device._children:
+        for dp in entity._config.dps():
+            if dp.sensitive:
+                sensitive.append(dp.id)
+    return {k: (REDACTED if k in sensitive else v) for (k, v) in dps.items()}
+
+
+def redact_entity(
+    device: TuyaLocalDevice,
+    entity_id: str,
+    state_dict: dict[str, Any],
+) -> dict[str, Any]:
+    sensitive = []
+    for entity in device._children:
+        if entity._config.config_id == entity_id:
+            for dp in entity._config.dps():
+                if dp.sensitive:
+                    sensitive.append(dp.name)
+    return {k: (REDACTED if k in sensitive else v) for (k, v) in state_dict.items()}
+
+
 @callback
 def _async_device_as_dict(
     hass: HomeAssistant, device: TuyaLocalDevice
 ) -> dict[str, Any]:
-    """Represent a Tuya Local devcie as a dictionary."""
+    """Represent a Tuya Local device as a dictionary."""
 
     # Base device information, without sensitive information
     data = {
         "name": device.name,
         "api_version_set": device._api.version,
-        "api_version_used": API_PROTOCOL_VERSIONS[device._api_protocol_version_index],
+        "api_version_used": (
+            "none"
+            if device._api_protocol_version_index is None
+            else API_PROTOCOL_VERSIONS[device._api_protocol_version_index]
+        ),
         "api_working": device._api_protocol_working,
         "status": device._api.dps_cache,
-        "cached_state": device._cached_state,
-        "pending_state": device._pending_updates,
+        "cached_state": redact_dps(device, device._cached_state),
+        "pending_state": redact_dps(device, device._pending_updates),
         "connected": device._running,
+        "force_dps": device._force_dps,
     }
 
     device_registry = dr.async_get(hass)
@@ -100,7 +140,11 @@ def _async_device_as_dict(
             state = hass.states.get(entity_entry.entity_id)
             state_dict = None
             if state:
-                state_dict = dict(state.as_dict())
+                state_dict = redact_entity(
+                    device,
+                    entity_entry.entity_id,
+                    state.as_dict(),
+                )
 
                 # Redact entity_picture in case it is sensitive
                 if "entity_picture" in state_dict["attributes"]:

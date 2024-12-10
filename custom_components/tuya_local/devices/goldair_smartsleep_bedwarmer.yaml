@@ -1,0 +1,140 @@
+name: Electric blanket
+products:
+  - id: mqcffjumdpuahxmi
+    name: Goldair Platinum SmartSleep
+primary_entity:
+  entity: switch
+  icon: "mdi:bed"
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: select
+    name: Body level
+    icon: "mdi:bed"
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        mapping:
+          - dps_val: level_1
+            value: "0"
+          - dps_val: level_2
+            value: "1"
+          - dps_val: level_3
+            value: "2"
+          - dps_val: level_4
+            value: "3"
+          - dps_val: level_5
+            value: "4"
+          - dps_val: level_6
+            value: "5"
+          - dps_val: level_7
+            value: "6"
+  - entity: select
+    name: Feet level
+    icon: "mdi:bed"
+    category: config
+    dps:
+      - id: 15
+        type: string
+        name: option
+        mapping:
+          - dps_val: level_1
+            value: "0"
+          - dps_val: level_2
+            value: "1"
+          - dps_val: level_3
+            value: "2"
+          - dps_val: level_4
+            value: "3"
+          - dps_val: level_5
+            value: "4"
+          - dps_val: level_6
+            value: "5"
+          - dps_val: level_7
+            value: "6"
+  - entity: select
+    name: Body timer
+    translation_key: timer
+    dps:
+      - id: 16
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: "7h"
+            value: "7h"
+          - dps_val: "8h"
+            value: "8h"
+          - dps_val: "9h"
+            value: "9h"
+          - dps_val: "10h"
+            value: "10h"
+          - dps_val: "11h"
+            value: "11h"
+          - dps_val: "12h"
+            value: "12h"
+  - entity: select
+    name: Feet timer
+    translation_key: timer
+    dps:
+      - id: 17
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: "7h"
+            value: "7h"
+          - dps_val: "8h"
+            value: "8h"
+          - dps_val: "9h"
+            value: "9h"
+          - dps_val: "10h"
+            value: "10h"
+          - dps_val: "11h"
+            value: "11h"
+          - dps_val: "12h"
+            value: "12h"
+  - entity: sensor
+    name: Body time remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: s
+  - entity: sensor
+    name: Feet time remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: s

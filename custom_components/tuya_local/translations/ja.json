@@ -1,0 +1,655 @@
+{
+    "title": "Tuya Local",
+    "config": {
+        "step": {
+            "user": {
+                "title": "Tuya Localのデバイスを設定する",
+                "description": "デバイスは手動で追加することも、Smart Life アプリを使用してクラウド支援で追加することもできます。",
+                "data": {
+                    "setup_mode": "セットアップの選択:"
+                }
+            },
+            "cloud": {
+                "title": "Tuyaにログイン",
+                "description": "Smart Life または Tuya Smart のユーザー コードを入力してください。\n\nこのコードは、Smart Life アプリまたは Tuya Smart アプリの [*設定**] > [**アカウントとセキュリティ**] 画面で見つけて、画面に表示されているコードを入力してください。 ",
+                "data": {
+                    "user_code": "ユーザーコード:"
+                }
+            },
+            "scan": {
+                "title": "ログインを完了する",
+                "description": "Smart Life アプリまたは Tuya Smart アプリを使用して次の QR コードをスキャンし、ログインを完了します。\n\nアプリでこの手順を完了したら、次の手順に進みます。"
+            },
+            "choose_device": {
+                "title": "追加するデバイスを選択してください",
+                "description": "最初のドロップダウン リストから追加するデバイスを選択してください。",
+                "data": {
+                    "device_id": "デバイスを選択してください:",
+                    "hub_id": "ゲートウェイを選択します:"
+                }
+            },
+            "search": {
+                "title": "デバイスのIPアドレスを特定する",
+                "description": "Tuya クラウドはローカル IP アドレスを提供しないため、ローカル ネットワークを検索してデバイスを見つける必要があります。"
+            },
+            "local": {
+                "title": "Tuya Localのデバイスを設定する",
+                "description": "[これらの手順に従ってデバイスIDとローカルキーを見つけてください。](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "IPアドレスまたはホスト名",
+                    "device_id": "デバイスID（デバイスがハブ経由で接続されている場合はハブのdevice_id）",
+                    "local_key": "ローカルキー",
+                    "protocol_version": "プロトコルのバージョン (不明な場合はAutoを試してください)",
+                    "poll_only": "投票のみ (デバイスが動作しない場合)",
+                    "device_cid": "サブデバイスのnode_id又はuuid(デバイスがハブ経由で接続されている場合)"
+                }
+            },
+            "select_type": {
+                "title": "デバイスの種類を選択してください",
+                "description": "デバイスに合ったタイプを選択してください",
+                "data": {
+                    "type": "デバイスタイプ"
+                }
+            },
+            "choose_entities": {
+                "title": "デバイスの詳細",
+                "description": "このデバイスの名前を選択してください",
+                "data": {
+                    "name": "名"
+                }
+            }
+        },
+        "abort": {
+            "already_configured": "その ID を持つデバイスはすでに構成されています。",
+            "not_supported": "申し訳ございませんが、このデバイスはサポートされていません。",
+            "no_devices": "アカウントに未登録のデバイスが見つかりません。"
+        },
+        "error": {
+            "connection": "このような詳細ではデバイスに接続できません。 断続的な問題である可能性もありますし、間違っている可能性もあります。",
+            "does_not_need_hub": "デバイスにはゲートウェイが必要なく、ゲートウェイが選択されました。",
+            "needs_hub": "デバイスにはゲートウェイが必要ですが、ゲートウェイが選択されていません。"
+        }
+    },
+    "selector": {
+        "setup_mode": {
+            "options": {
+                "cloud": "Smart Life クラウド支援デバイスのセットアップ。",
+                "manual": "デバイスの接続情報を手動で提供します。"
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "user": {
+                "title": "Tuya Localのデバイスを設定する",
+                "description": "[これらの手順に従ってデバイスIDとローカルキーを見つけてください。](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "IPアドレスまたはホスト名",
+                    "local_key": "ローカルキー",
+                    "protocol_version": "プロトコルのバージョン (不明な場合はAutoを試してください)",
+                    "poll_only": "投票のみ (デバイスが動作しない場合)"
+                }
+            }
+        },
+        "error": {
+            "connection": "このような詳細ではデバイスに接続できません。 断続的な問題である可能性もありますし、間違っている可能性もあります。"
+        },
+        "abort": {
+            "not_supported": "申し訳ございませんが、このデバイスはサポートされていません。"
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "デフロスト",
+                "state": {
+                    "off": "普通",
+                    "on": "霜取り"
+                }
+            },
+            "tank_empty": {
+                "name": "水槽",
+                "state": {
+                    "off": "OK",
+                    "on": "低い"
+                }
+            },
+            "tank_full": {
+                "name": "水槽",
+                "state": {
+                    "off": "OK",
+                    "on": "満杯"
+                }
+            },
+            "wake": {
+                "name": "起床",
+                "state": {
+                    "off": "スリープ",
+                    "on": "起床"
+                }
+            },
+            "casdon_oven_fault": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "e1": "E1: 過熱保護（290°Cを超える）",
+                            "e2": "E2: 蒸発トレイ過熱保護（200°Cを超える）",
+                            "e3": "E3: 室内低温保護（35°C未満）",
+                            "e4": "E4: 蒸発トレイ低温保護（35°C未満）",
+                            "e5": "E5: センサ接続エラー（オープン回路）",
+                            "e6": "E6: センサ故障（ショート）",
+                            "e7": "E7: ディスプレイボード通信エラー",
+                            "e8": "E8: 水槽オープン（CN7）または蒸発トレイ乾燥（CN3）"
+                        }
+                    }
+                }
+            }
+        },
+        "button": {
+            "factory_reset": {
+                "name": "工場出荷時設定"
+            },
+            "filter_reset": {
+                "name": "フィルターのリセット"
+            }
+        },
+        "climate": {
+            "aircon_extra": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "health": "ヘルシー",
+                            "medhigh": "中強",
+                            "medlow": "中低",
+                            "natural": "ナチュラル",
+                            "quiet": "静粛",
+                            "sleep": "睡眠",
+                            "strong": "強い"
+                        }
+                    },
+                    "swing_mode": {
+                        "state": {
+                            "topmost": "最上",
+                            "top": "上",
+                            "middle": "中",
+                            "down": "下",
+                            "downmost": "最下"
+                        }
+                    }
+                }
+            },
+            "thermostat": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "cycle": "循環"
+                        }
+                    },
+                    "preset_mode": {
+                        "state": {
+                            "manual": "マニュアル",
+                            "program": "プログラム",
+                            "temp_override": "一時的なオーバーライド",
+                            "perm_override": "永続的なオーバーライド"
+                        }
+                    }
+                }
+            },
+            "combo_floor": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "cool": "冷気",
+                            "fan_only": "ファン",
+                            "heat": "温風",
+                            "floor_cool": "冷却床",
+                            "floor_heat": "床暖房"
+                        }
+                    }
+                }
+            },
+            "swing_as_powerlevel": {
+                "state_attributes": {
+                    "swing_mode": {
+                        "name": "加熱レベル",
+                        "state": {
+                            "stop": "停止",
+                            "auto": "自動"
+                        }
+                    }
+                }
+            },
+            "pool_heatpump": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "smart_heat": "スマート加熱",
+                            "quick_heat": "急速加熱",
+                            "quiet_heat": "静粛加熱",
+                            "smart_cool": "スマート冷却",
+                            "quick_cool": "急速冷却",
+                            "quiet_cool": "静粛冷却",
+                            "auto": "自動",
+                            "smart": "スマート",
+                            "quick": "急速",
+                            "quiet": "静粛"
+                        }
+                    }
+                }
+            },
+            "heater": {
+                "name": "ヒーター"
+            },
+            "thermo_switch": {
+                "state_attributes": {
+                    "hvac_mode": {
+                        "state": {
+                            "fan_only": "一時停止"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "healthy_steam": "ヘルシースチーム",
+                            "fresh_steam": "フレッシュスチーム",
+                            "high_temp_steam": "高温スチーム",
+                            "stew": "シチュー",
+                            "bake_up_and_down": "上下焼き",
+                            "bbq": "BBQ",
+                            "bottom_hot_air": "下熱風",
+                            "on_strong_roast": "強火で焼く",
+                            "3d_hot_air": "3Dホットエア",
+                            "air_fry": "エアフライ",
+                            "steam_frying": "スチームフライ",
+                            "one_click_bread": "ワンクリックパン",
+                            "quick_heat": "急速加熱",
+                            "keep_warm": "保温",
+                            "unfreeze": "解凍",
+                            "fermentation": "発酵",
+                            "descale": "デスケール",
+                            "local_recipes": "ローカルレシピ",
+                            "drying": "乾燥",
+                            "custom": "カスタム",
+                            "low_steaming": "低温蒸し",
+                            "medium_steaming": "中温蒸し",
+                            "high_steaming": "高温蒸し"
+                        }
+                    }
+                }
+            }
+        },
+        "humidifier": {
+            "dehumidifier": {
+                "state_attributes": {
+                    "mode": {
+                        "state": {
+                            "laundry": "洗濯乾燥",
+                            "purify": "浄化"
+                        }
+                    }
+                }
+            }
+        },
+        "fan": {
+            "aroma_diffuser": {
+                "name": "アロマディフューザー",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "low": "低い",
+                            "medium": "中",
+                            "high": "高い",
+                            "continuous": "連続",
+                            "intermittent": "間欠"
+                        }
+                    }
+                }
+            },
+            "fan_with_presets": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "normal": "普通",
+                            "nature": "ナチュラル",
+                            "sleep": "睡眠",
+                            "baby": "幼児",
+                            "fresh": "新鮮",
+                            "smart": "スマート",
+                            "strong": "強い",
+                            "high": "高い",
+                            "medium": "中",
+                            "low": "低い",
+                            "displayoff": "ディスプレイオフ",
+                            "off": "オフ"
+                        }
+                    }
+                }
+            },
+            "ventilation": {
+                "name": "換気",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "fresh": "新鮮な空気",
+                            "circulate": "循環",
+                            "sleep": "スリープ",
+                            "auto": "自動",
+                            "eco": "エコ",
+                            "anti-condensation": "結露防止"
+                        }
+                    }
+                }
+            }
+        },
+        "light": {
+            "backlight": {
+                "name": "バックライト"
+            },
+            "display": {
+                "name": "画面"
+            },
+            "embers": {
+                "name": "残り火"
+            },
+            "flame": {
+                "name": "炎"
+            },
+            "indicator": {
+                "name": "インジケータ"
+            },
+            "laser": {
+                "name": "レーザ"
+            },
+            "logs": {
+                "name": "丸太"
+            },
+            "nightlight": {
+                "name": "夜の光"
+            }
+        },
+        "lock": {
+            "child_lock": {
+                "name": "チャイルドロック"
+            }
+        },
+        "number": {
+            "timer": {
+                "name": "タイマー"
+            },
+            "timer_x": {
+                "name": "タイマー{x}"
+            }
+        },
+        "select": {
+            "initial_state": {
+                "name": "初期状態",
+                "state": {
+                    "off": "オフ",
+                    "on": "オン",
+                    "memory": "メモリ"
+                }
+            },
+            "language": {
+                "name": "言語",
+                "state": {
+                    "chinese": "中文",
+                    "chinese_traditional": "中文(繁體)",
+                    "english": "English",
+                    "french": "Français",
+                    "german": "Deutsch",
+                    "italian": "Italiano",
+                    "japanese": "日本語",
+                    "korean": "한국어",
+                    "latin": "Lingua Latina",
+                    "portuguese": "Português",
+                    "russian": "Русский",
+                    "spanish": "Español",
+                    "turkish": "Türkçe"
+                }
+            },
+            "mopping": {
+                "name": "モッピング",
+                "state": {
+                    "off": "オフ",
+                    "auto": "自動",
+                    "low": "低い",
+                    "medium": "中",
+                    "high": "高い"
+                }
+            },
+            "recipe": {
+                "name": "レシピ",
+                "state": {
+                    "pizza": "ピザ",
+                    "fries": "フライ",
+                    "chicken": "チキン",
+                    "shrimp": "エビ",
+                    "fish": "魚",
+                    "chicken_drumsticks": "チキンのドラムスティック",
+                    "vegetables": "野菜",
+                    "desserts": "デザート",
+                    "none": "なし",
+                    "chicken_wings": "チキンウィング",
+                    "steak": "ステーキ",
+                    "onion_rings": "オニオンリング",
+                    "bacon": "ベーコン",
+                    "cake": "ケーキ",
+                    "bread": "パン",
+                    "toast": "トースト",
+                    "custom": "カスタム",
+                    "cloud_recipe": "クラウドレシピ",
+                    "default": "デフォルト",
+                    "keep_warm": "保温",
+                    "preheat": "予熱"
+                }
+            },
+            "timer": {
+                "name": "タイマー",
+                "state": {
+                    "cancel": "キャンセル",
+                    "10m": "10分",
+                    "30m": "30分",
+                    "1h": "1時間",
+                    "1h30m": "1時間30分",
+                    "2h": "2時間",
+                    "2h30m": "2時間30分",
+                    "3h": "3時間",
+                    "3h30m": "3時間30分",
+                    "4h": "4時間",
+                    "4h30m": "4時間30分",
+                    "5h": "5時間",
+                    "5h30m": "5時間30分",
+                    "6h": "6時間",
+                    "6h30m": "6時間30分",
+                    "7h": "7時間",
+                    "7h30m": "7時間30分",
+                    "8h": "8時間",
+                    "8h30m": "8時間30分",
+                    "9h": "9時間",
+                    "9h30m": "9時間30分",
+                    "10h": "10時間",
+                    "11h": "11時間",
+                    "12h": "12時間",
+                    "13h": "13時間",
+                    "14h": "14時間",
+                    "15h": "15時間",
+                    "16h": "16時間",
+                    "17h": "17時間",
+                    "18h": "18時間",
+                    "19h": "19時間",
+                    "20h": "20時間",
+                    "21h": "21時間",
+                    "22h": "22時間",
+                    "23h": "23時間",
+                    "24h": "24時間",
+                    "36h": "36時間",
+                    "48h": "48時間",
+                    "72h": "72時間"
+                }
+            },
+            "temperature_unit": {
+                "name": "温度単位",
+                "state": {
+                    "celsius": "摂氏",
+                    "fahrenheit": "華氏"
+                }
+            },
+            "oven_built_in_recipe": {
+                "name": "内蔵レシピ",
+                "state": {
+                    "none": "なし",
+                    "steamed_egg_with_okra": "茶碗蒸し",
+                    "steamed_sea_bass": "鯵の蒸し",
+                    "steamed_prawns": "蒸しエビ",
+                    "handmade_steamed_bread": "手作り蒸しパン",
+                    "fan_steamed_baby_vegetables": "ファン蒸し野菜",
+                    "braised_pork": "豚の煮込み",
+                    "snow_fungus_and_bird_s_nest": "雪耳とツバメの巣",
+                    "crab_pot": "カニ鍋",
+                    "potato_ribs": "ジャガイモの肋骨",
+                    "coconut_chicken_soup": "ココナッツチキンスープ",
+                    "snack_platter": "スナックプラッター",
+                    "chicken_skewers": "チキンスキュー",
+                    "roasted_pork_knuckle": "ローストポークの脛",
+                    "dried_lemon": "ドライレモン",
+                    "pork_jerky": "豚のジャーキー",
+                    "crispy_hairtail": "カリカリハイタイ",
+                    "spicy_grilled_fish": "辛い焼き魚",
+                    "roasted_sweet_potatoes": "焼きさつまいも",
+                    "roasted_chicken_wings": "焼きチキンウィング",
+                    "cumin_lamb_chops": "クミンラムチョップ",
+                    "honey_grilled_chicken": "ハニーグリルチキン",
+                    "garlic_eggplant": "ニンニクナス",
+                    "portuguese_egg_tart": "ポルトガルのエッグタルト",
+                    "creme_brulee": "クレームブリュレ",
+                    "cocoa_chips": "ココアチップ",
+                    "butter_cookies": "バタークッキー",
+                    "chiffon_cake": "シフォンケーキ",
+                    "puff_pastry": "パフペストリー",
+                    "red_bean_bread": "あんパン",
+                    "milk_toast": "ミルクトースト"
+                }
+            }
+        },
+        "sensor": {
+            "status": {
+                "name": "ステータス",
+                "state": {
+                    "available": "利用可能",
+                    "plugged_in": "プラグイン",
+                    "fault_unplugged": "故障（プラグインされていない）",
+                    "charging": "充電中",
+                    "waiting": "待機中",
+                    "charged": "充電済み",
+                    "fault": "故障",
+                    "paused": "一時停止",
+                    "waiting_for_authorization": "承認待ち",
+                    "standby": "スタンバイ",
+                    "heating": "加熱中",
+                    "cooling": "冷却中",
+                    "keeping_warm": "保温中",
+                    "no_water": "水なし",
+                    "boiling": "沸騰中",
+                    "reserve_only": "予備のみ",
+                    "unknown": "不明",
+                    "idle": "アイドル",
+                    "auto": "自動",
+                    "manual": "手動",
+                    "rain_delay": "雨の遅れ",
+                    "off": "オフ",
+                    "cooking": "調理中",
+                    "done": "完了",
+                    "door_open": "ドアが開いている",
+                    "setting": "設定中",
+                    "pre_heating": "予熱中",
+                    "scheduled": "予定",
+                    "at_temperature": "温度に達した",
+                    "done_stage_1": "ステージ1完了",
+                    "done_stage_2": "ステージ2完了",
+                    "done_stage_3": "ステージ3完了",
+                    "done_stage_4": "ステージ4完了",
+                    "done_stage_5": "ステージ5完了",
+                    "done_stage_6": "ステージ6完了",
+                    "done_stage_7": "ステージ7完了",
+                    "done_stage_8": "ステージ8完了",
+                    "done_stage_9": "ステージ9完了",
+                    "done_stage_10": "ステージ10完了",
+                    "no_food": "食べ物なし",
+                    "jammed": "ジャム",
+                    "blocked": "ブロック",
+                    "feeding": "給餌中",
+                    "feeding_complete": "給餌完了",
+                    "caking": "固化",
+                    "cleaning": "クリーニング",
+                    "sleep": "スリープ",
+                    "sterilizing": "殺菌",
+                    "deodorizing": "消臭",
+                    "occupied": "占有",
+                    "normal": "通常",
+                    "low": "低い",
+                    "high": "高い",
+                    "unwashed": "未洗浄",
+                    "pre_washing": "予洗い",
+                    "washing": "洗濯",
+                    "rinsing": "すすぎ",
+                    "drying": "乾燥",
+                    "air_purging": "空気清浄",
+                    "anti_freeze": "防凍",
+                    "close": "閉じる",
+                    "monitor": "モニター",
+                    "working": "作業中",
+                    "warning": "警告"
+                }
+            },
+            "time_remaining": {
+                "name": "残り時間"
+            },
+            "cooking_status": {
+                "name": "調理状況",
+                "state": {
+                    "wait": "調理待ち",
+                    "reservation": "予約中",
+                    "cooking": "調理中",
+                    "cancel": "調理中止",
+                    "done": "調理完了",
+                    "pause": "調理一時停止"
+                }
+            },
+            "energy_produced": {
+                "name": "発電量"
+            },
+            "energy_consumed": {
+                "name": "消費電力"
+            },
+            "energy_produced_x": {
+                "name": "発電量{x}"
+            },
+            "energy_consumed_x": {
+                "name": "消費電力{x}"
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "霜防止"
+            },
+            "evaporator_cleaning": {
+                "name": "エバポレーターの掃除"
+            },
+            "ionizer": {
+                "name": "イオナイザー"
+            },
+            "keytone": {
+                "name": "キートーン"
+            },
+            "sleep": {
+                "name": "睡眠"
+            },
+            "uv_sterilization": {
+                "name": "紫外線殺菌"
+            }
+        }
+    }
+}

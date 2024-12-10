@@ -1,0 +1,27 @@
+name: Light sensor
+primary_entity:
+  entity: sensor
+  class: illuminance
+  dps:
+    - id: 7
+      type: integer
+      name: sensor
+      unit: lx
+      class: measurement
+secondary_entities:
+  - entity: sensor
+    name: Light level
+    class: enum
+    icon: "mdi:brightness-4"
+    category: diagnostic
+    dps:
+      - id: 6
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: low
+            value: Low
+          - dps_val: middle
+            value: Medium
+          - dps_val: high
+            value: High

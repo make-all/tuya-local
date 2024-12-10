@@ -1,0 +1,61 @@
+name: Moes dimmer
+primary_entity:
+  entity: light
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 2
+      name: brightness
+      type: integer
+      range:
+        min: 10
+        max: 1000
+    - id: 13
+      name: work_mode
+      type: string
+secondary_entities:
+  - entity: number
+    name: Minimum brightness
+    category: config
+    icon: "mdi:brightness-percent"
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - scale: 10
+  - entity: select
+    name: Light type
+    icon: "mdi:lightbulb-question"
+    category: config
+    dps:
+      - id: 4
+        type: string
+        name: option
+        mapping:
+          - dps_val: led
+            value: LED
+          - dps_val: incandescent
+            value: Incandescent
+          - dps_val: halogen
+            value: Halogen
+  - entity: select
+    name: Backlight mode
+    icon: "mdi:circle-outline"
+    category: config
+    dps:
+      - id: 21
+        type: string
+        name: option
+        mapping:
+          - dps_val: none
+            value: "Off"
+          - dps_val: relay
+            value: Status
+          - dps_val: pos
+            value: Locator

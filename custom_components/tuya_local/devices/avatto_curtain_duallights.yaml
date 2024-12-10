@@ -1,0 +1,132 @@
+name: Curtain and lights
+products:
+  - id: n76sxga6lyfujuac
+    name: Avatto SYS-CL02
+primary_entity:
+  entity: cover
+  class: curtain
+  dps:
+    - id: 1
+      name: control
+      type: string
+      mapping:
+        - dps_val: open
+          value: open
+        - dps_val: close
+          value: close
+        - dps_val: stop
+          value: stop
+    - id: 2
+      name: position
+      type: integer
+      unit: "%"
+      range:
+        min: 0
+        max: 100
+      mapping:
+        - step: 10
+secondary_entities:
+  - entity: light
+    name: Light 1
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: light
+    name: Light 2
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: select
+    name: Calibration
+    icon: "mdi:curtains"
+    category: config
+    dps:
+      - id: 3
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: start
+            value: Start
+          - dps_val: end
+            value: End
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+  - entity: select
+    name: Direction
+    icon: "mdi:arrow-u-down-left"
+    category: config
+    dps:
+      - id: 8
+        type: string
+        name: option
+        mapping:
+          - dps_val: forward
+            value: Forward
+          - dps_val: back
+            value: Back
+  - entity: number
+    name: Travel time
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 10
+          max: 120
+  - entity: select
+    name: Motor connection
+    icon: "mdi:cogs"
+    category: config
+    dps:
+      - id: 12
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: strong_power
+            value: Direct
+          - dps_val: dry_contact
+            value: Via relay
+  - entity: number
+    name: Light 1 timer
+    category: config
+    translation_key: timer
+    dps:
+      - id: 103
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    name: Light 2 timer
+    category: config
+    translation_key: timer
+    dps:
+      - id: 104
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60

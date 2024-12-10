@@ -1,0 +1,108 @@
+name: Cat litter box
+products:
+  - id: jdxbiz2ca8x2mbfk
+    name: Littepets Cute Baby MA2 Series
+primary_entity:
+  entity: switch
+  name: Power
+  icon: "mdi:switch"
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: sensor
+    name: Work Mode
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 2
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: auto_clean
+            value: Auto
+            icon: "mdi:shimmer"
+          - dps_val: manual_clean
+            value: Manual
+            icon: "mdi:broom"
+          - dps_val: sleep
+            value: Sleep
+            icon: "mdi:sleep"
+          - dps_val: uv
+            value: UV
+            icon: "mdi:sun-wireless"
+          - dps_val: deodorization
+            value: Deodorisation
+            icon: "mdi:spray"
+  - entity: switch
+    name: "Manual Clean"
+    icon: "mdi:broom"
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: sleep
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Deodorise
+    icon: "mdi:spray"
+    dps:
+      - id: 17
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Number of times used
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: times
+  - entity: sensor
+    name: Last visit duration
+    class: duration
+    icon: "mdi:paper-roll"
+    category: diagnostic
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: s
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 24
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: "off"
+            value: "off"
+          - dps_val: waiting_cluster
+            value: caking
+          - dps_val: cleaning
+            value: cleaning
+          - dps_val: uv
+            value: sterilizing
+          - dps_val: deodorization
+            value: deodorizing
+          - dps_val: sleep
+            value: sleep
+          - dps_val: in_toilet
+            value: occupied
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: "%"

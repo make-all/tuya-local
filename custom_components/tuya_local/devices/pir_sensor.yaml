@@ -1,0 +1,23 @@
+name: PIR sensor
+products:
+  - id: gaczanu8noooebfe
+primary_entity:
+  entity: binary_sensor
+  class: motion
+  dps:
+    - id: 1
+      type: string
+      name: sensor
+      mapping:
+        - dps_val: pir
+          value: true
+        - dps_val: "none"
+          value: false
+secondary_entities:
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: "%"

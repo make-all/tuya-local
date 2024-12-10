@@ -1,0 +1,40 @@
+name: Curtain
+products:
+  - id: spjpuwf1u2dc7tlt
+    name: SmartCurtain 3
+primary_entity:
+  entity: cover
+  class: curtain
+  dps:
+    - id: 101
+      type: string
+      name: control
+      mapping:
+        - dps_val: open
+          value: open
+        - dps_val: close
+          value: close
+        - dps_val: stop
+          value: stop
+    - id: 102
+      type: integer
+      name: current_position
+    - id: 104
+      type: integer
+      name: position
+      range:
+        min: 0
+        max: 100
+secondary_entities:
+  - entity: switch
+    name: Reverse
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true

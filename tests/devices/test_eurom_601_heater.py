@@ -1,9 +1,9 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.climate.const import (
-    ClimateEntityFeature,
-    HVACMode,
     PRESET_COMFORT,
     PRESET_ECO,
+    ClimateEntityFeature,
+    HVACMode,
 )
 from homeassistant.const import UnitOfTemperature
 
@@ -31,16 +31,16 @@ class TestEurom601Heater(
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,
             self.subject,
-            min=0,
-            max=37,
+            min=0.0,
+            max=37.0,
         )
         self.setUpBasicBinarySensor(
             ERROR_DPS,
-            self.entities.get("binary_sensor_error"),
+            self.entities.get("binary_sensor_problem"),
             device_class=BinarySensorDeviceClass.PROBLEM,
             testdata=(1, 0),
         )
-        self.mark_secondary(["binary_sensor_error"])
+        self.mark_secondary(["binary_sensor_problem"])
 
     def test_supported_features(self):
         self.assertEqual(
@@ -48,15 +48,10 @@ class TestEurom601Heater(
             (
                 ClimateEntityFeature.TARGET_TEMPERATURE
                 | ClimateEntityFeature.PRESET_MODE
+                | ClimateEntityFeature.TURN_OFF
+                | ClimateEntityFeature.TURN_ON
             ),
         )
-
-    def test_icon(self):
-        self.dps[HVACMODE_DPS] = True
-        self.assertEqual(self.subject.icon, "mdi:radiator")
-
-        self.dps[HVACMODE_DPS] = False
-        self.assertEqual(self.subject.icon, "mdi:radiator-disabled")
 
     def test_temperature_unit_returns_celsius(self):
         self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
@@ -113,8 +108,11 @@ class TestEurom601Heater(
             await self.subject.async_set_preset_mode(PRESET_COMFORT)
 
     def test_extra_state_attributes(self):
-        self.dps[ERROR_DPS] = 13
         self.assertCountEqual(
             self.subject.extra_state_attributes,
-            {"error": 13},
+            {},
         )
+
+    def test_basic_bsensor_extra_state_attributes(self):
+        self.dps[ERROR_DPS] = 2
+        self.assertEqual(self.basicBSensor.extra_state_attributes, {"fault_code": 2})

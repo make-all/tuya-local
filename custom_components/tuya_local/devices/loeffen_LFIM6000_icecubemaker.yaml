@@ -1,0 +1,54 @@
+name: Ice cube maker
+products:
+  - id: 2y44i6euwk9eeiz8
+    name: Loeffen LFIM6000
+primary_entity:
+  entity: switch
+  icon: "mdi:delete-variant"
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: select
+    name: Ice cube size
+    icon: "mdi:cube-scan"
+    category: config
+    dps:
+      - id: 2
+        type: string
+        name: option
+        mapping:
+          - dps_val: big
+            value: Large
+          - dps_val: small
+            value: Small
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 3
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 3
+        type: bitfield
+        name: fault_code
+  - entity: switch
+    translation_key: uv_sterilization
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Cleaning mode
+    icon: "mdi:silverware-clean"
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch

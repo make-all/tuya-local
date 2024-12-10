@@ -1,0 +1,658 @@
+{
+    "title": "ٹویا لوکل",
+    "config": {
+        "step": {
+            "user": {
+                "title": "اپنے ٹویا لوکل ڈیوائس کو ترتیب دیں۔",
+                "description": "اسمارٹ لائف ایپ کی مدد سے آلات یا تو دستی طور پر شامل کیے جا سکتے ہیں یا کلاؤڈ کی مدد سے۔",
+                "data": {
+                    "setup_mode": "سیٹ اپ کا انتخاب:"
+                }
+            },
+            "cloud": {
+                "title": "Tuya میں لاگ ان کریں۔",
+                "description": "اپنا Smart Life یا Tuya Smart صارف کوڈ درج کریں۔\n\nآپ یہ کوڈ Smart Life ایپ یا Tuya Smart ایپ میں **سیٹنگز** > **اکاؤنٹ اور سیکیورٹی** اسکرین میں تلاش کر سکتے ہیں، اور اس پر دکھایا گیا کوڈ درج کریں۔ ",
+                "data": {
+                    "user_code": "صارف کوڈ:"
+                }
+            },
+            "scan": {
+                "title": "لاگ ان مکمل کریں۔",
+                "description": "لاگ ان مکمل کرنے کے لیے درج ذیل QR-کوڈ کو اسکین کرنے کے لیے Smart Life ایپ یا Tuya Smart ایپ استعمال کریں۔\n\nایپ میں یہ مرحلہ مکمل کرنے کے بعد اگلے مرحلے پر جائیں۔"
+            },
+            "choose_device": {
+                "title": "شامل کرنے کے لیے ڈیوائس کا انتخاب کریں۔",
+                "description": "براہ کرم پہلی ڈراپ ڈاؤن فہرست سے شامل کرنے کے لیے آلہ چنیں۔ ",
+                "data": {
+                    "device_id": "ڈیوائس کا انتخاب کریں:",
+                    "hub_id": "گیٹ وے کا انتخاب کریں:"
+                }
+            },
+            "search": {
+                "title": "آلہ کا IP پتہ تلاش کریں۔",
+                "description": "Tuya کلاؤڈ مقامی IP پتے فراہم نہیں کرتا ہے لہذا اب ہمیں آلہ تلاش کرنے کے لیے آپ کے مقامی نیٹ ورک کو تلاش کرنا ہوگا۔ "
+            },
+            "local": {
+                "title": "اپنے ٹویا لوکل ڈیوائس کو ترتیب دیں۔",
+                "description": "[اپنی ڈیوائس آئی ڈی اور لوکل کلید تلاش کرنے کے لیے ان ہدایات پر عمل کریں۔](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "IP ایڈریس یا میزبان نام",
+                    "or device_id of gateway for devices connected through gateway": "",
+                    
+                    "device_id": "ڈیوائس کی شناخت(یا گیٹ وے کے ذریعے منسلک آلات کے لیے ڈیوائس آئی ڈی)",
+                    "local_key": "مقامی کلید",
+                    "protocol_version": "پروٹوکول ورژن (اگر معلوم نہ ہو تو خود کار طریقے سے آزمائیں)",
+                    "poll_only": "صرف پول کریں (اگر آپ کا آلہ مکمل طور پر کام نہیں کرتا ہے تو اسے آزمائیں)",
+                    "device_cid": "ذیلی آلہ کا node_id یا uuid (گیٹ وے کے ذریعے منسلک آلات کے لیے)"
+                }
+            },
+            "select_type": {
+                "title": "آلہ کی قسم کا انتخاب کریں۔",
+                "description": "اس قسم کا انتخاب کریں جو آپ کے آلے سے مماثل ہو۔",
+                "data": {
+                    "type": "آلہ کی قسم"
+                }
+            },
+            "choose_entities": {
+                "title": "آلہ کی تفصیلات",
+                "description": "اس آلہ کے لیے ایک نام منتخب کریں",
+                "data": {
+                    "name": "نام ۔"
+                }
+            }
+        },
+        "abort": {
+            "already_configured": "اس ID کے ساتھ ایک آلہ پہلے ہی شامل کیا جا چکا ہے۔",
+            "not_supported": "معذرت، اس آلہ کے لیے کوئی تعاون نہیں ہے۔",
+            "no_devices": "اکاؤنٹ کے لیے کوئی غیر رجسٹرڈ ڈیوائسز تلاش کرنے سے قاصر۔"
+        },
+        "error": {
+            "connection": "ان تفصیلات کے ساتھ آپ کے آلے سے منسلک ہونے سے قاصر ہے۔ یہ ایک وقفے وقفے سے جاری مسئلہ ہو سکتا ہے، یا وہ غلط ہو سکتے ہیں۔",
+            "does_not_need_hub": "ڈیوائس کو گیٹ وے کی ضرورت نہیں ہے اور ایک کو منتخب کیا گیا تھا۔ ",
+            "needs_hub": "ڈیوائس کو گیٹ وے کی ضرورت ہے اور کوئی بھی منتخب نہیں کیا گیا۔"
+        }
+    },
+    "selector": {
+        "setup_mode": {
+            "options": {
+                "cloud": "اسمارٹ لائف کلاؤڈ اسسٹڈ ڈیوائس سیٹ اپ۔",
+                "manual": "دستی طور پر ڈیوائس کنکشن کی معلومات فراہم کریں۔"
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "user": {
+                "title": "اپنے ٹویا لوکل ڈیوائس کو ترتیب دیں",
+                "description": "[اپنی مقامی کلید تلاش کرنے کے لیے ان ہدایات پر عمل کریں۔](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "IP پتہ یا میزبان نام",
+                    "local_key": "مقامی کلید",
+                    "protocol_version": "پروٹوکول ورژن (اگر معلوم نہ ہو تو خود کار طریقے سے آزمائیں)",
+                    "poll_only": "صرف پول (اگر آپ کا آلہ پوری طرح کام نہیں کرتا ہے تو اسے آزمائیں)"
+
+                }
+            }
+        },
+        "error": {
+            "connection": "ان تفصیلات کے ساتھ آپ کے آلے سے منسلک ہونے سے قاصر ہے۔ یہ ایک وقفے وقفے سے مسئلہ ہوسکتا ہے، یا وہ غلط ہوسکتے ہیں۔."
+        },
+        "abort": {
+            "not_supported": "معذرت، اس آلہ کے لیے کوئی تعاون نہیں ہے۔."
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "ڈیفروسٹ",
+                "state": {
+                    "off": "نارمل",
+                    "on": "ڈیفروسٹنگ"
+                }
+            },
+            "tank_empty": {
+                "name": "ٹینک",
+                "state": {
+                    "off": "اوکے",
+                    "on": "کم"
+                }
+            },
+            "tank_full": {
+                "name": "ٹینک",
+                "state": {
+                    "off": "اوکے",
+                    "on": "مکمل"
+                }
+            },
+            "wake": {
+                "name": "جاگنا",
+                "state": {
+                    "off": "سو رہا ہے",
+                    "on": "جاگ رہا ہے"
+                }
+            },
+            "casdon_oven_fault": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "e1": "E1: Chamber overheat protection (exceeds 290°C)",
+                            "e2": "E2: Evaporation tray overheat protection (exceeds 200°C)",
+                            "e3": "E3: Chamber low temperature protection (below 35°C)",
+                            "e4": "E4: Evaporation tray low temperature protection (below 35°C)",
+                            "e5": "E5: Sensor connection error (Open circuit)",
+                            "e6": "E6: Sensor malfunction (Short circuit)",
+                            "e7": "E7: Display board communication error",
+                            "e8": "E8: Water tank open (CN7) or Evaporation tray dry (CN3)"
+                        }
+                    }
+                }
+            }
+        },
+        "button": {
+            "factory_reset": {
+                "name": "فیکٹری ری سیٹ"
+            },
+            "filter_reset": {
+                "name": "فلٹر ری سیٹ"
+            }
+        },
+        "climate": {
+            "aircon_extra": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "health": "صحت مند",
+                            "medhigh": "متوسط اعلیٰ",
+                            "medlow": "درمیانہ کم",
+                            "natural": "قدرتی",
+                            "quiet": "چپ چاپ",
+                            "sleep": "سونا",
+                            "strong": "مضبوط ۔"
+                        }
+                    },
+                    "swing_mode": {
+                        "state": {
+                            "topmost": "سب سے اوپر ۔",
+                            "top": "اوپر",
+                            "middle": "درمیانی",
+                            "down": "نیچے",
+                            "downmost": "سب سے نیچے"
+                        }
+                    }
+                }
+            },
+            "thermostat": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "cycle": "سائیکل"
+                        }
+                    },
+                    "preset_mode": {
+                        "state": {
+                            "manual": "دستی",
+                            "program": "پروگرام",
+                            "temp_override": "عارضی اوور رائیڈ",
+                            "perm_override": "مستقل اوور رائڈ"
+                        }
+                    }
+                }
+            },
+            "combo_floor": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "cool": "ٹھنڈی ہوا",
+                            "fan_only": "پنکھا",
+                            "heat": "گرم ہوا",
+                            "floor_cool": "ٹھنڈا فرش",
+                            "floor_heat": "گرم فرش"
+                        }
+                    }
+                }
+            },
+            "swing_as_powerlevel": {
+                "state_attributes": {
+                    "swing_mode": {
+                        "name": "حرارت کی سطح",
+                        "state": {
+                            "stop": "روکو",
+                            "auto": "خود مختار"
+                        }
+                    }
+                }
+            },
+            "pool_heatpump": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "smart_heat": "اسمارٹ حرارت",
+                            "quick_heat": "فوری حرارتی",
+                            "quiet_heat": "پرسکون گرمی",
+                            "smart_cool": "ہوشیار ٹھنڈا",
+                            "quick_cool": "فوری ٹھنڈا ۔",
+                            "quiet_cool": "پرسکون ٹھنڈا ۔",
+                            "auto": "خود مختار",
+                            "smart": "اسمارٹ",
+                            "quick": "فوری",
+                            "quiet": "پرسکون"
+                        }
+                    }
+                }
+            },
+            "heater": {
+                "name": "ہیٹر"
+            },
+            "thermo_switch": {
+                "state_attributes": {
+                    "hvac_mode": {
+                        "state": {
+                            "fan_only": "توقف"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "healthy_steam": "صحت مند بخار",
+                            "fresh_steam": "تازہ بخار",
+                            "high_temp_steam": "زیادہ درجہ حرارت بخار",
+                            "stew": "اسٹیو",
+                            "bake_up_and_down": "اوپر اور نیچے پکانا",
+                            "bbq": "باربی کیو",
+                            "bottom_hot_air": "نیچے گرم ہوا",
+                            "on_strong_roast": "مضبوط روسٹ پر",
+                            "3d_hot_air": "3D گرم ہوا",
+                            "air_fry": "ہوا فرائی",
+                            "steam_frying": "بخاری فرائی",
+                            "one_click_bread": "ایک کلک بریڈ",
+                            "quick_heat": "فوری گرمی",
+                            "keep_warm": "گرم رکھیں",
+                            "unfreeze": "پگھلاو",
+                            "fermentation": "خمیر",
+                            "descale": "ڈی اسکیل",
+                            "local_recipes": "مقامی ریسیپیاں",
+                            "drying": "خشک کرنا",
+                            "custom": "اپنی مرضی",
+                            "low_steaming": "کم بخاری",
+                            "medium_steaming": "درمیانہ بخاری",
+                            "high_steaming": "زیادہ بخاری"
+                        }
+                    }
+                }
+            }
+        },
+        "humidifier": {
+            "dehumidifier": {
+                "state_attributes": {
+                    "mode": {
+                        "state": {
+                            "laundry": "خشک کپڑے",
+                            "purify": "پاک کریں۔"
+                        }
+                    }
+                }
+            }
+        },
+        "fan": {
+            "aroma_diffuser": {
+                "name": "خوشبو پھیلانے والا",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "low": "کم",
+                            "medium": "درمیانہ",
+                            "high": "زیادہ",
+                            "continuous": "مسلسل",
+                            "intermittent": "منقطع"
+                        }
+                    }
+                }
+            },
+            "fan_with_presets": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "normal": "عام",
+                            "nature": "قدرتی",
+                            "sleep": "سونا",
+                            "baby": "بچه",
+                            "fresh": "تازه",
+                            "smart": "سمارٹ",
+                            "strong": "مضبوط",
+                            "high": "زیادہ",
+                            "medium": "درمیانہ",
+                            "low": "کم",
+                            "displayoff": "ڈسپلے آف",
+                            "off": "آف"
+                        }
+                    }
+                }
+            },
+            "ventilation": {
+                "name": "ہوا کی رسائی",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "fresh": "تازہ ہوا",
+                            "circulate": "گردش کریں۔",
+                            "sleep": "سونا",
+                            "auto": "خود مختار",
+                            "eco": "ایکو",
+                            "anti-condensation": "اینٹی کنڈینسیشن"
+                        }
+                    }
+                }
+            }
+        },
+        "light": {
+            "backlight": {
+                "name": "بیک لائٹ"
+            },
+            "display": {
+                "name": "ڈسپلے"
+            },
+            "embers": {
+                "name": "انگارے"
+            },
+            "flame": {
+                "name": "شعلہ"
+            },
+            "indicator": {
+                "name": "اشارے"
+            },
+            "laser": {
+                "name": "لیزر"
+            },
+            "logs": {
+                "name": "لاگ"
+            },
+            "nightlight": {
+                "name": "رات کی روشنی"
+            }
+        },
+        "lock": {
+            "child_lock": {
+                "name": "بچے کا تالا"
+            }
+        },
+        "number": {
+            "timer": {
+                "name": "ٹائمر"
+            },
+            "timer_x": {
+                "name": "ٹائمر {x}"
+            }
+        },
+        "select": {
+            "initial_state": {
+                "name": "ابتدائی حالت",
+                "state": {
+                    "off": "آف",
+                    "on": "آن",
+                    "memory": "یاد"
+                }
+            },
+            "language": {
+                "name": "زبان",
+                "state": {
+                    "chinese": "中文",
+                    "chinese_traditional": "中文(繁體)",
+                    "english": "English",
+                    "french": "Français",
+                    "german": "Deutsch",
+                    "italian": "Italiano",
+                    "japanese": "日本語",
+                    "korean": "한국어",
+                    "latin": "Lingua Latina",
+                    "portuguese": "Português",
+                    "russian": "Русский",
+                    "spanish": "Español",
+                    "turkish": "Türkçe"
+                }
+            },
+            "mopping": {
+                "name": "پوچھنا",
+                "state": {
+                    "off": "آف",
+                    "auto": "خود کار",
+                    "low": "کم",
+                    "medium": "درمیانہ",
+                    "high": "زیادہ"
+                }
+            },
+            "recipe": {
+                "name": "ریسیپی",
+                "state": {
+                    "pizza": "پزا",
+                    "fries": "فرائز",
+                    "chicken": "چکن",
+                    "shrimp": "جھینگا",
+                    "fish": "مچھلی",
+                    "chicken_drumsticks": "چکن ڈرم اسٹکس",
+                    "vegetables": "سبزیاں",
+                    "desserts": "میٹھا",
+                    "none": "کوئی نہیں",
+                    "chicken_wings": "چکن ونگز",
+                    "steak": "اسٹیک",
+                    "onion_rings": "پیاز کے چھلکے",
+                    "bacon": "بیکن",
+                    "cake": "کیک",
+                    "bread": "روٹی",
+                    "toast": "ٹوسٹ",
+                    "custom": "اپنی مرضی",
+                    "cloud_recipe": "کلاؤڈ ریسیپی",
+                    "default": "پہلے سے طے شدہ",
+                    "keep_warm": "گرم رکھیں",
+                    "preheat": "پری ہیٹ"
+                }
+            },
+            "timer": {
+                "name": "ٹائمر",
+                "state": {
+                    "cancel": "منسوخ کریں",
+                    "10m": "10 منٹ",
+                    "30m": "30 منٹ",
+                    "1h": "1 گھنٹہ",
+                    "1h30m": "1 گھنٹہ 30 منٹ",
+                    "2h": "2 گھنٹے",
+                    "2h30m": "2 گھنٹے 30 منٹ",
+                    "3h": "3 گھنٹے",
+                    "3h30m": "3 گھنٹے 30 منٹ",
+                    "4h": "4 گھنٹے",
+                    "4h30m": "4 گھنٹے 30 منٹ",
+                    "5h": "5 گھنٹے",
+                    "5h30m": "5 گھنٹے 30 منٹ",
+                    "6h": "6 گھنٹے",
+                    "6h30m": "6 گھنٹے 30 منٹ",
+                    "7h": "7 گھنٹے",
+                    "7h30m": "7 گھنٹے 30 منٹ",
+                    "8h": "8 گھنٹے",
+                    "8h30m": "8 گھنٹے 30 منٹ",
+                    "9h": "9 گھنٹے",
+                    "9h30m": "9 گھنٹے 30 منٹ",
+                    "10h": "10 گھنٹے",
+                    "11h": "11 گھنٹے",
+                    "12h": "12 گھنٹے",
+                    "13h": "13 گھنٹے",
+                    "14h": "14 گھنٹے",
+                    "15h": "15 گھنٹے",
+                    "16h": "16 گھنٹے",
+                    "17h": "17 گھنٹے",
+                    "18h": "18 گھنٹے",
+                    "19h": "19 گھنٹے",
+                    "20h": "20 گھنٹے",
+                    "21h": "21 گھنٹے",
+                    "22h": "22 گھنٹے",
+                    "23h": "23 گھنٹے",
+                    "24h": "24 گھنٹے",
+                    "36h": "36 گھنٹے",
+                    "48h": "48 گھنٹے",
+                    "72h": "72 گھنٹے"
+                }
+            },
+            "temperature_unit": {
+                "name": "درجہ حرارت یونٹ",
+                "state": {
+                    "celsius": "سیلسیس",
+                    "fahrenheit": "فارن ہائیٹ"
+                }
+            },
+            "oven_built_in_recipe": {
+                "name": "بلٹ ان ریسیپی",
+                "state": {
+                    "none": "کوئی نہیں",
+                    "steamed_egg_with_okra": "بھنڈی میں انڈے",
+                    "steamed_sea_bass": "بھنڈی میں سی بیس",
+                    "steamed_prawns": "بھنڈی میں جھینگا",
+                    "handmade_steamed_bread": "ہاتھ سے بنی بھنڈی",
+                    "fan_steamed_baby_vegetables": "پنکھا بھنڈی میں بچوں کے سبزی",
+                    "braised_pork": "بھنڈی میں بریسڈ پورک",
+                    "snow_fungus_and_bird_s_nest": "برڈ نیسٹ اور سنو فنگس",
+                    "crab_pot": "کریب پوٹ",
+                    "potato_ribs": "آلو ربس",
+                    "coconut_chicken_soup": "ناریل چکن سوپ",
+                    "snack_platter": "اسنیک پلیٹر",
+                    "chicken_skewers": "چکن اسکیورز",
+                    "roasted_pork_knuckle": "روسٹ پورک نکل",
+                    "dried_lemon": "خشک لیموں",
+                    "pork_jerky": "پورک جرکی",
+                    "crispy_hairtail": "کرسپی ہیئر ٹیل",
+                    "spicy_grilled_fish": "تیز گرلڈ فش",
+                    "roasted_sweet_potatoes": "روسٹ سویٹ پوٹیٹوز",
+                    "roasted_chicken_wings": "روسٹ چکن ونگز",
+                    "cumin_lamb_chops": "زیرہ لیمب چاپس",
+                    "honey_grilled_chicken": "ہنی گرلڈ چکن",
+                    "garlic_eggplant": "لہسن بینگن",
+                    "portuguese_egg_tart": "پورٹگلیز انڈے کا ٹارٹ",
+                    "creme_brulee": "کریم بریولی",
+                    "cocoa_chips": "کوکو چپس",
+                    "butter_cookies": "مکھن کوکیز",
+                    "chiffon_cake": "چفن کیک",
+                    "puff_pastry": "پف پیسٹری",
+                    "red_bean_bread": "لال بین بریڈ",
+                    "milk_toast": "دودھ ٹوسٹ"
+                }
+            }
+        },
+        "sensor": {
+            "status": {
+                "name": "حالت",
+                "state": {
+                    "available": "دستیاب",
+                    "plugged_in": "پلگ ان",
+                    "fault_unplugged": "خراب ہے، پلگ ان نہیں ہے",
+                    "charging": "چارجنگ",
+                    "waiting": "انتظار",
+                    "charged": "چارج ہوگیا",
+                    "fault": "خراب",
+                    "paused": "رکا ہوا",
+                    "waiting_for_authorization": "اجازت کے منتظر",
+                    "standby": "انتظار",
+                    "heating": "گرم ہو رہا ہے",
+                    "cooling": "ٹھنڈا ہو رہا ہے",
+                    "keeping_warm": "گرم رکھنا",
+                    "no_water": "پانی نہیں",
+                    "boiling": "ابال رہا ہے",
+                    "reserve_only": "صرف ریزرو",
+                    "unknown": "نامعلوم",
+                    "idle": "آرام",
+                    "auto": "خود کار",
+                    "manual": "دستی",
+                    "rain_delay": "بارش میں تاخیر",
+                    "off": "آف",
+                    "cooking": "پکانا",
+                    "done": "ہوگیا",
+                    "door_open": "دروازہ کھولا",
+                    "setting": "ترتیب",
+                    "pre_heating": "پری ہیٹنگ",
+                    "scheduled": "شیڈول",
+                    "at_temperature": "درجہ حرارت پر",
+                    "done_stage_1": "مرحلہ 1 مکمل",
+                    "done_stage_2": "مرحلہ 2 مکمل",
+                    "done_stage_3": "مرحلہ 3 مکمل",
+                    "done_stage_4": "مرحلہ 4 مکمل",
+                    "done_stage_5": "مرحلہ 5 مکمل",
+                    "done_stage_6": "مرحلہ 6 مکمل",
+                    "done_stage_7": "مرحلہ 7 مکمل",
+                    "done_stage_8": "مرحلہ 8 مکمل",
+                    "done_stage_9": "مرحلہ 9 مکمل",
+                    "done_stage_10": "مرحلہ 10 مکمل",
+                    "no_food": "کوئی کھانا نہیں",
+                    "jammed": "جیم ہوگیا",
+                    "blocked": "بلاک ہوگیا",
+                    "feeding": "خوراک دینا",
+                    "feeding_complete": "خوراک مکمل",
+                    "caking": "کیکنگ",
+                    "cleaning": "صفائی",
+                    "sleep": "سونا",
+                    "sterilizing": "نس بندی",
+                    "deodorizing": "بدبو دور کرنا",
+                    "occupied": "مصروف",
+                    "normal": "عام",
+                    "low": "کم",
+                    "high": "زیادہ",
+                    "unwashed": "نہ دھویا",
+                    "pre_washing": "پری واشنگ",
+                    "washing": "دھونا",
+                    "rinsing": "رنسنگ",
+                    "drying": "خشک کرنا",
+                    "air_purging": "ہوا کی صفائی",
+                    "anti_freeze": "اینٹی فریز",
+                    "close": "بند",
+                    "monitor": "مانیٹر",
+                    "working": "کام کر رہا ہے",
+                    "warning": "انتباہ"
+                }
+            },
+            "time_remaining": {
+                "name": "بقیہ وقت"
+            },
+            "cooking_status": {
+                "name": "پکانے کی حالت",
+                "state": {
+                    "wait": "انتظار میں ہے",
+                    "reservation": "پیش گوئی میں ہے",
+                    "cooking": "پکانے میں ہے",
+                    "cancel": "پکانا منسوخ کر دیا",
+                    "done": "پکانا مکمل ہوگیا",
+                    "pause": "پکانا معطل ہوگیا"
+                }
+            },
+            "energy_produced": {
+                "name": "پیدا کردہ بجلی"
+            },
+            "energy_consumed": {
+                "name": "استعمال کردہ بجلی"
+            },
+            "energy_produced_x": {
+                "name": "پیدا کردہ بجلی {x}"
+            },
+            "energy_consumed_x": {
+                "name": "استعمال کردہ بجلی {x}"
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "اینٹی فراسٹ"
+            },
+            "evaporator_cleaning": {
+                "name": "بخارات کی صفائی"
+            },
+            "ionizer": {
+                "name": "Ionizer"
+            },
+            "keytone": {
+                "name": "کی پیڈ ٹون"
+            },
+            "sleep": {
+                "name": "سونا"
+            },
+            "uv_sterilization": {
+                "name": "UV نس بندی"
+            }
+        }
+    }
+}

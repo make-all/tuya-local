@@ -1,8 +1,6 @@
-from homeassistant.components.climate.const import (
-    ClimateEntityFeature,
-    HVACMode,
-)
-from homeassistant.const import UnitOfTime, UnitOfTemperature
+from homeassistant.components.climate.const import ClimateEntityFeature, HVACMode
+from homeassistant.components.sensor import SensorDeviceClass
+from homeassistant.const import UnitOfTemperature, UnitOfTime
 
 from ..const import BETTERLIFE_BL1500_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -10,7 +8,6 @@ from ..mixins.climate import TargetTemperatureTests
 from ..mixins.lock import BasicLockTests
 from ..mixins.select import BasicSelectTests
 from ..mixins.sensor import BasicSensorTests
-
 from .base_device_tests import TuyaDeviceTestCase
 
 HVACMODE_DPS = "1"
@@ -36,36 +33,37 @@ class TestBetterlifeBL1500Heater(
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,
             self.subject,
-            min=15,
-            max=30,
+            min=15.0,
+            max=30.0,
         )
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
         self.setUpBasicSelect(
             TIMER_DPS,
             self.entities.get("select_timer"),
             {
-                "0": "Off",
-                "1": "1 hour",
-                "2": "2 hours",
-                "3": "3 hours",
-                "4": "4 hours",
-                "5": "5 hours",
-                "6": "6 hours",
-                "7": "7 hours",
-                "8": "8 hours",
-                "9": "9 hours",
-                "10": "10 hours",
-                "11": "11 hours",
-                "12": "12 hours",
+                "0": "cancel",
+                "1": "1h",
+                "2": "2h",
+                "3": "3h",
+                "4": "4h",
+                "5": "5h",
+                "6": "6h",
+                "7": "7h",
+                "8": "8h",
+                "9": "9h",
+                "10": "10h",
+                "11": "11h",
+                "12": "12h",
             },
         )
         self.setUpBasicSensor(
             COUNTDOWN_DPS,
-            self.entities.get("sensor_timer_countdown"),
+            self.entities.get("sensor_time_remaining"),
             unit=UnitOfTime.MINUTES,
+            device_class=SensorDeviceClass.DURATION,
         )
         self.mark_secondary(
-            ["lock_child_lock", "select_timer", "sensor_timer_countdown"]
+            ["lock_child_lock", "select_timer", "sensor_time_remaining"]
         )
 
     def test_supported_features(self):
@@ -74,15 +72,10 @@ class TestBetterlifeBL1500Heater(
             (
                 ClimateEntityFeature.TARGET_TEMPERATURE
                 | ClimateEntityFeature.PRESET_MODE
+                | ClimateEntityFeature.TURN_OFF
+                | ClimateEntityFeature.TURN_ON
             ),
         )
-
-    def test_icon(self):
-        self.dps[HVACMODE_DPS] = True
-        self.assertEqual(self.subject.icon, "mdi:radiator")
-
-        self.dps[HVACMODE_DPS] = False
-        self.assertEqual(self.subject.icon, "mdi:radiator-disabled")
 
     def test_temperature_unit_returns_celsius(self):
         self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)

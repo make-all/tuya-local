@@ -1,16 +1,17 @@
 """Tests for the cover entity."""
-from pytest_homeassistant_custom_component.common import MockConfigEntry
-import pytest
+
 from unittest.mock import AsyncMock, Mock
+
+import pytest
+from pytest_homeassistant_custom_component.common import MockConfigEntry
 
 from custom_components.tuya_local.const import (
     CONF_DEVICE_ID,
-    CONF_TYPE,
     CONF_PROTOCOL_VERSION,
+    CONF_TYPE,
     DOMAIN,
 )
-from custom_components.tuya_local.generic.cover import TuyaLocalCover
-from custom_components.tuya_local.cover import async_setup_entry
+from custom_components.tuya_local.cover import TuyaLocalCover, async_setup_entry
 
 
 @pytest.mark.asyncio
@@ -33,7 +34,7 @@ async def test_init_entry(hass):
         },
     }
     await async_setup_entry(hass, entry, m_add_entities)
-    assert type(hass.data[DOMAIN]["dummy"]["cover"]) == TuyaLocalCover
+    assert type(hass.data[DOMAIN]["dummy"]["cover_garage"]) is TuyaLocalCover
     m_add_entities.assert_called_once()
 
 

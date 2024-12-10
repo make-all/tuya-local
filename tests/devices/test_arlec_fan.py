@@ -29,10 +29,10 @@ class TestArlecFan(SwitchableTests, BasicSelectTests, TuyaDeviceTestCase):
             TIMER_DPS,
             self.entities["select_timer"],
             {
-                "off": "Off",
-                "2hour": "2 hours",
-                "4hour": "4 hours",
-                "8hour": "8 hours",
+                "off": "cancel",
+                "2hour": "2h",
+                "4hour": "4h",
+                "8hour": "8h",
             },
         )
         self.mark_secondary(["select_timer"])
@@ -44,6 +44,8 @@ class TestArlecFan(SwitchableTests, BasicSelectTests, TuyaDeviceTestCase):
                 FanEntityFeature.DIRECTION
                 | FanEntityFeature.PRESET_MODE
                 | FanEntityFeature.SET_SPEED
+                | FanEntityFeature.TURN_OFF
+                | FanEntityFeature.TURN_ON
             ),
         )
 
@@ -52,7 +54,7 @@ class TestArlecFan(SwitchableTests, BasicSelectTests, TuyaDeviceTestCase):
         self.assertEqual(self.subject.preset_mode, "normal")
 
         self.dps[PRESET_DPS] = "breeze"
-        self.assertEqual(self.subject.preset_mode, "breeze")
+        self.assertEqual(self.subject.preset_mode, "nature")
 
         self.dps[PRESET_DPS] = "sleep"
         self.assertEqual(self.subject.preset_mode, "sleep")
@@ -61,7 +63,7 @@ class TestArlecFan(SwitchableTests, BasicSelectTests, TuyaDeviceTestCase):
         self.assertIs(self.subject.preset_mode, None)
 
     def test_preset_modes(self):
-        self.assertCountEqual(self.subject.preset_modes, ["normal", "breeze", "sleep"])
+        self.assertCountEqual(self.subject.preset_modes, ["normal", "nature", "sleep"])
 
     async def test_set_preset_mode_to_normal(self):
         async with assert_device_properties_set(
@@ -75,7 +77,7 @@ class TestArlecFan(SwitchableTests, BasicSelectTests, TuyaDeviceTestCase):
             self.subject._device,
             {PRESET_DPS: "breeze"},
         ):
-            await self.subject.async_set_preset_mode("breeze")
+            await self.subject.async_set_preset_mode("nature")
 
     async def test_set_preset_mode_to_sleep(self):
         async with assert_device_properties_set(
@@ -118,7 +120,3 @@ class TestArlecFan(SwitchableTests, BasicSelectTests, TuyaDeviceTestCase):
         self.dps[PRESET_DPS] = "normal"
         async with assert_device_properties_set(self.subject._device, {SPEED_DPS: 5}):
             await self.subject.async_set_percentage(80)
-
-    def test_extra_state_attributes(self):
-        self.dps[TIMER_DPS] = "2hour"
-        self.assertEqual(self.subject.extra_state_attributes, {"timer": "2hour"})

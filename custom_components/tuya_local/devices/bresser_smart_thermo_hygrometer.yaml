@@ -1,0 +1,191 @@
+name: Thermo hygrometer
+products:
+  - id: xpxdr5q6vc8aztq0
+    name: Bresser 7-channel
+primary_entity:
+  entity: sensor
+  class: temperature
+  dps:
+    - id: 1
+      name: sensor
+      type: integer
+      unit: C
+      mapping:
+        - scale: 10
+      class: measurement
+secondary_entities:
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 9
+        name: option
+        type: string
+        mapping:
+          - dps_val: "f"
+            value: fahrenheit
+          - dps_val: "c"
+            value: celsius
+        optional: true
+  - entity: sensor
+    class: temperature
+    name: CH1 Temperature
+    dps:
+      - id: 102
+        name: sensor
+        type: integer
+        unit: C
+        mapping:
+          - scale: 10
+        class: measurement
+        optional: true
+  - entity: sensor
+    class: humidity
+    name: CH1 Humidity
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        optional: true
+  - entity: sensor
+    class: temperature
+    name: CH2 Temperature
+    dps:
+      - id: 104
+        name: sensor
+        type: integer
+        unit: C
+        mapping:
+          - scale: 10
+        class: measurement
+        optional: true
+  - entity: sensor
+    class: humidity
+    name: CH2 Humidity
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        optional: true
+  - entity: sensor
+    class: temperature
+    name: CH3 Temperature
+    dps:
+      - id: 106
+        name: sensor
+        type: integer
+        unit: C
+        mapping:
+          - scale: 10
+        class: measurement
+        optional: true
+  - entity: sensor
+    class: humidity
+    name: CH3 Humidity
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        optional: true
+  - entity: sensor
+    class: temperature
+    name: CH4 Temperature
+    dps:
+      - id: 108
+        name: sensor
+        type: integer
+        unit: C
+        mapping:
+          - scale: 10
+        class: measurement
+        optional: true
+  - entity: sensor
+    class: humidity
+    name: CH4 Humidity
+    dps:
+      - id: 109
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        optional: true
+  - entity: sensor
+    class: temperature
+    name: CH5 Temperature
+    dps:
+      - id: 110
+        name: sensor
+        type: integer
+        unit: C
+        mapping:
+          - scale: 10
+        class: measurement
+        optional: true
+  - entity: sensor
+    class: humidity
+    name: CH5 Humidity
+    dps:
+      - id: 111
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        optional: true
+  - entity: sensor
+    class: temperature
+    name: CH6 Temperature
+    dps:
+      - id: 112
+        name: sensor
+        type: integer
+        unit: C
+        mapping:
+          - scale: 10
+        class: measurement
+        optional: true
+  - entity: sensor
+    class: humidity
+    name: CH6 Humidity
+    dps:
+      - id: 113
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        optional: true
+  - entity: sensor
+    class: temperature
+    name: CH7 Temperature
+    dps:
+      - id: 114
+        name: sensor
+        type: integer
+        unit: C
+        mapping:
+          - scale: 10
+        class: measurement
+        optional: true
+  - entity: sensor
+    class: humidity
+    name: CH7 Humidity
+    dps:
+      - id: 115
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        optional: true

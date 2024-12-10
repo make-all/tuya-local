@@ -4,31 +4,19 @@
     {
       "label": "Install requirements",
       "type": "shell",
-      "command": "pip3 install -r requirements-first.txt;pip3 install -r requirements-dev.txt",
+      "command": "pip3 install -r requirements-dev.txt",
       "problemMatcher": []
     },
     {
       "label": "Run Home Assistant on port 8123",
       "type": "shell",
-      "command": "pkill hass;container start",
-      "problemMatcher": []
-    },
-    {
-      "label": "Run Home Assistant configuration against /config",
-      "type": "shell",
-      "command": "container check",
+      "command": "python -m homeassistant",
       "problemMatcher": []
     },
     {
       "label": "Upgrade Home Assistant to latest dev",
       "type": "shell",
-      "command": "container install",
-      "problemMatcher": []
-    },
-    {
-      "label": "Install a specific version of Home Assistant",
-      "type": "shell",
-      "command": "container set-version",
+      "command": "pip install -U home-assistant",
       "problemMatcher": []
     },
     {
@@ -40,7 +28,7 @@
     {
       "label": "Reformat code",
       "type": "shell",
-      "command": "isort --recursive . &&  black .",
+      "command": "isort . &&  black .",
       "problemMatcher": []
     }
   ]

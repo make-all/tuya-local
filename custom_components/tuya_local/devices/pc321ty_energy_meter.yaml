@@ -1,6 +1,9 @@
-name: PC321-TY power clamp
+name: Power clamp meter
 products:
   - id: r64livttuufctble
+    name: PC321-TY
+  - id: 9rjjf6rdkca9woju
+    name: PC321-TY 80A
 primary_entity:
   entity: sensor
   class: energy
@@ -23,6 +26,7 @@ secondary_entities:
         type: integer
         unit: V
         class: measurement
+        force: true
         mapping:
           - scale: 10
   - entity: sensor
@@ -35,6 +39,7 @@ secondary_entities:
         type: integer
         unit: A
         class: measurement
+        force: true
         mapping:
           - scale: 1000
   - entity: sensor
@@ -46,6 +51,7 @@ secondary_entities:
         name: sensor
         type: integer
         unit: W
+        force: true
         class: measurement
   - entity: sensor
     category: diagnostic
@@ -60,14 +66,12 @@ secondary_entities:
           - scale: 100
   - entity: sensor
     category: diagnostic
-    class: energy
     name: Energy A
     dps:
       - id: 106
         name: sensor
         type: integer
         unit: kWh
-        class: total_increasing
         mapping:
           - scale: 100
   - entity: sensor
@@ -80,6 +84,7 @@ secondary_entities:
         type: integer
         unit: V
         class: measurement
+        force: true
         mapping:
           - scale: 10
   - entity: sensor
@@ -92,6 +97,7 @@ secondary_entities:
         type: integer
         unit: A
         class: measurement
+        force: true
         mapping:
           - scale: 1000
   - entity: sensor
@@ -102,6 +108,7 @@ secondary_entities:
       - id: 113
         name: sensor
         type: integer
+        force: true
         unit: W
         class: measurement
   - entity: sensor
@@ -117,14 +124,12 @@ secondary_entities:
           - scale: 100
   - entity: sensor
     category: diagnostic
-    class: energy
     name: Energy B
     dps:
       - id: 116
         name: sensor
         type: integer
         unit: kWh
-        class: total_increasing
         mapping:
           - scale: 100
   - entity: sensor
@@ -137,6 +142,7 @@ secondary_entities:
         type: integer
         unit: V
         class: measurement
+        force: true
         mapping:
           - scale: 10
   - entity: sensor
@@ -149,6 +155,7 @@ secondary_entities:
         type: integer
         unit: A
         class: measurement
+        force: true
         mapping:
           - scale: 1000
   - entity: sensor
@@ -159,6 +166,7 @@ secondary_entities:
       - id: 123
         name: sensor
         type: integer
+        force: true
         class: measurement
         unit: W
   - entity: sensor
@@ -174,14 +182,12 @@ secondary_entities:
           - scale: 100
   - entity: sensor
     category: diagnostic
-    class: energy
     name: Energy C
     dps:
       - id: 126
         name: sensor
         type: integer
         unit: kWh
-        class: total_increasing
         mapping:
           - scale: 100
   - entity: sensor
@@ -194,6 +200,7 @@ secondary_entities:
         name: sensor
         unit: A
         class: measurement
+        force: true
         mapping:
           - scale: 1000
   - entity: sensor
@@ -205,11 +212,11 @@ secondary_entities:
         type: integer
         name: sensor
         unit: W
+        force: true
         class: measurement
   - entity: sensor
     category: diagnostic
     class: frequency
-    name: Frequency
     dps:
       - id: 135
         type: integer
@@ -219,7 +226,6 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     class: temperature
-    name: Temperature
     dps:
       - id: 136
         type: integer

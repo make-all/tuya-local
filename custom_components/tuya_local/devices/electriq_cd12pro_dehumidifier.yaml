@@ -6,13 +6,6 @@ primary_entity:
     - id: 1
       name: switch
       type: boolean
-      mapping:
-        - dps_val: false
-          icon: "mdi:air-humidifier-off"
-          icon_priority: 1
-        - dps_val: true
-          icon: "mdi:air-humidifier"
-          icon_priority: 3
     - id: 2
       type: integer
       name: humidity
@@ -26,19 +19,15 @@ primary_entity:
       type: string
       mapping:
         - dps_val: "Smart"
-          value: "Smart"
+          value: auto
         - dps_val: "Dehumidify"
-          value: "Dehumidify"
-        - dps_val: "Laundry"
-          value: "Laundry"
-          icon: "mdi:tshirt-crew-outline"
-          icon_priority: 2
-        - dps_val: "Fan"
-          value: "Air clean"
-          icon: "mdi:air-purifier"
-          icon_priority: 2
-    - id: 19
-      name: fault_code
+          value: normal
+        - dps_val: Laundry
+          value: laundry
+        - dps_val: Fan
+          value: purify
+    - id: 6
+      name: current_humidity
       type: integer
 secondary_entities:
   - entity: fan
@@ -79,58 +68,35 @@ secondary_entities:
           - dps_val: "45_90"
             value: "Oscillate"
   - entity: switch
-    name: "UV sterilization"
-    icon: "mdi:solar-power"
+    translation_key: uv_sterilization
     category: config
     dps:
       - id: 13
         name: switch
         type: boolean
   - entity: light
-    name: Indicator light
+    translation_key: indicator
     category: config
     dps:
       - id: 101
         type: boolean
         name: switch
-        mapping:
-          - dps_val: true
-            icon: "mdi:led-on"
-          - dps_val: false
-            icon: "mdi:led-off"
   - entity: switch
-    name: Ionizer
+    translation_key: ionizer
     category: config
-    icon: "mdi:creation"
     dps:
       - id: 10
         name: switch
         type: boolean
-  - entity: sensor
-    class: humidity
-    name: "Current humidity"
-    dps:
-      - id: 6
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
-        readonly: true
   - entity: switch
-    name: Sleep
+    translation_key: sleep
     category: config
     dps:
       - id: 104
         type: boolean
         name: switch
-        mapping:
-          - dps_val: true
-            icon: "mdi:sleep"
-          - dps_val: false
-            icon: "mdi:sleep-off"
   - entity: binary_sensor
-    name: Tank
-    class: problem
+    translation_key: tank_full
     category: diagnostic
     dps:
       - id: 19
@@ -139,7 +105,20 @@ secondary_entities:
         mapping:
           - dps_val: 1
             value: true
-            icon: "mdi:flask-empty"
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
           - dps_val: 0
             value: false
-            icon: "mdi:flask-empty-outline"
+          - dps_val: 1
+            value: false
+          - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code

@@ -1,0 +1,122 @@
+name: Nedis Pet Feeder
+products:
+  - id: yxhdmalt36kbawev
+primary_entity:
+  entity: switch
+  name: Feeding
+  icon: "mdi:food-drumstick"
+  dps:
+    - id: 103
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: number
+    name: Timer feed
+    category: config
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 101
+        type: integer
+        name: value
+        unit: portions
+        range:
+          min: 0
+          max: 12
+  - entity: number
+    name: Express feed
+    category: config
+    icon: "mdi:clock-fast"
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: portions
+        optional: true
+        range:
+          min: 0
+          max: 12
+  - entity: number
+    name: Manual amount
+    category: config
+    icon: "mdi:paw"
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: portions
+        range:
+          min: 0
+          max: 12
+  - entity: number
+    category: config
+    class: weight
+    icon: "mdi:scale"
+    dps:
+      - id: 110
+        optional: true
+        type: integer
+        name: value
+        unit: g
+        range:
+          min: 1
+          max: 255
+  - entity: switch
+    name: Voice switch
+    category: config
+    icon: "mdi:account-voice"
+    dps:
+      - id: 111
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 102
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 102
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    name: Manual feed
+    category: diagnostic
+    icon: "mdi:paw-outline"
+    dps:
+      - id: 106
+        optional: true
+        type: integer
+        name: sensor
+        unit: portions
+  - entity: sensor
+    name: Express result
+    category: diagnostic
+    icon: "mdi:clock-fast"
+    dps:
+      - id: 107
+        optional: true
+        type: integer
+        name: sensor
+        unit: portions
+  - entity: sensor
+    name: Timer result
+    category: diagnostic
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: portions
+  - entity: sensor
+    name: History data
+    category: diagnostic
+    icon: "mdi:history"
+    dps:
+      - id: 109
+        optional: true
+        type: integer
+        name: sensor

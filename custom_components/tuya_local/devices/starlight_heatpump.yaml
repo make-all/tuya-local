@@ -1,6 +1,7 @@
 name: StarLight heatpump
 primary_entity:
   entity: climate
+  translation_only_key: aircon_extra
   dps:
     - id: 1
       name: hvac_mode
@@ -8,28 +9,23 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:hvac-off"
         - dps_val: true
           constraint: mode
           conditions:
             - dps_val: auto
-              icon: "mdi:hvac"
               value: heat_cool
             - dps_val: cold
-              icon: "mdi:snowflake"
               value: cool
             - dps_val: hot
-              icon: "mdi:fire"
               value: heat
             - dps_val: wind
-              icon: "mdi:fan"
               value: fan_only
             - dps_val: wet
-              icon: "mdi:water"
-              value: dry            
+              value: dry
     - id: 2
       name: temperature
       type: integer
+      unit: C
       range:
         min: 160
         max: 310
@@ -54,30 +50,27 @@ primary_entity:
       type: string
       mapping:
         - dps_val: auto
-          value: Auto
+          value: auto
         - dps_val: mute
-          value: Mute
+          value: quiet
         - dps_val: low
-          value: Low
+          value: low
         - dps_val: mid_low
-          value: Med-Low
+          value: medlow
         - dps_val: mid
-          value: Medium
+          value: medium
         - dps_val: mid_high
-          value: Med-High
+          value: medhigh
         - dps_val: high
-          value: High
+          value: high
         - dps_val: strong
-          value: Strong
-    - id: 20
-      name: unknown_20
-      type: integer
+          value: strong
     - id: 105
       name: sleep_mode
       type: string
     - id: 110
-      name: unknown_110
-      type: integer
+      name: flags
+      type: bitfield
     - id: 113
       name: swing_mode
       type: string
@@ -89,7 +82,9 @@ primary_entity:
               value: "off"
             - dps_val: "1"
               value: horizontal
-            - value: horizontal
+            - dps_val: ["2", "3", "4"]
+              value: horizontal
+              hidden: true
         - dps_val: "1"
           constraint: horizontal_swing
           conditions:
@@ -97,32 +92,28 @@ primary_entity:
               value: vertical
             - dps_val: "1"
               value: both
-            - value: both
-        - dps_val: "2"
+            - dps_val: ["2", "3", "4"]
+              value: both
+              hidden: true
+        - value: both
+          hidden: true
           constraint: horizontal_swing
           conditions:
             - dps_val: "0"
               value: vertical
-            - value: both
-        - dps_val: "3"
-          constraint: horizontal_swing
-          conditions:
-            - dps_val: "0"
-              value: vertical
-            - value: both
     - id: 114
       name: horizontal_swing
       type: string
       hidden: true
     - id: 119
-      name: unknown_119
+      name: electricity_management
       type: string
     - id: 120
-      name: unknown_120
+      name: gen_mode
       type: string
     - id: 123
-      name: unknown_123
-      type: string
+      name: flags_2
+      type: hex
     - id: 126
       name: vertical_flow_position
       type: string
@@ -130,29 +121,25 @@ primary_entity:
       name: horizontal_flow_position
       type: string
     - id: 128
-      name: unknown_128
+      name: model_code
       type: string
     - id: 129
-      name: unknown_129
+      name: energy
       type: string
     - id: 130
-      name: maybe_eco_temp
+      name: eco_temp
       type: integer
-    - id: 131
-      name: unknown_131
-      type: boolean
     - id: 132
-      name: unknown_132
+      name: hot_cool
       type: boolean
     - id: 133
-      name: unknown_133
+      name: swing_action
       type: string
     - id: 134
-      name: unknown_134
+      name: statistics
       type: json
 secondary_entities:
   - entity: sensor
-    name: Current humidity
     category: diagnostic
     class: humidity
     dps:
@@ -239,3 +226,103 @@ secondary_entities:
             value: Slight Right
           - dps_val: "5"
             value: Rightmost
+  - entity: select
+    name: Sleep mode
+    category: config
+    icon: "mdi:weather-night"
+    dps:
+      - id: 105
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "Off"
+          - dps_val: "normal"
+            value: Standard
+          - dps_val: "old"
+            value: "Elderly"
+          - dps_val: "child"
+            value: "Child"
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mask: "0008"
+  - entity: switch
+    name: Buzzer
+    category: config
+    icon: "mdi:access-point"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mask: "0010"
+  - entity: switch
+    name: Soft wind
+    category: config
+    icon: "mdi:weather-windy"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mask: "8000"
+  - entity: switch
+    name: Anti-mildew
+    category: config
+    icon: "mdi:water-off-outline"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mask: "0100"
+  - entity: switch
+    name: Health
+    category: config
+    icon: "mdi:heart-outline"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mask: "0020"
+  - entity: switch
+    translation_key: anti_frost
+    category: config
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mask: "1000"
+  - entity: switch
+    name: Eco mode
+    category: config
+    icon: "mdi:leaf"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mask: "0001"
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 20
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 20
+        name: fault_code
+        type: bitfield
+  - entity: binary_sensor
+    name: Filter
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 131
+        type: boolean
+        name: sensor

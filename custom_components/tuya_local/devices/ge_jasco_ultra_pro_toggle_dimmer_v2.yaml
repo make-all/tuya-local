@@ -1,5 +1,7 @@
 # Example DPS Status
-# {'dps': {'1': False, '2': 1000, '3': 10, '4': 'led', '5': 1000, '6': 0, '14': 'memory', '21': 'relay', '103': 'scene', '106': 'dimmer', '107': '3way_switch'}}
+# {'dps': {'1': False, '2': 1000, '3': 10, '4': 'led', '5': 1000, '6': 0,
+#  '14': 'memory', '21': 'relay', '103': 'scene', '106': 'dimmer',
+#  '107': '3way_switch'}}
 name: GE Jasco Ultra Pro Toggle Dimmer v2
 products:
   - id: genhs8iixkqve7sx
@@ -15,8 +17,6 @@ primary_entity:
       range:
         min: 10
         max: 1000
-      mapping:
-        - scale: 3.92
 secondary_entities:
   - entity: select
     name: Bulb Type
@@ -34,8 +34,7 @@ secondary_entities:
             value: LED
   - entity: number
     category: config
-    name: Countdown
-    icon: "mdi:timer"
+    translation_key: timer
     dps:
       - id: 6
         name: value
@@ -49,18 +48,18 @@ secondary_entities:
             step: 60
   - entity: select
     category: config
-    name: Restore power state
+    translation_key: initial_state
     dps:
       - id: 14
         name: option
         type: string
         mapping:
           - dps_val: memory
-            value: Remember Last Status
+            value: memory
           - dps_val: "on"
-            value: "On"
+            value: "on"
           - dps_val: "off"
-            value: "Off"
+            value: "off"
   - entity: select
     name: Indicator Light
     category: config

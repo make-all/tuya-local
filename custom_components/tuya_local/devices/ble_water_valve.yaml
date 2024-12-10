@@ -1,0 +1,134 @@
+name: Water Timer Valve
+legacy_type: ble_johgee_water_valve
+products:
+  - id: c8800fd30884068f
+    name: Johgee Water Timer Valve
+  - id: bfc513e1f9d4d259a10wzu
+    name: Diivoo Water Timer Valve WT-03
+  - id: nxquc5lb
+    name: SOP10
+  - id: so5ybnw9
+    name: BWC-495.bt Royal Gardineer
+primary_entity:
+  entity: valve
+  class: water
+  dps:
+    - id: 1
+      type: boolean
+      name: valve
+    - id: 13
+      type: string
+      name: weather
+      optional: true
+    - id: 16
+      type: string
+      name: soak_schedule
+      optional: true
+    - id: 17
+      type: string
+      name: irrigation_schedule
+      optional: true
+secondary_entities:
+  - entity: switch
+    icon: "mdi:pipe-valve"
+    deprecated: valve
+    category: config
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 4
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 4
+        type: bitfield
+        optional: true
+        name: fault_code
+  - entity: sensor
+    name: Operation
+    category: diagnostic
+    dps:
+      - id: 12
+        type: string
+        name: sensor
+  - entity: sensor
+    name: Accumulated use time
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: s
+  - entity: sensor
+    name: Last use time
+    category: diagnostic
+    class: duration
+    dps:
+      - id: 15
+        type: integer
+        name: sensor
+        unit: s
+        optional: true
+  - entity: select
+    name: Weather delay
+    translation_key: timer
+    icon: "mdi:weather-cloudy-clock"
+    category: config
+    dps:
+      - id: 10
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "24h"
+            value: "24h"
+          - dps_val: "48h"
+            value: "48h"
+          - dps_val: "72h"
+            value: "72h"
+  - entity: number
+    name: Irrigation time
+    category: config
+    translation_key: timer
+    dps:
+      - id: 11
+        type: integer
+        name: value
+        unit: min
+        optional: true
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: switch
+    name: Smart weather switch
+    icon: "mdi:sun-wireless"
+    category: config
+    dps:
+      - id: 14
+        type: boolean
+        name: switch
+        optional: true

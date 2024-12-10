@@ -3,11 +3,8 @@ from homeassistant.components.fan import (
     DIRECTION_REVERSE,
     FanEntityFeature,
 )
-from homeassistant.components.light import (
-    ATTR_BRIGHTNESS,
-    ATTR_COLOR_TEMP,
-    ColorMode,
-)
+from homeassistant.components.light import ColorMode
+
 from ..const import ARLEC_FAN_LIGHT_PAYLOAD
 from ..helpers import assert_device_properties_set
 from ..mixins.select import BasicSelectTests
@@ -38,10 +35,10 @@ class TestArlecFan(SwitchableTests, BasicSelectTests, TuyaDeviceTestCase):
             TIMER_DPS,
             self.entities["select_timer"],
             {
-                "off": "Off",
-                "2hour": "2 hours",
-                "4hour": "4 hours",
-                "8hour": "8 hours",
+                "off": "cancel",
+                "2hour": "2h",
+                "4hour": "4h",
+                "8hour": "8h",
             },
         )
         self.mark_secondary(["select_timer"])
@@ -53,6 +50,8 @@ class TestArlecFan(SwitchableTests, BasicSelectTests, TuyaDeviceTestCase):
                 FanEntityFeature.DIRECTION
                 | FanEntityFeature.PRESET_MODE
                 | FanEntityFeature.SET_SPEED
+                | FanEntityFeature.TURN_ON
+                | FanEntityFeature.TURN_OFF
             ),
         )
 
@@ -135,11 +134,15 @@ class TestArlecFan(SwitchableTests, BasicSelectTests, TuyaDeviceTestCase):
 
     def test_light_brightness(self):
         self.dps[BRIGHTNESS_DPS] = 50
-        self.assertAlmostEqual(self.light.brightness, 128, 0)
+        self.assertAlmostEqual(self.light.brightness, 129, 0)
 
     def test_light_color_temp(self):
         self.dps[COLORTEMP_DPS] = 70
-        self.assertEqual(self.light.color_temp, 396)
+        self.assertEqual(self.light.color_temp_kelvin, 3840)
+
+    def test_light_color_temp_range(self):
+        self.assertEqual(self.light.min_color_temp_kelvin, 2700)
+        self.assertEqual(self.light.max_color_temp_kelvin, 6500)
 
     async def test_light_async_turn_on(self):
         async with assert_device_properties_set(
@@ -148,5 +151,5 @@ class TestArlecFan(SwitchableTests, BasicSelectTests, TuyaDeviceTestCase):
         ):
             await self.light.async_turn_on(
                 brightness=112,
-                color_temp=396,
+                color_temp_kelvin=3840,
             )

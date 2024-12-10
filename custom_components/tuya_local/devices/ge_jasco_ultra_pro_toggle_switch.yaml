@@ -1,8 +1,11 @@
 # Example DPS Status
 # {'dps': {'1': False, '14': 'memory', '15': 'relay', '106': '3way_switch'}}
-name: GE Jasco Ultra Pro Toggle Switch
+name: Toggle switch
 products:
   - id: 7kvomtxxfqcrbiqq
+    name: GE Jasco Ultra Pro
+  - id: nobhkdmuof1zhgle
+    name: Loratap QCRR400W-WB2S
 primary_entity:
   entity: light
   dps:
@@ -12,18 +15,18 @@ primary_entity:
 secondary_entities:
   - entity: select
     category: config
-    name: Restore power state
+    translation_key: initial_state
     dps:
       - id: 14
         name: option
         type: string
         mapping:
           - dps_val: memory
-            value: Remember Last Status
+            value: memory
           - dps_val: "on"
-            value: "On"
+            value: "on"
           - dps_val: "off"
-            value: "Off"
+            value: "off"
   - entity: select
     name: Indicator Light
     category: config
@@ -38,3 +41,19 @@ secondary_entities:
             value: Indicate switch location
           - dps_val: relay
             value: Indicate switch on/off
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 7
+        type: integer
+        optional: true
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - dps_val: null
+          - scale: 60
+            step: 60

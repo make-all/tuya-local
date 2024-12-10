@@ -1,11 +1,12 @@
 from homeassistant.components.climate.const import (
+    PRESET_AWAY,
+    PRESET_BOOST,
+    PRESET_COMFORT,
     ClimateEntityFeature,
     HVACMode,
-    PRESET_AWAY,
-    PRESET_COMFORT,
-    PRESET_BOOST,
 )
-from homeassistant.const import UnitOfTime, UnitOfTemperature
+from homeassistant.components.sensor import SensorDeviceClass
+from homeassistant.const import UnitOfTemperature, UnitOfTime
 
 from ..const import WETAIR_WCH750_HEATER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -40,8 +41,8 @@ class TestWetairWCH750Heater(
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,
             self.subject,
-            min=10,
-            max=35,
+            min=10.0,
+            max=35.0,
         )
         self.setUpDimmableLight(
             BRIGHTNESS_DPS,
@@ -57,41 +58,44 @@ class TestWetairWCH750Heater(
             TIMER_DPS,
             self.entities.get("select_timer"),
             {
-                "0h": "Off",
-                "1h": "1 hour",
-                "2h": "2 hours",
-                "3h": "3 hours",
-                "4h": "4 hours",
-                "5h": "5 hours",
-                "6h": "6 hours",
-                "7h": "7 hours",
-                "8h": "8 hours",
-                "9h": "9 hours",
-                "10h": "10 hours",
-                "11h": "11 hours",
-                "12h": "12 hours",
-                "13h": "13 hours",
-                "14h": "14 hours",
-                "15h": "15 hours",
-                "16h": "16 hours",
-                "17h": "17 hours",
-                "18h": "18 hours",
-                "19h": "19 hours",
-                "20h": "20 hours",
-                "21h": "21 hours",
-                "22h": "22 hours",
-                "23h": "23 hours",
-                "24h": "24 hours",
+                "0h": "cancel",
+                "1h": "1h",
+                "2h": "2h",
+                "3h": "3h",
+                "4h": "4h",
+                "5h": "5h",
+                "6h": "6h",
+                "7h": "7h",
+                "8h": "8h",
+                "9h": "9h",
+                "10h": "10h",
+                "11h": "11h",
+                "12h": "12h",
+                "13h": "13h",
+                "14h": "14h",
+                "15h": "15h",
+                "16h": "16h",
+                "17h": "17h",
+                "18h": "18h",
+                "19h": "19h",
+                "20h": "20h",
+                "21h": "21h",
+                "22h": "22h",
+                "23h": "23h",
+                "24h": "24h",
             },
         )
         self.setUpBasicSensor(
-            COUNTDOWN_DPS, self.entities.get("sensor_timer"), unit=UnitOfTime.MINUTES
+            COUNTDOWN_DPS,
+            self.entities.get("sensor_time_remaining"),
+            unit=UnitOfTime.MINUTES,
+            device_class=SensorDeviceClass.DURATION,
         )
         self.mark_secondary(
             [
                 "light_display",
                 "select_timer",
-                "sensor_timer",
+                "sensor_time_remaining",
             ]
         )
 
@@ -101,15 +105,10 @@ class TestWetairWCH750Heater(
             (
                 ClimateEntityFeature.TARGET_TEMPERATURE
                 | ClimateEntityFeature.PRESET_MODE
+                | ClimateEntityFeature.TURN_OFF
+                | ClimateEntityFeature.TURN_ON
             ),
         )
-
-    def test_icon(self):
-        self.dps[HVACMODE_DPS] = True
-        self.assertEqual(self.subject.icon, "mdi:radiator")
-
-        self.dps[HVACMODE_DPS] = False
-        self.assertEqual(self.subject.icon, "mdi:radiator-disabled")
 
     def test_temperatre_unit_retrns_device_temperatre_unit(self):
         self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
@@ -204,15 +203,11 @@ class TestWetairWCH750Heater(
             await self.subject.async_set_preset_mode(PRESET_AWAY)
 
     def test_extra_state_attributes(self):
-        self.dps[TIMER_DPS] = "1h"
-        self.dps[COUNTDOWN_DPS] = 20
         self.dps[UNKNOWN21_DPS] = 21
 
         self.assertDictEqual(
             self.subject.extra_state_attributes,
             {
-                "timer": "1h",
-                "countdown": 20,
                 "unknown_21": 21,
             },
         )

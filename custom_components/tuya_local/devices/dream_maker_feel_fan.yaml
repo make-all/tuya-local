@@ -1,0 +1,139 @@
+name: Pedestal Fan
+products:
+  - id: lf3n6whotmyd1d1q
+    name: Dream Maker Feel Fan DM01
+primary_entity:
+  entity: fan
+  translation_only_key: fan_with_presets
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 2
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: "Straight"
+          value: normal
+        - dps_val: "Natural"
+          value: nature
+        - dps_val: "AI"
+          value: smart
+    - id: 3
+      type: integer
+      name: speed
+      range:
+        min: 0
+        max: 100
+    - id: 5
+      type: boolean
+      name: oscillate
+
+secondary_entities:
+  - entity: select
+    name: Oscillation Angle
+    icon: mdi:arrow-oscillating
+    category: config
+    dps:
+      - id: 7
+        name: option
+        type: string
+        mapping:
+          - dps_val: 30
+            value: "30°"
+          - dps_val: 60
+            value: "60°"
+          - dps_val: 90
+            value: "90°"
+          - dps_val: 120
+            value: "120°"
+          - dps_val: 140
+            value: "140°"
+  - entity: switch
+    translation_key: keytone
+    category: config
+    dps:
+      - id: 13
+        type: boolean
+        name: switch
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 14
+        type: boolean
+        name: lock
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 24
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 24
+        name: fault_code
+        type: bitfield
+        optional: true
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 480
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: button
+    name: Rotate left
+    icon: mdi:arrow-left
+    dps:
+      - id: 104
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "LEFT"
+            value: true
+  - entity: button
+    name: Rotate right
+    icon: mdi:arrow-right
+    dps:
+      - id: 104
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: "RIGHT"
+            value: true

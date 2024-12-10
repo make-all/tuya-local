@@ -1,0 +1,656 @@
+{
+    "title": "Tuya Local",
+    "config": {
+        "step": {
+            "user": {
+                "title": "Configura il tuo dispositivo Tuya Local",
+                "description": "I dispositivi possono essere aggiunti manualmente o tramite cloud con l'aiuto dell'app Smart Life.",
+                "data": {
+                    "setup_mode": "Scelta dell'impostazione:"
+                }
+            },
+            "cloud": {
+                "title": "Accedi a Tuya",
+                "description": "Inserisci il tuo codice utente Smart Life o Tuya Smart.\n\nPuoi trovare questo codice nell'app Smart Life o nell'app Tuya Smart nella schermata **Impostazioni** > **Account e sicurezza** e inserisci il codice mostrato nella schermata ",
+                "data": {
+                    "user_code": "Codice utente:"
+                }
+            },
+            "scan": {
+                "title": "Completa il login",
+                "description": "Utilizza l'app Smart Life o l'app Tuya Smart per scansionare il seguente codice QR per completare l'accesso.\n\nContinua al passaggio successivo una volta completato questo passaggio nell'app."
+            },
+            "choose_device": {
+                "title": "Scegli il dispositivo da aggiungere",
+                "description": "Scegli il dispositivo da aggiungere dal primo elenco a discesa. ",
+                "data": {
+                    "device_id": "Scegli dispositivo:",
+                    "hub_id": "Scegli gateway:"
+                }
+            },
+            "search": {
+                "title": "Individuare l'indirizzo IP del dispositivo",
+                "description": "Tuya cloud non fornisce indirizzi IP locali quindi ora dobbiamo cercare nella rete locale per trovare il dispositivo. "
+            },
+            "local": {
+                "title": "Configura il tuo dispositivo Tuya Local",
+                "description": "[Segui queste istruzioni per trovare 'device id' e 'local key'.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "Indirizzo IP o nome host",
+                    "or device_id of gateway": "oppure ID dispositivo del gateway",
+                    "device_id": "Device ID (oppure device_id del gateway per dispositivi connessi tramite gateway)",
+                    "local_key": "Local key",
+                    "protocol_version": "Versione protocollo (prova 'auto' in caso di dubbi)",
+                    "poll_only": "Poll only (prova questa opzione se il dispositivo non funziona correttamente)",
+                    "device_cid": "Sub device node_id o uuid (per dispositivi connessi tramite gateway)"
+                }
+            },
+            "select_type": {
+                "title": "Scegli il tipo dispositivo",
+                "description": "Seleziona il tipo che corrisponde al tuo dispositivo",
+                "data": {
+                    "type": "Tipo dispositivo"
+                }
+            },
+            "choose_entities": {
+                "title": "Dettagli dispositivo",
+                "description": "Inserisci il nome del dispositivo",
+                "data": {
+                    "name": "Nome dispositivo"
+                }
+            }
+        },
+        "abort": {
+            "already_configured": "E' già presente un dispositivo con l'ID inserito.",
+            "not_supported": "Spiacente, il dispositivo non è supportato.",
+            "no_devices": "Impossibile trovare dispositivi non registrati per l'account."
+        },
+        "error": {
+            "connection": "Impossibile connettersi al dispositivo. Può trattarsi di un problema temporaneo, oppure le informazioni fornite potrebbero non essere corrette.",
+            "does_not_need_hub": "Il dispositivo non necessita di un gateway e ne è stato selezionato uno. ",
+            "needs_hub": "Il dispositivo necessita di un gateway e non ne è stato selezionato nessuno."
+        }
+    },
+    "selector": {
+        "setup_mode": {
+            "options": {
+                "cloud": "Configurazione del dispositivo Smart Life assistita da cloud.",
+                "manual": "Fornire manualmente le informazioni sulla connessione del dispositivo."
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "user": {
+                "title": "Configura il tuo dispositivo Tuya Local",
+                "description": "[Segui queste istruzioni per trovare 'device id' e 'local key'.](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "Indirizzo IP o nome host",
+                    "local_key": "Local key",
+                    "protocol_version": "Versione protocollo (prova 'auto' in caso di dubbi)",
+                    "poll_only": "Poll only (prova questa opzione se il dispositivo non funziona correttamente)"
+                }
+            }
+        },
+        "error": {
+            "connection": "Impossibile connettersi al dispositivo. Può trattarsi di un problema temporaneo, oppure le informazioni fornite potrebbero non essere corrette."
+        },
+        "abort": {
+            "not_supported": "Spiacente, il dispositivo non è supportato."
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "Scongelare",
+                "state": {
+                    "off": "Normale",
+                    "on": "Scongelamento"
+                }
+            },
+            "tank_empty": {
+                "name": "Cisterna",
+                "state": {
+                    "off": "OK",
+                    "on": "Bassa"
+                }
+            },
+            "tank_full": {
+                "name": "Cisterna",
+                "state": {
+                    "off": "OK",
+                    "on": "Piena"
+                }
+            },
+            "wake": {
+                "name": "Sveglia",
+                "state": {
+                    "off": "Spento",
+                    "on": "Acceso"
+                }
+            },
+            "casdon_oven_fault": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "e1": "E1: Protezione surriscaldamento camera (superiore a 290°C)",
+                            "e2": "E2: Protezione surriscaldamento vassoio di evaporazione (superiore a 200°C)",
+                            "e3": "E3: Protezione bassa temperatura camera (inferiore a 35°C)",
+                            "e4": "E4: Protezione bassa temperatura vassoio di evaporazione (inferiore a 35°C)",
+                            "e5": "E5: Errore di connessione del sensore (circuito aperto)",
+                            "e6": "E6: Malfunzionamento del sensore (circuito chiuso)",
+                            "e7": "E7: Errore di comunicazione della scheda display",
+                            "e8": "E8: Serbatoio dell'acqua aperto (CN7) o Vassoio di evaporazione asciutto (CN3)"
+                        }
+                    }
+                }
+            }
+        },
+        "button": {
+            "factory_reset": {
+                "name": "Ripristino alle impostazioni di fabbrica"
+            },
+            "filter_reset": {
+                "name": "Ripristino del filtro"
+            }
+        },
+        "climate": {
+            "aircon_extra": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "health": "Salutare",
+                            "medhigh": "Media altezza",
+                            "medlow": "Medio basso",
+                            "natural": "Naturale",
+                            "quiet": "Tranquillo",
+                            "sleep": "Sonno",
+                            "strong": "Forte"
+                        }
+                    },
+                    "swing_mode": {
+                        "state": {
+                            "topmost": "Più in alto",
+                            "top": "In alto",
+                            "middle": "Mezzo",
+                            "down": "In basso",
+                            "downmost": "Il più basso"
+                        }
+                    }
+                }
+            },
+            "thermostat": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "cycle": "Ciclo"
+                        }
+                    },
+                    "preset_mode": {
+                        "state": {
+                            "manual": "Manuale",
+                            "program": "Programma",
+                            "temp_override": "Override temporaneo",
+                            "perm_override": "Override permanente"
+                        }
+                    }
+                }
+            },
+            "combo_floor": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "cool": "Aria fresca",
+                            "fan_only": "Fan",
+                            "heat": "Aria riscaldata",
+                            "floor_cool": "Pavimento fresco",
+                            "floor_heat": "Pavimento riscaldato"
+                        }
+                    }
+                }
+            },
+            "swing_as_powerlevel": {
+                "state_attributes": {
+                    "swing_mode": {
+                        "name": "Livello di riscaldamento",
+                        "state": {
+                            "stop": "Fermare",
+                            "auto": "Auto"
+                        }
+                    }
+                }
+            },
+            "pool_heatpump": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "smart_heat": "Calore intelligente",
+                            "quick_heat": "Calore rapido",
+                            "quiet_heat": "Caldo tranquillo",
+                            "smart_cool": "Raffreddamento intelligente",
+                            "quick_cool": "Raffreddamento rapido",
+                            "quiet_cool": "Raffreddamento tranquillo",
+                            "auto": "Auto",
+                            "smart": "Intelligente",
+                            "quiet": "Tranquillo",
+                            "quick": "Veloce"
+                        }
+                    }
+                }
+            },
+            "heater": {
+                "name": "Stufa"
+            },
+            "thermo_switch": {
+                "state_attributes": {
+                    "hvac_mode": {
+                        "state": {
+                            "fan_only": "Pausa"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "healthy_steam": "Vapore sano",
+                            "fresh_steam": "Vapore fresco",
+                            "high_temp_steam": "Vapore ad alta temperatura",
+                            "stew": "Stufato",
+                            "bake_up_and_down": "Cuocere su e giù",
+                            "bbq": "BBQ",
+                            "bottom_hot_air": "Aria calda inferiore",
+                            "on_strong_roast": "Arrosto forte",
+                            "3d_hot_air": "Aria calda 3D",
+                            "air_fry": "Friggitrice ad aria",
+                            "steam_frying": "Frittura a vapore",
+                            "one_click_bread": "Un clic per il pane",
+                            "quick_heat": "Riscaldamento rapido",
+                            "keep_warm": "Mantenere caldo",
+                            "unfreeze": "Scongelare",
+                            "fermentation": "Fermentazione",
+                            "descale": "Decalcificazione",
+                            "local_recipes": "Ricette locali",
+                            "drying": "Asciugatura",
+                            "custom": "Personalizzato",
+                            "low_steaming": "Basso Steaming",
+                            "medium_steaming": "Steaming medio",
+                            "high_steaming": "Alto Steaming"
+                        }
+                    }
+                }
+            }
+        },
+        "humidifier": {
+            "dehumidifier": {
+                "state_attributes": {
+                    "mode": {
+                        "state": {
+                            "laundry": "Biancheria asciutta",
+                            "purify": "Puricare"
+                        }
+                    }
+                }
+            }
+        },
+        "fan": {
+            "aroma_diffuser": {
+                "name": "Diffusore di aroma",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "low": "Basso",
+                            "medium": "Medio",
+                            "high": "Alto",
+                            "continuous": "Continuo",
+                            "intermittent": "Intermittente"
+                        }
+                    }
+                }
+            },
+            "fan_with_presets": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "normal": "Normale",
+                            "nature": "Naturale",
+                            "sleep": "Sonno",
+                            "baby": "Bambino",
+                            "fresh": "Fresco",
+                            "smart": "Inteligente",
+                            "strong": "Forte",
+                            "high": "Alto",
+                            "medium": "Medio",
+                            "low": "Basso",
+                            "displayoff": "Display spento",
+                            "off": "Spento"
+                        }
+                    }
+                }
+            },
+            "ventilation": {
+                "name": "Ventilazione",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "fresh": "Aria fresca",
+                            "circulate": "Circolare",
+                            "sleep": "Sonno",
+                            "auto": "Auto",
+                            "eco": "Eco",
+                            "anti-condensation": "Anticondensa"
+                        }
+                    }
+                }
+            }
+        },
+        "light": {
+            "backlight": {
+                "name": "Retroilluminazione"
+            },
+            "display": {
+                "name": "Schermo"
+            },
+            "embers": {
+                "name": "Brace"
+            },
+            "flame": {
+                "name": "Fiamma"
+            },
+            "indicator": {
+                "name": "Indicatore"
+            },
+            "laser": {
+                "name": "Laser"
+            },
+            "logs": {
+                "name": "Ceppo"
+            },
+            "nightlight": {
+                "name": "Luce notturna"
+            }
+        },
+        "lock": {
+            "child_lock": {
+                "name": "Blocco bambini"
+            }
+        },
+        "number": {
+            "timer": {
+                "name": "Timer"
+            },
+            "timer_x": {
+                "name": "Timer {x}"
+            }
+        },
+        "select": {
+            "initial_state": {
+                "name": "Stato iniziale",
+                "state": {
+                    "off": "Spento",
+                    "on": "Acceso",
+                    "memory": "Memoria"
+                }
+            },
+            "language": {
+                "name": "Lingua",
+                "state": {
+                    "chinese": "中文",
+                    "chinese_traditional": "中文(繁體)",
+                    "english": "English",
+                    "french": "Français",
+                    "german": "Deutsch",
+                    "italian": "Italiano",
+                    "japanese": "日本語",
+                    "korean": "한국어",
+                    "latin": "Lingua Latina",
+                    "portuguese": "Português",
+                    "russian": "Русский",
+                    "spanish": "Español",
+                    "turkish": "Türkçe"
+                }
+            },
+            "mopping": {
+                "name": "Pulizia",
+                "state": {
+                    "off": "Spento",
+                    "auto": "Auto",
+                    "low": "Basso",
+                    "medium": "Medio",
+                    "high": "Alto"
+                }
+            },
+            "recipe": {
+                "name": "Ricetta",
+                "state": {
+                    "pizza": "Pizza",
+                    "fries": "Patatine fritte",
+                    "chicken": "Pollo",
+                    "shrimp": "Gamberetti",
+                    "fish": "Pesce",
+                    "chicken_drumsticks": "Cosce di pollo",
+                    "vegetables": "Verdure",
+                    "desserts": "Dolci",
+                    "none": "Nessuno",
+                    "chicken_wings": "Ali di pollo",
+                    "steak": "Bistecca",
+                    "onion_rings": "Anelli di cipolla",
+                    "bacon": "Pancetta",
+                    "cake": "Torta",
+                    "bread": "Pane",
+                    "toast": "Tostare",
+                    "custom": "Personalizzato",
+                    "cloud_recipe": "Ricetta cloud",
+                    "default": "Predefinito",
+                    "keep_warm": "Mantenere caldo",
+                    "preheat": "Preriscaldare"
+                }
+            },
+            "timer": {
+                "name": "Timer",
+                "state": {
+                    "cancel": "Annulla",
+                    "10m": "10 minuti",
+                    "30m": "30 minuti",
+                    "1h": "1 ora",
+                    "1h30m": "1 ora 30 minuti",
+                    "2h": "2 ore",
+                    "2h30m": "2 ore 30 minuti",
+                    "3h": "3 ore",
+                    "3h30m": "3 ore 30 minuti",
+                    "4h": "4 ore",
+                    "4h30m": "4 ore 30 minuti",
+                    "5h": "5 ore",
+                    "5h30m": "5 ore 30 minuti",
+                    "6h": "6 ore",
+                    "6h30m": "6 ore 30 minuti",
+                    "7h": "7 ore",
+                    "7h30m": "7 ore 30 minuti",
+                    "8h": "8 ore",
+                    "8h30m": "8 ore 30 minuti",
+                    "9h": "9 ore",
+                    "9h30m": "9 ore 30 minuti",
+                    "10h": "10 ore",
+                    "11h": "11 ore",
+                    "12h": "12 ore",
+                    "13h": "13 ore",
+                    "14h": "14 ore",
+                    "15h": "15 ore",
+                    "16h": "16 ore",
+                    "17h": "17 ore",
+                    "18h": "18 ore",
+                    "19h": "19 ore",
+                    "20h": "20 ore",
+                    "21h": "21 ore",
+                    "22h": "22 ore",
+                    "23h": "23 ore",
+                    "24h": "24 ore",
+                    "36h": "36 ore",
+                    "48h": "48 ore",
+                    "72h": "72 ore"
+                }
+            },
+            "temperature_unit": {
+                "name": "Unità di temperatura",
+                "state": {
+                    "celsius": "Centigrado",
+                    "fahrenheit": "Fahrenheit"
+                }
+            },
+            "oven_built_in_recipe": {
+                "name": "Ricetta incorporata",
+                "state": {
+                    "none": "Nessuno",
+                    "steamed_egg_with_okra": "Uovo al vapore con okra",
+                    "steamed_sea_bass": "Branzino al vapore",
+                    "steamed_prawns": "Gamberi al vapore",
+                    "handmade_steamed_bread": "Pane al vapore fatto a mano",
+                    "fan_steamed_baby_vegetables": "Verdure per bambini al vapore con ventilatore",
+                    "braised_pork": "Maiale brasato",
+                    "snow_fungus_and_bird_s_nest": "Funghi della neve e nido d'uccello",
+                    "crab_pot": "Vaso di granchio",
+                    "potato_ribs": "Costine di patate",
+                    "coconut_chicken_soup": "Zuppa di pollo al cocco",
+                    "snack_platter": "Piatto di snack",
+                    "chicken_skewers": "Spiedini di pollo",
+                    "roasted_pork_knuckle": "Zampa di maiale arrosto",
+                    "dried_lemon": "Limone secco",
+                    "pork_jerky": "Carne di maiale essiccata",
+                    "crispy_hairtail": "Coda di capelli croccante",
+                    "spicy_grilled_fish": "Pesce alla griglia piccante",
+                    "roasted_sweet_potatoes": "Patate dolci arrosto",
+                    "roasted_chicken_wings": "Ali di pollo arrosto",
+                    "cumin_lamb_chops": "Costine di agnello al cumino",
+                    "honey_grilled_chicken": "Pollo alla griglia al miele",
+                    "garlic_eggplant": "Melanzane all'aglio",
+                    "portuguese_egg_tart": "Tartaruga portoghese",
+                    "creme_brulee": "Creme brulee",
+                    "cocoa_chips": "Coccoa chips",
+                    "butter_cookies": "Biscotti al burro",
+                    "chiffon_cake": "Torta chiffon",
+                    "puff_pastry": "Pasta sfoglia",
+                    "red_bean_bread": "Pane ai fagioli rossi",
+                    "milk_toast": "Pane al latte"
+                }
+            }
+        },
+        "sensor": {
+            "status": {
+                "name": "Stato",
+                "state": {
+                    "available": "Disponibile",
+                    "plugged_in": "Inserito",
+                    "fault_unplugged": "Guasto (non inserito)",
+                    "charging": "Caricamento",
+                    "waiting": "In attesa",
+                    "charged": "Caricato",
+                    "fault": "Guasto",
+                    "paused": "In pausa",
+                    "waiting_for_authorization": "In attesa di autorizzazione",
+                    "standby": "Standby",
+                    "heating": "Riscaldamento",
+                    "cooling": "Raffreddamento",
+                    "keeping_warm": "Mantenere caldo",
+                    "no_water": "Nessuna acqua",
+                    "boiling": "Bollitura",
+                    "reserve_only": "Riserva solo",
+                    "unknown": "Sconosciuto",
+                    "idle": "Inattivo",
+                    "auto": "Auto",
+                    "manual": "Manuale",
+                    "rain_delay": "Ritardo pioggia",
+                    "off": "Spento",
+                    "cooking": "Cottura",
+                    "done": "Fatto",
+                    "door_open": "Porta aperta",
+                    "setting": "Impostazione",
+                    "pre_heating": "Preriscaldamento",
+                    "scheduled": "Pianificato",
+                    "at_temperature": "A temperatura",
+                    "done_stage_1": "Fatto stadio 1",
+                    "done_stage_2": "Fatto stadio 2",
+                    "done_stage_3": "Fatto stadio 3",
+                    "done_stage_4": "Fatto stadio 4",
+                    "done_stage_5": "Fatto stadio 5",
+                    "done_stage_6": "Fatto stadio 6",
+                    "done_stage_7": "Fatto stadio 7",
+                    "done_stage_8": "Fatto stadio 8",
+                    "done_stage_9": "Fatto stadio 9",
+                    "done_stage_10": "Fatto stadio 10",
+                    "no_food": "Nessun cibo",
+                    "jammed": "Inceppato",
+                    "blocked": "Bloccato",
+                    "feeding": "Alimentazione",
+                    "feeding_complete": "Alimentazione completata",
+                    "caking": "Agglomerazione",
+                    "cleaning": "Pulizia",
+                    "sleep": "Sonno",
+                    "sterilizing": "Sterilizzazione",
+                    "deodorizing": "Deodorizzazione",
+                    "occupied": "Occupato",
+                    "normal": "Normale",
+                    "low": "Basso",
+                    "high": "Alto",
+                    "unwashed": "Non lavato",
+                    "pre_washing": "Pre-lavaggio",
+                    "washing": "Lavaggio",
+                    "rinsing": "Risciacquo",
+                    "drying": "Asciugatura",
+                    "air_purging": "Purificazione dell'aria",
+                    "anti_freeze": "Antigelo",
+                    "close": "Chiudi",
+                    "monitor": "Monitor",
+                    "working": "Lavoro",
+                    "warning": "Attenzione"
+                }
+            },
+            "time_remaining": {
+                "name": "Tempo rimanente"
+            },
+            "cooking_status": {
+                "name": "Stato di cottura",
+                "state": {
+                    "wait": "In attesa di cucinare",
+                    "reservation": "In prenotazione",
+                    "cooking": "Cottura in corso",
+                    "cancel": "Cottura annullata",
+                    "done": "Cottura completata",
+                    "pause": "Cottura in pausa"
+                }
+            },
+            "energy_produced": {
+                "name": "Energia prodotta"
+            },
+            "energy_consumed": {
+                "name": "Energia consumata"
+            },
+            "energy_produced_x": {
+                "name": "Energia prodotta {x}"
+            },
+            "energy_consumed_x": {
+                "name": "Energia consumata {x}"
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "Antigelo"
+            },
+            "evaporator_cleaning": {
+                "name": "Pulizia evaporatore"
+            },
+            "ionizer": {
+                "name": "Ionizzatore"
+            },
+            "keytone": {
+                "name": "tono dei tasti"
+            },
+            "sleep": {
+                "name": "Sonno"
+            },
+            "uv_sterilization": {
+                "name": "Sterilizzazione UV"
+            }
+        }
+    }
+}

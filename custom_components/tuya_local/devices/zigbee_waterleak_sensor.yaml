@@ -1,0 +1,23 @@
+name: Water leak sensor
+products:
+  - id: upgcbody
+    name: Zigbee WL-898WZ
+primary_entity:
+  entity: binary_sensor
+  class: moisture
+  category: diagnostic
+  dps:
+    - id: 1
+      type: boolean
+      name: sensor
+      optional: true
+secondary_entities:
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement

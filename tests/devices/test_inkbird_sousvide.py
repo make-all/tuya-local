@@ -4,7 +4,8 @@ from homeassistant.components.climate.const import (
     HVACAction,
     HVACMode,
 )
-from homeassistant.const import UnitOfTime, UnitOfTemperature
+from homeassistant.components.sensor import SensorDeviceClass
+from homeassistant.const import UnitOfTemperature, UnitOfTime
 
 from ..const import INKBIRD_SOUSVIDE_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -72,7 +73,7 @@ class TestInkbirdSousVideCooker(
         )
         self.setUpBasicBinarySensor(
             ERROR_DPS,
-            self.entities.get("binary_sensor_fault"),
+            self.entities.get("binary_sensor_problem"),
             device_class=BinarySensorDeviceClass.PROBLEM,
             testdata=(1, 0),
         )
@@ -80,30 +81,33 @@ class TestInkbirdSousVideCooker(
             UNIT_DPS,
             self.entities.get("select_temperature_unit"),
             {
-                False: "Fahrenheit",
-                True: "Celsius",
+                False: "fahrenheit",
+                True: "celsius",
             },
         )
         self.setUpBasicSensor(
             REMAIN_DPS,
-            self.entities.get("sensor_remaining_time"),
+            self.entities.get("sensor_time_remaining"),
             unit=UnitOfTime.MINUTES,
+            device_class=SensorDeviceClass.DURATION,
         )
         self.mark_secondary(
             [
                 "number_cooking_time",
                 "number_recipe",
                 "number_temperature_calibration",
-                "binary_sensor_fault",
+                "binary_sensor_problem",
                 "select_temperature_unit",
-                "sensor_remaining_time",
+                "sensor_time_remaining",
             ]
         )
 
     def test_supported_features(self):
         self.assertEqual(
             self.subject.supported_features,
-            ClimateEntityFeature.TARGET_TEMPERATURE,
+            ClimateEntityFeature.TARGET_TEMPERATURE
+            | ClimateEntityFeature.TURN_OFF
+            | ClimateEntityFeature.TURN_ON,
         )
 
     def test_icon(self):
@@ -120,10 +124,7 @@ class TestInkbirdSousVideCooker(
         self.assertEqual(self.subject.icon, "mdi:alert")
 
     def test_temperature_unit(self):
-        self.dps[UNIT_DPS] = True
         self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
-        self.dps[UNIT_DPS] = False
-        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.FAHRENHEIT)
 
     def test_current_temperature(self):
         self.dps[CURRENTTEMP_DPS] = 522
@@ -140,6 +141,7 @@ class TestInkbirdSousVideCooker(
         self.assertCountEqual(self.subject.hvac_modes, [HVACMode.OFF, HVACMode.HEAT])
 
     def test_hvac_action(self):
+        self.dps[HVACMODE_DPS] = True
         self.dps[HVACACTION_DPS] = "stop"
         self.assertEqual(self.subject.hvac_action, HVACAction.OFF)
 
@@ -148,6 +150,9 @@ class TestInkbirdSousVideCooker(
 
         self.dps[HVACACTION_DPS] = "complete"
         self.assertEqual(self.subject.hvac_action, HVACAction.IDLE)
+
+        self.dps[HVACMODE_DPS] = False
+        self.assertEqual(self.subject.hvac_action, HVACAction.OFF)
 
     async def test_turn_on(self):
         async with assert_device_properties_set(
@@ -161,16 +166,9 @@ class TestInkbirdSousVideCooker(
         ):
             await self.subject.async_set_hvac_mode(HVACMode.OFF)
 
-    def test_extra_state_attributes(self):
-        # There are currently no known error states; update this as
-        # they are discovered
+    def test_basic_bsensor_extra_state_attributes(self):
         self.dps[ERROR_DPS] = 2
         self.assertDictEqual(
-            self.subject.extra_state_attributes,
-            {"fault": 2},
-        )
-        self.dps[ERROR_DPS] = "0"
-        self.assertDictEqual(
-            self.subject.extra_state_attributes,
-            {"fault": 0},
+            self.basicBSensor.extra_state_attributes,
+            {"fault_code": 2},
         )

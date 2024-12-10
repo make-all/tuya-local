@@ -1,29 +1,28 @@
 # Home Assistant Tuya Local component - nero
 
-[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=make-all_tuya-local&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=make-all_tuya-local) [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=make-all_tuya-local&metric=security_rating)](https://sonarcloud.io/dashboard?id=make-all_tuya-local) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=make-all_tuya-local&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=make-all_tuya-local) [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=make-all_tuya-local&metric=ncloc)](https://sonarcloud.io/dashboard?id=make-all_tuya-local) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=make-all_tuya-local&metric=coverage)](https://sonarcloud.io/dashboard?id=make-all_tuya-local)
-
 Please report any [issues](https://github.com/make-all/tuya-local/issues) and feel free to raise [pull requests](https://github.com/make-all/tuya-local/pulls).
 [Many others](https://github.com/make-all/tuya-local/blob/main/ACKNOWLEDGEMENTS.md) have contributed their help already.
 
 [![BuyMeCoffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/jasonrumney)
 
-This is a Home Assistant integration to support Wi-fi devices running Tuya
-firmware without going via the Tuya cloud.  Currently only WiFi
-devices are supported, Tuya also makes Zigbee, BLE and other devices
-that connect to WiFi using a gateway, such devices are not yet
-supported.
+This is a Home Assistant integration to support devices running Tuya
+firmware without going via the Tuya cloud.  Devices are supported
+over WiFi, other technologies need a Tuya gateway device (Zigbee
+devices will work with other Zigbee gateways, but not via this
+integration).
 
-Note that most Tuya devices seem to support only one local connection.
-If you have connection issues when using this integration, ensure that other
-integrations offering local Tuya connections are not configured to use the
-same device, mobile applications on devices on the local network are closed,
-and no other software is trying to connect locally to your Tuya devices.
+Note that many Tuya devices seem to support only one local connection.
+If you have connection issues when using this integration, ensure that
+other integrations offering local Tuya connections are not configured
+to use the same device, mobile applications on devices on the local
+network are closed, and no other software is trying to connect locally
+to your Tuya devices.
 
 Using this integration does not stop your devices from sending status
 to the Tuya cloud, so this should not be seen as a security measure,
 rather it improves speed and reliability by using local connections,
 and may unlock some features of your device, or even unlock whole
-devices, that are not supported by the Tuya cloud API. 
+devices, that are not supported by the Tuya cloud API.
 
 A similar but unrelated integration is
 [rospogrigio/localtuya](https://github.com/rospogrigio/localtuya/), if
@@ -39,19 +38,48 @@ Note that devices sometimes get firmware upgrades, or incompatible
 versions are sold under the same model name, so it is possible that
 the device will not work despite being listed.
 
+Battery powered devices such as door and window sensors, smoke alarms
+etc which do not use a hub will be impossible to support locally, due
+to the power management that they need to do to get acceptable battery
+life.
+
+Hubs are currently supported, but with limitations.  Each connection
+to a sub device uses a separate network connection, but like other
+Tuya devices, hubs are usually limited in the number of connections
+they can handle, with typical limits being 1 or 3, depending on the specific
+Tuya module they are using.  This severely limits the number of sub devices
+that can be connected through this integration.
+
+Sub devices should be added using the `device_id`, `address` and `local_key`
+of the hub they are attached to, and the `node_id` of the sub-device. If there
+is no `node_id` listed, try using the `uuid` instead.
+
+Tuya Zigbee devices are usually standard zigbee devices, so as an
+alternative to this integration with a Tuya hub, you can use a
+supported Zigbee USB stick or Wifi hub with
+[ZHA](https://www.home-assistant.io/integrations/zha/#compatible-hardware)
+or [Zigbee2MQTT](https://www.zigbee2mqtt.io/guide/adapters/).
+
+Tuya Bluetooth devices can be supported directly by the
+[tuya_ble](https://github.com/PlusPlus-ua/ha_tuya_ble/) integration.
+
+Tuya IR hubs that expose general IR remotes as sub devices usually
+expose them as one way devices (send only).  Due to the way this
+integration does device detection based on the dps returned by the
+device, it is not currently able to detect such devices at all.  Some
+specialised IR hubs for air conditioner remote controls do work, as
+they try to emulate a fully smart air conditioner using internal memory
+of what settings are currently set, and internal temperature and humidity
+sensors.
+
 A list of currently supported devices can be found in the [DEVICES.md](https://github.com/make-all/tuya-local/blob/main/DEVICES.md) file.
 
-If your device is not listed, you can find the information required to add a
-configuration for it in the following locations:
+Documentation on building a device configuration file is in [/custom_components/tuya_local/devices/README.md](https://github.com/make-all/tuya-local/blob/main/custom_components/tuya_local/devices/README.md)
 
-1. When attempting to add the device, if it is not supported, you will either get a message saying the device cannot be recognised at all, or you will be offered a list of devices (maybe a list of length 1) that are partial matches, often simple switch is among them.  You can cancel the process at this point, and look in the Home Assistant log - there should be a message there containing the current data points (dps) returned by the device.
+If your device is not listed, you can find the information required to add a configuration for it in the following locations:
 
-2. If you have signed up for iot.tuya.com to get your local key, you should also have access to the API Explorer under "Cloud".  One of the functions under the "Smart Home Device System" / "Device Control" section - the last "Get Device Specification Attribute" function listed, returns the dp_id in addition to range information that is needed for integer and enum data types.
-
-3. By following the method described at the link below, you can find information for all the data points supported by your device, including those not listed by the API explorer method above and those that are only returned under specific conditions. Ignore the requirement for a Tuya Zigbee gateway, that is for Zigbee devices, and this integration does not currently support devices connected via a gateway, but the non-Zigbee/gateway specific parts of the procedure apply also to WiFi devices.
-
-https://www.zigbee2mqtt.io/advanced/support-new-devices/03_find_tuya_data_points.html
-
+1. When attempting to add the device, if it is not supported, you will either get a message saying the device cannot be recognised at all, or you will be offered a list of devices that are partial matches. You can cancel the process at this point, and look in the Home Assistant log - there should be a message there containing the current data points (dps) returned by the device.
+2. If you have signed up for [iot.tuya.com](https://iot.tuya.com/) to get your local key, you should also have access to the API Explorer under "Cloud". Under "Device Control" there is a function called "Query Things Data Model", which returns the dp_id in addition to range information that is needed for integer and enum data types.
 
 If you file an issue to request support for a new device, please include the following information:
 
@@ -67,9 +95,9 @@ If you submit a pull request, please understand that the config file naming and 
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg?style=for-the-badge)](https://github.com/hacs/integration)
 
-Installation is via the [Home Assistant Community Store
+Installation is easiest via the [Home Assistant Community Store
 (HACS)](https://hacs.xyz/), which is the best place to get third-party
-integrations for Home Assistant. Once you have HACS set up, simply click the button below or 
+integrations for Home Assistant. Once you have HACS set up, simply click the button below (requires My Homeassistant configured) or
 follow the [instructions for adding a custom
 repository](https://hacs.xyz/docs/faq/custom_repositories) and then
 the integration will be available to install like any other.
@@ -78,15 +106,26 @@ the integration will be available to install like any other.
 
 ## Configuration
 
-You can easily configure your devices using the Integrations configuration UI.
+After installing, you can easily configure your devices using the Integrations configuration UI.  Go to Settings / Devices & Services and press the Add Integration button, or click the shortcut button below (requires My Homeassistant configured).
 
 [![Add Integration to your Home Assistant
 instance.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=tuya_local)
 
+### Choose your configuration path
+
+There are two options for configuring a device:
+- You can login to Tuya cloud with the Smart Life app and retrieve a list of devices and the necessary local connection data.
+- You can provide all the necessary information manually [as per the instructions below](#finding-your-device-id-and-local-key).
+
+The first choice essentially automates all the manual steps of the second and without needing to create a Tuya IOT developer account. This is especially important now that Tuya has started time limiting access to a key data access capability in the IOT developer portal to only a month with the ability to refresh the trial of that only every 6 months.
+
+The cloud assisted choice will guide you through authenticating, choosing a device to add from the list of devices associated with your Smart Life account, locate the device on your local subnet and then drop you into [Stage One](#stage-one) with fully populated data necessary to move forward to [Stage Two](#stage-two).
+
+Then Smart Life authentication token expires after a small number of hours and so is not saved by the integration. But, as long as you don't restart Home Assistant, this allows you to add multiple devices one after another only needing to authenticate once for the first one.
+
 ### Stage One
 
-The first stage of configuration is to provide the information needed to
-connect to the device.
+The first stage of configuration is to provide the information needed to connect to the device.
 
 You will need to provide your device's IP address or hostname, device
 ID and local key; the last two can be found using [the instructions
@@ -135,7 +174,9 @@ at least a partial match to the data returned by the device.
 Select from the available options.
 
 If you pick the wrong type, you will need to delete the device and set
-it up again.
+it up again. This is because different types of devices create different
+entities, so changing the device type without deleting everything is
+not easy.
 
 ### Stage Three
 
@@ -147,35 +188,18 @@ the name to make it easier to distinguish them.
 #### name
 
 &nbsp;&nbsp;&nbsp;&nbsp;_(string) (Required)_ Any unique name for the
-device.  This will be used as the base for the entitiy names in Home
+device.  This will be used as the base for the entity names in Home
 Assistant.  Although Home Assistant allows you to change the name
 later, it will only change the name used in the UI, not the name of
 the entities.
 
-#### (entities)
-
-&nbsp;&nbsp;&nbsp;&nbsp;_(boolean) (Optional)_ Additional options
-may be available for deprecated entities exposed by the device.
-They will be named for the platform type and an optional name for
-the entity as a suffix (eg `climate`, `humidifier`, `lock_child_lock`)
-Setting them to True will expose the entity in Home Assistant.
-
-It is strongly recommended that you do not enable deprecated entities when
-setting up a new device.  They are only retained for users who set up the
-device before support was added for the actual entity matching the device,
-or when a function was misunderstood, and will not be retained forever.
-
-As of 0.18.0, there are no longer any deprecated entities, but they
-may be reintroduced in future if better representations of existing
-devices emerge again.
-
-## Offline operation gotchas
+## Offline operation issues
 
 Many Tuya devices will stop responding if unable to connect to the
 Tuya servers for an extended period.  Reportedly, some devices act
 better offline if DNS as well as TCP connections is blocked.
 
-## General gotchas
+## General issues
 
 Many Tuya devices do not handle multiple commands sent in quick
 succession.  Some will reboot, possibly changing state in the process,
@@ -201,7 +225,11 @@ time, so you may need to experiment with your automations to see
 whether a single command or multiple commands (with delays, see above)
 work best with your devices.
 
-## Heater gotchas
+When adding devices, some devices that are detected as protocol version
+3.3 at first require version 3.2 to work correctly. Either they cannot be
+detected, or work as read-only if the pprotocol is set to 3.3.
+
+## Heater issues
 
 Goldair GPPH heaters have individual target temperatures for their
 Comfort and Eco modes, whereas Home Assistant only supports a single
@@ -234,7 +262,7 @@ behaviour, which you may need to compensate for.  From observation,
 GPPH heaters allow the temperature to reach 3 degrees higher than the
 set temperature before turning off, and 1 degree lower before turning
 on again.  Kogan Heaters on the other hand turn off when the
-temperature reaches 1 degree over the targetin LOW mode, and turn on
+temperature reaches 1 degree over the target in LOW mode, and turn on
 again 3 degrees below the target.  To make these heaters act the same
 in LOW power mode, you need to set the Kogan thermostat 2 degrees
 higher than the GPPH thermostat.  In HIGH power mode however, they
@@ -244,7 +272,7 @@ The Inkbird thermostat switch does not seem to work for setting
 anything.  If you can figure out how to make setting temperatures and
 presets work, please leave feedback in Issue #19.
 
-## Fan gotchas
+## Fan issues
 
 Reportedly, Goldair fans can be a bit flaky. If they become
 unresponsive, give them about 60 seconds to wake up again.
@@ -254,7 +282,7 @@ work. If you can figure out how to set the speed through the Tuya
 protocol for these devices, please leave feedback on Issue #22.
 
 
-## Smart Switch gotchas
+## Smart Switch issues
 
 It has been observed after a while that the current and
 power readings from the switch were returning 0 when there was clearly
@@ -273,14 +301,19 @@ the internet, otherwise an integration sensor based on the Power sensor
 will need to be set up on the Home Assistant side, and the Energy sensor
 ignored.
 
-## Kogan Kettle gotchas
+For the amount of consumed energy, it may be reasonable to use an additional
+helper - the [Riemann integral](https://www.home-assistant.io/integrations/integration/).
+Select `power` of switch as the sensor for it. The result of the integral will be
+calculated in `(k/M/G/T)W*h` and will correspond to the consumed energy.
+
+## Kogan Kettle issues
 
 Although these look like simple devices, their behaviour is not
-consistant so they are difficult to detect.  Sometimes they are
+consistent so they are difficult to detect.  Sometimes they are
 misdetected as a simple switch, other times they only output the
 temperature sensor so are not detected at all.
 
-## Beca thermostat gotchas
+## Beca thermostat issues
 
 Some of these devices support switching between Celcius and Fahrenheit
 on the control panel, but do not provide any information over the Tuya
@@ -295,7 +328,7 @@ config for the temperature units you use.  If you change the units on the
 device control panel, you will need to delete the device from Home Assistant
 and set it up again.
 
-## Saswell C16 thermostat gotchas
+## Saswell C16 thermostat issues
 
 These support configuration as either heating or cooling controllers, but
 only have one output.  The HVAC mode is provided as an indicator of which
@@ -304,6 +337,8 @@ switch the thermostat to the wrong mode from HA.
 
 
 ## Finding your device ID and local key
+
+### Tuya IoT developer portal
 
 The easiest way to find your local key is with the Tuya Developer portal.
 If you have previously configured the built in Tuya cloud integration, or
@@ -321,9 +356,9 @@ If you don't see them, check your server is set correctly at the top
 of the page.  Make a note of the Device IDs for all your devices, then
 select Cloud on the side bar again and go to the API Explorer.
 
-Under General Device Capabilities / General Devices Management, select the
-"Get Device Information" function, and enter your Device ID.  In the results
-you should see your local_key.
+Under "Devices Management", select the "Query Device Details in Bulk"
+function, and enter your Device IDs, separated by commas.
+In the results you should see your local_key.
 
 The IP address you should be able to get from your router.  Using a
 command line Tuya client like tuyaapi/cli or
@@ -331,8 +366,52 @@ command line Tuya client like tuyaapi/cli or
 to scan your network for Tuya devices to find the IP address and also automate
 the above process of connecting to the portal and getting the local key.
 
+### Finding device ids and local keys with tinytuya
+
+You can use this component's underlying library [tinytuya](https://github.com/jasonacox/tinytuya) to scan for devices in your network and find the required information about them. In particular, you need to use this procedure to obtain the `node_id` value required to connect to hub-dependent devices.
+
+Before running tinytuya's wizard you need to gather your API credentials so head to [Tuya's Developer Portal](https://iot.tuya.com) -> Cloud -> Development -> Open project and make a note of:
+
+- Access ID/Client ID
+- Access Secret/Client Secret
+
+Next, go to the "Devices" tab and note your device id (any of them will work). Also note your region (eg. "Central Europe Data Center") in the combobox at the top right of the page.
+
+Then, open a terminal in your HA machine and run:
+
+```sh
+python -m tinytuya wizard
+```
+
+Answer the following:
+
+- Enter API Key from tuya.com: your "Access ID/Client ID"
+- Enter API Secret from tuya.com: your "Access Secret/Client Secret"
+- Enter any Device ID currently registered in Tuya App (used to pull full list) or 'scan' to scan for one: your device id
+- Enter Your Region: your datacenter's region
+- Download DP Name mappings? (Y/n): Y
+- Poll local devices? (Y/n): Y
+
+If your device supports local connections and is in the same network as your HA instance this should find it and report its IP address.
+
+In the `devices.json` file you will everything you need to add your device:
+
+- "id": the device id
+- "key": the local key
+- "node_id": the sub-device id. You need this for hub-dependent devices
+- "mapping": in the unfortunate case your device is not [yet supported](DEVICES.md), this key contains a description of all the datapoints reported by the device, type and expected values. You are more than welcome to create a new device specification following [the guidelines](custom_components/tuya_local/devices/README.md) and submitting a PR.
+
+## Connecting to devices via hubs
+
+If your device connects via a hub (eg. battery powered water timers) you have to provide the following info when adding a new device:
+
+- Device id (uuid): this is the **hub's** device id
+- IP address or hostname: the **hub's** IP address or hostname
+- Local key: the **hub's** local key
+- Sub device id: the **actual device you want to control's** `node_id`. Note this `node_id` differs from the device id, you can find it with tinytuya as described below.
+
 ## Next steps
 
-1. This component is mosty unit-tested thanks to the upstream project, but there are a few more to complete. Feel free to use existing specs as inspiration and the Sonar Cloud analysis to see where the gaps are.
+1. This component is mostly unit-tested thanks to the upstream project, but there are a few more to complete. Feel free to use existing specs as inspiration and the Sonar Cloud analysis to see where the gaps are.
 2. Once unit tests are complete, the next task is to complete the Home Assistant quality checklist before considering submission to the HA team for inclusion in standard installations.
 3. Discovery seems possible with the new tinytuya library, though the steps to get a local key will most likely remain manual.  Discovery also returns a productKey, which might help make the device detection more reliable where different devices use the same dps mapping but different names for the presets for example.

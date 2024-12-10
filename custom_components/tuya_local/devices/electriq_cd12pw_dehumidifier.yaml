@@ -18,15 +18,14 @@ primary_entity:
       type: string
       mapping:
         - dps_val: "auto"
-          value: "Auto"
+          value: auto
         - dps_val: "fan"
-          value: "Air clean"
+          value: purify
           icon: "mdi:air-purifier"
           icon_priority: 2
     - id: 3
       type: integer
       name: current_humidity
-      readonly: true
     - id: 4
       type: integer
       name: humidity
@@ -38,37 +37,19 @@ primary_entity:
     - id: 103
       type: integer
       name: current_temperature
-      readonly: true
 secondary_entities:
   - entity: light
-    name: Display
+    translation_key: display
     category: config
     dps:
       - id: 101
         type: boolean
         name: switch
-        mapping:
-          - dps_val: true
-            icon: "mdi:led-on"
-          - dps_val: false
-            icon: "mdi:led-off"
-  - entity: sensor
-    class: humidity
-    name: Current humidity
-    dps:
-      - id: 3
-        type: integer
-        name: sensor
-        unit: "%"
-        class: measurement
-        readonly: true
   - entity: sensor
     class: temperature
-    name: Current temperature
     dps:
       - id: 103
         type: integer
         name: sensor
         unit: C
         class: measurement
-        readonly: true

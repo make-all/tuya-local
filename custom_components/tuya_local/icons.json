@@ -1,0 +1,276 @@
+{
+    "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "default": "mdi:circle-outline",
+                "state": {
+                    "on": "mdi:snowflake-melt"
+                }
+            },
+            "tank_empty": {
+                "default": "mdi:water",
+                "state": {
+                    "on": "mdi:water-alert-outline"
+                }
+            },
+            "tank_full": {
+                "default": "mdi:water-outline",
+                "state": {
+                    "on": "mdi:water-alert"
+                }
+            },
+            "wake": {
+                "default": "mdi:weather-sunny",
+                "state": {
+                    "off": "mdi:weather-night"
+                }
+            }
+        },
+        "button": {
+            "factory_reset": {
+                "default": "mdi:cog-refresh"
+            },
+            "filter_reset": {
+                "default": "mdi:air-filter"
+            }
+        },
+        "climate": {
+            "heater": {
+                "default": "mdi:radiator",
+                "state": {
+                    "off": "mdi:radiator-off"
+                }
+            },
+            "oven": {
+                "default": "mdi:stove"
+            },
+            "pool_heatpump": {
+                "default": "mdi:pool",
+                "state": {
+                    "heat": "mdi:hot-tub",
+                    "cool": "mdi:snowflake"
+                }
+            }
+        },
+        "fan": {
+            "aroma_diffuser": {
+                "default": "mdi:scent",
+                "state": {
+                    "off": "mdi:scent-off"
+                },
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "low": "mdi:signal-cellular-1",
+                            "medium": "mdi:signal-cellular-2",
+                            "high": "mdi:signal-cellular-3",
+                            "continuous": "mdi:clock-start",
+                            "intermittent": "mdi:timer-settings-outline"
+                        }
+                    }
+                }
+            },
+            "fan_with_presets": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "baby": "mdi:baby-carriage",
+                            "fresh": "mdi:weather-windy",
+                            "nature": "mdi:palm-tree",
+                            "normal": "mdi:fan",
+                            "sleep": "mdi:sleep",
+                            "smart": "mdi:auto-mode",
+                            "strong": "mdi:weather-hurricane",
+                            "displayoff": "mdi:monitor-off",
+                            "off": "mdi:fan-off"
+                        }
+                    }
+                }
+            }
+        },
+        "light": {
+            "backlight": {
+                "default": "mdi:television-ambient-light"
+            },
+            "display": {
+                "default": "mdi:clock-digital"
+            },
+            "embers": {
+                "default": "mdi:campfire"
+            },
+            "flame": {
+                "default": "mdi:fire"
+            },
+            "indicator": {
+                "default": "mdi:led-on",
+                "state": {
+                    "off": "mdi:led-off"
+                }
+            },
+            "laser": {
+                "default": "mdi:laser-pointer"
+            },
+            "logs": {
+                "default": "mdi:campfire"
+            },
+            "nightlight": {
+                "default": "mdi:lightbulb-night"
+            }
+        },
+        "lock": {
+            "child_lock": {
+                "default": "mdi:hand-back-right",
+                "state": {
+                    "on": "mdi:hand-back-right-off"
+                }
+            }
+        },
+        "number": {
+            "timer": {
+                "default": "mdi:timer"
+            },
+            "timer_x": {
+                "default": "mdi:timer"
+            }
+        },
+        "select": {
+            "initial_state": {
+                "default": "mdi:toggle-switch"
+            },
+            "language": {
+                "default": "mdi:translate"
+            },
+            "mopping": {
+                "default": "mdi:water"
+            },
+            "recipe": {
+                "default": "mdi:nutrition",
+                "state": {
+                    "pizza": "mdi:pizza",
+                    "fries": "mdi:french-fries",
+                    "chicken": "mdi:food-turkey",
+                    "shrimp": "mdi:sausage",
+                    "fish": "mdi:food-fish",
+                    "chicken_drumsticks": "mdi:food-drumstick",
+                    "chicken_wings": "mdi:food-drumstick",
+                    "vegetables": "mdi:leek",
+                    "desserts": "mdi:cupcake",
+                    "steak": "mdi:food-steak",
+                    "onion_rings": "mdi:bullseye",
+                    "bacon": "mdi:food-steak",
+                    "cake": "mdi:cake-variant",
+                    "bread": "mdi:baguette",
+                    "toast": "mdi:bread-slice",
+                    "custom": "mdi:food-fork-drink",
+                    "cloud_recipe": "mdi:cloud-print",
+                    "keep_warm": "mdi:heat-wave",
+                    "preheat": "mdi:fire"
+                }
+            },
+            "timer": {
+                "default": "mdi:timer"
+            },
+            "temperature_unit": {
+                "default": "mdi:temperature-celsius",
+                "state": {
+                    "fahrenheit": "mdi:temperature-fahrenheit"
+                }
+            }
+        },
+        "sensor": {
+            "cooking_status": {
+                "default": "mdi:information-variant-circle"
+            },
+            "status": {
+                "default": "mdi:information-variant-circle",
+                "state": {
+                    "available": "mdi:check-circle",
+                    "plugged_in": "mdi:ev-plug-type2",
+                    "fault_unplugged": "mdi:alert-circle",
+                    "charging": "mdi:ev-station",
+                    "waiting": "mdi:timer-sand",
+                    "charged": "mdi:battery-charging-100",
+                    "fault": "mdi:alert-circle",
+                    "paused": "mdi:pause-circle",
+                    "waiting_for_authorization": "mdi:credit-card-clock-outline",
+                    "standby": "mdi:power-standby",
+                    "heating": "mdi:fire",
+                    "cooling": "mdi:snowflake",
+                    "keeping_warm": "mdi:heat-wave",
+                    "no_water": "mdi:water-off",
+                    "boiling": "mdi:kettle-steam",
+                    "reserve_only": "mdi:car-coolant-level",
+                    "idle": "mdi:power-sleep",
+                    "auto": "mdi:auto-mode",
+                    "manual": "mdi:hand",
+                    "rain_delay": "mdi:weather-rainy",
+                    "off": "mdi:power-off",
+                    "cooking": "mdi:toaster-oven",
+                    "done": "mdi:check-circle",
+                    "door_open": "mdi:door-open",
+                    "setting": "mdi:cogs",
+                    "pre_heating": "mdi:fire",
+                    "scheduled": "mdi:calendar-clock",
+                    "at_temperature": "mdi:thermometer",
+                    "done_stage_1": "mdi:numeric-1-box",
+                    "done_stage_2": "mdi:numeric-2-box-multiple",
+                    "done_stage_3": "mdi:numeric-3-box-multiple",
+                    "done_stage_4": "mdi:numeric-4-box-multiple",
+                    "done_stage_5": "mdi:numeric-5-box-multiple",
+                    "done_stage_6": "mdi:numeric-6-box-multiple",
+                    "done_stage_7": "mdi:numeric-7-box-multiple",
+                    "done_stage_8": "mdi:numeric-8-box-multiple",
+                    "done_stage_9": "mdi:numeric-9-box-multiple",
+                    "done_stage_10": "mdi:numeric-10-box-multiple",
+                    "no_food": "mdi:food-off",
+                    "jammed": "mdi:alert-circle",
+                    "blocked": "mdi:alert-circle",
+                    "feeding": "mdi:food",
+                    "feeding_complete": "mdi:check-circle",
+                    "caking": "mdi:biohazard",
+                    "cleaning": "mdi:spray-bottle",
+                    "sleep": "mdi:sleep",
+                    "sterilizing": "mdi:sun-wireless",
+                    "deodorizing": "mdi:spray",
+                    "occupied": "mdi:toilet",
+                    "warning": "mdi:alert-circle"
+                }
+            },
+            "time_remaining": {
+                "default": "mdi:timer"
+            },
+            "energy_consumed": {
+                "default": "mdi:flash"
+            },
+            "energy_produced": {
+                "default": "mdi:solar-power"
+            },
+            "energy_consumed_x": {
+                "default": "mdi:flash"
+            },
+            "energy_produced_x": {
+                "default": "mdi:solar-power"
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "default": "mdi:snowflake-melt"
+            },
+            "evaporator_cleaning": {
+                "default": "mdi:shimmer"
+            },
+            "ionizer": {
+                "default": "mdi:creation"
+            },
+            "keytone": {
+                "default": "mdi:bell-ring"
+            },
+            "sleep": {
+                "default": "mdi:power-sleep"
+            },
+            "uv_sterilization": {
+                "default": "mdi:sun-wireless"
+            }
+        }
+    }
+}

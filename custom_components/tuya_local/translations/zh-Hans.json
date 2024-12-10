@@ -1,0 +1,655 @@
+{
+    "title": "Tuya Local",
+    "config": {
+        "step": {
+            "user": {
+                "title": "配置您的Tuya Local设备",
+                "description": "您可以手动添加设备，或通过Smart Life应用的云服务辅助添加。",
+                "data": {
+                    "setup_mode": "设置选项:"
+                }
+            },
+            "cloud": {
+                "title": "登录Tuya",
+                "description": "输入您的Smart Life或Tuya Smart用户代码。\n\n您可以在Smart Life或Tuya Smart应用的**设置** > **账户和安全**页面找到此代码，并在**用户代码**字段中输入。用户代码区分大小写，请确保准确输入。",
+                "data": {
+                    "user_code": "用户代码:"
+                }
+            },
+            "scan": {
+                "title": "完成登录",
+                "description": "使用Smart Life或Tuya Smart应用扫描以下二维码以完成登录。\n\n完成此步骤后，继续进行下一步。"
+            },
+            "choose_device": {
+                "title": "选择要添加的设备",
+                "description": "请从下拉列表中选择要添加的设备。已添加的设备不会显示。\n\n如果设备通过网关连接，请从网关列表中选择，否则选择无。",
+                "data": {
+                    "device_id": "选择设备:",
+                    "hub_id": "选择网关:"
+                }
+            },
+            "search": {
+                "title": "定位设备IP地址",
+                "description": "Tuya云不提供本地IP地址，因此我们现在必须搜索您的本地网络以找到设备。这需要最多20秒。\n\n如果搜索不成功，您需要通过其他方式提供IP地址，例如从路由器的DHCP分配中获取。\n\n为了使这一步骤和后续的设备添加成功，您必须关闭移动应用，否则其连接会阻止Tuya Local与设备的通信。"
+            },
+            "local": {
+                "title": "配置您的Tuya Local设备",
+                "description": "[按照这些说明找到您的设备ID和 Local key](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "IP地址或主机名",
+                    "device_id": "设备ID (或者通过网关连接的设备的设备ID)",
+                    "local_key": "Local key",
+                    "protocol_version": "协议版本（如果不清楚，请选择自动）",
+                    "poll_only": "仅轮询（如果设备无法正常工作，请选择此项）",
+                    "device_cid": "子设备node_id或uuid（对于通过网关连接的设备）"
+                }
+            },
+            "select_type": {
+                "title": "选择设备类型",
+                "description": "选择与您的设备匹配的类型",
+                "data": {
+                    "type": "设备类型"
+                }
+            },
+            "choose_entities": {
+                "title": "设备详情",
+                "description": "为此设备选择一个名称",
+                "data": {
+                    "name": "名称"
+                }
+            }
+        },
+        "abort": {
+            "already_configured": "该ID的设备已添加。",
+            "not_supported": "抱歉，不支持此设备。",
+            "no_devices": "无法找到该账户的任何未注册设备。"
+        },
+        "error": {
+            "connection": "无法使用这些详细信息连接到您的设备。这可能是间歇性问题，或信息不正确。",
+            "does_not_need_hub": "设备不需要网关，但选择了一个。请检查您的选择。",
+            "needs_hub": "设备需要网关，但未选择。"
+        }
+    },
+    "selector": {
+        "setup_mode": {
+            "options": {
+                "cloud": "Smart Life云辅助设备设置。",
+                "manual": "手动提供设备连接信息。"
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "user": {
+                "title": "配置您的Tuya Local设备",
+                "description": "[按照这些说明找到您的 Local key](https://github.com/make-all/tuya-local#finding-your-device-id-and-local-key)",
+                "data": {
+                    "host": "IP地址或主机名",
+                    "local_key": "Local key",
+                    "protocol_version": "协议版本（如果不清楚，请选择自动）",
+                    "poll_only": "仅轮询（如果设备无法正常工作，请选择此项）"
+                }
+            }
+        },
+        "error": {
+            "connection": "无法使用这些详细信息连接到您的设备。这可能是间歇性问题，或信息不正确。"
+        },
+        "abort": {
+            "not_supported": "抱歉，不支持此设备。"
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "defrost": {
+                "name": "除霜",
+                "state": {
+                    "off": "正常",
+                    "on": "除霜中"
+                }
+            },
+            "tank_empty": {
+                "name": "水箱",
+                "state": {
+                    "off": "正常",
+                    "on": "缺水"
+                }
+            },
+            "tank_full": {
+                "name": "水箱",
+                "state": {
+                    "off": "正常",
+                    "on": "满水"
+                }
+            },
+            "wake": {
+                "name": "唤醒",
+                "state": {
+                    "off": "休眠",
+                    "on": "唤醒"
+                }
+            },
+            "casdon_oven_fault": {
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "e1": "E1：腔体高温保护(腔体传感器温度高于290°C)",
+                            "e2": "E2：蒸发盘高温保护(蒸发盘传感器温度高于200°C)",
+                            "e3": "E3：腔体低温保护(连续工作5分钟温度低于35°C)",
+                            "e4": "E4：蒸发盘低温保护(连续工作5分钟温度低于35°C)",
+                            "e5": "E5：传感器连接出故障(腔体或蒸发盘传感器开路)",
+                            "e6": "E6：传感器感应出故障(腔体或蒸发盘传感器短路)",
+                            "e7": "E7：显示板通信故障",
+                            "e8": "E8：水箱开关（CN7）未闭合或者蒸发盘NTC（CN3）温度高于125℃并持续时间达25s后，缺水提示，并停止工作。"
+                        }
+                    }
+                }
+            }
+        },
+        "button": {
+            "factory_reset": {
+                "name": "恢复出厂设置"
+            },
+            "filter_reset": {
+                "name": "滤芯复位"
+            }
+        },
+        "climate": {
+            "aircon_extra": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "health": "健康",
+                            "medhigh": "中高",
+                            "medlow": "中低",
+                            "natural": "自然",
+                            "quiet": "安静",
+                            "sleep": "睡眠",
+                            "strong": "强力"
+                        }
+                    },
+                    "swing_mode": {
+                        "state": {
+                            "topmost": "最高",
+                            "top": "高",
+                            "middle": "中",
+                            "down": "低",
+                            "downmost": "最低"
+                        }
+                    }
+                }
+            },
+            "thermostat": {
+                "state_attributes": {
+                    "fan_mode": {
+                        "state": {
+                            "cycle": "循环"
+                        }
+                    },
+                    "preset_mode": {
+                        "state": {
+                            "manual": "手动",
+                            "program": "程序",
+                            "temp_override": "临时覆盖",
+                            "perm_override": "永久覆盖"
+                        }
+                    }
+                }
+            },
+            "combo_floor": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "cool": "冷风",
+                            "fan_only": "风扇",
+                            "heat": "热风",
+                            "floor_cool": "冷地板",
+                            "floor_heat": "热地板"
+                        }
+                    }
+                }
+            },
+            "swing_as_powerlevel": {
+                "state_attributes": {
+                    "swing_mode": {
+                        "name": "加热水平",
+                        "state": {
+                            "stop": "停止",
+                            "auto": "自动"
+                        }
+                    }
+                }
+            },
+            "pool_heatpump": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "smart_heat": "智能加热",
+                            "quick_heat": "快速加热",
+                            "quiet_heat": "安静加热",
+                            "smart_cool": "智能冷却",
+                            "quick_cool": "快速冷却",
+                            "quiet_cool": "安静冷却",
+                            "auto": "自动",
+                            "smart": "智能",
+                            "quiet": "安静",
+                            "quick": "快速"
+                        }
+                    }
+                }
+            },
+            "heater": {
+                "name": "加热器"
+            },
+            "thermo_switch": {
+                "state_attributes": {
+                    "hvac_mode": {
+                        "state": {
+                            "fan_only": "暂停"
+                        }
+                    }
+                }
+            },
+            "oven": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "healthy_steam": "健康蒸",
+                            "fresh_steam": "鲜嫩蒸",
+                            "high_temp_steam": "高温蒸",
+                            "stew": "养生炖",
+                            "bake_up_and_down": "上下烤",
+                            "bbq": "立体烧烤",
+                            "bottom_hot_air": "底部热风",
+                            "on_strong_roast": "上强烤",
+                            "3d_hot_air": "3D热风",
+                            "air_fry": "空气炸",
+                            "steam_frying": "蒸汽炸",
+                            "one_click_bread": "一键面包",
+                            "quick_heat": "速热",
+                            "keep_warm": "保温",
+                            "unfreeze": "解冻",
+                            "fermentation": "发酵",
+                            "descale": "除垢",
+                            "local_recipes": "菜谱模式",
+                            "drying": "内腔烘干",
+                            "custom": "自定义模式",
+                            "low_steaming": "低湿蒸烤",
+                            "medium_steaming": "中湿蒸烤",
+                            "high_steaming": "高湿蒸烤"
+                        }
+                    }
+                }
+            }
+        },
+        "humidifier": {
+            "dehumidifier": {
+                "state_attributes": {
+                    "mode": {
+                        "state": {
+                            "laundry": "烘干衣物",
+                            "purify": "净化"
+                        }
+                    }
+                }
+            }
+        },
+        "fan": {
+            "aroma_diffuser": {
+                "name": "香薰机",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "low": "低",
+                            "medium": "中",
+                            "high": "高",
+                            "continuous": "连续",
+                            "intermittent": "间歇"
+                        }
+                    }
+                }
+            },
+            "fan_with_presets": {
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "baby": "婴儿",
+                            "fresh": "清新",
+                            "nature": "自然",
+                            "normal": "正常",
+                            "sleep": "睡眠",
+                            "smart": "智能",
+                            "strong": "强劲",
+                            "high": "高",
+                            "medium": "中",
+                            "low": "低",
+                            "displayoff": "关闭显示",
+                            "off": "关闭"
+                        }
+                    }
+                }
+            },
+            "ventilation": {
+                "name": "通风",
+                "state_attributes": {
+                    "preset_mode": {
+                        "state": {
+                            "fresh": "新风",
+                            "circulate": "循环",
+                            "sleep": "睡眠",
+                            "auto": "自动",
+                            "eco": "节能",
+                            "anti-condensation": "防凝结"
+                        }
+                    }
+                }
+            }
+        },
+        "light": {
+            "backlight": {
+                "name": "背光"
+            },
+            "display": {
+                "name": "显示"
+            },
+            "embers": {
+                "name": "余烬"
+            },
+            "flame": {
+                "name": "火焰"
+            },
+            "indicator": {
+                "name": "指示灯"
+            },
+            "laser": {
+                "name": "激光"
+            },
+            "logs": {
+                "name": "日志"
+            },
+            "nightlight": {
+                "name": "夜灯"
+            }
+        },
+        "lock": {
+            "child_lock": {
+                "name": "儿童锁"
+            }
+        },
+        "number": {
+            "timer": {
+                "name": "计时器"
+            },
+            "timer_x": {
+                "name": "计时器{x}"
+            }
+        },
+        "select": {
+            "initial_state": {
+                "name": "初始状态",
+                "state": {
+                    "off": "关闭",
+                    "on": "打开",
+                    "memory": "记忆"
+                }
+            },
+            "language": {
+                "name": "语言",
+                "state": {
+                    "chinese": "中文",
+                    "chinese_traditional": "中文(繁體)",
+                    "english": "English",
+                    "french": "Français",
+                    "german": "Deutsch",
+                    "italian": "Italiano",
+                    "japanese": "日本語",
+                    "korean": "한국어",
+                    "latin": "Lingua Latina",
+                    "portuguese": "Português",
+                    "russian": "Русский",
+                    "spanish": "Español",
+                    "turkish": "Türkçe"
+                }
+            },
+            "mopping": {
+                "name": "拖地",
+                "state": {
+                    "off": "关闭",
+                    "auto": "自动",
+                    "low": "低",
+                    "medium": "中",
+                    "high": "高"
+                }
+            },
+            "recipe": {
+                "name": "菜谱",
+                "state": {
+                    "pizza": "披萨",
+                    "fries": "薯条",
+                    "chicken": "鸡肉",
+                    "shrimp": "虾",
+                    "fish": "鱼",
+                    "chicken_drumsticks": "鸡腿",
+                    "vegetables": "蔬菜",
+                    "desserts": "甜点",
+                    "none": "无",
+                    "chicken_wings": "鸡翅",
+                    "steak": "牛排",
+                    "onion_rings": "洋葱圈",
+                    "bacon": "培根",
+                    "cake": "蛋糕",
+                    "bread": "面包",
+                    "toast": "吐司",
+                    "custom": "自定义",
+                    "cloud_recipe": "云菜谱",
+                    "default": "默认",
+                    "keep_warm": "保温",
+                    "preheat": "预热"
+                }
+            },
+            "timer": {
+                "name": "计时器",
+                "state": {
+                    "cancel": "取消",
+                    "10m": "10分钟",
+                    "30m": "30分钟",
+                    "1h": "1小时",
+                    "1h30m": "1小时30分钟",
+                    "2h": "2小时",
+                    "2h30m": "2小时30分钟",
+                    "3h": "3小时",
+                    "3h30m": "3小时30分钟",
+                    "4h": "4小时",
+                    "4h30m": "4小时30分钟",
+                    "5h": "5小时",
+                    "5h30m": "5小时30分钟",
+                    "6h": "6小时",
+                    "6h30m": "6小时30分钟",
+                    "7h": "7小时",
+                    "7h30m": "7小时30分钟",
+                    "8h": "8小时",
+                    "8h30m": "8小时30分钟",
+                    "9h": "9小时",
+                    "9h30m": "9小时30分钟",
+                    "10h": "10小时",
+                    "11h": "11小时",
+                    "12h": "12小时",
+                    "13h": "13小时",
+                    "14h": "14小时",
+                    "15h": "15小时",
+                    "16h": "16小时",
+                    "17h": "17小时",
+                    "18h": "18小时",
+                    "19h": "19小时",
+                    "20h": "20小时",
+                    "21h": "21小时",
+                    "22h": "22小时",
+                    "23h": "23小时",
+                    "24h": "24小时",
+                    "36h": "36小时",
+                    "48h": "48小时",
+                    "72h": "72小时"
+                }
+            },
+            "temperature_unit": {
+                "name": "温度单位",
+                "state": {
+                    "celsius": "摄氏度",
+                    "fahrenheit": "华氏度"
+                }
+            },
+            "oven_built_in_recipe": {
+                "name": "内置菜谱",
+                "state": {
+                    "none": "无",
+                    "steamed_egg_with_okra": "秋葵蒸蛋",
+                    "steamed_sea_bass": "清蒸鲈鱼",
+                    "steamed_prawns": "清蒸大虾",
+                    "handmade_steamed_bread": "手工馒头",
+                    "fan_steamed_baby_vegetables": "粉丝蒸娃娃菜",
+                    "braised_pork": "红烧肉",
+                    "snow_fungus_and_bird_s_nest": "雪耳燕窝",
+                    "crab_pot": "蟹肉煲",
+                    "potato_ribs": "土豆排骨",
+                    "coconut_chicken_soup": "椰子鸡汤",
+                    "snack_platter": "小食拼盘",
+                    "chicken_skewers": "鸡肉串",
+                    "roasted_pork_knuckle": "烤猪肘",
+                    "dried_lemon": "柠檬干",
+                    "pork_jerky": "猪肉脯",
+                    "crispy_hairtail": "香酥带鱼",
+                    "spicy_grilled_fish": "麻辣烤鱼",
+                    "roasted_sweet_potatoes": "烤红薯",
+                    "roasted_chicken_wings": "香烤鸡翅",
+                    "cumin_lamb_chops": "孜然羊排",
+                    "honey_grilled_chicken": "蜜汁烤鸡",
+                    "garlic_eggplant": "蒜蓉茄子",
+                    "portuguese_egg_tart": "葡式蛋挞",
+                    "creme_brulee": "焦糖布丁",
+                    "cocoa_chips": "可可脆片",
+                    "butter_cookies": "黄油曲奇",
+                    "chiffon_cake": "戚风蛋糕",
+                    "puff_pastry": "酥皮泡芙",
+                    "red_bean_bread": "红豆面包",
+                    "milk_toast": "牛奶吐司"
+                }
+            }
+        },
+        "sensor": {
+            "status": {
+                "name": "状态",
+                "state": {
+                    "available": "可用",
+                    "plugged_in": "已插入",
+                    "fault_unplugged": "故障未插入",
+                    "charging": "充电中",
+                    "waiting": "等待中",
+                    "charged": "已充满",
+                    "fault": "故障",
+                    "paused": "暂停",
+                    "waiting_for_authorization": "等待授权",
+                    "standby": "待机",
+                    "heating": "加热中",
+                    "cooling": "制冷中",
+                    "keeping_warm": "保持温暖",
+                    "no_water": "无水",
+                    "boiling": "煮沸中",
+                    "reserve_only": "仅预约",
+                    "unknown": "未知",
+                    "idle": "空闲",
+                    "auto": "自动",
+                    "manual": "手动",
+                    "rain_delay": "雨延迟",
+                    "off": "关闭",
+                    "cooking": "烹饪中",
+                    "done": "完成",
+                    "door_open": "门打开",
+                    "setting": "设置中",
+                    "pre_heating": "预热中",
+                    "scheduled": "已预约",
+                    "at_temperature": "已达到温度",
+                    "done_stage_1": "阶段1完成",
+                    "done_stage_2": "阶段2完成",
+                    "done_stage_3": "阶段3完成",
+                    "done_stage_4": "阶段4完成",
+                    "done_stage_5": "阶段5完成",
+                    "done_stage_6": "阶段6完成",
+                    "done_stage_7": "阶段7完成",
+                    "done_stage_8": "阶段8完成",
+                    "done_stage_9": "阶段9完成",
+                    "done_stage_10": "阶段10完成",
+                    "no_food": "无食物",
+                    "jammed": "卡住",
+                    "blocked": "堵塞",
+                    "feeding": "喂食中",
+                    "feeding_complete": "喂食完成",
+                    "caking": "结块中",
+                    "cleaning": "清洁中",
+                    "sleep": "睡眠",
+                    "sterilizing": "消毒中",
+                    "deodorizing": "除臭中",
+                    "occupied": "占用",
+                    "normal": "正常",
+                    "low": "低",
+                    "high": "高",
+                    "unwashed": "未清洗",
+                    "pre_washing": "预洗中",
+                    "washing": "洗涤中",
+                    "rinsing": "漂洗中",
+                    "drying": "烘干中",
+                    "air_purging": "空气净化中",
+                    "anti_freeze": "防冻中",
+                    "close": "关闭",
+                    "monitor": "监控中",
+                    "working": "工作中",
+                    "warning": "警告"
+                }
+            },
+            "time_remaining": {
+                "name": "剩余时间"
+            },
+            "cooking_status": {
+                "name": "烹饪状态",
+                "state": {
+                    "wait": "烹饪等待",
+                    "reservation": "预约中",
+                    "cooking": "烹饪中",
+                    "cancel": "烹饪取消",
+                    "done": "烹饪完成",
+                    "pause": "烹饪暂停"
+                }
+            },
+            "energy_produced": {
+                "name": "产生的能量"
+            },
+            "energy_consumed": {
+                "name": "消耗的能量"
+            },
+            "energy_produced_x": {
+                "name": "产生的能量{x}"
+            },
+            "energy_consumed_x": {
+                "name": "消耗的能量{x}"
+            }
+        },
+        "switch": {
+            "anti_frost": {
+                "name": "防冻"
+            },
+            "evaporator_cleaning": {
+                "name": "蒸发器清洁"
+            },
+            "ionizer": {
+                "name": "离子发生器"
+            },
+            "keytone": {
+                "name": "按键音"
+            },
+            "sleep": {
+                "name": "睡眠"
+            },
+            "uv_sterilization": {
+                "name": "紫外线消毒"
+            }
+        }
+    }
+}

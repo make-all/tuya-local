@@ -20,7 +20,6 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: sensor
-    name: Current
     class: current
     category: diagnostic
     dps:
@@ -29,10 +28,10 @@ secondary_entities:
         name: sensor
         unit: A
         class: measurement
+        force: true
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Power
     class: power
     category: diagnostic
     dps:
@@ -41,10 +40,10 @@ secondary_entities:
         name: sensor
         unit: W
         class: measurement
+        force: true
         mapping:
           - scale: 10
   - entity: sensor
-    name: Voltage
     class: voltage
     category: diagnostic
     dps:
@@ -53,12 +52,14 @@ secondary_entities:
         name: sensor
         unit: V
         class: measurement
+        force: true
         mapping:
           - scale: 10
   - entity: number
-    name: Timer 1
     category: config
-    icon: "mdi:timer"
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     dps:
       - id: 10
         type: integer
@@ -71,9 +72,10 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    name: Timer 2
     category: config
-    icon: "mdi:timer"
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 11
         type: integer

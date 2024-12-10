@@ -1,0 +1,81 @@
+name: Portable air conditioner
+products:
+  - id: tqgodaa9suvtbflg
+    name: Medion LIFE P1002
+primary_entity:
+  entity: climate
+  icon: "mdi:air-conditioner"
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: Cool
+              value: cool
+            - dps_val: Dyr
+              value: dry
+            - dps_val: Fan
+              value: fan_only
+    - id: 2
+      type: integer
+      name: temperature
+      range:
+        min: 16
+        max: 32
+      unit: C
+    - id: 3
+      type: integer
+      name: current_temperature
+    - id: 4
+      type: string
+      name: mode
+      hidden: true
+    - id: 5
+      type: string
+      name: fan_mode
+      mapping:
+        - dps_val: Low
+          value: low
+        - dps_val: High
+          value: high
+    - id: 15
+      type: boolean
+      name: swing_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          value: "on"
+secondary_entities:
+  - entity: lock
+    icon: "mdi:lock"
+    translation_key: child_lock
+    dps:
+      - id: 14
+        type: boolean
+        name: lock
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
+  - entity: switch
+    translation_key: sleep
+    dps:
+      - id: 101
+        type: boolean
+        name: switch

@@ -1,0 +1,144 @@
+name: Roller shade
+products:
+  - id: jzmy5ut0vishwscm
+    name: Zemismart ZM25TQ
+primary_entity:
+  entity: cover
+  class: shade
+  dps:
+    - id: 1
+      name: control
+      type: string
+      mapping:
+        - dps_val: open
+          value: open
+        - dps_val: close
+          value: close
+        - dps_val: stop
+          value: stop
+        - dps_val: continue
+          value: continue
+    - id: 2
+      name: position
+      type: integer
+      range:
+        min: 0
+        max: 100
+    - id: 3
+      name: current_position
+      type: integer
+      range:
+        min: 0
+        max: 100
+    - id: 7
+      name: unreliable_action
+      type: string
+      mapping:
+        - dps_val: opening
+          value: opening
+          constraint: current_position
+          conditions:
+            - dps_val: 0
+              value: opened
+        - dps_val: closing
+          value: closing
+          constraint: current_position
+          conditions:
+            - dps_val: 100
+              value: closed
+secondary_entities:
+  - entity: select
+    name: Direction
+    icon: "mdi:swap-horizontal"
+    category: config
+    dps:
+      - id: 5
+        type: string
+        name: option
+        mapping:
+          - dps_val: forward
+            value: Forward
+          - dps_val: back
+            value: Reverse
+  - entity: sensor
+    name: Situation
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 11
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: fully_open
+            value: Fully open
+          - dps_val: fully_close
+            value: Fully closed
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 12
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 12
+        name: fault_code
+        type: bitfield
+  - entity: select
+    name: Motor mode
+    icon: "mdi:cog-transfer"
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        mapping:
+          - dps_val: contiuation
+            value: Auto
+          - dps_val: point
+            value: Manual
+  - entity: button
+    name: Upper limit reset
+    icon: "mdi:arrow-collapse-up"
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: button
+  - entity: button
+    name: Intermediate limit reset
+    icon: "mdi:format-vertical-align-center"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: button
+  - entity: button
+    name: Lower limit reset
+    icon: "mdi:arrow-collapse-down"
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        name: button
+  - entity: button
+    name: Remote pairing
+    icon: "mdi:remote"
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: All limits reset
+    class: restart
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: button
+        optional: true

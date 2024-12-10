@@ -1,0 +1,70 @@
+name: Ceiling fan
+products:
+  - id: g0ewlb1vmwqljzji
+    name: Ovlaim FP9805_TAIDE
+primary_entity:
+  entity: fan
+  translation_only_key: fan_with_presets
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 2
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: normal
+          value: normal
+        - dps_val: sleep
+          value: sleep
+        - dps_val: nature
+          value: nature
+    - id: 3
+      name: speed
+      type: integer
+      range:
+        min: 1
+        max: 6
+    - id: 8
+      name: direction
+      type: string
+secondary_entities:
+  - entity: light
+    dps:
+      - id: 15
+        name: switch
+        type: boolean
+      - id: 16
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 100
+      - id: 17
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - target_range:
+              min: 3000
+              max: 6000
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 22
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: cancel
+          - dps_val: "1hour"
+            value: "1h"
+          - dps_val: "2hour"
+            value: "2h"
+          - dps_val: "4hour"
+            value: "4h"
+          - dps_val: "8hour"
+            value: "8h"

@@ -1,0 +1,58 @@
+name: Dehumidifier
+products:
+  - id: 4w2fzgr62c1oyjsx
+    name: Luko dehumidifier
+primary_entity:
+  entity: humidifier
+  class: dehumidifier
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 8
+      name: current_humidity
+      type: integer
+    - id: 2
+      name: mode
+      type: string
+      mapping:
+        - dps_val: "dehumidity"
+          value: normal
+    - id: 46
+      name: humidity
+      type: integer
+      range:
+        min: 40
+        max: 80
+      mapping:
+        - step: 5
+secondary_entities:
+  - entity: fan
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 12
+        name: speed
+        type: string
+        mapping:
+          - dps_val: "1speed"
+            value: 20
+          - dps_val: "2speed"
+            value: 40
+          - dps_val: "3speed"
+            value: 60
+          - dps_val: "4speed"
+            value: 80
+          - dps_val: "5speed"
+            value: 100
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 9
+        name: sensor
+        type: integer
+        unit: "C"
+        class: measurement
+        mapping:
+          - scale: 10

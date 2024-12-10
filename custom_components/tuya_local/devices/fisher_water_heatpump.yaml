@@ -1,0 +1,164 @@
+name: Radiator heatpump
+products:
+  - id: 3gabjnrhtblg3ub6
+    name: Fisher e-HeatR air-water heatpump
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+          hidden: true
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: cool
+              value: cool
+              hidden: true
+            - dps_val: heat
+              value: heat
+              hidden: true
+            - dps_val: DHW
+              value: "off"
+            - dps_val: COOLDHW
+              value: cool
+            - dps_val: HEATDHW
+              value: heat
+    - id: 2
+      type: string
+      name: mode
+    - id: 9
+      type: integer
+      name: temperature
+      range:
+        min: 5
+        max: 65
+      unit: C
+    - id: 10
+      type: integer
+      name: current_temperature
+    - id: 26
+      type: integer
+      name: temp_current_f
+secondary_entities:
+  - entity: water_heater
+    dps:
+      - id: 7
+        name: operation_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: electric
+          - dps_val: false
+            value: heatpump
+      - id: 104
+        type: integer
+        name: temperature
+        range:
+          min: 40
+          max: 60
+        unit: C
+      - id: 107
+        type: integer
+        name: current_temperature
+      - id: 16
+        type: string
+        name: schedule
+        optional: true
+      - id: 102
+        type: boolean
+        name: away_mode
+      - id: 108
+        type: integer
+        name: power_level
+      - id: 109
+        type: integer
+        name: pump_speed
+  - entity: switch
+    name: Power
+    icon: "mdi:heat-pump"
+    category: config
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: select
+    name: Combined mode
+    icon: "mdi:heat-pump"
+    category: config
+    dps:
+      - id: 2
+        type: string
+        name: option
+        mapping:
+          - dps_val: cool
+            value: Cooling only
+          - dps_val: heat
+            value: Heating only
+          - dps_val: DHW
+            value: Hot water only
+          - dps_val: COOLDHW
+            value: Hot water + cooling
+          - dps_val: HEATDHW
+            value: Hot water + heating
+  - entity: switch
+    name: Disinfection
+    category: config
+    dps:
+      - id: 4
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Instant heating
+    icon: "mdi:fire-circle"
+    category: config
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 20
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 20
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    name: Inlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Outdoor temperature
+    class: temperature
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Outlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement

@@ -1,0 +1,240 @@
+name: Pool heat pump
+# products:
+#   - id: UNKNOWN
+#     name: Fairland RMIC06
+primary_entity:
+  entity: climate
+  translation_key: pool_heatpump
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: warm
+              value: heat
+            - dps_val: cool
+              value: cool
+            - dps_val: smart
+              value: heat_cool
+    - id: 102
+      name: current_temperature
+      type: integer
+    - id: 103
+      name: temperature_unit
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: F
+        - dps_val: true
+          value: C
+    - id: 105
+      name: mode
+      type: string
+      hidden: true
+    - id: 106
+      name: temperature
+      type: integer
+      range:
+        min: 18
+        max: 115
+    - id: 107
+      type: integer
+      name: min_temperature
+    - id: 108
+      type: integer
+      name: max_temperature
+    - id: 117
+      name: preset_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: quiet
+        - dps_val: true
+          value: smart
+secondary_entities:
+  - entity: sensor
+    category: diagnostic
+    name: Power level
+    icon: "mdi:signal"
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    category: diagnostic
+    class: temperature
+    name: Evaporator coil pipe temperature
+    dps:
+      - id: 120
+        type: integer
+        name: sensor
+      - id: 103
+        name: unit
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: F
+          - dps_val: true
+            value: C
+  - entity: binary_sensor
+    name: Water flow
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 115
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 4
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 116
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: true
+            constraint: fault_code
+            conditions:
+              - dps_val: 0
+                value: false
+              - dps_val: 4
+                value: false
+          - value: true
+      - id: 115
+        type: bitfield
+        name: fault_code
+      - id: 116
+        type: bitfield
+        name: fault_code_2
+  - entity: binary_sensor
+    translation_key: defrost
+    category: diagnostic
+    dps:
+      - id: 130
+        type: boolean
+        name: sensor
+  - entity: sensor
+    category: diagnostic
+    class: temperature
+    name: Exhaust gas temperature
+    dps:
+      - id: 122
+        type: integer
+        name: sensor
+      - id: 103
+        name: unit
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: F
+          - dps_val: true
+            value: C
+  - entity: sensor
+    category: diagnostic
+    name: Ambient temperature
+    class: temperature
+    dps:
+      - id: 124
+        type: integer
+        name: sensor
+      - id: 103
+        name: unit
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: F
+          - dps_val: true
+            value: C
+  - entity: sensor
+    category: diagnostic
+    name: Compressor speed
+    dps:
+      - id: 125
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: sensor
+    category: diagnostic
+    name: Compressor Current
+    dps:
+      - id: 126
+        name: sensor
+        type: integer
+        unit: "%"
+  - entity: sensor
+    category: diagnostic
+    class: temperature
+    name: Cooling plate temperature
+    dps:
+      - id: 127
+        type: integer
+        name: sensor
+      - id: 103
+        name: unit
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: F
+          - dps_val: true
+            value: C
+  - entity: sensor
+    category: diagnostic
+    name: EEV opening
+    dps:
+      - id: 128
+        name: sensor
+        type: integer
+  - entity: sensor
+    category: diagnostic
+    name: Fan speed
+    dps:
+      - id: 129
+        name: sensor
+        type: integer
+  - entity: binary_sensor
+    name: Circulating Pump
+    class: running
+    category: diagnostic
+    dps:
+      - id: 135
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Four-way Valve
+    category: diagnostic
+    dps:
+      - id: 136
+        type: boolean
+        name: sensor
+  - entity: sensor
+    name: AC Fan Motor Speed
+    category: diagnostic
+    dps:
+      - id: 140
+        name: sensor
+        type: string
+  - entity: binary_sensor
+    name: Current limiting Charging Relay
+    category: diagnostic
+    dps:
+      - id: 139
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Current limiting Charging Relay 2
+    category: diagnostic
+    dps:
+      - id: 134
+        type: boolean
+        name: sensor

@@ -1,7 +1,9 @@
 """Tests for the water heater entity."""
-from pytest_homeassistant_custom_component.common import MockConfigEntry
-import pytest
+
 from unittest.mock import AsyncMock, Mock
+
+import pytest
+from pytest_homeassistant_custom_component.common import MockConfigEntry
 
 from custom_components.tuya_local.const import (
     CONF_DEVICE_ID,
@@ -9,8 +11,10 @@ from custom_components.tuya_local.const import (
     CONF_TYPE,
     DOMAIN,
 )
-from custom_components.tuya_local.generic.water_heater import TuyaLocalWaterHeater
-from custom_components.tuya_local.water_heater import async_setup_entry
+from custom_components.tuya_local.water_heater import (
+    TuyaLocalWaterHeater,
+    async_setup_entry,
+)
 
 
 @pytest.mark.asyncio
@@ -19,7 +23,7 @@ async def test_init_entry(hass):
     entry = MockConfigEntry(
         domain=DOMAIN,
         data={
-            CONF_TYPE: "hydrotherm_dynamic_x8_water_heater",
+            CONF_TYPE: "geyserwise_water_heater",
             CONF_DEVICE_ID: "dummy",
             CONF_PROTOCOL_VERSION: "auto",
         },
@@ -35,7 +39,7 @@ async def test_init_entry(hass):
     hass.data[DOMAIN]["dummy"]["device"] = m_device
 
     await async_setup_entry(hass, entry, m_add_entities)
-    assert type(hass.data[DOMAIN]["dummy"]["water_heater"]) == TuyaLocalWaterHeater
+    assert type(hass.data[DOMAIN]["dummy"]["water_heater"]) is TuyaLocalWaterHeater
     m_add_entities.assert_called_once()
 
 
@@ -45,7 +49,7 @@ async def test_init_entry_fails_if_device_has_no_water_heater(hass):
     entry = MockConfigEntry(
         domain=DOMAIN,
         data={
-            CONF_TYPE: "kogan_switch",
+            CONF_TYPE: "smartplugv1",
             CONF_DEVICE_ID: "dummy",
             CONF_PROTOCOL_VERSION: "auto",
         },

@@ -1,0 +1,172 @@
+name: Control hub
+products:
+  - id: z1fcxdrpiazyjaky
+    name: Moes CCP-S01-EU-WH-EN touchscreen control panel IR and Bluetooth hub
+primary_entity:
+  entity: switch
+  name: Switch 1
+  dps:
+    - id: 16
+      type: boolean
+      name: switch
+      # up channel is defined as read-only, down_channel as write only.
+      # this seems wrong, but they are in an undocumented "raw" format,
+      # so anyway difficult to support
+    - id: 1
+      type: string
+      optional: true
+      name: up_channel
+    - id: 2
+      type: string
+      optional: true
+      name: down_channel
+secondary_entities:
+  - entity: switch
+    name: Switch 2
+    dps:
+      - id: 17
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Switch 3
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+  - entity: light
+    class: backlight
+    category: config
+    dps:
+      - id: 36
+        type: boolean
+        optional: true
+        name: switch
+  - entity: select
+    name: Indicator
+    icon: "mdi:led-on"
+    category: config
+    dps:
+      - id: 37
+        type: string
+        name: option
+        mapping:
+          - dps_val: none
+            value: "Off"
+          - dps_val: relay
+            value: State
+          - dps_val: pos
+            value: Position
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 38
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "on"
+            value: "on"
+          - dps_val: memory
+            value: memory
+  - entity: select
+    name: Initial state 1
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 39
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "on"
+            value: "on"
+          - dps_val: memory
+            value: memory
+  - entity: select
+    name: Initial state 2
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 40
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "on"
+            value: "on"
+          - dps_val: memory
+            value: memory
+  - entity: select
+    name: Initial state 3
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 41
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "on"
+            value: "on"
+          - dps_val: memory
+            value: memory
+  - entity: remote
+    dps:
+      - id: 201
+        type: string
+        optional: true
+        name: send
+      - id: 202
+        type: string
+        optional: true
+        name: receive
+  - entity: number
+    name: Voice volume
+    category: config
+    icon: "mdi:volume-high"
+    dps:
+      - id: 203
+        type: integer
+        optional: true
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+  - entity: switch
+    name: Mic enable
+    category: config
+    dps:
+      - id: 204
+        type: boolean
+        optional: true
+        name: switch
+  - entity: button
+    name: Voice play
+    category: config
+    dps:
+      - id: 205
+        type: boolean
+        name: button
+        optional: true
+      - id: 207
+        type: string
+        optional: true
+        name: alarm_clock
+      - id: 208
+        type: string
+        optional: true
+        name: control_group
+  - entity: button
+    name: Voice Bluetooth play
+    category: config
+    dps:
+      - id: 206
+        type: boolean
+        name: button
+        optional: true

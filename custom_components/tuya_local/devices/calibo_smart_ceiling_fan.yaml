@@ -1,0 +1,61 @@
+name: Fan with light
+products:
+  - id: 78m2fjtcj26yab5a
+    name: Calibo Cloudfan DC with Light
+primary_entity:
+  entity: fan
+  translation_only_key: fan_with_presets
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 2
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: nature
+          value: nature
+        - dps_val: sleep
+          value: sleep
+        - dps_val: normal
+          value: normal
+    - id: 3
+      name: speed
+      type: integer
+      range:
+        min: 1
+        max: 6
+    - id: 8
+      name: direction
+      type: string
+secondary_entities:
+  - entity: light
+    dps:
+      - id: 15
+        type: boolean
+        name: switch
+      - id: 16
+        type: integer
+        name: brightness
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - step: 2
+  - entity: select
+    translation_key: timer
+    dps:
+      - id: 22
+        name: option
+        type: string
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "8h"
+            value: "8h"

@@ -1,7 +1,9 @@
 """Tests for the sensor entity."""
-from pytest_homeassistant_custom_component.common import MockConfigEntry
-import pytest
+
 from unittest.mock import AsyncMock, Mock
+
+import pytest
+from pytest_homeassistant_custom_component.common import MockConfigEntry
 
 from custom_components.tuya_local.const import (
     CONF_DEVICE_ID,
@@ -9,8 +11,8 @@ from custom_components.tuya_local.const import (
     CONF_TYPE,
     DOMAIN,
 )
-from custom_components.tuya_local.generic.sensor import TuyaLocalSensor
-from custom_components.tuya_local.sensor import async_setup_entry
+from custom_components.tuya_local.helpers.device_config import TuyaEntityConfig
+from custom_components.tuya_local.sensor import TuyaLocalSensor, async_setup_entry
 
 
 @pytest.mark.asyncio
@@ -32,10 +34,7 @@ async def test_init_entry(hass):
     }
 
     await async_setup_entry(hass, entry, m_add_entities)
-    assert (
-        type(hass.data[DOMAIN]["dummy"]["sensor_current_temperature"])
-        == TuyaLocalSensor
-    )
+    assert type(hass.data[DOMAIN]["dummy"]["sensor_temperature"]) is TuyaLocalSensor
     m_add_entities.assert_called_once()
 
 
@@ -87,3 +86,32 @@ async def test_init_entry_fails_if_config_is_missing(hass):
     except ValueError:
         pass
     m_add_entities.assert_not_called()
+
+
+def test_sensor_suggested_display_precision():
+    mock_device = Mock()
+    config = TuyaEntityConfig(
+        mock_device,
+        {
+            "entity": "sensor",
+            "dps": [
+                {
+                    "id": 1,
+                    "name": "sensor",
+                    "type": "integer",
+                    "precision": 1,
+                }
+            ],
+        },
+    )
+    sensor = TuyaLocalSensor(mock_device, config)
+    assert sensor.suggested_display_precision == 1
+    config = TuyaEntityConfig(
+        mock_device,
+        {
+            "entity": "sensor",
+            "dps": [{"id": 1, "name": "sensor", "type": "integer"}],
+        },
+    )
+    sensor = TuyaLocalSensor(mock_device, config)
+    assert sensor.suggested_display_precision is None

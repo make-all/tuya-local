@@ -1,0 +1,375 @@
+name: Water heater
+products:
+  - id: ssqd7htb3tbhxqvk
+    name: Sanden GAU-A45HP heat pump controller
+primary_entity:
+  entity: water_heater
+  dps:
+    - id: 101
+      type: boolean
+      name: boost_mode
+    - id: 103
+      type: boolean
+      name: operation_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - constraint: boost_mode
+          conditions:
+            - dps_val: true
+              value: high_demand
+            - dps_val: false
+              value: heat_pump
+    - id: 119
+      type: integer
+      name: current_temperature
+      unit: C
+    - id: 139
+      type: string
+      name: tank_model
+    - id: 140
+      type: string
+      name: heatpump_serial_number
+    - id: 142
+      type: string
+      name: tank_serial_number
+    - id: 143
+      type: string
+      name: installation_date
+    - id: 144
+      type: string
+      name: post_code
+    - id: 145
+      type: string
+      name: service_date_1
+    - id: 146
+      type: string
+      name: service_date_2
+    - id: 147
+      type: string
+      name: service_date_3
+    - id: 150
+      type: string
+      name: service_error_1
+    - id: 151
+      type: string
+      name: service_error_2
+    - id: 152
+      type: string
+      name: service_error_3
+secondary_entities:
+  - entity: switch
+    name: Air purge
+    icon: "mdi:pipe-valve"
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Energy saving
+    icon: "mdi:leaf"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+      - id: 117
+        type: string
+        name: eco_weight_params
+  - entity: switch
+    name: Clock synchronization
+    icon: "mdi:clock-check"
+    category: config
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+  - entity: number
+    name: Time
+    category: config
+    icon: "mdi:clock"
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 1439
+  - entity: number
+    name: Block out start
+    category: config
+    icon: "mdi:clock-start"
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 23
+  - entity: number
+    name: Block out end
+    category: config
+    icon: "mdi:clock-end"
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 23
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 109
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "--"
+            value: false
+          - value: true
+      - id: 109
+        type: string
+        name: description
+      - id: 110
+        type: string
+        name: history_1
+      - id: 111
+        type: string
+        name: history_2
+      - id: 112
+        type: string
+        name: history_3
+      - id: 113
+        type: string
+        name: history_4
+      - id: 114
+        type: string
+        name: history_5
+      - id: 115
+        type: string
+        name: history_6
+      - id: 116
+        type: string
+        name: history_7
+  - entity: sensor
+    translation_key: status
+    class: enum
+    dps:
+      - id: 118
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "Off"
+            value: idle
+          - dps_val: Air_purging
+            value: air_purging
+          - dps_val: Freeze_protection
+            value: anti_freeze
+          - dps_val: Working
+            value: heating
+  - entity: sensor
+    name: Outlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 120
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Inlet temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Discharge temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 122
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Suction temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 123
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Evaporator temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 124
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 125
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: sensor
+    name: Compressor speed
+    category: diagnostic
+    dps:
+      - id: 126
+        type: integer
+        name: sensor
+        class: measurement
+  - entity: sensor
+    name: Water pump speed
+    category: diagnostic
+    dps:
+      - id: 127
+        type: integer
+        name: sensor
+        class: measurement
+  - entity: sensor
+    name: Fan motor speed
+    category: diagnostic
+    dps:
+      - id: 128
+        type: integer
+        name: sensor
+        class: measurement
+  - entity: sensor
+    name: Compressor runtime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 129
+        type: integer
+        name: sensor
+        unit: h
+  - entity: sensor
+    name: Compressor runs
+    category: diagnostic
+    dps:
+      - id: 130
+        type: integer
+        name: sensor
+        unit: times
+  - entity: sensor
+    class: current
+    category: diagnostic
+    dps:
+      - id: 131
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+  - entity: sensor
+    name: Heating runtime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 132
+        type: integer
+        name: sensor
+        unit: h
+  - entity: sensor
+    name: Defrosting runtime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 133
+        type: integer
+        name: sensor
+        unit: h
+  - entity: sensor
+    name: Anti-frost runtime
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 134
+        type: integer
+        name: sensor
+        unit: h
+  - entity: sensor
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 135
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Password
+    category: config
+    icon: "mdi:dialpad"
+    dps:
+      - id: 136
+        type: integer
+        name: value
+        range:
+          min: 1000
+          max: 6000
+  - entity: number
+    name: Boost time
+    category: config
+    icon: "mdi:clock-fast"
+    dps:
+      - id: 155
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 9
+  - entity: sensor
+    name: Estimated hot water
+    class: volume_storage
+    category: diagnostic
+    dps:
+      - id: 156
+        type: integer
+        name: sensor
+        unit: L
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Defrost electric consumption
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 157
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+  - entity: sensor
+    name: Anti-frost electric consumption
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 158
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing

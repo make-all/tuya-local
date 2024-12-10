@@ -1,0 +1,275 @@
+name: Double clamp meter
+products:
+  - id: dhto3y4uachr1wll
+    name: erz04c
+    # protocol: 3.5
+primary_entity:
+  entity: sensor
+  name: Total energy
+  class: energy
+  dps:
+    - id: 123
+      name: sensor
+      type: integer
+      unit: kWh
+      class: total_increasing
+      mapping:
+        - scale: 1000
+    - id: 103
+      name: Device state A
+      type: string
+      mapping:
+        - dps_val: close
+          value: Close
+          default: true
+        - dps_val: monitor
+          value: Monitor
+        - dps_val: working
+          value: Working
+        - dps_val: warning
+          value: Warning
+    - id: 113
+      name: Device state B
+      type: string
+      mapping:
+        - dps_val: close
+          value: Close
+          default: true
+        - dps_val: monitor
+          value: Monitor
+        - dps_val: working
+          value: Working
+        - dps_val: warning
+          value: Warning
+    - id: 110
+      name: Power Type A
+      type: string
+      mapping:
+        - dps_val: normal
+          value: Normal
+          default: true
+        - dps_val: warn
+          value: Warn
+    - id: 120
+      name: Power Type B
+      type: string
+      mapping:
+        - dps_val: normal
+          value: Normal
+          default: true
+        - dps_val: warn
+          value: Warn
+    - id: 101
+      name: Sync request
+      type: string
+      mapping:
+        - dps_val: idle
+          value: Idle
+          default: true
+        - dps_val: request
+          value: Request
+    - id: 124
+      name: Net state
+      type: string
+      mapping:
+        - dps_val: cloud_net
+          value: Cloud
+          default: true
+        - dps_val: local_net
+          value: Local
+        - dps_val: no_net
+          value: Offline
+secondary_entities:
+  - entity: sensor
+    name: Power A
+    category: diagnostic
+    class: power
+    dps:
+      - id: 105
+        name: sensor
+        type: integer
+        unit: W
+        force: true
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Current A
+    category: diagnostic
+    class: current
+    dps:
+      - id: 106
+        name: sensor
+        type: integer
+        unit: A
+        class: measurement
+        force: true
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Voltage A
+    category: diagnostic
+    class: voltage
+    dps:
+      - id: 107
+        name: sensor
+        type: integer
+        unit: V
+        class: measurement
+        force: true
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Total energy A
+    class: energy
+    dps:
+      - id: 108
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        optional: true
+        mapping:
+          - scale: 1000
+      - id: 104
+        name: Power statistics A
+        type: integer
+        unit: kWh
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 100
+      - id: 109
+        name: Today's electricity consumption A
+        type: integer
+        unit: kWh
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 1000
+      - id: 112
+        name: Increased power consumption A
+        type: integer
+        unit: kWh
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 100
+
+
+  - entity: sensor
+    name: Power B
+    category: diagnostic
+    class: power
+    dps:
+      - id: 115
+        name: sensor
+        type: integer
+        unit: W
+        force: true
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Current B
+    category: diagnostic
+    class: current
+    dps:
+      - id: 116
+        name: sensor
+        type: integer
+        unit: A
+        class: measurement
+        force: true
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Voltage B
+    category: diagnostic
+    class: voltage
+    dps:
+      - id: 117
+        name: sensor
+        type: integer
+        unit: V
+        class: measurement
+        force: true
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Total energy B
+    class: energy
+    dps:
+      - id: 118
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        optional: true
+        mapping:
+          - scale: 1000
+      - id: 114
+        name: Power statistics B
+        type: integer
+        unit: kWh
+        class: total_increasing
+        optional: true
+        mapping:
+          - scale: 100
+      - id: 119
+        name: Today's electricity consumption B
+        type: integer
+        unit: kWh
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 1000
+      - id: 122
+        name: Increased power consumption B
+        type: integer
+        unit: kWh
+        class: measurement
+        optional: true
+        mapping:
+          - scale: 100
+
+  - entity: button
+    name: Real-time updates
+    category: config
+    dps:
+      - id: 102
+        name: button
+        type: string
+        mapping:
+          - dps_val: idle
+            value: false
+            default: true
+          - dps_val: ok
+            value: true
+        optional: true
+  - entity: number
+    name: Alarm power setting A
+    category: config
+    dps:
+      - id: 111
+        name: value
+        type: integer
+        unit: W
+        range:
+          min: 200
+          max: 500000
+        mapping:
+          - step: 100
+  - entity: number
+    name: Alarm power setting B
+    category: config
+    dps:
+      - id: 121
+        name: value
+        type: integer
+        unit: W
+        range:
+          min: 200
+          max: 500000
+        mapping:
+          - step: 100

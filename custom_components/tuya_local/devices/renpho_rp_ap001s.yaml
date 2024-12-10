@@ -4,6 +4,7 @@ products:
 primary_entity:
   entity: fan
   icon: "mdi:air-purifier"
+  translation_only_key: fan_with_presets
   dps:
     - id: 1
       name: switch
@@ -12,14 +13,14 @@ primary_entity:
       name: preset_mode
       type: string
       mapping:
-        - dps_val: "low"
-          value: low
-        - dps_val: "mid"
-          value: mid
-        - dps_val: "high"
-          value: high
-        - dps_val: "auto"
-          value: auto
+        - dps_val: low
+          value: sleep
+        - dps_val: mid
+          value: fresh
+        - dps_val: high
+          value: strong
+        - dps_val: auto
+          value: smart
     - id: 19
       name: timer
       type: string
@@ -40,17 +41,12 @@ primary_entity:
       type: integer
 secondary_entities:
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 7
         name: lock
         type: boolean
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right"
-          - dps_val: false
-            icon: "mdi:hand-back-right-off"
   - entity: light
     name: AQ indicator
     category: config
@@ -65,21 +61,27 @@ secondary_entities:
           - dps_val: false
             icon: "mdi:led-off"
   - entity: switch
-    name: Sleep
+    translation_key: sleep
     class: switch
-    icon: "mdi:power-sleep"
     dps:
       - id: 101
         name: switch
         type: boolean
   - entity: sensor
     name: Air quality
-    class: aqi
+    class: enum
     category: diagnostic
     dps:
       - id: 22
         type: string
         name: sensor
+        mapping:
+          - dps_val: "bad"
+            value: "Bad"
+          - dps_val: "fair"
+            value: "Fair"
+          - dps_val: "good"
+            value: "Good"
   - entity: sensor
     name: Prefilter life
     category: diagnostic

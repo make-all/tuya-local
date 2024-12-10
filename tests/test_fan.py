@@ -1,7 +1,9 @@
 """Tests for the fan entity."""
-from pytest_homeassistant_custom_component.common import MockConfigEntry
-import pytest
+
 from unittest.mock import AsyncMock, Mock
+
+import pytest
+from pytest_homeassistant_custom_component.common import MockConfigEntry
 
 from custom_components.tuya_local.const import (
     CONF_DEVICE_ID,
@@ -9,8 +11,7 @@ from custom_components.tuya_local.const import (
     CONF_TYPE,
     DOMAIN,
 )
-from custom_components.tuya_local.generic.fan import TuyaLocalFan
-from custom_components.tuya_local.fan import async_setup_entry
+from custom_components.tuya_local.fan import TuyaLocalFan, async_setup_entry
 
 
 @pytest.mark.asyncio
@@ -35,7 +36,7 @@ async def test_init_entry(hass):
     hass.data[DOMAIN]["dummy"]["device"] = m_device
 
     await async_setup_entry(hass, entry, m_add_entities)
-    assert type(hass.data[DOMAIN]["dummy"]["fan"]) == TuyaLocalFan
+    assert type(hass.data[DOMAIN]["dummy"]["fan"]) is TuyaLocalFan
     m_add_entities.assert_called_once()
 
 
@@ -61,7 +62,7 @@ async def test_init_entry_as_secondary(hass):
     hass.data[DOMAIN]["dummy"]["device"] = m_device
 
     await async_setup_entry(hass, entry, m_add_entities)
-    assert type(hass.data[DOMAIN]["dummy"]["fan"]) == TuyaLocalFan
+    assert type(hass.data[DOMAIN]["dummy"]["fan"]) is TuyaLocalFan
     m_add_entities.assert_called_once()
 
 

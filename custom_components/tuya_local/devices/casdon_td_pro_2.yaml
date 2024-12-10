@@ -1,0 +1,275 @@
+name: Oven
+products:
+  - id: wab6oustdukujpkn
+    name: Casdon TD Pro 2
+primary_entity:
+  entity: climate
+  translation_only_key: oven
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: true
+          value: "heat"
+        - dps_val: false
+          value: "off"
+    - id: 7
+      name: temperature
+      type: integer
+      unit: C
+      range:
+        min: 0
+        max: 500
+      mapping:
+        - step: 5
+    - id: 8
+      name: current_temperature
+      type: integer
+    - id: 105
+      name: preset_mode
+      type: string
+      mapping:
+        - dps_val: "1"
+          value: healthy_steam
+        - dps_val: "2"
+          value: fresh_steam
+        - dps_val: "3"
+          value: high_temp_steam
+        - dps_val: "4"
+          value: stew
+        - dps_val: "5"
+          value: bake_up_and_down
+        - dps_val: "6"
+          value: bbq
+        - dps_val: "7"
+          value: bottom_hot_air
+        - dps_val: "8"
+          value: on_strong_roast
+        - dps_val: "9"
+          value: 3d_hot_air
+        - dps_val: "10"
+          value: air_fry
+        - dps_val: "11"
+          value: steam_frying
+        - dps_val: "12"
+          value: one_click_bread
+        - dps_val: "13"
+          value: quick_heat
+        - dps_val: "14"
+          value: keep_warm
+        - dps_val: "15"
+          value: unfreeze
+        - dps_val: "16"
+          value: fermentation
+        - dps_val: "17"
+          value: descale
+        - dps_val: "18"
+          value: local_recipes
+        - dps_val: "19"
+          value: drying
+        - dps_val: "20"
+          value: custom
+        - dps_val: "21"
+          value: low_steaming
+        - dps_val: "22"
+          value: medium_steaming
+        - dps_val: "23"
+          value: high_steaming
+    - id: 102
+      type: string
+      name: hvac_action
+      mapping:
+        - dps_val: cooking
+          value: heating
+        - dps_val: reservation
+          value: idle
+        - dps_val: cancel
+          value: idle
+        - dps_val: done
+          value: idle
+        - dps_val: pause
+          value: idle
+        - dps_val: "wait"
+          value: idle
+
+secondary_entities:
+  - entity: switch
+    name: Start
+    icon: "mdi:play-pause"
+    dps:
+      - id: 2
+        name: switch
+        type: boolean
+  - entity: number
+    name: Start time
+    translation_key: timer
+    dps:
+      - id: 9
+        name: value
+        type: integer
+        optional: true
+        range:
+          min: 1
+          max: 1440
+        unit: min
+        class: measurement
+  - entity: number
+    icon: "mdi:timer-edit"
+    name: Cooking time
+    dps:
+      - id: 10
+        name: value
+        type: integer
+        range:
+          min: 1
+          max: 1440
+        unit: min
+        class: measurement
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    dps:
+      - id: 11
+        name: sensor
+        type: integer
+        range:
+          min: 0
+          max: 1440
+        unit: min
+        class: measurement
+  - entity: binary_sensor
+    category: diagnostic
+    class: problem
+    translation_key: casdon_oven_fault
+    dps:
+      - id: 13
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 13
+        type: bitfield
+        name: fault_code
+      - id: 13
+        type: bitfield
+        name: description
+        mapping:
+          - value: unknown
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: e1
+          - dps_val: 2
+            value: e2
+          - dps_val: 4
+            value: e3
+          - dps_val: 8
+            value: e4
+          - dps_val: 16
+            value: e5
+          - dps_val: 32
+            value: e6
+          - dps_val: 64
+            value: e7
+          - dps_val: 128
+            value: e8
+
+  - entity: sensor
+    class: enum
+    translation_key: cooking_status
+    dps:
+      - id: 102
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: wait
+            value: wait
+          - dps_val: reservation
+            value: reservation
+          - dps_val: cooking
+            value: cooking
+          - dps_val: cancel
+            value: cancel
+          - dps_val: done
+            value: done
+          - dps_val: pause
+            value: pause
+  - entity: light
+    dps:
+      - id: 103
+        name: switch
+        type: boolean
+  - entity: select
+    translation_key: oven_built_in_recipe
+    category: config
+    dps:
+      - id: 106
+        name: option
+        type: string
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: "none"
+          - dps_val: "1"
+            value: "steamed_egg_with_okra"
+          - dps_val: "2"
+            value: "steamed_sea_bass"
+          - dps_val: "3"
+            value: "steamed_prawns"
+          - dps_val: "4"
+            value: "handmade_steamed_bread"
+          - dps_val: "5"
+            value: "fan_steamed_baby_vegetables"
+          - dps_val: "6"
+            value: "braised_pork"
+          - dps_val: "7"
+            value: "snow_fungus_and_bird_s_nest"
+          - dps_val: "8"
+            value: "crab_pot"
+          - dps_val: "9"
+            value: "potato_ribs"
+          - dps_val: "10"
+            value: "coconut_chicken_soup"
+          - dps_val: "11"
+            value: "snack_platter"
+          - dps_val: "12"
+            value: "chicken_skewers"
+          - dps_val: "13"
+            value: "roasted_pork_knuckle"
+          - dps_val: "14"
+            value: "dried_lemon"
+          - dps_val: "15"
+            value: "pork_jerky"
+          - dps_val: "16"
+            value: "crispy_hairtail"
+          - dps_val: "17"
+            value: "spicy_grilled_fish"
+          - dps_val: "18"
+            value: "roasted_sweet_potatoes"
+          - dps_val: "19"
+            value: "roasted_chicken_wings"
+          - dps_val: "20"
+            value: "cumin_lamb_chops"
+          - dps_val: "21"
+            value: "honey_grilled_chicken"
+          - dps_val: "22"
+            value: "garlic_eggplant"
+          - dps_val: "23"
+            value: "portuguese_egg_tart"
+          - dps_val: "24"
+            value: "creme_brulee"
+          - dps_val: "25"
+            value: "cocoa_chips"
+          - dps_val: "26"
+            value: "butter_cookies"
+          - dps_val: "27"
+            value: "chiffon_cake"
+          - dps_val: "28"
+            value: "puff_pastry"
+          - dps_val: "29"
+            value: "red_bean_bread"
+          - dps_val: "30"
+            value: "milk_toast"

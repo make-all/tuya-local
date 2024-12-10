@@ -5,10 +5,7 @@ from homeassistant.components.humidifier.const import (
     MODE_NORMAL,
     MODE_SLEEP,
 )
-from homeassistant.components.sensor import SensorDeviceClass
-from homeassistant.const import (
-    PERCENTAGE,
-)
+from homeassistant.const import PERCENTAGE
 
 from ..const import WETAIR_WAWH1210_HUMIDIFIER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -44,19 +41,12 @@ class TestWetairWAWH1210LWHumidifier(
         self.setUpForConfig(
             "wetair_wawh1210lw_humidifier.yaml", WETAIR_WAWH1210_HUMIDIFIER_PAYLOAD
         )
-        self.subject = self.entities.get("humidifier")
+        self.subject = self.entities.get("humidifier_humidifier")
         self.setUpSwitchable(SWITCH_DPS, self.subject)
         self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_display"))
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
         self.setUpMultiSensors(
             [
-                {
-                    "dps": CURRENTHUMID_DPS,
-                    "name": "sensor_current_humidity",
-                    "device_class": SensorDeviceClass.HUMIDITY,
-                    "state_class": "measurement",
-                    "unit": PERCENTAGE,
-                },
                 {
                     "dps": LEVEL_DPS,
                     "name": "sensor_water_level",
@@ -87,12 +77,6 @@ class TestWetairWAWH1210LWHumidifier(
 
     def test_supported_features(self):
         self.assertEqual(self.subject.supported_features, HumidifierEntityFeature.MODES)
-
-    def test_icons(self):
-        self.dps[SWITCH_DPS] = True
-        self.assertEqual(self.subject.icon, "mdi:air-humidifier")
-        self.dps[SWITCH_DPS] = False
-        self.assertEqual(self.subject.icon, "mdi:air-humidifier-off")
 
     def test_min_target_humidity(self):
         self.assertEqual(self.subject.min_humidity, 30)

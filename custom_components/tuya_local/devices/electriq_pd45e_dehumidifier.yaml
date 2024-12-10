@@ -1,0 +1,78 @@
+name: Electriq PD45E dehumidifier
+products:
+  - id: 75174020a4e57c1945ca
+primary_entity:
+  entity: humidifier
+  class: dehumidifier
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 2
+      type: string
+      name: mode
+      mapping:
+        - dps_val: "1"
+          value: normal
+        - dps_val: "2"
+          value: purify
+        - dps_val: "3"
+          value: laundry
+    - id: 3
+      name: current_humidity
+      type: integer
+    - id: 4
+      name: humidity
+      type: integer
+      range:
+        min: 35
+        max: 80
+      mapping:
+        - step: 5
+    - id: 11
+      type: integer
+      name: unknown_11
+      # Probably one of these integers is timer, the other fault_code
+    - id: 106
+      type: integer
+      name: unknown_106
+    - id: 107
+      type: boolean
+      name: unknown_107
+      # Probably one boolean is defrost indicator, the other may be tank?
+    - id: 108
+      type: boolean
+      name: unknown_108
+secondary_entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 6
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "1"
+            value: 50
+          - dps_val: "2"
+            value: 100
+      - id: 8
+        type: boolean
+        name: oscillate
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: lock
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement

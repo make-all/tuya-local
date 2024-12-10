@@ -10,18 +10,14 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
-          icon: "mdi:hvac-off"
         - dps_val: true
           constraint: mode
           conditions:
             - dps_val: COOL
-              icon: "mdi:snowflake"
               value: cool
             - dps_val: FAN
-              icon: "mdi:fan"
               value: fan_only
             - dps_val: DRY
-              icon: "mdi:water"
               value: dry
     - id: 2
       type: integer

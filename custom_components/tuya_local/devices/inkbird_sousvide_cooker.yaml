@@ -1,4 +1,7 @@
-name: Inkbird sous vide
+name: Sous vide
+products:
+  - id: ljrmmds82n6kln4u
+    name: Silvercrest SSVSS 1200 A1
 primary_entity:
   entity: climate
   dps:
@@ -14,6 +17,7 @@ primary_entity:
       type: string
       name: hvac_action
       icon_priority: 2
+      optional: true
       mapping:
         - dps_val: stop
           value: "off"
@@ -24,6 +28,9 @@ primary_entity:
         - dps_val: complete
           value: idle
           icon: "mdi:pot"
+        - dps_val: null
+          value: "off"
+          icon: "mdi:pot-outline"
     - id: 103
       type: integer
       name: temperature
@@ -32,6 +39,7 @@ primary_entity:
         max: 960
       mapping:
         - scale: 10
+      unit: C
     - id: 104
       type: integer
       name: current_temperature
@@ -40,19 +48,12 @@ primary_entity:
     - id: 107
       type: integer
       name: fault
+      hidden: true
       mapping:
         - dps_val: 0
           value: 0
         - icon: "mdi:alert"
           icon_priority: 1
-    - id: 108
-      type: boolean
-      name: temperature_unit
-      mapping:
-        - dps_val: true
-          value: C
-        - dps_val: false
-          value: F
 secondary_entities:
   - entity: number
     name: Cooking time
@@ -67,39 +68,40 @@ secondary_entities:
           max: 5999
         unit: min
   - entity: sensor
-    name: Remaining time
+    translation_key: time_remaining
     category: diagnostic
-    icon: "mdi:timer"
+    class: duration
     dps:
       - id: 106
         type: integer
         name: sensor
         unit: min
   - entity: binary_sensor
-    name: Fault
     category: diagnostic
     class: problem
     dps:
       - id: 107
-        type: integer
+        type: bitfield
         name: sensor
         mapping:
           - dps_val: 0
             value: false
           - value: true
+      - id: 107
+        type: bitfield
+        name: fault_code
   - entity: select
-    name: Temperature unit
+    translation_key: temperature_unit
     category: config
-    icon: "mdi:temperature-celsius"
     dps:
       - id: 108
         type: boolean
         name: option
         mapping:
           - dps_val: true
-            value: Celsius
+            value: celsius
           - dps_val: false
-            value: Fahrenheit
+            value: fahrenheit
   - entity: number
     name: Recipe
     category: config
@@ -119,6 +121,7 @@ secondary_entities:
       - id: 110
         type: integer
         name: value
+        optional: true
         range:
           min: -99
           max: 99

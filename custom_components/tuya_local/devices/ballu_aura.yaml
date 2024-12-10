@@ -1,0 +1,101 @@
+name: Air conditioner
+products:
+  - id: r9lwbruavixdspeb
+    name: "Ballu Aura  9/12"
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      name: hvac_mode
+      type: boolean
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: "COOL"
+              value: cool
+            - dps_val: "DRY"
+              value: dry
+            - dps_val: "FAN"
+              value: fan_only
+    - id: 2
+      name: temperature
+      type: integer
+      range:
+        min: 17
+        max: 30
+      unit: C
+    - id: 3
+      name: current_temperature
+      type: integer
+    - id: 4
+      name: mode
+      type: string
+      hidden: true
+    - id: 5
+      name: fan_mode
+      type: string
+      mapping:
+        - dps_val: "1"
+          value: low
+        - dps_val: "2"
+          value: medium
+        - dps_val: "3"
+          value: high
+    - id: 104
+      name: swing_mode
+      type: boolean
+      mapping:
+        - dps_val: true
+          value: vertical
+        - dps_val: false
+          value: "off"
+
+secondary_entities:
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 19
+        name: option
+        type: string
+        mapping:
+          - dps_val: C
+            value: celsius
+          - dps_val: F
+            value: fahrenheit
+  - entity: binary_sensor
+    translation_key: defrost
+    category: diagnostic
+    dps:
+      - id: 102
+        type: boolean
+        name: sensor
+  - entity: number
+    category: config
+    translation_key: timer
+    dps:
+      - id: 105
+        name: value
+        type: integer
+        unit: min
+        range:
+          min: 0
+          max: 7200
+
+  - entity: binary_sensor
+    category: diagnostic
+    class: problem
+    dps:
+      - id: 106
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 106
+        type: bitfield
+        name: fault_code

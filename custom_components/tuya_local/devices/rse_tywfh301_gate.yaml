@@ -1,0 +1,120 @@
+name: Gate controller
+products:
+  - id: q4tn6xb10zncammj
+    name: Home Gate NI800z/NI600z
+primary_entity:
+  entity: button
+  name: Open
+  icon: "mdi:gate-open"
+  dps:
+    - id: 101
+      type: boolean
+      name: button
+      optional: true
+    - id: 107
+      type: boolean
+      name: locked
+      optional: true
+      mapping:
+        - dps_val: null
+          value: false
+secondary_entities:
+  - entity: button
+    name: Close
+    icon: "mdi:gate"
+    dps:
+      - id: 102
+        type: boolean
+        name: button
+        optional: true
+      - id: 106
+        type: boolean
+        name: locked
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: button
+    name: Stop
+    icon: "mdi:stop"
+    dps:
+      - id: 103
+        type: boolean
+        name: button
+        optional: true
+  - entity: button
+    name: Lock
+    icon: "mdi:lock"
+    dps:
+      - id: 104
+        type: boolean
+        name: button
+        optional: true
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 109
+        type: boolean
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+  - entity: switch
+    name: Fast opening
+    icon: "mdi:fast-forward"
+    category: config
+    dps:
+      - id: 110
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    name: Gate
+    class: garage_door
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 12
+            value: true
+          - value: false
+      - id: 105
+        type: integer
+        name: return_state
+      - id: 111
+        type: boolean
+        name: hidden_state
+  - entity: binary_sensor
+    class: lock
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 6
+            value: false
+          - value: true
+  - entity: sensor
+    class: signal_strength
+    category: diagnostic
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: dBm
+        class: measurement
+  - entity: event
+    name: Infrared
+    class: button
+    dps:
+      - id: 108
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: pressed
+          - dps_val: false
+            value: released

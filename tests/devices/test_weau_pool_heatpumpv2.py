@@ -1,8 +1,5 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
-from homeassistant.components.climate.const import (
-    ClimateEntityFeature,
-    HVACMode,
-)
+from homeassistant.components.climate.const import ClimateEntityFeature, HVACMode
 
 from ..const import WEAU_POOL_HEATPUMPV2_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -34,20 +31,24 @@ class TestWeauPoolHeatpumpV2(
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,
             self.subject,
-            min=7,
-            max=60,
+            min=7.0,
+            max=60.0,
         )
         self.setUpBasicBinarySensor(
             FAULT_DPS,
-            self.entities.get("binary_sensor_fault"),
+            self.entities.get("binary_sensor_problem"),
             device_class=BinarySensorDeviceClass.PROBLEM,
             testdata=(4, 0),
         )
-        self.mark_secondary(["binary_sensor_fault"])
+        self.mark_secondary(["binary_sensor_problem"])
 
     def test_supported_features(self):
         self.assertEqual(
-            self.subject.supported_features, ClimateEntityFeature.TARGET_TEMPERATURE
+            self.subject.supported_features,
+            ClimateEntityFeature.TARGET_TEMPERATURE
+            | ClimateEntityFeature.PRESET_MODE
+            | ClimateEntityFeature.TURN_OFF
+            | ClimateEntityFeature.TURN_ON,
         )
 
     def test_current_temperature(self):
@@ -60,13 +61,23 @@ class TestWeauPoolHeatpumpV2(
         self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT)
         self.dps[MODE_DPS] = "ecool"
         self.assertEqual(self.subject.hvac_mode, HVACMode.COOL)
+        self.dps[MODE_DPS] = "sheat"
+        self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT)
+        self.dps[MODE_DPS] = "scool"
+        self.assertEqual(self.subject.hvac_mode, HVACMode.COOL)
+        self.dps[MODE_DPS] = "bheat"
+        self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT)
+        self.dps[MODE_DPS] = "bcool"
+        self.assertEqual(self.subject.hvac_mode, HVACMode.COOL)
+        self.dps[MODE_DPS] = "auto"
+        self.assertEqual(self.subject.hvac_mode, HVACMode.HEAT_COOL)
         self.dps[POWER_DPS] = False
         self.assertEqual(self.subject.hvac_mode, HVACMode.OFF)
 
     def test_hvac_modes(self):
         self.assertCountEqual(
             self.subject.hvac_modes,
-            [HVACMode.OFF, HVACMode.COOL, HVACMode.HEAT],
+            [HVACMode.OFF, HVACMode.COOL, HVACMode.HEAT, HVACMode.HEAT_COOL],
         )
 
     async def test_turn_off(self):
@@ -91,7 +102,6 @@ class TestWeauPoolHeatpumpV2(
             await self.subject.async_set_hvac_mode(HVACMode.HEAT)
 
     def test_extra_state_attributes(self):
-        self.dps[FAULT_DPS] = 4
         self.dps[UNKNOWN101_DPS] = 101
         self.dps[UNKNOWN102_DPS] = 102
         self.dps[UNKNOWN103_DPS] = 103
@@ -99,10 +109,16 @@ class TestWeauPoolHeatpumpV2(
         self.assertDictEqual(
             self.subject.extra_state_attributes,
             {
-                "fault": "flow_fault",
                 "unknown_101": 101,
                 "unknown_102": 102,
                 "unknown_103": 103,
                 "unknown_104": True,
             },
+        )
+
+    def test_basic_bsensor_extra_state_attributes(self):
+        self.dps[FAULT_DPS] = 4
+        self.assertDictEqual(
+            self.basicBSensor.extra_state_attributes,
+            {"fault_code": 4, "description": "flow_fault"},
         )

@@ -1,8 +1,6 @@
 """Tests for the simple blinds controller."""
-from homeassistant.components.cover import (
-    CoverDeviceClass,
-    CoverEntityFeature,
-)
+
+from homeassistant.components.cover import CoverDeviceClass, CoverEntityFeature
 
 from ..const import SIMPLE_BLINDS_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -19,7 +17,7 @@ class TestSimpleBlinds(TuyaDeviceTestCase):
 
     def setUp(self):
         self.setUpForConfig("simple_blinds.yaml", SIMPLE_BLINDS_PAYLOAD)
-        self.subject = self.entities["cover"]
+        self.subject = self.entities["cover_blind"]
 
     def test_device_class_is_blind(self):
         self.assertEqual(self.subject.device_class, CoverDeviceClass.BLIND)
@@ -44,27 +42,30 @@ class TestSimpleBlinds(TuyaDeviceTestCase):
         self.dps[POSITION_DPS] = 0
         self.assertFalse(self.subject.is_opening)
         self.dps[POSITION_DPS] = 50
-        self.assertTrue(self.subject.is_opening)
+        self.assertIsNone(self.subject.is_opening)
         self.dps[COMMAND_DPS] = "close"
-        self.assertFalse(self.subject.is_opening)
+        self.assertIsNone(self.subject.is_opening)
         self.dps[COMMAND_DPS] = "stop"
-        self.assertFalse(self.subject.is_opening)
+        self.assertIsNone(self.subject.is_opening)
 
     def test_is_closing(self):
         self.dps[COMMAND_DPS] = "close"
         self.dps[POSITION_DPS] = 100
         self.assertFalse(self.subject.is_closing)
         self.dps[POSITION_DPS] = 50
-        self.assertTrue(self.subject.is_closing)
+        self.assertIsNone(self.subject.is_closing)
         self.dps[COMMAND_DPS] = "open"
-        self.assertFalse(self.subject.is_closing)
+        self.assertIsNone(self.subject.is_closing)
         self.dps[COMMAND_DPS] = "stop"
-        self.assertFalse(self.subject.is_closing)
+        self.assertIsNone(self.subject.is_closing)
 
     def test_is_closed(self):
+        self.dps[COMMAND_DPS] = "close"
         self.dps[POSITION_DPS] = 0
         self.assertFalse(self.subject.is_closed)
         self.dps[POSITION_DPS] = 100
+        self.assertTrue(self.subject.is_closed)
+        self.dps[COMMAND_DPS] = "stop"
         self.assertTrue(self.subject.is_closed)
 
     async def test_open_cover(self):

@@ -1,0 +1,96 @@
+name: Dual dimmer
+products:
+  - id: isstlkzmlurfcc6e
+    name: Malmbergs QS-WIFI-D02-TRIAC-2C
+primary_entity:
+  entity: light
+  name: Dimmer 1
+  dps:
+    - id: 1
+      type: boolean
+      name: switch
+    - id: 2
+      name: brightness
+      type: integer
+      range:
+        min: 10
+        max: 1000
+secondary_entities:
+  - entity: light
+    name: Dimmer 2
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+      - id: 8
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+  - entity: number
+    name: Minimum brightness 1
+    category: config
+    icon: "mdi:lightbulb-on-40"
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        range:
+          min: 25
+          max: 255
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 6
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    name: Minimum brightness 2
+    category: config
+    icon: "mdi:lightbulb-on-40"
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        range:
+          min: 25
+          max: 255
+  - entity: number
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    category: config
+    dps:
+      - id: 12
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "on"
+            value: "on"
+          - dps_val: memory
+            value: memory

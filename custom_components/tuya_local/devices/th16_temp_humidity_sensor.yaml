@@ -1,11 +1,8 @@
-# Example DPS Status
-# {'dps': {'1': 226, '2': 41, '9': 'f'}}
 name: TH16 TH06WB3S Temperature and Humidity Sensor
 products:
   - id: 7akwzwfwhukkdsib
 primary_entity:
   entity: sensor
-  name: Temperature
   class: temperature
   dps:
     - id: 1
@@ -17,7 +14,6 @@ primary_entity:
       class: measurement
 secondary_entities:
   - entity: sensor
-    name: Humidity
     class: humidity
     dps:
       - id: 2
@@ -26,7 +22,7 @@ secondary_entities:
         unit: "%"
         class: measurement
   - entity: select
-    name: Display Units
+    translation_key: temperature_unit
     category: config
     dps:
       - id: 9
@@ -34,6 +30,15 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: "f"
-            value: Fahrenheit
+            value: fahrenheit
           - dps_val: "c"
-            value: Celcius
+            value: celsius
+        optional: true
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 21
+        type: boolean
+        name: switch
+        optional: true

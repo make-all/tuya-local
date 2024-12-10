@@ -1,0 +1,118 @@
+name: Water timer
+products:
+  - id: ew946yrp3pgbaziu
+    name: RainPoint TTV103FRF
+primary_entity:
+  entity: valve
+  class: water
+  icon: "mdi:watering-can"
+  dps:
+    - id: 108
+      type: boolean
+      name: valve
+      mapping:
+        - dps_val: true
+          value: false
+        - dps_val: false
+          value: true
+secondary_entities:
+  - entity: switch
+    name: Automatic irrigation
+    category: config
+    icon: "mdi:calendar-clock"
+    dps:
+      - id: 125
+        optional: true
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+  - entity: select
+    name: Rain delay
+    translation_key: timer
+    category: config
+    icon: "mdi:timer-sand"
+    dps:
+      - id: 113
+        optional: true
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: cancel
+          - dps_val: "24"
+            value: "24h"
+          - dps_val: "48"
+            value: "48h"
+          - dps_val: "72"
+            value: "72h"
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 105
+        type: string
+        name: sensor
+        unit: "%"
+        mapping:
+          - dps_val: "0"
+            value: 10
+          - dps_val: "1"
+            value: 50
+          - dps_val: "2"
+            value: 100
+  - entity: sensor
+    name: Water flow
+    class: water
+    category: diagnostic
+    icon: "mdi:water"
+    dps:
+      - id: 103
+        name: sensor
+        type: integer
+        unit: L
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 60
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 106
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: "0"
+            value: idle
+          - dps_val: "1"
+            value: manual
+          - dps_val: "2"
+            value: auto
+          - dps_val: "3"
+            value: rain_delay
+  - entity: binary_sensor
+    category: diagnostic
+    class: problem
+    dps:
+      - id: 120
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 120
+        type: bitfield
+        name: fault_code

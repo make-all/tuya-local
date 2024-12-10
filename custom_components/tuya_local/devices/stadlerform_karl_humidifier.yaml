@@ -1,0 +1,101 @@
+name: Stadler Form Karl / Karl big
+products:
+  - id: gi2d3je5upa9ngx4
+    name: Stadler Form Karl
+  - id: qgv0pltei9nuuatv
+    name: Stadler Form Karl big
+primary_entity:
+  entity: humidifier
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 14
+      name: current_humidity
+      type: integer
+    - id: 103
+      name: humidity
+      type: integer
+      range:
+        min: 40
+        max: 55
+      mapping:
+        - step: 5
+    - id: 102
+      type: boolean
+      name: mode
+      mapping:
+        - dps_val: true
+          value: auto
+        - dps_val: false
+          value: boost
+secondary_entities:
+  - entity: binary_sensor
+    translation_key: tank_empty
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 29
+        type: boolean
+        name: lock
+  - entity: sensor
+    name: Filter
+    icon: "mdi:filter"
+    category: diagnostic
+    dps:
+      - id: 33
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: light
+    category: config
+    dps:
+      - id: 34
+        name: brightness
+        type: string
+        mapping:
+          - dps_val: "Fully"
+            value: 255
+          - dps_val: "Half"
+            value: 128
+          - dps_val: "Close"
+            value: 0
+  - entity: fan
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 101
+        name: speed
+        type: string
+        mapping:
+          - dps_val: "level_1"
+            value: 25
+          - dps_val: "level_2"
+            value: 50
+          - dps_val: "level_3"
+            value: 75
+          - dps_val: "level_4"
+            value: 100
+  - entity: binary_sensor
+    name: Filter change
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 104
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true

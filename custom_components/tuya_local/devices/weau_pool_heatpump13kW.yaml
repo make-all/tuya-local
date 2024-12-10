@@ -1,0 +1,158 @@
+name: W'Eau pool heatpump 13kW
+primary_entity:
+  entity: climate
+  translation_only_key: pool_heatpump
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: preset_mode
+          conditions:
+            - dps_val: eco
+              value: heat
+            - dps_val: hot
+              value: heat
+            - dps_val: cold
+              value: cool
+            - dps_val: auto
+              value: heat_cool
+    - id: 2
+      type: integer
+      name: temperature
+      unit: C
+      range:
+        min: 7
+        max: 60
+    - id: 3
+      type: integer
+      name: current_temperature
+    - id: 4
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: hot
+          value: quick_heat
+        - dps_val: eco
+          value: quiet_heat
+        - dps_val: cold
+          value: quiet_cool
+        - dps_val: auto
+          value: auto
+    - id: 101
+      name: unknown_101
+      type: integer
+    - id: 103
+      name: unknown_103
+      type: integer
+    - id: 106
+      name: unknown_106
+      type: integer
+    - id: 110
+      name: unknown_110
+      type: integer
+    - id: 111
+      name: unknown_111
+      type: integer
+    - id: 113
+      name: unknown_113
+      type: boolean
+    - id: 114
+      name: unknown_114
+      type: boolean
+    - id: 117
+      name: unknown_117
+      type: boolean
+    - id: 118
+      name: unknown_118
+      type: boolean
+secondary_entities:
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 6
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 6
+        name: fault_code
+        type: bitfield
+  - entity: sensor
+    class: temperature
+    name: Air inlet temperature
+    dps:
+      - id: 102
+        name: sensor
+        type: integer
+        unit: "°C"
+        class: measurement
+  - entity: sensor
+    class: temperature
+    name: Gas out temperature
+    dps:
+      - id: 104
+        name: sensor
+        type: integer
+        unit: "°C"
+        class: measurement
+  - entity: sensor
+    class: temperature
+    name: Air outlet temperature
+    dps:
+      - id: 105
+        name: sensor
+        type: integer
+        unit: "°C"
+        class: measurement
+  - entity: sensor
+    class: temperature
+    name: Condensor temperature
+    dps:
+      - id: 107
+        name: sensor
+        type: integer
+        unit: "°C"
+        class: measurement
+  - entity: sensor
+    class: temperature
+    name: Water inlet temperature
+    dps:
+      - id: 108
+        name: sensor
+        type: integer
+        unit: "°C"
+        class: measurement
+  - entity: sensor
+    class: temperature
+    name: Water outlet temperature
+    dps:
+      - id: 109
+        name: sensor
+        type: integer
+        unit: "°C"
+        class: measurement
+  - entity: binary_sensor
+    name: Compressor active
+    dps:
+      - id: 112
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Fan active
+    dps:
+      - id: 115
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Circulation active
+    dps:
+      - id: 116
+        type: boolean
+        name: sensor

@@ -1,0 +1,79 @@
+name: Avatto Curtain and Light
+products:
+  - id: v59tpvs4ubvjalhq
+    name: Avatto CB3S
+primary_entity:
+  entity: cover
+  class: curtain
+  dps:
+    - id: 1
+      name: control
+      type: string
+      mapping:
+        - dps_val: open
+          value: open
+        - dps_val: close
+          value: close
+        - dps_val: stop
+          value: stop
+    - id: 2
+      name: position
+      type: integer
+      unit: "%"
+      range:
+        min: 0
+        max: 100
+      mapping:
+        - step: 10
+secondary_entities:
+  - entity: light
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: select
+    name: Calibration
+    icon: "mdi:curtains"
+    category: config
+    dps:
+      - id: 3
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: start
+            value: Start
+          - dps_val: end
+            value: End
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Reverse
+    icon: "mdi:arrow-u-down-left"
+    category: config
+    dps:
+      - id: 8
+        type: string
+        name: switch
+        mapping:
+          - dps_val: forward
+            value: false
+          - dps_val: back
+            value: true
+  - entity: number
+    name: Time control
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 10
+          max: 120

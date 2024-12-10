@@ -1,0 +1,84 @@
+name: AGL Ultracontato R2
+primary_entity:
+  entity: cover
+  class: door
+  dps:
+    - id: 1
+      name: control
+      type: boolean
+      mapping:
+        - dps_val: true
+          value: "open"
+        - dps_val: false
+          value: "close"
+    - id: 101
+      name: open
+      type: boolean
+secondary_entities:
+  - entity: select
+    name: Switch type
+    category: config
+    icon: "mdi:electric-switch-closed"
+    dps:
+      - id: 108
+        type: string
+        name: option
+        mapping:
+          - dps_val: "NA"
+            value: Normally open
+          - dps_val: "NF"
+            value: Normally closed
+  - entity: select
+    category: config
+    name: Pulse type
+    icon: "mdi:pulse"
+    dps:
+      - id: 109
+        name: option
+        type: string
+        mapping:
+          - dps_val: "Pulsado"
+            value: Pulsed
+          - dps_val: "Retencao"
+            value: Continuous
+          - dps_val: "ONOFF"
+            value: On - Off
+  - entity: select
+    category: config
+    name: Auto close
+    icon: "mdi:door-closed"
+    dps:
+      - id: 103
+        name: option
+        type: string
+        mapping:
+          - dps_val: "habilitado"
+            value: Enabled
+          - dps_val: "desabilitado"
+            value: Disabled
+  - entity: number
+    category: config
+    name: Unlock duration
+    icon: "mdi:lock-clock"
+    dps:
+      - id: 107
+        name: value
+        type: integer
+        range:
+          min: 1
+          max: 65
+        unit: s
+  - entity: binary_sensor
+    name: Door opened
+    category: diagnostic
+    dps:
+      - id: 111
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Door closed
+    category: diagnostic
+    dps:
+      - id: 112
+        type: boolean
+        name: sensor

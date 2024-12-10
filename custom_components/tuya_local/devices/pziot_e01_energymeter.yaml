@@ -1,0 +1,56 @@
+name: Energy meter
+# products:
+#   - id: UNKNOWN
+#     name: PZIOT-E01
+primary_entity:
+  entity: sensor
+  name: Total energy
+  class: energy
+  dps:
+    - id: 109
+      type: integer
+      name: sensor
+      unit: kWh
+      class: total_increasing
+      mapping:
+        - scale: 100
+    - id: 104
+      type: integer
+      name: unknown_104
+    - id: 105
+      type: integer
+      name: unknown_105
+    - id: 106
+      type: integer
+      name: unknown_106
+secondary_entities:
+  - entity: sensor
+    class: voltage
+    dps:
+      - id: 101
+        name: sensor
+        type: integer
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    dps:
+      - id: 102
+        name: sensor
+        type: integer
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: power
+    dps:
+      - id: 103
+        name: sensor
+        type: integer
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 100

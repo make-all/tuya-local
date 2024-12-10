@@ -1,0 +1,168 @@
+name: Bidet
+products:
+  - id: 7cuimqtezvgbaeun
+    name: Kogan bidet
+primary_entity:
+  entity: switch
+  icon: "mdi:toilet"
+  dps:
+    - id: 45
+      type: boolean
+      name: switch
+    - id: 103
+      type: integer
+      name: ambient_temperature
+      optional: true
+    - id: 56
+      type: integer
+      name: clean_time
+      optional: true
+    - id: 57
+      type: string
+      name: wind_temperature
+      optional: true
+    - id: 59
+      type: integer
+      name: drying_time
+      optional: true
+secondary_entities:
+  - entity: select
+    name: Mode
+    icon: "mdi:toilet"
+    category: config
+    dps:
+      - id: 50
+        type: string
+        name: option
+        mapping:
+          - dps_val: dry
+            value: Dry
+          - dps_val: normal
+            value: Normal
+          - dps_val: child
+            value: Child
+  - entity: number
+    name: Water temperature
+    icon: "mdi:coolant-temperature"
+    category: config
+    dps:
+      - id: 52
+        type: string
+        name: value
+        range:
+          min: 1
+          max: 4
+        mapping:
+          - dps_val: level_1
+            value: 1
+          - dps_val: level_2
+            value: 2
+          - dps_val: level_3
+            value: 3
+          - dps_val: level_4
+            value: 4
+      - id: 53
+        name: temperature
+        type: integer
+        optional: true
+      - id: 54
+        name: pressure
+        type: string
+        optional: true
+  - entity: select
+    name: Position
+    icon: "mdi:arrow-left-right"
+    category: config
+    dps:
+      - id: 55
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: pos_1
+            value: Front
+          - dps_val: pos_2
+            value: Slightly forward
+          - dps_val: pos_3
+            value: Centre
+          - dps_val: pos_4
+            value: Slightly back
+          - dps_val: pos_5
+            value: Rear
+  - entity: number
+    name: Seat warmth
+    category: config
+    icon: "mdi:car-seat-heater"
+    dps:
+      - id: 60
+        type: string
+        name: value
+        range:
+          min: 1
+          max: 4
+        mapping:
+          - dps_val: level_1
+            value: 1
+          - dps_val: level_2
+            value: 2
+          - dps_val: level_3
+            value: 3
+          - dps_val: level_4
+            value: 4
+      - id: 61
+        name: temperature
+        type: integer
+        optional: true
+  - entity: switch
+    name: Deodorize
+    icon: "mdi:flower"
+    category: config
+    dps:
+      - id: 62
+        type: boolean
+        name: switch
+  - entity: light
+    category: config
+    dps:
+      - id: 64
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Eco mode
+    icon: "mdi:leaf"
+    category: config
+    dps:
+      - id: 65
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 68
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 68
+        type: bitfield
+        name: fault_code
+        optional: true
+  - entity: binary_sensor
+    name: Seated
+    class: occupancy
+    icon: "mdi:toilet"
+    category: diagnostic
+    dps:
+      - id: 46
+        type: boolean
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false

@@ -1,0 +1,112 @@
+name: Door lock
+products:
+  - id: 0zhwazcqndafnhta
+    name: NovaDigital SL06
+primary_entity:
+  entity: lock
+  dps:
+    - id: 1
+      type: integer
+      name: unlock_fingerprint
+      optional: true
+      persist: false
+    - id: 2
+      type: integer
+      name: unlock_password
+      optional: true
+      persist: false
+    - id: 3
+      type: integer
+      name: unlock_temp_pwd
+      optional: true
+      persist: false
+    - id: 5
+      type: integer
+      name: unlock_card
+      optional: true
+      persist: false
+    - id: 9
+      type: integer
+      name: unlock_request
+      optional: true
+    - id: 15
+      name: unlock_app
+      type: integer
+      optional: true
+      persist: false
+    - id: 44
+      name: unlock_multi
+      type: string
+      optional: true
+      persist: false
+    - id: 212
+      name: push_message
+      type: string
+      optional: true
+secondary_entities:
+  - entity: sensor
+    name: Alert
+    class: enum
+    icon: "mdi:alert"
+    category: diagnostic
+    dps:
+      - id: 8
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 1
+            value: wrong_finger
+          - dps_val: 2
+            value: wrong_password
+          - dps_val: 4
+            value: wrong_card
+          - dps_val: 8
+            value: wrong_face
+          - dps_val: 16
+            value: lock_jammed_closed
+          - dps_val: 32
+            value: high_temperature
+          - dps_val: 64
+            value: open_too_long
+          - dps_val: 128
+            value: lock_jammed_open
+          - dps_val: 256
+            value: lock_forced
+          - dps_val: 512
+            value: key_left_in
+          - dps_val: 1024
+            value: battery_low
+          - dps_val: 2048
+            value: battery_dead
+          - dps_val: 4096
+            value: shock
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 12
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: binary_sensor
+    name: Hijack
+    class: safety
+    category: diagnostic
+    dps:
+      - id: 16
+        type: boolean
+        name: sensor
+        optional: true
+  - entity: event
+    class: doorbell
+    category: diagnostic
+    dps:
+      - id: 19
+        type: boolean
+        optional: true
+        name: event
+        mapping:
+          - dps_val: true
+            value: ring
+          - dps_val: false
+            value: null

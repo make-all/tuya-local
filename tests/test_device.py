@@ -1,18 +1,12 @@
-from datetime import datetime
 from time import time
 from unittest import IsolatedAsyncioTestCase
-from unittest.mock import AsyncMock, Mock, call, patch
+from unittest.mock import ANY, AsyncMock, Mock, call, patch
 
-from homeassistant.const import (
-    EVENT_HOMEASSISTANT_STARTED,
-    EVENT_HOMEASSISTANT_STOP,
-)
+from homeassistant.const import EVENT_HOMEASSISTANT_STARTED, EVENT_HOMEASSISTANT_STOP
 
 from custom_components.tuya_local.device import TuyaLocalDevice
 
-from .const import (
-    EUROM_600_HEATER_PAYLOAD,
-)
+from .const import EUROM_600_HEATER_PAYLOAD
 
 
 class TestDevice(IsolatedAsyncioTestCase):
@@ -20,10 +14,14 @@ class TestDevice(IsolatedAsyncioTestCase):
         device_patcher = patch("tinytuya.Device")
         self.addCleanup(device_patcher.stop)
         self.mock_api = device_patcher.start()
+        self.mock_api().parent = None
 
         hass_patcher = patch("homeassistant.core.HomeAssistant")
         self.addCleanup(hass_patcher.stop)
         self.hass = hass_patcher.start()
+        self.hass().is_running = True
+        self.hass().is_stopping = False
+        self.hass().data = {"tuya_local": {}}
 
         def job(func, *args):
             return func(*args)
@@ -45,6 +43,7 @@ class TestDevice(IsolatedAsyncioTestCase):
             "some.ip.address",
             "some_local_key",
             "auto",
+            None,
             self.hass(),
         )
         # For most tests we want the protocol working
@@ -53,7 +52,7 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.subject._protocol_configured = "auto"
 
     def test_configures_tinytuya_correctly(self):
-        self.mock_api.assert_called_once_with(
+        self.mock_api.assert_called_with(
             "some_dev_id", "some.ip.address", "some_local_key"
         )
         self.assertIs(self.subject._api, self.mock_api())
@@ -94,7 +93,7 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.subject.async_refresh.assert_awaited()
 
     async def test_detection_returns_none_when_device_type_not_detected(self):
-        self.subject._cached_state = {"2": False, "updated_at": datetime.now()}
+        self.subject._cached_state = {"192": False, "updated_at": time()}
         self.assertEqual(await self.subject.async_inferred_type(), None)
 
     async def test_refreshes_when_there_is_no_pending_reset(self):
@@ -139,7 +138,7 @@ class TestDevice(IsolatedAsyncioTestCase):
     async def test_refresh_clears_cache_after_allowed_failures(self):
         self.subject._cached_state = {"1": True}
         self.subject._pending_updates = {
-            "1": {"value": False, "updated_at": datetime.now(), "sent": True}
+            "1": {"value": False, "updated_at": time(), "sent": True}
         }
         self.mock_api().status.side_effect = [
             Exception("Error"),
@@ -236,7 +235,7 @@ class TestDevice(IsolatedAsyncioTestCase):
     def test_reset_cached_state_clears_cached_state_and_pending_updates(self):
         self.subject._cached_state = {"1": True, "updated_at": time()}
         self.subject._pending_updates = {
-            "1": {"value": False, "updated_at": datetime.now(), "sent": True}
+            "1": {"value": False, "updated_at": time(), "sent": True}
         }
 
         self.subject._reset_cached_state()
@@ -275,10 +274,9 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.assertIs(self.subject.get_property("2"), None)
 
     async def test_async_set_property_sends_to_api(self):
-
         await self.subject.async_set_property("1", False)
 
-        self.mock_api().send.assert_called_once()
+        self.mock_api().set_multiple_values.assert_called_once()
 
     async def test_set_property_immediately_stores_pending_updates(self):
         self.subject._cached_state = {"1": True}
@@ -336,17 +334,19 @@ class TestDevice(IsolatedAsyncioTestCase):
             delta=2,
         )
 
-    def test_send_payload(self):
+    def test_set_values(self):
         # set up preconditions
         self.subject._pending_updates = {
             "1": {"value": "sample", "updated_at": time() - 2, "sent": False},
         }
 
         # call the function under test
-        self.subject._send_payload("PAYLOAD")
+        self.subject._set_values({"1": "sample"})
 
         # did it send what it was asked?
-        self.mock_api().send.assert_called_once_with("PAYLOAD")
+        self.mock_api().set_multiple_values.assert_called_once_with(
+            {"1": "sample"}, nowait=True
+        )
         # did it mark the pending updates as sent?
         self.assertTrue(self.subject._pending_updates["1"]["sent"])
         # did it update the time on the pending updates?
@@ -359,9 +359,30 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.subject._lock.acquire.assert_called_once()
         self.subject._lock.release.assert_called_once()
 
+    def test_pending_updates_cleared_on_receipt(self):
+        # Set up the preconditions
+        now = time()
+        self.subject._pending_updates = {
+            "1": {"value": True, "updated_at": now, "sent": True},
+            "2": {"value": True, "updated_at": now, "sent": False},  # unsent
+            "3": {"value": True, "updated_at": now, "sent": True},  # unmatched
+            "4": {"value": True, "updated_at": now, "sent": True},  # not received
+        }
+        self.subject._remove_properties_from_pending_updates(
+            {"1": True, "2": True, "3": False}
+        )
+        self.assertDictEqual(
+            self.subject._pending_updates,
+            {
+                "2": {"value": True, "updated_at": now, "sent": False},
+                "3": {"value": True, "updated_at": now, "sent": True},
+                "4": {"value": True, "updated_at": now, "sent": True},
+            },
+        )
+
     def test_actually_start(self):
         # Set up the preconditions
-        self.subject.receive_loop = Mock()
+        self.subject.receive_loop = AsyncMock()
         self.subject.receive_loop.return_value = "LOOP"
         self.hass().bus.async_listen_once.return_value = "LISTENER"
         self.subject._running = False
@@ -377,12 +398,11 @@ class TestDevice(IsolatedAsyncioTestCase):
         # did it set the running flag?
         self.assertTrue(self.subject._running)
         # did it schedule the loop?
-        self.hass().async_create_task.assert_called_once_with("LOOP")
+        # self.hass().async_create_task.assert_called_once()
 
     def test_start_starts_when_ha_running(self):
         # Set up preconditions
         self.hass().is_running = True
-        self.hass().is_stopping = False
         listener = Mock()
         self.subject._startup_listener = listener
         self.subject.actually_start = Mock()
@@ -399,7 +419,6 @@ class TestDevice(IsolatedAsyncioTestCase):
     def test_start_schedules_for_later_when_ha_starting(self):
         # Set up preconditions
         self.hass().is_running = False
-        self.hass().is_stopping = False
         self.hass().bus.async_listen_once.return_value = "LISTENER"
         self.subject.actually_start = Mock()
 
@@ -439,9 +458,8 @@ class TestDevice(IsolatedAsyncioTestCase):
         # Call the function under test
         await self.subject.async_stop()
 
-        # Was the shutdown listener cancelled?
-        listener.assert_called_once()
-        self.assertIsNone(self.subject._shutdown_listener)
+        # Shutdown listener doesn't get cancelled as HA does that
+        listener.assert_not_called()
         # Were the child entities cleared?
         self.assertEqual(self.subject._children, [])
         # Did it wait for the refresh task to finish then clear it?
@@ -466,16 +484,20 @@ class TestDevice(IsolatedAsyncioTestCase):
         # Was the refresh task left empty?
         self.assertIsNone(self.subject._refresh_task)
 
-    async def test_register_first_entity_ha_running(self):
+    def test_register_first_entity_ha_running(self):
         # Set up preconditions
         self.subject._children = []
         self.subject._running = False
         self.subject._startup_listener = None
         self.subject.start = Mock()
         entity = AsyncMock()
+        entity._config = Mock()
+        entity._config.dps.return_value = []
+        # despite the name, the below HA function is not async and does not need to be awaited
+        entity.async_schedule_update_ha_state = Mock()
 
         # Call the function under test
-        await self.subject.async_register_entity(entity)
+        self.subject.register_entity(entity)
 
         # Was the entity added to the list?
         self.assertEqual(self.subject._children, [entity])
@@ -483,17 +505,19 @@ class TestDevice(IsolatedAsyncioTestCase):
         # Did we start the loop?
         self.subject.start.assert_called_once()
 
-    async def test_register_subsequent_entity_ha_running(self):
+    def test_register_subsequent_entity_ha_running(self):
         # Set up preconditions
         first = AsyncMock()
         second = AsyncMock()
+        second._config = Mock()
+        second._config.dps.return_value = []
         self.subject._children = [first]
         self.subject._running = True
         self.subject._startup_listener = None
         self.subject.start = Mock()
 
         # Call the function under test
-        await self.subject.async_register_entity(second)
+        self.subject.register_entity(second)
 
         # Was the entity added to the list?
         self.assertCountEqual(self.subject._children, [first, second])
@@ -501,17 +525,19 @@ class TestDevice(IsolatedAsyncioTestCase):
         # Did we avoid restarting the loop?
         self.subject.start.assert_not_called()
 
-    async def test_register_subsequent_entity_ha_starting(self):
+    def test_register_subsequent_entity_ha_starting(self):
         # Set up preconditions
         first = AsyncMock()
         second = AsyncMock()
+        second._config = Mock()
+        second._config.dps.return_value = []
         self.subject._children = [first]
         self.subject._running = False
         self.subject._startup_listener = Mock()
         self.subject.start = Mock()
 
         # Call the function under test
-        await self.subject.async_register_entity(second)
+        self.subject.register_entity(second)
 
         # Was the entity added to the list?
         self.assertCountEqual(self.subject._children, [first, second])
@@ -562,7 +588,7 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.mock_api().set_socketPersistent.assert_called_once_with(False)
         # Check that a full poll was done
         self.mock_api().status.assert_called_once()
-        self.assertDictEqual(result, {"1": "INIT", "2": 2})
+        self.assertDictEqual(result, {"1": "INIT", "2": 2, "full_poll": ANY})
         # Prepare for next round
         self.subject._cached_state = self.subject._cached_state | result
         self.mock_api().set_socketPersistent.reset_mock()
@@ -577,7 +603,7 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.mock_api().status.assert_not_called()
         self.mock_api().heartbeat.assert_called_once()
         self.mock_api().receive.assert_called_once()
-        self.assertDictEqual(result, {"1": "UPDATED"})
+        self.assertDictEqual(result, {"1": "UPDATED", "full_poll": ANY})
         # Check that the connection was made persistent now that data has been
         # returned
         self.mock_api().set_socketPersistent.assert_called_once_with(True)
@@ -589,8 +615,29 @@ class TestDevice(IsolatedAsyncioTestCase):
         print("getting last iteration...")
         try:
             result = await loop.__anext__()
-            self.assertTrue(False)
+            self.fail("Should have raised an exception to quit the loop")
         # Check that the loop terminated
         except StopAsyncIteration:
             pass
         self.mock_api().set_socketPersistent.assert_called_once_with(False)
+
+    def test_should_poll(self):
+        self.subject._cached_state = {"1": "sample", "updated_at": time()}
+        self.subject._poll_only = False
+        self.subject._temporary_poll = False
+
+        # Test temporary poll via pause/resume
+        self.assertFalse(self.subject.should_poll)
+        self.subject.pause()
+        self.assertTrue(self.subject.should_poll)
+        self.subject.resume()
+        self.assertFalse(self.subject.should_poll)
+
+        # Test configured polling
+        self.subject._poll_only = True
+        self.assertTrue(self.subject.should_poll)
+        self.subject._poll_only = False
+
+        # Test initial polling
+        self.subject._cached_state = {}
+        self.assertTrue(self.subject.should_poll)

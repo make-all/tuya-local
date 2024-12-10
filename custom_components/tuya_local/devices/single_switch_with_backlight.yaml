@@ -9,8 +9,7 @@ primary_entity:
       type: boolean
 secondary_entities:
   - entity: number
-    name: Timer
-    icon: "mdi:timer"
+    translation_key: timer
     category: config
     dps:
       - id: 7
@@ -25,19 +24,18 @@ secondary_entities:
         unit: min
   - entity: select
     category: config
-    name: "Restore Power State"
-    icon: "mdi:toggle-switch"
+    translation_key: initial_state
     dps:
       - id: 14
         name: option
         type: string
         mapping:
           - dps_val: last
-            value: "Remember Last Status"
+            value: memory
           - dps_val: power_on
-            value: "On"
+            value: "on"
           - dps_val: power_off
-            value: "Off"
+            value: "off"
   - entity: select
     category: config
     name: "Backlight Mode"
@@ -54,14 +52,9 @@ secondary_entities:
           - dps_val: none
             value: "Off"
   - entity: light
-    name: "Backlight"
+    translation_key: backlight
     category: config
     dps:
       - id: 16
         name: switch
         type: boolean
-        mapping:
-          - dps_val: true
-            icon: "mdi:lightbulb-on"
-          - dps_val: false
-            icon: "mdi:lightbulb-outline"

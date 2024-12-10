@@ -1,0 +1,70 @@
+name: Chanfok ceiling fan
+products:
+  - id: tvtzgei8bgaezsvi
+    name: JST-DC-WYfen
+primary_entity:
+  entity: fan
+  translation_only_key: fan_with_presets
+  dps:
+    - id: 60
+      type: boolean
+      name: switch
+    - id: 61
+      type: string
+      name: preset_mode
+      mapping:
+        - dps_val: fresh
+          value: fresh
+        - dps_val: nature
+          value: nature
+    - id: 62
+      type: integer
+      name: speed
+      range:
+        min: 1
+        max: 6
+    - id: 63
+      type: string
+      name: direction
+    - id: 101
+      type: boolean
+      name: unknown_101
+      optional: true
+secondary_entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        name: work_mode
+        type: string
+        optional: true
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 28
+        name: control_data
+        type: string
+        optional: true
+  - entity: switch
+    name: Beep
+    icon: "mdi:bell"
+    category: config
+    dps:
+      - id: 66
+        type: boolean
+        name: switch

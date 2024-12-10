@@ -1,0 +1,249 @@
+name: Air conditioner
+products:
+  - id: jlzjetbqsrix7ne2
+    name: Kogan KASVWAC30YA vertical window air conditioner
+primary_entity:
+  entity: climate
+  dps:
+    - id: 1
+      type: boolean
+      name: hvac_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: AUTO
+              value: heat_cool
+            - dps_val: COOL
+              value: cool
+            - dps_val: DRY
+              value: dry
+            - dps_val: HEAT
+              value: heat
+            - dps_val: FAN
+              value: fan_only
+    - id: 2
+      type: integer
+      name: temperature
+      range:
+        min: 16
+        max: 30
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: temp_set_f
+              range:
+                min: 60
+                max: 86
+    - id: 3
+      type: integer
+      name: current_temperature
+      mapping:
+        - constraint: temperature_unit
+          conditions:
+            - dps_val: f
+              value_redirect: temp_current_f
+    - id: 4
+      type: string
+      name: mode
+      hidden: true
+    - id: 5
+      type: string
+      name: fan_mode
+      mapping:
+        - dps_val: level_1
+          value: silent
+        - dps_val: level_2
+          value: "1"
+        - dps_val: level_3
+          value: "2"
+        - dps_val: level_4
+          value: "3"
+        - dps_val: level_5
+          value: "4"
+        - dps_val: level_6
+          value: "5"
+        - dps_val: level_7
+          value: "6"
+        - dps_val: level_8
+          value: "7"
+        - dps_val: level_9
+          value: auto
+        - dps_val: level_10
+          value: powerful
+    - id: 19
+      type: string
+      name: temperature_unit
+      mapping:
+        - dps_val: c
+          value: C
+        - dps_val: f
+          value: F
+    - id: 23
+      type: integer
+      name: temp_current_f
+      hidden: true
+    - id: 24
+      type: integer
+      name: temp_set_f
+      optional: true
+      hidden: true
+      range:
+        min: 60
+        max: 86
+    - id: 102
+      type: boolean
+      name: swing_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          value: "on"
+    - id: 106
+      type: string
+      name: model
+      mapping:
+        - dps_val: "0"
+          value: reversable_heatpump
+        - dps_val: "1"
+          value: cooling_only
+    - id: 109
+      type: boolean
+      name: pump
+    - id: 110
+      type: boolean
+      name: follow_me
+secondary_entities:
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 14
+        type: boolean
+        name: lock
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 20
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: cancel
+          - dps_val: "2"
+            value: "1h"
+          - dps_val: "3"
+            value: "2h"
+          - dps_val: "4"
+            value: "3h"
+          - dps_val: "5"
+            value: "4h"
+          - dps_val: "6"
+            value: "5h"
+          - dps_val: "7"
+            value: "6h"
+          - dps_val: "8"
+            value: "7h"
+          - dps_val: "9"
+            value: "8h"
+          - dps_val: "10"
+            value: "9h"
+          - dps_val: "11"
+            value: "10h"
+          - dps_val: "12"
+            value: "11h"
+          - dps_val: "13"
+            value: "12h"
+          - dps_val: "14"
+            value: "13h"
+          - dps_val: "15"
+            value: "14h"
+          - dps_val: "16"
+            value: "15h"
+          - dps_val: "17"
+            value: "16h"
+          - dps_val: "18"
+            value: "17h"
+          - dps_val: "19"
+            value: "18h"
+          - dps_val: "20"
+            value: "19h"
+          - dps_val: "21"
+            value: "20h"
+          - dps_val: "22"
+            value: "21h"
+          - dps_val: "23"
+            value: "22h"
+          - dps_val: "24"
+            value: "23h"
+          - dps_val: "25"
+            value: "24h"
+  - entity: switch
+    translation_key: evaporator_cleaning
+    category: config
+    dps:
+      - id: 27
+        type: boolean
+        name: switch
+  - entity: light
+    translation_key: display
+    category: config
+    dps:
+      - id: 36
+        type: boolean
+        name: switch
+  - entity: switch
+    translation_key: uv_sterilization
+    category: config
+    dps:
+      - id: 38
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    translation_key: defrost
+    category: diagnostic
+    dps:
+      - id: 101
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 103
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: true
+            constraint: fault_code_2
+            conditions:
+              - dps_val: 0
+                value: false
+          - value: true
+      - id: 103
+        type: bitfield
+        name: fault_code
+      - id: 105
+        type: bitfield
+        name: fault_code_2
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: min
+  - entity: switch
+    translation_key: sleep
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        name: switch

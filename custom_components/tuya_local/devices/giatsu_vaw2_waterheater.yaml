@@ -1,0 +1,54 @@
+name: Water heater
+products:
+  - id: rmzdb9fyj9jo1bza
+    name: Giatsu GIA-ATS-O-300VAWT
+primary_entity:
+  entity: water_heater
+  dps:
+    - id: 1
+      type: boolean
+      name: operation_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          constraint: mode
+          conditions:
+            - dps_val: heat
+              value: Heating
+            - dps_val: heatfan
+              value: "Heating + Ventilation"
+    - id: 2
+      type: integer
+      name: temperature
+      range:
+        min: 10
+        max: 70
+      unit: C
+    - id: 4
+      type: string
+      name: mode
+      hidden: true
+secondary_entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 3
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 9
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 9
+        type: bitfield
+        name: fault_code

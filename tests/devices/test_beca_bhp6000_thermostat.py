@@ -1,7 +1,4 @@
-from homeassistant.components.climate.const import (
-    ClimateEntityFeature,
-    HVACMode,
-)
+from homeassistant.components.climate.const import ClimateEntityFeature, HVACMode
 from homeassistant.const import UnitOfTemperature
 
 from ..const import BECA_BHP6000_PAYLOAD
@@ -29,13 +26,16 @@ class TestBecaBHP6000Thermostat(
     __test__ = True
 
     def setUp(self):
-        self.setUpForConfig("beca_bhp6000_thermostat_f.yaml", BECA_BHP6000_PAYLOAD)
+        self.setUpForConfig(
+            "beca_bhp6000_thermostat_f.yaml",
+            BECA_BHP6000_PAYLOAD,
+        )
         self.subject = self.entities.get("climate")
         self.setUpTargetTemperature(
             TEMPERATURE_DPS,
             self.subject,
-            min=40,
-            max=95,
+            min=40.0,
+            max=95.0,
         )
         self.setUpBasicLight(LIGHT_DPS, self.entities.get("light_display"))
         self.setUpBasicLock(LOCK_DPS, self.entities.get("lock_child_lock"))
@@ -48,15 +48,22 @@ class TestBecaBHP6000Thermostat(
                 ClimateEntityFeature.FAN_MODE
                 | ClimateEntityFeature.PRESET_MODE
                 | ClimateEntityFeature.TARGET_TEMPERATURE
+                | ClimateEntityFeature.TURN_OFF
             ),
         )
 
     def test_temperature_unit_returns_configured_temperature_unit(self):
-        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.FAHRENHEIT)
+        self.assertEqual(
+            self.subject.temperature_unit,
+            UnitOfTemperature.FAHRENHEIT,
+        )
 
     async def test_legacy_set_temperature_with_preset_mode(self):
-        async with assert_device_properties_set(self.subject._device, {PRESET_DPS: 1}):
-            await self.subject.async_set_temperature(preset_mode="Schedule")
+        async with assert_device_properties_set(
+            self.subject._device,
+            {PRESET_DPS: 1},
+        ):
+            await self.subject.async_set_temperature(preset_mode="program")
 
     async def test_legacy_set_temperature_with_both_properties(self):
         async with assert_device_properties_set(
@@ -67,7 +74,8 @@ class TestBecaBHP6000Thermostat(
             },
         ):
             await self.subject.async_set_temperature(
-                temperature=78, preset_mode="Holiday Hold"
+                temperature=78,
+                preset_mode="away",
             )
 
     def test_current_temperature(self):
@@ -134,34 +142,23 @@ class TestBecaBHP6000Thermostat(
     def test_extra_state_attributes(self):
         self.assertEqual(self.subject.extra_state_attributes, {})
 
-    def test_icons(self):
-        self.dps[HVACMODE_DPS] = 1
-        self.assertEqual(self.subject.icon, "mdi:snowflake")
-        self.dps[HVACMODE_DPS] = 2
-        self.assertEqual(self.subject.icon, "mdi:fire")
-        self.dps[HVACMODE_DPS] = 3
-        self.assertEqual(self.subject.icon, "mdi:hvac-off")
-        self.dps[HVACMODE_DPS] = 4
-        self.assertEqual(self.subject.icon, "mdi:fire-alert")
-        self.dps[HVACMODE_DPS] = 5
-        self.assertEqual(self.subject.icon, "mdi:hvac")
-
-        self.dps[LIGHT_DPS] = True
-        self.assertEqual(self.basicLight.icon, "mdi:led-on")
-        self.dps[LIGHT_DPS] = False
-        self.assertEqual(self.basicLight.icon, "mdi:led-off")
-
 
 class TestBecaBHP6000ThermostatC(TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
-        self.setUpForConfig("beca_bhp6000_thermostat_c.yaml", BECA_BHP6000_PAYLOAD)
+        self.setUpForConfig(
+            "beca_bhp6000_thermostat_c.yaml",
+            BECA_BHP6000_PAYLOAD,
+        )
         self.subject = self.entities.get("climate")
         self.mark_secondary(["light_display", "lock_child_lock"])
 
     def test_temperature_unit_returns_configured_temperature_unit(self):
-        self.assertEqual(self.subject.temperature_unit, UnitOfTemperature.CELSIUS)
+        self.assertEqual(
+            self.subject.temperature_unit,
+            UnitOfTemperature.CELSIUS,
+        )
 
     def test_minimum_target_temperature(self):
         self.assertEqual(self.subject.min_temp, 5)
