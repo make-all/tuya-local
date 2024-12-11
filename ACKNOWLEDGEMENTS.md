@@ -772,3 +772,4 @@ Further device support has been made with the assistance of users. Please consid
 - [egric](https://github.com/egric) for assisting with support for Neptun Smart water leak control system.
 - [dave-parsons](https://github.com/dave-parsons) for assisting with support for Asahom outdoor lights.
 - [netsoft-ruidias](https://github.com/netsoft-ruidias) for assisting with support for HY multifunctional heat pump.
+- [fumantsu](https://github.com/fumantsu) for assisting with support for Siguro DH-F300W dehumidifier.
