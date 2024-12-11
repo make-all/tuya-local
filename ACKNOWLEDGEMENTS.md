@@ -771,3 +771,4 @@ Further device support has been made with the assistance of users. Please consid
 - [circa1665](https://github.com/circa1665) for assisting with support for Mypin 6L video pet feeder.
 - [egric](https://github.com/egric) for assisting with support for Neptun Smart water leak control system.
 - [dave-parsons](https://github.com/dave-parsons) for assisting with support for Asahom outdoor lights.
+- [netsoft-ruidias](https://github.com/netsoft-ruidias) for assisting with support for HY multifunctional heat pump.
