@@ -1,0 +1,37 @@
+name: Climate sensor
+products:
+  - id: bf9cbc4edbada
+    name: Xiaomi mijia LYWSD03MC Temperature and Humidity Monitor
+primary_entity:
+  entity: sensor
+  class: temperature
+  dps:
+    - id: 101
+      type: integer
+      name: sensor
+      unit: "°C"
+      class: measurement
+      range:
+        min: -20
+        max: 60
+secondary_entities:
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        range:
+          min: 0
+          max: 500
