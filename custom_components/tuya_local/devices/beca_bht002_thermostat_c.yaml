@@ -53,9 +53,17 @@ primary_entity:
       name: floor_temperature
       mapping:
         - scale: 2
+    - id: 103
+      type: enum
+      name: tempSwitch
+      conditions:
+        - dps_val: "0"
+          value: not_heating
+        - dps_val: "1"
+          value: heating
     - id: 104
       type: boolean
-      name: unknown_104
+      name: floortempFunction
 secondary_entities:
   - entity: lock
     translation_key: child_lock
