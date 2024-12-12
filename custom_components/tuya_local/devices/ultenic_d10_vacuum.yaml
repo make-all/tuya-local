@@ -1,0 +1,104 @@
+name: Ultenic D10 Robot Vacuum
+products:
+  - id: brqalal9im5dkazt
+    name: Ultenic D10
+
+primary_entity:
+  entity: vacuum
+  dps:
+    - id: 1
+      type: boolean
+      name: power
+
+    - id: 4
+      type: string
+      name: command
+      mapping:
+        - dps_val: standby
+          value: standby
+        - dps_val: clean
+          value: start_cleaning
+        - dps_val: pause
+          value: pause
+        - dps_val: goto_charge
+          value: return_to_base
+        - dps_val: select_room
+          value: select_room
+          
+    - id: 5
+      type: string
+      name: status
+      mapping:
+        - dps_val: standby
+          value: standby
+        - dps_val: cleaning
+          value: cleaning
+        - dps_val: paused
+          value: paused
+        - dps_val: charging
+          value: charging
+        - dps_val: error
+          value: error
+        - dps_val: select_room
+          value: select_room
+        # Add additional mappings as needed
+
+    - id: 8
+      type: integer
+      name: battery_level
+      unit: "%"
+      class: measurement
+
+    - id: 9
+      type: string
+      name: fan_speed
+      mapping:
+        - dps_val: gentle
+          value: Gentle
+        - dps_val: normal
+          value: Normal
+        - dps_val: strong
+          value: Strong
+
+    - id: 6
+      type: integer
+      name: filter_life
+      unit: "%"
+      class: measurement
+      optional: true
+
+    - id: 7
+      type: integer
+      name: side_brush_life
+      unit: "%"
+      class: measurement
+      optional: true
+
+    - id: 26
+      type: integer
+      name: main_brush_life
+      unit: "%"
+      class: measurement
+      optional: true
+
+    - id: 13
+      type: boolean
+      name: locate
+      optional: true
+
+secondary_entities:
+  - entity: sensor
+    name: Error Code
+    dps:
+      - id: 101
+        type: integer
+        name: error_code
+        optional: true
+
+  - entity: sensor
+    name: Device Language
+    dps:
+      - id: 36
+        type: string
+        name: language
+        optional: true
