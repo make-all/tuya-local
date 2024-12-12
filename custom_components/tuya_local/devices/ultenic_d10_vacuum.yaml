@@ -9,45 +9,33 @@ primary_entity:
     - id: 1
       type: boolean
       name: power
-
+      
+    - id: 2
+      type: boolean
+      name: activate
+      # Unsure of its function, optional for now.
+      optional: true
+      
     - id: 4
       type: string
       name: command
       mapping:
-        - dps_val: standby
-          value: standby
-        - dps_val: clean
+        - dps_val: smart
           value: start_cleaning
-        - dps_val: pause
-          value: pause
         - dps_val: goto_charge
           value: return_to_base
-        - dps_val: select_room
-          value: select_room
           
     - id: 5
       type: string
       name: status
       mapping:
-        - dps_val: standby
-          value: standby
-        - dps_val: cleaning
-          value: cleaning
-        - dps_val: paused
-          value: paused
         - dps_val: charging
           value: charging
-        - dps_val: error
-          value: error
-        - dps_val: select_room
-          value: select_room
+        - dps_val: smart
+          value: cleaning
+        - dps_val: goto_charge
+          value: returning
         # Add additional mappings as needed
-
-    - id: 8
-      type: integer
-      name: battery_level
-      unit: "%"
-      class: measurement
 
     - id: 9
       type: string
@@ -102,3 +90,11 @@ secondary_entities:
         type: string
         name: language
         optional: true
+  - entity: sensor
+    class: battery
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
