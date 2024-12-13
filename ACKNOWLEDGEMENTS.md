@@ -773,3 +773,4 @@ Further device support has been made with the assistance of users. Please consid
 - [dave-parsons](https://github.com/dave-parsons) for assisting with support for Asahom outdoor lights.
 - [netsoft-ruidias](https://github.com/netsoft-ruidias) for assisting with support for HY multifunctional heat pump.
 - [fumantsu](https://github.com/fumantsu) for assisting with support for Siguro DH-F300W dehumidifier.
+- [GvidasLTU](https://github.com/GvidasLTU) for contributing improvements to Beca BHT002 thermostat.
