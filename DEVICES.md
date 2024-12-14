@@ -133,7 +133,7 @@
 - Madimack Eco pool heat pump
 - Madimack Elite V3 pool heat pump (two versions)
 - Madimack(model unknown) pool heat pump (seems to match Fairland IPH45 as well)
-- Poolex Silverline, Q-7, Q-line, Arctic and Vertigo heat pumps
+- Poolex Silverline, Q-7, Q-line, Arctic, Vertigo, and Ice Spa heat pumps
 - Poolsana InverPower Next pool heat pump
 - Pool Systems IPS Pro pool heat pump (also Fairland Inver-X)
 - Pro-Energy PE08 pool heat pump
