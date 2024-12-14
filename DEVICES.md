@@ -133,7 +133,7 @@
 - Madimack Eco pool heat pump
 - Madimack Elite V3 pool heat pump (two versions)
 - Madimack(model unknown) pool heat pump (seems to match Fairland IPH45 as well)
-- Poolex Silverline, Q-7, Q-line, Arctic and Vertigo heat pumps
+- Poolex Silverline, Q-7, Q-line, Arctic, Vertigo, and Ice Spa heat pumps
 - Poolsana InverPower Next pool heat pump
 - Pool Systems IPS Pro pool heat pump (also Fairland Inver-X)
 - Pro-Energy PE08 pool heat pump
@@ -154,6 +154,7 @@
 - Fisher air to water heat pump
 - Geyserwise TSE1 Geyser controller kit
 - Giatsu VAW 2 heat pump water heater
+- HY multifunctional heat pump V1.2
 - Hydrotherm Dynamic/X8 heat pump hot water systems (Gen 5 and 6)
 - ITS-4.5HD super water heat pump
 - Koi Duo HTW-TD-080KOID
@@ -354,6 +355,7 @@
 - MeacoDry Arete Two 10L dehumidifier
 - Pro Breeze 30L dehumidifier
 - Shinco 30D dehumidifier (also matches Klarstein DryFy Connect)
+- Siguro SGR DH-F300W dehumidifier
 - Sygonix Smarter dehumidifier
 - Tesla Smart XL dehumidifier
 - VacPlus dehumidifier

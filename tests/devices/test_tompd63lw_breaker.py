@@ -60,6 +60,7 @@ class TestTOMPD63lw(MultiSensorTests, TuyaDeviceTestCase):
         self.mark_secondary(
             [
                 "binary_sensor_problem",
+                "button_clear_energy",
                 "button_earth_leak_test",
                 "button_energy_reset",
                 "button_factory_reset",
