@@ -376,7 +376,7 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         best_match = 0
         best_matching_type = None
 
-        async for type in self.device.async_possible_types():
+        for type in await self.device.async_possible_types():
             types.append(type.config_type)
             q = type.match_quality(
                 self.device._get_cached_state(),
