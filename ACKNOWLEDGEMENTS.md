@@ -775,3 +775,4 @@ Further device support has been made with the assistance of users. Please consid
 - [fumantsu](https://github.com/fumantsu) for assisting with support for Siguro DH-F300W dehumidifier.
 - [GvidasLTU](https://github.com/GvidasLTU) for contributing improvements to Beca BHT002 thermostat.
 - [Nero-Mic](https://github.com/Nero-Mic) for assisting with support for Poolex Ice Spa 70 heat pump.
+- [daviddreher2](https://github.com/daviddreher2) for contributing support for Lucci Connect Wi-Fi fan remote.
