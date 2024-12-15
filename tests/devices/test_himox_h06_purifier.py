@@ -103,6 +103,7 @@ class TestHimoxH06Purifier(
     def test_speed(self):
         self.dps[SPEED_DPS] = "low"
         self.assertEqual(self.subject.percentage, 33)
+        self.assertEqual(type(self.subject.percentage), int)
 
     def test_speed_step(self):
         self.assertAlmostEqual(self.subject.percentage_step, 33, 0)
