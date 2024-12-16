@@ -1,4 +1,9 @@
-name: Aubess energy monitor switch
+name: Energy monitor switch
+products:
+  # - id: UNKNOWN
+  #   name: Aubess 1-gang
+  - id: m4jtkjc43ltrilru
+    name: T34 Smart Plug+
 primary_entity:
   entity: switch
   dps:
@@ -88,3 +93,19 @@ secondary_entities:
         unit: V
         mapping:
           - scale: 10
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 29
+        type: bitfield
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 29
+        type: bitfield
+        optional: true
+        name: fault_code
