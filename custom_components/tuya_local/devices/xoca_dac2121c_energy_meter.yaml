@@ -1,0 +1,154 @@
+name: XOCA DAC2121C BI Energy Meter
+products:
+  - id: opdhepy0p7eyeurz
+    name: DAC-2121C BI
+primary_entity:
+  entity: switch
+  dps:
+    - id: 16
+      name: switch
+      type: boolean
+    - id: 6
+      name: phase_a
+      type: base64
+      optional: true
+      force: true
+secondary_entities:
+  - entity: sensor
+    name: Total Forward Energy
+    class: energy
+    # category: diagnostic
+    dps:
+      - id: 1
+        type: integer
+        unit: kWh
+        class: total_increasing
+        name: sensor
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Total Reverse Energy
+    class: energy
+    # category: diagnostic
+    dps:
+      - id: 2
+        type: integer
+        unit: kWh
+        class: total_increasing
+        name: sensor
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: voltage
+    # category: diagnostic
+    dps:
+      - id: 6
+        optional: true
+        force: true
+        type: base64
+        unit: V
+        class: measurement
+        name: sensor
+        mask: "FFFF000000000000"
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: current
+    # category: diagnostic
+    dps:
+      - id: 6
+        optional: true
+        force: true
+        type: base64
+        unit: A
+        name: sensor
+        mask: "0000FFFFFF000000"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    class: power
+    # category: diagnostic
+    dps:
+      - id: 6
+        optional: true
+        force: true
+        type: base64
+        unit: kW
+        name: sensor
+        mask: "0000000000FFFFFF"
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: Alarm Set 2
+    category: diagnostic
+    dps:
+      - id: 17
+        type: string
+        name: sensor
+        optional: true
+  - entity: sensor
+    name: Meter ID
+    category: diagnostic
+    dps:
+      - id: 18
+        type: string
+        name: sensor
+        optional: true
+  - entity: sensor
+    # Night zone
+    name: Tariff 1
+    class: energy
+    # category: diagnostic
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        optional: true
+        force: true
+        mapping:
+          - scale: 100
+  - entity: sensor
+    # Day zone
+    name: Tariff 2
+    class: energy
+    # category: diagnostic
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        optional: true
+        force: true
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Tariff 3
+    class: energy
+    # category: diagnostic
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        optional: true
+        force: true
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: Tariff 4
+    class: energy
+    # category: diagnostic
+    dps:
+      - id: 24
+        type: integer
+        name: sensor
+        unit: kWh
+        class: measurement
+        optional: true
+        force: true
+        mapping:
+          - scale: 100
