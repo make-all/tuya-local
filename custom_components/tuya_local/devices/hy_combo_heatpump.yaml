@@ -94,13 +94,14 @@ secondary_entities:
         name: current_temperature
         mapping:
           - scale: 10
-  - entity: lock
-    translation_key: child_lock
+  - entity: switch
+    name: Night mode
+    icon: "mdi:weather-night"
     category: config
     dps:
       - id: 3
         type: boolean
-        name: lock
+        name: switch
   - entity: binary_sensor
     class: problem
     category: diagnostic
