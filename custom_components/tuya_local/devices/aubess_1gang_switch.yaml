@@ -46,10 +46,44 @@ secondary_entities:
         mapping:
           - dps_val: "0"
             value: "off"
+            available: numeric_values
           - dps_val: "1"
             value: "on"
+            available: numeric_values
           - dps_val: "2"
             value: memory
+            available: numeric_values
+          - dps_val: "off"
+            value: "off"
+            available: word_values
+          - dps_val: "on"
+            value: "on"
+            available: word_values
+          - dps_val: "memory"
+            value: memory
+            available: word_values
+      - id: 38
+        type: string
+        name: numeric_values
+        mapping:
+          - dps_val: "0"
+            value: true
+          - dps_val: "1"
+            value: true
+          - dps_val: "2"
+            value: true
+          - value: false
+      - id: 38
+        type: string
+        name: word_values
+        mapping:
+          - dps_val: "on"
+            value: true
+          - dps_val: "off"
+            value: true
+          - dps_val: memory
+            value: true
+          - value: false
   - entity: sensor
     name: Energy
     category: diagnostic
