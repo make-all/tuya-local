@@ -1,0 +1,98 @@
+name: T34 Smart Plug+
+products:
+  - id: m4jtkjc43ltrilru
+    name: T34 Smart Plug+
+primary_entity:
+  entity: switch
+  class: outlet
+  dps:
+    - id: 1
+      name: switch
+      type: boolean
+    - id: 24
+      name: factory_test
+      type: bitfield
+    - id: 29
+      name: fault
+      type: bitfield
+    - id: 42
+      name: random_time
+      type: base64
+    - id: 43
+      name: cycle_time
+      type: base64
+    - id: 44
+      name: inching
+      type: base64
+secondary_entities:
+  - entity: sensor
+    name: Energy
+    category: diagnostic
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: Wh
+        optional: true
+  - entity: sensor
+    class: current
+    # category: diagnostic
+    dps:
+      - id: 21
+        type: integer
+        name: sensor
+        unit: mA
+        class: measurement
+        force: true
+  - entity: sensor
+    class: power
+    # category: diagnostic
+    dps:
+      - id: 22
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        force: true
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: voltage
+    # category: diagnostic
+    dps:
+      - id: 23
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        force: true
+        mapping:
+          - scale: 10
+  - entity: number
+    translation_key: timer
+    category: config
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 38
+        type: string
+        name: option
+        mapping:
+          - dps_val: "on"
+            value: "on"
+          - dps_val: "off"
+            value: "off"
+          - dps_val: memory
+            value: memory
