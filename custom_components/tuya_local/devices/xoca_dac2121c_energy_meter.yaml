@@ -23,6 +23,7 @@ secondary_entities:
         type: integer
         unit: kWh
         class: total_increasing
+        force: true
         name: sensor
         mapping:
           - scale: 100
@@ -35,6 +36,7 @@ secondary_entities:
         type: integer
         unit: kWh
         class: total_increasing
+        force: true
         name: sensor
         mapping:
           - scale: 100
@@ -86,6 +88,7 @@ secondary_entities:
         type: string
         name: sensor
         optional: true
+        force: true
   - entity: sensor
     name: Meter ID
     category: diagnostic
@@ -94,6 +97,7 @@ secondary_entities:
         type: string
         name: sensor
         optional: true
+        force: true
   - entity: sensor
     # Night zone
     name: Tariff 1
@@ -104,7 +108,7 @@ secondary_entities:
         type: integer
         name: sensor
         unit: kWh
-        class: measurement
+        class: total_increasing
         optional: true
         force: true
         mapping:
@@ -119,7 +123,7 @@ secondary_entities:
         type: integer
         name: sensor
         unit: kWh
-        class: measurement
+        class: total_increasing
         optional: true
         force: true
         mapping:
@@ -133,7 +137,7 @@ secondary_entities:
         type: integer
         name: sensor
         unit: kWh
-        class: measurement
+        class: total_increasing
         optional: true
         force: true
         mapping:
@@ -147,7 +151,7 @@ secondary_entities:
         type: integer
         name: sensor
         unit: kWh
-        class: measurement
+        class: total_increasing
         optional: true
         force: true
         mapping:
