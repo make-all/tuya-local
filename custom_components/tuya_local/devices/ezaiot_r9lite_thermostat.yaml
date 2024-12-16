@@ -70,13 +70,18 @@ primary_entity:
       name: temperature_adjust_step
     - id: 110
       type: boolean
-      name: Valve state boolean
+      name: hvac_action
+      mapping:
+        - dps_val: false
+          value: 'idle'
+        - dps_val: true
+          value: 'heating'
     - id: 105
       type: string
-      name: Device name
+      name: device_name
     - id: 108
       type: integer
-      name: Temperature calibration step
+      name: temperature_calibration_step
 secondary_entities:
   - entity: switch
     translation_key: anti_frost
