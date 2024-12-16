@@ -1,4 +1,4 @@
-name: EZAIOT R9Lite thermostat
+name: Thermostat
 #https://www.aliexpress.com/item/1005006020556081.html  Electric Heating 16A version
 products:
   - id: dq6nlukkifyawj9n
@@ -28,7 +28,7 @@ primary_entity:
       name: temperature
       range:
         min: 50
-        max: 10000
+        max: 500
       mapping:
         - scale: 10
           step: 5
@@ -67,7 +67,7 @@ primary_entity:
       name: unknown_112
     - id: 102
       type: integer
-      name: Temperature adjust step
+      name: temperature_adjust_step
     - id: 110
       type: boolean
       name: Valve state boolean
@@ -147,7 +147,7 @@ secondary_entities:
         type: bitfield
         name: fault_code
   - entity: number
-    name: High temperature limit
+    name: Maximum temperature
     category: config
     class: temperature
     dps:
@@ -162,7 +162,7 @@ secondary_entities:
           - scale: 10
             step: 10
   - entity: number
-    name: Low temperature limit
+    name: Minimum temperature
     category: config
     class: temperature
     dps:
@@ -189,8 +189,7 @@ secondary_entities:
           min: -99
           max: 99
         mapping:
-          - scale: 10
-            step: 1
+          - scale: 10            
   - entity: sensor
     #The dps id 113 is readonly (set not working)- I don't know why..probably not implemented on device
     name: Temperature sensor type
