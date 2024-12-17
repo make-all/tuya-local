@@ -33,6 +33,11 @@ from .helpers.log import log_json
 _LOGGER = logging.getLogger(__name__)
 
 
+def _collect_possible_matches(cached_state, product_ids):
+    """Collect possible matches from generator into an array."""
+    return list(possible_matches(cached_state, product_ids))
+
+
 class TuyaLocalDevice(object):
     def __init__(
         self,
@@ -396,19 +401,18 @@ class TuyaLocalDevice(object):
             await self.async_refresh()
             cached_state = self._get_cached_state()
 
-        for matched in await self._hass.async_add_executor_job(
-            possible_matches,
+        return await self._hass.async_add_executor_job(
+            _collect_possible_matches,
             cached_state,
             self._product_ids,
-        ):
-            await asyncio.sleep(0)
-            yield matched
+        )
 
     async def async_inferred_type(self):
         best_match = None
         best_quality = 0
         cached_state = self._get_cached_state()
-        async for config in self.async_possible_types():
+        possible = await self.async_possible_types()
+        for config in possible:
             quality = config.match_quality(cached_state, self._product_ids)
             _LOGGER.info(
                 "%s considering %s with quality %s",

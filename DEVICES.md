@@ -133,7 +133,7 @@
 - Madimack Eco pool heat pump
 - Madimack Elite V3 pool heat pump (two versions)
 - Madimack(model unknown) pool heat pump (seems to match Fairland IPH45 as well)
-- Poolex Silverline, Q-7, Q-line, Arctic and Vertigo heat pumps
+- Poolex Silverline, Q-7, Q-line, Arctic, Vertigo, and Ice Spa heat pumps
 - Poolsana InverPower Next pool heat pump
 - Pool Systems IPS Pro pool heat pump (also Fairland Inver-X)
 - Pro-Energy PE08 pool heat pump
@@ -154,6 +154,7 @@
 - Fisher air to water heat pump
 - Geyserwise TSE1 Geyser controller kit
 - Giatsu VAW 2 heat pump water heater
+- HY multifunctional heat pump V1.2
 - Hydrotherm Dynamic/X8 heat pump hot water systems (Gen 5 and 6)
 - ITS-4.5HD super water heat pump
 - Koi Duo HTW-TD-080KOID
@@ -259,6 +260,7 @@
 - Klarstein Skyscaper Ice cooling fan
 - Ledkia fan and light controller
 - Lexy F501 fan
+- Lucci Connect Wi-Fi fan remote
 - KCvents VT501-W heat recovery ventilation
 - Keyun MKCFE002 RGB chandelier fan
 - Kogan bladeless fans
@@ -354,6 +356,7 @@
 - MeacoDry Arete Two 10L dehumidifier
 - Pro Breeze 30L dehumidifier
 - Shinco 30D dehumidifier (also matches Klarstein DryFy Connect)
+- Siguro SGR DH-F300W dehumidifier
 - Sygonix Smarter dehumidifier
 - Tesla Smart XL dehumidifier
 - VacPlus dehumidifier
@@ -589,6 +592,7 @@ of device.
 - Unbranded 1CH dimmer module
 - Unbranded dual dimmer module
 - A60 1800-2700K RGBWW light
+- Asahom S105A-C outdoor lighting
 - Atomi smart color string light
 - Blitzwolf BW-LT31 LED strip
 - Brizlabs string lights
@@ -765,6 +769,7 @@ port and password.
 - Kerui 200W camera
 - Kerui JS-P162 300W camera
 - LSC PTZ camera
+- Moes PTZ indoor security camera
 - Nedis outdoor camera
 - Pinelake BF02 birdfeeder camera
 - RL video intercom (reported unable to connect)
@@ -833,6 +838,7 @@ port and password.
 - Holman WX1 tap timer (sprinkler controller)
 - Holman WX2 dual tap timer
 - Holman WX8 8 sprinkler irrigation controller
+- Neptun Smart water leak control system
 - Qoto 03 smart water valve / sprinkler controller
 - Qoto 05 smart water valve / sprinkler controller
 - SH07-8 / SH07S-TY smart sprinkler controller (sold as Aquarobo, Leictory LK06 and other brands)
