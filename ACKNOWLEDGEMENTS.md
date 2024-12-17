@@ -777,4 +777,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Nero-Mic](https://github.com/Nero-Mic) for assisting with support for Poolex Ice Spa 70 heat pump.
 - [daviddreher2](https://github.com/daviddreher2) for contributing support for Lucci Connect Wi-Fi fan remote.
 - [janouskovec](https://github.com/janouskovec) for contributing support for EZAIoT R9Lite thermostat.
-
+- [Flo0008](https://github.com/Flo0008) for assisting with support for Sboard III mini Weigand access control interface.
