@@ -62,9 +62,16 @@ primary_entity:
     - id: 101
       type: integer
       name: unknown_101
+      hidden: true
+    - id: 36
+      # dps id 36 (valve state) is redundant with dps id 110
+      type: string
+      name: Valve state (text representation open/close)
+      hidden: true
     - id: 112
       type: integer
       name: unknown_112
+      hidden: true
     - id: 102
       type: integer
       name: temperature_adjust_step
@@ -86,7 +93,7 @@ primary_entity:
       type: string
       name: version
     - id: 113
-      #The dps id 113 is readonly (set not working)- I don't know why..probably not implemented on device
+      # The dps id 113 is readonly (set not working)- I don't know why..probably not implemented on device
       type: string
       name: temperature_sensor_type    
 secondary_entities:
@@ -124,19 +131,6 @@ secondary_entities:
             value: Mon-Sat+Sun
           - dps_val: '7'
             value: Daily
-  - entity: binary_sensor
-    name: Valve
-    class: opening
-    category: diagnostic
-    dps:
-      - id: 36
-        type: string
-        name: sensor
-        mapping:
-          - dps_val: open
-            value: true
-          - dps_val: close
-            value: false
   - entity: lock
     translation_key: child_lock
     category: config
