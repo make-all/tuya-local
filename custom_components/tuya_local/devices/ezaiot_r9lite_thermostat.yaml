@@ -1,5 +1,6 @@
 name: Thermostat
-#https://www.aliexpress.com/item/1005006020556081.html  Electric Heating 16A version
+# https://www.aliexpress.com/item/1005006020556081.html
+# Electric Heating 16A version
 products:
   - id: dq6nlukkifyawj9n
     name: EZAIOT R9Lite thermostat
@@ -93,9 +94,9 @@ primary_entity:
       type: string
       name: version
     - id: 113
-      # The dps id 113 is readonly (set not working)- I don't know why..probably not implemented on device
+      # The dps id 113 is readonly..probably not implemented on device
       type: string
-      name: temperature_sensor_type    
+      name: temperature_sensor_type
 secondary_entities:
   - entity: switch
     translation_key: anti_frost
@@ -195,7 +196,7 @@ secondary_entities:
           min: -99
           max: 99
         mapping:
-          - scale: 10            
+          - scale: 10
   - entity: sensor
     name: External temperature
     class: temperature
