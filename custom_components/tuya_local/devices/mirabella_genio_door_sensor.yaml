@@ -1,0 +1,28 @@
+name: Mirabella Genio Door/Window Sensor
+products:
+  - id: iqoy7jgeosgbgk9i
+    name: Genio Door/Window Sensor
+primary_entity:
+  entity: binary_sensor
+  class: door
+  dps:
+    - id: 101
+      type: boolean
+      name: sensor
+secondary_entities:
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: binary_sensor
+    name: Tamper alarm
+    class: tamper
+    dps:
+      - id: 102
+        type: boolean
+        name: sensor
