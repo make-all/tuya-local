@@ -188,6 +188,7 @@
 - ETOP-FCU thermostat (Jaga JRT-100TW)
 - ETOP-HP thermostat (CH7100)
 - ETOP-HT thermostat
+- EZAIoT R9Lite thermostat
 - EZAIoT thermostat smartplug
 - Hysen HY02TP thermostat
 - Hysen HY08ACF thermostat
