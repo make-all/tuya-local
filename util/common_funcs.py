@@ -1,8 +1,7 @@
-"""Common functions used in the unilities."""
+"""Common functions used in the utilities."""
 
 from custom_components.tuya_local.helpers.device_config import (
     get_config,
-    possible_matches,
 )
 
 
