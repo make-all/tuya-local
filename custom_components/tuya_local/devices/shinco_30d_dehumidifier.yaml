@@ -1,5 +1,8 @@
 name: Dehumidifier
+legacy_type: alecoair_d12_home_dehumidifier
 products:
+  - id: hp1sjssyokokbrsg
+    name: AlecoAir D12/D16 Home
   - id: to4nyl9qxvkqmcmk
     name: Klarstein DryFy Connect
   - id: fvxjwu2oggajswbx
@@ -44,7 +47,11 @@ secondary_entities:
             value: 50
       - id: 8
         type: boolean
+        optional: true
         name: oscillate
+        mapping:
+          - dps_val: null
+            invalid: true
   - entity: switch
     translation_key: ionizer
     category: config
