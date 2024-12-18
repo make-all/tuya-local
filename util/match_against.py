@@ -6,7 +6,7 @@ import sys
 from custom_components.tuya_local.helpers.device_config import (
     _typematch,
 )
-from common_funcs import FakeDevice, load_config
+from .common_funcs import FakeDevice, load_config
 
 
 def main() -> int:
