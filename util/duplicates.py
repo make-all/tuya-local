@@ -3,6 +3,7 @@
 import sys
 
 from common_funcs import load_config, make_sample_dps
+
 from custom_components.tuya_local.helpers.device_config import possible_matches
 
 
