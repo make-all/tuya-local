@@ -4,6 +4,7 @@ import json
 import sys
 
 from custom_components.tuya_local.helpers.device_config import possible_matches
+
 from .common_funcs import FakeDevice
 
 
