@@ -17,7 +17,7 @@ def main():
 
         # device = FakeDevice(sample_dps)
         for m in possible_matches(sample_dps):
-            if m.config_type == filename:
+            if m.config_type == config.config_type:
                 continue
             if m.match_quality(sample_dps) > 50:
                 print(
