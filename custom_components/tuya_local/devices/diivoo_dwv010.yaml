@@ -25,8 +25,8 @@ secondary_entities:
         type: string
         name: operation
   - entity: sensor
-    name: Water use
     class: volume
+    name: Cumulative water usage
     category: diagnostic
     dps:
       - id: 112
@@ -34,13 +34,37 @@ secondary_entities:
         name: sensor
         unit: "l"
   - entity: sensor
+    class: volume
+    name: Daily water usage
+    category: diagnostic
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: "l"
+  - entity: sensor
     class: battery
+    name: Battery
     category: diagnostic
     dps:
       - id: 7
         type: integer
         name: sensor
         unit: "%"
+  - entity: sensor
+    name: Operation 1
+    category: diagnostic
+    dps:
+      - id: 12
+        type: string
+        name: sensor
+  - entity: sensor
+    name: Operation 2
+    category: diagnostic
+    dps:
+      - id: 126
+        type: string
+        name: sensor
   - entity: select
     name: Weather delay 1
     icon: "mdi:weather-cloudy-clock"
@@ -91,3 +115,47 @@ secondary_entities:
             value: "6 days"
           - dps_val: "7"
             value: "7 days"
+  - entity: number
+    name: Single use time 1
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 15
+        type: integer
+        name: value
+        unit: min
+        optional: true
+        range:
+          min: 0
+          max: 1440
+  - entity: number
+    name: Single use time 2
+    category: config
+    icon: "mdi:timer"
+    dps:
+      - id: 127
+        type: integer
+        name: value
+        unit: min
+        optional: true
+        range:
+          min: 0
+          max: 1440 
+  - entity: sensor
+    class: time
+    name: Remaining irrigation time 2
+    category: diagnostic
+    dps:
+      - id: 125
+        type: integer
+        name: sensor
+        unit: "s"
+  - entity: sensor
+    class: time
+    name: Remaining irrigation time 1
+    category: diagnostic
+    dps:
+      - id: 11
+        type: integer
+        name: sensor
+        unit: "s"
