@@ -25,7 +25,7 @@ secondary_entities:
         type: string
         name: operation
   - entity: sensor
-    class: volume
+    class: total_increasing
     name: Cumulative water usage
     category: diagnostic
     dps:
@@ -44,21 +44,20 @@ secondary_entities:
         unit: "l"
   - entity: sensor
     class: battery
-    name: Battery
     category: diagnostic
     dps:
       - id: 7
         type: integer
         name: sensor
         unit: "%"
-  - entity: sensor
+  - entity: attribute
     name: Operation 1
     category: diagnostic
     dps:
       - id: 12
         type: string
         name: sensor
-  - entity: sensor
+  - entity: attribute
     name: Operation 2
     category: diagnostic
     dps:
@@ -142,7 +141,7 @@ secondary_entities:
           min: 0
           max: 1440
   - entity: sensor
-    class: time
+    class: duration
     name: Remaining irrigation time 2
     category: diagnostic
     dps:
@@ -151,7 +150,7 @@ secondary_entities:
         name: sensor
         unit: "s"
   - entity: sensor
-    class: time
+    class: duration
     name: Remaining irrigation time 1
     category: diagnostic
     dps:
