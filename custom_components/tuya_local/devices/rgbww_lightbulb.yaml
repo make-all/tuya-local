@@ -1,7 +1,10 @@
 name: RGB warm white light
+legacy_type: feit_light_rgb_bulb
 products:
   - id: hpaeslvkx4znwzae
     name: A60 RGB 1800-2700K light
+  - id: 8cr0olwf9sphi0u4
+    name: Feit RGB Light Bulb
 primary_entity:
   entity: light
   dps:
@@ -17,6 +20,9 @@ primary_entity:
           value: color_temp
         - dps_val: colour
           value: hs
+        - dps_val: null
+          value: color_temp
+          hidden: true
     - id: 3
       type: integer
       name: brightness

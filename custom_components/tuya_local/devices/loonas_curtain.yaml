@@ -1,4 +1,5 @@
 name: Curtain
+legacy_type: yueqingcombo_yet848pc_curtain
 products:
   - id: wraaecjqfiirj8go
     name: Loonas curtain motor
@@ -45,11 +46,15 @@ secondary_entities:
       - id: 5
         type: string
         name: switch
+        optional: true
         mapping:
           - dps_val: back
             value: true
           - dps_val: forward
             value: false
+          - dps_val: null
+            value: false
+            hidden: true
   - entity: binary_sensor
     class: problem
     category: diagnostic
