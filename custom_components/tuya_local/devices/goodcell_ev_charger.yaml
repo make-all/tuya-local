@@ -1,7 +1,10 @@
 name: EV charger
+legacy_type: feyree_3phase_ev_charger
 products:
   - id: j6bzjwhiv2cljjcy
-    name: Goodcell 32A 85-264V 3 phase EV charger
+    name: Goodcell 32A 85-264V 3 phase
+  - id: basqjlsmzcq8ipva
+    name: Feyree 7.6kW 32A
 primary_entity:
   entity: sensor
   class: enum
@@ -300,3 +303,12 @@ secondary_entities:
             value: Stop charging
           - dps_val: "WaitOperation"
             value: Waiting for command
+  - entity: switch
+    name: RFID
+    icon: "mdi:credit-card-wireless"
+    category: config
+    dps:
+      - id: 123
+        type: boolean
+        name: switch
+        optional: true
