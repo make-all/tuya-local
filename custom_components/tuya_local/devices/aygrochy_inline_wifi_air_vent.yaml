@@ -1,4 +1,7 @@
-name: Aygrochy fan
+name: Fan
+# products:
+#   - id: UNKNOWN
+#     name: Aygrochy fan
 primary_entity:
   entity: climate
   dps:
@@ -7,15 +10,15 @@ primary_entity:
       type: string
       mapping:
         - dps_val: "ON"
-          value: "ON"
+          value: "On"
         - dps_val: "OFF"
-          value: "OFF"
+          value: "Off"
         - dps_val: "TIMER"
-          value: "TIMER"
+          value: "Timer"
         - dps_val: "AUTO"
-          value: "AUTO"
+          value: "Auto"
         - dps_val: "ALARM"
-          value: "ALARM"
+          value: "Alarm"
     - id: 2
       name: hvac_mode
       type: string
@@ -82,6 +85,9 @@ secondary_entities:
       - id: 103
         name: sensor
         type: integer
+        unit: "%"
+        mapping:
+          - scale: 0.1
   - entity: number
     translation_key: timer
     dps:
@@ -103,7 +109,7 @@ secondary_entities:
         type: string
   # id 106 see primairy entity
   - entity: number
-    name: Auto-High Humid
+    name: Auto - high humidity
     class: humidity
     dps:
       - id: 107
@@ -115,7 +121,7 @@ secondary_entities:
         unit: "%"
   # id 108 see primairy entity
   - entity: number
-    name: Auto-Low Humid
+    name: Auto - low humidity
     class: humidity
     dps:
       - id: 109
@@ -126,7 +132,7 @@ secondary_entities:
           max: 100
         unit: "%"
   - entity: number
-    name: Alarm-High Temp
+    name: Alarm - high temperature
     class: temperature
     dps:
       - id: 110
@@ -137,7 +143,7 @@ secondary_entities:
           max: 194
         unit: "F"
   - entity: number
-    name: Alarm-High Humid
+    name: Alarm - high humidity
     class: humidity
     dps:
       - id: 111
@@ -148,7 +154,7 @@ secondary_entities:
           max: 100
         unit: "%"
   - entity: number
-    name: Alarm-Low Temp
+    name: Alarm - low temperature
     class: temperature
     dps:
       - id: 112
@@ -159,7 +165,7 @@ secondary_entities:
           max: 194
         unit: "F"
   - entity: number
-    name: Alarm-Low Humid
+    name: Alarm - low humidity
     class: humidity
     dps:
       - id: 113
@@ -170,13 +176,13 @@ secondary_entities:
           max: 100
         unit: "%"
   - entity: lock
-    name: Child lock
+    translation_key: child_lock
     dps:
       - id: 114
         type: integer
         name: lock
   - entity: switch
-    name: Auto-High temp switch
+    name: Auto - high temperature switch
     dps:
       - id: 116
         type: integer
@@ -187,7 +193,7 @@ secondary_entities:
           - dps_val: 1
             value: false
   - entity: switch
-    name: Auto-High humid switch
+    name: Auto - high humidity switch
     dps:
       - id: 117
         type: integer
@@ -198,7 +204,7 @@ secondary_entities:
           - dps_val: 1
             value: false
   - entity: switch
-    name: Auto-Low temp switch
+    name: Auto - low temperature switch
     dps:
       - id: 118
         type: integer
@@ -209,7 +215,7 @@ secondary_entities:
           - dps_val: 1
             value: false
   - entity: switch
-    name: Auto-Low humid switch
+    name: Auto - low humidity switch
     dps:
       - id: 119
         type: integer
@@ -220,7 +226,7 @@ secondary_entities:
           - dps_val: 1
             value: false
   - entity: switch
-    name: Alarm-High temp switch
+    name: Alarm - high temperature switch
     dps:
       - id: 120
         type: integer
@@ -231,7 +237,7 @@ secondary_entities:
           - dps_val: 1
             value: false
   - entity: switch
-    name: Alarm-High humid switch
+    name: Alarm - high humidity switch
     dps:
       - id: 121
         type: integer
@@ -242,7 +248,7 @@ secondary_entities:
           - dps_val: 1
             value: false
   - entity: switch
-    name: Alarm-Low temp switch
+    name: Alarm - low temperature switch
     dps:
       - id: 122
         type: integer
@@ -253,7 +259,7 @@ secondary_entities:
           - dps_val: 1
             value: false
   - entity: switch
-    name: Alarm-Low humid switch
+    name: Alarm - low humidity switch
     dps:
       - id: 123
         type: integer
