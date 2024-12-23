@@ -232,6 +232,7 @@
 - Aspen ASP 200 fan
 - Atomberg Gorilla fan V2
 - Atomi 52 inch ceiling fan
+- Aygrochy ventilation duct fan
 - Breville AirDynamic 3D pedestal fan
 - Brilliant Ceiling fan with light
 - Calibo Cloudfan DC ceiling fan with light
