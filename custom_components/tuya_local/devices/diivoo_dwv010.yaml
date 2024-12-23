@@ -25,23 +25,19 @@ secondary_entities:
         type: string
         name: operation
   - entity: sensor
-    class: total_increasing
-    name: Cumulative water usage
+    name: Water use
+    class: volume
     category: diagnostic
     dps:
       - id: 112
         type: integer
         name: sensor
-        unit: "l"
-  - entity: sensor
-    class: volume
-    name: Daily water usage
-    category: diagnostic
-    dps:
+        unit: l
+        class: total_increasing
       - id: 6
         type: integer
-        name: sensor
-        unit: "l"
+        name: daily
+        unit: l
   - entity: sensor
     class: battery
     category: diagnostic
@@ -101,7 +97,7 @@ secondary_entities:
           - dps_val: "7"
             value: "7 days"
   - entity: number
-    name: Single use time 1
+    name: Irrigation time 1
     category: config
     icon: "mdi:timer"
     dps:
@@ -114,7 +110,7 @@ secondary_entities:
           min: 0
           max: 1440
   - entity: number
-    name: Single use time 2
+    name: Irrigation time 2
     category: config
     icon: "mdi:timer"
     dps:
@@ -128,19 +124,19 @@ secondary_entities:
           max: 1440
   - entity: sensor
     class: duration
-    name: Remaining irrigation time 2
+    name: Time remaining 1
     category: diagnostic
     dps:
-      - id: 125
+      - id: 11
         type: integer
         name: sensor
         unit: "s"
   - entity: sensor
     class: duration
-    name: Remaining irrigation time 1
+    name: Time remaining 2
     category: diagnostic
     dps:
-      - id: 11
+      - id: 125
         type: integer
         name: sensor
         unit: "s"
