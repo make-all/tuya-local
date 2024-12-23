@@ -4,6 +4,7 @@ products:
     name: 48x36 Mirror
 primary_entity:
   entity: light
+  name: Light
   dps:
     - id: 1
       type: boolean
@@ -22,10 +23,15 @@ primary_entity:
       range:
         min: 0
         max: 255
+      mapping:
+        - target_range:
+            min: 2700
+            max: 6500
 secondary_entities:
-  - entity: heater
+  - entity: switch
+    name: Heater
     dps:
-      - id: 100
+      - id: 101
         type: boolean
+        optional: true
         name: switch
-  
