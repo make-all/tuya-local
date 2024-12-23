@@ -43,21 +43,42 @@ primary_entity:
       name: current_temperature
       type: integer
       unit: "F"
-    - id: 106
+    - id: 110
       name: target_temp_high
       type: integer
       range:
         min: 32
         max: 194
       unit: "F"
-    - id: 108
+      mapping:
+        - constraint: hvac_mode
+          conditions:
+            - dps_val: AUTO
+              value_redirect: auto_temp_high
+    - id: 106
+      name: auto_temp_high
+      type: integer
+      range:
+        min: 32
+        max: 194
+    - id: 112
       name: target_temp_low
       type: integer
       range:
         min: 32
         max: 194
       unit: "F"
-
+      mapping:
+        - constraint: hvac_mode
+          conditions:
+            - dps_val: AUTO
+              value_redirect: auto_temp_low
+    - id: 108
+      name: auto_temp_low
+      type: integer
+      range:
+        min: 32
+        max: 194
 secondary_entities:
   - entity: fan
     dps:
@@ -109,41 +130,7 @@ secondary_entities:
         type: string
   # id 106 see primairy entity
   - entity: number
-    name: Auto - high humidity
-    class: humidity
-    dps:
-      - id: 107
-        name: value
-        type: integer
-        range:
-          min: 0
-          max: 100
-        unit: "%"
-  # id 108 see primairy entity
-  - entity: number
-    name: Auto - low humidity
-    class: humidity
-    dps:
-      - id: 109
-        name: value
-        type: integer
-        range:
-          min: 0
-          max: 100
-        unit: "%"
-  - entity: number
-    name: Alarm - high temperature
-    class: temperature
-    dps:
-      - id: 110
-        name: value
-        type: integer
-        range:
-          min: 32
-          max: 194
-        unit: "F"
-  - entity: number
-    name: Alarm - high humidity
+    name: Maximum humidity
     class: humidity
     dps:
       - id: 111
@@ -153,19 +140,24 @@ secondary_entities:
           min: 0
           max: 100
         unit: "%"
-  - entity: number
-    name: Alarm - low temperature
-    class: temperature
-    dps:
-      - id: 112
-        name: value
+        mapping:
+          - constraint: mode
+            conditions:
+              - dps_val: AUTO
+                value_redirect: auto_high_humidity
+      - id: 2
+        name: mode
+        type: string
+        hidden: true
+      - id: 107
+        name: auto_high_humidity
         type: integer
         range:
-          min: 32
-          max: 194
-        unit: "F"
+          min: 0
+          max: 100
+  # id 108 see primairy entity
   - entity: number
-    name: Alarm - low humidity
+    name: Minimum humidity
     class: humidity
     dps:
       - id: 113
@@ -175,6 +167,21 @@ secondary_entities:
           min: 0
           max: 100
         unit: "%"
+        mapping:
+          - constraint: mode
+            conditions:
+              - dps_val: AUTO
+                value_redirect: auto_low_humidity
+      - id: 2
+        name: mode
+        type: string
+        hidden: true
+      - id: 109
+        name: auto_low_humidity
+        type: integer
+        range:
+          min: 0
+          max: 100
   - entity: lock
     translation_key: child_lock
     dps:
