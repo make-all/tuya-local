@@ -5,7 +5,12 @@ from typing import Any
 
 import tinytuya
 import voluptuous as vol
-from homeassistant import config_entries
+from homeassistant.config_entries import (
+    ConfigEntry,
+    ConfigFlow,
+    OptionsFlow,
+    CONN_CLASS_LOCAL_PUSH,
+)
 from homeassistant.const import CONF_HOST, CONF_NAME
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.data_entry_flow import FlowResult
@@ -40,10 +45,10 @@ from .helpers.log import log_json
 _LOGGER = logging.getLogger(__name__)
 
 
-class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
+class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
     VERSION = 13
     MINOR_VERSION = 7
-    CONNECTION_CLASS = config_entries.CONN_CLASS_LOCAL_PUSH
+    CONNECTION_CLASS = CONN_CLASS_LOCAL_PUSH
     device = None
     data = {}
 
@@ -458,14 +463,14 @@ class ConfigFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
     @staticmethod
     @callback
-    def async_get_options_flow(config_entry):
-        return OptionsFlowHandler(config_entry)
+    def async_get_options_flow(config_entry: ConfigEntry):
+        return OptionsFlowHandler()
 
 
-class OptionsFlowHandler(config_entries.OptionsFlow):
-    def __init__(self, config_entry):
+class OptionsFlowHandler(OptionsFlow):
+    def __init__(self):
         """Initialize options flow."""
-        self.config_entry = config_entry
+        pass
 
     async def async_step_init(self, user_input=None):
         return await self.async_step_user(user_input)
