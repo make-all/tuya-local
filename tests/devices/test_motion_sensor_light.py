@@ -35,9 +35,11 @@ class TestMotionLight(BasicSwitchTests, MultiNumberTests, TuyaDeviceTestCase):
                 {
                     "dps": TIME_DPS,
                     "name": "number_duration",
+                    "device_class": "duration",
                     "min": 10,
                     "max": 900,
                     "step": 10,
+                    "device_class": NumberDeviceClass.DURATION,
                     "unit": UnitOfTime.SECONDS,
                 },
                 {

@@ -1,4 +1,5 @@
 from homeassistant.components.fan import FanEntityFeature
+from homeassistant.components.number import NumberDeviceClass
 from homeassistant.const import UnitOfTime
 
 from ..const import TMWF02_FAN_PAYLOAD
@@ -25,6 +26,7 @@ class TestTMWF02Fan(BasicNumberTests, SwitchableTests, TuyaDeviceTestCase):
             self.entities.get("number_timer"),
             max=1440,
             scale=60,
+            device_class=NumberDeviceClass.DURATION,
             unit=UnitOfTime.MINUTES,
         )
         self.mark_secondary(["number_timer"])

@@ -35,6 +35,7 @@ primary_entity:
 secondary_entities:
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 26
@@ -110,10 +111,7 @@ secondary_entities:
         range:
           min: 5
           max: 3600
-        unit: sec
-        mapping:
-          - scale: 1
-          - dps_val: null
+        unit: s
         optional: true
         force: true
   - entity: number

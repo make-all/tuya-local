@@ -1,6 +1,7 @@
 """Tests for the switch entity."""
 
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
+from homeassistant.components.number import NumberDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (
@@ -48,6 +49,7 @@ class TestKoganSwitch(
             self.entities.get("number_timer"),
             max=1440.0,
             unit=UnitOfTime.MINUTES,
+            device_class=NumberDeviceClass.DURATION,
             scale=60,
         )
         self.setUpMultiSensors(

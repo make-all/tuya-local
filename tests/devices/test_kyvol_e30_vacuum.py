@@ -69,6 +69,7 @@ class TestKyvolE30Vacuum(MultiButtonTests, MultiSensorTests, TuyaDeviceTestCase)
                     "dps": AREA_DPS,
                     "name": "sensor_clean_area",
                     "unit": UnitOfArea.SQUARE_METERS,
+                    "device_class": SensorDeviceClass.AREA,
                     "testdata": (30, 3.0),
                 },
                 {

@@ -17,6 +17,7 @@ primary_entity:
 secondary_entities:
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 9
@@ -159,6 +160,7 @@ secondary_entities:
           max: 9
   - entity: number
     name: Standby delay
+    class: duration
     category: config
     icon: "mdi:timer"
     dps:
@@ -326,6 +328,7 @@ secondary_entities:
   - entity: number
     name: Data refresh interval
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 125
@@ -416,6 +419,7 @@ secondary_entities:
   - entity: number
     name: Overvoltage recovery delay
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 137

@@ -1,7 +1,9 @@
 """Tests for Digoo DSSP202 dual switch with timers and energy monitoring"""
 
+from homeassistant.components.number import NumberDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.components.switch import SwitchDeviceClass
+
 from homeassistant.const import (
     UnitOfElectricCurrent,
     UnitOfElectricPotential,
@@ -54,6 +56,7 @@ class TestDigooDGSP202Switch(
                     "name": "number_timer_1",
                     "max": 1440,
                     "scale": 60,
+                    "device_class": NumberDeviceClass.DURATION,
                     "unit": UnitOfTime.MINUTES,
                 },
                 {
@@ -61,6 +64,7 @@ class TestDigooDGSP202Switch(
                     "name": "number_timer_2",
                     "max": 1440,
                     "scale": 60,
+                    "device_class": NumberDeviceClass.DURATION,
                     "unit": UnitOfTime.MINUTES,
                 },
             ]

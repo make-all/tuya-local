@@ -44,6 +44,7 @@ class TestLefantM213Vacuum(MultiSensorTests, TuyaDeviceTestCase):
                     "dps": AREA_DPS,
                     "name": "sensor_clean_area",
                     "unit": UnitOfArea.SQUARE_METERS,
+                    "device_class": SensorDeviceClass.AREA,
                 },
                 {
                     "dps": TIME_DPS,

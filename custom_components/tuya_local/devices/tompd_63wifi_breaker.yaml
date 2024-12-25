@@ -109,24 +109,26 @@ secondary_entities:
   - entity: number
     name: Voltage protection time
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 104
         type: integer
         name: value
-        unit: sec
+        unit: s
         range:
           min: 1
           max: 30
   - entity: number
     name: Voltage recovery time
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 105
         type: integer
         name: value
-        unit: sec
+        unit: s
         range:
           min: 1
           max: 500

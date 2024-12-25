@@ -6,10 +6,10 @@ from typing import Any
 import tinytuya
 import voluptuous as vol
 from homeassistant.config_entries import (
+    CONN_CLASS_LOCAL_PUSH,
     ConfigEntry,
     ConfigFlow,
     OptionsFlow,
-    CONN_CLASS_LOCAL_PUSH,
 )
 from homeassistant.const import CONF_HOST, CONF_NAME
 from homeassistant.core import HomeAssistant, callback

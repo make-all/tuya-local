@@ -93,6 +93,7 @@ secondary_entities:
           max: 10
   - entity: light
     translation_key: backlight
+    category: config
     dps:
       - id: 101
         name: brightness
@@ -102,6 +103,7 @@ secondary_entities:
           max: 4
   - entity: sensor
     name: Current speed
+    category: diagnostic
     dps:
       - id: 103
         name: sensor
@@ -111,6 +113,8 @@ secondary_entities:
           - scale: 0.1
   - entity: number
     translation_key: timer
+    class: duration
+    category: config
     dps:
       - id: 104
         name: value
@@ -124,6 +128,7 @@ secondary_entities:
             step: 60
   - entity: sensor
     name: Alarm triggered
+    category: diagnostic
     dps:
       - id: 105
         name: sensor
@@ -131,6 +136,7 @@ secondary_entities:
   # id 106 see primairy entity
   - entity: number
     name: Maximum humidity
+    category: config
     class: humidity
     dps:
       - id: 111
@@ -159,6 +165,7 @@ secondary_entities:
   - entity: number
     name: Minimum humidity
     class: humidity
+    category: config
     dps:
       - id: 113
         name: value
@@ -184,12 +191,14 @@ secondary_entities:
           max: 100
   - entity: lock
     translation_key: child_lock
+    category: config
     dps:
       - id: 114
         type: integer
         name: lock
   - entity: switch
     name: Auto - high temperature switch
+    category: config
     dps:
       - id: 116
         type: integer
@@ -201,6 +210,7 @@ secondary_entities:
             value: false
   - entity: switch
     name: Auto - high humidity switch
+    category: config
     dps:
       - id: 117
         type: integer
@@ -212,6 +222,7 @@ secondary_entities:
             value: false
   - entity: switch
     name: Auto - low temperature switch
+    category: config
     dps:
       - id: 118
         type: integer
@@ -223,6 +234,7 @@ secondary_entities:
             value: false
   - entity: switch
     name: Auto - low humidity switch
+    category: config
     dps:
       - id: 119
         type: integer
@@ -234,6 +246,7 @@ secondary_entities:
             value: false
   - entity: switch
     name: Alarm - high temperature switch
+    category: config
     dps:
       - id: 120
         type: integer
@@ -245,6 +258,7 @@ secondary_entities:
             value: false
   - entity: switch
     name: Alarm - high humidity switch
+    category: config
     dps:
       - id: 121
         type: integer
@@ -256,6 +270,7 @@ secondary_entities:
             value: false
   - entity: switch
     name: Alarm - low temperature switch
+    category: config
     dps:
       - id: 122
         type: integer
@@ -267,6 +282,7 @@ secondary_entities:
             value: false
   - entity: switch
     name: Alarm - low humidity switch
+    category: config
     dps:
       - id: 123
         type: integer
@@ -278,6 +294,7 @@ secondary_entities:
             value: false
   - entity: sensor
     name: Auto triggered
+    category: diagnostic
     dps:
       - id: 126
         name: sensor

@@ -56,12 +56,13 @@ secondary_entities:
   - entity: number
     name: Exit delay
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 2
         type: integer
         name: value
-        unit: sec
+        unit: s
         range:
           min: 0
           max: 300
@@ -147,12 +148,13 @@ secondary_entities:
   - entity: number
     name: Entry delay
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 28
         type: integer
         name: value
-        unit: sec
+        unit: s
   - entity: switch
     name: Tick down
     category: config
