@@ -5,8 +5,8 @@ Mixins to make writing new platforms easier
 import logging
 
 from homeassistant.const import (
-    AREA_SQUARE_METERS,
     CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
+    UnitOfArea,
     UnitOfTemperature,
 )
 from homeassistant.helpers.entity import EntityCategory
