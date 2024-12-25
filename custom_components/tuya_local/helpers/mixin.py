@@ -123,7 +123,7 @@ UNIT_ASCII_MAP = {
     "C": UnitOfTemperature.CELSIUS.value,
     "F": UnitOfTemperature.FAHRENHEIT.value,
     "ugm3": CONCENTRATION_MICROGRAMS_PER_CUBIC_METER,
-    "m2": AREA_SQUARE_METERS,
+    "m2": UnitOfArea.SQUARE_METERS,
 }
 
 

@@ -7,7 +7,7 @@ from homeassistant.components.vacuum import (
     STATE_RETURNING,
     VacuumEntityFeature,
 )
-from homeassistant.const import AREA_SQUARE_METERS, PERCENTAGE, UnitOfTime
+from homeassistant.const import PERCENTAGE, UnitOfArea, UnitOfTime
 
 from ..const import LEFANT_M213_VACUUM_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -43,7 +43,7 @@ class TestLefantM213Vacuum(MultiSensorTests, TuyaDeviceTestCase):
                 {
                     "dps": AREA_DPS,
                     "name": "sensor_clean_area",
-                    "unit": AREA_SQUARE_METERS,
+                    "unit": UnitOfArea.SQUARE_METERS,
                 },
                 {
                     "dps": TIME_DPS,
