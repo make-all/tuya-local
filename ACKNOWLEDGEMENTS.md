@@ -780,3 +780,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Flo0008](https://github.com/Flo0008) for assisting with support for Sboard III mini Weigand access control interface.
 - [Kenneth-Audenaert](https://github.com/Kenneth-Audenaert) for contributing support for Aygrochy ventilation duct fan.
 - [DutchKillerBee](https://github.com/DutchKillerBee) for assisting with support for Qlima D812 dehumidifier.
+- [dgcartersa](https://github.com/dgcartersa) for assisting with support for WL-RTCZ-05Z zigbee human presence sensor.

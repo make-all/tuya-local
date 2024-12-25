@@ -970,6 +970,7 @@ entity types as sub devices.
 - PY321-Z-TY energy meter
 - Temperature and humidity sensor with alarm feature
 - WL-898WZ water leak sensor
+- WL-RTCZ-05Z human presence sensor
 - Zemismart SPM01 energy meter
 - ZPmeter 214C-Z water meter
 
