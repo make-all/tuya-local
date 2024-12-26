@@ -784,3 +784,4 @@ Further device support has been made with the assistance of users. Please consid
 - [NonozgYtb](https://github.com/NonozgYtb) for assisting with support for LSC Smart Connect Garden spotlights.
 - [xtaria](https://github.com/xtaria) for contributing support for Houschen bathroom mirror.
 - [nerodoxus](https://github.com/nerodoxus) for contributing support for Eberg Rico dehumidifier.
+- [tompapajr](https://github.com/tompapajr) for contributing support for Edge Theory Labs cold plunge heat pump.

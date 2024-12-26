@@ -125,6 +125,7 @@
 ### Pool heaters / heat pumps
 
 - BWT FI 45 heat pump
+- Edge Theory Labs cold plunge heat pump
 - Evotherm ETI series heat pump
 - Fairland IPHCR15 pool heat pump (allows control of heat/cool modes)
 - Fairland RMIC06 pool heat pump
