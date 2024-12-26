@@ -1,9 +1,10 @@
 name: Thermostat
 products:
-  - id: gogb05wrtredz3bs
-    name: Avatto ME81
+  - id: 7ingxzrs0wo9rqsd
+    name: Myuet ME82
 primary_entity:
   entity: climate
+  translation_key: thermostat
   dps:
     - id: 1
       type: boolean
@@ -12,31 +13,29 @@ primary_entity:
         - dps_val: false
           value: "off"
         - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: auto
-              value: auto
-            - dps_val: manual
-              value: heat
-    - id: 2
-      type: string
-      name: mode
-      hidden: true
+          value: "heat"
     - id: 16
       type: integer
       name: temperature
+      mapping:
+        - scale: 10
+          step: 5
       unit: C
       range:
-        min: 5
-        max: 90
+        min: 50
+        max: 700
     - id: 19
       type: integer
       name: max_temperature
       optional: true
+      mapping:
+        - scale: 10
     - id: 26
       type: integer
       name: min_temperature
       optional: true
+      mapping:
+        - scale: 10
     - id: 24
       type: integer
       name: current_temperature
@@ -50,16 +49,20 @@ primary_entity:
           value: heating
         - dps_val: close
           value: idle
-    - id: 38
+    - id: 2
       type: string
-      optional: true
-      name: week_program
+      name: preset_mode
+      mapping:
+        - dps_val: auto
+          value: program
+        - dps_val: manual
+          value: manual
 secondary_entities:
   - entity: switch
     translation_key: anti_frost
     category: config
     dps:
-      - id: 10
+      - id: 103
         type: boolean
         name: switch
         optional: true
@@ -78,9 +81,12 @@ secondary_entities:
         name: value
         optional: true
         unit: C
+        mapping:
+          - scale: 10
+            step: 10
         range:
-          min: 30
-          max: 90
+          min: 200
+          max: 700
   - entity: number
     name: Minimum temperature
     class: temperature
@@ -92,9 +98,12 @@ secondary_entities:
         name: value
         optional: true
         unit: C
+        mapping:
+          - scale: 10
+            step: 10
         range:
-          min: 5
-          max: 20
+          min: 50
+          max: 200
   - entity: number
     name: Temperature calibration
     category: config
@@ -142,7 +151,7 @@ secondary_entities:
             value: Internal
           - dps_val: out
             value: External
-          - dps_val: all
+          - dps_val: both
             value: Both
           - dps_val: null
             value: Internal
@@ -161,34 +170,41 @@ secondary_entities:
       - id: 45
         type: bitfield
         name: fault_code
-  - entity: number
-    name: Temperature hysteresis
-    category: config
-    icon: "mdi:thermometer-plus"
-    dps:
-      - id: 101
-        type: integer
-        optional: true
-        name: value
-        unit: °
-        range:
-          min: 1
-          max: 5
   - entity: select
     name: Program type
     icon: "mdi:calendar-week"
     category: config
     dps:
-      - id: 102
+      - id: 104
         type: string
         optional: true
         name: option
         mapping:
-          - dps_val: "00"
+          - dps_val: "off"
             value: Disabled
-          - dps_val: "52"
-            value: Weekdays+Weekend
-          - dps_val: "61"
+          - dps_val: "weekend"
+            value: Weekend
+          - dps_val: "single_break"
             value: Six working days
-          - dps_val: "70"
+          - dps_val: "no_day_off"
             value: Daily
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 52
+        type: string
+        optional: true
+        name: brightness
+        mapping:
+          - dps_val: "closed"
+            value: 0
+          - dps_val: "20_bright"
+            value: 51
+          - dps_val: "50_bright"
+            value: 128
+          - dps_val: "100_bright"
+            value: 255
+          - dps_val: null
+            value: 0
+            hidden: true

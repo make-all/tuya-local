@@ -1,4 +1,12 @@
-name: "Electriq CD20PRO-LE-V2 dehumidifier"
+name: Dehumidifier
+legacy_type: klarstein_dryfy_pro_connect_dehumidifier
+products:
+  - id: b07ueqf4ymelhbi9
+    name: Klarstein DryFy Pro Connect V2
+  - id: 6cguug02fnygou5c
+    name: Klarstein Dryfy Pro Connect
+  - id: m0wtqltrepknlpdj
+    name: Morris Premier plus
 primary_entity:
   entity: humidifier
   class: dehumidifier
@@ -16,6 +24,7 @@ primary_entity:
     - id: 2
       name: mode
       type: string
+      optional: true
       mapping:
         - dps_val: auto
           value: auto
@@ -41,8 +50,25 @@ primary_entity:
       mapping:
         - step: 5
 secondary_entities:
+  - entity: select
+    name: Direction
+    category: config
+    icon: "mdi:sprinkler-variant"
+    dps:
+      - id: 102
+        name: option
+        type: string
+        optional: true
+        mapping:
+          - dps_val: "0_90"
+            value: "45°-90°"
+          - dps_val: "45"
+            value: "45°"
+          - dps_val: "90"
+            value: "90°"
   - entity: fan
     translation_only_key: fan_with_presets
+    deprecated: select_direction
     dps:
       - id: 1
         type: boolean
@@ -50,6 +76,7 @@ secondary_entities:
       - id: 102
         name: preset_mode
         type: string
+        optional: true
         mapping:
           - dps_val: "45"
             value: sleep
@@ -60,6 +87,7 @@ secondary_entities:
       - id: 102
         name: oscillate
         type: string
+        optional: true
         mapping:
           - dps_val: "0_90"
             value: true
@@ -84,6 +112,7 @@ secondary_entities:
     dps:
       - id: 5
         name: switch
+        optional: true
         type: boolean
   - entity: sensor
     class: temperature

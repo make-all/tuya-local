@@ -638,9 +638,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
         return False
 
     entities = set()
-    e = device_conf.primary_entity
-    entities.add(e.entity)
-    for e in device_conf.secondary_entities():
+    for e in device_conf.all_entities():
         entities.add(e.entity)
 
     await hass.config_entries.async_forward_entry_setups(entry, entities)
@@ -663,10 +661,7 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
         return False
 
     entities = {}
-    e = device_conf.primary_entity
-    if e.config_id in data:
-        entities[e.entity] = True
-    for e in device_conf.secondary_entities():
+    for e in device_conf.all_entities():
         if e.config_id in data:
             entities[e.entity] = True
 

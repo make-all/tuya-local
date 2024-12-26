@@ -218,8 +218,7 @@ secondary_entities:
       - id: 123
         type: hex
         name: switch
-        mapping:
-          - mask: "0008"
+        mask: "0008"
   - entity: switch
     name: Beep
     category: config
@@ -227,8 +226,7 @@ secondary_entities:
       - id: 123
         type: hex
         name: switch
-        mapping:
-          - mask: "0010"
+        mask: "0010"
   - entity: switch
     name: Anti-mildew
     category: config
@@ -237,9 +235,7 @@ secondary_entities:
       - id: 123
         type: hex
         name: switch
-        mapping:
-          - scale: 1
-            mask: "0100"
+        mask: "0100"
   - entity: switch
     name: Eco mode
     category: config
@@ -248,9 +244,7 @@ secondary_entities:
       - id: 123
         type: hex
         name: switch
-        mapping:
-          - scale: 1
-            mask: "0001"
+        mask: "0001"
   - entity: binary_sensor
     class: problem
     category: diagnostic

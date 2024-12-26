@@ -112,8 +112,7 @@ secondary_entities:
         type: base64
         name: sensor
         optional: true
-        mapping:
-          - mask: "FF00"
+        mask: "FF00"
   - entity: sensor
     name: Scheduled stop hour
     icon: "mdi:battery-clock-outline"
@@ -122,8 +121,7 @@ secondary_entities:
         type: base64
         name: sensor
         optional: true
-        mapping:
-          - mask: "00FF"
+        mask: "00FF"
   - entity: sensor
     name: Fault reason
     icon: 'mdi:alert-outline'

@@ -45,6 +45,7 @@ secondary_entities:
     name: Clean wait time
     category: config
     translation_key: timer
+    class: duration
     dps:
       - id: 103
         type: integer
@@ -63,6 +64,7 @@ secondary_entities:
   - entity: number
     name: UV time
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 105
@@ -83,6 +85,7 @@ secondary_entities:
   - entity: number
     name: Deodorize time
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 107
@@ -107,6 +110,7 @@ secondary_entities:
         name: switch
   - entity: number
     name: Sleep start
+    class: duration
     category: config
     icon: "mdi:timer"
     dps:
@@ -121,6 +125,7 @@ secondary_entities:
           - scale: 60
   - entity: number
     name: Sleep end
+    class: duration
     category: config
     icon: "mdi:timer"
     dps:

@@ -3,19 +3,9 @@
 import json
 import sys
 
+from common_funcs import FakeDevice
+
 from custom_components.tuya_local.helpers.device_config import possible_matches
-
-
-class FakeDevice:
-    def __init__(self, dps):
-        self._dps = dps
-
-    def get_property(self, id):
-        return self._dps.get(id)
-
-    @property
-    def name(self):
-        return "cmdline"
 
 
 def main() -> int:

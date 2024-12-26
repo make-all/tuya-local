@@ -24,6 +24,7 @@ class TestDevice(IsolatedAsyncioTestCase):
         self.hass().data = {"tuya_local": {}}
 
         def job(func, *args):
+            print(f"{args}")
             return func(*args)
 
         self.hass().async_add_executor_job = AsyncMock()

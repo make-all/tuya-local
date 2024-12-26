@@ -28,13 +28,14 @@ secondary_entities:
   - entity: number
     name: Alarm Time
     category: config
+    class: duration
     icon: "mdi:timer"
     mode: box
     dps:
       - id: 105
         type: integer
         name: value
-        unit: sec
+        unit: s
         range:
           min: 5
           max: 180

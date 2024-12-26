@@ -99,7 +99,9 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     class: current
-    name: Current A
+    translation_key: current_x
+    translation_placeholders:
+      x: A
     dps:
       - id: 107
         name: sensor
@@ -112,7 +114,9 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     class: power
-    name: Power A
+    translation_key: power_x
+    translation_placeholders:
+      x: A
     dps:
       - id: 108
         name: sensor
@@ -167,7 +171,9 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     class: current
-    name: Current B
+    translation_key: current_x
+    translation_placeholders:
+      x: B
     dps:
       - id: 110
         name: sensor
@@ -180,7 +186,9 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     class: power
-    name: Power B
+    translation_key: power_x
+    translation_placeholders:
+      x: B
     dps:
       - id: 111
         name: sensor

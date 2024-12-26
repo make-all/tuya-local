@@ -85,7 +85,9 @@ secondary_entities:
           - dps_val: charge_schedule
             value: Scheduled charge
   - entity: sensor
-    name: Voltage A
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
     class: voltage
     dps:
       - id: 6
@@ -93,11 +95,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: V
+        mask: "FFFF0000000000"
         mapping:
-          - mask: "FFFF0000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
-    name: Current A
+    translation_key: current_x
+    translation_placeholders:
+      x: A
     class: current
     dps:
       - id: 6
@@ -105,11 +109,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: A
+        mask: "000000FFFF0000"
         mapping:
-          - mask: "000000FFFF0000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Power A
+    translation_key: power_x
+    translation_placeholders:
+      x: A
     class: power
     dps:
       - id: 6
@@ -117,11 +123,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: kW
+        mask: "0000000000FFFF"
         mapping:
-          - mask: "0000000000FFFF"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Voltage B
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
     class: voltage
     dps:
       - id: 7
@@ -129,11 +137,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: V
+        mask: "FFFF0000000000"
         mapping:
-          - mask: "FFFF0000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
-    name: Current B
+    translation_key: current_x
+    translation_placeholders:
+      x: B
     class: current
     dps:
       - id: 7
@@ -141,11 +151,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: A
+        mask: "000000FFFF0000"
         mapping:
-          - mask: "000000FFFF0000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Power B
+    translation_key: power_x
+    translation_placeholders:
+      x: B
     class: power
     dps:
       - id: 7
@@ -153,11 +165,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: kW
+        mask: "0000000000FFFF"
         mapping:
-          - mask: "0000000000FFFF"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Voltage C
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
     class: voltage
     dps:
       - id: 8
@@ -165,11 +179,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: V
+        mask: "FFFF0000000000"
         mapping:
-          - mask: "FFFF0000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
-    name: Current C
+    translation_key: current_x
+    translation_placeholders:
+      x: C
     class: current
     dps:
       - id: 8
@@ -177,11 +193,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: A
+        mask: "000000FFFF0000"
         mapping:
-          - mask: "000000FFFF0000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Power C
+    translation_key: power_x
+    translation_placeholders:
+      x: C
     class: power
     dps:
       - id: 8
@@ -189,9 +207,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: kW
+        mask: "0000000000FFFF"
         mapping:
-          - mask: "0000000000FFFF"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: Schedule start
     icon: "mdi:battery-clock"
@@ -200,8 +218,7 @@ secondary_entities:
         type: base64
         name: sensor
         optional: true
-        mapping:
-          - mask: "FF00"
+        mask: "FF00"
   - entity: sensor
     name: Schedule stop
     icon: "mdi:battery-clock-outline"
@@ -210,8 +227,7 @@ secondary_entities:
         type: base64
         name: sensor
         optional: true
-        mapping:
-          - mask: "00FF"
+        mask: "00FF"
   - entity: switch
     icon: "mdi:ev-station"
     dps:

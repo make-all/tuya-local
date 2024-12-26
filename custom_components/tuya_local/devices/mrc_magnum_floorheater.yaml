@@ -354,8 +354,7 @@ secondary_entities:
         type: integer
         name: sensor
         unit: "%"
-        mapping:
-          - mask: 00FF
+        mask: 00FF
   - entity: sensor
     name: Yearly consumption
     category: diagnostic
@@ -364,8 +363,7 @@ secondary_entities:
         type: integer
         name: sensor
         unit: "%"
-        mapping:
-          - mask: FF00
+        mask: FF00
   - entity: select
     name: Floor covering
     icon: "mdi:floor-plan"

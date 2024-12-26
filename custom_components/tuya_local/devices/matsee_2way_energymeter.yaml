@@ -1,4 +1,5 @@
 name: Bidirectional energy meter
+legacy_type: dcenta_dual_meter
 products:
   - id: z95s7p3z54xbsjnl
     name: MatSee Plus bidirectional 2 channel clamp meter
@@ -49,7 +50,9 @@ secondary_entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Power A
+    translation_key: power_x
+    translation_placeholders:
+      x: A
     class: power
     category: diagnostic
     dps:
@@ -70,7 +73,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Power B
+    translation_key: power_x
+    translation_placeholders:
+      x: B
     class: power
     category: diagnostic
     dps:
@@ -193,7 +198,6 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    class: voltage
     category: diagnostic
     dps:
       - id: 112
@@ -209,7 +213,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Current A
+    translation_key: current_x
+    translation_placeholders:
+      x: A
     class: current
     category: diagnostic
     dps:
@@ -226,7 +232,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Current B
+    translation_key: current_x
+    translation_placeholders:
+      x: B
     class: current
     category: diagnostic
     dps:
@@ -269,6 +277,7 @@ secondary_entities:
   - entity: number
     name: Reporting rate
     category: config
+    class: duration
     icon: "mdi:timer-refresh"
     dps:
       - id: 129

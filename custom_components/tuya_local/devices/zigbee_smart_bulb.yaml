@@ -1,4 +1,5 @@
 name: Zigbee light
+legacy_type: peteme_smart_recessed_lighting
 products:
   - id: mja6r5ix
     name: MOES zigbee lightbulb
@@ -6,29 +7,14 @@ products:
     name: MOES zigbee RGBCW
   - id: rcggc0ys
     name: MOES ZC-TD SW zigbee GU10
+  - id: sjaun9de
+    name: Peteme SIG_DL_RGBCW recessed lighting
 primary_entity:
   entity: light
   dps:
     - id: 1
       type: boolean
       name: switch
-    - id: 3
-      name: brightness
-      type: integer
-      optional: true
-      range:
-        min: 0
-        max: 1000
-    - id: 4
-      name: color_temp
-      optional: true
-      type: integer
-      range:
-        min: 0
-        max: 1000
-      mapping:
-        - scale: 3.92
-          invert: true
     - id: 2
       name: color_mode
       type: string
@@ -42,9 +28,31 @@ primary_entity:
           value: scene
         - dps_val: music
           value: music
+        - dps_val: null
+          value: color_temp
+          hidden: true
+    - id: 3
+      name: brightness
+      type: integer
+      optional: true
+      range:
+        min: 10
+        max: 1000
+    - id: 4
+      name: color_temp
+      optional: true
+      type: integer
+      range:
+        min: 0
+        max: 1000
+      mapping:
+        - target_range:
+            min: 2700
+            max: 6500
     - id: 5
       name: rgbhsv
       type: hex
+      optional: true
       format:
         - name: h
           bytes: 2

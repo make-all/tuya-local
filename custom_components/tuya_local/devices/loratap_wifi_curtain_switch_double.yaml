@@ -51,6 +51,7 @@ secondary_entities:
         type: integer
   - entity: number
     category: config
+    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "1"
@@ -58,12 +59,13 @@ secondary_entities:
       - id: 10
         name: value
         type: integer
-        unit: sec
+        unit: s
         range:
           max: 120
           min: 2
   - entity: number
     category: config
+    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "2"
@@ -71,7 +73,7 @@ secondary_entities:
       - id: 11
         name: value
         type: integer
-        unit: sec
+        unit: s
         range:
           max: 120
           min: 2

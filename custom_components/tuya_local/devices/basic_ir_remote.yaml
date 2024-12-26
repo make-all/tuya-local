@@ -1,0 +1,18 @@
+name: Remote controller
+products:
+  - id: mjffeakbzlnfxpzt
+    name: UanTii S06/S18 IR
+  - id: ejv37o6yz9vtxcuo
+    name: RightSitu S18 IR
+primary_entity:
+  entity: remote
+  dps:
+    - id: 201
+      name: send
+      type: string
+      optional: true
+    - id: 202
+      name: receive
+      type: string
+      optional: true
+      persist: false

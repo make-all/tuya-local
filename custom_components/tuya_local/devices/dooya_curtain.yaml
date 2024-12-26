@@ -1,6 +1,8 @@
-name: Dooya curtain
+name: Curtain
+legacy_type: smartcurtain_acs_wt
 products:
   - id: spjpuwf1u2dc7tlt
+    name: SmartCurtain 3
 primary_entity:
   entity: cover
   class: curtain
@@ -29,9 +31,13 @@ secondary_entities:
     dps:
       - id: 103
         type: boolean
+        optional: true
         name: option
         mapping:
           - dps_val: false
             value: Forward
           - dps_val: true
             value: Reverse
+          - dps_val: null
+            value: Forward
+            hidden: true

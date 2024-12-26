@@ -1,4 +1,7 @@
-name: AlecoAir D14 dehumidifier
+name: Dehumidifier
+products:
+  - id: p3fnrnlcjm2yxeks
+    name: Siguro DH-F300W
 primary_entity:
   entity: humidifier
   class: dehumidifier
@@ -7,28 +10,40 @@ primary_entity:
       name: switch
       type: boolean
     - id: 2
-      name: humidity
       type: integer
+      name: humidity
       range:
-        min: 25
+        min: 30
         max: 80
       mapping:
         - step: 5
-    - id: 4
+    - id: 5
       name: mode
       type: string
       mapping:
-        - dps_val: manual
-          value: normal
-        - dps_val: laundry
-          value: laundry
-        - dps_val: purify
-          value: purify
-        - dps_val: sleep
+        - dps_val: Continuities
+          value: boost
+        - dps_val: Auto
+          value: auto
+        - dps_val: Sleep
           value: sleep
-    - id: 16
+    - id: 6
       type: integer
       name: current_humidity
+    # This doesn't actually have an ionizer, but having the dp
+    # will aid in detection
+    - id: 10
+      type: boolean
+      name: ionizer
+      # Missing from log:
+      # 20 = filter_reset (bool), 23 = filter_life (ro int 0-100 %)
+      # 24 = temp unit (c/f), 28 = runtime_total_reset (bool)
+    - id: 102
+      type: integer
+      name: client_id
+    - id: 104
+      type: integer
+      name: equipment_type
 secondary_entities:
   - entity: fan
     dps:
@@ -37,62 +52,25 @@ secondary_entities:
         name: switch
       - id: 4
         type: string
-        name: dehumidifier_mode
-        hidden: true
-      - id: 5
-        type: string
         name: speed
         mapping:
-          - dps_val: low
+          - dps_val: "low"
             value: 50
-            constraint: dehumidifier_mode
-            conditions:
-              - dps_val: laundry
-                invalid: true
-          - dps_val: high
+          - dps_val: "high"
             value: 100
-            constraint: dehumidifier_mode
-            conditions:
-              - dps_val: sleep
-                invalid: true
-  - entity: switch
-    translation_key: ionizer
+  - entity: sensor
+    class: temperature
     dps:
-      - id: 10
-        type: boolean
-        name: switch
-  - entity: binary_sensor
-    translation_key: tank_full
-    category: diagnostic
-    dps:
-      - id: 19
-        type: bitfield
+      - id: 7
+        type: integer
         name: sensor
-        mapping:
-          - dps_val: 1
-            value: true
-          - value: false
-  - entity: binary_sensor
-    class: problem
-    category: diagnostic
-    dps:
-      - id: 19
-        type: bitfield
-        name: sensor
-        mapping:
-          - dps_val: 0
-            value: false
-          - dps_val: 1
-            value: false
-          - value: true
-      - id: 19
-        type: bitfield
-        name: fault_code
+        unit: C
+        class: measurement
   - entity: lock
     translation_key: child_lock
     category: config
     dps:
-      - id: 14
+      - id: 16
         type: boolean
         name: lock
   - entity: select
@@ -153,3 +131,42 @@ secondary_entities:
             value: 23h
           - dps_val: 24h
             value: 24h
+  - entity: binary_sensor
+    translation_key: tank_full
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: true
+          - value: false
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 1
+            value: false
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code
+      - id: 19
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: Tank full or missing
+          - dps_val: 2
+            value: Clean filter

@@ -1,7 +1,10 @@
 name: Beok TGR81 thermostat
+legacy_type: avatto_me81_thermostat
 products:
   - id: gw173aldekvpzalg
     name: Avatto WT200W-EH
+  - id: gogb05wrtredz3bs
+    name: Avatto ME81
 primary_entity:
   entity: climate
   translation_only_key: thermostat
@@ -11,10 +14,17 @@ primary_entity:
       type: boolean
       mapping:
         - dps_val: true
-          value: heat
+          constraint: preset_mode
+          conditions:
+            - dps_val: auto
+              value: auto
+            - dps_val: manual
+              value: heat
         - dps_val: false
           value: "off"
     - id: 2
+      # Deprecated: use hvac_mode to select between these
+      # left as preset_mode for now to avoid breaking things
       name: preset_mode
       type: string
       mapping:
@@ -53,12 +63,13 @@ primary_entity:
           value: heating
 secondary_entities:
   - entity: number
-    name: Calibration offset
+    name: Temperature calibration
     category: config
-    icon: "mdi:thermometer"
+    icon: "mdi:thermometer-check"
     dps:
       - id: 27
         type: integer
+        optional: true
         name: value
         unit: C
         range:
@@ -70,7 +81,12 @@ secondary_entities:
     dps:
       - id: 10
         type: boolean
+        optional: true
         name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
   - entity: lock
     translation_key: child_lock
     category: config
@@ -81,6 +97,7 @@ secondary_entities:
         name: lock
   - entity: select
     name: Sensor selection
+    icon: "mdi:home-thermometer"
     category: config
     dps:
       - id: 43
@@ -89,13 +106,10 @@ secondary_entities:
         optional: true
         mapping:
           - dps_val: in
-            icon: "mdi:gauge"
             value: Internal
           - dps_val: out
-            icon: "mdi:thermometer-chevron-down"
             value: External
           - dps_val: all
-            icon: "mdi:thermometer"
             value: Both
   - entity: binary_sensor
     category: diagnostic
@@ -114,7 +128,7 @@ secondary_entities:
         optional: true
         type: bitfield
   - entity: number
-    name: High temperature limit
+    name: Maximum temperature
     category: config
     class: temperature
     icon: "mdi:thermometer-chevron-up"
@@ -128,7 +142,7 @@ secondary_entities:
           min: 30
           max: 90
   - entity: number
-    name: Low temperature limit
+    name: Minimum temperature
     category: config
     class: temperature
     icon: "mdi:thermometer-chevron-down"
@@ -142,9 +156,8 @@ secondary_entities:
           min: 5
           max: 20
   - entity: button
-    name: Reset
+    translation_key: factory_reset
     category: config
-    class: restart
     dps:
       - id: 39
         name: button
@@ -194,7 +207,7 @@ secondary_entities:
         type: integer
         name: value
         optional: true
-        unit: C
+        unit: °
         range:
           min: 1
           max: 5

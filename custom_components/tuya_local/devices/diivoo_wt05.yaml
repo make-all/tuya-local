@@ -33,7 +33,9 @@ secondary_entities:
         type: boolean
         name: valve
   - entity: switch
-    name: Switch 1
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
     category: config
     deprecated: valve
     icon: "mdi:pipe-valve"
@@ -42,7 +44,9 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: switch
-    name: Switch 2
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
     category: config
     deprecated: valve
     icon: "mdi:pipe-valve"
@@ -95,6 +99,7 @@ secondary_entities:
   - entity: number
     name: Irrigation time 1
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 106
@@ -108,6 +113,7 @@ secondary_entities:
   - entity: number
     name: Irrigation time 2
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 103

@@ -4,7 +4,9 @@ products:
     name: ACME SH3305
 primary_entity:
   entity: switch
-  name: Switch 1
+  translation_key: switch_x
+  translation_placeholders:
+    x: "1"
   class: outlet
   dps:
     - id: 1
@@ -15,7 +17,9 @@ primary_entity:
       name: countdown
 secondary_entities:
   - entity: switch
-    name: Switch 2
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
     class: outlet
     dps:
       - id: 2

@@ -191,21 +191,15 @@ secondary_entities:
         name: sensor
         type: integer
         unit: min
-        mapping:
-          - scale: 1
-            step: 1
   - entity: sensor
     name: Cleaned area
+    class: area
     category: diagnostic
-    icon: "mdi:vector-square-close"
     dps:
       - id: 7
         name: sensor
         type: integer
-        unit: m²
-        mapping:
-          - scale: 1
-            step: 1
+        unit: m2
   - entity: sensor
     class: battery
     dps:
@@ -344,16 +338,13 @@ secondary_entities:
         type: boolean
   - entity: sensor
     name: Total cleaned area
+    class: area
     category: diagnostic
-    icon: "mdi:archive-marker-outline"
     dps:
       - id: 29
         name: sensor
         type: integer
-        unit: m²
-        mapping:
-          - scale: 1
-            step: 1
+        unit: m2
   - entity: sensor
     name: Total clean count
     category: diagnostic
@@ -362,9 +353,6 @@ secondary_entities:
       - id: 30
         name: sensor
         type: integer
-        mapping:
-          - scale: 1
-            step: 1
   - entity: sensor
     name: Total clean time
     category: diagnostic
@@ -378,9 +366,6 @@ secondary_entities:
         range:
           min: 0
           max: 99999
-        mapping:
-          - scale: 1
-            step: 1
   # - entity: select
   #   translation_key: language
   #   dps:

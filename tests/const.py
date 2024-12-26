@@ -1660,3 +1660,21 @@ BLE_SMARTPLANT_PAYLOAD = {
     "14": "Low",
     "15": 20,
 }
+
+GOLDAIR_PORTABLE_AIR_CONDITIONER_PAYLOAD = {
+    "1": True,
+    "2": 22,
+    "3": 30,
+    "4": "cold",
+    "5": "low",
+    "11": False,
+    "15": "off",
+    "20": 0,
+    "103": False,
+    "104": 0,
+    "105": 0,
+    "107": 72,
+    "108": 80,
+    "109": 26,
+    "110": False,
+}

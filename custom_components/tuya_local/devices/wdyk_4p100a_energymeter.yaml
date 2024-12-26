@@ -137,7 +137,9 @@ secondary_entities:
         name: switch
         optional: true
   - entity: sensor
-    name: Voltage A
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
     class: voltage
     category: diagnostic
     dps:
@@ -146,11 +148,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: V
+        mask: "FFFFFF0000000000000000"
         mapping:
-          - mask: "FFFFFF0000000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
-    name: Current A
+    translation_key: current_x
+    translation_placeholders:
+      x: A
     class: current
     category: diagnostic
     dps:
@@ -159,11 +163,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: A
+        mask: "000000FFFFFF0000000000"
         mapping:
-          - mask: "000000FFFFFF0000000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Power A
+    translation_key: power_x
+    translation_placeholders:
+      x: A
     class: power
     category: diagnostic
     dps:
@@ -172,11 +178,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: kW
+        mask: "000000000000FFFFFF0000"
         mapping:
-          - mask: "000000000000FFFFFF0000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Voltage B
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
     class: voltage
     category: diagnostic
     dps:
@@ -185,11 +193,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: V
+        mask: "FFFFFF000000000000"
         mapping:
-          - mask: "FFFFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
-    name: Current B
+    translation_key: current_x
+    translation_placeholders:
+      x: B
     class: current
     category: diagnostic
     dps:
@@ -198,11 +208,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: A
+        mask: "000000FFFFFF000000"
         mapping:
-          - mask: "000000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Power B
+    translation_key: power_x
+    translation_placeholders:
+      x: B
     class: power
     category: diagnostic
     dps:
@@ -211,11 +223,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: kW
+        mask: "000000000000FFFFFF"
         mapping:
-          - mask: "000000000000FFFFFF"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Voltage C
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
     class: voltage
     category: diagnostic
     dps:
@@ -224,11 +238,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: V
+        mask: "FFFFFF000000000000"
         mapping:
-          - mask: "FFFFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
-    name: Current C
+    translation_key: current_x
+    translation_placeholders:
+      x: C
     class: current
     category: diagnostic
     dps:
@@ -237,11 +253,13 @@ secondary_entities:
         name: sensor
         optional: true
         unit: A
+        mask: "000000FFFFFF000000"
         mapping:
-          - mask: "000000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Power C
+    translation_key: power_x
+    translation_placeholders:
+      x: C
     class: power
     category: diagnostic
     dps:
@@ -250,9 +268,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: kW
+        mask: "000000000000FFFFFF"
         mapping:
-          - mask: "000000000000FFFFFF"
-            scale: 1000
+          - scale: 1000
   - entity: number
     name: Overvoltage threshold
     category: config

@@ -1,7 +1,7 @@
 from homeassistant.components.climate.const import ClimateEntityFeature, HVACMode
 from homeassistant.components.number.const import NumberDeviceClass
-from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT, SensorDeviceClass
-from homeassistant.const import UnitOfEnergy, UnitOfTemperature
+from homeassistant.components.sensor import SensorDeviceClass, SensorStateClass
+from homeassistant.const import UnitOfTemperature, UnitOfTime
 
 from ..const import JIAHONG_ET72W_PAYLOAD
 from ..mixins.climate import TargetTemperatureTests
@@ -25,7 +25,7 @@ SENSOR_DPS = "111"
 UNKNOWN112_DPS = "112"
 UNKNOWN113_DPS = "113"
 CALIB_DPS = "116"
-ENERGY_DPS = "117"
+RUNTIME_DPS = "117"
 HVACACTION_DPS = "118"
 TEMPLIMIT_DPS = "121"
 
@@ -102,7 +102,7 @@ class TestJiahongEt72wThermostat(
                     "dps": CURRENTTEMP_DPS,
                     "name": "sensor_room_temperature",
                     "device_class": SensorDeviceClass.TEMPERATURE,
-                    "state_class": STATE_CLASS_MEASUREMENT,
+                    "state_class": SensorStateClass.MEASUREMENT,
                     "unit": UnitOfTemperature.CELSIUS,
                     "testdata": (195, 19.5),
                 },
@@ -110,15 +110,15 @@ class TestJiahongEt72wThermostat(
                     "dps": FLOORTEMP_DPS,
                     "name": "sensor_floor_temperature",
                     "device_class": SensorDeviceClass.TEMPERATURE,
-                    "state_class": STATE_CLASS_MEASUREMENT,
+                    "state_class": SensorStateClass.MEASUREMENT,
                     "unit": UnitOfTemperature.CELSIUS,
                     "testdata": (214, 21.4),
                 },
                 {
-                    "dps": ENERGY_DPS,
-                    "name": "sensor_energy",
-                    "unit": UnitOfEnergy.KILO_WATT_HOUR,
-                    "testdata": (1234, 123.4),
+                    "dps": RUNTIME_DPS,
+                    "name": "sensor_runtime",
+                    "unit": UnitOfTime.MINUTES,
+                    "testdata": (1234, 1234),
                 },
             ]
         )
@@ -228,7 +228,7 @@ class TestJiahongEt72wThermostat(
     def test_multi_sensor_extra_state_attributes(self):
         self.dps[CALIB_DPS] = 321
         self.assertEqual(
-            self.multiSensor["sensor_energy"].extra_state_attributes,
+            self.multiSensor["sensor_runtime"].extra_state_attributes,
             {"calibration": 321},
         )
 

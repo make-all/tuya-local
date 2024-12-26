@@ -4,26 +4,33 @@ products:
     name: KS-811-3
 primary_entity:
   entity: switch
-  name: Switch 1
+  translation_key: switch_x
+  translation_placeholders:
+    x: "1"
   dps:
     - id: 1
       name: switch
       type: boolean
 secondary_entities:
   - entity: switch
-    name: Switch 2
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 2
         name: switch
         type: boolean
   - entity: switch
-    name: Switch 3
+    translation_key: switch_x
+    translation_placeholders:
+      x: "3"
     dps:
       - id: 3
         name: switch
         type: boolean
   - entity: number
     category: config
+    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "1"
@@ -40,6 +47,7 @@ secondary_entities:
             step: 60
   - entity: number
     category: config
+    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "2"
@@ -56,6 +64,7 @@ secondary_entities:
             step: 60
   - entity: number
     category: config
+    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "3"

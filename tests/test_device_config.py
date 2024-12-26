@@ -44,8 +44,6 @@ CONDMAP_SCHEMA = vol.Schema(
         },
         vol.Optional("scale"): vol.Any(int, float),
         vol.Optional("step"): vol.Any(int, float),
-        vol.Optional("mask"): str,
-        vol.Optional("endianness"): str,
         vol.Optional("invert"): True,
         vol.Optional("unit"): str,
         vol.Optional("icon"): vol.Match(r"^mdi:"),
@@ -116,6 +114,8 @@ DP_SCHEMA = vol.Schema(
         vol.Optional("icon_priority"): int,
         vol.Optional("mapping"): [MAPPING_SCHEMA],
         vol.Optional("format"): [FORMAT_SCHEMA],
+        vol.Optional("mask"): str,
+        vol.Optional("endianness"): vol.In(["little"]),
     }
 )
 ENTITY_SCHEMA = vol.Schema(
@@ -534,6 +534,16 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
             optional = set()
             required = set()
             parsed = TuyaDeviceConfig(cfg)
+            products = parsed._config.get("products")
+            # Configs with a product list can be matched by product id
+            if products:
+                p_match = False
+                for p in products:
+                    if p.get("id"):
+                        p_match = True
+                if p_match:
+                    continue
+
             for entity in parsed.all_entities():
                 for dp in entity.dps():
                     if dp.optional:
@@ -735,9 +745,7 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
             "id": "1",
             "name": "test",
             "type": "hex",
-            "mapping": [
-                {"mask": "ff00"},
-            ],
+            "mask": "ff00",
         }
         mock_device = MagicMock()
         mock_device.get_property.return_value = "babe"
@@ -754,9 +762,7 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
             "id": "1",
             "name": "test",
             "type": "hex",
-            "mapping": [
-                {"mask": "ff00"},
-            ],
+            "mask": "ff00",
         }
         mock_device = MagicMock()
         mock_device.get_property.return_value = "babe"
@@ -772,3 +778,13 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
         mock_config = {"id": "1", "name": "test", "type": "string"}
         cfg = TuyaDpsConfig(mock_entity, mock_config)
         self.assertIsNone(cfg.default)
+
+    def test_matching_with_product_id(self):
+        """Test that matching with product id works"""
+        cfg = get_config("smartplugv1")
+        self.assertTrue(cfg.matches({}, ["37mnhia3pojleqfh"]))
+
+    def test_matched_product_id_with_conflict_rejected(self):
+        """Test that matching with product id fails when there is a conflict"""
+        cfg = get_config("smartplugv1")
+        self.assertFalse(cfg.matches({"1": "wrong_type"}, ["37mnhia3pojleqfh"]))

@@ -4,7 +4,9 @@ products:
     name: Kogan KASPS10A3P3UA 3+USB
 primary_entity:
   entity: switch
-  name: Outlet 1
+  translation_key: outlet_x
+  translation_placeholders:
+    x: "1"
   class: outlet
   dps:
     - id: 1
@@ -20,21 +22,27 @@ primary_entity:
       optional: true
 secondary_entities:
   - entity: switch
-    name: Outlet 2
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "2"
     class: outlet
     dps:
       - id: 2
         type: boolean
         name: switch
   - entity: switch
-    name: Outlet 3
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "3"
     class: outlet
     dps:
       - id: 3
         type: boolean
         name: switch
   - entity: switch
-    name: Outlet 4
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "4"
     class: outlet
     dps:
       - id: 4
@@ -42,6 +50,7 @@ secondary_entities:
         name: switch
   - entity: number
     category: config
+    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "1"
@@ -58,6 +67,7 @@ secondary_entities:
             step: 60
   - entity: number
     category: config
+    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "2"
@@ -74,6 +84,7 @@ secondary_entities:
             step: 60
   - entity: number
     category: config
+    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "3"
@@ -90,6 +101,7 @@ secondary_entities:
             step: 60
   - entity: number
     category: config
+    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "4"

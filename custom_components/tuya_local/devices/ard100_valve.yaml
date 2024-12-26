@@ -19,6 +19,7 @@ secondary_entities:
         name: switch
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 7
@@ -27,10 +28,7 @@ secondary_entities:
         range:
           min: 0
           max: 86400
-        unit: sec
-        mapping:
-          - scale: 1
-          - dps_val: null
+        unit: s
   - entity: select
     translation_key: initial_state
     category: config

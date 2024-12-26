@@ -1,6 +1,7 @@
 """Tests for the QS C01 curtain module."""
 
 from homeassistant.components.cover import CoverDeviceClass, CoverEntityFeature
+from homeassistant.components.number import NumberDeviceClass
 from homeassistant.const import UnitOfTime
 
 from ..const import QS_C01_CURTAIN_PAYLOAD
@@ -26,6 +27,7 @@ class TestQSC01Curtains(BasicNumberTests, BasicSelectTests, TuyaDeviceTestCase):
             self.entities.get("number_travel_time"),
             min=1,
             max=60,
+            device_class=NumberDeviceClass.DURATION,
             unit=UnitOfTime.SECONDS,
         )
         self.setUpBasicSelect(

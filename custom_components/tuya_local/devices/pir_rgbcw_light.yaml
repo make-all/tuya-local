@@ -64,6 +64,7 @@ primary_entity:
 secondary_entities:
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 26
@@ -124,6 +125,7 @@ secondary_entities:
   - entity: number
     name: PIR delay
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 55
@@ -132,10 +134,7 @@ secondary_entities:
         range:
           min: 5
           max: 3600
-        unit: sec
-        mapping:
-          - scale: 1
-          - dps_val: null
+        unit: s
   - entity: number
     name: Standby delay
     category: config

@@ -5,7 +5,9 @@ products:
 primary_entity:
   entity: switch
   class: switch
-  name: Switch 1
+  translation_key: switch_x
+  translation_placeholders:
+    x: "1"
   dps:
     - id: 1
       type: boolean
@@ -13,7 +15,9 @@ primary_entity:
 secondary_entities:
   - entity: switch
     class: switch
-    name: Switch 2
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 2
         type: boolean
@@ -23,6 +27,7 @@ secondary_entities:
     translation_key: timer_x
     translation_placeholders:
       x: "1"
+    class: duration
     dps:
       - id: 7
         type: integer
@@ -39,6 +44,7 @@ secondary_entities:
     translation_key: timer_x
     translation_placeholders:
       x: "2"
+    class: duration
     dps:
       - id: 8
         type: integer
