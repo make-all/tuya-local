@@ -186,6 +186,7 @@
 - BHT-002-GALW thermostat _(rebadged as many different brands)_
 - BHT-002-GABW thermostat _(some compatible with GALW, others subtly different)_
 - Brade MC6 thermostat _(rebadged as many different brands)_
+- Dr Heater DR-008 electric radiant floor thermostat
 - ETOP-FCU thermostat (Jaga JRT-100TW)
 - ETOP-HP thermostat (CH7100)
 - ETOP-HT thermostat

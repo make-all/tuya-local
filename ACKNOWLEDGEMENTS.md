@@ -785,3 +785,4 @@ Further device support has been made with the assistance of users. Please consid
 - [xtaria](https://github.com/xtaria) for contributing support for Houschen bathroom mirror.
 - [nerodoxus](https://github.com/nerodoxus) for contributing support for Eberg Rico dehumidifier.
 - [tompapajr](https://github.com/tompapajr) for contributing support for Edge Theory Labs cold plunge heat pump.
+- [ThinkDualBrain](https://github.com/ThinkDualBrain) for contributing support for Dr Heater DR008 thermostat.
