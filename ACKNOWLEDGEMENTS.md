@@ -781,4 +781,5 @@ Further device support has been made with the assistance of users. Please consid
 - [Kenneth-Audenaert](https://github.com/Kenneth-Audenaert) for contributing support for Aygrochy ventilation duct fan.
 - [DutchKillerBee](https://github.com/DutchKillerBee) for assisting with support for Qlima D812 dehumidifier.
 - [dgcartersa](https://github.com/dgcartersa) for assisting with support for WL-RTCZ-05Z zigbee human presence sensor.
-- - [NonozgYtb](https://github.com/NonozgYtb) for assisting with support for LSC Smart Connect Garden spotlights.
+- [NonozgYtb](https://github.com/NonozgYtb) for assisting with support for LSC Smart Connect Garden spotlights.
+- [xtaria](https://github.com/xtaria) for contributing support for Houschen bathroom mirror.
