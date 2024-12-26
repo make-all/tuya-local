@@ -2,7 +2,7 @@
 
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.number.const import NumberDeviceClass
-from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT, SensorDeviceClass
+from homeassistant.components.sensor import SensorDeviceClass, SensorStateClass
 from homeassistant.const import (
     PERCENTAGE,
     UnitOfElectricCurrent,
@@ -119,7 +119,7 @@ class TestParksidePLGS2012A1Charger(
                     "dps": TEMPERATURE_DPS,
                     "unit": UnitOfTemperature.CELSIUS,
                     "device_class": SensorDeviceClass.TEMPERATURE,
-                    "state_class": STATE_CLASS_MEASUREMENT,
+                    "state_class": SensorStateClass.MEASUREMENT,
                 },
                 {
                     "name": "sensor_max_current",

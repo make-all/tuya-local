@@ -1,4 +1,4 @@
-from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT, SensorDeviceClass
+from homeassistant.components.sensor import SensorDeviceClass, SensorStateClass
 from homeassistant.components.vacuum import (
     STATE_CLEANING,
     STATE_ERROR,
@@ -57,7 +57,7 @@ class TestLefantM213Vacuum(MultiSensorTests, TuyaDeviceTestCase):
                     "name": "sensor_battery",
                     "unit": PERCENTAGE,
                     "device_class": SensorDeviceClass.BATTERY,
-                    "state_class": STATE_CLASS_MEASUREMENT,
+                    "state_class": SensorStateClass.MEASUREMENT,
                 },
             ],
         )

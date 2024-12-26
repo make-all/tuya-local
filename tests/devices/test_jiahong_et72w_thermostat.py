@@ -1,6 +1,6 @@
 from homeassistant.components.climate.const import ClimateEntityFeature, HVACMode
 from homeassistant.components.number.const import NumberDeviceClass
-from homeassistant.components.sensor import STATE_CLASS_MEASUREMENT, SensorDeviceClass
+from homeassistant.components.sensor import SensorDeviceClass, SensorStateClass
 from homeassistant.const import UnitOfTemperature, UnitOfTime
 
 from ..const import JIAHONG_ET72W_PAYLOAD
@@ -102,7 +102,7 @@ class TestJiahongEt72wThermostat(
                     "dps": CURRENTTEMP_DPS,
                     "name": "sensor_room_temperature",
                     "device_class": SensorDeviceClass.TEMPERATURE,
-                    "state_class": STATE_CLASS_MEASUREMENT,
+                    "state_class": SensorStateClass.MEASUREMENT,
                     "unit": UnitOfTemperature.CELSIUS,
                     "testdata": (195, 19.5),
                 },
@@ -110,7 +110,7 @@ class TestJiahongEt72wThermostat(
                     "dps": FLOORTEMP_DPS,
                     "name": "sensor_floor_temperature",
                     "device_class": SensorDeviceClass.TEMPERATURE,
-                    "state_class": STATE_CLASS_MEASUREMENT,
+                    "state_class": SensorStateClass.MEASUREMENT,
                     "unit": UnitOfTemperature.CELSIUS,
                     "testdata": (214, 21.4),
                 },
