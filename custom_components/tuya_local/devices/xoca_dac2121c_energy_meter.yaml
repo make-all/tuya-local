@@ -1,4 +1,4 @@
-name: XOCA DAC2121C BI Energy Meter
+name: BiDirectional Energy Meter with Multi Tariff functions
 products:
   - id: opdhepy0p7eyeurz
     name: DAC-2121C BI
@@ -13,9 +13,14 @@ primary_entity:
       type: base64
       optional: true
       force: true
+    - id: 6
+      name: alarm_set_2
+      type: string
+      optional: true
+      force: true
 secondary_entities:
   - entity: sensor
-    name: Total Forward Energy
+    translation_key: energy_consumed
     class: energy
     # category: diagnostic
     dps:
@@ -28,7 +33,7 @@ secondary_entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Total Reverse Energy
+    translation_key: energy_produced
     class: energy
     # category: diagnostic
     dps:
@@ -80,15 +85,6 @@ secondary_entities:
         mask: "0000000000FFFFFF"
         mapping:
           - scale: 1000
-  - entity: sensor
-    name: Alarm Set 2
-    category: diagnostic
-    dps:
-      - id: 17
-        type: string
-        name: sensor
-        optional: true
-        force: true
   - entity: sensor
     name: Meter ID
     category: diagnostic
