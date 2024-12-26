@@ -3,7 +3,6 @@
 from homeassistant.components.number import NumberDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.components.switch import SwitchDeviceClass
-
 from homeassistant.const import (
     UnitOfElectricCurrent,
     UnitOfElectricPotential,
