@@ -1,5 +1,5 @@
 from homeassistant.components.fan import FanEntityFeature
-from homeassistant.components.sensor import SensorDeviceClass, SnesorStateClass
+from homeassistant.components.sensor import SensorDeviceClass, SensorStateClass
 from homeassistant.const import PERCENTAGE, UnitOfTemperature
 
 from ..const import HIMOX_H05_PURIFIER_PAYLOAD
