@@ -330,6 +330,7 @@
 - Cleverio AD100 dehumidifier
 - DH-CSK03W dehumidifier
 - Ebac DJ4000 dehumidifier
+- Eberg Rico R12E2 dehumidifier
 - ElectriQ CD12PRO-LE dehumidifier
 - ElectriQ CD12PW dehumidifier
 - ElectriQ CD12PWv2 dehumidifier

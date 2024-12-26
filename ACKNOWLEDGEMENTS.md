@@ -783,3 +783,4 @@ Further device support has been made with the assistance of users. Please consid
 - [dgcartersa](https://github.com/dgcartersa) for assisting with support for WL-RTCZ-05Z zigbee human presence sensor.
 - [NonozgYtb](https://github.com/NonozgYtb) for assisting with support for LSC Smart Connect Garden spotlights.
 - [xtaria](https://github.com/xtaria) for contributing support for Houschen bathroom mirror.
+- [nerodoxus](https://github.com/nerodoxus) for contributing support for Eberg Rico dehumidifier.
