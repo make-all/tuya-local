@@ -50,7 +50,9 @@ secondary_entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Power A
+    translation_key: power_x
+    translation_placeholders:
+      x: A
     class: power
     category: diagnostic
     dps:
@@ -71,7 +73,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Power B
+    translation_key: power_x
+    translation_placeholders:
+      x: B
     class: power
     category: diagnostic
     dps:
@@ -194,7 +198,6 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    class: voltage
     category: diagnostic
     dps:
       - id: 112
@@ -210,7 +213,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Current A
+    translation_key: current_x
+    translation_placeholders:
+      x: A
     class: current
     category: diagnostic
     dps:
@@ -227,7 +232,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Current B
+    translation_key: current_x
+    translation_placeholders:
+      x: B
     class: current
     category: diagnostic
     dps:
