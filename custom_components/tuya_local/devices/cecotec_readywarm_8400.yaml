@@ -33,12 +33,10 @@ primary_entity:
       range:
         min: 15
         max: 40
-
     - id: 3
       type: integer
       name: current_temperature
       readonly: true
-
     - id: 4
       name: preset_mode
       type: string
@@ -60,7 +58,6 @@ primary_entity:
           value: "off"
         - dps_val: true
           value: "on"
-
 secondary_entities:
   - entity: select
     translation_key: timer
@@ -104,4 +101,3 @@ secondary_entities:
         type: integer
         name: sensor
         unit: min
-
