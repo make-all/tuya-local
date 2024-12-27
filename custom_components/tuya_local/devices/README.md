@@ -620,7 +620,9 @@ from the camera.
     `none, eco, away, boost, comfort, home, sleep, activity`
    There are also some presets defined by this integration for use with various `translation_key`s, see translations/en.json for details.
 - **swing_mode** (optional, mapping of strings) a dp to control swing modes of the device.
-   Possible values are: `"off", vertical, horizontal`
+   Standard values are: `"off", "on", vertical, horizontal, both`, non-standard values can also be used if needed.
+- **swing_horizontal_mode** (optional, mapping of strings) a dp to control horizontal swing independently of the vertical swing.
+   Standard values are: `"off", "on"`, non-standard values can also be used if needed.
 - **temperature** (optional, number) a dp to set the target temperature of the device.
       A unit may be specified as part of the attribute if a temperature_unit dp is not available, if not
       the default unit configured in HA will be used.

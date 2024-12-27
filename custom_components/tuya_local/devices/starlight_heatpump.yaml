@@ -76,35 +76,21 @@ primary_entity:
       type: string
       mapping:
         - dps_val: "0"
-          constraint: horizontal_swing
-          conditions:
-            - dps_val: "0"
-              value: "off"
-            - dps_val: "1"
-              value: horizontal
-            - dps_val: ["2", "3", "4"]
-              value: horizontal
-              hidden: true
+          value: "off"
         - dps_val: "1"
-          constraint: horizontal_swing
-          conditions:
-            - dps_val: "0"
-              value: vertical
-            - dps_val: "1"
-              value: both
-            - dps_val: ["2", "3", "4"]
-              value: both
-              hidden: true
-        - value: both
+          value: "on"
+        - value: "on"
           hidden: true
-          constraint: horizontal_swing
-          conditions:
-            - dps_val: "0"
-              value: vertical
     - id: 114
-      name: horizontal_swing
+      name: swing_horizontal_mode
       type: string
-      hidden: true
+      mapping:
+        - dps_val: "0"
+          value: "off"
+        - dps_val: "1"
+          value: "on"
+        - value: "on"
+          hidden: true
     - id: 119
       name: electricity_management
       type: string

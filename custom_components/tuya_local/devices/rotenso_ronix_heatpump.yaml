@@ -73,35 +73,21 @@ primary_entity:
       name: swing_mode
       mapping:
         - dps_val: "0"
-          constraint: horizontal_swing
-          conditions:
-            - dps_val: "0"
-              value: "off"
-            - dps_val: "1"
-              value: horizontal
-            - dps_val: ["2", "3", "4"]
-              value: horizontal
-              hidden: true
+          value: "off"
         - dps_val: "1"
-          constraint: horizontal_swing
-          conditions:
-            - dps_val: "0"
-              value: vertical
-            - dps_val: "1"
-              value: both
-            - dps_val: ["2", "3", "4"]
-              value: both
-              hidden: true
+          value: "on"
         - hidden: true
-          value: both
-          constraint: horizontal_swing
-          conditions:
-            - dps_val: "0"
-              value: vertical
+          value: "on"
     - id: 114
       type: string
-      name: horizontal_swing
-      hidden: true
+      name: swing_horizontal_mode
+      mapping:
+        - dps_val: "0"
+          value: "off"
+        - dps_val: "1"
+          value: "on"
+        - value: "on"
+          hidden: true
     - id: 120
       type: string
       name: energy

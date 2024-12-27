@@ -72,38 +72,22 @@ primary_entity:
       name: swing_mode
       mapping:
         - dps_val: false
-          constraint: swing_horiz
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: horizontal
-            - dps_val: null
-              value: "off"
-              hidden: true
+          value: "off"
         - dps_val: true
-          constraint: swing_horiz
-          conditions:
-            - dps_val: false
-              value: vertical
-            - dps_val: true
-              value: both
-            - dps_val: null
-              value: vertical
-              hidden: true
-        - constraint: swing_horiz
-          conditions:
-            - dps_val: true
-              value: horizontal
-              hidden: true
-            - dps_val: null
-              value: "off"
-              hidden: true
+          value: "on"
+        - value: "off"
+          hidden: true
     - id: 33
       type: boolean
       optional: true
-      name: swing_horiz
-      hidden: true
+      name: swing_horizontal_mode
+      mapping:
+        - dps_val: true
+          value: "on"
+        - dps_val: false
+          value: "off"
+        - value: "off"
+          hidden: true
 secondary_entities:
   - entity: switch
     name: Aux heat

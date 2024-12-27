@@ -86,23 +86,17 @@ primary_entity:
       type: boolean
       mapping:
         - dps_val: false
-          constraint: horiz_swing
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: horizontal
+          value: "off"
         - dps_val: true
-          constraint: horiz_swing
-          conditions:
-            - dps_val: false
-              value: vertical
-            - dps_val: true
-              value: both
+          value: "on"
     - id: 107
-      name: horiz_swing
+      name: swing_horizontal_mode
       type: boolean
-      hidden: true
+      mapping:
+        - dps_val: true
+          value: "on"
+        - dps_val: false
+          value: "off"
     - id: 108
       name: unknown_108
       type: integer

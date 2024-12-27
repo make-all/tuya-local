@@ -72,23 +72,17 @@ primary_entity:
       type: boolean
       mapping:
         - dps_val: true
-          constraint: swing_horiz
-          conditions:
-            - dps_val: true
-              value: both
-            - dps_val: false
-              value: vertical
+          value: "on"
         - dps_val: false
-          constraint: swing_horiz
-          conditions:
-            - dps_val: true
-              value: horizontal
-            - dps_val: false
-              value: "off"
+          value: "off"
     - id: 105
-      name: swing_horiz
+      name: swing_horizontal_mode
       type: boolean
-      hidden: true
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          value: "on"
     - id: 103
       name: temperature_unit
       type: boolean
