@@ -978,7 +978,7 @@ entity types as sub devices.
 - WL-898WZ water leak sensor
 - WL-RTCZ-05Z human presence sensor
 - Zemismart SPM01 energy meter
-- ZPmeter 214C-Z water meter
+- ZPmeter 214C-Z water meter (with and without valve control)
 
 - ZTH08ZTU temperature and humidity sensor
 
