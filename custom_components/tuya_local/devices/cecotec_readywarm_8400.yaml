@@ -33,9 +33,11 @@ primary_entity:
       range:
         min: 15
         max: 40
+
     - id: 3
       type: integer
       name: current_temperature
+      readonly: true
 
     - id: 4
       name: preset_mode
@@ -102,3 +104,4 @@ secondary_entities:
         type: integer
         name: sensor
         unit: min
+
