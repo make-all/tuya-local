@@ -764,7 +764,7 @@ Further device support has been made with the assistance of users. Please consid
 - [bwarden](https://github.com/bwarden) for contributing support for OmniBreeze tower fan.
 - [ASk1](https://github.com/ASk1) for assisting with support for Zemismart SPM01 zigbee energy meter.
 - [Nas-au](https://github.com/Nas-au) for assisting with support for Universal remote controllers.
-- [AlexK98](https://github.com/AlexK98) for contributing support for TOMPD-63-WIFI and variant of TOMPD-63LW energy meters, and improvements to Moes temperature humidity sensors.
+- [AlexK98](https://github.com/AlexK98) for contributing support for TOMPD-63-WIFI, XOCA DAC2121C BI, and variant of TOMPD-63LW energy meters, and improvements to Moes temperature humidity sensors.
 - [md1986](https://github.com/md1986) for contributing support for Morento HY4866-WF air purifier.
 - [TimPasquini](https://github.com/TimPasquini) for contributing support for Brizlabs string lights.
 - [darth-hp](https://github.com/darth-hp) for contributing support for Cecotec BigDry 4000 dehumidifier.

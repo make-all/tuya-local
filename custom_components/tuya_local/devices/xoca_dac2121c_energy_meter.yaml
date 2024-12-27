@@ -1,9 +1,10 @@
-name: BiDirectional Energy Meter with Multi Tariff functions
+name: Multi-tariff energy meter
 products:
   - id: opdhepy0p7eyeurz
     name: DAC-2121C BI
 primary_entity:
   entity: switch
+  icon: "mdi:fuse"
   dps:
     - id: 16
       name: switch
@@ -17,12 +18,14 @@ primary_entity:
       name: alarm_set_2
       type: string
       optional: true
-      force: true
+    - id: 18
+      type: string
+      name: sensor
+      optional: true
 secondary_entities:
   - entity: sensor
     translation_key: energy_consumed
     class: energy
-    # category: diagnostic
     dps:
       - id: 1
         type: integer
@@ -35,7 +38,6 @@ secondary_entities:
   - entity: sensor
     translation_key: energy_produced
     class: energy
-    # category: diagnostic
     dps:
       - id: 2
         type: integer
@@ -47,7 +49,7 @@ secondary_entities:
           - scale: 100
   - entity: sensor
     class: voltage
-    # category: diagnostic
+    category: diagnostic
     dps:
       - id: 6
         optional: true
@@ -61,7 +63,7 @@ secondary_entities:
           - scale: 10
   - entity: sensor
     class: current
-    # category: diagnostic
+    category: diagnostic
     dps:
       - id: 6
         optional: true
@@ -74,7 +76,7 @@ secondary_entities:
           - scale: 1000
   - entity: sensor
     class: power
-    # category: diagnostic
+    category: diagnostic
     dps:
       - id: 6
         optional: true
@@ -86,19 +88,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Meter ID
-    category: diagnostic
-    dps:
-      - id: 18
-        type: string
-        name: sensor
-        optional: true
-        force: true
-  - entity: sensor
     # Night zone
     name: Tariff 1
     class: energy
-    # category: diagnostic
     dps:
       - id: 21
         type: integer
@@ -113,7 +105,6 @@ secondary_entities:
     # Day zone
     name: Tariff 2
     class: energy
-    # category: diagnostic
     dps:
       - id: 22
         type: integer
@@ -127,7 +118,6 @@ secondary_entities:
   - entity: sensor
     name: Tariff 3
     class: energy
-    # category: diagnostic
     dps:
       - id: 23
         type: integer
@@ -141,7 +131,6 @@ secondary_entities:
   - entity: sensor
     name: Tariff 4
     class: energy
-    # category: diagnostic
     dps:
       - id: 24
         type: integer

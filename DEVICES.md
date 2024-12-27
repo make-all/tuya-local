@@ -463,7 +463,8 @@
 - WDYK 2P63A energy meter circuit breaker
 - WDYK 3 phase 4 pole 400V energy meter circuit breaker
 - WDYK 4P100A energy meter circuit breaker
-- Yagusmart 3PN 63A 3-phase eneregy meter
+- Xoca DAC2121C BI energy meter
+- Yagusmart 3PN 63A 3-phase multi-tariff energy meter
 - Zemismart SDM01-TW0-12-ZM 3-phase bidirectional energy meter
 - ZM-Wi-Fi smart meter
 
