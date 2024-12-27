@@ -787,3 +787,4 @@ Further device support has been made with the assistance of users. Please consid
 - [tompapajr](https://github.com/tompapajr) for contributing support for Edge Theory Labs cold plunge heat pump.
 - [ThinkDualBrain](https://github.com/ThinkDualBrain) for contributing support for Dr Heater DR008 thermostat.
 - [keskival](https://github.com/keskival) for contributing support for ZPMeter ultrasonic water meter (without valve control).
+- [hcanIngo](https://github.com/hcanIngo) for contributing support for PowerWorld PW040 water and climate heat pump.

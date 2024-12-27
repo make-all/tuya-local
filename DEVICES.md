@@ -162,6 +162,7 @@
 - Modena ES-15-SKY water heater
 - Powerworld PW58330 hot water and climate heat pump
 - Powerworld PW58410 hot water and climate heat pump
+- Powerworld PW040   hot water and climate heat pump
 - Sanden GAU-A45HPD WiFi heat pump controller
 - Thermex IF series V pro hot water systems
 - Thermex Lima 80V
