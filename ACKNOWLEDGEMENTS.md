@@ -149,9 +149,9 @@ Further device support has been made with the assistance of users. Please consid
 - [engusz](https://github.com/engusz) for assistance supporting Avatto curtain switches and dual switch with timers.
 - [81k5](https://github.com/81k5) for assistance supporting Aubess smart switches.
 - [SvenMartin81](https://github.com/SvenMartin81) for assistance supporting another variant of common smartplug (via GNCC branded one)
-- [cjones813](https://github.com/cjones813) for assistance supporting HJZ radiators, and contributing Benexmart blinds support.
-- [cnrd](https://github.com/cnrd) for contributing support for Eeese Otto dehumidifiers.
-- [markwellis](https://github.com/markwellis) for contributing support for Eurom Sani Wall Heat 2000 heaters.
+- [cjones813](https://github.com/cjones813) for assistance supporting HJZ radiator, and contributing Benexmart blinds support.
+- [cnrd](https://github.com/cnrd) for contributing support for Eeese Otto and fixes for Eeese Carl dehumidifiers.
+- [markwellis](https://github.com/markwellis) for contributing support for Eurom Sani Wall Heat 2000 heater.
 - [escoand](https://github.com/escoand) for contributing support for Tellur USB power strip.
 - [BrettEBowman](https://github.com/BrettEBowman) for assistance supporting Treatlife DS02-F fans.
 - [sohail579](https://github.com/sohail579) for assistance supporting Inventor Eva Ion Pro dehumidifiers.
