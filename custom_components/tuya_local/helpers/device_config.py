@@ -252,7 +252,7 @@ class TuyaEntityConfig:
     @property
     def translation_key(self):
         """The translation key for this entity."""
-        return self._config.get("translation_key", self.device_class)
+        return self._config.get("translation_key")
 
     @property
     def translation_only_key(self):
@@ -307,6 +307,8 @@ class TuyaEntityConfig:
                 else:
                     slug = f"{slug}_{value}"
             return slug
+        elif self.device_class:
+            return f"{self.entity}_{self.device_class}"
         return self.entity
 
     @property
