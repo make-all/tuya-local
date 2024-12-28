@@ -1,7 +1,7 @@
 name: Energy meter
 products:
   - id: fzxonzodwjiugioz
-    name: Zemismart SDM01-TW0-12-ZM
+    name: Zemismart SDM01-TW0/TZ0-12
 primary_entity:
   entity: sensor
   class: energy
@@ -111,6 +111,7 @@ secondary_entities:
     dps:
       - id: 35
         type: string
+        optional: true
         name: sensor
         mapping:
           - dps_val: online
@@ -137,6 +138,7 @@ secondary_entities:
         name: switch
   - entity: number
     name: Reporting interval
+    class: duration
     category: config
     icon: "mdi:autorenew"
     dps:
@@ -148,7 +150,9 @@ secondary_entities:
           min: 5
           max: 3600
   - entity: sensor
-    name: Voltage X
+    translation_key: voltage_x
+    translation_placeholders:
+      x: X
     class: voltage
     category: diagnostic
     dps:
@@ -160,7 +164,9 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Current X
+    translation_key: current_x
+    translation_placeholders:
+      x: X
     class: current
     category: diagnostic
     dps:
@@ -172,7 +178,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Power X
+    translation_key: power_x
+    translation_placeholders:
+      x: X
     class: power
     category: diagnostic
     dps:
@@ -192,6 +200,8 @@ secondary_entities:
         type: integer
         name: sensor
         class: measurement
+        mapping:
+          - scale: 100
   - entity: sensor
     translation_key: energy_consumed_x
     translation_placeholders:
@@ -221,7 +231,9 @@ secondary_entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Voltage Y
+    translation_key: voltage_x
+    translation_placeholders:
+      x: Y
     class: voltage
     category: diagnostic
     dps:
@@ -233,7 +245,9 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Current Y
+    translation_key: current_x
+    translation_placeholders:
+      x: Y
     class: current
     category: diagnostic
     dps:
@@ -245,7 +259,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Power Y
+    translation_key: power_x
+    translation_placeholders:
+      x: Y
     class: power
     category: diagnostic
     dps:
@@ -265,6 +281,8 @@ secondary_entities:
         type: integer
         name: sensor
         class: measurement
+        mapping:
+          - scale: 100
   - entity: sensor
     translation_key: energy_consumed_x
     translation_placeholders:
@@ -294,7 +312,9 @@ secondary_entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Voltage Z
+    translation_key: voltage_x
+    translation_placeholders:
+      x: Z
     class: voltage
     category: diagnostic
     dps:
@@ -306,7 +326,9 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Current Z
+    translation_key: current_x
+    translation_placeholders:
+      x: Z
     class: current
     category: diagnostic
     dps:
@@ -318,7 +340,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Power Z
+    translation_key: power_x
+    translation_placeholders:
+      x: Z
     class: power
     category: diagnostic
     dps:
@@ -338,6 +362,8 @@ secondary_entities:
         type: integer
         name: sensor
         class: measurement
+        mapping:
+          - scale: 100
   - entity: sensor
     translation_key: energy_consumed_x
     translation_placeholders:
