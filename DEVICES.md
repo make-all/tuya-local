@@ -225,6 +225,7 @@
 
 ### Fans
 
+- Aeratron AE3+ ceiling fan (may match other Aeratron models with same WiFi module)
 - Amico 52" ceiling fan with light
 - Anko HEGSM40 fan
 - Arlec ceiling fan and light remote control kit (CFR225HA also works for Sulion Cadillac)
