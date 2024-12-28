@@ -41,7 +41,7 @@
                     "local_key": "Local key",
                     "protocol_version": "协议版本（如果不清楚，请选择自动）",
                     "poll_only": "仅轮询（如果设备无法正常工作，请选择此项）",
-                    "device_cid": "子设备UUID（对于通过网关连接的设备）"
+                    "device_cid": "子设备node_id或uuid（对于通过网关连接的设备）"
                 }
             },
             "select_type": {
@@ -378,6 +378,9 @@
         "number": {
             "timer": {
                 "name": "计时器"
+            },
+            "timer_x": {
+                "name": "计时器{x}"
             }
         },
         "select": {
@@ -589,7 +592,7 @@
                     "low": "低",
                     "high": "高",
                     "unwashed": "未清洗",
-                    "pre_rinsing": "预漂洗",
+                    "pre_washing": "预洗中",
                     "washing": "洗涤中",
                     "rinsing": "漂洗中",
                     "drying": "烘干中",
@@ -614,6 +617,27 @@
                     "done": "烹饪完成",
                     "pause": "烹饪暂停"
                 }
+            },
+            "energy_produced": {
+                "name": "产生的能量"
+            },
+            "energy_consumed": {
+                "name": "消耗的能量"
+            },
+            "energy_produced_x": {
+                "name": "产生的能量{x}"
+            },
+            "energy_consumed_x": {
+                "name": "消耗的能量{x}"
+            },
+            "current_x": {
+                "name": "电流{x}"
+            },
+            "voltage_x": {
+                "name": "电压{x}"
+            },
+            "power_x": {
+                "name": "功率{x}"
             }
         },
         "switch": {
@@ -629,8 +653,14 @@
             "keytone": {
                 "name": "按键音"
             },
+            "outlet_x": {
+                "name": "插座{x}"
+            },
             "sleep": {
                 "name": "睡眠"
+            },
+            "switch_x": {
+                "name": "开关{x}"
             },
             "uv_sterilization": {
                 "name": "紫外线消毒"

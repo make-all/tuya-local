@@ -41,7 +41,7 @@
                     "local_key": "Lokaler Schlüssel",
                     "protocol_version": "Protokollversion (versuchen Sie auto, falls nicht bekannt)",
                     "poll_only": "Nur Abfrage (versuchen Sie dies, wenn Ihr Gerät nicht vollständig funktioniert)",
-                    "device_cid": "Sub Geräte UUID (für Geräte, die über ein Gateway angeschlossen sind)"
+                    "device_cid": "Sub Geräte node_id oder uuid (für Geräte, die über ein Gateway angeschlossen sind)"
                 }
             },
             "select_type": {
@@ -377,6 +377,9 @@
         "number": {
             "timer": {
                 "name": "Timer"
+            },
+            "timer_x": {
+                "name": "Timer {x}"
             }
         },
         "select": {
@@ -588,6 +591,7 @@
                     "low": "Niedrig",
                     "high": "Hoch",
                     "unwashed": "Ungewaschen",
+                    "pre_washing": "Vorwäsche",
                     "pre_rinsing": "Vorspülen",
                     "washing": "Waschen",
                     "rinsing": "Spülen",
@@ -613,6 +617,27 @@
                     "done": "Kochen abgeschlossen",
                     "pause": "Kochen pausiert"
                 }
+            },
+            "energy_produced": {
+                "name": "Produzierte Energie"
+            },
+            "energy_consumed": {
+                "name": "Verbrauchte Energie"
+            },
+            "energy_produced_x": {
+                "name": "Produzierte Energie {x}"
+            },
+            "energy_consumed_x": {
+                "name": "Verbrauchte Energie {x}"
+            },
+            "current_x": {
+                "name": "Strom {x}"
+            },
+            "voltage_x": {
+                "name": "Spannung {x}"
+            },
+            "power_x": {
+                "name": "Leistung {x}"
             }
         },
         "switch": {
@@ -628,8 +653,14 @@
             "keytone": {
                 "name": "Tastenton"
             },
+            "outlet_x": {
+                "name": "Steckdose {x}"
+            },
             "sleep": {
                 "name": "Schlafen"
+            },
+            "switch_x": {
+                "name": "Schalter {x}"
             },
             "uv_sterilization": {
                 "name": "UV Sterilization"

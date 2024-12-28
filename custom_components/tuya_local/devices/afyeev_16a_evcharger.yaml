@@ -64,9 +64,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: V
+        mask: "FFFF000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     class: current
     dps:
@@ -75,9 +75,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: A
+        mask: "000000FFFF000000"
         mapping:
-          - mask: "000000FFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     class: power
     dps:
@@ -87,9 +87,9 @@ secondary_entities:
         optional: true
         unit: kW
         class: measurement
+        mask: "000000000000FFFF"
         mapping:
-          - mask: "000000000000FFFF"
-            scale: 1000
+          - scale: 1000
           - dps_val: null
             value_redirect: total_power
       - id: 9
@@ -145,10 +145,8 @@ secondary_entities:
       - id: 24
         type: integer
         name: sensor
-        unit: °C
+        unit: C
         class: measurement
-        mapping:
-          - scale: 1
   - entity: sensor
     name: Last charge
     dps:
@@ -175,6 +173,7 @@ secondary_entities:
             value: true
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 28

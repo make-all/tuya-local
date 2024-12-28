@@ -878,17 +878,6 @@ WOOX_R4028_SOCKET_PAYLOAD = {
     "105": 0,
 }
 
-ES01_POWERSTRIP_PAYLOAD = {
-    "1": True,
-    "2": True,
-    "3": True,
-    "4": True,
-    "5": 0,
-    "6": 0,
-    "7": 0,
-    "8": 0,
-}
-
 OWON_PCT513_THERMOSTAT_PAYLOAD = {
     "2": "cool",
     "16": 2150,
@@ -947,14 +936,6 @@ POIEMA_ONE_PURIFIER_PAYLOAD = {
     "11": False,
     "18": "cancel",
     "19": 0,
-}
-
-ECOSTRAD_ACCENTIQ_HEATER_PAYLOAD = {
-    "1": True,
-    "2": 200,
-    "3": 195,
-    "10": 0,
-    "101": True,
 }
 
 ECOSTRAD_IQCERAMIC_RADIATOR_PAYLOAD = {
@@ -1678,4 +1659,22 @@ BLE_SMARTPLANT_PAYLOAD = {
     "9": "c",
     "14": "Low",
     "15": 20,
+}
+
+GOLDAIR_PORTABLE_AIR_CONDITIONER_PAYLOAD = {
+    "1": True,
+    "2": 22,
+    "3": 30,
+    "4": "cold",
+    "5": "low",
+    "11": False,
+    "15": "off",
+    "20": 0,
+    "103": False,
+    "104": 0,
+    "105": 0,
+    "107": 72,
+    "108": 80,
+    "109": 26,
+    "110": False,
 }

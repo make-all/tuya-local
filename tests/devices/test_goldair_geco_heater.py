@@ -1,5 +1,6 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.climate.const import ClimateEntityFeature, HVACMode
+from homeassistant.components.number import NumberDeviceClass
 from homeassistant.const import UnitOfTemperature, UnitOfTime
 
 from ..const import GECO_HEATER_PAYLOAD
@@ -41,6 +42,7 @@ class TestGoldairGECOHeater(
             TIMER_DPS,
             self.entities.get("number_timer"),
             max=24,
+            device_class=NumberDeviceClass.DURATION,
             unit=UnitOfTime.HOURS,
         )
         self.setUpBasicBinarySensor(

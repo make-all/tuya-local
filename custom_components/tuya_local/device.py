@@ -33,6 +33,11 @@ from .helpers.log import log_json
 _LOGGER = logging.getLogger(__name__)
 
 
+def _collect_possible_matches(cached_state, product_ids):
+    """Collect possible matches from generator into an array."""
+    return list(possible_matches(cached_state, product_ids))
+
+
 class TuyaLocalDevice(object):
     def __init__(
         self,
@@ -61,6 +66,7 @@ class TuyaLocalDevice(object):
         self._name = name
         self._children = []
         self._force_dps = []
+        self._product_ids = []
         self._running = False
         self._shutdown_listener = None
         self._startup_listener = None
@@ -368,6 +374,9 @@ class TuyaLocalDevice(object):
         if self._api.parent:
             self._api.parent.set_socketPersistent(False)
 
+    def set_detected_product_id(self, product_id):
+        self._product_ids.append(product_id)
+
     async def async_possible_types(self):
         cached_state = self._get_cached_state()
         if len(cached_state) <= 1:
@@ -376,24 +385,35 @@ class TuyaLocalDevice(object):
             # devices have dp 1. Lights generally start from 20.  101 is where
             # vendor specific dps start.  Between them, these three should cover
             # most devices.  148 covers a doorbell device that didn't have these
-            self._api.set_dpsUsed({"1": None, "20": None, "101": None, "148": None})
+            # 201 covers remote controllers and 2 and 9 cover others without 1
+            self._api.set_dpsUsed(
+                {
+                    "1": None,
+                    "2": None,
+                    "9": None,
+                    "20": None,
+                    "60": None,
+                    "101": None,
+                    "148": None,
+                    "201": None,
+                }
+            )
             await self.async_refresh()
             cached_state = self._get_cached_state()
 
-        possible = await self._hass.async_add_executor_job(
-            possible_matches,
+        return await self._hass.async_add_executor_job(
+            _collect_possible_matches,
             cached_state,
+            self._product_ids,
         )
-        for match in possible:
-            await asyncio.sleep(0)
-            yield match
 
     async def async_inferred_type(self):
         best_match = None
         best_quality = 0
         cached_state = self._get_cached_state()
-        async for config in self.async_possible_types():
-            quality = config.match_quality(cached_state)
+        possible = await self.async_possible_types()
+        for config in possible:
+            quality = config.match_quality(cached_state, self._product_ids)
             _LOGGER.info(
                 "%s considering %s with quality %s",
                 self.name,
@@ -583,9 +603,12 @@ class TuyaLocalDevice(object):
                         > self._AUTO_FAILURE_RESET_COUNT
                     ):
                         self._api_protocol_working = False
-                    for entity in self._children:
-                        entity.async_schedule_update_ha_state()
-                    _LOGGER.error(error_message)
+                        for entity in self._children:
+                            entity.async_schedule_update_ha_state()
+                    if self._api_working_protocol_failures == 1:
+                        _LOGGER.error(error_message)
+                    else:
+                        _LOGGER.info(error_message)
 
                 if not self._api_protocol_working:
                     await self._rotate_api_protocol_version()

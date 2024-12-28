@@ -99,16 +99,8 @@ primary_entity:
       mapping:
         - dps_val: close
           value: idle
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
         - dps_val: open
           value: heating
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
     - id: 104
       type: string
       name: program

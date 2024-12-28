@@ -104,15 +104,11 @@ primary_entity:
         - dps_val: eco
           value: idle
         - dps_val: "off"
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: idle
+          value: idle
 secondary_entities:
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 22

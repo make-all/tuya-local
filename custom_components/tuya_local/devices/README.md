@@ -89,6 +89,23 @@ use `translation_only_key` instead (this is mostly useful to retain
 backward compatibility where `translation_key` is used to define icons and
 attribute strings but not the entity name.
 
+### `translation_placeholders`
+
+*Optional*
+
+A container for placeholders to be used in the translation string. Contents
+are a mapping from parameter keys used in the translation files, to actual
+values to be used for this entity. If this is specified, then either
+translation_key or translation_only_key must be specified with it.
+
+Example:
+
+```
+  translation_key: switch_x
+  translation_placeholders:
+    x: "1"
+```
+
 ### `category`
 
 *Optional.*
@@ -603,7 +620,9 @@ from the camera.
     `none, eco, away, boost, comfort, home, sleep, activity`
    There are also some presets defined by this integration for use with various `translation_key`s, see translations/en.json for details.
 - **swing_mode** (optional, mapping of strings) a dp to control swing modes of the device.
-   Possible values are: `"off", vertical, horizontal`
+   Standard values are: `"off", "on", vertical, horizontal, both`, non-standard values can also be used if needed.
+- **swing_horizontal_mode** (optional, mapping of strings) a dp to control horizontal swing independently of the vertical swing.
+   Standard values are: `"off", "on"`, non-standard values can also be used if needed.
 - **temperature** (optional, number) a dp to set the target temperature of the device.
       A unit may be specified as part of the attribute if a temperature_unit dp is not available, if not
       the default unit configured in HA will be used.
@@ -658,8 +677,8 @@ Humidifer can also cover dehumidifiers (use class to specify which).
 - **switch** (optional, boolean): a dp to control the on/off state of the light
 - **brightness** (optional, number): a dp to control the dimmer if available.  If a range is provided, the value will be automatically scaled into the 0-255 range for HA, so there is no need to provide a scale. If there is a fixed list of mappings, the values should be between 0 (off) and 255 (full brightness). If there is no switch dp, a brightness of 0 will be sent to turn the light off.
 - **color_temp** (optional, number): a dp to control the color temperature if available. See `target_range` above for mapping Tuya's range into Kelvin.
-
-- **rgbhsv** (optional, hex): a dp to control the color of the light, using encoded RGB and HSV values. The `format` field names recognized for decoding this field are `r`, `g`, `b`, `h`, `s`, `v`.
+- **rgbhsv** (optional, hex): a dp to control the color of the light, using encoded RGB and HSV values. The `format` field names recognized for decoding this field are `r`, `g`, `b`, `h`, `s`, `v`. If both RGB and HSV values are supplied by the light, the HSV will be preferred. Either RGB values or HS values are required. If V is missing, the brightness dp is required.
+- **named_color** (optional, string): a dp to control the color of the light, using a list of named colors. This is mutually exclusive with the rgbhsv dp. The list of recognised colors is from the HA COLORS table at https://github.com/home-assistant/core/blob/dev/homeassistant/util/color.py
 - **color_mode** (optional, mapping of strings): a dp to control which mode to use if the light supports multiple modes.
     Special values: `white, color_temp, hs, xy, rgb, rgbw, rgbww`, others will be treated as effects,
 	Note: only white, color_temp and hs are currently supported, others listed above are reserved and may be implemented in future when the need arises.

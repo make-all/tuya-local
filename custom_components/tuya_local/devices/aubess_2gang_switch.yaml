@@ -4,7 +4,9 @@ products:
     name: SciMagic RX Double Garage door receiver
 primary_entity:
   entity: switch
-  name: Switch 1
+  translation_key: switch_x
+  translation_placeholders:
+    x: "1"
   dps:
     - id: 1
       name: switch
@@ -24,14 +26,18 @@ primary_entity:
       name: interlock
 secondary_entities:
   - entity: switch
-    name: Switch 2
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 2
         name: switch
         type: boolean
   - entity: number
-    name: Timer 1
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    class: duration
     category: config
     dps:
       - id: 9
@@ -44,9 +50,11 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    name: Timer 2
     category: config
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    class: duration
     dps:
       - id: 10
         type: integer

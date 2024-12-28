@@ -42,7 +42,7 @@
                     "local_key": "Helyi kulcs (local_key)",
                     "protocol_version": "Protokol verzió (hagyd auto-n, ha nem tudod)",
                     "poll_only": "Csak olvasás (próbáld ki ezt, ha az eszköz nem működik rendesen)",
-                    "device_cid": "Aleszköz UUID (átjárón keresztül használt eszközök esetén)"
+                    "device_cid": "Aleszköz node_id vagy uuid (átjárón keresztül használt eszközök esetén)"
                 }
             },
             "select_type": {
@@ -379,6 +379,9 @@
         "number": {
             "timer": {
                 "name": "Időzítő"
+            },
+            "timer_x": {
+                "name": "Időzítő {x}"
             }
         },
         "select": {
@@ -590,7 +593,7 @@
                     "low": "Alacsony",
                     "high": "Magas",
                     "unwashed": "Nem mosott",
-                    "pre_rinsing": "Előmosás",
+                    "pre_washing": "Előmosás",
                     "washing": "Mosás",
                     "rinsing": "Öblítés",
                     "drying": "Szárítás",
@@ -615,6 +618,27 @@
                     "done": "Főzés befejezve",
                     "pause": "Főzés szüneteltetve"
                 }
+            },
+            "energy_produced": {
+                "name": "Termelt energia"
+            },
+            "energy_consumed": {
+                "name": "Fogyasztott energia"
+            },
+            "energy_produced_x": {
+                "name": "Termelt energia {x}"
+            },
+            "energy_consumed_x": {
+                "name": "Fogyasztott energia {x}"
+            },
+            "current_x": {
+                "name": "Áram {x}"
+            },
+            "voltage_x": {
+                "name": "Feszültség {x}"
+            },
+            "power_x": {
+                "name": "Teljesítmény {x}"
             }
         },
         "switch": {
@@ -630,8 +654,14 @@
             "keytone": {
                 "name": "Billentyűhang"
             },
+            "outlet_x": {
+                "name": "Csatlakozó {x}"
+            },
             "sleep": {
                 "name": "Alvás"
+            },
+            "switch_x": {
+                "name": "Kapcsoló {x}"
             },
             "uv_sterilization": {
                 "name": "UV sterilizálás"

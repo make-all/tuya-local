@@ -28,8 +28,44 @@ primary_entity:
         - dps_val: grade6
           value: 100
 secondary_entities:
+  - entity: light
+    dps:
+      - id: 6
+        type: string
+        name: switch
+        mapping:
+          - dps_val: close
+            value: false
+            # We need a value to set to turn on the light with no parameters.
+          - dps_val: colour
+            value: true
+          - value: true
+            hidden: true
+      - id: 6
+        type: string
+        name: named_color
+        mapping:
+          - dps_val: purple
+            value: purple
+          - dps_val: blue
+            value: blue
+          - dps_val: cyan
+            value: cyan
+          - dps_val: green
+            value: green
+          - dps_val: yellow
+            value: yellow
+          - dps_val: orange
+            value: orange
+          - dps_val: red
+            value: red
+          - dps_val: colour
+            value: white
+          - dps_val: close
+            value: black
   - entity: select
     name: Light
+    deprecated: light
     icon: "mdi:lightbulb"
     category: config
     dps:

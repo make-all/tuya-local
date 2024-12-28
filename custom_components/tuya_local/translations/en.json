@@ -41,7 +41,7 @@
                     "local_key": "Local key",
                     "protocol_version": "Protocol version (try auto if not known)",
                     "poll_only": "Poll only (try this if your device does not work fully)",
-                    "device_cid": "Sub device UUID (for devices connected via gateway)"
+                    "device_cid": "Sub device node_id or uuid (for devices connected via gateway)"
                 }
             },
             "select_type": {
@@ -378,6 +378,9 @@
         "number": {
             "timer": {
                 "name": "Timer"
+            },
+            "timer_x": {
+                "name": "Timer {x}"
             }
         },
         "select": {
@@ -589,7 +592,7 @@
                     "low": "Low",
                     "high": "High",
                     "unwashed": "Unwashed",
-                    "pre_rinsing": "Pre-rinsing",
+                    "pre_washing": "Pre-washing",
                     "washing": "Washing",
                     "rinsing": "Rinsing",
                     "drying": "Drying",
@@ -614,6 +617,27 @@
                     "done": "Cooking Completed",
                     "pause": "Cooking Paused"
                 }
+            },
+            "energy_produced": {
+                "name": "Energy produced"
+            },
+            "energy_consumed": {
+                "name": "Energy consumed"
+            },
+            "energy_produced_x": {
+                "name": "Energy produced {x}"
+            },
+            "energy_consumed_x": {
+                "name": "Energy consumed {x}"
+            },
+            "current_x": {
+                "name": "Current {x}"
+            },
+            "voltage_x": {
+                "name": "Voltage {x}"
+            },
+            "power_x": {
+                "name": "Power {x}"
             }
         },
         "switch": {
@@ -629,8 +653,14 @@
             "keytone": {
                 "name": "Keytone"
             },
+            "outlet_x": {
+                "name": "Outlet {x}"
+            },
             "sleep": {
                 "name": "Sleep"
+            },
+            "switch_x": {
+                "name": "Switch {x}"
             },
             "uv_sterilization": {
                 "name": "UV sterilization"

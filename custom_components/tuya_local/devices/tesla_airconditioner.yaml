@@ -75,26 +75,20 @@ primary_entity:
       name: temperature_unit
     - id: 33
       type: boolean
+      name: swing_horizontal_mode
+      mapping:
+        - dps_val: false
+          value: "off"
+        - dps_val: true
+          value: "on"
+    - id: 105
+      type: boolean
       name: swing_mode
       mapping:
         - dps_val: false
-          constraint: swing_vert
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: vertical
+          value: "off"
         - dps_val: true
-          constraint: swing_vert
-          conditions:
-            - dps_val: false
-              value: horizontal
-            - dps_val: true
-              value: both
-    - id: 105
-      type: boolean
-      name: swing_vert
-      hidden: true
+          value: "on"
     - id: 108
       type: bitfield
       name: model
@@ -204,6 +198,7 @@ secondary_entities:
   - entity: number
     name: Timer hours
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 111
@@ -216,6 +211,7 @@ secondary_entities:
   - entity: number
     name: Timer minutes
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 112

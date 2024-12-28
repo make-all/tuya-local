@@ -56,18 +56,9 @@ primary_entity:
       type: string
       mapping:
         - dps_val: open
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: heating
+          value: heating
         - dps_val: close
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: idle
+          value: idle
 secondary_entities:
   - entity: switch
     translation_key: anti_frost

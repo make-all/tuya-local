@@ -8,6 +8,8 @@ products:
     name: On Wall WiFi Switch
   - id: flcvzjtnkhsreazp
     name: GIRIER USB adaptor
+  - id: lbqau5negh2zizit
+    name: Kruidvat outdoor smartplug
 primary_entity:
   entity: switch
   dps:
@@ -17,6 +19,7 @@ primary_entity:
 secondary_entities:
   - entity: number
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 9
@@ -44,5 +47,11 @@ secondary_entities:
             value: "off"
           - dps_val: memory
             value: memory
+      - id: 38
+        type: string
+        name: available
+        optional: true
+        mapping:
           - dps_val: null
-            invalid: true
+            value: false
+          - value: true

@@ -30,12 +30,7 @@ primary_entity:
       type: string
       mapping:
         - dps_val: warm
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: idle
+          value: idle
     - id: 106
       name: temperature
       type: integer

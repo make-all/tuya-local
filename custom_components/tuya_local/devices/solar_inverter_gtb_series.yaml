@@ -52,9 +52,9 @@ secondary_entities:
         optional: true
         force: true
         class: measurement
+        mask: "FFFF00000000"
         mapping:
-          - mask: "FFFF00000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     name: DC current
     class: current
@@ -66,9 +66,9 @@ secondary_entities:
         unit: A
         optional: true
         class: measurement
+        mask: "0000FFFF0000"
         mapping:
-          - mask: "0000FFFF0000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     name: DC power
     class: power
@@ -80,9 +80,9 @@ secondary_entities:
         unit: W
         optional: true
         class: measurement
+        mask: "00000000FFFF"
         mapping:
-          - mask: "00000000FFFF"
-            scale: 0.1
+          - scale: 0.1
   - entity: sensor
     name: AC voltage
     class: voltage
@@ -95,9 +95,9 @@ secondary_entities:
         optional: true
         force: true
         class: measurement
+        mask: "FFFF0000000000000000"
         mapping:
-          - mask: "FFFF0000000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     name: AC current
     class: current
@@ -109,9 +109,9 @@ secondary_entities:
         unit: A
         optional: true
         class: measurement
+        mask: "0000FFFFFF0000000000"
         mapping:
-          - mask: "0000FFFFFF0000000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: AC power
     class: power
@@ -123,8 +123,7 @@ secondary_entities:
         unit: W
         optional: true
         class: measurement
-        mapping:
-          - mask: "0000000000FFFFFF0000"
+        mask: "0000000000FFFFFF0000"
   - entity: sensor
     name: AC frequency
     class: frequency
@@ -136,9 +135,9 @@ secondary_entities:
         unit: Hz
         optional: true
         class: measurement
+        mask: "0000000000000000FFFF"
         mapping:
-          - mask: "0000000000000000FFFF"
-            scale: 10
+          - scale: 10
   - entity: switch
     category: config
     dps:

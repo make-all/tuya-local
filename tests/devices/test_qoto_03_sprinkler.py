@@ -1,6 +1,7 @@
 """Tests for the Quto 03 Sprinkler."""
 
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
+from homeassistant.components.number import NumberDeviceClass
 from homeassistant.components.valve import ValveDeviceClass, ValveEntityFeature
 from homeassistant.const import PERCENTAGE, UnitOfTime
 
@@ -48,6 +49,7 @@ class TestQotoSprinkler(
                     "name": "number_timer",
                     "dps": TIMER_DPS,
                     "max": 86399,
+                    "device_class": NumberDeviceClass.DURATION,
                     "unit": UnitOfTime.SECONDS,
                 },
             ]

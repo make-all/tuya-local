@@ -42,7 +42,7 @@
                     "local_key": "Local key",
                     "protocol_version": "Versione protocollo (prova 'auto' in caso di dubbi)",
                     "poll_only": "Poll only (prova questa opzione se il dispositivo non funziona correttamente)",
-                    "device_cid": "Sub device UUID (per dispositivi connessi tramite gateway)"
+                    "device_cid": "Sub device node_id o uuid (per dispositivi connessi tramite gateway)"
                 }
             },
             "select_type": {
@@ -379,6 +379,9 @@
         "number": {
             "timer": {
                 "name": "Timer"
+            },
+            "timer_x": {
+                "name": "Timer {x}"
             }
         },
         "select": {
@@ -590,7 +593,7 @@
                     "low": "Basso",
                     "high": "Alto",
                     "unwashed": "Non lavato",
-                    "pre_rinsing": "Pre-risciacquo",
+                    "pre_washing": "Pre-lavaggio",
                     "washing": "Lavaggio",
                     "rinsing": "Risciacquo",
                     "drying": "Asciugatura",
@@ -615,6 +618,27 @@
                     "done": "Cottura completata",
                     "pause": "Cottura in pausa"
                 }
+            },
+            "energy_produced": {
+                "name": "Energia prodotta"
+            },
+            "energy_consumed": {
+                "name": "Energia consumata"
+            },
+            "energy_produced_x": {
+                "name": "Energia prodotta {x}"
+            },
+            "energy_consumed_x": {
+                "name": "Energia consumata {x}"
+            },
+            "current_x": {
+                "name": "Corrente {x}"
+            },
+            "voltage_x": {
+                "name": "Tensione {x}"
+            },
+            "power_x": {
+                "name": "Potenza {x}"
             }
         },
         "switch": {
@@ -630,8 +654,14 @@
             "keytone": {
                 "name": "tono dei tasti"
             },
+            "outlet_x": {
+                "name": "Uscita {x}"
+            },
             "sleep": {
                 "name": "Sonno"
+            },
+            "switch_x": {
+                "name": "Interruttore {x}"
             },
             "uv_sterilization": {
                 "name": "Sterilizzazione UV"

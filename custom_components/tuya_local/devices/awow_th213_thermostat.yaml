@@ -61,12 +61,7 @@ primary_entity:
         - dps_val: true
           value: heating
         - dps_val: false
-          constraint: hvac_mode
-          conditions:
-            - dps_val: true
-              value: idle
-            - dps_val: false
-              value: "off"
+          value: idle
     - id: 107
       type: boolean
       name: unknown_107

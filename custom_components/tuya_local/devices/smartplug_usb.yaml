@@ -72,7 +72,8 @@ secondary_entities:
         optional: true
   - entity: number
     category: config
-    name: Outlet Timer
+    name: Outlet timer
+    class: duration
     translation_key: timer
     dps:
       - id: 9
@@ -86,8 +87,9 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    name: USB Timer
+    name: USB timer
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 15

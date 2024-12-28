@@ -50,26 +50,30 @@ secondary_entities:
         name: current_position
         type: integer
   - entity: number
-    name: Timer 1
     category: config
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     dps:
       - id: 10
         name: value
         type: integer
-        unit: sec
+        unit: s
         range:
           max: 120
           min: 2
   - entity: number
-    name: Timer 2
     category: config
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 11
         name: value
         type: integer
-        unit: sec
+        unit: s
         range:
           max: 120
           min: 2

@@ -41,7 +41,7 @@
                     "local_key": "Local key",
                     "protocol_version": "Version du Protocole (Auto si inconnu)",
                     "poll_only": "Poll only (Essayez ceci si votre appareil ne fonctionne pas complètement)",
-                    "device_cid": "UUID de sous-appareil (Pour les appareils connectés via une passerelle)"
+                    "device_cid": "node_id ou uuid de sous-appareil (Pour les appareils connectés via une passerelle)"
                 }
             },
             "select_type": {
@@ -378,6 +378,9 @@
         "number": {
             "timer": {
                 "name": "Minuteur"
+            },
+            "timer_x": {
+                "name": "Minuteur {x}"
             }
         },
         "select": {
@@ -589,7 +592,7 @@
                     "low": "Faible",
                     "high": "Haut",
                     "unwashed": "Non lavé",
-                    "pre_rinsing": "Pré-rinçage",
+                    "pre_washing": "Pré-lavage",
                     "washing": "Lavage",
                     "rinsing": "Rinçage",
                     "drying": "Séchage",
@@ -614,6 +617,27 @@
                     "done": "Cuisson terminée",
                     "pause": "Cuisson en pause"
                 }
+            },
+            "energy_produced": {
+                "name": "Énergie produite"
+            },
+            "energy_consumed": {
+                "name": "Énergie consommée"
+            },
+            "energy_produced_x": {
+                "name": "Énergie produite {x}"
+            },
+            "energy_consumed_x": {
+                "name": "Énergie consommée {x}"
+            },
+            "current_x": {
+                "name": "Courant {x}"
+            },
+            "voltage_x": {
+                "name": "Tension {x}"
+            },
+            "power_x": {
+                "name": "Puissance {x}"
             }
         },
         "switch": {
@@ -629,8 +653,14 @@
             "keytone": {
                 "name": "Tonalité des touches"
             },
+            "outlet_x": {
+                "name": "Prise {x}"
+            },
             "sleep": {
                 "name": "Veille"
+            },
+            "switch_x": {
+                "name": "Interrupteur {x}"
             },
             "uv_sterilization": {
                 "name": "Stérilisation UV"

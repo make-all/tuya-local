@@ -21,14 +21,18 @@ secondary_entities:
         type: boolean
   - entity: switch
     class: outlet
-    name: Outlet 1
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "1"
     dps:
       - id: 1
         name: switch
         type: boolean
   - entity: switch
     class: outlet
-    name: Outlet 2
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 2
         name: switch
@@ -102,8 +106,10 @@ secondary_entities:
           - dps_val: memory
             value: memory
   - entity: number
-    name: Timer 1
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     category: config
     dps:
       - id: 9
@@ -114,8 +120,10 @@ secondary_entities:
           min: 0
           max: 86400
   - entity: number
-    name: Timer 2
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     category: config
     dps:
       - id: 10

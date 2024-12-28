@@ -23,6 +23,7 @@ primary_entity:
 secondary_entities:
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 9
@@ -46,12 +47,6 @@ secondary_entities:
             value: "on"
           - dps_val: 2
             value: memory
-      - id: 42
-        type: string
-        name: cycle_time
-      - id: 43
-        type: string
-        name: random_time
   - entity: select
     name: Light Mode
     category: config

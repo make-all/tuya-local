@@ -1,5 +1,6 @@
 """Tests for the switch entity."""
 
+from homeassistant.components.number import NumberDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import (
@@ -121,12 +122,14 @@ class TestGridConnectDoubleSwitch(
                     "name": "number_timer_1",
                     "dps": COUNTDOWN1_DPS,
                     "max": 86400,
+                    "device_class": NumberDeviceClass.DURATION,
                     "unit": UnitOfTime.SECONDS,
                 },
                 {
                     "name": "number_timer_2",
                     "dps": COUNTDOWN2_DPS,
                     "max": 86400,
+                    "device_class": NumberDeviceClass.DURATION,
                     "unit": UnitOfTime.SECONDS,
                 },
             ]

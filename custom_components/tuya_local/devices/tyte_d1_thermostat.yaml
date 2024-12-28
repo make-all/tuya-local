@@ -79,9 +79,12 @@ primary_entity:
       type: integer
       name: current_temp_f
       hidden: true
+      mapping:
+        - scale: 10
 secondary_entities:
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 4
@@ -221,6 +224,7 @@ secondary_entities:
   - entity: number
     name: Cold delay
     category: config
+    class: duration
     icon: "mdi:camera-timer"
     dps:
       - id: 55

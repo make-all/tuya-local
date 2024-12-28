@@ -41,7 +41,7 @@
                     "local_key": "Local key",
                     "protocol_version": "協議版本（如果不清楚，請選擇自動）",
                     "poll_only": "僅輪詢（如果設備無法正常運作，請選擇此項）",
-                    "device_cid": "子設備UUID（對於透過網關連接的設備）"
+                    "device_cid": "子設備node_id或uuid（對於透過網關連接的設備）"
                 }
             },
             "select_type": {
@@ -379,6 +379,9 @@
         "number": {
             "timer": {
                 "name": "計時器"
+            },
+            "timer_x": {
+                "name": "計時器{x}"
             }
         },
         "select": {
@@ -590,7 +593,7 @@
                     "low": "低",
                     "high": "高",
                     "unwashed": "未清洗",
-                    "pre_rinsing": "預漂洗",
+                    "pre_washing": "預洗中",
                     "washing": "洗滌中",
                     "rinsing": "漂洗中",
                     "drying": "烘乾中",
@@ -615,6 +618,27 @@
                     "done": "烹飪完成",
                     "pause": "烹飪暫停"
                 }
+            },
+            "energy_produced": {
+                "name": "能量產生"
+            },
+            "energy_consumed": {
+                "name": "能量消耗"
+            },
+            "energy_produced_x": {
+                "name": "能量產生{x}"
+            },
+            "energy_consumed_x": {
+                "name": "能量消耗{x}"
+            },
+            "current_x": {
+                "name": "電流{x}"
+            },
+            "voltage_x": {
+                "name": "電壓{x}"
+            },
+            "power_x": {
+                "name": "功率{x}"
             }
         },
         "switch": {
@@ -630,8 +654,14 @@
             "keytone": {
                 "name": "按鍵音"
             },
+            "outlet_x": {
+                "name": "插座{x}"
+            },
             "sleep": {
                 "name": "睡眠模式"
+            },
+            "switch_x": {
+                "name": "開關{x}"
             },
             "uv_sterilization": {
                 "name": "紫外線消毒"

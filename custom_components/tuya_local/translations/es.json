@@ -41,7 +41,7 @@
                     "local_key": "Clave local (Local key)",
                     "protocol_version": "Versión del protocolo (pruebe automático si no lo sabe)",
                     "poll_only": "Solo encuesta (pruebe esto si su dispositivo no funciona completamente)",
-                    "device_cid": "Sub device UUID (para dispositivos conectados a través de una puerta de enlace)"
+                    "device_cid": "Sub device node_id o uuid (para dispositivos conectados a través de una puerta de enlace)"
                 }
             },
             "select_type": {
@@ -378,6 +378,9 @@
         "number": {
             "timer": {
                 "name": "Temporizador"
+            },
+            "timer_x": {
+                "name": "Temporizador {x}"
             }
         },
         "select": {
@@ -589,7 +592,7 @@
                     "low": "Bajo",
                     "high": "Alto",
                     "unwashed": "Sin lavar",
-                    "pre_rinsing": "Pre-lavado",
+                    "pre_washing": "Pre-lavado",
                     "washing": "Lavando",
                     "rinsing": "Enjuagando",
                     "drying": "Secando",
@@ -614,6 +617,27 @@
                     "done": "Cocción completada",
                     "pause": "Pausa en la cocción"
                 }
+            },
+            "energy_produced": {
+                "name": "Energía producida"
+            },
+            "energy_consumed": {
+                "name": "Energía consumida"
+            },
+            "energy_produced_x": {
+                "name": "Energía producida {x}"
+            },
+            "energy_consumed_x": {
+                "name": "Energía consumida {x}"
+            },
+            "current_x": {
+                "name": "Corriente {x}"
+            },
+            "voltage_x": {
+                "name": "Voltaje {x}"
+            },
+            "power_x": {
+                "name": "Potencia {x}"
             }
         },
         "switch": {
@@ -629,8 +653,14 @@
             "keytone": {
                 "name": "Tono del teclado"
             },
+            "outlet_x": {
+                "name": "Salida {x}"
+            },
             "sleep": {
                 "name": "Modo de suspensión"
+            },
+            "switch_x": {
+                "name": "Interruptor {x}"
             },
             "uv_sterilization": {
                 "name": "Esterilización UV"

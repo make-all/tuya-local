@@ -10,29 +10,10 @@ primary_entity:
       type: string
       name: sensor
       mapping:
-        - dps_val: presence
-          value: false
         - dps_val: move
           value: true
-        - dps_val: none
-          value: false
+        - value: false
 secondary_entities:
-  - entity: sensor
-    class: enum
-    deprecated: binary_sensors (motion and occupancy)
-    category: diagnostic
-    translation_key: status
-    dps:
-      - id: 1
-        type: string
-        name: sensor
-        mapping:
-          - dps_val: presence
-            value: Still
-          - dps_val: move
-            value: Moving
-          - dps_val: none
-            value: Empty
   - entity: number
     name: Sensitivity
     category: config
@@ -103,22 +84,27 @@ secondary_entities:
       - id: 103
         type: integer
         name: sensor
-        unit: lux
+        unit: lx
         class: measurement
   - entity: binary_sensor
     class: occupancy
     dps:
-      - id: 104
+      - id: 1
         type: string
         name: sensor
         mapping:
-          - dps_val: nobody
-            value: false
-          - dps_val: exist
+          - dps_val: presence
             value: true
+          - dps_val: move
+            value: true
+          - value: false
+      - id: 104
+        type: string
+        name: manned
   - entity: number
     name: Delay
     category: config
+    class: duration
     icon: "mdi:camera-timer"
     dps:
       - id: 105

@@ -36,28 +36,6 @@ primary_entity:
     - id: 3
       name: hvac_action
       type: string
-      mapping:
-        - dps_val: cooling
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: cooling
-        - dps_val: heating
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: heating
-        - dps_val: idle
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: idle
     - id: 16
       name: thermostat_set_temp
       type: integer
@@ -189,6 +167,7 @@ secondary_entities:
   - entity: number
     name: Temporary hold time
     icon: "mdi:timer"
+    class: duration
     category: config
     dps:
       - id: 103

@@ -5,7 +5,9 @@ products:
 primary_entity:
   entity: switch
   class: outlet
-  name: Outlet 1
+  translation_key: outlet_x
+  translation_placeholders:
+    x: "1"
   dps:
     - id: 1
       type: boolean
@@ -21,22 +23,28 @@ primary_entity:
 secondary_entities:
   - entity: switch
     class: outlet
-    name: Outlet 2
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 2
         type: boolean
         name: switch
   - entity: switch
     class: outlet
-    name: Outlet 3
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "3"
     dps:
       - id: 3
         type: boolean
         name: switch
   - entity: number
     category: config
-    name: Timer 1
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     dps:
       - id: 9
         type: integer
@@ -50,8 +58,10 @@ secondary_entities:
             step: 60
   - entity: number
     category: config
-    name: Timer 2
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 10
         type: integer
@@ -65,8 +75,10 @@ secondary_entities:
             step: 60
   - entity: number
     category: config
-    name: Timer 3
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
     dps:
       - id: 11
         type: integer

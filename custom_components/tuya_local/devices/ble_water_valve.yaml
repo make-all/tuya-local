@@ -61,6 +61,7 @@ secondary_entities:
           - value: true
       - id: 4
         type: bitfield
+        optional: true
         name: fault_code
   - entity: sensor
     name: Operation
@@ -109,6 +110,7 @@ secondary_entities:
   - entity: number
     name: Irrigation time
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 11

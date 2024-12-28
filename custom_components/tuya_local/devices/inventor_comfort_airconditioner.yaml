@@ -98,23 +98,21 @@ primary_entity:
       name: swing_mode
       mapping:
         - dps_val: ud_0c
-          constraint: horizontal_swing
-          conditions:
-            - dps_val: lr_07
-              value: both
-            - dps_val: lr_00
-              value: vertical
+          value: "on"
         - dps_val: ud_00
-          constraint: horizontal_swing
-          conditions:
-            - dps_val: lr_07
-              value: horizontal
-            - dps_val: lr_00
-              value: "off"
+          value: "off"
+        - value: "off"
+          hidden: true
     - id: 118
       type: string
-      name: horizontal_swing
-      hidden: true
+      name: swing_horizontal_mode
+      mapping:
+        - dps_val: lr_00
+          value: "off"
+        - dps_val: lr_07
+          value: "on"
+        - value: "off"
+          hidden: true
     - id: 101
       type: boolean
       name: mood_lighting

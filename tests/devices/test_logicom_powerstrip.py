@@ -1,5 +1,6 @@
 """Tests for the Logicom Strippy 4-way+USB powerstrip."""
 
+from homeassistant.components.number import NumberDeviceClass
 from homeassistant.components.switch import SwitchDeviceClass
 from homeassistant.const import UnitOfTime
 
@@ -65,6 +66,7 @@ class TestLogicomPowerstrip(
                     "name": "number_timer_1",
                     "max": 1440,
                     "scale": 60,
+                    "device_class": NumberDeviceClass.DURATION,
                     "unit": UnitOfTime.MINUTES,
                 },
                 {
@@ -72,6 +74,7 @@ class TestLogicomPowerstrip(
                     "name": "number_timer_2",
                     "max": 1440,
                     "scale": 60,
+                    "device_class": NumberDeviceClass.DURATION,
                     "unit": UnitOfTime.MINUTES,
                 },
                 {
@@ -79,6 +82,7 @@ class TestLogicomPowerstrip(
                     "name": "number_timer_3",
                     "max": 1440,
                     "scale": 60,
+                    "device_class": NumberDeviceClass.DURATION,
                     "unit": UnitOfTime.MINUTES,
                 },
                 {
@@ -86,6 +90,7 @@ class TestLogicomPowerstrip(
                     "name": "number_timer_4",
                     "max": 1440,
                     "scale": 60,
+                    "device_class": NumberDeviceClass.DURATION,
                     "unit": UnitOfTime.MINUTES,
                 },
                 {
@@ -93,6 +98,7 @@ class TestLogicomPowerstrip(
                     "name": "number_usb_timer",
                     "max": 1440,
                     "scale": 60,
+                    "device_class": NumberDeviceClass.DURATION,
                     "unit": UnitOfTime.MINUTES,
                 },
             ]

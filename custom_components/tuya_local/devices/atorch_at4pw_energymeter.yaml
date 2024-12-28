@@ -13,6 +13,7 @@ secondary_entities:
   - entity: number
     category: config
     translation_key: timer
+    class: duration
     dps:
       - id: 9
         type: integer
@@ -229,7 +230,6 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: sensor
-    name: Energy
     class: energy
     dps:
       - id: 123
@@ -306,6 +306,7 @@ secondary_entities:
   - entity: number
     category: config
     name: Overvoltage recovery delay
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 137

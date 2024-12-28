@@ -41,7 +41,7 @@
                     "local_key": "lokální klíč (local_key)",
                     "protocol_version": "Verze protokolu (zkuste auto pokud ji neznáte)",
                     "poll_only": "Poll only (vyzkoušejte pokud zařízení úplně nefunguje)",
-                    "device_cid": "Sub device UUID (pro zařízení připojená pomocí brány)"
+                     "device_cid": "Sub device node_id nebo uuid (pro zařízení připojená pomocí brány)"
                 }
             },
             "select_type": {
@@ -378,6 +378,9 @@
         "number": {
             "timer": {
                 "name": "Časovač"
+            },
+            "timer_x": {
+                "name": "Časovač {x}"
             }
         },
         "select": {
@@ -589,7 +592,7 @@
                     "low": "Nízký",
                     "high": "Vysoký",
                     "unwashed": "Nemytý",
-                    "pre_rinsing": "Předplachování",
+                    "pre_washing": "Předmytí",
                     "washing": "Praní",
                     "rinsing": "Oplachování",
                     "drying": "Sušení",
@@ -614,6 +617,27 @@
                     "done": "Vaření dokončeno",
                     "pause": "Vaření pozastaveno"
                 }
+            },
+            "energy_produced": {
+                "name": "Vyprodukována energie"
+            },
+            "energy_consumed": {
+                "name": "Spotřebována energie"
+            },
+            "energy_produced_x": {
+                "name": "Vyprodukována energie {x}"
+            },
+            "energy_consumed_x": {
+                "name": "Spotřebována energie {x}"
+            },
+            "current_x": {
+                "name": "Proud {x}"
+            },
+            "voltage_x": {
+                "name": "Napětí {x}"
+            },
+            "power_x": {
+                "name": "Výkon {x}"
             }
         },
         "switch": {
@@ -629,8 +653,14 @@
             "keytone": {
                 "name": "Tón kláves"
             },
+            "outlet_x": {
+                "name": "Zásuvka {x}"
+            },
             "sleep": {
                 "name": "Spát"
+            },
+            "switch_x": {
+                "name": "Přepínač {x}"
             },
             "uv_sterilization": {
                 "name": "UV sterilizace"

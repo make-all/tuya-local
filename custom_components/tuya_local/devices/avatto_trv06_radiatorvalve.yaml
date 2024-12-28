@@ -23,6 +23,7 @@ primary_entity:
     - id: 3
       type: string
       name: hvac_action
+      optional: true
       mapping:
         - dps_val: opened
           value: heating
@@ -52,3 +53,53 @@ secondary_entities:
         type: boolean
         optional: true
         name: lock
+  - entity: binary_sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 35
+        type: bitfield
+        name: sensor
+        class: measurement
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+  - entity: switch
+    translation_key: anti_frost
+    category: config
+    dps:
+      - id: 36
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: switch
+    name: Antiscale
+    category: config
+    icon: "mdi:shimmer"
+    dps:
+      - id: 39
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: number
+    name: Temperature calibration
+    category: config
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 47
+        type: integer
+        optional: true
+        name: value
+        unit: °
+        range:
+          min: -9
+          max: 9

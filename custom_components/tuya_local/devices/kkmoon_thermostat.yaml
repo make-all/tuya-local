@@ -26,16 +26,10 @@ primary_entity:
       type: string
       name: hvac_action
       mapping:
-        - constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              mapping:
-                - dps_val: open
-                  value: heating
-                - dps_val: close
-                  value: idle
+        - dps_val: open
+          value: heating
+        - dps_val: close
+          value: idle
     - id: 16
       type: integer
       name: temperature

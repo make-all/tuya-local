@@ -5,6 +5,7 @@ from homeassistant.components.climate.const import (
     ClimateEntityFeature,
     HVACMode,
 )
+from homeassistant.components.number import NumberDeviceClass
 from homeassistant.const import UnitOfTemperature, UnitOfTime
 
 from ..const import NEDIS_HTPL20F_PAYLOAD
@@ -46,6 +47,7 @@ class TestNedisHtpl20fHeater(
             TIMER_DPS,
             self.entities.get("number_timer"),
             max=1440,
+            device_class=NumberDeviceClass.DURATION,
             unit=UnitOfTime.MINUTES,
         )
         self.mark_secondary(["lock_child_lock", "number_timer"])

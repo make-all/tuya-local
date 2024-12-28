@@ -6,7 +6,9 @@ products:
     name: Smatrul dual wall plug
 primary_entity:
   entity: switch
-  name: Outlet 1
+  translation_key: outlet_x
+  translation_placeholders:
+    x: "1"
   class: outlet
   dps:
     - id: 1
@@ -30,16 +32,20 @@ primary_entity:
       optional: true
 secondary_entities:
   - entity: switch
-    name: Outlet 2
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "2"
     class: outlet
     dps:
       - id: 2
         type: boolean
         name: switch
   - entity: number
-    name: Timer 1
     category: config
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    class: duration
     dps:
       - id: 9
         type: integer
@@ -52,9 +58,11 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    name: Timer 2
     category: config
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    class: duration
     dps:
       - id: 10
         type: integer

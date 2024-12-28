@@ -63,12 +63,7 @@ primary_entity:
       name: hvac_action
       mapping:
         - dps_val: close
-          constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: idle
+          value: idle
         - dps_val: open
           constraint: mode
           conditions:

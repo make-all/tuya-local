@@ -43,7 +43,7 @@
                     "local_key": "مقامی کلید",
                     "protocol_version": "پروٹوکول ورژن (اگر معلوم نہ ہو تو خود کار طریقے سے آزمائیں)",
                     "poll_only": "صرف پول کریں (اگر آپ کا آلہ مکمل طور پر کام نہیں کرتا ہے تو اسے آزمائیں)",
-                    "device_cid": "سب ڈیوائس آئی ڈی (گیٹ وے کے ذریعے منسلک آلات کے لیے) (UUID)"
+                    "device_cid": "ذیلی آلہ کا node_id یا uuid (گیٹ وے کے ذریعے منسلک آلات کے لیے)"
                 }
             },
             "select_type": {
@@ -381,6 +381,9 @@
         "number": {
             "timer": {
                 "name": "ٹائمر"
+            },
+            "timer_x": {
+                "name": "ٹائمر {x}"
             }
         },
         "select": {
@@ -592,7 +595,7 @@
                     "low": "کم",
                     "high": "زیادہ",
                     "unwashed": "نہ دھویا",
-                    "pre_rinsing": "پری رنسنگ",
+                    "pre_washing": "پری واشنگ",
                     "washing": "دھونا",
                     "rinsing": "رنسنگ",
                     "drying": "خشک کرنا",
@@ -617,6 +620,27 @@
                     "done": "پکانا مکمل ہوگیا",
                     "pause": "پکانا معطل ہوگیا"
                 }
+            },
+            "energy_produced": {
+                "name": "پیدا کردہ بجلی"
+            },
+            "energy_consumed": {
+                "name": "استعمال کردہ بجلی"
+            },
+            "energy_produced_x": {
+                "name": "پیدا کردہ بجلی {x}"
+            },
+            "energy_consumed_x": {
+                "name": "استعمال کردہ بجلی {x}"
+            },
+            "current_x": {
+                "name": "موجودہ {x}"
+            },
+            "voltage_x": {
+                "name": "وولٹیج {x}"
+            },
+            "power_x": {
+                "name": "پاور {x}"
             }
         },
         "switch": {
@@ -632,8 +656,14 @@
             "keytone": {
                 "name": "کی پیڈ ٹون"
             },
+            "outlet_x": {
+                "name": "آؤٹ لیٹ {x}"
+            },
             "sleep": {
                 "name": "سونا"
+            },
+            "switch_x": {
+                "name": "سوئچ {x}"
             },
             "uv_sterilization": {
                 "name": "UV نس بندی"

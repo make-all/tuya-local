@@ -98,10 +98,10 @@ secondary_entities:
         type: base64
         name: sensor
         unit: V
+        mask: "FFFF00000000"
         optional: true
         mapping:
-          - mask: "FFFF00000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     name: PV DC Current
     class: current
@@ -112,9 +112,9 @@ secondary_entities:
         name: sensor
         unit: A
         optional: true
+        mask: "0000FFFF0000"
         mapping:
-          - mask: "0000FFFF0000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     name: PV DC Power
     class: power
@@ -125,9 +125,9 @@ secondary_entities:
         name: sensor
         unit: W
         optional: true
+        mask: "00000000FFFF"
         mapping:
-          - mask: "00000000FFFF"
-            scale: 10
+          - scale: 10
   - entity: sensor
     name: AC Voltage
     class: voltage
@@ -138,9 +138,9 @@ secondary_entities:
         name: sensor
         unit: V
         optional: true
+        mask: "FFFF0000000000000000"
         mapping:
-          - mask: "FFFF0000000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     name: AC Current
     class: current
@@ -151,9 +151,9 @@ secondary_entities:
         name: sensor
         unit: A
         optional: true
+        mask: "0000FFFFFF0000000000"
         mapping:
-          - mask: "0000FFFFFF0000000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: AC active power
     class: power
@@ -164,9 +164,9 @@ secondary_entities:
         name: sensor
         unit: W
         optional: true
+        mask: "0000000000FFFFFF0000"
         mapping:
-          - mask: "0000000000FFFFFF0000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     class: temperature
     category: diagnostic

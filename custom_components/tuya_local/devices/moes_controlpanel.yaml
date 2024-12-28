@@ -4,7 +4,9 @@ products:
     name: Moes CCP-S01-EU-WH-EN touchscreen control panel IR and Bluetooth hub
 primary_entity:
   entity: switch
-  name: Switch 1
+  translation_key: switch_x
+  translation_placeholders:
+    x: "1"
   dps:
     - id: 16
       type: boolean
@@ -22,13 +24,17 @@ primary_entity:
       name: down_channel
 secondary_entities:
   - entity: switch
-    name: Switch 2
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 17
         type: boolean
         name: switch
   - entity: switch
-    name: Switch 3
+    translation_key: switch_x
+    translation_placeholders:
+      x: "3"
     dps:
       - id: 3
         type: boolean

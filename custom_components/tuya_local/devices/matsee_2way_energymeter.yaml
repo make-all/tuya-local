@@ -1,4 +1,5 @@
 name: Bidirectional energy meter
+legacy_type: dcenta_dual_meter
 products:
   - id: z95s7p3z54xbsjnl
     name: MatSee Plus bidirectional 2 channel clamp meter
@@ -6,7 +7,7 @@ products:
     name: MatSee Plus bidirectional 2 channel clamp meter
 primary_entity:
   entity: sensor
-  name: Energy consumed
+  translation_key: energy_consumed
   class: energy
   dps:
     - id: 1
@@ -28,7 +29,7 @@ primary_entity:
         - scale: 100
 secondary_entities:
   - entity: sensor
-    name: Energy produced
+    translation_key: energy_produced
     class: energy
     dps:
       - id: 2
@@ -49,7 +50,9 @@ secondary_entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Power A
+    translation_key: power_x
+    translation_placeholders:
+      x: A
     class: power
     category: diagnostic
     dps:
@@ -70,7 +73,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Power B
+    translation_key: power_x
+    translation_placeholders:
+      x: B
     class: power
     category: diagnostic
     dps:
@@ -91,7 +96,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Energy consumed A
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: A
     class: energy
     category: diagnostic
     dps:
@@ -108,7 +115,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Energy produced A
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: A
     class: energy
     category: diagnostic
     dps:
@@ -125,7 +134,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Energy consumed B
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: B
     class: energy
     category: diagnostic
     dps:
@@ -142,7 +153,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Energy produced B
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: B
     class: energy
     category: diagnostic
     dps:
@@ -185,7 +198,6 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    class: voltage
     category: diagnostic
     dps:
       - id: 112
@@ -201,7 +213,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Current A
+    translation_key: current_x
+    translation_placeholders:
+      x: A
     class: current
     category: diagnostic
     dps:
@@ -218,7 +232,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Current B
+    translation_key: current_x
+    translation_placeholders:
+      x: B
     class: current
     category: diagnostic
     dps:
@@ -261,6 +277,7 @@ secondary_entities:
   - entity: number
     name: Reporting rate
     category: config
+    class: duration
     icon: "mdi:timer-refresh"
     dps:
       - id: 129

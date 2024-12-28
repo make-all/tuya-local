@@ -42,7 +42,7 @@
                     "local_key": "Lokal nøkkel",
                     "protocol_version": "Protocol versjon (prøv auto hvis du der usikker)",
                     "poll_only": "Kun poll (prøv dette hvis enhenten ikke virker ordentlig)",
-                    "device_cid": "Underenhets-UUID (for enheter tilkoblet via gateway)"
+                    "device_cid": "Underenhets node_id eller uuid (for enheter tilkoblet via gateway)"
                 }
             },
             "select_type": {
@@ -379,6 +379,9 @@
         "number": {
             "timer": {
                 "name": "Timer"
+            },
+            "timer_x": {
+                "name": "Timer {x}"
             }
         },
         "select": {
@@ -590,7 +593,7 @@
                     "low": "Lav",
                     "high": "Høy",
                     "unwashed": "Uvasket",
-                    "pre_rinsing": "Forvasking",
+                    "pre_washing": "Forvasking",
                     "washing": "Vasking",
                     "rinsing": "Skylling",
                     "drying": "Tørking",
@@ -615,6 +618,27 @@
                     "done": "Ferdig",
                     "pause": "Matlaging pause"
                 }
+            },
+            "energy_produced": {
+                "name": "Energi produsert"
+            },
+            "energy_consumed": {
+                "name": "Energi forbrukt"
+            },
+            "energy_produced_x": {
+                "name": "Energi produsert {x}"
+            },
+            "energy_consumed_x": {
+                "name": "Energi forbrukt {x}"
+            },
+            "current_x": {
+                "name": "Strøm {x}"
+            },
+            "voltage_x": {
+                "name": "Spenning {x}"
+            },
+            "power_x": {
+                "name": "Effekt {x}"
             }
         },
         "switch": {
@@ -630,8 +654,14 @@
             "keytone" : {
                 "name": "Tastaturtone"
             },
+            "outlet_x": {
+                "name": "Uttak {x}"
+            },
             "sleep": {
                 "name": "Søvnmodus"
+            },
+            "switch_x": {
+                "name": "Bryter {x}"
             },
             "uv_sterilization": {
                 "name": "UV-sterilisering"

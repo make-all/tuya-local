@@ -41,6 +41,7 @@ secondary_entities:
           max: 255
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 6
@@ -65,8 +66,10 @@ secondary_entities:
           min: 25
           max: 255
   - entity: number
-    translation_key: timer
-    name: Timer 2
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     category: config
     dps:
       - id: 12

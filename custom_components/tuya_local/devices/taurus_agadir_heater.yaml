@@ -33,16 +33,10 @@ primary_entity:
       type: string
       name: hvac_action
       mapping:
-        - constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              mapping:
-                - dps_val: working
-                  value: heating
-                - dps_val: standby
-                  value: idle
+        - dps_val: working
+          value: heating
+        - dps_val: standby
+          value: idle
     - id: 101
       type: string
       name: fan_mode

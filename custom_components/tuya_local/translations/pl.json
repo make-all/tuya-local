@@ -41,7 +41,7 @@
                     "local_key": "Local key",
                     "protocol_version": "Wersja protokołu (spróbuj auto jeśli nieznana)",
                     "poll_only": "Poll only (spróbuj jeśli Twoje urządzenie nie działa w pełni)",
-                    "device_cid": "Sub device UUID (dla urządzeń podłączonych poprzez bramkę)"
+                    "device_cid": "Sub device node_id lub uuid (dla urządzeń podłączonych poprzez bramkę)"
                 }
             },
             "select_type": {
@@ -378,6 +378,9 @@
         "number": {
             "timer": {
                 "name": "Regulator czasowy"
+            },
+            "timer_x": {
+                "name": "Regulator czasowy {x}"
             }
         },
         "select": {
@@ -590,7 +593,7 @@
                     "low": "Niski",
                     "high": "Wysoki",
                     "unwashed": "Niewyprane",
-                    "pre_rinsing": "Przed płukaniem",
+                    "pre_washing": "Przed myciem",
                     "washing": "Mycie",
                     "rinsing": "Płukanie",
                     "drying": "Suszenie",
@@ -615,6 +618,27 @@
                     "done": "Gotowanie zakończone",
                     "pause": "Gotowanie wstrzymane"
                 }
+            },
+            "energy_produced": {
+                "name": "Energia wyprodukowana"
+            },
+            "energy_consumed": {
+                "name": "Energia zużyta"
+            },
+            "energy_produced_x": {
+                "name": "Energia wyprodukowana {x}"
+            },
+            "energy_consumed_x": {
+                "name": "Energia zużyta {x}"
+            },
+            "current_x": {
+                "name": "Prąd {x}"
+            },
+            "voltage_x": {
+                "name": "Napięcie {x}"
+            },
+            "power_x": {
+                "name": "Moc {x}"
             }
         },
         "switch": {
@@ -630,8 +654,14 @@
             "keytone": {
                 "name": "Dzwięk klawiszy"
             },
+            "outlet_x": {
+                "name": "Gniazdko {x}"
+            },
             "sleep": {
                 "name": "Tryb uśpienia"
+            },
+            "switch_x": {
+                "name": "Przełącznik {x}"
             },
             "uv_sterilization": {
                 "name": "Sterylizacja UV"

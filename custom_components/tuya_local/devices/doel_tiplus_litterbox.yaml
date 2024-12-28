@@ -43,7 +43,7 @@ secondary_entities:
       - id: 8
         type: integer
         name: sensor
-        unit: seconds
+        unit: s
         class: measurement
   - entity: binary_sensor
     class: problem
@@ -113,6 +113,7 @@ secondary_entities:
   - entity: number
     name: Clean wait time
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 117

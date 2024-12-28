@@ -71,16 +71,10 @@ primary_entity:
       type: boolean
       name: hvac_action
       mapping:
-        - constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              mapping:
-                - dps_val: true
-                  value: heating
-                - dps_val: false
-                  value: idle
+        - dps_val: true
+          value: heating
+        - dps_val: false
+          value: idle
     - id: 104
       type: integer
       name: unknown_104
@@ -145,14 +139,12 @@ secondary_entities:
           - dps_val: true
             value: F
   - entity: sensor
-    name: Energy
+    name: Runtime
     dps:
       - id: 117
         type: integer
         name: sensor
-        unit: kWh
-        mapping:
-          - scale: 10
+        unit: min
       - id: 116
         type: integer
         name: calibration

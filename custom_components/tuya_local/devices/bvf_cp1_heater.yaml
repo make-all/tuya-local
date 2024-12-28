@@ -31,16 +31,10 @@ primary_entity:
       optional: true
       name: hvac_action
       mapping:
-        - constraint: hvac_mode
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              mapping:
-                - dps_val: heating
-                  value: heating
-                - dps_val: standby
-                  value: idle
+        - dps_val: heating
+          value: heating
+        - dps_val: standby
+          value: idle
     - id: 16
       type: integer
       name: temperature

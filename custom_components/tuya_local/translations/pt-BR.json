@@ -41,7 +41,7 @@
                     "local_key": "Chave Local",
                     "protocol_version": "Versão do protocolo (tente auto se não souber)",
                     "poll_only": "Pesquisar (tente isto se o seu dispositivo não funcionar totalmente)",
-                    "device_cid": "Sub device UUID (para dispositivos conectados via gateway)"
+                    "device_cid": "node_id ou uuid do sub-dispoitivo (para dispositivos conectados via gateway)"
                 }
             },
             "select_type": {
@@ -378,6 +378,9 @@
         "number": {
             "timer": {
                 "name": "Cronômetro"
+            },
+            "timer_x": {
+                "name": "Cronômetro {x}"
             }
         },
         "select": {
@@ -589,7 +592,7 @@
                     "low": "Baixo",
                     "high": "Alto",
                     "unwashed": "Não lavado",
-                    "pre_rinsing": "Pré-lavagem",
+                    "pre_washing": "Pré-lavagem",
                     "washing": "Lavagem",
                     "rinsing": "Enxágue",
                     "drying": "Secagem",
@@ -614,6 +617,27 @@
                     "done": "Concluído",
                     "pause": "Pausa no cozimento"
                 }
+            },
+            "energy_produced": {
+                "name": "Energia produzida"
+            },
+            "energy_consumed": {
+                "name": "Energia consumida"
+            },
+            "energy_produced_x": {
+                "name": "Energia produzida {x}"
+            },
+            "energy_consumed_x": {
+                "name": "Energia consumida {x}"
+            },
+            "current_x": {
+                "name": "Corrente {x}"
+            },
+            "voltage_x": {
+                "name": "Tensão {x}"
+            },
+            "power_x": {
+                "name": "Potência {x}"
             }
         },
         "switch": {
@@ -629,8 +653,14 @@
             "keytone": {
                 "name": "Tom do teclado"
             },
+            "outlet_x": {
+                "name": "Tomada {x}"
+            },
             "sleep": {
                 "name": "Dormir"
+            },
+            "switch_x": {
+                "name": "Interruptor {x}"
             },
             "uv_sterilization": {
                 "name": "Esterilização UV"

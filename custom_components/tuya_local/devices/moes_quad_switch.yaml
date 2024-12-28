@@ -4,7 +4,9 @@ products:
     name: Moes MS-104D
 primary_entity:
   entity: switch
-  name: Switch 1
+  translation_key: switch_x
+  translation_placeholders:
+    x: "1"
   dps:
     - id: 1
       type: boolean
@@ -18,27 +20,35 @@ primary_entity:
       optional: true
 secondary_entities:
   - entity: switch
-    name: Switch 2
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 2
         type: boolean
         name: switch
   - entity: switch
-    name: Switch 3
+    translation_key: switch_x
+    translation_placeholders:
+      x: "3"
     dps:
       - id: 3
         type: boolean
         name: switch
   - entity: switch
-    name: Switch 4
+    translation_key: switch_x
+    translation_placeholders:
+      x: "4"
     dps:
       - id: 4
         type: boolean
         name: switch
   - entity: number
-    name: Timer 1
     category: config
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     dps:
       - id: 9
         type: integer
@@ -57,9 +67,11 @@ secondary_entities:
         type: string
         name: cycle_timer
   - entity: number
-    name: Timer 2
     category: config
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 10
         type: integer
@@ -72,9 +84,11 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    name: Timer 3
     category: config
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "3"
     dps:
       - id: 11
         type: integer
@@ -87,9 +101,11 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    name: Timer 4
     category: config
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "4"
     dps:
       - id: 12
         type: integer

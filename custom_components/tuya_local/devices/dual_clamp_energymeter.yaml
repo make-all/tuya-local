@@ -95,7 +95,7 @@ secondary_entities:
         name: calibration
   - entity: sensor
     class: energy
-    name: Total forward energy
+    translation_key: energy_consumed
     category: diagnostic
     dps:
       - id: 110
@@ -116,7 +116,9 @@ secondary_entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Forward energy A
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: A
     class: energy
     category: diagnostic
     dps:
@@ -131,7 +133,9 @@ secondary_entities:
         type: integer
         name: calibration
   - entity: sensor
-    name: Reverse energy A
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: A
     class: energy
     category: diagnostic
     dps:
@@ -146,7 +150,9 @@ secondary_entities:
         type: integer
         name: calibration
   - entity: sensor
-    name: Forward energy B
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: B
     class: energy
     category: diagnostic
     dps:
@@ -161,7 +167,9 @@ secondary_entities:
         type: integer
         name: calibration
   - entity: sensor
-    name: Reverse energy B
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: B
     class: energy
     category: diagnostic
     dps:
@@ -202,6 +210,7 @@ secondary_entities:
   - entity: number
     name: Reporting frequency
     category: config
+    class: duration
     icon: "mdi:timer-cog"
     dps:
       - id: 122

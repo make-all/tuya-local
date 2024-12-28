@@ -91,9 +91,9 @@ secondary_entities:
         name: sensor
         unit: V
         class: measurement
+        mask: "FFFF000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
     name: Phase A current
     class: current
@@ -105,9 +105,9 @@ secondary_entities:
         name: sensor
         unit: A
         class: measurement
+        mask: "0000FFFFFF000000"
         mapping:
-          - mask: "0000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: Phase A power
     class: power
@@ -119,9 +119,9 @@ secondary_entities:
         name: sensor
         unit: kW
         class: measurement
+        mask: "0000000000FFFFFF"
         mapping:
-          - mask: "0000000000FFFFFF"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     name: Total power
     class: power
@@ -266,6 +266,7 @@ secondary_entities:
   - entity: number
     name: Delayed charge timer
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 28

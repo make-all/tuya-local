@@ -113,8 +113,10 @@ secondary_entities:
             value: Halogen
             icon: "mdi:lightbulb-spot"
   - entity: number
-    translation_key: timer
-    name: Timer 1
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     category: config
     dps:
       - id: 6
@@ -128,8 +130,10 @@ secondary_entities:
           - scale: 60
             step: 60
   - entity: number
-    translation_key: timer
-    name: Timer 2
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     category: config
     dps:
       - id: 12

@@ -1,7 +1,10 @@
 name: Robot vacuum
+legacy_type: zedar_r600_vacuum
 products:
   - id: kljjvealoaepeysi
     name: Kabum Smart 700 Rev 2023
+  - id: yiarxtixzkmnegxk
+    name: Zedar R600
 primary_entity:
   entity: vacuum
   dps:
@@ -204,8 +207,8 @@ secondary_entities:
         class: measurement
   - entity: sensor
     name: Cleaned area
+    class: area
     category: diagnostic
-    icon: "mdi:floor-plan"
     dps:
       - id: 7
         type: integer
@@ -344,6 +347,10 @@ secondary_entities:
         unit: "%"
         mapping:
           - scale: 0.1
+      - id: 36
+        name: language
+        type: string
+        optional: true
   - entity: binary_sensor
     class: problem
     category: diagnostic
@@ -363,7 +370,7 @@ secondary_entities:
         name: description
         mapping:
           - dps_val: 0
-            value: OK
+            value: ok
           - dps_val: 2
             value: left_wheel_hang
           - dps_val: 4

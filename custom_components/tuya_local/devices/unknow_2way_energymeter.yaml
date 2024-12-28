@@ -23,7 +23,7 @@ primary_entity:
         - scale: 100
 secondary_entities:
   - entity: sensor
-    name: Reverse energy
+    translation_key: energy_produced
     class: energy
     dps:
       - id: 2
@@ -102,7 +102,9 @@ secondary_entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Current A
+    translation_key: current_x
+    translation_placeholders:
+      x: A
     class: current
     category: diagnostic
     dps:
@@ -123,7 +125,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Power A
+    translation_key: power_x
+    translation_placeholders:
+      x: A
     class: power
     category: diagnostic
     dps:
@@ -147,20 +151,22 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Forward energy A
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: A
     class: energy
     category: diagnostic
     dps:
-      - id: 107
+      - id: 115
         type: integer
         name: sensor
         unit: kWh
         class: total_increasing
         mapping:
           - scale: 100
-      - id: 114
+      - id: 107
         type: integer
-        name: total
+        name: daily
         mapping:
           - scale: 100
       - id: 118
@@ -178,11 +184,13 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Reverse energy A
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: A
     class: energy
     category: diagnostic
     dps:
-      - id: 108
+      - id: 115
         type: integer
         name: sensor
         unit: kWh
@@ -198,9 +206,9 @@ secondary_entities:
           max: 1200
         mapping:
           - scale: 1000
-      - id: 115
+      - id: 108
         type: integer
-        name: total
+        name: daily
         mapping:
           - scale: 100
       - id: 119
@@ -221,7 +229,9 @@ secondary_entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Current B
+    translation_key: current_x
+    translation_placeholders:
+      x: B
     class: current
     category: diagnostic
     dps:
@@ -242,7 +252,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Power B
+    translation_key: power_x
+    translation_placeholders:
+      x: B
     class: power
     category: diagnostic
     dps:
@@ -266,20 +278,22 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Forward energy B
+    translation_key: energy_consumed_x
+    translation_placeholders:
+      x: B
     class: energy
     category: diagnostic
     dps:
-      - id: 112
+      - id: 116
         type: integer
         name: sensor
         unit: kWh
         class: total_increasing
         mapping:
           - scale: 100
-      - id: 116
+      - id: 112
         type: integer
-        name: total
+        name: daily
         mapping:
           - scale: 100
       - id: 120
@@ -297,11 +311,13 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Reverse energy B
+    translation_key: energy_produced_x
+    translation_placeholders:
+      x: B
     class: energy
     category: diagnostic
     dps:
-      - id: 113
+      - id: 117
         type: integer
         name: sensor
         unit: kWh
@@ -317,9 +333,9 @@ secondary_entities:
           max: 1200
         mapping:
           - scale: 1000
-      - id: 117
+      - id: 113
         type: integer
-        name: total
+        name: daily
         mapping:
           - scale: 100
       - id: 121
@@ -330,6 +346,7 @@ secondary_entities:
   - entity: number
     name: Reporting rate
     category: config
+    class: duration
     icon: "mdi:timer-refresh"
     dps:
       - id: 126

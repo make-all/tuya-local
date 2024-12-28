@@ -151,8 +151,33 @@ secondary_entities:
       - id: 104
         type: boolean
         name: switch
+  - entity: light
+    dps:
+      - id: 105
+        type: string
+        name: switch
+        mapping:
+          - dps_val: "off"
+            value: false
+          - dps_val: yellow
+            value: true
+      - id: 105
+        type: string
+        name: named_color
+        mapping:
+          - dps_val: "off"
+            value: black
+          - dps_val: orange
+            value: orange
+          - dps_val: green
+            value: green
+          - dps_val: blue
+            value: blue
+          - dps_val: yellow
+            value: yellow
   - entity: select
     name: Light
+    deprecated: light
     icon: "mdi:lightbulb"
     dps:
       - id: 105

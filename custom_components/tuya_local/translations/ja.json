@@ -41,7 +41,7 @@
                     "local_key": "ローカルキー",
                     "protocol_version": "プロトコルのバージョン (不明な場合はAutoを試してください)",
                     "poll_only": "投票のみ (デバイスが動作しない場合)",
-                    "device_cid": "サブデバイスUUID (デバイスがハブ経由で接続されている場合)"
+                    "device_cid": "サブデバイスのnode_id又はuuid(デバイスがハブ経由で接続されている場合)"
                 }
             },
             "select_type": {
@@ -378,6 +378,9 @@
         "number": {
             "timer": {
                 "name": "タイマー"
+            },
+            "timer_x": {
+                "name": "タイマー{x}"
             }
         },
         "select": {
@@ -589,7 +592,7 @@
                     "low": "低い",
                     "high": "高い",
                     "unwashed": "未洗浄",
-                    "pre_rinsing": "予洗い",
+                    "pre_washing": "予洗い",
                     "washing": "洗濯",
                     "rinsing": "すすぎ",
                     "drying": "乾燥",
@@ -614,6 +617,27 @@
                     "done": "調理完了",
                     "pause": "調理一時停止"
                 }
+            },
+            "energy_produced": {
+                "name": "発電量"
+            },
+            "energy_consumed": {
+                "name": "消費電力"
+            },
+            "energy_produced_x": {
+                "name": "発電量{x}"
+            },
+            "energy_consumed_x": {
+                "name": "消費電力{x}"
+            },
+            "current_x": {
+                "name": "電流{x}"
+            },
+            "voltage_x": {
+                "name": "電圧{x}"
+            },
+            "power_x": {
+                "name": "電力{x}"
             }
         },
         "switch": {
@@ -629,8 +653,14 @@
             "keytone": {
                 "name": "キートーン"
             },
+            "outlet_x": {
+                "name": "コンセント{x}"
+            },
             "sleep": {
                 "name": "睡眠"
+            },
+            "switch_x": {
+                "name": "スイッチ{x}"
             },
             "uv_sterilization": {
                 "name": "紫外線殺菌"

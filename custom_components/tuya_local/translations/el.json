@@ -41,7 +41,7 @@
                     "local_key": "Local key",
                     "protocol_version": "Έκδοση Πρωτοκόλλου (δοκιμάστε αυτόματο (auto) αν δεν το γνωρίζετε)",
                     "poll_only": "Ανίχνευση μόνο (δοκιμάστε αυτό αν η συσκευή δε λειτουργεί πλήρως)",
-                    "device_cid": "Sub device UUID (για συσκευές συνδεμένες μέσω gateway)"
+                    "device_cid": "Sub device node_id ή uuid (για συσκευές συνδεμένες μέσω gateway)"
                 }
             },
             "select_type": {
@@ -378,6 +378,9 @@
         "number": {
             "timer": {
                 "name": "Χρονοδιακόπτης"
+            },
+            "timer_x": {
+                "name": "Χρονοδιακόπτης {x}"
             }
         },
         "select": {
@@ -589,7 +592,7 @@
                     "low": "Χαμηλό",
                     "high": "Υψηλό",
                     "unwashed": "Ανεπεξέργαστο",
-                    "pre_rinsing": "Προπλύση",
+                    "pre_washing": "Προπλύση",
                     "washing": "Πλύση",
                     "rinsing": "Ξέβγαλμα",
                     "drying": "Στέγνωμα",
@@ -614,6 +617,27 @@
                     "done": "Ολοκληρώθηκε",
                     "pause": "Παύση μαγειρέματος"
                 }
+            },
+            "energy_produced": {
+                "name": "Ενέργεια που παράχθηκε"
+            },
+            "energy_consumed": {
+                "name": "Ενέργεια που καταναλώθηκε"
+            },
+            "energy_produced_x": {
+                "name": "Ενέργεια που παράχθηκε {x}"
+            },
+            "energy_consumed_x": {
+                "name": "Ενέργεια που καταναλώθηκε {x}"
+            },
+            "current_x": {
+                "name": "Ρεύμα {x}"
+            },
+            "voltage_x": {
+                "name": "Τάση {x}"
+            },
+            "power_x": {
+                "name": "Ισχύς {x}"
             }
         },
         "switch": {
@@ -629,8 +653,14 @@
             "keytone": {
                 "name": "Ήχος κουμπιών"
             },
+            "outlet_x": {
+                "name": "Πρίζα {x}"
+            },
             "sleep": {
                 "name": "Αναμονή"
+            },
+            "switch_x": {
+                "name": "Διακόπτης {x}"
             },
             "uv_sterilization": {
                 "name": "Αποστείρωση UV"

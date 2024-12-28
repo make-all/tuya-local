@@ -1,7 +1,9 @@
-name: SmartMCB SMT006-8 energy meter
+name: Energy meter
 products:
   - id: 3xhdofmeo6lgpvd5
+    name: SmartMCB SMT006-8
   - id: i5mqmxkho1vahdt2
+    name: SmartMCB SMT006-8
 primary_entity:
   entity: switch
   icon: "mdi:fuse"
@@ -108,7 +110,6 @@ secondary_entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Voltage A
     class: voltage
     category: diagnostic
     dps:
@@ -117,11 +118,10 @@ secondary_entities:
         name: sensor
         optional: true
         unit: V
+        mask: "FFFF000000000000"
         mapping:
-          - mask: "FFFF000000000000"
-            scale: 10
+          - scale: 10
   - entity: sensor
-    name: Current A
     class: current
     category: diagnostic
     dps:
@@ -130,11 +130,10 @@ secondary_entities:
         name: sensor
         optional: true
         unit: A
+        mask: "0000FFFFFF000000"
         mapping:
-          - mask: "0000FFFFFF000000"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
-    name: Power A
     class: power
     category: diagnostic
     dps:
@@ -143,9 +142,9 @@ secondary_entities:
         name: sensor
         optional: true
         unit: kW
+        mask: "0000000000FFFFFF"
         mapping:
-          - mask: "0000000000FFFFFF"
-            scale: 1000
+          - scale: 1000
   - entity: sensor
     class: temperature
     category: diagnostic
@@ -166,3 +165,19 @@ secondary_entities:
         unit: mA
         class: measurement
         optional: true
+  - entity: number
+    name: Charge energy
+    category: config
+    class: energy_storage
+    icon: "mdi:cash"
+    dps:
+      - id: 14
+        type: integer
+        name: value
+        unit: kWh
+        optional: true
+        range:
+          min: 0
+          max: 999999
+        mapping:
+          - scale: 100

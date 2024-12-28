@@ -2,6 +2,8 @@ name: Power clamp meter
 products:
   - id: nslr42tt
     name: PC321-Z-TY
+  - id: gqmmtjclqb7reg5p
+    name: Owon PCT321-W-TY 80A
 primary_entity:
   entity: sensor
   class: energy
@@ -24,7 +26,9 @@ primary_entity:
 secondary_entities:
   - entity: sensor
     category: diagnostic
-    name: Voltage A
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
     class: voltage
     dps:
       - id: 6
@@ -32,12 +36,14 @@ secondary_entities:
         type: base64
         unit: V
         optional: true
+        mask: "FFFF000000000000"
         mapping:
           - scale: 10
-            mask: "FFFF000000000000"
   - entity: sensor
     category: diagnostic
-    name: Current A
+    translation_key: current_x
+    translation_placeholders:
+      x: A
     class: current
     dps:
       - id: 6
@@ -45,12 +51,14 @@ secondary_entities:
         type: base64
         unit: A
         optional: true
+        mask: "0000FFFFFF000000"
         mapping:
           - scale: 1000
-            mask: "0000FFFFFF000000"
   - entity: sensor
     category: diagnostic
-    name: Power A
+    translation_key: power_x
+    translation_placeholders:
+      x: A
     class: power
     dps:
       - id: 6
@@ -58,12 +66,14 @@ secondary_entities:
         type: base64
         unit: kW
         optional: true
+        mask: "0000000000FFFFFF"
         mapping:
           - scale: 1000
-            mask: "0000000000FFFFFF"
   - entity: sensor
     category: diagnostic
-    name: Voltage B
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
     class: voltage
     dps:
       - id: 7
@@ -71,12 +81,14 @@ secondary_entities:
         type: base64
         unit: V
         optional: true
+        mask: "FFFF000000000000"
         mapping:
           - scale: 10
-            mask: "FFFF000000000000"
   - entity: sensor
     category: diagnostic
-    name: Current B
+    translation_key: current_x
+    translation_placeholders:
+      x: B
     class: current
     dps:
       - id: 7
@@ -84,12 +96,14 @@ secondary_entities:
         type: base64
         unit: A
         optional: true
+        mask: "0000FFFFFF000000"
         mapping:
           - scale: 1000
-            mask: "0000FFFFFF000000"
   - entity: sensor
     category: diagnostic
-    name: Power B
+    translation_key: power_x
+    translation_placeholders:
+      x: B
     class: power
     dps:
       - id: 7
@@ -97,12 +111,14 @@ secondary_entities:
         type: base64
         unit: kW
         optional: true
+        mask: "0000000000FFFFFF"
         mapping:
           - scale: 1000
-            mask: "0000000000FFFFFF"
   - entity: sensor
     category: diagnostic
-    name: Voltage C
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
     class: voltage
     dps:
       - id: 8
@@ -110,12 +126,14 @@ secondary_entities:
         type: base64
         unit: V
         optional: true
+        mask: "FFFF000000000000"
         mapping:
           - scale: 10
-            mask: "FFFF000000000000"
   - entity: sensor
     category: diagnostic
-    name: Current C
+    translation_key: current_x
+    translation_placeholders:
+      x: C
     class: current
     dps:
       - id: 8
@@ -123,12 +141,14 @@ secondary_entities:
         type: base64
         unit: A
         optional: true
+        mask: "0000FFFFFF000000"
         mapping:
           - scale: 1000
-            mask: "0000FFFFFF000000"
   - entity: sensor
     category: diagnostic
-    name: Power C
+    translation_key: power_x
+    translation_placeholders:
+      x: C
     class: power
     dps:
       - id: 8
@@ -136,9 +156,9 @@ secondary_entities:
         type: base64
         unit: kW
         optional: true
+        mask: "0000000000FFFFFF"
         mapping:
           - scale: 1000
-            mask: "0000000000FFFFFF"
   - entity: sensor
     class: power
     category: diagnostic

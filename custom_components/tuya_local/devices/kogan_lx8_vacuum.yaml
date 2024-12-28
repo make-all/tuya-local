@@ -149,13 +149,13 @@ secondary_entities:
         unit: s
   - entity: sensor
     name: Current clean area
+    class: area
     category: diagnostic
-    icon: "mdi:map-marker-distance"
     dps:
       - id: 108
         name: sensor
         type: integer
-        unit: m²
+        unit: m2
         optional: true
   - entity: select
     translation_key: mopping
@@ -255,13 +255,13 @@ secondary_entities:
         optional: true
   - entity: sensor
     name: Total clean area
+    class: area
     category: diagnostic
-    icon: "mdi:map-marker-distance"
     dps:
       - id: 117
         name: sensor
         type: integer
-        unit: m²
+        unit: m2
         optional: true
   - entity: sensor
     name: Total clean count

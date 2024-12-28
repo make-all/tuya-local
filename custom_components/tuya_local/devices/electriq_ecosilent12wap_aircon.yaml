@@ -115,7 +115,6 @@ primary_entity:
       type: boolean
       mapping:
         - dps_val: false
-          constraint: hvac_mode
           value: "off"
         - dps_val: true
           value: vertical
@@ -144,6 +143,7 @@ secondary_entities:
         name: switch
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 22

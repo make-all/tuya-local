@@ -65,32 +65,22 @@ primary_entity:
           value: sleep
     - id: 31
       type: string
-      name: vertical
-      hidden: true
-    - id: 33
-      type: boolean
       name: swing_mode
       mapping:
+        - dps_val: "off"
+          value: "off"
+        - dps_val: same
+          value: "on"
+        - value: "off"
+          hidden: true
+    - id: 33
+      type: boolean
+      name: swing_horizontal_mode
+      mapping:
         - dps_val: false
-          constraint: vertical
-          conditions:
-            - dps_val: "off"
-              value: "off"
-            - dps_val: same
-              value: vertical
-            - dps_val: [vane_1, vane_2, vane_3, vane_4, vane_5]
-              value: "off"
-              hidden: true
+          value: "off"
         - dps_val: true
-          constraint: vertical
-          conditions:
-            - dps_val: "off"
-              value: horizontal
-            - dps_val: same
-              value: both
-            - dps_val: [vane_1, vane_2, vane_3, vane_4, vane_5]
-              value: horizontal
-              hidden: true
+          value: "on"
     - id: 103
       type: string
       name: unknown_103

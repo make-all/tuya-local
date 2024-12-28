@@ -1,4 +1,5 @@
 name: Sound machine nightlight
+legacy_type: momcozy_white_noise_machine
 products:
   - id: woqiobw0jfafgmar
     name: Momland nightlight with white noise
@@ -9,22 +10,18 @@ primary_entity:
     - id: 3
       type: boolean
       name: switch
-    - id: 2
-      name: color_mode
+    - id: 4
       type: string
+      name: color_mode
       mapping:
-        - dps_val: white
-          value: white
-        - dps_val: colour
+        - dps_val: change
+          value: Rainbow
+        - dps_val: breath
+          value: Breath
+        - dps_val: light_off
           value: hs
-        - dps_val: scene
-          value: Scene
-        - dps_val: customize_scene
-          value: Custom Scene
-        - dps_val: null
+        - dps_val: light_on
           value: white
-          hidden: true
-      optional: true
     - id: 6
       name: brightness
       type: integer
@@ -35,6 +32,7 @@ primary_entity:
     - id: 5
       name: rgbhsv
       type: hex
+      optional: true
       format:
         - name: h
           bytes: 2

@@ -4,21 +4,27 @@ products:
     name: LoraTap RR620W-JL
 primary_entity:
   entity: switch
-  name: Switch 1
+  translation_key: switch_x
+  translation_placeholders:
+    x: "1"
   dps:
     - id: 1
       name: switch
       type: boolean
 secondary_entities:
   - entity: switch
-    name: Switch 2
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 2
         name: switch
         type: boolean
   - entity: number
-    name: Timer 1
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
     category: config
     dps:
       - id: 9
@@ -38,8 +44,10 @@ secondary_entities:
         name: cycle_time
         type: string
   - entity: number
-    name: Timer 2
-    translation_key: timer
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
     category: config
     dps:
       - id: 10
