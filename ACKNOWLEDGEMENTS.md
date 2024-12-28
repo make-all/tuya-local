@@ -787,3 +787,4 @@ Further device support has been made with the assistance of users. Please consid
 - [tompapajr](https://github.com/tompapajr) for contributing support for Edge Theory Labs cold plunge heat pump.
 - [ThinkDualBrain](https://github.com/ThinkDualBrain) for contributing support for Dr Heater DR008 thermostat.
 - [keskival](https://github.com/keskival) for contributing support for ZPMeter ultrasonic water meter (without valve control).
+- [djvalex](https://github.com/djvalex) for assisting with support for Axen/Arielli KS-100W/EN8BP combo heat pump.

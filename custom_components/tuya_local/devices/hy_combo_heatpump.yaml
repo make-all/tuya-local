@@ -11,25 +11,48 @@ primary_entity:
       mapping:
         - dps_val: false
           value: "off"
-          hidden: true
+          available: water_off
         - dps_val: true
           constraint: mode
           conditions:
             - dps_val: Hot
               value: "off"
+              available: water_on
             - dps_val: Heating
               value: heat
-              hidden: true
+              available: water_off
             - dps_val: Hot_Heating
               value: heat
+              available: water_on
             - dps_val: Cooling
               value: cool
-              hidden: true
+              available: water_off
             - dps_val: Hot_Cooling
               value: cool
+              available: water_on
     - id: 2
       type: string
       name: mode
+    - id: 2
+      type: string
+      name: water_on
+      hidden: true
+      mapping:
+        - dps_val: Cooling
+          value: false
+        - dps_val: Heating
+          value: false
+        - value: true
+    - id: 2
+      type: string
+      name: water_off
+      hidden: true
+      mapping:
+        - dps_val: Cooling
+          value: true
+        - dps_val: Heating
+          value: true
+        - value: false
     - id: 21
       type: integer
       name: current_temperature
