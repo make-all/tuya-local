@@ -896,6 +896,7 @@ port and password.
 - SD123 HPR01 human presence radar
 - SNT957W-TDE temperature sensor
 - SNT957W-DE CBU temperature and humidity sensor
+- Speaka SP-TVCM-510 TV mount
 - Sunbeam dual heated mattress pad
 - SWS-001 smart weather station
 - TH08 temperature and humidity sensor
