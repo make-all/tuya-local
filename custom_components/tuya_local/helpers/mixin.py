@@ -60,10 +60,7 @@ class TuyaLocalEntity:
         own_name = (
             self._config.name
             or self._config.translation_key
-            or (
-                self._default_to_device_class_name
-                and not self._config.translation_only_key
-            )
+            or (self._default_to_device_class_name and self._config.device_class)
         )
         return not own_name
 
