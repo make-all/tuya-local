@@ -165,11 +165,9 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
         @callback
         def update_unique_id(entity_entry):
             """Update the unique id of an entity entry."""
-            e = conf_file.primary_entity
-            if e.entity != entity_entry.platform:
-                for e in conf_file.secondary_entities():
-                    if e.entity == entity_entry.platform:
-                        break
+            for e in conf_file.all_entities():
+                if e.entity == entity_entry.platform:
+                    break
             if e.entity == entity_entry.platform:
                 new_id = e.unique_id(old_id)
                 if new_id != old_id:
@@ -256,19 +254,13 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
             """Update the unique id of an entity entry."""
             old_id = entity_entry.unique_id
             platform = entity_entry.entity_id.split(".", 1)[0]
-            e = conf_file.primary_entity
-            if e.name:
-                expect_id = f"{device_id}-{slugify(e.name)}"
-            else:
-                expect_id = device_id
-            if e.entity != platform or expect_id != old_id:
-                for e in conf_file.secondary_entities():
-                    if e.name:
-                        expect_id = f"{device_id}-{slugify(e.name)}"
-                    else:
-                        expect_id = device_id
-                    if e.entity == platform and expect_id == old_id:
-                        break
+            for e in conf_file.all_entities():
+                if e.name:
+                    expect_id = f"{device_id}-{slugify(e.name)}"
+                else:
+                    expect_id = device_id
+                if e.entity == platform and expect_id == old_id:
+                    break
 
             if e.entity == platform and expect_id == old_id:
                 new_id = e.unique_id(device_id)
@@ -312,11 +304,9 @@ async def async_migrate_entry(hass, entry: ConfigEntry):
             # if unique_id ends with platform name, then this may have
             # changed with the addition of device_class.
             if old_id.endswith(platform):
-                e = conf_file.primary_entity
-                if e.entity != platform or e.name:
-                    for e in conf_file.secondary_entities():
-                        if e.entity == platform and not e.name:
-                            break
+                for e in conf_file.all_entities():
+                    if e.entity == platform and not e.name:
+                        break
                 if e.entity == platform and not e.name:
                     new_id = e.unique_id(device_id)
                     if new_id != old_id:

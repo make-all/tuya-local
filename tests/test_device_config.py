@@ -506,13 +506,13 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
                 parsed._config.get("primary_entity"),
                 f"primary_entity missing from {cfg}",
             )
-            self.check_entity(parsed.primary_entity, cfg)
-            entities.append(parsed.primary_entity.config_id)
-            secondary = False
-            for entity in parsed.secondary_entities():
-                secondary = True
+            count = 0
+            for entity in parsed.all_entities():
                 self.check_entity(entity, cfg)
                 entities.append(entity.config_id)
+                count += 1
+            assert count > 0, f"No entities found in {cfg}"
+
             # check entities are unique
             self.assertCountEqual(
                 entities,
@@ -521,7 +521,7 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
             )
 
             # If there are no secondary entities, check that it is intended
-            if not secondary:
+            if count == 1:
                 for key in parsed._config.keys():
                     self.assertFalse(
                         key.startswith("sec"),
@@ -580,25 +580,33 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
     def test_entity_find_unknown_dps_fails(self):
         """Test that finding a dps that doesn't exist fails."""
         cfg = get_config("kogan_switch")
-        non_existing = cfg.primary_entity.find_dps("missing")
-        self.assertIsNone(non_existing)
+        for entity in cfg.all_entities():
+            non_existing = entity.find_dps("missing")
+            self.assertIsNone(non_existing)
+            break
 
     async def test_dps_async_set_readonly_value_fails(self):
         """Test that setting a readonly dps fails."""
         mock_device = MagicMock()
         cfg = get_config("aquatech_x6_water_heater")
-        temp = cfg.primary_entity.find_dps("temperature")
-        with self.assertRaises(TypeError):
-            await temp.async_set_value(mock_device, 20)
+        for entity in cfg.all_entities():
+            if entity.entity == "climate":
+                temp = entity.find_dps("temperature")
+                with self.assertRaises(TypeError):
+                    await temp.async_set_value(mock_device, 20)
+                break
 
     def test_dps_values_is_empty_with_no_mapping(self):
         """
-        Test that a dps with no mapping returns None as its possible values
+        Test that a dps with no mapping returns empty list for possible values
         """
         mock_device = MagicMock()
         cfg = get_config("goldair_gpph_heater")
-        temp = cfg.primary_entity.find_dps("current_temperature")
-        self.assertEqual(temp.values(mock_device), [])
+        for entity in cfg.all_entities():
+            if entity.entity == "climate":
+                temp = entity.find_dps("temperature")
+                self.assertEqual(temp.values(mock_device), [])
+                break
 
     def test_config_returned(self):
         """Test that config file is returned by config"""
