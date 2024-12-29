@@ -81,10 +81,11 @@ secondary_entities:
       - id: 101
         type: integer
         name: sensor
-        invert: true
         range:
           min: 0
           max: 7200
+        mapping:
+          - invert: true
         unit: min
 
   - entity: button
@@ -108,10 +109,11 @@ secondary_entities:
       - id: 102
         type: integer
         name: sensor
-        invert: true
         range:
           min: 0
           max: 43200
+        mapping:
+          - invert: true
         unit: "min"
 
   - entity: button
@@ -135,10 +137,11 @@ secondary_entities:
       - id: 103
         type: integer
         name: sensor
-        invert: true
         range:
           min: 0
           max: 86400
+        mapping:
+          - invert: true
         unit: min
 
   - entity: button
