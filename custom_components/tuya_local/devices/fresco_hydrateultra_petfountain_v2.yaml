@@ -1,15 +1,16 @@
 name: Pet fountain
 products:
   - id: avhcsv4u4nj05otr
-    name: Petoneer Fresco Hydrate Ultra alternative
+    name: Petoneer Fresco Hydrate Ultra v2
 
 primary_entity:
-  entity: switch
+  entity: valve
   icon: "mdi:water-pump"
+  class: water
   dps:
     - id: 1
       type: boolean
-      name: switch
+      name: valve
 
 secondary_entities:
   - entity: sensor
@@ -50,11 +51,10 @@ secondary_entities:
       - id: 13
         type: integer
         name: sensor
-        unit: TDS
+        unit: ppm
 
   - entity: button
-    name: UV sterilization
-    icon: "mdi:lightbulb-fluorescent-tube"
+    translation_key: uv_sterilization
     category: config
     dps:
       - id: 14
@@ -73,7 +73,7 @@ secondary_entities:
         unit: s
 
   - entity: sensor
-    name: Last Water change
+    name: Water change due
     icon: "mdi:water-circle"
     category: diagnostic
     class: duration
@@ -81,32 +81,14 @@ secondary_entities:
       - id: 101
         type: integer
         name: sensor
+        invert: true
         range:
           min: 0
           max: 7200
         unit: min
 
-  - entity: sensor
-    name: Water health
-    icon: "mdi:water-circle"
-    category: diagnostic
-    class: duration
-    dps:
-      - id: 101
-        type: integer
-        name: sensor
-        range:
-          min: 0
-          max: 7200
-        mapping:
-          - target_range:
-              min: 100
-              max: 0
-        precision: 1
-        unit: "%"
-
   - entity: button
-    name: Reset Water health
+    name: Water changed
     icon: "mdi:sync"
     category: config
     dps:
@@ -118,7 +100,7 @@ secondary_entities:
             value: true
 
   - entity: sensor
-    name: Last Filter change
+    name: Filter change due
     icon: "mdi:air-filter"
     category: diagnostic
     class: duration
@@ -126,33 +108,14 @@ secondary_entities:
       - id: 102
         type: integer
         name: sensor
+        invert true
         range:
           min: 0
           max: 43200
-        unit: "m"
-
-  - entity: sensor
-    name: Filter health
-    icon: "mdi:air-filter"
-    category: diagnostic
-    class: duration
-    dps:
-      - id: 102
-        type: integer
-        name: sensor
-        range:
-          min: 0
-          max: 43200
-        mapping:
-          - target_range:
-              min: 100
-              max: 0
-        precision: 1
-        unit: "%"
-
+        unit: "min"
 
   - entity: button
-    name: Reset Filter health
+    name: Filter changed
     icon: "mdi:sync"
     category: config
     dps:
@@ -164,7 +127,7 @@ secondary_entities:
             value: true
 
   - entity: sensor
-    name: Last pump maintenance
+    name: Pump maintenance due
     icon: "mdi:pump"
     class: duration
     category: diagnostic
@@ -172,32 +135,14 @@ secondary_entities:
       - id: 103
         type: integer
         name: sensor
+        invert: true
         range:
           min: 0
           max: 86400
         unit: min
 
-  - entity: sensor
-    name: Pump health
-    icon: "mdi:pump"
-    class: duration
-    category: diagnostic
-    dps:
-      - id: 103
-        type: integer
-        name: sensor
-        range:
-          min: 0
-          max: 86400
-        mapping:
-          - target_range:
-              min: 100
-              max: 0
-        precision: 1
-        unit: "%"
-
   - entity: button
-    name: Reset Pump health
+    name: Pump maintenance done
     icon: "mdi:sync"
     category: config
     dps:
@@ -209,7 +154,7 @@ secondary_entities:
             value: true
 
   - entity: sensor
-    name: Working Time
+    name: Runtime
     icon: mdi:briefcase-clock
     category: diagnostic
     dps:
@@ -221,7 +166,7 @@ secondary_entities:
           max: 124002400
 
   - entity: sensor
-    name: Bright Time
+    name: LED runtime
     icon: mdi:sun-clock
     category: diagnostic
     dps:
