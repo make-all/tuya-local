@@ -1,3 +1,5 @@
+---
+---
 name: PW040
 products:
   - id: 5oc9wmac3bbidekc
@@ -9,14 +11,14 @@ primary_entity:
   dps:
     - id: 123
       type: integer
-      name: temperature # e_WarmwasserSoll_T
+      name: temperature  # e_WarmwasserSoll_T
       unit: C
       range:
         min: 30
         max: 55
     - id: 108
       type: integer
-      name: current_temperature # Warmwasser_T (ist)
+      name: current_temperature  # Warmwasser_T (ist)
     - id: 4
       type: integer
       name: temp_set
@@ -46,16 +48,16 @@ secondary_entities:
         type: string
         name: option
         mapping:
-        - dps_val: smart
-          value: comfort
-        - dps_val: strong
-          value: boost
-        - dps_val: mute
-          value: eco
+          - dps_val: smart
+            value: comfort
+          - dps_val: strong
+            value: boost
+          - dps_val: mute
+            value: eco
   - entity: select
     name: Betriebsart
     category: config
-    dps:          
+    dps:
       - id: 5
         type: string
         name: option
@@ -69,19 +71,19 @@ secondary_entities:
           - dps_val: wth_heat
             value: WW und Heizen
           - dps_val: wth_cool
-            value: WW und Kühlen 
+            value: WW und Kühlen
   - entity: select
     name: Heiz-RL-Steuerung
     category: config
     dps:
-    - id: 132
-      type: string
-      name: option
-      mapping:
-      - dps_val: 0 # manuelle RLsoll_T
-        value: "manuell" # boost
-      - dps_val: 1 # HeizKennlinie aktiv
-        value: "Heizkennlinie" # eco
+      - id: 132
+        type: string
+        name: option
+        mapping:
+          - dps_val: 0  # manuelle RLsoll_T
+            value: "manuell"  # boost
+          - dps_val: 1  # HeizKennlinie aktiv
+            value: "Heizkennlinie"  # eco
   - entity: sensor
     name: WpRL_T
     class: temperature
@@ -95,17 +97,17 @@ secondary_entities:
           min: -30
           max: 99
   - entity: sensor
-    name: WpVL_T # (ist)
+    name: WpVL_T  # (ist)
     class: temperature
     category: diagnostic
     dps:
-    - id: 102
-      type: integer
-      unit: C
-      name: sensor
-      range:
-        min: -30
-        max: 99
+      - id: 102
+        type: integer
+        unit: C
+        name: sensor
+        range:
+          min: -30
+          max: 99
   - entity: sensor
     name: Umgebung_T
     class: temperature
@@ -115,7 +117,7 @@ secondary_entities:
         type: integer
         unit: C
         name: sensor
-        class: measurement  
+        class: measurement
         range:
           min: -30
           max: 99
@@ -128,7 +130,7 @@ secondary_entities:
         type: integer
         unit: C
         name: sensor
-        class: measurement  
+        class: measurement
         range:
           min: -30
           max: 99
@@ -141,7 +143,7 @@ secondary_entities:
         type: integer
         unit: C
         name: sensor
-        class: measurement  
+        class: measurement
         range:
           min: -30
           max: 99
@@ -154,7 +156,7 @@ secondary_entities:
         type: integer
         unit: C
         name: sensor
-        class: measurement  
+        class: measurement
         range:
           min: -30
           max: 99
@@ -167,7 +169,7 @@ secondary_entities:
         type: integer
         unit: C
         name: sensor
-        class: measurement  
+        class: measurement
         range:
           min: -30
           max: 99
@@ -274,7 +276,7 @@ secondary_entities:
           min: 0
           max: 1500
   - entity: number
-    name: Heizwasser_Tsoll manuell # e_HeizRLsoll_T_ohneKennlinie # (einstellbar)
+    name: Heizwasser_Tsoll manuell  # e_HeizRLsoll_T_ohneKennlinie (einstellbar)
     category: config
     dps:
       - id: 125
@@ -286,7 +288,7 @@ secondary_entities:
           max: 55
   - entity: number
     hidden: true
-    name: RLzuKuehlsoll_dT # e_RL_zu_KuehlSoll_dT
+    name: RLzuKuehlsoll_dT  # e_RL_zu_KuehlSoll_dT
     category: config
     dps:
       - id: 121
@@ -298,7 +300,7 @@ secondary_entities:
           min: 2
           max: 18
   - entity: number
-    name: RLzuRLsoll_dT # e_RL_zu_RLsoll_dT
+    name: RLzuRLsoll_dT  # e_RL_zu_RLsoll_dT
     category: config
     dps:
       - id: 122
@@ -310,10 +312,10 @@ secondary_entities:
           max: 18
   - entity: number
     hidden: true
-    name: Kuehlsoll_T # e_KuehlSoll_T
+    name: Kuehlsoll_T  # e_KuehlSoll_T
     class: temperature
     category: config
-    dps:      
+    dps:
       - id: 124
         type: integer
         hidden: true
@@ -323,10 +325,10 @@ secondary_entities:
           min: 7
           max: 30
   - entity: number
-    name: WasserAusgleich_T # e_WasserAusgleich_T
+    name: WasserAusgleich_T  # e_WasserAusgleich_T
     class: temperature
     category: config
-    dps:     
+    dps:
       - id: 126
         type: integer
         unit: C
@@ -335,7 +337,7 @@ secondary_entities:
           min: -5
           max: 15
   - entity: number
-    name: Kennlinie_Offset_T # ea_Offset_T
+    name: Kennlinie_Offset_T  # ea_Offset_T
     class: temperature
     category: config
     dps:
@@ -347,7 +349,7 @@ secondary_entities:
           min: 0
           max: 40
   - entity: number
-    name: Kennlinie_m_x10 # ea_Steigung_m_x10
+    name: Kennlinie_m_x10  # ea_Steigung_m_x10
     category: config
     dps:
       - id: 134
@@ -357,7 +359,7 @@ secondary_entities:
           min: 1
           max: 30
   - entity: select
-    name: Kompressor_f @Zieltemperatur # ea_f_at_ZielTemp_str
+    name: Kompressor_f @Zieltemperatur  # ea_f_at_ZielTemp_str
     category: config
     dps:
       - id: 135
@@ -370,7 +372,7 @@ secondary_entities:
           - dps_val: 1
             value: FreqReduktion
   - entity: number
-    name: RohrheizungStart_T # ea_RohrheizungStart_T
+    name: RohrheizungStart_T  # ea_RohrheizungStart_T
     class: temperature
     category: config
     dps:
@@ -382,7 +384,7 @@ secondary_entities:
           min: -20
           max: 20
   - entity: number
-    name: Warmwasser_t # ea_WarmwasserStart_t
+    name: Warmwasser_t  # ea_WarmwasserStart_t
     category: config
     dps:
       - id: 137
@@ -393,7 +395,7 @@ secondary_entities:
           min: 0
           max: 60
   - entity: select
-    name: Modus WP-Wasserpumpe # ea_WasserpumpenStopp_str
+    name: Modus WP-Wasserpumpe  # ea_WasserpumpenStopp_str
     category: config
     dps:
       - id: 138
@@ -405,7 +407,7 @@ secondary_entities:
           - dps_val: 1
             value: Nachlauf
   - entity: number
-    name: Abtau_Tstart # ew_AbtauenStart_T
+    name: Abtau_Tstart  # ew_AbtauenStart_T
     class: temperature
     category: config
     dps:
@@ -417,7 +419,7 @@ secondary_entities:
           min: -15
           max: -1
   - entity: number
-    name: Abtau_Tstopp # ew_AbtauenEnde_T
+    name: Abtau_Tstopp  # ew_AbtauenEnde_T
     class: temperature
     category: config
     dps:
@@ -429,7 +431,7 @@ secondary_entities:
           min: 1
           max: 40
   - entity: number
-    name: Abtau_dT # ew_Abtauen_dT (Hysterese)
+    name: Abtau_dT  # ew_Abtauen_dT (Hysterese)
     class: temperature
     category: config
     dps:
@@ -441,7 +443,7 @@ secondary_entities:
           min: 0
           max: 15
   - entity: number
-    name: Kompressor_fMin @Zieltemperatur # ew_fMin_at_ZielTemp
+    name: Kompressor_fMin @Zieltemperatur  # ew_fMin_at_ZielTemp
     class: frequency
     category: config
     dps:
@@ -453,7 +455,7 @@ secondary_entities:
           min: 30
           max: 120
   - entity: number
-    name: Kompressor_fMax @Zieltemperatur # ew_fMax_at_ZielTemp
+    name: Kompressor_fMax @Zieltemperatur  # ew_fMax_at_ZielTemp
     class: frequency
     category: config
     dps:
@@ -465,7 +467,7 @@ secondary_entities:
           min: 30
           max: 120
   - entity: number
-    name: Kompressor_fWW-Kompensation # ew_fWarmwasser_Kompensation
+    name: Kompressor_fWW-Kompensation  # ew_fWarmwasser_Kompensation
     class: frequency
     category: config
     dps:
