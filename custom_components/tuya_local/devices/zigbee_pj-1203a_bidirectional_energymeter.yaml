@@ -1,0 +1,438 @@
+name: Zigbee PJ-1203A bidirectional energy meter
+products:
+  - id: bf334d83f1258a715bgzyi
+    name: Zigbee PJ-1203A bidirectional 2 channel clamp meter
+primary_entity:
+  entity: sensor
+  name: forward_energy_total
+  class: energy
+  dps:
+    - id: 1
+      type: integer
+      name: sensor
+      unit: kWh
+      class: total_increasing
+      mapping:
+        - scale: 100
+secondary_entities:
+  - entity: sensor
+    name: reverse_energy_total
+    class: energy
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+  - entity: sensor
+    name: power_a
+    class: power
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 102
+        type: string
+        name: direction
+      - id: 118
+        type: integer
+        name: calibration
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: direction_a
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 102
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: FORWARD
+            value: FORWARD
+          - dps_val: REVERSE
+            value: REVERSE
+  - entity: sensor
+    name: direction_b
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 104
+        optional: true
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: FORWARD
+            value: FORWARD
+          - dps_val: REVERSE
+            value: REVERSE
+  - entity: sensor
+    name: power_b
+    class: power
+    dps:
+      - id: 105
+        optional: true
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 104
+        optional: true
+        type: string
+        optional: true
+        name: direction
+      - id: 124
+        optional: true
+        type: integer
+        name: calibration
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: energy_forword_a
+    class: energy
+    dps:
+      - id: 106
+        optional: true
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 119
+        optional: true
+        type: integer
+        name: calibration
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: energy_reverse_a
+    class: energy
+    dps:
+      - id: 107
+        optional: true
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 127
+        optional: true
+        type: integer
+        name: calibration
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: energy_forword_b
+    class: energy
+    dps:
+      - id: 108
+        optional: true
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 125
+        optional: true
+        type: integer
+        name: calibration
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: energy_reserse_b
+    class: energy
+    dps:
+      - id: 109
+        optional: true
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 128
+        optional: true
+        type: integer
+        name: calibration
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: power_factor
+    class: power_factor
+    dps:
+      - id: 110
+        optional: true
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: frequency
+    name: freq
+    dps:
+      - id: 111
+        optional: true
+        type: integer
+        name: sensor
+        unit: Hz
+        class: measurement
+        mapping:
+          - scale: 100
+      - id: 122
+        optional: true
+        type: integer
+        name: calibration
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: voltage_a
+    class: voltage
+    dps:
+      - id: 112
+        optional: true
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 116
+        optional: true
+        type: integer
+        name: calibration
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: current_a
+    class: current
+    dps:
+      - id: 113
+        optional: true
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+      - id: 117
+        optional: true
+        type: integer
+        name: calibration
+        precision: 4
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: current_b
+    class: current
+    dps:
+      - id: 114
+        optional: true
+        type: integer
+        name: sensor
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 1000
+      - id: 123
+        optional: true
+        type: integer
+        name: calibration
+        mapping:
+          - scale: 1000
+  - entity: sensor
+    name: total_power
+    class: power
+    dps:
+      - id: 115
+        optional: true
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: power_factor_b
+    class: power_factor
+    dps:
+      - id: 121
+        optional: true
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: number
+    name: update_requset
+    category: config
+    class: duration
+    icon: "mdi:timer-refresh"
+    dps:
+      - id: 129
+        optional: true
+        type: integer
+        name: report_rate_control
+        unit: s
+        range:
+          min: 3
+          max: 60
+  - entity: number
+    name: voltage_coef
+    category: config
+    dps:
+      - id: 116
+        optional: true
+        type: integer
+        name: value
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+  - entity: number
+    name: current_coef
+    category: config
+    dps:
+      - id: 117
+        optional: true
+        type: integer
+        name: value
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+  - entity: number
+    name: power_coef
+    category: config
+    dps:
+      - id: 118
+        optional: true
+        type: integer
+        name: value
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+  - entity: number
+    name: energy_coef_fwd
+    category: config
+    dps:
+      - id: 119
+        optional: true
+        type: integer
+        name: value
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+  - entity: number
+    name: freq_calibration
+    category: config
+    dps:
+      - id: 122
+        optional: true
+        type: integer
+        name: value
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+  - entity: number
+    name: current_coef_b
+    category: config
+    dps:
+      - id: 123
+        optional: true
+        type: integer
+        name: value
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+  - entity: number
+    name: power_coef_b
+    category: config
+    dps:
+      - id: 124
+        optional: true
+        type: integer
+        name: value
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+  - entity: number
+    name: energy_coef_b_fwd
+    category: config
+    dps:
+      - id: 125
+        optional: true
+        type: integer
+        name: value
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+  - entity: number
+    name: energy_a_calibration_rev
+    category: config
+    dps:
+      - id: 127
+        optional: true
+        type: integer
+        name: value
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+  - entity: number
+    name: energy_b_calibration_rev
+    category: config
+    dps:
+      - id: 128
+        optional: true
+        type: integer
+        name: value
+        range:
+          min: 800
+          max: 1200
+        mapping:
+          - scale: 1000
+  - entity: button
+    name: coef_a_reset
+    class: restart
+    category: config
+    dps:
+      - id: 120
+        type: bool
+        name: button
+        optional: true
+  - entity: button
+    name: coef_b_reset
+    class: restart
+    category: config
+    dps:
+      - id: 126
+        type: bool
+        name: button
+        optional: true
