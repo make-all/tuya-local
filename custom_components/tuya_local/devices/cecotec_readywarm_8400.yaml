@@ -1,7 +1,7 @@
-name: Bladeless Heater
+name: Fan Heater
 products:
   - id: var0f7dheclxpjuz
-    name: ReadyWarm Bladeless
+    name: Cecotec ReadyWarm 8400 Bladeless
 primary_entity:
   entity: climate
   translation_only_key: heater
@@ -17,13 +17,12 @@ primary_entity:
           conditions:
             - dps_val: "null"
               value: fan_only
-              hidden: true
-            - dps_val: "off"
-              value: fan_only
             - dps_val: "low"
               value: heat
+              hidden: true
             - dps_val: "high"
               value: heat
+              hidden: true
             - dps_val: "auto"
               value: heat
     - id: 2
@@ -36,20 +35,16 @@ primary_entity:
     - id: 3
       type: integer
       name: current_temperature
-      readonly: true
     - id: 4
       name: preset_mode
       type: string
       mapping:
-        - dps_val: "off"
-          value: none
-          hidden: true
         - dps_val: "low"
           value: eco
         - dps_val: "high"
           value: boost
         - dps_val: "auto"
-          value: auto
+          value: comfort
     - id: 8
       type: boolean
       name: swing_mode
@@ -68,7 +63,7 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: "0h"
-            value: Cancel
+            value: cancel
           - dps_val: "1h"
             value: "1h"
           - dps_val: "2h"
