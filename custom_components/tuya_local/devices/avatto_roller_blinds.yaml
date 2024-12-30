@@ -1,6 +1,7 @@
-name: Avatto roller blinds
+name: Roller blinds
 products:
   - id: 3r8gc33pnqsxfe1g
+    name: Quoya MC08 blinds motor
 primary_entity:
   entity: cover
   class: blind
@@ -21,35 +22,41 @@ primary_entity:
       range:
         min: 0
         max: 100
+      mapping:
+        - invert: true
     - id: 3
       name: current_position
       type: integer
       unit: "%"
       optional: true
       persist: false
-    - id: 5
-      name: control_back_mode
-      type: boolean
+      mapping:
+        - invert: true
+      range:
+        min: 0
+        max: 100
     - id: 7
       name: action
       type: string
+      optional: true
+      persist: false
       mapping:
         - dps_val: opening
           value: opening
           constraint: current_position
           conditions:
-            - dps_val: 100
+            - dps_val: 0
               value: opened
             - dps_val: null
-              value: opened
+              value: null
         - dps_val: closing
           value: closing
           constraint: current_position
           conditions:
-            - dps_val: 0
+            - dps_val: 100
               value: closed
             - dps_val: null
-              value: closed
+              value: null
 secondary_entities:
   - entity: select
     translation_key: timer
@@ -88,3 +95,32 @@ secondary_entities:
         name: sensor
         type: integer
         unit: ms
+  - entity: select
+    name: Direction
+    icon: "mdi:swap-vertical"
+    category: config
+    dps:
+      - id: 5
+        type: boolean
+        name: option
+        mapping:
+          - dps_val: false
+            value: Clockwise
+          - dps_val: true
+            value: Anti-clockwise
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        optional: true
+        name: fault_code

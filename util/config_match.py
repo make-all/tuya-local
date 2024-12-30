@@ -15,11 +15,7 @@ def main() -> int:
     for match in possible_matches(dps):
         dps_seen = set(dps.keys())
         print(f"{match.config_type} matched {match.match_quality(dps)}%")
-        print(f"  {match.primary_entity.config_id}:")
-        for dp in match.primary_entity.dps():
-            dps_seen.discard(dp.id)
-            print(f"   {dp.name}: {dp.get_value(device)}")
-        for entity in match.secondary_entities():
+        for entity in match.all_entities():
             print(f"  {entity.config_id}:")
             for dp in entity.dps():
                 dps_seen.discard(dp.id)

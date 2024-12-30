@@ -252,7 +252,7 @@ class TuyaEntityConfig:
     @property
     def translation_key(self):
         """The translation key for this entity."""
-        return self._config.get("translation_key", self.device_class)
+        return self._config.get("translation_key")
 
     @property
     def translation_only_key(self):
@@ -307,6 +307,8 @@ class TuyaEntityConfig:
                 else:
                     slug = f"{slug}_{value}"
             return slug
+        elif self.device_class:
+            return f"{self.entity}_{self.device_class}"
         return self.entity
 
     @property
@@ -795,32 +797,39 @@ class TuyaDpsConfig:
         nearest = None
         distance = float("inf")
         for m in self._config.get("mapping", {}):
-            if "dps_val" not in m:
+            # no reverse mapping of hidden values
+            ignore = m.get("hidden", False) or not self.mapping_available(m, device)
+
+            if "dps_val" not in m and not ignore:
                 default = m
             # The following avoids further matching on the above case
             # and in the null mapping case, which is intended to be
             # a one-way map to prevent the entity showing as unavailable
             # when no value is being reported by the device.
             if m.get("dps_val") is None:
-                continue
-            if "value" in m and str(m["value"]) == str(value):
+                ignore = True
+
+            if "value" in m and str(m["value"]) == str(value) and not ignore:
                 return m
             if (
                 "value" in m
                 and isinstance(m["value"], Number)
                 and isinstance(value, Number)
+                and not ignore
             ):
                 d = abs(m["value"] - value)
                 if d < distance:
                     distance = d
                     nearest = m
 
-            if "value" not in m and "value_mirror" in m:
+            if "value" not in m and "value_mirror" in m and not ignore:
                 r_dps = self._entity.find_dps(m["value_mirror"])
                 if r_dps and str(r_dps.get_value(device)) == str(value):
                     return m
 
             for c in m.get("conditions", {}):
+                if c.get("hidden", False) or not self.mapping_available(c, device):
+                    continue
                 if "value" in c and str(c["value"]) == str(value):
                     c_dp = self._entity.find_dps(m.get("constraint", self.name))
                     # only consider the condition a match if we can change
@@ -898,7 +907,7 @@ class TuyaDpsConfig:
             step = mapping.get("step")
             if not isinstance(step, Number):
                 step = None
-            if "dps_val" in mapping and not mapping.get("hidden", False):
+            if "dps_val" in mapping:
                 result = mapping["dps_val"]
                 replaced = True
             # Conditions may have side effect of setting another value.

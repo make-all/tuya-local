@@ -149,6 +149,7 @@
 ### Water heaters
 
 - Aquatech Rapid/X6 heat pump water heater
+- Axen KS-100W/EN8BP combo heat pump (rebranded as Arielli)
 - Deakon EVI DC inverter heat pump
 - EMS Thermal 200L domestic heat pump hot water system
 - Ferroli Titano Twin water heater
@@ -224,6 +225,7 @@
 
 ### Fans
 
+- Aeratron AE3+ ceiling fan (may match other Aeratron models with same WiFi module)
 - Amico 52" ceiling fan with light
 - Anko HEGSM40 fan
 - Arlec ceiling fan and light remote control kit (CFR225HA also works for Sulion Cadillac)
@@ -799,6 +801,7 @@ port and password.
 ### Pet care
 
 - AF3W pet feeder
+- BNETA F1-D pet feeder (likely compatible with Petwant F1-C)
 - Catit Pixi smart fountain
 - Catit pet feeder (Pixi 2.2kg dispenser and 6 meal versions, and another non-Pixi branded single dispenser)
 - Ceres Plus pet feeder with camera
@@ -895,6 +898,7 @@ port and password.
 - SD123 HPR01 human presence radar
 - SNT957W-TDE temperature sensor
 - SNT957W-DE CBU temperature and humidity sensor
+- Speaka SP-TVCM-510 TV mount
 - Sunbeam dual heated mattress pad
 - SWS-001 smart weather station
 - TH08 temperature and humidity sensor

@@ -1,5 +1,5 @@
 """
-Mixins to make writing new platforms easier
+Common functionality for Tuya Local entities
 """
 
 import logging
@@ -57,7 +57,11 @@ class TuyaLocalEntity:
     @property
     def use_device_name(self):
         """Return whether to use the device name for the entity name"""
-        own_name = self._config.name or self._config.translation_key
+        own_name = (
+            self._config.name
+            or self._config.translation_key
+            or (self._default_to_device_class_name() and self._config.device_class)
+        )
         return not own_name
 
     @property
