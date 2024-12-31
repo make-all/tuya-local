@@ -790,3 +790,4 @@ Further device support has been made with the assistance of users. Please consid
 - [djvalex](https://github.com/djvalex) for assisting with support for Axen/Arielli KS-100W/EN8BP combo heat pump.
 - [doertli](https://github.com/doertli) for assisting with support for Aeratron AE3+ ceiling fan.
 - [0xa51f](https://github.com/0xa51f) for assisting with support for BNETA F1-D pet feeder.
+- [merlin051](https://github.com/merlin051) for assisting with support for Mayborn GroClock Connect.
