@@ -285,7 +285,7 @@ Further device support has been made with the assistance of users. Please consid
 - [Pagi13](https://github.com/Pagi13) for assisting with support for DTS238-7 smart meters.
 - [kshepard339](https://github.com/kshepard339) for assisting with support for Petlibro pet feeder with camera.
 - [mkrznar](https://github.com/mkrznar) for assisting with support for Beok TR8B thermostats.
-- [Rain-ZG](https://github.com/Rain-ZG) for assisting with support for Vivax Cool air conditioners.
+- [Rain-ZG](https://github.com/Rain-ZG) for assisting with support for Vivax Cool air conditioners and EARU K6H-3A-W thermometers.
 - [WilcoE](https://github.com/WilcoE) for assisting with support for Poolex Qline new Q7 variant of pool heatpumps.
 - [WiestDaessle](https://github.com/WiestDaessle) for contributing support for Etersky curtain switches.
 - [Xpl0jd](https://github.com/Xpl0jd) for contributing support for Nedis portable air conditioners.
