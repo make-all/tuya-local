@@ -70,6 +70,21 @@ primary_entity:
       name: snooze
 secondary_entities:
   - entity: select
+    name: Alarm mode
+    icon: "mdi:alarm"
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: awake
+            value: Wake up
+          - dps_val: nap
+            value: Nap
+          - dps_val: asleep
+            value: Sleep
+  - entity: select
     name: Music playback
     icon: "mdi:music"
     category: config
