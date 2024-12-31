@@ -19,6 +19,9 @@ primary_entity:
           value: 40
         - dps_val: "50"
           value: 50
+        # not listed in device properties, but exists in device
+        - dps_val: "60"
+          value: 60
 secondary_entities:
   - entity: select
     translation_key: timer
@@ -32,6 +35,11 @@ secondary_entities:
             value: cancel
           - dps_val: "2h"
             value: "2h"
+          # not listed in device properties info, but exist on device
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "6h"
+            value: "6h"
   - entity: sensor
     translation_key: time_remaining
     class: duration
