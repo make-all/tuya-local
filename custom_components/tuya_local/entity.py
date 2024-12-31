@@ -1,5 +1,5 @@
 """
-Mixins to make writing new platforms easier
+Common functionality for Tuya Local entities
 """
 
 import logging

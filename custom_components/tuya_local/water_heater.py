@@ -14,9 +14,9 @@ from homeassistant.components.water_heater import (
 from homeassistant.const import ATTR_TEMPERATURE, UnitOfTemperature
 
 from .device import TuyaLocalDevice
+from .entity import TuyaLocalEntity, unit_from_ascii
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
-from .helpers.mixin import TuyaLocalEntity, unit_from_ascii
 
 _LOGGER = logging.getLogger(__name__)
 

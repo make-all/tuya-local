@@ -604,7 +604,7 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
         cfg = get_config("goldair_gpph_heater")
         for entity in cfg.all_entities():
             if entity.entity == "climate":
-                temp = entity.find_dps("temperature")
+                temp = entity.find_dps("current_temperature")
                 self.assertEqual(temp.values(mock_device), [])
                 break
 
