@@ -2,30 +2,29 @@ name: PW040
 products:
   - id: 5oc9wmac3bbidekc
     name: Powerworld PW040 (Vertriebsbezeichnung Michl SMP13)
-primary_entity:
-  entity: climate
-  translation_key: heater
-  name: Warmwasser
-  dps:
-    - id: 123  # e_WarmwasserSoll_T
-      type: integer
-      name: temperature
-      range:
-        min: 30
-        max: 55
-      unit: C
-    - id: 108  # Warmwasser_T (ist)
-      type: integer
-      name: current_temperature
-    - id: 4
-      hidden: true
-      type: integer
-      name: temp_set
-      optional: true
-      range:
-        min: 0
-        max: 9999
-secondary_entities:
+entities:
+  - entity: climate
+    translation_key: heater
+    name: Warmwasser
+    dps:
+      - id: 123  # e_WarmwasserSoll_T
+        type: integer
+        name: temperature
+        range:
+          min: 30
+          max: 55
+        unit: C
+      - id: 108  # Warmwasser_T (ist)
+        type: integer
+        name: current_temperature
+      - id: 4
+        hidden: true
+        type: integer
+        name: temp_set
+        optional: true
+        range:
+          min: 0
+          max: 9999
   - entity: select
     name: Betrieb
     category: config
