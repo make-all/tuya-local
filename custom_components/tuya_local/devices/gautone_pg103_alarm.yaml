@@ -4,29 +4,28 @@ products:
     name: GauTone PG-103
   - id: gyitctrjj1kefxp2
     name: "PG103/PG105/PG106/PG107/PG109"
-primary_entity:
-  entity: alarm_control_panel
-  dps:
-    - id: 1
-      type: string
-      name: alarm_state
-      mapping:
-        - dps_val: disarmed
-          value: disarmed
-        - dps_val: arm
-          value: armed_away
-        - dps_val: home
-          value: armed_home
-        - dps_val: sos
-          value: triggered
-    - id: 36
-      type: string
-      name: sub_class
-      optional: true
-    - id: 101
-      type: string
-      name: power_state
-secondary_entities:
+entities:
+  - entity: alarm_control_panel
+    dps:
+      - id: 1
+        type: string
+        name: alarm_state
+        mapping:
+          - dps_val: disarmed
+            value: disarmed
+          - dps_val: arm
+            value: armed_away
+          - dps_val: home
+            value: armed_home
+          - dps_val: sos
+            value: triggered
+      - id: 36
+        type: string
+        name: sub_class
+        optional: true
+      - id: 101
+        type: string
+        name: power_state
   - entity: number
     name: Exit delay
     category: config

@@ -1,53 +1,52 @@
 name: Prosto Heater
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: preset_mode
-          conditions:
-            - dps_val: level_0
-              value: fan_only
-            - dps_val: level_1
-              value: heat
-            - dps_val: level_2
-              value: heat
-              hidden: true
-    - id: 2
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 18
-        max: 45
-    - id: 3
-      type: integer
-      name: current_temperature
-    - id: 5
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: "level_0"
-          value: none
-        - dps_val: "level_1"
-          value: comfort
-        - dps_val: "level_2"
-          value: boost
-    - id: 8
-      type: boolean
-      name: swing_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: "on"
-secondary_entities:
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: preset_mode
+            conditions:
+              - dps_val: level_0
+                value: fan_only
+              - dps_val: level_1
+                value: heat
+              - dps_val: level_2
+                value: heat
+                hidden: true
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 18
+          max: 45
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 5
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: "level_0"
+            value: none
+          - dps_val: "level_1"
+            value: comfort
+          - dps_val: "level_2"
+            value: boost
+      - id: 8
+        type: boolean
+        name: swing_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
   - entity: select
     name: Level
     icon: "mdi:signal"

@@ -2,14 +2,13 @@ name: Water valve
 products:
   - id: arge1ptm
     name: QOTO 05 water valve
-primary_entity:
-  entity: valve
-  class: water
-  dps:
-    - id: 2
-      type: integer
-      name: valve
-secondary_entities:
+entities:
+  - entity: valve
+    class: water
+    dps:
+      - id: 2
+        type: integer
+        name: valve
   - entity: number
     icon: "mdi:pipe-valve"
     category: config

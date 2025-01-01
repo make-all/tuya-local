@@ -1,51 +1,51 @@
 name: Eurom Mon Soleil heater
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: heat
-    - id: 2
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 0
-        max: 37
-    - id: 5
-      type: integer
-      name: current_temperature
-    - id: 3
-      type: integer
-      name: temp_set_f
-      optional: true
-    - id: 4
-      type: boolean
-      name: c_f_switch
-      optional: true
-    - id: 6
-      type: integer
-      name: cur_temp_f
-      optional: true
-    - id: 7
-      type: integer
-      name: timer
-      optional: true
-    - id: 8
-      type: bitfield
-      name: reservation_flags
-      optional: true
-    - id: 9
-      type: string
-      name: schedule
-      optional: true
-    - id: 10
-      type: string
-      name: timing
-      optional: true
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 0
+          max: 37
+      - id: 5
+        type: integer
+        name: current_temperature
+      - id: 3
+        type: integer
+        name: temp_set_f
+        optional: true
+      - id: 4
+        type: boolean
+        name: c_f_switch
+        optional: true
+      - id: 6
+        type: integer
+        name: cur_temp_f
+        optional: true
+      - id: 7
+        type: integer
+        name: timer
+        optional: true
+      - id: 8
+        type: bitfield
+        name: reservation_flags
+        optional: true
+      - id: 9
+        type: string
+        name: schedule
+        optional: true
+      - id: 10
+        type: string
+        name: timing
+        optional: true

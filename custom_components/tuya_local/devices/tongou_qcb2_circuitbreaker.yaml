@@ -2,14 +2,13 @@ name: Circuit breaker
 products:
   - id: a0k7kwt5wkqdswnm
     name: Tongou QCB2-WB 63A
-primary_entity:
-  entity: switch
-  icon: "mdi:fuse"
-  dps:
-    - id: 16
-      type: boolean
-      name: switch
-secondary_entities:
+entities:
+  - entity: switch
+    icon: "mdi:fuse"
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
   - entity: sensor
     class: energy
     dps:

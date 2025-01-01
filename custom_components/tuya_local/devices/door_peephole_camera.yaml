@@ -2,18 +2,17 @@ name: Camera
 products:
   - id: fzsbulp3wg64l8vx
     name: TY-W160D
-primary_entity:
-  entity: camera
-  dps:
-    - id: 134
-      type: boolean
-      name: motion_enable
-      optional: true
-    - id: 150
-      type: boolean
-      name: record
-      optional: true
-secondary_entities:
+entities:
+  - entity: camera
+    dps:
+      - id: 134
+        type: boolean
+        name: motion_enable
+        optional: true
+      - id: 150
+        type: boolean
+        name: record
+        optional: true
   - entity: switch
     name: Flip image
     category: config

@@ -1,64 +1,63 @@
 name: Purline Hoti M100 heater
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: preset_mode
-          conditions:
-            - dps_val: "off"
-              value: fan_only
-              icon: "mdi:fan"
-          value: "heat"
-    - id: 2
-      name: temperature
-      type: integer
-      unit: C
-      range:
-        min: 15
-        max: 35
-    - id: 3
-      name: current_temperature
-      type: integer
-    - id: 5
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: "off"
-          value: none
-        - dps_val: "1"
-          value: "1"
-        - dps_val: "2"
-          value: "2"
-        - dps_val: "3"
-          value: "3"
-        - dps_val: "4"
-          value: "4"
-        - dps_val: "5"
-          value: "5"
-        - dps_val: "auto"
-          value: comfort
-    - id: 11
-      name: timer_hours
-      type: integer
-    - id: 12
-      name: timer_remain
-      type: integer
-    - id: 102
-      name: swing_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: "vertical"
-secondary_entities:
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: preset_mode
+            conditions:
+              - dps_val: "off"
+                value: fan_only
+                icon: "mdi:fan"
+            value: "heat"
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 15
+          max: 35
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 5
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: "off"
+            value: none
+          - dps_val: "1"
+            value: "1"
+          - dps_val: "2"
+            value: "2"
+          - dps_val: "3"
+            value: "3"
+          - dps_val: "4"
+            value: "4"
+          - dps_val: "5"
+            value: "5"
+          - dps_val: "auto"
+            value: comfort
+      - id: 11
+        name: timer_hours
+        type: integer
+      - id: 12
+        name: timer_remain
+        type: integer
+      - id: 102
+        name: swing_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "vertical"
   - entity: light
     translation_key: display
     category: config

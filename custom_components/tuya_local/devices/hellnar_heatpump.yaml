@@ -1,111 +1,111 @@
 name: TroniTechnik Hellnar Klimagerät
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: auto
-              value: heat_cool
-            - dps_val: cold
-              value: cool
-            - dps_val: hot
-              value: heat
-            - dps_val: wind
-              value: fan_only
-            - dps_val: wet
-              value: dry
-    - id: 2
-      name: temperature
-      type: integer
-      unit: C
-      mapping:
-        - scale: 10
-          constraint: mode
-          conditions:
-            - dps_val: cold
-              range:
-                min: 170
-                max: 300
-            - dps_val: auto
-              range:
-                min: 170
-                max: 300
-            - dps_val: hot
-              range:
-                min: 0
-                max: 300
-            - dps_val: wet
-              invalid: true
-            - dps_val: wind
-              invalid: true
-    - id: 3
-      name: current_temperature
-      type: integer
-    - id: 4
-      name: mode
-      type: string
-      hidden: true
-    - id: 5
-      name: maybe_fan_mode
-      type: string
-    - id: 18
-      name: unknown_18
-      type: integer
-    - id: 20
-      name: unknown_20
-      type: integer
-    - id: 105
-      name: unknown_105
-      type: string
-    - id: 110
-      name: unknown_110
-      type: integer
-    - id: 113
-      name: unknown_113
-      type: string
-    - id: 114
-      name: unknown_114
-      type: string
-    - id: 119
-      name: unknown_119
-      type: string
-    - id: 120
-      name: unknown_120
-      type: string
-    - id: 123
-      name: maybe_swing_mode
-      type: string
-    - id: 126
-      name: unknown_126
-      type: string
-    - id: 127
-      name: unknown_127
-      type: string
-    - id: 128
-      name: unknown_128
-      type: string
-    - id: 129
-      name: unknown_129
-      type: string
-    - id: 130
-      name: maybe_eco_temp
-      type: integer
-    - id: 131
-      name: unknown_131
-      type: boolean
-    - id: 132
-      name: unknown_132
-      type: boolean
-    - id: 133
-      name: unknown_133
-      type: string
-    - id: 134
-      name: unknown_134
-      type: string
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: heat_cool
+              - dps_val: cold
+                value: cool
+              - dps_val: hot
+                value: heat
+              - dps_val: wind
+                value: fan_only
+              - dps_val: wet
+                value: dry
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        mapping:
+          - scale: 10
+            constraint: mode
+            conditions:
+              - dps_val: cold
+                range:
+                  min: 170
+                  max: 300
+              - dps_val: auto
+                range:
+                  min: 170
+                  max: 300
+              - dps_val: hot
+                range:
+                  min: 0
+                  max: 300
+              - dps_val: wet
+                invalid: true
+              - dps_val: wind
+                invalid: true
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 4
+        name: mode
+        type: string
+        hidden: true
+      - id: 5
+        name: maybe_fan_mode
+        type: string
+      - id: 18
+        name: unknown_18
+        type: integer
+      - id: 20
+        name: unknown_20
+        type: integer
+      - id: 105
+        name: unknown_105
+        type: string
+      - id: 110
+        name: unknown_110
+        type: integer
+      - id: 113
+        name: unknown_113
+        type: string
+      - id: 114
+        name: unknown_114
+        type: string
+      - id: 119
+        name: unknown_119
+        type: string
+      - id: 120
+        name: unknown_120
+        type: string
+      - id: 123
+        name: maybe_swing_mode
+        type: string
+      - id: 126
+        name: unknown_126
+        type: string
+      - id: 127
+        name: unknown_127
+        type: string
+      - id: 128
+        name: unknown_128
+        type: string
+      - id: 129
+        name: unknown_129
+        type: string
+      - id: 130
+        name: maybe_eco_temp
+        type: integer
+      - id: 131
+        name: unknown_131
+        type: boolean
+      - id: 132
+        name: unknown_132
+        type: boolean
+      - id: 133
+        name: unknown_133
+        type: string
+      - id: 134
+        name: unknown_134
+        type: string

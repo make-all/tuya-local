@@ -8,35 +8,34 @@ products:
     name: GX
   - id: kgczidn0awas0prr
     name: Tellur
-primary_entity:
-  entity: fan
-  translation_key: aroma_diffuser
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 2
-      name: speed
-      type: string
-      mapping:
-        - conditions:
-            - dps_val:
-                - large
-                - small
-              mapping:
-                - dps_val: large
-                  value: 100
-                - dps_val: small
-                  value: 50
-            - dps_val:
-                - high
-                - low
-              mapping:
-                - dps_val: high
-                  value: 100
-                - dps_val: low
-                  value: 50
-secondary_entities:
+entities:
+  - entity: fan
+    translation_key: aroma_diffuser
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: speed
+        type: string
+        mapping:
+          - conditions:
+              - dps_val:
+                  - large
+                  - small
+                mapping:
+                  - dps_val: large
+                    value: 100
+                  - dps_val: small
+                    value: 50
+              - dps_val:
+                  - high
+                  - low
+                mapping:
+                  - dps_val: high
+                    value: 100
+                  - dps_val: low
+                    value: 50
   - entity: light
     translation_key: nightlight
     dps:

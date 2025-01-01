@@ -9,26 +9,25 @@ products:
     name: SOP10
   - id: so5ybnw9
     name: BWC-495.bt Royal Gardineer
-primary_entity:
-  entity: valve
-  class: water
-  dps:
-    - id: 1
-      type: boolean
-      name: valve
-    - id: 13
-      type: string
-      name: weather
-      optional: true
-    - id: 16
-      type: string
-      name: soak_schedule
-      optional: true
-    - id: 17
-      type: string
-      name: irrigation_schedule
-      optional: true
-secondary_entities:
+entities:
+  - entity: valve
+    class: water
+    dps:
+      - id: 1
+        type: boolean
+        name: valve
+      - id: 13
+        type: string
+        name: weather
+        optional: true
+      - id: 16
+        type: string
+        name: soak_schedule
+        optional: true
+      - id: 17
+        type: string
+        name: irrigation_schedule
+        optional: true
   - entity: switch
     icon: "mdi:pipe-valve"
     deprecated: valve

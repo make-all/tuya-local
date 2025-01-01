@@ -162,8 +162,7 @@ YAML_SCHEMA = vol.Schema(
         vol.Required("name"): str,
         vol.Optional("legacy_type"): str,
         vol.Optional("products"): [PRODUCT_SCHEMA],
-        vol.Required("primary_entity"): ENTITY_SCHEMA,
-        vol.Optional("secondary_entities"): [ENTITY_SCHEMA],
+        vol.Required("entities"): [ENTITY_SCHEMA],
     }
 )
 
@@ -502,10 +501,6 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
                 parsed._config.get("name"),
                 f"name missing from {cfg}",
             )
-            self.assertIsNotNone(
-                parsed._config.get("primary_entity"),
-                f"primary_entity missing from {cfg}",
-            )
             count = 0
             for entity in parsed.all_entities():
                 self.check_entity(entity, cfg)
@@ -519,14 +514,6 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
                 set(entities),
                 f"Duplicate entities in {cfg}",
             )
-
-            # If there are no secondary entities, check that it is intended
-            if count == 1:
-                for key in parsed._config.keys():
-                    self.assertFalse(
-                        key.startswith("sec"),
-                        f"misspelled secondary_entities in {cfg}",
-                    )
 
     def test_configs_can_be_matched(self):
         """Test that the config files can be matched to a device."""
@@ -604,7 +591,7 @@ class TestDeviceConfig(IsolatedAsyncioTestCase):
         cfg = get_config("goldair_gpph_heater")
         for entity in cfg.all_entities():
             if entity.entity == "climate":
-                temp = entity.find_dps("temperature")
+                temp = entity.find_dps("current_temperature")
                 self.assertEqual(temp.values(mock_device), [])
                 break
 

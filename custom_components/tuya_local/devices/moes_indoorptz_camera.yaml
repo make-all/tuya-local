@@ -2,24 +2,23 @@ name: Camera
 products:
   - id: sy8xnbefqdxbgwti
     name: Moes P52 PTZ indoor security camera
-primary_entity:
-  entity: camera
-  dps:
-    - id: 105
-      type: boolean
-      name: switch
-      mapping:
-        - dps_val: false
-          value: true
-        - dps_val: true
-          value: false
-    - id: 134
-      type: boolean
-      name: motion_enable
-    - id: 150
-      type: boolean
-      name: record
-secondary_entities:
+entities:
+  - entity: camera
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+      - id: 134
+        type: boolean
+        name: motion_enable
+      - id: 150
+        type: boolean
+        name: record
   - entity: light
     translation_key: indicator
     category: config

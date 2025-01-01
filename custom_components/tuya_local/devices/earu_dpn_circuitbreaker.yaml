@@ -2,14 +2,13 @@ name: Circuit breaker
 products:
   - id: azpywu5zfg5wyzpn
     name: EARU SW MCB
-primary_entity:
-  entity: switch
-  icon: "mdi:fuse"
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-secondary_entities:
+entities:
+  - entity: switch
+    icon: "mdi:fuse"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
   - entity: lock
     translation_key: child_lock
     category: config

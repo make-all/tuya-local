@@ -2,15 +2,14 @@ name: Planter
 # products:
 #   - id:
 #     name: ASIP-0622 indoor planter
-primary_entity:
-  entity: switch
-  icon: "mdi:sprout"
-  name: Power
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+entities:
+  - entity: switch
+    icon: "mdi:sprout"
+    name: Power
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: switch
     name: Pump
     icon: "mdi:water-pump"

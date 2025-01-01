@@ -5,9 +5,9 @@ Setup for different kinds of Tuya selects
 from homeassistant.components.select import SelectEntity
 
 from .device import TuyaLocalDevice
+from .entity import TuyaLocalEntity
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
-from .helpers.mixin import TuyaLocalEntity
 
 
 async def async_setup_entry(hass, config_entry, async_add_entities):

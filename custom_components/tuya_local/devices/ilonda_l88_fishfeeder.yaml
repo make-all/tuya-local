@@ -2,14 +2,13 @@ name: Fish feeder
 products:
   - id: 3jskpz3pwqn9oojn
     name: iLonda L88
-primary_entity:
-  entity: switch
-  icon: "mdi:fish"
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+entities:
+  - entity: switch
+    icon: "mdi:fish"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: number
     translation_key: timer
     class: duration

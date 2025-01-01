@@ -1,47 +1,46 @@
 name: INOW heating element
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: true
-          value: heat
-        - dps_val: false
-          value: "off"
-    - id: 2
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 15
-        max: 70
-      mapping:
-        - step: 5
-    - id: 3
-      type: integer
-      name: current_temperature
-    - id: 4
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: smart
-          value: comfort
-        - dps_val: antifreezing
-          value: away
-    - id: 19
-      type: string
-      name: timer
-      optional: true
-      mapping:
-        - dps_val: "0h"
-          value: cancel
-        - dps_val: "1h"
-          value: "1h"
-        - dps_val: "2h"
-          value: "2h"
-secondary_entities:
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: true
+            value: heat
+          - dps_val: false
+            value: "off"
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 15
+          max: 70
+        mapping:
+          - step: 5
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: smart
+            value: comfort
+          - dps_val: antifreezing
+            value: away
+      - id: 19
+        type: string
+        name: timer
+        optional: true
+        mapping:
+          - dps_val: "0h"
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
   - entity: lock
     translation_key: child_lock
     category: config

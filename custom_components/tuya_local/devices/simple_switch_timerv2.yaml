@@ -10,13 +10,12 @@ products:
     name: GIRIER USB adaptor
   - id: lbqau5negh2zizit
     name: Kruidvat outdoor smartplug
-primary_entity:
-  entity: switch
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-secondary_entities:
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
   - entity: number
     category: config
     class: duration

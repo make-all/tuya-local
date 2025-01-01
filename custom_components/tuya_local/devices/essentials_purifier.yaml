@@ -1,25 +1,24 @@
 name: Air purifier
-primary_entity:
-  entity: fan
-  translation_key: fan_with_presets
-  icon: "mdi:air-purifier"
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 3
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: auto
-          value: smart
-        - dps_val: M
-          value: normal
-        - dps_val: H
-          value: strong
-        - dps_val: sleep
-          value: sleep
-secondary_entities:
+entities:
+  - entity: fan
+    translation_key: fan_with_presets
+    icon: "mdi:air-purifier"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: auto
+            value: smart
+          - dps_val: M
+            value: normal
+          - dps_val: H
+            value: strong
+          - dps_val: sleep
+            value: sleep
   - entity: switch
     deprecated: fan
     icon: "mdi:air-purifier"

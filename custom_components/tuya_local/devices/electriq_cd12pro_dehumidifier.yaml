@@ -1,35 +1,34 @@
 name: "Electriq CD12PRO-LE dehumidifier"
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 2
-      type: integer
-      name: humidity
-      range:
-        min: 35
-        max: 80
-      mapping:
-        - step: 5
-    - id: 5
-      name: mode
-      type: string
-      mapping:
-        - dps_val: "Smart"
-          value: auto
-        - dps_val: "Dehumidify"
-          value: normal
-        - dps_val: Laundry
-          value: laundry
-        - dps_val: Fan
-          value: purify
-    - id: 6
-      name: current_humidity
-      type: integer
-secondary_entities:
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        type: integer
+        name: humidity
+        range:
+          min: 35
+          max: 80
+        mapping:
+          - step: 5
+      - id: 5
+        name: mode
+        type: string
+        mapping:
+          - dps_val: "Smart"
+            value: auto
+          - dps_val: "Dehumidify"
+            value: normal
+          - dps_val: Laundry
+            value: laundry
+          - dps_val: Fan
+            value: purify
+      - id: 6
+        name: current_humidity
+        type: integer
   - entity: fan
     dps:
       - id: 1
