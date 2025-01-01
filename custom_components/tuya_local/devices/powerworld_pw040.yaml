@@ -1,5 +1,3 @@
----
----
 name: PW040
 products:
   - id: 5oc9wmac3bbidekc
@@ -9,21 +7,21 @@ primary_entity:
   translation_key: heater
   name: Warmwasser
   dps:
-    - id: 123
+    - id: 123  # e_WarmwasserSoll_T
       type: integer
-      name: temperature  # e_WarmwasserSoll_T
-      unit: C
+      name: temperature
       range:
         min: 30
         max: 55
-    - id: 108
+      unit: C
+    - id: 108  # Warmwasser_T (ist)
       type: integer
-      name: current_temperature  # Warmwasser_T (ist)
+      name: current_temperature
     - id: 4
+      hidden: true
       type: integer
       name: temp_set
       optional: true
-      hidden: true
       range:
         min: 0
         max: 9999
@@ -67,11 +65,11 @@ secondary_entities:
           - dps_val: wth
             value: nur WW
           - dps_val: cool
-            value: Kühlen
+            value: Kuehlen
           - dps_val: wth_heat
             value: WW und Heizen
           - dps_val: wth_cool
-            value: WW und Kühlen
+            value: WW und Kuehlen
   - entity: select
     name: Heiz-RL-Steuerung
     category: config
@@ -81,9 +79,9 @@ secondary_entities:
         name: option
         mapping:
           - dps_val: 0  # manuelle RLsoll_T
-            value: "manuell"  # boost
+            value: manuell  # boost
           - dps_val: 1  # HeizKennlinie aktiv
-            value: "Heizkennlinie"  # eco
+            value: Heizkennlinie  # eco
   - entity: sensor
     name: WpRL_T
     class: temperature
@@ -262,7 +260,6 @@ secondary_entities:
           min: 0
           max: 1500
   - entity: sensor
-    hidden: true
     name: DcLuefter2_vWind
     category: diagnostic
     dps:
@@ -287,13 +284,12 @@ secondary_entities:
           min: 28
           max: 55
   - entity: number
-    hidden: true
     name: RLzuKuehlsoll_dT  # e_RL_zu_KuehlSoll_dT
     category: config
     dps:
       - id: 121
-        type: integer
         hidden: true
+        type: integer
         name: value
         unit: C
         range:
@@ -305,20 +301,19 @@ secondary_entities:
     dps:
       - id: 122
         type: integer
-        name: valve
+        name: value
         unit: C
         range:
           min: 2
           max: 18
   - entity: number
-    hidden: true
     name: Kuehlsoll_T  # e_KuehlSoll_T
     class: temperature
     category: config
     dps:
       - id: 124
-        type: integer
         hidden: true
+        type: integer
         unit: C
         name: value
         range:
@@ -365,7 +360,7 @@ secondary_entities:
       - id: 135
         type: string
         unit: Hz
-        name: value
+        name: option
         mapping:
           - dps_val: 0
             value: FreqBeibehalten
