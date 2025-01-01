@@ -6,24 +6,23 @@ products:
     name: Deta Light Motion Sensor
   - id: pxyhz90upglpoedu
     name: Arlec MAL315HA
-primary_entity:
-  entity: light
-  dps:
-    - id: 101
-      type: string
-      name: effect
-      mapping:
-        - dps_val: mode_off
-          value: "off"
-        - dps_val: mode_auto
-          value: auto
-        - dps_val: mode_on
-          value: "on"
-    - id: 102
-      type: boolean
-      name: switch
-      readonly: true
-secondary_entities:
+entities:
+  - entity: light
+    dps:
+      - id: 101
+        type: string
+        name: effect
+        mapping:
+          - dps_val: mode_off
+            value: "off"
+          - dps_val: mode_auto
+            value: auto
+          - dps_val: mode_on
+            value: "on"
+      - id: 102
+        type: boolean
+        name: switch
+        readonly: true
   - entity: switch
     name: Auto mode
     icon: "mdi:motion-sensor"

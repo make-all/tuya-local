@@ -2,18 +2,17 @@ name: Dual water timer
 products:
   - id: r6ya07uz
     name: Diivoo DWV010
-primary_entity:
-  entity: valve
-  class: water
-  name: Valve 1
-  dps:
-    - id: 1
-      type: boolean
-      name: valve
-    - id: 12
-      type: string
-      name: operation
-secondary_entities:
+entities:
+  - entity: valve
+    class: water
+    name: Valve 1
+    dps:
+      - id: 1
+        type: boolean
+        name: valve
+      - id: 12
+        type: string
+        name: operation
   - entity: valve
     class: water
     name: Valve 2

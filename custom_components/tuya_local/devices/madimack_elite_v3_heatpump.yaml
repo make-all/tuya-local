@@ -1,78 +1,77 @@
 name: Madimack Elite V3 pool heatpump
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-          icon: "mdi:hvac-off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: auto
-              icon: "mdi:refresh-auto"
-              value: heat_cool
-            - dps_val: cold
-              icon: "mdi:snowflake"
-              value: cool
-            - dps_val: heating
-              icon: "mdi:hot-tub"
-              value: heat
-    - id: 2
-      name: mode
-      type: string
-      hidden: true
-    - id: 4
-      name: temperature
-      type: integer
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              range:
-                min: 60
-                max: 104
-      range:
-        min: 18
-        max: 40
-    # ^ in reality, the range is different for cool and auto
-    - id: 5
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: silence
-          value: sleep
-        - dps_val: power
-          value: comfort
-        - dps_val: boost
-          value: boost
-    - id: 6
-      name: temperature_unit
-      type: string
-      mapping:
-        - dps_val: f
-          value: F
-        - dps_val: c
-          value: C
-    - id: 21
-      type: integer
-      name: max_temperature
-    - id: 22
-      type: integer
-      name: min_temperature
-    - id: 102
-      name: current_temperature
-      type: integer
-    - id: 101
-      name: unknown_101
-      type: integer
-    - id: 107
-      name: unknown_107
-      type: boolean
-secondary_entities:
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+            icon: "mdi:hvac-off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                icon: "mdi:refresh-auto"
+                value: heat_cool
+              - dps_val: cold
+                icon: "mdi:snowflake"
+                value: cool
+              - dps_val: heating
+                icon: "mdi:hot-tub"
+                value: heat
+      - id: 2
+        name: mode
+        type: string
+        hidden: true
+      - id: 4
+        name: temperature
+        type: integer
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                range:
+                  min: 60
+                  max: 104
+        range:
+          min: 18
+          max: 40
+      # ^ in reality, the range is different for cool and auto
+      - id: 5
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: silence
+            value: sleep
+          - dps_val: power
+            value: comfort
+          - dps_val: boost
+            value: boost
+      - id: 6
+        name: temperature_unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+      - id: 21
+        type: integer
+        name: max_temperature
+      - id: 22
+        type: integer
+        name: min_temperature
+      - id: 102
+        name: current_temperature
+        type: integer
+      - id: 101
+        name: unknown_101
+        type: integer
+      - id: 107
+        name: unknown_107
+        type: boolean
   - entity: binary_sensor
     class: problem
     category: diagnostic

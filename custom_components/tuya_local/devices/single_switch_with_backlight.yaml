@@ -1,13 +1,12 @@
 name: Single Switch With Backlight
 products:
   - id: gbdzignerqxddcuj
-primary_entity:
-  entity: switch
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-secondary_entities:
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
   - entity: number
     class: duration
     translation_key: timer

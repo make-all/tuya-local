@@ -1,47 +1,46 @@
 name: "Electriq CD25PRO-LE-V2 dehumidifier"
 legacy_type: electriq_dehumidifier
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-      mapping:
-        - dps_val: false
-          icon: "mdi:air-humidifier-off"
-          icon_priority: 1
-        - dps_val: true
-          icon: "mdi:air-humidifier"
-          icon_priority: 3
-    - id: 2
-      name: mode
-      type: string
-      mapping:
-        - dps_val: auto
-          value: auto
-        - dps_val: low
-          value: eco
-        - dps_val: high
-          value: boost
-          icon: "mdi:tshirt-crew-outline"
-          icon_priority: 2
-        - dps_val: fan
-          value: purify
-          icon: "mdi:air-purifier"
-          icon_priority: 2
-    - id: 3
-      type: integer
-      name: current_humidity
-    - id: 4
-      type: integer
-      name: humidity
-      range:
-        min: 35
-        max: 80
-      mapping:
-        - step: 5
-secondary_entities:
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+        mapping:
+          - dps_val: false
+            icon: "mdi:air-humidifier-off"
+            icon_priority: 1
+          - dps_val: true
+            icon: "mdi:air-humidifier"
+            icon_priority: 3
+      - id: 2
+        name: mode
+        type: string
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: low
+            value: eco
+          - dps_val: high
+            value: boost
+            icon: "mdi:tshirt-crew-outline"
+            icon_priority: 2
+          - dps_val: fan
+            value: purify
+            icon: "mdi:air-purifier"
+            icon_priority: 2
+      - id: 3
+        type: integer
+        name: current_humidity
+      - id: 4
+        type: integer
+        name: humidity
+        range:
+          min: 35
+          max: 80
+        mapping:
+          - step: 5
   - entity: fan
     translation_only_key: fan_with_presets
     dps:

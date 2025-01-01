@@ -1,58 +1,57 @@
 name: Panel heater
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: heat
-    - id: 2
-      type: integer
-      name: temperature
-      range:
-        min: 0
-        max: 37
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: temp_set_f
-              range:
-                min: 32
-                max: 99
-    - id: 3
-      type: integer
-      name: current_temperature
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: cur_temp_f
-    - id: 13
-      type: string
-      name: temperature_unit
-      mapping:
-        - dps_val: c
-          value: C
-        - dps_val: f
-          value: F
-    - id: 14
-      type: integer
-      name: temp_set_f
-      range:
-        min: 32
-        max: 99
-      hidden: true
-    - id: 15
-      type: integer
-      name: cur_temp_f
-      hidden: true
-secondary_entities:
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 0
+          max: 37
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_set_f
+                range:
+                  min: 32
+                  max: 99
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: cur_temp_f
+      - id: 13
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 14
+        type: integer
+        name: temp_set_f
+        range:
+          min: 32
+          max: 99
+        hidden: true
+      - id: 15
+        type: integer
+        name: cur_temp_f
+        hidden: true
   - entity: select
     translation_key: temperature_unit
     category: config

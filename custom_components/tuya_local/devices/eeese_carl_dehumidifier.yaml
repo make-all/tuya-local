@@ -1,35 +1,34 @@
 name: Eeese Carl dehumidifier
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 2
-      name: humidity
-      type: integer
-      range:
-        min: 25
-        max: 80
-      mapping:
-        - step: 5
-    - id: 4
-      name: mode
-      type: string
-      mapping:
-        - dps_val: manual
-          value: normal
-        - dps_val: auto
-          value: auto
-        - dps_val: laundry
-          value: laundry
-        - dps_val: purify
-          value: purify
-    - id: 16
-      type: integer
-      name: current_humidity
-secondary_entities:
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: humidity
+        type: integer
+        range:
+          min: 25
+          max: 80
+        mapping:
+          - step: 5
+      - id: 4
+        name: mode
+        type: string
+        mapping:
+          - dps_val: manual
+            value: normal
+          - dps_val: auto
+            value: auto
+          - dps_val: laundry
+            value: laundry
+          - dps_val: purify
+            value: purify
+      - id: 16
+        type: integer
+        name: current_humidity
   - entity: binary_sensor
     translation_key: tank_full
     category: diagnostic

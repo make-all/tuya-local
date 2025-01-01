@@ -2,17 +2,16 @@ name: 3 outlet + USB powerstrip
 products:
   - id: ivd9p236skiaqdrk
     name: Qnect QN-WP03
-primary_entity:
-  entity: switch
-  translation_key: outlet_x
-  translation_placeholders:
-    x: "1"
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+entities:
+  - entity: switch
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "1"
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: switch
     translation_key: outlet_x
     translation_placeholders:

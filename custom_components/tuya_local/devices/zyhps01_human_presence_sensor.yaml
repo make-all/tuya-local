@@ -3,20 +3,19 @@ products:
   - id: wzp9yjsobanavsut
     name: ZY-HPS01-5.8G
 
-primary_entity:
-  entity: binary_sensor
-  class: motion
-  dps:
-    - id: 101
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: presence
-          value: true
-        - dps_val: none
-          value: false
+entities:
+  - entity: binary_sensor
+    class: motion
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: presence
+            value: true
+          - dps_val: none
+            value: false
 
-secondary_entities:
   - entity: sensor
     class: illuminance
     dps:

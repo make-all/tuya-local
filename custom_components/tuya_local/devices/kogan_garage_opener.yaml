@@ -1,29 +1,28 @@
 name: Kogan garage door
-primary_entity:
-  entity: cover
-  class: garage
-  dps:
-    - id: 101
-      name: control
-      type: string
-      mapping:
-        - dps_val: "fopen"
-          value: "open"
-        - dps_val: "fclose"
-          value: "close"
-    - id: 102
-      name: action
-      type: string
-      mapping:
-        - dps_val: openning
-          value: opening
-        - dps_val: opened
-          value: opened
-        - dps_val: closing
-          value: closing
-        - dps_val: closed
-          value: closed
-secondary_entities:
+entities:
+  - entity: cover
+    class: garage
+    dps:
+      - id: 101
+        name: control
+        type: string
+        mapping:
+          - dps_val: "fopen"
+            value: "open"
+          - dps_val: "fclose"
+            value: "close"
+      - id: 102
+        name: action
+        type: string
+        mapping:
+          - dps_val: openning
+            value: opening
+          - dps_val: opened
+            value: opened
+          - dps_val: closing
+            value: closing
+          - dps_val: closed
+            value: closed
   - entity: sensor
     class: battery
     category: diagnostic

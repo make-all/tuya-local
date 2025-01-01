@@ -2,31 +2,30 @@ name: Monitor light bar
 products:
   - id: oqtk22eg6jxorl78
     name: Ustellar UT99911-RGB
-primary_entity:
-  entity: light
-  name: Front White LED
-  icon: "mdi:wall-sconce-flat-outline"
-  dps:
-    - id: 101
-      type: boolean
-      name: switch
-    - id: 22
-      name: brightness
-      type: integer
-      range:
-        min: 10
-        max: 1000
-    - id: 23
-      type: integer
-      name: color_temp
-      mapping:
-        - target_range:
-            min: 2700
-            max: 6500
-      range:
-        min: 0
-        max: 1000
-secondary_entities:
+entities:
+  - entity: light
+    name: Front White LED
+    icon: "mdi:wall-sconce-flat-outline"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        type: integer
+        name: color_temp
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+        range:
+          min: 0
+          max: 1000
   - entity: light
     name: Rear RGB LED
     icon: "mdi:wall-sconce-flat-variant-outline"

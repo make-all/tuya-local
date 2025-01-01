@@ -2,67 +2,66 @@ name: Light
 products:
   - id: 8ugheslg
     name: PowerAsia RGB 6 Inch recessed
-primary_entity:
-  entity: light
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    # Most of the non-switch dps are write-only on this device, so there will
-    # be no feedback, but we can allow blind control as far as possible
-    - id: 2
-      name: color_mode
-      type: string
-      optional: true
-      mapping:
-        - dps_val: white
-          value: color_temp
-        - dps_val: colour
-          value: hs
-        - dps_val: scene
-          value: Scene
-        - dps_val: music
-          value: Music
-    - id: 3
-      name: brightness
-      type: integer
-      optional: true
-      range:
-        min: 10
-        max: 1000
-    - id: 4
-      name: color_temp
-      type: integer
-      optional: true
-      range:
-        min: 0
-        max: 1000
-      mapping:
-        - target_range:
-            min: 2700
-            max: 6500
-    - id: 11
-      name: color_data_raw
-      type: string
-      optional: true
-      # format unknown
-    - id: 109
-      type: string
-      optional: true
-      name: scene_data
-    - id: 113
-      type: string
-      optional: true
-      name: switch_gradient
-    - id: 121
-      type: string
-      optional: true
-      name: music_data
-    - id: 123
-      type: base64
-      optional: true
-      name: device_info
-secondary_entities:
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      # Most of the non-switch dps are write-only on this device, so there will
+      # be no feedback, but we can allow blind control as far as possible
+      - id: 2
+        name: color_mode
+        type: string
+        optional: true
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 3
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 10
+          max: 1000
+      - id: 4
+        name: color_temp
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 11
+        name: color_data_raw
+        type: string
+        optional: true
+        # format unknown
+      - id: 109
+        type: string
+        optional: true
+        name: scene_data
+      - id: 113
+        type: string
+        optional: true
+        name: switch_gradient
+      - id: 121
+        type: string
+        optional: true
+        name: music_data
+      - id: 123
+        type: base64
+        optional: true
+        name: device_info
   - entity: light
     name: White
     category: config

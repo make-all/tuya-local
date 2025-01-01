@@ -1,20 +1,19 @@
 name: Indoor temperature humidity
-primary_entity:
-  entity: sensor
-  class: temperature
-  dps:
-    - id: 1
-      type: integer
-      name: sensor
-      unit: C
-      class: measurement
-    - id: 23
-      type: integer
-      name: unknown_23
-    - id: 24
-      type: integer
-      name: unknown_24
-secondary_entities:
+entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+      - id: 23
+        type: integer
+        name: unknown_23
+      - id: 24
+        type: integer
+        name: unknown_24
   - entity: sensor
     class: humidity
     dps:

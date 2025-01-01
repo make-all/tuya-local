@@ -1,132 +1,131 @@
 name: Saswell T29UTK-7-S-(TY) thermostat
-primary_entity:
-  entity: climate
-  translation_only_key: thermostat
-  dps:
-    - id: 1
-      name: power
-      type: boolean
-    - id: 2
-      name: temperature
-      type: integer
-      range:
-        min: 50
-        max: 350
-      mapping:
-        - scale: 10
-          step: 5
-          constraint: temperature_unit
-          conditions:
-            - dps_val: "F"
-              step: 10
-              range:
-                min: 410
-                max: 950
-    - id: 3
-      name: current_temperature
-      type: integer
-      mapping:
-        - scale: 10
-    - id: 4
-      name: hvac_mode
-      type: string
-      mapping:
-        - dps_val: cold
-          value: cool
-          icon: "mdi:thermometer-minus"
-          constraint: configuration
-          conditions:
-            - dps_val: "2"
-              invalid: true
-        - dps_val: hot
-          value: heat
-          icon: "mdi:thermometer-plus"
-          constraint: configuration
-          conditions:
-            - dps_val: "1"
-              invalid: true
-        - dps_val: "off"
-          value: "off"
-          icon: "mdi:thermometer-off"
-    - id: 5
-      name: fan_mode
-      type: string
-      mapping:
-        - dps_val: auto
-          value: auto
-        - dps_val: "on"
-          value: "on"
-    - id: 19
-      name: temperature_unit
-      type: string
-      mapping:
-        - dps_val: F
-          value: F
-        - dps_val: C
-          value: C
-    - id: 101
-      name: preset_mode
-      type: boolean
-      mapping:
-        - dps_val: true
-          value: away
-        - dps_val: false
-          constraint: program
-          conditions:
-            - dps_val: true
-              value: program
-            - dps_val: false
-              value: manual
-    - id: 102
-      name: program
-      type: boolean
-      hidden: true
-    - id: 103
-      name: hvac_action
-      type: string
-      mapping:
-        - dps_val: cold
-          constraint: power
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: cooling
-        - dps_val: hot
-          constraint: power
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: heating
-    - id: 112
-      name: configuration
-      type: string
-      mapping:
-        - dps_val: "1"
-          value: "cooling"
-        - dps_val: "2"
-          value: "heating"
-        - dps_val: "3"
-          value: "heat/cool"
-        - dps_val: "5"
-          value: "heatpump"
-    - id: 113
-      name: unknown_113
-      type: integer
-    - id: 114
-      name: temperature_c
-      type: integer
-    - id: 115
-      name: current_temperature_c
-      type: integer
-    - id: 116
-      name: temperature_f
-      type: integer
-    - id: 117
-      name: current_temperature_f
-      type: integer
-secondary_entities:
+entities:
+  - entity: climate
+    translation_only_key: thermostat
+    dps:
+      - id: 1
+        name: power
+        type: boolean
+      - id: 2
+        name: temperature
+        type: integer
+        range:
+          min: 50
+          max: 350
+        mapping:
+          - scale: 10
+            step: 5
+            constraint: temperature_unit
+            conditions:
+              - dps_val: "F"
+                step: 10
+                range:
+                  min: 410
+                  max: 950
+      - id: 3
+        name: current_temperature
+        type: integer
+        mapping:
+          - scale: 10
+      - id: 4
+        name: hvac_mode
+        type: string
+        mapping:
+          - dps_val: cold
+            value: cool
+            icon: "mdi:thermometer-minus"
+            constraint: configuration
+            conditions:
+              - dps_val: "2"
+                invalid: true
+          - dps_val: hot
+            value: heat
+            icon: "mdi:thermometer-plus"
+            constraint: configuration
+            conditions:
+              - dps_val: "1"
+                invalid: true
+          - dps_val: "off"
+            value: "off"
+            icon: "mdi:thermometer-off"
+      - id: 5
+        name: fan_mode
+        type: string
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: "on"
+            value: "on"
+      - id: 19
+        name: temperature_unit
+        type: string
+        mapping:
+          - dps_val: F
+            value: F
+          - dps_val: C
+            value: C
+      - id: 101
+        name: preset_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: away
+          - dps_val: false
+            constraint: program
+            conditions:
+              - dps_val: true
+                value: program
+              - dps_val: false
+                value: manual
+      - id: 102
+        name: program
+        type: boolean
+        hidden: true
+      - id: 103
+        name: hvac_action
+        type: string
+        mapping:
+          - dps_val: cold
+            constraint: power
+            conditions:
+              - dps_val: false
+                value: "off"
+              - dps_val: true
+                value: cooling
+          - dps_val: hot
+            constraint: power
+            conditions:
+              - dps_val: false
+                value: "off"
+              - dps_val: true
+                value: heating
+      - id: 112
+        name: configuration
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: "cooling"
+          - dps_val: "2"
+            value: "heating"
+          - dps_val: "3"
+            value: "heat/cool"
+          - dps_val: "5"
+            value: "heatpump"
+      - id: 113
+        name: unknown_113
+        type: integer
+      - id: 114
+        name: temperature_c
+        type: integer
+      - id: 115
+        name: current_temperature_c
+        type: integer
+      - id: 116
+        name: temperature_f
+        type: integer
+      - id: 117
+        name: current_temperature_f
+        type: integer
   - entity: select
     translation_key: temperature_unit
     category: config

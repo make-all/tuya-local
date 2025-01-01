@@ -2,27 +2,26 @@ name: Dehumidifier
 products:
   - id: pxlnsbmh6jdqh35n
     name: Qlima D812
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 3
-      type: string
-      name: humidity
-      mapping:
-        - dps_val: "30"
-          value: 30
-        - dps_val: "40"
-          value: 40
-        - dps_val: "50"
-          value: 50
-        # not listed in device properties, but exists in device
-        - dps_val: "60"
-          value: 60
-secondary_entities:
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: string
+        name: humidity
+        mapping:
+          - dps_val: "30"
+            value: 30
+          - dps_val: "40"
+            value: 40
+          - dps_val: "50"
+            value: 50
+          # not listed in device properties, but exists in device
+          - dps_val: "60"
+            value: 60
   - entity: select
     translation_key: timer
     category: config

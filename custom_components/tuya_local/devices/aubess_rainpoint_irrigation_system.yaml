@@ -2,14 +2,13 @@ name: Irrigation system
 products:
   - id: 2ak7r2culspkc7hx
     name: Aubess RainPoint TTP106W
-primary_entity:
-  entity: valve
-  class: water
-  dps:
-    - id: 1
-      name: valve
-      type: boolean
-secondary_entities:
+entities:
+  - entity: valve
+    class: water
+    dps:
+      - id: 1
+        name: valve
+        type: boolean
   - entity: switch
     icon: "mdi:pipe-valve"
     deprecated: valve

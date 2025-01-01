@@ -2,20 +2,19 @@ name: Dual energy meter
 products:
   - id: jbarpbsikxovmxeg
     name: Bidirectional 2-way CT clamp
-primary_entity:
-  entity: sensor
-  class: energy
-  name: Total active energy
-  category: diagnostic
-  dps:
-    - id: 107
-      type: integer
-      name: sensor
-      unit: kWh
-      class: total_increasing
-      mapping:
-        - scale: 100
-secondary_entities:
+entities:
+  - entity: sensor
+    class: energy
+    name: Total active energy
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
   - entity: sensor
     class: power
     category: diagnostic

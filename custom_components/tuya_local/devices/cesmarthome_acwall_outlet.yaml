@@ -2,13 +2,12 @@ name: Wall outlet
 products:
   - id: xca2lqfaztnmk5jh
     name: CE Smart Home LQ-2-W3
-primary_entity:
-  entity: switch
-  dps:
-    - id: 101
-      name: switch
-      type: boolean
-secondary_entities:
+entities:
+  - entity: switch
+    dps:
+      - id: 101
+        name: switch
+        type: boolean
   - entity: number
     category: config
     class: duration
