@@ -1,50 +1,49 @@
 name: HDMI sync light
-primary_entity:
-  entity: light
-  dps:
-    - id: 20
-      type: boolean
-      name: switch
-      optional: true
-      persist: false
-      mapping:
-        - dps_val: null
-          value: false
-    - id: 21
-      type: string
-      name: color_mode
-      mapping:
-        - dps_val: white
-          value: white
-        - dps_val: colour
-          value: hs
-      optional: true
-    - id: 22
-      type: integer
-      name: brightness
-      range:
-        min: 0
-        max: 1000
-    - id: 24
-      type: hex
-      name: rgbhsv
-      format:
-        - name: h
-          bytes: 2
-          range:
-            min: 0
-            max: 360
-        - name: s
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-        - name: v
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-secondary_entities:
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+        optional: true
+        persist: false
+        mapping:
+          - dps_val: null
+            value: false
+      - id: 21
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: white
+            value: white
+          - dps_val: colour
+            value: hs
+        optional: true
+      - id: 22
+        type: integer
+        name: brightness
+        range:
+          min: 0
+          max: 1000
+      - id: 24
+        type: hex
+        name: rgbhsv
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
   - entity: select
     name: Scene
     icon: "mdi:palette"

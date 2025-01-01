@@ -2,13 +2,12 @@ name: Aroma diffuser
 products:
   - id: izm17rnzcc2akjis
     name: Tesla TSL-AC-JS01W
-primary_entity:
-  entity: switch
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: fan
     translation_key: aroma_diffuser
     dps:

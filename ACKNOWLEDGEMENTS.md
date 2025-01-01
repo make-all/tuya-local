@@ -793,3 +793,4 @@ Further device support has been made with the assistance of users. Please consid
 - [merlin051](https://github.com/merlin051) for assisting with support for Mayborn GroClock Connect.
 - [Sk1nnyDoc](https://github.com/Sk1nnyDoc) for assisting with support for PowerAsia RGB 6-inch recessed lighting.
 - [Fuechslein](https://github.com/Fuechslein) for contributing support for a second version of Petoneer Fresco Hydrate Ultra.
+- [stevanov](https://github.com/stevanov) for assisting with support for Etna VW644MC dishwasher.

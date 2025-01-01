@@ -1,24 +1,23 @@
 name: Video intercom
-primary_entity:
-  entity: camera
-  dps:
-    - id: 150
-      name: record
-      type: boolean
-      optional: true
-      mapping:
-        - dps_val: null
-          value: false
-    - id: 154
-      name: snapshot
-      type: base64
-      optional: true
-      sensitive: true
-    - id: 191
-      name: smart_action
-      type: string
-      optional: true
-secondary_entities:
+entities:
+  - entity: camera
+    dps:
+      - id: 150
+        name: record
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+      - id: 154
+        name: snapshot
+        type: base64
+        optional: true
+        sensitive: true
+      - id: 191
+        name: smart_action
+        type: string
+        optional: true
   - entity: lock
     name: Lock 1
     dps:

@@ -4,14 +4,13 @@ products:
     name: Mirabella Genio door/window sensor
   - id: 7jIGJAymiH8OsFFb
     name: Zigbee door sensor
-primary_entity:
-  entity: binary_sensor
-  class: door
-  dps:
-    - id: 101
-      type: boolean
-      name: sensor
-secondary_entities:
+entities:
+  - entity: binary_sensor
+    class: door
+    dps:
+      - id: 101
+        type: boolean
+        name: sensor
   - entity: sensor
     class: battery
     category: diagnostic

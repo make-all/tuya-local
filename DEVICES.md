@@ -409,6 +409,7 @@
 - Ciarra CBCS4850 range hood
 - Casdon TD Pro 2 oven
 - Cecofry 5500 Connected air fryer
+- Etna VW644MC dishwasher
 - Inkbird iBBQ-4BW cooking probe thermometer
 - Inkbird iBBQ-4T cooking probe thermometer (separate and combined measurement variants)
 - Inkbird IBS-M1S temperature probe hub

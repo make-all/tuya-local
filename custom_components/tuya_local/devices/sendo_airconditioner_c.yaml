@@ -1,63 +1,62 @@
 name: Sendo air conditioner C
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: cold
-              value: cool
-            - dps_val: hot
-              value: heat
-            - dps_val: wet
-              value: dry
-            - dps_val: wind
-              value: fan_only
-            - dps_val: auto
-              value: heat_cool
-    - id: 2
-      name: temperature
-      type: integer
-      mapping:
-        - scale: 10
-          step: 10
-      range:
-        min: 160
-        max: 320
-        # for F, 600 to 900
-      unit: C
-    - id: 3
-      name: current_temperature
-      type: integer
-      mapping:
-        - scale: 10
-    - id: 4
-      name: mode
-      type: string
-      hidden: true
-    - id: 8
-      name: preset_mode
-      type: boolean
-      mapping:
-        - dps_val: true
-          value: eco
-        - dps_val: false
-          value: comfort
-    - id: 33
-      name: swing_mode
-      type: boolean
-      mapping:
-        - dps_val: true
-          value: horizontal
-        - dps_val: false
-          value: "off"
-secondary_entities:
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: cold
+                value: cool
+              - dps_val: hot
+                value: heat
+              - dps_val: wet
+                value: dry
+              - dps_val: wind
+                value: fan_only
+              - dps_val: auto
+                value: heat_cool
+      - id: 2
+        name: temperature
+        type: integer
+        mapping:
+          - scale: 10
+            step: 10
+        range:
+          min: 160
+          max: 320
+          # for F, 600 to 900
+        unit: C
+      - id: 3
+        name: current_temperature
+        type: integer
+        mapping:
+          - scale: 10
+      - id: 4
+        name: mode
+        type: string
+        hidden: true
+      - id: 8
+        name: preset_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: eco
+          - dps_val: false
+            value: comfort
+      - id: 33
+        name: swing_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: horizontal
+          - dps_val: false
+            value: "off"
   - entity: switch
     name: Emergency heat
     icon: "mdi:fire"

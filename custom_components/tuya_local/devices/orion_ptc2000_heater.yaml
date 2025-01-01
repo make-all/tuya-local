@@ -1,47 +1,46 @@
 name: Orion Heater
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: true
-          value: "heat"
-        - dps_val: false
-          value: "off"
-    - id: 2
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 18
-        max: 45
-    - id: 3
-      type: integer
-      name: current_temperature
-    - id: 5
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: "1"
-          value: eco
-        - dps_val: "2"
-          value: boost
-        - dps_val: "auto"
-          value: comfort
-        - dps_val: "off"
-          value: none
-    - id: 101
-      type: boolean
-      name: swing_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: "on"
-secondary_entities:
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: true
+            value: "heat"
+          - dps_val: false
+            value: "off"
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 18
+          max: 45
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 5
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: "1"
+            value: eco
+          - dps_val: "2"
+            value: boost
+          - dps_val: "auto"
+            value: comfort
+          - dps_val: "off"
+            value: none
+      - id: 101
+        type: boolean
+        name: swing_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
   - entity: select
     translation_key: timer
     category: config

@@ -1,31 +1,30 @@
 name: "DH-CSK03W Dehumidifier"
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 2
-      name: humidity
-      type: integer
-      range:
-        min: 40
-        max: 70
-      mapping:
-        - step: 5
-    - id: 5
-      name: mode
-      type: string
-      mapping:
-        - dps_val: "mode_strong"
-          value: "boost"
-        - dps_val: "mode_sleep"
-          value: "sleep"
-    - id: 6
-      type: integer
-      name: current_humidity
-secondary_entities:
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: humidity
+        type: integer
+        range:
+          min: 40
+          max: 70
+        mapping:
+          - step: 5
+      - id: 5
+        name: mode
+        type: string
+        mapping:
+          - dps_val: "mode_strong"
+            value: "boost"
+          - dps_val: "mode_sleep"
+            value: "sleep"
+      - id: 6
+        type: integer
+        name: current_humidity
   - entity: select
     translation_key: timer
     category: config

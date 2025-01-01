@@ -4,17 +4,16 @@ products:
     name: Atorch AT2PL
   - id: sq1ahfxhgove4kgo
     name: Atorch GR2PWS
-primary_entity:
-  entity: switch
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 17
-      type: integer
-      optional: true
-      name: add_ele
-secondary_entities:
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 17
+        type: integer
+        optional: true
+        name: add_ele
   - entity: number
     translation_key: timer
     class: duration

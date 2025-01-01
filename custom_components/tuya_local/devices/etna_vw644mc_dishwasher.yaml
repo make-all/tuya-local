@@ -1,7 +1,7 @@
 name: Dishwasher
-# products:
-#  - id: UNKNOWN
-#    name: Klarstein Amazonia
+products:
+  - id: hmwl5vpd1zanu6ma
+    name: Etna VW644MC
 entities:
   - entity: switch
     icon: "mdi:dishwasher"
@@ -49,6 +49,8 @@ entities:
         type: string
         name: option
         mapping:
+          - dps_val: neutral
+            value: neutral
           - dps_val: eco
             value: eco
           - dps_val: "90min"
@@ -57,12 +59,20 @@ entities:
             value: glass
           - dps_val: rapid
             value: rapid
+          - dps_val: auto
+            value: auto
           - dps_val: intensive
             value: intensive
+          - dps_val: hygiene
+            value: hygiene
           - dps_val: universal
             value: universal
-          - dps_val: babycare
-            value: babycare
+          - dps_val: soak
+            value: soak
+          - dps_val: self_cleaning
+            value: self_clean
+          - dps_val: party
+            value: party
   - entity: sensor
     translation_key: time_remaining
     class: duration
@@ -112,15 +122,28 @@ entities:
             value: standby
   - entity: sensor
     class: temperature
+    category: diagnostic
     dps:
       - id: 17
         type: integer
         name: sensor
         unit: C
         class: measurement
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        optional: true
+        name: lock
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
   - entity: switch
-    name: Timer set
-    icon: "mdi:clock-check"
+    name: Delayed start
+    icon: "mdi:clock"
     category: config
     dps:
       - id: 102
@@ -139,7 +162,7 @@ entities:
           - dps_val: false
             value: true
   - entity: binary_sensor
-    name: Rinse aid level
+    name: Rinse aid
     class: problem
     category: diagnostic
     dps:
@@ -147,27 +170,26 @@ entities:
         type: boolean
         name: sensor
   - entity: binary_sensor
-    name: Salt level
+    name: Salt
     class: problem
     category: diagnostic
     dps:
       - id: 105
         type: boolean
         name: sensor
-  - entity: binary_sensor
-    name: Water flow
-    class: problem
-    category: diagnostic
-    dps:
-      - id: 106
-        type: boolean
-        name: sensor
-  - entity: switch
+  - entity: button
     name: Pause
-    icon: "mdi:play-pause"
-    category: config
+    icon: "mdi:pause"
     dps:
       - id: 107
+        type: boolean
+        name: button
+  - entity: switch
+    name: Auto open
+    icon: "mdi:door-open"
+    category: config
+    dps:
+      - id: 110
         type: boolean
         name: switch
   - entity: select

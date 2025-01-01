@@ -16,15 +16,14 @@ name: Dual water timer
 products:
   - id: fdrbxxbg
     name: Diivoo WT-05
-primary_entity:
-  entity: valve
-  class: water
-  name: Valve 1
-  dps:
-    - id: 105
-      type: boolean
-      name: valve
-secondary_entities:
+entities:
+  - entity: valve
+    class: water
+    name: Valve 1
+    dps:
+      - id: 105
+        type: boolean
+        name: valve
   - entity: valve
     class: water
     name: Valve 2

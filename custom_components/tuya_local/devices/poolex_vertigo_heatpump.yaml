@@ -1,37 +1,36 @@
 name: Poolex Vertigo FI heatpump
-primary_entity:
-  entity: climate
-  translation_only_key: pool_heatpump
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: "heat"
-    - id: 2
-      name: temperature
-      type: integer
-      unit: C
-      range:
-        min: 8
-        max: 40
-    - id: 3
-      name: current_temperature
-      type: integer
-    - id: 4
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: "cool"
-          value: smart_cool
-        - dps_val: heat
-          value: smart_heat
-        - dps_val: silent
-          value: quiet_heat
-secondary_entities:
+entities:
+  - entity: climate
+    translation_only_key: pool_heatpump
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "heat"
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 8
+          max: 40
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 4
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: "cool"
+            value: smart_cool
+          - dps_val: heat
+            value: smart_heat
+          - dps_val: silent
+            value: quiet_heat
   - entity: binary_sensor
     name: Water flow
     class: problem

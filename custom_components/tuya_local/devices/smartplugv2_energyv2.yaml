@@ -6,30 +6,29 @@ products:
     name: Moes ME322
   - id: ncwuazeo5y1pujun
     name: STY-63TM
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 21
-      type: integer
-      name: test_bit
-      optional: true
-    - id: 42
-      type: string
-      name: cycle_timer
-      optional: true
-    - id: 43
-      type: string
-      name: random_timer
-      optional: true
-    - id: 44
-      type: string
-      name: inching
-      optional: true
-secondary_entities:
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 21
+        type: integer
+        name: test_bit
+        optional: true
+      - id: 42
+        type: string
+        name: cycle_timer
+        optional: true
+      - id: 43
+        type: string
+        name: random_timer
+        optional: true
+      - id: 44
+        type: string
+        name: inching
+        optional: true
   - entity: number
     category: config
     class: duration

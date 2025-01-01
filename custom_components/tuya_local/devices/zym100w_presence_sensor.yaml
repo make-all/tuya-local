@@ -2,18 +2,17 @@ name: mmWave presence sensor
 products:
   - id: 4cjzlliucdjaanvl
     name: ZY-M100-WIFI24G
-primary_entity:
-  entity: binary_sensor
-  class: motion
-  dps:
-    - id: 1
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: move
-          value: true
-        - value: false
-secondary_entities:
+entities:
+  - entity: binary_sensor
+    class: motion
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: move
+            value: true
+          - value: false
   - entity: number
     name: Sensitivity
     category: config

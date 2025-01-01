@@ -1,45 +1,45 @@
-name: Wilfa Haze
+name: Humidifier
 products:
   - id: 7naqdm8whbezn28v
-primary_entity:
-  entity: humidifier
-  class: humidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-      mapping:
-        - dps_val: true
-          icon: "mdi:air-humidifier"
-        - dps_val: false
-          icon: "mdi:air-humidifier-off"
-    - id: 13
-      name: humidity
-      type: integer
-      range:
-        min: 30
-        max: 90
-      mapping:
-        - step: 5
-          constraint: mode
-          conditions:
-            - dps_val: auto
-              invalid: true
-    - id: 14
-      type: integer
-      name: current_humidity
-    - id: 24
-      type: string
-      name: mode
-      mapping:
-        - dps_val: auto
-          value: auto
-        - dps_val: humidity
-          value: normal
-    - id: 20
-      type: integer
-      name: unknown_20
-secondary_entities:
+    name: Wilfa Haze
+entities:
+  - entity: humidifier
+    class: humidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+        mapping:
+          - dps_val: true
+            icon: "mdi:air-humidifier"
+          - dps_val: false
+            icon: "mdi:air-humidifier-off"
+      - id: 13
+        name: humidity
+        type: integer
+        range:
+          min: 30
+          max: 90
+        mapping:
+          - step: 5
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                invalid: true
+      - id: 14
+        type: integer
+        name: current_humidity
+      - id: 24
+        type: string
+        name: mode
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: humidity
+            value: normal
+      - id: 20
+        type: integer
+        name: unknown_20
   - entity: fan
     dps:
       - id: 1

@@ -6,13 +6,12 @@ products:
     name: GE Jasco Ultra Pro
   - id: nobhkdmuof1zhgle
     name: Loratap QCRR400W-WB2S
-primary_entity:
-  entity: light
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-secondary_entities:
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
   - entity: select
     category: config
     translation_key: initial_state

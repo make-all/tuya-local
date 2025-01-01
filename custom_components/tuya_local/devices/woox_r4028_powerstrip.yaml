@@ -1,16 +1,15 @@
 name: 3 outlet + USB powerstrip
 legacy_type: tellur_usb_power_strip
-primary_entity:
-  entity: switch
-  translation_key: outlet_x
-  translation_placeholders:
-    x: "1"
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+entities:
+  - entity: switch
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "1"
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: switch
     translation_key: outlet_x
     translation_placeholders:

@@ -2,18 +2,17 @@ name: Climate sensor
 products:
   - id: a476raq2
     name: MultiIR Zigbee TE100-TY
-primary_entity:
-  entity: sensor
-  class: humidity
-  dps:
-    - id: 101
-      type: integer
-      name: sensor
-      unit: "%"
-      class: measurement
-      mapping:
-        - scale: 100
-secondary_entities:
+entities:
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 100
   - entity: sensor
     class: temperature
     dps:

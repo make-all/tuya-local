@@ -1,25 +1,24 @@
 name: Energy monitoring circuit breaker
-primary_entity:
-  entity: switch
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 115
-      type: string
-      name: serial_number
-    - id: 118
-      type: integer
-      name: RkWh
-    - id: 119
-      type: base64
-      name: historical_voltage
-      optional: true
-    - id: 120
-      type: base64
-      name: historical_current
-      optional: true
-secondary_entities:
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 115
+        type: string
+        name: serial_number
+      - id: 118
+        type: integer
+        name: RkWh
+      - id: 119
+        type: base64
+        name: historical_voltage
+        optional: true
+      - id: 120
+        type: base64
+        name: historical_current
+        optional: true
   - entity: number
     class: duration
     translation_key: timer

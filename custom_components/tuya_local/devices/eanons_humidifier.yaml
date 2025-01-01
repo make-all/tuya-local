@@ -1,37 +1,36 @@
 name: Eanons/pureenjoy humidifier
-primary_entity:
-  entity: humidifier
-  class: humidifier
-  dps:
-    - id: 3
-      name: timer_hr
-      type: string
-    - id: 4
-      name: timer_min
-      type: integer
-    - id: 10
-      name: switch
-      type: boolean
-    - id: 12
-      name: mode
-      type: string
-      mapping:
-        - dps_val: sleep
-          value: sleep
-        - dps_val: humidity
-          value: auto
-        - dps_val: work
-          value: normal
-    - id: 15
-      name: humidity
-      type: integer
-      range:
-        min: 40
-        max: 90
-    - id: 16
-      name: current_humidity
-      type: integer
-secondary_entities:
+entities:
+  - entity: humidifier
+    class: humidifier
+    dps:
+      - id: 3
+        name: timer_hr
+        type: string
+      - id: 4
+        name: timer_min
+        type: integer
+      - id: 10
+        name: switch
+        type: boolean
+      - id: 12
+        name: mode
+        type: string
+        mapping:
+          - dps_val: sleep
+            value: sleep
+          - dps_val: humidity
+            value: auto
+          - dps_val: work
+            value: normal
+      - id: 15
+        name: humidity
+        type: integer
+        range:
+          min: 40
+          max: 90
+      - id: 16
+        name: current_humidity
+        type: integer
   - entity: fan
     name: Intensity
     dps:

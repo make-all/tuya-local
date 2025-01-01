@@ -6,20 +6,19 @@ products:
     name: GiotoHun Pet feeder
   - id: ojqmjnoxqygqldsp
     name: PUPPY KITTY Automatic Cat & Dog Feeder
-primary_entity:
-  entity: button
-  name: Quick Feed
-  icon: "mdi:food-drumstick"
-  dps:
-    - id: 2
-      type: boolean
-      name: button
-      optional: true
-    - id: 1
-      name: meal_plan
-      type: string
-      optional: true
-secondary_entities:
+entities:
+  - entity: button
+    name: Quick Feed
+    icon: "mdi:food-drumstick"
+    dps:
+      - id: 2
+        type: boolean
+        name: button
+        optional: true
+      - id: 1
+        name: meal_plan
+        type: string
+        optional: true
   - entity: sensor
     icon: "mdi:paw"
     name: Feed report
