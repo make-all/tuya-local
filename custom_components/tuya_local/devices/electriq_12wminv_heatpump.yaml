@@ -1,118 +1,111 @@
 name: ElectriQ 12WMINV heatpump
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: cold
-              value: cool
-            - dps_val: wind
-              value: fan_only
-            - dps_val: wet
-              value: dry
-            - dps_val: hot
-              value: heat
-            - dps_val: auto
-              value: heat_cool
-    - id: 2
-      name: temperature
-      type: integer
-      unit: C
-      range:
-        min: 16
-        max: 32
-    - id: 3
-      name: current_temperature
-      type: integer
-    - id: 4
-      name: mode
-      type: string
-      hidden: true
-    - id: 5
-      name: fan_mode
-      type: integer
-      mapping:
-        - dps_val: 1
-          value: auto
-          constraint: mode
-          conditions:
-            - dps_val: wet
-              invalid: true
-        - dps_val: 2
-          value: top
-          constraint: mode
-          conditions:
-            - dps_val: wet
-              invalid: true
-        - dps_val: 3
-          value: low
-          constraint: mode
-          conditions:
-            - dps_val: wet
-              invalid: true
-        - dps_val: 4
-          value: medium
-          constraint: mode
-          conditions:
-            - dps_val: wet
-              invalid: true
-        - dps_val: 5
-          value: high
-          constraint: mode
-          conditions:
-            - dps_val: wet
-              invalid: true
-    - id: 8
-      name: unknown_8
-      type: boolean
-    - id: 12
-      name: unknown_12
-      type: boolean
-    - id: 102
-      name: unknown_102
-      type: boolean
-    - id: 103
-      name: unknown_103
-      type: boolean
-    - id: 106
-      name: swing_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          constraint: horiz_swing
-          conditions:
-            - dps_val: false
-              value: "off"
-            - dps_val: true
-              value: horizontal
-        - dps_val: true
-          constraint: horiz_swing
-          conditions:
-            - dps_val: false
-              value: vertical
-            - dps_val: true
-              value: both
-    - id: 107
-      name: horiz_swing
-      type: boolean
-      hidden: true
-    - id: 108
-      name: unknown_108
-      type: integer
-    - id: 109
-      name: unknown_109
-      type: integer
-    - id: 110
-      name: unknown_110
-      type: integer
-secondary_entities:
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: cold
+                value: cool
+              - dps_val: wind
+                value: fan_only
+              - dps_val: wet
+                value: dry
+              - dps_val: hot
+                value: heat
+              - dps_val: auto
+                value: heat_cool
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 16
+          max: 32
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 4
+        name: mode
+        type: string
+        hidden: true
+      - id: 5
+        name: fan_mode
+        type: integer
+        mapping:
+          - dps_val: 1
+            value: auto
+            constraint: mode
+            conditions:
+              - dps_val: wet
+                invalid: true
+          - dps_val: 2
+            value: top
+            constraint: mode
+            conditions:
+              - dps_val: wet
+                invalid: true
+          - dps_val: 3
+            value: low
+            constraint: mode
+            conditions:
+              - dps_val: wet
+                invalid: true
+          - dps_val: 4
+            value: medium
+            constraint: mode
+            conditions:
+              - dps_val: wet
+                invalid: true
+          - dps_val: 5
+            value: high
+            constraint: mode
+            conditions:
+              - dps_val: wet
+                invalid: true
+      - id: 8
+        name: unknown_8
+        type: boolean
+      - id: 12
+        name: unknown_12
+        type: boolean
+      - id: 102
+        name: unknown_102
+        type: boolean
+      - id: 103
+        name: unknown_103
+        type: boolean
+      - id: 106
+        name: swing_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
+      - id: 107
+        name: swing_horizontal_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "on"
+          - dps_val: false
+            value: "off"
+      - id: 108
+        name: unknown_108
+        type: integer
+      - id: 109
+        name: unknown_109
+        type: integer
+      - id: 110
+        name: unknown_110
+        type: integer
   - entity: switch
     translation_key: sleep
     dps:

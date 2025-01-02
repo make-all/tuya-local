@@ -18,6 +18,7 @@ from homeassistant.components.climate.const import (
     ATTR_HVAC_ACTION,
     ATTR_HVAC_MODE,
     ATTR_PRESET_MODE,
+    ATTR_SWING_HORIZONTAL_MODE,
     ATTR_SWING_MODE,
     ATTR_TARGET_TEMP_HIGH,
     ATTR_TARGET_TEMP_LOW,
@@ -34,9 +35,9 @@ from homeassistant.const import (
 )
 
 from .device import TuyaLocalDevice
+from .entity import TuyaLocalEntity, unit_from_ascii
 from .helpers.config import async_tuya_setup_platform
 from .helpers.device_config import TuyaEntityConfig
-from .helpers.mixin import TuyaLocalEntity, unit_from_ascii
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -84,6 +85,10 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         self._hvac_mode_dps = dps_map.pop(ATTR_HVAC_MODE, None)
         self._hvac_action_dps = dps_map.pop(ATTR_HVAC_ACTION, None)
         self._preset_mode_dps = dps_map.pop(ATTR_PRESET_MODE, None)
+        self._swing_horizontal_mode_dps = dps_map.pop(
+            ATTR_SWING_HORIZONTAL_MODE,
+            None,
+        )
         self._swing_mode_dps = dps_map.pop(ATTR_SWING_MODE, None)
         self._temperature_dps = dps_map.pop(ATTR_TEMPERATURE, None)
         self._temp_high_dps = dps_map.pop(ATTR_TARGET_TEMP_HIGH, None)
@@ -108,7 +113,8 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
             self._attr_supported_features |= ClimateEntityFeature.PRESET_MODE
         if self._swing_mode_dps:
             self._attr_supported_features |= ClimateEntityFeature.SWING_MODE
-
+        if self._swing_horizontal_mode_dps:
+            self._attr_supported_features |= ClimateEntityFeature.SWING_HORIZONTAL_MODE
         if self._temp_high_dps and self._temp_low_dps:
             self._attr_supported_features |= (
                 ClimateEntityFeature.TARGET_TEMPERATURE_RANGE
@@ -416,6 +422,28 @@ class TuyaLocalClimate(TuyaLocalEntity, ClimateEntity):
         if self._swing_mode_dps is None:
             raise NotImplementedError()
         await self._swing_mode_dps.async_set_value(self._device, swing_mode)
+
+    @property
+    def swing_horizontal_mode(self):
+        """Return the current horizontal swing mode."""
+        if self._swing_horizontal_mode_dps is None:
+            raise NotImplementedError()
+        return self._swing_horizontal_mode_dps.get_value(self._device)
+
+    @property
+    def swing_horizontal_modes(self):
+        """Return the list of swing modes that this device supports."""
+        if self._swing_horizontal_mode_dps:
+            return self._swing_horizontal_mode_dps.values(self._device)
+
+    async def async_set_swing_horizontal_mode(self, swing_mode):
+        """Set the preset mode."""
+        if self._swing_horizontal_mode_dps is None:
+            raise NotImplementedError()
+        await self._swing_horizontal_mode_dps.async_set_value(
+            self._device,
+            swing_mode,
+        )
 
     @property
     def fan_mode(self):

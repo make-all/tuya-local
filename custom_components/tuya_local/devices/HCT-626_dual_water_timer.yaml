@@ -2,15 +2,14 @@ name: Dual water timer
 products:
   - id: smd9kj1n
     name: HCT-626
-primary_entity:
-  entity: valve
-  name: Valve 1
-  class: water
-  dps:
-    - id: 1
-      type: boolean
-      name: valve
-secondary_entities:
+entities:
+  - entity: valve
+    name: Valve 1
+    class: water
+    dps:
+      - id: 1
+        type: boolean
+        name: valve
   - entity: valve
     name: Valve 2
     class: water
@@ -22,6 +21,7 @@ secondary_entities:
     translation_key: timer_x
     translation_placeholders:
       x: "1"
+    class: duration
     category: config
     dps:
       - id: 17
@@ -38,6 +38,7 @@ secondary_entities:
     translation_key: timer_x
     translation_placeholders:
       x: "2"
+    class: duration
     category: config
     dps:
       - id: 18

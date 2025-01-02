@@ -4,15 +4,15 @@ products:
     name: Novadigital switch
   - id: vxo9yezswiumvync
     name: PST WT-E1
-primary_entity:
-  entity: switch
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-secondary_entities:
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 7

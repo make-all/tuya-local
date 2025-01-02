@@ -1,20 +1,21 @@
-name: SmartMCB SMT006-8 energy meter
+name: Energy meter
 products:
   - id: 3xhdofmeo6lgpvd5
+    name: SmartMCB SMT006-8
   - id: i5mqmxkho1vahdt2
-primary_entity:
-  entity: switch
-  icon: "mdi:fuse"
-  name: Breaker
-  dps:
-    - id: 16
-      type: boolean
-      name: switch
-    - id: 19
-      type: string
-      name: breaker_number
-      optional: true
-secondary_entities:
+    name: SmartMCB SMT006-8
+entities:
+  - entity: switch
+    icon: "mdi:fuse"
+    name: Breaker
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+      - id: 19
+        type: string
+        name: breaker_number
+        optional: true
   - entity: sensor
     class: energy
     dps:
@@ -108,7 +109,6 @@ secondary_entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Voltage A
     class: voltage
     category: diagnostic
     dps:
@@ -121,7 +121,6 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Current A
     class: current
     category: diagnostic
     dps:
@@ -134,7 +133,6 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Power A
     class: power
     category: diagnostic
     dps:
@@ -166,3 +164,19 @@ secondary_entities:
         unit: mA
         class: measurement
         optional: true
+  - entity: number
+    name: Charge energy
+    category: config
+    class: energy_storage
+    icon: "mdi:cash"
+    dps:
+      - id: 14
+        type: integer
+        name: value
+        unit: kWh
+        optional: true
+        range:
+          min: 0
+          max: 999999
+        mapping:
+          - scale: 100

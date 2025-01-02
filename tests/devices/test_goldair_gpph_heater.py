@@ -1,5 +1,6 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.climate.const import ClimateEntityFeature, HVACMode
+from homeassistant.components.number import NumberDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import (
     PERCENTAGE,
@@ -59,6 +60,7 @@ class TestGoldairHeater(
             self.entities.get("number_timer"),
             max=1440,
             step=60,
+            device_class=NumberDeviceClass.DURATION,
             unit=UnitOfTime.MINUTES,
         )
         self.setUpBasicSensor(

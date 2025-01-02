@@ -1,17 +1,16 @@
 name: Energy monitoring smartplug
 legacy_type: kogan_switch2
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 21
-      type: bitfield
-      name: factory_test
-      optional: true
-secondary_entities:
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 21
+        type: bitfield
+        name: factory_test
+        optional: true
   - entity: sensor
     category: diagnostic
     class: voltage
@@ -57,6 +56,7 @@ secondary_entities:
         optional: true
   - entity: number
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 9

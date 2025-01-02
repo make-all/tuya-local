@@ -2,13 +2,12 @@ name: Valve controller
 products:
   - id: nguto5atyd2xxnap
     name: ARD-100+ smart valve controller
-primary_entity:
-  entity: valve
-  dps:
-    - id: 1
-      type: boolean
-      name: valve
-secondary_entities:
+entities:
+  - entity: valve
+    dps:
+      - id: 1
+        type: boolean
+        name: valve
   - entity: switch
     icon: "mdi:valve"
     deprecated: valve
@@ -19,6 +18,7 @@ secondary_entities:
         name: switch
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 7
@@ -27,10 +27,7 @@ secondary_entities:
         range:
           min: 0
           max: 86400
-        unit: sec
-        mapping:
-          - scale: 1
-          - dps_val: null
+        unit: s
   - entity: select
     translation_key: initial_state
     category: config

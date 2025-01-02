@@ -1,64 +1,64 @@
 name: RGBW lightbulb
 products:
   - id: dik6z7of4nailf94
-primary_entity:
-  entity: light
-  dps:
-    - id: 20
-      type: boolean
-      name: switch
-    - id: 21
-      name: color_mode
-      type: string
-      mapping:
-        - dps_val: white
-          value: white
-        - dps_val: colour
-          value: hs
-        - dps_val: scene
-          value: Scene
-        - dps_val: music
-          value: Music
-    - id: 22
-      name: brightness
-      type: integer
-      range:
-        min: 10
-        max: 1000
-    - id: 24
-      name: rgbhsv
-      type: hex
-      format:
-        - name: h
-          bytes: 2
-          range:
-            min: 0
-            max: 360
-        - name: s
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-        - name: v
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-    - id: 25
-      name: scene
-      type: string
-      optional: true
-    - id: 27
-      name: music
-      type: string
-      optional: true
-    - id: 28
-      name: control_data
-      type: string
-      optional: true
-secondary_entities:
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        name: color_mode
+        type: string
+        mapping:
+          - dps_val: white
+            value: white
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 24
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 25
+        name: scene
+        type: string
+        optional: true
+      - id: 27
+        name: music
+        type: string
+        optional: true
+      - id: 28
+        name: control_data
+        type: string
+        optional: true
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 26

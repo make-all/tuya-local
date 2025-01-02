@@ -1,31 +1,31 @@
-name: Eeese Adam dehumidifier
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 2
-      name: humidity
-      type: integer
-      range:
-        min: 25
-        max: 80
-      mapping:
-        - step: 5
-    - id: 4
-      name: mode
-      type: string
-      mapping:
-        - dps_val: manual
-          value: normal
-        - dps_val: laundry
-          value: boost
-    - id: 16
-      type: integer
-      name: current_humidity
-secondary_entities:
+name: Dehumidifier
+legacy_type: eeese_emil_dehumidifier
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: humidity
+        type: integer
+        range:
+          min: 25
+          max: 80
+        mapping:
+          - step: 5
+      - id: 4
+        name: mode
+        type: string
+        mapping:
+          - dps_val: manual
+            value: normal
+          - dps_val: laundry
+            value: laundry
+      - id: 16
+        type: integer
+        name: current_humidity
   - entity: fan
     dps:
       - id: 1

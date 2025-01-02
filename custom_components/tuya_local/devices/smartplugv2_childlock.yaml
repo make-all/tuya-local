@@ -1,23 +1,23 @@
 name: Smartplug
-primary_entity:
-  entity: switch
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 41
-      type: string
-      name: cycle_timer
-      optional: true
-    - id: 42
-      type: string
-      name: random_timer
-      optional: true
-    - id: 43
-      type: string
-      name: inching
-secondary_entities:
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 41
+        type: string
+        name: cycle_timer
+        optional: true
+      - id: 42
+        type: string
+        name: random_timer
+        optional: true
+      - id: 43
+        type: string
+        name: inching
   - entity: number
+    class: duration
     translation_key: timer
     category: config
     dps:

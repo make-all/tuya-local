@@ -1,15 +1,15 @@
 name: ASC (Wi-Fi)
 products:
   - id: yrzel5nutomegk6z
-primary_entity:
-  entity: switch
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-secondary_entities:
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 7

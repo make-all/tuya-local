@@ -5,21 +5,20 @@ products:
   - id: uykwakpl6rbxvjdd
     name: ZG-205W/A
 
-primary_entity:
-  entity: binary_sensor
-  class: occupancy
-  dps:
-    - id: 1
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: presence
-          value: true
-        - dps_val: none
-          value: false
-          # - id: 111
-          #   name: breathingselftest
-secondary_entities:
+entities:
+  - entity: binary_sensor
+    class: occupancy
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: presence
+            value: true
+          - dps_val: none
+            value: false
+            # - id: 111
+            #   name: breathingselftest
   - entity: number
     name: Motion sensitivity
     category: config
@@ -159,6 +158,7 @@ secondary_entities:
   - entity: number
     name: Exit delay
     category: config
+    class: duration
     icon: mdi:timer-sand
     dps:
       - id: 108
@@ -172,6 +172,7 @@ secondary_entities:
   - entity: number
     name: Alarm duration
     category: config
+    class: duration
     icon: mdi:timer
     dps:
       - id: 109
@@ -233,6 +234,7 @@ secondary_entities:
   - entity: number
     name: Adaptive testing time
     category: config
+    class: duration
     icon: mdi:timer
     dps:
       - id: 113

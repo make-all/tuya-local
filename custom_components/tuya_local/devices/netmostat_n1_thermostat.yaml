@@ -1,39 +1,38 @@
 name: Netmostat N-1 thermostat
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: true
-          value: heat
-        - dps_val: false
-          value: "off"
-    - id: 2
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 50
-        max: 350
-      mapping:
-        - step: 5
-          scale: 10
-    - id: 3
-      type: integer
-      name: current_temperature
-      mapping:
-        - scale: 10
-    - id: 4
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: smart
-          value: comfort
-        - dps_val: antifreezing
-          value: away
-secondary_entities:
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: true
+            value: heat
+          - dps_val: false
+            value: "off"
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 50
+          max: 350
+        mapping:
+          - step: 5
+            scale: 10
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: smart
+            value: comfort
+          - dps_val: antifreezing
+            value: away
   - entity: lock
     translation_key: child_lock
     category: config

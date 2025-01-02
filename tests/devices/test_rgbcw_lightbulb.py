@@ -3,6 +3,7 @@ from homeassistant.components.light import (
     ColorMode,
     LightEntityFeature,
 )
+from homeassistant.components.number import NumberDeviceClass
 from homeassistant.const import UnitOfTime
 
 from ..const import RGBCW_LIGHTBULB_PAYLOAD
@@ -31,6 +32,7 @@ class TestRGBCWLightbulb(BasicNumberTests, TuyaDeviceTestCase):
             self.entities.get("number_timer"),
             max=1440.0,
             unit=UnitOfTime.MINUTES,
+            device_class=NumberDeviceClass.DURATION,
             scale=60,
         )
         self.mark_secondary(["number_timer", "select_scene"])

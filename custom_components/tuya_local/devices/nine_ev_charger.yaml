@@ -2,36 +2,35 @@ name: EV charger
 products:
   - id: bktb3jskdic1ar2t
     name: Nine 32A EV charger
-primary_entity:
-  entity: sensor
-  translation_key: status
-  icon: "mdi:ev-station"
-  class: enum
-  dps:
-    - id: 3  # work_state
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: charger_charging
-          value: charging
-        - dps_val: charger_free
-          value: available
-        - dps_val: charger_insert
-          value: plugged_in
-        - dps_val: charger_free_fault
-          value: fault_unplugged
-        - dps_val: charger_wait
-          value: waiting
-        - dps_val: charger_pause
-          value: paused
-        - dps_val: charger_end
-          value: charged
-        - dps_val: charger_fault
-          value: fault
-    - id: 23  # system_version
-      type: string
-      name: system_version
-secondary_entities:
+entities:
+  - entity: sensor
+    translation_key: status
+    icon: "mdi:ev-station"
+    class: enum
+    dps:
+      - id: 3  # work_state
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: charger_charging
+            value: charging
+          - dps_val: charger_free
+            value: available
+          - dps_val: charger_insert
+            value: plugged_in
+          - dps_val: charger_free_fault
+            value: fault_unplugged
+          - dps_val: charger_wait
+            value: waiting
+          - dps_val: charger_pause
+            value: paused
+          - dps_val: charger_end
+            value: charged
+          - dps_val: charger_fault
+            value: fault
+      - id: 23  # system_version
+        type: string
+        name: system_version
   - entity: number
     name: Charging current
     category: config
@@ -132,7 +131,9 @@ secondary_entities:
           - dps_val: charge_delay
             value: Delayed charge
   - entity: sensor
-    name: Voltage A
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
     class: voltage
     dps:
       - id: 6  # phase_1
@@ -144,7 +145,9 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Current A
+    translation_key: current_x
+    translation_placeholders:
+      x: A
     class: current
     dps:
       - id: 6  # phase_1
@@ -156,7 +159,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Power A
+    translation_key: power_x
+    translation_placeholders:
+      x: A
     class: power
     dps:
       - id: 6  # phase_1
@@ -168,7 +173,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Voltage B
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
     class: voltage
     dps:
       - id: 7  # phase_1
@@ -180,7 +187,9 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Current B
+    translation_key: current_x
+    translation_placeholders:
+      x: B
     class: current
     dps:
       - id: 7  # phase_1
@@ -192,7 +201,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Power B
+    translation_key: power_x
+    translation_placeholders:
+      x: B
     class: power
     dps:
       - id: 7  # phase_1
@@ -204,7 +215,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Voltage C
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
     class: voltage
     dps:
       - id: 8  # phase_1
@@ -216,7 +229,9 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Current C
+    translation_key: current_x
+    translation_placeholders:
+      x: C
     class: current
     dps:
       - id: 8  # phase_1
@@ -228,7 +243,9 @@ secondary_entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: Power C
+    translation_key: power_x
+    translation_placeholders:
+      x: C
     class: power
     dps:
       - id: 8  # phase_1
@@ -241,6 +258,7 @@ secondary_entities:
           - scale: 1000
   - entity: number
     name: Charge time
+    class: duration
     category: config
     icon: "mdi:timer"
     dps:

@@ -1,24 +1,23 @@
 name: Smartplug
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 21
-      name: factory_test
-      type: bitfield
-    - id: 41
-      name: cycle_time
-      type: base64
-    - id: 42
-      name: random_time
-      type: base64
-    - id: 43
-      name: inching
-      type: base64
-secondary_entities:
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 21
+        name: factory_test
+        type: bitfield
+      - id: 41
+        name: cycle_time
+        type: base64
+      - id: 42
+        name: random_time
+        type: base64
+      - id: 43
+        name: inching
+        type: base64
   - entity: sensor
     name: Energy
     category: diagnostic
@@ -80,6 +79,7 @@ secondary_entities:
         optional: true
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 9

@@ -2,20 +2,18 @@ name: Ceiling fan
 # products:
 #   - id: UNKNOWN
 #     name: Atomberg Gorilla Fan V2
-primary_entity:
-  entity: fan
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 3
-      type: integer
-      name: speed
-      range:
-        min: 1
-        max: 5
-
-secondary_entities:
+entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 5
   - entity: light
     translation_key: nightlight
     dps:
@@ -37,6 +35,7 @@ secondary_entities:
         name: switch
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 102

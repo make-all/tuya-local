@@ -1,12 +1,11 @@
 name: MoesHouse RGB socket
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 101
-      type: boolean
-      name: switch
-secondary_entities:
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
   - entity: light
     translation_key: nightlight
     dps:
@@ -76,6 +75,7 @@ secondary_entities:
         type: hex
   - entity: number
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 102

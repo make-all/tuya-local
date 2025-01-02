@@ -1,21 +1,21 @@
 name: Windcalm Ceiling Fan
-primary_entity:
-  entity: fan
-  dps:
-    - id: 60
-      type: boolean
-      name: switch
-    - id: 62
-      type: integer
-      name: speed
-      range:
-        min: 1
-        max: 6
-    - id: 63
-      type: string
-      name: direction
-secondary_entities:
+entities:
+  - entity: fan
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 62
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 6
+      - id: 63
+        type: string
+        name: direction
   - entity: number
+    class: duration
     translation_key: timer
     category: config
     dps:

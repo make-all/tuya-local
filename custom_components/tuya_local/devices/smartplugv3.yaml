@@ -1,23 +1,23 @@
 name: Advanced energy monitoring smartplug
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 21
-      type: integer
-      name: test_bit
-    - id: 41
-      type: string
-      name: cycle_timer
-    - id: 42
-      type: string
-      name: random_timer
-secondary_entities:
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 21
+        type: integer
+        name: test_bit
+      - id: 41
+        type: string
+        name: cycle_timer
+      - id: 42
+        type: string
+        name: random_timer
   - entity: number
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 9

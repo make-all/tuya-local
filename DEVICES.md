@@ -125,6 +125,7 @@
 ### Pool heaters / heat pumps
 
 - BWT FI 45 heat pump
+- Edge Theory Labs cold plunge heat pump
 - Evotherm ETI series heat pump
 - Fairland IPHCR15 pool heat pump (allows control of heat/cool modes)
 - Fairland RMIC06 pool heat pump
@@ -133,7 +134,7 @@
 - Madimack Eco pool heat pump
 - Madimack Elite V3 pool heat pump (two versions)
 - Madimack(model unknown) pool heat pump (seems to match Fairland IPH45 as well)
-- Poolex Silverline, Q-7, Q-line, Arctic and Vertigo heat pumps
+- Poolex Silverline, Q-7, Q-line, Arctic, Vertigo, and Ice Spa heat pumps
 - Poolsana InverPower Next pool heat pump
 - Pool Systems IPS Pro pool heat pump (also Fairland Inver-X)
 - Pro-Energy PE08 pool heat pump
@@ -148,12 +149,14 @@
 ### Water heaters
 
 - Aquatech Rapid/X6 heat pump water heater
+- Axen KS-100W/EN8BP combo heat pump (rebranded as Arielli)
 - Deakon EVI DC inverter heat pump
 - EMS Thermal 200L domestic heat pump hot water system
 - Ferroli Titano Twin water heater
 - Fisher air to water heat pump
 - Geyserwise TSE1 Geyser controller kit
 - Giatsu VAW 2 heat pump water heater
+- HY multifunctional heat pump V1.2
 - Hydrotherm Dynamic/X8 heat pump hot water systems (Gen 5 and 6)
 - ITS-4.5HD super water heat pump
 - Koi Duo HTW-TD-080KOID
@@ -184,13 +187,17 @@
 - BHT-002-GALW thermostat _(rebadged as many different brands)_
 - BHT-002-GABW thermostat _(some compatible with GALW, others subtly different)_
 - Brade MC6 thermostat _(rebadged as many different brands)_
+- Dr Heater DR-008 electric radiant floor thermostat
+- EARU Electronic K6H-3A-W thermostat
 - ETOP-FCU thermostat (Jaga JRT-100TW)
 - ETOP-HP thermostat (CH7100)
 - ETOP-HT thermostat
+- EZAIoT R9Lite thermostat
 - EZAIoT thermostat smartplug
 - Hysen HY02TP thermostat
 - Hysen HY08ACF thermostat
 - Hysen HY08WE-2 thermostat
+- Hysen HY101RF thermostat
 - Inkbird IPT-2CH v2.0 reptile thermostat
 - Inkbird ITC306A thermostat smartplug
 - Inkbird ITC308 thermostat smartplug
@@ -220,6 +227,7 @@
 
 ### Fans
 
+- Aeratron AE3+ ceiling fan (may match other Aeratron models with same WiFi module)
 - Amico 52" ceiling fan with light
 - Anko HEGSM40 fan
 - Arlec ceiling fan and light remote control kit (CFR225HA also works for Sulion Cadillac)
@@ -230,6 +238,7 @@
 - Aspen ASP 200 fan
 - Atomberg Gorilla fan V2
 - Atomi 52 inch ceiling fan
+- Aygrochy ventilation duct fan
 - Breville AirDynamic 3D pedestal fan
 - Brilliant Ceiling fan with light
 - Calibo Cloudfan DC ceiling fan with light
@@ -259,6 +268,7 @@
 - Klarstein Skyscaper Ice cooling fan
 - Ledkia fan and light controller
 - Lexy F501 fan
+- Lucci Connect Wi-Fi fan remote
 - KCvents VT501-W heat recovery ventilation
 - Keyun MKCFE002 RGB chandelier fan
 - Kogan bladeless fans
@@ -271,6 +281,7 @@
 - Princess DC pedestal fan
 - Reiga ceiling fans with and without light
 - Royal Clima RCB 150 ventilation system
+- Scheeair Nova 100 ventilation fan
 - Skyfan DC fan
 - Skyfan DC fan with light
 - Smart Mist3 TX-1602MF (ZJ-1522A-WiFi)
@@ -299,6 +310,7 @@
 - Klarta Stor 2 air purifier
 - Kogan air purifier
 - Lifubide X600 air purifier
+- Morento HY4866-WF air purifier
 - NAC AP470 air purifier
 - NX-100AP Rapid air purifier
 - Poiema One air purifier
@@ -321,9 +333,11 @@
 - AlecoAir D16 purifying dehumidifier
 - AlecoAir D25 Traditio dehumidifier
 - Argo Dry Pury Evo WF dehumidifier
+- Cecotec BigDry 4000 dehumidifier
 - Cleverio AD100 dehumidifier
 - DH-CSK03W dehumidifier
 - Ebac DJ4000 dehumidifier
+- Eberg Rico R12E2 dehumidifier
 - ElectriQ CD12PRO-LE dehumidifier
 - ElectriQ CD12PW dehumidifier
 - ElectriQ CD12PWv2 dehumidifier
@@ -351,7 +365,9 @@
 - Luko dehumidifier
 - MeacoDry Arete Two 10L dehumidifier
 - Pro Breeze 30L dehumidifier
+- Qlima D812 and D820A dehumidifiers
 - Shinco 30D dehumidifier (also matches Klarstein DryFy Connect)
+- Siguro SGR DH-F300W dehumidifier
 - Sygonix Smarter dehumidifier
 - Tesla Smart XL dehumidifier
 - VacPlus dehumidifier
@@ -395,6 +411,7 @@
 - Ciarra CBCS4850 range hood
 - Casdon TD Pro 2 oven
 - Cecofry 5500 Connected air fryer
+- Etna VW644MC dishwasher
 - Inkbird iBBQ-4BW cooking probe thermometer
 - Inkbird iBBQ-4T cooking probe thermometer (separate and combined measurement variants)
 - Inkbird IBS-M1S temperature probe hub
@@ -442,6 +459,7 @@
 - Stepuptech SPD800 solar inverter
 - Taxnele circuit breaker and energy meter
 - TOMPD-63LW energy meter circuit breaker
+- TOMPD-63-WIFI energy meter circuit breaker
 - Tongou QCB2-WB WiFi 4P circuit breaker (3-phase and single phase variants)
 - Tongou SMR1 circuit breaker
 - Tongou ST463JWT 4P 3-phase circuit breaker
@@ -451,7 +469,8 @@
 - WDYK 2P63A energy meter circuit breaker
 - WDYK 3 phase 4 pole 400V energy meter circuit breaker
 - WDYK 4P100A energy meter circuit breaker
-- Yagusmart 3PN 63A 3-phase eneregy meter
+- Xoca DAC2121C BI energy meter
+- Yagusmart 3PN 63A 3-phase multi-tariff energy meter
 - Zemismart SDM01-TW0-12-ZM 3-phase bidirectional energy meter
 - ZM-Wi-Fi smart meter
 
@@ -586,8 +605,10 @@ of device.
 - Unbranded 1CH dimmer module
 - Unbranded dual dimmer module
 - A60 1800-2700K RGBWW light
+- Asahom S105A-C outdoor lighting
 - Atomi smart color string light
 - Blitzwolf BW-LT31 LED strip
+- Brizlabs string lights
 - Calex S45 Clear E27 lightbulb
 - Deltaco LED Strip (SH-LW5M)
 - Deta/Arlec motion sensor lights (DET100HA/DET102HA/MAL315HA)
@@ -610,6 +631,7 @@ of device.
 - Loycco sound machine with nightlight (also sold as Momland nightlight with white noise)
 - Loginovo TV sync backlight
 - LSC Smart Connect CCT + RGB ceiling light
+- LSC Smart Connect garden spotlights
 - LSC smart connect RGB CCT lightbulb (similar to older generic bulbs, so may work for others)
 - Lytmi Fantasy/Neo 3 HDMI sync backlight
 - Malmbergs QS-WIFI-D02-TRIAC single dimmer module
@@ -624,11 +646,13 @@ of device.
 - Newone WF39M dimmer smartplug
 - Nince RGB LED strip
 - Peteme recessed lighting
+- PowerAsia RGB 6-inch recessed lighting
 - Richelieu tunable white LED puck light (166142030)
 - Spa Electrics Iris pool light controller
 - Space Dog Music Lamp (works for Aurora Smart Galaxy Star)
 - Tampa Magnetic LED System CD-TY-WY05
 - Teberno LED strip light (LGC-005 OEM3)
+- Tech Inc 3m neon strip
 - Treatlife outdoor dimmer with dual outlets
 - Ustellar UT99911 RGB monitor light bar
 - Xinled XLD-CL002 RGBCW lightbulb
@@ -725,6 +749,7 @@ work reliably, even if listed below.
 - BSTUOKEY access control keypad
 - Lucking HF06 smart lock
 - Orion Grid Connect smart lock
+- Sboard III mini Weigand access control interface
 - SmarDeer Lock33 smart lock
 - Tediton K7 smart lock
 - NovaDigital SL-06 smart lock
@@ -760,6 +785,7 @@ port and password.
 - Kerui 200W camera
 - Kerui JS-P162 300W camera
 - LSC PTZ camera
+- Moes PTZ indoor security camera
 - Nedis outdoor camera
 - Pinelake BF02 birdfeeder camera
 - RL video intercom (reported unable to connect)
@@ -780,6 +806,7 @@ port and password.
 ### Pet care
 
 - AF3W pet feeder
+- BNETA F1-D pet feeder (likely compatible with Petwant F1-C)
 - Catit Pixi smart fountain
 - Catit pet feeder (Pixi 2.2kg dispenser and 6 meal versions, and another non-Pixi branded single dispenser)
 - Ceres Plus pet feeder with camera
@@ -792,10 +819,11 @@ port and password.
 - iPettie W5 pet feeder
 - Leo's Loo Too pet toilet
 - Littepets MA2 series Cute Baby cat litter box
+- Mypin 6L Video pet feeder
 - Nedis pet feeder
 - Petlibro PLAF103 pet feeder
 - Petlibro PLAF203 pet feeder with camera
-- Petoneer Fresco Hydrate Ultra pet fountain
+- Petoneer Fresco Hydrate Ultra pet fountain (2 versions)
 - Petoneer Fresco Mini pet fountain
 - Petrust TK-WF002 pet fountain
 - PNI water feeder
@@ -827,6 +855,7 @@ port and password.
 - Holman WX1 tap timer (sprinkler controller)
 - Holman WX2 dual tap timer
 - Holman WX8 8 sprinkler irrigation controller
+- Neptun Smart water leak control system
 - Qoto 03 smart water valve / sprinkler controller
 - Qoto 05 smart water valve / sprinkler controller
 - SH07-8 / SH07S-TY smart sprinkler controller (sold as Aquarobo, Leictory LK06 and other brands)
@@ -852,6 +881,7 @@ port and password.
 - Goldair Platinum SleepSmart electric blanket
 - GratKit filament dryer
 - Haier Nayun NY-GS-04 combustible gas alarm
+- Houschen anti-fog bathroom mirror with lights
 - HRT AS90 temperature and humidity alarm
 - Holman Helios weather station
 - Inkbird PTH-9CW air quality monitor
@@ -860,6 +890,7 @@ port and password.
 - Kogan KAWHTNOSLPA white noise sleep aid
 - Konlen/Rockson WF96L water level controller
 - Madimack Inverflow Pro pool pump
+- Mayborn GroClock Connect sleep training alarm clock (also sold under Tommee Tippee and other brands)
 - Mirabella Genio motion sensor
 - Momcozy white noise machine (2 variants)
 - Nedis WIFISA10CWT air quality monitor
@@ -873,6 +904,7 @@ port and password.
 - SD123 HPR01 human presence radar
 - SNT957W-TDE temperature sensor
 - SNT957W-DE CBU temperature and humidity sensor
+- Speaka SP-TVCM-510 TV mount
 - Sunbeam dual heated mattress pad
 - SWS-001 smart weather station
 - TH08 temperature and humidity sensor
@@ -954,8 +986,9 @@ entity types as sub devices.
 - PY321-Z-TY energy meter
 - Temperature and humidity sensor with alarm feature
 - WL-898WZ water leak sensor
+- WL-RTCZ-05Z human presence sensor
 - Zemismart SPM01 energy meter
-- ZPmeter 214C-Z water meter
+- ZPmeter 214C-Z water meter (with and without valve control)
 
 - ZTH08ZTU temperature and humidity sensor
 

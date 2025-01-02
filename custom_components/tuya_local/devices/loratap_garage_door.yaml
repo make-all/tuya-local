@@ -3,24 +3,24 @@ products:
   - id: kksjmhr9nhjudvzo
     name: LoraTap GDC100W
   - id: keyftvxappyrem5a
-primary_entity:
-  entity: cover
-  class: garage
-  dps:
-    - id: 1
-      type: boolean
-      name: control
-      optional: true
-      mapping:
-        - dps_val: true
-          value: open
-        - dps_val: false
-          value: close
-    - id: 101
-      name: open
-      type: boolean
-secondary_entities:
+entities:
+  - entity: cover
+    class: garage
+    dps:
+      - id: 1
+        type: boolean
+        name: control
+        optional: true
+        mapping:
+          - dps_val: true
+            value: open
+          - dps_val: false
+            value: close
+      - id: 101
+        name: open
+        type: boolean
   - entity: number
+    class: duration
     translation_key: timer
     category: config
     dps:
@@ -36,6 +36,7 @@ secondary_entities:
             step: 60
   - entity: number
     name: Travel time
+    class: duration
     category: config
     icon: "mdi:timer"
     dps:
@@ -48,6 +49,7 @@ secondary_entities:
           max: 120
   - entity: number
     name: Alarm timer
+    class: duration
     category: config
     icon: "mdi:alarm"
     dps:

@@ -2,30 +2,29 @@ name: Curtain and lights
 products:
   - id: n76sxga6lyfujuac
     name: Avatto SYS-CL02
-primary_entity:
-  entity: cover
-  class: curtain
-  dps:
-    - id: 1
-      name: control
-      type: string
-      mapping:
-        - dps_val: open
-          value: open
-        - dps_val: close
-          value: close
-        - dps_val: stop
-          value: stop
-    - id: 2
-      name: position
-      type: integer
-      unit: "%"
-      range:
-        min: 0
-        max: 100
-      mapping:
-        - step: 10
-secondary_entities:
+entities:
+  - entity: cover
+    class: curtain
+    dps:
+      - id: 1
+        name: control
+        type: string
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 2
+        name: position
+        type: integer
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - step: 10
   - entity: light
     name: Light 1
     dps:
@@ -75,6 +74,7 @@ secondary_entities:
   - entity: number
     name: Travel time
     category: config
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 10
@@ -101,6 +101,7 @@ secondary_entities:
   - entity: number
     name: Light 1 timer
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 103
@@ -117,6 +118,7 @@ secondary_entities:
   - entity: number
     name: Light 2 timer
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 104

@@ -2,14 +2,13 @@ name: Dishwasher
 # products:
 #  - id: UNKNOWN
 #    name: Klarstein Amazonia
-primary_entity:
-  entity: switch
-  icon: "mdi:dishwasher"
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+entities:
+  - entity: switch
+    icon: "mdi:dishwasher"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: button
     name: Start
     icon: "mdi:play"
@@ -31,6 +30,7 @@ secondary_entities:
             value: true
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 6

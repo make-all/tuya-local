@@ -4,21 +4,22 @@ products:
     name: PC321-TY
   - id: 9rjjf6rdkca9woju
     name: PC321-TY 80A
-primary_entity:
-  entity: sensor
-  class: energy
-  dps:
-    - id: 131
-      type: integer
-      name: sensor
-      mapping:
-        - scale: 100
-      unit: kWh
-      class: total_increasing
-secondary_entities:
+entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 131
+        type: integer
+        name: sensor
+        mapping:
+          - scale: 100
+        unit: kWh
+        class: total_increasing
   - entity: sensor
     category: diagnostic
-    name: Voltage A
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
     class: voltage
     dps:
       - id: 101
@@ -32,7 +33,9 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     class: current
-    name: Current A
+    translation_key: current_x
+    translation_placeholders:
+      x: A
     dps:
       - id: 102
         name: sensor
@@ -45,7 +48,9 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     class: power
-    name: Power A
+    translation_key: power_x
+    translation_placeholders:
+      x: A
     dps:
       - id: 103
         name: sensor
@@ -76,7 +81,9 @@ secondary_entities:
           - scale: 100
   - entity: sensor
     category: diagnostic
-    name: Voltage B
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
     class: voltage
     dps:
       - id: 111
@@ -90,7 +97,9 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     class: current
-    name: Current B
+    translation_key: current_x
+    translation_placeholders:
+      x: B
     dps:
       - id: 112
         name: sensor
@@ -103,7 +112,9 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     class: power
-    name: Power B
+    translation_key: power_x
+    translation_placeholders:
+      x: B
     dps:
       - id: 113
         name: sensor
@@ -134,7 +145,9 @@ secondary_entities:
           - scale: 100
   - entity: sensor
     category: diagnostic
-    name: Voltage C
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
     class: voltage
     dps:
       - id: 121
@@ -148,7 +161,9 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     class: current
-    name: Current C
+    translation_key: current_x
+    translation_placeholders:
+      x: C
     dps:
       - id: 122
         name: sensor
@@ -161,7 +176,9 @@ secondary_entities:
   - entity: sensor
     category: diagnostic
     class: power
-    name: Power C
+    translation_key: power_x
+    translation_placeholders:
+      x: C
     dps:
       - id: 123
         name: sensor

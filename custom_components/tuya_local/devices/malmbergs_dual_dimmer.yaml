@@ -2,20 +2,19 @@ name: Dual dimmer
 products:
   - id: isstlkzmlurfcc6e
     name: Malmbergs QS-WIFI-D02-TRIAC-2C
-primary_entity:
-  entity: light
-  name: Dimmer 1
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      name: brightness
-      type: integer
-      range:
-        min: 10
-        max: 1000
-secondary_entities:
+entities:
+  - entity: light
+    name: Dimmer 1
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
   - entity: light
     name: Dimmer 2
     dps:
@@ -41,6 +40,7 @@ secondary_entities:
           max: 255
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 6
@@ -65,6 +65,7 @@ secondary_entities:
           min: 25
           max: 255
   - entity: number
+    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "2"

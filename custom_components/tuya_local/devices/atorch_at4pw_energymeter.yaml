@@ -2,17 +2,17 @@ name: Energy meter
 products:
   - id: tjtigg991kvoiiqi
     name: ATorch AT4PBWP
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: number
     category: config
     translation_key: timer
+    class: duration
     dps:
       - id: 9
         type: integer
@@ -305,6 +305,7 @@ secondary_entities:
   - entity: number
     category: config
     name: Overvoltage recovery delay
+    class: duration
     icon: "mdi:timer"
     dps:
       - id: 137

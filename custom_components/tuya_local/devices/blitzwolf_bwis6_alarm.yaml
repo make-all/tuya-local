@@ -2,28 +2,28 @@ name: Alarm system
 products:
   - id: gcymopbbssihh6h2
     name: BlitzWolf BW-IS6
-primary_entity:
-  entity: alarm_control_panel
-  dps:
-    - id: 1
-      type: string
-      name: alarm_state
-      mapping:
-        - dps_val: disarmed
-          value: disarmed
-        - dps_val: arm
-          value: arm_away
-        - dps_val: home
-          value: arm_home
-        - dps_val: sos
-          value: triggered
-    - id: 38
-      type: string
-      name: sub_admin
-secondary_entities:
+entities:
+  - entity: alarm_control_panel
+    dps:
+      - id: 1
+        type: string
+        name: alarm_state
+        mapping:
+          - dps_val: disarmed
+            value: disarmed
+          - dps_val: arm
+            value: arm_away
+          - dps_val: home
+            value: arm_home
+          - dps_val: sos
+            value: triggered
+      - id: 38
+        type: string
+        name: sub_admin
   - entity: number
     name: Exit delay
     category: config
+    class: duration
     icon: "mdi:timer-lock"
     dps:
       - id: 2
@@ -148,6 +148,7 @@ secondary_entities:
   - entity: number
     name: Entry delay
     category: config
+    class: duration
     icon: "mdi:timer-lock"
     dps:
       - id: 28

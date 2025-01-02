@@ -2,19 +2,18 @@ name: Dimmer smartplug
 products:
   - id: zbisbtukzuiifmp6
     name: Newone WF39M
-primary_entity:
-  entity: light
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      type: integer
-      name: brightness
-      range:
-        min: 10
-        max: 1000
-secondary_entities:
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
   - entity: select
     name: Light type
     icon: "mdi:lightbulb"
@@ -59,6 +58,7 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: number
+    class: duration
     translation_key: timer
     category: config
     dps:

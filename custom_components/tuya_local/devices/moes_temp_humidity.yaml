@@ -1,23 +1,26 @@
-name: Moes thermostat and hydrostat
+name: Thermostat and hydrostat
 products:
   - id: dlsdk5zvkuuhufpy
-primary_entity:
-  entity: switch
-  name: Main switch
-  category: config
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 24
-      type: string
-      name: cycle_time
-    - id: 106
-      type: string
-      name: unknown_106
-secondary_entities:
+    name: Moes MS-103
+entities:
   - entity: switch
-    name: Switch 1
+    name: Main switch
+    category: config
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 24
+        type: string
+        name: cycle_time
+      - id: 106
+        type: string
+        # Probe type detection
+        name: sensor_dect
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
     dps:
       - id: 2
         type: boolean
@@ -27,7 +30,9 @@ secondary_entities:
         type: hex
         name: auto_rules
   - entity: switch
-    name: Switch 2
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
     dps:
       - id: 3
         type: boolean
@@ -109,6 +114,7 @@ secondary_entities:
         mapping:
           - scale: 10
   - entity: number
+    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "1"
@@ -122,6 +128,7 @@ secondary_entities:
           min: 0
           max: 86400
   - entity: number
+    class: duration
     translation_key: timer_x
     translation_placeholders:
       x: "2"

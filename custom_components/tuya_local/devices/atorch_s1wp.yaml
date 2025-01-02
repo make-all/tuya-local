@@ -2,17 +2,17 @@ name: Energy monitoring plug with display
 products:
   - id: sqrf2g1amfutn4co
     name: Atorch S1WP
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-      optional: true
-secondary_entities:
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+        optional: true
   - entity: number
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 9
@@ -323,6 +323,7 @@ secondary_entities:
   - entity: number
     category: config
     name: Timing off time
+    class: duration
     translation_key: timer
     mode: slider
     dps:
@@ -338,6 +339,7 @@ secondary_entities:
   - entity: number
     category: config
     name: Timing on time
+    class: duration
     translation_key: timer
     mode: slider
     dps:
@@ -354,6 +356,7 @@ secondary_entities:
     category: config
     name: Timing loop on time
     translation_key: timer
+    class: duration
     mode: slider
     dps:
       - id: 127
@@ -369,6 +372,7 @@ secondary_entities:
     category: config
     name: Timing loop off time
     translation_key: timer
+    class: duration
     mode: slider
     dps:
       - id: 128
@@ -384,6 +388,7 @@ secondary_entities:
     category: config
     name: Timing countdown on time
     translation_key: timer
+    class: duration
     mode: slider
     dps:
       - id: 129
@@ -399,6 +404,7 @@ secondary_entities:
     category: config
     name: Timing countdown off time
     translation_key: timer
+    class: duration
     mode: slider
     dps:
       - id: 130
@@ -501,6 +507,7 @@ secondary_entities:
     category: config
     name: Overvoltage recovery delay
     icon: "mdi:timer"
+    class: duration
     dps:
       - id: 137
         type: integer

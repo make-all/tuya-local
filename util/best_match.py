@@ -3,19 +3,9 @@
 import json
 import sys
 
+from common_funcs import FakeDevice
+
 from custom_components.tuya_local.helpers.device_config import possible_matches
-
-
-class FakeDevice:
-    def __init__(self, dps):
-        self._dps = dps
-
-    def get_property(self, id):
-        return self._dps.get(id)
-
-    @property
-    def name(self):
-        return "cmdline"
 
 
 def main() -> int:
@@ -35,11 +25,7 @@ def main() -> int:
     for m in best_matches:
         dps_seen = set(dps.keys())
         print(f"{m.config_type} matched {m.match_quality(dps)}%")
-        print(f"  {m.primary_entity.config_id}:")
-        for dp in m.primary_entity.dps():
-            dps_seen.discard(dp.id)
-            print(f"   {dp.name}: {dp.get_value(device)}")
-        for entity in m.secondary_entities():
+        for entity in m.all_entities():
             print(f"  {entity.config_id}:")
             for dp in entity.dps():
                 dps_seen.discard(dp.id)

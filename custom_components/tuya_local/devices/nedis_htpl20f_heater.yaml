@@ -1,43 +1,42 @@
 name: Nedis smart convection heater
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: true
-          value: heat
-        - dps_val: false
-          value: "off"
-    - id: 2
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 15
-        max: 35
-    - id: 3
-      type: integer
-      name: current_temperature
-    - id: 4
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: "1"
-          value: eco
-        - dps_val: "2"
-          value: comfort
-        - dps_val: "3"
-          value: away
-    - id: 11
-      type: string
-      name: unknown_11
-    - id: 101
-      type: boolean
-      name: unknown_101
-secondary_entities:
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: true
+            value: heat
+          - dps_val: false
+            value: "off"
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 15
+          max: 35
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: "1"
+            value: eco
+          - dps_val: "2"
+            value: comfort
+          - dps_val: "3"
+            value: away
+      - id: 11
+        type: string
+        name: unknown_11
+      - id: 101
+        type: boolean
+        name: unknown_101
   - entity: lock
     translation_key: child_lock
     category: config
@@ -47,6 +46,7 @@ secondary_entities:
         name: lock
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 13

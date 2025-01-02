@@ -4,8 +4,7 @@ This directory contains device configuration files, describing the workings
 of supported devices. The files are in YAML format, and describe the mapping
 of Tuya DPs (Data Points) to HomeAssistant attributes.
 
-Each Tuya device may correspond to one primary entity and any number of
-secondary entities in Home Assistant.
+Each Tuya device may correspond to one or more entities in Home Assistant.
 
 ## The Top Level
 
@@ -34,37 +33,19 @@ when local discovery is implemented to discover products by id, this name will
 be displayed on discovery, and be available as manufacturer and model info
 in device settings.
 
-### `primary_entity`
+### `entities`
 
-This contains the configuration for one Home Assistant entity which is
-considered the main entity for the device. For example, if the device is
-a heater, this would be a climate entity.
+This contains a list of Home Assistant entities providing the functionality
+of the device.
 
-The configuration for entities is detailed in its own section below.
-
-### `secondary_entities`
-
-*Optional.*
-
-This contains a list of additional Home Assistant entities
-providing additional functionality beyond the capabilities of the primary
-entity. Examples include lighting control for display panels as a Home
-Assistant light entity, child locks as a Home Assistant lock entity,
-or additional toggles as Home Assistant switch entities.
-
-The configuration for secondary entities is the same as primary entities,
-and is detailed in the section below.
+The configuration for each entity in the list is detailed in the section below.
 
 ## Entity configuration
 
 ### `entity`
 
-The Home Assistant entity type being configured. Currently supported
-types are **climate**, **switch**, **light**, **lock**. Functionality
-for these entities is limited to that which has been required for the
-devices until now and may need to be extended for new devices. In
-particular, the light and lock entities have only been used for simple
-secondary entities, so only basic functionality is implemented.
+The Home Assistant entity type being configured. See the **Entity types**
+section below for details on specific requirements for each entity type.
 
 ### `class`
 
@@ -114,6 +95,29 @@ This specifies the `entity category` of the entity. Entities can be categorized
 as `config` or `diagnostic` to restrict where they appear automatically in
 Home Assistant.
 
+### `name`
+
+*Optional.*
+
+The name associated with this entity can be set here. If no name is
+set, it will inherit the name at the top level. This is mostly useful
+for overriding the name entities to give more information about the
+purpose of the entity, or to differentiate multiple entities of the
+same type.
+
+Where possible, `translation_key` should be used instead of an explicit name.
+
+### `mode`
+
+*Optional. For number entities, default="auto", for others, None*
+
+For number entities, this can be used to force `slider` or `box` as the
+input method. The default `auto` uses a slider if the range is small enough,
+or a box otherwise. It is recommended to let HA decide based on its own logic
+which mode to use, and override it in the UI settings rather than forcing
+your personal preference on others. But if an entity really does only make
+sense with one UI mode, then this is provided to handle those cases.
+
 ### `dps`
 
 This is a list of the definitions for the Tuya DPs associated with
@@ -122,23 +126,6 @@ supported DPs reported by the device.
 
 The configuration of DPs entries is detailed in its own section below.
 
-### `name`
-
-*Optional.*
-
-The name associated with this entity can be set here. If no name is set,
-it will inherit the name at the top level. This is mostly useful for
-overriding the name of secondary entities to give more information
-about the purpose of the entity, as the generic type with the top level
-name may not be sufficient to describe the function.
-
-### `mode`
-
-*Optional. For number entities, default="auto", for others, None*
-
-For number entities, this can be used to force `slider` or `box` as the
-input method. The default `auto` uses a slider if the range is small enough,
-or a box otherwise.
 
 ## DPs configuration
 
@@ -165,9 +152,9 @@ The type of data returned by the Tuya API. Can be one of the following:
 The name given to the attribute in Home Assistant. Certain names are used
 by the Home Assistant entities for specific purposes. If a name is not
 recognized as a standard attribute by the entitiy implementation, the
-attribute will be returned as a readonly custom attribute on the entity.
+attribute will be returned as a readonly extra attribute on the entity.
 If you need non-standard attributes to be able to be set, you will need
-to use a secondary entity for that.
+to use an entity for that (typically switch, number or select).
 
 ### `sensitive`
 
@@ -620,7 +607,9 @@ from the camera.
     `none, eco, away, boost, comfort, home, sleep, activity`
    There are also some presets defined by this integration for use with various `translation_key`s, see translations/en.json for details.
 - **swing_mode** (optional, mapping of strings) a dp to control swing modes of the device.
-   Possible values are: `"off", vertical, horizontal`
+   Standard values are: `"off", "on", vertical, horizontal, both`, non-standard values can also be used if needed.
+- **swing_horizontal_mode** (optional, mapping of strings) a dp to control horizontal swing independently of the vertical swing.
+   Standard values are: `"off", "on"`, non-standard values can also be used if needed.
 - **temperature** (optional, number) a dp to set the target temperature of the device.
       A unit may be specified as part of the attribute if a temperature_unit dp is not available, if not
       the default unit configured in HA will be used.

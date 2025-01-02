@@ -1,4 +1,5 @@
 from homeassistant.components.fan import FanEntityFeature
+from homeassistant.components.number import NumberDeviceClass
 from homeassistant.const import UnitOfTime
 
 from ..const import LEXY_F501_PAYLOAD
@@ -39,6 +40,7 @@ class TestLexyF501Fan(
             TIMER_DPS,
             self.entities.get("number_timer"),
             max=7,
+            device_class=NumberDeviceClass.DURATION,
             unit=UnitOfTime.HOURS,
         )
         self.setUpBasicSwitch(SWITCH_DPS, self.entities.get("switch_sound"))

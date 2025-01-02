@@ -2,24 +2,23 @@ name: Presence sensor
 products:
   - id: 19m3dfjwe46njety
     name: Wenzhi WZ35 MTG236-WF-RL 24GHz
-primary_entity:
-  entity: binary_sensor
-  class: occupancy
-  category: diagnostic
-  dps:
-    - id: 1
-      type: string
-      optional: true
-      name: sensor
-      mapping:
-        - dps_val: presence
-          value: true
-        - value: false
-    - id: 103
-      type: string
-      optional: true
-      name: cline
-secondary_entities:
+entities:
+  - entity: binary_sensor
+    class: occupancy
+    category: diagnostic
+    dps:
+      - id: 1
+        type: string
+        optional: true
+        name: sensor
+        mapping:
+          - dps_val: presence
+            value: true
+          - value: false
+      - id: 103
+        type: string
+        optional: true
+        name: cline
   - entity: number
     name: Sensitivity
     category: config
@@ -252,6 +251,7 @@ secondary_entities:
   - entity: number
     name: Re-entry delay
     category: config
+    class: duration
     icon: "mdi:camera-timer"
     dps:
       - id: 112

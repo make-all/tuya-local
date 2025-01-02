@@ -6,21 +6,21 @@ products:
     name: Arlec Smart 4W 380lm Candle Dimmable Bulb GLD060HA
   - id: aok3caeleulg1neh
     name: S10 wireless dimmer
-primary_entity:
-  entity: light
-  dps:
-    - id: 20
-      type: boolean
-      name: switch
-    - id: 22
-      name: brightness
-      type: integer
-      range:
-        min: 10
-        max: 1000
-secondary_entities:
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 26

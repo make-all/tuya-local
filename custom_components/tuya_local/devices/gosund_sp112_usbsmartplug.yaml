@@ -2,30 +2,29 @@ name: Smartplug
 products:
   - id: zmql6aexy8ua5rox
     name: Gosund SP112-RTL
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 21
-      name: factory_test
-      type: bitfield
-    - id: 41
-      name: cycle_time
-      type: base64
-    - id: 42
-      name: random_time
-      type: base64
-    - id: 43
-      name: inching
-      type: base64
-    - id: 101
-      name: unknown_101
-      type: boolean
-      optional: true
-secondary_entities:
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 21
+        name: factory_test
+        type: bitfield
+      - id: 41
+        name: cycle_time
+        type: base64
+      - id: 42
+        name: random_time
+        type: base64
+      - id: 43
+        name: inching
+        type: base64
+      - id: 101
+        name: unknown_101
+        type: boolean
+        optional: true
   - entity: switch
     name: USB
     dps:
@@ -93,6 +92,7 @@ secondary_entities:
         optional: true
   - entity: number
     translation_key: timer
+    class: duration
     category: config
     dps:
       - id: 9
@@ -108,6 +108,7 @@ secondary_entities:
   - entity: number
     name: USB timer
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 15

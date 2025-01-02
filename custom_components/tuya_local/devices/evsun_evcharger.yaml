@@ -1,17 +1,16 @@
 name: EV charger
-primary_entity:
-  entity: sensor
-  class: energy
-  dps:
-    - id: 1
-      optional: true
-      type: integer
-      name: sensor
-      unit: kWh
-      mapping:
-        - scale: 100
-      class: total_increasing
-secondary_entities:
+entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 1
+        optional: true
+        type: integer
+        name: sensor
+        unit: kWh
+        mapping:
+          - scale: 100
+        class: total_increasing
   - entity: sensor
     translation_key: status
     icon: "mdi:ev-station"
@@ -266,6 +265,7 @@ secondary_entities:
   - entity: number
     name: Delayed charge timer
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 28

@@ -1,14 +1,13 @@
 name: Light sensor
-primary_entity:
-  entity: sensor
-  class: illuminance
-  dps:
-    - id: 7
-      type: integer
-      name: sensor
-      unit: lx
-      class: measurement
-secondary_entities:
+entities:
+  - entity: sensor
+    class: illuminance
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: lx
+        class: measurement
   - entity: sensor
     name: Light level
     class: enum

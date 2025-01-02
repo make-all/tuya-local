@@ -4,6 +4,7 @@ from homeassistant.components.climate.const import (
     HVACAction,
     HVACMode,
 )
+from homeassistant.components.number import NumberDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import UnitOfTemperature, UnitOfTime
 
@@ -54,6 +55,7 @@ class TestInkbirdSousVideCooker(
                     "dps": TIMER_DPS,
                     "name": "number_cooking_time",
                     "max": 5999,
+                    "device_class": NumberDeviceClass.DURATION,
                     "unit": UnitOfTime.MINUTES,
                 },
                 {

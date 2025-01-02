@@ -1,23 +1,22 @@
 name: SD123 human presence radar
-primary_entity:
-  entity: binary_sensor
-  class: occupancy
-  dps:
-    - id: 1
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: none
-          value: false
-        - dps_val: presence
-          value: true
-    - id: 105
-      type: string
-      name: unknown_105
-    - id: 111
-      type: integer
-      name: unknown_111
-secondary_entities:
+entities:
+  - entity: binary_sensor
+    class: occupancy
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: none
+            value: false
+          - dps_val: presence
+            value: true
+      - id: 105
+        type: string
+        name: unknown_105
+      - id: 111
+        type: integer
+        name: unknown_111
   - entity: select
     name: Safe range
     category: config

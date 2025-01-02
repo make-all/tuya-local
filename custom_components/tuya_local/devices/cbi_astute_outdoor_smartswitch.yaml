@@ -1,17 +1,17 @@
-name: Astute smart controller
+name: Switch
 products:
   - id: xzgtyrqbab8lm2zo
-    name: CBI ASC switch
-primary_entity:
-  entity: switch
-  class: switch
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    name: CBI Astute Smart Controller switch
+entities:
+  - entity: switch
+    class: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: number
     category: config
+    class: duration
     translation_key: timer
     dps:
       - id: 7
