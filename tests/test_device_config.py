@@ -25,6 +25,8 @@ PRODUCT_SCHEMA = vol.Schema(
     {
         vol.Required("id"): str,
         vol.Optional("name"): str,
+        vol.Optional("manufacturer"): str,
+        vol.Optional("model"): str,
     }
 )
 CONDMAP_SCHEMA = vol.Schema(

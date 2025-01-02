@@ -197,6 +197,7 @@
 - Hysen HY02TP thermostat
 - Hysen HY08ACF thermostat
 - Hysen HY08WE-2 thermostat
+- Hysen HY101RF thermostat
 - Inkbird IPT-2CH v2.0 reptile thermostat
 - Inkbird ITC306A thermostat smartplug
 - Inkbird ITC308 thermostat smartplug
@@ -280,6 +281,7 @@
 - Princess DC pedestal fan
 - Reiga ceiling fans with and without light
 - Royal Clima RCB 150 ventilation system
+- Scheeair Nova 100 ventilation fan
 - Skyfan DC fan
 - Skyfan DC fan with light
 - Smart Mist3 TX-1602MF (ZJ-1522A-WiFi)
