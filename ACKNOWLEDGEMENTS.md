@@ -795,3 +795,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Fuechslein](https://github.com/Fuechslein) for contributing support for a second version of Petoneer Fresco Hydrate Ultra.
 - [stevanov](https://github.com/stevanov) for assisting with support for Etna VW644MC dishwasher.
 - [kmavrov](https://github.com/kmavrov) for assisting with support for Scheeair Nova 100 ventilation fan.
+- [HomeAssistant9121](https://github.com/HomeAssistant9121) for assisting with support for Hysen HY101RF thermostat.
