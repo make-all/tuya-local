@@ -2,42 +2,41 @@ name: Humidifier
 products:
   - id: orypuo7ksduqze3x
     name: airx纯净加湿器H8Pro
-primary_entity:
-  entity: humidifier
-  class: humidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-      mapping:
-        - dps_val: true
-          icon: "mdi:air-humidifier"
-        - dps_val: false
-          icon: "mdi:air-humidifier-off"
-    - id: 13
-      name: humidity
-      type: integer
-      range:
-        min: 30
-        max: 80
-    - id: 14
-      name: current_humidity
-      type: integer
-    - id: 24
-      type: string
-      name: mode
-      mapping:
-        - dps_val: AUTO
-          value: auto
-        - dps_val: LOW
-          value: eco
-        - dps_val: MIDDLE
-          value: normal
-        - dps_val: HIGH
-          value: boost
-        - dps_val: SLEEP
-          value: sleep
-secondary_entities:
+entities:
+  - entity: humidifier
+    class: humidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+        mapping:
+          - dps_val: true
+            icon: "mdi:air-humidifier"
+          - dps_val: false
+            icon: "mdi:air-humidifier-off"
+      - id: 13
+        name: humidity
+        type: integer
+        range:
+          min: 30
+          max: 80
+      - id: 14
+        name: current_humidity
+        type: integer
+      - id: 24
+        type: string
+        name: mode
+        mapping:
+          - dps_val: AUTO
+            value: auto
+          - dps_val: LOW
+            value: eco
+          - dps_val: MIDDLE
+            value: normal
+          - dps_val: HIGH
+            value: boost
+          - dps_val: SLEEP
+            value: sleep
   - entity: binary_sensor
     category: diagnostic
     translation_key: machine_separation_status
