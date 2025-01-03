@@ -24,6 +24,13 @@
                 "state": {
                     "off": "mdi:weather-night"
                 }
+            },
+            "machine_separation_status": {
+                "default": "mdi:check-circle",
+                "state": {
+                    "on": "mdi:alert-circle",
+                    "off": "mdi:check-circle"
+                }
             }
         },
         "button": {
@@ -181,6 +188,16 @@
             "cooking_status": {
                 "default": "mdi:information-variant-circle"
             },
+            "water_volume": {
+                "default": "mdi:water",
+                "state": {
+                    "empty": "mdi:water-off",
+                    "low": "mdi:water-minus",
+                    "middle": "mdi:water-opacity",
+                    "high": "mdi:water-plus",
+                    "full": "mdi:water"
+                }
+            },
             "status": {
                 "default": "mdi:information-variant-circle",
                 "state": {
@@ -270,6 +287,9 @@
             },
             "uv_sterilization": {
                 "default": "mdi:sun-wireless"
+            },
+            "electrolysis_sterilization": {
+                "default": "mdi:flash"
             }
         }
     }

@@ -38,23 +38,24 @@ primary_entity:
         - dps_val: SLEEP
           value: sleep
 secondary_entities:
-  - entity: alarm_control_panel
+  - entity: binary_sensor
     category: diagnostic
-    name: 机头分离告警
+    translation_key: machine_separation_status
     dps:
       - id: 22
         type: string
-        name: alarm_state
+        name: sensor
         mapping:
           - dps_val: 0
-            value: disarmed
+            value: off
           - dps_val: 1
-            value: armed
+            value: on
   - entity: switch
-    name: 除菌
+    translation_key: electrolysis_sterilization
+    category: config
     dps:
       - id: 21
-        type: integer
+        type: boolean
         name: switch
   - entity: switch
     translation_key: evaporator_cleaning
@@ -70,7 +71,6 @@ secondary_entities:
       - id: 102
         type: boolean
         name: switch
-  # tuya提供了面板灯光设置，但H8Pro实测不生效
   - entity: light
     translation_key: display
     category: config
@@ -86,7 +86,7 @@ secondary_entities:
         type: boolean
         name: switch
   - entity: sensor
-    name: 水位
+    translation_key: water_volume
     class: enum
     category: diagnostic
     dps:
@@ -95,20 +95,15 @@ secondary_entities:
         type: string
         mapping:
           - dps_val: No_water
-            value: "缺水"
-            icon: "mdi:water-off"
+            value: empty
           - dps_val: Low_water
-            value: "低水位"
-            icon: "mdi:water-minus"
+            value: low
           - dps_val: Middle_water
-            value: "中水位"
-            icon: "mdi:water-opacity"
+            value: middle
           - dps_val: High_water
-            value: "高水位"
-            icon: "mdi:water-plus"
+            value: high
           - dps_val: Full_water
-            value: "满水"
-            icon: "mdi:water"
+            value: full
   - entity: switch
     translation_key: ionizer
     dps:
