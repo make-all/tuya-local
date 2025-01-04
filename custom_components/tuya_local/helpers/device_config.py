@@ -8,7 +8,7 @@ from collections.abc import Sequence
 from datetime import datetime
 from fnmatch import fnmatch
 from numbers import Number
-from os import walk
+from os import scandir
 from os.path import dirname, exists, join, splitext
 
 from homeassistant.util import slugify
@@ -1051,10 +1051,9 @@ def available_configs():
     """List the available config files."""
     _CONFIG_DIR = dirname(config_dir.__file__)
 
-    for path, dirs, files in walk(_CONFIG_DIR):
-        for basename in sorted(files):
-            if fnmatch(basename, "*.yaml"):
-                yield basename
+    for direntry in scandir(_CONFIG_DIR):
+        if direntry.is_file() and fnmatch(direntry.name, "*.yaml"):
+            yield direntry.name
 
 
 def possible_matches(dps, product_ids=None):
