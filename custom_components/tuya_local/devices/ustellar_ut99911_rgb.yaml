@@ -34,20 +34,6 @@ entities:
       - id: 20
         type: boolean
         name: switch
-      - id: 21
-        type: string
-        name: work_mode
-        mapping:
-          - dps_val: dynamic_mod
-            value: Dynamic
-          - dps_val: color
-            value: Color
-          - dps_val: scene_mod
-            value: Scene
-          - dps_val: music
-            value: Music
-          - dps_val: white
-            value: White
       - id: 24
         name: rgbhsv
         type: hex
@@ -112,6 +98,26 @@ entities:
             value: "Disco 75%"
           - dps_val: 464
             value: "Disco 100%"
+  - entity: select
+    name: Work Mode
+    icon: "mdi:playlist-check"
+    category: config
+    dps:
+      - id: 21
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: dynamic_mod
+            value: Dynamic
+          - dps_val: color
+            value: Color
+          - dps_val: scene_mod
+            value: Scene
+          - dps_val: music
+            value: Music
+          - dps_val: white
+            value: White
   - entity: select
     name: Mode
     icon: "mdi:playlist-edit"
