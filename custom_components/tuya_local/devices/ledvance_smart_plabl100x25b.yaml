@@ -1,0 +1,79 @@
+name: Ledvance Smart+PlaBL100x25B
+products:
+  - id: bfaf1efff4a825ac2c8aly
+    name: Ledvance Smart+PlaBL100x25B
+# https://github.com/FlagX/ha-ledvance-tuya-resync-localkey
+#
+# https://github.com/rospogrigio/localtuya/wiki/HOWTO-get-a-DPs-dump
+#DEBUG:localtuya.pytuya:[bfa...aly] Deciphered data = '{"dps":{"20":false,"22":410,"23":1000,"24":"004803e8018f","26":0,"41":true}}'
+#AVAILABLE DPS ARE [{'20': False, '22': 410, '23': 1000, '24': '004803e8018f', '26': 0, '41': True}]
+#    DPS [20] VALUE [False] on off switch
+#    DPS [21] VALUE [scene] ?
+#    DPS [22] VALUE [400] main led brightness
+#    DPS [23] VALUE [200] main led color temp
+#    DPS [24] VALUE [0136019a0348] rgb led color
+#    DPS [26] VALUE [0] rgb led brightness
+#    DPS [41] VALUE [False] ?
+primary_entity:
+  entity: switch
+  dps:
+    - id: 20
+      type: boolean
+      name: switch
+secondary_entities:
+  - entity: light
+    name: RGB LED
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 26
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 1000
+      - id: 24
+        type: hex
+        name: rgbhsv
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+  - entity: light
+    name: Main LED
+    category: config
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 500
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
