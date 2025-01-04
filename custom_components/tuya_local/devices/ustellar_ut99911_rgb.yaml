@@ -53,8 +53,21 @@ entities:
               min: 0
               max: 1000
       - id: 103
-        name: line_sequence_adjustment
-        type: integer
+        type: string
+        name: RGB Order
+        mapping:
+          - dps_val: 1
+            value: RGB
+          - dps_val: 2
+            value: RBG
+          - dps_val: 3
+            value: GRB
+          - dps_val: 4
+            value: GBR
+          - dps_val: 5
+            value: BRG
+          - dps_val: 5
+            value: BGR
   - entity: select
     name: Music
     icon: "mdi:playlist-music"
