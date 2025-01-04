@@ -1,61 +1,61 @@
 name: Fan Heater
 products:
   - id: var0f7dheclxpjuz
-    name: Cecotec ReadyWarm 8400 Bladeless
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: preset_mode
-          conditions:
-            - dps_val: "off"
-              value: fan_only
-            - dps_val: "low"
-              value: heat
-              hidden: true
-            - dps_val: "high"
-              value: heat
-              hidden: true
-            - dps_val: "auto"
-              value: heat
-    - id: 2
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 15
-        max: 40
-    - id: 3
-      type: integer
-      name: current_temperature
-    - id: 4
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: "off"
-          value: none
-        - dps_val: "low"
-          value: eco
-        - dps_val: "high"
-          value: boost
-        - dps_val: "auto"
-          value: comfort
-    - id: 8
-      type: boolean
-      name: swing_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: "on"
-secondary_entities:
+    manufacturer: Cecotec
+    model: ReadyWarm 8400 Bladeless
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: preset_mode
+            conditions:
+              - dps_val: "off"
+                value: fan_only
+              - dps_val: "low"
+                value: heat
+                hidden: true
+              - dps_val: "high"
+                value: heat
+                hidden: true
+              - dps_val: "auto"
+                value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 15
+          max: 40
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: "off"
+            value: none
+          - dps_val: "low"
+            value: eco
+          - dps_val: "high"
+            value: boost
+          - dps_val: "auto"
+            value: comfort
+      - id: 8
+        type: boolean
+        name: swing_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
   - entity: select
     translation_key: timer
     category: config
