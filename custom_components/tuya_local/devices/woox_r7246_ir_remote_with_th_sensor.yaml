@@ -1,0 +1,33 @@
+name: Woox R7246 Smart IR Remote with T&H Sensor
+products:
+  - id: deaf0nqhy4chqpdn
+    name: Woox-R7246
+entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 2
+        name: sensor
+        type: integer
+        unit: C
+        mapping:
+          - scale: 10
+        class: measurement
+  - entity: sensor
+    class: humidity
+    dps:
+      - id: 12
+        type: integer
+        name: sensor
+        unit: "%"
+        mapping:
+          - scale: 10
+        class: measurement
+  - entity: switch
+    name: Display on
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+        optional: true
