@@ -18,20 +18,17 @@ generic name for the type of device should go in the top level name.
 
 ### `products`
 
-*Optional, for future use.*
+*Optional.*
 
 A list of products that this config applies to. Each product in the list must
-have an `id` specified, which corresponds to the productId or productKey
-(depending on where you are getting it from) in Tuya info. This is available
-from the Tuya developer web portal listing for your device, or when using
-UDP discovery (via tinytuya). In future it is intended that UDP discovery
-will be used to more precisely match devices to configs, so it is recommended
-to report these if you can find them when requesting a new device. Each
-listing can also have an optional `name`, which is intended to specify the
-specific brand and model name or number of the matching device.  In future
-when local discovery is implemented to discover products by id, this name will
-be displayed on discovery, and be available as manufacturer and model info
-in device settings.
+have an `id` specified, which corresponds to the product_id from cloud device 
+info, or productKey from the local discovery. If these are different, it is
+recommended that listings are created for both.
+
+In addition to the id, the `manufacturer` and `model` can be listed here.
+In future the intention is to display these in the Device info panel for the
+device. The `name` can also be overridden here with a more specific name to
+be used in future in place of the generic name at the top of the config.
 
 ### `entities`
 
