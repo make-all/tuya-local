@@ -3,20 +3,19 @@ products:
   - id: zrsgzc8jktsricjj
     name: Holman WX1
     # DP decoding thanks to funtastix
-primary_entity:
-  entity: valve
-  name: Manual
-  class: water
-  dps:
-    - id: 108
-      type: boolean
-      name: valve
-      mapping:
-        - dps_val: true
-          value: false
-        - dps_val: false
-          value: true
-secondary_entities:
+entities:
+  - entity: valve
+    name: Manual
+    class: water
+    dps:
+      - id: 108
+        type: boolean
+        name: valve
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
   - entity: switch
     name: Manual
     category: config

@@ -1,30 +1,30 @@
 name: Air purifier
 products:
   - id: go2ndjijilncwuf7
-    name: Duux Bright
-primary_entity:
-  entity: fan
-  translation_key: fan_with_presets
-  icon: "mdi:air-purifier"
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 4
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: auto
-          value: auto
-        - dps_val: "1"
-          value: low
-        - dps_val: "2"
-          value: medium
-        - dps_val: "3"
-          value: high
-        - dps_val: sleep
-          value: sleep
-secondary_entities:
+    manufacturer: Duux
+    model: Bright
+entities:
+  - entity: fan
+    translation_key: fan_with_presets
+    icon: "mdi:air-purifier"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: "1"
+            value: low
+          - dps_val: "2"
+            value: medium
+          - dps_val: "3"
+            value: high
+          - dps_val: sleep
+            value: sleep
   - entity: sensor
     class: pm25
     dps:

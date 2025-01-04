@@ -1,17 +1,16 @@
 name: Moisture sensor
 products:
   - id: gvygg3m8
-    name: SGS01
-primary_entity:
-  entity: sensor
-  name: Soil Moisture
-  class: moisture
-  dps:
-    - id: 3
-      name: sensor
-      type: integer
-      unit: "%"
-secondary_entities:
+    model: SGS01
+entities:
+  - entity: sensor
+    name: Soil Moisture
+    class: moisture
+    dps:
+      - id: 3
+        name: sensor
+        type: integer
+        unit: "%"
   - entity: sensor
     name: Soil Temperature
     class: temperature

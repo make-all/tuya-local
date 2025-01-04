@@ -5,29 +5,29 @@
 name: Garage opener
 products:
   - id: 1wwbzczt9hrtwqjr
-    name: Dongguan PJ-WGDOOR01
-primary_entity:
-  entity: cover
-  class: garage
-  dps:
-    - id: 1
-      type: boolean
-      name: control
-      optional: true  # Sometimes this DP doesn't report state
-      mapping:
-        - dps_val: true
-          value: open
-        - dps_val: false
-          value: close
-    - id: 3
-      type: boolean
-      name: action
-      mapping:
-        - dps_val: true
-          value: opened
-        - dps_val: false
-          value: closed
-secondary_entities:
+    manufacturer: Dongguan Pinjia
+    model: PJ-WGDOOR01
+entities:
+  - entity: cover
+    class: garage
+    dps:
+      - id: 1
+        type: boolean
+        name: control
+        optional: true  # Sometimes this DP doesn't report state
+        mapping:
+          - dps_val: true
+            value: open
+          - dps_val: false
+            value: close
+      - id: 3
+        type: boolean
+        name: action
+        mapping:
+          - dps_val: true
+            value: opened
+          - dps_val: false
+            value: closed
   - entity: number
     translation_key: timer
     class: duration

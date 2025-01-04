@@ -1,52 +1,53 @@
 name: Heater
 products:
   - id: ojvja3vyqchxrfhk
-    name: Atomi AT1632
+    manufacturer: Atomi
+    model: AT1632
   - id: tos0dbspyikjzcxe
-    name: Atomi AT1635
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: heat
-    - id: 2
-      type: integer
-      name: temperature
-      range:
-        min: 60
-        max: 86
-      unit: F
-    - id: 3
-      type: integer
-      name: current_temperature
-    - id: 4
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: auto
-          value: eco
-        - dps_val: low
-          value: comfort
-        - dps_val: high
-          value: boost
-    - id: 8
-      type: boolean
-      name: swing_mode
-      # not available on AT1635
-      optional: true
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: horizontal
-secondary_entities:
+    manufacturer: Atomi
+    model: AT1635
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 60
+          max: 86
+        unit: F
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: auto
+            value: eco
+          - dps_val: low
+            value: comfort
+          - dps_val: high
+            value: boost
+      - id: 8
+        type: boolean
+        name: swing_mode
+        # not available on AT1635
+        optional: true
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: horizontal
   - entity: light
     translation_key: display
     category: config

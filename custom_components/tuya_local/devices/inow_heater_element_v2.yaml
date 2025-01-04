@@ -1,41 +1,40 @@
 name: INOW heating element v2
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: true
-          value: heat
-        - dps_val: false
-          value: "off"
-    - id: 102
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 30
-        max: 70
-      mapping:
-        - step: 5
-    - id: 101
-      type: integer
-      name: current_temperature
-    - id: 4
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: comfort
-          value: comfort
-        - dps_val: antifreezin
-          value: away
-        - dps_val: eco
-          value: eco
-        - dps_val: water_temp
-          value: Radiator
-secondary_entities:
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: true
+            value: heat
+          - dps_val: false
+            value: "off"
+      - id: 102
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 30
+          max: 70
+        mapping:
+          - step: 5
+      - id: 101
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: comfort
+            value: comfort
+          - dps_val: antifreezin
+            value: away
+          - dps_val: eco
+            value: eco
+          - dps_val: water_temp
+            value: Radiator
   - entity: lock
     translation_key: child_lock
     category: config

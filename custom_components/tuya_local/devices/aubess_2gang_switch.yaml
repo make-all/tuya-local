@@ -1,30 +1,31 @@
 name: Double switch
 products:
   - id: zexdotwigwiobadr
-    name: SciMagic RX Double Garage door receiver
-primary_entity:
-  entity: switch
-  translation_key: switch_x
-  translation_placeholders:
-    x: "1"
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 42
-      type: string
-      name: random_schedule
-    - id: 43
-      type: string
-      name: repeating_schedule
-    - id: 44
-      type: string
-      name: inching
-    - id: 48
-      type: string
-      optional: true
-      name: interlock
-secondary_entities:
+    manufacturer: SciMagic
+    model: RX
+    name: Double garage door receiver
+entities:
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 42
+        type: string
+        name: random_schedule
+      - id: 43
+        type: string
+        name: repeating_schedule
+      - id: 44
+        type: string
+        name: inching
+      - id: 48
+        type: string
+        optional: true
+        name: interlock
   - entity: switch
     translation_key: switch_x
     translation_placeholders:

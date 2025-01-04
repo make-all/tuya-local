@@ -1,85 +1,84 @@
 name: Fan
 # products:
 #   - id: UNKNOWN
-#     name: Aygrochy fan
-primary_entity:
-  entity: climate
-  dps:
-    - id: 2
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: "ON"
-          value: "On"
-        - dps_val: "OFF"
-          value: "Off"
-        - dps_val: "TIMER"
-          value: "Timer"
-        - dps_val: "AUTO"
-          value: "Auto"
-        - dps_val: "ALARM"
-          value: "Alarm"
-    - id: 2
-      name: hvac_mode
-      type: string
-      mapping:
-        - dps_val: "ON"
-          value: "fan_only"
-        - dps_val: "OFF"
-          value: "off"
-        - dps_val: "TIMER"
-          value: "auto"
-          hidden: true
-        - dps_val: "AUTO"
-          value: "auto"
-        - dps_val: "ALARM"
-          value: "fan_only"
-          hidden: true
-    - id: 8
-      name: current_humidity
-      type: integer
-      unit: "%"
-    - id: 9
-      name: current_temperature
-      type: integer
-      unit: "F"
-    - id: 110
-      name: target_temp_high
-      type: integer
-      range:
-        min: 32
-        max: 194
-      unit: "F"
-      mapping:
-        - constraint: hvac_mode
-          conditions:
-            - dps_val: AUTO
-              value_redirect: auto_temp_high
-    - id: 106
-      name: auto_temp_high
-      type: integer
-      range:
-        min: 32
-        max: 194
-    - id: 112
-      name: target_temp_low
-      type: integer
-      range:
-        min: 32
-        max: 194
-      unit: "F"
-      mapping:
-        - constraint: hvac_mode
-          conditions:
-            - dps_val: AUTO
-              value_redirect: auto_temp_low
-    - id: 108
-      name: auto_temp_low
-      type: integer
-      range:
-        min: 32
-        max: 194
-secondary_entities:
+#     manufacturer: Aygrochy
+entities:
+  - entity: climate
+    dps:
+      - id: 2
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: "ON"
+            value: "On"
+          - dps_val: "OFF"
+            value: "Off"
+          - dps_val: "TIMER"
+            value: "Timer"
+          - dps_val: "AUTO"
+            value: "Auto"
+          - dps_val: "ALARM"
+            value: "Alarm"
+      - id: 2
+        name: hvac_mode
+        type: string
+        mapping:
+          - dps_val: "ON"
+            value: "fan_only"
+          - dps_val: "OFF"
+            value: "off"
+          - dps_val: "TIMER"
+            value: "auto"
+            hidden: true
+          - dps_val: "AUTO"
+            value: "auto"
+          - dps_val: "ALARM"
+            value: "fan_only"
+            hidden: true
+      - id: 8
+        name: current_humidity
+        type: integer
+        unit: "%"
+      - id: 9
+        name: current_temperature
+        type: integer
+        unit: "F"
+      - id: 110
+        name: target_temp_high
+        type: integer
+        range:
+          min: 32
+          max: 194
+        unit: "F"
+        mapping:
+          - constraint: hvac_mode
+            conditions:
+              - dps_val: AUTO
+                value_redirect: auto_temp_high
+      - id: 106
+        name: auto_temp_high
+        type: integer
+        range:
+          min: 32
+          max: 194
+      - id: 112
+        name: target_temp_low
+        type: integer
+        range:
+          min: 32
+          max: 194
+        unit: "F"
+        mapping:
+          - constraint: hvac_mode
+            conditions:
+              - dps_val: AUTO
+                value_redirect: auto_temp_low
+      - id: 108
+        name: auto_temp_low
+        type: integer
+        range:
+          min: 32
+          max: 194
   - entity: fan
     dps:
       - id: 1

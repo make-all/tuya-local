@@ -1,31 +1,30 @@
 name: ARLEC Grid Connect Fan
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 3
-      name: speed
-      type: integer
-      range:
-        min: 1
-        max: 6
-    - id: 4
-      name: direction
-      type: string
-    - id: 102
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: normal
-          value: normal
-        - dps_val: sleep
-          value: sleep
-        - dps_val: breeze
-          value: nature
-secondary_entities:
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 3
+        name: speed
+        type: integer
+        range:
+          min: 1
+          max: 6
+      - id: 4
+        name: direction
+        type: string
+      - id: 102
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: normal
+            value: normal
+          - dps_val: sleep
+            value: sleep
+          - dps_val: breeze
+            value: nature
   - entity: select
     translation_key: timer
     category: config

@@ -1,45 +1,45 @@
-name: Renpho RP-AP001S purifier
+name: Air purifier
 products:
   - id: oaleouzsq0sk4quk
-primary_entity:
-  entity: fan
-  icon: "mdi:air-purifier"
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 4
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: low
-          value: sleep
-        - dps_val: mid
-          value: fresh
-        - dps_val: high
-          value: strong
-        - dps_val: auto
-          value: smart
-    - id: 19
-      name: timer
-      type: string
-    - id: 22
-      name: air_quality
-      type: string
-    - id: 102
-      name: prefilter_life
-      type: integer
-    - id: 103
-      name: charcoal_filter_life
-      type: integer
-    - id: 104
-      name: activated_charcoal_filter_life
-      type: integer
-    - id: 105
-      name: hepa_filter_life
-      type: integer
-secondary_entities:
+    name: Renpho RP-AP001S
+entities:
+  - entity: fan
+    icon: "mdi:air-purifier"
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 4
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: low
+            value: sleep
+          - dps_val: mid
+            value: fresh
+          - dps_val: high
+            value: strong
+          - dps_val: auto
+            value: smart
+      - id: 19
+        name: timer
+        type: string
+      - id: 22
+        name: air_quality
+        type: string
+      - id: 102
+        name: prefilter_life
+        type: integer
+      - id: 103
+        name: charcoal_filter_life
+        type: integer
+      - id: 104
+        name: activated_charcoal_filter_life
+        type: integer
+      - id: 105
+        name: hepa_filter_life
+        type: integer
   - entity: lock
     translation_key: child_lock
     category: config

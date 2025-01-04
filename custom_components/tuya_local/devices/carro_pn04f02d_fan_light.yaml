@@ -1,30 +1,30 @@
 name: Ceiling fan
 products:
   - id: 6ahfblexspuaem65
-    name: Carro PN-04F02D
-primary_entity:
-  entity: light
-  dps:
-    - id: 20
-      type: boolean
-      name: switch
-    - id: 21
-      type: string
-      # Shows in the instruction set with standard white/colour/scene/music
-      # properties but this is a dimming switch and doesn't have color/scene dps
-      name: work_mode
-      optional: true
-    - id: 22
-      name: brightness
-      type: integer
-      range:
-        min: 10
-        max: 1000
-    - id: 28
-      type: string
-      name: control_data
-      optional: true
-secondary_entities:
+    manufacturer: Carro
+    model: PN-04F02D
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        # Shows in the docs with standard white/colour/scene/music
+        # properties but this is a dimming switch and doesn't have those
+        name: work_mode
+        optional: true
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 28
+        type: string
+        name: control_data
+        optional: true
   - entity: fan
     dps:
       - id: 60

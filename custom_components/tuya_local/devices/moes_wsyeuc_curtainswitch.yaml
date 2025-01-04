@@ -2,21 +2,20 @@ name: Curtain switch
 products:
   - id: 1qhlrytqcpnqmzj7
     name: Moes WS-Y-EUC
-primary_entity:
-  entity: cover
-  class: curtain
-  dps:
-    - id: 1
-      name: control
-      type: string
-      mapping:
-        - dps_val: "on"
-          value: open
-        - dps_val: "off"
-          value: close
-        - dps_val: stop
-          value: stop
-secondary_entities:
+entities:
+  - entity: cover
+    class: curtain
+    dps:
+      - id: 1
+        name: control
+        type: string
+        mapping:
+          - dps_val: "on"
+            value: open
+          - dps_val: "off"
+            value: close
+          - dps_val: stop
+            value: stop
   - entity: light
     category: config
     translation_key: backlight

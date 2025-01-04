@@ -1,28 +1,27 @@
 name: Energy monitor switch
 products:
   # - id: UNKNOWN
-  #   name: Aubess 1-gang
+  #   manufacturer: Aubess
   - id: m4jtkjc43ltrilru
-    name: T34 Smart Plug+
-primary_entity:
-  entity: switch
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 24
-      name: test_bit
-      type: integer
-    - id: 42
-      name: random_time
-      type: string
-    - id: 43
-      name: cycle_time
-      type: string
-    - id: 44
-      name: switch_inching
-      type: string
-secondary_entities:
+    model: T34 Smart Plug+
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 24
+        name: test_bit
+        type: integer
+      - id: 42
+        name: random_time
+        type: string
+      - id: 43
+        name: cycle_time
+        type: string
+      - id: 44
+        name: switch_inching
+        type: string
   - entity: number
     translation_key: timer
     class: duration

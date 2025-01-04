@@ -2,31 +2,30 @@ name: Air purifier
 products:
   - id: 5a4rez30alfjfmdg
     name: Morento HY4866-WF
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  icon: "mdi:air-purifier"
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 3
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: sleep
-          value: sleep
-        - dps_val: Auto
-          value: smart
-        - dps_val: 1F
-          value: low
-        - dps_val: 2F
-          value: medium
-        - dps_val: 3F
-          value: high
-        - dps_val: 4F
-          value: strong
-secondary_entities:
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    icon: "mdi:air-purifier"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 3
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: sleep
+            value: sleep
+          - dps_val: Auto
+            value: smart
+          - dps_val: 1F
+            value: low
+          - dps_val: 2F
+            value: medium
+          - dps_val: 3F
+            value: high
+          - dps_val: 4F
+            value: strong
   - entity: sensor
     class: pm25
     dps:

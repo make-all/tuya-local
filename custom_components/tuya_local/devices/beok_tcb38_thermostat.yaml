@@ -1,56 +1,55 @@
 name: Thermostat
 # rebadged as RT-70
-primary_entity:
-  entity: climate
-  translation_key: thermostat
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: manual
-              value: heat
-            - dps_val: auto
-              value: auto
-    - id: 2
-      type: integer
-      name: temperature
-      range:
-        min: 50
-        max: 990
-      mapping:
-        - scale: 10
-          step: 5
-      unit: C
-    - id: 3
-      type: integer
-      name: current_temperature
-      mapping:
-        - scale: 10
-    - id: 4
-      type: string
-      name: mode
-      hidden: true
-    - id: 21
-      type: integer
-      name: max_temperature
-    - id: 22
-      type: integer
-      name: min_temperature
-    - id: 35
-      type: string
-      name: hvac_action
-      mapping:
-        - dps_val: open
-          value: heating
-        - dps_val: close
-          value: idle
-secondary_entities:
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: manual
+                value: heat
+              - dps_val: auto
+                value: auto
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 50
+          max: 990
+        mapping:
+          - scale: 10
+            step: 5
+        unit: C
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 21
+        type: integer
+        name: max_temperature
+      - id: 22
+        type: integer
+        name: min_temperature
+      - id: 35
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: open
+            value: heating
+          - dps_val: close
+            value: idle
   - entity: lock
     translation_key: child_lock
     category: config

@@ -1,44 +1,45 @@
 name: EV charger
 products:
   - id: aaaealnecwgwerjl
-    name: AFYEEV 32A 22kW
+    manufacturer: Afyeev
+    name: "32A 22kW EV charger"
   - id: 65zlpwd6lhgpbwtd
-    name: AFYEEV 32A wall mounted
-primary_entity:
-  entity: sensor
-  class: enum
-  translation_key: status
-  icon: "mdi:ev-station"
-  dps:
-    - id: 3
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: charger_free
-          value: available
-        - dps_val: charger_insert
-          value: plugged_in
-        - dps_val: charger_free_fault
-          value: fault_unplugged
-        - dps_val: charger_charging
-          value: charging
-        - dps_val: charger_wait
-          value: waiting
-        - dps_val: charger_end
-          value: charged
-        - dps_val: charger_fault
-          value: fault
-        - dps_val: charger_pause
-          value: paused
-    - id: 23
-      type: string
-      optional: true
-      name: system_version
-    - id: 33
-      type: string
-      optional: true
-      name: mode_set
-secondary_entities:
+    manufacturer: Afyeev
+    name: "32A wall mounted EV charger"
+entities:
+  - entity: sensor
+    class: enum
+    translation_key: status
+    icon: "mdi:ev-station"
+    dps:
+      - id: 3
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: charger_free
+            value: available
+          - dps_val: charger_insert
+            value: plugged_in
+          - dps_val: charger_free_fault
+            value: fault_unplugged
+          - dps_val: charger_charging
+            value: charging
+          - dps_val: charger_wait
+            value: waiting
+          - dps_val: charger_end
+            value: charged
+          - dps_val: charger_fault
+            value: fault
+          - dps_val: charger_pause
+            value: paused
+      - id: 23
+        type: string
+        optional: true
+        name: system_version
+      - id: 33
+        type: string
+        optional: true
+        name: mode_set
   - entity: sensor
     class: energy
     category: diagnostic

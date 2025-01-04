@@ -1,48 +1,47 @@
 name: Bathroom heater
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: heat
-    - id: 2
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: hot
-          value: comfort
-        - dps_val: eco
-          value: eco
-        - dps_val: cold
-          value: away
-        - dps_val: auto
-          value: home
-    - id: 16
-      name: temperature
-      type: integer
-      unit: C
-      range:
-        min: 150
-        max: 700
-      mapping:
-        - scale: 10
-          step: 5
-    - id: 24
-      name: current_temperature
-      type: integer
-      mapping:
-        - scale: 10
-    - id: 110
-      name: schedule
-      type: string
-      optional: true
-secondary_entities:
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: hot
+            value: comfort
+          - dps_val: eco
+            value: eco
+          - dps_val: cold
+            value: away
+          - dps_val: auto
+            value: home
+      - id: 16
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 150
+          max: 700
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 24
+        name: current_temperature
+        type: integer
+        mapping:
+          - scale: 10
+      - id: 110
+        name: schedule
+        type: string
+        optional: true
   - entity: number
     name: Temperature correction
     category: config

@@ -1,31 +1,31 @@
 name: Air Purifier
 products:
   - id: dfgsetrdnabqeimr
-    name: Arlec Air Purifier APR005HA
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 3
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: Auto
-          value: smart
-        - dps_val: Manual
-          value: normal
-        - dps_val: Sleep
-          value: sleep
-    - id: 4
-      type: integer
-      name: speed
-      range:
-        min: 1
-        max: 3
-secondary_entities:
+    manufacturer: Arlec
+    model: APR005HA
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 3
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: Auto
+            value: smart
+          - dps_val: Manual
+            value: normal
+          - dps_val: Sleep
+            value: sleep
+      - id: 4
+        type: integer
+        name: speed
+        range:
+          min: 1
+          max: 3
   - entity: switch
     translation_key: ionizer
     category: config

@@ -1,14 +1,15 @@
-name: Catit Pixi smart fountain
+name: Water fountain
 products:
   - id: z3rpyvznfcch99aa
-primary_entity:
-  entity: switch
-  icon: "mdi:water-pump"
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: Catit
+    model: Pixi smart fountain
+entities:
+  - entity: switch
+    icon: "mdi:water-pump"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: button
     name: Filter replaced
     icon: "mdi:air-filter"

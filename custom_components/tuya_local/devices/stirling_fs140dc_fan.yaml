@@ -1,31 +1,30 @@
 name: Stirling FS1-40DC pedestal fan
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 2
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: normal
-          value: normal
-        - dps_val: nature
-          value: nature
-        - dps_val: sleep
-          value: sleep
-    - id: 3
-      name: speed
-      type: integer
-      range:
-        min: 1
-        max: 15
-    - id: 5
-      name: oscillate
-      type: boolean
-secondary_entities:
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: normal
+            value: normal
+          - dps_val: nature
+            value: nature
+          - dps_val: sleep
+            value: sleep
+      - id: 3
+        name: speed
+        type: integer
+        range:
+          min: 1
+          max: 15
+      - id: 5
+        name: oscillate
+        type: boolean
   - entity: select
     translation_key: timer
     category: config

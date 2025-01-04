@@ -1,126 +1,126 @@
-name: Cooper and Hunter air conditioner
+name: Air conditioner
 products:
   - id: a38i3yjbj4b4r9o0
-    name: Cooper and Hunter Nordic Evo NG
-primary_entity:
-  entity: climate
-  translation_only_key: aircon_extra
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: auto
-              value: heat_cool
-            - dps_val: cold
-              value: cool
-            - dps_val: hot
-              value: heat
-            - dps_val: wet
-              value: dry
-            - dps_val: wind
-              value: fan_only
+    manufacturer: Cooper and Hunter
+    model: Nordic Evo NG
+entities:
+  - entity: climate
+    translation_only_key: aircon_extra
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: heat_cool
+              - dps_val: cold
+                value: cool
+              - dps_val: hot
+                value: heat
+              - dps_val: wet
+                value: dry
+              - dps_val: wind
+                value: fan_only
 
-    - id: 2
-      name: temperature
-      type: integer
-      range:
-        min: 16
-        max: 31
-      mapping:
-        - step: 1
-          constraint: mode
-          conditions:
-            - dps_val: wet
-              invalid: true
-            - dps_val: wind
-              invalid: true
-    - id: 150
-      name: current_temperature
-      type: integer
-      mapping:
-        - scale: 10
-    - id: 4
-      name: mode
-      type: string
-      hidden: true
-    - id: 5
-      name: fan_mode
-      type: string
-      mapping:
-        - dps_val: auto
-          value: auto
-        - dps_val: quiet
-          value: quiet
-        - dps_val: fan1
-          value: low
-        - dps_val: fan2
-          value: medlow
-        - dps_val: fan3
-          value: medium
-        - dps_val: fan4
-          value: medhigh
-        - dps_val: fan5
-          value: high
-    - id: 31
-      name: swing_mode
-      type: string
-      mapping:
-        - dps_val: "off"
-          value: "off"
-        - dps_val: "on"
-          value: "on"
-        - dps_val: "angle1"
-          value: "topmost"
-        - dps_val: "angle2"
-          value: "top"
-        - dps_val: "angle3"
-          value: "middle"
-        - dps_val: "angle4"
-          value: "down"
-        - dps_val: "angle5"
-          value: "downmost"
-    - id: 19
-      name: temperature_unit
-      type: string
-      mapping:
-        - dps_val: f
-          value: F
-        - dps_val: c
-          value: C
-    - id: 17
-      name: humidity
-      type: integer
-      optional: true
-      unit: "%"
-      range:
-        min: 40
-        max: 90
-      mapping:
-        - step: 5
-          constraint: mode
-          conditions:
-            - dps_val: auto
-              invalid: true
-            - dps_val: cold
-              invalid: true
-            - dps_val: hot
-              invalid: true
-            - dps_val: wind
-              invalid: true
-    - id: 152
-      name: current_humidity
-      type: integer
-      unit: "%"
-      class: measurement
-      mapping:
-        - scale: 10
-secondary_entities:
+      - id: 2
+        name: temperature
+        type: integer
+        range:
+          min: 16
+          max: 31
+        mapping:
+          - step: 1
+            constraint: mode
+            conditions:
+              - dps_val: wet
+                invalid: true
+              - dps_val: wind
+                invalid: true
+      - id: 150
+        name: current_temperature
+        type: integer
+        mapping:
+          - scale: 10
+      - id: 4
+        name: mode
+        type: string
+        hidden: true
+      - id: 5
+        name: fan_mode
+        type: string
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: quiet
+            value: quiet
+          - dps_val: fan1
+            value: low
+          - dps_val: fan2
+            value: medlow
+          - dps_val: fan3
+            value: medium
+          - dps_val: fan4
+            value: medhigh
+          - dps_val: fan5
+            value: high
+      - id: 31
+        name: swing_mode
+        type: string
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "on"
+            value: "on"
+          - dps_val: "angle1"
+            value: "topmost"
+          - dps_val: "angle2"
+            value: "top"
+          - dps_val: "angle3"
+            value: "middle"
+          - dps_val: "angle4"
+            value: "down"
+          - dps_val: "angle5"
+            value: "downmost"
+      - id: 19
+        name: temperature_unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+      - id: 17
+        name: humidity
+        type: integer
+        optional: true
+        unit: "%"
+        range:
+          min: 40
+          max: 90
+        mapping:
+          - step: 5
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                invalid: true
+              - dps_val: cold
+                invalid: true
+              - dps_val: hot
+                invalid: true
+              - dps_val: wind
+                invalid: true
+      - id: 152
+        name: current_humidity
+        type: integer
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 10
   - entity: switch
     name: Power
     category: config

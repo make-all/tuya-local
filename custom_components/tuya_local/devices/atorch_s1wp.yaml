@@ -1,16 +1,16 @@
 name: Energy monitoring plug with display
 products:
   - id: sqrf2g1amfutn4co
-    name: Atorch S1WP
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-      optional: true
-secondary_entities:
+    manufacturer: Atorch
+    model: S1WP
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+        optional: true
   - entity: number
     category: config
     class: duration

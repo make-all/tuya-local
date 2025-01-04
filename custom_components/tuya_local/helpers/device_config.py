@@ -8,7 +8,7 @@ from collections.abc import Sequence
 from datetime import datetime
 from fnmatch import fnmatch
 from numbers import Number
-from os import walk
+from os import scandir
 from os.path import dirname, exists, join, splitext
 
 from homeassistant.util import slugify
@@ -99,6 +99,7 @@ class TuyaDeviceConfig:
         self._fname = fname
         filename = join(_CONFIG_DIR, fname)
         self._config = load_yaml(filename)
+        self._reported_deprecated_primary = False
         _LOGGER.debug("Loaded device config %s", fname)
 
     @property
@@ -124,22 +125,25 @@ class TuyaDeviceConfig:
     @property
     def primary_entity(self):
         """Return the primary type of entity for this device."""
-        return TuyaEntityConfig(
-            self,
-            self._config["primary_entity"],
-            primary=True,
-        )
+        if not self._reported_deprecated_primary:
+            _LOGGER.warning(
+                f"{self.config_type}.yaml distinguishes between primary"
+                " and secondary_entities. This is deprecated, please"
+                " modify it to use a single list."
+            )
+            self._reported_deprecated_primary = True
 
-    def secondary_entities(self):
-        """Iterate through entites for any secondary entites supported."""
-        for conf in self._config.get("secondary_entities", {}):
-            yield TuyaEntityConfig(self, conf)
+        return TuyaEntityConfig(self, self._config["primary_entity"])
 
     def all_entities(self):
         """Iterate through all entities for this device."""
-        yield self.primary_entity
-        for e in self.secondary_entities():
-            yield e
+        entities = self._config.get("entities")
+        if not entities:
+            yield self.primary_entity
+            entities = self._config.get("secondary_entities", {})
+
+        for e in entities:
+            yield TuyaEntityConfig(self, e)
 
     def matches(self, dps, product_ids):
         """Determine whether this config matches the provided dps map or
@@ -239,10 +243,9 @@ class TuyaDeviceConfig:
 class TuyaEntityConfig:
     """Representation of an entity config for a supported entity."""
 
-    def __init__(self, device, config, primary=False):
+    def __init__(self, device, config):
         self._device = device
         self._config = config
-        self._is_primary = primary
 
     @property
     def name(self):
@@ -1048,10 +1051,9 @@ def available_configs():
     """List the available config files."""
     _CONFIG_DIR = dirname(config_dir.__file__)
 
-    for path, dirs, files in walk(_CONFIG_DIR):
-        for basename in sorted(files):
-            if fnmatch(basename, "*.yaml"):
-                yield basename
+    for direntry in scandir(_CONFIG_DIR):
+        if direntry.is_file() and fnmatch(direntry.name, "*.yaml"):
+            yield direntry.name
 
 
 def possible_matches(dps, product_ids=None):

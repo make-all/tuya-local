@@ -1,19 +1,19 @@
 name: Thermo hygrometer
 products:
   - id: xpxdr5q6vc8aztq0
-    name: Bresser 7-channel
-primary_entity:
-  entity: sensor
-  class: temperature
-  dps:
-    - id: 1
-      name: sensor
-      type: integer
-      unit: C
-      mapping:
-        - scale: 10
-      class: measurement
-secondary_entities:
+    manufacturer: Bresser
+    name: "7-channel thermo-hygrometer"
+entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 1
+        name: sensor
+        type: integer
+        unit: C
+        mapping:
+          - scale: 10
+        class: measurement
   - entity: sensor
     class: humidity
     dps:

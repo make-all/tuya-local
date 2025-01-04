@@ -1,13 +1,14 @@
-name: BLE ADAPROX Fingerbot
+name: Fingerbot
 products:
   - id: yiihr7zh
-primary_entity:
-  entity: switch
-  dps:
-    - id: 2
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: Adaprox
+    name: BLE fingerbot
+entities:
+  - entity: switch
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
   - entity: sensor
     class: battery
     category: diagnostic

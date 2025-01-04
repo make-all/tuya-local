@@ -1,15 +1,15 @@
 name: Energy meter
 products:
   - id: tjtigg991kvoiiqi
-    name: ATorch AT4PBWP
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: Atorch
+    model: AT4PBWP
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: number
     category: config
     translation_key: timer

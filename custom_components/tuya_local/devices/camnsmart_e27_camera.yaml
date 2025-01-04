@@ -1,30 +1,30 @@
 name: Camera
 products:
   - id: ivdxyvyy8aqzm1ix
-    name: Camnsmart E27TY
-primary_entity:
-  entity: camera
-  dps:
-    - id: 109
-      type: string
-      name: memory_card_capacity
-    - id: 134
-      type: boolean
-      name: motion_enable
-      optional: true
-    - id: 150
-      type: boolean
-      name: record
-      optional: true
-    - id: 178
-      type: string
-      name: log_event
-      optional: true
-    - id: 185
-      type: string
-      name: log_message
-      optional: true
-secondary_entities:
+    manufacturer: Camnsmart
+    model: E27TY
+entities:
+  - entity: camera
+    dps:
+      - id: 109
+        type: string
+        name: memory_card_capacity
+      - id: 134
+        type: boolean
+        name: motion_enable
+        optional: true
+      - id: 150
+        type: boolean
+        name: record
+        optional: true
+      - id: 178
+        type: string
+        name: log_event
+        optional: true
+      - id: 185
+        type: string
+        name: log_message
+        optional: true
   - entity: light
     translation_key: indicator
     category: config

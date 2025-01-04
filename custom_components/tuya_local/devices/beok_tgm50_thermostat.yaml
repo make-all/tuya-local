@@ -1,69 +1,69 @@
 name: Thermostat
 products:
   - id: m3j5wouhgsvjlma9
-    name: Beok TGM50-WIFI-WP
-primary_entity:
-  entity: climate
-  translation_only_key: thermostat
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: true
-          constraint: preset_mode
-          conditions:
-            - dps_val: auto
-              value: auto
-            - dps_val: temporary
-              value: auto
-              hidden: true
-            - dps_val: home
-              value: heat
-            - dps_val: leave
-              value: heat
-              hidden: true
-        - dps_val: false
-          value: "off"
-    - id: 2
-      name: temperature
-      type: integer
-      unit: C
-      range:
-        min: 50
-        max: 300
-      mapping:
-        - scale: 10
-          step: 5
-    - id: 3
-      type: integer
-      name: current_temperature
-      mapping:
-        - scale: 10
-    - id: 4
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: leave
-          value: away
-        - dps_val: home
-          value: manual
-        - dps_val: auto
-          value: program
-        - dps_val: temporary
-          value: temp_override
-    - id: 5
-      type: string
-      name: hvac_action
-      mapping:
-        - dps_val: "0"
-          value: idle
-        - dps_val: "1"
-          value: heating
-    - id: 15
-      name: max_temperature
-      type: integer
-secondary_entities:
+    manufacturer: Beok
+    model: TGM50-WIFI-WP
+entities:
+  - entity: climate
+    translation_only_key: thermostat
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            constraint: preset_mode
+            conditions:
+              - dps_val: auto
+                value: auto
+              - dps_val: temporary
+                value: auto
+                hidden: true
+              - dps_val: home
+                value: heat
+              - dps_val: leave
+                value: heat
+                hidden: true
+          - dps_val: false
+            value: "off"
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 50
+          max: 300
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: leave
+            value: away
+          - dps_val: home
+            value: manual
+          - dps_val: auto
+            value: program
+          - dps_val: temporary
+            value: temp_override
+      - id: 5
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: "0"
+            value: idle
+          - dps_val: "1"
+            value: heating
+      - id: 15
+        name: max_temperature
+        type: integer
   - entity: lock
     translation_key: child_lock
     category: config

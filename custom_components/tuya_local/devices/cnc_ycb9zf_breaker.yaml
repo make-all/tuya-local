@@ -1,22 +1,22 @@
 name: Circuit breaker
 products:
   - id: bryydwbntbjkq8pk
-    name: Faens FSZN03-100AP 2P
-primary_entity:
-  entity: switch
-  icon: "mdi:fuse"
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 101
-      type: string
-      name: event
-    - id: 110
-      type: string
-      optional: true
-      name: version
-secondary_entities:
+    manufacturer: Faens
+    model: FSZN03-100AP 2P
+entities:
+  - entity: switch
+    icon: "mdi:fuse"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 101
+        type: string
+        name: event
+      - id: 110
+        type: string
+        optional: true
+        name: version
   - entity: sensor
     class: voltage
     category: diagnostic

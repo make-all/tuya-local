@@ -1,37 +1,36 @@
-name: AlecoAir D12 ECO dehumidifier
+name: Dehumidifier
 products:
   - id: gcthce4ejb8nzgow
-    name: D12 ECO 2.0
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 2
-      name: humidity
-      type: integer
-      range:
-        min: 20
-        max: 95
-      mapping:
-        - step: 5
-    - id: 5
-      name: mode
-      type: string
-      mapping:
-        - dps_val: Continuous
-          value: boost
-        - dps_val: Sunny_Day
-          value: eco
-        - dps_val: Rain_Day
-          value: normal
-
-    - id: 6
-      name: current_humidity
-      type: integer
-secondary_entities:
+    manufacturer: AlecoAir
+    model: D12 ECO 2.0
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: humidity
+        type: integer
+        range:
+          min: 20
+          max: 95
+        mapping:
+          - step: 5
+      - id: 5
+        name: mode
+        type: string
+        mapping:
+          - dps_val: Continuous
+            value: boost
+          - dps_val: Sunny_Day
+            value: eco
+          - dps_val: Rain_Day
+            value: normal
+      - id: 6
+        name: current_humidity
+        type: integer
   - entity: fan
     dps:
       - id: 1

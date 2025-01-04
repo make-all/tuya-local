@@ -2,25 +2,24 @@ name: Dimmer
 products:
   - id: 5zsarybcltypoeaa
     name: Single channel module
-primary_entity:
-  entity: light
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      name: brightness
-      type: integer
-      range:
-        min: 10
-        max: 1000
-    - id: 3
-      type: integer
-      name: min_brightness
-    - id: 5
-      type: integer
-      name: max_brightness
-secondary_entities:
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 3
+        type: integer
+        name: min_brightness
+      - id: 5
+        type: integer
+        name: max_brightness
   - entity: select
     name: LED type
     icon: "mdi:led-on"

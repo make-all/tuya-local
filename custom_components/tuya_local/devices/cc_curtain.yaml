@@ -1,20 +1,20 @@
 name: Curtain
 products:
   - id: dy1jPRPGVR9G7PWY
-    name: CC smart curtain 1
-primary_entity:
-  entity: cover
-  dps:
-    - id: 2
-      name: curtain_status
-      type: string
-    - id: 101
-      name: control
-      type: string
-      mapping:
-        - dps_val: 01
-          value: stop
-        - dps_val: 02
-          value: open
-        - dps_val: 03
-          value: close
+    model: CC smart curtain 1
+entities:
+  - entity: cover
+    dps:
+      - id: 2
+        name: curtain_status
+        type: string
+      - id: 101
+        name: control
+        type: string
+        mapping:
+          - dps_val: 01
+            value: stop
+          - dps_val: 02
+            value: open
+          - dps_val: 03
+            value: close

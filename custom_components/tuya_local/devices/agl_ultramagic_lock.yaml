@@ -1,29 +1,29 @@
 name: Gate lock
 products:
   - id: xrqkoapmq1rwjvms
-    name: AGL Ultra Magic
-primary_entity:
-  entity: cover
-  class: gate
-  dps:
-    - id: 118
-      type: boolean
-      name: control
-      optional: true
-      mapping:
-        - dps_val: true
-          value: open
-        - dps_val: false
-          value: close
-    - id: 3
-      type: boolean
-      name: action
-      mapping:
-        - dps_val: false
-          value: opened
-        - dps_val: true
-          value: closed
-secondary_entities:
+    manufacturer: AGL
+    name: Ultra Magic gate lock
+entities:
+  - entity: cover
+    class: gate
+    dps:
+      - id: 118
+        type: boolean
+        name: control
+        optional: true
+        mapping:
+          - dps_val: true
+            value: open
+          - dps_val: false
+            value: close
+      - id: 3
+        type: boolean
+        name: action
+        mapping:
+          - dps_val: false
+            value: opened
+          - dps_val: true
+            value: closed
   - entity: select
     category: config
     name: Beep

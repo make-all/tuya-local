@@ -1,33 +1,33 @@
 name: Video doorbell
 products:
   - id: tpd76kmnwwsun4iq
-    name: Cleverio CD-200
-primary_entity:
-  entity: camera
-  dps:
-    - id: 150
-      type: boolean
-      optional: true
-      name: record
-    - id: 154
-      type: base64
-      optional: true
-      sensitive: true
-      persist: false
-      name: snapshot
-      mapping:
-        - dps_val: null
-          value_redirect: movement_pic
-    - id: 115
-      type: base64
-      optional: true
-      sensitive: true
-      name: movement_pic
-    - id: 240
-      type: boolean
-      optional: true
-      name: motion_enable
-secondary_entities:
+    manufacturer: Cleverio
+    model: CD-200
+entities:
+  - entity: camera
+    dps:
+      - id: 150
+        type: boolean
+        optional: true
+        name: record
+      - id: 154
+        type: base64
+        optional: true
+        sensitive: true
+        persist: false
+        name: snapshot
+        mapping:
+          - dps_val: null
+            value_redirect: movement_pic
+      - id: 115
+        type: base64
+        optional: true
+        sensitive: true
+        name: movement_pic
+      - id: 240
+        type: boolean
+        optional: true
+        name: motion_enable
   - entity: switch
     name: Flip image
     icon: "mdi:flip-horizontal"

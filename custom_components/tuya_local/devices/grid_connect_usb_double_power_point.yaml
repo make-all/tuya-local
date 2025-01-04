@@ -1,17 +1,16 @@
 name: Grid Connnect power metered double outlet with USB
-primary_entity:
-  entity: switch
-  category: config
-  name: Master
-  class: outlet
-  dps:
-    - id: 101
-      name: switch
-      type: boolean
-    - id: 21
-      name: test_bit
-      type: integer
-secondary_entities:
+entities:
+  - entity: switch
+    category: config
+    name: Master
+    class: outlet
+    dps:
+      - id: 101
+        name: switch
+        type: boolean
+      - id: 21
+        name: test_bit
+        type: integer
   - entity: lock
     translation_key: child_lock
     category: config

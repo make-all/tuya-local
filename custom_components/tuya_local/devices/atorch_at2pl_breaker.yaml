@@ -1,20 +1,21 @@
 name: Energy meter
 products:
   - id: seqzqh45b0ggn9so
-    name: Atorch AT2PL
+    manufacturer: Atorch
+    model: AT2PL
   - id: sq1ahfxhgove4kgo
-    name: Atorch GR2PWS
-primary_entity:
-  entity: switch
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 17
-      type: integer
-      optional: true
-      name: add_ele
-secondary_entities:
+    manufacturer: Atorch
+    model: GR2PWS
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 17
+        type: integer
+        optional: true
+        name: add_ele
   - entity: number
     translation_key: timer
     class: duration

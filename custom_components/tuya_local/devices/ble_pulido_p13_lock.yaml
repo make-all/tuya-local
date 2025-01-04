@@ -1,69 +1,69 @@
 name: Smart Lock
 products:
   - id: kdq0tdbz
-    name: Pulido ‎P13
-primary_entity:
-  entity: lock
-  dps:
-    - id: 1
-      type: string
-      name: create_unlock_method
-      optional: true
-      sensitive: true
-    - id: 2
-      type: string
-      name: delete_unlock_method
-      optional: true
-    - id: 3
-      type: string
-      name: modify_unlock_method
-      optional: true
-      sensitive: true
-    - id: 12
-      type: integer
-      name: unlock_fingerprint
-      optional: true
-      persist: false
-    - id: 13
-      name: unlock_password
-      type: integer
-      optional: true
-      persist: false
-    - id: 15
-      name: unlock_card
-      type: integer
-      optional: true
-      persist: false
-    - id: 19
-      name: unlock_ble
-      type: integer
-      optional: true
-      persist: false
-    - id: 47  # Lock motor state
-      name: lock
-      type: boolean
-      readonly: true
-      mapping:
-        - dps_val: true  # Unlocked
-          value: false
-        - dps_val: false  # Locked
-          value: true
-    - id: 55
-      type: integer
-      name: unlock_temp_pwd
-      optional: true
-      persist: false
-    - id: 62
-      type: integer
-      name: unlock_app
-      optional: true
-      persist: false
-    - id: 63
-      name: unlock_voice
-      type: integer
-      optional: true
-      persist: false
-secondary_entities:
+    manufacturer: Pulido
+    model: ‎P13
+entities:
+  - entity: lock
+    dps:
+      - id: 1
+        type: string
+        name: create_unlock_method
+        optional: true
+        sensitive: true
+      - id: 2
+        type: string
+        name: delete_unlock_method
+        optional: true
+      - id: 3
+        type: string
+        name: modify_unlock_method
+        optional: true
+        sensitive: true
+      - id: 12
+        type: integer
+        name: unlock_fingerprint
+        optional: true
+        persist: false
+      - id: 13
+        name: unlock_password
+        type: integer
+        optional: true
+        persist: false
+      - id: 15
+        name: unlock_card
+        type: integer
+        optional: true
+        persist: false
+      - id: 19
+        name: unlock_ble
+        type: integer
+        optional: true
+        persist: false
+      - id: 47  # Lock motor state
+        name: lock
+        type: boolean
+        readonly: true
+        mapping:
+          - dps_val: true  # Unlocked
+            value: false
+          - dps_val: false  # Locked
+            value: true
+      - id: 55
+        type: integer
+        name: unlock_temp_pwd
+        optional: true
+        persist: false
+      - id: 62
+        type: integer
+        name: unlock_app
+        optional: true
+        persist: false
+      - id: 63
+        name: unlock_voice
+        type: integer
+        optional: true
+        persist: false
   - entity: sensor
     name: Alert
     class: enum

@@ -1,65 +1,66 @@
 name: Door lock
 products:
   - id: kpn4zaf7
-    name: BSTUOKEY RX2052 invisible induction lock
-primary_entity:
-  entity: lock
-  dps:
-    - id: 1
-      type: string
-      optional: true
-      sensitive: true
-      name: unlock_method_create
-    - id: 2
-      type: string
-      optional: true
-      name: unlock_method_delete
-    - id: 3
-      type: string
-      optional: true
-      sensitive: true
-      name: unlock_method_modify
-    - id: 15
-      type: integer
-      optional: true
-      persist: false
-      name: unlock_card
-    - id: 19
-      type: integer
-      optional: true
-      persist: false
-      name: unlock_ble
-    - id: 21
-      type: string
-      optional: true
-      persist: false
-      name: jammed
-      mapping:
-        - dps_val: tongue_bad
-          value: true
-        - dps_val: tongue_not_out
-          value: true
-        - value: false
-    - id: 47
-      type: boolean
-      readonly: true
-      name: lock
-    - id: 54
-      type: string
-      optional: true
-      sensitive: true
-      name: synch_method
-    - id: 70
-      type: string
-      optional: true
-      sensitive: true
-      name: check_code_set
-    - id: 71
-      type: string
-      optional: true
-      sensitive: true
-      name: ble_unlock_check
-secondary_entities:
+    manufacturer: BSTUOKEY
+    model: RX2052
+    name: Invisible induction lock
+entities:
+  - entity: lock
+    dps:
+      - id: 1
+        type: string
+        optional: true
+        sensitive: true
+        name: unlock_method_create
+      - id: 2
+        type: string
+        optional: true
+        name: unlock_method_delete
+      - id: 3
+        type: string
+        optional: true
+        sensitive: true
+        name: unlock_method_modify
+      - id: 15
+        type: integer
+        optional: true
+        persist: false
+        name: unlock_card
+      - id: 19
+        type: integer
+        optional: true
+        persist: false
+        name: unlock_ble
+      - id: 21
+        type: string
+        optional: true
+        persist: false
+        name: jammed
+        mapping:
+          - dps_val: tongue_bad
+            value: true
+          - dps_val: tongue_not_out
+            value: true
+          - value: false
+      - id: 47
+        type: boolean
+        readonly: true
+        name: lock
+      - id: 54
+        type: string
+        optional: true
+        sensitive: true
+        name: synch_method
+      - id: 70
+        type: string
+        optional: true
+        sensitive: true
+        name: check_code_set
+      - id: 71
+        type: string
+        optional: true
+        sensitive: true
+        name: ble_unlock_check
   - entity: sensor
     class: battery
     category: diagnostic

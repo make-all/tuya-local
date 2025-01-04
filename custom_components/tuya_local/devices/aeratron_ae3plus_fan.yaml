@@ -1,69 +1,69 @@
 name: Ceiling fan
 products:
   - id: iarwcyttkv1kvent
-    name: Aeratron AE3+
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 3
-      type: integer
-      # Does not appear to be used from cloud log, so non-standard name used
-      name: fan_speed
-      optional: true
-      range:
-        min: 1
-        max: 100
-    - id: 8
-      type: string
-      optional: true
-      name: direction
-    - id: 101
-      type: string
-      name: speed
-      mapping:
-        - dps_val: "0"
-          value: 1
-          step: 16
-        - dps_val: "1"
-          value: 17
-          step: 16
-        - dps_val: "2"
-          value: 33
-          step: 17
-        - dps_val: "3"
-          value: 50
-          step: 17
-        - dps_val: "4"
-          value: 66
-          step: 17
-        - dps_val: "5"
-          value: 83
-          step: 17
-        - dps_val: "6"
-          value: 100
-          step: 17
-        - value: 0
-          hidden: true
-    - id: 101
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: "0"
-          value: normal
-        - dps_val: "Breeze"
-          value: nature
-        - value: normal
-          hidden: true
-    - id: 103
-      type: integer
-      optional: true
-      name: fan_value
-      # seems to be another unused speed setting with 0-100 range
-secondary_entities:
+    manufacturer: Aeratron
+    model: AE3+
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: integer
+        # Does not appear to be used from cloud log, so non-standard name used
+        name: fan_speed
+        optional: true
+        range:
+          min: 1
+          max: 100
+      - id: 8
+        type: string
+        optional: true
+        name: direction
+      - id: 101
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "0"
+            value: 1
+            step: 16
+          - dps_val: "1"
+            value: 17
+            step: 16
+          - dps_val: "2"
+            value: 33
+            step: 17
+          - dps_val: "3"
+            value: 50
+            step: 17
+          - dps_val: "4"
+            value: 66
+            step: 17
+          - dps_val: "5"
+            value: 83
+            step: 17
+          - dps_val: "6"
+            value: 100
+            step: 17
+          - value: 0
+            hidden: true
+      - id: 101
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: "0"
+            value: normal
+          - dps_val: "Breeze"
+            value: nature
+          - value: normal
+            hidden: true
+      - id: 103
+        type: integer
+        optional: true
+        name: fan_value
+        # seems to be another unused speed setting with 0-100 range
   # Optional accessory, but there doesn't seem to be a feature flag
   # to automatically disable it
   - entity: light

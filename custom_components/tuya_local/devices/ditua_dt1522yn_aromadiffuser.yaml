@@ -1,29 +1,29 @@
 name: Aroma diffuser
 products:
   - id: 6ASdNwe9IdaewQEl
-    name: Ditua DT-1522-YN
+    manufacturer: Ditua
+    model: DT-1522-YN
   - id: venoaj75waptukdf
-    name: Sierra Modern Home diffuser
-primary_entity:
-  entity: fan
-  translation_key: aroma_diffuser
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 103
-      type: string
-      name: speed
-      optional: true
-      mapping:
-        - dps_val: small
-          value: 50
-        - dps_val: large
-          value: 100
-        - dps_val: null
-          value: 0
-          hidden: true
-secondary_entities:
+    manufacturer: Sierra Modern Home
+entities:
+  - entity: fan
+    translation_key: aroma_diffuser
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 103
+        type: string
+        name: speed
+        optional: true
+        mapping:
+          - dps_val: small
+            value: 50
+          - dps_val: large
+            value: 100
+          - dps_val: null
+            value: 0
+            hidden: true
   - entity: light
     category: config
     dps:

@@ -1,26 +1,26 @@
 name: Pet feeder
 products:
   - id: wfkzyy0evslzsmoi
-    name: Cleverio PF100
-primary_entity:
-  entity: number
-  name: Manual feed
-  icon: "mdi:food-drumstick"
-  dps:
-    - id: 3
-      type: integer
-      name: value
-      range:
-        min: 1
-        max: 20
-    - id: 1
-      type: string
-      optional: true
-      name: meal_plan
-    - id: 103
-      type: string
-      name: mode
-secondary_entities:
+    manufacturer: Cleverio
+    model: PF100
+entities:
+  - entity: number
+    name: Manual feed
+    icon: "mdi:food-drumstick"
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 20
+      - id: 1
+        type: string
+        optional: true
+        name: meal_plan
+      - id: 103
+        type: string
+        name: mode
   - entity: button
     translation_key: factory_reset
     category: config

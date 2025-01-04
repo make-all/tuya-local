@@ -1,16 +1,15 @@
 name: Soil moisture sensor
 products:
   - id: j5mynqs3
-    name: TCS024B
-primary_entity:
-  entity: sensor
-  class: moisture
-  dps:
-    - id: 2
-      name: sensor
-      type: integer
-      unit: "%"
-secondary_entities:
+    model: TCS024B
+entities:
+  - entity: sensor
+    class: moisture
+    dps:
+      - id: 2
+        name: sensor
+        type: integer
+        unit: "%"
   - entity: sensor
     class: temperature
     dps:

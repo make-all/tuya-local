@@ -1,31 +1,30 @@
 name: "Electriq CD12PW-V2 dehumidifier"
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 2
-      type: integer
-      name: humidity
-      range:
-        min: 35
-        max: 80
-      mapping:
-        - step: 5
-    - id: 5
-      name: mode
-      type: string
-      mapping:
-        - dps_val: "Smart"
-          value: auto
-        - dps_val: "Air_purifier"
-          value: purify
-    - id: 6
-      type: integer
-      name: current_humidity
-secondary_entities:
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        type: integer
+        name: humidity
+        range:
+          min: 35
+          max: 80
+        mapping:
+          - step: 5
+      - id: 5
+        name: mode
+        type: string
+        mapping:
+          - dps_val: "Smart"
+            value: auto
+          - dps_val: "Air_purifier"
+            value: purify
+      - id: 6
+        type: integer
+        name: current_humidity
   - entity: light
     translation_key: display
     category: config
