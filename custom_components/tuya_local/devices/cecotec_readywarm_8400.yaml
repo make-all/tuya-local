@@ -13,9 +13,10 @@ primary_entity:
         - dps_val: false
           value: "off"
         - dps_val: true
-          value: fan_only
           constraint: preset_mode
           conditions:
+            - dps_val: "off"
+              value: fan_only
             - dps_val: "low"
               value: heat
               hidden: true
@@ -40,7 +41,6 @@ primary_entity:
       mapping:
         - dps_val: "off"
           value: none
-          hidden: true
         - dps_val: "low"
           value: eco
         - dps_val: "high"
