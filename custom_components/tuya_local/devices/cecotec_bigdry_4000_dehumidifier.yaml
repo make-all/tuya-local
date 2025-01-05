@@ -54,6 +54,7 @@ entities:
         unit: C
   - entity: switch
     translation_key: uv_sterilization
+    # Not supported by the device, still shown by Tuya
     category: config
     dps:
       - id: 13
@@ -67,7 +68,7 @@ entities:
         type: bitfield
         name: sensor
         mapping:
-          - dps_val: 1
+          - dps_val: 2
             value: true
           - value: false
   - entity: binary_sensor
@@ -94,6 +95,7 @@ entities:
           - dps_val: 0
             value: OK
           - dps_val: 1
-            value: "Water Tank Full or Removed"
-          - dps_val: 2
             value: "E2 Compressor Fault"
+            # Unknown. Might be compressor fault
+          - dps_val: 2
+            value: "Water Tank Full or Removed"
