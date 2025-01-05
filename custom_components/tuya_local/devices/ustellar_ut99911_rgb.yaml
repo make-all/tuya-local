@@ -33,6 +33,20 @@ entities:
       - id: 20
         type: boolean
         name: switch
+      - id: 21
+        type: string
+        name: App Mode
+        mapping:
+          - dps_val: "dynamic_mod"
+            value: "Mode - Dynamic"
+          - dps_val: "color"
+            value: "Dimmer"
+          - dps_val: "scene_mod"
+            value: "Mode - Scene"
+          - dps_val: "music"
+            value: "Music"
+          - dps_val: "white"
+            value: "White"
       - id: 24
         name: rgbhsv
         type: hex
@@ -52,20 +66,6 @@ entities:
             range:
               min: 0
               max: 1000
-      - id: 21
-        type: string
-        name: App Mode
-        mapping:
-          - dps_val: "dynamic_mod"
-            value: "Mode - Dynamic"
-          - dps_val: "color"
-            value: "Dimmer"
-          - dps_val: "scene_mod"
-            value: "Mode - Scene"
-          - dps_val: "music"
-            value: "Music"
-          - dps_val: "white"
-            value: "White"
       - id: 103
         type: integer
         name: RGB Order
