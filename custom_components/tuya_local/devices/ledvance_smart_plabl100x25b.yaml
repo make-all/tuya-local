@@ -1,73 +1,81 @@
 name: Ledvance Smart+PlaBL100x25B
 products:
-  - id: bfaf1efff4a825ac2c8aly
+  - id: key9cdjdeqjph5sh
     name: Ledvance Smart+PlaBL100x25B
-# https://github.com/FlagX/ha-ledvance-tuya-resync-localkey
-#
-# https://github.com/rospogrigio/localtuya/wiki/HOWTO-get-a-DPs-dump
-#
-#    DPS [20] VALUE [False] on off switch
-#    DPS [21] VALUE [scene] ?
-#    DPS [22] VALUE [400] main led brightness
-#    DPS [23] VALUE [200] main led color temp
-#    DPS [24] VALUE [0136019a0348] rgb led color
-#    DPS [26] VALUE [0] rgb led brightness
-#    DPS [41] VALUE [False] ?
 entities:
   - entity: light
-    name: Main LED
-    translation_key: main
+    name: Primary LED
     dps:
-      - id: 20
-        type: boolean
-        name: switch
-      - id: 22
-        name: brightness
-        type: integer
-        range:
-          min: 0
-          max: 1000
-      - id: 23
-        name: color_temp
-        type: integer
-        range:
-          min: 0
-          max: 500
-        mapping:
-          - target_range:
-              min: 2700
-              max: 6500
+    - id: 20
+      type: boolean
+      name: switch
+    - id: 21
+      type: string
+      name: color_mode
+      mapping:
+        - dps_val: white
+          value: color_temp
+    - id: 22
+      name: brightness
+      type: integer
+      range:
+        min: 0
+        max: 1000
+    - id: 23
+      name: color_temp
+      type: integer
+      range:
+        min: 0
+        max: 500
+      mapping:
+        - target_range:
+            min: 2700
+            max: 6500
   - entity: light
-    name: RGB LED
-    translation_key: rgb
+    name: Secondary LED
+    dps:
+    - id: 20
+      type: boolean
+      name: switch
+    - id: 21
+      type: string
+      name: color_mode
+      mapping:
+        - dps_val: colour
+          value: hs
+    - id: 24
+      type: hex
+      name: rgbhsv
+      optional: true
+      format:
+        - name: h
+          bytes: 2
+          range:
+            min: 0
+            max: 360
+        - name: s
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+        - name: v
+          bytes: 2
+          range:
+            min: 0
+            max: 1000
+  - entity: number
+    translation_key: timer
+    class: duration
     category: config
     dps:
-      - id: 20
-        type: boolean
-        name: switch
       - id: 26
-        name: brightness
         type: integer
+        name: value
+        unit: min
+        optional: true
         range:
           min: 0
-          max: 1000
-      - id: 24
-        type: hex
-        name: rgbhsv
-        optional: true
-        format:
-          - name: h
-            bytes: 2
-            range:
-              min: 0
-              max: 360
-          - name: s
-            bytes: 2
-            range:
-              min: 0
-              max: 1000
-          - name: v
-            bytes: 2
-            range:
-              min: 0
-              max: 1000
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
