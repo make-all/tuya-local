@@ -53,22 +53,36 @@ entities:
             range:
               min: 0
               max: 1000
-      - id: 103
+      - id: 21
         type: string
+        name: App Mode
+        mapping:
+          - dps_val: "dynamic_mod"
+            value: "Mode - Dynamic"
+          - dps_val: "color"
+            value: "Dimmer"
+          - dps_val: "scene_mod"
+            value: "Mode - Scene"
+          - dps_val: "music"
+            value: "Music"
+          - dps_val: "white"
+            value: "White"
+      - id: 103
+        type: integer
         name: RGB Order
         mapping:
           - dps_val: 1
-            value: RGB
+            value: "RGB"
           - dps_val: 2
-            value: RBG
+            value: "RBG"
           - dps_val: 3
-            value: GRB
+            value: "GRB"
           - dps_val: 4
-            value: GBR
+            value: "GBR"
           - dps_val: 5
-            value: BRG
+            value: "BRG"
           - dps_val: 6
-            value: BGR
+            value: "BGR"
   - entity: select
     name: Music
     icon: "mdi:playlist-music"
@@ -111,26 +125,6 @@ entities:
             value: "Disco 75%"
           - dps_val: 464
             value: "Disco 100%"
-  - entity: select
-    name: Work Mode
-    icon: "mdi:playlist-check"
-    category: config
-    dps:
-      - id: 21
-        type: string
-        name: option
-        optional: true
-        mapping:
-          - dps_val: dynamic_mod
-            value: Dynamic
-          - dps_val: color
-            value: Color
-          - dps_val: scene_mod
-            value: Scene
-          - dps_val: music
-            value: Music
-          - dps_val: white
-            value: White
   - entity: select
     name: Mode
     icon: "mdi:playlist-edit"
