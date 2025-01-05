@@ -144,6 +144,7 @@ The type of data returned by the Tuya API. Can be one of the following:
  - **base64** is a special case of string, where binary data is base64 encoded. Platforms that use this type will need special handling to make sense of the data.
  - **hex** is a special case of string, where binary data is hex encoded. Platforms that use this type will need special handling to make sense of the data.
  - **json** is a special case of string, where multiple data points are encoded in json format in the string. Platforms that use this type will need special handling to make sense of the data.
+ - **utf16b64** is a special case of string, where a UTF-16 string is base64 encoded. This will be decoded into a UTF-8 string so it is readable in Home Assistant.
  - **float** can contain floating point numbers. No known devices use this, but it is supported if needed.
 
 ### `name`
