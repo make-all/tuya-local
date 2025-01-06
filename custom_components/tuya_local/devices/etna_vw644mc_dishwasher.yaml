@@ -1,0 +1,216 @@
+name: Dishwasher
+products:
+  - id: hmwl5vpd1zanu6ma
+    manufacturer: Etna
+    model: VW644MC
+entities:
+  - entity: switch
+    icon: "mdi:dishwasher"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: button
+    name: Start
+    icon: "mdi:play"
+    dps:
+      - id: 2
+        type: boolean
+        name: button
+  - entity: button
+    name: Stop
+    icon: "mdi:stop"
+    dps:
+      - id: 2
+        type: boolean
+        name: button
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 6
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 1440
+  - entity: select
+    name: Mode
+    icon: "mdi:dishwasher"
+    category: config
+    dps:
+      - id: 7
+        type: string
+        name: option
+        mapping:
+          - dps_val: neutral
+            value: neutral
+          - dps_val: eco
+            value: eco
+          - dps_val: "90min"
+            value: "90_minute"
+          - dps_val: glass
+            value: glass
+          - dps_val: rapid
+            value: rapid
+          - dps_val: auto
+            value: auto
+          - dps_val: intensive
+            value: intensive
+          - dps_val: hygiene
+            value: hygiene
+          - dps_val: universal
+            value: universal
+          - dps_val: soak
+            value: soak
+          - dps_val: self_cleaning
+            value: self_clean
+          - dps_val: party
+            value: party
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: min
+        class: measurement
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 12
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 12
+        type: bitfield
+        name: fault_code
+  - entity: sensor
+    translation_key: status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 16
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: unwash
+            value: unwashed
+          - dps_val: pre_wash
+            value: pre_washing
+          - dps_val: wash
+            value: washing
+          - dps_val: rinse
+            value: rinsing
+          - dps_val: drying
+            value: drying
+          - dps_val: end
+            value: done
+          - dps_val: standby
+            value: standby
+  - entity: sensor
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 17
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        optional: true
+        name: lock
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: switch
+    name: Delayed start
+    icon: "mdi:clock"
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: door
+    category: diagnostic
+    dps:
+      - id: 103
+        type: boolean
+        name: sensor
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+  - entity: binary_sensor
+    name: Rinse aid
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 104
+        type: boolean
+        name: sensor
+  - entity: binary_sensor
+    name: Salt
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 105
+        type: boolean
+        name: sensor
+  - entity: button
+    name: Pause
+    icon: "mdi:pause"
+    dps:
+      - id: 107
+        type: boolean
+        name: button
+  - entity: switch
+    name: Auto open
+    icon: "mdi:door-open"
+    category: config
+    dps:
+      - id: 110
+        type: boolean
+        name: switch
+  - entity: select
+    name: Water hardness
+    icon: "mdi:water-opacity"
+    category: config
+    dps:
+      - id: 111
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: "1"
+          - dps_val: "2"
+            value: "2"
+          - dps_val: "3"
+            value: "3"
+          - dps_val: "4"
+            value: "4"
+          - dps_val: "5"
+            value: "5"
+          - dps_val: "6"
+            value: "6"
