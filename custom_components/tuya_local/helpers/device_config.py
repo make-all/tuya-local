@@ -631,7 +631,6 @@ class TuyaDpsConfig:
 
             cond = self._active_condition(mapping, device)
             if cond:
-                constraint = mapping.get("constraint", self.name)
                 step = cond.get("step", step)
         if step != 1 or scale != 1:
             _LOGGER.debug(
