@@ -1,11 +1,8 @@
-name: Heater
+name: Fan heater
 products:
-  - id: ojvja3vyqchxrfhk
-    manufacturer: Atomi
-    model: AT1632
-  - id: tos0dbspyikjzcxe
-    manufacturer: Atomi
-    model: AT1635
+  - id: var0f7dheclxpjuz
+    manufacturer: Cecotec
+    model: ReadyWarm 8400 Bladeless
 entities:
   - entity: climate
     translation_only_key: heater
@@ -17,51 +14,55 @@ entities:
           - dps_val: false
             value: "off"
           - dps_val: true
-            value: heat
+            constraint: preset_mode
+            conditions:
+              - dps_val: "off"
+                value: fan_only
+              - dps_val: "low"
+                value: heat
+                hidden: true
+              - dps_val: "high"
+                value: heat
+                hidden: true
+              - dps_val: "auto"
+                value: heat
       - id: 2
         type: integer
         name: temperature
+        unit: C
         range:
-          min: 60
-          max: 86
-        unit: F
+          min: 15
+          max: 40
       - id: 3
         type: integer
         name: current_temperature
       - id: 4
-        type: string
         name: preset_mode
+        type: string
         mapping:
-          - dps_val: auto
+          - dps_val: "off"
+            value: none
+          - dps_val: "low"
             value: eco
-          - dps_val: low
-            value: comfort
-          - dps_val: high
+          - dps_val: "high"
             value: boost
+          - dps_val: "auto"
+            value: comfort
       - id: 8
         type: boolean
         name: swing_mode
-        # not available on AT1635
-        optional: true
         mapping:
           - dps_val: false
             value: "off"
           - dps_val: true
-            value: horizontal
-  - entity: light
-    translation_key: display
-    category: config
-    dps:
-      - id: 10
-        type: boolean
-        name: switch
+            value: "on"
   - entity: select
     translation_key: timer
     category: config
     dps:
-      - id: 11
-        type: string
+      - id: 19
         name: option
+        type: string
         mapping:
           - dps_val: "0h"
             value: cancel
@@ -92,27 +93,8 @@ entities:
   - entity: sensor
     translation_key: time_remaining
     class: duration
-    category: diagnostic
     dps:
-      - id: 12
+      - id: 20
         type: integer
         name: sensor
         unit: min
-  - entity: binary_sensor
-    name: Overheat protection
-    class: problem
-    icon: "mdi:fire-alert"
-    category: diagnostic
-    dps:
-      - id: 102
-        type: boolean
-        name: sensor
-  - entity: binary_sensor
-    name: Tip over protection
-    class: problem
-    icon: "mdi:debug-step-over"
-    category: diagnostic
-    dps:
-      - id: 103
-        type: boolean
-        name: sensor
