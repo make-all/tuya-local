@@ -9,10 +9,18 @@ entities:
       - id: 2
         name: sensor
         type: integer
-        unit: C
         mapping:
           - scale: 10
         class: measurement
+      - id: 11
+        name: unit
+        type: string
+        mapping:
+          - dps_val: "c"
+            value: "C"
+          - dps_val: "f"
+            value: "F"
+        optional: true
   - entity: select
     translation_key: temperature_unit
     category: config
