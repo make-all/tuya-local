@@ -52,15 +52,6 @@ entities:
         type: integer
         class: measurement
         unit: C
-  - entity: switch
-    translation_key: uv_sterilization
-    # Not supported by the device, still shown by Tuya
-    category: config
-    dps:
-      - id: 13
-        type: boolean
-        name: switch
-        optional: true
   - entity: binary_sensor
     translation_key: tank_full
     dps:
@@ -80,7 +71,7 @@ entities:
         mapping:
           - dps_val: 0
             value: false
-          - dps_val: 1
+          - dps_val: 2
             value: false
           - dps_val: null
             value: false
@@ -95,7 +86,7 @@ entities:
           - dps_val: 0
             value: OK
           - dps_val: 1
-            value: "E2 Compressor Fault"
-            # Unknown. Might be compressor fault
+            value: "Error 1"
+            # Unknown. Compressor or temperature/humidity sensor fault?
           - dps_val: 2
             value: "Water Tank Full or Removed"
