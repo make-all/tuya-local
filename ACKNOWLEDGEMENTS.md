@@ -410,7 +410,7 @@ Further device support has been made with the assistance of users. Please consid
 - [t34wrj](https://github.com/t34wrj) for contributing support for Lubluelu vacuums.
 - [lyatam](https://github.com/lyatam) for contributing support for ZX-DB11B doorbell alarms.
 - [urgelaszlo](https://github.com/urgelaszlo) for contributing support for Fisher Summer air conditioners.
-- [felipecrs](https://github.com/felipecrs) for assisting with support for SmarDeer smart locks.
+- [felipecrs](https://github.com/felipecrs) for assisting with support for SmarDeer smart lock and contributing support for ZY-M100-WIFI24G v2 presence sensor.
 - [rbalaev](https://github.com/rbalaev) for assisting with support for Thermex Lima 80V water heaters.
 - [cart3a](https://github.com/cart3a) for contributing support for Beok TGM50 thermostats.
 - [patoh](https://github.com/patoh) for contributing support for Breville Smart Dry Connect dehumidifiers.
