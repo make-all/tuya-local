@@ -1,34 +1,34 @@
 name: Pet feeder
 products:
   - id: tyjxq8vanjxpn7kb
-    name: Petlibro PLAF103
-primary_entity:
-  entity: sensor
-  translation_key: status
-  class: enum
-  icon: "mdi:paw"
-  dps:
-    - id: 4
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: standby
-          value: standby
-        - dps_val: no_food
-          value: no_food
-        - dps_val: error_ir
-          value: jammed
-        - dps_val: feed_timeout
-          value: blocked
-        - dps_val: feeding
-          value: feeding
-        - dps_val: feed_end
-          value: feeding_complete
-    - id: 1
-      name: meal_plan
-      type: string
-      optional: true
-secondary_entities:
+    manufacturer: Petlibro
+    model: PLAF103
+entities:
+  - entity: sensor
+    translation_key: status
+    class: enum
+    icon: "mdi:paw"
+    dps:
+      - id: 4
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: no_food
+            value: no_food
+          - dps_val: error_ir
+            value: jammed
+          - dps_val: feed_timeout
+            value: blocked
+          - dps_val: feeding
+            value: feeding
+          - dps_val: feed_end
+            value: feeding_complete
+      - id: 1
+        name: meal_plan
+        type: string
+        optional: true
   - entity: number
     name: Manual feed
     icon: "mdi:food-drumstick"

@@ -1,36 +1,35 @@
 name: Pool heat pump
 products:
   - id: orwtoimcnasji7jw
-    name: Edge Theory Labs cold plunge heat pump
-primary_entity:
-  entity: climate
-  translation_key: pool_heatpump
-  dps:
-    - id: 121
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: heat_cool
-    - id: 17
-      name: temperature
-      type: integer
-      range:
-        min: 32
-        max: 107
-      unit: F
-    - id: 29
-      name: current_temperature
-      type: integer
-      mapping:
-        - scale: 10
-    - id: 115
-      name: mode
-      type: boolean
-
-secondary_entities:
+    manufacturer: Edge Theory Labs
+    name: Cold plunge heat pump
+entities:
+  - entity: climate
+    translation_key: pool_heatpump
+    dps:
+      - id: 121
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat_cool
+      - id: 17
+        name: temperature
+        type: integer
+        range:
+          min: 32
+          max: 107
+        unit: F
+      - id: 29
+        name: current_temperature
+        type: integer
+        mapping:
+          - scale: 10
+      - id: 115
+        name: mode
+        type: boolean
   - entity: binary_sensor
     name: Compressor
     class: running

@@ -1,15 +1,15 @@
 name: Heater with light
 products:
   - id: trsas9jlfgcbxhq9
-    name: Kesser 3000W Floodlights
-primary_entity:
-  entity: switch
-  icon: "mdi:radiator"
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: Kesser
+    model: "3000W Floodlights"
+entities:
+  - entity: switch
+    icon: "mdi:radiator"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: select
     name: Mode
     icon: "mdi:radiator"

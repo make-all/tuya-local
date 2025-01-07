@@ -1,31 +1,30 @@
 name: Bidet
 products:
   - id: 7cuimqtezvgbaeun
-    name: Kogan bidet
-primary_entity:
-  entity: switch
-  icon: "mdi:toilet"
-  dps:
-    - id: 45
-      type: boolean
-      name: switch
-    - id: 103
-      type: integer
-      name: ambient_temperature
-      optional: true
-    - id: 56
-      type: integer
-      name: clean_time
-      optional: true
-    - id: 57
-      type: string
-      name: wind_temperature
-      optional: true
-    - id: 59
-      type: integer
-      name: drying_time
-      optional: true
-secondary_entities:
+    manufacturer: Kogan
+entities:
+  - entity: switch
+    icon: "mdi:toilet"
+    dps:
+      - id: 45
+        type: boolean
+        name: switch
+      - id: 103
+        type: integer
+        name: ambient_temperature
+        optional: true
+      - id: 56
+        type: integer
+        name: clean_time
+        optional: true
+      - id: 57
+        type: string
+        name: wind_temperature
+        optional: true
+      - id: 59
+        type: integer
+        name: drying_time
+        optional: true
   - entity: select
     name: Mode
     icon: "mdi:toilet"

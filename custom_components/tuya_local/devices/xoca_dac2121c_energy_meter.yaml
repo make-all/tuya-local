@@ -1,28 +1,28 @@
 name: Multi-tariff energy meter
 products:
   - id: opdhepy0p7eyeurz
-    name: DAC-2121C BI
-primary_entity:
-  entity: switch
-  icon: "mdi:fuse"
-  dps:
-    - id: 16
-      name: switch
-      type: boolean
-    - id: 6
-      name: phase_a
-      type: base64
-      optional: true
-      force: true
-    - id: 17
-      name: alarm_set_2
-      type: string
-      optional: true
-    - id: 18
-      type: string
-      name: meter_id
-      optional: true
-secondary_entities:
+    manufacturer: Xoca
+    model: DAC-2121C BI
+entities:
+  - entity: switch
+    icon: "mdi:fuse"
+    dps:
+      - id: 16
+        name: switch
+        type: boolean
+      - id: 6
+        name: phase_a
+        type: base64
+        optional: true
+        force: true
+      - id: 17
+        name: alarm_set_2
+        type: string
+        optional: true
+      - id: 18
+        type: string
+        name: meter_id
+        optional: true
   - entity: sensor
     translation_key: energy_consumed
     class: energy

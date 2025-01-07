@@ -1,38 +1,37 @@
 name: Indoor Siren
 products:
   - id: yytgthb3nxt1zp0e
-    name: Orion SWS07HA
-primary_entity:
-  entity: siren
-  dps:
-    - id: 1
-      name: tone
-      type: string
-      mapping:
-        - dps_val: alarm_sound
-          value: sound
-          default: true
-        - dps_val: normal
-          value: "off"
-    - id: 5
-      name: volume_level
-      type: string
-      mapping:
-        - dps_val: low
-          value: 0.33
-        - dps_val: middle
-          value: 0.67
-        - dps_val: high
-          value: 1.0
-    - id: 7
-      name: duration
-      type: integer
-      range:
-        min: 0
-        max: 4
-      unit: min
-
-secondary_entities:
+    manufacturer: Orion
+    model: SWS07HA
+entities:
+  - entity: siren
+    dps:
+      - id: 1
+        name: tone
+        type: string
+        mapping:
+          - dps_val: alarm_sound
+            value: sound
+            default: true
+          - dps_val: normal
+            value: "off"
+      - id: 5
+        name: volume_level
+        type: string
+        mapping:
+          - dps_val: low
+            value: 0.33
+          - dps_val: middle
+            value: 0.67
+          - dps_val: high
+            value: 1.0
+      - id: 7
+        name: duration
+        type: integer
+        range:
+          min: 0
+          max: 4
+        unit: min
   - entity: alarm_control_panel
     dps:
       - id: 4

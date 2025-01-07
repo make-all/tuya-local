@@ -1,31 +1,31 @@
 name: Energy meter
 products:
   - id: fygozcnralhwbauo
-    name: Yagusmart/Zemismart 3PN 63A
-primary_entity:
-  entity: sensor
-  class: energy
-  dps:
-    - id: 1
-      type: integer
-      name: sensor
-      unit: kWh
-      class: total_increasing
-      mapping:
-        - scale: 100
-    - id: 17
-      type: string
-      name: alarm_set_1
-      optional: true
-    - id: 18
-      type: string
-      name: alarm_set_2
-      optional: true
-    - id: 19
-      type: string
-      name: breaker_id
-      optional: true
-secondary_entities:
+    manufacturer: Yagusmart/Zemismart
+    model: 3PN 63A
+entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 17
+        type: string
+        name: alarm_set_1
+        optional: true
+      - id: 18
+        type: string
+        name: alarm_set_2
+        optional: true
+      - id: 19
+        type: string
+        name: breaker_id
+        optional: true
   - entity: sensor
     translation_key: energy_produced
     class: energy

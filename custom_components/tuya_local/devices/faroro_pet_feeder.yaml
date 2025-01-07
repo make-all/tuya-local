@@ -1,22 +1,22 @@
 name: Pet feeder
 products:
   - id: vglnuveujzyrpku9
-    name: Faroro PF50
-primary_entity:
-  entity: number
-  name: Manual feed
-  icon: "mdi:food-drumstick"
-  mode: "box"
-  dps:
-    - id: 3
-      name: value
-      type: integer
-      persist: false
-      optional: true
-      range:
-        min: 1
-        max: 12
-secondary_entities:
+    manufacturer: Faroro
+    model: PF50
+entities:
+  - entity: number
+    name: Manual feed
+    icon: "mdi:food-drumstick"
+    mode: "box"
+    dps:
+      - id: 3
+        name: value
+        type: integer
+        persist: false
+        optional: true
+        range:
+          min: 1
+          max: 12
   - entity: sensor
     name: Feed status
     icon: "mdi:paw"

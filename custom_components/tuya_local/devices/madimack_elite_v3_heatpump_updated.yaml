@@ -1,70 +1,70 @@
 name: Pool heatpump
 products:
   - id: kwrvh8zwvbbyp086
-    name: Madimack Elite V3 11-40kW
-primary_entity:
-  entity: climate
-  dps:
-    - id: 101
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: auto
-              value: auto
-            - dps_val: cold
-              value: cool
-            - dps_val: heating
-              value: heat
-    - id: 102
-      name: mode
-      type: string
-      hidden: true
-    - id: 104
-      name: temperature
-      type: integer
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              range:
-                min: 54
-                max: 104
-      range:
-        min: 12
-        max: 40
-    - id: 105
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: silence
-          value: sleep
-        - dps_val: perfect
-          value: comfort
-        - dps_val: power
-          value: boost
-    - id: 106
-      name: temperature_unit
-      type: string
-      mapping:
-        - dps_val: f
-          value: F
-        - dps_val: c
-          value: C
-    - id: 110
-      type: integer
-      name: max_temperature
-    - id: 111
-      type: integer
-      name: min_temperature
-    - id: 117
-      name: current_temperature
-      type: integer
-secondary_entities:
+    manufacturer: Madimack
+    model: Elite V3 11-40kW
+entities:
+  - entity: climate
+    dps:
+      - id: 101
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: auto
+              - dps_val: cold
+                value: cool
+              - dps_val: heating
+                value: heat
+      - id: 102
+        name: mode
+        type: string
+        hidden: true
+      - id: 104
+        name: temperature
+        type: integer
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                range:
+                  min: 54
+                  max: 104
+        range:
+          min: 12
+          max: 40
+      - id: 105
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: silence
+            value: sleep
+          - dps_val: perfect
+            value: comfort
+          - dps_val: power
+            value: boost
+      - id: 106
+        name: temperature_unit
+        type: string
+        mapping:
+          - dps_val: f
+            value: F
+          - dps_val: c
+            value: C
+      - id: 110
+        type: integer
+        name: max_temperature
+      - id: 111
+        type: integer
+        name: min_temperature
+      - id: 117
+        name: current_temperature
+        type: integer
   - entity: sensor
     category: diagnostic
     name: Power level

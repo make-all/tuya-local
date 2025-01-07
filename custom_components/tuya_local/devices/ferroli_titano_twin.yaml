@@ -1,41 +1,42 @@
 name: Water heater
 products:
   - id: lci0ebsz7ftaruaf
-    name: Ferroli Titano Twin DT EWH
-primary_entity:
-  entity: water_heater
-  dps:
-    - id: 1
-      name: operation_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: work_mode
-          conditions:
-            - dps_val: manual
-              value: electric
-            - dps_val: eco
-              value: eco
-              icon: "mdi:leaf"
-    - id: 2
-      type: string
-      name: work_mode
-      hidden: true
-    - id: 9
-      type: integer
-      name: temperature
-      range:
-        min: 40
-        max: 80
-      mapping:
-        - step: 5
-      unit: C
-    - id: 10
-      type: integer
-      name: current_temperature
-secondary_entities:
+    manufacturer: Ferroli
+    model: Titano Twin
+    model_id: DT EWH
+entities:
+  - entity: water_heater
+    dps:
+      - id: 1
+        name: operation_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: work_mode
+            conditions:
+              - dps_val: manual
+                value: electric
+              - dps_val: eco
+                value: eco
+                icon: "mdi:leaf"
+      - id: 2
+        type: string
+        name: work_mode
+        hidden: true
+      - id: 9
+        type: integer
+        name: temperature
+        range:
+          min: 40
+          max: 80
+        mapping:
+          - step: 5
+        unit: C
+      - id: 10
+        type: integer
+        name: current_temperature
   - entity: switch
     name: Anti-legionella
     category: config

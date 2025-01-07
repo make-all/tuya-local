@@ -1,38 +1,39 @@
 name: Heater
 products:
   - id: 9l3riftrq9acjunt
-    name: Kogan KASMGPH15YA Premium Glass Panel Heater
-primary_entity:
-  entity: climate
-  translation_key: heater
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: true
-          value: "heat"
-        - dps_val: false
-          value: "off"
-    - id: 5
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: Low
-          value: eco
-        - dps_val: High
-          value: boost
-    - id: 2
-      name: temperature
-      type: integer
-      unit: C
-      range:
-        min: 5
-        max: 45
-    - id: 3
-      name: current_temperature
-      type: integer
-secondary_entities:
+    manufacturer: Kogan
+    model_id: KASMGPH15YA
+    model: Premium glass panel heater
+entities:
+  - entity: climate
+    translation_key: heater
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "heat"
+          - dps_val: false
+            value: "off"
+      - id: 5
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: Low
+            value: eco
+          - dps_val: High
+            value: boost
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 5
+          max: 45
+      - id: 3
+        name: current_temperature
+        type: integer
   - entity: switch
     translation_key: sleep
     dps:

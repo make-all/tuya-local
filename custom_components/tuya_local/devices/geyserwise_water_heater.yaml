@@ -1,37 +1,38 @@
 name: Water heater
 products:
   - id: ox9jyuavu5v78o2y
-    name: Geyserwise TSE geyser timer and controller
-primary_entity:
-  entity: water_heater
-  dps:
-    - id: 1
-      type: boolean
-      name: operation_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: electric
-    - id: 2
-      type: string
-      name: away_mode
-      mapping:
-        - dps_val: Timer
-          value: false
-        - dps_val: Holiday
-          value: true
-    - id: 10
-      type: integer
-      name: current_temperature
-    - id: 103
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 30
-        max: 75
-secondary_entities:
+    manufacturer: Geyserwise
+    model: TSE
+    name: Geyser timer and controller
+entities:
+  - entity: water_heater
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: electric
+      - id: 2
+        type: string
+        name: away_mode
+        mapping:
+          - dps_val: Timer
+            value: false
+          - dps_val: Holiday
+            value: true
+      - id: 10
+        type: integer
+        name: current_temperature
+      - id: 103
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 30
+          max: 75
   - entity: binary_sensor
     name: Element
     class: running

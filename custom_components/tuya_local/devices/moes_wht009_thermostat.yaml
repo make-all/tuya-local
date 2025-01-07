@@ -1,69 +1,68 @@
 name: Thermostat
 products:
   - id: 14bmxdarlb4ravgd
-    name: Moes WHT-009
-primary_entity:
-  entity: climate
-  translation_key: thermostat
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: manual
-              value: heat
-            - dps_val: auto
-              value: auto
-    - id: 2
-      name: mode
-      type: string
-    - id: 16
-      name: temperature
-      type: integer
-      unit: C
-      range:
-        min: 50
-        max: 450
-      mapping:
-        - scale: 10
-          step: 5
-    - id: 24
-      name: current_temperature
-      type: integer
-      mapping:
-        - scale: 10
-          step: 5
-    - id: 19
-      type: integer
-      optional: true
-      name: max_temperature
-      mapping:
-        - scale: 10
-    - id: 26
-      type: integer
-      optional: true
-      name: min_temperature
-      mapping:
-        - scale: 10
-    - id: 36
-      type: string
-      name: hvac_action
-      mapping:
-        - dps_val: open
-          value: heating
-        - dps_val: close
-          value: idle
-    - id: 71
-      type: string
-      optional: true
-      name: week_program
-
-secondary_entities:
+    manufacturer: Moes
+    model: WHT-009
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: manual
+                value: heat
+              - dps_val: auto
+                value: auto
+      - id: 2
+        name: mode
+        type: string
+      - id: 16
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 50
+          max: 450
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 24
+        name: current_temperature
+        type: integer
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 19
+        type: integer
+        optional: true
+        name: max_temperature
+        mapping:
+          - scale: 10
+      - id: 26
+        type: integer
+        optional: true
+        name: min_temperature
+        mapping:
+          - scale: 10
+      - id: 36
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: open
+            value: heating
+          - dps_val: close
+            value: idle
+      - id: 71
+        type: string
+        optional: true
+        name: week_program
   - entity: number
     name: Maximum temperature
     class: temperature

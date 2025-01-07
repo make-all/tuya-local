@@ -1,25 +1,26 @@
 name: Camera
 products:
   - id: sy8xnbefqdxbgwti
-    name: Moes P52 PTZ indoor security camera
-primary_entity:
-  entity: camera
-  dps:
-    - id: 105
-      type: boolean
-      name: switch
-      mapping:
-        - dps_val: false
-          value: true
-        - dps_val: true
-          value: false
-    - id: 134
-      type: boolean
-      name: motion_enable
-    - id: 150
-      type: boolean
-      name: record
-secondary_entities:
+    manufacturer: Moes
+    model: P52
+    name: PTZ indoor security camera
+entities:
+  - entity: camera
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+      - id: 134
+        type: boolean
+        name: motion_enable
+      - id: 150
+        type: boolean
+        name: record
   - entity: light
     translation_key: indicator
     category: config
@@ -143,9 +144,11 @@ secondary_entities:
     dps:
       - id: 116
         type: boolean
+        optional: true
         name: button
       - id: 119
         type: string
+        optional: true
         name: pan_command
         mapping:
           - dps_val: "0"
@@ -174,6 +177,7 @@ secondary_entities:
     dps:
       - id: 119
         type: string
+        optional: true
         name: button
         mapping:
           - dps_val: "0"
@@ -184,6 +188,7 @@ secondary_entities:
     dps:
       - id: 119
         type: string
+        optional: true
         name: button
         mapping:
           - dps_val: "1"
@@ -194,6 +199,7 @@ secondary_entities:
     dps:
       - id: 119
         type: string
+        optional: true
         name: button
         mapping:
           - dps_val: "2"
@@ -204,6 +210,7 @@ secondary_entities:
     dps:
       - id: 119
         type: string
+        optional: true
         name: button
         mapping:
           - dps_val: "3"
@@ -214,6 +221,7 @@ secondary_entities:
     dps:
       - id: 119
         type: string
+        optional: true
         name: button
         mapping:
           - dps_val: "4"
@@ -224,6 +232,7 @@ secondary_entities:
     dps:
       - id: 119
         type: string
+        optional: true
         name: button
         mapping:
           - dps_val: "5"
@@ -234,6 +243,7 @@ secondary_entities:
     dps:
       - id: 119
         type: string
+        optional: true
         name: button
         mapping:
           - dps_val: "6"
@@ -244,6 +254,7 @@ secondary_entities:
     dps:
       - id: 119
         type: string
+        optional: true
         name: button
         mapping:
           - dps_val: "7"

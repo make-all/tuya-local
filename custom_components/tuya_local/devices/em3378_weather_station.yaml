@@ -1,31 +1,30 @@
 name: Weather Station
 products:
   - id: q9opgtca8ymbxpqn
-    name: EM3378
-primary_entity:
-  entity: sensor
-  name: Indoor temperature
-  class: temperature
-  dps:
-    - id: 101
-      type: integer
-      name: sensor
-      class: measurement
-      mapping:
-        - scale: 10
-      unit: F
-      # we need the full range of values to expose this as a light control
-    - id: 118
-      name: backlight_brightness
-      type: string
-    - id: 121
-      name: backlight_leading_time
-      type: integer
-      # below is probably related to the built in USB charger, but is encoded
-    - id: 122
-      name: output_power
-      type: string
-secondary_entities:
+    model: EM3378
+entities:
+  - entity: sensor
+    name: Indoor temperature
+    class: temperature
+    dps:
+      - id: 101
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+        unit: F
+        # we need the full range of values to expose this as a light control
+      - id: 118
+        name: backlight_brightness
+        type: string
+      - id: 121
+        name: backlight_leading_time
+        type: integer
+        # below is probably related to the built in USB charger, but is encoded
+      - id: 122
+        name: output_power
+        type: string
   - entity: sensor
     name: Indoor humidity
     class: humidity

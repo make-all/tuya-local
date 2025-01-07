@@ -1,17 +1,17 @@
 name: USB smartplug
 products:
   - id: ynz9qmnmnsciccyc
-    name: ESP Fort EC-SPSP
-primary_entity:
-  entity: switch
-  class: outlet
-  name: USB
-  icon: "mdi:usb"
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: ESP Fort
+    model: EC-SPSP
+entities:
+  - entity: switch
+    class: outlet
+    name: USB
+    icon: "mdi:usb"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: switch
     class: outlet
     dps:

@@ -1,28 +1,29 @@
 name: Control hub
 products:
   - id: z1fcxdrpiazyjaky
-    name: Moes CCP-S01-EU-WH-EN touchscreen control panel IR and Bluetooth hub
-primary_entity:
-  entity: switch
-  translation_key: switch_x
-  translation_placeholders:
-    x: "1"
-  dps:
-    - id: 16
-      type: boolean
-      name: switch
-      # up channel is defined as read-only, down_channel as write only.
-      # this seems wrong, but they are in an undocumented "raw" format,
-      # so anyway difficult to support
-    - id: 1
-      type: string
-      optional: true
-      name: up_channel
-    - id: 2
-      type: string
-      optional: true
-      name: down_channel
-secondary_entities:
+    manufacturer: Moes
+    model: CCP-S01-EU-WH-EN
+    name: Touchscreen control panel IR and Bluetooth hub
+entities:
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+        # up channel is defined as read-only, down_channel as write only.
+        # this seems wrong, but they are in an undocumented "raw" format,
+        # so anyway difficult to support
+      - id: 1
+        type: string
+        optional: true
+        name: up_channel
+      - id: 2
+        type: string
+        optional: true
+        name: down_channel
   - entity: switch
     translation_key: switch_x
     translation_placeholders:

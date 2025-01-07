@@ -1,100 +1,100 @@
 name: Robot vacuum
 products:
   - id: pu5cpxucdrdrr21a
-    name: Kabum Smart 700
-primary_entity:
-  entity: vacuum
-  dps:
-    - id: 2
-      type: boolean
-      name: activate
-    - id: 3
-      type: string
-      name: command
-      mapping:
-        - dps_val: smart
-          value: smart
-        - dps_val: zone
-          value: zone
-        - dps_val: pose
-          value: go_to_position
-        - dps_val: part
-          value: clean_spot
-        - dps_val: chargego
-          value: return_to_base
-        - dps_val: wallfollow
-          value: wall_follow
-        - dps_val: selectroom
-          value: select_room
-    - id: 4
-      type: string
-      name: direction_control
-      optional: true
-      mapping:
-        - dps_val: forward
-          value: forward
-        - dps_val: backward
-          value: reverse
-        - dps_val: turn_left
-          value: left
-        - dps_val: turn_right
-          value: right
-        - dps_val: stop
-          value: stop
-    - id: 5
-      type: string
-      name: status
-      mapping:
-        - dps_val: standby
-          value: standby
-        - dps_val: smart_clean
-          value: cleaning
-        - dps_val: zone_clean
-          value: cleaning
-        - dps_val: part_clean
-          value: cleaning
-        - dps_val: paused
-          value: pause
-        - dps_val: goto_pos
-          value: going_to_location
-        - dps_val: pos_arrived
-          value: on_location
-        - dps_val: pos_unarrive
-          value: cannot_find_location
-        - dps_val: to_charge
-          value: returning
-        - dps_val: charging
-          value: charging
-        - dps_val: charge_done
-          value: charged
-        - dps_val: sleep
-          value: sleep
-        - dps_val: fault
-          value: error
-        - dps_val: wall_follow
-          value: wall_follow
-        - dps_val: direction_control
-          value: direction_control
-        - dps_val: selectroom
-          value: select_room
-    - id: 13
-      type: boolean
-      name: locate
-      optional: true
-    - id: 14
-      type: string
-      name: fan_speed
-      mapping:
-        - dps_val: strong
-          value: High
-        - dps_val: normal
-          value: Medium
-        - dps_val: quiet
-          value: Low
-    - id: 101
-      type: boolean
-      name: pause
-secondary_entities:
+    manufacturer: KaBuM! Smart
+    model: "700"
+entities:
+  - entity: vacuum
+    dps:
+      - id: 2
+        type: boolean
+        name: activate
+      - id: 3
+        type: string
+        name: command
+        mapping:
+          - dps_val: smart
+            value: smart
+          - dps_val: zone
+            value: zone
+          - dps_val: pose
+            value: go_to_position
+          - dps_val: part
+            value: clean_spot
+          - dps_val: chargego
+            value: return_to_base
+          - dps_val: wallfollow
+            value: wall_follow
+          - dps_val: selectroom
+            value: select_room
+      - id: 4
+        type: string
+        name: direction_control
+        optional: true
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: backward
+            value: reverse
+          - dps_val: turn_left
+            value: left
+          - dps_val: turn_right
+            value: right
+          - dps_val: stop
+            value: stop
+      - id: 5
+        type: string
+        name: status
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: smart_clean
+            value: cleaning
+          - dps_val: zone_clean
+            value: cleaning
+          - dps_val: part_clean
+            value: cleaning
+          - dps_val: paused
+            value: pause
+          - dps_val: goto_pos
+            value: going_to_location
+          - dps_val: pos_arrived
+            value: on_location
+          - dps_val: pos_unarrive
+            value: cannot_find_location
+          - dps_val: to_charge
+            value: returning
+          - dps_val: charging
+            value: charging
+          - dps_val: charge_done
+            value: charged
+          - dps_val: sleep
+            value: sleep
+          - dps_val: fault
+            value: error
+          - dps_val: wall_follow
+            value: wall_follow
+          - dps_val: direction_control
+            value: direction_control
+          - dps_val: selectroom
+            value: select_room
+      - id: 13
+        type: boolean
+        name: locate
+        optional: true
+      - id: 14
+        type: string
+        name: fan_speed
+        mapping:
+          - dps_val: strong
+            value: High
+          - dps_val: normal
+            value: Medium
+          - dps_val: quiet
+            value: Low
+      - id: 101
+        type: boolean
+        name: pause
   - entity: sensor
     class: battery
     dps:

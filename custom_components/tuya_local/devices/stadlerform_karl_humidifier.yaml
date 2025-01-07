@@ -1,35 +1,36 @@
-name: Stadler Form Karl / Karl big
+name: Humidifier
 products:
   - id: gi2d3je5upa9ngx4
-    name: Stadler Form Karl
+    manufacturer: Stadler Form
+    model: Karl
   - id: qgv0pltei9nuuatv
-    name: Stadler Form Karl big
-primary_entity:
-  entity: humidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 14
-      name: current_humidity
-      type: integer
-    - id: 103
-      name: humidity
-      type: integer
-      range:
-        min: 40
-        max: 55
-      mapping:
-        - step: 5
-    - id: 102
-      type: boolean
-      name: mode
-      mapping:
-        - dps_val: true
-          value: auto
-        - dps_val: false
-          value: boost
-secondary_entities:
+    manufacturer: Stadler Form
+    model: Karl big
+entities:
+  - entity: humidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 14
+        name: current_humidity
+        type: integer
+      - id: 103
+        name: humidity
+        type: integer
+        range:
+          min: 40
+          max: 55
+        mapping:
+          - step: 5
+      - id: 102
+        type: boolean
+        name: mode
+        mapping:
+          - dps_val: true
+            value: auto
+          - dps_val: false
+            value: boost
   - entity: binary_sensor
     translation_key: tank_empty
     category: diagnostic

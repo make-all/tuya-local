@@ -1,20 +1,19 @@
 name: Weather station
 products:
   - id: fpgistthfiweyaqr
-    name: SWS-01 weather station
-primary_entity:
-  entity: sensor
-  name: Internal temperature
-  class: temperature
-  dps:
-    - id: 131
-      name: sensor
-      type: integer
-      unit: C
-      mapping:
-        - scale: 10
-      class: measurement
-secondary_entities:
+    model: SWS-01
+entities:
+  - entity: sensor
+    name: Internal temperature
+    class: temperature
+    dps:
+      - id: 131
+        name: sensor
+        type: integer
+        unit: C
+        mapping:
+          - scale: 10
+        class: measurement
   - entity: sensor
     name: Internal humidity
     class: humidity

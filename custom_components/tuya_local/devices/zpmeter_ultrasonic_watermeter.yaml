@@ -1,23 +1,23 @@
 name: Water meter
 products:
   - id: zlwr0raf
-    name: ZPMeter 214C
-primary_entity:
-  entity: sensor
-  class: water
-  dps:
-    - id: 1
-      type: integer
-      name: sensor
-      unit: m³
-      class: total_increasing
-      mapping:
-        - scale: 1000
-    - id: 16
-      type: string
-      optional: true
-      name: meter_id
-secondary_entities:
+    manufacturer: ZPMeter
+    model: "214C"
+entities:
+  - entity: sensor
+    class: water
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: m³
+        class: total_increasing
+        mapping:
+          - scale: 1000
+      - id: 16
+        type: string
+        optional: true
+        name: meter_id
   - entity: select
     name: Reporting period
     icon: "mdi:update"

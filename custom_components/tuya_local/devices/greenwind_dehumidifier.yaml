@@ -1,33 +1,33 @@
-name: Greenwind dehumidifier
+name: Dehumidifier
 products:
   - id: 3ZXJDubQ13lNTaLT
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 5
-      name: mode
-      type: integer
-      mapping:
-        - dps_val: 1
-          value: eco
-        - dps_val: 2
-          value: normal
-        - dps_val: 3
-          value: boost
-    - id: 6
-      name: humidity
-      type: integer
-      range:
-        min: 20
-        max: 80
-    - id: 18
-      name: current_humidity
-      type: integer
-secondary_entities:
+    manufacturer: Greenwind
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 5
+        name: mode
+        type: integer
+        mapping:
+          - dps_val: 1
+            value: eco
+          - dps_val: 2
+            value: normal
+          - dps_val: 3
+            value: boost
+      - id: 6
+        name: humidity
+        type: integer
+        range:
+          min: 20
+          max: 80
+      - id: 18
+        name: current_humidity
+        type: integer
   - entity: binary_sensor
     class: problem
     category: diagnostic

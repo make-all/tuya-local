@@ -1,51 +1,51 @@
 name: Roller blind
 products:
   - id: 7qcsglvoqkrdduk6
-    name: AM25WIFI
-primary_entity:
-  entity: cover
-  class: blind
-  dps:
-    - id: 1
-      name: control
-      type: string
-      mapping:
-        - dps_val: open
-          value: open
-        - dps_val: stop
-          value: stop
-        - dps_val: close
-          value: close
-        - dps_val: continue
-          value: continue
-    - id: 2
-      name: position
-      type: integer
-      range:
-        min: 0
-        max: 100
-      mapping:
-        - invert: true
-    - id: 3
-      name: missing_current_position
-      type: integer
-      optional: true
-      range:
-        min: 0
-        max: 100
-      mapping:
-        - invert: true
-    - id: 7
-      name: work_state
-      type: string
-      optional: true
-    - id: 109
-      type: integer
-      name: tilt_position
-      range:
-        min: 1
-        max: 10
-secondary_entities:
+    manufacturer: Zemismart
+    model: AM25WIFI
+entities:
+  - entity: cover
+    class: blind
+    dps:
+      - id: 1
+        name: control
+        type: string
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: stop
+            value: stop
+          - dps_val: close
+            value: close
+          - dps_val: continue
+            value: continue
+      - id: 2
+        name: position
+        type: integer
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - invert: true
+      - id: 3
+        name: missing_current_position
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - invert: true
+      - id: 7
+        name: work_state
+        type: string
+        optional: true
+      - id: 109
+        type: integer
+        name: tilt_position
+        range:
+          min: 1
+          max: 10
   - entity: binary_sensor
     class: problem
     category: diagnostic

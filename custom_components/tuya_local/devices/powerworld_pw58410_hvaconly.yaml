@@ -1,73 +1,73 @@
 name: Heat pump
 products:
   - id: 74jzzoqr2ghxyu1p
-    name: Powerworld PW58410
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: work_mode
-          conditions:
-            - dps_val: heat
-              value: heat
-            - dps_val: cool
-              value: cool
-            - dps_val: wth
-              value: "off"
-              hidden: true
-            - dps_val: wth_heat
-              value: heat
-              hidden: true
-            - dps_val: wth_cool
-              value: cool
-              hidden: true
-    - id: 2
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: smart
-          value: comfort
-        - dps_val: strong
-          value: boost
-        - dps_val: mute
-          value: sleep
-    - id: 5
-      type: string
-      name: work_mode
-    - id: 6
-      type: string
-      name: temperature_unit
-      mapping:
-        - dps_val: f
-          value: F
-        - value: C
-    - id: 111
-      type: integer
-      optional: true
-      name: temperature
-      range:
-        min: 0
-        max: 99
-      mapping:
-        - constraint: work_mode
-          conditions:
-            - dps_val: [cool, wth_cool]
-              value_redirect: cool_temp
-    - id: 112
-      type: integer
-      name: cool_temp
-      optional: true
-      hidden: true
-      range:
-        min: 0
-        max: 99
-secondary_entities:
+    manufacturer: Powerworld
+    model: PW58410
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: work_mode
+            conditions:
+              - dps_val: heat
+                value: heat
+              - dps_val: cool
+                value: cool
+              - dps_val: wth
+                value: "off"
+                hidden: true
+              - dps_val: wth_heat
+                value: heat
+                hidden: true
+              - dps_val: wth_cool
+                value: cool
+                hidden: true
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: smart
+            value: comfort
+          - dps_val: strong
+            value: boost
+          - dps_val: mute
+            value: sleep
+      - id: 5
+        type: string
+        name: work_mode
+      - id: 6
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+      - id: 111
+        type: integer
+        optional: true
+        name: temperature
+        range:
+          min: 0
+          max: 99
+        mapping:
+          - constraint: work_mode
+            conditions:
+              - dps_val: [cool, wth_cool]
+                value_redirect: cool_temp
+      - id: 112
+        type: integer
+        name: cool_temp
+        optional: true
+        hidden: true
+        range:
+          min: 0
+          max: 99
   - entity: water_heater
     dps:
       - id: 1

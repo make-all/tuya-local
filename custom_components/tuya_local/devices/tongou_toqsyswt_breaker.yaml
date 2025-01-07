@@ -1,28 +1,28 @@
 name: Energy meter
 products:
   - id: kmnzgh4yn8pa0lqh
-    name: Tongou TO-Q-SYS-WT
-primary_entity:
-  entity: sensor
-  class: energy
-  category: diagnostic
-  dps:
-    - id: 1
-      type: integer
-      name: sensor
-      unit: kWh
-      class: total_increasing
-      mapping:
-        - scale: 100
-    - id: 125
-      type: integer
-      name: fap_a
-      mapping:
-        - scale: 100
-    - id: 138
-      type: string
-      name: cycle_time
-secondary_entities:
+    manufacturer: Tongou
+    model: TO-Q-SYS-WT
+entities:
+  - entity: sensor
+    class: energy
+    category: diagnostic
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 125
+        type: integer
+        name: fap_a
+        mapping:
+          - scale: 100
+      - id: 138
+        type: string
+        name: cycle_time
   - entity: sensor
     class: voltage
     category: diagnostic

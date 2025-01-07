@@ -1,130 +1,130 @@
 name: Robot vacuum
 products:
   - id: wvk5sm5nr0tkij3b
-    name: Liectroux XR500 T3
-primary_entity:
-  entity: vacuum
-  dps:
-    - id: 1
-      type: boolean
-      name: power
-    - id: 2
-      type: boolean
-      name: activate
-    - id: 4
-      type: string
-      name: command
-      mapping:
-        - dps_val: smart
-          value: smart
-        - dps_val: zone
-          value: zone
-        - dps_val: pose
-          value: go_to_position
-        - dps_val: part
-          value: clean_spot
-        - dps_val: chargego
-          value: return_to_base
-        - dps_val: wallfollow
-          value: wall_follow
-        - dps_val: selectroom
-          value: select_room
-    - id: 5
-      type: string
-      name: status
-      mapping:
-        - dps_val: standby
-          value: standby
-        - dps_val: smart
-          value: cleaning
-        - dps_val: zone_clean
-          value: cleaning
-        - dps_val: part_clean
-          value: cleaning
-        - dps_val: cleaning
-          value: cleaning
-        - dps_val: paused
-          value: pause
-        - dps_val: goto_pos
-          value: going_to_location
-        - dps_val: pos_arrived
-          value: on_location
-        - dps_val: pos_unarrive
-          value: cannot_find_location
-        - dps_val: goto_charge
-          value: returning
-        - dps_val: charging
-          value: charging
-        - dps_val: charge_done
-          value: charged
-        - dps_val: sleep
-          value: sleep
-        - dps_val: fault
-          value: error
-        - dps_val: wall_follow
-          value: cleaning
-        - dps_val: direction_control
-          value: direction_control
-        - dps_val: select_room
-          value: select_room
-        - dps_val: repositing
-          value: repositioning
-    - id: 9
-      type: string
-      name: fan_speed
-      mapping:
-        - dps_val: strong
-          value: High
-        - dps_val: normal
-          value: Medium
-        - dps_val: gentle
-          value: Low
-        - dps_val: turnoff
-          value: "Off"
-    - id: 11
-      type: boolean
-      name: locate
-      optional: true
-    - id: 12
-      type: string
-      name: direction_control
-      optional: true
-      mapping:
-        - dps_val: foward
-          value: forward
-        - dps_val: backward
-          value: reverse
-        - dps_val: turn_left
-          value: left
-        - dps_val: turn_right
-          value: right
-        - dps_val: stop
-          value: stop
-    - id: 14
-      type: string
-      name: path_data
-      optional: true
-    - id: 15
-      type: string
-      name: command_trans
-      optional: true
-    - id: 16
-      type: string
-      name: request
-      optional: true
-    - id: 35
-      type: string
-      name: voice_data
-      optional: true
-    - id: 101
-      type: string
-      name: smart_rooms_unseen
-      optional: true
-    - id: 102
-      type: string
-      name: rooms_msg_unseen
-      optional: true
-secondary_entities:
+    manufacturer: Liectroux
+    model: XR500 T3
+entities:
+  - entity: vacuum
+    dps:
+      - id: 1
+        type: boolean
+        name: power
+      - id: 2
+        type: boolean
+        name: activate
+      - id: 4
+        type: string
+        name: command
+        mapping:
+          - dps_val: smart
+            value: smart
+          - dps_val: zone
+            value: zone
+          - dps_val: pose
+            value: go_to_position
+          - dps_val: part
+            value: clean_spot
+          - dps_val: chargego
+            value: return_to_base
+          - dps_val: wallfollow
+            value: wall_follow
+          - dps_val: selectroom
+            value: select_room
+      - id: 5
+        type: string
+        name: status
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: smart
+            value: cleaning
+          - dps_val: zone_clean
+            value: cleaning
+          - dps_val: part_clean
+            value: cleaning
+          - dps_val: cleaning
+            value: cleaning
+          - dps_val: paused
+            value: pause
+          - dps_val: goto_pos
+            value: going_to_location
+          - dps_val: pos_arrived
+            value: on_location
+          - dps_val: pos_unarrive
+            value: cannot_find_location
+          - dps_val: goto_charge
+            value: returning
+          - dps_val: charging
+            value: charging
+          - dps_val: charge_done
+            value: charged
+          - dps_val: sleep
+            value: sleep
+          - dps_val: fault
+            value: error
+          - dps_val: wall_follow
+            value: cleaning
+          - dps_val: direction_control
+            value: direction_control
+          - dps_val: select_room
+            value: select_room
+          - dps_val: repositing
+            value: repositioning
+      - id: 9
+        type: string
+        name: fan_speed
+        mapping:
+          - dps_val: strong
+            value: High
+          - dps_val: normal
+            value: Medium
+          - dps_val: gentle
+            value: Low
+          - dps_val: turnoff
+            value: "Off"
+      - id: 11
+        type: boolean
+        name: locate
+        optional: true
+      - id: 12
+        type: string
+        name: direction_control
+        optional: true
+        mapping:
+          - dps_val: foward
+            value: forward
+          - dps_val: backward
+            value: reverse
+          - dps_val: turn_left
+            value: left
+          - dps_val: turn_right
+            value: right
+          - dps_val: stop
+            value: stop
+      - id: 14
+        type: string
+        name: path_data
+        optional: true
+      - id: 15
+        type: string
+        name: command_trans
+        optional: true
+      - id: 16
+        type: string
+        name: request
+        optional: true
+      - id: 35
+        type: string
+        name: voice_data
+        optional: true
+      - id: 101
+        type: string
+        name: smart_rooms_unseen
+        optional: true
+      - id: 102
+        type: string
+        name: rooms_msg_unseen
+        optional: true
   - entity: switch
     name: Charge
     icon: "mdi:lightning-bolt"

@@ -1,79 +1,79 @@
 name: Ceiling fan light
 products:
   - id: czvfkmtazfs0ohaq
-    name: Depuley WS-FPZ37-18I-EU
-primary_entity:
-  entity: light
-  dps:
-    - id: 20
-      name: switch
-      type: boolean
-    - id: 21
-      name: color_mode
-      type: string
-      mapping:
-        - dps_val: white
-          value: color_temp
-        - dps_val: colour
-          value: Color
-        - dps_val: scene
-          value: Scene
-        - dps_val: music
-          value: Music
-    - id: 22
-      name: brightness
-      type: integer
-      optional: true
-      range:
-        min: 10
-        max: 1000
-    - id: 23
-      name: color_temp
-      type: integer
-      optional: true
-      range:
-        min: 0
-        max: 1000
-      mapping:
-        - target_range:
-            min: 2700
-            max: 6500
-    - id: 24
-      name: ignored_rgbhsv
-      type: string
-      optional: true
-    - id: 36
-      name: mix_light_scene
-      type: base64
-      optional: true
-    - id: 51
-      name: mix_rgbcw
-      type: base64
-      optional: true
-    - id: 58
-      type: integer
-      name: brightness_min_1
-      optional: true
-      range:
-        min: 10
-        max: 1000
-    - id: 59
-      name: led_type_1
-      type: string
-      optional: true
-      mapping:
-        - dps_val: led
-          value: led
-        - dps_val: incandescent
-          value: incandescent
-        - dps_val: halogen
-          value: halogen
-    - id: 28
-      name: control_data
-      type: hex
-      optional: true
+    manufacturer: Depuley
+    model: WS-FPZ37-18I-EU
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        name: switch
+        type: boolean
+      - id: 21
+        name: color_mode
+        type: string
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: Color
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 22
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 24
+        name: ignored_rgbhsv
+        type: string
+        optional: true
+      - id: 36
+        name: mix_light_scene
+        type: base64
+        optional: true
+      - id: 51
+        name: mix_rgbcw
+        type: base64
+        optional: true
+      - id: 58
+        type: integer
+        name: brightness_min_1
+        optional: true
+        range:
+          min: 10
+          max: 1000
+      - id: 59
+        name: led_type_1
+        type: string
+        optional: true
+        mapping:
+          - dps_val: led
+            value: led
+          - dps_val: incandescent
+            value: incandescent
+          - dps_val: halogen
+            value: halogen
+      - id: 28
+        name: control_data
+        type: hex
+        optional: true
 
-secondary_entities:
   - entity: select
     name: Scene
     icon: "mdi:palette"

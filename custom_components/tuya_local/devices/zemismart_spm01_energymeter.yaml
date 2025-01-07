@@ -1,34 +1,34 @@
 name: Energy meter
 products:
   - id: qhlxve78
-    name: Zemismart SPM01 Zigbee
-primary_entity:
-  entity: sensor
-  class: energy
-  translation_key: energy_consumed
-  dps:
-    - id: 1
-      type: integer
-      name: sensor
-      unit: kWh
-      class: total_increasing
-      mapping:
-        - scale: 100
-    # there are separate sensors for everything phase_a normally encodes,
-    # and it does not appear by default, so is not decoded here.
-    - id: 6
-      type: base64
-      optional: true
-      name: phase_a
-    - id: 17
-      type: string
-      optional: true
-      name: alarm_set_1
-    - id: 18
-      type: string
-      optional: true
-      name: alarm_set_2
-secondary_entities:
+    manufacturer: Zemismart
+    model: SPM01 Zigbee
+entities:
+  - entity: sensor
+    class: energy
+    translation_key: energy_consumed
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      # there are separate sensors for everything phase_a normally encodes,
+      # and it does not appear by default, so is not decoded here.
+      - id: 6
+        type: base64
+        optional: true
+        name: phase_a
+      - id: 17
+        type: string
+        optional: true
+        name: alarm_set_1
+      - id: 18
+        type: string
+        optional: true
+        name: alarm_set_2
   - entity: sensor
     translation_key: energy_produced
     class: energy

@@ -1,25 +1,25 @@
 name: Bidirectional energy meter
 products:
   - id: v5jlnn5hwyffkhp3
-    name: MatSee Plus bidirectional 2 channel clamp meter
-primary_entity:
-  entity: sensor
-  class: energy
-  dps:
-    - id: 1
-      type: integer
-      name: sensor
-      unit: kWh
-      mapping:
-        - scale: 100
-      class: total_increasing
-    - id: 122
-      type: integer
-      optional: true
-      name: hourly
-      mapping:
-        - scale: 100
-secondary_entities:
+    manufacturer: MatSeePlus
+    name: Bidirectional 2 channel clamp meter
+entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        mapping:
+          - scale: 100
+        class: total_increasing
+      - id: 122
+        type: integer
+        optional: true
+        name: hourly
+        mapping:
+          - scale: 100
   - entity: sensor
     translation_key: energy_produced
     class: energy

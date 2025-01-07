@@ -1,42 +1,42 @@
 name: Humidifier
 products:
   - id: g7qj4zfr2rq5meak
-    name: Aqua Pro Wifi
-primary_entity:
-  entity: humidifier
-  class: humidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 14
-      name: current_humidity
-      type: integer
-    - id: 101
-      name: humidity
-      type: string
-      mapping:
-        - dps_val: cancel
-          value: 0
-        - dps_val: 40
-          value: 40
-        - dps_val: 45
-          value: 45
-        - dps_val: 50
-          value: 50
-        - dps_val: 55
-          value: 55
-        - dps_val: 60
-          value: 60
-        - dps_val: 65
-          value: 65
-        - dps_val: 70
-          value: 70
-        - dps_val: 75
-          value: 75
-        - dps_val: 80
-          value: 80
-secondary_entities:
+    manufacturer: RZTK
+    model: Aqua Pro Wifi
+entities:
+  - entity: humidifier
+    class: humidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 14
+        name: current_humidity
+        type: integer
+      - id: 101
+        name: humidity
+        type: string
+        mapping:
+          - dps_val: cancel
+            value: 0
+          - dps_val: 40
+            value: 40
+          - dps_val: 45
+            value: 45
+          - dps_val: 50
+            value: 50
+          - dps_val: 55
+            value: 55
+          - dps_val: 60
+            value: 60
+          - dps_val: 65
+            value: 65
+          - dps_val: 70
+            value: 70
+          - dps_val: 75
+            value: 75
+          - dps_val: 80
+            value: 80
   - entity: switch
     translation_key: uv_sterilization
     category: config

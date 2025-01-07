@@ -1,67 +1,66 @@
 name: Portable air conditioner
 products:
   - id: njvdabnnx51jiqiq
-    name: ForceClima Soundless
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: cold
-              value: cool
-            - dps_val: wind
-              value: fan_only
-            - dps_val: wet
-              value: dry
-            - dps_val: 'hot'
-              value: heat
-    - id: 2
-      type: integer
-      name: temperature
-      range:
-        min: 16
-        max: 31
-      unit: C
-    - id: 3
-      type: integer
-      name: current_temperature
-    - id: 4
-      type: string
-      name: mode
-      hidden: true
-    - id: 5
-      type: string
-      name: fan_mode
-      mapping:
-        - dps_val: low
-          value: low
-        - dps_val: med
-          value: medium
-        - dps_val: high
-          value: high
-    - id: 107
-      type: integer
-      name: temp_set_f
-    - id: 109
-      type: integer
-      name: unknown_109
-    - id: 110
-      name: swing_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: vertical
-
-secondary_entities:
+    manufacturer: ForceClima
+    model: Soundless
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: cold
+                value: cool
+              - dps_val: wind
+                value: fan_only
+              - dps_val: wet
+                value: dry
+              - dps_val: 'hot'
+                value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 16
+          max: 31
+        unit: C
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 5
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: low
+            value: low
+          - dps_val: med
+            value: medium
+          - dps_val: high
+            value: high
+      - id: 107
+        type: integer
+        name: temp_set_f
+      - id: 109
+        type: integer
+        name: unknown_109
+      - id: 110
+        name: swing_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: vertical
   - entity: switch
     translation_key: sleep
     category: config

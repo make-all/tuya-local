@@ -1,26 +1,26 @@
 name: Fan and light switch
 products:
   - id: j11gop7l2l3sblc2
-    name: GHome SW19
-primary_entity:
-  entity: fan
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 3
-      type: string
-      name: speed
-      mapping:
-        - dps_val: level_1
-          value: 25
-        - dps_val: level_2
-          value: 50
-        - dps_val: level_3
-          value: 75
-        - dps_val: level_4
-          value: 100
-secondary_entities:
+    manufacturer: GHome
+    model: SW19
+entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: string
+        name: speed
+        mapping:
+          - dps_val: level_1
+            value: 25
+          - dps_val: level_2
+            value: 50
+          - dps_val: level_3
+            value: 75
+          - dps_val: level_4
+            value: 100
   - entity: number
     name: Fan timer
     class: duration

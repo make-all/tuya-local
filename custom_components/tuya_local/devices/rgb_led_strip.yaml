@@ -2,55 +2,59 @@ name: LED strip
 legacy_type: nince_rgb_led_strip
 products:
   - id: dga9j4k3myutu1qo
-    name: Teberno LGC-005 OEM3
+    manufacturer: Teberno
+    model: LGC-005 OEM3
   - id: q5dhxp3mjrbmr5pi
-    name: Novostella Chastar Rainbow permanent outdoor light
+    manufacturer: Novostella
+    model: Chastar Rainbow
+    name: Permanent outdoor light
   - id: httjaqed1h4iteup
-    name: Panamalar Sunset lamp
+    manufacturer: Panamalar
+    model: Sunset
+    name: Sunset lamp
   - id: whomcoylqdl8r4jw
-    name: Nince RGB LED strip
-primary_entity:
-  entity: light
-  dps:
-    - id: 20
-      type: boolean
-      name: switch
-    - id: 21
-      type: string
-      name: effect
-      optional: true
-      mapping:
-        - dps_val: white
-          value: white
-          hidden: true
-        - dps_val: colour
-          value: "off"
-        - dps_val: scene
-          value: Scene
-        - dps_val: null
-          value: "off"
-          hidden: true
-    - id: 24
-      type: hex
-      name: rgbhsv
-      optional: true
-      format:
-        - name: h
-          bytes: 2
-          range:
-            min: 0
-            max: 360
-        - name: s
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-        - name: v
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-secondary_entities:
+    manufacturer: Nince
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: effect
+        optional: true
+        mapping:
+          - dps_val: white
+            value: white
+            hidden: true
+          - dps_val: colour
+            value: "off"
+          - dps_val: scene
+            value: Scene
+          - dps_val: null
+            value: "off"
+            hidden: true
+      - id: 24
+        type: hex
+        name: rgbhsv
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
   - entity: number
     translation_key: timer
     class: duration

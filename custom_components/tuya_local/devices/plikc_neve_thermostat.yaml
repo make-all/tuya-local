@@ -1,98 +1,100 @@
 name: Thermostat
 products:
   - id: qgmh0aak7xcmrlf3
-    name: Plikc Neve X RFW
+    manufacturer: Plikc
+    model: Neve X RFW
   - id: 5kwgvcaqzzkzrftu
-    name: Plikc Neve X W
+    manufacturer: Plikc
+    model: Neve X W
   - id: 9myqvomgygt9zgcs
-    name: Plikc Neve Pro W
-primary_entity:
-  entity: climate
-  translation_key: thermostat
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: heat_cool
-    - id: 2
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: auto
-          value: program
-        - dps_val: manual
-          value: manual
-        - dps_val: temporary
-          value: temp_override
-          hidden: true
-        - dps_val: holiday
-          value: away
-          constraint: holiday_duration
-          conditions:
-            - dps_val: 0
-              value: "Set holiday length!"
-              hidden: true
-    - id: 3
-      type: string
-      name: hvac_action
-      mapping:
-        - dps_val: heat
-          value: heating
-        - dps_val: cold
-          value: cooling
-        - dps_val: cool
-          value: cooling
-        - dps_val: "off"
-          value: idle
-    - id: 16
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 50
-        max: 350
-      mapping:
-        - scale: 10
-          constraint: preset_mode
-          conditions:
-            - dps_val: holiday
-              value_redirect: holiday_temp_set
-    - id: 19
-      type: integer
-      optional: true
-      name: max_temperature
-      mapping:
-        - scale: 10
-    - id: 24
-      type: integer
-      name: current_temperature
-      mapping:
-        - scale: 10
-    - id: 26
-      type: integer
-      optional: true
-      name: min_temperature
-      mapping:
-        - scale: 10
-    - id: 32
-      type: integer
-      name: holiday_temp_set
-      optional: true
-      hidden: true
-      range:
-        min: 50
-        max: 350
-      mapping:
-        - scale: 10
-    - id: 33
-      type: integer
-      name: holiday_duration
-      hidden: true
-secondary_entities:
+    manufacturer: Plikc
+    model: Neve Pro W
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat_cool
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: auto
+            value: program
+          - dps_val: manual
+            value: manual
+          - dps_val: temporary
+            value: temp_override
+            hidden: true
+          - dps_val: holiday
+            value: away
+            constraint: holiday_duration
+            conditions:
+              - dps_val: 0
+                value: "Set holiday length!"
+                hidden: true
+      - id: 3
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: heat
+            value: heating
+          - dps_val: cold
+            value: cooling
+          - dps_val: cool
+            value: cooling
+          - dps_val: "off"
+            value: idle
+      - id: 16
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 50
+          max: 350
+        mapping:
+          - scale: 10
+            constraint: preset_mode
+            conditions:
+              - dps_val: holiday
+                value_redirect: holiday_temp_set
+      - id: 19
+        type: integer
+        optional: true
+        name: max_temperature
+        mapping:
+          - scale: 10
+      - id: 24
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+      - id: 26
+        type: integer
+        optional: true
+        name: min_temperature
+        mapping:
+          - scale: 10
+      - id: 32
+        type: integer
+        name: holiday_temp_set
+        optional: true
+        hidden: true
+        range:
+          min: 50
+          max: 350
+        mapping:
+          - scale: 10
+      - id: 33
+        type: integer
+        name: holiday_duration
+        hidden: true
   - entity: number
     name: Temperature calibration
     category: config

@@ -1,15 +1,15 @@
 name: Pool pump
 products:
   - id: i0elff0w1pehctax
-    name: AquaForte Inverter VSP
-primary_entity:
-  entity: valve
-  class: water
-  dps:
-    - id: 105
-      type: boolean
-      name: valve
-secondary_entities:
+    manufacturer: AquaForte
+    model: Inverter VSP
+entities:
+  - entity: valve
+    class: water
+    dps:
+      - id: 105
+        type: boolean
+        name: valve
   - entity: select
     name: Pump mode
     icon: "mdi:pump"

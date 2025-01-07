@@ -1,44 +1,44 @@
 name: EV charger
 products:
   - id: jui3mys5c9rfdju2
-    name: Ecopoint 32A EV charger
-primary_entity:
-  entity: sensor
-  translation_key: status
-  icon: "mdi:ev-station"
-  class: enum
-  dps:
-    - id: 3  # work_state
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: charger_charging
-          value: charging
-        - dps_val: charger_free
-          value: available
-        - dps_val: charger_insert
-          value: plugged_in
-        - dps_val: charger_free_fault
-          value: fault_unplugged
-        - dps_val: charger_wait
-          value: waiting
-        - dps_val: charger_pause
-          value: paused
-        - dps_val: charger_end
-          value: charged
-        - dps_val: charger_fault
-          value: fault
-    - id: 21
-      type: string
-      optional: true
-      name: card_binding
-    - id: 22  # meter_id
-      type: string
-      name: meter_id
-    - id: 23  # system_version
-      type: string
-      name: system_version
-secondary_entities:
+    manufacturer: Ecopoint
+    model: 32A
+entities:
+  - entity: sensor
+    translation_key: status
+    icon: "mdi:ev-station"
+    class: enum
+    dps:
+      - id: 3  # work_state
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: charger_charging
+            value: charging
+          - dps_val: charger_free
+            value: available
+          - dps_val: charger_insert
+            value: plugged_in
+          - dps_val: charger_free_fault
+            value: fault_unplugged
+          - dps_val: charger_wait
+            value: waiting
+          - dps_val: charger_pause
+            value: paused
+          - dps_val: charger_end
+            value: charged
+          - dps_val: charger_fault
+            value: fault
+      - id: 21
+        type: string
+        optional: true
+        name: card_binding
+      - id: 22  # meter_id
+        type: string
+        name: meter_id
+      - id: 23  # system_version
+        type: string
+        name: system_version
   - entity: sensor
     class: energy
     dps:

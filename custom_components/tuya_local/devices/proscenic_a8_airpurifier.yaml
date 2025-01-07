@@ -1,34 +1,34 @@
 name: Air Purifier
 products:
   - id: jiiagi6aamtgbffk
-    name: Proscenic A8
-primary_entity:
-  entity: fan
-  icon: "mdi:air-purifier"
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 4
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: sleep
-          value: sleep
-        - dps_val: mid
-          value: fresh
-        - dps_val: high
-          value: strong
-        - dps_val: auto
-          value: smart
-    - id: 101
-      name: unknown_101
-      type: integer
-    - id: 102
-      name: unknown_102
-      type: string
-secondary_entities:
+    manufacturer: Proscenic
+    model: A8
+entities:
+  - entity: fan
+    icon: "mdi:air-purifier"
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 4
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: sleep
+            value: sleep
+          - dps_val: mid
+            value: fresh
+          - dps_val: high
+            value: strong
+          - dps_val: auto
+            value: smart
+      - id: 101
+        name: unknown_101
+        type: integer
+      - id: 102
+        name: unknown_102
+        type: string
   - entity: sensor
     class: pm25
     dps:

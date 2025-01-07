@@ -21,20 +21,20 @@
 name: Motion sensor switch
 products:
   - id: vd5jgg8vgdbaqerq
-    name: Moes Smart PIR switch
-primary_entity:
-  entity: switch
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 44
-      type: string
-      name: illuminance_state
-    - id: 47
-      type: string
-      name: motion_state
-secondary_entities:
+    manufacturer: Moes
+    name: Smart PIR switch
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 44
+        type: string
+        name: illuminance_state
+      - id: 47
+        type: string
+        name: motion_state
   - entity: select
     category: config
     translation_key: initial_state

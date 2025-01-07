@@ -1,26 +1,26 @@
 name: Relay switch
 products:
   - id: owzofmjyg7foteb6
-    name: Loratap RR500W
-primary_entity:
-  entity: switch
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 42
-      type: string
-      name: cycle_time
-      optional: true
-    - id: 43
-      type: string
-      name: random_time
-      optional: true
-    - id: 44
-      type: string
-      name: inching
-      optional: true
-secondary_entities:
+    manufacturer: Loratap
+    model: RR500W
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 42
+        type: string
+        name: cycle_time
+        optional: true
+      - id: 43
+        type: string
+        name: random_time
+        optional: true
+      - id: 44
+        type: string
+        name: inching
+        optional: true
   - entity: number
     translation_key: timer
     class: duration

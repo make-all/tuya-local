@@ -8,7 +8,7 @@ from collections.abc import Sequence
 from datetime import datetime
 from fnmatch import fnmatch
 from numbers import Number
-from os import walk
+from os import scandir
 from os.path import dirname, exists, join, splitext
 
 from homeassistant.util import slugify
@@ -99,6 +99,7 @@ class TuyaDeviceConfig:
         self._fname = fname
         filename = join(_CONFIG_DIR, fname)
         self._config = load_yaml(filename)
+        self._reported_deprecated_primary = False
         _LOGGER.debug("Loaded device config %s", fname)
 
     @property
@@ -124,22 +125,25 @@ class TuyaDeviceConfig:
     @property
     def primary_entity(self):
         """Return the primary type of entity for this device."""
-        return TuyaEntityConfig(
-            self,
-            self._config["primary_entity"],
-            primary=True,
-        )
+        if not self._reported_deprecated_primary:
+            _LOGGER.warning(
+                f"{self.config_type}.yaml distinguishes between primary"
+                " and secondary_entities. This is deprecated, please"
+                " modify it to use a single list."
+            )
+            self._reported_deprecated_primary = True
 
-    def secondary_entities(self):
-        """Iterate through entites for any secondary entites supported."""
-        for conf in self._config.get("secondary_entities", {}):
-            yield TuyaEntityConfig(self, conf)
+        return TuyaEntityConfig(self, self._config["primary_entity"])
 
     def all_entities(self):
         """Iterate through all entities for this device."""
-        yield self.primary_entity
-        for e in self.secondary_entities():
-            yield e
+        entities = self._config.get("entities")
+        if not entities:
+            yield self.primary_entity
+            entities = self._config.get("secondary_entities", {})
+
+        for e in entities:
+            yield TuyaEntityConfig(self, e)
 
     def matches(self, dps, product_ids):
         """Determine whether this config matches the provided dps map or
@@ -239,10 +243,9 @@ class TuyaDeviceConfig:
 class TuyaEntityConfig:
     """Representation of an entity config for a supported entity."""
 
-    def __init__(self, device, config, primary=False):
+    def __init__(self, device, config):
         self._device = device
         self._config = config
-        self._is_primary = primary
 
     @property
     def name(self):
@@ -587,7 +590,6 @@ class TuyaDpsConfig:
         mapping = self._find_map_for_dps(device.get_property(self.id), device)
         r = self._config.get("range")
         if mapping:
-            _LOGGER.debug("Considering mapping for range of %s", self.name)
             cond = self._active_condition(mapping, device)
             if cond:
                 r = cond.get("range", r)
@@ -625,13 +627,10 @@ class TuyaDpsConfig:
         scale = self.scale(device) if scaled else 1
         mapping = self._find_map_for_dps(device.get_property(self.id), device)
         if mapping:
-            _LOGGER.debug("Considering mapping for step of %s", self.name)
             step = mapping.get("step", 1)
 
             cond = self._active_condition(mapping, device)
             if cond:
-                constraint = mapping.get("constraint", self.name)
-                _LOGGER.debug("Considering condition on %s", constraint)
                 step = cond.get("step", step)
         if step != 1 or scale != 1:
             _LOGGER.debug(
@@ -797,32 +796,39 @@ class TuyaDpsConfig:
         nearest = None
         distance = float("inf")
         for m in self._config.get("mapping", {}):
-            if "dps_val" not in m:
+            # no reverse mapping of hidden values
+            ignore = m.get("hidden", False) or not self.mapping_available(m, device)
+
+            if "dps_val" not in m and not ignore:
                 default = m
             # The following avoids further matching on the above case
             # and in the null mapping case, which is intended to be
             # a one-way map to prevent the entity showing as unavailable
             # when no value is being reported by the device.
             if m.get("dps_val") is None:
-                continue
-            if "value" in m and str(m["value"]) == str(value):
+                ignore = True
+
+            if "value" in m and str(m["value"]) == str(value) and not ignore:
                 return m
             if (
                 "value" in m
                 and isinstance(m["value"], Number)
                 and isinstance(value, Number)
+                and not ignore
             ):
                 d = abs(m["value"] - value)
                 if d < distance:
                     distance = d
                     nearest = m
 
-            if "value" not in m and "value_mirror" in m:
+            if "value" not in m and "value_mirror" in m and not ignore:
                 r_dps = self._entity.find_dps(m["value_mirror"])
                 if r_dps and str(r_dps.get_value(device)) == str(value):
                     return m
 
             for c in m.get("conditions", {}):
+                if c.get("hidden", False) or not self.mapping_available(c, device):
+                    continue
                 if "value" in c and str(c["value"]) == str(value):
                     c_dp = self._entity.find_dps(m.get("constraint", self.name))
                     # only consider the condition a match if we can change
@@ -900,7 +906,7 @@ class TuyaDpsConfig:
             step = mapping.get("step")
             if not isinstance(step, Number):
                 step = None
-            if "dps_val" in mapping and not mapping.get("hidden", False):
+            if "dps_val" in mapping:
                 result = mapping["dps_val"]
                 replaced = True
             # Conditions may have side effect of setting another value.
@@ -1041,10 +1047,9 @@ def available_configs():
     """List the available config files."""
     _CONFIG_DIR = dirname(config_dir.__file__)
 
-    for path, dirs, files in walk(_CONFIG_DIR):
-        for basename in sorted(files):
-            if fnmatch(basename, "*.yaml"):
-                yield basename
+    for direntry in scandir(_CONFIG_DIR):
+        if direntry.is_file() and fnmatch(direntry.name, "*.yaml"):
+            yield direntry.name
 
 
 def possible_matches(dps, product_ids=None):

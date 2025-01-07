@@ -1,24 +1,24 @@
 name: Humidity controller
 products:
   - id: hsstqaa2hn73auhj
-    name: Inkbird IHC-200
-primary_entity:
-  entity: humidifier
-  dps:
-    - id: 104
-      type: integer
-      name: current_humidity
-      mapping:
-        - scale: 10
-    - id: 106
-      type: integer
-      name: humidity
-      range:
-        min: 50
-        max: 990
-      mapping:
-        - scale: 10
-secondary_entities:
+    manufacturer: Inkbird
+    model: IHC-200
+entities:
+  - entity: humidifier
+    dps:
+      - id: 104
+        type: integer
+        name: current_humidity
+        mapping:
+          - scale: 10
+      - id: 106
+        type: integer
+        name: humidity
+        range:
+          min: 50
+          max: 990
+        mapping:
+          - scale: 10
   - entity: binary_sensor
     class: problem
     category: diagnostic

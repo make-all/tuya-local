@@ -1,38 +1,40 @@
 name: Energy monitoring smartplug
 products:
   - id: 2iepauebcvo74ujc
-    name: Aubess 20A
+    manufacturer: Aubess
+    model: 20A
   - id: wrz6vzch8htux2zp
-    name: Elivco CB2S-16DL
+    manufacturer: Elivco
+    model: CB2S-16DL
   - id: 3lbgj7cu27nsmh0w
-    name: AT-Q-SY2-JWT
+    model: AT-Q-SY2-JWT
   - id: cipuwutzfuqk3iru
-    name: UNSH SMKG-KNL
+    model: UNSH SMKG-KNL
   - id: azpywu5zfg5wyzpn
-    name: EARU 1P Breaker
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 21
-      type: integer
-      name: test_bit
-    - id: 42
-      type: base64
-      name: cycle_timer
-      optional: true
-    - id: 43
-      type: base64
-      name: random_timer
-      optional: true
-    - id: 44
-      type: base64
-      name: inching
-      optional: true
-secondary_entities:
+    manufacturer: EARU
+    model: 1P Breaker
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 21
+        type: integer
+        name: test_bit
+      - id: 42
+        type: base64
+        name: cycle_timer
+        optional: true
+      - id: 43
+        type: base64
+        name: random_timer
+        optional: true
+      - id: 44
+        type: base64
+        name: inching
+        optional: true
   - entity: number
     category: config
     class: duration

@@ -1,27 +1,27 @@
 name: Video pet feeder
 products:
   - id: 8zrzjldq07tlxnlv
-    name: Mypin 6L
-primary_entity:
-  entity: camera
-  dps:
-    - id: 113
-      type: boolean
-      optional: true
-      name: motion_enable
-      mapping:
-        - dps_val: null
-          value: false
-          hidden: true
-    - id: 150
-      type: boolean
-      optional: true
-      name: record
-      mapping:
-        - dps_val: null
-          value: false
-          hidden: true
-secondary_entities:
+    manufacturer: Mypin
+    model: 6L
+entities:
+  - entity: camera
+    dps:
+      - id: 113
+        type: boolean
+        optional: true
+        name: motion_enable
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+      - id: 150
+        type: boolean
+        optional: true
+        name: record
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
   - entity: light
     translation_key: indicator
     category: config

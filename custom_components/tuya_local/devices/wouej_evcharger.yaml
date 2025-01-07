@@ -1,52 +1,52 @@
 name: EV charger
 # products:
 #   - id: UNKNOWN
-#     name: WOUEJ 22kW wallbox
-primary_entity:
-  entity: sensor
-  name: State
-  icon: "mdi:ev-station"
-  class: enum
-  dps:
-    - id: 3
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: charger_free
-          value: Available
-        - dps_val: charger_insert
-          value: Plugged in
-        - dps_val: charger_free_fault
-          value: Fault (unplugged)
-        - dps_val: charger_wait
-          value: Waiting
-        - dps_val: charger_charging
-          value: Charging
-        - dps_val: charger_pause
-          value: Paused
-        - dps_val: charger_end
-          value: Finished
-        - dps_val: charger_fault
-          value: Fault
-    - id: 22
-      type: string
-      name: charger_id
-    - id: 23
-      type: string
-      name: firmware_version
-    - id: 101
-      type: string
-      name: available_options
-    - id: 119
-      type: string
-      name: charger_status
-      # A slightly different list than above:
-      #  available, charging, reserved, unavailable, faulted, preparing,
-      #  finishing
-    - id: 127
-      type: boolean
-      name: schedule_tx
-secondary_entities:
+#     manufacturer: WOUEJ
+#     model: 22kW wallbox
+entities:
+  - entity: sensor
+    name: State
+    icon: "mdi:ev-station"
+    class: enum
+    dps:
+      - id: 3
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: charger_free
+            value: Available
+          - dps_val: charger_insert
+            value: Plugged in
+          - dps_val: charger_free_fault
+            value: Fault (unplugged)
+          - dps_val: charger_wait
+            value: Waiting
+          - dps_val: charger_charging
+            value: Charging
+          - dps_val: charger_pause
+            value: Paused
+          - dps_val: charger_end
+            value: Finished
+          - dps_val: charger_fault
+            value: Fault
+      - id: 22
+        type: string
+        name: charger_id
+      - id: 23
+        type: string
+        name: firmware_version
+      - id: 101
+        type: string
+        name: available_options
+      - id: 119
+        type: string
+        name: charger_status
+        # A slightly different list than above:
+        #  available, charging, reserved, unavailable, faulted, preparing,
+        #  finishing
+      - id: 127
+        type: boolean
+        name: schedule_tx
   - entity: sensor
     class: energy
     dps:

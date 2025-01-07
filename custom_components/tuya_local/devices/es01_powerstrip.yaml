@@ -1,17 +1,17 @@
-name: Smart plug with USB ES-01
+name: Smart plug with USB
 products:
   - id: hsoiigeykxh9m4hx
-primary_entity:
-  entity: switch
-  class: outlet
-  translation_key: switch_x
-  translation_placeholders:
-    x: "1"
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    model: ES-01
+entities:
+  - entity: switch
+    class: outlet
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: switch
     translation_key: switch_x
     translation_placeholders:

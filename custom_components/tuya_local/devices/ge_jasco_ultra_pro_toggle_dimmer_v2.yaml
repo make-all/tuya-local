@@ -2,22 +2,23 @@
 # {'dps': {'1': False, '2': 1000, '3': 10, '4': 'led', '5': 1000, '6': 0,
 #  '14': 'memory', '21': 'relay', '103': 'scene', '106': 'dimmer',
 #  '107': '3way_switch'}}
-name: GE Jasco Ultra Pro Toggle Dimmer v2
+name: Dimmer module
 products:
   - id: genhs8iixkqve7sx
-primary_entity:
-  entity: light
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 2
-      type: integer
-      name: brightness
-      range:
-        min: 10
-        max: 1000
-secondary_entities:
+    manufacturer: Jasco
+    model: UltraPro Toggle Dimmer
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        type: integer
+        name: brightness
+        range:
+          min: 10
+          max: 1000
   - entity: select
     name: Bulb Type
     category: config

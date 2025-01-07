@@ -1,21 +1,25 @@
 name: Dual dimmer
 products:
   - id: bxoo2swd
-    name: Moes ZM-105B-M-MS
-primary_entity:
-  entity: light
-  name: Light 1
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      name: brightness
-      type: integer
-      range:
-        min: 10
-        max: 1000
-secondary_entities:
+    manufacturer: Moes
+    model: ZM-105B-M-MS
+  - id: 9cfxqryaoqwwjkyy
+    manufacturer: Totebox
+    model: "2"
+    name: Dimmer plug
+entities:
+  - entity: light
+    name: Light 1
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
   - entity: light
     name: Light 2
     dps:

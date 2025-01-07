@@ -1,23 +1,23 @@
 name: BBQ thermometer
 products:
   - id: wavwesi8clrfwx68
-    name: Inkbird IBBQ-4T v2.x
-primary_entity:
-  entity: sensor
-  name: Temperature probe 1
-  class: temperature
-  dps:
-    - id: 107
-      type: base64
-      name: sensor
-      class: measurement
-      optional: true
-      mask: FFFFFF
-      endianness: little
-      mapping:
-        - scale: 100
-      unit: F
-secondary_entities:
+    manufacturer: Inkbird
+    model: IBBQ-4T v2.x
+entities:
+  - entity: sensor
+    name: Temperature probe 1
+    class: temperature
+    dps:
+      - id: 107
+        type: base64
+        name: sensor
+        class: measurement
+        optional: true
+        mask: FFFFFF
+        endianness: little
+        mapping:
+          - scale: 100
+        unit: F
   - entity: sensor
     name: Temperature probe 2
     class: temperature

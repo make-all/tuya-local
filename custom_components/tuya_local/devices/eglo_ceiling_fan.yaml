@@ -1,39 +1,40 @@
 name: Ceiling fan
 products:
   - id: k8j78n65zeu3orz7
-    name: Eglo Surf
-primary_entity:
-  entity: fan
-  dps:
-    - id: 60
-      type: boolean
-      name: switch
-    - id: 62
-      type: integer
-      name: speed
-      mapping:
-        - dps_val: 0
-          value: 0
-        - dps_val: 1
-          value: 20
-        - dps_val: 2
-          value: 40
-        - dps_val: 3
-          value: 60
-        - dps_val: 4
-          value: 80
-        - dps_val: 5
-          value: 100
-          # Sleep mode - extra slow
-        - dps_val: -1
-          value: 10
-    - id: 63
-      type: string
-      name: direction
-    - id: 64
-      type: integer
-      name: timer
-      range:
-        min: 0
-        max: 540
-      unit: min
+    manufacturer: Eglo
+    model: Surf
+entities:
+  - entity: fan
+    dps:
+      - id: 60
+        type: boolean
+        name: switch
+      - id: 62
+        type: integer
+        name: speed
+        mapping:
+          - dps_val: 0
+            value: 0
+          - dps_val: 1
+            value: 20
+          - dps_val: 2
+            value: 40
+          - dps_val: 3
+            value: 60
+          - dps_val: 4
+            value: 80
+          - dps_val: 5
+            value: 100
+            # Sleep mode - extra slow
+          - dps_val: -1
+            value: 10
+      - id: 63
+        type: string
+        name: direction
+      - id: 64
+        type: integer
+        name: timer
+        range:
+          min: 0
+          max: 540
+        unit: min

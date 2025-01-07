@@ -1,22 +1,23 @@
 name: Energy meter
 products:
   - id: 3xhdofmeo6lgpvd5
-    name: SmartMCB SMT006-8
+    manufacturer: SmartMCB
+    model: SMT006-8
   - id: i5mqmxkho1vahdt2
-    name: SmartMCB SMT006-8
-primary_entity:
-  entity: switch
-  icon: "mdi:fuse"
-  name: Breaker
-  dps:
-    - id: 16
-      type: boolean
-      name: switch
-    - id: 19
-      type: string
-      name: breaker_number
-      optional: true
-secondary_entities:
+    manufacturer: SmartMCB
+    model: SMT006-8
+entities:
+  - entity: switch
+    icon: "mdi:fuse"
+    name: Breaker
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+      - id: 19
+        type: string
+        name: breaker_number
+        optional: true
   - entity: sensor
     class: energy
     dps:

@@ -1,16 +1,16 @@
 name: Wall switch
 products:
   - id: nqodepctqralr6su
-    name: Novadigital switch
+    manufacturer: Novadigital
   - id: vxo9yezswiumvync
-    name: PST WT-E1
-primary_entity:
-  entity: switch
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-secondary_entities:
+    manufacturer: PST
+    model: WT-E1
+entities:
+  - entity: switch
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
   - entity: number
     translation_key: timer
     class: duration

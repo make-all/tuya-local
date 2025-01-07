@@ -1,28 +1,28 @@
 name: Pet feeder
 products:
   - id: e1zs835joz1lc85q
-    name: Petlibro PLAF203
-primary_entity:
-  entity: sensor
-  translation_key: status
-  icon: "mdi:paw"
-  dps:
-    - id: 233
-      type: string
-      name: sensor
-      optional: true
-    - id: 231
-      type: hex
-      name: schedule
-    - id: 237
-      type: string
-      name: planned_feed_report
-      optional: true
-    - id: 247
-      type: string
-      name: manual_feed_report
-      optional: true
-secondary_entities:
+    manufacturer: Petlibro
+    model: PLAF203
+entities:
+  - entity: sensor
+    translation_key: status
+    icon: "mdi:paw"
+    dps:
+      - id: 233
+        type: string
+        name: sensor
+        optional: true
+      - id: 231
+        type: hex
+        name: schedule
+      - id: 237
+        type: string
+        name: planned_feed_report
+        optional: true
+      - id: 247
+        type: string
+        name: manual_feed_report
+        optional: true
   - entity: light
     translation_key: indicator
     category: config

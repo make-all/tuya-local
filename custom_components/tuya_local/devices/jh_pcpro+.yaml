@@ -1,16 +1,15 @@
 name: PC power switch
 products:
   - id: rtbhfbuii82scjrp
-    name: PCIe PC Pro
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
+    model: JH-PC Pro
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
 
-secondary_entities:
   - entity: button
     name: Reset
     class: restart

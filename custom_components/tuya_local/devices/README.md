@@ -4,8 +4,7 @@ This directory contains device configuration files, describing the workings
 of supported devices. The files are in YAML format, and describe the mapping
 of Tuya DPs (Data Points) to HomeAssistant attributes.
 
-Each Tuya device may correspond to one primary entity and any number of
-secondary entities in Home Assistant.
+Each Tuya device may correspond to one or more entities in Home Assistant.
 
 ## The Top Level
 
@@ -19,52 +18,33 @@ generic name for the type of device should go in the top level name.
 
 ### `products`
 
-*Optional, for future use.*
-
-A list of products that this config applies to. Each product in the list must
-have an `id` specified, which corresponds to the productId or productKey
-(depending on where you are getting it from) in Tuya info. This is available
-from the Tuya developer web portal listing for your device, or when using
-UDP discovery (via tinytuya). In future it is intended that UDP discovery
-will be used to more precisely match devices to configs, so it is recommended
-to report these if you can find them when requesting a new device. Each
-listing can also have an optional `name`, which is intended to specify the
-specific brand and model name or number of the matching device.  In future
-when local discovery is implemented to discover products by id, this name will
-be displayed on discovery, and be available as manufacturer and model info
-in device settings.
-
-### `primary_entity`
-
-This contains the configuration for one Home Assistant entity which is
-considered the main entity for the device. For example, if the device is
-a heater, this would be a climate entity.
-
-The configuration for entities is detailed in its own section below.
-
-### `secondary_entities`
-
 *Optional.*
 
-This contains a list of additional Home Assistant entities
-providing additional functionality beyond the capabilities of the primary
-entity. Examples include lighting control for display panels as a Home
-Assistant light entity, child locks as a Home Assistant lock entity,
-or additional toggles as Home Assistant switch entities.
+A list of products that this config applies to. Each product in the list must
+have an `id` specified, which corresponds to the product_id from cloud device 
+info, or productKey from the local discovery. If these are different, it is
+recommended that listings are created for both.
 
-The configuration for secondary entities is the same as primary entities,
-and is detailed in the section below.
+In addition to the id, the `manufacturer`, `model` and `model_id` (if
+the model has both a name and a more code like id) can be listed here.
+In future the intention is to display these in the Device info panel
+for the device. The `name` can also be overridden here with a more
+specific name to be used in future in place of the generic name at the
+top of the config.
+
+### `entities`
+
+This contains a list of Home Assistant entities providing the functionality
+of the device.
+
+The configuration for each entity in the list is detailed in the section below.
 
 ## Entity configuration
 
 ### `entity`
 
-The Home Assistant entity type being configured. Currently supported
-types are **climate**, **switch**, **light**, **lock**. Functionality
-for these entities is limited to that which has been required for the
-devices until now and may need to be extended for new devices. In
-particular, the light and lock entities have only been used for simple
-secondary entities, so only basic functionality is implemented.
+The Home Assistant entity type being configured. See the **Entity types**
+section below for details on specific requirements for each entity type.
 
 ### `class`
 
@@ -114,6 +94,29 @@ This specifies the `entity category` of the entity. Entities can be categorized
 as `config` or `diagnostic` to restrict where they appear automatically in
 Home Assistant.
 
+### `name`
+
+*Optional.*
+
+The name associated with this entity can be set here. If no name is
+set, it will inherit the name at the top level. This is mostly useful
+for overriding the name entities to give more information about the
+purpose of the entity, or to differentiate multiple entities of the
+same type.
+
+Where possible, `translation_key` should be used instead of an explicit name.
+
+### `mode`
+
+*Optional. For number entities, default="auto", for others, None*
+
+For number entities, this can be used to force `slider` or `box` as the
+input method. The default `auto` uses a slider if the range is small enough,
+or a box otherwise. It is recommended to let HA decide based on its own logic
+which mode to use, and override it in the UI settings rather than forcing
+your personal preference on others. But if an entity really does only make
+sense with one UI mode, then this is provided to handle those cases.
+
 ### `dps`
 
 This is a list of the definitions for the Tuya DPs associated with
@@ -122,23 +125,6 @@ supported DPs reported by the device.
 
 The configuration of DPs entries is detailed in its own section below.
 
-### `name`
-
-*Optional.*
-
-The name associated with this entity can be set here. If no name is set,
-it will inherit the name at the top level. This is mostly useful for
-overriding the name of secondary entities to give more information
-about the purpose of the entity, as the generic type with the top level
-name may not be sufficient to describe the function.
-
-### `mode`
-
-*Optional. For number entities, default="auto", for others, None*
-
-For number entities, this can be used to force `slider` or `box` as the
-input method. The default `auto` uses a slider if the range is small enough,
-or a box otherwise.
 
 ## DPs configuration
 
@@ -158,6 +144,7 @@ The type of data returned by the Tuya API. Can be one of the following:
  - **base64** is a special case of string, where binary data is base64 encoded. Platforms that use this type will need special handling to make sense of the data.
  - **hex** is a special case of string, where binary data is hex encoded. Platforms that use this type will need special handling to make sense of the data.
  - **json** is a special case of string, where multiple data points are encoded in json format in the string. Platforms that use this type will need special handling to make sense of the data.
+ - **utf16b64** is a special case of string, where a UTF-16 string is base64 encoded. This will be decoded into a UTF-8 string so it is readable in Home Assistant.
  - **float** can contain floating point numbers. No known devices use this, but it is supported if needed.
 
 ### `name`
@@ -165,9 +152,9 @@ The type of data returned by the Tuya API. Can be one of the following:
 The name given to the attribute in Home Assistant. Certain names are used
 by the Home Assistant entities for specific purposes. If a name is not
 recognized as a standard attribute by the entitiy implementation, the
-attribute will be returned as a readonly custom attribute on the entity.
+attribute will be returned as a readonly extra attribute on the entity.
 If you need non-standard attributes to be able to be set, you will need
-to use a secondary entity for that.
+to use an entity for that (typically switch, number or select).
 
 ### `sensitive`
 

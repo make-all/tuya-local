@@ -1,15 +1,14 @@
 name: Pcie computer power
 products:
   - id: na90jncjlvw5t0ba
-    name: Mini card pcie pc power switch
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    model: JH-PC mini
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: button
     name: Reset
     icon: mdi:restart

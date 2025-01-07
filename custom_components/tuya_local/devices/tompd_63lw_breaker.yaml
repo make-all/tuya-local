@@ -1,35 +1,34 @@
 name: Circuit breaker energy meter
 products:
   - id: rrmpzckqm5pfd642
-    name: TOMPD-63LW
+    model: TOMPD-63LW
   - id: psjg8ldomxnelfp5
-    name: TOMZN-63A
+    model: TOMZN-63A
   - id: u0cxoxtfelys3ufx
-    name: TOMPD-63LW
-primary_entity:
-  entity: switch
-  icon: "mdi:fuse"
-  dps:
-    - id: 16
-      name: switch
-      type: boolean
-    - id: 17
-      name: alarm_set_1
-      optional: true
-      type: string
-    - id: 18
-      name: alarm_set_2
-      optional: true
-      type: string
-    - id: 6
-      name: phase_a
-      type: base64
-      optional: true
-      force: true
-    - id: 19
-      name: breaker_number
-      type: string
-secondary_entities:
+    model: TOMPD-63LW
+entities:
+  - entity: switch
+    icon: "mdi:fuse"
+    dps:
+      - id: 16
+        name: switch
+        type: boolean
+      - id: 17
+        name: alarm_set_1
+        optional: true
+        type: string
+      - id: 18
+        name: alarm_set_2
+        optional: true
+        type: string
+      - id: 6
+        name: phase_a
+        type: base64
+        optional: true
+        force: true
+      - id: 19
+        name: breaker_number
+        type: string
   - entity: switch
     name: Prepayment
     icon: "mdi:cash-multiple"

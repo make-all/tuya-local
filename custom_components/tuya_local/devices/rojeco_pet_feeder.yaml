@@ -1,17 +1,17 @@
 name: Pet feeder
 products:
   - id: hbiwalfrzqfzv2cq
-    name: Rojeco PTM-001
-primary_entity:
-  entity: button
-  icon: "mdi:food-drumstick"
-  name: Quick feed
-  dps:
-    - id: 2
-      type: boolean
-      name: button
-      optional: true
-secondary_entities:
+    manufacturer: Rojeco
+    model: PTM-001
+entities:
+  - entity: button
+    icon: "mdi:food-drumstick"
+    name: Quick feed
+    dps:
+      - id: 2
+        type: boolean
+        name: button
+        optional: true
   - entity: sensor
     icon: "mdi:paw"
     name: Last amount

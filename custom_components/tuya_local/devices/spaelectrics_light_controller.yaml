@@ -1,67 +1,67 @@
 name: Light controller
 products:
   - id: nzmllynz7tligqp0
-    name: Spa Electrics RM-WF Iris
-primary_entity:
-  entity: light
-  name: Zone 1
-  dps:
-    - id: 106
-      type: boolean
-      name: available
-      mapping:
-        - dps_val: false
-          value: true
-        - dps_val: true
-          value: false
-    - id: 108
-      type: boolean
-      name: switch
-    - id: 112
-      name: brightness
-      type: integer
-      range:
-        min: 1
-        max: 3
-    - id: 110
-      type: string
-      name: named_color
-      mapping:
-        - dps_val: WHITE
-          value: white
-        - dps_val: AQUA
-          value: aqua
-        - dps_val: BLUE
-          value: blue
-        - dps_val: MAGENTA
-          value: magenta
-        - dps_val: RED
-          value: red
-        - dps_val: LIME
-          value: lime
-        - dps_val: GREEN
-          value: green
-        - dps_val: OCEANIC
-          value: black
-        - value: black
-    - id: 110
-      type: string
-      name: effect
-      mapping:
-        - dps_val: WHITE
-          value: "off"
-        - dps_val: OCEANIC
-          value: Oceanic
-        - dps_val: TRANSCENDENCE
-          value: Transcendence
-        - dps_val: OUTBACK
-          value: Outback
-        - dps_val: SPRING
-          value: Spring
-    - id: 103
-      type: string
-      name: zone_name
-secondary_entities:
+    manufacturer: Spa Electrics
+    model: RM-WF Iris
+entities:
+  - entity: light
+    name: Zone 1
+    dps:
+      - id: 106
+        type: boolean
+        name: available
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+      - id: 108
+        type: boolean
+        name: switch
+      - id: 112
+        name: brightness
+        type: integer
+        range:
+          min: 1
+          max: 3
+      - id: 110
+        type: string
+        name: named_color
+        mapping:
+          - dps_val: WHITE
+            value: white
+          - dps_val: AQUA
+            value: aqua
+          - dps_val: BLUE
+            value: blue
+          - dps_val: MAGENTA
+            value: magenta
+          - dps_val: RED
+            value: red
+          - dps_val: LIME
+            value: lime
+          - dps_val: GREEN
+            value: green
+          - dps_val: OCEANIC
+            value: black
+          - value: black
+      - id: 110
+        type: string
+        name: effect
+        mapping:
+          - dps_val: WHITE
+            value: "off"
+          - dps_val: OCEANIC
+            value: Oceanic
+          - dps_val: TRANSCENDENCE
+            value: Transcendence
+          - dps_val: OUTBACK
+            value: Outback
+          - dps_val: SPRING
+            value: Spring
+      - id: 103
+        type: string
+        name: zone_name
   - entity: light
     name: Zone 2
     dps:

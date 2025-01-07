@@ -1,18 +1,18 @@
-name: Genio Smart Power Board 2Gnd
+name: Power board
 products:
   - id: 5dvqb3eeuhhnjnlr
-    name: Genio Smart Power Board 2Gnd
-primary_entity:
-  entity: switch
-  translation_key: outlet_x
-  translation_placeholders:
-    x: "1"
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: Mirabella Genio
+    model: Smart 2Gnd
+entities:
+  - entity: switch
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "1"
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: switch
     translation_key: outlet_x
     translation_placeholders:

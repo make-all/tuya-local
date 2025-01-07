@@ -1,72 +1,72 @@
 name: Water heat pump
 # products:
 #   - id: UNKNOWN
-#     name: Powerworld PW58330
-primary_entity:
-  entity: water_heater
-  dps:
-    - id: 1
-      type: boolean
-      name: operation_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: work_mode
-          conditions:
-            - dps_val: wth
-              value: Hot water
-            - dps_val: heat
-              value: Heating
-            - dps_val: cool
-              value: Cooling
-            - dps_val: wth_heat
-              value: Hot water + heating
-            - dps_val: wth_cool
-              value: Hot water + cooling
-    - id: 5
-      type: string
-      name: work_mode
-      hidden: true
-    - id: 6
-      type: string
-      name: temperature_unit
-      mapping:
-        - dps_val: f
-          value: F
-        - value: C
-    - id: 108
-      type: integer
-      name: current_temperature
-    - id: 118
-      type: string
-      optional: true
-      name: parameter_group_1
-    - id: 119
-      type: string
-      optional: true
-      name: parameter_group_2
-    - id: 120
-      type: string
-      optional: true
-      name: parameter_group_3
-    - id: 121
-      type: string
-      optional: true
-      name: parameter_group_4
-    - id: 122
-      type: string
-      optional: true
-      name: parameter_group_5
-    - id: 123
-      type: string
-      optional: true
-      name: parameter_group_6
-    - id: 124
-      type: string
-      optional: true
-      name: parameter_group_7
-secondary_entities:
+#     manufacturer: Powerworld
+#     model: PW58330
+entities:
+  - entity: water_heater
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: work_mode
+            conditions:
+              - dps_val: wth
+                value: Hot water
+              - dps_val: heat
+                value: Heating
+              - dps_val: cool
+                value: Cooling
+              - dps_val: wth_heat
+                value: Hot water + heating
+              - dps_val: wth_cool
+                value: Hot water + cooling
+      - id: 5
+        type: string
+        name: work_mode
+        hidden: true
+      - id: 6
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+      - id: 108
+        type: integer
+        name: current_temperature
+      - id: 118
+        type: string
+        optional: true
+        name: parameter_group_1
+      - id: 119
+        type: string
+        optional: true
+        name: parameter_group_2
+      - id: 120
+        type: string
+        optional: true
+        name: parameter_group_3
+      - id: 121
+        type: string
+        optional: true
+        name: parameter_group_4
+      - id: 122
+        type: string
+        optional: true
+        name: parameter_group_5
+      - id: 123
+        type: string
+        optional: true
+        name: parameter_group_6
+      - id: 124
+        type: string
+        optional: true
+        name: parameter_group_7
   - entity: climate
     translation_key: heater
     dps:

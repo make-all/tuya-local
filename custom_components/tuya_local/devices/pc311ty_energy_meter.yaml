@@ -1,20 +1,20 @@
-name: PC311-TY power clamp
+name: Energy meter
 products:
   - id: vfwxetkavqrvg02u
-primary_entity:
-  entity: sensor
-  category: diagnostic
-  name: Total Energy
-  class: energy
-  dps:
-    - id: 1
-      name: sensor
-      type: integer
-      unit: kWh
-      class: total_increasing
-      mapping:
-        - scale: 100
-secondary_entities:
+    model: PC311-TY power clamp
+entities:
+  - entity: sensor
+    category: diagnostic
+    name: Total Energy
+    class: energy
+    dps:
+      - id: 1
+        name: sensor
+        type: integer
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
   - entity: sensor
     category: diagnostic
     name: Total Generation

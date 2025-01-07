@@ -2,54 +2,56 @@ name: Dehumidifier
 legacy_type: klarstein_dryfy_pro_connect_dehumidifier
 products:
   - id: b07ueqf4ymelhbi9
-    name: Klarstein DryFy Pro Connect V2
+    manufacturer: Klarstein
+    model: DryFy Pro Connect
   - id: 6cguug02fnygou5c
-    name: Klarstein Dryfy Pro Connect
+    manufacturer: Klarstein
+    model: Dryfy Pro Connect
   - id: m0wtqltrepknlpdj
-    name: Morris Premier plus
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-      mapping:
-        - dps_val: false
-          icon: "mdi:air-humidifier-off"
-          icon_priority: 1
-        - dps_val: true
-          icon: "mdi:air-humidifier"
-          icon_priority: 3
-    - id: 2
-      name: mode
-      type: string
-      optional: true
-      mapping:
-        - dps_val: auto
-          value: auto
-        - dps_val: low
-          value: eco
-        - dps_val: high
-          value: boost
-          icon: "mdi:tshirt-crew-outline"
-          icon_priority: 2
-        - dps_val: fan
-          value: purify
-          icon: "mdi:air-purifier"
-          icon_priority: 2
-    - id: 3
-      type: integer
-      name: current_humidity
-    - id: 4
-      type: integer
-      name: humidity
-      range:
-        min: 35
-        max: 80
-      mapping:
-        - step: 5
-secondary_entities:
+    manufacturer: Morris
+    model: Premier Plus
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+        mapping:
+          - dps_val: false
+            icon: "mdi:air-humidifier-off"
+            icon_priority: 1
+          - dps_val: true
+            icon: "mdi:air-humidifier"
+            icon_priority: 3
+      - id: 2
+        name: mode
+        type: string
+        optional: true
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: low
+            value: eco
+          - dps_val: high
+            value: boost
+            icon: "mdi:tshirt-crew-outline"
+            icon_priority: 2
+          - dps_val: fan
+            value: purify
+            icon: "mdi:air-purifier"
+            icon_priority: 2
+      - id: 3
+        type: integer
+        name: current_humidity
+      - id: 4
+        type: integer
+        name: humidity
+        range:
+          min: 35
+          max: 80
+        mapping:
+          - step: 5
   - entity: select
     name: Direction
     category: config

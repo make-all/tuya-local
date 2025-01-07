@@ -1,90 +1,90 @@
 name: Robot vacuum
 # products:
 #  - id: UNKNOWN
-#    name: Airrobo P20
-primary_entity:
-  entity: vacuum
-  dps:
-    - id: 2
-      type: boolean
-      name: activate
-      optional: true
-    - id: 3
-      type: string
-      name: command
-      mapping:
-        - dps_val: standby
-          value: standby
-        - dps_val: smart
-          value: smart
-        - dps_val: wall_follow
-          value: wall_follow
-        - dps_val: spiral
-          value: clean_spot
-        - dps_val: partial_bow
-          value: partial_bow
-        - dps_val: chargego
-          value: return_to_base
-    - id: 4
-      type: string
-      name: direction_control
-      mapping:
-        - dps_val: forward
-          value: forward
-        - dps_val: turn_left
-          value: left
-        - dps_val: turn_right
-          value: right
-        - dps_val: stop
-          value: stop
-    - id: 5
-      type: string
-      name: status
-      mapping:
-        - dps_val: standby
-          value: idle
-        - dps_val: smart_clean
-          value: cleaning
-        - dps_val: wall_clean
-          value: cleaning
-        - dps_val: spot_clean
-          value: cleaning
-        - dps_val: mop_clean
-          value: cleaning
-        - dps_val: goto_charge
-          value: returning
-        - dps_val: charging
-          value: charging
-        - dps_val: charge_done
-          value: docked
-        - dps_val: paused
-          value: paused
-        - dps_val: cleaning
-          value: cleaning
-        - dps_val: sleep
-          value: idle
-    - id: 13
-      type: boolean
-      name: locate
-      optional: true
-    - id: 14
-      type: string
-      name: fan_speed
-      mapping:
-        - dps_val: gentle
-          value: Silent
-        - dps_val: normal
-          value: Normal
-        - dps_val: strong
-          value: Strong
-    - id: 18
-      type: bitfield
-      name: error
-      optional: true
-    - id: 104
-      type: string
-      name: serial_number
-secondary_entities:
+#    manufacturer: Airrobo
+#    model: P20
+entities:
+  - entity: vacuum
+    dps:
+      - id: 2
+        type: boolean
+        name: activate
+        optional: true
+      - id: 3
+        type: string
+        name: command
+        mapping:
+          - dps_val: standby
+            value: standby
+          - dps_val: smart
+            value: smart
+          - dps_val: wall_follow
+            value: wall_follow
+          - dps_val: spiral
+            value: clean_spot
+          - dps_val: partial_bow
+            value: partial_bow
+          - dps_val: chargego
+            value: return_to_base
+      - id: 4
+        type: string
+        name: direction_control
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: turn_left
+            value: left
+          - dps_val: turn_right
+            value: right
+          - dps_val: stop
+            value: stop
+      - id: 5
+        type: string
+        name: status
+        mapping:
+          - dps_val: standby
+            value: idle
+          - dps_val: smart_clean
+            value: cleaning
+          - dps_val: wall_clean
+            value: cleaning
+          - dps_val: spot_clean
+            value: cleaning
+          - dps_val: mop_clean
+            value: cleaning
+          - dps_val: goto_charge
+            value: returning
+          - dps_val: charging
+            value: charging
+          - dps_val: charge_done
+            value: docked
+          - dps_val: paused
+            value: paused
+          - dps_val: cleaning
+            value: cleaning
+          - dps_val: sleep
+            value: idle
+      - id: 13
+        type: boolean
+        name: locate
+        optional: true
+      - id: 14
+        type: string
+        name: fan_speed
+        mapping:
+          - dps_val: gentle
+            value: Silent
+          - dps_val: normal
+            value: Normal
+          - dps_val: strong
+            value: Strong
+      - id: 18
+        type: bitfield
+        name: error
+        optional: true
+      - id: 104
+        type: string
+        name: serial_number
   - entity: sensor
     class: battery
     dps:

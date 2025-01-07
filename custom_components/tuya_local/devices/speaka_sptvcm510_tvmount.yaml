@@ -1,19 +1,19 @@
 name: TV mount
 products:
   - id: etspz6new8zb1vdy
-    name: Speaka SP-TVCM-510
-primary_entity:
-  entity: button
-  name: Stop
-  icon: "mdi:stop"
-  dps:
-    - id: 101
-      type: string
-      name: button
-      mapping:
-        - dps_val: cancel
-          value: true
-secondary_entities:
+    manufacturer: Speaka
+    model: SP-TVCM-510
+entities:
+  - entity: button
+    name: Stop
+    icon: "mdi:stop"
+    dps:
+      - id: 101
+        type: string
+        name: button
+        mapping:
+          - dps_val: cancel
+            value: true
   - entity: button
     name: Up
     icon: "mdi:arrow-up-bold"

@@ -1,80 +1,79 @@
 name: Door lock
 products:
   - id: ofwvna43
-    name: Nice Digi
-primary_entity:
-  entity: lock
-  dps:
-    - id: 1
-      type: string
-      name: unlock_method_create
-      optional: true
-      sensitive: true
-    - id: 2
-      type: string
-      name: unlock_method_delete
-      optional: true
-    - id: 3
-      type: string
-      name: unlock_method_modify
-      optional: true
-      sensitive: true
-    - id: 12
-      type: integer
-      name: unlock_fingerprint
-      optional: true
-      persist: false
-    - id: 19
-      type: integer
-      name: unlock_ble
-      optional: true
-      persist: false
-    - id: 20
-      type: string
-      name: lock_record
-      optional: true
-    - id: 46
-      type: boolean
-      name: lock
-      optional: true
-      mapping:
-        - dps_val: null
-          value_mirror: lock_motor_state
-    - id: 47
-      type: boolean
-      name: lock_motor_state
-      optional: true
-    - id: 54
-      type: string
-      name: sync_method
-      optional: true
-      sensitive: true
-    - id: 61
-      type: string
-      name: remote_no_dp_key
-      optional: true
-      sensitive: true
-    - id: 62
-      type: integer
-      name: unlock_app
-      optional: true
-      persist: false
-    - id: 70
-      type: string
-      name: check_code_set
-      optional: true
-      sensitive: true
-    - id: 71
-      type: string
-      name: ble_unlock_check
-      optional: true
-      sensitive: true
-    - id: 73
-      type: string
-      name: remote_pd_setkey_check
-      optional: true
-      sensitive: true
-secondary_entities:
+    manufacturer: Nice Digi
+entities:
+  - entity: lock
+    dps:
+      - id: 1
+        type: string
+        name: unlock_method_create
+        optional: true
+        sensitive: true
+      - id: 2
+        type: string
+        name: unlock_method_delete
+        optional: true
+      - id: 3
+        type: string
+        name: unlock_method_modify
+        optional: true
+        sensitive: true
+      - id: 12
+        type: integer
+        name: unlock_fingerprint
+        optional: true
+        persist: false
+      - id: 19
+        type: integer
+        name: unlock_ble
+        optional: true
+        persist: false
+      - id: 20
+        type: string
+        name: lock_record
+        optional: true
+      - id: 46
+        type: boolean
+        name: lock
+        optional: true
+        mapping:
+          - dps_val: null
+            value_mirror: lock_motor_state
+      - id: 47
+        type: boolean
+        name: lock_motor_state
+        optional: true
+      - id: 54
+        type: string
+        name: sync_method
+        optional: true
+        sensitive: true
+      - id: 61
+        type: string
+        name: remote_no_dp_key
+        optional: true
+        sensitive: true
+      - id: 62
+        type: integer
+        name: unlock_app
+        optional: true
+        persist: false
+      - id: 70
+        type: string
+        name: check_code_set
+        optional: true
+        sensitive: true
+      - id: 71
+        type: string
+        name: ble_unlock_check
+        optional: true
+        sensitive: true
+      - id: 73
+        type: string
+        name: remote_pd_setkey_check
+        optional: true
+        sensitive: true
   - entity: sensor
     class: battery
     category: diagnostic

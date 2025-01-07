@@ -1,142 +1,144 @@
 name: Air conditioner
 products:
   - id: bf8705744de2dd5ab4ogqj
-    name: Fisher Summer
+    manufacturer: Fisher
+    model: Summer
   - id: u9jjsaluqe1trtxv
-    name: Daitsu DS-9KTP
+    manufacturer: Daitsu
+    model: DS-9KTP
   - id: fcnlevuwfd1jgkvx
-    name: Tesla TT34TP21-1232IAWUV
-primary_entity:
-  entity: climate
-  translation_only_key: aircon_extra
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: auto
-              value: heat_cool
-            - dps_val: cold
-              value: cool
-            - dps_val: wind
-              value: fan_only
-            - dps_val: wet
-              value: dry
-            - dps_val: hot
-              value: heat
-    - id: 2
-      name: temperature
-      type: integer
-      range:
-        min: 160
-        max: 310
-      mapping:
-        - scale: 10
-          step: 5
-      unit: C
-    - id: 3
-      name: current_temperature
-      type: integer
-    - id: 4
-      name: mode
-      type: string
-    - id: 5
-      name: fan_mode
-      type: string
-      mapping:
-        - dps_val: auto
-          value: auto
-        - dps_val: mute
-          value: quiet
-        - dps_val: low
-          value: low
-        - dps_val: mid_low
-          value: medlow
-        - dps_val: mid
-          value: medium
-        - dps_val: mid_high
-          value: medhigh
-        - dps_val: high
-          value: high
-        - dps_val: strong
-          value: strong
-    - id: 18
-      name: current_humidity
-      type: integer
-      optional: true
-    - id: 110
-      name: functions_available
-      type: bitfield
-      # Used to indicate whether this function is available.
-      #   0. Whether the temperature is adjustable in dehumidification mode
-      #   1. Whether the temperature is adjustable in air supply mode
-      #   2. Whether the temperature is adjustable in automatic mode
-      #   3. Fresh air volume mark
-      #   4. Vector air supply (implemented on Set vertical direction)
-      #   5. Left and right sweeping air (implemented on horizontal sweep)
-      #   6. Photosensitive
-      #   7. Intelligent dehumidification and anti-mildew
-      #   8. Humidity sensor
-      #   9. Evaporator cleaning
-      #   10. Save money and see it (implemented on Energy saving)
-      #   11. Power statistics
-      #   12. Generator mode (implemented on Generator mode)
-      #   13. High temperature wind/cool wind (implemented on Hot cold wind)
-      #   14. Air quality detection function (implemented on Air quality)
-      #   15. Set to empty (original: humidity function)
-      #   16. Set to empty (original: equipment operation saves money and
-      #       visible temperature curve display)
-      #   17. 8℃ heating
-      #   18. Filter dirty and clogged function (implemented on Dirty filter)
-      #   ??? - 19 is missing in Tuya json
-      #   20. presence or absence of PM2.5 (implemented on PM25)
-      #   21. temperature scale switching, 1 is Fahrenheit, 0 is Celsius
-      #   22. soft wind (implemented on Sleep)
-      #   23. left and right wide-angle air supply (implemented on Set
-      #       horizontal direction)
-    - id: 123
-      name: options
-      type: string
-    - id: 128
-      name: style
-      type: string
-      optional: true
-      mapping:
-        - dps_val: "0"
-          value: wall
-        - dps_val: "1"
-          value: floor
-    - id: 133
-      name: swing_mode
-      type: string
-      mapping:
-        - dps_val: "0"
-          value: "off"
-        - dps_val: "1"
-          value: horizontal
-          available: hswing_available
-        - dps_val: "2"
-          value: vertical
-        - dps_val: "3"
-          value: both
-          available: hswing_available
-    - id: 134
-      name: work_time
-      type: string
-      optional: true
-    - id: 110
-      type: bitfield
-      name: hswing_available
-      mapping:
-        - dps_val: 32
-          value: true
-        - value: false
-secondary_entities:
+    manufacturer: Tesla
+    model: TT34TP21-1232IAWUV
+entities:
+  - entity: climate
+    translation_only_key: aircon_extra
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: heat_cool
+              - dps_val: cold
+                value: cool
+              - dps_val: wind
+                value: fan_only
+              - dps_val: wet
+                value: dry
+              - dps_val: hot
+                value: heat
+      - id: 2
+        name: temperature
+        type: integer
+        range:
+          min: 160
+          max: 310
+        mapping:
+          - scale: 10
+            step: 5
+        unit: C
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 4
+        name: mode
+        type: string
+      - id: 5
+        name: fan_mode
+        type: string
+        mapping:
+          - dps_val: auto
+            value: auto
+          - dps_val: mute
+            value: quiet
+          - dps_val: low
+            value: low
+          - dps_val: mid_low
+            value: medlow
+          - dps_val: mid
+            value: medium
+          - dps_val: mid_high
+            value: medhigh
+          - dps_val: high
+            value: high
+          - dps_val: strong
+            value: strong
+      - id: 18
+        name: current_humidity
+        type: integer
+        optional: true
+      - id: 110
+        name: functions_available
+        type: bitfield
+        # Used to indicate whether this function is available.
+        #   0. Whether the temperature is adjustable in dehumidification mode
+        #   1. Whether the temperature is adjustable in air supply mode
+        #   2. Whether the temperature is adjustable in automatic mode
+        #   3. Fresh air volume mark
+        #   4. Vector air supply (implemented on Set vertical direction)
+        #   5. Left and right sweeping air (implemented on horizontal sweep)
+        #   6. Photosensitive
+        #   7. Intelligent dehumidification and anti-mildew
+        #   8. Humidity sensor
+        #   9. Evaporator cleaning
+        #   10. Save money and see it (implemented on Energy saving)
+        #   11. Power statistics
+        #   12. Generator mode (implemented on Generator mode)
+        #   13. High temperature wind/cool wind (implemented on Hot cold wind)
+        #   14. Air quality detection function (implemented on Air quality)
+        #   15. Set to empty (original: humidity function)
+        #   16. Set to empty (original: equipment operation saves money and
+        #       visible temperature curve display)
+        #   17. 8℃ heating
+        #   18. Filter dirty and clogged function (implemented on Dirty filter)
+        #   ??? - 19 is missing in Tuya json
+        #   20. presence or absence of PM2.5 (implemented on PM25)
+        #   21. temperature scale switching, 1 is Fahrenheit, 0 is Celsius
+        #   22. soft wind (implemented on Sleep)
+        #   23. left and right wide-angle air supply (implemented on Set
+        #       horizontal direction)
+      - id: 123
+        name: options
+        type: string
+      - id: 128
+        name: style
+        type: string
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: wall
+          - dps_val: "1"
+            value: floor
+      - id: 133
+        name: swing_mode
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "1"
+            value: horizontal
+            available: hswing_available
+          - dps_val: "2"
+            value: vertical
+          - dps_val: "3"
+            value: both
+            available: hswing_available
+      - id: 134
+        name: work_time
+        type: string
+        optional: true
+      - id: 110
+        type: bitfield
+        name: hswing_available
+        mapping:
+          - dps_val: 32
+            value: true
+          - value: false
   - entity: binary_sensor
     class: problem
     category: diagnostic

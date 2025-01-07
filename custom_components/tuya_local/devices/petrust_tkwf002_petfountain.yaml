@@ -1,15 +1,15 @@
-name: Petrust Smart Fountain
+name: Pet fountain
 products:
   - id: 5jdws4vgfzhkq7vs
-    name: Petrust TK-WF002
-primary_entity:
-  entity: switch
-  icon: "mdi:power"
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: Petrust
+    model: TK-WF002
+entities:
+  - entity: switch
+    icon: "mdi:power"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: select
     name: Mode
     class: enum

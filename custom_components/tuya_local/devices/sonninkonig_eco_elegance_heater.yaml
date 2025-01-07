@@ -1,30 +1,30 @@
 name: IR panel heater
 products:
   - id: xev18n44cvrmicqd
-    name: Sonnenkonig ECO 700
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: heat
-    - id: 2
-      name: temperature
-      type: integer
-      unit: C
-      range:
-        min: 0
-        max: 37
-    - id: 3
-      name: current_temperature
-      type: integer
-secondary_entities:
+    manufacturer: Sonnenkonig
+    model: ECO 700
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 0
+          max: 37
+      - id: 3
+        name: current_temperature
+        type: integer
   - entity: lock
     translation_key: child_lock
     category: config

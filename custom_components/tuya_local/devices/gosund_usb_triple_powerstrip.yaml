@@ -1,18 +1,18 @@
 name: USB + 3 outlet power monitor powerstrip
 products:
   - id: tsbguim4trl6fa7g
-    name: Gosund P1
-primary_entity:
-  entity: switch
-  class: outlet
-  translation_key: outlet_x
-  translation_placeholders:
-    x: "1"
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: Gosund
+    model: P1
+entities:
+  - entity: switch
+    class: outlet
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: switch
     translation_key: outlet_x
     translation_placeholders:

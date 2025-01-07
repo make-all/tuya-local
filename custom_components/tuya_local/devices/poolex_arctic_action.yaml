@@ -1,79 +1,79 @@
 name: Spa Heat Pump
 products:
   - id: pzp8owd7lhtpssgj
-    name: Poolex Arctic Action
-primary_entity:
-  entity: climate
-  translation_only_key: pool_heatpump
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: "auto"
-    - id: 2
-      type: integer
-      name: temperature
-      range:
-        min: 5
-        max: 40
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              range:
-                min: 41
-                max: 104
-              value_redirect: temp_set_f
-    - id: 3
-      type: integer
-      name: current_temperature
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: temp_current_f
-    - id: 4
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: heat
-          value: smart_heat
-        - dps_val: h_powerful
-          value: quick_heat
-        - dps_val: h_silent
-          value: quiet_heat
-        - dps_val: cool
-          value: smart_cool
-        - dps_val: c_powerful
-          value: quick_cool
-        - dps_val: c_silent
-          value: quiet_cool
-    - id: 13
-      type: string
-      name: temperature_unit
-      mapping:
-        - dps_val: c
-          value: C
-        - dps_val: f
-          value: F
-    - id: 14
-      type: integer
-      name: temp_set_f
-      range:
-        min: 41
-        max: 104
-      hidden: true
-      optional: true
-    - id: 15
-      type: integer
-      name: temp_current_f
-      hidden: true
-      optional: true
-secondary_entities:
+    manufacturer: Poolex
+    model: Arctic Action
+entities:
+  - entity: climate
+    translation_only_key: pool_heatpump
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "auto"
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 5
+          max: 40
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                range:
+                  min: 41
+                  max: 104
+                value_redirect: temp_set_f
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_current_f
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: heat
+            value: smart_heat
+          - dps_val: h_powerful
+            value: quick_heat
+          - dps_val: h_silent
+            value: quiet_heat
+          - dps_val: cool
+            value: smart_cool
+          - dps_val: c_powerful
+            value: quick_cool
+          - dps_val: c_silent
+            value: quiet_cool
+      - id: 13
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 14
+        type: integer
+        name: temp_set_f
+        range:
+          min: 41
+          max: 104
+        hidden: true
+        optional: true
+      - id: 15
+        type: integer
+        name: temp_current_f
+        hidden: true
+        optional: true
   - entity: select
     translation_key: temperature_unit
     category: config

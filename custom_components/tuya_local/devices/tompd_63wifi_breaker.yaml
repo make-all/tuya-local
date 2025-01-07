@@ -1,31 +1,30 @@
 name: Breaker energy meter
 products:
   - id: wcihaluccfsoayqa
-    name: TOMPD-63WIFI
-primary_entity:
-  entity: switch
-  icon: "mdi:fuse"
-  dps:
-    - id: 16
-      name: switch
-      type: boolean
-    - id: 17
-      name: alarm_set_1
-      optional: true
-      type: string
-    - id: 18
-      name: alarm_set_2
-      optional: true
-      type: string
-    - id: 6
-      name: phase_a
-      type: base64
-      optional: true
-      force: true
-    - id: 19
-      name: breaker_number
-      type: string
-secondary_entities:
+    model: TOMPD-63WIFI
+entities:
+  - entity: switch
+    icon: "mdi:fuse"
+    dps:
+      - id: 16
+        name: switch
+        type: boolean
+      - id: 17
+        name: alarm_set_1
+        optional: true
+        type: string
+      - id: 18
+        name: alarm_set_2
+        optional: true
+        type: string
+      - id: 6
+        name: phase_a
+        type: base64
+        optional: true
+        force: true
+      - id: 19
+        name: breaker_number
+        type: string
   - entity: switch
     name: Prepayment
     icon: "mdi:cash-multiple"

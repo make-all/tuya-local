@@ -1,37 +1,37 @@
 name: Curtain
 products:
   - id: 8kzqqzu4
-    name: Loratap SC500ZB-V2
+    manufacturer: Loratap
+    model: SC500ZB-V2
   - id: v7ooovn9oamttmre
-    name: Loratap WiFi curtain
-primary_entity:
-  entity: cover
-  class: shutter
-  dps:
-    - id: 1
-      name: control
-      type: string
-      mapping:
-        - dps_val: "open"
-          value: open
-        - dps_val: "close"
-          value: close
-        - dps_val: "stop"
-          value: stop
-    - id: 2
-      name: position
-      type: integer
-      unit: "%"
-      range:
-        min: 0
-        max: 100
-      mapping:
-        - step: 10
-    - id: 14
-      name: light_mode
-      type: string
-      optional: true
-secondary_entities:
+    manufacturer: Loratap
+entities:
+  - entity: cover
+    class: shutter
+    dps:
+      - id: 1
+        name: control
+        type: string
+        mapping:
+          - dps_val: "open"
+            value: open
+          - dps_val: "close"
+            value: close
+          - dps_val: "stop"
+            value: stop
+      - id: 2
+        name: position
+        type: integer
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - step: 10
+      - id: 14
+        name: light_mode
+        type: string
+        optional: true
   - entity: switch
     category: config
     name: Reverse Motor Direction

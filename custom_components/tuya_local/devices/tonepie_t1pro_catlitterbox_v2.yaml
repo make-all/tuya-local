@@ -1,21 +1,21 @@
 name: Cat litter box
 products:
   - id: jslbvsdfhzvi4pu4
-    name: Tonepie T1 Pro
-primary_entity:
-  entity: sensor
-  name: Cat weight
-  icon: "mdi:cat"
-  class: weight
-  dps:
-    - id: 6
-      type: integer
-      name: sensor
-      unit: kg
-      class: measurement
-      mapping:
-        - scale: 1000
-secondary_entities:
+    manufacturer: Tonepie
+    model: T1 Pro
+entities:
+  - entity: sensor
+    name: Cat weight
+    icon: "mdi:cat"
+    class: weight
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        unit: kg
+        class: measurement
+        mapping:
+          - scale: 1000
   - entity: sensor
     name: Times per day
     icon: "mdi:emoticon-poop"

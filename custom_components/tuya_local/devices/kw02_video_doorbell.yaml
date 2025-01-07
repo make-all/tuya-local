@@ -1,45 +1,45 @@
 name: Doorbell
 products:
   - id: 0ukszkfaejkqpz9o
-    name: KW02 IP video doorbell
-primary_entity:
-  entity: siren
-  name: Doorbell
-  dps:
-    - id: 156
-      type: string
-      optional: true
-      name: tone
-      mapping:
-        - dps_val: "1"
-          value: Tone 1
-        - dps_val: "2"
-          value: Tone 2
-        - dps_val: "3"
-          value: Tone 3
-        - dps_val: "4"
-          value: Tone 4
-    - id: 157
-      type: integer
-      optional: true
-      name: volume_level
-      range:
-        min: 0
-        max: 10
-      mapping:
-        - scale: 10
-    - id: 166
-      type: integer
-      optional: true
-      name: duration
-      range:
-        min: 5
-        max: 60
-    - id: 186
-      type: string
-      optional: true
-      name: alarm_report
-secondary_entities:
+    model: KW02
+    name: IP video doorbell
+entities:
+  - entity: siren
+    name: Doorbell
+    dps:
+      - id: 156
+        type: string
+        optional: true
+        name: tone
+        mapping:
+          - dps_val: "1"
+            value: Tone 1
+          - dps_val: "2"
+            value: Tone 2
+          - dps_val: "3"
+            value: Tone 3
+          - dps_val: "4"
+            value: Tone 4
+      - id: 157
+        type: integer
+        optional: true
+        name: volume_level
+        range:
+          min: 0
+          max: 10
+        mapping:
+          - scale: 10
+      - id: 166
+        type: integer
+        optional: true
+        name: duration
+        range:
+          min: 5
+          max: 60
+      - id: 186
+        type: string
+        optional: true
+        name: alarm_report
   - entity: light
     translation_key: indicator
     category: config

@@ -1,66 +1,66 @@
 name: Alarm system
 products:
   - id: bxtloihrivkxalgn
-    name: PGST PW150
-primary_entity:
-  entity: alarm_control_panel
-  dps:
-    - id: 1
-      type: string
-      name: alarm_state
-      mapping:
-        - dps_val: disarmed
-          value: disarmed
-        - dps_val: arm
-          value: armed_away
-        - dps_val: home
-          value: armed_home
-        - dps_val: sos
-          value: triggered
-    - id: 1
-      type: string
-      name: trigger
-      mapping:
-        - dps_val: sos
-          value: true
-        - value: false
-    - id: 24
-      type: string
-      name: zone_attribute
-      optional: true
-    - id: 32
-      type: string
-      name: master_state
-      optional: true
-    - id: 36
-      type: string
-      name: sub_class
-      optional: true
-    - id: 37
-      type: string
-      name: sub_type
-      optional: true
-    - id: 38
-      type: string
-      name: sub_admin
-      optional: true
-    - id: 39
-      type: string
-      name: sub_state
-      optional: true
-    - id: 101
-      type: string
-      name: power_event
-      optional: true
-    - id: 103
-      type: string
-      name: zone_number
-      optional: true
-    - id: 104
-      type: string
-      name: other_event
-      optional: true
-secondary_entities:
+    manufacturer: PGST
+    model: PW150
+entities:
+  - entity: alarm_control_panel
+    dps:
+      - id: 1
+        type: string
+        name: alarm_state
+        mapping:
+          - dps_val: disarmed
+            value: disarmed
+          - dps_val: arm
+            value: armed_away
+          - dps_val: home
+            value: armed_home
+          - dps_val: sos
+            value: triggered
+      - id: 1
+        type: string
+        name: trigger
+        mapping:
+          - dps_val: sos
+            value: true
+          - value: false
+      - id: 24
+        type: string
+        name: zone_attribute
+        optional: true
+      - id: 32
+        type: string
+        name: master_state
+        optional: true
+      - id: 36
+        type: string
+        name: sub_class
+        optional: true
+      - id: 37
+        type: string
+        name: sub_type
+        optional: true
+      - id: 38
+        type: string
+        name: sub_admin
+        optional: true
+      - id: 39
+        type: string
+        name: sub_state
+        optional: true
+      - id: 101
+        type: string
+        name: power_event
+        optional: true
+      - id: 103
+        type: string
+        name: zone_number
+        optional: true
+      - id: 104
+        type: string
+        name: other_event
+        optional: true
   - entity: number
     name: Exit delay
     category: config

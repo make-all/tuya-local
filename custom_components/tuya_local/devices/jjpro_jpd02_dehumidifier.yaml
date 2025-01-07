@@ -1,48 +1,49 @@
-name: JJPro JPD02 dehumidifier
+name: Dehumidifier
 products:
   - id: vraaaueoxtrhksth
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-      mapping:
-        - dps_val: false
-          icon: "mdi:air-humidifier-off"
-          icon_priority: 3
-        - dps_val: true
-          icon: "mdi:air-humidifier"
-          icon_priority: 5
-    - id: 2
-      type: integer
-      name: humidity
-      range:
-        min: 30
-        max: 80
-      mapping:
-        - step: 5
-    - id: 5
-      name: mode
-      type: string
-      mapping:
-        - dps_val: Continuities
-          value: boost
-          icon: "mdi:tshirt-crew-outline"
-          icon_priority: 4
-        - dps_val: Auto
-          value: auto
-          icon: "mdi:water-outline"
-          icon_priority: 4
-        - dps_val: Sleep
-          value: sleep
-          icon: "mdi:weather-night"
-          icon_priority: 4
-    - id: 6
-      type: integer
-      name: current_humidity
-secondary_entities:
+    manufacturer: JJPro
+    model: JPD02
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+        mapping:
+          - dps_val: false
+            icon: "mdi:air-humidifier-off"
+            icon_priority: 3
+          - dps_val: true
+            icon: "mdi:air-humidifier"
+            icon_priority: 5
+      - id: 2
+        type: integer
+        name: humidity
+        range:
+          min: 30
+          max: 80
+        mapping:
+          - step: 5
+      - id: 5
+        name: mode
+        type: string
+        mapping:
+          - dps_val: Continuities
+            value: boost
+            icon: "mdi:tshirt-crew-outline"
+            icon_priority: 4
+          - dps_val: Auto
+            value: auto
+            icon: "mdi:water-outline"
+            icon_priority: 4
+          - dps_val: Sleep
+            value: sleep
+            icon: "mdi:weather-night"
+            icon_priority: 4
+      - id: 6
+        type: integer
+        name: current_humidity
   - entity: fan
     dps:
       - id: 1

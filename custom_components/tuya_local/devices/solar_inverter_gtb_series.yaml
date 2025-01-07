@@ -1,25 +1,25 @@
 name: Solar inverter
 products:
   - id: czu7ynosrkxgbnsb
-    name: Solar Grid GTB Series
-primary_entity:
-  entity: sensor
-  class: energy
-  dps:
-    - id: 2
-      type: integer
-      name: sensor
-      unit: kWh
-      class: total_increasing
-      mapping:
-        - scale: 100
-    - id: 15
-      name: model
-      type: string
-    - id: 16
-      name: inverter_id
-      type: string
-secondary_entities:
+    manufacturer: Solar Grid
+    model: GTB Series
+entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 15
+        name: model
+        type: string
+      - id: 16
+        name: inverter_id
+        type: string
   - entity: sensor
     class: power
     category: diagnostic

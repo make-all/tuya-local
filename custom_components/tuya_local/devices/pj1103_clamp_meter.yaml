@@ -1,27 +1,27 @@
-name: PJ-1103 clamp power meter
+name: Energy meter
 products:
   - id: djfep9s6s3b2qk89
-primary_entity:
-  entity: sensor
-  class: power
-  dps:
-    - id: 19
-      name: sensor
-      type: integer
-      unit: W
-      class: measurement
-      force: true
-      mapping:
-        - scale: 10
-    - id: 24
-      name: calibration
-      type: integer
-      optional: true
-    - id: 21
-      type: bitfield
-      name: test
-      optional: true
-secondary_entities:
+    model: PJ-1103 clamp
+entities:
+  - entity: sensor
+    class: power
+    dps:
+      - id: 19
+        name: sensor
+        type: integer
+        unit: W
+        class: measurement
+        force: true
+        mapping:
+          - scale: 10
+      - id: 24
+        name: calibration
+        type: integer
+        optional: true
+      - id: 21
+        type: bitfield
+        name: test
+        optional: true
   - entity: sensor
     class: current
     category: diagnostic

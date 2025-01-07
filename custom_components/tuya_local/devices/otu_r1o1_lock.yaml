@@ -1,147 +1,147 @@
 name: Door lock
 products:
   - id: jqpmkfj7
-    name: O'TU R1O1
-primary_entity:
-  entity: lock
-  dps:
-    - id: 1
-      type: string
-      optional: true
-      sensitive: true
-      name: unlock_method_create
-    - id: 2
-      type: string
-      optional: true
-      sensitive: true
-      name: unlock_method_delete
-    - id: 3
-      type: string
-      optional: true
-      name: unlock_method_modify
-    - id: 6
-      type: string
-      optional: true
-      name: bluetooth_proximity_unlock
-    - id: 7
-      type: boolean
-      optional: true
-      name: bluetooth_proximity_feedback
-    - id: 12
-      type: integer
-      optional: true
-      persist: false
-      name: unlock_fingerprint
-    - id: 13
-      type: integer
-      optional: true
-      persist: false
-      name: unlock_password
-    - id: 14
-      type: integer
-      optional: true
-      persist: false
-      name: unlock_dynamic_pwd
-    - id: 15
-      type: integer
-      optional: true
-      persist: false
-      name: unlock_card
-    - id: 19
-      type: integer
-      optional: true
-      persist: false
-      name: unlock_ble
-    - id: 21
-      type: string
-      optional: true
-      persist: false
-      name: jammed
-      mapping:
-        - dps_val: tongue_bad
-          value: true
-        - dps_val: tongue_not_out
-          value: true
-        - value: false
-    - id: 35
-      type: string
-      optional: true
-      sensitive: true
-      name: synch_member
-    - id: 44
-      type: boolean
-      optional: true
-      name: rtc_lock
-    - id: 51
-      type: string
-      optional: true
-      sensitive: true
-      name: temporary_password_create
-    - id: 52
-      type: string
-      optional: true
-      name: temporary_password_delete
-    - id: 53
-      type: string
-      optional: true
-      sensitive: true
-      name: temporary_password_modify
-    - id: 54
-      type: string
-      optional: true
-      sensitive: true
-      name: synch_method
-    - id: 55
-      type: integer
-      optional: true
-      persist: false
-      name: unlock_temp_pwd
-    - id: 60
-      type: string
-      optional: true
-      sensitive: true
-      name: remote_no_pd_setkey
-    - id: 61
-      type: string
-      optional: true
-      sensitive: true
-      name: remote_no_dp_key
-    - id: 62
-      type: integer
-      optional: true
-      persist: false
-      name: unlock_app
-    - id: 63
-      type: integer
-      optional: true
-      persist: false
-      name: unlock_voice
-    - id: 64
-      type: string
-      optional: true
-      name: password_offline_time
-    - id: 66
-      type: string
-      optional: true
-      name: unlock_offline_clear
-    - id: 67
-      type: string
-      optional: true
-      persist: false
-      name: unlock_offline_pwd
-      mapping:
-        - dps_val: null
-          value: null
-        - value: 1
-    - id: 69
-      type: string
-      optional: true
-      name: record
-    - id: 72
-      type: string
-      optional: true
-      name: unlock_record_check
-secondary_entities:
+    manufacturer: "O'TU"
+    model: R1O1
+entities:
+  - entity: lock
+    dps:
+      - id: 1
+        type: string
+        optional: true
+        sensitive: true
+        name: unlock_method_create
+      - id: 2
+        type: string
+        optional: true
+        sensitive: true
+        name: unlock_method_delete
+      - id: 3
+        type: string
+        optional: true
+        name: unlock_method_modify
+      - id: 6
+        type: string
+        optional: true
+        name: bluetooth_proximity_unlock
+      - id: 7
+        type: boolean
+        optional: true
+        name: bluetooth_proximity_feedback
+      - id: 12
+        type: integer
+        optional: true
+        persist: false
+        name: unlock_fingerprint
+      - id: 13
+        type: integer
+        optional: true
+        persist: false
+        name: unlock_password
+      - id: 14
+        type: integer
+        optional: true
+        persist: false
+        name: unlock_dynamic_pwd
+      - id: 15
+        type: integer
+        optional: true
+        persist: false
+        name: unlock_card
+      - id: 19
+        type: integer
+        optional: true
+        persist: false
+        name: unlock_ble
+      - id: 21
+        type: string
+        optional: true
+        persist: false
+        name: jammed
+        mapping:
+          - dps_val: tongue_bad
+            value: true
+          - dps_val: tongue_not_out
+            value: true
+          - value: false
+      - id: 35
+        type: string
+        optional: true
+        sensitive: true
+        name: synch_member
+      - id: 44
+        type: boolean
+        optional: true
+        name: rtc_lock
+      - id: 51
+        type: string
+        optional: true
+        sensitive: true
+        name: temporary_password_create
+      - id: 52
+        type: string
+        optional: true
+        name: temporary_password_delete
+      - id: 53
+        type: string
+        optional: true
+        sensitive: true
+        name: temporary_password_modify
+      - id: 54
+        type: string
+        optional: true
+        sensitive: true
+        name: synch_method
+      - id: 55
+        type: integer
+        optional: true
+        persist: false
+        name: unlock_temp_pwd
+      - id: 60
+        type: string
+        optional: true
+        sensitive: true
+        name: remote_no_pd_setkey
+      - id: 61
+        type: string
+        optional: true
+        sensitive: true
+        name: remote_no_dp_key
+      - id: 62
+        type: integer
+        optional: true
+        persist: false
+        name: unlock_app
+      - id: 63
+        type: integer
+        optional: true
+        persist: false
+        name: unlock_voice
+      - id: 64
+        type: string
+        optional: true
+        name: password_offline_time
+      - id: 66
+        type: string
+        optional: true
+        name: unlock_offline_clear
+      - id: 67
+        type: string
+        optional: true
+        persist: false
+        name: unlock_offline_pwd
+        mapping:
+          - dps_val: null
+            value: null
+          - value: 1
+      - id: 69
+        type: string
+        optional: true
+        name: record
+      - id: 72
+        type: string
+        optional: true
+        name: unlock_record_check
   - entity: sensor
     class: battery
     category: diagnostic

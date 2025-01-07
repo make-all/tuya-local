@@ -1,50 +1,49 @@
 name: BHT-002 thermostat C
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: "0"
-              value: auto
-            - dps_val: "1"
-              value: heat
-    - id: 2
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 10
-        max: 70
-      mapping:
-        - scale: 2
-    - id: 3
-      type: integer
-      name: current_temperature
-      mapping:
-        - scale: 2
-    - id: 4
-      type: string
-      name: mode
-      hidden: true
-    - id: 5
-      type: boolean
-      name: preset_mode
-      mapping:
-        - dps_val: true
-          value: eco
-        - dps_val: false
-          value: comfort
-    - id: 104
-      type: boolean
-      name: unknown_104
-secondary_entities:
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: "0"
+                value: auto
+              - dps_val: "1"
+                value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 10
+          max: 70
+        mapping:
+          - scale: 2
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 2
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 5
+        type: boolean
+        name: preset_mode
+        mapping:
+          - dps_val: true
+            value: eco
+          - dps_val: false
+            value: comfort
+      - id: 104
+        type: boolean
+        name: unknown_104
   - entity: lock
     translation_key: child_lock
     category: config

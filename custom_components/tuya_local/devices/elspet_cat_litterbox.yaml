@@ -1,17 +1,17 @@
 name: Cat litter box
 products:
   - id: asx54fyagpyhxtej
-    name: Elspet Spaceship
-primary_entity:
-  entity: switch
-  name: Power
-  category: config
-  icon: "mdi:power"
-  dps:
-    - id: 101
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: Elspet
+    model: Spaceship
+entities:
+  - entity: switch
+    name: Power
+    category: config
+    icon: "mdi:power"
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
   - entity: sensor
     translation_key: status
     category: diagnostic

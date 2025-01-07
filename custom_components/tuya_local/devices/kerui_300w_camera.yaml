@@ -1,40 +1,42 @@
 name: Camera
 products:
   - id: 9waqosp1k5o0bqqh
-    name: Kerui JS-P162 300W
+    manufacturer: Kerui
+    model: JS-P162 300W
   - id: o9jlvpqqunankygf
-    name: Fuers 5MP indoor
-primary_entity:
-  entity: camera
-  dps:
-    - id: 105
-      name: switch
-      type: boolean
-      mapping:
-        - dps_val: true
-          value: false
-        - dps_val: false
-          value: true
-    - id: 115
-      name: snapshot
-      type: base64
-      optional: true
-      sensitive: true
-    - id: 134
-      name: motion_enable
-      type: boolean
-    - id: 150
-      name: record
-      type: boolean
-    - id: 212
-      type: utf16b64
-      optional: true
-      name: push_message
-    - id: 241
-      type: string
-      optional: true
-      name: resolution_change
-secondary_entities:
+    manufacturer: Fuers
+    model: "5MP"
+    name: Indoor camera
+entities:
+  - entity: camera
+    dps:
+      - id: 105
+        name: switch
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+      - id: 115
+        name: snapshot
+        type: base64
+        optional: true
+        sensitive: true
+      - id: 134
+        name: motion_enable
+        type: boolean
+      - id: 150
+        name: record
+        type: boolean
+      - id: 212
+        type: utf16b64
+        optional: true
+        name: push_message
+      - id: 241
+        type: string
+        optional: true
+        name: resolution_change
   - entity: light
     translation_key: indicator
     category: config

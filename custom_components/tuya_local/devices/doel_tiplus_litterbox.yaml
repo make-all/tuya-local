@@ -1,32 +1,32 @@
 name: Litter box
 products:
   - id: ijas23irjjaenllv
-    name: DOEL Ti+
-primary_entity:
-  entity: sensor
-  name: Cat weight
-  icon: "mdi:cat"
-  class: weight
-  dps:
-    - id: 6
-      type: integer
-      name: sensor
-      class: measurement
-      mapping:
-        - scale: 10
-          constraint: unit
-          conditions:
-            - dps_val: lb
-              value_redirect: weight_lb
-    - id: 108
-      type: string
-      name: unit
-    - id: 134
-      type: integer
-      name: weight_lb
-      mapping:
-        - scale: 10
-secondary_entities:
+    manufacturer: DOEL
+    model: Ti+
+entities:
+  - entity: sensor
+    name: Cat weight
+    icon: "mdi:cat"
+    class: weight
+    dps:
+      - id: 6
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+            constraint: unit
+            conditions:
+              - dps_val: lb
+                value_redirect: weight_lb
+      - id: 108
+        type: string
+        name: unit
+      - id: 134
+        type: integer
+        name: weight_lb
+        mapping:
+          - scale: 10
   - entity: sensor
     name: Daily visits
     icon: "mdi:emoticon-poop"

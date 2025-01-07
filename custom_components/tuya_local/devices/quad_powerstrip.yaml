@@ -1,26 +1,26 @@
 name: Quad powerstrip
 products:
   - id: l5gnaxuawkjfquqo
-    name: Kogan KASPS10A3P3UA 3+USB
-primary_entity:
-  entity: switch
-  translation_key: outlet_x
-  translation_placeholders:
-    x: "1"
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 17
-      type: integer
-      name: add_ele
-      optional: true
-    - id: 25
-      type: integer
-      name: ele_calibration
-      optional: true
-secondary_entities:
+    manufacturer: Kogan
+    model: KASPS10A3P3UA 3+USB
+entities:
+  - entity: switch
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "1"
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 17
+        type: integer
+        name: add_ele
+        optional: true
+      - id: 25
+        type: integer
+        name: ele_calibration
+        optional: true
   - entity: switch
     translation_key: outlet_x
     translation_placeholders:

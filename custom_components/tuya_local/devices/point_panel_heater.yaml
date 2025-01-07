@@ -1,41 +1,41 @@
 name: Panel heater
 products:
   - id: nqj51hxb2tx5kklv
-    name: Point POPANW600
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: true
-          value: "heat"
-        - dps_val: false
-          value: "off"
-    - id: 2
-      name: temperature
-      type: integer
-      unit: C
-      mapping:
-        - scale: 10
-      range:
-        min: 50
-        max: 500
-    - id: 3
-      name: current_temperature
-      type: integer
-    - id: 4
-      name: preset_mode
-      type: string
-      optional: true
-      mapping:
-        - dps_val: ECO
-          value: eco
-        - dps_val: Comfort
-          value: comfort
-secondary_entities:
+    manufacturer: Point
+    model: POPANW600
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "heat"
+          - dps_val: false
+            value: "off"
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        mapping:
+          - scale: 10
+        range:
+          min: 50
+          max: 500
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 4
+        name: preset_mode
+        type: string
+        optional: true
+        mapping:
+          - dps_val: ECO
+            value: eco
+          - dps_val: Comfort
+            value: comfort
   - entity: lock
     translation_key: child_lock
     category: config

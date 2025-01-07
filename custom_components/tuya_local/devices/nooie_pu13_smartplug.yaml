@@ -1,15 +1,15 @@
 name: SmartPlug
 products:
   - id: eimdzrehi6a6vixn
-    name: Nooie PU13
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-secondary_entities:
+    manufacturer: Nooie
+    model: PU13
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
   - entity: number
     translation_key: timer
     class: duration

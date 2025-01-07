@@ -1,40 +1,41 @@
 name: Air cooler
 products:
   - id: vklyfhpnd7a47iym
-    name: Klarstein Skyscraper Ice Smart
+    manufacturer: Klarstein
+    model: Skyscraper Ice Smart
   - id: bhaszy5l8iicyjg0
-    name: Klarstein Skyscraper Ice Smart
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 2
-      type: string
-      name: speed
-      mapping:
-        - dps_val: "low"
-          value: 33
-        - dps_val: "middle"
-          value: 66
-        - dps_val: "high"
-          value: 100
-    - id: 3
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: normal
-          value: normal
-        - dps_val: nature
-          value: nature
-        - dps_val: sleep
-          value: sleep
-    - id: 10
-      type: boolean
-      name: oscillate
-secondary_entities:
+    manufacturer: Klarstein
+    model: Skyscraper Ice Smart
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "low"
+            value: 33
+          - dps_val: "middle"
+            value: 66
+          - dps_val: "high"
+            value: 100
+      - id: 3
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: normal
+            value: normal
+          - dps_val: nature
+            value: nature
+          - dps_val: sleep
+            value: sleep
+      - id: 10
+        type: boolean
+        name: oscillate
   - entity: select
     translation_key: timer
     category: config

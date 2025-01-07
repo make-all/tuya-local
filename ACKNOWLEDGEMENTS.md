@@ -285,7 +285,7 @@ Further device support has been made with the assistance of users. Please consid
 - [Pagi13](https://github.com/Pagi13) for assisting with support for DTS238-7 smart meters.
 - [kshepard339](https://github.com/kshepard339) for assisting with support for Petlibro pet feeder with camera.
 - [mkrznar](https://github.com/mkrznar) for assisting with support for Beok TR8B thermostats.
-- [Rain-ZG](https://github.com/Rain-ZG) for assisting with support for Vivax Cool air conditioners.
+- [Rain-ZG](https://github.com/Rain-ZG) for assisting with support for Vivax Cool air conditioners and EARU K6H-3A-W thermometers.
 - [WilcoE](https://github.com/WilcoE) for assisting with support for Poolex Qline new Q7 variant of pool heatpumps.
 - [WiestDaessle](https://github.com/WiestDaessle) for contributing support for Etersky curtain switches.
 - [Xpl0jd](https://github.com/Xpl0jd) for contributing support for Nedis portable air conditioners.
@@ -370,7 +370,7 @@ Further device support has been made with the assistance of users. Please consid
 - [supersjimmie](https://github.com/supersjimmie) for assisting with support for A60 RGBWW lightbulbs.
 - [b1be](https://github.com/b1be) for contributing support for AlecoAir D25 dehumidifiers.
 - [jesuslobo](https://github.com/jesuslobo) for contributing support for Eightree ET43 powerstrips.
-- [stquinn](https://github.com/stquinn) for contributing support for Ultenic T10 vacuum cleaners.
+- [stquinn](https://github.com/stquinn) for contributing support for Ultenic T10 vacuum cleaner and Cecotec ReadyWarm 8400 fan heater.
 - [palfrey](https://github.com/palfrey) for contributing improvements to shutdown handling.
 - [dvpereira](https://github.com/dvpereira) for contributing support for Intelbras IFR7000 locks.s
 - [jcastang](https://github.com/jcastang) for contributing support for Dcenta dual clamp meters.
@@ -790,3 +790,9 @@ Further device support has been made with the assistance of users. Please consid
 - [djvalex](https://github.com/djvalex) for assisting with support for Axen/Arielli KS-100W/EN8BP combo heat pump.
 - [doertli](https://github.com/doertli) for assisting with support for Aeratron AE3+ ceiling fan.
 - [0xa51f](https://github.com/0xa51f) for assisting with support for BNETA F1-D pet feeder.
+- [merlin051](https://github.com/merlin051) for assisting with support for Mayborn GroClock Connect.
+- [Sk1nnyDoc](https://github.com/Sk1nnyDoc) for assisting with support for PowerAsia RGB 6-inch recessed lighting.
+- [Fuechslein](https://github.com/Fuechslein) for contributing support for a second version of Petoneer Fresco Hydrate Ultra.
+- [stevanov](https://github.com/stevanov) for assisting with support for Etna VW644MC dishwasher.
+- [kmavrov](https://github.com/kmavrov) for assisting with support for Scheeair Nova 100 ventilation fan.
+- [HomeAssistant9121](https://github.com/HomeAssistant9121) for assisting with support for Hysen HY101RF thermostat.

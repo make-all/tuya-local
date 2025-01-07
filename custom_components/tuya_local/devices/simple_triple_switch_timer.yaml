@@ -1,17 +1,16 @@
 name: Triple switch
 products:
   - id: 16621606d8bfc0d93558
-    name: KS-811-3
-primary_entity:
-  entity: switch
-  translation_key: switch_x
-  translation_placeholders:
-    x: "1"
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-secondary_entities:
+    model: KS-811-3
+entities:
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
   - entity: switch
     translation_key: switch_x
     translation_placeholders:

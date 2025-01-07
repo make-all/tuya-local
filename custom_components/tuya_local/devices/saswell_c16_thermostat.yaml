@@ -2,89 +2,89 @@ name: Thermostat
 legacy_type: thermoval_tvt40_thermostat
 products:
   - id: jIRwsT5yLPJO41Po
-    name: Thermoval TVT 40 / Saswell C16
-primary_entity:
-  entity: climate
-  translation_only_key: thermostat
-  dps:
-    - id: 2
-      name: temperature
-      type: integer
-      unit: C
-      range:
-        min: 50
-        max: 400
-      mapping:
-        - scale: 10
-          step: 5
-    - id: 3
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: Smart
-          value: program
-        - dps_val: Anti_frozen
-          value: away
-        - dps_val: Manual
-          value: manual
-    - id: 5
-      name: current_temperature
-      type: integer
-      mapping:
-        - scale: 10
-          constraint: sensor_select
-          conditions:
-            - dps_val: "0"
-              value_redirect: floor_temperature
-    - id: 6
-      name: floor_temp_limit
-      type: integer
-      mapping:
-        - scale: 10
-    - id: 7
-      name: installation
-      type: boolean
-      mapping:
-        - dps_val: true
-          value: Office
-        - dps_val: false
-          value: Home
-    - id: 8
-      name: floor_temperature
-      type: integer
-      mapping:
-        - scale: 10
-      hidden: true
-    - id: 9
-      name: hvac_mode
-      type: boolean
-      readonly: true
-      mapping:
-        - dps_val: false
-          value: "heat"
-        - dps_val: true
-          value: "cool"
-    - id: 10
-      name: adaptive
-      type: boolean
-    - id: 12
-      name: schedule
-      type: string
-    - id: 24
-      name: hvac_action
-      type: string
-      mapping:
-        - dps_val: Standby
-          value: idle
-        - dps_val: Heating
-          value: heating
-        - dps_val: Cooling
-          value: cooling
-    - id: 26
-      name: antifreeze_settings
-      optional: true
-      type: integer
-secondary_entities:
+    manufacturer: Thermoval / Saswell
+    model: TVT 40 / C16
+entities:
+  - entity: climate
+    translation_only_key: thermostat
+    dps:
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 50
+          max: 400
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 3
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: Smart
+            value: program
+          - dps_val: Anti_frozen
+            value: away
+          - dps_val: Manual
+            value: manual
+      - id: 5
+        name: current_temperature
+        type: integer
+        mapping:
+          - scale: 10
+            constraint: sensor_select
+            conditions:
+              - dps_val: "0"
+                value_redirect: floor_temperature
+      - id: 6
+        name: floor_temp_limit
+        type: integer
+        mapping:
+          - scale: 10
+      - id: 7
+        name: installation
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: Office
+          - dps_val: false
+            value: Home
+      - id: 8
+        name: floor_temperature
+        type: integer
+        mapping:
+          - scale: 10
+        hidden: true
+      - id: 9
+        name: hvac_mode
+        type: boolean
+        readonly: true
+        mapping:
+          - dps_val: false
+            value: "heat"
+          - dps_val: true
+            value: "cool"
+      - id: 10
+        name: adaptive
+        type: boolean
+      - id: 12
+        name: schedule
+        type: string
+      - id: 24
+        name: hvac_action
+        type: string
+        mapping:
+          - dps_val: Standby
+            value: idle
+          - dps_val: Heating
+            value: heating
+          - dps_val: Cooling
+            value: cooling
+      - id: 26
+        name: antifreeze_settings
+        optional: true
+        type: integer
   - entity: binary_sensor
     class: problem
     category: diagnostic

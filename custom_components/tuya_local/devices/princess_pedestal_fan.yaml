@@ -1,36 +1,37 @@
 name: Fan
 products:
   - id: glhx4aeaqmzmp3sb
-    name: Princess 358450 DC pedestal fan
-primary_entity:
-  entity: fan
-  translation_key: fan_with_presets
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: nature
-          value: nature
-        - dps_val: sleep
-          value: sleep
-        - dps_val: fresh
-          value: fresh
-        - dps_val: smart
-          value: smart
-    - id: 3
-      type: integer
-      range:
-        min: 1
-        max: 24
-      name: speed
-    - id: 101
-      type: boolean
-      name: oscillate
-secondary_entities:
+    manufacturer: Princess
+    model: "358450"
+    name: DC pedestal fan
+entities:
+  - entity: fan
+    translation_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: nature
+            value: nature
+          - dps_val: sleep
+            value: sleep
+          - dps_val: fresh
+            value: fresh
+          - dps_val: smart
+            value: smart
+      - id: 3
+        type: integer
+        range:
+          min: 1
+          max: 24
+        name: speed
+      - id: 101
+        type: boolean
+        name: oscillate
   - entity: select
     translation_key: timer
     category: config

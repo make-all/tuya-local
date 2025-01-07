@@ -1,28 +1,28 @@
-name: eMylo meter
+name: Energy meter
 products:
   - id: nqbs1onwskmmmaac
-    name: EAI-90
-primary_entity:
-  entity: sensor
-  class: energy
-  dps:
-    - id: 1
-      type: integer
-      name: sensor
-      unit: kWh
-      class: total_increasing
-      mapping:
-        - scale: 100
-    - id: 6
-      type: string
-      name: phase_a
-      optional: true
-      force: true
-    - id: 17
-      type: string
-      name: alarm
-      optional: true
-secondary_entities:
+    manufacturer: eMylo
+    model: EAI-90
+entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 6
+        type: string
+        name: phase_a
+        optional: true
+        force: true
+      - id: 17
+        type: string
+        name: alarm
+        optional: true
   - entity: binary_sensor
     class: problem
     category: diagnostic

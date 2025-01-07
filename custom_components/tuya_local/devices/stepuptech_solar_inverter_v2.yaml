@@ -1,21 +1,21 @@
 name: Solar inverter
 products:
   - id: 2zkyfrpmfxmex896
-    name: Stepuptech SPD-800
-primary_entity:
-  entity: sensor
-  name: AC power
-  class: power
-  dps:
-    - id: 108
-      type: integer
-      name: sensor
-      unit: W
-      force: true
-      class: measurement
-      mapping:
-        - scale: 100
-secondary_entities:
+    manufacturer: Stepuptech
+    model: SPD-800
+entities:
+  - entity: sensor
+    name: AC power
+    class: power
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: W
+        force: true
+        class: measurement
+        mapping:
+          - scale: 100
   - entity: sensor
     name: PV1 voltage
     class: voltage

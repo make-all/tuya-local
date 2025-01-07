@@ -1,30 +1,28 @@
 name: Smart Alarm Siren
 products:
   - id: rtbaqdh2io1pmn19
-    name: Smart Siren
-primary_entity:
-  entity: alarm_control_panel
-  name: Status
-  icon: "mdi:shield-off-outline"
-  dps:
-    - id: 116
-      type: string
-      name: alarm_state
-      force: true
-      mapping:
-        - dps_val: "Disarm_"
-          value: disarmed
-          icon: "mdi:shield-off-outline"
-        - dps_val: "Arm_"
-          value: armed_away
-          icon: "mdi:shield-lock-outline"
-        - dps_val: "HomeArm_"
-          value: armed_home
-          icon: "mdi:shield-home-outline"
-        - dps_val: "SOS"
-          value: triggered
-          icon: "mdi:lifebuoy"
-secondary_entities:
+entities:
+  - entity: alarm_control_panel
+    name: Status
+    icon: "mdi:shield-off-outline"
+    dps:
+      - id: 116
+        type: string
+        name: alarm_state
+        force: true
+        mapping:
+          - dps_val: "Disarm_"
+            value: disarmed
+            icon: "mdi:shield-off-outline"
+          - dps_val: "Arm_"
+            value: armed_away
+            icon: "mdi:shield-lock-outline"
+          - dps_val: "HomeArm_"
+            value: armed_home
+            icon: "mdi:shield-home-outline"
+          - dps_val: "SOS"
+            value: triggered
+            icon: "mdi:lifebuoy"
   - entity: number
     name: Alarm Time
     category: config

@@ -1,36 +1,36 @@
 name: Pedestal fan
 # products:
 #   - id: unknown
-#     name: FlinQ Breeze
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 2
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: normal
-          value: normal
-        - dps_val: nature
-          value: nature
-        - dps_val: sleep
-          value: sleep
-        - dps_val: eco
-          value: eco
-    - id: 3
-      name: speed
-      type: integer
-      range:
-        min: 1
-        max: 12
-    - id: 5
-      name: oscillate
-      type: boolean
-secondary_entities:
+#     manufacturer: FlinQ
+#     model: Breeze
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: normal
+            value: normal
+          - dps_val: nature
+            value: nature
+          - dps_val: sleep
+            value: sleep
+          - dps_val: eco
+            value: eco
+      - id: 3
+        name: speed
+        type: integer
+        range:
+          min: 1
+          max: 12
+      - id: 5
+        name: oscillate
+        type: boolean
   - entity: sensor
     class: temperature
     dps:

@@ -1,37 +1,37 @@
 name: Air purifier
 products:
   - id: 3hjcrjktvkoim7zu
-    name: Tesla Air Pro M
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 3
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: auto
-          value: smart
-        - dps_val: sleep
-          value: sleep
-        - dps_val: manual
-          value: normal
-    - id: 4
-      name: speed
-      type: string
-      mapping:
-        - dps_val: "sleep"
-          value: 25
-        - dps_val: "low"
-          value: 50
-        - dps_val: "mid"
-          value: 75
-        - dps_val: "high"
-          value: 100
-secondary_entities:
+    manufacturer: Tesla Smart
+    model: Pro M
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: auto
+            value: smart
+          - dps_val: sleep
+            value: sleep
+          - dps_val: manual
+            value: normal
+      - id: 4
+        name: speed
+        type: string
+        mapping:
+          - dps_val: "sleep"
+            value: 25
+          - dps_val: "low"
+            value: 50
+          - dps_val: "mid"
+            value: 75
+          - dps_val: "high"
+            value: 100
   - entity: light
     category: config
     dps:

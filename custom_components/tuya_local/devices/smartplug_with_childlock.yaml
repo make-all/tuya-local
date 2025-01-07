@@ -1,24 +1,24 @@
 name: Smartplug
 products:
   - id: r9xep1xwyoubglpn
-    name: SX1 reelay switch
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 42
-      type: string
-      name: cyclic_schedule
-    - id: 43
-      type: string
-      name: random_schedule
-    - id: 44
-      type: string
-      name: inching
-secondary_entities:
+    model: SX1
+    name: Relay switch
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 42
+        type: string
+        name: cyclic_schedule
+      - id: 43
+        type: string
+        name: random_schedule
+      - id: 44
+        type: string
+        name: inching
   - entity: number
     category: config
     class: duration

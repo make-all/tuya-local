@@ -1,27 +1,27 @@
 name: Pool pump
 products:
   - id: ircs2n82vgrozoew
-    name: Madimack Inverflow Pro P300i
-primary_entity:
-  entity: valve
-  class: water
-  dps:
-    - id: 105
-      type: boolean
-      name: valve
-    - id: 116
-      name: unknown_116
-      type: string
-      hidden: true
-    - id: 117
-      name: unknown_117
-      type: string
-      hidden: true
-    - id: 115
-      name: unknown_115
-      type: boolean
-      hidden: true
-secondary_entities:
+    manufacturer: Madimack
+    model: Inverflow Pro P300i
+entities:
+  - entity: valve
+    class: water
+    dps:
+      - id: 105
+        type: boolean
+        name: valve
+      - id: 116
+        name: unknown_116
+        type: string
+        hidden: true
+      - id: 117
+        name: unknown_117
+        type: string
+        hidden: true
+      - id: 115
+        name: unknown_115
+        type: boolean
+        hidden: true
   - entity: select
     name: Pump mode
     icon: "mdi:pump"

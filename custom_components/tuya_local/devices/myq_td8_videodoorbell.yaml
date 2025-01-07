@@ -1,36 +1,36 @@
 name: Video doorbell
 products:
   - id: wih9ybttb42lxb1q
-    name: myQ TD8
-primary_entity:
-  entity: camera
-  dps:
-    - id: 154
-      name: snapshot
-      type: base64
-      optional: true
-      persist: false
-      sensitive: true
-      mapping:
-        - dps_val: null
-          value_redirect: movement_pic
-    - id: 115
-      name: movement_pic
-      type: base64
-      optional: true
-      sensitive: true
-    - id: 134
-      name: motion_enable
-      type: boolean
-    - id: 150
-      name: record
-      type: boolean
-    - id: 152
-      name: pir_switch
-      type: string
-      optional: true
-      # enum: ["0", "1", "2", "3"] - probably a select, but meanings unknown
-secondary_entities:
+    manufacturer: myQ
+    model: TD8
+entities:
+  - entity: camera
+    dps:
+      - id: 154
+        name: snapshot
+        type: base64
+        optional: true
+        persist: false
+        sensitive: true
+        mapping:
+          - dps_val: null
+            value_redirect: movement_pic
+      - id: 115
+        name: movement_pic
+        type: base64
+        optional: true
+        sensitive: true
+      - id: 134
+        name: motion_enable
+        type: boolean
+      - id: 150
+        name: record
+        type: boolean
+      - id: 152
+        name: pir_switch
+        type: string
+        optional: true
+        # enum: ["0", "1", "2", "3"] - probably a select, but meanings unknown
   - entity: light
     translation_key: indicator
     category: config

@@ -1,47 +1,47 @@
 name: Dehumidifier
 products:
   - id: 4xcjyqplnfenhplh
-    name: Sygonix Smarter
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 2
-      type: integer
-      name: humidity
-      range:
-        min: 30
-        max: 80
-      mapping:
-        - step: 5
-    - id: 5
-      name: mode
-      type: string
-      mapping:
-        - dps_val: Continuities
-          value: boost
-        - dps_val: Auto
-          value: auto
-        - dps_val: Sleep
-          value: sleep
-    - id: 6
-      type: integer
-      name: current_humidity
-    # This doesn't actually have an ionizer, but having the dp
-    # will aid in detection
-    - id: 10
-      type: boolean
-      name: ionizer
-    - id: 102
-      type: integer
-      name: model_code
-    - id: 104
-      type: integer
-      name: equipment_code
-secondary_entities:
+    manufacturer: Sygonix
+    model: Smarter
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        type: integer
+        name: humidity
+        range:
+          min: 30
+          max: 80
+        mapping:
+          - step: 5
+      - id: 5
+        name: mode
+        type: string
+        mapping:
+          - dps_val: Continuities
+            value: boost
+          - dps_val: Auto
+            value: auto
+          - dps_val: Sleep
+            value: sleep
+      - id: 6
+        type: integer
+        name: current_humidity
+      # This doesn't actually have an ionizer, but having the dp
+      # will aid in detection
+      - id: 10
+        type: boolean
+        name: ionizer
+      - id: 102
+        type: integer
+        name: model_code
+      - id: 104
+        type: integer
+        name: equipment_code
   - entity: fan
     dps:
       - id: 1

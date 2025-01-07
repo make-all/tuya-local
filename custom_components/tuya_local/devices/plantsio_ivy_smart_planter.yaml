@@ -1,28 +1,28 @@
 # Datapoints documented at:
 # https://gist.github.com/thewade/ef9f6014f13932bd2e77d43331e2027d
 
-name: Smart Planter
+name: Smart planter
 products:
   - id: 8n3q0y4cwov8ifxt
-    name: PlantsIO Ivy Smart Planter
-primary_entity:
-  entity: sensor
-  name: Water level
-  class: volume_storage
-  dps:
-    - id: 108
-      type: integer
-      name: sensor
-      unit: mL
-      class: measurement
-      mapping:
-        - dps_val: 0
-          icon: "mdi:cup-outline"
-        - icon: "mdi:cup"
-    - id: 107
-      type: string
-      name: version
-secondary_entities:
+    manufacturer: PlantsIO
+    model: Ivy
+entities:
+  - entity: sensor
+    name: Water level
+    class: volume_storage
+    dps:
+      - id: 108
+        type: integer
+        name: sensor
+        unit: mL
+        class: measurement
+        mapping:
+          - dps_val: 0
+            icon: "mdi:cup-outline"
+          - icon: "mdi:cup"
+      - id: 107
+        type: string
+        name: version
   # Sensor entities raw
   - entity: sensor
     class: illuminance

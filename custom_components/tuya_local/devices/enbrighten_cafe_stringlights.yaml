@@ -1,23 +1,24 @@
 name: String lights
 products:
   - id: irp66izb2pbedb4o
-    name: Enbrighten Café WB-57415
-primary_entity:
-  entity: light
-  icon: "mdi:led-strip"
-  dps:
-    - id: 20
-      type: boolean
-      name: switch
-    - id: 28
-      type: string
-      optional: true
-      name: control_data
-    - id: 106
-      type: string
-      optional: true
-      name: mode
-secondary_entities:
+    manufacturer: Enbrighten
+    model: Café
+    model_id: WB-57415
+entities:
+  - entity: light
+    icon: "mdi:led-strip"
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 28
+        type: string
+        optional: true
+        name: control_data
+      - id: 106
+        type: string
+        optional: true
+        name: mode
   - entity: number
     translation_key: timer
     class: duration

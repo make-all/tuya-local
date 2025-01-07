@@ -1,15 +1,15 @@
 name: Filament dryer
 products:
   - id: mxct11k2jqpak13a
-    name: GratKit Firefly Smart Dryer Box
-primary_entity:
-  entity: switch
-  icon: "mdi:heat-pump"
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-secondary_entities:
+    manufacturer: GratKit
+    model: Firefly Smart Dryer Box
+entities:
+  - entity: switch
+    icon: "mdi:heat-pump"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
   - entity: number
     name: Drying temperature
     category: config

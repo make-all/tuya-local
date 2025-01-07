@@ -1,17 +1,18 @@
 name: Seven channel switch
 products:
   - id: 7w1gnppunpyev9tj
-    name: Inna AUT000014 underefloor heating controller
-primary_entity:
-  entity: switch
-  translation_key: switch_x
-  translation_placeholders:
-    x: "1"
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: Inna
+    model: AUT000014
+    name: Underfloor heating controller
+entities:
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: switch
     translation_key: switch_x
     translation_placeholders:

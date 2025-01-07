@@ -1,31 +1,31 @@
 name: Dryer
 products:
   - id: do3cbzmmdqfdpqxw
-    name: Akai heat pump dryer
-primary_entity:
-  entity: sensor
-  class: enum
-  icon: "mdi:tumble-dryer"
-  dps:
-    - id: 107
-      name: sensor
-      type: string
-      mapping:
-        - dps_val: "off"
-          value: "off"
-        - dps_val: "set"
-          value: "set"
-        - dps_val: "run"
-          value: "run"
-        - dps_val: "pause"
-          value: "pause"
-        - dps_val: "delay"
-          value: "delay"
-        - dps_val: "end"
-          value: "end"
-        - dps_val: "err"
-          value: "error"
-secondary_entities:
+    manufacturer: Akai
+    name: Heat pump dryer
+entities:
+  - entity: sensor
+    class: enum
+    icon: "mdi:tumble-dryer"
+    dps:
+      - id: 107
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "set"
+            value: "set"
+          - dps_val: "run"
+            value: "run"
+          - dps_val: "pause"
+            value: "pause"
+          - dps_val: "delay"
+            value: "delay"
+          - dps_val: "end"
+            value: "end"
+          - dps_val: "err"
+            value: "error"
   - entity: binary_sensor
     class: problem
     category: diagnostic

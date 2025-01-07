@@ -1,91 +1,91 @@
 name: Water heat pump
 products:
   - id: 74jzzoqr2ghxyu1p
-    name: Powerworld PW58410
-primary_entity:
-  entity: water_heater
-  dps:
-    - id: 1
-      type: boolean
-      name: operation_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: work_mode
-          conditions:
-            - dps_val: wth
-              value: Hot water
-            - dps_val: heat
-              value: Heating
-            - dps_val: cool
-              value: Cooling
-            - dps_val: wth_heat
-              value: Hot water + heating
-            - dps_val: wth_cool
-              value: Hot water + cooling
-    - id: 5
-      type: string
-      name: work_mode
-      hidden: true
-    - id: 6
-      type: string
-      name: temperature_unit
-      mapping:
-        - dps_val: f
-          value: F
-        - value: C
-    - id: 110
-      type: integer
-      name: temperature
-      range:
-        min: 0
-        max: 99
-    - id: 101
-      type: base64
-      optional: true
-      name: current_temperature
-      mask: "000000000000000000000000000000000000000000000000\
-             00000000FFFFFFFF00000000000000000000000000000000\
-             000000000000000000000000000000000000000000000000\
-             0000000000000000"
-    - id: 118
-      type: string
-      optional: true
-      name: parameter_group_1
-    - id: 119
-      type: string
-      optional: true
-      name: parameter_group_2
-    - id: 120
-      type: string
-      optional: true
-      name: parameter_group_3
-    - id: 121
-      type: string
-      optional: true
-      name: parameter_group_4
-    - id: 122
-      type: string
-      optional: true
-      name: parameter_group_5
-    - id: 123
-      type: string
-      optional: true
-      name: parameter_group_6
-    - id: 124
-      type: string
-      optional: true
-      name: parameter_group_7
-    - id: 126
-      type: string
-      optional: true
-      name: parameter_group_8
-    - id: 140
-      type: string
-      optional: true
-      name: power_statistics
-secondary_entities:
+    manufacturer: Powerworld
+    model: PW58410
+entities:
+  - entity: water_heater
+    dps:
+      - id: 1
+        type: boolean
+        name: operation_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: work_mode
+            conditions:
+              - dps_val: wth
+                value: Hot water
+              - dps_val: heat
+                value: Heating
+              - dps_val: cool
+                value: Cooling
+              - dps_val: wth_heat
+                value: Hot water + heating
+              - dps_val: wth_cool
+                value: Hot water + cooling
+      - id: 5
+        type: string
+        name: work_mode
+        hidden: true
+      - id: 6
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: f
+            value: F
+          - value: C
+      - id: 110
+        type: integer
+        name: temperature
+        range:
+          min: 0
+          max: 99
+      - id: 101
+        type: base64
+        optional: true
+        name: current_temperature
+        mask: "000000000000000000000000000000000000000000000000\
+               00000000FFFFFFFF00000000000000000000000000000000\
+               000000000000000000000000000000000000000000000000\
+               0000000000000000"
+      - id: 118
+        type: string
+        optional: true
+        name: parameter_group_1
+      - id: 119
+        type: string
+        optional: true
+        name: parameter_group_2
+      - id: 120
+        type: string
+        optional: true
+        name: parameter_group_3
+      - id: 121
+        type: string
+        optional: true
+        name: parameter_group_4
+      - id: 122
+        type: string
+        optional: true
+        name: parameter_group_5
+      - id: 123
+        type: string
+        optional: true
+        name: parameter_group_6
+      - id: 124
+        type: string
+        optional: true
+        name: parameter_group_7
+      - id: 126
+        type: string
+        optional: true
+        name: parameter_group_8
+      - id: 140
+        type: string
+        optional: true
+        name: power_statistics
   - entity: climate
     dps:
       - id: 2

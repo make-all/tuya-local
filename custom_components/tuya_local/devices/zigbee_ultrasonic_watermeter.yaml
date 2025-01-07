@@ -1,38 +1,38 @@
 name: Water meter
 products:
   - id: vuwtqx0t
-    name: ZPMeter 214C-Z
-primary_entity:
-  entity: sensor
-  class: water
-  dps:
-    - id: 1
-      type: integer
-      name: sensor
-      unit: m³
-      class: total_increasing
-      mapping:
-        - scale: 1000
-    - id: 2
-      type: string
-      optional: true
-      name: monthly
-    - id: 3
-      type: string
-      optional: true
-      name: daily
-    - id: 6
-      type: string
-      optional: true
-      name: frozen_time_set
-    - id: 16
-      type: string
-      name: meter_id
-    - id: 18
-      type: hex
-      optional: true
-      name: reverse_use
-secondary_entities:
+    manufacturer: ZPMeter
+    model: "214C-Z"
+entities:
+  - entity: sensor
+    class: water
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: m³
+        class: total_increasing
+        mapping:
+          - scale: 1000
+      - id: 2
+        type: string
+        optional: true
+        name: monthly
+      - id: 3
+        type: string
+        optional: true
+        name: daily
+      - id: 6
+        type: string
+        optional: true
+        name: frozen_time_set
+      - id: 16
+        type: string
+        name: meter_id
+      - id: 18
+        type: hex
+        optional: true
+        name: reverse_use
   - entity: select
     name: Reporting period
     icon: "mdi:update"

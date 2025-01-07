@@ -1,48 +1,48 @@
 name: Fan heater
 products:
   - id: dqy0z9997a18rkaw
-    name: Olimpia Splendid Caldo Up T
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: true
-          value: heat
-        - dps_val: false
-          value: "off"
-    - id: 2
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 18
-        max: 45
-    - id: 3
-      type: integer
-      name: current_temperature
-    - id: 5
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: "level_1"
-          value: none
-        - dps_val: "level_2"
-          value: comfort
-        - dps_val: "level_3"
-          value: boost
-    - id: 8
-      type: boolean
-      name: swing_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: "on"
-secondary_entities:
+    manufacturer: Olimpia Splendid
+    model: Caldo Up T
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: true
+            value: heat
+          - dps_val: false
+            value: "off"
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 18
+          max: 45
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 5
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: "level_1"
+            value: none
+          - dps_val: "level_2"
+            value: comfort
+          - dps_val: "level_3"
+            value: boost
+      - id: 8
+        type: boolean
+        name: swing_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
   - entity: switch
     name: Window detection
     icon: "mdi:window-open-variant"

@@ -1,43 +1,44 @@
 name: Star projector
 products:
   - id: okyhahmixunjmbca
-    name: Galaxy projector
+    model: Galaxy
   - id: jteg9ktrhbxtiicz
-    name: BlissLights Sky Lite Evolve SKY-EVOLVE-B-RCW8
-primary_entity:
-  entity: light
-  dps:
-    - id: 20
-      type: boolean
-      name: switch
-    - id: 52
-      type: boolean
-      name: color_mode
-      mapping:
-        - dps_val: false
-          value: white
-        - dps_val: true
-          value: hs
-    - id: 24
-      name: rgbhsv
-      type: hex
-      format:
-        - name: h
-          bytes: 2
-          range:
-            min: 0
-            max: 360
-        - name: s
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-        - name: v
-          bytes: 2
-          range:
-            min: 10
-            max: 1000
-secondary_entities:
+    manufacturer: BlissLights
+    model: Sky Lite Evolve
+    model_id: SKY-EVOLVE-B-RCW8
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 52
+        type: boolean
+        name: color_mode
+        mapping:
+          - dps_val: false
+            value: white
+          - dps_val: true
+            value: hs
+      - id: 24
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 10
+              max: 1000
   - entity: number
     translation_key: timer
     class: duration

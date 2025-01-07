@@ -1,32 +1,32 @@
 name: Double curtain switch
 products:
   - id: zqypumy8ot4clzyi
-    name: Loratap QCSC420W
-primary_entity:
-  entity: cover
-  name: Curtain 1
-  class: blind
-  dps:
-    - id: 1
-      name: control
-      type: string
-      mapping:
-        - dps_val: open
-          value: open
-        - dps_val: close
-          value: close
-        - dps_val: stop
-          value: stop
-    - id: 2
-      name: position
-      type: integer
-      range:
-        max: 100
-        min: 0
-    - id: 2
-      name: current_position
-      type: integer
-secondary_entities:
+    manufacturer: Loratap
+    model: QCSC420W
+entities:
+  - entity: cover
+    name: Curtain 1
+    class: blind
+    dps:
+      - id: 1
+        name: control
+        type: string
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 2
+        name: position
+        type: integer
+        range:
+          max: 100
+          min: 0
+      - id: 2
+        name: current_position
+        type: integer
   - entity: cover
     name: Curtain 2
     dps:

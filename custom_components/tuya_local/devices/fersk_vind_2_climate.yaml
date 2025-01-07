@@ -1,84 +1,84 @@
 name: Fersk Vind 2 heatpump
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: COOL
-              value: cool
-            - dps_val: FAN
-              value: fan_only
-            - dps_val: DRY
-              value: dry
-            - dps_val: HEAT
-              value: heat
-    - id: 2
-      name: temperature
-      type: integer
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: "C"
-              range:
-                min: 16
-                max: 32
-            - dps_val: "F"
-              range:
-                min: 60
-                max: 90
-    - id: 3
-      name: current_temperature
-      type: integer
-    - id: 4
-      name: mode
-      type: string
-      hidden: true
-    - id: 5
-      name: fan_mode
-      type: integer
-      mapping:
-        - dps_val: 1
-          value: low
-        - dps_val: 2
-          value: medium
-        - dps_val: 3
-          value: high
-    - id: 19
-      name: temperature_unit
-      type: string
-    - id: 101
-      name: unknown_101
-      type: boolean
-    - id: 102
-      name: unknown_102
-      type: boolean
-    - id: 103
-      name: timer
-      type: integer
-    - id: 104
-      name: swing_mode
-      type: boolean
-      mapping:
-        - dps_val: true
-          value: "vertical"
-        - dps_val: false
-          value: "off"
-    - id: 105
-      name: countdown
-      type: integer
-    - id: 106
-      name: unknown_106
-      type: integer
-    - id: 109
-      name: unknown_109
-      type: boolean
-    - id: 110
-      name: unknown_110
-      type: integer
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: COOL
+                value: cool
+              - dps_val: FAN
+                value: fan_only
+              - dps_val: DRY
+                value: dry
+              - dps_val: HEAT
+                value: heat
+      - id: 2
+        name: temperature
+        type: integer
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: "C"
+                range:
+                  min: 16
+                  max: 32
+              - dps_val: "F"
+                range:
+                  min: 60
+                  max: 90
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 4
+        name: mode
+        type: string
+        hidden: true
+      - id: 5
+        name: fan_mode
+        type: integer
+        mapping:
+          - dps_val: 1
+            value: low
+          - dps_val: 2
+            value: medium
+          - dps_val: 3
+            value: high
+      - id: 19
+        name: temperature_unit
+        type: string
+      - id: 101
+        name: unknown_101
+        type: boolean
+      - id: 102
+        name: unknown_102
+        type: boolean
+      - id: 103
+        name: timer
+        type: integer
+      - id: 104
+        name: swing_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "vertical"
+          - dps_val: false
+            value: "off"
+      - id: 105
+        name: countdown
+        type: integer
+      - id: 106
+        name: unknown_106
+        type: integer
+      - id: 109
+        name: unknown_109
+        type: boolean
+      - id: 110
+        name: unknown_110
+        type: integer

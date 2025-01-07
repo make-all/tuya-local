@@ -1,19 +1,19 @@
 name: Climate sensor
 products:
   - id: fie1dpkm
-    name: Nedis ZBSC10WT
-primary_entity:
-  entity: sensor
-  class: temperature
-  dps:
-    - id: 1
-      type: integer
-      name: sensor
-      unit: C
-      class: measurement
-      mapping:
-        - scale: 10
-secondary_entities:
+    manufacturer: Nedis
+    model: ZBSC10WT
+entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
   - entity: sensor
     class: humidity
     dps:

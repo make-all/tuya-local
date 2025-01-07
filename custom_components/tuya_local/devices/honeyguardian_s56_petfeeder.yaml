@@ -1,24 +1,24 @@
 name: Pet feeder
 products:
   - id: wa8pwmxwnhpujmdq
-    name: HoneyGuardian S56
-primary_entity:
-  entity: number
-  category: config
-  icon: "mdi:food-drumstick"
-  name: Manual feed
-  dps:
-    - id: 3
-      type: integer
-      name: value
-      range:
-        min: 1
-        max: 6
-    - id: 1
-      type: string
-      name: plan
-      optional: true
-secondary_entities:
+    manufacturer: HoneyGuardian
+    model: S56
+entities:
+  - entity: number
+    category: config
+    icon: "mdi:food-drumstick"
+    name: Manual feed
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 6
+      - id: 1
+        type: string
+        name: plan
+        optional: true
   - entity: switch
     category: config
     name: Slow feeding

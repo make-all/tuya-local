@@ -1,59 +1,59 @@
 name: Water heater
 products:
   - id: sbno8dlqbq1kjlku
-    name: Modena ES-15-SKY
-primary_entity:
-  entity: water_heater
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 101
-      type: integer
-      name: operation_mode
-      mapping:
-        - dps_val: 0
-          value: Mode 0
-        - dps_val: 1
-          value: Mode 1
-        - dps_val: 2
-          value: Mode 2
-        - dps_val: 3
-          value: Mode 3
-        - dps_val: 4
-          value: Mode 4
-        - dps_val: 5
-          value: Mode 5
-        - dps_val: 6
-          value: Mode 6
-        - dps_val: 7
-          value: Mode 7
-        - dps_val: 8
-          value: Mode 8
-        - dps_val: 9
-          value: Mode 9
-        - dps_val: 10
-          value: Mode 10
-    - id: 103
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 30
-        max: 75
-    - id: 108
-      type: integer
-      name: current_temperature
-    - id: 115
-      type: integer
-      name: reserve1
-    - id: 116
-      type: integer
-      name: reserve2
-    - id: 117
-      type: integer
-      name: reserve3
-secondary_entities:
+    manufacturer: Modena
+    model: ES-15-SKY
+entities:
+  - entity: water_heater
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 101
+        type: integer
+        name: operation_mode
+        mapping:
+          - dps_val: 0
+            value: Mode 0
+          - dps_val: 1
+            value: Mode 1
+          - dps_val: 2
+            value: Mode 2
+          - dps_val: 3
+            value: Mode 3
+          - dps_val: 4
+            value: Mode 4
+          - dps_val: 5
+            value: Mode 5
+          - dps_val: 6
+            value: Mode 6
+          - dps_val: 7
+            value: Mode 7
+          - dps_val: 8
+            value: Mode 8
+          - dps_val: 9
+            value: Mode 9
+          - dps_val: 10
+            value: Mode 10
+      - id: 103
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 30
+          max: 75
+      - id: 108
+        type: integer
+        name: current_temperature
+      - id: 115
+        type: integer
+        name: reserve1
+      - id: 116
+        type: integer
+        name: reserve2
+      - id: 117
+        type: integer
+        name: reserve3
   - entity: sensor
     name: Energy
     category: diagnostic

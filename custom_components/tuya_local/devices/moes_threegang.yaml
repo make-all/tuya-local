@@ -1,15 +1,14 @@
 name: Triple switch with timer and backlight
 products:
   - id: m4viuhaiez8qjswh
-    name: Moes 3 Gang smart switch
-primary_entity:
-  entity: light
-  name: "Gang 1"
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-secondary_entities:
+    manufacturer: Moes
+entities:
+  - entity: light
+    name: "Gang 1"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
   - entity: light
     name: "Gang 2"
     dps:

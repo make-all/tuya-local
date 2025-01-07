@@ -1,48 +1,48 @@
 name: Door lock
 products:
   - id: oufbykkic2alxcjw
-    name: SmarDeer Lock33
-primary_entity:
-  entity: lock
-  dps:
-    - id: 1
-      type: integer
-      name: unlock_fingerprint
-      optional: true
-      persist: false
-    - id: 2
-      type: integer
-      name: unlock_password
-      optional: true
-      persist: false
-    - id: 3
-      type: integer
-      name: unlock_temp_pwd
-      optional: true
-      persist: false
-    - id: 5
-      type: integer
-      name: unlock_card
-      optional: true
-      persist: false
-    - id: 9
-      type: integer
-      name: unlock_request
-    - id: 15
-      name: unlock_app
-      type: integer
-      optional: true
-      persist: false
-    - id: 44
-      name: unlock_multi
-      type: string
-      optional: true
-      persist: false
-    - id: 212
-      name: push_message
-      type: string
-      optional: true
-secondary_entities:
+    manufacturer: SmarDeer
+    model: Lock33
+entities:
+  - entity: lock
+    dps:
+      - id: 1
+        type: integer
+        name: unlock_fingerprint
+        optional: true
+        persist: false
+      - id: 2
+        type: integer
+        name: unlock_password
+        optional: true
+        persist: false
+      - id: 3
+        type: integer
+        name: unlock_temp_pwd
+        optional: true
+        persist: false
+      - id: 5
+        type: integer
+        name: unlock_card
+        optional: true
+        persist: false
+      - id: 9
+        type: integer
+        name: unlock_request
+      - id: 15
+        name: unlock_app
+        type: integer
+        optional: true
+        persist: false
+      - id: 44
+        name: unlock_multi
+        type: string
+        optional: true
+        persist: false
+      - id: 212
+        name: push_message
+        type: string
+        optional: true
   - entity: sensor
     name: Error
     category: diagnostic

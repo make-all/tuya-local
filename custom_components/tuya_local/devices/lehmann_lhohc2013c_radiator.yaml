@@ -1,61 +1,61 @@
 name: Radiator
 products:
   - id: wcpmk08nnnynbhy7
-    name: Lehmann LHOHC-2013C
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: heat
-    - id: 2
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 5
-        max: 37
-    - id: 3
-      type: integer
-      name: current_temperature
-    - id: 4
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: auto
-          constraint: level
-          conditions:
-            - dps_val: "1"
-              value: "750W"
-            - dps_val: "2"
-              value: "1250W"
-            - dps_val: "3"
-              value: "2000W"
-            - dps_val: "4"
-              value: "0W"
-        - dps_val: smart
-          value: away
-        - dps_val: standby
-          value: sleep
-    - id: 5
-      type: string
-      name: level
-      hidden: true
-    - id: 9
-      type: boolean
-      name: fan_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: "on"
-secondary_entities:
+    manufacturer: Lehmann
+    model: LHOHC-2013C
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 5
+          max: 37
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: auto
+            constraint: level
+            conditions:
+              - dps_val: "1"
+                value: "750W"
+              - dps_val: "2"
+                value: "1250W"
+              - dps_val: "3"
+                value: "2000W"
+              - dps_val: "4"
+                value: "0W"
+          - dps_val: smart
+            value: away
+          - dps_val: standby
+            value: sleep
+      - id: 5
+        type: string
+        name: level
+        hidden: true
+      - id: 9
+        type: boolean
+        name: fan_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
   - entity: select
     translation_key: timer
     category: config

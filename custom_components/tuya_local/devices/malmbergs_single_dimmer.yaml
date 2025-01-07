@@ -1,20 +1,20 @@
 name: Dimmer
 products:
   - id: yrli99lsgtmebarq
-    name: Malmbergs QS-WIFI-D02-TRIAC
-primary_entity:
-  entity: light
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 3
-      name: brightness
-      type: integer
-      range:
-        min: 25
-        max: 255
-secondary_entities:
+    manufacturer: Malmbergs
+    model: QS-WIFI-D02-TRIAC
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        name: brightness
+        type: integer
+        range:
+          min: 25
+          max: 255
   - entity: number
     name: Minimum brightness
     category: config

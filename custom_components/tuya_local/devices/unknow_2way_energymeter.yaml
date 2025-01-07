@@ -2,26 +2,24 @@
 name: Bidirectional energy meter
 products:
   - id: 8bjnabt4gh8tu4vr
-    name: Unbranded dual channel
-primary_entity:
-  entity: sensor
-  class: energy
-  dps:
-    - id: 1
-      type: integer
-      optional: true
-      name: sensor
-      unit: kWh
-      class: total_increasing
-      mapping:
-        - scale: 100
-    - id: 122
-      type: integer
-      optional: true
-      name: hourly
-      mapping:
-        - scale: 100
-secondary_entities:
+entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
+      - id: 122
+        type: integer
+        optional: true
+        name: hourly
+        mapping:
+          - scale: 100
   - entity: sensor
     translation_key: energy_produced
     class: energy

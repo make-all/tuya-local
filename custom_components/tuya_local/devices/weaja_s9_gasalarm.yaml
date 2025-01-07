@@ -1,19 +1,19 @@
 name: Gas alarm
 # products:
 #   - id: UNKNOWN
-#     name: Weaja WJ-TUYA-S9
-primary_entity:
-  entity: binary_sensor
-  class: gas
-  dps:
-    - id: 2
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: alarm
-          value: true
-        - value: false
-secondary_entities:
+#     manufacturer: Weaja
+#     model: WJ-TUYA-S9
+entities:
+  - entity: binary_sensor
+    class: gas
+    dps:
+      - id: 2
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: alarm
+            value: true
+          - value: false
   - entity: number
     name: Alarm time
     category: config

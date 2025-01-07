@@ -1,15 +1,15 @@
 name: Alarm control
 products:
   - id: f4gbbzyp0e6asfnt
-    name: HLG Infinity alarm
-primary_entity:
-  entity: sensor
-  icon: "mdi:clipboard-text-clock"
-  dps:
-    - id: 33
-      type: string
-      name: sensor
-secondary_entities:
+    manufacturer: HLG
+    model: Infinity
+entities:
+  - entity: sensor
+    icon: "mdi:clipboard-text-clock"
+    dps:
+      - id: 33
+        type: string
+        name: sensor
   - entity: sensor
     name: Sector 1
     icon: "mdi:numeric-1-circle"

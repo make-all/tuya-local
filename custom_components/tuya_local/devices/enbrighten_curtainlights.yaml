@@ -1,39 +1,38 @@
 name: Curtain lights
-primary_entity:
-  entity: light
-  dps:
-    - id: 20
-      type: boolean
-      name: switch
-    - id: 21
-      type: string
-      name: effect
-      mapping:
-        - dps_val: colour
-          value: "off"
-        - dps_val: scene
-          value: Scene
-    - id: 24
-      name: rgbhsv
-      type: hex
-      optional: true
-      format:
-        - name: h
-          bytes: 2
-          range:
-            min: 0
-            max: 360
-        - name: s
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-        - name: v
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-secondary_entities:
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: effect
+        mapping:
+          - dps_val: colour
+            value: "off"
+          - dps_val: scene
+            value: Scene
+      - id: 24
+        name: rgbhsv
+        type: hex
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
   - entity: number
     translation_key: timer
     class: duration

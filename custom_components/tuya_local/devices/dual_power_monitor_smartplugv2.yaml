@@ -1,36 +1,37 @@
 name: Dual smartplug
 products:
   - id: 3jnmzqoyuopg4vtf
-    name: Deltaco SH-P02
+    manufacturer: Deltaco
+    model: SH-P02
   - id: arf4t5idnhpt88ii
-    name: Smatrul dual wall plug
-primary_entity:
-  entity: switch
-  translation_key: outlet_x
-  translation_placeholders:
-    x: "1"
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 17
-      type: integer
-      name: add_ele
-      optional: true
-    - id: 21
-      type: bitfield
-      name: factory_test
-      optional: true
-    - id: 25
-      type: integer
-      name: ele_calibration
-      optional: true
-    - id: 42
-      type: string
-      name: schedule
-      optional: true
-secondary_entities:
+    manufacturer: Smatrul
+    name: Dual wall plug
+entities:
+  - entity: switch
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "1"
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 17
+        type: integer
+        name: add_ele
+        optional: true
+      - id: 21
+        type: bitfield
+        name: factory_test
+        optional: true
+      - id: 25
+        type: integer
+        name: ele_calibration
+        optional: true
+      - id: 42
+        type: string
+        name: schedule
+        optional: true
   - entity: switch
     translation_key: outlet_x
     translation_placeholders:

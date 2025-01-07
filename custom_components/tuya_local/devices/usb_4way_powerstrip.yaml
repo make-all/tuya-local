@@ -1,18 +1,18 @@
 name: USB 4way powerstrip
 products:
   - id: D7Hl3AxFbHDS98iO
-    name: AOFO ZLD-44EU-W
-primary_entity:
-  entity: switch
-  translation_key: outlet_x
-  translation_placeholders:
-    x: "1"
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: AOFO
+    model: ZLD-44EU-W
+entities:
+  - entity: switch
+    translation_key: outlet_x
+    translation_placeholders:
+      x: "1"
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: switch
     translation_key: outlet_x
     translation_placeholders:

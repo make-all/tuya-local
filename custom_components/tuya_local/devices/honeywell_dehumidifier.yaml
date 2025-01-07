@@ -1,33 +1,34 @@
-name: Honeywell TP Series Dehumidifier
+name: Dehumidifier
 products:
   - id: anAaZAfvsdrdl9Oy
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 6
-      name: humidity
-      type: integer
-      range:
-        min: 15
-        max: 90
-      mapping:
-        - step: 5
-    - id: 8
-      name: mode
-      type: integer
-      mapping:
-        - dps_val: 0
-          value: eco
-        - dps_val: 2
-          value: boost
-    - id: 18
-      name: current_humidity
-      type: integer
-secondary_entities:
+    manufacturer: Honeywell
+    model: TP series
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 6
+        name: humidity
+        type: integer
+        range:
+          min: 15
+          max: 90
+        mapping:
+          - step: 5
+      - id: 8
+        name: mode
+        type: integer
+        mapping:
+          - dps_val: 0
+            value: eco
+          - dps_val: 2
+            value: boost
+      - id: 18
+        name: current_humidity
+        type: integer
   - entity: binary_sensor
     name: Filter cleaning reminder
     class: problem

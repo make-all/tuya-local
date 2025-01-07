@@ -1,23 +1,23 @@
 name: Air fryer
 products:
   - id: rmywxak3angdgh0d
-    name: SilverCrest HF-6602T
-primary_entity:
-  entity: switch
-  icon: "mdi:toaster-oven"
-  category: config
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 11
-      type: string
-      optional: true
-      name: multistep
-    - id: 17
-      type: integer
-      name: cooking_history
-secondary_entities:
+    manufacturer: SilverCrest
+    model: HF-6602T
+entities:
+  - entity: switch
+    icon: "mdi:toaster-oven"
+    category: config
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 11
+        type: string
+        optional: true
+        name: multistep
+      - id: 17
+        type: integer
+        name: cooking_history
   - entity: button
     name: Start
     icon: "mdi:play"

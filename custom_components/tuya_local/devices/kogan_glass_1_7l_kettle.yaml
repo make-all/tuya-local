@@ -1,18 +1,18 @@
 name: Kogan smart kettle
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-          icon: "mdi:kettle-off"
-        - dps_val: true
-          value: "heat"
-          icon: "mdi:kettle"
-    - id: 5
-      type: integer
-      name: current_temperature
-      unit: C
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+            icon: "mdi:kettle-off"
+          - dps_val: true
+            value: "heat"
+            icon: "mdi:kettle"
+      - id: 5
+        type: integer
+        name: current_temperature
+        unit: C

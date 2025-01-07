@@ -1,20 +1,19 @@
 name: Water quality
 products:
   - id: layxxij0sdbrfmrf
-    name: pH-W218
-primary_entity:
-  entity: sensor
-  class: temperature
-  icon: "mdi:water-thermometer"
-  dps:
-    - id: 8
-      type: integer
-      name: sensor
-      class: measurement
-      mapping:
-        - scale: 10
-      unit: C
-secondary_entities:
+    model: pH-W218
+entities:
+  - entity: sensor
+    class: temperature
+    icon: "mdi:water-thermometer"
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+        unit: C
   - entity: sensor
     name: pH
     icon: "mdi:ph"

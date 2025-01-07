@@ -1,107 +1,107 @@
 name: Heater
 products:
   - id: cior1o59zipid8xo
-    name: Create Warm Towel Advance
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: preset_mode
-          conditions:
-            - dps_val: P1
-              value: auto
-            - dps_val: [P2, P3]
-              value: auto
-              hidden: true
-            - dps_val: CF
-              value: heat
-            - dps_val: [EC, AF]
-              value: heat
-              hidden: true
-            - dps_val: ST
-              value: "off"
-              hidden: true
-            - dps_val: D2
-              value: dry
-            - dps_val: [D3, D4]
-              value: dry
-              hidden: true
-    - id: 2
-      type: integer
-      name: temperature
-      range:
-        min: 5
-        max: 35
-      unit: C
-      mapping:
-        - constraint: preset_mode
-          conditions:
-            - dps_val: EC
-              range:
-                min: 1
-                max: 31
-            - dps_val: AF
-              invalid: true
-    - id: 3
-      type: integer
-      name: current_temperature
-    - id: 4
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: CF
-          value: comfort
-        - dps_val: EC
-          value: eco
-        - dps_val: P1
-          value: Daytime
-        - dps_val: P2
-          value: Morning+Evening
-        - dps_val: P3
-          value: Program
-        - dps_val: AF
-          value: away
-        - dps_val: ST
-          value: ST
-          hidden: true
-        - dps_val: D2
-          value: Dry 2
-        - dps_val: D3
-          value: Dry 3
-        - dps_val: D4
-          value: Dry 4
-    - id: 11
-      type: string
-      name: hvac_action
-      mapping:
-        - dps_val: standby
-          value: idle
-        - dps_val: working
-          value: heating
-          constraint: preset_mode
-          conditions:
-            - dps_val: [D2, D3, D4]
-              value: drying
-    - id: 26
-      type: string
-      optional: true
-      name: custom_program
-    - id: 109
-      type: boolean
-      name: fan_mode
-      mapping:
-        - dps_val: true
-          value: "on"
-        - dps_val: false
-          value: "off"
-secondary_entities:
+    manufacturer: Create
+    model: Warm Towel Advance
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: preset_mode
+            conditions:
+              - dps_val: P1
+                value: auto
+              - dps_val: [P2, P3]
+                value: auto
+                hidden: true
+              - dps_val: CF
+                value: heat
+              - dps_val: [EC, AF]
+                value: heat
+                hidden: true
+              - dps_val: ST
+                value: "off"
+                hidden: true
+              - dps_val: D2
+                value: dry
+              - dps_val: [D3, D4]
+                value: dry
+                hidden: true
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 5
+          max: 35
+        unit: C
+        mapping:
+          - constraint: preset_mode
+            conditions:
+              - dps_val: EC
+                range:
+                  min: 1
+                  max: 31
+              - dps_val: AF
+                invalid: true
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: CF
+            value: comfort
+          - dps_val: EC
+            value: eco
+          - dps_val: P1
+            value: Daytime
+          - dps_val: P2
+            value: Morning+Evening
+          - dps_val: P3
+            value: Program
+          - dps_val: AF
+            value: away
+          - dps_val: ST
+            value: ST
+            hidden: true
+          - dps_val: D2
+            value: Dry 2
+          - dps_val: D3
+            value: Dry 3
+          - dps_val: D4
+            value: Dry 4
+      - id: 11
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: standby
+            value: idle
+          - dps_val: working
+            value: heating
+            constraint: preset_mode
+            conditions:
+              - dps_val: [D2, D3, D4]
+                value: drying
+      - id: 26
+        type: string
+        optional: true
+        name: custom_program
+      - id: 109
+        type: boolean
+        name: fan_mode
+        mapping:
+          - dps_val: true
+            value: "on"
+          - dps_val: false
+            value: "off"
   - entity: lock
     translation_key: child_lock
     category: config

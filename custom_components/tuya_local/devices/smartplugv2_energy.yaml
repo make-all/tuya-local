@@ -1,35 +1,39 @@
 name: Advanced energy monitoring smartplug
 products:
   - id: auojpnb4hpc13ftb
-    name: Arlec PC191HA
+    manufacturer: Arlec
+    model: PC191HA
   - id: 2fxr6sttw70cgbau
-    name: Antela ZY-OYD-Y
+    manufacturer: Antela
+    model: ZY-OYD-Y
   - id: qiv5hllylfebpl4g
-    name: Eightree ET20
+    manufacturer: Eightree
+    model: ET20
   - id: 7k5zwdhwlnrtsuhu
-    name: SWE SAGEWE F2s501-GB
+    manufacturer: SWE SAGEWE
+    model: F2s501-GB
   - id: uqehhcrmk5depvtl
-    name: Smatrul 16A/20A
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 21
-      type: integer
-      name: test_bit
-      optional: true
-    - id: 41
-      type: string
-      name: cycle_timer
-      optional: true
-    - id: 42
-      type: string
-      name: random_timer
-      optional: true
-secondary_entities:
+    manufacturer: Smatrul
+    model: 16A/20A
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 21
+        type: integer
+        name: test_bit
+        optional: true
+      - id: 41
+        type: string
+        name: cycle_timer
+        optional: true
+      - id: 42
+        type: string
+        name: random_timer
+        optional: true
   - entity: number
     category: config
     class: duration

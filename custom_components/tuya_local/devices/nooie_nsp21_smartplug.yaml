@@ -1,15 +1,15 @@
 name: SmartPlug
 products:
   - id: e8dqdqxjgmilloml
-    name: Nooie NSP21
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-secondary_entities:
+    manufacturer: Nooie
+    model: NSP21
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
   - entity: number
     translation_key: timer
     category: config

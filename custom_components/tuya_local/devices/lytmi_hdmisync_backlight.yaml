@@ -1,45 +1,45 @@
 name: HDMI sync backlight
 products:
   - id: js0t2z9y1tnphvds
-    name: Lytmi Fantasy/Neo 3
+    manufacturer: Lytmi
+    model: Fantasy/Neo 3
   - id: bfedc6cf9dcae291b04ecj
-    name: Lytmi Fantasy 3
-primary_entity:
-  entity: light
-  dps:
-    - id: 20
-      name: switch
-      type: boolean
-    - id: 22
-      name: brightness
-      type: integer
-      range:
-        min: 10
-        max: 1000
-    - id: 24
-      name: rgbhsv
-      type: hex
-      format:
-        - name: h
-          bytes: 2
-          range:
-            min: 0
-            max: 360
-        - name: s
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-        - name: v
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-    - id: 107
-      type: boolean
-      name: unknown_107
-
-secondary_entities:
+    manufacturer: Lytmi
+    model: Fantasy 3
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        name: switch
+        type: boolean
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 24
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 107
+        type: boolean
+        name: unknown_107
   - entity: switch
     name: TV synchronization switch
     category: config

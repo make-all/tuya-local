@@ -2,40 +2,40 @@ name: Dehumidifier
 legacy_type: AlecoAir_D25_Traditio
 products:
   - id: b9oyi2yofflroq1g
-    name: Alpha Q25 Pro dehumidifier
-primary_entity:
-  entity: humidifier
-  class: dehumidifier
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 2
-      name: humidity
-      type: integer
-      range:
-        min: 25
-        max: 80
-      mapping:
-        - step: 5
-    - id: 5
-      name: mode
-      type: string
-      mapping:
-        - dps_val: Manual
-          value: normal
-        - dps_val: Auto
-          value: auto
-        - dps_val: Laundrydrying
-          value: laundry
-        - dps_val: Sleeping
-          value: sleep
-        - dps_val: Purifying
-          value: purify
-    - id: 6
-      type: integer
-      name: current_humidity
-secondary_entities:
+    manufacturer: Greenmigo
+    model: Alpha Q25 Pro
+entities:
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 2
+        name: humidity
+        type: integer
+        range:
+          min: 25
+          max: 80
+        mapping:
+          - step: 5
+      - id: 5
+        name: mode
+        type: string
+        mapping:
+          - dps_val: Manual
+            value: normal
+          - dps_val: Auto
+            value: auto
+          - dps_val: Laundrydrying
+            value: laundry
+          - dps_val: Sleeping
+            value: sleep
+          - dps_val: Purifying
+            value: purify
+      - id: 6
+        type: integer
+        name: current_humidity
   - entity: sensor
     translation_key: status
     class: enum

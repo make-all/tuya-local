@@ -1,36 +1,41 @@
 name: CCT Light
 products:
   - id: xhkuywg6rwwqocl6
-    name: Connect White GU10
+    manufacturer: Connect
+    model: White GU10
   - id: hvfqgkigk9nj0p6p
-    name: Geeni GN-BW223-999
+    manufacturer: Geeni
+    model: GN-BW223-999
   - id: 41xqxqiflb6lqaqv
-    name: Geeni GN-BW223-999
+    manufacturer: Geeni
+    model: GN-BW223-999
   - id: gbi4ljmlyrxx23mz
-    name: Geeni GN-BW230-999
+    manufacturer: Geeni
+    model: GN-BW230-999
   - id: xhkuywg6rwwqocl6
-    name: Laser SMT-WWDL53-L
-primary_entity:
-  entity: light
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 2
-      type: integer
-      name: brightness
-      optional: true
-      range:
-        min: 25
-        max: 255
-    - id: 3
-      type: integer
-      optional: true
-      name: color_temp
-      range:
-        min: 0
-        max: 255
-      mapping:
-        - target_range:
-            min: 2700
-            max: 6500
+    manufacturer: Laser
+    model: SMT-WWDL53-L
+entities:
+  - entity: light
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 2
+        type: integer
+        name: brightness
+        optional: true
+        range:
+          min: 25
+          max: 255
+      - id: 3
+        type: integer
+        optional: true
+        name: color_temp
+        range:
+          min: 0
+          max: 255
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500

@@ -1,33 +1,31 @@
 name: CCT + RGB Ceiling Light
 products:
   - id: bwyutsrcsnwf3p5o
-    name: LSC Smart Connect
+    manufacturer: LSC Smart Connect
+entities:
+  - entity: light
+    icon: mdi:circle
+    dps:
+      - id: 63
+        type: boolean
+        name: switch
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
 
-primary_entity:
-  entity: light
-  icon: mdi:circle
-  dps:
-    - id: 63
-      type: boolean
-      name: switch
-    - id: 22
-      name: brightness
-      type: integer
-      range:
-        min: 10
-        max: 1000
-    - id: 23
-      name: color_temp
-      type: integer
-      range:
-        min: 0
-        max: 1000
-      mapping:
-        - target_range:
-            min: 2700
-            max: 6500
-
-secondary_entities:
   - entity: light
     name: Halo
     icon: "mdi:circle-outline"

@@ -1,18 +1,18 @@
-name: Taxnele meter
+name: Energy meter
 products:
   - id: 3xhdofmeo6lgpvd5
-primary_entity:
-  entity: sensor
-  class: energy
-  dps:
-    - id: 1
-      type: integer
-      name: sensor
-      unit: kWh
-      class: total_increasing
-      mapping:
-        - scale: 100
-secondary_entities:
+    manufacturer: Taxnele
+entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
   - entity: binary_sensor
     class: problem
     category: diagnostic

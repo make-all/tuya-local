@@ -1,59 +1,59 @@
 name: CCT lightbulb
 products:
   - id: q66b4arnni1rnqlk
-    name: Calex S45 Clear E27
-primary_entity:
-  entity: light
-  dps:
-    - id: 20
-      type: boolean
-      name: switch
-    - id: 21
-      type: string
-      name: color_mode
-      mapping:
-        - dps_val: white
-          value: color_temp
-        - dps_val: colour
-          value: Colour
-        - dps_val: scene
-          value: Scene
-        - dps_val: music
-          value: Music
-    - id: 22
-      name: brightness
-      type: integer
-      range:
-        min: 10
-        max: 1000
-    - id: 23
-      name: color_temp
-      type: integer
-      optional: true
-      range:
-        min: 0
-        max: 1000
-      mapping:
-        - target_range:
-            min: 2700
-            max: 6500
-    - id: 28
-      name: control_data
-      type: hex
-      optional: true
-    - id: 30
-      name: rhythm_mode
-      type: base64
-      optional: true
-    - id: 31
-      name: sleep_mode
-      type: base64
-      optional: true
-    - id: 32
-      name: wakeup_mode
-      type: base64
-      optional: true
-secondary_entities:
+    manufacturer: Calex
+    model: S45 Clear E27
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: Colour
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 28
+        name: control_data
+        type: hex
+        optional: true
+      - id: 30
+        name: rhythm_mode
+        type: base64
+        optional: true
+      - id: 31
+        name: sleep_mode
+        type: base64
+        optional: true
+      - id: 32
+        name: wakeup_mode
+        type: base64
+        optional: true
   - entity: number
     translation_key: timer
     class: duration

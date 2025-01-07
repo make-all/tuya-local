@@ -1,31 +1,31 @@
 name: Curtain and lights
 products:
   - id: n76sxga6lyfujuac
-    name: Avatto SYS-CL02
-primary_entity:
-  entity: cover
-  class: curtain
-  dps:
-    - id: 1
-      name: control
-      type: string
-      mapping:
-        - dps_val: open
-          value: open
-        - dps_val: close
-          value: close
-        - dps_val: stop
-          value: stop
-    - id: 2
-      name: position
-      type: integer
-      unit: "%"
-      range:
-        min: 0
-        max: 100
-      mapping:
-        - step: 10
-secondary_entities:
+    manufacturer: Avatto
+    model: SYS-CL02
+entities:
+  - entity: cover
+    class: curtain
+    dps:
+      - id: 1
+        name: control
+        type: string
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 2
+        name: position
+        type: integer
+        unit: "%"
+        range:
+          min: 0
+          max: 100
+        mapping:
+          - step: 10
   - entity: light
     name: Light 1
     dps:

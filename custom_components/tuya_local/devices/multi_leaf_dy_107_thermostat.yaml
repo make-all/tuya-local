@@ -1,59 +1,59 @@
 name: Thermostat
 products:
   - id: gdusjavy8i4dpjlt
-    name: Multi-leaf DY-107
-primary_entity:
-  entity: climate
-  translation_key: thermostat
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: true
-          value: heat
-        - dps_val: false
-          value: "off"
-          icon: "mdi:radiator-disabled"
-          icon_priority: 1
-    - id: 2
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: auto
-          value: program
-        - dps_val: manual
-          value: manual
-    - id: 16
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 5
-        max: 90
-    - id: 19
-      type: integer
-      name: max_temperature
-    - id: 24
-      type: integer
-      name: current_temperature
-    - id: 26
-      optional: true
-      type: integer
-      name: min_temperature
-    - id: 36
-      type: string
-      name: hvac_action
-      mapping:
-        - dps_val: close
-          icon: "mdi:radiator-disabled"
-          icon_priority: 2
-          value: idle
-        - dps_val: open
-          icon: "mdi:radiator"
-          icon_priority: 2
-          value: heating
-secondary_entities:
+    manufacturer: Multi-leaf
+    model: DY-107
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: heat
+          - dps_val: false
+            value: "off"
+            icon: "mdi:radiator-disabled"
+            icon_priority: 1
+      - id: 2
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: auto
+            value: program
+          - dps_val: manual
+            value: manual
+      - id: 16
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 5
+          max: 90
+      - id: 19
+        type: integer
+        name: max_temperature
+      - id: 24
+        type: integer
+        name: current_temperature
+      - id: 26
+        optional: true
+        type: integer
+        name: min_temperature
+      - id: 36
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: close
+            icon: "mdi:radiator-disabled"
+            icon_priority: 2
+            value: idle
+          - dps_val: open
+            icon: "mdi:radiator"
+            icon_priority: 2
+            value: heating
   - entity: number
     name: Calibration offset
     category: config

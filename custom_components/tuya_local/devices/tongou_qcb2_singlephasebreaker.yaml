@@ -1,15 +1,15 @@
 name: Circuit breaker
 products:
   - id: l1t5oophgyzpdrag
-    name: Tongou QCB2-WB single-phase
-primary_entity:
-  entity: switch
-  icon: "mdi:fuse"
-  dps:
-    - id: 16
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: Tongou
+    model: QCB2-WB single-phase
+entities:
+  - entity: switch
+    icon: "mdi:fuse"
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
   - entity: sensor
     class: energy
     dps:

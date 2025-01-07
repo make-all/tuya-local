@@ -1,79 +1,79 @@
 name: Vacuum and mop
 products:
   - id: ela0pxryflaldubr
-    name: MAMNV BR151
-primary_entity:
-  entity: vacuum
-  dps:
-    - id: 2
-      type: boolean
-      name: activate
-    - id: 3
-      type: string
-      name: command
-      mapping:
-        - dps_val: standby
-          value: stop
-        - dps_val: spiral
-          value: clean_spot
-        - dps_val: wall_follow
-          value: wall_follow
-        - dps_val: chargego
-          value: return_to_base
-        - dps_val: partial_bow
-          value: partial_bow
-        - dps_val: random
-          value: random
-    - id: 4
-      type: string
-      name: direction_control
-      optional: true
-      mapping:
-        - dps_val: forward
-          value: forward
-        - dps_val: backward
-          value: reverse
-        - dps_val: turn_left
-          value: left
-        - dps_val: turnn_right
-          value: right
-        - dps_val: stop
-          value: stop
-    - id: 5
-      type: string
-      name: status
-      mapping:
-        - dps_val: "standby"
-          value: standby
-        - dps_val: "smart_clean"
-          value: cleaning
-        - dps_val: "wall_clean"
-          value: cleaning
-        - dps_val: "spot_clean"
-          value: cleaning
-        - dps_val: "room_clean"
-          value: cleaning
-        - dps_val: "goto_charge"
-          value: returning
-        - dps_val: "charging"
-          value: charging
-        - dps_val: "charge_done"
-          value: charged
-        - dps_val: "cleaning"
-          value: cleaning
-        - dps_val: "sleep"
-          value: sleep
-        - dps_val: "in_trouble"
-          value: error
-    - id: 14
-      type: string
-      name: fan_speed
-      mapping:
-        - dps_val: strong
-          value: High
-        - dps_val: normal
-          value: Medium
-secondary_entities:
+    manufacturer: MAMNV
+    model: BR151
+entities:
+  - entity: vacuum
+    dps:
+      - id: 2
+        type: boolean
+        name: activate
+      - id: 3
+        type: string
+        name: command
+        mapping:
+          - dps_val: standby
+            value: stop
+          - dps_val: spiral
+            value: clean_spot
+          - dps_val: wall_follow
+            value: wall_follow
+          - dps_val: chargego
+            value: return_to_base
+          - dps_val: partial_bow
+            value: partial_bow
+          - dps_val: random
+            value: random
+      - id: 4
+        type: string
+        name: direction_control
+        optional: true
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: backward
+            value: reverse
+          - dps_val: turn_left
+            value: left
+          - dps_val: turnn_right
+            value: right
+          - dps_val: stop
+            value: stop
+      - id: 5
+        type: string
+        name: status
+        mapping:
+          - dps_val: "standby"
+            value: standby
+          - dps_val: "smart_clean"
+            value: cleaning
+          - dps_val: "wall_clean"
+            value: cleaning
+          - dps_val: "spot_clean"
+            value: cleaning
+          - dps_val: "room_clean"
+            value: cleaning
+          - dps_val: "goto_charge"
+            value: returning
+          - dps_val: "charging"
+            value: charging
+          - dps_val: "charge_done"
+            value: charged
+          - dps_val: "cleaning"
+            value: cleaning
+          - dps_val: "sleep"
+            value: sleep
+          - dps_val: "in_trouble"
+            value: error
+      - id: 14
+        type: string
+        name: fan_speed
+        mapping:
+          - dps_val: strong
+            value: High
+          - dps_val: normal
+            value: Medium
   - entity: sensor
     class: battery
     dps:

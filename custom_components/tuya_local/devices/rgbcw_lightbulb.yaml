@@ -1,101 +1,107 @@
 name: RGBCW Lightbulb
 products:
   - id: aok3caeleulg1neh
-    name: Lijun smart bulb RGBCW
+    manufacturer: Lijun
+  - id: keytg5kq8gvkv9dh
+    manufacturer: Lijun
   - id: nh2i3k5q5aenhdq3
-    name: Aubess E14 smart bulb RGBCW
+    manufacturer: Aubess
+    model: E14 RGBCW
   - id: ei0cjv7ogxdgcekq
-    name: BrilliantSmart RGB garden lights
+    manufacturer: Brilliant Smart
+    name: RGB garden lights
   - id: ivxfweclfhvra3ym
-    name: Lampux bedside lamp
+    manufacturer: Lampux
+    name: Bedside lamp
   - id: wufw0loegkb1y3u3
-    name: Genio Smart WIFI bulb A60 RGB+CCT
+    manufacturer: Mirabella Genio
+    model: A60 RGB+CCT
   - id: gshkqhi4fx9qqwrr
-    name: ANWIO BR30 WiFi Smart LED Bulb RGB+CCT 13W
-primary_entity:
-  entity: light
-  dps:
-    - id: 20
-      type: boolean
-      name: switch
-    - id: 21
-      type: string
-      name: color_mode
-      mapping:
-        - dps_val: white
-          value: color_temp
-        - dps_val: colour
-          value: hs
-        - dps_val: scene
-          value: Scene
-        - dps_val: music
-          value: Music
-    - id: 22
-      name: brightness
-      type: integer
-      optional: true
-      range:
-        min: 10
-        max: 1000
-      mapping:
-        - dps_val: null
-          value: 0
-    - id: 23
-      name: color_temp
-      type: integer
-      optional: true
-      range:
-        min: 0
-        max: 1000
-      mapping:
-        - target_range:
-            min: 2700
-            max: 6500
-    - id: 24
-      name: rgbhsv
-      type: hex
-      optional: true
-      format:
-        - name: h
-          bytes: 2
-          range:
-            min: 0
-            max: 360
-        - name: s
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-        - name: v
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-    - id: 25
-      name: scene_data
-      type: hex
-      optional: true
-    - id: 27
-      name: music_data
-      type: hex
-      optional: true
-    - id: 28
-      name: control_data
-      type: hex
-      optional: true
-    - id: 30
-      name: rhythm_mode
-      type: base64
-      optional: true
-    - id: 31
-      name: sleep_mode
-      type: base64
-      optional: true
-    - id: 32
-      name: wakeup_mode
-      type: base64
-      optional: true
-secondary_entities:
+    manufacturer: ANWIO
+    model: BR30 RGB+CCT 13W
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 22
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - dps_val: null
+            value: 0
+      - id: 23
+        name: color_temp
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 24
+        name: rgbhsv
+        type: hex
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 25
+        name: scene_data
+        type: hex
+        optional: true
+      - id: 27
+        name: music_data
+        type: hex
+        optional: true
+      - id: 28
+        name: control_data
+        type: hex
+        optional: true
+      - id: 30
+        name: rhythm_mode
+        type: base64
+        optional: true
+      - id: 31
+        name: sleep_mode
+        type: base64
+        optional: true
+      - id: 32
+        name: wakeup_mode
+        type: base64
+        optional: true
   - entity: number
     translation_key: timer
     class: duration

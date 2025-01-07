@@ -3,15 +3,15 @@
 name: Combo heat pump
 products:
   - id: l01fseshej0xmz8x
-    name: Axen KS-100W/EN8BP
-primary_entity:
-  entity: switch
-  category: config
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: Axen
+    model: KS-100W/EN8BP
+entities:
+  - entity: switch
+    category: config
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: binary_sensor
     class: problem
     category: diagnostic

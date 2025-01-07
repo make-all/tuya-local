@@ -1,16 +1,16 @@
 name: Pet feeder
 products:
   - id: aehfntztbgk0nf8e
-    name: BNETA F1-D
-primary_entity:
-  entity: light
-  translation_key: indicator
-  category: config
-  dps:
-    - id: 101
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: BNETA
+    model: F1-D
+entities:
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
   - entity: switch
     name: Flip image
     icon: "mdi:flip-horizontal"

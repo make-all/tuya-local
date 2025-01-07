@@ -1,19 +1,17 @@
 name: Smoke detector
 products:
   - id: lsjnzox4skgduemo
-    name: Unknown
-primary_entity:
-  entity: binary_sensor
-  class: smoke
-  dps:
-    - id: 1
-      type: integer
-      name: sensor
-      mapping:
-        - dps_val: "1"
-          value: true
-        - value: false
-secondary_entities:
+entities:
+  - entity: binary_sensor
+    class: smoke
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: "1"
+            value: true
+          - value: false
   - entity: sensor
     name: Smoke level
     category: diagnostic

@@ -1,20 +1,20 @@
 name: Water quality monitor
 products:
   - id: u5xgcpcngk3pfxb4
-    name: Yinmik WF-3188
-primary_entity:
-  entity: sensor
-  icon: "mdi:pool-thermometer"
-  class: temperature
-  dps:
-    - id: 2
-      type: integer
-      name: sensor
-      unit: C
-      class: measurement
-      mapping:
-        - scale: 10
-secondary_entities:
+    manufacturer: Yinmik
+    model: WF-3188
+entities:
+  - entity: sensor
+    icon: "mdi:pool-thermometer"
+    class: temperature
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+        mapping:
+          - scale: 10
   - entity: sensor
     name: Total dissolved solids
     icon: "mdi:water-opacity"

@@ -1,93 +1,94 @@
 name: Door access
 products:
   - id: 5k8h97qska6pf5cm
-    name: Sboard III mini Wiegand access control interface
-primary_entity:
-  entity: lock
-  dps:
-    - id: 1
-      type: string
-      optional: true
-      name: unlock_method_create
-    - id: 2
-      type: string
-      optional: true
-      name: unlock_method_delete
-    - id: 3
-      type: string
-      optional: true
-      name: unlock_method_modify
-    - id: 4
-      type: string
-      optional: true
-      name: sync_method
-    - id: 5
-      type: string
-      optional: true
-      name: tmp_passwd_create
-    - id: 6
-      type: string
-      optional: true
-      name: tmp_passwd_delete
-    - id: 7
-      type: string
-      optional: true
-      name: tmp_passwd_modify
-    - id: 8
-      type: string
-      optional: true
-      name: remote_no_pd_setkey
-    - id: 9
-      type: string
-      optional: true
-      name: remote_no_dp_key
-    - id: 10
-      type: string
-      optional: true
-      persist: false
-      name: unlock_fingerprint
-    - id: 11
-      type: string
-      optional: true
-      persist: false
-      name: unlock_password
-    - id: 12
-      type: string
-      optional: true
-      persist: false
-      name: unlock_card
-    - id: 16
-      type: string
-      optional: true
-      persist: false
-      name: unlock_temp_pwd
-    - id: 17
-      type: string
-      optional: true
-      persist: false
-      name: unlock_dynamic_pwd
-    - id: 22
-      type: string
-      optional: true
-      persist: false
-      name: unlock_app
-    - id: 23
-      type: string
-      optional: true
-      name: alarm_records
-    - id: 35
-      type: string
-      optional: true
-      name: closed_open_state
-    - id: 38
-      type: string
-      optional: true
-      name: alarm_channel
-    - id: 39
-      type: string
-      optional: true
-      name: alarm_lifted
-secondary_entities:
+    manufacturer: Secukey
+    model: Sboard III mini
+    name: Wiegand access control interface
+entities:
+  - entity: lock
+    dps:
+      - id: 1
+        type: string
+        optional: true
+        name: unlock_method_create
+      - id: 2
+        type: string
+        optional: true
+        name: unlock_method_delete
+      - id: 3
+        type: string
+        optional: true
+        name: unlock_method_modify
+      - id: 4
+        type: string
+        optional: true
+        name: sync_method
+      - id: 5
+        type: string
+        optional: true
+        name: tmp_passwd_create
+      - id: 6
+        type: string
+        optional: true
+        name: tmp_passwd_delete
+      - id: 7
+        type: string
+        optional: true
+        name: tmp_passwd_modify
+      - id: 8
+        type: string
+        optional: true
+        name: remote_no_pd_setkey
+      - id: 9
+        type: string
+        optional: true
+        name: remote_no_dp_key
+      - id: 10
+        type: string
+        optional: true
+        persist: false
+        name: unlock_fingerprint
+      - id: 11
+        type: string
+        optional: true
+        persist: false
+        name: unlock_password
+      - id: 12
+        type: string
+        optional: true
+        persist: false
+        name: unlock_card
+      - id: 16
+        type: string
+        optional: true
+        persist: false
+        name: unlock_temp_pwd
+      - id: 17
+        type: string
+        optional: true
+        persist: false
+        name: unlock_dynamic_pwd
+      - id: 22
+        type: string
+        optional: true
+        persist: false
+        name: unlock_app
+      - id: 23
+        type: string
+        optional: true
+        name: alarm_records
+      - id: 35
+        type: string
+        optional: true
+        name: closed_open_state
+      - id: 38
+        type: string
+        optional: true
+        name: alarm_channel
+      - id: 39
+        type: string
+        optional: true
+        name: alarm_lifted
   - entity: siren
     name: Doorbell
     dps:

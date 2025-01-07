@@ -1,54 +1,54 @@
 name: Light strip
 products:
   - id: szzsfdqcrqkczzfi
-    name: Tech Inc 3m neon
-primary_entity:
-  entity: light
-  dps:
-    - id: 20
-      type: boolean
-      name: switch
-    - id: 21
-      type: string
-      name: effect
-      mapping:
-        - dps_val: colour
-          value: "off"
-        - dps_val: scene
-          value: Scene
-        - dps_val: music
-          value: Music
-    - id: 22
-      name: brightness
-      type: integer
-      optional: true
-      range:
-        min: 10
-        max: 1000
-      mapping:
-        - dps_val: null
-          value: 0
-    - id: 24
-      name: rgbhsv
-      type: hex
-      optional: true
-      format:
-        - name: h
-          bytes: 2
-          range:
-            min: 0
-            max: 360
-        - name: s
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-        - name: v
-          bytes: 2
-          range:
-            min: 0
-            max: 1000
-secondary_entities:
+    manufacturer: Tech Inc
+    model: "3m Neon"
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: effect
+        mapping:
+          - dps_val: colour
+            value: "off"
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 22
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - dps_val: null
+            value: 0
+      - id: 24
+        name: rgbhsv
+        type: hex
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
   - entity: number
     translation_key: timer
     class: duration

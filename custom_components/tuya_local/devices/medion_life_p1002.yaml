@@ -1,57 +1,57 @@
 name: Portable air conditioner
 products:
   - id: tqgodaa9suvtbflg
-    name: Medion LIFE P1002
-primary_entity:
-  entity: climate
-  icon: "mdi:air-conditioner"
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: Cool
-              value: cool
-            - dps_val: Dyr
-              value: dry
-            - dps_val: Fan
-              value: fan_only
-    - id: 2
-      type: integer
-      name: temperature
-      range:
-        min: 16
-        max: 32
-      unit: C
-    - id: 3
-      type: integer
-      name: current_temperature
-    - id: 4
-      type: string
-      name: mode
-      hidden: true
-    - id: 5
-      type: string
-      name: fan_mode
-      mapping:
-        - dps_val: Low
-          value: low
-        - dps_val: High
-          value: high
-    - id: 15
-      type: boolean
-      name: swing_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: "on"
-secondary_entities:
+    manufacturer: Medion
+    model: LIFE P1002
+entities:
+  - entity: climate
+    icon: "mdi:air-conditioner"
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: Cool
+                value: cool
+              - dps_val: Dyr
+                value: dry
+              - dps_val: Fan
+                value: fan_only
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 16
+          max: 32
+        unit: C
+      - id: 3
+        type: integer
+        name: current_temperature
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 5
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: Low
+            value: low
+          - dps_val: High
+            value: high
+      - id: 15
+        type: boolean
+        name: swing_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
   - entity: lock
     icon: "mdi:lock"
     translation_key: child_lock

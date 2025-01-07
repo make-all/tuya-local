@@ -1,23 +1,23 @@
-name: Irrigation Controller
+name: Irrigation controller
 products:
   - id: 3c8bxnseywh7radc
-    name: Holman WX8
-primary_entity:
-  entity: binary_sensor
-  class: running
-  icon: mdi:sprinkler-variant
-  dps:
-    - id: 123
-      name: sensor
-      type: boolean
-    - id: 116
-      name: firmware_version
-      type: integer
-    - id: 101
-      name: programming
-      type: string
-      optional: true
-secondary_entities:
+    manufacturer: Holman
+    model: WX8
+entities:
+  - entity: binary_sensor
+    class: running
+    icon: mdi:sprinkler-variant
+    dps:
+      - id: 123
+        name: sensor
+        type: boolean
+      - id: 116
+        name: firmware_version
+        type: integer
+      - id: 101
+        name: programming
+        type: string
+        optional: true
   - entity: valve
     name: Zone 1
     class: water

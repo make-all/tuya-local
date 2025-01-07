@@ -1,41 +1,41 @@
 name: Heater
 products:
   - id: gdxxobacdlckd0ye
-    name: Cronos GPH-D-DA
-primary_entity:
-  entity: climate
-  translation_only_key: heater
-  dps:
-    - id: 1
-      name: hvac_mode
-      type: boolean
-      mapping:
-        - dps_val: true
-          value: "heat"
-        - dps_val: false
-          value: "off"
-    - id: 2
-      name: temperature
-      type: integer
-      unit: C
-      range:
-        min: 5
-        max: 50
-    - id: 3
-      name: current_temperature
-      type: integer
-    - id: 5
-      name: preset_mode
-      type: string
-      optional: true
-      mapping:
-        - dps_val: "level_1"
-          value: eco
-        - dps_val: "level_2"
-          value: comfort
-        - dps_val: "level_3"
-          value: boost
-secondary_entities:
+    manufacturer: Cronos
+    model: GPH-D-DA
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "heat"
+          - dps_val: false
+            value: "off"
+      - id: 2
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 5
+          max: 50
+      - id: 3
+        name: current_temperature
+        type: integer
+      - id: 5
+        name: preset_mode
+        type: string
+        optional: true
+        mapping:
+          - dps_val: "level_1"
+            value: eco
+          - dps_val: "level_2"
+            value: comfort
+          - dps_val: "level_3"
+            value: boost
   - entity: lock
     translation_key: child_lock
     category: config

@@ -1,19 +1,18 @@
 name: Weather station
 products:
   - id: nghjvn2pcjllwska
-    name: WeatherStation Pro™
-primary_entity:
-  entity: sensor
-  name: Local temperature
-  class: temperature
-  dps:
-    - id: 131
-      type: integer
-      name: sensor
-      unit: C
-      mapping:
-        - scale: 10
-secondary_entities:
+    model: WeatherStation Pro™
+entities:
+  - entity: sensor
+    name: Local temperature
+    class: temperature
+    dps:
+      - id: 131
+        type: integer
+        name: sensor
+        unit: C
+        mapping:
+          - scale: 10
   - entity: sensor
     name: Weather icon
     class: enum

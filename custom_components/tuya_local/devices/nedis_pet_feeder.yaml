@@ -1,15 +1,15 @@
-name: Nedis Pet Feeder
+name: Pet feeder
 products:
   - id: yxhdmalt36kbawev
-primary_entity:
-  entity: switch
-  name: Feeding
-  icon: "mdi:food-drumstick"
-  dps:
-    - id: 103
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: Nedis
+entities:
+  - entity: switch
+    name: Feeding
+    icon: "mdi:food-drumstick"
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
   - entity: number
     name: Timer feed
     category: config

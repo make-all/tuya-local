@@ -1,122 +1,123 @@
 name: Air conditioner
 products:
   - id: jlzjetbqsrix7ne2
-    name: Kogan KASVWAC30YA vertical window air conditioner
-primary_entity:
-  entity: climate
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          constraint: mode
-          conditions:
-            - dps_val: AUTO
-              value: heat_cool
-            - dps_val: COOL
-              value: cool
-            - dps_val: DRY
-              value: dry
-            - dps_val: HEAT
-              value: heat
-            - dps_val: FAN
-              value: fan_only
-    - id: 2
-      type: integer
-      name: temperature
-      range:
-        min: 16
-        max: 30
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: temp_set_f
-              range:
-                min: 60
-                max: 86
-    - id: 3
-      type: integer
-      name: current_temperature
-      mapping:
-        - constraint: temperature_unit
-          conditions:
-            - dps_val: f
-              value_redirect: temp_current_f
-    - id: 4
-      type: string
-      name: mode
-      hidden: true
-    - id: 5
-      type: string
-      name: fan_mode
-      mapping:
-        - dps_val: level_1
-          value: silent
-        - dps_val: level_2
-          value: "1"
-        - dps_val: level_3
-          value: "2"
-        - dps_val: level_4
-          value: "3"
-        - dps_val: level_5
-          value: "4"
-        - dps_val: level_6
-          value: "5"
-        - dps_val: level_7
-          value: "6"
-        - dps_val: level_8
-          value: "7"
-        - dps_val: level_9
-          value: auto
-        - dps_val: level_10
-          value: powerful
-    - id: 19
-      type: string
-      name: temperature_unit
-      mapping:
-        - dps_val: c
-          value: C
-        - dps_val: f
-          value: F
-    - id: 23
-      type: integer
-      name: temp_current_f
-      hidden: true
-    - id: 24
-      type: integer
-      name: temp_set_f
-      optional: true
-      hidden: true
-      range:
-        min: 60
-        max: 86
-    - id: 102
-      type: boolean
-      name: swing_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: "on"
-    - id: 106
-      type: string
-      name: model
-      mapping:
-        - dps_val: "0"
-          value: reversable_heatpump
-        - dps_val: "1"
-          value: cooling_only
-    - id: 109
-      type: boolean
-      name: pump
-    - id: 110
-      type: boolean
-      name: follow_me
-secondary_entities:
+    manufacturer: Kogan
+    model_id: KASVWAC30YA
+    model: Vertical window air conditioner
+entities:
+  - entity: climate
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: AUTO
+                value: heat_cool
+              - dps_val: COOL
+                value: cool
+              - dps_val: DRY
+                value: dry
+              - dps_val: HEAT
+                value: heat
+              - dps_val: FAN
+                value: fan_only
+      - id: 2
+        type: integer
+        name: temperature
+        range:
+          min: 16
+          max: 30
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_set_f
+                range:
+                  min: 60
+                  max: 86
+      - id: 3
+        type: integer
+        name: current_temperature
+        mapping:
+          - constraint: temperature_unit
+            conditions:
+              - dps_val: f
+                value_redirect: temp_current_f
+      - id: 4
+        type: string
+        name: mode
+        hidden: true
+      - id: 5
+        type: string
+        name: fan_mode
+        mapping:
+          - dps_val: level_1
+            value: silent
+          - dps_val: level_2
+            value: "1"
+          - dps_val: level_3
+            value: "2"
+          - dps_val: level_4
+            value: "3"
+          - dps_val: level_5
+            value: "4"
+          - dps_val: level_6
+            value: "5"
+          - dps_val: level_7
+            value: "6"
+          - dps_val: level_8
+            value: "7"
+          - dps_val: level_9
+            value: auto
+          - dps_val: level_10
+            value: powerful
+      - id: 19
+        type: string
+        name: temperature_unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+      - id: 23
+        type: integer
+        name: temp_current_f
+        hidden: true
+      - id: 24
+        type: integer
+        name: temp_set_f
+        optional: true
+        hidden: true
+        range:
+          min: 60
+          max: 86
+      - id: 102
+        type: boolean
+        name: swing_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: "on"
+      - id: 106
+        type: string
+        name: model
+        mapping:
+          - dps_val: "0"
+            value: reversable_heatpump
+          - dps_val: "1"
+            value: cooling_only
+      - id: 109
+        type: boolean
+        name: pump
+      - id: 110
+        type: boolean
+        name: follow_me
   - entity: lock
     translation_key: child_lock
     category: config

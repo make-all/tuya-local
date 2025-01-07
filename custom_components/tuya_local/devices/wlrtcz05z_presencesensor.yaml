@@ -1,26 +1,25 @@
 name: Human presence
 # products:
 #   - id: UNKNOWN
-#     name: WL-RTCZ-05Z
-primary_entity:
-  entity: binary_sensor
-  class: occupancy
-  dps:
-    - id: 1
-      type: string
-      name: sensor
-      mapping:
-        - dps_val: none
-          value: false
-        - value: true
-    - id: 1
-      type: string
-      name: status
-    - id: 120
-      type: string
-      optional: true
-      name: debug
-secondary_entities:
+#     model: WL-RTCZ-05Z
+entities:
+  - entity: binary_sensor
+    class: occupancy
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: none
+            value: false
+          - value: true
+      - id: 1
+        type: string
+        name: status
+      - id: 120
+        type: string
+        optional: true
+        name: debug
   - entity: binary_sensor
     class: movement
     dps:

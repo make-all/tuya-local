@@ -1,28 +1,27 @@
 name: Air purifier
 products:
   - id: xhrfqobcbyk2br0z
-    name: NX-100AP Rapid
-primary_entity:
-  entity: fan
-  translation_only_key: fan_with_presets
-  icon: "mdi:air-purifier"
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-    - id: 3
-      name: preset_mode
-      type: string
-      mapping:
-        - dps_val: Sleep
-          value: sleep
-        - dps_val: M
-          value: normal
-        - dps_val: H
-          value: strong
-        - dps_val: Auto
-          value: smart
-secondary_entities:
+    model: NX-100AP Rapid
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    icon: "mdi:air-purifier"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 3
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: Sleep
+            value: sleep
+          - dps_val: M
+            value: normal
+          - dps_val: H
+            value: strong
+          - dps_val: Auto
+            value: smart
   - entity: sensor
     translation_key: time_remaining
     class: duration

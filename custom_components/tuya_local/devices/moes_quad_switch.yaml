@@ -1,24 +1,24 @@
 name: Quad switch
 products:
   - id: mwiiltjyanw48oxm
-    name: Moes MS-104D
-primary_entity:
-  entity: switch
-  translation_key: switch_x
-  translation_placeholders:
-    x: "1"
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 44
-      type: string
-      name: inching
-    - id: 48
-      type: string
-      name: interlock
-      optional: true
-secondary_entities:
+    manufacturer: Moes
+    model: MS-104D
+entities:
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 44
+        type: string
+        name: inching
+      - id: 48
+        type: string
+        name: interlock
+        optional: true
   - entity: switch
     translation_key: switch_x
     translation_placeholders:

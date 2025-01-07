@@ -1,126 +1,126 @@
 name: Pool heat pump
 products:
   - id: trtfk7jrlez4hvxu
-    name: Poolex SpaWer Ice Spa 70
-primary_entity:
-  entity: climate
-  translation_key: pool_heatpump
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - constraint: mode
-          conditions:
-            - dps_val: "0"
-              value: heat_cool
-            - dps_val: "1"
-              value: cool
-            - dps_val: "4"
-              value: heat
-    - id: 2
-      type: string
-      name: mode
-    - id: 4
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 400
-        max: 4000
-      mapping:
-        - scale: 100
-          step: 100
-          constraint: mode
-          conditions:
-            - dps_val: "1"
-              value_redirect: temp_set_cold
-            - dps_val: "4"
-              value_redirect: temp_set_heat
-    - id: 16
-      type: integer
-      name: current_temperature
-      mapping:
-        - scale: 100
-    - id: 117
-      type: integer
-      name: temp_set_heat
-      hidden: true
-      mapping:
-        - scale: 100
-          step: 100
-      range:
-        min: 1500
-        max: 4000
-    - id: 118
-      type: integer
-      name: temp_set_cold
-      hidden: true
-      mapping:
-        - scale: 100
-          step: 100
-      range:
-        min: 400
-        max: 3500
-    # dps past 128 are not appearing in the log, so left as attributes rather
-    # than creating sensors for values that might never be seen
-    - id: 129
-      type: integer
-      optional: true
-      name: temperature_target_distance
-      mapping:
-        - scale: 100
-    - id: 130
-      type: boolean
-      optional: true
-      name: water_pump_status
-    - id: 131
-      type: boolean
-      optional: true
-      name: aux_heating
-    - id: 132
-      type: integer
-      optional: true
-      name: ac_voltage
-      mapping:
-        - scale: 100
-    - id: 133
-      type: integer
-      optional: true
-      name: ac_current
-      mapping:
-        - scale: 100
-    - id: 134
-      type: integer
-      optional: true
-      name: bus_voltage
-      mapping:
-        - scale: 100
-    - id: 135
-      type: integer
-      optional: true
-      name: compressor_current
-      mapping:
-        - scale: 100
-    - id: 136
-      type: integer
-      optional: true
-      name: fan_current
-      mapping:
-        - scale: 100
-    - id: 137
-      type: integer
-      optional: true
-      name: ipm_temp
-      mapping:
-        - scale: 100
-    - id: 138
-      type: boolean
-      optional: true
-      name: four_way_valve
-secondary_entities:
+    manufacturer: Poolex
+    model: SpaWer Ice Spa 70
+entities:
+  - entity: climate
+    translation_key: pool_heatpump
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - constraint: mode
+            conditions:
+              - dps_val: "0"
+                value: heat_cool
+              - dps_val: "1"
+                value: cool
+              - dps_val: "4"
+                value: heat
+      - id: 2
+        type: string
+        name: mode
+      - id: 4
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 400
+          max: 4000
+        mapping:
+          - scale: 100
+            step: 100
+            constraint: mode
+            conditions:
+              - dps_val: "1"
+                value_redirect: temp_set_cold
+              - dps_val: "4"
+                value_redirect: temp_set_heat
+      - id: 16
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 100
+      - id: 117
+        type: integer
+        name: temp_set_heat
+        hidden: true
+        mapping:
+          - scale: 100
+            step: 100
+        range:
+          min: 1500
+          max: 4000
+      - id: 118
+        type: integer
+        name: temp_set_cold
+        hidden: true
+        mapping:
+          - scale: 100
+            step: 100
+        range:
+          min: 400
+          max: 3500
+      # dps past 128 are not appearing in the log, so left as attributes rather
+      # than creating sensors for values that might never be seen
+      - id: 129
+        type: integer
+        optional: true
+        name: temperature_target_distance
+        mapping:
+          - scale: 100
+      - id: 130
+        type: boolean
+        optional: true
+        name: water_pump_status
+      - id: 131
+        type: boolean
+        optional: true
+        name: aux_heating
+      - id: 132
+        type: integer
+        optional: true
+        name: ac_voltage
+        mapping:
+          - scale: 100
+      - id: 133
+        type: integer
+        optional: true
+        name: ac_current
+        mapping:
+          - scale: 100
+      - id: 134
+        type: integer
+        optional: true
+        name: bus_voltage
+        mapping:
+          - scale: 100
+      - id: 135
+        type: integer
+        optional: true
+        name: compressor_current
+        mapping:
+          - scale: 100
+      - id: 136
+        type: integer
+        optional: true
+        name: fan_current
+        mapping:
+          - scale: 100
+      - id: 137
+        type: integer
+        optional: true
+        name: ipm_temp
+        mapping:
+          - scale: 100
+      - id: 138
+        type: boolean
+        optional: true
+        name: four_way_valve
   - entity: lock
     translation_key: child_lock
     category: config

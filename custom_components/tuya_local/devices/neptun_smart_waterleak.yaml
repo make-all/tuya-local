@@ -1,92 +1,91 @@
 name: Water leak detector
 products:
   - id: vptg13wa7y8xmoio
-    name: Neptun Smart
-primary_entity:
-  entity: binary_sensor
-  class: problem
-  category: diagnostic
-  dps:
-    - id: 123
-      type: bitfield
-      name: sensor
-      optional: true
-      mapping:
-        - dps_val: null
-          value: false
-        - dps_val: 0
-          value: false
-        - value: true
-    - id: 123
-      type: bitfield
-      name: fault_code
-      optional: true
-    - id: 123
-      type: bitfield
-      name: description
-      optional: true
-      mapping:
-        - dps_val: 0
-          value: ok
-        - dps_val: 1
-          value: alarm_zone_1
-        - dps_val: 2
-          value: alarm_zone_2
-        - dps_val: 4
-          value: sens_discharge
-        - dps_val: 8
-          value: sensor_lost
-        - dps_val: 16
-          value: closed_zone_1
-        - dps_val: 32
-          value: closed_zone_2
-        - dps_val: 64
-          value: cleaning_floor
-        - dps_val: 128
-          value: slot1_error
-        - dps_val: 256
-          value: slot2_error
-        - dps_val: 512
-          value: slot3_error
-        - dps_val: 1024
-          value: slot4_error
-        - dps_val: 2048
-          value: counter1_error
-        - dps_val: 4096
-          value: counter2_error
-        - dps_val: 8192
-          value: counter3_error
-        - dps_val: 16384
-          value: counter4_error
-        - dps_val: 32768
-          value: counter5_error
-        - dps_val: 65536
-          value: counter6_error
-        - dps_val: 131072
-          value: counter7_error
-        - dps_val: 262144
-          value: counter8_error
-    - id: 114
-      type: string
-      optional: true
-      name: line_settings
-    - id: 115
-      type: integer
-      optional: true
-      name: status_wire_line
-    - id: 116
-      type: integer
-      name: relay_settings
-      optional: true
-    - id: 134
-      type: string
-      optional: true
-      name: name_lines
-    - id: 145
-      type: string
-      optional: true
-      name: slots_map
-secondary_entities:
+    manufacturer: Neptun Smart
+entities:
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 123
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 123
+        type: bitfield
+        name: fault_code
+        optional: true
+      - id: 123
+        type: bitfield
+        name: description
+        optional: true
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 1
+            value: alarm_zone_1
+          - dps_val: 2
+            value: alarm_zone_2
+          - dps_val: 4
+            value: sens_discharge
+          - dps_val: 8
+            value: sensor_lost
+          - dps_val: 16
+            value: closed_zone_1
+          - dps_val: 32
+            value: closed_zone_2
+          - dps_val: 64
+            value: cleaning_floor
+          - dps_val: 128
+            value: slot1_error
+          - dps_val: 256
+            value: slot2_error
+          - dps_val: 512
+            value: slot3_error
+          - dps_val: 1024
+            value: slot4_error
+          - dps_val: 2048
+            value: counter1_error
+          - dps_val: 4096
+            value: counter2_error
+          - dps_val: 8192
+            value: counter3_error
+          - dps_val: 16384
+            value: counter4_error
+          - dps_val: 32768
+            value: counter5_error
+          - dps_val: 65536
+            value: counter6_error
+          - dps_val: 131072
+            value: counter7_error
+          - dps_val: 262144
+            value: counter8_error
+      - id: 114
+        type: string
+        optional: true
+        name: line_settings
+      - id: 115
+        type: integer
+        optional: true
+        name: status_wire_line
+      - id: 116
+        type: integer
+        name: relay_settings
+        optional: true
+      - id: 134
+        type: string
+        optional: true
+        name: name_lines
+      - id: 145
+        type: string
+        optional: true
+        name: slots_map
   - entity: switch
     name: Floor cleaning
     icon: "mdi:pail"

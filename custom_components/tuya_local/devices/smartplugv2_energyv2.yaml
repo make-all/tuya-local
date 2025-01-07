@@ -1,35 +1,36 @@
 name: Energy monitoring smartplug
 products:
   - id: jdj6ccklup7btq3a
-    name: Tongou TO-Q-SY1-JWT
+    manufacturer: Tongou
+    model: TO-Q-SY1-JWT
   - id: w906qkrrhd3otiwd
-    name: Moes ME322
+    manufacturer: Moes
+    model: ME322
   - id: ncwuazeo5y1pujun
-    name: STY-63TM
-primary_entity:
-  entity: switch
-  class: outlet
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-    - id: 21
-      type: integer
-      name: test_bit
-      optional: true
-    - id: 42
-      type: string
-      name: cycle_timer
-      optional: true
-    - id: 43
-      type: string
-      name: random_timer
-      optional: true
-    - id: 44
-      type: string
-      name: inching
-      optional: true
-secondary_entities:
+    model: STY-63TM
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 21
+        type: integer
+        name: test_bit
+        optional: true
+      - id: 42
+        type: string
+        name: cycle_timer
+        optional: true
+      - id: 43
+        type: string
+        name: random_timer
+        optional: true
+      - id: 44
+        type: string
+        name: inching
+        optional: true
   - entity: number
     category: config
     class: duration

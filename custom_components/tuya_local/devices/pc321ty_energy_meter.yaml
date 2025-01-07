@@ -1,21 +1,20 @@
 name: Power clamp meter
 products:
   - id: r64livttuufctble
-    name: PC321-TY
+    model: PC321-TY
   - id: 9rjjf6rdkca9woju
-    name: PC321-TY 80A
-primary_entity:
-  entity: sensor
-  class: energy
-  dps:
-    - id: 131
-      type: integer
-      name: sensor
-      mapping:
-        - scale: 100
-      unit: kWh
-      class: total_increasing
-secondary_entities:
+    model: PC321-TY 80A
+entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 131
+        type: integer
+        name: sensor
+        mapping:
+          - scale: 100
+        unit: kWh
+        class: total_increasing
   - entity: sensor
     category: diagnostic
     translation_key: voltage_x

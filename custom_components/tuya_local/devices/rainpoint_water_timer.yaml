@@ -1,21 +1,21 @@
 name: Water timer
 products:
   - id: ew946yrp3pgbaziu
-    name: RainPoint TTV103FRF
-primary_entity:
-  entity: valve
-  class: water
-  icon: "mdi:watering-can"
-  dps:
-    - id: 108
-      type: boolean
-      name: valve
-      mapping:
-        - dps_val: true
-          value: false
-        - dps_val: false
-          value: true
-secondary_entities:
+    manufacturer: RainPoint
+    model: TTV103FRF
+entities:
+  - entity: valve
+    class: water
+    icon: "mdi:watering-can"
+    dps:
+      - id: 108
+        type: boolean
+        name: valve
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
   - entity: switch
     name: Automatic irrigation
     category: config

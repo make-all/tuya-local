@@ -1,24 +1,24 @@
 name: Gate controller
 products:
   - id: q4tn6xb10zncammj
-    name: Home Gate NI800z/NI600z
-primary_entity:
-  entity: button
-  name: Open
-  icon: "mdi:gate-open"
-  dps:
-    - id: 101
-      type: boolean
-      name: button
-      optional: true
-    - id: 107
-      type: boolean
-      name: locked
-      optional: true
-      mapping:
-        - dps_val: null
-          value: false
-secondary_entities:
+    manufacturer: Home Gate
+    model: NI800z/NI600z
+entities:
+  - entity: button
+    name: Open
+    icon: "mdi:gate-open"
+    dps:
+      - id: 101
+        type: boolean
+        name: button
+        optional: true
+      - id: 107
+        type: boolean
+        name: locked
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
   - entity: button
     name: Close
     icon: "mdi:gate"

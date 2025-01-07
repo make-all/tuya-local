@@ -1,21 +1,20 @@
 name: Dual dimmer
 products:
   - id: 3ovuf2vazfsz2hfd
-    name: LG921
-primary_entity:
-  entity: light
-  name: Light 1
-  dps:
-    - id: 101
-      type: boolean
-      name: switch
-    - id: 102
-      name: brightness
-      type: integer
-      range:
-        min: 25
-        max: 255
-secondary_entities:
+    model: LG921
+entities:
+  - entity: light
+    name: Light 1
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+      - id: 102
+        name: brightness
+        type: integer
+        range:
+          min: 25
+          max: 255
   - entity: light
     name: Light 2
     dps:

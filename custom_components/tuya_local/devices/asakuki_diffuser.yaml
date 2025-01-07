@@ -1,23 +1,23 @@
 name: Aroma diffuser
 products:
   - id: 6ASdNwe9IdaewQEl
-    name: Asakuki cube light
-primary_entity:
-  entity: fan
-  translation_key: aroma_diffuser
-  dps:
-    - id: 11
-      type: boolean
-      name: switch
-    - id: 13
-      type: string
-      name: speed
-      mapping:
-        - dps_val: "0"
-          value: 50
-        - dps_val: "1"
-          value: 100
-secondary_entities:
+    manufacturer: Asakuki
+    name: Cube light aroma diffuser
+entities:
+  - entity: fan
+    translation_key: aroma_diffuser
+    dps:
+      - id: 11
+        type: boolean
+        name: switch
+      - id: 13
+        type: string
+        name: speed
+        mapping:
+          - dps_val: "0"
+            value: 50
+          - dps_val: "1"
+            value: 100
   - entity: light
     dps:
       - id: 1

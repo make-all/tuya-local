@@ -1,15 +1,15 @@
 name: Pet water fountain
 products:
   - id: hpa87ady0hndivqn
-    name: Sobralik FW-W01
-primary_entity:
-  entity: switch
-  icon: "mdi:water-pump"
-  dps:
-    - id: 1
-      type: boolean
-      name: switch
-secondary_entities:
+    manufacturer: Sobralik
+    model: FW-W01
+entities:
+  - entity: switch
+    icon: "mdi:water-pump"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
   - entity: binary_sensor
     translation_key: tank_empty
     dps:

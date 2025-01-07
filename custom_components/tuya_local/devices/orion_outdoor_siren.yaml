@@ -1,45 +1,46 @@
 name: Outdoor siren
 products:
   - id: im2eqqhj72suwwko
-    name: Orion SWS08HA
+    manufacturer: Orion
+    model: SWS08HA
   - id: likuc5ld1ap3apcm
-    name: Elesion NX-4980
-primary_entity:
-  entity: siren
-  dps:
-    - id: 1
-      name: tone
-      type: string
-      mapping:
-        - dps_val: alarm_sound
-          value: sound
-        - dps_val: alarm_light
-          value: light
-        - dps_val: alarm_sound_light
-          value: sound+light
-          default: true
-        - dps_val: normal
-          value: "off"
-    - id: 5
-      name: volume_level
-      type: string
-      mapping:
-        - dps_val: mute
-          value: 0.0
-        - dps_val: low
-          value: 0.33
-        - dps_val: middle
-          value: 0.67
-        - dps_val: high
-          value: 1.0
-    - id: 7
-      name: duration
-      type: integer
-      range:
-        min: 1
-        max: 10
-      unit: min
-secondary_entities:
+    manufacturer: Elesion
+    model: NX-4980
+entities:
+  - entity: siren
+    dps:
+      - id: 1
+        name: tone
+        type: string
+        mapping:
+          - dps_val: alarm_sound
+            value: sound
+          - dps_val: alarm_light
+            value: light
+          - dps_val: alarm_sound_light
+            value: sound+light
+            default: true
+          - dps_val: normal
+            value: "off"
+      - id: 5
+        name: volume_level
+        type: string
+        mapping:
+          - dps_val: mute
+            value: 0.0
+          - dps_val: low
+            value: 0.33
+          - dps_val: middle
+            value: 0.67
+          - dps_val: high
+            value: 1.0
+      - id: 7
+        name: duration
+        type: integer
+        range:
+          min: 1
+          max: 10
+        unit: min
   - entity: binary_sensor
     name: Charging
     category: diagnostic

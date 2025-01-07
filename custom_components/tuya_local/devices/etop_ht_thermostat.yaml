@@ -1,81 +1,82 @@
 name: Thermostat
 products:
   - id: viav1onpzcozfneb
-    name: ETOP HT-01AC
+    manufacturer: ETOP
+    model: HT-01AC
   - id: zhfbsam03cs0ge5n
-    name: PNI CT-400
-primary_entity:
-  entity: climate
-  translation_key: thermostat
-  dps:
-    - id: 1
-      type: boolean
-      name: hvac_mode
-      mapping:
-        - dps_val: false
-          value: "off"
-        - dps_val: true
-          value: heat
-    - id: 2
-      type: string
-      name: preset_mode
-      mapping:
-        - dps_val: manual
-          value: manual
-        - dps_val: eco
-          value: eco
-        - dps_val: auto
-          value: auto
-    - id: 3
-      type: string
-      name: hvac_action
-      mapping:
-        - dps_val: no_heating
-          value: idle
-        - dps_val: heating
-          value: heating
-    - id: 24
-      type: integer
-      name: current_temperature
-      range:
-        min: 0
-        max: 1000
-      mapping:
-        - scale: 10
-          step: 5
-    - id: 16
-      type: integer
-      name: temperature
-      unit: C
-      range:
-        min: 0
-        max: 1000
-      mapping:
-        - scale: 10
-          step: 5
-    - id: 26
-      type: integer
-      name: min_temperature
-      range:
-        min: 0
-        max: 1000
-      mapping:
-        - scale: 10
-          step: 5
-    - id: 19
-      type: integer
-      name: max_temperature
-      range:
-        min: 50
-        max: 1000
-      mapping:
-        - scale: 10
-          step: 5
-    - id: 101
-      type: integer
-      optional: true
-      name: dead_zone
-secondary_entities:
+    manufacturer: PNI
+    model: CT-400
+entities:
+  - entity: climate
+    translation_key: thermostat
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: manual
+            value: manual
+          - dps_val: eco
+            value: eco
+          - dps_val: auto
+            value: auto
+      - id: 3
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: no_heating
+            value: idle
+          - dps_val: heating
+            value: heating
+      - id: 24
+        type: integer
+        name: current_temperature
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 16
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 26
+        type: integer
+        name: min_temperature
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 19
+        type: integer
+        name: max_temperature
+        range:
+          min: 50
+          max: 1000
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 101
+        type: integer
+        optional: true
+        name: dead_zone
   - entity: switch
     translation_key: anti_frost
     category: config

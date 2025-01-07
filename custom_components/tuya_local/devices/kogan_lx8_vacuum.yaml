@@ -1,126 +1,126 @@
 name: Robot vacuum
 products:
   - id: 1bgkj0zbhbw7fppy
-    name: Kogan LX8
-primary_entity:
-  entity: vacuum
-  dps:
-    - id: 101
-      name: activate  # clean_switch
-      type: boolean
-    - id: 102
-      name: command  # pause_switch
-      type: boolean
-      mapping:
-        - dps_val: true
-          value: pause
-        - dps_val: false
-          constraint: clean_mode
-          conditions:
-            - dps_val: smart
-              value: smart
-            - dps_val: pose
-              value: clean_spot
-            - dps_val: zone
-              value: zone
-            - dps_val: backcharge
-              value: return_to_base
-    - id: 104
-      name: clean_mode
-      type: string
-      optional: true
-    - id: 105
-      name: status  # robot_state
-      type: string
-      mapping:
-        - dps_val: idle
-          value: standby
-        - dps_val: pointing\areaing
-          value: pointing_areaing
-        - dps_val: totaling
-          value: cleaning
-        - dps_val: sweep
-          value: sweep
-        - dps_val: mop
-          value: mop
-        - dps_val: fault
-          value: error
-        - dps_val: pause
-          value: paused
-        - dps_val: chargring
-          value: charging
-        - dps_val: tocharge
-          value: returning
-        - dps_val: fullcharge
-          value: charged
-        - dps_val: remotectl
-          value: remotectl
-    - id: 109
-      name: fan_speed  # fan_mode
-      type: string
-      mapping:
-        - dps_val: quiet
-          value: quiet
-        - dps_val: strong
-          value: strong
-        - dps_val: standard
-          value: standard
-    - id: 111
-      name: direction_control  # remote_ctrl
-      optional: true
-      type: string
-      mapping:
-        - dps_val: forward
-          value: forward
-        - dps_val: backward
-          value: backward
-        - dps_val: left
-          value: left
-        - dps_val: right
-          value: right
-        - dps_val: stop
-          value: stop
-    - id: 112
-      name: locate  # seek_robot
-      optional: true
-      type: boolean
-    - id: 123
-      name: path_comm
-      optional: true
-      type: string
-    - id: 124
-      name: cmd_comm
-      optional: true
-      type: string
-    - id: 125
-      name: request_data
-      optional: true
-      type: string
-    - id: 126
-      name: comm_flag
-      optional: true
-      type: string
-    - id: 127
-      name: comm_raw
-      optional: true
-      type: string
-    - id: 128
-      name: message_report
-      optional: true
-      type: string
-    - id: 130
-      name: sn
-      optional: true
-      type: string
-    - id: 131
-      name: uuid
-      optional: true
-      type: string
-    - id: 132
-      name: device_info
-      optional: true
-      type: string
-secondary_entities:
+    manufacturer: Kogan
+    model: LX8
+entities:
+  - entity: vacuum
+    dps:
+      - id: 101
+        name: activate  # clean_switch
+        type: boolean
+      - id: 102
+        name: command  # pause_switch
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: pause
+          - dps_val: false
+            constraint: clean_mode
+            conditions:
+              - dps_val: smart
+                value: smart
+              - dps_val: pose
+                value: clean_spot
+              - dps_val: zone
+                value: zone
+              - dps_val: backcharge
+                value: return_to_base
+      - id: 104
+        name: clean_mode
+        type: string
+        optional: true
+      - id: 105
+        name: status  # robot_state
+        type: string
+        mapping:
+          - dps_val: idle
+            value: standby
+          - dps_val: pointing\areaing
+            value: pointing_areaing
+          - dps_val: totaling
+            value: cleaning
+          - dps_val: sweep
+            value: sweep
+          - dps_val: mop
+            value: mop
+          - dps_val: fault
+            value: error
+          - dps_val: pause
+            value: paused
+          - dps_val: chargring
+            value: charging
+          - dps_val: tocharge
+            value: returning
+          - dps_val: fullcharge
+            value: charged
+          - dps_val: remotectl
+            value: remotectl
+      - id: 109
+        name: fan_speed  # fan_mode
+        type: string
+        mapping:
+          - dps_val: quiet
+            value: quiet
+          - dps_val: strong
+            value: strong
+          - dps_val: standard
+            value: standard
+      - id: 111
+        name: direction_control  # remote_ctrl
+        optional: true
+        type: string
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: backward
+            value: backward
+          - dps_val: left
+            value: left
+          - dps_val: right
+            value: right
+          - dps_val: stop
+            value: stop
+      - id: 112
+        name: locate  # seek_robot
+        optional: true
+        type: boolean
+      - id: 123
+        name: path_comm
+        optional: true
+        type: string
+      - id: 124
+        name: cmd_comm
+        optional: true
+        type: string
+      - id: 125
+        name: request_data
+        optional: true
+        type: string
+      - id: 126
+        name: comm_flag
+        optional: true
+        type: string
+      - id: 127
+        name: comm_raw
+        optional: true
+        type: string
+      - id: 128
+        name: message_report
+        optional: true
+        type: string
+      - id: 130
+        name: sn
+        optional: true
+        type: string
+      - id: 131
+        name: uuid
+        optional: true
+        type: string
+      - id: 132
+        name: device_info
+        optional: true
+        type: string
   - entity: switch
     name: Charge switch
     category: config

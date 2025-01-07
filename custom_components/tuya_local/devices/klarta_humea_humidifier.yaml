@@ -1,48 +1,48 @@
-name: Klarta humidifier
+name: Humidifier
 products:
   - id: i8cej9chgwebzrmp
-    name: Klarta Humea
-primary_entity:
-  entity: humidifier
-  class: humidifier
-  dps:
-    - id: 10
-      type: boolean
-      name: switch
-    - id: 104
-      type: boolean
-      name: mode
-      mapping:
-        - dps_val: true
-          value: auto
-        - dps_val: false
-          value: normal
-    - id: 105
-      type: string
-      name: humidity
-      mapping:
-        - dps_val: "0"
-          value: 35
-        - dps_val: "1"
-          value: 40
-        - dps_val: "2"
-          value: 45
-        - dps_val: "3"
-          value: 50
-        - dps_val: "4"
-          value: 55
-        - dps_val: "5"
-          value: 60
-        - dps_val: "6"
-          value: 65
-        - dps_val: "7"
-          value: 70
-        - dps_val: "8"
-          value: 75
-    - id: 109
-      type: integer
-      name: current_humidity
-secondary_entities:
+    manufacturer: Klarta
+    model: Humea
+entities:
+  - entity: humidifier
+    class: humidifier
+    dps:
+      - id: 10
+        type: boolean
+        name: switch
+      - id: 104
+        type: boolean
+        name: mode
+        mapping:
+          - dps_val: true
+            value: auto
+          - dps_val: false
+            value: normal
+      - id: 105
+        type: string
+        name: humidity
+        mapping:
+          - dps_val: "0"
+            value: 35
+          - dps_val: "1"
+            value: 40
+          - dps_val: "2"
+            value: 45
+          - dps_val: "3"
+            value: 50
+          - dps_val: "4"
+            value: 55
+          - dps_val: "5"
+            value: 60
+          - dps_val: "6"
+            value: 65
+          - dps_val: "7"
+            value: 70
+          - dps_val: "8"
+            value: 75
+      - id: 109
+        type: integer
+        name: current_humidity
   - entity: light
     translation_key: nightlight
     category: config

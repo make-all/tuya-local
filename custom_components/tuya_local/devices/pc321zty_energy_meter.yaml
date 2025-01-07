@@ -1,29 +1,29 @@
 name: Power clamp meter
 products:
   - id: nslr42tt
-    name: PC321-Z-TY
+    model: PC321-Z-TY
   - id: gqmmtjclqb7reg5p
-    name: Owon PCT321-W-TY 80A
-primary_entity:
-  entity: sensor
-  class: energy
-  dps:
-    - id: 1
-      type: integer
-      name: sensor
-      mapping:
-        - scale: 100
-      unit: kWh
-      class: total_increasing
-    - id: 3
-      type: string
-      name: monthly
-      optional: true
-    - id: 4
-      type: string
-      name: daily
-      optional: true
-secondary_entities:
+    manufacturer: Owon
+    model: PCT321-W-TY 80A
+entities:
+  - entity: sensor
+    class: energy
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        mapping:
+          - scale: 100
+        unit: kWh
+        class: total_increasing
+      - id: 3
+        type: string
+        name: monthly
+        optional: true
+      - id: 4
+        type: string
+        name: daily
+        optional: true
   - entity: sensor
     category: diagnostic
     translation_key: voltage_x

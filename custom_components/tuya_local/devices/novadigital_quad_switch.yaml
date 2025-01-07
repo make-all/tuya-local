@@ -1,20 +1,19 @@
 # Example DPS Status
 # {'dps': {'1': True, '2': True, '3': True, '4': True, '7': 0, '8': 0, '9': 0,
 #  '10': 0, '14': '0', '16': True}}
-name: Novadigital Quad Switch
+name: Quad switch
 products:
   - id: 6u3rzfddlfajqvn5
-    name: Novadigital quad switch
-primary_entity:
-  entity: switch
-  translation_key: switch_x
-  translation_placeholders:
-    x: "1"
-  dps:
-    - id: 1
-      name: switch
-      type: boolean
-secondary_entities:
+    manufacturer: Novadigital
+entities:
+  - entity: switch
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
   - entity: switch
     translation_key: switch_x
     translation_placeholders:

@@ -1,32 +1,32 @@
 name: Outdoor camera
 products:
   - id: irt8xftriwhxbzsn
-    name: Nedis WIFICO11CWT
-primary_entity:
-  entity: camera
-  dps:
-    - id: 115
-      name: snapshot
-      type: base64
-      optional: true
-      sensitive: true
-    - id: 134
-      name: motion_enable
-      type: boolean
-      optional: true
-      mapping:
-        - dps_val: null
-          value: false
-          hidden: true
-    - id: 150
-      name: record
-      type: boolean
-      optional: true
-      mapping:
-        - dps_val: null
-          value: false
-          hidden: true
-secondary_entities:
+    manufacturer: Nedis
+    model: WIFICO11CWT
+entities:
+  - entity: camera
+    dps:
+      - id: 115
+        name: snapshot
+        type: base64
+        optional: true
+        sensitive: true
+      - id: 134
+        name: motion_enable
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+      - id: 150
+        name: record
+        type: boolean
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
   - entity: light
     translation_key: indicator
     category: config
