@@ -590,7 +590,6 @@ class TuyaDpsConfig:
         mapping = self._find_map_for_dps(device.get_property(self.id), device)
         r = self._config.get("range")
         if mapping:
-            _LOGGER.debug("Considering mapping for range of %s", self.name)
             cond = self._active_condition(mapping, device)
             if cond:
                 r = cond.get("range", r)
@@ -628,13 +627,10 @@ class TuyaDpsConfig:
         scale = self.scale(device) if scaled else 1
         mapping = self._find_map_for_dps(device.get_property(self.id), device)
         if mapping:
-            _LOGGER.debug("Considering mapping for step of %s", self.name)
             step = mapping.get("step", 1)
 
             cond = self._active_condition(mapping, device)
             if cond:
-                constraint = mapping.get("constraint", self.name)
-                _LOGGER.debug("Considering condition on %s", constraint)
                 step = cond.get("step", step)
         if step != 1 or scale != 1:
             _LOGGER.debug(

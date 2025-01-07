@@ -1,7 +1,8 @@
 name: Kettle
 products:
   - id: il4ofqon04yai1xe
-    name: Silvercrest WK0828RT
+    manufacturer: Silvercrest
+    model: WK0828RT
 entities:
   - entity: water_heater
     icon: "mdi:kettle"
@@ -19,6 +20,9 @@ entities:
                 value: Keep warm
               - dps_val: true
                 value: Boil
+              - dps_val: null
+                value: Boil
+                hidden: true
       - id: 2
         type: integer
         name: current_temperature
