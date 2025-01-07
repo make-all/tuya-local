@@ -4,11 +4,9 @@ products:
     name: RecTeq RT-700
 primary_entity:
   entity: climate
-  name: RecTeq RT-700
   dps:
     - id: 1
-      type: boolean 
-      name: hvac_mode
+      type: boolean
       mapping:
         - dps_val: false
           value: "off"
@@ -37,3 +35,8 @@ secondary_entities:
   - entity: sensor
     name: Probe B Temperature
     class: temperature
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: F
