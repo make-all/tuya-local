@@ -1,0 +1,92 @@
+name: Humidifier
+products:
+  - id: aa8iuikeenvbsznx
+    manufacturer: CLOFTE
+    model: DUO 400
+    model_id: T3-CLOFTE
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        name: switch
+        type: boolean
+      - id: 111
+        type: integer
+        name: speed
+        range:
+          min: 0
+          max: 4
+        mapping:
+          - dps_val: 1
+            value: 1
+          - dps_val: 2
+            value: 2
+          - dps_val: 3
+            value: 3
+          - dps_val: 4
+            value: 4
+          - dps_val: 0
+            value: 0
+  - entity: switch
+    name: Sleep
+    translation_key: sleep
+    dps:
+      - id: 101
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Quiet
+    icon: mdi:volume-high
+    dps:
+      - id: 116
+        name: switch
+        type: boolean
+  - entity: switch
+    name: Drying
+    dps:
+      - id: 105
+        name: switch
+        type: boolean
+  - entity: sensor
+    name: PM2.5
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: µg/m³
+  - entity: binary_sensor
+    translation_key: tank_empty
+    name: Water level low
+    category: diagnostic
+    dps:
+      - id: 108
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: high
+            value: false
+          - dps_val: low
+            value: true
+  - entity: button
+    translation_key: filter_reset
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        name: button
+  - entity: sensor
+    name: Filter left
+    icon: mdi:air-filter
+    category: diagnostic
+    dps:
+      - id: 16
+        type: integer
+        name: sensor
+        unit: "%"
+  - entity: switch
+    translation_key: uv_sterilization
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
