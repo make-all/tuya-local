@@ -17,17 +17,6 @@ entities:
         range:
           min: 0
           max: 4
-        mapping:
-          - dps_val: 1
-            value: 1
-          - dps_val: 2
-            value: 2
-          - dps_val: 3
-            value: 3
-          - dps_val: 4
-            value: 4
-          - dps_val: 0
-            value: 0
   - entity: switch
     name: Sleep
     translation_key: sleep
@@ -55,19 +44,13 @@ entities:
         type: integer
         name: sensor
         unit: µg/m³
-  - entity: binary_sensor
-    translation_key: tank_empty
-    name: Water level low
+  - entity: sensor
+    name: Water level
     category: diagnostic
     dps:
       - id: 108
-        type: bitfield
+        type: string
         name: sensor
-        mapping:
-          - dps_val: high
-            value: false
-          - dps_val: low
-            value: true
   - entity: button
     translation_key: filter_reset
     category: config
