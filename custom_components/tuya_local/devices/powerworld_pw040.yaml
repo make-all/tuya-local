@@ -15,14 +15,16 @@ entities:
         range:
           min: 30
           max: 55
-  - entity: number
+  - entity: sensor
     name: Warmwasser_T  # hot water (actual value)
-    category: config
+    class: temperature
+    category: diagnostic
     dps:
       - id: 108  # Warmwasser_T (ist): hot water (actual value)
         type: integer
-        name: value
         unit: C
+        name: sensor
+        class: measurement
       - id: 4
         hidden: true
         type: integer
