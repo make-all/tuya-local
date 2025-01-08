@@ -414,7 +414,7 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                 if model:
                     _LOGGER.warning(
                         "Device specficication:\n%s",
-                        json.dumps(model, indent=4),
+                        log_json(model),
                     )
             except Exception as e:
                 _LOGGER.warning("Unable to fetch data model from cloud: %s", e)
