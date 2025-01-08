@@ -7,6 +7,8 @@ body:
       value: |
         This form is for reporting bugs with the integration or existing devices. Bug reports should be detailed **with log messages or device diagnostics** to help developers determine what is going wrong.
 
+        **If you are reporting a deprecation message from the log, please check that the message is for an HA deprecation (telling you to report the issue here), and that there is not already [a bug](https://github.com/make-all/tuya-local/issues?q=is%3Aissue+is%3Aopen+label%3Amaintenance) for the issue.** Most likely the deprecation is new in the latest HA release, and will not be "fixed" in the integration until late in the month or the next month, as fixes generally are not backwards compatible with older HA versions.  Other deprecation messages can be aimed at you, the end user, to prompt you to update automations etc. If the message is telling you an entity is deprecated, then you can disable the entity in Settings / Devices once you have adapted to use the replacement.
+
         If you have a question, or are unsure if what you observe is really a bug, consider using [Discussions](https://github.com/make-all/tuya-local/discussions) instead.
 
         If you are reporting an unsupported device, please use the **New Device** reporting template instead, which will guide you on the information required to make sure your request is not put into the "too hard" pile.

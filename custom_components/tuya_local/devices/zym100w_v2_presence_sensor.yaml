@@ -1,0 +1,115 @@
+name: mmWave presence sensor
+products:
+  - id: 5lld8pgsoynvctqa
+    model: ZY-M100-WIFI24G V2
+entities:
+  - entity: binary_sensor
+    class: motion
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: move
+            value: true
+          - value: false
+  - entity: number
+    name: Sensitivity
+    category: config
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 1
+          max: 10
+  - entity: number
+    name: Minimum distance
+    category: config
+    icon: "mdi:arrow-collapse-left"
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        unit: m
+        range:
+          min: 0
+          max: 825
+        mapping:
+          - scale: 100
+            step: 75
+  - entity: number
+    name: Maximum distance
+    category: config
+    icon: "mdi:arrow-collapse-right"
+    dps:
+      - id: 4
+        type: integer
+        name: value
+        unit: m
+        range:
+          min: 75
+          max: 900
+        mapping:
+          - scale: 100
+            step: 75
+  - entity: sensor
+    class: distance
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: m
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Presence sensitivity
+    category: config
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        optional: true
+        range:
+          min: 1
+          max: 10
+  - entity: sensor
+    class: illuminance
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: lx
+        class: measurement
+  - entity: binary_sensor
+    class: occupancy
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: presence
+            value: true
+          - dps_val: move
+            value: true
+          - value: false
+      - id: 104
+        type: string
+        name: manned
+  - entity: number
+    name: Delay
+    category: config
+    class: duration
+    icon: "mdi:camera-timer"
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 5
+          max: 15000

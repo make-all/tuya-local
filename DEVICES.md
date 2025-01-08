@@ -12,6 +12,7 @@
 - BVF CP1 heater
 - Caldo Up T fan heater
 - Calex Smart Convector heater
+- Cecotec ReadyWarm 8400 fan heater
 - Cleverio AR10/AR20 panel heaters
 - Create Warm Towel Advance bathroom heater
 - Cronos GPH-D-DA heater
@@ -923,7 +924,7 @@ port and password.
 - ZN-2C09 9-in-1 air quality monitor
 - ZX-GS21 gas leak alarm monitor
 - ZY-HPS01 human presence sensor
-- ZY-M100-WiFi mmWave human presence sensor
+- ZY-M100-WiFi mmWave human presence sensor (2 versions)
 - ZY-M201-WiFi mmWave human presence sensor
 
 ### Devices supported via Bluetooth hubs
