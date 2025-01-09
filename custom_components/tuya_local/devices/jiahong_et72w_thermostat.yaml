@@ -83,22 +83,17 @@ entities:
         name: unknown_109
       - id: 112
         type: integer
-        name: unknown_112
+        name: floor_temp_calibration
       - id: 113
         type: integer
-        name: unknown_113
+        name: room_temp_calibration
   - entity: lock
-    name: Screen lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 108
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
   - entity: sensor
     name: Room temperature
     class: temperature
@@ -146,7 +141,7 @@ entities:
         unit: min
       - id: 116
         type: integer
-        name: calibration
+        name: load_w
   - entity: select
     category: config
     translation_key: temperature_unit

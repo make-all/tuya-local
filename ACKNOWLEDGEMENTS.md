@@ -228,7 +228,7 @@ Further device support has been made with the assistance of users. Please consid
 - [dhuddle](https://github.com/dhuddle) for assisting with support for Chanfok ceiling fan with light, Inkbird BBQ thermometer, Lepro lights (variant of RGBCW light without timer) and Yieryi pH meter.
 - [theshop35](https://github.com/theshop35) for assisting with support for CC curtains.
 - [blakadder](https://github.com/blakadder) for contributing support for Ultonic K10 air fryer, Proscenic M9 vacuums, GratKit filament dryers, improvements to ZY-M100 presence sensors and documentation improvements, and many more devices requested by other users.
-- [szupi-ipuzs](https://github.com/szupi-ipuzs) for contributing support for desk lamps (Setti+ SL601), Loratap relays, Brennenstuhl WFD3050P motion spotlights, Pinelake bird feeder cameras, generic valves.
+- [szupi-ipuzs](https://github.com/szupi-ipuzs) for contributing support for desk lamps (Setti+ SL601), Loratap relays, Brennenstuhl WFD3050P motion spotlights, Pinelake bird feeder cameras, generic valves, Woox R7246 IR remote.
 - [MackoMici](https://github.com/MackoMici) for contributing support for GX aroma diffuser, which was merged with the YYM config, and Blitzwolf LED strips.
 - [Die-Meester](https://github.com/Die-Meester) for contributing support for CBI Astute smart switches.
 - [ResteNarquois](https://github.com/ResteNarquois) for assisting with support for Zemismart roller shades.
@@ -410,7 +410,7 @@ Further device support has been made with the assistance of users. Please consid
 - [t34wrj](https://github.com/t34wrj) for contributing support for Lubluelu vacuums.
 - [lyatam](https://github.com/lyatam) for contributing support for ZX-DB11B doorbell alarms.
 - [urgelaszlo](https://github.com/urgelaszlo) for contributing support for Fisher Summer air conditioners.
-- [felipecrs](https://github.com/felipecrs) for assisting with support for SmarDeer smart locks.
+- [felipecrs](https://github.com/felipecrs) for assisting with support for SmarDeer smart lock and contributing support for ZY-M100-WIFI24G v2 presence sensor.
 - [rbalaev](https://github.com/rbalaev) for assisting with support for Thermex Lima 80V water heaters.
 - [cart3a](https://github.com/cart3a) for contributing support for Beok TGM50 thermostats.
 - [patoh](https://github.com/patoh) for contributing support for Breville Smart Dry Connect dehumidifiers.
@@ -796,3 +796,5 @@ Further device support has been made with the assistance of users. Please consid
 - [stevanov](https://github.com/stevanov) for assisting with support for Etna VW644MC dishwasher.
 - [kmavrov](https://github.com/kmavrov) for assisting with support for Scheeair Nova 100 ventilation fan.
 - [HomeAssistant9121](https://github.com/HomeAssistant9121) for assisting with support for Hysen HY101RF thermostat.
+- [Alokin90](https://github.com/Alokin90) for contributing improvements to Cecotec BigDry 4000 dehumidifier.
+- [Smiie-2](https://github.com/Smiie-2) for contributing improvements to Wilfa Haze humidifier.

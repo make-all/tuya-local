@@ -845,6 +845,7 @@ port and password.
 - Universal remote control with temperature and humidity sensors
 - S11+ IR/RF remote controller
 - Universal remote controller (must match by product id - report yours if not listed and it uses dps 201 and 202 only)
+- Woox R7246 remote control with temperature and humidity sensors
 
 ### Valves
 
@@ -924,7 +925,7 @@ port and password.
 - ZN-2C09 9-in-1 air quality monitor
 - ZX-GS21 gas leak alarm monitor
 - ZY-HPS01 human presence sensor
-- ZY-M100-WiFi mmWave human presence sensor
+- ZY-M100-WiFi mmWave human presence sensor (2 versions)
 - ZY-M201-WiFi mmWave human presence sensor
 
 ### Devices supported via Bluetooth hubs
