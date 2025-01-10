@@ -1,2 +1,33 @@
+[project]
+name = "tuya-local"
+# This version doesn't mean anything because we do not publish to pip
+# See custom_components/tuya_local/manifest.json for version that is used by HomeAssistant
+version = "0.0.0"
+requires-python = ">= 3.13"
+dependencies = [
+    "tinytuya~=1.16.0",
+    "tuya-device-sharing-sdk~=0.2.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "fuzzywuzzy",
+    "isort",
+    "levenshtein",
+    "pytest-homeassistant-custom-component>=0.13.190",
+    "pytest",
+    "pytest-asyncio",
+    "pytest-cov",
+    "ruff",
+    "yamllint",
+]
+
 [tool.black]
-target-version = ["py312"]
+target-version = ["py313"]
+
+[tool.isort]
+profile = "black"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
