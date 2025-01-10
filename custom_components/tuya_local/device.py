@@ -153,7 +153,8 @@ class TuyaLocalDevice(object):
     @property
     def has_returned_state(self):
         """Return True if the device has returned some state."""
-        return len(self._get_cached_state()) > 1
+        cached = self._get_cached_state()
+        return len(cached) > 1 or cached.get("updated_at", 0) > 0
 
     @callback
     def actually_start(self, event=None):
