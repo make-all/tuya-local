@@ -24,17 +24,23 @@ entities:
       - id: 9
         type: boolean
         name: switch
+  - entity: number
+    translation_key: timer
+    category: config
+    class: duration
+    dps
       - id: 6
-        name: countdown
+        name: value
         type: integer
         unit: h
         range:
           min: 0
           max: 6
+  - entity: sensor
+    translation_key: time_remaining
+    category: diagnostic
+    class: duration
       - id: 7
         name: countdown_left
         type: integer
         unit: min
-        range:
-          min: 0
-          max: 360
