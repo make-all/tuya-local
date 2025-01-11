@@ -378,6 +378,7 @@
 
 ### Humidifiers
 
+- airx H8 humidifier
 - BlitzWolf BW-SH2 humidifier
 - BlitzWolf BW-SH5 humidifier
 - Carro VES1011 humidifier

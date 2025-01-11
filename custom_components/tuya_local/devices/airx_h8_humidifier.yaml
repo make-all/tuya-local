@@ -40,18 +40,18 @@ entities:
             value: sleep
   - entity: binary_sensor
     category: diagnostic
-    translation_key: machine_separation_status
+    class: opening
     dps:
       - id: 22
         type: string
         name: sensor
         mapping:
           - dps_val: 0
-            value: off
+            value: false
           - dps_val: 1
-            value: on
+            value: true
   - entity: switch
-    translation_key: electrolysis_sterilization
+    translation_key: electrolytic_sterilization
     category: config
     dps:
       - id: 21
@@ -86,7 +86,7 @@ entities:
         type: boolean
         name: switch
   - entity: sensor
-    translation_key: water_volume
+    translation_key: water_level
     class: enum
     category: diagnostic
     dps:
@@ -99,7 +99,7 @@ entities:
           - dps_val: Low_water
             value: low
           - dps_val: Middle_water
-            value: middle
+            value: medium
           - dps_val: High_water
             value: high
           - dps_val: Full_water
