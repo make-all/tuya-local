@@ -800,3 +800,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Smiie-2](https://github.com/Smiie-2) for contributing improvements to Wilfa Haze humidifier.
 - [estevao90](https://github.com/estevao90) for contributing support for Geonav HISB80A energy meter.
 - [akop](https://github.com/akop) for contributing support for Ledvance Smart+ Planon plus backlight.
+- [vytux-com](https://github.com/vytux-com) for contributing support for 3A Nue 3 speed fan and light controller.
