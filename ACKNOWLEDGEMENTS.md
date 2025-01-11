@@ -799,3 +799,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Alokin90](https://github.com/Alokin90) for contributing improvements to Cecotec BigDry 4000 dehumidifier.
 - [Smiie-2](https://github.com/Smiie-2) for contributing improvements to Wilfa Haze humidifier.
 - [estevao90](https://github.com/estevao90) for contributing support for Geonav HISB80A energy meter.
+- [akop](https://github.com/akop) for contributing support for Ledvance Smart+ Planon plus backlight.
