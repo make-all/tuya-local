@@ -804,3 +804,4 @@ Further device support has been made with the assistance of users. Please consid
 - [nicolas-sora](https://github.com/nicolas-sora) for assisting with support for Wasserstein AquaPal water monitor.
 - [theqz](https://github.com/theqz) for assisting with support for A03 siren.
 - [luisolavea](https://github.com/luisolavea) for assisting with support for Zemismart ZMAi-90 energy meter smart switch.
+- [City-Zero](https://github.com/City-Zero) for contributing support for airx H8 humidifier.
