@@ -1,4 +1,3 @@
-import json
 import logging
 from typing import Any
 
@@ -185,13 +184,22 @@ class Cloud:
         )
         response = await self.__hass.async_add_executor_job(
             manager.customer_api.get,
-            f"/v2.0/cloud/things/{device_id}/model",
+            manager.customer_api,
+            f"/v1.0/m/life/devices/{device_id}/status",
         )
         if response.get("result"):
             response = response["result"]
-        if response.get("model"):
-            return json.loads(response["model"])
-        return response
+        transform = []
+        for entry in response.get("dpStatusRelationDTOS"):
+            if entry["supportLocal"]:
+                transform += {
+                    "id": entry["dpId"],
+                    "name": entry["dpCode"],
+                    "type": entry["valueType"],
+                    "format": entry["valueDesc"],
+                    "enumMap": entry["enumMappingMap"],
+                }
+        return transform
 
     @property
     def is_authenticated(self) -> bool:

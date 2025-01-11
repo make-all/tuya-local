@@ -1,0 +1,76 @@
+name: Panel light
+products:
+  - id: key9cdjdeqjph5sh
+    manufacturer: Ledvance
+    model: Smart+ Planon plus backlight
+    model_id: BL100x25B
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: work_mode
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 0
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        range:
+          min: 0
+          max: 500
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+  - entity: light
+    translation_key: backlight
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: work_mode
+      - id: 24
+        type: hex
+        name: rgbhsv
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        unit: min
+        optional: true
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60

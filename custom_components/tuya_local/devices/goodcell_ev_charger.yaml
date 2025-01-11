@@ -7,6 +7,9 @@ products:
   - id: basqjlsmzcq8ipva
     manufacturer: Feyree
     model: 7.6kW 32A
+  - id: xiptqjoa8q9ltqhr
+    manufacturer: Feyree
+    model: FEL4-3 22kW 3-phase
 entities:
   - entity: sensor
     class: enum
@@ -15,6 +18,7 @@ entities:
     dps:
       - id: 101
         type: string
+        optional: true
         name: sensor
         mapping:
           - dps_val: no_connet
@@ -31,6 +35,8 @@ entities:
             value: waiting
           - dps_val: error
             value: fault
+          - dps_val: null
+            value: unknown
       - id: 3
         type: string
         optional: true
@@ -97,13 +103,17 @@ entities:
     dps:
       - id: 10
         type: bitfield
+        optional: true
         name: sensor
         mapping:
           - dps_val: 0
             value: false
+          - dps_val: null
+            value: false
           - value: true
       - id: 10
         type: bitfield
+        optional: true
         name: fault_code
   - entity: button
     name: Clear energy

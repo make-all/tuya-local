@@ -406,18 +406,18 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                     "Local product id differs from cloud: %s",
                     self.__cloud_device.get("local_product_id"),
                 )
-            # try:
-            #     self.init_cloud()
-            #     model = await self.cloud.async_get_datamodel(
-            #         self.__cloud_device.get("id"),
-            #     )
-            #     if model:
-            #         _LOGGER.warning(
-            #             "Device specficication:\n%s",
-            #             json.dumps(model, indent=4),
-            #         )
-            # except Exception as e:
-            #     _LOGGER.warning("Unable to fetch data model from cloud: %s", e)
+            try:
+                self.init_cloud()
+                model = await self.cloud.async_get_datamodel(
+                    self.__cloud_device.get("id"),
+                )
+                if model:
+                    _LOGGER.warning(
+                        "Device specficication:\n%s",
+                        log_json(model),
+                    )
+            except Exception as e:
+                _LOGGER.warning("Unable to fetch data model from cloud: %s", e)
         _LOGGER.warning(
             "Device matches %s with quality of %d%%. DPS: %s",
             best_matching_type,
