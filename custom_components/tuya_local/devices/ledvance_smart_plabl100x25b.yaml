@@ -6,7 +6,6 @@ products:
     model_id: BL100x25B
 entities:
   - entity: light
-    name: Primary LED
     dps:
       - id: 20
         type: boolean
@@ -34,7 +33,7 @@ entities:
               min: 2700
               max: 6500
   - entity: light
-    name: Secondary LED
+    translation_key: backlight
     dps:
       - id: 20
         type: boolean
