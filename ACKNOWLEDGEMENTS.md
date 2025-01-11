@@ -803,3 +803,4 @@ Further device support has been made with the assistance of users. Please consid
 - [vytux-com](https://github.com/vytux-com) for contributing support for 3A Nue 3 speed fan and light controller.
 - [nicolas-sora](https://github.com/nicolas-sora) for assisting with support for Wasserstein AquaPal water monitor.
 - [theqz](https://github.com/theqz) for assisting with support for A03 siren.
+- [luisolavea](https://github.com/luisolavea) for assisting with support for Zemismart ZMAi-90 energy meter smart switch.

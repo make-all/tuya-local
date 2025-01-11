@@ -475,6 +475,7 @@
 - Xoca DAC2121C BI energy meter
 - Yagusmart 3PN 63A 3-phase multi-tariff energy meter
 - Zemismart SDM01-TW0-12-ZM 3-phase bidirectional energy meter
+- Zemismart ZMAi-90 smart switch energy meter
 - ZM-Wi-Fi smart meter
 
 ### Battery Charger
