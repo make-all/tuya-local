@@ -798,3 +798,4 @@ Further device support has been made with the assistance of users. Please consid
 - [HomeAssistant9121](https://github.com/HomeAssistant9121) for assisting with support for Hysen HY101RF thermostat.
 - [Alokin90](https://github.com/Alokin90) for contributing improvements to Cecotec BigDry 4000 dehumidifier.
 - [Smiie-2](https://github.com/Smiie-2) for contributing improvements to Wilfa Haze humidifier.
+- [estevao90](https://github.com/estevao90) for contributing support for Geonav HISB80A energy meter.
