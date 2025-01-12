@@ -884,6 +884,7 @@ port and password.
 - Bresser Smart 7-in-1 weather station
 - Bresser Smart Thermo-hygrometer
 - CO2-Box air quality monitor
+- C30W gas leak detector
 - CT20W PIR motion detector
 - EM3390TF weather station (tested with Viflykoo branded device, probably identical to the same model number branded as Uzoli, Jely and others) 
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
