@@ -431,7 +431,7 @@ Further device support has been made with the assistance of users. Please consid
 - [evanfoster](https://github.com/evanfoster) for contributing support for Vivosun DE0003 dehumidifiers.
 - [sayaivan](https://github.com/sayaivan) for contributing Indonesian translations.
 - [mhackdo18](https://github.com/mhackdo18) for assisting with support for YP Pet feeder.
-- [magomao](https://github.com/magomao) for assisting with support for Vivion air conditioners.
+- [magomao](https://github.com/magomao) for assisting with support for Vivion air conditioner and Treatlife human presence sensor.
 - [palkoarpad85](https://github.com/palkoarpad85) for assisting with support for Klarstein Wonderwall heaters.
 - [MJW911](https://github.com/MJW911) for assisting with support for SX1 smartplugs.
 - [ops244](https://github.com/ops244) for assisting with support for Hiper T3 bladeless fans, TTEC Robi Pro vacuums, M515 curtain motors, Haier Nayun gas alarms.

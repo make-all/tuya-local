@@ -924,6 +924,7 @@ port and password.
 - Timeguard WFPIR motion light controller
 - Tontine electric blanket
 - TOPENS TC196 remote control for gate openers
+- Treatlife 24GHz mmWave human presence sensor
 - Valehaus SYZN119 towel warmer
 - Weaja WJ-TUYA-S9 gas alarm
 - WeatherStation Pro
