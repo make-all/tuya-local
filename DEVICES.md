@@ -613,6 +613,7 @@ of device.
 - Asahom S105A-C outdoor lighting
 - Atomi smart color string light
 - Blitzwolf BW-LT31 LED strip
+- Brilliant Smart 22W twin flood lights with motion sensor
 - Brizlabs string lights
 - Calex S45 Clear E27 lightbulb
 - Deltaco LED Strip (SH-LW5M)
