@@ -39,13 +39,6 @@ class TestQotoSprinkler(
         self.setUpMultiNumber(
             [
                 {
-                    "name": "number",
-                    "dps": TARGET_DPS,
-                    "max": 100,
-                    "step": 5,
-                    "unit": PERCENTAGE,
-                },
-                {
                     "name": "number_timer",
                     "dps": TIMER_DPS,
                     "max": 86399,
