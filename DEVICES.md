@@ -336,6 +336,7 @@
 - AlecoAir D25 Traditio dehumidifier
 - Argo Dry Pury Evo WF dehumidifier
 - Cecotec BigDry 4000 dehumidifier
+- Clean Air Optima CA-702 dehumidifier
 - Cleverio AD100 dehumidifier
 - DH-CSK03W dehumidifier
 - Ebac DJ4000 dehumidifier
@@ -382,8 +383,8 @@
 - BlitzWolf BW-SH2 humidifier
 - BlitzWolf BW-SH5 humidifier
 - Carro VES1011 humidifier
-- CleanAir 604B humidifier
-- CleanAir 605B humidifier
+- Clean Air Optima CA-604B humidifier
+- Clean Air Optima CA-605B humidifier
 - Eanons QT-JS2014 purifying humidifier
 - Inkbird IHC-200 humidity controller
 - Klarta Humea humidifier

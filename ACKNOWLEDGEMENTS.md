@@ -807,3 +807,4 @@ Further device support has been made with the assistance of users. Please consid
 - [City-Zero](https://github.com/City-Zero) for contributing support for airx H8 humidifier.
 - [rackxp](https://github.com/rackxp) for assisting with support for Brilliant Smart twin flood lights with motion detection.
 - [toxacj](https://github.com/toxacj) for assisting with support for C30W gas leak detector.
+- [Ramon-E80](https://github.com/Ramon-E80) for assisting with support for Clean Air Optima CA-702 dehumidifier.
