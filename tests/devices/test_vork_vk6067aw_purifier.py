@@ -65,8 +65,8 @@ class TestVorkVK6267AWPurifier(
                     "dps": AQI_DPS,
                     "name": "sensor_air_quality",
                     "device_class": SensorDeviceClass.ENUM,
-                    "testdata": ("great", "Great"),
-                    "options": ["Great", "Good", "Severe", "Medium"],
+                    "testdata": ("great", "excellent"),
+                    "options": ["excellent", "good", "severe", "poor"],
                 },
                 {
                     "dps": COUNTDOWN_DPS,
