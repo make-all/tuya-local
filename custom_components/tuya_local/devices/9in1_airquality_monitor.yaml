@@ -4,20 +4,19 @@ products:
     model: ZN-2C09
 entities:
   - entity: sensor
-    name: Air Quality
+    translation_key: air_quality
     class: enum
-    icon: "mdi:factory"
     dps:
       - id: 1
         type: string
         name: sensor
         mapping:
-          - dps_val: "level_1"
-            value: "Excellent"
-          - dps_val: "level_2"
-            value: "Good"
+          - dps_val: level_1
+            value: excellent
+          - dps_val: level_2
+            value: good
           - dps_val: level_3
-            value: "Lightly polluted"
+            value: poor
   - entity: sensor
     class: temperature
     dps:

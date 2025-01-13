@@ -76,8 +76,7 @@ entities:
           - dps_val: "8h"
             value: "8h"
   - entity: sensor
-    name: Air quality
-    icon: "mdi:air-filter"
+    translation_key: air_quality
     class: enum
     category: diagnostic
     dps:
@@ -85,9 +84,9 @@ entities:
         type: string
         name: sensor
         mapping:
-          - dps_val: "great"
-            value: "Great"
-          - dps_val: "good"
-            value: "Good"
-          - dps_val: "poor"
-            value: "Poor"
+          - dps_val: great
+            value: excellent
+          - dps_val: good
+            value: good
+          - dps_val: poor
+            value: poor
