@@ -3,7 +3,7 @@
 from homeassistant.components.binary_sensor import BinarySensorDeviceClass
 from homeassistant.components.number import NumberDeviceClass
 from homeassistant.components.valve import ValveDeviceClass, ValveEntityFeature
-from homeassistant.const import PERCENTAGE, UnitOfTime
+from homeassistant.const import UnitOfTime
 
 from ..const import QOTO_SPRINKLER_PAYLOAD
 from ..helpers import assert_device_properties_set
@@ -38,13 +38,6 @@ class TestQotoSprinkler(
         )
         self.setUpMultiNumber(
             [
-                {
-                    "name": "number",
-                    "dps": TARGET_DPS,
-                    "max": 100,
-                    "step": 5,
-                    "unit": PERCENTAGE,
-                },
                 {
                     "name": "number_timer",
                     "dps": TIMER_DPS,

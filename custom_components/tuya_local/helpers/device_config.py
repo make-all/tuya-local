@@ -193,7 +193,7 @@ class TuyaDeviceConfig:
         required_dps_list = [d for d in self._get_all_dps() if not d.optional]
         return required_dps_list
 
-    def _entity_match_analyse(self, entity, keys, matched, dps):
+    def _entity_match_analyse(self, entity, keys, matched, dps, product_match):
         """
         Determine whether this entity can be a match for the dps
           Args:
@@ -208,7 +208,7 @@ class TuyaDeviceConfig:
         """
         all_dp = keys + matched
         for d in entity.dps():
-            if (d.id not in all_dp and not d.optional) or (
+            if (d.id not in all_dp and not d.optional and not product_match) or (
                 d.id in all_dp and not _typematch(d.type, dps[d.id])
             ):
                 return False
@@ -223,7 +223,7 @@ class TuyaDeviceConfig:
         if product_ids:
             for p in self._config.get("products", []):
                 if p.get("id", "MISSING_ID!?!") in product_ids:
-                    product_match = 100
+                    product_match = 101
 
         keys = list(dps.keys())
         matched = []
@@ -234,7 +234,7 @@ class TuyaDeviceConfig:
             return product_match
 
         for e in self.all_entities():
-            if not self._entity_match_analyse(e, keys, matched, dps):
+            if not self._entity_match_analyse(e, keys, matched, dps, product_match > 0):
                 return 0
 
         return product_match or round((total - len(keys)) * 100 / total)

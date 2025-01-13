@@ -214,7 +214,7 @@ entities:
         unit: µg/m³
         class: measurement
   # - entity: sensor
-  #   name: Air Quality
+  #   translation_key: air_quality
   #   class: enum
   #   dps:
   #     - id: 104
@@ -222,16 +222,16 @@ entities:
   #       name: sensor
   #       optional: true
   #       mapping:
-  #         - dps_val: "great"
-  #           value: "Great"
-  #         - dps_val: "mild"
-  #           value: "Mild"
-  #         - dps_val: "good"
-  #           value: "Good"
-  #         - dps_val: "medium"
-  #           value: "Medium"
-  #         - dps_val: "severe"
-  #           value: "Severe"
+  #         - dps_val: great
+  #           value: excellent
+  #         - dps_val: mild
+  #           value: moderate
+  #         - dps_val: good
+  #           value: good
+  #         - dps_val: medium
+  #           value: poor
+  #         - dps_val: severe
+  #           value: severe
   - entity: number
     name: PM2.5 alarm threshold
     category: config

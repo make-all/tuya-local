@@ -50,7 +50,7 @@ class TestRenphoPurifier(
                     "name": "sensor_air_quality",
                     "dps": QUALITY_DPS,
                     "device_class": SensorDeviceClass.ENUM,
-                    "options": ["Bad", "Fair", "Good"],
+                    "options": ["poor", "moderate", "good"],
                 },
                 {
                     "name": "sensor_prefilter_life",

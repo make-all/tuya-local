@@ -96,20 +96,19 @@ entities:
           - dps_val: 12h
             value: 12h
   - entity: sensor
-    name: Air Quality
+    translation_key: air_quality
     class: enum
-    icon: mdi:air-filter
     dps:
       - id: 21
         type: string
         name: sensor
         mapping:
           - dps_val: excellent
-            value: Excellent
+            value: excellent
           - dps_val: good
-            value: Good
+            value: good
           - dps_val: difference
-            value: Bad
+            value: poor
   - entity: sensor
     class: pm25
     dps:

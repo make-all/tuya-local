@@ -7,9 +7,7 @@ Please report any [issues](https://github.com/make-all/tuya-local/issues) and fe
 
 This is a Home Assistant integration to support devices running Tuya
 firmware without going via the Tuya cloud.  Devices are supported
-over WiFi, other technologies need a Tuya gateway device (Zigbee
-devices will work with other Zigbee gateways, but not via this
-integration).
+over WiFi, limited support for devices connected via hubs is available.
 
 Note that many Tuya devices seem to support only one local connection.
 If you have connection issues when using this integration, ensure that
@@ -71,6 +69,12 @@ specialised IR hubs for air conditioner remote controls do work, as
 they try to emulate a fully smart air conditioner using internal memory
 of what settings are currently set, and internal temperature and humidity
 sensors.
+
+Some Tuya hubs now support Matter over WiFi, and this can be used as an
+alternative to this integration for connecting the hub and sub-devices
+to Home Assistant. Other limitations will apply to this, so you might want
+to try both, and only use this integration for devices that are not working
+properly over Matter.
 
 A list of currently supported devices can be found in the [DEVICES.md](https://github.com/make-all/tuya-local/blob/main/DEVICES.md) file.
 

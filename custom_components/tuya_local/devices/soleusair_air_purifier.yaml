@@ -86,8 +86,7 @@ entities:
         optional: true
         unit: ppb
   - entity: sensor
-    name: Air quality
-    icon: "mdi:approximately-equal"
+    translation_key: air_quality
     class: enum
     dps:
       - id: 21
@@ -95,11 +94,11 @@ entities:
         name: sensor
         mapping:
           - dps_val: great
-            value: great
+            value: excellent
           - dps_val: good
             value: good
           - dps_val: medium
-            value: medium
+            value: poor
           - dps_val: severe
             value: severe
   - entity: sensor
