@@ -918,6 +918,7 @@ port and password.
 - SNT957W-DE CBU temperature and humidity sensor
 - Speaka SP-TVCM-510 TV mount
 - Sunbeam dual heated mattress pad
+- Sunbeam single heated mattress pad
 - SWS-001 smart weather station
 - TH08 temperature and humidity sensor
 - TH16 temperature and humidity sensor
