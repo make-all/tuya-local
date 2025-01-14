@@ -662,6 +662,7 @@ of device.
 - Teberno LED strip light (LGC-005 OEM3)
 - Tech Inc 3m neon strip
 - Treatlife outdoor dimmer with dual outlets
+- TV-TYA238-AK-2MP ambient TV sync backlight
 - Ustellar UT99911 RGB monitor light bar
 - Xinled XLD-CL002 RGBCW lightbulb
 - WF520D dual dimmer touchpanel
