@@ -31,10 +31,10 @@ entities:
                   - dps_val: stop
                     value: stop
       - id: 2
-        # this is percent_control in the API Explorer but we'll use it to get the
+        # this is percent_control in API Explorer but we'll use it to get the
         # last position set, as the device cannot report its current_position.
         # will be incorrect when manually opening / closing.
-        name: percent_control
+        name: current_position
         type: integer
         unit: "%"
         optional: true
