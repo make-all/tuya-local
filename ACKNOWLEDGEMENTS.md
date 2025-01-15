@@ -808,3 +808,4 @@ Further device support has been made with the assistance of users. Please consid
 - [rackxp](https://github.com/rackxp) for assisting with support for Brilliant Smart twin flood lights with motion detection.
 - [toxacj](https://github.com/toxacj) for assisting with support for C30W gas leak detector.
 - [Ramon-E80](https://github.com/Ramon-E80) for assisting with support for Clean Air Optima CA-702 dehumidifier.
+- [fate8383](https://github.com/fate8383) for assisting with support for Siguro AP-K50 purifier.
