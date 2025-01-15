@@ -915,6 +915,7 @@ port and password.
 - RSE TY-WFH v3.01 gate controller
 - RTCZ-03 human presence sensor
 - RainPoint TTV103FRF water timer
+- Sai Me Tei towel rail
 - SD123 HPR01 human presence radar
 - SNT957W-TDE temperature sensor
 - SNT957W-DE CBU temperature and humidity sensor

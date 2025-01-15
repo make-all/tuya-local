@@ -694,7 +694,7 @@ Further device support has been made with the assistance of users. Please consid
 - [sorrison](https://github.com/sorrison) for contributing improvements to Sanden heat pump.
 - [OsaedYahya](https://github.com/OsaedYahya) for contributing support for MyQ TD8 vide doorbell.
 - [holgergrote](https://github.com/holgergrote) for contributing support for Sygonix Smarter dehumidifier.
-- [rmf1995](https://github.com/rmf1995) for contributing support for Giatsu VAW 2 heat pump water heater.
+- [rmf1995](https://github.com/rmf1995) for contributing support for Giatsu VAW 2 heat pump water heater and assisting with support for Sai Me Tei towel rail.
 - [murch1](https://github.com/murch1) for contributing support for Brilliant ceiling fan with light.
 - [NashHome](https://github.com/NashHome) for contributing support for Avatto curtain with double light switch.
 - [ciscolyon69](https://github.com/ciscolyon69) for assisting with support for Avatto TRV06 radiator valve and another variant of MatSee Plus 2ch bidirectional clamp meter.
