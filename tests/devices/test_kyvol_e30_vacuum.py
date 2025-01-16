@@ -1,11 +1,7 @@
 from homeassistant.components.button import ButtonDeviceClass
 from homeassistant.components.sensor import SensorDeviceClass, SensorStateClass
 from homeassistant.components.vacuum import (
-    STATE_CLEANING,
-    STATE_ERROR,
-    STATE_IDLE,
-    STATE_PAUSED,
-    STATE_RETURNING,
+    VacuumActivity,
     VacuumEntityFeature,
 )
 from homeassistant.const import PERCENTAGE, UnitOfArea, UnitOfTime
@@ -154,23 +150,23 @@ class TestKyvolE30Vacuum(MultiButtonTests, MultiSensorTests, TuyaDeviceTestCase)
         self.dps[COMMAND_DPS] = "spiral"
         self.assertEqual(self.subject.status, "clean_spot")
 
-    def test_state(self):
+    def test_activity(self):
         self.dps[POWER_DPS] = True
         self.dps[SWITCH_DPS] = True
         self.dps[ERROR_DPS] = 0
         self.dps[COMMAND_DPS] = "return_to_base"
-        self.assertEqual(self.subject.state, STATE_RETURNING)
+        self.assertEqual(self.subject.activity, VacuumActivity.RETURNING)
         self.dps[COMMAND_DPS] = "standby"
-        self.assertEqual(self.subject.state, STATE_IDLE)
+        self.assertEqual(self.subject.activity, VacuumActivity.IDLE)
         self.dps[COMMAND_DPS] = "random"
-        self.assertEqual(self.subject.state, STATE_CLEANING)
+        self.assertEqual(self.subject.activity, VacuumActivity.CLEANING)
         self.dps[POWER_DPS] = False
-        self.assertEqual(self.subject.state, STATE_IDLE)
+        self.assertEqual(self.subject.activity, VacuumActivity.IDLE)
         self.dps[POWER_DPS] = True
         self.dps[SWITCH_DPS] = False
-        self.assertEqual(self.subject.state, STATE_PAUSED)
+        self.assertEqual(self.subject.activity, VacuumActivity.PAUSED)
         self.dps[ERROR_DPS] = 1
-        self.assertEqual(self.subject.state, STATE_ERROR)
+        self.assertEqual(self.subject.activity, VacuumActivity.ERROR)
 
     async def test_async_turn_on(self):
         async with assert_device_properties_set(
