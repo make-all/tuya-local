@@ -1,0 +1,206 @@
+name: Dehumidifier
+products:
+  - id: y098ayyxswrena7t
+    manufacturer: Inventor
+    model: Rise Pro 8L
+entities:
+  - entity: fan
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 5
+        type: string
+        name: preset_mode
+        mapping:
+          - constraint: dehumidify
+            conditions:
+              - dps_val: fan_only
+                value_redirect: fan_only_mode
+              - dps_val: dehumidify
+                mapping:
+                  - dps_val: low
+                    value: low
+                  - dps_val: mid
+                    value: medium
+                  - dps_val: high
+                    value: high
+                  - dps_val: auto
+                    value: auto
+                    available: dehumidify
+      - id: 8
+        type: boolean
+        name: oscillate
+      - id: 103
+        type: string
+        name: fan_only_mode
+        hidden: true
+        mapping:
+          - dps_val: "1"
+            value: low
+          - dps_val: "2"
+            value: medium
+          - dps_val: "3"
+            value: high
+      - id: 106
+        type: string
+        name: dehumidify
+        hidden: true
+        mapping:
+          - dps_val: dehumidify
+            value: true
+          - value: false
+  - entity: humidifier
+    class: dehumidifier
+    dps:
+      - id: 1
+        type: boolean
+        name: available
+      - id: 106
+        type: string
+        name: switch
+        mapping:
+          - dps_val: dehumidify
+            value: true
+          - dps_val: fan_only
+            value: false
+      - id: 3
+        type: string
+        name: humidity
+        mapping:
+          - dps_val: "CO"
+            value: 35
+          - dps_val: "40"
+            value: 40
+          - dps_val: "45"
+            value: 45
+          - dps_val: "50"
+            value: 50
+          - dps_val: "55"
+            value: 55
+          - dps_val: "60"
+            value: 60
+          - dps_val: "65"
+            value: 65
+          - dps_val: "70"
+            value: 70
+          - dps_val: "75"
+            value: 75
+          - dps_val: "80"
+            value: 80
+      - id: 6
+        type: integer
+        name: current_humidity
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 7
+        type: integer
+        name: sensor
+        unit: C
+        class: measurement
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: lock
+  - entity: select
+    translation_key: timer
+    category: config
+    dps:
+      - id: 17
+        type: string
+        name: option
+        mapping:
+          - dps_val: cancel
+            value: cancel
+          - dps_val: "1h"
+            value: "1h"
+          - dps_val: "2h"
+            value: "2h"
+          - dps_val: "3h"
+            value: "3h"
+          - dps_val: "4h"
+            value: "4h"
+          - dps_val: "5h"
+            value: "5h"
+          - dps_val: "6h"
+            value: "6h"
+          - dps_val: "7h"
+            value: "7h"
+          - dps_val: "8h"
+            value: "8h"
+  - entity: sensor
+    class: duration
+    translation_key: time_remaining
+    category: diagnostic
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: min
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - dps_val: 4
+            value: false
+          - dps_val: 8
+            value: false
+          - value: true
+      - id: 19
+        type: bitfield
+        name: fault_code
+  - entity: binary_sensor
+    translation_key: tank_full
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 4
+            value: true
+          - value: false
+  - entity: binary_sensor
+    name: Replace filter
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 19
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 8
+            value: true
+          - value: false
+  - entity: switch
+    translation_key: keytone
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: select
+    name: Purifier mode
+    icon: "mdi:air-purifier"
+    category: config
+    dps:
+      - id: 105
+        type: string
+        name: option
+        mapping:
+          - dps_val: uv
+            value: UV
+          - dps_val: ion
+            value: Ionizer
+          - dps_val: uvion
+            value: Both
+          - dps_val: "none"
+            value: "None"

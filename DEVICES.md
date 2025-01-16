@@ -362,6 +362,7 @@
 - Inkbird IHC-200 humidity controller
 - Inventor Atmosphere XL dehumidifier
 - Inventor Eva Ion Pro dehumidifier
+- Inventor Rise Pro dehumidifier
 - JJPro JPD01 dehumidifer
 - JJPro JPD02 dehumidifier
 - Klarstein DryFy Pro Connect dehumidifier
