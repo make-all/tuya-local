@@ -809,3 +809,4 @@ Further device support has been made with the assistance of users. Please consid
 - [toxacj](https://github.com/toxacj) for assisting with support for C30W gas leak detector.
 - [Ramon-E80](https://github.com/Ramon-E80) for assisting with support for Clean Air Optima CA-702 dehumidifier.
 - [fate8383](https://github.com/fate8383) for assisting with support for Siguro AP-K50 purifier.
+- [szemkhel](https://github.com/szemkhel) for assisting with support for Protmex PT-19DW alarm clock with temperature and humidity monitor.
