@@ -1,14 +1,13 @@
 # Mixins for testing text entities
 from homeassistant.components.text import (
-    TextMode,
     ATTR_MAX,
     ATTR_MIN,
     ATTR_MODE,
     ATTR_PATTERN,
+    TextMode,
 )
 
 from ..helpers import assert_device_properties_set
-
 
 TEXT_PATTERN_HEX = "[0-9a-fA-F]*"
 TEXT_PATTERN_BASE64 = "[-A-Za-z0-9+/]*={0,3}"
