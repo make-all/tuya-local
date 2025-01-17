@@ -117,6 +117,15 @@ which mode to use, and override it in the UI settings rather than forcing
 your personal preference on others. But if an entity really does only make
 sense with one UI mode, then this is provided to handle those cases.
 
+### `hidden`
+
+*Optional, default=false*
+
+If `hidden` is `true`, then the entity will be disabled by default.
+This can be used with advanced config or diagnostic entities that general
+users will not be interested in. To use such entities, the user must explicitly
+enable them after adding the device to Home Assistant.
+
 ### `dps`
 
 This is a list of the definitions for the Tuya DPs associated with
@@ -729,6 +738,13 @@ The value "off" will be used for turning off the siren, and will be filtered fro
 
 ### `switch`
 - **switch** (required, boolean): a dp to control the switch state.
+
+### `text`
+- **value** (required, string): a dp to control the text that is set.
+   The value dp of a text entity has a few special attributes.
+     - `range` can be supplied to define the `min` and `max` length of the text.
+     - if `hidden` is specified as `true`, the mode will be set to `password`, otherwise the mode will be `text`.
+     - if the `type` is set to `base64` or `hex`, the `pattern` property of the text entity will be set appropriately. There is currently no way to set an arbitrary pattern.
 
 ### `vacuum`
 - **status** (required, mapping of strings): a dp to report and control the status of the vacuum.

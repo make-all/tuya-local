@@ -78,10 +78,6 @@ entities:
             range:
               min: 0
               max: 1000
-      - id: 25
-        name: scene_data
-        type: hex
-        optional: true
       - id: 27
         name: music_data
         type: hex
@@ -119,6 +115,16 @@ entities:
           - scale: 60
             step: 60
           - dps_val: null
+  - entity: text
+    name: Scene
+    icon: "mdi:palette"
+    category: config
+    hidden: true
+    dps:
+      - id: 25
+        name: value
+        type: hex
+        optional: true
   - entity: select
     name: Scene
     icon: "mdi:palette"
