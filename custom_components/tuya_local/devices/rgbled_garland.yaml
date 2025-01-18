@@ -1,0 +1,105 @@
+name: Fairy lights
+products:
+  - id: dpfvez4c2ui18yef
+entities:
+  - entity: light
+    icon: "mdi:led-strip"
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        name: effect
+        type: string
+        mapping:
+          - dps_val: white
+            value: none
+            hidden: true
+          - dps_val: colour
+            value: none
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 24
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 51
+        type: string
+        optional: true
+        name: dreamlight_scene_mode
+      - id: 52
+        type: string
+        optional: true
+        name: dreamlightmic_music_data
+      - id: 61
+        type: string
+        optional: true
+        name: paint_color_data
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        precision: 0
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    name: LED count
+    category: config
+    icon: "mdi:led-strip-variant"
+    dps:
+      - id: 53
+        type: integer
+        name: value
+        range:
+          min: 1
+          max: 1000
+      - id: 47
+        type: integer
+        name: from_device
+  - entity: select
+    name: Color order
+    icon: "mdi:order-bool-ascending"
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: RGB
+            value: RGB
+          - dps_val: RBG
+            value: RBG
+          - dps_val: GRB
+            value: GRB
+          - dps_val: GBR
+            value: GBR
+          - dps_val: BRG
+            value: BRG
+          - dps_val: BGR
+            value: BGR
