@@ -796,7 +796,7 @@ Further device support has been made with the assistance of users. Please consid
 - [stevanov](https://github.com/stevanov) for assisting with support for Etna VW644MC dishwasher.
 - [kmavrov](https://github.com/kmavrov) for assisting with support for Scheeair Nova 100 ventilation fan.
 - [HomeAssistant9121](https://github.com/HomeAssistant9121) for assisting with support for Hysen HY101RF thermostat.
-- [Alokin90](https://github.com/Alokin90) for contributing improvements to Cecotec BigDry 4000 dehumidifier.
+- [Alokin90](https://github.com/Alokin90) for contributing improvements to Cecotec BigDry 4000 dehumidifier and improved Italian translations.
 - [Smiie-2](https://github.com/Smiie-2) for contributing improvements to Wilfa Haze humidifier.
 - [estevao90](https://github.com/estevao90) for contributing support for Geonav HISB80A energy meter.
 - [akop](https://github.com/akop) for contributing support for Ledvance Smart+ Planon plus backlight.
@@ -811,3 +811,4 @@ Further device support has been made with the assistance of users. Please consid
 - [fate8383](https://github.com/fate8383) for assisting with support for Siguro AP-K50 purifier.
 - [szemkhel](https://github.com/szemkhel) for assisting with support for Protmex PT-19DW alarm clock with temperature and humidity monitor.
 - [dimis7](https://github.com/dimis7) for assisting with support for Inventor Rise Pro dehumidifier.
+- [Bryla2507](https://github.com/Bryla2507) for assisting with support for LSC dual band outdoor camera.
