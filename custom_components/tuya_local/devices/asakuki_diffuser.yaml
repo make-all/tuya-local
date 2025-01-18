@@ -63,37 +63,37 @@ entities:
             value: pink
           - dps_val: "00ffff8464ff"
             value: cyan
-        # type: hex
-        #   - name: r
-        #     bytes: 1
-        #     range:
-        #       min: 0
-        #       max: 255
-        #   - name: g
-        #     bytes: 1
-        #     range:
-        #       min: 0
-        #       max: 255
-        #   - name: b
-        #     bytes: 1
-        #     range:
-        #       min: 0
-        #       max: 255
-        #   - name: h
-        #     bytes: 2  # format inconsistent, uses 1 byte when leading byte is 0
-        #     range:
-        #       min: 0
-        #       max: 360
-        #   - name: s
-        #     bytes: 1
-        #     range:
-        #       min: 0
-        #       max: 100
-        #   - name: v
-        #     bytes: 1
-        #     range:
-        #       min: 0
-        #       max: 255
+            # type: hex
+            #   - name: r
+            #     bytes: 1
+            #     range:
+            #       min: 0
+            #       max: 255
+            #   - name: g
+            #     bytes: 1
+            #     range:
+            #       min: 0
+            #       max: 255
+            #   - name: b
+            #     bytes: 1
+            #     range:
+            #       min: 0
+            #       max: 255
+            #   - name: h
+            #     bytes: 2  # format inconsistent, 1 byte when < 256
+            #     range:
+            #       min: 0
+            #       max: 360
+            #   - name: s
+            #     bytes: 1
+            #     range:
+            #       min: 0
+            #       max: 100
+            #   - name: v
+            #     bytes: 1
+            #     range:
+            #       min: 0
+            #       max: 255
   - entity: select
     name: Mood
     icon: "mdi:palette"
