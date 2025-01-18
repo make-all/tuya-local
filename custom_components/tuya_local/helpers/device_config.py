@@ -514,7 +514,8 @@ class TuyaDpsConfig:
             return str(value) == str(matchdata)
 
     async def async_set_value(self, device, value):
-        """Set the value of the dps in the given device to given value."""
+        """Set the value of the dps in the given device to given value."""
+
         if self.readonly:
             raise TypeError(f"{self.name} is read only")
         if self.invalid_for(value, device):
