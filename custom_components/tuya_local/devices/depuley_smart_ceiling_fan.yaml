@@ -74,9 +74,17 @@ entities:
         type: hex
         optional: true
 
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 25
+        name: value
+        type: hex
+        optional: true
   - entity: select
-    name: Scene
-    icon: "mdi:palette"
+    translation_key: scene
     category: config
     dps:
       - id: 25

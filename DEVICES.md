@@ -609,6 +609,7 @@ of device.
 - Generic RGBW lightbulb in the standard and non-standard patterns above but without color temperature control.
 - Generic dimmable/color temperature adjustable desktop lamp (confirmed with Setti+ SL601)
 - Generic "Dreamlight" RGBCW LED strips (tested with LSC RGBIC+CCT 2x5m LED strip)
+- Generic RGB only "Dreamlight" LED strip
 - Generic RGB only light bar - like the lights above, but no white light controls supported.
 - Unbranded 1CH dimmer module
 - Unbranded dual dimmer module
@@ -796,7 +797,8 @@ port and password.
 - Door peephole camera
 - Kerui 200W camera
 - Kerui JS-P162 300W camera
-- LSC PTZ camera
+- LSC Smart Connect dual band outdoor camera 
+- LSC Smart Connect PTZ camera
 - Moes PTZ indoor security camera
 - Nedis outdoor camera
 - Pinelake BF02 birdfeeder camera

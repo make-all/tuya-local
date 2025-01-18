@@ -92,9 +92,16 @@ entities:
         mapping:
           - scale: 10
             step: 10
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 25
+        name: value
+        type: hex
   - entity: select
-    name: Scene
-    icon: "mdi:palette"
+    translation_key: scene
     category: config
     dps:
       - id: 25
@@ -102,11 +109,11 @@ entities:
         name: option
         mapping:
           - dps_val: "80000000000000000000000000000000"
-            value: Sync - Video
+            value: movie
           - dps_val: "81000000000000000000000000000000"
-            value: Sync - Recreation
+            value: leisure
           - dps_val: "82000000000000000000000000000000"
-            value: Sync - Game
+            value: gaming
           - dps_val: "98000000000000000000000000000000"
             value: Music - Classic
           - dps_val: "99000000000000000000000000000000"
@@ -124,7 +131,7 @@ entities:
           - dps_val: "87000000000000000000000000000000"
             value: Scene - Fire
           - dps_val: "88000000000000000000000000000000"
-            value: Scene - Read
+            value: reading
           - dps_val: "89000000000000000000000000000000"
             value: Scene - Firework
           - dps_val: "90000000000000000000000000000000"
