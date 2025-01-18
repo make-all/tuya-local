@@ -9,7 +9,6 @@ entities:
       - id: 1
         type: boolean
         name: switch
-        optional: true
       - id: 3
         type: integer
         name: brightness
@@ -18,6 +17,8 @@ entities:
           max: 255
   - entity: binary_sensor
     name: Temperature Alarm
+    class: problem
+    category: diagnostic
     icon: "mdi:thermometer-alert"
     dps:
       - id: 101
