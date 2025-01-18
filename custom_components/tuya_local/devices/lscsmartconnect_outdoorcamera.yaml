@@ -1,0 +1,298 @@
+name: Camera
+products:
+  - id: 2ehbrlcxfcmizamf
+    manufacturer: LSC Smart Connect
+    model: Dual band outdoor camera
+entities:
+  - entity: camera
+    dps:
+      - id: 105
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: true
+            value: false
+          - dps_val: false
+            value: true
+          - dps_val: null
+            value: true
+            hidden: true
+      - id: 134
+        type: boolean
+        name: motion_enable
+        optional: true
+      - id: 150
+        type: boolean
+        name: record
+        optional: true
+      - id: 115
+        type: base64
+        optional: true
+        persist: false
+        sensitive: true
+        name: snapshot
+  - entity: switch
+    name: Flip image
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: switch
+    name: Timestamp
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: select
+    name: Motion sensitivity
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: Low
+          - dps_val: "1"
+            value: Medium
+          - dps_val: "2"
+            value: High
+  - entity: select
+    name: Nightvision
+    icon: "mdi:weather-night"
+    category: config
+    dps:
+      - id: 108
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Auto
+          - dps_val: "1"
+            value: "Off"
+          - dps_val: "2"
+            value: "On"
+          - dps_val: null
+            value: Auto
+            hidden: true
+  - entity: sensor
+    name: SD status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 1
+            value: normal
+          - dps_val: 2
+            value: error
+          - dps_val: 3
+            value: full
+          - dps_val: 4
+            value: formatting
+          - dps_val: 5
+            value: missing
+          - dps_val: null
+            value: normal
+            hidden: true
+      - id: 109
+        type: string
+        name: memory_card_capacity
+  - entity: button
+    name: Format SD card
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        optional: true
+        name: button
+      - id: 117
+        type: integer
+        optional: true
+        name: sd_format_status
+        mapping:
+          - dps_val: 2000
+            value: Formatting
+          - dps_val: 2001
+            value: Format error
+          - dps_val: 2002
+            value: "No SD card"
+          - dps_val: 2003
+            value: Card error
+  - entity: switch
+    name: Sound detection
+    icon: "mdi:ear-hearing"
+    category: config
+    dps:
+      - id: 139
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: select
+    name: Sound sensitivity
+    icon: "mdi:ear-hearing"
+    category: config
+    dps:
+      - id: 140
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Low
+          - dps_val: "1"
+            value: "High"
+  - entity: select
+    name: Recording mode
+    icon: "mdi:file-video"
+    category: config
+    dps:
+      - id: 151
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "1"
+            value: Event
+          - dps_val: "2"
+            value: Continuous
+  - entity: switch
+    name: Alarm
+    category: config
+    icon: "mdi:bullhorn"
+    dps:
+      - id: 159
+        type: boolean
+        name: switch
+        optional: true
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: switch
+    name: Human detection
+    icon: "mdi:human"
+    category: config
+    dps:
+      - id: 170
+        type: boolean
+        name: switch
+        optional: true
+  - entity: select
+    name: Anti-flicker
+    icon: "mdi:television-classic"
+    category: config
+    dps:
+      - id: 188
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: "Off"
+          - dps_val: "1"
+            value: "50Hz"
+          - dps_val: "2"
+            value: "60Hz"
+  - entity: button
+    class: restart
+    category: config
+    dps:
+      - id: 162
+        type: boolean
+        optional: true
+        name: button
+  - entity: switch
+    name: Motion limit area
+    category: config
+    dps:
+      - id: 168
+        type: boolean
+        optional: true
+        name: switch
+      - id: 169
+        type: string
+        optional: true
+        name: area
+  - entity: select
+    name: Detection mode
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 127
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: motion
+            value: Motion
+          - dps_val: human
+            value: Person
+  - entity: event
+    name: Sound
+    dps:
+      - id: 141
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: detected
+      - id: 141
+        type: string
+        optional: true
+        name: message
+  - entity: event
+    name: Alarm
+    dps:
+      - id: 185
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: alert
+      - id: 185
+        type: utf16b64
+        optional: true
+        name: message
+  - entity: event
+    name: Push message
+    dps:
+      - id: 212
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: notification
+      - id: 212
+        type: utf16b64
+        optional: true
+        name: message

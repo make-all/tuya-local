@@ -9,7 +9,7 @@ from homeassistant.const import UnitOfTime
 from ..const import RGBCW_LIGHTBULB_PAYLOAD
 from ..helpers import assert_device_properties_set
 from ..mixins.number import BasicNumberTests
-from ..mixins.text import BasicTextTests, TEXT_PATTERN_HEX
+from ..mixins.text import TEXT_PATTERN_HEX, BasicTextTests
 from .base_device_tests import TuyaDeviceTestCase
 
 SWITCH_DPS = "20"

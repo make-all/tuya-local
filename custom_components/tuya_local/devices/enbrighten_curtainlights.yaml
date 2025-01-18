@@ -50,9 +50,17 @@ entities:
           - scale: 60
             step: 60
           - dps_val: null
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 56
+        name: value
+        type: base64
+        optional: true
   - entity: select
-    name: Scene
-    icon: "mdi:palette"
+    translation_key: scene
     category: config
     dps:
       - id: 56
@@ -61,7 +69,7 @@ entities:
         optional: true
         mapping:
           - dps_val: "AQAKMjIAAABkAABkAAAAAGQAeGQAAAAAZAA5BwAAAAA="
-            value: "Holiday"
+            value: vacation
           - dps_val: "AQEKMjIAAABkAABkAAAAAGQAOQcAAAAAZAEsZAAAAAA="
             value: "Valentine's Day"
           - dps_val: "AQIKMjIAAABkAAhkAAAAAGIBGFgAAAAAZAAPZAAAAAA="
@@ -91,17 +99,17 @@ entities:
             value: "Storm"
           - dps_val: "AQwKMjIAAABkAA9kAAAAAFIAvmQAAAAAYgAuZAAAAABiARhYAAAAA\
               F0AvmQAAAAAZAEfRQAAAAA="
-            value: "Gaming"
+            value: gaming
           - dps_val: "AQ0KMjIAAABkAPBkAAAAAGIBElUAAAAAYgEYWAAAAAA="
             value: "Space"
           - dps_val: "AQ4KMjIAAABkAABkAAAAAGIBGFgAAAAAZADwZAAAAAA="
-            value: "Dark"
+            value: night
           - dps_val: "AQ8KMjIAAABkAHhkAAAAAGIBElUAAAAAXwCIYwAAAABSAL5kAAAAA\
               F0AvmQAAAAAXwDYYQAAAAA="
             value: "Aquatic"
           - dps_val: "ARAKMjIAAABkAABkAAAAAGEAO2MAAAAAZAB4ZAAAAABfANhhAAAAA\
               GQA8GQAAAAAZAEsZAAAAAA="
-            value: "Party"
+            value: party
           - dps_val: "AREKMjIAAABkAABkAAAAAGQAD2QAAAAAYQA7YwAAAABkAHhkAAAAA\
               GQA8GQAAAAAYgESVQAAAABkAR9FAAAAAA=="
             value: "Rainbows"

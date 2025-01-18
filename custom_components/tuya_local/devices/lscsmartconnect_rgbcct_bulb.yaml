@@ -59,9 +59,17 @@ entities:
               min: 0
               max: 255
 
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 6
+        name: value
+        type: hex
+        optional: true
   - entity: select
-    name: Scene
-    icon: "mdi:palette"
+    translation_key: scene
     category: config
     dps:
       - id: 6
