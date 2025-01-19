@@ -1,4 +1,4 @@
-name: Gosund SW2 Dimmer Switch
+name: Dimmer switch
 products:
   - id: qcgkaqmaivuwfwz4
     manufacturer: Gosund
@@ -16,13 +16,11 @@ entities:
           min: 25
           max: 255
   - entity: binary_sensor
-    name: Temperature Alarm
-    class: problem
+    name: Temperature alarm
+    class: heat
     category: diagnostic
-    icon: "mdi:thermometer-alert"
     dps:
       - id: 101
         type: boolean
         name: sensor
-        readonly: true
         optional: true
