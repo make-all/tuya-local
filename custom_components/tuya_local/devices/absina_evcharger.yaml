@@ -1,0 +1,492 @@
+name: EV charger
+products:
+  - id: tj9l3ghsjnbdjom6
+    manufacturer: Absina
+    model: wallbox 11kw
+entities:
+  # Always charger_free, function unclear
+  # - entity: sensor # work_state -3- enum
+  #   name: Charger State
+  #   #translation_key: status
+  #   icon: "mdi:ev-station"
+  #   class: enum
+  #   dps:
+  #     - id: 3
+  #       type: string
+  #       name: sensor
+  #       mapping:
+  #         - dps_val: charger_free
+  #           value: available
+  #         - dps_val: charger_insert
+  #           value: plugged_in
+  #         - dps_val: charger_free_fault
+  #           value: fault_unplugged
+  #         - dps_val: charger_wait
+  #           value: waiting
+  #         - dps_val: charger_charging
+  #           value: charging
+  #         - dps_val: charger_pause
+  #           value: paused
+  #         - dps_val: charger_end
+  #           value: charged
+  #         - dps_val: charger_fault
+  #           value: fault
+  #     - id: 11 # alarm_set_1 -11-
+  #       optional: true
+  #       type: string
+  #       name: alarm_set_1
+  #     - id: 12 # alarm_set_2 -12-
+  #       optional: true
+  #       type: string
+  #       name: alarm_set_2
+  #     - id: 23 # system_version -23-
+  #       type: string
+  #       optional: true
+  #       name: system_version
+
+  - entity: binary_sensor # fault -10- OK
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 10
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 10
+        type: bitfield
+        name: fault_code
+      - id: 10
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: "Ready"
+          - dps_val: 1
+            value: "err_uvp"
+          - dps_val: 2
+            value: "err_ovp"
+          - dps_val: 4
+            value: "err_ocp"
+          - dps_val: 8
+            value: "err_pe"
+          - dps_val: 16
+            value: "err_temp"
+          - dps_val: 32
+            value: "err_cp"
+          - dps_val: 64
+            value: "err_leak"
+          - dps_val: 128
+            value: "err_leaksc"
+          - dps_val: 256
+            value: "err_pe2"
+          - dps_val: 512
+            value: "err_temp_plug"
+          - dps_val: 1024
+            value: "err_temp_pcb"
+          - dps_val: 2048
+            value: "err_temp_core"
+          - dps_val: 4096
+            value: "err_esb"
+          - dps_val: 8192
+            value: "err_pe_sck"
+
+  # Duplicate to Setting, only filled up after change
+  # - entity: sensor # work_mode -14- OK
+  #   name: Chg mode
+  #   #translation_key: status
+  #   icon: "mdi:ev-station"
+  #   class: enum
+  #   dps:
+  #     - id: 14
+  #       type: string
+  #       name: sensor
+  #       mapping:
+  #         - dps_val: charge_now
+  #           value: Immediate
+  #         - dps_val: charge_pct
+  #           value: Charge to percent
+  #         - dps_val: charge_energy
+  #           value: Fixed charge
+  #         - dps_val: charge_schedule
+  #           value: Scheduled charge
+
+  - entity: select # work_mode -14- OK
+    name: Charging mode
+    icon: "mdi:ev-station"
+    category: config
+    dps:
+      - id: 14
+        type: string
+        name: option
+        mapping:
+          - dps_val: charge_now
+            value: Immediate charge
+          - dps_val: charge_schedule
+            value: Scheduled charge
+          - dps_val: charge_pct
+            value: Charge to percent
+          - dps_val: charge_energy
+            value: Fixed charge
+
+  # Always 0, function unclear
+  # - entity: sensor # balance_energy -15-
+  #   name: balance_energy
+  #   class: energy
+  #   dps:
+  #     - id: 15
+  #       type: integer
+  #       name: sensor
+  #       unit: kWh
+  #       range:
+  #         min: 0
+  #         max: 99999999
+  #         step: 1
+  #       mapping:
+  #         - scale: 1000
+
+  # Sets Value on Cloud but unclear what function it has
+  - entity: switch # clear_energy -16- OK
+    name: Clear energy
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+
+  # Seems like Factory Reset
+  - entity: button # switch -18- OK
+    name: Factory reset
+    class: reset
+    category: config
+    hidden: true
+    dps:
+      - id: 18
+        type: boolean
+        name: button
+
+  # Always 1, unclear functiuon
+  # - entity: sensor # charge_energy_once -25-
+  #   name: charge_energy_once
+  #   class: energy
+  #   category: config
+  #   dps:
+  #     - id: 25
+  #       type: integer
+  #       name: value
+  #       unit: kWh
+  #       range:
+  #         min: 1
+  #         max: 999999
+  #         step: 1
+  #       mapping:
+  #         - scale: 100
+
+  - entity: binary_sensor # online_state -27-
+    #Name: Connected
+    class: connectivity
+    category: diagnostic
+    dps:
+      - id: 27
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: online
+            value: true
+          - dps_val: offline
+            value: false
+
+  - entity: sensor # DeviceState -101- OK
+    name: Device State
+    icon: "mdi:ev-station"
+    class: enum
+    dps:
+      - id: 101
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: no_connet
+            value: "Not Connected"
+          - dps_val: connect
+            value: "Connected"
+          - dps_val: charing
+            value: "Charging"
+          - dps_val: wait_rfid
+            value: "Wait fro RFID Auth"
+          - dps_val: finish
+            value: "Finished"
+          - dps_val: wait_charing
+            value: "Wait for Charging"
+          - dps_val: error
+            value: "Error"
+
+  # Only Channel A is providing values
+  - entity: sensor # A_Voltage -102-104- OK
+    name: Phase A voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 102
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+  - entity: sensor # B_Voltage
+    hidden: true
+    name: Phase B voltage
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+  - entity: sensor # C_Voltage
+    name: Phase C voltage
+    hidden: true
+    class: voltage
+    category: diagnostic
+    dps:
+      - id: 104
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+
+  # Only Channel A is providing values
+  - entity: sensor # A_Current -105-107- OK
+    name: Phase A current
+    class: current
+    category: diagnostic
+    dps:
+      - id: 105
+        name: sensor
+        type: integer
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor # B_Current
+    name: Phase B current
+    hidden: true
+    class: current
+    category: diagnostic
+    dps:
+      - id: 106
+        name: sensor
+        type: integer
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor # C_Current
+    name: Phase C current
+    hidden: true
+    class: current
+    category: diagnostic
+    dps:
+      - id: 107
+        name: sensor
+        type: integer
+        unit: A
+        class: measurement
+        mapping:
+          - scale: 10
+
+  # Seems not to work or change. on single phase even when loading 3 phase
+  # - entity: sensor # PhaseFlag -108-
+  #   name: Phase
+  #   icon: "mdi:transmission-tower"
+  #   class: enum
+  #   dps:
+  #     - id: 108
+  #       type: string
+  #       name: sensor
+  #       mapping:
+  #         - dps_val: Single_phase
+  #           value: "1-Phase"
+  #         - dps_val: Three_phase
+  #           value: "3-Phase"
+  #         - dps_val: No_phase
+  #           value: "No Phase"
+  #         - dps_val: Phase_err
+  #           value: "Phase Error"
+
+  - entity: sensor # DeviceKw -109- OK
+    name: Charging Power
+    class: power
+    dps:
+      - id: 109
+        optional: true
+        type: integer
+        name: sensor
+        unit: kW
+        class: measurement
+        mapping:
+          - scale: 10
+
+  - entity: sensor #DeviceTemp -110- OK
+    name: Device Temperature
+    class: temperature
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        unit: C
+        range:
+          min: -300
+          max: 1050
+          step: 1
+        mapping:
+          - scale: 10
+
+  - entity: sensor # DeviceKwh -112- OK
+    name: Energy
+    class: energy
+    dps:
+      - id: 112
+        type: integer
+        name: sensor
+        unit: kWh
+        mapping:
+          - scale: 10
+
+  - entity: sensor # DeviceMaxSetA -113- OK
+    name: DeviceMaxSetA
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 113
+        type: string
+        name: sensor
+
+  - entity: number # Set16A -114- OK
+    name: Charging current limit
+    class: current
+    category: config
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 8
+          max: 16
+          step: 1
+
+  # Current regulation for devices with higher power than 11kw, untested
+  - entity: number # Set32A -115- OK
+    name: Charging current limit 32A
+    hidden: true
+    class: current
+    category: config
+    dps:
+      - id: 115
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 8
+          max: 32
+          step: 1
+  - entity: number # Set40A -116- OK
+    name: Charging current limit 40A
+    hidden: true
+    class: current
+    category: config
+    dps:
+      - id: 116
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 12
+          max: 40
+          step: 1
+  - entity: number # Set50A -117- OK
+    name: Charging current limit 50A
+    hidden: true
+    class: current
+    category: config
+    dps:
+      - id: 117
+        type: integer
+        name: value
+        unit: A
+        range:
+          min: 12
+          max: 50
+          step: 1
+
+  - entity: number # SetDelayTime -118- OK
+    name: Charging Delay
+    class: time
+    category: config
+    dps:
+      - id: 118
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 15
+          step: 1
+
+  - entity: number # SetDefineTime -119- OK
+    name: Charging Time
+    class: time
+    category: config
+    dps:
+      - id: 119
+        type: integer
+        name: value
+        unit: h
+        range:
+          min: 0
+          max: 15
+          step: 1
+
+  - entity: sensor #CTime2 -121- OK
+    name: Chg Session Time
+    class: time
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        unit: h
+        range:
+          min: 0
+          max: 480
+          step: 1
+        mapping:
+          - scale: 10
+
+  - entity: switch # IDVerificationSet -122-
+    name: IDVerification
+    category: config
+    dps:
+      - id: 122
+        type: boolean
+        name: switch
+
+  - entity: switch # RFID -123-
+    name: RFID
+    class: identify
+    category: config
+    dps:
+      - id: 123
+        type: boolean
+        name: switch
+
+  # Seems not to work with the charger as always on waitOperation
+  # - entity: sensor # ChargingOperation -124-
+  #   name: ChargingOperation
+  #   class: enum
+  #   dps:
+  #     - id: 124
+  #       type: string
+  #       name: sensor
