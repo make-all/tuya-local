@@ -150,6 +150,54 @@
                         }
                     }
                 }
+            },
+            "axen_heat_pump_fault": {
+                "name": "Fault",
+                "state_attributes": {
+                    "description": {
+                        "state": {
+                            "e1": "E01: Communication error with the controller",
+                            "e2": "E02: TP exhaust temperature sensor failure",
+                            "e3": "E03: T3 coil temperature sensor failure",
+                            "e4": "E04: T4 Ambient temperature sensor failure",
+                            "e5": "E05: T5 liquid pipe temperature sensor failure",
+                            "e6": "E06: T6 return air temperature sensor failure",
+                            "e7": "E07: TW Water tank temperature sensor failure",
+                            "e8": "E08: TA Inlet water temperature sensor failure",
+                            "e9": "E09: TB Outlet water temperature sensor failure",
+                            "e10": "E10: Communication failure between the controller board and driver board",
+                            "e11": "E11: Reserved",
+                            "e12": "E12: Reserved",
+                            "e13": "E13: Communication failure between host and auxiliary",
+                            "e14": "E14: Low pressure sensor LPS failure",
+                            "e15": "E15: DC bus voltage too low",
+                            "e16": "E16: DC bus voltage too high",
+                            "p1": "P01: Water flow protection",
+                            "p2": "P02: High pressure protection",
+                            "p3": "P03: Low pressure protection",
+                            "p4": "P04: Condenser temperature (T3) overheat protection",
+                            "p5": "P05: Discharge temperature protection",
+                            "p6": "P06: Anti-freezing protection of leaving water",
+                            "p7": "P07: Anti-freezing protection of condenser pipe",
+                            "p8": "P08: Medium pressure protection",
+                            "p9": "P09: Unknown",
+                            "p10": "P10: Cooling low pressure protection",
+                            "p11": "P11: DC fan 1 failure",
+                            "p12": "P12: Reserved",
+                            "p13": "P13: 4-way valve fault",
+                            "p14": "P14: Unknown"
+                        }
+                    }
+                }
+            },
+            "protection": {
+                "name": "Protection"
+            },
+            "four_way_valve": {
+                "name": "4-way valve"
+            },
+            "water_pump": {
+                "name": "Water pump"
             }
         },
         "button": {
@@ -392,6 +440,21 @@
             },
             "timer_x": {
                 "name": "Timer {x}"
+            },
+            "auto_heat_temp_x": {
+                "name": "Auto mode heating temperature for zone {x}"
+            },
+            "cooling_temp_x": {
+                "name": "Cooling temperature for zone {x}"
+            },
+            "heating_temp_x": {
+                "name": "Heating temperature for zone {x}"
+            },
+            "auto_cool_temp_x": {
+                "name": "Auto mode cooling temperature for zone {x}"
+            },
+            "indoor_temperature": {
+                "name": "Indoor room temperature"
             }
         },
         "select": {
@@ -577,6 +640,18 @@
                     "red_bean_bread": "Red Bean Bread",
                     "milk_toast": "Milk Toast"
                 }
+            },
+            "axen_heat_pump_operation_mode": {
+                "name": "Operation mode",
+                "state": {
+                    "cooling": "Cooling",
+                    "heating": "Heating",
+                    "auto": "Auto",
+                    "hot_water": "Hot water",
+                    "cool_hot_water": "Hot water and cooling",
+                    "heat_hot_water": "Hot water and heating",
+                    "auto_dhw": " Auto and hot water"
+                }
             }
         },
         "sensor": {
@@ -707,6 +782,147 @@
             },
             "power_x": {
                 "name": "Power {x}"
+            },
+            "inlet_temperature": {
+                "name": "Inlet temperature"
+            },
+            "outlet_temperature": {
+                "name": "Outlet temperature"
+            },
+            "ambient_temperature": {
+                "name": "Ambient temperature"
+            },
+            "discharge_temperature": {
+                "name": "Discharge temperature"
+            },
+            "suction_temperature": {
+                "name": "Suction temperature"
+            },
+            "compressor_frequency": {
+                "name": "Compressor frequency"
+            },
+            "main_eev": {
+                "name": "Main valve opening"
+            },
+            "auxiliary_eev": {
+                "name": "Auxiliary valve opening"
+            },
+            "ac_fan": {
+                "name": "AC Fan",
+                "state": {
+                    "closed": "Closed",
+                    "low_spd": "Low speed",
+                    "high_spd": "High speed"
+                }
+            },
+            "dc_fan_x": {
+                "name": "DC Fan {x}"
+            },
+            "water_flow_rate": {
+                "name": "Water flow rate"
+            },
+            "ac_voltage": {
+                "name": "AC Voltage"
+            },
+            "ac_current": {
+                "name": "AC Current"
+            },
+            "active_zones": {
+                "name": "Active zones",
+                "state": {
+                    "none": "None",
+                    "zone_1": "Zone 1",
+                    "zone_2": "Zone 2",
+                    "zone_1_2": "Zone 1 & 2"
+                }
+            },
+            "valid_mode": {
+                "name": "Valid mode"
+            },
+            "max_cooling_temperature_x": {
+                "name": "Maximum cooling temperature in zone {x}"
+            },
+            "min_cooling_temperature_x": {
+                "name": "Minimum cooling temperature in zone {x}"
+            },
+            "max_heating_temperature_x": {
+                "name": "Maximum heating temperature in zone {x}"
+            },
+            "min_heating_temperature_x": {
+                "name": "Minimum heating temperature in zone {x}"
+            },
+            "max_auto_cooling_temperature_x": {
+                "name": "Maximum auto mode cooling temperature in zone {x}"
+            },
+            "min_auto_cooling_temperature_x": {
+                "name": "Minimum auto mode cooling temperature in zone {x}"
+            },
+            "max_auto_heating_temperature_x": {
+                "name": "Maximum auto mode heating temperature in zone {x}"
+            },
+            "min_auto_heating_temperature_x": {
+                "name": "Minimum auto mode heating temperature in zone {x}"
+            },
+            "max_heater_temperature": {
+                "name": "Maximum temperature for heater water"
+            },
+            "min_heater_temperature": {
+              "name": "Minimum temperature for heater water"
+            },
+            "max_room_temperature": {
+                "name": "Maximum operating room temperature"
+            },
+            "min_room_temperature": {
+                "name": "Minimum operating room temperature"
+            },
+            "indoor_temperature": {
+                "name": "Indoor temperature"
+            },
+            "thermostat_configuration": {
+                "name": "Thermostat configuration",
+                "state": {
+                    "without_room_thermostat": "Without room thermostat",
+                    "manually_configured": "Manual setting",
+                    "single_zone": "Single zone",
+                    "dual_zone": "Dual zone"
+                }
+            },
+            "single_zone_configuration_without_thermostat": {
+                "name": "Single zone operation mode without thermostat",
+                "state": {
+                    "manually_configured": "Manual setting",
+                    "weather_curve": "Weather curve",
+                    "reserved": "Reserved",
+                    "room_temperature": "Room temperature"
+                }
+            },
+            "dual_zone_configuration_without_thermostat": {
+                "name": "Dual zone operation mode without thermostat",
+                "state": {
+                  "manually_configured": "Manual setting",
+                    "zone_1_manual_zone_2_weather_curve": "Zone 1 manual setting / Zone 2 weather curve",
+                    "reserved": "Reserved",
+                    "zone_1_manual_zone_2_real_weather_curve": "Zone 1 manual setting / Zone 2 real weather curve",
+                    "zone_1_room_temp_zone_2_manual": "Zone 1 room temperature / Zone 2 manual setting",
+                    "weather_curve": "Weather curve",
+                    "zone_1__weather_curve_zone_2_room_temp": "Zone 1 weather curve / Zone 2 room temperature"
+                }
+            },
+            "single_zone_configuration_with_thermostat": {
+                "name": "Single zone operation mode with thermostat",
+                "state": {
+                    "manually_configured": "Manual setting",
+                    "room_temperature": "Room temperature"
+                }
+            },
+            "dual_zone_configuration_with_thermostat": {
+                "name": "Dual zone operation mode with thermostat",
+                "state": {
+                    "0": "0",
+                    "1": "1",
+                    "2": "2",
+                    "3": "3"
+                }
             }
         },
         "switch": {
@@ -736,6 +952,9 @@
             },
             "electrolytic_sterilization": {
                 "name": "Electrolytic sterilization"
+            },
+            "silent_mode": {
+                "name": "Silent mode"
             }
         },
         "text": {
