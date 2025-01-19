@@ -1,5 +1,3 @@
-# Most DPS above 128 not implemented, as they do not appear in the log
-# see #2561 for details if they show up in future.
 name: Combo heat pump
 products:
   - id: l01fseshej0xmz8x
@@ -14,7 +12,6 @@ entities:
         name: switch
   - entity: binary_sensor
     class: problem
-    name: Errors
     category: diagnostic
     dps:
       - id: 6
@@ -27,8 +24,76 @@ entities:
       - id: 6
         type: bitfield
         name: fault_code
+      - id: 6
+        type: bitfield
+        name: description
+        mapping:
+          - value: unknown
+          - dps_val: 0
+            value: OK
+          - dps_val: 1
+            value: e1
+          - dps_val: 2
+            value: e2
+          - dps_val: 4
+            value: e3
+          - dps_val: 8
+            value: e4
+          - dps_val: 16
+            value: e5
+          - dps_val: 32
+            value: e6
+          - dps_val: 64
+            value: e7
+          - dps_val: 128
+            value: e8
+          - dps_val: 256
+            value: e9
+          - dps_val: 512
+            value: e10
+          - dps_val: 1024
+            value: e11
+          - dps_val: 2048
+            value: e12
+          - dps_val: 4096
+            value: e13
+          - dps_val: 8192
+            value: e14
+          - dps_val: 16384
+            value: e15
+          - dps_val: 32768
+            value: e16
+          - dps_val: 65536
+            value: p1
+          - dps_val: 131072
+            value: p2
+          - dps_val: 262144
+            value: p3
+          - dps_val: 524288
+            value: p4
+          - dps_val: 1048576
+            value: p5
+          - dps_val: 2097152
+            value: p6
+          - dps_val: 4194304
+            value: p7
+          - dps_val: 8388608
+            value: p8
+          - dps_val: 16777216
+            value: p9
+          - dps_val: 33554432
+            value: p10
+          - dps_val: 67108864
+            value: p11
+          - dps_val: 134217728
+            value: p12
+          - dps_val: 268435456
+            value: p13
+          - dps_val: 536870912
+            value: p14
+
   - entity: switch
-    name: Silent mode
+    translation_key: silent_mode
     icon: "mdi:volume-mute"
     icon_priority: 2
     category: config
@@ -135,44 +200,50 @@ entities:
           - dps_val: auto_dhw
             value: auto
             available: water_on
-      - id: 165
+      - id: 117
         type: boolean
-        optional: true
-        name: away_mode
-        mapping:
-          - dps_val: null
-            value: false
-            hidden: true
-
-  - entity: water_heater
-    name: Water heater
-    dps:
-      - id: 1
-        type: boolean
-        name: operation_mode
-        # FIXME: selected mode reverts to the original setting, while
-        # modifying the DPS 109 directly works.
-        # It follows the setting made in another instance/Tuya app though
+        name: hvac_action
         mapping:
           - dps_val: false
-            value: "off"
+            value: idle
           - dps_val: true
-            constraint: work_mode
+            constraint: hvac_mode
             conditions:
-              - dps_val: cool
-                value: Cooling
-              - dps_val: heat
-                value: Heating
-              - dps_val: auto
-                value: Auto
-              - dps_val: hot_water
-                value: Hot water
-              - dps_val: cool_hot_water
-                value: Hot water and cooling
-              - dps_val: heat_hot_water
-                value: Hot water and heating
-              - dps_val: auto_dhw
-                value: Auto and hot water
+              - dps_val: ["cool", "cool_hotwater"]
+                value: cooling
+              - dps_val: ["heat", "heat_hotwater"]
+                value: heating
+              - dps_val: "hot_water"
+                value: idle
+              - dps_val: ["auto", "auto_dhw"]
+                value: null
+      - id: 106
+        type: integer
+        name: current_temperature
+        mapping:
+          - scale: 10
+
+  - entity: water_heater
+    translation_key: water_heater
+    dps:
+      - id: 109
+        type: string
+        name: operation_mode
+        mapping:
+          - dps_val: cool
+            value: cooling
+          - dps_val: heat
+            value: heating
+          - dps_val: auto
+            value: auto
+          - dps_val: hot_water
+            value: hot_water
+          - dps_val: cool_hot_water
+            value: cool_hot_water
+          - dps_val: heat_hot_water
+            value: heat_hot_water
+          - dps_val: auto_dhw
+            value: auto_dhw
       - id: 104
         type: integer
         name: temperature
@@ -202,7 +273,8 @@ entities:
             hidden: true
   # Added because of the above problem in the water_heater operation_mode
   - entity: select
-    name: Operation mode
+    translation_key: axen_heat_pump_operation_mode
+    hidden: true
     category: config
     dps:
       - id: 109
@@ -210,22 +282,23 @@ entities:
         name: option
         mapping:
           - dps_val: cool
-            value: Cool
+            value: cooling
           - dps_val: heat
-            value: Heat
+            value: heating
           - dps_val: auto
-            value: Auto
+            value: auto
           - dps_val: hot_water
-            value: Hot water
+            value: hot_water
           - dps_val: cool_hot_water
-            value: Cool + Hot Water
+            value: cool_hot_water
           - dps_val: heat_hot_water
-            value: Heat + Hot Water
+            value: heat_hot_water
           - dps_val: auto_dhw
-            value: Auto + Hot Water
+            value: auto_dhw
   - entity: sensor
-    name: Inlet temperature
+    translation_key: inlet_temperature
     class: temperature
+    category: diagnostic
     dps:
       - id: 106
         type: integer
@@ -235,8 +308,9 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Outlet temperature
+    translation_key: outlet_temperature
     class: temperature
+    category: diagnostic
     dps:
       - id: 107
         type: integer
@@ -246,7 +320,7 @@ entities:
         mapping:
           - scale: 10
   - entity: binary_sensor
-    name: Protection
+    translation_key: protection
     class: running
     category: diagnostic
     dps:
@@ -255,7 +329,7 @@ entities:
         optional: true
         name: sensor
   - entity: binary_sensor
-    name: Frost protection
+    translation_key: antifreeze
     class: running
     category: diagnostic
     icon: "mdi:snowflake-off"
@@ -264,7 +338,7 @@ entities:
         type: boolean
         name: sensor
   - entity: binary_sensor
-    name: Defrosting
+    translation_key: defrost
     class: running
     category: diagnostic
     icon: "mdi:snowflake-melt"
@@ -273,7 +347,7 @@ entities:
         type: boolean
         name: sensor
   - entity: binary_sensor
-    name: 4-way valve
+    translation_key: four_way_valve
     class: running
     category: diagnostic
     icon: "mdi:valve"
@@ -282,7 +356,7 @@ entities:
         name: sensor
         type: boolean
   - entity: binary_sensor
-    name: Water pump
+    translation_key: water_pump
     class: running
     category: diagnostic
     icon: "mdi:pump"
@@ -291,8 +365,9 @@ entities:
         type: boolean
         name: sensor
   - entity: sensor
-    name: Ambient temperature
+    translation_key: ambient_temperature
     class: temperature
+    category: diagnostic
     icon: "mdi:home-thermometer-outline"
     dps:
       - id: 118
@@ -303,7 +378,7 @@ entities:
           - scale: 10
         class: measurement
   - entity: sensor
-    name: Discharge temperature
+    translation_key: discharge_temperature
     class: temperature
     category: diagnostic
     dps:
@@ -315,7 +390,7 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Suction temperature
+    translation_key: suction_temperature
     class: temperature
     category: diagnostic
     dps:
@@ -327,7 +402,7 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Compressor frequency
+    translation_key: compressor_frequency
     class: frequency
     category: diagnostic
     dps:
@@ -337,7 +412,7 @@ entities:
         unit: Hz
         class: measurement
   - entity: sensor
-    name: Main valve opening
+    translation_key: main_eev
     category: diagnostic
     dps:
       - id: 122
@@ -349,7 +424,7 @@ entities:
           max: 480
         class: measurement
   - entity: sensor
-    name: Auxiliary valve opening
+    translation_key: auxiliary_eev
     category: diagnostic
     dps:
       - id: 123
@@ -361,7 +436,7 @@ entities:
           max: 480
         class: measurement
   - entity: sensor
-    name: AC Fan
+    translation_key: ac_fan
     icon: "mdi:fan-auto"
     class: enum
     category: diagnostic
@@ -371,16 +446,18 @@ entities:
         name: sensor
         mapping:
           - dps_val: close
-            value: Closed
+            value: closed
             icon: "mdi:fan-off"
           - dps_val: low_spd
-            value: Low speed
+            value: low_spd
             icon: "mdi:fan-speed-1"
           - dps_val: high_spd
-            value: High speed
+            value: high_spd
             icon: "mdi:fan-speed-2"
   - entity: sensor
-    name: DC fan 1
+    translation_key: dc_fan_x
+    translation_placeholders:
+      x: "1"
     icon: "mdi:fan-speed-1"
     category: diagnostic
     dps:
@@ -390,7 +467,9 @@ entities:
         unit: rpm
         class: measurement
   - entity: sensor
-    name: DC fan 2
+    translation_key: dc_fan_x
+    translation_placeholders:
+      x: "2"
     icon: "mdi:fan-speed-2"
     category: diagnostic
     dps:
@@ -400,7 +479,7 @@ entities:
         unit: rpm
         class: measurement
   - entity: sensor
-    name: Water flow rate
+    translation_key: water_flow_rate
     icon: "mdi:water-percent"
     class: volume_flow_rate
     category: diagnostic
@@ -413,16 +492,18 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: AC Voltage
+    translation_key: ac_voltage
     class: voltage
+    category: diagnostic
     dps:
       - id: 128
         type: integer
         name: sensor
         unit: V
   - entity: sensor
-    name: AC Current
+    translation_key: ac_current
     class: current
+    category: diagnostic
     dps:
       - id: 129
         type: integer
@@ -430,9 +511,9 @@ entities:
         unit: A
         mapping:
           - scale: 10
-  # TODO: Find out exactly how the fault is reported
+
   - entity: binary_sensor
-    name: Fault flag
+    translation_key: fault_flag
     class: problem
     dps:
       - id: 130
@@ -441,7 +522,9 @@ entities:
 
   # User configurable operating temperature values
   - entity: number
-    name: Auto mode heating temperature for zone 1
+    translation_key: auto_heat_temp_x
+    translation_placeholders:
+      x: "1"
     mode: box
     class: temperature
     category: config
@@ -457,7 +540,9 @@ entities:
           - scale: 10
             step: 10
   - entity: number
-    name: Cooling temperature for zone 2
+    translation_key: cooling_temp_x
+    translation_placeholders:
+      x: "2"
     mode: box
     class: temperature
     category: config
@@ -473,7 +558,9 @@ entities:
           - scale: 10
             step: 10
   - entity: number
-    name: Heating temperature for zone 2
+    translation_key: heating_temp_x
+    translation_placeholders:
+       x: "2"
     mode: box
     class: temperature
     category: config
@@ -489,7 +576,9 @@ entities:
           - scale: 10
             step: 10
   - entity: number
-    name: Auto mode cooling temperature for zone 2
+    translation_key: auto_cool_temp_x
+    translation_placeholders:
+       x: "2"
     mode: box
     class: temperature
     category: config
@@ -505,7 +594,9 @@ entities:
           - scale: 10
             step: 10
   - entity: number
-    name: Auto mode heating temperature for zone 2
+    translation_key: auto_heat_temp_x
+    translation_placeholders:
+       x: "2"
     mode: box
     class: temperature
     category: config
@@ -521,7 +612,7 @@ entities:
           - scale: 10
             step: 10
   - entity: number
-    name: Indoor room temperature
+    translation_key: indoor_temperature
     mode: box
     class: temperature
     category: config
@@ -560,28 +651,31 @@ entities:
   # room thermostat type.
   # Make it read-only for
   - entity: sensor
-    name: Active zones
+    translation_key: active_zones
     class: enum
+    category: diagnostic
     dps:
       - id: 159
         type: integer
         name: sensor
         mapping:
           - dps_val: 0
-            value: "None"
+            value: none
           - dps_val: 1
-            value: "Zone 1"
+            value: zone_1
             icon: "mdi:home-floor-1"
           - dps_val: 2
-            value: "Zone 2"
+            value: zone_2
             icon: "mdi:home-floor-2"
           - dps_val: 3
-            value: "Zone 1 & 2"
+            value: zone_1_2
             icon: "mdi:home"
   # TODO: Find the meaning of the values and provide a user friend description
   - entity: sensor
-    name: Valid mode
+    translation_key: valid_mode
     class: enum
+    category: diagnostic
+    hidden: true
     dps:
       - id: 131
         type: string
@@ -606,8 +700,12 @@ entities:
 
   # Temperature limit values
   - entity: sensor
-    name: Maximum cooling temperature in zone 1
+    translation_key: max_cooling_temperature_x
+    translation_placeholders:
+       x: "1"
     class: temperature
+    category: diagnostic
+    hidden: true
     dps:
       - id: 132
         type: integer
@@ -619,8 +717,12 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Minimum cooling temperature in zone 1
+    translation_key: min_cooling_temperature_x
+    translation_placeholders:
+       x: "1"
     class: temperature
+    category: diagnostic
+    hidden: true
     dps:
       - id: 133
         type: integer
@@ -632,8 +734,12 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Maximum heating temperature in zone 1
+    translation_key: max_heating_temperature_x
+    translation_placeholders:
+       x: "1"
     class: temperature
+    category: diagnostic
+    hidden: true
     dps:
       - id: 134
         type: integer
@@ -645,8 +751,12 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Minimum heating temperature in zone 1
+    translation_key: min_heating_temperature_x
+    translation_placeholders:
+       x: "1"
     class: temperature
+    category: diagnostic
+    hidden: true
     dps:
       - id: 135
         type: integer
@@ -658,9 +768,11 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Maximum temperature for heater water
+    translation_key: max_heater_temperature
     icon: "mdi:thermometer-chevron-up"
     class: temperature
+    category: diagnostic
+    hidden: true
     dps:
       - id: 136
         type: integer
@@ -672,9 +784,11 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Minimum temperature for heater water
+    translation_key: min_heater_temperature
     icon: "mdi:thermometer-chevron-down"
     class: temperature
+    category: diagnostic
+    hidden: true
     dps:
       - id: 137
         type: integer
@@ -687,8 +801,12 @@ entities:
           - scale: 10
 
   - entity: sensor
-    name: Maximum cooling temperature in auto mode in zone 1
+    translation_key: max_auto_cooling_temperature_x
+    translation_placeholders:
+       x: "1"
     class: temperature
+    category: diagnostic
+    hidden: true
     dps:
       - id: 138
         type: integer
@@ -701,8 +819,12 @@ entities:
           - scale: 10
 
   - entity: sensor
-    name: Minimum cooling temperature in auto mode in zone 1
+    translation_key: min_auto_cooling_temperature_x
+    translation_placeholders:
+       x: "1"
     class: temperature
+    category: diagnostic
+    hidden: true
     dps:
       - id: 139
         type: integer
@@ -714,8 +836,12 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Maximum heating temperature in auto mode in zone 1
+    translation_key: max_auto_heating_temperature_x
+    translation_placeholders:
+       x: "1"
     class: temperature
+    category: diagnostic
+    hidden: true
     dps:
       - id: 140
         type: integer
@@ -727,8 +853,12 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Minimum heating temperature in auto mode in zone 1
+    translation_key: min_auto_heating_temperature_x
+    translation_placeholders:
+       x: "1"
     class: temperature
+    category: diagnostic
+    hidden: true
     dps:
       - id: 141
         type: integer
@@ -740,7 +870,9 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Maximum cooling temperature in zone 2
+    translation_key: max_cooling_temperature_x
+    translation_placeholders:
+       x: "2"
     class: temperature
     dps:
       - id: 142
@@ -753,7 +885,9 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Minimum cooling temperature in zone 2
+    translation_key: min_cooling_temperature_x
+    translation_placeholders:
+       x: "2"
     class: temperature
     dps:
       - id: 143
@@ -766,7 +900,9 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Maximum heating temperature in zone 2
+    translation_key: max_heating_temperature_x
+    translation_placeholders:
+       x: "2"
     class: temperature
     dps:
       - id: 144
@@ -779,8 +915,12 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Minimum heating temperature in zone 2
+    translation_key: min_heating_temperature_x
+    translation_placeholders:
+       x: "2"
     class: temperature
+    category: diagnostic
+    hidden: true
     dps:
       - id: 145
         type: integer
@@ -792,8 +932,12 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Maximum cooling temperature in auto mode in zone 2
+    translation_key: max_auto_cooling_temperature_x
+    translation_placeholders:
+       x: "2"
     class: temperature
+    category: diagnostic
+    hidden: true
     dps:
       - id: 146
         type: integer
@@ -805,8 +949,12 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Minimum cooling temperature in auto mode in zone 2
+    translation_key: min_auto_cooling_temperature_x
+    translation_placeholders:
+       x: "2"
     class: temperature
+    category: diagnostic
+    hidden: true
     dps:
       - id: 147
         type: integer
@@ -818,8 +966,12 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Maximum heating temperature in auto mode in zone 2
+    translation_key: max_auto_heating_temperature_x
+    translation_placeholders:
+       x: "2"
     class: temperature
+    category: diagnostic
+    hidden: true
     dps:
       - id: 148
         type: integer
@@ -831,8 +983,12 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Minimum heating temperature in auto mode in zone 2
+    translation_key: min_auto_heating_temperature_x
+    translation_placeholders:
+       x: "2"
     class: temperature
+    category: diagnostic
+    hidden: true
     dps:
       - id: 149
         type: integer
@@ -844,8 +1000,10 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Maximum room temperature
+    translation_key: max_room_temperature
     class: temperature
+    category: diagnostic
+    hidden: true
     dps:
       - id: 150
         type: integer
@@ -857,8 +1015,10 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: Minimum room temperature
+    translation_key: min_room_temperature
     class: temperature
+    category: diagnostic
+    hidden: true
     dps:
       - id: 151
         type: integer
@@ -872,8 +1032,10 @@ entities:
 
   # Indoor means the room where the internal unit is located
   - entity: sensor
-    name: Indoor temperature
+    translation_key: indoor_temperature
     class: temperature
+    category: diagnostic
+    hidden: true
     dps:
       - id: 181
         type: integer
@@ -887,94 +1049,104 @@ entities:
 
   # Heat pump zone room thermostat configuration
   - entity: sensor
-    name: Thermostat type
+    translation_key: thermostat_configuration
     class: enum
+    category: diagnostic
+    hidden: true
     dps:
       - id: 152
         type: integer
         name: sensor
         mapping:
           - dps_val: 0
-            value: "Without room thermostat"
+            value: without_room_thermostat
           - dps_val: 1
-            value: "Configured mode"
+            value: manually_configured
           - dps_val: 2
-            value: "Single zone"
+            value: single_zone
           - dps_val: 3
-            value: "Dual zone"
+            value: dual_zone
 
   # TODO: Figure out the meaning of the values
+  #- entity: sensor
+  #  name: Whether to partition when there is no thermostat
+  #  class: enum
+  #  dps:
+  #    - id: 153
+  #      type: integer
+  #      name: sensor
+  #      mapping:
+  #        - dps_val: 0
+  #          value: "0"
+  #        - dps_val: 1
+  #          value: "1"
   - entity: sensor
-    name: Whether to partition when there is no thermostat
+    translation_key: single_zone_configuration_without_thermostat
     class: enum
-    dps:
-      - id: 153
-        type: integer
-        name: sensor
-        mapping:
-          - dps_val: 0
-            value: "0"
-          - dps_val: 1
-            value: "1"
-  - entity: sensor
-    name: Single zone operation mode without thermostat
-    class: enum
+    category: diagnostic
+    hidden: true
     dps:
       - id: 154
         type: integer
         name: sensor
         mapping:
           - dps_val: 0
-            value: "Manual setting"
+            value: manually_configured
           - dps_val: 1
-            value: "Weather curve"
+            value: weather_curve
           - dps_val: 2
-            value: "Reserved"
+            value: reserved
           - dps_val: 3
-            value: "Room temperature"
+            value: room_temperature
   - entity: sensor
-    name: Dual-zone operation mode without thermostat
+    translation_key: dual_zone_configuration_without_thermostat
     class: enum
+    category: diagnostic
+    hidden: true
     dps:
       - id: 155
         type: integer
         name: sensor
         mapping:
           - dps_val: 0
-            value: "Manual setting"
+            value: manually_configured
           - dps_val: 1
-            value: "Zone 1 manual setting / Zone 2 weather curve"
+            value: zone_1_manual_zone_2_weather_curve
           - dps_val: 2
-            value: "Reserved"
+            value: reserved
           - dps_val: 3
-            value: "Zone 1 manual setting / Zone 2 real weather curve"
+            value: zone_1_manual_zone_2_real_weather_curve
           - dps_val: 4
-            value: "Zone 1 room temperature / Zone 2 manual setting"
+            value: zone_1_room_temp_zone_2_manual
           - dps_val: 5
-            value: "Weather curve"
+            value: weather_curve
           - dps_val: 6
-            value: "Reserved"
+            value: reserved
           - dps_val: 7
-            value: "Zone 1 weather curve / Zone 2 room temperature"
+            value: zone_1__weather_curve_zone_2_room_temp
   # TODO: This needs a double check as the manual is not clear:
   # 0 = SET MODE, 1 = ONE ZONE
   - entity: sensor
-    name: Single zone operation mode with thermostat
+    translation_key: single_zone_configuration_with_thermostat
     class: enum
+    category: diagnostic
+    hidden: true
     dps:
       - id: 156
         type: integer
         name: sensor
         mapping:
           - dps_val: 0
-            value: "Manual setting"
+            value: manually_configured
           - dps_val: 1
-            value: "Room temperature"
+            value: room_temperature
   # TODO: This needs a double check as the manual is not clear.
   # It contains : target temperature for ROOM THERMOSTAT = TWO ZONES
   - entity: sensor
-    name: Dual-zone operation mode with thermostat
+    translation_key: dual_zone_configuration_with_thermostat
     class: enum
+    category: diagnostic
+    hidden: true
     dps:
       - id: 157
         type: integer
