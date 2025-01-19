@@ -1,7 +1,7 @@
-name: STB3L-125WJ Circuit breaker energy meter
+name: TOMZN TOB9L-63M Circuit breaker energy meter
 products:
-  - id: sh45wydgedautxda
-    name: STB3L-125WJ
+  - id: q4btghzwwksqec2p
+    name: Vap Smart Meter Pro
 entities:
   - entity: switch
     icon: "mdi:fuse"
@@ -81,20 +81,6 @@ entities:
         type: boolean
         name: button
         optional: true
-  - entity: number
-    name: "Auto-off Countdown"
-    icon: "mdi:timer"
-    category: config
-    dps:
-      - id: 101
-        type: integer
-        name: value
-        unit: s
-        range:
-          min: 0
-          max: 86400
-        mapping:
-          - scale: 1
   - entity: sensor
     name: "Balance Energy"
     icon: "mdi:gauge"
@@ -157,7 +143,7 @@ entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: "Voltage A"
+    name: "Voltage"
     icon: "mdi:flash"
     class: voltage
     category: diagnostic
@@ -171,7 +157,7 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor
-    name: "Current A"
+    name: "Current"
     icon: "mdi:current-ac"
     class: current
     category: diagnostic
@@ -185,7 +171,7 @@ entities:
         mapping:
           - scale: 1000
   - entity: sensor
-    name: "Power A"
+    name: "Power"
     icon: "mdi:flash-outline"
     class: power
     category: diagnostic
@@ -198,101 +184,3 @@ entities:
         mask: "0000000000FFFFFF"
         mapping:
           - scale: 1000
-  - entity: sensor
-    name: "Voltage B"
-    icon: "mdi:flash"
-    class: voltage
-    category: diagnostic
-    dps:
-      - id: 7
-        type: base64
-        name: sensor
-        optional: true
-        unit: V
-        mask: "FFFF000000000000"
-        mapping:
-          - scale: 10
-  - entity: sensor
-    name: "Current B"
-    icon: "mdi:current-ac"
-    class: current
-    category: diagnostic
-    dps:
-      - id: 7
-        type: base64
-        name: sensor
-        optional: true
-        unit: A
-        mask: "0000FFFFFF000000"
-        mapping:
-          - scale: 1000
-  - entity: sensor
-    name: "Power B"
-    icon: "mdi:flash-outline"
-    class: power
-    category: diagnostic
-    dps:
-      - id: 7
-        type: base64
-        name: sensor
-        optional: true
-        unit: kW
-        mask: "0000000000FFFFFF"
-        mapping:
-          - scale: 1000
-  - entity: sensor
-    name: "Voltage C"
-    icon: "mdi:flash"
-    class: voltage
-    category: diagnostic
-    dps:
-      - id: 8
-        type: base64
-        name: sensor
-        optional: true
-        unit: V
-        mask: "FFFF000000000000"
-        mapping:
-          - scale: 10
-  - entity: sensor
-    name: "Current C"
-    icon: "mdi:current-ac"
-    class: current
-    category: diagnostic
-    dps:
-      - id: 8
-        type: base64
-        name: sensor
-        optional: true
-        unit: A
-        mask: "0000FFFFFF000000"
-        mapping:
-          - scale: 1000
-  - entity: sensor
-    name: "Power C"
-    icon: "mdi:flash-outline"
-    class: power
-    category: diagnostic
-    dps:
-      - id: 8
-        type: base64
-        name: sensor
-        optional: true
-        unit: kW
-        mask: "0000000000FFFFFF"
-        mapping:
-          - scale: 1000
-  - entity: sensor
-    name: "Temperature"
-    icon: "mdi:thermometer"
-    class: temperature
-    category: diagnostic
-    dps:
-      - id: 102
-        type: integer
-        name: sensor
-        unit: C
-        class: measurement
-        optional: true
-        mapping:
-          - scale: 10
