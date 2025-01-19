@@ -632,6 +632,7 @@ of device.
   optional minimum brightness and bulb type)
 - Feit RGBWW light bulb (like generic RGBWW, but without scene support)
 - Galaxy Projector
+- Gosund SW2 dimmer switch
 - HDMI sync light
 - HDMI TV ambient lighting 65
 - iHD001 LED controller

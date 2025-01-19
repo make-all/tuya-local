@@ -813,3 +813,4 @@ Further device support has been made with the assistance of users. Please consid
 - [dimis7](https://github.com/dimis7) for assisting with support for Inventor Rise Pro dehumidifier.
 - [Bryla2507](https://github.com/Bryla2507) for assisting with support for LSC dual band outdoor camera.
 - [PaPa1ya](https://github.com/PaPa1ya) for assisting with support for generic RGB "dreamlight" garland.
+- [jcconnell](https://github.com/jcconnell) for contributing support for Gosund SW2 dimmer switch.
