@@ -1,7 +1,6 @@
 name: mmWave presence sensor
 products:
   - id: wcd9lxpvhfvqx1qw
-    name: WZ-M100-W
     manufacturer: Wenzhi
     model: WZ-M100-W
 entities:
@@ -58,7 +57,6 @@ entities:
           - scale: 100
             step: 10
   - entity: sensor
-    name: Distance
     class: distance
     dps:
       - id: 9
@@ -69,7 +67,6 @@ entities:
         mapping:
           - scale: 100
   - entity: sensor
-    name: Illuminance
     class: illuminance
     dps:
       - id: 103
@@ -81,6 +78,7 @@ entities:
           - scale: 10
   - entity: number
     name: Interval time
+    class: duration
     category: config
     dps:
       - id: 104
@@ -91,6 +89,7 @@ entities:
           - scale: 10
   - entity: number
     name: Detection delay
+    class: duration
     category: config
     dps:
       - id: 105
@@ -101,6 +100,7 @@ entities:
           - scale: 10
   - entity: number
     name: Unmanned Delay
+    class: duration
     category: config
     dps:
       - id: 106
