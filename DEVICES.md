@@ -392,6 +392,7 @@
 - Inkbird IHC-200 humidity controller
 - Klarta Humea humidifier
 - Kyvol EA200 humidifier
+- OGACFO LFHM055 floor humidifier
 - RZTK Aqua Pro humidifier
 - Stadler Eva humidifier
 - Stadler Form Karl/Karl Big humidifier
