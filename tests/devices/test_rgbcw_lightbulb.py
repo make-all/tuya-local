@@ -9,6 +9,7 @@ from homeassistant.const import UnitOfTime
 from ..const import RGBCW_LIGHTBULB_PAYLOAD
 from ..helpers import assert_device_properties_set
 from ..mixins.number import BasicNumberTests
+from ..mixins.text import TEXT_PATTERN_HEX, BasicTextTests
 from .base_device_tests import TuyaDeviceTestCase
 
 SWITCH_DPS = "20"
@@ -20,7 +21,7 @@ SCENE_DPS = "25"
 TIMER_DPS = "26"
 
 
-class TestRGBCWLightbulb(BasicNumberTests, TuyaDeviceTestCase):
+class TestRGBCWLightbulb(BasicNumberTests, BasicTextTests, TuyaDeviceTestCase):
     __test__ = True
 
     def setUp(self):
@@ -35,7 +36,12 @@ class TestRGBCWLightbulb(BasicNumberTests, TuyaDeviceTestCase):
             device_class=NumberDeviceClass.DURATION,
             scale=60,
         )
-        self.mark_secondary(["number_timer", "select_scene"])
+        self.setUpBasicText(
+            SCENE_DPS,
+            self.entities.get("text_scene"),
+            pattern=TEXT_PATTERN_HEX,
+        )
+        self.mark_secondary(["number_timer", "select_scene", "text_scene"])
 
     def test_is_on(self):
         self.dps[SWITCH_DPS] = True
@@ -177,11 +183,6 @@ class TestRGBCWLightbulb(BasicNumberTests, TuyaDeviceTestCase):
                 hs_color=(0, 100),
             )
 
-    def test_extra_state_attributes(self):
-        self.dps[SCENE_DPS] = "test"
-        self.assertDictEqual(
-            self.subject.extra_state_attributes,
-            {
-                "scene_data": "test",
-            },
-        )
+    def test_disabled_by_default(self):
+        self.assertFalse(self.basicText.entity_registry_enabled_default)
+        self.assertTrue(self.subject.entity_registry_enabled_default)

@@ -21,6 +21,7 @@
 - Ecostrad Accent iQ heating panel
 - Ecostrad iQ ceramic radiator
 - Ecostrad iQ heating element
+- Essentials Smart Home electric bathroom heater
 - Eurom Alutherm 1000,1500,2000,2500 heaters
 - Eurom Hot-Shot 2000 heaters
 - Eurom Mon Soleil 300,600,800, 350,601,720 and 300,450,720 Verre heaters
@@ -319,6 +320,7 @@
 - Proscenic A8 air purifier
 - Proscenic A9 air purifier
 - Renpho RP-AP001S air purifier
+- Siguro Air Master AP-K50 air purifier
 - Smartmi E1 air purifier
 - Soho SO-350WUI Air Purifier
 - Soleusair A02 and A10 air purifiers
@@ -361,6 +363,7 @@
 - Inkbird IHC-200 humidity controller
 - Inventor Atmosphere XL dehumidifier
 - Inventor Eva Ion Pro dehumidifier
+- Inventor Rise Pro dehumidifier
 - JJPro JPD01 dehumidifer
 - JJPro JPD02 dehumidifier
 - Klarstein DryFy Pro Connect dehumidifier
@@ -607,6 +610,7 @@ of device.
 - Generic RGBW lightbulb in the standard and non-standard patterns above but without color temperature control.
 - Generic dimmable/color temperature adjustable desktop lamp (confirmed with Setti+ SL601)
 - Generic "Dreamlight" RGBCW LED strips (tested with LSC RGBIC+CCT 2x5m LED strip)
+- Generic RGB only "Dreamlight" LED strip
 - Generic RGB only light bar - like the lights above, but no white light controls supported.
 - Unbranded 1CH dimmer module
 - Unbranded dual dimmer module
@@ -628,6 +632,7 @@ of device.
   optional minimum brightness and bulb type)
 - Feit RGBWW light bulb (like generic RGBWW, but without scene support)
 - Galaxy Projector
+- Gosund SW2 dimmer switch
 - HDMI sync light
 - HDMI TV ambient lighting 65
 - iHD001 LED controller
@@ -662,6 +667,7 @@ of device.
 - Teberno LED strip light (LGC-005 OEM3)
 - Tech Inc 3m neon strip
 - Treatlife outdoor dimmer with dual outlets
+- TV-TYA238-AK-2MP ambient TV sync backlight
 - Ustellar UT99911 RGB monitor light bar
 - Xinled XLD-CL002 RGBCW lightbulb
 - WF520D dual dimmer touchpanel
@@ -793,7 +799,8 @@ port and password.
 - Door peephole camera
 - Kerui 200W camera
 - Kerui JS-P162 300W camera
-- LSC PTZ camera
+- LSC Smart Connect dual band outdoor camera 
+- LSC Smart Connect PTZ camera
 - Moes PTZ indoor security camera
 - Nedis outdoor camera
 - Pinelake BF02 birdfeeder camera
@@ -909,10 +916,12 @@ port and password.
 - PGST PA-010 indoor temperature and humidity sensor
 - PH-W218 water quality monitor
 - PlantsIO Ivy smart planter
+- Protmex PT-19DW alarm clock with temperature and humidity monitor 
 - PV28-CW 8 in 1 air quality monitor
 - RSE TY-WFH v3.01 gate controller
 - RTCZ-03 human presence sensor
 - RainPoint TTV103FRF water timer
+- Sai Me Tei towel rail
 - SD123 HPR01 human presence radar
 - SNT957W-TDE temperature sensor
 - SNT957W-DE CBU temperature and humidity sensor

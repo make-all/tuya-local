@@ -355,6 +355,14 @@ class TuyaEntityConfig:
             return avail_dp.get_value(device)
         return True
 
+    def enabled_by_default(self, device):
+        """Return whether this entity should be disabled by default."""
+        return (
+            not self._config.get("hidden", False)
+            and not self.deprecated
+            and self.available(device)
+        )
+
 
 class TuyaDpsConfig:
     """Representation of a dps config."""
@@ -507,6 +515,7 @@ class TuyaDpsConfig:
 
     async def async_set_value(self, device, value):
         """Set the value of the dps in the given device to given value."""
+
         if self.readonly:
             raise TypeError(f"{self.name} is read only")
         if self.invalid_for(value, device):

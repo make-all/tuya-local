@@ -143,6 +143,7 @@ ENTITY_SCHEMA = vol.Schema(
                 "sensor",
                 "siren",
                 "switch",
+                "text",
                 "vacuum",
                 "valve",
                 "water_heater",
@@ -157,6 +158,7 @@ ENTITY_SCHEMA = vol.Schema(
         vol.Optional("icon_priority"): int,
         vol.Optional("deprecated"): str,
         vol.Optional("mode"): vol.In(["box", "slider"]),
+        vol.Optional("hidden"): True,
         vol.Required("dps"): [DP_SCHEMA],
     }
 )
@@ -258,6 +260,7 @@ KNOWN_DPS = {
         "optional": ["tone", "volume", "duration", "switch"],
     },
     "switch": {"required": ["switch"], "optional": ["current_power_w"]},
+    "text": {"required": ["value"], "optional": []},
     "vacuum": {
         "required": ["status"],
         "optional": [

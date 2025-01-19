@@ -179,8 +179,7 @@ entities:
           - dps_val: ringtone_4
             value: Sleep
   - entity: select
-    name: Scene
-    icon: "mdi:palette"
+    translation_key: scene
     category: config
     dps:
       - id: 12
@@ -189,21 +188,21 @@ entities:
         optional: true
         mapping:
           - dps_val: wake_up
-            value: Wake up
+            value: morning
           - dps_val: help_sleep
             value: Help sleep
           - dps_val: breath
             value: Breathing
           - dps_val: colourful
-            value: Colourful
+            value: party
           - dps_val: play
-            value: Play
+            value: leisure
           - dps_val: reading
-            value: Reading
+            value: reading
           - dps_val: night
-            value: Nightlight
+            value: night
           - dps_val: null
-            value: None
+            value: none
             hidden: true
   - entity: select
     name: Custom scene

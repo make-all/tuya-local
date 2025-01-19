@@ -1,0 +1,188 @@
+name: Climate sensor clock
+products:
+  - id: vzsjt2vxirsibm6s
+    manufacturer: Protmex
+    model: PT19DTW
+entities:
+  - entity: sensor
+    class: temperature
+    dps:
+      - id: 1
+        type: integer
+        name: sensor
+        class: measurement
+        mapping:
+          - scale: 10
+      - id: 9
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+  - entity: sensor
+    class: humidity
+    category: diagnostic
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 4
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - entity: select
+    translation_key: temperature_unit
+    category: config
+    dps:
+      - id: 9
+        type: string
+        name: option
+        mapping:
+          - dps_val: c
+            value: celsius
+          - dps_val: f
+            value: fahrenheit
+  - entity: select
+    name: Time format
+    icon: "mdi:clock"
+    category: config
+    dps:
+      - id: 101
+        type: string
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: "12h"
+          - dps_val: "1"
+            value: "24h"
+      - id: 107
+        type: string
+        optional: true
+        name: realtime
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Comfort
+    translation_key: air_quality
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 105
+        type: integer
+        name: sensor
+        mapping:
+          - dps_val: 1
+            value: good
+          - dps_val: 2
+            value: moderate
+          - dps_val: 3
+            value: poor
+  - entity: switch
+    name: Alarm
+    icon: "mdi:alarm"
+    category: config
+    dps:
+      - id: 106
+        type: string
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: "0"
+            value: false
+          - dps_val: "1"
+            value: true
+          - dps_val: null
+            value: false
+            hidden: true
+      - id: 102
+        type: string
+        optional: true
+        name: alarm
+  - entity: number
+    name: Maximum temperature
+    category: config
+    class: temperature
+    icon: "mdi:thermometer-chevron-up"
+    dps:
+      - id: 108
+        type: integer
+        name: value
+        range:
+          min: -400
+          max: 1000
+        mapping:
+          - scale: 10
+      - id: 9
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+  - entity: number
+    name: Minimum temperature
+    class: temperature
+    category: config
+    icon: "mdi:thermometer-chevron-down"
+    dps:
+      - id: 109
+        type: integer
+        name: value
+        range:
+          min: -400
+          max: 1000
+        mapping:
+          - scale: 10
+      - id: 9
+        type: string
+        name: unit
+        mapping:
+          - dps_val: c
+            value: C
+          - dps_val: f
+            value: F
+  - entity: number
+    name: Maximum humidity
+    class: humidity
+    category: config
+    dps:
+      - id: 110
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Minimum humidity
+    class: humidity
+    category: config
+    dps:
+      - id: 111
+        type: integer
+        name: value
+        unit: "%"
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 10
