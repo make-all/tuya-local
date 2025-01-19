@@ -683,12 +683,6 @@ ARLEC_FAN_LIGHT_PAYLOAD = {
     "103": "off",
 }
 
-GOSUND_DUMMER_SWITCH_PAYLOAD = {
-    "1": True,
-    "3": 23,
-    "101": False,
-}
-
 CARSON_CB_PAYLOAD = {
     "1": True,
     "2": 20,
