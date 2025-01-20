@@ -143,7 +143,6 @@ entities:
   #       range:
   #         min: 0
   #         max: 99999999
-  #         step: 1
   #       mapping:
   #         - scale: 1000
 
@@ -180,7 +179,6 @@ entities:
   #       range:
   #         min: 1
   #         max: 999999
-  #         step: 1
   #       mapping:
   #         - scale: 100
 
@@ -340,7 +338,6 @@ entities:
         range:
           min: -300
           max: 1050
-          step: 1
         mapping:
           - scale: 10
 
@@ -376,7 +373,8 @@ entities:
         range:
           min: 8
           max: 16
-          step: 1
+        mapping:
+          - step: 1
 
   # Current regulation for devices with higher power than 11kw, untested
   - entity: number # Set32A -115- OK
@@ -392,7 +390,8 @@ entities:
         range:
           min: 8
           max: 32
-          step: 1
+        mapping:
+          - step: 1
   - entity: number # Set40A -116- OK
     name: Charging current limit 40A
     hidden: true
@@ -406,7 +405,8 @@ entities:
         range:
           min: 12
           max: 40
-          step: 1
+        mapping:
+          - step: 1
   - entity: number # Set50A -117- OK
     name: Charging current limit 50A
     hidden: true
@@ -420,7 +420,8 @@ entities:
         range:
           min: 12
           max: 50
-          step: 1
+        mapping:
+          - step: 1
 
   - entity: number # SetDelayTime -118- OK
     name: Charging Delay
@@ -434,7 +435,8 @@ entities:
         range:
           min: 0
           max: 15
-          step: 1
+        mapping:
+          - step: 1
 
   - entity: number # SetDefineTime -119- OK
     name: Charging Time
@@ -448,7 +450,8 @@ entities:
         range:
           min: 0
           max: 15
-          step: 1
+        mapping:
+          - step: 1
 
   - entity: sensor #CTime2 -121- OK
     name: Chg Session Time
@@ -461,7 +464,6 @@ entities:
         range:
           min: 0
           max: 480
-          step: 1
         mapping:
           - scale: 10
 
