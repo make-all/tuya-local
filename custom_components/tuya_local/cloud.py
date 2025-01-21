@@ -78,6 +78,7 @@ class Cloud:
             self.__qr_code = response[TUYA_RESPONSE_RESULT][TUYA_RESPONSE_QR_CODE]
             return self.__qr_code
 
+        _LOGGER.error("Failed to get QR code: %s", response)
         self.__error_code = response.get(TUYA_RESPONSE_CODE, {})
         self.__error_msg = response.get(TUYA_RESPONSE_MSG, "Unknown error")
 
@@ -110,6 +111,7 @@ class Cloud:
             }
             self.__hass.data[DOMAIN]["auth_cache"] = self.__authentication
         else:
+            _LOGGER.warning("Login failed: %s", info)
             self.__error_code = info.get(TUYA_RESPONSE_CODE, {})
             self.__error_msg = info.get(TUYA_RESPONSE_MSG, "Unknown error")
 
@@ -187,6 +189,7 @@ class Cloud:
             manager.customer_api,
             f"/v1.0/m/life/devices/{device_id}/status",
         )
+        _LOGGER.debug("Datamodel response: %s", response)
         if response.get("result"):
             response = response["result"]
         transform = []
