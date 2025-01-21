@@ -814,3 +814,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Bryla2507](https://github.com/Bryla2507) for assisting with support for LSC dual band outdoor camera.
 - [PaPa1ya](https://github.com/PaPa1ya) for assisting with support for generic RGB "dreamlight" garland.
 - [jcconnell](https://github.com/jcconnell) for contributing support for Gosund SW2 dimmer switch.
+- [sippe2](https://github.com/sippe2) for assisting with support for DunWore F60 floor heating thermostat.
