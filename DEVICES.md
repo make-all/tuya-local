@@ -836,6 +836,7 @@ port and password.
 - iPettie W5 pet feeder
 - Leo's Loo Too pet toilet
 - Littepets MA2 series Cute Baby cat litter box
+- LSC Smart Connect pet feeder
 - Mypin 6L Video pet feeder
 - Nedis pet feeder
 - Petlibro PLAF103 pet feeder
