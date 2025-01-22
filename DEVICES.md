@@ -63,6 +63,7 @@
 - Semptec ZX7007 infrared heater
 - SolAire Vitra S2 panel heater
 - Sonnenkonig Eco 700 IR panel heater (probably also other Eco/Elegance series heaters)
+- Sunred SMART Triangle dark wall heater
 - Taurus Agadir Connect oil column heaters
 - Touchstone Sideline electric fireplace
 - VTA+ Axial fan heater
@@ -808,7 +809,7 @@ port and password.
 - Door peephole camera
 - Kerui 200W camera
 - Kerui JS-P162 300W camera
-- LSC Smart Connect dual band outdoor camera 
+- LSC Smart Connect dual band outdoor camera
 - LSC Smart Connect PTZ camera
 - Moes PTZ indoor security camera
 - Nedis outdoor camera
@@ -904,7 +905,7 @@ port and password.
 - CO2-Box air quality monitor
 - C30W gas leak detector
 - CT20W PIR motion detector
-- EM3390TF weather station (tested with Viflykoo branded device, probably identical to the same model number branded as Uzoli, Jely and others) 
+- EM3390TF weather station (tested with Viflykoo branded device, probably identical to the same model number branded as Uzoli, Jely and others)
 - Emax EM3378 Weather Station (selling as Hiper P1 and other rebrands)
 - EPT ultrasonic 3m tank level sensor
 - Goldair Platinum SleepSmart electric blanket
@@ -926,7 +927,7 @@ port and password.
 - PGST PA-010 indoor temperature and humidity sensor
 - PH-W218 water quality monitor
 - PlantsIO Ivy smart planter
-- Protmex PT-19DW alarm clock with temperature and humidity monitor 
+- Protmex PT-19DW alarm clock with temperature and humidity monitor
 - PV28-CW 8 in 1 air quality monitor
 - RSE TY-WFH v3.01 gate controller
 - RTCZ-03 human presence sensor
