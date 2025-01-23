@@ -698,6 +698,7 @@ of device.
 - Etersky curtain switch with backlight and timing control
 - FS-03W curtain switch with backlight control
 - Graywind window shades
+- GW Motor roller blinds
 - Kogan garage door with tilt sensor
 - KY motor 35W-10 shutter controller
 - Loonas smart curtain
