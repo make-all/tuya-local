@@ -5,44 +5,44 @@ products:
     model: wallbox 11kw
 entities:
   # Always charger_free, function unclear
-  # - entity: sensor # work_state -3- enum
-  #   name: Charger State
-  #   #translation_key: status
-  #   icon: "mdi:ev-station"
-  #   class: enum
-  #   dps:
-  #     - id: 3
-  #       type: string
-  #       name: sensor
-  #       mapping:
-  #         - dps_val: charger_free
-  #           value: available
-  #         - dps_val: charger_insert
-  #           value: plugged_in
-  #         - dps_val: charger_free_fault
-  #           value: fault_unplugged
-  #         - dps_val: charger_wait
-  #           value: waiting
-  #         - dps_val: charger_charging
-  #           value: charging
-  #         - dps_val: charger_pause
-  #           value: paused
-  #         - dps_val: charger_end
-  #           value: charged
-  #         - dps_val: charger_fault
-  #           value: fault
-  #     - id: 11 # alarm_set_1 -11-
-  #       optional: true
-  #       type: string
-  #       name: alarm_set_1
-  #     - id: 12 # alarm_set_2 -12-
-  #       optional: true
-  #       type: string
-  #       name: alarm_set_2
-  #     - id: 23 # system_version -23-
-  #       type: string
-  #       optional: true
-  #       name: system_version
+  - entity: sensor # work_state -3- enum
+    name: Charger State
+    icon: "mdi:ev-station"
+    class: enum
+    dps:
+      - id: 3
+        type: string
+        name: sensor
+        hidden: true
+        mapping:
+          - dps_val: charger_free
+            value: available
+          - dps_val: charger_insert
+            value: plugged_in
+          - dps_val: charger_free_fault
+            value: fault_unplugged
+          - dps_val: charger_wait
+            value: waiting
+          - dps_val: charger_charging
+            value: charging
+          - dps_val: charger_pause
+            value: paused
+          - dps_val: charger_end
+            value: charged
+          - dps_val: charger_fault
+            value: fault
+      - id: 11 # alarm_set_1 -11-
+        hidden: true
+        type: string
+        name: alarm_set_1
+      - id: 12 # alarm_set_2 -12-
+        hidden: true
+        type: string
+        name: alarm_set_2
+      - id: 23 # system_version -23-
+        type: string
+        hidden: true
+        name: system_version
 
   - entity: binary_sensor # fault -10- OK
     class: problem
@@ -93,26 +93,6 @@ entities:
           - dps_val: 8192
             value: "err_pe_sck"
 
-  # Duplicate to Setting, only filled up after change
-  # - entity: sensor # work_mode -14- OK
-  #   name: Chg mode
-  #   #translation_key: status
-  #   icon: "mdi:ev-station"
-  #   class: enum
-  #   dps:
-  #     - id: 14
-  #       type: string
-  #       name: sensor
-  #       mapping:
-  #         - dps_val: charge_now
-  #           value: Immediate
-  #         - dps_val: charge_pct
-  #           value: Charge to percent
-  #         - dps_val: charge_energy
-  #           value: Fixed charge
-  #         - dps_val: charge_schedule
-  #           value: Scheduled charge
-
   - entity: select # work_mode -14- OK
     name: Charging mode
     icon: "mdi:ev-station"
@@ -132,19 +112,20 @@ entities:
             value: Fixed charge
 
   # Always 0, function unclear
-  # - entity: sensor # balance_energy -15-
-  #   name: balance_energy
-  #   class: energy
-  #   dps:
-  #     - id: 15
-  #       type: integer
-  #       name: sensor
-  #       unit: kWh
-  #       range:
-  #         min: 0
-  #         max: 99999999
-  #       mapping:
-  #         - scale: 1000
+  - entity: sensor # balance_energy -15-
+    name: Balance Energy
+    class: energy
+    dps:
+      - id: 15
+        hidden: true
+        type: integer
+        name: sensor
+        unit: kWh
+        range:
+          min: 0
+          max: 99999999
+        mapping:
+          - scale: 1000
 
   # Sets Value on Cloud but unclear what function it has
   - entity: switch # clear_energy -16- OK
@@ -155,7 +136,7 @@ entities:
         type: boolean
         name: switch
 
-  # Seems like Factory Reset
+  # Factory Reset
   - entity: button # switch -18- OK
     name: Factory reset
     class: reset
@@ -167,23 +148,23 @@ entities:
         name: button
 
   # Always 1, unclear functiuon
-  # - entity: sensor # charge_energy_once -25-
-  #   name: charge_energy_once
-  #   class: energy
-  #   category: config
-  #   dps:
-  #     - id: 25
-  #       type: integer
-  #       name: value
-  #       unit: kWh
-  #       range:
-  #         min: 1
-  #         max: 999999
-  #       mapping:
-  #         - scale: 100
+  - entity: sensor # charge_energy_once -25-
+    name: charge_energy_once
+    class: energy
+    category: config
+    dps:
+      - id: 25
+        hidden: true
+        type: integer
+        name: value
+        unit: kWh
+        range:
+          min: 1
+          max: 999999
+        mapping:
+          - scale: 100
 
   - entity: binary_sensor # online_state -27-
-    #Name: Connected
     class: connectivity
     category: diagnostic
     dps:
@@ -232,24 +213,24 @@ entities:
         unit: V
         class: measurement
   - entity: sensor # B_Voltage
-    hidden: true
     name: Phase B voltage
     class: voltage
     category: diagnostic
     dps:
       - id: 103
         type: integer
+        hidden: true
         name: sensor
         unit: V
         class: measurement
   - entity: sensor # C_Voltage
     name: Phase C voltage
-    hidden: true
     class: voltage
     category: diagnostic
     dps:
       - id: 104
         type: integer
+        hidden: true
         name: sensor
         unit: V
         class: measurement
@@ -269,49 +250,50 @@ entities:
           - scale: 10
   - entity: sensor # B_Current
     name: Phase B current
-    hidden: true
     class: current
     category: diagnostic
     dps:
       - id: 106
         name: sensor
         type: integer
+        hidden: true
         unit: A
         class: measurement
         mapping:
           - scale: 10
   - entity: sensor # C_Current
     name: Phase C current
-    hidden: true
     class: current
     category: diagnostic
     dps:
       - id: 107
         name: sensor
         type: integer
+        hidden: true
         unit: A
         class: measurement
         mapping:
           - scale: 10
 
   # Seems not to work or change. on single phase even when loading 3 phase
-  # - entity: sensor # PhaseFlag -108-
-  #   name: Phase
-  #   icon: "mdi:transmission-tower"
-  #   class: enum
-  #   dps:
-  #     - id: 108
-  #       type: string
-  #       name: sensor
-  #       mapping:
-  #         - dps_val: Single_phase
-  #           value: "1-Phase"
-  #         - dps_val: Three_phase
-  #           value: "3-Phase"
-  #         - dps_val: No_phase
-  #           value: "No Phase"
-  #         - dps_val: Phase_err
-  #           value: "Phase Error"
+  - entity: sensor # PhaseFlag -108-
+    name: Phase
+    icon: "mdi:transmission-tower"
+    class: enum
+    dps:
+      - id: 108
+        type: string
+        hidden: true
+        name: sensor
+        mapping:
+          - dps_val: Single_phase
+            value: "1-Phase"
+          - dps_val: Three_phase
+            value: "3-Phase"
+          - dps_val: No_phase
+            value: "No Phase"
+          - dps_val: Phase_err
+            value: "Phase Error"
 
   - entity: sensor # DeviceKw -109- OK
     name: Charging Power
@@ -361,7 +343,7 @@ entities:
         name: sensor
 
   - entity: number # Set16A -114- OK
-    name: Charging current limit
+    name: Current limit 16A
     class: current
     category: config
     dps:
@@ -377,13 +359,13 @@ entities:
 
   # Current regulation for devices with higher power than 11kw, untested
   - entity: number # Set32A -115- OK
-    name: Charging current limit 32A
-    hidden: true
+    name: Current limit 32A
     class: current
     category: config
     dps:
       - id: 115
         type: integer
+        hidden: true
         name: value
         unit: A
         range:
@@ -392,13 +374,13 @@ entities:
         mapping:
           - step: 1
   - entity: number # Set40A -116- OK
-    name: Charging current limit 40A
-    hidden: true
+    name: Current limit 40A
     class: current
     category: config
     dps:
       - id: 116
         type: integer
+        hidden: true
         name: value
         unit: A
         range:
@@ -407,13 +389,13 @@ entities:
         mapping:
           - step: 1
   - entity: number # Set50A -117- OK
-    name: Charging current limit 50A
-    hidden: true
+    name: Current limit 50A
     class: current
     category: config
     dps:
       - id: 117
         type: integer
+        hidden: true
         name: value
         unit: A
         range:
@@ -476,7 +458,6 @@ entities:
 
   - entity: switch # RFID -123-
     name: RFID
-    class: identify
     category: config
     dps:
       - id: 123
@@ -484,9 +465,10 @@ entities:
         name: switch
 
   # Seems not to work with the charger as always on waitOperation
-  # - entity: sensor # ChargingOperation -124-
-  #   name: ChargingOperation
-  #   dps:
-  #     - id: 124
-  #       type: string
-  #       name: sensor
+  - entity: sensor # ChargingOperation -124-
+    name: ChargingOperation
+    dps:
+      - id: 124
+        type: string
+        hidden: true
+        name: sensor
