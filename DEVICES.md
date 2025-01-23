@@ -940,6 +940,7 @@ port and password.
 - Valehaus SYZN119 towel warmer
 - Weaja WJ-TUYA-S9 gas alarm
 - WeatherStation Pro
+- Wenzhi WZ-100M-W human presence sensor
 - Wenzhi WZ35 human presence sensor
 - Xiumii human presence radar
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)
