@@ -616,6 +616,7 @@ of device.
 - Unbranded 1CH dimmer module
 - Unbranded dual dimmer module
 - A60 1800-2700K RGBWW light
+- Arlec Grid Connect 6w RGB+CCT Downlight(Under Generic RGBCW/RGBWW lightbulb)
 - Asahom S105A-C outdoor lighting
 - Atomi smart color string light
 - Blitzwolf BW-LT31 LED strip
