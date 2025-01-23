@@ -818,3 +818,4 @@ Further device support has been made with the assistance of users. Please consid
 - [jdeneef](https://github.com/jdeneef) for assisting with support for LSC Smart Connect pet feeder.
 - [salbr](https://github.com/salbr) for contributing support for Wenzhi WZ-M100-W presence sensor.
 - [DLV111](https://github.com/DLV111) for contributing product details for Arlec downlight matching RGBCW lightbulb.
+- [mikita-liaukovich-epam](https://github.com/mikita-liaukovich-epam) for contributing support for Clofte Duo 400 humidifier.

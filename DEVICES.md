@@ -389,6 +389,7 @@
 - Carro VES1011 humidifier
 - Clean Air Optima CA-604B humidifier
 - Clean Air Optima CA-605B humidifier
+- Clofte Duo 400 humidifier
 - Eanons QT-JS2014 purifying humidifier
 - Inkbird IHC-200 humidity controller
 - Klarta Humea humidifier
