@@ -389,6 +389,7 @@
 - Carro VES1011 humidifier
 - Clean Air Optima CA-604B humidifier
 - Clean Air Optima CA-605B humidifier
+- Clofte Duo 400 humidifier
 - Eanons QT-JS2014 purifying humidifier
 - Inkbird IHC-200 humidity controller
 - Klarta Humea humidifier
@@ -697,6 +698,7 @@ of device.
 - Etersky curtain switch with backlight and timing control
 - FS-03W curtain switch with backlight control
 - Graywind window shades
+- GW Motor roller blinds
 - Kogan garage door with tilt sensor
 - KY motor 35W-10 shutter controller
 - Loonas smart curtain
@@ -836,6 +838,7 @@ port and password.
 - iPettie W5 pet feeder
 - Leo's Loo Too pet toilet
 - Littepets MA2 series Cute Baby cat litter box
+- LSC Smart Connect pet feeder
 - Mypin 6L Video pet feeder
 - Nedis pet feeder
 - Petlibro PLAF103 pet feeder
@@ -939,6 +942,7 @@ port and password.
 - Valehaus SYZN119 towel warmer
 - Weaja WJ-TUYA-S9 gas alarm
 - WeatherStation Pro
+- Wenzhi WZ-100M-W human presence sensor
 - Wenzhi WZ35 human presence sensor
 - Xiumii human presence radar
 - Yieryi water quality monitor (also matches unbranded PH-W3988 device)

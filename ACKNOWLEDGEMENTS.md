@@ -394,7 +394,7 @@ Further device support has been made with the assistance of users. Please consid
 - [wrmacj](https://github.com/wrmacj) for assisting with support for Kennedy electric fireplaces.
 - [KTibow](https://github.com/KTibow) for assisting with support for RGBW lights using the modern standard dps layout.
 - [jacobpennington821](https://github.com/jacobpennington821) for contributing support for Ecostrad iQ heating elements.
-- [Privatecoder](https://github.com/Privatecoder) for contributing support for Greenmigo Alpha Q25 dehumidifier and essentials Smart Home bathroom heater.
+- [Privatecoder](https://github.com/Privatecoder) for contributing support for Greenmigo Alpha Q25 dehumidifier, essentials Smart Home bathroom heater and GW roller blinds.
 - [bdf0506](https://github.com/bdf0506) for contributing support for VacPlus dehumidifiers and Momcozy white noise machines.
 - [bullmastiffo](https://github.com/bullmastiffo) for contributing support for Moes curtain switches and Calex heaters.
 - [Strixx76](https://github.com/Strixx76) for contributing support for Nedis LED strips.
@@ -499,7 +499,7 @@ Further device support has been made with the assistance of users. Please consid
 - [Pel1can111](https://github.com/Pel1can111) for assisting with support for Timeguard WFPIR motion light controller.
 - [ShiGhost](https://github.com/ShiGhost) for assisting with support for Keyun RGB chandelier fans and LS830-TY curtains.
 - [knowc](https://github.com/knowc) for assisting with support for Hydrotherm Dynamic/X8 Gen 6 water heaters.
-- [Waz-Cpt](https://github.com/Waz-Cpt) for contributing support for a dual dimmer module.
+- [Waz-Cpt](https://github.com/Waz-Cpt) for contributing support for a dual dimmer module and improvements to EMS water heater.
 - [wizu](https://gitub.com/wizu) for contributing improvements to NAC AP470 purifier.
 - [MatthewBCooke](https://github.com/MatthewBCooke) for contributing support for Dynasty BTX fireplace.
 - [xlemassacre](https://github.com/xlemassacre) for contributing support for Kesser infrared 400W wall and 3000W heaters.
@@ -815,3 +815,7 @@ Further device support has been made with the assistance of users. Please consid
 - [PaPa1ya](https://github.com/PaPa1ya) for assisting with support for generic RGB "dreamlight" garland.
 - [jcconnell](https://github.com/jcconnell) for contributing support for Gosund SW2 dimmer switch.
 - [sippe2](https://github.com/sippe2) for assisting with support for DunWore F60 floor heating thermostat.
+- [jdeneef](https://github.com/jdeneef) for assisting with support for LSC Smart Connect pet feeder.
+- [salbr](https://github.com/salbr) for contributing support for Wenzhi WZ-M100-W presence sensor.
+- [DLV111](https://github.com/DLV111) for contributing product details for Arlec downlight matching RGBCW lightbulb.
+- [mikita-liaukovich-epam](https://github.com/mikita-liaukovich-epam) for contributing support for Clofte Duo 400 humidifier.

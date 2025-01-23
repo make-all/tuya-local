@@ -1,0 +1,206 @@
+name: Pet feeder
+products:
+  - id: knpje5j2wsqlkhna
+    manufacturer: LSC Smart Connect
+entities:
+  - entity: camera
+    dps:
+      - id: 134
+        type: boolean
+        name: motion_enable
+        optional: true
+      - id: 150
+        type: boolean
+        name: record
+        optional: true
+      - id: 115
+        type: base64
+        optional: true
+        persist: false
+        sensitive: true
+        name: snapshot
+  - entity: switch
+    name: Flip image
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: select
+    name: Motion sensitivity
+    icon: "mdi:motion-sensor"
+    category: config
+    dps:
+      - id: 106
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: Low
+          - dps_val: "1"
+            value: Medium
+          - dps_val: "2"
+            value: High
+  - entity: select
+    name: Nightvision
+    icon: "mdi:weather-night"
+    category: config
+    dps:
+      - id: 108
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "0"
+            value: Auto
+          - dps_val: "1"
+            value: "Off"
+          - dps_val: "2"
+            value: "On"
+          - dps_val: null
+            value: Auto
+            hidden: true
+  - entity: sensor
+    name: SD status
+    class: enum
+    category: diagnostic
+    dps:
+      - id: 110
+        type: integer
+        name: sensor
+        optional: true
+        mapping:
+          - dps_val: 1
+            value: normal
+          - dps_val: 2
+            value: error
+          - dps_val: 3
+            value: full
+          - dps_val: 4
+            value: formatting
+          - dps_val: 5
+            value: missing
+          - dps_val: null
+            value: normal
+            hidden: true
+      - id: 109
+        type: string
+        optional: true
+        name: memory_card_capacity
+  - entity: button
+    name: Format SD card
+    category: config
+    dps:
+      - id: 111
+        type: boolean
+        optional: true
+        name: button
+      - id: 117
+        type: integer
+        optional: true
+        name: sd_format_status
+        mapping:
+          - dps_val: 2000
+            value: Formatting
+          - dps_val: 2001
+            value: Format error
+          - dps_val: 2002
+            value: "No SD card"
+          - dps_val: 2003
+            value: Card error
+  - entity: select
+    name: Recording mode
+    icon: "mdi:file-video"
+    category: config
+    dps:
+      - id: 151
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "1"
+            value: Event
+          - dps_val: "2"
+            value: Continuous
+  - entity: number
+    name: Feed portions
+    category: config
+    icon: "mdi:food-drumstick"
+    dps:
+      - id: 231
+        type: integer
+        optional: true
+        name: value
+        unit: portions
+        range:
+          min: 0
+          max: 20
+        mapping:
+          - dps_val: null
+            value: 0
+      - id: 234
+        type: boolean
+        optional: true
+        name: history_data
+      - id: 236
+        type: string
+        optional: true
+        name: schedule
+  - entity: number
+    name: Portion weight
+    class: weight
+    category: config
+    icon: "mdi:scale-balance"
+    dps:
+      - id: 232
+        type: integer
+        optional: true
+        name: value
+        unit: g
+        range:
+          min: 1
+          max: 100
+        mapping:
+          - dps_val: null
+            value: 1
+  - entity: event
+    name: Feed problem
+    dps:
+      - id: 233
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: "0"
+            value: empty
+          - dps_val: "1"
+            value: blocked
+  - entity: button
+    name: Voice record
+    icon: "mdi:record-rec"
+    category: config
+    dps:
+      - id: 235
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "1"
+            value: true
+  - entity: button
+    name: Stop voice record
+    icon: "mdi:stop-circle"
+    category: config
+    dps:
+      - id: 235
+        type: string
+        optional: true
+        name: button
+        mapping:
+          - dps_val: "0"
+            value: true
