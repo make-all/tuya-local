@@ -1,8 +1,8 @@
 name: Humidifier
 products:
   - id: aa8iuikeenvbsznx
-    manufacturer: CLOFTE
-    model: DUO 400
+    manufacturer: Clofte
+    model: Duo 400
     model_id: T3-CLOFTE
 entities:
   - entity: fan
@@ -18,15 +18,14 @@ entities:
           min: 0
           max: 4
   - entity: switch
-    name: Sleep
     translation_key: sleep
     dps:
       - id: 101
         name: switch
         type: boolean
   - entity: switch
-    name: Quiet
-    icon: mdi:volume-high
+    name: Mute
+    icon: mdi:volume-mute
     dps:
       - id: 116
         name: switch
@@ -38,19 +37,25 @@ entities:
         name: switch
         type: boolean
   - entity: sensor
-    name: PM2.5
+    class: pm25
     dps:
       - id: 2
         type: integer
         name: sensor
         unit: µg/m³
   - entity: sensor
-    name: Water level
+    translation_key: water_level
+    class: enum
     category: diagnostic
     dps:
       - id: 108
         type: string
         name: sensor
+        mapping:
+          - dps_val: low
+            value: low
+          - dps_val: high
+            value: high
   - entity: button
     translation_key: filter_reset
     category: config
@@ -59,7 +64,7 @@ entities:
         type: boolean
         name: button
   - entity: sensor
-    name: Filter left
+    name: Filter life
     icon: mdi:air-filter
     category: diagnostic
     dps:
