@@ -32,12 +32,12 @@ entities:
           - dps_val: charger_fault
             value: fault
       - id: 11 # alarm_set_1 -11-
-        hidden: true
         type: string
+        hidden: true
         name: alarm_set_1
       - id: 12 # alarm_set_2 -12-
-        hidden: true
         type: string
+        hidden: true
         name: alarm_set_2
       - id: 23 # system_version -23-
         type: string
@@ -117,8 +117,8 @@ entities:
     class: energy
     dps:
       - id: 15
-        hidden: true
         type: integer
+        hidden: true
         name: sensor
         unit: kWh
         range:
@@ -149,14 +149,13 @@ entities:
 
   # Always 1, unclear functiuon
   - entity: sensor # charge_energy_once -25-
-    name: charge_energy_once
+    name: Charge energy once
     class: energy
-    category: config
     dps:
       - id: 25
-        hidden: true
         type: integer
-        name: value
+        hidden: true
+        name: sensor
         unit: kWh
         range:
           min: 1
