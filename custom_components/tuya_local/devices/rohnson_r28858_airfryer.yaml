@@ -1,0 +1,221 @@
+name: Air fryer
+products:
+  - id: dsyz4tnrkwgo2fma
+    manufacturer: Rohnson
+    model: SmartChef XL2
+    model_id: R-2858
+entities:
+  - entity: climate
+    translation_only_key: oven
+    dps:
+      - id: 1
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 2
+        type: boolean
+        name: hvac_action
+        mapping:
+          - dps_val: false
+            value: heating
+          - dps_val: true
+            value: idle
+      - id: 6
+        type: integer
+        name: temperature
+        range:
+          min: 80
+          max: 220
+        mapping:
+          - step: 5
+            constraint: temperature_unit
+            conditions:
+              - dps_val: false
+                range:
+                  min: 180
+                  max: 440
+      - id: 103
+        type: boolean
+        name: temperature_unit
+        mapping:
+          - dps_val: true
+            value: C
+          - dps_val: false
+            value: F
+  - entity: button
+    name: Start
+    icon: "mdi:play"
+    dps:
+      - id: 1
+        type: boolean
+        name: available
+      - id: 2
+        type: boolean
+        name: button
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
+  - entity: button
+    name: Pause
+    icon: "mdi:pause"
+    dps:
+      - id: 1
+        type: boolean
+        name: available
+      - id: 2
+        type: boolean
+        name: button
+  - entity: select
+    translation_key: recipe
+    category: config
+    dps:
+      - id: 1
+        type: boolean
+        name: available
+      - id: 3
+        type: string
+        name: option
+        mapping:
+          - dps_val: drumsticks
+            value: chicken_drumsticks
+          - dps_val: steak
+            value: steak
+          - dps_val: fish
+            value: fish
+          - dps_val: cake
+            value: cake
+          - dps_val: pizza
+            value: pizza
+          - dps_val: sausage
+            value: sausage
+          - dps_val: chips
+            value: fries
+          - dps_val: dryfruit
+            value: dry_fruit
+  - entity: number
+    name: Cloud recipe
+    category: config
+    icon: "mdi:pot-mix"
+    dps:
+      - id: 1
+        type: boolean
+        name: available
+      - id: 4
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 999999999
+  - entity: number
+    name: Cooking time
+    class: duration
+    translation_key: timer
+    dps:
+      - id: 1
+        type: boolean
+        name: available
+      - id: 9
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 1440
+  - entity: sensor
+    translation_key: time_remaining
+    class: duration
+    dps:
+      - id: 10
+        type: integer
+        name: sensor
+        unit: min
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 12
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 12
+        type: bitfield
+        name: fault_code
+  - entity: light
+    category: config
+    dps:
+      - id: 1
+        type: boolean
+        name: available
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: sensor
+    name: Cooling time
+    class: duration
+    translation_key: time_remaining
+    category: diagnostic
+    dps:
+      - id: 107
+        type: integer
+        optional: true
+        name: sensor
+        unit: s
+        class: measurement
+  - entity: select
+    name: Operating state
+    icon: "mdi:toaster-oven"
+    category: config
+    dps:
+      - id: 1
+        type: boolean
+        name: available
+      - id: 108
+        type: string
+        name: option
+        mapping:
+          - dps_val: wait_mode
+            value: Wait
+          - dps_val: set_mode
+            value: Settings
+          - dps_val: run_mode
+            value: Run
+          - dps_val: stop_mode
+            value: Stop
+          - dps_val: pause_mode
+            value: Pause
+          - dps_val: time_out
+            value: Timeout
+  - entity: event
+    name: Cooked
+    dps:
+      - id: 109
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: nothing
+            value: null
+          - dps_val: alarm
+            value: turn_over
+          - dps_val: finish_cooking
+            value: done
+  - entity: switch
+    name: Tender griller
+    icon: "mdi:grill"
+    category: config
+    dps:
+      - id: 1
+        type: boolean
+        name: available
+      - id: 110
+        type: boolean
+        name: switch

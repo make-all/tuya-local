@@ -429,6 +429,7 @@
 - Klarstein Amazonia dishwasher
 - Kogan glass 1.7L smart kettle
 - Leoffen LFIM6000 ice cube maker
+- Rohnson R-2858 SmartChef XL soft cooking air fryer
 - Setti+ KT950W smart kettle
 - Silvercrest 1.7L smart kettle
 - Silvercrest coffee maker
