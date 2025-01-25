@@ -819,3 +819,4 @@ Further device support has been made with the assistance of users. Please consid
 - [salbr](https://github.com/salbr) for contributing support for Wenzhi WZ-M100-W presence sensor.
 - [DLV111](https://github.com/DLV111) for contributing product details for Arlec downlight matching RGBCW lightbulb.
 - [mikita-liaukovich-epam](https://github.com/mikita-liaukovich-epam) for contributing support for Clofte Duo 400 humidifier.
+- [tal6203](https://github.com/tal6203) for assisting with support for Delixing aroma diffuser.

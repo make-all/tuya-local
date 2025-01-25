@@ -406,6 +406,7 @@
 - Asakuki aroma diffuser with light (newer devices seem to require the Ditua config below)
 - Cadance ultrasonic aroma diffuser with light and music playback
 - Calex V2 aroma diffuser
+- Delixing KCL-1802A-M aroma diffuser
 - Ditua DT-1522-YN aroma diffuser
 - Etersky aroma diffuser with light
 - Maxico aroma diffuser with light (cannot be differentiated automatically from Ditua above)
