@@ -3,7 +3,7 @@ name: Release on Tag Push
 on:
   push:
     tags:
-      - '[0-9]*.[0-9]*.[0-9]*'  # Matches tags like 2025.1.0, 2025.2.1, etc.
+      - '[0-9]*.[0-9]*.[0-9]*'  # Matches tags like 2025.1.25
 
 jobs:
   release:
@@ -12,6 +12,20 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+
+      - name: Delete Existing Release (If It Exists)
+        id: delete_release
+        run: |
+          release_id=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            https://api.github.com/repos/${{ github.repository }}/releases/tags/${{ github.ref_name }} | jq -r '.id')
+          if [ "$release_id" != "null" ]; then
+            echo "Existing release found with ID: $release_id. Deleting..."
+            curl -s -X DELETE -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              https://api.github.com/repos/${{ github.repository }}/releases/$release_id
+            echo "Existing release deleted."
+          else
+            echo "No existing release found for tag ${{ github.ref_name }}."
+          fi
 
       - name: Create Release
         id: create_release
