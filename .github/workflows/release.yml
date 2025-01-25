@@ -1,0 +1,34 @@
+name: Release on Tag Push
+
+on:
+  push:
+    tags:
+      - '[0-9]*.[0-9]*.[0-9]*'  # Matches tags like 2025.1.0, 2025.2.1, etc.
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ github.ref_name }}
+          release_name: Release ${{ github.ref_name }}
+          body: |
+            ## Release Notes
+            - Automatically generated release for tag ${{ github.ref_name }}.
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Assets
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./path/to/your/asset.zip  # Replace with your actual asset file
+          asset_name: asset.zip
+          asset_content_type: application/zip
