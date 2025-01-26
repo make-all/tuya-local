@@ -1,12 +1,12 @@
-name: Oscillating Smart Fan
+name: Oscillating fan
 products:
   - id: rastwarkmv7aa3oo
     manufacturer: Homebase
-    model: DC FAN XJ-30-5SDC-W # product_name
-    model_id: XJ-35-1SDC # model
+    model: DC fan XJ-30-5SDC-W
+    model_id: XJ-35-1SDC
 entities:
   - entity: fan
-    translation_key: fan_with_presets
+    translation_only_key: fan_with_presets
     dps:
       - id: 1
         name: switch
@@ -49,6 +49,7 @@ entities:
         class: measurement
   - entity: select
     translation_key: timer
+    category: config
     dps:
       - id: 22
         type: string
