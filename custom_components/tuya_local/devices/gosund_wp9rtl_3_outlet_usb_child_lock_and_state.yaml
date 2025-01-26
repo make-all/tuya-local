@@ -1,4 +1,4 @@
-name: Gosund 3-Outlet + USB Powerstrip with Child Lock and State Memory
+name: Triple powerstrip with USB
 products:
   - id: rccfczzprrjvkpiz
     manufacturer: Gosund
@@ -128,8 +128,9 @@ entities:
   - entity: number
     category: config
     class: duration
-    name: USB timer
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      - x: USB
     dps:
       - id: 15
         name: value
