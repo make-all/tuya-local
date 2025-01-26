@@ -2,11 +2,12 @@ name: EV charger
 products:
   - id: tj9l3ghsjnbdjom6
     manufacturer: Absina
-    model: wallbox 11kw
+    model: Wallbox 11kw
 entities:
   # Always charger_free, function unclear
   - entity: sensor  # work_state -3- enum
-    name: Charger State
+    name: Charger state
+    translation_key: status
     icon: "mdi:ev-station"
     class: enum
     hidden: true
@@ -51,7 +52,7 @@ entities:
         name: description
         mapping:
           - dps_val: 0
-            value: "Ready"
+            value: Ready
           - dps_val: 1
             value: "err_uvp"
           - dps_val: 2
@@ -110,7 +111,7 @@ entities:
 
   # Always 0, function unclear
   - entity: sensor  # balance_energy -15-
-    name: Balance Energy
+    name: Balance energy
     hidden: true
     dps:
       - id: 15
@@ -126,6 +127,7 @@ entities:
   # Sets Value on Cloud but unclear what function it has
   - entity: button  # clear_energy -16- OK
     name: Clear energy
+    class: restart
     category: config
     dps:
       - id: 16
@@ -134,8 +136,7 @@ entities:
 
   # Factory Reset
   - entity: button  # switch -18- OK
-    name: Factory reset
-    class: reset
+    translation_key: factory_reset
     category: config
     hidden: true
     dps:
@@ -172,7 +173,7 @@ entities:
             value: false
 
   - entity: sensor  # DeviceState -101- OK
-    name: Device State
+    translation_key: status
     icon: "mdi:ev-station"
     class: enum
     dps:
@@ -181,23 +182,25 @@ entities:
         name: sensor
         mapping:
           - dps_val: no_connet
-            value: "Not Connected"
+            value: available
           - dps_val: connect
-            value: "Connected"
+            value: plugged_in
           - dps_val: charing
-            value: "Charging"
+            value: charging
           - dps_val: wait_rfid
-            value: "Wait fro RFID Auth"
+            value: waiting_for_authorization
           - dps_val: finish
-            value: "Finished"
+            value: charged
           - dps_val: wait_charing
-            value: "Wait for Charging"
+            value: waiting
           - dps_val: error
-            value: "Error"
+            value: fault
 
   # Only Channel A is providing values
   - entity: sensor  # A_Voltage -102-104- OK
-    name: Phase A voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: A
     class: voltage
     category: diagnostic
     dps:
@@ -207,7 +210,9 @@ entities:
         unit: V
         class: measurement
   - entity: sensor  # B_Voltage
-    name: Phase B voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: B
     class: voltage
     category: diagnostic
     hidden: unavailable
@@ -225,7 +230,9 @@ entities:
             value: true
           - value: false
   - entity: sensor  # C_Voltage
-    name: Phase C voltage
+    translation_key: voltage_x
+    translation_placeholders:
+      x: C
     class: voltage
     category: diagnostic
     hidden: unavailable
@@ -245,7 +252,9 @@ entities:
 
   # Only Channel A is providing values
   - entity: sensor  # A_Current -105-107- OK
-    name: Phase A current
+    translation_key: current_x
+    translation_placeholders:
+      x: A
     class: current
     category: diagnostic
     dps:
@@ -257,7 +266,9 @@ entities:
         mapping:
           - scale: 10
   - entity: sensor  # B_Current
-    name: Phase B current
+    translation_key: current_x
+    translation_placeholders:
+      x: B
     class: current
     hidden: unavailable
     category: diagnostic
@@ -277,7 +288,9 @@ entities:
             value: true
           - value: false
   - entity: sensor  # C_Current
-    name: Phase C current
+    translation_key: current_x
+    translation_placeholders:
+      x: C
     class: current
     hidden: unavailable
     category: diagnostic
@@ -318,7 +331,6 @@ entities:
             value: "Phase Error"
 
   - entity: sensor  # DeviceKw -109- OK
-    name: Charging Power
     class: power
     dps:
       - id: 109
@@ -331,7 +343,6 @@ entities:
           - scale: 10
 
   - entity: sensor  # DeviceTemp -110- OK
-    name: Device Temperature
     class: temperature
     category: diagnostic
     dps:
@@ -346,7 +357,6 @@ entities:
           - scale: 10
 
   - entity: sensor  # DeviceKwh -112- OK
-    name: Energy
     class: energy
     dps:
       - id: 112
@@ -410,8 +420,8 @@ entities:
           max: 50
 
   - entity: number  # SetDelayTime -118- OK
-    name: Charging Delay
-    class: time
+    name: Charging delay
+    class: duration
     category: config
     dps:
       - id: 118
@@ -423,8 +433,8 @@ entities:
           max: 15
 
   - entity: number  # SetDefineTime -119- OK
-    name: Charging Time
-    class: time
+    name: Charging time
+    class: duration
     category: config
     dps:
       - id: 119
@@ -436,8 +446,8 @@ entities:
           max: 15
 
   - entity: sensor  # CTime2 -121- OK
-    name: Chg Session Time
-    class: time
+    name: Charging time
+    class: duration
     dps:
       - id: 121
         type: integer
@@ -450,24 +460,23 @@ entities:
           - scale: 10
 
   - entity: switch  # IDVerificationSet -122-
-    name: IDVerification
+    name: Require RFID
     category: config
     dps:
       - id: 122
         type: boolean
         name: switch
 
-  - entity: switch  # RFID -123-
-    name: RFID
-    category: config
+  - entity: button  # RFID -123-
+    name: RFID present
     dps:
       - id: 123
         type: boolean
-        name: switch
+        name: button
 
   # Seems not to work with the charger as always on waitOperation
   - entity: sensor  # ChargingOperation -124-
-    name: ChargingOperation
+    name: Charging operation
     hidden: true
     dps:
       - id: 124
