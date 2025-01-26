@@ -5,6 +5,7 @@ products:
     model: KCL-M1803A-M
 entities:
   - entity: fan
+    translation_only_key: aroma_diffuser
     dps:
       - id: 2
         type: string
@@ -32,9 +33,9 @@ entities:
         optional: true
         name: speed
         mapping:
-          - dps_val: "2"
-            value: 50
           - dps_val: "1"
+            value: 50
+          - dps_val: "2"
             value: 100
   - entity: sensor
     translation_key: time_remaining
