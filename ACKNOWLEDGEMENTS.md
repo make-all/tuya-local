@@ -821,3 +821,4 @@ Further device support has been made with the assistance of users. Please consid
 - [mikita-liaukovich-epam](https://github.com/mikita-liaukovich-epam) for contributing support for Clofte Duo 400 humidifier.
 - [tal6203](https://github.com/tal6203) for assisting with support for Delixing aroma diffuser.
 - [rclarkmorrow](https://github.com/rclarkmorrow) for contributing support for Powersav AHR-083 powerstrip (which was merged to generic quad powerstrip with timer).
+- [ralsinn](https://github.com/ralsinn) for contributing support for Absina Wallbox EV charger.

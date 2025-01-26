@@ -489,6 +489,7 @@
 
 ### Battery Charger
 
+- Absina Wallbox EV charger (also sold as Dé Wallbox and supporting 16, 32, 40 and 50A single and 3-phase variants)
 - AFYEEV 16A portable EV charger
 - AFYEEV 32A 22kW portable EV charger
 - EcoPoint EV charger
