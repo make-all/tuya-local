@@ -975,6 +975,7 @@ port and password.
 - HCT-626 dual water timer
 - HU06 smart lock
 - Ironzon fingerprint lock
+- KB150A keypad fingerprint lock
 - MoistenLand water timer
 - Nice Digi door lock
 - Orion DL021HA lock

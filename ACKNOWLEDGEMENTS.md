@@ -824,3 +824,4 @@ Further device support has been made with the assistance of users. Please consid
 - [ralsinn](https://github.com/ralsinn) for contributing support for Absina Wallbox EV charger.
 - [ShawnBuckley](https://github.com/ShawnBuckley) for contributing support for OGACFO humidifier.
 - [gurtjun](https://github.com/gurtjun) for contributing support for Sunred Triangle patio heater.
+- [josefelixh](https://github.com/josefelixh) for contributing support for KB15A Bluetooth keypad lock.
