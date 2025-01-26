@@ -178,3 +178,9 @@ class TestSwitchV2Energy(
             self.basicBSensor.extra_state_attributes,
             {"fault_code": 2},
         )
+
+    def test_available(self):
+        self.dps[INITIAL_DPS] = None
+        self.assertFalse(self.basicSelect.available)
+        self.dps[INITIAL_DPS] = "on"
+        self.assertTrue(self.basicSelect.available)

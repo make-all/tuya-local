@@ -96,10 +96,11 @@ class TuyaDeviceTestCase(IsolatedAsyncioTestCase):
     def test_config_matched(self):
         for cfg in possible_matches(self.dps):
             if cfg.legacy_type == self.conf_type:
+                quality = cfg.match_quality(self.dps)
                 self.assertEqual(
-                    cfg.match_quality(self.dps),
+                    quality,
                     100.0,
-                    msg=f"{self.conf_type} is an imperfect match",
+                    msg=f"{self.conf_type} is an imperfect match at {quality}%",
                 )
                 return
         self.fail()

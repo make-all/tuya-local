@@ -13,6 +13,9 @@ from homeassistant.helpers.entity import EntityCategory
 
 _LOGGER = logging.getLogger(__name__)
 
+# These attributes should not be included in the extra state attributes
+BLACKLISTED_ATTRIBUTES = ["state", "available"]
+
 
 class TuyaLocalEntity:
     """Common functions for all entity types."""
@@ -30,7 +33,7 @@ class TuyaLocalEntity:
 
     def _init_end(self, dps):
         for d in dps.values():
-            if not d.hidden:
+            if not d.hidden and d.name not in BLACKLISTED_ATTRIBUTES:
                 self._attr_dps.append(d)
 
     @property

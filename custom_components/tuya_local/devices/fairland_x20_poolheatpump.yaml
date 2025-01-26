@@ -129,6 +129,7 @@ entities:
         name: fault_code_2
   - entity: sensor
     category: diagnostic
+    hidden: unavailable
     class: power
     dps:
       - id: 112
@@ -140,3 +141,10 @@ entities:
         name: available
         type: boolean
         optional: true
+        mapping:
+          - dps_val: null
+            value: true
+            constraint: sensor
+            conditions:
+              - dps_val: null
+                value: false

@@ -145,7 +145,16 @@ entities:
   - entity: lock
     translation_key: child_lock
     category: config
+    hidden: unavailable
     dps:
+      - id: 41
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
       - id: 41
         type: boolean
         name: lock
@@ -170,15 +179,33 @@ entities:
   - entity: switch
     name: Overcharge protection
     category: config
+    hidden: unavailable
     dps:
+      - id: 39
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
       - id: 39
         type: boolean
         name: switch
         optional: true
   - entity: sensor
     class: temperature
+    hidden: unavailable
     category: diagnostic
     dps:
+      - id: 47
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
       - id: 47
         type: integer
         optional: true
