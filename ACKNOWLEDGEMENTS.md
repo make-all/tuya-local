@@ -825,3 +825,4 @@ Further device support has been made with the assistance of users. Please consid
 - [ShawnBuckley](https://github.com/ShawnBuckley) for contributing support for OGACFO humidifier and improvements to TYTE-D1 thermostat switch.
 - [gurtjun](https://github.com/gurtjun) for contributing support for Sunred Triangle patio heater.
 - [josefelixh](https://github.com/josefelixh) for contributing support for KB15A Bluetooth keypad lock.
+- [JackM-521](https://github.com/JackM-521) for assisting with support for Rohnson R-9530 dehumidifier.
