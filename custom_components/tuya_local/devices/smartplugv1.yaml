@@ -48,7 +48,16 @@ entities:
     name: Overcurrent alarm
     class: problem
     category: diagnostic
+    hidden: unavailable
     dps:
+      - id: 7
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
       - id: 7
         type: boolean
         name: sensor

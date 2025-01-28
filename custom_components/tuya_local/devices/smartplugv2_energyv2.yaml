@@ -138,7 +138,16 @@ entities:
   - entity: switch
     name: Overcharge protection
     category: config
+    hidden: unavailable
     dps:
+      - id: 39
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
       - id: 39
         type: boolean
         name: switch
@@ -154,7 +163,16 @@ entities:
     name: Light mode
     icon: "mdi:television-ambient-light"
     category: config
+    hidden: unavailable
     dps:
+      - id: 40
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
       - id: 40
         type: string
         name: option
@@ -169,10 +187,19 @@ entities:
   - entity: binary_sensor
     name: Online
     class: connectivity
+    hidden: unavailable
     category: diagnostic
     dps:
       - id: 66
-        type: boolean
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 66
+        type: string
         optional: true
         name: sensor
         mapping:

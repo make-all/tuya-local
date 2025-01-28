@@ -100,6 +100,13 @@
     },
     "entity": {
         "binary_sensor": {
+            "direction": {
+                "name": "Arah",
+                "state": {
+                    "off": "Masuk",
+                    "on": "Keluar"
+                }
+            },
             "defrost": {
                 "name": "Mencairkan beku",
                 "state": {
@@ -179,6 +186,7 @@
                 }
             },
             "thermostat": {
+                "name": "Termostat",
                 "state_attributes": {
                     "fan_mode": {
                         "state": {
@@ -303,7 +311,8 @@
                             "medium": "Sedang",
                             "high": "Tinggi",
                             "continuous": "Terus menerus",
-                            "intermittent": "Intermiten"
+                            "intermittent": "Intermiten",
+                            "timer": "Pengatur waktu"
                         }
                     }
                 }
@@ -439,6 +448,8 @@
                     "cake": "Kue",
                     "bread": "Roti",
                     "toast": "Roti panggang",
+                    "sausage": "Sosis",
+                    "dry_fruit": "Buah kering",
                     "custom": "Kustom",
                     "cloud_recipe": "Resep awan",
                     "default": "Default",

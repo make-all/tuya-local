@@ -1,12 +1,8 @@
-name: 3 outlet + USB powerstrip
+name: Triple powerstrip with USB
 products:
-  - id: ivd9p236skiaqdrk
-    manufacturer: Qnect
-    model: QN-WP03
-  - id: qsjg9owomawgtoar
+  - id: rccfczzprrjvkpiz
     manufacturer: Gosund
-    model: PM03_T-AR
-    name: Wall plugs
+    model: WP9-RTL
 entities:
   - entity: switch
     translation_key: outlet_x
@@ -17,6 +13,15 @@ entities:
       - id: 1
         type: boolean
         name: switch
+      - id: 41
+        name: cycle_time
+        type: string
+      - id: 42
+        name: random_time
+        type: string
+      - id: 43
+        name: inching
+        type: string
   - entity: switch
     translation_key: outlet_x
     translation_placeholders:
@@ -36,7 +41,7 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: USB switch
+    name: USB
     class: switch
     dps:
       - id: 7
@@ -96,8 +101,9 @@ entities:
   - entity: number
     category: config
     class: duration
-    name: USB timer
-    translation_key: timer
+    translation_key: timer_x
+    translation_placeholders:
+      x: USB
     dps:
       - id: 15
         name: value
@@ -109,3 +115,24 @@ entities:
         mapping:
           - scale: 60
             step: 60
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        name: lock
+  - entity: select
+    translation_key: initial_state
+    category: config
+    dps:
+      - id: 38
+        type: string
+        name: option
+        mapping:
+          - dps_val: "1"
+            value: "on"
+          - dps_val: "0"
+            value: "off"
+          - dps_val: "2"
+            value: memory

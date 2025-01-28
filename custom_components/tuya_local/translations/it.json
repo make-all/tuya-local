@@ -101,6 +101,13 @@
     },
     "entity": {
         "binary_sensor": {
+            "direction": {
+                "name": "Direzione",
+                "state": {
+                    "off": "In",
+                    "on": "Out"
+                }
+            },
             "defrost": {
                 "name": "Scongelare",
                 "state": {
@@ -180,6 +187,7 @@
                 }
             },
             "thermostat": {
+                "name": "Termostato",
                 "state_attributes": {
                     "fan_mode": {
                         "state": {
@@ -304,7 +312,8 @@
                             "medium": "Medio",
                             "high": "Alto",
                             "continuous": "Continuo",
-                            "intermittent": "Intermittente"
+                            "intermittent": "Intermittente",
+                            "timer": "Timer"
                         }
                     }
                 }
@@ -440,6 +449,8 @@
                     "cake": "Torta",
                     "bread": "Pane",
                     "toast": "Tostare",
+                    "sausage": "Salsiccia",
+                    "dry_fruit": "Frutta secca",
                     "custom": "Personalizzato",
                     "cloud_recipe": "Ricetta cloud",
                     "default": "Predefinito",

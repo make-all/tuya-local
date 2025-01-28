@@ -159,6 +159,7 @@ entities:
         optional: true
   - entity: sensor  # no sensor in Fisher Summer AC, returns 0
     class: pm25
+    hidden: unavailable
     dps:
       - id: 101
         name: sensor
@@ -174,6 +175,7 @@ entities:
   - entity: select
     name: Sleep
     category: config
+    hidden: unavailable
     dps:
       - id: 105
         name: option
@@ -216,6 +218,7 @@ entities:
   - entity: select
     name: Horizontal sweep
     category: config
+    hidden: unavailable
     dps:
       - id: 114
         name: option
@@ -248,6 +251,7 @@ entities:
   - entity: select
     name: Energy saving
     category: config
+    hidden: unavailable
     dps:
       - id: 119
         name: option
@@ -273,6 +277,7 @@ entities:
   - entity: select
     name: Generator mode
     category: config
+    hidden: unavailable
     dps:
       - id: 120
         name: option
@@ -297,6 +302,7 @@ entities:
           - value: false
   - entity: sensor
     translation_key: air_quality
+    hidden: unavailable
     dps:
       - id: 125
         name: sensor
@@ -312,6 +318,7 @@ entities:
   - entity: select
     name: Set vertical direction
     category: config
+    hidden: unavailable
     dps:
       - id: 126
         name: option
@@ -340,6 +347,7 @@ entities:
   - entity: select
     name: Set horizontal direction  # Tuya JSON phrasing: Freeze Horizontal
     category: config
+    hidden: unavailable
     dps:
       - id: 127
         name: option
@@ -414,6 +422,7 @@ entities:
   - entity: binary_sensor
     name: Dirty filter
     class: problem
+    hidden: unavailable
     category: diagnostic
     dps:
       - id: 131
@@ -430,6 +439,7 @@ entities:
   - entity: select
     name: Hot cold wind
     category: config
+    hidden: unavailable
     dps:
       - id: 132
         name: option

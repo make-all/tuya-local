@@ -126,8 +126,17 @@ entities:
         optional: true
   - entity: select
     category: config
+    hidden: unavailable
     translation_key: initial_state
     dps:
+      - id: 38
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
       - id: 38
         type: string
         name: option
@@ -142,8 +151,17 @@ entities:
   - entity: switch
     name: Overcharge cutoff
     category: config
+    hidden: unavailable
     icon: "mdi:battery-charging"
     dps:
+      - id: 46
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
       - id: 46
         type: boolean
         name: switch
@@ -154,8 +172,17 @@ entities:
   - entity: select
     name: Light
     icon: "mdi:circle-double"
+    hidden: unavailable
     category: config
     dps:
+      - id: 39
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
       - id: 39
         type: string
         name: option
@@ -171,8 +198,17 @@ entities:
             value: "On"
   - entity: lock
     translation_key: child_lock
+    hidden: unavailable
     category: config
     dps:
+      - id: 40
+        type: boolean
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
       - id: 40
         type: boolean
         name: lock

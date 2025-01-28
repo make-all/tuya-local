@@ -1,0 +1,81 @@
+name: Bathroom heater
+products:
+  - id: crtjvuaaipzpatlk
+    manufacturer: essentials Smart Home
+entities:
+  - entity: climate
+    translation_only_key: heater
+    dps:
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: "heat"
+          - dps_val: false
+            value: "off"
+      - id: 2
+        name: preset_mode
+        type: string
+        mapping:
+          - dps_val: hot
+            value: comfort
+          - dps_val: eco
+            value: eco
+          - dps_val: cold
+            value: away
+          - dps_val: auto
+            value: auto
+      - id: 16
+        name: temperature
+        type: integer
+        unit: C
+        range:
+          min: 70
+          max: 300
+        mapping:
+          - scale: 10
+            step: 5
+      - id: 24
+        name: current_temperature
+        type: integer
+        unit: C
+        mapping:
+          - scale: 10
+            step: 10
+  - entity: number
+    name: Temperature correction
+    category: config
+    icon: "mdi:thermometer-check"
+    dps:
+      - id: 27
+        type: integer
+        name: value
+        unit: °
+        range:
+          min: -5
+          max: 5
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 40
+        type: boolean
+        name: lock
+  - entity: select
+    name: Open window detection
+    category: config
+    dps:
+      - id: 112
+        type: string
+        name: option
+        mapping:
+          - dps_val: 0
+            value: "Off"
+            icon: "mdi:window-closed"
+          - dps_val: 60
+            value: "60 min"
+            icon: "mdi:window-open"
+          - dps_val: 90
+            value: "90 min"
+            icon: "mdi:window-open"

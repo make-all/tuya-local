@@ -1,0 +1,111 @@
+name: mmWave presence sensor
+products:
+  - id: wcd9lxpvhfvqx1qw
+    manufacturer: Wenzhi
+    model: WZ-M100-W
+entities:
+  - entity: binary_sensor
+    class: occupancy
+    dps:
+      - id: 1
+        type: string
+        name: sensor
+        mapping:
+          - dps_val: presence
+            value: true
+          - dps_val: none
+            value: false
+  - entity: number
+    name: Sensitivity
+    category: config
+    icon: "mdi:motion-sensor"
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 9
+  - entity: number
+    name: Minimum distance
+    category: config
+    icon: "mdi:arrow-collapse-left"
+    dps:
+      - id: 3
+        type: integer
+        name: value
+        unit: m
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 100
+            step: 10
+  - entity: number
+    name: Maximum distance
+    category: config
+    icon: "mdi:arrow-collapse-right"
+    dps:
+      - id: 4
+        type: integer
+        name: value
+        unit: m
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - scale: 100
+            step: 10
+  - entity: sensor
+    class: distance
+    dps:
+      - id: 9
+        type: integer
+        name: sensor
+        unit: m
+        class: measurement
+        mapping:
+          - scale: 100
+  - entity: sensor
+    class: illuminance
+    dps:
+      - id: 103
+        type: integer
+        name: sensor
+        unit: lx
+        class: measurement
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Interval time
+    class: duration
+    category: config
+    dps:
+      - id: 104
+        type: integer
+        name: value
+        unit: s
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Detection delay
+    class: duration
+    category: config
+    dps:
+      - id: 105
+        type: integer
+        name: value
+        unit: s
+        mapping:
+          - scale: 10
+  - entity: number
+    name: Unmanned Delay
+    class: duration
+    category: config
+    dps:
+      - id: 106
+        type: integer
+        name: value
+        unit: s
+        mapping:
+          - scale: 10

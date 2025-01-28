@@ -100,6 +100,13 @@
     },
     "entity": {
         "binary_sensor": {
+            "direction": {
+                "name": "Direction",
+                "state": {
+                    "off": "Entrant",
+                    "on": "Sortant"
+                }
+            },
             "defrost": {
                 "name": "Dégivrer",
                 "state": {
@@ -179,6 +186,7 @@
                 }
             },
             "thermostat": {
+                "name": "Thermostat",
                 "state_attributes": {
                     "fan_mode": {
                         "state": {
@@ -303,7 +311,8 @@
                             "medium": "Moyen",
                             "high": "Fort",
                             "continuous": "Continu",
-                            "intermittent": "Intermittent"
+                            "intermittent": "Intermittent",
+                            "timer": "Minuteur"
                         }
                     }
                 }
@@ -439,6 +448,8 @@
                     "cake": "Gâteau",
                     "bread": "Pain",
                     "toast": "Toast",
+                    "sausage": "Saucisse",
+                    "dry_fruit": "Fruits secs",
                     "custom": "Personnalisé",
                     "cloud_recipe": "Recette Cloud",
                     "default": "Défaut",

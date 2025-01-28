@@ -100,6 +100,13 @@
     },
     "entity": {
         "binary_sensor": {
+            "direction": {
+                "name": "Kierunek",
+                "state": {
+                    "off": "Przychodzący",
+                    "on": "Wychodzący"
+                }
+            },
             "defrost": {
                 "name": "Rozmrażać",
                 "state": {
@@ -179,6 +186,7 @@
                 }
             },
             "thermostat": {
+                "name": "Termostat",
                 "state_attributes": {
                     "fan_mode": {
                         "state": {
@@ -303,7 +311,8 @@
                             "medium": "Średni",
                             "high": "Wysoki",
                             "continuous": "Ciągły",
-                            "intermittent": "Przerywany"
+                            "intermittent": "Przerywany",
+                            "timer": "Regulator czasowy"
                         }
                     }
                 }
@@ -439,6 +448,8 @@
                     "cake": "Ciasto",
                     "bread": "Chleb",
                     "toast": "Tost",
+                    "sausage": "Kiełbasa",
+                    "dry_fruit": "Owoce suszone",
                     "custom": "Niestandardowy",
                     "cloud_recipe": "Przepis z chmury",
                     "default": "Domyślny",

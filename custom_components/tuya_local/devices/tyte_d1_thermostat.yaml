@@ -1,8 +1,30 @@
-name: RYRA TYTE-D1 thermostat
+name: Thermostat switch
+products:
+  - id: key7rucurh5teh9w
+    model: TYTE-D1
 entities:
+  - entity: switch
+    name: Manual override
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
   - entity: climate
     dps:
       - id: 2
+        type: boolean
+        name: hvac_action
+        mapping:
+          - dps_val: false
+            value: idle
+          - dps_val: true
+            constraint: work_mode
+            conditions:
+              - dps_val: hot
+                value: heating
+              - dps_val: colding
+                value: cooling
+      - id: 9
         type: boolean
         name: hvac_mode
         mapping:
@@ -15,10 +37,6 @@ entities:
                 value: heat
               - dps_val: colding
                 value: cool
-              - dps_val: dehumidify
-                value: dry
-              - dps_val: wet
-                value: dry
       - id: 7
         type: string
         name: cycle_time
@@ -26,9 +44,6 @@ entities:
         type: string
         name: work_mode
         hidden: true
-      - id: 9
-        type: boolean
-        name: customize_mode_switch
       - id: 19
         type: integer
         name: test_bit
@@ -164,9 +179,9 @@ entities:
           - dps_val: f
             value: fahrenheit
   - entity: number
-    name: Vibration
+    name: Temperature hysteresis
     category: config
-    icon: "mdi:volume-vibrate"
+    icon: "mdi:thermometer-plus"
     dps:
       - id: 29
         type: integer
@@ -180,7 +195,7 @@ entities:
   - entity: number
     name: Temperature correction
     category: config
-    icon: "mdi:format-vertical-align-center"
+    icon: "mdi:thermometer-check"
     dps:
       - id: 30
         type: integer
@@ -221,7 +236,7 @@ entities:
           - dps_val: 32
             value: LS Power
   - entity: number
-    name: Cold delay
+    name: Turn on delay
     category: config
     class: duration
     icon: "mdi:camera-timer"
@@ -234,7 +249,7 @@ entities:
           min: 0
           max: 10
   - entity: switch
-    name: Cold delay switch
+    name: Turn on delay
     category: config
     icon: "mdi:camera-timer"
     dps:

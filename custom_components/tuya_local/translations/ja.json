@@ -100,6 +100,13 @@
     },
     "entity": {
         "binary_sensor": {
+            "direction": {
+                "name": "方向",
+                "state": {
+                    "off": "入る",
+                    "on": "出る"
+                }
+            },
             "defrost": {
                 "name": "デフロスト",
                 "state": {
@@ -179,6 +186,7 @@
                 }
             },
             "thermostat": {
+                "name": "サーモスタット",
                 "state_attributes": {
                     "fan_mode": {
                         "state": {
@@ -303,7 +311,8 @@
                             "medium": "中",
                             "high": "高い",
                             "continuous": "連続",
-                            "intermittent": "間欠"
+                            "intermittent": "間欠",
+                            "timer": "タイマー"
                         }
                     }
                 }
@@ -439,6 +448,8 @@
                     "cake": "ケーキ",
                     "bread": "パン",
                     "toast": "トースト",
+                    "sausage": "ソーセージ",
+                    "dry_fruit": "ドライフルーツ",
                     "custom": "カスタム",
                     "cloud_recipe": "クラウドレシピ",
                     "default": "デフォルト",

@@ -100,6 +100,13 @@
     },
     "entity": {
         "binary_sensor": {
+            "direction": {
+                "name": "Direction",
+                "state": {
+                    "off": "In",
+                    "on": "Out"
+                }
+            },
             "defrost": {
                 "name": "Defrost",
                 "state": {
@@ -179,6 +186,7 @@
                 }
             },
             "thermostat": {
+                "name": "Thermostat",
                 "state_attributes": {
                     "fan_mode": {
                         "state": {
@@ -303,7 +311,8 @@
                             "medium": "Medium",
                             "high": "High",
                             "continuous": "Continuous",
-                            "intermittent": "Intermittent"
+                            "intermittent": "Intermittent",
+                            "timer": "Timer"
                         }
                     }
                 }
@@ -439,6 +448,8 @@
                     "cake": "Cake",
                     "bread": "Bread",
                     "toast": "Toast",
+                    "sausage": "Sausage",
+                    "dry_fruit": "Dry Fruit",
                     "custom": "Custom",
                     "cloud_recipe": "Cloud Recipe",
                     "default": "Default",

@@ -119,9 +119,14 @@ sense with one UI mode, then this is provided to handle those cases.
 
 ### `hidden`
 
-*Optional, default=false*
+*Optional, true/unavailable, default=false*
 
 If `hidden` is `true`, then the entity will be disabled by default.
+If `hidden` is `unavailable`, then the entity will be disabled by default if
+the entity's `available` dp indicates it is unavailable. This may not work
+correctly if the device has not returned data yet when HA checks
+for this at startup.
+
 This can be used with advanced config or diagnostic entities that general
 users will not be interested in. To use such entities, the user must explicitly
 enable them after adding the device to Home Assistant.

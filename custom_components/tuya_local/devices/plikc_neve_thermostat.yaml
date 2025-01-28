@@ -219,7 +219,7 @@ entities:
         type: integer
         optional: true
         name: value
-        unit: ⁰
+        unit: °
         range:
           min: 2
           max: 20
@@ -229,6 +229,7 @@ entities:
   - entity: number
     name: Maximum temperature
     category: config
+    hidden: unavailable
     icon: "mdi:thermometer-chevron-up"
     dps:
       - id: 19
@@ -252,6 +253,7 @@ entities:
   - entity: number
     name: Minimum temperature
     category: config
+    hidden: unavailable
     icon: "mdi:thermometer-chevron-down"
     dps:
       - id: 26
@@ -274,6 +276,7 @@ entities:
           - value: true
   - entity: sensor
     name: Time period
+    hidden: unavailable
     category: diagnostic
     dps:
       - id: 105
@@ -299,6 +302,7 @@ entities:
   - entity: sensor
     class: power  # marked as electricity, but range of 0-6000 suggests W
     category: diagnostic
+    hidden: unavailable
     dps:
       - id: 106
         type: integer
@@ -317,6 +321,7 @@ entities:
   - entity: select
     name: System mode
     icon: "mdi:help-box-multiple"
+    hidden: unavailable
     category: config
     dps:
       - id: 108
@@ -343,6 +348,7 @@ entities:
   - entity: switch
     translation_key: anti_frost
     category: config
+    hidden: unavailable
     dps:
       - id: 109
         type: boolean
@@ -358,6 +364,7 @@ entities:
           - value: true
   - entity: switch
     name: PIN protect
+    hidden: unavailable
     icon: "mdi:dialpad"
     category: config
     dps:
@@ -376,6 +383,7 @@ entities:
   - entity: select
     name: "Off mode"
     icon: "mdi:power-standby"
+    hidden: unavailable
     category: config
     dps:
       - id: 111
@@ -398,6 +406,7 @@ entities:
   - entity: number
     name: PIN code
     category: config
+    hidden: unavailable
     icon: "mdi:dialpad"
     dps:
       - id: 116
@@ -419,6 +428,7 @@ entities:
     name: Partial key lock
     translation_key: child_lock
     category: config
+    hidden: unavailable
     dps:
       - id: 118
         type: boolean

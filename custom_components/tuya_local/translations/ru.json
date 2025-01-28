@@ -100,6 +100,13 @@
     },
     "entity": {
         "binary_sensor": {
+            "direction": {
+                "name": "Направление",
+                "state": {
+                    "off": "Входящий",
+                    "on": "Исходящий"
+                }
+            },
             "defrost": {
                 "name": "Разморозка",
                 "state": {
@@ -179,6 +186,7 @@
                 }
             },
             "thermostat": {
+                "name": "Термостат",
                 "state_attributes": {
                     "fan_mode": {
                         "state": {
@@ -303,7 +311,8 @@
                             "medium": "Средний",
                             "high": "Высокий",
                             "continuous": "Непрерывный",
-                            "intermittent": "Интервальный"
+                            "intermittent": "Интервальный",
+                            "timer": "Таймер"
                         }
                     }
                 }
@@ -439,6 +448,8 @@
                     "cake": "Торт",
                     "bread": "Хлеб",
                     "toast": "Тост",
+                    "sausage": "Сосиски",
+                    "dry_fruit": "Сухофрукты",
                     "custom": "Пользовательский",
                     "cloud_recipe": "Облако",
                     "default": "По умолчанию",

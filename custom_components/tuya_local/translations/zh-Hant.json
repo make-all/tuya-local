@@ -100,6 +100,13 @@
     },
     "entity": {
         "binary_sensor": {
+            "direction": {
+                "name": "方向",
+                "state": {
+                    "off": "進入",
+                    "on": "離開"
+                }
+            },
             "defrost": {
                 "name": "除霜",
                 "state": {
@@ -179,6 +186,7 @@
                 }
             },
             "thermostat": {
+                "name": "恆溫器",
                 "state_attributes": {
                     "fan_mode": {
                         "state": {
@@ -304,7 +312,8 @@
                             "medium": "中",
                             "high": "高",
                             "continuous": "連續",
-                            "intermittent": "間歇"
+                            "intermittent": "間歇",
+                            "timer": "計時"
                         }
                     }
                 }
@@ -440,6 +449,8 @@
                     "cake": "蛋糕",
                     "bread": "麵包",
                     "toast": "吐司",
+                    "sausage": "香腸",
+                    "dry_fruit": "乾果",
                     "custom": "自訂",
                     "cloud_recipe": "雲端食譜",
                     "default": "預設",

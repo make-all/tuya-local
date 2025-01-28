@@ -100,6 +100,13 @@
     },
     "entity": {
         "binary_sensor": {
+            "direction": {
+                "name": "Κατεύθυνση",
+                "state": {
+                    "off": "Εισερχόμενο",
+                    "on": "Εξερχόμενο"
+                }
+            },
             "defrost": {
                 "name": "Απόψυξη",
                 "state": {
@@ -179,6 +186,7 @@
                 }
             },
             "thermostat": {
+                "name": "Θερμοστάτης",
                 "state_attributes": {
                     "fan_mode": {
                         "state": {
@@ -303,7 +311,8 @@
                             "medium": "Μεσαία",
                             "high": "Υψηλή",
                             "continuous": "Συνεχής",
-                            "intermittent": "Διακεκομμένη"
+                            "intermittent": "Διακεκομμένη",
+                            "timer": "Χρονοδιακόπτης"
                         }
                     }
                 }
@@ -439,6 +448,8 @@
                     "cake": "Κέικ",
                     "bread": "Ψωμί",
                     "toast": "Ψωμί",
+                    "sausage": "Λουκάνικο",
+                    "dry_fruit": "Ξηροί καρποί",
                     "custom": "Προσαρμοσμένο",
                     "cloud_recipe": "Συνταγή από το cloud",
                     "default": "Προεπιλογή",

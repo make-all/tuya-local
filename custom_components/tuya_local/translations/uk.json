@@ -102,6 +102,13 @@
     },
     "entity": {
         "binary_sensor": {
+            "direction": {
+                "name": "Напрямок",
+                "state": {
+                    "off": "Вхідний",
+                    "on": "Вихідний"
+                }
+            },
             "defrost": {
                 "name": "Розморожування",
                 "state": {
@@ -181,6 +188,7 @@
                 }
             },
             "thermostat": {
+                "name": "Термостат",
                 "state_attributes": {
                     "fan_mode": {
                         "state": {
@@ -306,7 +314,8 @@
                             "medium": "Середній",
                             "high": "Високий",
                             "continuous": "Постійний",
-                            "intermittent": "Інтермітентний"
+                            "intermittent": "Інтермітентний",
+                            "timer": "Таймер"
                         }
                     }
                 }
@@ -442,6 +451,8 @@
                     "cake": "Торт",
                     "bread": "Хліб",
                     "toast": "Тост",
+                    "sausage": "Ковбаса",
+                    "dry_fruit": "Сухофрукти",
                     "custom": "Користувацький",
                     "cloud_recipe": "Хмарний рецепт",
                     "default": "За замовчуванням",
