@@ -37,9 +37,6 @@ entities:
         type: integer
         unit: g
         class: measurement
-        range:
-          min: 0
-          max: 30000
   - entity: button
     name: Manual clean
     icon: "mdi:shimmer"
@@ -58,10 +55,9 @@ entities:
       - id: 106
         type: string
         optional: true
-        name: sensor
-  - entity: switch
-    name: Light
-    icon: "mdi:lightbulb"
+        name: sleep_time
+  - entity: light
+    translation_key: backlight
     category: config
     dps:
       - id: 16
@@ -74,14 +70,20 @@ entities:
       - id: 17
         type: boolean
         name: button
-  - entity: sensor
-    name: Notifications
-    class: enum
+  - entity: event
+    name: Notification
     category: diagnostic
     icon: "mdi:eye-circle-outline"
     dps:
       - id: 21
-        name: sensor
+        type: bitfield
+        name: event
+        mapping:
+          - dps_val: 0
+            value: null
+          - value: notify
+      - id: 21
+        name: message
         type: bitfield
         mapping:
           - dps_val: 1
@@ -178,25 +180,30 @@ entities:
         name: sensor
         type: integer
         unit: day
-        range:
-          min: 0
-          max: 60
-  - entity: switch
-    name: Unlock physical buttons
-    icon: "mdi:lock-question"
+  - entity: lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 104
         type: boolean
-        name: switch
+        name: lock
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
   - entity: switch
-    name: Automatic purity
+    name: Auto deodorize
     icon: "mdi:scent"
     category: config
     dps:
       - id: 107
         type: boolean
         name: switch
+      - id: 108
+        type: string
+        optional: true
+        name: schedule
   - entity: button
     name: Change cat litter
     icon: "mdi:delete-empty"
