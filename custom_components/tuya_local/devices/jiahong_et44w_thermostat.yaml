@@ -1,6 +1,11 @@
-name: Jiahong ET-44W thermostat
+name: Thermostat
+products:
+  - id: e4e7k8
+    manufacturer: TheroLife
+    model: ET44W
 entities:
   - entity: climate
+    translation_key: thermostat
     dps:
       - id: 1
         type: boolean
@@ -9,14 +14,7 @@ entities:
           - dps_val: false
             value: "off"
           - dps_val: true
-            constraint: mode
-            conditions:
-              - dps_val: "smart"
-                value: auto
-              - dps_val: "hold"
-                value: heat
-              - dps_val: "holiday"
-                value: cool
+            value: heat
       - id: 16
         type: integer
         name: temperature
@@ -29,14 +27,20 @@ entities:
             constraint: temperature_unit
             conditions:
               - dps_val: true
-                step: 30
+                step: 10
                 range:
-                  min: 120
-                  max: 750
+                  min: 410
+                  max: 1040
       - id: 2
         type: string
-        name: mode
-        hidden: true
+        name: preset_mode
+        mapping:
+          - dps_val: "smart"
+            value: program
+          - dps_val: "hold"
+            value: manual
+          - dps_val: "holiday"
+            value: away
       - id: 24
         type: integer
         name: current_temperature
@@ -75,36 +79,12 @@ entities:
         type: integer
         name: unknown_113
   - entity: lock
-    name: Screen lock
+    translation_key: child_lock
     category: config
     dps:
       - id: 108
         type: boolean
         name: lock
-        mapping:
-          - dps_val: true
-            icon: "mdi:hand-back-right-off"
-          - dps_val: false
-            icon: "mdi:hand-back-right"
-  - entity: sensor
-    name: Temperature
-    class: temperature
-    icon: "mdi:thermometer-lines"
-    dps:
-      - id: 24
-        type: integer
-        name: sensor
-        class: measurement
-        mapping:
-          - scale: 10
-      - id: 107
-        name: unit
-        type: boolean
-        mapping:
-          - dps_val: false
-            value: C
-          - dps_val: true
-            value: F
   - entity: sensor
     name: Runtime
     dps:
@@ -177,7 +157,7 @@ entities:
             icon: "mdi:thermometer"
   - entity: select
     category: config
-    name: Auto schedule
+    name: Schedule
     icon: "mdi:calendar-sync"
     dps:
       - id: 110
