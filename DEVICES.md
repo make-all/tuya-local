@@ -461,6 +461,7 @@
 - ERZ04C smart meter
 - Gaqqee KWS-302-WF energy meter
 - Geonav HISB80A energy meter
+- Ketotek KTEM06pro energy meter
 - MatSee Plus bidirectional two channel clamp meter (multiple variants)
 - Meterk single phase clamp meter
 - Parkside PG/PMW-300 solar inverter
