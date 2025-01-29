@@ -680,10 +680,18 @@ class TuyaLocalDevice(object):
             self.name,
             new_version,
         )
+        # Only enable tinytuya's auto-detect when using 3.22
+        if new_version == 3.22:
+            new_version = 3.3
+            self._api.disabledetect = False
+        else:
+            self._api.disabledetect = True
+
         await self._hass.async_add_executor_job(
             self._api.set_version,
             new_version,
         )
+        self._api.
         if self._api.parent:
             await self._hass.async_add_executor_job(
                 self._api.parent.set_version,
