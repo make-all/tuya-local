@@ -827,3 +827,4 @@ Further device support has been made with the assistance of users. Please consid
 - [josefelixh](https://github.com/josefelixh) for contributing support for KB15A Bluetooth keypad lock.
 - [JackM-521](https://github.com/JackM-521) for assisting with support for Rohnson R-9530 dehumidifier.
 - [fra-iesus](https://github.com/fra-iesus) for assisting with support for Ketotek KTEM06pro energy meter.
+- [davidjmdev](https://github.com/davidjmdev) for contributing support for PetSnowy Snow+ litter box.
