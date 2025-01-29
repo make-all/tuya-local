@@ -64,13 +64,12 @@ entities:
         mapping:
           - dps_val: null
             value_mirror: standard_brightness
-        range:
-          min: 0
-          max: 1000
-        mapping:
           - target_range:
               min: 2700
               max: 6500
+        range:
+          min: 0
+          max: 1000
   - entity: light
     translation_key: backlight
     dps:
@@ -135,6 +134,7 @@ entities:
           - name: w
             bytes: 2
           - name: c
+            bytes: 2
         mapping:
           - dps_val: null
             value_mirror: std_rgb
