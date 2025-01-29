@@ -441,7 +441,7 @@ class TuyaLocalDevice(object):
 
     async def async_refresh(self):
         _LOGGER.debug("Refreshing device state for %s", self.name)
-        if self.should_poll:
+        if not self._running:
             await self._retry_on_failed_connection(
                 lambda: self._refresh_cached_state(),
                 f"Failed to refresh device state for {self.name}.",
