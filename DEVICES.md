@@ -205,6 +205,7 @@
 - Inkbird IPT-2CH v2.0 reptile thermostat
 - Inkbird ITC306A thermostat smartplug
 - Inkbird ITC308 thermostat smartplug
+- Jiahong ET-44W thermostat (also sold under the TheroLife brand)
 - Jiahong ET-72W thermostat
 - Kiturami NCTR-100 water and heating thermostat
 - KKMoon knob thermostat
