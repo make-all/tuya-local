@@ -150,7 +150,15 @@ class TestDevice(IsolatedAsyncioTestCase):
         await self.subject.async_refresh()
 
         self.mock_api().set_version.assert_has_calls(
-            [call(3.1), call(3.2), call(3.4), call(3.5), call(3.3), call(3.1)]
+            [
+                call(3.1),
+                call(3.2),
+                call(3.4),
+                call(3.5),
+                call(3.3),
+                call(3.3),
+                call(3.1),
+            ]
         )
 
     async def test_api_protocol_version_is_stable_once_successful(self):
