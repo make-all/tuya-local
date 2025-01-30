@@ -442,6 +442,7 @@
 - Silvercrest coffee maker
 - Silvercrest HF-6602T air fryer
 - Ultenic K10 air fryer
+- Wandai GS-801 infant formula maker (sold as Easybaby, Gustino)
 - Weekett smart kettle
 
 ### Smart Meter/Circuit Breaker
