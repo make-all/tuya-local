@@ -829,3 +829,4 @@ Further device support has been made with the assistance of users. Please consid
 - [fra-iesus](https://github.com/fra-iesus) for assisting with support for Ketotek KTEM06pro energy meter.
 - [davidjmdev](https://github.com/davidjmdev) for contributing support for PetSnowy Snow+ litter box.
 - [yaro24](https://github.com/yaro24) for contributing support for Jiahong ET-44W thermostat.
+- [point2start](https://github.com/point2start) for assisting with support for Atorch AT4PTW thermostat.
