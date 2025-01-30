@@ -1,0 +1,85 @@
+name: Light curtain
+products:
+  - id: ufi02yfc589ssyjp
+    manufacturer: iSparkle
+    model: Curtain Micro Lights
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 101
+        type: string
+        name: named_color
+        mapping:
+          - dps_val: R
+            value: red
+          - dps_val: RG
+            value: yellow
+          - dps_val: G
+            value: lime
+          - dps_val: GB
+            value: cyan
+          - dps_val: B
+            value: blue
+          - dps_val: RB
+            value: magenta
+          - dps_val: RGB
+            value: white
+          - dps_val: Color
+            value: black
+      - id: 102
+        type: string
+        name: effect
+        mapping:
+          - dps_val: Bright
+            value: Bright
+          - dps_val: Gradually
+            value: Fade
+          - dps_val: Star
+            value: Star
+          - dps_val: Flower
+            value: Flower
+          - dps_val: Marquee
+            value: Marquee
+          - dps_val: Fireworks
+            value: Fireworks
+          - dps_val: Meteor
+            value: Meteor
+          - dps_val: Stream
+            value: Stream
+  - entity: event
+    name: Timer
+    dps:
+      - id: 103
+        type: boolean
+        name: event
+        optional: true
+        mapping:
+          - dps_val: true
+            value: report_on
+          - dps_val: false
+            value: report_off
+  # The docs say rw for Timerreport
+  - entity: button
+    name: Timer On
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        optional: true
+        name: button
+  - entity: button
+    name: Timer Off
+    category: config
+    dps:
+      - id: 103
+        type: boolean
+        optional: true
+        name: button
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false

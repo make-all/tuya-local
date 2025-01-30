@@ -650,6 +650,7 @@ of device.
 - HDMI TV ambient lighting 65
 - iHD001 LED controller
 - Ion LED WiFi dimmer
+- iSparkle Curtain Micro Lights
 - Kojima motion sensor RGBCW nightlight
 - Ledvance Smart+ Planon panel light with backlight
 - Lexi Lighting string light Wifi adapter

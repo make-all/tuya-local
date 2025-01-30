@@ -830,3 +830,4 @@ Further device support has been made with the assistance of users. Please consid
 - [davidjmdev](https://github.com/davidjmdev) for contributing support for PetSnowy Snow+ litter box.
 - [yaro24](https://github.com/yaro24) for contributing support for Jiahong ET-44W thermostat.
 - [point2start](https://github.com/point2start) for assisting with support for Atorch AT4PTW thermostat.
+- [maLLoud86](https://github.com/maLLoud86) for assisting with support for iSparkle Curtain Micro Lights.
