@@ -3,8 +3,8 @@
 import sys
 
 from custom_components.tuya_local.helpers.device_config import (
-    available_configs,
     TuyaDeviceConfig,
+    available_configs,
 )
 
 
