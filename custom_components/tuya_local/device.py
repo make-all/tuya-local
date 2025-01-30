@@ -691,7 +691,6 @@ class TuyaLocalDevice(object):
             self._api.set_version,
             new_version,
         )
-        self._api.
         if self._api.parent:
             await self._hass.async_add_executor_job(
                 self._api.parent.set_version,
