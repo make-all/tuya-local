@@ -2,8 +2,6 @@
 
 import sys
 
-from common_funcs import load_config
-
 from custom_components.tuya_local.helpers.device_config import (
     available_configs,
     TuyaDeviceConfig,
@@ -22,9 +20,10 @@ def main():
         elif arg == "--nameonly":
             nameonly = True
         else:
-            printf("List potential issues with products listings")
-            printf("")
+            print("List potential issues with products listings")
+            print("")
             print(f"Usage: {sys.argv[0]} [--missing] [--nameonly]")
+            exit(1)
 
     # default to nameonly if no arguments supplied
     if not arg_supplied:
