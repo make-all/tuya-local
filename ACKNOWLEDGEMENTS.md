@@ -833,3 +833,4 @@ Further device support has been made with the assistance of users. Please consid
 - [maLLoud86](https://github.com/maLLoud86) for assisting with support for iSparkle Curtain Micro Lights.
 - [josvink66](https://github.com/josvink66) for assisting with support for Easybaby GS-801 infant formula maker.
 - [Karlsons88](https://github.com/Karlsons88) for assisting with support for Nulite monobloc heat pump.
+- [Watanuki-kun](https://github.com/Watanuki-kun) for assisting with support for Smart Amari ceiling fan with light.
