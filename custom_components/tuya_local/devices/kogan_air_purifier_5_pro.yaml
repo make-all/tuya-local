@@ -1,0 +1,162 @@
+name: Smart air purifier
+products:
+  - id: bsgh7gwfmazrxsta
+    manufacturer: Kogan
+    model: AP-3029UAS
+entities:
+  - entity: fan
+    translation_only_key: fan_with_presets
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 3
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: auto
+            value: smart
+          - dps_val: sleep
+            value: sleep
+          - dps_val: manual
+            value: manual
+  - entity: sensor
+    class: pm25
+    dps:
+      - id: 2
+        type: integer
+        name: sensor
+        unit: ugm3
+        class: measurement
+  - name: Preset mode
+    entity: select
+    category: config
+    dps:
+      - id: 3
+        name: option
+        type: string
+        mapping:
+          - dps_val: auto
+            value: Smart
+          - dps_val: sleep
+            value: Sleep
+          - dps_val: manual
+            value: Manual
+  - name: Fan speed
+    entity: select
+    category: config
+    icon: "mdi:fan"
+    dps:
+      - id: 4
+        name: option
+        type: string
+        mapping:
+          - dps_val: low
+            value: Low
+          - dps_val: mid
+            value: Medium
+          - dps_val: high
+            value: High
+          - dps_val: turbo
+            value: Turbo
+  - name: Filter remaining
+    entity: sensor
+    icon: "mdi:shield-bug"
+    dps:
+      - id: 5
+        name: sensor
+        type: integer
+        unit: "%"
+  - name: Child lock
+    entity: switch
+    category: config
+    icon: "mdi:lock"
+    dps:
+      - id: 7
+        type: boolean
+        name: switch
+  - entity: light
+    translation_key: indicator
+    category: config
+    dps:
+      - id: 8
+        type: boolean
+        name: switch
+  - translation_key: uv_sterilization
+    entity: switch
+    category: config
+    dps:
+      - id: 9
+        type: boolean
+        name: switch
+  - translation_key: filter_reset
+    entity: button
+    category: config
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 11
+        type: boolean
+        name: button
+        optional: true
+  - name: Timer remaining
+    entity: sensor
+    class: duration
+    unit: s
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: s
+  - translation_key: air_quality
+    entity: sensor
+    class: enum
+    dps:
+      - id: 21
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: great
+            value: Great
+          - dps_val: good
+            value: Good
+          - dps_val: Medium
+            value: Medium
+          - dps_val: severe
+            value: Severe
+  - class: problem
+    entity: binary_sensor
+    category: diagnostic
+    dps:
+      - id: 22
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 22
+        type: bitfield
+        name: fault_code
+  - name: Filter time
+    entity: sensor
+    class: duration
+    dps:
+      - id: 101
+        name: sensor
+        type: integer
+        unit: h
+        mapping:
+          - scale: 3600
+  - name: Off timer
+    entity: number
+    category: config
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 102
+        type: integer
+        name: value
+        unit: m
+        range:
+          min: 0
+          max: 12
