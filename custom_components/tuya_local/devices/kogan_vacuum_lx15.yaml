@@ -3,7 +3,7 @@ name: Robot vacuum
 products:
   - id: fwdjfuvqy9qogefw
     manufacturer: Kogan
-    model: LX15 # It actually returns an empty string
+    model: LX15  # It actually returns an empty string
 entities:
   - entity: vacuum
     dps:
@@ -194,7 +194,7 @@ entities:
     category: config
     icon: "mdi:clock-outline"
     dps:
-      - id: 115 # Consumables reset
+      - id: 115  # Consumables reset
         type: string
         name: button
         optional: true
@@ -241,7 +241,7 @@ entities:
     entity: button
     category: config
     icon: "mdi:map-marker-remove"
-    hidden: true # Because it'd be annoying to press by accident
+    hidden: true  # Because it'd be annoying to press by accident
     dps:
       - id: 129
         name: button
@@ -381,21 +381,21 @@ entities:
     entity: sensor
     category: diagnostic
     dps:
-      - id: 105 # robot_state
+      - id: 105  # robot_state
         name: sensor
         type: string
   - name: Mode
     entity: sensor
     category: diagnostic
     dps:
-      - id: 104 # clean_mode
+      - id: 104  # clean_mode
         name: sensor
         type: string
   - name: Fault code
     entity: sensor
     category: diagnostic
     dps:
-      - id: 122 # robot_fault
+      - id: 122  # robot_fault
         name: sensor
         type: integer
   - name: Fault description

@@ -294,14 +294,16 @@ entities:
             value: Bad
           - dps_val: verybad
             value: Very bad
-    # Data is returned, but the bitfield says it's not supported. Lets monitor it anyway
+
+      # Data is returned, but the bitfield says it's not supported.
+      # Lets monitor it anyway
       # - id: 110
-        # name: available
-        # type: bitfield
-        # mapping:
-          # - dps_val: 16384
-            # value: true
-          # - value: false
+      #   name: available
+      #   type: bitfield
+      #   mapping:
+      #     - dps_val: 16384
+      #       value: true
+      #     - value: false
   - name: Vertical fixed
     entity: select
     category: config
@@ -353,14 +355,15 @@ entities:
             value: Slightly right
           - dps_val: "5"
             value: Right
+
       # Says not supported according to my bitfield, but it is
       # - id: 110
-        # type: bitfield
-        # name: available
-        # mapping:
-          # - dps_val: 8388608
-            # value: true
-          # - value: false
+      #   type: bitfield
+      #   name: available
+      #   mapping:
+      #     - dps_val: 8388608
+      #       value: true
+      #     - value: false
   - name: Power saving temperature
     entity: number
     category: config
@@ -381,11 +384,13 @@ entities:
       - id: 131
         type: boolean
         name: sensor
-      # Mine says not available according to bitfield, but returns false... Monitor and see if it ever changes?
+
+      # Mine says not available according to bitfield, but returns false...
+      # Monitor and see if it ever changes?
       # - id: 110
-        # type: bitfield
-        # name: available
-        # mapping:
-          # - dps_val: 262144
-            # value: true
-          # - value: false
+      #   type: bitfield
+      #   name: available
+      #   mapping:
+      #     - dps_val: 262144
+      #       value: true
+      #     - value: false
