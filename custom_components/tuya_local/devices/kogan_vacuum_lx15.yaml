@@ -401,10 +401,11 @@ entities:
   - name: Fault description
     entity: sensor
     category: diagnostic
+    class: enum
     dps:
       - id: 122
-        name: description
-        type: bitfield
+        name: sensor
+        type: integer
         mapping:
           - dps_val: 0
             value: No fault
