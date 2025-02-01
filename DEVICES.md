@@ -348,6 +348,7 @@
 - Cecotec BigDry 4000 dehumidifier
 - Clean Air Optima CA-702 dehumidifier
 - Cleverio AD100 dehumidifier
+- Climative DH-20S Cube ION dehumidifier
 - DH-CSK03W dehumidifier
 - Ebac DJ4000 dehumidifier
 - Eberg Rico R12E2 dehumidifier
