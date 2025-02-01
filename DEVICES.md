@@ -238,6 +238,7 @@
 - Aeratron AE3+ ceiling fan (may match other Aeratron models with same WiFi module)
 - Amico 52" ceiling fan with light
 - Anko HEGSM40 fan
+- Arida Venti 160 small through-wall heat-recovery ventilation fan
 - Arlec ceiling fan and light remote control kit (CFR225HA also works for Sulion Cadillac)
 - Arlec Grid Connect smart ceiling fan (with and without light)
 - Arlec 12 speed tower fan
