@@ -1,6 +1,6 @@
 name: Doorbell
 products:
-  - id: bf71b225dc6dd70835wlbt
+  - id: h3bhzu9m0ig80rdu
     manufacturer: Bcom
     model: Majic IPBox
 entities:
@@ -10,7 +10,7 @@ entities:
         name: record
         type: boolean
         optional: true
-      - id: 136
+      - id: 154
         name: snapshot
         type: base64
         persist: false
@@ -24,12 +24,14 @@ entities:
       - id: 115
         name: motion_detected
         type: base64
+        optional: true
         sensitive: true
   - entity: lock
     name: Door lock
     dps:
       - id: 232
         type: boolean
+        optional: true
         name: lock
   - entity: light
     translation_key: indicator
@@ -45,6 +47,7 @@ entities:
     dps:
       - id: 103
         type: boolean
+        optional: true
         name: switch
   - entity: switch
     name: Watermark
@@ -53,6 +56,7 @@ entities:
     dps:
       - id: 104
         type: boolean
+        optional: true
         name: switch
   - entity: select
     name: Motion Detection
@@ -61,6 +65,7 @@ entities:
     dps:
       - id: 106
         type: string
+        optional: true
         name: option
         mapping:
           - dps_val: "0"
@@ -76,6 +81,7 @@ entities:
     dps:
       - id: 108
         type: string
+        optional: true
         name: option
         mapping:
           - dps_val: "0"
@@ -90,6 +96,7 @@ entities:
     dps:
       - id: 109
         type: string
+        optional: true
         name: sensor
   - entity: sensor
     name: SD status
@@ -97,6 +104,7 @@ entities:
     dps:
       - id: 110
         type: integer
+        optional: true
         name: sensor
   - entity: button
     name: SD format
@@ -105,6 +113,7 @@ entities:
     dps:
       - id: 111
         type: boolean
+        optional: true
         name: button
   - entity: sensor
     name: SD format state
@@ -112,6 +121,7 @@ entities:
     dps:
       - id: 117
         type: integer
+        optional: true
         name: sensor
   - entity: select
     name: Recording mode
@@ -120,6 +130,7 @@ entities:
     dps:
       - id: 151
         type: string
+        optional: true
         name: option
         mapping:
           - dps_val: "1"
@@ -132,6 +143,7 @@ entities:
     dps:
       - id: 162
         type: boolean
+        optional: true
         name: button
   - entity: sensor
     name: Channel
@@ -140,4 +152,20 @@ entities:
     dps:
       - id: 231
         type: string
+        optional: true
         name: sensor
+  - entity: event
+    class: doorbell
+    dps:
+      - id: 136
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: null
+            value: null
+          - value: ring
+      - id: 136
+        type: string
+        optional: true
+        name: message
