@@ -230,12 +230,17 @@ class DeviceListener(SharingDeviceListener):
         self.__hass = hass
         self._manager = manager
 
-    def update_device(self, device: CustomerDevice) -> None:
+    def update_device(
+        self,
+        device: CustomerDevice,
+        updated_status_properties: list[str] | None,
+    ) -> None:
         """Device status has updated."""
         _LOGGER.debug(
-            "Received update for device %s: %s",
+            "Received update for device %s: %s (properties %s)",
             device.id,
             self._manager.device_map[device.id].status,
+            updated_status_properties,
         )
 
     def add_device(self, device: CustomerDevice) -> None:
