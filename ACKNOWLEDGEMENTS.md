@@ -836,3 +836,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Watanuki-kun](https://github.com/Watanuki-kun) for assisting with support for Smart Amari ceiling fan with light.
 - [aherbjornsen](https://github.com/aherbjornsen) for assisting with support for Arida Venti 160 ventilation fan.
 - [lewiatanx](https://github.com/lewiatanx) for assisting with support for Climative Cube ION dehumidifier.
+- [storebatfar](https://github.com/storebatfar) for assisting with support for Swim & Fun InverBoost pool heat pump.
