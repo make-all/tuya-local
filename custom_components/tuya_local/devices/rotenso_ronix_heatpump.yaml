@@ -231,6 +231,15 @@ entities:
         type: hex
         name: switch
         mask: "0001"
+  - entity: switch
+    name: Anti-frost mode
+    category: config
+    icon: "mdi:snowflake-thermometer"
+    dps:
+      - id: 123
+        type: hex
+        name: switch
+        mask: "1000"
   - entity: binary_sensor
     class: problem
     category: diagnostic
