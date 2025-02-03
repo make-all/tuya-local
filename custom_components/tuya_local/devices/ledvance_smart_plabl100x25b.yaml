@@ -21,6 +21,7 @@ entities:
         type: base64
         mask: "000200000000000000000000"
         optional: true
+        force: true
         name: switch
         mapping:
           - dps_val: null
@@ -39,6 +40,7 @@ entities:
         type: base64
         mask: "0000000000000000FFFF0000"
         optional: true
+        force: true
         name: brightness
         mapping:
           - dps_val: null
@@ -60,6 +62,7 @@ entities:
         type: base64
         mask: "00000000000000000000FFFF"
         optional: true
+        force: true
         name: color_temp
         mapping:
           - dps_val: null
@@ -80,6 +83,7 @@ entities:
         type: base64
         mask: "000100000000000000000000"
         optional: true
+        force: true
         name: switch
         mapping:
           - dps_val: null
@@ -111,6 +115,7 @@ entities:
       - id: 51
         type: base64
         optional: true
+        force: true
         name: rgbhsv
         format:
           - name: x
