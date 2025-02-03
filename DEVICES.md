@@ -437,6 +437,7 @@
 - Inkbird iBBQ-4T cooking probe thermometer (separate and combined measurement variants)
 - Inkbird IBS-M1S temperature probe hub
 - Inkbird IBT-26S BBQ thermometer
+- Inkbird ISC-007BW smoker fan controller
 - Inkbird sous vide cooker (also supports Silvercrest sous vide sticks)
 - Klarstein Amazonia dishwasher
 - Kogan glass 1.7L smart kettle
