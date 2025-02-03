@@ -1,11 +1,12 @@
 name: Thermostat
+legacy_type: et_44w_thermostat
 products:
   - id: e4e7k8
-    manufacturer: TheroLife
-    model: ET44W
+    model: E-44W
 entities:
+####### Thermostat HUD section ########
   - entity: climate
-    translation_key: thermostat
+    translation_only_key: thermostat
     dps:
       - id: 1
         type: boolean
@@ -14,36 +15,78 @@ entities:
           - dps_val: false
             value: "off"
           - dps_val: true
-            value: heat
+            constraint: mode
+            conditions:
+              - dps_val: smart
+                value: auto
+              - dps_val: hold
+                value: heat
+              - dps_val: holiday
+                value: heat_cool
+      - id: 2
+        name: mode
+        type: string
+        hidden: true
+      - id: 3
+        type: string
+        name: hvac_action
+        mapping:
+          - dps_val: heating
+            value: heating
+          - dps_val: warming
+            value: idle
       - id: 16
         type: integer
         name: temperature
-        range:
-          min: 50
-          max: 400
         mapping:
           - scale: 10
+            range:
+              min: 50
+              max: 400
             step: 5
-            constraint: temperature_unit
+            constraint: mode
             conditions:
-              - dps_val: true
-                step: 10
+              - dps_val: holiday
+                scale: 10
+                range:
+                  min: 50
+                  max: 150
+                step: 5
+            # constraint: temperature_unit
+            # conditions:
+            #   - dps_val: true
+            #     value_redirect: temperature_f
+      - id: 17
+        type: integer
+        name: temperature_f
+        hidden: true
+        mapping:
+          - range:
+              min: 410
+              max: 1040
+            scale: 10
+            step: 10
+            constraint: mode
+            conditions:
+              - dps_val: holiday
+                scale: 10
                 range:
                   min: 410
-                  max: 1040
-      - id: 2
-        type: string
-        name: preset_mode
-        mapping:
-          - dps_val: "smart"
-            value: program
-          - dps_val: "hold"
-            value: manual
-          - dps_val: "holiday"
-            value: away
+                  max: 590
+                step: 10
       - id: 24
-        type: integer
         name: current_temperature
+        type: integer
+        mapping:
+          - scale: 10
+            # constraint: temperature_unit
+            # conditions:
+            #   - dps_val: true
+            #     value_redirect: current_temperature_f
+      - id: 29
+        name: current_temperature_f
+        type: integer
+        hidden: true
         mapping:
           - scale: 10
       - id: 107
@@ -54,54 +97,25 @@ entities:
             value: C
           - dps_val: true
             value: F
-      - id: 111
-        type: string
-        name: sensor
-        hidden: true
-      - id: 3
-        type: string
-        name: hvac_action
+      - id: 121
+        type: integer
+        optional: true
+        name: max_temperature
         mapping:
-          - dps_val: "heating"
-            value: heating
-          - dps_val: "warming"
-            value: idle
-      - id: 104
-        type: integer
-        name: unknown_104
-      - id: 109
-        type: integer
-        name: holiday_days
-      - id: 112
-        type: integer
-        name: unknown_112
-      - id: 113
-        type: integer
-        name: unknown_113
-  - entity: lock
-    translation_key: child_lock
-    category: config
-    dps:
-      - id: 108
-        type: boolean
-        name: lock
-  - entity: sensor
-    name: Runtime
-    dps:
-      - id: 117
-        type: integer
-        name: sensor
-        unit: h
-      - id: 116
-        type: integer
-        name: calibration
+          - scale: 10
+            constraint: mode
+            conditions:
+              - dps_val: holiday
+                value: 150
+                scale: 10
+####### Configuration section ########
   - entity: select
     category: config
     translation_key: temperature_unit
     dps:
       - id: 107
-        name: option
         type: boolean
+        name: option
         mapping:
           - dps_val: false
             value: celsius
@@ -110,33 +124,29 @@ entities:
   - entity: number
     category: config
     class: temperature
-    name: Room temperature limit
+    name: Floor temperature limit 
     icon: "mdi:thermometer-chevron-down"
     dps:
       - id: 121
         type: integer
         name: value
         range:
-          min: 100
+          min: 200
           max: 400
         mapping:
           - scale: 10
-            step: 5
-            constraint: unit
-            conditions:
-              - dps_val: true
-                step: 30
-                range:
-                  min: 120
-                  max: 750
-      - id: 107
-        name: unit
+  - entity: lock
+    translation_key: child_lock
+    category: config
+    dps:
+      - id: 108
         type: boolean
+        name: lock
         mapping:
-          - dps_val: false
-            value: C
           - dps_val: true
-            value: F
+            icon: "mdi:hand-back-right-off"
+          - dps_val: false
+            icon: "mdi:hand-back-right"
   - entity: select
     category: config
     name: Temperature sensor
@@ -146,29 +156,154 @@ entities:
         type: string
         name: option
         mapping:
-          - dps_val: "0"
+          - dps_val: 0
             value: "Room"
             icon: "mdi:home-thermometer"
-          - dps_val: "1"
+          - dps_val: 1
             value: "Floor"
             icon: "mdi:heating-coil"
-          - dps_val: '2'
+          - dps_val: 2
             value: "Both"
             icon: "mdi:thermometer"
+  - entity: number
+    category: config
+    name: Room temperature compensation
+    icon: "mdi:thermometer-lines"
+    dps:
+      - id: 112
+        type: integer
+        name: value
+        range:
+          min: -50
+          max: 50
+        mapping:
+          - scale: 10
+            step: 5
+  - entity: number
+    category: config
+    name: Floor temperature compensation
+    icon: "mdi:thermometer-lines"
+    dps:
+      - id: 113
+        type: integer
+        name: value
+        range:
+          min: -50
+          max: 50
+        mapping:
+          - scale: 10
+            step: 5
   - entity: select
     category: config
-    name: Schedule
-    icon: "mdi:calendar-sync"
+    name: Temperature difference
+    icon: "mdi:thermometer-lines"
     dps:
-      - id: 110
-        type: integer
+      - id: 114
+        type: string
         name: option
         mapping:
+          - dps_val: "0"
+            value: "0"
+          - dps_val: "0_5"
+            value: "0.5"
+          - dps_val: "1"
+            value: "1"
+          - dps_val: "1_5"
+            value: "1.5"
+          - dps_val: "2"
+            value: "2"
+          - dps_val: "2_5"
+            value: "2.5"
+          - dps_val: "3"
+            value: "3"
+  - entity: number
+    category: config
+    name: Power limit
+    icon: "mdi:power-plug"
+    dps:
+      - id: 116
+        type: integer
+        name: value
+        unit: W
+        range:
+          min: 0
+          max: 4500
+# Configuration is not recognized if this entity is enabled. idk why
+#   - entity: button
+#     translation_key: factory_reset
+#     category: config
+#     dps:
+#       - id: 115
+#         type: boolean
+#         name: button
+###### Diagnostic section #############
+  - entity: binary_sensor
+    category: diagnostic
+    dps:
+      - id: 104
+        type: bitfield
+        name: sensor
+        optional: true
+        mapping:
           - dps_val: 0
-            value: "7"
+            value: "ОК"
           - dps_val: 1
-            value: "5+1+1"
+            value: "Room sensor"
           - dps_val: 2
-            value: "7 (Adaptive)"
-          - dps_val: 3
-            value: "5+1+1 (Adaptive)"
+            value: "Floor sensor"
+####### Additional dps section #################
+####### Build-in shedule/ IMHO useless in HA #
+#   - entity: select
+#     category: config
+#     optional: true
+#     name: Auto schedule
+#     icon: "mdi:calendar-sync"
+#     dps:
+#       - id: 110
+#         type: integer
+#         name: option
+#         mapping:
+#           - dps_val: 0
+#             value: "7"
+#           - dps_val: 1
+#             value: "5+1+1"
+#           - dps_val: 2
+#             value: "7 (Adaptive)"
+#           - dps_val: 3
+#             value: "5+1+1 (Adaptive)"
+#   - entity: number
+#     category: config
+#     name: Holiday time
+#     dps:
+#       - id: 109
+#         type: integer
+#         name: value
+#         optional: true
+#         range:
+#           min: 0
+#           max: 99
+#   - entity: number
+#     category: config
+#     name: Heater time
+#     dps:
+#       - id: 117
+#         type: integer
+#         name: value
+#         optional: true
+#         range:
+#           min: 0
+#           max: 1470279295
+#   - entity: ???
+#     category: config
+#     name: Week program
+#     dps:
+#       - id: 119
+#         type: hex
+#         name: value
+#   - entity: switch
+#     category: diagnostic
+#     name: Access mode???
+#     dps:
+#       - id: 122
+#         type: boolean
+#         name: option
