@@ -4,6 +4,9 @@ products:
     model: PC321-TY
   - id: 9rjjf6rdkca9woju
     model: PC321-TY 80A
+  - id: gqmmtjclqb7reg5p
+    manufacturer: Owon
+    model: PCT321-W-TY 80A
 entities:
   - entity: sensor
     class: energy
@@ -15,6 +18,27 @@ entities:
           - scale: 100
         unit: kWh
         class: total_increasing
+  - entity: sensor
+    translation_key: energy_produced
+    class: energy
+    hidden: unavailable
+    dps:
+      - id: 139
+        type: integer
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
+      - id: 139
+        type: integer
+        optional: true
+        name: sensor
+        unit: kWh
+        class: total_increasing
+        mapping:
+          - scale: 100
   - entity: sensor
     category: diagnostic
     translation_key: voltage_x
