@@ -608,7 +608,7 @@ Further device support has been made with the assistance of users. Please consid
 - [levineds](https://github.com/levineds) for contributing support for Moes motion sensor smart switch.
 - [tomassanjuann](https://github.com/tomassanjuann) for contributing support for Tera W01 EV charger.
 - [rorydcampbell](https://github.com/rorydcampbell) for comtributing support for WellToBe WB S36D pet feeder.
-- [FreemanJD](https://github.com/FreemanJD) for assisting with support for SOP10 water sprinkler.
+- [FreemanJD](https://github.com/FreemanJD) for assisting with support for SOP10 water sprinkler and contributing improvements to PC321-TY meter.
 - [liquidand](https://github.com/liquidand) for assisting with support for Wolf Guard WTR alarm.
 - [cw-cdz](https://github.com/cw-cdz) for contributing support for Heatstorm HS-1500 heater.
 - [sveos](https://github.com/sveos) for assisting with support for Nedis ZBRC10WT remote contol.
@@ -838,3 +838,4 @@ Further device support has been made with the assistance of users. Please consid
 - [lewiatanx](https://github.com/lewiatanx) for assisting with support for Climative Cube ION dehumidifier.
 - [storebatfar](https://github.com/storebatfar) for assisting with support for Swim & Fun InverBoost pool heat pump.
 - [qvqn](https://github.com/qvqn) for assisting with support for Inkbird ISC-007BW smoker fan controller.
+- [smue86](https://github.com/smue86) for contributing support for Recteq RT700 grill.
