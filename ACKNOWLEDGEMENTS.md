@@ -839,3 +839,4 @@ Further device support has been made with the assistance of users. Please consid
 - [storebatfar](https://github.com/storebatfar) for assisting with support for Swim & Fun InverBoost pool heat pump.
 - [qvqn](https://github.com/qvqn) for assisting with support for Inkbird ISC-007BW smoker fan controller.
 - [smue86](https://github.com/smue86) for contributing support for Recteq RT700 grill.
+- [K900](https://github.com/K900) for contributing support for Petoneer Fresco EzGo pet fountain.
