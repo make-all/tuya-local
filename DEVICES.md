@@ -744,6 +744,7 @@ of device.
 
 - Abir X8 vacuum cleaner
 - Airrobo P20 vacuum cleaner
+- Coredy R750 vacuum cleaner (shows as Mellerware City Move in config)
 - iHome Autoac Nova vacuum cleaner
 - Kabum Smart 500 vacuum cleaner
 - Kabum Smart 700 vacuum cleaner (also sold as Liectroux XR500[T2] and maybe others)
