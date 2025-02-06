@@ -808,7 +808,7 @@ Further device support has been made with the assistance of users. Please consid
 - [rackxp](https://github.com/rackxp) for assisting with support for Brilliant Smart twin flood lights with motion detection.
 - [toxacj](https://github.com/toxacj) for assisting with support for C30W gas leak detector.
 - [Ramon-E80](https://github.com/Ramon-E80) for assisting with support for Clean Air Optima CA-702 dehumidifier.
-- [fate8383](https://github.com/fate8383) for assisting with support for Siguro AP-K50 purifier.
+- [fate8383](https://github.com/fate8383) for assisting with support for Siguro AP-K50 purifier and Kanchou pet fountain.
 - [szemkhel](https://github.com/szemkhel) for assisting with support for Protmex PT-19DW alarm clock with temperature and humidity monitor.
 - [dimis7](https://github.com/dimis7) for assisting with support for Inventor Rise Pro dehumidifier and contributing support for Rohnson SmartChef XL air fryer.
 - [Bryla2507](https://github.com/Bryla2507) for assisting with support for LSC dual band outdoor camera.

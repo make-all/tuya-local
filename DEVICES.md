@@ -856,6 +856,7 @@ port and password.
 - HoneyGuardian S56 pet feeder
 - iLonda L88 fish feeder
 - iPettie W5 pet feeder
+- Kanchou pet fountain
 - Leo's Loo Too pet toilet
 - Littepets MA2 series Cute Baby cat litter box
 - LSC Smart Connect pet feeder
