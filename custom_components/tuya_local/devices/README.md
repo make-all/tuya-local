@@ -706,6 +706,8 @@ no information will be available about which specific credential was used to unl
 - **unlock_key** (optional, integer): a dp to identify the key used to unlock the lock.
 - **unlock_ble** (optional, integer): a dp to identify the BLE device used to unlock the lock.
 - **unlock_voice** (optional, integer): a dp to identify the voice assistant user used to unlock the lock.
+- **unlock_ibeacon** (optional, integer): a dp to identify the BLE iBeacon used to unlock the lock.
+- **unlock_multi** (optional, integer): a dp to identify the multi-factor user that unlocked the lock.
 - **request_unlock** (optional, integer): a dp to signal that a request has been made to unlock, the value should indicate the time remaining for approval.
 - **approve_unlock** (optional, boolean): a dp to unlock the lock in response to a request.
 - **request_intercom** (optional, integer): a dp to signal that a request has been made via intercom to unlock, the value should indicate the time remaining for approval.

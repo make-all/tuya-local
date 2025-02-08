@@ -785,6 +785,7 @@ work reliably, even if listed below.
 
 - BSTUOKEY access control keypad
 - Lucking HF06 smart lock
+- Orion Grid Connect smart fingerprint entrance lock
 - Orion Grid Connect smart lock
 - Sboard III mini Weigand access control interface
 - SmarDeer Lock33 smart lock
@@ -862,6 +863,7 @@ port and password.
 - LSC Smart Connect pet feeder
 - Mypin 6L Video pet feeder
 - Nedis pet feeder
+- Papifeed pet feeder
 - Petlibro PLAF103 pet feeder
 - Petlibro PLAF203 pet feeder with camera
 - Petoneer Fresco EzGo pet fountain
