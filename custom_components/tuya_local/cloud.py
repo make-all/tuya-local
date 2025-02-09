@@ -194,13 +194,15 @@ class Cloud:
         transform = []
         for entry in response.get("dpStatusRelationDTOS"):
             if entry["supportLocal"]:
-                transform += {
-                    "id": entry["dpId"],
-                    "name": entry["dpCode"],
-                    "type": entry["valueType"],
-                    "format": entry["valueDesc"],
-                    "enumMap": entry["enumMappingMap"],
-                }
+                transform.append(
+                    {
+                        "id": entry["dpId"],
+                        "name": entry["dpCode"],
+                        "type": entry["valueType"],
+                        "format": entry["valueDesc"],
+                        "enumMap": entry["enumMappingMap"],
+                    }
+                )
         return transform
 
     @property

@@ -413,7 +413,7 @@ class ConfigFlowHandler(ConfigFlow, domain=DOMAIN):
                 )
                 if model:
                     _LOGGER.warning(
-                        "Device specficication:\n%s",
+                        "Device specification:\n%s",
                         log_json(model),
                     )
             except Exception as e:
