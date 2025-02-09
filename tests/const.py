@@ -998,7 +998,7 @@ KYVOL_E30_VACUUM_PAYLOAD = {
     "10": False,
     "11": False,
     "12": False,
-    "13": False,
+    "13": False,
     "14": "3",
     "16": 0,
     "17": 0,
@@ -1677,4 +1677,13 @@ GOLDAIR_PORTABLE_AIR_CONDITIONER_PAYLOAD = {
     "108": 80,
     "109": 26,
     "110": False,
+}
+
+LEDVANCE_PANEL_PAYLOAD = {
+    "20": True,
+    "22": 670,
+    "23": 200,
+    "24": "003903e803e8",
+    "26": 0,
+    "51": "AAcAOQPoA+gCngDI",
 }

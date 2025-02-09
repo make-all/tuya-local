@@ -118,7 +118,7 @@ entities:
         force: true
         name: rgbhsv
         format:
-          - name: x
+          - name: sw
             bytes: 2
           - name: h
             bytes: 2
@@ -135,13 +135,10 @@ entities:
             range:
               min: 0
               max: 1000
-          - name: w
+          - name: wb
             bytes: 2
-          - name: c
+          - name: wc
             bytes: 2
-        mapping:
-          - dps_val: null
-            value_mirror: std_rgbhsv
   - entity: number
     translation_key: timer
     class: duration
