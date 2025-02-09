@@ -1,10 +1,5 @@
 """Tests for Ledvance Panel lighting, in particular the combined settings"""
 
-from homeassistant.components.light import (
-    ColorMode,
-    LightEntityFeature,
-)
-
 from ..const import LEDVANCE_PANEL_PAYLOAD
 from ..helpers import assert_device_properties_set
 from .base_device_tests import TuyaDeviceTestCase
