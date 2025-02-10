@@ -843,3 +843,4 @@ Further device support has been made with the assistance of users. Please consid
 - [eisenschmid23](https://github.com/eisenschmid23) for assisting with support for Papifeed pet feeder.
 - [AndrewJ1990](https://github.com/AndrewJ1990) for assisting with support for Orion smart fingerprint entrance lock and Arlec 5L pet feeder.
 - [enyineer](https://github.com/enyineer) for contributing improvements to Aygrochy fan controller.
+- [ulliohura](https://github.com/ulliohura) for contributing support for Create fan with dimmable light.
