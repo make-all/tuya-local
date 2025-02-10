@@ -186,7 +186,6 @@ class Cloud:
         )
         response = await self.__hass.async_add_executor_job(
             manager.customer_api.get,
-            manager.customer_api,
             f"/v1.0/m/life/devices/{device_id}/status",
         )
         _LOGGER.debug("Datamodel response: %s", response)
@@ -195,13 +194,15 @@ class Cloud:
         transform = []
         for entry in response.get("dpStatusRelationDTOS"):
             if entry["supportLocal"]:
-                transform += {
-                    "id": entry["dpId"],
-                    "name": entry["dpCode"],
-                    "type": entry["valueType"],
-                    "format": entry["valueDesc"],
-                    "enumMap": entry["enumMappingMap"],
-                }
+                transform.append(
+                    {
+                        "id": entry["dpId"],
+                        "name": entry["dpCode"],
+                        "type": entry["valueType"],
+                        "format": entry["valueDesc"],
+                        "enumMap": entry["enumMappingMap"],
+                    }
+                )
         return transform
 
     @property

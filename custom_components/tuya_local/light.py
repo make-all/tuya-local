@@ -196,7 +196,7 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                         scale = 360 / mx
                     elif n == "s":
                         scale = 100 / mx
-                    else:
+                    elif n in ["v", "r", "g", "b"]:
                         scale = 255 / mx
 
                     rgbhsv[n] = round(scale * v)
@@ -348,28 +348,33 @@ class TuyaLocalLight(TuyaLocalEntity, LightEntity):
                     hs[1],
                     brightness,
                 )
+
+                current = self._unpacked_rgbhsv
                 ordered = []
                 idx = 0
                 for n in fmt["names"]:
-                    r = fmt["ranges"][idx]
-                    scale = 1
-                    if n == "s":
-                        scale = r["max"] / 100
-                    elif n == "h":
-                        scale = r["max"] / 360
+                    if n in rgbhsv:
+                        r = fmt["ranges"][idx]
+                        scale = 1
+                        if n == "s":
+                            scale = r["max"] / 100
+                        elif n == "h":
+                            scale = r["max"] / 360
+                        else:
+                            scale = r["max"] / 255
+                        val = round(rgbhsv[n] * scale)
+                        if val < r["min"]:
+                            _LOGGER.warning(
+                                "%s/%s: Color data %s=%d constrained to be above %d",
+                                self._config._device.config,
+                                self.name or "light",
+                                n,
+                                val,
+                                r["min"],
+                            )
+                            val = r["min"]
                     else:
-                        scale = r["max"] / 255
-                    val = round(rgbhsv[n] * scale)
-                    if val < r["min"]:
-                        _LOGGER.warning(
-                            "%s/%s: Color data %s=%d constrained to be above %d",
-                            self._config._device.config,
-                            self.name or "light",
-                            n,
-                            val,
-                            r["min"],
-                        )
-                        val = r["min"]
+                        val = current[n]
                     ordered.append(val)
                     idx += 1
                 binary = pack(fmt["format"], *ordered)

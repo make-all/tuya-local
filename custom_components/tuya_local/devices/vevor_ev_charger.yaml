@@ -219,19 +219,23 @@ entities:
         unit: kWh
         mapping:
           - scale: 100
-  - entity: binary_sensor
-    class: connectivity
-    category: diagnostic
+
+  - entity: switch
+    category: config
+    name: Live updates
+    icon: "mdi:chart-bar"
     dps:
       - id: 27
         type: string
-        name: sensor
+        name: switch
         optional: true
         mapping:
           - dps_val: online
             value: true
           - dps_val: offline
             value: false
+          - value: false
+            hidden: true
   - entity: number
     name: Delay time
     category: config
