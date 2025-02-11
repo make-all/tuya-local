@@ -845,3 +845,4 @@ Further device support has been made with the assistance of users. Please consid
 - [enyineer](https://github.com/enyineer) for contributing improvements to Aygrochy fan controller.
 - [ulliohura](https://github.com/ulliohura) for contributing support for Create fan with dimmable light.
 - [MikN313](https://github.com/MikN313) for contributing improvements to Grakit filament dryer.
+- [AlixerVolkov](https://github.com/AlixerVolkov) for assisting with support for LSC Smart Connect outdoor PTZ camera.

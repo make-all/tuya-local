@@ -824,6 +824,7 @@ port and password.
 - Kerui 200W camera
 - Kerui JS-P162 300W camera
 - LSC Smart Connect dual band outdoor camera
+- LSC Smart Connect Outdoor PTZ camera
 - LSC Smart Connect PTZ camera
 - Moes PTZ indoor security camera
 - Nedis outdoor camera
