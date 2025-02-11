@@ -740,7 +740,7 @@ of device.
 - Zemismart curtain rail
 - Zemismart roller shade
 
-### Vacuum Cleaners
+### Robot vacuums
 
 - Abir X8 vacuum cleaner
 - Airrobo P20 vacuum cleaner
@@ -749,6 +749,7 @@ of device.
 - Kabum Smart 700 vacuum cleaner (also sold as Liectroux XR500[T2] and maybe others)
 - Kabum Smart 700 vacuum cleaner 2023 model (not quite compatible with Liectroux XR500 T3, but similar revision)
 - Kogan LX10 vacuum cleaner with mop
+- Kogan LX15 vacuum cleaner with mop
 - Kogan LX8 vacuum cleaner
 - Kyvol E30 vacuum cleaner
 - Lefant LS1 Pro vacuum cleaner
