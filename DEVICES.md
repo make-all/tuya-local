@@ -320,7 +320,8 @@
 - iHunt 50m³/h air purifier
 - Kilo Plus air purifier
 - Klarta Stor 2 air purifier
-- Kogan air purifier
+- Kogan 2S air purifier
+- Kogan 5 pro air purifier
 - Lifubide X600 air purifier
 - Morento HY4866-WF air purifier
 - NAC AP470 air purifier

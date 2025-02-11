@@ -316,7 +316,7 @@ Further device support has been made with the assistance of users. Please consid
 - [xpavli44](https://github.com/xpavli44) for contributing Czech translations.
 - [kondi](https://github.com/kondi) for contributing improvements to masked values and Starlight heatpumps.
 - [scotttimmins](https://github.com/scotttimmins) for contributing support for 4 outlet + USB smart powerstrip and Depauley ceiling fan.
-- [madchuska](https://github.com/madchuska) for contributing support for Kogan air purifiers.
+- [madchuska](https://github.com/madchuska) for contributing support for Kogan 2S air purifier.
 - [bskjon](https://github.com/bskjon) for contributing support for Woods Milan air conditioner and Norwegian translations.
 - [jamarju](https://github.com/jamarju) for contributing support for Garza Wi-Fi garden irrigation systems.
 - [iotinkognito](https://github.com/iotinkognito) for contributing support for Makegood double power points and Brilliant 1/2/3/4 gang wall switches.
@@ -846,4 +846,4 @@ Further device support has been made with the assistance of users. Please consid
 - [ulliohura](https://github.com/ulliohura) for contributing support for Create fan with dimmable light.
 - [MikN313](https://github.com/MikN313) for contributing improvements to Grakit filament dryer.
 - [AlixerVolkov](https://github.com/AlixerVolkov) for assisting with support for LSC Smart Connect outdoor PTZ camera.
-- [Mantrid42](https://github.com/Mantrid42) for contributing support for Kogan LX15 vacuum and mopping robot.
+- [Mantrid42](https://github.com/Mantrid42) for contributing support for Kogan LX15 vacuum and mopping robot, Kogan 5 pro air purifier.
