@@ -873,6 +873,7 @@ port and password.
 - Petoneer Fresco EzGo pet fountain
 - Petoneer Fresco Hydrate Ultra pet fountain (2 versions)
 - Petoneer Fresco Mini pet fountain
+- Petoneer Nutri PF004 pet feeder
 - PetSnowy Snow+ litter box
 - Petrust TK-WF002 pet fountain
 - PNI water feeder
