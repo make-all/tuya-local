@@ -3,7 +3,7 @@ name: Robot vacuum
 products:
   - id: fwdjfuvqy9qogefw
     manufacturer: Kogan
-    model: LX15  # It actually returns an empty string
+    model: LX15
 entities:
   - entity: vacuum
     dps:
@@ -156,7 +156,7 @@ entities:
         name: sensor
         type: integer
         unit: m2
-  - name: Water regulation
+  - translation_key: mopping
     entity: select
     category: config
     dps:
@@ -165,12 +165,12 @@ entities:
         type: string
         mapping:
           - dps_val: low
-            value: Low
+            value: low
           - dps_val: mid
-            value: Medium
+            value: medium
           - dps_val: high
-            value: High
-  - name: Disturb switch
+            value: high
+  - name: Do not disturb
     entity: switch
     category: config
     icon: "mdi:bell-ring"
@@ -360,69 +360,22 @@ entities:
       - id: 142
         type: boolean
         name: switch
-  - name: Voice
-    entity: sensor
-    class: enum
-    category: diagnostic
+  - translation_key: language
+    entity: select
+    category: config
     dps:
       - id: 133
-        name: sensor
+        name: option
         type: string
         mapping:
           - dps_val: "0"
-            value: Korean
+            value: korean
           - dps_val: "1"
             value: English Female
           - dps_val: "2"
             value: English Child
           - dps_val: "3"
-            value: Chinese
-  - name: State
-    entity: sensor
-    category: diagnostic
-    dps:
-      - id: 105  # robot_state
-        name: sensor
-        type: string
-  - name: Mode
-    entity: sensor
-    category: diagnostic
-    dps:
-      - id: 104  # clean_mode
-        name: sensor
-        type: string
-  - name: Fault code
-    entity: sensor
-    category: diagnostic
-    dps:
-      - id: 122  # robot_fault
-        name: sensor
-        type: integer
-  - name: Fault description
-    entity: sensor
-    category: diagnostic
-    class: enum
-    dps:
-      - id: 122
-        name: sensor
-        type: integer
-        mapping:
-          - dps_val: 0
-            value: No fault
-          - dps_val: 2
-            value: Battery low
-          - dps_val: 32
-            value: Drop sensor abnormal
-          - dps_val: 4096
-            value: Abnormal main brush
-          - dps_val: 32768
-            value: Dust collector absent
-          - dps_val: 524288
-            value: Machine trapped
-          - dps_val: 1048576
-            value: Was picked up at work
-          - dps_val: 33554432
-            value: Recharge failed
+            value: chinese
   - name: Pause
     entity: switch
     icon: "mdi:pause"
@@ -431,109 +384,3 @@ entities:
       - id: 102
         type: boolean
         name: switch
-  - name: Side brush remaining hours
-    entity: sensor
-    category: diagnostic
-    class: duration
-    icon: "mdi:clock-outline"
-    dps:
-      - id: 119
-        name: sensor
-        optional: true
-        type: integer
-        precision: 0
-        range:
-          min: 0
-          max: 1080000
-        mapping:
-          - scale: 3600
-            invert: true
-  - name: Side brush remaining
-    entity: sensor
-    category: diagnostic
-    class: duration
-    icon: "mdi:clock-outline"
-    dps:
-      - id: 119
-        name: sensor
-        optional: true
-        type: integer
-        unit: "%"
-        precision: 0
-        range:
-          min: 0
-          max: 1080000
-        mapping:
-          - scale: 10800
-            invert: true
-  - name: Main brush remaining hours
-    entity: sensor
-    category: diagnostic
-    class: duration
-    icon: "mdi:clock-outline"
-    dps:
-      - id: 120
-        name: sensor
-        optional: true
-        type: integer
-        precision: 0
-        range:
-          min: 0
-          max: 1080000
-        mapping:
-          - scale: 3600
-            invert: true
-  - name: Main brush remaining
-    entity: sensor
-    category: diagnostic
-    class: duration
-    icon: "mdi:clock-outline"
-    dps:
-      - id: 120
-        name: sensor
-        optional: true
-        type: integer
-        unit: "%"
-        precision: 0
-        range:
-          min: 0
-          max: 1080000
-        mapping:
-          - scale: 10800
-            invert: true
-
-  - name: Filter remaining hours
-    entity: sensor
-    category: diagnostic
-    class: duration
-    icon: "mdi:clock-outline"
-    dps:
-      - id: 121
-        name: sensor
-        optional: true
-        type: integer
-        precision: 0
-        range:
-          min: 0
-          max: 1080000
-        mapping:
-          - scale: 3600
-            invert: true
-  - name: Filter remaining %
-    entity: sensor
-    category: diagnostic
-    class: duration
-    icon: "mdi:clock-outline"
-    dps:
-      - id: 121
-        name: sensor
-        optional: true
-        type: integer
-        unit: "%"
-        precision: 0
-        range:
-          min: 0
-          max: 1080000
-        mapping:
-          - scale: 10800
-            invert: true
