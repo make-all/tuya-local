@@ -1,5 +1,4 @@
-# Protocol 3.4
-name: Smart air purifier
+name: Air purifier
 products:
   - id: bsgh7gwfmazrxsta
     manufacturer: Kogan
@@ -21,6 +20,18 @@ entities:
             value: sleep
           - dps_val: manual
             value: manual
+      - id: 4
+        name: speed
+        type: string
+        mapping:
+          - dps_val: low
+            value: 25
+          - dps_val: mid
+            value: 50
+          - dps_val: high
+            value: 75
+          - dps_val: turbo
+            value: 100
   - entity: sensor
     class: pm25
     dps:
@@ -29,37 +40,6 @@ entities:
         name: sensor
         unit: ugm3
         class: measurement
-  - name: Preset mode
-    entity: select
-    category: config
-    dps:
-      - id: 3
-        name: option
-        type: string
-        mapping:
-          - dps_val: auto
-            value: Smart
-          - dps_val: sleep
-            value: Sleep
-          - dps_val: manual
-            value: Manual
-  - name: Fan speed
-    entity: select
-    category: config
-    icon: "mdi:fan"
-    dps:
-      - id: 4
-        name: option
-        type: string
-        mapping:
-          - dps_val: low
-            value: Low
-          - dps_val: mid
-            value: Medium
-          - dps_val: high
-            value: High
-          - dps_val: turbo
-            value: Turbo
   - name: Filter remaining
     entity: sensor
     icon: "mdi:shield-bug"
@@ -68,14 +48,13 @@ entities:
         name: sensor
         type: integer
         unit: "%"
-  - name: Child lock
-    entity: switch
+  - translation_key: child_lock
+    entity: lock
     category: config
-    icon: "mdi:lock"
     dps:
       - id: 7
         type: boolean
-        name: switch
+        name: lock
   - entity: light
     translation_key: indicator
     category: config
@@ -93,16 +72,14 @@ entities:
   - translation_key: filter_reset
     entity: button
     category: config
-    icon: "mdi:clock-outline"
     dps:
       - id: 11
         type: boolean
         name: button
         optional: true
-  - name: Timer remaining
+  - translation_key: time_remaining
     entity: sensor
     class: duration
-    icon: "mdi:clock-outline"
     dps:
       - id: 20
         type: integer
@@ -117,13 +94,13 @@ entities:
         type: string
         mapping:
           - dps_val: great
-            value: Great
+            value: excellent
           - dps_val: good
-            value: Good
+            value: good
           - dps_val: Medium
-            value: Medium
+            value: moderate
           - dps_val: severe
-            value: Severe
+            value: severe
   - class: problem
     entity: binary_sensor
     category: diagnostic
@@ -145,18 +122,16 @@ entities:
       - id: 101
         name: sensor
         type: integer
-        unit: h
-        mapping:
-          - scale: 3600
-  - name: Off timer
+        unit: s
+  - translation_key: timer
     entity: number
+    class: duration
     category: config
-    icon: "mdi:clock-outline"
     dps:
       - id: 102
         type: integer
         name: value
-        unit: m
+        unit: h
         range:
           min: 0
           max: 12
