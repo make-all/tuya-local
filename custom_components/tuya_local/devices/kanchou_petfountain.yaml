@@ -3,13 +3,6 @@ products:
   - id: akln8rb04cav403q
     manufacturer: Kanchou
 entities:
-  - entity: switch
-    icon: "mdi:paw"
-    dps:
-      - id: 1
-        type: boolean
-        optional: true
-        name: switch
   - entity: select
     name: Mode
     icon: "mdi:paw"
@@ -121,7 +114,6 @@ entities:
         type: integer
         name: sensor
         unit: mL
-        class: measurement
   - entity: binary_sensor
     class: problem
     category: diagnostic
