@@ -1,0 +1,133 @@
+name: Garage Light
+products:
+  - id: jpbst6n8suqi3rcw
+    manufacturer: Feit
+    model: Garage Light
+    model_id: dzovhw
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        type: string
+        name: color_mode
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 22
+        name: brightness
+        type: integer
+        optional: true
+        range:
+          min: 10
+          max: 1000
+        mapping:
+          - dps_val: null
+            value: 0
+      - id: 24
+        name: rgbhsv
+        type: hex
+        optional: true
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 27
+        name: music_data
+        type: string  # Hex
+        optional: true
+      - id: 28
+        name: control_data
+        type: string  # Base64
+        optional: true
+      - id: 30
+        name: rhythm_mode  # Biorythm mode with binary values for schedule.
+        type: string  # Base64
+        optional: true
+      - id: 31
+        name: sleep_mode  # A mode that sets the light to turn off gradually.
+        type: string  # Base64
+        optional: true
+      - id: 32
+        name: wakeup_mode  # A mode that sets the light to turn on gradually.
+        type: string  # Base64
+        optional: true
+      - id: 33
+        name: power_memory  # A binary value storing state date for power on.
+        type: string  # Base64
+        optional: true
+      - id: 210
+        name: random_timing  # A mode that simulates occupancy.
+        type: string  # Base64
+        optional: true
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 26
+        name: value
+        type: integer
+        unit: min
+        optional: true
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+          - dps_val: null
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 25
+        name: value
+        type: hex
+        optional: true
+  - entity: select
+    translation_key: scene
+    category: config
+    dps:
+      - id: 25
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "03323201000003e803e800000000323201007803e803e800000000"
+            value: Victory Day
+          - dps_val: "013232020084000003e800000000323202000003e803e800000000\
+                      323202012c03e803e800000000323202015e00fa03e800000000"
+            value: Easter
+          - dps_val: "02323202001903e803e800000000323202012c03e803e800000000"
+            value: Halloween
+          - dps_val: "03323201000003e803e800000000323201007803e803e800000000"
+            value: Christmas
+          - dps_val: "043232010084000003e800000000323201000003e803e800000000\
+                      323201001903e803e800000000323201007803e803e80000000032\
+                      320100b403e803e80000000032320100f003e803e8000000003232\
+                      01012c03e803e800000000323201015e00fa03e800000000"
+            value: Fun
+          - dps_val: "053232020078000003e800000000323202007803e8000a03e80000"
+            value: Soft
