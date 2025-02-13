@@ -68,7 +68,23 @@ entities:
             value: "Stream"
           - dps_val: "0866660200d7033402440000000066660200c603e801f400000000666602011702b2023a00000000"
             value: "Deepwater"
-
+  - entity: select
+    transition_key: effect
+    catagory: config
+    dps:
+      - id: 21
+        type: string
+        name: mode
+        optional: true
+        mapping:
+          - dps_val: "white"
+            value: "White"
+          - dps_val: "colour"
+            value: "Color"
+          - dps_val: "scene"
+            value: "Scene"
+          - dps_val: "music"
+            value: "Music"
   - entity: number
     translation_key: timer
     class: duration
