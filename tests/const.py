@@ -1678,3 +1678,12 @@ GOLDAIR_PORTABLE_AIR_CONDITIONER_PAYLOAD = {
     "109": 26,
     "110": False,
 }
+
+LEDVANCE_PANEL_PAYLOAD = {
+    "20": True,
+    "22": 670,
+    "23": 200,
+    "24": "003903e803e8",
+    "26": 0,
+    "51": "AAcAOQPoA+gCngDI",
+}

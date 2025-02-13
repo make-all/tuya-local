@@ -186,7 +186,6 @@ class Cloud:
         )
         response = await self.__hass.async_add_executor_job(
             manager.customer_api.get,
-            manager.customer_api,
             f"/v1.0/m/life/devices/{device_id}/status",
         )
         _LOGGER.debug("Datamodel response: %s", response)
@@ -195,13 +194,15 @@ class Cloud:
         transform = []
         for entry in response.get("dpStatusRelationDTOS"):
             if entry["supportLocal"]:
-                transform += {
-                    "id": entry["dpId"],
-                    "name": entry["dpCode"],
-                    "type": entry["valueType"],
-                    "format": entry["valueDesc"],
-                    "enumMap": entry["enumMappingMap"],
-                }
+                transform.append(
+                    {
+                        "id": entry["dpId"],
+                        "name": entry["dpCode"],
+                        "type": entry["valueType"],
+                        "format": entry["valueDesc"],
+                        "enumMap": entry["enumMappingMap"],
+                    }
+                )
         return transform
 
     @property
@@ -230,12 +231,17 @@ class DeviceListener(SharingDeviceListener):
         self.__hass = hass
         self._manager = manager
 
-    def update_device(self, device: CustomerDevice) -> None:
+    def update_device(
+        self,
+        device: CustomerDevice,
+        updated_status_properties: list[str] | None,
+    ) -> None:
         """Device status has updated."""
         _LOGGER.debug(
-            "Received update for device %s: %s",
+            "Received update for device %s: %s (properties %s)",
             device.id,
             self._manager.device_map[device.id].status,
+            updated_status_properties,
         )
 
     def add_device(self, device: CustomerDevice) -> None:

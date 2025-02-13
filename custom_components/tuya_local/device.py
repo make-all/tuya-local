@@ -441,7 +441,7 @@ class TuyaLocalDevice(object):
 
     async def async_refresh(self):
         _LOGGER.debug("Refreshing device state for %s", self.name)
-        if self.should_poll:
+        if not self._running:
             await self._retry_on_failed_connection(
                 lambda: self._refresh_cached_state(),
                 f"Failed to refresh device state for {self.name}.",
@@ -680,6 +680,13 @@ class TuyaLocalDevice(object):
             self.name,
             new_version,
         )
+        # Only enable tinytuya's auto-detect when using 3.22
+        if new_version == 3.22:
+            new_version = 3.3
+            self._api.disabledetect = False
+        else:
+            self._api.disabledetect = True
+
         await self._hass.async_add_executor_job(
             self._api.set_version,
             new_version,

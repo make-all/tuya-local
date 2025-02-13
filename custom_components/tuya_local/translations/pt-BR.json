@@ -100,6 +100,13 @@
     },
     "entity": {
         "binary_sensor": {
+            "direction": {
+                "name": "Direção",
+                "state": {
+                    "off": "Entrada",
+                    "on": "Saída"
+                }
+            },
             "defrost": {
                 "name": "Descongelar",
                 "state": {
@@ -340,7 +347,9 @@
                             "sleep": "Dormir",
                             "auto": "Auto",
                             "eco": "Ecológico",
-                            "anti-condensation": "Anti-condensação"
+                            "anti-condensation": "Anti-condensação",
+                            "extractor": "Extrator",
+                            "heat_recovery": "Recuperação de calor"
                         }
                     }
                 }
@@ -472,8 +481,12 @@
                 "name": "Cronômetro",
                 "state": {
                     "cancel": "Cancelar",
+                    "continuous": "Contínuo",
+                    "5m": "5 minutos",
                     "10m": "10 minutos",
+                    "20m": "20 minutos",
                     "30m": "30 minutos",
+                    "40m": "40 minutos",
                     "1h": "1 hora",
                     "1h30m": "1 hora e 30 minutos",
                     "2h": "2 horas",

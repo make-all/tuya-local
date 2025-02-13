@@ -100,6 +100,13 @@
     },
     "entity": {
         "binary_sensor": {
+            "direction": {
+                "name": "Direction",
+                "state": {
+                    "off": "In",
+                    "on": "Out"
+                }
+            },
             "defrost": {
                 "name": "Defrost",
                 "state": {
@@ -340,7 +347,9 @@
                             "sleep": "Sleep",
                             "auto": "Auto",
                             "eco": "Eco",
-                            "anti-condensation": "Anti-condensation"
+                            "anti-condensation": "Anti-condensation",
+                            "extractor": "Extractor",
+                            "heat_recovery": "Heat recovery"
                         }
                     }
                 }
@@ -472,8 +481,12 @@
                 "name": "Timer",
                 "state": {
                     "cancel": "Cancel",
+                    "continuous": "Continuous",
+                    "5m": "5 minutes",
                     "10m": "10 minutes",
+                    "20m": "20 minutes",
                     "30m": "30 minutes",
+                    "40m": "40 minutes",
                     "1h": "1 hour",
                     "1h30m": "1 hour 30 minutes",
                     "2h": "2 hours",
