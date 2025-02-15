@@ -847,3 +847,4 @@ Further device support has been made with the assistance of users. Please consid
 - [MikN313](https://github.com/MikN313) for contributing improvements to Grakit filament dryer.
 - [AlixerVolkov](https://github.com/AlixerVolkov) for assisting with support for LSC Smart Connect outdoor PTZ camera.
 - [Mantrid42](https://github.com/Mantrid42) for contributing support for Kogan LX15 vacuum and mopping robot, Kogan 5 pro air purifier.
+- [sweetpi](https://github.com/sweetpi) for contributing improvements to Rotenso Ronix heatpump.
