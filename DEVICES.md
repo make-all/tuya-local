@@ -733,6 +733,7 @@ of device.
 - M027 curtain module (sold under several brands, including zemismart, meterk and others)
 - M515 curtain motor
 - Moes SCS80 Touch curtain switch with backlight and timing control
+- Moes WS-USR-2C double curtain switch with backlight
 - Moes WS-Y-EUC curtain switch with backlight and timing control
 - QS-WIFI-C01(BK) curtain module
 - SHerko curtain motor
