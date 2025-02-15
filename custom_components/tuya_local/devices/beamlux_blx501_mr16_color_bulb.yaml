@@ -1,0 +1,158 @@
+name: MR16 Color Bulb
+products:
+  - id: kw2oclsjnfal3mfv
+    manufacturer: Beamlux
+    name: BLX501
+entities:
+  - entity: light
+    dps:
+      - id: 20
+        type: boolean
+        name: switch
+      - id: 21
+        name: color_mode
+        type: string
+        mapping:
+          - dps_val: white
+            value: color_temp
+          - dps_val: colour
+            value: hs
+          - dps_val: scene
+            value: Scene
+          - dps_val: music
+            value: Music
+      - id: 22
+        name: brightness
+        type: integer
+        range:
+          min: 10
+          max: 1000
+      - id: 23
+        name: color_temp
+        type: integer
+        optional: true
+        range:
+          min: 0
+          max: 1000
+        mapping:
+          - target_range:
+              min: 2700
+              max: 6500
+      - id: 24
+        name: rgbhsv
+        type: hex
+        format:
+          - name: h
+            bytes: 2
+            range:
+              min: 0
+              max: 360
+          - name: s
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+          - name: v
+            bytes: 2
+            range:
+              min: 0
+              max: 1000
+      - id: 27
+        type: string
+        optional: true
+        name: music_data
+      - id: 28
+        type: string
+        optional: true
+        name: control_data
+      - id: 29
+        type: string
+        optional: true
+        name: debug_data
+      - id: 30
+        type: string
+        optional: true
+        name: rhythm_mode
+      - id: 31
+        type: string
+        optional: true
+        name: sleep_mode
+      - id: 32
+        type: string
+        optional: true
+        name: wakeup_mode
+      - id: 33
+        type: string
+        optional: true
+        name: power_memory
+      - id: 82
+        type: string
+        optional: true
+        name: candle_mode_data
+      - id: 209
+        type: string
+        optional: true
+        name: cycle_timing
+      - id: 210
+        type: string
+        optional: true
+        name: random_timing
+  - entity: number
+    class: duration
+    translation_key: timer
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: switch
+    name: Do not disturb
+    icon: "mdi:minus-circle"
+    category: config
+    dps:
+      - id: 34
+        type: boolean
+        name: switch
+  - entity: text
+    translation_key: scene
+    category: config
+    hidden: true
+    dps:
+      - id: 25
+        name: value
+        type: hex
+        optional: true
+  - entity: select
+    translation_key: scene
+    category: config
+    dps:
+      - id: 25
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "000e0d0000000000000000c80000"
+            value: "Good Night"
+          - dps_val: "010e0d0000000000000003e801f4"
+            value: "Reading"
+          - dps_val: "020e0d0000000000000003e803e8"
+            value: "Working"
+          - dps_val: "030e0d0000000000000001f401f4"
+            value: "Leisure"
+          - dps_val: "1746460200f003e803e80000000046460200dc02bc03e800000000"
+            value: "Ocean"
+          - dps_val: "184646020028032003e800000000464602001e038403e800000000\
+              4646020014038403e800000000"
+            value: "Sunflower"
+          - dps_val: "04464602007803e803e800000000464602007803e8000a00000000"
+            value: "Grassland"
+          - dps_val: "06464601000003e803e800000000464601007803e803e800000000\
+              46460100f003e803e800000000"
+            value: "Dazzling"
