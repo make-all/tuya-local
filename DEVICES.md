@@ -336,6 +336,7 @@
 - Soleusair A02 and A10 air purifiers
 - Stadler Form Roger air purifier
 - Tesla Smart S300, Pro and Mini air purifiers
+- Vestfrost VP-A1Z40HW air purifier
 - Vork VK6067AW air purifier
 
 ### Dehumidifiers
