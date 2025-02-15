@@ -46,9 +46,9 @@ entities:
               max: 1000
       - id: 25
         type: string
-        name: effect  # Changed from "option" to "effect"
+        name: option
         optional: true
-        mapping:  # All effects moved here
+        mapping:
           - dps_val: "006262020000000003e800000000626202002c008203de00000000"
             value: "Daylight"
           - dps_val: "01565602002c008203de00000000565602012c012c022600000000"
@@ -67,7 +67,50 @@ entities:
             value: "Stream"
           - dps_val: "0866660200d7033402440000000066660200c603e801f400000000666602011702b2023a00000000"
             value: "Deepwater"
-           - dps_val: "00303000002e03e802c600000000"
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 26
+        type: integer
+        name: value
+        optional: true
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: select
+    translation_key: scene
+    category: config
+    dps:
+      - id: 25
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: "006262020000000003e800000000626202002c008203de00000000"
+            value: "Daylight"
+          - dps_val: "01565602002c008203de00000000565602012c012c022600000000"
+            value: "Sunrise"
+          - dps_val: "05666602002c008203de0000000066660200c0030c03e80000000066660200cc03c0033400000000"
+            value: "Sunset"
+          - dps_val: "0262620200f003e803e80000000062620200e5035c00e600000000"
+            value: "Moonlight"
+          - dps_val: "0366660200d100a0026c0000000066660200c102bc01ae0000000066660200bb03c0035c00000000"
+            value: "Rain Storm"
+          - dps_val: "046666020000000003e80000000066660200c7004603a200000000666602002c008203de00000000"
+            value: "Cloudy"
+          - dps_val: "0666660200e6038e03e80000000066660200fe03ca02580000000066660200c9035203e800000000"
+            value: "Glow"
+          - dps_val: "0762620200d002940384000000006262020000000003e800000000"
+            value: "Stream"
+          - dps_val: "0866660200d7033402440000000066660200c603e801f400000000666602011702b2023a00000000"
+            value: "Deepwater"
+          - dps_val: "00303000002e03e802c600000000"
             value: "Good night"
           - dps_val: "013030000084000003e800000000"
             value: "Reading"
@@ -154,19 +197,3 @@ entities:
             value: "Easter"
           - dps_val: "28525201011303e803e800000000525201001e03e803e800000000"
             value: "Halloween"
-  - entity: number
-    translation_key: timer
-    class: duration
-    category: config
-    dps:
-      - id: 26
-        type: integer
-        name: value
-        optional: true
-        unit: min
-        range:
-          min: 0
-          max: 86400
-        mapping:
-          - scale: 60
-            step: 60
