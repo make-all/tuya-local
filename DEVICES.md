@@ -368,6 +368,7 @@
 - Eeese Carl dehumidifier
 - Eeese Emil dehumidifier
 - Eeese Otto dehumidifier
+- Emerio DH-129238.1 dehumidifier
 - Goldair GPDH340 dehumidifier
 - Goldair GPDH420 dehumidifier
 - Greenmigo Alpha Q25 dehumidifier

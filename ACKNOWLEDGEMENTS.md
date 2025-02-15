@@ -851,3 +851,4 @@ Further device support has been made with the assistance of users. Please consid
 - [n4dwxihyeyhes2](https://github.com/n4dwxihyeyhes2) for contributing support for Vestfrost VP-A1Z40HW air purifier.
 - [UDA-CamB](https://github.com/UDA-CamB) for contributing support for KRain KRX8 irrigation controller.
 - [nickmcgill](https://github.com/nickmcgill) for contributing support for Devola Intelligent heater.
+- [Kappa71](https://github.com/Kappa71) for contributing support for Emerio DH-129238.1 dehumidifier.
