@@ -97,27 +97,19 @@ entities:
         type: boolean
         name: switch
   - entity: binary_sensor
-    name: Battery Status
-    icon: mdi:battery
+    class: battery
     dps:
       - id: 130
         name: sensor
         type: boolean
   - entity: binary_sensor
-    name: Mains Power Status
-    icon: mdi:transmission-tower-export
+    class: power
     dps:
       - id: 131
         name: sensor
         type: boolean
   - entity: binary_sensor
-    name: Watering
-    dps:
-      - id: 132
-        name: sensor
-        type: boolean
-  - entity: binary_sensor
-    name: Rain sensor
+    name: Rain
     class: moisture
     dps:
       - id: 137
