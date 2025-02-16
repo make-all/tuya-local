@@ -197,3 +197,23 @@ entities:
             value: "Easter"
           - dps_val: "28525201011303e803e800000000525201001e03e803e800000000"
             value: "Halloween"
+
+  # Add a new select entity to manually change DP ID 21 (mode)
+  - entity: select
+    name: "Light Mode"
+    translation_key: mode
+    category: config
+    dps:
+      - id: 21
+        type: string
+        name: mode
+        optional: true
+        mapping:
+          - dps_val: "white"
+            value: "White"
+          - dps_val: "colour"
+            value: "Color"
+          - dps_val: "scene"
+            value: "Scene"
+          - dps_val: "music"
+            value: "Music"
