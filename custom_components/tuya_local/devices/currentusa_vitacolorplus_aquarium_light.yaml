@@ -5,25 +5,15 @@ products:
     manufacturer: Current-USA
     model: Vita ColorPlus Smart LED Light
     name: Aquarium Smart LED Light
+
 entities:
   - entity: light
+    name: "ColorPlus Aquarium Light"
     dps:
       - id: 20
         type: boolean
         name: switch
-      - id: 21
-        type: string
-        name: mode
-        optional: true
-        mapping:
-          - dps_val: "white"
-            value: "White"
-          - dps_val: "colour"
-            value: "Color"
-          - dps_val: "scene"
-            value: "Scene"
-          - dps_val: "music"
-            value: "Music"
+
       - id: 24
         type: hex
         name: rgbhsv
@@ -44,6 +34,7 @@ entities:
             range:
               min: 0
               max: 1000
+
       - id: 25
         type: string
         name: option
@@ -67,6 +58,7 @@ entities:
             value: "Stream"
           - dps_val: "0866660200d7033402440000000066660200c603e801f400000000666602011702b2023a00000000"
             value: "Deepwater"
+            
   - entity: number
     translation_key: timer
     class: duration
@@ -83,6 +75,7 @@ entities:
         mapping:
           - scale: 60
             step: 60
+
   - entity: select
     translation_key: scene
     category: config
@@ -197,16 +190,13 @@ entities:
             value: "Easter"
           - dps_val: "28525201011303e803e800000000525201001e03e803e800000000"
             value: "Halloween"
-
-  # Add a new select entity to manually change DP ID 21 (mode)
-  - entity: select
+ - entity: select
     name: "Light Mode"
-    translation_key: mode
-    category: config
+    unique_id: "aquarium_light_mode"
     dps:
       - id: 21
         type: string
-        name: mode
+        name: "mode"
         optional: true
         mapping:
           - dps_val: "white"
