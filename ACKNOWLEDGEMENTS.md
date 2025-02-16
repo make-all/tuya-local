@@ -846,10 +846,10 @@ Further device support has been made with the assistance of users. Please consid
 - [ulliohura](https://github.com/ulliohura) for contributing support for Create fan with dimmable light.
 - [MikN313](https://github.com/MikN313) for contributing improvements to Grakit filament dryer.
 - [AlixerVolkov](https://github.com/AlixerVolkov) for assisting with support for LSC Smart Connect outdoor PTZ camera.
-- [Mantrid42](https://github.com/Mantrid42) for contributing support for Kogan LX15 vacuum and mopping robot, Kogan 5 pro air purifier.
+- [Mantrid42](https://github.com/Mantrid42) for contributing support for Kogan LX15 vacuum and mopping robot, Kogan 5 pro air purifier, Kogan aircons (merged into Fisher Summer).
 - [sweetpi](https://github.com/sweetpi) for contributing improvements to Rotenso Ronix heatpump.
 - [n4dwxihyeyhes2](https://github.com/n4dwxihyeyhes2) for contributing support for Vestfrost VP-A1Z40HW air purifier.
 - [UDA-CamB](https://github.com/UDA-CamB) for contributing support for KRain KRX8 irrigation controller.
 - [nickmcgill](https://github.com/nickmcgill) for contributing support for Devola Intelligent heater.
 - [Kappa71](https://github.com/Kappa71) for contributing support for Emerio DH-129238.1 dehumidifier.
-- [diviera](https://github.com/diviera) for contributing support for Moes WS-USR-2C double curtain switch.
+- [diviera](https://github.com/diviera) for contributing support for Moes WS-USR-2C double curtain switch
