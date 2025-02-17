@@ -854,3 +854,4 @@ Further device support has been made with the assistance of users. Please consid
 - [Kappa71](https://github.com/Kappa71) for contributing support for Emerio DH-129238.1 dehumidifier.
 - [diviera](https://github.com/diviera) for contributing support for Moes WS-USR-2C double curtain switch
 - [Enrica-r](https://github.com/Enrica-r) for assisting with support for Haozee water valve.
+- [istenik](https://github.com/istenik) for assisting with support for Klarstein Bornholm Smart 1500 convection heater.

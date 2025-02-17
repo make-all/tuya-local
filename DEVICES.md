@@ -41,6 +41,7 @@
 - Juskys OH125BW2 oil radiator
 - Kennedy II/JR electric fireplace
 - Kesser Infrared 400W wall and 3000W heaters with and without lights.
+- Klarstein Bornholm Smart 1500 convection heater
 - Klarstein Wonderwall Air Art IR heater
 - Klarstein Wonderwall Bornholm IR heater
 - Klarstein Wonderwall IR heater
