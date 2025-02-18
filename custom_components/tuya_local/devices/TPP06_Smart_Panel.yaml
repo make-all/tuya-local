@@ -1,0 +1,110 @@
+name: TPP06 Smart Panel
+products:
+  - id: dbdevm8sdtolas
+    name: TPP06 Smart Panel
+    model: TPP06
+    manufacturer: Tuya
+
+entities:
+  # Main switches
+  - entity: switch
+    name: Switch 1
+    category: config
+    dps:
+      - id: 16
+        type: boolean
+        name: switch
+      - id: 39
+        type: string
+        name: mode
+        optional: true
+        mapping:
+          - dps_val: "off"
+            value: false
+          - dps_val: "on"
+            value: true
+          - dps_val: "memory"
+            value: true
+
+  - entity: switch
+    name: Switch 2
+    category: config
+    dps:
+      - id: 17
+        type: boolean
+        name: switch
+      - id: 40
+        type: string
+        name: mode
+        optional: true
+        mapping:
+          - dps_val: "off"
+            value: false
+          - dps_val: "on"
+            value: true
+          - dps_val: "memory"
+            value: true
+
+  - entity: switch
+    name: Switch 3
+    category: config
+    dps:
+      - id: 3
+        type: boolean
+        name: switch
+      - id: 41
+        type: string
+        name: mode
+        optional: true
+        mapping:
+          - dps_val: "off"
+            value: false
+          - dps_val: "on"
+            value: true
+          - dps_val: "memory"
+            value: true
+
+  # Audio controls
+  - entity: number
+    name: Voice Volume
+    category: config
+    dps:
+      - id: 203
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 100
+          step: 1
+
+  - entity: switch
+    name: Microphone
+    category: config
+    dps:
+      - id: 204
+        type: boolean
+        name: switch
+
+  - entity: switch
+    name: Bluetooth Playback
+    category: config
+    dps:
+      - id: 206
+        type: boolean
+        name: switch
+
+  # Light mode selector
+  - entity: select
+    name: Light Mode
+    category: config
+    dps:
+      - id: 37
+        type: string
+        name: option
+        mapping:
+          - dps_val: none
+            value: "None"
+          - dps_val: relay
+            value: "Relay"
+          - dps_val: pos
+            value: "Position"
