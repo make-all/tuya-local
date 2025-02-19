@@ -15,6 +15,9 @@ products:
   - id: 2mixrhxp38ehekxx
     manufacturer: Kogan
     model: 2.6kW/3.5kW split aircon
+  - id: hrzr8mr0mtgfwwri
+    manufacturer: ComfortStar
+    model: 12000 BTU mini split
 entities:
   - entity: climate
     translation_only_key: aircon_extra
@@ -612,3 +615,48 @@ entities:
           - dps_val: 1024
             value: true
           - value: false
+  - entity: select
+    name: Fresh air
+    icon: "mdi:weather-windy"
+    hidden: unavailable
+    category: config
+    dps:
+      - id: 110
+        type: bitfield
+        name: available
+        mapping:
+          - dps_val: 8
+            value: true
+          - value: false
+      - id: 102
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: "auto"
+            value: "Auto"
+          - dps_val: "low"
+            value: "Low"
+          - dps_val: "mid"
+            value: "Medium"
+          - dps_val: "strong"
+            value: "Strong"
+          - dps_val: "off"
+            value: "Off"
+  - entity: binary_sensor
+    name: Fresh air filter
+    class: problem
+    hidden: unavailable
+    category: config
+    dps:
+      - id: 110
+        type: bitfield
+        name: available
+        mapping:
+          - dps_val: 8
+            value: true
+          - value: false
+      - id: 103
+        type: boolean
+        optional: true
+        name: sensor
