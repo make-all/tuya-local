@@ -1,0 +1,38 @@
+name: Circuit breaker
+products:
+  - id: kooaoam3tyfqanva
+    manufacturer: Tuya
+    model: GTS8-40 2P
+entities:
+  - entity: switch
+    name: Breaker
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: number
+    name: Countdown
+    category: config
+    dps:
+      - id: 101
+        type: integer
+        name: countdown
+        unit: "s"
+        range:
+          min: 0
+          max: 86400
+  - entity: select
+    name: Relay status
+    category: config
+    dps:
+      - id: 102
+        type: string
+        name: relay_status
+        mapping:
+          - dps_val: off
+            value: OFF
+          - dps_val: on
+            value: ON
+          - dps_val: memory
+            value: Memory
+ 
