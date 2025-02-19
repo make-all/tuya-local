@@ -1,0 +1,80 @@
+# Tuya Smart Life WiFi Motorized Swing Gate Sliding Gate Opener Dry Contact
+# 110V 240V Voice Control with Alexa Google Home
+name: Smart Garage Door Opener
+products:
+  - id: deyeioifmyvdalnc
+    manufacturer: Tuya
+entities:
+  - entity: cover
+    class: garage
+    dps:
+      - id: 1
+        type: boolean
+        name: control
+        optional: true
+        mapping:
+          - dps_val: true
+            value: open
+          - dps_val: false
+            value: close
+      - id: 3
+        type: boolean
+        name: open
+  - entity: number
+    translation_key: timer
+    class: duration
+    category: config
+    dps:
+      - id: 2
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 86400
+  - entity: number
+    name: Run times
+    icon: mdi:timer
+    category: config
+    dps:
+      - id: 4
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 10
+          max: 120
+  - entity: number
+    name: Timeout alarm
+    icon: mdi:timer-alert
+    class: duration
+    category: config
+    dps:
+      - id: 5
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 0
+          max: 86400
+  - entity: switch
+    name: Voice control
+    icon: "mdi:account-voice"
+    category: config
+    dps:
+      - id: 11
+        type: boolean
+        optional: true
+        name: switch
+        mapping:
+          - dps_val: null
+            value: false
+            hidden: true
+  - entity: sensor
+    name: Fault
+    icon: mdi:alert
+    dps:
+      - id: 12
+        type: string
+        name: sensor
+        optional: true  # Sometimes doesn't report state
