@@ -840,7 +840,7 @@ Further device support has been made with the assistance of users. Please consid
 - [qvqn](https://github.com/qvqn) for assisting with support for Inkbird ISC-007BW smoker fan controller.
 - [smue86](https://github.com/smue86) for contributing support for Recteq RT700 grill.
 - [K900](https://github.com/K900) for contributing support for Petoneer Fresco EzGo pet fountain and Petoneer Nutri pet feeder.
-- [eisenschmid23](https://github.com/eisenschmid23) for assisting with support for Papifeed pet feeder.
+- [eisenschmid23](https://github.com/eisenschmid23) for assisting with support for Papifeed pet feeder and Vevor self-cleaning litter box.
 - [AndrewJ1990](https://github.com/AndrewJ1990) for assisting with support for Orion smart fingerprint entrance lock and Arlec 5L pet feeder.
 - [enyineer](https://github.com/enyineer) for contributing improvements to Aygrochy fan controller.
 - [ulliohura](https://github.com/ulliohura) for contributing support for Create fan with dimmable light.
