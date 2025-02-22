@@ -968,6 +968,7 @@ port and password.
 - SNT957W-TDE temperature sensor
 - SNT957W-DE CBU temperature and humidity sensor
 - Speaka SP-TVCM-510 TV mount
+- Steigen Solar Pro clothes drying rack
 - Sunbeam dual heated mattress pad
 - Sunbeam single heated mattress pad
 - SWS-001 smart weather station

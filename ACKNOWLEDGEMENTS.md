@@ -855,3 +855,4 @@ Further device support has been made with the assistance of users. Please consid
 - [diviera](https://github.com/diviera) for contributing support for Moes WS-USR-2C double curtain switch
 - [Enrica-r](https://github.com/Enrica-r) for assisting with support for Haozee water valve.
 - [istenik](https://github.com/istenik) for assisting with support for Klarstein Bornholm Smart 1500 convection heater.
+- [madrani79](https://github.com/madrani79) for assisting with support for Steigen Solar Pro drying rack.
