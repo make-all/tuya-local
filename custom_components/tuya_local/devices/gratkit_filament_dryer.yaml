@@ -116,6 +116,7 @@ entities:
             hidden: true
   - entity: select
     name: Light
+    # 2024-11-21
     deprecated: light
     icon: "mdi:led-strip-variant"
     dps:
@@ -236,3 +237,18 @@ entities:
       - id: 108
         type: boolean
         name: sensor
+  - entity: switch
+    icon: "mdi:volume-high"
+    name: Speaker
+    category: config
+    dps:
+      - id: 109
+        type: boolean
+        name: switch
+
+  - entity: light
+    translation_key: display
+    dps:
+      - id: 110
+        type: boolean
+        name: switch

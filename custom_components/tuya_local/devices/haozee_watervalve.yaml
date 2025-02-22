@@ -1,0 +1,140 @@
+name: Water valve
+products:
+  - id: 7lpbjkvri3bnpny2
+    manufacturer: Haozee
+entities:
+  - entity: valve
+    class: water
+    dps:
+      - id: 1
+        type: boolean
+        name: valve
+      - id: 121
+        type: string
+        name: total_state
+        # possible values and their meanings not known
+  - entity: sensor
+    class: volume_flow_rate
+    category: diagnostic
+    dps:
+      - id: 5
+        name: sensor
+        type: integer
+        unit: gal/min
+        class: measurement
+        mapping:
+          - scale: 600
+  - entity: sensor
+    class: water
+    category: diagnostic
+    dps:
+      - id: 6
+        name: sensor
+        type: integer
+        unit: gal
+        class: total_increasing
+        mapping:
+          - scale: 10
+  - entity: sensor
+    name: Last use
+    class: duration
+    category: diagnostic
+    dps:
+      - id: 102
+        name: sensor
+        type: integer
+        unit: min
+  - entity: number
+    name: Minimum flow rate
+    class: volume_flow_rate
+    category: config
+    dps:
+      - id: 108
+        name: value
+        type: integer
+        unit: gal/min
+        range:
+          min: 0
+          max: 4000
+        mapping:
+          - scale: 60
+  - entity: number
+    name: Maximum flow rate
+    class: volume_flow_rate
+    category: config
+    dps:
+      - id: 109
+        name: value
+        type: integer
+        unit: gal/min
+        range:
+          min: 0
+          max: 4000
+        mapping:
+          - scale: 60
+  - entity: select
+    name: Flow Rate Unit
+    class: water
+    category: config
+    dps:
+      - id: 116
+        name: option
+        type: string
+        mapping:
+          - dps_val: "1"
+            value: gal/h
+          - dps_val: "2"
+            value: m3/h
+          - dps_val: "3"
+            value: L/h
+  - entity: switch
+    name: Flow alarm
+    category: config
+    dps:
+      - id: 123
+        type: boolean
+        name: switch
+  - entity: button
+    name: Reset total flow
+    category: config
+    dps:
+      - id: 124
+        type: boolean
+        name: button
+  - entity: sensor
+    name: Last hour use
+    class: water
+    category: diagnostic
+    dps:
+      - id: 125
+        name: sensor
+        type: integer
+        unit: gal
+        mapping:
+          - scale: 10
+  - entity: binary_sensor
+    name: High flow
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 126
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: "on"
+            value: true
+          - dps_val: "off"
+            value: false
+  - entity: binary_sensor
+    name: Low flow
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 127
+        name: sensor
+        type: string
+        mapping:
+          - dps_val: "on"
+            value: true
+          - dps_val: "off"
+            value: false

@@ -13,8 +13,8 @@ products:
     manufacturer: SWE SAGEWE
     model: F2s501-GB
   - id: uqehhcrmk5depvtl
-    manufacturer: Smatrul
-    model: 16A/20A
+    manufacturer: Smatrul / Beston
+    model: 16A/20A / BDS01
 entities:
   - entity: switch
     class: outlet
@@ -160,7 +160,11 @@ entities:
         name: available
         mapping:
           - dps_val: null
-            value: false
+            value: true
+            constraint: alt_switch
+            conditions:
+              - dps_val: null
+                value: false
           - value: true
       - id: 46
         type: boolean
@@ -168,7 +172,12 @@ entities:
         optional: true
         mapping:
           - dps_val: null
-            invalid: true
+            value_redirect: alt_switch
+      - id: 51
+        type: boolean
+        name: alt_switch
+        optional: true
+        hidden: true
   - entity: select
     name: Light
     icon: "mdi:circle-double"

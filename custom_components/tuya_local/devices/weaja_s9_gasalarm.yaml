@@ -27,10 +27,6 @@ entities:
         range:
           min: 0
           max: 60
-        mapping:
-          - dps_val: null
-            value: 0
-            hidden: true
       # dp 12 is labelled as switch_alarm, but does not appear to work, so
       # possibly just an indicator of some sort. Left as an attribute until
       # it can be figured out.
@@ -67,9 +63,13 @@ entities:
         type: boolean
         name: button
         optional: true
+        mapping:
+          - dps_val: false
+            value: true
+          - dps_val: true
+            value: false
   - entity: sensor
     class: carbon_monoxide
-    category: diagnostic
     dps:
       - id: 20
         type: integer

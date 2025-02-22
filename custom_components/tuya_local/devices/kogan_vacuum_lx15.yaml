@@ -1,0 +1,386 @@
+# Protocol 3.3
+name: Robot vacuum
+products:
+  - id: fwdjfuvqy9qogefw
+    manufacturer: Kogan
+    model: LX15
+entities:
+  - entity: vacuum
+    dps:
+      - id: 101
+        name: activate  # clean_switch
+        type: boolean
+      - id: 102
+        name: command  # pause_switch
+        type: boolean
+        mapping:
+          - dps_val: true
+            value: pause
+          - dps_val: false
+            constraint: clean_mode
+            conditions:
+              - dps_val: smart
+                value: smart
+              - dps_val: pose
+                value: clean_spot
+              - dps_val: zone
+                value: zone
+              - dps_val: backcharge
+                value: return_to_base
+      - id: 104
+        name: clean_mode
+        type: string
+      - id: 105
+        name: status  # robot_state
+        type: string
+        mapping:
+          - dps_val: idle
+            value: standby
+          - dps_val: pointing\areaing
+            value: pointing_areaing
+          - dps_val: totaling
+            value: cleaning
+          - dps_val: sweep
+            value: sweep
+          - dps_val: mop
+            value: mop
+          - dps_val: fault
+            value: error
+          - dps_val: pause
+            value: paused
+          - dps_val: chargring
+            value: charging
+          - dps_val: tocharge
+            value: returning
+          - dps_val: fullcharge
+            value: charged
+          - dps_val: remotectl
+            value: remotectl
+      - id: 109
+        name: fan_speed  # fan_mode
+        type: string
+        mapping:
+          - dps_val: quiet
+            value: Quiet
+          - dps_val: strong
+            value: Strong
+          - dps_val: auto
+            value: Auto
+      - id: 111
+        name: direction_control  # remote_ctrl
+        optional: true
+        type: string
+        mapping:
+          - dps_val: forward
+            value: forward
+          - dps_val: backward
+            value: backward
+          - dps_val: left
+            value: left
+          - dps_val: right
+            value: right
+          - dps_val: stop
+            value: stop
+      - id: 112
+        name: locate  # seek_robot
+        optional: true
+        type: boolean
+      - id: 123
+        name: path_comm
+        optional: true
+        type: string
+      - id: 124
+        name: cmd_comm
+        optional: true
+        type: string
+      - id: 125
+        name: request_data
+        optional: true
+        type: string
+      - id: 126
+        name: comm_flag
+        optional: true
+        type: string
+      - id: 127
+        name: comm_raw
+        optional: true
+        type: string
+      - id: 128
+        name: message_report
+        optional: true
+        type: string
+      - id: 130
+        name: sn
+        optional: true
+        type: string
+      - id: 131
+        name: uuid
+        optional: true
+        type: string
+      - id: 132
+        name: device_info
+        optional: true
+        type: string
+  - name: Charge switch
+    entity: switch
+    category: config
+    icon: "mdi:power-plug"
+    dps:
+      - id: 103
+        name: switch
+        type: boolean
+  - class: battery
+    entity: sensor
+    dps:
+      - id: 106
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+  - name: Current clean time
+    entity: sensor
+    category: diagnostic
+    class: duration
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 107
+        name: sensor
+        type: integer
+        unit: s
+  - name: Current clean area
+    entity: sensor
+    class: area
+    category: diagnostic
+    dps:
+      - id: 108
+        name: sensor
+        type: integer
+        unit: m2
+  - translation_key: mopping
+    entity: select
+    category: config
+    dps:
+      - id: 110
+        name: option
+        type: string
+        mapping:
+          - dps_val: low
+            value: low
+          - dps_val: mid
+            value: medium
+          - dps_val: high
+            value: high
+  - name: Do not disturb
+    entity: switch
+    category: config
+    icon: "mdi:bell-ring"
+    dps:
+      - id: 113
+        name: switch
+        type: boolean
+  - name: Volume
+    entity: number
+    category: config
+    icon: "mdi:volume-high"
+    dps:
+      - id: 114
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 10
+  - name: Get times
+    entity: button
+    category: config
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 115  # Consumables reset
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: gettime
+            value: true
+  - name: Reset side brush
+    entity: button
+    category: config
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 115
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: resetsidebrush
+            value: true
+  - name: Reset main brush
+    entity: button
+    category: config
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 115
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: resetmainbrush
+            value: true
+  - name: Reset filter
+    entity: button
+    category: config
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 115
+        type: string
+        name: button
+        optional: true
+        mapping:
+          - dps_val: resetfilter
+            value: true
+  - name: Reset map
+    entity: button
+    category: config
+    icon: "mdi:map-marker-remove"
+    hidden: true  # Because it'd be annoying to press by accident
+    dps:
+      - id: 129
+        name: button
+        optional: true
+        type: boolean
+  - name: Total clean time
+    entity: sensor
+    category: diagnostic
+    class: duration
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 116
+        name: sensor
+        type: integer
+        unit: s
+        optional: true
+  - name: Total clean area
+    entity: sensor
+    class: area
+    category: diagnostic
+    dps:
+      - id: 117
+        name: sensor
+        type: integer
+        unit: m2
+        optional: true
+  - name: Total clean count
+    entity: sensor
+    category: diagnostic
+    icon: "mdi:counter"
+    dps:
+      - id: 118
+        name: sensor
+        type: integer
+        optional: true
+  - name: Side brush time
+    entity: sensor
+    category: diagnostic
+    class: duration
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 119
+        name: sensor
+        optional: true
+        type: integer
+        unit: s
+  - name: Main brush time
+    entity: sensor
+    category: diagnostic
+    class: duration
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 120
+        name: sensor
+        optional: true
+        type: integer
+        unit: s
+  - name: Filter time
+    entity: sensor
+    category: diagnostic
+    class: duration
+    icon: "mdi:clock-outline"
+    dps:
+      - id: 121
+        name: sensor
+        optional: true
+        type: integer
+        unit: s
+  - class: problem
+    entity: binary_sensor
+    category: diagnostic
+    dps:
+      - id: 122
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 122
+        type: bitfield
+        name: fault_code
+      - id: 122
+        name: description
+        type: bitfield
+        mapping:
+          - dps_val: 0
+            value: ok
+          - dps_val: 2
+            value: Battery low
+          - dps_val: 32
+            value: Drop sensor abnormal
+          - dps_val: 4096
+            value: Abnormal main brush
+          - dps_val: 32768
+            value: Dust collector absent
+          - dps_val: 524288
+            value: Machine trapped
+          - dps_val: 1048576
+            value: Was picked up at work
+          - dps_val: 33554432
+            value: Recharge failed
+  - name: Auto boost
+    entity: switch
+    icon: "mdi:car-turbocharger"
+    category: config
+    dps:
+      - id: 137
+        type: boolean
+        optional: true
+        name: switch
+  - translation_key: uv_sterilization
+    entity: switch
+    category: config
+    dps:
+      - id: 142
+        type: boolean
+        name: switch
+  - translation_key: language
+    entity: select
+    category: config
+    dps:
+      - id: 133
+        name: option
+        type: string
+        mapping:
+          - dps_val: "0"
+            value: korean
+          - dps_val: "1"
+            value: English Female
+          - dps_val: "2"
+            value: English Child
+          - dps_val: "3"
+            value: chinese
+  - name: Pause
+    entity: switch
+    icon: "mdi:pause"
+    category: config
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
