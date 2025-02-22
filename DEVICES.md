@@ -972,6 +972,7 @@ port and password.
 - Sunbeam dual heated mattress pad
 - Sunbeam single heated mattress pad
 - SWS-001 smart weather station
+- TH05Z temperature and humidity sensor
 - TH08 temperature and humidity sensor
 - TH16 temperature and humidity sensor
 - Timeguard WFPIR motion light controller
