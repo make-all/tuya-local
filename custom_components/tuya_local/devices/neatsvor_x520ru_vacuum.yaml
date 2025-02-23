@@ -4,85 +4,84 @@ products:
     name: Neatsvor X520RU
     manufacturer: Neatsvor
     model: X520RU
-primary_entity:
-  entity: vacuum
-  dps:
-    - id: 1
-      type: boolean
-      name: power
-    - id: 2
-      type: boolean
-      name: activate
-    - id: 3
-      type: string
-      name: command
-      mapping:
-        - dps_val: "standby"
-          value: "standby"
-        - dps_val: "smart"
-          value: "smart"
-        - dps_val: "wall_follow"
-          value: "wall_follow"
-        - dps_val: "mop"
-          value: "mop"
-        - dps_val: "spiral"
-          value: "clean_spot"
-        - dps_val: "chargego"
-          value: "return_to_base"
-    - id: 5
-      type: string
-      name: status
-      mapping:
-        - dps_val: "0"
-          value: "Standby"
-        - dps_val: "1"
-          value: "Smart cleaning"
-        - dps_val: "2"
-          value: "Mopping"
-        - dps_val: "3"
-          value: "Cleaning along the walls"
-        - dps_val: "4"
-          value: "Recharging"
-        - dps_val: "5"
-          value: "Charging"
-        - dps_val: "6"
-          value: "Spot cleaning"
-        - dps_val: "7"
-          value: "Manual cleaning"
-    - id: 14
-      type: string
-      name: fan_speed
-      optional: true
-      mapping:
-        - dps_val: "max"
-          value: "max"
-        - dps_val: "strong"
-          value: "strong"
-        - dps_val: "normal"
-          value: "normal"
-        - dps_val: "weak"
-          value: "weak"
-    - id: 18
-      type: bitfield
-      name: error
-      mapping:
-        - dps_val: 2
-          value: "side scan exception"
-        - dps_val: 4
-          value: "middle scan exception"
-        - dps_val: 8
-          value: "left wheel exception"
-        - dps_val: 16
-          value: "right wheel exception"
-        - dps_val: 32
-          value: "garbage box exception"
-        - dps_val: 64
-          value: "ground inspection exception"
-        - dps_val: 128
-          value: "collision exception"
-        - dps_val: 256
-          value: "Other problems"
-secondary_entities:
+entities:
+  - entity: vacuum
+    dps:
+      - id: 1
+        type: boolean
+        name: power
+      - id: 2
+        type: boolean
+        name: activate
+      - id: 3
+        type: string
+        name: command
+        mapping:
+          - dps_val: "standby"
+            value: "standby"
+          - dps_val: "smart"
+            value: "smart"
+          - dps_val: "wall_follow"
+            value: "wall_follow"
+          - dps_val: "mop"
+            value: "mop"
+          - dps_val: "spiral"
+            value: "clean_spot"
+          - dps_val: "chargego"
+            value: "return_to_base"
+      - id: 5
+        type: string
+        name: status
+        mapping:
+          - dps_val: "0"
+            value: "Standby"
+          - dps_val: "1"
+            value: "Smart cleaning"
+          - dps_val: "2"
+            value: "Mopping"
+          - dps_val: "3"
+            value: "Cleaning along the walls"
+          - dps_val: "4"
+            value: "Recharging"
+          - dps_val: "5"
+            value: "Charging"
+          - dps_val: "6"
+            value: "Spot cleaning"
+          - dps_val: "7"
+            value: "Manual cleaning"
+      - id: 14
+        type: string
+        name: fan_speed
+        optional: true
+        mapping:
+          - dps_val: "max"
+            value: "max"
+          - dps_val: "strong"
+            value: "strong"
+          - dps_val: "normal"
+            value: "normal"
+          - dps_val: "weak"
+            value: "weak"
+      - id: 18
+        type: bitfield
+        name: error
+        mapping:
+          - dps_val: 2
+            value: "side scan exception"
+          - dps_val: 4
+            value: "middle scan exception"
+          - dps_val: 8
+            value: "left wheel exception"
+          - dps_val: 16
+            value: "right wheel exception"
+          - dps_val: 32
+            value: "garbage box exception"
+          - dps_val: 64
+            value: "ground inspection exception"
+          - dps_val: 128
+            value: "collision exception"
+          - dps_val: 256
+            value: "Other problems"
   - entity: sensor
     class: battery
     dps:
