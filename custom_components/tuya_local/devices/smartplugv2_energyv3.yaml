@@ -53,6 +53,7 @@ entities:
             step: 60
   - entity: sensor
     category: diagnostic
+    hidden: true
     name: Energy
     dps:
       - id: 17
@@ -60,6 +61,7 @@ entities:
         type: integer
         unit: Wh
         optional: true
+        class: measurement
       - id: 25
         type: integer
         name: calibration

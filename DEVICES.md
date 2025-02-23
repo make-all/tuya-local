@@ -888,6 +888,7 @@ port and password.
 - Tesla Smart pet feeder
 - Tonepie T1PRO automatic cat litter box
 - V330L pet feeder
+- Vevor 76L self-cleaning litter box
 - WellToBe Automatic Pet Feeder (WB S36D)
 - YP pet feeder
 
@@ -967,9 +968,11 @@ port and password.
 - SNT957W-TDE temperature sensor
 - SNT957W-DE CBU temperature and humidity sensor
 - Speaka SP-TVCM-510 TV mount
+- Steigen Solar Pro clothes drying rack
 - Sunbeam dual heated mattress pad
 - Sunbeam single heated mattress pad
 - SWS-001 smart weather station
+- TH05Z temperature and humidity sensor
 - TH08 temperature and humidity sensor
 - TH16 temperature and humidity sensor
 - Timeguard WFPIR motion light controller

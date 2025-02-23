@@ -38,12 +38,14 @@ entities:
         type: boolean
   - entity: sensor
     category: diagnostic
+    hidden: true
     name: Energy
     dps:
       - id: 17
         name: sensor
         type: integer
         unit: Wh
+        class: measurement
       - id: 25
         name: calibration
         type: integer

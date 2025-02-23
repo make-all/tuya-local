@@ -92,11 +92,13 @@ entities:
   - entity: sensor
     name: Energy
     category: diagnostic
+    hidden: true
     dps:
       - id: 20
         name: sensor
         type: integer
         optional: true
+        class: measurement
         unit: kWh
         mapping:
           - scale: 1000
