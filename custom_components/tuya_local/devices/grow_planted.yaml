@@ -1,0 +1,78 @@
+name: Grow Planter
+products:
+  - id: key8cpvp7wxgptce
+    model: SGH01
+    name: Grow planter
+entities:
+  - entity: switch
+    icon: "mdi:sprout"
+    name: Power
+    dps:
+      - id: 101
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Pump
+    icon: "mdi:water-pump"
+    dps:      
+      - id: 102
+        type: boolean
+        name: switch
+  # - entity: switch
+  #   name: pumptimer
+  #   dps:
+  #     - id: 103
+  #       optional: true
+  #       type: integer
+  #       name: switch
+  - entity: light
+    name: Led Lights
+    icon: "mdi:ceiling-light-multiple-outline"
+    category: config
+    dps:
+      - id: 104
+        type: boolean
+        name: switch
+  - entity: number
+    name: Set Nutrient Countdown
+    category: config
+    class: duration
+    translation_key: timer
+    mode: slider
+    dps:
+      - id: 106
+        unit: days
+        type: integer
+        name: value
+        range:
+          min: 0
+          max: 30
+  - entity: number
+    name: Nutrient Countdown
+    category: config
+    class: duration
+    translation_key: timer
+    # mode: slider
+    dps:
+      - id: 107
+        type: integer
+        name: value
+        readonly: true
+        range:
+          min: 0
+          max: 30
+  - entity: select
+    translation_key: lightmode
+    category: config
+    name: LED Mode
+    dps:
+      - id: 105
+        type: string
+        name: option
+        mapping:
+          - dps_val: GROW
+            value: Seeding
+          - dps_val: VEG
+            value: Vegetable
+          - dps_val: BLOOM
+            value: Bloom
