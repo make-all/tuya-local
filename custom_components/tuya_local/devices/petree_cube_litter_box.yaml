@@ -1,0 +1,134 @@
+name: Petree 2.0 Litter Box
+products:
+  - id: 1kufldu6g6l53rsy
+    manufacturer: Petree
+    model: Petree 2.0
+entities:
+  # Omitted entities:
+  #   - 113 (Pedal angle):. Too tedious and is not useful information.
+  #   - 118: ("empty"): Unclear documentation. Also shovel button exists.
+  #   - 124: ("clean"): Unclear documentation. Also shovel button exists.
+  - entity: number
+    name: Delay Clean Time
+    category: config
+    optional: true
+    dps:
+      - id: 5
+        type: integer
+        name: value
+  - entity: switch
+    name: Indicator Light Switch
+    category: config
+    optional: true
+    dps:
+      - id: 102
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Sleep
+    category: config
+    optional: true
+    dps:
+      - id: 103
+        type: boolean
+        name: switch
+  - entity: button
+    name: Deodorization
+    category: config
+    optional: true
+    dps:
+      - id: 104
+        type: boolean
+        name: button
+  - entity: switch
+    name: Do Not Disturb
+    category: config
+    optional: true
+    dps:
+      - id: 105
+        type: boolean
+        name: switch
+  - entity: number
+    name: Do Not Disturb Start Time
+    category: config
+    optional: true
+    dps:
+      - id: 106
+        type: integer
+        name: value
+  - entity: number
+    name: Do Not Disturb End Time
+    category: config
+    optional: true
+    dps:
+      - id: 107
+        type: integer
+        name: value
+  - entity: switch
+    name: Beep
+    category: config
+    optional: true
+    dps:
+      - id: 108
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    name: Notification Status
+    category: diagnostic
+    optional: true
+    dps:
+      - id: 111
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: No pop-up box
+          - dps_val: 1
+            value: Trash can is full
+          - dps_val: 2
+            value: Trash can is not installed
+          - dps_val: 4
+            value: Cover is not installed
+          - dps_val: 8
+            value: Cat is approaching
+          - dps_val: 16
+            value: Cabin temperature is too high
+          - dps_val: 32
+            value: Self-check in progress
+  - entity: binary_sensor
+    name: Trash status
+    category: diagnostics
+    optional: true
+    dps:
+      - id: 112
+        type: boolean
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: Not full yet
+          - dps_val: 1
+            value: Full
+  - entity: sensor
+    name: Temperature
+    category: diagnostics
+    optional: true
+    dps:
+      - id: 121
+        type: integer
+        name: sensor
+        mapping:
+          - scale: 10
+  - entity: button
+    name: Reboot
+    category: config
+    dps:
+      - id: 125
+        type: boolean
+        name: button
+  - entity: button
+    name: Clean
+    category: config
+    dps:
+      - id: 126
+        type: boolean
+        name: button
