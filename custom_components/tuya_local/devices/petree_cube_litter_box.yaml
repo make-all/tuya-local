@@ -3,6 +3,9 @@ products:
   - id: 1kufldu6g6l53rsy
     manufacturer: Petree
     model: Petree 2.0
+  - id: witgtqod4iu8tizi
+    manufacturer: Petree
+    model: Petree 2.0
 entities:
   # Omitted entities:
   #   - 113 (Pedal angle): Too tedious and is not useful information.
@@ -91,7 +94,7 @@ entities:
     dps:
       - id: 111
         type: bitfield
-        name: description
+        name: sensor
         mapping:
           - dps_val: 0
             value: No pop-up box
@@ -116,9 +119,9 @@ entities:
         type: boolean
         name: sensor
         mapping:
-          - dps_val: 0
+          - dps_val: false
             value: Not full yet
-          - dps_val: 1
+          - dps_val: true
             value: Full
   - entity: sensor
     name: Temperature
