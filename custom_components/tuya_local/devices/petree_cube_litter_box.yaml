@@ -5,9 +5,9 @@ products:
     model: Petree 2.0
 entities:
   # Omitted entities:
-  #   - 113 (Pedal angle):. Too tedious and is not useful information.
-  #   - 118: ("empty"): Unclear documentation. Also shovel button exists.
-  #   - 124: ("clean"): Unclear documentation. Also shovel button exists.
+  #   - 113 (Pedal angle): Too tedious and is not useful information.
+  #   - 118 ("empty"): Unclear documentation. Also shovel button exists.
+  #   - 124 ("clean"): Unclear documentation. Also shovel button exists.
   - entity: number
     name: Delay Clean Time
     category: config
@@ -97,7 +97,7 @@ entities:
             value: Self-check in progress
   - entity: binary_sensor
     name: Trash status
-    category: diagnostics
+    category: diagnostic
     optional: true
     dps:
       - id: 112
@@ -110,7 +110,7 @@ entities:
             value: Full
   - entity: sensor
     name: Temperature
-    category: diagnostics
+    category: diagnostic
     optional: true
     dps:
       - id: 121
