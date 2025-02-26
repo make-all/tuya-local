@@ -16,6 +16,10 @@ entities:
       - id: 5
         type: integer
         name: value
+        unit: minute
+        range:
+          min: 1
+          max: 60
   - entity: switch
     name: Indicator Light Switch
     category: config
@@ -56,6 +60,10 @@ entities:
       - id: 106
         type: integer
         name: value
+        unit: minute
+        range:
+          min: 0
+          max: 1439
   - entity: number
     name: Do Not Disturb End Time
     category: config
@@ -64,6 +72,10 @@ entities:
       - id: 107
         type: integer
         name: value
+        unit: minute
+        range:
+          min: 0
+          max: 1439
   - entity: switch
     name: Beep
     category: config
@@ -72,7 +84,7 @@ entities:
       - id: 108
         type: boolean
         name: switch
-  - entity: binary_sensor
+  - entity: sensor
     name: Notification Status
     category: diagnostic
     optional: true
@@ -116,6 +128,7 @@ entities:
       - id: 121
         type: integer
         name: sensor
+        unit: C
         mapping:
           - scale: 10
   - entity: button
