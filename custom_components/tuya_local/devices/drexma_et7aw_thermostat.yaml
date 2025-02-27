@@ -215,7 +215,6 @@ entities:
             icon: "mdi:thermometer"
   - entity: number
     category: config
-    class: temperature
     type: integer
     name: Room temperature calibration
     icon: "mdi:tune-vertical-variant"
@@ -241,12 +240,11 @@ entities:
         type: boolean
         mapping:
           - dps_val: false
-            value: C
+            value: °C
           - dps_val: true
-            value: F
+            value: °F
   - entity: number
     category: config
-    class: temperature
     type: integer
     name: Floor temperature calibration
     icon: "mdi:tune-variant"
@@ -272,9 +270,9 @@ entities:
         type: boolean
         mapping:
           - dps_val: false
-            value: C
+            value: °C
           - dps_val: true
-            value: F
+            value: °F
   - entity: number
     category: config
     name: Heater Wattage
