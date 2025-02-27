@@ -1,0 +1,311 @@
+name: Keypad lock
+products:
+  - id: g7rboh0x
+    manufacturer: Hornbill
+    model: Smart Lock
+    name: Key safe
+entities:
+  - entity: lock
+    dps:
+      - id: 1
+        type: string
+        name: unlock_method_create
+        optional: true
+        sensitive: true
+      - id: 2
+        type: string
+        name: unlock_method_delete
+        optional: true
+      - id: 3
+        type: string
+        name: unlock_method_modify
+        optional: true
+        sensitive: true
+      - id: 12
+        type: integer
+        name: unlock_fingerprint
+        optional: true
+        persist: false
+      - id: 13
+        name: unlock_password
+        type: integer
+        optional: true
+        persist: false
+      - id: 15
+        name: unlock_card
+        type: integer
+        optional: true
+        persist: false
+      # TODO: Not sure it belongs in lock entity
+      - id: 18
+        name: open_inside
+        type: bool
+        # TODO: Not sure about those value
+        optional: true
+        persist: false
+      - id: 19
+        name: unlock_ble
+        type: integer
+        optional: true
+        persist: false
+      - id: 46
+        name: manual_lock
+        type: boolean
+        readonly: true
+        mapping:
+          - dps_val: true  # Unlocked
+            value: false
+          - dps_val: false  # Locked
+            value: true
+      - id: 47  # Lock motor state
+        name: lock_motor_state
+        type: boolean
+        readonly: true
+        mapping:
+          - dps_val: true  # Unlocked
+            value: false
+          - dps_val: false  # Locked
+            value: true
+      - id: 51
+        type: string
+        name: temporary_password_creat
+        optional: true
+        persist: false
+        sensitive: true
+      - id: 52
+        type: string
+        name: temporary_password_delete
+        optional: true
+        persist: false
+        sensitive: true
+      - id: 53
+        type: string
+        name: temporary_password_modify
+        optional: true
+        persist: false
+        sensitive: true
+      - id: 54
+        type: string
+        name: temporary_passynch_methodword_delete
+        optional: true
+        persist: false
+        sensitive: true
+      - id: 55
+        type: integer
+        name: unlock_temporary
+        optional: true
+        persist: false
+      - id: 61
+        type: string
+        name: remote_no_dp_key
+        optional: true
+        persist: false
+        sensitive: true
+      - id: 62
+        type: integer
+        name: unlock_phone_remote
+        optional: true
+        persist: false
+      - id: 63
+        type: integer
+        name: unlock_voice_remote
+        optional: true
+        persist: false
+      - id: 64
+        type: string
+        name: password_offline_time
+        optional: true
+        persist: false
+        sensitive: true
+      - id: 65
+        type: string
+        name: unlock_offline_clear_single
+        optional: true
+        persist: false
+        sensitive: true
+      - id: 66
+        type: string
+        name: unlock_offline_clear
+        optional: true
+        persist: false
+        sensitive: true
+      - id: 67
+        type: string
+        name: unlock_offline_pd
+        optional: true
+        persist: false
+        sensitive: true
+      - id: 70
+        type: string
+        name: check_code_set
+        optional: true
+        persist: false
+        sensitive: true
+      - id: 71
+        type: string
+        name: ble_unlock_check
+        optional: true
+        persist: false
+        sensitive: true
+      - id: 73
+        type: string
+        name: remote_pd_setkey_check
+        optional: true
+        persist: false
+        sensitive: true
+  - entity: event
+    name: Alert
+    dps:
+    # TODO:
+    #  - id: 20
+    #    type: string
+    #    name: lock_record
+    #    optional: ?
+      # alarm_lock
+      - id: 21
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: wrong_finger
+            value: wrong_finger
+          - dps_val: wrong_password
+            value: wrong_password
+          - dps_val: wrong_card
+            value: wrong_card
+          - dps_val: wrong_face
+            value: wrong_face
+          - dps_val: tongue_bad
+            value: tongue_bad
+          - dps_val: too_hot
+            value: too_hot
+          - dps_val: unclosed_time
+            value: unclosed_time
+          - dps_val: tongue_not_out
+            value: tongue_not_out
+          - dps_val: pry
+            value: pry
+          - dps_val: key_in
+            value: key_in
+          - dps_val: low_battery
+            value: low_battery
+          - dps_val: power_off
+            value: power_off
+          - dps_val: shock
+            value: shock
+          - dps_val: defense
+            value: defense
+          - dps_val: wrong_unlock
+            value: wrong_unlock
+      # doorbell_song
+      - id: 26
+        type: string
+        name: event
+        optional: true
+        mapping:
+          - dps_val: ding_0
+            value: ding_0
+          - dps_val: ding_1
+            value: ding_1
+  - entity: select
+    name: Lock volume
+    category: config
+    dps:
+      - id: 31
+        type: string
+        name: option
+        mapping:
+          - dps_val: mute
+            value: Mute
+          - dps_val: low
+            value: Low
+          - dps_val: normal
+            value: Normal
+          - dps_val: high
+            value: High
+  - entity: switch
+    name: reverse_lock
+    category: config
+    icon: "TODO:?"
+    dps:
+      - id: 32
+        type: boolean
+        name: switch
+  - entity: switch
+    name: automatic_lock
+    category: config
+    icon: "mdi:lock-reset"
+    dps:
+      - id: 33
+        type: boolean
+        name: switch
+  - entity: number
+    name: auto_lock_time
+    class: duration
+    icon: "mdi:lock-clock"
+    category: config
+    dps:
+      - id: 36
+        type: integer
+        name: value
+        unit: s
+        range:
+          min: 1
+          max: 1800
+  - entity: select
+    name: closed_opened
+    category: config
+    dps:
+      - id: 40
+        type: string
+        name: option
+        mapping:
+          - dps_val: unknown
+            value: unknown
+          - dps_val: open
+            value: open
+          - dps_val: closed
+            value: closed
+  - entity: select
+    name: autolock_delay_level
+    category: config
+    dps:
+      - id: 89
+        type: string
+        name: option
+        mapping:
+          - dps_val: inactive
+            value: Inactive
+          - dps_val: 4s
+            value: 4s
+          - dps_val: 6s
+            value: 6s
+          - dps_val: 8s
+            value: 8s
+          - dps_val: 10s
+            value: 10s
+          - dps_val: 12s
+            value: 12s
+  - entity: sensor
+    class: battery
+    category: diagnostic
+    dps:
+      - id: 8
+        type: integer
+        name: sensor
+        unit: "%"
+        class: measurement
+        optional: true
+  - entity: select
+    translation_key: language
+    category: config
+    dps:
+      - id: 28
+        type: string
+        name: option
+        optional: true
+        mapping:
+          - dps_val: chinese_simplified
+            value: chinese
+          - dps_val: english
+            value: english
