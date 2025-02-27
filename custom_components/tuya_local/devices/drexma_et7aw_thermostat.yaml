@@ -80,26 +80,32 @@ entities:
             value: heating
           - dps_val: false
             value: idle
-  - entity: select
-    class: sensor
-    type: string
-    readonly: true
+  - entity: binary_sensor
+    class: problem
     category: diagnostic
-    name: Sensor Error
-    icon: "mdi:thermometer-alert"
     dps:
       - id: 104
         type: bitfield
-        name: option
+        name: sensor
         mapping:
           - dps_val: 0
-            value: None
+            value: false
+          - value: true
+      - id: 104
+        type: bitfield
+        name: fault_code
+      - id: 104
+        type: bitfield
+        name: description
+        mapping:
+          - dps_val: 0
+            value: ok
           - dps_val: 1
-            value: Room
+            value: Room sensor fault
           - dps_val: 2
-            value: Floor
+            value: Floor sensor fault
           - dps_val: 4
-            value: GFCI
+            value: GFCI fault
   - entity: sensor
     name: Room temperature
     class: temperature
