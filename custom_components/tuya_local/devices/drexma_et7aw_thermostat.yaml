@@ -6,6 +6,7 @@ products:
     model_id: "ET-7AW"
 entities:
   - entity: climate
+    translation_key: thermostat
     dps:
       - id: 101
         type: boolean
@@ -14,14 +15,7 @@ entities:
           - dps_val: false
             value: "off"
           - dps_val: true
-            constraint: mode
-            conditions:
-              - dps_val: "Smart"
-                value: auto
-              - dps_val: "Manual"
-                value: heat
-              - dps_val: "Anti_frozen"
-                value: away
+            value: heat
       - id: 102
         type: integer
         name: temperature
@@ -40,8 +34,14 @@ entities:
                   max: 1040
       - id: 103
         type: string
-        name: mode
-        hidden: true
+        name: preset_mode
+        mapping:
+          - dps_val: "Smart"
+            value: Program
+          - dps_val: "Manual"
+            value: Manual
+          - dps_val: "Anti_frozen"
+            value: Away
       - id: 105
         type: integer
         name: current_temperature
