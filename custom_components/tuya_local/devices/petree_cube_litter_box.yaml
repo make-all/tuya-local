@@ -1,4 +1,4 @@
-name: Petree 2.0 Litter Box
+name: Petree Litter Box
 products:
   - id: 1kufldu6g6l53rsy
     manufacturer: Petree
@@ -7,94 +7,95 @@ products:
     manufacturer: Petree
     model: Petree 2.0
 entities:
-  # Omitted entities:
-  #   - 113 (Pedal angle): Too tedious and is not useful information.
-  #   - 118 ("empty"): Unclear documentation. Also shovel button exists.
-  #   - 124 ("clean"): Unclear documentation. Also shovel button exists.
   - entity: number
-    name: Delay Clean Time
+    name: Delay clean time
     category: config
-    optional: true
+    class: duration
     dps:
       - id: 5
         type: integer
         name: value
-        unit: minute
+        unit: min
         range:
           min: 1
           max: 60
   - entity: switch
-    name: Indicator Light Switch
+    translation_key: indicator
     category: config
-    optional: true
     dps:
       - id: 102
         type: boolean
         name: switch
   - entity: switch
-    name: Sleep
+    translation_key: sleep
     category: config
-    optional: true
     dps:
       - id: 103
         type: boolean
         name: switch
   - entity: button
-    name: Deodorization
+    name: Deodorize
     category: config
-    optional: true
     dps:
       - id: 104
         type: boolean
         name: button
   - entity: switch
-    name: Do Not Disturb
+    name: Do not disturb
     category: config
-    optional: true
     dps:
       - id: 105
         type: boolean
         name: switch
+        optional: true
   - entity: number
-    name: Do Not Disturb Start Time
+    name: Do not disturb start time
     category: config
-    optional: true
     dps:
       - id: 106
         type: integer
         name: value
-        unit: minute
+        optional: true
+        unit: min
         range:
           min: 0
           max: 1439
   - entity: number
-    name: Do Not Disturb End Time
+    name: Do not disturb end time
     category: config
-    optional: true
     dps:
       - id: 107
         type: integer
         name: value
-        unit: minute
+        optional: true
+        unit: min
         range:
           min: 0
           max: 1439
   - entity: switch
     name: Beep
     category: config
-    optional: true
     dps:
       - id: 108
         type: boolean
         name: switch
-  - entity: sensor
-    name: Notification Status
+  - entity: binary_sensor
+    class: problem
     category: diagnostic
-    optional: true
     dps:
       - id: 111
         type: bitfield
         name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 111
+        type: bitfield
+        name: fault_code
+      - id: 111
+        type: bitfield
+        name: description
         mapping:
           - dps_val: 0
             value: No pop-up box
@@ -112,21 +113,27 @@ entities:
             value: Self-check in progress
   - entity: binary_sensor
     name: Trash status
+    translation_key: tank_full
     category: diagnostic
-    optional: true
     dps:
       - id: 112
         type: boolean
         name: sensor
         mapping:
-          - dps_val: false
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 112
+        type: boolean
+        name: description
+        mapping:
+          - dps_val: 0
             value: Not full yet
-          - dps_val: true
+          - dps_val: 1
             value: Full
   - entity: sensor
-    name: Temperature
+    class: temperature
     category: diagnostic
-    optional: true
     dps:
       - id: 121
         type: integer
@@ -135,9 +142,8 @@ entities:
         mapping:
           - scale: 10
   - entity: button
-    name: Reboot
+    class: restart
     category: config
-    optional: true
     dps:
       - id: 125
         type: boolean
