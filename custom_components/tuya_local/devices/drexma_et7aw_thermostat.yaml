@@ -297,15 +297,15 @@ entities:
   - entity: number
     category: config
     class: temperature
-    name: Room temperature limit
+    name: Floor temperature limit
     icon: "mdi:thermometer-chevron-down"
     dps:
       - id: 121
         type: integer
         name: value
         range:
-          min: 100
-          max: 400
+          min: 200
+          max: 500
         mapping:
           - scale: 10
             step: 5
@@ -314,8 +314,8 @@ entities:
               - dps_val: true
                 step: 10
                 range:
-                  min: 120
-                  max: 750
+                  min: 680
+                  max: 1220
       - id: 107
         name: unit
         type: boolean
