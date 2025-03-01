@@ -801,7 +801,7 @@ work reliably, even if listed below.
 - SmarDeer Lock33 smart lock
 - Tediton K7 smart lock
 - NovaDigital SL-06 smart lock
-- Hornbill Smart lock
+- Hornbill Y4 Smart lock
 
 ### Sirens
 
