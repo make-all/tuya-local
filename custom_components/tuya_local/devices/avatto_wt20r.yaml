@@ -1,3 +1,45 @@
 name: AVATTO Smart Knob Thermostat
-primary_entity:
-  entity: climate
+products:
+  - id: axhyyv6w36e5oagp
+    manufacturer: Avatto
+    model: WS20R
+entities:
+  - entity: climate
+    translation_only_key: thermostat
+    dps:
+    #On or Off (general)
+      - id: 1
+        name: hvac_mode
+        type: boolean
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            constraint: mode
+            conditions:
+              - dps_val: auto
+                value: auto
+              - dps_val: manual
+                value: heat
+    #On-modes (presets)
+      - id: 2
+        type: string
+        name: mode
+        mapping:
+          - dps_val: auto
+            value: program
+          - dps_val: manual
+            value: manual
+     #target set-temperature in °C
+      - id: 3
+        name: temp_set
+        type: integer
+        unit: C
+        range:
+          min: 5
+          max: 45
+     #current temperature in °C
+      - id: 24
+        type: integer
+        name: current_temp
+        optional: true
