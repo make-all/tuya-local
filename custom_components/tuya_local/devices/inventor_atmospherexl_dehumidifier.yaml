@@ -1,4 +1,4 @@
-name: Inventor Atomsphere XL dehumidifier
+name: Inventor Atmosphere XL
 entities:
   - entity: humidifier
     class: dehumidifier
@@ -113,6 +113,15 @@ entities:
         type: integer
         name: sensor
         unit: C
+        class: measurement
+  - entity: sensor
+    class: humidity
+    name: Room humidity
+    dps:  
+      - id: 6
+        type: integer
+        name: sensor
+        unit: "%"
         class: measurement
   - entity: switch
     category: config
