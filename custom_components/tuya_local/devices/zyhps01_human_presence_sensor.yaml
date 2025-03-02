@@ -20,13 +20,17 @@ entities:
     dps:
       - id: 103
         type: integer
+        optional: true
         name: sensor
         unit: lx
         class: measurement
-        range:
-          min: 0
-          max: 3000
-
+        mapping:
+          - dps_val: null
+            value_redirect: alt
+      - id: 11
+        type: integer
+        optional: true
+        name: alt
   - entity: number
     name: Presence delay
     category: config

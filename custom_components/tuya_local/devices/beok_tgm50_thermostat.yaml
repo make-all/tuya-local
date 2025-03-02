@@ -1,8 +1,8 @@
 name: Thermostat
 products:
   - id: m3j5wouhgsvjlma9
-    manufacturer: Beok
-    model: TGM50-WIFI-WP
+    manufacturer: Beok / Avatto
+    model: TGM50 / WT200 / M3-GE
 entities:
   - entity: climate
     translation_only_key: thermostat
@@ -32,7 +32,7 @@ entities:
         unit: C
         range:
           min: 50
-          max: 300
+          max: 950
         mapping:
           - scale: 10
             step: 5
@@ -137,7 +137,7 @@ entities:
         name: value
         unit: C
         range:
-          min: 5
+          min: 35
           max: 60
   - entity: switch
     translation_key: anti_frost

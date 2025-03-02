@@ -3,6 +3,9 @@ products:
   - id: 5dvqb3eeuhhnjnlr
     manufacturer: Mirabella Genio
     model: Smart 2Gnd
+  - id: ttqj20kc2bbbpbld
+    manufacturer: Cerebro
+    model: SPS1
 entities:
   - entity: switch
     translation_key: outlet_x
@@ -13,6 +16,18 @@ entities:
       - id: 1
         type: boolean
         name: switch
+      - id: 42
+        type: string
+        optional: true
+        name: cycle_schedule
+      - id: 43
+        type: string
+        optional: true
+        name: random_schedule
+      - id: 44
+        type: string
+        optional: true
+        name: inching
   - entity: switch
     translation_key: outlet_x
     translation_placeholders:
@@ -148,6 +163,31 @@ entities:
             value: "on"
           - dps_val: "off"
             value: "off"
+  - entity: select
+    name: Light mode
+    icon: "mdi:circle-double"
+    hidden: unavailable
+    category: config
+    dps:
+      - id: 40
+        type: string
+        optional: true
+        name: option
+        mapping:
+          - dps_val: relay
+            value: State
+          - dps_val: pos
+            value: Position
+          - dps_val: none
+            value: "Off"
+      - id: 40
+        type: string
+        optional: true
+        name: available
+        mapping:
+          - dps_val: null
+            value: false
+          - value: true
   - entity: lock
     category: config
     translation_key: child_lock

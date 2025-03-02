@@ -96,6 +96,7 @@ entities:
             step: 60
   - entity: sensor
     category: diagnostic
+    hidden: true
     name: Energy
     dps:
       - id: 17
@@ -103,6 +104,7 @@ entities:
         type: integer
         unit: kWh
         optional: true
+        class: measurement
         mapping:
           - scale: 1000
       - id: 25

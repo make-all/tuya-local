@@ -35,11 +35,13 @@ entities:
   - entity: sensor
     name: Energy
     category: diagnostic
+    hidden: true
     dps:
       - id: 17
         type: integer
         name: sensor
         unit: Wh
+        class: measurement
         optional: true
       - id: 25
         type: integer

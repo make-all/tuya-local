@@ -1,0 +1,113 @@
+name: Double curtain switch
+products:
+  - id: uri85umga4f86p2j
+    manufacturer: Moes
+    model: WS-USR-2C
+entities:
+  - entity: cover
+    name: Curtain 1
+    class: curtain
+    dps:
+      - id: 1
+        name: control
+        type: string
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 2
+        name: position
+        type: integer
+        range:
+          max: 100
+          min: 0
+      - id: 2
+        name: current_position
+        type: integer
+  - entity: cover
+    name: Curtain 2
+    class: curtain
+    dps:
+      - id: 4
+        name: control
+        type: string
+        mapping:
+          - dps_val: open
+            value: open
+          - dps_val: close
+            value: close
+          - dps_val: stop
+            value: stop
+      - id: 5
+        name: position
+        type: integer
+        range:
+          max: 100
+          min: 0
+      - id: 5
+        name: current_position
+        type: integer
+  - entity: number
+    category: config
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 10
+        name: value
+        type: integer
+        unit: s
+        range:
+          max: 240
+          min: 2
+  - entity: number
+    category: config
+    class: duration
+    translation_key: timer_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 11
+        name: value
+        type: integer
+        unit: s
+        range:
+          max: 240
+          min: 2
+  - entity: select
+    name: Direction 1
+    category: config
+    icon: "mdi:arrow-u-down-left"
+    dps:
+      - id: 8
+        name: option
+        type: string
+        mapping:
+          - dps_val: "forward"
+            value: forward
+          - dps_val: "back"
+            value: back
+  - entity: select
+    name: Direction 2
+    category: config
+    icon: "mdi:arrow-u-down-left"
+    dps:
+      - id: 9
+        name: option
+        type: string
+        mapping:
+          - dps_val: "forward"
+            value: forward
+          - dps_val: "back"
+            value: back
+  - entity: light
+    translation_key: backlight
+    category: config
+    dps:
+      - id: 7
+        type: boolean
+        name: switch

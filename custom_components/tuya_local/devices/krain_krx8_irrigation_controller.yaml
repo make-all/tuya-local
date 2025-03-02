@@ -1,0 +1,117 @@
+name: Irrigation Controller
+products:
+  - id: o4lzusmr4igv5ux3
+    manufacturer: KRain
+    model: KRX8
+entities:
+  - entity: binary_sensor
+    class: running
+    icon: mdi:sprinkler-variant
+    dps:
+      - id: 132
+        name: sensor
+        type: boolean
+        optional: true
+  - entity: valve
+    name: Zone 1
+    class: water
+    dps:
+      - id: 101
+        type: boolean
+        name: valve
+  - entity: valve
+    name: Zone 2
+    class: water
+    dps:
+      - id: 102
+        type: boolean
+        name: valve
+  - entity: valve
+    name: Zone 3
+    class: water
+    dps:
+      - id: 103
+        type: boolean
+        name: valve
+  - entity: valve
+    name: Zone 4
+    class: water
+    dps:
+      - id: 104
+        type: boolean
+        name: valve
+  - entity: valve
+    name: Zone 5
+    class: water
+    dps:
+      - id: 105
+        type: boolean
+        name: valve
+  - entity: valve
+    name: Zone 6
+    class: water
+    dps:
+      - id: 106
+        type: boolean
+        name: valve
+  - entity: valve
+    name: Zone 7
+    class: water
+    dps:
+      - id: 107
+        type: boolean
+        name: valve
+  - entity: valve
+    name: Zone 8
+    class: water
+    dps:
+      - id: 108
+        type: boolean
+        name: valve
+  - entity: switch
+    name: Program A
+    icon: mdi:timetable
+    dps:
+      - id: 117
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Program B
+    icon: mdi:timetable
+    dps:
+      - id: 118
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Program C
+    icon: mdi:timetable
+    dps:
+      - id: 119
+        type: boolean
+        name: switch
+  - entity: switch
+    name: Program D
+    icon: mdi:timetable
+    dps:
+      - id: 120
+        type: boolean
+        name: switch
+  - entity: binary_sensor
+    class: battery
+    dps:
+      - id: 130
+        name: sensor
+        type: boolean
+  - entity: binary_sensor
+    class: plug
+    dps:
+      - id: 131
+        name: sensor
+        type: boolean
+  - entity: binary_sensor
+    name: Rain
+    class: moisture
+    dps:
+      - id: 137
+        name: sensor
+        type: boolean

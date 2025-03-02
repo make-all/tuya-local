@@ -161,7 +161,7 @@ class Cloud:
                     or not hasattr(device, "local_key")
                 ),
             }
-            _LOGGER.debug("Found device: {cloud_device}")
+            _LOGGER.debug("Found device: %s", cloud_device["product_name"])
 
             existing_id = domain_data.get(cloud_device["id"]) if domain_data else None
             existing_uuid = (

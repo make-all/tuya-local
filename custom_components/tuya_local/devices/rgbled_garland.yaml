@@ -40,10 +40,6 @@ entities:
             range:
               min: 0
               max: 1000
-      - id: 51
-        type: string
-        optional: true
-        name: dreamlight_scene_mode
       - id: 52
         type: string
         optional: true
@@ -68,6 +64,15 @@ entities:
         mapping:
           - scale: 60
             step: 60
+  - entity: text
+    translation_key: scene
+    hidden: true
+    category: config
+    dps:
+      - id: 51
+        type: string
+        optional: true
+        name: value
   - entity: number
     name: LED count
     category: config
