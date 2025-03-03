@@ -36,7 +36,7 @@ entities:
         type: integer
         optional: true
         persist: false
-      # TODO: Not sure it belongs in lock entity
+      # TODO: Not sure it belongs in lock entity?
       - id: 18
         name: open_inside
         type: boolean
@@ -129,12 +129,13 @@ entities:
         optional: true
         persist: false
         sensitive: true
-      - id: 67
-        type: string
-        name: unlock_offline_pd
-        optional: true
-        persist: false
-        sensitive: true
+      # TODO: Why not working? PR#2824 also didn't include it.
+      # - id: 67
+      #   type: string
+      #   name: unlock_offline_pd
+      #   optional: true
+      #   persist: false
+      #   sensitive: true
       - id: 70
         type: string
         name: check_code_set
@@ -156,7 +157,7 @@ entities:
   - entity: event
     name: Alert
     dps:
-    # TODO:
+    # TODO: Why not working? PR#2824 also didn't include it.
     #  - id: 20
     #    type: string
     #    name: lock_record
@@ -226,7 +227,7 @@ entities:
   - entity: switch
     name: reverse_lock
     category: config
-    icon: "TODO:?"
+    icon: "mdi:screen-lock-rotation"
     dps:
       - id: 32
         type: boolean
