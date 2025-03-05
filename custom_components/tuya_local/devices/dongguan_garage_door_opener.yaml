@@ -2,14 +2,15 @@
 # Tuya Smart Life WiFi Motorized Swing Gate Sliding Gate Opener Dry Contact
 # 110V 240V Voice Control with Alexa Google Home
 # https://www.aliexpress.com/item/1005003913566298.html
-name: Garage opener
+name: Gate opener
 products:
   - id: 1wwbzczt9hrtwqjr
     manufacturer: Dongguan Pinjia
     model: PJ-WGDOOR01
+  - id: deyeioifmyvdalnc
 entities:
   - entity: cover
-    class: garage
+    class: gate
     dps:
       - id: 1
         type: boolean
@@ -22,12 +23,7 @@ entities:
             value: close
       - id: 3
         type: boolean
-        name: action
-        mapping:
-          - dps_val: true
-            value: opened
-          - dps_val: false
-            value: closed
+        name: open
   - entity: number
     translation_key: timer
     class: duration
