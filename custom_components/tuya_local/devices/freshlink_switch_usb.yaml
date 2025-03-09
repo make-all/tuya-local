@@ -1,0 +1,149 @@
+name: FreshLink Smart Socket With USB Ports
+products:
+  - id: gijt75s5nj2lmlup
+    manufacturer: FreshLink
+    model: FreshLink Smart Socket With USB Ports
+entities:
+  - entity: switch
+    class: outlet
+    translation_key: switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+  - entity: switch
+    class: outlet
+    translation_key: switch_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 2
+        type: boolean
+        name: switch
+      - id: 21
+        type: integer
+        name: test_bit
+      - id: 42
+        type: string
+        name: cycle_timer
+      - id: 43
+        type: string
+        name: random_timer
+  - entity: switch
+    translation_key: child_lock
+    dps:
+      - id: 41
+        type: boolean
+        name: switch        
+  - entity: number
+    category: config
+    class: duration
+    translation_key: timer_switch_x
+    translation_placeholders:
+      x: "1"
+    dps:
+      - id: 9
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: number
+    category: config
+    class: duration
+    translation_key: timer_switch_x
+    translation_placeholders:
+      x: "2"
+    dps:
+      - id: 10
+        type: integer
+        name: value
+        unit: min
+        range:
+          min: 0
+          max: 86400
+        mapping:
+          - scale: 60
+            step: 60
+  - entity: sensor
+    category: diagnostic
+    class: current
+    dps:
+      - id: 18
+        name: sensor
+        type: integer
+        class: measurement
+        force: true
+        unit: mA
+      - id: 23
+        type: integer
+        name: calibration
+        optional: true
+  - entity: sensor
+    category: diagnostic
+    class: power
+    dps:
+      - id: 19
+        name: sensor
+        type: integer
+        class: measurement
+        force: true
+        unit: W
+        mapping:
+          - scale: 10
+      - id: 24
+        type: integer
+        name: calibration
+        optional: true
+  - entity: sensor
+    category: diagnostic
+    class: voltage
+    dps:
+      - id: 20
+        name: sensor
+        type: integer
+        force: true
+        class: measurement
+        unit: V
+        mapping:
+          - scale: 10
+      - id: 22
+        type: integer
+        name: calibration
+        optional: true
+  - entity: select
+    category: config
+    translation_key: initial_state
+    dps:
+      - id: 38
+        type: string
+        name: option
+        mapping:
+          - dps_val: "on"
+            value: "on"
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "memory"
+            value: "memory"
+  - entity: select
+    category: config
+    translation_key: led_mode
+    dps:
+      - id: 40
+        type: string
+        name: option
+        mapping:
+          - dps_val: "relay"
+            value: "Indicate switch on/off"
+          - dps_val: "pos"
+            value: "Indicate switch location"
+          - dps_val: "none"
+            value: "Indicate LED off"
+          - dps_val: "on"
+            value: "Indicate LED on"
