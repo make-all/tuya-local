@@ -858,3 +858,4 @@ Further device support has been made with the assistance of users. Please consid
 - [madrani79](https://github.com/madrani79) for assisting with support for Steigen Solar Pro drying rack.
 - [daanjh](https://github.com/daanjh) for contributing support for Petree Cube litter box.
 - [kbullet](https://github.com/kbullet) for contributing support for CT-1203 dual clamp meter.
+- [Kevin-0u](https://github.com/Kevin-0u) for contributing support for Drexma WiStat thermostat.
