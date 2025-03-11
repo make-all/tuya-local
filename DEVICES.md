@@ -196,6 +196,7 @@
 - BHT-002-GABW thermostat _(some compatible with GALW, others subtly different)_
 - Brade MC6 thermostat _(rebadged as many different brands)_
 - Dr Heater DR-008 electric radiant floor thermostat
+- Drexma WiStat ET7AW thermostat
 - DunWore F60 floor heating thermostat
 - EARU Electronic K6H-3A-W thermostat
 - ETOP-FCU thermostat (Jaga JRT-100TW)
@@ -467,6 +468,7 @@
 - CBI Astute smart controller breaker switch
 - CNC YCB9ZF-100W 1P circuit breaker
 - Compteur digital electric (single phase)
+- CT-1203 dual clamp meter
 - Dcenta dual clamp meter
 - DTS238-7 3 phase smart meter
 - Dual CT clamp bidirectional meter
@@ -815,7 +817,9 @@ work reliably, even if listed below.
 - HunterTBK HF-6602T video doorbell
 - KW02 video doorbell
 - Linda Smart 7S video doorbell
+- LSC Smart Connect video doorbell
 - MyQ TD8 video doorbell
+- Orno Sigo doorbell
 - WHM-04 doorbell (sold under various brands)
 
 ### Cameras
