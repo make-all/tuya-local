@@ -36,13 +36,10 @@ entities:
         type: integer
         optional: true
         persist: false
-      # TODO: Not sure it belongs in lock entity?
       - id: 18
         name: open_inside
         type: boolean
-        # TODO: Not sure about those value
         optional: true
-        persist: false
       - id: 19
         name: unlock_ble
         type: integer
@@ -51,7 +48,6 @@ entities:
       - id: 46
         name: manual_lock
         type: boolean
-        readonly: true
         mapping:
           - dps_val: true  # Unlocked
             value: false
@@ -70,7 +66,6 @@ entities:
         type: string
         name: temporary_password_creat
         optional: true
-        persist: false
         sensitive: true
       - id: 52
         type: string
@@ -92,7 +87,7 @@ entities:
         sensitive: true
       - id: 55
         type: integer
-        name: unlock_temporary
+        name: unlock_temp_pwd
         optional: true
         persist: false
       - id: 61
@@ -103,12 +98,12 @@ entities:
         sensitive: true
       - id: 62
         type: integer
-        name: unlock_phone_remote
+        name: unlock_app
         optional: true
         persist: false
       - id: 63
         type: integer
-        name: unlock_voice_remote
+        name: unlock_voice
         optional: true
         persist: false
       - id: 64
@@ -129,13 +124,12 @@ entities:
         optional: true
         persist: false
         sensitive: true
-      # TODO: Why not working? PR#2824 also didn't include it.
-      # - id: 67
-      #   type: string
-      #   name: unlock_offline_pd
-      #   optional: true
-      #   persist: false
-      #   sensitive: true
+      - id: 67
+        type: string
+        name: unlock_offline_pwd
+        optional: true
+        persist: false
+        sensitive: true
       - id: 70
         type: string
         name: check_code_set
@@ -157,11 +151,11 @@ entities:
   - entity: event
     name: Alert
     dps:
-    # TODO: Why not working? PR#2824 also didn't include it.
-    #  - id: 20
-    #    type: string
-    #    name: lock_record
-    #    optional: ?
+      # TODO: Why not working? PR#2824 also didn't include it.
+      # - id: 20
+      #   type: string
+      #   name: lock_record
+      #   optional: ?
       # alarm_lock
       - id: 21
         type: string
@@ -233,7 +227,7 @@ entities:
         type: boolean
         name: switch
   - entity: switch
-    name: automatic_lock
+    name: Automatic Lock
     category: config
     icon: "mdi:lock-reset"
     dps:
@@ -241,7 +235,7 @@ entities:
         type: boolean
         name: switch
   - entity: number
-    name: auto_lock_time
+    name: Automatic Lock Delay
     class: duration
     icon: "mdi:lock-clock"
     category: config
@@ -253,20 +247,6 @@ entities:
         range:
           min: 1
           max: 1800
-  - entity: select
-    name: closed_opened
-    category: config
-    dps:
-      - id: 40
-        type: string
-        name: option
-        mapping:
-          - dps_val: unknown
-            value: unknown
-          - dps_val: open
-            value: open
-          - dps_val: closed
-            value: closed
   - entity: select
     name: autolock_delay_level
     category: config
