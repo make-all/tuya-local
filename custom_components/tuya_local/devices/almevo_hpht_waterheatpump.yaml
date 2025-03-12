@@ -15,16 +15,16 @@ entities:
              - dps_val: true
                constraint: work_mode
                conditions:
-                 - dps_val: wth
-                   value: Hot water
-                 - dps_val: heat
-                   value: Heating
-                 - dps_val: cool
-                   value: Cooling
-                 - dps_val: wth_heat
-                   value: Hot water + heating
-                 - dps_val: wth_cool
-                   value: Hot water + cooling
+                  - dps_val: wth
+                    value: Hot water
+                  - dps_val: heat
+                    value: Heating
+                  - dps_val: cool
+                    value: Cooling
+                  - dps_val: wth_heat
+                    value: Hot water + heating
+                  - dps_val: wth_cool
+                    value: Hot water + cooling
         - id: 5
           type: string
           name: work_mode
@@ -205,11 +205,11 @@ entities:
      name: Main EEV opening
      category: diagnostic
      dps:
-         - id: 109
-           type: integer
-           name: sensor
-           unit: P
-           class: measurement
+        - id: 109
+          type: integer
+          name: sensor
+          unit: P
+          class: measurement
    - entity: sensor
      name: Secondary EEV opening
      category: diagnostic
@@ -301,7 +301,7 @@ entities:
           name: sensor
           unit: kW
           mapping:
-            - scale: 10
+             - scale: 10
           mask: "FFFFFFFF\
                  00000000\
                  00000000\
@@ -327,33 +327,33 @@ entities:
      class: volume_flow_rate
      category: diagnostic
      dps:
-         - id: 140
-           type: base64
-           optional: true
-           name: sensor
-           unit: m³/h
-           mapping:
+        - id: 140
+          type: base64
+          optional: true
+          name: sensor
+          unit: m³/h
+          mapping:
              - scale: 100
-           mask: "00000000\
-                  FFFFFFFF\
-                  00000000\
-                  00000000\
-                  00000000\
-                  00000000\
-                  00000000\
-                  00000000\
-                  00000000\
-                  00000000\
-                  00000000\
-                  00000000\
-                  00000000\
-                  00000000\
-                  00000000\
-                  00000000\
-                  00000000\
-                  00000000\
-                  00000000\
-                  00000000"
+          mask: "00000000\
+                 FFFFFFFF\
+                 00000000\
+                 00000000\
+                 00000000\
+                 00000000\
+                 00000000\
+                 00000000\
+                 00000000\
+                 00000000\
+                 00000000\
+                 00000000\
+                 00000000\
+                 00000000\
+                 00000000\
+                 00000000\
+                 00000000\
+                 00000000\
+                 00000000\
+                 00000000"
    - entity: sensor
      name: Current of the entire machine
      class: current
@@ -365,7 +365,7 @@ entities:
           name: sensor
           unit: A
           mapping:
-            - scale: 10
+             - scale: 10
           mask: "00000000\
                  00000000\
                  FFFFFFFF\
@@ -455,7 +455,7 @@ entities:
           optional: true
           name: sensor
           mapping:
-            - scale: 10
+             - scale: 10
           mask: "00000000\
                  00000000\
                  00000000\
@@ -507,4 +507,3 @@ entities:
                  00000000\
                  00000000\
                  00000000"
- 
