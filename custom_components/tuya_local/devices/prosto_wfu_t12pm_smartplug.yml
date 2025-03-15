@@ -1,0 +1,69 @@
+name: Prosto energy monitoring smartplug
+products:
+  - id: u8x8hhpomtchfyag
+    manufacturer: Prosto
+    model: WFU-T12PM
+entities:
+  - entity: switch
+    class: outlet
+    dps:
+      - id: 1
+        type: boolean
+        name: switch
+      - id: 41
+        type: string
+        name: cycle_timer
+        optional: true
+      - id: 42
+        type: string
+        name: random_timer
+        optional: true
+  - entity: sensor
+    class: current
+    dps:
+      - id: 18
+        type: integer
+        name: sensor
+        unit: mA
+        class: measurement
+        optional: true
+        force: true
+  - entity: sensor
+    class: power
+    dps:
+      - id: 19
+        type: integer
+        name: sensor
+        unit: W
+        class: measurement
+        optional: true
+        force: true
+        mapping:
+          - scale: 10
+  - entity: sensor
+    class: voltage
+    dps:
+      - id: 20
+        type: integer
+        name: sensor
+        unit: V
+        class: measurement
+        optional: true
+        force: true
+        mapping:
+          - scale: 10
+  - entity: select
+    category: config
+    translation_key: initial_state
+    dps:
+      - id: 38
+        type: string
+        name: option
+        mapping:
+          - dps_val: "on"
+            value: "on"
+          - dps_val: "off"
+            value: "off"
+          - dps_val: "memory"
+            value: "memory"
+        optional: true
