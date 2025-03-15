@@ -172,7 +172,7 @@ Further device support has been made with the assistance of users. Please consid
 - [mypixies](https://github.com/mypixies) for assisting with support for Moes dimmer switch.
 - [BeardedTinker](https://github.com/BeardedTinker) for assisting with support for SG600MD smart inverter.
 - [LeandroIssa](https://github.com/LeandroIssa) for contributing Brazilian Portuguese translations.
-- [YuriiMaiboroda](https://github.com/YuriiMaiboroda) for contributing Ukrainian translations, docfixes, assistance supporting Elivco smartplugs and helping support others.
+- [YuriiMaiboroda](https://github.com/YuriiMaiboroda) for contributing Ukrainian translations, docfixes, support for THB2 temp and humidity sensor and assistance supporting Elivco smartplugs and helping support others.
 - [samios88](https://github.com/samios88) for assistance supporting Nedis pet feeders.
 - [janchrillesen](https://github.com/janchrillesen) for assistance supporting Nedis air quality monitors.
 - [Celezak](https://github.com/Celezak) for assistance supporting Qnect 3 outlet + USB powerstrips.
