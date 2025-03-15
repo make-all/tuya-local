@@ -228,7 +228,7 @@ Further device support has been made with the assistance of users. Please consid
 - [dhuddle](https://github.com/dhuddle) for assisting with support for Chanfok ceiling fan with light, Inkbird BBQ thermometer, Lepro lights (variant of RGBCW light without timer) and Yieryi pH meter.
 - [theshop35](https://github.com/theshop35) for assisting with support for CC curtains.
 - [blakadder](https://github.com/blakadder) for contributing support for Ultonic K10 air fryer, Proscenic M9 vacuums, GratKit filament dryers, improvements to ZY-M100 presence sensors and documentation improvements, and many more devices requested by other users.
-- [szupi-ipuzs](https://github.com/szupi-ipuzs) for contributing support for desk lamps (Setti+ SL601), Loratap relays, Brennenstuhl WFD3050P motion spotlights, Pinelake bird feeder cameras, generic valves, Woox R7246 IR remote.
+- [szupi-ipuzs](https://github.com/szupi-ipuzs) for contributing support for desk lamps (Setti+ SL601), Loratap relays, Brennenstuhl WFD3050P motion spotlights, Pinelake bird feeder cameras, generic valves, Woox R7246 IR remote, Orno Sigo doorbell.
 - [MackoMici](https://github.com/MackoMici) for contributing support for GX aroma diffuser, which was merged with the YYM config, and Blitzwolf LED strips.
 - [Die-Meester](https://github.com/Die-Meester) for contributing support for CBI Astute smart switches.
 - [ResteNarquois](https://github.com/ResteNarquois) for assisting with support for Zemismart roller shades.
@@ -857,3 +857,5 @@ Further device support has been made with the assistance of users. Please consid
 - [istenik](https://github.com/istenik) for assisting with support for Klarstein Bornholm Smart 1500 convection heater and TH05Z temperature humidity sensor.
 - [madrani79](https://github.com/madrani79) for assisting with support for Steigen Solar Pro drying rack.
 - [daanjh](https://github.com/daanjh) for contributing support for Petree Cube litter box.
+- [kbullet](https://github.com/kbullet) for contributing support for CT-1203 dual clamp meter.
+- [Kevin-0u](https://github.com/Kevin-0u) for contributing support for Drexma WiStat thermostat.
