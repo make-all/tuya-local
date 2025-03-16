@@ -353,7 +353,7 @@ class TuyaEntityConfig:
         avail_dp = self.find_dps("available")
         if avail_dp and device.has_returned_state:
             return avail_dp.get_value(device)
-        return True
+        return device.has_returned_state
 
     def enabled_by_default(self, device):
         """Return whether this entity should be disabled by default."""
@@ -366,7 +366,7 @@ class TuyaEntityConfig:
                     self._device.config_type,
                     self.name,
                 )
-            hidden = not self.available(device)
+            hidden = device.has_returned_state and not self.available(device)
         return not hidden and not self.deprecated
 
 

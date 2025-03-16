@@ -472,7 +472,7 @@ class TuyaLocalDevice(object):
 
     def _refresh_cached_state(self):
         new_state = self._api.status()
-        if new_state:
+        if new_state and "Err" not in new_state:
             self._cached_state = self._cached_state | new_state.get("dps", {})
             self._cached_state["updated_at"] = time()
             for entity in self._children:
@@ -505,6 +505,7 @@ class TuyaLocalDevice(object):
             "new state (incl pending): %s",
             log_json(self._get_cached_state()),
         )
+        return new_state
 
     async def async_set_properties(self, properties):
         if len(properties) == 0:

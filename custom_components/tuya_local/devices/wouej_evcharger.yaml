@@ -213,7 +213,7 @@ entities:
         mapping:
           - scale: 10
   - entity: select
-    name: Currency
+    translation_key: currency
     category: config
     dps:
       - id: 116
@@ -221,20 +221,15 @@ entities:
         name: option
         mapping:
           - dps_val: USD
-            value: USD
-            icon: "mdi:currency-usd"
+            value: usd
           - dps_val: CAD
-            value: CAD
-            icon: "mdi:currency-usd"
+            value: cad
           - dps_val: EUR
-            value: EUR
-            icon: "mdi:currency-eur"
+            value: eur
           - dps_val: GBP
-            value: GBP
-            icon: "mdi:currency-gbp"
+            value: gbp
           - dps_val: CNY
-            value: CNY
-            icon: "mdi:currency-cny"
+            value: cny
   - entity: number
     name: Unit cost
     category: config

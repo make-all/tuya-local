@@ -17,10 +17,18 @@ entities:
       - id: 20
         type: boolean
         name: available
+        mapping:
+          - dps_val: true
+            value: true
+            constraint: switch
+            conditions:
+              - dps_val: null
+                value: false
       - id: 51
         type: base64
-        mask: "000200000000000000000000"
+        mask: "000100000000000000000000"
         optional: true
+        force: true
         name: switch
         mapping:
           - dps_val: null
@@ -30,7 +38,7 @@ entities:
         optional: true
         name: work_mode
       - id: 22
-        name: standard_brightness
+        name: std_brightness
         type: integer
         range:
           min: 0
@@ -39,10 +47,11 @@ entities:
         type: base64
         mask: "0000000000000000FFFF0000"
         optional: true
+        force: true
         name: brightness
         mapping:
           - dps_val: null
-            value_mirror: standard_brightness
+            value_mirror: std_brightness
         range:
           min: 0
           max: 1000
@@ -54,18 +63,19 @@ entities:
           max: 500
         mapping:
           - target_range:
-              min: 2700
+              min: 3000
               max: 6500
       - id: 51
         type: base64
         mask: "00000000000000000000FFFF"
         optional: true
+        force: true
         name: color_temp
         mapping:
           - dps_val: null
-            value_mirror: standard_brightness
+            value_mirror: std_color_temp
           - target_range:
-              min: 2700
+              min: 3000
               max: 6500
         range:
           min: 0
@@ -76,10 +86,18 @@ entities:
       - id: 20
         type: boolean
         name: available
+        mapping:
+          - dps_val: true
+            value: true
+            constraint: switch
+            conditions:
+              - dps_val: null
+                value: false
       - id: 51
         type: base64
-        mask: "000100000000000000000000"
+        mask: "000200000000000000000000"
         optional: true
+        force: true
         name: switch
         mapping:
           - dps_val: null
@@ -111,9 +129,10 @@ entities:
       - id: 51
         type: base64
         optional: true
+        force: true
         name: rgbhsv
         format:
-          - name: x
+          - name: sw
             bytes: 2
           - name: h
             bytes: 2
@@ -130,13 +149,10 @@ entities:
             range:
               min: 0
               max: 1000
-          - name: w
+          - name: wb
             bytes: 2
-          - name: c
+          - name: wc
             bytes: 2
-        mapping:
-          - dps_val: null
-            value_mirror: std_rgbhsv
   - entity: number
     translation_key: timer
     class: duration
