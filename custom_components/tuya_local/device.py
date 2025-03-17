@@ -76,22 +76,24 @@ class TuyaLocalDevice(object):
         self.dev_cid = dev_cid
         try:
             if dev_cid:
-                if hass.data[DOMAIN].get(dev_id):
+                if hass.data[DOMAIN].get(dev_id) and name != "Test":
                     parent = hass.data[DOMAIN][dev_id]["tuyadevice"]
                 else:
                     parent = tinytuya.Device(dev_id, address, local_key)
-                    hass.data[DOMAIN][dev_id] = {"tuyadevice": parent}
+                    if name != "Test":
+                        hass.data[DOMAIN][dev_id] = {"tuyadevice": parent}
                 self._api = tinytuya.Device(
                     dev_cid,
                     cid=dev_cid,
                     parent=parent,
                 )
             else:
-                if hass.data[DOMAIN].get(dev_id):
+                if hass.data[DOMAIN].get(dev_id) and name != "Test":
                     self._api = hass.data[DOMAIN][dev_id]["tuyadevice"]
                 else:
                     self._api = tinytuya.Device(dev_id, address, local_key)
-                    hass.data[DOMAIN][dev_id] = {"tuyadevice": self._api}
+                    if name != "Test":
+                        hass.data[DOMAIN][dev_id] = {"tuyadevice": self._api}
         except Exception as e:
             _LOGGER.error(
                 "%s: %s while initialising device %s",
