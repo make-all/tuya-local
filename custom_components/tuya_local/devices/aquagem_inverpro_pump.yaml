@@ -79,13 +79,14 @@ entities:
         name: sensor
         unit: W
   - entity: sensor
+    class: energy
     name: Hourly energy usage
     category: diagnostic
     dps:
       - id: 109
         type: integer
         name: sensor
-        class: measurement
+        class: total_increasing
         unit: kWh
         mapping:
           - scale: 100
