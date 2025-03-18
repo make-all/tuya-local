@@ -34,6 +34,8 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
         super().__init__()
         dps_map = self._init_begin(device, config)
         self._lock_dp = dps_map.pop("lock", None)
+        self._manual_lock_dp = dps_map.pop("manual_lock", None)
+        self._lock_motor_state = dps_map.pop("lock_motor_state", None)
         self._open_dp = dps_map.pop("open", None)
         self._unlock_fp_dp = dps_map.pop("unlock_fingerprint", None)
         self._unlock_pw_dp = dps_map.pop("unlock_password", None)
@@ -63,6 +65,8 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
         lock = None
         if self._lock_dp:
             lock = self._lock_dp.get_value(self._device)
+        elif self._lock_motor_state:
+            lock = not self._lock_motor_state.get_value(self._device)
         else:
             for d in (
                 self._unlock_card_dp,
@@ -135,6 +139,8 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
         """Lock the lock."""
         if self._lock_dp:
             await self._lock_dp.async_set_value(self._device, True)
+        elif self._manual_lock_dp:
+            await self._manual_lock_dp.async_set_value(self._device, True)
         else:
             raise NotImplementedError()
 
@@ -142,6 +148,8 @@ class TuyaLocalLock(TuyaLocalEntity, LockEntity):
         """Unlock the lock."""
         if self._lock_dp:
             await self._lock_dp.async_set_value(self._device, False)
+        elif self._manual_lock_dp:
+            await self._manual_lock_dp.async_set_value(self._device, False)
         elif self._approve_unlock_dp:
             if self._req_unlock_dp and not self._req_unlock_dp.get_value(self._device):
                 raise TimeoutError()
